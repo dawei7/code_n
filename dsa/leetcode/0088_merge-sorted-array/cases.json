@@ -59,7 +59,7 @@
     {
       "id": "trial-empty-first",
       "name": "first valid prefix empty",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums1": [
@@ -75,6 +75,7 @@
         1
       ],
       "tags": [
+        "sample",
         "boundary"
       ]
     },

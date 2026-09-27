@@ -1,110 +1,183 @@
 # Guided Example: Array Partition
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step monotonicity sorting ($nums.\text{sort}()$), adjacent pairing gap minimization ($\min(a_i, b_i) = a_i$), sacrificed element loss reduction ($\sum (b_i - a_i)$), even-index subsequence stride summation ($\sum nums[2i]$), and global pair-sum maximization on representative integer arrays:
 
-- **Input:** `{"nums": [1, 4, 3, 2]}`
+- **Input:** $nums = [1, 4, 3, 2]$
 - **Required output:** `4`
+  - Array length: $2n = 4 \implies n = 2$ pairs.
+  - Problem objective: Partition the $2n$ integers into $n$ disjoint pairs $(a_1, b_1), (a_2, b_2), \dots, (a_n, b_n)$ such that the sum of pair minimums:
+    $$
+    S = \sum_{i=1}^n \min(a_i, b_i)
+    $$
+    is as large as possible.
+- **Algebraic Gap Minimization & Sorting Trace:**
+  - Let every pair be ordered so that $a_i \le b_i$.
+  - Then $\min(a_i, b_i) = a_i$.
+  - The total sum of all elements in the array is a constant:
+    $$
+    \sum_{i=1}^n (a_i + b_i) = \sum_{x \in nums} x = C
+    $$
+  - We can express the sum of pair differences as:
+    $$
+    \sum_{i=1}^n (b_i - a_i) = \sum_{i=1}^n (a_i + b_i) - 2 \sum_{i=1}^n a_i = C - 2S
+    $$
+  - Solving for the target sum $S$:
+    $$
+    S = \frac{1}{2} \left( C - \sum_{i=1}^n (b_i - a_i) \right)
+    $$
+  - **Key Mathematical Insight:** To **maximize $S$**, we must **minimize the sum of gaps $\sum (b_i - a_i)$** between paired numbers!
+  - To minimize the gaps between pairs, we must pair each number with the closest available value—which is achieved by sorting the array and pairing adjacent numbers!
+  - **Step 1: Sort Array in Ascending Order:**
+    $$
+    nums = [1, 4, 3, 2] \xrightarrow{\text{sort}} [1, \; 2, \; 3, \; 4]
+    $$
+  - **Step 2: Form Consecutive Adjacent Pairs:**
+    - Pair 1: $(nums[0], nums[1]) = (1, 2)$
+      - Minimum: $\min(1, 2) = \mathbf{1}$
+      - Gap sacrificed: $2 - 1 = 1$
+    - Pair 2: $(nums[2], nums[3]) = (3, 4)$
+      - Minimum: $\min(3, 4) = \mathbf{3}$
+      - Gap sacrificed: $4 - 3 = 1$
+  - **Step 3: Sum the Selected Minimums:**
+    - Notice that each pair minimum is precisely the element at the **even index**:
+      $$
+      nums[0] + nums[2] = 1 + 3 = \mathbf{4}
+      $$
+  - *Contrast with a non-adjacent pairing:*
+    - If paired as $(1, 4)$ and $(2, 3)$:
+      - Minimums: $\min(1, 4) + \min(2, 3) = 1 + 2 = \mathbf{3} < 4$.
+      - Gaps sacrificed: $(4 - 1) + (3 - 2) = 3 + 1 = 4$ (wasting the value of $4$!).
+    - Adjacent sorting preserves the large value $3$ by pairing it with $4$, sacrificing only a gap of $1$.
+- **Six Element Instance ($nums = [6, 2, 6, 5, 1, 2]$):**
+  - Sorted: $[1, 2, 2, 5, 6, 6]$
+  - Even-index elements:
+    $$
+    nums[0] + nums[2] + nums[4] = 1 + 2 + 6 = \mathbf{9}
+    $$
+- **Uniform Array ($nums = [5, 5, 5, 5]$):**
+  - All gaps are 0 $\implies 5 + 5 = \mathbf{10}$.
+- **Negative Elements ($nums = [-1, -4, -3, -2]$):**
+  - Sorted: $[-4, -3, -2, -1]$
+  - Even-index elements: $-4 + (-2) = \mathbf{-6}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy adjacent matching under total sum invariance, mathematically proves why sorting minimizes the aggregate gap penalty $\sum (b_i - a_i)$, and derives $O(N \log N)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` of `2n` integers, group these integers into `n` pairs $(a_{1}, b_{1}), (a_{2}, b_{2}), ..., (a_{n}, b_{n})$ such that the sum of $min(a_{i}, b_{i})$ for all `i` is **maximized**. Return* the maximized sum*.
+Given an array of $2n$ integers $nums$:
+Group them into $n$ pairs $(a_1, b_1), \dots, (a_n, b_n)$ to **maximize the sum of pair minimums**:
+$$
+\sum_{i=1}^n \min(a_i, b_i)
+$$
 
-The objective is to compute `4` from `{"nums": [1, 4, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: [ 1,  4,  3,  2 ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sort:  [ 1,  2,  3,  4 ]
+Pairs: (1, 2),  (3, 4)
+Mins:     1   +    3   = 4 (Maximum possible!)
+
+Suboptimal pairing: (1, 4), (2, 3) -> 1 + 2 = 3
+```
+
+### The Sacrificed Value Theorem
+- In every pair $(a_i, b_i)$ where $a_i \le b_i$:
+  - The smaller element $a_i$ is counted in the sum.
+  - The larger element $b_i$ is discarded (sacrificed).
+- The total sum of all numbers is fixed.
+- To maximize what we keep, we must **minimize what is wasted**:
+  $$
+  \text{Wasted} = \sum_{i=1}^n (b_i - a_i)
+  $$
+- Pairing each number with its immediate neighbor in sorted order minimizes the difference between paired numbers, making the wasted amount as small as mathematically possible.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Greedy Strategy:
+1. Sort $nums$ in non-decreasing order:
+   $$
+   nums[0] \le nums[1] \le nums[2] \le \dots \le nums[2n-1]
+   $$
+2. Pair adjacent elements:
+   $$
+   (nums[0], nums[1]), \; (nums[2], nums[3]), \; \dots, \; (nums[2n-2], nums[2n-1])
+   $$
+3. The minimum of each pair $(nums[2i], nums[2i+1])$ is always the first element:
+   $$
+   \min(nums[2i], nums[2i+1]) = nums[2i]
+   $$
+4. The maximum sum is simply:
+   $$
+   \sum_{i=0}^{n-1} nums[2i]
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Adjacent Neighbor Optimality Invariant.** Any cross-pairing of non-adjacent sorted elements $(x_1, y_2)$ and $(x_2, y_1)$ with $x_1 \le x_2 \le y_1 \le y_2$ produces a sum $\min(x_1, y_2) + \min(x_2, y_1) = x_1 + x_2$, which is identical to or strictly dominated by adjacent pairing $x_1 + y_1$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Each pair contributes only its smaller element. To maximize the sum, large values should not be wasted as the larger partner of much smaller values when two nearby large values could form a pair whose minimum is also large.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 4, 3, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 4, 3, 2]$:
 
 ---
 
-### Step 2: Core Step 3
-
-1. sort all values in ascending order;
-2. pair adjacent values;
-3. sum the first value of each pair.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Sort
+$$
+nums = [1, \; 2, \; 3, \; 4]
+$$
 
 ---
 
-### Step 3: Optimality Decision
+### Step 2: Form Pairs
+- Pair 0: $(nums[0], nums[1]) = (1, 2) \implies \min = 1$
+- Pair 1: $(nums[2], nums[3]) = (3, 4) \implies \min = 3$
 
-Synthesize the final answer directly from validated sub-states.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Step 3: Sum Even Elements
+$$
+nums[0] + nums[2] = 1 + 3 = \mathbf{4}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 4, 3, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| Step | Array State | Elements at Even Indices | Elements at Odd Indices (Sacrificed) | Running Sum of Minimums |
+|:---:|:---:|:---:|:---:|:---:|
+| **Sort** | `[1, 2, 3, 4]` | — | — | $0$ |
+| **Pair 0** | $(1, 2)$ | $nums[0] = \mathbf{1}$ | $nums[1] = 2$ | $1$ |
+| **Pair 1** | $(3, 4)$ | $nums[2] = \mathbf{3}$ | $nums[3] = 4$ | $1 + 3 = \mathbf{4}$ |
+| **Result** | — | — | Total sacrificed: $3$ | **`4`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Minimum Length ($2n = 2$):** Only one pair exists $\implies \min(nums[0], nums[1])$.
+- **All Elements Equal ($[5, 5, 5, 5]$):** Any pairing produces the same sum $\implies 5 + 5 = \mathbf{10}$.
+- **Negative Elements ($[-4, -3, -2, -1]$):** Sorting places most negative numbers first. $-4 + (-2) = \mathbf{-6}$. (Pairing $(-4, -1)$ would yield $-4 + (-3) = -7 < -6$).
+- **Large Arrays ($2 \times 10^4$ elements):** In-place sorting executes in $O(N \log N)$ time with zero memory allocation.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Counting sort:** The bounded value range allows linear time in input size plus range, at the cost of a frequency array.
-- **Enumerate pairings:** The number of pairings grows combinatorially and is unnecessary.
-- **Pair smallest with largest:** It wastes large values as non-contributing partners and is generally suboptimal.
-- **One pair:** Sorting and choosing index zero returns the smaller of the two values.
-- **All values equal:** Every pairing has the same result; adjacency remains valid.
-- **Negative values:** Ascending adjacency still maximizes the minima sum.
-- **Duplicate values:** They remain separate occurrences and pair normally.
-- **In-place sort:** The original order is not preserved.
-- **Even-length guarantee:** Every sorted element belongs to a complete adjacent pair.
-- **Slice semantics:** `[::2]` selects indices zero, two, four, and so on.
-- **Large pair count:** Sorting, not pairing construction, is the dominant cost.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Attempting Dynamic Programming:** Since the problem asks for optimal partitioning, one might consider subset-sum DP. However, the greedy adjacent sorting strategy is provably globally optimal, reducing an exponential search to a simple sort.
+- **Pairing Smallest with Largest:** Pairing $(nums[0], nums[2n-1])$ wastes the largest number in the array on the smallest number, achieving the absolute *minimum* possible sum instead of the maximum.
+- **Manual Loop vs Slice Stride:** Summing `nums[::2]` directly computes the result in Python with fast C-level iteration.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Let $N$ be the number of integers, equal to twice the problem's pair count. Python sorting takes $O(N\log N)$ time. Slicing `nums[::2]` and summing take $O(N)$ additional time, so sorting dominates.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting $2N$ integers: $\mathcal{O}(N \log N)$.
+  - Stepping through the even indices takes $N$ operations: $\mathcal{O}(N)$.
+  - Total Time: $\mathcal{O}(N \log N)$. For $2N = 2 \times 10^4$, finishes in $< 3$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ beyond standard in-place sorting memory.

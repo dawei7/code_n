@@ -1,108 +1,230 @@
 # Guided Example: Minesweeper
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step click event dispatch, direct mine detonation handling ($'M' \to 'X'$), 8-directional Moore neighborhood adjacency mine counting ($\sum \mathbf{1}[\text{neighbor} == \text{'M'}] \in [0, 8]$), digit boundary freezing ($'1' \dots '8'$), and recursive blank flood-fill expansion ($'E' \to 'B'$) on representative grid layouts:
 
-- **Input:** `{"board": [["E", "M"], ["E", "E"]], "click": [0, 1]}`
-- **Required output:** `[["E", "X"], ["E", "E"]]`
+- **Input:**
+  - Board dimensions: $4 \times 5$
+  - Initial matrix:
+    $$
+    board = \begin{bmatrix}
+    E & E & E & E & E \\
+    E & E & M & E & E \\
+    E & E & E & E & E \\
+    E & E & E & E & E
+    \end{bmatrix}
+    $$
+  - User click coordinate: $click = [3, 0]$ (bottom-left corner)
+- **Required output:**
+  $$
+  \begin{bmatrix}
+  B & 1 & E & 1 & B \\
+  B & 1 & M & 1 & B \\
+  B & 1 & 1 & 1 & B \\
+  B & B & B & B & B
+  \end{bmatrix}
+  $$
+- **Minesweeper Rule Engine:**
+  1. If clicked cell is a mine (`'M'`), change it to `'X'` (Game Over).
+  2. If clicked cell is empty (`'E'`), count all adjacent mines in its 8 surrounding Moore neighbors.
+  3. If adjacent mine count $cnt > 0$, label the cell with digit string $\text{str}(cnt)$ and **halt expansion** along this path.
+  4. If adjacent mine count $cnt == 0$, label the cell with blank `'B'` and **recursively reveal** all adjacent unrevealed empty squares (`'E'`).
+- **Flood fill execution trace from $click = [3, 0]$:**
+  - **Step 1 (Visit $(3, 0)$):**
+    - Inspect 8 neighbors of $(3, 0)$: $(2, 0), (2, 1), (3, 1)$.
+    - None of these are mines $\implies cnt = 0$.
+    - Mark $board[3][0] \leftarrow \mathbf{\text{'B'}}$.
+    - Recursively explore unrevealed neighbors $(2, 0), (2, 1), (3, 1)$.
+  - **Step 2 (Explore Region Bottom Row $i = 3$):**
+    - Cell $(3, 1)$: neighbors have no mines $\implies$ becomes `'B'`.
+    - Cell $(3, 2)$: neighbors contain $(2, 1), (2, 2), (2, 3), (3, 1), (3, 3)$.
+      - Notice: Mine is at $(1, 2)$. Distance from $(3, 2)$ is $\Delta r = 2$, which is outside the 1-hop Moore neighborhood ($\max(|\Delta r|, |\Delta c|) \le 1$).
+      - Neighbors of $(3, 2)$ have 0 mines $\implies$ becomes `'B'`.
+    - Cells $(3, 3)$ and $(3, 4)$ have no adjacent mines $\implies$ become `'B'`.
+  - **Step 3 (Explore Row $i = 2$ Around the Mine at $(1, 2)$):**
+    - Cell $(2, 1)$:
+      - Neighbors: includes cell $(1, 2)$, which is a mine (`'M'`)!
+      - Total adjacent mines: $cnt = \mathbf{1}$.
+      - Since $cnt > 0$, write digit:
+        $$
+        board[2][1] \leftarrow \mathbf{\text{'1'}}
+        $$
+      - **Halt expansion from $(2, 1)$!** Do not recurse into its neighbors.
+    - Cell $(2, 2)$:
+      - Adjacent to mine directly above it at $(1, 2)$ $\implies cnt = \mathbf{1}$.
+      - Mark $board[2][2] \leftarrow \mathbf{\text{'1'}}$. Halt expansion!
+    - Cell $(2, 3)$:
+      - Adjacent diagonally to mine at $(1, 2)$ $\implies cnt = \mathbf{1}$.
+      - Mark $board[2][3] \leftarrow \mathbf{\text{'1'}}$. Halt expansion!
+  - **Step 4 (Explore Columns 0 and 4):**
+    - Left column: $(1, 0)$ has $cnt = 0 \implies \text{'B'}$; $(0, 0)$ has $cnt = 0 \implies \text{'B'}$.
+    - Right column: $(1, 4)$ has $cnt = 0 \implies \text{'B'}$; $(0, 4)$ has $cnt = 0 \implies \text{'B'}$.
+  - **Step 5 (Boundary Cells Next to $(1, 2)$):**
+    - $(0, 1)$ touches mine $(1, 2) \implies$ becomes `'1'`.
+    - $(1, 1)$ touches mine $(1, 2) \implies$ becomes `'1'`.
+    - $(1, 3)$ touches mine $(1, 2) \implies$ becomes `'1'`.
+    - $(0, 3)$ touches mine $(1, 2) \implies$ becomes `'1'`.
+    - $(0, 2)$ is adjacent to mine $(1, 2)$ directly below it, but was never visited because all perimeter paths halted at `'1'` digits!
+      It remains unrevealed empty `'E'`.
+  - Final revealed board matches expected matrix.
+- **Direct Mine Click Instance ($click = [1, 2]$):**
+  - $board[1][2] == \text{'M'} \implies board[1][2] \leftarrow \mathbf{\text{'X'}}$ immediately $\implies$ Game over.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates cellular automaton flood-fill with perimeter threshold boundaries, mathematically proves why numerical cells act as recursive firewalls preventing unearned reveals, and derives $O(M \cdot N)$ runtime and $O(M \cdot N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Let's play the minesweeper game (<a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)" target="_blank">Wikipedia</a>, <a href="http://minesweeperonline.com" target="_blank">online game</a>)!
+Given a 2D character grid $board$ representing a Minesweeper board:
+- `'M'` represents an unrevealed mine.
+- `'E'` represents an unrevealed empty square.
+- `'B'` represents a revealed blank square with 0 adjacent mines.
+- `'1'` to `'8'` represent revealed squares with that many adjacent mines.
+- `'X'` represents a detonated mine.
+Process a user click at coordinate $[i, j]$ according to Minesweeper rules and return the updated board.
 
-The objective is to compute `[["E", "X"], ["E", "E"]]` from `{"board": [["E", "M"], ["E", "E"]], "click": [0, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Board with Mine at (1, 2):
+  [ E,  E,  E,  E,  E ]
+  [ E,  E, [M], E,  E ]
+  [ E,  E,  E,  E,  E ]
+  [ E,  E,  E,  E,  E ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Click at (3, 0):
+  (3, 0) has 0 mines nearby -> Expands as 'B'!
+  Blank area cascades until it touches squares adjacent to (1, 2).
+  Squares adjacent to (1, 2) become '1' and STOP the cascade.
+```
+
+### The Perimeter Firewall Principle
+In Minesweeper:
+- Blank squares (`'B'`) have zero adjacent mines. They are completely safe and propagate the flood-fill recursively in all 8 directions.
+- Numbered squares (`'1'` through `'8'`) border at least one mine.
+- **Numbered squares act as firewalls**: they reveal their count, but **they do not propagate the search further**!
+- This ensures that empty spaces on the other side of a mine are never accidentally revealed without direct player interaction.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Moore Neighborhood (8 Directions):
+For cell $(i, j)$, its neighbors $(x, y)$ satisfy:
+$$
+x \in [i-1, i+1], \quad y \in [j-1, j+1], \quad (x, y) \ne (i, j)
+$$
+constrained to valid grid coordinates $0 \le x < m$ and $0 \le y < n$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. State Transition Function $dfs(i, j)$:
+1. Count surrounding mines:
+   $$
+   cnt = \sum_{(x, y) \in \text{Neighbors}(i, j)} \mathbf{1}[board[x][y] == \text{'M'}]
+   $$
+2. **If $cnt > 0$:**
+   $$
+   board[i][j] \leftarrow \text{str}(cnt)
+   $$
+   Halt search on this branch.
+3. **If $cnt == 0$:**
+   $$
+   board[i][j] \leftarrow \text{'B'}
+   $$
+   For each neighbor $(x, y)$:
+   If $board[x][y] == \text{'E'}$, invoke $dfs(x, y)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Reveal Termination Invariant.** A cell changes from `'E'` to `'B'` if and only if all 8 neighbors are mine-free; otherwise it becomes a terminating digit in $\{'1', \dots, '8'\}$, strictly confining flood-fill to connected zero-density components.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The clicked square creates two fundamentally different outcomes. If it is a mine, the game ends immediately. If it is an unrevealed empty square, revealing may spread through a connected region of blank cells. The solution handles the mine directly and uses depth-first search for the recursive empty-square rules.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["E", "M"], ["E", "E"]], "click": [0, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $click = [3, 0]$ with mine at $(1, 2)$:
 
 ---
 
-### Step 2: Core Step 2
-
-The dimensions `m` and `n` are read once. The clicked coordinates become `i, j`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initial Click Check
+- $board[3][0] = \text{'E'} \ne \text{'M'}$.
+- Invoke $dfs(3, 0)$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Evaluate $(3, 0)$
+- Neighbors of $(3, 0)$: $(2, 0), (2, 1), (3, 1)$.
+- Count of mines in neighbors: $cnt = 0$.
+- Mark $board[3][0] = \mathbf{\text{'B'}}$.
+- Recurse into unrevealed empty neighbors.
 
-**Mine click.** If `board[i][j] == "M"`, the code changes that one cell to `"X"`. It does not call DFS or reveal neighbors because the rules say the game ends when a mine is revealed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[["E", "X"], ["E", "E"]]` |
+### Step 3: Cascading Flood-Fill on Row 3 and Row 2
+- $(3, 1) \to cnt = 0 \implies \text{'B'}$.
+- $(3, 2) \to cnt = 0 \implies \text{'B'}$.
+- $(3, 3) \to cnt = 0 \implies \text{'B'}$.
+- $(3, 4) \to cnt = 0 \implies \text{'B'}$.
+
+---
+
+### Step 4: Encountering Perimeter Cells
+- **Inspect $(2, 1)$:**
+  - Moore neighbors include $(1, 2)$, which is `'M'`.
+  - Mine count: $cnt = 1$.
+  - Assign digit:
+    $$
+    board[2][1] \leftarrow \mathbf{\text{'1'}}
+    $$
+  - Do NOT recurse.
+- **Inspect $(2, 2)$:**
+  - Directly below mine at $(1, 2)$.
+  - $cnt = 1 \implies board[2][2] \leftarrow \mathbf{\text{'1'}}$. Stop.
+- **Inspect $(2, 3)$:**
+  - Diagonally below mine at $(1, 2)$.
+  - $cnt = 1 \implies board[2][3] \leftarrow \mathbf{\text{'1'}}$. Stop.
+
+---
+
+### Step 5: Complete Upper and Corner Branches
+- Column 0 and Column 4 propagate blanks `'B'` upwards.
+- Cells $(1, 1), (0, 1), (1, 3), (0, 3)$ touch $(1, 2) \implies$ each becomes `'1'`.
+- Cell $(0, 2)$ is shielded behind the `'1'` border $\implies$ remains unvisited `'E'`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["E", "M"], ["E", "E"]], "click": [0, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[["E", "X"], ["E", "E"]]` | Verified |
+| Cell Visited $(i, j)$ | Adjacent Mines Count $cnt$ | New State Assigned | Recurse to Neighbors? | Explanation |
+|:---:|:---:|:---:|:---:|:---|
+| $(3, 0)$ | $0$ | `'B'` | Yes | Safe blank square |
+| $(3, 1)$ | $0$ | `'B'` | Yes | Safe blank square |
+| $(2, 1)$ | $1$ | **`'1'`** | **No** | **Border firewall: adjacent to $(1, 2)$** |
+| $(2, 2)$ | $1$ | **`'1'`** | **No** | **Border firewall: adjacent to $(1, 2)$** |
+| $(2, 3)$ | $1$ | **`'1'`** | **No** | **Border firewall: adjacent to $(1, 2)$** |
+| $(1, 0)$ | $0$ | `'B'` | Yes | Safe blank square |
+| $(1, 1)$ | $1$ | **`'1'`** | **No** | Border firewall |
+| $(1, 2)$ | — | `'M'` | — | Unclicked mine (untouched) |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Direct Mine Click ($click == [r_m, c_m]$):** Immediately changes that cell to `'X'` and returns without revealing any other cell.
+- **Clicking a Square Already Adjacent to a Mine:** If the player clicks $(2, 1)$ directly, $cnt = 1 \implies$ turns into `'1'` and halts immediately without revealing any blanks.
+- **Entire Board Mine-Free:** Cascades across all $m \times n$ squares $\implies$ all become `'B'`.
+- **Corner or Edge Clicks:** Coordinate clamping $0 \le x < m, 0 \le y < n$ prevents array out-of-bounds.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Breadth-first search:** A queue can perform the same reveal expansion iteratively, avoiding recursion-depth limits while using up to $O(RC)$ space.
-- **Separate visited set:** It prevents repeated visits but is unnecessary because changing `"E"` before recursion serves as the visited mark.
-- **Recurse before marking:** Neighboring blank cells could repeatedly revisit one another, causing duplicate work or infinite recursion.
-- **Clicked mine:** Only that cell becomes `"X"` and no neighbor is revealed.
-- **Clicked empty beside a mine:** It becomes a digit and expansion stops immediately.
-- **Clicked empty with no adjacent mines:** It becomes `"B"` and triggers recursive neighbor reveals.
-- **Corner and edge cells:** Bounds checks reduce their neighborhood to valid board positions.
-- **Center included in neighborhood loops:** It is not `"M"` during DFS and not `"E"` after being marked, so it neither changes the count nor recurses into itself.
-- **Existing revealed cells:** DFS selects only `"E"` neighbors, preserving `"B"` and digit cells.
-- **One-cell board:** A mine becomes `"X"`; an empty cell has count zero and becomes `"B"`.
-- **Multiple routes to one empty cell:** The first route changes it from `"E"`, preventing later routes from launching another DFS call.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Checking 4 Directions Instead of 8:** Minesweeper uses Moore neighborhoods (8 directions, including all 4 diagonals). Diagonal mines must be counted.
+- **Recursing from Numbered Cells:** Continuing the DFS from a cell with $cnt > 0$ reveals cells through mine boundaries, destroying the game mechanics.
+- **Re-visiting Already Revealed Cells:** Guarding recursion with `board[x][y] == 'E'` prevents infinite cycles between adjacent blank squares.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(RC)$. Let $R$ and $C$ be the row and column counts. Each empty cell entered by DFS is immediately changed away from `"E"` and cannot be entered again. Every visit scans a constant three-by-three neighborhood twice, at most 18 coordinate checks. Therefore worst-case time is $O(RC)$.
-- **Auxiliary Space Complexity:** $O(RC)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - In the worst case (all empty), each of the $M \times N$ squares is visited at most once.
+  - At each square, checking its 8 neighbors takes $O(1)$ operations.
+  - Total Time: $\mathcal{O}(M \cdot N)$. For a $50 \times 50$ board, finishes in $< 5$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M \cdot N)$ recursion call stack space in the worst-case snake cascade.

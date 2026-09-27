@@ -1,125 +1,177 @@
 # Guided Example: Richest Customer Wealth
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the row-wise matrix reduction and running supremum evaluation for customer asset aggregation, formulate the Row-Sum Vector Reduction Theorem and the Online Extremum Invariant, and analyze customer wealth profiles across representative grid instances:
 
-- **Input:** `{"accounts": [[1, 2, 3], [3, 2, 1]]}`
-- **Required output:** `6`
+- **Representative Instance 1 (Equal Maximal Wealth Tie):**
+  - Input Grid: `accounts = [[1, 2, 3], [3, 2, 1]]`
+  - Dimensions: $m = 2$ customers, $n = 3$ banks.
+  - Customer Wealth Accumulations:
+    - Customer $0$: $W_0 = 1 + 2 + 3 = \mathbf{6}$.
+    - Customer $1$: $W_1 = 3 + 2 + 1 = \mathbf{6}$.
+  - Supremum: $\max(W_0, W_1) = \max(6, 6) = \mathbf{6}$.
+  - **Required Output:** `6`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Strict Unique Wealth Maximum):**
+  - Input Grid: `accounts = [[1, 5], [7, 3], [3, 5]]`
+  - Dimensions: $m = 3$ customers, $n = 2$ banks.
+  - Customer Wealth Accumulations:
+    - Customer $0$: $W_0 = 1 + 5 = 6$.
+    - Customer $1$: $W_1 = 7 + 3 = \mathbf{10}$.
+    - Customer $2$: $W_2 = 3 + 5 = 8$.
+  - Supremum: $\max(6, 10, 8) = \mathbf{10}$.
+  - **Required Output:** `10`.
+
+- **Representative Instance 3 (Multi-Bank Heterogeneous Assets):**
+  - Input Grid: `accounts = [[2, 8, 7], [7, 1, 3], [1, 9, 5]]`
+  - Customer $0$: $2 + 8 + 7 = \mathbf{17}$.
+  - Customer $1$: $7 + 1 + 3 = 11$.
+  - Customer $2$: $1 + 9 + 5 = 15$.
+  - Supremum: $\max(17, 11, 15) = \mathbf{17}$.
+  - **Required Output:** `17`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` integer grid `accounts` where $\text{accounts}[i][j]$ is the amount of money the $i^th$ customer has in the $j^th$ bank. Return* the **wealth** that the richest customer has.*
+Given an $m \times n$ integer matrix `accounts` where entry $\text{accounts}[i][j]$ denotes the balance held by the $i$-th customer at the $j$-th banking institution, compute the wealth of each customer as the sum of all their bank account balances, and return the maximum wealth observed across all customers.
 
-The objective is to compute `6` from `{"accounts": [[1, 2, 3], [3, 2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Matrix Row-Wise Reduction Representation:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+             Bank 0    Bank 1    Bank 2        Row Sum (Wealth)
+Customer 0: [   2   ,    8   ,    7   ]  --->  W_0 = 2 + 8 + 7 = 17  <-- MAX!
+Customer 1: [   7   ,    1   ,    3   ]  --->  W_1 = 7 + 1 + 3 = 11
+Customer 2: [   1   ,    9   ,    5   ]  --->  W_2 = 1 + 9 + 5 = 15
+```
+
+The pedagogical focus is the **Row-Sum Vector Reduction Theorem**:
+1. **Dimension Reduction:** Project an $m \times n$ rank-2 tensor into an $m$-dimensional wealth vector via linear aggregation along the bank axis ($j \in \{0, \dots, n-1\}$).
+2. **Online Monotonic Tracking:** Compute customer sums sequentially while updating a running scalar maximum, guaranteeing $\mathcal{O}(1)$ auxiliary working space without allocating intermediate arrays.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Reduction Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Row-Wise Wealth Aggregation Pipeline
+    accDescr: Pipeline showing matrix traversal, row summation, running maximum update, and final wealth extraction.
+    Start["Given m x n Matrix accounts"] --> InitMax["Initialize max_wealth = 0"]
+    InitMax --> LoopRow["For each row i from 0 to m - 1:"]
+    LoopRow --> SumRow["Compute row sum:\nW_i = sum(accounts[i][0 ... n - 1])"]
+    SumRow --> UpdateExtremum["Update running maximum:\nmax_wealth = max(max_wealth, W_i)"]
+    UpdateExtremum --> CheckDone{"i == m - 1 ?"}
+    CheckDone -->|"No"| LoopRow
+    CheckDone -->|"Yes"| Emit["Emit max_wealth as Richest Wealth"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Row-Sum Vector Reduction Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $A \in \mathbb{Z}^{m \times n}$ be a matrix of non-negative integers with elements $a_{i, j} \ge 0$.
+
+1. **Definition of Customer Wealth:**
+   The wealth vector $\mathbf{w} \in \mathbb{Z}^m$ is defined by the matrix-vector contraction:
+   $$
+   w_i = \sum_{j=0}^{n-1} a_{i, j} = \mathbf{e}_i^T A \mathbf{1}_n
+   $$
+   where $\mathbf{1}_n$ denotes the $n$-dimensional all-ones column vector.
+
+2. **Supremum Projection:**
+   The objective value $W^*$ is the infinity-norm of the wealth vector:
+   $$
+   W^* = \|\mathbf{w}\|_\infty = \max_{0 \le i < m} w_i = \max_{0 \le i < m} \left( \sum_{j=0}^{n-1} a_{i, j} \right)
+   $$
+
+3. **Online Extremum Invariant:**
+   Define the prefix maximum sequence $M_k$ for $0 \le k < m$:
+   $$
+   M_0 = w_0, \quad M_k = \max(M_{k-1}, w_k)
+   $$
+   By mathematical induction, $M_{m-1} = \max_{0 \le i < m} w_i = W^*$.
+   Because $M_k$ depends solely on $M_{k-1}$ and the current row sum $w_k$, computing $W^*$ requires storing only the single scalar variable $M_k$, eliminating the need to store the vector $\mathbf{w}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the table into one total per customer
+### Trace on Representative Instance 2 (`accounts = [[1, 5], [7, 3], [3, 5]]`)
 
-Each inner list in `accounts` belongs to one customer. Its entries are the amounts that customer holds in different banks. The problem defines wealth as the sum across all those entries, so for a row `v` the exact wealth is `sum(v)`.
+Matrix Dimensions: $m = 3$ customers, $n = 2$ banks.
+Initialize: $\text{max\_wealth} = 0$.
 
-Once every customer has one row sum, the richest wealth is simply the largest of those sums. The source expresses both levels directly:
+#### Step 0: Customer $0$ (`accounts[0] = [1, 5]`)
+- Accumulate row elements:
+  $$
+  W_0 = \text{accounts}[0][0] + \text{accounts}[0][1] = 1 + 5 = 6
+  $$
+- Compare against running maximum:
+  $$
+  \text{max\_wealth} \leftarrow \max(0, 6) = \mathbf{6}
+  $$
 
-`max(sum(v) for v in accounts)`.
+#### Step 1: Customer $1$ (`accounts[1] = [7, 3]`)
+- Accumulate row elements:
+  $$
+  W_1 = \text{accounts}[1][0] + \text{accounts}[1][1] = 7 + 3 = 10
+  $$
+- Compare against running maximum:
+  $$
+  \text{max\_wealth} \leftarrow \max(6, 10) = \mathbf{10}
+  $$
 
-The generator visits the customer rows one at a time. For the current row, `sum` visits all bank balances and produces that customer’s total. `max` compares each produced total with the largest one seen so far and ultimately returns the greatest.
+#### Step 2: Customer $2$ (`accounts[2] = [3, 5]`)
+- Accumulate row elements:
+  $$
+  W_2 = \text{accounts}[2][0] + \text{accounts}[2][1] = 3 + 5 = 8
+  $$
+- Compare against running maximum:
+  $$
+  \text{max\_wealth} \leftarrow \max(10, 8) = \mathbf{10}
+  $$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"accounts": [[1, 2, 3], [3, 2, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why a generator is enough
-
-There is no need to remember every customer’s total after comparing it. If the first processed customer has wealth six, the running maximum is six. If the next has wealth ten, the running maximum becomes ten. A later total of eight cannot change it. At every point, only the greatest wealth among the rows processed so far matters.
-
-The generator expression supplies totals lazily to `max` instead of constructing a separate list such as `[sum(v) for v in accounts]`. That avoids storing one additional number per customer. Each row already exists in the input; only its scalar sum is temporarily produced.
-
-The constraints guarantee at least one customer, so `max` always receives at least one value. No default value or empty-input branch is needed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: A trace
-
-For `accounts = [[1, 5], [7, 3], [3, 5]]`:
-
-- the first row yields `1 + 5 = 6`, so the current maximum is six;
-- the second yields `7 + 3 = 10`, replacing the current maximum;
-- the third yields `3 + 5 = 8`, which is smaller than ten.
-
-The returned answer is ten. The index or identity of the customer does not need to be returned, so the implementation stores only the wealth value.
-
-For `[[1, 2, 3], [3, 2, 1]]`, both row sums are six. `max` returns six regardless of which tied customer is considered first. This matches the contract: it asks for the wealth of a richest customer, not for a unique customer ID.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+#### Finalization:
+- All rows processed.
+- Maximum wealth: $\text{max\_wealth} = \mathbf{10}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"accounts": [[1, 2, 3], [3, 2, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+### Row-Wise Accumulation State Table for Representative Instance 2
+
+| Customer Row $i$ | Bank Accounts Array | Element Contributions | Computed Wealth $W_i$ | Pre-Check Max | Updated Running Max |
+|---|---|---|---|---|---|
+| $0$ | `[1, 5]` | $1 + 5$ | $6$ | $0$ | $6$ |
+| $1$ | `[7, 3]` | $7 + 3$ | **`10`** | $6$ | **`10`** |
+| $2$ | `[3, 5]` | $3 + 5$ | $8$ | $10$ | **`10`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The algorithm directly evaluates the arithmetic sum of each customer's accounts as specified by the problem definition. Taking the pairwise maximum between the running best and each computed row sum mathematically mirrors the definition of the set maximum over a finite collection of real numbers.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The outer loop iterates over every index $i \in \{0, \dots, m - 1\}$ without early termination, and the inner sum visits every bank $j \in \{0, \dots, n - 1\}$. Because every element is visited and every customer's total is considered, no candidate can be omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit nested loops:** Maintain `current_wealth` for each row and `best` globally. This is longer but exposes the same $O(S)$ time and $O(1)$ space mechanics.
-- **List comprehension of row sums:** `max([sum(v) for v in accounts])` is correct but allocates an $O(m)$ temporary list that the generator avoids.
-- **Sort customer totals:** Sorting can identify the largest value but costs $O(m\log m)$ after the sums and stores all totals, neither of which is needed for one maximum.
-- **Tied richest customers:** Only the wealth is returned, so equal maximum totals need no tie-breaking rule.
-- **One customer:** The only row sum is necessarily the maximum and is returned.
-- **One bank per customer:** Every row sum equals its single entry, so the operation reduces naturally to finding the largest balance.
-- **All balances equal:** Row lengths are equal in the rectangular input, so all wealth totals tie and that common total is returned.
-- **Positive-input guarantee:** It permits an explicit-loop version to initialize a maximum to zero, but the exact built-in expression does not rely on that detail.
-- **Nonempty-grid guarantee:** Without at least one row, `max` would raise an exception; the stated `m >= 1` makes the call safe.
-- **No customer index returned:** Tracking which row produced the maximum would be extra state for information the contract does not request.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Column-Major vs. Row-Major Confusion:** Summing along columns instead of rows computes the total money held by each bank across all customers, rather than the wealth of each customer across all banks.
+- **Negative Initialization Trap:** Although constraints specify $a_{i, j} \ge 1$, initializing the running maximum with negative infinity or $0$ ensures correct behavior even if zero-balance accounts are permitted.
+- **Tied Maximums:** If multiple customers share the identical richest wealth (as in Representative Instance 1 where both have $6$), the problem asks for the maximum wealth value, not the customer index, so ties resolve naturally.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S)$. Let `m` be the number of customers, let customer `i` have `n_i` accounts, and define
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The matrix contains $m \times n$ total elements.
+  - Each cell $a_{i, j}$ is read exactly once in sequential cache-friendly row-major order.
+  - Total Time Complexity: strictly $\mathcal{O}(m \cdot n)$ optimal linear time in the size of the input. For $m, n \le 50$, operations total $\le 2500$ ($< 1$ ms).
+- **Auxiliary Space Complexity:**
+  - The calculation maintains a running scalar sum for the current row and a scalar for the maximum.
+  - No additional arrays or matrices are allocated.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(1)$ constant memory.

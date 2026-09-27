@@ -2,122 +2,163 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"n": 2, "languages": [[1], [2], [1, 2]], "friendships": [[1, 2], [1, 3], [2, 3]]}`
-- **Required output:** `1`
+- **Input:**
+  - Total Languages: $n = 2$
+  - Language Sets: `languages = [[1], [2], [1, 2]]` (1-indexed people $1, 2, 3$)
+  - Friendship Graph: `friendships = [[1, 2], [1, 3], [2, 3]]`
+- **Required Output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains a triad of friendships where one pair cannot communicate while the other two pairs share languages, demonstrating how isolating the failing friendship subgraph reduces the global teaching decision to a single frequency maximization.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-On a social network consisting of `m` users and some friendships between users, two users can communicate with each other if they know a common language.
+In a community of $m$ users and $n$ available languages, each user $i$ speaks a set of languages $L(i)$. Two users $u$ and $v$ can communicate if and only if they share at least one language:
+$$L(u) \cap L(v) \neq \emptyset$$
 
-The objective is to compute `1` from `{"n": 2, "languages": [[1], [2], [1, 2]], "friendships": [[1, 2], [1, 3], [2, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+We are permitted to select exactly **one** global target language $\ell^* \in \{1, \dots, n\}$ and teach it to any subset of users. After teaching, every pair of friends $(u, v) \in \text{friendships}$ must be able to communicate. The goal is to minimize the total number of people taught.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A brute-force simulation tests teaching subsets across all people, resulting in an intractable exponential search space. The optimal insight recognizes two structural properties:
+1. Friendships that already communicate never break, regardless of what is taught.
+2. For every friendship that currently cannot communicate, **both** endpoints must speak the selected language $\ell^*$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Definition | Initial State |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Failing Friendships $E_{\text{fail}}$ | Pairs $(u, v) \in \text{friendships}$ where $L(u) \cap L(v) = \emptyset$ | Identified via intersection scan |
+| Affected People Set $S$ | Union of vertices in $E_{\text{fail}}$: $\bigcup_{(u, v) \in E_{\text{fail}}} \{u, v\}$ | Collected unique user IDs |
+| Language Frequencies $C[\ell]$ | Count of users in $S$ who already speak language $\ell$ | Frequency map across $\ell \in \{1, \dots, n\}$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Failing Friendship Vertex Union Theorem.**
+> Let $(u, v) \in \text{friendships}$ be a pair that cannot currently communicate ($L(u) \cap L(v) = \emptyset$). To establish communication between $u$ and $v$ using a single chosen language $\ell^*$, both $u$ and $v$ must possess $\ell^*$ in their spoken repertoire.
+> Therefore, every user in:
+> $$S = \bigcup_{(u, v) \in E_{\text{fail}}} \{u, v\}$$
+> must know language $\ell^*$. Any person outside $S$ is already able to communicate across all their friendships and does not require teaching.
+
+> **Complementary Majority Language Invariant.**
+> If language $\ell$ is chosen as the universal teaching language, every person in $S$ who does not already speak $\ell$ must be taught. The number of people to teach for a fixed $\ell$ is:
+> $$\text{Cost}(\ell) = |S| - |\{ p \in S : \ell \in L(p) \}|$$
+> Minimizing $\text{Cost}(\ell)$ is equivalent to maximizing the existing knowledge of $\ell$ within $S$:
+> $$\text{MinCost} = |S| - \max_{1 \le \ell \le n} C_S[\ell]$$
+> where $C_S[\ell]$ is the number of individuals in $S$ who already speak language $\ell$.
+
+```mermaid
+flowchart TD
+    accTitle: Pipeline for Minimum People to Teach
+    accDescr: Flowchart illustrating the identification of non-communicating friends, forming the set of affected users, computing language frequency in that set, and subtracting max frequency.
+    A["Input Friendships and Language Sets"] --> B["Identify Failing Friendships: L(u) ∩ L(v) == ∅"]
+    B --> C["Collect Affected Vertices: S = Union of failing endpoints"]
+    C --> D{"Is S empty?"}
+    D -- Yes --> E["All friends can communicate: Return 0"]
+    D -- No --> F["Count Language Frequencies for users in S"]
+    F --> G["Find Most Popular Language: max_freq = max(C_S[l])"]
+    G --> H["Compute Result: |S| - max_freq"]
+    H --> I["Return Minimum People to Teach"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Only currently noncommunicating friendships matter
+Given $n = 2$, 3 people, and 3 friendships:
+- Person 1: $L(1) = \{1\}$
+- Person 2: $L(2) = \{2\}$
+- Person 3: $L(3) = \{1, 2\}$
+- Friendships: $(1, 2)$, $(1, 3)$, $(2, 3)$
 
-If two friends already share at least one language, teaching is unnecessary for that friendship and can never break their communication.
+### Step 1: Filter Friendships by Existing Communication
 
-If they share no language, the only way the chosen global teaching language can repair their friendship is for both endpoints to know that language afterward. Since neither initially shares any common language with the other, every endpoint of every failing friendship must either already know the chosen language or be taught it.
+We test each friendship pair for common languages:
 
-The source first identifies the union of these affected users in set `s`.
+| Friendship $(u, v)$ | Language Set $L(u)$ | Language Set $L(v)$ | Intersection $L(u) \cap L(v)$ | Can Communicate? | Action |
+|---|---|---|---|---|---|
+| $(1, 2)$ | $\{1\}$ | $\{2\}$ | $\emptyset$ | **No** | Add $1$ and $2$ to $S$ |
+| $(1, 3)$ | $\{1\}$ | $\{1, 2\}$ | $\{1\} \neq \emptyset$ | Yes | Disregard |
+| $(2, 3)$ | $\{2\}$ | $\{1, 2\}$ | $\{2\} \neq \emptyset$ | Yes | Disregard |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2, "languages": [[1], [2], [1, 2]], "friendships": [[1, 2], [1, 3], [2, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Check whether one friendship already communicates
-
-The nested helper `check(u,v)` iterates every language `x` of user `u` and every language `y` of user `v`. It returns true on the first equality.
-
-User IDs are one-indexed, so their language lists are accessed as `languages[u - 1]` and `languages[v - 1]`.
-
-If no pair of entries matches, the lists are disjoint and the helper returns false.
-
-The implementation deliberately compares lists directly rather than converting them to sets. This exact choice affects its running-time analysis.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Result of Phase 1:
+- Failing friendships: $E_{\text{fail}} = \{(1, 2)\}$
+- Set of affected users: $S = \{1, 2\}$
+- Cardinality: $|S| = 2$
 
 ---
 
-### Step 3: Collect each affected user once
+### Step 2: Tally Language Proficiencies Within Affected Set $S$
 
-For every friendship that fails `check`, both user IDs are added to `s`. A user may participate in several failing friendships, but set semantics retain one copy.
+We inspect the languages spoken by each person in $S = \{1, 2\}$:
 
-This deduplication is required because a user taught the chosen language once repairs all of that user's affected friendships. Counting the same person once per friendship would overstate the answer.
+| Person $p \in S$ | Spoken Languages | Contributions to Frequencies |
+|---|---|---|
+| Person $1$ | $\{1\}$ | Language $1$ count $+1$ |
+| Person $2$ | $\{2\}$ | Language $2$ count $+1$ |
 
-Users appearing only in already communicative friendships are absent from `s` and never need teaching.
+Resulting language counts in $S$:
+- Language $1$: $C_S[1] = 1$ (Person 1)
+- Language $2$: $C_S[2] = 1$ (Person 2)
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+---
+
+### Step 3: Evaluate Optimal Language Selection
+
+We compare teaching costs for each candidate language $\ell \in \{1, 2\}$:
+
+1. **Option A: Teach Language $1$:**
+   - Person 1 already speaks language $1$.
+   - Person 2 must be taught language $1$.
+   - Total people taught: $|S| - C_S[1] = 2 - 1 = 1$.
+   - Outcome: Person 2 learns 1. Friendships $(1, 2)$ now share language 1; existing friendships remain intact.
+
+2. **Option B: Teach Language $2$:**
+   - Person 1 must be taught language $2$.
+   - Person 2 already speaks language $2$.
+   - Total people taught: $|S| - C_S[2] = 2 - 1 = 1$.
+   - Outcome: Person 1 learns 2. Friendships $(1, 2)$ now share language 2.
+
+Both options yield cost $1$. The minimum number of people to teach is $\mathbf{1}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Phase | Evaluation | Details / Values | State Summary |
 |---|---|---|---|
-| Initialization | Initial input `{"n": 2, "languages": [[1], [2], [1, 2]], "friendships": [[1, 2], [1, 3], [2, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Pre-check | Pair $(1, 2)$ | $\{1\} \cap \{2\} = \emptyset$ | $S \leftarrow \{1, 2\}$ |
+| Pre-check | Pair $(1, 3)$ | $\{1\} \cap \{1, 2\} = \{1\}$ | Already communicating |
+| Pre-check | Pair $(2, 3)$ | $\{2\} \cap \{1, 2\} = \{2\}$ | Already communicating |
+| Tally | Person 1 languages | Knows $\{1\}$ | $C_S[1] = 1$ |
+| Tally | Person 2 languages | Knows $\{2\}$ | $C_S[2] = 1$ |
+| Optimization | $\max C_S[\ell]$ | $\max(C_S[1], C_S[2]) = 1$ | Peak overlap = 1 |
+| Conclusion | Subtract from $\|S\|$ | $|S| - \max C_S = 2 - 1 = 1$ | Result: 1 |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Mastery & Edge Surfacing
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Boundary and Edge Cases
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Scenario | Input Characteristic | Expected Result | Strategic Handling |
+|---|---|---|---|
+| All Friends Communicate Initially | Every pair shares $\ge 1$ language | `0` | $S = \emptyset$; $|S| = 0$, immediately returns $0$. |
+| No Friends Communicate | Disjoint languages across all pairs | $|S| - \text{max\_freq}$ | All connected endpoints collected; selects globally most frequent language. |
+| Single Friendship | One pair with no common language | `1` | Pair has size $2$; each person knows $\ge 1$ language, max frequency is at least $1 \implies 2 - 1 = 1$. |
+| Completely Isolated Component | People with no friendships | Not in $S$ | Isolated people never participate in failing friendships and are never taught. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 6. Traps This Instance Exposes
+1. **Why Unaffected People Are Excluded:**
+   People not in $S$ are already capable of communicating across all of their listed friendships. Even if an unaffected person does not know the chosen language $\ell^*$, their existing friendships remain valid via whatever mutual language they already shared.
+2. **Monotonic Non-Deleterious Teaching:**
+   Teaching a language to a user expands their language set: $L'(u) = L(u) \cup \{\ell^*\}$. Since $L(u) \subseteq L'(u)$, any pre-existing intersection $L(u) \cap L(w)$ is preserved ($L(u) \cap L(w) \subseteq L'(u) \cap L'(w)$). Therefore, teaching can never break previously working communications.
 
-- **Convert each language list to a set:** Friendship intersection can iterate the smaller set with expected constant-time membership, reducing repeated comparison work at $O(S)$ preprocessing space.
-- **Boolean language matrix:** With both users and languages at most 500, bitsets can make intersections and counts fast and predictable.
-- **Teach per friendship independently:** It can teach the same user several times or choose conflicting languages; one global language must be optimized over the affected-user union.
-- **All friendships already communicate:** `s` and `cnt` stay empty, and the default maximum returns zero.
-- **One affected friendship:** Choose a language known by one endpoint if possible, teaching the other once; their sets are disjoint, so no language is known by both.
-- **User in several failing friendships:** The set counts that user once.
-- **Language known by every affected user:** No teaching is required even though some pairs originally failing would contradict this situation; in practice such a language would mean those pairs were not failing.
-- **Language known by none:** It would require teaching everyone and can never beat a language already counted when `s` is nonempty.
-- **Unique per-user language entries:** Counter increments represent users rather than duplicate list entries.
-- **One-indexed IDs:** Subtracting one for list access is required.
-- **Nontransitive friendships:** Only listed pairs are checked.
-- **Input preservation:** No language list or friendship is modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Complexity Analysis
 
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(S + C)$. Let $F$ be the number of friendships and let $L_u$ be user $u$'s language count. The exact direct-list check costs
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(F \cdot L_{\max}^2 + |S| \cdot L_{\max} + n)$ where $F$ is the number of friendships, $|S| \le m$ is the number of affected users, and $L_{\max} \le n$ is the maximum number of languages spoken by any single person. Checking pairwise intersections takes $\mathcal{O}(F \cdot L_{\max}^2)$. Tallying frequencies in $S$ takes $\mathcal{O}(|S| \cdot L_{\max})$.
+- **Space Complexity:** $\mathcal{O}(m + n)$ auxiliary space to store the set $S$ of affected users and the language frequency array $C_S$.

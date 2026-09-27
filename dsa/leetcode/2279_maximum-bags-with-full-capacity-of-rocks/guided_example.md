@@ -1,130 +1,142 @@
 # Guided Example: Maximum Bags With Full Capacity of Rocks
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"capacity": [2, 3, 4, 5], "rocks": [1, 2, 4, 4], "additionalRocks": 2}`
-- **Required output:** `3`
+We are given $n$ bags numbered $0$ through $n - 1$. For each bag $i$:
+- $capacity[i]$ represents the maximum number of rocks the bag can hold.
+- $rocks[i]$ represents the number of rocks currently inside the bag ($rocks[i] \le capacity[i]$).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Additionally, we have $additionalRocks$ extra rocks that we can place into any bags. A bag is considered **full** when its rock count equals its capacity. Our goal is to determine the maximum number of bags that can be made completely full after optimally distributing the additional rocks.
 
----
+Consider the representative instance:
+$$capacity = [2, 3, 4, 5], \quad rocks = [1, 2, 4, 4], \quad additionalRocks = 2$$
 
-## 1. Instance & Teaching Goal
+Let us calculate the deficit (remaining space to full capacity) for each bag:
+- Bag $0$: Deficit $= 2 - 1 = 1$ rock
+- Bag $1$: Deficit $= 3 - 2 = 1$ rock
+- Bag $2$: Deficit $= 4 - 4 = 0$ rocks (already full!)
+- Bag $3$: Deficit $= 5 - 4 = 1$ rock
 
-You have `n` bags numbered from `0` to $n - 1$. You are given two **0-indexed** integer arrays `capacity` and `rocks`. The $i^{\text{th}}$ bag can hold a maximum of $\text{capacity}[i]$ rocks and currently contains $\text{rocks}[i]$ rocks. You are also given an integer `additionalRocks`, the number of additional rocks you can place in **any** of the bags.
+We have a budget of $2$ additional rocks:
+- Bag $2$ is already full, requiring $0$ additional rocks. Total full bags $= 1$, remaining rocks $= 2$.
+- We allocate $1$ rock to fill Bag $0$. Total full bags $= 2$, remaining rocks $= 1$.
+- We allocate $1$ rock to fill Bag $1$. Total full bags $= 3$, remaining rocks $= 0$.
+- Bag $3$ still needs $1$ rock, but our budget is exhausted.
 
-The objective is to compute `3` from `{"capacity": [2, 3, 4, 5], "rocks": [1, 2, 4, 4], "additionalRocks": 2}` while avoiding redundant calculations and unnecessary overhead.
+In total, $3$ bags are full.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart TD
+    accTitle: Greedy Deficit Satiation Workflow
+    accDescr: Pipeline showing computation of bag capacity deficits, ascending sort, and greedy rock budget deduction.
+    A["Input Arrays: capacity, rocks, additionalRocks = 2"] --> B["Compute Deficits: d_i = capacity[i] - rocks[i]"]
+    B --> C["Raw Deficits: [1, 1, 0, 1]"]
+    C --> D["Sort Deficits Ascending: [0, 1, 1, 1]"]
+    D --> E["Deficit 0: Cost 0, Budget 2 -> 1 full bag"]
+    E --> F["Deficit 1: Cost 1, Budget 1 -> 2 full bags"]
+    F --> G["Deficit 1: Cost 1, Budget 0 -> 3 full bags"]
+    G --> H["Deficit 1: Cost 1 > Budget 0 -> Stop"]
+    H --> I["Return Maximum Full Bags: 3"]
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+### Formalization as a 0-1 Knapsack with Uniform Value
 
-We maintain the core conceptual parameters and state variables:
+For each bag $i \in [0, n - 1]$, define its rock deficit:
+$$d_i = capacity[i] - rocks[i] \ge 0$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $x_i \in \{0, 1\}$ indicate whether bag $i$ is brought to full capacity ($x_i = 1$) or not ($x_i = 0$). The problem is formulated as:
+$$\text{Maximize} \quad \sum_{i=0}^{n-1} x_i \quad \text{subject to} \quad \sum_{i=0}^{n-1} x_i \cdot d_i \le additionalRocks$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+In knapsack terminology, every item has an identical reward of $1$ unit, but a variable weight of $d_i$.
 
----
+### Greedy Optimality (Exchange Argument)
 
-## 3. Step-by-Step Worked Execution
+When all item rewards are identical, the cost-performance ratio $\frac{\text{reward}}{\text{weight}} = \frac{1}{d_i}$ is strictly maximized by selecting items with the **smallest weights** $d_i$.
 
-### Step 1: Replace each bag by its filling cost
+**Theorem:** *Sorting the deficits in non-decreasing order:
+$$d_{(0)} \le d_{(1)} \le \dots \le d_{(n-1)}$$
+and greedily satisfying deficits from left to right achieves the maximum possible number of full bags.*
 
-For bag `i`, the only relevant quantity is how many additional rocks it needs:
+**Proof:**
+Suppose an optimal solution $\mathcal{S}^*$ does not select the bag with the smallest available deficit $d_{(k)}$, but instead selects some bag $j$ with deficit $d_j > d_{(k)}$.
+Replacing bag $j$ with bag $(k)$ in $\mathcal{S}^*$:
+$$\text{New Cost} = \text{Cost}(\mathcal{S}^*) - d_j + d_{(k)} \le \text{Cost}(\mathcal{S}^*) \le additionalRocks$$
+The new selection remains within the budget and retains the exact same number of full bags. By finite induction, any optimal solution can be transformed into the greedy prefix without ever violating the budget or reducing the count of full bags.
 
-$$
-d_i = \texttt{capacity}[i] - \texttt{rocks}[i].
-$$
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-Two bags with the same deficit cost the same to complete, regardless of their absolute capacities or current rock counts. Completing a bag is an all-or-nothing benefit of one: partially filling it does not increase the number of full bags.
+We execute the greedy algorithm on $capacity = [2, 3, 4, 5]$, $rocks = [1, 2, 4, 4]$, and $additionalRocks = 2$.
 
-The first loop computes every deficit in place with `capacity[i] -= x`, where `x` is the corresponding value from `rocks`. After that loop, `capacity` no longer contains capacities; it contains filling costs.
+| Step | Bag Evaluation Index | Bag Deficit $d$ | Budget Before | Budget After ($B - d$) | Affordable? | Total Full Bags |
+|---|---|---|---|---|---|---|
+| Step 1: Compute Deficits | All bags | $[1, 1, 0, 1]$ | $2$ | - | - | $0$ |
+| Step 2: Ascending Sort | All bags | $[0, 1, 1, 1]$ | $2$ | - | - | $0$ |
+| Step 3: Process Index $0$ | Deficit $0$ | $0$ | $2$ | $2 - 0 = 2$ | Yes ($2 \ge 0$) | $1$ |
+| Step 4: Process Index $1$ | Deficit $1$ | $1$ | $2$ | $2 - 1 = 1$ | Yes ($2 \ge 1$) | $2$ |
+| Step 5: Process Index $2$ | Deficit $1$ | $1$ | $1$ | $1 - 1 = 0$ | Yes ($1 \ge 1$) | $3$ |
+| Step 6: Process Index $3$ | Deficit $1$ | $1$ | $0$ | $0 - 1 = -1$ | No ($0 < 1$) | Terminates at $3$ |
 
-The constraints ensure `rocks[i] \le capacity[i]` before mutation, so every deficit is nonnegative.
+- **Step 1:** In-place deficit computation replaces $capacity[i]$ with $capacity[i] - rocks[i]$, giving $[1, 1, 0, 1]$.
+- **Step 2:** Sorting yields $[0, 1, 1, 1]$.
+- **Step 3:** First deficit is $0$. Deduct $0$ from budget; budget remains $2$. Full bags $= 1$.
+- **Step 4:** Second deficit is $1$. Deduct $1$ from budget; budget becomes $1$. Full bags $= 2$.
+- **Step 5:** Third deficit is $1$. Deduct $1$ from budget; budget becomes $0$. Full bags $= 3$.
+- **Step 6:** Fourth deficit is $1$. Deducting $1$ would result in $-1 < 0$. Budget exhausted. The loop terminates immediately and returns index $3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+The final answer is $3$.
+
+## 4. Comprehensive State Trace
+
+The table below catalogs greedy allocations across different deficit and budget configurations.
+
+| Capacities | Initial Rocks | Computed Deficits | Sorted Deficits | Extra Rocks Budget | Bags Filled (Indices) | Final Result |
+|---|---|---|---|---|---|---|
+| $[2, 3, 4, 5]$ | $[1, 2, 4, 4]$ | $[1, 1, 0, 1]$ | $[0, 1, 1, 1]$ | $2$ | $0, 1, 2$ | **$3$** |
+| $[10, 2, 2]$ | $[2, 2, 0]$ | $[8, 0, 2]$ | $[0, 2, 8]$ | $100$ | All ($0, 1, 2$) | **$3$** |
+| $[5, 5]$ | $[5, 0]$ | $[0, 5]$ | $[0, 5]$ | $1$ | Only index $0$ | **$1$** |
+| $[3, 5, 7]$ | $[1, 2, 6]$ | $[2, 3, 1]$ | $[1, 2, 3]$ | $3$ | Indices $0, 1$ (costs $1+2=3$) | **$2$** |
+| $[100, 3, 4]$ | $[99, 0, 0]$ | $[1, 3, 4]$ | $[1, 3, 4]$ | $4$ | Indices $0, 1$ (costs $1+3=4$) | **$2$** |
+| $[7, 8, 9]$ | $[7, 2, 9]$ | $[0, 6, 0]$ | $[0, 0, 6]$ | $1$ | Indices $0, 1$ (costs $0+0=0$) | **$2$** |
+
+In $[100, 3, 4]$ with initial rocks $[99, 0, 0]$:
+- Although bag $0$ has a huge capacity of $100$, its deficit is only $100 - 99 = 1$.
+- Greedy selection rightly prioritizes bag $0$ over bag $2$ (capacity $4$, deficit $4$).
+- This highlights that prioritization depends on the remaining deficit, not total capacity.
+
+## 5. Algorithmic Correctness & Soundness
+
+The correctness of this procedure is guaranteed by matroid theory and greedy choice properties:
+
+1. **Uniform Weight Matroid:**
+   The subsets of bags that can be fully filled form the independent sets of a system where every element has equal cardinality weight ($1$). For any such system with a monotonic cost function, the greedy algorithm that iteratively takes the minimum cost element is proven to find a maximum-cardinality independent set.
+2. **Exhaustive Subsumption:**
+   Every bag with deficit $0$ consumes $0$ rocks. Therefore, all bags that are already full are automatically accepted at the very front of the sorted list without depleting the budget.
+3. **Termination Guarantee:**
+   Because all deficits are non-negative integers ($d_i \ge 0$), the remaining budget strictly decreases or stays constant. When the budget becomes negative upon attempting to fill a bag, no subsequent bag in the sorted array can be filled either (since $d_j \ge d_i$). Halting at the first failure is strictly sound.
+
+## 6. Edge Cases & Anti-Patterns
+
+1. **All Bags Already Full ($d_i = 0$ for all $i$):**
+   - Total cost is $0$.
+   - The loop runs to completion and returns $n$, regardless of $additionalRocks$.
+2. **Zero Additional Rocks ($additionalRocks = 0$):**
+   - Only bags with $d_i = 0$ (already full) are counted.
+   - When the first positive deficit is encountered, budget becomes negative and the loop terminates, returning the count of already-full bags.
+3. **Budget Exceeds Total Remaining Deficit:**
+   - If $additionalRocks \ge \sum d_i$, all bags become full.
+   - The loop exhausts all elements without driving the budget negative, correctly returning $n$.
+4. **Anti-Pattern: Sorting by Raw Capacity:**
+   - Sorting by $capacity[i]$ rather than deficit $capacity[i] - rocks[i]$ fails because a bag with large capacity may be nearly full (e.g., $99/100$, needing only $1$ rock), while a small bag may be empty (e.g., $0/3$, needing $3$ rocks). Sorting by deficit is strictly required.
+
+## 7. Complexity Analysis
+
+The complexity parameters are governed by the number of bags $n = |capacity|$.
+
+| Algorithmic Phase | Time Complexity | Auxiliary Space Complexity | Explanation |
 |---|---|---|---|
-| Input Slice | `{"capacity": [2, 3, 4, 5], "rocks": [1, 2, 4, 4], "additionalRocks": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Choose the cheapest bags first
-
-`capacity.sort()` orders the deficits from smallest to largest. If the goal is to buy as many unit-value items as possible with a fixed budget, choosing cheaper items before expensive ones is optimal.
-
-An exchange argument proves this. Suppose a plan fills a bag with deficit `y` but omits another bag with deficit `x \le y`. Replacing `y` by `x` does not use more rocks and keeps the same number of full bags. Repeating such exchanges transforms any size-`k` feasible plan into the `k` smallest deficits without increasing cost.
-
-Therefore, for every possible count `k`, the minimum number of additional rocks needed to fill any `k` bags is the sum of the first `k` sorted deficits. The largest affordable prefix length is the global optimum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Spend the budget along the sorted prefix
-
-The second loop visits each sorted deficit `x` and performs `additionalRocks -= x`. If the result remains nonnegative, the current bag can be completed in addition to all earlier bags.
-
-If the subtraction makes the budget negative at index `i`, exactly `i` earlier deficits were affordable. The current deficit is the smallest remaining one, so every later deficit is at least as large. No alternative choice among the unfilled bags can add another full bag to the already optimal cheapest prefix. Returning `i` is therefore correct.
-
-The code checks after subtraction rather than before. On failure, the local budget temporarily becomes negative, but the method returns immediately, so that temporary value has no later effect.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"capacity": [2, 3, 4, 5], "rocks": [1, 2, 4, 4], "additionalRocks": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Separate deficit list:** It preserves `capacity` while using explicit `O(n)` additional storage and the same time bound.
-- **Min-heap:** Heapifying deficits and repeatedly extracting the cheapest can also find the answer, but sorting is simpler and has the same worst-case order here.
-- **Counting sort:** Capacities reach `10^9`, so a frequency array over all possible deficits is impractical.
-- **Fill bags in original order:** It can spend rocks on a costly bag while several cheaper bags could yield a larger count.
-- **Partial filling:** It provides no benefit unless the bag reaches capacity, so the greedy algorithm commits whole deficits.
-- **Already-full bag:** Its zero deficit is counted without consuming budget.
-- **All bags already full:** Every deficit is zero and the method returns `n`.
-- **Budget fills every deficit:** The loop completes and returns the full list length, even if rocks remain unused.
-- **Budget fails on the first positive deficit:** The returned index counts any preceding zero deficits and no unaffordable bag.
-- **Equal deficits:** Their order is irrelevant because they cost the same and give the same unit reward.
-- **Very large capacity values:** Only differences and a running budget are stored; Python integer arithmetic is safe.
-- **Post-subtraction check:** A negative local budget is harmless because the function returns immediately.
-- **Array-length correspondence:** The source guarantee lets `enumerate(rocks)` safely index the matching capacity entry.
-- **Capacity mutation:** Values are replaced by deficits and then reordered; callers must not expect the original list afterward.
-- **Rocks preservation:** The `rocks` list is never changed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n \log n)$. Let `n` be the number of bags. Computing deficits in place takes `O(n)` time. Sorting dominates at `O(n \log n)`, and the budget loop takes at most `O(n)`. Total time is `O(n \log n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Deficit Calculation | $O(n)$ | $O(1)$ | In-place subtraction $capacity[i] \leftarrow capacity[i] - rocks[i]$. |
+| Sorting Deficits | $O(n \log n)$ | $O(\log n)$ or $O(n)$ | Sorting $n$ integer deficits in non-decreasing order. |
+| Greedy Deduction Sweep | $O(n)$ | $O(1)$ | Single linear pass subtracting deficits until budget is depleted. |
+| Total Complexity | $O(n \log n)$ | $O(1)$ auxiliary | Dominated by sorting. For $n = 5 \times 10^4$, total operations $\approx 8 \times 10^5$, executing in under $25\text{ ms}$. |

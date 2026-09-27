@@ -1,122 +1,204 @@
 # Guided Example: Set Mismatch
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step arithmetic series expected sum ($s_1 = \frac{n(n+1)}{2}$), observed multiset sum ($s = \sum nums$), deduplicated set sum ($s_2 = \sum \text{set}(nums)$), closed-form algebraic difference extraction ($dup = s - s_2$ and $miss = s_1 - s_2$), and linear-time defect detection on representative corrupted permutation arrays:
 
-- **Input:** `{"nums": [1, 2, 2, 4]}`
+- **Input:** $nums = [1, 2, 2, 4]$
 - **Required output:** `[2, 3]`
+  - Problem definitions:
+    - An array originally contained all integers from $1$ to $n$ exactly once.
+    - Due to a data transmission corruption, one number became duplicated ($dup$), displacing one number that is now missing ($miss$).
+    - Goal: Return $[dup, \; miss]$ in that exact order.
+- **Algebraic Set-Sum Triple Invariant:**
+  - Let $n = |nums|$.
+  - **1. Ideal Expected Sum ($s_1$):**
+    - The sum of all numbers from $1$ to $n$:
+      $$
+      s_1 = \sum_{i=1}^n i = \frac{n(n + 1)}{2}
+      $$
+  - **2. Observed Raw Array Sum ($s$):**
+    - In $nums$, the missing number is absent, and the duplicate number appears twice:
+      $$
+      s = \sum_{x \in nums} x = s_1 + dup - miss
+      $$
+  - **3. Deduplicated Unique Set Sum ($s_2$):**
+    - Taking the unique set of elements eliminates the second occurrence of $dup$. The set contains all numbers from $1$ to $n$ **except $miss$**:
+      $$
+      s_2 = \sum_{x \in \text{set}(nums)} x = s_1 - miss
+      $$
+  - **Direct Closed-Form Solution:**
+    - From $s_2 = s_1 - miss$, we immediately isolate $miss$:
+      $$
+      miss = s_1 - s_2
+      $$
+    - From $s = s_2 + dup$, we immediately isolate $dup$:
+      $$
+      dup = s - s_2
+      $$
+    - Both answers are computed directly via arithmetic differences without sorting or frequency hash map lookups!
+- **Step-by-Step Worked Execution Trace on $[1, 2, 2, 4]$:**
+  - Array length: $n = 4$.
+  - **Step 1: Compute Ideal Expected Sum ($s_1$):**
+    $$
+    s_1 = \frac{4 \times (4 + 1)}{2} = \frac{4 \times 5}{2} = \mathbf{10}
+    $$
+    - (The ideal set $\{1, 2, 3, 4\}$ sums to $1 + 2 + 3 + 4 = 10$).
+  - **Step 2: Compute Observed Multiset Sum ($s$):**
+    $$
+    s = 1 + 2 + 2 + 4 = \mathbf{9}
+    $$
+  - **Step 3: Compute Deduplicated Set Sum ($s_2$):**
+    - Unique elements present in array:
+      $$
+      \text{set}(nums) = \{1, 2, 4\}
+      $$
+    - Sum of unique elements:
+      $$
+      s_2 = 1 + 2 + 4 = \mathbf{7}
+      $$
+  - **Step 4: Solve for $dup$ and $miss$:**
+    - **Find Duplicate:**
+      - The difference between the raw multiset sum and the unique set sum is precisely the extra copy of the duplicate:
+        $$
+        dup = s - s_2 = 9 - 7 = \mathbf{2}
+        $$
+    - **Find Missing:**
+      - The difference between the ideal full sum and the unique set sum is precisely the absent number:
+        $$
+        miss = s_1 - s_2 = 10 - 7 = \mathbf{3}
+        $$
+  - **Step 5: Assemble Output:**
+    $$
+    [dup, \; miss] = [\mathbf{2}, \; \mathbf{3}]
+    $$
+- **Endpoint Missing Instance ($nums = [1, 1], n = 2$):**
+  - $s_1 = 2 \times 3 / 2 = 3$.
+  - $s = 1 + 1 = 2$.
+  - $s_2 = \text{sum}(\{1\}) = 1$.
+  - $dup = 2 - 1 = \mathbf{1}$.
+  - $miss = 3 - 1 = \mathbf{2}$.
+  - Result: `[1, 2]`.
+- **Bitwise XOR Alternative ($O(1)$ Space):**
+  - XORing all array elements with $1 \dots n$ yields $dup \oplus miss$.
+  - Partitioning by the lowest set bit isolates $dup$ and $miss$ without any extra collection allocations.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates algebraic conservation laws over perturbed integer sets, mathematically proves why projection onto unique support partitions multiset mass into distinct defect coordinates, and derives $O(N)$ runtime and $O(N)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You have a set of integers `s`, which originally contains all the numbers from `1` to `n`. Unfortunately, due to some error, one of the numbers in `s` got duplicated to another number in the set, which results in **repetition of one** number and **loss of another** number.
+Given an array $nums$ of length $n$ containing numbers from $1$ to $n$ with one duplicate and one missing:
+Find `[duplicate, missing]` in that order.
 
-The objective is to compute `[2, 3]` from `{"nums": [1, 2, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+nums = [ 1, 2, 2, 4 ], n = 4
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+1. Expected sum s1 = 1 + 2 + 3 + 4 = 10
+2. Actual sum   s  = 1 + 2 + 2 + 4 = 9
+3. Unique sum   s2 = 1 + 2 + 4     = 7
+
+Duplicate = s - s2  = 9 - 7  = 2
+Missing   = s1 - s2 = 10 - 7 = 3
+
+Result: [2, 3]
+```
+
+### The Invariant of Set Subtraction
+- The raw array has one extra copy of the duplicate $\implies s - s2 = dup$.
+- The unique set is missing only the absent number $\implies s1 - s2 = miss$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Algebraic Formulas:
+$$
+s_1 = \frac{n(n + 1)}{2}
+$$
+$$
+s = \sum_{x \in nums} x
+$$
+$$
+s_2 = \sum_{x \in \text{set}(nums)} x
+$$
+$$
+\text{Ans} = [s - s_2, \; s_1 - s_2]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Conservation Invariant:
+$$
+s - s_1 = dup - miss
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Set-Support Deficit Invariant.** Deduplication acts as the idempotent operator $\text{Supp}: \mathcal{M} \to \mathcal{P}$, isolating the multi-cardinality mass $dup$ while preserving the deficiency gap $miss$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the promise about the original set
-
-Before the error, the collection contains every integer from one through `n` exactly once. After the error, one value appears twice and one different value disappears. This guarantee is much stronger than merely saying that the array contains arbitrary repeated numbers. It lets us recover both answers by comparing three sums.
-
-The exact solution computes:
-
-- `s1`: the expected sum of all integers from one through `n`;
-- `s2`: the sum of the distinct values that actually occur;
-- `s`: the sum of every array element, including the second copy of the duplicate.
-
-Each difference isolates one unknown.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 2, 2, 4]$:
 
 ---
 
-### Step 2: Compute the expected perfect-set sum
-
-The well-known arithmetic-series formula gives:
-
-`s1 = n * (n + 1) // 2`.
-
-The implementation writes the factors as `(1 + n) * n // 2`, which is the same calculation. This is the sum the array would have if no replacement error had occurred.
-
-Integer division is exact here because one of two consecutive integers `n` and `n + 1` is even. Python integers also grow as needed, so the multiplication cannot overflow. In a fixed-width language, the factors may need a wider type or division before multiplication.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Ideal Sum
+- $n = 4$.
+- $s_1 = (4 \times 5) / 2 = 10$.
 
 ---
 
-### Step 3: Why the set sum removes exactly the extra copy
+### Step 2: Compute Actual Sum
+- $s = 1 + 2 + 2 + 4 = 9$.
 
-Calling `set(nums)` keeps one occurrence of every value and discards repeated occurrences. Under the problem guarantee, every number except the missing one occurs at least once, and the duplicate is the only number occurring more than once. Therefore, the set contains:
+---
 
-`{1, 2, ..., n}` with only the missing value absent.
+### Step 3: Compute Unique Sum
+- $\text{set}(nums) = \{1, 2, 4\}$.
+- $s_2 = 1 + 2 + 4 = 7$.
 
-The duplicate still appears once in this set, which is correct because it belonged to the original perfect set. Only its erroneous second occurrence is removed.
+---
 
-If the missing value is `m` and the duplicate is `d`, then the distinct-value sum is:
-
-`s2 = s1 - m`.
-
-Rearranging immediately gives `m = s1 - s2`. That is why the second returned component is `s1 - s2`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 3]` |
+### Step 4: Subtract
+- $dup = 9 - 7 = 2$.
+- $miss = 10 - 7 = 3$.
+- Return **`[2, 3]`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 3]` | Verified |
+| Metric | Formula | Evaluated Value | Meaning |
+|:---:|:---:|:---:|:---:|
+| $s_1$ | $n(n+1)/2$ | **$10$** | Sum of $\{1, 2, 3, 4\}$ |
+| $s$ | $\sum nums$ | **$9$** | Sum of $[1, 2, 2, 4]$ |
+| $s_2$ | $\sum \text{set}(nums)$ | **$7$** | Sum of $\{1, 2, 4\}$ |
+| **$dup$** | $s - s_2$ | **`2`** | Extra duplicate value |
+| **$miss$** | $s_1 - s_2$ | **`3`** | Value omitted from set |
+| **Output** | $[dup, miss]$ | **`[2, 3]`** | Final result pair |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 2$ ($[1, 1]$ or $[2, 2]$):** Base case; computes flawlessly.
+- **Missing Value is 1 ($[2, 2]$):** $s_1 = 3, s = 4, s_2 = 2 \implies dup = 4-2=2, miss = 3-2=1 \implies [2, 1]$.
+- **Missing Value is $n$ ($[1, 1]$):** $dup = 1, miss = 2 \implies [1, 2]$.
+- **Large Array ($n = 10^4$):** Sums easily fit inside standard integers.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **In-place sign marking:** Use each value as an index and negate the element at that position. Encountering an already negative slot identifies the duplicate, and the one positive slot later identifies the missing value. This gives `O(n)` time and `O(1)` auxiliary space, but mutates `nums` and requires careful absolute-value handling.
-- **XOR partitioning:** XOR all array values with one through `n` to obtain the XOR of the two unknowns, split values by a differing bit, and recover two candidates. A final membership check distinguishes duplicate from missing. It achieves `O(n)` time and `O(1)` space without arithmetic overflow, but is less intuitive.
-- **Sum and sum-of-squares equations:** The differences of sums and squared sums form two equations for the missing and duplicate values. This uses constant space but is more error-prone and can overflow fixed-width types quickly.
+- **Returning in Wrong Order (`[miss, dup]`):** The problem strictly specifies returning `[duplicate, missing]`. Inverting the order fails validation.
+- **Sorting First ($O(N \log N)$):** Sorting the array takes unnecessary extra time; set sum arithmetic runs in strictly linear $O(N)$ time.
+- **Integer Overflow in Other Languages:** In C++, $n(n+1)/2$ for $n = 10^5$ can exceed 32-bit signed integer limits; use 64-bit integer (`long long`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the length of `nums`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - One pass to compute $s = \text{sum}(nums)$: $\mathcal{O}(N)$.
+  - One pass to insert into hash set and sum: $\mathcal{O}(N)$.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 10^4$, completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to store the hash set of unique numbers.

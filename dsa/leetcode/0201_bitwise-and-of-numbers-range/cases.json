@@ -17,6 +17,34 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "left": 0,
+        "right": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "left": 1,
+        "right": 2147483647
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-equal",
       "name": "single-value range",
       "kind": "trial",

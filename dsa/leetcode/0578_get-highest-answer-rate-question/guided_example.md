@@ -1,133 +1,197 @@
 # Guided Example: Get Highest Answer Rate Question
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step survey action classification (differentiating `show`, `answer`, `skip`), conditional count aggregation ($\sum \mathbf{1}[\text{action} = \text{'answer'}]$, $\sum \mathbf{1}[\text{action} = \text{'show'}]$), answer rate ratio computation ($N_{ans} / N_{show}$), descending rate ordering with ascending question ID tie-breaking, and top-1 question extraction on representative survey logs:
 
-- **Input:** `{"tables": {"SurveyLog": [{"id": 5, "action": "show", "question_id": 285, "answer_id": null, "q_num": 1, "timestamp": 123}, {"id": 5, "action": "answer", "question_id": 285, "answer_id": 124124, "q_num": 1, "timestamp": 124}, {"id": 5, "action": "show", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 125}, {"id": 5, "action": "skip", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 126}]}}`
-- **Required output:** `{"columns": ["survey_log"], "rows": [[285]]}`
+- **Input:**
+  - `SurveyLog` table:
+    | `id` | `action` | `question_id` | `answer_id` | `q_num` | `timestamp` |
+    |:---:|:---:|:---:|:---:|:---:|:---:|
+    | $5$ | `show` | $285$ | `null` | $1$ | $123$ |
+    | $5$ | `answer` | $285$ | $124124$ | $1$ | $124$ |
+    | $5$ | `show` | $369$ | `null` | $2$ | $125$ |
+    | $5$ | `skip` | $369$ | `null` | $2$ | $126$ |
+- **Required output:**
+  | `survey_log` |
+  |:---:|
+  | $285$ |
+  - Business metric definition:
+    $$
+    \text{Answer Rate} = \frac{\text{Total times action = 'answer' for that question}}{\text{Total times action = 'show' for that question}}
+    $$
+  - Tie-breaking requirement: If multiple questions share the identical maximum answer rate, choose the question with the **smallest `question_id`**.
+  - Output schema: The resulting column must be renamed to `survey_log`.
+- **Relational Aggregation & Ratio Evaluation Trace:**
+  - **Step 1: Partition Events by `question_id`:**
+    - Two distinct questions appear in the log: $285$ and $369$.
+  - **Step 2: Tally Action Categories per Question:**
+    - **Question $285$:**
+      - Action `show`: 1 event (timestamp 123) $\implies N_{show} = \mathbf{1}$
+      - Action `answer`: 1 event (timestamp 124) $\implies N_{ans} = \mathbf{1}$
+      - Action `skip`: 0 events
+      - Calculate Answer Rate:
+        $$
+        \text{Rate}(285) = \frac{N_{ans}}{N_{show}} = \frac{1}{1} = \mathbf{1.0}
+        $$
+    - **Question $369$:**
+      - Action `show`: 1 event (timestamp 125) $\implies N_{show} = \mathbf{1}$
+      - Action `answer`: 0 events $\implies N_{ans} = \mathbf{0}$
+      - Action `skip`: 1 event (timestamp 126) $\implies$ Does not count towards answer numerator.
+      - Calculate Answer Rate:
+        $$
+        \text{Rate}(369) = \frac{N_{ans}}{N_{show}} = \frac{0}{1} = \mathbf{0.0}
+        $$
+  - **Step 3: Multi-Column Ordering (Rate DESC, question_id ASC):**
+    - Ordered candidate list:
+      1. Question $285$: Rate $1.0$
+      2. Question $369$: Rate $0.0$
+  - **Step 4: Slice Top 1 Record with `LIMIT 1`:**
+    - Highest rate: Question $285$.
+    - Rename column header to `survey_log`:
+      | `survey_log` |
+      |:---:|
+      | $285$ |
+- **Tie-Breaking Demonstration:**
+  - Suppose Question $100$ has $1$ show and $1$ answer ($rate = 1.0$).
+  - Question $200$ has $1$ show and $1$ answer ($rate = 1.0$).
+  - Tie on answer rate ($1.0 == 1.0$) $\implies$ Secondary sort `question_id ASC` picks $\min(100, 200) = \mathbf{100}$.
+- **Multiple Answers for a Question:**
+  - If a question is shown 2 times and answered 2 times $\implies 2 / 2 = 1.0$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates ratio aggregation across heterogeneous categorical event logs, mathematically proves why composite sorting resolves rate maximization with identifier tie-breaking, and derives $O(N \log K)$ execution time and $O(K)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `SurveyLog`
+Given a table `SurveyLog` with actions (`"show"`, `"answer"`, `"skip"`):
+Find the `question_id` that has the **highest answer rate**.
+If there is a tie, return the question with the **smallest `question_id`**.
+Rename the column to `survey_log`.
 
-The objective is to compute `{"columns": ["survey_log"], "rows": [[285]]}` from `{"tables": {"SurveyLog": [{"id": 5, "action": "show", "question_id": 285, "answer_id": null, "q_num": 1, "timestamp": 123}, {"id": 5, "action": "answer", "question_id": 285, "answer_id": 124124, "q_num": 1, "timestamp": 124}, {"id": 5, "action": "show", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 125}, {"id": 5, "action": "skip", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 126}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Question 285:
+  1 'show', 1 'answer' -> Rate = 1 / 1 = 1.0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Question 369:
+  1 'show', 0 'answer', 1 'skip' -> Rate = 0 / 1 = 0.0
+
+Winner = 285
+Output Column: survey_log = 285
+```
+
+### Clarifying the Denominator and Numerator
+- **Numerator:** Count of rows where `action = 'answer'`.
+- **Denominator:** Count of rows where `action = 'show'`.
+- Rows with `action = 'skip'` do **not** enter either the numerator or the denominator directly.
+- The resulting fraction must be sorted in descending order, with question ID in ascending order to break ties.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Conditional Sum Formulation:
+For each question:
+$$
+\text{Answers} = \sum \mathbf{1}[action = \text{'answer'}]
+$$
+$$
+\text{Shows} = \sum \mathbf{1}[action = \text{'show'}]
+$$
+$$
+\text{Rate} = \frac{\text{Answers}}{\text{Shows}}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. SQL Grouping and Ordering:
+```sql
+SELECT question_id AS survey_log
+FROM SurveyLog
+GROUP BY question_id
+ORDER BY
+    SUM(CASE WHEN action = 'answer' THEN 1 ELSE 0 END) * 1.0 /
+    SUM(CASE WHEN action = 'show' THEN 1 ELSE 0 END) DESC,
+    question_id ASC
+LIMIT 1;
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Lexicographical Tie-Break Invariant.** The compound sort specification `ORDER BY rate DESC, question_id ASC` uniquely defines a total order across all questions, ensuring reproducible top-1 selection.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why grouping is the essential first step
-
-`GROUP BY 1` groups by the first expression in the `SELECT` list. That expression is `question_id AS survey_log`, so it is equivalent to `GROUP BY question_id`. The alias changes only the output column’s name; it does not change the values being grouped.
-
-After grouping, SQL evaluates the aggregate expressions once per question. The source uses a MySQL feature in which a Boolean comparison behaves numerically inside a sum:
-
-- `action = 'answer'` is 1 for an answer row and 0 for any other non-`NULL` action;
-- `SUM(action = 'answer')` is therefore the answer count;
-- `action = 'show'` similarly contributes 1 only for show rows;
-- `SUM(action = 'show')` is the show count.
-
-A `skip` row makes both comparisons false, so it contributes zero to both aggregates. This matches the contract: skips affect neither the numerator nor the denominator. Duplicate rows are not removed because the schema permits them and the definition counts recorded occurrences; every row is an event that contributes according to its action.
-
-Dividing the two sums produces that group’s answer rate. MySQL’s `/` operator performs ordinary division rather than integer truncation, so a question answered once after two shows receives rate `0.5`, not zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"SurveyLog": [{"id": 5, "action": "show", "question_id": 285, "answer_id": null, "q_num": 1, "timestamp": 123}, {"id": 5, "action": "answer", "question_id": 285, "answer_id": 124124, "q_num": 1, "timestamp": 124}, {"id": 5, "action": "show", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 125}, {"id": 5, "action": "skip", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 126}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Choosing the maximum and handling ties
-
-The query orders the groups with:
-
-
-
-`DESC` places the largest rate first. The second key, `1`, again refers to the first selected expression, the question ID. Because no direction is written for that key, SQL uses ascending order. Thus, among equal rates, the smaller `question_id` comes first exactly as the problem requires.
-
-`LIMIT 1` keeps only the first row after both ordering rules are applied. This matters because merely ordering by rate would not implement the tie rule, while returning every row tied for the maximum would violate the one-row output contract.
-
-The selected expression is aliased as `survey_log`:
-
-
-
-That alias is required by the requested result schema. It does not mean the result contains the whole log; it is simply the prescribed name for the winning ID column.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Group by `question_id`
+- Group 285:
+  - Row 1: `action = 'show'`
+  - Row 2: `action = 'answer'`
+- Group 369:
+  - Row 3: `action = 'show'`
+  - Row 4: `action = 'skip'`
 
 ---
 
-### Step 3: Tracing the sample
+### Step 2: Compute Fractions
+- Group 285:
+  $$
+  \text{Answers} = 1, \quad \text{Shows} = 1 \implies \text{Rate} = \frac{1}{1} = 1.0
+  $$
+- Group 369:
+  $$
+  \text{Answers} = 0, \quad \text{Shows} = 1 \implies \text{Rate} = \frac{0}{1} = 0.0
+  $$
 
-Question 285 has one `show` event and one `answer` event. Its aggregate ratio is $1/1=1$. Question 369 has one `show` and no `answer`; its `skip` contributes to neither count, so its ratio is $0/1=0$. Descending rate order puts 285 first, and `LIMIT 1` returns it as `survey_log`.
+---
 
-For a tie example, imagine question 10 and question 20 both have two answers from four shows. Both rates are $1/2$. The second ordering key places 10 before 20, so the result is 10. Comparing raw answer counts would not be sufficient: two answers from two shows is a better rate than three answers from ten shows. The quotient, not the numerator alone, is the ranking measure.
+### Step 3: Order and Limit 1
+- Ordered list:
+  1. $285$ (Rate 1.0)
+  2. $369$ (Rate 0.0)
+- Select top 1 $\implies 285$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["survey_log"], "rows": [[285]]}` |
+---
+
+### Step 4: Emit Output
+$$
+\text{survey\_log} = \mathbf{285}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"SurveyLog": [{"id": 5, "action": "show", "question_id": 285, "answer_id": null, "q_num": 1, "timestamp": 123}, {"id": 5, "action": "answer", "question_id": 285, "answer_id": 124124, "q_num": 1, "timestamp": 124}, {"id": 5, "action": "show", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 125}, {"id": 5, "action": "skip", "question_id": 369, "answer_id": null, "q_num": 2, "timestamp": 126}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["survey_log"], "rows": [[285]]}` | Verified |
+| `question_id` | Shows ($N_{show}$) | Answers ($N_{ans}$) | Skips | Answer Rate ($N_{ans} / N_{show}$) | Plurality Rank |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$285$** | $1$ | $1$ | $0$ | **$1.0$** | **$1$ (Top 1)** |
+| $369$ | $1$ | $0$ | $1$ | $0.0$ | $2$ |
+| **Output** | — | — | — | — | **`survey_log: 285`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Tied Rates ($1.0 == 1.0$):** Secondary order `question_id ASC` selects the smaller numeric ID.
+- **Zero Answers ($0$ for all questions):** All rates evaluate to $0.0$; secondary order picks the smallest `question_id`.
+- **Question Shown Multiple Times:** $N_{show} > 1$ scales the denominator appropriately.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **`CASE` expressions:** `SUM(CASE WHEN action = 'answer' THEN 1 ELSE 0 END)` is portable across more SQL systems. The exact query’s Boolean sums are concise MySQL syntax with the same meaning.
-- **Separate show and answer subqueries:** Group each action independently and join the counts. This works but scans or materializes more intermediate data than one conditional aggregation.
-- **Window ranking:** Compute rates in a CTE and apply `ROW_NUMBER() OVER (ORDER BY rate DESC, question_id ASC)`. It makes ranking explicit but is longer than ordering and limiting one row.
-- **Cross-multiplication:** Rates $a/b$ and $c/d$ can be compared as $ad$ and $cb$, avoiding floating-point representation. SQL then needs a more elaborate pairwise maximum computation; the direct quotient is adequate here.
-- **Tie on maximum rate:** The ascending question-ID key is mandatory. Without it, `LIMIT 1` may choose an arbitrary tied question.
-- **Skip-only contribution:** A `skip` must add neither an answer nor a show. Both Boolean sums correctly receive zero from it.
-- **Question with no answers:** Its numerator is zero and its rate is zero, provided it has at least one show.
-- **Question with no shows:** Its rate is mathematically undefined and SQL division produces `NULL`. The intended data contract must exclude such a candidate from meaningful comparison.
-- **Duplicate event rows:** The table explicitly may contain duplicates. The query counts rows as logged events rather than deduplicating them.
-- **Ordinal references:** `GROUP BY 1` and `ORDER BY ..., 1` are concise but less self-documenting than spelling out `question_id`. Both refer to the selected ID expression, not to the literal number one.
-- **Output shape:** `LIMIT 1` guarantees one row, and the alias `survey_log` guarantees the requested column name.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Dividing by Total Rows Instead of 'show' Rows:** Dividing answers by all actions (including skips and answers) calculates an incorrect ratio. The problem explicitly defines the denominator as the number of times it was **shown**.
+- **Forgetting `* 1.0` (Integer Division Truncation):** In dialects like PostgreSQL or SQL Server, dividing integer $1 / 2$ yields $0$. Multiplying by $1.0$ or casting to float prevents integer truncation.
+- **Forgetting the Column Alias `survey_log`:** Returning `question_id` without `AS survey_log` fails the automated output schema comparison.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(Q)$. Let $R$ be the number of `SurveyLog` rows and $Q$ the number of distinct question IDs. A standard hash aggregation reads all $R$ rows once and stores two running counts for each of $Q$ groups, taking expected $O(R)$ time and $O(Q)$ working space.
-- **Auxiliary Space Complexity:** $O(Q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N$ be the number of rows in `SurveyLog` and $K$ be the number of distinct questions.
+  - Grouping and conditional sums: $\mathcal{O}(N)$ operations.
+  - Sorting $K$ questions: $\mathcal{O}(K \log K)$ (or $O(K)$ with top-1 selection).
+  - Total Time: $\mathcal{O}(N + K \log K)$. For $N = 10^5, K = 1000$, completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(K)$ space to maintain group accumulator totals.

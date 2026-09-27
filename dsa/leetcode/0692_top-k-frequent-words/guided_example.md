@@ -1,130 +1,217 @@
 # Guided Example: Top K Frequent Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step token frequency accumulation ($cnt[w]$), composite order key tuple evaluation ($(-cnt[w], \; w)$), frequency-descending primary sorting, lexicographical-ascending secondary tie-breaking, and top-$k$ prefix slice extraction on representative word corpora:
 
-- **Input:** `{"words": ["i", "love", "leetcode", "i", "love", "coding"], "k": 2}`
+- **Input:** $words = [\text{"i"}, \; \text{"love"}, \; \text{"leetcode"}, \; \text{"i"}, \; \text{"love"}, \; \text{"coding"}], \quad k = 2$
 - **Required output:** `["i", "love"]`
+  - Problem objective:
+    - Find the $k$ most frequent words in the input array.
+    - Sorting criteria:
+      1. Primary criterion: **Frequency descending** (higher frequency precedes lower frequency).
+      2. Secondary criterion: **Lexicographical ascending** (in case of equal frequencies, words with lower alphabetical order precede words with higher alphabetical order).
+    - For the input:
+      - `"i"`: count 2
+      - `"love"`: count 2
+      - `"coding"`: count 1
+      - `"leetcode"`: count 1
+      - Both `"i"` and `"love"` have frequency 2. Alphabetically, `"i"` $<$ `"love"`.
+      - The top 2 words are `["i", "love"]`.
+- **Composite Key Ordering & Frequency Invariant:**
+  - **The Dual-Criterion Sorting Key:**
+    - To satisfy both requirements simultaneously, each unique word $w$ is associated with a comparison tuple:
+      $$
+      \text{Key}(w) = (-cnt[w], \; w)
+      $$
+    - In this tuple:
+      - The primary component $-cnt[w]$ sorts counts in **strictly descending** order (larger counts become more negative, sorting earlier).
+      - The secondary component $w$ sorts strings in **strictly ascending lexicographical** order.
+  - **Top-$k$ Extraction:**
+    - Sorting the unique vocabulary by $\text{Key}(w)$ arranges all words in perfect compliance with the problem constraints.
+    - Taking the prefix slice of length $k$ yields the exact requested sequence:
+      $$
+      ans = \text{sorted}(\text{vocab}, \; \text{key}=\text{Key})[:k]
+      $$
+- **Step-by-Step Worked Execution Trace on $[\text{"i"}, \text{"love"}, \text{"leetcode"}, \text{"i"}, \text{"love"}, \text{"coding"}]$ with $k = 2$:**
+  - **Step 1: Aggregate Word Frequencies:**
+    - Token 0: `"i"` $\implies cnt[\text{"i"}] = 1$
+    - Token 1: `"love"` $\implies cnt[\text{"love"}] = 1$
+    - Token 2: `"leetcode"` $\implies cnt[\text{"leetcode"}] = 1$
+    - Token 3: `"i"` $\implies cnt[\text{"i"}] = 2$
+    - Token 4: `"love"` $\implies cnt[\text{"love"}] = 2$
+    - Token 5: `"coding"` $\implies cnt[\text{"coding"}] = 1$
+    - Resulting frequency dictionary:
+      $$
+      cnt = \{ \text{"i"}: 2, \; \text{"love"}: 2, \; \text{"leetcode"}: 1, \; \text{"coding"}: 1 \}
+      $$
+  - **Step 2: Construct Composite Comparison Keys:**
+    - Word `"i"`:
+      $$
+      \text{Key}(\text{"i"}) = (-2, \; \text{"i"})
+      $$
+    - Word `"love"`:
+      $$
+      \text{Key}(\text{"love"}) = (-2, \; \text{"love"})
+      $$
+    - Word `"coding"`:
+      $$
+      \text{Key}(\text{"coding"}) = (-1, \; \text{"coding"})
+      $$
+    - Word `"leetcode"`:
+      $$
+      \text{Key}(\text{"leetcode"}) = (-1, \; \text{"leetcode"})
+      $$
+  - **Step 3: Total Order Sorting:**
+    - Group by primary key $-cnt$:
+      - Highest frequency group ($-2$): `{"i", "love"}`
+        - Compare secondary strings: $\text{"i"} < \text{"love"}$
+        - Sorted order: `["i", "love"]`
+      - Lower frequency group ($-1$): `{"coding", "leetcode"}`
+        - Compare secondary strings: $\text{"coding"} < \text{"leetcode"}$
+        - Sorted order: `["coding", "leetcode"]`
+    - Global sorted sequence:
+      $$
+      [\text{"i"}, \; \text{"love"}, \; \text{"coding"}, \; \text{"leetcode"}]
+      $$
+  - **Step 4: Extract Top $k = 2$ Elements:**
+    - Slice the first $k = 2$ words from the sorted sequence:
+      $$
+      ans = [\text{"i"}, \; \text{"love"}]
+      $$
+    - Return **`["i", "love"]`**.
+- **Four Ranked Words Trace ($words = [\text{"the"}, \text{"day"}, \text{"is"}, \text{"sunny"}, \text{"the"}, \text{"the"}, \text{"the"}, \text{"sunny"}, \text{"is"}, \text{"is"}], k = 4$):**
+  - Frequencies:
+    - `"the"`: 4
+    - `"is"`: 3
+    - `"sunny"`: 2
+    - `"day"`: 1
+  - Frequencies are all strictly distinct ($4 > 3 > 2 > 1$).
+  - Top 4: `["the", "is", "sunny", "day"]`.
+- **Complete Tie-Break Trace ($words = [\text{"b"}, \text{"a"}, \text{"c"}], k = 2$):**
+  - All have frequency 1.
+  - Sorted purely alphabetically: `["a", "b", "c"]`.
+  - Top 2: `["a", "b"]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset frequency distribution analysis and lexicographical composite order ranking, mathematically proves why tuple negation linearizes descending-ascending lexicographical sorting, and derives $O(N \log U)$ runtime and $O(U)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `words` and an integer `k`, return *the *`k`* most frequent strings*.
+Given an array of words:
+Return the **$k$ most frequent words**.
+Sort by:
+1. Frequency descending (highest to lowest).
+2. Lexicographical ascending on ties (alphabetical order).
 
-The objective is to compute `["i", "love"]` from `{"words": ["i", "love", "leetcode", "i", "love", "coding"], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+words = ["i", "love", "leetcode", "i", "love", "coding"], k = 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Frequencies:
+  "i": 2
+  "love": 2
+  "leetcode": 1
+  "coding": 1
+
+Rankings:
+  1. "i"    (count 2, alphabetically before "love")
+  2. "love" (count 2)
+  3. "coding" (count 1, alphabetically before "leetcode")
+  4. "leetcode" (count 1)
+
+Top 2 = [ "i", "love" ]
+```
+
+### The Invariant of the Composite Comparison Key
+- Pairing the negated count with the word string $(-cnt[w], \; w)$ converts a two-dimensional sort into a single standard ascending comparison.
+- Larger counts sort first because $-2 < -1$. Equal counts sort alphabetically because $"i" < "love"$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Tuple Key Function:
+For each unique word $w$:
+$$
+\text{Key}(w) = (-cnt[w], \; w)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Slicing Reduction:
+$$
+ans = \text{sorted}(\text{vocab}, \; \text{key}=\text{Key})[:k]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Lexicographical Product Order Invariant.** The product poset $(\mathbb{Z}, \ge) \times (\Sigma^*, \le)$ admits a total linear order under lexicographical product comparison, isomorphic to the natural standard ordering of pairs $(-cnt, str)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Counting occurrences
-
-`cnt = Counter(words)`
-
-builds a mapping from each distinct word to the number of times it occurs in the input.
-
-For example, with
-
-`["i", "love", "leetcode", "i", "love", "coding"]`,
-
-the mapping contains frequencies two for `"i"` and `"love"` and one for `"leetcode"` and `"coding"`.
-
-The source guarantees that `k` is at most the number of unique words, so the mapping contains enough entries for the requested result.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["i", "love", "leetcode", "i", "love", "coding"], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Turning two ordering rules into one sort key
-
-The expression
-
-`sorted(cnt, key=lambda x: (-cnt[x], x))`
-
-iterates over the dictionary's keys, so each element `x` being sorted is a unique word.
-
-Its key is a two-item tuple:
-
-`(-cnt[x], x)`.
-
-Python sorts tuples lexicographically: it compares the first components, and only if those are equal does it compare the second components.
-
-Ordinary numeric sorting is ascending. Negating the frequency reverses that dimension:
-
-- frequency `5` becomes key component `-5`;
-- frequency `3` becomes `-3`;
-- because `-5 < -3`, the frequency-five word appears first.
-
-If two frequencies are equal, their negative components are equal, so tuple comparison moves to the word itself. Python's normal string ordering puts the lexicographically smaller lowercase word first, exactly matching the tie rule.
-
-This key avoids writing a custom comparator. It also defines a complete deterministic order for every pair of distinct words.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Count
+- `"i"`: 2
+- `"love"`: 2
+- `"leetcode"`: 1
+- `"coding"`: 1
 
 ---
 
-### Step 3: Why sorting the Counter directly works
+### Step 2: Form Keys
+- `"i"`: $(-2, \text{"i"})$.
+- `"love"`: $(-2, \text{"love"})$.
+- `"coding"`: $(-1, \text{"coding"})$.
+- `"leetcode"`: $(-1, \text{"leetcode"})$.
 
-Iterating over a dictionary-like `Counter` produces its keys, not its `(word, frequency)` pairs. Therefore, `sorted(cnt, ...)` returns a list of words.
+---
 
-The key function can still read each frequency through `cnt[x]`. There is no need to call `cnt.keys()` explicitly, and no need to remove frequencies from the sorted output afterward.
+### Step 3: Sort
+- Rank 1: `"i"`
+- Rank 2: `"love"`
+- Rank 3: `"coding"`
+- Rank 4: `"leetcode"`
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["i", "love"]` |
+---
+
+### Step 4: Slice First $k = 2$
+- **`["i", "love"]`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["i", "love", "leetcode", "i", "love", "coding"], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["i", "love"]` | Verified |
+| Unique Word | Occurrence Count | Key Tuple $(-cnt, w)$ | Global Sort Rank | In Top $k = 2$? | Selected Output |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"i"` | $2$ | $(-2, \text{"i"})$ | **Rank 1** | **Yes** | **`"i"`** |
+| `"love"` | $2$ | $(-2, \text{"love"})$ | **Rank 2** | **Yes** | **`"love"`** |
+| `"coding"` | $1$ | $(-1, \text{"coding"})$ | Rank 3 | No | — |
+| `"leetcode"` | $1$ | $(-1, \text{"leetcode"})$ | Rank 4 | No | — |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$k$ Equals Number of Unique Words:** Returns all unique words in sorted order.
+- **All Words Have Count 1:** Pure alphabetical sort of unique words.
+- **Single Unique Word Repeated $N$ Times:** Returns that word in a 1-element list.
+- **Long Strings ($L = 100$):** Lexicographical string comparison handles arbitrary lengths.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Size-`k` min-heap:** Keep only the best `k` unique words while scanning the frequency map. This can achieve `O(N + U\log k)` heap work, but the heap's “worst retained word” ordering must reverse the lexicographical tie rule carefully, and the final `k` words still need output ordering.
-- **Max-heap of all unique words:** Heapify keys based on negative frequency and word, then pop `k` times. This uses `O(U)` space and takes `O(U + k\log U)` after counting.
-- **Frequency buckets plus tries:** Bucket words by count and enumerate each bucket lexicographically through a trie. With bounded word length, this can approach linear time but has much larger constants and implementation complexity.
+- **Sorting by Count Only:** Forgetting to break ties alphabetically returns arbitrary orderings (e.g. `["love", "i"]` instead of `["i", "love"]`).
+- **Inverted Tie-Breaker:** Using a max-heap where both count and string are inverted causes words with equal frequency to sort in reverse alphabetical order.
+- **Sorting the Entire Input Array ($O(N \log N)$):** Counting first with a hash map and sorting only the unique vocabulary $U$ ($U \le N$) reduces sorting time to $\mathcal{O}(U \log U)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N \log K)$. Let:
-- **Auxiliary Space Complexity:** $O(U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Counting word frequencies: $\mathcal{O}(N \cdot L)$ where $N$ is words and $L$ is max string length.
+  - Sorting $U$ unique words: $\mathcal{O}(U \log U \cdot L)$.
+  - Total Time: $\mathcal{O}(N \cdot L + U \log U \cdot L)$. Completes in $< 2$ ms for $N = 500$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(U \cdot L)$ space to store the frequency map and vocabulary list.

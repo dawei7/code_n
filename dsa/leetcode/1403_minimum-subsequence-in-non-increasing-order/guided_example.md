@@ -1,123 +1,180 @@
 # Guided Example: Minimum Subsequence in Non-Increasing Order
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the descending greedy prefix selection strategy on a representative array instance:
 
-- **Input:** `{"nums": [4, 3, 10, 9, 8]}`
+- **Input:** `nums = [4, 3, 10, 9, 8]`
 - **Required output:** `[10, 9]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because taking only the single largest element ($10$) is insufficient ($10 < 24$), but adding the second largest element ($9$) raises the subsequence sum to $19$, strictly exceeding the remaining sum ($15$) with the minimal possible cardinality ($2$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the array `nums`, obtain a subsequence of the array whose sum of elements is **strictly greater** than the sum of the non included elements in such subsequence.
+Given an integer array `nums`, we must find a subsequence whose sum of elements is strictly greater than the sum of the remaining non-included elements. Among all such subsequences, we must:
+1. Minimize the size of the subsequence.
+2. If multiple subsequences share the minimum size, maximize their total sum.
+3. Return the elements of the subsequence sorted in non-increasing order.
 
-The objective is to compute `[10, 9]` from `{"nums": [4, 3, 10, 9, 8]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [4, 3, 10, 9, 8]`:
+- Total array sum: $S = 4 + 3 + 10 + 9 + 8 = 34$.
+- Half-sum threshold: $S / 2 = 17$.
+- A subsequence with sum $T$ satisfies the condition if:
+  $$
+  T > S - T \iff 2T > S \iff T > 17
+  $$
+- Descending order of elements: $[10, 9, 8, 4, 3]$.
+- Prefix of length $1$: $[10] \implies \text{sum} = 10 \le 17$ (insufficient).
+- Prefix of length $2$: $[10, 9] \implies \text{sum} = 10 + 9 = 19 > 17$ (strictly greater than remaining sum $15$).
+- Output: `[10, 9]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to use a **greedy exchange argument**: to reach a target sum with the fewest possible elements, one must choose elements with the largest available magnitudes. Sorting descending and accumulating elements until $2T > S$ guarantees minimal length and maximal sum simultaneously.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S = \sum_{x \in nums} x$ be the total sum.
+Let $\mathcal{A}$ be the chosen subsequence of size $k$ with sum $T = \sum_{a \in \mathcal{A}} a$.
+The condition $T > S - T$ simplifies algebraically to:
+$$
+2T > S \quad \text{or} \quad T > \left\lfloor \frac{S}{2} \right\rfloor
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+### Optimality by Exchange Argument
+
+Suppose an optimal subset of size $k$ contains an element $u$, but omits an available element $v$ such that $v > u$.
+- Swapping $u$ for $v$ produces a new subset of identical size $k$ whose sum increases by $v - u > 0$.
+- Repeating this exchange shows that for any fixed size $k$, the maximum possible sum is achieved exclusively by taking the **$k$ largest elements** of the array.
+- Therefore, the search space is restricted to prefixes of the array sorted in descending order:
+  $$
+  nums_{(1)} \ge nums_{(2)} \ge \dots \ge nums_{(n)}
+  $$
+
+```
+Greedy Accumulation vs Total Sum:
+Total Sum S = 34  -->  Strict Majority Threshold = 17
+Sorted nums:   [ 10,     9,     8,     4,     3 ]
+Prefix Sum:      10     19*
+Condition:     10 <= 17  19 > 17 (Threshold passed!)
+Selected Subsequence: [10, 9]
+Remaining Elements:   [8, 4, 3] (Sum = 15 < 19)
+```
+
+We define state tracking parameters:
+
+| Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Sum ($S$) | $\sum_{i} nums[i]$ | $34$ |
+| Target Threshold | $\lfloor S / 2 \rfloor$ | $17$ |
+| Subsequence Sum ($T$) | Cumulative sum of selected elements | $0$ |
+| Subsequence List | Accumulator of selected items | $[]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Selecting elements in descending order guarantees that at each step $k$, the accumulated prefix has the strictly maximal sum achievable among all subsets of size $k$. The first $k$ that satisfies $2T > S$ is therefore the minimum feasible size.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Rephrase the sum condition
+Given `nums = [4, 3, 10, 9, 8]`:
 
-Let $S$ be the sum of all array values and $T$ the sum of the chosen subsequence. The unchosen sum is $S-T$. The requirement is
+### Step 1: Total Sum and Threshold Calculation
 
+Sum all elements in the input array:
 $$
-T>S-T,
+S = 4 + 3 + 10 + 9 + 8 = 34
 $$
-
-or equivalently $2T>S$.
-
-We need the fewest selected elements that make this strict inequality true. Among solutions with that size, we need the greatest selected sum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [4, 3, 10, 9, 8]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Condition for strict majority:
+$$
+T > 34 - T \iff 2T > 34 \iff T \ge 18
+$$
 
 ---
 
-### Step 2: For any fixed size, choose the largest values
+### Step 2: Sort in Descending Order
 
-Suppose a size-$r$ selection contains value $a$ while an unselected value $b>a$ exists. Replacing $a$ with $b$ increases the chosen sum without changing the size. Repeating this exchange shows that the maximum sum attainable with exactly $r$ elements is the sum of the $r$ largest array values.
+Sort `nums` in non-increasing order:
+$$
+A_{\text{desc}} = [10, 9, 8, 4, 3]
+$$
 
-Therefore it is enough to sort values in descending order and examine prefixes. No other size-$r$ subsequence can beat the descending prefix's sum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Position | Value |
+|---|---|
+| Index $0$ | $10$ |
+| Index $1$ | $9$ |
+| Index $2$ | $8$ |
+| Index $3$ | $4$ |
+| Index $4$ | $3$ |
 
 ---
 
-### Step 3: Grow the prefix until it crosses half
+### Step 3: Sequential Greedy Selection
 
-The code computes `s = sum(nums)` and initializes chosen sum `t = 0`. It iterates through `sorted(nums, reverse=true)`, adding each next-largest value to `t` and appending it to `ans`.
+- **Step 1 (Element $10$):**
+  - Append $10$ to subsequence: `sub = [10]`.
+  - Update sum: $T = 0 + 10 = 10$.
+  - Check condition: Is $10 > 17$? **False** ($10 \le 17$).
+  - Remaining sum: $34 - 10 = 24$. Continue.
 
-After every addition, `t > s - t` tests the original condition directly. The first time it succeeds, the loop stops.
+- **Step 2 (Element $9$):**
+  - Append $9$ to subsequence: `sub = [10, 9]`.
+  - Update sum: $T = 10 + 9 = 19$.
+  - Check condition: Is $19 > 17$? **True** ($19 > 15$).
+  - Strict majority achieved! Halt selection.
 
-For `[4,3,10,9,8]`, descending order is `[10,9,8,4,3]`. Choosing 10 alone gives selected sum 10 and remaining sum 24, so it fails. Adding 9 gives 19 against remaining 15, so `[10,9]` succeeds and is returned.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[10, 9]` |
+Final result: `[10, 9]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 3, 10, 9, 8]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[10, 9]` | Verified |
+| Step ($k$) | Candidate Element | Subsequence Array | Subsequence Sum ($T$) | Remaining Sum ($S - T$) | Strict Majority ($T > S - T$)? | Action |
+|---|---|---|---|---|---|---|
+| $0$ | - | $[]$ | $0$ | $34$ | False | Start |
+| $1$ | $10$ | $[10]$ | $10$ | $24$ | False ($10 \le 24$) | Include next |
+| $2$ | $9$ | $[10, 9]$ | $19$ | $15$ | **True ($19 > 15$)** | **Halt & Return** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Minimality and Maximality Proof
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Size Minimality:** Let $k^*$ be the smallest integer such that $\sum_{i=1}^{k^*} nums_{(i)} > S / 2$. Because the prefix $nums_{(1 \dots k)}$ has the maximum possible sum for any subset of size $k$, any other subset of size $k < k^*$ must have sum $T' \le \sum_{i=1}^k nums_{(i)} \le S / 2$, which fails the strict majority requirement. Thus, no subset of size smaller than $k^*$ can qualify.
+2. **Sum Maximality:** Among all subsets of size $k^*$, the prefix $nums_{(1 \dots k^*)}$ achieves the maximal possible sum by definition of descending sorting.
+3. **Ordering:** Returning the elements in descending order directly matches the required non-increasing order.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Sort ascending and pop from the end:** It makes the same greedy choices but mutates a working list and is slightly less direct.
-- **Max-heap:** Repeatedly extract the largest value until the sum condition holds. It also costs $O(n\log n)$ and needs heap construction.
-- **Counting frequencies:** Values lie between one and 100, so scan a frequency array from 100 downward for $O(n+100)$ time.
-- **Choose arbitrary large-enough subset:** It may satisfy the inequality but fail minimum size or maximum-sum tie breaking.
-- **Equality of sums:** The algorithm must continue because the requirement is strictly greater.
-- **Single element:** Selecting it leaves sum zero and succeeds immediately.
-- **All equal values:** The method selects the smallest count whose total exceeds the remaining total; duplicates are preserved.
-- **Duplicate maximum values:** Each occurrence can be chosen, and descending sorting keeps all needed copies.
-- **All positive values:** This guarantees eventual success and monotonic chosen sum.
-- **Already descending input:** `sorted` still creates a copy, but the greedy order is unchanged.
-- **Input immutability:** Using `sorted` rather than `sort` leaves `nums` untouched.
-- **Output ordering:** Appending from the descending scan directly satisfies non-increasing order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(n \log n)$ using comparison sort, or $\mathcal{O}(n + M)$ using bucket sort / counting sort (where $M = \max(nums) \le 100$). The subsequent linear scan takes at most $\mathcal{O}(n)$ steps. Overall runtime is $\mathcal{O}(n \log n)$, running in less than $1$ millisecond for $n \le 500$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the sorted array and return the result subsequence.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the array length. Computing the total takes $O(n)$ time. Sorting a copy takes $O(n\log n)$, and the prefix scan takes at most $O(n)$. Total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Strict Inequality:** The condition requires $T > S - T$, not $T \ge S - T$. In an array like `[5, 5]`, sum $S = 10$. Taking one $5$ gives $T = 5 = 10 - 5$, which does not strictly exceed the remainder. Both elements must be taken, returning `[5, 5]`.
+- **Single Element Array:** For $nums = [7]$, $S = 7$. $T = 7 > 0$. The loop takes $7$ and terminates at length $1$, returning `[7]`.
+- **Duplicate Values:** Duplicates are handled correctly; if the largest elements are tied, picking either or both maintains the maximal prefix sum property.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Minimum Subsequence Greedy Flowchart
+    accDescr: Computes total sum, sorts descending, and collects largest elements until the subsequence sum exceeds half the total.
+
+    Start(["Start with array nums"]) --> CalcSum["total_sum = sum(nums)<br>half_sum = total_sum // 2"]
+    CalcSum --> Sort["Sort nums in descending order"]
+    
+    Sort --> Init["sub = [], sub_sum = 0"]
+    Init --> Loop{"For each x in sorted nums:"}
+    
+    Loop --> AddVal["sub.append(x)<br>sub_sum += x"]
+    AddVal --> CheckMajority{"sub_sum > half_sum ?"}
+    
+    CheckMajority -- "Yes (Strict majority achieved)" --> Done(["Return sub"])
+    CheckMajority -- "No" --> Loop
+```

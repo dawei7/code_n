@@ -1,99 +1,158 @@
 # Guided Example: Maximum Subarray Sum After One Operation
 
-We derive and execute the Array, Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"nums": [2, -1, -4, -3]}`
-- **Required output:** `17`
+- **Input:** `nums = [2, -1, -4, -3]`
+- **Required Output:** `17`
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance features negative elements where squaring a large negative value converts a penalty into a massive positive boost, illustrating how dual-state Kadane dynamic programming tracks zero-operation and one-operation maximum subarray sums in linear time and constant space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Maximum Subarray Sum After One Operation** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an integer array `nums`, we must perform **exactly one** operation: select an element `nums[i]` and replace it with `nums[i] * nums[i]`. We seek the maximum possible contiguous subarray sum after this substitution.
+
+In classical Kadane's algorithm, we maintain a single running maximum subarray sum ending at each index. Here:
+- The subarray may optionally extend before the squared element, include the squared element, and continue after it.
+- Since squaring an integer yields $x^2 \ge x$ (and $x^2 \ge 0$), the optimal subarray will naturally encompass the squared element itself.
+- We decompose the state into two mutually exclusive tracks: whether the single squaring operation has **not yet** been applied, or has **already** been applied.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### State Representation
 
-| State Definition | Dependency Formula | Role in Solution |
+At each step $k$, we maintain two state variables for subarrays ending at index $k$:
+
+| State Variable | Definition | Allowed Transitions |
 |---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+| $f_k$ | Maximum subarray sum ending at $k$ with **0 operations** applied | Extend $f_{k-1}$ or start fresh at $x$: $\max(f_{k-1}, 0) + x$ |
+| $g_k$ | Maximum subarray sum ending at $k$ with **exactly 1 operation** applied | 1) Apply operation now to $x$: $\max(f_{k-1}, 0) + x^2$<br>2) Operation used earlier: $g_{k-1} + x$ |
+| Global Maximum $M$ | Best subarray sum across all indices using 1 operation | Running maximum over all $g_k$ (and $f_k$) |
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+### Mathematical Invariants
+
+> **Dual-State Kadane Recurrence.**
+> For each element $x = \text{nums}[k]$:
+> 1. **Unmodified Track:**
+>    $$f_k = \max(f_{k-1}, 0) + x$$
+> 2. **Modified Track:**
+>    $$g_k = \max \Big( \max(f_{k-1}, 0) + x^2, \; g_{k-1} + x \Big)$$
+> The first option in $g_k$ consumes the operation at the current element $x$, using the best zero-operation prefix $\max(f_{k-1}, 0)$. The second option extends a previously modified subarray by adding the unmodified value $x$.
+
+> **Global Optimality Invariant.**
+> Because exactly one operation must be performed, the global optimum is achieved at the peak of the modified state:
+> $$M^* = \max_{0 \le k < n} g_k$$
+> Each candidate subarray represented by $g_k$ contains strictly one squared term.
+
+```mermaid
+flowchart TD
+    accTitle: Dual-State Kadane Recurrence
+    accDescr: State transition diagram showing the unoperated track f and the operated track g updating at each element x.
+    A["Current Element: x"] --> B["Update Unoperated State: f = max(f, 0) + x"]
+    A --> C["Option 1: Square current element -> max(f_prev, 0) + x^2"]
+    A --> D["Option 2: Extend previous operated subarray -> g_prev + x"]
+    C --> E["Update Operated State: g = max(Option 1, Option 2)"]
+    D --> E
+    B --> F["Update Global Answer: ans = max(ans, g)"]
+    E --> F
+    F --> G["Advance to Next Element"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
-
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+We trace `nums = [2, -1, -4, -3]` with $n = 4$:
+- Initial values: $f = 0, g = 0$, running answer $M = -\infty$.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Process $x = 2$ (Index 0)
+- Previous states: $f = 0, g = 0$.
+- Unoperated update:
+  $$f \leftarrow \max(0, 0) + 2 = 2$$
+- Operated update ($x^2 = 2^2 = 4$):
+  - Option 1 (square current): $\max(0, 0) + 4 = 4$
+  - Option 2 (extend previous): $0 + 2 = 2$
+  $$g \leftarrow \max(4, 2) = 4$$
+- Running Maximum: $M = \max(-\infty, 4) = \mathbf{4}$.
+- Subarray for $g$: $[2^2] = [4]$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Process $x = -1$ (Index 1)
+- Previous states: $f = 2, g = 4$.
+- Unoperated update:
+  $$f \leftarrow \max(2, 0) + (-1) = 2 - 1 = 1$$
+- Operated update ($x^2 = (-1)^2 = 1$):
+  - Option 1 (square current): $\max(2, 0) + 1 = 2 + 1 = 3$ (subarray $[2, (-1)^2] = 3$)
+  - Option 2 (extend previous): $g + x = 4 + (-1) = 3$ (subarray $[2^2, -1] = 3$)
+  $$g \leftarrow \max(3, 3) = 3$$
+- Running Maximum: $M = \max(4, 3) = \mathbf{4}$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 3: Process $x = -4$ (Index 2)
+- Previous states: $f = 1, g = 3$.
+- Unoperated update:
+  $$f \leftarrow \max(1, 0) + (-4) = 1 - 4 = -3$$
+- Operated update ($x^2 = (-4)^2 = 16$):
+  - Option 1 (square current): $\max(1, 0) + 16 = 1 + 16 = \mathbf{17}$
+    (Corresponds to prefix $[2, -1]$ with sum $1$, followed by $(-4)^2 = 16$, total sum $1 + 16 = 17$)
+  - Option 2 (extend previous): $g + x = 3 + (-4) = -1$
+  $$g \leftarrow \max(17, -1) = 17$$
+- Running Maximum: $M = \max(4, 17) = \mathbf{17}$.
+- Subarray for $g$: $[2, -1, (-4)^2] \implies 2 - 1 + 16 = 17$.
+
+---
+
+### Step 4: Process $x = -3$ (Index 3)
+- Previous states: $f = -3, g = 17$.
+- Unoperated update:
+  $$f \leftarrow \max(-3, 0) + (-3) = 0 - 3 = -3$$
+- Operated update ($x^2 = (-3)^2 = 9$):
+  - Option 1 (square current): $\max(-3, 0) + 9 = 0 + 9 = 9$
+  - Option 2 (extend previous): $g + x = 17 + (-3) = 14$
+  $$g \leftarrow \max(9, 14) = 14$$
+- Running Maximum: $M = \max(17, 14) = \mathbf{17}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Index | Element $x$ | $x^2$ | $f = \max(f_{\text{prev}}, 0) + x$ | $g = \max(f_{\text{prev}}^+ + x^2, g_{\text{prev}} + x)$ | Running Answer $M$ | Best Subarray Found |
+|---|---|---|---|---|---|---|
+| $0$ | $2$ | $4$ | $2$ | $\max(4, 2) = 4$ | $4$ | $[2^2]$ |
+| $1$ | $-1$ | $1$ | $1$ | $\max(3, 3) = 3$ | $4$ | $[2^2]$ |
+| $2$ | $-4$ | $16$ | $-3$ | $\max(1 + 16, 3 - 4) = 17$ | **$17$** | $[2, -1, (-4)^2]$ |
+| $3$ | $-3$ | $9$ | $-3$ | $\max(0 + 9, 17 - 3) = 14$ | $17$ | $[2, -1, (-4)^2]$ |
+
+Final Result: $17$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Mastery & Edge Surfacing
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+### Boundary and Edge Cases
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+| Scenario | Input Example | Expected Output | Strategic Handling |
+|---|---|---|---|
+| All Negative Elements | `[-2, -3, -1]` | $1$ | Squaring $-1$ yields $(-1)^2 = 1$; best subarray is $[(-1)^2]$. |
+| Single Element Array | `[-5]` | $25$ | Only option is $(-5)^2 = 25$. |
+| All Positive Elements | `[1, 2, 3]` | $11$ | Square the largest element $3 \implies [1, 2, 3^2] = 1 + 2 + 9 = 12$. |
+| Element Equals Zero | `[0, 0, 0]` | $0$ | Squaring $0$ yields $0$; max subarray sum is $0$. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 6. Traps This Instance Exposes
+1. **Strictly One Operation:**
+   The state $g$ can only be entered from $f$ (which has zero operations). Once inside $g$, further steps can only use the second transition ($g + x$), ensuring no second squaring operation is ever executed.
+2. **Space Invariance:**
+   Because each step depends solely on the values $f_{k-1}$ and $g_{k-1}$ from the immediately preceding element, state can be updated using two scalar registers, eliminating the need for an $\mathcal{O}(n)$ table.
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+### Complexity Analysis
 
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of `nums`. The algorithm visits each element exactly once, performing a constant number of arithmetic operations per element.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space, maintaining only scalar accumulators.

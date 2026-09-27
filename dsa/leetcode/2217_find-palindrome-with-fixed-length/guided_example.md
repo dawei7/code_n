@@ -1,143 +1,212 @@
 # Guided Example: Find Palindrome With Fixed Length
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the half-prefix bijective reflection algorithm for directly indexing the $k$-th lexicographical palindrome of fixed length, establishing $O(q \cdot L)$ time complexity and $O(L)$ auxiliary space where $q$ is the query count and $L$ is the palindrome length.
 
-- **Input:** `{"queries": [1, 2, 3, 4, 5, 90], "intLength": 3}`
-- **Required output:** `[101, 111, 121, 131, 141, 999]`
+- **Input:** `queries = [1, 2, 3, 4, 5, 90]`, `intLength = 3`
+- **Output:** `[101, 111, 121, 131, 141, 999]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given an integer array `queries` and a **positive** integer `intLength`, return *an array* `answer` *where* $\text{answer}[i]$ *is either the *$\text{queries}[i]^th$ *smallest **positive palindrome** of length* `intLength` *or* `-1`* if no such palindrome exists*.
-
-The objective is to compute `[101, 111, 121, 131, 141, 999]` from `{"queries": [1, 2, 3, 4, 5, 90], "intLength": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates half-length partition arithmetic ($\lceil L / 2 \rceil$), order-isomorphism between base-10 prefixes and palindromes, parity-aware string mirroring, and out-of-range boundary detection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an integer array `queries` and an integer `intLength`.
+For each query $q_i \in \text{queries}$, we must find the $q_i$-th smallest positive palindrome of length `intLength` (1-indexed).
+If there are fewer than $q_i$ palindromes of length `intLength`, we must return $-1$ for that query.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Our objective is to return an array containing the answers for all queries in order.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
 
----
+Consider:
+$$\text{queries} = [1, 2, 3, 4, 5, 90], \quad \text{intLength} = 3$$
 
-## 3. Step-by-Step Worked Execution
+Properties of 3-digit palindromes:
+- Total length: $L = 3$ (odd length).
+- Palindromes have the form $d_1 \, d_2 \, d_1$, where $d_1 \in \{1, \dots, 9\}$ and $d_2 \in \{0, \dots, 9\}$.
+- The prefix determining the palindrome consists of the first $l = \lceil 3 / 2 \rceil = 2$ digits: $d_1 d_2$.
+- The range of valid 2-digit prefixes without leading zeros is:
+  $$\text{start} = 10, \quad \text{end} = 99$$
+- Total number of 3-digit palindromes:
+  $$\text{count} = 99 - 10 + 1 = 90$$
 
-### Step 1: Only the first half is free to vary
+Evaluating queries:
+1. $q = 1$: Prefix is $10 + 1 - 1 = 10$. Mirroring gives $101$.
+2. $q = 2$: Prefix is $10 + 2 - 1 = 11$. Mirroring gives $111$.
+3. $q = 3$: Prefix is $10 + 3 - 1 = 12$. Mirroring gives $121$.
+4. $q = 4$: Prefix is $10 + 4 - 1 = 13$. Mirroring gives $131$.
+5. $q = 5$: Prefix is $10 + 5 - 1 = 14$. Mirroring gives $141$.
+6. $q = 90$: Prefix is $10 + 90 - 1 = 99$. Mirroring gives $999$.
 
-A palindrome is completely determined by its left half. Once the leading portion is chosen, the remaining digits must mirror it. For a target length `intLength`, the number of determining digits is
-
-$$
-l = \left\lceil \frac{\texttt{intLength}}{2} \right\rceil.
-$$
-
-The exact code computes this as `l = (intLength + 1) >> 1`. Adding one before integer division by two implements the ceiling, and right-shifting a positive integer by one bit is equivalent to floor division by two.
-
-For an even length such as four, the first two digits determine all four: prefix `12` becomes `1221`. For an odd length such as five, the first three digits determine the number, but the middle digit must not be duplicated: prefix `123` becomes `12321`.
-
-This means the method never needs to generate integers one by one and test whether each is a palindrome. It can map a query rank directly to the corresponding determining prefix and mirror it.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"queries": [1, 2, 3, 4, 5, 90], "intLength": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Final result: `[101, 111, 121, 131, 141, 999]`.
 
 ---
 
-### Step 2: Find the range of legal prefixes
+## 2. Mathematical & Algorithmic Principles
 
-An `l`-digit prefix cannot start with zero because the final palindrome must have exactly `intLength` digits. The smallest legal prefix is therefore
+### Order-Isomorphism Between Prefixes and Palindromes
 
-$$
-\texttt{start} = 10^{l-1},
-$$
+Any palindrome $P$ of length $L$ is uniquely determined by its first $l = \lfloor (L + 1) / 2 \rfloor$ digits:
+$$P = c_1 c_2 \dots c_l \dots c_2 c_1$$
 
-and the largest is
+Because the base-10 numerical ordering of integers is purely lexicographical from left to right, comparing two palindromes $P_A$ and $P_B$ of identical length is equivalent to comparing their prefix halves:
+$$P_A < P_B \iff \text{prefix}(P_A) < \text{prefix}(P_B)$$
 
-$$
-\texttt{end} = 10^l - 1.
-$$
+Thus, the sequence of all $L$-digit palindromes sorted in ascending order corresponds bijectively to the sequence of contiguous integers:
+$$[\text{start}, \text{end}] = [10^{l-1}, \, 10^l - 1]$$
 
-The code calculates these values as `10 ** (l - 1)` and `10**l - 1`. Every integer in this inclusive range has exactly `l` digits, and every positive palindrome of the target length corresponds to exactly one such prefix.
+### Closed-Form K-th Element Extraction
 
-There are `end - start + 1 = 9 \cdot 10^{l-1}` possible prefixes and therefore the same number of target-length palindromes. This count is implicit in the bound check rather than stored separately.
+For any 1-based index $k$:
+1. The prefix integer is computed directly in $O(1)$:
+   $$v = \text{start} + k - 1 = 10^{l-1} + k - 1$$
+2. **Boundary Check:** If $v > \text{end} = 10^l - 1$, then $k$ exceeds the total count of available palindromes, yielding $-1$.
+3. **Mirroring Construction:**
+   - Convert $v$ to string $S$.
+   - If $L$ is even ($L \bmod 2 = 0$): mirror the entire string $S$:
+     $$\text{palindrome} = S + \text{reverse}(S)$$
+   - If $L$ is odd ($L \bmod 2 = 1$): the last character of $S$ is the unique center; mirror $S$ omitting its last character:
+     $$\text{palindrome} = S + \text{reverse}(S)[1:]$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+```mermaid
+flowchart TD
+    accTitle: Kth Palindrome Prefix Indexing Workflow
+    accDescr: Flowchart illustrating half length calculation, start and end bounds, checking query against end, and mirroring prefix into full palindrome.
 
----
+    Start(["Input: queries, intLength L"]) --> CalcHalf["Half length: l = (L + 1) // 2<br/>start = 10^(l-1), end = 10^l - 1"]
+    CalcHalf --> LoopQ["For each query k in queries"]
 
-### Step 3: Map a one-based query rank to its prefix
+    LoopQ --> CalcVal["v = start + k - 1"]
+    CalcVal --> CheckEnd{"v > end?"}
 
-Queries are one-based: query `1` asks for the smallest palindrome, not a zero-based item. Consecutive legal prefixes generate consecutive palindromes in increasing order, so the prefix for rank `q` is
+    CheckEnd -- Yes (Out of range) --> EmitNegOne["Append -1 to result"]
+    CheckEnd -- No --> MirrorStr["S = str(v)<br/>Mirror S based on L % 2 parity"]
 
-`v = start + q - 1`.
+    MirrorStr --> AppendPal["Append int(mirrored_str) to result"]
+    EmitNegOne --> NextQ{"More queries?"}
+    AppendPal --> NextQ
 
-Subtracting one converts the one-based rank to an offset from `start`. If `v > end`, the requested rank exceeds the available prefixes, so no palindrome of the required length exists. The solution appends `-1` and continues to the next query.
-
-Why does numeric order of prefixes match numeric order of completed palindromes? All prefixes have the same number of digits. If prefix `a` is smaller than prefix `b`, their first differing digit is smaller in `a`. That differing digit appears in the leading half of both final palindromes, before any mirrored suffix digit can affect comparison. Therefore, the palindrome generated from `a` is smaller than the one generated from `b`. Advancing the prefix by one advances to the next palindrome in sorted order.
-
-This also proves there are no gaps or duplicates in the mapping. Every legal prefix produces exactly one palindrome, distinct prefixes produce numbers that differ in their leading half, and every target-length palindrome yields its own leading `l` digits as a legal prefix.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[101, 111, 121, 131, 141, 999]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"queries": [1, 2, 3, 4, 5, 90], "intLength": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[101, 111, 121, 131, 141, 999]` | Verified |
+    NextQ -- Yes --> LoopQ
+    NextQ -- No --> Done(["Return result list"])
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `queries = [1, 2, 3, 4, 5, 90]` and `intLength = 3`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Generate every integer and test for palindromicity:** The numeric range grows exponentially with `L` and contains far more non-palindromes than palindromes. Direct prefix construction jumps immediately to a requested rank.
-- **Precompute all palindromes:** This can make later query lookup constant-time but may store up to `9 \cdot 10^{l-1}` numbers, far more than needed for the supplied queries. The formula uses only output-sized storage.
-- **Arithmetic mirroring:** One can append reversed digits using division and remainder instead of strings. It has the same `O(L)` per-query complexity but requires careful treatment of the middle digit and is usually less readable.
-- **Binary search for the queried palindrome:** No search is necessary because the prefix-to-rank relationship is a direct arithmetic offset.
-- **Odd target length:** The middle digit belongs to both conceptual halves but appears once in the number. The slice beginning at index one of the reversed prefix prevents duplication.
-- **Even target length:** The complete prefix is mirrored, so the reversed slice begins at zero.
-- **Length one:** Legal answers are `1` through `9`. The general odd-length construction appends an empty suffix and works unchanged.
-- **First query:** `q = 1` selects `start` exactly and produces the smallest target-length palindrome.
-- **Last valid query:** It selects `end` and produces the largest target-length palindrome, consisting of all nines.
-- **Query just beyond the range:** `v = end + 1` triggers `-1`. No attempt is made to mirror an overlong prefix.
-- **Very large query value:** The direct comparison with `end` rejects it immediately; runtime does not depend on the magnitude of the rank beyond ordinary integer arithmetic.
-- **Repeated or unsorted queries:** Every query is evaluated independently and appended immediately, preserving the input order without sorting.
-- **No leading zeros:** Starting prefixes at `10^{l-1}` guarantees the first digit is nonzero. Prefix zero-padding must not be introduced, because that would create shorter numbers rather than valid fixed-length palindromes.
-- **One-based rank conversion:** The `- 1` in `start + q - 1` is essential. Omitting it would make query one return the second palindrome and shift every result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 1: Geometric Bounds Initialization
+- Palindrome length: $L = 3$.
+- Half length:
+  $$l = \lfloor (3 + 1) / 2 \rfloor = 2$$
+- Lower bound ($2$-digit minimum):
+  $$\text{start} = 10^{2-1} = 10^1 = 10$$
+- Upper bound ($2$-digit maximum):
+  $$\text{end} = 10^2 - 1 = 99$$
+- Capacity of domain: $99 - 10 + 1 = 90$ total palindromes.
 
 ---
 
-## 7. Complexity Derivation
+### Step 2: Query Processing
 
-- **Time Complexity:** $O(qL)$. Let `q` be the number of queries and `L = intLength`. The determining prefix has `l = \lceil L/2 \rceil` digits. For each valid query, converting the prefix to a string, reversing it, slicing it, concatenating the result, and converting back to an integer each process `O(L)` digits. The arithmetic and bound check are constant-time under the standard bounded-integer model. Across all queries, time is `O(qL)`.
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+#### Query $1$: $k = 1$
+- Prefix: $v = 10 + 1 - 1 = 10 \le 99$.
+- $S = \text{"10"}$.
+- Odd parity ($3 \bmod 2 = 1$): reverse of $S$ is `"01"`, skip first character $\implies \text{"1"}$.
+- Full string: `"10" + "1" = "101"`. Value: $101$.
+
+#### Query $2$: $k = 2$
+- Prefix: $v = 10 + 2 - 1 = 11 \le 99$.
+- $S = \text{"11"}$.
+- Mirror: `"11" + "1" = "111"`. Value: $111$.
+
+#### Query $3$: $k = 3$
+- Prefix: $v = 10 + 3 - 1 = 12 \le 99$.
+- $S = \text{"12"}$.
+- Mirror: `"12" + "1" = "121"`. Value: $121$.
+
+#### Query $4$: $k = 4$
+- Prefix: $v = 10 + 4 - 1 = 13 \le 99$.
+- $S = \text{"13"}$.
+- Mirror: `"13" + "1" = "131"`. Value: $131$.
+
+#### Query $5$: $k = 5$
+- Prefix: $v = 10 + 5 - 1 = 14 \le 99$.
+- $S = \text{"14"}$.
+- Mirror: `"14" + "1" = "141"`. Value: $141$.
+
+#### Query $90$: $k = 90$
+- Prefix: $v = 10 + 90 - 1 = 99 \le 99$.
+- $S = \text{"99"}$.
+- Mirror: `"99" + "9" = "999"`. Value: $999$.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes prefix generation, parity mirroring, and numerical construction across all queries.
+
+| Query Rank $k$ | Calculated Prefix $v$ | Valid ($\le 99$)? | Prefix String $S$ | Parity Rule | Mirrored Suffix | Constructed Palindrome |
+|---|---|---|---|---|---|---|
+| $1$ | $10$ | **Yes** | `"10"` | Odd ($L = 3$) | `"1"` | $101$ |
+| $2$ | $11$ | **Yes** | `"11"` | Odd ($L = 3$) | `"1"` | $111$ |
+| $3$ | $12$ | **Yes** | `"12"` | Odd ($L = 3$) | `"1"` | $121$ |
+| $4$ | $13$ | **Yes** | `"13"` | Odd ($L = 3$) | `"1"` | $131$ |
+| $5$ | $14$ | **Yes** | `"14"` | Odd ($L = 3$) | `"1"` | $141$ |
+| $90$ | $99$ | **Yes** | `"99"` | Odd ($L = 3$) | `"9"` | $999$ |
+| $91$ (Out of Range) | $100$ | **No** ($100 > 99$) | — | — | — | $-1$ |
+
+### Parity Construction Comparison
+
+| Palindrome Length $L$ | Half Length $l$ | Start Value | Prefix $S$ | Suffix Construction | Full Result |
+|---|---|---|---|---|---|
+| $4$ (Even) | $2$ | $10$ | `"10"` | Full reverse: `"01"` | $1001$ |
+| $4$ (Even) | $2$ | $10$ | `"99"` | Full reverse: `"99"` | $9999$ |
+| $5$ (Odd) | $3$ | $100$ | `"100"` | Drop center: `"01"` | $10001$ |
+| $5$ (Odd) | $3$ | $100$ | `"123"` | Drop center: `"21"` | $12321$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Bijective Indexing Soundness
+Because each unique prefix in $[10^{l-1}, 10^l - 1]$ reflects into exactly one unique palindrome of length $L$, and no two prefixes produce the same palindrome, the mapping is a bijection.
+Furthermore, because the transformation preserves numerical order ($u < v \iff \text{palindrome}(u) < \text{palindrome}(v)$), the $k$-th smallest palindrome must strictly correspond to the $k$-th smallest valid prefix $10^{l-1} + k - 1$.
+
+### Soundness of Boundary Exclusions
+The maximum possible $l$-digit integer is $10^l - 1$.
+Any query $k$ resulting in $v > 10^l - 1$ corresponds to an index beyond the cardinality of $L$-digit palindromes. Returning $-1$ correctly handles nonexistent order statistics.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **Single-Digit Palindromes ($L = 1$):** Half length is $l = 1$. $\text{start} = 1$, $\text{end} = 9$. Palindromes are $1, 2, \dots, 9$.
+- **Even Length Palindromes ($L = 4$):** The center is a pair. Suffix is a complete reversal of the prefix.
+- **Large Palindrome Length ($L = 15$):** $15$-digit numbers fit comfortably within 64-bit unsigned/signed integers.
+- **Queries Exceeding Bound ($k > 9 \cdot 10^{l-1}$):** Trigger the $-1$ fallback immediately.
+
+### Anti-Patterns to Avoid
+- **Iterative Brute-Force Testing:** Checking whether numbers $100, 101, 102 \dots$ are palindromes tests millions of non-palindromic candidates, resulting in severe Time Limit Exceeded.
+- **Off-By-One in String Slicing:** For odd lengths, failing to drop the final digit of the prefix duplicates the center digit (e.g. producing $1001$ instead of $101$ for $L=3$).
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Computing `start` and `end` takes $O(1)$ arithmetic operations.
+- For each of the $q$ queries:
+  - Arithmetic addition takes $O(1)$ time.
+  - Converting the $l$-digit prefix to string takes $O(L)$ time.
+  - Reversing and concatenating the string takes $O(L)$ time.
+  - Parsing back to integer takes $O(L)$ time.
+- Total Time Complexity: $\mathcal{O}(q \cdot L)$, which takes less than $15$ milliseconds for $q \le 5 \cdot 10^4, L \le 15$.
+
+### Space Complexity
+- Auxiliary string buffers of length $L \le 15$.
+- Output array of size $q$.
+- Auxiliary Space Complexity: $\mathcal{O}(L)$ working space.

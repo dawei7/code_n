@@ -1,126 +1,199 @@
 # Guided Example: Number of Visible People in a Queue
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace monotonic decreasing stack maintenance, line-of-sight obstruction, and backward visibility resolution on representative queue height profiles:
 
-- **Input:** `{"heights": [10, 6, 8, 5, 11, 9]}`
-- **Required output:** `[3, 1, 2, 1, 1, 0]`
+- **Primary Input:** `heights = [10, 6, 8, 5, 11, 9]`
+- **Required Output:** `[3, 1, 2, 1, 1, 0]`
+- **Ascending Input (Cascade):** `heights = [5, 1, 2, 3, 10]`
+- **Required Output:** `[4, 1, 1, 1, 0]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates line-of-sight visibility conditions in 1D queues, maintaining a strictly decreasing monotonic stack while scanning from right to left, and achieving optimal $\mathcal{O}(N)$ amortized time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` people standing in a queue, and they numbered from `0` to $n - 1$ in **left to right** order. You are given an array `heights` of **distinct** integers where $\text{heights}[i]$ represents the height of the $i^{\text{th}}$ person.
+We are given an array of $n$ people lined up from left to right with distinct heights `heights`.
+- Person $i$ can see person $j$ ($i < j$) if and only if everyone standing strictly between them is shorter than both:
+  $$\max_{i < k < j} heights[k] < \min(heights[i], heights[j])$$
+- Person $i$ looks to the right. We must return an array `ans` where `ans[i]` is the count of people person $i$ can see.
 
-The objective is to compute `[3, 1, 2, 1, 1, 0]` from `{"heights": [10, 6, 8, 5, 11, 9]}` while avoiding redundant calculations and unnecessary overhead.
+For `heights = [10, 6, 8, 5, 11, 9]`:
+- Person 5 ($h = 9$): Standing at the right end. No one to the right $\implies 0$.
+- Person 4 ($h = 11$): Sees person 5 ($h = 9$). Person 5 does not block anyone $\implies 1$.
+- Person 3 ($h = 5$): Sees person 4 ($h = 11$). Person 4 is taller than person 3 and blocks all vision beyond $\implies 1$.
+- Person 2 ($h = 8$):
+  - Sees person 3 ($h = 5$).
+  - Person 3 is shorter than person 2 ($5 < 8$), so person 2 can also see over person 3 to person 4 ($h = 11$).
+  - Person 4 ($h = 11 > 8$) blocks further vision. Total seen: **2**.
+- Person 1 ($h = 6$): Sees person 2 ($h = 8 > 6$), which blocks person 4 $\implies 1$.
+- Person 0 ($h = 10$):
+  - Sees person 1 ($h = 6$).
+  - Over person 1, sees person 2 ($h = 8$).
+  - Over person 2, sees person 4 ($h = 11$).
+  - Person 4 ($11 > 10$) blocks person 5. Total seen: **3**.
+- Output: `[3, 1, 2, 1, 1, 0]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **monotonic stack line-of-sight pruning**:
+1. Backward traversal from right to left: Maintaining a stack of candidates visible to the current observer.
+2. Invariant: The stack maintains strictly decreasing heights from bottom to top.
+3. Popping shorter elements: If $h_{\text{top}} < heights[i]$, person $i$ sees $h_{\text{top}}$, and $h_{\text{top}}$ is permanently hidden from anyone further left.
+4. Peeking at the first taller element: If the stack remains non-empty, person $i$ sees that taller person, who acts as the ultimate sight blocker.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Line-of-Sight Monotonic Stack Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Line-of-Sight Monotonic Stack Invariant Theorem.**
+> 1. *Sight Obstruction Criterion:* A person $j > i$ is visible to person $i$ if and only if no intervening person $k$ ($i < k < j$) satisfies $heights[k] \ge heights[j]$. Any such intervening taller person completely shadows person $j$ from person $i$.
+> 2. *Right-to-Left Monotonic Stack:* When scanning backwards from index $n - 1$ to $0$, maintain a stack $\mathcal{S}$ of heights encountered so far:
+>    $$\mathcal{S} = [s_1, s_2, \dots, s_m] \quad \text{with } s_1 > s_2 > \dots > s_m$$
+> 3. *Visibility Counting Rules for Person $i$ with height $H = heights[i]$:*
+>    - **Shorter Predecessors:** While $\mathcal{S}$ is non-empty and top element $s_{\text{top}} < H$:
+>      - Person $i$ can see $s_{\text{top}}$.
+>      - Increment $\text{ans}[i] \leftarrow \text{ans}[i] + 1$.
+>      - Pop $s_{\text{top}}$ from $\mathcal{S}$ because person $i$ is strictly taller than $s_{\text{top}}$ and closer to any future observer to the left, making $s_{\text{top}}$ permanently invisible to all observers $< i$.
+>    - **Blocking Taller Predecessor:** If $\mathcal{S}$ is still non-empty after popping, the new top element $s_{\text{top}} > H$:
+>      - Person $i$ can see $s_{\text{top}}$.
+>      - Increment $\text{ans}[i] \leftarrow \text{ans}[i] + 1$.
+>      - Do not pop $s_{\text{top}}$, because $s_{\text{top}} > H$ can still be seen by a taller person to the left.
+> 4. *Stack Push:* Push $H$ onto $\mathcal{S}$. The stack remains strictly decreasing.
+> 5. *Amortized Linearity:* Each person is pushed onto the stack exactly once and popped at most once, bounding total operations by $2N = \mathcal{O}(N)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Right-to-Left Monotonic Stack Visibility Flow
+    accDescr: Backward traversal popping shorter elements and counting the first taller element on a monotonic stack.
+    A["Scan index i from n-1 down to 0"] --> B["Initialize count ans[i] = 0"]
+    B --> C{"Is stack not empty and stack.top < heights[i]?"}
+    C -- Yes --> D["Increment ans[i] by 1, Pop stack.top"]
+    D --> C
+    C -- No --> E{"Is stack still not empty?"}
+    E -- Yes --> F["Increment ans[i] by 1 (sees blocking taller person)"]
+    E -- No --> G["No taller blocker"]
+    F --> H["Push heights[i] onto stack"]
+    G --> H
+    H --> I{"More people to the left?"}
+    I -- Yes --> A
+    I -- No --> J["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Scan from the direction people are looking
-
-Every person looks to the right. Scanning the queue from right to left means that when processing person $i$, all possible people they might see have already been incorporated into a stack.
-
-The stack stores heights that remain relevant as visible blockers for people farther left. From bottom to top, these heights are strictly decreasing. The top is the nearest surviving candidate.
-
-For current height `heights[i]`, the algorithm repeatedly pops a stack top that is shorter. Each popped person is visible to the current person, so `ans[i]` increases.
-
-After all shorter tops are removed, one of two things is true:
-
-- the stack is empty, so nobody taller remains to block the view;
-- the stack top is taller than the current person. That person is also visible, and then blocks every person farther behind it.
-
-Accordingly, the code adds one more when `stk` remains nonempty, then pushes the current height for people farther left.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"heights": [10, 6, 8, 5, 11, 9]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `heights = [10, 6, 8, 5, 11, 9]`:
 
 ---
 
-### Step 2: Why every popped shorter person is visible
-
-Consider a shorter height at the stack top. The stack invariant means no already processed person between it and the current position remains as an equal-or-taller obstruction to it. Any people removed earlier were shorter than some nearer survivor and do not invalidate the top's visibility from the new, taller current person.
-
-More intuitively, as the current person looks right, they can see a sequence of record-high silhouettes. Every time the stack pops a shorter height, that height rises above all people between it and the current viewer but remains below the viewer. Therefore everyone between is shorter than both endpoints, satisfying the visibility definition.
-
-Distinct heights remove equality complications: each comparison is strictly shorter or strictly taller.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Index $i = 5$ ($h = 9$)
+- Stack is empty.
+- Visible count: $\text{ans}[5] = 0$.
+- Push $9$: $\mathcal{S} = [9]$.
 
 ---
 
-### Step 3: Why only one taller person is visible
+### Step 2: Index $i = 4$ ($h = 11$)
+- Top is $9 < 11$.
+  - Sees 9: $\text{ans}[4] \leftarrow 0 + 1 = 1$.
+  - Pop 9. Stack becomes empty.
+- Stack is empty (no taller person).
+- Push $11$: $\mathcal{S} = [11]$.
+- $\text{ans}[4] = 1$.
 
-Once the shorter visible people have been popped, the remaining top is the first surviving person taller than the current viewer. Everyone between is shorter than the current viewer, so this taller person is visible.
+---
 
-Any person behind that taller top is blocked by it. The blocking person's height is greater than the current viewer, so it is not shorter than the minimum of the two endpoint heights for any farther target. Thus the current viewer can see at most that one taller person beyond all popped shorter people.
+### Step 3: Index $i = 3$ ($h = 5$)
+- Top is $11 > 5$. While loop does not execute.
+- Stack is not empty: top is $11$.
+  - Sees 11: $\text{ans}[3] \leftarrow 0 + 1 = 1$.
+- Push $5$: $\mathcal{S} = [11, 5]$.
+- $\text{ans}[3] = 1$.
 
-This explains the two contributions exactly: all popped shorter heights, plus at most one unpopped taller height.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 1, 2, 1, 1, 0]` |
+### Step 4: Index $i = 2$ ($h = 8$)
+- Top is $5 < 8$.
+  - Sees 5: $\text{ans}[2] \leftarrow 0 + 1 = 1$.
+  - Pop 5. Stack now $[11]$.
+- Top is $11 > 8$. While loop stops.
+- Stack is not empty: top is $11$.
+  - Sees 11: $\text{ans}[2] \leftarrow 1 + 1 = 2$.
+- Push $8$: $\mathcal{S} = [11, 8]$.
+- $\text{ans}[2] = 2$.
+
+---
+
+### Step 5: Index $i = 1$ ($h = 6$)
+- Top is $8 > 6$. While loop does not execute.
+- Stack is not empty: top is $8$.
+  - Sees 8: $\text{ans}[1] \leftarrow 0 + 1 = 1$.
+- Push $6$: $\mathcal{S} = [11, 8, 6]$.
+- $\text{ans}[1] = 1$.
+
+---
+
+### Step 6: Index $i = 0$ ($h = 10$)
+- Top is $6 < 10$.
+  - Sees 6: $\text{ans}[0] \leftarrow 0 + 1 = 1$. Pop 6. Stack $[11, 8]$.
+- Next top is $8 < 10$.
+  - Sees 8: $\text{ans}[0] \leftarrow 1 + 1 = 2$. Pop 8. Stack $[11]$.
+- Next top is $11 > 10$. While loop stops.
+- Stack is not empty: top is $11$.
+  - Sees 11: $\text{ans}[0] \leftarrow 2 + 1 = 3$.
+- Push $10$: $\mathcal{S} = [11, 10]$.
+- $\text{ans}[0] = 3$.
+
+---
+
+### Final Result
+$$\text{ans} = [3, 1, 2, 1, 1, 0]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+We trace the stack transitions across backward iterations for `heights = [10, 6, 8, 5, 11, 9]`:
+
+| Step $i$ | Person Height $h$ | Popped Elements ($s < h$) | Taller Blocker Seen ($s > h$) | Final Stack $\mathcal{S}$ | Visible Count $\text{ans}[i]$ |
+|---|---|---|---|---|---|
+| 5 | 9 | None | None | `[9]` | **0** |
+| 4 | 11 | `9` ($+1$) | None | `[11]` | **1** |
+| 3 | 5 | None | `11` ($+1$) | `[11, 5]` | **1** |
+| 2 | 8 | `5` ($+1$) | `11` ($+1$) | `[11, 8]` | **2** |
+| 1 | 6 | None | `8` ($+1$) | `[11, 8, 6]` | **1** |
+| 0 | 10 | `6` ($+1$), `8` ($+1$) | `11` ($+1$) | `[11, 10]` | **3** |
+
+We compare visibility distributions across contrasting height profiles:
+
+| Height Profile | Pattern | Visible Counts Array | Description |
 |---|---|---|---|
-| Initialization | Initial input `{"heights": [10, 6, 8, 5, 11, 9]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 1, 2, 1, 1, 0]` | Verified |
+| `[10, 6, 8, 5, 11, 9]` | Mixed valleys | `[3, 1, 2, 1, 1, 0]` | Over-the-shoulder visibility over local minima |
+| `[5, 1, 2, 3, 10]` | Ascending valley | `[4, 1, 1, 1, 0]` | First person sees all subsequent ascending elements |
+| `[5, 4, 3, 2, 1]` | Strictly descending | `[1, 1, 1, 1, 0]` | Each person blocked immediately by next person |
+| `[1, 2, 3, 4, 5]` | Strictly ascending | `[1, 1, 1, 1, 0]` | Next person is taller and blocks all further vision |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A person $j > i$ is popped by person $i$ if and only if $heights[j] < heights[i]$ and all people between $i$ and $j$ were already shorter than $heights[j]$ (and hence already popped). Thus person $i$ has an unobstructed line of sight to person $j$. Once popped, person $j$ is shadowed by the taller and closer person $i$, so no person to the left of $i$ can ever see $j$. The first element remaining on the stack that exceeds $heights[i]$ is also visible to $i$ because no intervening person was taller than $heights[i]$; however, that taller person completely obstructs anyone behind them. The count increment is exact.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every candidate to the right is either seen and popped, seen as the final blocker, or was already shadowed and popped by an intermediate taller person. Therefore, all visible people are counted without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check every pair:** For each viewer, scan rightward while tracking intervening maxima. This can take $O(N^2)$ time.
-- **Next-greater links:** One can precompute blocking relationships and follow visibility chains, but the monotonic stack computes counts directly in one pass.
-- **Strictly increasing heights left to right:** Each person sees every person until the first taller sequence behavior permits; the stack repeatedly pops shorter suffix heights, producing the correct growing counts.
-- **Strictly decreasing heights left to right:** Each person sees only the immediate next person, because that nearer person blocks all shorter people behind.
-- **Last person:** The stack is empty when processed, so their answer remains zero.
-- **Single person:** It is also the last person and correctly sees nobody.
-- **One shorter then one taller:** Both can be visible: the shorter is popped and counted, and the taller survivor is counted once.
-- **Distinct-height guarantee:** The exact comparisons rely on no equal heights. With duplicates, equality visibility and stack handling would need explicit policy.
-- **Amortized loop:** A person may pop many heights in one iteration, but those heights never reenter, keeping the full scan linear.
-- **Stack stores heights only:** Indices are unnecessary because the result is assigned to the current index and only height comparisons determine blocking.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing the First Taller Person:** After popping all smaller elements, forgetting to check `if stk: ans[i] += 1` will fail to count the taller person who terminates the line of sight (e.g. person 3 ($h=5$) looking at person 4 ($h=11$)).
+- **Quadratic Brute-Force TLE:** For each person $i$, scanning rightward until hitting a taller person takes $\mathcal{O}(N^2)$ time in the worst case (e.g. `[10, 9, 8, ..., 1]`), exceeding the time limit for $N = 10^5$. Monotonic stack ensures $\mathcal{O}(N)$.
+- **Direction of Processing:** Scanning left-to-right requires maintaining visible frontiers with complex updates. Scanning right-to-left matches the direction of sight naturally, making the monotonic stack trivial and robust.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the number of people.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \text{len}(heights)$. Each element is pushed onto the stack exactly once and popped at most once across the entire backward scan.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ in the worst case to store the monotonic stack (e.g. strictly descending heights).

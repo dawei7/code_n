@@ -1,115 +1,204 @@
 # Guided Example: Most Common Word
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step case normalization to lowercase ($c \to \text{lower}(c)$), non-alphanumeric punctuation delimiter tokenization, banned word set filtering ($w \notin B$), frequency dictionary accumulation ($cnt[w] \mathrel{+}= 1$), and maximal frequency token extraction on representative natural language passages:
 
-- **Input:** `{"paragraph": "a, a, a, a, b,b,b,c, c", "banned": ["a"]}`
-- **Required output:** `"b"`
+- **Input:**
+  $$
+  paragraph = \text{"Bob hit a ball, the hit BALL flew far after it was hit."}
+  $$
+  $$
+  banned = [\text{"hit"}]
+  $$
+- **Required output:**
+  $$
+  \text{"ball"}
+  $$
+  - Word parsing & frequency rules:
+    - Words in the paragraph are case-insensitive and separated by spaces or punctuation symbols (`!`, `?`, `'`, `,`, `;`, `.`).
+    - The answer must be returned in lowercase.
+    - Any word appearing in the $banned$ list is disqualified from selection.
+    - We must return the **most frequent unbanned word**. The problem guarantees a unique answer.
+    - For the sample paragraph:
+      - Lowercase conversion: `"bob hit a ball, the hit ball flew far after it was hit."`
+      - Extracted word tokens:
+        $$
+        [\text{"bob"}, \text{"hit"}, \text{"a"}, \text{"ball"}, \text{"the"}, \text{"hit"}, \text{"ball"}, \text{"flew"}, \text{"far"}, \text{"after"}, \text{"it"}, \text{"was"}, \text{"hit"}]
+        $$
+      - Word `"hit"` appears 3 times, but is **banned**.
+      - Word `"ball"` appears 2 times, and is not banned.
+      - All other unbanned words appear only 1 time.
+      - Output: `"ball"`.
+- **Lexical Tokenization & Hash Table Filtering Invariant:**
+  - **The Tokenization Principle:**
+    - Punctuation characters must act strictly as word boundaries.
+    - Any contiguous sequence of alphabetic characters $[a\text{–}z]$ constitutes an independent token.
+  - **Banned Set Lookup ($B$):**
+    - Convert $banned$ to a hash set $B$ for $\mathcal{O}(1)$ membership testing.
+  - **Frequency Accumulation ($cnt$):**
+    - For each extracted lowercase token $w$:
+      - If $w \notin B$:
+        $$
+        cnt[w] \leftarrow cnt[w] + 1
+        $$
+    - Track the maximum frequency encountered:
+      $$
+      w^* = \arg\max_{w \notin B} cnt[w]
+      $$
+- **Step-by-Step Worked Execution Trace on the Ball Passage:**
+  - Convert $banned$ to set:
+    $$
+    B = \{ \text{"hit"} \}
+    $$
+  - Initialize frequency map: $cnt = \{\}$.
+  - **Token Stream Extraction & Frequency Counting:**
+    1. `"Bob"` $\to$ `"bob"`: not in $B \implies cnt[\text{"bob"}] = 1$.
+    2. `"hit"` $\to$ `"hit"`: in $B \implies \mathbf{Banned\ (Ignored).}$
+    3. `"a"` $\to$ `"a"`: not in $B \implies cnt[\text{"a"}] = 1$.
+    4. `"ball,"` $\to$ `"ball"`: not in $B \implies cnt[\text{"ball"}] = 1$.
+    5. `"the"` $\to$ `"the"`: not in $B \implies cnt[\text{"the"}] = 1$.
+    6. `"hit"` $\to$ `"hit"`: in $B \implies \mathbf{Banned\ (Ignored).}$
+    7. `"BALL"` $\to$ `"ball"`: not in $B \implies cnt[\text{"ball"}] \leftarrow 1 + 1 = \mathbf{2}$.
+    8. `"flew"` $\to$ `"flew"`: not in $B \implies cnt[\text{"flew"}] = 1$.
+    9. `"far"` $\to$ `"far"`: not in $B \implies cnt[\text{"far"}] = 1$.
+    10. `"after"` $\to$ `"after"`: not in $B \implies cnt[\text{"after"}] = 1$.
+    11. `"it"` $\to$ `"it"`: not in $B \implies cnt[\text{"it"}] = 1$.
+    12. `"was"` $\to$ `"was"`: not in $B \implies cnt[\text{"was"}] = 1$.
+    13. `"hit."` $\to$ `"hit"`: in $B \implies \mathbf{Banned\ (Ignored).}$
+  - **Frequency Table of Unbanned Tokens:**
+    - `"ball"`: $2$
+    - `"bob"`: $1$
+    - `"a"`: $1$
+    - `"the"`: $1$
+    - `"flew"`: $1$
+    - `"far"`: $1$
+    - `"after"`: $1$
+    - `"it"`: $1$
+    - `"was"`: $1$
+  - **Maximal Element Selection:**
+    - Highest count is $2$, achieved by token $\mathbf{\text{"ball"}}$.
+    - Output:
+      $$
+      ans = \mathbf{\text{"ball"}}
+      $$
+- **Punctuation-Separated Stream Trace ($paragraph = \text{"a, a, a, a, b,b,b,c, c"}, banned = [\text{"a"}]$):**
+  - Consecutive commas and missing spaces between words (e.g. `"b,b,b"`) are split into independent tokens `"b"`, `"b"`, `"b"`.
+  - `"a"` appears 4 times, but is banned.
+  - `"b"` appears 3 times, unbanned $\implies$ Winner is $\mathbf{\text{"b"}}$.
+- **Single Word Paragraph ($paragraph = \text{"Bob"}, banned = []$):**
+  - Only token `"bob"`, frequency 1 $\implies \text{"bob"}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates lexical analysis tokenization via regular language filtering and multiset mode extraction, mathematically proves why partitioning text into maximal alphabetic runs correctly handles arbitrary punctuation boundaries, and derives $O(L)$ runtime and $O(L)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `paragraph` and a string array of the banned words `banned`, return *the most frequent word that is not banned*. It is **guaranteed** there is **at least one word** that is not banned, and that the answer is **unique**.
+Given a paragraph and a list of banned words:
+Find the **most frequent unbanned word** (case-insensitive, returned in lowercase).
 
-The objective is to compute `"b"` from `{"paragraph": "a, a, a, a, b,b,b,c, c", "banned": ["a"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
+banned    = [ "hit" ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Tokens found:
+  "hit"  -> count = 3 (BANNED!)
+  "ball" -> count = 2 (UNBANNED -> Highest!)
+  "bob", "a", "the", "flew", "far", "after", "it", "was" -> count = 1
+
+Result: "ball"
+```
+
+### The Invariant of Lexical Token Filtering
+- Punctuation marks must be treated as word boundaries.
+- Convert all letters to lowercase.
+- Count only words not present in the banned set.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Alphabetical Lexing:
+$$
+\text{Tokens}(P) = \text{RegexSplit}(P.\text{lower}(), \; [a\text{–}z]^+)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Argmax Over Unbanned Complement:
+$$
+ans = \arg\max_{w \in \text{Tokens}(P) \setminus B} \text{Freq}(w)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Lexical Parsing Invariant.** The language $L = [a\text{–}z]^+$ over the alphabet $\Sigma$ decomposes any passage $P \in \Sigma^*$ into an alternating sequence of words and non-alphabetic separators. The frequency functional is invariant under delimiter substitution.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalize before counting
-
-Words are case-insensitive, and punctuation separates words rather than belonging to them. Therefore, `"Ball"`, `"BALL"`, and `"ball,"` must all contribute to the same lowercase key `"ball"`.
-
-The exact solution performs normalization and tokenization in two connected operations:
-
-1. `paragraph.lower()` converts every letter to lowercase.
-2. `re.findall('[a-z]+', ...)` extracts every maximal nonempty run of lowercase English letters.
-
-The regular expression `[a-z]+` means “one or more characters from `a` through `z`.” Because `findall` returns nonoverlapping matches from left to right, punctuation and spaces are simply gaps between matches.
-
-For the fragment `"ball, the hit BALL"`, lowercasing yields `"ball, the hit ball"`, and the matches are `"ball"`, `"the"`, `"hit"`, and `"ball"`. The comma is neither retained nor joined to a neighboring word.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"paragraph": "a, a, a, a, b,b,b,c, c", "banned": ["a"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why maximal matches matter
-
-The `+` quantifier makes each match consume the entire consecutive letter run. Without it, the regex could return one character at a time. With it, `"leetcode"` becomes one word rather than eight letters.
-
-The Reference guarantees that paragraph characters are English letters, spaces, or listed punctuation symbols. Thus, `[a-z]+` captures exactly the problem's words after lowercasing. There are no digits or accented letters that need a separate interpretation.
-
-Adjacent punctuation causes no empty words. For example, `"word!!next"` yields `"word"` and `"next"`. Leading or trailing punctuation is also ignored because it does not match the pattern.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Normalize & Tokenize
+- Lowercase: `"bob hit a ball the hit ball flew far after it was hit"`.
 
 ---
 
-### Step 3: Count every normalized occurrence
+### Step 2: Filter & Count
+- `"hit"` is in banned set $\implies$ skipped.
+- `"ball"` appears 2 times.
+- Other words appear 1 time each.
 
-`Counter(...)` receives the list of extracted words and builds a frequency map. Each distinct lowercase word becomes a key, and its value is the number of occurrences in the paragraph.
+---
 
-This stage counts banned and non-banned words alike. That is safe because banning affects eligibility for the answer, not what constitutes an occurrence. Filtering afterward keeps tokenization and frequency counting simple.
+### Step 3: Find Maximum
+- Maximum count among unbanned words is 2 $\implies$ `"ball"`.
 
-For the main example, the counter includes `"hit": 3` and `"ball": 2`. Although `"hit"` has the largest raw frequency, it will be skipped because it belongs to the banned set.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"b"` |
+### Step 4: Output
+$$
+\mathbf{\text{"ball"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"paragraph": "a, a, a, a, b,b,b,c, c", "banned": ["a"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"b"` | Verified |
+| Token Encountered | In Banned Set? | Previous Count | New Count | Current Leader |
+|:---:|:---:|:---:|:---:|:---:|
+| `"bob"` | No | $0$ | $1$ | `"bob"` ($1$) |
+| `"hit"` | **Yes** | — | — | `"bob"` ($1$) |
+| `"a"` | No | $0$ | $1$ | `"bob"` ($1$) |
+| `"ball"` | No | $0$ | $1$ | `"ball"` ($1$) |
+| `"the"` | No | $0$ | $1$ | `"ball"` ($1$) |
+| `"hit"` | **Yes** | — | — | `"ball"` ($1$) |
+| **`"ball"`** | **No** | **$1$** | **$2$** | **`"ball"` ($2$)** |
+| `"flew" \dots` | No | $0$ | $1$ | `"ball"` ($2$) |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Word:** Paragraph consists of only one word $\implies$ returns that word.
+- **Punctuation Chains (`"b,b,b"`):** No spaces between commas; tokens extracted cleanly as separate words.
+- **Mixed Case (`"BaLL"`, `"ball"`):** Case folding maps both to identical token `"ball"`.
+- **Banned Words with Different Casing:** Banned words in input are lowercase; tokens are compared in lowercase.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Single-pass character buffer:** Scan characters once, build one lowercase word at a time, and update its count when punctuation is reached. This avoids the regex occurrence list and can update the best word during counting.
-- **Replace punctuation then split:** Mapping every non-letter to a space and calling `split()` is easy to debug and has the same normalization semantics.
-- **Scan counter items for a maximum:** Using `max` over only non-banned entries avoids sorting all distinct words, giving the manifest's linear `O(p+b)` time target.
+- **Splitting by Space Only (`paragraph.split(" ")`):** Fails on strings with commas or punctuation directly touching words (e.g. `"ball,"` becomes `"ball,"` which won't match `"ball"`). Regex `[a-z]+` or replacing punctuation with spaces is required.
+- **Checking Banned in a List ($O(B)$ per word):** Using a list for banned words causes quadratic lookup time. A hash set `set(banned)` guarantees $O(1)$ lookup.
+- **Returning Uppercase or Titlecase:** The problem explicitly demands the output in lowercase.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(p + b)$. Let `p` be the number of characters in `paragraph`, let `b` be the total number of characters across `banned`, and let `u` be the number of distinct paragraph words.
-- **Auxiliary Space Complexity:** $O(p+b+u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Converting paragraph to lowercase and regex extracting words: $\mathcal{O}(L)$ where $L$ is the length of `paragraph`.
+  - Hash set creation for `banned`: $\mathcal{O}(B \cdot W)$.
+  - Hash map frequency counting: $\mathcal{O}(L)$.
+  - Total Time: strictly linear $\mathcal{O}(L + B \cdot W)$ where $L \le 1000$. Completes in $< 0.1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(L)$ memory to store the extracted tokens and frequency table.

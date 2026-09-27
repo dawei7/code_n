@@ -1,131 +1,214 @@
 # Guided Example: Minimum Cost to Connect Sticks
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the greedy min-heap priority queue algorithm (equivalent to optimal Huffman tree construction) to minimize the cumulative cost of merging $N$ sticks into a single piece.
 
-- **Input:** `{"sticks": [2, 4, 3]}`
-- **Required output:** `14`
+- **Input:** $sticks = [1, 8, 3, 5]$
+- **Required output:** `30`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates greedy choice optimality, repeated element re-insertion, tree-depth cost weighting, and single-element boundary handling.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where $\text{sticks}[i]$ is the length of the $i^{\text{th}}$ stick.
+We are given an array $sticks$ containing $N$ positive integers representing stick lengths. In each step, we pick any two sticks of lengths $x$ and $y$, pay cost $x + y$, and replace them with a single merged stick of length $x + y$. We repeat this process until exactly one stick remains. We seek the minimum possible total cost.
 
-The objective is to compute `14` from `{"sticks": [2, 4, 3]}` while avoiding redundant calculations and unnecessary overhead.
+Consider connecting sticks in an arbitrary or left-to-right order:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Suboptimal Merging vs. Optimal Greedy Merging:
+
+Arbitrary Merge (merging 8 and 5 first):
+  Merge 8 + 5 = 13 (cost = 13, sticks: [1, 3, 13])
+  Merge 13 + 3 = 16 (cost = 13 + 16 = 29, sticks: [1, 16])
+  Merge 16 + 1 = 17 (cost = 29 + 17 = 46, sticks: [17])
+  Total Cost = 46 (suboptimal!)
+
+Optimal Greedy Merge:
+  Merge 1 + 3 = 4 (cost = 4, sticks: [4, 5, 8])
+  Merge 4 + 5 = 9 (cost = 4 + 9 = 13, sticks: [8, 9])
+  Merge 8 + 9 = 17 (cost = 13 + 17 = 30, sticks: [17])
+  Total Cost = 30 (optimal!)
+```
+
+The fundamental teaching goal is to recognize that this problem is mathematically isomorphic to constructing an **Optimal Binary Merge Tree** (or Huffman Coding Tree). In any sequence of connections:
+
+$$\text{Total Cost} = \sum_{i=1}^N \ell_i \cdot d_i$$
+
+where $\ell_i$ is the initial length of stick $i$, and $d_i$ is its depth in the resulting merge tree (the number of times stick $i$ participates in a connection). To minimize this sum, the largest stick lengths must have the smallest depths, and the smallest stick lengths must be placed deepest.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $H$ be a min-heap initially populated with all elements of $sticks$.
 
-| State Parameter | Role & Purpose | Initial State |
+### The Greedy Choice Invariant
+
+At each merge step, extracting the two globally minimal values $x = \min(H)$ and $y = \min(H \setminus \{x\})$ is strictly optimal:
+1. Connecting $x$ and $y$ first assigns them the deepest shared subtree level.
+2. The merged stick $x + y$ is pushed back into the heap $H$, taking its rightful place among all remaining sticks.
+
+| State Component | Data Structure | Invariant Semantics |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Active Sticks | Min-Heap $H$ | Always provides the two smallest available lengths in $\mathcal{O}(\log |H|)$ |
+| Extracted Pair $(x, y)$ | Smallest two integers | Locally optimal merge candidates |
+| Connection Step Cost | $x + y$ | Incremental cost incurred for the current union |
+| Cost Accumulator | Integer scalar | Cumulative sum of all $(N - 1)$ connection costs |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Optimal Merge Tree for Sticks [1, 8, 3, 5]
+    accDescr: Binary tree illustrating the hierarchy of stick merges and cumulative cost calculation.
+
+    Root["(17) [Final Stick]"]
+    Node9["(9) [Merge Cost 9]"]
+    Node4["(4) [Merge Cost 4]"]
+    L1["Leaf: 1 (depth 3)"]
+    L3["Leaf: 3 (depth 3)"]
+    L5["Leaf: 5 (depth 2)"]
+    L8["Leaf: 8 (depth 1)"]
+
+    Root --> L8
+    Root --> Node9
+    Node9 --> L5
+    Node9 --> Node4
+    Node4 --> L1
+    Node4 --> L3
+```
+
+> **Huffman Optimality Invariant.** At any stage with $|H| \ge 2$, merging the two smallest elements in $H$ preserves the global optimal substructure. No alternative choice of first merge can produce a strictly lower total cost.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A merged length may be paid again
+We trace $sticks = [1, 8, 3, 5]$ ($N = 4$).
 
-When two sticks of lengths `x` and `y` are connected, their sum `z = x + y` is added to the total cost and becomes a new stick. If that combined stick participates in later connections, all `z` units are charged again.
+### Step 0: Initialization
 
-Therefore, making a large combined stick early is dangerous: its length may be included in several later costs. The greedy objective is to keep intermediate sticks as small as possible by always merging the two smallest current lengths.
-
-This is the same structure as optimal merge patterns and Huffman coding.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sticks": [2, 4, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- Populate min-heap: $H = [1, 5, 3, 8]$ (min-heap representation).
+- Initialize $total\_cost = 0$.
+- Total connections required: $N - 1 = 3$.
 
 ---
 
-### Step 2: Use a min-heap for the current smallest sticks
+### Step 1: Round 1 ($|H| = 4$)
 
-`heapify(sticks)` rearranges the input list in place into a min-heap. The smallest current length is then available at the root and can be removed with `heappop` in logarithmic time.
-
-Each loop iteration:
-
-1. removes the two smallest current lengths;
-2. adds them to obtain `z`;
-3. adds `z` to `ans` because this connection costs that amount;
-4. pushes `z` back because the merged stick must participate in future connections.
-
-Two sticks disappear and one replaces them, so the collection size decreases by exactly one. Starting with `n` sticks, the loop performs exactly `n - 1` merges and stops when one final stick remains.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Extract Two Smallest:**
+   - Pop smallest: $x = 1$.
+   - Pop second smallest: $y = 3$.
+2. **Merge & Cost:**
+   - Step cost: $x + y = 1 + 3 = 4$.
+   - Accumulate cost: $total\_cost = 0 + 4 = 4$.
+3. **Reinsert Composite Stick:**
+   - Push $4$ into $H$.
+   - Heap contents: $[4, 5, 8]$.
 
 ---
 
-### Step 3: Why the two smallest should be connected first
+### Step 2: Round 2 ($|H| = 3$)
 
-Any complete sequence of connections can be represented as a full binary merge tree. Original sticks are leaves. Each internal node is the sum of its two children and represents one paid connection.
+1. **Extract Two Smallest:**
+   - Pop smallest: $x = 4$.
+   - Pop second smallest: $y = 5$.
+2. **Merge & Cost:**
+   - Step cost: $x + y = 4 + 5 = 9$.
+   - Accumulate cost: $total\_cost = 4 + 9 = 13$.
+3. **Reinsert Composite Stick:**
+   - Push $9$ into $H$.
+   - Heap contents: $[8, 9]$.
 
-An original stick's length contributes once for every ancestor connection above it. If its leaf depth is `d`, its length is included `d` times in the total. Thus total cost can be viewed as
+---
 
-`sum(stick_length * leaf_depth)`.
+### Step 3: Round 3 ($|H| = 2$)
 
-In some optimal merge tree, consider a pair of sibling leaves at maximum depth. The labels assigned to these deepest leaves can be chosen as the two smallest stick lengths without increasing total cost: moving a smaller weight to a depth at least as large as a bigger weight cannot make the weighted depth sum worse.
+1. **Extract Two Smallest:**
+   - Pop smallest: $x = 8$.
+   - Pop second smallest: $y = 9$.
+2. **Merge & Cost:**
+   - Step cost: $x + y = 8 + 9 = 17$.
+   - Accumulate cost: $total\_cost = 13 + 17 = 30$.
+3. **Reinsert Composite Stick:**
+   - Push $17$ into $H$.
+   - Heap contents: $[17]$.
 
-Those two sibling leaves are combined with each other before either result combines upward. Contracting them into one leaf of weight equal to their sum leaves a smaller instance of the same problem. If the remaining contracted tree were not optimal for that smaller instance, replacing it with a better tree would improve the original, contradicting optimality.
+---
 
-Therefore, there exists an optimal solution whose first merge joins the two smallest sticks, and after that merge the same argument applies recursively to the new multiset. The heap algorithm follows exactly this optimal greedy choice at every step.
+### Termination
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `14` |
+Heap size $|H| = 1$. Exactly one stick remains.
+Emit $total\_cost = \mathbf{30}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sticks": [2, 4, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `14` | Verified |
+| Round | Heap Before Step | Popped $x$ | Popped $y$ | Merge Cost ($x+y$) | Running Total Cost | Heap After Push |
+|---|---|---|---|---|---|---|
+| $0$ (Init) | $[1, 3, 5, 8]$ | — | — | — | $0$ | $[1, 3, 5, 8]$ |
+| $1$ | $[1, 3, 5, 8]$ | $1$ | $3$ | $1 + 3 = 4$ | $4$ | $[4, 5, 8]$ |
+| $2$ | $[4, 5, 8]$ | $4$ | $5$ | $4 + 5 = 9$ | $13$ | $[8, 9]$ |
+| $3$ | $[8, 9]$ | $8$ | $9$ | $8 + 9 = 17$ | **30** | $[17]$ |
+
+```text
+Depth Analysis of Individual Leaves:
+  Stick 1: Depth 3 -> Contributes 1 * 3 =  3
+  Stick 3: Depth 3 -> Contributes 3 * 3 =  9
+  Stick 5: Depth 2 -> Contributes 5 * 2 = 10
+  Stick 8: Depth 1 -> Contributes 8 * 1 =  8
+  -----------------------------------------
+  Total Tree Cost: 3 + 9 + 10 + 8 = 30
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Theorem (Greedy Exchange Argument for Sticks).**
+1. **Tree Formulation:** Every valid sequence of merges maps to a full binary tree with $N$ leaves. The sum of all internal node values equals the total cost $\sum_{i=1}^N \ell_i \cdot d_i$.
+2. **Sibling Pairing:** Let $x$ and $y$ be the two smallest lengths in $sticks$. There exists an optimal binary tree where $x$ and $y$ are sibling leaves at the maximum depth.
+   - *Proof:* Suppose an optimal tree $T^*$ places two other leaves $a, b$ at maximum depth with $a \ge x$ and $b \ge y$. Swapping $x$ with $a$ and $y$ with $b$ changes total cost by $(\ell_x - \ell_a)(d_{\max} - d_x) \le 0$ since $\ell_x \le \ell_a$ and $d_{\max} \ge d_x$. Thus, cost cannot increase.
+3. **Induction:** Replacing $x$ and $y$ with their sum $x+y$ produces an identical problem of size $N - 1$. By induction, repeated selection of the two minimal elements is globally optimal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Repeatedly sort the list:** Selecting two smallest values after a full sort works, but sorting after each merge can raise time to roughly `O(n^2 log n)`. A heap maintains just enough order.
-- **Sort once and pair adjacent originals:** New sums must reenter the ordering, so a fixed original pairing can miss the optimum.
-- **Merge the two largest first:** Large intermediate sticks are charged repeatedly and generally produce a much higher cost.
-- **Two-queue optimal merge:** With an initially sorted list, one queue for originals and one for generated sums can achieve `O(n log n)` due to sorting and linear merging afterward. It needs additional indexing structure.
-- **One stick:** No connection is needed, the loop does not run, and the result is zero.
-- **Two sticks:** They are popped once, their sum is the only cost, and the process ends.
-- **Equal lengths:** Any two equal minima are interchangeable; the heap may choose either without affecting optimality.
-- **Large combined stick:** It is pushed back and selected only when it becomes one of the two smallest current values.
-- **Positive lengths:** The greedy proof relies on nonnegative weight behavior, and the contract supplies strictly positive values.
-- **Input mutation:** `heapify` and subsequent heap operations reorder and shrink `sticks`. Callers needing the original array must copy it explicitly.
-- **Cost growth:** `ans` may exceed any individual input length because each stick can contribute at multiple merge depths.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
+|---|---|---|---|
+| **Single-Stick Edge Case** | $sticks = [5]$ | Input already has only one stick; no connections can or should be made. | Check $N \le 1$: immediately return $0$. |
+| **Static Sorting Fallacy** | Sorting the array once and merging adjacent elements linearly | After merging $x + y$, the new composite stick may exceed other elements and must be reordered dynamically. | Use a dynamic min-heap (priority queue) or dual queues. |
+| **Paging / Queue Re-insertion Order** | Appending sum to the back of a plain list without re-sorting | Destroys the ascending order property in $\mathcal{O}(1)$ time. | Always use `heappush` to restore the heap property in $\mathcal{O}(\log N)$. |
+| **Integer Truncation / Overflow** | For constraints with large values, intermediate sum exceeding 32-bit integer | Total cost can grow to $\mathcal{O}(N \cdot \max(\ell) \cdot \log N)$. | Use 64-bit integers (`long long` in C++ / Java). |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n log n)$. Let `n` be the number of sticks. In-place heap construction takes `O(n)` time. There are `n - 1` iterations, each with two heap removals and one insertion, each `O(log n)` in the worst case. Total time is `O(n log n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+1. **Heap Initialization:**
+   - Building a min-heap from an array of $N$ integers using `heapify`:
+
+$$T_{\text{build}} = \mathcal{O}(N)$$
+
+2. **Iterative Merges:**
+   - The loop runs exactly $N - 1$ iterations.
+   - In each iteration: two `heappop` operations and one `heappush` operation.
+   - Each heap operation on a heap of size $\le N$ takes $\mathcal{O}(\log N)$ time.
+
+$$T_{\text{merges}} = \sum_{k=2}^N 3 \log k = \mathcal{O}(N \log N)$$
+
+3. **Total Time Complexity:**
+
+$$\mathcal{O}(N \log N)$$
+
+For $N = 10{,}000$, total heap operations are $\approx 3 \times 10^4 \times 14 \approx 4.2 \times 10^5$, executing in under $10 \text{ ms}$.
+
+### Auxiliary Space Complexity
+
+- The min-heap stores at most $N$ elements at any time.
+- Total Auxiliary Space Complexity:
+
+$$\mathcal{O}(N)$$

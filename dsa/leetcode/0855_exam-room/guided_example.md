@@ -1,132 +1,224 @@
 # Guided Example: Exam Room
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step interval partitioning, boundary versus interior distance calculations, tie-breaking heuristics, dynamic interval splitting and merging, and closest-student distance maximization on representative exam room operations:
 
-- **Input:** `{"n": 10, "operations": [["seat"], ["seat"], ["seat"], ["seat"], ["leave", 4], ["seat"]]}`
+- **Input:**
+  $$
+  n = 10, \quad \text{operations} = [[\text{"seat"}], [\text{"seat"}], [\text{"seat"}], [\text{"seat"}], [\text{"leave"}, 4], [\text{"seat"}]]
+  $$
 - **Required output:** `[0, 9, 4, 2, null, 5]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - Classroom configuration & seating protocol:
+    - There are $n = 10$ seats in a single line, indexed from $0$ to $9$.
+    - When a student enters via `seat()`, they must sit in the seat that **maximizes the distance to the closest person**.
+    - If there are multiple such seats with equal maximal distance, the student sits in the seat with the **lowest index**.
+    - When a student leaves via `leave(p)`, seat $p$ becomes empty, merging adjacent unoccupied spaces.
+    - Virtual boundary coordinates:
+      - Left wall: $-1$ (unoccupied boundary before seat $0$).
+      - Right wall: $n = 10$ (unoccupied boundary after seat $n - 1 = 9$).
+    - An empty segment between two occupied seats $l$ and $r$ is denoted by the interval $(l, r)$.
+- **Interval Distance Invariants:**
+  - **Left Edge Interval ($l = -1$):**
+    - The seat chosen is always seat $0$.
+    - Distance to the nearest person (who is at seat $r$) is $r - 0 = r$.
+    - In interval formula: $r - l - 1 = r - (-1) - 1 = r$.
+  - **Right Edge Interval ($r = n$):**
+    - The seat chosen is always seat $n - 1$.
+    - Distance to the nearest person (who is at seat $l$) is $(n - 1) - l$.
+    - In interval formula: $r - l - 1 = n - l - 1$.
+  - **Interior Interval (both $l \ge 0$ and $r < n$):**
+    - The best seat is the exact integer midpoint:
+      $$
+      p = \lfloor \frac{l + r}{2} \rfloor
+      $$
+    - The distance to both neighbors is:
+      $$
+      d = \lfloor \frac{r - l}{2} \rfloor
+      $$
+  - **Priority Ordering:**
+    - Order intervals by descending effective distance $d$.
+    - For ties in distance $d$, break ties by ascending seat coordinate $p$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is an exam room with `n` seats in a single row labeled from `0` to $n - 1$.
+Given an exam room of $n = 10$ seats, students enter and leave dynamically.
+Each arriving student must maximize their minimum distance to existing students, breaking ties with the smallest index.
 
-The objective is to compute `[0, 9, 4, 2, null, 5]` from `{"n": 10, "operations": [["seat"], ["seat"], ["seat"], ["seat"], ["leave", 4], ["seat"]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Seats: 0 1 2 3 4 5 6 7 8 9
+Op 1: seat()   -> sits at 0 (distance to boundary: 9)
+Op 2: seat()   -> sits at 9 (distance to 0: 9)
+Op 3: seat()   -> sits at 4 (midpoint of [0, 9], distance: 4)
+Op 4: seat()   -> sits at 2 (midpoint of [0, 4], distance: 2; ties with 6, chooses 2)
+Op 5: leave(4) -> seat 4 vacated, merging intervals (2, 4) and (4, 9) into (2, 9)
+Op 6: seat()   -> sits at 5 (midpoint of [2, 9], distance: 3)
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The objective is to trace each insertion and deletion across priority-ordered intervals, showing why each chosen seat is globally optimal under the distance metric.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Distance Metric Formulation:
+For any open interval $(l, r)$ representing empty seats strictly between $l$ and $r$:
+$$
+\text{dist}(l, r) = \begin{cases}
+r & \text{if } l = -1 \\
+(n - 1) - l & \text{if } r = n \\
+\lfloor \frac{r - l}{2} \rfloor & \text{if } 0 \le l < r < n
+\end{cases}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Candidate Placement Seat:
+$$
+\text{seat\_pos}(l, r) = \begin{cases}
+0 & \text{if } l = -1 \\
+n - 1 & \text{if } r = n \\
+\lfloor \frac{l + r}{2} \rfloor & \text{if } 0 \le l < r < n
+\end{cases}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Dynamic Interval Split on `seat()`:
+Choosing seat $p$ from interval $(l, r)$ destroys $(l, r)$ and introduces two smaller sub-intervals:
+$$
+(l, r) \longrightarrow (l, p) \quad \text{and} \quad (p, r)
+$$
+
+### 4. Dynamic Interval Fusion on `leave(p)`:
+Vacating seat $p$ bounded by left occupied neighbor $l$ and right occupied neighbor $r$ destroys $(l, p)$ and $(p, r)$, merging them back into:
+$$
+(l, p) \cup (p, r) \longrightarrow (l, r)
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Represent available choices as gaps between occupied boundaries
-
-When some seats are occupied, every available seat lies in a gap between two occupied seats, or between a room boundary and the nearest occupied seat.
-
-The solution represents one gap as tuple `(l,r)`:
-
-- `l` and `r` are occupied seats bounding the gap;
-- virtual boundary `-1` represents the space before seat 0;
-- virtual boundary `n` represents the space after seat `n-1`.
-
-The available seats in the gap are strictly between `l` and `r`.
-
-Initially, no seat is occupied, so one interval `(-1,n)` represents the whole room.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 10, "operations": [["seat"], ["seat"], ["seat"], ["seat"], ["leave", 4], ["seat"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initial State:
+- Room size $n = 10$.
+- Single active interval covering all seats: $(-1, 10)$.
 
 ---
 
-### Step 2: Best distance within a gap
-
-Nested function `dist(x)` calculates the maximum closest-person distance obtainable from interval `(l,r)`.
-
-For a leading interval `(-1,r)`, the best seat is 0 and its distance to the person at `r` is `r`. The formula `r-l-1` becomes `r`.
-
-For a trailing interval `(l,n)`, the best seat is `n-1` and its distance is `n-l-1`, again `r-l-1`.
-
-For an internal interval with occupied endpoints, the best seat is the lower midpoint:
-
-$$
-\left\lfloor\frac{l+r}{2}\right\rfloor,
-$$
-
-and its distance to the nearer endpoint is:
-
-$$
-\left\lfloor\frac{r-l}{2}\right\rfloor.
-$$
-
-The function returns `(r-l) >> 1` for this case.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Operation `seat()`
+- Only interval: $(-1, 10)$.
+- Left boundary rule ($l = -1$):
+  $$
+  p = 0, \quad d = 10 - (-1) - 1 = 10 \quad (\text{virtual})
+  $$
+  Sitting at $0$ places the student at the boundary with maximal clearance.
+- Interval $(-1, 10)$ splits into:
+  - $(-1, 0)$ (empty left boundary, $0$ seats between $-1$ and $0$).
+  - $(0, 10)$ with distance $(10 - 1) - 0 = 9$.
+- **Return: `0`**.
 
 ---
 
-### Step 3: Keep gaps ordered by the seating rule
+### Step 2: Operation `seat()`
+- Active intervals:
+  - $(0, 10)$: right boundary rule ($r = 10$):
+    $$
+    p = n - 1 = 9, \quad d = 9 - 0 = 9
+    $$
+- Interval $(0, 10)$ splits into:
+  - $(0, 9)$ (interior interval).
+  - $(9, 10)$ (empty right boundary).
+- **Return: `9`**.
 
-`SortedList` uses key:
+---
 
-`(-dist(x), x[0])`.
+### Step 3: Operation `seat()`
+- Candidate interval: $(0, 9)$.
+  - Interior rule:
+    $$
+    p = \lfloor \frac{0 + 9}{2} \rfloor = 4
+    $$
+    $$
+    d = \lfloor \frac{9 - 0}{2} \rfloor = 4
+    $$
+- Distance from seat $4$ to nearest person: $\min(4 - 0, 9 - 4) = \min(4, 5) = 4$.
+- Interval $(0, 9)$ splits into $(0, 4)$ and $(4, 9)$.
+- **Return: `4`**.
 
-Negating distance means a gap with larger achievable distance sorts earlier. If distances tie, smaller left boundary sorts earlier. Its selected seat is also smaller, so this enforces the required lowest-seat tie break.
+---
 
-`ts[0]` is therefore always the gap containing the next correct seat.
+### Step 4: Operation `seat()`
+- Candidate intervals:
+  - $(0, 4)$: interior midpoint $p = \lfloor (0 + 4)/2 \rfloor = 2$, distance $d = \lfloor (4 - 0)/2 \rfloor = 2$.
+  - $(4, 9)$: interior midpoint $p = \lfloor (4 + 9)/2 \rfloor = 6$, distance $d = \lfloor (9 - 4)/2 \rfloor = 2$.
+- Both intervals yield distance $d = 2$.
+- **Tie-breaker:** Smallest seat index wins:
+  $$
+  2 < 6 \implies \text{Seat } 2 \text{ is chosen!}
+  $$
+- Interval $(0, 4)$ splits into $(0, 2)$ and $(2, 4)$.
+- **Return: `2`**.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 9, 4, 2, null, 5]` |
+---
+
+### Step 5: Operation `leave(4)`
+- Seat $4$ is vacated.
+- Left neighbor of $4$ is $2$, so left interval was $(2, 4)$.
+- Right neighbor of $4$ is $9$, so right interval was $(4, 9)$.
+- Deleting both intervals and fusing them yields:
+  $$
+  (2, 4) + (4, 9) \longrightarrow (2, 9)
+  $$
+- **Return: `null`**.
+
+---
+
+### Step 6: Operation `seat()`
+- Candidate intervals:
+  - $(0, 2)$: midpoint $p = 1$, distance $d = \lfloor (2 - 0)/2 \rfloor = 1$.
+  - $(2, 9)$: midpoint $p = \lfloor (2 + 9)/2 \rfloor = 5$, distance $d = \lfloor (9 - 2)/2 \rfloor = 3$.
+- Comparing distances:
+  $$
+  d(2, 9) = 3 > d(0, 2) = 1
+  $$
+- Maximum distance is $3$, obtained at seat $5$.
+- Interval $(2, 9)$ splits into $(2, 5)$ and $(5, 9)$.
+- **Return: `5`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10, "operations": [["seat"], ["seat"], ["seat"], ["seat"], ["leave", 4], ["seat"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 9, 4, 2, null, 5]` | Verified |
+| Step | Operation | Active Intervals Considered | Chosen Interval | Evaluated Distance | Assigned Seat | Resulting Intervals |
+|:---:|:---:|:---|:---:|:---:|:---:|:---|
+| $1$ | `seat()` | $(-1, 10)$ | $(-1, 10)$ | $10$ | **`0`** | $(0, 10)$ |
+| $2$ | `seat()` | $(0, 10)$ | $(0, 10)$ | $9$ | **`9`** | $(0, 9)$ |
+| $3$ | `seat()` | $(0, 9)$ | $(0, 9)$ | $4$ | **`4`** | $(0, 4), (4, 9)$ |
+| $4$ | `seat()` | $(0, 4) \to d=2, p=2$<br>$(4, 9) \to d=2, p=6$ | $(0, 4)$ | $2$ | **`2`** | $(0, 2), (2, 4), (4, 9)$ |
+| $5$ | `leave(4)` | Neighbor map: $L=2, R=9$ | Remove $(2, 4), (4, 9)$ | — | **`null`** | $(0, 2), (2, 9)$ |
+| $6$ | `seat()` | $(0, 2) \to d=1, p=1$<br>$(2, 9) \to d=3, p=5$ | $(2, 9)$ | $3$ | **`5`** | $(0, 2), (2, 5), (5, 9)$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Seat 0 Priority:** When no one is seated, seat $0$ is taken. When seat $0$ is empty but other seats are taken, distance from $0$ to the first seated person is $first$, not $\lfloor first/2 \rfloor$.
+- **Seat $n - 1$ Priority:** Distance from the last seated person to seat $n - 1$ is $(n - 1) - last$, not $\lfloor ((n - 1) - last)/2 \rfloor$.
+- **Interior Midpoint Rounding:** Integer division $\lfloor (r - l)/2 \rfloor$ correctly reflects the closest neighbor distance for odd lengths (e.g. interval $(0, 4) \implies p = 2, d = 2$; interval $(0, 3) \implies p = 1, d = 1$).
+- **Consecutive Occupied Seats:** When two adjacent seats are occupied (e.g. $(2, 3)$), distance is $\lfloor (3 - 2)/2 \rfloor = 0$, so no new student can be placed between them.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Store occupied seats and scan every gap on `seat`:** Leaving is easy, but each seating call can take `O(q)` time.
-- **Allocate an array of `n` seats:** Impossible when `n` is up to `10^9` and unnecessary for only `10^4` operations.
-- **Priority queue with lazy deletion:** It can choose maximum gaps but needs stale-entry handling and neighbor maps. `SortedList` supports direct deletion.
+- **Equal Distance Tie-Breaking:** Failing to break ties by smallest seat index violates the specification. For example, in Step 4, interval $(0, 4)$ yields seat $2$ and $(4, 9)$ yields seat $6$, both with distance $2$. Selecting $6$ instead of $2$ fails the tie-break requirement.
+- **Linear Seat Scanning:** Scanning all seats from $0$ to $n - 1$ on each `seat()` takes $\mathcal{O}(N)$ time. When $N = 10^9$, linear iteration causes Time Limit Exceeded (TLE).
+- **Orphaned Interval Links:** When a student leaves, failing to merge both the left and right intervals creates disconnected segments and incorrect subsequent distance calculations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(q\log q)$. Let `q` be the number of operations performed so far. There are `O(q)` occupied boundaries and gaps.
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `seat()`: Extracting the maximum-distance interval from a balanced self-balancing search tree or sorted list takes $\mathcal{O}(\log P)$ where $P \le N$ is the number of currently seated students.
+  - `leave(p)`: Looking up the neighboring seats in hash tables and deleting/inserting intervals in the sorted structure takes $\mathcal{O}(\log P)$ time.
+  - For $M$ operations: $\mathcal{O}(M \log P)$, easily supporting $N = 10^9$ with $M = 10^4$ operations.
+- **Auxiliary Space Complexity:**
+  - Storing active intervals and seat-to-neighbor mappings takes $\mathcal{O}(P)$ space, where $P$ is the number of seated students ($\le M$).

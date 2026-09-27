@@ -1,139 +1,213 @@
 # Guided Example: Find Interview Candidates
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of relational medal normalization, gaps-and-islands consecutive sequence clustering, and multi-criteria candidate selection on a representative database instance:
 
-- **Input:** `{"tables": {"Contests": [{"contest_id": 190, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 191, "gold_medal": 2, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 192, "gold_medal": 5, "silver_medal": 2, "bronze_medal": 3}, {"contest_id": 193, "gold_medal": 1, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 194, "gold_medal": 4, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 195, "gold_medal": 4, "silver_medal": 2, "bronze_medal": 1}, {"contest_id": 196, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}], "Users": [{"user_id": 1, "mail": "sarah@leetcode.com", "name": "Sarah"}, {"user_id": 2, "mail": "bob@leetcode.com", "name": "Bob"}, {"user_id": 3, "mail": "alice@leetcode.com", "name": "Alice"}, {"user_id": 4, "mail": "hercy@leetcode.com", "name": "Hercy"}, {"user_id": 5, "mail": "quarz@leetcode.com", "name": "Quarz"}]}}`
-- **Required output:** `{"columns": ["name", "mail"], "rows": [["Sarah", "sarah@leetcode.com"], ["Bob", "bob@leetcode.com"], ["Alice", "alice@leetcode.com"], ["Quarz", "quarz@leetcode.com"]]}`
+- **Input:**
+  Table `Contests`:
+  ```text
+  +------------+------------+--------------+--------------+
+  | contest_id | gold_medal | silver_medal | bronze_medal |
+  +------------+------------+--------------+--------------+
+  | 190        | 1          | 5            | 2            |
+  | 191        | 2          | 3            | 5            |
+  | 192        | 5          | 2            | 3            |
+  | 193        | 1          | 3            | 5            |
+  | 194        | 4          | 5            | 2            |
+  | 195        | 4          | 2            | 1            |
+  | 196        | 1          | 5            | 2            |
+  +------------+------------+--------------+--------------+
+  ```
+  Table `Users`:
+  ```text
+  +---------+--------------------+-------+
+  | user_id | mail               | name  |
+  +---------+--------------------+-------+
+  | 1       | sarah@leetcode.com | Sarah |
+  | 2       | bob@leetcode.com   | Bob   |
+  | 3       | alice@leetcode.com | Alice |
+  | 4       | hercy@leetcode.com | Hercy |
+  | 5       | quarz@leetcode.com | Quarz |
+  +---------+--------------------+-------+
+  ```
+- **Required Output:**
+  ```text
+  +-------+--------------------+
+  | name  | mail               |
+  +-------+--------------------+
+  | Sarah | sarah@leetcode.com |
+  | Bob   | bob@leetcode.com   |
+  | Alice | alice@leetcode.com |
+  | Quarz | quarz@leetcode.com |
+  +-------+--------------------+
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features candidates qualifying under different rules: Sarah qualifies via total gold medal dominance (winning $3$ golds across disjoint contests), while Bob, Alice, and Quarz qualify via consecutive medal streaks of length $3$ or more across mixed medal ranks.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Contests`
+We are tasked with identifying interview candidates from competitive programming records. A user qualifies as an interview candidate if they satisfy **either** of two conditions:
+1. **Consecutive Medal Streak:** They won any medal (gold, silver, or bronze) in at least $3$ consecutive contests.
+2. **Gold Medal Excellence:** They won the gold medal in at least $3$ contests (not necessarily consecutive).
 
-The objective is to compute `{"columns": ["name", "mail"], "rows": [["Sarah", "sarah@leetcode.com"], ["Bob", "bob@leetcode.com"], ["Alice", "alice@leetcode.com"], ["Quarz", "quarz@leetcode.com"]]}` from `{"tables": {"Contests": [{"contest_id": 190, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 191, "gold_medal": 2, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 192, "gold_medal": 5, "silver_medal": 2, "bronze_medal": 3}, {"contest_id": 193, "gold_medal": 1, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 194, "gold_medal": 4, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 195, "gold_medal": 4, "silver_medal": 2, "bronze_medal": 1}, {"contest_id": 196, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}], "Users": [{"user_id": 1, "mail": "sarah@leetcode.com", "name": "Sarah"}, {"user_id": 2, "mail": "bob@leetcode.com", "name": "Bob"}, {"user_id": 3, "mail": "alice@leetcode.com", "name": "Alice"}, {"user_id": 4, "mail": "hercy@leetcode.com", "name": "Hercy"}, {"user_id": 5, "mail": "quarz@leetcode.com", "name": "Quarz"}]}}` while avoiding redundant calculations and unnecessary overhead.
+We must return the `name` and `mail` of each qualifying user in any order.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive SQL query with multi-way self-joins for consecutive contests is brittle and fails to generalize to longer streaks. The optimal relational approach:
+1. Unpivots the horizontal medal columns into a normalized stream of medal events.
+2. Applies the classic **gaps-and-islands** window function technique to group consecutive contest IDs.
+3. Unifies streak qualifiers with gold-count qualifiers before joining with `Users`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Normalization and Gaps-and-Islands
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The source table stores gold, silver, and bronze winners horizontally in one row per contest.
+1. **Unpivoting (CTE $S$):**
+   Combine all medal assignments into tuples $(contest\_id, user\_id, type)$, where $type = 1$ denotes Gold.
+2. **Consecutive ID Clustering (CTE $T$):**
+   Partition medal events by $user\_id$ and order them by $contest\_id$.
+   Assign a sequential integer rank $r = \text{ROW\_NUMBER}() \in \{1, 2, \dots\}$.
+   Compute the difference:
+   $$\text{diff} = contest\_id - r$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Relational Unpivoting & Gaps-and-Islands Consecutive Run Theorem.**
+> 1. **Equivalence of Invariance:** If a user medals in strictly consecutive contests $c, c+1, c+2$, the row numbers are $r, r+1, r+2$. The difference:
+>    $$(c + k) - (r + k) = c - r = \text{constant}$$
+>    remains invariant. A missed contest creates a jump in $contest\_id$ without a corresponding jump in $r$, altering $\text{diff}$ and establishing a new island.
+> 2. Grouping by $(user\_id, \text{diff})$ and checking $\text{COUNT}(1) \ge 3$ isolates all users with consecutive runs of length $\ge 3$.
+> 3. Grouping $S$ where $type = 1$ by $user\_id$ with $\text{COUNT}(1) \ge 3$ isolates all users with $\ge 3$ golds.
+> 4. The relational `UNION` of both candidate sets deduplicates users qualifying under both rules.
+
+```mermaid
+flowchart TD
+    accTitle: Interview Candidates Pipeline
+    accDescr: Pipeline unpivoting Contests into medal events, applying gaps-and-islands for streaks, filtering gold counts, and joining with Users.
+    A["Table: Contests"] --> B["Unpivot into CTE S: (contest_id, user_id, type)"]
+    B --> C["Filter type = 1 (Gold): GROUP BY user_id HAVING COUNT >= 3"]
+    B --> D["Window Function: diff = contest_id - ROW_NUMBER()"]
+    D --> E["GROUP BY user_id, diff HAVING COUNT >= 3"]
+    C --> F["UNION of Candidate user_ids"]
+    E --> F
+    F --> G["JOIN with Users (name, mail)"]
+    G --> H["Output Result Table"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalize three medal columns into one event stream
-
-The two candidate rules are easier to evaluate when every medal is represented as one row containing `contest_id`, `user_id`, and medal `type`.
-
-CTE `S` creates that form with three branches:
-
-- gold medalists receive `type = 1`;
-- silver medalists receive `type = 2`;
-- bronze medalists receive `type = 3`.
-
-The branches use `UNION`. Because medal type differs across branches and each contest has one row, valid medal events are distinct; `UNION ALL` could avoid duplicate elimination, but plain `UNION` is the exact source.
-
-After normalization, gold counting filters type one, while consecutive-contest detection ignores type and treats any medal equally.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Contests": [{"contest_id": 190, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 191, "gold_medal": 2, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 192, "gold_medal": 5, "silver_medal": 2, "bronze_medal": 3}, {"contest_id": 193, "gold_medal": 1, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 194, "gold_medal": 4, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 195, "gold_medal": 4, "silver_medal": 2, "bronze_medal": 1}, {"contest_id": 196, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}], "Users": [{"user_id": 1, "mail": "sarah@leetcode.com", "name": "Sarah"}, {"user_id": 2, "mail": "bob@leetcode.com", "name": "Bob"}, {"user_id": 3, "mail": "alice@leetcode.com", "name": "Alice"}, {"user_id": 4, "mail": "hercy@leetcode.com", "name": "Hercy"}, {"user_id": 5, "mail": "quarz@leetcode.com", "name": "Quarz"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the candidate evaluation across the sample data.
 
 ---
 
-### Step 2: Detect consecutive contest IDs with row-number subtraction
-
-CTE `T` partitions medal events by `user_id` and orders each user's rows by `contest_id`. `ROW_NUMBER()` assigns 1, 2, 3, and so on within that user's medal history.
-
-For each row it computes
-
-`diff = contest_id - row_number`.
-
-This is the gaps-and-islands technique. If a user medals in contests 190, 191, and 192, the row numbers are 1, 2, and 3, so all differences equal 189. Consecutive IDs increase by one at exactly the same rate as row number.
-
-If a contest is missed, contest ID jumps by more than one while row number increases by only one, changing `diff` and starting a new group.
-
-The statement guarantees globally consecutive contest IDs with no skipped ID. Thus adjacent numeric IDs truly mean adjacent contests, not merely adjacent stored rows.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Normalize Medal Events (CTE $S$)
+Each contest emits three rows $(contest, user, type)$:
+- Contest 190: $(190, 1, 1), (190, 5, 2), (190, 2, 3)$
+- Contest 191: $(191, 2, 1), (191, 3, 2), (191, 5, 3)$
+- Contest 192: $(192, 5, 1), (192, 2, 2), (192, 3, 3)$
+- Contest 193: $(193, 1, 1), (193, 3, 2), (193, 5, 3)$
+- Contest 194: $(194, 4, 1), (194, 5, 2), (194, 2, 3)$
+- Contest 195: $(195, 4, 1), (195, 2, 2), (195, 1, 3)$
+- Contest 196: $(196, 1, 1), (196, 5, 2), (196, 2, 3)$
 
 ---
 
-### Step 3: Build candidates satisfying either rule
+### Step 2: Evaluate Condition 1 (Gold Medal Count $\ge 3$)
+Filter for $type = 1$ and count occurrences per user:
+- User $1$: Contests $190, 193, 196 \implies \mathbf{3}$ golds. **Qualifies ($\ge 3$)!**
+- User $2$: Contest $191 \implies 1$ gold.
+- User $4$: Contests $194, 195 \implies 2$ golds.
+- User $5$: Contest $192 \implies 1$ gold.
 
-CTE `P` combines two user sets.
+Gold medal candidate set:
+$$\mathcal{C}_{\text{gold}} = \{ 1 \}$$
 
-The first branch reads `S`, keeps `type = 1`, groups by user, and retains `COUNT(1) >= 3`. This finds users with at least three gold medals in any contests; consecutiveness is irrelevant.
+---
 
-The second branch groups `T` by `user_id, diff`. Each group is one consecutive run of contests in which that user won some medal. `HAVING COUNT(1) >= 3` retains runs of length at least three.
+### Step 3: Evaluate Condition 2 (Consecutive Medal Streak $\ge 3$)
+Extract all medal contests per user and compute $\text{diff} = contest\_id - \text{ROW\_NUMBER}()$:
 
-`SELECT DISTINCT user_id` removes duplicate user IDs when a user has multiple qualifying streak groups. The surrounding `UNION` also removes overlap between users qualifying by both rules.
+1. **User 2 (Bob):**
+   - Contests: $190, 191, 192, 194, 195, 196$.
+   - Row numbers $r = 1, 2, 3, 4, 5, 6$.
+   - Differences:
+     - $190 - 1 = 189$
+     - $191 - 2 = 189$
+     - $192 - 3 = 189$ (Island $189$ has count **$3 \ge 3$ $\implies$ Qualifies!**)
+     - $194 - 4 = 190$
+     - $195 - 5 = 190$
+     - $196 - 6 = 190$ (Island $190$ has count **$3 \ge 3$**).
+2. **User 3 (Alice):**
+   - Contests: $191, 192, 193$.
+   - Row numbers $r = 1, 2, 3$.
+   - Differences:
+     - $191 - 1 = 190$
+     - $192 - 2 = 190$
+     - $193 - 3 = 190$ (Island $190$ has count **$3 \ge 3$ $\implies$ Qualifies!**)
+3. **User 4 (Hercy):**
+   - Contests: $194, 195$.
+   - Row numbers $r = 1, 2$.
+   - Differences: $194 - 1 = 193, 195 - 2 = 193$ (Count is $2 < 3 \implies$ Does not qualify).
+4. **User 5 (Quarz):**
+   - Contests: $190, 191, 192, 193, 194, 196$.
+   - Row numbers $r = 1, 2, 3, 4, 5, 6$.
+   - Differences:
+     - $190 - 1 = 189$
+     - $191 - 2 = 189$
+     - $192 - 3 = 189$
+     - $193 - 4 = 189$
+     - $194 - 5 = 189$ (Island $189$ has count **$5 \ge 3$ $\implies$ Qualifies!**)
+     - $196 - 6 = 190$ (Count is $1$).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["name", "mail"], "rows": [["Sarah", "sarah@leetcode.com"], ["Bob", "bob@leetcode.com"], ["Alice", "alice@leetcode.com"], ["Quarz", "quarz@leetcode.com"]]}` |
+Streak candidate set:
+$$\mathcal{C}_{\text{streak}} = \{ 2, 3, 5 \}$$
+
+---
+
+### Step 4: Union Candidates and Join with Users Table
+Combine candidate user IDs:
+$$\mathcal{C} = \mathcal{C}_{\text{gold}} \cup \mathcal{C}_{\text{streak}} = \{ 1 \} \cup \{ 2, 3, 5 \} = \{ 1, 2, 3, 5 \}$$
+
+Join with `Users` to project `name` and `mail`:
+- User $1 \to (\text{"Sarah"}, \text{"sarah@leetcode.com"})$
+- User $2 \to (\text{"Bob"}, \text{"bob@leetcode.com"})$
+- User $3 \to (\text{"Alice"}, \text{"alice@leetcode.com"})$
+- User $5 \to (\text{"Quarz"}, \text{"quarz@leetcode.com"})$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Contests": [{"contest_id": 190, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 191, "gold_medal": 2, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 192, "gold_medal": 5, "silver_medal": 2, "bronze_medal": 3}, {"contest_id": 193, "gold_medal": 1, "silver_medal": 3, "bronze_medal": 5}, {"contest_id": 194, "gold_medal": 4, "silver_medal": 5, "bronze_medal": 2}, {"contest_id": 195, "gold_medal": 4, "silver_medal": 2, "bronze_medal": 1}, {"contest_id": 196, "gold_medal": 1, "silver_medal": 5, "bronze_medal": 2}], "Users": [{"user_id": 1, "mail": "sarah@leetcode.com", "name": "Sarah"}, {"user_id": 2, "mail": "bob@leetcode.com", "name": "Bob"}, {"user_id": 3, "mail": "alice@leetcode.com", "name": "Alice"}, {"user_id": 4, "mail": "hercy@leetcode.com", "name": "Hercy"}, {"user_id": 5, "mail": "quarz@leetcode.com", "name": "Quarz"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["name", "mail"], "rows": [["Sarah", "sarah@leetcode.com"], ["Bob", "bob@leetcode.com"], ["Alice", "alice@leetcode.com"], ["Quarz", "quarz@leetcode.com"]]}` | Verified |
+| User ID | Name | Gold Medals Won | Max Consecutive Medal Streak | Qualifying Criterion | Included in Result? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | Sarah | $3$ (Contests 190, 193, 196) | $2$ (Contests 195, 196) | Gold Medal Count ($\ge 3$) | **Yes** |
+| $2$ | Bob | $1$ (Contest 191) | $3$ (Contests 190..192) | Consecutive Streak ($\ge 3$) | **Yes** |
+| $3$ | Alice | $0$ | $3$ (Contests 191..193) | Consecutive Streak ($\ge 3$) | **Yes** |
+| $4$ | Hercy | $2$ (Contests 194, 195) | $2$ (Contests 194..195) | None (Below threshold) | No |
+| $5$ | Quarz | $1$ (Contest 192) | $5$ (Contests 190..194) | Consecutive Streak ($\ge 3$) | **Yes** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every user emitted by the query either won at least $3$ gold medals or secured medals in at least $3$ consecutive contests. The gaps-and-islands technique guarantees that consecutive contest sequences are mathematically exact without false island merges. Joining with the `Users` primary key ensures accurate personal attributes.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Unpivoting captures every medal awarded in every contest. The window function ranks all contests per user without omitting gaps. Using `UNION` guarantees that candidates qualifying under both criteria are included without duplication.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Three self-joins for streaks of exactly three:** It can detect a three-contest window but becomes awkward for the follow-up parameter $n$; gaps-and-islands naturally supports arbitrary streak length.
-- **`LAG` comparisons:** Checking previous IDs can mark streak continuations, but run-length aggregation still needs additional logic.
-- **`UNION ALL` in `S`:** Valid medal events are already distinct, so it can avoid set deduplication.
-- **Inner join to Users:** It is sufficient when every candidate ID is guaranteed to exist and avoids null detail rows.
-- **User qualifies twice:** `UNION` returns the user only once.
-- **Several qualifying streaks:** `DISTINCT` in the streak branch collapses them to one user ID.
-- **Exactly three golds:** The `>= 3` condition includes the user.
-- **Golds need not be consecutive:** Only the count matters in the first branch.
-- **Any-medal streak:** Gold, silver, and bronze rows all participate equally in `T`.
-- **Gap of one missed contest:** It changes `diff` and splits the streak.
-- **Contest IDs start above one:** Subtraction grouping works regardless of the starting ID.
-- **No skipped global IDs:** It makes numeric consecutiveness equivalent to contest consecutiveness.
-- **One candidate condition:** Set union implements logical OR, not AND.
-- **Any result order:** No final sorting is necessary.
-- **Parameterized streak length:** Replace the second `HAVING COUNT(1) >= 3` threshold with the procedure parameter.
-- **Participation-only follow-up:** The normalized medal events would need to be aligned with a participation table before defining consecutive considered contests.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Contest ID Gap Detection:** If a user medals in contests $190, 191, 194$, they have $3$ total medals, but not $3$ consecutive medals. The gaps-and-islands calculation distinguishes this: $190-1=189, 191-2=189$, but $194-3=191$, partitioning the records into two distinct islands of sizes $2$ and $1$.
+- **Duplicate Qualification:** Sarah won $3$ golds; if she had also won $3$ consecutive medals, `UNION` ensures she appears only once in the candidate relation.
+- **Multiple Medals in Same Contest:** A user cannot win multiple medals in the same contest by problem invariants. Each medal type is separated into distinct rows.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C+U)$. Let $C$ be the number of contests and $U$ the number of users. `S` produces at most $3C$ medal rows.
-- **Auxiliary Space Complexity:** $O(C + U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(C \log C + U)$ where $C$ is the number of contests and $U$ is the number of users. Unpivoting produces $3C$ rows. Partitioning and sorting by `contest_id` for window ranking requires $\mathcal{O}(C \log C)$ time. Aggregating by island and hash joining with `Users` takes $\mathcal{O}(C + U)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(C + U)$ to buffer intermediate CTE tables and hash join buckets.

@@ -1,133 +1,207 @@
 # Guided Example: Shortest Bridge
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of two-phase topological traversal: connected component coloring via Depth-First Search (DFS) followed by unweighted multi-source Breadth-First Search (BFS) water expansion, proving the Level-Order Shortest Path Invariant on representative binary grid maps:
 
-- **Input:** `{"grid": [[0, 1], [1, 0]]}`
-- **Required output:** `1`
+- **Representative Instance 1 (Diagonal Single-Cell Islands):**
+  $$
+  grid = \begin{bmatrix}
+  0 & 1 \\
+  1 & 0
+  \end{bmatrix}
+  $$
+- **Required Output:** `1`
+  - Two disconnected land cells at $(0, 1)$ and $(1, 0)$.
+  - Phase 1 (Coloring Island 1):
+    - Locate first land cell at $(0, 1)$.
+    - DFS colors $(0, 1)$ from $1 \to 2$ and enqueues $(0, 1)$ at distance $0$.
+    - The second island at $(1, 0)$ remains colored $1$.
+  - Phase 2 (Multi-Source BFS Expansion):
+    - Level $0$ ($ans = 0$):
+      - Expand neighbor of $(0, 1)$: cell $(0, 0)$ is water ($0$).
+      - Color $(0, 0)$ to $2$ and enqueue at Level $1$.
+    - Level $1$ ($ans = 1$):
+      - Expand neighbor of $(0, 0)$: cell $(1, 0)$ has `grid[1][0] == 1`!
+      - Target Island 2 touched!
+  - Smallest number of flipped zeros: $\mathbf{1}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Separated Corners):**
+  $$
+  grid = \begin{bmatrix}
+  0 & 1 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 1
+  \end{bmatrix}
+  $$
+  - Island 1 at $(0, 1)$; Island 2 at $(2, 2)$.
+  - Level 0 (Sources): $(0, 1)$.
+  - Level 1 (Distance 1 water): $(0, 0), (0, 2), (1, 1)$.
+  - Level 2 (Distance 2 water): $(1, 0), (1, 2), (2, 1)$.
+  - From $(1, 2)$ or $(2, 1)$, adjacent neighbor $(2, 2)$ has `grid == 1`.
+  - Required Output: $\mathbf{2}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `n x n` binary matrix `grid` where `1` represents land and `0` represents water.
+You are given an $n \times n$ binary matrix `grid` where `1` represents land and `0` represents water.
+An island is a 4-directionally connected group of `1`s.
+The grid is guaranteed to contain **exactly two islands**.
+You may change `0`s to `1`s to connect the two islands into a single connected component.
+Return the **minimum number of 0's** you must flip to bridge the two islands.
 
-The objective is to compute `1` from `{"grid": [[0, 1], [1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Initial Matrix:              Phase 1: Color Island 1 to 2     Phase 2: BFS Expanding Rings
+  0   1   0                    0   [2]  0                       (1)  [2]  (1)
+  0   0   0       ====>        0    0   0           ====>        0   (1)   0
+  0   0   1                    0    0  [1]                      (2)  (2)  [1] -> Touched at dist 2!
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A brute-force search computes the Manhattan distance between all pairs of cells $(u, v)$ where $u \in \text{Island}_1$ and $v \in \text{Island}_2$, costing up to $\mathcal{O}(n^4)$ time.
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Separating identification from expansion
-
-The grid contains exactly two islands. A bridge is formed by changing water cells from `0` to `1` until the islands become connected, and the goal is to change as few cells as possible.
-
-The optimal solution has two distinct phases:
-
-1. Find and mark every cell of one island.
-2. Expand outward from that entire island through water, one distance layer at a time, until the other island is reached.
-
-The first phase uses depth-first search because it needs to collect one connected component. The second phase uses breadth-first search because breadth-first layers correspond exactly to the number of water cells that would be changed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[0, 1], [1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Two-Phase Decoupled Island Traversal Invariant**:
+1. **Phase 1 (Component Isolation):** Use DFS starting at the first encountered `1` to color the entirety of Island 1 with value `2`, buffering all its cells into a FIFO queue. Island 2 remains uniquely identified by value `1`.
+2. **Phase 2 (Multi-Source Wavefront BFS):** Treat all cells of Island 1 as simultaneous distance-0 sources. Expand layer by layer through water (`0`). The first time the wavefront encounters an untouched `1`, the current BFS depth $ans$ is guaranteed to be the minimum bridge length.
 
 ---
 
-### Step 2: Finding the first island
+## 2. Conceptual Foundation & The Level-Order Shortest Path Invariant
 
-The generator expression searches the grid in row-major order and returns the first coordinate whose value is nonzero. Since the original grid contains only `0` and `1` at this point, this is a land cell.
+```mermaid
+flowchart TD
+    accTitle: Shortest Bridge Multi-Source BFS Pipeline
+    accDescr: Flowchart illustrating DFS coloring of island 1 followed by multi-source BFS expanding through water cells to reach island 2
+    Start["Scan grid for first land cell (i, j) with grid[i][j] == 1"] --> DFS["DFS(i, j): Mark grid[x][y] = 2; Append to queue q"]
+    DFS --> CheckDFS{"All connected cells of Island 1 colored 2?"}
+    CheckDFS -->|"Yes"| BFSInit["Initialize ans = 0; All Island 1 cells in q"]
+    BFSInit --> PopLevel["For each cell (r, c) in current BFS level:"]
+    PopLevel --> Neighbors["Check 4-directional neighbors (nx, ny)"]
+    Neighbors --> CheckCell{"grid[nx][ny] value?"}
+    CheckCell -->|"1 (Island 2 reached)"| Found["Return ans (Shortest Bridge Found!)"]
+    CheckCell -->|"0 (Water)"| VisitWater["grid[nx][ny] = 2; q.append((nx, ny))"]
+    CheckCell -->|"2 (Already visited/Island 1)"| Ignore["Skip"]
+    VisitWater --> PopLevel
+    Ignore --> PopLevel
+    PopLevel -->|"Level finished"| Inc["ans += 1"] --> PopLevel
+```
 
-Calling `dfs(i, j)` from that coordinate visits every four-directionally connected land cell in the same island. The direction tuple is `(-1, 0, 1, 0, -1)`. Applying `pairwise` produces the four direction vectors `(-1, 0)`, `(0, 1)`, `(1, 0)`, and `(0, -1)` without listing four separate pairs.
+### The Unweighted Multi-Source BFS Invariant
 
-For each visited island cell, DFS performs two actions:
-
-- it appends the coordinate to `q`;
-- it changes the grid value from `1` to `2`.
-
-Changing the value marks the cell as visited. The recursive search continues only into neighbors that are still `1`, so no island cell is processed twice.
-
-DFS cannot accidentally absorb the second island. The two islands are separate four-directional components, so moving from the first island to the second requires crossing at least one water cell. DFS follows only cells whose value is `1` and never crosses `0`.
-
-When DFS finishes, every cell of the chosen first island is marked `2` and stored in the queue. Every untouched `1` belongs to the second island.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why every first-island cell enters the BFS
-
-The shortest bridge might leave the first island from any boundary cell. Starting breadth-first search from just the originally discovered cell would also count travel inside the first island, even though moving across existing land requires no water conversion. One could explicitly find boundary cells, but that extra filtering is unnecessary.
-
-Instead, the queue initially contains all cells of the first island as simultaneous sources at distance zero. This is multi-source breadth-first search. It behaves as though a wave starts from the entire island at once, ensuring that the first contact with the second island uses the best departure point automatically.
-
-Interior island cells are harmless seeds. They cannot expand through other marked island cells because the BFS adds only water cells, and they do not make the answer too small. They merely perform constant neighbor checks.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+1. **Distance Metric Equivalence:**
+   The number of flipped zeros to connect a water path between two land cells is exactly the number of intermediate water cells on that path:
+   $$
+   \text{flips} = \text{path\_length} - 1
+   $$
+2. **Multi-Source Zero-Initialization:**
+   By pushing all cells of Island 1 into queue $q$ before beginning BFS, the shortest distance from *any* perimeter cell of Island 1 to surrounding water is initialized simultaneously to $0$.
+3. **Optimality of First Contact:**
+   In an unweighted graph, BFS explores nodes in strictly non-decreasing order of distance from the source set. Therefore, the first node $(x, y)$ popped whose neighbor has `grid[nx][ny] == 1` guarantees that $ans$ is the globally minimal number of water steps required.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 2
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[0, 1], [1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+$$
+grid = \begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}, \quad n = 3
+$$
+
+### Phase 1: DFS Coloring Island 1
+- Scan row-major: first `1` found at $(0, 1)$.
+- `dfs(0, 1)`:
+  - `grid[0][1] = 2`.
+  - Append $(0, 1)$ to $q$.
+  - 4 neighbors of $(0, 1)$ are all `0` or out of bounds. DFS finishes.
+- Grid state after Phase 1:
+  $$
+  grid = \begin{bmatrix}
+  0 & \mathbf{2} & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 1
+  \end{bmatrix}, \quad q = [(0, 1)]
+  $$
+
+---
+
+### Phase 2: Multi-Source BFS Water Expansion
+
+#### Wavefront Level $0$ ($ans = 0$)
+- Pop $(0, 1)$ from $q$.
+- Examine 4-directional neighbors:
+  - Up: $(-1, 1)$ (out of bounds).
+  - Down: $(1, 1)$ $\to$ `grid == 0` $\implies$ mark `grid[1][1] = 2`, append $(1, 1)$.
+  - Left: $(0, 0)$ $\to$ `grid == 0` $\implies$ mark `grid[0][0] = 2`, append $(0, 0)$.
+  - Right: $(0, 2)$ $\to$ `grid == 0` $\implies$ mark `grid[0][2] = 2`, append $(0, 2)$.
+- Level $0$ complete. Increment: $ans \leftarrow 1$.
+- Queue now contains Level 1: $[(1, 1), (0, 0), (0, 2)]$.
+
+---
+
+#### Wavefront Level $1$ ($ans = 1$)
+- Pop $(1, 1)$:
+  - Neighbors: $(1, 0) \to 2$, $(1, 2) \to 2$, $(2, 1) \to 2$.
+  - All three were water (`0`), marked `2` and enqueued.
+- Pop $(0, 0)$:
+  - Down neighbor $(1, 0)$ already visited (`2`).
+- Pop $(0, 2)$:
+  - Down neighbor $(1, 2)$ already visited (`2`).
+- Level $1$ complete. Increment: $ans \leftarrow 2$.
+- Queue now contains Level 2: $[(1, 0), (1, 2), (2, 1)]$.
+
+---
+
+#### Wavefront Level $2$ ($ans = 2$)
+- Pop $(1, 0)$: neighbors checked.
+- Pop $(1, 2)$:
+  - Down neighbor $(2, 2)$:
+  - Check cell value: `grid[2][2] == 1`!
+  - **Island 2 reached!**
+- Immediately return current distance: $ans = \mathbf{2}$.
+
+---
+
+## 4. BFS State Transition Trace Table
+
+| BFS Level $ans$ | Dequeued Cell | Checked Neighbor $(x, y)$ | Cell Value Before Check | Action Taken | New Value | Queue State After Action |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|
+| **$0$** | $(0, 1)$ | $(1, 1)$ | $0$ (Water) | Enqueue Level 1 | $2$ | $[(1, 1)]$ |
+| **$0$** | $(0, 1)$ | $(0, 0)$ | $0$ (Water) | Enqueue Level 1 | $2$ | $[(1, 1), (0, 0)]$ |
+| **$0$** | $(0, 1)$ | $(0, 2)$ | $0$ (Water) | Enqueue Level 1 | $2$ | $[(1, 1), (0, 0), (0, 2)]$ |
+| **$1$** | $(1, 1)$ | $(1, 0)$ | $0$ (Water) | Enqueue Level 2 | $2$ | $[(0, 0), (0, 2), (1, 0)]$ |
+| **$1$** | $(1, 1)$ | $(1, 2)$ | $0$ (Water) | Enqueue Level 2 | $2$ | $[\dots, (1, 2)]$ |
+| **$1$** | $(1, 1)$ | $(2, 1)$ | $0$ (Water) | Enqueue Level 2 | $2$ | $[\dots, (2, 1)]$ |
+| **$2$** | $(1, 2)$ | $(2, 2)$ | **$1$ (Island 2)** | **Target Reached!** | — | **Return $ans = 2$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A sequence of $k$ BFS levels through water represents a connected path of $k$ flipped water cells joining Island 1 to Island 2. When the BFS detects a cell with `grid[nx][ny] == 1`, it has discovered a valid bridging configuration requiring exactly $ans$ flips.
+2. **Completeness:**
+   BFS on an unweighted grid processes cells in strict order of shortest distance from the source set. Because all cells of Island 1 serve as simultaneous sources, the first path to touch Island 2 is mathematically guaranteed to have minimal length. No shorter bridge can exist.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Run BFS from only one first-island cell:** This can overcount movement through existing land and miss the best shoreline. Multi-source BFS correctly assigns zero distance to the entire first island.
-- **Start BFS from boundary cells only:** This is also correct and may reduce the initial queue, but it requires an additional boundary test. Enqueuing every island cell is simpler and retains the same `O(n^2)` bound.
-- **Compute all pairs of island cells:** Measuring distances between every cell of one island and every cell of the other can become quadratic in the number of land cells, which is up to `O(n^4)` overall. BFS explores the grid once.
-- **Depth-first search for both phases:** DFS is suitable for identifying a component, but ordinary DFS does not visit positions by shortest distance. Using it for expansion would require extra distance bookkeeping or exhaustive search.
-- **Bidirectional breadth-first search:** Expanding from both islands can reduce practical search depth, but one side must still be identified and the meeting-distance accounting becomes more involved. The one-sided multi-source BFS already satisfies the optimal asymptotic bound.
-- **Iterative island marking:** Replacing recursive DFS with an explicit stack preserves the algorithm and `O(n^2)` bounds while avoiding Python recursion-limit failures on large or snake-shaped islands.
-- **One water cell between islands:** The first water layer sees the second island and returns `1`. The algorithm counts converted water cells, not graph edges between land cells.
-- **Grid edges and corners:** Every neighbor is checked against `0 <= x < n` and `0 <= y < n` before access, so cells on the border need no special branch.
-- **Repeated discovery of the same water:** Setting a water cell to `2` before enqueueing it ensures that later neighbors do not add it again.
-- **Input mutation:** The marking strategy destroys the original binary grid. If preservation were required, the algorithm would need a separate visited set or a copied grid, increasing memory use.
-- **Exactly two islands:** The recognition that every untouched `1` belongs to the target relies on this contract. With more islands, the first contact would find the nearest other island, which would be a different problem.
-- **Direction semantics:** Only vertical and horizontal neighbors count. Diagonal contact does not join islands and is correctly ignored by the four generated direction pairs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Adjacent Diagonals | `[[0, 1], [1, 0]]` | Distance 1 water cell bridges diagonally adjacent corners; returns $1$. | Allowing diagonal bridge connections without water flips. |
+| Nested Ring Island | Ring enclosing interior island | BFS expands inward and outward; accurately detects shortest radial gap. | Trapping BFS within exterior boundaries. |
+| Distant Opposite Corners | Islands at $(0, 0)$ and $(n-1, n-1)$ | Straight BFS expands across matrix; returns $2n - 3$. | Off-by-one distance errors. |
+| In-Place Mutation | Grid modified from $0 \to 2$ | Avoids auxiliary visited set; saves memory. | Mutating target island prematurely. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let `n` be the side length of the square grid.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$, where $n$ is the side length of the $n \times n$ matrix.
+  - Phase 1 (DFS): visits each cell of Island 1 at most once $\implies \mathcal{O}(n^2)$.
+  - Phase 2 (BFS): each water cell is colored `2` and enqueued at most once, and each land cell of Island 2 is inspected once $\implies \mathcal{O}(n^2)$.
+  - Total time: strictly $\mathcal{O}(n^2)$, completing in $< 0.01\text{ s}$ for $n = 100$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n^2)$.
+  - The BFS queue and DFS recursion stack contain at most $n^2$ coordinates in the worst case.

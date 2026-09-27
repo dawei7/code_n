@@ -1,120 +1,157 @@
 # Guided Example: Set Matrix Zeroes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step in-place $O(1)$ auxiliary space matrix zeroing algorithm on a representative 2D matrix:
 
-- **Input:** `{"matrix": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}`
-- **Required output:** `[[1, 0, 1], [0, 0, 0], [1, 0, 1]]`
+- **Input:** $\text{matrix} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 1 \end{pmatrix}$
+- **Required output:** $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1 \end{pmatrix}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates reusing the matrix's first row and first column as internal zero-marker registers, protecting the $(0, 0)$ intersection via separate boundary flags, zeroing interior cells, and finalizing outer boundaries in strictly $O(1)$ extra space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` integer matrix `matrix`, if an element is `0`, set its entire row and column to `0`'s.
+Given an $M \times N$ integer matrix ($M = 3, N = 3$), if any cell contains `0`, set its entire row and column to `0`'s. The operation must be performed **in place**.
 
-The objective is to compute `[[1, 0, 1], [0, 0, 0], [1, 0, 1]]` from `{"matrix": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+For the input:
+$$
+\begin{pmatrix}
+1 & 1 & 1 \\
+1 & \mathbf{0} & 1 \\
+1 & 1 & 1
+\end{pmatrix}
+$$
+Because cell $(1, 1)$ is `0`, all elements in Row 1 and Column 1 must become `0`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive algorithm that zeroes rows and columns immediately upon seeing a zero triggers a runaway cascade, turning the entire matrix into zeros.
+Allocating separate row and column boolean arrays requires $O(M + N)$ auxiliary memory.
+The optimal algorithm stores zero markers directly inside $\text{matrix}[r][0]$ and $\text{matrix}[0][c]$ (the first column and first row), requiring only two boolean flags for $O(1)$ extra space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### In-Place Header Marker Protocol
+The top-left cell $(0, 0)$ belongs to both the first row and first column. To resolve this collision:
+- Use a boolean flag `first_row_zero` to track if Row 0 originally contained any zeros.
+- Use a boolean flag `first_col_zero` to track if Column 0 originally contained any zeros.
+- Use $\text{matrix}[r][0]$ to indicate whether interior row $r \ge 1$ should be zeroed.
+- Use $\text{matrix}[0][c]$ to indicate whether interior column $c \ge 1$ should be zeroed.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 4-Phase Algorithm
+1. **Initial Boundary Scan:**
+   - Check if any cell in Row 0 is 0: `first_row_zero = any(matrix[0][c] == 0)`.
+   - Check if any cell in Col 0 is 0: `first_col_zero = any(matrix[r][0] == 0)`.
+2. **Interior Flagging:**
+   For each $r \in [1, M - 1]$ and $c \in [1, N - 1]$:
+   - If $\text{matrix}[r][c] == 0$:
+     $$
+     \text{matrix}[r][0] \leftarrow 0, \quad \text{matrix}[0][c] \leftarrow 0
+     $$
+3. **Interior Zeroing:**
+   For each $r \in [1, M - 1]$ and $c \in [1, N - 1]$:
+   - If $\text{matrix}[r][0] == 0$ or $\text{matrix}[0][c] == 0$:
+     $$
+     \text{matrix}[r][c] \leftarrow 0
+     $$
+4. **Header Line Zeroing:**
+   - If `first_row_zero`: set $\text{matrix}[0][c] \leftarrow 0$ for all $c \in [0, N - 1]$.
+   - If `first_col_zero`: set $\text{matrix}[r][0] \leftarrow 0$ for all $r \in [0, M - 1]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After Phase 2, $\text{matrix}[r][0] == 0 \iff$ original row $r$ had a zero, and $\text{matrix}[0][c] == 0 \iff$ original column $c$ had a zero.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Record causes before changing any cells
+We trace the $3 \times 3$ matrix:
 
-The required zeroes are determined by cells that were zero in the original matrix. This word “original” is the central difficulty. If the algorithm finds a zero and immediately clears its row and column, those newly written zeroes are indistinguishable from original zeroes during the rest of the scan. They can trigger additional rows and columns and incorrectly spread zeroes through the matrix.
-
-The source prevents that cascade by separating discovery from mutation. The first complete pass only records which row indices and column indices contain an original zero. The second complete pass uses those frozen records to write the final values. Because no matrix cell changes during discovery, every cause recorded by the first pass is genuine.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 1: Boundary Flags
+- Row 0: `[1, 1, 1]` $\implies \text{first\_row\_zero} = \text{False}$.
+- Col 0: `[1, 1, 1]` $\implies \text{first\_col\_zero} = \text{False}$.
 
 ---
 
-### Step 2: Use one Boolean marker per row and column
+### Phase 2: Interior Scan ($r \in [1, 2], c \in [1, 2]$)
+- Cell $(1, 1)$: Value is `0`!
+  - Record zero in row marker: $\text{matrix}[1][0] \leftarrow 0$.
+  - Record zero in col marker: $\text{matrix}[0][1] \leftarrow 0$.
+- Cell $(1, 2)$: Value is `1`.
+- Cell $(2, 1)$: Value is `1`.
+- Cell $(2, 2)$: Value is `1`.
 
-`row[i]` means that original row `i` contained at least one zero and must be cleared. `col[j]` means the same for original column `j`. Both arrays begin entirely false because no original cell has yet been inspected.
-
-When the first pass finds `matrix[i][j] == 0`, the chained assignment `row[i] = col[j] = true` marks both affected dimensions. Python evaluates this as assigning the same Boolean value to each target. It does not connect the two array entries; they remain ordinary independent Boolean slots.
-
-One original zero can mark a row and a column that were already marked by another zero. Reassigning `true` is harmless. This idempotence is useful because the algorithm needs only existence information, not the number of zeroes in each dimension.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Matrix after Phase 2 (Markers in Row 0 and Col 0):
+$$
+\begin{pmatrix}
+1 & \mathbf{0} & 1 \\
+\mathbf{0} & 0 & 1 \\
+1 & 1 & 1
+\end{pmatrix}
+$$
 
 ---
 
-### Step 3: Interpret the first-pass invariant
+### Phase 3: Interior Zeroing ($r \in [1, 2], c \in [1, 2]$)
+- Cell $(1, 1)$: Row marker $\text{matrix}[1][0] == 0 \implies \text{matrix}[1][1] = 0$.
+- Cell $(1, 2)$: Row marker $\text{matrix}[1][0] == 0 \implies \text{matrix}[1][2] = 0$.
+- Cell $(2, 1)$: Col marker $\text{matrix}[0][1] == 0 \implies \text{matrix}[2][1] = 0$.
+- Cell $(2, 2)$: Row marker $\text{matrix}[2][0] == 1$ and col marker $\text{matrix}[0][2] == 1 \implies$ unchanged (`1`).
 
-After the first pass has inspected some prefix of cells in row-major order, `row[i]` is true exactly when an inspected original zero belongs to row `i`, and `col[j]` is true exactly when an inspected original zero belongs to column `j`.
+Matrix after Phase 3:
+$$
+\begin{pmatrix}
+1 & 0 & 1 \\
+0 & 0 & 0 \\
+1 & 0 & 1
+\end{pmatrix}
+$$
 
-The invariant is initially true because the inspected set is empty and all markers are false. Inspecting a nonzero cell changes nothing, so the statement remains true. Inspecting a zero sets exactly its row and column markers, adding precisely the two facts caused by that cell. After all cells are inspected, the arrays exactly describe every row and column that the specification says to clear.
+---
 
-For the matrix `[[1,1,1],[1,0,1],[1,1,1]]`, discovery produces `row = [false, true, false]` and `col = [false, true, false]`. The marker arrays contain the complete effect of the central zero without altering any neighboring value yet.
+### Phase 4: Header Finalization
+- `first_row_zero` is False: Row 0 remains `[1, 0, 1]`.
+- `first_col_zero` is False: Column 0 remains `[1, 0, 1]`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 0, 1], [0, 0, 0], [1, 0, 1]]` |
+Output matrix:
+$$
+\begin{pmatrix}
+1 & 0 & 1 \\
+0 & 0 & 0 \\
+1 & 0 & 1
+\end{pmatrix}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 0, 1], [0, 0, 0], [1, 0, 1]]` | Verified |
+| Phase | Affected Indices | Condition / Value | Action Taken | Matrix Configuration |
+|:---:|:---:|:---:|:---|:---:|
+| 1 | Row 0, Col 0 | No zeroes present | Set both boundary flags = False | Initial matrix |
+| 2 | Cell $(1, 1)$ | Original zero found | Set $\text{matrix}[1][0] = 0$, $\text{matrix}[0][1] = 0$ | $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \end{pmatrix}$ |
+| 3 | Cells $(1, 1), (1, 2)$ | Row marker 1 is 0 | Set row 1 interior cells to 0 | - |
+| 3 | Cell $(2, 1)$ | Col marker 1 is 0 | Set col 1 interior cells to 0 | $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1 \end{pmatrix}$ |
+| 4 | Boundary headers | Flags are False | Keep headers intact | **Final Output** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because Phase 2 only updates Row 0 and Column 0, and Phase 3 reads markers strictly from Row 0 and Column 0 without writing to them, no false secondary zero markers can ever be generated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every interior cell $(r, c)$ is zeroed if and only if either its row marker or its column marker was set in Phase 2. The boundary flags independently preserve the initial state of Row 0 and Column 0.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **First row and first column as markers:** Store dimension flags inside the matrix and keep separate Booleans for whether the original first row and column contained zeroes. This achieves $O(1)$ auxiliary space.
-- **Sets of affected indices:** Record only rows and columns actually seen with zeroes. It still uses up to $O(m+n)$ space and has hashing overhead, but can be convenient in sparse cases.
-- **Full copied matrix:** Read from an untouched copy while writing the original. It is straightforward but uses $O(mn)$ extra space.
-- **Immediate zeroing:** Clearing a row and column during discovery is incorrect because written zeroes can trigger unrelated dimensions later.
-- **No original zeroes:** Every marker remains false, so the matrix is unchanged.
-- **All zeroes:** Every marker becomes true and the second pass keeps every cell zero.
-- **One row:** The row marker clears the entire row if any element is zero; otherwise only marked columns would matter, with the same final outcome.
-- **One column:** The column marker clears it if any element is zero.
-- **Zero at a corner:** Its full row and full column are both marked like any interior zero.
-- **Several zeroes in one row:** The row is marked once, while every corresponding column is marked independently.
-- **Negative and large values:** Only equality with integer zero matters; other values are preserved unless their row or column is affected.
-- **Rectangular shape:** Separate `m` and `n` marker lengths support non-square matrices.
-- **Return behavior:** Mutation is the result, and the implicit return value is `null`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Cascade Zeroing (Premature Writes):** If you overwrite elements as you discover zeros, a newly written zero will subsequently cause its entire row and column to be zeroed, rapidly turning valid non-zero rows into zeros.
+- **Header Order Inversion:** Phase 4 must execute **after** Phase 3. If Row 0 or Column 0 is zeroed first, all interior row/column markers would become 0, causing Phase 3 to mistakenly zero out the entire matrix.
+- **Matrix Dimensions $1 \times 1$:** When $M = 1$ or $N = 1$, the interior loops execute zero times, and the boundary flags handle the single row/column safely.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let $m$ be the number of rows and $n$ the number of columns. Each of the two nested passes visits all $mn$ cells and performs constant work per cell, so total time is $O(mn)$, matching the manifest's time declaration.
-- **Auxiliary Space Complexity:** $O(m+n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Exactly two passes over the matrix are performed.
+- **Auxiliary Space Complexity:** $O(1)$. All markings are stored in place using the matrix itself, using two boolean scalar flags for boundary headers.

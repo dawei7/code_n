@@ -1,132 +1,136 @@
 # Guided Example: Percentage of Letter in String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "foobar", "letter": "o"}`
-- **Required output:** `33`
+Given a string $s$ and a target character $letter$, the objective is to determine the percentage of characters in $s$ that equal $letter$, rounded down to the nearest whole percent.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The mathematical calculation follows standard percentage proportion with integer floor division:
+$$\text{Percentage} = \left\lfloor \frac{\text{count}(letter) \times 100}{|s|} \right\rfloor$$
 
----
+Consider the representative instance:
+$$s = \text{"foobar"}, \quad letter = \text{'o'}$$
 
-## 1. Instance & Teaching Goal
+The string $s$ has length $n = 6$. We count the occurrences of character `'o'`:
+- Index $0$: `'f'` $\ne$ `'o'`
+- Index $1$: `'o'` $=$ `'o'` (Occurrence 1)
+- Index $2$: `'o'` $=$ `'o'` (Occurrence 2)
+- Index $3$: `'b'` $\ne$ `'o'`
+- Index $4$: `'a'` $\ne$ `'o'`
+- Index $5$: `'r'` $\ne$ `'o'`
 
-Given a string `s` and a character `letter`, return* the **percentage** of characters in *`s`* that equal *`letter`* **rounded down** to the nearest whole percent.*
+Total count of character `'o'` is $2$.
+Applying the percentage formula:
+$$\text{Fraction} = \frac{2}{6} = \frac{1}{3} \approx 0.3333\dots$$
+$$\text{Percentage} = \left\lfloor \frac{2 \times 100}{6} \right\rfloor = \left\lfloor \frac{200}{6} \right\rfloor = \lfloor 33.333\dots \rfloor = 33$$
 
-The objective is to compute `33` from `{"s": "foobar", "letter": "o"}` while avoiding redundant calculations and unnecessary overhead.
+Thus, the rounded-down percentage is $33$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart LR
+    accTitle: Integer Percentage Pipeline
+    accDescr: Computational flow diagram showing frequency counting, integer multiplication by 100, and floor division by string length.
+    A["Input: s = 'foobar', letter = 'o'"] --> B["Count matching characters: count = 2"]
+    B --> C["Compute string length: n = 6"]
+    C --> D["Scale by 100: 2 * 100 = 200"]
+    D --> E["Floor divide by n: 200 // 6"]
+    E --> F["Result: 33"]
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+### Exact Integer Arithmetic vs. Floating-Point Roundoff
 
-We maintain the core conceptual parameters and state variables:
+Computing percentages using floating-point division:
+$$\text{floor}\left( \frac{\text{count}}{n} \times 100 \right)$$
+can introduce subtle floating-point precision inaccuracies (such as representation error where $\frac{1}{3} \times 100 \approx 33.333333333333336$).
 
-| State Parameter | Role & Purpose | Initial State |
+By rearranging the terms algebraically into an integer-first multiplication:
+$$\text{Percentage} = (\text{count} \times 100) \mathbin{/\!\!/} n$$
+all calculations remain strictly within the domain of integers $\mathbb{Z}_{\ge 0}$.
+
+Because $\text{count} \le n \le 100$, the numerator $\text{count} \times 100$ never exceeds $10^4$, fitting comfortably within a standard $32$-bit integer without any possibility of arithmetic overflow.
+
+### Monotonicity and Range Guarantees
+
+Since $0 \le \text{count} \le n$:
+$$0 \le \frac{\text{count} \times 100}{n} \le 100$$
+- When $\text{count} = 0$, the numerator is $0$, yielding $0 \mathbin{/\!\!/} n = 0$.
+- When $\text{count} = n$, the formula evaluates to $(n \times 100) \mathbin{/\!\!/} n = 100$.
+- For all intermediate counts, the floor division operator $\lfloor x \rfloor$ discards the fractional remainder, guaranteeing strict conformance with the "rounded down" problem specification.
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+Let us trace the execution over $s = \text{"foobar"}$ and $letter = \text{'o'}$.
+
+| Processing Stage | Target Variable | Value | Description |
+|---|---|---|---|
+| Step 1: Length Measurement | $n = |s|$ | $6$ | Total characters in string $s$ |
+| Step 2: Linear Scan | $\text{count}$ | $2$ | Incremented at indices $1$ and $2$ |
+| Step 3: Numerator Scaling | $\text{num} = \text{count} \times 100$ | $200$ | Integer scaling before division |
+| Step 4: Floor Division | $\text{result} = \text{num} \mathbin{/\!\!/} n$ | $33$ | $200 \mathbin{/\!\!/} 6 = 33$ remainder $2$ |
+
+- **Step 1:** Measure string length $n = 6$.
+- **Step 2:** Scan each character of $s$, tallying occurrences of target character `'o'`. The tally increments from $0 \to 1$ at index $1$, and from $1 \to 2$ at index $2$.
+- **Step 3:** Form the scaled numerator $2 \times 100 = 200$.
+- **Step 4:** Perform integer division: $200 = 33 \times 6 + 2$. The integer quotient is $33$.
+
+The final computed value is $33$.
+
+## 4. Comprehensive State Trace
+
+The table below catalogs percentage calculations across a spectrum of input patterns.
+
+| Input String $s$ | Target $letter$ | String Length $n$ | Occurrence Count | Scaled Numerator | Floor Division | Result Percentage |
+|---|---|---|---|---|---|---|
+| $\text{"foobar"}$ | `'o'` | $6$ | $2$ | $200$ | $200 \mathbin{/\!\!/} 6$ | $33$ |
+| $\text{"jjjj"}$ | `'k'` | $4$ | $0$ | $0$ | $0 \mathbin{/\!\!/} 4$ | $0$ |
+| $\text{"aaaa"}$ | `'a'` | $4$ | $4$ | $400$ | $400 \mathbin{/\!\!/} 4$ | $100$ |
+| $\text{"z"}$ | `'z'` | $1$ | $1$ | $100$ | $100 \mathbin{/\!\!/} 1$ | $100$ |
+| $\text{"abc"}$ | `'a'` | $3$ | $1$ | $100$ | $100 \mathbin{/\!\!/} 3$ | $33$ |
+| $\text{"aba"}$ | `'a'` | $3$ | $2$ | $200$ | $200 \mathbin{/\!\!/} 3$ | $66$ |
+| $\text{"xyxyxyxy"}$ | `'x'` | $8$ | $4$ | $400$ | $400 \mathbin{/\!\!/} 8$ | $50$ |
+| String of $100$ chars with one `'b'` | `'b'` | $100$ | $1$ | $100$ | $100 \mathbin{/\!\!/} 100$ | $1$ |
+
+In the case $s = \text{"aba"}$ with $letter = \text{'a'}$, the exact fraction is $\frac{2}{3} = 66.666\dots\%$. The floor division truncates the fraction, yielding exactly $66$ without rounding up to $67$.
+
+## 5. Algorithmic Correctness & Soundness
+
+The correctness of this computation is substantiated by modular arithmetic:
+
+1. **Euclidean Division Theorem:**
+   For any integers $A \ge 0$ and $B > 0$, there exist unique integers $q \ge 0$ (the quotient) and $r$ (the remainder) such that:
+   $$A = q \cdot B + r \quad \text{with} \quad 0 \le r < B$$
+   Here $A = \text{count} \times 100$ and $B = n$. The integer division operator computes $q = \lfloor A / B \rfloor$.
+2. **Floor Truncation Equivalence:**
+   By definition:
+   $$\frac{A}{B} = q + \frac{r}{B}$$
+   Since $0 \le \frac{r}{B} < 1$, $\lfloor A / B \rfloor = q$.
+   This matches the requirement to round down to the nearest whole integer.
+3. **Guard Against Undefined Division:**
+   The problem constraints specify $1 \le |s| \le 100$. Because $|s| \ge 1$, division by zero is strictly impossible.
+
+## 6. Edge Cases & Anti-Patterns
+
+1. **Target Character Absent ($\text{count} = 0$):**
+   - For $s = \text{"jjjj"}$ and $letter = \text{'k'}$, $\text{count} = 0$.
+   - $0 \times 100 \mathbin{/\!\!/} 4 = 0$. The algorithm returns $0$.
+2. **Target Character Comprises Entire String ($\text{count} = n$):**
+   - For $s = \text{"aaaa"}$ and $letter = \text{'a'}$, $\text{count} = 4, n = 4$.
+   - $400 \mathbin{/\!\!/} 4 = 100$. The algorithm returns $100$.
+3. **Rounding Down vs. Rounding to Nearest:**
+   - In standard school rounding, $66.666\dots$ rounds up to $67$, and $33.333\dots$ rounds to $33$.
+   - The problem explicitly demands rounding **down** ($\lfloor \cdot \rfloor$). Applying standard `round()` would produce $67$ for $\text{"aba"}$, causing a test failure. Floor division preserves correct behavior.
+4. **Single-Character String ($n = 1$):**
+   - If match: $100 \mathbin{/\!\!/} 1 = 100$.
+   - If mismatch: $0 \mathbin{/\!\!/} 1 = 0$.
+
+## 7. Complexity Analysis
+
+The complexity parameters are governed by the length of the string $N = |s|$.
+
+| Metric | Bound | Justification |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate the percentage definition directly
-
-Let `m` be the number of characters in `s` equal to `letter`, and let `n = len(s)`. The exact percentage before rounding is
-
-$$
-\frac{m}{n}\cdot 100.
-$$
-
-The problem asks for this value rounded down to a whole percent, so the desired integer is
-
-$$
-\left\lfloor\frac{100m}{n}\right\rfloor.
-$$
-
-The return expression implements this formula as `s.count(letter) * 100 // len(s)`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "foobar", "letter": "o"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Count every matching position
-
-`s.count(letter)` scans the string and returns how many occurrences of the one-character string `letter` it contains. Since `letter` is guaranteed to be one lowercase English character, this is exactly the number of positions satisfying the condition.
-
-Repeated matches are all counted. Their positions and whether they are adjacent do not matter because a percentage depends only on the total number of matching characters.
-
-The method needs no frequency table for other letters. Every nonmatching position contributes only to the denominator `len(s)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Multiply before applying integer division
-
-The operation order is essential. `m * 100 // n` first scales the fraction into percent units and then floors the result.
-
-If the code instead performed `m // n * 100`, integer division would happen too early. For every case with `0 < m < n`, `m // n` would be zero, incorrectly reporting zero percent. Keeping multiplication first preserves the fractional information until the final required rounding.
-
-For `s = "foobar"` and `letter = "o"`, `m = 2` and `n = 6`. The code calculates `200 // 6 = 33`, which is the floor of approximately 33.333 percent.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `33` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "foobar", "letter": "o"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `33` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Manual counting loop:** Increment a counter for each matching character, then use the same formula. It has identical complexity but is more verbose than `str.count`.
-- **Frequency dictionary:** It computes counts for every character even though only one letter is queried, adding unnecessary state.
-- **Floating-point division:** It is avoidable and may introduce rounding ambiguity; exact integer arithmetic already matches the contract.
-- **Round to nearest:** Python `round` would implement a different rule. The result must always be rounded down.
-- **Divide before multiplying:** `m // n * 100` loses every proper fraction and is incorrect for mixed strings.
-- **No matches:** The numerator is zero and the method returns zero.
-- **Every character matches:** Numerator equals denominator times 100, so the method returns 100.
-- **Single-character string:** The result is either zero or 100, and division is safe.
-- **Non-divisible percentage:** Floor division discards the remainder, such as 200 divided by six producing 33.
-- **Exact whole percentage:** When `100m` is divisible by `n`, `//` returns that exact percentage.
-- **Nonempty guarantee:** `len(s)` is at least one, so division by zero cannot occur.
-- **One-character target:** The source guarantee makes `count` count positions rather than longer substring matches.
-- **Lowercase constraint:** Character encoding and case normalization require no special handling.
-- **Result bound:** The formula cannot produce less than zero or more than 100.
-- **Input preservation:** No mutation or reconstructed string is involved.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the length of `s`. `s.count(letter)` examines the string in `O(n)` time. `len(s)` is `O(1)` for a Python string, and the remaining arithmetic is constant time for the bounded values. Total time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Character Frequency Count | $O(N)$ | Single linear pass inspecting each character in $s$ to compare against $letter$. |
+| Arithmetic Operations | $O(1)$ | One multiplication ($\text{count} \times 100$) and one integer division ($\mathbin{/\!\!/} n$). |
+| Total Time Complexity | $O(N)$ | For $N \le 100$, takes fewer than $200$ CPU instructions, executing in $< 1\text{ }\mu\text{s}$. |
+| Auxiliary Space Complexity | $O(1)$ | Uses only a single integer counter. No arrays or memory buffers are allocated. |

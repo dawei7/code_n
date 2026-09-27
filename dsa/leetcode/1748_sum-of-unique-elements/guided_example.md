@@ -2,129 +2,136 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"nums": [1, 2, 3, 2]}`
-- **Required output:** `4`
+- **Input:** `nums = [1, 2, 3, 2]`
+- **Required Output:** `4`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains both singletons and duplicates ($2$ appears twice, while $1$ and $3$ appear once), demonstrating how frequency histogram construction cleanly separates strictly unique elements from repeated values in linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `nums`. The unique elements of an array are the elements that appear **exactly once** in the array.
+Given an integer array `nums`, we define a **unique element** as an element that appears **exactly once** in `nums`. We must return the sum of all unique elements.
 
-The objective is to compute `4` from `{"nums": [1, 2, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might greedily add an element to a running sum upon first encountering it. However, if that element appears again later, it is no longer unique, requiring retroactively deducting it (and its duplicates). The optimal two-phase approach:
+1. First builds a frequency histogram $C[x]$ recording the exact multiplicity of every number.
+2. Sums all keys $x$ whose multiplicity satisfies $C[x] = 1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Definition | Mathematical Invariant |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Multiplicity Map $C$ | $x \mapsto |\{i : \text{nums}[i] = x\}|$ | Frequency of each integer in `nums` |
+| Unique Element Subset $\mathcal{U}$ | $\{x \in \text{nums} : C[x] = 1\}$ | Elements appearing with unit multiplicity |
+| Unique Sum $S$ | $\sum_{x \in \mathcal{U}} x$ | Target scalar sum |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Frequency Cardinality Projection Theorem.**
+> Let $M$ be the multiset of elements in `nums`. The set of unique elements is the projection:
+> $$\mathcal{U} = \{x : \text{count}(x, M) = 1\}$$
+> Because distinct keys in a hash map are pairwise disjoint, summing over $\{x : C[x] = 1\}$ guarantees:
+> - Elements with count $0$ contribute nothing.
+> - Elements with count $1$ contribute their value exactly once.
+> - Elements with count $\ge 2$ are completely excluded.
+
+```mermaid
+flowchart TD
+    accTitle: Two-Phase Unique Sum Pipeline
+    accDescr: Pipeline showing frequency counting followed by filtering for count == 1 and summing valid keys.
+    A["Input Array: nums = [1, 2, 3, 2]"] --> B["Phase 1: Build Frequency Map C"]
+    B --> C["Frequency Map: {1: 1, 2: 2, 3: 1}"]
+    C --> D["Phase 2: Filter Keys where C[x] == 1"]
+    D --> E["Key 1: count == 1 -> Include in sum"]
+    D --> F["Key 2: count == 2 -> Exclude from sum"]
+    D --> G["Key 3: count == 1 -> Include in sum"]
+    E --> H["Total Sum = 1 + 3 = 4"]
+    G --> H
+    H --> I["Return 4"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: “Unique” means frequency one, not merely distinct
+For `nums = [1, 2, 3, 2]`:
 
-The central distinction is between a value that appears in the array and a value that appears exactly once. A set can identify distinct values, but it discards how many times each value occurred. This problem needs the complete frequency of each number before deciding whether that number contributes to the sum.
+### Phase 1: Frequency Histogram Construction
 
-The exact solution uses `Counter(nums)`. A Python `Counter` is a dictionary-like mapping from each distinct value to its occurrence count. If a number occurs once, its stored count is one. If it occurs two or more times, it must contribute nothing, regardless of how large or small it is.
+We scan `nums` element by element:
 
-For `nums = [1,2,3,2]`, the counter conceptually contains one mapped to one, two mapped to two, and three mapped to one. Values one and three satisfy the exact-frequency test, so their sum is four.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Step $k$ | Element $x$ | Operation on Hash Map | Resulting Multiplicity Map $C$ |
 |---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $1$ | $1$ | First occurrence of $1$ | $\{1: 1\}$ |
+| $2$ | $2$ | First occurrence of $2$ | $\{1: 1, 2: 1\}$ |
+| $3$ | $3$ | First occurrence of $3$ | $\{1: 1, 2: 1, 3: 1\}$ |
+| $4$ | $2$ | Increment occurrence of $2$ | $\{1: 1, 2: 2, 3: 1\}$ |
+
+Final Frequency Histogram:
+- $C[1] = 1$
+- $C[2] = 2$
+- $C[3] = 1$
 
 ---
 
-### Step 2: Count first because future elements can change eligibility
+### Phase 2: Filter and Aggregate
 
-It is tempting to add a value the first time it appears. That is not enough by itself because a later duplicate can make the earlier contribution invalid. For instance, after reading the first two in `[2,3,2]`, two appears unique so far, but it is not unique in the complete array.
+We iterate through the keys of $C$:
 
-Building all counts first separates two concerns cleanly:
+1. **Key $x = 1$:**
+   - Multiplicity: $C[1] = 1$.
+   - Unit multiplicity condition ($C[1] = 1$) holds.
+   - Contribution: $+1$. Running Sum $= 1$.
 
-- The counting pass discovers the final frequency of every distinct value.
-- The aggregation pass includes only keys whose final frequency equals one.
+2. **Key $x = 2$:**
+   - Multiplicity: $C[2] = 2$.
+   - Unit multiplicity condition ($C[2] = 1$) is **violated** ($2 \ge 2$).
+   - Contribution: $+0$ (Excluded). Running Sum $= 1$.
 
-This makes the correctness condition visible in the code rather than requiring compensating updates when second or later occurrences arrive.
+3. **Key $x = 3$:**
+   - Multiplicity: $C[3] = 1$.
+   - Unit multiplicity condition ($C[3] = 1$) holds.
+   - Contribution: $+3$. Running Sum $= 1 + 3 = \mathbf{4}$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Read the generator expression from left to right
-
-The return statement is:
-
-`sum(x for x, v in cnt.items() if v == 1)`.
-
-`cnt.items()` produces each distinct number and its count as a pair `(x, v)`. The filter `if v == 1` retains exactly those pairs whose number occurred once. The generator yields only `x`, not its count. Finally, `sum` adds the yielded values.
-
-The generator is lazy. It does not allocate a separate list of unique values before summing. At any moment, it only needs the current mapping entry and the running total maintained by `sum`.
-
-The order in which the counter entries are visited does not matter because integer addition is independent of order. The task asks for one total, not for the unique values in their original positions.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+Final total sum: $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Phase | Target Key | Frequency $C[x]$ | Decision Rule | Included in Sum? | Accumulated Total |
+|---|---|---|---|---|---|
+| Tally | Ingestion | — | Tally all elements | — | Map built |
+| Filter | $1$ | $1$ | $C[x] == 1$ | **Yes (+1)** | $1$ |
+| Filter | $2$ | $2$ | $C[x] > 1$ | No (0) | $1$ |
+| Filter | $3$ | $1$ | $C[x] == 1$ | **Yes (+3)** | $4$ |
+| Result | Final Output | — | Return accumulated total | — | **4** |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Feature | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| All Elements Identical | `[1, 1, 1, 1]` | `0` | Key $1$ has $C[1] = 4 \neq 1$; sum is $0$. |
+| All Elements Unique | `[1, 2, 3, 4, 5]` | $\sum x = 15$ | All keys have $C[x] = 1$; sums entire array. |
+| Single Element Array | `[42]` | `42` | Single key with frequency 1; returns $42$. |
+| Large Values ($x \le 100$) | Bounded inputs | Array counter alternative | Can use fixed 101-element array instead of hash table if desired. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Global Frequency Finality:**
+   By separating the counting pass from the summing pass, eligibility decisions are made only after all occurrences have been permanently observed, avoiding false positives from provisional unique elements.
+2. **Key-Space Iteration:**
+   Iterating over unique keys rather than the original array bounds the second pass by the number of distinct elements $U \le n$, ensuring exactly one evaluation per unique value.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Fixed frequency array:** Use 101 counters indexed by value. It provides deterministic constant-time updates and makes the bounded-domain space explicit, but is less flexible than `Counter`.
-- **Set only:** A plain set loses occurrence counts and would incorrectly include values that repeat.
-- **Nested counting:** Calling `nums.count(x)` for every element is simple but can take $O(n^2)$ time.
-- **One-pass adjusted sum:** Add a value on its first occurrence and subtract it on its second. This can work with frequency tracking, but later occurrences add state-transition complexity.
-- **All values unique:** Every counter entry passes, so the answer is the ordinary array sum.
-- **No unique values:** The generator is empty and `sum` returns zero.
-- **One-element array:** Its only frequency is one, so that element is returned.
-- **A value appearing twice:** It is fully excluded, not counted once.
-- **A value appearing many times:** Count magnitude beyond one does not matter to the filter.
-- **Same numeric total from different sets:** Only the sum is returned; the solution need not preserve which unique values formed it.
-- **Positive-value constraint:** There is no cancellation between positive and negative unique values, although the counter method would still work if negatives were allowed.
-- **Bounded domain:** At most 100 counter entries justify the stated $O(1)$ space.
-- **Input preservation:** `Counter` reads `nums` and does not reorder or modify it.
-- **Hash behavior:** The $O(n)$ time is the standard expected bound for Python dictionary-based counting.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums` and $U$ the number of distinct values. Constructing `Counter(nums)` processes all $n$ elements and takes expected $O(n)$ time using hash-table operations. Iterating through `cnt.items()` takes $O(U)$ time. Since $U \le n$, total expected time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of `nums`. Populating the frequency hash map takes $\mathcal{O}(n)$ time. Scanning the distinct keys takes $\mathcal{O}(U)$ time where $U \le n$. Total time is strictly $\mathcal{O}(n)$.
+- **Space Complexity:** $\mathcal{O}(U) \le \mathcal{O}(n)$ auxiliary space to store counts of all distinct elements in the hash map.

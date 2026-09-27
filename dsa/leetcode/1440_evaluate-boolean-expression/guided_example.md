@@ -1,110 +1,158 @@
 # Guided Example: Evaluate Boolean Expression
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of relational boolean expressions using dual inner joins and relational predicate evaluation on a representative database instance:
 
-- **Input:** `{"tables": {"Variables": [{"name": "x", "value": 66}, {"name": "y", "value": 77}], "Expressions": [{"left_operand": "x", "operator": ">", "right_operand": "y"}, {"left_operand": "x", "operator": "<", "right_operand": "y"}, {"left_operand": "x", "operator": "=", "right_operand": "y"}, {"left_operand": "y", "operator": ">", "right_operand": "x"}, {"left_operand": "y", "operator": "<", "right_operand": "x"}, {"left_operand": "x", "operator": "=", "right_operand": "x"}]}}`
-- **Required output:** `{"columns": ["left_operand", "operator", "right_operand", "value"], "rows": [["x", ">", "y", "false"], ["x", "<", "y", "true"], ["x", "=", "y", "false"], ["y", ">", "x", "true"], ["y", "<", "x", "false"], ["x", "=", "x", "true"]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:**
+  - Table `Variables`: $x = 66, \, y = 77$
+  - Table `Expressions`: Comparisons spanning $(x > y), (x < y), (x = y), (y > x), (y < x), (x = x)$
+- **Required Output:** Relational projection mapping each expression tuple to its boolean evaluation string (`"true"` or `"false"`).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table `Variables`:
+We are given a relation $Variables(name, value)$ mapping unique variable identifiers to integer values, and a relation $Expressions(left\_operand, operator, right\_operand)$ where $operator \in \{<, >, =\}$. Each operand is guaranteed to exist in $Variables$. We must evaluate whether each relational comparison holds true or false.
 
-The objective is to compute `{"columns": ["left_operand", "operator", "right_operand", "value"], "rows": [["x", ">", "y", "false"], ["x", "<", "y", "true"], ["x", "=", "y", "false"], ["y", ">", "x", "true"], ["y", "<", "x", "false"], ["x", "=", "x", "true"]]}` from `{"tables": {"Variables": [{"name": "x", "value": 66}, {"name": "y", "value": 77}], "Expressions": [{"left_operand": "x", "operator": ">", "right_operand": "y"}, {"left_operand": "x", "operator": "<", "right_operand": "y"}, {"left_operand": "x", "operator": "=", "right_operand": "y"}, {"left_operand": "y", "operator": ">", "right_operand": "x"}, {"left_operand": "y", "operator": "<", "right_operand": "x"}, {"left_operand": "x", "operator": "=", "right_operand": "x"}]}}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Variable lookup: $x \mapsto 66$, $y \mapsto 77$.
+- Expression $x > y \iff 66 > 77 \implies \text{false}$.
+- Expression $x < y \iff 66 < 77 \implies \text{true}$.
+- Expression $x = y \iff 66 = 77 \implies \text{false}$.
+- Expression $y > x \iff 77 > 66 \implies \text{true}$.
+- Expression $y < x \iff 77 < 66 \implies \text{false}$.
+- Expression $x = x \iff 66 = 66 \implies \text{true}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model multi-lookup relational queries using two joins on the same dimension table (aliased as $V_1$ for the left operand and $V_2$ for the right operand), followed by conditional projection without procedural code.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $E$ denote the $Expressions$ relation, and let $V_1$ and $V_2$ denote two instances of the $Variables$ relation. We perform a compound equijoin:
 
-| State Parameter | Role & Purpose | Initial State |
+$$J = E \bowtie_{E.left\_operand = V_1.name} V_1 \bowtie_{E.right\_operand = V_2.name} V_2$$
+
+Each resulting tuple in $J$ has access to:
+- $E.left\_operand$ and $V_1.value$ (the left numerical value).
+- $E.operator$ (the comparison operator).
+- $E.right\_operand$ and $V_2.value$ (the right numerical value).
+
+The evaluation function $\phi$ maps the joined tuple to a string literal:
+
+$$\phi(v_1, op, v_2) = \begin{cases} \text{"true"} & \text{if } (op = \text{"<"} \land v_1 < v_2) \lor (op = \text{">"} \land v_1 > v_2) \lor (op = \text{"="} \land v_1 = v_2) \\ \text{"false"} & \text{otherwise} \end{cases}$$
+
+The final result relation $R$ is obtained via relational projection:
+
+$$R = \Pi_{left\_operand, operator, right\_operand, \phi(V_1.value, operator, V_2.value) \to value}(J)$$
+
+```
+Relational Join Topology:
+Expressions (E)
+  |-- left_operand  ======> Variables (V1) [name = left_operand]  --> resolves V1.value
+  |-- right_operand ======> Variables (V2) [name = right_operand] --> resolves V2.value
+  \-- operator
+         |
+         v
+Predicate Evaluator: phi(V1.value, operator, V2.value)
+         |
+         +--> evaluates to "true" or "false"
+```
+
+We establish tracking parameters across the relational pipeline:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Left Value ($V_1.value$) | Integer | Numerical value corresponding to $left\_operand$ |
+| Right Value ($V_2.value$) | Integer | Numerical value corresponding to $right\_operand$ |
+| Comparison Operator | Enum $\{<, >, =\}$ | Binary relational comparator |
+| Result Column ($value$) | String $\{\text{"true"}, \text{"false"}\}$ | Output status of the evaluated expression |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every row in $Expressions$, the primary key guarantee on $Variables.name$ ensures that the dual join produces exactly one joined row, with $V_1.value$ and $V_2.value$ precisely matching the stored definitions.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Expression Evaluation Pipeline
+    accDescr: Joins Expressions table with Variables twice to resolve left and right operands, then applies operator evaluation to project true or false.
+    A["Expressions Table E"] --> B["Join V1 on E.left_operand = V1.name"]
+    B --> C["Join V2 on E.right_operand = V2.name"]
+    C --> D["Evaluate operator against (V1.value, V2.value)"]
+    D --> E{"Condition holds?"}
+    E -- Yes --> F["Emit value = 'true'"]
+    E -- No --> G["Emit value = 'false'"]
+    F --> H["Project final columns"]
+    G --> H
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance with $Variables = \{ (x, 66), (y, 77) \}$.
 
-**Turn names into values before evaluating anything.** Each row of `Expressions` contains two variable names and one operator, not the numbers that should actually be compared. For example, a row might say that the left operand is `x`, the operator is `>`, and the right operand is `y`. The numerical values of `x` and `y` live in `Variables`. The query therefore has two logically separate jobs: look up both operand values, and then apply the row's operator to those values.
+### Step 1: Join Left Operand
+We join $E$ with $V_1$ on $E.left\_operand = V_1.name$:
+- Rows with $left\_operand = \text{"x"}$ attach $V_1.value = 66$.
+- Rows with $left\_operand = \text{"y"}$ attach $V_1.value = 77$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Variables": [{"name": "x", "value": 66}, {"name": "y", "value": 77}], "Expressions": [{"left_operand": "x", "operator": ">", "right_operand": "y"}, {"left_operand": "x", "operator": "<", "right_operand": "y"}, {"left_operand": "x", "operator": "=", "right_operand": "y"}, {"left_operand": "y", "operator": ">", "right_operand": "x"}, {"left_operand": "y", "operator": "<", "right_operand": "x"}, {"left_operand": "x", "operator": "=", "right_operand": "x"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Join Right Operand
+We join the intermediate relation with $V_2$ on $E.right\_operand = V_2.name$:
+- Rows with $right\_operand = \text{"x"}$ attach $V_2.value = 66$.
+- Rows with $right\_operand = \text{"y"}$ attach $V_2.value = 77$.
 
----
+### Step 3: Compute Predicate Evaluation
+For each tuple, we test whether the arithmetic relation between $V_1.value$ and $V_2.value$ matches $operator$:
 
-### Step 2: Core Step 2
-
-The same `Variables` table must participate twice because one expression refers to it twice. The query gives those two roles different aliases:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-- `v1` represents the variable named by `left_operand`.
-- `v2` represents the variable named by `right_operand`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["left_operand", "operator", "right_operand", "value"], "rows": [["x", ">", "y", "false"], ["x", "<", "y", "true"], ["x", "=", "y", "false"], ["y", ">", "x", "true"], ["y", "<", "x", "false"], ["x", "=", "x", "true"]]}` |
+| Row | $left\_operand$ | $operator$ | $right\_operand$ | $V_1.value$ | $V_2.value$ | Numerical Relation | Evaluated Result |
+|---|---|---|---|---|---|---|---|
+| 1 | $x$ | $>$ | $y$ | 66 | 77 | $66 > 77$ is False | `false` |
+| 2 | $x$ | $<$ | $y$ | 66 | 77 | $66 < 77$ is True | `true` |
+| 3 | $x$ | $=$ | $y$ | 66 | 77 | $66 = 77$ is False | `false` |
+| 4 | $y$ | $>$ | $x$ | 77 | 66 | $77 > 66$ is True | `true` |
+| 5 | $y$ | $<$ | $x$ | 77 | 66 | $77 < 66$ is False | `false` |
+| 6 | $x$ | $=$ | $x$ | 66 | 66 | $66 = 66$ is True | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Variables": [{"name": "x", "value": 66}, {"name": "y", "value": 77}], "Expressions": [{"left_operand": "x", "operator": ">", "right_operand": "y"}, {"left_operand": "x", "operator": "<", "right_operand": "y"}, {"left_operand": "x", "operator": "=", "right_operand": "y"}, {"left_operand": "y", "operator": ">", "right_operand": "x"}, {"left_operand": "y", "operator": "<", "right_operand": "x"}, {"left_operand": "x", "operator": "=", "right_operand": "x"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["left_operand", "operator", "right_operand", "value"], "rows": [["x", ">", "y", "false"], ["x", "<", "y", "true"], ["x", "=", "y", "false"], ["y", ">", "x", "true"], ["y", "<", "x", "false"], ["x", "=", "x", "true"]]}` | Verified |
+```
+Input Tuple Resolution:
+(x, >, y)  ==> 66 > 77  ==> false
+(x, <, y)  ==> 66 < 77  ==> true
+(x, =, y)  ==> 66 = 77  ==> false
+(y, >, x)  ==> 77 > 66  ==> true
+(y, <, x)  ==> 77 < 66  ==> false
+(x, =, x)  ==> 66 = 66  ==> true
+```
+
+| Expression Index | Left Operand | Operator | Right Operand | Resolved Comparison | Emitted Record |
+|---|---|---|---|---|---|
+| 1 | $x$ | $>$ | $y$ | $66 > 77$ | $(x, >, y, \text{"false"})$ |
+| 2 | $x$ | $<$ | $y$ | $66 < 77$ | $(x, <, y, \text{"true"})$ |
+| 3 | $x$ | $=$ | $y$ | $66 = 77$ | $(x, =, y, \text{"false"})$ |
+| 4 | $y$ | $>$ | $x$ | $77 > 66$ | $(y, >, x, \text{"true"})$ |
+| 5 | $y$ | $<$ | $x$ | $77 < 66$ | $(y, <, x, \text{"false"})$ |
+| 6 | $x$ | $=$ | $x$ | $66 = 66$ | $(x, =, x, \text{"true"})$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since $Variables.name$ is a unique primary key, each operand joins with exactly one row from $Variables$, avoiding cartesian duplicates or missing values. The conditional evaluation rules partition the three operators $\{<, >, =\}$ without ambiguity, guaranteeing that each row produces either `"true"` or `"false"`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every row in $Expressions$ possesses valid foreign key references to $Variables$. An inner join retains all rows of $Expressions$ without loss, ensuring full coverage of the input query set.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two correlated scalar subqueries:** The query could look up the left and right values with separate subqueries in the `SELECT` list. That can express the same logic, but the two explicit joins make the two operand roles clearer and usually give the optimizer a more direct relational plan.
-- **A single occurrence of Variables:** One alias cannot independently match two possibly different operand names. Requiring one joined row to have both names would fail whenever `left_operand` and `right_operand` differ, so two aliases are the natural representation.
-- **Nested CASE branches:** A first `CASE` could choose the operator and a nested expression could perform its comparison. It is valid, but the guarded `OR` terms keep all three legal cases visible in one condition.
-- **MySQL IF expressions:** Chained `IF` calls can produce the required strings, but they are more vendor-specific and tend to obscure the exhaustive three-operator decision.
-- **Equal operand names:** An expression such as `x = x` is handled normally. Both aliases resolve to the same unique row, and equality is true; `x < x` and `x > x` are false.
-- **Equal values under different names:** Two names may map to the same integer. The query compares values rather than names, so `a = b` can correctly be true even when `a` and `b` are distinct identifiers.
-- **Negative and zero values:** Standard integer comparisons already order negative numbers, zero, and positive numbers correctly. No absolute value or special sign handling is needed.
-- **Missing operands outside the contract:** If an operand name were absent, the inner join would remove that expression. A more defensive, different specification could use `LEFT JOIN` and define how `NULL` should be reported, but this problem guarantees the lookup exists.
-- **Unexpected operators outside the contract:** Any unrecognized operator would reach `ELSE` and be labeled `false`. That behavior is not relied on because the input restricts the operator to `<`, `>`, or `=`.
-- **SQL NULL values outside the contract:** If operand values could be `NULL`, comparisons would evaluate to unknown rather than true, and `CASE` would return `false`. The stated integer schema does not require a separate null policy.
-- **Output order:** The result may be returned in any order. Tests should compare the required rows according to that contract instead of assuming insertion order.
-- **Exact text casing:** The required results are lowercase `true` and `false`. Returning Boolean values, uppercase words, or numeric `1` and `0` would not faithfully produce the requested output representation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Self-Comparisons:** Expressions where $left\_operand = right\_operand$ (e.g. $x = x$) require referencing the same variable table twice independently. A single join would fail to provide distinct bindings for both sides of the operator.
+- **Operator Encoding:** Confusing equality with string assignment; in relational predicates, testing whether $V_1.value = V_2.value$ requires handling equality independently from magnitude comparisons.
+- **Output String Literals:** The problem requires lower-case string values `"true"` and `"false"`, rather than binary booleans $1$ or $0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V + E)$. Let `V` be the number of rows in `Variables` and `E` the number of rows in `Expressions`. Under the usual hash-join execution model, the database can scan `Variables` to build a name-to-value lookup and scan the expressions while probing that lookup for both operands. Building and probing are linear in the rows involved, so the expected running time is `O(V + E)`. Evaluating the fixed three-way `CASE` costs constant time per expression.
-- **Auxiliary Space Complexity:** $O(V+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|E| + |V|)$, where $|E|$ is the number of expressions and $|V|$ is the number of variables. In a database engine, indexing $Variables.name$ with a hash or B-tree index enables $\mathcal{O}(1)$ or $\mathcal{O}(\log |V|)$ lookups for each operand. Thus, joining and evaluating $|E|$ rows requires $\mathcal{O}(|E|)$ operations.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|E|)$ to store the joined tuples and project the output relation.

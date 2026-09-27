@@ -1,136 +1,137 @@
-# Guided Example: Maximum XOR After Operations 
+# Guided Example: Maximum XOR After Operations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [3, 2, 4, 6]}`
-- **Required output:** `7`
+We are given an integer array `nums`. In a single operation, we can select any index $i$ and any non-negative integer $x$, and replace $nums[i]$ with:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$nums[i] \text{ AND } (nums[i] \text{ XOR } x)$$
 
----
+This operation may be applied any number of times on any indices, using independently chosen values of $x$. The goal is to determine the maximum possible value of the total XOR sum of all elements in `nums`:
 
-## 1. Instance & Teaching Goal
+$$\bigoplus_{i=0}^{n-1} nums[i] = nums[0] \oplus nums[1] \oplus \dots \oplus nums[n-1]$$
 
-You are given a **0-indexed** integer array `nums`. In one operation, select **any** non-negative integer `x` and an index `i`, then **update** $\text{nums}[i]$ to be equal to $\text{nums}[i] AND (\text{nums}[i] XOR x)$.
+Consider the representative instance:
+- Input array: `nums = [3, 2, 4, 6]`
 
-The objective is to compute `7` from `{"nums": [3, 2, 4, 6]}` while avoiding redundant calculations and unnecessary overhead.
+Binary representations:
+- $3 = 011_2$
+- $2 = 010_2$
+- $4 = 100_2$
+- $6 = 110_2$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+If we compute the raw XOR sum without modifications:
+$$3 \oplus 2 \oplus 4 \oplus 6 = 011_2 \oplus 010_2 \oplus 100_2 \oplus 110_2 = 011_2 = 3$$
+However, with allowable bitwise transformations, we can reach $7 = 111_2$.
 
----
+```mermaid
+flowchart TD
+    accTitle: Bitwise Operation State Transitions
+    accDescr: Bit-level analysis proving that 1 bits can be preserved or cleared to 0, but 0 bits can never become 1.
+    subgraph Operation["Operation: a' = a AND (a XOR x)"]
+        Bit0["Source Bit a_k = 0"] --> Res0["Result a'_k = 0 AND (0 XOR x_k) = 0<br/>(Cannot create 1)"]
+        Bit1["Source Bit a_k = 1"] --> Choice{"Choice of x_k"}
+        Choice -->|"x_k = 0"| Keep["1 AND (1 XOR 0) = 1<br/>(Preserve Bit)"]
+        Choice -->|"x_k = 1"| Clear["1 AND (1 XOR 1) = 0<br/>(Clear Bit to 0)"]
+    end
+```
 
-## 2. Conceptual Foundation & Invariants
+## 2. Mathematical & Algorithmic Principles
 
-We maintain the core conceptual parameters and state variables:
+To understand the scope of the transformation $a \leftarrow a \land (a \oplus x)$, we evaluate its truth table on a single bit position $k$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- Case $a_k = 0$:
+  $$a'_k = 0 \land (0 \oplus x_k) = 0 \land x_k = 0$$
+  Regardless of $x_k \in \{0, 1\}$, a bit that is $0$ remains $0$ unconditionally. No sequence of operations can create a $1$ at a bit position where no input number has a $1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- Case $a_k = 1$:
+  - If we set $x_k = 0$: $a'_k = 1 \land (1 \oplus 0) = 1 \land 1 = 1$ (the bit remains $1$).
+  - If we set $x_k = 1$: $a'_k = 1 \land (1 \oplus 1) = 1 \land 0 = 0$ (the bit is cleared to $0$).
 
----
+Because $x$ can be chosen arbitrarily with distinct bits set, we can independently clear any selected set bit in any number $nums[i]$ to $0$, without affecting any other bit.
 
-## 3. Step-by-Step Worked Execution
+### Global XOR Parity Control
+In the total XOR sum $\bigoplus_{i=0}^{n-1} nums[i]$, bit $k$ is $1$ if and only if an **odd** number of elements have bit $k$ set to $1$.
+- If every number in `nums` has bit $k = 0$, the count of set bits is $0$ (even), so the XOR sum at bit $k$ must be $0$.
+- If at least one number in `nums` has bit $k = 1$:
+  - Suppose $c \ge 1$ elements originally have bit $k = 1$.
+  - We can select exactly one element to retain bit $k = 1$, and use the operation to clear bit $k \to 0$ in all remaining $c - 1$ elements.
+  - Exactly one element now possesses bit $k = 1$. Since $1$ is odd, bit $k$ in the resulting XOR sum becomes $1$.
 
-### Step 1: Understand exactly what one operation can do to one bit
+Because bit positions are mutually independent, every bit that appears in at least one element can simultaneously be made $1$ in the final XOR sum. Therefore, the theoretical maximum XOR sum is identically the bitwise OR of all elements:
 
-For a selected array value `a`, the operation replaces it with
+$$\max \bigoplus_{i=0}^{n-1} nums[i] = \bigvee_{i=0}^{n-1} nums[i]$$
 
-`a AND (a XOR x)`,
-
-where `x` may be any nonnegative integer. Consider one bit position independently.
-
-If that bit of `a` is zero, the left operand of AND is zero, so the result bit must remain zero regardless of `x`. The operation can never create a one where the original value had zero.
-
-If that bit of `a` is one, then the same bit of `a XOR x` is one when `x` has zero there and zero when `x` has one there. The final AND therefore keeps the original one when the chosen `x` bit is zero and clears it when the `x` bit is one.
-
-Thus an operation can independently clear any chosen subset of the one bits in an element, but it can never set a new bit. Because `x` can contain any mask, one operation per element is already enough to obtain any desired submask of that element; allowing additional operations does not expand the set of reachable bit patterns.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Bit Status in Input | Operation Capability | Parity Adjustment | Final XOR Bit Result |
 |---|---|---|---|
-| Input Slice | `{"nums": [3, 2, 4, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Absent across all numbers ($0$ everywhere) | Cannot be created | Always $0$ set bits (even) | $0$ |
+| Present in at least one number ($\ge 1$ set) | Can clear redundant copies to 0 | Exactly $1$ set bit preserved (odd) | $1$ |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Ask which output XOR bits can become one
+We trace the representative array `nums = [3, 2, 4, 6]`.
+Initial bit columns:
+- $3 = 011_2$ (bits 0, 1)
+- $2 = 010_2$ (bit 1)
+- $4 = 100_2$ (bit 2)
+- $6 = 110_2$ (bits 1, 2)
 
-For one bit position, the XOR of all final elements is one exactly when an odd number of those elements retain a one at that position.
+Bit occurrence counts across `nums`:
+- Bit 0 ($2^0 = 1$): present in $3$ (count = 1).
+- Bit 1 ($2^1 = 2$): present in $3, 2, 6$ (count = 3).
+- Bit 2 ($2^2 = 4$): present in $4, 6$ (count = 2).
 
-If no original element has a one there, no operation can create one, so that output bit is forced to zero.
+### Bit Analysis & Transformation:
+- **Bit 0 ($2^0$):**
+  - Count is 1 (already odd).
+  - No operation required. Contributes $2^0 = 1$ to XOR sum.
+- **Bit 1 ($2^1$):**
+  - Count is 3 (already odd).
+  - No operation required. Contributes $2^1 = 2$ to XOR sum.
+- **Bit 2 ($2^2$):**
+  - Count is 2 (even).
+  - If unadjusted, $4 \oplus 6$ cancels bit 2 to $0$.
+  - Adjustment: Apply operation on $6$ with $x = 4 = 100_2$.
+    $$6 \land (6 \oplus 4) = 6 \land 2 = 2 = 010_2$$
+  - New element values: `nums = [3, 2, 4, 2]`.
+  - Now bit 2 appears only in $4$ (count = 1, odd).
 
-If at least one original element has a one there, the output bit can be made one. Choose one such element to retain the bit and clear that bit from every other element that has it. Exactly one occurrence remains, which is odd.
+### Final XOR Sum:
+$$\text{XOR Sum} = 3 \oplus 2 \oplus 4 \oplus 2 = 3 \oplus 4 = 7 = 111_2$$
+This exactly matches the cumulative bitwise OR:
+$$3 \lor 2 \lor 4 \lor 6 = 7$$
 
-These choices can be made independently for every bit. For each array element, collect all of its one bits that should be cleared into that element's mask `x`. Since `x` controls every position independently, all desired bit decisions can be realized simultaneously.
+## 4. Comprehensive State Trace
 
-Therefore the maximum achievable XOR has a one in every bit position that appears in at least one input number and zero everywhere else.
+The table below demonstrates the cumulative bitwise accumulation as each array element is folded into the running OR total.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Element Index | Array Value | Binary Form | Running Bitwise OR | Active Bit Positions Set | Target Binary Representation |
+|---|---|---|---|---|---|
+| Init | - | - | 0 | None | $000_2$ |
+| 0 | 3 | $011_2$ | $0 \lor 3 = 3$ | $\{0, 1\}$ | $011_2$ |
+| 1 | 2 | $010_2$ | $3 \lor 2 = 3$ | $\{0, 1\}$ | $011_2$ |
+| 2 | 4 | $100_2$ | $3 \lor 4 = 7$ | $\{0, 1, 2\}$ | $111_2$ |
+| 3 | 6 | $110_2$ | $7 \lor 6 = 7$ | $\{0, 1, 2\}$ | $111_2$ |
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 3: Bitwise OR describes exactly those available bits
+1. **Upper Bound Tightness:**
+   For any bit position $k$, the XOR sum of any transformed array cannot have bit $k = 1$ unless at least one transformed element has bit $k = 1$. Since $a'_k \le a_k$, no transformed element can have bit $k = 1$ unless some original element had bit $k = 1$. Hence, the XOR sum cannot exceed $\bigvee_{i} nums[i]$.
 
-The bitwise OR of all elements sets a bit precisely when at least one element has that bit set. That is exactly the characterization derived above. The answer is consequently
+2. **Constructive Reachability:**
+   For every bit position $k$ where $\bigvee_{i} nums[i]$ has bit $k = 1$, choose the first element $nums[i^*]$ with bit $k = 1$. For every other element $nums[j]$ ($j \ne i^*$) that also has bit $k = 1$, we clear bit $k$ by choosing $x$ with bit $k$ set. After these operations, exactly one element retains bit $k = 1$, guaranteeing that the $k$-th bit of the final XOR sum is $1$. Because this construction holds across all bit positions simultaneously, the bitwise OR is universally reachable.
 
-`nums[0] OR nums[1] OR ...`.
+## 6. Edge Cases & Anti-Patterns
 
-The exact solution computes this with `reduce(or_, nums)`. `reduce` starts with the first element and repeatedly applies the bitwise-OR function `or_` to the accumulated value and the next number. The input is guaranteed nonempty, so no explicit initial identity value is required.
+- **All Zeros (`nums = [0, 0, 0]`):**
+  - No set bits exist anywhere. Bitwise OR is $0$, which is the only attainable value.
+- **Single Element (`nums = [x]`):**
+  - Total XOR sum is simply $x$, and bitwise OR is $x$.
+- **Power of Two Elements (`nums = [1, 2, 4, 8]`):**
+  - All bits are already disjoint and appear with count 1. No operations are needed; bitwise OR is $15$.
+- **Anti-Pattern (Simulating Search or Backtracking):**
+  - Attempting to simulate operations on numbers with different values of $x$ generates an exponential search space. Recognizing the algebraic equivalence to bitwise OR reduces the problem to a single linear reduction.
 
-For `nums = [3, 2, 4, 6]`, the binary forms are `011`, `010`, `100`, and `110`. Across the array, bits zero, one, and two all occur, so the OR is `111`, or 7. Even if the original XOR has some of these bits canceled by an even number of occurrences, operations can clear unwanted occurrences until each available bit has odd parity.
+## 7. Complexity Analysis
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 2, 4, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Manual OR loop:** Initialize `ans = 0` and execute `ans |= value` for every element. This is algorithmically identical and makes the identity value explicit; the exact solution uses functional reduction.
-- **Count set bits at every position:** Determine whether each bit appears at least once, then assemble the result. This is correct but performs an extra fixed-bit loop and reimplements what OR already expresses.
-- **Compute the original XOR only:** Even occurrences cancel in the unmodified array, but the operation can clear selected occurrences and change parity. Original XOR can be smaller than the maximum.
-- **Try every possible `x`:** The space of masks is enormous and unnecessary. Per-bit analysis characterizes all reachable submasks directly.
-- **Assume the operation can toggle bits freely:** A zero bit in `a` is always zero after AND, even if XOR temporarily makes it one. New one bits cannot be created.
-- **Assume all occurrences of a bit must be cleared together:** Each index chooses its own `x`, so occurrences in different elements can be controlled independently.
-- **Keep an odd number greater than one:** This also makes the XOR bit one and may be reachable, but keeping exactly one supplies the simplest universal construction.
-- **All zeros:** No bit appears in any input, the OR is zero, and no operation can produce a positive result.
-- **One element:** Its OR is itself. Applying zero operations already achieves that value, and operations can only clear bits, so it is maximal.
-- **Duplicate values:** Repetition may cancel bits in the initial XOR, but OR ignores multiplicity and correctly records that those bits are available to retain in an odd number of copies.
-- **A bit present in every element:** Clear it from all but one element to make its XOR parity odd.
-- **Zero operations allowed:** If the original XOR already equals the OR, the maximum is achievable without changing the array. The proof does not require at least one operation.
-- **Nonempty-array guarantee:** `reduce(or_, nums)` without an initializer requires at least one element. The source constraint provides that guarantee.
-- **Input mutation:** Reduction reads the values and returns a new integer. It never applies the conceptual clearing operations to `nums` itself.
-- **Availability of helpers:** The exact source relies on the solution environment providing `reduce` and `or_`, conventionally from Python's `functools` and `operator` modules.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the number of array elements. `reduce` combines each element into the accumulator once, performing `n - 1` OR operations. Under the bounded integer size `nums[i] <= 10^8`, each OR is constant time, so total running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the number of elements in `nums`. We perform a single linear scan accumulating the bitwise OR over all elements.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. Only a single scalar integer accumulator is required.

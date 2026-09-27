@@ -2,133 +2,161 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"tables": {"Employees": [{"emp_id": 1, "event_day": "2020-11-28", "in_time": 4, "out_time": 32}, {"emp_id": 1, "event_day": "2020-11-28", "in_time": 55, "out_time": 200}, {"emp_id": 1, "event_day": "2020-12-03", "in_time": 1, "out_time": 42}, {"emp_id": 2, "event_day": "2020-11-28", "in_time": 3, "out_time": 33}, {"emp_id": 2, "event_day": "2020-12-09", "in_time": 47, "out_time": 74}]}}`
-- **Required output:** `{"columns": ["day", "emp_id", "total_time"], "rows": [["2020-11-28", 1, 173], ["2020-11-28", 2, 30], ["2020-12-03", 1, 41], ["2020-12-09", 2, 27]]}`
+- **Input Table (`Employees`):**
+  | `emp_id` | `event_day` | `in_time` | `out_time` |
+  |---|---|---|---|
+  | `1` | `2020-11-28` | `4` | `32` |
+  | `1` | `2020-11-28` | `55` | `200` |
+  | `1` | `2020-12-03` | `1` | `42` |
+  | `2` | `2020-11-28` | `3` | `33` |
+  | `2` | `2020-12-09` | `47` | `74` |
+- **Required Output:**
+  | `day` | `emp_id` | `total_time` |
+  |---|---|---|
+  | `2020-11-28` | `1` | `173` |
+  | `2020-11-28` | `2` | `30` |
+  | `2020-12-03` | `1` | `41` |
+  | `2020-12-09` | `2` | `27` |
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains multiple visits by the same employee on a single day as well as visits across multiple dates and employees, demonstrating how composite key grouping and session delta summation aggregate activity logs in relational databases.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employees`
+We are given an `Employees` table with schema:
+$$(\text{emp\_id} : \text{INT}, \text{event\_day} : \text{DATE}, \text{in\_time} : \text{INT}, \text{out\_time} : \text{INT})$$
+where $(\text{emp\_id}, \text{event\_day}, \text{in\_time})$ forms the primary key. Each entry represents a single office session starting at minute `in_time` and concluding at minute `out_time` on date `event_day`, with $0 < \text{in\_time} < \text{out\_time} \le 1440$.
 
-The objective is to compute `{"columns": ["day", "emp_id", "total_time"], "rows": [["2020-11-28", 1, 173], ["2020-11-28", 2, 30], ["2020-12-03", 1, 41], ["2020-12-09", 2, 27]]}` from `{"tables": {"Employees": [{"emp_id": 1, "event_day": "2020-11-28", "in_time": 4, "out_time": 32}, {"emp_id": 1, "event_day": "2020-11-28", "in_time": 55, "out_time": 200}, {"emp_id": 1, "event_day": "2020-12-03", "in_time": 1, "out_time": 42}, {"emp_id": 2, "event_day": "2020-11-28", "in_time": 3, "out_time": 33}, {"emp_id": 2, "event_day": "2020-12-09", "in_time": 47, "out_time": 74}]}}` while avoiding redundant calculations and unnecessary overhead.
+We seek to calculate the total time in minutes spent by each employee on each calendar day.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+An employee may enter and exit the office multiple times on the same date. A simple row-by-row inspection is insufficient; we must partition the dataset by the composite key $(\text{event\_day}, \text{emp\_id})$ and aggregate the elapsed durations $(\text{out\_time} - \text{in\_time})$ for each partition.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Relational Operator | Expression | Target Output Attribute |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Projection & Renaming | $\text{event\_day} \to \text{day}$ | `day` |
+| Grouping Key | Equivalence relation on $(\text{event\_day}, \text{emp\_id})$ | Partition Key |
+| Session Duration | $\Delta t = \text{out\_time} - \text{in\_time}$ | Row-level delta |
+| Aggregation | $\sum \Delta t \to \text{total\_time}$ | `total_time` |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Composite Partition Aggregation Theorem.**
+> Let $\mathcal{R}$ be the set of session records. The partition of $\mathcal{R}$ into equivalence classes under the relation:
+> $$(d_1, e_1) \sim (d_2, e_2) \iff (d_1 = d_2) \land (e_1 = e_2)$$
+> forms disjoint subsets $\mathcal{R}_{(d, e)}$.
+> Because sessions for a single employee on a given day are disjoint ($in_i < out_i \le in_{i+1}$), the total active duration is strictly additive:
+> $$\text{TotalTime}(d, e) = \sum_{r \in \mathcal{R}_{(d, e)}} (\text{out\_time}_r - \text{in\_time}_r)$$
+
+```mermaid
+flowchart TD
+    accTitle: Employee Daily Time Aggregation Pipeline
+    accDescr: Pipeline showing record ingestion, row duration calculation, composite grouping by date and employee ID, and duration summation.
+    A["Raw Employees Table"] --> B["Compute Duration per Row: out_time - in_time"]
+    B --> C["Group By Composite Key: (event_day, emp_id)"]
+    C --> D["Partition: ('2020-11-28', 1) -> Deltas: [28, 145] -> Sum = 173"]
+    C --> E["Partition: ('2020-11-28', 2) -> Deltas: [30] -> Sum = 30"]
+    C --> F["Partition: ('2020-12-03', 1) -> Deltas: [41] -> Sum = 41"]
+    C --> G["Partition: ('2020-12-09', 2) -> Deltas: [27] -> Sum = 27"]
+    D --> H["Project Final Result (day, emp_id, total_time)"]
+    E --> H
+    F --> H
+    G --> H
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Identify what one input row contributes
+We process the 5 input tuples:
+- $r_1: (\text{emp } 1, 2020-11-28, 4, 32)$
+- $r_2: (\text{emp } 1, 2020-11-28, 55, 200)$
+- $r_3: (\text{emp } 1, 2020-12-03, 1, 42)$
+- $r_4: (\text{emp } 2, 2020-11-28, 3, 33)$
+- $r_5: (\text{emp } 2, 2020-12-09, 47, 74)$
 
-Each row of `Employees` records one uninterrupted visit to the office. The visit begins at `in_time` and ends at `out_time`, measured as minute positions within the same `event_day`. Because `in_time < out_time`, the duration contributed by that row is exactly:
+### Step 1: Calculate Individual Session Durations
 
-$$
-\texttt{out\_time}-\texttt{in\_time}.
-$$
-
-The task is not asking for one result per visit. It asks for one result per employee per day, and an employee may have several visits on the same day. Therefore the durations of rows that share both `emp_id` and `event_day` must be added together.
-
-The exact SQL solution expresses this in a single aggregation query:
-
-`SUM(out_time - in_time)` calculates and accumulates the row durations, while `GROUP BY 1, 2` partitions rows according to the first two expressions in the `SELECT` list.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"emp_id": 1, "event_day": "2020-11-28", "in_time": 4, "out_time": 32}, {"emp_id": 1, "event_day": "2020-11-28", "in_time": 55, "out_time": 200}, {"emp_id": 1, "event_day": "2020-12-03", "in_time": 1, "out_time": 42}, {"emp_id": 2, "event_day": "2020-11-28", "in_time": 3, "out_time": 33}, {"emp_id": 2, "event_day": "2020-12-09", "in_time": 47, "out_time": 74}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+For each row, we subtract `in_time` from `out_time`:
+- $r_1: 32 - 4 = 28$ minutes
+- $r_2: 200 - 55 = 145$ minutes
+- $r_3: 42 - 1 = 41$ minutes
+- $r_4: 33 - 3 = 30$ minutes
+- $r_5: 74 - 47 = 27$ minutes
 
 ---
 
-### Step 2: Understand the output columns before grouping
+### Step 2: Form Composite Partitions by $(\text{event\_day}, \text{emp\_id})$
 
-The first selected expression is `event_day AS day`. The stored date is preserved, but the result column receives the required name `day`. The second selected expression is `emp_id`. The third is the aggregate `SUM(out_time - in_time) AS total_time`.
+1. **Partition $P_1$: $(\text{day} = 2020-11-28, \text{emp\_id} = 1)$:**
+   - Sessions included: $r_1$ and $r_2$
+   - Durations: $[28, 145]$
+   - Sum: $28 + 145 = \mathbf{173}$
 
-SQL ordinal grouping makes `GROUP BY 1, 2` refer to those first and second selected expressions. In this query, that means grouping by `event_day` and `emp_id`. It does not mean grouping by literal numeric values one and two, and it does not include `total_time` in the key.
+2. **Partition $P_2$: $(\text{day} = 2020-11-28, \text{emp\_id} = 2)$:**
+   - Sessions included: $r_4$
+   - Durations: $[30]$
+   - Sum: $\mathbf{30}$
 
-Using both key columns is essential. Grouping only by employee would incorrectly combine visits from different days. Grouping only by day would combine different employees. The pair `(event_day, emp_id)` describes exactly one requested output group.
+3. **Partition $P_3$: $(\text{day} = 2020-12-03, \text{emp\_id} = 1)$:**
+   - Sessions included: $r_3$
+   - Durations: $[41]$
+   - Sum: $\mathbf{41}$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+4. **Partition $P_4$: $(\text{day} = 2020-12-09, \text{emp\_id} = 2)$:**
+   - Sessions included: $r_5$
+   - Durations: $[27]$
+   - Sum: $\mathbf{27}$
 
 ---
 
-### Step 3: How aggregation processes a group
+### Step 3: Projection of Result Table
 
-Conceptually, the database begins with an empty accumulator for every distinct employee-day pair. For each input row, it computes the duration and adds it to the accumulator associated with that row's pair.
-
-For employee one on 2020-11-28 in the example, the two row contributions are:
-
-- `32 - 4 = 28` minutes.
-- `200 - 55 = 145` minutes.
-
-Both rows have the same day and employee identifier, so `SUM` combines them into `28 + 145 = 173`. The visit on 2020-12-03 belongs to a different key and therefore produces a separate total of 41. Rows belonging to employee two use different keys even when the day matches employee one's day.
-
-The guarantee that visits do not overlap is useful domain information, but the query does not need interval merging. The requested definition explicitly says that the time for each entry is `out_time - in_time`, and non-overlap guarantees that summing these durations does not double-count office time.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["day", "emp_id", "total_time"], "rows": [["2020-11-28", 1, 173], ["2020-11-28", 2, 30], ["2020-12-03", 1, 41], ["2020-12-09", 2, 27]]}` |
+The resulting 4 partitions are projected into the output schema:
+1. `("2020-11-28", 1, 173)`
+2. `("2020-11-28", 2, 30)`
+3. `("2020-12-03", 1, 41)`
+4. `("2020-12-09", 2, 27)`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Record ID | Date | Employee | Interval $[in, out]$ | Row Duration | Assigned Partition $(day, emp)$ | Partition Cumulative Sum |
+|---|---|---|---|---|---|---|
+| $r_1$ | `2020-11-28` | $1$ | $[4, 32]$ | $28$ | $(2020-11-28, 1)$ | $28$ |
+| $r_2$ | `2020-11-28` | $1$ | $[55, 200]$ | $145$ | $(2020-11-28, 1)$ | $28 + 145 = \mathbf{173}$ |
+| $r_3$ | `2020-12-03` | $1$ | $[1, 42]$ | $41$ | $(2020-12-03, 1)$ | $\mathbf{41}$ |
+| $r_4$ | `2020-11-28` | $2$ | $[3, 33]$ | $30$ | $(2020-11-28, 2)$ | $\mathbf{30}$ |
+| $r_5$ | `2020-12-09` | $2$ | $[47, 74]$ | $27$ | $(2020-12-09, 2)$ | $\mathbf{27}$ |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Feature | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"emp_id": 1, "event_day": "2020-11-28", "in_time": 4, "out_time": 32}, {"emp_id": 1, "event_day": "2020-11-28", "in_time": 55, "out_time": 200}, {"emp_id": 1, "event_day": "2020-12-03", "in_time": 1, "out_time": 42}, {"emp_id": 2, "event_day": "2020-11-28", "in_time": 3, "out_time": 33}, {"emp_id": 2, "event_day": "2020-12-09", "in_time": 47, "out_time": 74}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["day", "emp_id", "total_time"], "rows": [["2020-11-28", 1, 173], ["2020-11-28", 2, 30], ["2020-12-03", 1, 41], ["2020-12-09", 2, 27]]}` | Verified |
+| Single Visit per Day | Every employee visits once | Total time equals that single session duration | Partition has size 1; $\text{SUM}(\Delta t) = \Delta t$. |
+| Many Short Visits | Same employee enters and leaves 10 times | Accurate aggregate sum | Hash aggregation accumulates all 10 deltas cleanly. |
+| Boundary Times | Session starts at minute 1 and ends at 1440 | $1439$ minutes | Valid range: $1440 - 1 = 1439$. |
+| Disordered Input Rows | Rows sorted arbitrarily | Identical grouped sums | Hash-based grouping is independent of input physical row order. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Composite Key Integrity:**
+   Grouping by both `event_day` and `emp_id` prevents cross-day accumulation or cross-employee conflation.
+2. **Column Aliasing:**
+   Selecting `event_day AS day` renames the attribute to match the specification without altering underlying data values.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit grouping names:** `GROUP BY event_day, emp_id` is equivalent here and can be safer during query maintenance because reordering the `SELECT` list cannot silently change its meaning.
-- **Window function:** `SUM(...) OVER (PARTITION BY ...)` would repeat a daily total on every visit row unless followed by deduplication, so ordinary grouping is simpler.
-- **Correlated subquery:** Recomputing the sum for each employee-day pair is more verbose and may repeatedly scan the same rows.
-- **Application-side aggregation:** Fetching all visits and grouping them in application code moves work and data transfer out of the database without improving the result.
-- **Several visits on one day:** All durations for the same employee-day key are added into one row.
-- **Same day, different employees:** `emp_id` keeps their totals separate.
-- **Same employee, different days:** `event_day` keeps their totals separate.
-- **Single visit:** Its group total is simply `out_time - in_time`.
-- **No overlapping events:** Direct summation is valid; interval union or overlap correction is unnecessary.
-- **Boundary minute values:** Values from 1 through 1440 are ordinary integers, and the strict endpoint order keeps every duration positive.
-- **Output order:** Omitting `ORDER BY` is intentional because any row order is accepted.
-- **Alias requirement:** `event_day AS day` supplies the requested result-column name without changing the stored date values.
-- **Ordinal syntax:** `GROUP BY 1, 2` is concise but depends on MySQL's interpretation of select-list positions.
-- **Primary key semantics:** Different `in_time` values allow multiple rows in one employee-day group, which is why aggregation remains necessary.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(G)$. Let $R$ be the number of input rows and $G$ the number of distinct `(event_day, emp_id)` groups. Conceptually, the database reads each row, computes one constant-time subtraction, and updates one group accumulator. With hash aggregation, this is expected $O(R)$ time and $O(G)$ working space, matching the manifest.
-- **Auxiliary Space Complexity:** $O(G)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$ where $N$ is the number of rows in `Employees`. A single linear table scan hashes tuples into an in-memory hash aggregation table in $\mathcal{O}(1)$ average time per record.
+- **Space Complexity:** $\mathcal{O}(P)$ auxiliary memory, where $P \le N$ is the number of unique $(\text{event\_day}, \text{emp\_id})$ pairs.

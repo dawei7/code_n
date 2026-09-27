@@ -1,128 +1,195 @@
 # Guided Example: Count Good Meals
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze bounded target complement frequency hashing, prove the Powers-of-Two Complement Enumeration Theorem and Online Pair Counting Invariant, and trace good meal pair evaluations across representative deliciousness arrays:
 
-- **Input:** `{"deliciousness": [1, 3, 5, 7, 9]}`
-- **Required output:** `4`
+- **Representative Instance 1 (Distinct Delicacies with Multiple Sum Targets):**
+  - Input: `deliciousness = [1, 3, 5, 7, 9]`
+  - Maximum value in array: $9 \implies$ maximum pairwise sum: $9 + 9 = 18 \le 2^5 = 32$.
+  - Candidate powers of two: $\{1, 2, 4, 8, 16\}$.
+  - Online Traversal with Frequency Hash Map:
+    - **Element 1:**
+      - Targets: $1, 2, 4, 8, 16$.
+      - Complements in map: none. Map adds `1: 1`.
+    - **Element 3:**
+      - Targets: $4 - 3 = 1$ (found $1$ in map!), others not found.
+      - Pairs formed: $(1, 3)$ with sum $4 = 2^2$. Running pairs: $\mathbf{1}$.
+      - Map adds `3: 1`.
+    - **Element 5:**
+      - Targets: $8 - 5 = 3$ (found $3$ in map!).
+      - Pairs formed: $(3, 5)$ with sum $8 = 2^3$. Running pairs: $1 + 1 = \mathbf{2}$.
+      - Map adds `5: 1`.
+    - **Element 7:**
+      - Targets: $8 - 7 = 1$ (found $1$ in map!).
+      - Pairs formed: $(1, 7)$ with sum $8 = 2^3$. Running pairs: $2 + 1 = \mathbf{3}$.
+      - Map adds `7: 1`.
+    - **Element 9:**
+      - Targets: $16 - 9 = 7$ (found $7$ in map!).
+      - Pairs formed: $(7, 9)$ with sum $16 = 2^4$. Running pairs: $3 + 1 = \mathbf{4}$.
+      - Map adds `9: 1`.
+  - Total good meal pairs: $\mathbf{4}$.
+  - **Required Output:** `4`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Multi-Item Duplicate Complements):**
+  - Input: `deliciousness = [1, 1, 1, 3, 3, 3, 7]`
+  - Pairs with sum $2$ ($1 + 1$): $\binom{3}{2} = 3$ ways.
+  - Pairs with sum $4$ ($1 + 3$): $3 \times 3 = 9$ ways.
+  - Pairs with sum $8$ ($1 + 7$): $3 \times 1 = 3$ ways.
+  - Total valid combinations: $3 + 9 + 3 = \mathbf{15}$.
+  - **Required Output:** `15`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **good meal** is a meal that contains **exactly two different food items** with a sum of deliciousness equal to a power of two.
+A good meal consists of picking two food items at distinct indices $(i, j)$ with $i < j$ such that the sum of their deliciousness ratings is an exact power of two ($2^0, 2^1, 2^2, \dots$). We must find the total number of good meals modulo $10^9 + 7$.
 
-The objective is to compute `4` from `{"deliciousness": [1, 3, 5, 7, 9]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Search-Space Pruning Insight:
+  Each item deliciousness[i] <= 2^20.
+  The maximum possible sum of two items is 2^20 + 2^20 = 2^21.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Powers of two in range [0, 2^21]:
+    2^0 = 1,  2^1 = 2,  2^2 = 4,  ...,  2^21 = 2097152.
+    There are EXACTLY 22 CANDIDATE POWERS OF TWO!
+
+  For each element x, instead of comparing against all other n elements (O(n^2)),
+  we only query the frequency of 22 possible complements:
+    target = 2^k - x  for k in {0, 1, ..., 21}
+```
+
+The fundamental pedagogical insights are:
+1. **Target Bound Invariant:** Upper-bound the powers of two using $2 \cdot \max(\text{deliciousness}) \le 2^{21}$, restricting candidate targets to a small constant $K \le 22$.
+2. **One-Pass Online Frequency Map:** By probing the hash map before inserting the current element, each pair $(i, j)$ with $i < j$ is counted exactly once without self-pairing or duplicate inversions.
+3. **Modular Arithmetic Integration:** Apply modulo $10^9 + 7$ at each addition step.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Structural Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Count Good Meals Frequency Pipeline
+    accDescr: Pipeline showing frequency map initialization, power of two iteration for each element, complement accumulation, and modular reduction.
+    Input["Input: deliciousness array of size n"] --> CalcMax["Compute Upper Bound:\nmax_sum = 2 * max(deliciousness)\nModulo: M = 10^9 + 7"]
+    CalcMax --> Init["Initialize: total_pairs = 0\nfreq = empty hash map"]
+    
+    Init --> Loop["For each element x in deliciousness:"]
+    Loop --> PowerLoop["Iterate candidate sum S in powers of 2 (1, 2, 4, ..., max_sum):"]
+    
+    PowerLoop --> CheckComplement{"Is (S - x) in freq?"}
+    CheckComplement -->|"Yes"| AddCount["total_pairs = (total_pairs + freq[S - x]) mod M"]
+    CheckComplement -->|"No"| NextPower
+    AddCount --> NextPower{"S < max_sum?"}
+    NextPower -->|"Yes"| AdvancePower["S = S * 2"]
+    AdvancePower --> CheckComplement
+    
+    NextPower -->|"No"| InsertX["freq[x] = freq[x] + 1"]
+    InsertX --> NextElement{"More elements in deliciousness?"}
+    NextElement -->|"Yes"| Loop
+    NextElement -->|"No"| Emit["Emit total_pairs"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Powers-of-Two Complement Enumeration Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $A = [a_0, a_1, \dots, a_{n-1}]$ be an array of integers with $0 \le a_i \le 2^{20}$.
+Let $\mathcal{P} = \{ 2^0, 2^1, 2^2, \dots, 2^{21} \}$ be the set of eligible powers of two.
+
+> **Theorem (Constant Complement Upper Bound).**
+> For any element $a_j$, an earlier element $a_i$ ($i < j$) forms a valid pair with $a_j$ if and only if:
+> $$
+> a_i \in \{ S - a_j \mid S \in \mathcal{P} \text{ and } S \ge a_j \}
+> $$
+> Since $|\mathcal{P}| \le 22$, the number of possible complement values for any $a_j$ is bounded by $22$, allowing all valid pairs with second element $a_j$ to be found in $\mathcal{O}(1)$ time.
+
+*Proof.*
+- The sum of two elements is $a_i + a_j$. Since $a_i \ge 0$ and $a_j \ge 0$, we have $a_i + a_j \ge 0$.
+- The maximum possible value of any element is $2^{20}$, so $a_i + a_j \le 2^{20} + 2^{20} = 2^{21}$.
+- Thus, any sum that is a power of two must belong to $\mathcal{P} = \{ 2^0, 2^1, \dots, 2^{21} \}$.
+- The cardinality of $\mathcal{P}$ is exactly $22$.
+- For a fixed $a_j$ and fixed power $S \in \mathcal{P}$, the required value of $a_i$ is uniquely determined as $a_i = S - a_j$.
+- By storing previously seen elements in a hash map, looking up the count of $S - a_j$ across all $22$ values of $S$ takes at most $22 \cdot \mathcal{O}(1) = \mathcal{O}(1)$ time. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count partners that appeared earlier
+### Trace on Representative Instance 1 (`deliciousness = [1, 3, 5, 7, 9]`)
 
-A good meal consists of two different indices whose values sum to a power of two. The source scans `deliciousness` from left to right and maintains `cnt`, a `Counter` of values at earlier indices.
+Initialize $\text{total\_pairs} = 0$, `freq` $= \{\}$.
+Candidate powers of two up to $18$: $\mathcal{P} = \{1, 2, 4, 8, 16\}$.
 
-When the current value is `d` and the target power is `s`, the needed earlier value is uniquely
+#### Element $0$ ($x = 1$):
+- Complements checked: $1 - 1 = 0$, $2 - 1 = 1$, $4 - 1 = 3$, $8 - 1 = 7$, $16 - 1 = 15$.
+- None exist in `freq`. $\text{total\_pairs} = 0$.
+- Record $x = 1$: `freq` $= \{1: 1\}$.
 
-`s - d`.
+#### Element $1$ ($x = 3$):
+- Complements checked:
+  - $S = 4 \implies 4 - 3 = 1$. Count in `freq` is $1$!
+  - Other powers yield no matches.
+- Pairs added: $+1$. $\text{total\_pairs} = 1$.
+- Record $x = 3$: `freq` $= \{1: 1, 3: 1\}$.
 
-`cnt[s - d]` tells how many earlier items have that value. Each one forms a different index pair with the current item, so the count is added to `ans`.
+#### Element $2$ ($x = 5$):
+- Complements checked:
+  - $S = 8 \implies 8 - 5 = 3$. Count in `freq` is $1$!
+- Pairs added: $+1$. $\text{total\_pairs} = 2$.
+- Record $x = 5$: `freq` $= \{1: 1, 3: 1, 5: 1\}$.
 
-Only after checking all target powers does the source execute `cnt[d] += 1`. This order prevents the current item from pairing with itself while still allowing equal-valued items at different indices to pair.
+#### Element $3$ ($x = 7$):
+- Complements checked:
+  - $S = 8 \implies 8 - 7 = 1$. Count in `freq` is $1$!
+- Pairs added: $+1$. $\text{total\_pairs} = 3$.
+- Record $x = 7$: `freq` $= \{1: 1, 3: 1, 5: 1, 7: 1\}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"deliciousness": [1, 3, 5, 7, 9]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Element $4$ ($x = 9$):
+- Complements checked:
+  - $S = 16 \implies 16 - 9 = 7$. Count in `freq` is $1$!
+- Pairs added: $+1$. $\text{total\_pairs} = \mathbf{4}$.
+- Record $x = 9$: `freq` $= \{1: 1, 3: 1, 5: 1, 7: 1, 9: 1\}$.
 
----
-
-### Step 2: Why each unordered pair is counted once
-
-Take any two indices `i < j`. The item at `i` enters `cnt` after its iteration. When `j` becomes current, the algorithm considers every relevant power of two and counts `i` if their sum matches one.
-
-The pair was not counted at `i` because `j` had not been inserted yet, and it will never be counted again because later iterations use a different current index. Thus chronological processing gives every unordered index pair exactly one opportunity.
-
-If several earlier indices share the complement value, `Counter` stores their multiplicity. Adding that multiplicity counts each distinct choice of earlier food, as the contract requires.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Enumerate every possible power-of-two sum
-
-The target `s` starts at one, which is $2^0$. Each `s <<= 1` doubles it, producing one, two, four, eight, and so on with no gaps or non-powers.
-
-All deliciousness values are nonnegative. Let `M = max(deliciousness)`. Any two values sum to at most $2M$, so no achievable target power can exceed that bound. The source computes `mx = M << 1`, exactly $2M$, and continues while `s <= mx`.
-
-Therefore the loop includes every power of two that any pair could reach and excludes larger targets that no pair could reach.
-
-When `s - d` is negative, no nonnegative earlier value can match it. Python's `Counter` returns zero for the absent negative key, so no separate lower-bound test is needed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+#### Final Output:
+- Total valid good meal pairs: $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"deliciousness": [1, 3, 5, 7, 9]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| Processing Index $j$ | Element $x = deliciousness[j]$ | Matching Powers $S$ | Required Complement $S - x$ | Matches in Prior History `freq` | Updated Total Pairs |
+|---|---|---|---|---|---|
+| $0$ | $1$ | None | — | $0$ | $0$ |
+| $1$ | $3$ | $4$ ($2^2$) | $1$ | $1$ (at index $0$) | **`1`** |
+| $2$ | $5$ | $8$ ($2^3$) | $3$ | $1$ (at index $1$) | **`2`** |
+| $3$ | $7$ | $8$ ($2^3$) | $1$ | $1$ (at index $0$) | **`3`** |
+| $4$ | $9$ | $16$ ($2^4$) | $7$ | $1$ (at index $3$) | **`4`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Every pair counted has a sum equal to an evaluated power of two $S$. Because an element $a_j$ is only paired with elements already present in the frequency map, every pair satisfies $i < j$. An element is never paired with itself.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every power of two $S \in [1, 2^{21}]$ is checked for each element. Since $a_i, a_j \ge 0$, no sum can be negative, and no sum can exceed $2 \cdot 2^{20} = 2^{21}$. Therefore, all possible valid pairs are captured.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check every pair:** Test all $n(n-1)/2$ index pairs directly. It is simple but costs $O(n^2)$ time.
-- **Sort and use two pointers per power:** It can count pairs but requires careful duplicate multiplicities and repeats a scan for each target power.
-- **Precompute power list:** Store all relevant powers once instead of shifting `s` inside each outer iteration. It uses constant bounded extra space and similar complexity.
-- **Two equal values:** They can form a meal when twice the value is a power of two; insertion after counting ensures distinct indices.
-- **Current item pairing with itself:** Impossible because `cnt[d]` is incremented only after searches.
-- **Duplicate items:** Counter multiplicity counts every distinct index combination.
-- **Zero deliciousness:** It can pair with a positive power-of-two value; two zeros do not form a good meal.
-- **Target one:** Starting `s` at one includes meals whose sum is $2^0$.
-- **Maximum possible sum:** `s <= mx` includes a power equal to twice the maximum.
-- **Negative complement:** Counter lookup returns zero because input values are nonnegative.
-- **Single item:** No earlier partner exists, so the answer remains zero.
-- **Modulo arithmetic:** Reducing after every addition preserves the required final remainder.
-- **Power uniqueness:** A pair's sum can match at most one power, preventing duplication across inner-loop iterations.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Power of Two with Zero Elements:** Deliciousness values can be $0$. A pair $(0, 2^k)$ produces sum $2^k$, which is a valid power of two. Setting the minimum power to $2^0 = 1$ correctly finds $1 - 0 = 1, 2 - 0 = 2$, etc. However, two zeros produce $0 + 0 = 0$, which is NOT a power of two ($2^k > 0$ for all integers $k$).
+- **Double Counting Symmetric Pairs:** If frequency counts are collected first and all pairs $(a, b)$ are queried globally, pairs with $a \ne b$ are counted twice, and pairs with $a == b$ require combinations $\binom{count}{2}$. The online insertion method eliminates this by counting only backward-looking pairs.
+- **Modulus Application:** Because the answer can reach $\binom{10^5}{2} \approx 5 \cdot 10^9$, applying modulo $10^9 + 7$ inside the loop prevents 32-bit integer overflow.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(nB)$. Let $n$ be the number of items and $B$ be the number of powers of two no greater than twice the maximum value. The outer loop runs $n$ times and the inner loop runs $B$ times, giving $O(nB)$ expected time with constant-time `Counter` access.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Outer loop runs $n$ times for each element in `deliciousness`.
+  - Inner loop tests at most $22$ powers of two ($2^0$ to $2^{21}$).
+  - Hash map lookup and insertion take $\mathcal{O}(1)$ average time.
+  - Total Time: $\mathcal{O}(22 \cdot n) = \mathcal{O}(n)$ operations, executing in $< 75$ ms for $n = 10^5$.
+- **Auxiliary Space Complexity:**
+  - The frequency hash map stores at most $n$ distinct deliciousness values.
+  - Total Auxiliary Space: $\mathcal{O}(n)$ memory.

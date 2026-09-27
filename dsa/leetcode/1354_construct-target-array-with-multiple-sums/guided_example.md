@@ -1,127 +1,221 @@
 # Guided Example: Construct Target Array With Multiple Sums
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal reverse Euclidean heap simulation on a representative problem instance:
 
-- **Input:** `{"target": [9, 3, 5]}`
+- **Input:** `target = [9, 3, 5]`
 - **Required output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because each reduction step strictly updates a different array element ($9 \to 1$, $5 \to 1$, $3 \to 1$), demonstrating the deterministic backward reconstruction of the base configuration `[1, 1, 1]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `target` of n integers. From a starting array `arr` consisting of `n` 1's, you may perform the following procedure :
+We begin with an array of $n$ ones (`[1, 1, ..., 1]`). In each forward step, we may choose any element and replace it with the sum of all elements in the current array. Given a `target` array, we must determine if `target` can be reached through any sequence of valid operations.
 
-The objective is to compute `true` from `{"target": [9, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
+Simulating forward is intractable because branching choices explode exponentially. However, the reverse direction is completely deterministic:
+- In any forward step replacing an element with the sum of all elements (which are all positive $\ge 1$), the replaced element becomes strictly larger than every other element in the array.
+- Therefore, in the reverse direction, the element that was last replaced **must** be the current maximum element of the array.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For `target = [9, 3, 5]`:
+- Step 1: Maximum is $9$. The other elements sum to $3 + 5 = 8$. Prior value was $9 - 8 = 1$. Array becomes `[1, 3, 5]`.
+- Step 2: Maximum is $5$. The other elements sum to $1 + 3 = 4$. Prior value was $5 - 4 = 1$. Array becomes `[1, 3, 1]`.
+- Step 3: Maximum is $3$. The other elements sum to $1 + 1 = 2$. Prior value was $3 - 2 = 1$. Array becomes `[1, 1, 1]`.
+- Terminal state: All elements equal $1$. Output is `true`.
+
+The primary teaching goal is to model the problem backwards as an inverted Euclidean division algorithm, using a max-heap to repeatedly locate and reduce the maximal value.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S = \sum_{i=1}^n A[i]$ be the total sum of the array, and let $x = \max(A)$ be the largest element.
+The sum of all other elements is:
+$$
+\text{rest} = S - x
+$$
+In the forward step that created $x$, some previous value $x_{\text{prev}} \ge 1$ was replaced by the total array sum $(x_{\text{prev}} + \text{rest})$. Therefore:
+$$
+x = x_{\text{prev}} + \text{rest} \implies x_{\text{prev}} = x - \text{rest}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+If $x \gg \text{rest}$, subtracting $\text{rest}$ one time leaves $x_{\text{prev}}$ as the largest element again. We accelerate multiple subtractions using the modulo operator:
+$$
+x_{\text{prev}} = x \pmod{\text{rest}}
+$$
+
+```
+Forward:   [1, 1, 1] -> (sum=3, replace 1) -> [1, 3, 1] -> (sum=5, replace 1) -> [1, 3, 5] -> (sum=9, replace 1) -> [9, 3, 5]
+Reverse:   [9, 3, 5] --(9 % 8 = 1)--> [1, 3, 5] --(5 % 4 = 1)--> [1, 3, 1] --(3 % 2 = 1)--> [1, 1, 1] (SUCCESS)
+```
+
+We track state using the following parameters:
+
+| State Parameter | Description | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Sum ($S$) | Sum of all elements currently in the array | $9 + 3 + 5 = 17$ |
+| Maximum Element ($x$) | The largest integer extracted from the max-heap | $9$ |
+| Complementary Sum ($\text{rest}$) | Sum of all other elements ($S - x$) | $17 - 9 = 8$ |
+| Reduced Element ($x_{\text{prev}}$) | Inverted prior value: $x \pmod{\text{rest}}$ | $9 \pmod 8 = 1$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At every reverse step, the largest element $x$ is the unique value that could have been modified in the preceding forward transition. If $x \le \text{rest}$ or $x \pmod{\text{rest}} = 0$ (with $\text{rest} > 1$), no valid positive predecessor exists, proving constructibility impossible. If $x = 1$ or $\text{rest} = 1$, the array is provably reducible to all ones.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Recover the previous value
+### Step 1: Inverting Maximum Element $9$
 
-Let `mx` be the largest current value, let `s` be the total array sum, and let `t = s - mx` be the sum of all other values. Immediately before the last forward operation, the changed position held some positive value `prev`. The forward operation replaced it with the then-total sum:
+- Initial state: `target = [9, 3, 5]`.
+- Total sum: $S = 9 + 3 + 5 = 17$.
+- Extract maximum: $x = 9$.
+- Compute remainder sum: $\text{rest} = S - x = 17 - 9 = 8$.
+- Boundary checks:
+  - Is $x = 1$? No ($9 \ne 1$).
+  - Is $\text{rest} = 1$? No ($8 \ne 1$).
+  - Is $\text{rest} = 0$ or $x \le \text{rest}$? No ($8 > 0$ and $9 > 8$).
+- Compute predecessor:
+  $$
+  x_{\text{prev}} = 9 \pmod 8 = 1
+  $$
+- Update total sum: $S_{\text{new}} = \text{rest} + x_{\text{prev}} = 8 + 1 = 9$.
+- Array after step: `[1, 3, 5]`.
 
-$$
-mx = prev + t.
-$$
-
-One reverse step would give `prev = mx - t`. The other values stay unchanged.
-
-If `t == 0`, the array has one element and its value exceeds one, so it can never have changed from the starting one. If `mx - t < 1`, even one reverse subtraction would produce a nonpositive value. Both cases are impossible, and the method returns false.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Parameter | State Before Step | Applied Rule | State After Step |
 |---|---|---|---|
-| Input Slice | `{"target": [9, 3, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Max Value ($x$) | $9$ | Invert via $x \pmod{\text{rest}}$ | $1$ |
+| Remainder ($\text{rest}$) | $8$ | Unchanged components | $8$ |
+| Total Sum ($S$) | $17$ | $S \gets \text{rest} + x_{\text{prev}}$ | $9$ |
+| Heap Elements | $\{9, 5, 3\}$ | Push predecessor $1$ | $\{5, 3, 1\}$ |
 
 ---
 
-### Step 2: Undo many identical subtractions with a modulus
+### Step 2: Inverting Maximum Element $5$
 
-When `mx` is much larger than `t`, it may remain the largest after one reverse step. Repeated reverse steps subtract the same unchanged sum `t`:
+- Current state: `target = [1, 3, 5]`.
+- Total sum: $S = 9$.
+- Extract maximum: $x = 5$.
+- Compute remainder sum: $\text{rest} = S - x = 9 - 5 = 4$.
+- Boundary checks:
+  - $x \ne 1$ and $\text{rest} \ne 1$.
+  - $\text{rest} = 4 > 0$ and $x = 5 > 4$. Valid.
+- Compute predecessor:
+  $$
+  x_{\text{prev}} = 5 \pmod 4 = 1
+  $$
+- Update total sum: $S_{\text{new}} = \text{rest} + x_{\text{prev}} = 4 + 1 = 5$.
+- Array after step: `[1, 3, 1]`.
 
-$$
-mx,\ mx-t,\ mx-2t,\ldots
-$$
-
-Computing `mx % t` jumps over all those repeated steps at once. The source uses `x = (mx % t) or t`. A nonzero remainder is the last positive value after bulk subtraction. When the remainder is zero, `t` is used instead of zero so the reverse state remains positive. If that state is not actually viable, a later comparison where the maximum is no greater than the rest rejects it. When `t == 1`, choosing one is exactly the reachable end of repeatedly subtracting one.
-
-For example, if `mx = 43` and the other values sum to twenty-one, one reverse step produces twenty-two. Here the modulus is one because two subtractions would pass below positivity, and bulk reversal eventually reconstructs the forced chain.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Parameter | State Before Step | Applied Rule | State After Step |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Max Value ($x$) | $5$ | Invert via $x \pmod{\text{rest}}$ | $1$ |
+| Remainder ($\text{rest}$) | $4$ | Unchanged components | $4$ |
+| Total Sum ($S$) | $9$ | $S \gets \text{rest} + x_{\text{prev}}$ | $5$ |
+| Heap Elements | $\{5, 3, 1\}$ | Push predecessor $1$ | $\{3, 1, 1\}$ |
 
 ---
 
-### Step 3: Maintain a max-heap with negative values
+### Step 3: Inverting Maximum Element $3$
 
-Python’s heap is a min-heap, so `pq = [-x for x in target]` stores negated values. The smallest negative value corresponds to the largest original value. `heapify` builds the heap, and `-pq[0]` reads the maximum.
+- Current state: `target = [1, 3, 1]`.
+- Total sum: $S = 5$.
+- Extract maximum: $x = 3$.
+- Compute remainder sum: $\text{rest} = S - x = 5 - 3 = 2$.
+- Boundary checks:
+  - $x \ne 1$ and $\text{rest} \ne 1$.
+  - $\text{rest} = 2 > 0$ and $x = 3 > 2$. Valid.
+- Compute predecessor:
+  $$
+  x_{\text{prev}} = 3 \pmod 2 = 1
+  $$
+- Update total sum: $S_{\text{new}} = \text{rest} + x_{\text{prev}} = 2 + 1 = 3$.
+- Array after step: `[1, 1, 1]`.
 
-Each iteration pops that maximum, computes the earlier positive value `x`, pushes `-x`, and updates the total with `s = s - mx + x`. Updating the sum algebraically avoids rescanning the heap.
-
-The loop continues while the largest value exceeds one. All values are positive. Therefore, once the maximum is one, every value must be one, exactly the starting array, and the method returns true.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Parameter | State Before Step | Applied Rule | State After Step |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+| Max Value ($x$) | $3$ | Invert via $x \pmod{\text{rest}}$ | $1$ |
+| Remainder ($\text{rest}$) | $2$ | Unchanged components | $2$ |
+| Total Sum ($S$) | $5$ | $S \gets \text{rest} + x_{\text{prev}}$ | $3$ |
+| Heap Elements | $\{3, 1, 1\}$ | Push predecessor $1$ | $\{1, 1, 1\}$ |
+
+---
+
+### Step 4: Terminal Evaluation
+
+- Current heap maximum: $x = 1$.
+- Since the maximum element in the heap is $1$, all elements in the array must be $\le 1$.
+- Given all elements started $\ge 1$, the array has completely converged to `[1, 1, 1]`.
+- Return `true`.
+
+| Parameter | Observed State | Termination Trigger | Output |
+|---|---|---|---|
+| Heap Maximum | $x = 1$ | All elements reduced to $1$ | **`true`** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"target": [9, 3, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+Summary of the reverse reduction sequence:
+
+| Step | Array State | Total Sum ($S$) | Extracted Max ($x$) | Remainder ($\text{rest}$) | Modular Op: $x \pmod{\text{rest}}$ | New Predecessor | Next State |
+|---|---|---|---|---|---|---|---|
+| $1$ | `[9, 3, 5]` | $17$ | $9$ | $8$ | $9 \pmod 8$ | $1$ | `[1, 3, 5]` |
+| $2$ | `[1, 3, 5]` | $9$ | $5$ | $4$ | $5 \pmod 4$ | $1$ | `[1, 3, 1]` |
+| $3$ | `[1, 3, 1]` | $5$ | $3$ | $2$ | $3 \pmod 2$ | $1$ | `[1, 1, 1]` |
+| $4$ | `[1, 1, 1]` | $3$ | $1$ | — | Max is $1$ | Terminal | **`true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Determinism of Reverse Transitions
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+In the forward process, replacing any element with the sum of all elements results in a new value strictly greater than the sum of all other elements:
+$$
+S_{\text{new}} = x_{\text{new}} + \text{rest} \quad \text{where } x_{\text{new}} = x_{\text{old}} + \text{rest} > \text{rest}
+$$
+Since all other elements remain unchanged and strictly positive, $x_{\text{new}}$ is strictly the unique maximum element in the new array. Thus, moving backwards, there is never an ambiguous choice: only the current maximum element could have been altered in the immediately preceding step.
 
----
+### Logarithmic Euclidean Convergence
 
-## 6. Traps This Instance Exposes
+Instead of repeatedly subtracting $\text{rest}$ from $x$ (which would take $\mathcal{O}(x / \text{rest})$ steps), computing $x \pmod{\text{rest}}$ collapses all consecutive subtractions into a single step. Analogous to the Euclidean greatest common divisor algorithm, the value drops by at least a factor of $2$ every two steps, bounding total modular divisions by $\mathcal{O}(\log(\max(\text{target})))$.
 
-- **Forward search:** It branches over the replaced index at every step and is infeasible for large targets.
-- **Single subtraction per reverse step:** Correct in principle but pseudo-polynomial; an input such as one and one billion would require nearly one billion iterations.
-- **Sorted list instead of heap:** Repeatedly finding and replacing the maximum costs more than logarithmic time per step unless a suitable ordered structure is used.
-- **Single-element target:** Only `[1]` is reachable. A larger value gives `t == 0` and returns false.
-- **All ones:** The maximum is already one, so the loop is skipped and true is returned.
-- **Rest sum one:** Repeated subtraction can always reduce the maximum to one; the `or t` expression handles the zero remainder correctly.
-- **Maximum not larger than the rest:** The previous value would be nonpositive, so the target is impossible.
-- **Positive-value invariant:** Every forward sum and every unchanged entry is positive; a reverse value below one is decisive failure.
-- **Input preservation:** The method builds a separate negated heap and does not reorder or modify `target`.
-- **Tied maxima:** A valid nonterminal forward state cannot have an unchanged maximum large enough to make the forced predecessor nonpositive; the validation detects such impossible ties.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Asymptotic Complexity
+
+- **Time Complexity:** $\mathcal{O}(N + K \log N)$ where $N$ is array length and $K = \mathcal{O}(\log(\max(\text{target})))$ is the number of Euclidean modulo reduction steps. Initial heap construction takes $\mathcal{O}(N)$. Each heap extraction and re-insertion takes $\mathcal{O}(\log N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store elements in the max-heap.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n \log n \log M)$. Let $n$ be the array length and $M$ its initial maximum value.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Special Case $\text{rest} = 1$:** For inputs like `[1, 1000000000]`, $\text{rest} = 1$. The maximum can always be reduced down to $1$ by repeatedly subtracting $1$. Testing if $\text{rest} = 1$ and immediately returning `true` prevents invalid $x \pmod 1 = 0$ division results.
+- **Remainder Equal to Zero ($\text{rest} = 0$):** Occurs for single-element arrays (e.g. `[2]`). If $N = 1$ and `target[0] != 1`, it can never be produced from `[1]`, correctly failing with $\text{rest} = 0$.
+- **Exact Multiple ($x \pmod{\text{rest}} = 0$):** If $x$ is an exact multiple of $\text{rest}$ (e.g. `[2, 4]`, $x = 4, \text{rest} = 2$), $4 \pmod 2 = 0$. A value of $0$ is illegal because starting values are $1$. Hence, when $\text{rest} > 1$ and $x \pmod{\text{rest}} = 0$, the algorithm must immediately return `false`.
+- **Integer Overflow in Sum:** The sum of array elements can exceed $2^{31} - 1$. Accumulators must use 64-bit integer types to prevent arithmetic overflow.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Reverse Euclidean Construction Flowchart
+    accDescr: Step-by-step decision flow for determining if a target array can be reduced to all ones using reverse Euclidean modulo.
+
+    Start(["Build max-heap from target<br/>Compute total sum S"]) --> CheckMax{"Max element x == 1 ?"}
+    CheckMax -- "Yes (All 1s)" --> ReturnTrue(["Return true"])
+    CheckMax -- No --> CalcRest["rest = S - x"]
+    
+    CalcRest --> CheckRest1{"rest == 1 ?"}
+    CheckRest1 -- "Yes (Can step to 1)" --> ReturnTrue
+    CheckRest1 -- No --> CheckInvalid{"rest == 0 OR x <= rest ?"}
+    
+    CheckInvalid -- Yes --> ReturnFalse(["Return false"])
+    CheckInvalid -- No --> ModuloOp["prev = x % rest"]
+    
+    ModuloOp --> CheckZero{"prev == 0 ?"}
+    CheckZero -- Yes --> ReturnFalse
+    CheckZero -- No --> UpdateHeap["S = rest + prev<br/>Push prev into heap"]
+    UpdateHeap --> CheckMax
+```

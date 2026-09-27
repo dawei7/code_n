@@ -1,123 +1,122 @@
 # Guided Example: Parallel Courses III
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step topological dynamic programming (Critical Path Method) on a representative prerequisite graph:
 
-- **Input:** `{"n": 3, "relations": [[1, 3], [2, 3]], "time": [3, 2, 5]}`
-- **Required output:** `8`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** $n = 5$, $\text{relations} = [[1, 5], [2, 5], [3, 5], [3, 4], [4, 5]]$, $\text{time} = [1, 2, 3, 4, 5]$
+- **Expected Output:** $12$
 
 ---
 
-## 1. Instance & Teaching Goal
+## 1. Problem Overview & Representative Instance
 
-You are given an integer `n`, which indicates that there are `n` courses labeled from `1` to `n`. You are also given a 2D integer array `relations` where $\text{relations}[j] = [\text{prevCourse}_{j}, \text{nextCourse}_{j}]$ denotes that course $\text{prevCourse}_{j}$ has to be completed **before** course $\text{nextCourse}_{j}$ (prerequisite relationship). Furthermore, you are given a **0-indexed** integer array `time` where $\text{time}[i]$ denotes how many **months** it takes to complete the $(i+1)^th$ course.
+We are given $n$ courses labeled $1$ to $n$ and a set of directed dependencies where pair $[a, b]$ indicates that course $a$ must be completed before course $b$ can begin. Each course $i$ requires $\text{time}[i - 1]$ months to complete. Any number of courses can be taken concurrently, provided all prerequisites for each course have finished.
 
-The objective is to compute `8` from `{"n": 3, "relations": [[1, 3], [2, 3]], "time": [3, 2, 5]}` while avoiding redundant calculations and unnecessary overhead.
+The goal is to determine the **minimum total time** required to complete all $n$ courses.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart LR
+    accTitle: Course Prerequisite DAG and Critical Path
+    accDescr: Directed acyclic graph showing course dependencies and the critical path 3 to 4 to 5.
+    C1["Course 1 (t=1)"] --> C5["Course 5 (t=5)"]
+    C2["Course 2 (t=2)"] --> C5
+    C3["Course 3 (t=3)"] --> C5
+    C3 --> C4["Course 4 (t=4)"]
+    C4 --> C5
 
----
+    classDef normal fill:#f1f5f9,stroke:#475569,stroke-width:1px;
+    classDef critical fill:#fee2e2,stroke:#b91c1c,stroke-width:2px;
+    class C1,C2 normal;
+    class C3,C4,C5 critical;
+```
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Model prerequisites as a directed acyclic graph
-
-Each course is a vertex. Relation `[a,b]` creates a directed edge from prerequisite `a` to dependent course `b`.
-
-The source converts one-based labels to zero-based indices, appends `b-1` to `g[a-1]`, and increments `indeg[b-1]`. The indegree records how many prerequisites of each course have not yet been topologically processed.
-
-The graph is guaranteed acyclic, so every course can eventually enter a topological order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3, "relations": [[1, 3], [2, 3]], "time": [3, 2, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In this representative instance:
+- Courses $1, 2$, and $3$ have no prerequisites and start at month $0$ in parallel.
+- Course $4$ depends solely on Course $3$.
+- Course $5$ depends on Courses $1, 2, 3$, and $4$.
+- The total project duration is governed by the longest chain of sequential dependencies (the **critical path**): $3 \to 4 \to 5$, requiring $3 + 4 + 5 = 12$ months.
 
 ---
 
-### Step 2: Unlimited parallelism turns the objective into a critical path
+## 2. Theoretical Invariants & Critical Path Method
 
-Courses with satisfied prerequisites can run simultaneously. A dependent course cannot start until all its prerequisites finish, so its earliest start is the latest completion time among them.
+Because dependencies form a Directed Acyclic Graph (DAG) and unlimited courses can run in parallel:
+1. **Earliest Start Time:**
+   Course $j$ cannot start until all its prerequisite courses have completed:
+   $$\text{start}[j] = \max_{i \in \text{prereq}(j)} \text{finish}[i]$$
+   If a course has no prerequisites, $\text{start}[j] = 0$.
 
-Define `f[i]` as the earliest possible completion month of course `i`. For a source course with no prerequisites, it can start at month zero and finishes at `time[i]`.
+2. **Earliest Completion Time:**
+   Course $j$ completes at:
+   $$\text{finish}[j] = \text{start}[j] + \text{time}[j]$$
 
-For an edge from `i` to `j`, completing `j` through that prerequisite chain would take
+3. **Global Project Duration:**
+   All courses are complete once every individual course has finished:
+   $$\text{Total Duration} = \max_{1 \le j \le n} \text{finish}[j]$$
 
-`f[i] + time[j]`.
-
-Because all prerequisites must be finished, `f[j]` is the maximum of this value over every incoming prerequisite.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Initialize all immediately available courses
-
-The source scans `zip(indeg, time)`. Every course whose indegree is zero is placed in queue `q`, assigned `f[i]=time[i]`, and considered for global `ans`.
-
-All such courses can begin together at month zero. The queue order among them does not affect completion times because their dependency subgraphs are handled through maxima.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
+### Topological Ordering Invariant
+By processing vertices according to a topological sort (via Kahn's in-degree reduction algorithm):
+- When vertex $j$'s in-degree reaches $0$, every predecessor $i \in \text{prereq}(j)$ has already been fully processed.
+- Therefore, $\text{finish}[j]$ is complete, finalized, and will never increase again.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step State Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "relations": [[1, 3], [2, 3]], "time": [3, 2, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
+We index courses $0$ through $4$ (corresponding to courses $1$ through $5$).
+- Initial in-degrees: $\text{indeg} = [0, 0, 0, 1, 4]$.
+- Initial completion times: for in-degree $0$ nodes, $f[i] = \text{time}[i]$; for others, $f[i] = 0$.
+- Initial queue: $[0, 1, 2]$ (courses $1, 2, 3$).
 
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Memoized DFS:** Compute the longest duration path starting or ending at each course; also $O(N+M)$ but recursion depth can be large.
-- **Ordinary shortest path:** Wrong objective; prerequisites impose a longest critical path, not a shortest route.
-- **Sum all prerequisite finishes:** Incorrect because prerequisites run concurrently.
-- **No relations:** Every course starts at zero and the answer is the largest individual duration.
-- **One course:** Its own duration is the answer.
-- **Several source courses:** All are initialized and run in parallel.
-- **Several prerequisites:** Their maximum finish controls the dependent start.
-- **Several outgoing edges:** One completed course can unlock timing updates for many dependents.
-- **Duplicate relations:** Excluded by the contract; otherwise indegree and adjacency would both duplicate consistently but unnecessarily.
-- **Cycle:** Excluded by the DAG guarantee.
-- **Independent components:** They execute in parallel, and the slower component determines `ans`.
-- **Input preservation:** Only new graph and state arrays are mutated.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Step | Dequeued Course $i$ | Traversed Edge $i \to j$ | Completion Update $f[j] = \max(f[j], f[i] + \text{time}[j])$ | In-Degree Decrement $\text{indeg}[j]$ | Enqueued Node | Queue State |
+|---|---|---|---|---|---|---|
+| Init | — | — | $f[0]=1, f[1]=2, f[2]=3$ | — | — | $[0, 1, 2]$ |
+| 1 | $0$ (Course 1) | $0 \to 4$ | $f[4] = \max(0, 1 + 5) = 6$ | $\text{indeg}[4] = 4 - 1 = 3$ | None | $[1, 2]$ |
+| 2 | $1$ (Course 2) | $1 \to 4$ | $f[4] = \max(6, 2 + 5) = 7$ | $\text{indeg}[4] = 3 - 1 = 2$ | None | $[2]$ |
+| 3 | $2$ (Course 3) | $2 \to 3$ | $f[3] = \max(0, 3 + 4) = 7$ | $\text{indeg}[3] = 1 - 1 = 0$ | Enqueue $3$ | $[3]$ |
+| 4 | $2$ (Course 3) | $2 \to 4$ | $f[4] = \max(7, 3 + 5) = 8$ | $\text{indeg}[4] = 2 - 1 = 1$ | None | $[3]$ |
+| 5 | $3$ (Course 4) | $3 \to 4$ | $f[4] = \max(8, 7 + 5) = 12$ | $\text{indeg}[4] = 1 - 1 = 0$ | Enqueue $4$ | $[4]$ |
+| 6 | $4$ (Course 5) | None (Sink) | None | — | None | $[\,]$ (Empty) |
 
 ---
 
-## 7. Complexity Derivation
+## 4. Course Schedule & Timeline Summary
 
-- **Time Complexity:** $O(N+M)$. Let $N$ be the number of courses and $M$ the number of prerequisite relations. Graph construction takes $O(N+M)$ initialization time. Kahn's process enqueues each course once and scans each directed edge once, so total time is $O(N+M)$.
-- **Auxiliary Space Complexity:** $O(N+M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Below is the consolidated schedule detailing the earliest start and completion months for each course:
+
+| Course ID | Duration ($\text{time}$) | Prerequisites | Earliest Start Time $\max f[\text{prereq}]$ | Earliest Completion Time $f[i]$ | Active Time Window |
+|---|---|---|---|---|---|
+| Course 1 | $1$ | None | $0$ | $1$ | Month $[0, 1]$ |
+| Course 2 | $2$ | None | $0$ | $2$ | Month $[0, 2]$ |
+| Course 3 | $3$ | None | $0$ | $3$ | Month $[0, 3]$ |
+| Course 4 | $4$ | Course 3 | $3$ | $7$ | Month $[3, 7]$ |
+| Course 5 | $5$ | Courses 1, 2, 3, 4 | $\max(1, 2, 3, 7) = 7$ | **$12$** | Month $[7, 12]$ |
+
+The overall minimum time required to complete all courses is $\max(1, 2, 3, 7, 12) = 12$.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **DAG Property & Deadlock Freedom:**
+   The problem statement guarantees that prerequisite relations contain no directed cycles. Hence, at least one vertex has in-degree $0$ at all times until all vertices have been processed. The topological sort explores every course without getting stuck.
+2. **Optimal Substructure of Longest Path:**
+   Let $\text{dist}(u)$ be the longest path from any source to $u$. For any edge $u \to v$, $\text{dist}(v) \ge \text{dist}(u) + \text{weight}(v)$. Because relaxation is performed in topological order, by the time $v$ is dequeued, all incoming edges to $v$ have been relaxed. Thus $\text{finish}[v]$ is guaranteed to be optimal before $v$ relaxes its own outgoing edges.
+3. **Soundness of Unlimited Parallelism:**
+   Because there is no constraint on the number of courses that can be taken simultaneously, each course begins at the earliest possible instant when all its direct prerequisites have concluded.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Isolated Courses:** Courses with no prerequisites and no dependents must not be forgotten. Initializing the answer as the maximum of all independent course times ensures that a disconnected single course with long duration (e.g. duration $100$) correctly dictates the project length.
+- **Multiple Incoming Paths with Different Lengths:** Downstream nodes must wait for the slowest prerequisite, requiring $\max$, not sum. In the example, Course 5 has prerequisites finishing at months $1, 2, 3,$ and $7$; it must wait until month $7$.
+- **1-Indexed to 0-Indexed Offset:** Prerequisite relations are given with 1-based indexing, while array buffers are 0-based. Consistently mapping $a - 1$ and $b - 1$ prevents off-by-one out-of-bounds indexing.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(V + E)$ where $V = n$ is the number of courses and $E$ is the number of prerequisite relations.
+  Building the adjacency list and in-degree array inspects $E$ edges. Each vertex is enqueued and dequeued exactly once ($\mathcal{O}(V)$). Each directed edge is traversed exactly once during relaxation ($\mathcal{O}(E)$). Overall time is strictly linear in the size of the graph.
+- **Space Complexity:** $\mathcal{O}(V + E)$.
+  The adjacency list stores $E$ directed edges. The in-degree and completion time arrays store $V$ integers. The BFS queue holds at most $V$ vertices simultaneously.

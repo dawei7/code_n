@@ -1,99 +1,148 @@
 # Guided Example: Wildcard Matching
 
-We derive and execute the String, Dynamic Programming, Greedy, Recursion recurrence on a representative problem instance.
+We trace the step-by-step execution of 2D dynamic programming grid matching on a representative pattern instance:
 
-- **Input:** `{"s": "aa", "p": "a"}`
-- **Required output:** `false`
+- **Input:** $s = \text{"adceb"}$, $p = \text{"*a*b"}$
+- **Required output:** $\text{True}$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates wildcard wildcard expansions, handling `'?'` (single character wildcard) versus `'*'` (arbitrary sequence wildcard including empty sequence), base row empty-string matching, and the two-way transition rule for `'*'`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Wildcard Matching** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an input string $s$ of length $M = 5$ and a pattern $p$ of length $N = 4$ containing wildcards `'?'` and `'*'`:
+- `'?'` matches any single character.
+- `'*'` matches any sequence of characters (including the empty sequence).
+
+For $s = \text{"adceb"}$ and $p = \text{"*a*b"}$:
+- The first `'*'` matches the empty sequence `""`.
+- `'a'` matches `'a'`.
+- The second `'*'` matches substring $\text{"dce"}$.
+- `'b'` matches `'b'`.
+- The entire string matches the pattern, yielding $\text{True}$.
+
+A naive recursive search without memoization branches on every `'*'`, causing worst-case exponential time $O(2^{M+N})$. The optimal dynamic programming approach constructs an $(M+1) \times (N+1)$ boolean table $DP$, solving the matching problem in $O(M \cdot N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### 2D DP State Definition
+Let $DP[i][j]$ be a boolean value indicating whether the prefix $s[0 \dots i-1]$ matches the pattern prefix $p[0 \dots j-1]$.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Boundary Base Cases
+1. **Empty String & Empty Pattern:**
+   $$
+   DP[0][0] = \text{True}
+   $$
+2. **Non-Empty String & Empty Pattern ($i > 0$):**
+   $$
+   DP[i][0] = \text{False}
+   $$
+3. **Empty String & Pattern with Leading Stars ($i = 0, j > 0$):**
+   $$
+   DP[0][j] = DP[0][j-1] \quad \text{if } p[j-1] == \text{'*'} \text{ else False}
+   $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+### Recurrence Transitions
+For $i \ge 1$ and $j \ge 1$:
+1. **Exact Character Match or `'?'`:**
+   If $p[j-1] == s[i-1]$ or $p[j-1] == \text{'?'}$:
+   $$
+   DP[i][j] = DP[i-1][j-1]
+   $$
+2. **Star Wildcard (`'*'`):**
+   A star can either:
+   - Match **empty sequence**: matches $s[0 \dots i-1]$ if $p[0 \dots j-2]$ matched $\implies DP[i][j-1]$.
+   - Match **one or more characters**: matches $s[0 \dots i-1]$ if $p[0 \dots j-1]$ already matched $s[0 \dots i-2] \implies DP[i-1][j]$.
+   Combining both possibilities:
+   $$
+   DP[i][j] = DP[i][j-1] \lor DP[i-1][j]
+   $$
+
+> **Invariant.** For any cell $(i, j)$, $DP[i][j] == \text{True}$ if and only if there exists a valid sequence of wildcard substitutions that transforms $p[0 \dots j-1]$ into $s[0 \dots i-1]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We build the DP table for $s = \text{"adceb"}$ ($M = 5$) and $p = \text{"*a*b"}$ ($N = 4$):
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 0: Row 0 (Empty String $s = \text{""}$)
+- $DP[0][0] = \text{True}$ (empty matches empty).
+- $j = 1$ ($p[0] = \text{'*'}$): $DP[0][1] = DP[0][0] = \text{True}$ (star matches empty).
+- $j = 2$ ($p[1] = \text{'a'}$): $DP[0][2] = \text{False}$.
+- $j = 3$ ($p[2] = \text{'*'}$): $DP[0][3] = DP[0][2] = \text{False}$.
+- $j = 4$ ($p[3] = \text{'b'}$): $DP[0][4] = \text{False}$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 1: Row 1 ($s[0] = \text{'a'}$)
+- $j = 1$ (`*`): $DP[1][0] \lor DP[0][1] = \text{False} \lor \text{True} = \text{True}$.
+- $j = 2$ (`a`): Matches $s[0] = \text{'a'}$. Take diagonal $DP[0][1] = \text{True}$.
+- $j = 3$ (`*`): $DP[1][2] \lor DP[0][3] = \text{True} \lor \text{False} = \text{True}$.
+- $j = 4$ (`b`): Mismatch `'a' \ne 'b' \implies \text{False}$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 2: Row 2 ($s[1] = \text{'d'}$)
+- $j = 1$ (`*`): $DP[2][0] \lor DP[1][1] = \text{False} \lor \text{True} = \text{True}$.
+- $j = 2$ (`a`): Mismatch `'d' \ne 'a' \implies \text{False}$.
+- $j = 3$ (`*`): $DP[2][2] \lor DP[1][3] = \text{False} \lor \text{True} = \text{True}$.
+- $j = 4$ (`b`): Mismatch $\implies \text{False}$.
+
+---
+
+### Step 3 & 4: Rows 3 and 4 ($s[2] = \text{'c'}$, $s[3] = \text{'e'}$)
+Both characters match the second `'*'` at $j = 3$:
+- In Row 3: $DP[3][3] = DP[3][2] \lor DP[2][3] = \text{False} \lor \text{True} = \text{True}$.
+- In Row 4: $DP[4][3] = DP[4][2] \lor DP[3][3] = \text{False} \lor \text{True} = \text{True}$.
+- All $j = 4$ cells remain $\text{False}$ because neither `'c'` nor `'e'` equals `'b'`.
+
+---
+
+### Step 5: Row 5 ($s[4] = \text{'b'}$)
+- $j = 1$ (`*`): $\text{True}$.
+- $j = 2$ (`a`): $\text{False}$.
+- $j = 3$ (`*`): $DP[5][2] \lor DP[4][3] = \text{False} \lor \text{True} = \text{True}$.
+- $j = 4$ (`b`): $s[4] == \text{'b'}$. Take diagonal $DP[4][3] = \text{True}$!
+- Terminal state: $DP[5][4] = \text{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### 2D DP State Matrix ($M \times N$)
+
+| String Prefix $\downarrow$ / Pattern $\to$ | $\epsilon$ (Col 0) | `*` (Col 1) | `a` (Col 2) | `*` (Col 3) | `b` (Col 4) |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| $\epsilon$ (Row 0) | **T** | **T** | F | F | F |
+| `a` (Row 1) | F | **T** | **T** | **T** | F |
+| `ad` (Row 2) | F | **T** | F | **T** | F |
+| `adc` (Row 3) | F | **T** | F | **T** | F |
+| `adce` (Row 4) | F | **T** | F | **T** | F |
+| `adceb` (Row 5) | F | **T** | F | **T** | **T (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Every cell in the DP table satisfies the inductive definition of wildcard matching. When $p[j-1] == \text{'*'},$ setting $DP[i][j] = DP[i][j-1] \lor DP[i-1][j]$ strictly accounts for all possibilities: either the star consumes zero characters (looking left to $j-1$) or it consumes at least one character (looking up to $i-1$).
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** The table evaluates every prefix pair $(i, j)$ in topological order. Because dynamic programming considers both branches of `'*'` without greedy premature commitment, no viable matching derivation can be overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Wildcard Difference from Regex:** In LeetCode 10 (Regular Expression Matching), `*` modifies the *preceding* element (`a*`). In Wildcard Matching (LeetCode 44), `*` is a standalone token that matches any sequence of characters independently.
+- **Consecutive Stars:** A pattern with consecutive stars like `****` is equivalent to a single `*`. Collapsing consecutive stars into one star reduces redundant table columns.
+- **Empty String Matches:** Leading stars can match the empty string (e.g. $s = \text{""}, p = \text{"*"}$). Row 0 initialization must correctly propagate `True` across all consecutive leading stars.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(M \cdot N)$, where $M = |s|$ and $N = |p|$. The table contains $(M + 1) \times (N + 1)$ cells, each computed in $O(1)$ time.
+- **Auxiliary Space Complexity:** $O(M \cdot N)$ for the full 2D table, which can be optimized to $O(N)$ space by maintaining only the previous and current rows.

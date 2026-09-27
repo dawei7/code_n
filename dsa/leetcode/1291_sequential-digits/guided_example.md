@@ -1,119 +1,157 @@
 # Guided Example: Sequential Digits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step generation and range filtering of numbers with strictly consecutive digits on a representative problem instance:
 
-- **Input:** `{"low": 100, "high": 300}`
-- **Required output:** `[123, 234]`
+- **Input:**
+  - `low = 100`
+  - `high = 300`
+- **Required Output:** `[123, 234]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates the finite universe of sequential numbers, substring extraction over the canonical decimal template `"123456789"`, and interval containment testing.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-An integer has *sequential digits* if and only if each digit in the number is one more than the previous digit.
+A positive integer has sequential digits if and only if each digit is strictly $1$ greater than its immediately preceding digit:
+$$
+d_{k+1} = d_k + 1 \quad \text{for all } 0 \le k < L - 1
+$$
+Because digits cannot exceed $9$, the highest possible sequential digit is $9$, and digits cannot wrap around to $0$.
 
-The objective is to compute `[123, 234]` from `{"low": 100, "high": 300}` while avoiding redundant calculations and unnecessary overhead.
+Given the interval $[\text{low}, \text{high}] = [100, 300]$:
+- Length 3 sequential candidates:
+  - $123 \in [100, 300] \implies$ Valid
+  - $234 \in [100, 300] \implies$ Valid
+  - $345 > 300 \implies$ Out of range
+- All numbers of length $\le 2$ are $< 100$, and all numbers of length $\ge 4$ are $> 300$.
+- The resulting sorted list is $[123, 234]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Canonical Template: "1 2 3 4 5 6 7 8 9"
+
+Length L = 3 Windows:
+  [1 2 3] 4 5 6 7 8 9  --> 123  (100 <= 123 <= 300: Keep)
+  1 [2 3 4] 5 6 7 8 9  --> 234  (100 <= 234 <= 300: Keep)
+  1 2 [3 4 5] 6 7 8 9  --> 345  (345 > 300: Exclude)
+  ...
+  1 2 3 4 5 6 [7 8 9]  --> 789  (789 > 300: Exclude)
+```
+
+Iterating through all integers from $\text{low}$ to $\text{high}$ takes $\mathcal{O}(\text{high} - \text{low})$ time, evaluating up to $10^9$ candidates.
+The optimal method recognizes that across the entire number system, exactly $36$ sequential numbers exist. Directly generating these $36$ numbers solves the problem in $\mathcal{O}(1)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Every sequential digit number is a contiguous substring of the single master digit template:
+$$
+T = \text{"123456789"}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Finite Candidate Enumeration
+For a given length $L \in \{2, 3, \dots, 9\}$, the starting digit $d_{\text{start}}$ can range from $1$ up to $10 - L$.
+The number of valid sequential numbers of length $L$ is exactly $10 - L$:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Length $L$ | Possible Starting Digits | Number of Candidates ($10 - L$) | Candidate Numbers Formed |
+|---|---|---|---|
+| $2$ | $1 \dots 8$ | $8$ | $12, 23, 34, 45, 56, 67, 78, 89$ |
+| $3$ | $1 \dots 7$ | $7$ | $123, 234, 345, 456, 567, 678, 789$ |
+| $4$ | $1 \dots 6$ | $6$ | $1234, 2345, 3456, 4567, 5678, 6789$ |
+| $5$ | $1 \dots 5$ | $5$ | $12345, 23456, 34567, 45678, 56789$ |
+| $6$ | $1 \dots 4$ | $4$ | $123456, 234567, 345678, 456789$ |
+| $7$ | $1 \dots 3$ | $3$ | $1234567, 2345678, 3456789$ |
+| $8$ | $1 \dots 2$ | $2$ | $12345678, 23456789$ |
+| $9$ | $1$ | $1$ | $123456789$ |
+
+Total sequential numbers in the universe:
+$$
+\sum_{L=2}^9 (10 - L) = 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 36
+$$
+
+> **Finite Universe Invariant.** The set of all possible sequential numbers is strictly finite and fixed ($36$ elements). Generating candidates by increasing length $L$ and increasing start digit automatically produces numbers in strictly ascending numerical order.
+
+```mermaid
+flowchart TD
+    accTitle: Sequential Digits Template Generation
+    accDescr: Pipeline showing template substring sliding window generating all 36 candidates followed by interval filtering.
+    TEMP["Template: '123456789'"] --> LEN["Iterate Length L from 2 to 9"]
+    LEN --> WIN["Slide window of length L across template"]
+    WIN --> CAND["Candidate Value X"]
+    CAND --> FILT{"Is low <= X <= high?"}
+    FILT -- Yes --> ADD["Append X to Output List"]
+    FILT -- No --> SKIP["Discard X"]
+    ADD --> SORT["Return Collected Numbers"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Every sequential-digit number is determined by its first and last digit
+We search for candidates in $[\text{low}, \text{high}] = [100, 300]$.
+Since $\text{low} = 100 > 89$, all length $2$ numbers are strictly less than $\text{low}$.
+Since $\text{high} = 300 < 1234$, all length $\ge 4$ numbers are strictly greater than $\text{high}$.
+Only length $L = 3$ can contain valid answers.
 
-A positive decimal number with sequential digits must look like `12`, `2345`, or `6789`. Once the first digit is chosen, every later digit is forced to be one greater. Digits cannot pass nine, and valid multi-digit numbers cannot begin at zero under the problem's range.
+### Evaluating Length $L = 3$ ($10 - 3 = 7$ candidates)
+1. **Window $1 \dots 3$ ($d_{\text{start}} = 1$):**
+   - Value: $123$
+   - Range test: $100 \le 123 \le 300 \implies$ True!
+   - Result: Retain $123$.
+2. **Window $2 \dots 4$ ($d_{\text{start}} = 2$):**
+   - Value: $234$
+   - Range test: $100 \le 234 \le 300 \implies$ True!
+   - Result: Retain $234$.
+3. **Window $3 \dots 5$ ($d_{\text{start}} = 3$):**
+   - Value: $345$
+   - Range test: $345 > 300 \implies$ False!
+   - Result: Exclude.
+4. **Window $4 \dots 6$ ($d_{\text{start}} = 4$):**
+   - Value: $456 > 300 \implies$ Exclude.
+5. **Window $5 \dots 7$ ($d_{\text{start}} = 5$):**
+   - Value: $567 > 300 \implies$ Exclude.
+6. **Window $6 \dots 8$ ($d_{\text{start}} = 6$):**
+   - Value: $678 > 300 \implies$ Exclude.
+7. **Window $7 \dots 9$ ($d_{\text{start}} = 7$):**
+   - Value: $789 > 300 \implies$ Exclude.
 
-The outer loop chooses starting digit `i` from one through eight. Starting at nine cannot produce a two-digit sequential number because ten is not a digit.
-
-Variable `x` begins as that one-digit start. The inner loop chooses successive digits `j` from `i + 1` through nine and performs `x = x * 10 + j`. Multiplication shifts existing decimal digits left, and addition appends the forced next digit.
-
-For start two, `x` evolves through `23`, `234`, `2345`, and so on through `23456789`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"low": 100, "high": 300}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Filter each generated candidate by the inclusive range
-
-After every appended digit, the code checks `low <= x <= high`. Passing candidates are added to `ans`. The initial one-digit `i` is never checked, which is appropriate because `low >= 10` and answers require at least two digits.
-
-The generation loops do not stop when `x > high`, although they safely could because further appends only increase it. The decimal alphabet is fixed and tiny, so continuing has constant cost.
-
-Likewise, the algorithm does not restrict starting lengths based on the digit counts of `low` and `high`. It generates the complete fixed universe and filters afterward. That choice keeps boundary logic simple: the inclusive comparison alone decides membership, while the constant 36-candidate limit keeps unnecessary work negligible.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why generation is complete
-
-Take any sequential-digit number in the requested range. Its first digit is some `i` from one through eight, and its remaining digits must be `i + 1, i + 2, ...` up to at most nine. The corresponding outer iteration constructs exactly that prefix at one inner-loop step, where the range check includes it.
-
-Conversely, every constructed `x` begins at `i` and appends consecutive increasing digits, so every value admitted to `ans` satisfies the definition. No number is duplicated because its first digit and length uniquely identify it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[123, 234]` |
+Collected solutions: $[123, 234]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"low": 100, "high": 300}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[123, 234]` | Verified |
+| Candidate Length $L$ | Start Digit | Number Formed | Lower Check ($X \ge 100$) | Upper Check ($X \le 300$) | In Range? |
+|---|---|---|---|---|---|
+| $2$ | $1 \dots 8$ | $12 \dots 89$ | False | True | Excluded ($< 100$) |
+| $3$ | $1$ | $123$ | True | True | Included |
+| $3$ | $2$ | $234$ | True | True | Included |
+| $3$ | $3$ | $345$ | True | False | Excluded ($> 300$) |
+| $3$ | $4 \dots 7$ | $456 \dots 789$ | True | False | Excluded ($> 300$) |
+| $4 \dots 9$ | Any | $\ge 1234$ | True | False | Excluded ($> 300$) |
+
+Final result list: $[123, 234]$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every generated candidate is constructed by selecting consecutive digits from $\{1, 2, \dots, 9\}$, which guarantees that $d_{k+1} = d_k + 1$ for all digits. Because every candidate is tested against $[\text{low}, \text{high}]$, every retained element lies strictly within the target range.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any positive integer with sequential digits must have length between $2$ and $9$ (since there are only $9$ non-zero decimal digits). Furthermore, because $d_{k+1} = d_k + 1$, the choice of the first digit and the length uniquely fixes all subsequent digits. Because our loops iterate over all possible lengths $L \in [2, 9]$ and all possible starting digits $d \in [1, 10 - L]$, every possible sequential number in the decimal system is evaluated without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sliding windows over `"123456789"`:** Every sequential number is a substring. Enumerating window lengths and starts can produce values directly by length and often already in sorted order.
-- **Precompute all 36 values:** Store the fixed universe once and filter it for each query. This is useful for many calls but unnecessary for one.
-- **Breadth-first digit extension:** Seed digits one through nine and append the next digit. It is more general but adds queue machinery.
-- **Inclusive boundaries:** Values equal to `low` or `high` are retained by the chained comparison.
-- **No candidate in range:** Sorting an empty list returns `[]`.
-- **Range near ten:** `12` is the smallest possible answer.
-- **Upper bound one billion:** The largest sequential candidate is `123456789`; no ten-digit sequential number exists.
-- **Starting digit nine:** It cannot extend and is correctly omitted from the outer range.
-- **Generation order:** A final numerical sort is required because grouping by first digit is not globally ascending.
-- **No duplicates:** First digit plus length uniquely determines each generated number.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Linear search over $[\text{low}, \text{high}]$:** Checking every integer in the range when $\text{high} = 10^9$ times out immediately. Generating the $36$ sequential numbers directly avoids range scanning.
+- **Wrap-around digits:** Sequences like `"890"` or `"901"` are not sequential because $0$ does not equal $9 + 1$. The template `"123456789"` naturally prevents wrap-around.
+- **Sorting when generating by start digit:** If generation loops by start digit first ($12, 123, 1234, \dots$ then $23, 234, \dots$), the numbers are not produced in strictly ascending order. Generating by length first ($12, 23, \dots, 89$ then $123, 234, \dots$) produces them in naturally sorted order without an extra sort step.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. With decimal digits fixed to one through nine, at most 36 candidates are constructed and at most 36 values are sorted. Both runtime and output capacity are bounded by constants, so time is $O(1)$ and total space is $O(1)$ under the problem's fixed base and constraints.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$. There are at most $36$ candidates generated. Each candidate requires at most $9$ digit shifts or a substring slice, followed by two boundary comparisons. Sorting at most $36$ numbers takes $\mathcal{O}(1)$ operations. The runtime is strictly constant $\mathcal{O}(1)$, independent of `low` and `high`.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Storing the fixed set of at most $36$ numbers requires negligible constant memory.

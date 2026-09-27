@@ -1,138 +1,154 @@
 # Guided Example: Check if One String Swap Can Make Strings Equal
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step verification of positional equality and transposition cross-matching on a representative problem instance:
 
-- **Input:** `{"s1": "bank", "s2": "kanb"}`
-- **Required output:** `true`
+- **Input:** `s1 = "bank"`, `s2 = "kanb"`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how scanning paired characters detects positional discrepancies, records an initial mismatched character pair, and validates that a subsequent mismatch forms a perfect two-character transposition.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two strings `s1` and `s2` of equal length. A **string swap** is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices.
+We are given two strings `s1` and `s2` of equal length $n$. A single string swap consists of choosing two indices $i$ and $j$ in one of the strings and swapping the characters at those positions. We must determine whether `s1` can be made equal to `s2` using at most one swap.
 
-The objective is to compute `true` from `{"s1": "bank", "s2": "kanb"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might generate all $\mathcal{O}(n^2)$ possible index pairs, perform each swap, and compare strings in $\mathcal{O}(n)$ time, consuming $\mathcal{O}(n^3)$ overall time. The optimal approach operates in a single linear pass by analyzing the cardinality and character alignment of mismatched indices.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Mismatch Set and Transposition Classification
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $M$ be the set of indices where the two strings differ:
+$$M = \{ k \in [0, n - 1] \mid s1[k] \ne s2[k] \}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because a single swap modifies the characters at at most two distinct positions, the cardinality $|M|$ completely determines feasibility:
+1. **Case $|M| = 0$:** The strings are identical without any swap ($0$ swaps $\le 1$). Return `true`.
+2. **Case $|M| = 1$:** A single swap necessarily changes two distinct indices; it is impossible to alter only one character without affecting another. Return `false`.
+3. **Case $|M| = 2$:** Let $M = \{i, j\}$ with $i < j$. Swapping $s1[i]$ with $s1[j]$ results in $s1 = s2$ if and only if:
+   $$s1[i] = s2[j] \quad \text{and} \quad s1[j] = s2[i]$$
+   This is the exact two-character cross-match condition.
+4. **Case $|M| > 2$:** Since one swap can fix at most two mismatched positions, three or more mismatches can never be resolved. Return `false`.
+
+> **Single Transposition Invariant & Mismatch Cardinality Theorem.**
+> Two equal-length strings $s1$ and $s2$ satisfy the at-most-one-swap equivalence if and only if $|M| \in \{0, 2\}$ and, when $|M| = 2$ with indices $i < j$, the cross-match identity $(s1[i], s2[i]) = (s2[j], s1[j])$ holds.
+
+```mermaid
+flowchart TD
+    accTitle: Single Swap Verification State Machine
+    accDescr: Finite state diagram tracking mismatch count cnt and cross-match verification across paired characters.
+    A["Initialize: cnt = 0, c1 = None, c2 = None"] --> B["Stream (a, b) from s1 and s2"]
+    B --> C{"a == b?"}
+    C -- "Yes" --> B
+    C -- "No (Mismatch)" --> D["cnt = cnt + 1"]
+    D --> E{"cnt value?"}
+    E -- "cnt == 1" --> F["Store first mismatch: c1 = a, c2 = b"]
+    F --> B
+    E -- "cnt == 2" --> G{"Cross-match? a == c2 and b == c1"}
+    G -- "No" --> H["Return false (Invalid swap)"]
+    G -- "Yes" --> B
+    E -- "cnt > 2" --> I["Return false (Too many mismatches)"]
+    B -- "End of strings" --> J{"cnt != 1?"}
+    J -- "True (cnt is 0 or 2)" --> K["Return true"]
+    J -- "False (cnt == 1)" --> L["Return false"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A swap can repair only two positions
+We trace `s1 = "bank"` and `s2 = "kanb"`, where $n = 4$.
 
-The strings have equal length, so compare them at matching indices. Positions where `s1[i] == s2[i]` already agree and should remain undisturbed. If one swap is needed, its two chosen indices are the only positions whose characters can move.
-
-This creates exactly three meaningful mismatch counts:
-
-- zero mismatches means the strings are already equal, so using no swap satisfies "at most one";
-- exactly two mismatches may be repairable if their characters cross-match;
-- one mismatch or more than two mismatches cannot be repaired by one swap.
-
-The protected solution detects these cases in one pass without storing mismatch indices or character-frequency arrays.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s1": "bank", "s2": "kanb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Trace Setup
+- Mismatch counter: $\text{cnt} = 0$.
+- Saved first mismatch characters: $c_1 = \text{None}, c_2 = \text{None}$.
 
 ---
 
-### Step 2: Remember the first mismatched pair
-
-The loop visits paired characters `a` from `s1` and `b` from `s2` using `zip(s1, s2)`. Equal pairs require no work. At the first mismatch, the solution increments `cnt` to one and saves `c1 = a` and `c2 = b`.
-
-Suppose the first mismatch is at index $i$, so `c1 = s1[i]` and `c2 = s2[i]`. If a later mismatch occurs at index $j$, swapping indices $i$ and $j$ in `s1` works precisely when
-
-$$
-\texttt{s1}[j]=\texttt{s2}[i]
-\quad\text{and}\quad
-\texttt{s2}[j]=\texttt{s1}[i].
-$$
-
-In the loop's local variables, these conditions are `a == c2` and `b == c1`. The solution rejects when their negation, `a != c2 or b != c1`, is true.
-
-This is called a cross-match because the first string's character at one mismatched position must equal the second string's character at the other position, in both directions.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Index $k = 0$, Characters `('b', 'k')`
+- Comparing $s1[0] = \text{'b'}$ and $s2[0] = \text{'k'}$:
+  $$\text{'b'} \ne \text{'k'}$$
+- This is the first mismatch:
+  $$\text{cnt} = 0 + 1 = 1$$
+- Record character tuple:
+  $$c_1 = \text{'b'}, \quad c_2 = \text{'k'}$$
+- State: $\text{cnt} = 1$, $(c_1, c_2) = (\text{'b'}, \text{'k'})$.
 
 ---
 
-### Step 3: Reject impossible mismatch patterns immediately
+### Step 2: Index $k = 1$, Characters `('a', 'a')`
+- Comparing $s1[1] = \text{'a'}$ and $s2[1] = \text{'a'}$:
+  $$\text{'a'} == \text{'a'}$$
+- Characters match. No change to state.
+- State: $\text{cnt} = 1$, $(c_1, c_2) = (\text{'b'}, \text{'k'})$.
 
-On every mismatch, `cnt` increases. If it becomes larger than two, one swap cannot repair all affected positions, so the solution returns `false` immediately.
+---
 
-The condition is written with `or`: `cnt > 2 or (...)`. Python evaluates `or` from left to right and stops once the left side is true. Therefore, at a third mismatch the function rejects immediately without needing the saved pair for another comparison.
+### Step 3: Index $k = 2$, Characters `('n', 'n')`
+- Comparing $s1[2] = \text{'n'}$ and $s2[2] = \text{'n'}$:
+  $$\text{'n'} == \text{'n'}$$
+- Characters match. No change to state.
+- State: $\text{cnt} = 1$, $(c_1, c_2) = (\text{'b'}, \text{'k'})$.
 
-At the second mismatch, `cnt > 2` is false, so the cross-match test is evaluated. A failed cross-match returns `false`. A successful one means swapping these two positions repairs both mismatches. The assignment `c1, c2 = a, b` still runs after this successful check and replaces the stored pair, but no later mismatch can be accepted: a third mismatch triggers the first rejection condition. Consequently, that reassignment does not alter the final decision.
+---
 
-After the scan, the solution returns `cnt != 1`. This accepts zero mismatches and a successfully cross-matched pair of mismatches, while rejecting the single-mismatch case.
+### Step 4: Index $k = 3$, Characters `('k', 'b')`
+- Comparing $s1[3] = \text{'k'}$ and $s2[3] = \text{'b'}$:
+  $$\text{'k'} \ne \text{'b'}$$
+- Mismatch detected. Increment counter:
+  $$\text{cnt} = 1 + 1 = 2$$
+- Evaluate cross-match conditions against saved $(c_1, c_2) = (\text{'b'}, \text{'k'})$:
+  1. Does current $s1[3]$ match saved $c_2$?
+     $$\text{'k'} == \text{'k'} \implies \text{True}$$
+  2. Does current $s2[3]$ match saved $c_1$?
+     $$\text{'b'} == \text{'b'} \implies \text{True}$$
+- Cross-match condition is satisfied.
+- State: $\text{cnt} = 2$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 5: Termination and Result Synthesis
+- Both strings are fully traversed.
+- Final mismatch count is $\text{cnt} = 2$.
+- Because $\text{cnt} \ne 1$ (it is exactly $2$, and the cross-match was validated), the function confirms that swapping indices $0$ and $3$ transforms `s1` into `s2`:
+  $$\text{Swap } s1[0] \leftrightarrow s1[3]: \quad \text{"bank"} \longrightarrow \text{"kanb"}$$
+- Final decision: **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s1": "bank", "s2": "kanb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Index $k$ | $s1[k]$ | $s2[k]$ | Character Equality | Mismatch Count $\text{cnt}$ | Stored Pair $(c_1, c_2)$ | Cross-Match Check |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `'b'` | `'k'` | `'b' != 'k'` | $1$ | `('b', 'k')` | Initialized |
+| $1$ | `'a'` | `'a'` | `'a' == 'a'` | $1$ | `('b', 'k')` | Skipped |
+| $2$ | `'n'` | `'n'` | `'n' == 'n'` | $1$ | `('b', 'k')` | Skipped |
+| $3$ | `'k'` | `'b'` | `'k' != 'b'` | $2$ | `('b', 'k')` | Passed: `'k' == c2` and `'b' == c1` |
+
+End of input reached with $\text{cnt} = 2$ and valid cross-match $\implies$ Output **`true`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A swap of indices $i$ and $j$ in $s1$ leaves all other indices unchanged. Therefore, positions $k \notin \{i, j\}$ must already have $s1[k] = s2[k]$. The swap sets the new character at index $i$ to $s1[j]$ and at index $j$ to $s1[i]$. Thus, equality requires $s1[j] = s2[i]$ and $s1[i] = s2[j]$. The algorithm directly verifies this condition when $|M| = 2$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any string pair requiring zero swaps has $\text{cnt} = 0 \ne 1$, returning `true`. Any pair requiring more than one swap will produce either $|M| > 2$ (which immediately aborts with `false`) or $|M| = 2$ with non-transposed characters (which aborts on the cross-match check) or $|M| = 1$ (which returns `false` via $\text{cnt} == 1$). Every possible scenario is covered without false positives.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Store mismatch indices:** Collect at most two indices, reject a third, then check crossed characters. This is also $O(n)$ time and $O(1)$ bounded space, but the protected solution stores the first characters directly.
-- **Frequency maps plus mismatch count:** Equal 26-letter frequency arrays and exactly two differences are sufficient, yet cross-matching avoids the extra arrays.
-- **Sort both strings:** Equal sorted strings prove they are anagrams but do not prove one swap is sufficient; mismatch positions still need checking, and sorting costs $O(n\log n)$.
-- **Try every swap:** Testing all index pairs is at least quadratic and unnecessary once the mismatch structure is understood.
-- **Zero mismatches:** No operation is allowed by "at most one," so identical strings correctly return `true`.
-- **One mismatch:** It cannot be fixed by a swap and is the only mismatch count rejected at the final return.
-- **Two cross-matching mismatches:** One exchange repairs both, even when the mismatches are far apart.
-- **Two non-cross-matching mismatches:** A swap merely moves the wrong characters and cannot create equality.
-- **More than two mismatches:** One swap changes at most two positions, so early rejection is conclusive.
-- **Repeated letters:** They cause no ambiguity because only the characters at mismatched indices must cross-match.
-- **Length one:** Valid equal one-character strings have zero mismatches; unequal ones have one and are rejected.
-- **Swap in either string:** A successful crossed pair can be repaired by swapping those indices in `s1` or symmetrically in `s2`.
-- **Same-index swap:** It changes nothing and matters only as an optional interpretation when strings are already equal.
-- **Equal-length contract:** Reusing this exact `zip` loop for unequal strings would miss an unmatched suffix and would require an explicit length check.
-- **Lowercase alphabet:** The direct comparison logic does not depend on alphabet size; the constraint simply defines valid inputs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single Mismatch Trap:** If `s1 = "a"` and `s2 = "b"`, there is $1$ mismatch. One cannot swap a single character without swapping it with another index. Checking `cnt != 1` at the end cleanly catches this.
+- **Identical Strings ($0$ Mismatches):** When `s1 = "abc"` and `s2 = "abc"`, $\text{cnt} = 0$. The problem asks if strings can be equal with *at most* one swap. Zero swaps is explicitly allowed ($\le 1$). Returning `cnt != 1` correctly evaluates to `true`.
+- **Identical Frequency but Wrong Positions:** If `s1 = "abc"` and `s2 = "bca"`, characters are permutations of each other, but the cyclic shift requires two swaps. Here $|M| = 3$, which triggers early exit when $\text{cnt} > 2$.
+- **Transposition Asymmetry:** If `s1 = "ab"` and `s2 = "ac"`, $|M| = 1$. If `s1 = "ab"` and `s2 = "cd"`, $|M| = 2$, but $s1[1] \ne s2[0]$ ('b' != 'c'). Testing both $s1[j] == s2[i]$ and $s1[i] == s2[j]$ prevents treating arbitrary double-mismatches as swappable.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common string length. In the worst case, `zip` supplies all $n$ character pairs and the loop performs constant work for each, so time complexity is $O(n)$. Early rejection can finish sooner but does not change the worst-case bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$. The algorithm performs a single pass over strings of length $n$. At each position, comparison and arithmetic operations take $\mathcal{O}(1)$ time. Early return occurs immediately upon a third mismatch or failed second mismatch. Worst-case time is strictly linear in $n$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. The method uses only a counter integer and two character variables, requiring constant auxiliary memory.

@@ -2,126 +2,156 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"nums": [3, 4, 5, 1, 2]}`
-- **Required output:** `true`
+- **Input:** `nums = [3, 4, 5, 1, 2]`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features a non-trivial cyclic rotation where an array sorted in non-decreasing order ($[1, 2, 3, 4, 5]$) has been rotated by two positions, demonstrating how circular inversion counting verifies sorted-and-rotated properties in a single pass.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums`, return `true`* if the array was originally sorted in non-decreasing order, then rotated **some** number of positions (including zero)*. Otherwise, return `false`.
+Given an integer array `nums` of length $n$, we must determine whether `nums` could have been created by taking an initially sorted non-decreasing array and cyclically shifting (rotating) its elements to the right by some non-negative offset $k \ge 0$.
 
-The objective is to compute `true` from `{"nums": [3, 4, 5, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might try all $n$ possible cyclic shift amounts, checking if any resulting configuration is sorted, taking $\mathcal{O}(n^2)$ time.
+By considering the array as a closed cycle where index $n - 1$ connects directly back to index $0$:
+- In an unrotated sorted array, every adjacent element satisfies $nums[i-1] \le nums[i]$, with at most one circular wrap drop at $nums[n-1] > nums[0]$.
+- When rotated by any amount, the cycle remains structurally unchanged; the single point where the maximum element wraps around to the minimum element simply shifts to an interior index.
+- Hence, an array is a valid rotated sorted array if and only if the number of adjacent inversions across the closed circle is **at most 1**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Property |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Cyclic Predecessor | $\text{prev}(i) = \text{nums}[(i - 1) \pmod n]$ | Wraps around: $\text{prev}(0) = \text{nums}[n - 1]$ |
+| Inversion Indicator | $\mathbb{I}(\text{prev}(i) > \text{nums}[i])$ | Evaluates to $1$ if drop occurs, $0$ otherwise |
+| Total Inversion Count $D$ | $\sum_{i=0}^{n-1} \mathbb{I}(\text{prev}(i) > \text{nums}[i])$ | Bounded by $1$ for valid instances |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Cyclic Monotonicity Drop Invariant.**
+> Let $A$ be an array of length $n$ that is sorted in non-decreasing order: $A[0] \le A[1] \le \dots \le A[n-1]$.
+> - For internal pairs $1 \le i < n$, $A[i-1] \le A[i]$ (0 drops).
+> - For the cyclic boundary pair $(A[n-1], A[0])$, either $A[n-1] = A[0]$ (if all elements are identical, 0 drops) or $A[n-1] > A[0]$ (exactly 1 drop).
+> Thus, in any circular permutation of a sorted array, the total number of adjacent pairs $(u, v)$ with $u > v$ is at most $1$:
+> $$D = \sum_{i=0}^{n-1} \mathbb{I}(\text{nums}[(i-1) \pmod n] > \text{nums}[i]) \le 1$$
+> If $D \ge 2$, the array contains multiple local peaks or reversals that cannot be eliminated by any single global rotation.
+
+```mermaid
+flowchart TD
+    accTitle: Cyclic Inversion Check Pipeline
+    accDescr: Pipeline showing iteration over all n cyclic pairs, accumulating drops where previous > current, and validating that total drops <= 1.
+    A["Input Array nums of length n"] --> B["Initialize Drop Counter: D = 0"]
+    B --> C["Loop i from 0 to n - 1"]
+    C --> D["Identify Predecessor: prev = nums[(i - 1 + n) % n]"]
+    D --> E{"Is prev > nums[i]?"}
+    E -- Yes --> F["Increment Drop Count: D = D + 1"]
+    E -- No --> G["Continue (No Drop)"]
+    F --> H{"Are all n pairs checked?"}
+    G --> H
+    H -- No --> C
+    H -- Yes --> I{"Is D <= 1?"}
+    I -- Yes --> J["Return true (Valid Rotated Sorted Array)"]
+    I -- No --> K["Return false (Multiple Inversions)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Look at the array as a circle
+For `nums = [3, 4, 5, 1, 2]` with $n = 5$:
+We test all $5$ cyclic pairs $(\text{nums}[(i-1) \pmod 5], \text{nums}[i])$:
 
-Rotating an array changes where the linear representation begins, but it does not change the cyclic order of its elements. If a non-decreasing array is placed around a circle, almost every adjacent pair satisfies “previous value is less than or equal to next value.” There can be only one place where a larger value is followed by a smaller value: the wrap from the sorted array's end back to its beginning.
-
-The exact solution counts these strict decreases around the entire cycle and returns true when there is at most one.
-
-Its whole condition is:
-
-`sum(nums[i - 1] > x for i, x in enumerate(nums)) <= 1`.
-
-Although compact, this line contains the complete circular check.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 4, 5, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Pair $i = 0$: Boundary Wrap-Around
+- Predecessor index: $(0 - 1) \pmod 5 = 4 \implies \text{nums}[4] = 2$.
+- Current element: $\text{nums}[0] = 3$.
+- Comparison: $\text{nums}[4] \le \text{nums}[0]$ ($2 \le 3$).
+- Inversion: False.
+- Drop Count $D = 0$.
 
 ---
 
-### Step 2: Understand the generator's adjacent pairs
-
-`enumerate(nums)` produces each current index `i` and value `x = nums[i]`. The expression `nums[i - 1]` accesses the preceding value.
-
-For ordinary indices `i > 0`, this compares `nums[i - 1]` with `nums[i]`. At `i = 0`, Python index minus one refers to the last element, so the comparison is `nums[n - 1] > nums[0]`. That special first iteration supplies the circular pair connecting the end back to the beginning.
-
-Each comparison returns a Boolean. In Python arithmetic, `true` contributes one and `false` contributes zero. Applying `sum` therefore counts how many cyclic adjacent pairs are strict decreases.
-
-No array slice, rotated copy, or explicit counter variable is needed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Pair $i = 1$
+- Predecessor: $\text{nums}[0] = 3$.
+- Current element: $\text{nums}[1] = 4$.
+- Comparison: $3 \le 4$.
+- Inversion: False.
+- Drop Count $D = 0$.
 
 ---
 
-### Step 3: Why the comparison is strict
+### Pair $i = 2$
+- Predecessor: $\text{nums}[1] = 4$.
+- Current element: $\text{nums}[2] = 5$.
+- Comparison: $4 \le 5$.
+- Inversion: False.
+- Drop Count $D = 0$.
 
-The original array is sorted in non-decreasing order, not strictly increasing order. Equal adjacent values are valid. Consequently, a break occurs only when the preceding value is greater than the current value.
+---
 
-Using `>=` would incorrectly count equal neighbors as breaks and reject arrays containing duplicates. The strict `>` exactly captures a violation of non-decreasing order.
+### Pair $i = 3$ (The Rotation Seam)
+- Predecessor: $\text{nums}[2] = 5$.
+- Current element: $\text{nums}[3] = 1$.
+- Comparison: $5 > 1$ (**Drop Detected!**).
+- Inversion: True.
+- Drop Count $D \leftarrow 0 + 1 = 1$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Pair $i = 4$
+- Predecessor: $\text{nums}[3] = 1$.
+- Current element: $\text{nums}[4] = 2$.
+- Comparison: $1 \le 2$.
+- Inversion: False.
+- Drop Count $D = 1$.
+
+---
+
+### Conclusion
+Total circular inversions across all 5 transitions:
+$$D = 1 \le 1$$
+Because $D \le 1$, the array is a valid rotated sorted array.
+The algorithm outputs $\mathbf{true}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Index $i$ | Predecessor $\text{nums}[i-1]$ | Current $\text{nums}[i]$ | Inversion Condition $\text{nums}[i-1] > \text{nums}[i]$ | Evaluation | Running Drop Count $D$ |
+|---|---|---|---|---|---|
+| $0$ | $\text{nums}[4] = 2$ | $\text{nums}[0] = 3$ | $2 > 3$ | False | $0$ |
+| $1$ | $\text{nums}[0] = 3$ | $\text{nums}[1] = 4$ | $3 > 4$ | False | $0$ |
+| $2$ | $\text{nums}[1] = 4$ | $\text{nums}[2] = 5$ | $4 > 5$ | False | $0$ |
+| $3$ | $\text{nums}[2] = 5$ | $\text{nums}[3] = 1$ | $5 > 1$ | **True** | **$1$** |
+| $4$ | $\text{nums}[3] = 1$ | $\text{nums}[4] = 2$ | $1 > 2$ | False | $1$ |
+
+Check: $D \le 1 \implies \mathbf{true}$.
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Example | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 4, 5, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Already Sorted (Zero Rotation) | `[1, 2, 3]` | `true` | Boundary drop check $3 > 1$ gives $D = 1 \le 1$. |
+| All Equal Elements | `[1, 1, 1]` | `true` | No strict drops anywhere; $D = 0 \le 1$. |
+| Two Distinct Drops | `[2, 1, 3, 4]` | `false` | $4 > 2$ (drop 1) and $2 > 1$ (drop 2) $\implies D = 2 > 1$, returns `false`. |
+| Minimal Array ($n = 1$) | `[10]` | `true` | Boundary comparison $10 > 10$ is false; $D = 0 \le 1$. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Circular Symmetry:**
+   By evaluating the wrap-around edge ($i = 0$ comparing $\text{nums}[n-1]$ with $\text{nums}[0]$), the test becomes completely invariant under circular shifts. Any rotation of the same underlying sequence preserves the exact multiset of adjacent directed differences.
+2. **Handling Non-Strict Inequality:**
+   The check requires strictly greater ($u > v$) rather than greater-or-equal ($u \ge v$), ensuring duplicate equal values (e.g. $[2, 2, 2]$ or $[1, 2, 2, 1, 2]$) do not generate false positive drops.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Try every rotation:** Construct or inspect all $n$ rotations and test each for sorting, which can take $O(n^2)$ time.
-- **Compare with a sorted copy:** Sorting costs $O(n\log n)$ and checking rotations can still be quadratic without a string-matching technique.
-- **Find a minimum value and scan:** Duplicated minimum values make choosing the correct starting occurrence less direct than counting decreases.
-- **Explicit loop counter:** It is equivalent and can return early after a second decrease; the generator version always completes the sum.
-- **One element:** Its predecessor through index minus one is itself, so the count is zero.
-- **All equal values:** Strict comparison reports no decreases, correctly accepting duplicates.
-- **Already sorted array:** The only possible decrease is the circular last-to-first pair, so zero rotation is accepted.
-- **Rotation at a duplicate boundary:** Equal values do not create an extra decrease.
-- **Two decreases:** No single rotation boundary can eliminate both, so the array is rejected.
-- **Strict versus non-decreasing:** The `>` operator is essential; `>=` would be wrong for duplicates.
-- **Circular pair:** Omitting `nums[-1] > nums[0]` would accept some invalid arrays with an internal decrease plus a bad wrap.
-- **Boolean summation:** Python treats true as one and false as zero, so `sum` is a count.
-- **Input preservation:** The method derives a property of the current order without changing `nums`.
-- **Value bounds:** The algorithm uses comparisons only, so numeric magnitude does not affect it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. `enumerate` visits every element once. Each iteration performs one indexed lookup, comparison, and Boolean addition, all constant-time operations. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of `nums`. The algorithm traverses the array in a single linear pass, performing exactly $n$ integer comparisons.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space, using only a single integer counter.

@@ -1,128 +1,196 @@
 # Guided Example: Rising Temperature
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step SQL calendar-day self-join, date gap validation via `DATEDIFF`, and strict temperature comparison on representative meteorological tables:
 
-- **Input:** `{"tables": {"Weather": [{"id": 1, "recordDate": "2015-01-01", "temperature": 10}, {"id": 2, "recordDate": "2015-01-02", "temperature": 25}, {"id": 3, "recordDate": "2015-01-03", "temperature": 20}, {"id": 4, "recordDate": "2015-01-04", "temperature": 30}]}}`
-- **Required output:** `{"columns": ["id"], "rows": [[2], [4]]}`
+- **Input Table `Weather`:**
+  $$
+  \begin{array}{|c|c|c|}
+  \hline
+  \textbf{id} & \textbf{recordDate} & \textbf{temperature} \\
+  \hline
+  1 & \text{"2015-01-01"} & 10 \\
+  2 & \text{"2015-01-02"} & 25 \\
+  3 & \text{"2015-01-03"} & 20 \\
+  4 & \text{"2015-01-04"} & 30 \\
+  \hline
+  \end{array}
+  $$
+- **Required output:** `{"columns": ["id"], "rows": [[2], [4]]}` (Jan 2 rose from Jan 1; Jan 4 rose from Jan 3)
+- **Date Gap Trap Instance:** `[(1, "2015-01-01", 10), (2, "2015-01-03", 25)] \implies []` (Jan 3 is not yesterday to Jan 1; omitted)
+- **Unordered Rows Instance:** Table rows inserted in non-chronological order $\implies$ Relational date math matches records independent of physical table order.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates SQL date arithmetic (`DATEDIFF(today, yesterday) = 1`), exposes the trap of assuming consecutive row indices or physical table sorting, enforces strict inequality ($T_1 > T_0$), and executes in $O(N)$ time with an index on `recordDate`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Weather`
+Given a relational table `Weather`:
+$$
+\begin{array}{|c|c|c|}
+\hline
+\textbf{id} & \textbf{recordDate} & \textbf{temperature} \\
+\hline
+1 & \text{"2015-01-01"} & 10 \\
+2 & \text{"2015-01-02"} & 25 \\
+3 & \text{"2015-01-03"} & 20 \\
+4 & \text{"2015-01-04"} & 30 \\
+\hline
+\end{array}
+$$
+Find all dates' `id` that had a higher temperature compared to its **previous date (yesterday)**.
 
-The objective is to compute `{"columns": ["id"], "rows": [[2], [4]]}` from `{"tables": {"Weather": [{"id": 1, "recordDate": "2015-01-01", "temperature": 10}, {"id": 2, "recordDate": "2015-01-02", "temperature": 25}, {"id": 3, "recordDate": "2015-01-03", "temperature": 20}, {"id": 4, "recordDate": "2015-01-04", "temperature": 30}]}}` while avoiding redundant calculations and unnecessary overhead.
+Chronological comparison:
+- **Jan 1 ($10^\circ$):** No preceding record in table $\implies$ Disqualified.
+- **Jan 2 ($25^\circ$):** Preceded by Jan 1 ($10^\circ$). Difference: $25 - 10 = +15 > 0$. **Selected (ID 2).**
+- **Jan 3 ($20^\circ$):** Preceded by Jan 2 ($25^\circ$). Difference: $20 - 25 = -5 \le 0$. Disqualified.
+- **Jan 4 ($30^\circ$):** Preceded by Jan 3 ($20^\circ$). Difference: $30 - 20 = +10 > 0$. **Selected (ID 4).**
+Result: IDs `2` and `4`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A critical trap in database design:
+- Rows are not guaranteed to be ordered by date.
+- Dates are not guaranteed to be consecutive (days may be skipped).
+- Primary keys (`id`) do not necessarily correlate with date sequence.
+Therefore, solutions must bind records strictly using true calendar date arithmetic, not physical row offset or row ID subtraction.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Self-Join with `DATEDIFF` (Recommended)
+```sql
+SELECT w1.id
+FROM Weather w1
+JOIN Weather w2 
+  ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
+WHERE w1.temperature > w2.temperature;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Why `DATEDIFF` Establishes True Calendar Adjacency:
+1. `w1` represents the candidate target day ("today").
+2. `w2` represents the reference day ("yesterday").
+3. `DATEDIFF(w1.recordDate, w2.recordDate) = 1`:
+   Evaluates to $+1$ if and only if `w1.recordDate` is **exactly one calendar day after** `w2.recordDate`.
+   - If a day is skipped (e.g. Jan 1 to Jan 3), `DATEDIFF = 2 \ne 1`, correctly preventing invalid comparisons.
+4. `WHERE w1.temperature > w2.temperature`:
+   Enforces strict temperature increase ($>$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Window Function `LAG()` with Date Validation
+```sql
+SELECT id
+FROM (
+    SELECT 
+        id,
+        recordDate,
+        temperature,
+        LAG(temperature) OVER (ORDER BY recordDate) AS prev_temp,
+        LAG(recordDate) OVER (ORDER BY recordDate) AS prev_date
+    FROM Weather
+) t
+WHERE temperature > prev_temp 
+  AND DATEDIFF(recordDate, prev_date) = 1;
+```
+
+> **Invariant.** A weather record $w_1$ is selected if and only if there exists another record $w_2$ in `Weather` such that $w_1.\text{recordDate} - w_2.\text{recordDate} = 1\text{ day}$ and $w_1.\text{temperature} > w_2.\text{temperature}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Pair each current day with the exact calendar day before it
+We trace the self-join matching across all rows of `Weather`:
 
-The query reads `Weather` twice through aliases `w1` and `w2`. Alias `w1`
-represents the candidate current day whose ID might be returned. Alias `w2`
-represents that candidate's possible yesterday row.
-
-This self-join is needed because current and previous temperatures live in two
-different table rows. Joining places both values into one logical result row so
-they can be compared.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Weather": [{"id": 1, "recordDate": "2015-01-01", "temperature": 10}, {"id": 2, "recordDate": "2015-01-02", "temperature": 25}, {"id": 3, "recordDate": "2015-01-03", "temperature": 20}, {"id": 4, "recordDate": "2015-01-04", "temperature": 30}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Candidate 1: $w_1 = \text{Row 1}$ (Jan 1, $10^\circ$, ID 1)
+- Search for $w_2$ where $\text{DATEDIFF} = 1 \implies w_2.\text{recordDate} = \text{"2014-12-31"}$.
+- No matching record exists in `Weather`.
+- Join condition fails $\implies$ Omitted.
 
 ---
 
-### Step 2: Use date arithmetic rather than row order
-
-`DATEDIFF(w1.recordDate, w2.recordDate) = 1` requires `w1` to be exactly one
-calendar day after `w2`. In MySQL, `DATEDIFF(later, earlier)` returns their day
-difference, so argument order matters. Reversing the arguments would identify
-tomorrow relative to `w1` instead of yesterday.
-
-The condition does not mean “the previous row” and does not depend on IDs being
-consecutive. IDs are merely unique labels; dates determine chronology. It also
-does not compare with the nearest earlier available record if a date is
-missing. A gap of two or more days fails the equality and correctly provides no
-yesterday comparison.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Candidate 2: $w_1 = \text{Row 2}$ (Jan 2, $25^\circ$, ID 2)
+- Search for $w_2$ where $\text{DATEDIFF} = 1 \implies w_2.\text{recordDate} = \text{"2015-01-01"}$.
+- Match found: Row 1 ($w_2.\text{id} = 1, \text{temp} = 10$).
+- Evaluate `w1.temperature > w2.temperature`:
+  $$
+  25 > 10 \implies \mathbf{True!}
+  $$
+- Condition satisfied!
+- **Emit ID: 2.**
 
 ---
 
-### Step 3: Require a strict temperature increase
+### Candidate 3: $w_1 = \text{Row 3}$ (Jan 3, $20^\circ$, ID 3)
+- Search for $w_2$ where $\text{DATEDIFF} = 1 \implies w_2.\text{recordDate} = \text{"2015-01-02"}$.
+- Match found: Row 2 ($w_2.\text{id} = 2, \text{temp} = 25$).
+- Evaluate `w1.temperature > w2.temperature`:
+  $$
+  20 > 25 \implies \mathbf{False}
+  $$
+- Discarded.
 
-The second join predicate is `w1.temperature > w2.temperature`. Equality is not
-a rise, so it must not use `>=`. A lower current temperature also fails.
+---
 
-Both date adjacency and temperature increase appear in the `ON` clause. Since
-this is an inner join, placing the temperature predicate in a `WHERE` clause
-would produce the same result. Keeping both pair-validity conditions together
-makes the meaning of a qualifying pair explicit.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["id"], "rows": [[2], [4]]}` |
+### Candidate 4: $w_1 = \text{Row 4}$ (Jan 4, $30^\circ$, ID 4)
+- Search for $w_2$ where $\text{DATEDIFF} = 1 \implies w_2.\text{recordDate} = \text{"2015-01-03"}$.
+- Match found: Row 3 ($w_2.\text{id} = 3, \text{temp} = 20$).
+- Evaluate `w1.temperature > w2.temperature`:
+  $$
+  30 > 20 \implies \mathbf{True!}
+  $$
+- Condition satisfied!
+- **Emit ID: 4.**
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Weather": [{"id": 1, "recordDate": "2015-01-01", "temperature": 10}, {"id": 2, "recordDate": "2015-01-02", "temperature": 25}, {"id": 3, "recordDate": "2015-01-03", "temperature": 20}, {"id": 4, "recordDate": "2015-01-04", "temperature": 30}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["id"], "rows": [[2], [4]]}` | Verified |
+```text
+Weather Table:
+ID 1: 2015-01-01 (10 deg)
+ID 2: 2015-01-02 (25 deg)
+ID 3: 2015-01-03 (20 deg)
+ID 4: 2015-01-04 (30 deg)
+
+Self-Join Evaluation:
+  ID 1: No yesterday in table                     -> SKIP
+  ID 2: Yesterday is ID 1 (10 deg). 25 > 10 = TRUE -> EMIT ID 2
+  ID 3: Yesterday is ID 2 (25 deg). 20 > 25 = FALSE-> SKIP
+  ID 4: Yesterday is ID 3 (20 deg). 30 > 20 = TRUE -> EMIT ID 4
+
+Result:
++----+
+| id |
++----+
+| 2  |
+| 4  |
++----+
+```
+
+| Candidate ID $w_1$ | Candidate Date | Candidate Temp | Matched Yesterday $w_2$ | Yesterday Temp | $T_{w_1} > T_{w_2}$ | Decision | Emitted ID |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 2015-01-01 | 10 | (None) | - | - | Discarded | - |
+| **2** | **2015-01-02** | **25** | **ID 1 (Jan 1)** | **10** | **$25 > 10$** | **Selected** | **`2`** |
+| 3 | 2015-01-03 | 20 | ID 2 (Jan 2) | 25 | $20 > 25$ | Discarded | - |
+| **4** | **2015-01-04** | **30** | **ID 3 (Jan 3)** | **20** | **$30 > 20$** | **Selected** | **`4`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `DATEDIFF(w1.recordDate, w2.recordDate) = 1` enforces that $w_2$ occurred exactly one day prior to $w_1$. The predicate $w_1.\text{temperature} > w_2.\text{temperature}$ guarantees that only days with strict temperature increases are emitted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since `recordDate` values are distinct across all rows, each candidate $w_1$ matches at most one genuine yesterday record $w_2$. Every day with a warmer temperature than its true calendar predecessor is evaluated and returned.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Date-add equality join:** Join `w1.recordDate = DATE_ADD(w2.recordDate, INTERVAL 1 DAY)`; this states the transformed-yesterday relation directly.
-- **`LAG()` window function:** Sort by date, retrieve prior date and temperature, then verify the date gap is exactly one day.
-- **Correlated subquery:** Look up temperature at `DATE_SUB(w1.recordDate, INTERVAL 1 DAY)` for each current row.
-- **Pandas shifted merge:** Add one day to a copied date column and merge, as the local editorial describes.
-- **Missing calendar day:** Do not compare with the nearest older observation.
-- **Equal temperature:** Strict `>` rejects it.
-- **Duplicate dates:** Excluded by contract; otherwise duplicate output or ambiguous comparison could occur.
-- **First represented date:** Qualifies only if its actual yesterday is also represented.
-- **Null data:** Cannot establish both predicates and is omitted by SQL three-valued logic.
-- **Any order:** No `ORDER BY` is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **The Missing Calendar Day Trap:** In a table with records `[Jan 1 (10 deg), Jan 3 (25 deg)]`, Jan 3 is *not* yesterday to Jan 1. An unconditional `LAG()` or `w1.id = w2.id + 1` would wrongly compare Jan 3 against Jan 1 and output ID 2. `DATEDIFF` prevents this.
+- **`DATEDIFF` Argument Order:** In MySQL, `DATEDIFF(d1, d2)` computes $d_1 - d_2$. Swapping arguments to `DATEDIFF(w2.recordDate, w1.recordDate) = 1` would compare today against *tomorrow*, checking for cooling instead of warming!
+- **Strict Inequality:** A day with identical temperature ($25^\circ$ vs $25^\circ$) is not rising; `>=` must never be used in place of `>`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of Weather rows. A naive self-join evaluates up to $n^2$
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ with an index on `recordDate`, where $N$ is the number of rows in `Weather`. Without an index, the optimizer executes a sort-merge join in $O(N \log N)$ or nested loops in $O(N^2)$.
+- **Auxiliary Space Complexity:** $O(1)$ extra space beyond query engine join buffers.

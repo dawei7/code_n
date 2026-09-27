@@ -1,121 +1,194 @@
 # Guided Example: The kth Factor of n
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the sequential factor enumeration algorithm on a representative problem instance:
 
-- **Input:** `{"n": 12, "k": 3}`
-- **Required output:** `3`
+- **Input:** $n = 12$, $k = 3$
+- **Factor Sequence of $12$:** $[1, 2, 3, 4, 6, 12]$
+- **Required Output:** $3$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates the core properties of arithmetic factor extraction: testing integer divisibility via modular arithmetic, sequentially accumulating factors in strictly ascending order, decrementing the rank target, and triggering an immediate early exit upon reaching rank $k$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two positive integers `n` and `k`. A factor of an integer `n` is defined as an integer `i` where $n \% i = 0$.
+An integer $i$ is defined as a factor (or divisor) of $n$ if $n \bmod i = 0$. Given two positive integers $n$ and $k$, we must determine the $k$-th smallest factor of $n$, or return $-1$ if $n$ has fewer than $k$ total factors.
 
-The objective is to compute `3` from `{"n": 12, "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+For $n = 12$ and $k = 3$:
+- The complete set of positive divisors of $12$ is $\{1, 2, 3, 4, 6, 12\}$.
+- Arranged in ascending order:
+  $$\text{Factors} = [1, 2, 3, 4, 6, 12]$$
+- The total factor count is $6 \ge k = 3$.
+- The $1$-st factor is $1$.
+- The $2$-nd factor is $2$.
+- The $3$-rd factor is $3$.
+- Therefore, the $3$-rd factor of $12$ is $3$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might compute all prime factorizations or store all divisors in an auxiliary list before sorting.
+
+The optimal linear approach tests integers $i$ sequentially from $1$ to $n$. Because testing proceeds in strictly increasing order ($1, 2, 3, \dots$), factors are naturally discovered in sorted order without requiring any post-sorting. Decrementing a remaining rank counter $k$ allows the algorithm to halt immediately the moment the $k$-th factor is identified.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Testing divisibility $n \bmod i == 0$ evaluates whether $i$ evenly divides $n$ with zero remainder:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```
+Candidate Stream: i = 1, 2, 3, 4, ...
+Target Rank: k = 3
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+i = 1: 12 % 1 == 0 -> Factor found! Decrement k: 3 -> 2
+i = 2: 12 % 2 == 0 -> Factor found! Decrement k: 2 -> 1
+i = 3: 12 % 3 == 0 -> Factor found! Decrement k: 1 -> 0 -> RETURN 3!
+```
+
+We define the primary state tracking parameters:
+
+| Parameter | Mathematical Domain | Operational Responsibility | Initial State |
+|---|---|---|---|
+| Candidate Divisor $i$ | Integer $\in [1, n]$ | Current integer being evaluated for divisibility | $1$ |
+| Modulo Remainder | Integer $\in [0, i-1]$ | Result of $n \bmod i$ | $12 \bmod 1 = 0$ |
+| Remaining Rank $k$ | Integer $\ge 0$ | Number of factors left to discover before reaching goal | $3$ |
+| Active Divisor Count | Integer $\ge 0$ | Running count of confirmed factors discovered | $0$ |
+
+> **Ascending Divisor Enumeration Invariant.** Incrementing candidate $i$ sequentially from $1$ to $n$ evaluates divisors in strictly ascending numerical order. Whenever $n \bmod i = 0$, decrementing $k$ preserves the property that $i$ is the $(k_{\text{initial}} - k)$-th factor of $n$. When $k$ reaches $0$, candidate $i$ is mathematically guaranteed to be the exact $k$-th factor.
+
+```mermaid
+flowchart TD
+    accTitle: Kth Factor Enumeration Workflow
+    accDescr: Flowchart illustrating sequential divisor testing, rank counter deduction, and early exit.
+    Start([Input: n, k]) --> Init[Set candidate i = 1]
+    Init --> LoopCheck{Is i <= n?}
+    LoopCheck -- Yes --> ModCheck{Does n % i == 0?}
+    ModCheck -- Yes --> Decrement[k = k - 1]
+    Decrement --> CheckZero{Is k == 0?}
+    CheckZero -- Yes --> FoundTarget([Return i immediately])
+    CheckZero -- No --> Increment[i = i + 1]
+    ModCheck -- No --> Increment
+    Increment --> LoopCheck
+    LoopCheck -- No --> NotFound([Return -1: Fewer than k factors exist])
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What ascending factor order allows us to do
+### Step 1: Candidate $i = 1$
+- Evaluate remainder:
+  $$12 \bmod 1 = 0$$
+- Remainder is $0$; integer $1$ is a valid factor of $12$.
+- Decrement remaining rank counter:
+  $$k = 3 - 1 = 2$$
+- Check termination: $k = 2 \ne 0$. Continue search.
 
-A positive integer `i` is a factor of `n` exactly when dividing `n` by `i` leaves remainder zero. The requested factors must be considered in ascending order. The stored implementation takes advantage of the simplest possible way to produce that order: it checks every integer from one through `n` in increasing order.
-
-The loop `for i in range(1, n + 1)` includes both endpoints needed for the search. One is always a factor of a positive integer, and `n` is always its largest factor. Python's upper range bound is exclusive, which is why the code uses `n + 1`.
-
-For each candidate, `n % i == 0` tests divisibility. Nonfactors are ignored. When a factor is found, the code decreases `k` by one. In effect, `k` changes from the requested one-based rank into a countdown of how many more factors must be encountered.
-
-If the countdown reaches zero, the current `i` is returned immediately. If the loop finishes without reaching zero, `n` has fewer than the requested number of factors and the method returns minus one.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Parameter | State Before Step | Operation / Rule Applied | State After Step |
 |---|---|---|---|
-| Input Slice | `{"n": 12, "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Candidate $i$ | Unset | Initialize at $i = 1$ | $1$ |
+| Modulo Test | None | $12 \bmod 1 = 0$ (Divisible) | Factor $1$ confirmed |
+| Rank Counter $k$ | $3$ | Decrement by $1$ | $2$ |
+| Exit Condition | $k > 0$ | $k = 2 \ne 0 \implies$ Continue | Advance $i$ |
 
 ---
 
-### Step 2: Why mutating k is useful
+### Step 2: Candidate $i = 2$
+- Advance cursor to $i = 2$.
+- Evaluate remainder:
+  $$12 \bmod 2 = 0$$
+- Remainder is $0$; integer $2$ is a valid factor of $12$.
+- Decrement remaining rank counter:
+  $$k = 2 - 1 = 1$$
+- Check termination: $k = 1 \ne 0$. Continue search.
 
-Suppose the original request is the third factor. Before scanning, three factors still need to be encountered. After the first factor, two remain; after the second, one remains; after the third, zero remain. This avoids storing an explicit factor list or maintaining a separate factor counter.
-
-Changing the local parameter `k` does not modify anything outside the method because integers are immutable Python values and the variable is local. The original rank is no longer needed after the scan begins.
-
-For `n = 12` and original `k = 3`, candidates one and two both divide twelve, reducing the countdown to one. Candidate three also divides twelve, reducing it to zero, so the method returns three. Candidate values are checked in ascending order, so no smaller uncounted factor can exist.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Parameter | State Before Step | Operation / Rule Applied | State After Step |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Candidate $i$ | $1$ | Increment cursor to $i = 2$ | $2$ |
+| Modulo Test | None | $12 \bmod 2 = 0$ (Divisible) | Factor $2$ confirmed |
+| Rank Counter $k$ | $2$ | Decrement by $1$ | $1$ |
+| Exit Condition | $k > 0$ | $k = 1 \ne 0 \implies$ Continue | Advance $i$ |
 
 ---
 
-### Step 3: Why the returned factor has the correct rank
+### Step 3: Candidate $i = 3$ (Target Factor Identified)
+- Advance cursor to $i = 3$.
+- Evaluate remainder:
+  $$12 \bmod 3 = 0$$
+- Remainder is $0$; integer $3$ is a valid factor of $12$.
+- Decrement remaining rank counter:
+  $$k = 1 - 1 = 0$$
+- Check termination: $k = 0$. Condition met!
+- The $3$-rd factor of $12$ is identified as $3$.
+- The algorithm halts immediately and returns $3$.
 
-At the start of an iteration for candidate `i`, every positive integer smaller than `i` has already been tested. Therefore, every factor smaller than `i` has already reduced the countdown once, and no nonfactor has changed it.
-
-When `i` is a factor and makes `k` zero, the number of factors encountered is exactly the originally requested rank. Since those factors arrived in increasing candidate order, `i` is exactly the requested factor in the sorted factor list.
-
-If the method reaches the final return, every possible positive factor has been checked. No positive factor can exceed `n`: if $i>n>0$, then $n/i$ lies strictly between zero and one and cannot be a positive integer. Thus a still-positive countdown proves that too few factors exist, making minus one correct.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Parameter | State Before Step | Operation / Rule Applied | State After Step |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+| Candidate $i$ | $2$ | Increment cursor to $i = 3$ | $3$ |
+| Modulo Test | None | $12 \bmod 3 = 0$ (Divisible) | Factor $3$ confirmed |
+| Rank Counter $k$ | $1$ | Decrement by $1$ | $0$ |
+| Exit Condition | $k = 1$ | $k == 0 \implies$ Early return | Return $3$ |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 12, "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+The table below summarizes all candidate evaluations from $i = 1$ to termination:
+
+| Step | Candidate $i$ | Arithmetic Remainder $12 \bmod i$ | Is Divisor? | Rank $k$ Before | Rank $k$ After | Action / Outcome |
+|---|---|---|---|---|---|---|
+| 1 | $1$ | $0$ | **Yes** | $3$ | $2$ | 1st factor found; continue |
+| 2 | $2$ | $0$ | **Yes** | $2$ | $1$ | 2nd factor found; continue |
+| 3 | $3$ | $0$ | **Yes** | $1$ | $0$ | **3rd factor reached; return $3$** |
+
+Subsequent potential divisors of $12$ ($4, 6, 12$) are never inspected, as the early-exit condition terminates execution immediately at $i = 3$.
+
+Final returned value:
+$$\text{result} = 3$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Ascending Order Guarantee:** The search iterates candidate $i$ strictly as $1, 2, 3, \dots, n$. Since $i_1 < i_2$ for any two successive steps, any set of confirmed divisors $\{d_1, d_2, \dots, d_m\}$ satisfies $d_1 < d_2 < \dots < d_m$.
+2. **Rank Matching:** Starting with target rank $k$, exactly $k$ confirmed divisors cause $k$ to reach $0$. The divisor active when $k$ becomes $0$ is precisely the $k$-th smallest positive factor of $n$.
+
+### Completeness
+
+1. If $n$ possesses at least $k$ factors, the loop is guaranteed to encounter the $k$-th factor at or before $i = n$ and return it.
+2. If $n$ has fewer than $k$ factors (total divisors $\tau(n) < k$), the loop exhausts all candidates $1 \dots n$ without $k$ reaching $0$. The algorithm falls through the loop and returns $-1$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two-direction square-root scan:** Enumerate small divisors upward and their complements in reverse small-divisor order. It achieves $O(\sqrt n)$ time and $O(1)$ space while preserving ascending rank.
-- **Store both factor halves:** Gather small and large factors during a square-root scan, then combine them in order. It is easy to understand but uses $O(\sqrt n)$ space in the worst case.
-- **Sort discovered factors:** Generate divisor pairs and sort the resulting list. This is correct but adds storage and sorting work that the ordered two-direction scan can avoid.
-- **Prime n:** Its factors are only one and `n`. Requests beyond rank two return minus one.
-- **n equals one:** The only factor is one. The first rank returns one, while no larger valid rank exists under the stated `k \le n` constraint.
-- **Perfect square:** The square root pairs with itself and must be counted once, not twice, in a paired-factor alternative.
-- **k larger than the factor count:** The exact scan exhausts every candidate and returns minus one.
-- **Largest factor requested:** The source eventually reaches `i = n` and returns it if its rank matches.
-- **Early factor requested:** The method returns as soon as the countdown reaches zero and does not scan unused larger candidates.
-- **Ascending order:** Testing candidates from one upward is what makes countdown rank correspond directly to sorted-factor rank.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Trap 1: Halting the Search at $n / 2$
+A common misconception in divisor loops is iterating only up to $\lfloor n / 2 \rfloor$. For $n = 7$ and $k = 2$, divisors are $[1, 7]$. Stopping at $7 / 2 = 3$ fails to find factor $7$, erroneously returning $-1$. The loop boundary must include $n$ itself ($i \le n$).
+
+### Trap 2: Off-By-One in Rank Tracking
+Because $k$ is 1-based, decrementing $k$ upon each factor correctly reaches $0$ on the $k$-th factor. Checking `if k == 1` before decrementing or decrementing before checking can cause premature termination on the $(k-1)$-th factor. The order must be strictly consistent.
+
+### Trap 3: Full Factor Array Materialization
+Collecting all factors into an array and sorting takes extra memory and time. Testing sequentially enables early termination as soon as the $k$-th factor is found, avoiding evaluating larger factors.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The exact loop can inspect all $n$ candidates when the requested rank is too large or when the desired factor is `n`. Each modulo test is constant time under the usual bounded-integer model, so worst-case time is $O(n)$. Early return can make particular executions faster, but it does not change the worst-case bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Sequential Scan:** In the worst case (when $k = \tau(n)$ or no solution exists), the loop iterates $n$ times.
+- **Divisibility Check:** In each iteration, a single integer modulo operation $n \bmod i$ is executed in $\mathcal{O}(1)$ time.
+- **Early Exit:** For many instances, execution halts at $i \ll n$ (in our instance, halting at $i = 3$ instead of $12$).
+- Total time complexity:
+$$\mathcal{O}(n)$$
+For $n \le 1000$, $1000$ operations execute in under $0.01\text{ ms}$.
+
+*(Note: Divisors can also be extracted in $\mathcal{O}(\sqrt{n})$ time by pairing each divisor $d \le \sqrt{n}$ with its complement $n/d$).*
+
+### Auxiliary Space Complexity
+
+- The algorithm maintains only two scalar integer registers ($i$ and $k$).
+- No arrays, lists, or heap structures are allocated.
+- Total auxiliary space complexity:
+$$\mathcal{O}(1)$$

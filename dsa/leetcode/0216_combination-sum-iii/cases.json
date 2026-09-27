@@ -55,7 +55,7 @@
     {
       "id": "trial-impossible",
       "name": "target too small for slots",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "k": 4,
@@ -63,6 +63,7 @@
       },
       "expected": [],
       "tags": [
+        "sample",
         "boundary"
       ]
     },

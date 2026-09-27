@@ -1,125 +1,166 @@
 # Guided Example: Maximum Matrix Sum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and analyze the parity invariance and path-translocation theorem on representative matrices to maximize the global matrix sum under adjacent-pair sign flip operations.
 
-- **Input:** `{"matrix": [[1, -1], [-1, 1]]}`
-- **Required output:** `4`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an `n x n` integer `matrix`. You can do the following operation **any** number of times:
-
-The objective is to compute `4` from `{"matrix": [[1, -1], [-1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance (Odd Negative Count):**
+  $$matrix = \begin{pmatrix} 1 & 2 & 3 \\ -1 & -2 & -3 \\ 1 & 2 & 3 \end{pmatrix}$$
+  - Negative count: 3 (odd)
+  - Minimum absolute value: 1
+  - Expected Output: `16` (absolute sum 18 minus $2 \times 1$)
+- **Secondary Instance (Even Negative Count):**
+  $$matrix = \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$$
+  - Negative count: 2 (even)
+  - Expected Output: `4` (all elements converted to positive)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+We are given an $n \times n$ integer matrix. In one operation, we choose any two cardinally adjacent cells and multiply both values by $-1$. We may perform this operation an arbitrary number of times.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Consider what an adjacent sign flip does:
+1. **Both Negative:** Flipping $(-a, -b)$ yields $(+a, +b)$. The number of negative numbers decreases by 2.
+2. **Both Positive:** Flipping $(+a, +b)$ yields $(-a, -b)$. The number of negative numbers increases by 2.
+3. **One Negative, One Positive:** Flipping $(-a, +b)$ yields $(+a, -b)$. The number of negative numbers remains unchanged, but the negative sign has effectively **transported** from one cell to its neighbor!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because the grid is a connected graph:
+- A negative sign can be walked along any path of adjacent cells to any location in the matrix.
+- Whenever any two negative signs meet at adjacent cells, a single operation annihilates both, turning both positive.
 
----
+This establishes two universal outcomes:
+- **Even Number of Negatives:** Every negative sign can be paired up along a path and annihilated. Every element in the matrix can be made non-negative, achieving the sum of absolute values $\sum |x|$.
+- **Odd Number of Negatives:** Negative signs can be paired up until exactly **one** negative sign remains. Because that single negative sign can be moved to any cell in the grid, we should position it at the cell with the **minimum absolute value** $m = \min |x|$. The global maximum sum is $\sum |x| - 2m$.
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Start from an upper bound
-
-For any element $x$, the largest contribution obtainable from its magnitude is $\lvert x\rvert$. Therefore no final matrix can have sum greater than
-
-$$
-S=\sum \lvert x\rvert.
-$$
-
-If all nonzero entries can be made positive, this upper bound is attainable. The problem is thus not about deciding a separate desired value for every cell; it is about understanding which sign patterns the pair-flip operation can reach.
-
-The source computes `s` as this absolute-value sum. At the same time, it counts initially negative entries in `cnt` and tracks the smallest magnitude in `mi`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[1, -1], [-1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In our primary instance:
+- The elements have absolute sum $3 \times (1 + 2 + 3) = 18$.
+- There are 3 negative numbers (odd).
+- The minimum absolute value is 1.
+- Shifting the odd negative sign to 1 gives maximum sum $18 - 2(1) = 16$.
 
 ---
 
-### Step 2: Understand what one operation changes
+## 2. Mathematical Formalism & Parity Conservation
 
-An operation flips the signs at the two endpoints of one grid edge. Imagine recording, for every cell, whether it is flipped an odd or even number of times. Even flips cancel, so only the odd-flipped set determines the final signs.
+Let the matrix entries be $A_{i, j}$ for $(i, j) \in \{0, \dots, n-1\}^2$.
+Let the number of strictly negative elements be:
+$$\mathcal{N} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \mathbb{I}(A_{i, j} < 0)$$
 
-Every operation toggles exactly two cells. Consequently, the number of cells flipped an odd number of times must be even. Conversely, because the grid is connected, any chosen even-sized set of cells can be toggled: pair its vertices, connect each pair by a grid path, and apply the operation along every edge of that path. Internal path vertices are touched twice and cancel, while the two endpoints are touched once.
+### Invariant: Parity Conservation
 
-This reachability fact is why adjacency does not force a more complicated local greedy strategy. Adjacency restricts individual operations, but paths let sign changes be transported across the connected matrix.
+Each operation on adjacent cells $u$ and $v$ changes the negative count by:
+$$\Delta \mathcal{N} \in \{-2, 0, +2\}$$
+Therefore, the parity of the negative count is strictly conserved:
+$$\mathcal{N} \pmod 2 \equiv \text{constant}$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Theorem: Canonical Matrix Sum
 
----
+Let:
+$$S_{\text{abs}} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} |A_{i, j}| \quad \text{and} \quad \mu = \min_{0 \le i, j < n} |A_{i, j}|$$
 
-### Step 3: When the negative count is even
+The maximum achievable matrix sum is:
+$$\text{MaxSum} = \begin{cases} 
+S_{\text{abs}} & \text{if } \mathcal{N} \text{ is even} \\
+S_{\text{abs}} - 2\mu & \text{if } \mathcal{N} \text{ is odd}
+\end{cases}$$
 
-If `cnt` is even, choose all initially negative cells as the odd-flipped set. Its size is even, so the connected-grid argument says this transformation is reachable. Every negative becomes positive, and every initially nonnegative entry can retain its sign.
+*(Notice that if the matrix contains a zero, $\mu = 0$, so $S_{\text{abs}} - 2(0) = S_{\text{abs}}$, correctly reflecting that the negative sign can be absorbed by the zero).*
 
-The resulting sum is exactly `s`, the absolute-value upper bound. Since no arrangement can exceed that bound, this result is optimal. The source returns `s` when `cnt % 2 == 0`.
+```mermaid
+flowchart TD
+    accTitle: Parity Invariant Matrix Sum Logic
+    accDescr: Pipeline calculating absolute sum, counting negative elements, and applying parity formula with minimum absolute value deduction.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[1, -1], [-1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+    START["Input n x n Matrix"] --> SCAN["Single Pass Accumulator:<br/>Compute Absolute Sum S_abs<br/>Count Negative Entries N_neg<br/>Track Minimum Absolute Value mu"]
+    
+    SCAN --> PARITY{"Is N_neg % 2 == 0?"}
+    
+    PARITY -- Even Negatives --> EVEN["All negatives can be annihilated!<br/>Return S_abs"]
+    PARITY -- Odd Negatives --> ODD["One negative must survive.<br/>Position at minimal magnitude mu.<br/>Return S_abs - 2 * mu"]
+```
 
 ---
 
-## 6. Traps This Instance Exposes
+## 3. Step-by-Step Translocation and Cancellation Trace
 
-- **Simulate adjacent flips greedily:** Local choices are difficult to coordinate and do unnecessary work; the parity invariant determines the answer directly.
-- **Search over sign configurations:** There are exponentially many patterns, while only the negative-count parity and minimum magnitude matter.
-- **Explicitly construct operations:** This can demonstrate reachability using paths, but the problem requests only the maximum sum, not an operation sequence.
-- **Even negative count:** Every negative sign can be removed, so return the full sum of absolute values.
-- **Odd negative count without zero:** One negative is unavoidable; place it on the smallest magnitude.
-- **Odd negative count with zero:** Zero absorbs the parity adjustment, and subtracting twice the minimum subtracts zero.
-- **All entries positive:** The negative count is zero and the matrix already attains the upper bound.
-- **All entries negative:** Only the parity of the number of cells decides whether one magnitude must remain negative.
-- **Several equal minimum magnitudes:** Any one can carry the unavoidable negative sign; the maximum sum is unchanged.
-- **Value already zero:** It is not counted as negative because `0 < 0` is false.
-- **Large magnitudes and matrix size:** Python integers hold the total exactly without fixed-width overflow.
-- **Connectedness is essential to the proof:** A rectangular grid linked by shared borders is connected, so path operations can realize every even endpoint set.
-- **Diagonal cells:** They are not directly adjacent, but a border-connected path can still transfer flips between them.
-- **Input side effects:** The exact method reads the matrix only and returns a number without changing any entry.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+We trace the primary instance:
+$$matrix = \begin{pmatrix} 1 & 2 & 3 \\ -1 & -2 & -3 \\ 1 & 2 & 3 \end{pmatrix}$$
+
+### Step 1: Scan and Aggregate Statistics
+- Row 0: `[1, 2, 3]` $\implies$ absolute sum $= 6$, negatives $= 0$, minimum magnitude $= 1$.
+- Row 1: `[-1, -2, -3]` $\implies$ absolute sum $= 6$, negatives $= 3$, minimum magnitude $= 1$.
+- Row 2: `[1, 2, 3]` $\implies$ absolute sum $= 6$, negatives $= 0$, minimum magnitude $= 1$.
+- **Totals:**
+  - Total absolute sum $S_{\text{abs}} = 6 + 6 + 6 = 18$.
+  - Total negative count $\mathcal{N} = 3$ (Odd).
+  - Global minimum magnitude $\mu = \min(1, 2, 3) = 1$.
+
+### Step 2: Physical Flips (Constructive Demonstration)
+1. **Annihilate Pair $(-2, -3)$:**
+   - Cells $(1, 1) = -2$ and $(1, 2) = -3$ share an edge.
+   - Flip both: $(1, 1)$ becomes $+2$, $(1, 2)$ becomes $+3$.
+   - Matrix becomes:
+     $$\begin{pmatrix} 1 & 2 & 3 \\ -1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}$$
+   - Only a single negative remains at $(1, 0) = -1$.
+2. **Relocate Negative to Global Minimum:**
+   - The surviving negative is already at cell $(1, 0)$ with absolute value $|-1| = 1 = \mu$.
+   - No further movement is needed.
+3. **Compute Final Sum:**
+   $$\text{Sum} = (1 + 2 + 3) + (-1 + 2 + 3) + (1 + 2 + 3) = 6 + 4 + 6 = 16$$
 
 ---
 
-## 7. Complexity Derivation
+## 4. Execution Trace Table
 
-- **Time Complexity:** $O(n^2)$. Let $M$ be the total number of matrix elements. For the required square matrix, $M=n^2$. The nested loops process each value once with constant work, giving $O(M)$ time, equivalently $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Cell-by-Cell Statistics for Primary Matrix
+
+| Cell $(r, c)$ | Original Value $A_{r, c}$ | Absolute Value $|A_{r, c}|$ | Sign Parity | Running Absolute Sum $S_{\text{abs}}$ | Running Negatives $\mathcal{N}$ | Running Minimum $\mu$ |
+|---|---|---|---|---|---|---|
+| $(0, 0)$ | 1 | 1 | Positive | 1 | 0 | 1 |
+| $(0, 1)$ | 2 | 2 | Positive | 3 | 0 | 1 |
+| $(0, 2)$ | 3 | 3 | Positive | 6 | 0 | 1 |
+| $(1, 0)$ | -1 | 1 | **Negative** | 7 | 1 | 1 |
+| $(1, 1)$ | -2 | 2 | **Negative** | 9 | 2 | 1 |
+| $(1, 2)$ | -3 | 3 | **Negative** | 12 | 3 | 1 |
+| $(2, 0)$ | 1 | 1 | Positive | 13 | 3 | 1 |
+| $(2, 1)$ | 2 | 2 | Positive | 15 | 3 | 1 |
+| $(2, 2)$ | 3 | 3 | Positive | 18 | 3 | 1 |
+
+**Evaluation:**
+- $\mathcal{N} = 3$ is odd $\implies$ Result $= S_{\text{abs}} - 2\mu = 18 - 2(1) = 16$.
+
+### Comparative Diagnostic Scenarios
+
+| Matrix Form | Negative Count $\mathcal{N}$ | Minimum Absolute Value $\mu$ | Parity Branch | Final Formula | Result |
+|---|---|---|---|---|---|
+| `[[1, -1], [-1, 1]]` | 2 (Even) | 1 | Even | $S_{\text{abs}} = 4$ | 4 |
+| `[[1, 2], [-3, 4]]` | 1 (Odd) | 1 | Odd | $10 - 2(1)$ | 8 |
+| `[[-1, 0], [-2, -3]]` | 3 (Odd) | 0 | Odd | $6 - 2(0)$ | 6 |
+| `[[-5, -5], [-5, -5]]` | 4 (Even) | 5 | Even | $S_{\text{abs}} = 20$ | 20 |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+**Soundness.** In any state reachable via adjacent flips, the number of negative numbers must have the same parity as $\mathcal{N}$ because each operation alters the count by $\pm 2$ or $0$. When $\mathcal{N}$ is odd, at least one cell must remain negative. The sum of all elements in any configuration with at least one negative cell $c^*$ cannot exceed $\sum_{c \neq c^*} |A_c| - |A_{c^*}| = S_{\text{abs}} - 2|A_{c^*}|$. This quantity is maximized by choosing $c^*$ such that $|A_{c^*}| = \mu$, yielding an upper bound of $S_{\text{abs}} - 2\mu$.
+
+**Completeness (Reachability).** Because the grid graph is connected, for any two cells $u$ and $v$, there exists a simple path $u = p_0, p_1, \dots, p_k = v$. Sequentially applying adjacent flips along this path transfers the sign from $u$ to $v$ without modifying the signs of any intermediate cells along the path. By induction, any pair of negative signs can be brought together and canceled, and any single remaining negative sign can be routed to the cell realizing the global minimum $\mu$. Thus, the bound is constructively achievable.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Presence of Zero:** If any cell in the matrix contains $0$, then $\mu = 0$. Even if $\mathcal{N}$ is odd, the negative sign can be deposited onto the $0$ (since $-0 = 0$), avoiding any deduction from the positive sum ($S_{\text{abs}} - 2(0) = S_{\text{abs}}$).
+- **64-bit Integer Overflow:** With $n = 250$, the matrix contains $250^2 = 62{,}500$ cells, each up to $10^5$. The total sum can reach $62{,}500 \times 10^5 = 6.25 \times 10^9$, exceeding 32-bit signed integer limits ($2.14 \times 10^9$). The sum accumulator must use 64-bit integer types (`long long` or `int64`).
+- **Graph Disconnection Fallacy:** The rule applies to adjacent cells (horizontal and vertical). If diagonal flips were permitted, connectivity would still hold; standard 4-directional adjacency is already sufficient for full grid connectivity.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - A single pass iterates through all $n \times n = n^2$ cells of the matrix.
+  - At each cell, computing $|x|$, adding to the accumulator, testing $x < 0$, and updating the running minimum takes $\mathcal{O}(1)$ time.
+  - Total time complexity is strictly $\mathcal{O}(n^2)$, optimal for reading the input.
+- **Auxiliary Space Complexity:**
+  - Only scalar accumulator variables ($S_{\text{abs}}, \mathcal{N}, \mu$) are stored.
+  - Auxiliary space is strictly $\mathcal{O}(1)$.

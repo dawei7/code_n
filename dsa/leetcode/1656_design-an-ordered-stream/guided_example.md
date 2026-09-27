@@ -1,130 +1,206 @@
 # Guided Example: Design an Ordered Stream
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step buffer accumulation, contiguous frontier advancement, and packet reassembly for out-of-order streaming protocols, prove the Monotonic Frontier Invariant and Amortized $\mathcal{O}(1)$ Stream Drain Theorem, and evaluate output chunks across representative problem instances:
 
-- **Input:** `{"operations": ["OrderedStream", "insert"], "arguments": [[1], [1, "aaaaa"]]}`
-- **Required output:** `[null, ["aaaaa"]]`
+- **Representative Instance 1 (Out-of-Order Buffering and Cascading Drain):**
+  - Stream Capacity: $n = 5$
+  - Initial State: Array `data` of size $6$ (indices $0 \dots 5$), frontier pointer $ptr = 1$.
+  - Operations and Outputs:
+    1. `insert(3, "ccccc")`: $idKey = 3 > ptr = 1$. Buffered at index $3$. Returns `[]`.
+    2. `insert(1, "aaaaa")`: $idKey = 1 == ptr = 1$. Emits `["aaaaa"]`, pointer advances to $ptr = 2$.
+    3. `insert(2, "bbbbb")`: $idKey = 2 == ptr = 2$. Emits index $2$ (`"bbbbb"`), then detects pre-buffered index $3$ (`"ccccc"`). Emits `["bbbbb", "ccccc"]`, pointer advances to $ptr = 4$.
+    4. `insert(5, "eeeee")`: $idKey = 5 > ptr = 4$. Buffered at index $5$. Returns `[]`.
+    5. `insert(4, "ddddd")`: $idKey = 4 == ptr = 4$. Emits index $4$ (`"ddddd"`), then detects pre-buffered index $5$ (`"eeeee"`). Emits `["ddddd", "eeeee"]`, pointer advances to $ptr = 6$.
+  - Sequence of returned chunks: `[[], ["aaaaa"], ["bbbbb", "ccccc"], [], ["ddddd", "eeeee"]]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Strict Sequential Arrival):**
+  - $n = 3$, insertions arrive in order: $(1, \text{"a"}), (2, \text{"b"}), (3, \text{"c"})$.
+  - Every insertion immediately matches $ptr$: outputs `[["a"], ["b"], ["c"]]`.
+
+- **Representative Instance 3 (Reverse Arrival Single Final Flush):**
+  - $n = 3$, insertions arrive in reverse order: $(3, \text{"c"}), (2, \text{"b"}), (1, \text{"a"})$.
+  - Operations $1$ and $2$ return `[]`. Operation $3$ unblocks the entire stream, returning `["a", "b", "c"]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a stream of `n` `(idKey, value)` pairs arriving in an **arbitrary** order, where `idKey` is an integer between `1` and `n` and `value` is a string. No two pairs have the same `id`.
+We design an ordered stream data structure that accepts a stream of $n$ `(idKey, value)` pairs arriving in arbitrary order, where $idKey \in [1, n]$ and each $idKey$ is distinct. Each call to `insert(idKey, value)` must return the largest possible consecutive chunk of values starting from the stream's current frontier pointer $ptr$, ordered by increasing $idKey$. Once a value is emitted, it is never emitted again.
 
-The objective is to compute `[null, ["aaaaa"]]` from `{"operations": ["OrderedStream", "insert"], "arguments": [[1], [1, "aaaaa"]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Core Architectural Paradigm: Network Packet Reassembly (TCP Window)
+  In packet transmission, network packets often arrive out of sequence:
+    Packet 3 arrives first --> MUST BE BUFFERED (cannot be processed yet).
+    Packet 1 arrives       --> Immediately delivered to application.
+    Packet 2 arrives       --> Delivers Packet 2 AND unblocks buffered Packet 3!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Why Sorting and Searching are Unnecessary:
+  - If we sort stored packets on each insert: O(n log n) per operation (expensive!).
+  - If we maintain a min-heap: O(log n) overhead per operation.
+
+The Frontier Pointer Invariant:
+  We maintain an array data of size n + 1 and a scalar pointer ptr = 1.
+  When (idKey, value) arrives:
+    1. Directly store data[idKey] = value in O(1) time.
+    2. If idKey == ptr, drain consecutive non-null values while advancing ptr!
+    3. If idKey > ptr, do nothing (return empty list).
+
+  Because ptr starts at 1 and only ever moves forward up to n + 1,
+  the while loop runs at most n times ACROSS THE ENTIRE LIFETIME of the stream!
+  Every insertion runs in AMORTIZED O(1) TIME!
+```
+
+The decisive pedagogical goal is the **Monotonic Frontier Invariant & Amortized $\mathcal{O}(1)$ Stream Drain Theorem**:
+1. **Contiguous Prefix Guarantee:** All IDs in $[1, ptr - 1]$ have been returned in strictly increasing order.
+2. **First Missing Key:** Index $ptr$ is the smallest ID that has not yet been emitted.
+3. **Amortized Complexity:** Across all $n$ insertions, $ptr$ increments exactly $n$ times, yielding $\mathcal{O}(1)$ amortized time per insertion and $\mathcal{O}(n)$ total time.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & The Reassembly Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Ordered Stream Buffer and Drain Pipeline
+    accDescr: Pipeline showing direct index assignment, pointer comparison, consecutive chunk extraction, and frontier pointer advancement
+    Start["Call insert(idKey, value)\nGiven internal array data, pointer ptr"] --> Store["Store value directly:\ndata[idKey] = value"]
+    Store --> CheckPtr{"Is idKey == ptr ?"}
+    CheckPtr -->|"No (idKey > ptr)"| RetEmpty["Return []\n(Gap remains at ptr)"]
+    CheckPtr -->|"Yes (idKey == ptr)"| DrainLoop["Initialize chunk ans = []\nWhile ptr <= n and data[ptr] != null:"]
+    DrainLoop --> Collect["ans.append(data[ptr])\nptr = ptr + 1"]
+    Collect --> DrainLoop
+    DrainLoop -->|"data[ptr] is null or ptr > n"| ReturnChunk["Return ans\n(Largest contiguous chunk)"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Monotonic Frontier Invariant & Amortized Bound Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\mathcal{U}_t \subseteq \{1, \dots, n\}$ be the set of IDs inserted up to step $t$.
+1. **Frontier Invariant Formulation:**
+   At any step $t$, the internal pointer $ptr_t$ satisfies:
+   $$
+   \{1, 2, \dots, ptr_t - 1\} \subseteq \mathcal{U}_t \quad \text{and} \quad ptr_t \notin \text{Emitted}_t
+   $$
+   Specifically, every index $k < ptr_t$ has been emitted in a previous chunk, while $ptr_t$ is the unique minimal missing element in the emitted set.
+2. **Chunk Maximality:**
+   When $data[ptr_t] \ne null$, the while loop drains elements until index $ptr_{t+1}$ where $data[ptr_{t+1}] = null$ (or $ptr_{t+1} = n + 1$).
+   Any subset of values including an index $> ptr_{t+1}$ would skip the gap at $ptr_{t+1}$, violating the requirement for consecutive ordered output. Hence, the chunk is maximal.
+3. **Amortized Constant Time:**
+   Let the potential function be $\Phi = n - ptr$.
+   Each time $ptr$ increments, $\Phi$ decreases by $1$. Since $1 \le ptr \le n + 1$, the total number of while-loop iterations across all $n$ calls to `insert` is bounded by $n$.
+   Therefore, the amortized cost per `insert` is:
+   $$
+   \frac{1}{n} \sum_{t=1}^n \mathcal{O}(1 + \text{chunk\_size}_t) = \mathcal{O}(1)
+   $$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate arrival order from output order
+### Detailed Trace on Representative Instance 1 ($n = 5$)
 
-Pairs arrive in arbitrary order, but values must leave the stream in increasing `idKey` order. The central difficulty is not sorting all pairs after they arrive; each call must immediately return the largest consecutive chunk that has just become available. A value with a large ID may arrive early and wait, while inserting one missing smaller ID may suddenly unlock several stored values.
+Initialization:
+- Allocate `data` of length $6$: `[None, None, None, None, None, None]`.
+- Set frontier: $ptr = 1$.
 
-The implementation uses two pieces of persistent object state:
+#### Call 1: `insert(3, "ccccc")`
+- Store: `data[3] = "ccccc"`.
+- Check condition: `data[ptr] == data[1] == None`.
+- The frontier slot $1$ is empty. No contiguous chunk can start.
+- Loop does not execute. Pointer remains $ptr = 1$.
+- Return: **`[]`**.
 
-- `data` stores each value at the array index equal to its ID;
-- `ptr` identifies the smallest ID whose value has not yet been returned.
+#### Call 2: `insert(1, "aaaaa")`
+- Store: `data[1] = "aaaaa"`.
+- Check condition: `data[ptr] == data[1] != None`.
+- Loop starts at $ptr = 1$:
+  - Append `data[1]` (`"aaaaa"`).
+  - Advance pointer: $ptr \leftarrow 2$.
+  - Next slot: `data[2] == None` (loop halts).
+- Frontier is now $ptr = 2$.
+- Return: **`["aaaaa"]`**.
 
-The constructor sets `ptr = 1` because valid IDs start at one. It allocates `n + 1` entries so that index and ID can match directly. Index zero is deliberately unused. This one extra slot avoids repeatedly converting between a one-based problem ID and a zero-based Python index.
+#### Call 3: `insert(2, "bbbbb")`
+- Store: `data[2] = "bbbbb"`.
+- Check condition: `data[ptr] == data[2] != None`.
+- Loop starts at $ptr = 2$:
+  - Iteration 1:
+    - Append `data[2]` (`"bbbbb"`).
+    - Advance pointer: $ptr \leftarrow 3$.
+  - Iteration 2:
+    - Check `data[3]`: It already holds `"ccccc"` from Call 1!
+    - Append `data[3]` (`"ccccc"`).
+    - Advance pointer: $ptr \leftarrow 4$.
+  - Iteration 3:
+    - Check `data[4]`: `data[4] == None` (loop halts).
+- Frontier is now $ptr = 4$.
+- Return: **`["bbbbb", "ccccc"]`**.
 
-Every slot begins as `null`, which means that the corresponding pair has not arrived. The contract says every insertion has a unique ID, so an existing value never needs to be overwritten as part of normal operation.
+#### Call 4: `insert(5, "eeeee")`
+- Store: `data[5] = "eeeee"`.
+- Check condition: `data[ptr] == data[4] == None`.
+- Frontier slot $4$ is empty.
+- Return: **`[]`**. Pointer remains $ptr = 4$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["OrderedStream", "insert"], "arguments": [[1], [1, "aaaaa"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: The pointer invariant
-
-Immediately before and after every call, `ptr` satisfies a precise invariant:
-
-> Every ID smaller than `ptr` has already been returned exactly once, while `ptr` is the first ID that has not yet been returned.
-
-An ID at or above `ptr` might already be stored, but it cannot be emitted while a smaller required ID is missing. This invariant explains why there is no need to search the whole array for the next result. The next possible output must begin exactly at `ptr`.
-
-When `insert(idKey, value)` is called, the assignment `data[idKey] = value` records the arrival in constant time. The method then creates an empty call-specific result list `ans`. If the insertion did not fill the current `ptr` slot, that slot is still empty and the loop does nothing. Returning an empty list is correct because the required next ID is missing; no later stored ID may leap over that gap.
-
-If the current pointer slot is filled, the method enters the loop. It appends `data[ptr]`, increments `ptr`, and immediately tests the next slot. This continues while IDs are consecutive and already present. The condition `ptr < len(data)` prevents reading beyond the allocated array after ID `n` has been emitted.
-
-The second condition, `data[ptr]`, uses the stored value’s truthiness to distinguish a filled slot from `null`. This is safe under the contract because every value has length five and is therefore nonempty. If empty strings were permitted, an explicit `is not null` check would be needed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the returned chunk is the largest possible one
-
-Suppose `ptr` has value `p` when a call starts its scan. By the invariant, IDs below `p` have already been returned and must never appear again. Therefore any new valid chunk must start with ID `p`.
-
-If slot `p` is empty, no valid nonempty chunk exists, so the empty answer is maximal. If it is filled, the loop emits it and checks `p + 1`. At each subsequent step, the next value is appended exactly when its slot is filled. The loop stops only for one of two reasons: it reaches the end after emitting ID `n`, or it reaches the first not-yet-inserted ID. In the latter case, including any higher ID would violate increasing consecutive order. Thus the accumulated list cannot be extended and is the largest possible chunk.
-
-After appending an item, `ptr` moves past it. Consequently every ID smaller than the new pointer has been emitted. The stopping slot has not been emitted, and no greater slot has been emitted out of turn, so the pointer invariant is restored for the next call.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, ["aaaaa"]]` |
+#### Call 5: `insert(4, "ddddd")`
+- Store: `data[4] = "ddddd"`.
+- Check condition: `data[ptr] == data[4] != None`.
+- Loop starts at $ptr = 4$:
+  - Iteration 1:
+    - Append `data[4]` (`"ddddd"`).
+    - Advance pointer: $ptr \leftarrow 5$.
+  - Iteration 2:
+    - Check `data[5]`: Holds `"eeeee"` from Call 4!
+    - Append `data[5]` (`"eeeee"`).
+    - Advance pointer: $ptr \leftarrow 6$.
+  - Iteration 3:
+    - $ptr = 6 == \text{len}(data)$ (boundary reached, loop halts).
+- Frontier is now $ptr = 6$.
+- Return: **`["ddddd", "eeeee"]`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["OrderedStream", "insert"], "arguments": [[1], [1, "aaaaa"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, ["aaaaa"]]` | Verified |
+### State Progression Table for Representative Instance 1
+
+| Call # | Operation | Input $(idKey, val)$ | Buffer State `data[1..5]` | $ptr$ Before | While Iterations | Emitted Chunk | $ptr$ After |
+|---|---|---|---|---|---|---|---|
+| Init | `__init__(5)` | — | `[null, null, null, null, null]` | $1$ | — | — | $1$ |
+| 1 | `insert` | $(3, \text{"ccccc"})$ | `[null, null, "ccccc", null, null]` | $1$ | $0$ (slot $1$ null) | `[]` | $1$ |
+| 2 | `insert` | $(1, \text{"aaaaa"})$ | `["aaaaa", null, "ccccc", null, null]` | $1$ | $1$ (drains $1$) | `["aaaaa"]` | $2$ |
+| 3 | `insert` | $(2, \text{"bbbbb"})$ | `["aaaaa", "bbbbb", "ccccc", null, null]` | $2$ | $2$ (drains $2, 3$) | `["bbbbb", "ccccc"]` | $4$ |
+| 4 | `insert` | $(5, \text{"eeeee"})$ | `["aaaaa", "bbbbb", "ccccc", null, "eeeee"]` | $4$ | $0$ (slot $4$ null) | `[]` | $4$ |
+| 5 | `insert` | $(4, \text{"ddddd"})$ | `["aaaaa", "bbbbb", "ccccc", "ddddd", "eeeee"]` | $4$ | $2$ (drains $4, 5$) | `["ddddd", "eeeee"]` | $6$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Values are placed into `data` at their 1-based index $idKey$. Because every returned list begins strictly at the current $ptr$ and advances by $1$ until encountering an empty cell, the returned chunk is guaranteed to consist of strictly consecutive, previously un-emitted IDs.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every unique $idKey \in [1, n]$ arrives exactly once. Since $ptr$ only halts when encountering an unassigned slot, once all $n$ keys have arrived, all $n$ values will have been drained, and $ptr$ will terminate at $n + 1$. No value can be permanently stranded in the buffer.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort all received pairs after every insertion:** This can recover ID order but repeatedly performs unnecessary work and still needs logic to know which prefix has already been emitted. Direct indexing plus the frontier pointer is simpler and gives linear total work.
-- **Min-heap of arrived IDs:** A heap can reveal the smallest stored ID, but IDs are already bounded and unique, and output must wait for one exact next ID. Heap operations add $O(\log n)$ overhead without improving the decision.
-- **Hash map instead of an array:** A dictionary keyed by ID also works and may suit sparse unbounded IDs, but here every ID from `1` to `n` arrives exactly once, so the direct array is smaller conceptually and has predictable indexing.
-- **Insertion before the current gap:** Under the unique-ID contract, this cannot happen because every ID below `ptr` was already inserted and emitted. Without uniqueness, the class would need a policy for duplicate IDs.
-- **Insertion after the current gap:** The value is stored but the returned list stays empty; it will be emitted later when all preceding IDs have arrived.
-- **One insertion unlocks many values:** The while loop intentionally returns the entire consecutive run, including values stored during much earlier calls.
-- **First ID arrives last:** All other values remain safely stored. Inserting ID `1` on the final call returns all `n` values in one chunk.
-- **`n == 1`:** The array has indices zero and one. The only insertion fills `data[1]`, returns its value, and advances `ptr` to the array length.
-- **End-of-stream boundary:** After ID `n` is emitted, `ptr == len(data)`. The left side of the short-circuit condition fails, so the code never indexes beyond the array.
-- **Empty values outside the contract:** The truthiness test would mistake `""` for a missing slot. The stated fixed length of five makes the implementation correct; a generalized class should test `is not null`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **1-Based Indexing Alignment:** The IDs range from $1$ to $n$. Allocating an array of size $n + 1$ allows direct indexing `data[idKey]` without subtraction errors.
+- **Empty String vs Null:** Checking `data[ptr]` directly works when strings are non-empty, but if empty strings `""` were allowed as valid values, checking truthiness would mistake `""` for an unassigned slot. Using explicit sentinel comparison (`data[ptr] is not None`) is the robust approach.
+- **Array Bounds on Final Element:** When $idKey = n$ is drained, $ptr$ increments to $n + 1$. The loop condition must verify $ptr < \text{len}(data)$ *before* dereferencing `data[ptr]` to prevent `IndexError`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Constructing an `OrderedStream` allocates and initializes `n + 1` slots, taking $O(n)$ time and $O(n)$ persistent space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization: Allocating an array of size $n + 1$ takes $\mathcal{O}(n)$ time.
+  - Per `insert` Call:
+    - Writing `data[idKey] = value` takes $\mathcal{O}(1)$ time.
+    - Advancing $ptr$ takes $\mathcal{O}(k)$ time, where $k$ is the number of elements emitted in that call.
+    - Across all $n$ calls to `insert`, $ptr$ moves from $1$ to $n + 1$, taking exactly $n$ total increments.
+    - Total Time for $n$ operations: strictly $\mathcal{O}(n)$, yielding an **amortized $\mathcal{O}(1)$ time per operation**.
+- **Auxiliary Space Complexity:**
+  - The array `data` stores $n + 1$ string references.
+  - Overall Auxiliary Space: $\mathcal{O}(n)$ memory.

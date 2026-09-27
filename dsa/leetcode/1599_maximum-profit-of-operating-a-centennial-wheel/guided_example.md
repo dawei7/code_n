@@ -1,142 +1,153 @@
 # Guided Example: Maximum Profit of Operating a Centennial Wheel
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide traces the discrete queue simulation and cumulative profit tracking used to identify the optimal stopping rotation for operating a Ferris wheel under queue capacity constraints and operation fees.
 
-- **Input:** `{"customers": [8, 3], "boardingCost": 5, "runningCost": 6}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Arrival Schedule:** `customers = [8, 3]`
+- **Boarding Revenue:** `boardingCost = 5` per customer
+- **Running Fee:** `runningCost = 6` per rotation
+- **Target Value:** `3` rotations (Yielding maximum profit of $37$)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are the operator of a Centennial Wheel that has **four gondolas**, and each gondola has room for **up** **to** **four people**. You have the ability to rotate the gondolas **counterclockwise**, which costs you `runningCost` dollars.
+A Ferris wheel operates under mechanical and business rules:
+1. Each rotation brings a new 4-seat gondola to the boarding platform. At most $4$ waiting passengers board per rotation.
+2. Passengers in `customers[i]` arrive just before rotation $i+1$. Unboarded passengers wait in a FIFO backlog queue.
+3. Every boarded passenger yields `boardingCost`, while every rotation incurs a fixed `runningCost`.
+4. If the wheel stops operating, passengers currently on the wheel ride for free until they exit. We seek the rotation count that achieves the maximum cumulative net profit. If no positive profit can be made, return $-1$. In the event of ties, return the smallest rotation count.
 
-The objective is to compute `3` from `{"customers": [8, 3], "boardingCost": 5, "runningCost": 6}` while avoiding redundant calculations and unnecessary overhead.
+```
+Rotation 1: 8 arrive -> 4 board (wait: 4) -> Net: +14, Profit: 14
+Rotation 2: 3 arrive -> 4 board (wait: 3) -> Net: +14, Profit: 28
+Rotation 3: 0 arrive -> 3 board (wait: 0) -> Net:  +9, Profit: 37 (Max)
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our teaching goal is to simulate queue accumulation and drainage, evaluating profit sequentially in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  FERRIS WHEEL REVENUE SIMULATION MODEL                  |
+|                                                                         |
+|  Loop Condition: While arrivals remain OR waiting backlog > 0           |
+|                                                                         |
+|  Step 1: Arrival & Queue Accumulation                                   |
+|    wait += (customers[i] if i < len else 0)                             |
+|                                                                         |
+|  Step 2: Gondola Boarding (Capacity 4)                                  |
+|    boarded = min(wait, 4)                                               |
+|    wait   -= boarded                                                    |
+|                                                                         |
+|  Step 3: Incremental & Cumulative Accounting                            |
+|    net_gain = boarded * boardingCost - runningCost                      |
+|    current_profit += net_gain                                           |
+|                                                                         |
+|  Step 4: Strict Tie-Breaking Max Update                                |
+|    if current_profit > max_profit:                                      |
+|        max_profit = current_profit                                      |
+|        best_rotation = current_rotation                                 |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Parameter | Mathematical Formulation | Role in Decision Process |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Waiting Backlog (`wait`) | $\sum \text{arrivals} - \sum \text{boarded}$ | Customers queued for future rotations |
+| Boarded Count | $\min(\text{wait}, 4)$ | Customers loaded onto the incoming 4-seat gondola |
+| Marginal Profit | $\text{boarded} \cdot B - R$ | Net revenue change for the active rotation |
+| Cumulative Profit ($t$) | $\sum (\text{boarded} \cdot B - R)$ | Total earnings if operator ceases service after rotation $k$ |
+| Peak Tracker (`mx`) | $\max(0, \max t)$ | Highest strictly positive profit discovered |
+| Minimum Rotations (`ans`) | Earliest rotation achieving `mx` | Required return value (defaults to $-1$) |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Strict Monotonicity Invariant.** Updating the record stopping point only when $t > \text{mx}$ strictly preserves the smallest rotation count whenever multiple rotations achieve identical maximum cumulative profit. Starting `mx` at $0$ guarantees that non-positive outcomes return $-1$.
+
+```mermaid
+flowchart TD
+    accTitle: Ferris Wheel Simulation Loop
+    accDescr: Sequence diagram illustrating arrivals, queue boarding, net profit calculation, and optimal rotation updates.
+    Check{"wait > 0 OR i < N?"} -->|Yes| Ingest["Add arrivals: wait += customers[i]"]
+    Ingest --> Board["Board passengers: b = min(wait, 4); wait -= b"]
+    Board --> Profit["Accumulate profit: t += (b * B - R); rot += 1"]
+    Profit --> Comp{"t > max_profit?"}
+    Comp -->|Yes| Update["max_profit = t; best_rot = rot"]
+    Comp -->|No| Check
+    Update --> Check
+    Check -->|No| Done["Return best_rot (or -1 if max <= 0)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Evaluate the profit after every possible paid service rotation
-
-Choosing when to stop means choosing a prefix of paid wheel rotations. The solution simulates those rotations in chronological order and records the earliest prefix with the largest positive cumulative profit.
-
-Its state variables are:
-
-- `i`: the number of rotations already performed and the index of the next arrival entry;
-- `wait`: customers who have arrived but have not yet boarded;
-- `t`: cumulative profit after `i` paid rotations;
-- `mx`: highest positive-or-zero profit seen so far;
-- `ans`: earliest rotation count at which a strictly positive record profit was achieved.
-
-`ans` starts at negative one and `mx` starts at zero. Therefore, a non-positive profit never becomes an accepted operating plan.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"customers": [8, 3], "boardingCost": 5, "runningCost": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Rotation 1 ($i = 0$)
+- Arrival: $\text{customers}[0] = 8$. Backlog becomes $\text{wait} = 0 + 8 = 8$.
+- Capacity check: $\text{boarded} = \min(8, 4) = 4$.
+- Backlog remaining: $\text{wait} = 8 - 4 = 4$.
+- Marginal calculation:
+  $$\text{gain} = 4 \times 5 - 6 = 20 - 6 = 14$$
+- Cumulative profit: $t = 0 + 14 = 14$.
+- Profit check: $14 > 0 \implies \text{mx} = 14, \text{ans} = 1$.
 
 ---
 
-### Step 2: Why the loop condition includes arrivals and backlog
-
-The loop continues while:
-
-`wait or i < len(customers)`.
-
-If arrival entries remain, the operator must simulate the corresponding rotations to evaluate plans that serve those future customers. This includes arrival entries equal to zero: reaching a later arrival time still requires the intervening paid rotation described by the schedule.
-
-After the final arrival, customers may remain in the queue because only four can board per rotation. `wait` keeps the loop running until that backlog is exhausted.
-
-Once both conditions are false, there are no future customers and nobody waiting. Another paid rotation would board zero customers and subtract `runningCost`, so it cannot improve profit. Ending the simulation is safe.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Rotation 2 ($i = 1$)
+- Arrival: $\text{customers}[1] = 3$. Backlog becomes $\text{wait} = 4 + 3 = 7$.
+- Capacity check: $\text{boarded} = \min(7, 4) = 4$.
+- Backlog remaining: $\text{wait} = 7 - 4 = 3$.
+- Marginal calculation:
+  $$\text{gain} = 4 \times 5 - 6 = 20 - 6 = 14$$
+- Cumulative profit: $t = 14 + 14 = 28$.
+- Profit check: $28 > 14 \implies \text{mx} = 28, \text{ans} = 2$.
 
 ---
 
-### Step 3: Arrival happens before boarding
+### Rotation 3 ($i = 2 \ge N$)
+- Arrival: No scheduled arrivals ($0$). Backlog: $\text{wait} = 3$.
+- Capacity check: $\text{boarded} = \min(3, 4) = 3$.
+- Backlog remaining: $\text{wait} = 3 - 3 = 0$.
+- Marginal calculation:
+  $$\text{gain} = 3 \times 5 - 6 = 15 - 6 = 9$$
+- Cumulative profit: $t = 28 + 9 = 37$.
+- Profit check: $37 > 28 \implies \text{mx} = 37, \text{ans} = 3$.
 
-At the start of an iteration, the source adds:
+---
 
-`customers[i] if i < len(customers) else 0`
-
-to `wait`. This follows the timing rule that `customers[i]` arrive just before the corresponding rotation. After the arrival list is exhausted, the conditional contributes zero while backlog rotations continue.
-
-The next calculation is:
-
-`up = wait if wait < 4 else 4`.
-
-This is `min(wait, 4)` written as a conditional expression. It boards every waiting customer when fewer than four are present, or exactly the gondola capacity when at least four are waiting.
-
-The rule says customers cannot be kept waiting when room exists, so the operator has no choice to board fewer people in hopes of changing later timing. `wait -= up` leaves exactly the unboarded queue.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Loop Termination
+Arrivals exhausted ($i = 2 \ge 2$) and backlog is empty ($\text{wait} = 0$). Any further rotation would board $0$ customers and incur $-6$ profit. Simulation halts. Result is $\text{ans} = 3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"customers": [8, 3], "boardingCost": 5, "runningCost": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Rotation | New Arrivals | Queue Before Boarding | Boarded Count | Remaining Queue | Marginal Profit ($b \cdot 5 - 6$) | Cumulative Profit $t$ | Best Profit $\text{mx}$ | Best Rotation $\text{ans}$ |
+|---|---|---|---|---|---|---|---|---|
+| Init | — | — | — | $0$ | — | $0$ | $0$ | $-1$ |
+| 1 | $8$ | $8$ | $4$ | $4$ | $20 - 6 = +14$ | $14$ | $14$ | $1$ |
+| 2 | $3$ | $7$ | $4$ | $3$ | $20 - 6 = +14$ | $28$ | $28$ | $2$ |
+| 3 | $0$ | $3$ | $3$ | $0$ | $15 - 6 = +9$ | $37$ | $37$ | $3$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** At every rotation $k$, the simulation accurately applies the problem constraints: incoming arrivals join the queue, up to $4$ passengers board the next gondola, and operating revenues and costs are credited. Since operating zero rotations gives profit $0$, a viable stopping plan must yield cumulative profit $> 0$. Initializing $\text{mx} = 0$ ensures only strictly positive profits update $\text{ans}$. Updating $\text{ans}$ strictly when $t > \text{mx}$ ensures that when two rotations tie for peak earnings, the smaller rotation number is retained.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any rotation performed after both scheduled arrivals have finished and the waiting queue has emptied incurs running cost without boarding passengers ($0 \cdot B - R = -R < 0$), strictly decreasing cumulative profit. Thus, stopping the simulation the moment both $\text{wait} = 0$ and $i \ge N$ ensures no potentially profitable stopping point is omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Queue individual customer objects:** Only the waiting count affects boarding and profit. Storing each person wastes $O(A)$ space.
-- **Stop simulation at the final arrival index:** This can miss profitable rotations that serve customers still waiting after arrivals end.
-- **Simulate gondola positions:** Capacity at the boarding gondola and free safety rotations after stopping make occupant positions irrelevant to profit.
-- **Update on `t >= mx`:** This would replace an earlier optimal rotation count with a later tie, violating the minimum-rotations requirement.
-- **Initialize the best profit below zero:** That could accept a negative plan even though operating zero rotations yields profit zero and the required answer is `-1` when no positive plan exists.
-- **Zero arrivals between future arrivals:** The scheduled rotation still incurs cost if the operator continues toward later customer batches, and the simulation includes it.
-- **No positive profit:** `t` never exceeds initial `mx = 0`, so `ans` remains `-1`.
-- **Profit becomes positive and later declines:** The record remains at the earlier profitable prefix.
-- **Profit later exceeds the record:** `ans` updates to that rotation because the true maximum has improved.
-- **Later tie with the maximum:** Strict comparison preserves the earlier rotation count.
-- **Fewer than four waiting:** Every waiting customer boards because unused capacity cannot be withheld.
-- **More than four waiting:** Exactly four board and the remainder stays for later rotations.
-- **Backlog after final arrival:** The `wait` part of the loop condition continues service until it is empty, evaluating all useful prefixes.
-- **No backlog and no future arrivals:** The loop stops because further paid rotations have negative incremental profit `-runningCost`.
-- **Free rotations after stopping:** They safely unload onboard customers but do not alter the recorded paid-service profit or rotation choice requested by the problem.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Premature Halting on Arrival Exhaustion:** Terminating the loop immediately when $i = \text{len}(\text{customers})$ abandons passengers still waiting in the queue. In this instance, halting after rotation 2 would miss rotation 3 and sacrifice $9$ additional profit.
+- **Tied Maximum Rotation Overwrite:** Using $\ge$ instead of $>$ replaces the earliest optimal rotation with a later rotation that merely ties it in profit, violating the requirement to minimize total rotations.
+- **Negative Profit Acceptance:** If running costs consistently exceed boarding revenue (e.g. $B = 1, R = 10$), total profit will be negative. Starting $\text{mx}$ at a large negative value would erroneously return a rotation count resulting in financial loss instead of $-1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $N$ be the number of arrival entries and let $A$ be the total number of arriving customers.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N + \text{Queue Drain Rotations}) = \mathcal{O}(N + \sum A / 4) = \mathcal{O}(N)$, where $N$ is the length of `customers` and $A$ is the total number of arriving customers. Since each entry $\text{customers}[i] \le 50$, the backlog drains in at most $\lceil 50N / 4 \rceil = \mathcal{O}(N)$ additional iterations.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space, maintaining only scalar accumulators for backlog, cumulative profit, and optimal rotation index.

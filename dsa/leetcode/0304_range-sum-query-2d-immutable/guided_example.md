@@ -1,169 +1,232 @@
 # Guided Example: Range Sum Query 2D - Immutable
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D prefix sum table construction, four-term inclusion-exclusion geometric derivation, zero-boundary sentinel padding, and $O(1)$ subgrid query evaluation on representative matrix instances:
 
-- **Input:** `{"matrix": [[3, 0], [1, 2]], "queries": [[0, 0, 1, 1]]}`
-- **Required output:** `[6]`
+- **Input:**
+  $$
+  \text{matrix} = \begin{bmatrix}
+  3 & 0 \\
+  1 & 2
+  \end{bmatrix}, \quad \text{queries} = [\text{sumRegion}(0, 0, 1, 1), \; \text{sumRegion}(1, 1, 1, 1)]
+  $$
+- **Required outputs:**
+  - $\text{sumRegion}(0, 0, 1, 1) = 3 + 0 + 1 + 2 = 6$ (Entire matrix)
+  - $\text{sumRegion}(1, 1, 1, 1) = 2$ (Single cell)
+- **Non-Square Multi-Row Matrix Instance:**
+  $$
+  \text{matrix} = \begin{bmatrix}
+  3 & 0 & 1 & 4 & 2 \\
+  5 & 6 & 3 & 2 & 1 \\
+  1 & 2 & 0 & 1 & 5 \\
+  4 & 1 & 0 & 1 & 7 \\
+  1 & 0 & 3 & 0 & 5
+  \end{bmatrix}, \quad \text{sumRegion}(2, 1, 4, 3) = 8
+  $$
+- **Single Row / Single Column Queries:** Inclusion-exclusion handles edge rectangles seamlessly without conditional checks
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates 2D cumulative prefix area decomposition, provides a geometric proof of the inclusion-exclusion formula ($A + B - \text{overlap} + \text{cell}$), explains why an $(M+1) \times (N+1)$ padded table eliminates index bounds checking, and achieves $O(M \times N)$ preprocessing with $O(1)$ query time and $O(M \times N)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a 2D matrix `matrix`, handle multiple queries of the following type:
+Given a 2D integer matrix:
+$$
+\text{matrix} = \begin{bmatrix}
+3 & 0 \\
+1 & 2
+\end{bmatrix} \quad (M = 2, N = 2)
+$$
+We need to process queries $\text{sumRegion}(r_1, c_1, r_2, c_2) = \sum_{i=r_1}^{r_2} \sum_{j=c_1}^{c_2} \text{matrix}[i][j]$.
 
-The objective is to compute `[6]` from `{"matrix": [[3, 0], [1, 2]], "queries": [[0, 0, 1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Matrix:
+(0,0)=3   (0,1)=0
+(1,0)=1   (1,1)=2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Query (0, 0) to (1, 1): All 4 cells -> 3 + 0 + 1 + 2 = 6
+Query (1, 1) to (1, 1): Single cell -> 2
+```
+
+### Why a Naive Double Loop is Inefficient
+- Evaluating each query by nested loops over $[r_1, r_2] \times [c_1, c_2]$ costs $O((r_2 - r_1 + 1)(c_2 - c_1 + 1)) = O(M N)$ time per query.
+- For $Q = 10^4$ queries on a $200 \times 200$ grid, naive iteration requires up to $4 \times 10^8$ operations.
+- By precomputing a 2D prefix sum table in $O(M N)$ time, any rectangular region sum can be extracted using **four arithmetic lookups in $O(1)$ time**!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 2D Prefix Sum Definition
+Define an $(M + 1) \times (N + 1)$ table $s$ where $s[i][j]$ stores the sum of the subgrid from origin $(0, 0)$ down to $(i - 1, j - 1)$:
+- Boundary: $s[0][j] = 0$ for all $j$, and $s[i][0] = 0$ for all $i$.
+- Recurrence for cell $(i, j)$ ($0 \le i < M, 0 \le j < N$):
+  $$
+  s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + \text{matrix}[i][j]
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
+Visualizing 2D Construction:
++-------------------+---+
+|                   |   |  s[i][j+1] covers top rectangle
+|      s[i][j]      |   |  s[i+1][j] covers left rectangle
+|     (overlap)     |   |  s[i][j] is counted twice -> subtract once
++-------------------+---+
+|                   | X |  X = matrix[i][j] -> add once
++-------------------+---+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Query Formula by Inclusion-Exclusion
+To compute the sum of rectangle from $(r_1, c_1)$ to $(r_2, c_2)$:
+$$
+\text{sumRegion}(r_1, c_1, r_2, c_2) = s[r_2 + 1][c_2 + 1] - s[r_1][c_2 + 1] - s[r_2 + 1][c_1] + s[r_1][c_1]
+$$
+
+```text
+(0, 0) ------------------- (0, c2+1)
+  |           Top Strip       |
+  |            s[r1][c2+1]    |
+(r1, 0) ----- + ------------- +
+  |   Left    |   Target      |
+  |   Strip   |   Region      |
+  |           |               |
+(r2+1, 0) --- + ------------- (r2+1, c2+1)
+```
+- Full rectangle from origin: $s[r_2 + 1][c_2 + 1]$.
+- Subtract top unwanted strip: $- s[r_1][c_2 + 1]$.
+- Subtract left unwanted strip: $- s[r_2 + 1][c_1]$.
+- Add back doubly-subtracted top-left overlap: $+ s[r_1][c_1]$.
+
+> **Invariant.** For any query bounds, the four-point formula cancels all elements outside the target bounding box and counts every element inside the box exactly once.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Building one prefix entry
-
-Suppose the constructor is processing original value `v = matrix[i][j]`. The desired `s[i + 1][j + 1]` must contain every cell from the origin through `(i, j)` inclusively.
-
-Two already-computed rectangles cover almost all of that area:
-
-- `s[i][j + 1]` covers all included columns in rows above `i`;
-- `s[i + 1][j]` covers all included rows in columns left of `j`.
-
-Adding them counts their shared top-left rectangle `s[i][j]` twice. Subtracting that overlap once restores a single copy. Finally, add the current cell `v`, which belongs to neither earlier rectangle:
-
-$$
-\texttt{s}[i+1][j+1]
-=
-\texttt{s}[i][j+1]
-+
-\texttt{s}[i+1][j]
--
-\texttt{s}[i][j]
-+
-\texttt{matrix}[i][j].
-$$
-
-This is inclusion-exclusion during construction: add the region above, add the region to the left, remove their double-counted overlap, and add the new corner cell.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[3, 0], [1, 2]], "queries": [[0, 0, 1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the construction and queries on $\text{matrix} = \begin{bmatrix} 3 & 0 \\ 1 & 2 \end{bmatrix}$:
+Matrix size: $M = 2, N = 2$.
+Prefix table size: $3 \times 3$, initialized to $0$.
 
 ---
 
-### Step 2: Why the loop order supplies every dependency
+### Step 1: Populate 2D Prefix Table $s$
 
-The constructor processes rows from top to bottom and columns within a row from left to right.
+1. **Row $i = 0$:**
+   - $j = 0$ ($\text{val} = 3$):
+     $$
+     s[1][1] = s[0][1] + s[1][0] - s[0][0] + 3 = 0 + 0 - 0 + 3 = \mathbf{3}
+     $$
+   - $j = 1$ ($\text{val} = 0$):
+     $$
+     s[1][2] = s[0][2] + s[1][1] - s[0][1] + 0 = 0 + 3 - 0 + 0 = \mathbf{3}
+     $$
 
-When it computes `s[i + 1][j + 1]`, the entries in prefix row `i` were completed while processing earlier original rows. The entry `s[i + 1][j]` was completed one column earlier in the current row. The diagonal overlap `s[i][j]` is also already available. No future value is needed, so one forward pass fills the whole table.
+2. **Row $i = 1$:**
+   - $j = 0$ ($\text{val} = 1$):
+     $$
+     s[2][1] = s[1][1] + s[2][0] - s[1][0] + 1 = 3 + 0 - 0 + 1 = \mathbf{4}
+     $$
+   - $j = 1$ ($\text{val} = 2$):
+     $$
+     s[2][2] = s[1][2] + s[2][1] - s[1][1] + 2 = 3 + 4 - 3 + 2 = \mathbf{6}
+     $$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Completed prefix table $s$:
+$$
+s = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 3 & 3 \\
+0 & 4 & 6
+\end{bmatrix}
+$$
 
 ---
 
-### Step 3: Deriving a query by inclusion-exclusion
+### Step 2: Evaluate Query 1 — $\text{sumRegion}(0, 0, 1, 1)$
+- Bounds: $r_1 = 0, c_1 = 0, r_2 = 1, c_2 = 1$.
+- Shifted table indices:
+  $$
+  r_2 + 1 = 2, \quad c_2 + 1 = 2, \quad r_1 = 0, \quad c_1 = 0
+  $$
+- Apply formula:
+  $$
+  \text{Sum} = s[2][2] - s[0][2] - s[2][0] + s[0][0]
+  $$
+- Substitute values:
+  $$
+  \text{Sum} = 6 - 0 - 0 + 0 = \mathbf{6}
+  $$
 
-A query includes original rows `row1` through `row2` and columns `col1` through `col2`. Because the prefix table uses exclusive ending boundaries, the origin-based rectangle through the query's lower-right cell is
+---
 
-`s[row2 + 1][col2 + 1]`.
-
-This rectangle includes the desired region, but it also includes cells above it and to its left.
-
-First subtract the left strip:
-
-`s[row2 + 1][col1]`.
-
-It contains rows before `row2 + 1` but only columns before `col1`.
-
-Then subtract the upper strip:
-
-`s[row1][col2 + 1]`.
-
-It contains rows before `row1` across all columns through `col2`.
-
-The top-left rectangle `s[row1][col1]` belongs to both removed strips. It was present once in the original large prefix, then subtracted twice, leaving it counted negative once. Add it back once to make its net contribution zero.
-
-The final query formula is
-
-$$
-\begin{aligned}
-\operatorname{sumRegion}
-={}&\texttt{s}[row2+1][col2+1]\\
-&-\texttt{s}[row2+1][col1]\\
-&-\texttt{s}[row1][col2+1]\\
-&+\texttt{s}[row1][col1].
-\end{aligned}
-$$
-
-Every cell inside the requested rectangle remains once. Cells only above or only left are removed once. Cells in the top-left overlap are added, removed twice, and restored once, for a net count of zero.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[6]` |
+### Step 3: Evaluate Query 2 — $\text{sumRegion}(1, 1, 1, 1)$
+- Bounds: $r_1 = 1, c_1 = 1, r_2 = 1, c_2 = 1$.
+- Shifted table indices:
+  $$
+  r_2 + 1 = 2, \quad c_2 + 1 = 2, \quad r_1 = 1, \quad c_1 = 1
+  $$
+- Apply formula:
+  $$
+  \text{Sum} = s[2][2] - s[1][2] - s[2][1] + s[1][1]
+  $$
+- Substitute values:
+  $$
+  \text{Sum} = 6 - 3 - 4 + 3 = \mathbf{2}
+  $$
+- Matches single cell $\text{matrix}[1][1] = 2$!
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[3, 0], [1, 2]], "queries": [[0, 0, 1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[6]` | Verified |
+```text
+Matrix:
+[3, 0]
+[1, 2]
+
+Prefix Table s:
+[0, 0, 0]
+[0, 3, 3]
+[0, 4, 6]
+
+Query 1 (0, 0, 1, 1): s[2][2] - s[0][2] - s[2][0] + s[0][0] = 6 - 0 - 0 + 0 = 6
+Query 2 (1, 1, 1, 1): s[2][2] - s[1][2] - s[2][1] + s[1][1] = 6 - 3 - 4 + 3 = 2
+```
+
+| Table Entry | Top Term $s[i][j+1]$ | Left Term $s[i+1][j]$ | Overlap $s[i][j]$ | $\text{matrix}[i][j]$ | Computed $s[i+1][j+1]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $s[1][1]$ | 0 | 0 | 0 | 3 | **3** |
+| $s[1][2]$ | 0 | 3 | 0 | 0 | **3** |
+| $s[2][1]$ | 3 | 0 | 0 | 1 | **4** |
+| $s[2][2]$ | 3 | 4 | 3 | 2 | **6** |
+
+| Query $(r_1, c_1, r_2, c_2)$ | $+ s[r_2+1][c_2+1]$ | $- s[r_1][c_2+1]$ | $- s[r_2+1][c_1]$ | $+ s[r_1][c_1]$ | Total Sum |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(0, 0, 1, 1)$ | $+6$ | $-0$ | $-0$ | $+0$ | **6** |
+| $(1, 1, 1, 1)$ | $+6$ | $-3$ | $-4$ | $+3$ | **2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $R$ denote the set of cells $[r_1, r_2] \times [c_1, c_2]$. The four prefix regions partition the coordinate plane into four quadrants relative to $(r_1, c_1)$. By the Principle of Inclusion-Exclusion, every cell in $[0, r_1 - 1] \times [0, c_1 - 1]$ is counted $+1 - 1 - 1 + 1 = 0$ times. Every cell above or to the left of the rectangle is counted $+1 - 1 = 0$ times. Every cell inside $R$ is counted $+1$ time. Thus, the computed sum is mathematically exact.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The $(M + 1) \times (N + 1)$ dimensions ensure that for any query with $0 \le r_1 \le r_2 < M$ and $0 \le c_1 \le c_2 < N$, all four queried table coordinates lie within $[0, M] \times [0, N]$. The zero sentinel boundaries naturally handle subgrids touching the top or left edges without requiring branch conditions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sum every query cell:** It uses no prefix storage but costs $O(hw)$ for a queried rectangle of height $h$ and width $w$, reaching $O(mn)$ per query.
-- **One prefix array per row:** Precompute horizontal sums, then subtract two prefixes for each row in the query. Construction is $O(mn)$ and space is $O(mn)$, but each query still costs $O(row2-row1+1)$.
-- **Precompute every rectangle:** Constant-time lookup is possible, but the number of possible row and column boundary pairs leads to $O(m^2n^2)$ time and space.
-- **Two-dimensional Fenwick tree:** It supports updates and region queries in logarithmic time. With no updates, the static prefix matrix gives simpler and faster $O(1)$ queries.
-- **Two-dimensional segment tree:** It also supports mutable data but is far more complex and cannot improve on constant-time immutable queries.
-- **Forgetting the overlap restoration:** Subtracting the upper and left strips removes their shared top-left rectangle twice. Failing to add it back makes the answer too small or otherwise numerically wrong when values are negative.
-- **Using `row2` or `col2` without plus one:** The prefix convention is half-open, so this excludes the last requested row or column.
-- **Adding one to the lower boundaries:** `row1` and `col1` already count the rows and columns before the query. Incrementing them would fail to subtract part of the unwanted prefix.
-- **Single cell:** The four-corner formula isolates exactly that value, including when it is negative or zero.
-- **Full matrix:** With upper-left `(0, 0)`, all subtractive border terms are zero, and the result is `s[m][n]`.
-- **First row only:** `row1 = 0` makes both upper-prefix terms refer to zero row 0, so no special case is needed.
-- **First column only:** `col1 = 0` similarly uses the zero column.
-- **One-row matrix:** The method becomes the one-dimensional leading-zero prefix pattern while retaining the same formula.
-- **One-column matrix:** It likewise reduces to vertical prefix subtraction.
-- **Negative values:** Prefix totals are not required to be monotone. Inclusion-exclusion relies on exact addition and subtraction, not ordering.
-- **Immutable-data requirement:** Changing one matrix entry after construction would invalidate every prefix covering that cell. This class deliberately exposes no update operation.
-- **Valid query bounds:** The source omits defensive checks because the contract guarantees ordered, in-range inclusive corners.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Forgetting to Add the Top-Left Overlap:** Subtracting both the top strip $s[r_1][c_2 + 1]$ and the left strip $s[r_2 + 1][c_1]$ removes their intersection $s[r_1][c_1]$ twice. It must be added back ($+ s[r_1][c_1]$).
+- **Off-by-One in Shifted Coordinates:** The bottom-right corner must use $r_2 + 1$ and $c_2 + 1$, while the upper-left boundaries use $r_1$ and $c_1$. Writing $r_1 - 1$ instead of $r_1$ introduces index out-of-bounds errors on 0-indexed rows.
+- **Dynamic Updates:** This solution assumes the matrix is immutable. If cells were updated dynamically, updating a cell $(i, j)$ would require updating up to $O(M N)$ prefix entries, necessitating a 2D Fenwick Tree or 2D Segment Tree ($O(\log M \log N)$ update and query).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let $m$ be the number of rows, $n$ the number of columns, and $q$ the number of calls to `sumRegion`.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization: $O(M \times N)$ to compute all $(M + 1) \times (N + 1)$ prefix entries using dynamic programming.
+  - `sumRegion`: $O(1)$ constant time per query, executing exactly four table reads and three additions/subtractions.
+  - Total time for $Q$ queries: $O(M N + Q)$.
+- **Auxiliary Space Complexity:** $O(M \times N)$ auxiliary memory to store the $(M + 1) \times (N + 1)$ prefix sum array $s$.

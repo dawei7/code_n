@@ -1,140 +1,177 @@
 # Guided Example: Majority Element
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Boyer–Moore Voting Algorithm and pairwise cancellation dynamics on representative integer arrays:
 
-- **Input:** `{"nums": [3, 2, 3]}`
-- **Required output:** `3`
+- **Input:** $\text{nums} = [2, 2, 1, 1, 1, 2, 2]$
+- **Required output:** $2$ ($2$ appears $4$ times, exceeding $\lfloor 7/2 \rfloor = 3$)
+- **Alternating Sequence Instance:** $\text{nums} = [3, 2, 3] \implies 3$
+- **Singleton Array Instance:** $\text{nums} = [1] \implies 1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Boyer–Moore single-pass voting, proves why the majority element ($> \lfloor n/2 \rfloor$) strictly survives pairwise cancellation against all non-majority elements combined, and operates in $O(N)$ time with strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums` of size `n`, return *the majority element*.
+Given an integer array $\text{nums} = [2, 2, 1, 1, 1, 2, 2]$ of length $n = 7$:
+Find the majority element that appears strictly more than $\lfloor n / 2 \rfloor = 3$ times.
+Counting occurrences:
+- Count of $1$: $3$ occurrences.
+- Count of $2$: $4$ occurrences.
+Since $4 > 3$, the majority element is $2$.
 
-The objective is to compute `3` from `{"nums": [3, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A hash map tracks frequencies in $O(N)$ time but requires $O(N)$ auxiliary space.
+Sorting the array takes $O(N \log N)$ time (where the element at index $\lfloor n / 2 \rfloor$ is guaranteed to be the majority).
+The **Boyer–Moore Voting Algorithm** achieves both $O(N)$ time and $O(1)$ space using the **Principle of Pairwise Cancellation**:
+- Pair up distinct elements $(a, b)$ with $a \ne b$ and cancel them out.
+- Because the true majority element constitutes strictly more than half the array ($> 50\%$), it has more occurrences than all other elements combined.
+- Even if every non-majority element cancels one copy of the majority element, the majority element cannot be exhausted. The final surviving candidate must be the majority element.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Boyer–Moore Voting Protocol
+Maintain two scalar variables:
+- `candidate`: the currently leading value (initialized to $\emptyset$).
+- `count`: the net surplus balance of `candidate` (initialized to $0$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each element $x \in \text{nums}$:
+1. **Elect Candidate on Zero Balance:**
+   If $\text{count} == 0$:
+   $$
+   \text{candidate} \leftarrow x
+   $$
+   $$
+   \text{count} \leftarrow 1
+   $$
+2. **Reinforce or Cancel:**
+   Else if $x == \text{candidate}$:
+   $$
+   \text{count} \leftarrow \text{count} + 1
+   $$
+   Else ($x \ne \text{candidate}$):
+   $$
+   \text{count} \leftarrow \text{count} - 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Return `candidate`.
+
+> **Invariant.** At any point where `count` drops to $0$, the evaluated prefix consists of equal numbers of candidate and non-candidate elements that cancel each other out. Discarding this balanced prefix leaves the relative majority in the remaining suffix unchanged.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Replace full counting with pair cancellation
+We trace the algorithm on $\text{nums} = [2, 2, 1, 1, 1, 2, 2]$:
 
-The majority element appears more than half the time. Imagine repeatedly
-removing pairs of different values from the array. Every such pair removes at
-most one occurrence of the true majority and exactly one non-majority
-occurrence.
-
-Because the majority begins with more occurrences than all other values
-combined, it cannot be completely eliminated by these opposite-value pairs.
-After all possible cancellations, the surviving value must be the majority.
-
-Boyer–Moore voting performs this cancellation in one left-to-right pass without
-physically deleting elements. `m` is the current candidate and `cnt` is its
-uncancelled balance.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- `candidate = null, count = 0`.
 
 ---
 
-### Step 2: Start a new candidate when the balance is empty
-
-When `cnt == 0`, all elements represented by the previous voting segment have
-been paired away. The current number `x` begins a new segment, so the source
-sets `m = x` and `cnt = 1`.
-
-The earlier balanced prefix can be forgotten. If it contained some occurrences
-of the true majority, it also contained the same number of other values paired
-against them. Removing equal numbers from the two sides of the majority
-inequality cannot make a different value become the true global majority.
-
-The initialization `cnt = m = 0` is only placeholder state. Since the input is
-nonempty and the first iteration sees `cnt == 0`, `m` is replaced by
-`nums[0]` before the placeholder could be returned.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Element $x = 2$ (Index 0)
+- `count == 0` $\implies$ Elect new candidate:
+  $$
+  \text{candidate} = 2, \quad \text{count} = 1
+  $$
 
 ---
 
-### Step 3: Update the balance for later values
+### Step 2: Element $x = 2$ (Index 1)
+- $x == \text{candidate}$ ($2 == 2$). Reinforce:
+  $$
+  \text{count} \leftarrow 1 + 1 = \mathbf{2}
+  $$
 
-When a candidate is active, seeing the same value increments `cnt`. Seeing a
-different value decrements it. A decrement conceptually pairs that different
-element with one currently unmatched occurrence of `m`.
+---
 
-The counter is not the candidate's total frequency in the entire prefix. It is
-the net surplus of candidate occurrences after cancellations within the
-current unresolved segment. That is why it can fall back to zero even when the
-candidate appeared several times earlier.
+### Step 3: Element $x = 1$ (Index 2)
+- $x \ne \text{candidate}$ ($1 \ne 2$). Cancel one pair:
+  $$
+  \text{count} \leftarrow 2 - 1 = \mathbf{1}
+  $$
 
-The source uses a special branch when zero: it assigns the candidate and count
-one directly. Otherwise, the conditional expression adds either one or
-negative one.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 4: Element $x = 1$ (Index 3)
+- $x \ne \text{candidate}$ ($1 \ne 2$). Cancel one pair:
+  $$
+  \text{count} \leftarrow 1 - 1 = \mathbf{0}
+  $$
+- Prefix $[2, 2, 1, 1]$ is completely balanced (two $2$s cancelled two $1$s).
+- Balance is zero.
+
+---
+
+### Step 5: Element $x = 1$ (Index 4)
+- `count == 0` $\implies$ Elect new candidate:
+  $$
+  \text{candidate} = 1, \quad \text{count} = 1
+  $$
+
+---
+
+### Step 6: Element $x = 2$ (Index 5)
+- $x \ne \text{candidate}$ ($2 \ne 1$). Cancel pair:
+  $$
+  \text{count} \leftarrow 1 - 1 = \mathbf{0}
+  $$
+- Prefix $[1, 2]$ cancelled out.
+
+---
+
+### Step 7: Element $x = 2$ (Index 6)
+- `count == 0` $\implies$ Elect new candidate:
+  $$
+  \text{candidate} = 2, \quad \text{count} = 1
+  $$
+
+End of array reached.
+Final elected candidate: $\mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+Array:         [ 2,    2,    1,    1,    1,    2,    2 ]
+candidate:       2     2     2     2     1     1     2
+count:           1  -> 2  -> 1  -> 0  -> 1  -> 0  -> 1
+Cancellations:   [ 2, 2 ] vs [ 1, 1 ] cancel!
+                 [ 1 ] vs [ 2 ] cancel!
+                 Surviving element: 2
+```
+
+| Index $i$ | Value $x$ | Prior State (`cand, cnt`) | Condition Evaluated | Updated `candidate` | Updated `count` | Conceptual Net State |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 2 | `(null, 0)` | `cnt == 0` | 2 | 1 | Surplus of one 2 |
+| 1 | 2 | `(2, 1)` | $x == \text{cand}$ | 2 | 2 | Surplus of two 2s |
+| 2 | 1 | `(2, 2)` | $x \ne \text{cand}$ | 2 | 1 | One 2 cancelled by 1 |
+| 3 | 1 | `(2, 1)` | $x \ne \text{cand}$ | 2 | 0 | Two 2s cancelled by two 1s |
+| 4 | 1 | `(2, 0)` | `cnt == 0` | 1 | 1 | Temporary surplus of one 1 |
+| 5 | 2 | `(1, 1)` | $x \ne \text{cand}$ | 1 | 0 | 1 cancelled by 2 |
+| **6** | **2** | **`(1, 0)`** | **`cnt == 0`** | **2** | **1** | **Surviving Majority: 2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $M$ be the majority element, with frequency $f(M) > n/2$. The total frequency of all non-majority elements is $n - f(M) < n/2$. Since each cancellation step pairs one occurrence of a candidate with one occurrence of a non-candidate, at most $n - f(M)$ occurrences of $M$ can be cancelled. Since $f(M) > n - f(M)$, at least $f(M) - (n - f(M)) = 2f(M) - n \ge 1$ occurrences of $M$ must remain uncancelled. Therefore, $M$ cannot be eliminated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** A single linear pass evaluates every element exactly once. Because the problem statement guarantees that a majority element always exists, the candidate remaining at the end of the array is unconditionally the majority element.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Frequency map:** Count every value and return the one above half. It is $O(n)$ time but can use $O(n)$ space.
-- **Sorting:** The majority must occupy sorted index `n // 2`, but sorting costs $O(n\log n)$ time and may mutate the input.
-- **Bit counting:** Reconstruct the majority bit by bit in linear time for a fixed integer width, with more implementation complexity around negatives.
-- **Divide and conquer:** Combine half-majority candidates, generally taking $O(n\log n)$ time.
-- **One element:** It immediately becomes the candidate and is returned.
-- **Candidate changes:** A temporary candidate need not be the true majority; only the final guarantee matters.
-- **Counter meaning:** It is a cancellation balance, not a global occurrence count.
-- **Negative values:** Equality-only voting handles them unchanged.
-- **No guaranteed majority:** A second counting pass would be required to validate the candidate.
-- **Missing typing import:** `List` must be supplied for standalone evaluation of annotations.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Count Is Not Total Frequency:** The variable `count` is a *net surplus counter*, NOT the total number of times `candidate` appeared in the array! For instance, in Step 3 above, `count` dropped from 2 to 1 even though 2 appeared twice.
+- **Assuming Candidate Never Changes:** Temporary candidates can and do change (as seen in Step 5 where candidate briefly switched to 1). The algorithm guarantees only that the **final** candidate is correct.
+- **Arrays Without a Majority Element:** If an array has no element with frequency $> n/2$ (e.g. $[1, 2, 3]$), Boyer–Moore will still return some arbitrary candidate. In problems where existence is not guaranteed, a second $O(N)$ verification pass is required to confirm frequency $> n/2$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of elements. The loop examines each value once and does
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. The array is scanned once, performing $O(1)$ operations per element.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only two scalar variables (`candidate` and `count`).

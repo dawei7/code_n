@@ -1,138 +1,171 @@
 # Guided Example: Form Array by Concatenating Subarrays of Another Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal greedy matching approach on a representative problem instance:
 
-- **Input:** `{"groups": [[1, -1, -1], [3, -2, 0]], "nums": [1, -1, 0, 1, -1, -1, 3, -2, 0]}`
-- **Required output:** `true`
+- **Input:** `groups = [[1, -1, -1], [3, -2, 0]]`, `nums = [1, -1, 0, 1, -1, -1, 3, -2, 0]`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features an initial partial match (`[1, -1, 0]` sharing a prefix with `[1, -1, -1]`) that fails at the third element, followed by unused elements before finding the authentic disjoint sequence of groups, illustrating how pointer advancement preserves greedy dominance without backtracking.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `groups` of length `n`. You are also given an integer array `nums`.
+Given a 2D array `groups` and an array `nums`, we must determine whether we can choose $n$ disjoint subarrays from `nums` such that:
+1. The $i$-th chosen subarray is identical to `groups[i]`.
+2. The subarrays appear in the exact order specified by `groups` without overlapping (the start index of subarray $i+1$ must be strictly greater than or equal to the end index plus one of subarray $i$).
 
-The objective is to compute `true` from `{"groups": [[1, -1, -1], [3, -2, 0]], "nums": [1, -1, 0, 1, -1, -1, 3, -2, 0]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A brute-force search trying all combinations of positions could require exponential branching. However, a greedy sequential scan is provably optimal:
+- To maximize the opportunities for subsequent groups to match, each group `groups[i]` should be matched at the **earliest possible position** in `nums`.
+- Once a group matches a contiguous slice starting at index $j$ of length $L$, the search for the next group immediately resumes at index $j + L$, preserving the non-overlapping requirement.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Group Pointer $i$ | Index in $0 \le i \le n$ | Index of the active group in `groups` currently sought |
+| Search Pointer $j$ | Index in $0 \le j \le m$ | Earliest index in `nums` where the active group may begin |
+| Group Length $L_i$ | $\text{length}(\text{groups}[i])$ | Size of the candidate contiguous slice |
+| Candidate Slice | $\text{nums}[j \dots j + L_i - 1]$ | Window compared against $\text{groups}[i]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Earliest Match Dominance Theorem (Greedy Choice Property).**
+> Suppose a valid sequence of disjoint matching subarrays exists. Let $k_i^*$ be the starting index of the first group $\text{groups}[i]$ in an optimal valid embedding, and let $j_i$ be the earliest starting index in $\text{nums}$ where $\text{groups}[i]$ matches as a contiguous subarray.
+> Then $j_i \le k_i^*$.
+> Since the remaining available suffix $\text{nums}[j_i + L_i \dots m - 1]$ contains the suffix $\text{nums}[k_i^* + L_i \dots m - 1]$ as a proper sub-interval, choosing the earliest match $j_i$ preserves the feasibility of embedding all subsequent groups $\text{groups}[i+1 \dots n-1]$.
+> Consequently, backtracking to consider later occurrences of $\text{groups}[i]$ is never necessary.
+
+```mermaid
+flowchart TD
+    accTitle: Greedy Subarray Search Flow
+    accDescr: Flowchart illustrating sequential matching of groups in nums using two pointers without backtracking.
+    A["Initialize: Group Pointer i = 0, Search Pointer j = 0"] --> B{"Is i < n AND j + len(groups[i]) <= m?"}
+    B -- No --> C{"Did we match all groups (i == n)?"}
+    C -- Yes --> D["Return True"]
+    C -- No --> E["Return False"]
+    B -- Yes --> F{"Does nums[j .. j+L-1] == groups[i]?"}
+    F -- Match Found --> G["Advance past match: j = j + L, i = i + 1"]
+    F -- Mismatch --> H["Advance search pointer: j = j + 1"]
+    G --> B
+    H --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Search for groups in their required order
-
-The groups must appear in `nums` from first to last and may not overlap. The exact solution maintains two indices:
-
-- `i` is the next group that still needs a match.
-- `j` is the earliest `nums` index where that group is allowed to begin.
-
-Both start at zero. At each step, the code compares the entire current group `groups[i]` with the slice of `nums` beginning at `j` and having the same length.
-
-If they match, the group is accepted and both pointers advance appropriately. If they do not, only `j` advances by one, trying the same group at the next possible start.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"groups": [[1, -1, -1], [3, -2, 0]], "nums": [1, -1, 0, 1, -1, -1, 3, -2, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `groups = [[1, -1, -1], [3, -2, 0]]` and `nums = [1, -1, 0, 1, -1, -1, 3, -2, 0]`.
+Here $n = 2$ groups, and $m = 9$ elements in `nums`.
+Initial pointers: $i = 0$, $j = 0$.
 
 ---
 
-### Step 2: Why the slice describes one candidate subarray
-
-For current group `g`, the expression:
-
-`nums[j : j + len(g)]`
-
-is the contiguous segment beginning at `j` with up to `len(g)` elements. List equality requires the same length and equal values in the same order.
-
-Near the end of `nums`, Python slicing safely returns a shorter list rather than raising an error. Such a shorter slice cannot equal `g`, whose length is positive, so the search advances until `j == m` and terminates.
-
-Negative values and repeated values need no special logic because list equality compares integers position by position.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Test Candidate for Group $0$ at $j = 0$
+- Active Group: $\text{groups}[0] = [1, -1, -1]$ of length $L_0 = 3$.
+- Candidate Slice in `nums`: $\text{nums}[0 \dots 2] = [1, -1, 0]$.
+- Element Comparisons:
+  - $\text{nums}[0] = 1 = \text{groups}[0][0]$ (Match).
+  - $\text{nums}[1] = -1 = \text{groups}[0][1]$ (Match).
+  - $\text{nums}[2] = 0 \ne -1 = \text{groups}[0][2]$ (Mismatch).
+- Outcome: Slice does not match.
+- Action: Increment search pointer $j \leftarrow 0 + 1 = 1$. Pointer $i$ remains $0$.
 
 ---
 
-### Step 3: Advance past a successful match
+### Step 2: Test Candidate for Group $0$ at $j = 1$
+- Active Group: $\text{groups}[0] = [1, -1, -1]$ of length $3$.
+- Candidate Slice in `nums`: $\text{nums}[1 \dots 3] = [-1, 0, 1]$.
+- Element Comparison:
+  - $\text{nums}[1] = -1 \ne 1 = \text{groups}[0][0]$ (Mismatch at first element).
+- Action: Increment search pointer $j \leftarrow 1 + 1 = 2$.
 
-When `g == nums[j : j + len(g)]`, the source executes:
+---
 
-`j += len(g)`
+### Step 3: Test Candidate for Group $0$ at $j = 2$
+- Active Group: $\text{groups}[0] = [1, -1, -1]$ of length $3$.
+- Candidate Slice in `nums`: $\text{nums}[2 \dots 4] = [0, 1, -1]$.
+- Element Comparison:
+  - $\text{nums}[2] = 0 \ne 1 = \text{groups}[0][0]$ (Mismatch).
+- Action: Increment search pointer $j \leftarrow 2 + 1 = 3$.
 
-and:
+---
 
-`i += 1`.
+### Step 4: Test Candidate for Group $0$ at $j = 3$ (Successful Match)
+- Active Group: $\text{groups}[0] = [1, -1, -1]$ of length $3$.
+- Candidate Slice in `nums`: $\text{nums}[3 \dots 5] = [1, -1, -1]$.
+- Element Comparisons:
+  - $\text{nums}[3] = 1 = \text{groups}[0][0]$ (Match).
+  - $\text{nums}[4] = -1 = \text{groups}[0][1]$ (Match).
+  - $\text{nums}[5] = -1 = \text{groups}[0][2]$ (Match).
+- Outcome: Complete match confirmed at slice $[3 \dots 5]$.
+- Action:
+  - Advance search pointer past matched slice: $j \leftarrow 3 + 3 = 6$.
+  - Advance group pointer: $i \leftarrow 0 + 1 = 1$.
 
-Moving `j` to the first position after the matched subarray enforces disjointness. The next group can begin there or later, but can never reuse an index from the accepted group.
+---
 
-Increasing `i` enforces group order. Once a group is accepted, the algorithm never searches for an earlier group again or permits a later group to appear before it.
+### Step 5: Test Candidate for Group $1$ at $j = 6$ (Successful Match)
+- Active Group: $\text{groups}[1] = [3, -2, 0]$ of length $L_1 = 3$.
+- Candidate Slice in `nums`: $\text{nums}[6 \dots 8] = [3, -2, 0]$.
+- Element Comparisons:
+  - $\text{nums}[6] = 3 = \text{groups}[1][0]$ (Match).
+  - $\text{nums}[7] = -2 = \text{groups}[1][1]$ (Match).
+  - $\text{nums}[8] = 0 = \text{groups}[1][2]$ (Match).
+- Outcome: Complete match confirmed at slice $[6 \dots 8]$.
+- Action:
+  - Advance search pointer past matched slice: $j \leftarrow 6 + 3 = 9$.
+  - Advance group pointer: $i \leftarrow 1 + 1 = 2$.
 
-There may be unused `nums` elements between matches. On mismatches, `j` moves one step at a time until it finds the next group, so gaps are naturally allowed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 6: Loop Termination & Final Decision
+- The search loop halts because $i = 2 = n$ (all groups processed).
+- Final check: $i == n \implies 2 == 2$, which evaluates to `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"groups": [[1, -1, -1], [3, -2, 0]], "nums": [1, -1, 0, 1, -1, -1, 3, -2, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Step | Group Index $i$ | Target Group | Search Index $j$ | Candidate Slice `nums[j..j+L-1]` | Match Check | Next $i$ | Next $j$ | Reason / Transition |
+|---|---|---|---|---|---|---|---|---|
+| $1$ | $0$ | `[1, -1, -1]` | $0$ | `[1, -1, 0]` | Mismatch ($0 \ne -1$) | $0$ | $1$ | Partial match fails; slide search window by 1 |
+| $2$ | $0$ | `[1, -1, -1]` | $1$ | `[-1, 0, 1]` | Mismatch ($-1 \ne 1$) | $0$ | $2$ | First element mismatch |
+| $3$ | $0$ | `[1, -1, -1]` | $2$ | `[0, 1, -1]` | Mismatch ($0 \ne 1$) | $0$ | $3$ | First element mismatch |
+| $4$ | $0$ | `[1, -1, -1]` | $3$ | `[1, -1, -1]` | **Full Match** | $1$ | $6$ | Group $0$ found at $[3 \dots 5]$; jump past window to $j=6$ |
+| $5$ | $1$ | `[3, -2, 0]` | $6$ | `[3, -2, 0]` | **Full Match** | $2$ | $9$ | Group $1$ found at $[6 \dots 8]$; jump past window to $j=9$ |
+| End | $2$ | — | $9$ | — | — | — | — | $i == n$; all groups matched disjointly $\implies$ **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Strict Non-Overlapping Guarantee:**
+   When a match occurs at index $j$ for a group of length $L$, setting $j \leftarrow j + L$ guarantees that no index in the range $[j, j + L - 1]$ can ever be reused for subsequent groups.
+2. **Greedy Suffix Subsumption:**
+   If there exist multiple non-overlapping occurrences of group $i$ in `nums`, picking any occurrence starting after the earliest occurrence $j_i$ leaves a strictly smaller remaining suffix $\text{nums}[j' + L \dots m - 1] \subset \text{nums}[j_i + L \dots m - 1]$. Any sequence of groups that can be embedded into the smaller suffix can necessarily be embedded into the larger suffix. Hence, taking the earliest match never eliminates a feasible solution.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **KMP per group with carried position:** Prefix-function matching avoids rechecking long partial matches and can approach $O(N+S)$ total time.
-- **Manual nested comparison:** Avoid Python slice allocation, but still has $O(NL)$ worst-case comparison work without a failure function.
-- **Backtracking over occurrences:** It is unnecessary because the earliest valid occurrence always leaves the largest possible suffix.
-- **Group longer than remaining nums:** The short slice cannot equal it, and the scan eventually returns false.
-- **Unused values between groups:** Mismatch increments allow arbitrary gaps.
-- **Adjacent groups:** After a match, the next search starts exactly at its endpoint.
-- **Overlapping apparent matches:** Advancing by full group length prevents reuse of any accepted index.
-- **Repeated group values:** Equality and ordered pointer state handle them normally.
-- **Negative integers:** They are ordinary list elements and do not affect matching logic.
-- **All groups matched before nums ends:** The loop exits through `i == n` and returns true; leftover values are allowed.
-- **Nums exhausted first:** Remaining positive-length groups cannot be placed.
-- **Non-empty groups:** Advancing `j` by `len(g)` always makes progress on a successful match.
-- **Input preservation:** Slices are copies; neither `groups` nor `nums` is modified.
-- **Slice cost:** Concise syntax hides both comparison time and temporary allocation, which matter to the exact complexity.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Configuration | Expected Output | Strategic Handling |
+|---|---|---|---|
+| Subarrays Out of Order | `groups = [[10, -2], [1, 2]]`, `nums = [1, 2, 10, -2]` | `false` | Group $[10, -2]$ occurs after $[1, 2]$, so greedy scan for $[10, -2]$ leaves an empty suffix for $[1, 2]$. |
+| Overlapping Candidate Match | `groups = [[1, 2], [2, 3]]`, `nums = [1, 2, 3]` | `false` | First group uses $[1, 2]$; remaining suffix is `[3]`, which cannot satisfy $[2, 3]$. |
+| Total Length Exceeds Array | $\sum L_i > m$ | `false` | Loop terminates when $j + L_i > m$ with $i < n$, safely returning `false`. |
+| Single Element Groups | `groups = [[1], [2]]`, `nums = [1, 3, 2]` | `true` | Skips unused element $3$ seamlessly. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(NL)$. Let $N=\lvert\texttt{nums}\rvert$ and let $L$ be the maximum group length. Pointer `j` advances at most $N$ positions, but each attempted match constructs a slice and compares up to the current group's length. The exact worst-case time is therefore $O(NL)$, with successful matched lengths contributing within that bound.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot \max L_i)$ where $m$ is the length of `nums` and $\max L_i$ is the maximum length of any group in `groups`.
+  - In the worst case, at each index $j$ of `nums`, we compare up to $L_i$ elements.
+  - The search pointer $j$ advances monotonically from $0$ to at most $m$, never resetting or backtracking.
+  - Given $m \le 1000$ and $\sum L_i \le 1000$, total comparison operations are bounded by $10^6$, executing instantaneously in under $5\text{ ms}$.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. The algorithm only maintains integer index pointers $i$ and $j$, requiring no additional heap allocations or dynamically growing data structures.

@@ -1,123 +1,167 @@
 # Guided Example: Optimal Partition of String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "abacaba"}`
-- **Required output:** `4`
+We are given a string $s$ consisting of lowercase English letters.
+We must partition $s$ into one or more contiguous substrings such that:
+1. No letter appears more than once within any individual substring.
+2. The total number of substrings in the partition is minimized.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+### Representative Instance
+Consider the string:
+$$s = \text{"abacaba"}$$
 
----
+- At index $0$: character `'a'`
+- At index $1$: character `'b'`
+- At index $2$: character `'a'` (conflicts with `'a'` at index 0)
+- At index $3$: character `'c'`
+- At index $4$: character `'a'` (conflicts with earlier `'a'`)
+- At index $5$: character `'b'`
+- At index $6$: character `'a'`
 
-## 1. Instance & Teaching Goal
-
-Given a string `s`, partition the string into one or more **substrings** such that the characters in each substring are **unique**. That is, no letter appears in a single substring more than **once**.
-
-The objective is to compute `4` from `{"s": "abacaba"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Expected minimal partition: `["ab", "ac", "ab", "a"]`, yielding a total of `4` substrings.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Extend the current part as far as validity allows
+### Greedy Choice Property
+A string partition can be viewed as choosing a minimal set of cut points.
+Suppose we are forming a valid substring beginning at index $L$. Can making the substring strictly shorter than the maximum valid prefix starting at $L$ ever yield fewer total substrings for the entire suffix?
+No:
+- Let $R$ be the earliest index such that $s[R]$ duplicates an earlier character in $s[L \dots R-1]$.
+- Any valid substring starting at $L$ cannot extend past $R - 1$.
+- Ending the substring at any index $M < R - 1$ leaves a remaining suffix $s[M+1 \dots |s|-1]$ that is a strict superset of $s[R \dots |s|-1]$.
+- A longer remaining suffix cannot require fewer cuts than a shorter remaining suffix under subset containment of prefix constraints.
+Hence, extending each substring as far to the right as legally possible without duplicate characters is globally optimal.
 
-Each substring in the partition must contain unique characters. The greedy rule is:
+```mermaid
+flowchart TD
+    accTitle: Greedy Sliding Character Accumulation
+    accDescr: Workflow showing reading character, bitmask collision check, conditional cut boundary advancement, and bitmask update.
+    A["Initialize ans = 1, mask = 0"] --> B["Iterate c in string s"]
+    B --> C["Compute bit x = ord(c) - ord('a')"]
+    C --> D{"Is (mask >> x) & 1 == 1?"}
+    D -- Yes: Duplicate Detected --> E["Increment ans += 1, reset mask = 0"]
+    E --> F["Set bit: mask |= (1 << x)"]
+    D -- No: Distinct Character --> F
+    F --> G{"More Characters?"}
+    G -- Yes --> B
+    G -- No --> H["Return ans"]
+```
 
-- keep appending while the next character has not appeared in the current substring;
-- when it repeats, end the current substring immediately before that character and start a new substring with it.
+### 26-Bit Integer Bitmask
+Because $s$ consists solely of lowercase English letters, there are at most 26 distinct characters.
+An integer `mask` tracks character presence:
+- Character $c$ maps to bit offset $x = \text{ord}(c) - \text{ord}(\text{'a'}) \in [0, 25]$.
+- Duplicate test: `(mask >> x) & 1 == 1`.
+- Inclusion: `mask |= (1 << x)`.
+- Reset on cut: `mask = 0`.
 
-The exact code represents letters already in the current part with a 26-bit mask.
+---
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+Initial state:
+- String: $s = \text{"abacaba"}$ ($|s| = 7$)
+- Substring count: $\text{ans} = 1$ (accounting for the initial segment)
+- Active bitmask: $\text{mask} = 00000000_2$
+
+### Character 0: $s[0] = \text{'a'}$ ($x = 0$)
+- Query: $\text{mask} \gg 0 \ \& \ 1 = 0 \ \& \ 1 = 0$ (No collision).
+- Set bit 0: $\text{mask} = 00000001_2 = 1$.
+- Active partition segment: `"a"`.
+
+### Character 1: $s[1] = \text{'b'}$ ($x = 1$)
+- Query: $\text{mask} \gg 1 \ \& \ 1 = 0 \ \& \ 1 = 0$ (No collision).
+- Set bit 1: $\text{mask} = 00000011_2 = 3$.
+- Active partition segment: `"ab"`.
+
+### Character 2: $s[2] = \text{'a'}$ ($x = 0$)
+- Query: $\text{mask} \gg 0 \ \& \ 1 = 3 \ \& \ 1 = 1$ (Collision detected: `'a'` already present!).
+- Action:
+  1. Cut the current segment. The first substring `"ab"` is sealed.
+  2. Increment segment counter: $\text{ans} = 1 + 1 = 2$.
+  3. Reset mask: $\text{mask} = 0$.
+  4. Insert current `'a'`: $\text{mask} = 00000001_2 = 1$.
+- Active partition segment: `"a"`.
+
+### Character 3: $s[3] = \text{'c'}$ ($x = 2$)
+- Query: $\text{mask} \gg 2 \ \& \ 1 = 0 \ \& \ 1 = 0$ (No collision).
+- Set bit 2: $\text{mask} = 00000101_2 = 5$.
+- Active partition segment: `"ac"`.
+
+### Character 4: $s[4] = \text{'a'}$ ($x = 0$)
+- Query: $\text{mask} \gg 0 \ \& \ 1 = 5 \ \& \ 1 = 1$ (Collision detected: `'a'` already present!).
+- Action:
+  1. Cut the current segment. Second substring `"ac"` is sealed.
+  2. Increment segment counter: $\text{ans} = 2 + 1 = 3$.
+  3. Reset mask: $\text{mask} = 0$.
+  4. Insert current `'a'`: $\text{mask} = 00000001_2 = 1$.
+- Active partition segment: `"a"`.
+
+### Character 5: $s[5] = \text{'b'}$ ($x = 1$)
+- Query: $\text{mask} \gg 1 \ \& \ 1 = 0 \ \& \ 1 = 0$ (No collision).
+- Set bit 1: $\text{mask} = 00000011_2 = 3$.
+- Active partition segment: `"ab"`.
+
+### Character 6: $s[6] = \text{'a'}$ ($x = 0$)
+- Query: $\text{mask} \gg 0 \ \& \ 1 = 3 \ \& \ 1 = 1$ (Collision detected: `'a'` already present!).
+- Action:
+  1. Cut the current segment. Third substring `"ab"` is sealed.
+  2. Increment segment counter: $\text{ans} = 3 + 1 = 4$.
+  3. Reset mask: $\text{mask} = 0$.
+  4. Insert current `'a'`: $\text{mask} = 00000001_2 = 1$.
+- Active partition segment: `"a"`.
+
+Final partition: `["ab", "ac", "ab", "a"]`.
+Final value: $\text{ans} = 4$.
+
+---
+
+## 4. Comprehensive State Trace
+
+| Index $i$ | Character $s[i]$ | Bit Index $x$ | Pre-check Mask | Collision? | Substring Count $\text{ans}$ | Mask Reset? | Post-update Mask | Active Substring |
+|---|---|---|---|---|---|---|---|---|
+| Initial | - | - | $0$ | - | 1 | - | $0$ | `""` |
+| 0 | `'a'` | 0 | $00000000_2$ | No | 1 | No | $00000001_2$ | `"a"` |
+| 1 | `'b'` | 1 | $00000001_2$ | No | 1 | No | $00000011_2$ | `"ab"` |
+| 2 | `'a'` | 0 | $00000011_2$ | Yes (bit 0 set) | 2 | Yes $\to 0$ | $00000001_2$ | `"a"` |
+| 3 | `'c'` | 2 | $00000001_2$ | No | 2 | No | $00000101_2$ | `"ac"` |
+| 4 | `'a'` | 0 | $00000101_2$ | Yes (bit 0 set) | 3 | Yes $\to 0$ | $00000001_2$ | `"a"` |
+| 5 | `'b'` | 1 | $00000001_2$ | No | 3 | No | $00000011_2$ | `"ab"` |
+| 6 | `'a'` | 0 | $00000011_2$ | Yes (bit 0 set) | 4 | Yes $\to 0$ | $00000001_2$ | `"a"` |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Formal Optimality by Induction
+Let $\Pi^* = (I_1^*, I_2^*, \dots, I_m^*)$ be any valid partition of $s$ with minimal size $m$, where each $I_k^*$ is a substring $[l_k, r_k]$.
+Let $\Pi = (I_1, I_2, \dots, I_p)$ be the partition produced by the greedy maximal-extension policy:
+1. For the first substring $I_1 = [0, r_1]$, by greedy definition $r_1$ is the largest index such that $s[0 \dots r_1]$ has no duplicates. Therefore $r_1 \ge r_1^*$.
+2. The suffix remaining after $I_1$, namely $s[r_1 + 1 \dots |s|-1]$, is a sub-suffix of the suffix remaining after $I_1^*$, namely $s[r_1^* + 1 \dots |s|-1]$.
+3. By induction on the remaining suffix length, the greedy strategy leaves fewer or equal characters to be partitioned in all subsequent steps.
+Hence, $p \le m$, proving that the greedy partition achieves the global minimum number of substrings.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+| Category | Input Scenario | Potential Failure | Resolution |
 |---|---|---|---|
-| Input Slice | `{"s": "abacaba"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Identical Characters | $s = \text{"aaaaaa"}$ | Missing reset on every step | Every character after the first triggers a collision, producing 6 substrings of length 1. |
+| Completely Distinct String | $s = \text{"abcdefg"}$ | Premature cutting | No collision occurs; $\text{ans}$ remains 1 and mask sets 7 bits. |
+| Single Character | $s = \text{"z"}$ | Returning 0 or unhandled loop | $\text{ans}$ initialized to 1; loop sets bit and returns 1. |
+| Repeating Alphabet | $s = 26 \times \text{"a...z"}$ repeated | Mask overflow | Bitmask fits within standard 32-bit integer ($2^{26} - 1 < 2^{31}$). |
+| Unset After Reset | Omitting `mask \|= 1 << x` after reset | Colliding character omitted from new substring | Current character is the first element of the new part; its bit must be set immediately after resetting mask to 0. |
 
 ---
 
-### Step 2: Map lowercase letters to mask bits
+## 7. Complexity Analysis
 
-`ord(c) - ord("a")` maps each lowercase character to an index `0` through `25`. Bit `x` is one when that letter has already appeared in the current substring.
-
-The membership test:
-
-
-
-extracts that bit. Adding the letter uses `mask |= 1 << x`.
-
-The fixed lowercase alphabet means this state is one integer rather than a growing set.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Start with one substring
-
-The input is guaranteed nonempty, so at least one substring is required. `ans` begins at one and `mask` begins empty.
-
-For each character, if its bit is already set, the current substring cannot legally include it. The code increments `ans` and resets `mask = 0`. It then executes the common insertion line, adding the current character as the first member of the new substring.
-
-Forgetting that final insertion would allow an immediate duplicate to slip into the new part.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abacaba"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Set for the current part:** A set provides clearer membership semantics and remains $O(1)$ space for 26 letters, but the bitmask has lower overhead.
-- **Dynamic programming over cut positions:** It can find a minimum but is unnecessary because the latest-valid-cut greedy choice is provably optimal.
-- **One character:** Initialization returns one part.
-- **All characters unique:** No reset occurs, so the entire string is one substring.
-- **All characters equal:** Every character after the first forces a new part.
-- **Repeated character after a cut:** The reset removes prior-part bits, so characters may repeat across different substrings.
-- **Current character insertion:** It must be added after reset as the first letter of its new part.
-- **Lowercase-only contract:** It makes a 26-bit integer sufficient.
-- **Nonempty input:** It justifies initializing `ans` to one rather than zero.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. The lazy `map` and loop process each character exactly once. Every iteration performs constant-time code-point arithmetic and bit operations. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = |s|$ is the length of the string.
+  - We scan the string once from left to right.
+  - For each character, calculating $x = \text{ord}(c) - \text{ord}(\text{'a'})$ and evaluating bitwise shifts and bitwise OR takes $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$.
+  - The bitmask requires a single 32-bit integer (`mask`), consuming strictly constant auxiliary space.

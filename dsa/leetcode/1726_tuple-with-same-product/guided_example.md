@@ -2,134 +2,155 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"nums": [2, 3, 4, 6]}`
-- **Required output:** `8`
+- **Input:** `nums = [2, 3, 4, 6]`
+- **Required Output:** `8`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains four distinct positive integers where exactly two disjoint pairs share a common product, demonstrating how pairwise frequency hashing and combinatorial permutation multipliers determine the answer in optimal quadratic time without generating invalid overlaps.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums` of **distinct** positive integers, return *the number of tuples *`(a, b, c, d)`* such that *$a * b = c * d$* where *`a`*, *`b`*, *`c`*, and *`d`* are elements of *`nums`*, and *$a \neq b \neq c \neq d$*.*
+Given an array `nums` of **distinct** positive integers, we seek the number of 4-tuples $(a, b, c, d)$ such that:
+1. $a \cdot b = c \cdot d$
+2. $a, b, c, d$ are distinct elements from `nums` ($a \neq b \neq c \neq d$)
 
-The objective is to compute `8` from `{"nums": [2, 3, 4, 6]}` while avoiding redundant calculations and unnecessary overhead.
+A brute-force search over all possible 4-tuples checks $\mathcal{O}(n^4)$ configurations, which becomes infeasible for arrays of size up to $n = 1000$. 
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The optimal insight shifts the viewpoint from four individual numbers to pairs of numbers:
+- If two unordered pairs $\{a, b\}$ and $\{c, d\}$ satisfy $a \cdot b = c \cdot d$, and the elements are distinct positive integers, they automatically share zero common elements.
+- Each unordered combination of two distinct pairs with identical products generates exactly $8$ ordered 4-tuples.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+We map each unique product of two distinct array elements to its frequency:
+
+| Component | Definition | Initial State |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Pairwise Product Table $H$ | Hash table mapping integer product $p \mapsto \text{count}$ | Empty map $\emptyset$ |
+| Total Disjoint Pair Matches | Combinatorial accumulation $\sum \binom{\text{count}(p)}{2}$ | $0$ |
+| Final Tuples | Scaled count $8 \times \sum \binom{\text{count}(p)}{2}$ | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Pairwise Product Disjointness Theorem.**
+> Let $S \subset \mathbb{Z}^+$ be a set of strictly distinct positive integers. Suppose $\{a, b\}$ and $\{c, d\}$ are distinct unordered pairs chosen from $S$ such that $a \cdot b = c \cdot d$. Then:
+> $$\{a, b\} \cap \{c, d\} = \emptyset$$
+>
+> *Proof.* Suppose for contradiction that the pairs share an element, say $a = c$. Then $a \cdot b = a \cdot d$. Since $a > 0$, we can divide both sides by $a$, yielding $b = d$. This implies $\{a, b\} = \{c, d\}$, which contradicts the assumption that the two unordered pairs are distinct. Hence, distinct pairs yielding identical products must be disjoint.
+
+> **Tuple Permutation Factor.**
+> Every set of two disjoint pairs $\{\{a, b\}, \{c, d\}\}$ with $a \cdot b = c \cdot d$ generates exactly:
+> $$2 \times 2 \times 2 = 8$$
+> valid ordered tuples $(u_1, u_2, u_3, u_4)$ such that $u_1 \cdot u_2 = u_3 \cdot u_4$. Specifically:
+> - $2$ choices for which pair occupies $(u_1, u_2)$ versus $(u_3, u_4)$
+> - $2$ internal arrangements for $(u_1, u_2)$ ($a, b$ or $b, a$)
+> - $2$ internal arrangements for $(u_3, u_4)$ ($c, d$ or $d, c$)
+
+```mermaid
+flowchart TD
+    accTitle: Pairwise Product Frequency to 8-Tuple Generation
+    accDescr: Flowchart illustrating the enumeration of unordered pairs, frequency aggregation, combinatorial selection, and permutation expansion by factor 8.
+    A["Input Array: Distinct Positive Integers"] --> B["Enumerate All Unordered Pairs (i < j)"]
+    B --> C["Compute Product: P = nums[i] * nums[j]"]
+    C --> D["Aggregate Frequencies in Hash Map: H[P]++"]
+    D --> E["For each product P with frequency v >= 2"]
+    E --> F["Form C(v, 2) = v * (v - 1) / 2 Disjoint Pair Selections"]
+    F --> G["Multiply by 8 Permutations per Pair"]
+    G --> H["Accumulate into Total Result"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Group unordered pairs by their product
+For `nums = [2, 3, 4, 6]`, array length is $n = 4$. Total unordered pairs is $\binom{4}{2} = 6$.
 
-The equation $a\cdot b=c\cdot d$ says that two pairs of input values have the same product. Instead of choosing four ordered values directly, the source first enumerates every unordered index pair and records how many pairs produce each product.
+### Step 1: Enumerate Unordered Pairs and Record Products
 
-The nested loops use `i` from one through the end and `j` from zero through `i-1`. Thus every pair of distinct indices appears exactly once with `j < i`. A pair is never generated in both orders, and an element is never paired with itself.
+We iterate over all index pairs $(i, j)$ with $0 \le i < j < n$:
 
-For product `x = nums[i] * nums[j]`, `cnt[x] += 1` increments its frequency.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Index Pair $(i, j)$ | Values $(nums[i], nums[j])$ | Product $P$ | Hash Table State $H$ after Insertion |
 |---|---|---|---|
-| Input Slice | `{"nums": [2, 3, 4, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $(0, 1)$ | $(2, 3)$ | $2 \times 3 = 6$ | $\{6: 1\}$ |
+| $(0, 2)$ | $(2, 4)$ | $2 \times 4 = 8$ | $\{6: 1, 8: 1\}$ |
+| $(0, 3)$ | $(2, 6)$ | $2 \times 6 = 12$ | $\{6: 1, 8: 1, 12: 1\}$ |
+| $(1, 2)$ | $(3, 4)$ | $3 \times 4 = 12$ | $\{6: 1, 8: 1, 12: 2\}$ |
+| $(1, 3)$ | $(3, 6)$ | $3 \times 6 = 18$ | $\{6: 1, 8: 1, 12: 2, 18: 1\}$ |
+| $(2, 3)$ | $(4, 6)$ | $4 \times 6 = 24$ | $\{6: 1, 8: 1, 12: 2, 18: 1, 24: 1\}$ |
 
----
+### Step 2: Evaluate Combinatorial Combinations for Each Product Group
 
-### Step 2: Choose two pairs from one product group
+We inspect the frequency $v$ of each product in $H$:
 
-If product $P$ occurs for $v$ unordered pairs, any two different pairs in that group satisfy the required product equality. The number of ways to choose those two pairs without order is
-
-$$
-\binom v2=\frac{v(v-1)}2.
-$$
-
-The generator expression
-
-`v * (v - 1) // 2 for v in cnt.values()`
-
-computes this quantity for every distinct product, and `sum` adds them.
-
-A product with frequency zero cannot exist in the dictionary, and frequency one contributes zero because there is no second pair.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Product $P$ | Frequency $v$ | Valid Pair Combinations $\binom{v}{2} = \frac{v(v-1)}{2}$ | Contribution to Tuples ($8 \times \binom{v}{2}$) |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| $6$ | $1$ | $\binom{1}{2} = 0$ | $0$ |
+| $8$ | $1$ | $\binom{1}{2} = 0$ | $0$ |
+| $12$ | $2$ | $\binom{2}{2} = 1$ | $1 \times 8 = 8$ |
+| $18$ | $1$ | $\binom{1}{2} = 0$ | $0$ |
+| $24$ | $1$ | $\binom{1}{2} = 0$ | $0$ |
 
----
+### Step 3: Explicit Expansion of the 8 Valid Tuples
 
-### Step 3: Why equal-product pairs automatically use four distinct values
+The single matching pair combination for product $12$ comes from pairs $\{2, 6\}$ and $\{3, 4\}$.
+By varying pair assignments and internal element orders, we obtain the full set of 8 distinct tuples:
 
-The contract says input values are distinct positive integers. Suppose two different unordered pairs with the same product shared a value $a$: they would be `{a,b}` and `{a,c}` with
+1. Pair $\{2, 6\}$ first, $\{3, 4\}$ second:
+   - $(2, 6, 3, 4)$
+   - $(2, 6, 4, 3)$
+   - $(6, 2, 3, 4)$
+   - $(6, 2, 4, 3)$
+2. Pair $\{3, 4\}$ first, $\{2, 6\}$ second:
+   - $(3, 4, 2, 6)$
+   - $(3, 4, 6, 2)$
+   - $(4, 3, 2, 6)$
+   - $(4, 3, 6, 2)$
 
-$$
-a b=a c.
-$$
-
-Because $a$ is positive and nonzero, cancellation gives $b=c$, making the pairs identical. That contradicts choosing two different pairs.
-
-Therefore two different pairs in one product group cannot overlap. Their four elements are automatically distinct, so the source needs no explicit disjointness check.
-
-Both positivity and distinctness support this shortcut. With zeros or repeated values, equal-product pair groups could contain overlapping index pairs and would require more careful counting.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
+Every tuple consists of distinct integers and satisfies $a \cdot b = c \cdot d = 12$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Phase | Action | Detail / Calculation | State Summary |
 |---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 3, 4, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
+| Initialization | Initialize Hash Map | $H \leftarrow \emptyset$, total tuples $\leftarrow 0$ | Empty map |
+| Pair Scan | Process $(0, 1)$ | $nums[0] \times nums[1] = 2 \times 3 = 6$ | $H[6] = 1$ |
+| Pair Scan | Process $(0, 2)$ | $nums[0] \times nums[2] = 2 \times 4 = 8$ | $H[8] = 1$ |
+| Pair Scan | Process $(0, 3)$ | $nums[0] \times nums[3] = 2 \times 6 = 12$ | $H[12] = 1$ |
+| Pair Scan | Process $(1, 2)$ | $nums[1] \times nums[2] = 3 \times 4 = 12$ | $H[12] = 2$ |
+| Pair Scan | Process $(1, 3)$ | $nums[1] \times nums[3] = 3 \times 6 = 18$ | $H[18] = 1$ |
+| Pair Scan | Process $(2, 3)$ | $nums[2] \times nums[3] = 4 \times 6 = 24$ | $H[24] = 1$ |
+| Aggregation | Scan Product Frequencies | Only $P = 12$ has $v = 2 \ge 2$; $\binom{2}{2} = 1$ | 1 matching pair set |
+| Scaling | Apply 8-Tuple Multiplier | $1 \times 8 = 8$ | Total = 8 |
+| Conclusion | Final Output Return | Return integer total | Result: 8 |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Mastery & Edge Surfacing
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Boundary and Edge Cases
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Scenario | Input Example | Expected Output | Strategic Handling |
+|---|---|---|---|
+| Minimum Array Length ($n = 4$) with No Matching Products | `[1, 2, 3, 5]` | `0` | All products distinct ($\{2, 3, 5, 6, 10, 15\}$ all count 1); sum of $\binom{1}{2}$ correctly yields $0$. |
+| Minimum Array Length with One Match | `[1, 2, 4, 8]` | `8` | Pairs $(1, 8)$ and $(2, 4)$ have product 8; single matching pair set yields 8. |
+| Multiple Disjoint Pairs Sharing Same Product ($v = 3$) | `[1, 2, 3, 4, 6, 12]` with $P = 12$ | Multi-group sum | $(1, 12), (2, 6), (3, 4)$ all give 12. $\binom{3}{2} = 3$ pairs of pairs, yielding $3 \times 8 = 24$ tuples from product 12 alone. |
+| Large Values | `nums[i] \le 10^4` | Arbitrary valid combinations | Max pairwise product is $10^8$, safely fitting within standard 32-bit and 64-bit integer types without overflow. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 6. Traps This Instance Exposes
+1. **Why No Overlap Checks Are Required:**
+   Because all elements in `nums` are strictly distinct positive integers, if two different pairs had an element in common (e.g., $a \cdot b = a \cdot c$), dividing by $a \neq 0$ implies $b = c$, making the pairs identical. Thus, counting distinct pairs with the same product guarantees pairwise disjointness of elements.
+2. **Double-Counting Avoidance:**
+   By strictly enumerating index pairs with $i < j$, each unordered pair is visited exactly once. Using $\binom{v}{2}$ counts unordered combinations of pairs, and the final multiplication by $8$ accounts for all orderings without redundant enumeration.
 
-- **Four nested loops:** Test every ordered quadruple directly in $O(n^4)$ time, far beyond the constraints.
-- **Store and sort all pair products:** Group equal adjacent products in $O(n^2\log n)$ time and $O(n^2)$ space.
-- **Incremental tuple counting:** When a new pair product has appeared `v` times, add `8v` immediately. This avoids the final frequency pass with the same asymptotic bounds.
-- **Fewer than four values:** No two disjoint pairs exist, and all product frequencies contribute zero combinations.
-- **All products distinct:** Every frequency is one and the answer is zero.
-- **Several equal-product pairs:** The combination formula counts every choice of two.
-- **Distinct input values:** It guarantees two same-product pairs cannot overlap.
-- **Positive values:** It permits cancellation in the disjointness proof and excludes zero-product overlap.
-- **Pair order:** The nested loops record each unordered pair only once.
-- **Tuple order:** The final factor eight restores all ordered arrangements.
-- **Bit shift:** `<<3` is exact multiplication by eight for the nonnegative sum.
-- **Input preservation:** The array is never sorted or modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Complexity Analysis
 
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of values. The nested loops generate
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$ where $n$ is the number of elements in `nums`. There are $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs. Inserting each product into the hash table takes $\mathcal{O}(1)$ average time, and iterating over the entries of the hash table takes at most $\mathcal{O}(n^2)$ time.
+- **Space Complexity:** $\mathcal{O}(n^2)$ auxiliary space to store at most $\frac{n(n-1)}{2}$ unique products in the frequency hash map.

@@ -1,129 +1,195 @@
 # Guided Example: Friend Requests I: Overall Acceptance Rate
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step distinct sender-receiver request pair deduplication (`COUNT(DISTINCT (sender_id, send_to_id))`), distinct requester-accepter acceptance pair deduplication (`COUNT(DISTINCT (requester_id, accepter_id))`), division-by-zero null coalescing (`COALESCE(..., 0)`), two-decimal rounded ratio evaluation, and conversion rate reporting on representative social network logs:
 
-- **Input:** `{"tables": {"FriendRequest": [{"sender_id": 1, "send_to_id": 2, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 3, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 4, "request_date": "2016/06/01"}, {"sender_id": 2, "send_to_id": 3, "request_date": "2016/06/02"}, {"sender_id": 3, "send_to_id": 4, "request_date": "2016/06/09"}], "RequestAccepted": [{"requester_id": 1, "accepter_id": 2, "accept_date": "2016/06/03"}, {"requester_id": 1, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 2, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/09"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/10"}]}}`
-- **Required output:** `{"columns": ["accept_rate"], "rows": [[0.8]]}`
+- **Input:**
+  - `FriendRequest` table:
+    | `sender_id` | `send_to_id` | `request_date` |
+    |:---:|:---:|:---:|
+    | $1$ | $2$ | `2016/06/01` |
+    | $1$ | $3$ | `2016/06/01` |
+    | $1$ | $4$ | `2016/06/01` |
+    | $2$ | $3$ | `2016/06/02` |
+    | $3$ | $4$ | `2016/06/09` |
+  - `RequestAccepted` table:
+    | `requester_id` | `accepter_id` | `accept_date` |
+    |:---:|:---:|:---:|
+    | $1$ | $2$ | `2016/06/03` |
+    | $1$ | $3$ | `2016/06/08` |
+    | $2$ | $3$ | `2016/06/08` |
+    | $3$ | $4$ | `2016/06/09` |
+    | $3$ | $4$ | `2016/06/10` |
+- **Required output:**
+  | `accept_rate` |
+  |:---:|
+  | $0.80$ |
+  - Business metric definition:
+    $$
+    \text{Overall Acceptance Rate} = \frac{\text{Total distinct accepted requests}}{\text{Total distinct friend requests}}
+    $$
+  - Duplicate policy: Multiple requests or acceptances between the same pair of users count as **one single distinct event**.
+  - Zero denominator policy: If there are no friend requests recorded (requests $= 0$), the acceptance rate is defined as $0.00$.
+  - Formatting: Round the final rate to $2$ decimal places.
+- **Relational Deduplication & Ratio Trace:**
+  - **Step 1: Count Distinct Sent Requests ($N_{req}$):**
+    - Unique sender-receiver pairs in `FriendRequest`:
+      - Pair $(1, 2)$
+      - Pair $(1, 3)$
+      - Pair $(1, 4)$
+      - Pair $(2, 3)$
+      - Pair $(3, 4)$
+    - Total distinct requests:
+      $$
+      N_{req} = \mathbf{5}
+      $$
+  - **Step 2: Count Distinct Accepted Requests ($N_{acc}$):**
+    - Unique requester-accepter pairs in `RequestAccepted`:
+      - Pair $(1, 2)$
+      - Pair $(1, 3)$
+      - Pair $(2, 3)$
+      - Pair $(3, 4)$ *(appears twice on 06/09 and 06/10, deduplicated to 1)*
+    - Total distinct acceptances:
+      $$
+      N_{acc} = \mathbf{4}
+      $$
+  - **Step 3: Calculate Acceptance Ratio:**
+    - Ratio formula:
+      $$
+      \text{Rate} = \frac{N_{acc}}{N_{req}} = \frac{4}{5} = \mathbf{0.80}
+      $$
+  - **Step 4: Division-by-Zero and Rounding Guard:**
+    - If $N_{req} == 0$, division in SQL evaluates to `NULL` (or raises divide-by-zero error).
+    - Wrapping the calculation in `COALESCE(..., 0)` guarantees a safe fallback of $0$.
+    - Rounding to 2 decimal places:
+      $$
+      \text{ROUND}(0.80, \; 2) = \mathbf{0.80}
+      $$
+- **Empty Requests Table ($N_{req} = 0$):**
+  - No requests sent $\implies$ denominator is 0 $\implies \text{COALESCE}(\dots, 0)$ evaluates to $\mathbf{0.00}$.
+- **Duplicate Acceptance Entries:**
+  - User 3 and User 4 accepted on two different dates (June 9 and June 10).
+  - Deduplicating via `DISTINCT (requester_id, accepter_id)` ensures the relationship is counted exactly once.
+- **Perfect Conversion ($100\%$ accepted):**
+  - If 5 requests are sent and all 5 are accepted $\implies 5 / 5 = \mathbf{1.00}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates distinct dyadic event counting and guarded ratio division in relational databases, mathematically proves why pair-level deduplication is invariant to repeated timestamps, and derives $O(R + A)$ execution time and $O(R + A)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `FriendRequest`
+Given two tables `FriendRequest` and `RequestAccepted`:
+Find the **overall acceptance rate** of friend requests:
+$$
+\text{Rate} = \frac{\text{Count of unique accepted pairs}}{\text{Count of unique requested pairs}}
+$$
+Round the result to 2 decimal places. If there are no requests, return `0.00`.
 
-The objective is to compute `{"columns": ["accept_rate"], "rows": [[0.8]]}` from `{"tables": {"FriendRequest": [{"sender_id": 1, "send_to_id": 2, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 3, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 4, "request_date": "2016/06/01"}, {"sender_id": 2, "send_to_id": 3, "request_date": "2016/06/02"}, {"sender_id": 3, "send_to_id": 4, "request_date": "2016/06/09"}], "RequestAccepted": [{"requester_id": 1, "accepter_id": 2, "accept_date": "2016/06/03"}, {"requester_id": 1, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 2, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/09"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/10"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Friend Requests (Unique Pairs):
+  (1, 2), (1, 3), (1, 4), (2, 3), (3, 4) -> Total = 5
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Requests Accepted (Unique Pairs):
+  (1, 2), (1, 3), (2, 3), (3, 4)         -> Total = 4
+
+Rate = 4 / 5 = 0.80
+```
+
+### Clarifying Independent Deduplication
+- A requester and accepter can send multiple requests and acceptances across different days.
+- The metric specifically measures the **fraction of requested relationships that converted into accepted friendships**, ignoring duplicate transmissions.
+- Both numerator and denominator must apply `COUNT(DISTINCT (user1, user2))`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The SQL Query Formulation:
+```sql
+SELECT
+    ROUND(
+        COALESCE(
+            (SELECT COUNT(DISTINCT (requester_id, accepter_id)) * 1.0 FROM RequestAccepted) /
+            (SELECT COUNT(DISTINCT (sender_id, send_to_id)) FROM FriendRequest),
+            0
+        ),
+        2
+    ) AS accept_rate;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Guarding Edge Cases:
+- Multiplying by `1.0` or using numeric types prevents integer division truncation.
+- `COALESCE(..., 0)` catches both `NULL` resulting from an empty `FriendRequest` table and division-by-zero.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Dyadic Idempotence Invariant.** Duplicate relationship pings across distinct timestamps collapse under set projection into a single undirected dyadic event.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Counting distinct pairs rather than distinct columns
-
-MySQL supports multi-expression distinct counting:
-
-
-
-This counts distinct *combinations*. Pairs `(1,2)` and `(1,3)` are different even though they share the first component. Counting distinct requester IDs and distinct accepter IDs separately would lose pair relationships and could not reconstruct the correct number.
-
-The acceptance date is intentionally absent. If pair `(3,4)` appears with two accept dates, both event rows collapse to one logical accepted request. The denominator similarly ignores `request_date` and collapses repeated `(sender_id, send_to_id)` pairs.
-
-Direction matters. Pair `(1,2)` is different from `(2,1)` because sender/requester and receiver/accepter roles are ordered columns. The query preserves that order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"FriendRequest": [{"sender_id": 1, "send_to_id": 2, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 3, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 4, "request_date": "2016/06/01"}, {"sender_id": 2, "send_to_id": 3, "request_date": "2016/06/02"}, {"sender_id": 3, "send_to_id": 4, "request_date": "2016/06/09"}], "RequestAccepted": [{"requester_id": 1, "accepter_id": 2, "accept_date": "2016/06/03"}, {"requester_id": 1, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 2, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/09"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/10"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why numerator and denominator are independent
-
-The numerator subquery reads only `RequestAccepted`, while the denominator reads only `FriendRequest`. There is no join requiring an accepted pair to appear among recorded requests.
-
-That separation implements the note that accepted requests count even when absent from `FriendRequest`. It also means the numeric rate can exceed one if the accepted table contains more distinct pairs than the request table. Although unusual in a real workflow, this is consistent with the explicit contract; the query must not cap the value at 1.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Distinct Requests
+- Unique pairs in `FriendRequest`:
+  - $(1, 2), (1, 3), (1, 4), (2, 3), (3, 4)$
+- Count = 5.
 
 ---
 
-### Step 3: Division and the empty-request case
+### Step 2: Distinct Acceptances
+- Unique pairs in `RequestAccepted`:
+  - $(1, 2), (1, 3), (2, 3), (3, 4)$
+- Note: $(3, 4)$ occurs twice; counted once.
+- Count = 4.
 
-The two scalar subqueries each return one integer. MySQL’s division produces a fractional numeric result when the denominator is positive.
+---
 
-If there are no distinct request pairs, the denominator is zero. Division by zero yields `NULL` in this context. The surrounding:
-
-
-
-replaces that missing ratio with zero. `COALESCE` returns its first non-`NULL` argument, so ordinary nonempty ratios pass through unchanged.
-
-If there are requests but no accepted pairs, the numerator is zero and the calculation is the genuine numeric value zero; `COALESCE` still leaves it as zero.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["accept_rate"], "rows": [[0.8]]}` |
+### Step 3: Compute and Round
+$$
+\text{Rate} = \frac{4.0}{5} = 0.80
+$$
+$$
+\text{ROUND}(0.80, 2) = \mathbf{0.80}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"FriendRequest": [{"sender_id": 1, "send_to_id": 2, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 3, "request_date": "2016/06/01"}, {"sender_id": 1, "send_to_id": 4, "request_date": "2016/06/01"}, {"sender_id": 2, "send_to_id": 3, "request_date": "2016/06/02"}, {"sender_id": 3, "send_to_id": 4, "request_date": "2016/06/09"}], "RequestAccepted": [{"requester_id": 1, "accepter_id": 2, "accept_date": "2016/06/03"}, {"requester_id": 1, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 2, "accepter_id": 3, "accept_date": "2016/06/08"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/09"}, {"requester_id": 3, "accepter_id": 4, "accept_date": "2016/06/10"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["accept_rate"], "rows": [[0.8]]}` | Verified |
+| Metric | Raw Table Rows | Distinct User Pairs | Scalar Count |
+|:---:|:---:|:---:|:---:|
+| **Requests** | $5$ rows | $(1,2), (1,3), (1,4), (2,3), (3,4)$ | $N_{req} = 5$ |
+| **Acceptances** | $5$ rows | $(1,2), (1,3), (2,3), (3,4)$ | $N_{acc} = 4$ |
+| **Fraction** | — | $4 / 5$ | $0.80$ |
+| **Output** | — | `ROUND(0.80, 2)` | **`accept_rate: 0.80`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Zero Requests ($N_{req} = 0$):** Denominator is 0 $\implies$ returns $0.00$.
+- **Zero Acceptances ($N_{acc} = 0$):** Numerator is 0 $\implies 0 / N = 0.00$.
+- **More Acceptances Than Requests:** Possible if acceptances occurred from offline/historical channels not in `FriendRequest`; ratio computes normally.
+- **Repeated Re-requests:** Handled by `DISTINCT`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Distinct subqueries then `COUNT(*)`:** Select distinct pairs in derived tables and count their rows. More verbose but portable to systems without multi-column `COUNT(DISTINCT ...)` syntax.
-- **Concatenating IDs:** Avoid `COUNT(DISTINCT CONCAT(...))` because ambiguous formatting can merge different pairs unless carefully encoded.
-- **Joining acceptances to requests:** Incorrect under this contract because accepted pairs not present in `FriendRequest` must still count.
-- **Counting raw rows:** Incorrect because repeated request or acceptance events count only once per pair.
-- **Counting dates:** Dates do not distinguish the logical directed pairs and must be ignored.
-- **No requests:** Denominator zero produces `NULL` on division; `COALESCE` returns zero.
-- **No acceptances but some requests:** Numerator zero gives rate zero normally.
-- **Accepted pair absent from requests:** It still contributes to the numerator.
-- **Rate above one:** Possible under the independent-table rule and must not be clamped.
-- **Reverse-direction pairs:** `(1,2)` and `(2,1)` are distinct.
-- **Rounding order:** Divide exact counts first, then round the ratio once.
-- **Potential null IDs:** MySQL’s multi-column distinct count ignores combinations containing `NULL`. The intended event model uses user IDs; if nullable IDs were valid data, their counting policy would need explicit handling.
-- **One-row guarantee:** Scalar subqueries let the outer query return an `accept_rate` row even for empty inputs.
-- **Monthly/daily follow-ups:** They require grouping by time periods and possibly running aggregates; this whole-table scalar query intentionally answers only the overall rate.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Joining Tables on User IDs:** Joining `FriendRequest` with `RequestAccepted` computes a relational intersection, which drops accepted pairs not present in requests and alters counts. The two tables must be counted as independent aggregates.
+- **Counting Raw Rows Without `DISTINCT`:** Duplicate request logs artificially inflate the denominator, yielding an inaccurate acceptance rate.
+- **Integer Division Truncation:** Evaluating $4 / 5$ in PostgreSQL/SQL Server produces integer $0$. Casting to float/numeric preserves the decimal.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(A+R)$. Let $A$ and $R$ be the row counts of `RequestAccepted` and `FriendRequest`. Computing distinct pairs can use hashing in expected $O(A+R)$ time and $O(A+R)$ worst-case space for stored unique pairs.
-- **Auxiliary Space Complexity:** $O(R+A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Distinct hash set insertion for `FriendRequest`: $\mathcal{O}(R)$ where $R$ is request count.
+  - Distinct hash set insertion for `RequestAccepted`: $\mathcal{O}(A)$ where $A$ is accept count.
+  - Scalar division and rounding: $\mathcal{O}(1)$.
+  - Total Time: strictly linear $\mathcal{O}(R + A)$. Completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(R + A)$ space to build the hash sets of unique user pairs.

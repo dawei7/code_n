@@ -1,128 +1,187 @@
 # Guided Example: Minimum Unique Word Abbreviation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise difference extraction, exact hitting set formulation, branch-and-bound search with most-constrained-pivot heuristic, and minimal token reconstruction on representative string instances:
 
-- **Input:** `{"target": "apple", "dictionary": ["blade"]}`
-- **Required output:** `"a4"`
+- **Input:** $target = \text{"apple"}, \quad dictionary = [\text{"blade"}, \text{"plain"}, \text{"amber"}]$
+- **Required output:** `"1p3"`
+  - Word length: $m = 5$
+  - Step 1 (Filter by length & compute difference bitmasks):
+    - `blade`: differs at indices $0, 1, 2, 3$ (matches at $4$, `'e'`) $\implies diff_1 = 01111_2 = 15$
+    - `plain`: differs at all indices $0, 1, 2, 3, 4$ $\implies diff_2 = 11111_2 = 31$
+    - `amber`: differs at indices $1, 2, 3, 4$ (matches at $0$, `'a'`) $\implies diff_3 = 11110_2 = 30$
+  - Step 2 (Hitting set constraint):
+    - A valid retention mask must intersect all three difference masks:
+      $$
+      mask \ \& \ diff_k \ne 0 \quad \forall k \in \{1, 2, 3\}
+      $$
+  - Step 3 (Branch-and-bound exploration):
+    - Mask $mask = 00001_2$ (retain `'a'`): $00001_2 \ \& \ 11110_2 = 0 \implies$ Collides with `amber` (`"a4"` matches both `apple` and `amber`).
+    - Mask $mask = 00010_2$ (retain index $1$, `'p'`):
+      - $00010_2 \ \& \ 15 \ne 0$, $00010_2 \ \& \ 31 \ne 0$, $00010_2 \ \& \ 30 \ne 0 \implies$ Covers all dictionary words!
+      - Abbreviation formed: index $0$ abbreviated ($1$), index $1$ retained (`'p'`), indices $2\dots 4$ abbreviated ($3$) $\implies \text{"1p3"}$.
+      - Abbreviation length: $3$ characters.
+  - Minimal unique abbreviation: `"1p3"`
+- **No Conflicting Words:** $target = \text{"apple"}, dictionary = [\text{"dog"}, \text{"cat"}] \implies$ length mismatch $\implies \text{"5"}$
+- **Empty Dictionary:** $target = \text{"word"}, dictionary = [] \implies \text{"4"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling string disambiguation as a bitwise minimum hitting set problem, shows how branch-and-bound with most-constrained pivots prunes exponential search trees, and derives $O(|D| \cdot m + 2^k)$ complexity bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A string can be **abbreviated** by replacing any number of **non-adjacent** substrings with their lengths. For example, a string such as `"substitution"` could be abbreviated as (but not limited to):
+Given a target string $target = \text{"apple"}$ ($m = 5$) and an exclusion dictionary $[\text{"blade"}, \text{"plain"}, \text{"amber"}]$:
+Find an abbreviation of $target$ with the **minimum total character length** such that **no word** in the dictionary can produce the exact same abbreviation:
 
-The objective is to compute `"a4"` from `{"target": "apple", "dictionary": ["blade"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Target: "apple" (m = 5)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Potential Abbreviations & Dictionary Conflicts:
+  "5"    -> Abbreviates ANY 5-letter word -> Conflicts with "blade", "plain", "amber" (Ambiguous)
+  "a4"   -> Retains index 0 ('a')         -> Matches "amber" ("amber" also starts with 'a'!)
+  "4e"   -> Retains index 4 ('e')         -> Matches "blade" ("blade" also ends with 'e'!)
+  "1p3"  -> Retains index 1 ('p')         -> blade[1]='l', plain[1]='l', amber[1]='m' (Unique! Length 3)
+  "3l1"  -> Retains index 3 ('l')         -> Unique (Length 3)
+  "a3e"  -> Retains indices 0 and 4       -> Unique (Length 3)
+
+Minimal Length Unique Abbreviation: "1p3"
+```
+
+### The Conflict Elimination Requirement
+An abbreviation is unique if and only if for every word $w \in dictionary$ of the same length:
+At least **one** retained letter in our abbreviation does **not match** the letter at that same position in $w$.
+If all retained letters in our abbreviation match the corresponding characters in $w$, then $w$ could be abbreviated to the exact same string, causing an ambiguous collision.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Difference Bitmask:
+For any dictionary word $w$ with $|w| = |target| = m$:
+Construct a bitmask $diff(w)$ where bit $i$ is set to $1$ if $target[i] \ne w[i]$, and $0$ if $target[i] == w[i]$:
+$$
+diff(w) = \sum_{i=0}^{m-1} \left( [target[i] \ne w[i]] \ll i \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Hitting Set / Disambiguation Condition:
+Let $mask \in [0, 2^m - 1]$ be a retention bitmask where bit $i = 1$ means character $target[i]$ is explicitly retained, and bit $i = 0$ means index $i$ is compressed into a numerical count.
+- The abbreviation specified by $mask$ is valid if and only if:
+  $$
+  mask \ \& \ diff(w) \ne 0 \quad \forall w \in dictionary \text{ with } |w| = m
+  $$
+- This is the classic **Hitting Set** problem: choose a subset of bits that has non-empty intersection with every difference mask.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Abbreviation Token Length Formula:
+Given a bitmask $mask$, we compute the length of its string representation:
+- Each contiguous sequence of zeros (abbreviated characters) of length $L > 0$ contributes $1$ token (the number string).
+- Each one (retained character) contributes $1$ token.
+
+> **Invariant.** A candidate mask is safe if and only if its bitwise AND with every difference mask in the filtered dictionary is strictly greater than zero.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Represent an abbreviation by the letters it keeps
-
-An abbreviation of `target` makes one decision at every position: keep that character literally, or hide it inside a numeric run. The solution represents these decisions with an integer bitmask. Bit `index` is `1` when `target[index]` remains as a letter and `0` when that position is abbreviated.
-
-For example, with a five-letter target, a mask that keeps only positions `0` and `4` represents a form like `a3e`: the two kept positions appear literally and the three consecutive zero bits between them become one number. Consecutive zero bits must be combined into one count. This automatically prevents adjacent numeric abbreviations such as `1` followed immediately by `2`; they would instead be the single run `3`.
-
-The mask is an especially useful representation because the question “does this abbreviation distinguish the target from a dictionary word?” becomes a bitwise test.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"target": "apple", "dictionary": ["blade"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $target = \text{"apple"}$, $dictionary = [\text{"blade"}, \text{"plain"}, \text{"amber"}]$:
 
 ---
 
-### Step 2: Discard dictionary lengths that cannot conflict
+### Step 1: Compute Difference Masks
 
-Expanding any valid abbreviation of `target` always accounts for exactly `len(target)` character positions. A dictionary word with a different length therefore cannot match that abbreviation. The first loop ignores all such words.
+| Dictionary Word $w$ | $target = \text{"apple"}$ vs $w$ Alignment | Matching Indices | Differing Indices | Binary Mask | Decimal Mask |
+|:---|:---|:---:|:---:|:---:|:---:|
+| `blade` | `a`$\ne$`b`, `p`$\ne$`l`, `p`$\ne$`a`, `l`$\ne$`d`, `e`$=$`e` | $\{4\}$ | $\{0, 1, 2, 3\}$ | $01111_2$ | $15$ |
+| `plain` | `a`$\ne$`p`, `p`$\ne$`l`, `p`$\ne$`a`, `l`$\ne$`i`, `e`$\ne$`n` | $\emptyset$ | $\{0, 1, 2, 3, 4\}$ | $11111_2$ | $31$ |
+| `amber` | `a`$=$`a`, `p`$\ne$`m`, `p`$\ne$`b`, `l`$\ne$`e`, `e`$\ne$`r` | $\{0\}$ | $\{1, 2, 3, 4\}$ | $11110_2$ | $30$ |
 
-For each same-length word, the code builds a `difference` mask. Bit `index` is set exactly when `target[index] != word[index]`. Thus a `1` identifies a position whose literal target character could distinguish this word, while a `0` identifies a position where keeping the character would not help because the word contains the same character there.
-
-Suppose the target is `apple` and a same-length word is `ample`. They differ only at position `1`, so that word's difference mask has only bit `1` set. Any unique abbreviation must keep the target's `p` at that position. If the position is hidden by a number, the same abbreviation also describes `ample`.
-
-If no dictionary word has the target's length, `differences` is empty. Then the shortest possible abbreviation is the one numeric run covering the whole target, returned as `str(length)`. Its abbreviation length is one token, regardless of whether the decimal text has one digit or several.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The set of difference masks to hit is:
+$$
+\mathcal{D} = \{15, \, 31, \, 30\}
+$$
 
 ---
 
-### Step 3: The exact uniqueness condition
+### Step 2: Evaluate Single-Bit Retentions (Length 2 Candidates)
 
-Let `mask` describe the target abbreviation and `difference` describe one competing word. The expression
+Can an abbreviation of length 2 distinguish `apple` from all three words?
+Length 2 abbreviations have either the form `c4` ($mask = 00001_2$) or `4c` ($mask = 10000_2$):
+- **Candidate $mask = 00001_2$ (`"a4"`):**
+  - $00001_2 \ \& \ 15 = 1 \ne 0$ (Distinguishes `blade`)
+  - $00001_2 \ \& \ 31 = 1 \ne 0$ (Distinguishes `plain`)
+  - $00001_2 \ \& \ 30 = 0$ (**Collides with `amber`!**)
+  - Failed: `"a4"` is ambiguous.
+- **Candidate $mask = 10000_2$ (`"4e"`):**
+  - $10000_2 \ \& \ 30 = 16 \ne 0$ (Distinguishes `amber`)
+  - $10000_2 \ \& \ 31 = 16 \ne 0$ (Distinguishes `plain`)
+  - $10000_2 \ \& \ 15 = 0$ (**Collides with `blade`!**)
+  - Failed: `"4e"` is ambiguous.
 
-`mask & difference`
+No length 2 abbreviation can hit both $15$ and $30$. Therefore, minimal unique length must be **at least 3**.
 
-contains the positions that are both kept literally and different between the two words. If this intersection is nonzero, at least one visible target letter disagrees with the competitor, so the abbreviation cannot abbreviate that word.
+---
 
-If the intersection is zero, every literal position selected by `mask` contains the same character in both words. All other positions are skipped in identical run lengths because the words have equal total length. The abbreviation therefore matches the competitor as well and is not unique.
+### Step 3: Evaluate Interior Bit Retentions (Length 3 Candidates)
 
-The required mask must consequently satisfy `mask & difference != 0` for every stored difference mask. In set language, it must choose at least one position from every set of differing positions. This is a minimum-cost hitting-set problem, where cost is abbreviation token length rather than simply the number of selected positions.
+Retaining an interior character splits the zeros into two numbers: `L` + `c` + `R`.
+- **Test $mask = 00010_2$ (Retain index 1, `'p'`):**
+  - Bitwise intersections:
+    $$
+    00010_2 \ \& \ 15 = 2 \ne 0 \quad (\text{differs from blade})
+    $$
+    $$
+    00010_2 \ \& \ 31 = 2 \ne 0 \quad (\text{differs from plain})
+    $$
+    $$
+    00010_2 \ \& \ 30 = 2 \ne 0 \quad (\text{differs from amber})
+    $$
+  - All three words are covered!
+  - String reconstruction:
+    - Index $0$: 1 zero $\implies$ `"1"`
+    - Index $1$: 1 one $\implies$ `'p'`
+    - Indices $2\dots 4$: 3 zeros $\implies$ `"3"`
+    - Assembled result: `"1p3"`
+  - Total character length: $1 + 1 + 1 = \mathbf{3}$.
 
-The constraint that `dictionary` does not contain `target` guarantees that each relevant difference mask has at least one set bit. An identical word would have `difference == 0`, and no abbreviation of the target could distinguish it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"a4"` |
+Since length 2 was mathematically proven impossible, length 3 is globally optimal.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"target": "apple", "dictionary": ["blade"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"a4"` | Verified |
+| Candidate Mask | Binary Representation | Retained Positions | Reconstructed Abbreviation | Word Collisions | Valid & Unique? | Total Token Length |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| $0$ | $00000_2$ | None | `"5"` | `blade`, `plain`, `amber` | No | $1$ |
+| $1$ | $00001_2$ | $\{0\}$ | `"a4"` | `amber` | No | $2$ |
+| $16$ | $10000_2$ | $\{4\}$ | `"4e"` | `blade` | No | $2$ |
+| **$2$** | **$00010_2$** | **$\{1\}$** | **`"1p3"`** | **None** | **Yes (Optimal)** | **$3$** |
+| $8$ | $01000_2$ | $\{3\}$ | `"3l1"` | None | Yes | $3$ |
+| $17$ | $10001_2$ | $\{0, 4\}$ | `"a3e"` | None | Yes | $3$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Empty Dictionary ($dictionary = []$):** No exclusion constraints exist. The maximal compression is the entire string replaced by its length (e.g. `"5"` for `"apple"`).
+- **No Same-Length Words:** If all dictionary words have lengths different from $target$, none can produce an abbreviation of length $m$. Return $str(m)$.
+- **Dictionary Contains Target:** If $target \in dictionary$, the difference mask is $0$. No bitmask can satisfy $mask \ \& \ 0 \ne 0$, meaning no unique abbreviation is possible.
+- **Single Character Target ($m = 1$):** Difference mask is either $0$ (identical) or $1$ (different). Optimal abbreviation is either impossible or $target[0]$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Enumerate every one of the `2^m` masks:** Test each abbreviation against every relevant word and keep the shortest. This is conceptually simpler and has the same broad exponential ceiling, but it ignores conflict-directed branching and length pruning, so it performs much more unnecessary work in typical inputs.
-- **Breadth-first search by number of kept letters:** The objective is not the number of one bits. Keeping one letter can split a numeric run into several tokens, so masks with the same popcount can have different abbreviation lengths. A correct search must use the problem's token-cost definition.
-- **Generate abbreviation strings directly:** String recursion makes conflict testing and deduplication cumbersome. Bitmasks give constant-time intersection tests and a canonical state representation.
-- **Different-length dictionary words:** They are deliberately ignored because an abbreviation's expanded length is fixed. Comparing their characters would waste work and could produce false restrictions.
-- **Empty dictionary or no same-length words:** The all-number abbreviation `str(len(target))` is immediately valid and has the absolute minimum length of one token.
-- **Dictionary word differing at one position:** That sole difference bit is mandatory. The selected minimum-bit-count conflict exposes this forced choice immediately.
-- **Several shortest answers:** The strict `<` update retains the first one found. This is valid because the contract accepts any minimum-length abbreviation.
-- **Multi-digit skip counts:** A count such as `12` is one abbreviation token, not two. Both the length helper and reconstruction preserve that distinction.
-- **No adjacent replaced substrings:** Consecutive zero bits are emitted as one accumulated count, so the result never contains adjacent numeric components.
-- **Identical dictionary entry:** Such an entry would have a zero difference mask and make uniqueness impossible. The contract explicitly guarantees that `target` is absent from `dictionary`.
-- **Letter case and alphabet:** Inputs contain lowercase English letters, and direct character comparison correctly identifies all differing positions without normalization.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Ignoring Word Length Filtering:** Words with length different from $target$ cannot collide with $target$'s abbreviations because abbreviations strictly preserve total original character length. Comparing against words of different lengths wastes time and produces invalid masks.
+- **Unpruned Exponential Search ($2^m$):** For $m \le 21$, brute forcing all $2^{21} \approx 2 \times 10^6$ masks against thousands of words causes Time Limit Exceeded. Using branch-and-bound with the most-constrained uncovered difference mask prunes the tree to a few hundred nodes.
+- **Miscalculating Abbreviation Length:** Forgetting that multiple consecutive zeros merge into a single numerical token (e.g., $000$ contributes length $1$, not $3$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((d+m)$. Let $m$ be the target length, let $d$ be the number of dictionary words having length $m$, and let $p$ be the number of target positions that appear as a difference in at least one relevant word. Only those $p$ positions can help distinguish a word, so at most $2^p$ useful masks need to be considered.
-- **Auxiliary Space Complexity:** $O(d + 2^p)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Filtering dictionary and computing difference masks takes $O(|D| \cdot m)$.
+  - The hitting set search operates on at most $m$ bits ($m \le 21$).
+  - With branch-and-bound selecting the minimum-cardinality difference mask at each step, search terminates in $\mathcal{O}(|D| \cdot m + 2^k)$ where $k \ll m$ is the minimal hitting set size.
+- **Auxiliary Space Complexity:**
+  - Storing the filtered difference masks requires $O(|D|)$ space.
+  - Recursion call stack depth is bounded by $m \le 21$, requiring $\mathcal{O}(m)$ auxiliary memory.

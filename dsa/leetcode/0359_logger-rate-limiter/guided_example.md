@@ -1,107 +1,194 @@
 # Guided Example: Logger Rate Limiter
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step next-allowed-timestamp caching (`ts[message] = timestamp + 10`), threshold comparison (`t > timestamp`), state invariance on rate-limited rejections, and sliding 10-second print permission on representative log stream sequences:
 
-- **Input:** `{"operations": []}`
-- **Required output:** `[]`
+- **Input:** Stream of log print requests:
+  1. `shouldPrintMessage(1, "foo")` $\implies \text{true}$ (`"foo"` next allowed at $1 + 10 = 11$)
+  2. `shouldPrintMessage(2, "bar")` $\implies \text{true}$ (`"bar"` next allowed at $2 + 10 = 12$)
+  3. `shouldPrintMessage(3, "foo")` $\implies \text{false}$ (Time $3 < 11$, rate-limited)
+  4. `shouldPrintMessage(8, "bar")` $\implies \text{false}$ (Time $8 < 12$, rate-limited)
+  5. `shouldPrintMessage(10, "foo")` $\implies \text{false}$ (Time $10 < 11$, rate-limited)
+  6. `shouldPrintMessage(11, "foo")` $\implies \text{true}$ (Time $11 \ge 11$, eligible! Next allowed at $11 + 10 = 21$)
+- **Required output:** `[true, true, false, false, false, true]`
+- **Strict Boundary Equality:** An event at exactly $t = 11$ for a message printed at $t = 1$ is permitted ($11 - 1 = 10 \ge 10$)
+- **No Penalty on Rejection:** Suppressed messages do **not** extend the cooldown window; the next allowed timestamp remains anchored to the last successful print
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates token-bucket / rate-limiting systems design, mathematically proves why storing future eligibility thresholds simplifies range arithmetic into $O(1)$ scalar checks, and analyzes constant time and linear message memory bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a logger system that receives a stream of messages along with their timestamps. Each **unique** message should only be printed **at most every 10 seconds** (i.e. a message printed at timestamp `t` will prevent other identical messages from being printed until timestamp $t + 10$).
+Design a logger system that receives a stream of incoming messages with strictly non-decreasing integer timestamps.
+Each unique message should be printed **at most once every 10 seconds**:
+- If message $M$ is printed at timestamp $t$, any subsequent call for $M$ at timestamp $t' < t + 10$ must be rejected (`false`).
+- If $t' \ge t + 10$, the message is accepted (`true`), resetting the next eligible window to $t' + 10$.
 
-The objective is to compute `[]` from `{"operations": []}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Message: "foo" printed at t = 1
+Next Allowed Timestamp: 1 + 10 = 11
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Calls:
+t = 3  : "foo" -> 3 < 11   -> REJECT (false)
+t = 10 : "foo" -> 10 < 11  -> REJECT (false)
+t = 11 : "foo" -> 11 >= 11 -> ACCEPT (true), update next allowed to 11 + 10 = 21!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Forward-Threshold Dictionary (`ts`)
+Instead of storing the last print timestamp and computing `timestamp - last_time >= 10`, we store the **earliest future timestamp at which the message is permitted to print**:
+$$
+ts[message] = timestamp + 10
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Decision Logic on `shouldPrintMessage(timestamp, message)`:
+1. Query stored threshold:
+   $$
+   t = ts.\text{get}(message, \; 0)
+   $$
+2. **Rejection Condition:**
+   If $t > timestamp$:
+   $$
+   \text{return } \mathbf{\text{False}}
+   $$
+   *(Crucial: The dictionary is NOT modified on rejection!)*
+3. **Acceptance Condition:**
+   If $t \le timestamp$:
+   $$
+   ts[message] \leftarrow timestamp + 10
+   $$
+   $$
+   \text{return } \mathbf{\text{True}}
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every message, `ts[message]` holds the exact minimum timestamp required for its next emission. Unsuccessful requests never modify this threshold.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why storing the next allowed time is convenient.
-
-One could store the most recent accepted timestamp and test whether `timestamp - last >= 10`. The source instead precomputes `last + 10` at acceptance time. This turns every later decision into a direct comparison:
-
-- If `next_allowed > timestamp`, the call is too early and returns false.
-- Otherwise, the message is eligible, so the method stores `timestamp + 10` and returns true.
-
-The strict `>` comparison is essential. A message accepted at time $t$ prevents another copy until time $t+10$, but the copy at exactly $t+10$ is allowed. Rejecting when the two values are equal would accidentally impose an eleven-second gap on integer timestamps.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": []}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the operational sequence:
 
 ---
 
-### Step 2: Handling a message never seen before.
-
-`ts.get(message, 0)` returns the stored threshold when the message has an entry, or zero otherwise. Timestamps are guaranteed nonnegative, so any first occurrence has `timestamp >= 0`. The condition `t > timestamp` is false for the default threshold, and the message is accepted.
-
-This also handles a first message at timestamp `0`: the default is equal to the current time, equality is eligible, and the new threshold becomes `10`. No separate “message not in dictionary” branch is necessary.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `shouldPrintMessage(1, "foo")`
+- Query: $t = ts.\text{get}(\text{"foo"}, 0) = 0$.
+- Compare: $0 > 1$ is False.
+- Decision: **Accept!**
+- Update threshold:
+  $$
+  ts[\text{"foo"}] \leftarrow 1 + 10 = \mathbf{11}
+  $$
+- Return: **`true`**.
 
 ---
 
-### Step 3: Rejected calls do not change state.
+### Step 2: `shouldPrintMessage(2, "bar")`
+- Query: $t = ts.\text{get}(\text{"bar"}, 0) = 0$.
+- Compare: $0 > 2$ is False.
+- Decision: **Accept!**
+- Update threshold:
+  $$
+  ts[\text{"bar"}] \leftarrow 2 + 10 = \mathbf{12}
+  $$
+- Return: **`true`**.
 
-Suppose `"foo"` is printed at time `1`, setting its threshold to `11`. Calls at `3` and `10` both return false. Neither call writes to the dictionary, so the threshold remains `11`. The call at `11` is accepted.
+---
 
-This is a crucial semantic point. If every rejected occurrence reset the threshold to ten seconds after itself, a frequent stream could postpone the message forever. The waiting window is measured from the most recent permitted print, not from the most recent attempted print.
+### Step 3: `shouldPrintMessage(3, "foo")`
+- Query: $t = ts[\text{"foo"}] = 11$.
+- Compare:
+  $$
+  11 > 3 \implies \mathbf{\text{True (Too early!)}}
+  $$
+- Decision: **Reject!**
+- Threshold $ts[\text{"foo"}]$ remains unchanged at $11$.
+- Return: **`false`**.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[]` |
+---
+
+### Step 4: `shouldPrintMessage(8, "bar")`
+- Query: $t = ts[\text{"bar"}] = 12$.
+- Compare:
+  $$
+  12 > 8 \implies \mathbf{\text{True (Too early!)}}
+  $$
+- Decision: **Reject!**
+- Return: **`false`**.
+
+---
+
+### Step 5: `shouldPrintMessage(10, "foo")`
+- Query: $t = ts[\text{"foo"}] = 11$.
+- Compare:
+  $$
+  11 > 10 \implies \mathbf{\text{True (Still within 10-second window!)}}
+  $$
+- Decision: **Reject!**
+- Return: **`false`**.
+
+---
+
+### Step 6: `shouldPrintMessage(11, "foo")`
+- Query: $t = ts[\text{"foo"}] = 11$.
+- Compare:
+  $$
+  11 > 11 \implies \mathbf{\text{False (Boundary reached!)}}
+  $$
+- Decision: **Accept!**
+- Update threshold:
+  $$
+  ts[\text{"foo"}] \leftarrow 11 + 10 = \mathbf{21}
+  $$
+- Return: **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": []}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[]` | Verified |
+```text
+Stream Trace:
+Call 1: (1, "foo")  -> threshold 0 <= 1  -> ts["foo"] = 11 -> True
+Call 2: (2, "bar")  -> threshold 0 <= 2  -> ts["bar"] = 12 -> True
+Call 3: (3, "foo")  -> threshold 11 > 3  -> Rate-limited   -> False
+Call 4: (8, "bar")  -> threshold 12 > 8  -> Rate-limited   -> False
+Call 5: (10, "foo") -> threshold 11 > 10 -> Rate-limited   -> False
+Call 6: (11, "foo") -> threshold 11 <= 11-> ts["foo"] = 21 -> True
+
+Result Stream: [true, true, false, false, false, true]
+```
+
+| Step | Timestamp | Message | Next Allowed Threshold $t$ | $t > \text{timestamp}$? | Action Taken | Updated Threshold in `ts` | Output Emitted |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | 1 | `"foo"` | 0 (Default) | No | Accept, set $+10$ | `ts["foo"] = 11` | **`true`** |
+| 2 | 2 | `"bar"` | 0 (Default) | No | Accept, set $+10$ | `ts["bar"] = 12` | **`true`** |
+| 3 | 3 | `"foo"` | 11 | Yes ($11 > 3$) | Reject | Unchanged ($11$) | **`false`** |
+| 4 | 8 | `"bar"` | 12 | Yes ($12 > 8$) | Reject | Unchanged ($12$) | **`false`** |
+| 5 | 10 | `"foo"` | 11 | Yes ($11 > 10$) | Reject | Unchanged ($11$) | **`false`** |
+| **6** | **11** | **`"foo"`** | **11** | **No ($11 \le 11$)** | **Accept, set $+10$** | **`ts["foo"] = 21`** | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A message is accepted if and only if $timestamp \ge t_{prev} + 10$. Precomputing $t = t_{prev} + 10$ and testing $t > timestamp$ guarantees that any event arriving within 9 seconds of the prior print is rejected, while an event arriving at or after 10 seconds is accepted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each message's rate-limiting status is completely independent of other messages, preventing cross-message interference. Using default value $0$ for unseen keys guarantees that any first occurrence is accepted without special-case branching.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Store the last accepted timestamp:** Keep `last[message]` and accept when the message is absent or `timestamp - last[message] >= 10`. This is equivalent to storing the next threshold but expresses the comparison differently.
-- **Queue plus active-message set:** Store only accepted messages from the last ten seconds. Before each call, remove expired queue entries and their set memberships. Operations are amortized $O(1)$ and stale message keys are reclaimed, but the implementation has more moving parts.
-- **Priority queue for unordered timestamps:** If events were not chronological, expiration cleanup would require a structure ordered by expiry, though the semantics of processing past events after future ones would also need explicit definition.
+- **Updating Threshold on Rejection:** If `ts[message] = timestamp + 10` were updated on rejected requests, repeated failed requests would continually postpone future print permissions indefinitely (starvation).
+- **Strict Inequality vs Non-Strict Inequality:** A message printed at $t = 1$ is permitted to print again at exactly $t = 11$ ($11 - 1 = 10 \ge 10$). Testing $t > timestamp$ correctly permits equality ($11 > 11$ is False $\implies$ prints).
+- **Unbounded Memory Growth:** In continuous production systems, storing all historical message keys in a hash map without eviction can cause unbounded memory growth. Sliding window deques or TTL caches can clean up messages inactive for over 10 seconds.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $m$ be the number of distinct message strings seen across all calls, and let $L$ be the length of the current message.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$ per `shouldPrintMessage` call. Hash table lookup and insertion take $O(1)$ average time.
+- **Auxiliary Space Complexity:** $O(M)$, where $M$ is the number of distinct message strings received across the entire lifetime of the logger.

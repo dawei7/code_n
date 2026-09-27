@@ -2,138 +2,125 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"sentences": ["please wait", "continue to fight", "continue to win"]}`
-- **Required output:** `3`
+- **Input Sentences:** `["alice and bob love leetcode", "i think so too", "this is great thanks very much"]`
+- **Expected Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A **sentence** is a list of **words** that are separated by a single space with no leading or trailing spaces.
-
-The objective is to compute `3` from `{"sentences": ["please wait", "continue to fight", "continue to win"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates how word counting simplifies to space counting under standard sentence formatting guarantees, showing how the maximum word count is evaluated across multiple candidate sentences without string allocations.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A sentence is defined as a list of words separated by a single space character with no leading or trailing spaces. Given an array of sentences, we need to determine the maximum number of words contained within any single sentence.
 
-| State Parameter | Role & Purpose | Initial State |
+Consider the representative input array consisting of three sentences:
+1. Sentence $0$: `"alice and bob love leetcode"`
+2. Sentence $1$: `"i think so too"`
+3. Sentence $2$: `"this is great thanks very much"`
+
+Our objective is to compute the word count for each sentence, identify the maximum across the collection, and return this value without incurring memory overhead from string splitting.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Bijective Separator Invariant
+Let a sentence $T$ consist of $k$ non-empty words $w_1, w_2, \dots, w_k$ concatenated with single delimiters. The structural form is:
+
+$$T = w_1 \cdot \text{' '} \cdot w_2 \cdot \text{' '} \cdots \text{' '} \cdot w_k$$
+
+Because there are strictly zero leading spaces, zero trailing spaces, and no consecutive spaces, each space character acts as a separator between two adjacent words. By elementary induction on the number of separators:
+- If a sentence contains $k$ words, there are exactly $k - 1$ boundary positions between them.
+- Each boundary position contains exactly one space character.
+- Therefore, the number of spaces $S$ in sentence $T$ satisfies:
+
+$$S = k - 1 \implies k = S + 1$$
+
+### Commutativity of Monotonic Shifts
+To find the maximum word count across a set of sentences $\{T_1, T_2, \dots, T_m\}$, we observe:
+
+$$\max_{1 \le i \le m} (\text{words}(T_i)) = \max_{1 \le i \le m} (S_i + 1) = 1 + \max_{1 \le i \le m} S_i$$
+
+where $S_i$ denotes the count of space characters in sentence $T_i$. This equivalence demonstrates that adding $1$ to each word count commutes with taking the maximum. Hence, one can stream through characters, count spaces per sentence, maintain a running maximum of spaces, and add $1$ once at the conclusion.
+
+| Component | Role in Evaluation | Mathematical Property |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Use the sentence-format guarantee
-
-Every sentence is nonempty, has no leading or trailing spaces, and separates consecutive words with exactly one space.
-
-Under these guarantees, a sentence with $w$ words contains exactly $w-1$ spaces. Therefore,
-
-$$
-\text{word count}=1+\text{space count}.
-$$
-
-The source evaluates `s.count(' ')` for every sentence, takes the maximum space count, and adds one:
-
-`1 + max(s.count(' ') for s in sentences)`.
-
-This avoids splitting sentences into word lists because only the count is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sentences": ["please wait", "continue to fight", "continue to win"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Delimiter Count $S_i$ | Number of ASCII space characters in sentence $i$ | $S_i \ge 0$ for all valid sentences |
+| Word Count $W_i$ | Number of words in sentence $i$ | $W_i = S_i + 1$ |
+| Global Maximum $\mu$ | Maximum space count observed across all sentences | $\mu = \max(S_1, S_2, \dots, S_m)$ |
+| Final Result | Global maximum word count | $\mu + 1$ |
 
 ---
 
-### Step 2: Why the formula works
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-Consider a sentence with words
+We process each sentence sequentially, scanning character by character or counting space characters directly.
 
-`word1 word2 word3`.
+### Sentence 0: `"alice and bob love leetcode"`
+- Characters: `'a'`, `'l'`, `'i'`, `'c'`, `'e'`, `' '`, `'a'`, `'n'`, `'d'`, `' '`, `'b'`, `'o'`, `'b'`, `' '`, `'l'`, `'o'`, `'v'`, `'e'`, `' '`, `'l'`, `'e'`, `'e'`, `'t'`, `'c'`, `'o'`, `'d'`, `'e'`
+- We detect spaces at 4 positions (between "alice" and "and", "and" and "bob", "bob" and "love", "love" and "leetcode").
+- Space count $S_0 = 4$.
+- Derived word count: $W_0 = 4 + 1 = 5$.
+- Running maximum space count: $\max(0, 4) = 4$.
 
-There are three words and two separators. Each separator marks exactly one boundary between neighboring words. With no leading or trailing spaces, there are no separators that fail to represent a boundary. With single spacing, each boundary contributes exactly one space.
+### Sentence 1: `"i think so too"`
+- Characters: `'i'`, `' '`, `'t'`, `'h'`, `'i'`, `'n'`, `'k'`, `' '`, `'s'`, `'o'`, `' '`, `'t'`, `'o'`, `'o'`
+- We detect spaces at 3 positions (between "i" and "think", "think" and "so", "so" and "too").
+- Space count $S_1 = 3$.
+- Derived word count: $W_1 = 3 + 1 = 4$.
+- Running maximum space count: $\max(4, 3) = 4$.
 
-The first word accounts for the added one; every later word is preceded by one of the counted spaces.
+### Sentence 2: `"this is great thanks very much"`
+- Characters: `'t'`, `'h'`, `'i'`, `'s'`, `' '`, `'i'`, `'s'`, `' '`, `'g'`, `'r'`, `'e'`, `'a'`, `'t'`, `' '`, `'t'`, `'h'`, `'a'`, `'n'`, `'k'`, `'s'`, `' '`, `'v'`, `'e'`, `'r'`, `'y'`, `' '`, `'m'`, `'u'`, `'c'`, `'h'`
+- We detect spaces at 5 positions.
+- Space count $S_2 = 5$.
+- Derived word count: $W_2 = 5 + 1 = 6$.
+- Running maximum space count: $\max(4, 5) = 5$.
 
-A one-word sentence contains zero spaces, and the formula returns one.
+### Termination and Final Computation
+All $3$ sentences have been evaluated. The maximum space count across all sentences is $\mu = 5$.
+Adding the constant offset gives:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Find the maximum without storing all counts
-
-The expression inside `max` is a generator. It computes one sentence's space count at a time rather than constructing a separate list of all counts.
-
-`max` retains only the greatest count seen. Adding one after the maximum is equivalent to adding one to every individual count first because the same constant shifts all candidates equally:
-
-$$
-1+\max(c_i)=\max(1+c_i).
-$$
-
-The input guarantee `sentences.length >= 1` ensures `max` always receives at least one value and needs no default.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+$$\text{Maximum Words} = \mu + 1 = 5 + 1 = 6$$
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Comprehensive State Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sentences": ["please wait", "continue to fight", "continue to win"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+The table below details the evaluation metrics for each sentence in the input collection.
 
----
+| Sentence Index | Sentence Text | Character Length | Counted Spaces ($S_i$) | Calculated Words ($S_i + 1$) | Running Max Spaces ($\mu$) |
+|---|---|---|---|---|---|
+| $0$ | `"alice and bob love leetcode"` | $26$ | $4$ | $5$ | $4$ |
+| $1$ | `"i think so too"` | $14$ | $3$ | $4$ | $4$ |
+| $2$ | `"this is great thanks very much"` | $30$ | $5$ | $6$ | $5$ |
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Final result returned: $5 + 1 = 6$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **`len(s.split())`:** Correct under the contract and more general about whitespace, but allocates a list of word substrings for each sentence.
-- **Manual character loop:** It can count spaces with the same time and constant space, but `str.count` expresses the operation directly.
-- **One-word sentence:** Zero spaces plus one gives one word.
-- **Multiple sentences tie:** Only the maximum count is returned, so no tie-breaking is needed.
-- **Nonempty sentence array:** Guarantees `max` is safe without a default.
-- **No leading or trailing spaces:** Essential to the separator formula.
-- **Exactly one separator:** Essential because repeated spaces would be overcounted.
-- **Lowercase-only content:** Letter identity is irrelevant; only separator positions matter.
-- **Very short sentences:** A length-one sentence still contains one word.
-- **Generator laziness:** Individual counts are not retained after `max` processes them.
-- **Compact code versus work:** The implementation still scans all $S$ characters.
-- **Input preservation:** Sentences remain unchanged.
-- **Add after maximum:** A uniform plus one commutes with taking the maximum, so no per-sentence word-count list is needed.
-- **Tie preservation:** Equal separator counts imply equal word counts under the format contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+**Soundness.** The correctness relies on the strict formatting guarantee given by the problem:
+1. Sentences do not contain leading or trailing whitespace. Thus, neither the first character nor the last character is ever a space.
+2. Consecutive words are separated by exactly one space. Thus, no two spaces appear consecutively, preventing spurious empty word tokens.
+3. Every word consists of at least one non-space character.
+Because every space character corresponds to an adjacent word boundary, the bijective relation between boundaries and words is preserved. No spaces can be misattributed, ensuring that $S_i + 1$ matches the exact number of words for every sentence.
+
+**Completeness.** Every sentence in the input array is inspected. Because the maximum operator is monotonic and associative, considering all sentences guarantees that the global supremum is found.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Anti-Patterns
 
-- **Time Complexity:** $O(S)$. Let
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Single-Word Sentences:** A sentence like `"hello"` contains zero spaces. The formula correctly computes $0 + 1 = 1$ word.
+- **Identical Word Counts:** If multiple sentences tie for the maximum word count, the supremum operator naturally captures the tied value without requiring special tie-breaking logic.
+- **Array of Length One:** When the input consists of a single sentence, the loop executes once and immediately outputs the word count of that lone sentence.
+- **Anti-Pattern — Substring Allocation:** Splitting strings into arrays of substrings (e.g. splitting on whitespace) allocates auxiliary memory for each word in each sentence, creating unnecessary garbage collector churn. Counting delimiters directly in a single pass operates in strictly $O(1)$ auxiliary space.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(L)$, where $L$ is the total number of characters across all sentences in the input array. Each character is examined exactly once during the delimiter counting pass.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, as only a few scalar variables are maintained to track the current sentence's space count and the global maximum space count. No heap-allocated arrays or split word tokens are generated.

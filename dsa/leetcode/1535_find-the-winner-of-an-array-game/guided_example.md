@@ -1,126 +1,206 @@
 # Guided Example: Find the Winner of an Array Game
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of single-pass champion tracking on a representative game instance to determine which distinct array value achieves $k$ consecutive duel victories first.
 
-- **Input:** `{"arr": [2, 1, 3, 5, 4, 6, 7], "k": 2}`
-- **Required output:** `5`
+- **Input:** Array $\text{arr} = [2, 1, 3, 5, 4, 6, 7]$ of length $N = 7$, with victory threshold $k = 2$.
+- **Output:** `5` (value 5 defeats value 3 to claim champion status, then defeats value 4 to secure its 2nd consecutive win).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates champion succession, streak resets upon defeat, and early stopping before reaching the global array maximum or simulating circular queue rotations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `arr` of **distinct** integers and an integer `k`.
+We are given an array of $N = 7$ distinct integers:
 
-The objective is to compute `5` from `{"arr": [2, 1, 3, 5, 4, 6, 7], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+$$\text{arr} = [2, 1, 3, 5, 4, 6, 7], \quad k = 2$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Game rules:
+1. In round 1, $\text{arr}[0] = 2$ and $\text{arr}[1] = 1$ compete.
+2. The larger value stays at the front as champion; the smaller value is sent to the end of the array.
+3. In subsequent rounds, the standing champion at the front competes against the next challenger.
+4. The first element to accumulate $k = 2$ consecutive wins wins the game.
+
+**Teaching Goal:**
+Understand why a literal circular queue or double-ended queue simulation is redundant. By recognizing that any element pushed to the back cannot re-emerge until all original elements are faced, and that the global maximum never loses once established, we can solve the problem in a single forward pass with $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  SINGLE-PASS CHAMPION STREAMING MODEL                   |
++-------------------------------------------------------------------------+
+|  Initialize: Champion mx = arr[0], Streak cnt = 0                       |
+|                                                                         |
+|  Stream challengers x from arr[1] to arr[N-1]:                          |
+|                                                                         |
+|  +--------------------+                                                 |
+|  | Challenger x       |                                                 |
+|  +--------------------+                                                 |
+|            |                                                            |
+|     (Compare mx, x)                                                     |
+|            |                                                            |
+|     +------+------+                                                     |
+|     |             |                                                     |
+|  [mx > x]      [mx < x]                                                 |
+|     |             |                                                     |
+|  Champion wins  Challenger usurps                                       |
+|  cnt += 1       mx = x, cnt = 1 (won current duel)                      |
+|     |             |                                                     |
+|     +------+------+                                                     |
+|            |                                                            |
+|     (Check cnt == k?)                                                   |
+|            |                                                            |
+|     +------+------+                                                     |
+|     |             |                                                     |
+|   [YES]          [NO]                                                   |
+|  Return mx     Continue scan                                            |
+|                                                                         |
+|  If loop finishes without cnt == k: Return mx (Global Maximum)          |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+We define the state tracking variables:
+
+| State Variable | Definition & Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $\text{mx}$ | Standing champion value at the front of the queue | $\text{arr}[0] = 2$ |
+| $\text{cnt}$ | Number of consecutive rounds won by current champion $\text{mx}$ | $0$ |
+| $i$ | Index of next challenger in the original array | $1$ |
+| $x$ | Challenger value $\text{arr}[i]$ | $\text{arr}[1] = 1$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Champion Dominance Invariant.** At any challenger index $i$, $\text{mx} = \max(\text{arr}[0..i])$. The current champion $\text{mx}$ has defeated all preceding elements in their respective duels, and $\text{cnt}$ accurately records consecutive victories since $\text{mx}$ took the lead. If the scan finishes, $\text{mx} = \max(\text{arr})$ and can never be defeated.
+
+```mermaid
+graph TD
+    accTitle: Champion Duel State Machine
+    accDescr: State machine showing champion comparison with the next challenger, updating win streaks, and checking victory conditions.
+    A["Initialize mx = arr[0], cnt = 0"] --> B["Inspect next challenger x in arr[1..N-1]"]
+    B --> C{"Is mx > x?"}
+    C -- "Yes" --> D["Champion retains title: cnt = cnt + 1"]
+    C -- "No" --> E["Challenger wins: mx = x, cnt = 1"]
+    D --> F{"Is cnt == k?"}
+    E --> F
+    F -- "Yes" --> G["Halt: Return mx"]
+    F -- "No" --> H{"More challengers?"}
+    H -- "Yes" --> B
+    H -- "No" --> I["Halt: Return mx (Global Max)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: View the front element as the current champion
+### Round 1: Challenger $x = \text{arr}[1] = 1$
+- Standing champion: $\text{mx} = 2$, streak $\text{cnt} = 0$.
+- Duel comparison: $\text{mx} = 2 > 1 = x$.
+- Outcome: Champion 2 wins!
+- Streak update: $\text{cnt} \leftarrow \text{cnt} + 1 = 1$.
+- Victory check: $\text{cnt} = 1 \neq k = 2$.
+- Status: The game continues with champion $\text{mx} = 2$.
 
-In every round, the element at the front competes against the next element. The larger one stays in front, while the smaller one moves behind all still-waiting players.
-
-Call the front winner `mx`. Initially `mx = arr[0]`. The stored solution then visits the original remaining elements in order through `arr[1:]`. Each visited `x` is the next challenger that has not yet faced the current champion.
-
-The important simplification is that a loser need not actually be appended to a queue. Before the global maximum first becomes champion, every element that loses moves behind all unprocessed original challengers. It cannot return to the front before those challengers have played. Once the global maximum becomes champion, it can never lose, so delayed losers can never change the eventual winner.
-
-Therefore, a single left-to-right pass reproduces every relevant championship change without physically rotating the array.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [2, 1, 3, 5, 4, 6, 7], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Round | Champion $\text{mx}$ | Challenger $x$ | Comparison | Winner | New $\text{mx}$ | New $\text{cnt}$ | Goal Check ($\text{cnt} = 2$) |
+|---|---|---|---|---|---|---|---|
+| 1 | 2 | 1 | $2 > 1$ | Champion 2 | 2 | 1 | $1 \neq 2$ (Continue) |
 
 ---
 
-### Step 2: Maintain the consecutive-win count
+### Round 2: Challenger $x = \text{arr}[2] = 3$
+- Standing champion: $\text{mx} = 2$, streak $\text{cnt} = 1$.
+- Duel comparison: $\text{mx} = 2 < 3 = x$.
+- Outcome: Challenger 3 defeats champion 2!
+- Championship update: 3 becomes the new champion ($\text{mx} \leftarrow 3$).
+- Streak reset: Since 3 just won this round, its initial consecutive streak is $\text{cnt} \leftarrow 1$.
+- Victory check: $\text{cnt} = 1 \neq k = 2$.
+- Status: The game continues with champion $\text{mx} = 3$.
 
-`cnt` records the current champion's consecutive victories.
-
-If `mx < x`, the challenger is larger and wins this round. It becomes the new champion through `mx = x`. Its streak is exactly one because the just-completed round is its first consecutive win, so the code assigns `cnt = 1`.
-
-Otherwise `mx > x` because all values are distinct. The champion wins again and `cnt += 1` extends its streak.
-
-There is no equality branch to define because the distinct-values guarantee prevents a tied round.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Round | Champion $\text{mx}$ | Challenger $x$ | Comparison | Winner | New $\text{mx}$ | New $\text{cnt}$ | Goal Check ($\text{cnt} = 2$) |
+|---|---|---|---|---|---|---|---|
+| 2 | 2 | 3 | $2 < 3$ | Challenger 3 | 3 | 1 | $1 \neq 2$ (Continue) |
 
 ---
 
-### Step 3: Why breaking at k victories is correct
+### Round 3: Challenger $x = \text{arr}[3] = 5$
+- Standing champion: $\text{mx} = 3$, streak $\text{cnt} = 1$.
+- Duel comparison: $\text{mx} = 3 < 5 = x$.
+- Outcome: Challenger 5 defeats champion 3!
+- Championship update: 5 becomes the new champion ($\text{mx} \leftarrow 5$).
+- Streak reset: Challenger 5 has won 1 round, so $\text{cnt} \leftarrow 1$.
+- Victory check: $\text{cnt} = 1 \neq k = 2$.
+- Status: The game continues with champion $\text{mx} = 5$.
 
-After each simulated relevant round, the code checks `cnt == k`. At that moment `mx` has won exactly $k$ consecutive rounds, so the game ends under the stated rule. Breaking the loop and returning `mx` yields the actual winner.
+| Round | Champion $\text{mx}$ | Challenger $x$ | Comparison | Winner | New $\text{mx}$ | New $\text{cnt}$ | Goal Check ($\text{cnt} = 2$) |
+|---|---|---|---|---|---|---|---|
+| 3 | 3 | 5 | $3 < 5$ | Challenger 5 | 5 | 1 | $1 \neq 2$ (Continue) |
 
-The check uses equality rather than greater-than-or-equal because `cnt` increases by one per round. It cannot jump over $k$.
+---
 
-For `k = 1`, the first comparison immediately identifies the winner: either the initial champion defeats `arr[1]`, or that challenger replaces it. The count becomes one and the loop stops.
+### Round 4: Challenger $x = \text{arr}[4] = 4$
+- Standing champion: $\text{mx} = 5$, streak $\text{cnt} = 1$.
+- Duel comparison: $\text{mx} = 5 > 4 = x$.
+- Outcome: Champion 5 defeats challenger 4!
+- Streak update: $\text{cnt} \leftarrow \text{cnt} + 1 = 2$.
+- Victory check: $\text{cnt} = 2 == k = 2$.
+- **Termination condition satisfied!** The game halts immediately.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+Winner returned: **`5`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [2, 1, 3, 5, 4, 6, 7], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+The full state transition sequence across all evaluated rounds is summarized below:
+
+| Round | Challenger Index $i$ | Incoming $\text{mx}$ | Incoming $\text{cnt}$ | Challenger $\text{arr}[i]$ | Duel Rule Applied | Outgoing $\text{mx}$ | Outgoing $\text{cnt}$ | Action Taken |
+|---|---|---|---|---|---|---|---|---|
+| 0 | - | - | - | - | Initialization | 2 | 0 | Initialize champion from $\text{arr}[0]$ |
+| 1 | 1 | 2 | 0 | 1 | $2 > 1 \implies \text{cnt} \leftarrow 1$ | 2 | 1 | Advance to next challenger |
+| 2 | 2 | 2 | 1 | 3 | $2 < 3 \implies \text{mx} \leftarrow 3, \text{cnt} \leftarrow 1$ | 3 | 1 | New champion crowned, advance |
+| 3 | 3 | 3 | 1 | 5 | $3 < 5 \implies \text{mx} \leftarrow 5, \text{cnt} \leftarrow 1$ | 5 | 1 | New champion crowned, advance |
+| 4 | 4 | 5 | 1 | 4 | $5 > 4 \implies \text{cnt} \leftarrow 2$ | 5 | 2 | Consecutive win target $k=2$ met! |
+| - | - | - | - | - | Early Exit | 5 | 2 | **Return 5** |
+
+Note that challengers at indices 5 and 6 ($\text{arr}[5]=6, \text{arr}[6]=7$) were never evaluated because the required condition was met early.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Whenever $\text{cnt} == k$ is reached, the current champion $\text{mx}$ has defeated $k$ consecutive distinct challengers without losing:
+- If $\text{mx}$ defeated the previous champion, that duel counted as win 1.
+- Each subsequent challenger smaller than $\text{mx}$ incremented $\text{cnt}$ by 1.
+Because no intervening challenger defeated $\text{mx}$, these $k$ wins are strictly consecutive. Returning $\text{mx}$ satisfies the win requirement.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Suppose no element achieves $k$ wins during the single pass of $N - 1$ duels.
+- By the Champion Dominance Invariant, the champion at the end of the pass is $\text{mx} = \max(\text{arr})$.
+- All other $N - 1$ elements have moved to the back of the queue.
+- In all subsequent rounds, $\text{mx}$ faces elements it is strictly greater than.
+- Thus, $\text{mx}$ will win every subsequent duel indefinitely and will inevitably achieve $k$ consecutive wins, regardless of how large $k$ is (e.g. $k = 10^9$).
+- Therefore, returning $\text{mx}$ at the end of the array pass is guaranteed to be correct.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Literal deque simulation:** It mirrors the rules directly but uses $O(N)$ queue space; stopping when the maximum becomes champion is necessary to avoid dependence on huge $k$.
-- **Rotate a Python list:** Removing and appending can make rounds expensive because front deletion shifts elements.
-- **Index-based champion pass:** It is algorithmically identical and avoids the linear list slice, achieving true $O(1)$ auxiliary space.
-- **k equals one:** The winner of the first comparison is returned immediately.
-- **k larger than the array length:** The pass reaches the global maximum and returns it without simulating all required future wins.
-- **Initial element is maximum:** It defeats every challenger and is returned either when its streak reaches $k$ or when the pass ends.
-- **Maximum appears later:** Every earlier champion eventually loses when the scan reaches that maximum.
-- **Strictly increasing array:** Each challenger becomes the new champion with streak one; the final element is the global maximum.
-- **Strictly decreasing array:** The first element remains champion throughout.
-- **Distinctness:** It removes the need for a tie rule and makes the `else` branch a strict champion victory.
-- **Count reset:** A new champion starts at one, not zero, because becoming champion happened by winning the current round.
-- **No explicit maximum call:** Completing the running comparisons computes the maximum naturally, so a separate `max(arr)` pass is unnecessary.
-- **Guaranteed winner:** Once the maximum is champion, repeated victories ensure termination for every positive finite $k$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Literal Queue Simulation with Huge $k$:** When $k = 10^9$ and $N = 10^5$, rotating elements in a deque until $\text{cnt} == 10^9$ leads to $10^9$ iterations, resulting in Time Limit Exceeded. Recognizing that the global maximum can never lose caps the simulation to at most $N - 1$ steps.
+- **Initial Streak Count for a New Champion:** When a challenger $x$ defeats the standing champion $\text{mx}$, its streak must be set to $\text{cnt} = 1$, not $0$. Defeating the current champion counts as the challenger's first victory. Setting $\text{cnt} = 0$ results in an off-by-one error requiring an extra unnecessary win.
+- **Handling $k \ge N$:** When $k \ge N$, no element other than the global maximum can possibly win $k$ rounds, because there are only $N - 1$ opponents available before facing the maximum. The single-pass approach naturally yields the maximum when the loop terminates.
+- **Array Mutation Overhead:** Physically removing the front element and appending it to the end of a dynamic array in languages like Python or Java costs $\mathcal{O}(N)$ per round, leading to $\mathcal{O}(N^2)$ time. Streaming through an index pointer operates in $\mathcal{O}(1)$ per round.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the array length. At most $N-1$ challengers are examined, each with constant work, so time is $O(N)$. Early termination can use fewer iterations, but the worst case still scans the array.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  The loop inspects at most $N - 1$ challengers from index $1$ to $N - 1$.
+  In each iteration, exactly one integer comparison, at most one assignment, and one counter increment are performed, all costing $\mathcal{O}(1)$ time.
+  If $\text{cnt} == k$ occurs early, the algorithm terminates in $m \le N - 1$ steps.
+  In the worst case (e.g. $k \ge N$), the loop scans all $N - 1$ elements.
+  Total time complexity is $\mathcal{O}(N)$, which processes $10^5$ elements in a few milliseconds.
+- **Auxiliary Space Complexity:**
+  Only two scalar state variables ($\text{mx}$ and $\text{cnt}$) are maintained during traversal.
+  Auxiliary space complexity is strictly $\mathcal{O}(1)$.

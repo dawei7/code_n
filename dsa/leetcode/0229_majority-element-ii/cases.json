@@ -48,7 +48,7 @@
     {
       "id": "trial-two-values",
       "name": "two values both qualify",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -64,6 +64,7 @@
         "kind": "unordered_list"
       },
       "tags": [
+        "sample",
         "two-majorities"
       ]
     },

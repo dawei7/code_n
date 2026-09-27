@@ -1,120 +1,133 @@
 # Guided Example: Number of Valid Words in a Sentence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step tokenization and deterministic lexical validation of words in a sentence on a representative instance:
 
-- **Input:** `{"sentence": "cat and  dog"}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** `sentence = "he bought 2 pencils, 3 erasers, and 1  pencil-sharpener."`
+- **Expected Output:** $6$
 
 ---
 
-## 1. Instance & Teaching Goal
+## 1. Problem Overview & Representative Instance
 
-A sentence consists of lowercase letters (`'a'` to `'z'`), digits (`'0'` to `'9'`), hyphens (`'-'`), punctuation marks (`'!'`, `'.'`, and `','`), and spaces (`' '`) only. Each sentence can be broken down into **one or more tokens** separated by one or more spaces `' '`.
+A sentence is composed of tokens separated by one or more whitespace characters. A token constitutes a **valid word** if and only if all of the following three lexical grammar rules are satisfied:
+1. **No Digits:** The token must consist strictly of lowercase English letters, hyphens, and/or punctuation marks. It cannot contain any digit character ($0$–$9$).
+2. **At Most One Hyphen:** The hyphen `'-'` can appear at most once within the token. If present, it must be surrounded on both sides by lowercase letters (i.e. neither at the start nor at the end, and not adjacent to a punctuation mark).
+3. **At Most One Punctuation Mark:** Punctuation marks (`'!'`, `'.'`, or `','`) can appear at most once, and must occur strictly at the final character position of the token.
 
-The objective is to compute `3` from `{"sentence": "cat and  dog"}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Token Validation State Flow
+    accDescr: Decision flow determining whether a candidate token meets all validity requirements.
+    Start([Candidate Token]) --> HasDigit{Contains Digit?}
+    HasDigit -- Yes --> Invalid([Invalid Word])
+    HasDigit -- No --> CheckPunct{Punctuation Check}
+    CheckPunct -- Internal Punctuation or Multiple --> Invalid
+    CheckPunct -- At Most One at End --> CheckHyphen{Hyphen Check}
+    CheckHyphen -- Multiple or Boundary or Non-Letter Neighbors --> Invalid
+    CheckHyphen -- At Most One Between Letters --> Valid([Valid Word])
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+    classDef valid fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    classDef invalid fill:#fee2e2,stroke:#b91c1c,stroke-width:2px;
+    classDef check fill:#f1f5f9,stroke:#475569,stroke-width:1px;
+    class Valid valid;
+    class Invalid invalid;
+    class HasDigit,CheckPunct,CheckHyphen check;
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Split on arbitrary runs of spaces
-
-`sentence.split()` with no explicit separator removes leading and trailing whitespace and treats one or more spaces as a separator. It therefore returns exactly the nonempty tokens even when the sentence contains several spaces between them.
-
-The outer expression applies helper `check` to every token and sums the Boolean results. In Python, true contributes one and false contributes zero, so the sum is the number of valid tokens.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sentence": "cat and  dog"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In the target sentence:
+`"he bought 2 pencils, 3 erasers, and 1  pencil-sharpener."`
+- The string splits across consecutive spaces into $9$ candidate tokens:
+  `["he", "bought", "2", "pencils,", "3", "erasers,", "and", "1", "pencil-sharpener."]`
+- We validate each token against the three lexical rules and count the valid words.
 
 ---
 
-### Step 2: Reject any digit
+## 2. Theoretical Invariants & Grammar Rules
 
-Inside `check`, the loop scans every character with its index. If `c.isdigit()` is true, the token is immediately invalid.
+For any candidate token $S = c_0 c_1 \dots c_{m-1}$ of length $m \ge 1$:
 
-The input alphabet contains ASCII digits only, so this implements the rule that a valid word may contain no number anywhere, including at the beginning or end.
+1. **Character Type Partition:**
+   Each character $c_i$ belongs to one of three classes:
+   - $\text{Letter}: c_i \in ['\text{a}', '\text{z}']$
+   - $\text{Punctuation}: c_i \in \{'!', '.', ','\}$
+   - $\text{Hyphen}: c_i = '-'$
+   - $\text{Digit}: c_i \in ['0', '9'] \implies$ immediate rejection.
 
-Early return is safe because no later character can remove an already present digit.
+2. **Positional Punctuation Constraint:**
+   If $c_i \in \{'!', '.', ','\}$, then validity requires $i = m - 1$.
+   Any punctuation mark appearing at index $i < m - 1$ invalidates the token.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Allow punctuation only at the final position
-
-The permitted punctuation characters are `!`, `.`, and `,`. The exact expression `c in "!.,"` identifies precisely those three marks.
-
-The full check rejects punctuation when `i < len(s) - 1`. Therefore a punctuation mark is valid only at the token's last index.
-
-This also enforces the “at most one” rule. If a token contained two punctuation marks, the earlier one could not be last and would be rejected. A one-character token such as `"!"` passes because its punctuation is at the end.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+3. **Contextual Hyphen Invariant:**
+   A boolean flag tracks whether a hyphen has already been encountered.
+   If $c_i = '-'$, validity requires:
+   - No previous hyphen has occurred ($\text{hyphen\_seen} = \text{false}$).
+   - $0 < i < m - 1$ (the hyphen is strictly internal).
+   - $c_{i-1} \in ['\text{a}', '\text{z}']$ and $c_{i+1} \in ['\text{a}', '\text{z}']$ (both adjacent neighbors are lowercase letters).
+   Upon valid inspection, set $\text{hyphen\_seen} = \text{true}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Token Evaluation Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sentence": "cat and  dog"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+We process the sentence from left to right, parsing non-whitespace tokens and applying the grammar validator:
 
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Regular expression:** A carefully anchored pattern can validate tokens, but boundary and count rules are easier to audit explicitly.
-- **Manual sentence scan:** Validate tokens between spaces without materializing `split()` output, reducing auxiliary space.
-- **Only punctuation token:** `!`, `.`, or `,` is valid because the mark is at the end and unique.
-- **Punctuation before a letter:** Invalid immediately.
-- **Two punctuation marks:** The first cannot be final, so the token is rejected.
-- **One internal hyphen:** Valid only with letters directly on both sides.
-- **Leading or trailing hyphen:** Invalid by the index checks.
-- **Two hyphens:** The second fails the `st` flag.
-- **Digit anywhere:** Invalid regardless of all other characters.
-- **Several spaces:** `split()` ignores empty regions and returns only real tokens.
-- **Letters only:** Always valid under the constrained alphabet.
-- **Mixed unsupported character outside constraints:** The exact helper relies on the input alphabet and does not explicitly reject it.
-- **Boolean summation:** Each valid token contributes exactly one.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Token Index | Extracted Token | Rule 1: Digits Checked | Rule 2: Hyphen Verification | Rule 3: Punctuation Position | Decision | Running Valid Count |
+|---|---|---|---|---|---|---|
+| $1$ | `"he"` | None (Passed) | None present (Passed) | None present (Passed) | **Valid** | $1$ |
+| $2$ | `"bought"` | None (Passed) | None present (Passed) | None present (Passed) | **Valid** | $2$ |
+| $3$ | `"2"` | Contains `'2'` | Skipped | Skipped | **Invalid** | $2$ |
+| $4$ | `"pencils,"` | None (Passed) | None present (Passed) | `','` at index $7 = m - 1$ (Passed) | **Valid** | $3$ |
+| $5$ | `"3"` | Contains `'3'` | Skipped | Skipped | **Invalid** | $3$ |
+| $6$ | `"erasers,"` | None (Passed) | None present (Passed) | `','` at index $7 = m - 1$ (Passed) | **Valid** | $4$ |
+| $7$ | `"and"` | None (Passed) | None present (Passed) | None present (Passed) | **Valid** | $5$ |
+| $8$ | `"1"` | Contains `'1'` | Skipped | Skipped | **Invalid** | $5$ |
+| $9$ | `"pencil-sharpener."` | None (Passed) | `'-'` at index $6$; surrounded by `'l'` and `'s'` (Passed) | `'.'` at index $16 = m - 1$ (Passed) | **Valid** | **$6$** |
 
 ---
 
-## 7. Complexity Derivation
+## 4. Deep-Dive: Character-by-Character Inspection of Complex Tokens
 
-- **Time Complexity:** $O(L)$. Let $L$ be the sentence length. Splitting scans $O(L)$ characters. Across all tokens, `check` also examines at most $O(L)$ characters; early rejection can only reduce the work. Total time is $O(L)$.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+To illustrate internal state validation, we trace the internal character scan for `"pencil-sharpener."` ($m = 17$):
+
+| Index $i$ | Character $c_i$ | Type Class | Checks Performed | Flag State |
+|---|---|---|---|---|
+| $0 \dots 5$ | `'p', 'e', 'n', 'c', 'i', 'l'` | Letter | Valid lowercase letter | $\text{hyphen} = \text{false}$ |
+| $6$ | `'-'` | Hyphen | $i \in [1, 15]$; $c_5 = '\text{l}'$ is letter; $c_7 = '\text{s}'$ is letter | $\text{hyphen} \leftarrow \text{true}$ |
+| $7 \dots 15$ | `'s', 'h', 'a', 'r', 'p', 'e', 'n', 'e', 'r'` | Letter | Valid lowercase letters; no second hyphen | $\text{hyphen} = \text{true}$ |
+| $16$ | `'.'` | Punctuation | $i = 16 = m - 1$; at final index | Valid termination |
+
+Contrast this with common invalid structures:
+- `"!this"`: Character `'!'` occurs at index $0 < m - 1$, failing Rule 3 immediately.
+- `"a-b-c"`: Second hyphen at index $3$ sees $\text{hyphen} = \text{true}$, failing Rule 2.
+- `"-start"`: Hyphen at index $0$ violates $0 < i < m - 1$, failing Rule 2.
+- `"end-"`: Hyphen at index $m - 1$ violates $0 < i < m - 1$, failing Rule 2.
+- `"a-,b"`: Hyphen neighbor $c_{i+1} = ','$ is not a letter, failing Rule 2.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **Partition Exhaustiveness:**
+   Every non-empty sequence of non-whitespace characters is isolated by whitespace tokenization. The validation predicate independently tests each token against mutual-exclusion criteria without cross-token side effects.
+2. **Necessity & Sufficiency of Rules:**
+   - Any character outside the allowed alphabet (letters, hyphen, punctuation) is rejected (digits fail Rule 1).
+   - Any internal punctuation mark is caught by testing $i < m - 1$.
+   - Any hyphen not strictly connecting two letters is rejected by examining $i - 1$ and $i + 1$.
+   - A token passing all character inspections guarantees strict adherence to the problem definition.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Consecutive Spaces:** Multiple adjacent spaces must not produce empty strings that corrupt the count. Splitting by whitespace handles arbitrary consecutive delimiters.
+- **Single Punctuation Mark:** A standalone punctuation token (e.g. `"."` or `"!"`) has length $m = 1$. The punctuation is at index $0 = m - 1$. There are no hyphens and no digits, so standalone punctuation marks are **valid words**.
+- **Hyphen Adjacent to Punctuation:** In `"sub-."`, the hyphen is followed by `'.'`. Because `'.'` is not a letter, the hyphen is invalid even though `'.'` is at the end.
+- **Punctuation Followed by Hyphen:** In `",-a"`, the punctuation is at index $0 < m - 1$, immediately invalidating the token.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(N)$ where $N$ is the length of the sentence in characters.
+  Splitting the sentence scans $N$ characters. Validating all tokens examines each character exactly once with $\mathcal{O}(1)$ neighbor lookups. Total execution time is strictly linear in string length.
+- **Space Complexity:** $\mathcal{O}(N)$ auxiliary memory to store extracted tokens during sentence splitting, or $\mathcal{O}(1)$ auxiliary space if processing tokens via two-pointer streaming.

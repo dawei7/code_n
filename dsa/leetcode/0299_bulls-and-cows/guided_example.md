@@ -1,156 +1,198 @@
 # Guided Example: Bulls and Cows
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step positional match detection (Bulls `A`), mismatched digit frequency multiset aggregation, minimum occurrence intersection for non-positional matches (Cows `B`), and formatted string generation on representative game instances:
 
-- **Input:** `{"secret": "1807", "guess": "7810"}`
+- **Input:** $\text{secret} = \text{"1807"}, \quad \text{guess} = \text{"7810"}$
 - **Required output:** `"1A3B"`
+  - Bull: Digit `'8'` at index 1 matches in both value and position ($1\text{A}$)
+  - Cows: Digits `'0'`, `'1'`, and `'7'` appear in both strings but at different positions ($3\text{B}$)
+- **Duplicate Digit Multiplicity:** $\text{secret} = \text{"1123"}, \quad \text{guess} = \text{"0111"} \implies \text{"1A1B"}$ (One bull at index 1; among remaining digits, digit `'1'` has 1 copy in secret and 2 in guess $\implies \min(1, 2) = 1$ cow)
+- **Zero Matches Base Case:** $\text{secret} = \text{"1111"}, \quad \text{guess} = \text{"2222"} \implies \text{"0A0B"}$
+- **All Bulls Perfect Match:** $\text{secret} = \text{"1234"}, \quad \text{guess} = \text{"1234"} \implies \text{"4A0B"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates two-pass frequency multiset intersection, explains why bulls must be removed prior to counting cows to prevent double-counting positional matches, proves why the cow count for each digit equals the minimum of its unmatched frequencies ($\min(cnt_1[c], cnt_2[c])$), and operates in strictly $O(N)$ linear time and $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are playing the **<a href="https://en.wikipedia.org/wiki/Bulls_and_Cows" target="_blank">Bulls and Cows</a>** game with your friend.
+Given two equal-length numerical strings:
+$$
+\text{secret} = \text{"1807"}, \quad \text{guess} = \text{"7810"}
+$$
+Determine the hint in the format `"xAyB"`:
+- `x` (Bulls): Number of digits that match in **both value and exact position**.
+- `y` (Cows): Number of digits that match in **value only** (located in the wrong position).
 
-The objective is to compute `"1A3B"` from `{"secret": "1807", "guess": "7810"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Index:     0   1   2   3
+Secret:    1   8   0   7
+Guess:     7   8   1   0
+           |   |   |   |
+Status:   Diff Same Diff Diff
+           |   |   |   |
+          Cow  Bull Cow Cow
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Total Bulls = 1 ('8' at index 1)
+Total Cows  = 3 ('0', '1', '7' present at mismatched indices)
+Output: "1A3B"
+```
+
+### The Priority Invariant: Bulls Exclude Cows
+A digit matched as a bull **cannot** be reused as a cow.
+If `secret = "1123"` and `guess = "0111"`:
+- Index 1 matches: `secret[1] == guess[1] == '1'`. This is locked as a Bull.
+- This consumed occurrence of `'1'` is removed from both strings.
+- Remaining secret digits: `{'1': 1, '2': 1, '3': 1}`.
+- Remaining guess digits: `{'0': 1, '1': 2}`.
+- For digit `'1'`: Secret has 1 available, Guess has 2.
+  Number of cows formed is $\min(1, 2) = \mathbf{1}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual-Counter Frequency Protocol
+Let $x$ represent bulls and $y$ represent cows.
+1. **Pass 1: Detect Bulls & Count Mismatches:**
+   Iterate through aligned pairs $(a, b) \in \text{zip}(\text{secret}, \text{guess})$:
+   - If $a == b$:
+     $$
+     x \leftarrow x + 1 \quad (\text{Bull detected})
+     $$
+   - Else ($a \ne b$):
+     Increment independent mismatch frequency counters:
+     $$
+     cnt_1[a] \leftarrow cnt_1[a] + 1 \quad (\text{Unmatched in secret})
+     $$
+     $$
+     cnt_2[b] \leftarrow cnt_2[b] + 1 \quad (\text{Unmatched in guess})
+     $$
+2. **Pass 2: Compute Cows via Multiset Intersection:**
+   For each distinct digit $c$ present in $cnt_1$:
+   The number of valid non-positional pairings for digit $c$ is strictly bounded by the occurrences available in both strings:
+   $$
+   y = \sum_{c \in cnt_1} \min(cnt_1[c], \; cnt_2[c])
+   $$
+3. **Format Result:** Return formatted string `f"{x}A{y}B"`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Every character index is either classified as a bull (if values match identically at that index) or routed into frequency pools $cnt_1$ and $cnt_2$. No digit can be counted as both a bull and a cow.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separating bulls before counting cows
-
-The loop processes corresponding characters `a` from `secret` and `b` from `guess`.
-
-If `a == b`, the position is unquestionably a bull. The source increments `x` and does not add either occurrence to a counter. This permanently pairs the two equal-position occurrences in the strongest category.
-
-If `a != b`, the two occurrences cannot be bulls at this index. The secret occurrence may still match the same digit somewhere else in the guess, and the guess occurrence may still match the same digit somewhere else in the secret. The source records them independently:
-
-- `cnt1[a] += 1` counts an unmatched occurrence available from the secret;
-- `cnt2[b] += 1` counts an unmatched occurrence requested by the guess.
-
-The counters do not attempt to pair digits immediately. Deferring the pairing avoids dependence on scan order. A matching guess occurrence may appear before or after the corresponding secret occurrence, and the final frequencies summarize both cases uniformly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"secret": "1807", "guess": "7810"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{secret} = \text{"1807"}$ and $\text{guess} = \text{"7810"}$ ($N = 4$):
+Initialize $x = 0$, $cnt_1 = \{\}$, $cnt_2 = \{\}$.
 
 ---
 
-### Step 2: Why a minimum gives the cow count for one digit
+### Step 1: Sequential Pair Inspection
 
-Fix one digit $d$. Suppose that after all bulls are excluded, `cnt1[d] = s_d` and `cnt2[d] = g_d`.
+- **Index 0 ($a = \text{'1'}, \; b = \text{'7'}):$**
+  $a \ne b$ ($1 \ne 7$).
+  $cnt_1[\text{'1'}] \mathrel{+}= 1 \implies cnt_1 = \{\text{'1'}: 1\}$.
+  $cnt_2[\text{'7'}] \mathrel{+}= 1 \implies cnt_2 = \{\text{'7'}: 1\}$.
+  $x = 0$.
 
-Every cow of digit $d$ consumes one unmatched $d$ from the secret and one unmatched $d$ from the guess. Therefore, the number of such cows cannot exceed either available count. It is at most
+- **Index 1 ($a = \text{'8'}, \; b = \text{'8'}):$**
+  $a == b$ ($8 == 8$).
+  Bull detected!
+  $x \leftarrow 0 + 1 = \mathbf{1}$.
+  *(Neither counter is updated; digit 8 at index 1 is consumed)*.
 
-$$
-\min(s_d,g_d).
-$$
+- **Index 2 ($a = \text{'0'}, \; b = \text{'1'}):$**
+  $a \ne b$ ($0 \ne 1$).
+  $cnt_1[\text{'0'}] \mathrel{+}= 1 \implies cnt_1 = \{\text{'1'}: 1, \text{'0'}: 1\}$.
+  $cnt_2[\text{'1'}] \mathrel{+}= 1 \implies cnt_2 = \{\text{'7'}: 1, \text{'1'}: 1\}$.
+  $x = 1$.
 
-That upper bound is also achievable. Pair any $\min(s_d,g_d)$ secret occurrences with the same number of guess occurrences. All these occurrences came from mismatching positions, so none was already used as a bull. The definition allows the non-bull digits to be rearranged, so their original mismatching positions do not prevent these equal-digit pairs from becoming cows.
+- **Index 3 ($a = \text{'7'}, \; b = \text{'0'}):$**
+  $a \ne b$ ($7 \ne 0$).
+  $cnt_1[\text{'7'}] \mathrel{+}= 1 \implies cnt_1 = \{\text{'1'}: 1, \text{'0'}: 1, \text{'7'}: 1\}$.
+  $cnt_2[\text{'0'}] \mathrel{+}= 1 \implies cnt_2 = \{\text{'7'}: 1, \text{'1'}: 1, \text{'0'}: 1\}$.
+  $x = 1$.
 
-Thus, digit $d$ contributes exactly `min(cnt1[d], cnt2[d])` cows.
-
-Different digits cannot compete for the same occurrence: a secret `3` can match only a guessed `3`, never a `7`. The contributions are independent, so summing the per-digit minima gives the total cow count:
-
-$$
-y=\sum_d\min(\texttt{cnt1}[d],\texttt{cnt2}[d]).
-$$
-
-The source iterates only through keys in `cnt1`. That is sufficient. If a digit occurs only in `cnt2`, the secret has zero available copies, so its contribution would be `min(0, count) = 0`. Omitting explicit zero-contribution keys cannot change the sum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+End of Pass 1:
+- Total Bulls $x = \mathbf{1}$.
+- Unmatched Secret Counts: $cnt_1 = \{\text{'0'}: 1, \; \text{'1'}: 1, \; \text{'7'}: 1\}$.
+- Unmatched Guess Counts: $cnt_2 = \{\text{'0'}: 1, \; \text{'1'}: 1, \; \text{'7'}: 1\}$.
 
 ---
 
-### Step 3: Tracing the duplicate-heavy example
+### Step 2: Compute Cows Summation
+Evaluate $\min(cnt_1[c], cnt_2[c])$ across all keys in $cnt_1$:
+- For digit `'0'`: $\min(cnt_1[\text{'0'}], cnt_2[\text{'0'}]) = \min(1, 1) = \mathbf{1}$.
+- For digit `'1'`: $\min(cnt_1[\text{'1'}], cnt_2[\text{'1'}]) = \min(1, 1) = \mathbf{1}$.
+- For digit `'7'`: $\min(cnt_1[\text{'7'}], cnt_2[\text{'7'}]) = \min(1, 1) = \mathbf{1}$.
 
-Consider `secret = "1123"` and `guess = "0111"`.
-
-| Index | Secret | Guess | Classification | Remaining counters after the index |
-| --- | --- | --- | --- | --- |
-| 0 | 1 | 0 | mismatch | secret: `{1: 1}`, guess: `{0: 1}` |
-| 1 | 1 | 1 | bull | unchanged |
-| 2 | 2 | 1 | mismatch | secret: `{1: 1, 2: 1}`, guess: `{0: 1, 1: 1}` |
-| 3 | 3 | 1 | mismatch | secret: `{1: 1, 2: 1, 3: 1}`, guess: `{0: 1, 1: 2}` |
-
-There is one bull at index 1. Among the remaining occurrences, digit 1 contributes
-
+Total cows:
 $$
-\min(1,2)=1
+y = 1 + 1 + 1 = \mathbf{3}
 $$
 
-cow. Digits 0, 2, and 3 have no counterpart in the other unmatched collection, so they contribute zero. The result is `"1A1B"`.
+---
 
-This example demonstrates why a membership-only test is insufficient. The guess contains two unmatched copies of digit 1, but the secret has only one unmatched copy after its bull is removed. Only one cow can be formed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"1A3B"` |
+### Step 3: Format Final Result
+$$
+\text{Result} = f"{x}\text{A}{y}\text{B}" = \mathbf{\text{"1A3B"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"secret": "1807", "guess": "7810"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"1A3B"` | Verified |
+```text
+secret = "1807", guess = "7810"
+
+i = 0: '1' != '7' -> cnt1['1']+=1, cnt2['7']+=1
+i = 1: '8' == '8' -> Bull! x = 1
+i = 2: '0' != '1' -> cnt1['0']+=1, cnt2['1']+=1
+i = 3: '7' != '0' -> cnt1['7']+=1, cnt2['0']+=1
+
+Bulls x = 1
+Cows y = min(1, 1) [0] + min(1, 1) [1] + min(1, 1) [7] = 1 + 1 + 1 = 3
+
+Result: "1A3B"
+```
+
+| Index $i$ | $\text{secret}[i]$ | $\text{guess}[i]$ | Classification | Action Taken | Bulls $x$ | $cnt_1$ (Secret) | $cnt_2$ (Guess) |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|:---|
+| 0 | `'1'` | `'7'` | Mismatch | Increment $cnt_1[\text{'1'}], cnt_2[\text{'7'}]$ | 0 | `{'1': 1}` | `{'7': 1}` |
+| **1** | **`'8'`** | **`'8'`** | **Bull** | **$x \leftarrow x + 1$** | **1** | `{'1': 1}` | `{'7': 1}` |
+| 2 | `'0'` | `'1'` | Mismatch | Increment $cnt_1[\text{'0'}], cnt_2[\text{'1'}]$ | 1 | `{'1': 1, '0': 1}` | `{'7': 1, '1': 1}` |
+| 3 | `'7'` | `'0'` | Mismatch | Increment $cnt_1[\text{'7'}], cnt_2[\text{'0'}]$ | 1 | `{'1': 1, '0': 1, '7': 1}` | `{'7': 1, '1': 1, '0': 1}` |
+| **Cows** | - | - | - | $\sum \min(cnt_1, cnt_2)$ | **$1\text{A}$** | - | **$3\text{B}$** |
+
+---
+
+### Duplicate Trace Contrast (`secret = "1123", guess = "0111"`)
+- Index 1 matches `'1' == '1'` $\implies x = 1$ (Bull).
+- Mismatches:
+  - $cnt_1$: `{'1': 1, '2': 1, '3': 1}`
+  - $cnt_2$: `{'0': 1, '1': 2}`
+- Cow evaluation for `'1'`: $\min(cnt_1[\text{'1'}], cnt_2[\text{'1'}]) = \min(1, 2) = \mathbf{1}$.
+- Result: `"1A1B"`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every index where $\text{secret}[i] == \text{guess}[i]$ is counted as a bull and withheld from frequency tables, satisfying the rule that bulls take precedence over cows. For any digit $d$, the number of cows formed cannot exceed the number of available unmatched copies in either string, making $\min(cnt_1[d], cnt_2[d])$ both sound and exact.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character index in both strings is processed. Because digits are independent, summing the minimum counts over all distinct digits exhaustively computes all possible non-positional pairings without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two fixed arrays of length ten:** Convert each unmatched digit to an index and increment two arrays, then sum their minima. This matches the manifest wording and avoids hash-table machinery, while preserving $O(n)$ time and $O(1)$ space. It is not the exact source representation.
-- **One signed frequency array in one pass:** For each mismatch, a negative existing count for the secret digit reveals an earlier unmatched guess, and a positive count for the guess digit reveals an earlier unmatched secret. This can count cows online but is less immediately transparent than intersecting two final multisets.
-- **Remove matched characters from mutable lists:** Repeated searching and deletion can become $O(n^2)$ and makes duplicate accounting more error-prone.
-- **Set intersection:** Sets discard multiplicity. They would undercount when several copies can be cows and overinterpret presence when only one counterpart exists.
-- **Counting all common digits before bulls:** The total multiset intersection includes bull occurrences. One may subtract bulls afterward if done carefully, but separating exact matches first makes disjointness explicit and avoids double counting.
-- **All digits match in position:** Every index is a bull, both counters remain empty, and the result is `nA0B` with the numeric value of `n` formatted normally.
-- **No digit appears in both strings:** Bulls and cows are both zero, yielding `"0A0B"`.
-- **Same multiset in different order:** If no positions match but both strings contain the same digit multiplicities, there are zero bulls and $n$ cows.
-- **Repeated secret digit:** The number of cows for that digit cannot exceed its unmatched secret frequency, regardless of how many copies the guess contains.
-- **Repeated guess digit:** Symmetrically, cows cannot exceed the unmatched guess frequency even when the secret has more copies.
-- **Leading zeros:** Inputs are strings rather than numeric values, so a leading `0` remains a real digit and is counted at its position.
-- **Equal-length guarantee:** `zip` stops at the shorter input, but the contract guarantees equal lengths, so every position is processed. The source deliberately does not add a separate length check.
-- **Length one:** The only pair is either a bull or a mismatch. A mismatching one-character guess cannot produce a cow because no equal digit exists elsewhere.
-- **Maximum length:** The method performs one linear scan and stores only ten possible frequency entries, so length 1000 requires no special handling.
-- **Output format:** The literal letters are always uppercase and appear in the exact order `A` then `B`, including when either count is zero.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Counting Bulls as Cows:** If frequency counts are built from the full strings without first removing bulls, positions where digits matched identically would be double-counted as cows.
+- **Set Intersection vs Multiset Frequencies:** Using sets (`set(secret) & set(guess)`) discards digit multiplicities. If `secret` has two `'1'`s and `guess` has three `'1'`s, set intersection yields count 1, ignoring the second valid pair. Frequency counting via `Counter` preserves exact multiplicities.
+- **Fixed Alphabet Size Optimization:** Digits consist only of characters `'0'` through `'9'`. Frequency tables have at most 10 keys, bounding the second pass to at most 10 operations regardless of string length.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common length of `secret` and `guess`. The `zip` loop processes each aligned pair once, performing constant-time comparisons and counter updates. This costs $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of `secret` and `guess`. The initial loop iterates $N$ times with $O(1)$ operations per character. The second loop iterates over at most 10 distinct digits ($O(1)$ work). Total time is strictly linear $O(N)$.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory. The counters store frequencies for at most 10 decimal digits (`'0'` through `'9'`), which is constant size independent of $N$.

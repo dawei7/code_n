@@ -1,140 +1,248 @@
 # Guided Example: Arithmetic Subarrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step mathematical verification of rearrangeable arithmetic progressions, prove the Extremal Spread Divisibility Invariant and the Hash Set Arithmetic Progression Theorem, and evaluate subarray range queries across representative numeric instances:
 
-- **Input:** `{"nums": [4, 6, 5, 9, 3, 7], "l": [0, 0, 2], "r": [2, 3, 5]}`
-- **Required output:** `[true, false, true]`
+- **Representative Instance 1 (Three Range Queries on Mixed Array):**
+  - Array Data:
+    $$
+    nums = [4, 6, 5, 9, 3, 7], \quad n = 6
+    $$
+  - Range Query Batches ($m = 3$ queries):
+    $$
+    l = [0, 0, 2], \quad r = [2, 3, 5]
+    $$
+  - Objective: For each query range $[l_i, r_i]$, determine if the subarray $nums[l_i \dots r_i]$ can be permuted to form an arithmetic sequence.
+  - **Required Output:** `[true, false, true]`
+  - Step-by-step query resolution:
+    1. **Query 0 ($l = 0, r = 2$):**
+       - Subarray slice: $A = nums[0 \dots 2] = [4, 6, 5]$. Length $k = 3$.
+       - Extremal bounds:
+         $$
+         a_1 = \min(A) = 4, \quad a_k = \max(A) = 6
+         $$
+       - Step divisibility check:
+         $$
+         \Delta = a_k - a_1 = 6 - 4 = 2, \quad 2 \pmod{k - 1} = 2 \pmod 2 = 0 \quad (\mathbf{Divisible!})
+         $$
+       - Common difference:
+         $$
+         d = \frac{a_k - a_1}{k - 1} = \frac{2}{2} = \mathbf{1}
+         $$
+       - Expected progression terms:
+         $$
+         \{4 + 0 \cdot 1, \; 4 + 1 \cdot 1, \; 4 + 2 \cdot 1\} = \{4, 5, 6\}
+         $$
+       - Set containment test: All terms $\{4, 5, 6\}$ exist in $\text{set}(A) = \{4, 5, 6\}$ (**Passes**).
+       - Permutation $[4, 5, 6]$ is an arithmetic progression. Output: $\mathbf{true}$.
+    2. **Query 1 ($l = 0, r = 3$):**
+       - Subarray slice: $A = nums[0 \dots 3] = [4, 6, 5, 9]$. Length $k = 4$.
+       - Extremal bounds:
+         $$
+         a_1 = \min(A) = 4, \quad a_k = \max(A) = 9
+         $$
+       - Step divisibility check:
+         $$
+         \Delta = a_k - a_1 = 9 - 4 = 5, \quad 5 \pmod{k - 1} = 5 \pmod 3 = 2 \ne 0 \quad (\mathbf{Indivisible!})
+         $$
+       - Because the spread $5$ cannot be partitioned into $3$ equal integer steps, no permutation can ever form an arithmetic progression.
+       - Output: $\mathbf{false}$.
+    3. **Query 2 ($l = 2, r = 5$):**
+       - Subarray slice: $A = nums[2 \dots 5] = [5, 9, 3, 7]$. Length $k = 4$.
+       - Extremal bounds:
+         $$
+         a_1 = \min(A) = 3, \quad a_k = \max(A) = 9
+         $$
+       - Step divisibility check:
+         $$
+         \Delta = 9 - 3 = 6, \quad 6 \pmod{k - 1} = 6 \pmod 3 = 0 \quad (\mathbf{Divisible!})
+         $$
+       - Common difference:
+         $$
+         d = \frac{6}{3} = \mathbf{2}
+         $$
+       - Expected progression terms:
+         $$
+         \{3, 5, 7, 9\}
+         $$
+       - Set containment test: $\{3, 5, 7, 9\} \subseteq \text{set}(A) = \{3, 5, 7, 9\}$ (**Passes**).
+       - Permutation $[3, 5, 7, 9]$ is an arithmetic progression. Output: $\mathbf{true}$.
+    - Consolidated Result: `[true, false, true]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Negative Integer Progression):**
+  - Subarray $[-25, -20, -15, -10]$: $\min = -25, \max = -10, k = 4$.
+  - Common difference $d = (-10 - (-25)) / 3 = 15 / 3 = 5$.
+  - Progression: $-25, -20, -15, -10 \implies \mathbf{true}$.
+
+- **Representative Instance 3 (All Equal Identical Elements):**
+  - Subarray $[7, 7, 7, 7]$: $\min = 7, \max = 7$.
+  - $a_k - a_1 = 0 \implies d = 0$.
+  - Constant sequence has common difference $0 \implies \mathbf{true}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A sequence of numbers is called **arithmetic** if it consists of at least two elements, and the difference between every two consecutive elements is the same. More formally, a sequence `s` is arithmetic if and only if $s[i+1] - s[i] = s[1] - s[0]$for all valid `i`.
+Given an array `nums` and query index arrays `l` and `r`, determine for each query whether the subarray $nums[l \dots r]$ can be rearranged to form an arithmetic sequence.
 
-The objective is to compute `[true, false, true]` from `{"nums": [4, 6, 5, 9, 3, 7], "l": [0, 0, 2], "r": [2, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Repeated Subarray Sorting Anti-Pattern:
+  For each of the m queries:
+    Extract sub = nums[l : r + 1]
+    Sort sub in non-decreasing order: O(k log k)
+    Check if sub[i] - sub[i-1] is constant: O(k)
+  For m = 500 queries on length k = 500:
+    Total time = O(m * k log k) = 500 * 500 * 9 = 2,250,000 operations
+    with heavy memory copying and sorting allocations.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Direct Spread & Hash Set Invariant (Strict O(k) per Query):
+  1. Let k = r - l + 1 be the query subarray length.
+  2. Compute min_val and max_val in a single pass of length k.
+  3. If max_val == min_val: all elements equal ==> Arithmetic with d = 0 (True).
+  4. Spread Divisibility Invariant:
+       The total span (max_val - min_val) MUST be divisible by (k - 1)!
+       If (max_val - min_val) % (k - 1) != 0: CANNOT be arithmetic ==> Return False!
+  5. Required common difference:
+       d = (max_val - min_val) // (k - 1)
+  6. In an arithmetic sequence, every value min_val + j * d must appear in the set:
+       S = set(nums[l : r + 1])
+       Check if all (min_val + j * d) in S for j in 1 .. k-1.
+  Evaluates in O(k) time per query without sorting!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Use the minimum and maximum to determine the only possible spacing
-
-For one query, let the inclusive subarray length be
-
-$$
-k=r-l+1.
-$$
-
-If its values can be rearranged into an arithmetic sequence, sorting that sequence would place its minimum value first and its maximum value last. A length-$k$ arithmetic sequence has $k-1$ equal gaps. Therefore its common difference is forced to be
-
-$$
-d=\frac{\textit{maximum}-\textit{minimum}}{k-1}.
-$$
-
-There is no need to try several possible differences. The two extremes and the number of elements leave exactly one candidate.
-
-The helper `check(nums, l, r)` computes `n = r - l + 1` for this query. Here `n` is the query length, not necessarily the length of the original array.
-
-It builds `s` as a set of the values in `nums[l:l+n]`. Since `l + n = r + 1`, this Python slice contains exactly indices $l$ through $r$. The helper separately obtains `a1` and `an` as the minimum and maximum of the same inclusive range.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [4, 6, 5, 9, 3, 7], "l": [0, 0, 2], "r": [2, 3, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Extremal Spread Divisibility Invariant & Hash Set Arithmetic Progression Theorem**:
+1. **Total Span Divisibility:** An arithmetic sequence of $k$ terms spanning from $a_1$ to $a_k$ must have an integer step size $d = (a_k - a_1) / (k - 1)$; fractional step sizes are impossible.
+2. **Cardinality & Collision Conservation:** If $(a_k - a_1) / (k - 1) = d > 0$ and all $k$ distinct values $\{a_1, a_1 + d, \dots, a_k\}$ are present in a multiset of size $k$, Dirichlet's principle guarantees each appears with multiplicity exactly $1$.
+3. **Zero-Step Degeneracy:** The boundary condition $a_k = a_1$ represents a constant progression with step $d = 0$.
+4. Total time $\mathcal{O}(m \cdot k)$ across all queries without comparison sorting overhead.
 
 ---
 
-### Step 2: Reject a fractional common difference
+## 2. Conceptual Foundation & The Arithmetic Query Pipeline
 
-All input values are integers, so every member of any rearranged arithmetic sequence must remain an integer. `divmod(an - a1, n - 1)` returns both the integer quotient `d` and remainder `mod`.
+```mermaid
+flowchart TD
+    accTitle: Arithmetic Subarray Verifier Pipeline
+    accDescr: Pipeline showing subarray min-max calculation, spread divisibility test, and hash set progression verification
+    Start["Given subarray nums[l .. r]\nLength k = r - l + 1"] --> FindExtremes["Compute a1 = min(subarray)\nak = max(subarray)"]
+    FindExtremes --> CheckEqual{"a1 == ak ?"}
+    CheckEqual -->|"Yes"| ReturnTrueZero["Return true\n(Constant sequence d = 0)"]
+    CheckEqual -->|"No"| CalcSpread["spread = ak - a1\nCheck spread % (k - 1) == 0"]
+    CalcSpread --> CheckDiv{"spread % (k - 1) == 0 ?"}
+    CheckDiv -->|"No: Indivisible"| ReturnFalse["Return false\n(No integer step size)"]
+    CheckDiv -->|"Yes: Divisible"| CalcStep["d = spread / (k - 1)\nBuild S = set(subarray)"]
+    CalcStep --> CheckSet{"For all j in 0 .. k - 1:\nIs (a1 + j * d) in S ?"}
+    CheckSet -->|"Yes: All terms present"| ReturnTrue["Return true"]
+    CheckSet -->|"No: Missing term"| ReturnFalse
+```
 
-If `mod != 0`, the distance between the extremes cannot be split evenly among the $n-1$ gaps. No rearrangement can repair this numerical impossibility, and the helper returns false through the leading condition `mod == 0`.
+### The Hash Set Arithmetic Progression Theorem
 
-Using `divmod` avoids floating-point arithmetic. A division such as $2/3$ must be rejected, not approximated and rounded. Integer quotient and remainder express the divisibility test exactly, including when input values are negative, because `an - a1` is always non-negative.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (x_1, x_2, \dots, x_k)$ be a multiset of $k$ integers ($k \ge 2$).
+1. **Arithmetic Progression Definition:**
+   $A$ can be permuted into an arithmetic progression if and only if there exist $a \in \mathbb{Z}$ and $d \in \mathbb{Z}$ such that:
+   $$
+   A \equiv \{ a, \; a + d, \; a + 2d, \; \dots, \; a + (k - 1)d \} \quad \text{as multisets}
+   $$
+2. **Necessary Extremal Relations:**
+   Without loss of generality, assume $d \ge 0$.
+   The minimum element of $A$ is $a_1 = a$, and the maximum element of $A$ is $a_k = a + (k - 1)d$.
+   Therefore:
+   $$
+   a_k - a_1 = (k - 1)d \implies (a_k - a_1) \equiv 0 \pmod{k - 1}
+   $$
+   If this divisibility condition fails, $A$ cannot be arithmetic.
+3. **Sufficiency of Hash Set Verification:**
+   Suppose $(a_k - a_1) \equiv 0 \pmod{k - 1}$ with $d = \frac{a_k - a_1}{k - 1} > 0$.
+   Let $P = \{ a_1 + j \cdot d : 0 \le j < k \}$ be the target arithmetic set of size $k$.
+   If every element of $P$ belongs to the set $\mathcal{S} = \text{set}(A)$:
+   $$
+   P \subseteq \mathcal{S} \subseteq A
+   $$
+   Because $|P| = k$ and $|A| = k$, we have $|P| = |A|$.
+   Since all elements in $P$ are mutually distinct, $A$ must contain each element of $P$ with multiplicity exactly $1$:
+   $$
+   A = P
+   $$
+   Hence, membership check of all $k$ points in $\text{set}(A)$ is necessary and sufficient. $\blacksquare$
 
 ---
 
-### Step 3: Check that every required value is present
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-When the difference is integral, the only possible sorted sequence is
+$nums = [4, 6, 5, 9, 3, 7]$, queries $(l, r) \in \{ (0, 2), (0, 3), (2, 5) \}$.
 
-$$
-a_1,\ a_1+d,\ a_1+2d,\ \ldots,\ a_1+(n-1)d=a_n.
-$$
+### Query-by-Query Trace
 
-The generator tests
+#### Query 0 ($l = 0, r = 2$):
+- Subarray: $[4, 6, 5]$. $k = 3$.
+- Extremes: $a_1 = 4, a_k = 6$.
+- Spread: $6 - 4 = 2$.
+- Divisibility: $2 \pmod{3 - 1} = 2 \pmod 2 = 0$ (Passes).
+- Step size: $d = 2 / 2 = 1$.
+- Set membership:
+  - $j = 0: 4 \in \{4, 5, 6\}$ (OK).
+  - $j = 1: 5 \in \{4, 5, 6\}$ (OK).
+  - $j = 2: 6 \in \{4, 5, 6\}$ (OK).
+- Verdict: **`true`**.
 
-`(a1 + (i - 1) * d) in s for i in range(1, n)`.
+#### Query 1 ($l = 0, r = 3$):
+- Subarray: $[4, 6, 5, 9]$. $k = 4$.
+- Extremes: $a_1 = 4, a_k = 9$.
+- Spread: $9 - 4 = 5$.
+- Divisibility: $5 \pmod{4 - 1} = 5 \pmod 3 = 2 \ne 0$ (Fails!).
+- Verdict: **`false`**.
 
-Because `i` runs from 1 through $n-1$, `i-1` runs from 0 through $n-2$. Thus it checks the minimum and every expected interior value. It does not explicitly test the final maximum, because `an` was obtained from the subarray and is necessarily present in its set.
-
-`all` returns true only if every generated membership test is true. It also short-circuits: as soon as one required value is absent, later expected values are not checked.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, false, true]` |
+#### Query 2 ($l = 2, r = 5$):
+- Subarray: $[5, 9, 3, 7]$. $k = 4$.
+- Extremes: $a_1 = 3, a_k = 9$.
+- Spread: $9 - 3 = 6$.
+- Divisibility: $6 \pmod{4 - 1} = 6 \pmod 3 = 0$ (Passes).
+- Step size: $d = 6 / 3 = 2$.
+- Set membership:
+  - $j = 0: 3 \in \{3, 5, 7, 9\}$ (OK).
+  - $j = 1: 5 \in \{3, 5, 7, 9\}$ (OK).
+  - $j = 2: 7 \in \{3, 5, 7, 9\}$ (OK).
+  - $j = 3: 9 \in \{3, 5, 7, 9\}$ (OK).
+- Verdict: **`true`**.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Query Range Arithmetic Verification Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 6, 5, 9, 3, 7], "l": [0, 0, 2], "r": [2, 3, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, false, true]` | Verified |
+| Query Index | Range $[l, r]$ | Subarray Elements | Length $k$ | Spread $(a_k - a_1)$ | Spread Divisible by $(k-1)$? | Step Size $d$ | Set Test Status | Query Output |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | $[0, 2]$ | $[4, 6, 5]$ | $3$ | $6 - 4 = 2$ | $2 \pmod 2 == 0$ (Yes) | $1$ | All in $\{4, 5, 6\}$ | **`true`** |
+| **$1$** | $[0, 3]$ | $[4, 6, 5, 9]$ | $4$ | $9 - 4 = 5$ | $5 \pmod 3 == 2 \ne 0$ (No) | — | Indivisible spread | **`false`** |
+| **$2$** | $[2, 5]$ | $[5, 9, 3, 7]$ | $4$ | $9 - 3 = 6$ | $6 \pmod 3 == 0$ (Yes) | $2$ | All in $\{3, 5, 7, 9\}$ | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+If the spread is divisible by $k - 1$ and all $k$ arithmetic terms $a_1 + j \cdot d$ are confirmed to exist in the subarray, then the subarray contains a permutation of an arithmetic progression.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+Every arithmetic sequence must have an integer common difference $d = (a_k - a_1) / (k - 1)$. Any subarray lacking this divisibility or missing one of the arithmetic points cannot be an arithmetic sequence.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Sort every queried subarray:** After sorting, compare adjacent differences. This is straightforward but costs $O(k_i\log k_i)$ per query instead of expected linear time.
-- **Boolean placement array:** Map each value to its expected progression index and mark occupied slots. This avoids hashing but still needs $O(k_i)$ storage and careful range and duplicate checks.
-- **Reuse one query slice:** Store `arr = nums[l:r+1]` once, then pass it to `set`, `min`, and `max`. It has the same asymptotic bounds with fewer slice copies than the exact source.
-- **Length two:** Any two numbers form an arithmetic sequence. The computed gap has denominator one, the remainder is zero, and the membership test succeeds.
-- **All values equal:** `d = 0`. Minimum equals maximum, and the repeated expected value is present, so the query correctly returns true.
-- **Negative values:** Only differences from the minimum are used. `an - a1` is non-negative, and set membership works identically for negative integers.
-- **Fractional required gap:** A nonzero remainder rejects the query before membership checks.
-- **Duplicate with positive gap:** A duplicate consumes one of the $n$ positions and forces some distinct expected value to be absent; the set checks expose that absence.
-- **The maximum is not generated by `range(1, n)`:** It need not be checked because `an` came directly from the subarray. The generator covers the other $n-1$ required values.
-- **Inclusive right endpoint:** Python slicing excludes its stop, so the slice ends at `l + n = r + 1` to include index `r`.
-- **Parallel query arrays:** `zip` is safe because the contract guarantees equal lengths. Without that guarantee, it would silently stop at the shorter input.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Constant Sequence | $[5, 5, 5]$ | $a_1 = a_k = 5 \implies$ returns `true` immediately. | Division by zero when computing $(a_k - a_1) / (k - 1)$. |
+| Duplicate Values in Non-Constant | $[1, 2, 2, 4]$ | $k = 4, d = 1$. Expected $\{1, 2, 3, 4\}$. Value $3 \notin S \implies$ `false`. | Assuming duplicates can form arithmetic progression with $d > 0$. |
+| Negative Integers | $[-12, -9, -6, -3]$ | $d = (-3 - (-12)) / 3 = 9 / 3 = 3 \implies$ `true`. | Negative arithmetic modulo bugs. |
+| Two Elements Subarray | $[10, 2]$ | $k = 2$. Always forms an arithmetic sequence with $d = a_k - a_1$. | Special-casing minimum length. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S)$. For query $i$, let
-- **Auxiliary Space Complexity:** $O(K)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot k)$, where $m = |l| = |r|$ is the number of queries and $k \le n$ is the average query subarray length.
+  - Finding min and max: $\mathcal{O}(k)$ time.
+  - Building the hash set: $\mathcal{O}(k)$ time.
+  - Checking membership of $k$ terms: $k \times \mathcal{O}(1) = \mathcal{O}(k)$ time.
+  - Total time for $m = 500$ queries on $n = 500$: $\le 500 \times 500 = 2.5 \times 10^5$ operations ($< 0.01\text{ s}$).
+- **Auxiliary Space Complexity:** $\mathcal{O}(k)$ auxiliary memory per query to store the set of subarray values.

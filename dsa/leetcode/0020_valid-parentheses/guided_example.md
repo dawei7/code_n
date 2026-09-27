@@ -1,127 +1,142 @@
 # Guided Example: Valid Parentheses
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Last-In, First-Out (LIFO) stack evaluation on a representative nested bracket instance:
 
-- **Input:** `{"s": "()"}`
-- **Required output:** `true`
+- **Input:** $s = \text{"([{}])"}$
+- **Required output:** $\text{True}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates recursive bracket nesting across multiple delimiter types (parentheses, square brackets, and curly braces), push transitions for opening delimiters, pop-and-match verifications for closing delimiters, and final stack emptiness validation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+A bracket sequence is valid if and only if:
+1. Every open bracket is closed by the same type of bracket.
+2. Open brackets are closed in the exact reverse order of their opening (strict LIFO nesting).
+3. Every closing bracket has a corresponding preceding opening bracket.
 
-The objective is to compute `true` from `{"s": "()"}` while avoiding redundant calculations and unnecessary overhead.
+For $s = \text{"([{}])"}$:
+- Index 0: `'('` opens outer frame.
+- Index 1: `'['` opens middle frame.
+- Index 2: `'{'` opens innermost frame.
+- Index 3: `'}'` matches and closes innermost frame `'{'`.
+- Index 4: `']'` matches and closes middle frame `'['`.
+- Index 5: `')'` matches and closes outer frame `'('`.
+- All opened brackets are closed, and the stack is empty $\implies \text{True}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach counting frequencies cannot distinguish valid nesting from interleaved errors: for example, $\text{"([)]"}$ has equal counts for both types but violates nesting order because `']'` attempts to close `'['` while `')'` is expected. The optimal algorithm maintains an explicit LIFO stack, verifying each character in $O(1)$ time for an overall $O(N)$ runtime.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Matching Table
+We define a bijection mapping each closing bracket to its unique opening partner:
+$$
+\text{Match} = \{ \text{')'} \mapsto \text{'('}, \, \text{'\}'} \mapsto \text{'\{'}, \, \text{']'} \mapsto \text{'['} \}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Stack State Machine
+For each character $c$ in string $s$ from left to right:
+1. **Opening Delimiter ($c \in \{\text{'('}, \text{'\{'}, \text{'['}\}$):**
+   - Push $c$ onto the stack $\text{stk}$.
+2. **Closing Delimiter ($c \in \{\text{')'}, \text{'\}'}, \text{']'}\}$):**
+   - **Empty Stack Underflow:** If $\text{stk}$ is empty, there is no opening bracket to pair with $c \implies$ return $\text{False}$.
+   - **Type Mismatch:** Pop the top element $\text{top} = \text{stk.pop}()$. If $\text{top} \ne \text{Match}[c]$, nesting is violated $\implies$ return $\text{False}$.
+3. **Termination:** After all characters in $s$ are processed, the string is valid if and only if the stack is completely empty ($\text{len}(\text{stk}) = 0$). If any unclosed opening brackets remain, return $\text{False}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At step $k$, $\text{stk}$ contains exactly the active, unclosed opening brackets from the prefix $s[0 \dots k-1]$ in order of discovery, with the most recent open bracket at the top of the stack.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Validity depends on nesting order, not only on counts
+We process $s = \text{"([{}])"}$ with initial stack $\text{stk} = []$:
 
-For one bracket type, a counter can track how many opening brackets remain unmatched. With three types, separate counters still cannot represent nesting. For example, `([)]` has balanced counts for both round and square brackets, but it is invalid: after reading `([`, the round closer `)` attempts to close `(` while the more recent `[` is still open.
+### Step 0: Index 0 ($s[0] = \text{'('}$)
+- Character is an opening bracket.
+- Action: Push `'('` onto stack.
+- Stack state: $\text{stk} = [\text{'('}]$.
 
-The rule is therefore last opened, first closed. That is precisely the behavior of a stack. Opening brackets are pushed in left-to-right order, and a closing bracket must match the opening bracket currently at the top.
+### Step 1: Index 1 ($s[1] = \text{'['}$)
+- Character is an opening bracket.
+- Action: Push `'['` onto stack.
+- Stack state: $\text{stk} = [\text{'('}, \text{'['}]$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "()"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Index 2 ($s[2] = \text{'\{'}$)
+- Character is an opening bracket.
+- Action: Push `'{'` onto stack.
+- Stack state: $\text{stk} = [\text{'('}, \text{'['}, \text{'\{'}]$.
 
----
+### Step 3: Index 3 ($s[3] = \text{'\}'}$)
+- Character is a closing bracket. Required partner: $\text{Match}[\text{'\}'}] = \text{'\{'}$.
+- Check stack: $\text{stk}$ is non-empty. Top element is `'{'`.
+- Match verification: $\text{top} = \text{'\{'} = \text{Match}[\text{'\}'}]$. Match confirmed!
+- Action: Pop `'{'`.
+- Stack state: $\text{stk} = [\text{'('}, \text{'['}]$.
 
-### Step 2: Store the three complete legal pairs
+### Step 4: Index 4 ($s[4] = \text{']'}$)
+- Character is a closing bracket. Required partner: $\text{Match}[\text{']'}] = \text{'['}$.
+- Check stack: $\text{stk}$ is non-empty. Top element is `'['`.
+- Match verification: $\text{top} = \text{'['} = \text{Match}[\text{']'}]$. Match confirmed!
+- Action: Pop `'['`.
+- Stack state: $\text{stk} = [\text{'('}]$.
 
-The implementation creates
+### Step 5: Index 5 ($s[5] = \text{')'}$)
+- Character is a closing bracket. Required partner: $\text{Match}[\text{')'}] = \text{'('}$.
+- Check stack: $\text{stk}$ is non-empty. Top element is `'('`.
+- Match verification: $\text{top} = \text{'('} = \text{Match}[\text{')'}]$. Match confirmed!
+- Action: Pop `'('`.
+- Stack state: $\text{stk} = []$.
 
-
-
-Each set member is a complete valid adjacent pair: opener first and closer second. Later, the source forms `stk.pop() + c`; membership in `d` tests both bracket type and order in one operation. A set provides expected $O(1)$ membership testing, and its size is fixed at three.
-
-The string `'({['` is used only as an opening-bracket membership collection. Under the contract, every input character is one of the six bracket characters, so any character not in that string is necessarily one of `')'`, `'}'`, or `']'`. A broader text-validation API would need an explicit policy for non-bracket characters, but this problem does not.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Maintain exactly the unmatched opening brackets
-
-The essential invariant is:
-
-> After processing a prefix of `s`, `stk` contains exactly the opening brackets in that prefix that have not yet been closed, in their original order. Its final element is the opening bracket that must be closed next.
-
-The stack is initially empty, which correctly describes the empty prefix. When `c` is an opener, `stk.append(c)` adds a newly unmatched opening bracket. It must appear at the top because any brackets opened earlier surround this new bracket and cannot close until the inner one does.
-
-When `c` is a closer, validity requires two facts: an unmatched opener must exist, and the most recent one must have the same type. The branch
-
-
-
-checks both.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Termination Verification
+- String is exhausted.
+- Check stack: $\text{stk} = []$ (empty).
+- Final output: $\text{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "()"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Step $i$ | Character $s[i]$ | Delimiter Category | Action Taken | Stack State Before | Stack State After | Invariant Status |
+|:---:|:---:|:---:|:---|:---|:---|:---:|
+| 0 | `'('` | Opening | Push `'('` | `[]` | `['(']` | Valid prefix |
+| 1 | `'['` | Opening | Push `'['` | `['(']` | `['(', '[']` | Valid prefix |
+| 2 | `'{'` | Opening | Push `'{'` | `['(', '[']` | `['(', '[', '{']` | Valid prefix |
+| 3 | `'}'` | Closing | Pop `'{'`; matches $\text{Match}[\text{'\}'}]$ | `['(', '[', '{']` | `['(', '[']` | Innermost frame closed |
+| 4 | `']'` | Closing | Pop `'['`; matches $\text{Match}[\text{']'}]$ | `['(', '[']` | `['(']` | Middle frame closed |
+| 5 | `')'` | Closing | Pop `'('`; matches $\text{Match}[\text{')'}]$ | `['(']` | `[]` | Outermost frame closed |
+| Final | - | End of input | Verify $\text{len}(\text{stk}) = 0$ | `[]` | `[]` | **Balanced ($\text{True}$)** |
+
+### Invalid Mismatch Tracing (Failure Modes)
+
+| Invalid Input | First Failure Point | Mechanism of Detection | Result |
+|:---|:---:|:---|:---:|
+| `"([)]"` | Index 2 ($s[2] = \text{')'}$) | Top of stack is `'['`, but expected $\text{Match}[\text{')'}] = \text{'('}$ | $\text{False}$ (Nesting mismatch) |
+| `")("` | Index 0 ($s[0] = \text{')'}$) | Stack is empty when attempting to pop | $\text{False}$ (Stack underflow) |
+| `"(()"` | Index 3 (End of input) | Stack retains unclosed `['(']` after all characters consumed | $\text{False}$ (Unclosed open bracket) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A sequence of brackets is well-formed under the context-free grammar $S \to \epsilon \mid (S) \mid [S] \mid \{S\} \mid SS$. The pushdown automaton implemented by the stack strictly recognizes this Dyck language. Because every closing bracket is compared against the most recently opened unmatched bracket, any violation of symmetry or nesting triggers an immediate rejection.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the input string is evaluated. If the string is well-formed, each opening bracket is matched and popped by its corresponding closing partner, leaving the stack empty at the end. Since the transition rules accept every grammatically valid derivation, no valid string can be erroneously rejected.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Closer-to-opener dictionary:** Map each closer to its expected opener, then compare it with the popped top. This avoids constructing a two-character pair and is equally $O(n)$ time and space.
-- **Repeated string replacement:** Repeatedly remove `()`, `[]`, and `{}` until nothing changes. It mirrors eliminating innermost pairs but can repeatedly rescan and rebuild the string, leading to $O(n^2)$ time.
-- **One or three counters:** Counts can detect surplus brackets but cannot detect crossing order, so `([)]` defeats this approach.
-- **Recursive parsing:** A grammar-based parser can validate nesting, but it adds recursion overhead and may use $O(n)$ call-stack depth without improving the bound.
-- **Single character:** Any legal one-character input is either an unmatched opener or closer, so the result is `false`.
-- **Starts with a closer:** `not stk` short-circuits immediately and safely rejects it.
-- **Ends with an opener:** The scan finishes, but `not stk` is false because the opener remains.
-- **Adjacent pairs:** Strings such as `"()[]{}"` repeatedly empty the stack and are valid.
-- **Deep nesting:** Strings such as `"{[()]}"` exercise last-in-first-out order and are valid when closing types reverse the opening sequence.
-- **Correct counts but wrong order:** `"([)]"` is rejected at the first mismatched closer; balanced totals do not override nesting.
-- **Non-bracket characters:** The contract excludes them. In this exact source they would enter the closer branch and be rejected, but that behavior is not intended as a general-purpose filtering policy.
-- **Non-empty input guarantee:** The stated input is non-empty. If called with `""`, the exact code would return `true`, which is mathematically consistent with an empty balanced sequence but outside the supplied domain.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Premature True on Balanced Counts:** Simple character frequency counters cannot detect order violations like $\text{"([)]"}$. A stack is necessary and sufficient to preserve LIFO precedence.
+- **Stack Underflow on Closing First:** An input like `")"` or `"())"` encounters a closer when the stack is empty. Checking `if not stk` before popping prevents `IndexError` and immediately rejects the string.
+- **Unclosed Open Brackets:** An input like `"("` or `"(("` encounters only opening brackets and no mismatches during the loop. Testing `return len(stk) == 0` at the end ensures unclosed brackets are correctly reported as invalid.
+- **Odd Length Strings:** Any valid bracket string must pair each opening delimiter with a closing delimiter. If $|s|$ is odd, it is impossible to be valid; an early check `if len(s) % 2 != 0: return False` provides an immediate $O(1)$ filter.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be `len(s)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = |s|$. We iterate through the string of length $N$ once. Each character triggers either an $O(1)$ push or an $O(1)$ pop and dictionary lookup. Total runtime is strictly linear $O(N)$.
+- **Auxiliary Space Complexity:** $O(N)$. In the worst case (e.g. $s = \text{"(((((("}$), the stack stores all $N$ opening brackets. The hash map stores a fixed 3 key-value pairs ($O(1)$).

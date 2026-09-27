@@ -1,99 +1,219 @@
 # Guided Example: Find All Good Strings
 
-We derive and execute the String, Dynamic Programming, String Matching recurrence on a representative problem instance.
+We trace the step-by-step execution of the digit-style dynamic programming and KMP string matching automaton on a representative problem instance:
 
-- **Input:** `{"n": 2, "s1": "aa", "s2": "da", "evil": "b"}`
+- **Input:** `n = 2`, `s1 = "aa"`, `s2 = "da"`, `evil = "b"`
 - **Required output:** `51`
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance is chosen because it demonstrates tight lower and upper lexicographical bounds spanning multiple leading characters ($'a'$ through $'d'$), combined with state elimination when an evil pattern of length $1$ is encountered.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Find All Good Strings** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given two strings `s1` and `s2` of length $n$ with $s1 \le s2$, and a forbidden string `evil`, a string $S$ is called **good** if:
+1. $|S| = n$
+2. $S$ is lexicographically between `s1` and `s2` inclusive: $s1 \le S \le s2$.
+3. `evil` does **not** appear as a substring in $S$.
+
+We must return the total number of good strings modulo $10^9 + 7$.
+
+For $n = 2$, $s1 = \text{"aa"}$, $s2 = \text{"da"}$, and $evil = \text{"b"}$:
+- The lexicographic interval spans from `"aa"` to `"da"`:
+  - Strings starting with `'a'`: `"aa"` through `"az"` ($26$ strings). Excluding `"ab"` leaves $25$ valid strings.
+  - Strings starting with `'b'`: Every string `"ba" \dots "bz"` contains evil substring `"b"` ($0$ valid).
+  - Strings starting with `'c'`: `"ca"` through `"cz"` ($26$ strings). Excluding `"cb"` leaves $25$ valid strings.
+  - Strings starting with `'d'`: Restricted by upper bound $s2$ to `"da"` ($1$ string). Does not contain `"b"` ($1$ valid).
+- Total good strings: $25 + 0 + 25 + 1 = 51$.
+
+The primary teaching goal is to combine **digit DP** (tracking tight lexicographic upper and lower boundary flags) with a **KMP string matching automaton** (tracking the longest prefix of `evil` matched by the suffix of the current prefix), pruning any branch where the evil pattern fully matches.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+Let $m = |evil|$. We construct the KMP failure table $\pi$ over `evil`.
+For any prefix match length $k \in \{0, \dots, m - 1\}$ and candidate character $c \in \{'a', \dots, 'z'\}$, the KMP automaton transition $\delta(k, c)$ returns the new length of the longest prefix of `evil` matching the current suffix:
+$$
+\delta(k, c) = 
+\begin{cases}
+k + 1 & \text{if } evil[k] = c \\
+\delta(\pi[k - 1], c) & \text{if } evil[k] \ne c \text{ and } k > 0 \\
+0 & \text{otherwise}
+\end{cases}
+$$
 
-| State Definition | Dependency Formula | Role in Solution |
+If $\delta(k, c) = m$, the forbidden string `evil` has been fully formed, and the branch is immediately pruned.
+
+```
+Digit DP State Tuples:
+State: (idx, matched_evil, tight_low, tight_high)
+- idx: Current character position (0 to n - 1)
+- matched_evil: Longest prefix of evil matched so far (< m)
+- tight_low: True if prefix equals s1 prefix (limits min char to s1[idx])
+- tight_high: True if prefix equals s2 prefix (limits max char to s2[idx])
+
+Allowed character choice range at position idx:
+low_char  = s1[idx] if tight_low else 'a'
+high_char = s2[idx] if tight_high else 'z'
+```
+
+DP state formulation:
+$$
+DP(i, k, \text{low}, \text{high}) = \sum_{c = \text{low\_char}}^{\text{high\_char}} DP(i + 1, \delta(k, c), \text{low} \land (c = \text{low\_char}), \text{high} \land (c = \text{high\_char}))
+$$
+with base condition $DP(n, k, \cdot, \cdot) = 1$ (for all $k < m$).
+
+We define state tracking parameters:
+
+| Parameter | Mathematical Meaning | Initial State |
 |---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+| Position ($i$) | Current character index in $0 \dots n$ | $0$ |
+| Evil Match Length ($k$) | Active state in KMP automaton ($0 \le k < m$) | $0$ |
+| Tight Low Flag ($\text{low}$) | Boolean: bounded below by $s1$ | $\text{True}$ |
+| Tight High Flag ($\text{high}$) | Boolean: bounded above by $s2$ | $\text{True}$ |
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** State $DP(i, k, \text{low}, \text{high})$ computes the exact count of completions of length $n - i$ that avoid forming `evil` while staying strictly within the lexicographical envelope $[s1, s2]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+For $n = 2, s1 = \text{"aa"}, s2 = \text{"da"}, evil = \text{"b"}$ ($m = 1$):
+- Since $evil = \text{"b"}$, any character $c = \text{'b'}$ transitions to $\delta(k, \text{'b'}) = 1 = m$, which is forbidden.
+- Any character $c \ne \text{'b'}$ transitions to $\delta(k, c) = 0$.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+### Step 1: Position $i = 0$ (Root State)
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+- Root call: $DP(i = 0, k = 0, \text{low} = \text{True}, \text{high} = \text{True})$.
+- Lower character limit: $s1[0] = \text{'a'}$.
+- Upper character limit: $s2[0] = \text{'d'}$.
+- Candidate first characters: $c \in \{\text{'a'}, \text{'b'}, \text{'c'}, \text{'d'}\}$.
+
+We evaluate each first character:
+1. **Branch $c = \text{'a'}$:**
+   - Next evil match: $\delta(0, \text{'a'}) = 0 < 1$.
+   - Next low flag: $\text{True} \land (\text{'a'} == \text{'a'}) = \text{True}$.
+   - Next high flag: $\text{True} \land (\text{'a'} == \text{'d'}) = \text{False}$.
+   - Recursive subproblem: $DP(1, 0, \text{True}, \text{False})$.
+
+2. **Branch $c = \text{'b'}$:**
+   - Next evil match: $\delta(0, \text{'b'}) = 1 = m$.
+   - **Pruned!** Contributes $0$.
+
+3. **Branch $c = \text{'c'}$:**
+   - Next evil match: $\delta(0, \text{'c'}) = 0 < 1$.
+   - Next low flag: $\text{True} \land (\text{'c'} == \text{'a'}) = \text{False}$.
+   - Next high flag: $\text{True} \land (\text{'c'} == \text{'d'}) = \text{False}$.
+   - Recursive subproblem: $DP(1, 0, \text{False}, \text{False})$.
+
+4. **Branch $c = \text{'d'}$:**
+   - Next evil match: $\delta(0, \text{'d'}) = 0 < 1$.
+   - Next low flag: $\text{True} \land (\text{'d'} == \text{'a'}) = \text{False}$.
+   - Next high flag: $\text{True} \land (\text{'d'} == \text{'d'}) = \text{True}$.
+   - Recursive subproblem: $DP(1, 0, \text{False}, \text{True})$.
+
+| Choice at $i=0$ | Allowed Range | Evil Match | Next Low | Next High | Subproblem Evaluated |
+|---|---|---|---|---|---|
+| `'a'` | $s1[0]=\text{'a'}$ | $0$ | True | False | $DP(1, 0, \text{T}, \text{F})$ |
+| `'b'` | - | $1 = m$ | - | - | **Pruned (0)** |
+| `'c'` | - | $0$ | False | False | $DP(1, 0, \text{F}, \text{F})$ |
+| `'d'` | $s2[0]=\text{'d'}$ | $0$ | False | True | $DP(1, 0, \text{F}, \text{T})$ |
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
+### Step 2: Position $i = 1$ (Leaf Evaluations)
 
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
+At position $i = 1$, each valid character transitions to base state $i = 2$, contributing $1$:
 
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+1. **Evaluate $DP(1, 0, \text{True}, \text{False})$ (Prefix `"a"`):**
+   - Lower bound: $s1[1] = \text{'a'}$. Upper bound: $\text{'z'}$.
+   - Allowed alphabet: all 26 letters except $\text{'b'}$.
+   - Number of valid choices: $26 - 1 = 25$.
+   - Total: $25 \times 1 = 25$.
+
+2. **Evaluate $DP(1, 0, \text{False}, \text{False})$ (Prefix `"c"`):**
+   - Lower bound: $\text{'a'}$. Upper bound: $\text{'z'}$.
+   - Allowed alphabet: all 26 letters except $\text{'b'}$.
+   - Number of valid choices: $26 - 1 = 25$.
+   - Total: $25 \times 1 = 25$.
+
+3. **Evaluate $DP(1, 0, \text{False}, \text{True})$ (Prefix `"d"`):**
+   - Lower bound: $\text{'a'}$. Upper bound: $s2[1] = \text{'a'}$.
+   - Allowed alphabet: only character $\text{'a'}$.
+   - Character $\text{'a'} \ne \text{'b'}$, so it is valid.
+   - Number of valid choices: $1$.
+   - Total: $1 \times 1 = 1$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 3: Global Aggregation
 
-- Extract the final value from the designated terminal state $DP[N]$.
-
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+Summing contributions across all valid first-character branches:
+$$
+\text{Total} = 25 \; (\text{branch 'a'}) + 0 \; (\text{branch 'b'}) + 25 \; (\text{branch 'c'}) + 1 \; (\text{branch 'd'}) = 51
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Branch Prefix | First Char ($i=0$) | Second Char Range ($i=1$) | Disqualified by Evil | Valid Suffixes | Total Good Strings |
+|---|---|---|---|---|---|
+| `"a*"` | `'a'` | `'a'` to `'z'` ($26$) | `"ab"` ($1$) | $25$ | $25$ |
+| `"b*"` | `'b'` | Immediate prune | All ($26$) | $0$ | $0$ |
+| `"c*"` | `'c'` | `'a'` to `'z'` ($26$) | `"cb"` ($1$) | $25$ | $25$ |
+| `"d*"` | `'d'` | `'a'` only ($1$) | None | $1$ (`"da"`) | $1$ |
+| **Sum** | - | - | - | - | **$51$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+### Subproblem Equivalence and Completeness
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+The search space of candidate strings of length $n$ between $s1$ and $s2$ forms a trie of depth $n$.
+- Tracking `(is_tight_low, is_tight_high)` constrains character choices to the exact interval $[s1, s2]$.
+- The KMP state $k$ captures all necessary memory about the prefix of `evil`: if a sequence of characters forms suffix $evil[0 \dots k - 1]$, the KMP transition table $\delta(k, c)$ deterministically provides the updated state without retaining earlier characters.
+- Pruning whenever $\delta(k, c) = |evil|$ guarantees that no generated string contains `evil`.
+- Because identical tuples $(i, k, \text{low}, \text{high})$ represent identical future subproblems, memoization guarantees exactness while avoiding redundant exploration.
+
+### Asymptotic Complexity
+
+- **Time Complexity:** $\mathcal{O}(n \cdot m \cdot |\Sigma|)$, where $n = |s1|$, $m = |evil|$, and $|\Sigma| = 26$. There are $n \times m \times 2 \times 2 = 4 n m$ distinct DP states. Each state iterates over at most $26$ alphabet characters, each performing an $\mathcal{O}(1)$ transition via the precomputed KMP table. For $n \le 500$ and $m \le 50$, total operations are at most $4 \times 500 \times 50 \times 26 \approx 2.6 \times 10^6$, running in under $0.1$ seconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n \cdot m)$ to store the memoization table and KMP transition table.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Edge Cases
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Tied Lower and Upper Boundaries:** When both `tight_low` and `tight_high` are True and $s1[i] = s2[i]$, only that single character can be chosen.
+- **Modulo at Every Addition:** The answer can be as large as $26^n$. Every addition in the DP recurrence must be reduced modulo $10^9 + 7$.
+- **KMP State Reset:** When a mismatch occurs in the KMP automaton, the state does not necessarily reset to $0$; it falls back to $\pi[k - 1]$. The precomputed transition table $\delta(k, c)$ correctly accounts for all multi-step fallbacks.
+- **Evil Appears in $s1$ or $s2$:** If $s1$ or $s2$ themselves contain `evil`, they will be naturally disqualified when their characters are chosen.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Accessible Mermaid Diagram
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+```mermaid
+flowchart TD
+    accTitle: Find All Good Strings Digit DP Flowchart
+    accDescr: Combines digit DP bounds with KMP automaton transitions to count strings avoiding evil substring.
+
+    Start(["Start DP(i=0, evil_matched=0, low=T, high=T)"]) --> BaseCheck{"i == n ?"}
+    BaseCheck -- "Yes (Complete valid string)" --> ReturnOne(["Return 1"])
+    BaseCheck -- "No" --> CalcLimits["Determine char range [min_c, max_c]<br>min_c = s1[i] if low else 'a'<br>max_c = s2[i] if high else 'z'"]
+    
+    CalcLimits --> LoopChar{"For char c in [min_c, max_c]:"}
+    LoopChar -- "Done all chars" --> Modulo["Return total mod (10^9 + 7)"]
+    
+    LoopChar -- "Next c" --> KMPTrans["next_evil = KMP_delta(evil_matched, c)"]
+    KMPTrans --> EvilCheck{"next_evil == len(evil) ?"}
+    
+    EvilCheck -- "Yes (Contains evil)" --> Skip["Prune branch (0)"]
+    EvilCheck -- "No (Valid)" --> Recurse["new_low = low AND (c == min_c)<br>new_high = high AND (c == max_c)<br>total += DP(i+1, next_evil, new_low, new_high)"]
+    
+    Skip --> LoopChar
+    Recurse --> LoopChar
+```

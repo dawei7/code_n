@@ -45,13 +45,14 @@
     {
       "id": "trial-high-two",
       "name": "high two-letter title",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "columnTitle": "ZY"
       },
       "expected": 701,
       "tags": [
+        "sample",
         "conversion"
       ]
     },

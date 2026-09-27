@@ -1,142 +1,160 @@
 # Guided Example: Employees Earning More Than Their Managers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step SQL relational self-join execution and managerial hierarchy salary comparison on representative enterprise organizational tables:
 
-- **Input:** `{"tables": {"Employee": [{"id": 1, "name": "Owner", "salary": 100, "managerId": null}]}}`
-- **Required output:** `{"columns": ["Employee"], "rows": []}`
+- **Input Table `Employee`:**
+  - `[(1, "Joe", 70000, 3), (2, "Henry", 80000, 4), (3, "Sam", 60000, null), (4, "Max", 90000, null)]`
+- **Required output:**
+  - `{"columns": ["Employee"], "rows": [["Joe"]]}` (Joe earns $70,000$ compared to manager Sam's $60,000$)
+- **Top-Level Executive Instance:** `Employee = [(1, "Owner", 100000, null)] \implies \text{Empty Set}` (`managerId = NULL` naturally excluded by inner join)
+- **Equal Salary Instance:** `Employee = [(1, "Alice", 50000, 2), (2, "Bob", 50000, null)] \implies \text{Empty Set}` (Strict inequality $e.\text{salary} > m.\text{salary}$ excludes ties)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates SQL self-joins on hierarchical foreign keys (`e.managerId = m.id`), explains why `NULL` manager IDs are cleanly eliminated by inner joins without explicit `WHERE` guards, evaluates strict salary inequalities, and executes in $O(N)$ time with primary-key indexing.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employee`
+Given the `Employee` table:
+$$
+\begin{array}{|c|c|c|c|}
+\hline
+\textbf{id} & \textbf{name} & \textbf{salary} & \textbf{managerId} \\
+\hline
+1 & \text{Joe} & 70000 & 3 \\
+2 & \text{Henry} & 80000 & 4 \\
+3 & \text{Sam} & 60000 & \text{null} \\
+4 & \text{Max} & 90000 & \text{null} \\
+\hline
+\end{array}
+$$
+Find all employees who earn strictly more than their direct manager.
 
-The objective is to compute `{"columns": ["Employee"], "rows": []}` from `{"tables": {"Employee": [{"id": 1, "name": "Owner", "salary": 100, "managerId": null}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In this company:
+- Joe ($id = 1$, salary $70,000$) reports to Sam ($id = 3$, salary $60,000$).
+  Since $70,000 > 60,000$, Joe earns more than his manager.
+- Henry ($id = 2$, salary $80,000$) reports to Max ($id = 4$, salary $90,000$).
+  Since $80,000 < 90,000$, Henry earns less.
+- Sam and Max have no managers (`managerId IS NULL`).
+Output must be a table with a single column `Employee` containing `"Joe"`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Relational Self-Join Paradigm
+Because both employee and manager records reside within the exact same table, the query joins `Employee` to itself under two distinct roles:
+- `e` (Employee perspective): the subordinate whose salary is evaluated.
+- `m` (Manager perspective): the supervisor whose salary acts as the benchmark.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```sql
+SELECT e.name AS Employee
+FROM Employee e
+JOIN Employee m 
+    ON e.managerId = m.id
+WHERE e.salary > m.salary;
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Inner Join Filtering Mechanics
+1. **Foreign Key Alignment:** `e.managerId = m.id` bridges the subordinate row to the manager's primary key row.
+2. **Null Safety:** For employees where `managerId IS NULL` (like the CEO or top executives), evaluating `NULL = m.id` yields `UNKNOWN`. Inner joins only retain tuples where the condition is `TRUE`, naturally filtering out employees without managers.
+3. **Strict Salary Inequality:** `WHERE e.salary > m.salary` rejects equal compensation or lower compensation.
+
+> **Invariant.** A row is emitted if and only if $e.\text{managerId} = m.\text{id}$ is valid, and $e.\text{salary} > m.\text{salary}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Give the employee table two roles
+We trace the join evaluation across all rows of `Employee`:
 
-Each row contains both an employee's data and the ID of another row representing
-that employee's manager. To compare their salaries, the query joins `Employee`
-to itself.
-
-Alias `e1` is the employee being evaluated. Alias `e2` is that employee's
-manager. The aliases are necessary because otherwise references such as
-`salary` and `id` would be ambiguous between the two uses of the same table.
-
-The join condition:
-
-`e1.managerId = e2.id`
-
-connects each employee row to the unique manager row named by its foreign-key
-value. `e2.id` is a primary key, so at most one manager row matches.
-
-No assumption is made that a manager's row appears before or after a
-subordinate's row. Relational matching uses identifier equality, so physical
-table order is irrelevant.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employee": [{"id": 1, "name": "Owner", "salary": 100, "managerId": null}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Subordinate Evaluation 1: Joe ($id = 1$)
+- Record: `(id: 1, name: "Joe", salary: 70000, managerId: 3)`.
+- Join lookup: Find row where $m.\text{id} == 3$.
+  - Found: Sam `(id: 3, name: "Sam", salary: 60000)`.
+- Compare salaries:
+  $$
+  e.\text{salary} > m.\text{salary} \iff 70000 > 60000 \implies \mathbf{True}
+  $$
+- Joe qualifies! Emit `"Joe"`.
 
 ---
 
-### Step 2: Why an inner join is appropriate
-
-Employees with no manager have `managerId = NULL`. SQL equality with null is
-not true, so those rows do not match `e2`.
-
-That exclusion is correct. A top-level employee without a manager cannot
-satisfy “earns more than their manager,” because there is no manager salary to
-compare.
-
-If a non-null `managerId` referred to no existing row, an inner join would
-exclude it for the same reason. The expected relational data normally maintains
-the reference, but the query remains semantically sensible.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Subordinate Evaluation 2: Henry ($id = 2$)
+- Record: `(id: 2, name: "Henry", salary: 80000, managerId: 4)`.
+- Join lookup: Find row where $m.\text{id} == 4$.
+  - Found: Max `(id: 4, name: "Max", salary: 90000)`.
+- Compare salaries:
+  $$
+  e.\text{salary} > m.\text{salary} \iff 80000 > 90000 \implies \mathbf{False}
+  $$
+- Henry does not qualify. Discarded.
 
 ---
 
-### Step 3: Apply the salary comparison after matching
+### Subordinate Evaluation 3: Sam ($id = 3$)
+- Record: `(id: 3, name: "Sam", salary: 60000, managerId: null)`.
+- Join lookup: `managerId` is `null`.
+- In SQL, `null = m.id` is `UNKNOWN`. No matching row in `m`.
+- Discarded by inner join.
 
-The `WHERE` clause keeps a joined employee-manager pair only when:
+---
 
-`e1.salary > e2.salary`.
+### Subordinate Evaluation 4: Max ($id = 4$)
+- Record: `(id: 4, name: "Max", salary: 90000, managerId: null)`.
+- `managerId` is `null`. Discarded by inner join.
 
-The operator is strictly greater. Equal salaries do not qualify, and a lower
-employee salary does not qualify.
+---
 
-Matching first is important conceptually. Comparing an employee with every
-other employee would create unrelated salary pairs; the ID join restricts the
-comparison to the one designated manager.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["Employee"], "rows": []}` |
+### Assembly
+- Qualifying records: `["Joe"]`.
+- Emitted output column: `Employee = "Joe"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employee": [{"id": 1, "name": "Owner", "salary": 100, "managerId": null}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["Employee"], "rows": []}` | Verified |
+```text
+Subordinate Table (e)                 Manager Table (m)
+1: Joe   (70k, mgr: 3)  <-- join -->  3: Sam (60k)  -> 70k > 60k: KEEP (Joe)
+2: Henry (80k, mgr: 4)  <-- join -->  4: Max (90k)  -> 80k > 90k: DROP
+3: Sam   (60k, mgr: null)             No manager    -> DROP
+4: Max   (90k, mgr: null)             No manager    -> DROP
+
+Result Table:
++----------+
+| Employee |
++----------+
+| Joe      |
++----------+
+```
+
+| Subordinate $e$ | Subordinate Salary | Manager ID | Manager $m$ | Manager Salary | $e.\text{salary} > m.\text{salary}$ | Join Action |
+|:---|:---:|:---:|:---|:---:|:---:|:---:|
+| **Joe (1)** | **70000** | **3** | **Sam (3)** | **60000** | **$70000 > 60000$ (True)** | **Emit `"Joe"`** |
+| Henry (2) | 80000 | 4 | Max (4) | 90000 | $80000 > 90000$ (False) | Rejected |
+| Sam (3) | 60000 | `null` | None | - | `null` join | Dropped |
+| Max (4) | 90000 | `null` | None | - | `null` join | Dropped |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The predicate `e.managerId = m.id` establishes the direct supervisor relationship. The condition `e.salary > m.salary` selects only employees whose earnings strictly exceed their supervisor's earnings.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since an inner join checks every subordinate against their manager, all employee-manager pairs in the company are evaluated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Correlated scalar subquery:** Fetch the manager salary for each employee and compare it; clear but may repeat lookup work.
-- **Left join:** A later manager-salary predicate removes null matches, making it effectively inner; direct inner join better states intent.
-- **Cartesian product plus `WHERE`:** Logically equivalent when both join and salary predicates are present, but explicit join syntax is clearer.
-- **No manager:** The employee is excluded.
-- **Equal salary:** Strict `>` correctly excludes it.
-- **Several employees with one manager:** Each qualifying employee produces its own row.
-- **Duplicate employee names:** They can legitimately appear multiple times because IDs identify employees.
-- **Broken manager reference:** Inner join produces no output for that row.
-- **Null salary:** The comparison is unknown and does not qualify.
-- **Any order:** No sorting clause is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Cartesian Product (`FROM Employee e, Employee m`):** Without the join condition `e.managerId = m.id`, an employee would be compared against *every* person in the company rather than their actual manager.
+- **Equal Salary ($e.\text{salary} == m.\text{salary}$):** The requirement is strictly *more than*, not *greater than or equal to*. Using `>=` erroneously includes tied salaries.
+- **Handling `NULL` Manager IDs:** Using `LEFT JOIN` without filtering would require explicit `WHERE m.salary IS NOT NULL`. An `INNER JOIN` handles `NULL` manager IDs automatically.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of employees. With the primary-key index on `e2.id`, an
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of employees. With a primary key index on `Employee.id`, looking up the manager row for each employee takes $O(1)$ time in an index nested-loop join.
+- **Auxiliary Space Complexity:** $O(N)$ working memory for join hash tables and result output.

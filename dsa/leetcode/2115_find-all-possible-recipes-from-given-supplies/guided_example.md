@@ -1,129 +1,159 @@
 # Guided Example: Find All Possible Recipes from Given Supplies
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal topological dependency resolution on a representative problem instance:
 
-- **Input:** `{"recipes": ["bread"], "ingredients": [["yeast", "flour"]], "supplies": ["yeast"]}`
-- **Required output:** `[]`
+- **Recipes:** `["bread", "sandwich", "burger"]`
+- **Ingredients:** `[["yeast", "flour"], ["bread", "meat"], ["sandwich", "cheese", "lettuce"]]`
+- **Initial Supplies:** `["yeast", "flour", "meat"]`
+- **Expected Output:** `["bread", "sandwich"]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You have information about `n` different recipes. You are given a string array `recipes` and a 2D string array `ingredients`. The $i^{\text{th}}$ recipe has the name $\text{recipes}[i]$, and you can **create** it if you have **all** the needed ingredients from $\text{ingredients}[i]$. A recipe can also be an ingredient for **other **recipes, i.e., $\text{ingredients}[i]$ may contain a string that is in `recipes`.
-
-The objective is to compute `[]` from `{"recipes": ["bread"], "ingredients": [["yeast", "flour"]], "supplies": ["yeast"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance highlights multi-tiered recipe dependencies, the propagation of newly unlocked items into subsequent recipes, and the pruning of recipes with unsatisfied prerequisite chains.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a catalog of recipes, where each recipe requires a specified list of ingredients. An ingredient can be an initial supply item or another recipe. We possess an initial inventory of supply items. A recipe can be crafted if and only if all of its constituent ingredients are either initially present in our supplies or have already been crafted.
 
-| State Parameter | Role & Purpose | Initial State |
+In our representative instance:
+- `bread` requires `yeast` and `flour`.
+- `sandwich` requires `bread` and `meat`.
+- `burger` requires `sandwich`, `cheese`, and `lettuce`.
+- Initial supplies contain `yeast`, `flour`, and `meat`.
+
+Notice the chain: `bread` unlocks through base supplies, which subsequently enables `sandwich` in conjunction with `meat`. However, `burger` remains incomplete because neither `cheese` nor `lettuce` is present in the supply inventory or manufacturable from other recipes.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Dependency Directed Acyclic Graph (DAG) Formulation
+The system forms a directed bipartite dependency network between items (supplies and recipes) and recipes:
+- Let $V_S$ be the set of basic supplies, and $V_R$ be the set of recipes.
+- For each recipe $r \in V_R$ and required ingredient $u \in \text{ingredients}(r)$, there exists a directed dependency edge $u \to r$.
+- The in-degree of a recipe $r$, denoted $\text{in\_degree}(r)$, is initially set to the total number of required ingredients: $|\text{ingredients}(r)|$.
+
+### Topological Wavefront Propagation (Kahn's Algorithm)
+A recipe $r$ becomes craftable if and only if all its incoming dependencies are resolved, which corresponds to:
+
+$$\text{in\_degree}(r) = 0$$
+
+1. **Frontier Initialization:** We populate a processing queue with all items in the initial inventory $V_S$.
+2. **Signal Propagation:** When an available item $u$ is dequeued, we traverse all outward edges $u \to r$.
+3. **Degree Reduction:** For each dependent recipe $r$, we decrement its remaining dependency counter:
+
+$$\text{in\_degree}(r) \leftarrow \text{in\_degree}(r) - 1$$
+
+4. **Frontier Expansion:** If $\text{in\_degree}(r)$ reaches $0$, all prerequisite requirements have been fulfilled. The recipe $r$ is marked as crafted, recorded in the result collection, and added to the processing queue to potentially satisfy downstream recipes.
+
+| Entity | Role in Graph | Initial Configuration |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reverse each dependency so availability can propagate
-
-A recipe becomes possible when all its ingredient names are available. The source builds a reverse graph:
-
-`g[ingredient]` contains every recipe that depends on that ingredient.
-
-`indeg[recipe]` stores how many required ingredients have not yet been processed as available. It starts as the full length of that recipe's ingredient list.
-
-This resembles topological sorting. Ingredient and supply names are vertices, while each requirement is a directed edge from ingredient to recipe.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"recipes": ["bread"], "ingredients": [["yeast", "flour"]], "supplies": ["yeast"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `yeast` | Source node (Basic supply) | Available at step 0 |
+| `flour` | Source node (Basic supply) | Available at step 0 |
+| `meat` | Source node (Basic supply) | Available at step 0 |
+| `bread` | Intermediate recipe node | In-degree = 2 (`yeast`, `flour`) |
+| `sandwich` | Higher-order recipe node | In-degree = 2 (`bread`, `meat`) |
+| `burger` | Leaf-level recipe node | In-degree = 3 (`sandwich`, `cheese`, `lettuce`) |
 
 ---
 
-### Step 2: Begin with initially available supplies
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The processing list `q` begins with all names in `supplies`. Every one is infinitely available, so it can satisfy one requirement of every dependent recipe.
+### Graph Construction & Initial In-Degrees
+- Outgoing adjacency mapping:
+  - `yeast` $\to$ `[bread]`
+  - `flour` $\to$ `[bread]`
+  - `meat` $\to$ `[sandwich]`
+  - `bread` $\to$ `[sandwich]`
+  - `sandwich` $\to$ `[burger]`
+  - `cheese` $\to$ `[burger]`
+  - `lettuce` $\to$ `[burger]`
+- In-degree table:
+  - `bread`: $2$
+  - `sandwich`: $2$
+  - `burger`: $3$
+- Queue initialized with supplies: `["yeast", "flour", "meat"]`
+- Crafted result list: `[]`
 
-For an available name `i`, the code visits every recipe `j` in `g[i]` and decrements `indeg[j]`.
+### Step 1: Processing `yeast`
+- Dequeue item: `yeast`
+- Successors: `bread`
+- Update: $\text{in\_degree}(\text{bread}) = 2 - 1 = 1 \ne 0$.
+- Queue state: `["flour", "meat"]`
+- Crafted list: `[]`
 
-When the counter reaches zero, all of that recipe's required ingredients have become available. The recipe is appended to `ans` and also appended to `q`, because a producible recipe may serve as an ingredient for other recipes.
+### Step 2: Processing `flour`
+- Dequeue item: `flour`
+- Successors: `bread`
+- Update: $\text{in\_degree}(\text{bread}) = 1 - 1 = 0$.
+- In-degree reaches zero: `bread` is successfully crafted.
+- Append `bread` to crafted list: `["bread"]`.
+- Enqueue `bread` into processing queue: `["meat", "bread"]`.
 
-Python's list iterator continues over items appended during iteration. Thus
+### Step 3: Processing `meat`
+- Dequeue item: `meat`
+- Successors: `sandwich`
+- Update: $\text{in\_degree}(\text{sandwich}) = 2 - 1 = 1 \ne 0$.
+- Queue state: `["bread"]`
+- Crafted list: `["bread"]`
 
-`for i in q`
+### Step 4: Processing `bread`
+- Dequeue item: `bread`
+- Successors: `sandwich`
+- Update: $\text{in\_degree}(\text{sandwich}) = 1 - 1 = 0$.
+- In-degree reaches zero: `sandwich` is successfully crafted.
+- Append `sandwich` to crafted list: `["bread", "sandwich"]`.
+- Enqueue `sandwich` into processing queue: `["sandwich"]`.
 
-acts as a growing queue and propagates newly made recipes without an explicit deque.
+### Step 5: Processing `sandwich`
+- Dequeue item: `sandwich`
+- Successors: `burger`
+- Update: $\text{in\_degree}(\text{burger}) = 3 - 1 = 2 \ne 0$.
+- In-degree of `burger` is $2 > 0$ (still waiting on `cheese` and `lettuce`).
+- Queue state: `[]` (empty).
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why each requirement is decremented exactly once
-
-Every ingredient list contains no duplicates. Each available name is processed once under the valid uniqueness structure: initial supply names are unique, recipe names are unique, and the two sets are disjoint.
-
-Therefore, each dependency edge is traversed once when its ingredient becomes available. A recipe reaches zero exactly after all distinct requirements have been satisfied.
-
-A missing ingredient that is neither an initial supply nor a producible recipe is never placed in `q`. Its dependency edge is never processed, so the recipe's counter stays positive.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"recipes": ["bread"], "ingredients": [["yeast", "flour"]], "supplies": ["yeast"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Repeatedly scan all recipes:** Marking newly possible recipes until no change works but can revisit every ingredient many times. Reverse edges process each requirement once.
-- **DFS with states:** Recursive availability checks can detect cycles and memoize results, but topological propagation is iterative and direct.
-- **Treat recipe names as initially available:** Incorrect; a recipe becomes available only after all its ingredients are satisfied.
-- **Missing ingredient:** Its dependent counter never reaches zero.
-- **Pure dependency cycle:** No initial available name enters the cycle, so no recipe is returned.
-- **Recipe with all direct supplies:** Its counter reaches zero as those supplies are processed.
-- **Recipe used by several others:** Its name is processed once and satisfies one edge for every dependent recipe.
-- **No duplicate ingredients:** Ensures one available name should decrement a recipe only once.
-- **Any answer order:** Discovery order is valid.
-- **Growing-list iteration:** Python processes appended recipes later in the same `for` loop.
-- **Supplies mutation:** `q = supplies` means produced recipe names are appended to the input list.
-- **Input-preserving variant:** Copy supplies before using it as a queue.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Queue Exhaustion and Termination
+The queue is now empty. No further items can be unlocked.
+Final crafted list: `["bread", "sandwich"]`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(V + E)$. Let $V$ be the number of distinct names represented in the dependency structure and initial supplies, and let
-- **Auxiliary Space Complexity:** $O(V + E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The state of all recipes across the successive queue processing rounds is summarized below.
+
+| Step | Item Dequeued | Dependent Recipes Visited | Updated In-Degrees | Newly Unlocked Recipe | Queue at End of Step |
+|---|---|---|---|---|---|
+| Initialization | None | None | `bread`: 2, `sandwich`: 2, `burger`: 3 | None | `["yeast", "flour", "meat"]` |
+| 1 | `yeast` | `bread` | `bread`: 1 | None | `["flour", "meat"]` |
+| 2 | `flour` | `bread` | `bread`: 0 | `bread` | `["meat", "bread"]` |
+| 3 | `meat` | `sandwich` | `sandwich`: 1 | None | `["bread"]` |
+| 4 | `bread` | `sandwich` | `sandwich`: 0 | `sandwich` | `["sandwich"]` |
+| 5 | `sandwich` | `burger` | `burger`: 2 | None | `[]` |
+
+Output produced: `["bread", "sandwich"]`.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+**Soundness.** A recipe is added to the output list if and only if its in-degree reaches $0$. Since the initial in-degree corresponds exactly to the count of unique required ingredients and every decrement corresponds to a validated item being produced or supplied, a recipe reaching in-degree $0$ is guaranteed to have all prerequisites satisfied.
+
+**Completeness.** Topological sort processes every reachable dependency path. If a recipe can be produced, there must exist a topological ordering of its constituent dependencies originating from the initial supplies. Because BFS traverses along all valid dependency edges without omissions, every craftable recipe is guaranteed to be reached. Any recipe trapped in a circular dependency (e.g., $A$ requires $B$ and $B$ requires $A$) or missing an external supply will maintain an in-degree strictly greater than $0$ and will correctly remain unproduced.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+- **Direct Supplies Only:** When every recipe's ingredients are present in `supplies`, each recipe unlocks in the first wave of supply dequeues.
+- **Missing Raw Ingredients:** If an ingredient is neither provided in `supplies` nor produced by any recipe, its dependent recipes will never reach an in-degree of zero.
+- **Circular Dependencies:** If recipe $X$ requires recipe $Y$, and recipe $Y$ requires recipe $X$, neither recipe can ever have its in-degree reduced to zero from the initial supplies. Topological sorting naturally handles and ignores cycles without infinite recursion.
+- **Disjoint Subgraphs:** Unrelated recipes that do not share ingredients are processed independently without interference.
+- **Anti-Pattern — Naive Iterative Scanning:** Repeatedly iterating through all recipes until no new recipe can be made takes $\mathcal{O}(N \cdot \sum |\text{ingredients}|)$ in the worst case. The topological approach processes each dependency edge exactly once, yielding optimal linear-time performance.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(V + E)$, where $V$ is the total number of distinct strings (supplies and recipes) and $E$ is the total number of ingredient requirements across all recipes ($\sum |\text{ingredients}[i]|$). Graph construction scans each ingredient edge once, and the BFS traversal decrements each edge at most once.
+- **Auxiliary Space Complexity:** $\mathcal{O}(V + E)$ to store the adjacency list mapping each ingredient to its dependent recipes, the in-degree hash table for recipe requirements, and the BFS queue.

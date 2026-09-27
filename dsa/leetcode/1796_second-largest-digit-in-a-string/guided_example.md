@@ -1,133 +1,152 @@
 # Guided Example: Second Largest Digit in a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction and online rank tracking of numerical digits on a representative problem instance:
 
-- **Input:** `{"s": "dfa12321afd"}`
-- **Required output:** `2`
+- **Input:** `s = "dfa12321afd"`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features non-digit alphabetic characters, duplicate digits ($1$ and $2$ appear multiple times), and out-of-order numerical occurrences, demonstrating how tracking two rank variables in a single pass identifies the second strictly largest distinct digit.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an alphanumeric string `s`, return *the **second largest** numerical digit that appears in *`s`*, or *`-1`* if it does not exist*.
+Given an alphanumeric string `s`, we must find the **second largest distinct digit** that appears in `s`. If no such second largest digit exists (for instance, if the string contains only letters or only one distinct digit), we must return `-1`.
 
-The objective is to compute `2` from `{"s": "dfa12321afd"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might extract all digits, insert them into a hash set to eliminate duplicates, sort the unique set, and return the penultimate element. While correct, sorting introduces unnecessary overhead. The optimal approach maintains the largest and second largest distinct values dynamically in a single pass using $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual Extremum Invariant
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We maintain two integer variables:
+- $a$: The largest distinct digit observed so far, initialized to $-1$.
+- $b$: The second largest distinct digit observed so far, initialized to $-1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+At every stage of the traversal over characters in $s$, the invariant requires:
+$$-1 \le b < a \le 9 \quad \text{(with equality only when both are } -1\text{)}$$
+
+When a character $c$ is a decimal digit with numerical value $v \in [0, 9]$:
+1. **New Global Maximum ($v > a$):**
+   The previous global maximum $a$ is demoted to become the second largest distinct digit $b$, and $v$ becomes the new maximum:
+   $$(a, b) \longleftarrow (v, a)$$
+2. **Intermediate Second Maximum ($b < v < a$):**
+   The value $v$ is strictly less than the maximum $a$, but strictly greater than the current second maximum $b$. Thus, $b$ is updated to $v$:
+   $$b \longleftarrow v$$
+3. **Redundant or Sub-threshold Value ($v == a$ or $v \le b$):**
+   If $v == a$, it duplicates the current maximum and cannot be the second distinct largest. If $v \le b$, it cannot improve or replace the second maximum. In both cases, the state remains unchanged.
+
+> **Extremal Separation Theorem.**
+> Let $D = \{ v_1, v_2, \dots, v_k \}$ be the set of distinct digit values appearing in $s$.
+> Updating $(a, b)$ under the three disjoint partitions ($v > a$, $b < v < a$, and elsewhere) guarantees that after processing the entire string:
+> - $a = \max(D)$ if $D \ne \emptyset$, else $-1$.
+> - $b = \max(D \setminus \{a\})$ if $|D| \ge 2$, else $-1$.
+
+```mermaid
+flowchart TD
+    accTitle: Two-Variable Extremum Tracker
+    accDescr: Finite state decision flow testing whether incoming digit exceeds maximum a or falls between a and b.
+    A["Read character c from s"] --> B{"Is c a digit?"}
+    B -- "No" --> A
+    B -- "Yes, value v" --> C{"v > a?"}
+    C -- "Yes" --> D["Demote old max: b = a; Set new max: a = v"]
+    C -- "No" --> E{"b < v < a?"}
+    E -- "Yes" --> F["Update second max: b = v"]
+    E -- "No (v == a or v <= b)" --> G["Ignore duplicate/sub-threshold"]
+    D --> H{"More characters?"}
+    F --> H
+    G --> H
+    H -- "Yes" --> A
+    H -- "No" --> I["Return b"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Track the two largest distinct digits while scanning
+We trace `s = "dfa12321afd"`.
 
-The answer depends on distinct numerical digits, not on how many times each digit appears. The protected solution keeps two variables:
-
-- `a` is the largest distinct digit seen so far;
-- `b` is the second-largest distinct digit seen so far.
-
-Both start at -1. Every valid digit is between 0 and 9, so -1 is smaller than any possible digit and also serves as the required return value when a second distinct digit never appears.
-
-The loop reads every character `c` in `s`. Letters are ignored. When `c.isdigit()` is true, `int(c)` converts the one-character digit to its numerical value `v`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "dfa12321afd"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Trace Setup
+- Initial state: $a = -1$, $b = -1$.
 
 ---
 
-### Step 2: Update when a new largest digit appears
+### Step-by-Step Character Inspection
 
-If `v > a`, the new value becomes the largest. The old largest does not disappear; it becomes the best candidate for second largest. The simultaneous assignment
-
-`a, b = v, a`
-
-stores the new largest in `a` and the previous value of `a` in `b`.
-
-For example, if the tracked digits are `a = 5` and `b = 3` and the scan finds 8, the state becomes `a = 8` and `b = 5`. Value 3 is no longer among the top two.
-
-Simultaneous assignment matters conceptually: Python evaluates the right-hand values before changing either variable, so `b` receives the old `a` rather than the new `v`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Update when a value belongs strictly between them
-
-If `v` is not greater than `a`, it cannot replace the largest. It replaces the second largest only when
-
-`b < v < a`.
-
-Both inequalities are strict. The upper inequality excludes another copy of the largest, because the second-largest digit must be distinct. The lower inequality excludes values that cannot improve `b`, including another copy of the current second largest.
-
-If neither update applies, the digit is a duplicate of an existing maximum or is too small to affect the top two.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+1. **Index $0$, $c = \text{'d'}$:** Non-digit character. Ignored.
+2. **Index $1$, $c = \text{'f'}$:** Non-digit character. Ignored.
+3. **Index $2$, $c = \text{'a'}$:** Non-digit character. Ignored.
+4. **Index $3$, $c = \text{'1'}$:** Digit value $v = 1$.
+   - Test $v > a$: $1 > -1$ holds.
+   - Demote: $b = a = -1$.
+   - Promote: $a = v = 1$.
+   - State: $a = 1, b = -1$.
+5. **Index $4$, $c = \text{'2'}$:** Digit value $v = 2$.
+   - Test $v > a$: $2 > 1$ holds.
+   - Demote: $b = a = 1$.
+   - Promote: $a = v = 2$.
+   - State: $a = 2, b = 1$.
+6. **Index $5$, $c = \text{'3'}$:** Digit value $v = 3$.
+   - Test $v > a$: $3 > 2$ holds.
+   - Demote: $b = a = 2$.
+   - Promote: $a = v = 3$.
+   - State: $a = 3, b = 2$.
+7. **Index $6$, $c = \text{'2'}$:** Digit value $v = 2$.
+   - Test $v > a$: $2 > 3$ False.
+   - Test $b < v < a$: $2 < 2 < 3$ False (since $v = b = 2$).
+   - Duplicate of current second maximum. Ignored.
+   - State: $a = 3, b = 2$.
+8. **Index $7$, $c = \text{'1'}$:** Digit value $v = 1$.
+   - Test $v > a$: $1 > 3$ False.
+   - Test $b < v < a$: $2 < 1 < 3$ False (since $1 \le b = 2$).
+   - Sub-threshold value. Ignored.
+   - State: $a = 3, b = 2$.
+9. **Index $8$, $c = \text{'a'}$:** Non-digit. Ignored.
+10. **Index $9$, $c = \text{'f'}$:** Non-digit. Ignored.
+11. **Index $10$, $c = \text{'d'}$:** Non-digit. Ignored.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "dfa12321afd"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Index | Character $c$ | Digit Value $v$ | Condition Triggered | Action Taken | Largest $a$ | Second Largest $b$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `'d'` | — | Non-digit | Skip | $-1$ | $-1$ |
+| $1$ | `'f'` | — | Non-digit | Skip | $-1$ | $-1$ |
+| $2$ | `'a'` | — | Non-digit | Skip | $-1$ | $-1$ |
+| $3$ | `'1'` | $1$ | $v > a$ ($1 > -1$) | $b \leftarrow -1, a \leftarrow 1$ | $1$ | $-1$ |
+| $4$ | `'2'` | $2$ | $v > a$ ($2 > 1$) | $b \leftarrow 1, a \leftarrow 2$ | $2$ | $1$ |
+| $5$ | `'3'` | $3$ | $v > a$ ($3 > 2$) | $b \leftarrow 2, a \leftarrow 3$ | $3$ | $2$ |
+| $6$ | `'2'` | $2$ | $v = b$ | Ignore duplicate | $3$ | $2$ |
+| $7$ | `'1'` | $1$ | $v < b$ | Ignore sub-threshold | $3$ | $2$ |
+| $8$ | `'a'` | — | Non-digit | Skip | $3$ | $2$ |
+| $9$ | `'f'` | — | Non-digit | Skip | $3$ | $2$ |
+| $10$ | `'d'` | — | Non-digit | Skip | $3$ | $2$ |
+
+At string termination, the second largest distinct digit is $b = \mathbf{2}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Variable $a$ stores strictly the maximum distinct digit encountered so far. Whenever a strictly greater value arrives, $a$ cannot be equal to $v$, and the previous $a$ represents the largest distinct digit smaller than $v$, correctly becoming the candidate for $b$. If an arriving value is strictly between $b$ and $a$, it is distinct from both and larger than $b$, thus replacing $b$. Equal values ($v == a$ or $v == b$) trigger no change, preserving strict distinctness.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ is examined. Because distinctness is preserved and updates strictly maintain the top two highest distinct values, no larger distinct candidate can be missed. If fewer than two distinct digits exist in the entire string, $b$ remains at its initial sentinel $-1$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Boolean array of ten digits:** Mark each encountered digit and scan from 9 downward afterward. This is also $O(n)$ time and $O(1)$ space, but uses more explicit state.
-- **Set plus sorting:** Collecting distinct digits and sorting them works, yet it obscures the one-pass top-two invariant.
-- **Sort all digit occurrences:** Duplicates must then be skipped, and copying plus sorting is unnecessary.
-- **Convert every character directly:** Calling `int` on a letter would fail, so classification must occur first.
-- **No digits:** Both variables remain -1, and returning -1 correctly reports no second largest digit.
-- **Exactly one distinct digit:** The largest is tracked in `a` while `b` remains -1.
-- **Repeated largest digit:** Strict comparison prevents it from being mistaken for the second-largest distinct digit.
-- **Repeated second-largest digit:** It leaves `b` unchanged and is counted only as the same value.
-- **Digit zero:** Zero is greater than the -1 sentinel and is handled normally.
-- **Digits zero and one only:** The final state becomes `a = 1` and `b = 0`, so zero can be a valid answer.
-- **Descending encounter order:** A smaller digit can fill `b` without changing `a`.
-- **Ascending encounter order:** Every new maximum shifts the old maximum into `b`.
-- **Letters between digits:** They have no effect on the invariant.
-- **ASCII input guarantee:** It makes `isdigit` followed by `int` safe for every valid digit character.
-- **Input preservation:** The solution reads the string without constructing a modified copy.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Maximum Values:** If the string is `"abc111"`, the digit $1$ appears three times. The second occurrence has $v == a = 1$, which must not update $b$. Otherwise, $b$ would erroneously become $1$, reporting a duplicate rather than a distinct second largest.
+- **No Digits Present:** If $s$ contains only letters (e.g. `"abc"`), both $a$ and $b$ remain $-1$, returning $-1$ correctly.
+- **Only One Distinct Digit:** If $s = "a1b1"$, $a = 1$ but $b = -1$. The algorithm returns $-1$, adhering to the requirement for a distinct second largest.
+- **Digit Filtering:** Relying on character conversions without verifying whether a character is a digit can produce unexpected behavior; checking `c.isdigit()` prevents non-numeric ASCII values from polluting numerical ranks.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. The loop examines every character once and performs constant work, giving $O(n)$ time. It may not stop early because a larger digit near the end can change both tracked positions.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of string `s`. The algorithm inspects each character once, performing $\mathcal{O}(1)$ comparison and assignment operations per character.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. The algorithm allocates only two integer scalar variables ($a$ and $b$), requiring constant auxiliary space.

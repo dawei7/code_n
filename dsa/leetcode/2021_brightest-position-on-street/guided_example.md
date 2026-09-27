@@ -1,125 +1,142 @@
 # Guided Example: Brightest Position on Street
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"lights": [[-3, 2], [1, 2], [3, 3]]}`
-- **Required output:** `-1`
+A straight road is modeled as an unbounded continuous one-dimensional integer coordinate line. We are provided a list of $N$ streetlamps, where each lamp entry is defined by a pair $\text{lights}[i] = [p_i, r_i]$. The value $p_i$ denotes the integer center position of the lamp along the street, and $r_i$ represents its non-negative illumination radius.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A lamp covers every integer point within its inclusive closed interval:
+$$[p_i - r_i, \; p_i + r_i]$$
 
----
+The illumination brightness at any integer position $x$ is defined as the total number of lamps whose illumination intervals cover $x$:
+$$\text{Brightness}(x) = \sum_{i=1}^N \mathbf{1}_{p_i - r_i \le x \le p_i + r_i}$$
 
-## 1. Instance & Teaching Goal
+Our objective is to locate the position $x^*$ that achieves the global maximum brightness:
+$$x^* = \arg\max_{x \in \mathbb{Z}} \text{Brightness}(x)$$
+If multiple integer positions achieve the identical maximum brightness value, we must return the **smallest** (leftmost) such coordinate.
 
-A perfectly straight street is represented by a number line. The street has street lamp(s) on it and is represented by a 2D integer array `lights`. Each $\text{lights}[i] = [\text{position}_{i}, \text{range}_{i}]$ indicates that there is a street lamp at position $\text{position}_{i}$ that lights up the area from $[\text{position}_{i} - \text{range}_{i}, \text{position}_{i} + \text{range}_{i}]$ (**inclusive**).
+### Sample Input Dataset
 
-The objective is to compute `-1` from `{"lights": [[-3, 2], [1, 2], [3, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+Consider the three-lamp configuration:
+$$\text{lights} = [[-3, 2], [1, 2], [3, 3]]$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also examine the two-point overlap:
+$$\text{lights}_{\text{touch}} = [[1, 0], [0, 1]]$$
+and the single isolated lamp:
+$$\text{lights}_{\text{single}} = [[1, 2]]$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Convert each inclusive interval into two events
+The coordinate space spans from $-10^8$ to $10^8$. Scanning every integer point individually is computationally impossible ($2 \times 10^8$ operations). However, the brightness function is piecewise-constant: it only changes at discrete entry and exit boundary points.
 
-A lamp at position `i` with range `j` covers integer positions from
+Every lamp with coverage $[L_i, R_i] = [p_i - r_i, p_i + r_i]$ creates two discrete differential impulse events:
+- **Coverage Begins at $L_i$**: The brightness increases by $+1$ starting at $x = L_i$.
+- **Coverage Ends After $R_i$**: Because the interval is inclusive of $R_i$, the brightness drops by $-1$ starting at $x = R_i + 1$.
 
-`l = i - j`
+By mapping all discrete change points into an event accumulator and scanning through the coordinates in ascending numerical order, we can maintain a running brightness sum.
 
-through
+```mermaid
+flowchart TD
+    accTitle: Difference Array Sweep-Line Architecture
+    accDescr: Diagram illustrating the conversion of lamp ranges into discrete deltas and ascending coordinate scan.
+    A["Lamps lights[i] = [p_i, r_i]"] --> B["Compute Interval: L_i = p_i - r_i, R_i = p_i + r_i"]
+    B --> C["Record Events: delta[L_i] += 1, delta[R_i + 1] -= 1"]
+    C --> D["Sort Unique Event Coordinates in Ascending Order"]
+    D --> E["Initialize running_sum = 0, max_brightness = 0, best_pos = 0"]
+    E --> F["Advance to next coordinate k, running_sum += delta[k]"]
+    F --> G{"Is running_sum > max_brightness?"}
+    G -- "Yes" --> H["Update max_brightness = running_sum, best_pos = k"]
+    G -- "No (<=)" --> I["Retain prior best_pos (Preserves Leftmost Anchor)"]
+    H --> J{"More coordinates?"}
+    I --> J
+    J -- "Yes" --> F
+    J -- "No" --> K["Return best_pos"]
+```
 
-`r = i + j`,
-
-both inclusive.
-
-The difference map adds one at `l` and subtracts one at `r + 1`. The extra one is what preserves coverage at `r`: the lamp stops contributing only at the next integer position.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"lights": [[-3, 2], [1, 2], [3, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Sweep coordinates in increasing order
-
-`s` is the brightness after applying all events at the current coordinate. Starting from zero, the loop visits sorted event keys and executes `s += d[k]`.
-
-Between this event coordinate and the next one, brightness remains constant because no lamp begins or ends.
-
-Only event coordinates need inspection. A new maximum brightness can first appear exactly where positive events are applied, not in the middle of an unchanged region.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Because the coordinates are processed in strictly increasing order, applying a strict inequality check ($\text{running\_sum} > \text{max\_brightness}$) ensures that the first (smallest) coordinate reaching the peak value is selected and never overwritten by subsequent equal peaks.
 
 ---
 
-### Step 3: Preserve the smallest position on ties
+## 3. Step-by-Step State Progression Table
 
-`mx` stores the greatest brightness seen. The source updates `ans=k` only when `mx < s`, a strict improvement.
+Let us trace $\text{lights} = [[-3, 2], [1, 2], [3, 3]]$.
 
-Because event coordinates are processed from smallest to largest, the first coordinate attaining the global maximum is the smallest brightest position. Later equal values do not overwrite it.
+First, convert each lamp into entry and exit events:
+- Lamp $0$: Center $-3$, Range $2 \implies [-5, -1]$. Entry at $-5$ ($+1$), Exit at $0$ ($-1$).
+- Lamp $1$: Center $1$, Range $2 \implies [-1, 3]$. Entry at $-1$ ($+1$), Exit at $4$ ($-1$).
+- Lamp $2$: Center $3$, Range $3 \implies [0, 6]$. Entry at $0$ ($+1$), Exit at $7$ ($-1$).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `-1` |
+We aggregate all discrete deltas at identical coordinates:
+- At coordinate $-5$: $\Delta = +1$
+- At coordinate $-1$: $\Delta = +1$
+- At coordinate $0$: $\Delta = -1 + 1 = 0$
+- At coordinate $4$: $\Delta = -1$
+- At coordinate $7$: $\Delta = -1$
 
----
+The sorted unique coordinates are $[-5, -1, 0, 4, 7]$.
 
-## 4. Complete Execution Trace
+| Step | Coordinate $k$ | Net Event Delta $\Delta[k]$ | Running Brightness $S \leftarrow S + \Delta[k]$ | Prior Peak $M$ | Condition $S > M$? | Updated Peak $M$ | Optimal Coordinate $x^*$ | State Transition Rationale |
+|---|---|---|---|---|---|---|---|---|
+| $1$ | $-5$ | $+1$ | $0 + 1 = 1$ | $0$ | **Yes ($1 > 0$)** | $1$ | $-5$ | Lamp 0 begins coverage |
+| $2$ | $-1$ | $+1$ | $1 + 1 = 2$ | $1$ | **Yes ($2 > 1$)** | $2$ | $-1$ | Lamp 1 begins coverage; reaches new peak $2$ |
+| $3$ | $0$ | $0$ | $2 + 0 = 2$ | $2$ | No ($2 \not> 2$) | $2$ | $-1$ | Lamp 0 ends, Lamp 2 begins (net zero change); tie broken in favor of earlier $-1$ |
+| $4$ | $4$ | $-1$ | $2 - 1 = 1$ | $2$ | No ($1 \not> 2$) | $2$ | $-1$ | Lamp 1 coverage terminates |
+| $5$ | $7$ | $-1$ | $1 - 1 = 0$ | $2$ | No ($0 \not> 2$) | $2$ | $-1$ | Lamp 2 coverage terminates |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"lights": [[-3, 2], [1, 2], [3, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `-1` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicitly visit every illuminated position:** Impossible when ranges span up to $10^8$; event compression avoids coordinate-range dependence.
-- **Separate sorted start and end arrays:** A two-list sweep is possible, but difference events are simpler.
-- **Use a heap of active intervals:** More machinery than needed when only counts and endpoints matter.
-- **Zero range:** Produces +1 at the lamp position and -1 at the next integer.
-- **Negative positions:** Sorted dictionary keys handle them naturally.
-- **Several lamps start together:** Their positive changes accumulate.
-- **One lamp ends where another starts:** Net event gives correct brightness and tie logic keeps the earliest maximum.
-- **Long constant maximum interval:** Its left endpoint is recorded.
-- **Several separated maximum regions:** Strict update keeps the first/smallest.
-- **Inclusive right endpoint:** Requires subtraction at `r+1`, not `r`.
-- **At least one lamp:** Ensures the zero answer initialization is replaced.
-- **Input preservation:** The source builds a separate event map.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The global maximum brightness is $2$, achieved over the entire span $[-1, 3]$. The smallest integer coordinate in this maximal range is $-1$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Time Complexity:** $O(N\log N)$. Let $N$ be number of lamps and $E\le2N$ distinct event coordinates. Building the map takes expected $O(N)$ time. Sorting keys costs $O(E\log E)=O(N\log N)$, and sweeping costs $O(E)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The sweep line exhibits three critical transition dynamics:
+
+1. **Inclusive Endpoint Handling**: Because coverage $[L_i, R_i]$ includes $R_i$, the brightness at position $R_i$ is still supported by lamp $i$. The downward step occurs strictly at $R_i + 1$. Placing the decrement at $R_i$ would prematurely drop the brightness at the right boundary.
+2. **Cancellation of Simultaneous Events**: When one lamp ends at $R_A$ and another begins at $L_B = R_A + 1$, the coordinate $R_A + 1$ sees both a $-1$ and a $+1$, producing a net delta of $0$. The running brightness maintains continuity without spurious dips.
+3. **Strict Inequality for Leftmost Tie-Breaking**: When multiple contiguous coordinates share the same maximal brightness (e.g., coordinates $-1, 0, 1, 2, 3$ all have brightness $2$), checking $S > M$ strictly prevents updating $x^*$. Thus, $x^*$ remains fixed at $-1$.
+
+| Scenario | Lamps Config | Event Deltas Generated | Sorted Event Trace | Peak Value | Output Position | Structural Takeaway |
+|---|---|---|---|---|---|---|
+| Point Overlap | $[[1, 0], [0, 1]]$ | Lamp 0: $[1, 1] \implies 1 (+1), 2 (-1)$<br>Lamp 1: $[-1, 1] \implies -1 (+1), 2 (-1)$ | $-1 \to 1$<br>$1 \to 2$<br>$2 \to 0$ | $2$ | $1$ | Range 0 lamp produces a single-point peak at $x = 1$ |
+| Flat Plateau | $[[1, 2]]$ | Lamp 0: $[-1, 3] \implies -1 (+1), 4 (-1)$ | $-1 \to 1$<br>$4 \to 0$ | $1$ | $-1$ | Single lamp covers $[-1, 3]$; leftmost point $-1$ selected |
+| Disjoint Lamps | $[[0, 1], [10, 1]]$ | Lamp 0: $[-1, 2]$<br>Lamp 1: $[9, 12]$ | $-1 \to 1, 3 \to 0$<br>$9 \to 1, 13 \to 0$ | $1$ | $-1$ | Both peaks have brightness 1; earlier peak at $-1$ selected |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Invariant: Exact Prefix Integration
+Let $\mathcal{X} = \{x_1, x_2, \dots, x_m\}$ be the sorted set of all unique transition coordinates in $\bigcup_i \{p_i - r_i, p_i + r_i + 1\}$.
+By definition, for any $x \in [x_k, x_{k+1} - 1]$, no lamp begins or terminates within this interval. Hence:
+$$\text{Brightness}(x) = \text{Brightness}(x_k) = \sum_{j=1}^k \Delta[x_j]$$
+The prefix sum of deltas up to coordinate $x_k$ computes the exact brightness throughout the entire interval $[x_k, x_{k+1}-1]$.
+
+### Completeness of Candidate Maximizers
+Because brightness is constant on $[x_k, x_{k+1}-1]$, the maximum brightness over all integers $\mathbb{Z}$ must be achieved at one of the discrete boundary coordinates $x_k \in \mathcal{X}$.
+Furthermore, within any plateau $[x_k, x_{k+1}-1]$, the smallest coordinate is $x_k$ itself.
+Therefore, restricting our candidate search exclusively to $\mathcal{X}$ and applying strict comparison $S > M$ guarantees identifying the minimal maximizer.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Zero Radius Lamps ($r_i = 0$)**: A lamp with range $0$ illuminates only its exact center: $[p_i, p_i]$. The delta events are correctly generated as $+1$ at $p_i$ and $-1$ at $p_i + 1$.
+2. **Negative Coordinates**: Coordinates can be deeply negative (down to $-10^8 - 10^8 = -2 \times 10^8$). The algorithm uses coordinate-based event keys, remaining entirely agnostic to whether coordinates are negative, zero, or positive.
+3. **Net Zero Delta Retention**: When events cancel to $\Delta = 0$ (such as at $x = 0$ in our walkthrough), the running sum does not change, and checking $S > M$ correctly ignores it.
+4. **Tie Breaking Direction**: Returning $\ge$ instead of $>$ would erroneously overwrite the optimal coordinate with the rightmost point of the maximal brightness plateau instead of the leftmost.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Event Extraction**: Transforming $N$ lamps into $2N$ boundary points takes $\mathcal{O}(N)$ operations.
+- **Coordinate Sorting**: There are at most $2N$ distinct coordinates. Sorting these coordinates takes $\mathcal{O}(N \log N)$ time.
+- **Linear Sweep**: Iterating through the sorted coordinates and maintaining the running sum takes $\mathcal{O}(N)$ time.
+- **Total Time Complexity**: $\mathcal{O}(N \log N)$, which easily scales to $N = 10^5$ well within standard execution budgets.
+
+### Space Complexity
+- **Event Map / Hash Storage**: Storing at most $2N$ coordinate-delta pairs requires $\mathcal{O}(N)$ auxiliary memory.
+- **Sorted Keys Buffer**: Storing the distinct coordinates for iteration takes $\mathcal{O}(N)$ space.
+- **Total Auxiliary Space**: $\mathcal{O}(N)$, scaling linearly with the number of input lamps.

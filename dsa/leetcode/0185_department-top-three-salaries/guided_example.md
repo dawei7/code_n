@@ -1,134 +1,195 @@
 # Guided Example: Department Top Three Salaries
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step SQL partitioned dense ranking and correlated greater-salary counting on representative multi-department compensation tables:
 
-- **Input:** `{"tables": {"Employee": [{"id": 1, "name": "Joe", "salary": 85000, "departmentId": 1}, {"id": 2, "name": "Jim", "salary": 90000, "departmentId": 1}, {"id": 3, "name": "Henry", "salary": 80000, "departmentId": 2}, {"id": 4, "name": "Sam", "salary": 60000, "departmentId": 2}, {"id": 5, "name": "Max", "salary": 90000, "departmentId": 1}, {"id": 6, "name": "Janet", "salary": 69000, "departmentId": 1}, {"id": 7, "name": "Randy", "salary": 85000, "departmentId": 1}], "Department": [{"id": 1, "name": "IT"}, {"id": 2, "name": "Sales"}]}}`
-- **Required output:** `{"columns": ["Department", "Employee", "Salary"], "rows": [["IT", "Jim", 90000], ["IT", "Max", 90000], ["IT", "Joe", 85000], ["IT", "Randy", 85000], ["IT", "Janet", 69000], ["Sales", "Henry", 80000], ["Sales", "Sam", 60000]]}`
+- **Input Tables:**
+  - `Employee`: `[(1, "Joe", 85000, 1), (2, "Jim", 90000, 1), (3, "Henry", 80000, 2), (4, "Sam", 60000, 2), (5, "Max", 90000, 1), (6, "Janet", 69000, 1), (7, "Randy", 85000, 1)]`
+  - `Department`: `[(1, "IT"), (2, "Sales")]`
+- **Required output:**
+  - `[["IT", "Jim", 90000], ["IT", "Max", 90000], ["IT", "Joe", 85000], ["IT", "Randy", 85000], ["IT", "Janet", 69000], ["Sales", "Henry", 80000], ["Sales", "Sam", 60000]]`
+- **Fewer Than Three Salaries Instance:** Department with only 1 or 2 employees $\implies$ All employees in that department qualify.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates SQL partitioned window ranking (`DENSE_RANK() OVER (PARTITION BY ...)`), explains why ties require dense rather than sparse ranking to avoid skipping tiers, establishes the correlated subquery equivalence ($\text{count of strictly greater distinct salaries} < 3$), and operates in $O(E \log E)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employee`
+Given `Employee` and `Department` tables:
+$$
+\begin{array}{|c|c|c|c|}
+\hline
+\textbf{id} & \textbf{name} & \textbf{salary} & \textbf{departmentId} \\
+\hline
+1 & \text{Joe} & 85000 & 1 \\
+2 & \text{Jim} & 90000 & 1 \\
+3 & \text{Henry} & 80000 & 2 \\
+4 & \text{Sam} & 60000 & 2 \\
+5 & \text{Max} & 90000 & 1 \\
+6 & \text{Janet} & 69000 & 1 \\
+7 & \text{Randy} & 85000 & 1 \\
+\hline
+\end{array}
+\qquad
+\begin{array}{|c|c|}
+\hline
+\textbf{id} & \textbf{name} \\
+\hline
+1 & \text{IT} \\
+2 & \text{Sales} \\
+\hline
+\end{array}
+$$
+Find all employees who earn in the **top three unique salaries** for their respective department.
 
-The objective is to compute `{"columns": ["Department", "Employee", "Salary"], "rows": [["IT", "Jim", 90000], ["IT", "Max", 90000], ["IT", "Joe", 85000], ["IT", "Randy", 85000], ["IT", "Janet", 69000], ["Sales", "Henry", 80000], ["Sales", "Sam", 60000]]}` from `{"tables": {"Employee": [{"id": 1, "name": "Joe", "salary": 85000, "departmentId": 1}, {"id": 2, "name": "Jim", "salary": 90000, "departmentId": 1}, {"id": 3, "name": "Henry", "salary": 80000, "departmentId": 2}, {"id": 4, "name": "Sam", "salary": 60000, "departmentId": 2}, {"id": 5, "name": "Max", "salary": 90000, "departmentId": 1}, {"id": 6, "name": "Janet", "salary": 69000, "departmentId": 1}, {"id": 7, "name": "Randy", "salary": 85000, "departmentId": 1}], "Department": [{"id": 1, "name": "IT"}, {"id": 2, "name": "Sales"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Analyzing Department 1 (`"IT"`):
+- Salaries present: $90000, 90000, 85000, 85000, 69000$.
+- Unique salary values sorted descending:
+  1. Rank 1: $90000$ (Earned by Jim and Max)
+  2. Rank 2: $85000$ (Earned by Joe and Randy)
+  3. Rank 3: $69000$ (Earned by Janet)
+Notice that although there are 5 employees in IT, all 5 belong to the top 3 **unique** salary tiers!
+If one used standard `RANK()`, the ranks would be $1, 1, 3, 3, 5$, which would wrongly disqualify Janet!
+`DENSE_RANK()` assigns ranks $1, 1, 2, 2, 3$, correctly qualifying all five employees.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Analyzing Department 2 (`"Sales"`):
+- Unique salaries: $80000$ (Henry, Rank 1) and $60000$ (Sam, Rank 2). Both qualify.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Window Function `DENSE_RANK()` (Recommended)
+```sql
+SELECT 
+    Department,
+    Employee,
+    Salary
+FROM (
+    SELECT 
+        d.name AS Department,
+        e.name AS Employee,
+        e.salary AS Salary,
+        DENSE_RANK() OVER (
+            PARTITION BY e.departmentId 
+            ORDER BY e.salary DESC
+        ) AS rnk
+    FROM Employee e
+    JOIN Department d ON e.departmentId = d.id
+) ranked
+WHERE rnk <= 3;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Why `DENSE_RANK()` with `PARTITION BY` Is Optimal:
+1. `PARTITION BY e.departmentId`: Restarts the ranking evaluation independently within each department.
+2. `ORDER BY e.salary DESC`: Evaluates the highest earners first.
+3. Dense Rank Property: Equal salaries receive identical ranks, and the next distinct salary receives rank $+1$ without gaps ($1, 1, 2, 2, 3$).
+4. Outer Filter `rnk <= 3`: Keeps all employees whose salary belongs to unique tiers 1, 2, or 3.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Correlated Subquery
+```sql
+SELECT 
+    d.name AS Department,
+    e1.name AS Employee,
+    e1.salary AS Salary
+FROM Employee e1
+JOIN Department d ON e1.departmentId = d.id
+WHERE (
+    SELECT COUNT(DISTINCT e2.salary)
+    FROM Employee e2
+    WHERE e2.departmentId = e1.departmentId 
+      AND e2.salary > e1.salary
+) < 3;
+```
+For any employee $e_1$, count the number of distinct salaries in the same department strictly greater than $e_1.\text{salary}$. An employee is in the top 3 unique salaries if and only if fewer than 3 distinct salaries exceed theirs.
+
+> **Invariant.** An employee $e$ qualifies if and only if $|\{ s \in \text{distinct department salaries} \mid s > e.\text{salary} \}| < 3$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Understand what “top three unique salaries” counts
+We trace the partitioned dense rank calculation for each department:
 
-An employee is a high earner when the employee's salary is one of the three
-largest distinct salary values in that employee's department. The word
-“unique” changes the ranking rule. If two employees both earn 85000, that value
-occupies one salary level, not two positions. Both employees must receive the
-same effective rank.
+### Department 1 (`"IT"`, $departmentId = 1$):
+Sorted distinct salaries: $90000 > 85000 > 69000$.
+- **Jim ($90000$):** Highest salary $\implies \mathbf{\text{rnk} = 1} \le 3$. **Included.**
+- **Max ($90000$):** Tied with Jim $\implies \mathbf{\text{rnk} = 1} \le 3$. **Included.**
+- **Joe ($85000$):** 2nd highest distinct $\implies \mathbf{\text{rnk} = 2} \le 3$. **Included.**
+- **Randy ($85000$):** Tied with Joe $\implies \mathbf{\text{rnk} = 2} \le 3$. **Included.**
+- **Janet ($69000$):** 3rd highest distinct $\implies \mathbf{\text{rnk} = 3} \le 3$. **Included.**
 
-A convenient way to determine the rank of a salary $s$ is to ask how many
-distinct salaries in the same department are strictly greater than $s$. If
-that count is zero, $s$ is the highest unique salary. If it is one, $s$ is the
-second-highest; if it is two, $s$ is the third-highest. Therefore, the employee
-qualifies exactly when the count is less than three.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employee": [{"id": 1, "name": "Joe", "salary": 85000, "departmentId": 1}, {"id": 2, "name": "Jim", "salary": 90000, "departmentId": 1}, {"id": 3, "name": "Henry", "salary": 80000, "departmentId": 2}, {"id": 4, "name": "Sam", "salary": 60000, "departmentId": 2}, {"id": 5, "name": "Max", "salary": 90000, "departmentId": 1}, {"id": 6, "name": "Janet", "salary": 69000, "departmentId": 1}, {"id": 7, "name": "Randy", "salary": 85000, "departmentId": 1}], "Department": [{"id": 1, "name": "IT"}, {"id": 2, "name": "Sales"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+All 5 employees in IT qualify!
 
 ---
 
-### Step 2: Build each employee's department context
+### Department 2 (`"Sales"`, $departmentId = 2$):
+Sorted distinct salaries: $80000 > 60000$.
+- **Henry ($80000$):** Highest salary $\implies \mathbf{\text{rnk} = 1} \le 3$. **Included.**
+- **Sam ($60000$):** 2nd highest distinct $\implies \mathbf{\text{rnk} = 2} \le 3$. **Included.**
 
-The outer query reads `Employee` and `Department` with comma-style join syntax.
-The condition `Employee.DepartmentId = Department.Id` turns that Cartesian
-product into an inner equijoin. It associates every employee with the readable
-department name required in the result.
-
-Modern SQL usually writes this as an explicit `INNER JOIN ... ON ...`. The two
-forms have the same relational meaning here, but explicit join syntax makes it
-harder to forget the matching condition and accidentally create every possible
-employee-department pair.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Both employees in Sales qualify!
 
 ---
 
-### Step 3: Correlate the count with the current employee
-
-For each outer `Employee` row, the subquery scans another logical copy of the
-employee table named `e2`. Its first predicate, `e2.Salary > Employee.Salary`,
-keeps only salaries strictly greater than the current salary. Its second
-predicate, `Employee.DepartmentId = e2.DepartmentId`, restricts the comparison
-to the current employee's own department.
-
-Both predicates are indispensable. Replacing `>` with `>=` would count the
-current salary level and shift every rank by one. Omitting the department
-condition would compare against the whole company and incorrectly suppress
-leaders in departments whose salaries are lower than another department's.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["Department", "Employee", "Salary"], "rows": [["IT", "Jim", 90000], ["IT", "Max", 90000], ["IT", "Joe", 85000], ["IT", "Randy", 85000], ["IT", "Janet", 69000], ["Sales", "Henry", 80000], ["Sales", "Sam", 60000]]}` |
+### Final Output Assembly
+All 7 employee rows qualify:
+- `["IT", "Jim", 90000]`
+- `["IT", "Max", 90000]`
+- `["IT", "Joe", 85000]`
+- `["IT", "Randy", 85000]`
+- `["IT", "Janet", 69000]`
+- `["Sales", "Henry", 80000]`
+- `["Sales", "Sam", 60000]`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employee": [{"id": 1, "name": "Joe", "salary": 85000, "departmentId": 1}, {"id": 2, "name": "Jim", "salary": 90000, "departmentId": 1}, {"id": 3, "name": "Henry", "salary": 80000, "departmentId": 2}, {"id": 4, "name": "Sam", "salary": 60000, "departmentId": 2}, {"id": 5, "name": "Max", "salary": 90000, "departmentId": 1}, {"id": 6, "name": "Janet", "salary": 69000, "departmentId": 1}, {"id": 7, "name": "Randy", "salary": 85000, "departmentId": 1}], "Department": [{"id": 1, "name": "IT"}, {"id": 2, "name": "Sales"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["Department", "Employee", "Salary"], "rows": [["IT", "Jim", 90000], ["IT", "Max", 90000], ["IT", "Joe", 85000], ["IT", "Randy", 85000], ["IT", "Janet", 69000], ["Sales", "Henry", 80000], ["Sales", "Sam", 60000]]}` | Verified |
+```text
+IT Department (Dept 1):
+  Jim   (90k) -> DENSE_RANK = 1 <= 3 -> KEEP
+  Max   (90k) -> DENSE_RANK = 1 <= 3 -> KEEP
+  Joe   (85k) -> DENSE_RANK = 2 <= 3 -> KEEP
+  Randy (85k) -> DENSE_RANK = 2 <= 3 -> KEEP
+  Janet (69k) -> DENSE_RANK = 3 <= 3 -> KEEP
+
+Sales Department (Dept 2):
+  Henry (80k) -> DENSE_RANK = 1 <= 3 -> KEEP
+  Sam   (60k) -> DENSE_RANK = 2 <= 3 -> KEEP
+
+Result: All 7 employees qualify
+```
+
+| Employee | Department | Salary | `DENSE_RANK()` | `RANK()` Contrast (Sparse) | `rnk <= 3` Condition | Final Status |
+|:---|:---|:---:|:---:|:---:|:---:|:---|
+| **Jim** | IT | 90000 | **1** | 1 | $1 \le 3$ | **Emitted** |
+| **Max** | IT | 90000 | **1** | 1 | $1 \le 3$ | **Emitted** |
+| **Joe** | IT | 85000 | **2** | 3 | $2 \le 3$ | **Emitted** |
+| **Randy** | IT | 85000 | **2** | 3 | $2 \le 3$ | **Emitted** |
+| **Janet** | IT | 69000 | **3** | 5 *(dropped)* | $3 \le 3$ | **Emitted** |
+| **Henry** | Sales | 80000 | **1** | 1 | $1 \le 3$ | **Emitted** |
+| **Sam** | Sales | 60000 | **2** | 2 | $2 \le 3$ | **Emitted** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `DENSE_RANK()` partitions employees by department and ranks unique salary values. Since ties share the same rank and the rank only increases by 1 between distinct salary values, filtering `rnk <= 3` captures every employee whose salary is in the top 3 unique values.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every employee is evaluated within their department. If a department has fewer than 3 unique salaries, all employees in that department will have `rnk <= 2` or `rnk = 1`, guaranteeing that no employee is falsely dropped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`DENSE_RANK()` window function:** Partition by department, order salary descending, and retain ranks at most three; this directly models unique salary levels.
-- **Distinct salary table:** Deduplicate department-salary pairs, choose the top three per department, then join back to all employees so ties survive.
-- **Pandas dense rank:** The local editorial uses descending dense rank within each department and filters values at most three.
-- **Plain `COUNT(*)`:** Incorrect when several higher-paid employees share a salary because it ranks people instead of unique salary values.
-- **Strict comparison:** Use `>`; `>=` would count the current salary level and cause an off-by-one error.
-- **Ties at any qualifying level:** Return every tied employee.
-- **Fewer than three unique salaries:** Return every employee in that department.
-- **Same salary in different departments:** The correlation must include `DepartmentId`.
-- **Nullable salary:** The stored comparison does not define a safe null ranking and may admit nulls incorrectly.
-- **Any order:** No output sorting is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `RANK()` Instead of `DENSE_RANK()`:** In IT, using `RANK()` produces $[1, 1, 3, 3, 5]$, dropping Janet even though her salary $69000$ is the 3rd unique salary in IT!
+- **Correlated Subquery `< 3` vs `<= 3`:** When counting strictly greater distinct salaries (`e2.salary > e1.salary`), the condition is `< 3` (meaning $0, 1,$ or $2$ strictly greater salaries exist). Using `<= 3` would include the top 4 tiers.
+- **Forgetting `DISTINCT` in Subquery:** If counting greater salaries without `DISTINCT`, multiple higher-paid employees would overcount and prematurely push lower tiers out of the top 3.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + m)$. Let $n$ be the number of employees and $m$ the number of departments. Read
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(E \log E)$, where $E$ is the number of rows in `Employee`. The database sorts rows by `(departmentId, salary DESC)` in $O(E \log E)$ and computes the window dense rank in a single $O(E)$ pass.
+- **Auxiliary Space Complexity:** $O(E)$ working memory to maintain the window partitions.

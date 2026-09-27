@@ -1,104 +1,137 @@
 # Guided Example: Remove Duplicates from Sorted List
 
-We execute the single-pass Linked List pointer manipulation on a representative linked list instance.
+We trace the step-by-step single-pointer duplicate bypass on a representative sorted linked list:
 
-- **Input:** `{"head": [1, 1, 2]}`
-- **Required output:** `[1, 2]`
+- **Input:** $\text{head} = [1, 1, 2, 3, 3]$
+- **Required output:** $[1, 2, 3]$
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates in-place successor link rewiring (`cur.next = cur.next.next`), maintaining the active node when a duplicate is bypassed, advancing only when adjacent values differ, and contrasting retaining one duplicate copy versus complete deletion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Remove Duplicates from Sorted List** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+Given the head of a sorted linked list:
+$$
+1 \longrightarrow 1 \longrightarrow 2 \longrightarrow 3 \longrightarrow 3 \longrightarrow \emptyset
+$$
+delete all duplicates such that each element appears **only once**, returning the linked list sorted as well.
+
+In this instance:
+- The value $1$ appears twice $\implies$ delete one node, keeping one $1$.
+- The value $2$ appears once $\implies$ keep it.
+- The value $3$ appears twice $\implies$ delete one node, keeping one $3$.
+The result is $1 \longrightarrow 2 \longrightarrow 3 \longrightarrow \emptyset$.
+
+In contrast to LeetCode 82 (which completely eliminates all numbers that have duplicates), LeetCode 83 retains the first occurrence of every number and unlinks subsequent duplicates. This requires only a single pointer `cur` without dummy sentinel nodes or predecessor tracking.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### Single-Pointer Successor Bypass
+We initialize `cur = head`.
+While `cur` is not null and `cur.next` is not null:
+1. **Duplicate Check:**
+   Compare $\text{cur.val}$ with $\text{cur.next.val}$:
+   - **If $\text{cur.val} == \text{cur.next.val}$:**
+     The node at `cur.next` is a duplicate of `cur`.
+     Bypass it by rewiring:
+     $$
+     \text{cur.next} \leftarrow \text{cur.next.next}
+     $$
+     *(Do **not** advance `cur`, because the new successor might also share the same value, e.g. in a run of three identical nodes like $[1, 1, 1]$)*.
+   - **If $\text{cur.val} \ne \text{cur.next.val}$:**
+     The successor has a distinct new value.
+     Safely advance pointer:
+     $$
+     \text{cur} \leftarrow \text{cur.next}
+     $$
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
-
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+> **Invariant.** The sublist from `head` up to `cur` contains strictly unique, sorted values with zero duplicates.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We trace $\text{head} = [1, 1, 2, 3, 3]$:
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
+### Initialization
+- Pointer `cur` placed at `Node(1)` (the first node).
+- Active list: $1 \to 1 \to 2 \to 3 \to 3$.
 
 ---
 
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Step 1: Compare First and Second Nodes
+- `cur.val = 1`, `cur.next.val = 1`.
+- Condition: Values match ($1 == 1$).
+- Bypass: Set $\text{Node}(1).\text{next} \leftarrow \text{Node}(2)$.
+- The second node with value $1$ is unlinked.
+- Pointer: `cur` remains at the first `Node(1)`.
+- List state: $1 \longrightarrow 2 \longrightarrow 3 \longrightarrow 3 \longrightarrow \emptyset$.
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Step 2: Compare First and Second Nodes (After Bypass)
+- `cur.val = 1`, `cur.next.val = 2`.
+- Condition: Values differ ($1 \ne 2$).
+- Action: Advance `cur` to `Node(2)`.
+- List state: $1 \longrightarrow 2 \longrightarrow 3 \longrightarrow 3$.
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+---
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+### Step 3: Compare Node 2 and Node 3
+- `cur.val = 2`, `cur.next.val = 3`.
+- Condition: Values differ ($2 \ne 3$).
+- Action: Advance `cur` to first `Node(3)`.
+- List state: $1 \longrightarrow 2 \longrightarrow 3 \longrightarrow 3$.
+
+---
+
+### Step 4: Compare Node 3 and its Successor
+- `cur.val = 3`, `cur.next.val = 3`.
+- Condition: Values match ($3 == 3$).
+- Bypass: Set $\text{Node}(3).\text{next} \leftarrow \emptyset$.
+- The second node with value $3$ is unlinked.
+- Pointer: `cur` remains at first `Node(3)`.
+- List state: $1 \longrightarrow 2 \longrightarrow 3 \longrightarrow \emptyset$.
+
+---
+
+### Step 5: Termination
+- `cur.next == None`.
+- Loop halts. Return `head` ($1 \longrightarrow 2 \longrightarrow 3$).
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+| Step | Active Pointer $\text{cur}$ | Next Node $\text{cur.next}$ | Comparison ($\text{cur.val}$ vs $\text{cur.next.val}$) | Action Taken | List State After Step |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 1 | $\text{Node}(1)$ | $\text{Node}(1)$ | $1 == 1$ (Match) | Bypass next: $\text{cur.next} = \text{cur.next.next}$ | $1 \to 2 \to 3 \to 3$ |
+| 2 | $\text{Node}(1)$ | $\text{Node}(2)$ | $1 \ne 2$ (Distinct) | Advance `cur` to $\text{Node}(2)$ | $1 \to 2 \to 3 \to 3$ |
+| 3 | $\text{Node}(2)$ | $\text{Node}(3)$ | $2 \ne 3$ (Distinct) | Advance `cur` to $\text{Node}(3)$ | $1 \to 2 \to 3 \to 3$ |
+| 4 | $\text{Node}(3)$ | $\text{Node}(3)$ | $3 == 3$ (Match) | Bypass next: $\text{cur.next} = \emptyset$ | $1 \to 2 \to 3 \to \emptyset$ |
+| Exit | $\text{Node}(3)$ | $\emptyset$ | Loop terminates | - | **Final: $[1, 2, 3]$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** Because the input list is sorted, any duplicates of $\text{cur.val}$ must occur immediately adjacent to `cur`. When $\text{cur.val} == \text{cur.next.val}$, unlinking `cur.next` removes one duplicate while preserving `cur`. Keeping `cur` fixed ensures that multiple consecutive duplicates (e.g. $[1, 1, 1, 1]$) are pruned one by one until a distinct value or null is reached.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** When $\text{cur.val} \ne \text{cur.next.val}$, the value at `cur` has no further duplicates in the list. Advancing `cur` monotonically processes every node in the chain without skipping valid elements.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Advancing `cur` on Bypass:** If you write `cur = cur.next` inside the bypass branch, a run of three identical nodes like $[1, 1, 1]$ will only remove the second node and leave $[1, 1]$ unpruned. Pointer advancement must only occur when values are strictly different.
+- **Empty or Single-Node List:** If $\text{head} == \emptyset$ or $\text{head.next} == \emptyset$, the loop condition `cur and cur.next` evaluates to false immediately, safely returning `head` without null pointer errors.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the linked list. Each node is inspected once.
+- **Auxiliary Space Complexity:** $O(1)$. Modifies list pointers strictly in place.

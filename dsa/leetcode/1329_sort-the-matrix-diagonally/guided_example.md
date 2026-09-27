@@ -1,130 +1,177 @@
 # Guided Example: Sort the Matrix Diagonally
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the diagonal invariant grouping, localized sorting, and matrix re-insertion algorithm on a representative rectangular matrix:
 
-- **Input:** `{"mat": [[3, 3, 1, 1], [2, 2, 1, 2], [1, 1, 1, 2]]}`
-- **Required output:** `[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 3, 3]]`
+- **Input:** `mat = [[3, 3, 1, 1], [2, 2, 1, 2], [1, 1, 1, 2]]`
+- **Required Output:** `[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 3, 3]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates identifying the diagonal coordinate invariant $d = i - j$, partitioning matrix entries into independent diagonal collections, sorting each collection in ascending order, and writing values back in-place.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **matrix diagonal** is a diagonal line of cells starting from some cell in either the topmost row or leftmost column and going in the bottom-right direction until reaching the matrix's end. For example, the **matrix diagonal** starting from $\text{mat}[2][0]$, where `mat` is a `6 x 3` matrix, includes cells $\text{mat}[2][0]$, $\text{mat}[3][1]$, and $\text{mat}[4][2]$.
+A matrix diagonal consists of cells starting at the topmost row or leftmost column and proceeding downward-rightward. That is, from cell $(i, j)$, the diagonal continues to $(i + 1, j + 1), (i + 2, j + 2), \dots$ until reaching the matrix boundary. We must sort each diagonal in ascending order.
 
-The objective is to compute `[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 3, 3]]` from `{"mat": [[3, 3, 1, 1], [2, 2, 1, 2], [1, 1, 1, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+For an $m \times n$ matrix with $m = 3$ and $n = 4$:
+- Original Matrix:
+  $$
+  \begin{bmatrix}
+  3 & 3 & 1 & 1 \\
+  2 & 2 & 1 & 2 \\
+  1 & 1 & 1 & 2
+  \end{bmatrix}
+  $$
+- The main diagonal starting at $(0, 0)$ contains:
+  $$
+  (0, 0) = 3, \quad (1, 1) = 2, \quad (2, 2) = 1
+  $$
+  Sorting this diagonal produces $[1, 2, 3]$.
+- The super-diagonal starting at $(0, 1)$ contains:
+  $$
+  (0, 1) = 3, \quad (1, 2) = 1, \quad (2, 3) = 2
+  $$
+  Sorting this diagonal produces $[1, 2, 3]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Matrix Coordinate Mapping (i, j):
+        c=0     c=1     c=2     c=3
+r=0   (0,0)=3 (0,1)=3 (0,2)=1 (0,3)=1
+r=1   (1,0)=2 (1,1)=2 (1,2)=1 (1,3)=2
+r=2   (2,0)=1 (2,1)=1 (2,2)=1 (2,3)=2
+
+Diagonals Identified by Key d = i - j:
+  d = -3: [1]                --> [1]
+  d = -2: [1, 2]             --> [1, 2]
+  d = -1: [3, 1, 2]          --> [1, 2, 3]
+  d =  0: [3, 2, 1]          --> [1, 2, 3]
+  d = +1: [2, 1]             --> [1, 2]
+  d = +2: [1]                --> [1]
+
+Sorted Matrix:
+  [ 1, 1, 1, 1 ]
+  [ 1, 2, 2, 2 ]
+  [ 1, 2, 3, 3 ]
+```
+
+Attempting to swap elements across different diagonals is invalid, as entries are constrained to remain on their original diagonal lines. Identifying the invariant index difference $i - j$ decomposes the 2D sorting problem into $m + n - 1$ independent 1D sorting tasks.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $(i, j)$ be any cell in the $m \times n$ matrix. Moving one step along a diagonal changes coordinates to $(i + 1, j + 1)$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Diagonal Constant Invariant
+The difference between row and column indices is invariant along any diagonal:
+$$
+(i + 1) - (j + 1) = i - j = d
+$$
+Each distinct value of $d \in [-(n - 1), \; m - 1]$ uniquely identifies a diagonal line.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+To avoid negative array indices in implementation, an offset $m$ maps $d$ to a non-negative bucket:
+$$
+\text{bucket\_id}(i, j) = m - i + j \in [1, \; m + n - 1]
+$$
+
+### Algorithm Pipeline
+1. **Bucketing:** Iterate through all $(i, j)$, appending $\text{mat}[i][j]$ into bucket $B[m - i + j]$.
+2. **Sorting:** Sort each non-empty bucket $B[k]$ in non-decreasing order.
+3. **Re-insertion:** Traverse $(i, j)$ in row-major order, popping the next smallest element from $B[m - i + j]$ into $\text{mat}[i][j]$.
+
+| Diagonal Key $d = i - j$ | Offset Key $m - i + j$ | Cells on Diagonal | Raw Values | Sorted Values |
+|---|---|---|---|---|
+| $-3$ | $3 - 0 + 3 = 6$ | $\{(0, 3)\}$ | `[1]` | `[1]` |
+| $-2$ | $3 - 0 + 2 = 5$ | $\{(0, 2), (1, 3)\}$ | `[1, 2]` | `[1, 2]` |
+| $-1$ | $3 - 0 + 1 = 4$ | $\{(0, 1), (1, 2), (2, 3)\}$ | `[3, 1, 2]` | `[1, 2, 3]` |
+| $0$ | $3 - 0 + 0 = 3$ | $\{(0, 0), (1, 1), (2, 2)\}$ | `[3, 2, 1]` | `[1, 2, 3]` |
+| $1$ | $3 - 1 + 0 = 2$ | $\{(1, 0), (2, 1)\}$ | `[2, 1]` | `[1, 2]` |
+| $2$ | $3 - 2 + 0 = 1$ | $\{(2, 0)\}$ | `[1]` | `[1]` |
+
+> **Orthogonal Partition Invariant.** The sets of cells $\{C_d\}$ corresponding to distinct difference keys $d = i - j$ form a disjoint partition of the matrix: $\bigcup C_d = \{0..m-1\} \times \{0..n-1\}$ with $C_a \cap C_b = \emptyset$ for $a \ne b$. Sorting within each bucket preserves independence across all other diagonals.
+
+```mermaid
+flowchart TD
+    accTitle: Diagonal Sorting Architecture
+    accDescr: Grouping matrix cells by the difference i - j, sorting each list, and re-writing elements into the matrix.
+    START["Input Matrix: 3 x 4"] --> BUCKET["Group cells by diagonal key d = i - j"]
+    BUCKET --> SORT["Sort each diagonal list in ascending order"]
+    SORT --> REWRITE["Write sorted values back along each diagonal"]
+    REWRITE --> DONE["Return Sorted Matrix"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A constant key for each diagonal
+We trace the re-insertion into `mat` for our $3 \times 4$ instance:
 
-For cell `(i, j)`, the source uses key:
+### Step 1: Diagonal Collection & Sorting
+- $d = 0$ (cells $(0,0), (1,1), (2,2)$): Values $[3, 2, 1] \implies$ Sorted: $[1, 2, 3]$.
+- $d = -1$ (cells $(0,1), (1,2), (2,3)$): Values $[3, 1, 2] \implies$ Sorted: $[1, 2, 3]$.
+- $d = 1$ (cells $(1,0), (2,1)$): Values $[2, 1] \implies$ Sorted: $[1, 2]$.
+- $d = -2$ (cells $(0,2), (1,3)$): Values $[1, 2] \implies$ Sorted: $[1, 2]$.
+- $d = -3$ (cell $(0,3)$): Value $[1] \implies$ Sorted: $[1]$.
+- $d = 2$ (cell $(2,0)$): Value $[1] \implies$ Sorted: $[1]$.
 
-`m - i + j`.
-
-Moving to `(i + 1, j + 1)` gives:
-
-$$
-m-(i+1)+(j+1)=m-i+j,
-$$
-
-so the key remains constant along a bottom-right diagonal.
-
-Different parallel diagonals have different values of `j - i` and therefore different shifted keys. Adding `m` makes every used index positive, allowing a list of buckets instead of a dictionary.
-
-`g` has `m + n` lists. Its index zero is unused, while all actual keys fit from one through `m+n-1`.
-
-The extreme keys make that range concrete. The bottom-left cell `(m - 1, 0)` has key one. The top-right cell `(0, n - 1)` has key `m + n - 1`. Every other cell lies between them. This proves both that the allocation is large enough and that no negative indexing accidentally addresses a bucket from the end of the Python list.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"mat": [[3, 3, 1, 1], [2, 2, 1, 2], [1, 1, 1, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Collecting matrix values
-
-The nested loops visit every matrix cell in row-major order. `g[m - i + j].append(x)` places its value in the matching diagonal bucket.
-
-At this stage, the matrix remains unchanged, and all $mn$ values are stored exactly once across the buckets.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why buckets are sorted in reverse
-
-Each bucket executes `e.sort(reverse=true)`, placing its largest value first and smallest value last.
-
-The write-back phase uses `pop()`, which removes the final list element in constant amortized time. Because the final element is currently smallest, successive pops yield ascending values.
-
-If buckets were sorted in ordinary ascending order, popping from the end would produce descending diagonals. Removing from index zero would preserve ascending order but cost linear time per removal because Python must shift remaining list elements.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 3, 3]]` |
+### Step 2: Re-writing Cells Row by Row
+- **Row 0:**
+  - $(0, 0)$ ($d = 0$): First sorted element of $d=0 \implies 1$.
+  - $(0, 1)$ ($d = -1$): First sorted element of $d=-1 \implies 1$.
+  - $(0, 2)$ ($d = -2$): First sorted element of $d=-2 \implies 1$.
+  - $(0, 3)$ ($d = -3$): First sorted element of $d=-3 \implies 1$.
+  - Row 0 becomes: `[1, 1, 1, 1]`.
+- **Row 1:**
+  - $(1, 0)$ ($d = 1$): First sorted element of $d=1 \implies 1$.
+  - $(1, 1)$ ($d = 0$): Second sorted element of $d=0 \implies 2$.
+  - $(1, 2)$ ($d = -1$): Second sorted element of $d=-1 \implies 2$.
+  - $(1, 3)$ ($d = -2$): Second sorted element of $d=-2 \implies 2$.
+  - Row 1 becomes: `[1, 2, 2, 2]`.
+- **Row 2:**
+  - $(2, 0)$ ($d = 2$): First sorted element of $d=2 \implies 1$.
+  - $(2, 1)$ ($d = 1$): Second sorted element of $d=1 \implies 2$.
+  - $(2, 2)$ ($d = 0$): Third sorted element of $d=0 \implies 3$.
+  - $(2, 3)$ ($d = -1$): Third sorted element of $d=-1 \implies 3$.
+  - Row 2 becomes: `[1, 2, 3, 3]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"mat": [[3, 3, 1, 1], [2, 2, 1, 2], [1, 1, 1, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 3, 3]]` | Verified |
+| Cell $(i, j)$ | Original Value | Diagonal Key $d = i - j$ | Sorted Diagonal Sequence | Assigned Value | Updated Matrix Row |
+|---|---|---|---|---|---|
+| $(0, 0)$ | $3$ | $0$ | $[1, 2, 3]$ | $1$ | `[1, ...]`, Row 0 |
+| $(0, 1)$ | $3$ | $-1$ | $[1, 2, 3]$ | $1$ | `[1, 1, ...]`, Row 0 |
+| $(0, 2)$ | $1$ | $-2$ | $[1, 2]$ | $1$ | `[1, 1, 1, ...]`, Row 0 |
+| $(0, 3)$ | $1$ | $-3$ | $[1]$ | $1$ | `[1, 1, 1, 1]`, Row 0 complete |
+| $(1, 0)$ | $2$ | $1$ | $[1, 2]$ | $1$ | `[1, ...]`, Row 1 |
+| $(1, 1)$ | $2$ | $0$ | $[1, 2, 3]$ | $2$ | `[1, 2, ...]`, Row 1 |
+| $(1, 2)$ | $1$ | $-1$ | $[1, 2, 3]$ | $2$ | `[1, 2, 2, ...]`, Row 1 |
+| $(1, 3)$ | $2$ | $-2$ | $[1, 2]$ | $2$ | `[1, 2, 2, 2]`, Row 1 complete |
+| $(2, 0)$ | $1$ | $2$ | $[1]$ | $1$ | `[1, ...]`, Row 2 |
+| $(2, 1)$ | $1$ | $1$ | $[1, 2]$ | $2$ | `[1, 2, ...]`, Row 2 |
+| $(2, 2)$ | $1$ | $0$ | $[1, 2, 3]$ | $3$ | `[1, 2, 3, ...]`, Row 2 |
+| $(2, 3)$ | $2$ | $-1$ | $[1, 2, 3]$ | $3$ | `[1, 2, 3, 3]`, Row 2 complete |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any cell $(i, j)$, its diagonal successors $(i + k, j + k)$ share the invariant $i - j$. Because sorting occurs strictly within elements sharing identical $i - j$, no values are ever shifted off their legal diagonal paths. Re-writing elements in topological coordinate order ($i$ increasing) guarantees each diagonal is strictly non-decreasing.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every cell $(i, j) \in [0, m-1] \times [0, n-1]$ is mapped to its unique diagonal key, collected, sorted, and restored. The total count of entries extracted and written matches $m \cdot n$ exactly.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Min-heaps by diagonal:** Heapify each bucket and pop minima during write-back. It has the same broad time bound but more per-pop overhead.
-- **Sort one diagonal at a time:** This reduces auxiliary storage to $O(L)$ while preserving $O(mn\log L)$ time.
-- **Counting sort:** Values lie from 1 through 100, so frequency counting can achieve linear matrix time under the bounded value range.
-- **Ascending bucket plus front removal:** It is logically correct but inefficient in Python because removing index zero shifts the list.
-- **One row:** Every diagonal has length one, so the matrix is unchanged.
-- **One column:** Likewise, every diagonal contains one cell.
-- **Duplicate values:** Sorting and popping preserve their multiplicity.
-- **Unused bucket zero:** The shifted key never uses it; this wastes only one empty list.
-- **Input mutation:** The same matrix is overwritten and returned.
-- **Key choice:** `j - i` would also identify diagonals but needs a dictionary or offset for negative values.
-- **Reverse sort:** It is paired deliberately with end-pop to emit ascending values.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Anti-diagonal confusion:** The anti-diagonal invariant is $i + j = \text{constant}$. Using $i + j$ instead of $i - j$ sorts top-right to bottom-left diagonals, which contradicts the problem specification.
+- **Negative index out-of-bounds:** The difference $i - j$ ranges from $-(n - 1)$ to $m - 1$. Offsetting with $+ m$ or using hash map keys avoids negative index exceptions in array-based bucketing.
+- **Queue/Stack orientation:** When writing sorted values back, if popping from the end of a list, the bucket must either be sorted in descending order (so `pop()` yields ascending values) or read via an advancing pointer from index $0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn\log L)$. Let $m$ and $n$ be matrix dimensions and $L=\min(m,n)$, the maximum diagonal length.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot n \log(\min(m, n)))$. There are $m \cdot n$ total elements partitioned across $m + n - 1$ diagonals. The maximum length of any diagonal is $\min(m, n)$. Sorting each diagonal of length $L_k$ takes $\mathcal{O}(L_k \log L_k)$, summing to $\mathcal{O}(m \cdot n \log(\min(m, n)))$ overall.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m \cdot n)$ to store the bucketed diagonal collections during sorting.

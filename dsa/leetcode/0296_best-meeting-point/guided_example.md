@@ -1,147 +1,186 @@
 # Guided Example: Best Meeting Point
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Manhattan distance dimensional decoupling, 1D median minimization proof ($L_1$ norm vs $L_2$ mean), row/column coordinate extraction, and total travel distance calculation on representative grid instances:
 
-- **Input:** `{"grid": [[1, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}`
-- **Required output:** `6`
+- **Input:**
+  $$
+  \text{grid} = \begin{bmatrix}
+  1 & 0 & 0 & 0 & 1 \\
+  0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0
+  \end{bmatrix}
+  $$
+- **Required output:** $6$ (Homes at $(0, 0)$, $(0, 4)$, and $(2, 2)$; optimal meeting point is $(0, 2)$ with total distance $2 + 2 + 2 = 6$)
+- **Two Friends Base Case:** $\text{grid} = [[1, 1]] \implies 1$ (Any point between the two homes yields the same minimal distance $1$)
+- **Collinear Friends:** When all homes share the same row, vertical distance is $0$; total distance equals 1D median distance along columns
+- **Single Friend Base Case:** Distance is trivially $0$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates dimensional orthogonality in Manhattan metrics, mathematically proves why the geometric median minimizes total $L_1$ absolute deviations (unlike the mean which minimizes $L_2$ squared error), explains why row coordinates are naturally sorted by row-major traversal while columns require sorting, and executes in $O(M \times N + K \log K)$ time and $O(K)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` binary grid `grid` where each `1` marks the home of one friend, return *the minimal **total travel distance***.
+Given an $m \times n$ grid ($3 \times 5$) where $1$ marks a friend's house:
+- Friend 1: $(0, 0)$
+- Friend 2: $(0, 4)$
+- Friend 3: $(2, 2)$
 
-The objective is to compute `6` from `{"grid": [[1, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+Find a meeting point $(X, Y)$ that minimizes the sum of Manhattan distances:
+$$
+D(X, Y) = \sum_{i=1}^{k} \left( |r_i - X| + |c_i - Y| \right)
+$$
+```text
+Grid layout:
+(0,0)=1  .      (0,2)=M  .      (0,4)=1
+ .       .       .       .       .
+ .       .      (2,2)=1  .       .
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Meeting point selected: (0, 2)
+Dist to (0, 0): |0-0| + |0-2| = 2
+Dist to (0, 4): |0-0| + |4-2| = 2
+Dist to (2, 2): |2-0| + |2-2| = 2
+Total travel distance = 2 + 2 + 2 = 6
+```
+
+### Orthogonal Decoupling of Manhattan Distance
+The two-dimensional Manhattan distance can be partitioned into two completely independent 1D optimization subproblems:
+$$
+\min_{(X, Y)} \sum_{i=1}^{k} \left( |r_i - X| + |c_i - Y| \right) = \left( \min_{X} \sum_{i=1}^{k} |r_i - X| \right) + \left( \min_{Y} \sum_{i=1}^{k} |c_i - Y| \right)
+$$
+We can solve for the optimal row $X$ and the optimal column $Y$ **separately**, without cross-dimensional interference!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The 1D Median Theorem
+Given $k$ points on a 1D line $a_0 \le a_1 \le \dots \le a_{k-1}$, which coordinate $z$ minimizes $\sum_{i=0}^{k-1} |a_i - z|$?
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+**Proof by Telescoping Pairs:**
+Pair extreme points $(a_0, a_{k-1})$, $(a_1, a_{k-2})$, $\dots$, $(a_i, a_{k-1-i})$:
+For any pair $a_i \le a_{k-1-i}$, by the triangle inequality:
+$$
+|a_i - z| + |a_{k-1-i} - z| \ge a_{k-1-i} - a_i
+$$
+Equality holds if and only if $z$ lies in the closed interval $[a_i, a_{k-1-i}]$.
+To simultaneously achieve the minimum for all nested pairs, $z$ must lie in the intersection of all such intervals:
+- If $k$ is odd: The intersection collapses to the unique middle element:
+  $$
+  z^* = a_{\lfloor k/2 \rfloor} \quad (\text{The Median})
+  $$
+- If $k$ is even: The intersection is the interval $[a_{k/2 - 1}, a_{k/2}]$. Any value in this range (including $a_{k/2}$) achieves the global minimum.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The coordinate that minimizes the sum of absolute differences is the **median** of the coordinate list. The arithmetic mean minimizes squared Euclidean distance ($\sum (a_i - z)^2$), but the median minimizes $L_1$ Manhattan distance ($\sum |a_i - z|$).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why a median minimizes absolute distance
-
-Suppose the sorted coordinates on one axis are
-
-$$
-a_0\le a_1\le\cdots\le a_{k-1}.
-$$
-
-Pair the smallest coordinate with the largest, the second smallest with the second largest, and so on. For a pair $a_i\le a_j$, any proposed meeting coordinate $z$ pays
-
-$$
-\lvert a_i-z\rvert+\lvert a_j-z\rvert.
-$$
-
-This sum is at least $a_j-a_i$. Equality holds whenever $z$ lies anywhere in the interval $[a_i,a_j]$. Moving outside that interval increases the sum because both distances then grow in the same outward direction.
-
-To minimize every nested extreme pair simultaneously, choose $z$ in the middle interval. With an odd number of coordinates, that interval collapses to the single middle coordinate. With an even number, any coordinate between the lower and upper middle values is optimal. Selecting either middle value is therefore always valid.
-
-Another way to see the same fact is to imagine shifting $z$ one step right. Every point to the left contributes one additional unit, while every point to the right contributes one fewer unit. Before the median, more points lie to the right, so moving right can improve the total. After the median, more points lie to the left, so moving right makes the total worse. The transition occurs at the median.
-
-The mean does not have this property for absolute differences. A far-away coordinate can pull the mean away from most friends, while the median depends on how many coordinates lie on each side rather than how far an outlier lies.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on the $3 \times 5$ grid:
 
 ---
 
-### Step 2: Collecting the occupied coordinates
+### Step 1: Collect Coordinates
+Scan the grid in row-major order:
+- Row 0:
+  - $(0, 0) == 1 \implies \text{row } 0, \; \text{col } 0$
+  - $(0, 4) == 1 \implies \text{row } 0, \; \text{col } 4$
+- Row 2:
+  - $(2, 2) == 1 \implies \text{row } 2, \; \text{col } 2$
 
-The source scans every cell with row index `i`, column index `j`, and value `v`. Whenever `v` is 1, it appends `i` to `rows` and `j` to `cols`. Each friend contributes exactly one coordinate to each list, so the two lists have the same length $k$.
-
-The scan visits rows from top to bottom. Within each row, it visits columns from left to right. Because every row index from an earlier outer-loop iteration is no larger than every row index from a later iteration, `rows` is automatically collected in non-decreasing order. Repeated homes in the same row simply contribute repeated equal row coordinates, which is necessary because every friend contributes separately to the distance.
-
-The column list is different. After finishing one row, the scan returns to column zero of the next row. For the example homes $(0,0)$, $(0,4)$, and $(2,2)$, the collected columns are `[0, 4, 2]`, which are not sorted. The exact source therefore calls `cols.sort()` before choosing the column median.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Extracted lists:
+- $\text{rows} = [0, 0, 2]$ (Already sorted in non-decreasing order!).
+- $\text{cols} = [0, 4, 2]$ (Unsorted).
 
 ---
 
-### Step 3: Selecting the two median coordinates
+### Step 2: Sort Columns & Find Medians
+Total homes $k = 3$. Median index:
+$$
+\text{mid} = \lfloor 3 / 2 \rfloor = 1
+$$
+- **Row Median:**
+  $$
+  X^* = \text{rows}[1] = \mathbf{0}
+  $$
+- **Column Sorting & Median:**
+  Sort $\text{cols} \to [0, 2, 4]$.
+  $$
+  Y^* = \text{cols}[1] = \mathbf{2}
+  $$
 
-The source uses `len(rows) >> 1` as the median index. A right shift by one is integer division by two for the nonnegative list length, so this is the same index as `len(rows) // 2`.
+Optimal meeting point: $(X^*, Y^*) = (0, 2)$.
 
-For odd $k$, index $k//2$ is the unique middle element. For even $k$, it is the upper of the two middle elements. Choosing the upper median is valid because every point between the two middle coordinates minimizes the sum of absolute distances.
+---
 
-The statements
+### Step 3: Compute Total Distance
+1. **Vertical Distance $\sum |r_i - 0|$:**
+   - $|0 - 0| = 0$
+   - $|0 - 0| = 0$
+   - $|2 - 0| = 2$
+   $$
+   D_{\text{row}} = 0 + 0 + 2 = \mathbf{2}
+   $$
+2. **Horizontal Distance $\sum |c_i - 2|$:**
+   - $|0 - 2| = 2$
+   - $|2 - 2| = 0$
+   - $|4 - 2| = 2$
+   $$
+   D_{\text{col}} = 2 + 0 + 2 = \mathbf{4}
+   $$
+3. **Total Minimal Distance:**
+   $$
+   D = D_{\text{row}} + D_{\text{col}} = 2 + 4 = \mathbf{6}
+   $$
 
-`i = rows[len(rows) >> 1]`
-
-and
-
-`j = cols[len(cols) >> 1]`
-
-therefore choose an optimal meeting row and an optimal meeting column. Both values come from home coordinates and hence lie inside the grid, although the median proof would also permit intermediate coordinates in the even case.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+Output: $\mathbf{6}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+```text
+Homes: (0, 0), (0, 4), (2, 2)
+rows = [0, 0, 2] -> sorted naturally
+cols = [0, 4, 2] -> sorted: [0, 2, 4]
+
+mid_idx = 3 // 2 = 1
+Optimal Row:    rows[1] = 0
+Optimal Column: cols[1] = 2
+Meeting Point: (0, 2)
+
+Row Distances: |0-0| + |0-0| + |2-0| = 0 + 0 + 2 = 2
+Col Distances: |0-2| + |2-2| + |4-2| = 2 + 0 + 2 = 4
+Total Distance = 2 + 4 = 6
+```
+
+| Friend Index | Home Coordinates $(r_i, c_i)$ | Vertical Dist to $X^* = 0$ | Horizontal Dist to $Y^* = 2$ | Total Manhattan Distance |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | $(0, 0)$ | $|0 - 0| = 0$ | $|0 - 2| = 2$ | $0 + 2 = 2$ |
+| 2 | $(0, 4)$ | $|0 - 0| = 0$ | $|4 - 2| = 2$ | $0 + 2 = 2$ |
+| 3 | $(2, 2)$ | $|2 - 0| = 2$ | $|2 - 2| = 0$ | $2 + 0 = 2$ |
+| **Total** | - | **$D_{\text{row}} = 2$** | **$D_{\text{col}} = 4$** | **$D_{\text{total}} = \mathbf{6}$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because Manhattan distance is separable into independent vertical and horizontal components ($|x - X| + |y - Y|$), the point minimizing the combined sum is formed by independently choosing $X$ to minimize the 1D absolute deviations of rows and $Y$ to minimize the 1D absolute deviations of columns. The median of a 1D sequence provably minimizes the sum of absolute deviations.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every cell containing a friend is identified during the grid scan. The row list is sorted by construction, and the column list is sorted explicitly. By evaluating all friends' coordinates, no friend is omitted, guaranteeing the calculated median yields the global minimum.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Collect columns in column-major order:** Scan each column from left to right and each row within that column. Then `cols` is already sorted, eliminating `cols.sort()` and achieving $O(mn)$ time with $O(k)$ coordinate storage. This is the linear method described by the manifest, but it is not the exact source's traversal.
-- **Pair extremes without selecting a median:** Once a coordinate list is sorted, add `arr[right] - arr[left]` while moving both pointers inward. This directly sums the unavoidable cost of each extreme pair and produces the same minimum.
-- **Sort both coordinate lists:** It is correct but wastes work on `rows`, whose order is already guaranteed by the row-major scan.
-- **Try every grid cell:** Computing distance from every candidate to every home costs $O(mnk)$ time and can reach $O(m^2n^2)$ when most cells contain homes.
-- **Breadth-first search from every candidate:** Obstacles do not exist and Manhattan distance has a direct formula, so BFS adds queues and visited matrices without changing the distance result.
-- **Use the arithmetic mean:** The mean minimizes squared distance, not the sum of absolute distances. An outlier can pull it away from the median and increase the required total.
-- **Choose row and column from the same friend:** The optimal row and optimal column are independent. Their combination need not be one friend's home; requiring that restriction can miss valid optimal meeting points.
-- **Even number of homes:** Any coordinate between the two middle values on an axis is optimal. The source deliberately chooses the upper middle value through index `k // 2`.
-- **Repeated rows or columns:** Repetitions must remain in the lists because they represent different friends. Removing duplicates would give too little weight to crowded coordinates and could change the median.
-- **Two adjacent homes:** For `[[1,1]]`, the row cost is zero. Either column 0 or 1 minimizes the horizontal cost at 1; the upper median selects column 1 and returns 1.
-- **All homes in one row:** The median row is that shared row, so vertical distance is zero. Only column distances contribute.
-- **All homes in one column:** The median column is that shared column, so horizontal distance is zero. Only row distances contribute.
-- **Dense grid:** There can be $mn$ homes. Coordinate collection still uses $O(k)$ space, and each home contributes once to each axis sum.
-- **At least two homes:** The source can also compute a one-home answer, but the contract guarantees two or more, so both coordinate lists are certainly nonempty when the median index is read.
-- **Meeting point on an empty cell:** This is allowed. The problem minimizes travel to a point in the grid; it does not require that point to contain a home.
-- **Manhattan distance specifically:** Axis separation relies on the sum of absolute coordinate differences. Euclidean distance would not permit the same independent median argument.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Mean Instead of Median:** The arithmetic mean minimizes the sum of squared distances $\sum (x_i - \bar{x})^2$. For absolute distances, an outlier coordinate would shift the mean away from the majority of homes, increasing total travel. The median is the unique robust minimizer for absolute distances.
+- **Requiring Meeting Point on a Friend's Home:** The optimal meeting point $(0, 2)$ is an empty cell (`grid[0][2] == 0`). The problem statement does NOT require the meeting point to be at an existing friend's house.
+- **Unsorted Columns:** Scanning row-by-row produces `rows` in sorted order, but `cols` is interleaved across rows (e.g. $[0, 4, 2]$). Forgetting to sort `cols` produces an incorrect median.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let $m$ be the number of grid rows, $n$ the number of columns, and $k$ the number of homes.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \times N + K \log K)$, where $M \times N$ is the grid size and $K$ is the number of homes ($K \le M \times N$). Scanning the grid takes $O(M N)$. Sorting `cols` of length $K$ takes $O(K \log K)$. Summing distances takes $O(K)$. Total runtime is dominated by grid traversal and column sorting.
+- **Auxiliary Space Complexity:** $O(K)$ auxiliary memory to store the row and column coordinates of the $K$ homes.

@@ -1,119 +1,208 @@
 # Guided Example: Invalid Transactions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the multi-criteria transaction audit algorithm to identify all transactions that violate spending limits or exhibit conflicting geographic activity within a 60-minute window.
 
-- **Input:** `{"transactions": ["alice,20,800,mtv", "alice,50,100,beijing"]}`
-- **Required output:** `["alice,20,800,mtv", "alice,50,100,beijing"]`
+- **Input:** $transactions = [\text{"alice,20,800,mtv"}, \text{"alice,50,100,beijing"}, \text{"bob,50,1200,mtv"}, \text{"bob,60,200,mtv"}]$
+- **Required output:** `["alice,20,800,mtv", "alice,50,100,beijing", "bob,50,1200,mtv"]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates symmetric pairwise conflict detection, isolating independent amount violations, handling identical-city multi-transactions, and index-based tracking to preserve duplicate inputs.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A transaction is possibly invalid if:
+A transaction record `"{name},{time},{amount},{city}"` is deemed **invalid** if it meets at least one of two disjunctive conditions:
+1. **Excessive Amount:** The transaction amount exceeds $1000$ ($\text{amount} > 1000$).
+2. **Geographic Collision:** The transaction occurs within $60$ minutes (inclusive) of another transaction with the **same name** in a **different city** ($|time_1 - time_2| \le 60 \wedge city_1 \ne city_2$).
 
-The objective is to compute `["alice,20,800,mtv", "alice,50,100,beijing"]` from `{"transactions": ["alice,20,800,mtv", "alice,50,100,beijing"]}` while avoiding redundant calculations and unnecessary overhead.
+A naive classification often trips on the symmetric nature of geographic conflicts:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+The Single-Party Blame Trap:
+
+Suppose Alice transacts in MTV at t = 20, then in Beijing at t = 50:
+  |20 - 50| = 30 <= 60 minutes, and MTV != Beijing.
+
+Flawed Logic:
+  "Beijing is physically impossible after MTV, so Beijing is invalid."
+  (Only marking the second transaction).
+
+Correct Rule Logic:
+  Both transactions cannot be simultaneously authentic.
+  The problem contract mandates that BOTH the MTV and Beijing transactions
+  are flagged as invalid!
+```
+
+The primary teaching goals are:
+- **Symmetric Conflict Propagation:** If transaction $i$ conflicts with transaction $j$, both indices $i$ and $j$ must be marked invalid.
+- **Index-Preserving Sets:** Tracking flagged items by array index ($i \in \{0, \dots, N-1\}$) ensures that duplicate transaction strings are preserved in the final output and not collapsed by set deduplication.
+- **Precise Boundary Operators:** Strict inequality for amount ($> 1000$) versus inclusive inequality for time difference ($\le 60$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let each transaction $i \in \{0, \dots, N-1\}$ be parsed into a tuple $(name_i, time_i, amount_i, city_i)$.
 
-| State Parameter | Role & Purpose | Initial State |
+### Invalidity Predicate
+
+$$\text{Invalid}(i) \equiv (amount_i > 1000) \lor \exists j \ne i \left( name_i = name_j \land city_i \ne city_j \land |time_i - time_j| \le 60 \right)$$
+
+| Rule Component | Mathematical Condition | Behavioral Implication |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Rule 1 (Threshold) | $amount_i > 1000$ | Local check on single transaction; independent of other records |
+| Rule 2 (Collision) | $name_i = name_j \land city_i \ne city_j \land \|time_i - time_j\| \le 60$ | Pairwise relational check; flags both $i$ and $j$ simultaneously |
+| Same-City Exemption | $city_i = city_j$ | Multiple transactions within 60 mins in the same city are completely valid |
+| Index Set Tracker | $invalid\_indices \subseteq \{0, \dots, N-1\}$ | Set of integers preventing duplicate insertions of the same index |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Transaction Validity Decision Pipeline
+    accDescr: Flowchart testing individual amount thresholds followed by pairwise geographic conflict evaluation.
+
+    Start["Inspect Transaction i"] --> CheckAmount{"amount > 1000?"}
+    CheckAmount -- "Yes" --> FlagI["Mark i Invalid (Rule 1)"]
+    CheckAmount -- "No" --> CheckPair{"Any j != i with:
+    name_i == name_j AND
+    city_i != city_j AND
+    |time_i - time_j| <= 60?"}
+    CheckPair -- "Yes" --> FlagBoth["Mark BOTH i and j Invalid (Rule 2)"]
+    CheckPair -- "No" --> KeepValid["Transaction i Valid"]
+    FlagI --> Next["Proceed to next transaction"]
+    FlagBoth --> Next
+    KeepValid --> Next
+```
+
+> **Index Set Deduplication Invariant.** A transaction index $i$ is added to $invalid\_indices$ at most once, regardless of whether it violates Rule 1, Rule 2 with multiple partners, or both. The output is reconstructed by iterating over the original indices: $[transactions[i] \text{ for } i \in invalid\_indices]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Parse each record but preserve its original index
+We trace the 4 input transactions:
+- $T_0$: `"alice,20,800,mtv"`
+- $T_1$: `"alice,50,100,beijing"`
+- $T_2$: `"bob,50,1200,mtv"`
+- $T_3$: `"bob,60,200,mtv"`
 
-Every transaction string is split into `name`, `time`, `amount`, and `city`. Time and amount are converted to integers for arithmetic comparisons.
-
-The original index `i` is retained because the required output contains the original strings. It also distinguishes two separate input entries that happen to have identical text.
-
-The set `idx` stores indices known to be invalid. A set prevents the same transaction from being added repeatedly when it violates both rules or conflicts with several other transactions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"transactions": ["alice,20,800,mtv", "alice,50,100,beijing"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Initialize $invalid\_indices = \emptyset$.
 
 ---
 
-### Step 2: Apply the amount rule independently
+### Step 1: Evaluate Rule 1 (Amount > 1000)
 
-If `amount > 1000`, the current index is inserted into `idx` immediately. The inequality is strict: an amount exactly equal to 1000 is allowed by this rule.
+We scan all transactions individually:
+- $T_0$: $amount = 800 \le 1000 \implies$ Not flagged.
+- $T_1$: $amount = 100 \le 1000 \implies$ Not flagged.
+- $T_2$: $amount = 1200 > 1000 \implies$ **Flagged!** Insert $2 \in invalid\_indices$.
+- $T_3$: $amount = 200 \le 1000 \implies$ Not flagged.
 
-This check does not depend on any other transaction. A record may later also be marked by a city-time conflict, but set insertion remains idempotent.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Set state: $invalid\_indices = \{2\}$.
 
 ---
 
-### Step 3: Group earlier records by customer name
+### Step 2: Evaluate Rule 2 (Pairwise Geographic Collisions)
 
-`d[name]` is a list of parsed triples `(time, city, index)` for transactions of that name seen so far in input order.
+Group transactions by person name to compare candidate pairs:
 
-The current tuple is appended before the comparison loop. The loop therefore includes the current transaction itself, but it cannot conflict with itself because its city equals its own city. The `c != city` condition rejects the self-comparison.
+#### Sub-group: Alice (Transactions $T_0$ and $T_1$)
+- Compare pair $(T_0, T_1)$:
+  - Names match: `"alice" == "alice"`.
+  - Cities differ: `"mtv" \ne "beijing"`.
+  - Time difference: $|20 - 50| = 30 \le 60$.
+- Collision detected!
+- Mark **both** transactions:
+  - Insert $0 \in invalid\_indices$.
+  - Insert $1 \in invalid\_indices$.
 
-Grouping by name avoids comparing transactions belonging to different people. The invalidity rule requires the same name, so cross-name pairs can never matter.
+#### Sub-group: Bob (Transactions $T_2$ and $T_3$)
+- Compare pair $(T_2, T_3)$:
+  - Names match: `"bob" == "bob"`.
+  - Cities: $city_2 = \text{"mtv"}$, $city_3 = \text{"mtv"}$.
+  - Since $city_2 == city_3$, the cities are the **same**.
+  - No geographic conflict occurs! (Rule 2 does not apply).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["alice,20,800,mtv", "alice,50,100,beijing"]` |
+---
+
+### Step 3: Final Output Assembly
+
+The set of invalid indices is:
+
+$$invalid\_indices = \{0, 1, 2\}$$
+
+Reconstruct result strings:
+- Index 0: `"alice,20,800,mtv"`
+- Index 1: `"alice,50,100,beijing"`
+- Index 2: `"bob,50,1200,mtv"`
+
+Transaction $T_3$ (`"bob,60,200,mtv"`) is valid and omitted.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"transactions": ["alice,20,800,mtv", "alice,50,100,beijing"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["alice,20,800,mtv", "alice,50,100,beijing"]` | Verified |
+| Index ($i$) | Transaction String | Amount Check ($> 1000$) | Conflicting Pair ($j$) | City Match / Diff | Time Delta ($\le 60$) | Violation Reason | Result Status |
+|---|---|---|---|---|---|---|---|
+| $0$ | `"alice,20,800,mtv"` | $800 \le 1000$ | $T_1$ | `mtv != beijing` | $|20 - 50| = 30$ | Rule 2 (Geo Collision) | **Invalid** |
+| $1$ | `"alice,50,100,beijing"` | $100 \le 1000$ | $T_0$ | `beijing != mtv` | $|50 - 20| = 30$ | Rule 2 (Geo Collision) | **Invalid** |
+| $2$ | `"bob,50,1200,mtv"` | $1200 > 1000$ | None | Same city as $T_3$ | $|50 - 60| = 10$ | Rule 1 (Amount $> 1000$) | **Invalid** |
+| $3$ | `"bob,60,200,mtv"` | $200 \le 1000$ | None | Same city as $T_2$ | $|60 - 50| = 10$ | None (Same city valid) | **Valid** |
+
+```text
+Geographic Timeline Comparison:
+
+Alice's Timeline:
+  t = 20: [MTV]       <==================== Delta = 30 mins ====================> t = 50: [Beijing]
+  (Distance in time <= 60 min and different cities -> BOTH FLAGGED INVALID)
+
+Bob's Timeline:
+  t = 50: [MTV] (Amt: 1200 -> Flagged by Amount)
+  t = 60: [MTV] (Amt: 200  -> Same city MTV, <= 1000 -> VALID)
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Theorem (Symmetric Conflict Completeness).**
+1. **Symmetry:** The relation $C(i, j) \equiv (name_i = name_j \land city_i \ne city_j \land |time_i - time_j| \le 60)$ is symmetric ($C(i, j) \iff C(j, i)$). If $C(i, j)$ holds, both $i$ and $j$ violate the physical feasibility condition, so both must be included in the output.
+2. **Idempotence:** A transaction that violates Rule 1 and also violates Rule 2 with multiple other transactions is represented by a unique integer index $i$. Inserting $i$ into a set ensures each physical record from the input array is emitted exactly once.
+3. **Exhaustive Partitioning:** Grouping by $name$ partitions the $N$ records into independent buckets $\{B_1, \dots, B_k\}$. Because $C(i, j)$ requires $name_i = name_j$, no cross-bucket comparisons can yield a violation, ensuring no valid conflict is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort by name and time:** Grouped sorting can organize nearby comparisons, but differing-city conflicts within a 60-minute window still need data structures or bounded scanning to avoid quadratic work.
-- **Compare every global pair:** This is also `O(n^2)` but wastes comparisons across different names. The dictionary limits scans to potentially relevant pairs.
-- **Mark only the later transaction:** Both members of a qualifying pair are invalid, so both indices must be added.
-- **Use `< 60` instead of `<= 60`:** The rule includes exactly 60 minutes, so the comparison must be inclusive.
-- **Amount exactly 1000:** It is not invalid by amount, though another transaction may invalidate it.
-- **Same name and time but same city:** The city condition fails, so the pair alone is valid.
-- **Same name and time in different cities:** The time difference is zero and both entries are invalid.
-- **Different names:** They never conflict regardless of city and time.
-- **One transaction violates both rules:** A set keeps one index and produces one output entry for that input position.
-- **Duplicate textual records:** Separate indices remain separate transactions and can both appear in the returned list.
-- **Any output order:** Set iteration is acceptable because ordering is explicitly unrestricted.
-- **Manifest mismatch:** The exact nested same-name scans are quadratic in the worst case, not `O(n log n)`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
+|---|---|---|---|
+| **One-Sided Blame Fallacy** | Adding only $j$ when $|time_i - time_j| \le 60$ | Assuming only the chronologically later transaction is invalid. | Always add both $i$ and $j$ to the invalid set upon detecting a conflict. |
+| **Same-City False Alarm** | Flagging $T_3$ because it is within 10 minutes of $T_2$ | Forgetting to check $city_i \ne city_j$. | Check $city_i \ne city_j$ explicitly. |
+| **String Set Duplicate Collapse** | Input contains two identical invalid strings: `["alice,20,800,mtv", "alice,20,800,mtv"]` | Storing invalid items in a `Set<String>` collapses the two items into one, losing an input element. | Store invalid indices in `Set<Integer>` and look up original strings from the input array. |
+| **Boundary Strictness Error** | Using $|time_i - time_j| < 60$ instead of $\le 60$, or $amount \ge 1000$ instead of $> 1000$ | Misreading "exceeds 1000" as $\ge 1000$, or "within 60 minutes" as $< 60$. | Amount strictly $> 1000$; time difference inclusive $\le 60$. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Parsing all transaction strings is linear in their total text length; field lengths are bounded by the contract. The dominant work is the same-name comparison loops.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Let $N$ be the total number of transactions ($N \le 1000$).
+
+### Time Complexity
+
+1. **Parsing:** Parsing $N$ strings of length $\le 40$ into fields takes $\mathcal{O}(N)$ time.
+2. **Grouping by Name:** Placing records into a hash table grouped by $name$ takes $\mathcal{O}(N)$ time.
+3. **Pairwise Comparison:**
+   - For each group of size $N_c$, comparing all pairs takes $\binom{N_c}{2} = \mathcal{O}(N_c^2)$ operations.
+   - Summing across all distinct names: $\sum N_c^2 \le (\sum N_c)^2 = N^2$.
+4. **Total Time Complexity:**
+
+$$\mathcal{O}(N^2)$$
+
+For $N = 1000$, the maximum number of comparisons is $\binom{1000}{2} \approx 5 \times 10^5$, taking $\approx 5 \text{ ms}$.
+
+### Auxiliary Space Complexity
+
+- Grouping map and parsed record structures require $\mathcal{O}(N)$ space.
+- Set of invalid indices contains at most $N$ integers.
+- Total Auxiliary Space Complexity:
+
+$$\mathcal{O}(N)$$

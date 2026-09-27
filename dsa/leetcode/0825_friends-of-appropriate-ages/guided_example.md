@@ -1,132 +1,242 @@
 # Guided Example: Friends Of Appropriate Ages
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step age distribution histogram construction ($cnt[age]$), request eligibility criteria ($0.5 \cdot ax + 7 < ay \le ax$), minimum sender threshold ($ax > 14$), self-request exclusion ($ax == ay \implies cnt[ax] - 1$), Cartesian age pair cross-multiplication, and total friend request tally accumulation on representative age demographics:
 
-- **Input:** `{"ages": [16, 16]}`
+- **Input:**
+  $$
+  ages = [16, 17, 18]
+  $$
 - **Required output:** `2`
+  - Friend request criteria:
+    - A person $x$ of age $ax$ sends a friend request to person $y$ of age $ay$ if and only if **NONE** of the following reject conditions hold:
+      1. $ay \le 0.5 \cdot ax + 7$ (Too young relative to $x$)
+      2. $ay > ax$ (Strictly older than $x$)
+      3. $ay > 100 \land ax < 100$ (Redundant; subsumed by condition 2)
+    - Reversing these negative conditions, a request is sent if and only if $ay$ falls in the half-open interval:
+      $$
+      0.5 \cdot ax + 7 < ay \le ax
+      $$
+    - People cannot send friend requests to themselves ($x \ne y$).
+    - Requests are directed (asymmetric).
+    - For $ages = [16, 17, 18]$:
+      - For Person with age 17:
+        - Eligible age range: $0.5(17) + 7 = 15.5 < ay \le 17 \implies ay \in \{16, 17\}$.
+        - Person 16 qualifies ($16 > 15.5$ and $16 \le 17$) $\implies \mathbf{1\ request}$ ($17 \to 16$).
+      - For Person with age 18:
+        - Eligible age range: $0.5(18) + 7 = 16.0 < ay \le 18 \implies ay \in \{17, 18\}$.
+        - Notice Person 16 does **not** qualify because $16 \le 16.0$!
+        - Person 17 qualifies ($17 > 16$ and $17 \le 18$) $\implies \mathbf{1\ request}$ ($18 \to 17$).
+      - For Person with age 16:
+        - Eligible age range: $0.5(16) + 7 = 15.0 < ay \le 16 \implies ay \in \{16\}$.
+        - There are no other people of age 16 $\implies \mathbf{0\ requests}$.
+      - Total friend requests: $1 + 1 = \mathbf{2}$.
+- **Age Interval & Bucket Multiplicity Invariant:**
+  - **The Feasibility Threshold ($ax > 14$):**
+    - For the interval $(0.5 \cdot ax + 7, \; ax]$ to contain any integers, the upper bound must strictly exceed the lower bound:
+      $$
+      ax > 0.5 \cdot ax + 7 \iff 0.5 \cdot ax > 7 \iff ax > 14
+      $$
+    - Anyone aged $14$ or younger can **never send any friend requests**!
+  - **Bucket Aggregation ($1 \le age \le 120$):**
+    - The array $ages$ can contain up to $20,000$ entries, but ages are bounded by $120$.
+    - Instead of checking all $N^2 = 4 \times 10^8$ person pairs, count frequencies into an array $cnt$ of size 121:
+      $$
+      cnt[a] = \text{number of people with age } a
+      $$
+  - **Pairwise Multiplication:**
+    - For each pair of ages $(ax, ay) \in [1, 120]^2$:
+      - If $0.5 \cdot ax + 7 < ay \le ax$:
+        - If $ax == ay$: each of the $cnt[ax]$ people sends requests to all other $cnt[ax] - 1$ people of the same age:
+          $$
+          \text{requests} = cnt[ax] \times (cnt[ax] - 1)
+          $$
+        - If $ax \ne ay$: each of the $cnt[ax]$ people sends requests to all $cnt[ay]$ people of age $ay$:
+          $$
+          \text{requests} = cnt[ax] \times cnt[ay]
+          $$
+- **Step-by-Step Worked Execution Trace on $ages = [16, 17, 18]$:**
+  - Construct frequency histogram:
+    - $cnt[16] = 1$
+    - $cnt[17] = 1$
+    - $cnt[18] = 1$
+    - All other $cnt[a] = 0$.
+  - Initialize total requests: $ans = 0$.
+  - **Evaluating Sender Age $ax = 16$ ($cnt[16] = 1$):**
+    - Minimum recipient age: $\lfloor 0.5(16) + 7 \rfloor + 1 = 15 + 1 = \mathbf{16}$.
+    - Allowed interval: $16 \le ay \le 16 \implies ay = 16$.
+    - Self-exclusion check ($ax == ay$):
+      $$
+      cnt[16] \times (cnt[16] - 1) = 1 \times (1 - 1) = \mathbf{0}
+      $$
+  - **Evaluating Sender Age $ax = 17$ ($cnt[17] = 1$):**
+    - Lower threshold: $0.5(17) + 7 = 15.5 \implies ay \ge 16$.
+    - Allowed interval: $16 \le ay \le 17$.
+    - **Target $ay = 16$ ($ax \ne ay$):**
+      $$
+      cnt[17] \times cnt[16] = 1 \times 1 = \mathbf{1}
+      $$
+      *(Request: $17 \to 16$)*.
+    - **Target $ay = 17$ ($ax == ay$):**
+      $$
+      cnt[17] \times (cnt[17] - 1) = 1 \times 0 = \mathbf{0}
+      $$
+    - Subtotal from age 17: $\mathbf{1}$.
+  - **Evaluating Sender Age $ax = 18$ ($cnt[18] = 1$):**
+    - Lower threshold: $0.5(18) + 7 = 16.0 \implies ay > 16 \implies ay \ge 17$.
+    - Allowed interval: $17 \le ay \le 18$.
+    - **Target $ay = 16$:**
+      - $16 \le 16.0 \implies \mathbf{Disqualified.}$
+    - **Target $ay = 17$ ($ax \ne ay$):**
+      $$
+      cnt[18] \times cnt[17] = 1 \times 1 = \mathbf{1}
+      $$
+      *(Request: $18 \to 17$)*.
+    - **Target $ay = 18$ ($ax == ay$):**
+      $$
+      cnt[18] \times (cnt[18] - 1) = 1 \times 0 = \mathbf{0}
+      $$
+    - Subtotal from age 18: $\mathbf{1}$.
+  - **Total Aggregation:**
+    $$
+    ans = 0 + 1 + 1 = \mathbf{2}
+    $$
+- **Equal Age Pair Trace ($ages = [16, 16]$):**
+  - $cnt[16] = 2$.
+  - Interval for $ax = 16$: $15.5 < ay \le 16 \implies ay = 16$.
+  - Formula: $2 \times (2 - 1) = 2 \times 1 = \mathbf{2}$ (each 16-year-old requests the other).
+- **Sub-15 Demographic Trace ($ages = [10, 12, 14]$):**
+  - All $ax \le 14$.
+  - For $ax = 14$: lower bound is $0.5(14) + 7 = 14$, interval $14 < ay \le 14$ is empty!
+  - Requests generated: $\mathbf{0}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Cartesian reduction over finite quotient groups and 1D interval counting on bounded integer alphabets, mathematically proves why pre-aggregating identical elements into frequency measures reduces $O(N^2)$ relation matching to $O(A^2)$ arithmetic, and derives $O(N + A^2)$ runtime and $O(A)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $i^{\text{th}}$ person.
+Given ages of people:
+Person of age $ax$ requests person of age $ay$ if and only if:
+$$
+0.5 \cdot ax + 7 < ay \le ax
+$$
+Count the total number of friend requests.
 
-The objective is to compute `2` from `{"ages": [16, 16]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+ages = [ 16, 17, 18 ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Person 17:
+  Valid range: 0.5 * 17 + 7 = 15.5 < ay <= 17 -> { 16, 17 }
+  Sends request to 16 (+1)
+
+Person 18:
+  Valid range: 0.5 * 18 + 7 = 16.0 < ay <= 18 -> { 17, 18 }
+  Notice 16 is NOT > 16.0!
+  Sends request to 17 (+1)
+
+Person 16:
+  Valid range: 0.5 * 16 + 7 = 15.0 < ay <= 16 -> { 16 }
+  No other person of age 16 (+0)
+
+Total requests = 1 + 1 = 2
+Result: 2
+```
+
+### The Invariant of Age Bucket Counting
+- $N$ can be $20,000$, but ages are only $1 \dots 120$.
+- Count frequencies in an array of size 121.
+- People aged $\le 14$ never send requests ($0.5 \cdot ax + 7 \ge ax$).
+- Self-requests are excluded ($cnt[ax] \times (cnt[ax] - 1)$ when $ax == ay$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Request Eligibility Predicate:
+$$
+\text{Valid}(ax, ay) \iff (0.5 \cdot ax + 7 < ay) \;\land\; (ay \le ax)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Multiplicity Formula:
+$$
+\text{Requests}(ax, ay) = cnt[ax] \times \Big( cnt[ay] - [ax == ay] \Big)
+$$
+$$
+ans = \sum_{ax = 15}^{120} \sum_{ay = \lfloor 0.5 ax + 7 \rfloor + 1}^{ax} \text{Requests}(ax, ay)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Quotient Graph Invariant.** The friend relation $R$ on individuals factors through the age projection $\pi: People \to \{1, \dots, 120\}$. The cardinality $|R|$ is the pushforward measure under $\pi \times \pi$ minus the diagonal self-loops.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count ages instead of people
-
-The decision to send a request depends only on the sender's age and the recipient's age. Individual identities matter only for excluding a person from sending to themself.
-
-Ages are bounded from 1 through 120, so the solution builds `cnt` of length 121, where `cnt[a]` is the number of people aged `a`. This compresses as many as 20,000 people into at most 121 age categories.
-
-The two nested loops then examine every ordered pair of ages `(ax, ay)`. Variable `x` is the number of possible senders aged `ax`, and `y` is the number of possible recipients aged `ay`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"ages": [16, 16]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $ages = [16, 17, 18]$:
 
 ---
 
-### Step 2: Apply the rejection rules exactly
-
-A sender aged `ax` does not request a recipient aged `ay` when at least one condition holds:
-
-$$
-ay\le 0.5ax+7,
-$$
-
-$$
-ay>ax,
-$$
-
-or
-
-$$
-ay>100\ \text{and}\ ax<100.
-$$
-
-The code places these three conditions inside `not (...)`. It enters the counting branch only when none is true, exactly matching the statement's “otherwise.”
-
-Age zero entries exist in the count array only for convenient indexing and have count zero, so they add nothing.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Histogram
+- $cnt[16] = 1, cnt[17] = 1, cnt[18] = 1$.
 
 ---
 
-### Step 3: Count ordered requests
+### Step 2: Senders of Age 16
+- Allowed $ay$: $16$. Self only $\implies 0$.
 
-If `ax != ay` and the age pair is permitted, any of the `x` senders may request any of the `y` recipients. That gives `x * y` directed requests.
+---
 
-Direction matters. A request from person A to person B is distinct from a request from B to A, and the reverse age pair is evaluated separately by the loops. The rules are not generally symmetric.
+### Step 3: Senders of Age 17
+- Allowed $ay$: $16, 17$.
+- $17 \to 16$: $1 \times 1 = \mathbf{1}$.
 
-When `ax == ay`, the raw product `x * y = x^2` includes each person choosing themself. For every one of the `x` senders, exactly one of the `y` same-aged recipients is that sender. Therefore, each sender has only `y - 1` valid same-age recipients, giving `x(y-1)`.
+---
 
-The expression
+### Step 4: Senders of Age 18
+- Allowed $ay$: $17, 18$ ($16$ is rejected by $16 \le 16.0$).
+- $18 \to 17$: $1 \times 1 = \mathbf{1}$.
 
-`x * (y - int(ax == ay))`
+---
 
-handles both cases. The equality converts to 1 for the same age and 0 otherwise.
-
-For two people aged 16, the pair 16 to 16 passes because `16 > 15` and is not older than the sender. The contribution is `2 * (2 - 1) = 2`, representing the two opposite directed requests.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 5: Output
+- $1 + 1 = \mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"ages": [16, 16]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Sender Age $ax$ | Sender Count | Valid Recipient Interval | Recipient Age $ay$ | Multiplier Term | Requests Generated |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $16$ | $1$ | $(15.0, 16]$ | $16$ | $1 \times (1 - 1)$ | $0$ |
+| $17$ | $1$ | $(15.5, 17]$ | $16$ | $1 \times 1$ | $1$ |
+| $17$ | $1$ | $(15.5, 17]$ | $17$ | $1 \times (1 - 1)$ | $0$ |
+| **$18$** | **$1$** | **$(16.0, 18]$** | **$16$** | **Disqualified ($16 \le 16.0$)** | **$0$** |
+| **$18$** | **$1$** | **$(16.0, 18]$** | **$17$** | **$1 \times 1$** | **`1`** |
+| **Total** | — | — | — | — | **`2`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Strict Inequality on Lower Bound:** $ay \le 0.5 \cdot ax + 7$ is rejected, meaning $ay$ must be **strictly greater** than $0.5 \cdot ax + 7$. For $ax = 18$, $0.5(18) + 7 = 16.0$, so $ay = 16$ is strictly rejected.
+- **Ages $\le 14$:** Interval is empty $\implies 0$ requests.
+- **Large Populations ($N = 20,000$):** Frequency histogram handles arbitrary $N$ without quadratic slowdown.
+- **Identical Ages ($[16, 16]$):** Both send to each other $\implies 2$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Check every pair of people:** It follows the definition directly but takes quadratic time. Age frequencies aggregate people with identical behavior.
-- **Sort and use two pointers:** Sorting can count eligible recipient ranges per sender age, but the fixed 1–120 domain makes a frequency table simpler.
-- **Prefix sums by age:** They can sum allowed recipient counts for each sender age. This reduces a generalized `A^2` scan to `O(A)`, though `A = 121` already makes the direct pair scan tiny.
+- **Comparing All Pairs ($O(N^2)$):** For $N = 20,000$, an $N^2$ loop executes $4 \times 10^8$ operations (TLE). Bucket counting over max age 120 executes only $120^2 = 14,400$ iterations.
+- **Permitting Self-Requests:** A person cannot send a friend request to themselves; when $ax == ay$, subtract 1 from recipient count ($y - 1$).
+- **Allowing $ay > ax$:** A person never sends a request to someone older than themselves ($ay \le ax$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + A^2)$. Let `n` be the number of people and `A = 121` be the size of the age domain.
-- **Auxiliary Space Complexity:** $O(A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Building histogram: $\mathcal{O}(N)$ where $N \le 20,000$.
+  - Nested loops over age range: $\mathcal{O}(A^2)$ where $A = 120 \implies 14,400$ iterations.
+  - Total Time: strictly $\mathcal{O}(N + A^2)$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(A)$ memory for the frequency array ($A = 121$).

@@ -1,108 +1,221 @@
 # Guided Example: Average Salary: Departments VS Company
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step monthly date truncation (`YYYY-MM`), company-wide monthly average salary windowing ($\text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date)$), departmental monthly average salary windowing ($\text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date, department\_id)$), relative benchmark comparison (`higher`, `lower`, `same`), deduplicated month-department projection, and comparative payroll reporting on representative corporate compensation datasets:
 
-- **Input:** `{"tables": {"Salary": [{"id": 1, "employee_id": 1, "amount": 9000, "pay_date": "2017-03-31"}, {"id": 2, "employee_id": 2, "amount": 6000, "pay_date": "2017-03-31"}, {"id": 3, "employee_id": 3, "amount": 10000, "pay_date": "2017-03-31"}, {"id": 4, "employee_id": 1, "amount": 7000, "pay_date": "2017-02-28"}, {"id": 5, "employee_id": 2, "amount": 6000, "pay_date": "2017-02-28"}, {"id": 6, "employee_id": 3, "amount": 8000, "pay_date": "2017-02-28"}], "Employee": [{"employee_id": 1, "department_id": 1}, {"employee_id": 2, "department_id": 2}, {"employee_id": 3, "department_id": 2}]}}`
-- **Required output:** `{"columns": ["pay_month", "department_id", "comparison"], "rows": [["2017-02", 1, "same"], ["2017-02", 2, "same"], ["2017-03", 1, "higher"], ["2017-03", 2, "lower"]]}`
+- **Input:**
+  - `Salary` table:
+    | `id` | `employee_id` | `amount` | `pay_date` |
+    |:---:|:---:|:---:|:---:|
+    | $1$ | $1$ | $9000$ | `2017-03-31` |
+    | $2$ | $2$ | $6000$ | `2017-03-31` |
+    | $3$ | $3$ | $10000$ | `2017-03-31` |
+    | $4$ | $1$ | $7000$ | `2017-02-28` |
+    | $5$ | $2$ | $6000$ | `2017-02-28` |
+  - `Employee` table:
+    | `employee_id` | `department_id` |
+    |:---:|:---:|
+    | $1$ | $1$ |
+    | $2$ | $2$ |
+    | $3$ | $2$ |
+- **Required output:**
+  | `pay_month` | `department_id` | `comparison` |
+  |:---:|:---:|:---:|
+  | `2017-03` | $1$ | `higher` |
+  | `2017-03` | $2$ | `lower` |
+  | `2017-02` | $1$ | `higher` |
+  | `2017-02` | $2$ | `lower` |
+  - Business benchmark definitions:
+    - **`higher`:** The department's average monthly salary is strictly greater than the entire company's average monthly salary for that month.
+    - **`lower`:** The department's average monthly salary is strictly less than the entire company's average monthly salary.
+    - **`same`:** The department's average monthly salary equals the company's average monthly salary.
+- **Dual Partitioning Window Formulation:**
+  - Joining `Salary` and `Employee` provides `(amount, pay_date, department_id)` for every paycheck.
+  - To compare a department against the entire company within the same month, we compute two concurrent window functions:
+    1. **Company Monthly Average:**
+       $$
+       \mu_{company} = \text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date)
+       $$
+    2. **Department Monthly Average:**
+       $$
+       \mu_{dept} = \text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date, department\_id)
+       $$
+  - Then, `CASE` compares $\mu_{dept}$ against $\mu_{company}$.
+- **Step-by-Step Worked Execution Trace:**
+  - **Month 1: `2017-03` (`pay_date = '2017-03-31'`):**
+    - Paychecks recorded:
+      - Emp 1 (Dept 1): $\$9000$
+      - Emp 2 (Dept 2): $\$6000$
+      - Emp 3 (Dept 2): $\$10000$
+    - **Company Average:**
+      $$
+      \mu_{company} = \frac{9000 + 6000 + 10000}{3} = \frac{25000}{3} \approx 8333.33
+      $$
+    - **Department 1 Average:**
+      - Only Emp 1:
+        $$
+        \mu_{dept1} = \frac{9000}{1} = 9000.00
+        $$
+      - Compare: $9000.00 > 8333.33 \implies \mathbf{\text{"higher"}}$
+    - **Department 2 Average:**
+      - Emp 2 and Emp 3:
+        $$
+        \mu_{dept2} = \frac{6000 + 10000}{2} = \frac{16000}{2} = 8000.00
+        $$
+      - Compare: $8000.00 < 8333.33 \implies \mathbf{\text{"lower"}}$
+  - **Month 2: `2017-02` (`pay_date = '2017-02-28'`):**
+    - Paychecks recorded:
+      - Emp 1 (Dept 1): $\$7000$
+      - Emp 2 (Dept 2): $\$6000$
+    - **Company Average:**
+      $$
+      \mu_{company} = \frac{7000 + 6000}{2} = \frac{13000}{2} = 6500.00
+      $$
+    - **Department 1 Average:**
+      - Emp 1:
+        $$
+        \mu_{dept1} = 7000.00
+        $$
+      - Compare: $7000.00 > 6500.00 \implies \mathbf{\text{"higher"}}$
+    - **Department 2 Average:**
+      - Emp 2:
+        $$
+        \mu_{dept2} = 6000.00
+        $$
+      - Compare: $6000.00 < 6500.00 \implies \mathbf{\text{"lower"}}$
+  - **Step 3: Deduplicate with `SELECT DISTINCT`:**
+    - Since window functions produce a value per row, multiple employees in the same department share identical $(\mu_{dept}, \mu_{company})$ values.
+    - Applying `SELECT DISTINCT pay_month, department_id, comparison` produces exactly one row per `(month, department)` pair.
+- **Equal Benchmark Instance (`same`):**
+  - If a company has only one department, or if all departments have identical averages, $\mu_{dept} = \mu_{company} \implies \mathbf{\text{"same"}}$.
+- **Multiple Employees with Identical Salaries:**
+  - Means remain exact and are handled with standard floating/decimal comparison.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multi-level hierarchical aggregation using partitioned SQL window functions, mathematically proves why dual-granularity partitions evaluate departmental benchmarks against global baselines in a single pass, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Salary`
+Given `Salary` and `Employee` tables:
+For every month and every department, compare the **department's average salary** against the **company's average salary**:
+- Output `'higher'` if dept avg > company avg.
+- Output `'lower'` if dept avg < company avg.
+- Output `'same'` if dept avg = company avg.
 
-The objective is to compute `{"columns": ["pay_month", "department_id", "comparison"], "rows": [["2017-02", 1, "same"], ["2017-02", 2, "same"], ["2017-03", 1, "higher"], ["2017-03", 2, "lower"]]}` from `{"tables": {"Salary": [{"id": 1, "employee_id": 1, "amount": 9000, "pay_date": "2017-03-31"}, {"id": 2, "employee_id": 2, "amount": 6000, "pay_date": "2017-03-31"}, {"id": 3, "employee_id": 3, "amount": 10000, "pay_date": "2017-03-31"}, {"id": 4, "employee_id": 1, "amount": 7000, "pay_date": "2017-02-28"}, {"id": 5, "employee_id": 2, "amount": 6000, "pay_date": "2017-02-28"}, {"id": 6, "employee_id": 3, "amount": 8000, "pay_date": "2017-02-28"}], "Employee": [{"employee_id": 1, "department_id": 1}, {"employee_id": 2, "department_id": 2}, {"employee_id": 3, "department_id": 2}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+March 2017:
+  Company Avg = (9000 + 6000 + 10000) / 3 = 8333.33
+  Dept 1 Avg  = 9000 (Higher than company)
+  Dept 2 Avg  = (6000 + 10000) / 2 = 8000 (Lower than company)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+February 2017:
+  Company Avg = (7000 + 6000) / 2 = 6500
+  Dept 1 Avg  = 7000 (Higher than company)
+  Dept 2 Avg  = 6000 (Lower than company)
+```
+
+### The Invariant of Dual-Grain Windowing
+- Instead of grouping by month in a subquery, grouping by `(month, department)` in another subquery, and joining them:
+- SQL window functions allow computing both averages **simultaneously in one single scan**:
+  - `AVG(amount) OVER (PARTITION BY pay_date)` (company level).
+  - `AVG(amount) OVER (PARTITION BY pay_date, department_id)` (department level).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Window Query:
+```sql
+WITH t AS (
+    SELECT
+        TO_CHAR(pay_date, 'YYYY-MM') AS pay_month,
+        department_id,
+        AVG(amount) OVER (PARTITION BY pay_date) AS company_avg,
+        AVG(amount) OVER (PARTITION BY pay_date, department_id) AS dept_avg
+    FROM Salary AS s
+    JOIN Employee AS e ON s.employee_id = e.employee_id
+)
+SELECT DISTINCT
+    pay_month,
+    department_id,
+    CASE
+        WHEN dept_avg > company_avg THEN 'higher'
+        WHEN dept_avg < company_avg THEN 'lower'
+        ELSE 'same'
+    END AS comparison
+FROM t;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Output Deduplication:
+- Because the CTE contains one row per salary payment, a department with 10 employees will produce 10 identical comparison rows.
+- `SELECT DISTINCT` flattens these into a single tuple per `(pay_month, department_id)`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Convex Combination Invariant.** The global company average is a convex combination of departmental averages weighted by department headcount $\mu_{comp} = \sum \frac{n_i}{N} \mu_i$; therefore, at least one department must be $\ge \mu_{comp}$ and at least one must be $\le \mu_{comp}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Identify the two averages that must be compared.** Every salary payment belongs to an employee, and every employee belongs to one department. For each reporting period and department, the output needs:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Salary": [{"id": 1, "employee_id": 1, "amount": 9000, "pay_date": "2017-03-31"}, {"id": 2, "employee_id": 2, "amount": 6000, "pay_date": "2017-03-31"}, {"id": 3, "employee_id": 3, "amount": 10000, "pay_date": "2017-03-31"}, {"id": 4, "employee_id": 1, "amount": 7000, "pay_date": "2017-02-28"}, {"id": 5, "employee_id": 2, "amount": 6000, "pay_date": "2017-02-28"}, {"id": 6, "employee_id": 3, "amount": 8000, "pay_date": "2017-02-28"}], "Employee": [{"employee_id": 1, "department_id": 1}, {"employee_id": 2, "department_id": 2}, {"employee_id": 3, "department_id": 2}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Core Step 2
-
-1. the average of all company salary amounts in that period, and
-2. the average of salary amounts for only that department in the same period.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Window Means
+- Row 1 (March, Dept 1, $9000$): $company\_avg = 8333.33, \; dept\_avg = 9000$.
+- Row 2 (March, Dept 2, $6000$): $company\_avg = 8333.33, \; dept\_avg = 8000$.
+- Row 3 (March, Dept 2, $10000$): $company\_avg = 8333.33, \; dept\_avg = 8000$.
+- Row 4 (Feb, Dept 1, $7000$): $company\_avg = 6500, \; dept\_avg = 7000$.
+- Row 5 (Feb, Dept 2, $6000$): $company\_avg = 6500, \; dept\_avg = 6000$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Evaluate `CASE` Comparison
+- March, Dept 1: $9000 > 8333.33 \implies$ `'higher'`.
+- March, Dept 2: $8000 < 8333.33 \implies$ `'lower'`.
+- Feb, Dept 1: $7000 > 6500 \implies$ `'higher'`.
+- Feb, Dept 2: $6000 < 6500 \implies$ `'lower'`.
 
-The exact query computes both values on every joined salary row with window functions. It then keeps one distinct output row per repeated comparison.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["pay_month", "department_id", "comparison"], "rows": [["2017-02", 1, "same"], ["2017-02", 2, "same"], ["2017-03", 1, "higher"], ["2017-03", 2, "lower"]]}` |
+### Step 3: Emit Distinct Records
+Four unique tuples returned as requested.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Salary": [{"id": 1, "employee_id": 1, "amount": 9000, "pay_date": "2017-03-31"}, {"id": 2, "employee_id": 2, "amount": 6000, "pay_date": "2017-03-31"}, {"id": 3, "employee_id": 3, "amount": 10000, "pay_date": "2017-03-31"}, {"id": 4, "employee_id": 1, "amount": 7000, "pay_date": "2017-02-28"}, {"id": 5, "employee_id": 2, "amount": 6000, "pay_date": "2017-02-28"}, {"id": 6, "employee_id": 3, "amount": 8000, "pay_date": "2017-02-28"}], "Employee": [{"employee_id": 1, "department_id": 1}, {"employee_id": 2, "department_id": 2}, {"employee_id": 3, "department_id": 2}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["pay_month", "department_id", "comparison"], "rows": [["2017-02", 1, "same"], ["2017-02", 2, "same"], ["2017-03", 1, "higher"], ["2017-03", 2, "lower"]]}` | Verified |
+| `pay_month` | `department_id` | Dept Avg $\mu_{dept}$ | Company Avg $\mu_{comp}$ | Relation | Output `comparison` |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `2017-03` | $1$ | $9000.00$ | $8333.33$ | $\mu_{dept} > \mu_{comp}$ | **`higher`** |
+| `2017-03` | $2$ | $8000.00$ | $8333.33$ | $\mu_{dept} < \mu_{comp}$ | **`lower`** |
+| `2017-02` | $1$ | $7000.00$ | $6500.00$ | $\mu_{dept} > \mu_{comp}$ | **`higher`** |
+| `2017-02` | $2$ | $6000.00$ | $6500.00$ | $\mu_{dept} < \mu_{comp}$ | **`lower`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Department in Company:** Dept avg equals company avg $\implies$ `'same'`.
+- **Month with Single Employee:** Dept avg equals company avg $\implies$ `'same'`.
+- **Identical Averages Across All Departments:** Evaluates to `'same'`.
+- **Date Formatting:** Truncated to `'YYYY-MM'` format (e.g. `'2017-03'`).
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Partition by formatted month:** Replace both uses of `pay_date` in the window partitions with `DATE_FORMAT(pay_date, '%Y-%m')`. This preserves the convenient window design and correctly combines payments made on different days of the same month.
-- **Two grouped CTEs:** Compute one company average per month and one department average per month, then join them on `pay_month`. This mirrors the editorial, produces already-collapsed rows, and removes the need for outer `DISTINCT`.
-- **Conditional comparison without floating rounding:** Compare the database's `AVG` results directly, as the source does. Manually rounding averages before comparing can turn genuinely different values into `'same'`.
-- **One department in a month:** Its average equals the company average, so the label must be `'same'`.
-- **One employee in a department:** The departmental average is simply that employee's payment, but it is still compared with every company payment in the period.
-- **Several salary dates in one month:** This is the material trap in the exact source. Full-date partitions can produce separate statistics and contradictory duplicate month labels.
-- **Missing employee record:** The foreign key excludes this case. With inconsistent data, the inner join would silently remove that salary from both averages.
-- **Multiple employee rows for one identifier:** The employee primary key excludes this case. Otherwise the join would duplicate salary amounts and corrupt the averages.
-- **Months with no salary rows:** They do not appear because there is no input evidence from which to form a department-month.
-- **Result ordering:** The contract allows any order, so the absence of `ORDER BY` is intentional and harmless.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Comparing `pay_date` Directly Instead of Month:** If payments occur on different days in the same month (e.g. 2017-03-15 and 2017-03-31), partitioning by `pay_date` fragments the month. Always partition by the truncated month (`YYYY-MM`).
+- **Forgetting `DISTINCT`:** Without `DISTINCT`, departments with multiple employees output duplicate rows.
+- **Subquery Sprawl:** Writing three separate `GROUP BY` subqueries and joining them is error-prone and slow; window functions accomplish this cleanly in one step.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((S + E) \log(S + E))$. Let $S$ be the number of salary rows and $E$ the number of employee rows. The key join can be implemented with an index or hash lookup. Window functions generally require partitioning and often sorting the joined salary rows by their partition keys. `DISTINCT` may require another hash set or sort. A conservative database-independent bound is therefore $O((S+E)\log(S+E))$ time, matching the manifest.
-- **Auxiliary Space Complexity:** $O(S + E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Joining `Salary` and `Employee`: $\mathcal{O}(N)$ where $N$ is payment count.
+  - Sorting and evaluating window partitions: $\mathcal{O}(N \log N)$.
+  - Sifting distinct month-department pairs: $\mathcal{O}(N)$.
+  - Total Time: $\mathcal{O}(N \log N)$. Completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space for window buffer frames.

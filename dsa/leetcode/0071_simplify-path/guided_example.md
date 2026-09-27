@@ -1,118 +1,134 @@
 # Guided Example: Simplify Path
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Unix file path canonicalization using a directory token stack on representative path instances:
 
-- **Input:** `{"path": "/home/"}`
-- **Required output:** `"/home"`
+- **Input:** $\text{path} = \text{"/a/./b/../../c/"}$
+- **Required output:** $\text{"/c"}$
+- **Boundary Root Pop:** $\text{"/../"} \implies \text{"/"}$
+- **Consecutive Slashes:** $\text{"/home//foo/"} \implies \text{"/home/foo"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates splitting paths by slash delimiters, ignoring empty tokens and current directory markers (`"."`), handling parent directory navigation (`".."`) via stack pop operations with root boundary safety, and formatting the canonical Unix path string.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an *absolute* path for a Unix-style file system, which always begins with a slash `'/'`. Your task is to transform this absolute path into its **simplified canonical path**.
+Given an absolute Unix-style file path string $\text{path}$, transform it into its simplified canonical path.
 
-The objective is to compute `"/home"` from `{"path": "/home/"}` while avoiding redundant calculations and unnecessary overhead.
+The canonical path rules require that:
+1. The path starts with a single slash `'/'`.
+2. Any two directories are separated by exactly one slash `'/'`.
+3. The path does not end with a trailing `'/'` (unless it is the root directory `"/"`).
+4. Current directory symbols `"."` are omitted.
+5. Parent directory symbols `".."` pop the immediately preceding directory. Navigating up from root `"/"` remains at `"/"`.
+6. Multiple consecutive slashes (e.g. `"//"`) are treated as a single separator.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Using a Last-In, First-Out (LIFO) stack of directory strings naturally models recursive folder entry (push) and parent traversal (pop) in $O(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Tokenization and Stack Transitions
+1. **Tokenize:** Split $\text{path}$ on delimiter `'/'`:
+   $$
+   \text{tokens} = \text{path.split('/')}
+   $$
+2. **Process Tokens:**
+   Initialize an empty list $\text{stack} = []$.
+   For each token $T \in \text{tokens}$:
+   - If $T == \text{""}$ (consecutive or boundary slashes): Ignore.
+   - If $T == \text{"."}$ (reference to current directory): Ignore.
+   - If $T == \text{".."}$ (reference to parent directory):
+     - If $\text{stack}$ is non-empty: $\text{stack.pop()}$.
+     - If $\text{stack}$ is empty: remain at root (no-op).
+   - Else: $T$ is a valid directory or file name (e.g. `"a"`, `"..."`, `"my_folder"`):
+     - $\text{stack.append}(T)$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+3. **Reconstruct Canonical String:**
+   Join the stack with single slashes and prepend the root slash:
+   $$
+   \text{canonical} = \text{"/"} + \text{"/".join}(\text{stack})
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At every token $T$, `stack` contains the exact sequence of valid directory names representing the current working directory relative to root.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Read the path as components, not individual punctuation marks
+We trace $\text{path} = \text{"/a/./b/../../c/"}$:
 
-A slash separates path components. Calling `path.split('/')` exposes exactly those components so the algorithm can decide what each whole token means. This is important because the special rules apply only to the complete component `.` or the complete component `..`. A token such as `...`, `.hidden`, or `a..b` is an ordinary name and must not be interpreted one period at a time.
-
-Splitting also turns structural slash cases into a simple representation. The leading slash of an absolute path produces an empty component before the first separator. Consecutive slashes produce empty components between them, and a trailing slash produces an empty final component. All such empty strings mean that there is no directory name at that position, so the code can ignore them uniformly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"path": "/home/"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Tokenization
+Splitting by `'/'` yields 8 tokens:
+$$
+[\text{""}, \, \text{"a"}, \, \text{"."}, \, \text{"b"}, \, \text{".."}, \, \text{".."}, \, \text{"c"}, \, \text{""}]
+$$
 
 ---
 
-### Step 2: Let a stack represent the current canonical location
-
-The list `stk` holds the real directory or file-name components of the simplified path processed so far. Its order is root-to-leaf: `stk[0]` is immediately below the root, and the last element is the current deepest component. No empty token, `.` token, or `..` token is ever stored.
-
-A stack is a natural fit because moving to a child directory appends a name, while moving to the parent reverses only the most recent unmatched child move. That is last-in, first-out behavior. For example, after reading `/a/b/c`, the stack is `['a', 'b', 'c']`. Reading `..` must remove `c`, not `a` or `b`, so `pop()` performs exactly the required change.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step-by-Step Stack Processing
+- **Token 0 (`""`):** Empty string from leading slash. Ignored. Stack: `[]`.
+- **Token 1 (`"a"`):** Directory name. Push onto stack.
+  - Stack: `['a']`.
+- **Token 2 (`"."`):** Current directory marker. Ignored.
+  - Stack: `['a']`.
+- **Token 3 (`"b"`):** Directory name. Push onto stack.
+  - Stack: `['a', 'b']`.
+- **Token 4 (`".."`):** Parent directory marker.
+  - Action: Pop top directory (`"b"`).
+  - Stack: `['a']`.
+- **Token 5 (`".."`):** Parent directory marker.
+  - Action: Pop top directory (`"a"`).
+  - Stack: `[]`.
+- **Token 6 (`"c"`):** Directory name. Push onto stack.
+  - Stack: `['c']`.
+- **Token 7 (`""`):** Empty string from trailing slash. Ignored.
+  - Stack: `['c']`.
 
 ---
 
-### Step 3: Process each of the four token meanings
+### Path Reassembly
+- Remaining directories in stack: `['c']`.
+- Join with slashes: $\text{"/"} + \text{"/".join}([\text{"c"}]) = \text{"/c"}$.
 
-An empty token or `.` has no effect. The condition `if not s or s == '.'` catches both and continues immediately. Empty tokens arise from redundant slashes; `.` explicitly denotes the current directory. Ignoring either one preserves the current location.
-
-The token `..` requests the parent directory. If the stack is nonempty, `stk.pop()` removes its last real component. If the stack is empty, the current location is already the root. An absolute path cannot go above root, so the request is safely ignored. This is why the pop is guarded instead of being unconditional.
-
-Every remaining nonempty token is a literal name and is appended. The ordering of the tests guarantees that `...` reaches this branch: it is neither `.` nor `..`. The algorithm does not normalize, trim, or otherwise reinterpret valid name characters.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"/home"` |
+Emitted result: `"/c"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"path": "/home/"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"/home"` | Verified |
+| Token Index | Token Extracted | Token Classification | Condition Evaluated | Stack Action | Stack State After Step |
+|:---:|:---:|:---:|:---|:---|:---|
+| 0 | `""` | Empty (Leading slash) | $T \in \{\text{""}, \text{"."}\}$ | Skip | `[]` |
+| 1 | `"a"` | Directory name | Valid directory | Push `"a"` | `['a']` |
+| 2 | `"."` | Current directory | $T == \text{"."}$ | Skip | `['a']` |
+| 3 | `"b"` | Directory name | Valid directory | Push `"b"` | `['a', 'b']` |
+| 4 | `".."` | Parent directory | $T == \text{".."}$ | Pop `"b"` | `['a']` |
+| 5 | `".."` | Parent directory | $T == \text{".."}$ | Pop `"a"` | `[]` |
+| 6 | `"c"` | Directory name | Valid directory | Push `"c"` | `['c']` |
+| 7 | `""` | Empty (Trailing slash) | $T \in \{\text{""}, \text{"."}\}$ | Skip | `['c']` |
+| Format | - | Assembly | `"/" + "/".join(stack)` | Join | **`"/c"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every valid file path is a tree traversal rooted at `"/"`. A child directory descends one level (`push`), and a parent reference moves up one level (`pop`). Popping from an empty stack is a no-op because the root directory has no parent. Joining stack components with `"/"` guarantees single delimiters and avoids trailing slashes.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** String splitting divides the entire path into exhaustive non-overlapping tokens. Every token is classified and processed in linear sequence, ensuring all navigational modifiers are fully evaluated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual character scanner:** Build one token at a time without creating the complete split list. It can reduce temporary storage but introduces more boundary logic around slashes and the final token.
-- **Deque as a stack:** It supports the same append and pop operations, but a Python list already provides efficient operations at its end and is simpler here.
-- **Repeated textual replacement:** Replacing `//`, `/./`, or name-plus-`/..` patterns is fragile because changes interact, root has special behavior, and periods may be valid names.
-- **Leading slash:** Splitting produces an empty token, which is ignored; reconstruction adds exactly one leading slash.
-- **Repeated slashes:** Every extra separator creates an empty token, and ignoring all empty tokens collapses any run to one canonical separator.
-- **Trailing slash:** Its empty final token is ignored, and joining names does not append a slash.
-- **Current-directory marker:** A component exactly equal to `.` changes nothing.
-- **Parent at root:** An empty stack cannot be popped, so `/..` remains `/`.
-- **Several parent markers:** Each one removes at most one retained component; any excess markers at root are ignored.
-- **Three or more periods:** Only exact `.` and `..` matches are special, so `...` and `....` remain literal names.
-- **Names containing periods:** Tokens such as `.config` or `a..b` are ordinary names.
-- **Root result:** An empty stack joins to an empty suffix, making `'/' + ''` exactly `/`.
-- **Input mutation:** The input string is immutable and only read; the stack stores derived component strings.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Popping from Root (`"/../"`):** If the stack is empty, encountering `".."` must not raise an `IndexError`. Checking `if stack: stack.pop()` safely absorbs root-level parent requests.
+- **Valid Name With Dots (`"..."` or `".hidden"`):** Only exact strings `"."` and `".."` represent navigational operators. Names like `"..."` or `"..hidden"` are valid file/folder names and must be pushed onto the stack.
+- **Empty Stack Formatting:** If the stack is empty after all tokens are processed (e.g. `path = "/a/.."`), returning `"/" + "/".join([])` correctly produces `"/"` rather than an empty string `""`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `path`. Splitting examines the input once and creates components whose combined character count is $O(n)$. Each token is considered once, and every real component can be appended once and popped at most once. Joining the surviving components writes at most $O(n)$ characters. Total time is therefore $O(n)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of $\text{path}$. Splitting the string takes $O(N)$ time, and iterating through tokens takes $O(N)$ operations with $O(1)$ push/pop actions per token.
+- **Auxiliary Space Complexity:** $O(N)$ to store the tokens list and directory stack.

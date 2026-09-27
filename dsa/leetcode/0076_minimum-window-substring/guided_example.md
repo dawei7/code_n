@@ -1,89 +1,147 @@
 # Guided Example: Minimum Window Substring
 
-We trace the dynamic Hash Table, String, Sliding Window sliding window on a representative input instance.
+We trace the step-by-step two-pointer sliding window expansion and contraction algorithm on a representative string instance:
 
-- **Input:** `{"s": "ADOBECODEBANC", "t": "ABC"}`
-- **Required output:** `"BANC"`
+- **Input:** $s = \text{"ADOBECODEBANC"}$, $t = \text{"ABC"}$
+- **Required output:** $\text{"BANC"}$
 
-This instance highlights expanding the right boundary $R$, maintaining the internal frequency/validity state, and contracting the left boundary $L$ to restore feasibility.
+This instance demonstrates frequency map matching across distinct characters, expanding right pointer $R$ to acquire feasibility, contracting left pointer $L$ to minimize window span, tracking surplus characters, and updating the global minimum window in $O(|s| + |t|)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Minimum Window Substring** is to find the optimal contiguous window without evaluating all $O(N^2)$ candidate subarrays.
-By recognizing that the window constraint exhibits monotonic expansion and contraction, we adjust two pointers $L$ and $R$ in a single forward pass.
+Given two strings $s$ (length $13$) and $t$ (length $3$), return the minimum window substring of $s$ such that every character in $t$ (including duplicates) is included in the window. If there is no such substring, return the empty string `""`.
+
+For $s = \text{"ADOBECODEBANC"}$ and $t = \text{"ABC"}$:
+- The required frequency multiset is $\{'A': 1, 'B': 1, 'C': 1\}$.
+- Candidate valid windows:
+  - `"ADOBEC"` (indices $[0, 5]$, length 6)
+  - `"CODEBA"` (indices $[5, 10]$, length 6)
+  - `"BANC"` (indices $[9, 12]$, length 4)
+The minimum valid window is $\text{"BANC"}$ of length 4.
+
+A brute-force search checking all $O(|s|^2)$ substrings takes $O(|s|^3)$ time. The optimal sliding window maintains character frequencies and a match counter `formed`, adjusting pointers $L$ and $R$ monotonically so each pointer visits each character at most once ($O(|s|)$ time).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain two boundary indices $L$ and $R$, alongside a state tracker $M$ (frequency map or accumulator).
+### 2-Pointer Dynamic Feasibility Protocol
+1. **Target Dictionary:**
+   Build frequency map $\text{need}$ of $t$, and let $\text{required} = |\text{need}|$ be the number of unique characters that must meet their target frequency.
+2. **Window State Tracker:**
+   Maintain $\text{window}$ frequency map, and scalar integer $\text{formed} = 0$, tracking how many distinct characters currently meet or exceed their count in $\text{need}$.
+3. **Expansion Phase (Advance $R$):**
+   Add $s[R]$ to $\text{window}$.
+   If $s[R] \in \text{need}$ and $\text{window}[s[R]] == \text{need}[s[R]]$:
+   $$
+   \text{formed} \leftarrow \text{formed} + 1
+   $$
+4. **Contraction Phase (Advance $L$ while $\text{formed} == \text{required}$):**
+   The window $[L, R]$ is currently valid:
+   - If $R - L + 1 < \text{min\_len}$, update minimum window:
+     $$
+     \text{min\_len} \leftarrow R - L + 1, \quad \text{best\_window} \leftarrow [L, R]
+     $$
+   - Remove $s[L]$ from $\text{window}$:
+     If $s[L] \in \text{need}$ and $\text{window}[s[L]] < \text{need}[s[L]]$:
+     $$
+     \text{formed} \leftarrow \text{formed} - 1
+     $$
+   - Advance left boundary: $L \leftarrow L + 1$.
 
-| State Tracker | Role in Algorithm |
-|---|---|
-| Left Boundary $L$ | Tracks start of active contiguous window |
-| Right Boundary $R$ | Expands exploration frontier |
-| Window State $M$ | Tracks validity metrics (character counts / sum) |
-
-> **Invariant.** At each step $R$, the window $[L, R]$ is adjusted so that it satisfies the problem constraints, and the global optimum is updated from all valid windows ending at $R$.
+> **Invariant.** While $\text{formed} == \text{required}$, the active window $[L, R]$ contains all characters of $t$. Once $\text{formed} < \text{required}$, window validity is lost and $R$ must advance.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Expand Window by Advancing $R$
+We trace $s = \text{"ADOBECODEBANC"}$ with $t = \text{"ABC"}$ ($\text{required} = 3$):
 
-- Incorporate element at index $R$ into the window accumulator $M$.
-- Check whether the expanded window satisfies the target constraint.
-
-| Parameter | State |
-|---|---|
-| Active Window | $[L, R]$ |
-| Window Condition | Evaluated against constraint |
-| Optimum Candidate | Staged for update |
+### Phase 1: Expand to First Valid Window ($R = 0 \to 5$)
+- $R = 0$ (`'A'`): $\text{window}[\text{'A'}] = 1 \implies \text{formed} = 1$.
+- $R = 1$ (`'D'`): non-target character.
+- $R = 2$ (`'O'`): non-target character.
+- $R = 3$ (`'B'`): $\text{window}[\text{'B'}] = 1 \implies \text{formed} = 2$.
+- $R = 4$ (`'E'`): non-target character.
+- $R = 5$ (`'C'`): $\text{window}[\text{'C'}] = 1 \implies \text{formed} = 3 == \text{required}$!
+- **First Valid Window:** $[0, 5]$ (`"ADOBEC"`), $\text{length} = 6$.
+  - Attempt contraction: remove $s[0]$ (`'A'`).
+  - $\text{window}[\text{'A'}]$ drops to $0 < 1 \implies \text{formed} \leftarrow 2$.
+  - $L \leftarrow 1$. Window invalid; resume expansion.
 
 ---
 
-### Step 2: Contract Window from Left $L$ When Constraint Violated
+### Phase 2: Expand to Second Match ($R = 6 \to 10$)
+- $R = 6 \dots 9$: Read `'O', 'D', 'E', 'B'`.
+  - At $R = 9$ (`'B'`), $\text{window}[\text{'B'}] = 2$ (surplus 'B').
+- $R = 10$ (`'A'`): $\text{window}[\text{'A'}] = 1 \implies \text{formed} = 3$!
+- Window $[1, 10]$ (`"DOBECODEBA"`), $\text{length} = 10$.
+- **Contraction Loop:**
+  - $L = 1$ (`'D'`): discard irrelevant $\to L = 2$.
+  - $L = 2$ (`'O'`): discard irrelevant $\to L = 3$.
+  - $L = 3$ (`'B'`): $\text{window}[\text{'B'}]$ drops from $2 \to 1 \ge 1$. $\text{formed}$ remains $3$!
+    - Window $[4, 10]$ (`"ECODEBA"`), $\text{length} = 7$.
+  - $L = 4$ (`'E'`): discard irrelevant $\to L = 5$.
+    - Window $[5, 10]$ (`"CODEBA"`), $\text{length} = 6$.
+  - $L = 5$ (`'C'`): $\text{window}[\text{'C'}]$ drops to $0 < 1 \implies \text{formed} \leftarrow 2$.
+  - $L \leftarrow 6$. Window invalid; resume expansion.
 
-- If adding element at $R$ causes an invalid state, increment $L$ and decrement $M$ until feasibility is restored.
+---
 
-| Parameter | State |
-|---|---|
-| Adjusted Boundary | $L$ advanced to restore validity |
-| Restored Window | Valid subsegment $[L, R]$ |
-| Global Optimum | Updated with valid window metric |
+### Phase 3: Expand to Optimal Match ($R = 11 \to 12$)
+- $R = 11$ (`'N'`): non-target character.
+- $R = 12$ (`'C'`): $\text{window}[\text{'C'}] = 1 \implies \text{formed} = 3$!
+- Window $[6, 12]$ (`"ODEBANC"`), $\text{length} = 7$.
+- **Contraction Loop:**
+  - $L = 6$ (`'O'`): discard $\to L = 7$.
+  - $L = 7$ (`'D'`): discard $\to L = 8$.
+  - $L = 8$ (`'E'`): discard $\to L = 9$.
+  - Window $[9, 12]$ is $\text{"BANC"}$, $\text{length} = 4$.
+    - $4 < 6 \implies$ **New Global Minimum Window Recorded!**
+  - $L = 9$ (`'B'`): $\text{window}[\text{'B'}]$ drops to $0 < 1 \implies \text{formed} \leftarrow 2$.
+  - $L \leftarrow 10$. Window invalid.
+- $R = 13 == |s|$. Search terminates.
+
+Final minimal substring: $\text{"BANC"}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | $R$ | Processed Item | Condition Met? | Action on $L$ | Active Window $[L, R]$ | Current Metric | Global Best |
-|---|---|---|---|---|---|---|---|
-| 1 (Start) | 0 | First item | Yes | $L = 0$ | `[0, 0]` | Initial window metric | Baseline |
-| 2 (Expand) | Intermediate | Next item | Evaluated | Advance $L$ if invalid | Dynamic $[L, R]$ | Valid window metric | Updated |
-| 3 (Finish) | End | Final item | Maintained | Final adjustment | Terminal $[L, R]$ | Final window metric | Confirmed Best |
+| Step Event | Active $R$ | Char $s[R]$ | Active $L$ | Current Window String | Formed / Req | Best Window | Best Length |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Expand | 5 | `'C'` | 0 | `"ADOBEC"` | 3 / 3 | `[0, 5]` | 6 |
+| Contract | 5 | `'C'` | 1 | `"DOBEC"` | 2 / 3 | `[0, 5]` | 6 |
+| Expand | 10 | `'A'` | 1 | `"DOBECODEBA"` | 3 / 3 | `[0, 5]` | 6 |
+| Contract | 10 | `'A'` | 3 | `"BECODEBA"` | 3 / 3 | `[0, 5]` | 6 |
+| Contract | 10 | `'A'` | 5 | `"CODEBA"` | 3 / 3 | `[5, 10]` | 6 |
+| Contract | 10 | `'A'` | 6 | `"ODEBA"` | 2 / 3 | `[0, 5]` | 6 |
+| Expand | 12 | `'C'` | 6 | `"ODEBANC"` | 3 / 3 | `[0, 5]` | 6 |
+| Contract | 12 | `'C'` | 8 | `"EBANC"` | 3 / 3 | `[0, 5]` | 6 |
+| **Contract** | **12** | **`'C'`** | **9** | **`"BANC"`** | **3 / 3** | **`[9, 12]`** | **4 (Min)** |
+| Contract | 12 | `'C'` | 10 | `"ANC"` | 2 / 3 | `[9, 12]` | 4 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every window evaluated for the global optimum satisfies the exact validity condition by virtue of the while-contraction loop.
+**Soundness.** A window is considered feasible if and only if $\text{formed} == \text{required}$, meaning every distinct character in $t$ appears with frequency at least as high as in $t$. Contraction only removes characters from the left while preserving feasibility, ensuring every evaluated window is legally valid.
 
-**Completeness.** Since $R$ visits every possible ending position and $L$ identifies the widest valid prefix for that $R$, no maximal valid window is overlooked.
+**Completeness.** Any global minimum window must end at some right boundary index $R$. By expanding $R$ incrementally and shrinking $L$ to its absolute minimal feasible width for each $R$, no candidate minimum window can be skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Backward Pointer Movement:** Setting $L$ from stale lookup tables without taking $\max(L, \dots)$ can cause $L$ to jump backwards, admitting invalid elements.
-- **Off-by-One Window Size:** The length of window $[L, R]$ is $R - L + 1$, not $R - L$.
-- **Premature Exit:** Stopping expansion when an invalid element is encountered instead of contracting $L$ misses valid downstream windows.
+- **Duplicate Characters in $t$:** If $t = \text{"AAB"}$, the window must contain at least two `'A'`s. Using a frequency count rather than a set check is mandatory.
+- **Surplus Characters in $s$:** Having more of a character than requested (e.g. two `'B'`s in `"DOBECODEBA"`) is valid. The `formed` counter increments only when the frequency strictly reaches $\text{need}[c]$, and decrements only when falling below $\text{need}[c]$.
+- **Filtered S-List Optimization:** For sparse targets in large texts, pre-filtering $s$ into a list of tuples `(index, char)` for characters present in $t$ accelerates the two-pointer scan by skipping irrelevant letters.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ amortized. The right pointer $R$ increments $N$ times, and the left pointer $L$ increments at most $N$ times.
-- **Auxiliary Space Complexity:** $O(K)$ where $K$ is the size of the distinct character alphabet or state map.
+- **Time Complexity:** $O(|s| + |t|)$. Building the frequency dictionary takes $O(|t|)$ time. Pointers $L$ and $R$ each traverse string $s$ from index $0$ to $|s|$ at most once ($2|s|$ operations).
+- **Auxiliary Space Complexity:** $O(|\Sigma|)$, where $|\Sigma|$ is the alphabet size of unique characters in $s$ and $t$ (at most $52$ for ASCII letters).

@@ -1,136 +1,145 @@
 # Guided Example: Sort the Olympic Table
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Olympic": [{"country": "China", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "South Sudan", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1}, {"country": "USA", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "Israel", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 3}, {"country": "Egypt", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 2}]}}`
-- **Required output:** `{"columns": ["country", "gold_medals", "silver_medals", "bronze_medals"], "rows": [["China", 10, 10, 20], ["USA", 10, 10, 20], ["Israel", 2, 2, 3], ["Egypt", 2, 2, 2], ["South Sudan", 0, 0, 1]]}`
+In international athletic competition accounting, countries are ranked using a hierarchical medal-count protocol. The database relation $\text{Olympic}(\text{country}, \text{gold\_medals}, \text{silver\_medals}, \text{bronze\_medals})$ maintains medal records where each country's name serves as the primary key.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The authoritative Olympic ranking protocol mandates the following priority criteria:
+1. Primary criterion: $\text{gold\_medals}$ in descending order (highest gold count first).
+2. Secondary criterion: When gold counts tie, $\text{silver\_medals}$ in descending order.
+3. Tertiary criterion: When both gold and silver counts tie, $\text{bronze\_medals}$ in descending order.
+4. Quaternary tie-breaker: If all three medal counts are identical, order by country name in ascending lexicographical order ($\text{A} \to \text{Z}$).
 
----
+The task is to return the full relation with all rows and columns arranged in strict compliance with this multi-tier sorting protocol.
 
-## 1. Instance & Teaching Goal
+Consider the representative medal tally:
+- $\text{China}$: $(10, 10, 20)$
+- $\text{South Sudan}$: $(0, 0, 1)$
+- $\text{USA}$: $(10, 10, 20)$
+- $\text{Israel}$: $(2, 2, 3)$
+- $\text{Egypt}$: $(2, 2, 2)$
 
-Table: `Olympic`
+Notice that China and the USA share identical medal tallies across all three tiers, triggering the alphabetical tie-breaker. Israel and Egypt tie on gold and silver, requiring bronze discrimination.
 
-The objective is to compute `{"columns": ["country", "gold_medals", "silver_medals", "bronze_medals"], "rows": [["China", 10, 10, 20], ["USA", 10, 10, 20], ["Israel", 2, 2, 3], ["Egypt", 2, 2, 2], ["South Sudan", 0, 0, 1]]}` from `{"tables": {"Olympic": [{"country": "China", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "South Sudan", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1}, {"country": "USA", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "Israel", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 3}, {"country": "Egypt", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 2}]}}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Multi-Key Olympic Medal Ranking Priority
+    accDescr: Hierarchical decision tree evaluating gold descending, silver descending, bronze descending, and country ascending.
+    Start["Row Tuple: (country, G, S, B)"] --> G{"Compare Gold Medals<br/>(Descending)"}
+    G -->|Unequal| RG["Rank by Gold"]
+    G -->|Tie| S{"Compare Silver Medals<br/>(Descending)"}
+    S -->|Unequal| RS["Rank by Silver"]
+    S -->|Tie| B{"Compare Bronze Medals<br/>(Descending)"}
+    B -->|Unequal| RB["Rank by Bronze"]
+    B -->|Tie| C["Break Tie by Country Name<br/>(Ascending A to Z)"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+From the perspective of relational algebra and order theory, sorting over multiple attributes establishes a strict total order over the set of rows.
 
-## 2. Conceptual Foundation & Invariants
+Define the comparison key for each row $r$ as a 4-tuple:
+$$K(r) = \bigl(-\text{gold\_medals},\, -\text{silver\_medals},\, -\text{bronze\_medals},\, \text{country}\bigr)$$
+where negation maps the descending numeric requirements into standard ascending lexicographical comparisons:
+- For any two rows $r_1$ and $r_2$, row $r_1$ precedes $r_2$ if and only if $K(r_1) < K(r_2)$ under standard dictionary comparison.
+- Because $\text{country}$ is a primary key, all country names are distinct. Consequently, for any distinct rows $r_1 \neq r_2$, the fourth component guarantees $K(r_1) \neq K(r_2)$.
+- This eliminates all potential ties and defines a deterministic total order on the relation.
 
-We maintain the core conceptual parameters and state variables:
+In relational database systems, this specification maps directly to the standard execution clause:
+$$\text{ORDER BY gold\_medals DESC, silver\_medals DESC, bronze\_medals DESC, country ASC}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We trace the sorting evaluation across the five representative countries.
 
----
+- **Phase 1: Key Tuple Extraction:**
+  Construct the sorting key vector $K(r) = (-\text{Gold}, -\text{Silver}, -\text{Bronze}, \text{Country})$ for each entity:
+  - $\text{China}$: $(-10, -10, -20, \text{"China"})$
+  - $\text{South Sudan}$: $(0, 0, -1, \text{"South Sudan"})$
+  - $\text{USA}$: $(-10, -10, -20, \text{"USA"})$
+  - $\text{Israel}$: $(-2, -2, -3, \text{"Israel"})$
+  - $\text{Egypt}$: $(-2, -2, -2, \text{"Egypt"})$
 
-## 3. Step-by-Step Worked Execution
+- **Phase 2: Tier 1 (Gold Medals):**
+  Group by gold count in descending order:
+  - Gold = 10: $\{\text{China}, \text{USA}\}$
+  - Gold = 2: $\{\text{Israel}, \text{Egypt}\}$
+  - Gold = 0: $\{\text{South Sudan}\}$
 
-### Step 1: Translate the ranking rules directly into sort keys
+- **Phase 3: Tier 2 & 3 (Silver & Bronze Resolution):**
+  - Group Gold = 10:
+    Both countries have Silver $= 10$ and Bronze $= 20$.
+    All three medal values tie. Proceed to Tier 4.
+  - Group Gold = 2:
+    Both have Silver $= 2$.
+    Examine Bronze:
+    Israel has Bronze $= 3$, Egypt has Bronze $= 2$.
+    Because $3 > 2$, Israel precedes Egypt. Rank 3: Israel, Rank 4: Egypt.
+  - Group Gold = 0:
+    South Sudan is the sole member. Rank 5: South Sudan.
 
-Every row must remain intact; the task changes only row order. The ranking is hierarchical:
+- **Phase 4: Tier 4 (Lexicographical Country Tie-Breaker):**
+  - For China vs. USA:
+    Compare country strings lexicographically:
+    $$\text{"China"} < \text{"USA"}$$
+    Therefore, China takes Rank 1, and USA takes Rank 2.
 
-1. more gold medals ranks first;
-2. when gold ties, more silver ranks first;
-3. when both tie, more bronze ranks first;
-4. when all medals tie, lexicographically smaller country ranks first.
+- **Final Ranked Result:**
+  1. $\text{China}$: $(10, 10, 20)$
+  2. $\text{USA}$: $(10, 10, 20)$
+  3. $\text{Israel}$: $(2, 2, 3)$
+  4. $\text{Egypt}$: $(2, 2, 2)$
+  5. $\text{South Sudan}$: $(0, 0, 1)$
 
-SQL's `ORDER BY` accepts multiple keys and compares them from left to right. A later key is consulted only when every earlier key ties, exactly matching this hierarchy.
+## 4. Comprehensive State Trace
 
-The query returns every column with `SELECT *` and orders by:
+The full evaluation of the ordering vectors and tier resolutions is detailed in the table below:
 
+| Country | Gold | Silver | Bronze | Primary Key Tuple $(-\text{G}, -\text{S}, -\text{B}, \text{Name})$ | Deciding Criterion | Assigned Rank |
+|---|---|---|---|---|---|---|
+| China | 10 | 10 | 20 | $(-10, -10, -20, \text{"China"})$ | Country Alphabetical ($\text{"China"} < \text{"USA"}$) | 1 |
+| USA | 10 | 10 | 20 | $(-10, -10, -20, \text{"USA"})$ | Country Alphabetical | 2 |
+| Israel | 2 | 2 | 3 | $(-2, -2, -3, \text{"Israel"})$ | Bronze Count ($3 > 2$) | 3 |
+| Egypt | 2 | 2 | 2 | $(-2, -2, -2, \text{"Egypt"})$ | Bronze Count | 4 |
+| South Sudan | 0 | 0 | 1 | $(0, 0, -1, \text{"South Sudan"})$ | Gold Count ($0 < 2$) | 5 |
 
+We also detail the pairwise decision rationale for all adjacent entries in the final sorted order:
 
-These numbers are positional references to expressions in the selected row, not literal constants.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Adjacent Pair $(r_i, r_{i+1})$ | Metric Comparison | Inequality Evaluated | Ordering Verdict |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Olympic": [{"country": "China", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "South Sudan", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1}, {"country": "USA", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "Israel", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 3}, {"country": "Egypt", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 2}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| China vs. USA | Country Name | $\text{"China"} < \text{"USA"}$ | China strictly precedes USA |
+| USA vs. Israel | Gold Medals | $10 > 2$ | USA strictly precedes Israel |
+| Israel vs. Egypt | Bronze Medals | $3 > 2$ (Gold and Silver equal) | Israel strictly precedes Egypt |
+| Egypt vs. South Sudan | Gold Medals | $2 > 0$ | Egypt strictly precedes South Sudan |
 
----
+The sequence is strictly sorted and transitive across all five records.
 
-### Step 2: Decode every positional reference
+## 5. Algorithmic Correctness & Soundness
 
-The table's selected column order is:
+The correctness of multi-key ordering rests on strict mathematical guarantees:
+1. **Lexicographical Well-Ordering:**
+   The product ordering $<_{\text{lex}}$ over $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z} \times \Sigma^*$ is a strict total order. For any two rows $r_a \neq r_b$, exactly one of $K(r_a) <_{\text{lex}} K(r_b)$ or $K(r_b) <_{\text{lex}} K(r_a)$ is true.
+2. **Determinism via Primary Key:**
+   Because each country has a unique string name, no two rows can have identical 4-tuples. Therefore, the ordering is strictly antisymmetric and free of ambiguities or non-deterministic permutations.
+3. **Equivalence to Official Olympic Rules:**
+   Each priority tier corresponds to an established international ranking rule: gold count dominates, followed by silver, followed by bronze, with alphabetical collation serving as the final neutral tie-breaker.
 
+## 6. Edge Cases & Anti-Patterns
 
+- **All Counts Equal to Zero:** If multiple nations have zero medals of all types, all three medal tiers tie identically ($0 = 0 = 0$). Ranking falls entirely back to alphabetical country name, ordering the zero-medal nations in lexicographical order.
+- **Single Participant:** If the table contains only one nation, the output contains that nation directly.
+- **Anti-Pattern: Ascending Numeric Sort:** Omitting the `DESC` keyword on medal counts places countries with 0 medals at the top of the leaderboard, inverting the Olympic hierarchy.
+- **Anti-Pattern: Descending Country Tie-Breaker:** Applying `DESC` to the country column causes USA to precede China, violating the standard ascending alphabetical requirement.
 
-Therefore, `2 DESC` means greatest gold count first. `3 DESC` means greatest silver count first among rows tied on gold. `4 DESC` performs the bronze tie-break.
+## 7. Complexity Analysis
 
-The final `1` means `country`. SQL ordering is ascending when no direction is written, so it puts country names in ascending lexicographic order for a complete medal tie. Writing `1 ASC` would be equivalent.
-
-Changing the order of these clauses would change the ranking policy. For example, bronze before silver would allow a higher bronze count to override a silver advantage, contrary to the statement.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: How lexicographic multi-key comparison works
-
-Imagine assigning each row the conceptual ordering tuple:
-
-$$
-(-g,-s,-b,c),
-$$
-
-where $g$, $s$, and $b$ are medal counts and $c$ is the country name. Ascending tuple order would rank larger counts first because of the negative signs and names normally. SQL expresses the same idea with three `DESC` directions followed by ascending country.
-
-The database does not add medal counts together. Ten gold and zero silver always outranks nine gold and a huge silver count because gold is the first key. The next medal category is used only under an exact tie in all earlier categories.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["country", "gold_medals", "silver_medals", "bronze_medals"], "rows": [["China", 10, 10, 20], ["USA", 10, 10, 20], ["Israel", 2, 2, 3], ["Egypt", 2, 2, 2], ["South Sudan", 0, 0, 1]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Olympic": [{"country": "China", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "South Sudan", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1}, {"country": "USA", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20}, {"country": "Israel", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 3}, {"country": "Egypt", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 2}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["country", "gold_medals", "silver_medals", "bronze_medals"], "rows": [["China", 10, 10, 20], ["USA", 10, 10, 20], ["Israel", 2, 2, 3], ["Egypt", 2, 2, 2], ["South Sudan", 0, 0, 1]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit column names:** `ORDER BY gold_medals DESC, silver_medals DESC, bronze_medals DESC, country ASC` is equivalent and more robust if select-column order changes.
-- **Combined medal total:** Sorting by total medals is wrong because the ranking is lexicographic by medal type, not by sum.
-- **Omit the country key:** Complete medal ties would have unspecified row order and fail the explicit name tie-break.
-- **Country ordered descending:** This reverses the final rule and would put USA before China in the example.
-- **Gold tie only:** Silver decides before bronze or country is considered.
-- **Gold and silver tie:** Bronze decides.
-- **All medal counts tie:** Ascending country name is the sole deciding key.
-- **Zero medals:** Zero values sort normally; they do not require null handling.
-- **One row:** It is returned unchanged because no comparison is necessary.
-- **Positional-key fragility:** `2`, `3`, `4`, and `1` rely on the `SELECT *` column order shown by the schema.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(R\log R)$. Let $R$ be the number of country rows. A comparison sort needs $O(R\log R)$ comparisons in the general case. Each comparison examines at most four fixed fields, so the overall time is $O(R\log R)$.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $R$ be the number of rows in the $\text{Olympic}$ relation.
+  - Generating comparison keys takes $\mathcal{O}(R)$ time.
+  - Sorting $R$ records using comparison-based sort (such as Quicksort or Merge Sort) requires $\mathcal{O}(R \log R)$ comparisons.
+  - Each tuple comparison takes $\mathcal{O}(L)$ time, where $L$ is the maximum length of a country name string ($L \le 50$).
+  - Overall time complexity is $\mathcal{O}(L \cdot R \log R)$, which easily runs within database engine memory limits.
+- **Space Complexity:**
+  - Storing the output relation requires $\mathcal{O}(R)$ space.
+  - Sorting overhead in the database execution engine requires $\mathcal{O}(R)$ auxiliary working buffer memory.
+  - Total auxiliary space complexity is $\mathcal{O}(R)$.

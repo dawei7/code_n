@@ -1,99 +1,159 @@
 # Guided Example: Maximum Compatibility Score Sum
 
-We derive and execute the Array, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask recurrence on a representative problem instance.
+We analyze and execute the bitmask dynamic programming algorithm for finding the maximum weight bipartite matching between students and mentors on a representative instance.
 
-- **Input:** `{"students": [[1, 1, 0], [1, 0, 1], [0, 0, 1]], "mentors": [[1, 0, 0], [0, 0, 1], [1, 1, 0]]}`
-- **Required output:** `8`
-
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
-
----
-
-## 1. Instance & Teaching Goal
-
-The objective for **Maximum Compatibility Score Sum** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+- **Students ($M = 3, Q = 3$):**
+  - Student 0: `[1, 1, 0]`
+  - Student 1: `[1, 0, 1]`
+  - Student 2: `[0, 0, 1]`
+- **Mentors ($M = 3, Q = 3$):**
+  - Mentor 0: `[1, 0, 0]`
+  - Mentor 1: `[0, 0, 1]`
+  - Mentor 2: `[1, 1, 0]`
+- **Expected Output:** `8`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+We have $M$ students and $M$ mentors, each of whom answered $Q$ binary questions. A student-mentor pair $(i, j)$ earns a compatibility score equal to the number of question positions $k \in \{0, \dots, Q-1\}$ where their answers match:
+$$C[i][j] = \sum_{k=0}^{Q-1} \mathbb{I}(\text{students}[i][k] = \text{mentors}[j][k])$$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+Our objective is to find a bijection $\pi: \{0, \dots, M-1\} \to \{0, \dots, M-1\}$ maximizing the sum:
+$$\sum_{i=0}^{M-1} C[i][\pi(i)]$$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+Because $M \le 8$, the total number of permutations $M! \le 8! = 40{,}320$. Rather than evaluating permutations or exploring a naive search tree with duplicate subtrees, we observe optimal substructure: when matching student $i$, which mentors were assigned to previous students matters, but the exact pairing among earlier students does not. The set of used mentors completely captures the subproblem state.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical Formalism & State Space
 
-### Step 1: Base Case Initialization
+Let an integer bitmask $S \subseteq \{0, \dots, M-1\}$ represent the subset of mentors assigned so far. The number of assigned students is strictly determined by the size of the subset, $i = |S| = \text{popcount}(S)$.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+We define $DP[S]$ as the maximum total compatibility score achievable by matching the first $|S|$ students (indices $0, \dots, |S|-1$) to the distinct subset of mentors in $S$.
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Recurrence Relation
+
+For a state $S$ with $|S| > 0$, student $i = |S| - 1$ must be paired with some mentor $j \in S$. Transitioning from subproblem $S \setminus \{j\}$:
+$$DP[S] = \max_{j \in S} \Big( DP[S \setminus \{j\}] + C[|S|-1][j] \Big)$$
+
+- **Base Case:** $DP[\emptyset] = DP[0] = 0$.
+- **Target Value:** $DP[\{0, \dots, M-1\}] = DP[2^M - 1]$.
+
+```mermaid
+flowchart TD
+    accTitle: Bitmask DP State Transitions for Mentors
+    accDescr: Dynamic programming lattice showing transitions from empty mask to full assignment mask across student assignment stages.
+
+    M0["DP[000] = 0 (No mentors assigned)"]
+    
+    M0 -->|Student 0 + Mentor 0| S01["DP[001] = 2"]
+    M0 -->|Student 0 + Mentor 1| S02["DP[010] = 0"]
+    M0 -->|Student 0 + Mentor 2| S04["DP[100] = 3"]
+    
+    S01 -->|Student 1 + Mentor 1| S03["DP[011] = max(4, 2) = 4"]
+    S02 -->|Student 1 + Mentor 0| S03
+    
+    S01 -->|Student 1 + Mentor 2| S05["DP[101] = max(3, 5) = 5"]
+    S04 -->|Student 1 + Mentor 0| S05
+    
+    S02 -->|Student 1 + Mentor 2| S06["DP[110] = max(1, 5) = 5"]
+    S04 -->|Student 1 + Mentor 1| S06
+    
+    S03 -->|Student 2 + Mentor 2| S07["DP[111] = max(4, 8, 6) = 8"]
+    S05 -->|Student 2 + Mentor 1| S07
+    S06 -->|Student 2 + Mentor 0| S07
+```
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
+## 3. Step-by-Step State Evolution
 
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
+### Precomputing Compatibility Scores
 
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+We compute the pair score matrix $C[i][j]$ for all $i, j \in \{0, 1, 2\}$:
 
----
-
-### Step 3: Terminal State Resolution
-
-- Extract the final value from the designated terminal state $DP[N]$.
-
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
-
----
-
-## 4. Complete Execution Trace
-
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
+| Student $i$ | Answers | Mentor 0 `[1, 0, 0]` | Mentor 1 `[0, 0, 1]` | Mentor 2 `[1, 1, 0]` |
 |---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Student 0 | `[1, 1, 0]` | 2 (pos 0, 2 match) | 0 (0 matches) | 3 (pos 0, 1, 2 match) |
+| Student 1 | `[1, 0, 1]` | 2 (pos 0, 1 match) | 2 (pos 1, 2 match) | 1 (pos 0 matches) |
+| Student 2 | `[0, 0, 1]` | 1 (pos 1 matches) | 3 (pos 0, 1, 2 match) | 0 (0 matches) |
+
+### Layer $k = 0$: Base State
+
+- $DP[000_2] = 0$ (0 students, 0 mentors assigned).
+
+### Layer $k = 1$: Assigning Student 0 ($|S| = 1$)
+
+We iterate through all singleton mentor masks:
+- Mask $001_2$ (Mentor 0): $DP[001_2] = DP[000_2] + C[0][0] = 0 + 2 = 2$.
+- Mask $010_2$ (Mentor 1): $DP[010_2] = DP[000_2] + C[0][1] = 0 + 0 = 0$.
+- Mask $100_2$ (Mentor 2): $DP[100_2] = DP[000_2] + C[0][2] = 0 + 3 = 3$.
+
+### Layer $k = 2$: Assigning Student 1 ($|S| = 2$)
+
+Each 2-mentor state considers which mentor was matched with Student 1:
+- Mask $011_2$ (Mentors 0, 1):
+  - Mentor 1 to Student 1: $DP[001_2] + C[1][1] = 2 + 2 = 4$.
+  - Mentor 0 to Student 1: $DP[010_2] + C[1][0] = 0 + 2 = 2$.
+  - $DP[011_2] = \max(4, 2) = 4$.
+- Mask $101_2$ (Mentors 0, 2):
+  - Mentor 2 to Student 1: $DP[001_2] + C[1][2] = 2 + 1 = 3$.
+  - Mentor 0 to Student 1: $DP[100_2] + C[1][0] = 3 + 2 = 5$.
+  - $DP[101_2] = \max(3, 5) = 5$.
+- Mask $110_2$ (Mentors 1, 2):
+  - Mentor 2 to Student 1: $DP[010_2] + C[1][2] = 0 + 1 = 1$.
+  - Mentor 1 to Student 1: $DP[100_2] + C[1][1] = 3 + 2 = 5$.
+  - $DP[110_2] = \max(1, 5) = 5$.
+
+### Layer $k = 3$: Assigning Student 2 ($|S| = 3$)
+
+Terminal mask $111_2$ (Mentors 0, 1, 2) has 3 candidate transitions for Student 2:
+- Mentor 2 to Student 2: $DP[011_2] + C[2][2] = 4 + 0 = 4$.
+- Mentor 1 to Student 2: $DP[101_2] + C[2][1] = 5 + 3 = 8$.
+- Mentor 0 to Student 2: $DP[110_2] + C[2][0] = 5 + 1 = 6$.
+- $DP[111_2] = \max(4, 8, 6) = 8$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Execution Trace Table
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+The table below catalogs each mask evaluated in topological order of set cardinality:
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+| Step | Mask Binary | Mentors Assigned | $|S|$ | Student Matched | Candidate Predecessor States | Optimal Value | Running Best |
+|---|---|---|---|---|---|---|---|
+| 0 | $000_2$ | None | 0 | None | Base initialization | 0 | 0 |
+| 1 | $001_2$ | {0} | 1 | Student 0 | $DP[000] + C[0][0] = 0 + 2 = 2$ | 2 | 2 |
+| 2 | $010_2$ | {1} | 1 | Student 0 | $DP[000] + C[0][1] = 0 + 0 = 0$ | 0 | 0 |
+| 3 | $100_2$ | {2} | 1 | Student 0 | $DP[000] + C[0][2] = 0 + 3 = 3$ | 3 | 3 |
+| 4 | $011_2$ | {0, 1} | 2 | Student 1 | $\max(2+2, 0+2) = \max(4, 2)$ | 4 | 4 |
+| 5 | $101_2$ | {0, 2} | 2 | Student 1 | $\max(2+1, 3+2) = \max(3, 5)$ | 5 | 5 |
+| 6 | $110_2$ | {1, 2} | 2 | Student 1 | $\max(0+1, 3+2) = \max(1, 5)$ | 5 | 5 |
+| 7 | $111_2$ | {0, 1, 2} | 3 | Student 2 | $\max(4+0, 5+3, 5+1) = \max(4, 8, 6)$ | 8 | 8 |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+**Soundness.** Suppose towards contradiction that an optimal matching assigns subset $S$ to the first $k$ students, but achieves total compatibility strictly greater than $DP[S]$. By peeling off the assignment $(k-1, j)$ for the $k$-th student, the remaining assignment matches the first $k-1$ students to $S \setminus \{j\}$. By induction on subset size, the subproblem score cannot exceed $DP[S \setminus \{j\}]$. Hence the total score cannot exceed $DP[S \setminus \{j\}] + C[k-1][j] \le DP[S]$, establishing contradiction.
+
+**Completeness.** Topological evaluation ordered by mask integer value (or bit count) ensures every subproblem $S \setminus \{j\}$ is finalized before $S$ is computed. Every valid one-to-one assignment corresponds to a path in this DAG from $0$ to $2^M - 1$, guaranteeing that no configuration is omitted.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Traps
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Disjoint Compatibility:** When answers never match ($C[i][j] = 0$ everywhere), every state evaluates to 0. Correct base case $DP[0] = 0$ ensures valid propagation without indexing errors.
+- **Topological Order:** If masks are iterated arbitrarily instead of by bitcount or standard increasing integer order, a mask could read uncomputed predecessor entries. Iterating integer $mask$ from $0$ to $2^M - 1$ is naturally topological because removing any bit yields a strictly smaller integer ($S \setminus \{j\} < S$).
+- **Subproblem State Definition:** Associating students with bitmask bits while iterating mentors is also possible, but keeping students ordered $0 \dots M-1$ and mentors in the bitmask aligns the recurrence directly with $|S|$.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** 
+  - Compatibility matrix precomputation: $\mathcal{O}(M^2 \cdot Q)$ bit comparisons.
+  - DP evaluation: There are $2^M$ states. For each state $S$ with $|S| = k$, we evaluate $|S| \le M$ incoming transitions.
+  - Total DP time: $\sum_{k=1}^M \binom{M}{k} \cdot k = M \cdot 2^{M-1} = \mathcal{O}(M \cdot 2^M)$.
+  - With $M \le 8, Q \le 8$, operations are bounded by $8 \cdot 2^7 = 1{,}024$, taking well under 1 millisecond.
+- **Auxiliary Space Complexity:** $\mathcal{O}(2^M)$ array space to store the memoized values for each subset, which requires only $2^8 = 256$ entries.

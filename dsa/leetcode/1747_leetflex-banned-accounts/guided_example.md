@@ -2,135 +2,162 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"tables": {"LogInfo": [{"account_id": 1, "ip_address": "10.0.0.1", "login": "2021-02-01 09:00:00", "logout": "2021-02-01 10:00:00"}, {"account_id": 1, "ip_address": "10.0.0.2", "login": "2021-02-01 09:30:00", "logout": "2021-02-01 11:00:00"}, {"account_id": 2, "ip_address": "10.0.0.3", "login": "2021-02-01 08:00:00", "logout": "2021-02-01 08:30:00"}]}}`
-- **Required output:** `{"columns": ["account_id"], "rows": [[1]]}`
+- **Input Table (`LogInfo`):**
+  | `account_id` | `ip_address` | `login` | `logout` |
+  |---|---|---|---|
+  | `1` | `1` | `2021-02-01 09:00:00` | `2021-02-01 09:30:00` |
+  | `1` | `2` | `2021-02-01 08:00:00` | `2021-02-01 11:30:00` |
+  | `2` | `6` | `2021-02-01 20:30:00` | `2021-02-01 22:00:00` |
+  | `2` | `6` | `2021-02-01 20:30:00` | `2021-02-01 22:00:00` |
+  | `3` | `7` | `2021-02-01 10:00:00` | `2021-02-01 11:00:00` |
+  | `3` | `3` | `2021-02-01 11:00:00` | `2021-02-01 12:00:00` |
+  | `4` | `10` | `2021-02-01 16:00:00` | `2021-02-01 17:00:00` |
+  | `4` | `11` | `2021-02-01 17:00:01` | `2021-02-01 17:05:00` |
+- **Required Output:**
+  | `account_id` |
+  |---|
+  | `1` |
+  | `3` |
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance spans genuine concurrent sessions from distinct IPs, concurrent sessions from identical IPs, boundary-touching timestamps, and non-overlapping sequential logins, demonstrating how theta self-joins detect temporal concurrency violations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `LogInfo`
+We are given a log table `LogInfo` containing user session records with attributes:
+$$(\text{account\_id} : \text{INT}, \text{ip\_address} : \text{INT}, \text{login} : \text{TIMESTAMP}, \text{logout} : \text{TIMESTAMP})$$
+An account must be banned if and only if it was used to log in from **two different IP addresses** at the **same time** (temporal overlap between intervals $[\text{login}_a, \text{logout}_a]$ and $[\text{login}_b, \text{logout}_b]$ with $\text{ip}_a \neq \text{ip}_b$).
 
-The objective is to compute `{"columns": ["account_id"], "rows": [[1]]}` from `{"tables": {"LogInfo": [{"account_id": 1, "ip_address": "10.0.0.1", "login": "2021-02-01 09:00:00", "logout": "2021-02-01 10:00:00"}, {"account_id": 1, "ip_address": "10.0.0.2", "login": "2021-02-01 09:30:00", "logout": "2021-02-01 11:00:00"}, {"account_id": 2, "ip_address": "10.0.0.3", "login": "2021-02-01 08:00:00", "logout": "2021-02-01 08:30:00"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to return the distinct set of banned `account_id` values in any order.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive conceptual loop compares all pairs of rows across the entire database. In relational algebra, an equijoin on $\text{account\_id}$ restricts comparisons to sessions within the same user account, while theta-join filters enforce differing IP addresses and temporal interval collision.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Relational Step | Predicate / Operation | Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Self-Join Matching | $a.\text{account\_id} = b.\text{account\_id}$ | Restricts comparisons strictly to the same account |
+| IP Inequality | $a.\text{ip\_address} \neq b.\text{ip\_address}$ | Disallows single-device or same-network multi-tab collisions |
+| Temporal Overlap | $a.\text{login} \text{ BETWEEN } b.\text{login} \text{ AND } b.\text{logout}$ | Validates interval collision at point $a.\text{login}$ |
+| Distinct Projection | $\pi_{\text{DISTINCT } a.\text{account\_id}}$ | Deduplicates multiple witnessing overlaps |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Concurrent Interval Intersection Theorem.**
+> Let $I_a = [s_a, e_a]$ and $I_b = [s_b, e_b]$ be two closed continuous time intervals with $s_a \le e_a$ and $s_b \le e_b$.
+> The intervals have non-empty intersection ($I_a \cap I_b \neq \emptyset$) if and only if:
+> $$\max(s_a, s_b) \le \min(e_a, e_b)$$
+> Without loss of generality, let $s_a \ge s_b$. Then $s_a \le e_b$, which is precisely the relational statement:
+> $$s_a \in [s_b, e_b] \iff s_a \text{ BETWEEN } s_b \text{ AND } e_b$$
+> In an exhaustive self-join checking all ordered pairs $(a, b)$, the pair ordered such that $a$ starts later or at the same time as $b$ will satisfy $a.\text{login} \text{ BETWEEN } b.\text{login} \text{ AND } b.\text{logout}$.
+
+```mermaid
+flowchart TD
+    accTitle: Theta Self-Join for Banned Accounts
+    accDescr: Pipeline showing self-join on account_id, filtering for differing IP addresses and overlapping intervals, and deduplicating account IDs.
+    A["LogInfo Table (Alias a)"] --> C["Join on a.account_id = b.account_id"]
+    B["LogInfo Table (Alias b)"] --> C
+    C --> D["Filter: a.ip_address != b.ip_address"]
+    D --> E["Filter: a.login BETWEEN b.login AND b.logout"]
+    E --> F["Extract account_id from matching pairs"]
+    F --> G["Deduplicate: SELECT DISTINCT account_id"]
+    G --> H["Final List of Banned Accounts: [1, 3]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Search for a witnessing pair of sessions
+We evaluate candidates per account:
 
-An account should appear in the answer if there exist two rows for that account that use different IP addresses and are active at a common moment. This is an existence question about a pair of rows, so the exact SQL solution joins `LogInfo` to itself.
-
-Alias `a` represents the first role in a candidate pair and alias `b` represents the second. The join begins by requiring:
-
-`a.account_id = b.account_id`.
-
-This prevents sessions from different accounts from being compared. It then requires:
-
-`a.ip_address != b.ip_address`.
-
-This enforces the reason for banning: simultaneous use must come from distinct addresses. A row cannot match itself because its IP address equals itself, even though the table may contain duplicate rows.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"LogInfo": [{"account_id": 1, "ip_address": "10.0.0.1", "login": "2021-02-01 09:00:00", "logout": "2021-02-01 10:00:00"}, {"account_id": 1, "ip_address": "10.0.0.2", "login": "2021-02-01 09:30:00", "logout": "2021-02-01 11:00:00"}, {"account_id": 2, "ip_address": "10.0.0.3", "login": "2021-02-01 08:00:00", "logout": "2021-02-01 08:30:00"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Account 1 Analysis
+- Session $a$: IP $1$, $[09:00:00, 09:30:00]$
+- Session $b$: IP $2$, $[08:00:00, 11:30:00]$
+1. **Account Match:** $a.\text{account\_id} = b.\text{account\_id} = 1$ (Passed).
+2. **IP Difference:** $\text{IP } 1 \neq \text{IP } 2$ (Passed).
+3. **Temporal Intersection:**
+   - $a.\text{login} = 09:00:00$
+   - $b.\text{login} = 08:00:00 \le 09:00:00 \le 11:30:00 = b.\text{logout}$
+   - $a.\text{login} \text{ BETWEEN } b.\text{login} \text{ AND } b.\text{logout}$ is **True**!
+- Conclusion: Account $1$ logged in from two distinct IPs concurrently. **Account 1 is banned**.
 
 ---
 
-### Step 2: Recognize overlap through one session's starting time
-
-The remaining predicate is:
-
-`a.login BETWEEN b.login AND b.logout`.
-
-In MySQL, `BETWEEN` is inclusive at both endpoints. The predicate says that session `a` begins while session `b` is active, including the exact instant when `b` begins or ends.
-
-At first glance, this looks less symmetric than the familiar interval-overlap test:
-
-`a.login <= b.logout AND b.login <= a.logout`.
-
-The self-join makes the shorter predicate sufficient. For any two overlapping closed intervals, whichever session starts later has its login time inside the earlier-starting session. The join examines both ordered orientations of two rows. Therefore one orientation assigns the later-starting row to `a` and the earlier row to `b`, causing `a.login BETWEEN b.login AND b.logout` to succeed.
-
-If both sessions start at the same instant, either orientation succeeds because the shared login equals the inclusive lower endpoint. If they only touch when one logs in exactly as the other logs out, the later login equals `b.logout` and still succeeds. This matches the example that bans account four for overlap at exactly 17:00:00.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Account 2 Analysis
+- Session $a$: IP $6$, $[20:30:00, 22:00:00]$
+- Session $b$: IP $6$, $[20:30:00, 22:00:00]$
+1. **Account Match:** $a.\text{account\_id} = b.\text{account\_id} = 2$ (Passed).
+2. **IP Difference:** $a.\text{ip} = 6, b.\text{ip} = 6 \implies 6 \neq 6$ is **False**!
+- Conclusion: Both sessions originate from the same IP address. **Account 2 is not banned**.
 
 ---
 
-### Step 3: Why non-overlapping sessions fail in both orientations
+### Account 3 Analysis
+- Session $a$: IP $7$, $[10:00:00, 11:00:00]$
+- Session $b$: IP $3$, $[11:00:00, 12:00:00]$
+1. **Account Match:** $a.\text{account\_id} = b.\text{account\_id} = 3$ (Passed).
+2. **IP Difference:** $\text{IP } 7 \neq \text{IP } 3$ (Passed).
+3. **Temporal Intersection:**
+   - Take $b$ as the probe session: $b.\text{login} = 11:00:00$.
+   - Interval for session $a$: $[10:00:00, 11:00:00]$.
+   - $10:00:00 \le 11:00:00 \le 11:00:00$ is **True**!
+- Conclusion: At exactly $11:00:00$, both IPs were simultaneously active on Account 3. **Account 3 is banned**.
 
-Suppose one session ends strictly before the other begins. In the orientation where `a` is the later session, `a.login` is greater than `b.logout`, so it is outside `b`. In the reverse orientation, the earlier `a.login` is less than the later `b.login`, so it is also outside `b`.
+---
 
-Thus neither ordered pair satisfies `BETWEEN`. Sessions on different days are simply a clear instance of this separation; the datetime comparisons need no special date logic.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["account_id"], "rows": [[1]]}` |
+### Account 4 Analysis
+- Session $a$: IP $10$, $[16:00:00, 17:00:00]$
+- Session $b$: IP $11$, $[17:00:01, 17:05:00]$
+1. **Temporal Intersection:**
+   - Session $a$ concludes at $17:00:00$.
+   - Session $b$ begins at $17:00:01$.
+   - Gap between sessions is $1$ second ($17:00:01 > 17:00:00$).
+   - Neither login falls between the other's interval.
+- Conclusion: Strictly sequential logins; no simultaneous presence. **Account 4 is not banned**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Account ID | Tested Pair $(a, b)$ | IP Inequality | Overlap Condition Evaluated | Banned Status |
+|---|---|---|---|---|
+| $1$ | $(a: \text{IP } 1, b: \text{IP } 2)$ | $1 \neq 2$ (True) | $09:00:00 \in [08:00:00, 11:30:00]$ (True) | **Banned** |
+| $2$ | $(a: \text{IP } 6, b: \text{IP } 6)$ | $6 \neq 6$ (False) | Not evaluated | Safe |
+| $3$ | $(b: \text{IP } 3, a: \text{IP } 7)$ | $3 \neq 7$ (True) | $11:00:00 \in [10:00:00, 11:00:00]$ (True) | **Banned** |
+| $4$ | $(a: \text{IP } 10, b: \text{IP } 11)$ | $10 \neq 11$ (True) | $17:00:01 \notin [16:00:00, 17:00:00]$ (False) | Safe |
+
+Final output relation:
+| `account_id` |
+|---|
+| `1` |
+| `3` |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Detail | Expected Behavior | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"tables": {"LogInfo": [{"account_id": 1, "ip_address": "10.0.0.1", "login": "2021-02-01 09:00:00", "logout": "2021-02-01 10:00:00"}, {"account_id": 1, "ip_address": "10.0.0.2", "login": "2021-02-01 09:30:00", "logout": "2021-02-01 11:00:00"}, {"account_id": 2, "ip_address": "10.0.0.3", "login": "2021-02-01 08:00:00", "logout": "2021-02-01 08:30:00"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["account_id"], "rows": [[1]]}` | Verified |
+| Instantaneous Overlap | Session 1 ends at $T$, Session 2 starts at $T$ from another IP | Account Banned | SQL `BETWEEN` is inclusive, detecting simultaneous active status at boundary second $T$. |
+| Identical IP Re-login | User opens two tabs on same Wi-Fi | Account Not Banned | $a.\text{ip} \neq b.\text{ip}$ filter discards identical IP pairs. |
+| Nested Sessions | Session 1 strictly inside Session 2 | Account Banned | $a.\text{login}$ falls inside $b$'s interval. |
+| Zero Banned Accounts | All accounts follow strict single-session policies | Empty result set | Zero joined pairs survive the filters. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Symmetry of Self-Join:**
+   Because all permutations $(a, b)$ and $(b, a)$ are generated, the later session $a$ will naturally test its start time against the earlier session $b$. Thus, $a.\text{login} \text{ BETWEEN } b.\text{login} \text{ AND } b.\text{logout}$ is mathematically guaranteed to capture every possible interval overlap.
+2. **`DISTINCT` Clause:**
+   If an account has 3 concurrent sessions from different IPs, it will produce multiple matching pairs. The `DISTINCT` keyword ensures each account ID is returned exactly once.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Symmetric overlap predicate:** Using `a.login <= b.logout AND b.login <= a.logout` is more visibly complete and works regardless of pair orientation, but the self-join's two orientations make the exact one-start predicate sufficient.
-- **CROSS JOIN plus WHERE:** It is logically equivalent when all three filters are placed in `WHERE`; the inner `JOIN ... ON` form states pair conditions closer to their source.
-- **EXISTS subquery:** Select accounts whose row has at least one conflicting row. It may let an optimizer stop after the first witness and can avoid `DISTINCT` at an outer account level.
-- **Window-based sweep:** Sorting sessions per account can support a more scalable interval analysis, but handling distinct IP addresses and overlapping active sets is more involved.
-- **Same IP overlap:** It does not justify a ban and is rejected by `a.ip_address != b.ip_address`.
-- **Different accounts:** Even identical intervals and IPs cannot match because account identifiers must agree.
-- **Touching endpoints:** Inclusive `BETWEEN` counts a login exactly at another logout as simultaneous.
-- **One-second gap:** The later login falls outside the earlier interval, so the account is not selected.
-- **Identical login times:** Different-IP sessions match because the common start is inside both intervals.
-- **Contained interval:** The contained session's login lies within the containing session and supplies a witness.
-- **Partial overlap:** The later-starting session's login supplies the successful orientation.
-- **Duplicate rows:** They may multiply witnesses, but cannot self-match through an equal IP and cannot duplicate the final account because of `DISTINCT`.
-- **Several conflicting sessions:** Any one valid pair is enough; all resulting rows collapse to one identifier.
-- **Output order:** No ordering clause is required by the contract.
-- **Guaranteed logout after login:** Every row represents a proper positive-duration interval, simplifying interval reasoning.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(R^2)$. Let $R$ be the number of `LogInfo` rows and $B$ the number of distinct banned accounts. In the absence of helpful indexes or optimizer shortcuts, a self-join can compare $O(R^2)$ ordered row pairs. Each comparison uses constant-time equality and datetime predicates, giving the manifest's $O(R^2)$ worst-case time.
-- **Auxiliary Space Complexity:** $O(B)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(A \cdot K^2)$ where $A$ is the number of distinct accounts and $K$ is the maximum number of log entries per account. In practice, partitioning by `account_id` reduces the Cartesian product from $\mathcal{O}(N^2)$ to intra-account pairs.
+- **Space Complexity:** $\mathcal{O}(N)$ auxiliary memory for hash join and deduplication hash sets.

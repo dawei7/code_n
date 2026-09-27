@@ -1,144 +1,181 @@
 # Guided Example: Two Sum III - Data structure design
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state evolution of frequency map stream ingestion (`add`) and distinct complement query evaluation (`find`) on representative multi-operation instances:
 
-- **Input:** `{"operations": ["TwoSum", "add", "add", "find"], "arguments": [[], [3], [3], [6]]}`
-- **Required output:** `[null, null, null, true]`
+- **Input Operations:** `["TwoSum", "add", "add", "add", "find", "find"]`
+- **Arguments:** `[[], [1], [3], [5], [4], [7]]`
+- **Required outputs:** `[null, null, null, null, true, false]` ($1 + 3 = 4 \implies \text{true}$; no pair sums to $7 \implies \text{false}$)
+- **Duplicate Self-Pair Instance:** After $\text{add}(3)$, $\text{find}(6) \implies \text{true}$ (Requires frequency $\text{freq}[3] \ge 2$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates designing streaming complement lookups with asymmetric workloads, analyzes the frequency map trade-off ($O(1)$ add vs $O(U)$ find), enforces multiplicity gating when $y = \text{target} - x == x$, and achieves optimal space and time guarantees.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a data structure that accepts a stream of integers and checks if it has a pair of integers that sum up to a particular value.
+Design a data structure supporting continuous streaming additions and pair-sum existence queries:
+1. `add(1)`: stores $1$.
+2. `add(3)`: stores $3$.
+3. `add(5)`: stores $5$.
+4. `find(4)`: $1 + 3 = 4 \implies$ returns `true`.
+5. `find(7)`: no two distinct stored elements sum to $7 \implies$ returns `false`.
 
-The objective is to compute `[null, null, null, true]` from `{"operations": ["TwoSum", "add", "add", "find"], "arguments": [[], [3], [3], [6]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Two design paradigms exist for this problem:
+1. **Precompute All Pair Sums on `add`:**
+   Querying `find` is $O(1)$, but adding an element takes $O(N)$ time and storing all pairs requires $O(N^2)$ space.
+2. **Frequency Map on `add`, Complement Search on `find` (Optimal):**
+   Adding an element increments a hash map counter in $O(1)$ time.
+   Finding a target iterates over the $U$ distinct keys in the map, testing whether $y = \text{target} - x$ exists in $O(1)$ lookup time:
+   - If $y \ne x$: requires $y \in \text{freq}$.
+   - If $y == x$: requires $\text{freq}[x] \ge 2$ (cannot reuse the same single element twice).
+This achieves strictly $O(1)$ add time, $O(U)$ find time, and $O(U) \le O(N)$ linear space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Hash-Map Multiplicity Protocol
+Initialize internal dictionary: `self.freq = defaultdict(int)`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Method 1: `add(number)` ($O(1)$ Time)
+Increment frequency count:
+$$
+\text{self.freq}[\text{number}] \leftarrow \text{self.freq}[\text{number}] + 1
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### Method 2: `find(value)` ($O(U)$ Time)
+For each unique key $x \in \text{self.freq}$:
+Compute required complement:
+$$
+y = \text{value} - x
+$$
+1. **Case A: Distinct Complement ($x \ne y$):**
+   If $y \in \text{self.freq}$:
+   $$
+   \text{return True}
+   $$
+2. **Case B: Identical Complement ($x == y$):**
+   Using $x$ twice requires that at least two distinct copies were added:
+   $$
+   \text{if } \text{self.freq}[x] \ge 2: \quad \text{return True}
+   $$
+
+If no key yields a valid complement, return `False`.
+
+> **Invariant.** `self.freq[x]` exactly reflects the total number of times integer $x$ was added. A target value is achievable if and only if two elements with indices $i \ne j$ satisfy $x_i + x_j = \text{value}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Store counts for a growing stream
+We trace the operations:
 
-The class must support many interleaved `add` and `find` calls. A frequency map
-is a natural persistent representation: `cnt[x]` is the number of times
-value `x` has been added and not otherwise removed. There is no removal method,
-so counts only increase.
-
-`defaultdict(int)` supplies zero as the initial count for a missing key.
-`add(number)` can therefore increment one entry directly without an explicit
-existence branch.
-
-Keeping counts rather than a set is essential. A set can say whether value
-three exists, but it cannot distinguish one copy from two copies. That
-distinction determines whether three may pair with another three to satisfy
-`find(6)`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["TwoSum", "add", "add", "find"], "arguments": [[], [3], [3], [6]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: `TwoSum()`
+- `freq = {}`.
+- Output: `null`.
 
 ---
 
-### Step 2: Search complements among distinct values
-
-For a query `value`, the source iterates over `(x, v)` entries in the map.
-For each stored value `x`, its only possible partner is:
-
-`y = value - x`.
-
-If `y` is absent, no pair beginning with `x` reaches the target. If it is
-present and differs from `x`, one occurrence of each key is enough and the
-method returns true.
-
-If `x == y`, the equation asks to use the same numeric value twice. The problem
-allows two equal integers but still requires two stored elements. The condition
-`v > 1` verifies that at least two copies were added.
-
-If no key finds a valid complement, the loop finishes and returns false.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: `add(1)`
+- `freq[1] += 1` $\implies$ `freq = {1: 1}`.
+- Output: `null`.
 
 ---
 
-### Step 3: Trace the sample operations
+### Step 3: `add(3)`
+- `freq[3] += 1` $\implies$ `freq = {1: 1, 3: 1}`.
+- Output: `null`.
 
-Construction creates an empty frequency map. Adding one, three, and five gives
-counts `{1:1, 3:1, 5:1}`.
+---
 
-For `find(4)`, when the loop examines one, it computes complement three.
-Three is present and different from one, so the query returns true.
+### Step 4: `add(5)`
+- `freq[5] += 1` $\implies$ `freq = {1: 1, 3: 1, 5: 1}`.
+- Output: `null`.
 
-For `find(7)`, complements six, four, and two are all absent. The full scan
-ends and returns false.
+---
 
-Suppose another three is added. `find(6)` may examine `x = 3`, compute the same
-value as its complement, and see count two. It returns true. With only one
-three, the `v > 1` test would correctly reject using that single occurrence
-twice.
+### Step 5: `find(4)`
+Iterate over keys in `freq`:
+- **Key $x = 1$:**
+  - Complement: $y = 4 - 1 = 3$.
+  - Check: $y \ne x$ ($3 \ne 1$).
+  - Is $3 \in \text{freq}$? Yes (`freq[3] = 1`).
+  - Valid pair $(1, 3)$ found!
+- Return $\mathbf{True}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, null, true]` |
+---
+
+### Step 6: `find(7)`
+Iterate over keys in `freq`:
+- **Key $x = 1$:** $y = 7 - 1 = 6 \implies 6 \notin \text{freq}$.
+- **Key $x = 3$:** $y = 7 - 3 = 4 \implies 4 \notin \text{freq}$.
+- **Key $x = 5$:** $y = 7 - 5 = 2 \implies 2 \notin \text{freq}$.
+All keys exhausted without finding a complement.
+Return $\mathbf{False}$.
+
+---
+
+### Step 7 (Follow-up): `add(3)` then `find(6)`
+- `add(3)`: `freq[3] += 1` $\implies$ `freq = {1: 1, 3: 2, 5: 1}`.
+- `find(6)`:
+  - Check $x = 3$:
+  - Complement: $y = 6 - 3 = 3$.
+  - $x == y$ ($3 == 3$) $\implies$ Multiplicity condition evaluated:
+    $$
+    \text{freq}[3] = 2 \ge 2 \implies \mathbf{True}
+    $$
+  - Two distinct instances of 3 exist!
+- Return $\mathbf{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["TwoSum", "add", "add", "find"], "arguments": [[], [3], [3], [6]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, null, true]` | Verified |
+```text
+Stream State:
+add(1) -> freq: {1: 1}
+add(3) -> freq: {1: 1, 3: 1}
+add(5) -> freq: {1: 1, 3: 1, 5: 1}
+
+Query find(4):
+  x=1: y = 4 - 1 = 3. 3 in freq? YES (distinct) -> Return True
+
+Query find(7):
+  x=1: y = 7 - 1 = 6. 6 in freq? NO
+  x=3: y = 7 - 3 = 4. 4 in freq? NO
+  x=5: y = 7 - 5 = 2. 2 in freq? NO -> Return False
+```
+
+| Operation | Input Value | Updated `self.freq` State | Complement Evaluated ($y = \text{val} - x$) | Multiplicity Check | Emitted Result |
+|:---:|:---:|:---|:---:|:---:|:---:|
+| `TwoSum` | - | `{}` | - | - | `null` |
+| `add` | 1 | `{1: 1}` | - | - | `null` |
+| `add` | 3 | `{1: 1, 3: 1}` | - | - | `null` |
+| `add` | 5 | `{1: 1, 3: 1, 5: 1}` | - | - | `null` |
+| **`find`** | **4** | `{1: 1, 3: 1, 5: 1}` | **$x=1 \implies y=3$** | **$3 \ne 1$ (distinct)** | **`true`** |
+| **`find`** | **7** | `{1: 1, 3: 1, 5: 1}` | **$y \in \{6, 4, 2\}$** | **None found** | **`false`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If $x \ne y$ and both exist in `freq`, they represent elements added at different steps. If $x == y$, checking $\text{freq}[x] \ge 2$ guarantees that at least two separate calls to `add(x)` were made, satisfying the requirement of two distinct elements.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any pair of elements summing to `value` consists of some $x$ and $y = \text{value} - x$. Since the loop iterates over all distinct keys $x$, if a valid pair exists, its smaller member $x$ will be tested and its complement $y$ identified in $O(1)$ hash map lookup.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sorted list with lazy sorting:** Append in $O(1)$, sort after changes, then use two pointers for queries. A query after an add can cost $O(n\log n)$.
-- **Maintain a sorted list on every add:** Enables linear two-pointer queries but insertion can cost $O(n)$.
-- **Precompute pair sums:** Makes `find` expected $O(1)$ but can require $O(n^2)$ update work and storage.
-- **Set only:** Insufficient because it cannot validate two equal operands.
-- **Empty structure:** The loop is empty and `find` returns false.
-- **One stored value:** It cannot pair with itself unless added again.
-- **Negative values:** Complement subtraction and hash lookup work unchanged.
-- **Large query target:** An absent complement is simply rejected; no overflow occurs in Python.
-- **Repeated additions:** They increment one count without increasing distinct-key space.
-- **Missing import:** `defaultdict` must be imported before construction.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using a Set Instead of a Frequency Map:** A standard `set` cannot differentiate between receiving a single $3$ versus receiving two $3$s. Calling `find(6)` on `set({1, 3, 5})` would falsely return `True` by pairing $3$ with itself!
+- **Precomputing All Pair Sums:** If $N$ numbers are added, there are $\binom{N}{2} \approx N^2 / 2$ pairs. Precomputing all sums takes $O(N^2)$ space and $O(N)$ time per `add`, exceeding memory limits for large streams.
+- **Negative Targets and Numbers:** Complement formula $y = \text{value} - x$ works identically for negative numbers and negative targets without modification.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(u)$. Let $u$ be the number of distinct stored values and $n$ the total number of
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `add(number)`: $O(1)$ amortized time for hash map insertion.
+  - `find(value)`: $O(U)$ worst-case time, where $U \le N$ is the number of unique integers currently stored in `freq`. For each unique key, $O(1)$ hash lookup is performed.
+- **Auxiliary Space Complexity:** $O(U) \le O(N)$ auxiliary memory to store the frequencies of the $U$ distinct added values.

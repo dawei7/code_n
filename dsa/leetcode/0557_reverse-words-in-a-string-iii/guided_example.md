@@ -1,109 +1,185 @@
 # Guided Example: Reverse Words in a String III
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step whitespace-delimited word tokenization, in-place character reversal within isolated token boundaries, global word order preservation, whitespace delimiter reconstruction, and linear single-pass string assembly on representative sentences:
 
-- **Input:** `{"s": "Let's take LeetCode contest"}`
+- **Input:** $s = \text{"Let's take LeetCode contest"}$
 - **Required output:** `"s'teL ekat edoCteeL tsetnoc"`
+  - Problem contract:
+    - Reverse the order of characters within **each individual word**.
+    - Preserve the original sequence of words in the sentence.
+    - Preserve single whitespace separators between adjacent words.
+- **Token-by-Token Reversal Execution Trace:**
+  - **Step 1: Partition into Word Tokens:**
+    - Parse string by space separator:
+      $$
+      \text{words} = [\text{"Let's"}, \; \text{"take"}, \; \text{"LeetCode"}, \; \text{"contest"}]
+      $$
+  - **Step 2: Reverse Characters in Each Word Individually:**
+    - **Word 0: $w_0 = \text{"Let's"}$ (Length 5):**
+      - Original character sequence: `['L', 'e', 't', ''', 's']`
+      - Two-pointer reflection:
+        - Swap index $0$ and $4$: `'L'` $\leftrightarrow$ `'s'`
+        - Swap index $1$ and $3$: `'e'` $\leftrightarrow$ `'''`
+        - Index $2$ remains `'t'`
+      - Inverted word:
+        $$
+        w_0' = \mathbf{\text{"s'teL"}}
+        $$
+    - **Word 1: $w_1 = \text{"take"}$ (Length 4):**
+      - Characters: `['t', 'a', 'k', 'e']`
+      - Swap index $0$ and $3$: `'t'` $\leftrightarrow$ `'e'`
+      - Swap index $1$ and $2$: `'a'` $\leftrightarrow$ `'k'`
+      - Inverted word:
+        $$
+        w_1' = \mathbf{\text{"ekat"}}
+        $$
+    - **Word 2: $w_2 = \text{"LeetCode"}$ (Length 8):**
+      - Characters: `['L', 'e', 'e', 't', 'C', 'o', 'd', 'e']`
+      - Invert characters:
+        $$
+        w_2' = \mathbf{\text{"edoCteeL"}}
+        $$
+    - **Word 3: $w_3 = \text{"contest"}$ (Length 7):**
+      - Characters: `['c', 'o', 'n', 't', 'e', 's', 't']`
+      - Invert characters:
+        $$
+        w_3' = \mathbf{\text{"tsetnoc"}}
+        $$
+  - **Step 3: Reassemble Sentence with Spaces:**
+    - Join transformed tokens in original order:
+      $$
+      ans = w_0' + \text{" "} + w_1' + \text{" "} + w_2' + \text{" "} + w_3'
+      $$
+      $$
+      ans = \text{"s'teL"} + \text{" "} + \text{"ekat"} + \text{" "} + \text{"edoCteeL"} + \text{" "} + \text{"tsetnoc"} = \mathbf{\text{"s'teL ekat edoCteeL tsetnoc"}}
+      $$
+- **Two Words Instance ($s = \text{"Mr Ding"}$):**
+  - $\text{"Mr"} \to \text{"rM"}$
+  - $\text{"Ding"} \to \text{"gniD"}$
+  - Result: $\mathbf{\text{"rM gniD"}}$.
+- **Single Character Word ($s = \text{"a"}$):**
+  - Length 1 $\implies$ reversal is identical $\implies \mathbf{\text{"a"}}$.
+- **Preservation of Punctuation:**
+  - Punctuation attached to words (like apostrophe in `"Let's"`) reverses along with the word letters, transforming into `"s'teL"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates partitioned string inversion across regular delimiter boundaries, mathematically proves why local word inversion leaves inter-token ordering invariant, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+Given a sentence string $s$:
+Reverse the order of characters within each word while preserving the order of the words themselves and single space separators.
 
-The objective is to compute `"s'teL ekat edoCteeL tsetnoc"` from `{"s": "Let's take LeetCode contest"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input:  "Let's take LeetCode contest"
+Tokens: ["Let's", "take", "LeetCode", "contest"]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Reversing each token:
+  "Let's"    -> "s'teL"
+  "take"     -> "ekat"
+  "LeetCode" -> "edoCteeL"
+  "contest"  -> "tsetnoc"
+
+Output: "s'teL ekat edoCteeL tsetnoc"
+```
+
+### Contrast with "Reverse Words in a String I"
+- In standard LeetCode 151 (*Reverse Words in a String*):
+  The **order of words** is reversed, but characters inside each word are preserved (`"the sky is blue"` $\to$ `"blue is sky the"`).
+- In this problem (LeetCode 557):
+  The **characters inside each word** are reversed, but the **order of the words** is preserved (`"the sky"` $\to$ `"eht yks"`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Invariant of Independent Local Inversion:
+Let a sentence be a sequence of tokens separated by spaces:
+$$
+S = w_0 \cdot \text{" "} \cdot w_1 \cdot \text{" "} \dots \cdot \text{" "} \cdot w_{k-1}
+$$
+The transformation maps each $w_i$ to its string reverse $\text{rev}(w_i)$:
+$$
+f(S) = \text{rev}(w_0) \cdot \text{" "} \cdot \text{rev}(w_1) \dots \cdot \text{" "} \cdot \text{rev}(w_{k-1})
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Two-Pointer In-Place Inversion:
+For any token of length $m$:
+- Initialize $l = 0, \; r = m - 1$.
+- While $l < r$:
+  Swap character at $l$ with character at $r$.
+  $l \leftarrow l + 1, \; r \leftarrow r - 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Positional Separator Invariant.** The index positions of the space delimiters in the final sentence are identical to their positions in the original sentence.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The operation has two independent preservation rules:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "Let's take LeetCode contest"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"Mr Ding"}$:
 
 ---
 
-### Step 2: Core Step 2
-
-- words must remain in their original left-to-right order;
-- only the characters inside each word are reversed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Tokenize
+- Token 0: `"Mr"`
+- Token 1: `"Ding"`
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Reverse Tokens
+- Token 0 (`"Mr"`):
+  - Characters: `['M', 'r']`
+  - Swap index 0 and 1 $\implies$ `['r', 'M']` $\implies \mathbf{\text{"rM"}}$.
+- Token 1 (`"Ding"`):
+  - Characters: `['D', 'i', 'n', 'g']`
+  - Swap index 0 and 3: `'D'` $\leftrightarrow$ `'g'`
+  - Swap index 1 and 2: `'i'` $\leftrightarrow$ `'n'`
+  - Inverted $\implies \mathbf{\text{"gniD"}}$.
 
-The solution separates the sentence into words, reverses each word independently, and joins the transformed words back with one space.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"s'teL ekat edoCteeL tsetnoc"` |
+### Step 3: Join with Single Space
+$$
+\text{"rM"} + \text{" "} + \text{"gniD"} = \mathbf{\text{"rM gniD"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "Let's take LeetCode contest"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"s'teL ekat edoCteeL tsetnoc"` | Verified |
+| Original Token $w_i$ | Token Length | Left-Right Swaps | Reversed Token $\text{rev}(w_i)$ |
+|:---:|:---:|:---:|:---:|
+| `"Let's"` | $5$ | $0 \leftrightarrow 4, \; 1 \leftrightarrow 3$ | **`"s'teL"`** |
+| `"take"` | $4$ | $0 \leftrightarrow 3, \; 1 \leftrightarrow 2$ | **`"ekat"`** |
+| `"LeetCode"` | $8$ | $0 \leftrightarrow 7, \; 1 \leftrightarrow 6, \; 2 \leftrightarrow 5, \; 3 \leftrightarrow 4$ | **`"edoCteeL"`** |
+| `"contest"` | $7$ | $0 \leftrightarrow 6, \; 1 \leftrightarrow 5, \; 2 \leftrightarrow 4$ | **`"tsetnoc"`** |
+| **Joined Output** | — | — | **`"s'teL ekat edoCteeL tsetnoc"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Word Without Spaces (`"Hello"`):** Reverses directly to `"olleH"`.
+- **Single Letter Words (`"a b c"`):** Reverses to `"a b c"` (identity).
+- **Special Characters and Punctuation:** Treated as normal characters within tokens (e.g. `"I'm"` $\to$ `"m'I"`).
+- **Even vs Odd Length Words:** Two-pointer swap handles even and odd word lengths seamlessly without off-by-one errors.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Mutable character-array scan:** Reverse the complete array, then reverse each word, or directly reverse each word interval. It can preserve arbitrary whitespace positions more exactly.
-- **Reverse the whole sentence:** That also reverses word order, violating the contract.
-- **Reverse word order only:** It preserves word characters rather than reversing them, solving a different problem.
-- **Multiple or tab whitespace:** The exact `split()/join` implementation normalizes it; legal inputs contain only single spaces.
-- **One word:** The entire string is reversed.
-- **One-character word:** It remains unchanged.
-- **Printable punctuation:** Apostrophes and other non-space ASCII characters reverse with their word.
-- **Mixed uppercase and lowercase:** Character case is preserved while positions reverse.
-- **No leading or trailing spaces:** Join correctly produces none.
-- **Very long word:** Slicing remains linear in that word's length.
-- **Input order:** Generator iteration and join preserve it exactly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Reversing the Entire String First:** If you reverse the entire sentence first, you get `"tsetnoc edoCteeL ekat s'teL"`. To fix it, you would then have to reverse the list of words again. Reversing each word directly in a single pass is cleaner and requires half the operations.
+- **Dropping Spaces or Trimming:** Sentences contain exact single spaces that must be preserved. Using regex split without careful re-joining can distort whitespace formatting.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `s`. Splitting scans the sentence and creates word strings totaling $O(n)$ characters. Across all words, reversing copies each non-space character once. Joining writes every reversed character and separator once. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Tokenizing the string: $O(N)$ where $N$ is the total length of the string.
+  - Reversing each character within words visits each character exactly once: $O(N)$.
+  - Joining the reversed words with spaces: $O(N)$.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 5 \times 10^4$, completes in $< 3$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to hold the split tokens and construct the final string.

@@ -1,124 +1,145 @@
 # Guided Example: Minimum Adjacent Swaps to Make a Valid Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [3, 4, 5, 5, 3, 1]}`
-- **Required output:** `6`
+We are given a 0-indexed integer array `nums` of length $n$. An array is defined as **valid** if:
+1. At least one minimum element of the array resides at the leftmost index ($0$).
+2. At least one maximum element of the array resides at the rightmost index ($n - 1$).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+In a single operation, we can swap any two adjacent elements $nums[k]$ and $nums[k+1]$. The objective is to determine the minimum number of adjacent swaps required to make the array valid.
 
----
+Consider the representative instance:
+- `nums = [3, 4, 5, 5, 3, 1]`
+- Array length: $n = 6$
 
-## 1. Instance & Teaching Goal
+Elements and key extremes:
+- Global minimum value: $1$, located at index $5$.
+- Global maximum value: $5$, located at indices $2$ and $3$.
 
-You are given a **0-indexed** integer array `nums`.
+To minimize moves:
+- Choose the leftmost minimum element at index $i = 5$ to move to index $0$.
+- Choose the rightmost maximum element at index $j = 3$ to move to index $5$.
 
-The objective is to compute `6` from `{"nums": [3, 4, 5, 5, 3, 1]}` while avoiding redundant calculations and unnecessary overhead.
+Because the minimum element starts to the right of the maximum element ($i = 5 > j = 3$), as the minimum shifts leftward and the maximum shifts rightward, they will cross each other in a single shared adjacent swap, reducing the total required operations by $1$.
+Total swaps: $5 + (6 - 1 - 3) - 1 = 5 + 2 - 1 = 6$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart LR
+    accTitle: Extremal Trajectory and Crossing Optimization
+    accDescr: Minimizing adjacent swaps by moving the leftmost minimum left and rightmost maximum right, deducting one shared swap if their paths cross.
+    subgraph Initial["Initial Array: [3, 4, 5, 5, 3, 1]"]
+        M0["Idx 0: 3"]
+        M1["Idx 1: 4"]
+        M2["Idx 2: 5"]
+        Max["Idx 3: 5 (Rightmost Max)"]
+        M4["Idx 4: 3"]
+        Min["Idx 5: 1 (Leftmost Min)"]
+    end
+    Min -->|"5 swaps leftward"| Target0["Index 0"]
+    Max -->|"2 swaps rightward"| TargetEnd["Index 5"]
+    Cross["Crossing Event: min at 5 and max at 3 cross at indices (3, 4)<br/>Saves 1 swap"]
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+Moving an element from index $p$ to index $q$ solely via adjacent swaps requires $|p - q|$ operations:
+- Moving an element at index $i$ to index $0$ takes $i$ adjacent swaps.
+- Moving an element at index $j$ to index $n - 1$ takes $(n - 1 - j)$ adjacent swaps.
 
-We maintain the core conceptual parameters and state variables:
+### Selection Strategy for Duplicate Extremes
+To minimize distance:
+1. **Leftmost Minimum ($i^*$):** If multiple elements tie for the global minimum, choosing the one with the smallest index minimizes the leftward journey:
+   $$i^* = \min \{k \mid nums[k] = \min(nums)\}$$
+2. **Rightmost Maximum ($j^*$):** If multiple elements tie for the global maximum, choosing the one with the largest index minimizes the rightward journey:
+   $$j^* = \max \{k \mid nums[k] = \max(nums)\}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Path Intersection and Crossing Correction
+- **No Crossing ($i^* \le j^*$):**
+  The minimum is already to the left of the maximum. The minimum shifts leftward to $0$ and the maximum shifts rightward to $n - 1$ without interfering with each other:
+  $$\text{Swaps} = i^* + (n - 1 - j^*)$$
+- **Crossing Case ($i^* > j^*$):**
+  The minimum is positioned to the right of the maximum. When shifting the minimum leftward, it must swap positions with the maximum. That single mutual swap advances the minimum 1 step closer to index $0$ AND advances the maximum 1 step closer to index $n - 1$ simultaneously. Hence, exactly 1 swap is shared:
+  $$\text{Swaps} = i^* + (n - 1 - j^*) - 1$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Combining both cases into a unified formula:
 
----
+$$\text{Swaps} = i^* + (n - 1 - j^*) - \mathbb{I}(i^* > j^*)$$
 
-## 3. Step-by-Step Worked Execution
+where $\mathbb{I}$ is the indicator function evaluating to 1 if $i^* > j^*$, and 0 otherwise. (If all elements are identical, $i^* = j^* = 0$, giving 0 swaps).
 
-### Step 1: Choose the occurrences that are already closest to their required ends
-
-Only one occurrence of the global minimum must reach index zero, and only one occurrence of the global maximum must reach index `n - 1`. When a value occurs several times, the best minimum candidate is its leftmost occurrence because it needs the fewest leftward adjacent swaps. The best maximum candidate is its rightmost occurrence because it needs the fewest rightward swaps.
-
-The scan stores these indices as `i` and `j`:
-
-- `i` becomes the index of the leftmost minimum;
-- `j` becomes the index of the rightmost maximum.
-
-Both start at zero, then every element is compared with the value at the currently selected index.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Structural Case | Geometric Relative Position | Mutual Interaction | Swaps Formula |
 |---|---|---|---|
-| Input Slice | `{"nums": [3, 4, 5, 5, 3, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Disjoint Paths | $i^* \le j^*$ (Min left of Max) | Moving apart, paths do not intersect | $i^* + n - 1 - j^*$ |
+| Crossing Paths | $i^* > j^*$ (Min right of Max) | Move toward each other, swap mutually once | $i^* + n - 1 - j^* - 1$ |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Why the minimum comparison keeps the leftmost copy
+We evaluate `nums = [3, 4, 5, 5, 3, 1]` with $n = 6$.
 
-When `v < nums[i]`, the scan has found a genuinely smaller value and updates `i = k`. When values are equal, the code contains the additional condition `k < i`.
+### Step 1: Linear Scan to Locate Extremes
+Iterate through the array tracking the leftmost minimum and rightmost maximum:
+- Index 0 ($3$): Initial minimum at 0, initial maximum at 0.
+- Index 1 ($4$): $4 > 3 \implies$ update maximum to index 1.
+- Index 2 ($5$): $5 > 4 \implies$ update maximum to index 2.
+- Index 3 ($5$): $5 \ge 5 \implies$ update rightmost maximum to index 3.
+- Index 4 ($3$): No update.
+- Index 5 ($1$): $1 < 3 \implies$ update leftmost minimum to index 5.
 
-Because `k` advances from left to right, a later equal occurrence normally cannot have `k < i`, so the first occurrence of the current minimum remains selected. The explicit tie condition states the intended rule even though the traversal order already enforces it.
+Identified optimal coordinates:
+- Leftmost minimum: $i^* = 5$ (value 1)
+- Rightmost maximum: $j^* = 3$ (value 5)
 
-Moving this selected minimum to index zero costs exactly `i` adjacent swaps: it must cross each of the `i` elements before it once.
+### Step 2: Distance Calculations
+- Distance to move minimum from index 5 to 0:
+  $$d_{\text{min}} = i^* = 5$$
+- Distance to move maximum from index 3 to 5:
+  $$d_{\text{max}} = n - 1 - j^* = 6 - 1 - 3 = 2$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Crossing Adjustment
+- Compare relative positions: $i^* = 5$ and $j^* = 3$.
+- Because $5 > 3$, the minimum lies to the right of the maximum.
+- As the minimum shifts left, it crosses the maximum at the boundary between index 3 and 4.
+- Deduction applied: $-1$.
 
----
+### Step 4: Total Swap Count
+$$\text{Total Swaps} = 5 + 2 - 1 = 6$$
 
-### Step 3: Why the maximum comparison keeps the rightmost copy
+## 4. Comprehensive State Trace
 
-The condition `v >= nums[j]` updates `j` for both a larger value and an equal maximum. Consequently, every later occurrence of the current maximum replaces the earlier one. The extra equal-and-later clause is redundant after `>=`, but it reinforces the rightmost intention.
+The state of the array through an explicit execution of the 6 optimal adjacent swaps is tabulated below.
 
-Moving the selected maximum from index `j` to the final index costs `n - 1 - j` swaps before accounting for interaction with the minimum move.
+| Step | Swap Operation | Array Configuration | Distance of Min to Idx 0 | Distance of Max to Idx 5 | Crossing Status |
+|---|---|---|---|---|---|
+| 0 | Initial state | `[3, 4, 5, 5, 3, 1]` | 5 | 2 | Not yet crossed |
+| 1 | Swap `nums[4]` and `nums[5]` | `[3, 4, 5, 5, 1, 3]` | 4 | 2 | Approaching |
+| 2 | Swap `nums[3]` and `nums[4]` | `[3, 4, 5, 1, 5, 3]` | 3 | 1 | **Mutual Swap** (Max at 3 and Min at 4 cross) |
+| 3 | Swap `nums[2]` and `nums[3]` | `[3, 4, 1, 5, 5, 3]` | 2 | 1 | Separating |
+| 4 | Swap `nums[1]` and `nums[2]` | `[3, 1, 4, 5, 5, 3]` | 1 | 1 | Separating |
+| 5 | Swap `nums[0]` and `nums[1]` | `[1, 3, 4, 5, 5, 3]` | 0 (Reached!) | 1 | Min at index 0 |
+| 6 | Swap `nums[4]` and `nums[5]` | `[1, 3, 4, 5, 3, 5]` | 0 | 0 (Reached!) | Max at index 5 |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+Array is valid in exactly 6 swaps.
 
----
+## 5. Algorithmic Correctness & Soundness
 
-## 4. Complete Execution Trace
+1. **Independent Sub-goal Decomposition:**
+   A valid array requires the minimum at index 0 and the maximum at index $n - 1$. No constraint specifies the ordering of intermediate elements. By focusing exclusively on transporting the chosen minimum and maximum to their target endpoints, extraneous swaps are avoided.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 4, 5, 5, 3, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+2. **Single Crossing Invariant:**
+   If $i^* > j^*$, shifting the minimum left to 0 and maximum right to $n - 1$ causes their index trajectories to cross at exactly one adjacent transposition. That mutual swap reduces the remaining distance to 0 for the minimum and the remaining distance to $n - 1$ for the maximum in the same single move, proving the $-1$ deduction is exact.
 
----
+## 6. Edge Cases & Anti-Patterns
 
-## 5. Algorithmic Correctness
+- **Array Already Valid (`nums = [1, 4, 2, 9]`):**
+  - $i^* = 0, j^* = 3$. Total swaps: $0 + (4 - 1 - 3) = 0$.
+- **All Elements Equal (`nums = [7, 7, 7, 7]`):**
+  - Any element is both minimum and maximum. Leftmost min is at 0, rightmost max can be chosen at $n - 1$, returning 0.
+- **Single Element (`nums = [9]`):**
+  - $n = 1 \implies i^* = 0, j^* = 0$. Swaps: $0 + 0 - 0 = 0$.
+- **Anti-Pattern (Simulating Array Swaps Step-by-Step):**
+  - Physically modifying an array across simulation loops incurs unnecessary overhead. The arithmetic closed form computes the exact minimal swap count directly from the extreme indices in $\mathcal{O}(1)$ operations.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 7. Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Use built-in minimum and maximum plus index searches:** Find the minimum and maximum values, then locate the first minimum and last maximum. This is correct but makes several linear passes instead of one.
-- **Simulate adjacent swaps:** Moving the chosen elements step by step takes `O(n)` operations and mutates data merely to obtain a count that endpoint distances already provide.
-- **Choose the rightmost minimum:** It requires at least as many swaps to reach the left edge and can be strictly worse.
-- **Choose the leftmost maximum:** It requires at least as many swaps to reach the right edge and can be strictly worse.
-- **Forget the crossing correction:** When `i > j`, one swap advances both selected elements toward their endpoints, so the raw sum overcounts by one.
-- **Subtract for `i < j`:** Their routes do not cross in that order, so subtracting would undercount.
-- **One element:** It is simultaneously smallest, largest, leftmost, and rightmost; zero swaps are needed.
-- **All values equal:** The first and last elements already provide valid endpoint occurrences, so the result is zero.
-- **Minimum already first:** Its distance contribution is zero.
-- **Maximum already last:** Its distance contribution is zero.
-- **Maximum immediately before minimum:** Their single mutual swap is exactly the shared crossing represented by the subtraction.
-- **Multiple minima and maxima:** The scan's tie behavior selects the endpoint-nearest copies.
-- **Minimum equals maximum:** This means all values are equal, handled naturally.
-- **Input preservation:** The method only reads `nums` and returns a count.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the array length. The single loop examines each element once and performs constant-time comparisons and assignments, so running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `nums`. A single linear pass finds the leftmost index of the minimum element and the rightmost index of the maximum element. The final formula evaluates in $\mathcal{O}(1)$ time.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. Only integer index variables and element comparators are stored.

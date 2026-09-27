@@ -1,89 +1,179 @@
 # Guided Example: Construct Binary Tree from Inorder and Postorder Traversal
 
-We trace the hierarchical Array, Hash Table, Divide and Conquer, Tree, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step recursive tree reconstruction using postorder root extraction and inorder index splitting on representative traversal arrays:
 
-- **Input:** `{"inorder": [9, 3, 15, 20, 7], "postorder": [9, 15, 7, 20, 3]}`
-- **Required output:** `[3, 9, 20, null, null, 15, 7]`
+- **Input:** $\text{inorder} = [9, 3, 15, 20, 7]$, $\text{postorder} = [9, 15, 7, 20, 3]$
+- **Required output:** $[3, 9, 20, \text{null}, \text{null}, 15, 7]$
+- **Single-Node Base:** $\text{inorder} = [1], \text{postorder} = [1] \implies [1]$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates exploiting the postorder root invariant ($\text{postorder}[\text{post\_end}]$ is always the subtree root), partitioning inorder into left and right subtree spans, index lookups with a precomputed hash map, calculating segment bounds, and contrasting right-first recursion vs explicit coordinate passing.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Construct Binary Tree from Inorder and Postorder Traversal** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given two integer arrays $\text{inorder}$ and $\text{postorder}$:
+$$
+\text{inorder} = [9, 3, 15, 20, 7], \quad \text{postorder} = [9, 15, 7, 20, 3]
+$$
+where each traversal describes the same binary tree with unique values, reconstruct and return the binary tree.
+
+The roles of each traversal sequence:
+1. **Postorder (Left $\to$ Right $\to$ Root):**
+   The very **last** element in any postorder range is the root of that subtree.
+   Here, $\text{postorder}[-1] = 3$ is the global root.
+2. **Inorder (Left $\to$ Root $\to$ Right):**
+   Locating the root value $3$ at index $1$ divides the tree:
+   - Left subtree values: $[9]$ (length $1$)
+   - Right subtree values: $[15, 20, 7]$ (length $3$)
+
+Notice the contrast with LeetCode 105:
+- In preorder, the root is at the front ($\text{start}$), and left subtrees precede right subtrees.
+- In postorder, the root is at the back ($\text{end}$), and right subtrees immediately precede the root.
+
+Using an upfront hash map for $\text{inorder}$ values eliminates linear searches, executing tree reconstruction in $O(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Bounding Index Partitioning Protocol
+Precompute $\text{in\_map} = \{v: i \text{ for } i, v \text{ in enumerate}(\text{inorder})\}$.
+Define recursive function $\text{build}(\text{in\_start}, \text{in\_end}, \text{post\_start}, \text{post\_end})$:
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+1. **Base Case:**
+   If $\text{in\_start} > \text{in\_end}$ or $\text{post\_start} > \text{post\_end}$:
+   $$
+   \text{return } \emptyset
+   $$
+2. **Extract Subtree Root:**
+   Root value is $V = \text{postorder}[\text{post\_end}]$.
+   Locate root in inorder sequence: $k = \text{in\_map}[V]$.
+   Subtree size counts:
+   $$
+   \text{left\_size} = k - \text{in\_start}
+   $$
+   $$
+   \text{right\_size} = \text{in\_end} - k
+   $$
+3. **Partition Bounds:**
+   - **Left Subtree:**
+     - Inorder: $[\text{in\_start}, \; k - 1]$
+     - Postorder: $[\text{post\_start}, \; \text{post\_start} + \text{left\_size} - 1]$
+   - **Right Subtree:**
+     - Inorder: $[k + 1, \; \text{in\_end}]$
+     - Postorder: $[\text{post\_start} + \text{left\_size}, \; \text{post\_end} - 1]$
+4. **Construct Node:**
+   $$
+   \text{root} = \text{TreeNode}(V, \, \text{left} = \text{LeftSubtree}, \, \text{right} = \text{RightSubtree})
+   $$
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+### Pop-Based Variation
+Because $\text{postorder}$ ends with the root, immediately preceded by the right subtree's elements, popping from the end of $\text{postorder}$ allows constructing the tree by recursing on `right` first, then `left`:
+```text
+root.right = build(k + 1, in_end)
+root.left = build(in_start, k - 1)
+```
+
+> **Invariant.** The last element of $\text{postorder}[\text{post\_start} \dots \text{post\_end}]$ is the true root of the tree whose inorder traversal corresponds to $\text{inorder}[\text{in\_start} \dots \text{in\_end}]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace $\text{inorder} = [9, 3, 15, 20, 7]$ and $\text{postorder} = [9, 15, 7, 20, 3]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Hash Map Setup
+$$
+\text{in\_map} = \{9: 0, \, 3: 1, \, 15: 2, \, 20: 3, \, 7: 4\}
+$$
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 1: Global Root (Bounds: $\text{in}[0 \dots 4]$, $\text{post}[0 \dots 4]$)
+- Root value: $V = \text{postorder}[4] = 3$.
+- Inorder index of 3: $k = \text{in\_map}[3] = 1$.
+- Left subtree size: $\text{left\_size} = 1 - 0 = 1$.
+- Partition:
+  - Left: $\text{in}[0 \dots 0]$, $\text{post}[0 \dots 0]$
+  - Right: $\text{in}[2 \dots 4]$, $\text{post}[1 \dots 3]$
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 2: Construct Left Child of 3 (Bounds: $\text{in}[0 \dots 0]$, $\text{post}[0 \dots 0]$)
+- Root value: $V = \text{postorder}[0] = 9$.
+- Inorder index of 9: $k = 0$.
+- Left size: $0 - 0 = 0$.
+  - Child bounds empty $\implies \text{Node}(9)$ is a leaf.
+- Left child of 3 is $\text{Node}(9)$.
+
+---
+
+### Step 3: Construct Right Child of 3 (Bounds: $\text{in}[2 \dots 4]$, $\text{post}[1 \dots 3]$)
+- Root value: $V = \text{postorder}[3] = 20$.
+- Inorder index of 20: $k = \text{in\_map}[20] = 3$.
+- Subtree size: $\text{left\_size} = 3 - 2 = 1$.
+- Partition:
+  - Left of 20: $\text{in}[2 \dots 2]$, $\text{post}[1 \dots 1]$
+  - Right of 20: $\text{in}[4 \dots 4]$, $\text{post}[2 \dots 2]$
+
+---
+
+### Step 4: Construct Left Child of 20 (Bounds: $\text{in}[2 \dots 2]$, $\text{post}[1 \dots 1]$)
+- Root value: $V = \text{postorder}[1] = 15$.
+- Inorder index: $k = 2$.
+- Child bounds empty $\implies \text{Node}(15)$ is a leaf.
+
+---
+
+### Step 5: Construct Right Child of 20 (Bounds: $\text{in}[4 \dots 4]$, $\text{post}[2 \dots 2]$)
+- Root value: $V = \text{postorder}[2] = 7$.
+- Inorder index: $k = 4$.
+- Child bounds empty $\implies \text{Node}(7)$ is a leaf.
+
+Assembled Tree:
+Node $20$ connects left $15$ and right $7$.
+Node $3$ connects left $9$ and right $20$.
+Final tree structure: $[3, 9, 20, \text{null}, \text{null}, 15, 7]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+```text
+       Root 3 (post[4], in[1])
+       /                    \
+  Node 9 (post[0], in[0])   Node 20 (post[3], in[3])
+                           /                     \
+                   Node 15 (post[1], in[2])   Node 7 (post[2], in[4])
+```
+
+| Recursion Frame | Target Subtree | Inorder Interval $[\text{in\_start}, \text{in\_end}]$ | Postorder Interval $[\text{post\_start}, \text{post\_end}]$ | Root Val $V$ | Root Inorder Idx $k$ | Left Subtree Size | Reconstructed Node |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | Global Root | $[0, 4]$ (`[9,3,15,20,7]`) | $[0, 4]$ (`[9,15,7,20,3]`) | 3 | 1 | 1 | $\text{Node}(3)$ |
+| 1.1 | 3's Left | $[0, 0]$ (`[9]`) | $[0, 0]$ (`[9]`) | 9 | 0 | 0 | $\text{Node}(9)$ |
+| 1.2 | 3's Right | $[2, 4]$ (`[15,20,7]`) | $[1, 3]$ (`[15,7,20]`) | 20 | 3 | 1 | $\text{Node}(20)$ |
+| 1.2.1 | 20's Left | $[2, 2]$ (`[15]`) | $[1, 1]$ (`[15]`) | 15 | 2 | 0 | $\text{Node}(15)$ |
+| 1.2.2 | 20's Right | $[4, 4]$ (`[7]`) | $[2, 2]$ (`[7]`) | 7 | 4 | 0 | $\text{Node}(7)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** Postorder traversal strictly finishes processing a subtree at its root node; hence $\text{postorder}[\text{post\_end}]$ is guaranteed to be the subtree root. Inorder traversal places all left subtree nodes strictly before the root index $k$ and all right subtree nodes strictly after $k$. The hash map allows exact partitioning into non-overlapping spans.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Every element in `postorder` is consumed as a root node. The base case $\text{start} > \text{end}$ cleanly terminates when no children exist, constructing the complete binary tree without omissions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Right-First Recursion Requirement When Popping:** If using `postorder.pop()`, you **must** build the right subtree before the left subtree (`root.right = build(...)` then `root.left = build(...)`). Because postorder traversal is `Left -> Right -> Root`, reading backwards encounters `Root`, then `Right`, then `Left`.
+- **Calculating Postorder Range Endpoints:** The right subtree's postorder span ends at $\text{post\_end} - 1$ (excluding the root), and starts at $\text{post\_start} + \text{left\_size}$. Mixing up endpoints will associate wrong nodes with subtrees.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Building the hash map takes $O(N)$ time. The recursive function runs $N$ times, with each call executing in $O(1)$ operations.
+- **Auxiliary Space Complexity:** $O(N)$ to store the hash map and $O(H)$ recursion stack depth ($O(\log N)$ average, $O(N)$ worst case).

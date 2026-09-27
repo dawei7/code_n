@@ -1,106 +1,164 @@
 # Guided Example: Intersection of Two Arrays II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step multiset frequency table construction (`Counter(nums1)`), decrement-on-match consumption (`cnt[x] -= 1`), duplicate multiplicity preservation ($\min(\text{count}_1, \text{count}_2)$), and common element accumulation on representative integer array instances:
 
-- **Input:** `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}`
-- **Required output:** `[2, 2]`
+- **Input:** $\text{nums1} = [1, 2, 2, 1], \quad \text{nums2} = [2, 2]$
+- **Required output:** $[2, 2]$
+  - Element $1$: occurs twice in `nums1`, zero times in `nums2` $\implies \min(2, 0) = 0$
+  - Element $2$: occurs twice in `nums1`, twice in `nums2` $\implies \min(2, 2) = 2$
+  - Result contains two $2$'s: $[2, 2]$
+- **Unequal Multiplicity Instance:** $\text{nums1} = [4, 9, 5], \text{nums2} = [9, 4, 9, 8, 4]$
+  - $4$: occurs 1 time in `nums1`, 2 times in `nums2` $\implies \min(1, 2) = 1$
+  - $9$: occurs 1 time in `nums1`, 2 times in `nums2` $\implies \min(1, 2) = 1$
+  - Result: $[9, 4]$ (or $[4, 9]$ in any order)
+- **Completely Disjoint Arrays:** $\text{nums1} = [1, 2], \text{nums2} = [3, 4] \implies []$
+- **Identical Arrays:** $\text{nums1} = [1, 1, 1], \text{nums2} = [1, 1, 1] \implies [1, 1, 1]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset intersection algorithms, contrasts hash table counting with sorted two-pointer traversal, proves why decrementing frequency upon match guarantees that elements are not matched more times than available, and analyzes $O(N + M)$ linear time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.
+Given two integer arrays:
+$$
+\text{nums1} = [1, 2, 2, 1], \quad \text{nums2} = [2, 2]
+$$
+Return an array of their intersection such that:
+1. Each element appears **as many times as it shows in both arrays** (multiset intersection).
+2. Elements may be returned in **any order**.
 
-The objective is to compute `[2, 2]` from `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+nums1: [1, 2, 2, 1] -> Counts: {1: 2, 2: 2}
+nums2: [2, 2]       -> Counts: {2: 2}
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Multiset Intersection:
+Count of 1: min(2, 0) = 0
+Count of 2: min(2, 2) = 2
+
+Output: [2, 2]
+```
+
+### Problem 349 vs Problem 350 Distinction
+- In **Problem 349 (Set Intersection)**, every common value is included at most once ($[2]$).
+- In **Problem 350 (Multiset Intersection)**, element multiplicity is preserved ($[2, 2]$).
+- A simple hash set cannot preserve multiplicity; we must maintain a **frequency counter** where matches are consumed and decremented.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Supply Counter Construction
+Construct frequency table from the first array:
+$$
+cnt = \text{Counter}(\text{nums1})
+$$
+For our instance:
+$$
+cnt = \{1: 2, \; 2: 2\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Consumer Scan over `nums2`:
+Iterate through each element $x \in \text{nums2}$:
+- Check if an unmatched copy of $x$ remains in `cnt`:
+  $$
+  \text{if } cnt[x] > 0:
+  $$
+- If true:
+  - Add $x$ to output: $ans.\text{append}(x)$.
+  - Consume that copy: $cnt[x] \mathrel{-}= 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For each distinct integer $x$, exactly $\min(\text{count}(x, \text{nums1}), \text{count}(x, \text{nums2}))$ occurrences of $x$ are appended to `ans`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why a set is no longer enough.
-
-A set can answer whether a value occurs, but it cannot distinguish one occurrence from ten. For `nums1 = [2, 2]` and `nums2 = [2, 2]`, a set intersection would contain only one `2`, which is too few. The counter preserves the exact quantity available from one side, allowing the scan of the other side to match occurrences one by one.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $\text{nums1} = [1, 2, 2, 1]$ and $\text{nums2} = [2, 2]$:
+Initialized:
+- Frequency supply: $cnt = \{1: 2, \; 2: 2\}$.
+- Output list: $ans = []$.
 
 ---
 
-### Step 2: Building the available supply.
-
-`Counter(nums1)` visits all values in `nums1`. For every distinct integer `x`, `cnt[x]` becomes the number of times `x` occurs in that array. The answer begins empty because no occurrences from `nums2` have yet been matched.
-
-The implementation always counts `nums1`. It does not compare the array lengths or swap the inputs. This detail differs from the variant manifest's summary, which says that the shorter array is counted. Counting the shorter input is a useful optimization, but it is not present in the checked-in source and must not be silently attributed to it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process First Element of `nums2` ($x = 2$)
+- Query available count: $cnt[2] = 2$.
+- Condition $cnt[2] > 0$ is **True**.
+- Action:
+  - Append $2$ to $ans$: $ans = [\mathbf{2}]$.
+  - Decrement remaining supply:
+    $$
+    cnt[2] \leftarrow 2 - 1 = \mathbf{1}
+    $$
+- Active supply: $cnt = \{1: 2, \; 2: 1\}$.
 
 ---
 
-### Step 3: Consuming matches while scanning the second array.
+### Step 2: Process Second Element of `nums2` ($x = 2$)
+- Query available count: $cnt[2] = 1$.
+- Condition $cnt[2] > 0$ is **True**.
+- Action:
+  - Append $2$ to $ans$: $ans = [2, \; \mathbf{2}]$.
+  - Decrement remaining supply:
+    $$
+    cnt[2] \leftarrow 1 - 1 = \mathbf{0}
+    $$
+- Active supply: $cnt = \{1: 2, \; 2: 0\}$.
 
-For each `x` in `nums2`, the condition `if cnt[x]` asks whether at least one unmatched copy of `x` remains from `nums1`. A `Counter` returns zero for a missing key, so values that never occurred in `nums1` fail the condition. Counts begin nonnegative, and the solution decrements only after a successful match, so a false condition means exactly that no available copy remains.
+---
 
-When the condition is true, `ans.append(x)` records one common occurrence. The following `cnt[x] -= 1` is essential: that specific copy from `nums1` has now been paired with the current copy from `nums2` and cannot be reused. Without the decrement, every later duplicate in `nums2` would also pass whenever `nums1` contained the value at least once, potentially producing too many copies.
-
-For example, take `nums1 = [1, 2, 2, 1]` and `nums2 = [2, 2]`. The counter begins with two available `1`s and two available `2`s. The first scanned `2` is appended and reduces the remaining `2` count to one. The second is also appended and reduces it to zero. The returned answer is `[2, 2]`.
-
-Now change `nums2` to `[2, 2, 2, 2]`. The first two copies consume the two available copies from `nums1`. For the third and fourth copies, `cnt[2]` is zero, so neither is appended. This gives exactly the minimum of the two input frequencies.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 2]` |
+### Step 3: Array Traversal Complete
+All elements of `nums2` processed.
+Return collected matches:
+$$
+ans = \mathbf{[2, 2]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 2]` | Verified |
+```text
+nums1 = [1, 2, 2, 1], nums2 = [2, 2]
+cnt = {1: 2, 2: 2}
+ans = []
+
+Scan nums2:
+x = 2: cnt[2] = 2 > 0 -> append 2, cnt[2] becomes 1, ans = [2]
+x = 2: cnt[2] = 1 > 0 -> append 2, cnt[2] becomes 0, ans = [2, 2]
+
+Result: [2, 2]
+```
+
+| Step in `nums2` | Element $x$ | Current Supply $cnt[x]$ | Match Available ($cnt[x] > 0$)? | Action Taken | Supply After Step $cnt[x]$ | Accumulator `ans` |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|
+| Init | - | - | - | Built $cnt = \{1: 2, 2: 2\}$ | - | `[]` |
+| **1** | **2** | **2** | **Yes** | Append $2$, decrement $cnt[2]$ | **1** | **`[2]`** |
+| **2** | **2** | **1** | **Yes** | Append $2$, decrement $cnt[2]$ | **0** | **`[2, 2]`** |
+| **Exit** | - | - | - | Traversal complete | - | **`[2, 2]` (Output)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** An element $x$ is appended to $ans$ only when $cnt[x] > 0$. Because $cnt[x]$ is initialized with the exact count of $x$ in `nums1`, and decremented on every addition, $x$ can never be appended more than $\text{count}(x, \text{nums1})$ times. Furthermore, $x$ cannot be appended more than its occurrences in `nums2` because the loop visits each element of `nums2` once. Thus, the frequency in $ans$ never exceeds $\min(\text{count}_1, \text{count}_2)$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Whenever $x$ appears in both arrays, each occurrence in `nums2` will find $cnt[x] > 0$ until all $\text{count}(x, \text{nums1})$ copies are exhausted. The total number of successful matches is therefore exactly $\min(\text{count}(x, \text{nums1}), \text{count}(x, \text{nums2}))$, capturing the complete multiset intersection.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Count the shorter array:** Swap the inputs when `nums1` is longer, then run the same counter-and-consumption procedure. Time remains expected $O(n+m)$ while counter storage becomes $O(\min(n,m))$. This matches the manifest summary but is absent from the exact solution.
-- **Two pointers on sorted arrays:** When both arrays are already sorted, compare their current values. Advance the smaller side, and append then advance both sides when equal. This takes $O(n+m)$ time and $O(1)$ auxiliary space excluding output, directly answering the first follow-up.
-- **Sort unsorted inputs first:** Sorting and then using two pointers costs $O(n\log n+m\log m)$ time. It can reduce hash storage, but in-place sorting mutates inputs and sorting implementations may use additional memory.
+- **Missing Decrement on Match:** Forgetting `cnt[x] -= 1` matches every occurrence in `nums2` indefinitely as long as $x$ was present in `nums1`, producing too many duplicate elements.
+- **Sorted Two-Pointer Follow-up:** If both arrays are already sorted, two pointers ($p_1, p_2$) can find the intersection in $O(N + M)$ time and $O(1)$ extra space without hash tables.
+- **Memory Optimization for Skewed Sizes:** If `nums1` is significantly larger than `nums2`, counting the smaller array reduces hash map space complexity to $O(\min(N, M))$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+m)$. Let $n$ be `len(nums1)`, let $m$ be `len(nums2)`, let $u_1$ be the number of distinct values in `nums1`, and let $r$ be the total length of the returned multiset intersection.
-- **Auxiliary Space Complexity:** $O(\min(n, m))$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N + M)$, where $N = \text{len}(nums1)$ and $M = \text{len}(nums2)$.
+  - Counting `nums1` takes $O(N)$ time.
+  - Scanning `nums2` takes $M$ iterations, with each hash table lookup and decrement taking $O(1)$ time.
+  - Total time is strictly $O(N + M)$.
+- **Auxiliary Space Complexity:** $O(U_1)$, where $U_1$ is the number of distinct elements in `nums1` ($U_1 \le N$), stored in the frequency map `cnt`.

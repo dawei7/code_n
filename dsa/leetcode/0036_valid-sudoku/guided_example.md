@@ -1,113 +1,136 @@
 # Guided Example: Valid Sudoku
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass constraint verification on a representative 9x9 Sudoku board instance:
 
-- **Input:** `{"board": [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]}`
-- **Required output:** `true`
+- **Input:** A partially filled 9x9 grid $\text{board}$ with known digits and empty cells (`'.'`)
+- **Required output:** $\text{True}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates simultaneous row, column, and $3 \times 3$ sub-box constraint checking, the 2D-to-1D sub-box index mapping formula $b = \lfloor r/3 \rfloor \times 3 + \lfloor c/3 \rfloor$, ignoring empty cells, and early-exit conflict detection.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated **according to the following rules**:
+A 9x9 Sudoku board is valid if and only if:
+1. Each row contains digits `'1'` through `'9'` without repetition.
+2. Each column contains digits `'1'` through `'9'` without repetition.
+3. Each of the nine $3 \times 3$ sub-boxes contains digits `'1'` through `'9'` without repetition.
 
-The objective is to compute `true` from `{"board": [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]}` while avoiding redundant calculations and unnecessary overhead.
+Only the already filled cells need to be validated. The board does not need to be solvable; it only needs to satisfy the local consistency rules.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach runs 27 separate passes over the board (9 row checks, 9 column checks, and 9 box checks). The optimal approach uses three collections of bitmasks or hash sets to validate row, column, and sub-box constraints simultaneously in a single pass over the 81 cells in $O(1)$ time and space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The $3 \times 3$ Sub-box Indexing Formula
+The 9x9 board is partitioned into nine $3 \times 3$ sub-boxes indexed from 0 to 8:
+```text
+Box 0 | Box 1 | Box 2
+------+-------+------
+Box 3 | Box 4 | Box 5
+------+-------+------
+Box 6 | Box 7 | Box 8
+```
+For any cell at row $r \in [0, 8]$ and column $c \in [0, 8]$:
+- Row band: $\lfloor r / 3 \rfloor \in \{0, 1, 2\}$
+- Column band: $\lfloor c / 3 \rfloor \in \{0, 1, 2\}$
+- Sub-box index:
+  $$
+  b = \left\lfloor \frac{r}{3} \right\rfloor \times 3 + \left\lfloor \frac{c}{3} \right\rfloor
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Verification State Tracking
+We maintain three structures:
+- $\text{rows}[r]$: Set of digits observed in row $r$ ($0 \le r < 9$).
+- $\text{cols}[c]$: Set of digits observed in column $c$ ($0 \le c < 9$).
+- $\text{boxes}[b]$: Set of digits observed in sub-box $b$ ($0 \le b < 9$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+For each cell $(r, c)$:
+1. If $\text{board}[r][c] == \text{'.'}$, skip the cell.
+2. Let $d = \text{board}[r][c]$:
+   - Check if $d \in \text{rows}[r]$ or $d \in \text{cols}[c]$ or $d \in \text{boxes}[b]$.
+   - If any condition is met, a duplicate exists; return $\text{False}$ immediately.
+   - Otherwise, insert $d$ into $\text{rows}[r]$, $\text{cols}[c]$, and $\text{boxes}[b]$.
+
+> **Invariant.** After inspecting cell $(r, c)$, no row, column, or $3 \times 3$ sub-box among the processed cells contains duplicate digits.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Validate constraints; do not try to solve the puzzle
+We trace the first row and prominent cells of the standard valid board:
 
-A partially filled board is valid when no filled digit is repeated in its row, column, or $3\times3$ box. Empty cells may remain, and validity does not guarantee that some completion exists. The selected implementation therefore performs one pass over existing cells and records what has already appeared; it does no backtracking.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Give every row, column, and box nine digit flags
-
-The source allocates three $9\times9$ Boolean tables:
-
-
-
-`row[i][d]` means digit index `d` has appeared in row `i`. `col[j][d]` has the analogous meaning for column `j`, and `sub[k][d]` for box `k`.
-
-The actual characters range from `'1'` through `'9'`. Converting with `int(c) - 1` maps them to indices zero through eight: digit one uses flag zero and digit nine uses flag eight. The contract guarantees no other filled character, so every index is valid.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 0 Trace ($r = 0$)
+- **Cell $(0, 0) = \text{'5'}$:**
+  - Sub-box: $b = \lfloor 0/3 \rfloor \times 3 + \lfloor 0/3 \rfloor = 0 \times 3 + 0 = 0$.
+  - Check $\text{'5'}$ in $\text{rows}[0]$, $\text{cols}[0]$, $\text{boxes}[0]$: Absent.
+  - Insert: $\text{rows}[0] \cup \{5\}, \text{cols}[0] \cup \{5\}, \text{boxes}[0] \cup \{5\}$.
+- **Cell $(0, 1) = \text{'3'}$:**
+  - Sub-box: $b = 0 \times 3 + 0 = 0$.
+  - Check $\text{'3'}$: Absent.
+  - Insert: $\text{rows}[0] \cup \{3\}, \text{cols}[1] \cup \{3\}, \text{boxes}[0] \cup \{3\}$.
+- **Cells $(0, 2), (0, 3)$:**
+  - Value is `'.'`. Ignored.
+- **Cell $(0, 4) = \text{'7'}$:**
+  - Sub-box: $b = \lfloor 0/3 \rfloor \times 3 + \lfloor 4/3 \rfloor = 0 + 1 = 1$.
+  - Check $\text{'7'}$: Absent.
+  - Insert: $\text{rows}[0] \cup \{7\}, \text{cols}[4] \cup \{7\}, \text{boxes}[1] \cup \{7\}$.
 
 ---
 
-### Step 3: Ignore dots because they impose no uniqueness requirement
-
-When `c == '.'`, the loop uses `continue`. Multiple empty cells in the same unit are allowed and must not be recorded as repeated values. Treating dot like a tenth symbol would incorrectly reject nearly every partial board.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Conflict Detection Demonstration (Invalid Variant)
+Suppose cell $(0, 0)$ contains `'8'` and cell $(3, 0)$ also contains `'8'`:
+1. At cell $(0, 0)$, `'8'` is inserted into $\text{cols}[0]$.
+2. At cell $(3, 0)$, when checking $d = \text{'8'}$ against column $c = 0$:
+   - $\text{'8'} \in \text{cols}[0]$ evaluates to $\text{True}$!
+   - Conflict in column 0 detected!
+   - Algorithm returns $\text{False}$ immediately.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Cell Coordinate $(r, c)$ | Digit $d$ | Sub-box ID $b = \lfloor r/3 \rfloor \cdot 3 + \lfloor c/3 \rfloor$ | Membership Check ($\text{row}, \text{col}, \text{box}$) | Action Taken | State Status |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| $(0, 0)$ | `'5'` | 0 | Not seen | Record in $\text{row}_0, \text{col}_0, \text{box}_0$ | Valid |
+| $(0, 1)$ | `'3'` | 0 | Not seen | Record in $\text{row}_0, \text{col}_1, \text{box}_0$ | Valid |
+| $(0, 4)$ | `'7'` | 1 | Not seen | Record in $\text{row}_0, \text{col}_4, \text{box}_1$ | Valid |
+| $(1, 0)$ | `'6'` | 0 | Not seen | Record in $\text{row}_1, \text{col}_0, \text{box}_0$ | Valid |
+| $(1, 3)$ | `'1'` | 1 | Not seen | Record in $\text{row}_1, \text{col}_3, \text{box}_1$ | Valid |
+| $(1, 4)$ | `'9'` | 1 | Not seen | Record in $\text{row}_1, \text{col}_4, \text{box}_1$ | Valid |
+| $(1, 5)$ | `'5'` | 1 | Not seen | Record in $\text{row}_1, \text{col}_5, \text{box}_1$ | Valid |
+| $(2, 1)$ | `'9'` | 0 | Not seen | Record in $\text{row}_2, \text{col}_1, \text{box}_0$ | Valid |
+| $(2, 2)$ | `'8'` | 0 | Not seen | Record in $\text{row}_2, \text{col}_2, \text{box}_0$ | Valid |
+
+### Sub-box Mapping Grid Reference
+
+| Row Range | Col Range $0 \dots 2$ | Col Range $3 \dots 5$ | Col Range $6 \dots 8$ |
+|:---:|:---:|:---:|:---:|
+| $0 \dots 2$ | Sub-box 0 | Sub-box 1 | Sub-box 2 |
+| $3 \dots 5$ | Sub-box 3 | Sub-box 4 | Sub-box 5 |
+| $6 \dots 8$ | Sub-box 6 | Sub-box 7 | Sub-box 8 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A board is invalid if and only if some digit appears $\ge 2$ times in the same row, column, or sub-box. Checking set membership prior to insertion detects any second occurrence instantly, guaranteeing sound conflict detection.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every cell $(r, c)$ in the 9x9 grid is examined. Empty cells are skipped because they impose no uniqueness constraints. If all 81 cells are visited without triggering a conflict, the board is provably valid.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sets per unit:** More direct membership semantics, but still fixed storage here and generalized $O(N^2)$ entries.
-- **Bit masks:** Store nine seen flags in one integer per row, column, and box, reducing constants while preserving the same logic.
-- **Rescan each unit per cell:** Avoids tables but repeats work unnecessarily.
-- **All dots:** Every cell is skipped and the board is valid.
-- **Incomplete but conflict-free board:** Returns true even if it has no possible solution; solvability is not requested.
-- **Duplicate in one row:** `row[i][num]` detects it.
-- **Duplicate in one column:** `col[j][num]` detects it.
-- **Duplicate only in a box:** `sub[k][num]` detects it.
-- **Same digit in unrelated units:** Allowed when row, column, and box are all different.
-- **Input shape and symbols:** The exact fixed table sizes rely on the guaranteed $9\times9$ board and characters `1-9` or dot.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sub-box Formula Division:** Using integer division $\lfloor r/3 \rfloor \times 3 + \lfloor c/3 \rfloor$ maps the 9 blocks correctly. A common bug is writing $r/3 + c/3$, which treats indices as fractions or conflates distinct boxes.
+- **Solvability vs Validity:** A Sudoku board can be valid according to the current numbers even if it cannot be legally solved to completion. The problem explicitly asks for validity of the given cells, not solvability.
+- **Bitmask Optimization:** Instead of hash sets, each unit's digits can be tracked using a single 9-bit integer where the $d$-th bit represents whether digit $d$ was seen: `mask & (1 << d)`. This reduces memory overhead to 27 integers and speeds up lookups to bitwise operations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. For the fixed $9\times9$ contract:
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$. The board dimensions are fixed at $9 \times 9 = 81$ cells. Each cell requires $O(1)$ arithmetic operations and set lookups.
+- **Auxiliary Space Complexity:** $O(1)$. Three arrays of 9 sets (or 9-bit integers) store at most $3 \times 9 \times 9 = 243$ entries, requiring constant memory.

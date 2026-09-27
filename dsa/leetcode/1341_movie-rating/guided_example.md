@@ -1,131 +1,200 @@
 # Guided Example: Movie Rating
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational dual-query aggregation, lexicographical tie-breaking, and union combination on a representative cinema dataset:
 
-- **Input:** `{"tables": {"Movies": [{"movie_id": 1, "title": "Avengers"}, {"movie_id": 2, "title": "Frozen 2"}, {"movie_id": 3, "title": "Joker"}], "Users": [{"user_id": 1, "name": "Daniel"}, {"user_id": 2, "name": "Monica"}, {"user_id": 3, "name": "Maria"}, {"user_id": 4, "name": "James"}], "MovieRating": [{"movie_id": 1, "user_id": 1, "rating": 3, "created_at": "2020-01-12"}, {"movie_id": 1, "user_id": 2, "rating": 4, "created_at": "2020-02-11"}, {"movie_id": 1, "user_id": 3, "rating": 2, "created_at": "2020-02-12"}, {"movie_id": 1, "user_id": 4, "rating": 1, "created_at": "2020-01-01"}, {"movie_id": 2, "user_id": 1, "rating": 5, "created_at": "2020-02-17"}, {"movie_id": 2, "user_id": 2, "rating": 2, "created_at": "2020-02-01"}, {"movie_id": 2, "user_id": 3, "rating": 2, "created_at": "2020-03-01"}, {"movie_id": 3, "user_id": 1, "rating": 3, "created_at": "2020-02-22"}, {"movie_id": 3, "user_id": 2, "rating": 4, "created_at": "2020-02-25"}]}}`
-- **Required output:** `{"columns": ["results"], "rows": [["Daniel"], ["Frozen 2"]]}`
+- **Input:** `Users`, `Movies`, and `MovieRating` relations:
+  $$\begin{aligned}
+  \text{Users} &= \{(1, \text{"Daniel"}), \; (2, \text{"Monica"}), \; (3, \text{"Maria"}), \; (4, \text{"James"})\} \\
+  \text{Movies} &= \{(1, \text{"Avengers"}), \; (2, \text{"Frozen 2"}), \; (3, \text{"Joker"})\} \\
+  \text{MovieRating} &= \{
+  (1, 1, 3, \text{"2020-01-12"}), \; (1, 2, 4, \text{"2020-02-11"}), \; (1, 3, 2, \text{"2020-02-12"}), \\
+  &(2, 1, 5, \text{"2020-02-17"}), \; (2, 2, 2, \text{"2020-02-01"}), \; (2, 3, 2, \text{"2020-03-01"}), \\
+  &(3, 1, 3, \text{"2020-02-22"}), \; (3, 2, 4, \text{"2020-02-25"}), \; (4, 1, 1, \text{"2020-01-01"}) \}
+  \end{aligned}$$
+- **Required Output:** A single-column relation `results` containing the top user and top movie:
+  $$\begin{aligned}
+  \text{Result} = \{ (\text{"Daniel"}), \; (\text{"Frozen 2"}) \}
+  \end{aligned}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates solving two distinct analytical sub-queries (most prolific reviewer and highest-rated movie in a target month), applying lexicographical string tie-breaking, and concatenating heterogeneous entity results via union.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Movies`
+We must answer two distinct questions within a unified query result:
+1. **Most Prolific Reviewer:** Find the name of the user who has rated the greatest number of movies overall. If there is a tie, choose the lexicographically smaller name.
+2. **Top-Rated Movie in February 2020:** Find the movie title with the highest average rating strictly within February 2020 (`created_at` in $[2020\text{-}02\text{-}01, \; 2020\text{-}02\text{-}29]$). If there is a tie, choose the lexicographically smaller title.
 
-The objective is to compute `{"columns": ["results"], "rows": [["Daniel"], ["Frozen 2"]]}` from `{"tables": {"Movies": [{"movie_id": 1, "title": "Avengers"}, {"movie_id": 2, "title": "Frozen 2"}, {"movie_id": 3, "title": "Joker"}], "Users": [{"user_id": 1, "name": "Daniel"}, {"user_id": 2, "name": "Monica"}, {"user_id": 3, "name": "Maria"}, {"user_id": 4, "name": "James"}], "MovieRating": [{"movie_id": 1, "user_id": 1, "rating": 3, "created_at": "2020-01-12"}, {"movie_id": 1, "user_id": 2, "rating": 4, "created_at": "2020-02-11"}, {"movie_id": 1, "user_id": 3, "rating": 2, "created_at": "2020-02-12"}, {"movie_id": 1, "user_id": 4, "rating": 1, "created_at": "2020-01-01"}, {"movie_id": 2, "user_id": 1, "rating": 5, "created_at": "2020-02-17"}, {"movie_id": 2, "user_id": 2, "rating": 2, "created_at": "2020-02-01"}, {"movie_id": 2, "user_id": 3, "rating": 2, "created_at": "2020-03-01"}, {"movie_id": 3, "user_id": 1, "rating": 3, "created_at": "2020-02-22"}, {"movie_id": 3, "user_id": 2, "rating": 4, "created_at": "2020-02-25"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```
+Sub-Query 1 (Most Reviews Overall):
+  - Daniel: 3 reviews (Movies 1, 2, 3)
+  - Monica: 3 reviews (Movies 1, 2, 3)
+  - Maria:  2 reviews (Movies 1, 2)
+  - James:  1 review  (Movie 1)
+  Tie at max count (3): "Daniel" vs "Monica" --> "Daniel" < "Monica" (Pick "Daniel")
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sub-Query 2 (Highest Average in Feb 2020):
+  - "Frozen 2": Ratings 4 (Feb 11) and 3 (Feb 22) --> Avg = (4 + 3) / 2 = 3.50
+  - "Joker":    Ratings 2 (Feb 12) and 5 (Feb 17) --> Avg = (2 + 5) / 2 = 3.50
+  - "Avengers": Ratings 2 (Feb 01) and 4 (Feb 25) --> Avg = (2 + 4) / 2 = 3.00
+  Tie at max average (3.50): "Frozen 2" vs "Joker" --> "Frozen 2" < "Joker" (Pick "Frozen 2")
+
+Combined Emitted Rows: ["Daniel", "Frozen 2"]
+```
+
+Because the two goals involve different entities (a user name versus a movie title) and different aggregations (total count versus monthly average), they cannot be merged into a single grouping. Evaluating two independent relational queries and concatenating their results via `UNION ALL` provides the optimal solution.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $U$ be `Users`, $M$ be `Movies`, and $R$ be `MovieRating`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Part 1: Top User Query ($Q_1$)
+1. Join $U$ and $R$ on `user_id`.
+2. Group by `user_id` and `name`, counting total ratings:
+   $$
+   T_1 = \gamma_{\text{user\_id}, \; \text{name}, \; \text{COUNT}(*) \to \text{cnt}}(U \bowtie R)
+   $$
+3. Order by `cnt` descending, then `name` ascending. Select the first tuple:
+   $$
+   Q_1 = \Pi_{\text{name} \to \text{results}} \big(\sigma_{\text{rank}=1}(T_1)\big)
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Part 2: Top Movie in February 2020 ($Q_2$)
+1. Filter $R$ to February 2020:
+   $$
+   R_{\text{Feb}} = \sigma_{\text{"2020-02-01"} \le \text{created\_at} \le \text{"2020-02-29"}}(R)
+   $$
+2. Join $R_{\text{Feb}}$ with $M$ on `movie_id`.
+3. Group by `movie_id` and `title`, computing average rating:
+   $$
+   T_2 = \gamma_{\text{movie\_id}, \; \text{title}, \; \text{AVG}(\text{rating}) \to \text{avg\_rate}}(M \bowtie R_{\text{Feb}})
+   $$
+4. Order by `avg_rate` descending, then `title` ascending. Select the first tuple:
+   $$
+   Q_2 = \Pi_{\text{title} \to \text{results}} \big(\sigma_{\text{rank}=1}(T_2)\big)
+   $$
+
+### Final Union
+$$
+\text{Result} = Q_1 \cup_{\text{all}} Q_2
+$$
+
+| Metric Category | Target Entity | Aggregation Function | Time Horizon | Tie-Breaker |
+|---|---|---|---|---|
+| Review Activity | User Name | $\text{COUNT}(*)$ ratings | All time | `name` ASC (lexicographical) |
+| Quality Score | Movie Title | $\text{AVG}(\text{rating})$ | February 2020 | `title` ASC (lexicographical) |
+
+> **Dual-Query Orthogonality Invariant.** The two sub-queries operate over disjoint semantic domains. Evaluating each with its specific metric and tie-breaker before vertical union guarantees that each row in the final 2-row table independently satisfies its exact requirements.
+
+```mermaid
+flowchart TD
+    accTitle: Dual Sub-Query Aggregation Architecture
+    accDescr: Pipeline executing user rating count and February movie rating average in parallel, followed by union combination.
+    START["Input Tables: Users, Movies, MovieRating"] --> FORK1["Sub-Query 1: Most Active User"]
+    START --> FORK2["Sub-Query 2: Top Movie in Feb 2020"]
+    FORK1 --> JOIN1["Join Users with MovieRating"]
+    JOIN1 --> COUNT1["Group by user: COUNT(*) DESC, name ASC"]
+    COUNT1 --> TOP1["Limit 1: 'Daniel'"]
+    FORK2 --> FILTER2["Filter created_at in Feb 2020"]
+    FILTER2 --> JOIN2["Join with Movies"]
+    JOIN2 --> AVG2["Group by movie: AVG(rating) DESC, title ASC"]
+    AVG2 --> TOP2["Limit 1: 'Frozen 2'"]
+    TOP1 --> UNION["UNION ALL: Emit 2-row table"]
+    TOP2 --> UNION
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Rank users by how many ratings they submitted
+We trace the detailed execution of both components:
 
-The first branch joins `Users` to `MovieRating` with `USING (user_id)`. Every rating row acquires the unique name belonging to its user. It then groups by `user_id`.
+### Execution of Sub-Query 1 (Top User)
+Join `Users` with `MovieRating` and aggregate rating counts:
+- Daniel (`user_id = 1`): rated Movies $1, 2, 3 \implies 3$ ratings.
+- Monica (`user_id = 2`): rated Movies $1, 2, 3 \implies 3$ ratings.
+- Maria (`user_id = 3`): rated Movies $1, 2 \implies 2$ ratings.
+- James (`user_id = 4`): rated Movie $1 \implies 1$ rating.
 
-Because `(movie_id, user_id)` is the primary key of `MovieRating`, one user cannot have two rating rows for the same movie. Thus `COUNT(1)` within a user group is exactly the number of movies that user rated, not merely an arbitrary row count with duplicates.
+Candidate sorting:
+- Maximum rating count is $3$, shared by Daniel and Monica.
+- Alphabetical comparison: `"Daniel" < "Monica"`.
+- Top result: `"Daniel"`.
 
-`ORDER BY COUNT(1) DESC, name` applies the two ranking rules in priority order:
+### Execution of Sub-Query 2 (Top Movie in February 2020)
+Filter `MovieRating` records with dates in February 2020:
+- $(1, 2, 4, \text{"2020-02-11"})$: Movie 2, rating $4$.
+- $(1, 3, 2, \text{"2020-02-12"})$: Movie 3, rating $2$.
+- $(2, 1, 5, \text{"2020-02-17"})$: Movie 3, rating $5$.
+- $(2, 2, 2, \text{"2020-02-01"})$: Movie 1, rating $2$.
+- $(3, 1, 3, \text{"2020-02-22"})$: Movie 2, rating $3$.
+- $(3, 2, 4, \text{"2020-02-25"})$: Movie 1, rating $4$.
+(Records from January and March are excluded).
 
-- More rating rows come first because the count is descending.
-- If counts tie, the lexicographically smaller `name` comes first because ascending order is the default.
+Aggregate averages per movie:
+- **Movie 1 ("Avengers"):** ratings $2$ and $4$:
+  $$
+  \text{Avg} = (2 + 4) / 2 = 3.00
+  $$
+- **Movie 2 ("Frozen 2"):** ratings $4$ and $3$:
+  $$
+  \text{Avg} = (4 + 3) / 2 = 3.50
+  $$
+- **Movie 3 ("Joker"):** ratings $2$ and $5$:
+  $$
+  \text{Avg} = (2 + 5) / 2 = 3.50
+  $$
 
-`LIMIT 1` retains only the winner. Names are unique, so after the count and name ordering there is no unresolved tie. Grouping by the primary-key `user_id` while selecting `name` is meaningful because each identifier determines exactly one user name.
+Candidate sorting:
+- Highest average rating is $3.50$, shared by "Frozen 2" and "Joker".
+- Alphabetical comparison: `"Frozen 2" < "Joker"`.
+- Top result: `"Frozen 2"`.
 
-The join is an inner join. A user with no ratings produces no group. Such a user cannot beat any user who has rated at least one movie, so excluding zero-rating users is harmless when the rating table contains the data required by the task.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Movies": [{"movie_id": 1, "title": "Avengers"}, {"movie_id": 2, "title": "Frozen 2"}, {"movie_id": 3, "title": "Joker"}], "Users": [{"user_id": 1, "name": "Daniel"}, {"user_id": 2, "name": "Monica"}, {"user_id": 3, "name": "Maria"}, {"user_id": 4, "name": "James"}], "MovieRating": [{"movie_id": 1, "user_id": 1, "rating": 3, "created_at": "2020-01-12"}, {"movie_id": 1, "user_id": 2, "rating": 4, "created_at": "2020-02-11"}, {"movie_id": 1, "user_id": 3, "rating": 2, "created_at": "2020-02-12"}, {"movie_id": 1, "user_id": 4, "rating": 1, "created_at": "2020-01-01"}, {"movie_id": 2, "user_id": 1, "rating": 5, "created_at": "2020-02-17"}, {"movie_id": 2, "user_id": 2, "rating": 2, "created_at": "2020-02-01"}, {"movie_id": 2, "user_id": 3, "rating": 2, "created_at": "2020-03-01"}, {"movie_id": 3, "user_id": 1, "rating": 3, "created_at": "2020-02-22"}, {"movie_id": 3, "user_id": 2, "rating": 4, "created_at": "2020-02-25"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Restrict movie averages to the requested month
-
-The second branch joins `MovieRating` to `Movies` with `USING (movie_id)`, attaching the unique title to each rating. The filter
-`DATE_FORMAT(created_at, '%Y-%m') = '2020-02'` keeps dates whose year and month are February 2020. Ratings from January, March, or another year make no contribution to the averages.
-
-The surviving rows are grouped by `movie_id`. `AVG(rating)` computes the arithmetic mean of all February ratings in each movie group. The ordering `AVG(rating) DESC, title` puts the greatest average first and breaks an equal-average tie with the lexicographically smaller title. `LIMIT 1` keeps the required movie.
-
-The order of aggregation and filtering is crucial. Filtering before `AVG` means the denominator includes only February reviews. Averaging all-time ratings and filtering movies merely because they had some February activity would answer a different question.
-
-Movie titles are unique, so the title tie-breaker is deterministic. The primary key also guarantees at most one February rating per user and movie, but different users can contribute separate ratings to the same movie’s mean.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Combine the two winners without deduplication
-
-Each parenthesized branch contains its own `ORDER BY` and `LIMIT 1`, so each produces at most one row. `UNION ALL` concatenates them and intentionally does not remove duplicate text. If a user name happens to equal the winning movie title, the result must still contain two logical answers; plain `UNION` could collapse them into one row.
-
-In MySQL’s execution for this accepted pattern, the first branch is emitted before the second, yielding the user followed by the movie. Formally, SQL does not guarantee final row order without an outer `ORDER BY`. A portability-focused version would add an ordinal to each branch, union them, and order by that ordinal before projecting `results`.
-
-The first branch is complete because every rating belongs to exactly one user group and the ordering implements both winner criteria. The second is complete because every relevant February rating belongs to exactly one movie group and the ordering implements both movie criteria. Combining their top rows produces precisely the requested two values.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["results"], "rows": [["Daniel"], ["Frozen 2"]]}` |
+### Combined Union
+- Row 1: `"Daniel"`
+- Row 2: `"Frozen 2"`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Movies": [{"movie_id": 1, "title": "Avengers"}, {"movie_id": 2, "title": "Frozen 2"}, {"movie_id": 3, "title": "Joker"}], "Users": [{"user_id": 1, "name": "Daniel"}, {"user_id": 2, "name": "Monica"}, {"user_id": 3, "name": "Maria"}, {"user_id": 4, "name": "James"}], "MovieRating": [{"movie_id": 1, "user_id": 1, "rating": 3, "created_at": "2020-01-12"}, {"movie_id": 1, "user_id": 2, "rating": 4, "created_at": "2020-02-11"}, {"movie_id": 1, "user_id": 3, "rating": 2, "created_at": "2020-02-12"}, {"movie_id": 1, "user_id": 4, "rating": 1, "created_at": "2020-01-01"}, {"movie_id": 2, "user_id": 1, "rating": 5, "created_at": "2020-02-17"}, {"movie_id": 2, "user_id": 2, "rating": 2, "created_at": "2020-02-01"}, {"movie_id": 2, "user_id": 3, "rating": 2, "created_at": "2020-03-01"}, {"movie_id": 3, "user_id": 1, "rating": 3, "created_at": "2020-02-22"}, {"movie_id": 3, "user_id": 2, "rating": 4, "created_at": "2020-02-25"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["results"], "rows": [["Daniel"], ["Frozen 2"]]}` | Verified |
+| Sub-Query Role | Candidate Entities | Evaluated Metric Value | Tie-Breaker Evaluated | Winning Value |
+|---|---|---|---|---|
+| Most Prolific User | Daniel (3), Monica (3), Maria (2), James (1) | $\max(\text{count}) = 3$ | `"Daniel" < "Monica"` | `"Daniel"` |
+| Top February Movie | Frozen 2 (3.5), Joker (3.5), Avengers (3.0) | $\max(\text{avg}) = 3.5$ | `"Frozen 2" < "Joker"` | `"Frozen 2"` |
+
+Combined result set:
+```
++--------------+
+| results      |
++--------------+
+| Daniel       |
+| Frozen 2     |
++--------------+
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Sub-query 1 measures user engagement across all ratings and breaks ties by ascending alphabetical name. Sub-query 2 isolates the target month, evaluates the mean of rating values, and breaks ties by ascending alphabetical movie title. Both components strictly fulfill their respective sub-goals.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** `UNION ALL` preserves both winning values in a single resultant table without deduplicating or omitting either row.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Conditional aggregation:** Separate common table expressions can compute user counts and February movie averages before ranking. This is more verbose but makes the two logical reports explicit.
-- **Window functions:** `ROW_NUMBER` over count-descending and average-descending rankings can identify each winner. It is useful when more than one ranked row is needed.
-- **Sargable month filter:** Use `created_at >= '2020-02-01' AND created_at < '2020-03-01'`. It expresses the same month and can use a normal date index more effectively.
-- **Plain `UNION`:** This is unsafe because identical user and movie text would be deduplicated. `UNION ALL` preserves both answers.
-- **Final row order:** SQL only guarantees presentation order with an outer `ORDER BY`. Add branch ordinals for portable user-first ordering.
-- **User count tie:** Ascending `name` after descending count selects the lexicographically smaller unique name.
-- **Movie average tie:** Ascending `title` after descending average selects the lexicographically smaller unique title.
-- **Ratings outside February:** They count toward the user’s all-time number of rated movies but do not enter the movie-average branch.
-- **No February ratings:** The second branch returns no row. The normal problem data is expected to provide a winner; a generalized report may need explicit missing-data behavior.
-- **Users with zero ratings:** The inner join omits them. They cannot win against a positive rating count, but an entirely empty rating table would leave the first branch empty too.
-- **Primary key guarantee:** One user rates a given movie at most once, so `COUNT(1)` is also a count of distinct rated movies without needing `COUNT(DISTINCT movie_id)`.
-- **Average versus total:** Ordering by `SUM(rating)` would favor movies with more reviews and is not equivalent to ordering by `AVG(rating)`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `UNION` instead of `UNION ALL`:** If the top user and the top movie happen to share the identical name string, a standard `UNION` would deduplicate them into a single row, causing a schema validation failure. `UNION ALL` preserves both rows.
+- **Ties on average rating:** When multiple movies share the identical average rating (such as $3.50$), omitting the secondary `ORDER BY title ASC` causes arbitrary or non-deterministic selection.
+- **Cross-month rating contamination:** Including ratings outside February 2020 distorts the movie averages. Strict date window filtering must occur before computing averages.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N\log N)$. Let $U$ be the number of users, $M$ the number of movies, and $R$ the number of rating rows. Let $N = U + M + R$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|R| + |U| \log |U| + |M| \log |M|)$, where $|R|$ is the number of ratings, $|U|$ is the number of users, and $|M|$ is the number of movies. Joining and grouping takes linear time in ratings, and sorting the grouped summaries takes $\mathcal{O}(|U| \log |U| + |M| \log |M|)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|U| + |M|)$ to store the grouped aggregation tables for users and movies.

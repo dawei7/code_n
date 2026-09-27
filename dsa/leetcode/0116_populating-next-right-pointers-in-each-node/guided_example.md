@@ -1,104 +1,163 @@
 # Guided Example: Populating Next Right Pointers in Each Node
 
-We execute the single-pass Linked List, Tree, Depth-First Search, Breadth-First Search, Binary Tree pointer manipulation on a representative linked list instance.
+We trace the step-by-step $O(1)$ space horizontal pointer stitching on a representative perfect binary tree:
 
-- **Input:** `{"root": [1, 2, 3, 4, 5, 6, 7]}`
-- **Required output:** `[1, 2, 3, 4, 5, 6, 7]`
+- **Input:** $\text{root} = [1, 2, 3, 4, 5, 6, 7]$
+- **Required output:** $[1, \text{\#}, 2, 3, \text{\#}, 4, 5, 6, 7, \text{\#}]$
+- **Single-Node Base:** $\text{root} = [1] \implies [1, \text{\#}]$
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates connecting intra-parent siblings ($\text{curr.left.next} = \text{curr.right}$), bridging inter-parent cross-subtree gaps ($\text{curr.right.next} = \text{curr.next.left}$), using the established level $d$ horizontal chain to construct level $d+1$, and achieving strictly $O(1)$ extra space without queues or recursion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Populating Next Right Pointers in Each Node** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+You are given a **perfect binary tree** where all leaves are on the same level, and every parent has two children:
+$$
+\begin{gathered}
+1 \\
+\swarrow \quad \searrow \\
+2 \qquad\quad 3 \\
+\swarrow \;\; \searrow \quad \swarrow \;\; \searrow \\
+4 \quad\;\; 5 \quad 6 \quad\;\; 7
+\end{gathered}
+$$
+Populate each node's `next` pointer to point to its immediate horizontal right neighbor. If no right neighbor exists, set `next` to `NULL`.
+
+At completion, the tree forms linked lists at every horizontal tier:
+- Level 0: $1 \to \text{NULL}$
+- Level 1: $2 \to 3 \to \text{NULL}$
+- Level 2: $4 \to 5 \to 6 \to 7 \to \text{NULL}$
+
+A standard BFS queue requires $O(W) = O(N)$ auxiliary memory to store nodes of a level.
+However, because parent nodes at depth $d$ already have their `next` pointers linked, we can traverse level $d$ horizontally like a linked list, establishing all `next` pointers of level $d+1$ before descending. This accomplishes full level-order stitching in $O(N)$ time and strictly $O(1)$ extra space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### Two Connection Types Under a Parent Node
+At level $d$, let `curr` be a node whose children reside at level $d+1$:
+1. **Intra-Parent Connection (Same Parent):**
+   Connect `curr.left` to `curr.right`:
+   $$
+   \text{curr.left.next} \leftarrow \text{curr.right}
+   $$
+   *(Example: Node $4 \to 5$, Node $6 \to 7$)*.
+2. **Inter-Parent Connection (Cross-Subtree Gap):**
+   If `curr.next` exists, connect `curr.right` across the gap to the left child of `curr.next`:
+   $$
+   \text{curr.right.next} \leftarrow \text{curr.next.left}
+   $$
+   *(Example: Node $5 \to 6$ via parent link $2 \to 3$)*.
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+### Horizontal Level-by-Level March Protocol
+- Maintain `leftmost = root`.
+- While `leftmost.left` is not null (has a child level to stitch):
+  - Set `curr = leftmost`.
+  - While `curr` is not null:
+    - $\text{curr.left.next} = \text{curr.right}$
+    - If `curr.next`: $\text{curr.right.next} = \text{curr.next.left}$
+    - Advance across active tier: $\text{curr} = \text{curr.next}$
+  - Descend to next tier: $\text{leftmost} = \text{leftmost.left}$.
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+> **Invariant.** Before stitching level $d+1$, all nodes at level $d$ are already fully connected via valid `next` pointers, enabling a complete horizontal traversal across depth $d$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We trace the algorithm on $[1, 2, 3, 4, 5, 6, 7]$:
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
-
----
-
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Level $d = 0$ (`leftmost = Node(1)`)
+- `curr = Node(1)`. `curr.next = NULL`.
+- Stitch children at Level 1:
+  - **Intra-Parent:** Connect $1.\text{left}$ to $1.\text{right}$:
+    $$
+    \text{Node}(2).\text{next} \leftarrow \text{Node}(3)
+    $$
+  - `curr.next` is NULL $\implies$ no cross-parent link.
+- Advance: `curr = curr.next = NULL`.
+- Descend: `leftmost = leftmost.left = Node(2)`.
+- Level 1 is now fully stitched: $2 \to 3 \to \text{NULL}$.
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Level $d = 1$ (`leftmost = Node(2)`)
+- We traverse the linked list $2 \to 3$ to stitch Level 2:
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+#### At `curr = Node(2)`:
+- **Intra-Parent Link:** Connect $2.\text{left}$ to $2.\text{right}$:
+  $$
+  \text{Node}(4).\text{next} \leftarrow \text{Node}(5)
+$$
+- **Inter-Parent Link:** `curr.next` is $\text{Node}(3)$.
+  Connect $2.\text{right}$ to $3.\text{left}$:
+  $$
+  \text{Node}(5).\text{next} \leftarrow \text{Node}(3).\text{left} = \text{Node}(6)
+  $$
+- Advance: `curr = curr.next = Node(3)`.
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+#### At `curr = Node(3)`:
+- **Intra-Parent Link:** Connect $3.\text{left}$ to $3.\text{right}$:
+  $$
+  \text{Node}(6).\text{next} \leftarrow \text{Node}(7)
+  $$
+- **Inter-Parent Link:** `curr.next` is NULL $\implies$ Node 7's `next` remains NULL.
+- Advance: `curr = curr.next = NULL`.
+
+---
+
+### Level $d = 2$ (`leftmost = Node(4)`)
+- `leftmost.left` is NULL (leaf level reached).
+- Outer while loop terminates.
+
+Reconstruction complete!
+Output levels:
+$1 \to \text{NULL}$
+$2 \to 3 \to \text{NULL}$
+$4 \to 5 \to 6 \to 7 \to \text{NULL}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+```text
+Level 0:           1 -> NULL
+                  / \
+Level 1:         2 -> 3 -> NULL
+                / \   / \
+Level 2:       4-> 5->6-> 7 -> NULL
+```
+
+| Active Level | Parent Node `curr` | Child Link Established | Connection Type | Target Equation |
+|:---:|:---:|:---:|:---:|:---|
+| 0 | $\text{Node}(1)$ | $\text{Node}(2) \to \text{Node}(3)$ | Intra-Parent | $\text{curr.left.next} = \text{curr.right}$ |
+| 1 | $\text{Node}(2)$ | $\text{Node}(4) \to \text{Node}(5)$ | Intra-Parent | $\text{curr.left.next} = \text{curr.right}$ |
+| 1 | $\text{Node}(2)$ | $\text{Node}(5) \to \text{Node}(6)$ | **Inter-Parent Gap** | $\text{curr.right.next} = \text{curr.next.left}$ |
+| 1 | $\text{Node}(3)$ | $\text{Node}(6) \to \text{Node}(7)$ | Intra-Parent | $\text{curr.left.next} = \text{curr.right}$ |
+| 1 | $\text{Node}(3)$ | $\text{Node}(7) \to \text{NULL}$ | Boundary Sentinel | `curr.next` is NULL |
+| 2 | $\text{Node}(4)$ | - | Leaf Level | `leftmost.left` is NULL $\implies$ Terminate |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** Every node in a perfect binary tree (except the root) is either the left or right child of some parent. Left children are connected directly to their right siblings. Right children are connected to the left child of their parent's horizontal successor (`curr.next`). Because depth $d$ is verified connected before depth $d+1$ begins, `curr.next` is always valid.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** Traversal visits every parent from leftmost to rightmost across every level until leaves are reached. Every non-leaf node executes both connection rules, ensuring no child node is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Crossing the Subtree Boundary ($5 \to 6$):** Connecting siblings with the same parent ($4 \to 5$) is straightforward, but bridging nodes with different parents ($5 \to 6$) requires accessing `curr.next.left`. If `curr.next` is not yet established, this pointer lookup is impossible.
+- **Assuming Imperfect Trees:** This algorithm relies on the problem statement's guarantee that the tree is *perfect* (all levels filled). For arbitrary binary trees with missing children, see LeetCode 117.
+- **Empty Tree:** Checking `if not root: return root` upfront prevents null pointer exceptions.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the tree. Each node is visited once as `curr`, performing $O(1)$ pointer reassignments.
+- **Auxiliary Space Complexity:** $O(1)$ extra space, using only two pointers (`leftmost` and `curr`), strictly satisfying the constant-space requirement.

@@ -1,130 +1,159 @@
 # Guided Example: 4Sum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step nested two-pointer search on a representative array instance:
 
-- **Input:** `{"nums": [1, 0, -1, 0, -2, 2], "target": 0}`
+- **Input:** $\text{nums} = [1, 0, -1, 0, -2, 2]$, $\text{target} = 0$
 - **Required output:** `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates sorting, fixing dual outer anchors to reduce $4\text{Sum}$ to $2\text{Sum}$, bidirectional two-pointer scanning, duplicate pruning, and early-pruning bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums` of `n` integers, return *an array of all the **unique** quadruplets* `[nums[a], nums[b], nums[c], nums[d]]` such that:
+Given an integer array $\text{nums}$ and an integer $\text{target}$, we must return all unique quadruplets $[a, b, c, d]$ such that:
+1. $a, b, c, d$ come from four distinct indices.
+2. $a + b + c + d = \text{target}$.
+3. No duplicate value quadruplets are returned.
 
-The objective is to compute `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]` from `{"nums": [1, 0, -1, 0, -2, 2], "target": 0}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{nums} = [1, 0, -1, 0, -2, 2]$ and $\text{target} = 0$:
+- Sorting yields $\text{nums} = [-2, -1, 0, 0, 1, 2]$.
+- Three distinct value quadruplets sum to $0$:
+  - $[-2, -1, 1, 2] \implies -2 + (-1) + 1 + 2 = 0$
+  - $[-2, 0, 0, 2] \implies -2 + 0 + 0 + 2 = 0$
+  - $[-1, 0, 0, 1] \implies -1 + 0 + 0 + 1 = 0$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive search evaluates all $\binom{N}{4} = O(N^4)$ quadruplets. Sorting the array allows us to fix two anchor indices $i < j$ and find all valid pairs $(k, l)$ in the remaining suffix in linear time using two pointers, reducing the overall time complexity to $O(N^3)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Problem Reduction Hierarchy
+We decompose the 4Sum problem hierarchically:
+- Outer loop fixes index $i$ ($0 \le i \le N - 4$).
+- Middle loop fixes index $j$ ($i + 1 \le j \le N - 3$).
+- Inner loop runs a two-pointer scan with $k = j + 1$ and $l = N - 1$ on the sorted subsegment.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+At each step, we evaluate the sum:
+$$
+S = \text{nums}[i] + \text{nums}[j] + \text{nums}[k] + \text{nums}[l]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Duplicate Elimination Rules
+To ensure the output contains only unique quadruplets without hashing overhead:
+1. **Outer loop duplicate skip:** If $i > 0$ and $\text{nums}[i] = \text{nums}[i-1]$, skip $i$.
+2. **Middle loop duplicate skip:** If $j > i + 1$ and $\text{nums}[j] = \text{nums}[j-1]$, skip $j$.
+3. **Inner two-pointer duplicate skip:** Upon finding $S = \text{target}$, record the quadruplet, then advance $k$ past any duplicate elements ($\text{nums}[k] = \text{nums}[k+1]$) and decrement $l$ past duplicate elements ($\text{nums}[l] = \text{nums}[l-1]$).
+
+> **Invariant.** At each outer state $(i, j)$, all quadruplets beginning with lexicographically earlier pairs have been recorded. Pointers $k$ and $l$ explore the remaining suffix monotonically so that no valid configuration is skipped.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn an unordered search into an ordered one
+We sort the array:
+$$
+\text{nums} = [-2, -1, 0, 0, 1, 2] \quad (N = 6)
+$$
 
-The task asks for value quadruplets, but the four values must come from four distinct array indices. Trying every index quadruple would use four nested loops and take $O(n^4)$ time. The selected implementation removes one entire factor of $n$ by sorting `nums`, explicitly choosing the first two positions, and finding the remaining two positions with a two-pointer scan.
+### Anchor 1: $i = 0$ ($\text{nums}[0] = -2$)
 
-Sorting is the key that makes pointer movement meaningful. After `nums.sort()`, moving a pointer to the right cannot decrease its value, and moving a pointer to the left cannot increase its value. Equal values also become adjacent, which lets the code suppress duplicate value quadruplets without storing all answers in a set.
+#### Sub-anchor: $j = 1$ ($\text{nums}[1] = -1$)
+We need suffix pair sum $\text{nums}[k] + \text{nums}[l] = \text{target} - (\text{nums}[0] + \text{nums}[1]) = 0 - (-3) = 3$.
+Pointers initialize at $k = 2$ ($\text{nums}[2] = 0$) and $l = 5$ ($\text{nums}[5] = 2$).
 
-The sort changes the caller's list in place. That is acceptable for the problem contract because only the returned quadruplets are specified; preserving the original ordering of `nums` is not required.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 0, -1, 0, -2, 2], "target": 0}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Step 1 ($k=2, l=5$):**
+  - Sum $S = -2 + (-1) + 0 + 2 = -1 < 0$.
+  - Sum too small $\implies$ advance $k \leftarrow 3$.
+- **Step 2 ($k=3, l=5$):**
+  - Sum $S = -2 + (-1) + 0 + 2 = -1 < 0$.
+  - Sum too small $\implies$ advance $k \leftarrow 4$.
+- **Step 3 ($k=4, l=5$):**
+  - Elements: $\text{nums}[4] = 1, \text{nums}[5] = 2$.
+  - Sum $S = -2 + (-1) + 1 + 2 = 0$. Match!
+  - Record quadruplet: `[-2, -1, 1, 2]`.
+  - Shift pointers: $k \leftarrow 5, l \leftarrow 4$. Pointers cross; terminate sub-anchor.
 
 ---
 
-### Step 2: Give the four positions a permanent order
+#### Sub-anchor: $j = 2$ ($\text{nums}[2] = 0$)
+We need suffix pair sum $0 - (-2 + 0) = 2$.
+Pointers initialize at $k = 3$ ($\text{nums}[3] = 0$) and $l = 5$ ($\text{nums}[5] = 2$).
 
-The implementation always maintains indices
-
-$$
-i < j < k < l.
-$$
-
-The outer loop chooses `i`, the inner loop chooses `j`, and then `k = j + 1` and `l = n - 1` delimit the remaining suffix. Because each pointer occupies a different ordered position, a reported quadruplet can never reuse an index. No additional distinct-index check is needed.
-
-The initial guard returns an empty list when `n < 4`. Four distinct indices cannot exist in that case. The loop bounds also reflect how many positions must remain: `i` stops before the last three indices, while `j` stops before the last two.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Step 4 ($k=3, l=5$):**
+  - Sum $S = -2 + 0 + 0 + 2 = 0$. Match!
+  - Record quadruplet: `[-2, 0, 0, 2]`.
+  - Shift pointers: $k \leftarrow 4, l \leftarrow 4$. Pointers cross; terminate sub-anchor.
 
 ---
 
-### Step 3: Fix two values and reduce 4Sum to sorted 2Sum
+#### Sub-anchor: $j = 3$ ($\text{nums}[3] = 0$)
+Since $\text{nums}[3] = \text{nums}[2] = 0$ and $j > i + 1$, this duplicate sub-anchor is skipped.
 
-For one fixed pair `nums[i]` and `nums[j]`, the code starts `k` at the smallest available suffix value and `l` at the largest. It computes the complete candidate sum
+---
 
+### Anchor 2: $i = 1$ ($\text{nums}[1] = -1$)
 
+#### Sub-anchor: $j = 2$ ($\text{nums}[2] = 0$)
+We need suffix pair sum $0 - (-1 + 0) = 1$.
+Pointers initialize at $k = 3$ ($\text{nums}[3] = 0$) and $l = 5$ ($\text{nums}[5] = 2$).
 
-and compares it with `target`.
+- **Step 5 ($k=3, l=5$):**
+  - Sum $S = -1 + 0 + 0 + 2 = 1 > 0$.
+  - Sum too large $\implies$ decrement $l \leftarrow 4$.
+- **Step 6 ($k=3, l=4$):**
+  - Elements: $\text{nums}[3] = 0, \text{nums}[4] = 1$.
+  - Sum $S = -1 + 0 + 0 + 1 = 0$. Match!
+  - Record quadruplet: `[-1, 0, 0, 1]`.
+  - Shift pointers: $k \leftarrow 4, l \leftarrow 3$. Pointers cross; terminate sub-anchor.
 
-- If `x < target`, the sum is too small. Decreasing `l` would make the sum no larger, so that cannot help. The only useful move is `k += 1`, which tries a value that is at least as large.
-- If `x > target`, the sum is too large. Increasing `k` would make it no smaller, so that cannot help. The only useful move is `l -= 1`, which tries a value that is at most as large.
-- If `x == target`, the four sorted values form a valid answer. The code appends them, then moves both `k` and `l` inward because that exact endpoint pair has already been consumed.
+---
 
-These moves do not skip a possible solution. Suppose `x < target`. With the current `k`, every index between `k + 1` and `l` used as the right endpoint has value at most `nums[l]`, so every such pair sum is also too small. Thus no solution can still use that `k`. The argument is symmetric when `x > target`: no solution can still use the current `l`.
+#### Sub-anchor: $j = 3$ ($\text{nums}[3] = 0$)
+Duplicate element ($\text{nums}[3] = \text{nums}[2] = 0$); skipped.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]` |
+---
+
+### Anchor 3: $i = 2$ ($\text{nums}[2] = 0$)
+Minimum possible sum using $i = 2$ is $\text{nums}[2] + \text{nums}[3] + \text{nums}[4] + \text{nums}[5] = 0 + 0 + 1 + 2 = 3 > 0$.
+Early exit: no further solutions can sum to $0$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 0, -1, 0, -2, 2], "target": 0}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]` | Verified |
+| Step | Anchor $i$ | Sub-anchor $j$ | Left $k$ | Right $l$ | Values $(a, b, c, d)$ | Quadruplet Sum $S$ | Comparison to Target (0) | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 1 | 2 | 5 | $(-2, -1, 0, 2)$ | $-1$ | Too small ($S < 0$) | Advance $k \leftarrow 3$ |
+| 2 | 0 | 1 | 3 | 5 | $(-2, -1, 0, 2)$ | $-1$ | Too small ($S < 0$) | Advance $k \leftarrow 4$ |
+| 3 | 0 | 1 | 4 | 5 | $(-2, -1, 1, 2)$ | $0$ | **Exact match** | **Emit `[-2, -1, 1, 2]`**; shift both |
+| 4 | 0 | 2 | 3 | 5 | $(-2, 0, 0, 2)$ | $0$ | **Exact match** | **Emit `[-2, 0, 0, 2]`**; shift both |
+| - | 0 | 3 | - | - | - | - | Duplicate sub-anchor | Skip $j = 3$ |
+| 5 | 1 | 2 | 3 | 5 | $(-1, 0, 0, 2)$ | $1$ | Too large ($S > 0$) | Decrement $l \leftarrow 4$ |
+| 6 | 1 | 2 | 3 | 4 | $(-1, 0, 0, 1)$ | $0$ | **Exact match** | **Emit `[-1, 0, 0, 1]`**; shift both |
+| - | 1 | 3 | - | - | - | - | Duplicate sub-anchor | Skip $j = 3$ |
+| - | 2 | - | - | - | - | - | Min sum $3 > 0$ | Early exit |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every emitted quadruplet satisfies $a + b + c + d = \text{target}$. Because elements are picked from distinct sorted indices $i < j < k < l$, all four values represent four distinct array positions. Duplicate checks on adjacent equal elements guarantee that every emitted quadruplet is unique.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Sorting orders the search space monotonically. For any pair of anchors $(i, j)$, the inner two-pointer search on $[j+1, N-1]$ scans from opposite ends. When $S < \text{target}$, discarding $k$ is sound because any inner right index $l' < l$ would only yield an even smaller sum. Symmetrically, when $S > \text{target}$, discarding $l$ is sound. Thus, no valid combinations are omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Four nested loops:** It is conceptually direct but costs $O(n^4)$ and still needs careful value-level deduplication.
-- **Recursive generalized k-Sum:** Fix one value recursively until reaching a two-pointer 2Sum base case. It generalizes cleanly to 5Sum and beyond, but the direct two-loop form here is simpler for exactly four values.
-- **Pair-sum hash table:** Store index pairs by their sum and match complementary sums. It can reduce repeated arithmetic, but may require $O(n^2)$ or more memory and careful enforcement of non-overlapping indices and unique outputs.
-- **Hash-set 2Sum after fixing two values:** This preserves $O(n^3)$ time but uses extra per-scan storage and makes deterministic duplicate handling less transparent than sorted pointers.
-- **Fewer than four values:** The explicit `n < 4` guard returns `[]` immediately.
-- **Exactly four values:** The loops examine the only possible index quadruple and return it precisely when its sum equals `target`.
-- **All values equal:** Enough copies may form one answer, as five copies of `2` with target `8` do; duplicate skipping returns `[[2, 2, 2, 2]]` only once.
-- **Negative values and a negative target:** Pointer monotonicity depends on sorted order, not on values being positive, so the same comparisons remain valid.
-- **Repeated values are not forbidden:** Only indices must be distinct. Duplicate suppression removes repeated output rows, not legal use of equal values from different positions.
-- **Any output order:** Sorting causes every row and the overall traversal to be deterministic, but the contract does not require that order.
-- **Input mutation:** `nums.sort()` rearranges the provided list; callers that need the original order must pass a copy, although this problem imposes no such requirement.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Subsets Without a Hash Set:** Relying on a hash set to filter duplicates incurs significant memory overhead. Skipping identical adjacent values ($s[i] == s[i-1]$ and $s[j] == s[j-1]$) suppresses duplicates naturally at zero extra space cost.
+- **Integer Overflow in Fixed-Width Languages:** When summing four integers up to $10^9$, the intermediate sum can reach $4 \times 10^9$, overflowing signed 32-bit integers ($\approx 2.14 \times 10^9$). In languages like C++ or Java, 64-bit integers (`long long` or `long`) must be used for accumulator calculations.
+- **Input Length Boundary ($N < 4$):** If the array has fewer than 4 elements, four distinct indices cannot be chosen. Guarding with `if len(nums) < 4: return []` prevents index out-of-bounds.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^3)$. Let $n$ be `len(nums)` and let $A$ be the number of returned quadruplets.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^3)$. Sorting takes $O(N \log N)$. The outer loop runs $O(N)$ times, the middle loop runs $O(N)$ times, and the inner two-pointer scan runs in $O(N)$ time. The total time is $O(N \log N + N^2 \cdot N) = O(N^3)$.
+- **Auxiliary Space Complexity:** $O(1)$ beyond sorting. The algorithm maintains only a constant number of scalar index pointers.

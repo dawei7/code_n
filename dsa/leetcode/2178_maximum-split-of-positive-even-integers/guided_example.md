@@ -1,123 +1,215 @@
 # Guided Example: Maximum Split of Positive Even Integers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the greedy prefix-subtraction and remainder-absorption algorithm on a representative positive even integer, demonstrating how partitioning into minimal consecutive even terms achieves the theoretical upper bound on partition length in $O(\sqrt{\text{finalSum}})$ time.
 
-- **Input:** `{"finalSum": 12}`
-- **Required output:** `[2, 4, 6]`
+- **Input:** `finalSum = 28`
+- **Output:** `[2, 4, 6, 16]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an integer `finalSum`. Split it into a sum of a **maximum** number of **unique** positive even integers.
-
-The objective is to compute `[2, 4, 6]` from `{"finalSum": 12}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance captures parity feasibility gating, triangular number upper bounds, greedy term minimization, and tail remainder absorption without collision.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a positive integer `finalSum`. We must split it into a sum of $k$ positive even integers:
+$$e_1 + e_2 + \dots + e_k = \text{finalSum}$$
+such that:
+1. Every term $e_j$ is positive and even ($e_j \ge 2$ and $e_j \equiv 0 \pmod 2$).
+2. All terms are strictly distinct ($e_1 < e_2 < \dots < e_k$).
+3. The number of terms $k$ is **maximized**.
 
-| State Parameter | Role & Purpose | Initial State |
+If no valid partition exists, we must return an empty list `[]`.
+
+In our representative instance:
+- Target `finalSum = 28`.
+- Check parity: $28$ is even, so a valid partition exists.
+- The smallest distinct positive even integers are $2, 4, 6, 8, 10, \dots$.
+- Greedily assigning the smallest available terms:
+  - Take $2$: Remaining is $28 - 2 = 26$.
+  - Take $4$: Remaining is $26 - 4 = 22$.
+  - Take $6$: Remaining is $22 - 6 = 16$.
+  - Take $8$: Remaining is $16 - 8 = 8$.
+- Next term would be $10$, but the remaining sum is only $8 < 10$.
+- Adding $8$ as a separate term is forbidden because $8$ has already been used.
+- Instead, we absorb the remaining $8$ into the last term: $8 + 8 = 16$.
+- Partition: $[2, 4, 6, 16]$ with $k = 4$ terms.
+- Verification: $2 + 4 + 6 + 16 = 28$; all terms are distinct and positive even.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Parity Invariant
+
+Every positive even integer can be expressed as $2m$ for some integer $m \ge 1$.
+The sum of any $k$ even integers is:
+$$\sum_{j=1}^k e_j = \sum_{j=1}^k 2m_j = 2 \sum_{j=1}^k m_j \equiv 0 \pmod 2$$
+The sum of even integers is **strictly even**.
+Therefore, if `finalSum` is odd (`finalSum & 1 != 0`), it is mathematically impossible to form `finalSum` from even integers, and the algorithm must immediately return `[]`.
+
+### Theoretical Upper Bound on Partition Length
+
+To maximize the number of distinct terms $k$, each term must be as small as possible.
+The absolute smallest distinct positive even integers are the first $k$ even numbers:
+$$E_k = \{2, 4, 6, \dots, 2k\}$$
+Their sum forms twice the $k$-th triangular number:
+$$\sum_{j=1}^k 2j = 2 \cdot \frac{k(k + 1)}{2} = k(k + 1)$$
+
+Any valid partition of length $k$ satisfies:
+$$\text{finalSum} \ge k(k + 1)$$
+Thus, the maximum possible length $k^*$ is bounded by:
+$$k^* = \left\lfloor \frac{-1 + \sqrt{1 + 4 \cdot \text{finalSum}}}{2} \right\rfloor$$
+
+### Remainder Absorption Without Collision
+
+The greedy strategy accumulates terms $2, 4, 6, \dots, 2k$ until the remaining balance $R$ satisfies:
+$$R < 2(k + 1)$$
+Because the initial sum and all subtracted terms are even, $R$ is strictly non-negative and even.
+If $R = 0$, the partition is already exact.
+If $R > 0$, we cannot form a new term because any new term must be $\ge 2(k + 1) > R$.
+Instead, we merge $R$ into the final chosen term $e_k = 2k$:
+$$e_k' = 2k + R$$
+
+Is $e_k'$ guaranteed to remain strictly distinct from all preceding terms?
+- The second-to-last term was $e_{k-1} = 2(k - 1)$.
+- Because $R \ge 2$, the updated final term satisfies:
+  $$e_k' = 2k + R \ge 2k + 2 > 2k > 2(k - 1)$$
+Therefore, $e_k'$ is strictly greater than all preceding terms in the list, preserving uniqueness without collisions.
+
+| Variable / Parameter | Mathematical Formula | Algorithmic Function |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Target `finalSum` | Input integer in $[1, 10^{10}]$ | Remaining balance to allocate |
+| Candidate Term $i$ | $2, 4, 6, 8, \dots$ | Smallest unallocated positive even integer |
+| Allocated List `ans` | $[e_1, e_2, \dots, e_k]$ | Set of chosen distinct terms |
+| Tail Remainder $R$ | $\text{finalSum} < i$ | Residual even amount after loop exit |
+| Adjusted Last Term | $e_k + R$ | Absorb residual while maintaining strict ordering |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reject an odd total immediately
-
-Every positive even integer is divisible by two. A sum of even integers is also even. Therefore an odd `finalSum` cannot have any valid split.
-
-The test `finalSum & 1` reads the least significant bit. It is one exactly for an odd integer, so the method returns an empty list in that case.
-
-This condition is both necessary and sufficient for basic feasibility in the given positive range: every positive even total can at least be represented by the one-element list containing itself.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"finalSum": 12}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: Greedy Split Flowchart
+accDescr: Flowchart illustrating greedy allocation of 2, 4, 6, 8 and absorption of remainder into the last element.
+flowchart TD
+    Start["Input: finalSum"] --> Parity{"finalSum & 1 == 1?"}
+    Parity -- "Yes (Odd)" --> RetEmpty["Return []"]
+    Parity -- "No (Even)" --> Init["i = 2, ans = []"]
+    Init --> Check{"i <= finalSum?"}
+    Check -- "Yes" --> Alloc["Subtract i from finalSum<br/>Append i to ans<br/>i = i + 2"]
+    Alloc --> Check
+    Check -- "No (finalSum < i)" --> Merge["ans[-1] += finalSum"]
+    Merge --> Ret["Return ans"]
+```
 
 ---
 
-### Step 2: Take the smallest unused even number
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-For an even total, `i` starts at two. While `i <= finalSum`, where `finalSum` now represents the still-unassigned remainder, the code subtracts `i`, appends it to `ans`, and advances `i` by two.
+We trace `finalSum = 28`.
 
-The appended sequence is strictly increasing, so all chosen values are positive, even, and unique. Choosing the smallest available next value preserves as much remainder as possible for additional terms.
+### Step 1: Parity Feasibility Check
+- Check least significant bit: `28 & 1 = 0`.
+- $28$ is even. Feasibility verified.
+- Initialize `ans = []`, `i = 2`.
 
-The input parameter name is reused as the remaining amount. Reassigning it does not affect the caller because Python integers are immutable and the parameter is local to the method.
+### Step 2: Iteration 1 ($i = 2$)
+- Compare: $i \le \text{finalSum} \implies 2 \le 28$ (True).
+- Subtract: $\text{finalSum} = 28 - 2 = 26$.
+- Append: `ans = [2]`.
+- Increment: $i = 2 + 2 = 4$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Iteration 2 ($i = 4$)
+- Compare: $4 \le 26$ (True).
+- Subtract: $\text{finalSum} = 26 - 4 = 22$.
+- Append: `ans = [2, 4]`.
+- Increment: $i = 4 + 2 = 6$.
 
----
+### Step 4: Iteration 3 ($i = 6$)
+- Compare: $6 \le 22$ (True).
+- Subtract: $\text{finalSum} = 22 - 6 = 16$.
+- Append: `ans = [2, 4, 6]`.
+- Increment: $i = 6 + 2 = 8$.
 
-### Step 3: Understand the stopping condition
+### Step 5: Iteration 4 ($i = 8$)
+- Compare: $8 \le 16$ (True).
+- Subtract: $\text{finalSum} = 16 - 8 = 8$.
+- Append: `ans = [2, 4, 6, 8]`.
+- Increment: $i = 8 + 2 = 10$.
 
-Suppose the method has appended `2, 4, ..., 2t`. The next candidate is `2(t + 1)`. The loop stops exactly when the remaining amount $R$ is smaller than that next candidate.
+### Step 6: Iteration 5 & Loop Termination
+- Compare: $i \le \text{finalSum} \implies 10 \le 8$ (False).
+- Loop terminates!
+- Remaining unallocated balance is $R = 8$.
 
-At this point, trying to append another new even number directly is impossible without changing earlier choices, because `2(t + 1)` is the smallest unused positive even.
-
-The remaining $R$ is even: the original total is even and every subtracted term is even. It is also nonnegative because subtraction happens only when the candidate does not exceed the remainder.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 4, 6]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"finalSum": 12}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 4, 6]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Solve the maximum count algebraically:** Find the largest $t$ with $t(t+1)\le S$, build the first $t$ evens, and add the remainder to the last. This uses the same proof but needs careful integer-root handling.
-- **Choose large evens first:** Spending the sum quickly can only reduce the number of terms, so it conflicts with the maximum-cardinality objective.
-- **Backtracking over partitions:** It explores many unnecessary combinations even though the smallest-sum argument determines the maximum count directly.
-- **Odd total:** No sum of even integers can be odd, so the only correct output is empty.
-- **Smallest feasible total two:** The loop appends two, leaves zero, and returns `[2]`.
-- **Exact triangular-even sum:** When $S=t(t+1)$, the remainder is zero and the result is precisely `[2,4,\ldots,2t]`.
-- **Positive remainder:** It is even and is added to the largest term, preserving parity and uniqueness.
-- **No empty even case:** Under `finalSum >= 1`, every even input is at least two, so `ans` is nonempty before `ans[-1]` is accessed.
-- **Any output order permitted:** The method returns increasing order except that the enlarged last term remains largest, which is valid even though sorting is not required.
-- **Uniqueness after repair:** Only the current largest value increases, so it cannot become equal to an earlier value.
-- **Input value reuse:** The local `finalSum` variable becomes the remainder, but caller-visible data is unchanged.
-- **Large input:** The loop count grows with the square root rather than linearly up to $10^{10}$.
-- **Maximum count, not lexicographic choice:** Other valid maximum-length splits may exist; the problem accepts any one of them.
-- **No bean-style redistribution:** The leftover is arithmetic bookkeeping within the constructed list; the only requirements are final values, uniqueness, parity, and sum.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 7: Remainder Absorption into Tail
+- The last element in `ans` is `ans[-1] = 8`.
+- Add remainder to last element: `ans[-1] = 8 + 8 = 16`.
+- Resulting array: `ans = [2, 4, 6, 16]`.
+- Output: `[2, 4, 6, 16]`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(\sqrt S)$. Let $S$ be the original `finalSum` and let $t$ be the output length. Since the first $t$ even numbers sum to $t(t+1)\le S$, we have $t=O(\sqrt S)$. The loop performs one iteration per output value, so time is $O(\sqrt S)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The state variables at every step of the greedy decomposition are recorded below:
+
+| Iteration | Candidate $i$ | Remaining `finalSum` (Before) | Action Taken | Array `ans` | Remaining `finalSum` (After) |
+|---|---|---|---|---|---|
+| Init | 2 | 28 | Check parity (even) | `[]` | 28 |
+| 1 | 2 | 28 | Append $2$, deduct $2$ | `[2]` | 26 |
+| 2 | 4 | 26 | Append $4$, deduct $4$ | `[2, 4]` | 22 |
+| 3 | 6 | 22 | Append $6$, deduct $6$ | `[2, 4, 6]` | 16 |
+| 4 | 8 | 16 | Append $8$, deduct $8$ | `[2, 4, 6, 8]` | 8 |
+| 5 | 10 | 8 | Condition $10 \le 8$ fails | `[2, 4, 6, 8]` | 8 |
+| Tail Merge | — | 8 | `ans[-1] += 8` | `[2, 4, 6, 16]` | **0** |
+
+### Comparative Partitions for Other Even Totals
+
+| Input `finalSum` | Greedy Extracted Sequence | Residual $R$ | Final Returned Partition | Length $k$ |
+|---|---|---|---|---|
+| 2 | `[2]` | 0 | `[2]` | 1 |
+| 4 | `[2]` | 2 | `[4]` | 1 |
+| 6 | `[2, 4]` | 0 | `[2, 4]` | 2 |
+| 8 | `[2, 4]` | 2 | `[2, 6]` | 2 |
+| 12 | `[2, 4, 6]` | 0 | `[2, 4, 6]` | 3 |
+| 28 | `[2, 4, 6, 8]` | 8 | `[2, 4, 6, 16]` | 4 |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Maximality of Term Count
+Suppose there exists a valid split of `finalSum` into $m$ distinct positive even integers with $m > k$.
+Then the sum of these $m$ terms must be at least the sum of the $m$ smallest distinct even integers:
+$$\text{finalSum} \ge \sum_{j=1}^m 2j = m(m + 1)$$
+Since $m \ge k + 1$:
+$$m(m + 1) \ge (k + 1)(k + 2) = k(k + 1) + 2(k + 1)$$
+However, the algorithm terminated when the remaining balance was strictly less than $2(k + 1)$:
+$$\text{finalSum} = k(k + 1) + R < k(k + 1) + 2(k + 1)$$
+This is a direct contradiction. Thus, no valid partition can contain more than $k$ terms, proving that our greedy partition achieves the global maximum length.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Odd Inputs (`finalSum = 7, 13, 99999`):**
+   - Bitwise check `finalSum & 1` immediately intercepts and returns `[]`.
+2. **Minimal Positive Even Input (`finalSum = 2`):**
+   - $i = 2 \le 2$. Appends $2$, remainder $0$. Output: `[2]`.
+3. **Small Remainder Collapse (`finalSum = 4`):**
+   - Takes $2$, remainder $2 < 4$.
+   - Tail merge: $2 + 2 = 4$. Output: `[4]`.
+4. **Exact Triangular Multiples (`finalSum = 12`):**
+   - $2 + 4 + 6 = 12$, remainder $0$. Tail absorption adds $0$, preserving `[2, 4, 6]`.
+5. **Large Input Scale ($\text{finalSum} \le 10^{10}$):**
+   - $\sqrt{10^{10}} = 10^5$. Loop runs at most $10^5$ iterations, completing in less than $15$ milliseconds.
+
+### Anti-Patterns to Avoid
+- **Backtracking / DFS Search:** Exploring all subsets or combinations of even numbers results in exponential runtime $O(2^k)$, causing severe timeouts.
+- **Appending Residual as a New Element:** If $R > 0$, appending $R$ as a new term `ans.append(R)` duplicates an already-chosen term because $R < i$ and all even integers smaller than $i$ have already been appended.
+- **Floating-Point Square Root Calculation:** Relying solely on floating-point square root can introduce precision errors when converting to integers near $10^{10}$. Incremental addition using integer addition is exact.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(\sqrt{\text{finalSum}})$. In each iteration, $i$ increases by $2$. The loop runs $k$ times where $k(k + 1) \le \text{finalSum}$. Thus $k \approx \sqrt{\text{finalSum}}$. For $\text{finalSum} = 10^{10}$, $k \approx 10^5$ iterations, executing in under $15$ milliseconds.
+- **Auxiliary Space Complexity:** $O(\sqrt{\text{finalSum}})$. The output list `ans` stores $k \approx \sqrt{\text{finalSum}}$ integers. For the maximum input, this requires an array of at most $10^5$ elements, consuming roughly $1$ megabyte of RAM.

@@ -1,110 +1,234 @@
 # Guided Example: Network Delay Time
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step directed weighted graph representation, single-source shortest path initialization ($dist[k] = 0, dist[v] = \infty$), Dijkstra greedy node settlement ($\min_{u \notin S} dist[u]$), adjacent edge relaxation ($dist[v] \leftarrow \min(dist[v], dist[u] + w)$), bottleneck transmission delay calculation ($ans = \max dist$), and unreachable node detection on representative network topologies:
 
-- **Input:** `{"times": [[2, 1, 1], [2, 3, 1], [3, 4, 1]], "n": 4, "k": 2}`
+- **Input:**
+  - Network edges: $times = [[2, 1, 1], [2, 3, 1], [3, 4, 1]]$
+  - Total nodes: $n = 4$ (labeled $1, 2, 3, 4$)
+  - Signal source: $k = 2$
 - **Required output:** `2`
+  - Transmission criteria:
+    - Directed edges $(u, v, w)$ indicate that a signal travels from node $u$ to node $v$ taking $w$ time units.
+    - The signal originates from node $k$ at time $t = 0$ and propagates simultaneously along all outgoing paths.
+    - Each node receives the signal at the earliest possible arrival time (the shortest path distance from $k$).
+    - Objective: Find the **minimum time required for ALL $n$ nodes** to receive the signal.
+    - If any node in the network is unreachable, return `-1`.
+    - For the input network:
+      - Source 2 reaches Node 1 in time 1 (path $2 \to 1$, weight 1).
+      - Source 2 reaches Node 3 in time 1 (path $2 \to 3$, weight 1).
+      - From Node 3, the signal reaches Node 4 in time $1 + 1 = 2$ (path $2 \to 3 \to 4$, total weight 2).
+      - Times of arrival for all 4 nodes: $\{Node\ 1: 1, \; Node\ 2: 0, \; Node\ 3: 1, \; Node\ 4: 2\}$.
+      - The last node to receive the signal is Node 4 at time 2.
+      - Total delay: **2**.
+- **Dijkstra's Algorithm & Edge Relaxation Invariant:**
+  - **Distance Array & Settlement Set ($S$):**
+    - Maintain $dist[1 \dots n]$ initialized to $\infty$, with source $dist[k] = 0$.
+    - Maintain a boolean set of settled nodes $vis$.
+  - **Greedy Selection Invariant:**
+    - At each step, select the unsettled node $u \notin vis$ with the minimal tentative distance:
+      $$
+      u = \arg\min_{v \notin vis} dist[v]
+      $$
+    - Because all edge weights are non-negative ($w \ge 0$), the tentative distance $dist[u]$ is mathematically guaranteed to be the exact, immutable shortest path distance from $k$ to $u$.
+    - Mark $u$ as settled ($vis[u] \leftarrow \text{true}$).
+  - **Edge Relaxation:**
+    - For every outgoing directed edge $(u, v)$ with latency $w$:
+      $$
+      dist[v] \leftarrow \min(dist[v], \; dist[u] + w)
+      $$
+  - **Bottleneck Completion Time:**
+    - The entire network is fully activated when the furthest node has received the signal:
+      $$
+      ans = \max_{1 \le i \le n} dist[i]
+      $$
+    - If any node has $dist[i] == \infty$, that node never received the signal $\implies$ return `-1`.
+- **Step-by-Step Worked Execution Trace on the 4-Node Network:**
+  - Node indices: $1, 2, 3, 4$. Source: $k = 2$.
+  - **Phase 0: Initialization:**
+    $$
+    dist = [\infty, \; \mathbf{0}, \; \infty, \; \infty], \quad vis = [\text{F}, \text{F}, \text{F}, \text{F}]
+    $$
+  - **Iteration 1 (Settle Source Node 2):**
+    - Unsettled nodes: $\{1, 2, 3, 4\}$.
+    - Node with minimum distance: Node 2 ($dist[2] = 0$).
+    - Mark settled: $vis[2] \leftarrow \mathbf{true}$.
+    - Relax outgoing edges from Node 2:
+      - Edge $(2 \to 1, w = 1)$:
+        $$
+        dist[1] \leftarrow \min(\infty, \; 0 + 1) = \mathbf{1}
+        $$
+      - Edge $(2 \to 3, w = 1)$:
+        $$
+        dist[3] \leftarrow \min(\infty, \; 0 + 1) = \mathbf{1}
+        $$
+    - Distances after Iteration 1:
+      $$
+      dist = [\mathbf{1}, \; \mathbf{0}, \; \mathbf{1}, \; \infty]
+      $$
+  - **Iteration 2 (Settle Node 1):**
+    - Unsettled nodes: $\{1, 3, 4\}$ with distances $[1, 1, \infty]$.
+    - Choose Node 1 ($dist[1] = 1$).
+    - Mark settled: $vis[1] \leftarrow \mathbf{true}$.
+    - Outgoing edges from Node 1: None.
+    - Distances unchanged: $[1, 0, 1, \infty]$.
+  - **Iteration 3 (Settle Node 3):**
+    - Unsettled nodes: $\{3, 4\}$ with distances $[1, \infty]$.
+    - Choose Node 3 ($dist[3] = 1$).
+    - Mark settled: $vis[3] \leftarrow \mathbf{true}$.
+    - Relax outgoing edges from Node 3:
+      - Edge $(3 \to 4, w = 1)$:
+        $$
+        dist[4] \leftarrow \min(\infty, \; 1 + 1) = \mathbf{2}
+        $$
+    - Distances after Iteration 3:
+      $$
+      dist = [1, \; 0, \; 1, \; \mathbf{2}]
+      $$
+  - **Iteration 4 (Settle Node 4):**
+    - Unsettled nodes: $\{4\}$ with distance $2$.
+    - Choose Node 4 ($dist[4] = 2$).
+    - Mark settled: $vis[4] \leftarrow \mathbf{true}$.
+    - Outgoing edges from Node 4: None.
+  - **Phase 3: Evaluate Max Distance:**
+    - All 4 nodes are settled:
+      $$
+      dist = [Node\ 1: 1, \; Node\ 2: 0, \; Node\ 3: 1, \; Node\ 4: 2]
+      $$
+    - Check reachability: No node has $\infty$ distance.
+    - Compute maximum delay:
+      $$
+      ans = \max(1, 0, 1, 2) = \mathbf{2}
+      $$
+- **Unreachable Node Trace ($times = [[1, 2, 1]], n = 2, k = 2$):**
+  - Directed edge exists only from $1 \to 2$.
+  - Signal sent from $k = 2$ cannot travel to Node 1.
+  - $dist[1] = \infty \implies$ returns **`-1`**.
+- **Single Node Network ($n = 1, k = 1$):**
+  - Signal immediately active at source.
+  - Max distance $= 0 \implies$ returns **`0`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Dijkstra's single-source shortest path algorithm on directed graphs and bottleneck activation modeling, mathematically proves why non-negative edge weights preserve subpath optimality under greedy settlement, and derives $O(V^2)$ (dense) or $O(E \log V)$ (sparse heap) runtime and $O(V + E)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a network of `n` nodes, labeled from `1` to `n`. You are also given `times`, a list of travel times as directed edges $\text{times}[i] = (u_{i}, v_{i}, w_{i})$, where $u_{i}$ is the source node, $v_{i}$ is the target node, and $w_{i}$ is the time it takes for a signal to travel from source to target.
+Given a directed graph with $n$ nodes and edge travel times:
+Send a signal from node $k$.
+Find the **minimum time for ALL nodes to receive the signal**.
+Return -1 if any node is unreachable.
 
-The objective is to compute `2` from `{"times": [[2, 1, 1], [2, 3, 1], [3, 4, 1]], "n": 4, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Times:
+  2 -> 1 (time 1)
+  2 -> 3 (time 1)
+  3 -> 4 (time 1)
+n = 4, start at k = 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Signal propagation:
+  At t = 0: Node 2 has signal
+  At t = 1: Node 1 and Node 3 receive signal
+  At t = 2: Node 4 receives signal from Node 3
+
+All 4 nodes received the signal by t = 2!
+Result: 2
+```
+
+### The Invariant of Dijkstra's Shortest Path
+- Each node receives the signal at its shortest path distance from source $k$.
+- Time for all nodes to receive the signal equals the **maximum shortest path distance**: $\max_{v} dist[v]$.
+- If any $dist[v] == \infty$, the graph is disconnected from $k \implies -1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Distance Array Initialization:
+$$
+dist[k] = 0, \quad dist[v] = \infty \quad \forall v \ne k
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Greedy Node Settlement & Relaxation:
+$$
+u = \arg\min_{v \notin vis} dist[v]
+$$
+$$
+dist[v] \leftarrow \min(dist[v], \; dist[u] + w(u, v))
+$$
+$$
+ans = \begin{cases} -1 & \text{if } \exists v: dist[v] = \infty \\ \max_{v} dist[v] & \text{otherwise} \end{cases}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Dijkstra Settlement Invariant.** In any directed graph with non-negative edge weights $w: E \to \mathbb{R}_{\ge 0}$, the sequence of settled vertices satisfies $dist[u_1] \le dist[u_2] \le \dots \le dist[u_n]$, where each settled distance represents the exact shortest path metric $d(k, u_i)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The answer depends on shortest travel time to every node
-
-The signal can follow directed edges, and all edge weights are nonnegative. For each node, the earliest arrival time is the shortest-path distance from source `k`. All nodes have received the signal only when the farthest reachable node receives it, so the final answer is the maximum of these shortest distances.
-
-The exact solution applies Dijkstra’s algorithm using an adjacency matrix and a linear scan to select the next node.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"times": [[2, 1, 1], [2, 3, 1], [3, 4, 1]], "n": 4, "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Build a one-based-to-zero-based adjacency matrix
-
-The matrix `g` has `n` rows and `n` columns and starts filled with infinity. For each directed edge `(u, v, w)`, the solution writes
-
-`g[u - 1][v - 1] = w`.
-
-Subtracting one converts labels `1..n` to Python indices `0..n-1`. The reverse cell is not written because edges are directed.
-
-Infinity means there is no direct edge. Pair uniqueness guarantees no competing duplicate edge needs to be minimized.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Start at Node 2
+- $dist[2] = 0$.
+- Relax edges $(2, 1)$ and $(2, 3)$:
+  - $dist[1] = 1$.
+  - $dist[3] = 1$.
 
 ---
 
-### Step 3: Initialize tentative distances
+### Step 2: Settle 1 and 3
+- Settle Node 1 ($dist = 1$). No outgoing edges.
+- Settle Node 3 ($dist = 1$). Relax $(3, 4) \implies dist[4] = 1 + 1 = 2$.
 
-Every distance begins at infinity except the source:
+---
 
-`dist[k - 1] = 0`.
+### Step 3: Settle 4
+- Settle Node 4 ($dist = 2$).
 
-The Boolean array `vis` records nodes whose shortest distance has been finalized.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 4: Output
+- Distances: $[1, 0, 1, 2]$.
+- $\max(dist) = \mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"times": [[2, 1, 1], [2, 3, 1], [3, 4, 1]], "n": 4, "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Iteration | Node Settled | Current Shortest Distance | Outgoing Edges Relaxed | Updated Distances $[dist[1], dist[2], dist[3], dist[4]]$ |
+|:---:|:---:|:---:|:---:|:---:|
+| Initial | — | — | — | $[\infty, 0, \infty, \infty]$ |
+| $1$ | Node $2$ | $0$ | $2 \to 1$ ($1$), $2 \to 3$ ($1$) | $[1, 0, 1, \infty]$ |
+| $2$ | Node $1$ | $1$ | None | $[1, 0, 1, \infty]$ |
+| $3$ | Node $3$ | $1$ | $3 \to 4$ ($1$) | $[1, 0, 1, 2]$ |
+| $4$ | Node $4$ | $2$ | None | **$[1, 0, 1, 2]$** |
+| **Result** | — | — | **Maximum = 2** | **`2`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Unreachable Node:** At least one node remains $\infty \implies$ returns $-1$.
+- **Single Node Network ($n = 1$):** $dist[1] = 0 \implies$ returns 0.
+- **Multiple Disconnected Components:** Cannot reach all nodes $\implies$ returns $-1$.
+- **Cycles in Graph:** Non-negative weights guarantee Dijkstra terminates without infinite cycling.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Adjacency list plus min-heap:** Store only real edges and repeatedly pop the smallest tentative distance. This gives `O((n + e) log n)` time and `O(n + e)` space and is preferable for sparse large graphs.
-- **Bellman-Ford:** Repeatedly relax every edge and handle negative weights. It is unnecessary here because all weights are nonnegative and costs `O(ne)` time.
-- **Breadth-first search:** It finds shortest paths only when all edges have equal weight. Varying travel times require weighted shortest-path logic.
+- **1-Based vs 0-Based Indexing:** The problem labels nodes $1 \dots n$. Be consistent when mapping to array indices $0 \dots n - 1$.
+- **Summing Distances instead of Maximum:** The signal travels in parallel; total time is the **maximum** distance to any node, not the sum of distances.
+- **Using BFS on Weighted Graphs:** Unweighted BFS finds shortest path by edge count, not by weighted time. Dijkstra's algorithm is required for weighted graphs.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(e)$. Constructing the `n x n` matrix costs `O(n^2)` time for initialization plus `O(e)` edge writes. Dijkstra performs `n` iterations; both selecting `t` and relaxing its full matrix row scan `n` entries. The total time is `O(n^2 + e)`, simplified to `O(n^2)` because matrix initialization already dominates within the simple directed graph.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Dense matrix Dijkstra: $N$ iterations to find minimum distance node ($O(N^2)$).
+  - Edge relaxation across all iterations: $O(E)$.
+  - Total Time: strictly $\mathcal{O}(N^2)$ with adjacency matrix, or $\mathcal{O}(E \log N)$ with a min-heap. For $N = 100$, completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N^2)$ for the adjacency matrix (or $\mathcal{O}(N + E)$ for adjacency list) and $\mathcal{O}(N)$ for distances.

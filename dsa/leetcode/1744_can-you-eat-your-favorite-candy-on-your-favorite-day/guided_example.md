@@ -2,153 +2,153 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"candiesCount": [7, 4, 5, 3, 8], "queries": [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]}`
-- **Required output:** `[true, false, true]`
+- **Input:**
+  - `candiesCount = [7, 4, 5, 3, 8]`
+  - `queries = [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]`
+- **Required Output:** `[true, false, true]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple query scenarios—early accessible candy types, unreachable distant candy types under tight consumption caps, and deep day targets under high caps—illustrating how prefix sum interval intersection solves each query in constant time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a **(0-indexed)** array of positive integers `candiesCount` where $\text{candiesCount}[i]$ represents the number of candies of the $i^{\text{th}}$ type you have. You are also given a 2D array `queries` where $\text{queries}[i] = [\text{favoriteType}_{i}, \text{favoriteDay}_{i}, \text{dailyCap}_{i}]$.
+We are given an array `candiesCount` where `candiesCount[i]` represents the quantity of candies of type $i$ (0-indexed). Candies must be consumed in strict type order: all candies of type $0$ must be finished before eating type $1$, and so on.
 
-The objective is to compute `[true, false, true]` from `{"candiesCount": [7, 4, 5, 3, 8], "queries": [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]}` while avoiding redundant calculations and unnecessary overhead.
+Each query provides three parameters: $[t, d, c]$:
+- $t$: Target candy type (`favoriteType`)
+- $d$: Target day (`favoriteDay`, 0-indexed, where day $0$ is the first day)
+- $c$: Maximum candies allowed per day (`dailyCap`)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Every day, we must eat at least $1$ candy and at most $c$ candies. We must decide if there exists any valid eating schedule such that we eat at least one candy of type $t$ on day $d$.
+
+A simulation of daily eating choices branches into an intractable state space. Because the eating order is strictly linear, the candies of type $t$ occupy a fixed 1-indexed contiguous interval of candy numbers $[S[t] + 1, S[t+1]]$. The problem reduces to testing whether the interval of attainable candy counts on day $d$ overlaps with the interval of type $t$ candies.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Definition | Mathematical Formula |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Prefix Sum Array $S$ | Total candies in types strictly preceding type $k$ | $S[k] = \sum_{j=0}^{k-1} \text{candiesCount}[j]$ |
+| Target Type Range | 1-indexed interval of candy numbers belonging to type $t$ | $[S[t] + 1, S[t+1]]$ |
+| Minimum Eaten by Day $d$ | Lowest possible cumulative candies eaten through day $d$ | $\text{least} = d + 1$ (eating 1 per day) |
+| Maximum Eaten by Day $d$ | Highest possible cumulative candies eaten through day $d$ | $\text{most} = (d + 1) \cdot c$ (eating $c$ per day) |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Prefix Sum Interval Overlap Theorem.**
+> Let all candies be numbered sequentially from $1$ to $\sum \text{candiesCount}[i]$. Candies of type $t$ occupy the exact integer positions:
+> $$\mathcal{I}_{\text{target}} = [S[t] + 1, S[t+1]]$$
+> On day $d$ (after $d + 1$ active days), the cumulative number of candies consumed by the end of day $d$ lies within:
+> $$\mathcal{I}_{\text{day}} = [d + 1, (d + 1) \cdot c]$$
+> A candy of type $t$ can be eaten on day $d$ if and only if there is a valid schedule where the candy consumed falls within $\mathcal{I}_{\text{target}}$. This holds if and only if the day's attainable interval overlaps with the target type's span:
+> 1. We must not have exhausted all type $t$ candies before day $d$:
+>    $$\text{candies eaten before day } d < S[t+1] \iff d < S[t+1]$$
+> 2. We must be able to reach beyond all preceding candy types by day $d$:
+>    $$\text{maximum candies eaten through day } d > S[t] \iff (d + 1) \cdot c > S[t]$$
+
+```mermaid
+flowchart TD
+    accTitle: Prefix Sum Interval Intersection for Candy Queries
+    accDescr: Flowchart illustrating prefix sum construction and the simultaneous two-sided boundary check per query.
+    A["Input: candiesCount"] --> B["Compute Prefix Sum Array S: S[0] = 0, S[k] = S[k-1] + count[k-1]"]
+    B --> C["For each query [t, day, cap]"]
+    C --> D["Compute Minimum Bound: least = day"]
+    C --> E["Compute Maximum Bound: most = (day + 1) * cap"]
+    D --> F{"Is least < S[t + 1] AND most > S[t]?"}
+    E --> F
+    F -- Yes --> G["Append true"]
+    F -- No --> H["Append false"]
+    G --> I["Next Query"]
+    H --> I
+    I --> J["Return Boolean Query Results"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Number all candies in the required eating order
+For `candiesCount = [7, 4, 5, 3, 8]`:
 
-Candy types must be finished in increasing type order. Imagine placing every candy into one long sequence: all type zero candies first, then all type one candies, and so on. Within this conceptual sequence, eating any valid schedule simply consumes an initial prefix. Daily choices change how quickly that prefix grows, but they cannot change the order of its candy types.
+### Phase 1: Precompute Cumulative Prefix Sums ($S$)
 
-The solution builds `s = list(accumulate(candiesCount, initial=0))`. The initial zero makes `s[t]` equal the total number of candies in types strictly before type `t`, and `s[t + 1]` equal the total through type `t`.
+- $S[0] = 0$
+- $S[1] = S[0] + 7 = 7$ (candies of type 0: $1 \dots 7$)
+- $S[2] = S[1] + 4 = 11$ (candies of type 1: $8 \dots 11$)
+- $S[3] = S[2] + 5 = 16$ (candies of type 2: $12 \dots 16$)
+- $S[4] = S[3] + 3 = 19$ (candies of type 3: $17 \dots 19$)
+- $S[5] = S[4] + 8 = 27$ (candies of type 4: $20 \dots 27$)
 
-If candies are numbered starting from one, type `t` occupies the inclusive global positions:
-
-$$
-\texttt{s[t]}+1
-\quad\text{through}\quad
-\texttt{s[t+1]}.
-$$
-
-This prefix representation turns a question about schedules and types into a question about whether two numeric intervals overlap.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"candiesCount": [7, 4, 5, 3, 8], "queries": [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Prefix array: $S = [0, 7, 11, 16, 19, 27]$.
 
 ---
 
-### Step 2: Find what can have been eaten by the favorite day
+### Phase 2: Process Queries
 
-For a query `[t, day, mx]`, days are zero-indexed. By the end of day `day`, exactly `day + 1` days have occurred.
+#### Query 0: `[t = 0, d = 2, c = 2]`
+- Target type $0$: Candies span $[S[0] + 1, S[1]] = [1, 7]$.
+- Bound 1 (Not exhausted before day 2):
+  $$\text{least} = d = 2 < S[1] = 7 \quad (\text{Valid}: 2 < 7)$$
+  Eating $1$ candy on day $0$ and $1$ candy on day $1$ consumes $2$ candies, leaving candy $3 \le 7$ available on day $2$.
+- Bound 2 (Reaching type 0):
+  $$\text{most} = (d + 1) \cdot c = (2 + 1) \cdot 2 = 6 > S[0] = 0 \quad (\text{Valid}: 6 > 0)$$
+- Outcome: Both inequalities hold $\implies \mathbf{true}$.
 
-At least one candy must be eaten per day until all candies are gone. Therefore, to reach day `day` while candy remains available, the schedule has consumed at least `day + 1` candies by the end of that day. The query-specific daily maximum permits at most:
+#### Query 1: `[t = 4, d = 2, c = 4]`
+- Target type $4$: Candies span $[S[4] + 1, S[5]] = [20, 27]$.
+- Candies before type 4: $S[4] = 19$.
+- Maximum reachable candies by day 2:
+  $$\text{most} = (d + 1) \cdot c = (2 + 1) \cdot 4 = 12$$
+- Bound 2 Check:
+  $$\text{most} > S[4] \iff 12 > 19 \quad (\mathbf{False})$$
+- Analysis: Even eating the maximum allowed $4$ candies on each of days $0, 1, 2$ consumes only $12$ candies, which cannot even finish type $1$ (requiring $11$) and type $2$ (requiring $16$). Type $4$ is unreachable.
+- Outcome: $\mathbf{false}$.
 
-$$
-(\texttt{day}+1)\texttt{mx}
-$$
+#### Query 2: `[t = 2, d = 13, c = 10^9]`
+- Target type $2$: Candies span $[S[2] + 1, S[3]] = [12, 16]$.
+- Bound 1 Check:
+  $$\text{least} = d = 13 < S[3] = 16 \quad (\text{Valid}: 13 < 16)$$
+  Eating $1$ candy per day on days $0 \dots 12$ consumes $13$ candies. Since $13 < 16$, type 2 candies ($14, 15, 16$) remain unconsumed on day $13$.
+- Bound 2 Check:
+  $$\text{most} = (13 + 1) \cdot 10^9 = 1.4 \times 10^{10} > S[2] = 11 \quad (\text{Valid})$$
+- Outcome: Both inequalities hold $\implies \mathbf{true}$.
 
-candies by that same moment.
-
-The exact code names `least = day` and `most = (day + 1) * mx`. The name `least` is intentionally one lower than the minimum end-of-day consumption. It represents how many candies must already have been consumed before the favorite day if the eater takes the minimum one per earlier day. Thus the earliest candy that can be eaten on the favorite day has one-based position `least + 1 = day + 1`.
-
-The latest candy that can possibly be reached by the end of that day has position `most`. Consequently, some candy eaten on that day can have any relevant position in the interval:
-
-$$
-[\texttt{day}+1,\;(\texttt{day}+1)\texttt{mx}].
-$$
-
-The schedule can distribute the chosen total across earlier days because every daily amount from one through `mx` is allowed. There are no gaps between these reachable cumulative totals.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Test overlap with the favorite type's interval
-
-The favorite type is possible exactly when its global candy positions overlap the positions reachable on the favorite day.
-
-The type interval ends at `s[t + 1]`. For the day interval to begin no later than that endpoint, the code checks:
-
-`least < s[t + 1]`.
-
-Because `least` is `day`, this is equivalent to `day + 1 <= s[t + 1]`. In words, even at the slowest permitted pace, the eater has not necessarily passed all candies of the favorite type before that day begins. If `day` is already at least the cumulative total through type `t`, then eating one candy on every previous day has exhausted the type too early.
-
-The type interval begins at `s[t] + 1`. For the day's maximum reachable position to reach that first candy, the code checks:
-
-`most > s[t]`.
-
-Since the values are integers, this is equivalent to `most >= s[t] + 1`. In words, eating at the query's daily cap can get through all earlier types and reach at least one favorite candy by the end of the requested day.
-
-Both inequalities must hold. The implementation appends their conjunction directly to `ans` for each query.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, false, true]` |
+Final result: `[true, false, true]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Query Index | Query $[t, d, c]$ | Target Interval $[S[t]+1, S[t+1]]$ | Cumulative Bounds $[\text{least}, \text{most}]$ | Evaluation Check | Output |
+|---|---|---|---|---|---|
+| $0$ | $[0, 2, 2]$ | $[1, 7]$ | $\text{least}=2, \text{most}=6$ | $2 < 7 \land 6 > 0$ | `true` |
+| $1$ | $[4, 2, 4]$ | $[20, 27]$ | $\text{least}=2, \text{most}=12$ | $2 < 27 \land 12 > 19$ (Fails) | `false` |
+| $2$ | $[2, 13, 10^9]$ | $[12, 16]$ | $\text{least}=13, \text{most}=1.4 \cdot 10^{10}$ | $13 < 16 \land 1.4 \cdot 10^{10} > 11$ | `true` |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Feature | Expected Behavior | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"candiesCount": [7, 4, 5, 3, 8], "queries": [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, false, true]` | Verified |
+| Target on Day 0 | $d = 0$ | Checks if reachable on initial day | $\text{least} = 0 < S[t+1]$, $\text{most} = c > S[t]$. |
+| Cap = 1 (Deterministic) | $c = 1$ | Exactly $d + 1$ candies eaten | $\text{least} = \text{most} = d + 1$; checks if $d + 1 \in [S[t]+1, S[t+1]]$. |
+| Huge Day ($d \ge \text{TotalCandies}$) | $d \ge S[\text{last}]$ | `false` | $\text{least} = d \ge S[t+1]$; candies run out before day $d$. |
+| Large Products ($d \cdot c$) | $d = 10^5, c = 10^9$ | No 64-bit overflow | $(d + 1) \cdot c \approx 10^{14}$, safely fitting within standard 64-bit integer types. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Strict Day Offsets:**
+   Because at least 1 candy must be eaten each day, by day $d$ (after $d$ days have passed, days $0 \dots d-1$), at least $d$ candies have been consumed. Thus, if $d \ge S[t+1]$, all type $t$ candies were already eaten on or before day $d-1$, making it impossible to eat type $t$ on day $d$.
+2. **Attainability of Intermediate Counts:**
+   Because each day's consumption can be chosen freely as any integer in $[1, c]$, the set of reachable cumulative candy totals at the end of day $d$ forms a complete contiguous range of integers $[d + 1, (d + 1) \cdot c]$.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Simulate each day:** It is far too slow because favorite days and daily caps can reach $10^9$.
-- **Binary search the eaten type:** Prefix sums could locate a type for one fixed cumulative count, but each query asks whether any schedule exists, and direct interval overlap is simpler and $O(1)$.
-- **Per-query prefix summation:** Recomputing candies before the favorite type would cost $O(nq)$ in the worst case.
-- **Favorite type zero:** `s[0]` is zero, so the reachability condition on the lower endpoint is naturally satisfied whenever at least one candy can be eaten.
-- **Favorite day zero:** The reachable positions are one through `mx`, correctly modeling the first day.
-- **Daily cap one:** Exactly one candy is eaten each day, so the reachable interval collapses to the single position `day + 1`.
-- **Very large cap:** The upper reach may pass many types on one day; the ordering rule still holds because different types may be eaten on the same day.
-- **Last candy of a type:** Equality at `s[t + 1]` is allowed through `least < s[t + 1]`.
-- **First candy of a type:** Equality at `s[t] + 1` is allowed through `most > s[t]`.
-- **Day after a type is exhausted:** Even the slowest schedule has passed it, making the first condition false.
-- **Cannot yet reach a type:** Even the fastest schedule ends before its first candy, making the second condition false.
-- **Positive counts:** Every type owns a non-empty prefix interval, as guaranteed by the input.
-- **No schedule construction:** The proof of interval reachability is sufficient; the answer needs only Booleans, not daily eating amounts.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n+q)$. Let $n$ be the number of candy types and $q$ the number of queries. Building the prefix array visits each type once and takes $O(n)$ time. Every query uses a fixed number of arithmetic operations and two prefix lookups, so all queries take $O(q)$ time. Total time is $O(n+q)$.
-- **Auxiliary Space Complexity:** $O(n+q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(C + Q)$ where $C$ is the length of `candiesCount` and $Q$ is the number of queries. Precomputing the prefix sum array $S$ takes $\mathcal{O}(C)$ time. Each query evaluates two arithmetic comparisons in $\mathcal{O}(1)$ time.
+- **Space Complexity:** $\mathcal{O}(C)$ auxiliary space to store the prefix sum array $S$.

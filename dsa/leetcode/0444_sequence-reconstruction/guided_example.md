@@ -1,129 +1,213 @@
 # Guided Example: Sequence Reconstruction
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step directed graph construction from sequence pairs, Kahn's algorithm in-degree tracking, the strict single-candidate queue invariant ($|Q| == 1$), topological ambiguity branch detection, and unique shortest supersequence verification on representative permutation instances:
 
-- **Input:** `{"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3]]}`
-- **Required output:** `false`
+- **Input:**
+  - $nums = [1, 2, 3]$
+  - $sequences = [[1, 2], [1, 3], [2, 3]]$
+- **Required output:** `true`
+  - Total vertices: $n = 3$, values in range $[1, 3]$
+  - Directed edges from adjacent sequence pairs:
+    - From $[1, 2]$: edge $1 \to 2$
+    - From $[1, 3]$: edge $1 \to 3$
+    - From $[2, 3]$: edge $2 \to 3$
+  - Initial in-degrees:
+    - Node $1$: in-degree $0$
+    - Node $2$: in-degree $1$ (from $1$)
+    - Node $3$: in-degree $2$ (from $1$ and $2$)
+  - Initial zero-in-degree queue: $Q = [1]$ (Size $|Q| = 1$, unique starter!)
+  - **Topological Step 1:**
+    - Queue size check: $|Q| = 1$ (Pass: No ambiguity)
+    - Dequeue Node $1$
+    - Decrement neighbor in-degrees:
+      - $indeg[2] \leftarrow 1 - 1 = 0 \implies$ Enqueue $2$
+      - $indeg[3] \leftarrow 2 - 1 = 1$
+    - Queue state: $Q = [2]$
+  - **Topological Step 2:**
+    - Queue size check: $|Q| = 1$ (Pass: No ambiguity)
+    - Dequeue Node $2$
+    - Decrement neighbor in-degrees:
+      - $indeg[3] \leftarrow 1 - 1 = 0 \implies$ Enqueue $3$
+    - Queue state: $Q = [3]$
+  - **Topological Step 3:**
+    - Queue size check: $|Q| = 1$ (Pass: No ambiguity)
+    - Dequeue Node $3$
+    - Queue state: $Q = []$ (Empty)
+  - Processed all $n = 3$ vertices with strictly $|Q| = 1$ at every single transition.
+  - Reconstructed sequence is uniquely determined: $[1, 2, 3] \implies$ Return `true`
+- **Ambiguous Branching Instance:** $nums = [1, 2, 3], sequences = [[1, 2], [1, 3]]$
+  - Removing $1$ makes both $2$ and $3$ reach in-degree $0 \implies Q = [2, 3]$ ($|Q| = 2 > 1$).
+  - Both $[1, 2, 3]$ and $[1, 3, 2]$ are valid supersequences $\implies$ **Not unique $\implies$ `false`**
+- **Missing Elements Instance:** $sequences = [[1, 2]]$ for $nums = [1, 2, 3] \implies$ Node $3$ unconstrained $\implies$ `false`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling sequence constraints as a Directed Acyclic Graph (DAG), mathematically proves why a topological ordering is unique if and only if the zero-in-degree frontier has cardinality strictly 1 at every step (Hamiltonian path in tournament subgraphs), and achieves $O(V + E)$ runtime and $O(V + E)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `nums` of length `n` where `nums` is a permutation of the integers in the range `[1, n]`. You are also given a 2D integer array `sequences` where $\text{sequences}[i]$ is a subsequence of `nums`.
+Given an integer array $nums = [1, 2, 3]$ (a permutation of $1 \dots n$) and a list of subsequences $sequences$:
+Determine whether $nums$ is the **unique shortest supersequence** of $sequences$:
+- A supersequence contains all arrays in $sequences$ as subsequences.
+- $nums$ is the unique shortest supersequence if and only if:
+  1. $nums$ is a valid supersequence.
+  2. No other supersequence of minimal length exists.
 
-The objective is to compute `false` from `{"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Dependency Graph:
+     (1)
+    /   \
+   v     v
+  (2) -> (3)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Topological Peel Sequence:
+  Step 1: In-degree 0 -> Only Node 1  (Queue: [1], |Q| = 1)
+  Step 2: In-degree 0 -> Only Node 2  (Queue: [2], |Q| = 1)
+  Step 3: In-degree 0 -> Only Node 3  (Queue: [3], |Q| = 1)
+
+Every step has a unique choice -> Unique Reconstruction -> true
+```
+
+### The Unique Topological Sort Criterion
+A directed edge $u \to v$ expresses the constraint: "node $u$ must appear before node $v$."
+In Kahn's algorithm for topological sorting:
+- The queue $Q$ holds all nodes whose prerequisites have all been fulfilled (in-degree $= 0$).
+- **If at any point $|Q| > 1$:** There are multiple eligible nodes that could legally occupy the current position. Swapping their order produces another distinct valid topological sequence, meaning the sequence is **not unique**!
+- **Uniqueness Theorem:** A directed acyclic graph has a unique topological sort if and only if at every step of Kahn's algorithm, the queue of zero-in-degree vertices contains **exactly one element** ($|Q| == 1$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Directed Graph Modeling:
+For each sequence $[s_0, s_1, \dots, s_k]$ in $sequences$:
+Add a directed edge for every adjacent pair:
+$$
+s_i \to s_{i+1} \quad \forall i \in [0, k - 1]
+$$
+Increment $indeg[s_{i+1}] \leftarrow indeg[s_{i+1}] + 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Strict Singlet Queue Invariant:
+Initialize $Q$ with all nodes having $indeg[v] == 0$:
+- **Loop Condition:** While $|Q| == 1$:
+  - Pop the unique active node $u = Q.\text{popleft}()$.
+  - For each neighbor $v$ of $u$:
+    - Decrement $indeg[v] \leftarrow indeg[v] - 1$.
+    - If $indeg[v] == 0$: append $v$ to $Q$.
+- **Termination Check:**
+  - If the loop terminates with $|Q| == 0$, exactly $n$ nodes were popped, each chosen without ambiguity $\implies$ Return `True`.
+  - If the loop terminates with $|Q| > 1$, multiple branches exist $\implies$ Return `False`.
+  - If the loop terminates with $|Q| == 0$ before processing $n$ nodes, a cycle or disconnected component exists $\implies$ Return `False`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Singlet Invariant.** At step $t$, if $|Q| = 1$, the choice of the $t$-th element in the sequence is unconditionally forced, with zero degrees of freedom.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why a directed graph represents the subsequences
-
-Create one vertex for each value from `1` through `n`. If two values appear consecutively in one row as `a, b`, add a directed edge from `a` to `b`. That edge means that every valid supersequence must place `a` before `b`.
-
-It is enough to add edges only between adjacent values of a row. Suppose a row is `[a, b, c, d]`. The edges $a \to b$, $b \to c$, and $c \to d$ already imply, by following paths, that `a` precedes `c` and `d`, that `b` precedes `d`, and so on. Adding an edge for every nonadjacent pair would repeat facts already supplied by transitivity and would make the graph unnecessarily large.
-
-The code stores values as zero-based vertex indices. Because the contract guarantees that every value lies in `[1, n]`, subtracting one maps value `v` to index `v - 1` safely. `g[u]` contains every outgoing neighbor of vertex `u`, and `indeg[v]` records how many incoming edge occurrences still constrain vertex `v`.
-
-An edge may be repeated when the same adjacent pair occurs in more than one sequence. The implementation deliberately does not deduplicate it. This remains correct: every stored copy increments the destination's indegree once, and processing the source later traverses every stored copy and decrements that indegree once. The copies therefore balance exactly. Here $E$ means the number of adjacent-pair occurrences, including duplicates.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 2, 3]$ with $sequences = [[1, 2], [1, 3], [2, 3]]$ ($n = 3$):
 
 ---
 
-### Step 2: Why topological order captures a shortest supersequence
-
-A topological ordering lists every graph vertex while respecting every directed edge. Thus it respects every adjacent relation, and consequently every entire row of `sequences` is a subsequence of it. Since `nums` is a permutation of all values `1` through `n`, a topological order also has exactly those values once each.
-
-The input guarantees that every row is already a subsequence of `nums`. Therefore every graph edge points forward according to `nums`. This has two crucial consequences: the graph cannot contain a directed cycle, and `nums` itself is a valid topological order. The remaining question is whether another order is possible or whether some value is not needed in the shortest supersequence. In either situation, the partial constraints fail to force the whole permutation uniquely.
-
-Kahn's topological-sort algorithm exposes exactly that ambiguity. A vertex whose indegree is zero has no unprocessed prerequisite, so it may legally be chosen next. Initially, the deque `q` contains every such vertex.
-
-- If the deque contains exactly one vertex, that vertex is forced as the next element of every valid ordering.
-- If it contains two or more vertices, either one can be chosen next. The constraints do not determine a unique order, so the answer must be `false`.
-- If it is empty, there is no currently legal next vertex. Under a general graph this could mean either that all vertices were processed or that a cycle blocks the remaining vertices.
-
-The loop condition `while len(q) == 1` encodes the first two cases directly. The algorithm proceeds only while the next choice is unique. It removes that sole vertex, then removes all of its outgoing constraints by decreasing its neighbors' indegrees. Any neighbor whose indegree reaches zero becomes available.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Graph Construction & In-Degree Calculation
+Process sequence pairs:
+- Pair $(1, 2)$: edge $1 \to 2, \; indeg[2] += 1$
+- Pair $(1, 3)$: edge $1 \to 3, \; indeg[3] += 1$
+- Pair $(2, 3)$: edge $2 \to 3, \; indeg[3] += 1$
+In-degrees:
+$$
+indeg = \{1: 0, \; 2: 1, \; 3: 2\}
+$$
+Adjacency lists:
+$$
+g[1] = [2, 3], \quad g[2] = [3], \quad g[3] = []
+$$
 
 ---
 
-### Step 3: Why the compact final check works here
+### Step 2: Initialize Queue
+Find all nodes with in-degree 0:
+- Only Node $1$ has $indeg[1] == 0$.
+- Queue: $Q = [1]$.
+- Size $|Q| = 1$.
 
-The solution returns `len(q) == 0` without storing the produced order or a processed-vertex count. That is safe because of the source contract, not because it would be safe for an arbitrary directed graph.
+---
 
-If ambiguity ever occurs, the loop stops with at least two vertices in `q`; the final test is then false. If every choice is forced, the loop processes one vertex after another. Because all edges agree with the known permutation `nums`, no cycle can trap unprocessed vertices. Eventually the last forced vertex is removed and no new vertex remains, so the deque is empty and the result is true.
+### Step 3: Topological Iteration 1
+- Verify $|Q| == 1$: Holds ($Q = [1]$).
+- Dequeue $u = 1$.
+- Examine neighbors in $g[1] = [2, 3]$:
+  - Neighbor $2$: $indeg[2] \leftarrow 1 - 1 = \mathbf{0} \implies Q.\text{append}(2)$
+  - Neighbor $3$: $indeg[3] \leftarrow 2 - 1 = \mathbf{1} \implies$ Not zero
+- Queue after step: $Q = [2]$.
+- Size $|Q| = 1$.
 
-This also handles missing information. In Example 2, constraints from `[1, 2]` do not require `3` at all. In the graph, both `1` and `3` initially have indegree zero, so the deque immediately has multiple choices and the method returns false. This corresponds to the supersequence viewpoint: `[1, 2]` is shorter than `nums`, and the constraints do not force the omitted value into the answer.
+---
 
-For a concrete uniqueness example, take `nums = [1, 2, 3]` and `sequences = [[1, 2], [1, 3], [2, 3]]`. The edges are $1 \to 2$, $1 \to 3$, and $2 \to 3$. Initially only `1` has indegree zero. Processing `1` makes only `2` available because `3` still has the incoming edge from `2`. Processing `2` then makes `3` available. Every stage has one choice, so the unique order is `[1, 2, 3]`.
+### Step 4: Topological Iteration 2
+- Verify $|Q| == 1$: Holds ($Q = [2]$).
+- Dequeue $u = 2$.
+- Examine neighbors in $g[2] = [3]$:
+  - Neighbor $3$: $indeg[3] \leftarrow 1 - 1 = \mathbf{0} \implies Q.\text{append}(3)$
+- Queue after step: $Q = [3]$.
+- Size $|Q| = 1$.
 
-By contrast, with `[[1, 2], [1, 3]]`, processing `1` makes both `2` and `3` available. Their relative order is unconstrained, matching the two shortest supersequences `[1, 2, 3]` and `[1, 3, 2]`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+### Step 5: Topological Iteration 3
+- Verify $|Q| == 1$: Holds ($Q = [3]$).
+- Dequeue $u = 3$.
+- Neighbors in $g[3]$: None.
+- Queue after step: $Q = []$.
+- Size $|Q| = 0$.
+
+---
+
+### Termination:
+Loop condition `while len(q) == 1` stops because `len(q) == 0`.
+Check: Did $Q$ end empty after processing all nodes?
+Yes: `len(q) == 0` evaluates to **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+| Iteration | Initial Queue $Q$ | Queue Size $|Q|$ | Dequeued Node $u$ | Neighbors Updated | New In-Degrees | Enqueued Nodes | Final Queue State |
+|:---:|:---:|:---:|:---:|:---|:---|:---:|:---:|
+| **Init** | $[1]$ | $1$ | — | — | $\{1:0, 2:1, 3:2\}$ | — | $[1]$ |
+| **1** | $[1]$ | **$1$ (Unique)** | $1$ | $2, 3$ | $indeg[2]: 1 \to 0$<br>$indeg[3]: 2 \to 1$ | $2$ | $[2]$ |
+| **2** | $[2]$ | **$1$ (Unique)** | $2$ | $3$ | $indeg[3]: 1 \to 0$ | $3$ | $[3]$ |
+| **3** | $[3]$ | **$1$ (Unique)** | $3$ | None | None | None | `[]` (Empty) |
+| **End** | `[]` | $0$ | — | — | All in-degrees $0$ | — | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Ambiguous Topo Sort ($sequences = [[1, 2], [1, 3]]$):**
+  - After removing $1$, both $2$ and $3$ reach in-degree $0 \implies Q = [2, 3]$.
+  - Size $|Q| = 2 \ne 1$. Loop halts immediately.
+  - Return condition `len(q) == 0` evaluates to $2 == 0 \implies \mathbf{false}$.
+- **Single Element ($nums = [1], sequences = [[1]]$):** $indeg[1] = 0, Q = [1]$. Loops once, queue becomes empty $\implies \mathbf{true}$.
+- **Disconnected Subsequence ($nums = [1, 2], sequences = [[1], [2]]$):** No edges $\implies indeg = \{1: 0, 2: 0\} \implies Q = [1, 2]$ ($|Q| = 2 > 1$) $\implies \mathbf{false}$.
+- **Cycle in Sequences:** Queue empties before all $n$ nodes are visited $\implies$ not all in-degrees reach 0 $\implies$ returns `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Enumerating all supersequences:** Generating permutations or recursively trying every available next value can detect uniqueness, but the search may explore exponentially many orders. Kahn's algorithm detects the first branch point directly.
-- **Checking only whether `nums` satisfies every row:** That proves `nums` is a valid supersequence, which is already guaranteed, but it does not prove that it is shortest or unique. The graph must show that every next value is forced.
-- **Comparing consecutive pairs of `nums` against a set of observed relations:** Under this problem's guarantees, requiring every adjacent pair of `nums` to be implied can support another linear approach, but the graph formulation expresses transitive constraints and uniqueness uniformly and matches the exact solution.
-- **Duplicate adjacent relations:** Repeated edges are harmless because indegree increments and decrements remain paired. Deduplicating them is optional and would require extra set storage.
-- **A value weakly constrained or absent:** Such a value becomes available too early alongside another vertex, or otherwise fails to be forced. The deque then contains multiple choices and the answer is false.
-- **A single value:** With `n = 1`, the only vertex is initially available, is processed, and leaves the deque empty, so the method returns true under the nonempty valid-sequence contract.
-- **Cycles outside the stated contract:** In an unrestricted graph, a cycle could make `q` empty before all vertices were processed, and this exact final check would incorrectly accept it. Here every row is guaranteed to be a subsequence of the permutation `nums`, so all edges point forward in `nums` and a cycle is impossible.
-- **Values outside `[1, n]`:** The code intentionally performs no validation before converting values to zero-based indices. The range guarantee is therefore part of the implementation's correctness.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Only Checking if `nums` is a Valid Supersequence:** Confirming that each sequence is a subsequence of `nums` is necessary but not sufficient; one must also verify that *no other* sequence is valid. Testing $|Q| == 1$ is the only robust guarantee of uniqueness.
+- **Transitive Edge Explosion:** Adding edges between *all* pairs in a sequence $[s_0, s_1, s_2]$ creates $O(K^2)$ edges. Only consecutive pairs $(s_i, s_{i+1})$ are needed because reachability is transitive, keeping total edges bounded by $\sum |seq|$.
+- **0-Indexed Conversion Mishap:** Permutation values are in $[1, n]$. Subtracting 1 consistently maps values to $[0, n - 1]$ without array out-of-bounds indexing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V+E)$. Let $V = n$ be the number of values and let $E$ be the total number of adjacent-pair occurrences across all rows. If the total number of listed elements is $S$, then $E \le S$, because a row of length $k$ contributes $k-1$ edges.
-- **Auxiliary Space Complexity:** $O(V+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $V = n$ be the number of nodes and $E = \sum (|seq| - 1)$ be the total number of adjacent pairs in `sequences`.
+  - Building the graph takes $O(V + E)$ time.
+  - Kahn's algorithm visits each vertex and edge at most once, performing $O(1)$ queue operations per node.
+  - Total Time: $\mathcal{O}(V + E)$. For $V, E \le 10^5$, executes in under 20 ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(V + E)$ to store the adjacency list $g$, in-degree array $indeg$, and BFS queue $Q$.

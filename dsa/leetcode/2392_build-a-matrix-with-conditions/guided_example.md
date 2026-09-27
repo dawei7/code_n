@@ -1,118 +1,156 @@
 # Guided Example: Build a Matrix With Conditions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"k": 3, "rowConditions": [[1, 2], [3, 2]], "colConditions": [[2, 1], [3, 2]]}`
-- **Required output:** `[[0, 0, 1], [3, 0, 0], [0, 2, 0]]`
+We are given an integer $k$ ($2 \le k \le 400$) and two collections of directed pairwise precedence conditions:
+- $\text{rowConditions}$: Each pair $[u, v]$ requires that value $u$ appear in a row strictly above value $v$ ($row(u) < row(v)$).
+- $\text{colConditions}$: Each pair $[u, v]$ requires that value $u$ appear in a column strictly to the left of value $v$ ($col(u) < col(v)$).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The task is to construct a $k \times k$ matrix satisfying:
+1. Every integer from $1$ through $k$ appears **exactly once**.
+2. All remaining $k^2 - k$ cells contain $0$.
+3. All row precedence constraints are satisfied.
+4. All column precedence constraints are satisfied.
 
----
+If any conflicting dependencies make satisfying the constraints impossible, we must return an empty matrix `[]`.
 
-## 1. Instance & Teaching Goal
+Consider the representative instance:
+$$k = 3, \quad \text{rowConditions} = [[1, 2], [3, 2]], \quad \text{colConditions} = [[2, 1], [3, 2]]$$
 
-You are given a **positive** integer `k`. You are also given:
+```mermaid
+flowchart LR
+    accTitle: Orthogonal Decoupling of 2D Matrix Constraints
+    accDescr: Independent 1D topological sorts for rows and columns fused into final 2D cell coordinates.
+    subgraph RowGraph["Row DAG Constraints"]
+        R1["Node 1"] --> R2["Node 2"]
+        R3["Node 3"] --> R2
+    end
+    subgraph ColGraph["Column DAG Constraints"]
+        C3["Node 3"] --> C2["Node 2"] --> C1["Node 1"]
+    end
+    RowGraph --> RowTopo["Topological Sort: [3, 1, 2]<br/>row(3)=0, row(1)=1, row(2)=2"]
+    ColGraph --> ColTopo["Topological Sort: [3, 2, 1]<br/>col(3)=0, col(2)=1, col(1)=2"]
+    RowTopo --> Fusion["Coordinate Fusion (row, col)<br/>3 -> (0, 0)<br/>1 -> (1, 2)<br/>2 -> (2, 1)"]
+    ColTopo --> Fusion
+    Fusion --> Out["Constructed k x k Matrix"]
+    classDef grpStyle fill:#f8fafc,stroke:#64748b,stroke-width:1px;
+    classDef step fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class RowGraph,ColGraph grpStyle;
+    class RowTopo,ColTopo,Fusion,Out step;
+```
 
-The objective is to compute `[[0, 0, 1], [3, 0, 0], [0, 2, 0]]` from `{"k": 3, "rowConditions": [[1, 2], [3, 2]], "colConditions": [[2, 1], [3, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The fundamental insight is **Dimensional Decoupling (Cartesian Factorization)**:
+1. **Orthogonality of Row and Column Coordinates:**
+   A cell coordinate $(r, c)$ in a $k \times k$ grid is composed of two independent scalar projections: the row index $r \in \{0, \dots, k-1\}$ and the column index $c \in \{0, \dots, k-1\}$.
+   - A row condition $u \to v$ constrains only $row(u) < row(v)$, placing zero restriction on $col(u)$ or $col(v)$.
+   - A column condition $u \to v$ constrains only $col(u) < col(v)$, placing zero restriction on $row(u)$ or $row(v)$.
+2. **Reduction to 1D Topological Sorting:**
+   We construct two separate directed graphs on the vertex set $V = \{1, \dots, k\}$:
+   - $G_{\text{row}} = (V, E_{\text{row}})$ where directed edge $u \to v \iff [u, v] \in \text{rowConditions}$.
+   - $G_{\text{col}} = (V, E_{\text{col}})$ where directed edge $u \to v \iff [u, v] \in \text{colConditions}$.
+3. **Kahn's Algorithm & Cycle Detection:**
+   A valid placement exists if and only if both $G_{\text{row}}$ and $G_{\text{col}}$ are Directed Acyclic Graphs (DAGs):
+   - Maintain an in-degree array and a queue of zero-in-degree nodes.
+   - Incrementally append nodes to a linear topological sequence.
+   - If the topological sequence contains fewer than $k$ nodes, a directed cycle exists, making topological ordering mathematically impossible; in this case, immediately return `[]`.
+4. **Collision-Free Coordinate Pairing:**
+   Let $\sigma_{\text{row}}$ and $\sigma_{\text{col}}$ be valid permutations of $\{1, \dots, k\}$ produced by the respective topological sorts.
+   Assign:
+   $$row(x) = \text{index of } x \text{ in } \sigma_{\text{row}}, \quad col(x) = \text{index of } x \text{ in } \sigma_{\text{col}}$$
+   Because $\sigma_{\text{row}}$ and $\sigma_{\text{col}}$ are permutations, each value $x$ receives a unique row index and a unique column index. Hence, no two values will ever be assigned to the same row or the same column, guaranteeing zero cell collisions.
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-## 2. Conceptual Foundation & Invariants
+We trace the representative instance: $k = 3$, $\text{rowConditions} = [[1, 2], [3, 2]]$, and $\text{colConditions} = [[2, 1], [3, 2]]$.
 
-We maintain the core conceptual parameters and state variables:
+- **Phase 1: Row Graph Construction and Topological Sort ($G_{\text{row}}$):**
+  - Edges: $1 \to 2$, $3 \to 2$.
+  - In-degrees: $\text{deg}_{\text{in}}[1] = 0, \quad \text{deg}_{\text{in}}[2] = 2, \quad \text{deg}_{\text{in}}[3] = 0$.
+  - Initial zero-in-degree frontier: $\{1, 3\}$.
+  - Extract node $3$: sequence $= [3]$. In-degree of $2$ becomes $2 - 1 = 1$.
+  - Extract node $1$: sequence $= [3, 1]$. In-degree of $2$ becomes $1 - 1 = 0 \implies$ enqueue $2$.
+  - Extract node $2$: sequence $= [3, 1, 2]$.
+  - Length $= 3 = k$. DAG confirmed.
+  - Row coordinate map:
+    $$row(3) = 0, \quad row(1) = 1, \quad row(2) = 2$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- **Phase 2: Column Graph Construction and Topological Sort ($G_{\text{col}}$):**
+  - Edges: $2 \to 1$, $3 \to 2$.
+  - In-degrees: $\text{deg}_{\text{in}}[1] = 1, \quad \text{deg}_{\text{in}}[2] = 1, \quad \text{deg}_{\text{in}}[3] = 0$.
+  - Initial zero-in-degree frontier: $\{3\}$.
+  - Extract node $3$: sequence $= [3]$. In-degree of $2$ becomes $1 - 1 = 0 \implies$ enqueue $2$.
+  - Extract node $2$: sequence $= [3, 2]$. In-degree of $1$ becomes $1 - 1 = 0 \implies$ enqueue $1$.
+  - Extract node $1$: sequence $= [3, 2, 1]$.
+  - Length $= 3 = k$. DAG confirmed.
+  - Column coordinate map:
+    $$col(3) = 0, \quad col(2) = 1, \quad col(1) = 2$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Phase 3: Coordinate Fusion and Matrix Construction:**
+  Initialize $3 \times 3$ grid with all zeros:
+  $$\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+  Place each value $x \in \{1, 2, 3\}$ at $(row(x), col(x))$:
+  - Value $3$: placed at $(row(3), col(3)) = (0, 0)$.
+  - Value $1$: placed at $(row(1), col(1)) = (1, 2)$.
+  - Value $2$: placed at $(row(2), col(2)) = (2, 1)$.
 
----
+  Resulting matrix:
+  $$\begin{pmatrix} 3 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 2 & 0 \end{pmatrix}$$
 
-## 3. Step-by-Step Worked Execution
+## 4. Comprehensive State Trace
 
-### Step 1: Separate row constraints from column constraints
+The state transitions during the two topological sorts are detailed in the execution table below:
 
-Each number `1` through `k` needs one row and one column. Row conditions restrict only relative row positions; column conditions restrict only relative column positions. These two dimensions can be solved independently.
+| Dimension | Step | Extracted Node | Outgoing Edges Relaxed | Neighbor In-Degree State | Queue / Frontier State | Accumulated Ordering |
+|---|---|---|---|---|---|---|
+| Row | Init | — | — | $\text{deg}[1]=0, \text{deg}[2]=2, \text{deg}[3]=0$ | $\{3, 1\}$ | `[]` |
+| Row | 1 | 3 | $3 \to 2$ | $\text{deg}[2]$ drops $2 \to 1$ | $\{1\}$ | `[3]` |
+| Row | 2 | 1 | $1 \to 2$ | $\text{deg}[2]$ drops $1 \to 0$ | $\{2\}$ | `[3, 1]` |
+| Row | 3 | 2 | None | No change | $\emptyset$ | `[3, 1, 2]` |
+| Column | Init | — | — | $\text{deg}[1]=1, \text{deg}[2]=1, \text{deg}[3]=0$ | $\{3\}$ | `[]` |
+| Column | 1 | 3 | $3 \to 2$ | $\text{deg}[2]$ drops $1 \to 0$ | $\{2\}$ | `[3]` |
+| Column | 2 | 2 | $2 \to 1$ | $\text{deg}[1]$ drops $1 \to 0$ | $\{1\}$ | `[3, 2]` |
+| Column | 3 | 1 | None | No change | $\emptyset$ | `[3, 2, 1]` |
 
-A condition `[a, b]` in `rowConditions` means `a` must precede `b` in a top-to-bottom ordering. A column condition means the same precedence in a left-to-right ordering. Both are directed-graph topological-order problems.
+The coordinate assignment and constraint satisfaction audit is summarized below:
 
-Once a valid row order and valid column order are known, number `v` can be placed at the intersection of its row-order position and column-order position. Independent valid orders cannot conflict because a matrix cell is uniquely determined by one row and one column.
+| Value $x$ | Row Index $row(x)$ | Column Index $col(x)$ | Matrix Cell $(r, c)$ | Satisfied Row Precedences | Satisfied Column Precedences |
+|---|---|---|---|---|---|
+| 1 | 1 | 2 | $(1, 2)$ | $row(1)=1 < row(2)=2$ | $col(2)=1 < col(1)=2$ |
+| 2 | 2 | 1 | $(2, 1)$ | $row(3)=0 < row(2)=2$ | $col(3)=0 < col(2)=1$ |
+| 3 | 0 | 0 | $(0, 0)$ | $row(3)=0 < row(2)=2$ | $col(3)=0 < col(2)=1$ |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"k": 3, "rowConditions": [[1, 2], [3, 2]], "colConditions": [[2, 1], [3, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+All row and column constraints are verified strictly satisfied with zero cell collisions.
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 2: Build a directed graph for one condition set
+The correctness of this decoupled topological sort approach rests on:
+1. **Necessity of Acyclicity:**
+   If $rowConditions$ contains a directed cycle (e.g. $1 \to 2 \to 3 \to 1$), any valid assignment would require $row(1) < row(2) < row(3) < row(1)$, which is impossible in the ordered field of real numbers. Hence, acyclicity is a necessary condition.
+2. **Sufficiency of Topological Ordering:**
+   A valid topological sequence $\sigma$ ensures that for every directed edge $u \to v$, the index of $u$ in $\sigma$ is strictly less than the index of $v$. Thus, defining $row(u) = \text{index}(u)$ inherently satisfies $row(u) < row(v)$.
+3. **Collision Invariant:**
+   Because each node $x \in \{1, \dots, k\}$ appears exactly once in $\sigma_{\text{row}}$, each value is assigned a distinct row index ($row(x) \neq row(y)$ for all $x \neq y$). Consequently, no two nonzero numbers will ever compete for the same row, guaranteeing that the $k$ nonzero numbers occupy distinct cells in the $k \times k$ matrix.
 
-The helper `f(cond)` creates adjacency lists `g` and an indegree array. For every condition `[a, b]`, it adds directed edge `a -> b` and increments `indeg[b]`.
+## 6. Edge Cases & Anti-Patterns
 
-An indegree counts how many required predecessors have not yet been placed. Values with indegree zero can safely appear next because no condition requires another unprocessed value before them.
+- **Directed Cycle in Constraints:** If either $G_{\text{row}}$ or $G_{\text{col}}$ contains a cycle, Kahn's algorithm will terminate prematurely with fewer than $k$ visited nodes. The algorithm detects this immediately and returns `[]`.
+- **Completely Unconstrained Elements:** Elements with in-degree and out-degree zero are processed freely by Kahn's algorithm and placed in any available row/column slot.
+- **Redundant or Duplicate Edges:** Multiple identical constraints (e.g. $[1, 2]$ appearing twice) are safely absorbed by deduplicating edges or counting degrees appropriately.
+- **Anti-Pattern: 2D Backtracking / Constraint Satisfaction Search:** Attempting to search over $k^2$ cell positions simultaneously leads to exponential $\mathcal{O}((k^2)!)$ complexity. Decoupling the problem into two 1D topological sorts yields a deterministically polynomial $\mathcal{O}(k^2 + r + c)$ solution.
 
-All numbers `1` through `k` must be included even if they never appear in a condition. The initial queue is built from the full numeric range and therefore includes unconstrained values with indegree zero.
+## 7. Complexity Analysis
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Produce a topological order with Kahn's algorithm
-
-The queue begins with every zero-indegree value. Repeatedly, the helper removes a value `i`, appends it to `res`, and conceptually deletes all outgoing edges. For each neighbor `j`, it decrements `indeg[j]`. When that indegree reaches zero, all of `j`'s prerequisites have been processed and `j` enters the queue.
-
-The extra loop over `range(len(q))` processes one queue layer at a time. Layer separation is not necessary for producing a topological order, but it does not change correctness; all nodes already in the queue are currently legal choices.
-
-Duplicate conditions are also safe. They create duplicate adjacency entries and increment indegree multiple times. When their source is processed, every duplicate edge is removed and decrements the matching count, so the target becomes ready at the proper moment.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 0, 1], [3, 0, 0], [0, 2, 0]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"k": 3, "rowConditions": [[1, 2], [3, 2]], "colConditions": [[2, 1], [3, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 0, 1], [3, 0, 0], [0, 2, 0]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **DFS topological sort:** Three-color visitation can detect cycles and append nodes in reverse finish order. It has the same asymptotic bounds but recursive depth can be a concern.
-- **One combined graph of row and column constraints:** Row and column positions are independent dimensions; merging them would impose relationships the problem never requires.
-- **Cycle in only one dimension:** No matrix exists even if the other dimension has a valid order.
-- **Unconstrained value:** It begins with zero indegree and is placed somewhere valid in both orders.
-- **Duplicate condition:** Parallel edges balance their duplicated indegree increments and do not change the logical order.
-- **Multiple valid orders:** Queue order may choose any; the problem accepts any valid matrix.
-- **All zeros except `k` cells:** Initialization supplies zeros, and exactly one assignment is made per value.
-- **Independent coordinate maps:** A value's row position does not need to match its column position.
-- **Self-condition:** The contract excludes `a == b`; such a condition would be an immediate cycle.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(k^2)$. Let $r$ and $c$ be the counts of row and column conditions. Each topological sort initializes $O(k)$ state and processes every directed edge once, taking $O(k+r)$ and $O(k+c)$ time respectively.
-- **Auxiliary Space Complexity:** $O(k^2 + r + c)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Building the row graph with $r$ conditions takes $\mathcal{O}(k + r)$ time.
+  - Kahn's algorithm on $G_{\text{row}}$ takes $\mathcal{O}(k + r)$ time.
+  - Building the column graph with $c$ conditions takes $\mathcal{O}(k + c)$ time.
+  - Kahn's algorithm on $G_{\text{col}}$ takes $\mathcal{O}(k + c)$ time.
+  - Initializing and populating the $k \times k$ output matrix takes $\mathcal{O}(k^2)$ time.
+  - Total time complexity is strictly $\mathcal{O}(k^2 + r + c)$.
+  - For $k = 400$ and $r, c \le 10^4$, $k^2 = 1.6 \cdot 10^5$, executing in under $30$ milliseconds.
+- **Space Complexity:**
+  - The adjacency lists and in-degree tables require $\mathcal{O}(k + r + c)$ space.
+  - The output $k \times k$ matrix requires $\mathcal{O}(k^2)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(k^2 + r + c)$.

@@ -1,110 +1,206 @@
 # Guided Example: Encode and Decode TinyURL
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step monotonic auto-increment ID generation ($idx \leftarrow idx + 1$), string-key hash map registration ($m[key] = longUrl$), domain prefix encapsulation ($\text{domain} + key$), URL path token parsing ($shortUrl.split(\text{'/'})[-1]$), and loss-free $O(1)$ round-trip decoding on representative web addresses:
 
-- **Input:** `{"long_urls": ["https://leetcode.com/problems/design-tinyurl"], "decode_order": [0]}`
-- **Required output:** `{"short_urls": ["https://tinyurl.com/0"], "decoded_urls": ["https://leetcode.com/problems/design-tinyurl"]}`
+- **Input:**
+  - Original long URL:
+    $$
+    longUrl = \text{"https://leetcode.com/problems/design-tinyurl"}
+    $$
+  - Service domain prefix:
+    $$
+    \text{domain} = \text{"https://tinyurl.com/"}
+    $$
+- **Required behavior:**
+  - `encode(longUrl)` produces a shortened URL.
+  - `decode(shortUrl)` restores the exact original $longUrl$.
+- **Codec Encoding & Decoding Trace:**
+  - Maintain service state:
+    - Counter: $idx = 0$
+    - Lookup directory: $m = \{\}$
+  - **Encoding Request (`encode`):**
+    - Advance global sequence counter:
+      $$
+      idx \leftarrow 0 + 1 = \mathbf{1}
+      $$
+    - Store mapping in directory under key `"1"`:
+      $$
+      m[\text{"1"}] = \text{"https://leetcode.com/problems/design-tinyurl"}
+      $$
+    - Construct formatted short URL:
+      $$
+      shortUrl = \text{"https://tinyurl.com/"} + \text{"1"} = \mathbf{\text{"https://tinyurl.com/1"}}
+      $$
+    - Emitted short URL length: 22 characters (much shorter than original 44 characters).
+  - **Decoding Request (`decode`):**
+    - Input: $shortUrl = \text{"https://tinyurl.com/1"}$
+    - Extract identification token:
+      - Split path by forward slashes `/`: `["https:", "", "tinyurl.com", "1"]`.
+      - Terminal segment:
+        $$
+        key = \text{"1"}
+        $$
+    - Hash map query:
+      $$
+      longUrl = m[\text{"1"}] = \mathbf{\text{"https://leetcode.com/problems/design-tinyurl"}}
+      $$
+    - Decoded string matches original URL with $100\%$ fidelity!
+- **Multi-URL Conflict-Free Instance:**
+  - URL A (`"https://example.com/a"`): assigned key `"1"` $\implies$ `"https://tinyurl.com/1"`.
+  - URL B (`"https://example.com/b"`): assigned key `"2"` $\implies$ `"https://tinyurl.com/2"`.
+  - Decoding in reverse order (URL 2 then URL 1) correctly resolves to URL B and URL A respectively.
+- **Identical Repeated URLs:**
+  - Each call to `encode` issues a unique sequence key, guaranteeing distinct short URLs that each resolve back to the correct original address.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bijective stateful key-value tokenization, mathematically proves why sequential primary keys guarantee collision-free URL shortening, and derives $O(1)$ amortized encode/decode runtime and $O(N \cdot L)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-<blockquote>Note: This is a companion problem to the <a href="https://leetcode.com/discuss/interview-question/system-design/" target="_blank">System Design</a> problem: <a href="https://leetcode.com/discuss/interview-question/124658/Design-a-URL-Shortener-(-TinyURL-)-System/" target="_blank">Design TinyURL</a>.</blockquote>
+TinyURL is a URL shortening service:
+Implement a class `Codec` supporting:
+- `encode(longUrl)`: Encodes a URL to a shortened URL.
+- `decode(shortUrl)`: Decodes a shortened URL back to its original URL.
+Guarantee that `decode(encode(url)) == url`.
 
-The objective is to compute `{"short_urls": ["https://tinyurl.com/0"], "decoded_urls": ["https://leetcode.com/problems/design-tinyurl"]}` from `{"long_urls": ["https://leetcode.com/problems/design-tinyurl"], "decode_order": [0]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: "https://leetcode.com/problems/design-tinyurl"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Encode:
+  Counter idx = 1
+  Directory: {"1": "https://leetcode.com/problems/design-tinyurl"}
+  Return: "https://tinyurl.com/1"
+
+Decode("https://tinyurl.com/1"):
+  Extract key "1"
+  Lookup in directory -> "https://leetcode.com/problems/design-tinyurl"
+```
+
+### The System Design Trade-Offs
+How should the short URL key be generated?
+1. **Hash Functions (MD5 / SHA-256):**
+   Produces a 128-bit hash, truncated to 6 characters (e.g. Base62). Requires handling hash collisions.
+2. **Random Base62 Strings:**
+   Generate random 6-character strings (`[a-zA-Z0-9]`). Requires retry logic if the random key is already taken.
+3. **Monotonic Sequence Counter:**
+   Increment an integer ID ($1, 2, 3, \dots$).
+   - Completely collision-free.
+   - Guaranteed unique keys.
+   - Constant $O(1)$ time with zero retries.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. State Maintenance:
+The `Codec` instance maintains:
+- $idx$: an integer counter, initialized to 0.
+- $m$: a hash map mapping string key $\to$ string original URL.
+- $domain$: base string prefix `"https://tinyurl.com/"`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Encoding Operation:
+1. $idx \leftarrow idx + 1$.
+2. Key: $k = \text{str}(idx)$.
+3. Record: $m[k] = longUrl$.
+4. Return: $domain + k$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Decoding Operation:
+1. Parse terminal token:
+   $$
+   k = shortUrl.\text{split}(\text{'/'})[-1]
+   $$
+2. Retrieve original URL from hash map:
+   $$
+   \text{Return } m[k]
+   $$
+
+> **Bijective Round-Trip Invariant.** Because every call to `encode` increments $idx$, each generated key is globally unique in $m$, guaranteeing that $decode(encode(u)) \equiv u$ holds for all URLs $u$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The contract requires a reversible mapping created and used by the same object. It does not require the short code to be derived from the long URL, so the solution assigns each encoded URL a new increasing integer identifier and stores the association in memory.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"long_urls": ["https://leetcode.com/problems/design-tinyurl"], "decode_order": [0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace two URLs:
+$U_1 = \text{"https://example.com/alpha"}$
+$U_2 = \text{"https://example.com/beta"}$
 
 ---
 
-### Step 2: Core Step 3
-
-- `idx` is the number assigned most recently, starting at zero;
-- `m` maps an identifier string to its original long URL;
-- `domain` is the fixed prefix `"https://tinyurl.com/"`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Codec
+- $idx = 0$
+- $m = \{\}$
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Encode $U_1$
+- $idx \leftarrow 0 + 1 = 1$.
+- Key: `"1"`.
+- Store: $m[\text{"1"}] = \text{"https://example.com/alpha"}$.
+- Return:
+  $$
+  S_1 = \mathbf{\text{"https://tinyurl.com/1"}}
+  $$
 
-**Encode with a fresh identifier.** Each call to `encode` first increments `idx`. Therefore the first call receives identifier one, the next receives two, and so on.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"short_urls": ["https://tinyurl.com/0"], "decoded_urls": ["https://leetcode.com/problems/design-tinyurl"]}` |
+### Step 3: Encode $U_2$
+- $idx \leftarrow 1 + 1 = 2$.
+- Key: `"2"`.
+- Store: $m[\text{"2"}] = \text{"https://example.com/beta"}$.
+- Return:
+  $$
+  S_2 = \mathbf{\text{"https://tinyurl.com/2"}}
+  $$
+
+---
+
+### Step 4: Decode $S_2$
+- Extract key: `"https://tinyurl.com/2"`.split('/')[-1] $\implies$ `"2"`.
+- Query: $m[\text{"2"}] = \mathbf{\text{"https://example.com/beta"}}$.
+
+---
+
+### Step 5: Decode $S_1$
+- Extract key: `"1"`.
+- Query: $m[\text{"1"}] = \mathbf{\text{"https://example.com/alpha"}}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"long_urls": ["https://leetcode.com/problems/design-tinyurl"], "decode_order": [0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"short_urls": ["https://tinyurl.com/0"], "decoded_urls": ["https://leetcode.com/problems/design-tinyurl"]}` | Verified |
+| Call | Input Argument | Internal $idx$ | Hash Map State $m$ | Emitted Return Value |
+|:---:|:---:|:---:|:---:|:---:|
+| `__init__()` | — | $0$ | $\{\}$ | `Codec instance` |
+| `encode(U1)` | `"https://example.com/alpha"` | $1$ | `{"1": U1}` | **`"https://tinyurl.com/1"`** |
+| `encode(U2)` | `"https://example.com/beta"` | $2$ | `{"1": U1, "2": U2}` | **`"https://tinyurl.com/2"`** |
+| `decode(S2)` | `"https://tinyurl.com/2"` | $2$ | Unchanged | **`"https://example.com/beta"`** |
+| `decode(S1)` | `"https://tinyurl.com/1"` | $2$ | Unchanged | **`"https://example.com/alpha"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Very Long URLs ($> 1000$ characters):** Stored directly in hash map without truncation.
+- **Short Original URLs:** Short original URLs are still shortened or preserved faithfully.
+- **URLs with Complex Query Parameters (`?a=1&b=2#section`):** Treated as opaque string values, preserved completely during storage and retrieval.
+- **High Volume Calls ($10^6$ calls):** String representation of integer IDs scales gracefully (`"1000000"` is 7 characters).
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Random fixed-length code:** It hides sequential counts but must detect and retry collisions before storing a mapping.
-- **Hash-derived code:** It is deterministic from the URL but still needs collision resolution because different URLs can share a hash.
-- **Base-62 counter encoding:** It shortens large numeric identifiers while preserving collision-free sequential assignment.
-- **Reverse URL map:** It can make repeated encoding of the same long URL return the same short URL, but consumes additional storage.
-- **Repeated long URL:** This implementation assigns a fresh key each time; both keys decode correctly.
-- **Long URL containing slashes:** It is stored only as a dictionary value, so its internal slashes do not affect suffix extraction.
-- **First encode:** Increment-before-use assigns identifier one rather than zero.
-- **Many encode calls:** Integer identifiers remain unique; Python integers do not overflow.
-- **Decode before encode or foreign short URL:** The contract excludes these cases; ordinary dictionary lookup would raise an error.
-- **Same-object guarantee:** It is essential because mappings are held only in instance memory.
-- **Process restart:** No persistence is implemented, which is acceptable for this in-memory problem contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Stateless Mathematical Compression:** Attempting to compress arbitrary URLs into tiny strings without database storage is mathematically impossible due to the Pigeonhole Principle (the set of long strings is vastly larger than the set of short strings). State storage via a database or hash map is required.
+- **Parsing the Key with Inflexible String Slicing:** Hardcoding slice index (e.g. `shortUrl[19:]`) breaks if the domain scheme changes from `http` to `https`. Using `.split('/')[-1]` reliably extracts the trailing path token.
+- **Overwriting Duplicate URLs Without Bi-Directional Indexing:** If multiple calls are made with the same URL, giving them new sequential IDs works seamlessly. If sharing IDs is desired, a reverse map `long_to_short` can be added.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let $L$ be the long URL length, $T$ the generated short URL length, and $C$ the number of encode calls stored in this object. Dictionary insertion and lookup are expected $O(1)$ with respect to entry count, while creating strings and splitting text costs time proportional to the involved string length.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `encode(longUrl)`: Incrementing an integer and inserting into a hash map takes $\mathcal{O}(L)$ time where $L$ is the length of the URL (for string hashing).
+  - `decode(shortUrl)`: String splitting and hash map lookup takes $\mathcal{O}(L)$ time.
+  - Total Time: strictly $\mathcal{O}(1)$ operations relative to the number of stored URLs, proportional only to string length.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N \cdot L)$ space to store $N$ URLs in the hash map.

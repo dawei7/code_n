@@ -1,127 +1,132 @@
 # Guided Example: Truncate Sentence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction of a prefix sentence through word tokenization and delimiter boundary identification on a representative problem instance:
 
-- **Input:** `{"s": "Hello how are you Contestant", "k": 4}`
-- **Required output:** `"Hello how are you"`
+- **Input:** `s = "Hello how are you Contestant"`, `k = 4`
+- **Required Output:** `"Hello how are you"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how single-space delimiters demarcate word boundaries and how preserving the first $k$ words reconstructs the canonical truncated sentence.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **sentence** is a list of words that are separated by a single space with no leading or trailing spaces. Each of the words consists of **only** uppercase and lowercase English letters (no punctuation).
+We are given a sentence `s` where words are separated by exactly one space, with no leading or trailing spaces. Each word consists exclusively of uppercase and lowercase English letters. We are also given an integer $k$.
+We must truncate `s` such that it contains only the first $k$ words, separated by single spaces.
 
-The objective is to compute `"Hello how are you"` from `{"s": "Hello how are you Contestant", "k": 4}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `s = "Hello how are you Contestant"`
+- $k = 4$
+- The sentence contains $5$ words: `"Hello"`, `"how"`, `"are"`, `"you"`, `"Contestant"`.
+- Taking the first $4$ words yields `"Hello"`, `"how"`, `"are"`, `"you"`.
+- Rejoining them with single spaces produces `"Hello how are you"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to observe the exact correspondence between word count and space delimiters: in a valid single-spaced sentence with $n$ words, the first $k$ words ($k < n$) end immediately before the $k$-th space character. Both space-counting character scans and word-level list slicing yield identical results in linear time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Word Delimiters & Index Invariant
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $W = [w_0, w_1, \dots, w_{n-1}]$ denote the sequence of words in `s`, where each word $w_i$ is a maximal non-empty substring of alphabetic characters.
+Because words are separated by single spaces, the character representation of `s` is:
+$$s = w_0 \mathbin{\Vert} \text{' '} \mathbin{\Vert} w_1 \mathbin{\Vert} \text{' '} \mathbin{\Vert} \dots \mathbin{\Vert} \text{' '} \mathbin{\Vert} w_{n-1}$$
+where $\Vert$ denotes string concatenation.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Word-Boundary Delimiter & Prefix Conservation Theorem
+
+> **Word-Boundary Delimiter & Prefix Conservation Theorem.**
+> Let sentence $s$ contain $n$ words separated by single spaces without leading or trailing spaces.
+> 1. If $k = n$, the truncated sentence is identical to the entire input string $s$.
+> 2. If $k < n$, exactly $k - 1$ spaces occur within the first $k$ words, and the $k$-th space in $s$ occurs at index $p_k$. The prefix substring $s[0 \dots p_k - 1]$ consists of precisely the first $k$ words separated by single spaces.
+> 3. Equivalently, tokenizing $s$ into words $W$ and taking the prefix sub-array $W[0 \dots k-1]$ followed by concatenation with single spaces reconstructs $s[0 \dots p_k - 1]$.
+
+```mermaid
+flowchart LR
+    accTitle: Word Truncation Flow
+    accDescr: Diagram illustrating scanning sentence s, identifying the first k words, and joining them with single spaces.
+    A["Input: 'Hello how are you Contestant', k = 4"] --> B["Tokenize into words: ['Hello', 'how', 'are', 'you', 'Contestant']"]
+    B --> C["Select first k = 4 tokens: ['Hello', 'how', 'are', 'you']"]
+    C --> D["Join with single spaces: 'Hello how are you'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the sentence as words, not as arbitrary characters
-
-The required result consists of the first $k$ complete words with exactly one space between adjacent words. The protected solution performs three direct transformations:
-
-1. `s.split()` converts the sentence into a list of words;
-2. `[:k]` keeps its first $k$ entries;
-3. `' '.join(...)` reconstructs those words as a sentence.
-
-The input format guarantees that words are already separated by one space with no leading or trailing spaces. Therefore splitting loses no meaningful formatting and returns exactly the semantic word sequence.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "Hello how are you Contestant", "k": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "Hello how are you Contestant"` with $k = 4$.
 
 ---
 
-### Step 2: How `split()` identifies the words
+### Step 1: Tokenize the Sentence
 
-Calling `split()` without an explicit separator treats runs of whitespace as separators and omits empty tokens. On valid input there is exactly one ordinary space between words, so the result is simply the list described by the problem.
+Scan the string to segment characters by whitespace:
+- Word $0$: `"Hello"` (indices $0 \dots 4$)
+- Space delimiter at index $5$
+- Word $1$: `"how"` (indices $6 \dots 8$)
+- Space delimiter at index $9$
+- Word $2$: `"are"` (indices $10 \dots 12$)
+- Space delimiter at index $13$
+- Word $3$: `"you"` (indices $14 \dots 16$)
+- Space delimiter at index $17$
+- Word $4$: `"Contestant"` (indices $18 \dots 27$)
 
-For `"Hello how are you Contestant"`, the list is:
-
-`["Hello", "how", "are", "you", "Contestant"]`.
-
-No punctuation handling is needed because every word contains only English letters.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Total word count $n = 5$.
 
 ---
 
-### Step 3: Why slicing produces exactly the required prefix
+### Step 2: Slice the Word List to Length $k$
 
-Python slice `words[:k]` includes indices zero through $k-1$ and excludes index $k$. Those are precisely the first $k$ words.
+We require the first $k = 4$ words:
+- Kept words: $W[0 \dots 3] = [\text{"Hello"}, \text{"how"}, \text{"are"}, \text{"you"}]$
+- Discarded words: $W[4 \dots 4] = [\text{"Contestant"}]$
 
-The constraint guarantees $1\leq k\leq$ the number of words. Thus the slice is nonempty and never needs special handling for a request beyond the sentence.
+---
 
-Slicing also does not modify the original word list; it creates a new list containing references to the selected words.
+### Step 3: Reconstruct Truncated Sentence
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Hello how are you"` |
+Join the selected word list with single spaces:
+- Start with $w_0 = \text{"Hello"}$
+- Append `' '` and $w_1 = \text{"how"} \implies \text{"Hello how"}$
+- Append `' '` and $w_2 = \text{"are"} \implies \text{"Hello how are"}$
+- Append `' '` and $w_3 = \text{"you"} \implies \text{"Hello how are you"}$
+
+Result string: `"Hello how are you"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "Hello how are you Contestant", "k": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Hello how are you"` | Verified |
+| Word Index | Word Token | Running Word Count | Retained for Prefix ($< k$)? | Truncated Sentence Accumulator |
+|:---:|:---:|:---:|:---:|:---|
+| $0$ | `"Hello"` | $1$ | Yes | `"Hello"` |
+| $1$ | `"how"` | $2$ | Yes | `"Hello how"` |
+| $2$ | `"are"` | $3$ | Yes | `"Hello how are"` |
+| $3$ | `"you"` | $4$ | Yes | `"Hello how are you"` |
+| $4$ | `"Contestant"` | $5$ | No (Discarded) | `"Hello how are you"` |
+
+Final output: **`"Hello how are you"`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because the input guarantee specifies that every space separates two words and there are no consecutive, leading, or trailing spaces, each word boundary is unambiguous. Retaining the first $k$ words and joining them with single spaces preserves the exact spelling, case, and spacing of the prefix sentence.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every word in the input sentence is accounted for in order. Stopping the selection after exactly $k$ words guarantees that the output satisfies the size constraint without omitting any required word.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Scan for the `k`th space:** Return the prefix ending before that separator, using less temporary word-list storage.
-- **Build words manually:** It duplicates behavior already provided reliably by `split` and `join`.
-- **Character-count truncation:** It is incorrect because words have different lengths and may be cut in the middle.
-- **Regular expression tokenization:** It adds machinery without improving the guaranteed simple format.
-- **`k = 1`:** The slice keeps only the first word, and join adds no spaces.
-- **`k` equals total words:** The complete sentence is reconstructed unchanged.
-- **One-word sentence:** The only valid `k` is one, so the same word is returned.
-- **Mixed letter case:** Words are preserved exactly; no normalization occurs.
-- **Single-space guarantee:** Tokenization matches the source boundaries exactly.
-- **No leading spaces:** The output naturally begins with the first letter.
-- **No trailing spaces:** `join` never appends one.
-- **No punctuation:** There is no ambiguity about punctuation attached to a word.
-- **Valid `k` range:** No error or padding behavior for excessive `k` is required.
-- **Input immutability:** Strings are immutable, and the method produces a new result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Punctuation Assumptions:** The problem statement specifies that words consist solely of uppercase and lowercase English letters without punctuation marks. Splitting on whitespace does not risk leaving attached commas or periods.
+- **Whole Sentence Retention:** When $k = n$, no words should be dropped, and no trailing space should be introduced.
+- **In-Place Character Scan Optimization:** If tokenizing into an intermediate array of strings is undesirable, a character scan that counts space characters up to $k$ and slices $s[0 \dots p_k - 1]$ achieves $\mathcal{O}(1)$ auxiliary space without list allocation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the character length of `s`. Splitting scans all $n$ characters and creates word strings/list entries. Slicing copies at most all word references, and joining writes at most $n$ output characters. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(L)$, where $L$ is the length of string $s$. Splitting the string examines each of the $L$ characters once. Slicing and joining the first $k$ words takes time proportional to the length of the truncated string, which is at most $L$. Total time is linear $\mathcal{O}(L)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(L)$ to store the array of word tokens and the returned truncated string.

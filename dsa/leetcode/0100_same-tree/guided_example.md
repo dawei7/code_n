@@ -1,89 +1,139 @@
 # Guided Example: Same Tree
 
-We trace the hierarchical Tree, Depth-First Search, Breadth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step dual-tree simultaneous structural and value equivalence recursion on representative matching and mismatching binary trees:
 
-- **Input:** `{"p": [1, 2, 3], "q": [1, 2, 3]}`
-- **Required output:** `true`
+- **Matching Identical Trees:** $p = [1, 2, 3], q = [1, 2, 3] \implies \text{True}$
+- **Structural Mismatch Trap:** $p = [1, 2], q = [1, \text{null}, 2] \implies \text{False}$
+- **Value Mismatch Trap:** $p = [1, 2, 1], q = [1, 1, 2] \implies \text{False}$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates recursive lockstep DFS on dual binary trees, checking base identity conditions ($p = q = \emptyset$), catching asymmetrical null structures, comparing scalar node values, and short-circuiting on the first discrepancy in $O(\min(N, M))$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Same Tree** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given the roots of two binary trees $p$ and $q$, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are:
+1. **Structurally identical:** every node in $p$ has a corresponding child structure in $q$.
+2. **Value equivalent:** all corresponding nodes have equal values ($p.\text{val} == q.\text{val}$).
+
+Consider three distinct scenarios:
+- **Case 1 (Identical):**
+  $p = (1 \to (2, 3)), \quad q = (1 \to (2, 3)) \implies \text{True}$.
+- **Case 2 (Structural Mismatch):**
+  In $p$, node $2$ is the **left** child of $1$.
+  In $q$, node $2$ is the **right** child of $1$.
+  Even though their values are identical ($\{1, 2\}$), their topologies differ $\implies \text{False}$.
+- **Case 3 (Value Mismatch):**
+  Both trees have identical topology $1 \to (L, R)$, but $p$ has $(2, 1)$ while $q$ has $(1, 2) \implies \text{False}$.
+
+A naive approach serializing trees to strings must preserve null markers; otherwise $[1, 2]$ and $[1, \text{null}, 2]$ produce identical preorder sequences (`"1, 2"`).
+A recursive lockstep traversal tests both structure and values simultaneously without serialization overhead.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Dual-Tree Lockstep DFS Protocol
+We define $\text{isSameTree}(p, q)$:
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+1. **Both Null Base Case:**
+   If $p == \emptyset$ and $q == \emptyset$:
+   - Both subtrees are empty $\implies$ return $\text{True}$.
+2. **Asymmetric Null Discrepancy:**
+   If $p == \emptyset$ or $q == \emptyset$:
+   - Exactly one node is null while the other exists $\implies$ structural mismatch!
+   - Return $\text{False}$.
+3. **Value Equality Check:**
+   If $p.\text{val} \ne q.\text{val}$:
+   - Values differ $\implies$ return $\text{False}$.
+4. **Recursive Lockstep Conjunction:**
+   Both current nodes match. Recurse on both left children and both right children:
+   $$
+   \text{isSameTree}(p.\text{left}, \, q.\text{left}) \land \text{isSameTree}(p.\text{right}, \, q.\text{right})
+   $$
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** A call $\text{isSameTree}(p, q)$ returns true if and only if the subtrees rooted at $p$ and $q$ are isomorphic in shape and identical in node values.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace $p = [1, 2, 3]$ and $q = [1, 2, 3]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: Compare Roots $p_1$ and $q_1$
+- Neither is null: $p = \text{Node}(1), q = \text{Node}(1)$.
+- Compare values: $p.\text{val} = 1 == q.\text{val} = 1$. Match!
+- Recurse left: $\text{isSameTree}(p.\text{left}, q.\text{left})$.
+- Recurse right: $\text{isSameTree}(p.\text{right}, q.\text{right})$.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: Compare Left Children ($p_2$ vs $q_2$)
+- Neither is null: $p = \text{Node}(2), q = \text{Node}(2)$.
+- Compare values: $2 == 2$. Match!
+- Children of Node 2:
+  - Both left children are null $\implies \text{isSameTree}(\emptyset, \emptyset) = \text{True}$.
+  - Both right children are null $\implies \text{isSameTree}(\emptyset, \emptyset) = \text{True}$.
+- Left subtree conjunction: $\text{True} \land \text{True} = \text{True}$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 3: Compare Right Children ($p_3$ vs $q_3$)
+- Neither is null: $p = \text{Node}(3), q = \text{Node}(3)$.
+- Compare values: $3 == 3$. Match!
+- Children of Node 3:
+  - Both left children null $\implies \text{True}$.
+  - Both right children null $\implies \text{True}$.
+- Right subtree conjunction: $\text{True} \land \text{True} = \text{True}$.
+
+---
+
+### Step 4: Final Conjunction
+- Root conjunction: $\text{LeftResult} \land \text{RightResult} = \text{True} \land \text{True} = \mathbf{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+### Lockstep Comparison Matrix
+
+| Step | Pair $(p, q)$ Evaluated | Null Status | Values Compared | Subtree Match Verdict | Action |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(p_1, q_1)$ | Both non-null | $1 == 1$ (Equal) | Pending children | Recurse Left & Right |
+| 2 | $(p_2, q_2)$ | Both non-null | $2 == 2$ (Equal) | Pending leaves | Recurse Left & Right |
+| 2.1 | $(p_2.\text{left}, q_2.\text{left})$ | Both null | - | **True** | Base leaf return |
+| 2.2 | $(p_2.\text{right}, q_2.\text{right})$ | Both null | - | **True** | Base leaf return |
+| 3 | $(p_3, q_3)$ | Both non-null | $3 == 3$ (Equal) | Pending leaves | Recurse Left & Right |
+| 3.1 | $(p_3.\text{left}, q_3.\text{left})$ | Both null | - | **True** | Base leaf return |
+| 3.2 | $(p_3.\text{right}, q_3.\text{right})$ | Both null | - | **True** | Base leaf return |
+| Final | Root Conjunction | - | - | $\text{True} \land \text{True}$ | **Return True** |
+
+### Structural Mismatch Trace ($p = [1, 2], q = [1, \text{null}, 2]$)
+- Step 1: Root $1 == 1$.
+- Step 2: Compare left children: $p.\text{left} = \text{Node}(2)$, but $q.\text{left} = \emptyset$.
+- Condition: Exactly one is null!
+- **Early Return:** Returns $\text{False}$ immediately without visiting right subtrees.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** A tree is defined inductively by its root and its left and right subtrees. If the roots match in value and both subtrees are inductively identical, the entire trees are identical. If at any point values differ or a node exists in one tree but not the other, the inductive condition fails.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Lockstep traversal visits every corresponding pair of nodes in preorder until all nodes are confirmed identical or a discrepancy triggers an early return.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Order of Null Checks:** Checking `p.val == q.val` before checking whether `p` or `q` is null causes an immediate `AttributeError` / `NullPointerException`. The dual null check `not p and not q` must precede any attribute access.
+- **Asymmetric Null Check:** Using `if not p and not q: return True` followed by `if not p or not q: return False` cleanly catches the case where one node exists and the other is null.
+- **Serialization Traps:** Serializing trees into strings without explicit null indicators confuses left vs right skew trees (e.g. $[1, 2]$ vs $[1, \text{null}, 2]$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(\min(N, M))$, where $N$ and $M$ are the node counts of $p$ and $q$. If the trees match, it visits all $N = M$ nodes. If they differ, it terminates at the first structural or value mismatch.
+- **Auxiliary Space Complexity:** $O(\min(H_p, H_q))$, where $H$ is the tree height, representing the recursion stack depth.

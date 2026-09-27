@@ -1,126 +1,200 @@
 # Guided Example: Page Recommendations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of a relational query generating social network page recommendations on a representative problem instance:
 
-- **Input:** `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 6, "user2_id": 1}], "Likes": [{"user_id": 1, "page_id": 88}, {"user_id": 2, "page_id": 23}, {"user_id": 3, "page_id": 24}, {"user_id": 4, "page_id": 56}, {"user_id": 5, "page_id": 11}, {"user_id": 6, "page_id": 33}, {"user_id": 2, "page_id": 77}, {"user_id": 3, "page_id": 77}, {"user_id": 6, "page_id": 88}]}}`
-- **Required output:** `{"columns": ["recommended_page"], "rows": [[23], [24], [56], [33], [77]]}`
+- **Input:**
+  - `Friendship` table containing undirected edges between pairs of users.
+  - `Likes` table recording which pages each user has liked.
+  - User target: `user_id = 1`.
+- **Sample Data:**
+  - `Friendship`:
+    $$
+    (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (2, 5), (6, 1)
+    $$
+  - `Likes`:
+    $$
+    (1, 88), (2, 23), (3, 24), (4, 56), (5, 11), (6, 33), (2, 77), (3, 77), (6, 88)
+    $$
+- **Required Output:**
+  ```text
+  recommended_page: [23, 24, 33, 56, 77]
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates symmetric edge unpivoting in relational tables, set projection across intermediate joins, deduplication, and anti-join filtering.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Friendship`
+In social graphs, friendship is inherently bidirectional (symmetric). A relationship record $(u_1, u_2)$ means that $u_1$ is friends with $u_2$, and $u_2$ is friends with $u_1$. However, relational storage often normalizes this by storing each pair only once, with $u_1 < u_2$ or in arbitrary insertion order.
 
-The objective is to compute `{"columns": ["recommended_page"], "rows": [[23], [24], [56], [33], [77]]}` from `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 6, "user2_id": 1}], "Likes": [{"user_id": 1, "page_id": 88}, {"user_id": 2, "page_id": 23}, {"user_id": 3, "page_id": 24}, {"user_id": 4, "page_id": 56}, {"user_id": 5, "page_id": 11}, {"user_id": 6, "page_id": 33}, {"user_id": 2, "page_id": 77}, {"user_id": 3, "page_id": 77}, {"user_id": 6, "page_id": 88}]}}` while avoiding redundant calculations and unnecessary overhead.
+For target user $1$:
+1. Some friends appear in column `user2_id` where `user1_id = 1` (users $2, 3, 4$).
+2. Other friends appear in column `user1_id` where `user2_id = 1` (user $6$).
+3. Users who are friends with user $2$ (such as user $5$) are second-degree connections, not immediate friends of user $1$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Friends of User 1:
+   User 1 <───> User 2  (likes: 23, 77)
+   User 1 <───> User 3  (likes: 24, 77)
+   User 1 <───> User 4  (likes: 56)
+   User 6 <───> User 1  (likes: 33, 88)
+
+Pages Liked by Friends: {23, 24, 33, 56, 77, 88}
+Pages Liked by User 1:  {88}
+Recommended Difference: {23, 24, 33, 56, 77}
+```
+
+The teaching goal is to express the multi-step relational pipeline: unpivot symmetric friendship links, join against page likes, prune pages already liked by user $1$, and deduplicate the result set.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $F \subseteq U \times U$ denote the symmetric friendship relation, and $L \subseteq U \times P$ denote the user-to-page liking relation.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Relational Transformations
+1. **Neighborhood Extraction (Symmetric Union):**
+   The set of direct friends $\mathcal{N}(1)$ is the union of endpoints connected to user $1$:
+   $$
+   \mathcal{N}(1) = \{ u_2 \mid (1, u_2) \in \text{Friendship} \} \cup \{ u_1 \mid (u_1, 1) \in \text{Friendship} \}
+   $$
+2. **Candidate Expansion (Natural Join):**
+   Join the friends set $\mathcal{N}(1)$ with `Likes` on matching `user_id` to obtain all pairs $(u, p)$ where $u \in \mathcal{N}(1)$ and $(u, p) \in L$. Project onto the page attribute:
+   $$
+   \mathcal{P}_{\text{friends}} = \{ p \mid \exists u \in \mathcal{N}(1), \; (u, p) \in L \}
+   $$
+3. **Anti-Join / Set Difference:**
+   Target user $1$ has already liked pages $\mathcal{P}_{\text{self}} = \{ p \mid (1, p) \in L \}$.
+   A page is recommended if and only if it was liked by at least one friend and not liked by user $1$:
+   $$
+   \mathcal{R} = \mathcal{P}_{\text{friends}} \setminus \mathcal{P}_{\text{self}}
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Stage | Input Relation | Relational Operation | Output Invariant |
+|---|---|---|---|
+| 1. Friends Extraction | `Friendship` | Filter $u_1 = 1 \lor u_2 = 1$, project other endpoint | Complete set of 1st-degree friends $\mathcal{N}(1)$ |
+| 2. Self-Likes Extraction | `Likes` | Filter $u = 1$, project `page_id` | Pages already consumed by user $1$ |
+| 3. Candidate Pages | $\mathcal{N}(1) \bowtie \text{Likes}$ | Equi-join on `user_id`, project `page_id` | All pages liked by any friend |
+| 4. Final Recommendation | Candidates $\setminus$ Self-Likes | Set difference, distinct projection | Novel recommended pages |
+
+> **Novelty Invariant.** Every page in the final recommendation set $\mathcal{R}$ must have at least one endorsement from $\mathcal{N}(1)$ and exactly zero endorsements from user $1$.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Page Recommendation Data Flow
+    accDescr: Pipeline showing friendship filtering, joining with likes, and excluding self-liked pages.
+    F["Friendship Table"] --> F1["Filter user1_id = 1 -> user2_id: {2, 3, 4}"]
+    F --> F2["Filter user2_id = 1 -> user1_id: {6}"]
+    F1 --> UN["Union: Friends N(1) = {2, 3, 4, 6}"]
+    F2 --> UN
+    UN --> JN["Join with Likes on user_id"]
+    L["Likes Table"] --> JN
+    L --> SL["Filter user_id = 1 -> Self-liked pages: {88}"]
+    JN --> PL["Project pages: {23, 77, 24, 77, 56, 33, 88}"]
+    PL --> DIFF["Set Difference: Candidates - Self-Likes"]
+    SL --> DIFF
+    DIFF --> OUT["Distinct Output: {23, 24, 33, 56, 77}"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The recommendation rule has three separate jobs
+### Phase 1: Resolving Symmetric Friendships
+Scan `Friendship` for rows involving user $1$:
+- Row `(1, 2)`: `user1_id = 1` $\implies$ friend `2`.
+- Row `(1, 3)`: `user1_id = 1` $\implies$ friend `3`.
+- Row `(1, 4)`: `user1_id = 1` $\implies$ friend `4`.
+- Row `(2, 3)`: user $1$ not involved $\implies$ ignored.
+- Row `(2, 4)`: user $1$ not involved $\implies$ ignored.
+- Row `(2, 5)`: user $1$ not involved $\implies$ ignored.
+- Row `(6, 1)`: `user2_id = 1` $\implies$ friend `6`.
 
-A page belongs in the result only if at least one friend of user `1` likes it, user `1` does not already like it, and it appears only once even when several friends like it. The query mirrors these three jobs: construct the friend set, join those friends to their likes, and filter plus deduplicate the resulting pages.
+Union of friend identifiers:
+$$
+\mathcal{N}(1) = \{2, 3, 4, 6\}
+$$
 
-The challenge in the first job is that friendship is undirected in meaning but stored in two directed-looking columns. User `1` may appear as `user1_id` or as `user2_id`. Looking at only one column would silently miss valid friends.
+### Phase 2: Identifying User 1's Pre-Existing Likes
+Scan `Likes` for rows with `user_id = 1`:
+- Row `(1, 88)`: `page_id = 88`.
+$$
+\mathcal{P}_{\text{self}} = \{88\}
+$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 6, "user2_id": 1}], "Likes": [{"user_id": 1, "page_id": 88}, {"user_id": 2, "page_id": 23}, {"user_id": 3, "page_id": 24}, {"user_id": 4, "page_id": 56}, {"user_id": 5, "page_id": 11}, {"user_id": 6, "page_id": 33}, {"user_id": 2, "page_id": 77}, {"user_id": 3, "page_id": 77}, {"user_id": 6, "page_id": 88}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 3: Joining Friends with Likes
+We evaluate the `Likes` records corresponding to users in $\mathcal{N}(1) = \{2, 3, 4, 6\}$:
 
----
+| User ID $u$ | Is Friend of 1? | Page ID $p$ | Added to Candidates? | Rationale |
+|---|---|---|---|---|
+| $1$ | No (Self) | $88$ | No | In self-likes |
+| $2$ | Yes | $23$ | Yes | Friend endorsement |
+| $3$ | Yes | $24$ | Yes | Friend endorsement |
+| $4$ | Yes | $56$ | Yes | Friend endorsement |
+| $5$ | No | $11$ | No | Not in $\mathcal{N}(1)$ |
+| $6$ | Yes | $33$ | Yes | Friend endorsement |
+| $2$ | Yes | $77$ | Yes | Friend endorsement |
+| $3$ | Yes | $77$ | Yes (duplicate) | Friend endorsement |
+| $6$ | Yes | $88$ | Yes | Friend endorsement |
 
-### Step 2: Constructing a one-column friend relation
+Raw candidate pages from friends:
+$$
+[23, 24, 56, 33, 77, 77, 88]
+$$
 
-The common table expression named `T` normalizes both orientations:
-
-`SELECT user1_id AS user_id FROM Friendship WHERE user2_id = 1`
-
-selects the opposite endpoint when user `1` is stored on the right. The second branch
-
-`SELECT user2_id AS user_id FROM Friendship WHERE user1_id = 1`
-
-selects the opposite endpoint when user `1` is stored on the left. Both branches name their result `user_id`, so the rest of the query can treat them as one ordinary table of friends without remembering how each friendship row was oriented.
-
-The branches are combined with `UNION` rather than `UNION ALL`. `UNION` removes duplicate friend identifiers. The composite primary key prevents the exact same ordered pair from appearing twice, but the normalized result could still conceptually receive the same person from multiple orientations if both ordered representations were present. Deduplicating here ensures each friend is joined to `Likes` once. Correctness would still be protected later by the outer `DISTINCT`, but the early normalization can avoid redundant join rows.
-
-For the example, rows containing user `1` produce friend identifiers `2`, `3`, `4`, and `6`. Friendship rows such as `(2, 3)` do not involve user `1` and appear in neither branch.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Finding pages liked by those friends
-
-The main query joins `T` with `Likes` using `JOIN Likes USING (user_id)`. The `USING` clause means that the equally named `user_id` columns must match. Consequently, every joined row represents a page liked by a known friend of user `1`.
-
-This is an inner join, which is appropriate. A friend with no like rows contributes no recommendable page and need not appear in an intermediate result. Likewise, likes from users outside `T` cannot join and are ignored.
-
-After the join, the query needs only `page_id`. It aliases that column as `recommended_page` to satisfy the required output schema.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["recommended_page"], "rows": [[23], [24], [56], [33], [77]]}` |
+### Phase 4: Set Difference and Deduplication
+1. **Filtering out $\mathcal{P}_{\text{self}}$:**
+   Page $88$ is in $\mathcal{P}_{\text{self}}$, so it is removed.
+   Remaining pages: $[23, 24, 56, 33, 77, 77]$.
+2. **Deduplication:**
+   Page $77$ was liked by both user $2$ and user $3$. The distinct projection collapses multiple endorsements into a single entry:
+   $$
+   \mathcal{R} = \{23, 24, 33, 56, 77\}
+   $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Pipeline Step | Relational Entity Processed | Intermediate Result | Status / Check |
 |---|---|---|---|
-| Initialization | Initial input `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 6, "user2_id": 1}], "Likes": [{"user_id": 1, "page_id": 88}, {"user_id": 2, "page_id": 23}, {"user_id": 3, "page_id": 24}, {"user_id": 4, "page_id": 56}, {"user_id": 5, "page_id": 11}, {"user_id": 6, "page_id": 33}, {"user_id": 2, "page_id": 77}, {"user_id": 3, "page_id": 77}, {"user_id": 6, "page_id": 88}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["recommended_page"], "rows": [[23], [24], [56], [33], [77]]}` | Verified |
+| Step 1 | Forward friendships $(1, u_2)$ | $\{2, 3, 4\}$ | Extracted from column 2 |
+| Step 2 | Reverse friendships $(u_1, 1)$ | $\{6\}$ | Extracted from column 1 |
+| Step 3 | Full friend set $\mathcal{N}(1)$ | $\{2, 3, 4, 6\}$ | Disjoint union completed |
+| Step 4 | Self likes $\mathcal{P}_{\text{self}}$ | $\{88\}$ | Isolated exclusion baseline |
+| Step 5 | Friend likes projection | $\{23, 24, 33, 56, 77, 88\}$ | Joined on `user_id` |
+| Step 6 | Anti-join $(\setminus \{88\})$ | $\{23, 24, 33, 56, 77\}$ | Self-liked page $88$ purged |
+| Step 7 | Deduplication | $[23, 24, 33, 56, 77]$ | Unique recommendation rows |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every returned page $p$ satisfies two conditions:
+1. There exists at least one user $u \in \mathcal{N}(1)$ such that $(u, p) \in \text{Likes}$.
+2. $(1, p) \notin \text{Likes}$.
+No non-friend endorsement can introduce a page because the join is restricted to $\mathcal{N}(1)$. No self-liked page can appear because the outer condition explicitly prunes all elements of $\mathcal{P}_{\text{self}}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any page $p$ liked by a friend of user $1$ and not liked by user $1$ must be present in the joined candidate set and will survive the exclusion filter. Deduplication preserves exactly one instance of each distinct page ID, ensuring neither false negatives nor duplicate rows.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Correlated `EXISTS` and `NOT EXISTS`:** Existence predicates can express “some friend likes this page” and “user one does not.” They avoid the `NULL` semantics of `NOT IN` and may optimize well, but the current schema already makes `page_id` non-null.
-- **`LEFT JOIN` anti-join:** Candidate pages can be left-joined to user `1`'s likes and filtered with `IS NULL`. This is a common equivalent anti-join formulation but requires careful aliases because `Likes` appears twice.
-- **`UNION ALL` instead of `UNION`:** It could preserve duplicate friend rows and rely on final `DISTINCT` for correct output. That may create unnecessary join work and makes the normalized friend relation less clean.
-- **Friend stored in either column:** The two CTE branches are both necessary; omitting either one misses friendships in the opposite orientation.
-- **Several friends like one page:** `DISTINCT` returns that page exactly once.
-- **Friend likes a page user one likes:** The `NOT IN` filter removes it regardless of how many friends like it.
-- **Friend with no likes:** The inner join produces no row for that friend, which is correct.
-- **User one has no friends:** `T` is empty, so the join and result are empty.
-- **User one has no likes:** The anti-subquery is empty, so every distinct page liked by a friend is eligible.
-- **No ordering requirement:** Without `ORDER BY`, MySQL may return valid recommendations in any physical order.
-- **Primary-key nullability:** The safety of `NOT IN` depends on `page_id` being non-null, which follows from its participation in the declared primary key.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single-direction friendship trap:** Filtering only `user1_id = 1` misses friend $6$, omitting page $33$. Filtering only `user2_id = 1` misses friends $2, 3, 4$, omitting pages $23, 24, 56, 77$. Both directions must be combined.
+- **Transitive friend contamination:** User $5$ is friends with user $2$. User $5$ likes page $11$. Including friends-of-friends would falsely recommend page $11$. The neighborhood filter must strictly enforce 1st-degree hops.
+- **Overlapping likes between friend and self:** Both friend $6$ and user $1$ liked page $88$. If the self-like exclusion is omitted, page $88$ would be incorrectly recommended.
+- **Duplicate friend recommendations:** Both user $2$ and user $3$ liked page $77$. Without distinct grouping or set collapse, page $77$ would appear twice in the result table.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let $F$ be the number of `Friendship` rows, $L$ the number of `Likes` rows, and $R=F+L$. In the standard relational-algorithm model, the two filtered friendship scans take $O(F)$ without relying on indexes. Building the normalized friend set and joining it with likes can be performed with hashing in expected $O(F+L)$ time. The anti-membership set for user `1`'s likes and final duplicate elimination can likewise be implemented in expected linear time in their input sizes. This yields expected $O(R)$ time, plus the unavoidable cost of writing the result.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Friendship Lookup:** Filtering and unioning table `Friendship` of $F$ rows takes $\mathcal{O}(F)$ time using hash index lookups or table scans.
+  - **Self-Likes Lookup:** Filtering `Likes` for user $1$ takes $\mathcal{O}(L_1)$ time, where $L_1$ is the number of pages liked by user $1$.
+  - **Candidate Join:** Joining friends $\mathcal{N}(1)$ with table `Likes` of $L$ rows takes $\mathcal{O}(|\mathcal{N}(1)| + L)$ using hash join.
+  - **Set Difference and Sorting:** Deduplicating and filtering candidates takes $\mathcal{O}(K)$ where $K$ is the number of candidate pairs.
+  - **Total Execution Time:** $\mathcal{O}(F + L)$, linear with respect to the total number of records in the database.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\mathcal{N}(1)| + L_1 + |\mathcal{R}|)$ auxiliary memory for the in-memory hash sets of friends, self-likes, and distinct recommended pages.

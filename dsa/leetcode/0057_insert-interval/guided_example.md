@@ -1,113 +1,150 @@
 # Guided Example: Insert Interval
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 3-stage linear insertion and merging algorithm on a representative sorted interval collection:
 
-- **Input:** `{"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]}`
-- **Required output:** `[[1, 5], [6, 9]]`
+- **Input:** $\text{intervals} = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]$, $\text{newInterval} = [4, 8]$
+- **Required output:** $[[1, 2], [3, 10], [12, 16]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates exploiting the pre-sorted non-overlapping property of the input to perform single-pass insertion ($O(N)$ time), partitioning the process into three distinct stages (pre-overlap, overlap absorption, and post-overlap), and updating interval endpoints in place.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $i^{\text{th}}$ interval and `intervals` is sorted in ascending order by $\text{start}_{i}$. You are also given an interval $newInterval = [start, end]$ that represents the start and end of another interval.
+Given an array of non-overlapping intervals $\text{intervals}$ sorted in ascending order by start time:
+$$
+[[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+$$
+and a new interval $\text{newInterval} = [4, 8]$, insert $\text{newInterval}$ into the list such that the list remains sorted and non-overlapping, merging any overlapping intervals.
 
-The objective is to compute `[[1, 5], [6, 9]]` from `{"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach appends $\text{newInterval}$ to the end and re-sorts the entire array in $O(N \log N)$ time.
+Because the existing intervals are already sorted and disjoint, we can resolve the insertion in a single linear pass ($O(N)$ time) by partitioning the array into three consecutive contiguous segments:
+1. **Left Segment:** Intervals that end strictly before $\text{newInterval}$ begins ($e < \text{newInterval.start}$).
+2. **Overlapping Segment:** Intervals that intersect with $\text{newInterval}$ ($s \le \text{newInterval.end}$).
+3. **Right Segment:** Intervals that start strictly after $\text{newInterval}$ ends ($s > \text{newInterval.end}$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 3-Stage Linear Partition Algorithm
+Let $\text{newInterval} = [S, E]$. We iterate index $i$ through the array:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Stage 1 (Strictly to the Left):**
+   While $i < N$ and $\text{intervals}[i].\text{end} < S$:
+   - $\text{intervals}[i]$ ends before the new interval starts.
+   - Append $\text{intervals}[i]$ directly to the result.
+   - Increment $i$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Stage 2 (Overlapping Zone):**
+   While $i < N$ and $\text{intervals}[i].\text{start} \le E$:
+   - $\text{intervals}[i]$ overlaps with the expanding new interval.
+   - Absorb interval by updating:
+     $$
+     S \leftarrow \min(S, \, \text{intervals}[i].\text{start})
+     $$
+     $$
+     E \leftarrow \max(E, \, \text{intervals}[i].\text{end})
+     $$
+   - Increment $i$.
+   - *(Once the while-loop terminates, append the consolidated $[S, E]$ to the result).*
+
+3. **Stage 3 (Strictly to the Right):**
+   While $i < N$:
+   - All remaining intervals start strictly after $E$.
+   - Append $\text{intervals}[i]$ directly to the result.
+   - Increment $i$.
+
+> **Invariant.** The resulting list is strictly sorted and contains zero overlapping intervals at any point during construction.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reduce insertion to ordinary interval merging
+We trace $\text{intervals} = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]$ with $\text{newInterval} = [4, 8]$ ($S = 4, E = 8$):
 
-The input intervals are already sorted and non-overlapping, so a specialized solution can insert in linear time. The selected source takes a simpler but less efficient route: append `newInterval` to the list, sort all intervals, and then run the standard merge-interval scan.
-
-Once sorted, starts are non-decreasing. The merge helper keeps a result whose last interval represents the active overlapping chain. Each new interval either begins after that active end, creating a gap, or overlaps it and extends the active end.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: What sorting establishes
-
-`intervals.sort()` orders each two-element list lexicographically, first by start and then by end. Even though the original input was sorted, appending an arbitrary new interval can break that order. Sorting restores it.
-
-After sorting, when a new start is greater than the last merged end, no later interval can overlap that result interval because later starts are at least as large. This makes finalization safe.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Stage 1: Collect Left Disjoint Intervals
+- **Index $i = 0$ ($[1, 2]$):**
+  - Check: $\text{intervals}[0].\text{end} = 2 < S = 4$.
+  - True! Append $[1, 2]$ directly to `res`.
+  - `res = [[1, 2]]`, $i \leftarrow 1$.
+- **Index $i = 1$ ($[3, 5]$):**
+  - Check: $\text{intervals}[1].\text{end} = 5 < 4$.
+  - False ($5 \ge 4$).
+  - Stage 1 terminates.
 
 ---
 
-### Step 3: Initialize from the first sorted interval
+### Stage 2: Absorb Overlapping Intervals
+- **Index $i = 1$ ($[3, 5]$):**
+  - Check: $\text{intervals}[1].\text{start} = 3 \le E = 8$. True!
+  - Absorb:
+    $$
+    S = \min(4, 3) = 3, \quad E = \max(8, 5) = 8
+    $$
+    Current unified interval: $[3, 8]$. $i \leftarrow 2$.
+- **Index $i = 2$ ($[6, 7]$):**
+  - Check: $\text{intervals}[2].\text{start} = 6 \le E = 8$. True!
+  - Absorb:
+    $$
+    S = \min(3, 6) = 3, \quad E = \max(8, 7) = 8
+    $$
+    Current unified interval: $[3, 8]$. $i \leftarrow 3$.
+- **Index $i = 3$ ($[8, 10]$):**
+  - Check: $\text{intervals}[3].\text{start} = 8 \le E = 8$. True!
+  - Absorb:
+    $$
+    S = \min(3, 8) = 3, \quad E = \max(8, 10) = 10
+    $$
+    Current unified interval: $[3, 10]$. $i \leftarrow 4$.
+- **Index $i = 4$ ($[12, 16]$):**
+  - Check: $\text{intervals}[4].\text{start} = 12 \le E = 10$. False ($12 > 10$).
+  - Stage 2 terminates.
+- **Commit Merged Interval:**
+  - Append $[S, E] = [3, 10]$ to `res`.
+  - `res = [[1, 2], [3, 10]]`.
 
-`ans = [intervals[0]]` starts the merged result with the first interval object. The combined list can never be empty: even if original `intervals` is empty, the public method appends `newInterval` before calling `merge`. Therefore, indexing position 0 is safe for every valid input.
+---
 
-This initialization stores an alias to an existing inner list rather than a copy. That has mutation consequences described below.
+### Stage 3: Collect Right Disjoint Intervals
+- **Index $i = 4$ ($[12, 16]$):**
+  - Append $[12, 16]$ directly to `res`.
+  - $i \leftarrow 5$ (End of array).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 5], [6, 9]]` |
+Final result: `[[1, 2], [3, 10], [12, 16]]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 5], [6, 9]]` | Verified |
+| Array Index $i$ | Examined Interval $[s, e]$ | Active Stage | Condition Evaluated | Unified $\text{newInterval}$ $[S, E]$ | Action on Output List |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `[1, 2]` | Stage 1 (Left) | $2 < 4$ (True) | `[4, 8]` | Append `[1, 2]` |
+| 1 | `[3, 5]` | Stage 2 (Overlap) | $3 \le 8$ (True) | $\min(4,3), \max(8,5) \to \mathbf{[3, 8]}$ | Expand merged interval |
+| 2 | `[6, 7]` | Stage 2 (Overlap) | $6 \le 8$ (True) | $\min(3,6), \max(8,7) \to \mathbf{[3, 8]}$ | Fully contained |
+| 3 | `[8, 10]` | Stage 2 (Overlap) | $8 \le 8$ (True) | $\min(3,8), \max(8,10) \to \mathbf{[3, 10]}$ | Extend right boundary |
+| - | - | Stage 2 End | $12 \le 10$ (False) | `[3, 10]` | **Append `[3, 10]`** |
+| 4 | `[12, 16]` | Stage 3 (Right) | Remainder | - | Append `[12, 16]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Stage 1 only admits intervals strictly preceding $S$. Stage 2 absorbs every interval that touches or intersects the expanding interval $[S, E]$. Stage 3 only admits intervals strictly succeeding $E$. The resulting concatenation is provably disjoint and sorted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every interval in the input array is processed exactly once by one of the three stages. The index $i$ advances monotonically from $0$ to $N$, guaranteeing $O(N)$ execution.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Three-phase linear scan:** Append intervals strictly before `newInterval`, merge all overlaps, then append the remaining suffix. It uses the sorted/non-overlapping guarantee and achieves $O(n)$ time.
-- **Binary search for insertion point:** Locate the starting neighborhood quickly, but merging and constructing the output can still require $O(n)$ time.
-- **Non-mutating sort:** Use `sorted(intervals + [newInterval])` to preserve the outer input, at the cost of an explicit combined copy and the same sorting time.
-- **Empty original list:** Appending first makes the merge input contain one interval, which is returned.
-- **New interval before all others:** Sorting moves it to the front; it may become the aliased first output object.
-- **New interval after all others:** Sorting leaves it last, and it is merged or appended according to endpoint overlap.
-- **Touching endpoint:** Strict `<` treats equality as overlap, as required for closed intervals.
-- **Contained new interval:** Merging may leave existing outer bounds unchanged, but the caller's outer list still contains the appended object.
-- **Covers all intervals:** Repeated end extension creates one result interval spanning the entire union.
-- **Input mutation:** The outer list is appended to and sorted, and the first inner interval may have its end changed through aliasing.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Zero Overlaps (Disjoint Insertion):** If $\text{newInterval}$ does not overlap any interval (e.g. inserting $[5, 7]$ into $[[1, 2], [8, 9]]$), Stage 2 runs zero times, and $[5, 7]$ is inserted cleanly between Stage 1 and Stage 3.
+- **Empty Intervals Input:** When $\text{intervals} = []$, Stage 1 and 3 are skipped, and Stage 2 simply appends $\text{newInterval}$, correctly returning $[\text{newInterval}]$.
+- **Touching Boundaries ($e == S$ or $s == E$):** In closed intervals, touching endpoints constitute an overlap (e.g. $[8, 10]$ with $E = 8$). Using $\le$ rather than strictly $<$ in Stage 2 ensures contiguous intervals are properly coalesced.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Appending is amortized $O(1)$. Sorting $n+1$ intervals costs $O(n \log n)$. The slice `intervals[1:]` and merge scan each cost $O(n)$. Total time is therefore $O(n \log n)$, not the manifest's $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of intervals. The index $i$ moves strictly from $0$ to $N$ across the three stages. No sorting is needed.
+- **Auxiliary Space Complexity:** $O(N)$ to hold the emitted output list. The iteration itself uses $O(1)$ scalar pointers.

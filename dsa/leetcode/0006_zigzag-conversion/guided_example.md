@@ -1,128 +1,134 @@
 # Guided Example: Zigzag Conversion
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal simulation method on a representative instance:
 
-- **Input:** `{"s": "PAYPALISHIRING", "numRows": 3}`
-- **Required output:** `"PAHNAPLSIIGYIR"`
+- **Input:** $s = \text{"PAYPALISHIRING"}$, $\text{numRows} = 3$
+- **Required output:** $\text{"PAHNAPLSIIGYIR"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates vertical bouncing across multiple rows, boundary direction reversal at row extremes, and final linear concatenation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+Given a string $s$ of length $N = 14$ and a row constraint $\text{numRows} = 3$, we arrange the characters along a vertical zigzag path and read off the resulting matrix row by row.
 
-The objective is to compute `"PAHNAPLSIIGYIR"` from `{"s": "PAYPALISHIRING", "numRows": 3}` while avoiding redundant calculations and unnecessary overhead.
+Visually, the zigzag path forms a periodic bouncing wave:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Row 0: P       A       H       N
+Row 1:   A   P   L   S   I   I   G
+Row 2:     Y       I       R
+```
+
+Reading across rows horizontally produces:
+- Row 0: $\text{"PAHN"}$
+- Row 1: $\text{"APLSIIG"}$
+- Row 2: $\text{"YIR"}$
+
+Concatenating rows $0$, $1$, and $2$ yields $\text{"PAHNAPLSIIGYIR"}$.
+
+A naive approach allocates a full 2D sparse matrix of dimensions $\text{numRows} \times N$, wasting $O(\text{numRows} \cdot N)$ memory on empty filler cells. The optimal approach maintains $\text{numRows}$ string buffers and simulates only the vertical cursor position, consuming strictly $O(N)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Bouncing Wave Dynamics
+The row cursor $r$ moves between $0$ and $\text{numRows} - 1$:
+- We start at row $r = 0$ with initial vertical velocity $d = +1$ (moving downward).
+- Whenever $r = 0$, the cursor reflects downward: $d = +1$.
+- Whenever $r = \text{numRows} - 1$, the cursor reflects upward: $d = -1$.
+- At each character $s[i]$, we append $s[i]$ to buffer $B[r]$, then update $r \leftarrow r + d$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Cycle Length
+The vertical wave repeats every $2 \times (\text{numRows} - 1)$ steps:
+$$
+\text{Cycle Period} = 2 \times (3 - 1) = 4
+$$
+Within each cycle of length 4, the visited row sequence is:
+$$
+0 \to 1 \to 2 \to 1
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At step $k$, all characters $s[0 \dots k-1]$ have been appended to their respective row buffers in their original relative horizontal order, and the cursor $r$ accurately reflects the vertical position of $s[k]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The output is a row-by-row reading of a repeated movement
+We process the string $s = \text{"PAYPALISHIRING"}$ character by character:
 
-The zigzag writes characters in their original order while a row pointer moves:
+### Cycle 1 (Indices 0–3)
+- **Step 0 ($i=0$):** Character `'P'`. Current row $r = 0$. Append `'P'` to Row 0. At top boundary, set $d = +1$. Next row $r = 1$.
+- **Step 1 ($i=1$):** Character `'A'`. Current row $r = 1$. Append `'A'` to Row 1. Maintain $d = +1$. Next row $r = 2$.
+- **Step 2 ($i=2$):** Character `'Y'`. Current row $r = 2$. Append `'Y'` to Row 2. At bottom boundary ($r = \text{numRows} - 1$), reflect $d = -1$. Next row $r = 1$.
+- **Step 3 ($i=3$):** Character `'P'`. Current row $r = 1$. Append `'P'` to Row 1. Maintain $d = -1$. Next row $r = 0$.
 
-1. downward from row `0` to row `numRows - 1`;
-2. upward from row `numRows - 1` to row `0`;
-3. downward again, repeating until the string ends.
+### Cycle 2 (Indices 4–7)
+- **Step 4 ($i=4$):** Character `'A'`. Current row $r = 0$. Append `'A'` to Row 0. At top boundary, reflect $d = +1$. Next row $r = 1$.
+- **Step 5 ($i=5$):** Character `'L'`. Current row $r = 1$. Append `'L'` to Row 1. Next row $r = 2$.
+- **Step 6 ($i=6$):** Character `'I'`. Current row $r = 2$. Append `'I'` to Row 2. Bottom boundary reached; reflect $d = -1$. Next row $r = 1$.
+- **Step 7 ($i=7$):** Character `'S'`. Current row $r = 1$. Append `'S'` to Row 1. Next row $r = 0$.
 
-Only the row assigned to each character matters for producing the answer. Horizontal matrix coordinates and blank cells are visual aids, not data the algorithm needs to store. The solution therefore creates one character list per row, simulates the vertical row movement, and concatenates the row lists at the end.
+### Cycle 3 (Indices 8–11)
+- **Step 8 ($i=8$):** Character `'H'`. Current row $r = 0$. Append `'H'` to Row 0. Top boundary reached; reflect $d = +1$. Next row $r = 1$.
+- **Step 9 ($i=9$):** Character `'I'`. Current row $r = 1$. Append `'I'` to Row 1. Next row $r = 2$.
+- **Step 10 ($i=10$):** Character `'R'`. Current row $r = 2$. Append `'R'` to Row 2. Bottom boundary reached; reflect $d = -1$. Next row $r = 1$.
+- **Step 11 ($i=11$):** Character `'I'`. Current row $r = 1$. Append `'I'` to Row 1. Next row $r = 0$.
 
-For `numRows = 4`, the visited row indices are
-
-
-
-Appending each input character to the corresponding list recreates the same layout's row contents without constructing a sparse two-dimensional grid.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "PAYPALISHIRING", "numRows": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why one row must return immediately
-
-When `numRows == 1`, every character belongs to row zero, so the converted string is exactly `s`.
-
-The early return is also required for the movement logic. With one row, the top and bottom are the same position. A direction that flips at that position and then advances would attempt to move to row `1` or `-1`, neither of which exists. Returning `s` handles both the mathematical identity case and the index-safety case.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Store row contents separately
-
-The line
-
-
-
-creates `numRows` distinct inner lists. `g[r]` will contain exactly the characters written on row `r`, already in their left-to-right order.
-
-Using a list comprehension is important in Python. An expression such as `[[]] * numRows` would repeat references to one shared inner list; appending to any row would then appear in every row. The comprehension evaluates `[]` once per row and gives each row independent storage.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"PAHNAPLSIIGYIR"` |
+### Cycle 4 (Indices 12–13)
+- **Step 12 ($i=12$):** Character `'N'`. Current row $r = 0$. Append `'N'` to Row 0. Top boundary reached; reflect $d = +1$. Next row $r = 1$.
+- **Step 13 ($i=13$):** Character `'G'`. Current row $r = 1$. Append `'G'` to Row 1. String exhausted.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "PAYPALISHIRING", "numRows": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"PAHNAPLSIIGYIR"` | Verified |
+The complete state table tracing each character assignment:
+
+| Step $i$ | Character $s[i]$ | Active Row $r$ | Boundary Action / Velocity $d$ | Next Row | Row 0 Buffer | Row 1 Buffer | Row 2 Buffer |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|:---|
+| 0 | `P` | 0 | Top boundary $\implies d = +1$ | 1 | `["P"]` | `[]` | `[]` |
+| 1 | `A` | 1 | Descending ($d = +1$) | 2 | `["P"]` | `["A"]` | `[]` |
+| 2 | `Y` | 2 | Bottom boundary $\implies d = -1$ | 1 | `["P"]` | `["A"]` | `["Y"]` |
+| 3 | `P` | 1 | Ascending ($d = -1$) | 0 | `["P"]` | `["A", "P"]` | `["Y"]` |
+| 4 | `A` | 0 | Top boundary $\implies d = +1$ | 1 | `["P", "A"]` | `["A", "P"]` | `["Y"]` |
+| 5 | `L` | 1 | Descending ($d = +1$) | 2 | `["P", "A"]` | `["A", "P", "L"]` | `["Y"]` |
+| 6 | `I` | 2 | Bottom boundary $\implies d = -1$ | 1 | `["P", "A"]` | `["A", "P", "L"]` | `["Y", "I"]` |
+| 7 | `S` | 1 | Ascending ($d = -1$) | 0 | `["P", "A"]` | `["A", "P", "L", "S"]` | `["Y", "I"]` |
+| 8 | `H` | 0 | Top boundary $\implies d = +1$ | 1 | `["P", "A", "H"]` | `["A", "P", "L", "S"]` | `["Y", "I"]` |
+| 9 | `I` | 1 | Descending ($d = +1$) | 2 | `["P", "A", "H"]` | `["A", "P", "L", "S", "I"]` | `["Y", "I"]` |
+| 10 | `R` | 2 | Bottom boundary $\implies d = -1$ | 1 | `["P", "A", "H"]` | `["A", "P", "L", "S", "I"]` | `["Y", "I", "R"]` |
+| 11 | `I` | 1 | Ascending ($d = -1$) | 0 | `["P", "A", "H"]` | `["A", "P", "L", "S", "I", "I"]` | `["Y", "I", "R"]` |
+| 12 | `N` | 0 | Top boundary $\implies d = +1$ | 1 | `["P", "A", "H", "N"]` | `["A", "P", "L", "S", "I", "I"]` | `["Y", "I", "R"]` |
+| 13 | `G` | 1 | Descending ($d = +1$) | 2 | `["P", "A", "H", "N"]` | `["A", "P", "L", "S", "I", "I", "G"]` | `["Y", "I", "R"]` |
+
+### Final Concatenation
+- **Row 0:** $\text{"PAHN"}$
+- **Row 1:** $\text{"APLSIIG"}$
+- **Row 2:** $\text{"YIR"}$
+- **Combined Result:** $\text{"PAHN"} + \text{"APLSIIG"} + \text{"YIR"} = \text{"PAHNAPLSIIGYIR"}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The zigzag layout specifies that letters are placed down the columns and diagonally up to the top. By tracking the vertical row coordinate $r$ with direction variable $d \in \{+1, -1\}$, each character is assigned to its exact mathematical row index. Since characters are added to each row buffer in temporal order, the horizontal relative ordering within each row is preserved without needing coordinate sorting.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ is processed in sequence exactly once. Because the row buffers partition the characters of $s$, concatenating rows $0$ through $\text{numRows}-1$ includes all $N$ characters without omission or duplication.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Read indices by cycle arithmetic:** A full down-and-up cycle has length `2 * numRows - 2`. Visiting each row's vertical and diagonal indices directly avoids storing row buckets. It uses constant auxiliary state besides the result but requires more delicate index formulas.
-- **Sparse matrix simulation:** Place characters into a `numRows`-by-columns grid and then scan all cells. It mirrors the picture literally but allocates many blank cells and may take $O(Rn)$ space and scanning time.
-- **Repeated immutable-string concatenation:** Appending each output character with `result += c` is concise, but Python strings are immutable and the language-level worst case can repeatedly copy the prefix. Row lists plus one `join` provide a robust linear construction.
-- **One row:** The early return avoids invalid movement and correctly leaves the string unchanged.
-- **More rows than characters:** The pointer moves downward but never reaches the bottom before input ends. Each character occupies a different early row, and row concatenation returns the original string. This case also explains the explicit $O(n+R)$ initialization cost.
-- **Rows equal to string length:** Every character occupies its own row, so reading rows returns `s` unchanged.
-- **Two rows:** The path alternates `0, 1, 0, 1, ...`. Both boundaries are visited on every step, and the same direction flip logic remains valid.
-- **A partial final cycle:** The loop stops when characters end; it does not need to complete the upward or downward path. The populated row lists already contain exactly the visible partial zigzag.
-- **Punctuation:** Commas and periods are appended like letters. No character is treated as a separator or structural marker.
-- **Case sensitivity:** Uppercase and lowercase characters retain their exact identity and order.
-- **Input preservation:** The algorithm reads `s` and stores its characters in new lists; it never modifies the original string.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single Row Degeneracy ($\text{numRows} = 1$):** If $\text{numRows} = 1$, the top and bottom boundaries coincide ($0 = \text{numRows} - 1$). The direction cannot oscillate properly, leading to out-of-bounds indexing if not guarded by an early exit returning $s$ directly.
+- **Short Input ($N \le \text{numRows}$):** When the string length does not exceed $\text{numRows}$, no zigzag bounce occurs; the string is placed straight down the first column and returned unchanged.
+- **Memory Overhead of Sparse Matrix:** Simulating the 2D grid with full whitespace padding requires $O(\text{numRows} \cdot N)$ storage and additional scanning time. Using dynamic row buffers eliminates grid padding completely.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+R)$. Let $n$ be `len(s)` and let $R$ be `numRows`.
-- **Auxiliary Space Complexity:** $O(n+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$. We iterate through the string of length $N$ once, performing $O(1)$ operations per character (buffer append and pointer updates). Concatenating the $\text{numRows}$ row buffers takes $O(N)$ time. The overall runtime is strictly $O(N)$.
+- **Auxiliary Space Complexity:** $O(N)$. The row buffers store exactly the $N$ characters of the input string across $\text{numRows}$ lists.

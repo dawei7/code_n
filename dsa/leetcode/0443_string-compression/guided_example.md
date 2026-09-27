@@ -1,125 +1,202 @@
 # Guided Example: String Compression
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step consecutive run-length encoding (RLE), two-pointer in-place write cursor advance ($k \le i$), multi-digit integer string serialization, and array prefix modification on representative character arrays:
 
-- **Input:** `{"chars": ["a"]}`
-- **Required output:** `{"length": 1, "prefix": ["a"]}`
+- **Input:** $chars = [\text{'a'}, \text{'a'}, \text{'b'}, \text{'b'}, \text{'c'}, \text{'c'}, \text{'c'}]$
+- **Required output:** Length `6`, with modified prefix:
+  $$
+  [\text{'a'}, \text{'2'}, \text{'b'}, \text{'2'}, \text{'c'}, \text{'3'}]
+  $$
+- **Two-pointer execution trace:**
+  - Read pointer: $i = 0$, Write pointer: $k = 0$, Total length: $n = 7$
+  - **Run 1 (Character `'a'`):**
+    - Consecutive occurrences: $i = 0$ to $j = 2$ (`chars[0] == chars[1] == 'a'`)
+    - Run length: $j - i = 2 - 0 = 2$
+    - Write character: $chars[k] \leftarrow \text{'a'}, \; k \leftarrow 1$
+    - Because run length $> 1$: write digit `'2'`: $chars[k] \leftarrow \text{'2'}, \; k \leftarrow 2$
+    - Advance read pointer: $i \leftarrow j = 2$
+  - **Run 2 (Character `'b'`):**
+    - Consecutive occurrences: $i = 2$ to $j = 4$ (`chars[2] == chars[3] == 'b'`)
+    - Run length: $4 - 2 = 2$
+    - Write character: $chars[k] \leftarrow \text{'b'}, \; k \leftarrow 3$
+    - Write digit `'2'`: $chars[k] \leftarrow \text{'2'}, \; k \leftarrow 4$
+    - Advance read pointer: $i \leftarrow j = 4$
+  - **Run 3 (Character `'c'`):**
+    - Consecutive occurrences: $i = 4$ to $j = 7$ (`chars[4] == chars[5] == chars[6] == 'c'`)
+    - Run length: $7 - 4 = 3$
+    - Write character: $chars[k] \leftarrow \text{'c'}, \; k \leftarrow 5$
+    - Write digit `'3'`: $chars[k] \leftarrow \text{'3'}, \; k \leftarrow 6$
+    - Advance read pointer: $i \leftarrow j = 7$
+  - All elements processed. Return new length: $k = \mathbf{6}$.
+- **Multi-Digit Run Instance:** $chars = [\text{'a'}] + [\text{'b'}] \times 12 \implies \text{'a'}$ (length 1), then $\text{'b'}$ with count 12 written as `'1'` and `'2'` $\implies [\text{'a'}, \text{'b'}, \text{'1'}, \text{'2'}]$, length $\mathbf{4}$
+- **Single Character Instance:** $chars = [\text{'a'}] \implies [\text{'a'}]$, length $\mathbf{1}$ (count 1 is omitted per specification)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place two-pointer array compression, mathematically proves why the write pointer never overtakes the read pointer ($k \le i$), and achieves $O(N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of characters `chars`, compress it using the following algorithm:
+Given an array of characters $chars = [\text{'a'}, \text{'a'}, \text{'b'}, \text{'b'}, \text{'c'}, \text{'c'}, \text{'c'}]$:
+Compress the array in-place using the following rules:
+- For each group of consecutive repeating characters:
+  - If the group's length is 1, append the character itself.
+  - If the group's length is $> 1$, append the character followed by the group's length (split into individual digit characters if length $\ge 10$).
+- Modify the input array in-place and return the new length of the compressed prefix.
 
-The objective is to compute `{"length": 1, "prefix": ["a"]}` from `{"chars": ["a"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Original Array:
+  [ 'a', 'a', 'b', 'b', 'c', 'c', 'c' ]
+    \_____/   \_____/   \_________/
+     run: 2    run: 2     run: 3
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In-Place Compressed Result:
+  [ 'a', '2', 'b', '2', 'c', '3' ]
+  <----------------------------->
+         New Length: 6
+```
+
+### The In-Place Non-Overwriting Invariant
+Why is it safe to write back into the same array without extra memory?
+- For a group of length 1: we write 1 character (`'x'`) and consume 1 character $\implies \Delta = 0$.
+- For a group of length $L \ge 2$: we write 1 character plus $d = \lfloor \log_{10} L \rfloor + 1$ digits.
+- Since $1 + d \le L$ for all integers $L \ge 2$ (e.g. for $L=2$, $1+1=2 \le 2$; for $L=10$, $1+2=3 \le 10$):
+The number of written characters is **always less than or equal to** the number of scanned characters!
+Therefore, the write pointer $k$ is guaranteed to satisfy:
+$$
+k \le i \quad \text{at all times}
+$$
+The write cursor never overwrites unprocessed future characters.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Two-Pointer Mechanics:
+- Read Pointer $i$: Points to the start of the current consecutive run.
+- Runner Pointer $j$: Scans ahead until $chars[j] \ne chars[i]$ to determine run length $L = j - i$.
+- Write Pointer $k$: Marks the insertion point for the compressed output.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Compression Encoding Steps:
+1. Write the run character: $chars[k] \leftarrow chars[i], \; k \leftarrow k + 1$.
+2. If $L > 1$:
+   - Convert $L$ to its decimal string representation (e.g. $12 \to \text{"12"}$).
+   - For each character digit $c$ in the decimal representation:
+     $$
+     chars[k] \leftarrow c, \quad k \leftarrow k + 1
+     $$
+3. Advance the read pointer: $i \leftarrow j$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Write Invariant.** The compressed prefix occupies $chars[0 \dots k-1]$. The remaining suffix $chars[i \dots n-1]$ is completely unread and uncorrupted, with $k \le i$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate reading from writing
-
-The input is already arranged into consecutive character groups. The solution uses:
-
-- `i` as the first unread index of the current group;
-- `j` to scan for that group's exclusive end; and
-- `k` as the next output position in the same array.
-
-At all times, `chars[0:k]` is the completed compressed prefix, while `chars[i:n]` contains groups not yet processed.
-
-The algorithm does not need a second output array. It overwrites positions at or before the read frontier because a group's compressed representation is never longer than that group.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"chars": ["a"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $chars = [\text{'a'}, \text{'a'}, \text{'b'}, \text{'b'}, \text{'c'}, \text{'c'}, \text{'c'}]$ ($n = 7$):
+Initialize $i = 0, k = 0$.
 
 ---
 
-### Step 2: Find one maximal run
-
-For current `i`, set `j = i + 1` and advance while `j < n` and `chars[j] == chars[i]`. When the loop stops, the group occupies indices `i` through `j-1`, and its length is `j - i`.
-
-Stopping on the first different character makes each group maximal. The next outer iteration begins with `i = j`, so no character is skipped or included in two groups.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Run 1 (`'a'`)
+- Start index: $i = 0$, character $chars[0] = \text{'a'}$.
+- Advance runner $j$:
+  - $j = 1: chars[1] == \text{'a'}$
+  - $j = 2: chars[2] == \text{'b'} \ne \text{'a'}$. Stop.
+- Run length: $L = j - i = 2 - 0 = 2$.
+- Write character:
+  $$
+  chars[k] = \text{'a'} \implies chars[0] = \text{'a'}, \quad k \leftarrow 1
+  $$
+- Length $L = 2 > 1$. Write count `'2'`:
+  $$
+  chars[k] = \text{'2'} \implies chars[1] = \text{'2'}, \quad k \leftarrow 2
+  $$
+- Advance read pointer: $i \leftarrow 2$.
+- Array state: `['a', '2', 'b', 'b', 'c', 'c', 'c']`.
 
 ---
 
-### Step 3: Write the character and optional count
+### Step 2: Process Run 2 (`'b'`)
+- Start index: $i = 2$, character $chars[2] = \text{'b'}$.
+- Advance runner $j$:
+  - $j = 3: chars[3] == \text{'b'}$
+  - $j = 4: chars[4] == \text{'c'} \ne \text{'b'}$. Stop.
+- Run length: $L = 4 - 2 = 2$.
+- Write character:
+  $$
+  chars[k] = \text{'b'} \implies chars[2] = \text{'b'}, \quad k \leftarrow 3
+  $$
+- Length $L = 2 > 1$. Write count `'2'`:
+  $$
+  chars[k] = \text{'2'} \implies chars[3] = \text{'2'}, \quad k \leftarrow 4
+  $$
+- Advance read pointer: $i \leftarrow 4$.
+- Array state: `['a', '2', 'b', '2', 'c', 'c', 'c']`.
 
-Every group contributes its character once:
+---
 
-`chars[k] = chars[i]`, followed by `k += 1`.
+### Step 3: Process Run 3 (`'c'`)
+- Start index: $i = 4$, character $chars[4] = \text{'c'}$.
+- Advance runner $j$:
+  - $j = 5: chars[5] == \text{'c'}$
+  - $j = 6: chars[6] == \text{'c'}$
+  - $j = 7 == n$. Stop.
+- Run length: $L = 7 - 4 = 3$.
+- Write character:
+  $$
+  chars[k] = \text{'c'} \implies chars[4] = \text{'c'}, \quad k \leftarrow 5
+  $$
+- Length $L = 3 > 1$. Write count `'3'`:
+  $$
+  chars[k] = \text{'3'} \implies chars[5] = \text{'3'}, \quad k \leftarrow 6
+  $$
+- Advance read pointer: $i \leftarrow 7$.
+- Array state: `['a', '2', 'b', '2', 'c', '3', 'c']`.
 
-If the group length is one, nothing else is written. This follows the required format: a singleton `a` stays `a`, not `a1`.
+---
 
-For length greater than one, `cnt = str(j - i)` creates the decimal count. The loop writes each digit separately. This matters for lengths at least ten: a run of 12 `b` characters contributes `'b'`, `'1'`, and `'2'`, not one multi-character array element.
-
-Finally `i = j` advances to the next group.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"length": 1, "prefix": ["a"]}` |
+### Termination:
+Read pointer $i = 7 == n$. Loop terminates.
+Return final write length: $k = \mathbf{6}$.
+Prefix of length 6: `['a', '2', 'b', '2', 'c', '3']`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"chars": ["a"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"length": 1, "prefix": ["a"]}` | Verified |
+| Group # | Read Span $[i, j-1]$ | Char | Run Length $L$ | Chars Written | Write Indices Populated | Written Substring | Write Head $k$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1** | $[0, 1]$ | `'a'` | $2$ | `'a'`, `'2'` | $0, 1$ | `"a2"` | $2$ |
+| **2** | $[2, 3]$ | `'b'` | $2$ | `'b'`, `'2'` | $2, 3$ | `"b2"` | $4$ |
+| **3** | $[4, 6]$ | `'c'` | $3$ | `'c'`, `'3'` | $4, 5$ | `"c3"` | **$6$** |
+| **Done**| All scanned | — | — | — | — | — | **Result: $6$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Character ($chars = [\text{'a'}]$):** $L = 1$. Writes `'a'`, count is omitted per specification $\implies k = 1$.
+- **All Unique Characters ($[\text{'a'}, \text{'b'}, \text{'c'}]$):** Each run has length 1. Output is `['a', 'b', 'c']`, length 3.
+- **Large Run ($\ge 10$ characters):** If a run has length $12$, writes the character followed by `'1'` and `'2'`. Consumes 12 positions, writes 3 positions ($k \ll i$).
+- **Maximum Length Array ($N = 2000$ identical chars):** $L = 2000$. Writes `'x'`, then `'2'`, `'0'`, `'0'`, `'0'`. Final length is 5.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Build a separate compressed list:** It simplifies writing but violates the constant-extra-space requirement.
-- **Use repeated string concatenation:** Besides not updating `chars` directly, immutable concatenation can copy growing results repeatedly.
-- **Write `1` for singletons:** This violates the required format and increases the result unnecessarily.
-- **Write a multi-digit count as one list item:** Each position must contain one character, so count digits must be emitted separately.
-- **One input character:** The character is written to position zero and length one is returned.
-- **All characters distinct:** Every group is a singleton, `k == n`, and the visible array remains unchanged.
-- **One long group:** Output is the character followed by every decimal digit of `n`.
-- **Group length ten or more:** `str(...)` naturally preserves digit order, such as `12` becoming `'1','2'`.
-- **Symbols and digit characters:** Grouping compares character equality only; an input digit used as data is distinct from count digits by position/context, as allowed by the compression format.
-- **Trailing stale cells:** They are intentionally ignored beyond returned `k` and need not be erased.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Writing Count When $L = 1$:** Appending `'1'` for singleton characters violates the format rules (`"a"` must not be compressed to `"a1"`). Counts must strictly be emitted only when $L > 1$.
+- **Allocating Intermediate String Buffers:** Creating a new string or dynamic list and copying back to $chars$ wastes $O(N)$ extra memory. In-place pointer assignment runs in strictly $O(1)$ extra space.
+- **Multi-Digit Number Formatting:** Writing the integer directly (e.g. setting $chars[k] = 12$) crashes or truncates because array cells store single characters. Iterating through the digits of `str(count)` writes each decimal place correctly.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the original array length. `j` moves forward over each input character exactly once across groups. The number of output writes is at most $n$. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The read runner $j$ advances from $0$ to $N$ across all groups without backtracking.
+  - The write pointer $k$ advances at most $N$ times.
+  - Converting run counts to digits takes $O(\log_{10} L) \le 4$ operations per run.
+  - Total Time: $\mathcal{O}(N)$. For $N = 2000$, execution finishes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$. All transformations are performed directly within the input array with scalar index variables.

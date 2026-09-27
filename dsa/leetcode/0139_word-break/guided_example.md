@@ -1,99 +1,157 @@
 # Guided Example: Word Break
 
-We derive and execute the Array, Hash Table, String, Dynamic Programming, Trie, Memoization recurrence on a representative problem instance.
+We trace the step-by-step 1D dynamic programming prefix reachability recurrence and dictionary matching on representative word segmentation instances:
 
-- **Input:** `{"s": "leetcode", "wordDict": ["leet", "code"]}`
-- **Required output:** `true`
+- **Input:** $s = \text{"leetcode"}$, $\text{wordDict} = [\text{"leet"}, \text{"code"}]$
+- **Required output:** `true` (Segmented as $\text{"leet"} + \text{"code"}$)
+- **Negative Branching Instance:** $s = \text{"catsandog"}$, $\text{wordDict} = [\text{"cats"}, \text{"dog"}, \text{"sand"}, \text{"and"}, \text{"cat"}] \implies \text{false}$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates formulating the prefix feasibility state ($DP[i] \iff s[0 \dots i-1]$ is segmentable), anchoring with base case $DP[0] = \text{True}$, evaluating subproblem chaining ($DP[j] \land s[j \dots i-1] \in \text{dict}$), and pruning inner loops via word length bounds in $O(N^2)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Word Break** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given a string $s = \text{"leetcode"}$ of length $N = 8$ and a dictionary $\text{wordDict} = [\text{"leet"}, \text{"code"}]$:
+Determine if $s$ can be segmented into a space-separated sequence of one or more dictionary words. Dictionary words may be reused arbitrarily.
+
+In this instance:
+- Prefix $s[0 \dots 3] = \text{"leet"}$ exists in `wordDict`.
+- Suffix $s[4 \dots 7] = \text{"code"}$ exists in `wordDict`.
+Because the concatenation $\text{"leet"} + \text{"code"}$ equals $s$, the answer is `true`.
+
+A recursive backtracking solution without memoization tries all possible word splits, degrading to $O(2^N)$ time on overlapping words (e.g. `s = "aaaaab"`, `dict = ["a", "aa", "aaa"]`).
+1D Dynamic Programming memoizes prefix reachability in a boolean table of size $N + 1$. State $DP[i]$ checks whether any previously reachable prefix $j < i$ can be extended to $i$ with a valid dictionary word, reducing complexity to polynomial time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### 1D Boolean Dynamic Programming Protocol
+Let $N = |s|$.
+Convert `wordDict` into a hash set `words` for $O(1)$ lookup.
+Define array $DP$ of length $N + 1$ initialized to $\text{False}$:
+$$
+DP[i] \iff \text{the prefix } s[0 \dots i-1] \text{ can be segmented into dictionary words}
+$$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+1. **Base Case:**
+   The empty prefix of length $0$ is vacuously segmentable:
+   $$
+   DP[0] = \text{True}
+   $$
+2. **State Transition for $i \in [1, N]$:**
+   Examine every possible split index $j \in [0, i - 1]$:
+   $$
+   DP[i] = \bigvee_{j=0}^{i-1} \left( DP[j] \land (s[j \dots i - 1] \in \text{words}) \right)
+   $$
+   - If a valid $j$ is found, set $DP[i] \leftarrow \text{True}$ and immediately `break` the inner loop (early termination for state $i$).
+3. **Word Length Pruning:**
+   Instead of scanning all $j \in [0, i-1]$, only test lengths $L = i - j$ where $L \le \max(\text{len}(w) \text{ for } w \in \text{words})$.
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** For every computed index $i \in [0, N]$, $DP[i] == \text{True}$ if and only if there exists a valid sequence of dictionary words whose concatenation equals $s[0 \dots i-1]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace $s = \text{"leetcode"}$ with `words = {"leet", "code"}`:
+$N = 8$. Valid word lengths are $\{4\}$.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Initialization
+- $DP = [\text{True}, \text{False}, \text{False}, \text{False}, \text{False}, \text{False}, \text{False}, \text{False}, \text{False}]$
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Prefixes of Length $i = 1, 2, 3$
+- $i = 1$ ($s[0:1] = \text{"l"}$): not in `words` $\implies DP[1] = \text{False}$.
+- $i = 2$ ($s[0:2] = \text{"le"}$): not in `words` $\implies DP[2] = \text{False}$.
+- $i = 3$ ($s[0:3] = \text{"lee"}$): not in `words` $\implies DP[3] = \text{False}$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Prefix Length $i = 4$ ($s[0 \dots 3] = \text{"leet"}$)
+- Evaluate split indices $j \in [0, 3]$:
+  - $j = 0$: $DP[0] == \text{True}$.
+  - Substring $s[0 \dots 3] = \text{"leet"}$.
+  - Check set: $\text{"leet"} \in \text{words}$!
+  - Transition succeeds:
+    $$
+    DP[4] \leftarrow \text{True}
+    $$
+  - Break inner loop.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+State: $DP[0] = \text{True}, \, DP[4] = \text{True}$, all other entries $\text{False}$.
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+---
+
+### Step 3: Prefixes of Length $i = 5, 6, 7$
+- $i = 5$: $j \in \{0, 4\}$:
+  - $j = 4: s[4:5] = \text{"c"} \notin \text{words} \implies DP[5] = \text{False}$.
+- $i = 6$: $j = 4: s[4:6] = \text{"co"} \notin \text{words} \implies DP[6] = \text{False}$.
+- $i = 7$: $j = 4: s[4:7] = \text{"cod"} \notin \text{words} \implies DP[7] = \text{False}$.
+
+---
+
+### Step 4: Full String Length $i = 8$ ($s[0 \dots 7] = \text{"leetcode"}$)
+- Evaluate split indices $j$ where $DP[j] == \text{True}$:
+  - Candidate $j = 0$: $s[0:8] = \text{"leetcode"} \notin \text{words}$.
+  - Candidate $j = 4$: $DP[4] == \text{True}$.
+    - Suffix substring: $s[4 \dots 7] = \text{"code"}$.
+    - Check set: $\text{"code"} \in \text{words}$!
+    - Transition succeeds:
+      $$
+      DP[8] \leftarrow \text{True}
+      $$
+    - Break inner loop.
+
+Target reached: $DP[8] = \mathbf{True}$.
+String `"leetcode"` can be segmented.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+```text
+Indices:     0   1   2   3   4   5   6   7   8
+Characters:    l   e   e   t   c   o   d   e
+DP Table:   [T,  F,  F,  F,  T,  F,  F,  F,  T]
+             ^               ^               ^
+            Base           "leet"          "code"
+                           (j=0)           (j=4)
+```
+
+| Prefix Length $i$ | Substring $s[0 \dots i-1]$ | Candidate Split $j$ | Prior $DP[j]$ | Candidate Word $s[j \dots i-1]$ | In `words`? | Resulting $DP[i]$ | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | $\emptyset$ | - | - | - | - | **True** | Base case anchor |
+| 1 | `"l"` | 0 | True | `"l"` | No | False | - |
+| 2 | `"le"` | 0 | True | `"le"` | No | False | - |
+| 3 | `"lee"` | 0 | True | `"lee"` | No | False | - |
+| **4** | **`"leet"`** | **0** | **True** | **`"leet"`** | **Yes** | **True** | **Break ($DP[4]=\text{True}$)** |
+| 5 | `"leetc"` | 4 | True | `"c"` | No | False | - |
+| 6 | `"leetco"` | 4 | True | `"co"` | No | False | - |
+| 7 | `"leetcod"` | 4 | True | `"cod"` | No | False | - |
+| **8** | **`"leetcode"`** | **4** | **True** | **`"code"`** | **Yes** | **True** | **Break ($DP[8]=\text{True}$)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** If $DP[i] == \text{True}$, then by induction there exists some $j < i$ such that $DP[j] == \text{True}$ and $s[j \dots i-1] \in \text{words}$. The substring from $0$ to $i-1$ is therefore the concatenation of the valid sequence for $s[0 \dots j-1]$ and the valid word $s[j \dots i-1]$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Any valid segmentation of $s[0 \dots i-1]$ must have a last word starting at some index $j$. Because the algorithm tests all possible prefix split points $j$, any reachable configuration will be discovered and set to `True`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Greedy Segmentation Failure:** Greedily matching the first or longest word fails. For example, on $s = \text{"cars"}$, $\text{words} = [\text{"car"}, \text{"ca"}, \text{"rs"}]$, greedily choosing `"car"` leaves `"s"` which cannot be matched, whereas `"ca" + "rs"` succeeds. Dynamic programming explores all valid segmentations.
+- **Substring Creation Overhead:** Slicing `s[j:i]` creates a temporary string. Scanning only up to $\max(\text{len}(w))$ limits the maximum slice length, preventing $O(N^3)$ operations.
+- **Base Case $DP[0]$:** If $DP[0]$ is set to `False`, no transition can ever start, causing every entry to remain `False`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(N^2 \cdot K)$, where $N = |s|$ and $K$ is the maximum length of a word in `wordDict` ($K \le N$). With max length pruning, the inner loop runs at most $K$ times, each taking $O(K)$ to slice and hash, yielding $O(N \cdot K^2)$ total operations.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the boolean $DP$ array of length $N + 1$, plus $O(M)$ for the hash set of dictionary words.

@@ -1,131 +1,222 @@
 # Guided Example: Finding the Topic of Each Post
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the relational word-boundary matching and aggregation algorithm for categorizing textual posts into sorted, deduplicated topic identifier lists, establishing $O(|P| \cdot |K| \cdot L)$ relational evaluation complexity and handling unmatched records via fallback null-coalescing.
 
-- **Input:** `{"tables": {"Keywords": [{"topic_id": 1, "word": "handball"}, {"topic_id": 1, "word": "football"}, {"topic_id": 3, "word": "WAR"}, {"topic_id": 2, "word": "Vaccine"}], "Posts": [{"post_id": 1, "content": "We call it soccer They call it football hahaha"}, {"post_id": 2, "content": "Americans prefer basketball while Europeans love handball and football"}, {"post_id": 3, "content": "stop the war and play handball"}, {"post_id": 4, "content": "warning I planted some flowers this morning and then got vaccinated"}]}}`
-- **Required output:** `{"columns": ["post_id", "topic"], "rows": [[1, "1"], [2, "1"], [3, "1,3"], [4, "Ambiguous!"]]}`
+- **Input:** Relational tables `Keywords` and `Posts`
+- **Output:** Categorized projection mapping each `post_id` to its sorted topic string or `'Ambiguous!'`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Keywords`
-
-The objective is to compute `{"columns": ["post_id", "topic"], "rows": [[1, "1"], [2, "1"], [3, "1,3"], [4, "Ambiguous!"]]}` from `{"tables": {"Keywords": [{"topic_id": 1, "word": "handball"}, {"topic_id": 1, "word": "football"}, {"topic_id": 3, "word": "WAR"}, {"topic_id": 2, "word": "Vaccine"}], "Posts": [{"post_id": 1, "content": "We call it soccer They call it football hahaha"}, {"post_id": 2, "content": "Americans prefer basketball while Europeans love handball and football"}, {"post_id": 3, "content": "stop the war and play handball"}, {"post_id": 4, "content": "warning I planted some flowers this morning and then got vaccinated"}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance highlights space-padded whole-word boundary matching, case-insensitive normalization, multi-keyword topic deduplication, ordered group concatenation, and fallback labeling.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given two database tables:
+1. `Keywords(topic_id, word)`: Associates a topic identifier with a specific keyword string. A topic may have multiple keywords, and a keyword may map to multiple topics.
+2. `Posts(post_id, content)`: Contains individual post identifiers and text bodies comprising English letters and spaces.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A post is classified under a topic if at least one keyword associated with that topic appears as an **exact complete word** within the post's content, compared case-insensitively. A partial substring match (such as keyword `"war"` occurring inside the word `"warning"`) is explicitly invalid.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+For each post in `Posts`, we must produce:
+- A sorted, comma-separated list of all distinct matching `topic_id`s in ascending order (e.g. `"1,3"`).
+- If a post matches no keywords, its topic label must be the literal string `"Ambiguous!"`.
 
----
+### Representative Instance Breakdown
 
-## 3. Step-by-Step Worked Execution
+Consider the keyword table:
 
-### Step 1: Preserve every post with a left join
+| `topic_id` | `word` |
+|---|---|
+| $1$ | `"handball"` |
+| $1$ | `"football"` |
+| $2$ | `"Vaccine"` |
+| $3$ | `"WAR"` |
 
-`Posts LEFT JOIN Keywords` keeps one output-side row for every post even when no keyword satisfies the join condition.
+And the posts table:
 
-An inner join would discard posts with no topic, making it impossible to return their required ambiguous label without a separate recovery step.
+| `post_id` | `content` |
+|---|---|
+| $1$ | `"We love football and handball"` |
+| $2$ | `"He issued a warning"` |
+| $3$ | `"War has broken out"` |
+| $4$ | `"Vaccine distribution during war time"` |
 
-When no keyword matches, columns from `Keywords` are null in the retained joined row.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Keywords": [{"topic_id": 1, "word": "handball"}, {"topic_id": 1, "word": "football"}, {"topic_id": 3, "word": "WAR"}, {"topic_id": 2, "word": "Vaccine"}], "Posts": [{"post_id": 1, "content": "We call it soccer They call it football hahaha"}, {"post_id": 2, "content": "Americans prefer basketball while Europeans love handball and football"}, {"post_id": 3, "content": "stop the war and play handball"}, {"post_id": 4, "content": "warning I planted some flowers this morning and then got vaccinated"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Pad both content and keyword with spaces
-
-The join condition searches
-
-`CONCAT(' ', content, ' ')`
-
-for
-
-`CONCAT(' ', word, ' ')`.
-
-Adding a space on both sides turns beginning and ending word boundaries into the same pattern as internal boundaries. Keyword `"war"` matches `"war stories"`, `"stop war"`, or content exactly `"war"` because the padded text contains `" war "`.
-
-It does not match `"warning"` because that substring is followed by `"ning"` rather than a space.
-
-The content contract contains only English letters and spaces, so spaces are the only token boundaries the query needs to recognize. Multiple spaces do not prevent a word itself from having at least one space immediately before and after it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Evaluation:
+- **Post 1:** Contains words `"football"` (topic $1$) and `"handball"` (topic $1$). Both belong to topic $1$. Deduplicated topic set: $\{1\}$. Result: `"1"`.
+- **Post 2:** Content contains the word `"warning"`. Although `"war"` is a prefix of `"warning"`, `"war"` does not appear as an isolated complete word. No keywords match. Result: `"Ambiguous!"`.
+- **Post 3:** Content contains word `"War"`, matching keyword `"WAR"` case-insensitively. Topic set: $\{3\}$. Result: `"3"`.
+- **Post 4:** Contains word `"Vaccine"` (topic $2$) and word `"war"` (topic $3$). Topic set: $\{2, 3\}$. Ascending order: `"2,3"`.
 
 ---
 
-### Step 3: Use `INSTR` as an existence test
+## 2. Mathematical & Algorithmic Principles
 
-`INSTR(haystack, needle)` returns a positive position when the padded keyword occurs and zero otherwise. Comparing it with `> 0` turns the search into the join predicate.
+### Whole-Word Boundary Framing via Space Padding
 
-Only existence matters. A keyword appearing several times in the same post still produces one joined row for that `Keywords` record.
+In relational queries without regular expression engine dependencies, checking whether a word $w$ occurs as an isolated word in text $T$ requires verifying that $w$ is flanked by word delimiters (spaces or string boundaries).
+Padding both the text $T$ and the keyword $w$ with single leading and trailing spaces:
+$$T' = \text{" "} + \text{lower}(T) + \text{" "}, \quad w' = \text{" "} + \text{lower}(w) + \text{" "}$$
+guarantees that $w$ matches if and only if $w'$ appears as a contiguous substring of $T'$:
+$$T' \text{ matches pattern } \text{"\%"} + w' + \text{"\%"}$$
 
-If the same word maps to several topics, there are several keyword rows and all corresponding topics can join.
+This padding technique eliminates all boundary edge cases:
+- If $w$ is the very first word in $T$, it is preceded by the prepended space in $T'$.
+- If $w$ is the very last word in $T$, it is succeeded by the appended space in $T'$.
+- Substrings like `"war"` inside `"warning"` fail because `" war "` does not match inside `" warning "`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["post_id", "topic"], "rows": [[1, "1"], [2, "1"], [3, "1,3"], [4, "Ambiguous!"]]}` |
+### Relational Join, Grouping, and Fallback Coalescence
 
----
+1. **Equi/Pattern Join:** Join `Posts` with `Keywords` on the space-padded pattern predicate.
+2. **Topic Deduplication:** For each post, multiple keywords might map to the same `topic_id` (e.g. both `"football"` and `"handball"` map to topic $1$). A `DISTINCT` clause extracts unique `(post_id, topic_id)` pairs.
+3. **Ordered String Aggregation:** Group matching pairs by `post_id` and concatenate `topic_id`s in ascending order, delimited by commas.
+4. **Preserving Unmatched Posts:** Posts with zero matching keywords are preserved via a left outer join or correlated subquery, with missing values replaced by `'Ambiguous!'` via null-coalescing.
 
-## 4. Complete Execution Trace
+```mermaid
+flowchart TD
+    accTitle: Relational Post Topic Categorization Workflow
+    accDescr: Flowchart illustrating space padded text normalization, pattern matching join with keywords, distinct topic extraction, ordered aggregation, and null fallback.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Keywords": [{"topic_id": 1, "word": "handball"}, {"topic_id": 1, "word": "football"}, {"topic_id": 3, "word": "WAR"}, {"topic_id": 2, "word": "Vaccine"}], "Posts": [{"post_id": 1, "content": "We call it soccer They call it football hahaha"}, {"post_id": 2, "content": "Americans prefer basketball while Europeans love handball and football"}, {"post_id": 3, "content": "stop the war and play handball"}, {"post_id": 4, "content": "warning I planted some flowers this morning and then got vaccinated"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["post_id", "topic"], "rows": [[1, "1"], [2, "1"], [3, "1,3"], [4, "Ambiguous!"]]}` | Verified |
+    P["Posts Table (post_id, content)"] --> PadP["Pad content with spaces: ' ' + lower(content) + ' '"]
+    K["Keywords Table (topic_id, word)"] --> PadK["Pad word with spaces: ' ' + lower(word) + ' '"]
 
----
+    PadP --> MatchJoin{"Pattern Match Join:<br/>P' LIKE '% ' + K' + ' %'"}
+    PadK --> MatchJoin
 
-## 5. Algorithmic Correctness
+    MatchJoin -- Matching pairs found --> Dedup["Extract DISTINCT (post_id, topic_id)"]
+    Dedup --> Aggregate["STRING_AGG(topic_id ORDER BY topic_id, ',')"]
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+    P --> OuterJoin["Preserve all posts (Left Join / Subquery)"]
+    Aggregate --> OuterJoin
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit lowercase normalization:** Apply `LOWER` to both padded operands or a declared case-insensitive collation so correctness does not depend on the database default.
-- **Explicit ordered aggregation:** Use the target dialect's syntax to sort distinct numeric topic IDs inside aggregation; this is required for a guaranteed ascending topic string.
-- **MySQL `GROUP_CONCAT`:** In native MySQL, distinct ordered aggregation is normally expressed with `GROUP_CONCAT` and an internal `ORDER BY`.
-- **Split content into tokens:** Tokenization and equality joins can avoid repeated substring searches, but require engine-specific string-splitting support.
-- **Keyword at content start or end:** Padding creates the missing outside boundary and allows the match.
-- **Keyword inside a longer word:** Required surrounding spaces prevent false matches such as `war` in `warning`.
-- **Several keywords for one topic:** `DISTINCT topic_id` prevents duplicate IDs in the result.
-- **One keyword for several topics:** Separate keyword rows cause all those distinct topics to appear.
-- **No matching keyword:** The left join retains the post and `COALESCE` returns `Ambiguous!`.
-- **Case difference:** Correctness depends on a case-insensitive collation because the exact source performs no lowercase conversion.
-- **Output row order:** No final `ORDER BY` is needed because the result table may be returned in any order.
-- **Topic-string order:** Unlike row order, numeric order inside the topic string is required and is not guaranteed by the exact aggregate text.
-- **Dialect portability:** `STRING_AGG(DISTINCT ..., ',')` is not uniformly supported under the MySQL label.
-- **Manifest discrepancy:** The source neither lowercases explicitly nor orders the aggregate explicitly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    OuterJoin --> Coalesce{"Is aggregated topic NULL?"}
+    Coalesce -- Yes --> Ambiguous["Emit 'Ambiguous!'"]
+    Coalesce -- No --> EmitTopic["Emit aggregated topic string"]
+    Ambiguous --> FinalResult(["Output (post_id, topic)"])
+    EmitTopic --> FinalResult
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(pkL + t log t)$. Let $P$ be the number of posts, $K$ the number of keyword rows, and $L$ an upper bound on the text inspected by one substring search. Without a specialized text index, the join may test every post-keyword pair, costing $O(PKL)$.
-- **Auxiliary Space Complexity:** $O(T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace the relational transformations on our representative dataset.
+
+### Step 1: Content Normalization and Space Padding
+
+| `post_id` | Normalized Padded Content $T'$ |
+|---|---|
+| $1$ | `" we love football and handball "` |
+| $2$ | `" he issued a warning "` |
+| $3$ | `" war has broken out "` |
+| $4$ | `" vaccine distribution during war time "` |
+
+Normalized padded keywords:
+- Keyword 1: `" handball "` (topic $1$)
+- Keyword 2: `" football "` (topic $1$)
+- Keyword 3: `" vaccine "` (topic $2$)
+- Keyword 4: `" war "` (topic $3$)
+
+---
+
+### Step 2: Cross Pattern Evaluation (Join Filtering)
+
+#### Post 1:
+- Contains `" football "` $\implies$ matches topic $1$.
+- Contains `" handball "` $\implies$ matches topic $1$.
+- Matched topic pairs: `(1, 1), (1, 1)`.
+
+#### Post 2:
+- Does not contain `" handball "`.
+- Does not contain `" football "`.
+- Does not contain `" vaccine "`.
+- Substring `" war "` is tested against `" he issued a warning "`:
+  The word is `"warning"`, so surrounding spaces are absent. Test fails!
+- Matched topic pairs: none ($\emptyset$).
+
+#### Post 3:
+- Contains `" war "` at prefix position `" war has broken out "`.
+- Matched topic pairs: `(3, 3)`.
+
+#### Post 4:
+- Contains `" vaccine "` and `" war "`.
+- Matched topic pairs: `(4, 2), (4, 3)`.
+
+---
+
+### Step 3: Deduplication and Ordered String Aggregation
+
+- Post 1: Unique topics $\{1\} \implies$ aggregated string `"1"`.
+- Post 2: No topics $\implies$ aggregated string `NULL`.
+- Post 3: Unique topics $\{3\} \implies$ aggregated string `"3"`.
+- Post 4: Unique topics $\{2, 3\} \implies$ sorted ascending order `"2,3"`.
+
+---
+
+### Step 4: Fallback Coalescing
+
+Applying fallback mapping `COALESCE(aggregated_topics, 'Ambiguous!')`:
+- Post 1: `"1"`
+- Post 2: `NULL` replaced by `"Ambiguous!"`
+- Post 3: `"3"`
+- Post 4: `"2,3"`
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes the join matching, deduplicated topic sets, and final projection for all posts.
+
+| `post_id` | Matched Keyword Tokens | Raw Matched Topic IDs | Deduplicated Set | Aggregated Topic String | Final Coalesced Topic |
+|---|---|---|---|---|---|
+| $1$ | `"football"`, `"handball"` | $1, 1$ | $\{1\}$ | `"1"` | `"1"` |
+| $2$ | None | $\emptyset$ | $\emptyset$ | `NULL` | `"Ambiguous!"` |
+| $3$ | `"war"` | $3$ | $\{3\}$ | `"3"` | `"3"` |
+| $4$ | `"vaccine"`, `"war"` | $2, 3$ | $\{2, 3\}$ | `"2,3"` | `"2,3"` |
+
+### Word Boundary Verification Matrix
+
+| Post Content Snippet | Candidate Keyword | Padded Search Target | Padded Substring Found? | Match Classification |
+|---|---|---|---|---|
+| `"football and"` | `"football"` | `" football "` | Yes | Valid Whole Word |
+| `"a warning"` | `"war"` | `" war "` | No (enclosed in `"warning"`) | Rejected Partial Match |
+| `"War has"` | `"war"` | `" war "` | Yes (case-insensitive) | Valid Whole Word |
+| `"during war time"` | `"war"` | `" war "` | Yes | Valid Whole Word |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Word-Boundary Soundness
+Let $w$ be a sequence of alphanumeric characters without whitespace. In any string where tokens are separated by spaces, $w$ occurs as an autonomous token if and only if its occurrence is immediately preceded by either string start or space, and immediately followed by either string end or space.
+Pre-pending and appending a space to both the haystack and the needle guarantees that every autonomous token is universally preceded and succeeded by a space. This eliminates false positive matches on prefixes, suffixes, and infixes.
+
+### Deterministic Multi-Topic Ordering
+The `ORDER BY m.topic_id` clause within the string aggregation function guarantees that for any post mapped to multiple topic IDs $\{t_1, t_2, \dots, t_r\}$, the resulting string lists IDs in strictly increasing numerical order ($t_1 < t_2 < \dots < t_r$), satisfying the uniqueness and formatting specification.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **Duplicate Topic via Multiple Keywords:** A post mentioning multiple keywords belonging to the same topic (e.g. `"football"` and `"handball"`) must not duplicate the topic ID in the output (producing `"1"`, not `"1,1"`). The `DISTINCT` projection prevents duplicate insertion.
+- **Multiple Spaces Between Words:** If the post text contains multiple consecutive spaces, the padding pattern still matches because the keyword is surrounded by single spaces, which match any adjacent space delimiter.
+- **Keywords with Varying Letter Casing:** Applying `LOWER()` to both haystack and needle ensures case invariance (e.g. `"WAR"` matches `"war"`).
+
+### Anti-Patterns to Avoid
+- **Unpadded Substring Matching:** Using `content LIKE '%word%'` causes incorrect matches on words containing the keyword as a substring (e.g. matching `"war"` inside `"software"`, `"hardware"`, or `"warning"`).
+- **Inner Join Loss:** Using an `INNER JOIN` without left outer join or correlated subquery drops posts that have no matching keywords, omitting them from the final table instead of labeling them `"Ambiguous!"`.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Let $P$ be the number of rows in `Posts` and $K$ be the number of rows in `Keywords`.
+- Let $L$ be the maximum character length of a post's content.
+- Evaluating the pattern match condition across the Cartesian candidate space takes $O(P \cdot K \cdot L)$ string comparison operations in the worst case.
+- Grouping and sorting the matched topic IDs per post takes $O(T \log T)$ where $T \le K$ is the number of distinct topics matched.
+- Total Relational Execution Complexity: $\mathcal{O}(P \cdot K \cdot L + P \log K)$.
+
+### Space Complexity
+- Intermediate storage for the matched pairs relation requires $O(P \cdot K)$ memory in the worst case.
+- Auxiliary Space Complexity: $\mathcal{O}(P \cdot K)$ intermediate memory.

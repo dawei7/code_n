@@ -1,125 +1,138 @@
 # Guided Example: Average Height of Buildings in Each Segment
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"buildings": [[1, 4, 2], [3, 9, 4]]}`
-- **Required output:** `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]`
+A straight street is mapped along a one-dimensional coordinate line. We are provided with a collection of building specifications, where each building is designated as a triplet $[\text{start}, \text{end}, \text{height}]$. Each building occupies the half-open continuous interval $[\text{start}, \text{end})$, contributing its constant vertical height throughout this span. 
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Where multiple buildings overlap along a portion of the street, the aggregate height is defined as the arithmetic mean of all overlapping buildings rounded down to the nearest integer ($\lfloor \frac{\sum h}{k} \rfloor$). Our objective is to partition the entirely covered regions of the street into the minimal number of contiguous, non-overlapping segments $[\text{left}, \text{right}, \text{average}]$, satisfying:
+1. Every sub-segment in the output must have a constant average integer height throughout its entire span.
+2. Contiguous segments possessing identical average heights must be merged into a single maximal segment, even if the underlying composition of buildings changes across intermediate boundary points.
+3. Completely uncovered gaps (where zero buildings exist) are omitted from the output and strictly prohibit merging between segments separated by the empty gap.
 
----
+### Sample Input Dataset
 
-## 1. Instance & Teaching Goal
+Consider the representative configuration:
+$$\text{buildings} = [[1, 3, 2], [2, 5, 3], [2, 8, 3]]$$
 
-A perfectly straight street is represented by a number line. The street has building(s) on it and is represented by a 2D integer array `buildings`, where $\text{buildings}[i] = [\text{start}_{i}, \text{end}_{i}, \text{height}_{i}]$. This means that there is a building with $\text{height}_{i}$ in the **half-closed segment** $[\text{start}_{i}, \text{end}_{i})$.
-
-The objective is to compute `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]` from `{"buildings": [[1, 4, 2], [3, 9, 4]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also contrast this with the disconnected pair:
+$$\text{buildings}_{\text{gap}} = [[1, 2, 1], [5, 6, 1]]$$
+to observe how vacant intervals affect merging decisions.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Record changes only at endpoints
+A building's presence begins precisely at coordinate $\text{start}$ and vanishes precisely at coordinate $\text{end}$. Because building boundaries are sparse points on a potentially vast continuum ($0 \le \text{start} < \text{end} \le 10^8$), discretizing every integer point is infeasible. Instead, we use a sweep-line differential event framework.
 
-Between consecutive building endpoints, the set of active buildings is constant. Its count and sum of heights are constant, so the integer average is constant.
+Every building $[s_i, e_i, h_i]$ introduces two critical point events:
+- At coordinate $s_i$: an entry event adding $+1$ to active building count and $+h_i$ to active height sum.
+- At coordinate $e_i$: an exit event subtracting $-1$ from active building count and $-h_i$ from active height sum.
 
-For building `[start,end,height]`, the source records:
+Across any open interval $(x_j, x_{j+1})$ between adjacent sorted boundary coordinates, no building starts or ends. Thus, the active building count $m$ and the active total height sum $S$ remain strictly constant. The average height across the entire span $[x_j, x_{j+1})$ is identically $\lfloor S / m \rfloor$.
 
-- count change +1 at start and -1 at end in `cnt`;
-- height-sum change +height at start and -height at end in `d`.
+When transitioning across coordinate $x_j$:
+- If the prior interval $[x_{j-1}, x_j)$ had active buildings ($m > 0$), its average height is evaluated.
+- If the immediately preceding committed segment in our output stream has the identical average height and ends exactly at $x_{j-1}$, the two adjacent segments coalesce into a single continuous segment.
+- If the previous segment has a different average, or if a gap intervened ($m = 0$), a fresh segment is initiated.
 
-This is a difference-map sweep line. It avoids visiting every coordinate up to $10^8$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"buildings": [[1, 4, 2], [3, 9, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Maintain the active aggregate
-
-`m` is the number of buildings active immediately to the right of the last processed endpoint, and `s` is their total height. `last` is that endpoint.
-
-When the loop reaches next coordinate `k`, the values of `s` and `m` describe interval `[last,k)`. The source emits that interval before applying events at `k`.
-
-This order matches half-open semantics: a building ending at `k` is still active throughout the interval leading up to `k`, while a building starting at `k` becomes active only to its right.
-
-If one building ends exactly where another begins, the interval before the coordinate is emitted using the old building. Then both endpoint deltas are applied together, removing the old height and adding the new one for the following interval. There is no zero-width segment at the shared coordinate, and no moment when both buildings are incorrectly counted over a positive-length interval.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+```mermaid
+flowchart TD
+    accTitle: Sweep-Line Interval Aggregation Architecture
+    accDescr: Diagram tracing sorted endpoint processing, interval average calculation, and contiguous segment merging.
+    A["Event Map Extraction: start (+1, +h), end (-1, -h)"] --> B["Sort Unique Boundary Coordinates"]
+    B --> C{"Check Preceding Span: m > 0?"}
+    C -- "Yes (Active Span)" --> D["Compute avg = floor(S / m)"]
+    D --> E{"Merge with Last Output Segment?"}
+    E -- "Last End == x_prev AND Last Avg == avg" --> F["Extend Last Segment End to x_curr"]
+    E -- "Different Avg or Gap Separated" --> G["Append New Segment [x_prev, x_curr, avg]"]
+    C -- "No (Empty Street Gap)" --> H["Advance Pointer without Segment Emission"]
+    F --> I["Apply Deltas: S += delta_h, m += delta_count"]
+    G --> I
+    H --> I
+    I --> J["Advance to Next Boundary Coordinate"]
+```
 
 ---
 
-### Step 3: Skip uncovered gaps
+## 3. Step-by-Step State Progression Table
 
-If `m==0`, no building covers `[last,k)`, so the source emits nothing. It still updates `last=k` after processing events.
+Let us trace $\text{buildings} = [[1, 3, 2], [2, 5, 3], [2, 8, 3]]$.
 
-This retained gap boundary later prevents equal-average occupied regions on opposite sides of an empty gap from being merged.
+First, we aggregate the discrete boundary changes:
+- At $x = 1$: $+1$ building, $+2$ height.
+- At $x = 2$: $+2$ buildings, $+6$ height.
+- At $x = 3$: $-1$ building, $-2$ height.
+- At $x = 5$: $-1$ building, $-3$ height.
+- At $x = 8$: $-1$ building, $-3$ height.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]` |
+The sorted unique coordinates are $[1, 2, 3, 5, 8]$.
 
----
+| Current $x$ | Preceding Interval | Active $S, m$ in Preceding Span | Preceding Span Average | Action & Merging Decision | Output Accumulator | Delta Applied at $x$ | New Active $(S, m)$ |
+|---|---|---|---|---|---|---|---|
+| $1$ | None | $S=0, m=0$ | N/A | Initialize sweep line; start of street coverage | `[]` | $\Delta S = +2, \Delta m = +1$ | $S=2, m=1$ |
+| $2$ | $[1, 2)$ | $S=2, m=1$ | $\lfloor 2/1 \rfloor = 2$ | Append initial segment $[1, 2, 2]$ | `[[1, 2, 2]]` | $\Delta S = +6, \Delta m = +2$ | $S=8, m=3$ |
+| $3$ | $[2, 3)$ | $S=8, m=3$ | $\lfloor 8/3 \rfloor = 2$ | Last segment ends at $2$ with avg $2$. Equal avg and adjacent: extend segment to $[1, 3, 2]$ | `[[1, 3, 2]]` | $\Delta S = -2, \Delta m = -1$ | $S=6, m=2$ |
+| $5$ | $[3, 5)$ | $S=6, m=2$ | $\lfloor 6/2 \rfloor = 3$ | Last segment ends at $3$ but has avg $2 \neq 3$. Append new segment $[3, 5, 3]$ | `[[1, 3, 2], [3, 5, 3]]` | $\Delta S = -3, \Delta m = -1$ | $S=3, m=1$ |
+| $8$ | $[5, 8)$ | $S=3, m=1$ | $\lfloor 3/1 \rfloor = 3$ | Last segment ends at $5$ with avg $3$. Equal avg and adjacent: extend segment to $[3, 8, 3]$ | `[[1, 3, 2], [3, 8, 3]]` | $\Delta S = -3, \Delta m = -1$ | $S=0, m=0$ |
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"buildings": [[1, 4, 2], [3, 9, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Final structured output segments:
+$$[[1, 3, 2], [3, 8, 3]]$$
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Coordinate-by-coordinate simulation:** Impossible when endpoints reach $10^8$; only event coordinates matter.
-- **Store active heights in a multiset:** Unnecessary because only their sum and count determine the average.
-- **Sort explicit start/end events:** Equivalent to difference maps but must combine simultaneous events before describing the next interval.
-- **Several events at one coordinate:** Dictionary accumulation applies their net effect together.
-- **No active building:** Omit the interval from output.
-- **Equal averages across an endpoint:** Merge when segments are contiguous.
-- **Equal averages across an empty gap:** Do not merge; the endpoint-contiguity check prevents it.
-- **Half-open boundary:** Emit the preceding interval before applying current deltas.
-- **Single building:** Produces its original interval and height.
-- **Complete overlap:** Sum heights and divide by active count.
-- **Integer division:** `s // m` implements the specified truncation for positive heights.
-- **Any output order:** The source returns sorted street order, which is valid.
-- **Input preservation:** It builds event maps without sorting or modifying `buildings`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The transition across boundary coordinates involves three distinct phases:
+
+1. **Preceding Interval Evaluation**: When visiting boundary $x_k$, the interval $[x_{k-1}, x_k)$ has length $x_k - x_{k-1} > 0$. The active state during this entire length was governed by the height sum $S$ and count $m$ computed at $x_{k-1}$.
+   - If $m > 0$, the average height was $\lfloor S / m \rfloor$.
+   - If $m = 0$, the street was completely vacant, meaning no segment is emitted for $[x_{k-1}, x_k)$.
+
+2. **Adjacency and Continuity Invariant**: Two segments $[\ell_1, r_1, a_1]$ and $[\ell_2, r_2, a_2]$ can merge into $[\ell_1, r_2, a_1]$ if and only if:
+   $$r_1 = \ell_2 \quad \text{and} \quad a_1 = a_2$$
+   Notice that if a gap occurred between $r_1$ and $\ell_2$ (for instance, $r_1 < \ell_2$), $r_1 \neq \ell_2$ holds naturally because the preceding span had $m = 0$, and the next active interval begins at $\ell_2$.
+
+3. **Multi-event Coalescence at a Single Coordinate**: Multiple buildings may share the exact same start or end coordinates. For instance, in our sample at $x = 2$, two buildings begin simultaneously. Storing changes in a hash map or sorted dictionary ensures that all changes at coordinate $2$ coalesce into a single combined delta ($\Delta S = +6, \Delta m = +2$) before the line moves forward to coordinate $3$.
+
+| Scenario | Prior State | Incoming Interval | Condition Check | Resulting Modification |
+|---|---|---|---|---|
+| Same Average, Adjacent | $[1, 2, 2]$ | $[2, 3)$ with avg $2$ | $\text{last\_end} == 2 \land \text{last\_avg} == 2$ | Update right bound: $[1, 3, 2]$ |
+| Different Average, Adjacent | $[1, 3, 2]$ | $[3, 5)$ with avg $3$ | $\text{last\_end} == 3 \land \text{last\_avg} \neq 3$ | Append distinct record: $[3, 5, 3]$ |
+| Same Average, Gap Separated | $[1, 2, 1]$ | $[5, 6)$ with avg $1$ | $\text{last\_end} == 2 \neq 5$ | Distinct records preserved: $[1, 2, 1], [5, 6, 1]$ |
+| Vacant Segment | Any | $[2, 5)$ with $m = 0$ | $m == 0$ | Suppress output emission |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(B\log B)$. Let $B$ be the number of buildings and $E\le2B$ the number of distinct endpoints. Recording events takes $O(B)$ expected time. Sorting endpoints costs $O(E\log E)=O(B\log B)$, and the sweep is linear.
-- **Auxiliary Space Complexity:** $O(B)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The correctness of the sweep-line interval reconstruction rests on two invariant properties:
+
+### Invariant 1: Piecewise Constancy of Heights
+Between any two consecutive points in the sorted union of all start and end coordinates, no building starts, finishes, or changes height. Consequently, the set of active buildings is strictly invariant over the open interval $(x_k, x_{k+1})$. Because each building provides a constant height, the sum of heights $S$ and the number of active buildings $m$ are constant functions of $x$ over $(x_k, x_{k+1})$. The floor division $\lfloor S / m \rfloor$ is therefore an exact, unique representative of the average height across every point in $[x_k, x_{k+1})$.
+
+### Invariant 2: Maximality and Minimality of Partition
+The problem demands the *minimum* number of segments. By greedily extending an existing segment whenever $r_{\text{last}} = x_k$ and $a_{\text{last}} = a_{\text{curr}}$, no two adjacent segments in the output can have the same average height. Since splitting any segment would strictly increase the segment count, and merging across different averages or across empty gaps would violate problem rules, this greedy maximal extension produces the unique minimal partition.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Uncovered Gaps Between Equal Averages**: In $\text{buildings}_{\text{gap}} = [[1, 2, 1], [5, 6, 1]]$, both components have average height $1$. A naive post-processing step that aggregates all segments by average height would mistakenly combine them into $[1, 6, 1]$, falsely claiming the street is covered on $[2, 5)$. Checking $r_{\text{last}} = x_{\text{prev}}$ ensures that gaps prevent illegitimate merges.
+2. **Integer Division Truncation**: Average calculation must use integer floor division ($\lfloor S / m \rfloor$). For example, a sum of $8$ across $3$ buildings yields $\lfloor 8/3 \rfloor = 2$.
+3. **Overlapping Building Endpoints**: If building $A$ ends at coordinate $c$ and building $B$ starts at coordinate $c$, their intervals $[s_A, c)$ and $[c, e_B)$ meet at $c$. At point $c$, building $A$ is no longer active, while building $B$ becomes active. If both have the same average height, they seamlessly merge across $c$ into $[s_A, e_B)$.
+4. **Massive Coordinate Ranges**: Coordinates can range up to $10^8$. Any attempt to use a dense prefix array of size $10^8$ will result in out-of-memory errors. The coordinate-compression / event-map sweep line processes only at most $2B$ boundary points, remaining independent of the numerical magnitude of the endpoints.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Event Extraction**: Extracting the start and end event deltas for $B$ buildings requires iterating through the input list once: $\mathcal{O}(B)$ operations.
+- **Coordinate Sorting**: There are at most $2B$ distinct boundary coordinates. Sorting these discrete coordinates takes $\mathcal{O}(B \log B)$ time.
+- **Sweep-Line Traversal**: Traversing the sorted coordinates, updating running totals $S$ and $m$, and conditionally appending or extending output segments takes constant $\mathcal{O}(1)$ time per boundary point, totaling $\mathcal{O}(B)$ time.
+- **Total Time Complexity**: $\mathcal{O}(B \log B)$, which is optimal for comparison-based event scheduling.
+
+### Space Complexity
+- **Event Storage**: The event map stores at most $2B$ unique coordinate entries, with associated delta values for height and count: $\mathcal{O}(B)$ auxiliary space.
+- **Output Storage**: In the worst-case scenario where no two adjacent intervals merge, the output contains at most $2B - 1$ segments, consuming $\mathcal{O}(B)$ space.
+- **Total Auxiliary Space**: $\mathcal{O}(B)$, scaling linearly with the number of input buildings.

@@ -1,149 +1,194 @@
 # Guided Example: Check for Contradictions in Equations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"equations": [["a", "b"], ["b", "c"], ["a", "c"]], "values": [3.0, 0.5, 1.5]}`
-- **Required output:** `false`
+We are given a sequence of mathematical division constraints specified by two arrays:
+- $equations$: an array of variable pairs where $equations[i] = [A_i, B_i]$ defines the quotient $A_i / B_i$.
+- $values$: an array of positive real numbers where $values[i]$ is the asserted numerical value of $A_i / B_i$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must determine whether the system of equations contains any mathematical **contradictions**. A contradiction occurs if any equation asserts a ratio between two variables that conflicts with a previously established or algebraically implied ratio (accounting for standard floating-point imprecision with tolerance $\epsilon = 10^{-5}$).
+
+If any contradiction is discovered during sequential evaluation, return `true`; if the entire system of equations is mutually consistent, return `false`.
+
+Consider the representative problem instance:
+$$equations = [[\text{"a"}, \text{"b"}], [\text{"b"}, \text{"c"}], [\text{"a"}, \text{"c"}]], \quad values = [3.0, 0.5, 1.5]$$
+
+Let us analyze the algebraic dependencies step by step:
+1. Equation 1 ($a / b = 3.0$):
+   Establishes the relation between $a$ and $b$: $a = 3.0 \cdot b$.
+2. Equation 2 ($b / c = 0.5$):
+   Establishes the relation between $b$ and $c$: $b = 0.5 \cdot c$.
+   Substituting $b$ into Equation 1 algebraically implies:
+   $$\frac{a}{c} = \frac{a}{b} \times \frac{b}{c} = 3.0 \times 0.5 = 1.5$$
+3. Equation 3 ($a / c = 1.5$):
+   Directly asserts $a / c = 1.5$.
+   Comparing asserted value against implied value:
+   $$|1.5 - 1.5| = 0.0 < 10^{-5}$$
+   The asserted value matches the implied value exactly.
+
+No contradictions arise. The algorithm returns `false`.
+
+Now contrast this with an inconsistent instance:
+$$equations = [[\text{"a"}, \text{"b"}], [\text{"b"}, \text{"a"}]], \quad values = [3.0, 0.5]$$
+- Equation 1 asserts $a / b = 3.0 \implies b / a = 1 / 3.0 \approx 0.33333$.
+- Equation 2 asserts $b / a = 0.5$.
+- Difference $|0.5 - 0.33333| = 0.16667 \ge 10^{-5}$. A contradiction is detected, returning `true`.
+
+```mermaid
+flowchart TD
+    accTitle: Multiplicative Weighted DSU Architecture
+    accDescr: Disjoint set union tree where edges maintain relative scale weights w(x) = parent / x, updated by recursive path compression.
+    Root["Root (pa = root)"] -->|"w[pb] = v * w[a] / w[b]"| SubRoot["Subtree Root (pb)"]
+    Root -->|"w[a] = root / a"| NodeA["Node a"]
+    SubRoot -->|"w[b] = pb / b"| NodeB["Node b"]
+    NodeA -.->|"Equation: a / b = v"| NodeB
+    Check{"pa == pb?"} -- Yes --> Verify{"|v * w[a] - w[b]| >= eps?"}
+    Verify -- Yes --> Contradiction["Return true (Contradiction)"]
+    Verify -- No --> OK["Consistent: Proceed"]
+    Check -- No --> Union["Merge components: p[pb] = pa"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given a 2D array of strings `equations` and an array of real numbers `values`, where $\text{equations}[i] = [A_{i}, B_{i}]$ and $\text{values}[i]$ means that $A_{i} / B_{i} = \text{values}[i]$.
+### Logarithmic Isomorphism and Multiplicative Disjoint Set Union
 
-The objective is to compute `false` from `{"equations": [["a", "b"], ["b", "c"], ["a", "c"]], "values": [3.0, 0.5, 1.5]}` while avoiding redundant calculations and unnecessary overhead.
+A system of multiplicative equations $A / B = v$ is isomorphic to an additive potential system under the natural logarithm:
+$$\ln(A) - \ln(B) = \ln(v)$$
+To avoid transcendental function calls and maintain numerical precision, we implement a **Weighted Disjoint Set Union (Weighted DSU)** operating directly in the multiplicative group $(\mathbb{R}^+, \times)$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Each connected component forms a directed tree rooted at an arbitrary representative vertex $R$. For each variable node $x$, we maintain:
+- $p[x]$: the parent pointer of node $x$.
+- $w[x]$: the multiplicative scale factor relating node $x$ to its parent:
+  $$w[x] = \frac{p[x]}{x} \iff p[x] = w[x] \cdot x$$
 
----
+### Multiplicative Path Compression
 
-## 2. Conceptual Foundation & Invariants
+When querying $\text{find}(x)$, the recursion traverses up to the root $R$. During backtracking:
+$$w[x] \leftarrow w[x] \times w[\text{old\_parent}]$$
+$$p[x] \leftarrow R$$
+By induction, after path compression:
+$$w[x] = \frac{R}{x}$$
 
-We maintain the core conceptual parameters and state variables:
+### Union and Consistency Checking
 
-| State Parameter | Role & Purpose | Initial State |
+Given an equation $A / B = v$, let $pa = \text{find}(A)$ and $pb = \text{find}(B)$:
+1. **Case 1 ($pa \ne pb$, Disjoint Components):**
+   Variables $A$ and $B$ belong to independent components. We merge component $pb$ into $pa$ by setting $p[pb] = pa$.
+   We must determine the bridge weight $w[pb] = pa / pb$:
+   $$\frac{pa}{pb} = \frac{w[A] \cdot A}{w[B] \cdot B} = \frac{w[A]}{w[B]} \times \frac{A}{B} = \frac{w[A]}{w[B]} \times v$$
+   Therefore:
+   $$w[pb] \leftarrow \frac{v \cdot w[A]}{w[B]}$$
+2. **Case 2 ($pa == pb$, Cycle / Existing Relation):**
+   Variables $A$ and $B$ already share the common root $R$.
+   Their algebraically implied ratio is:
+   $$\frac{A}{B} = \frac{R / w[A]}{R / w[B]} = \frac{w[B]}{w[A]}$$
+   The equation asserts $A / B = v \iff w[B] = v \cdot w[A]$.
+   We evaluate the residual discrepancy:
+   $$\text{Discrepancy} = |v \cdot w[A] - w[B]|$$
+   If $\text{Discrepancy} \ge \epsilon = 10^{-5}$, the assertion contradicts earlier equations.
+
+| Weighted DSU Operation | Multiplicative Formulation | Algebraic Meaning |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Treat equations as multiplicative connections
-
-Each equation `a / b = value` connects two variables by a known ratio. A sequence of equations can imply another ratio: if `a / b = 2` and `b / c = 3`, then `a / c = 6`. A contradiction occurs when a new equation connects variables that are already related but gives a ratio different from the one implied by the earlier equations, outside the permitted floating-point tolerance.
-
-Weighted union-find is useful because ordinary union-find can answer whether two variables belong to the same connected component, while the added weights preserve their ratio. Every distinct variable is first mapped to an integer ID. The parent array `p` initially makes every ID its own root, and every corresponding weight starts at `1.0`.
-
-The most important detail is the direction of the stored weight. Before path compression, the invariant is
-
-`w[x] = p[x] / x`.
-
-After `find(x)` finishes, `p[x]` is the component root and the same invariant becomes
-
-`w[x] = root / x`.
-
-Here the symbols represent the positive numerical quantities associated with the equation variables. Remembering the ratio as “parent divided by node” is essential; assuming the opposite direction would reverse the union formula.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"equations": [["a", "b"], ["b", "c"], ["a", "c"]], "values": [3.0, 0.5, 1.5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Node Scale Factor $w[x]$ | $w[x] = R / x$ | Multiplier converting node value $x$ to root value $R$ |
+| Path Compression | $w[x] \leftarrow w[x] \cdot w[p[x]]$ | Collapses multi-hop tree branches into direct root links |
+| Component Merge | $w[pb] \leftarrow v \cdot w[A] / w[B]$ | Calibrates relative scale factor between distinct root nodes |
+| Consistency Test | $|v \cdot w[A] - w[B]| < \epsilon$ | Validates that implied ratio matches given assertion |
 
 ---
 
-### Step 2: Path compression must update the ratio as well as the parent
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-If `x` is not a root, `find(x)` first recursively finds and compresses its current parent. Before that recursive call, `w[x] = oldParent / x`. After the call, `w[oldParent] = root / oldParent`. Multiplying them gives
+Let us trace $equations = [[\text{"a"}, \text{"b"}], [\text{"b"}, \text{"c"}], [\text{"a"}, \text{"c"}]]$ with $values = [3.0, 0.5, 1.5]$.
+Map identifiers to indices: $\text{"a"} \to 0, \, \text{"b"} \to 1, \, \text{"c"} \to 2$.
+Initialize $p = [0, 1, 2]$ and $w = [1.0, 1.0, 1.0]$.
 
-`(oldParent / x) \cdot (root / oldParent) = root / x`.
+### Step 1: Process $a / b = 3.0$ (Indices $0, 1$)
+- Find roots:
+  - $\text{find}(0) \implies pa = 0, \, w[0] = 1.0$.
+  - $\text{find}(1) \implies pb = 1, \, w[1] = 1.0$.
+- Because $pa \ne pb$ ($0 \ne 1$), merge component $1$ into $0$:
+  - Parent assignment: $p[1] \leftarrow 0$.
+  - Bridge weight:
+    $$w[1] = \frac{v \cdot w[0]}{w[1]} = \frac{3.0 \times 1.0}{1.0} = 3.0$$
+- DSU State:
+  - $p = [0, 0, 2]$
+  - $w = [1.0, 3.0, 1.0]$
 
-That is exactly why the code performs `w[x] *= w[p[x]]` before replacing `p[x]` with the returned root. The old parent entry must still be available for the multiplication. Once both updates are complete, `x` points directly to the root and its weight correctly represents `root / x`.
+### Step 2: Process $b / c = 0.5$ (Indices $1, 2$)
+- Find roots:
+  - $\text{find}(1) \implies p[1] = 0$, already root. $pa = 0, \, w[1] = 3.0$.
+  - $\text{find}(2) \implies p[2] = 2$, root is $pb = 2, \, w[2] = 1.0$.
+- Because $pa \ne pb$ ($0 \ne 2$), merge component $2$ into $0$:
+  - Parent assignment: $p[2] \leftarrow 0$.
+  - Bridge weight:
+    $$w[2] = \frac{v \cdot w[1]}{w[2]} = \frac{0.5 \times 3.0}{1.0} = 1.5$$
+- DSU State:
+  - $p = [0, 0, 0]$
+  - $w = [1.0, 3.0, 1.5]$
+  - Physical meaning: $R = 0 \implies w[0] = R/a = 1.0, \, w[1] = R/b = 3.0, \, w[2] = R/c = 1.5$.
 
-For a root, `p[x] == x` and `w[x] == 1.0`, matching `x / x = 1`. Repeated calls remain correct because a node already compressed to the root simply multiplies through a root weight of one if compression is needed again.
+### Step 3: Process $a / c = 1.5$ (Indices $0, 2$)
+- Find roots:
+  - $\text{find}(0) \implies pa = 0, \, w[0] = 1.0$.
+  - $\text{find}(2) \implies pb = 0, \, w[2] = 1.5$.
+- Because $pa == pb = 0$, both variables already belong to the same component!
+- Check consistency:
+  $$\text{Discrepancy} = |v \cdot w[0] - w[2]| = |1.5 \times 1.0 - 1.5| = |1.5 - 1.5| = 0.0$$
+- Since $0.0 < 10^{-5}$, the equation is consistent.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Join two previously separate components
-
-Consider a new equation `a / b = v`. After calling `find` on both endpoints, let their roots be `pa` and `pb`. The weights now mean
-
-`w[a] = pa / a` and `w[b] = pb / b`.
-
-If `pa != pb`, the earlier equations do not yet impose any ratio between these components, so the new equation cannot contradict them. The solution attaches root `pb` beneath root `pa` by assigning `p[pb] = pa`. It must also choose `w[pb]`, whose required meaning is now `pa / pb`.
-
-From the known weights,
-
-`a = pa / w[a]` and `b = pb / w[b]`.
-
-Substituting these expressions into `a / b = v` gives
-
-`(pa / w[a]) / (pb / w[b]) = v`,
-
-so
-
-`pa / pb = v \cdot w[a] / w[b]`.
-
-The assignment `w[pb] = v * w[a] / w[b]` therefore establishes exactly the required parent-to-node ratio for the newly attached root. All existing ratios inside both components remain unchanged, and the new edge makes their combined component satisfy the new equation.
-
-The implementation always attaches `pb` under `pa`. It does not use a rank or size heuristic. That choice keeps the weight formula simple but matters when describing the strongest theoretical time bound.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+All equations processed with zero contradictions. Return `false`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Comprehensive State Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"equations": [["a", "b"], ["b", "c"], ["a", "c"]], "values": [3.0, 0.5, 1.5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Step | Equation $[A, B] = v$ | $pa = \text{find}(A)$ | $pb = \text{find}(B)$ | Relation State | Action Taken | Bridge Weight $w$ Computed | Residual Error |
+|---|---|---|---|---|---|---|---|
+| Init | - | - | - | All disjoint | $p=[0, 1, 2], w=[1, 1, 1]$ | - | - |
+| $1$ | $a / b = 3.0$ | $0$ ($w=1.0$) | $1$ ($w=1.0$) | Disjoint | Union $p[1]=0$ | $w[1] = 3.0 \times 1 / 1 = 3.0$ | N/A (new edge) |
+| $2$ | $b / c = 0.5$ | $0$ ($w=3.0$) | $2$ ($w=1.0$) | Disjoint | Union $p[2]=0$ | $w[2] = 0.5 \times 3 / 1 = 1.5$ | N/A (new edge) |
+| $3$ | $a / c = 1.5$ | $0$ ($w=1.0$) | $0$ ($w=1.5$) | Shared Root | Consistency Test | Retained ($w[2]=1.5$) | $|1.5 \times 1 - 1.5| = 0.0$ |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Weighted graph traversal for every equation:** Store both directed ratios for each accepted equation, then run DFS or BFS to discover the implied ratio when checking a new connection. This is conceptually direct but may revisit much of a component for many equations, leading to roughly `O(M(V + M))` work in a dense repeated-query scenario.
-- **Logarithmic transformation:** Convert multiplicative equations into additive differences with logarithms and use a potential-based structure. This can clarify the algebra but still uses floating-point approximations and adds logarithm operations; positive values make it possible, but the direct ratios are simpler.
-- **Union by rank or size:** Maintain a balancing array and attach the smaller or shallower component beneath the other. This improves the formal amortized bound, but the root-weight formula must be inverted appropriately when the attachment direction is reversed.
-- **Ordinary unweighted union-find:** It can tell whether `a` and `b` are connected but cannot recover the ratio implied between them, so it cannot decide whether a cycle-forming equation is consistent.
-- **Assuming `w[x] = x / root`:** That interpretation reverses every derived ratio. In this implementation, `w[x]` is parent divided by node before compression and root divided by node afterward.
-- **Updating the parent before the compression weight:** The multiplication needs the old parent's root-relative weight. Carelessly overwriting references or using a stale direction can destroy the invariant even if connectivity remains correct.
-- **Equation joining two separate components:** It is never immediately contradictory because no earlier equation relates those components. The new value defines their relative scale through `w[pb]`.
-- **Repeated equation:** If its value agrees with the already implied ratio within tolerance, it changes nothing. If it disagrees by at least `10^{-5}` under the implementation's comparison, the method returns `true`.
-- **Reciprocal equation:** After accepting `a / b = v`, an equation `b / a = 1 / v` should agree through the same root-relative weights. A materially different reciprocal is detected as a contradiction.
-- **Self-equation:** For `a / a = v`, both endpoints have the same root and equal weights, so consistency requires `v` to be within tolerance of `1`. No special branch is necessary.
-- **Disconnected groups at the end:** Different components may remain unrelated. That is not a contradiction; it only means the equations never specify a ratio between those groups.
-- **Tolerance boundary:** The code accepts only differences strictly smaller than `1e-5`. A difference exactly equal to `1e-5` satisfies the `>=` test and is reported as contradictory.
-- **Relative versus absolute error:** The implementation uses the absolute comparison required by the local contract. Replacing it with relative error would change behavior for very large or very small ratios.
-- **Long parent chain:** Always attaching `pb` under `pa` can temporarily create a deep tree. Path compression flattens every traversed route, but Python recursion depth is still a practical reason that rank or an iterative `find` could be preferable for much larger unconstrained inputs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Preservation of the Multiplicative Group Invariant
+During path compression from node $x$ to root $R$ through intermediate parents $y_1, y_2, \dots, y_k$:
+$$\frac{R}{x} = \frac{R}{y_k} \times \frac{y_k}{y_{k-1}} \times \dots \times \frac{y_1}{x} = \prod_{j} w[y_j]$$
+The multiplicative accumulation preserves the exact ratio of the node to the root.
+
+### Cycle Detection and Contradiction Soundness
+Whenever $pa == pb$, there exists a previous chain of equations connecting $A$ and $B$. The relative values of $A$ and $B$ are uniquely determined by their common root:
+$$A = \frac{R}{w[A]}, \quad B = \frac{R}{w[B]} \implies \frac{A}{B} = \frac{w[B]}{w[A]}$$
+If the newly asserted value $v$ differs from this implied ratio by at least $\epsilon$, the two constraints cannot be satisfied simultaneously in $\mathbb{R}^+$. The early exit with `true` is provably correct.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Anti-Patterns
 
-- **Time Complexity:** $O(m alpha(v))$. Let `V` be the number of distinct variables and `M` the number of equations. Building the mapping takes `O(M)` expected dictionary operations and creates arrays of length `V`. Processing each equation performs two `find` operations and at most one constant-time union or consistency comparison.
-- **Auxiliary Space Complexity:** $O(v)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Anti-Pattern: Direction Confusion in Weighted DSU
+A frequent implementation failure is defining $w[x] = x / parent$ instead of $parent / x$ while applying the union formula for $parent / x$. This inverts quotients, turning a multiplication by $v$ into a division by $v$. Consistently maintaining $w[x] = parent / x$ avoids inversion errors.
+
+### Edge Case: Self-Loop Equations ($a / a = 1.0$)
+If an equation asserts $a / a = 1.0$, $pa = pb = \text{find}(a)$. The discrepancy is $|1.0 \times w[a] - w[a]| = 0$, evaluating consistently. If an equation asserted $a / a = 2.0$, it immediately flags a contradiction ($|2.0 \times 1 - 1| = 1.0 \ge \epsilon$).
+
+### Edge Case: Disconnected Clusters of Equations
+If equations describe multiple independent components (e.g. $\{a, b\}$ and $\{x, y\}$), Weighted DSU maintains disjoint trees with separate roots without cross-talk.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Variable Mapping:** Scanning $E$ equations to assign unique integer IDs to $V$ variables takes $O(E)$ time.
+- **DSU Operations:** For each of the $E$ equations, we perform two `find` calls with path compression and at most one union operation.
+- By the Tarjan inverse Ackermann analysis, each DSU operation runs in $O(\alpha(V))$ amortized time.
+- **Total Time Complexity:** $O(E \cdot \alpha(V))$, which is virtually indistinguishable from strictly linear $O(E)$ time.
+
+### Space Complexity
+- Parent array $p$ and weight array $w$ each consume $O(V)$ floating-point memory.
+- Hash map for variable names requires $O(V)$ space.
+- **Total Auxiliary Space Complexity:** strictly $O(V)$ space where $V \le 2E$.

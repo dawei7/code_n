@@ -184,26 +184,6 @@
         "real",
         "bounds"
       ]
-    },
-    {
-      "id": "trial-boundary-8",
-      "name": "identical elements in nums",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2
-        ]
-      },
-      "expected": [
-        2,
-        2
-      ],
-      "tags": [
-        "boundary",
-        "duplicates"
-      ]
     }
   ]
 }

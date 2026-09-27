@@ -1,123 +1,144 @@
 # Guided Example: Check if Word Can Be Placed In Crossword
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"board": [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], "word": "abc"}`
-- **Required output:** `true`
+We are provided an $R \times C$ crossword board containing three categories of characters:
+- Lowercase English letters (`'a'` through `'z'`), representing fixed pre-filled characters.
+- Space characters (`' '`), representing vacant cells awaiting assignment.
+- Hash characters (`'#'`), representing impassable barrier blocks.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We are also given a target lowercase string $\text{word}$ of length $K$. We must determine whether $\text{word}$ can be legally placed into the board along either a horizontal or a vertical line, reading in either forward (left-to-right / top-to-bottom) or reverse (right-to-left / bottom-to-top) order.
 
----
+A placement is valid if and only if it satisfies all of the following rules:
+1. **Unblocked Alignment**: Every cell in the span must be non-blocked (it cannot contain `'#'`).
+2. **Character Compatibility**: At every position $p \in [0, K-1]$, the cell must either be a space `' '` or match the corresponding character of $\text{word}$ exactly.
+3. **Exact Slot Boundary Rule**: The cells immediately preceding and immediately following the word along its orientation axis must be either off the board grid boundary or blocked by `'#'`. In other words, $\text{word}$ cannot occupy a proper subsegment of a longer unblocked run; the contiguous open segment must have length **identically equal to $K$**.
 
-## 1. Instance & Teaching Goal
+### Sample Input Dataset
 
-You are given an `m x n` matrix `board`, representing the** current **state of a crossword puzzle. The crossword contains lowercase English letters (from solved words), `' '` to represent any **empty **cells, and `'#'` to represent any **blocked** cells.
+Consider the board configuration with target string $\text{word} = \text{"abc"}$ ($K = 3$):
+$$\text{board} = \begin{bmatrix} \text{\#'} & \text{' '} & \text{\#'} \\ \text{' '} & \text{' '} & \text{\#'} \\ \text{\#'} & \text{'c'} & \text{' '} \end{bmatrix}$$
 
-The objective is to compute `true` from `{"board": [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], "word": "abc"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also examine the incompatible configuration with $\text{word} = \text{"ac"}$ ($K = 2$):
+$$\text{board}_{\text{no}} = \begin{bmatrix} \text{' '} & \text{\#'} & \text{'a'} \\ \text{' '} & \text{\#'} & \text{'c'} \\ \text{' '} & \text{\#'} & \text{'a'} \end{bmatrix}$$
+and a reverse horizontal placement with $\text{word} = \text{"ca"}$ ($K = 2$):
+$$\text{board}_{\text{rev}} = \begin{bmatrix} \text{\#'} & \text{' '} & \text{\#'} \\ \text{' '} & \text{' '} & \text{\#'} \\ \text{\#'} & \text{' '} & \text{'c'} \end{bmatrix}$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: A valid placement must occupy one complete slot
+The crucial structural insight lies in rule 3: **the word must fill an entire maximal open segment**. A maximal open segment is a contiguous run of non-barrier cells bounded on both ends by either a grid edge or a `'#'` barrier.
 
-A word cannot have an unblocked letter or space immediately before or after it along its direction. Therefore it must exactly fill a run bounded by board edges or `'#'` cells.
+Rather than checking all possible starting coordinates and directions arbitrarily, we can decompose the crossword grid into its constituent maximal 1D segments:
+1. Every row of length $C$ is partitioned by `'#'` barriers into disjoint contiguous token segments.
+2. Every column of length $R$ is partitioned by `'#'` barriers into disjoint contiguous token segments.
 
-The source tries every cell as a possible start in four directions, but calls the detailed checker only when the cell immediately before that start is blocked or outside the board.
+For each extracted segment:
+- Let the length of the segment be $L$.
+- **Length Filter**: If $L \neq K$, this segment can never accommodate $\text{word}$. If $L < K$, the word does not fit. If $L > K$, placing the word would leave unblocked cells before or after, violating the boundary rule.
+- **Compatibility Verification**: If $L = K$, the segment is an exact geometric fit. We test whether the characters match in either direction:
+  - **Forward Match**: For all $p \in [0, K-1]$, $\text{segment}[p] \in \{\text{' '}, \text{word}[p]\}$.
+  - **Backward Match**: For all $p \in [0, K-1]$, $\text{segment}[p] \in \{\text{' '}, \text{word}[K - 1 - p]\}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], "word": "abc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+If any segment across all rows or columns satisfies either forward or backward compatibility, we conclude $\text{true}$ immediately. If all maximal segments are exhausted without a match, we return $\text{false}$.
 
----
-
-### Step 2: Verify the boundary after the word
-
-Helper `check(i,j,a,b)` uses direction vector $(a,b)$. For word length `k`, coordinate
-
-`(i + a * k, j + b * k)`
-
-is the cell immediately after the proposed word.
-
-If that coordinate is in bounds and is not blocked, the slot continues beyond the word and placement is invalid. Returning false before scanning letters enforces exact slot length at the far boundary.
-
-The caller's direction-specific condition enforces the near boundary. Together, both ends are closed by an edge or block.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Match each word character
-
-The helper iterates through `word` from its first character to last while advancing by the direction vector.
-
-At each position, it rejects an out-of-bounds coordinate. An empty space accepts any character. An existing letter accepts only the same character. A block rejects because it is neither a space nor the required letter.
-
-If all characters fit and the post-word boundary was valid, the placement succeeds.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+```mermaid
+flowchart TD
+    accTitle: Crossword Maximal Segment Verification Pipeline
+    accDescr: Diagram illustrating grid decomposition into 1D maximal unblocked segments and bidirectional matching.
+    A["Crossword Board R x C and Word of length K"] --> B["Extract Maximal Unblocked Segments delimited by '#'"]
+    B --> C["Horizontal Segments from Rows"]
+    B --> D["Vertical Segments from Columns"]
+    C --> E["Inspect Candidate Segment of Length L"]
+    D --> E
+    E --> F{"Does L == K?"}
+    F -- "No (L != K)" --> G["Reject Segment (Length Mismatch)"]
+    F -- "Yes (L == K)" --> H{"Test Forward Match: segment[p] == ' ' or word[p]?"}
+    H -- "Passes" --> I["Valid Placement Found: Return True"]
+    H -- "Fails" --> J{"Test Backward Match: segment[p] == ' ' or word[K-1-p]?"}
+    J -- "Passes" --> I
+    J -- "Fails" --> K["Reject Segment (Conflict)"]
+    G --> L{"More segments?"}
+    K --> L
+    L -- "Yes" --> E
+    L -- "No" --> M["All Segments Checked: Return False"]
+```
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step State Progression Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], "word": "abc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+Let us trace the primary sample with $\text{word} = \text{"abc"}$ ($K = 3$):
+$$\text{board} = \begin{bmatrix} \text{\#'} & \text{' '} & \text{\#'} \\ \text{' '} & \text{' '} & \text{\#'} \\ \text{\#'} & \text{'c'} & \text{' '} \end{bmatrix}$$
 
----
+We extract all maximal unblocked segments from rows and columns:
 
-## 5. Algorithmic Correctness
+| Orientation | Coordinate | Segment Index Range | Raw Cell Content | Length $L$ | Length Equals $K = 3$? | Forward Match Test against `"abc"` | Backward Match Test against `"cba"` | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| Horizontal | Row $0$ | Col $1 \dots 1$ | `[' ']` | $1$ | No ($1 \neq 3$) | Skipped | Skipped | Discarded |
+| Horizontal | Row $1$ | Col $0 \dots 1$ | `[' ', ' ']` | $2$ | No ($2 \neq 3$) | Skipped | Skipped | Discarded |
+| Horizontal | Row $2$ | Col $1 \dots 2$ | `['c', ' ']` | $2$ | No ($2 \neq 3$) | Skipped | Skipped | Discarded |
+| Vertical | Col $0$ | Row $1 \dots 1$ | `[' ']` | $1$ | No ($1 \neq 3$) | Skipped | Skipped | Discarded |
+| Vertical | Col $1$ | Row $0 \dots 2$ | `[' ', ' ', 'c']` | $3$ | **Yes ($3 == 3$)** | Pos 0: `' '` vs `'a'` (OK)<br>Pos 1: `' '` vs `'b'` (OK)<br>Pos 2: `'c'` vs `'c'` (OK) | Not needed (Forward passed) | **Match Accepted** |
+| Vertical | Col $2$ | Row $2 \dots 2$ | `[' ']` | $1$ | No ($1 \neq 3$) | Skipped | Skipped | Skipped (Already True) |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Split rows and columns on blocks:** Compare each exact-length segment with the word and its reverse; clear but may allocate strings or lists.
-- **Transpose the board:** Reuse horizontal logic for vertical slots, at the cost of $O(MN)$ extra storage.
-- **Check letters without slot boundaries:** Incorrectly allows the word inside a longer unblocked run.
-- **One-cell word:** Requires a one-cell slot bounded on both sides in its direction.
-- **Existing matching letters:** Allowed and need no board mutation.
-- **Existing mismatching letter:** Immediately rejects that orientation.
-- **Blocked cell inside the word:** Rejected by compatibility checking.
-- **Right-to-left and bottom-to-top:** Direction changes traversal; `word` itself remains in normal character order.
-- **Board edge:** Serves as a valid slot boundary.
-- **Several valid placements:** The first discovered returns true, which is sufficient.
-- **Short-circuiting:** Avoids checker calls when the near boundary is invalid.
-- **Input preservation:** Placement is tested logically without writing letters into `board`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Column $1$ provides an exact geometric and character match reading vertically downwards. Result: `true`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Time Complexity:** $O(MN)$. Let $M$ and $N$ be board dimensions. The outer loops visit $MN$ cells. Across all row and column slot starts and four directions, checked cell work is $O(MN)$. Total time is $O(MN)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Analyzing boundary conditions across different board topologies highlights why decomposing into maximal segments guarantees precision:
+
+1. **Boundary Confinement**: A word cannot end adjacent to another blank cell without a barrier separating them. For example, if a row contains `[' ', ' ', ' ']` and $K = 2$, placing the word in the first two cells leaves an empty cell immediately following it, which violates the requirement that the placement must be bordered by `#` or the board edge.
+2. **Bidirectional Complementarity**: In `board_rev`, row $2$ has cells `[' ', 'c']` with $K = 2$ and $\text{word} = \text{"ca"}$.
+   - Reading left-to-right gives `' '` then `'c'`. The word needs `'c'` then `'a'`. Cell $1$ has `'c'` while the word expects `'a'` (conflict).
+   - Reading right-to-left gives `'c'` then `' '`. The word needs `'c'` then `'a'`. Cell $1$ has `'c'` (matches) and cell $0$ has `' '` (wildcard matches `'a'`). The reverse orientation succeeds.
+
+| Board Row / Column Content | Word | Target Length $K$ | Segment Length $L$ | Forward Fit | Backward Fit | Outcome Explanation |
+|---|---|---|---|---|---|---|
+| `['#', ' ', ' ', '#']` | `"hi"` | $2$ | $2$ | Both match wildcards | Both match wildcards | Valid: entirely blank slot of exact length |
+| `[' ', ' ', ' ']` | `"hi"` | $2$ | $3$ | Ineligible | Ineligible | Invalid: slot length $3$ exceeds word length $2$ |
+| `['#', 'a', 'c', '#']` | `"ca"` | $2$ | $2$ | Mismatch (`'a'` vs `'c'`) | Match (`'c'` vs `'c'`, `'a'` vs `'a'`) | Valid: backward orientation matches |
+| `['#', 'b', 'c', '#']` | `"ca"` | $2$ | $2$ | Mismatch | Mismatch | Invalid: fixed letter `'b'` conflicts with both directions |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness of Segment Partitioning
+Every potential word placement spans a contiguous set of cells along a single row or column. By definition of the crossword placement rules:
+- The cell immediately prior to the start of the word must be either off-board or `'#'`.
+- The cell immediately following the end of the word must be either off-board or `'#'`.
+- No cell within the word can be `'#'`.
+
+Therefore, every legitimate word placement corresponds **one-to-one** with a maximal contiguous subsequence of non-`'#'` characters within some row or column whose length is identically $K$.
+
+Because rows and columns form independent one-dimensional sequences, partitioning each row and column into connected components separated by `'#'` generates the exhaustive set of all candidate slots.
+
+### Completeness of Bidirectional Verification
+For any candidate slot of length $K$, there are exactly two spatial orientations: forward along the index axis or reverse. A slot is viable if and only if every cell $p$ satisfies $\text{cell}[p] \in \{\text{' '}, \text{target}[p]\}$. Testing both orientations exhaustively checks all possibilities. Hence, no valid placement can be overlooked, and no invalid placement can be accepted.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Subsegment Embedding Fallacy**: Assuming that because a row contains $5$ consecutive spaces, a $3$-letter word can simply be placed at the beginning. This is explicitly prohibited: the word must span from barrier to barrier (or edge).
+2. **Asymmetric Grid Dimensions**: $R$ and $C$ need not be equal. A $1 \times N$ or $N \times 1$ grid contains only one direction of meaningful length, while the orthogonal direction consists solely of length-$1$ segments.
+3. **Single Letter Words ($K = 1$)**: When $K = 1$, forward and backward orientations are identical. The slot must be an isolated single unblocked cell surrounded by `#` or grid edges.
+4. **Pre-existing Fixed Letters**: Fixed letters must be strictly respected. A space `' '` acts as a wildcard, but an existing letter cannot be overwritten or altered.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Grid Traversal & Segment Extraction**: Traversing the $R \times C$ board along rows visits each cell once, taking $\mathcal{O}(R \cdot C)$ operations. Traversing along columns similarly takes $\mathcal{O}(R \cdot C)$ operations.
+- **Character Matching**: Each unblocked cell belongs to exactly one maximal horizontal segment and one maximal vertical segment. When a segment has length $K$, comparing characters forward and backward takes at most $2K$ character operations. Across the entire grid, the sum of lengths of candidate segments cannot exceed the total number of cells $R \cdot C$.
+- **Total Time Complexity**: $\mathcal{O}(R \cdot C)$, which is strictly linear in the total number of board cells.
+
+### Space Complexity
+- **Iterative Extraction**: Maximal segments can be verified with running index pointers or by extracting tokens between `#` delimiters.
+- **Memory Footprint**: Scanning with index pointers requires $\mathcal{O}(1)$ additional memory beyond storing the grid and word. Even if token slices are extracted row-by-row, the maximum memory at any moment is bounded by $\mathcal{O}(\max(R, C))$.
+- **Total Auxiliary Space**: $\mathcal{O}(1)$ with pointer traversal, or $\mathcal{O}(\max(R, C))$ if buffering individual rows/columns.

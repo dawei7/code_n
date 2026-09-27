@@ -1,120 +1,181 @@
 # Guided Example: Mini Parser
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step recursive grammar descent, bracket depth state tracking (`depth`), top-level comma delimiter splitting (`depth == 0 and s[i] == ','`), and hierarchical `NestedInteger` tree construction on representative serialized strings:
 
-- **Input:** `{"s": "324"}`
-- **Required output:** `324`
+- **Input:** $s = \text{"[123, [456, [789]]]"}$
+- **Required output:** `NestedInteger` representing $[123, [456, [789]]]$
+  - Outer list level:
+    - Child 1: substring `"123"` at depth 0 $\implies$ recurses to scalar integer `NestedInteger(123)`
+    - Child 2: substring `"[456, [789]]"` at depth 0 $\implies$ recurses to nested list
+  - Mid list level (`"[456, [789]]"`):
+    - Child 1: `"456"` $\implies$ scalar integer `NestedInteger(456)`
+    - Child 2: `"[789]"` $\implies$ nested list with single element `NestedInteger(789)`
+  - Reassembled structure: `[123, [456, [789]]]`
+- **Scalar Non-List Input:** $s = \text{"324"} \implies$ returns scalar `NestedInteger(324)`
+- **Empty List Input:** $s = \text{"[]"} \implies$ returns empty list `NestedInteger()`
+- **Negative Integers:** $s = \text{"[-1, 2]"} \implies$ handles `-` seamlessly via `int(s)`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates recursive descent tokenization and parsing of context-free languages, mathematically proves why tracking bracket depth isolates top-level delimiter boundaries without splitting inner nested sub-lists, and derives $O(N)$ runtime and $O(D)$ recursion stack space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string s represents the serialization of a nested list, implement a parser to deserialize it and return *the deserialized* `NestedInteger`.
+Given a serialized string $s = \text{"[123, [456, [789]]]"}$ representing a nested list of integers:
+Deserialize the string into a hierarchical `NestedInteger` object conforming to the interface:
+- `isInteger()`: returns True if holding a single integer, False if holding a list.
+- `getInteger()`: returns the integer value.
+- `getList()`: returns the list of `NestedInteger` elements.
+- `add(elem)`: appends a child `NestedInteger` to this list object.
 
-The objective is to compute `324` from `{"s": "324"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input String: "[123, [456, [789]]]"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Hierarchical Grammar Tree:
+       [ List ]
+      /        \
+   123        [ List ]
+             /        \
+          456        [ List ]
+                        |
+                       789
+
+Challenge: When scanning the outer list, the commas inside "[456, [789]]" must NOT
+split the outer list. Only commas at depth 0 represent outer sibling boundaries!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Base Cases (Terminal Rules):
+1. **Empty String or List:**
+   If `not s or s == '[]'`: return `NestedInteger()` (Empty list container).
+2. **Scalar Integer:**
+   If `s[0] != '['`: the substring contains no brackets and represents a single signed integer.
+   Return `NestedInteger(int(s))`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Recursive List Grammar & Depth Tracking:
+When `s[0] == '['` and $s \ne \text{"[]"}$:
+- The string represents a bracketed list `[ ... ]`.
+- Strip the enclosing outer brackets by scanning $i$ from $1$ to $\text{len}(s) - 1$.
+- Maintain:
+  - `depth = 0`: Number of currently open bracket pairs inside this list level.
+  - `j = 1`: Start index of the current unparsed child token.
+- **Delimiter Rules:**
+  - Encounter `'['`: $depth \leftarrow depth + 1$.
+  - Encounter `']'`: $depth \leftarrow depth - 1$.
+  - Encounter `','` or reaching the end $i = \text{len}(s) - 1$:
+    If and only if $depth == 0$:
+    - The substring $s[j \dots i - 1]$ is a complete child element.
+    - Recurse: `ans.add(self.deserialize(s[j:i]))`.
+    - Advance start pointer: $j \leftarrow i + 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** A comma at index $i$ separates immediate child elements of the current list if and only if $depth == 0$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the serialization as a recursive grammar
-
-Every valid input represents exactly one of two things:
-
-- a single signed integer, such as `324` or `-17`;
-- a bracketed list whose elements are themselves valid serialized integers or lists.
-
-That definition is recursive, so the exact solution makes `deserialize` recursive as well. A call is responsible for constructing one `NestedInteger` from the complete substring it receives. Scalar calls convert directly to an integer. List calls locate their immediate children and recursively deserialize each child.
-
-The key difficulty is not recognizing digits. It is finding which commas separate elements of the current list. A comma inside a nested list belongs to that nested list and must not split the current level. The `depth` variable distinguishes those two kinds of commas.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "324"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"[123, [456, [789]]]"}$ ($N = 21$):
 
 ---
 
-### Step 2: The simple base cases
-
-The first branch is `if not s or s == '[]': return NestedInteger()`.
-
-Calling `NestedInteger()` with no integer value creates an empty nested list. The explicit `s == '[]'` check is therefore the correct result for an empty serialized list. The `not s` part is defensive; a valid top-level serialization is never empty, and the splitting logic does not produce an empty child for a valid list, but the same empty-list object is returned if an empty substring reaches the method.
-
-The second branch is `if s[0] != '[': return NestedInteger(int(s))`. If the first character is not an opening bracket, validity guarantees that the entire substring is a signed integer. Python’s `int` handles both positive digit sequences and the optional leading minus sign. Constructing `NestedInteger(int(s))` creates the required integer-holding object.
-
-These branches terminate recursion. Only a nonempty bracketed list reaches the scanning logic.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Outer Level Execution (`"[123, [456, [789]]]"`)
+- Not empty, starts with `'['`.
+- Create list container: `ans = NestedInteger()`.
+- Initial pointers: $depth = 0, j = 1$.
+- **Scan $i = 1 \dots 20$:**
+  - $i = 1 \dots 3$: characters `'1'`, `'2'`, `'3'`.
+  - $i = 4$: character is `','` and $depth == 0$!
+    - Child slice: $s[j:i] = s[1:4] = \text{"123"}$.
+    - Recurse: `deserialize("123")` $\implies$ returns `NestedInteger(123)`.
+    - Attach: `ans.add(NestedInteger(123))`.
+    - Advance: $j \leftarrow 4 + 1 = \mathbf{5}$.
+  - $i = 5$: character `'['` $\implies depth \leftarrow 0 + 1 = \mathbf{1}$.
+  - $i = 6 \dots 9$: characters `'4'`, `'5'`, `'6'`, `','` (ignored because $depth = 1 \ne 0$).
+  - $i = 11$: character `'['` $\implies depth \leftarrow 1 + 1 = \mathbf{2}$.
+  - $i = 15$: character `']'` $\implies depth \leftarrow 2 - 1 = \mathbf{1}$.
+  - $i = 16$: character `']'` $\implies depth \leftarrow 1 - 1 = \mathbf{0}$.
+  - $i = 17$: reaching closing bracket (last character of outer list, $i = 17$ in slice):
+    - Condition $depth == 0$ and $i = \text{len}(s) - 1$ triggers!
+    - Child slice: $s[5:17] = \text{"[456, [789]]"}$.
+    - Recurse: `deserialize("[456, [789]]")`.
+    - Attach returned child list to outer `ans`.
+- Outer `ans` is complete and returned.
 
 ---
 
-### Step 3: What one recursive list call owns
+### Step 2: Inner Level Execution (`"[456, [789]]"`)
+- Create sub-list container: `ans_sub = NestedInteger()`.
+- Pointers: $depth = 0, j = 1$.
+- At comma separating 456 ($i = 4, depth = 0$):
+  - Slice: `"456"`.
+  - Recurse: `deserialize("456")` $\implies$ returns `NestedInteger(456)`.
+  - Attach: `ans_sub.add(NestedInteger(456))`.
+  - $j \leftarrow 5$.
+- At final closing bracket:
+  - Slice: `"[789]"`.
+  - Recurse: `deserialize("[789]")` $\implies$ returns sub-sub-list containing $789$.
+  - Attach to `ans_sub`.
+- Return `ans_sub`.
 
-For a nonempty list, the solution creates `ans = NestedInteger()`, an initially empty list object. It then sets `depth = 0` and `j = 1`.
+---
 
-Index `0` is the current list’s opening bracket, so its first possible element begins at index `1`. The variable `j` always marks the beginning of the current, not-yet-parsed top-level element.
-
-The definition of `depth` is deliberately relative to the current list. The outermost brackets belonging to this call are not included. While scanning positions from `1` onward:
-
-- `depth == 0` means the scan is between the current list’s own elements or inside one scalar element;
-- `depth > 0` means the scan is somewhere inside a nested child list.
-
-When the loop sees `[` in a child, it increments `depth`. When it later sees the matching `]`, it decrements `depth`. Since the input is valid, nesting is balanced.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `324` |
+### Step 3: Innermost Level Execution (`"[789]"`)
+- Create container `ans_inner = NestedInteger()`.
+- $j = 1$.
+- At end: slice `"789"` $\implies$ recurses to scalar `NestedInteger(789)`.
+- Attach `NestedInteger(789)` to `ans_inner`.
+- Return `ans_inner`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "324"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `324` | Verified |
+```text
+deserialize("[123, [456, [789]]]")
+  ans = []
+  i=4, s[4]=',', depth=0 -> add(deserialize("123")) -> [123]
+  i=17, end of list, depth=0 -> add(deserialize("[456, [789]]"))
+    deserialize("[456, [789]]")
+      ans_sub = []
+      i=4, s[4]=',', depth=0 -> add(deserialize("456")) -> [456]
+      i=11, end of list, depth=0 -> add(deserialize("[789]"))
+        deserialize("[789]")
+          ans_inner = []
+          i=4, end of list -> add(deserialize("789")) -> [789]
+          return [789]
+      return [456, [789]]
+  return [123, [456, [789]]]
+```
+
+| Recursion Frame | Input String $s$ | Token Extracted | Child Type | Depth at Trigger | Action Taken |
+|:---:|:---|:---|:---:|:---:|:---|
+| Frame 1 (Outer) | `"[123, [456, [789]]]"` | `"123"` | Scalar Integer | 0 | `ans.add(123)` |
+| Frame 2 (Mid) | `"[456, [789]]"` | `"456"` | Scalar Integer | 0 | `ans_sub.add(456)` |
+| Frame 3 (Inner) | `"[789]"` | `"789"` | Scalar Integer | 0 | `ans_inner.add(789)` |
+| **Result** | Root Object | - | Nested Structure | - | **`[123, [456, [789]]]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every valid JSON-like serialized nested list has properly balanced bracket pairs. Because `depth` increments on `'['` and decrements on `']'`, `depth == 0` holds strictly when the scanner is between top-level siblings of the current list. Splitting only at `depth == 0` guarantees that child lists are parsed as intact atomic substrings.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character between matching outer brackets is either part of a scalar number or part of a sub-list. The slice range $s[j:i]$ partitions the internal content completely, ensuring no token is skipped or discarded.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Index-based recursive descent:** Keep the original string and a shared current index. Parse one value at a time without slicing, advancing past digits, commas, and brackets. This realizes the intended $O(n)$ time and $O(d)$ stack space while preserving the same recursive grammar.
-- **Iterative stack parser:** Push a new empty `NestedInteger` for each `[`, accumulate signed integers, and attach completed values when a comma or `]` is reached. It scans once in $O(n)$ time and uses $O(d)$ explicit stack space, while avoiding Python recursion limits.
-- **Built-in general-purpose evaluation:** Converting the text with a language evaluator may appear concise, but it creates ordinary lists rather than the required `NestedInteger` interface and may be unsafe for untrusted input. A purpose-built parser recognizes only the stated grammar.
+- **Global String Splitting on Commas:** Calling `s.split(',')` splits all nested inner lists indiscriminately, corrupting structure. Splitting must respect bracket nesting depth.
+- **Empty List Case:** Serialized string `"[]"` must return an empty list `NestedInteger()`. Without the explicit `s == '[]'` check, the loop would attempt to slice $s[1:1]$ (empty string) and error.
+- **Negative Integer Handling:** Substrings like `"-123"` have $s[0] == \text{'-'}$. Testing `s[0] != '['` correctly identifies negative numbers as scalar integers without misclassifying them as lists.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d)$. Let $n$ be the input string length and $d$ be the maximum nesting depth.
-- **Auxiliary Space Complexity:** $O(d)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot D)$, where $N$ is the string length and $D$ is the maximum nesting depth. In the worst case, string slicing copies substrings at each level of recursion. (Can be implemented in strictly $O(N)$ using an explicit index pointer or iterative stack parser).
+- **Auxiliary Space Complexity:** $O(D)$ recursion stack space, bounded by the maximum bracket nesting depth $D$.

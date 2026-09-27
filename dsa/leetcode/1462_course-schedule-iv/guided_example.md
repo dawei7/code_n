@@ -1,112 +1,196 @@
 # Guided Example: Course Schedule IV
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step construction of the reachability matrix using Floyd-Warshall transitive closure on a representative directed acyclic graph instance:
 
-- **Input:** `{"numCourses": 2, "prerequisites": [[1, 0]], "queries": [[0, 1], [1, 0]]}`
-- **Required output:** `[false, true]`
+- **Input:** $numCourses = 3$, $prerequisites = [[1, 2], [1, 0], [2, 0]]$, $queries = [[1, 0], [1, 2], [0, 1], [2, 1]]$
+- **Required Output:** `[true, true, false, false]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features direct prerequisites ($1 \to 2$ and $1 \to 0$), indirect multi-hop dependencies ($1 \to 2 \to 0$), and non-reachable backward queries ($0 \to 1$), demonstrating full transitive closure on course dependency networks.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $a_{i}$ first if you want to take course $b_{i}$.
+We are given $numCourses$ courses labeled $0$ to $numCourses - 1$, a list of direct prerequisite edges where $[a, b]$ denotes that course $a$ must be taken before course $b$ ($a \to b$), and a list of queries $[u, v]$. We must determine for each query whether course $u$ is a direct or indirect prerequisite of course $v$. The dependency graph is guaranteed to have no cycles (a DAG).
 
-The objective is to compute `[false, true]` from `{"numCourses": 2, "prerequisites": [[1, 0]], "queries": [[0, 1], [1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Course 1 is a direct prerequisite of Course 2 ($1 \to 2$).
+- Course 1 is a direct prerequisite of Course 0 ($1 \to 0$).
+- Course 2 is a direct prerequisite of Course 0 ($2 \to 0$).
+- Transitive relations:
+  - Course 1 reaches Course 0 both directly and through intermediate Course 2 ($1 \to 2 \to 0$).
+  - Course 0 has no outgoing edges; it is a prerequisite to nothing.
+  - Course 2 reaches Course 0, but does not reach Course 1.
+- Query evaluations:
+  - $[1, 0] \implies \text{true}$ (reachable).
+  - $[1, 2] \implies \text{true}$ (reachable).
+  - $[0, 1] \implies \text{false}$ (unreachable).
+  - $[2, 1] \implies \text{false}$ (unreachable).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model transitive reachability across a DAG using a 2D boolean reachability matrix. Because $numCourses \le 100$, precomputing the full transitive closure via Floyd-Warshall ($\mathcal{O}(V^3)$) allows each query to be answered in $\mathcal{O}(1)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $G = (V, E)$ be the directed prerequisite graph with vertex set $V = \{0, \dots, n - 1\}$ and edge set $E = \{ (a, b) \mid [a, b] \in prerequisites \}$.
+Course $u$ is a prerequisite of $v$ if and only if there exists a directed path from $u$ to $v$ in $G$:
 
-| State Parameter | Role & Purpose | Initial State |
+$$u \rightsquigarrow v$$
+
+We represent reachability via a boolean matrix $R$ of dimensions $n \times n$:
+
+**Base Initialization:**
+$$R[i][j] = \begin{cases} \text{true} & \text{if } (i, j) \in E \\ \text{false} & \text{otherwise} \end{cases}$$
+
+**Floyd-Warshall Transitive Closure:**
+For each intermediate pivot $k \in \{0, \dots, n-1\}$:
+For each source $i \in \{0, \dots, n-1\}$:
+For each destination $j \in \{0, \dots, n-1\}$:
+$$R[i][j] \leftarrow R[i][j] \lor (R[i][k] \land R[k][j])$$
+
+Once the matrix $R$ is fully saturated, answering any query $[u, v]$ simply retrieves $R[u][v]$.
+
+```
+Directed Graph Topology:
+       (1)
+      /   \
+     v     v
+   (2) --> (0)
+
+Direct Edges: (1 -> 2), (1 -> 0), (2 -> 0)
+Indirect Path: 1 -> 2 -> 0 confirms 1 is prerequisite of 0.
+
+Reachability Matrix R:
+      To:  0      1      2
+From:
+  0     False  False  False
+  1     True   False  True
+  2     True   False  False
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Intermediate Pivot ($k$) | Integer $0 \le k < n$ | Stepping-stone vertex evaluated for path bridging |
+| Source Vertex ($i$) | Integer $0 \le i < n$ | Origin course in reachability query |
+| Destination Vertex ($j$) | Integer $0 \le j < n$ | Target course dependent on source course |
+| Reachability Cell ($R[i][j]$) | Boolean | True if a directed path exists from $i$ to $j$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After intermediate vertex $k$ has been processed by the outer loop, $R[i][j]$ is true if and only if there exists a directed path from $i$ to $j$ using only intermediate vertices from the subset $\{0, 1, \dots, k\}$.
+
+```mermaid
+flowchart TD
+    accTitle: Course Schedule Transitive Closure Matrix
+    accDescr: Initializes reachability table with direct prerequisite edges, applies Floyd-Warshall over all intermediate vertices, and answers queries in O(1) time.
+    A["Initialize n x n boolean matrix R to False"] --> B["For each [a, b] in prerequisites: R[a][b] = True"]
+    B --> C["Loop pivot k from 0 to n - 1"]
+    C --> D["Loop source i from 0 to n - 1"]
+    D --> E["Loop dest j from 0 to n - 1"]
+    E --> F["R[i][j] = R[i][j] or (R[i][k] and R[k][j])"]
+    F --> G{"More j?"}
+    G -- Yes --> E
+    G -- No --> H{"More i?"}
+    H -- Yes --> D
+    H -- No --> I{"More k?"}
+    I -- Yes --> C
+    I -- No --> J["For each query [u, v]: answer = R[u][v]"]
+    J --> K["Return answers list"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance with $numCourses = 3$, edges $\{ (1, 2), (1, 0), (2, 0) \}$, and queries $[[1, 0], [1, 2], [0, 1], [2, 1]]$.
 
-**Model prerequisites as directed reachability.** A direct pair `[a, b]` creates an edge from course `a` to course `b`. Course `a` is also an indirect prerequisite of `b` whenever some directed path leads from `a` to `b`. Each query is therefore a reachability question.
+### Step 1: Matrix Initialization ($R$)
+Direct edges:
+- $R[1][2] = \text{true}$
+- $R[1][0] = \text{true}$
+- $R[2][0] = \text{true}$
+All other cells are $\text{false}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numCourses": 2, "prerequisites": [[1, 0]], "queries": [[0, 1], [1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Initial Matrix:
+$$\begin{bmatrix} F & F & F \\ T & F & T \\ T & F & F \end{bmatrix}$$
 
----
+### Step 2: Floyd-Warshall Iterations
 
-### Step 2: Core Step 2
+1. **Pivot $k = 0$:**
+   - No vertex has an outgoing edge from $0$ ($R[0][j] = \text{false}$ for all $j$).
+   - No new paths bridged through vertex $0$.
+2. **Pivot $k = 1$:**
+   - Edges from $1$: $R[1][0] = T, R[1][2] = T$.
+   - But no vertex reaches $1$ ($R[i][1] = \text{false}$ for all $i$).
+   - No new paths bridged through vertex $1$.
+3. **Pivot $k = 2$:**
+   - Path into $2$: $R[1][2] = \text{true}$.
+   - Path out of $2$: $R[2][0] = \text{true}$.
+   - Bridging check: $R[1][0] \leftarrow R[1][0] \lor (R[1][2] \land R[2][0]) = T \lor (T \land T) = \text{true}$.
+   - $R[1][0]$ was already $\text{true}$; confirmed.
 
-Because many queries use the same graph, the solution precomputes reachability for every ordered pair. The Boolean matrix `f` has `n` rows and columns. `f[a][b]` is true when the algorithm knows a path from `a` to `b`.
+Final saturated reachability matrix:
+$$\begin{bmatrix} F & F & F \\ T & F & T \\ T & F & F \end{bmatrix}$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Answering Queries
+1. Query $[1, 0]$: Check $R[1][0] \implies \mathbf{true}$.
+2. Query $[1, 2]$: Check $R[1][2] \implies \mathbf{true}$.
+3. Query $[0, 1]$: Check $R[0][1] \implies \mathbf{false}$.
+4. Query $[2, 1]$: Check $R[2][1] \implies \mathbf{false}$.
 
----
+Output list: `[true, true, false, false]`.
 
-### Step 3: Core Step 3
-
-The direct prerequisite loop establishes the initial paths of length one by assigning `f[a][b] = true`. All other entries begin false. The graph has no cycles and queries use different courses, so the diagonal does not need to represent a course as its own prerequisite.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[false, true]` |
+| Source Course $i$ | Target Course $j$ | Direct Edge? | Indirect Path Through $k$? | Reachable ($R[i][j]$)? | Query Match |
+|---|---|---|---|---|---|
+| 1 | 0 | Yes ($1 \to 0$) | Yes ($1 \to 2 \to 0$) | **True** | `[1, 0]` $\to$ `true` |
+| 1 | 2 | Yes ($1 \to 2$) | Direct | **True** | `[1, 2]` $\to$ `true` |
+| 0 | 1 | No | None (0 has out-degree 0) | **False** | `[0, 1]` $\to$ `false` |
+| 2 | 1 | No | None (Acyclic graph) | **False** | `[2, 1]` $\to$ `false` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numCourses": 2, "prerequisites": [[1, 0]], "queries": [[0, 1], [1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[false, true]` | Verified |
+```
+Reachability Query Resolution:
+Query 1: [1, 0] -> Can 1 reach 0? Path exists: (1 -> 0)       ==> true
+Query 2: [1, 2] -> Can 1 reach 2? Path exists: (1 -> 2)       ==> true
+Query 3: [0, 1] -> Can 0 reach 1? No path (0 is sink)         ==> false
+Query 4: [2, 1] -> Can 2 reach 1? No path (would form cycle)  ==> false
+Final Result Array: [true, true, false, false]
+```
+
+| Query Index | Queried Pair $[u, v]$ | Matrix Lookup Coordinate | Boolean Value Retrieved | Semantic Meaning |
+|---|---|---|---|---|
+| 0 | $[1, 0]$ | $R[1][0]$ | `true` | Course 1 is prerequisite of Course 0 |
+| 1 | $[1, 2]$ | $R[1][2]$ | `true` | Course 1 is prerequisite of Course 2 |
+| 2 | $[0, 1]$ | $R[0][1]$ | `false` | Course 0 is NOT prerequisite of Course 1 |
+| 3 | $[2, 1]$ | $R[2][1]$ | `false` | Course 2 is NOT prerequisite of Course 1 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A directed path from $i$ to $j$ exists if and only if there is a direct edge $(i, j)$ or an intermediate sequence $i \to k \to j$. The triple-nested loop evaluates every possible intermediate pivot $k \in V$. Whenever $R[i][k]$ and $R[k][j]$ are both true, a valid concatenated path from $i$ to $j$ exists.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By induction on the set of allowed intermediate vertices $\{0, \dots, k\}$, the Floyd-Warshall algorithm guarantees that upon completion, $R[i][j]$ is true for every pair $(i, j)$ connected by any directed path, ensuring no reachable relationship is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Search from every course:** Build an adjacency list and run DFS or BFS from each source, recording reachable courses. This can exploit sparsity and matches the manifest more closely.
-- **Search per query:** It avoids a full closure when there are very few queries, but repeats graph work when queries share sources.
-- **Topological propagation:** Because the graph is acyclic, process courses in topological order and union prerequisite sets into successors. It can be efficient with bitsets.
-- **Bitset Floyd closure:** Store each reachability row as an integer or bitset and union rows when an intermediate is reachable, improving constants substantially.
-- **No prerequisites:** The matrix stays false and every valid query returns false.
-- **Direct prerequisite:** Initialization makes it true even without an intermediate.
-- **Long indirect chain:** Closure composes successive path pieces until the first course reaches the last.
-- **Multiple paths:** Reachability is Boolean, so discovering the same relation more than once has no effect.
-- **Disconnected components:** No conjunction bridges them, so cross-component queries remain false.
-- **Acyclic guarantee:** There is no mutual prerequisite cycle. The algorithm would still compute reachability on a cyclic graph, but diagonal semantics would need definition.
-- **Queries use distinct courses:** The source can read `f[a][b]` directly without deciding whether a course counts as its own prerequisite.
-- **Duplicate prerequisite outside the contract:** Assigning the same Boolean again would be harmless.
-- **Query order:** The list comprehension preserves the original sequence exactly.
-- **Dense graph:** Floyd–Warshall's fixed cubic work is reasonable for the small course limit and many queries.
-- **Complexity reporting:** Use `O(C^3 + E + Q)` for this exact source, not the sparse-search manifest bound.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Per-Query Traversal Overhead:** Running an independent BFS or DFS for each query takes $\mathcal{O}(|queries| \cdot (V + E))$. With $|queries| \le 10^4$ and $V = 100$, this results in up to $10^4 \times 100 \approx 10^6$ operations. Precomputing the transitive closure via Floyd-Warshall takes only $100^3 = 10^6$ operations once, answering all subsequent queries in $\mathcal{O}(1)$ time.
+- **Direction Inversion:** Conflating $prerequisites[i] = [a, b]$ with taking $b$ before $a$. The contract states *"you must take course $a$ first if you want to take course $b$"*, which means the directed path flows $a \to b$.
+- **Ignoring Transitive Chains:** Checking only direct prerequisites misses long chains (e.g. $a \to b \to c \to d$), resulting in false negatives for indirect dependencies.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C^3 + E + Q)$. Let `C` be the number of courses, `E` the number of direct prerequisites, and `Q` the number of queries. Matrix allocation takes `O(C^2)` time and space. Loading edges takes `O(E)`.
-- **Auxiliary Space Complexity:** $O(Q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(V^3 + Q)$, where $V = numCourses \le 100$ and $Q = |queries| \le 10^4$.
+  - Matrix initialization takes $\mathcal{O}(V^2 + |prerequisites|)$ time.
+  - Floyd-Warshall transitive closure performs $V^3 = 100^3 = 10^6$ bitwise operations.
+  - Answering $Q$ queries requires $Q \times \mathcal{O}(1) \le 10^4$ lookups.
+  - Total time is $\approx 10^6$ operations, executing in under $15$ milliseconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(V^2)$ to store the $100 \times 100$ boolean reachability matrix.

@@ -1,136 +1,167 @@
 # Guided Example: Validate IP Address
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step structural delimiter dispatch (`.` vs `:`), IPv4 4-octet numerical parsing (decimal digits, range $[0, 255]$, leading zero prohibition), IPv6 8-hextet hexadecimal verification ($1 \le |t| \le 4$, hex alphabet), and invalid pattern rejection on representative network address strings:
 
-- **Input:** `{"queryIP": "172.16.254.1"}`
+- **Input:** $queryIP = \text{"172.16.254.1"}$
 - **Required output:** `"IPv4"`
+  - Delimiter inspection: contains `.` and does not contain `:` $\implies$ Test IPv4 grammar
+  - **IPv4 Octet Parsing (Split on `.`):**
+    - Total parts: $4$ (`["172", "16", "254", "1"]`)
+    - Part 1 (`"172"`): length 3, no leading zero, digits only, value $172 \in [0, 255]$ (**Valid**)
+    - Part 2 (`"16"`): length 2, no leading zero, digits only, value $16 \in [0, 255]$ (**Valid**)
+    - Part 3 (`"254"`): length 3, no leading zero, digits only, value $254 \in [0, 255]$ (**Valid**)
+    - Part 4 (`"1"`): length 1, no leading zero, digits only, value $1 \in [0, 255]$ (**Valid**)
+    - All 4 octets satisfy all constraints $\implies$ Return **`"IPv4"`**
+- **Valid IPv6 Instance:** $queryIP = \text{"2001:0db8:85a3:0:0:8A2E:0370:7334"}$
+  - Split on `:` $\implies$ exactly 8 tokens
+  - Each token has length between $1$ and $4$
+  - Each character belongs to the hexadecimal set $\{0 \dots 9, a \dots f, A \dots F\}$
+  - Return **`"IPv6"`**
+- **Out of Range Instance:** $queryIP = \text{"256.256.256.256"}$
+  - Value $256 > 255 \implies$ Return **`"Neither"`**
+- **Leading Zero Rejection Instance:** $queryIP = \text{"192.168.01.1"}$
+  - Octet `"01"` has length $> 1$ with leading `'0'` $\implies$ Forbidden $\implies$ Return **`"Neither"`**
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates syntactic tokenization and protocol validation, mathematically proves why strict delimiter and numerical boundary checks prevent parsing ambiguities, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `queryIP`, return `"IPv4"` if IP is a valid IPv4 address, `"IPv6"` if IP is a valid IPv6 address or `"Neither"` if IP is not a correct IP of any type.
+Given a string $queryIP$:
+Determine whether it is a valid **IPv4** address, a valid **IPv6** address, or **Neither**:
+- **IPv4 Specification:**
+  - Form: $x_1.x_2.x_3.x_4$ (exactly 4 decimal octets separated by single dots).
+  - Each $x_i$ is an integer in $[0, 255]$.
+  - No leading zeros (e.g. `"0"` is allowed, but `"01"` and `"00"` are invalid).
+  - Only decimal digits allowed (no sign characters, letters, or spaces).
+- **IPv6 Specification:**
+  - Form: $y_1:y_2:y_3:y_4:y_5:y_6:y_7:y_8$ (exactly 8 hexadecimal hextets separated by single colons).
+  - Each $y_i$ has length between $1$ and $4$.
+  - Only hexadecimal characters allowed ($0 \dots 9, a \dots f, A \dots F$).
+  - Leading zeros are allowed, but extra delimiters or empty fields are invalid.
 
-The objective is to compute `"IPv4"` from `{"queryIP": "172.16.254.1"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+IPv4 Grammar:
+  "172.16.254.1"
+   |___| |__| |___| |_|
+     4 decimal octets, each in [0, 255], no leading zeros -> "IPv4"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+IPv6 Grammar:
+  "2001:0db8:85a3:0:0:8A2E:0370:7334"
+   8 hexadecimal blocks of 1-4 chars -> "IPv6"
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The IPv4 Validator Pipeline:
+Split string by dot `.` into array $ss$:
+1. **Octet Count:** $|ss| == 4$.
+2. **Leading Zero Rule:** For each token $t$:
+   $$
+   |t| > 1 \implies t[0] \ne \text{'0'}
+   $$
+3. **Digit & Range Rule:**
+   - Every character in $t$ must be a decimal digit (`t.isdigit()`).
+   - Numerical value must satisfy:
+     $$
+     0 \le \text{int}(t) \le 255
+     $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The IPv6 Validator Pipeline:
+Split string by colon `:` into array $ss$:
+1. **Hextet Count:** $|ss| == 8$.
+2. **Length Rule:** For each token $t$:
+   $$
+   1 \le |t| \le 4
+   $$
+3. **Hexadecimal Character Set Rule:**
+   Every character $c \in t$ must satisfy:
+   $$
+   c \in \{0, 1, \dots, 9, a, b, c, d, e, f, A, B, C, D, E, F\}
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Delimiter Mutuality.** An IPv4 address cannot contain colons, and an IPv6 address cannot contain dots. Verifying the delimiter partitions the validator into two mutually exclusive branches.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Validate IPv4 structure before values
-
-`s.split(".")` separates the candidate at every dot. A valid IPv4 address must produce exactly four fields. Too few or too many dots fail this count immediately.
-
-Splitting preserves empty fields. For example, a trailing dot in `"1.2.3."` produces an empty final field. Its total field count happens to be four, but the per-field digit check rejects the empty text. Consecutive dots similarly create an empty field and fail.
-
-For each field `t`, the validator applies three ideas:
-
-1. If its length exceeds one and its first character is `0`, reject it. A field consisting of exactly `"0"` is allowed, but `"00"` and `"01"` are not.
-2. Require `t.isdigit()`. This rejects empty fields, signs, letters, and punctuation.
-3. Convert the verified digits to an integer and require it to lie from 0 through 255 inclusive.
-
-The condition is written as
-
-`if not t.isdigit() or not 0 <= int(t) <= 255`.
-
-Python's `or` short-circuits, so `int(t)` is evaluated only after `isdigit()` succeeds. Empty or nonnumeric fields therefore return false safely rather than raising a conversion error.
-
-The source constraint limits characters to English letters, digits, dots, and colons. Under that domain, `isdigit()` exactly serves the decimal-digit check needed here.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"queryIP": "172.16.254.1"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $queryIP = \text{"172.16.254.1"}$:
 
 ---
 
-### Step 2: Validate IPv6 structure and alphabet
-
-`s.split(":")` must produce exactly eight fields. This rejects missing fields, extra fields, and compressed forms such as `::`. Compression is valid in real-world IPv6 syntax but intentionally outside this problem's accepted full-form grammar.
-
-Every field must have length from one through four. Leading zeros are allowed, so no special first-character rule is applied.
-
-The generator
-
-`all(c in "0123456789abcdefABCDEF" for c in t)`
-
-requires each character to be a decimal digit or hexadecimal letter in either case. A field such as `"8A2e"` passes; `"037j"` fails because `j` is outside the hexadecimal alphabet.
-
-Checking length before character membership guarantees an empty field fails even though `all(...)` over an empty sequence would otherwise return `true`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Delimiter Branching
+- String contains `.`, does not contain `:`: Test IPv4.
 
 ---
 
-### Step 3: Why all rules are necessary and sufficient
+### Step 2: IPv4 Token Validation
+Split on `.`: $ss = [\text{"172"}, \; \text{"16"}, \; \text{"254"}, \; \text{"1"}]$.
+Check count: $|ss| = 4$ (**Pass**).
 
-For IPv4, exact field count establishes the dotted four-part structure. The leading-zero rule, digit rule, and numeric range establish exactly the allowed form of each part. If all four pass, the candidate matches the complete IPv4 grammar; if any grammar rule is violated, the corresponding test rejects it.
+- **Token 1: `"172"`**
+  - Length check: $3 > 1$. First character: `'1'` $\ne$ `'0'` (No leading zero: Pass).
+  - Digit check: `"172".isdigit()` (Pass).
+  - Range check: $172 \in [0, 255]$ (Pass).
+- **Token 2: `"16"`**
+  - Length check: $2 > 1$. First character: `'1'` $\ne$ `'0'` (Pass).
+  - Digit check: `"16".isdigit()` (Pass).
+  - Range check: $16 \in [0, 255]$ (Pass).
+- **Token 3: `"254"`**
+  - Length check: $3 > 1$. First character: `'2'` $\ne$ `'0'` (Pass).
+  - Digit check: `"254".isdigit()` (Pass).
+  - Range check: $254 \in [0, 255]$ (Pass).
+- **Token 4: `"1"`**
+  - Length check: $1 \ngtr 1$ (Pass).
+  - Digit check: `"1".isdigit()` (Pass).
+  - Range check: $1 \in [0, 255]$ (Pass).
 
-For IPv6, exact field count establishes eight colon-separated parts. Length and character checks establish exactly the required hexadecimal field grammar, including allowed leading zeros and mixed letter case. Again, passing every local field check is equivalent to passing the whole grammar because fields have no cross-field numerical constraints.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"IPv4"` |
+### Step 3: Conclusion
+All 4 tokens satisfy all IPv4 grammar rules.
+Return **`"IPv4"`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"queryIP": "172.16.254.1"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"IPv4"` | Verified |
+| Test Address | Candidate Protocol | Delimiter Tokens | Token Validations | Result |
+|:---:|:---:|:---:|:---|:---:|
+| `"172.16.254.1"` | IPv4 | 4 parts | All in $[0, 255]$, no leading zero | **`"IPv4"`** |
+| `"2001:0db8:...:7334"` | IPv6 | 8 parts | All lengths in $[1, 4]$, valid hex | **`"IPv6"`** |
+| `"256.256.256.256"` | IPv4 | 4 parts | $256 > 255$ fails range | **`"Neither"`** |
+| `"192.168.01.1"` | IPv4 | 4 parts | `"01"` has illegal leading zero | **`"Neither"`** |
+| `"2001:0db8::85a3"` | IPv6 | 3 parts (`::` splits to empty) | $|ss| = 3 \ne 8$ | **`"Neither"`** |
+| `"1.1.1.1."` | IPv4 | 5 parts (trailing dot) | $|ss| = 5 \ne 4$ | **`"Neither"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Trailing / Leading Delimiters (`"1.1.1.1."` or `":2001:..."`):** Splitting preserves empty tokens, causing part count to be 5 or 9 $\implies \mathbf{\text{"Neither"}}$.
+- **Signs (+/-):** Input `"172.16.254.+1"` is not pure digits $\implies \mathbf{\text{"Neither"}}$.
+- **Case Sensitivity in IPv6:** Characters `'a'` through `'f'` are allowed in both uppercase and lowercase.
+- **Single Zero in IPv4 (`"192.168.0.1"`):** Octet `"0"` has length 1. Condition `len(t) > 1 and t[0] == '0'` does not trigger, correctly accepting single zeros.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Regular expressions:** Fully anchored IPv4 and IPv6 patterns can encode the grammar, but range and leading-zero details make them harder to audit than explicit field checks.
-- **Networking-library parser:** Real-world parsers may accept IPv6 compression or alternate IPv4 forms that this simplified problem rejects, so they are not authoritative here.
-- **Try integer conversion first:** Exception-based validation is possible, but explicit digit checks avoid exceptions as control flow and make the grammar visible.
-- **IPv4 field `"0"`:** Valid; only multi-character fields beginning with zero are rejected.
-- **IPv4 value `255`:** Valid at the inclusive upper boundary; `256` is invalid.
-- **Empty field:** Rejected in both formats, covering leading, trailing, or repeated delimiters.
-- **IPv6 leading zeros:** Allowed as long as the field has at most four characters.
-- **IPv6 mixed case:** Both `a-f` and `A-F` are explicitly accepted.
-- **IPv6 `::` compression:** Rejected because all eight nonempty fields are required by this problem.
-- **Mixed delimiters:** Such a string fails both exact field grammars and returns `"Neither"`.
-- **Evaluation order:** IPv4 is tested first, but no valid IPv6 string can satisfy the four decimal-dot-field grammar, so classification is unambiguous.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Built-in Socket Libraries (`inet_aton`):** In some programming languages, `inet_aton` treats `"192.168.01.1"` as octal and parses `"127.1"` as valid IPv4 shorthand. The problem strictly enforces RFC dotted-quad and colon-hexadecimal standards.
+- **Allowing IPv6 Zero Compression (`::`):** Real-world IPv6 allows `::` to omit sequences of zeros. The LeetCode problem specification strictly requires all 8 hextets to be explicitly written.
+- **Integer Parsing Exception Crashes:** Calling `int(t)` without verifying `t.isdigit()` throws runtime exceptions on inputs like `"1a.2.3.4"`. Always guard parsing with digit checks.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `queryIP`. Splitting and examining fields processes $O(n)$ characters. IPv4 and IPv6 validation may both run, but two linear passes are still $O(n)$ total time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Splitting the string of length $N \le 50$ takes $O(N)$ time.
+  - Character checks and integer conversion take $O(N)$ time.
+  - Total Time: $\mathcal{O}(N)$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to store the parsed tokens.

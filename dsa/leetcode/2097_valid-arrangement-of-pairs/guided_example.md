@@ -1,123 +1,187 @@
 # Guided Example: Valid Arrangement of Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the directed multigraph reduction, Eulerian trail start-node identification, and Hierholzer's post-order traversal on a representative collection of pairs:
 
-- **Input:** `{"pairs": [[5, 1], [4, 5], [11, 9], [9, 4]]}`
-- **Required output:** `[[11, 9], [9, 4], [4, 5], [5, 1]]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** 2D integer array `pairs` where $\text{pairs}[i] = [\text{start}_{i}, \text{end}_{i}]$. An arrangement of `pairs` is **valid** if for every index `i` where $1 \le i < \text{pairs.length}$, we have $\text{end}_{i}-1 = \text{start}_{i}$.
-
-The objective is to compute `[[11, 9], [9, 4], [4, 5], [5, 1]]` from `{"pairs": [[5, 1], [4, 5], [11, 9], [9, 4]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Input Pairs:** `[[5, 1], [4, 5], [11, 9], [9, 4]]`
+- **Number of Directed Edges $|E|$:** `4`
+- **Expected Valid Arrangement:** `[[11, 9], [9, 4], [4, 5], [5, 1]]`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a 2D integer array `pairs` where each element $\text{pairs}[i] = [u_i, v_i]$ represents a directed pair.
+An arrangement of `pairs` is defined as **valid** if for every adjacent pair in the sequence, the second element of the previous pair equals the first element of the current pair:
+$$\text{end}_{i-1} == \text{start}_i \quad \forall i \in \{1, \dots, |E|-1\}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Graph-Theoretic Equivalence: Directed Eulerian Trail
+Each pair $[u, v]$ can be modeled as a directed edge $u \to v$ in a directed multigraph $G = (V, E)$.
+Arranging the pairs such that every pair is used exactly once and consecutive pairs connect end-to-start is mathematically equivalent to finding an **Eulerian trail** (or **Eulerian path**) in $G$.
+- In an arbitrary directed graph, a naive depth-first search or greedy traversal easily enters a dead end before traversing all edges.
+- Hierholzer's algorithm guarantees that by traversing edges iteratively and recording vertices in **post-order** (when all outgoing edges from a vertex are exhausted), sub-cycles are automatically spliced into the main path without getting trapped.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart LR
+    accTitle: Directed Multigraph for Eulerian Trail
+    accDescr: Directed graph showing vertices 11, 9, 4, 5, 1 connected linearly by directed edges representing the input pairs.
+    N11["Vertex 11 (out:1, in:0)"] -->|"[11, 9]"| N9["Vertex 9 (out:1, in:1)"]
+    N9 -->|"[9, 4]"| N4["Vertex 4 (out:1, in:1)"]
+    N4 -->|"[4, 5]"| N5["Vertex 5 (out:1, in:1)"]
+    N5 -->|"[5, 1]"| N1["Vertex 1 (out:0, in:1)"]
+
+    classDef startNode fill:#fef3c7,stroke:#b45309,stroke-width:2px;
+    classDef endNode fill:#fee2e2,stroke:#b91c1c,stroke-width:2px;
+    classDef intermediate fill:#dbeafe,stroke:#1d4ed8,stroke-width:1px;
+
+    class N11 startNode;
+    class N1 endNode;
+    class N9,N4,N5 intermediate;
+```
+
+---
+
+## 2. Invariants & Eulerian Trail Graph Theory
+
+Let $G = (V, E)$ be a directed multigraph. For each vertex $v \in V$, let $\text{out}(v)$ denote the number of directed edges leaving $v$, and $\text{in}(v)$ denote the number of directed edges entering $v$.
+Define the net degree imbalance:
+$$\Delta(v) = \text{out}(v) - \text{in}(v)$$
+
+### Invariant 1: Degree Balance Classification
+Because the problem statement guarantees that a valid arrangement always exists, the multigraph must satisfy exactly one of two topological structures:
+1. **Eulerian Circuit:** For every vertex $v \in V$, $\Delta(v) = 0$ ($\text{out}(v) = \text{in}(v)$). The trail starts and ends at the same vertex, and any vertex $v$ with $\text{out}(v) > 0$ can serve as the starting node.
+2. **Open Eulerian Trail:** Exactly one vertex $s$ has $\Delta(s) = 1$ (the unique start node), exactly one vertex $t$ has $\Delta(t) = -1$ (the unique end node), and all other vertices $v \notin \{s, t\}$ have $\Delta(v) = 0$. The trail must strictly begin at $s$.
+
+### Invariant 2: Hierholzer's Post-Order Splicing Invariant
+During traversal, if a vertex $u$ has no remaining outgoing edges, any path departing $u$ has already been fully explored.
+Appending $u$ to the trail history at the moment its outgoing edges are exhausted produces the **reverse** Eulerian trail.
+Reversing this sequence reconstructs the canonical chronological traversal.
+
+| Vertex $v$ | $\text{out}(v)$ | $\text{in}(v)$ | Imbalance $\Delta(v)$ | Topological Role |
+|---|---|---|---|---|
+| $11$ | $1$ | $0$ | $+1$ | Unique Trail Start ($\text{out} - \text{in} = 1$) |
+| $9$ | $1$ | $1$ | $0$ | Balanced Intermediate Vertex |
+| $4$ | $1$ | $1$ | $0$ | Balanced Intermediate Vertex |
+| $5$ | $1$ | $1$ | $0$ | Balanced Intermediate Vertex |
+| $1$ | $0$ | $1$ | $-1$ | Unique Trail End ($\text{out} - \text{in} = -1$) |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Interpret every pair as a directed edge
+We trace `pairs = [[5, 1], [4, 5], [11, 9], [9, 4]]`.
 
-A pair `[start, end]` can precede another pair exactly when the first edge's destination equals the next edge's source. Using every pair once in one continuous arrangement is therefore the problem of finding an Eulerian trail in a directed multigraph.
+### Step 1: Multigraph Construction & Degree Imbalance
+Construct the adjacency lists and compute $\Delta(v)$:
+- Edge $5 \to 1$: $\text{adj}[5] = [1]$, $\Delta(5) = +1$, $\Delta(1) = -1$.
+- Edge $4 \to 5$: $\text{adj}[4] = [5]$, $\Delta(4) = +1$, $\Delta(5) = 0$.
+- Edge $11 \to 9$: $\text{adj}[11] = [9]$, $\Delta(11) = +1$, $\Delta(9) = -1$.
+- Edge $9 \to 4$: $\text{adj}[9] = [4]$, $\Delta(9) = 0$, $\Delta(4) = 0$.
 
-`adjacency[start]` stores all destinations of outgoing edges. `balance` stores out-degree minus in-degree: it increases for each start and decreases for each end.
+Final degree states:
+- $\Delta(11) = +1$
+- $\Delta(1) = -1$
+- $\Delta(9) = \Delta(4) = \Delta(5) = 0$
 
-The existence guarantee implies the graph has either an Eulerian circuit, where all balances are zero, or an open Eulerian trail, where one start vertex has balance 1 and one end vertex has balance -1.
+### Step 2: Determine Trail Start Vertex
+We scan all vertices for $\Delta(v) == 1$:
+- Vertex $11$ has $\Delta(11) = 1$.
+- Thus, $s = 11$ is uniquely chosen as the start vertex.
+- Initialize the traversal stack: $\text{stack} = [11]$.
+- Initialize the post-order sequence: $\text{route} = []$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Step 3: Iterative Hierholzer Traversal
+1. Top of stack is $11$.
+   - $\text{adj}[11] = [9]$ is non-empty.
+   - Pop edge to $9$: $\text{stack}$ becomes $[11, 9]$.
+2. Top of stack is $9$.
+   - $\text{adj}[9] = [4]$ is non-empty.
+   - Pop edge to $4$: $\text{stack}$ becomes $[11, 9, 4]$.
+3. Top of stack is $4$.
+   - $\text{adj}[4] = [5]$ is non-empty.
+   - Pop edge to $5$: $\text{stack}$ becomes $[11, 9, 4, 5]$.
+4. Top of stack is $5$.
+   - $\text{adj}[5] = [1]$ is non-empty.
+   - Pop edge to $1$: $\text{stack}$ becomes $[11, 9, 4, 5, 1]$.
+5. Top of stack is $1$.
+   - $\text{adj}[1] = []$ (empty!). Dead end reached.
+   - Pop $1$ from stack and append to $\text{route}$: $\text{route} = [1]$.
+   - $\text{stack} = [11, 9, 4, 5]$.
+6. Top of stack is $5$.
+   - $\text{adj}[5] = []$ (empty).
+   - Pop $5$ from stack and append to $\text{route}$: $\text{route} = [1, 5]$.
+   - $\text{stack} = [11, 9, 4]$.
+7. Top of stack is $4$.
+   - $\text{adj}[4] = []$ (empty).
+   - Pop $4$ and append: $\text{route} = [1, 5, 4]$.
+   - $\text{stack} = [11, 9]$.
+8. Top of stack is $9$.
+   - $\text{adj}[9] = []$ (empty).
+   - Pop $9$ and append: $\text{route} = [1, 5, 4, 9]$.
+   - $\text{stack} = [11]$.
+9. Top of stack is $11$.
+   - $\text{adj}[11] = []$ (empty).
+   - Pop $11$ and append: $\text{route} = [1, 5, 4, 9, 11]$.
+   - $\text{stack} = []$ (traversal completed).
+
+### Step 4: Reversal & Edge Pair Reconstruction
+Reversing $\text{route}$ yields the forward path of vertices:
+$$\text{path} = [11, 9, 4, 5, 1]$$
+Reconstructing consecutive pairs $[\text{path}[i], \text{path}[i+1]]$:
+$$[[11, 9], [9, 4], [4, 5], [5, 1]]$$
+Every input pair is used exactly once, and consecutive endpoints match identically.
+
+---
+
+## 4. Complete Execution Trace & Stack Progression
+
+| Iteration | Stack Top $u$ | Remaining $\text{adj}[u]$ | Action Taken | Current Stack | Accumulated $\text{route}$ |
+|---|---|---|---|---|---|
+| $0$ | $11$ | $[9]$ | Consume edge $11 \to 9$, push $9$ | $[11, 9]$ | $[]$ |
+| $1$ | $9$ | $[4]$ | Consume edge $9 \to 4$, push $4$ | $[11, 9, 4]$ | $[]$ |
+| $2$ | $4$ | $[5]$ | Consume edge $4 \to 5$, push $5$ | $[11, 9, 4, 5]$ | $[]$ |
+| $3$ | $5$ | $[1]$ | Consume edge $5 \to 1$, push $1$ | $[11, 9, 4, 5, 1]$ | $[]$ |
+| $4$ | $1$ | $[]$ | No outgoing edges: pop $1$ | $[11, 9, 4, 5]$ | $[1]$ |
+| $5$ | $5$ | $[]$ | No outgoing edges: pop $5$ | $[11, 9, 4]$ | $[1, 5]$ |
+| $6$ | $4$ | $[]$ | No outgoing edges: pop $4$ | $[11, 9]$ | $[1, 5, 4]$ |
+| $7$ | $9$ | $[]$ | No outgoing edges: pop $9$ | $[11]$ | $[1, 5, 4, 9]$ |
+| $8$ | $11$ | $[]$ | No outgoing edges: pop $11$ | $[]$ | $[1, 5, 4, 9, 11]$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Proof of Hierholzer's Algorithm Correctness
+1. **Eulerian Condition Sufficiency:**
+   By Euler's Theorem for directed graphs, a weakly connected multigraph where all vertices have $\text{in}(v) = \text{out}(v)$, except possibly one start node with $\text{out}(s) - \text{in}(s) = 1$ and one end node with $\text{in}(t) - \text{out}(t) = 1$, contains an Eulerian trail.
+2. **Cycle Splicing Guarantee:**
+   When a forward walk from $u$ reaches a dead end, it must be at the trail's end node $t$ (or the start node $s$ in a circuit). Any vertex with exhausted edges has all its incident edges already placed in sub-trails.
+3. **Post-Order Invariance:**
+   Because a node is added to the result sequence only after its entire forward subgraph has been completely consumed, sub-cycles originating from any intermediate vertex $w$ are explored and returned before $w$ is added to the post-order sequence. Upon reversing the list, the sub-cycles appear seamlessly nested within the main walk.
+4. **Edge Multiset Conservation:**
+   Every pair $[u, v]$ corresponds to one element in $\text{adj}[u]$. Popping from $\text{adj}[u]$ exactly once ensures every edge is consumed with its exact multiplicity.
+
+---
+
+## 6. Structural Configurations & Boundary Behaviors
+
+| Configuration | Structural Signature | Start Vertex Selection Rule | Traversal Outcome |
 |---|---|---|---|
-| Input Slice | `{"pairs": [[5, 1], [4, 5], [11, 9], [9, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Single Pair | One edge $u \to v$ | $\Delta(u) = 1$, choose $u$ | Trivial trail $[u, v]$ |
+| Closed Cycle (Circuit) | $\Delta(v) = 0 \quad \forall v \in V$ | Any vertex with $\text{out}(v) > 0$ (e.g. $\text{pairs}[0][0]$) | Closed Eulerian circuit |
+| Multiple Parallel Edges | Multi-edges between same $u, v$ | Imbalances accumulate correctly | Each copy of edge popped individually |
+| Detached Sub-Cycle | Main path + loop attached to a node | Start at $\Delta = 1$; loop spliced via postorder | Complete trail traversing loop then continuing |
 
 ---
 
-### Step 2: Choose the required trail start
+## 7. Complexity Analysis
 
-The default is `pairs[0][0]`. That is valid for an Eulerian circuit because any vertex with an edge can start the cycle.
-
-If a vertex with `difference == 1` exists, it has one extra outgoing edge and must start an open Eulerian trail. The loop finds it and replaces the default.
-
-No sorting is needed because any valid arrangement may be returned.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Consume edges with iterative Hierholzer traversal
-
-The stack holds the current unfinished walk. At its top vertex:
-
-- if an outgoing edge remains, `pop()` consumes one edge and pushes its destination;
-- if no edge remains, the vertex is popped from the stack and appended to `reversed_vertices`.
-
-Appending only after all outgoing edges are consumed is the key. A locally chosen edge can enter a dead end before every edge has been placed. Postorder recording puts that dead end at the proper end of the eventual trail, while the stack resumes earlier branching points.
-
-Each adjacency entry is popped exactly once, so every input pair is used exactly once.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[11, 9], [9, 4], [4, 5], [5, 1]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"pairs": [[5, 1], [4, 5], [11, 9], [9, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[11, 9], [9, 4], [4, 5], [5, 1]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Greedy output without postorder:** Committing edges directly can get trapped at a dead end before all edges are used. Hierholzer's postorder repairs branching choices.
-- **Recursive Hierholzer:** It has the same logic and complexity but can overflow Python's recursion limit for $10^5$ edges.
-- **Backtracking over permutations:** Exploring edge orders is exponential and ignores Eulerian structure.
-- **Eulerian circuit:** No balance-1 vertex exists, so the first pair's start is a valid arbitrary start.
-- **Open trail:** The unique balance-1 vertex must be selected.
-- **One pair:** The walk has two vertices and reconstructs that pair directly.
-- **Repeated endpoints:** Different pairs may share starts or ends; adjacency lists retain every edge occurrence.
-- **Arbitrary pop order:** Any outgoing edge order is acceptable because any valid arrangement may be returned and existence is guaranteed.
-- **Large sparse labels:** No array indexed by values is needed.
-- **Input preservation:** Only constructed adjacency lists are consumed.
-- **Output edge identity:** Reconstructing consecutive vertex pairs preserves edge multiplicity. Even when several edges share endpoints, each popped adjacency entry supplies one occurrence in the trail.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(P)$. Let $P$ be the number of pairs.
-- **Auxiliary Space Complexity:** $O(P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|V| + |E|)$.
+  - Constructing adjacency lists and computing degree imbalances takes $\mathcal{O}(|E|)$ time, where $|E| = \text{len}(\text{pairs})$.
+  - Finding the starting vertex takes $\mathcal{O}(|V|)$ time.
+  - Hierholzer's traversal visits each edge exactly once. Popping from an adjacency list takes $\mathcal{O}(1)$ time amortized.
+  - Reversing the path and constructing the final pair list takes $\mathcal{O}(|E|)$ time.
+  - Overall time complexity is strictly linear in the number of pairs: $\mathcal{O}(|E|)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|V| + |E|)$.
+  - Adjacency hash maps store $|E|$ edges across $|V|$ vertices.
+  - The traversal stack and post-order vertex buffer each store at most $|E| + 1$ elements.
+  - Space complexity is optimal and linear in the input size.

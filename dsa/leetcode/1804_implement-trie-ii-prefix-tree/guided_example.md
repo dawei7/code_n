@@ -1,126 +1,199 @@
 # Guided Example: Implement Trie II (Prefix Tree)
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step lifecycle of word insertions, duplicate multiset tracking, prefix queries, and online deletions on a representative problem instance:
 
-- **Input:** `{"operations": ["Trie", "insert", "insert", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsStartingWith"], "arguments": [[], ["apple"], ["apple"], ["apple"], ["app"], ["apple"], ["apple"], ["app"], ["apple"], ["app"]]}`
-- **Required output:** `[null, null, null, 2, 2, null, 1, 1, null, 0]`
+- **Input:**
+  `operations = ["Trie", "insert", "insert", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsStartingWith"]`
+  `arguments = [[], ["apple"], ["apple"], ["apple"], ["app"], ["apple"], ["apple"], ["app"], ["apple"], ["app"]]`
+- **Required Output:** `[null, null, null, 2, 2, null, 1, 1, null, 0]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset frequency counting, shared prefix propagation, dual counter maintenance (`v` for exact matches, `pv` for prefixes), and reversible in-place state retraction during deletion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A <a href="https://en.wikipedia.org/wiki/Trie" target="_blank">**trie**</a> (pronounced as "try") or **prefix tree** is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+Standard Tries typically track set membership using a boolean flag `is_end`. In a multiset or dictionary application, we need to support:
+1. **Duplicates:** Words may be inserted multiple times and erased multiple times.
+2. **Exact Word Count:** `countWordsEqualTo(word)` returns how many times `word` exists in the Trie.
+3. **Prefix Frequency Count:** `countWordsStartingWith(prefix)` returns how many words in the Trie have `prefix` as a prefix.
+4. **Online Deletion:** `erase(word)` decrements the count of `word` by $1$. The problem guarantees that `word` exists in the Trie when `erase` is called.
 
-The objective is to compute `[null, null, null, 2, 2, null, 1, 1, null, 0]` from `{"operations": ["Trie", "insert", "insert", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsStartingWith"], "arguments": [[], ["apple"], ["apple"], ["apple"], ["app"], ["apple"], ["apple"], ["app"], ["apple"], ["app"]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The goal is to answer both exact and prefix frequency queries in $\mathcal{O}(L)$ time (where $L$ is query length) without performing expensive sub-tree traversals on every prefix query.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual-Counter Trie Node Structure
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Each Trie node maintains:
+- `children`: An array of size $26$ for characters `'a'` through `'z'`.
+- `v` (Value / Exact Word Count): The number of inserted words that terminate exactly at this node.
+- `pv` (Prefix Value / Subtree Pass Count): The number of inserted words whose paths pass through this node (that is, words that have the prefix represented by this node).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Prefix-Frequency Conservation & Online Trie Dynamic Invariant.**
+> For any node $u$ representing prefix $P(u)$:
+> 1. Exact count invariant:
+>    $$u.v = |\{ w \in \text{Multiset} \mid w = P(u) \}|$$
+> 2. Prefix sum invariant:
+>    $$u.pv = |\{ w \in \text{Multiset} \mid P(u) \text{ is a prefix of } w \}| = \sum_{d \in \text{subtree}(u)} d.v$$
+> 3. **Insertion:** Walking the path for word $w$ increments $pv$ on every visited child node, and increments $v$ on the terminal node.
+> 4. **Deletion:** Walking the path for word $w$ decrements $pv$ on every visited child node, and decrements $v$ on the terminal node.
+> By updating $pv$ during insertion and deletion, `countWordsStartingWith(prefix)` reduces to a direct $\mathcal{O}(L)$ path traversal to node $u$, returning $u.pv$ immediately in $\mathcal{O}(1)$ without sub-tree exploration.
+
+```mermaid
+flowchart TD
+    accTitle: Dual-Counter Trie Lifecycle
+    accDescr: Diagram illustrating node state tracking with exact count v and prefix count pv through insertion, query, and erasure phases.
+    A["Node for 'app': pv=2, v=0"] --> B["Node for 'apple': pv=2, v=2"]
+    B --> C["Op: erase('apple')"]
+    C --> D["Node for 'app': pv=1, v=0"]
+    D --> E["Node for 'apple': pv=1, v=1"]
+    E --> F["Op: erase('apple')"]
+    F --> G["Node for 'app': pv=0, v=0"]
+    G --> H["Node for 'apple': pv=0, v=0"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Each node represents one prefix
-
-A trie stores words by sharing their prefixes. The root represents the empty prefix. Following the child for `'a'` reaches the prefix `"a"`, then following `'p'` reaches `"ap"`, and so on.
-
-Every node in the protected solution is another `Trie` object with three pieces of state:
-
-- `children` is a fixed array of 26 child references, one for each lowercase letter;
-- `v` counts how many stored word instances end exactly at this node;
-- `pv` counts how many stored word instances pass through this node, meaning how many begin with the prefix represented by the node.
-
-The two counters answer different questions. If the trie contains `"app"` and `"apple"`, the node for `"app"` has an exact-word count for `"app"`, while its prefix count includes both words.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["Trie", "insert", "insert", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsStartingWith"], "arguments": [[], ["apple"], ["apple"], ["apple"], ["app"], ["apple"], ["apple"], ["app"], ["apple"], ["app"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sequence of operations for word `"apple"` and prefix `"app"`.
 
 ---
 
-### Step 2: Map a character to one child slot
-
-For lowercase character `c`, `ord(c) - ord('a')` produces an index from 0 through 25. This gives constant-time access to the appropriate child without hashing at every node.
-
-The lowercase-only input contract is essential: it guarantees every character maps inside the array.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `Trie()`
+- Initialize root node: $\text{root}.v = 0, \text{root}.pv = 0$, all $26$ child pointers are `None`.
+- Output: `null`.
 
 ---
 
-### Step 3: Insert one word instance
+### Step 2: `insert("apple")`
+- Traverse character by character:
+  - `'a'`: Create node for `"a"`, set $\text{pv} = 1$.
+  - `'p'`: Create node for `"ap"`, set $\text{pv} = 1$.
+  - `'p'`: Create node for `"app"`, set $\text{pv} = 1$.
+  - `'l'`: Create node for `"appl"`, set $\text{pv} = 1$.
+  - `'e'`: Create node for `"apple"`, set $\text{pv} = 1$.
+- At terminal node `"apple"`:
+  $$v \longleftarrow v + 1 = 0 + 1 = 1$$
+- Output: `null`.
 
-Insertion starts at the root. For each character, it computes the child index and creates a new `Trie` node if that link is absent. It then moves into that child and increments the child's `pv`.
+---
 
-Incrementing after the move means the node for every nonempty prefix of the word gains one prefix instance. The root's `pv` is never changed. Empty prefixes are not queried under the constraints, so no root prefix count is needed.
+### Step 3: `insert("apple")` (Second Instance)
+- Retraverse path `"apple"`:
+  - `"a"`: $\text{pv} \leftarrow 1 + 1 = 2$.
+  - `"ap"`: $\text{pv} \leftarrow 1 + 1 = 2$.
+  - `"app"`: $\text{pv} \leftarrow 1 + 1 = 2$.
+  - `"appl"`: $\text{pv} \leftarrow 1 + 1 = 2$.
+  - `"apple"`: $\text{pv} \leftarrow 1 + 1 = 2$.
+- At terminal node `"apple"`:
+  $$v \longleftarrow 1 + 1 = 2$$
+- Output: `null`.
 
-After the final character, `node.v += 1` records one additional exact occurrence of the full word. Inserting the same word twice walks the same nodes and increments the same counters twice; duplicates are intentionally preserved.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, null, 2, 2, null, 1, 1, null, 0]` |
+### Step 4: `countWordsEqualTo("apple")`
+- Follow path `'a' \to 'p' \to 'p' \to 'l' \to 'e'`.
+- Reach terminal node for `"apple"`.
+- Return terminal count: $v = \mathbf{2}$.
+- Output: `2`.
+
+---
+
+### Step 5: `countWordsStartingWith("app")`
+- Follow prefix path `'a' \to 'p' \to 'p'`.
+- Reach prefix node for `"app"`.
+- Return prefix counter: $\text{pv} = \mathbf{2}$.
+- Output: `2`.
+
+---
+
+### Step 6: `erase("apple")`
+- Retract one occurrence of `"apple"`:
+  - Decrement $\text{pv}$ on each child node:
+    - `"a"`: $\text{pv} \leftarrow 2 - 1 = 1$.
+    - `"ap"`: $\text{pv} \leftarrow 2 - 1 = 1$.
+    - `"app"`: $\text{pv} \leftarrow 2 - 1 = 1$.
+    - `"appl"`: $\text{pv} \leftarrow 2 - 1 = 1$.
+    - `"apple"`: $\text{pv} \leftarrow 2 - 1 = 1$.
+  - Decrement terminal count:
+    $$v \longleftarrow 2 - 1 = 1$$
+- Output: `null`.
+
+---
+
+### Step 7: `countWordsEqualTo("apple")`
+- Traverse to node `"apple"`.
+- Return terminal count: $v = \mathbf{1}$.
+- Output: `1`.
+
+---
+
+### Step 8: `countWordsStartingWith("app")`
+- Traverse to node `"app"`.
+- Return prefix count: $\text{pv} = \mathbf{1}$.
+- Output: `1`.
+
+---
+
+### Step 9: `erase("apple")` (Second Erasure)
+- Retract final occurrence of `"apple"`:
+  - Nodes `"a"`, `"ap"`, `"app"`, `"appl"`, `"apple"` all have $\text{pv} \leftarrow 1 - 1 = 0$.
+  - Terminal node `"apple"` has $v \leftarrow 1 - 1 = 0$.
+- Output: `null`.
+
+---
+
+### Step 10: `countWordsStartingWith("app")`
+- Traverse to node `"app"`.
+- Node exists, but its prefix count is $\text{pv} = \mathbf{0}$.
+- Output: `0`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["Trie", "insert", "insert", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsEqualTo", "countWordsStartingWith", "erase", "countWordsStartingWith"], "arguments": [[], ["apple"], ["apple"], ["apple"], ["app"], ["apple"], ["apple"], ["app"], ["apple"], ["app"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, null, 2, 2, null, 1, 1, null, 0]` | Verified |
+| Op # | Method Call | Argument | Node Visited / Affected | Counter Change | Result Emitted |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | `init` | — | Root | Initialized | `null` |
+| 2 | `insert` | `"apple"` | Path `"apple"` | $\text{pv} \to 1$, $v \to 1$ | `null` |
+| 3 | `insert` | `"apple"` | Path `"apple"` | $\text{pv} \to 2$, $v \to 2$ | `null` |
+| 4 | `countEqualTo` | `"apple"` | Node `"apple"` | Read $v$ | **$2$** |
+| 5 | `countStartingWith` | `"app"` | Node `"app"` | Read $\text{pv}$ | **$2$** |
+| 6 | `erase` | `"apple"` | Path `"apple"` | $\text{pv} \to 1$, $v \to 1$ | `null` |
+| 7 | `countEqualTo` | `"apple"` | Node `"apple"` | Read $v$ | **$1$** |
+| 8 | `countStartingWith` | `"app"` | Node `"app"` | Read $\text{pv}$ | **$1$** |
+| 9 | `erase` | `"apple"` | Path `"apple"` | $\text{pv} \to 0$, $v \to 0$ | `null` |
+| 10 | `countStartingWith` | `"app"` | Node `"app"` | Read $\text{pv}$ | **$0$** |
+
+Complete emitted sequence: `[null, null, null, 2, 2, null, 1, 1, null, 0]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every node represents a unique prefix. The counter $v$ records exactly how many times a word ending at that prefix has been inserted and not yet erased. The counter $pv$ records the number of times any word having that prefix was inserted and not yet erased. When an operation deletes a word, decrementing both counters on the corresponding path accurately restores the multiset invariant.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the alphabet consists of $26$ lowercase English letters, every word traces a deterministic path. Because the problem statement guarantees that `erase` is called only on words currently present in the Trie, paths never encounter missing nodes during erasure and counters never drop below zero.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Dictionary children:** A hash map per node stores only present edges and may save sparse-node memory, but child lookup has hashing overhead.
-- **Subtree counting on demand:** Traversing every descendant for a prefix query can be proportional to the entire stored dataset; `pv` makes the answer immediate after the path lookup.
-- **Store a Boolean terminal flag:** It cannot represent duplicate word instances; integer `v` is required.
-- **Physically prune on erase:** Nodes whose prefix count reaches zero can be unlinked, but the exact source deliberately retains them for simpler updates and possible reuse.
-- **Insert duplicates:** Every occurrence increments both prefix and exact counts independently.
-- **Word is a prefix of another:** Its node can have both a positive `v` and children leading to longer words.
-- **Missing path:** `search` returns `null` and count methods return zero.
-- **Existing path with zero exact count:** `countWordsEqualTo` returns zero even if longer words share the path.
-- **Erasing one of several copies:** Counters decrease by one rather than resetting.
-- **Guaranteed valid erase:** It permits traversal without defensive missing-child checks or negative-count protection.
-- **Root prefix count:** It remains zero because empty prefixes are outside the input contract.
-- **Maximum word length:** Iterative traversal avoids recursion-depth concerns for length 2000.
-- **Lowercase alphabet:** It justifies fixed 26-way arrays and ordinal indexing.
-- **Helper visibility:** `search` is an implementation helper; required public operations call it without changing trie state.
-- **Object reuse:** Zero-count retained nodes can be populated again by later insertion.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Subtree DFS on Prefix Queries:** Dynamically summing terminal counts across all descendant nodes of `"app"` on every `countWordsStartingWith` call can degenerate to $\mathcal{O}(\text{Total Stored Characters})$, causing TLE on deep trees. Caching $pv$ during insertion gives instantaneous $\mathcal{O}(1)$ lookup upon reaching the prefix node.
+- **Physical Node Deletion:** Trying to prune nodes whose $pv = 0$ requires tracking parent pointers or recursive unlinking. Simply leaving allocated nodes in place with $pv = 0$ is completely correct, avoiding complex pointer rewiring and facilitating rapid re-insertion.
+- **Missing Path Handling:** If a queried word or prefix does not exist in the Trie, `search` reaches a `None` child pointer. The query methods must gracefully return $0$ rather than causing an attribute error.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L)$. Let $L$ be the length of the word or prefix supplied to an operation. `insert`, `erase`, `search`, and both count methods traverse one child per character, so each operation takes $O(L)$ time.
-- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `insert(word)`: $\mathcal{O}(L)$ where $L = \text{len}(word)$. Traverses $L$ characters, doing $\mathcal{O}(1)$ array indexing and integer additions.
+  - `countWordsEqualTo(word)`: $\mathcal{O}(L)$ to navigate to the target node and read $v$.
+  - `countWordsStartingWith(prefix)`: $\mathcal{O}(P)$ where $P = \text{len}(prefix)$ to navigate to the prefix node and read $pv$.
+  - `erase(word)`: $\mathcal{O}(L)$ to navigate the path and decrement counters.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N \cdot L \cdot \Sigma)$ where $N$ is the number of inserted words, $L$ is average word length, and $\Sigma = 26$. Each node holds an array of $26$ references and two integer counters.

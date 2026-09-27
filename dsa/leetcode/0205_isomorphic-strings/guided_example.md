@@ -1,136 +1,163 @@
 # Guided Example: Isomorphic Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bidirectional character bijection tracking and collision detection on representative string pairs:
 
-- **Input:** `{"s": "egg", "t": "add"}`
-- **Required output:** `true`
+- **Input:** $s = \text{"paper"}, \quad t = \text{"title"}$
+- **Required output:** `true` (Valid bijection: $p \leftrightarrow t, \, a \leftrightarrow i, \, e \leftrightarrow l, \, r \leftrightarrow e$)
+- **One-to-Many Conflict Instance:** $s = \text{"foo"}, \quad t = \text{"bar"} \implies \text{false}$ (Source character $'o'$ attempts to map to both $'a'$ and $'r'$)
+- **Many-to-One Conflict Instance:** $s = \text{"badc"}, \quad t = \text{"baba"} \implies \text{false}$ (Target character $'b'$ is claimed by both $'b'$ and $'d'$)
+- **Self-Mapping Instance:** $s = \text{"egg"}, \quad t = \text{"add"} \implies \text{true}$ ($e \leftrightarrow a, \, g \leftrightarrow d$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling string isomorphism as a bijective function ($\phi: \Sigma_s \to \Sigma_t$), proves why tracking only a single directional map fails to detect many-to-one collisions, constructs twin hash maps (`s2t` and `t2s`), and operates in $O(N)$ time with $O(|\Sigma|)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `t`, *determine if they are isomorphic*.
+Given two strings $s = \text{"paper"}$ and $t = \text{"title"}$ of equal length $N = 5$:
+Determine whether $s$ and $t$ are **isomorphic**.
+Two strings are isomorphic if every character in $s$ can be replaced with a character in $t$ such that:
+1. Every occurrence of a character $c \in s$ maps to the **exact same** character in $t$.
+2. **No two distinct characters** in $s$ map to the same character in $t$ (injectivity).
+3. Character order is strictly preserved.
 
-The objective is to compute `true` from `{"s": "egg", "t": "add"}` while avoiding redundant calculations and unnecessary overhead.
+Evaluating the position-by-position alignments:
+- Position 0: $s[0] = \text{'p'}, \, t[0] = \text{'t'} \implies \text{'p'} \leftrightarrow \text{'t'}$.
+- Position 1: $s[1] = \text{'a'}, \, t[1] = \text{'i'} \implies \text{'a'} \leftrightarrow \text{'i'}$.
+- Position 2: $s[2] = \text{'p'}, \, t[2] = \text{'t'} \implies$ Consistent with existing rule $\text{'p'} \leftrightarrow \text{'t'}$.
+- Position 3: $s[3] = \text{'e'}, \, t[3] = \text{'l'} \implies \text{'e'} \leftrightarrow \text{'l'}$.
+- Position 4: $s[4] = \text{'r'}, \, t[4] = \text{'e'} \implies \text{'r'} \leftrightarrow \text{'e'}$ *(Notice: character `'e'` in $t$ is distinct from `'e'` in $s$)*.
+Because every mapped pair is consistent and injective, the strings are isomorphic (`true`).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Now contrast this with $s = \text{"badc"}$ and $t = \text{"baba"}$:
+- At index 0: $\text{'b'} \to \text{'b'}$.
+- At index 2: $s[2] = \text{'d'}, \, t[2] = \text{'b'}$. Here, source character `'d'` attempts to map to target character `'b'`, but `'b'` has already been claimed by source character `'b'`!
+If one only checked $s \to t$, this conflict would be missed. A valid isomorphism requires a **two-way bijection**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Bijective Mapping Invariant
+Let $\Sigma$ be the alphabet. An isomorphism is a bijective function $\phi: \Sigma_s \to \Sigma_t$:
+- **Consistency ($s \to t$):** If $s[i] == s[j]$, then $t[i]$ must equal $t[j]$.
+- **Injectivity ($t \to s$):** If $t[i] == t[j]$, then $s[i]$ must equal $s[j]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Dual Hash Map Protocol:
+Maintain two lookup structures:
+- `s2t = {}`: tracks the forward mapping $s[i] \to t[i]$.
+- `t2s = {}`: tracks the reverse mapping $t[i] \to s[i]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+For each index $i$ from $0$ to $N - 1$:
+Let $u = s[i]$ and $v = t[i]$.
+1. **Forward Check:**
+   If $u \in \text{s2t}$ and $\text{s2t}[u] \ne v$: return `false` (One-to-many conflict).
+2. **Reverse Check:**
+   If $v \in \text{t2s}$ and $\text{t2s}[v] \ne u$: return `false` (Many-to-one conflict).
+3. **Register Correspondence:**
+   $$
+   \text{s2t}[u] \leftarrow v, \quad \text{t2s}[v] \leftarrow u
+   $$
+
+Return `true` if all characters are processed without conflict.
+
+> **Invariant.** After processing prefix $0 \dots i$, the relation defined by `s2t` and `t2s` is a strictly bijective graph between all characters observed in $s[0 \dots i]$ and $t[0 \dots i]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate “replace consistently” into a two-way mapping
+We trace $s = \text{"paper"}$ and $t = \text{"title"}$ ($N = 5$):
 
-For `s` to become `t`, every occurrence of one source character must always
-produce the same target character. That requires a function from source
-characters to target characters.
-
-The problem also forbids two different source characters from producing the
-same target character. That injectivity requirement is easiest to enforce with
-the inverse function as well. Dictionary `d1` maps characters from `s` to `t`,
-while `d2` maps characters from `t` back to `s`.
-
-Together, the dictionaries maintain a one-to-one correspondence among all
-characters encountered so far.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "egg", "t": "add"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Index 0: $u = \text{'p'}, \, v = \text{'t'}$
+- Check $u \in \text{s2t}$: Not present.
+- Check $v \in \text{t2s}$: Not present.
+- Register: $\text{s2t}[\text{'p'}] = \text{'t'}, \quad \text{t2s}[\text{'t'}] = \text{'p'}$.
 
 ---
 
-### Step 2: Read corresponding positions together
-
-`for a, b in zip(s, t)` pairs the character at each source position with the
-character at the same target position. Processing left to right automatically
-preserves character order: the algorithm never rearranges positions; it only
-checks whether every aligned pair can belong to one consistent mapping.
-
-The Reference guarantees `t.length = s.length`, so `zip` visits every character
-of both strings. In a generalized function without that guarantee, `zip` would
-silently stop at the shorter string, and an explicit length comparison would be
-required before the loop.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Index 1: $u = \text{'a'}, \, v = \text{'i'}$
+- Check $u \in \text{s2t}$: Not present.
+- Check $v \in \text{t2s}$: Not present.
+- Register: $\text{s2t}[\text{'a'}] = \text{'i'}, \quad \text{t2s}[\text{'i'}] = \text{'a'}$.
 
 ---
 
-### Step 3: Reject a source character that changes its target
+### Index 2: $u = \text{'p'}, \, v = \text{'t'}$
+- Check $u \in \text{s2t}$: Present! Expected target $= \text{s2t}[\text{'p'}] = \text{'t'}$.
+  Current target is $\text{'t'}$. Match!
+- Check $v \in \text{t2s}$: Present! Expected source $= \text{t2s}[\text{'t'}] = \text{'p'}$.
+  Current source is $\text{'p'}$. Match!
+- Consistency confirmed. No changes needed.
 
-The first conflict test is:
+---
 
-`a in d1 and d1[a] != b`
+### Index 3: $u = \text{'e'}, \, v = \text{'l'}$
+- Check $u \in \text{s2t}$: Not present.
+- Check $v \in \text{t2s}$: Not present.
+- Register: $\text{s2t}[\text{'e'}] = \text{'l'}, \quad \text{t2s}[\text{'l'}] = \text{'e'}$.
 
-If source character `a` has appeared before, `d1[a]` records the only target it
-is allowed to produce. A different current `b` would require replacing the same
-source character in two different ways, contradicting the “all occurrences”
-rule.
+---
 
-For `s = "f11"` and `t = "b23"`, the first `'1'` establishes `'1' -> '2'`.
-The next `'1'` is aligned with `'3'`, so this condition detects the mismatch
-and returns false.
+### Index 4: $u = \text{'r'}, \, v = \text{'e'}$
+- Check $u \in \text{s2t}$: Not present.
+- Check $v \in \text{t2s}$: Not present.
+- Register: $\text{s2t}[\text{'r'}] = \text{'e'}, \quad \text{t2s}[\text{'e'}] = \text{'r'}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+All 5 characters pass both validation checks. Return `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "egg", "t": "add"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+s = "paper", t = "title"
+
+Idx 0: 'p' <-> 't' -> Add s2t['p']='t', t2s['t']='p'
+Idx 1: 'a' <-> 'i' -> Add s2t['a']='i', t2s['i']='a'
+Idx 2: 'p' <-> 't' -> Verified against existing mapping -> OK
+Idx 3: 'e' <-> 'l' -> Add s2t['e']='l', t2s['l']='e'
+Idx 4: 'r' <-> 'e' -> Add s2t['r']='e', t2s['e']='r'
+
+Result: true
+```
+
+| Index $i$ | Pair $(u, v)$ | Forward Check (`s2t[u] == v`) | Reverse Check (`t2s[v] == u`) | Decision | Active Mappings (`s2t`) |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `('p', 't')` | New key | New key | Register | `{'p': 't'}` |
+| 1 | `('a', 'i')` | New key | New key | Register | `{'p': 't', 'a': 'i'}` |
+| 2 | `('p', 't')` | Matches `'t'` | Matches `'p'` | Validated | `{'p': 't', 'a': 'i'}` |
+| 3 | `('e', 'l')` | New key | New key | Register | `{'p': 't', 'a': 'i', 'e': 'l'}` |
+| **4** | **`('r', 'e')`** | **New key** | **New key** | **Register** | **`{'p': 't', 'a': 'i', 'e': 'l', 'r': 'e'}` (True)** |
+
+### Contrast: Conflict in $s = \text{"badc"}, t = \text{"baba"}$
+- At index 0: `'b' <-> 'b'`.
+- At index 1: `'a' <-> 'a'`.
+- At index 2: $u = \text{'d'}, v = \text{'b'}$.
+  - $u \notin \text{s2t}$.
+  - $v \in \text{t2s}$ with $\text{t2s}[\text{'b'}] = \text{'b'} \ne \text{'d'}$!
+  - Conflict detected: `'b'` cannot be produced by both `'b'` and `'d'`!
+  - Returns `false` immediately!
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A pair $(u, v)$ is registered only when neither $u$ nor $v$ has been bound to a different partner. If an existing binding exists, the algorithm verifies that the current character pair agrees with it. This directly checks the mathematical axioms of injectivity and functional well-definedness.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The algorithm checks all character pairs from index $0$ to $N - 1$. If any violation exists, it is detected at the first offending index.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **First-occurrence pattern:** Transform each string into the sequence of first-occurrence indices and compare those sequences; correct but builds proportional output.
-- **Last-seen arrays:** Two fixed 128-entry arrays can replace dictionaries for strict ASCII input.
-- **One dictionary only:** Insufficient because it allows two source characters to share one target.
-- **Set of paired characters:** Comparing counts of source, target, and pair sets can work but is less direct than inverse maps.
-- **Equal characters:** Self-mapping is explicitly allowed.
-- **Repeated source with new target:** Rejected by `d1`.
-- **New source with used target:** Rejected by `d2`.
-- **Same-length guarantee:** Makes `zip` complete; otherwise compare lengths first.
-- **One-character strings:** Always isomorphic because one correspondence suffices.
-- **Empty strings:** Outside the minimum-length constraint, but two empty strings would return true naturally.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single Dictionary Trap:** Using only `s2t` checks that each source character maps to a unique target, but fails to check that multiple source characters do not map to the same target (e.g. $s = \text{"ab"}, t = \text{"aa"}$ returns `true` with one dictionary). Two maps are required.
+- **Index-of Transformation:** Replacing strings with their first-occurrence index patterns (e.g. `[s.find(c) for c in s] == [t.find(c) for c in t]`) is valid, but calling `.find()` inside a loop runs in $O(N^2)$ time! Dual hash maps achieve strictly $O(N)$.
+- **Fixed Alphabet Size:** For standard ASCII, fixed 256-integer arrays `map_s[256]` and `map_t[256]` initialized to $-1$ achieve $O(1)$ space and zero hash overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common string length and $k$ the number of distinct characters
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of string $s$. The loop visits each character pair once, performing $O(1)$ hash table lookups and insertions.
+- **Auxiliary Space Complexity:** $O(|\Sigma|)$ auxiliary space, where $|\Sigma|$ is the alphabet size (at most $256$ entries for extended ASCII, or bounded constant memory).

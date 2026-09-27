@@ -1,110 +1,185 @@
 # Guided Example: Jewels and Stones
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step distinct jewel type set ingestion ($s = set(jewels)$), case-sensitive ASCII character comparison ($'a' \ne 'A'$), linear stone inventory stream traversal ($c \in stones$), constant-time indicator membership evaluation ($c \in s \implies 1$), and inventory jewel tally accumulation on representative stone collections:
 
-- **Input:** `{"jewels": "aA", "stones": "aAAbbbb"}`
+- **Input:**
+  - Jewel types: $jewels = \text{"aA"}$
+  - Stone collection: $stones = \text{"aAAbbbb"}$
 - **Required output:** `3`
+  - Counting criteria & case sensitivity:
+    - String $jewels$ contains all distinct character types considered jewels.
+    - String $stones$ represents your collection of stones.
+    - Each character represents a single stone.
+    - Matching is **strictly case-sensitive**: `'a'` is completely distinct from `'A'`.
+    - Objective: Count the total number of stones in $stones$ that are also in $jewels$.
+    - For $jewels = \text{"aA"}$ and $stones = \text{"aAAbbbb"}$:
+      - Stone 0: `'a'` $\to$ in $jewels$ (Jewel #1).
+      - Stone 1: `'A'` $\to$ in $jewels$ (Jewel #2).
+      - Stone 2: `'A'` $\to$ in $jewels$ (Jewel #3).
+      - Stones 3, 4, 5, 6: `'b'` $\to$ not in $jewels$.
+      - Total jewels owned: $1 + 1 + 1 + 0 + 0 + 0 + 0 = \mathbf{3}$.
+- **Hash Set Ingestion & Indicator Summation Invariant:**
+  - **The Jewel Universe ($\mathcal{J}$):**
+    - Insert all characters of $jewels$ into a hash set:
+      $$
+      \mathcal{J} = \{ c \mid c \in jewels \}
+      $$
+    - Testing membership $c \in \mathcal{J}$ takes strictly $\mathcal{O}(1)$ average time.
+  - **Inventory Streaming Aggregation:**
+    - Stream each stone $c \in stones$:
+      $$
+      ans = \sum_{c \in stones} \mathbf{1}_{[c \in \mathcal{J}]}
+      $$
+    - Every stone is classified independently in constant time without sorting or nested rescanning.
+- **Step-by-Step Worked Execution Trace on $stones = \text{"aAAbbbb"}$:**
+  - **Phase 0: Build Set from $jewels = \text{"aA"}$:**
+    - Insert `'a'`: $\mathcal{J} = \{\text{'a'}\}$.
+    - Insert `'A'`: $\mathcal{J} = \{\text{'a'}, \; \text{'A'}\}$.
+  - **Phase 1: Stream Stones ($stones = \text{"aAAbbbb"}$):**
+    - Initialize counter: $ans = 0$.
+    - **Position 0 ($c = \text{'a'}$):**
+      - Membership: $\text{'a'} \in \mathcal{J} \implies \mathbf{True.}$
+      - Increment: $ans \leftarrow 0 + 1 = \mathbf{1}$.
+    - **Position 1 ($c = \text{'A'}$):**
+      - Membership: $\text{'A'} \in \mathcal{J} \implies \mathbf{True.}$
+      - Increment: $ans \leftarrow 1 + 1 = \mathbf{2}$.
+    - **Position 2 ($c = \text{'A'}$):**
+      - Membership: $\text{'A'} \in \mathcal{J} \implies \mathbf{True.}$
+      - Increment: $ans \leftarrow 2 + 1 = \mathbf{3}$.
+    - **Position 3 ($c = \text{'b'}$):**
+      - Membership: $\text{'b'} \notin \mathcal{J} \implies \mathbf{False.}$
+      - Counter unchanged: $ans = 3$.
+    - **Position 4 ($c = \text{'b'}$):**
+      - Membership: $\text{'b'} \notin \mathcal{J} \implies \mathbf{False.}$
+      - Counter unchanged: $ans = 3$.
+    - **Position 5 ($c = \text{'b'}$):**
+      - Membership: $\text{'b'} \notin \mathcal{J} \implies \mathbf{False.}$
+      - Counter unchanged: $ans = 3$.
+    - **Position 6 ($c = \text{'b'}$):**
+      - Membership: $\text{'b'} \notin \mathcal{J} \implies \mathbf{False.}$
+      - Counter unchanged: $ans = 3$.
+  - **Phase 2: Final Output:**
+    $$
+    ans = \mathbf{3}
+    $$
+- **Case-Sensitive Disjoint Trace ($jewels = \text{"z"}, stones = \text{"ZZ"}$):**
+  - $\mathcal{J} = \{\text{'z'}\}$.
+  - Stone 0: `'Z'` $\notin \mathcal{J}$ (ASCII 90 $\ne$ ASCII 122).
+  - Stone 1: `'Z'` $\notin \mathcal{J}$.
+  - Returns **`0`**.
+- **All Stones Are Jewels Trace ($jewels = \text{"abc"}, stones = \text{"cba"}$):**
+  - All 3 characters match $\implies ans = \mathbf{3}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates linear filtering and hash set indicator aggregation, mathematically proves why characteristic set projection partitions multiset stone occurrences in constant time per element, and derives $O(|J| + |S|)$ runtime and $O(|J|)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You're given strings `jewels` representing the types of stones that are jewels, and `stones` representing the stones you have. Each character in `stones` is a type of stone you have. You want to know how many of the stones you have are also jewels.
+Given a string $jewels$ and a string $stones$:
+Count how many characters in $stones$ appear in $jewels$ (case-sensitive).
 
-The objective is to compute `3` from `{"jewels": "aA", "stones": "aAAbbbb"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+jewels = "aA", stones = "aAAbbbb"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Jewels set: { 'a', 'A' }
+
+Scan stones:
+  'a' in set -> YES (count = 1)
+  'A' in set -> YES (count = 2)
+  'A' in set -> YES (count = 3)
+  'b' in set -> NO
+  'b' in set -> NO
+  'b' in set -> NO
+  'b' in set -> NO
+
+Result: 3
+```
+
+### The Invariant of the Hash Set Lookup
+- Pre-populating a hash set with $jewels$ allows checking if each stone is a jewel in strictly $O(1)$ time.
+- Preserving case distinction is mandatory ('a' $\ne$ 'A').
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Set Construction:
+$$
+\mathcal{J} = \{ c \mid c \in jewels \}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Stream Summation:
+$$
+ans = \sum_{c \in stones} [c \in \mathcal{J}]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Characteristic Function Pullback.** Let $\chi_{\mathcal{J}}: \Sigma \to \{0, 1\}$ be the indicator function of the jewel subset. The total jewel count is the discrete integral $\int_{stones} \chi_{\mathcal{J}} \, d\mu_{stones}$ evaluated linearly in $O(|stones|)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Convert jewel types into a membership set
-
-Each character in `jewels` names one stone type that should be counted. The question for every owned stone is simply whether its character belongs to that collection.
-
-The solution creates
-
-`s = set(jewels)`.
-
-Set membership is expected constant time, so the jewel description is processed once instead of rescanned for every stone.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"jewels": "aA", "stones": "aAAbbbb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $jewels = \text{"aA"}, stones = \text{"aAAbbbb"}$:
 
 ---
 
-### Step 2: Count stones, not distinct types
-
-The generator tests every character `c` in `stones` independently:
-
-`c in s`.
-
-If three owned stones have jewel types, all three must count even if some share the same character. This is why `stones` itself is not converted to a set.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Set Ingestion
+- $\mathcal{J} = \{\text{'a'}, \text{'A'}\}$.
 
 ---
 
-### Step 3: Sum Boolean results
+### Step 2: Stream Stones
+- `'a'` $\in \mathcal{J} \implies$ +1
+- `'A'` $\in \mathcal{J} \implies$ +1
+- `'A'` $\in \mathcal{J} \implies$ +1
+- `'b'`, `'b'`, `'b'`, `'b'` $\notin \mathcal{J} \implies$ +0
 
-Membership returns `true` for a jewel and `false` otherwise. Python treats these as one and zero in arithmetic. `sum` therefore adds one for every jewel stone and zero for every ordinary stone.
+---
 
-The generator is lazy, so it does not allocate a list of Boolean values.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Output
+$$
+ans = \mathbf{3}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"jewels": "aA", "stones": "aAAbbbb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Stone Index $i$ | Character $c$ | In Jewel Set $\mathcal{J}$? | Indicator Value | Cumulative Count $ans$ |
+|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `'a'` | Yes | $1$ | $1$ |
+| $1$ | `'A'` | Yes | $1$ | $2$ |
+| $2$ | `'A'` | Yes | $1$ | $3$ |
+| $3$ | `'b'` | No | $0$ | $3$ |
+| $4$ | `'b'` | No | $0$ | $3$ |
+| $5$ | `'b'` | No | $0$ | $3$ |
+| **$6$** | **`'b'`** | **No** | **$0$** | **`3`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Case Mismatch ($"z"$ vs $"ZZ"$):** Lowercase and uppercase characters have distinct ASCII values $\implies$ returns 0.
+- **Empty Stones ($""$):** Loop does not execute $\implies$ returns 0.
+- **All Stones Match ($"abc"$ vs $"cba"$):** Returns $|stones|$.
+- **Single Stone Match:** Returns 1.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Nested scans:** Check each stone against every jewel character. This costs `O(jslen)` and repeats work.
-- **Frequency counter for stones:** Count every stone type, then sum jewel frequencies. It is correct but stores more information than necessary.
-- **Convert stones to a set:** This is incorrect because repeated physical stones must each count.
+- **Searching in $jewels$ String Repeatedly ($O(|J| \cdot |S|)$):** Checking `c in jewels` where `jewels` is a string performs a linear substring scan each time. Converting `jewels` to a hash `set(jewels)` reduces lookup to $O(1)$.
+- **Ignoring Case Sensitivity:** Normalizing to lowercase with `.lower()` combines `'a'` and `'A'`, corrupting the result.
+- **Modifying the Input String:** Read-only pass over $stones$ is optimal and avoids object allocation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(slen)$. Let `j` be the jewel-string length and `slen` the stone-string length. Building the set takes expected `O(j)` time, and scanning stones takes expected `O(slen)`. Total expected time is `O(j + slen)`.
-- **Auxiliary Space Complexity:** $O(j)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Creating the jewel set: $\mathcal{O}(|jewels|)$.
+  - Scanning all characters in $stones$: $\mathcal{O}(|stones|)$.
+  - Total Time: strictly linear $\mathcal{O}(|jewels| + |stones|)$ where lengths $\le 50$. Completes in $< 0.01$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(|jewels|) \le 52$ memory for the hash set.

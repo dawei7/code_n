@@ -1,130 +1,130 @@
 # Guided Example: Longest Palindrome by Concatenating Two Letter Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal frequency-matching and central-pivot greedy approach on a representative problem instance:
 
-- **Input:** `{"words": ["lc", "cl", "gg"]}`
-- **Required output:** `6`
+- **Input Words (`words`):** `["lc", "cl", "gg"]`
+- **Expected Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an array of strings `words`. Each element of `words` consists of **two** lowercase English letters.
-
-The objective is to compute `6` from `{"words": ["lc", "cl", "gg"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates the structural distinction between asymmetric two-letter word pairs and self-palindromic symmetric words, demonstrating how bilateral pairing and a single central pivot maximize the overall palindrome length.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an array of strings `words`, where each string consists of exactly two lowercase English letters. We may select a subset of these words and concatenate them in any order to form a palindrome. Each word in the input may be selected at most once. We must determine the maximum length of such a palindrome.
 
-| State Parameter | Role & Purpose | Initial State |
+Consider our representative instance `words = ["lc", "cl", "gg"]`:
+- Word `"lc"` has reverse `"cl"`. Placing `"lc"` on the left and `"cl"` on the right forms the symmetric frame `"lc...cl"` (contributing $4$ characters).
+- Word `"gg"` has identical letters ($g = g$). It is inherently self-palindromic and can be placed in the dead center between `"lc"` and `"cl"`, yielding `"lcggcl"` (contributing $2$ characters).
+- The total length is $4 + 2 = 6$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Bipartite Symmetry Classification
+Let each word $w = c_1 c_2$ be classified by its symmetry:
+1. **Asymmetric Words ($c_1 \ne c_2$):**
+   - The reversed word $w^R = c_2 c_1$ is distinct from $w$.
+   - Neither $w$ nor $w^R$ can sit at the exact center of a palindrome because neither is individually palindromic.
+   - They can only appear as matching pairs $(w, w^R)$ on opposite sides of the palindrome:
+
+$$\text{Pairs}(w, w^R) = \min(\text{count}(w), \text{count}(w^R))$$
+
+   - Each pair contributes $2 \times 2 = 4$ characters.
+2. **Symmetric Words ($c_1 = c_2$):**
+   - The word is self-palindromic ($w = w^R$, such as `"gg"`, `"aa"`).
+   - If $\text{count}(w) = k$, we can form $\lfloor k / 2 \rfloor$ symmetric pairs placed on opposite sides, contributing $4 \lfloor k / 2 \rfloor$ characters.
+   - If $k$ is odd ($k \bmod 2 = 1$), one instance of $w$ remains unmatched. At most **one** such leftover symmetric word across the entire vocabulary can be placed in the exact center of the palindrome, contributing $+2$ characters.
+
+### Greedy Length Synthesis
+The maximal palindrome length is expressed in closed form:
+
+$$\text{Length} = 4 \sum_{\{u, v\}, u < v, u = v^R} \min(C_u, C_v) + 4 \sum_{w = w^R} \left\lfloor \frac{C_w}{2} \right\rfloor + 2 \cdot \mathbb{I}\left(\exists w = w^R \text{ s.t. } C_w \equiv 1 \pmod 2\right)$$
+
+where $C_w$ denotes the occurrence count of word $w$.
+
+| Word Type | Internal Symmetry | Contribution Rule | Length Contribution per Unit |
+|---|---|---|---|
+| Asymmetric Pair | $c_1 \ne c_2$ and $w^R \ne w$ | Bilateral placement $(w \dots w^R)$ | $4$ characters per matched pair |
+| Symmetric Even | $c_1 = c_2$ | Bilateral placement $(w \dots w)$ | $4$ characters per pair ($2$ words) |
+| Symmetric Center | $c_1 = c_2$ | Central placement $(\dots w \dots)$ | $2$ characters (at most one word) |
+
+---
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+Input words: `["lc", "cl", "gg"]`.
+
+### Phase 1: Frequency Histogram Construction
+We construct the frequency table:
+- $\text{count}["lc"] = 1$
+- $\text{count}["cl"] = 1$
+- $\text{count}["gg"] = 1$
+
+Initialize cumulative length $L = 0$, central odd pivot available $\text{has\_center} = \text{false}$.
+
+### Phase 2: Processing Asymmetric Pair `("lc", "cl")`
+- Word $w = \text{"lc"}$ has reverse $w^R = \text{"cl"}$.
+- Check: letters differ ($'l' \ne 'c'$).
+- Calculate matched pairs:
+
+$$\min(\text{count}["lc"], \text{count}["cl"]) = \min(1, 1) = 1$$
+
+- Characters contributed: $1 \times 4 = 4$.
+- Running length: $L \leftarrow 0 + 4 = 4$.
+
+### Phase 3: Processing Symmetric Word `"gg"`
+- Letters agree ($'g' = 'g'$).
+- Occurrence count: $k = 1$.
+- Bilateral pairs: $\lfloor 1 / 2 \rfloor = 0$.
+- Remainder check: $1 \bmod 2 = 1$.
+- Because an unused symmetric word is available, we set $\text{has\_center} = \text{true}$.
+
+### Phase 4: Assembly of Final Length
+- Cumulative bilateral length: $L = 4$.
+- Central pivot bonus: since $\text{has\_center} = \text{true}$, we add $2$ characters.
+- Final maximum length: $4 + 2 = 6$.
+- Constructed example palindrome: `"lc"` $+$ `"gg"` $+$ `"cl"` $=$ `"lcggcl"`.
+
+---
+
+## 4. Comprehensive State Trace
+
+The evaluation metrics across all unique word tokens are detailed below:
+
+| Word $w$ | Reverse $w^R$ | Symmetry Type | Count $C_w$ | Count $C_{w^R}$ | Bilateral Pairs Formed | Characters Added | Center Eligible? |
+|---|---|---|---|---|---|---|---|
+| `"lc"` | `"cl"` | Asymmetric | $1$ | $1$ | $1$ | $4$ | No |
+| `"gg"` | `"gg"` | Symmetric | $1$ | $1$ | $0$ | $0$ | Yes (Odd remainder) |
+
+### Center Resolution
+| Central Candidate Available? | Center Character Bonus Added | Final Concatenated Length |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Yes (`"gg"`) | $+2$ | $4 + 2 = 6$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count first because order is chosen freely
-
-The code begins with `cnt = Counter(words)`. Since words may be concatenated in any order, their original positions do not affect feasibility. Only the number of available copies of each two-letter string matters. The counter converts the problem from arranging individual array entries into deciding how many copies of each type can participate.
-
-The variables are initialized together as `ans = x = 0`. Here, `ans` accumulates the answer in characters, not in words. The variable `x` records how many equal-letter word types have an odd count. Only whether `x` is zero matters at the end, but adding the odd indicators is a compact way to remember that fact.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["lc", "cl", "gg"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Maximum length achieved: $6$.
 
 ---
 
-### Step 2: Pair a non-palindromic word with its reverse
+## 5. Algorithmic Correctness & Soundness
 
-For a key `k` whose two letters differ, `k[::-1]` is a different two-letter word. If `k` occurs $v$ times and its reverse occurs $u$ times, no palindrome can use more than $\min(v,u)$ copies of either type. Each left-side copy needs one reverse on the right, and the less frequent type is exhausted first.
+**Soundness.** Any valid palindrome reads identically forwards and backwards. Characters at index $j$ and index $N - 1 - j$ must match. For 2-letter words, this implies that words at symmetrical positions from the ends must be mutual reverses. Asymmetric words must appear in equal numbers on both sides, yielding $\min(C_w, C_{w^R})$ pairs. Symmetric words can be paired with themselves across the center. If an unmatched symmetric word exists, placing it at the exact center creates a 2-character middle whose internal reflection is self-consistent ($c_1 c_2 = c_1 c_1$). Because only one 2-character middle can exist in any string, at most one odd symmetric word can contribute $+2$.
 
-One matched pair contributes two words, hence four characters. The exact code may initially look surprising:
-
-`ans += min(v, cnt[k[::-1]]) * 2`
-
-This line adds only two characters per match, but the loop later processes the reverse key separately. When processing `"ab"`, it adds $2\min(\text{count}(\text{"ab"}),\text{count}(\text{"ba"}))$. When processing `"ba"`, it adds the same amount again. Together the two iterations add four characters per matched pair, exactly the full contribution.
-
-This deliberate double visit is correct because the contribution in each visit is half of a complete pair. If a reverse does not occur, `Counter` returns zero for the missing key, so the contribution is zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Completeness.** No palindrome can include more copies of an asymmetric pair than $\min(C_w, C_{w^R})$, nor more than $\lfloor C_w / 2 \rfloor$ pairs of a symmetric word, nor more than one central pivot. Because each upper bound is saturated and all components are arranged into a valid palindrome, the resulting length is provably maximal.
 
 ---
 
-### Step 3: Handle self-reversing words in pairs
+## 6. Edge Cases & Anti-Patterns
 
-When `k[0] == k[1]`, the word is already a two-character palindrome, such as `"aa"`. Two copies can be placed symmetrically, one on each side. The number of complete pairs is `v // 2`.
-
-The expression
-
-`v // 2 * 2 * 2`
-
-means complete pairs times two words per pair times two characters per word. Equivalently, it contributes $4\lfloor v/2\rfloor$ characters. This uses every copy when $v$ is even and all but one when $v$ is odd.
-
-The expression `v & 1` is `1` exactly when $v$ is odd and `0` when it is even. Therefore `x += v & 1` counts the equal-letter types that leave one unmatched copy after all possible symmetric pairs are used.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+- **Multiple Odd Symmetric Words:** If words contains `"aa"`, `"bb"`, `"cc"`, each with count 1, all bilateral pair counts are 0. Exactly one of them can serve as the center, yielding length $2$ (not $6$).
+- **No Symmetric Words:** If all words are asymmetric, the central pivot bonus is $0$, and the length is solely the sum of matched asymmetric pairs.
+- **Unbalanced Asymmetric Frequencies:** If `"ab"` appears 5 times and `"ba"` appears 2 times, exactly 2 pairs can be formed, yielding $2 \times 4 = 8$ characters; the remaining 3 copies of `"ab"` cannot be used.
+- **Anti-Pattern — Exponential Permutation Search:** Generating subsets and testing palindromic property takes exponential time $\mathcal{O}(2^N \cdot N!)$. The frequency table reduces the problem to an $\mathcal{O}(N)$ counting pass.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["lc", "cl", "gg"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **A 26 by 26 frequency table:** Map each letter to an index and store counts in a fixed matrix. This gives the same $O(n)$ time and explicit $O(26^2)$ space, avoiding hashing at the cost of more indexing code.
-- **Match online while scanning:** Keep unmatched counts and immediately consume a reverse when it is available. This can also be linear, but center handling for equal-letter words is easier to reason about after complete counts are known.
-- **Generate concatenation orders:** Trying permutations and subsets is exponential and ignores the central symmetry rule that reduces the problem to independent frequency matches.
-- **Process each reverse pair only once:** One may impose an ordering such as `k < k[::-1]` and add four characters per match. The exact code instead visits both keys and adds two per visit; both accounting styles reach the same total.
-- **Only non-palindromic words:** The answer consists entirely of reverse pairs. If no word has its reverse, every contribution is zero and the method returns `0`.
-- **Only equal-letter words:** Every count contributes its largest even part, and at most one odd leftover contributes the center.
-- **Several odd equal-letter counts:** Each type contributes all possible pairs, but only one of their leftover words is added centrally. The condition `if x` correctly ignores how many choices beyond one exist.
-- **One word:** If it has equal letters, it becomes the two-character center. If its letters differ, no palindrome can be formed and the answer is zero.
-- **Unequal reverse frequencies:** With seven `"ab"` words and four `"ba"` words, exactly four matches are usable. The `min` operation prevents the three surplus `"ab"` copies from being counted.
-- **Missing reverse key:** `cnt[k[::-1]]` evaluates to zero, so the unmatched word type adds nothing.
-- **Even equal-letter count:** It leaves no center candidate from that type because `v & 1` is zero, but every copy is used in symmetric pairs.
-- **Odd equal-letter count:** The largest even portion is paired, and exactly one copy remains eligible for the shared center.
-- **Intentional double accounting:** For differing letters, each complete reverse pair is encountered under both keys. The factor `2` per encounter is therefore correct; changing it to `4` without also restricting the loop would double the answer incorrectly.
-- **Character length versus word count:** `ans` is already measured in characters. The method must not multiply the final result by two again.
-- **Original order:** The counter discards positions safely because the problem explicitly permits concatenating selected words in any order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n+d)$. Let $n$ be the number of input words and let $d$ be the number of distinct two-letter words. Building `Counter(words)` takes $O(n)$ expected time. Iterating through its entries takes $O(d)$ time. Reversing a two-character key, comparing its letters, and performing counter lookups are all $O(1)$ because every word has fixed length two. Total time is $O(n+d)$, which simplifies to $O(n)$ because $d \le n$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the number of words in `words`. Counting frequencies takes $\mathcal{O}(N)$ time. Because the lowercase English alphabet contains 26 letters, there are at most $26^2 = 676$ distinct two-letter combinations. Processing the hash table takes at most $\mathcal{O}(26^2) = \mathcal{O}(1)$ time. Overall time is strictly linear $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space, bounded by the maximum possible 676 entries in the frequency map.

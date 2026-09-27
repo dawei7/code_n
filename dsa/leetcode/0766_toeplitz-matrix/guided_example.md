@@ -1,112 +1,194 @@
 # Guided Example: Toeplitz Matrix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D grid diagonal coordinate invariant ($i - j = \text{constant}$), local predecessor neighbor verification ($matrix[i][j] == matrix[i-1][j-1]$), single-pass nested loop traversal over the interior $(1 \dots m-1) \times (1 \dots n-1)$, early mismatch termination, and global matrix validity on representative rectangular arrays:
 
-- **Input:** `{"matrix": [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]}`
+- **Input:**
+  $$
+  matrix = \begin{bmatrix}
+  1 & 2 & 3 & 4 \\
+  5 & 1 & 2 & 3 \\
+  9 & 5 & 1 & 2
+  \end{bmatrix}
+  $$
 - **Required output:** `true`
+  - Toeplitz matrix definition:
+    - A matrix is **Toeplitz** if and only if **every descending diagonal** (from top-left to bottom-right) contains identical elements.
+    - Formally, along each diagonal, the difference between row and column indices is constant:
+      $$
+      i - j = c \implies matrix[i][j] = \text{constant}
+      $$
+    - For the input matrix:
+      - Diagonal $i - j = 0$: $[1, 1, 1]$ (cells $(0, 0), (1, 1), (2, 2)$) $\implies$ all 1.
+      - Diagonal $i - j = -1$: $[2, 2, 2]$ (cells $(0, 1), (1, 2), (2, 3)$) $\implies$ all 2.
+      - Diagonal $i - j = -2$: $[3, 3]$ (cells $(0, 2), (1, 3)$) $\implies$ all 3.
+      - Diagonal $i - j = -3$: $[4]$ (cell $(0, 3)$) $\implies$ single element 4.
+      - Diagonal $i - j = 1$: $[5, 5]$ (cells $(1, 0), (2, 1)$) $\implies$ all 5.
+      - Diagonal $i - j = 2$: $[9]$ (cell $(2, 0)$) $\implies$ single element 9.
+      - Every diagonal contains uniform values $\implies$ output is **`true`**.
+- **Local Predecessor Comparison Invariant:**
+  - **Transitivity of Constant Diagonals:**
+    - A diagonal sequence $x_0, x_1, x_2, \dots$ has all identical elements if and only if every adjacent pair satisfies:
+      $$
+      x_k == x_{k - 1}
+      $$
+    - In matrix coordinates, the element immediately preceding $(i, j)$ along the descending diagonal is $(i - 1, j - 1)$.
+    - Therefore, the global Toeplitz condition reduces to checking the local relation:
+      $$
+      matrix[i][j] == matrix[i - 1][j - 1] \quad \forall i \in [1, m - 1], \; j \in [1, n - 1]
+      $$
+    - If even a single cell violates this equality, the matrix is disqualified immediately (`return false`).
+- **Step-by-Step Worked Execution Trace on the $3 \times 4$ Matrix:**
+  - Dimensions: $m = 3$ rows, $n = 4$ columns.
+  - Interior scan ranges: rows $i = 1 \dots 2$, columns $j = 1 \dots 3$.
+  - **Row $i = 1$:**
+    - **Cell $(1, 1)$ ($v = 1$):**
+      - Top-left predecessor: $(0, 0) \to 1$.
+      - Compare: $matrix[1][1] == matrix[0][0] \iff 1 == 1 \implies \mathbf{Match.}$
+    - **Cell $(1, 2)$ ($v = 2$):**
+      - Top-left predecessor: $(0, 1) \to 2$.
+      - Compare: $matrix[1][2] == matrix[0][1] \iff 2 == 2 \implies \mathbf{Match.}$
+    - **Cell $(1, 3)$ ($v = 3$):**
+      - Top-left predecessor: $(0, 2) \to 3$.
+      - Compare: $matrix[1][3] == matrix[0][2] \iff 3 == 3 \implies \mathbf{Match.}$
+  - **Row $i = 2$:**
+    - **Cell $(2, 1)$ ($v = 5$):**
+      - Top-left predecessor: $(1, 0) \to 5$.
+      - Compare: $matrix[2][1] == matrix[1][0] \iff 5 == 5 \implies \mathbf{Match.}$
+    - **Cell $(2, 2)$ ($v = 1$):**
+      - Top-left predecessor: $(1, 1) \to 1$.
+      - Compare: $matrix[2][2] == matrix[1][1] \iff 1 == 1 \implies \mathbf{Match.}$
+    - **Cell $(2, 3)$ ($v = 2$):**
+      - Top-left predecessor: $(1, 2) \to 2$.
+      - Compare: $matrix[2][3] == matrix[1][2] \iff 2 == 2 \implies \mathbf{Match.}$
+  - **Termination:**
+    - All $(m - 1)(n - 1) = 2 \times 3 = 6$ interior cells matched their top-left predecessors.
+    - Matrix is strictly Toeplitz:
+      $$
+      ans = \mathbf{true}
+      $$
+- **Mismatch Violation Trace ($matrix = [[1, 2], [2, 2]]$):**
+  - Dimensions $2 \times 2$.
+  - Cell $(1, 1) = 2$.
+  - Top-left predecessor $(0, 0) = 1$.
+  - Compare: $matrix[1][1] \ne matrix[0][0]$ ($2 \ne 1$).
+  - Mismatch detected $\implies$ returns **`false`**.
+- **Single Row or Single Column Matrix ($[[1, 2, 3]]$ or $[[1], [2]]$):**
+  - Rows or columns have size 1 $\implies$ no interior cells with $i \ge 1, j \ge 1$ exist.
+  - Loop does not execute; trivially returns **`true`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates shift-invariance validation on discrete 2D lattices and pairwise local differential testing, mathematically proves why local equality $A_{i,j} = A_{i-1, j-1}$ implies global Toeplitz structure via transitive induction, and derives $O(M \cdot N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` `matrix`, return *`true` if the matrix is Toeplitz. Otherwise, return `false`.*
+Given an $m \times n$ matrix:
+Determine if it is a **Toeplitz matrix** (every diagonal from top-left to bottom-right has identical elements).
 
-The objective is to compute `true` from `{"matrix": [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+matrix:
+  1 2 3 4
+  5 1 2 3
+  9 5 1 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Diagonals:
+  [1, 1, 1] -> identical
+  [2, 2, 2] -> identical
+  [3, 3]    -> identical
+  [4]       -> identical
+  [5, 5]    -> identical
+  [9]       -> identical
+
+All diagonals are uniform!
+Result: true
+```
+
+### The Invariant of the Top-Left Neighbor
+- Along any diagonal, each element $(i, j)$ is the direct successor of $(i-1, j-1)$.
+- A matrix is Toeplitz if and only if **every cell equals its top-left neighbor**: $matrix[i][j] == matrix[i-1][j-1]$.
+- A single nested loop over $i \in [1, m-1], j \in [1, n-1]$ verifies this in $O(M \cdot N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Diagonal Index Relation:
+$$
+\text{Cell } (i, j) \text{ lies on diagonal } d \iff i - j = d
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Local Differential Predicate:
+$$
+\text{isToeplitz}(A) \iff \forall i \in [1, m - 1], \; \forall j \in [1, n - 1]: \quad A[i][j] = A[i - 1][j - 1]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Toeplitz Operator Shift Invariance.** A linear operator matrix $T \in \mathbb{R}^{m \times n}$ is Toeplitz if and only if $T_{i, j} = a_{i - j}$ for some sequence $a$, which is completely characterized by the commutation relation with shift operators $[S_m, T] = 0$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reduce each diagonal to local neighbor comparisons
-
-A top-left-to-bottom-right diagonal has constant row-minus-column difference. Every cell except those in the first row or first column has one immediate predecessor on its diagonal at `(i - 1, j - 1)`.
-
-The matrix is Toeplitz exactly when every such cell equals that predecessor.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why adjacent equality is sufficient
-
-Suppose a diagonal contains values `a0, a1, a2, ...`. If every adjacent pair is equal, then `a1 = a0`, `a2 = a1 = a0`, and induction shows every value equals the first.
-
-Conversely, if the whole diagonal is constant, every adjacent comparison obviously passes.
-
-Therefore the solution never needs to collect or separately traverse entire diagonals. Checking all local diagonal edges is equivalent.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Row 1
+- $(1, 1) = 1 == (0, 0) = 1$ (Match).
+- $(1, 2) = 2 == (0, 1) = 2$ (Match).
+- $(1, 3) = 3 == (0, 2) = 3$ (Match).
 
 ---
 
-### Step 3: Skip the first row and first column
+### Step 2: Row 2
+- $(2, 1) = 5 == (1, 0) = 5$ (Match).
+- $(2, 2) = 1 == (1, 1) = 1$ (Match).
+- $(2, 3) = 2 == (1, 2) = 2$ (Match).
 
-Cells there have no upper-left predecessor inside the matrix. They start their diagonals and impose no comparison of their own.
+---
 
-The loops begin at row one and column one. Every other cell is checked once:
-
-`matrix[i][j] != matrix[i - 1][j - 1]`.
-
-If any mismatch appears, that diagonal contains two different values, so the method returns `false` immediately.
-
-If all comparisons pass, every diagonal is constant and the method returns `true`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Output
+$$
+\mathbf{true}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Row $i$ | Col $j$ | Current Cell $matrix[i][j]$ | Predecessor Cell $matrix[i-1][j-1]$ | Equality Verified? |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $1$ | $1$ | Yes |
+| $1$ | $2$ | $2$ | $2$ | Yes |
+| $1$ | $3$ | $3$ | $3$ | Yes |
+| $2$ | $1$ | $5$ | $5$ | Yes |
+| $2$ | $2$ | $1$ | $1$ | Yes |
+| **$2$** | **$3$** | **$2$** | **$2$** | **Yes** |
+| **Final** | — | — | — | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Row Matrix ($1 \times N$):** No cells with $i \ge 1 \implies$ trivially returns `true`.
+- **Single Column Matrix ($M \times 1$):** No cells with $j \ge 1 \implies$ trivially returns `true`.
+- **Single Element ($1 \times 1$):** Returns `true`.
+- **Immediate Mismatch:** Return `false` on the very first mismatch without examining further cells.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Group by `i - j`:** Store the first value for every diagonal key and compare later cells. This works but uses `O(m + n)` extra space.
-- **Traverse each diagonal separately:** It has the same time bound but requires more boundary-start loops and bookkeeping.
-- **Compare with upper-right:** That checks the opposite diagonal direction and solves a different property.
+- **Collecting and Checking Diagonals with Hash Maps:** Grouping elements by key $i - j$ works but uses $O(M \cdot N)$ extra memory. Comparing each element directly with its top-left predecessor uses strictly $O(1)$ extra space.
+- **Checking Bottom-Right and Exceeding Bounds:** Checking `matrix[i][j] == matrix[i+1][j+1]` requires stopping at $m-2$ and $n-2$. Checking backwards `matrix[i][j] == matrix[i-1][j-1]` from $1$ to $m-1$ is cleaner and avoids boundary errors.
+- **Large Matrices Loaded in Memory (Follow-Up):** For memory-constrained environments, you only need to keep the previous row in memory and compare the current row against it.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let `m` and `n` be the matrix dimensions. The method checks `(m - 1)(n - 1)` cells in the worst case, so time complexity is `O(mn)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Double loop over $(M - 1) \times (N - 1)$ cells: $\mathcal{O}(M \cdot N)$.
+  - Each check is an $\mathcal{O}(1)$ value comparison.
+  - Total Time: strictly linear in matrix size $\mathcal{O}(M \cdot N)$. Completes in $< 0.1$ ms for $M, N \le 20$.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (no extra arrays or hash sets).

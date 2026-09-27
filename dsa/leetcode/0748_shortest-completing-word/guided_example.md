@@ -1,122 +1,204 @@
 # Guided Example: Shortest Completing Word
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step alphanumeric character filtering, lowercase normalization, multiset character frequency requirement construction ($cnt[c]$), word-by-word containment verification ($t[c] \ge cnt[c]$), strict length minimization ($|w| < |ans|$), first-occurrence tie-breaking preservation, and candidate selection on representative vocabulary lists:
 
-- **Input:** `{"licensePlate": "1s3 PSt", "words": ["step", "steps", "stripe", "stepple"]}`
+- **Input:**
+  - License plate: $licensePlate = \text{"1s3 PSt"}$
+  - Vocabulary: $words = [\text{"step"}, \; \text{"steps"}, \; \text{"stripe"}, \; \text{"stepple"}]$
 - **Required output:** `"steps"`
+  - Completing word criteria:
+    1. **Alphanumeric Filtering & Case Insensitivity:**
+       - Ignore all digits, spaces, and punctuation in $licensePlate$.
+       - Convert all letters to lowercase.
+    2. **Multiplicity Requirement:**
+       - If a letter appears $k$ times in $licensePlate$, a completing word must contain that letter **at least $k$ times**.
+    3. **Shortest Length & Tie-Breaking:**
+       - Find the completing word with the **minimum total character length**.
+       - If there is a tie for the minimum length, return the **first one** that occurs in $words$.
+    - For the input:
+      - Plate letters in `"1s3 PSt"`:
+        - Digits `1` and `3`, and space `' '` are discarded.
+        - Letters: `'s'`, `'P'`, `'S'`, `'t'`.
+        - Normalizing to lowercase: `'s'`, `'p'`, `'s'`, `'t'`.
+        - Required multiset: $\{\text{'s'}: 2, \; \text{'p'}: 1, \; \text{'t'}: 1\}$.
+      - Testing words:
+        - `"step"`: Contains only one `'s'` (needs 2) $\implies$ Incomplete.
+        - `"steps"`: Contains two `'s'`, one `'p'`, one `'t'`, one `'e'`. Fulfills all requirements! Length $= 5$.
+        - `"stripe"`: Contains only one `'s'` $\implies$ Incomplete.
+        - `"stepple"`: Contains only one `'s'` $\implies$ Incomplete.
+      - Shortest valid completing word: `"steps"`.
+- **Multiset Subbag Inclusion & Greedy Replacement Invariant:**
+  - **The Subbag Relation ($cnt \subseteq t$):**
+    - Let $cnt$ be the multiset of required character frequencies extracted from $licensePlate$.
+    - A candidate word $w$ with character frequency multiset $t$ is a completing word if and only if:
+      $$
+      \forall (c, k) \in cnt: \quad t[c] \ge k
+      $$
+  - **Length Minimization & Strict Replacement Rule:**
+    - To satisfy the tie-breaking invariant (keep the *first* completing word among ties of minimal length):
+      - If we currently hold a valid completing word $ans$:
+        - Any future candidate $w$ with $|w| \ge |ans|$ can be skipped immediately!
+        - A candidate replaces $ans$ if and only if it is a valid completing word **and** its length is strictly shorter:
+          $$
+          |w| < |ans| \implies ans \leftarrow w
+          $$
+- **Step-by-Step Worked Execution Trace on $licensePlate = \text{"1s3 PSt"}$:**
+  - **Phase 0: Build Plate Multiset:**
+    - Scan characters of `"1s3 PSt"`:
+      - `'1'`: digit $\to$ skip.
+      - `'s'`: letter $\to cnt[\text{'s'}] \leftarrow 1$.
+      - `'3'`: digit $\to$ skip.
+      - `' '`: space $\to$ skip.
+      - `'P'`: letter $\to cnt[\text{'p'}] \leftarrow 1$.
+      - `'S'`: letter $\to cnt[\text{'s'}] \leftarrow 2$.
+      - `'t'`: letter $\to cnt[\text{'t'}] \leftarrow 1$.
+    - Required frequencies:
+      $$
+      cnt = \{ \text{'s'}: 2, \; \text{'p'}: 1, \; \text{'t'}: 1 \}
+      $$
+    - Initialize $ans = \text{null}$.
+  - **Phase 1: Test Candidate Words:**
+    - **Candidate 1: $w = \text{"step"}$ (Length 4):**
+      - Frequencies of `"step"`: $\{\text{'s'}: 1, \; \text{'t'}: 1, \; \text{'e'}: 1, \; \text{'p'}: 1\}$.
+      - Check requirements:
+        - $t[\text{'s'}] = 1 < cnt[\text{'s'}] = 2 \implies \mathbf{Fails\ 's'\ requirement!}$
+      - Discard.
+    - **Candidate 2: $w = \text{"steps"}$ (Length 5):**
+      - Frequencies of `"steps"`: $\{\text{'s'}: 2, \; \text{'t'}: 1, \; \text{'e'}: 1, \; \text{'p'}: 1\}$.
+      - Check requirements:
+        - $t[\text{'s'}] = 2 \ge 2$ (Pass).
+        - $t[\text{'p'}] = 1 \ge 1$ (Pass).
+        - $t[\text{'t'}] = 1 \ge 1$ (Pass).
+      - All requirements satisfied!
+      - Since $ans$ was null, adopt:
+        $$
+        ans \leftarrow \mathbf{\text{"steps"}} \quad (|ans| = 5)
+        $$
+    - **Candidate 3: $w = \text{"stripe"}$ (Length 6):**
+      - Pruning check: $|w| = 6 \ge |ans| = 5$.
+      - Length is greater than or equal to current best $\implies$ Skip without counting!
+    - **Candidate 4: $w = \text{"stepple"}$ (Length 7):**
+      - Pruning check: $|w| = 7 \ge |ans| = 5$.
+      - Skip immediately!
+  - **Phase 2: Final Result:**
+    $$
+    ans = \mathbf{\text{"steps"}}
+    $$
+- **First-Occurrence Tie-Breaking Trace ($licensePlate = \text{"1s3 456"}, words = [\text{"looks"}, \text{"pest"}, \text{"stew"}, \text{"show"}]$):**
+  - Required: $\{\text{'s'}: 1\}$.
+  - `"pest"` (length 4) is valid $\implies ans \leftarrow \text{"pest"}$.
+  - `"stew"` (length 4) is valid, but $|w| == |ans|$ (not strictly shorter) $\implies$ rejected to preserve first occurrence!
+  - `"show"` (length 4) is valid $\implies$ rejected.
+  - Returns `"pest"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset subbag containment checking and order-preserving argmin search, mathematically proves why strict length inequality preserves stable first-occurrence tie breaking, and derives $O(N \cdot L + P)$ runtime and $O(1)$ alphabet space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `licensePlate` and an array of strings `words`, find the **shortest completing** word in `words`.
+Given a string $licensePlate$ and an array of $words$:
+Find the **shortest completing word** containing all letters from $licensePlate$ (case-insensitive, matching multiplicity).
+Ignore numbers and spaces. Return the **first** occurring word in case of a length tie.
 
-The objective is to compute `"steps"` from `{"licensePlate": "1s3 PSt", "words": ["step", "steps", "stripe", "stepple"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+licensePlate = "1s3 PSt"
+letters required: 's' (twice), 'p' (once), 't' (once)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+words:
+  "step":    has 1 's' -> fails
+  "steps":   has 2 's', 1 'p', 1 't' -> VALID! (length 5)
+  "stripe":  length 6 >= 5 -> skip
+  "stepple": length 7 >= 5 -> skip
+
+Result: "steps"
+```
+
+### The Invariant of Multiset Subbag Containment
+- A word $w$ is a completing word if for all required characters $c$, $count_w(c) \ge count_{plate}(c)$.
+- Keeping $ans$ updated only when $|w| < |ans|$ naturally guarantees that length ties preserve the first occurring word.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Plate Multiset Construction:
+$$
+cnt = \text{Multiset}(\{ c.\text{lower}() \mid c \in licensePlate, \; c \in [a-z, A-Z] \})
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Candidate Invariance:
+$$
+w \text{ completes plate} \iff \forall c \in cnt: \quad \text{count}_w(c) \ge cnt[c]
+$$
+$$
+ans \leftarrow w \iff w \text{ completes plate} \ \land \ (|w| < |ans|)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Multiset Projection Invariant.** The letter extraction operator $\pi: \Sigma^* \to \mathbb{N}^{26}$ projects strings into a commutative monoid, whose natural partial order $a \le b \iff \forall i: a_i \le b_i$ uniquely defines completing word validity.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reduce the license plate to required letter counts
-
-Digits and spaces in `licensePlate` do not matter. Letters are case-insensitive, and repeated letters create repeated requirements.
-
-The exact solution builds
-
-`cnt = Counter(c.lower() for c in licensePlate if c.isalpha())`.
-
-Each alphabetic character is converted to lowercase before counting. If the plate contains two copies of `s`, `cnt["s"]` is two; a candidate with only one `s` cannot complete it.
-
-Under the input contract, alphabetic characters are English letters. The 26-letter alphabet keeps the count structure constant-sized.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"licensePlate": "1s3 PSt", "words": ["step", "steps", "stripe", "stepple"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $licensePlate = \text{"1s3 PSt"}$:
 
 ---
 
-### Step 2: Test whether a word covers the multiset
-
-For a candidate word `w`, `t = Counter(w)` records its lowercase letter frequencies. Candidate words are already guaranteed lowercase.
-
-The condition
-
-`all(v <= t[c] for c, v in cnt.items())`
-
-checks every required letter. A candidate may contain extra letters or extra copies; only shortages matter.
-
-This is multiset containment, not ordinary set containment. Checking only whether each distinct letter appears would incorrectly accept a word with too few repetitions.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Parse Plate
+- Plate letters: `'s'` (2), `'p'` (1), `'t'` (1).
 
 ---
 
-### Step 3: Keep the shortest eligible word
+### Step 2: Check Words
+- `"step"`: only 1 `'s'` $\implies$ Invalid.
+- `"steps"`: has 2 `'s'`, 1 `'p'`, 1 `'t'` $\implies$ Valid, length 5 $\implies ans = \text{"steps"}$.
+- `"stripe"`: length $6 \ge 5 \implies$ Skip.
+- `"stepple"`: length $7 \ge 5 \implies$ Skip.
 
-`ans` begins as `null`. Whenever a completing word is found, it becomes the current best.
+---
 
-Before counting a later word, the solution skips it when
-
-`ans and len(w) >= len(ans)`.
-
-If `w` is longer, it cannot improve the objective. If it has equal length, the earlier current answer must win the tie, so it also must not replace `ans`. This early skip both preserves the first-occurrence rule and avoids constructing an unnecessary counter.
-
-Only a strictly shorter word is tested after an answer exists.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"steps"` |
+### Step 3: Output
+$$
+\mathbf{\text{"steps"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"licensePlate": "1s3 PSt", "words": ["step", "steps", "stripe", "stepple"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"steps"` | Verified |
+| Word $w$ | Length $|w|$ | Pruned by Length? | 's' Count | 'p' Count | 't' Count | Valid? | Best Word $ans$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"step"` | $4$ | No | $1 < 2$ (Fail) | $1$ | $1$ | No | None |
+| **`"steps"`** | **$5$** | **No** | **$2 \ge 2$** | **$1 \ge 1$** | **$1 \ge 1$** | **Yes** | **`"steps"`** |
+| `"stripe"` | $6$ | Yes ($6 \ge 5$) | — | — | — | — | `"steps"` |
+| `"stepple"`| $7$ | Yes ($7 \ge 5$) | — | — | — | — | `"steps"` |
+| **Final** | — | — | — | — | — | — | **`"steps"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Tied Lengths:** If two valid words have the same shortest length, the first one seen is retained because replacement requires $|w| < |ans|$.
+- **Plate Has Single Letter ($"a"$):** Any word with at least one `'a'` qualifies.
+- **Words with Uppercase Characters:** Problem states words contain only lowercase letters.
+- **Extra Characters in Words:** Completing words may contain other letters (e.g. `'e'`, `'r'`) not in the plate.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Fixed 26-element arrays:** Convert letters to indices and compare counts. This avoids hash maps and has the same linear time and constant alphabet space.
-- **Sort plate letters and candidate letters:** A two-pointer containment check can work, but sorting every word adds unnecessary logarithmic factors.
-- **Use sets instead of counters:** This loses multiplicity and fails when a plate letter appears more than once.
+- **Replacing on Equal Length ($|w| \le |ans|$):** Using $\le$ instead of $<$ would replace the first shortest completing word with subsequent ties, violating the specification to return the first one.
+- **Ignoring Multiplicity:** Checking `set(plate).issubset(set(w))` ignores repeated letters. A multiset frequency count ($Counter$) is required.
+- **Case Sensitivity:** Failing to convert plate letters to lowercase (e.g. `'P'` vs `'p'`) causes false mismatches.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let `C` be the total number of characters in the license plate and all words. Building the plate counter is linear in plate length. Each word that is not skipped is counted in time proportional to its length, and checking requirements examines at most 26 letters.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Parsing plate: $\mathcal{O}(P)$ where $P = |licensePlate| \le 7$.
+  - Testing $N$ words of max length $L$: $\mathcal{O}(N \cdot L)$ where $N \le 1000, L \le 15$.
+  - Total Time: strictly linear $\mathcal{O}(P + N \cdot L)$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space (frequency tables of size $\le 26$ for the English alphabet).

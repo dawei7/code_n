@@ -1,127 +1,164 @@
 # Guided Example: Minimum Time to Type Word Using Special Typewriter
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and trace the circular metric optimization and greedy shortest-arc navigation algorithm on representative word sequences to compute the minimum seconds required to type text on a circular dial.
 
-- **Input:** `{"word": "abc"}`
-- **Required output:** `5`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There is a special typewriter with lowercase English letters `'a'` to `'z'` arranged in a **circle** with a **pointer**. A character can **only** be typed if the pointer is pointing to that character. The pointer is **initially** pointing to the character `'a'`.
-
-The objective is to compute `5` from `{"word": "abc"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `word = "bza"` ($N = 3$)
+  - Initial pointer position: `'a'`
+  - Expected Output: `7` (4 movement seconds + 3 typing seconds)
+- **Secondary Instance:** `word = "abc"` ($N = 3$)
+  - Expected Output: `5` (2 movement seconds + 3 typing seconds)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+A circular typewriter arranges the 26 lowercase English letters $\texttt{'a'}$ through $\texttt{'z'}$ in a closed ring. The pointer begins at position $\texttt{'a'}$ at time $t = 0$.
+At each second, we may:
+1. Advance the pointer 1 position clockwise.
+2. Advance the pointer 1 position counterclockwise.
+3. Type the character currently situated under the pointer.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+To type each character of `word` in strict left-to-right order:
+- Typing every character takes exactly 1 second. For a word of length $N$, the typing time is unconditionally fixed at $N$ seconds.
+- Navigating the pointer from current letter $u$ to next target letter $v$ can proceed either clockwise or counterclockwise around the 26-element circle.
+- The minimum movement time is the length of the shorter circular arc:
+  $$\text{dist}(u, v) = \min\Big(|v - u|, \; 26 - |v - u|\Big)$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because movement choices for subsequent characters depend only on arriving at the required target letter and not on which direction was chosen, taking the shortest arc locally at each step yields the unique globally minimal time.
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Separate typing time from movement time
-
-Every character in `word` must be typed exactly once and typing the current character always costs one second. If the word length is $N$, the unavoidable typing cost is therefore $N$ seconds, regardless of the route taken by the pointer.
-
-The source places this fixed cost into the answer immediately with `ans = len(word)`. The loop then adds only the minimum pointer movement required before each character. Keeping these costs separate makes it harder to forget the typing second, especially when the pointer is already on the next requested letter.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"word": "abc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In our primary instance `word = "bza"`:
+- Step 1 (from `'a'` to `'b'`): clockwise distance is 1, counterclockwise is 25 $\implies$ 1 move + 1 type $= 2$ s.
+- Step 2 (from `'b'` to `'z'`): clockwise distance is 24, counterclockwise is 2 ($\texttt{'b'} \to \texttt{'a'} \to \texttt{'z'}$) $\implies$ 2 moves + 1 type $= 3$ s.
+- Step 3 (from `'z'` to `'a'`): clockwise distance is 1 ($\texttt{'z'} \to \texttt{'a'}$), counterclockwise is 25 $\implies$ 1 move + 1 type $= 2$ s.
+- Total time: $2 + 3 + 2 = 7$ seconds.
 
 ---
 
-### Step 2: Represent positions by character codes
+## 2. Mathematical Formalism & Modular Circular Metric
 
-Lowercase English letters occupy consecutive code points. `ord("a")` is the numeric position used for the initial pointer, and `map(ord, word)` lazily converts each target character to its numeric position.
+Let the 26 letters be mapped to residue classes modulo 26:
+$$\text{pos}(c) = \text{ord}(c) - \text{ord}(\texttt{'a'}) \in \{0, 1, \dots, 25\}$$
 
-The variable `a` is not permanently the code for the letter a. It starts as `ord("a")` because that is the pointer's initial position, but after each iteration `a = c` changes it to the code of the character just typed. Thus, at the beginning of every iteration, `a` represents the current pointer location and `c` represents the next required location.
+### Circular Distance Function
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+For any two letter positions $u, v \in \{0, \dots, 25\}$, let $\Delta = |v - u|$.
+The geodesic distance on the discrete circle $\mathbb{Z}_{26}$ is:
+$$d(u, v) = \min(\Delta, \; 26 - \Delta)$$
 
----
+### Total Cost Formula
 
-### Step 3: There are two routes around the circle
+Starting with $p_0 = \text{pos}(\texttt{'a'}) = 0$, for each target character $w_i$ (where $0 \le i < N$):
+$$\text{Cost}_i = d(p_i, \text{pos}(w_i)) + 1$$
+$$\text{TotalTime} = \sum_{i=0}^{N-1} \text{Cost}_i = N + \sum_{i=0}^{N-1} d(p_i, \text{pos}(w_i))$$
+where the pointer updates to $p_{i+1} = \text{pos}(w_i)$.
 
-For two positions, the straight alphabetical distance is
+```mermaid
+flowchart TD
+    accTitle: Circular Dial Navigation Loop
+    accDescr: Pipeline showing circular distance calculation between current pointer and target letter, direction selection, typing cost, and accumulator update.
 
-`d = abs(c - a)`.
-
-This is the number of one-step moves along the direct interval between the letters. Because the alphabet is a cycle containing 26 positions, traveling the other way uses the remaining edges and costs `26 - d`.
-
-The least possible movement is therefore
-
-$$
-\min(d, 26-d).
-$$
-
-For example, moving from a to b has direct distance one and wraparound distance 25, so one step is optimal. Moving from a to z has direct distance 25 but wraparound distance one, so the counterclockwise move is optimal.
-
-When the letters are the same, $d=0$. The formula chooses zero rather than 26, correctly adding no movement. The character still costs its already-counted one second to type.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word": "abc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+    START["Pointer at p = 'a' (index 0)<br/>Total Time = 0"] --> NEXT_CHAR{"More characters in word?"}
+    
+    NEXT_CHAR -- Yes --> READ["Read target character c<br/>Target index v = ord(c) - ord('a')"]
+    
+    READ --> DIFF["Compute raw offset: delta = |v - p|"]
+    DIFF --> SHORTEST["Shortest Arc: moves = min(delta, 26 - delta)"]
+    
+    SHORTEST --> TYPE["Total step time: moves + 1 (typing)"]
+    TYPE --> ACCUM["Total Time = Total Time + moves + 1<br/>Update pointer p = v"]
+    
+    ACCUM --> NEXT_CHAR
+    NEXT_CHAR -- No --> OUT["Return Total Time"]
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Circular Dial Navigation Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `word = "bza"` ($N = 3$):
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Initial State:** Pointer at $p = \texttt{'a'}$ (position 0), Cumulative Time $= 0$.
+
+### Character 1: Target $\texttt{'b'}$ (Position 1)
+
+- Raw difference: $\Delta = |1 - 0| = 1$.
+- Clockwise distance: $\Delta = 1$.
+- Counterclockwise distance: $26 - 1 = 25$.
+- Shortest path: $\min(1, 25) = 1$ move (Clockwise).
+- Typing cost: $+1$ second.
+- Step time: $1 + 1 = 2$ seconds.
+- Cumulative Time: $0 + 2 = 2$.
+- Pointer updates to: $p = \texttt{'b'}$ (position 1).
+
+### Character 2: Target $\texttt{'z'}$ (Position 25)
+
+- Raw difference: $\Delta = |25 - 1| = 24$.
+- Clockwise distance: $\Delta = 24$.
+- Counterclockwise distance: $26 - 24 = 2$ ($\texttt{'b'} \to \texttt{'a'} \to \texttt{'z'}$).
+- Shortest path: $\min(24, 2) = 2$ moves (Counterclockwise).
+- Typing cost: $+1$ second.
+- Step time: $2 + 1 = 3$ seconds.
+- Cumulative Time: $2 + 3 = 5$.
+- Pointer updates to: $p = \texttt{'z'}$ (position 25).
+
+### Character 3: Target $\texttt{'a'}$ (Position 0)
+
+- Raw difference: $\Delta = |0 - 25| = 25$.
+- Clockwise distance: $26 - 25 = 1$ ($\texttt{'z'} \to \texttt{'a'}$).
+- Counterclockwise distance: $\Delta = 25$.
+- Shortest path: $\min(25, 1) = 1$ move (Clockwise).
+- Typing cost: $+1$ second.
+- Step time: $1 + 1 = 2$ seconds.
+- Cumulative Time: $5 + 2 = 7$.
+- Pointer updates to: $p = \texttt{'a'}$ (position 0).
+
+Final execution time: **7 seconds**.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Execution Trace Table
 
-- **Simulate one pointer step at a time:** It can produce the same answer, but it is more code and obscures the direct circular-distance formula.
-- **Dynamic programming:** It is unnecessary because every typed character fixes the next pointer position; there are no competing states to retain.
-- **Always move clockwise:** This fails badly near the a-z boundary, where counterclockwise may take one step instead of 25.
-- **Always use absolute code difference:** This treats the alphabet as a line and misses the wraparound route; use `min(d, 26 - d)`.
-- **First character is a:** No movement is needed, but its one-second typing cost is already included.
-- **Repeated character:** Consecutive identical letters add zero movement and one typing second each.
-- **a-to-z or z-to-a:** The circular distance is one.
-- **Opposite letters:** When $d=13$, both directions are equally short and either is valid.
-- **One-character word:** The initial `len(word)` handles typing, and the loop adds only its movement from a.
-- **Maximum word length:** Linear work over at most 100 characters is easily bounded.
-- **Lowercase guarantee:** Consecutive codes and a cycle length of 26 are valid because every input character is from a through z.
-- **Input preservation:** The method iterates over the immutable string and does not alter it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Primary Trace: `word = "bza"`
+
+| Step $i$ | Target Letter | Start Pointer | Target Position | Clockwise Arc | Counterclockwise Arc | Chosen Shortest Arc | Typing Seconds | Step Duration | Running Total Time |
+|---|---|---|---|---|---|---|---|---|---|
+| Init | None | `'a'` (0) | N/A | N/A | N/A | N/A | N/A | N/A | 0 |
+| 1 | `'b'` | `'a'` (0) | 1 | 1 | 25 | 1 (CW) | 1 | 2 | 2 |
+| 2 | `'z'` | `'b'` (1) | 25 | 24 | 2 | 2 (CCW) | 1 | 3 | 5 |
+| 3 | `'a'` | `'z'` (25) | 0 | 1 | 25 | 1 (CW) | 1 | 2 | **7** |
+
+### Secondary Trace: `word = "abc"`
+
+| Step $i$ | Target Letter | Start Position | Target Position | Direct Difference | Shortest Arc | Step Cost | Running Total |
+|---|---|---|---|---|---|---|---|
+| 1 | `'a'` | 0 | 0 | 0 | $\min(0, 26) = 0$ | $0 + 1 = 1$ | 1 |
+| 2 | `'b'` | 0 | 1 | 1 | $\min(1, 25) = 1$ | $1 + 1 = 2$ | 3 |
+| 3 | `'c'` | 1 | 2 | 1 | $\min(1, 25) = 1$ | $1 + 1 = 2$ | **5** |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(N)$. Let $N$ be `len(word)`. The loop visits each character once and performs constant-time arithmetic, so time is $O(N)$. Any correct solution must at least inspect the requested characters, making this asymptotically optimal.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Every character must be typed in sequence. Between typing character $w_{i-1}$ and character $w_i$, the pointer must relocate from position $\text{pos}(w_{i-1})$ to $\text{pos}(w_i)$. On a circle of 26 vertices, there are exactly two simple paths between any two points: clockwise and counterclockwise, having lengths $\Delta$ and $26 - \Delta$. Moving along the shorter path achieves the destination in the minimal possible steps. Each character requires 1 second to print. Thus the total time is guaranteed achievable and valid.
+
+**Optimality (Greedy Choice Property).** Once the pointer reaches character $w_i$, its position is uniquely $\text{pos}(w_i)$, regardless of whether the pointer traveled clockwise or counterclockwise to get there. Because future transitions depend exclusively on the final position $\text{pos}(w_i)$, the choice of direction for step $i$ has zero effect on subsequent step costs. Minimizing each step's travel time independently guarantees global minimality.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Consecutive Duplicate Letters:** If the word contains identical consecutive letters (e.g. `"aa"`), the distance is $\Delta = 0$, requiring 0 moves and 1 second to type. The formula $\min(0, 26) + 1 = 1$ handles this cleanly.
+- **Diameter Traversal ($\Delta = 13$):** If two letters are diametrically opposite (e.g. `'a'` to `'n'`), $\Delta = 13$ and $26 - 13 = 13$. Both directions are equally optimal, yielding $\min(13, 13) = 13$.
+- **Starting at `'a'`:** The pointer does not start at the first letter of `word`; it starts unconditionally at `'a'`. If `word[0] != 'a'`, the initial travel from `'a'` to `word[0]` must be counted.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - The algorithm iterates over the string of length $N$.
+  - At each character, calculating arithmetic differences, taking minimums, and updating the pointer takes $\mathcal{O}(1)$ operations.
+  - Total time complexity is strictly $\mathcal{O}(N)$, completing in under 1 millisecond for $N \le 100$.
+- **Auxiliary Space Complexity:**
+  - The algorithm maintains only a current pointer integer and a cumulative time counter.
+  - Auxiliary space is strictly $\mathcal{O}(1)$.

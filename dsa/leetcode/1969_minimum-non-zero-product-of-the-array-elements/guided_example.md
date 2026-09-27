@@ -1,145 +1,178 @@
 # Guided Example: Minimum Non-Zero Product of the Array Elements
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and analyze the bit-exchange sum invariant and extremal product minimization theorem to compute the minimum non-zero product of integers from $1$ to $2^p - 1$ modulo $10^9+7$.
 
-- **Input:** `{"p": 1}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a positive integer `p`. Consider an array `nums` (**1-indexed**) that consists of the integers in the **inclusive** range $[1, 2^p - 1]$ in their binary representations. You are allowed to do the following operation **any** number of times:
-
-The objective is to compute `1` from `{"p": 1}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** $p = 3$ (Array contains $\{1, 2, 3, 4, 5, 6, 7\}$)
+  - Expected Output: `1512`
+- **Secondary Instance:** $p = 2$ (Array contains $\{1, 2, 3\}$)
+  - Expected Output: `6`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+We begin with an array containing all integers from $1$ through $2^p - 1$. In one operation, we may pick any two numbers and swap their bits at any chosen bit position. We wish to minimize the total product of the array while keeping every element non-zero ($x_i \ge 1$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Consider what happens when we swap bits between two numbers $x$ and $y$ at bit position $k$:
+- If both have a $1$ at bit $k$, swapping changes nothing.
+- If both have a $0$ at bit $k$, swapping changes nothing.
+- If one has $1$ and the other has $0$, one gains $2^k$ while the other loses $2^k$.
+Consequently, the **sum of the two numbers remains invariant**:
+$$x_{\text{new}} + y_{\text{new}} = x + y = S$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Now, how does the product $x \cdot y$ behave when their sum $S$ is constant?
+$$x \cdot y = x(S - x) = S x - x^2$$
+This is a downward-opening parabola with maximum at $x = S/2$. As the difference $|x - y|$ increases, the product $x \cdot y$ strictly decreases!
+To minimize the product while respecting the strictly positive constraint ($x \ge 1, y \ge 1$):
+$$\text{Minimizing Product} \iff \text{Maximizing Separation } |x - y|$$
+The most extreme separation achievable is setting one element to $1$, leaving the other element at $S - 1$.
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Understand what bit swaps preserve
-
-At each bit position, swapping bits between array elements preserves the total number of ones in that column. Across numbers from zero through $2^p-1$, exactly half have a one at each bit. Excluding zero does not remove any one bits, so each of the $p$ positions contains exactly $2^{p-1}$ ones across `nums`.
-
-The operations can redistribute those column ones among array entries but cannot change these per-column totals. Every final number must remain nonzero because the objective asks for the minimum nonzero product.
-
-Let
-
-$$
-M=2^p-1,
-$$
-
-the $p$-bit number containing all ones.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"p": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In the set $\{1, 2, \dots, 2^p - 1\}$:
+- The maximum element $2^p - 1$ has all $p$ bits set to 1.
+- The remaining $2^p - 2$ elements naturally pair up into $2^{p-1} - 1$ bitwise complementary pairs $(x, \bar{x})$, where each pair sums to:
+  $$x + \bar{x} = 2^p - 1$$
+- By swapping bits within each complementary pair, we can transfer all 1-bits (except a single least significant bit) into one number, transforming the pair into:
+  $$(1, \; 2^p - 2)$$
+- The product of each transformed pair is $1 \times (2^p - 2) = 2^p - 2$.
+- Together with the untouched element $2^p - 1$, the global minimum product is:
+  $$(2^p - 1) \times (2^p - 2)^{2^{p-1} - 1} \pmod{10^9+7}$$
 
 ---
 
-### Step 2: Pair complementary values
+## 2. Mathematical Formalism & Complement Pairing Extremization
 
-Among values one through $M-1$, pair each $x$ with $M-x$, which is its $p$-bit complement. Across a complementary pair, every bit position contains exactly one one.
+Let $Q = 2^p - 1$. The initial array has cardinality $Q$.
 
-By swapping corresponding bits inside the pair, those ones can be redistributed to make one number as small as possible without becoming zero: one. All remaining ones go into the other number, producing $M-1$.
+### Invariant 1: Conservation of Total Sum and Bit Counts
 
-For a pair whose bit totals contain one one in every column, the two numeric values sum to $M$. Among positive integer pairs with this fixed sum, the product is minimized at the most unequal allowed endpoints, $1$ and $M-1$.
+Because swapping bits at position $k$ between two elements preserves the count of set bits at position $k$, the sum of all elements in the array is an invariant:
+$$\sum_{i=1}^Q x_i = \sum_{k=1}^{2^p-1} k = \frac{(2^p - 1) 2^p}{2} = (2^p - 1) 2^{p-1}$$
 
-There are
+### Invariant 2: Complementary Bitmask Pairing
 
-$$
-q=2^{p-1}-1
-$$
+For any integer $x \in \{1, \dots, 2^p - 2\}$, its bitwise complement within $p$ bits is $\bar{x} = (2^p - 1) - x \in \{1, \dots, 2^p - 2\}$.
+Since $x \neq \bar{x}$ (as $2^p - 1$ is odd), the $2^p - 2$ elements partition into exactly:
+$$K = \frac{2^p - 2}{2} = 2^{p-1} - 1 \quad \text{pairs}$$
 
-such pairs among the $M-1$ nonmaximum values. The all-ones value $M$ remains unpaired. A minimum arrangement therefore contains:
+For each pair $(x, \bar{x})$, since $x \text{ AND } \bar{x} = 0$, every bit position has exactly one 1 and one 0. We can freely distribute the 1-bits between the two numbers.
+Setting one number to $00\dots01_2 = 1$ forces the other number to receive all remaining 1-bits:
+$$(2^p - 1) - 1 = 2^p - 2$$
 
-- one copy of $M$;
-- $q$ copies of $1$;
-- $q$ copies of $M-1$.
+### Closed-Form Product Expression
 
-Its product is
+$$\Pi^* = (2^p - 1) \cdot \prod_{j=1}^{2^{p-1}-1} (2^p - 2) = (2^p - 1) \cdot (2^p - 2)^{2^{p-1} - 1}$$
 
-$$
-M(M-1)^q.
-$$
+```mermaid
+flowchart TD
+    accTitle: Bit-Swap Product Minimization
+    accDescr: Flowchart illustrating isolation of all-ones element, pairing complementary numbers, bit exchange to form (1, 2^p - 2), and modular exponentiation.
 
-The factors of one disappear, leaving exactly the formula computed by the source.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Read the implementation
-
-`2**p - 1` is $M$, `2**p - 2` is $M-1$, and `2 ** (p - 1) - 1` is $q$.
-
-Python's three-argument `pow(M - 1, q, mod)` computes the huge exponent modulo $10^9+7$ with repeated squaring. The remaining multiplication by $M$ is reduced by the final `% mod`.
-
-The product is minimized before applying the modulus; modular arithmetic is used only to report that already-derived minimum.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+    INPUT["Input width p in 1 ... 60"] --> FORM["Partition Numbers 1 ... 2^p - 1:"]
+    
+    FORM --> TOP["Element Q = 2^p - 1 (All ones)<br/>Left untouched"]
+    FORM --> PAIRS["2^{p-1} - 1 Complementary Pairs (x, x_bar)<br/>Each pair sums to 2^p - 1"]
+    
+    PAIRS --> SWAP["Swap bits within each pair:<br/>x -> 1 (00...01)<br/>x_bar -> 2^p - 2 (11...10)"]
+    
+    SWAP --> PAIR_PROD["Pair product becomes:<br/>1 * (2^p - 2) = 2^p - 2"]
+    
+    PAIR_PROD --> MOD_EXP["Modular Exponentiation:<br/>base = (2^p - 2) mod (10^9 + 7)<br/>exponent = 2^{p-1} - 1<br/>P_pairs = pow(base, exponent, 10^9 + 7)"]
+    
+    TOP --> TOTAL["Final Product:<br/>Total = (2^p - 1) * P_pairs mod (10^9 + 7)"]
+    MOD_EXP --> TOTAL
+```
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Bit Manipulation Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"p": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+We trace the primary instance $p = 3$:
+- Array elements: $\{1, 2, 3, 4, 5, 6, 7\}$.
+- Target all-ones value: $Q = 2^3 - 1 = 7$ (`111`).
+- Remaining elements to pair: $\{1, 2, 3, 4, 5, 6\}$.
+- Number of pairs: $2^{3-1} - 1 = 4 - 1 = 3$ pairs.
+
+### Pairing and Bit Redistribution
+
+1. **Pair $(1, 6)$:**
+   - Binary: $1 = \texttt{001}_2$, $6 = \texttt{110}_2$.
+   - Bitwise sum: $1 + 6 = 7$.
+   - Bits are already separated: $1$ has bit 0, $6$ has bits 1 and 2.
+   - Result: $1$ and $6$. Product $= 1 \times 6 = 6$.
+
+2. **Pair $(2, 5)$:**
+   - Binary: $2 = \texttt{010}_2$, $5 = \texttt{101}_2$.
+   - Bitwise sum: $2 + 5 = 7$.
+   - Swap bit 0 and bit 1 between them:
+     - Number 2 gives its bit 1 to Number 5, and takes bit 0 from Number 5.
+     - New values: $001_2 = 1$ and $110_2 = 6$.
+   - Product $= 1 \times 6 = 6$.
+
+3. **Pair $(3, 4)$:**
+   - Binary: $3 = \texttt{011}_2$, $4 = \texttt{100}_2$.
+   - Bitwise sum: $3 + 4 = 7$.
+   - Swap bit 1 from Number 3 to Number 4:
+     - New values: $001_2 = 1$ and $110_2 = 6$.
+   - Product $= 1 \times 6 = 6$.
+
+### Reassembled Array State
+- Three $1$s: $[1, 1, 1]$
+- Three $6$s: $[6, 6, 6]$
+- One $7$: $[7]$
+- Total Product:
+  $$7 \times (1 \times 6) \times (1 \times 6) \times (1 \times 6) = 7 \times 6^3 = 7 \times 216 = 1512$$
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Execution Trace Table
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Pair Transformations for $p = 3$
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Pair Index $j$ | Initial Elements $(x, y)$ | Binary Representations | Bit Swaps Applied | Transformed Pair | New Pair Product |
+|---|---|---|---|---|---|
+| Isolated | $7$ | `111` | None | $7$ | $7$ |
+| 1 | $(1, 6)$ | `001`, `110` | None (Already minimal) | $(1, 6)$ | $6$ |
+| 2 | $(2, 5)$ | `010`, `101` | Swap bit 0 and bit 1 | $(1, 6)$ | $6$ |
+| 3 | $(3, 4)$ | `011`, `100` | Transfer bit 1 to element 4 | $(1, 6)$ | $6$ |
+
+**Cumulative Product:** $7 \times 6 \times 6 \times 6 = 1512 \pmod{10^9+7}$.
+
+### Closed-Form Parameter Calculations across Small $p$
+
+| $p$ | $2^p - 1$ | $2^p - 2$ | Exponent $2^{p-1} - 1$ | Unreduced Product | Reduced Value Modulo $10^9+7$ |
+|---|---|---|---|---|---|
+| 1 | 1 | 0 | 0 | $1 \times 0^0 = 1$ | 1 |
+| 2 | 3 | 2 | 1 | $3 \times 2^1 = 6$ | 6 |
+| 3 | 7 | 6 | 3 | $7 \times 6^3 = 1512$ | 1512 |
+| 4 | 15 | 14 | 7 | $15 \times 14^7 = 1{,}578{,}946{,}560$ | $578946553$ |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Simulate bit swaps:** The conceptual array has $2^p-1$ elements and is impossibly large for $p=60$; the formula avoids constructing it.
-- **Ordinary exponentiation then modulo:** It would create an astronomically large integer. Three-argument `pow` reduces after each step.
-- **Modulo too early in the optimization:** The minimum must be chosen over actual products, not residues. The proof derives the true product first.
-- **$p=1$:** Zero complementary pairs make the exponent zero, which `pow` handles correctly.
-- **All-ones factor:** The maximum value appears once and multiplies the repeated $(M-1)$ factors.
-- **Nonzero requirement:** It prevents concentrating all bits into fewer numbers while leaving zero entries, which would make product zero.
-- **Bit-column conservation:** Swaps never move a bit between positions, only between elements at the same position.
-- **Large $p$:** Runtime depends on $p$, not on the exponential number of conceptual array elements.
-- **Prime modulus not needed for `pow`:** Repeated squaring works for this nonnegative exponent regardless; the given modulus simply bounds the result.
-- **Factors of one:** They are part of the feasible optimal array even though they do not appear in the multiplication expression.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+**Soundness.** Every pair transformation is realized by valid corresponding-bit swaps between the two elements. The sum of bits at every coordinate is preserved, and all elements remain $\ge 1$. Thus, the state $[7, 6, 6, 6, 1, 1, 1]$ is legally reachable from the starting configuration.
+
+**Minimality.** For any pair of numbers with fixed sum $S$, the product $x(S - x)$ is strictly minimized when $x$ takes its minimum possible integer value ($x = 1$). Since each pair has sum $2^p - 1$, no pair can achieve a non-zero product smaller than $1 \times (2^p - 2) = 2^p - 2$. Furthermore, the element $2^p - 1$ consists entirely of 1-bits; donating any bit to an existing number without receiving a 1 in return would require a 0-bit in $2^p - 1$, which leaves the multiset of values strictly less separated. Hence, the product $(2^p - 1)(2^p - 2)^{2^{p-1}-1}$ is the global mathematical minimum.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Traps
 
-- **Time Complexity:** $O(p)$. The exponent $q$ has $O(p)$ bits. Modular exponentiation performs $O(p)$ squaring/multiplication steps, so time is $O(p)$ under fixed-modulus arithmetic. Computing the powers of two also uses integers with $O(p)$ bits.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Boundary Case $p = 1$:** When $p = 1$, the array contains only $\{1\}$. The exponent is $2^{1-1} - 1 = 0$. By standard convention $0^0 = 1$, giving $(2^1 - 1) \times 1 = 1$. The implementation must handle $p = 1$ cleanly without evaluating $(0)^{-1}$.
+- **Large Exponents and Modulo Operator:** For $p = 60$, the exponent $2^{59} - 1$ is around $5.76 \times 10^{17}$.
+  - By Fermat's Little Theorem, the exponent in $A^B \pmod M$ cannot simply be reduced modulo $M$; it reduces modulo $M - 1$ (Euler's totient).
+  - In binary modular exponentiation (`pow(base, exp, mod)`), passing the 64-bit integer exponent directly natively computes $base^{exp} \pmod M$ in $\mathcal{O}(\log exp) = \mathcal{O}(p)$ multiplications.
+- **Base Reduction Before Exponentiation:** The base $2^p - 2$ must be reduced modulo $10^9+7$ *before* exponentiation to avoid 64-bit overflow during intermediate squaring.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Computing $2^p - 1$ and $2^p - 2$ takes $\mathcal{O}(1)$ 64-bit shift operations.
+  - The exponent is $E = 2^{p-1} - 1$, which has binary length $p - 1 \le 60$.
+  - Binary exponentiation performs at most $2 \times 60 = 120$ modular multiplications.
+  - Total time complexity is strictly $\mathcal{O}(p)$, running in under 1 microsecond.
+- **Auxiliary Space Complexity:**
+  - Only scalar integers (`base`, `exp`, `mod`, `ans`) are retained in registers.
+  - Auxiliary space is $\mathcal{O}(1)$.

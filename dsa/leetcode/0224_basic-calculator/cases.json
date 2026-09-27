@@ -29,6 +29,19 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": " 2-1 + 2 "
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-unary",
       "name": "leading unary minus",
       "kind": "trial",

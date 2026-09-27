@@ -1,134 +1,188 @@
 # Guided Example: Minimum Number of Operations to Move All Balls to Each Box
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the dual-pass prefix-suffix distance accumulation approach on a representative problem instance:
 
-- **Input:** `{"boxes": "110"}`
-- **Required output:** `[1, 1, 3]`
+- **Input:** `boxes = "001011"`
+- **Required Output:** `[11, 8, 5, 4, 3, 4]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features non-uniform spacing across six boxes with balls clustered toward the higher indices, clearly illustrating how directional prefix and suffix scans compute 1D Manhattan distances in linear time without quadratic pairwise checks.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $i^{\text{th}}$ box is **empty**, and `'1'` if it contains **one** ball.
+Given a binary string `boxes` of length $n$ where `'1'` indicates a ball and `'0'` indicates an empty box, moving one ball between adjacent boxes requires $1$ operation. For each target box $i$, we must compute the total operations to transfer all balls to box $i$:
+$$\text{answer}[i] = \sum_{j=0}^{n-1} |i - j| \cdot \mathbb{I}(\text{boxes}[j] == \text{'1'})$$
 
-The objective is to compute `[1, 1, 3]` from `{"boxes": "110"}` while avoiding redundant calculations and unnecessary overhead.
+A brute-force evaluation calculates the distance from every ball to every target independently, taking $\mathcal{O}(n^2)$ time.
+We observe that the absolute difference $|i - j|$ splits naturally around the target $i$:
+$$\text{answer}[i] = \sum_{j < i} (i - j) \cdot \mathbb{I}(\text{boxes}[j] == \text{'1'}) + \sum_{j > i} (j - i) \cdot \mathbb{I}(\text{boxes}[j] == \text{'1'}) = \text{left}[i] + \text{right}[i]$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+When shifting the target from $i - 1$ to $i$:
+- Every ball located strictly to the left of $i$ is now $1$ step further away, adding $1$ operation per left-hand ball.
+- Hence:
+  $$\text{left}[i] = \text{left}[i-1] + \text{count}_{\text{left}}(i)$$
+- Symmetrically, shifting from right to left:
+  $$\text{right}[i] = \text{right}[i+1] + \text{count}_{\text{right}}(i)$$
+
+This recurrence allows computing both $\text{left}$ and $\text{right}$ arrays in single linear passes.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Target Box $i$ | Index in $0 \le i < n$ | Current box designated to receive all balls |
+| Left Distance $\text{left}[i]$ | $\sum_{j < i} (i - j) \cdot \mathbb{I}(\text{boxes}[j] == \text{'1'})$ | Cumulative moves from all balls strictly to the left |
+| Right Distance $\text{right}[i]$ | $\sum_{j > i} (j - i) \cdot \mathbb{I}(\text{boxes}[j] == \text{'1'})$ | Cumulative moves from all balls strictly to the right |
+| Running Ball Counter $\text{cnt}$ | Cumulative count of balls encountered so far | Additive derivative factor for the next step |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Prefix Distance Telescoping Theorem.**
+> Let $B = \{j \mid \text{boxes}[j] = \text{'1'}\}$. For any position $i$:
+> $$\sum_{j \in B, j < i} (i - j) = \sum_{j \in B, j < i-1} (i - 1 - j) + |\{j \in B \mid j < i\}|$$
+> Each unit shift of the reference coordinate $i \leftarrow i + 1$ uniformly increments the distance to every member of the active prefix set by exactly $+1$.
+> Therefore, tracking the cardinality $|\{j \in B \mid j < i\}|$ reduces the distance update to a single addition.
+
+```mermaid
+flowchart TD
+    accTitle: Dual-Pass Distance Accumulation
+    accDescr: Pipeline showing forward pass accumulating left distances, backward pass accumulating right distances, and element-wise addition.
+    A["Input String boxes: '001011'"] --> B["Forward Pass: Compute left array"]
+    B --> C["Track left[i] = left[i-1] + balls_to_left"]
+    A --> D["Backward Pass: Compute right array"]
+    D --> E["Track right[i] = right[i+1] + balls_to_right"]
+    C --> F["Element-wise Sum: answer[i] = left[i] + right[i]"]
+    E --> F
+    F --> G["Return answer: [11, 8, 5, 4, 3, 4]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Split each target's cost into left and right contributions
-
-Moving a ball from position `p` to target `i` costs `abs(p - i)` operations. Balls to the left contribute `i - p`, while balls to the right contribute `p - i`. A ball already at `i` contributes zero.
-
-The exact solution builds:
-
-- `left[i]`, the total distance from all balls strictly left of `i` to `i`.
-- `right[i]`, the total distance from all balls strictly right of `i` to `i`.
-
-The final answer at `i` is `left[i] + right[i]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"boxes": "110"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `boxes = "001011"` of length $n = 6$.
+Balls exist at indices: $j \in \{2, 4, 5\}$.
 
 ---
 
-### Step 2: Derive the left-to-right recurrence
+### Step 1: Forward Pass (Left Distances)
 
-`left[0]` is zero because no box lies to the left of index zero. `cnt` tracks how many balls lie in positions already passed.
+Initialize: $\text{left} = [0, 0, 0, 0, 0, 0]$, running count $\text{cnt} = 0$.
 
-Before computing `left[i]`, the code checks `boxes[i - 1]` and increments `cnt` if that box contains a ball. At that moment, `cnt` is exactly the number of balls at indices less than `i`.
+- **$i = 0$:** Boundary condition. $\text{left}[0] = 0$.
+- **$i = 1$:** Inspect preceding box $\text{boxes}[0] = \text{'0'}$.
+  - $\text{cnt} \leftarrow \text{cnt} + 0 = 0$.
+  - $\text{left}[1] = \text{left}[0] + \text{cnt} = 0 + 0 = 0$.
+- **$i = 2$:** Inspect preceding box $\text{boxes}[1] = \text{'0'}$.
+  - $\text{cnt} \leftarrow 0 + 0 = 0$.
+  - $\text{left}[2] = \text{left}[1] + 0 = 0$.
+- **$i = 3$:** Inspect preceding box $\text{boxes}[2] = \text{'1'}$.
+  - Ball found! $\text{cnt} \leftarrow 0 + 1 = 1$.
+  - $\text{left}[3] = \text{left}[2] + 1 = 0 + 1 = 1$. (Ball at $2$ is distance $1$ from $3$).
+- **$i = 4$:** Inspect preceding box $\text{boxes}[3] = \text{'0'}$.
+  - $\text{cnt} \leftarrow 1 + 0 = 1$.
+  - $\text{left}[4] = \text{left}[3] + 1 = 1 + 1 = 2$. (Ball at $2$ is distance $2$ from $4$).
+- **$i = 5$:** Inspect preceding box $\text{boxes}[4] = \text{'1'}$.
+  - Ball found! $\text{cnt} \leftarrow 1 + 1 = 2$.
+  - $\text{left}[5] = \text{left}[4] + 2 = 2 + 2 = 4$. (Balls at $2$ and $4$ are distances $3$ and $1$, total $4$).
 
-Imagine moving the target from `i - 1` one step right to `i`. Every ball on the left becomes one step farther away, so the total cost increases by the number of those balls. Therefore:
-
-`left[i] = left[i - 1] + cnt`.
-
-For example, if three balls lie to the left, shifting the destination right by one requires one additional move from each, adding three.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Resulting Left Array:
+$$\text{left} = [0, 0, 0, 1, 2, 4]$$
 
 ---
 
-### Step 3: Derive the right-to-left recurrence
+### Step 2: Backward Pass (Right Distances)
 
-The second pass is symmetric. `right[n - 1]` is zero because no box lies to the right of the last index. `cnt` is reset to zero.
+Initialize: $\text{right} = [0, 0, 0, 0, 0, 0]$, reset running count $\text{cnt} = 0$.
 
-When computing `right[i]`, the source first includes a possible ball at `boxes[i + 1]`. `cnt` then equals the number of balls strictly right of `i`.
+- **$i = 5$:** Boundary condition. $\text{right}[5] = 0$.
+- **$i = 4$:** Inspect succeeding box $\text{boxes}[5] = \text{'1'}$.
+  - Ball found! $\text{cnt} \leftarrow 0 + 1 = 1$.
+  - $\text{right}[4] = \text{right}[5] + 1 = 0 + 1 = 1$. (Ball at $5$ is distance $1$ from $4$).
+- **$i = 3$:** Inspect succeeding box $\text{boxes}[4] = \text{'1'}$.
+  - Ball found! $\text{cnt} \leftarrow 1 + 1 = 2$.
+  - $\text{right}[3] = \text{right}[4] + 2 = 1 + 2 = 3$. (Balls at $4$ and $5$ are distances $1$ and $2$, total $3$).
+- **$i = 2$:** Inspect succeeding box $\text{boxes}[3] = \text{'0'}$.
+  - $\text{cnt} \leftarrow 2 + 0 = 2$.
+  - $\text{right}[2] = \text{right}[3] + 2 = 3 + 2 = 5$. (Balls at $4$ and $5$ are distances $2$ and $3$, total $5$).
+- **$i = 1$:** Inspect succeeding box $\text{boxes}[2] = \text{'1'}$.
+  - Ball found! $\text{cnt} \leftarrow 2 + 1 = 3$.
+  - $\text{right}[1] = \text{right}[2] + 3 = 5 + 3 = 8$. (Balls at $2, 4, 5$ are distances $1, 3, 4$, total $8$).
+- **$i = 0$:** Inspect succeeding box $\text{boxes}[1] = \text{'0'}$.
+  - $\text{cnt} \leftarrow 3 + 0 = 3$.
+  - $\text{right}[0] = \text{right}[1] + 3 = 8 + 3 = 11$. (Balls at $2, 4, 5$ are distances $2, 4, 5$, total $11$).
 
-Moving the target from `i + 1` one step left to `i` increases every right-side ball's distance by one. Thus:
+Resulting Right Array:
+$$\text{right} = [11, 8, 5, 3, 1, 0]$$
 
-`right[i] = right[i + 1] + cnt`.
+---
 
-The loop moves from `n - 2` down to zero so the needed state `right[i + 1]` is already known.
+### Step 3: Combine Left and Right Sums
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 1, 3]` |
+$$\begin{aligned}
+\text{answer}[0] &= 0 + 11 = 11 \\
+\text{answer}[1] &= 0 + 8 = 8 \\
+\text{answer}[2] &= 0 + 5 = 5 \\
+\text{answer}[3] &= 1 + 3 = 4 \\
+\text{answer}[4] &= 2 + 1 = 3 \\
+\text{answer}[5] &= 4 + 0 = 4
+\end{aligned}$$
+
+Final Output:
+$$\text{answer} = [11, 8, 5, 4, 3, 4]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"boxes": "110"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 1, 3]` | Verified |
+| Box Index $i$ | Content $\text{boxes}[i]$ | Balls to Left $\text{cnt}_{\text{left}}$ | $\text{left}[i]$ | Balls to Right $\text{cnt}_{\text{right}}$ | $\text{right}[i]$ | Total Moves $\text{left}[i] + \text{right}[i]$ |
+|---|---|---|---|---|---|---|
+| $0$ | `'0'` | $0$ | $0$ | $3$ (at $2, 4, 5$) | $11$ | **$11$** |
+| $1$ | `'0'` | $0$ | $0$ | $3$ (at $2, 4, 5$) | $8$ | **$8$** |
+| $2$ | `'1'` | $0$ | $0$ | $2$ (at $4, 5$) | $5$ | **$5$** |
+| $3$ | `'0'` | $1$ (at $2$) | $1$ | $2$ (at $4, 5$) | $3$ | **$4$** |
+| $4$ | `'1'` | $1$ (at $2$) | $2$ | $1$ (at $5$) | $1$ | **$3$** |
+| $5$ | `'1'` | $2$ (at $2, 4$) | $4$ | $0$ | $0$ | **$4$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Partition Completeness:**
+   For any box $i$ and any ball at index $j$, exactly one of three mutually exclusive relations holds: $j < i$, $j = i$, or $j > i$.
+   - If $j < i$, the term $(i - j)$ is counted in $\text{left}[i]$.
+   - If $j > i$, the term $(j - i)$ is counted in $\text{right}[i]$.
+   - If $j = i$, the distance is $0$.
+   Therefore, $\text{left}[i] + \text{right}[i]$ precisely matches $\sum_j |i - j| \cdot \mathbb{I}(\text{boxes}[j] = \text{'1'})$.
+2. **Inductive Recurrence Exactness:**
+   Assume $\text{left}[i-1] = \sum_{j < i-1} (i - 1 - j)$.
+   Adding the count of balls in $[0 \dots i-1]$ adds $+1$ to each $(i - 1 - j)$ term, transforming it into $(i - j)$, and includes any ball at $i - 1$ with distance $i - (i - 1) = 1$. By mathematical induction, $\text{left}[i]$ is exact for all $i$. Symmetrical induction holds for $\text{right}[i]$.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **One combined bidirectional loop:** Accumulate left and right costs into one answer list in a single outer loop, reducing the number of full arrays while retaining $O(n)$ time.
-- **Brute-force every target and ball:** Direct distance summation takes $O(n^2)$ time.
-- **Prefix counts and position sums:** Mathematical prefix formulas also answer each target in $O(1)$ after linear preprocessing, but use similar storage.
-- **No balls:** Both arrays remain zero and every answer is zero.
-- **One ball:** Results are its distances to all target indices.
-- **Ball at current target:** It contributes zero and is excluded from both strict-side counts.
-- **Multiple balls after moves:** The calculation concerns the initial state independently for every target, so simulated states are irrelevant.
-- **Single box:** Both passes are empty and the result is zero whether or not it contains a ball.
-- **All boxes contain balls:** Counts grow on each pass, producing symmetric distance totals.
-- **Reset cnt:** The right pass must start with zero; retaining the left count would corrupt all values.
-- **Loop bounds:** The left pass begins at one and the right pass at `n - 2` because boundary costs are already zero.
-- **Binary characters:** Comparing with `'1'` directly determines whether to increment the count.
-- **Elementwise sum:** `zip(left, right)` aligns contributions for the same target index.
-- **Input preservation:** No actual balls are moved and `boxes` is unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Configuration | Expected Output | Strategic Handling |
+|---|---|---|---|
+| No Balls | `boxes = "000"` | `[0, 0, 0]` | Running count $\text{cnt}$ remains $0$; all arrays remain $0$. |
+| All Balls | `boxes = "111"` | `[3, 2, 3]` | Every step increments ball count; symmetric distances around center. |
+| Single Box | `boxes = "1"` or `"0"` | `[0]` | Length $n = 1$; loops do not execute; returns `[0]`. |
+| Single Ball at End | `boxes = "001"` | `[2, 1, 0]` | Left distances are zero; right distances decrease linearly by 1 per step. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of boxes. The left pass, right pass, and final `zip` comprehension each visit $n$ entries with constant work. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of `boxes`.
+  - Forward pass executes $n - 1$ steps, each performing $\mathcal{O}(1)$ operations.
+  - Backward pass executes $n - 1$ steps, each performing $\mathcal{O}(1)$ operations.
+  - Final addition executes $n$ steps.
+  - Total operations: $3n = \mathcal{O}(n)$. For $n \le 2000$, operations are $\le 6000$, executing in under $0.001\text{ s}$.
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space.
+  - Storing the `left` and `right` arrays requires $2n$ integer elements.
+  - Alternatively, this can be optimized to $\mathcal{O}(1)$ auxiliary space beyond the output by maintaining running rolling counters directly.

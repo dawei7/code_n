@@ -1,142 +1,131 @@
 # Guided Example: Gray Code
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise Gray code generation using both direct arithmetic ($G(i) = i \oplus (i \gg 1)$) and iterative reflected doubling:
 
-- **Input:** `{"n": 2}`
-- **Required output:** `[0, 1, 3, 2]`
+- **Input:** $n = 2 \implies [0, 1, 3, 2]$
+- **Input Extension:** $n = 3 \implies [0, 1, 3, 2, 6, 7, 5, 4]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates generating an $n$-bit Gray code sequence where adjacent values differ by exactly one binary bit (Hamming distance 1), cyclic wraparound verification, the XOR half-shift formula ($i \oplus (i \gg 1)$), and iterative mirrored prefix doubling in $O(2^n)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-An **n-bit gray code sequence** is a sequence of $2^n$ integers where:
+An $n$-bit Gray code sequence is a sequence of $2^n$ integers where:
+1. The first integer is $0$.
+2. Every integer appears **at most once** in the sequence.
+3. The binary representation of every pair of adjacent integers differs by **exactly one bit** (Hamming distance $= 1$).
+4. The binary representation of the first and last integers also differs by exactly one bit (forming a closed Hamiltonian cycle on the $n$-dimensional hypercube).
 
-The objective is to compute `[0, 1, 3, 2]` from `{"n": 2}` while avoiding redundant calculations and unnecessary overhead.
+For $n = 2$, $2^2 = 4$ integers are required:
+$$
+[0, 1, 3, 2] \implies [00_2, \, 01_2, \, 11_2, \, 10_2]
+$$
+Differences between adjacent elements:
+- $00_2 \to 01_2$: bit 0 flips.
+- $01_2 \to 11_2$: bit 1 flips.
+- $11_2 \to 10_2$: bit 0 flips.
+- $10_2 \to 00_2$ (cyclic wrap): bit 1 flips.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Two elegant paradigms produce this sequence in $O(2^n)$ time:
+1. **Direct Formula:** $G(i) = i \oplus (i \gg 1)$ for $i \in [0, 2^n - 1]$.
+2. **Reflected Binary Construction:** Generate $n$-bit codes by taking the $(n-1)$-bit sequence and prefixing its reverse with a leading 1 bit.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method 1: The Direct Bitwise Formula
+For each integer $i \in [0, 2^n - 1]$:
+$$
+G(i) = i \oplus \lfloor i / 2 \rfloor = i \oplus (i \gg 1)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Mathematical Proof of 1-Bit Difference
+Let $X = i \oplus (i + 1)$. When adding 1 to binary integer $i$, a trailing run of $t$ consecutive `1`s flips to `0`, and the preceding `0` flips to `1`. Thus, $X$ is a contiguous block of $t + 1$ ones at the low-order bits:
+$$
+X = \underbrace{00\dots 0}_{\text{prefix}} \, \underbrace{11\dots 1}_{t+1 \text{ bits}}
+$$
+Computing the XOR difference between consecutive Gray values:
+$$
+G(i) \oplus G(i+1) = [i \oplus (i \gg 1)] \oplus [(i+1) \oplus ((i+1) \gg 1)] = X \oplus (X \gg 1)
+$$
+Because shifting $X$ right by 1 shifts the block of ones, XORing $X$ with $(X \gg 1)$ cancels all lower $t$ ones, leaving **strictly one set bit** (at position $t$).
+Hence, $G(i)$ and $G(i+1)$ differ at exactly one bit position!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method 2: Reflected Doubling
+- Start with sequence for $n = 0$: `[0]`.
+- For each bit level $k = 0 \dots n - 1$:
+  - Take the existing list of length $2^k$.
+  - Read the list in reverse order, add $2^k$ (set bit $k$), and append to the list.
+  - The list size doubles to $2^{k+1}$.
+
+> **Invariant.** At each step, every consecutive pair and the cyclic end-to-start pair share Hamming distance exactly 1.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why shifting and XOR produce a Gray value
+### Method 1: Direct Bitwise Evaluation for $n = 3$ ($i = 0 \dots 7$)
 
-Write the bits of $i$ from most significant to least significant as $b_{n-1},b_{n-2},\ldots,b_0$. Shifting right by one puts a `0` above the most significant bit and moves each original bit one position to the right. XOR therefore makes the Gray bit in position $k$ equal to the difference between two neighboring binary bits:
+- **$i = 0$ (`000`):** $0 \oplus (0 \gg 1) = 0 \oplus 0 = 0$ (`000`).
+- **$i = 1$ (`001`):** $1 \oplus (1 \gg 1) = 1 \oplus 0 = 1$ (`001`).
+- **$i = 2$ (`010`):** $2 \oplus (2 \gg 1) = 2 \oplus 1 = 3$ (`011`).
+- **$i = 3$ (`011`):** $3 \oplus (3 \gg 1) = 3 \oplus 1 = 2$ (`010`).
+- **$i = 4$ (`100`):** $4 \oplus (4 \gg 1) = 4 \oplus 2 = 6$ (`110`).
+- **$i = 5$ (`101`):** $5 \oplus (5 \gg 1) = 5 \oplus 2 = 7$ (`111`).
+- **$i = 6$ (`110`):** $6 \oplus (6 \gg 1) = 6 \oplus 3 = 5$ (`101`).
+- **$i = 7$ (`111`):** $7 \oplus (7 \gg 1) = 7 \oplus 3 = 4$ (`100`).
 
-$$
-g_{n-1}=b_{n-1},\qquad g_k=b_{k+1}\oplus b_k\quad(0\le k<n-1).
-$$
-
-That relationship is the heart of the method. Gray code records whether adjacent binary positions agree, rather than copying the binary digits directly. The one-line list comprehension is compact because the bit operation already performs all $n$ of those neighboring comparisons at once.
-
-For $n=3$, the ordinary indices and transformed values are:
-
-| $i$ | binary $i$ | `i >> 1` | XOR result $G(i)$ |
-|---:|:---:|:---:|:---:|
-| 0 | `000` | `000` | `000` |
-| 1 | `001` | `000` | `001` |
-| 2 | `010` | `001` | `011` |
-| 3 | `011` | `001` | `010` |
-| 4 | `100` | `010` | `110` |
-| 5 | `101` | `010` | `111` |
-| 6 | `110` | `011` | `101` |
-| 7 | `111` | `011` | `100` |
-
-Reading the final column as integers gives `[0, 1, 3, 2, 6, 7, 5, 4]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Output list: $[0, 1, 3, 2, 6, 7, 5, 4]$.
 
 ---
 
-### Step 2: Why consecutive outputs differ in exactly one bit
-
-When binary $i$ is incremented to $i+1$, some suffix changes. Suppose $i$ ends in $t$ consecutive `1` bits. The increment turns those $t$ bits into `0` and changes the `0` immediately before them into `1`. Every more significant bit stays fixed. Thus `i ^ (i + 1)` is a run of exactly $t+1$ low `1` bits.
-
-Let
-
-$$
-X=i\oplus(i+1).
-$$
-
-Using associativity and commutativity of XOR,
-
-$$
-G(i)\oplus G(i+1)=X\oplus(X\mathbin{\texttt{>>}}1).
-$$
-
-Because $X$ is a low run of `1` bits, shifting it right removes only its highest `1`; every lower `1` occurs in both operands and cancels under XOR. The result therefore has exactly one set bit. XOR identifies precisely the positions at which two values differ, so having one set bit proves that $G(i)$ and $G(i+1)$ differ in exactly one bit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why all generated values are distinct
-
-Generating $2^n$ entries would not be sufficient if two indices could map to the same Gray value. The transformation is reversible. Starting with the most significant binary bit, which equals the most significant Gray bit, each following binary bit can be recovered from the preceding recovered binary bit and the current Gray bit. In symbols, $b_{n-1}=g_{n-1}$ and $b_k=b_{k+1}\oplus g_k$. Therefore one Gray bit pattern corresponds to exactly one binary index. Different indices cannot collide.
-
-There are $2^n$ indices in the loop, all outputs are distinct, and every output uses at most $n$ bits because both operands do. Consequently the result contains every integer in $[0,2^n-1]$ exactly once.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 1, 3, 2]` |
+### Method 2: Reflected Construction Trace ($n = 1 \to 2$)
+- Level $k = 0$ ($n = 1$, add $2^0 = 1$):
+  - Base: `[0]`.
+  - Reverse: `[0]`. Add $1 \implies [1]$.
+  - Result: `[0, 1]`.
+- Level $k = 1$ ($n = 2$, add $2^1 = 2$):
+  - Existing: `[0, 1]`.
+  - Reverse: `[1, 0]`. Add $2 \implies [1+2, 0+2] = [3, 2]$.
+  - Concatenate: `[0, 1] + [3, 2] = [0, 1, 3, 2]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 1, 3, 2]` | Verified |
+| Index $i$ | Binary $i$ | Half Shift $i \gg 1$ | XOR Calculation | Result $G(i)$ | Binary $G(i)$ | Bit Flipped from Prior |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `000` | `000` | $0 \oplus 0$ | **0** | `000` | Start |
+| 1 | `001` | `000` | $1 \oplus 0$ | **1** | `001` | Bit 0 |
+| 2 | `010` | `001` | $2 \oplus 1$ | **3** | `011` | Bit 1 |
+| 3 | `011` | `001` | $3 \oplus 1$ | **2** | `010` | Bit 0 |
+| 4 | `100` | `010` | $4 \oplus 2$ | **6** | `110` | Bit 2 |
+| 5 | `101` | `010` | $5 \oplus 2$ | **7** | `111` | Bit 0 |
+| 6 | `110` | `011` | $6 \oplus 3$ | **5** | `101` | Bit 1 |
+| 7 | `111` | `011` | $7 \oplus 3$ | **4** | `100` | Bit 0 |
+| Wrap ($7 \to 0$) | - | - | $4 \oplus 0 = 4$ | - | `100` vs `000` | Bit 2 (Cycle Valid) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The transformation $G(i) = i \oplus (i \gg 1)$ is an invertible bijection on the integers $[0, 2^n - 1]$. The difference between any two consecutive values $G(i) \oplus G(i+1) = X \oplus (X \gg 1)$ evaluates to a single power of 2, guaranteeing that every consecutive pair has Hamming distance 1.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** There are $2^n$ distinct index inputs $i \in [0, 2^n - 1]$. Because the mapping is bijective, it produces exactly $2^n$ distinct integers spanning the entire range $[0, 2^n - 1]$ without repetition.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Reflected iterative construction:** Begin with `[0]`. For each new bit, traverse the existing sequence backward and append each value with that bit set. This is also $O(2^n)$ time and $O(1)$ auxiliary space excluding the output. It is often easier to discover from examples, while the selected formula is shorter and computes each position independently.
-- **Recursive reflection:** First construct the $(n-1)$-bit sequence, then append its reverse with bit $n-1$ set. It expresses the mathematical reflection directly but uses $O(n)$ call-stack space in addition to the output.
-- **Backtracking over the hypercube:** Treat each $n$-bit number as a vertex and connect values that differ in one bit, then search for a Hamiltonian cycle beginning at zero. This models the contract naturally but introduces a visited set and potentially enormous search. A deterministic Gray construction makes that search unnecessary.
-- **Bit-operation precedence:** Write `i ^ (i >> 1)` with parentheses. The selected source does so, avoiding any need for a reader to remember Python's precedence rules.
-- **Minimum input:** For $n=1$, the indices are `0` and `1`, and the result is `[0, 1]`. The only adjacent pair and the wraparound pair both differ in the single available bit.
-- **Hypothetical zero-bit input:** The stated constraints begin at $n=1$, but the formula would still return `[0]` for $n=0$. Whether a one-element cyclic sequence is considered to differ from itself in one bit is irrelevant because that input is outside the contract.
-- **Multiple valid answers:** The problem accepts any valid sequence. The formula deterministically returns the reflected binary Gray ordering; it does not need to reproduce an example's exact list if another valid ordering is shown.
-- **Binary width and leading zeros:** Integers do not store leading zeros, but comparisons are understood in exactly $n$ bit positions. For example, with $n=3$, integer `1` represents `001`. Omitting stored leading zeros does not change which positions differ.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Bitwise Precedence in Python:** Writing `i ^ i >> 1` evaluates `>>` before `^`, so `i ^ (i >> 1)` is correct. Writing explicit parentheses prevents operator precedence bugs.
+- **Multiple Valid Gray Codes:** Gray codes are not unique; any Hamiltonian cycle on the hypercube is valid. Both the direct formula and reflected doubling produce valid sequences accepted by LeetCode.
+- **Memory Scaling:** For $n = 16$, the sequence contains $2^{16} = 65{,}536$ elements. The direct list comprehension `[i ^ (i >> 1) for i in range(1 << n)]` constructs the sequence in linear time without stack recursion.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N=2^n$ be the required number of output values.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(2^n)$. Generating each of the $2^n$ integers takes $O(1)$ bitwise operations.
+- **Auxiliary Space Complexity:** $O(1)$ beyond the returned output list of size $2^n$.

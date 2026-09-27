@@ -1,128 +1,162 @@
 # Guided Example: Equal Row and Column Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"grid": [[3, 2, 1], [1, 7, 6], [2, 7, 7]]}`
-- **Required output:** `1`
+We are given an $n \times n$ integer matrix `grid`. A row-column pair $(r_i, c_j)$ is considered **equal** if row $i$ and column $j$ contain the exact same elements in the exact same order (that is, $grid[i][k] = grid[k][j]$ for all $0 \le k < n$). Our goal is to determine the total number of equal pairs $(r_i, c_j)$ across all combinations of $0 \le i, j < n$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Consider the representative instance:
+- `grid = [[3, 2, 1], [1, 7, 6], [2, 7, 7]]`
+- Matrix dimensions: $n = 3$
 
----
+Let us extract all three horizontal row tuples and all three vertical column tuples:
+- **Row Tuples:**
+  - Row 0: $(3, 2, 1)$
+  - Row 1: $(1, 7, 6)$
+  - Row 2: $(2, 7, 7)$
+- **Column Tuples:**
+  - Column 0: $(3, 1, 2)$
+  - Column 1: $(2, 7, 7)$
+  - Column 2: $(1, 6, 7)$
 
-## 1. Instance & Teaching Goal
+Comparing every row against every column:
+- Row 0 $(3, 2, 1)$ matches no column.
+- Row 1 $(1, 7, 6)$ matches no column.
+- Row 2 $(2, 7, 7)$ matches Column 1 $(2, 7, 7)$ element-by-element:
+  $$grid[2][0] = grid[0][1] = 2, \quad grid[2][1] = grid[1][1] = 7, \quad grid[2][2] = grid[2][1] = 7$$
 
-Given a **0-indexed** `n x n` integer matrix `grid`, *return the number of pairs *$(r_{i}, c_{j})$* such that row *$r_{i}$* and column *$c_{j}$* are equal*.
+There is exactly $1$ matching row-column pair: $(r_2, c_1)$. The answer is $1$.
 
-The objective is to compute `1` from `{"grid": [[3, 2, 1], [1, 7, 6], [2, 7, 7]]}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Matrix Orthogonal Tuple Hashing and Frequency Product
+    accDescr: Extracting row vectors into a frequency hash map and querying column vectors to compute total identical cross pairs.
+    Matrix["Matrix 3x3<br/>Row 0: (3, 2, 1)<br/>Row 1: (1, 7, 6)<br/>Row 2: (2, 7, 7)"] --> RowHash["Hash Rows into Frequency Map<br/>(3, 2, 1) -> 1<br/>(1, 7, 6) -> 1<br/>(2, 7, 7) -> 1"]
+    Matrix --> ColGen["Extract Columns<br/>Col 0: (3, 1, 2)<br/>Col 1: (2, 7, 7)<br/>Col 2: (1, 6, 7)"]
+    RowHash --> MatchQuery["Query Column Vectors Against Row Map"]
+    ColGen --> MatchQuery
+    MatchQuery --> Q0["Col 0 (3, 1, 2): count = 0"]
+    MatchQuery --> Q1["Col 1 (2, 7, 7): count = 1 (Match with Row 2!)"]
+    MatchQuery --> Q2["Col 2 (1, 6, 7): count = 0"]
+    Q0 --> Sum["Aggregate Matching Counts: 0 + 1 + 0 = 1"]
+    Q1 --> Sum
+    Q2 --> Sum
+    Sum --> Out["Output: 1"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let $M \in \mathbb{Z}^{n \times n}$ denote the square grid. The $i$-th row vector $R_i \in \mathbb{Z}^n$ and the $j$-th column vector $C_j \in \mathbb{Z}^n$ are defined as:
 
-## 2. Conceptual Foundation & Invariants
+$$R_i = (M_{i, 0}, M_{i, 1}, \dots, M_{i, n-1})$$
 
-We maintain the core conceptual parameters and state variables:
+$$C_j = (M_{0, j}, M_{1, j}, \dots, M_{n-1, j})$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The total number of equal row-column pairs is the double summation of the equality indicator:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+$$\text{Total Pairs} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \mathbb{I}(R_i = C_j)$$
 
----
+### Factorization via Multiset Multiplicities
+Comparing all $n$ rows against all $n$ columns naively requires $n^2$ vector comparisons, where each vector comparison inspects $n$ coordinates, totaling $\mathcal{O}(n^3)$ operations.
+We can factor the summation by grouping equal vectors into equivalence classes. Let $\mathcal{U} \subset \mathbb{Z}^n$ be the set of unique vector tuples. For each $v \in \mathcal{U}$:
+- Let $f_{\text{row}}(v) = |\{i \in \{0, \dots, n-1\} \mid R_i = v\}|$ denote the multiplicity of vector $v$ as a row.
+- Let $f_{\text{col}}(v) = |\{j \in \{0, \dots, n-1\} \mid C_j = v\}|$ denote the multiplicity of vector $v$ as a column.
 
-## 3. Step-by-Step Worked Execution
+Any row with value $v$ can be paired with any column with value $v$. The total number of valid pairs contributed by vector $v$ is the Cartesian product size:
 
-### Step 1: Check every ordered row-column pair directly
+$$\text{Total Pairs} = \sum_{v \in \mathcal{U}} f_{\text{row}}(v) \times f_{\text{col}}(v)$$
 
-There are `n` rows and `n` columns, so there are `n^2` candidate pairs `(i,j)`. The exact solution tries each one.
+### Hash-Accelerated Evaluation
+1. **Row Hashing:** Construct a hash map $H$ where keys are $n$-tuples and values are integer frequencies. Scan $i \in \{0, \dots, n-1\}$ and increment $H[R_i] \leftarrow H[R_i] + 1$.
+2. **Column Probing:** For each column index $j \in \{0, \dots, n-1\}$, extract the tuple $C_j$. Add $H[C_j]$ (defaulting to 0 if absent) to our running answer:
+   $$\text{ans} \leftarrow \text{ans} + H[C_j]$$
 
-For a fixed row `i` and column `j`, their entries at sequence position `k` are:
+This achieves optimal $\mathcal{O}(n^2)$ time because reading each cell and computing tuple hashes is linear in the number of matrix entries.
 
-- row entry `grid[i][k]`;
-- column entry `grid[k][j]`.
-
-The row and column are equal exactly when these values match for every `k` from zero through `n - 1`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Vector Role | Extraction Formula | Storage Format | Multiplicity Interpretation |
 |---|---|---|---|
-| Input Slice | `{"grid": [[3, 2, 1], [1, 7, 6], [2, 7, 7]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Row Vector $R_i$ | Horizontal slice $grid[i][0 \dots n-1]$ | Key in Hash Table | Frequency of identical rows |
+| Column Vector $C_j$ | Vertical slice $grid[0 \dots n-1][j]$ | Query Key against Hash Table | Each occurrence earns $f_{\text{row}}(C_j)$ pairs |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Use all to express universal equality
+We trace `grid = [[3, 2, 1], [1, 7, 6], [2, 7, 7]]` with $n = 3$.
 
-The generator
+### Phase 1: Row Vector Registration
+Initialize frequency map $H = \emptyset$.
+- **Row 0:** Tuple is $(3, 2, 1)$.
+  - Record: $H[(3, 2, 1)] = 1$.
+- **Row 1:** Tuple is $(1, 7, 6)$.
+  - Record: $H[(1, 7, 6)] = 1$.
+- **Row 2:** Tuple is $(2, 7, 7)$.
+  - Record: $H[(2, 7, 7)] = 1$.
 
-`grid[i][k] == grid[k][j] for k in range(n)`
+Final frequency map contains $3$ distinct entries:
+- $(3, 2, 1) \mapsto 1$
+- $(1, 7, 6) \mapsto 1$
+- $(2, 7, 7) \mapsto 1$
 
-produces one Boolean comparison per sequence position. `all(...)` returns `true` only when every comparison is true.
+### Phase 2: Column Vector Extraction & Accumulation
+Initialize $\text{ans} = 0$.
+- **Column 0 ($j = 0$):**
+  - Elements: $grid[0][0]=3, grid[1][0]=1, grid[2][0]=2 \implies (3, 1, 2)$.
+  - Query $H[(3, 1, 2)]$: Key not found.
+  - Matches: $0$.
+  - State: $\text{ans} = 0$.
+- **Column 1 ($j = 1$):**
+  - Elements: $grid[0][1]=2, grid[1][1]=7, grid[2][1]=7 \implies (2, 7, 7)$.
+  - Query $H[(2, 7, 7)]$: Found with frequency $1$ (originating from Row 2).
+  - Matches: $1$.
+  - Update: $\text{ans} \leftarrow 0 + 1 = 1$.
+  - State: $\text{ans} = 1$.
+- **Column 2 ($j = 2$):**
+  - Elements: $grid[0][2]=1, grid[1][2]=6, grid[2][2]=7 \implies (1, 6, 7)$.
+  - Query $H[(1, 6, 7)]$: Key not found.
+  - Matches: $0$.
+  - State: $\text{ans} = 1$.
 
-It short-circuits on the first mismatch. A pair that differs in its first position costs only one comparison, while an equal pair or one differing at the end requires all `n` comparisons.
+Column iteration complete. Final matching pair count: $1$.
 
-The Boolean result is added directly to `ans`. In Python, `true` has integer value one and `false` zero, so each equal pair increases the count by one and every unequal pair adds nothing.
+## 4. Comprehensive State Trace
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The full comparison between all rows and columns is summarized in the matrix trace table below.
 
----
+| Row Index $i$ | Row Vector $R_i$ | Col 0: $(3, 1, 2)$ | Col 1: $(2, 7, 7)$ | Col 2: $(1, 6, 7)$ | Row Matching Total |
+|---|---|---|---|---|---|
+| $0$ | $(3, 2, 1)$ | Mismatch ($2 \ne 1$) | Mismatch ($3 \ne 2$) | Mismatch ($2 \ne 6$) | $0$ |
+| $1$ | $(1, 7, 6)$ | Mismatch ($1 \ne 3$) | Mismatch ($1 \ne 2$) | Mismatch ($7 \ne 6$) | $0$ |
+| $2$ | $(2, 7, 7)$ | Mismatch ($7 \ne 1$) | **Equal Match** | Mismatch ($2 \ne 1$) | $1$ (Pair $(2, 1)$) |
+| **Total** | — | $0$ | $1$ | $0$ | **Global Answer: 1** |
 
-### Step 3: Pair identity includes both indices
+## 5. Algorithmic Correctness & Soundness
 
-If two rows have identical contents and both match the same column, they are two different `(row,column)` pairs and must both count. The nested loops naturally visit both row indices.
+1. **Exact Vector Equality:**
+   A row vector $R_i$ and column vector $C_j$ match if and only if all $n$ corresponding coordinates are identical. Tuple equality strictly enforces ordered element-by-element equality.
 
-Likewise, two identical columns matching one row create two pairs. The method counts index pairs, not merely distinct sequence values.
+2. **Full Multiplicity Accounting:**
+   If multiple rows have the identical vector $v$ (say count $a$) and multiple columns have the identical vector $v$ (say count $b$), then each of the $a$ rows can be paired with each of the $b$ columns, creating $a \times b$ valid pairs. Incrementing by $H[C_j]$ for every matching column correctly accumulates $\sum_{j} H[C_j] = \sum_{v} a \times b$.
 
-For the second example, rows two and three are identical and both equal column two. They contribute separately, in addition to row zero matching column zero.
+3. **Orthogonality of Indices:**
+   A row and column sharing the same numerical index ($i = j$) are distinct geometric entities (one horizontal, one vertical). Self-intersection is valid: if a row matches the column with the same index, it is legitimately counted.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+## 6. Edge Cases & Anti-Patterns
 
----
+- **Duplicate Rows and Columns (`grid = [[3, 1, 2, 2], [1, 4, 4, 5], [2, 4, 2, 2], [2, 4, 2, 2]]`):**
+  - Row 2 and Row 3 are identical: `(2, 4, 2, 2)`.
+  - Col 2 is `(2, 4, 2, 2)`.
+  - Both Row 2 and Row 3 match Col 2, producing $2$ distinct pairs: $(2, 2)$ and $(3, 2)$.
+- **Symmetric Matrix ($M = M^T$):**
+  - Every row $i$ is identical to column $i$.
+  - At least $n$ equal pairs are guaranteed (one along the main diagonal for each $i$).
+- **Single Element Matrix (`grid = [[5]]`):**
+  - $n = 1$. Row 0 is `(5)`, Col 0 is `(5)`. Total pairs: $1$.
+- **Anti-Pattern (Comparing Elements without Positional Order):**
+  - Checking multiset equality (e.g., matching sorted rows to sorted columns) is incorrect. The elements must match at the exact same index positions.
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[3, 2, 1], [1, 7, 6], [2, 7, 7]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Row-frequency hash map:** Convert every row to a tuple, then build each column tuple and add its row frequency. This improves time to `O(n^2)` at the cost of `O(n^2)` stored tuple data.
-- **Trie of rows:** Insert every row sequence and query each column sequence. It also uses `O(n^2)` time and space but has more implementation overhead.
-- **Transpose then compare:** Materialize columns as rows and count matching sequences. This still needs a frequency strategy to avoid quadratic sequence comparisons.
-- **One-by-one matrix:** Its only row equals its only column, so the answer is one.
-- **All entries equal:** Every row equals every column and the answer is `n^2`, realizing the cubic comparison worst case.
-- **No matching pair:** Every `all` call eventually fails and the result is zero.
-- **Duplicate rows:** Each row index contributes independently when a column matches.
-- **Duplicate columns:** Each column index likewise contributes independently.
-- **Same multiset but different order:** The elementwise sequence comparison rejects it.
-- **Short-circuit behavior:** An early mismatch saves work but does not change correctness.
-- **Boolean arithmetic:** `true` adds one and `false` adds zero in Python; other languages may require an explicit conditional.
-- **Input preservation:** Only indexed reads occur.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n^2)$. There are `n^2` row-column candidates. In the worst case, each requires `n` element comparisons, giving `O(n^3)` time. Short-circuiting can reduce actual work on mismatching data but not the worst case, such as a matrix where many rows and columns match through their final positions.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$, where $n$ is the number of rows/columns in `grid`.
+  - There are $n^2$ total integers in the matrix.
+  - Hashing $n$ rows of length $n$ takes $\mathcal{O}(n^2)$ time.
+  - Extracting and looking up $n$ columns of length $n$ takes $\mathcal{O}(n^2)$ time.
+  - Overall time is $\mathcal{O}(n^2)$, which is asymptotically optimal since every matrix entry must be inspected.
+- **Space Complexity:** $\mathcal{O}(n^2)$ auxiliary space to store the row tuples in the hash map.

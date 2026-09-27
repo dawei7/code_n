@@ -46,13 +46,14 @@
     {
       "id": "trial-entire-string",
       "name": "trial: decrement entire non-a string",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "s": "leetcode"
       },
       "expected": "kddsbncd",
       "tags": [
+        "sample",
         "trial",
         "whole-string"
       ]

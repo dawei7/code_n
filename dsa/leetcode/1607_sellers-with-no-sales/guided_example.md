@@ -1,126 +1,161 @@
 # Guided Example: Sellers With No Sales
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates relational anti-semijoin algebra and outer join null-filtration to identify sellers who recorded zero transactions during the calendar year 2020.
 
-- **Input:** `{"tables": {"Customer": [{"customer_id": 101, "customer_name": "Alice"}, {"customer_id": 102, "customer_name": "Bob"}], "Orders": [{"order_id": 1, "sale_date": "2020-03-01", "order_cost": 1500, "customer_id": 101, "seller_id": 1}, {"order_id": 2, "sale_date": "2020-05-25", "order_cost": 2400, "customer_id": 102, "seller_id": 2}, {"order_id": 3, "sale_date": "2019-05-25", "order_cost": 800, "customer_id": 101, "seller_id": 3}, {"order_id": 4, "sale_date": "2020-09-13", "order_cost": 1000, "customer_id": 101, "seller_id": 2}, {"order_id": 5, "sale_date": "2019-02-11", "order_cost": 700, "customer_id": 101, "seller_id": 2}], "Seller": [{"seller_id": 1, "seller_name": "Daniel"}, {"seller_id": 2, "seller_name": "Elizabeth"}, {"seller_id": 3, "seller_name": "Frank"}]}}`
-- **Required output:** `{"columns": ["seller_name"], "rows": [["Frank"]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Sellers Relation:** `Seller(seller_id, seller_name)`
+- **Orders Relation:** `Orders(order_id, order_date, customer_id, price, seller_id)`
+- **Target Output:** Table containing `seller_name` of qualifying sellers ordered ascending.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customer`
+We are given two relational tables: `Seller` and `Orders`. We need to report the names of all sellers who did not make any sales in the year 2020. Sellers who made sales in other years (e.g. 2019 or 2021) or who have never made any sales at all must be included, provided they have no sales between `2020-01-01` and `2020-12-31`.
 
-The objective is to compute `{"columns": ["seller_name"], "rows": [["Frank"]]}` from `{"tables": {"Customer": [{"customer_id": 101, "customer_name": "Alice"}, {"customer_id": 102, "customer_name": "Bob"}], "Orders": [{"order_id": 1, "sale_date": "2020-03-01", "order_cost": 1500, "customer_id": 101, "seller_id": 1}, {"order_id": 2, "sale_date": "2020-05-25", "order_cost": 2400, "customer_id": 102, "seller_id": 2}, {"order_id": 3, "sale_date": "2019-05-25", "order_cost": 800, "customer_id": 101, "seller_id": 3}, {"order_id": 4, "sale_date": "2020-09-13", "order_cost": 1000, "customer_id": 101, "seller_id": 2}, {"order_id": 5, "sale_date": "2019-02-11", "order_cost": 700, "customer_id": 101, "seller_id": 2}], "Seller": [{"seller_id": 1, "seller_name": "Daniel"}, {"seller_id": 2, "seller_name": "Elizabeth"}, {"seller_id": 3, "seller_name": "Frank"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Consider the following concrete instance:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+`Seller`:
+| `seller_id` | `seller_name` |
+|---|---|
+| $1$ | Daniel |
+| $2$ | Elizabeth |
+| $3$ | Frank |
+
+`Orders`:
+| `order_id` | `sale_date` | `customer_id` | `price` | `seller_id` |
+|---|---|---|---|---|
+| $1$ | `2020-03-01` | $1$ | $2000$ | $1$ |
+| $2$ | `2020-01-30` | $2$ | $3000$ | $2$ |
+| $3$ | `2019-05-21` | $3$ | $4000$ | $2$ |
+| $4$ | `2019-05-13` | $3$ | $2000$ | $3$ |
+
+Target Output:
+| `seller_name` |
+|---|
+| Frank |
+
+Our teaching goal is to model this query as an anti-semijoin ($\rhd$) operating in $\mathcal{O}(S + R)$ relational processing time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  RELATIONAL ANTI-SEMIJOIN PIPELINE                      |
+|                                                                         |
+|  Step 1: Partition 2020 Transactions                                    |
+|    O_2020 = sigma_{YEAR(sale_date) = 2020}(Orders)                      |
+|                                                                         |
+|  Step 2: Project Active Sellers                                         |
+|    S_active = Pi_{seller_id}(O_2020)                                    |
+|                                                                         |
+|  Step 3: Relational Set Difference / Anti-Semijoin                      |
+|    S_clean = Seller |> S_active                                         |
+|            = Seller \ (Seller <| S_active)                              |
+|                                                                         |
+|  Step 4: Projection & Sort                                              |
+|    Result = tau_{seller_name ASC}(Pi_{seller_name}(S_clean))            |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Relational Expression | Algebraic Role | Output Cardinality Bound |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $\sigma_{\text{YEAR}(\text{sale\_date}) = 2020}(\text{Orders})$ | Filters transactions restricted to year 2020 | $\le |R|$ |
+| $\Pi_{\text{seller\_id}}(\dots)$ | Distinct active vendor identifiers | $\le \min(|S|, |R|)$ |
+| $\text{Seller} \rhd S_{\text{active}}$ | Retains sellers absent from the active 2020 set | $\le |S|$ |
+| $\tau_{\text{seller\_name} \uparrow}(\dots)$ | Orders final vendor names alphabetically | Equivalent to $|S_{\text{clean}}|$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Anti-Join Completeness Invariant.** A seller record $s \in \text{Seller}$ is retained in $\text{Seller} \rhd S_{\text{active}}$ if and only if $\nexists o \in \text{Orders}$ such that $o.\text{seller\_id} = s.\text{seller\_id} \land \text{YEAR}(o.\text{sale\_date}) = 2020$. Sellers with sales in 2019 (such as Frank) produce $0$ matching records in $O_{2020}$ and therefore remain in the anti-semijoin result.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Anti-Join Workflow
+    accDescr: Pipeline showing filtration of 2020 sales, anti-semijoin with Sellers table, and alphabetical sorting.
+    Ord["Orders Table"] --> Filter["Filter: YEAR(sale_date) == 2020"]
+    Filter --> Act["Extract Active seller_id set: {1, 2}"]
+    Sel["Seller Table: {1: Daniel, 2: Elizabeth, 3: Frank}"] --> Anti["Anti-Semijoin: Seller NOT IN Active Set"]
+    Act --> Anti
+    Anti --> Res["Remaining: {3: Frank}"]
+    Res --> Sort["Sort seller_name ASC"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Start from every seller
+### Step 1: Filter Orders by Calendar Year 2020
+Evaluate $\text{YEAR}(\text{sale\_date}) = 2020$ for each row in `Orders`:
+- Row 1: `sale_date = '2020-03-01'` $\implies \text{YEAR} = 2020$ (Retained)
+- Row 2: `sale_date = '2020-01-30'` $\implies \text{YEAR} = 2020$ (Retained)
+- Row 3: `sale_date = '2019-05-21'` $\implies \text{YEAR} = 2019 \ne 2020$ (Discarded)
+- Row 4: `sale_date = '2019-05-13'` $\implies \text{YEAR} = 2019 \ne 2020$ (Discarded)
 
-The result must include sellers who made no 2020 sale, including sellers with no orders at all. The query therefore starts from `Seller` and uses:
-
-`LEFT JOIN Orders USING (seller_id)`.
-
-A left join preserves every seller. Sellers with orders produce one joined row per order. A seller without any order still produces one null-extended joined row whose order columns, including `sale_date`, are `NULL`.
-
-The `Customer` table is irrelevant because the result depends only on seller identity and order dates; no customer information is selected or filtered.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Customer": [{"customer_id": 101, "customer_name": "Alice"}, {"customer_id": 102, "customer_name": "Bob"}], "Orders": [{"order_id": 1, "sale_date": "2020-03-01", "order_cost": 1500, "customer_id": 101, "seller_id": 1}, {"order_id": 2, "sale_date": "2020-05-25", "order_cost": 2400, "customer_id": 102, "seller_id": 2}, {"order_id": 3, "sale_date": "2019-05-25", "order_cost": 800, "customer_id": 101, "seller_id": 3}, {"order_id": 4, "sale_date": "2020-09-13", "order_cost": 1000, "customer_id": 101, "seller_id": 2}, {"order_id": 5, "sale_date": "2019-02-11", "order_cost": 700, "customer_id": 101, "seller_id": 2}], "Seller": [{"seller_id": 1, "seller_name": "Daniel"}, {"seller_id": 2, "seller_name": "Elizabeth"}, {"seller_id": 3, "seller_name": "Frank"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Filtered relation $O_{2020}$:
+| `order_id` | `sale_date` | `seller_id` |
+|---|---|---|
+| $1$ | `2020-03-01` | $1$ |
+| $2$ | `2020-01-30` | $2$ |
 
 ---
 
-### Step 2: Group all records for one seller
-
-`GROUP BY seller_id` collects a seller’s joined order rows into one group. Since `Seller.seller_id` is unique, it functionally determines one `seller_name`, so selecting the name is well-defined in MySQL.
-
-Grouping is necessary because the condition concerns whether any order in the entire seller history occurred during 2020.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Extract Distinct Active Seller IDs
+Project the seller identifiers from $O_{2020}$:
+$$S_{\text{active}} = \Pi_{\text{seller\_id}}(O_{2020}) = \{1, 2\}$$
 
 ---
 
-### Step 3: Turn the year test into a numeric count
+### Step 3: Anti-Join Against `Seller`
+Evaluate membership $s.\text{seller\_id} \notin S_{\text{active}}$ for each seller in `Seller`:
+- Seller $1$ (Daniel): $\text{seller\_id} = 1 \in \{1, 2\} \implies$ Excluded.
+- Seller $2$ (Elizabeth): $\text{seller\_id} = 2 \in \{1, 2\} \implies$ Excluded.
+- Seller $3$ (Frank): $\text{seller\_id} = 3 \notin \{1, 2\} \implies$ **Retained**.
 
-MySQL evaluates the Boolean expression:
+Resulting anti-semijoin relation $S_{\text{clean}}$:
+| `seller_id` | `seller_name` |
+|---|---|
+| $3$ | Frank |
 
-`YEAR(sale_date) = 2020`
+---
 
-as one when true and zero when false. `SUM` over that expression therefore counts the seller’s 2020 order rows.
-
-An order in 2019 or 2021 contributes zero. An order on any date from January 1 through December 31, 2020 contributes one because `YEAR` returns 2020.
-
-The exact order count is not requested; only whether the count is zero matters.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["seller_name"], "rows": [["Frank"]]}` |
+### Step 4: Projection and Ordering
+Project column `seller_name` and sort ascending:
+$$\tau_{\text{seller\_name} \uparrow} (\Pi_{\text{seller\_name}}(S_{\text{clean}})) = [\text{Frank}]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customer": [{"customer_id": 101, "customer_name": "Alice"}, {"customer_id": 102, "customer_name": "Bob"}], "Orders": [{"order_id": 1, "sale_date": "2020-03-01", "order_cost": 1500, "customer_id": 101, "seller_id": 1}, {"order_id": 2, "sale_date": "2020-05-25", "order_cost": 2400, "customer_id": 102, "seller_id": 2}, {"order_id": 3, "sale_date": "2019-05-25", "order_cost": 800, "customer_id": 101, "seller_id": 3}, {"order_id": 4, "sale_date": "2020-09-13", "order_cost": 1000, "customer_id": 101, "seller_id": 2}, {"order_id": 5, "sale_date": "2019-02-11", "order_cost": 700, "customer_id": 101, "seller_id": 2}], "Seller": [{"seller_id": 1, "seller_name": "Daniel"}, {"seller_id": 2, "seller_name": "Elizabeth"}, {"seller_id": 3, "seller_name": "Frank"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["seller_name"], "rows": [["Frank"]]}` | Verified |
+| Seller ID | Seller Name | Associated Orders in `Orders` | 2020 Order Count | Belongs to $S_{\text{active}}$? | Anti-Semijoin Action |
+|---|---|---|---|---|---|
+| $1$ | Daniel | Order 1 (`2020-03-01`) | $1$ | Yes ($1 \in \{1, 2\}$) | Discarded |
+| $2$ | Elizabeth | Order 2 (`2020-01-30`), Order 3 (`2019-05-21`) | $1$ | Yes ($2 \in \{1, 2\}$) | Discarded |
+| $3$ | Frank | Order 4 (`2019-05-13`) | $0$ | No ($3 \notin \{1, 2\}$) | **Retained** |
+
+Final tabular presentation:
+| `seller_name` |
+|---|
+| Frank |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A seller $s$ is emitted in the output if and only if no row in `Orders` associated with $s.\text{seller\_id}$ carries a `sale_date` in the calendar year 2020. This matches the exact requirement that the seller made zero sales in 2020.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every seller registered in the `Seller` table is evaluated against the set of 2020 transactions. Sellers who made transactions exclusively in other years (such as Frank in 2019) or sellers who have never logged any transactions produce zero matches in the 2020 active set and are guaranteed to be preserved.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`NOT EXISTS` anti-join:** Select sellers for whom no correlated order has a 2020 date. It directly expresses absence and avoids aggregation.
-- **`NOT IN` subquery:** It can exclude seller IDs found in 2020 orders, but nullable subquery values can create three-valued-logic hazards unless the key is guaranteed non-null.
-- **Left join only 2020 orders and test null:** Put the date predicate in the join condition, then keep sellers with a null joined order ID. This is another clean anti-join formulation.
-- **Filter non-2020 rows in `WHERE`:** This is incorrect for sellers having both 2020 and other-year orders, because it removes evidence of the disqualifying sale while leaving another row.
-- **Seller with no orders:** The left join preserves the seller, and `COALESCE` turns the null aggregate into zero.
-- **Only sales before 2020:** Every Boolean contributes zero, so the seller is included.
-- **Only sales after 2020:** The same zero aggregate includes the seller.
-- **At least one 2020 sale:** The aggregate is positive, excluding the seller regardless of other dates.
-- **Several 2020 sales:** Each contributes one, but any positive total has the same exclusion effect.
-- **Boundary dates:** `YEAR` classifies both `2020-01-01` and `2020-12-31` as 2020.
-- **Functional dependency:** Unique `seller_id` determines `seller_name`. Stricter portable SQL can group by both columns explicitly.
-- **Required ordering:** `ORDER BY 1` sorts the only selected column ascending; no tie-breaking is necessary for identical names unless the schema permits them.
-- **Unused customer table:** Customer data cannot change whether a seller made a 2020 sale, so excluding it is intentional.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Row-Level Filtration Error:** Attempting to filter rows via `WHERE YEAR(sale_date) != 2020` preserves Elizabeth's 2019 transaction row (`order_id = 3`), causing Elizabeth to be erroneously returned even though she recorded a 2020 sale. Year filtration must isolate 2020 transactions before applying set exclusion.
+- **Three-Valued Logic in Set Negation:** If using subquery set exclusion with nullable columns, any `NULL` within the subquery causes `NOT IN` predicates to evaluate to `UNKNOWN`, silently returning empty sets. Anti-semijoins or outer joins testing for null keys provide robust null safety.
+- **Omission of Sellers with Zero Total Sales:** Using an inner join between `Seller` and `Orders` automatically drops sellers who have never made a sale in any year. An outer join or anti-semijoin preserves these sellers as required.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((s+r)\log(s+r))$. Let $S$ be the number of sellers and $R$ the number of orders.
-- **Auxiliary Space Complexity:** $O(s+r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(S + R \log(S + R))$, where $S$ is the cardinality of `Seller` and $R$ is the cardinality of `Orders`. Filtering 2020 transactions takes $\mathcal{O}(R)$ time. Performing a hash anti-join or indexed lookup takes $\mathcal{O}(S + R)$ time. Sorting the final output relation takes $\mathcal{O}(S \log S)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(S + R)$ auxiliary working space to materialize the active seller hash set and intermediate join tables.

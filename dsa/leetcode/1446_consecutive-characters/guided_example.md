@@ -1,114 +1,168 @@
 # Guided Example: Consecutive Characters
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step linear scan and consecutive character run-length tracking on a representative problem instance:
 
-- **Input:** `{"s": "leetcode"}`
-- **Required output:** `2`
+- **Input:** $s = \text{"abbcccddddeeeeedcba"}$
+- **Required Output:** $5$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains increasing and decreasing contiguous character blocks ('a', 'bb', 'ccc', 'dddd', 'eeeee', 'd', 'c', 'b', 'a'), providing clear transitions between ascending run lengths and reset points.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **power** of the string is the maximum length of a non-empty substring that contains only one unique character.
+We are given a string $s$ consisting of lowercase English letters. The "power" of $s$ is defined as the maximum length of any non-empty contiguous substring that contains only one unique character.
 
-The objective is to compute `2` from `{"s": "leetcode"}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Substring `"a"` has length $1$.
+- Substring `"bb"` has length $2$.
+- Substring `"ccc"` has length $3$.
+- Substring `"dddd"` has length $4$.
+- Substring `"eeeee"` has length $5$.
+- Subsequent runs `"d"`, `"c"`, `"b"`, `"a"` each have length $1$.
+- The maximum run length across the entire string is $5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model run-length encoding logic using a single pass with two scalar counters: a running streak counter ($current\_power$) and a running maximum ($max\_power$), eliminating nested substring scanning.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $s[i]$ denote the character at index $i$ ($0 \le i < |s|$). We partition the string into maximal contiguous uniform blocks:
 
-| State Parameter | Role & Purpose | Initial State |
+$$s = B_1 B_2 \dots B_m$$
+
+where each block $B_j = c^{L_j}$ consists of repeated copies of character $c$. The power of the string is:
+
+$$\text{power}(s) = \max_{1 \le j \le m} L_j$$
+
+In a streaming pass starting with base values $max\_power = 1$ and $current\_power = 1$:
+- For each index $i$ from $1$ to $|s|-1$:
+  - If $s[i] == s[i-1]$: the current uniform block extends, so increment $current\_power \leftarrow current\_power + 1$.
+  - If $s[i] \ne s[i-1]$: a block boundary is crossed, so reset $current\_power \leftarrow 1$.
+  - Update the overall maximum: $max\_power \leftarrow \max(max\_power, current\_power)$.
+
+```
+Run-Length Partitioning Architecture:
+Index:   0   1 2   3 4 5   6 7 8 9   10 11 12 13 14   15  16  17  18
+Char:    a   b b   c c c   d d d d    e  e  e  e  e    d   c   b   a
+Block:  [a] [b b] [c c c] [d d d d]  [ e  e  e  e  e] [d] [c] [b] [a]
+Length:  1    2      3       4              5          1   1   1   1
+                                            ^
+                                    Maximum Power = 5
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Scan Index ($i$) | Integer $0 \le i < |s|$ | Active position in single linear traversal |
+| Current Character ($s[i]$) | Character `a`-`z` | Character evaluated against predecessor $s[i-1]$ |
+| Current Streak ($current\_power$) | Integer $\ge 1$ | Length of active contiguous run of identical characters |
+| Maximum Streak ($max\_power$) | Integer $\ge 1$ | Largest uniform run length encountered so far |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After processing index $i$, $current\_power$ equals the length of the maximal uniform suffix ending at $s[i]$, and $max\_power$ equals the length of the longest uniform substring in $s[0 \dots i]$.
+
+```mermaid
+flowchart TD
+    accTitle: Linear Consecutive Character Run Tracker
+    accDescr: Scans string from index 1 onward. If current char equals previous char, increment streak; else reset streak to 1. Update running maximum.
+    A["Initialize max_power = 1, current_power = 1, i = 1"] --> B{"i < length(s)?"}
+    B -- No --> C["Return max_power"]
+    B -- Yes --> D{"s[i] == s[i - 1]?"}
+    D -- Yes --> E["current_power = current_power + 1"]
+    D -- No --> F["current_power = 1"]
+    E --> G["max_power = max(max_power, current_power)"]
+    F --> G
+    G --> H["i = i + 1"] --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance $s = \text{"abbcccddddeeeeedcba"}$.
 
-**A valid substring is one run of equal characters.** The power of the string is not about how often a character appears in total. It is about the longest contiguous block in which every character is the same. For example, two occurrences of `a` separated by another letter cannot be combined. The string can therefore be viewed as consecutive runs, and the task is to find the maximum run length.
+### Initialization
+- At index $0$: character is `'a'`.
+- Base state: $current\_power = 1, max\_power = 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "leetcode"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Traversal Across Key Segment Transitions
 
----
+1. **Indices $1 \dots 2$ (Block `'b'`):**
+   - $i=1$: $s[1] = \text{'b'} \ne s[0] = \text{'a'}$. Reset $current\_power = 1$.
+   - $i=2$: $s[2] = \text{'b'} == s[1] = \text{'b'}$. Increment $current\_power = 2$. $max\_power \leftarrow 2$.
+2. **Indices $3 \dots 5$ (Block `'c'`):**
+   - $i=3$: $s[3] = \text{'c'} \ne s[2] = \text{'b'}$. Reset $current\_power = 1$.
+   - $i=4$: $s[4] = \text{'c'} == s[3]$. Increment $current\_power = 2$.
+   - $i=5$: $s[5] = \text{'c'} == s[4]$. Increment $current\_power = 3$. $max\_power \leftarrow 3$.
+3. **Indices $6 \dots 9$ (Block `'d'`):**
+   - $i=6$: Transition from `'c'` to `'d'`. Reset $current\_power = 1$.
+   - $i=7, 8, 9$: Three matching `'d'`s. $current\_power$ climbs: $2 \to 3 \to 4$. $max\_power \leftarrow 4$.
+4. **Indices $10 \dots 14$ (Block `'e'`):**
+   - $i=10$: Transition from `'d'` to `'e'`. Reset $current\_power = 1$.
+   - $i=11$: Match `'e'`. $current\_power = 2$.
+   - $i=12$: Match `'e'`. $current\_power = 3$.
+   - $i=13$: Match `'e'`. $current\_power = 4$.
+   - $i=14$: Match `'e'`. $current\_power = 5$. $max\_power \leftarrow \max(4, 5) = 5$.
+5. **Indices $15 \dots 18$ (Trailing Block `'d'`, `'c'`, `'b'`, `'a'`):**
+   - At each subsequent index, the character changes, resetting $current\_power = 1$.
+   - $max\_power$ remains unchanged at $5$.
 
-### Step 2: Core Step 3
-
-- `t` is the length of the equal-character run that ends at the current position.
-- `ans` is the largest run length seen anywhere so far.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 4
-
-Both begin at one because the input is guaranteed to be nonempty. Even a one-character string has power one, and before any adjacent pair is examined, the first character already forms a run of length one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+| Transition Step | Substring Slice | Active Char | Preceding Char | Match? | Updated $current\_power$ | Updated $max\_power$ |
+|---|---|---|---|---|---|---|
+| Init ($i=0$) | `"a"` | `'a'` | - | - | 1 | 1 |
+| $i=1$ | `"ab"` | `'b'` | `'a'` | No | 1 | 1 |
+| $i=2$ | `"abb"` | `'b'` | `'b'` | Yes | 2 | 2 |
+| $i=3$ | `"abbc"` | `'c'` | `'b'` | No | 1 | 2 |
+| $i=4 \dots 5$ | `"abbccc"` | `'c'` | `'c'` | Yes | $2 \to 3$ | 3 |
+| $i=6 \dots 9$ | `"...dddd"` | `'d'` | `'d'` | Yes | $1 \to 4$ | 4 |
+| $i=10 \dots 14$ | `"...eeeee"` | `'e'` | `'e'` | Yes | $1 \to 5$ | **5** |
+| $i=15 \dots 18$ | `"...dcba"` | Various | Various | No | 1 | 5 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "leetcode"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```
+Final Summary:
+Total Characters: 19
+Peak Block: s[10..14] = "eeeee"
+Run Length: 5
+Resulting Power: 5
+```
+
+| Uniform Run Block | Index Span | Character | Run Length | Peak Power Recorded |
+|---|---|---|---|---|
+| Block 1 | $[0 \dots 0]$ | `'a'` | 1 | 1 |
+| Block 2 | $[1 \dots 2]$ | `'b'` | 2 | 2 |
+| Block 3 | $[3 \dots 5]$ | `'c'` | 3 | 3 |
+| Block 4 | $[6 \dots 9]$ | `'d'` | 4 | 4 |
+| Block 5 | $[10 \dots 14]$ | `'e'` | 5 | **5 (Optimal)** |
+| Block 6 | $[15 \dots 15]$ | `'d'` | 1 | 5 |
+| Block 7 | $[16 \dots 16]$ | `'c'` | 1 | 5 |
+| Block 8 | $[17 \dots 17]$ | `'b'` | 1 | 5 |
+| Block 9 | $[18 \dots 18]$ | `'a'` | 1 | 5 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A substring has only one unique character if and only if all adjacent pairs of characters within it are identical. Incrementing the counter on equality and resetting to $1$ on mismatch exactly identifies the contiguous length of identical characters ending at the current position. Tracking the maximum across all positions guarantees that the reported power corresponds to an actual valid uniform substring.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the string is visited in sequence. Since every maximal uniform substring starts at some index and ends at some index, the counter $current\_power$ will reach its exact full length at the substring's ending index, ensuring that no maximal run is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual index loop:** Iterate `i` from one through `n - 1` and compare `s[i]` with `s[i - 1]`. This has identical time and space bounds and may be preferable where `pairwise` is unavailable.
-- **Track the previous character explicitly:** Loop over characters, store `previous`, and update a count. This is the editorial's equivalent formulation and handles the first character with either a sentinel or a special initialization.
-- **Group consecutive characters:** `itertools.groupby` can form each run lazily, after which the maximum group length is measured. It is expressive, but counting each group usually introduces more iterator machinery than the two-counter scan.
-- **Frequency map:** Counting total occurrences per character is incorrect because equal letters separated by other characters do not form one substring.
-- **Generate every substring:** Testing all substrings repeats work and needs at least quadratic candidates. A run is fully determined by adjacent equality, so one pass is sufficient.
-- **Sort the characters:** Sorting destroys original adjacency, which is the defining property of a substring. It would answer a different frequency question.
-- **One-character string:** There are no adjacent pairs. The initial value one is returned, which is the only nonempty substring's length.
-- **All characters equal:** Every pair matches, `t` grows from one to `n`, and `ans` finishes at `n`.
-- **All neighboring characters different:** Every iteration resets `t` to one. The power is one.
-- **Longest run at the beginning:** `ans` records that run before later differences reset `t`, so it is not lost.
-- **Longest run at the end:** The equal-pair branch updates `ans` immediately on each extension, so no special end-of-loop flush is needed.
-- **Several equally long runs:** Taking `max` keeps their common length. The task asks only for the length, not a location or character.
-- **Lowercase-only guarantee:** The algorithm would also work for other comparable characters, but it needs no case normalization because the input is already restricted.
-- **Substring versus subsequence:** Only adjacent positions count. The pair scan enforces contiguity automatically and never skips intervening characters.
-- **Empty string outside the contract:** Initialization to one would be wrong for an empty input. The stated lower bound of one makes this case impossible; a generalized function would need a separate empty check.
-- **Lazy iterator requirement:** Calling `pairwise` directly keeps space constant. Materializing all pairs would change auxiliary space to `O(n)` without improving the result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Update Max on Terminal Run:** If $max\_power$ is only updated when a character mismatch occurs, a maximal run that extends all the way to the end of the string (e.g. `"aaabbbb"`) would never trigger a mismatch, failing to record the final streak of $4$. Updating $max\_power$ at every step (or an extra check post-loop) prevents this omission.
+- **Off-by-One Initialization:** Initializing $max\_power = 0$ or $current\_power = 0$. Since the input length is at least $1$, any single character represents a valid uniform substring of length $1$. Base values must begin at $1$.
+- **Quadratic Slicing:** Extracting substrings using string slicing and testing set sizes takes $\mathcal{O}(n^2)$ or $\mathcal{O}(n^3)$ time; adjacent character comparison solves the problem in $\mathcal{O}(n)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the length of `s`. A nonempty string has exactly `n - 1` adjacent pairs. The loop processes each pair once, doing one character comparison and a constant number of integer operations. Total running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n = |s|$ is the length of the string ($n \le 500$). The algorithm performs a single forward pass examining each character once. At each step, a single equality check and scalar updates require $\mathcal{O}(1)$ operations, guaranteeing strictly linear time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Only two integer variables ($current\_power$ and $max\_power$) and loop indices are stored, consuming constant auxiliary memory.

@@ -1,126 +1,158 @@
 # Guided Example: Evaluate the Bracket Pairs of a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of streaming grammar parsing, dictionary-backed key replacement, and string buffer assembly on a representative problem instance:
 
-- **Input:** `{"s": "(name)is(age)yearsold", "knowledge": [["name", "bob"], ["age", "two"]]}`
-- **Required output:** `"bobistwoyearsold"`
+- **Input:** `s = "(name)is(age)yearsold"`, `knowledge = [["name", "bob"], ["age", "two"]]`
+- **Required Output:** `"bobistwoyearsold"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple bracketed interpolation tokens interspersed with literal alphanumeric text, demonstrating how non-nested parentheses allow linear single-pass delimiter scanning and hash-map substitution.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` that contains some bracket pairs, with each pair containing a **non-empty** key.
+We are given a template string `s` containing bracketed placeholders of the form `(key)` where each `key` is a non-empty string. We are also given a list of key-value replacement pairs `knowledge`.
+- For each bracket pair `(key)`, if `key` is present in `knowledge`, we replace `(key)` with its associated value.
+- If `key` is not present in `knowledge`, we replace `(key)` with a single question mark `'?'`.
+- All text outside brackets remains unchanged.
 
-The objective is to compute `"bobistwoyearsold"` from `{"s": "(name)is(age)yearsold", "knowledge": [["name", "bob"], ["age", "two"]]}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to construct the fully evaluated string.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach repeatedly scanning the `knowledge` list on every bracket pair incurs $\mathcal{O}(|s| \cdot |knowledge|)$ time. Repeatedly performing string concatenation inside a loop creates quadratic copying overhead. The optimal approach preprocesses `knowledge` into a hash table and appends evaluated tokens to a dynamic array buffer in a single linear pass.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Non-Nested Grammar and Hash Substitution
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The problem guarantees:
+1. Every opening bracket `'('` has a unique matching closing bracket `')'`.
+2. Brackets are strictly non-nested: no bracket appears inside another bracket pair.
+3. Every bracket pair contains a non-empty alphanumeric key.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Disjoint Bracket Grammar & Hash-Map Substitution Theorem.**
+> Because brackets are non-nested, the string $s$ partitions into a sequence of disjoint segments:
+> $$s = T_0 \cdot (K_1) \cdot T_1 \cdot (K_2) \cdots (K_m) \cdot T_m$$
+> where each $T_k$ is a literal substring and each $(K_k)$ is a bracketed key.
+> 1. Literal characters are appended verbatim.
+> 2. For each key $K_k$, looking up $K_k$ in a precomputed hash map $D$ takes $\mathcal{O}(|K_k|)$ average time, returning $D[K_k]$ if present, or `'?'` if missing.
+> 3. Advancing the scan index $i$ directly to the closing bracket index $j$ ensures every character of $s$ is visited exactly once.
+
+```mermaid
+flowchart TD
+    accTitle: Bracket Parser Workflow
+    accDescr: Sequential parser routing characters to literal buffer or extracting enclosed key for hash lookup.
+    A["Preprocess knowledge into HashMap D"] --> B["Scan index i in s from 0 to n-1"]
+    B --> C{"s[i] == '('?"}
+    C -- "No (Literal Character)" --> D["Append s[i] to buffer"]
+    D --> E["Advance i = i + 1"]
+    C -- "Yes (Bracketed Key)" --> F["Find matching ')' at index j"]
+    F --> G["Extract key = s[i+1 : j]"]
+    G --> H["Append D.get(key, '?') to buffer"]
+    H --> I["Advance i = j + 1"]
+    E --> J{"i < n?"}
+    I --> J
+    J -- "Yes" --> B
+    J -- "No" --> K["Join buffer into final string"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Prepare constant-time key lookup
-
-The knowledge list contains unique keys. The solution first builds dictionary `d` mapping every key to its value. A bracket pair can then be evaluated with expected constant-time lookup rather than scanning the knowledge list repeatedly.
-
-If a key is missing, `d.get(key, '?')` returns the required question mark.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "(name)is(age)yearsold", "knowledge": [["name", "bob"], ["age", "two"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "(name)is(age)yearsold"` with `knowledge = [["name", "bob"], ["age", "two"]]`.
 
 ---
 
-### Step 2: Scan ordinary text and bracket pairs differently
-
-Index `i` moves from left to right through `s`. List `ans` collects output pieces.
-
-When `s[i]` is an ordinary lowercase letter, the solution appends that one character unchanged and increments `i`.
-
-When `s[i] == '('`, the solution uses `s.find(')', i + 1)` to locate the matching close bracket at index `j`. The constraints guarantee that it exists and that brackets are not nested, so the next close bracket is the correct partner.
-
-Slice `s[i + 1:j]` is the nonempty key. The dictionary value or `"?"` is appended as one output piece. The solution assigns `i = j`, and the common increment at the loop bottom moves past the close bracket. Neither parenthesis nor the key text itself is copied into the output.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Precompute Knowledge Dictionary
+Build hash map $D$ from `knowledge`:
+$$D = \{ \text{"name"}: \text{"bob"}, \ \text{"age"}: \text{"two"} \}$$
+Initialize character buffer: $\text{ans} = []$.
 
 ---
 
-### Step 3: Why `find` does not make the total scan quadratic here
+### Step 2: Index $i = 0$, Encounter `'('`
+- $s[0] == \text{'('}$.
+- Find matching closing bracket:
+  - Search from index $1$: $s[5] == \text{')'}$, so $j = 5$.
+- Extract key:
+  $$\text{key} = s[0 + 1 : 5] = s[1:5] = \text{"name"}$$
+- Query dictionary:
+  $$D[\text{"name"}] = \text{"bob"}$$
+- Append replacement: $\text{ans}.\text{append}(\text{"bob"})$.
+- Advance index: $i = j = 5$.
+- End of loop step: $i \leftarrow 5 + 1 = 6$.
+- State: $\text{ans} = [\text{"bob"}]$, next $i = 6$.
 
-Each call to `find` scans only from an opening bracket to its corresponding closing bracket. After replacement, `i` jumps beyond that entire bracket region. Because bracket pairs are non-nested and disjoint, these searched regions do not overlap.
+---
 
-Consequently, the total number of characters examined across all `find` calls is linear in the input length. Ordinary text outside brackets is also visited once by the outer scan.
+### Step 3: Indices $i = 6$ and $i = 7$, Literal `"is"`
+- $i = 6$: $s[6] = \text{'i'} \ne \text{'('} \implies \text{ans}.\text{append}(\text{'i'}), \ i \to 7$.
+- $i = 7$: $s[7] = \text{'s'} \ne \text{'('} \implies \text{ans}.\text{append}(\text{'s'}), \ i \to 8$.
+- State: $\text{ans} = [\text{"bob"}, \text{'i'}, \text{'s'}]$, next $i = 8$.
 
-This argument depends on the source guarantees. Arbitrary nested or malformed parentheses would need a different parser.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"bobistwoyearsold"` |
+### Step 4: Index $i = 8$, Encounter `'('`
+- $s[8] == \text{'('}$.
+- Find matching closing bracket:
+  - Search from index $9$: $s[12] == \text{')'}$, so $j = 12$.
+- Extract key:
+  $$\text{key} = s[8 + 1 : 12] = s[9:12] = \text{"age"}$$
+- Query dictionary:
+  $$D[\text{"age"}] = \text{"two"}$$
+- Append replacement: $\text{ans}.\text{append}(\text{"two"})$.
+- Advance index: $i = j = 12$.
+- End of loop step: $i \leftarrow 12 + 1 = 13$.
+- State: $\text{ans} = [\text{"bob"}, \text{'i'}, \text{'s'}, \text{"two"}]$, next $i = 13$.
+
+---
+
+### Step 5: Indices $i = 13$ to $20$, Literal `"yearsold"`
+- $s[13..20] = \text{"yearsold"}$ contains no opening brackets.
+- Characters `'y', 'e', 'a', 'r', 's', 'o', 'l', 'd'` are appended sequentially to $\text{ans}$.
+- State: $\text{ans} = [\text{"bob"}, \text{'i'}, \text{'s'}, \text{"two"}, \text{'y'}, \text{'e'}, \text{'a'}, \text{'r'}, \text{'s'}, \text{'o'}, \text{'l'}, \text{'d'}]$.
+
+---
+
+### Step 6: Buffer Assembly
+Join the elements of $\text{ans}$:
+$$\text{Output} = \mathbf{\text{"bobistwoyearsold"}}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "(name)is(age)yearsold", "knowledge": [["name", "bob"], ["age", "two"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"bobistwoyearsold"` | Verified |
+| Step Range | Characters Processed | Classification | Target Key | Map Lookup Result | Appended Value |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0..5$ | `"(name)"` | Bracketed placeholder | `"name"` | Found $\to$ `"bob"` | `"bob"` |
+| $6$ | `'i'` | Literal character | — | — | `'i'` |
+| $7$ | `'s'` | Literal character | — | — | `'s'` |
+| $8..12$ | `"(age)"` | Bracketed placeholder | `"age"` | Found $\to$ `"two"` | `"two"` |
+| $13..20$ | `"yearsold"` | Literal substring | — | — | `"yearsold"` |
+
+Final reconstructed string: **`"bobistwoyearsold"`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** All bracketed intervals $[i, j]$ are strictly parsed according to the problem specification. Keys are looked up in the precomputed dictionary. If a key exists, its assigned string replaces the entire $(key)$ expression; if missing, `'?'` replaces it. Literal characters outside brackets are preserved without alteration.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Because brackets do not nest, finding the next `')'` from index $i + 1$ uniquely and accurately delimits the active key. Because the loop advances index $i$ past each closing bracket, every character in the template string $s$ is processed without overlap, duplication, or omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Repeatedly concatenate strings:** It is easy to write but can copy an ever-growing result and become quadratic.
-- **Scan knowledge per bracket:** It costs up to $O(N\cdot|\texttt{knowledge}|)$; a dictionary makes lookup expected $O(1)$.
-- **Regular-expression replacement:** It can work but still needs a callback and dictionary, while the direct parser follows the simple grammar clearly.
-- **Stack parser:** Useful for nested brackets, but nesting is explicitly absent here.
-- **Unknown key:** Append exactly one question mark and omit the bracket syntax.
-- **Known key:** Append its entire mapped value as one piece.
-- **Repeated bracket key:** Each occurrence is replaced; dictionary construction happens only once.
-- **Known letters outside brackets:** They remain literal and are never treated as keys.
-- **Empty knowledge:** Every bracket pair becomes `"?"`.
-- **No bracket pairs:** Every character is copied and the result equals `s`.
-- **Bracket at the beginning or end:** Index jumps and the common increment handle both boundaries.
-- **Nonempty-key guarantee:** The slice never represents an intentionally empty key.
-- **Matched-bracket guarantee:** `find` never returns -1 on valid input.
-- **No nesting:** The first following close bracket always matches the current open bracket.
-- **Unique knowledge keys:** Dictionary construction never faces conflicting values.
-- **Output length:** Replacements may change length, so complexity should include produced characters.
-- **Input preservation:** The method creates a dictionary and result string without modifying `s` or `knowledge`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Key Fallback:** If a key does not exist in `knowledge` (e.g. `(unknown)`), `d.get(key, '?')` replaces it with `'?'`. Omitting this fallback would raise a key error or produce an empty string.
+- **Nested Bracket Confusion:** While general bracket parsing requires a stack, the problem constraints guarantee non-nested brackets. Using a simple linear scanner with `s.find(')', i + 1)` is both sufficient and faster.
+- **Repeated String Concatenation:** Using repeated string additions `result += val` in languages with immutable strings creates an $\mathcal{O}(|s|^2)$ bottleneck. Collecting pieces in an array and calling `join` maintains linear $\mathcal{O}(|s| + \text{output\_length})$ performance.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N+K+R)$. Let $N$ be the length of `s`, let $K$ be the total number of characters stored across the knowledge keys and values, and let $R$ be the output length.
-- **Auxiliary Space Complexity:** $O(K+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|s| + K)$ where $|s|$ is the length of the string and $K$ is the sum of lengths of all strings in `knowledge`. Constructing the hash map takes $\mathcal{O}(K)$ time. Scanning $s$ and slicing keys takes $\mathcal{O}(|s|)$ time because each character is visited at most twice. Joining the output array takes time proportional to the output length. Overall time is strictly linear.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K + |s|)$ to store the hash map and the output buffer.

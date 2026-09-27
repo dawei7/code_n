@@ -1,136 +1,231 @@
 # Guided Example: Valid Triangle Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step array pre-sorting, sorted triangle inequality simplification ($a \le b \le c \implies a + b > c$), dual two-pointer interval spanning ($r - l$), monotonic pointer contraction, and valid triplet count aggregation on representative side-length arrays:
 
-- **Input:** `{"nums": [2, 2, 3, 4]}`
+- **Input:** $nums = [2, 2, 3, 4]$
 - **Required output:** `3`
+  - Valid triangle condition: Three lengths $a, b, c$ can form a non-degenerate triangle if and only if:
+    $$
+    a + b > c, \quad a + c > b, \quad b + c > a
+    $$
+- **Sorted Metric Simplification & Two-Pointer Invariant:**
+  - If we sort the array in non-decreasing order:
+    $$
+    nums[i] \le nums[j] \le nums[k] \quad (i < j < k)
+    $$
+  - Because $nums[k] \ge nums[j]$ and $nums[k] \ge nums[i]$, the inequalities:
+    $$
+    nums[i] + nums[k] > nums[j] \quad \text{and} \quad nums[j] + nums[k] > nums[i]
+    $$
+    are **trivially guaranteed** for all positive lengths!
+  - Therefore, the three inequalities collapse into a **single necessary and sufficient check**:
+    $$
+    nums[i] + nums[j] > nums[k]
+    $$
+  - **Two-Pointer Range Counting ($O(N^2)$):**
+    - Fix the longest side index $k$ from $n - 1$ down to $2$.
+    - Place two pointers for the two smaller sides:
+      - Left pointer $l = 0$
+      - Right pointer $r = k - 1$
+    - Test the condition:
+      $$
+      nums[l] + nums[r] > nums[k]
+      $$
+    - **Case 1: $nums[l] + nums[r] > nums[k]$:**
+      - Since the array is sorted, any element between $l$ and $r$ is $\ge nums[l]$.
+      - Thus, paired with $nums[r]$, every index $m \in [l, r - 1]$ will also satisfy:
+        $$
+        nums[m] + nums[r] \ge nums[l] + nums[r] > nums[k]
+        $$
+      - There are exactly $r - l$ such valid indices!
+      - Add $r - l$ directly to total count.
+      - Decrement $r \leftarrow r - 1$ to test smaller pairs.
+    - **Case 2: $nums[l] + nums[r] \le nums[k]$:**
+      - The sum is too small to exceed $nums[k]$.
+      - Increment $l \leftarrow l + 1$ to increase the sum.
+- **Step-by-Step Worked Execution Trace on $[2, 2, 3, 4]$:**
+  - Array is already sorted: $nums = [2, 2, 3, 4]$, length $n = 4$.
+  - Initialize $ans = 0$.
+  - **Iteration 1: Fix Longest Side $k = 3$ ($nums[k] = 4$):**
+    - Pointers: $l = 0$ ($nums[l] = 2$), $r = 2$ ($nums[r] = 3$).
+    - Check sum:
+      $$
+      nums[l] + nums[r] = 2 + 3 = 5
+      $$
+      $$
+      5 > 4 \implies \mathbf{Valid!}
+      $$
+    - Valid pairs with $nums[r] = 3$:
+      - Index $l=0$: pair $(nums[0], nums[2]) = (2, 3)$ with $4 \implies (2, 3, 4)$
+      - Index $l=1$: pair $(nums[1], nums[2]) = (2, 3)$ with $4 \implies (2, 3, 4)$
+    - Number of valid pairs:
+      $$
+      r - l = 2 - 0 = \mathbf{2}
+      $$
+    - Accumulate:
+      $$
+      ans \leftarrow 0 + 2 = \mathbf{2}
+      $$
+    - Move right pointer inward: $r \leftarrow 2 - 1 = 1$.
+    - New pointers: $l = 0$ ($nums[l] = 2$), $r = 1$ ($nums[r] = 2$).
+    - Check sum:
+      $$
+      nums[l] + nums[r] = 2 + 2 = 4
+      $$
+      $$
+      4 \ngtr 4 \implies \mathbf{Too\ small!}
+      $$
+    - Move left pointer forward: $l \leftarrow 0 + 1 = 1$.
+    - Pointers meet ($l == r == 1$). Finished for $k = 3$.
+  - **Iteration 2: Fix Longest Side $k = 2$ ($nums[k] = 3$):**
+    - Pointers: $l = 0$ ($nums[l] = 2$), $r = 1$ ($nums[r] = 2$).
+    - Check sum:
+      $$
+      nums[l] + nums[r] = 2 + 2 = 4
+      $$
+      $$
+      4 > 3 \implies \mathbf{Valid!}
+      $$
+    - Number of valid pairs:
+      $$
+      r - l = 1 - 0 = \mathbf{1} \quad (\text{triplet } (2, 2, 3))
+      $$
+    - Accumulate:
+      $$
+      ans \leftarrow 2 + 1 = \mathbf{3}
+      $$
+    - Decrement right pointer: $r \leftarrow 0$.
+    - Pointers meet ($l > r$). Finished for $k = 2$.
+  - **Termination:**
+    - Longest side index $k$ has reached minimum ($k < 2$).
+    - Total valid triplets:
+      $$
+      ans = \mathbf{3}
+      $$
+    - The 3 valid triplets are:
+      1. Indices $(0, 2, 3) \implies (2, 3, 4)$
+      2. Indices $(1, 2, 3) \implies (2, 3, 4)$
+      3. Indices $(0, 1, 2) \implies (2, 2, 3)$
+- **Zero-Length Elements Handling ($nums = [0, 1, 1, 1]$):**
+  - Any triangle involving side $0$ has $0 + 1 \ngtr 1$, so it is automatically rejected by the strict inequality $a + b > c$.
+- **All Identical Elements ($[2, 2, 2, 2]$):**
+  - All $\binom{4}{3} = 4$ combinations form valid equilateral triangles $\implies ans = 4$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates two-pointer boundary sweeping on monotonic sequences, mathematically proves why sorting collapses 3-variable geometric constraints into single-inequality interval summations, and derives $O(N^2)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, return *the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle*.
+Given an integer array $nums$:
+Count how many triplets $(i, j, k)$ can form the side lengths of a valid triangle.
 
-The objective is to compute `3` from `{"nums": [2, 2, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+nums = [2, 2, 3, 4]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Triplets tested:
+  (2, 3, 4) -> 2 + 3 = 5 > 4 (Valid!)
+  (2, 3, 4) -> 2 + 3 = 5 > 4 (Valid!)
+  (2, 2, 3) -> 2 + 2 = 4 > 3 (Valid!)
+  (2, 2, 4) -> 2 + 2 = 4 <= 4 (Invalid)
+
+Total valid triplets = 3
+```
+
+### The Sorted Triangle Theorem
+- For three sides $a \le b \le c$:
+  - $a + c > b$ is always true (since $c \ge b$ and $a > 0$).
+  - $b + c > a$ is always true (since $c \ge a$ and $b > 0$).
+- Thus, once the array is sorted, only **one check** is needed:
+  $$
+  a + b > c
+  $$
+- This reduces 3D geometric testing to a 2D sorted interval search.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Reverse Two-Pointer Technique:
+- Fix the hypotenuse/largest side $k$ from $n - 1$ down to 2.
+- Set $l = 0$ and $r = k - 1$.
+- While $l < r$:
+  - If $nums[l] + nums[r] > nums[k]$:
+    - All elements between $l$ and $r-1$ paired with $r$ also exceed $nums[k]$.
+    - Add $r - l$ to total count.
+    - $r \leftarrow r - 1$.
+  - Else:
+    - $l \leftarrow l + 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Monotonic Interval Invariant.** In a non-decreasing array, if $nums[l] + nums[r] > nums[k]$, then for all $m$ satisfying $l \le m < r$, $nums[m] + nums[r] \ge nums[l] + nums[r] > nums[k]$, ensuring all $r - l$ pairs are simultaneously valid.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Fixing the two smaller-side indices
-
-The nested loops enumerate every pair $i<j$. The third index must lie in suffix `j + 1` through the end.
-
-Because the suffix is sorted, all values strictly below:
-
-
-
-are valid largest sides. Once a value is greater than or equal to the sum, it and all later values are invalid.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 2, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [2, 2, 3, 4]$:
 
 ---
 
-### Step 2: Finding the boundary with binary search
-
-`bisect_left(nums, target, lo=j + 1)` returns the first index in the suffix whose value is greater than or equal to `target`. Call this insertion index $p$.
-
-Then:
-
-- valid third indices are $j+1,j+2,\ldots,p-1$;
-- the last valid index is $k=p-1$;
-- their count is
-
-$$
-(p-1)-(j+1)+1=p-j-1=k-j.
-$$
-
-That is exactly what the source adds:
-
-
-
-If no suffix value is valid, `bisect_left` returns `j + 1`, so `k = j` and the contribution is zero. If every suffix value is valid, it returns `n`, so `k = n - 1` and every available third index is counted.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Fix $k = 3$ ($nums[k] = 4$)
+- $l = 0$ ($nums[l] = 2$), $r = 2$ ($nums[r] = 3$).
+- $2 + 3 = 5 > 4 \implies$ Add $r - l = 2 - 0 = \mathbf{2}$.
+- $r \leftarrow 1$.
+- $l = 0$ ($nums[l] = 2$), $r = 1$ ($nums[r] = 2$).
+- $2 + 2 = 4 \ngtr 4 \implies l \leftarrow 1$.
+- $l == r \implies$ End iteration for $k = 3$. Subtotal = 2.
 
 ---
 
-### Step 3: Strict inequality and duplicate values
+### Step 2: Fix $k = 2$ ($nums[k] = 3$)
+- $l = 0$ ($nums[l] = 2$), $r = 1$ ($nums[r] = 2$).
+- $2 + 2 = 4 > 3 \implies$ Add $r - l = 1 - 0 = \mathbf{1}$.
+- $r \leftarrow 0$.
+- $l > r \implies$ End iteration for $k = 2$. Subtotal = $2 + 1 = 3$.
 
-Using `bisect_left` for the sum excludes values equal to the sum. Such triples are degenerate and must not count. A right-biased search would incorrectly include equality if used without adjustment.
+---
 
-Duplicates remain separate positions after sorting. For `[2,2,3,4]`, choosing the first 2 with 3 and 4 and choosing the second 2 with 3 and 4 are two different index triplets. The loops visit both $i$ positions and count both, as required.
-
-Sorting mutates `nums` in place. The result depends only on the multiset of values, so this does not affect correctness, but callers that need original order would require a copy.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Return Total
+$$
+ans = \mathbf{3}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 2, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Fixed Largest Index $k$ | $nums[k]$ | Left Ptr $l$ | Right Ptr $r$ | Sum $nums[l] + nums[r]$ | Sum $> nums[k]$? | Add $r - l$ | Running $ans$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $3$ | $4$ | $0$ ($2$) | $2$ ($3$) | $5$ | **Yes** | $+2$ | $2$ |
+| $3$ | $4$ | $0$ ($2$) | $1$ ($2$) | $4$ | No | $+0$ | $2$ |
+| **$2$** | **$3$** | **$0$ ($2$)** | **$1$ ($2$)** | **$4$** | **Yes** | **$+1$** | **`3`** |
+| **End** | — | — | — | — | — | — | **`3`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Less Than 3 Elements ($N < 3$):** Cannot form a triangle $\implies 0$.
+- **Zeros in Array ($[0, 0, 0]$):** $0 + 0 \ngtr 0 \implies 0$.
+- **Collinear Sides ($[1, 2, 3]$):** $1 + 2 = 3 \ngtr 3 \implies 0$.
+- **Strictly Increasing Run ($[3, 4, 5, 6]$):** Multiple triangles counted efficiently.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Two-pointer largest-side scan:** Fix largest index $k$, move left/right pointers, and when a pair works count all positions between them. Achieves $O(n^2)$ after sorting.
-- **Monotone third pointer:** For fixed $i$, advance `k` as `j` increases rather than binary-searching from scratch. Also $O(n^2)$.
-- **Brute-force triples:** Tests all $\binom n3$ choices in $O(n^3)$ time.
-- **Zero lengths:** Cannot participate in a nondegenerate triangle; the strict inequality naturally contributes zero.
-- **Equality:** `a+b=c` is excluded by `bisect_left` at the first value equal to the sum.
-- **Duplicates:** Counted by index multiplicity, not deduplicated by value.
-- **Fewer than three values:** Loops contribute nothing and return zero.
-- **All equal positive values:** Every index triplet is valid and counted.
-- **Input mutation:** `nums.sort()` changes caller-visible order.
-- **Nonnegative constraint:** Supports reducing three inequalities to the smallest-two sum versus largest.
-- **Boundary with no valid `k`:** Contribution formula becomes zero, not negative.
-- **Boundary beyond array:** `bisect_left` returns `n`, correctly counting the full suffix.
-- **Complexity fidelity:** Binary search inside both loops adds a logarithmic factor; do not describe this exact implementation as $O(n^2)$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Brute Force Three Nested Loops ($O(N^3)$):** Checking all $\binom{N}{3}$ triplets times out for $N = 1000$.
+- **Binary Search ($O(N^2 \log N)$) vs Two Pointers ($O(N^2)$):** While binary search passes, two pointers with fixed $k$ eliminates the $\log N$ factor.
+- **Counting Permutations Instead of Combinations:** Triplet indices must satisfy $i < j < k$; do not multiply by permutations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2\log n)$. Let $n$ be array length. Sorting costs $O(n\log n)$. There are $\Theta(n^2)$ pairs $(i,j)$, and the exact source performs an $O(\log n)$ binary search for every pair. Therefore, its actual worst-case time is:
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting the array: $\mathcal{O}(N \log N)$.
+  - Outer loop for $k$ runs $N - 2$ times.
+  - Inner two-pointer loop advances $l$ or decrements $r$ at each step, running in $\mathcal{O}(N)$ amortized time.
+  - Total Time: $\mathcal{O}(N^2)$. For $N = 1000$, completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space beyond input sorting memory.

@@ -1,136 +1,193 @@
 # Guided Example: Can Place Flowers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step zero-padded sentinel boundary framing ($[0] + flowerbed + [0]$), 3-plot vacant window detection ($flowerbed[i-1] == 0 \land flowerbed[i] == 0 \land flowerbed[i+1] == 0$), greedy immediate planting ($flowerbed[i] \leftarrow 1$), quota reduction ($n \leftarrow n - 1$), and non-adjacent feasibility testing on representative planting beds:
 
-- **Input:** `{"flowerbed": [1, 0, 0, 0, 1], "n": 1}`
+- **Input:** $flowerbed = [1, 0, 0, 0, 1], \quad n = 1$
 - **Required output:** `true`
+  - Planting constraints:
+    - Flowers cannot be planted in **adjacent plots** (no two $1$s may be adjacent).
+    - Given an array where $1$ is planted and $0$ is empty, determine if at least $n$ new flowers can be added without violating adjacency.
+- **Greedy Earliest Placement & Zero Sentinel Framing:**
+  - **Greedy Choice Property:**
+    - Scanning from left to right, whenever we encounter a legal planting opportunity, planting a flower as early as possible is always globally optimal. It never reduces the capacity to plant future flowers compared to delaying the planting.
+  - **The 3-Consecutive Zero Condition:**
+    - A flower can be safely placed at plot $i$ if and only if:
+      $$
+      flowerbed[i - 1] == 0 \quad \land \quad flowerbed[i] == 0 \quad \land \quad flowerbed[i + 1] == 0
+      $$
+  - **Sentinel Boundary Padding:**
+    - To eliminate boundary edge-case logic for plot $0$ and plot $m - 1$, prepend $0$ and append $0$ to the array:
+      $$
+      padded = [0] + flowerbed + [0]
+      $$
+    - The original indices $0 \dots m - 1$ now cleanly map to indices $1 \dots m$, where every plot has well-defined left and right neighbors.
+- **Step-by-Step Worked Execution Trace:**
+  - Original array: $flowerbed = [1, 0, 0, 0, 1]$, length $m = 5$, target $n = 1$.
+  - Pad boundaries with $0$:
+    $$
+    padded = [\mathbf{0}, \; 1, \; 0, \; 0, \; 0, \; 1, \; \mathbf{0}] \quad (\text{length } 7)
+    $$
+  - **Scan indices $i = 1 \dots 5$:**
+    - **Plot $i = 1$ (Original plot 0, value $1$):**
+      - Window $padded[0 \dots 2] = [0, 1, 0]$.
+      - Current plot is already planted ($1 \ne 0$) $\implies$ Skip.
+    - **Plot $i = 2$ (Original plot 1, value $0$):**
+      - Window $padded[1 \dots 3] = [1, 0, 0]$.
+      - Left neighbor is $1$ (planted) $\implies$ Cannot plant. Skip.
+    - **Plot $i = 3$ (Original plot 2, value $0$):**
+      - Window $padded[2 \dots 4] = [0, 0, 0]$.
+      - Check sum:
+        $$
+        0 + 0 + 0 = 0 \implies \mathbf{Legal\ to\ plant!}
+        $$
+      - Plant flower at index 3:
+        $$
+        padded[3] \leftarrow 1
+        $$
+      - Decrement quota:
+        $$
+        n \leftarrow 1 - 1 = \mathbf{0}
+        $$
+      - Updated array: $[0, 1, 0, \mathbf{1}, 0, 1, 0]$.
+    - **Plot $i = 4$ (Original plot 3, value $0$):**
+      - Window $padded[3 \dots 5] = [1, 0, 1]$.
+      - Left neighbor is now $1$ (the newly planted flower!) $\implies$ Cannot plant. Skip.
+    - **Plot $i = 5$ (Original plot 4, value $1$):**
+      - Current plot is $1 \implies$ Skip.
+  - **Termination & Quota Check:**
+    - Quota remaining:
+      $$
+      n = 0 \le 0 \implies \mathbf{True!}
+      $$
+    - Return **`true`**.
+- **Insufficient Space Instance ($flowerbed = [1, 0, 0, 0, 1], n = 2$):**
+  - Only 1 flower can fit into the middle plot.
+  - Final remaining quota: $n = 2 - 1 = 1 > 0 \implies \mathbf{false}$.
+- **Empty Flowerbed Instance ($flowerbed = [0, 0, 0, 0, 0], n = 3$):**
+  - Padded: $[0, 0, 0, 0, 0, 0, 0]$.
+  - Plants at plots $1, 3, 5$ (original indices $0, 2, 4$).
+  - Total planted = $3 \implies \mathbf{true}$.
+- **Zero Target Quota ($n = 0$):**
+  - Trivially achievable without any planting $\implies \mathbf{true}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy independent set placement on linear path graphs, mathematically proves why local 3-zero windows maximize non-adjacent packing, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in **adjacent** plots.
+Given a flowerbed array of 0s (empty) and 1s (planted), and an integer $n$:
+Can we plant $n$ new flowers such that no two flowers are in adjacent plots?
 
-The objective is to compute `true` from `{"flowerbed": [1, 0, 0, 0, 1], "n": 1}` while avoiding redundant calculations and unnecessary overhead.
+```text
+flowerbed: [ 1,  0,  0,  0,  1 ],  n = 1
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Padded: [0,  1,  0,  0,  0,  1,  0]
+                 ^   ^   ^
+                 Window [0, 0, 0] at index 3!
+
+Plant at index 3 -> [0, 1, 0, 1, 0, 1, 0]
+Planted = 1 flower. Quota satisfied!
+Result: true
+```
+
+### The Sentinel Boundary Pattern
+- The edge plots ($i = 0$ and $i = m - 1$) only have one neighbor.
+- A flower can be planted at index 0 if index 0 is empty and index 1 is empty.
+- Instead of writing separate boundary condition `if` statements, prepending and appending a virtual `0` uniformly allows every plot to check the identical 3-element condition:
+  $$
+  \text{sum}(padded[i-1 \dots i+1]) == 0
+  $$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Greedy Strategy:
+- Whenever a plot is empty and both its left and right plots are empty:
+  Plant a flower immediately (`flowerbed[i] = 1`) and decrement $n$.
+- This greedy choice is optimal: delaying a planting never creates more future opportunities than planting at the earliest possible slot.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Padded Formulation:
+```text
+padded = [0] + flowerbed + [0]
+for i from 1 to len(flowerbed):
+    if padded[i-1] == 0 and padded[i] == 0 and padded[i+1] == 0:
+        padded[i] = 1
+        n -= 1
+return n <= 0
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Greedy Dominance Invariant.** Planting at the earliest legal position $i$ minimizes the blocking range on future indices $j > i$, leaving maximal remaining slots for subsequent flowers.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Padding removes boundary special cases
-
-The first line creates:
-
-
-
-The artificial zeros represent empty space just outside the original bed. Every original plot now has both a left and right array neighbor, including the original endpoints. Planting at the first original plot is legal exactly when that plot and its real right neighbor are zero; the artificial left zero contributes no restriction. The last plot is symmetric.
-
-The loop runs from index one through the next-to-last index, so it visits exactly original plots and never plants in a sentinel.
-
-This expression constructs a new list and rebinds the local variable. The caller’s original list is not mutated, even though the padded working list is updated.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"flowerbed": [1, 0, 0, 0, 1], "n": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $flowerbed = [1, 0, 0, 0, 1], n = 1$:
 
 ---
 
-### Step 2: Testing a three-plot neighborhood
-
-For current index `i`:
-
-
-
-The slice contains left neighbor, current plot, and right neighbor. Values are only zero or one, so their sum is zero if and only if all three are empty.
-
-If legal, the algorithm writes one at the current position and decrements the remaining requirement `n`. Mutating the working list is essential: when the scan reaches `i + 1`, it sees the newly planted flower on its left and cannot plant adjacently.
-
-The slice has fixed length three, so allocation and summation are constant work per iteration, though direct comparisons would avoid the temporary slice.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Pad Bed
+$$
+padded = [0, \; 1, \; 0, \; 0, \; 0, \; 1, \; 0]
+$$
 
 ---
 
-### Step 3: Why planting immediately is optimal
+### Step 2: Iterate Across Plots
+- $i = 1$: current is 1 $\implies$ skip.
+- $i = 2$: window is `[1, 0, 0]` $\implies$ sum is 1, skip.
+- $i = 3$: window is `[0, 0, 0]` $\implies$ sum is 0!
+  - Plant: $padded[3] \leftarrow 1$.
+  - $n \leftarrow 1 - 1 = 0$.
+- $i = 4$: window is `[1, 0, 1]` $\implies$ skip.
+- $i = 5$: current is 1 $\implies$ skip.
 
-Consider the leftmost index at which the greedy scan plants. Its left neighbor is empty and already finalized; its right neighbor is empty. Any feasible plan for the remaining bed has two possibilities:
+---
 
-- it also plants at this index;
-- it does not.
-
-If it does not, the earliest new flower it could place in this local area is at least one position to the right. If a feasible optimal plan plants at the immediate right position, move that flower left to the greedy index. The left side is safe by the greedy test, and moving left cannot conflict with any later flower that did not already conflict with the original right-position flower. If the plan plants even later, adding or choosing the greedy position similarly consumes no more suffix capacity than waiting.
-
-Thus, there exists an optimal placement agreeing with the greedy decision. Repeating the exchange argument at each planted position proves that the scan finds a maximum-cardinality set of new nonadjacent flowers.
-
-Another view uses runs of zeros. For each empty run bounded by existing flowers or bed edges, placing at the leftmost legal position and then every other position achieves the run’s maximum. The scan performs exactly that pattern across all runs.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Check Quota
+$$
+n = 0 \le 0 \implies \mathbf{True}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"flowerbed": [1, 0, 0, 0, 1], "n": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Index $i$ | Padded Window $[i-1, i, i+1]$ | Window Sum | Legal to Plant? | Flowerbed Action | Quota $n$ After |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $[0, 1, 0]$ | $1$ | No | Skip | $1$ |
+| $2$ | $[1, 0, 0]$ | $1$ | No | Skip | $1$ |
+| **$3$** | **$[0, 0, 0]$** | **$0$** | **Yes** | **Plant $1$** | **$0$** |
+| $4$ | $[1, 0, 1]$ | $2$ | No | Skip | $0$ |
+| $5$ | $[0, 1, 0]$ | $1$ | No | Skip | $0$ |
+| **Final** | — | — | — | **Quota met** | **`true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 0$:** Already satisfied $\implies$ returns `true` immediately.
+- **Single Plot Empty ($[0], n = 1$):** Padded is `[0, 0, 0]` $\implies$ plants at 0 $\implies$ returns `true`.
+- **Single Plot Occupied ($[1], n = 1$):** Cannot plant $\implies$ returns `false`.
+- **Alternating Plots ($[1, 0, 1, 0, 1]$):** No 3 consecutive zeros $\implies$ 0 flowers can be planted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **In-place boundary checks:** Test current zero plus `i == 0 or left zero` and `i == m-1 or right zero`. Achieves $O(1)$ auxiliary space but mutates the caller’s array.
-- **Previous/next state without mutation:** Track whether the previous plot is occupied and inspect the next input value. Can preserve input with constant extra state if carefully advanced.
-- **Count zero runs mathematically:** Derive capacity for interior and edge runs. Avoids mutation but requires separate formulas for boundary runs.
-- **Early return:** As soon as remaining `n <= 0`, return true. Improves best-case time but not the $O(m)$ worst case.
-- **Request zero:** Always feasible. The exact source still scans and may plant in its private copy, then returns true.
-- **Single empty plot:** Padding makes both virtual neighbors zero, so one flower can be planted.
-- **Single occupied plot:** No placement is possible.
-- **All-zero bed:** Greedy plants indices 0, 2, 4, ... in original coordinates, which is maximum.
-- **Endpoint planting:** Sentinel zeros correctly allow it when the one real neighbor is empty.
-- **New adjacency:** Mutating the working list blocks the next plot immediately.
-- **Existing valid-bed guarantee:** No two original ones are adjacent; behavior on invalid input is outside the contract.
-- **Input preservation:** Because of list concatenation, the original `flowerbed` object remains unchanged.
-- **Fixed-size slice:** It is constant time per position but still allocates a tiny temporary; direct comparisons are leaner.
-- **Space fidelity:** Padding is an $O(m)$ copy. The manifest’s $O(1)$ space describes a different implementation of the same greedy rule.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Not Mutating the Array Upon Planting:** If you do not set $padded[i] = 1$, the next index $i + 1$ might also see 3 zeros and plant an adjacent flower, violating the no-adjacent-flowers rule.
+- **Mathematical Division Shortcuts Without Accounting for Ends:** Trying to count consecutive zeros via division formulas requires complex edge adjustments for ends. The greedy linear scan is bug-free.
+- **Continuing Scan After $n \le 0$:** Once $n \le 0$, the algorithm can terminate early.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m)$. Let $m$ be the original flowerbed length. Constructing the padded list takes $O(m)$ time. The loop visits $m$ original positions and performs fixed-size slice/sum work, so total time is $O(m)$.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - A single linear pass through the array of length $N$: $\mathcal{O}(N)$ operations.
+  - Can terminate early as soon as $n \le 0$.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 2 \times 10^4$, completes in $< 2$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to create the padded array (or $\mathcal{O}(1)$ with inline boundary checks).

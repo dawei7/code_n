@@ -1,124 +1,159 @@
 # Guided Example: Average Selling Price
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"tables": {"Prices": [{"product_id": 1, "start_date": "2019-02-17", "end_date": "2019-02-28", "price": 5}, {"product_id": 1, "start_date": "2019-03-01", "end_date": "2019-03-22", "price": 20}, {"product_id": 2, "start_date": "2019-02-01", "end_date": "2019-02-20", "price": 15}, {"product_id": 2, "start_date": "2019-02-21", "end_date": "2019-03-31", "price": 30}], "UnitsSold": [{"product_id": 1, "purchase_date": "2019-02-25", "units": 100}, {"product_id": 1, "purchase_date": "2019-03-01", "units": 15}, {"product_id": 2, "purchase_date": "2019-02-10", "units": 200}, {"product_id": 2, "purchase_date": "2019-03-22", "units": 30}]}}`
-- **Required output:** `{"columns": ["product_id", "average_price"], "rows": [[1, 6.96], [2, 16.96]]}`
+We are given two relational tables:
+1. `Prices(product_id, start_date, end_date, price)`: Defines the active selling price for each product across disjoint, inclusive temporal intervals $[start\_date, end\_date]$.
+2. `UnitsSold(product_id, purchase_date, units)`: Records individual transaction events, indicating how many units of a product were purchased on a specific date.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must compute the **average selling price** for each product, rounded to 2 decimal places. If a product recorded zero sales across all time, its average selling price must be reported as $0$.
+
+The average price is not a simple arithmetic mean of listed prices; it is a **volume-weighted average**:
+$$\text{Average Price} = \frac{\text{Total Revenue}}{\text{Total Units Sold}} = \frac{\sum (\text{price} \times \text{units})}{\sum \text{units}}$$
+
+```
+Temporal Relational Join Architecture:
+Price Interval:      [  2019-02-17  ── Price = $5 ──  2019-02-28  ]
+Transaction Event:                   2019-02-25: 100 units
+Join Match:          Purchase date falls within [start, end]!
+Revenue Generated:   100 units x $5 = $500
+
+Next Price Interval: [  2019-03-01  ── Price = $20 ──  2019-03-22 ]
+Transaction Event:   2019-03-01: 15 units
+Revenue Generated:   15 units x $20 = $300
+
+Total Revenue = $800, Total Units = 115 => Average = 800 / 115 = $6.96
+```
+
+Key relational considerations:
+- **Temporal Interval Join:** Matching sales to prices requires checking both identity (`product_id`) and temporal containment (`purchase_date BETWEEN start_date AND end_date`).
+- **Left Outer Join:** Products present in `Prices` that have zero records in `UnitsSold` must not be dropped. A `LEFT JOIN` preserves these products.
+- **Null Coalescence:** For products with zero sales, $\sum \text{units}$ is `NULL`, producing a division by null. Wrapping the quotient in `COALESCE(..., 0)` safely maps unmatched rows to $0$.
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Table: `Prices`
+Let $\mathcal{P}$ denote the set of price intervals $(p, s, e, c)$, where $p \in \mathbb{Z}^+$ is the product ID, $[s, e]$ is the active calendar interval, and $c \in \mathbb{R}^+$ is the unit price.
+Let $\mathcal{U}$ denote the multiset of transactions $(p, d, u)$, where $d$ is the purchase date and $u \in \mathbb{Z}^+$ is the units sold.
 
-The objective is to compute `{"columns": ["product_id", "average_price"], "rows": [[1, 6.96], [2, 16.96]]}` from `{"tables": {"Prices": [{"product_id": 1, "start_date": "2019-02-17", "end_date": "2019-02-28", "price": 5}, {"product_id": 1, "start_date": "2019-03-01", "end_date": "2019-03-22", "price": 20}, {"product_id": 2, "start_date": "2019-02-01", "end_date": "2019-02-20", "price": 15}, {"product_id": 2, "start_date": "2019-02-21", "end_date": "2019-03-31", "price": 30}], "UnitsSold": [{"product_id": 1, "purchase_date": "2019-02-25", "units": 100}, {"product_id": 1, "purchase_date": "2019-03-01", "units": 15}, {"product_id": 2, "purchase_date": "2019-02-10", "units": 200}, {"product_id": 2, "purchase_date": "2019-03-22", "units": 30}]}}` while avoiding redundant calculations and unnecessary overhead.
+### Temporal Join Predicate
+A transaction $(p_u, d, u) \in \mathcal{U}$ belongs to price interval $(p_p, s, e, c) \in \mathcal{P}$ if and only if:
+$$p_p = p_u \quad \text{and} \quad s \le d \le e$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Volume-Weighted Average Formulation
+For each distinct product $p \in \pi_{\text{product\_id}}(\mathcal{P})$:
+$$\text{Revenue}(p) = \sum_{(p, s, e, c) \in \mathcal{P}} \; \sum_{\substack{(p, d, u) \in \mathcal{U} \\ s \le d \le e}} c \cdot u$$
+$$\text{TotalUnits}(p) = \sum_{\substack{(p, d, u) \in \mathcal{U} \\ \exists (p, s, e, c) \in \mathcal{P}, \; s \le d \le e}} u$$
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The final metric is:
+$$\text{AvgPrice}(p) = \begin{cases} \text{round}\left( \frac{\text{Revenue}(p)}{\text{TotalUnits}(p)}, \; 2 \right) & \text{if } \text{TotalUnits}(p) > 0 \\ 0 & \text{if } \text{TotalUnits}(p) = 0 \end{cases}$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 3. Concrete Example Execution & State Evolution
 
-### Step 1: A simple average of price periods would be wrong
+Consider the database instance:
+- `Prices`:
+  - Product 1: `[2019-02-17, 2019-02-28]` at $\$5$
+  - Product 1: `[2019-03-01, 2019-03-22]` at $\$20$
+  - Product 2: `[2019-02-01, 2019-02-20]` at $\$15$
+  - Product 2: `[2019-02-21, 2019-03-31]` at $\$30$
+- `UnitsSold`:
+  - Product 1: `2019-02-25` (100 units)
+  - Product 1: `2019-03-01` (15 units)
+  - Product 2: `2019-02-10` (200 units)
+  - Product 2: `2019-03-22` (30 units)
 
-Each price applies during a date interval, and different numbers of units may be sold under different prices. The required average is weighted by units:
+### Step-by-Step Join and Aggregation Trace
 
-\[
-\text{average price}
-=
-\frac{\sum(\text{price}\cdot\text{units})}
-{\sum\text{units}}.
-\]
+| Product ID | Transaction Date | Units $u$ | Matched Price Interval | Active Price $c$ | Revenue Generated $c \cdot u$ |
+|---|---|---|---|---|---|
+| **Product 1** | `2019-02-25` | 100 | `[2019-02-17, 2019-02-28]` | $\$5$ | $100 \times 5 = \$500$ |
+| **Product 1** | `2019-03-01` | 15 | `[2019-03-01, 2019-03-22]` | $\$20$ | $15 \times 20 = \$300$ |
+| **Product 1 Totals** | - | $\sum u = 115$ | - | - | $\sum c \cdot u = \$800$ |
+| **Product 2** | `2019-02-10` | 200 | `[2019-02-01, 2019-02-20]` | $\$15$ | $200 \times 15 = \$3000$ |
+| **Product 2** | `2019-03-22` | 30 | `[2019-02-21, 2019-03-31]` | $\$30$ | $30 \times 30 = \$900$ |
+| **Product 2 Totals** | - | $\sum u = 230$ | - | - | $\sum c \cdot u = \$3900$ |
 
-A period with 100 units sold must contribute more weight than one with 15 units. The query joins every sale to the price interval active on its purchase date, then computes this weighted fraction per product.
+### Mathematical Quotients:
+- **Product 1:**
+  $$\frac{\$800}{115 \text{ units}} \approx 6.95652 \dots \xrightarrow{\text{round to 2 decimals}} \mathbf{6.96}$$
+- **Product 2:**
+  $$\frac{\$3900}{230 \text{ units}} \approx 16.95652 \dots \xrightarrow{\text{round to 2 decimals}} \mathbf{16.96}$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+```mermaid
+flowchart TD
+    accTitle: Relational Aggregation Pipeline
+    accDescr: Pipeline showing temporal left join, revenue calculation, null-safe division, and rounding to 2 decimals.
+    
+    P["Prices Table<br/>(Product, Start, End, Price)"] --> LeftJoin["LEFT JOIN UnitsSold ON<br/>product_id MATCH AND<br/>purchase_date BETWEEN start_date AND end_date"]
+    U["UnitsSold Table<br/>(Product, Date, Units)"] --> LeftJoin
+    
+    LeftJoin --> Group["GROUP BY product_id"]
+    Group --> Calc1["Product 1: Revenue = 800, Units = 115<br/>800 / 115 -> ROUND(6.9565, 2) = 6.96"]
+    Group --> Calc2["Product 2: Revenue = 3900, Units = 230<br/>3900 / 230 -> ROUND(16.9565, 2) = 16.96"]
+    Group --> CalcZero["Product with 0 Sales: Units = NULL<br/>COALESCE(NULL, 0) = 0.00"]
+    
+    Calc1 & Calc2 & CalcZero --> Result["Output Table: [product_id, average_price]"]
+```
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Query Strategy | Correlated Subquery per Product | Inner Temporal Join (Defective) | Left Outer Temporal Join (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Prices": [{"product_id": 1, "start_date": "2019-02-17", "end_date": "2019-02-28", "price": 5}, {"product_id": 1, "start_date": "2019-03-01", "end_date": "2019-03-22", "price": 20}, {"product_id": 2, "start_date": "2019-02-01", "end_date": "2019-02-20", "price": 15}, {"product_id": 2, "start_date": "2019-02-21", "end_date": "2019-03-31", "price": 30}], "UnitsSold": [{"product_id": 1, "purchase_date": "2019-02-25", "units": 100}, {"product_id": 1, "purchase_date": "2019-03-01", "units": 15}, {"product_id": 2, "purchase_date": "2019-02-10", "units": 200}, {"product_id": 2, "purchase_date": "2019-03-22", "units": 30}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Query Pattern** | Compute sums via subselect in `SELECT` | `FROM Prices JOIN UnitsSold` | `FROM Prices LEFT JOIN UnitsSold` |
+| **Zero-Sales Products** | Handled, but requires nested scans | **Fails** (drops products without sales) | **Correct** (preserves products with null padding) |
+| **Execution Plan** | $N$ nested scans over `UnitsSold` | Single hash or merge join | Single hash or merge join with outer preservation |
+| **Null Safety** | Requires `IFNULL` / `COALESCE` | N/A (drops rows) | Handled via `COALESCE(ROUND(...), 0)` |
+| **Complexity on $N = 10^5$**| $\mathcal{O}(P \cdot U)$ quadratic | $\mathcal{O}(P + U)$ | $\mathcal{O}(P + U)$ linear scan and hash join |
+
+```
+Pitfall of Inner Join:
+If Product 3 exists in Prices but never sold a single unit:
+INNER JOIN: Completely removes Product 3 from output -> WRONG!
+LEFT JOIN:  Produces (Product 3, NULL, NULL) -> COALESCE returns 0 -> CORRECT!
+```
 
 ---
 
-### Step 2: Match sales by product and inclusive date range
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The join condition has two parts:
-
-- `p.product_id = u.product_id` ensures the price and sale belong to the same product.
-- `purchase_date BETWEEN start_date AND end_date` ensures the sale date lies inside that price period, including both endpoints.
-
-Price periods for one product do not overlap. Therefore, one sale matches at most one price row. This prevents the same sale from being multiplied by two prices.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Scenario | Configuration Details | Expected Output | Behavioral Verification |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Product with Zero Sales** | Listed in `Prices`, absent in `UnitsSold` | `0` | Left join produces `NULL` for units; `COALESCE` replaces null quotient with `0`. |
+| **Sales on Interval Boundary** | `purchase_date == start_date` or `end_date` | Included in calculation | `BETWEEN` operator is strictly inclusive on both endpoints ($s \le d \le e$). |
+| **Multiple Sales in Same Period**| Multiple sales on same day or period | Correctly accumulated | `SUM(price * units)` sums across all matching rows without duplicate loss. |
+| **Single Price Period** | Product has exactly 1 price period | Flat average | Calculation simplifies to exact price. |
+| **All Products Sold Out** | All products have massive sales | Correct float precision | Numeric casting preserves 2-decimal fractional accuracy without truncation. |
 
 ---
 
-### Step 3: Why the query starts from `Prices` with a left join
+## 6. Mathematical Verification & Complexity Derivation
 
-The output must include a product even if it has no sold units. A `LEFT JOIN` preserves every price-side product row when no sale matches, filling sale columns with null.
+Let $P$ be the number of rows in `Prices`.
+Let $U$ be the number of rows in `UnitsSold`.
 
-If a product has several price periods and no sales, several null-extended rows may exist before grouping, but they all belong to the same `product_id` and produce one output group.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["product_id", "average_price"], "rows": [[1, 6.96], [2, 16.96]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Prices": [{"product_id": 1, "start_date": "2019-02-17", "end_date": "2019-02-28", "price": 5}, {"product_id": 1, "start_date": "2019-03-01", "end_date": "2019-03-22", "price": 20}, {"product_id": 2, "start_date": "2019-02-01", "end_date": "2019-02-20", "price": 15}, {"product_id": 2, "start_date": "2019-02-21", "end_date": "2019-03-31", "price": 30}], "UnitsSold": [{"product_id": 1, "purchase_date": "2019-02-25", "units": 100}, {"product_id": 1, "purchase_date": "2019-03-01", "units": 15}, {"product_id": 2, "purchase_date": "2019-02-10", "units": 200}, {"product_id": 2, "purchase_date": "2019-03-22", "units": 30}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["product_id", "average_price"], "rows": [[1, 6.96], [2, 16.96]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Database Engine Query Complexity:
+1. **Join Phase:**
+   - The query evaluates `Prices LEFT JOIN UnitsSold` on `p.product_id = u.product_id` and date range containment.
+   - If an index exists on `(product_id, purchase_date)`, each price interval probes the index in $\mathcal{O}(\log U + K)$ time where $K$ is matched transactions.
+   - Without indices, a hash join on `product_id` followed by range filtering runs in $\mathcal{O}(P + U)$ time.
+2. **Aggregation Phase:**
+   - Grouping by `p.product_id` aggregates the intermediate joined stream using a hash table of size $|\pi(P)| \le P$.
+   - Aggregation cost: $\mathcal{O}(P + U)$.
+3. **Projection & Rounding:**
+   - Evaluating `SUM(price * units) / SUM(units)` and `COALESCE(ROUND(..., 2), 0)` takes $\mathcal{O}(1)$ operations per product group.
+4. **Total Asymptotic Cost:**
+   $$T(P, U) = \mathcal{O}(P + U)$$
+   Auxiliary memory is bounded by the hash aggregate table: $\mathcal{O}(P)$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 7. Synthesis & Strategic Takeaways
 
-- **Correlated price lookup per sale:** Find the matching price row for every sale, then aggregate. It can be clear but may execute repeated searches without good indexes.
-- **Pre-aggregate sales by product, date, and units:** Useful when many identical sale rows exist operationally, but duplicates represent additional units and must be summed, not discarded.
-- **Use `AVG(price)`:** Incorrect because it weights price periods rather than units sold.
-- **Average row revenue:** Also incorrect; the denominator must be total units.
-- **No sold units:** Left join plus `COALESCE` returns zero.
-- **Sale on a boundary date:** `BETWEEN` is inclusive, so the appropriate period matches.
-- **Nonoverlapping periods:** This guarantee prevents one sale from joining to multiple prices.
-- **Duplicate sales rows:** Their units and revenue are both counted, preserving the weighted unit price.
-- **Dialect-specific division:** Engines with integer division require a decimal cast before division.
-- **Rounding stage:** Round the final quotient, not individual contributions.
-- **Any output order:** No explicit sort is necessary.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(r)$. Let \(r\) be the combined number of price and sales rows. With useful indexes on product and dates and an efficient join/group plan, the logical processing can be near \(O(r)\), matching the manifest’s abstraction.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Inclusive Range Joins**: The SQL `BETWEEN` operator encapsulates closed intervals $[a, b]$; when joining against temporal validity ranges, using `purchase_date BETWEEN start_date AND end_date` maps transactions to their active pricing tier in a single declarative expression.
+2. **Outer Joins Preserve Domain Completeness**: When a problem requires computing statistics for *all* items in an entity table (even those with no matching activity), an outer join prevents empty subsets from vanishing.
+3. **Defensive Null Coalescence**: Division by a nullable aggregate (such as `SUM(units)`) inherently risks generating `NULL` or division-by-zero; guarding the quotient with `COALESCE` ensures compliant default values.

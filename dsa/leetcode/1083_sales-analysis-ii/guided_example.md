@@ -1,144 +1,232 @@
 # Guided Example: Sales Analysis II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational filtering of buyer purchase histories using grouped indicator aggregation, prove the Grouped Inclusion-Exclusion Invariant and the Row-Filtering Inadequacy Lemma, and evaluate database queries across representative sales scenarios:
 
-- **Input:** `{"tables": {"Product": [{"product_id": 1, "product_name": "S8", "unit_price": 1000}, {"product_id": 2, "product_name": "G4", "unit_price": 800}, {"product_id": 3, "product_name": "iPhone", "unit_price": 1400}], "Sales": [{"seller_id": 1, "product_id": 1, "buyer_id": 1, "sale_date": "2019-01-21", "quantity": 2, "price": 2000}, {"seller_id": 1, "product_id": 2, "buyer_id": 2, "sale_date": "2019-02-17", "quantity": 1, "price": 800}, {"seller_id": 2, "product_id": 1, "buyer_id": 3, "sale_date": "2019-06-02", "quantity": 1, "price": 800}, {"seller_id": 3, "product_id": 3, "buyer_id": 3, "sale_date": "2019-05-13", "quantity": 2, "price": 2800}]}}`
-- **Required output:** `{"columns": ["buyer_id"], "rows": [[1]]}`
+- **Representative Instance 1 (Disqualifying Buyers with iPhone Purchases):**
+  - Table `Product` (Catalog):
+    $$
+    \begin{array}{|c|c|c|}
+    \hline
+    \textbf{product\_id} & \textbf{product\_name} & \textbf{unit\_price} \\
+    \hline
+    1 & \text{"S8"} & 1000 \\
+    2 & \text{"G4"} & 800 \\
+    3 & \text{"iPhone"} & 1400 \\
+    \hline
+    \end{array}
+    $$
+  - Table `Sales` (Purchase Transactions):
+    $$
+    \begin{array}{|c|c|c|c|c|c|}
+    \hline
+    \textbf{seller\_id} & \textbf{product\_id} & \textbf{buyer\_id} & \textbf{sale\_date} & \textbf{quantity} & \textbf{price} \\
+    \hline
+    1 & 1 & 1 & \text{"2019-01-21"} & 2 & 2000 \\
+    1 & 2 & 2 & \text{"2019-02-17"} & 1 & 800 \\
+    2 & 1 & 3 & \text{"2019-06-02"} & 1 & 800 \\
+    3 & 3 & 3 & \text{"2019-05-13"} & 2 & 2800 \\
+    \hline
+    \end{array}
+    $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|}
+  \hline
+  \textbf{buyer\_id} \\
+  \hline
+  1 \\
+  \hline
+  \end{array}
+  $$
+  - Problem definitions:
+    - Report the buyers who have bought `S8` but **not** `iPhone`.
+    - Return the resulting table in any order without duplicate buyer rows.
+  - Natural Equi-Join ($\text{Sales} \bowtie_{\text{product\_id}} \text{Product}$):
+    - Row 1: $(buyer\_id=1, product\_name=\text{"S8"})$
+    - Row 2: $(buyer\_id=2, product\_name=\text{"G4"})$
+    - Row 3: $(buyer\_id=3, product\_name=\text{"S8"})$
+    - Row 4: $(buyer\_id=3, product\_name=\text{"iPhone"})$
+  - Grouped Indicator Evaluation per Buyer:
+    - **Buyer 1:**
+      - Purchase History: $\{\text{"S8"}\}$
+      - $N_{\text{S8}} = 1 > 0$ and $N_{\text{iPhone}} = 0 \implies$ **Qualified!**
+    - **Buyer 2:**
+      - Purchase History: $\{\text{"G4"}\}$
+      - $N_{\text{S8}} = 0 \implies$ Disqualified (never bought S8).
+    - **Buyer 3:**
+      - Purchase History: $\{\text{"S8"}, \text{"iPhone"}\}$
+      - $N_{\text{S8}} = 1 > 0$, but $N_{\text{iPhone}} = 1 > 0 \implies$ **Disqualified!** (Purchased an iPhone).
+  - Final Output Table:
+    $$
+    [[\mathbf{1}]]
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (All S8 Buyers Disqualified by iPhone):**
+  - Buyer 2 bought S8 on 2020-03-01 and iPhone on 2020-03-02.
+  - $N_{\text{S8}} = 1$, but $N_{\text{iPhone}} = 1 \implies$ Disqualified.
+  - Output: $\mathbf{[]}$ (empty table).
+
+- **Representative Instance 3 (Multiple Purchases of S8):**
+  - Buyer 4 bought S8 twice in two separate transactions.
+  - $N_{\text{S8}} = 2 > 0$ and $N_{\text{iPhone}} = 0$.
+  - Result contains Buyer 4 exactly once: $\mathbf{[[4]]}$.
+
+- **Representative Instance 4 (Purchases of Other Products Allowed):**
+  - Buyer 8 bought S8 and "Other".
+  - $N_{\text{S8}} = 1 > 0$ and $N_{\text{iPhone}} = 0$.
+  - "Other" products do not disqualify $\implies \mathbf{[[8]]}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Product`
+Given tables `Sales` and `Product`, report all buyers who purchased at least one `S8` and zero `iPhone` products.
 
-The objective is to compute `{"columns": ["buyer_id"], "rows": [[1]]}` from `{"tables": {"Product": [{"product_id": 1, "product_name": "S8", "unit_price": 1000}, {"product_id": 2, "product_name": "G4", "unit_price": 800}, {"product_id": 3, "product_name": "iPhone", "unit_price": 1400}], "Sales": [{"seller_id": 1, "product_id": 1, "buyer_id": 1, "sale_date": "2019-01-21", "quantity": 2, "price": 2000}, {"seller_id": 1, "product_id": 2, "buyer_id": 2, "sale_date": "2019-02-17", "quantity": 1, "price": 800}, {"seller_id": 2, "product_id": 1, "buyer_id": 3, "sale_date": "2019-06-02", "quantity": 1, "price": 800}, {"seller_id": 3, "product_id": 3, "buyer_id": 3, "sale_date": "2019-05-13", "quantity": 2, "price": 2800}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Row-Level Filtering Fallacy:
+  Using a WHERE clause:
+    SELECT DISTINCT buyer_id FROM Sales JOIN Product USING (product_id)
+    WHERE product_name = 'S8' AND product_name != 'iPhone';
+  FAILS COMPLETELY!
+    If Buyer 3 buys S8 on Monday and iPhone on Tuesday, the Monday row matches
+    (product_name == 'S8' and product_name != 'iPhone'), incorrectly returning Buyer 3!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Grouped Inclusion-Exclusion Invariant (O(|Sales| + |Product|) Time):
+  1. Join Sales with Product on product_id to resolve product_name.
+  2. Group by buyer_id to form each buyer's complete purchase history.
+  3. Filter via HAVING:
+       SUM(CASE WHEN product_name = 'S8' THEN 1 ELSE 0 END) > 0
+       AND
+       SUM(CASE WHEN product_name = 'iPhone' THEN 1 ELSE 0 END) = 0
+  - Condition 1 ensures presence of S8 in buyer's lifetime transactions.
+  - Condition 2 ensures absolute absence of iPhone across all buyer transactions!
+  Runs in linear time with zero duplicate outputs.
+```
 
----
+Evaluating product existence conditions at the group level rather than the row level enables collective historical validation across multi-transaction accounts.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Resolve product identifiers to names
-
-`Sales` records what each buyer purchased using `product_id`, while the conditions are stated using names `S8` and `iPhone`.
-
-The query joins:
-
-
-
-`Sales.product_id` is a foreign key and `Product.product_id` is a primary key. Every sale matches exactly one product row, so the join attaches one trustworthy `product_name` without losing or multiplying sales.
-
-Other product attributes, such as unit price, do not affect eligibility.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Product": [{"product_id": 1, "product_name": "S8", "unit_price": 1000}, {"product_id": 2, "product_name": "G4", "unit_price": 800}, {"product_id": 3, "product_name": "iPhone", "unit_price": 1400}], "Sales": [{"seller_id": 1, "product_id": 1, "buyer_id": 1, "sale_date": "2019-01-21", "quantity": 2, "price": 2000}, {"seller_id": 1, "product_id": 2, "buyer_id": 2, "sale_date": "2019-02-17", "quantity": 1, "price": 800}, {"seller_id": 2, "product_id": 1, "buyer_id": 3, "sale_date": "2019-06-02", "quantity": 1, "price": 800}, {"seller_id": 3, "product_id": 3, "buyer_id": 3, "sale_date": "2019-05-13", "quantity": 2, "price": 2800}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Grouped Inclusion-Exclusion Invariant & Row-Filtering Inadequacy Lemma**:
+1. **History Partitioning:** Grouping by `buyer_id` aggregates all transaction rows belonging to that customer into a single cohort $\mathcal{H}_b$.
+2. **Universal Indicator Sums:** $\sum \mathbb{I}(product\_name = \text{'S8'}) > 0$ asserts existential presence; $\sum \mathbb{I}(product\_name = \text{'iPhone'}) = 0$ asserts universal absence.
+3. **Deduplication Invariance:** Grouping naturally produces at most one output row per customer, naturally handling repeated purchases without `SELECT DISTINCT`.
+4. Total time $\mathcal{O}(|\text{Sales}| + |\text{Product}|)$ and auxiliary space $\mathcal{O}(|\text{Product}| + |\text{Buyers}|)$.
 
 ---
 
-### Step 2: Group complete purchase history by buyer
+## 2. Conceptual Foundation & The Inclusion-Exclusion Pipeline
 
-The query selects `buyer_id` and uses:
+```mermaid
+flowchart TD
+    accTitle: Sales Analysis II Pipeline
+    accDescr: Flowchart illustrating hash join of Sales with Product, grouping by buyer, and applying conditional indicator aggregation
+    Start["Table Sales (N rows)\nTable Product (M rows)"] --> HashJoin["Join on product_id:\nAttach product_name to each sale row"]
+    HashJoin --> GroupBuyer["GROUP BY buyer_id:\nPartition transactions into customer histories H_b"]
+    GroupBuyer --> CalcIndicators["For each buyer b, evaluate indicators:\ns8_count = SUM(CASE WHEN product_name = 'S8' THEN 1 ELSE 0 END)\niphone_count = SUM(CASE WHEN product_name = 'iPhone' THEN 1 ELSE 0 END)"]
+    CalcIndicators --> CheckFilter{"s8_count > 0 AND iphone_count == 0 ?"}
+    CheckFilter -->|"Yes: Bought S8 and NO iPhone"| RetainBuyer["Emit buyer_id into output"]
+    CheckFilter -->|"No: Never bought S8 OR bought iPhone"| DiscardBuyer["Discard buyer"]
+    RetainBuyer --> NextBuyer["Next buyer group"]
+    DiscardBuyer --> NextBuyer
+    NextBuyer --> CheckDone{"More buyers ?"}
+    CheckDone -->|"Yes"| CalcIndicators
+    CheckDone -->|"No: All buyers processed"| Finish["Return output table"]
+```
 
+### The Grouped Inclusion-Exclusion Invariant
 
-
-One refers to the first select-list expression, so this is equivalent to `GROUP BY buyer_id`.
-
-Every joined purchase row for one buyer enters the same group. This is the right grain because eligibility depends on whether anything in the buyer's entire history matches either product name.
-
-Repeated sales remain inside the group but cannot create repeated result rows. Grouping returns at most one row per buyer.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{S}$ denote `Sales` and $\mathcal{P}$ denote `Product`.
+1. **Joined Purchase Relation:**
+   Consider $\mathcal{J} = \mathcal{S} \bowtie_{\mathcal{S}.product\_id = \mathcal{P}.product\_id} \mathcal{P}$.
+   For each customer $b \in \pi_{buyer\_id}(\mathcal{J})$, let:
+   $$
+   \mathcal{H}_b = \{ t \in \mathcal{J} : t[buyer\_id] = b \}
+   $$
+   denote customer $b$'s complete transaction history.
+2. **Product Set Mapping:**
+   Define the set of all distinct products purchased by customer $b$:
+   $$
+   \Pi(b) = \{ t[product\_name] : t \in \mathcal{H}_b \}
+   $$
+   The problem condition requires that:
+   $$
+   \text{"S8"} \in \Pi(b) \quad \land \quad \text{"iPhone"} \notin \Pi(b)
+   $$
+3. **Indicator Arithmetic Equivalence:**
+   Using conditional indicator summation:
+   $$
+   N_{\text{S8}}(b) = \sum_{t \in \mathcal{H}_b} \mathbb{I}(t[product\_name] = \text{"S8"}) \ge 1 \iff \text{"S8"} \in \Pi(b)
+   $$
+   $$
+   N_{\text{iPhone}}(b) = \sum_{t \in \mathcal{H}_b} \mathbb{I}(t[product\_name] = \text{"iPhone"}) = 0 \iff \text{"iPhone"} \notin \Pi(b)
+   $$
+   Therefore, the SQL clause:
+   ```sql
+   HAVING SUM(CASE WHEN product_name = 'S8' THEN 1 ELSE 0 END) > 0
+      AND SUM(CASE WHEN product_name = 'iPhone' THEN 1 ELSE 0 END) = 0
+   ```
+   holds if and only if customer $b$ bought at least one S8 and zero iPhones. $\blacksquare$
 
 ---
 
-### Step 3: Turn name comparisons into numeric indicators
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-In MySQL, a Boolean equality expression used numerically evaluates to one when true and zero when false.
+### Joined Tuples
+- $b=1: \text{"S8"}$
+- $b=2: \text{"G4"}$
+- $b=3: \text{"S8"}$
+- $b=3: \text{"iPhone"}$
 
-Therefore:
+### Group Aggregation Evaluation
+- **Buyer 1:**
+  - $N_{\text{S8}} = 1$, $N_{\text{iPhone}} = 0$.
+  - Condition: $1 > 0 \land 0 = 0 \implies$ **True** (Retained).
+- **Buyer 2:**
+  - $N_{\text{S8}} = 0$, $N_{\text{iPhone}} = 0$.
+  - Condition: $0 > 0$ (False) $\implies$ Discarded.
+- **Buyer 3:**
+  - $N_{\text{S8}} = 1$, $N_{\text{iPhone}} = 1$.
+  - Condition: $1 > 0 \land 1 = 0$ (False) $\implies$ Discarded.
 
-
-
-is one for an S8 purchase and zero for every other product.
-
-Summing it:
-
-
-
-counts how many S8 sale rows the buyer has. The exact count is not required, but whether it is positive establishes existence.
-
-The same technique counts iPhone rows:
-
-
-
-Purchases of G4 or any other product contribute zero to both sums and do not affect the decision.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["buyer_id"], "rows": [[1]]}` |
+Output: `[[1]]`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Buyer Transaction History Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Product": [{"product_id": 1, "product_name": "S8", "unit_price": 1000}, {"product_id": 2, "product_name": "G4", "unit_price": 800}, {"product_id": 3, "product_name": "iPhone", "unit_price": 1400}], "Sales": [{"seller_id": 1, "product_id": 1, "buyer_id": 1, "sale_date": "2019-01-21", "quantity": 2, "price": 2000}, {"seller_id": 1, "product_id": 2, "buyer_id": 2, "sale_date": "2019-02-17", "quantity": 1, "price": 800}, {"seller_id": 2, "product_id": 1, "buyer_id": 3, "sale_date": "2019-06-02", "quantity": 1, "price": 800}, {"seller_id": 3, "product_id": 3, "buyer_id": 3, "sale_date": "2019-05-13", "quantity": 2, "price": 2800}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["buyer_id"], "rows": [[1]]}` | Verified |
+| `buyer_id` | Products Purchased ($\Pi(b)$) | $N_{\text{S8}}(b)$ | $N_{\text{iPhone}}(b)$ | Filter Evaluation | Output Row |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\{\text{"S8"}\}$ | $1$ | $0$ | **Pass** ($1 > 0 \land 0 = 0$) | **`[1]`** |
+| $2$ | $\{\text{"G4"}\}$ | $0$ | $0$ | Fail ($0 \ngtr 0$) | — |
+| $3$ | $\{\text{"S8"}, \text{"iPhone"}\}$ | $1$ | $1$ | Fail ($1 \ne 0$) | — |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every reported `buyer_id` has purchased an S8 and has never purchased an iPhone across their entire history.
+2. **Completeness:**
+   All customers whose history matches this exact criteria satisfy the `HAVING` predicate and are included.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **NOT EXISTS:** Select distinct S8 buyers and reject any for whom an iPhone purchase exists. This often expresses the English condition directly.
-- **NOT IN:** It works because `buyer_id` is guaranteed non-null, but `NOT EXISTS` is generally safer when nulls are possible.
-- **Set difference:** Build the set of S8 buyers and subtract the set of iPhone buyers.
-- **Conditional CASE aggregates:** `SUM(CASE WHEN ... THEN 1 ELSE 0 END)` is more portable across SQL dialects than MySQL Boolean arithmetic.
-- **WHERE only S8:** It is incorrect because it hides iPhone evidence before grouping.
-- **Buyer with several S8 purchases:** The first sum is greater than one and still passes.
-- **Buyer with S8 and iPhone:** The iPhone sum is positive, so the buyer is rejected.
-- **Buyer with only unrelated products:** The S8 sum is zero, so the buyer is rejected.
-- **Repeated Sales rows:** Counts increase but group output remains one buyer row.
-- **Product names:** Matching is exact and case-sensitive according to the database collation rules in use.
-- **Non-null buyer identifier:** Every grouped row has a real buyer key.
-- **Any output order:** No `ORDER BY` is required.
-- **GROUP BY 1:** It refers to selected `buyer_id`; naming the column explicitly would be equivalent.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Buyer Purchased Both S8 and iPhone | Separate transactions | $N_{\text{iPhone}} > 0 \implies$ buyer rejected. | `WHERE` clause per-row leakage. |
+| Multiple S8 Purchases | Buyer bought S8 three times | $N_{\text{S8}} = 3 > 0 \implies$ buyer output once. | Output row duplication. |
+| Other Products Purchased | Buyer bought S8 and Laptop | Laptop does not increment $N_{\text{iPhone}}$; buyer retained. | Over-aggressive exclusion. |
+| iPhone-Only Buyer | Buyer only bought iPhone | $N_{\text{S8}} = 0 \implies$ buyer rejected. | False positives. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let `P` be the number of product rows and `R` the number of sales rows.
-- **Auxiliary Space Complexity:** $O(P+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|\mathcal{S}| + |\mathcal{P}|)$, where $|\mathcal{S}|$ is the number of rows in `Sales` and $|\mathcal{P}|$ is the number of rows in `Product`.
+  - Building a hash map over `Product` on `product_id` takes $\mathcal{O}(|\mathcal{P}|)$ time.
+  - Scanning `Sales` and populating buyer indicator counts takes $\mathcal{O}(|\mathcal{S}|)$ time.
+  - Filtering groups takes $\mathcal{O}(B)$ time where $B$ is the number of distinct buyers.
+  - Total time: strictly linear in database input size.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\mathcal{P}| + B)$ auxiliary memory for the product lookup table and buyer indicator accumulators.

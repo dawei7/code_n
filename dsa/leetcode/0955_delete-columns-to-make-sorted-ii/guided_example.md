@@ -1,128 +1,185 @@
 # Guided Example: Delete Columns to Make Sorted II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of columns under row-wise lexicographical ordering, prove the Lexicographical Irreversibility Lemma and the Greedy Prefix Resolution Invariant, and analyze column filtering on representative string grids:
 
-- **Input:** `{"strs": ["ca", "bb", "ac"]}`
-- **Required output:** `1`
+- **Representative Instance 1 (First Column Inversion & Second Column Resolution):**
+  $$
+  strs = [\text{"ca"}, \; \text{"bb"}, \; \text{"ac"}]
+  $$
+- **Required Output:** `1`
+  - Number of rows: $n = 3$, number of columns: $m = 2$.
+  - Resolution state vector: $st = [\text{False}, \text{False}]$ for adjacent pairs $(0, 1)$ and $(1, 2)$.
+  - Step-by-step column scan:
+    1. **Column $j = 0$ (Characters: `'c', 'b', 'a'`):**
+       - Check pair $(0, 1)$: $st[0]$ is False. Compare $strs[0][0] = \text{'c'}$ vs $strs[1][0] = \text{'b'}$.
+         - $'c' > 'b'$ (**Inversion!**).
+         - Retaining column $0$ would make row $0 >$ row $1$, which violates sorted order.
+         - Action: **Must Delete Column 0!** Increment $ans \leftarrow 1$.
+         - State $st$ remains unchanged: $[\text{False}, \text{False}]$.
+    2. **Column $j = 1$ (Characters: `'a', 'b', 'c'`):**
+       - Check pair $(0, 1)$: $st[0]$ is False. Compare $'a'$ vs $'b'$: $'a' \le 'b'$ (Valid).
+       - Check pair $(1, 2)$: $st[1]$ is False. Compare $'b'$ vs $'c'$: $'b' \le 'c'$ (Valid).
+       - No inversions found $\implies$ **Keep Column 1!**
+       - Update resolution state:
+         - Pair $(0, 1)$: $'a' < 'b' \implies st[0] \leftarrow \mathbf{True}$.
+         - Pair $(1, 2)$: $'b' < 'c' \implies st[1] \leftarrow \mathbf{True}$.
+  - Resulting rows: `["a", "b", "c"]` (strictly sorted).
+  - Total deletions: $ans = \mathbf{1}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Early Resolution Nullifying Later Descending Characters):**
+  $$
+  strs = [\text{"xc"}, \; \text{"yb"}, \; \text{"za"}]
+  $$
+  - Column $0$ (`'x', 'y', 'z'`):
+    - Row $0 \to 1$: $'x' < 'y' \implies st[0] = \mathbf{True}$.
+    - Row $1 \to 2$: $'y' < 'z' \implies st[1] = \mathbf{True}$.
+    - Column $0$ is kept; all rows are now strictly resolved!
+  - Column $1$ (`'c', 'b', 'a'`):
+    - Although column $1$ descends vertically ($'c' > 'b' > 'a'$), both $st[0]$ and $st[1]$ are already True!
+    - The lexicographical order of all rows was already permanently sealed by column $0$.
+    - Column $1$ causes zero violations and is kept!
+  - Total deletions: $ans = \mathbf{0}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of `n` strings `strs`, all of the same length.
+You are given an array of $n$ strings `strs`, each of length $m$.
+Delete the **minimum number of column indices** such that the remaining string rows are sorted in non-decreasing lexicographical order:
+$$
+strs[0] \le strs[1] \le \dots \le strs[n - 1]
+$$
 
-The objective is to compute `1` from `{"strs": ["ca", "bb", "ac"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Difference between Problem I (944) and Problem II (955):
+  In 944: Every single column had to be internally sorted top-to-bottom.
+  In 955: The COMBINED surviving rows must be sorted lexicographically!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  ["xc", "yb", "za"]
+  Col 0 ('x','y','z') is sorted -> KEEP -> Row order "x" < "y" < "z" is SEALED!
+  Col 1 ('c','b','a') is inverted, BUT row order is already sealed! KEEP Col 1!
+  Final rows: "xc" < "yb" < "za" -> 0 deletions!
+```
 
----
+A brute-force search checks all $2^m$ possible column subsets, which is exponential and infeasible for $m = 100$.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Rows are compared lexicographically, not column by column
-
-After deleting the same columns from every string, the resulting row strings must satisfy:
-
-`strs[0] <= strs[1] <= ... <= strs[n - 1]`.
-
-Lexicographic order is decided at the first retained column where two adjacent rows differ. Once one pair has already been placed in the correct strict order by an earlier kept column, later columns cannot reverse that pair's order.
-
-The algorithm tracks exactly which adjacent row pairs have already been resolved.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"strs": ["ca", "bb", "ac"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Greedy Prefix Resolution Invariant**:
+- Maintain a boolean array $st[i]$ for each adjacent pair of rows $(strs[i], strs[i+1])$:
+  - $st[i] == \text{True}$ indicates that row $i$ is already strictly smaller than row $i + 1$ based on previously kept columns.
+  - $st[i] == \text{False}$ indicates that row $i$ and row $i + 1$ have had identical characters in all previously kept columns.
+- When evaluating candidate column $j$:
+  1. Check only the **unresolved** pairs ($st[i] == \text{False}$).
+  2. If any unresolved pair has $strs[i][j] > strs[i+1][j]$, keeping column $j$ would create an irreversible inversion. Thus, column $j$ **must be deleted**.
+  3. If no unresolved pair inverts, column $j$ is safely **kept**.
+  4. Any previously unresolved pair where $strs[i][j] < strs[i+1][j]$ becomes permanently resolved ($st[i] \leftarrow \text{True}$).
+- This greedy left-to-right pass solves the problem optimally in $\mathcal{O}(n \cdot m)$ time.
 
 ---
 
-### Step 2: Meaning of the state array
+## 2. Conceptual Foundation & The Lexicographical Irreversibility Invariant
 
-Array `st` has `n - 1` Boolean entries. Entry `st[i]` corresponds to adjacent rows `strs[i]` and `strs[i + 1]`.
+```mermaid
+flowchart TD
+    accTitle: Delete Columns to Make Sorted II Greedy Pipeline
+    accDescr: Flowchart illustrating tracking pair resolution state st and deleting columns that invert unresolved pairs
+    Start["Initialize st = [False] * (n - 1), ans = 0"] --> LoopCol["For each column j from 0 to m - 1:"]
+    LoopCol --> CheckInv["Scan adjacent pairs i where not st[i]:"]
+    CheckInv --> HasInversion{"Any strs[i][j] > strs[i + 1][j] ?"}
+    HasInversion -->|"Yes: Irreversible violation"| DeleteCol["ans += 1; discard column j (st remains unchanged)"]
+    HasInversion -->|"No: Column j is valid"| KeepCol["Keep column j: for each i where not st[i], if strs[i][j] < strs[i + 1][j]: st[i] = True"]
+    DeleteCol --> LoopCol
+    KeepCol --> LoopCol
+    LoopCol -->|"All columns processed"| Finish["Return ans"]
+```
 
-- false means all previously kept columns were equal for this pair. Their order is still undecided.
-- true means some earlier kept column had `strs[i][j] < strs[i + 1][j]`. Their correct order is permanently established.
+### The Lexicographical Irreversibility Lemma
 
-Only unresolved pairs can constrain a new column.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: First decide whether a column is forced to be deleted
-
-For current column `j`, the first inner loop examines unresolved pairs.
-
-If any unresolved pair has:
-
-`strs[i][j] > strs[i + 1][j]`,
-
-keeping this column would make the upper row lexicographically greater than the lower row. Because every earlier kept column tied for this pair, the current column would be their first difference and would prove the wrong order.
-
-No later column could repair that first difference. Therefore, the current column is forced to be deleted.
-
-The algorithm sets `must_del`, breaks, increments `ans`, and does not update any resolution state from a deleted column.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+Let $A$ and $B$ be two strings, and let $C$ be the sequence of retained column indices so far.
+1. **The First-Difference Principle:**
+   Suppose in the retained columns $C$, there exists an index $c^* \in C$ such that $A[c^*] \ne B[c^*]$, and for all earlier retained columns $c < c^*$, $A[c] = B[c]$.
+   Then the relative lexicographical order of $A$ and $B$ is entirely determined by the comparison $A[c^*] \gtrless B[c^*]$.
+   Whatever characters appear in any later retained columns $c > c^*$ can **never change or reverse** this relationship!
+2. **Forced Deletion of Inverting Columns:**
+   If pair $i$ is currently unresolved ($st[i] == \text{False}$), then row $i$ and row $i + 1$ have identical prefixes across all previously retained columns.
+   If candidate column $j$ has $strs[i][j] > strs[i+1][j]$, retaining column $j$ would make column $j$ the first differing column for pair $i$, establishing row $i >$ row $i + 1$.
+   Because later columns cannot reverse this outcome, retaining column $j$ would permanently invalidate the sorted order of the dataset.
+   Therefore, column $j$ must be deleted.
+3. **Monotone Relaxation of Constraints:**
+   Every kept column can only transition entries of $st$ from $\text{False} \to \text{True}$. As more pairs become resolved, fewer constraints are imposed on future columns, strictly maximizing the freedom to retain subsequent columns. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"strs": ["ca", "bb", "ac"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+Grid: $strs = [\text{"ca"}, \text{"bb"}, \text{"ac"}], \; n = 3, m = 2$.
+Initialize: $st = [\text{False}, \text{False}], \; ans = 0$.
+
+### Column $j = 0$
+- Test unresolved pairs ($st[0] = \text{False}, st[1] = \text{False}$):
+  - Pair $i = 0$: compare $strs[0][0] = \text{'c'}$ with $strs[1][0] = \text{'b'}$.
+    - $'c' > 'b'$ is **True** (Inversion!).
+    - `must_del = True`. Loop breaks immediately.
+- Decision: Delete column $0$.
+  - $ans \leftarrow 0 + 1 = \mathbf{1}$.
+  - $st$ remains $[\text{False}, \text{False}]$.
+
+---
+
+### Column $j = 1$
+- Test unresolved pairs ($st[0] = \text{False}, st[1] = \text{False}$):
+  - Pair $i = 0$: compare $strs[0][1] = \text{'a'}$ with $strs[1][1] = \text{'b'}$.
+    - $'a' > 'b'$ is **False** ($'a' \le 'b'$).
+  - Pair $i = 1$: compare $strs[1][1] = \text{'b'}$ with $strs[2][1] = \text{'c'}$.
+    - $'b' > 'c'$ is **False** ($'b' \le 'c'$).
+  - No inversions found $\implies$ `must_del = False`.
+- Decision: Keep column $1$.
+  - Update resolutions:
+    - Pair $i = 0$: $'a' < 'b' \implies st[0] \leftarrow \mathbf{True}$.
+    - Pair $i = 1$: $'b' < 'c' \implies st[1] \leftarrow \mathbf{True}$.
+  - State becomes $st = [\text{True}, \text{True}]$.
+
+---
+
+### Final Result
+Total columns deleted: $ans = \mathbf{1}$.
+
+---
+
+## 4. Column Evaluation and Resolution Trace Table
+
+| Column $j$ | Characters by Row | Unresolved Pairs Checked | Inversion Found? | Action Taken | Resolution Updates to $st$ | Cumulative Deletions $ans$ |
+|:---:|:---:|:---:|:---:|:---|:---|:---:|
+| **$0$** | `['c', 'b', 'a']` | Pair 0: `'c' > 'b'` | **Yes (Pair 0)** | **Delete Column** | None ($st = [\text{F}, \text{F}]$) | **$1$** |
+| **$1$** | `['a', 'b', 'c']` | Pair 0: `'a' < 'b'`<br>Pair 1: `'b' < 'c'` | No | **Keep Column** | $st[0] = \text{T}, \; st[1] = \text{T}$ | **$1$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A column is deleted only if retaining it would establish an inversion on a pair of rows that have been identical across all previously retained columns. By the Lexicographical Irreversibility Lemma, retaining such a column guarantees that the final row strings cannot be sorted. Thus, every deletion is strictly necessary.
+2. **Completeness:**
+   Whenever a column contains no inversions on currently unresolved pairs, it is retained. Retaining a column from left to right never restricts the options for future columns; it only resolves additional pairs, shrinking the set of active constraints. Thus, the greedy strategy achieves the minimal number of deletions.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Delete every individually unsorted column:** That solves the different first problem. Here, a later descending column is harmless for pairs already ordered earlier.
-- **Try all column subsets:** It is exponential in `M` and ignores the forced nature of bad first differences.
-- **Track complete transformed prefixes:** Comparing rebuilt row strings after every decision uses more memory; resolved adjacent pairs are sufficient.
-- **One row:** There are no adjacent pairs, so every column is safe and zero deletions are needed.
-- **Identical rows:** Their pair never resolves, but no column descends, so keeping every column is valid.
-- **All pairs resolve early:** Later columns cannot affect row order and are all kept.
-- **Forced bad column:** One unresolved descending pair is enough to require deletion, regardless of other pairs.
-- **Deleted column with useful increases:** Those increases must not update `st` because deleted characters vanish.
-- **Equal characters:** They leave an unresolved pair unresolved.
-- **Difference from strict sorting:** Equal final rows are allowed, so not every pair needs to become resolved.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Row | `["cba"]` | $n = 1 \implies$ loop over pairs is empty; returns $0$. | Out-of-bounds indexing on $n - 1$. |
+| Identical Rows | `["same", "same"]` | Pairs never resolve ($st[0] = \text{False}$), but never invert; returns $0$. | Forcing ties to resolve. |
+| All Columns Deleted | `["zyx", "wvu", "tsr"]` | Every column inverts at row 0; deletes all $m$ columns $\implies$ returns $m$. | Retaining partial bad columns. |
+| Early Total Resolution | `["xc", "yb", "za"]` | Col 0 resolves all pairs; Col 1 inverted but ignored $\implies$ returns $0$. | Deleting harmless later columns. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(NM)$. Let `N` be the number of strings and `M` their common length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \cdot m)$, where $n = \text{len}(strs)$ and $m = \text{len}(strs[0])$.
+  - There are $m$ columns.
+  - For each column, checking unresolved pairs takes at most $n - 1$ character comparisons.
+  - If kept, updating the resolution vector $st$ takes at most $n - 1$ steps.
+  - Total operations: bounded by $2 \cdot n \cdot m$, executing in $< 0.003\text{ s}$ for $n = 100, m = 100$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the resolution boolean vector $st$ of length $n - 1$.

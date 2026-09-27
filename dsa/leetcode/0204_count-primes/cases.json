@@ -18,14 +18,28 @@
     {
       "id": "trial-zero",
       "name": "zero upper bound",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "n": 0
       },
       "expected": 0,
       "tags": [
+        "sample",
         "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
       ]
     },
     {

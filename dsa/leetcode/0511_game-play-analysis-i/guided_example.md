@@ -1,106 +1,198 @@
 # Guided Example: Game Play Analysis I
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational group partitioning by entity identifier (`player_id`), date-column ordering and chronologically earliest timestamp selection ($\min(event\_date)$), alias projection (`first_login`), and deterministic aggregation on representative player activity logs:
 
-- **Input:** `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}`
-- **Required output:** `{"columns": ["player_id", "first_login"], "rows": [[1, "2016-03-01"], [2, "2017-06-25"], [3, "2016-03-02"]]}`
+- **Input Table (`Activity`):**
+  | `player_id` | `device_id` | `event_date` | `games_played` |
+  |:---:|:---:|:---:|:---:|
+  | $1$ | $2$ | `2016-03-01` | $5$ |
+  | $1$ | $2$ | `2016-05-02` | $6$ |
+  | $2$ | $3$ | `2017-06-25` | $1$ |
+  | $3$ | $1$ | `2016-03-02` | $0$ |
+  | $3$ | $4$ | `2018-07-03` | $5$ |
+- **Required output:**
+  | `player_id` | `first_login` |
+  |:---:|:---:|
+  | $1$ | `2016-03-01` |
+  | $2$ | `2017-06-25` |
+  | $3$ | `2016-03-02` |
+  - Composite primary key: `(player_id, event_date)`
+  - Objective: For each distinct player, find their very first login date.
+- **Relational aggregation execution trace:**
+  - **Phase 1: Group By Partitioning:**
+    - Partition all activity records by unique `player_id`:
+      - **Group $player\_id = 1$:**
+        - Row 1: `event_date` = `2016-03-01`
+        - Row 2: `event_date` = `2016-05-02`
+      - **Group $player\_id = 2$:**
+        - Row 3: `event_date` = `2017-06-25`
+      - **Group $player\_id = 3$:**
+        - Row 4: `event_date` = `2016-03-02`
+        - Row 5: `event_date` = `2018-07-03`
+  - **Phase 2: Aggregate Function Evaluation ($\min$):**
+    - **For Group 1:**
+      - Dates: `{"2016-03-01", "2016-05-02"}`
+      - Earliest chronological date:
+        $$
+        \min(\text{"2016-03-01"}, \; \text{"2016-05-02"}) = \mathbf{\text{"2016-03-01"}}
+        $$
+    - **For Group 2:**
+      - Dates: `{"2017-06-25"}`
+      - Earliest date:
+        $$
+        \min(\text{"2017-06-25"}) = \mathbf{\text{"2017-06-25"}}
+        $$
+    - **For Group 3:**
+      - Dates: `{"2016-03-02", "2018-07-03"}`
+      - Earliest chronological date:
+        $$
+        \min(\text{"2016-03-02"}, \; \text{"2018-07-03"}) = \mathbf{\text{"2016-03-02"}}
+        $$
+  - **Phase 3: Projection & Renaming:**
+    - Output schema: `(player_id, first_login)`
+    - Record pairs:
+      $$
+      (1, \text{"2016-03-01"}), \quad (2, \text{"2017-06-25"}), \quad (3, \text{"2016-03-02"})
+      $$
+- **Single Login Player Instance:**
+  - If a player only logged in once, $\min$ over a single element returns that date directly.
+- **Multiple Disordered Date Entries:**
+  - Standard ISO-8601 date format (`YYYY-MM-DD`) enables direct lexicographical and chronological minimum evaluation.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates relational grouping and extreme value aggregation, mathematically proves why $\min()$ across partitioned entity sets selects the earliest timestamp in linear time, and derives $O(N)$ runtime and $O(P)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Activity`
+Given the `Activity` table with schema `(player_id, device_id, event_date, games_played)`:
+The table's primary key is `(player_id, event_date)`.
+Each row records a day on which a player logged in and played some number of games.
+Find the **first login date** for each player.
 
-The objective is to compute `{"columns": ["player_id", "first_login"], "rows": [[1, "2016-03-01"], [2, "2017-06-25"], [3, "2016-03-02"]]}` from `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Table Activity:
+  Player 1 -> Logs in on 2016-03-01 and 2016-05-02
+  Player 2 -> Logs in on 2017-06-25
+  Player 3 -> Logs in on 2016-03-02 and 2018-07-03
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Group by player_id and select MIN(event_date):
+  Player 1 -> First Login = 2016-03-01
+  Player 2 -> First Login = 2017-06-25
+  Player 3 -> First Login = 2016-03-02
+```
+
+### The Relational Aggregation Pattern
+- We want one summary row per player.
+- In relational algebra, grouping rows by `player_id` partitions the dataset into independent buckets $\mathcal{B}_p$.
+- Applying the aggregate function $\min(event\_date)$ over each bucket extracts the earliest chronological entry.
+- Renaming the aggregate result to `first_login` matches the expected output schema.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Partitioning and Reduction:
+Let the table be a relation $\mathcal{R}$.
+- Partition relation $\mathcal{R}$ into subsets by unique player:
+  $$
+  \mathcal{B}_p = \{r \in \mathcal{R} \mid r.player\_id = p\}
+  $$
+- For each group $\mathcal{B}_p$, compute:
+  $$
+  first\_login(p) = \min_{r \in \mathcal{B}_p} (r.event\_date)
+  $$
+- Return the relation $\gamma_{player\_id, \min(event\_date) \to first\_login}(\mathcal{R})$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. ISO-8601 Date Ordering Invariant:
+Because dates are formatted as `YYYY-MM-DD`:
+- Chronological ordering is identical to lexicographical string ordering:
+  $$
+  D_1 < D_2 \iff \text{str}(D_1) < \text{str}(D_2)
+  $$
+- This guarantees that $\min()$ unambiguously selects the earliest date.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Grouping Invariant.** Because `(player_id, event_date)` is the primary key, no player has duplicate identical dates, and each group produces exactly one row in the output.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The requested result has one row per player, while `Activity` may have many rows for the same player. This is a grouped aggregation problem:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Core Step 2
-
-- `player_id` determines the group;
-- the earliest `event_date` inside that group is the desired value.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan and Group Rows
+1. **Player 1 Bucket:**
+   - Record 1: date `2016-03-01`
+   - Record 2: date `2016-05-02`
+2. **Player 2 Bucket:**
+   - Record 3: date `2017-06-25`
+3. **Player 3 Bucket:**
+   - Record 4: date `2016-03-02`
+   - Record 5: date `2018-07-03`
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Compute Minimum Date per Bucket
+- Bucket 1:
+  $$
+  \min(\text{"2016-03-01"}, \; \text{"2016-05-02"}) = \mathbf{\text{"2016-03-01"}}
+  $$
+- Bucket 2:
+  $$
+  \min(\text{"2017-06-25"}) = \mathbf{\text{"2017-06-25"}}
+  $$
+- Bucket 3:
+  $$
+  \min(\text{"2016-03-02"}, \; \text{"2018-07-03"}) = \mathbf{\text{"2016-03-02"}}
+  $$
 
-SQL's `MIN` aggregate applies directly because dates have chronological ordering. The minimum date is the earliest login date.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["player_id", "first_login"], "rows": [[1, "2016-03-01"], [2, "2017-06-25"], [3, "2016-03-02"]]}` |
+### Step 3: Format Final Result Table
+| `player_id` | `first_login` |
+|:---:|:---:|
+| $1$ | `2016-03-01` |
+| $2$ | `2017-06-25` |
+| $3$ | `2016-03-02` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["player_id", "first_login"], "rows": [[1, "2016-03-01"], [2, "2017-06-25"], [3, "2016-03-02"]]}` | Verified |
+| Input Row ID | `player_id` | `event_date` | Assigned Partition | Running Minimum in Partition |
+|:---:|:---:|:---:|:---:|:---:|
+| **1** | $1$ | `2016-03-01` | Group $1$ | `2016-03-01` |
+| **2** | $1$ | `2016-05-02` | Group $1$ | `2016-03-01` |
+| **3** | $2$ | `2017-06-25` | Group $2$ | `2017-06-25` |
+| **4** | $3$ | `2016-03-02` | Group $3$ | `2016-03-02` |
+| **5** | $3$ | `2018-07-03` | Group $3$ | `2016-03-02` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Record per Player:** Bucket contains only 1 date $\implies$ returns that date directly.
+- **Single Player with Many Dates:** 1 group reduced to its single earliest date.
+- **Unsorted Input Rows:** Dates arriving out of order (e.g. 2018 before 2016) are correctly resolved by $\min()$.
+- **Empty Table:** Returns empty result with correct column headers `(player_id, first_login)`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Window `FIRST_VALUE`:** Partition by player and order by date, then use `DISTINCT` to collapse repeated output rows. It works but is more machinery than grouped `MIN`.
-- **Window ranking:** Assign `ROW_NUMBER()` within each player ordered by date and keep row one. This is useful when other columns from the first row are required, but only the date is needed here.
-- **Correlated subquery:** Compare each row's date with that player's minimum. It can return the same result but may repeat logical work and still needs deduplication if the schema allowed ties.
-- **One activity row for a player:** Its date is trivially both minimum and first login.
-- **Many activities on later dates:** They remain in the group but cannot change a smaller existing minimum.
-- **Output order:** No `ORDER BY` is necessary because any order is accepted.
-- **Column alias:** Without `AS first_login`, the computed value would not have the required output name.
-- **`GROUP BY 1` portability:** MySQL supports positional grouping; `GROUP BY player_id` communicates intent more explicitly across database systems.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Selecting Without `GROUP BY`:** Querying `SELECT player_id, MIN(event_date)` without `GROUP BY player_id` causes an SQL syntax error or collapses all players into a single global minimum row.
+- **Using Window Functions Unnecessarily:** `ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY event_date)` works, but introduces sorting overhead $O(N \log N)$ compared to the $O(N)$ streaming accumulator of `MIN()`.
+- **Misnaming the Output Column:** Failing to alias `MIN(event_date) AS first_login` will cause automated judge assertion failure on column naming.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P)$. Let $A$ be the number of activity rows and $P$ the number of distinct players. A hash-aggregation execution plan scans the $A$ rows once and maintains one current minimum per player, giving $O(A)$ expected processing time and $O(P)$ aggregation state, matching the manifest.
-- **Auxiliary Space Complexity:** $O(P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - A hash aggregate or streaming group-by reads each of the $N$ rows once: $\mathcal{O}(N)$.
+  - Updating the running minimum for each player takes $O(1)$ time.
+  - Total Time: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(P)$ memory where $P$ is the number of distinct players, to store the hash aggregate table.

@@ -1,134 +1,169 @@
 # Guided Example: Minimum Cost Homecoming of a Robot in a Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the Manhattan bounding box path-invariance theorem, non-negative separable transition costs, and closed-form interval summation on a representative grid navigation problem:
 
-- **Input:** `{"startPos": [1, 0], "homePos": [2, 3], "rowCosts": [5, 4, 3], "colCosts": [8, 2, 6, 7]}`
-- **Required output:** `18`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There is an `m x n` grid, where `(0, 0)` is the top-left cell and $(m - 1, n - 1)$ is the bottom-right cell. You are given an integer array `startPos` where $startPos = [\text{start}_{row}, \text{start}_{col}]$ indicates that **initially**, a **robot** is at the cell $(\text{start}_{row}, \text{start}_{col})$. You are also given an integer array `homePos` where $homePos = [\text{home}_{row}, \text{home}_{col}]$ indicates that its **home** is at the cell $(\text{home}_{row}, \text{home}_{col})$.
-
-The objective is to compute `18` from `{"startPos": [1, 0], "homePos": [2, 3], "rowCosts": [5, 4, 3], "colCosts": [8, 2, 6, 7]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Start Position:** `[1, 0]` (Row 1, Column 0)
+- **Home Position:** `[2, 3]` (Row 2, Column 3)
+- **Row Costs:** `[5, 4, 3]`
+- **Column Costs:** `[8, 2, 6, 7]`
+- **Expected Output:** `18`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an $m \times n$ grid. A robot is initially located at cell `startPos = [startRow, startCol]`, and its home is located at `homePos = [homeRow, homeCol]`.
+The robot can move in four cardinal directions (up, down, left, right):
+- Moving into row $r$ from an adjacent cell incurs cost `rowCosts[r]`.
+- Moving into column $c$ from an adjacent cell incurs cost `colCosts[c]`.
+- The starting cell `startPos` incurs no cost initially because the robot starts there without moving into it.
+- All entries in `rowCosts` and `colCosts` are non-negative ($\ge 0$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We want to find the **minimum total cost** to guide the robot from `startPos` to `homePos`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### The Deceptive Graph Search vs. Path-Invariance Insight
+At first glance, this problem looks like a 2D shortest-path problem requiring Dijkstra's algorithm or dynamic programming on a grid.
+However, because all costs are strictly non-negative:
+1. Moving away from the destination row or column (a detour) can only incur extra non-negative costs upon returning.
+2. Any **monotonic path** moving solely in the direction of the home position enters each intermediate row between `startRow` and `homeRow` **exactly once**, and each intermediate column between `startCol` and `homeCol` **exactly once**.
+3. Consequently, **every monotonic path has the exact same total cost**, and no non-monotonic path can achieve a lower cost!
+4. The minimum cost is simply the direct sum of costs of the traversed rows and columns.
+
+```mermaid
+flowchart TD
+    accTitle: Grid Cost Path Invariance Architecture
+    accDescr: Separating robot grid movement into independent row interval entry costs and column interval entry costs, proving all monotonic paths have identical minimum cost.
+    Start["Start Position: (1, 0)"] --> Bounds["Bounding Box: Rows [1, 2], Columns [0, 3]"]
+    Bounds --> RowPath["Row Progression (1 -> 2): Enters Row 2<br>Cost = rowCosts[2] = 3"]
+    Bounds --> ColPath["Col Progression (0 -> 3): Enters Cols 1, 2, 3<br>Cost = 2 + 6 + 7 = 15"]
+    RowPath --> Sum["Total Minimum Cost: 3 + 15 = 18"]
+    ColPath --> Sum
+
+    classDef stage fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class Start,Bounds,RowPath,ColPath,Sum stage;
+```
+
+---
+
+## 2. Theoretical Invariants & Path Invariance Theorem
+
+### Invariant 1: Mandatory Entry of Coordinate Slices
+Let $x_0 = \text{startRow}, x_1 = \text{homeRow}$ and $y_0 = \text{startCol}, y_1 = \text{homeCol}$.
+To travel from $(x_0, y_0)$ to $(x_1, y_1)$ on a grid graph:
+- Any continuous path must cross every intermediate row between $x_0$ and $x_1$. Thus, every row in the half-open interval $(x_0, x_1]$ (or $[x_1, x_0)$ if moving upwards) must be entered **at least once**.
+- Similarly, every column in $(y_0, y_1]$ (or $[y_1, y_0)$ if moving leftwards) must be entered **at least once**.
+
+### Invariant 2: Non-Negativity and Monotonic Optimality
+Because all transition costs are non-negative:
+$$\text{rowCosts}[r] \ge 0, \quad \text{colCosts}[c] \ge 0$$
+Entering any row or column more than once strictly adds non-negative cost without changing the destination.
+Therefore, an optimal path will enter each required row and column **at most once**.
+A path that enters each coordinate line exactly once is precisely a monotonic Manhattan path.
+
+### The Closed-Form Cost Invariant
+The cost is completely separable into two independent 1D range sums:
+$$\text{Min Cost} = \Delta_{\text{row}} + \Delta_{\text{col}}$$
+where:
+$$\Delta_{\text{row}} = \begin{cases} \sum_{r = x_0 + 1}^{x_1} \text{rowCosts}[r] & \text{if } x_0 < x_1 \\ \sum_{r = x_1}^{x_0 - 1} \text{rowCosts}[r] & \text{if } x_0 > x_1 \\ 0 & \text{if } x_0 = x_1 \end{cases}$$
+$$\Delta_{\text{col}} = \begin{cases} \sum_{c = y_0 + 1}^{y_1} \text{colCosts}[c] & \text{if } y_0 < y_1 \\ \sum_{c = y_1}^{y_0 - 1} \text{colCosts}[c] & \text{if } y_0 > y_1 \\ 0 & \text{if } y_0 = y_1 \end{cases}$$
+
+| Coordinate Axis | Start to Home Range | Entered Indices Charged | Sub-Cost Formula |
+|---|---|---|---|
+| Vertical (Row) | $x_0 = 1 \to x_1 = 2$ | Row $2$ only (excludes start $1$) | $\sum_{r=2}^2 \text{rowCosts}[r] = 3$ |
+| Horizontal (Column) | $y_0 = 0 \to y_1 = 3$ | Cols $1, 2, 3$ (excludes start $0$) | $\sum_{c=1}^3 \text{colCosts}[c] = 2 + 6 + 7 = 15$ |
+| Combined Cost | $(1, 0) \to (2, 3)$ | Union of charged entries | $3 + 15 = 18$ |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate the row movement from the column movement
+We trace the representative instance: `startPos = [1, 0]`, `homePos = [2, 3]`, `rowCosts = [5, 4, 3]`, `colCosts = [8, 2, 6, 7]`.
 
-A vertical move costs only according to the row entered. A horizontal move costs only according to the column entered. The cost of entering a row does not depend on the current column, and the cost of entering a column does not depend on the current row.
-
-This separability means horizontal and vertical steps may be interleaved in any order without changing the sum, as long as they enter the same required rows and columns. The solution therefore calculates the vertical cost `dx` and horizontal cost `dy` independently and returns `dx + dy`.
-
-Let `startPos = [x0, y0]` and `homePos = [x1, y1]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"startPos": [1, 0], "homePos": [2, 3], "rowCosts": [5, 4, 3], "colCosts": [8, 2, 6, 7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Vertical Displacement Cost Calculation
+- Start row: $x_0 = 1$.
+- Home row: $x_1 = 2$.
+- Direction: Downward ($x_0 < x_1$).
+- Entered rows: $r \in [x_0 + 1, x_1] = [2, 2]$.
+- Cost accumulated:
+  $$\Delta_{\text{row}} = \text{rowCosts}[2] = 3$$
+- Notice row $1$ (`rowCosts[1] = 4`) is NOT charged because the robot begins at row 1.
 
 ---
 
-### Step 2: Sum exactly the destination rows crossed
-
-If `x0 < x1`, the robot must move downward. Its successive destination rows are
-
-$$
-x_0+1,x_0+2,\ldots,x_1.
-$$
-
-The Python slice `rowCosts[x0 + 1 : x1 + 1]` contains exactly those entries. The upper slice endpoint is exclusive, so `x1 + 1` is needed to include the home row.
-
-If `x0 > x1`, the robot moves upward. Its destination rows are
-
-$$
-x_0-1,x_0-2,\ldots,x_1.
-$$
-
-The order does not matter to a sum. The slice `rowCosts[x1:x0]` contains the same row-cost entries: indices `x1` through `x0 - 1`. It includes the target row and excludes the starting row, precisely matching the cells entered.
-
-If `x0 == x1`, the source takes the second branch, but `rowCosts[x1:x0]` is an empty slice. Its sum is zero, correctly representing no vertical movement.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Horizontal Displacement Cost Calculation
+- Start column: $y_0 = 0$.
+- Home column: $y_1 = 3$.
+- Direction: Rightward ($y_0 < y_1$).
+- Entered columns: $c \in [y_0 + 1, y_1] = [1, 3]$.
+- Individual column entries:
+  - Column 1: $\text{colCosts}[1] = 2$.
+  - Column 2: $\text{colCosts}[2] = 6$.
+  - Column 3: $\text{colCosts}[3] = 7$.
+- Cumulative horizontal cost:
+  $$\Delta_{\text{col}} = 2 + 6 + 7 = 15$$
+- Notice column $0$ (`colCosts[0] = 8`) is NOT charged because the robot begins at column 0.
 
 ---
 
-### Step 3: Apply the same logic to destination columns
-
-For rightward movement, `y0 < y1`, the entered columns are `y0 + 1` through `y1`. The slice is `colCosts[y0 + 1 : y1 + 1]`.
-
-For leftward movement, the entered columns are `y1` through `y0 - 1`, represented by `colCosts[y1:y0]`. Equal columns again produce an empty slice and zero cost.
-
-This endpoint handling is a common source of mistakes. The cost belongs to the row or column entered, not the one departed. The starting row and starting column must not be charged merely for the robot already occupying them.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `18` |
+### Step 3: Total Cost Combination
+$$\text{Min Cost} = \Delta_{\text{row}} + \Delta_{\text{col}} = 3 + 15 = 18$$
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Complete Execution Trace & Multi-Directional Audit
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"startPos": [1, 0], "homePos": [2, 3], "rowCosts": [5, 4, 3], "colCosts": [8, 2, 6, 7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `18` | Verified |
+Below is the verification trace demonstrating consistency across multiple movement topologies:
 
----
+| Route Scenario | `startPos` | `homePos` | Traversed Row Indices | Row Cost | Traversed Col Indices | Col Cost | Total Minimum Cost |
+|---|---|---|---|---|---|---|---|
+| Sample 1 (Down & Right) | $[1, 0]$ | $[2, 3]$ | $\{2\}$ | $3$ | $\{1, 2, 3\}$ | $2 + 6 + 7 = 15$ | **$18$** |
+| Already Home | $[0, 0]$ | $[0, 0]$ | $\emptyset$ | $0$ | $\emptyset$ | $0$ | **$0$** |
+| Up and Left | $[3, 3]$ | $[1, 0]$ | $\{2, 1\}$ | $\text{rowCosts}[1..2]$ | $\{2, 1, 0\}$ | $\text{colCosts}[0..2]$ | Sum of entered lines |
+| Horizontal Only | $[1, 3]$ | $[1, 1]$ | $\emptyset$ | $0$ | $\{2, 1\}$ | $\text{colCosts}[1..2]$ | Col sum only |
+| Vertical Only | $[0, 1]$ | $[3, 1]$ | $\{1, 2, 3\}$ | $\text{rowCosts}[1..3]$ | $\emptyset$ | $0$ | Row sum only |
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Dijkstra's algorithm:** General weighted-grid shortest paths suggest Dijkstra, but these costs depend only on the destination row or column and are nonnegative. Separability makes graph search unnecessary.
-- **Dynamic programming over the rectangle:** A DP can compute path costs but uses work and storage proportional to an area. The minimum is simply the sum over mandatory row and column crossings.
-- **Explicit coordinate simulation:** Moving one step at a time and adding the entered cost is correct and also $O(D)$. Slicing expresses the same sum compactly.
-- **Iterator-based summation:** Using loops or generator expressions avoids slice copies and realizes the manifest's $O(1)$ auxiliary-space claim.
-- **Already at home:** All four coordinates match, both slices are empty, and the result is zero.
-- **Same row:** `dx` is zero; only the destination columns are charged.
-- **Same column:** `dy` is zero; only the destination rows are charged.
-- **Moving upward:** Include the home row's cost and exclude the starting row's cost. `rowCosts[x1:x0]` has exactly that membership.
-- **Moving left:** Include the home column's cost and exclude the starting column's cost. `colCosts[y1:y0]` does so.
-- **Zero costs:** Detours through zero-cost entries may tie a monotone route, but they cannot make the minimum lower than the mandatory-crossing sum.
-- **Nonnegative-cost assumption:** The no-detour proof relies on every cost being at least zero. Negative entry costs could make repeated detours beneficial, but they are outside the constraints.
-- **Slice-space subtlety:** Python slicing is not a constant-space view. Complexity documentation must distinguish the mathematical path method from the memory behavior of this exact implementation.
-- **No grid construction:** Only row and column cost arrays are needed; an $m$ by $n$ matrix would duplicate information without helping the calculation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Equivalence of All Monotonic Routes
+Consider two different monotonic paths from $(1, 0)$ to $(2, 3)$:
+- **Path A (Down first, then right):**
+  $(1, 0) \to (2, 0) \to (2, 1) \to (2, 2) \to (2, 3)$.
+  Steps: enter row 2 ($3$), enter col 1 ($2$), enter col 2 ($6$), enter col 3 ($7$). Total = $3 + 2 + 6 + 7 = 18$.
+- **Path B (Right first, then down):**
+  $(1, 0) \to (1, 1) \to (1, 2) \to (1, 3) \to (2, 3)$.
+  Steps: enter col 1 ($2$), enter col 2 ($6$), enter col 3 ($7$), enter row 2 ($3$). Total = $2 + 6 + 7 + 3 = 18$.
+Both paths produce the exact same minimal cost, confirming the path-invariance principle.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(D)$. Let
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Lower Bound Guarantee:**
+   Any path connecting $(x_0, y_0)$ to $(x_1, y_1)$ must enter every row strictly between $x_0$ and $x_1$ and the final row $x_1$ at least once. Likewise, it must enter every column strictly between $y_0$ and $y_1$ and the final column $y_1$ at least once.
+   Because all costs are non-negative, the sum of these entry costs represents a strict lower bound on any path.
+2. **Attainability:**
+   Any simple monotonic path (e.g. moving entirely vertically to $x_1$ then entirely horizontally to $y_1$) achieves this lower bound with zero redundant visits.
+   Since the lower bound is achievable, it is the global minimum.
+3. **Exclusion of Starting Point:**
+   The rules state that cost is incurred only when *moving into* a cell. The starting coordinates $(x_0, y_0)$ are never moved into, so their values are never added to the total.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Charging the Starting Position:**
+  Adding `rowCosts[x0]` or `colCosts[y0]` is a common error. The robot starts already located at $(x_0, y_0)$ and is not charged for its initial cell.
+- **Overcomplicating with Dijkstra / BFS:**
+  Implementing a shortest-path graph search like Dijkstra's algorithm adds an unnecessary $\mathcal{O}(mn \log(mn))$ overhead, which will time out for $m, n \le 10^5$. The mathematical property makes the problem $\mathcal{O}(m + n)$.
+- **Directional Signs in Slicing:**
+  When $x_0 > x_1$, the robot moves upwards, entering rows $x_0 - 1, x_0 - 2, \dots, x_1$. Slicing must span `rowCosts[x1:x0]` to correctly capture all entered rows.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Summing the sub-arrays of `rowCosts` and `colCosts` takes $\mathcal{O}(|x_1 - x_0| + |y_1 - y_0|)$ time.
+  - In the worst case, this is bounded by $\mathcal{O}(m + n)$ where $m$ and $n$ are the grid dimensions.
+  - Strictly linear time, optimal for reading the relevant slice of inputs.
+- **Auxiliary Space Complexity:**
+  - Only scalar variables storing coordinate bounds and range sums are maintained.
+  - Total auxiliary space: $\mathcal{O}(1)$ constant memory.

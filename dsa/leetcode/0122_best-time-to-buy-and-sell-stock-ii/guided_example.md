@@ -1,99 +1,163 @@
 # Guided Example: Best Time to Buy and Sell Stock II
 
-We derive and execute the Array, Dynamic Programming, Greedy recurrence on a representative problem instance.
+We trace the step-by-step greedy peak-valley accumulation and two-state DP state machine on representative multi-transaction stock price series:
 
-- **Input:** `{"prices": [7, 1, 5, 3, 6, 4]}`
-- **Required output:** `7`
+- **Input:** $\text{prices} = [7, 1, 5, 3, 6, 4]$
+- **Required output:** $7$ (Transactions: $5 - 1 = 4$ and $6 - 3 = 3 \implies 4 + 3 = 7$)
+- **Monotonically Ascending Base:** $\text{prices} = [1, 2, 3, 4, 5] \implies 4$ ($5 - 1 = 4$)
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates decomposing multi-day holding periods into independent single-day positive slope segments ($\sum \max(0, P[i] - P[i-1])$), proves why greedy slope harvesting matches global multi-transaction optimality, and contrasts the greedy summation against a formal two-state DP state machine (`hold` vs `cash`) in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Best Time to Buy and Sell Stock II** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+You are given an array of stock prices:
+$$
+\text{prices} = [7, 1, 5, 3, 6, 4]
+$$
+You may complete as many transactions as you like (i.e. buy one and sell one share of the stock multiple times). You can only hold at most one share at any time.
+
+Visualizing the price trajectory:
+- Day 0 to 1: Drop $7 \to 1$ ($\Delta = -6$, avoid)
+- Day 1 to 2: Rise $1 \to 5$ ($\Delta = +4$, harvest)
+- Day 2 to 3: Drop $5 \to 3$ ($\Delta = -2$, avoid)
+- Day 3 to 4: Rise $3 \to 6$ ($\Delta = +3$, harvest)
+- Day 4 to 5: Drop $6 \to 4$ ($\Delta = -2$, avoid)
+Total accumulated profit: $4 + 3 = 7$.
+
+Many learners believe multi-transaction problems require finding valleys and peaks via complex lookahead or graph search.
+However, because buying on day $A$ and selling on day $C$ across day $B$ satisfies:
+$$
+(P_C - P_A) = (P_C - P_B) + (P_B - P_A)
+$$
+holding across any multi-day upward trend is mathematically identical to buying and selling on every consecutive day where $P_{i} > P_{i-1}$.
+Thus, greedily harvesting every positive adjacent delta $\max(0, P[i] - P[i-1])$ guarantees global optimality.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Method 1: Greedy Slope Accumulation
+For each day $i$ from $1$ to $N - 1$:
+If the price increased relative to yesterday ($P[i] > P[i-1]$), capture the gain:
+$$
+\text{profit} \leftarrow \text{profit} + (P[i] - P[i - 1])
+$$
+If the price decreased or remained unchanged ($P[i] \le P[i-1]$), add $0$.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Method 2: Two-State DP State Machine
+Let:
+- $\text{cash}$: the maximum profit on the current day when holding $0$ shares.
+- $\text{hold}$: the maximum profit on the current day when holding $1$ share.
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+For each price $P$:
+1. **Transition to Hold (Buy or Retain):**
+   $$
+   \text{hold}' = \max(\text{hold}, \, \text{cash} - P)
+   $$
+2. **Transition to Cash (Sell or Retain):**
+   $$
+   \text{cash}' = \max(\text{cash}, \, \text{hold} + P)
+   $$
+
+Both methods yield identical outputs. Method 1 computes the sum in a single streamlined pass.
+
+> **Invariant.** After processing day $i$, the greedy accumulator equals the sum of all strictly positive slopes in the price sequence up to day $i$, which is mathematically the maximum profit attainable under infinite allowable transactions.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace Greedy Slope Accumulation on $\text{prices} = [7, 1, 5, 3, 6, 4]$ ($N = 6$):
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Initialization
+- $\text{total\_profit} = 0$.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Day 0 to Day 1 ($7 \to 1$)
+- Difference: $P[1] - P[0] = 1 - 7 = -6$.
+- Difference is negative $\implies$ skip (do not hold stock during downslide).
+- $\text{total\_profit} = 0$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Day 1 to Day 2 ($1 \to 5$)
+- Difference: $P[2] - P[1] = 5 - 1 = +4$.
+- Positive slope!
+- Update: $\text{total\_profit} \leftarrow 0 + 4 = 4$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 3: Day 2 to Day 3 ($5 \to 3$)
+- Difference: $P[3] - P[2] = 3 - 5 = -2$.
+- Difference is negative $\implies$ skip.
+- $\text{total\_profit} = 4$.
+
+---
+
+### Step 4: Day 3 to Day 4 ($3 \to 6$)
+- Difference: $P[4] - P[3] = 6 - 3 = +3$.
+- Positive slope!
+- Update: $\text{total\_profit} \leftarrow 4 + 3 = 7$.
+
+---
+
+### Step 5: Day 4 to Day 5 ($6 \to 4$)
+- Difference: $P[5] - P[4] = 4 - 6 = -2$.
+- Difference is negative $\implies$ skip.
+- $\text{total\_profit} = 7$.
+
+End of price array.
+Maximum total profit: $\mathbf{7}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### Daily Slope Evaluation Table
+
+```text
+Price:
+ 7
+  \      5             6
+   \    / \           / \
+    \  /   \         /   \
+     1       3      4
+Delta:
+   [-6] [+4]  [-2]  [+3] [-2]
+Take:
+    0   +4     0    +3    0  => Total = 7
+```
+
+| Day Transition | Yesterday $P[i-1]$ | Today $P[i]$ | Delta $\Delta P$ | Positive? | Profit Increment | Cumulative Profit |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Day $0 \to 1$ | 7 | 1 | $-6$ | No | $0$ | 0 |
+| **Day $1 \to 2$** | **1** | **5** | **$+4$** | **Yes** | **$+4$** | **4** |
+| Day $2 \to 3$ | 5 | 3 | $-2$ | No | $0$ | 4 |
+| **Day $3 \to 4$** | **3** | **6** | **$+3$** | **Yes** | **$+3$** | **7** |
+| Day $4 \to 5$ | 6 | 4 | $-2$ | No | $0$ | 7 |
+| **Final** | - | - | - | - | - | **7 (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Let any sequence of transactions buy at $b_1$, sell at $s_1$, buy at $b_2$, sell at $s_2$, etc. Because $s_k - b_k = \sum_{j=b_k}^{s_k-1} (P_{j+1} - P_j)$, the profit of any set of valid transactions is bounded above by the sum of all positive daily changes $\sum_{P_{j+1} > P_j} (P_{j+1} - P_j)$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Since an investor can buy on day $j$ and sell on day $j+1$ whenever $P_{j+1} > P_j$, the sum of all positive differences is achievable by executing consecutive 1-day transactions. Thus, the greedy sum is both achievable and an upper bound, proving exact global optimality.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Searching for Global Peaks/Valleys:** Attempting to identify macroscopic peaks and valleys with lookahead loops introduces complex boundary edge cases (e.g. plateaus, multiple identical prices, ending on an upswing). Summing adjacent positive differences achieves the identical result with zero edge cases.
+- **Thinking Same-Day Buy/Sell Is Disallowed:** If the price strictly rises ($1 \to 2 \to 3$), summing $(2-1) + (3-2) = 2$ represents buying at 1 and selling at 3, or selling at 2 and immediately rebuying at 2. The rules explicitly permit this.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(N)$, where $N$ is the number of days. The algorithm performs a single pass of $N - 1$ scalar comparisons and additions.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only a single accumulator register.

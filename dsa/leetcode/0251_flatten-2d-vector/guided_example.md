@@ -1,122 +1,198 @@
 # Guided Example: Flatten 2D Vector
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-coordinate cursor management, lazy empty-row skipping, and idempotent `hasNext` validation on representative 2D vector instances:
 
-- **Input:** `{"vec": [[1, 2], [3], [4]]}`
-- **Required output:** `[1, 2, 3, 4]`
+- **Input:**
+  - Initialization: $\text{vec} = [[1, 2], [3], [4]]$
+  - Calls: `next()`, `next()`, `next()`, `hasNext()`, `hasNext()`, `next()`, `hasNext()`
+- **Required output:**
+  - Sequence of returns: `1, 2, 3, true, true, 4, false`
+- **Interleaved Empty Rows Instance:** $\text{vec} = [[], [1, 2], [], [], [3], []]$ (Multiple contiguous empty rows skipped transparently)
+- **All Empty Rows Instance:** $\text{vec} = [[], [], []] \implies \text{hasNext}() = \text{false}$ immediately
+- **Single Element Instance:** $\text{vec} = [[42]] \implies \text{next}() = 42, \, \text{hasNext}() = \text{false}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates lazy evaluation patterns for composite data iterators, proves amortized $O(1)$ time complexity for cursor advances across empty sub-arrays, maintains idempotence across repeated `hasNext` inquiries, and enforces strictly $O(1)$ auxiliary memory without copying or pre-flattening the underlying matrix.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design an iterator to flatten a 2D vector. It should support the `next` and `hasNext` operations.
+We implement the `Vector2D` streaming iterator:
+```text
+Vector2D iterator = new Vector2D([[1, 2], [3], [4]]);
+iterator.next();    // returns 1
+iterator.next();    // returns 2
+iterator.next();    // returns 3
+iterator.hasNext(); // returns true (idempotent, doesn't advance)
+iterator.hasNext(); // returns true
+iterator.next();    // returns 4
+iterator.hasNext(); // returns false
+```
 
-The objective is to compute `[1, 2, 3, 4]` from `{"vec": [[1, 2], [3], [4]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Pre-Flattening vs Lazy Streaming
+- **Pre-flattening:** Unrolling all rows into a 1D array in the constructor takes $O(N)$ time and $O(N)$ auxiliary space upfront. If the client only iterates the first 5 elements of a million-element dataset, pre-flattening wastes massive memory and time.
+- **Lazy Two-Pointer Cursor:** Store only two integer variables:
+  - `row`: Current row index in `vec`.
+  - `col`: Current column index in `vec[row]`.
+  A helper function `advance_to_next()` skips empty rows on demand. This achieves **$O(1)$ auxiliary space** and **amortized $O(1)$ time per operation**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Cursor Invariant
+At any point, `(row, col)` points to the next unread element, or `row == len(vec)` if the entire vector is exhausted.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Normalization Protocol: `advance_to_next()`
+Before any read or availability check, normalize the pointer:
+While `row < len(vec)` and `col >= len(vec[row])`:
+$$
+\text{row} \leftarrow \text{row} + 1
+$$
+$$
+\text{col} \leftarrow 0
+$$
+*(Notice: If a row is empty, $\text{len}(\text{vec}[\text{row}]) = 0$. Since $\text{col} = 0 \ge 0$, the condition is immediately met and the empty row is skipped instantly!)*
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### API Methods:
+1. **`hasNext()`:**
+   - Call `advance_to_next()`.
+   - Return $\text{row} < \text{len}(\text{vec})$.
+   *(Calling `hasNext()` multiple times is strictly idempotent: it never consumes an element)*.
+2. **`next()`:**
+   - Call `advance_to_next()`.
+   - Read value: $\text{val} = \text{vec}[\text{row}][\text{col}]$.
+   - Increment: $\text{col} \leftarrow \text{col} + 1$.
+   - Return $\text{val}$.
+
+> **Invariant.** `advance_to_next()` ensures that whenever `row < len(vec)`, $\text{vec}[\text{row}][\text{col}]$ is guaranteed to be a valid existing integer.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The normalized cursor state
-
-After `forward()` finishes, exactly one of two conditions holds:
-
-1. `i < len(vec)` and `j < len(vec[i])`, so `(i, j)` identifies the next integer to return; or
-2. `i == len(vec)`, so every row has been exhausted and no next integer exists.
-
-The helper loops while `i` is a valid row and `j >= len(vec[i])`. An empty row has length zero, so `j = 0` already satisfies the exhaustion condition. A consumed nonempty row also satisfies it after `next()` increments `j` past the last valid position. In either case, the helper advances to the following row and resets `j = 0`.
-
-The condition uses `>=` rather than equality. Under normal valid operations, `j` reaches exactly the row length, but `>=` expresses the broader truth that any position at or beyond the end is invalid and makes the helper robust to that state.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"vec": [[1, 2], [3], [4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $\text{vec} = [[1, 2], [3], [4]]$:
+Initial state: $\text{row} = 0, \quad \text{col} = 0$.
 
 ---
 
-### Step 2: How `next()` consumes one value
-
-`next()` first calls `forward()`. This ensures that any empty or exhausted rows have been skipped before indexing. It then reads `vec[i][j]`, increments `j`, and returns the saved value.
-
-Incrementing `j` after reading is important: the current coordinate always means “the next value not yet returned,” not “the value returned most recently.” After the final value in a row, `j` becomes equal to that row's length. The method does not immediately seek the next row; the next operation performs that work lazily through `forward()`.
-
-The contract guarantees every call to `next()` is valid. Therefore, after normalization inside `next()`, the exhausted state cannot occur. If a caller violated that precondition, indexing `vec[len(vec)]` would raise an error; the class is not required to manufacture a sentinel result.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `next()`
+- Call `advance_to_next()`: $\text{row} = 0 < 3, \, \text{col} = 0 < \text{len}(\text{vec}[0]) = 2$. Valid.
+- Read $\text{vec}[0][0] = \mathbf{1}$.
+- Increment: $\text{col} \leftarrow 0 + 1 = 1$.
+- State: $\text{row} = 0, \, \text{col} = 1$.
+- **Returns 1.**
 
 ---
 
-### Step 3: How `hasNext()` inspects without consuming
+### Step 2: `next()`
+- Call `advance_to_next()`: $\text{row} = 0, \, \text{col} = 1 < 2$. Valid.
+- Read $\text{vec}[0][1] = \mathbf{2}$.
+- Increment: $\text{col} \leftarrow 1 + 1 = 2$.
+- State: $\text{row} = 0, \, \text{col} = 2$.
+- **Returns 2.**
 
-`hasNext()` also begins with `forward()`, then returns whether `i < len(vec)`. If a valid row remains, normalization guarantees a valid element exists there. If `i` has reached the number of rows, no remaining row or element exists.
+---
 
-Calling `hasNext()` may move across empty or exhausted rows, but it never advances past a real integer. Once `(i, j)` points to a value, repeated calls to `hasNext()` cause the loop condition to fail immediately and leave the cursor unchanged. This idempotence is crucial for iterator behavior: clients often call `hasNext()` several times before calling `next()`, and those checks must not skip data.
+### Step 3: `next()`
+- Call `advance_to_next()`:
+  - $\text{row} = 0 < 3$, but $\text{col} = 2 \ge \text{len}(\text{vec}[0]) = 2$.
+  - Row 0 exhausted! Advance: $\text{row} \leftarrow 1, \, \text{col} \leftarrow 0$.
+  - Now $\text{row} = 1 < 3$, $\text{col} = 0 < \text{len}(\text{vec}[1]) = 1$. Stop normalization.
+- Read $\text{vec}[1][0] = \mathbf{3}$.
+- Increment: $\text{col} \leftarrow 0 + 1 = 1$.
+- State: $\text{row} = 1, \, \text{col} = 1$.
+- **Returns 3.**
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 3, 4]` |
+---
+
+### Step 4: `hasNext()`
+- Call `advance_to_next()`:
+  - $\text{row} = 1 < 3, \, \text{col} = 1 \ge \text{len}(\text{vec}[1]) = 1$.
+  - Row 1 exhausted! Advance: $\text{row} \leftarrow 2, \, \text{col} \leftarrow 0$.
+  - Check row 2: $\text{col} = 0 < \text{len}(\text{vec}[2]) = 1$. Valid.
+- Availability check: $\text{row} = 2 < 3 \implies \mathbf{\text{True}}$.
+- Cursor state remains $\text{row} = 2, \, \text{col} = 0$.
+- **Returns `true`.**
+
+---
+
+### Step 5: `hasNext()` (Repeated Verification)
+- Call `advance_to_next()`:
+  - $\text{row} = 2 < 3, \, \text{col} = 0 < 1$. Loop does not run.
+- Availability check: $\text{row} = 2 < 3 \implies \mathbf{\text{True}}$.
+- State unchanged: $\text{row} = 2, \, \text{col} = 0$.
+- **Returns `true`.**
+
+---
+
+### Step 6: `next()`
+- Call `advance_to_next()`: already normalized.
+- Read $\text{vec}[2][0] = \mathbf{4}$.
+- Increment: $\text{col} \leftarrow 0 + 1 = 1$.
+- State: $\text{row} = 2, \, \text{col} = 1$.
+- **Returns 4.**
+
+---
+
+### Step 7: `hasNext()`
+- Call `advance_to_next()`:
+  - $\text{row} = 2 < 3, \, \text{col} = 1 \ge \text{len}(\text{vec}[2]) = 1$.
+  - Row 2 exhausted! Advance: $\text{row} \leftarrow 3, \, \text{col} \leftarrow 0$.
+  - Loop condition: $\text{row} = 3 < 3$ is False.
+- Availability check: $\text{row} < \text{len}(\text{vec}) \implies 3 < 3$ (**False**).
+- State: $\text{row} = 3, \, \text{col} = 0$.
+- **Returns `false`.**
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"vec": [[1, 2], [3], [4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 3, 4]` | Verified |
+```text
+vec = [[1, 2], [3], [4]]
+
+Call 1: next()    -> row=0, col=0 -> val=1 -> col becomes 1 -> return 1
+Call 2: next()    -> row=0, col=1 -> val=2 -> col becomes 2 -> return 2
+Call 3: next()    -> col=2 >= 2 -> row=1, col=0 -> val=3 -> col becomes 1 -> return 3
+Call 4: hasNext() -> col=1 >= 1 -> row=2, col=0 -> row < 3 -> return True
+Call 5: hasNext() -> row=2, col=0 already valid -> return True
+Call 6: next()    -> row=2, col=0 -> val=4 -> col becomes 1 -> return 4
+Call 7: hasNext() -> col=1 >= 1 -> row=3, col=0 -> row == 3 -> return False
+
+Sequence: [1, 2, 3, True, True, 4, False]
+```
+
+| Step | Method Call | $\text{advance\_to\_next}()$ Action | Active Coordinate $(\text{row}, \text{col})$ | Value Returned | Invariant Status |
+|:---:|:---:|:---|:---:|:---:|:---:|
+| **1** | `next()` | None (Already in row 0) | $(0, 0)$ | **1** | Points to 2 |
+| **2** | `next()` | None (Still in row 0) | $(0, 1)$ | **2** | Row 0 consumed |
+| **3** | `next()` | Advance row: $0 \to 1, \, \text{col} \to 0$ | $(1, 0)$ | **3** | Row 1 consumed |
+| **4** | `hasNext()` | Advance row: $1 \to 2, \, \text{col} \to 0$ | $(2, 0)$ | **`true`** | Ready at 4 |
+| **5** | `hasNext()` | No change (Idempotent) | $(2, 0)$ | **`true`** | Ready at 4 |
+| **6** | `next()` | None (Already positioned) | $(2, 0)$ | **4** | Row 2 consumed |
+| **7** | `hasNext()` | Advance row: $2 \to 3$ (Exhausted) | $(3, 0)$ | **`false`** | Iterator finished |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `next()` only reads values at coordinates where $\text{row} < \text{len}(\text{vec})$ and $\text{col} < \text{len}(\text{vec}[\text{row}])$, strictly respecting row and column bounds. Elements are yielded in row-major left-to-right order.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every element in every non-empty row is visited exactly once before the cursor advances. Empty rows are skipped by the normalization loop without incrementing any element counter or skipping valid data.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Flatten in the constructor:** Copy every integer into one list and iterate with one index. Then each public operation is strict $O(1)$, but construction costs $O(N+V)$ time and storage costs $O(N)$, defeating the lazy iterator design.
-- **Store row iterators:** Keep an iterator over rows and a current inner iterator, advancing until one has data. This matches the follow-up style in iterator-oriented languages and retains lazy $O(1)$ auxiliary state when the underlying iterators are references.
-- **Leading empty rows:** The first operation skips them; the constructor remains $O(1)$.
-- **Empty rows between values:** `forward()` may cross any number of them and stops at the next actual integer.
-- **Trailing empty rows:** After the last value, normalization consumes all remaining empty rows and sets `i` to `len(vec)`.
-- **Completely empty outer vector:** `i` starts equal to `len(vec)`, so `hasNext()` returns `false` immediately.
-- **Only empty inner vectors:** One `hasNext()` may scan all rows and returns `false`; subsequent calls are constant time because the exhausted cursor is stable.
-- **Repeated `hasNext()` calls:** Once normalized at a valid element or at exhaustion, further checks do not advance anything and return the same answer until `next()` consumes a value.
-- **`next()` without a preceding `hasNext()`:** It is supported because `next()` performs its own normalization.
-- **Invalid `next()` after exhaustion:** The contract guarantees this does not happen. The source would raise an indexing error rather than return a sentinel.
-- **Rows with negative values or duplicates:** Values are returned unchanged. Cursor logic depends only on structure and lengths, not on integer contents.
-- **External mutation:** Because `vec` is stored by reference, changing it during iteration can alter the observed sequence. Standard iterator use assumes the backing collection is not structurally modified unless explicitly supported.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Contiguous Empty Rows:** Inputs like `[[], [], [1], [], []]` contain sequences of multiple empty rows. The normalization check must be a `while` loop, not an `if` statement, to skip past consecutive empty lists.
+- **Idempotence Violation:** If `hasNext()` modified iterator position or consumed elements, calling `hasNext()` twice would skip elements. `advance_to_next()` only positions the cursor at the next valid element without consuming it.
+- **Calling `next()` Without `hasNext()`:** Some clients call `next()` directly without checking `hasNext()`. Placing `advance_to_next()` inside both `next()` and `hasNext()` guarantees safety regardless of caller order.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $V$ be the number of inner rows, $N$ the total number of integers, and $C$ the number of public method calls. The constructor performs three assignments and takes $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Constructor:** $O(1)$ constant time.
+  - **`next()` and `hasNext()`:** **Amortized $O(1)$ time**. Across the entire lifetime of the iterator, `row` advances at most $R$ times (where $R$ is the number of rows), and `col` advances at most $N$ times (where $N$ is the total number of integers). Total work for $K$ operations is $O(N + R)$, averaging $O(1)$ per operation.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Only two scalar integer variables (`row` and `col`) are stored.

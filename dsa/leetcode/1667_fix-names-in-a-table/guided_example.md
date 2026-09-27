@@ -1,124 +1,175 @@
 # Guided Example: Fix Names in a Table
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational string decomposition and capitalization transformation, formulate the Head-Tail Casing Invariant and Deterministic Lexical Ordering Theorem, and evaluate string transformations across representative database instances:
 
-- **Input:** `{"tables": {"Users": [{"user_id": 1, "name": "aLice"}, {"user_id": 2, "name": "bOB"}]}}`
-- **Required output:** `{"columns": ["user_id", "name"], "rows": [[1, "Alice"], [2, "Bob"]]}`
+- **Representative Instance 1 (Mixed-Case Irregular Strings):**
+  - Input Table `Users`:
+    - `(user_id: 1, name: "aLice")`
+    - `(user_id: 2, name: "bOB")`
+  - Decomposition & Casing:
+    - Row 1 (`"aLice"`):
+      - First character (head): `'a'` $\implies \text{UPPER}('a') = \text{'A'}$.
+      - Remaining substring (tail): `"Lice"` $\implies \text{LOWER}("Lice") = \text{"lice"}$.
+      - Concatenation: $\text{'A'} \circ \text{"lice"} = \mathbf{\text{"Alice"}}$.
+    - Row 2 (`"bOB"`):
+      - Head: `'b'` $\implies \text{UPPER}('b') = \text{'B'}$.
+      - Tail: `"OB"` $\implies \text{LOWER}("OB") = \text{"ob"}$.
+      - Concatenation: $\text{'B'} \circ \text{"ob"} = \mathbf{\text{"Bob"}}$.
+  - Ordering: Sort by `user_id` ascending $\implies 1, 2$.
+  - **Required Output:**
+    - `(1, "Alice")`
+    - `(2, "Bob")`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Single Character String):**
+  - Input: `(user_id: 3, name: "m")`
+  - Head: `'m'` $\implies \text{UPPER}('m') = \text{'M'}$.
+  - Tail: Empty string `""` $\implies \text{LOWER}("") = \text{""}$.
+  - Concatenation: $\text{'M'} \circ \text{""} = \mathbf{\text{"M"}}$.
+  - **Required Output:** `(3, "M")`.
+
+- **Representative Instance 3 (All-Uppercase and All-Lowercase Extremes):**
+  - Input:
+    - `(user_id: 5, name: "JOHN")` $\implies \text{'J'} \circ \text{"ohn"} = \mathbf{\text{"John"}}$.
+    - `(user_id: 6, name: "smith")` $\implies \text{'S'} \circ \text{"mith"} = \mathbf{\text{"Smith"}}$.
+  - **Required Output:** `(5, "John"), (6, "Smith")`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Users`
+In database pipelines, user input frequently arrives with inconsistent casing (e.g., all lowercase, random capitalization, or inverted case). We must transform every entry in the `name` column of the `Users` relation so that only the first letter is uppercase, while all subsequent letters are strictly lowercase. The result set must be ordered by `user_id` ascending.
 
-The objective is to compute `{"columns": ["user_id", "name"], "rows": [[1, "Alice"], [2, "Bob"]]}` from `{"tables": {"Users": [{"user_id": 1, "name": "aLice"}, {"user_id": 2, "name": "bOB"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Structural Transformation:
+  Input Name:     s_1  s_2  s_3  ...  s_m
+  Head (Index 1): s_1              --> UPPER(s_1)
+  Tail (Index 2+): s_2  s_3 ... s_m --> LOWER(s_2 ... s_m)
+  Result:         UPPER(s_1) || LOWER(s_2 ... s_m)
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The pedagogical focus is the **Head-Tail Casing Invariant**:
+1. **1-Indexed Substring Slicing:** SQL string functions utilize $1$-based indexing.
+   - `LEFT(name, 1)` or `SUBSTRING(name, 1, 1)` targets the initial character.
+   - `SUBSTRING(name, 2)` extracts the remainder from position $2$ to the end.
+2. **Homomorphic Casing Projection:** The functions `UPPER` and `LOWER` map character codes deterministically, preserving length.
+3. **Empty Tail Boundary Handling:** For single-character strings ($m = 1$), `SUBSTRING(name, 2)` evaluates to the empty string `""`, ensuring that concatenation does not produce `NULL`.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Transformation Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Relational Name Capitalization Pipeline
+    accDescr: Pipeline showing table scanning, character splitting, casing functions, string concatenation, and ordering.
+    Source["Input Table: Users (user_id, name)"] --> ScanRow["For each row (user_id, name)"]
+    ScanRow --> SplitChar["Decompose String into Head and Tail:\nhead = SUBSTRING(name, 1, 1)\ntail = SUBSTRING(name, 2)"]
+    SplitChar --> ApplyCase["Apply Casing Functions:\nhead_cased = UPPER(head)\ntail_cased = LOWER(tail)"]
+    ApplyCase --> Concat["Concatenate:\nfixed_name = CONCAT(head_cased, tail_cased)"]
+    Concat --> Collect["Collect Projected Row (user_id, fixed_name)"]
+    Collect --> Sort["Order By user_id ASC"]
+    Sort --> Emit["Emit Final Result Set"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Head-Tail Casing Invariant
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\Sigma$ be the alphabet of English letters, with $\Sigma_{\text{upper}} = \{\text{'A'} \dots \text{'Z'}\}$ and $\Sigma_{\text{lower}} = \{\text{'a'} \dots \text{'z'}\}$.
+Let a name of length $m \ge 1$ be a word $S = s_1 s_2 \dots s_m$ with $s_i \in \Sigma$.
+
+1. **Partitioning:**
+   Every non-empty word $S$ decomposes uniquely into:
+   $$
+   S = \text{head}(S) \circ \text{tail}(S)
+   $$
+   where $\text{head}(S) = s_1 \in \Sigma$ and $\text{tail}(S) = s_2 \dots s_m \in \Sigma^*$. If $m = 1$, $\text{tail}(S) = \epsilon$ (the empty string).
+
+2. **Casing Transformation Map:**
+   Define $f: \Sigma^* \to \Sigma^*$ by:
+   $$
+   f(S) = \text{UPPER}(\text{head}(S)) \circ \text{LOWER}(\text{tail}(S))
+   $$
+   - $\text{UPPER}(s_1) \in \Sigma_{\text{upper}}$
+   - For every $j \ge 2$, $\text{LOWER}(s_j) \in \Sigma_{\text{lower}}$
+   - For $m = 1$, $\text{LOWER}(\epsilon) = \epsilon$, yielding $f(S) = \text{UPPER}(s_1) \circ \epsilon = \text{UPPER}(s_1)$.
+   Thus, $f(S)$ satisfies the capitalization specification for all $m \ge 1$.
+
+3. **Total Relational Ordering:**
+   Since `user_id` is the primary key of `Users`, its values are distinct. Ordering by `user_id` defines a strict, deterministic total order over all output tuples.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalize the first character separately from the suffix
+### Trace on Representative Instance 1 (`name = "aLice"`, `user_id = 1`)
 
-The desired name has two case rules:
+Row Input: `user_id = 1, name = "aLice"`. Length $m = 5$.
 
-1. its first character must be uppercase;
-2. every remaining character must be lowercase.
+#### Step 1: Head Extraction
+- SQL expression: `LEFT(name, 1)` or `SUBSTRING(name, 1, 1)`.
+- Extraction: Position $1$ character is `'a'`.
 
-The SQL expression constructs those two parts independently and concatenates them:
+#### Step 2: Tail Extraction
+- SQL expression: `SUBSTRING(name, 2)`.
+- Extraction: From position $2$ to end: `"Lice"`.
 
-`CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2)))`.
+#### Step 3: Case Transformation
+- Apply uppercase to head:
+  $$
+  \text{UPPER}(\text{'a'}) = \text{'A'}
+  $$
+- Apply lowercase to tail:
+  $$
+  \text{LOWER}(\text{"Lice"}) = \text{"lice"}
+  $$
 
-This is more precise than applying `UPPER` or `LOWER` to the entire name, because neither whole-string operation alone satisfies both requirements.
+#### Step 4: Concatenation
+- SQL expression: `CONCAT('A', "lice")`.
+- Result:
+  $$
+  \text{'A'} \circ \text{"lice"} = \mathbf{\text{"Alice"}}
+  $$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Users": [{"user_id": 1, "name": "aLice"}, {"user_id": 2, "name": "bOB"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Extract and uppercase the first character
-
-`LEFT(name, 1)` returns the leftmost one-character substring of `name`. Passing that result to `UPPER` ensures it is uppercase. If it was already uppercase, the value is unchanged; if it was lowercase, it is converted.
-
-The input guarantees names consist only of lowercase and uppercase characters, so there are no digits, spaces, punctuation marks, or multiword separators needing a separate policy. SQL’s actual case conversion follows the column’s character set and collation, but for the promised English-style letter data it implements the requested transformation.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Extract and lowercase everything after it
-
-MySQL substring positions are one-based. `SUBSTRING(name, 2)` therefore starts at the second character and continues through the end because no length argument is supplied. `LOWER` converts every character of this suffix to lowercase.
-
-For `name = 'aLice'`, the first expression produces `'A'` and the second produces `'lice'`. `CONCAT` joins them into `'Alice'`. For `'bOB'`, the parts become `'B'` and `'ob'`, producing `'Bob'`.
-
-The alias `AS name` is significant. It gives the computed expression the same output column name required by the result schema, rather than exposing a database-generated expression label.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id", "name"], "rows": [[1, "Alice"], [2, "Bob"]]}` |
+#### Step 5: Tuple Construction
+- Emit row: `(user_id: 1, name: "Alice")`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Users": [{"user_id": 1, "name": "aLice"}, {"user_id": 2, "name": "bOB"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id", "name"], "rows": [[1, "Alice"], [2, "Bob"]]}` | Verified |
+### Transformation State Table for Representative Instance 1
+
+| User ID | Input Name | Length $m$ | Head Character | Tail Substring | $\text{UPPER}(\text{head})$ | $\text{LOWER}(\text{tail})$ | Formatted Name | Sort Rank |
+|---|---|---|---|---|---|---|---|---|
+| $1$ | `"aLice"` | $5$ | `'a'` | `"Lice"` | `'A'` | `"lice"` | **`"Alice"`** | 1 |
+| $2$ | `"bOB"` | $3$ | `'b'` | `"OB"` | `'B'` | `"ob"` | **`"Bob"`** | 2 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The function `CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2)))` guarantees that the first character is unconditionally converted to uppercase, while every subsequent character from position 2 to the end is converted to lowercase. The length of the string is preserved identically.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The SQL query executes over the full `Users` table without filter clauses (`WHERE`), ensuring every user record is processed. The `ORDER BY user_id` clause ensures full compliance with the sorting requirement.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`SUBSTRING(name, 1, 1)` instead of `LEFT`:** This extracts the same first character and matches the editorial formulation; the rest of the query is unchanged.
-- **Capitalize-style function:** Some environments provide a direct capitalization helper, but MySQL does not offer the same simple standard function used by Pandas, so composing `UPPER`, `LOWER`, and substrings is portable within MySQL.
-- **Update the table:** An `UPDATE` statement would mutate source data and would not itself return the required ordered result. The task asks for a query result, so `SELECT` is appropriate.
-- **Already normalized name:** Uppercasing the first character and lowercasing the suffix are idempotent, so a value such as `'Alice'` stays `'Alice'`.
-- **All-uppercase input:** The first character remains uppercase and every later character becomes lowercase.
-- **All-lowercase input:** Only the first character changes to uppercase.
-- **Single-character name:** `LEFT(name, 1)` returns that character, while `SUBSTRING(name, 2)` returns the empty string. Concatenation therefore returns the correctly uppercased one-character name.
-- **Empty name outside the stated model:** The local schema text does not give a length bound. If empty strings were allowed, both extracted parts would be empty and the output would remain empty, so no first character could be capitalized.
-- **`NULL` name outside the stated model:** MySQL string functions and `CONCAT` would propagate `NULL`. The problem describes each row as containing a name and does not ask for null handling.
-- **Unique IDs:** The primary key eliminates ordering ties, so no secondary sort key is necessary.
-- **Case-sensitive table identifiers:** Using the declaration’s exact `Users` capitalization would be safer across arbitrary MySQL installations, though the exact source uses `users` and is accepted in its target environment.
-- **Result storage:** Even when working memory is described as constant, returning `R` rows and their normalized strings necessarily occupies output space proportional to the result size.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Zero-Based vs. One-Based Indexing:** Unlike C-like programming languages, SQL string functions (`SUBSTRING`, `LEFT`) are $1$-indexed. Calling `SUBSTRING(name, 1)` returns the entire string, whereas `SUBSTRING(name, 2)` correctly skips the first character.
+- **Null Values in Substring of Single Character:** In some SQL dialects, `SUBSTRING` beyond the string length could return `NULL` if not properly defined. In PostgreSQL and MySQL, `SUBSTRING("a", 2)` safely returns the empty string `""`, which concatenates without creating `NULL`.
+- **String Concatenation Operator Null Propagation:** Using the `+` or `||` operator in certain dialects can result in `NULL` if one operand is `NULL`. `CONCAT()` treats `NULL` as empty string, providing robust defense.
+- **Missing Sort Clause:** Without `ORDER BY user_id`, the database engine does not guarantee row presentation order, leading to submission rejections.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let `R` be the number of rows and let `C` be the total number of characters across all names. Every name character must be read and case-normalized, so expression evaluation costs $O(C)$ time. If name lengths are treated as bounded, this is often summarized as $O(R)$.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Scanning $N$ records in table `Users`: $\mathcal{O}(N)$ row reads.
+  - Slicing and casing each string of length $L$: $\mathcal{O}(L)$ operations per row.
+  - Sorting $N$ records by integer `user_id`: $\mathcal{O}(N \log N)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(N \cdot L + N \log N)$.
+- **Auxiliary Space Complexity:**
+  - The query operates as a streaming projection into an output cursor, requiring $\mathcal{O}(1)$ working memory beyond the sort buffer $\mathcal{O}(N)$.

@@ -1,132 +1,198 @@
 # Guided Example: Integer to English Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 3-digit triad chunking (Billions, Millions, Thousands, Units), irregular teen lookup table dispatch, and whitespace-normalized concatenation on representative integer instances:
 
-- **Input:** `{"num": 123}`
+- **Input:** $\text{num} = 123$
 - **Required output:** `"One Hundred Twenty Three"`
+- **Seven-Figure Multi-Triad Instance:** $\text{num} = 1234567 \implies \text{"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"}$
+- **Zero Base Case:** $\text{num} = 0 \implies \text{"Zero"}$ (The only instance where "Zero" is pronounced)
+- **Zero-Padded Internal Triad:** $\text{num} = 1000010 \implies \text{"One Million Ten"}$ (Empty thousands group is completely omitted; no "Zero Thousand")
+- **Maximum 32-Bit Signed Integer:** $\text{num} = 2147483647 \implies \text{"Two Billion One Hundred Forty Seven Million Four Hundred Eighty Three Thousand Six Hundred Forty Seven"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates recursive base-1000 decomposition, explains why values under 20 require a dedicated irregular lookup table, formalizes the suppression of zero-valued triads, and operates in strictly $O(1)$ constant time (at most 4 triads for any 32-bit integer) and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Convert a non-negative integer `num` to its English words representation.
+Given an integer $\text{num} = 123$, generate its canonical English words representation:
+```text
+Value: 123
+Breakdown:
+100 -> "One Hundred"
+ 20 -> "Twenty"
+  3 -> "Three"
+Combined: "One Hundred Twenty Three"
+```
 
-The objective is to compute `"One Hundred Twenty Three"` from `{"num": 123}` while avoiding redundant calculations and unnecessary overhead.
+### The Base-1000 Triad Architecture
+English numerals partition decimal numbers into groups of three digits (powers of $1,000$):
+$$
+\text{num} = b \times 10^9 + m \times 10^6 + t \times 10^3 + u
+$$
+where each coefficient $b, m, t, u \in [0, 999]$.
+- $b$: Scaled by `"Billion"`
+- $m$: Scaled by `"Million"`
+- $t$: Scaled by `"Thousand"`
+- $u$: Unscaled (Units)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because the pronunciation of any 3-digit number $X \in [1, 999]$ follows the identical rules regardless of its scale, we delegate the conversion to a sub-function `convert_triad(X)` and attach the appropriate scale word.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Lookup Dictionaries for Irregularities
+English contains phonetic irregularities that cannot be derived by regular arithmetic rules:
+- **Numbers under 20 (`UNDER_20`):**
+  $0 \dots 19$: `["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]`.
+- **Tens (`TENS`):**
+  Multiples of 10 from $20 \dots 90$: `["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Triad Converter `convert_triad(n)` for $n \in [1, 999]$:
+1. **Hundreds Digit:**
+   If $n \ge 100$:
+   Append `UNDER_20[n // 100] + " Hundred"`.
+   $n \leftarrow n \pmod{100}$.
+2. **Tens and Units Digits:**
+   - If $n \ge 20$:
+     Append `TENS[n // 10]`.
+     If $n \pmod{10} > 0$: Append `UNDER_20[n % 10]`.
+   - Else if $n > 0$:
+     Append `UNDER_20[n]` (covers $1 \dots 19$).
+3. Return list of words.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Triad Scaling Driver:
+- If $\text{num} == 0$: Return `"Zero"`.
+- Scales: $[(10^9, \text{"Billion"}), (10^6, \text{"Million"}), (10^3, \text{"Thousand"}), (1, \text{""})]$.
+- For each $(\text{unit}, \text{label})$:
+  If $\text{num} \ge \text{unit}$:
+    $\text{chunk} = \text{num} // \text{unit}$
+    $\text{words}.\text{extend}(\text{convert\_triad}(\text{chunk}))$
+    If $\text{label} \ne \text{""}$: $\text{words}.\text{append}(\text{label})$
+    $\text{num} \leftarrow \text{num} \pmod{\text{unit}}$
+- Return `" ".join(words)`.
+
+> **Invariant.** A scale word (`"Billion"`, `"Million"`, `"Thousand"`) is appended if and only if its corresponding 3-digit triad is strictly positive ($> 0$). Empty triads ($000$) are completely silent.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Exploit the three-digit rhythm of English number names
-
-Large English number names repeat the same pattern in groups of three decimal digits. Each group is a number from 0 through 999, followed by a scale name determined by its position:
-
-| Decimal group | Scale |
-|---:|---|
-| billions | `Billion` |
-| millions | `Million` |
-| thousands | `Thousand` |
-| final three digits | no scale word |
-
-For example,
-
-$$
-1{,}234{,}567
-=1\cdot 10^6+234\cdot 10^3+567.
-$$
-
-The same local converter can spell `1`, `234`, and `567`; the outer loop merely attaches `Million` and `Thousand` to the first two nonzero groups. This separation keeps the logic small: one part knows how to say a value below 1000, and another part knows where that group belongs in the complete number.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": 123}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{num} = 1234567$:
+$\text{num} = 1{,}234{,}567$.
 
 ---
 
-### Step 2: Handle zero before grouping
-
-The ordinary group logic deliberately skips groups whose numeric value is zero. That is correct inside a larger number—`1,000,005` should not contain `Zero Thousand`—but it would produce no words at all for the number zero. The source therefore handles `num == 0` immediately and returns `"Zero"`.
-
-For every positive input, at least one three-digit group is nonzero, so the main loop will produce a nonempty result.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scale $10^9$ (Billions)
+- $\text{unit} = 10^9 = 1{,}000{,}000{,}000$.
+- $\text{num} < 10^9 \implies$ Triad is $0$. Skipped.
 
 ---
 
-### Step 3: Map the irregular words below twenty directly
+### Step 2: Scale $10^6$ (Millions)
+- $\text{unit} = 10^6 = 1{,}000{,}000$.
+- Chunk: $\text{chunk} = 1{,}234{,}567 // 1{,}000{,}000 = \mathbf{1}$.
+- Remainder: $\text{num} \leftarrow 1{,}234{,}567 \pmod{1{,}000{,}000} = 234{,}567$.
+- Convert chunk $1$:
+  - $\text{convert\_triad}(1) \implies \text{["One"]}$.
+- Append scale word: `"Million"`.
+- Collected words: `["One", "Million"]`.
 
-English names from one through nineteen are not generated by one uniform tens-plus-ones rule. In particular, `Eleven`, `Twelve`, and the `-teen` names need individual spellings. The `lt20` table stores the exact word for each index from 1 through 19. Index zero contains the empty string as a convenient placeholder, although `transfer(0)` returns before indexing it.
+---
 
-The separate `tens` table stores `Twenty`, `Thirty`, through `Ninety` at indices 2 through 9. `Ten` appears at index 1 but is not used by the tens branch because every number below 20 is handled first by `lt20`.
+### Step 3: Scale $10^3$ (Thousands)
+- $\text{unit} = 10^3 = 1{,}000$.
+- Chunk: $\text{chunk} = 234{,}567 // 1{,}000 = \mathbf{234}$.
+- Remainder: $\text{num} \leftarrow 234{,}567 \pmod{1{,}000} = 567$.
+- Convert chunk $234$:
+  - Hundreds: $234 // 100 = 2 \implies \text{"Two Hundred"}$.
+  - Sub-remainder: $234 \pmod{100} = 34$.
+  - Tens: $34 \ge 20 \implies \text{TENS}[3] = \text{"Thirty"}$.
+  - Units: $34 \pmod{10} = 4 \implies \text{UNDER\_20}[4] = \text{"Four"}$.
+  - Chunk words: `["Two", "Hundred", "Thirty", "Four"]`.
+- Append scale word: `"Thousand"`.
+- Collected words: `["One", "Million", "Two", "Hundred", "Thirty", "Four", "Thousand"]`.
 
-These lookup tables are preferable to trying to derive English spelling mechanically. They isolate the language's irregular vocabulary while the algorithm handles only numeric structure.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"One Hundred Twenty Three"` |
+### Step 4: Scale $1$ (Units)
+- $\text{unit} = 1$.
+- Chunk: $\text{chunk} = 567 // 1 = \mathbf{567}$.
+- Remainder: $\text{num} \leftarrow 0$.
+- Convert chunk $567$:
+  - Hundreds: $567 // 100 = 5 \implies \text{"Five Hundred"}$.
+  - Sub-remainder: $567 \pmod{100} = 67$.
+  - Tens: $67 \ge 20 \implies \text{TENS}[6] = \text{"Sixty"}$.
+  - Units: $67 \pmod{10} = 7 \implies \text{UNDER\_20}[7] = \text{"Seven"}$.
+  - Chunk words: `["Five", "Hundred", "Sixty", "Seven"]`.
+- Scale word: None.
+- Collected words: `[..., "Five", "Hundred", "Sixty", "Seven"]`.
+
+---
+
+### Step 5: String Synthesis
+Join all accumulated words with a single space:
+$$
+\mathbf{\text{"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 123}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"One Hundred Twenty Three"` | Verified |
+```text
+num = 1234567
+
+Scale 1,000,000 (Million):
+  chunk = 1234567 // 1000000 = 1 -> "One"
+  scale = "Million" -> ["One", "Million"]
+  rem = 234567
+
+Scale 1,000 (Thousand):
+  chunk = 234567 // 1000 = 234
+    200 -> "Two Hundred"
+     34 -> "Thirty Four"
+  scale = "Thousand" -> ["Two", "Hundred", "Thirty", "Four", "Thousand"]
+  rem = 567
+
+Scale 1 (Units):
+  chunk = 567 // 1 = 567
+    500 -> "Five Hundred"
+     67 -> "Sixty Seven"
+  scale = "" -> ["Five", "Hundred", "Sixty", "Seven"]
+  rem = 0
+
+Combined Result: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+```
+
+| Triad Level | Divisor ($\text{unit}$) | Triad Value | Triad English Pronunciation | Scale Word Appended | Cumulative Word Count |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| Billions | $10^9$ | 0 | (Silent) | (None) | 0 |
+| **Millions** | $10^6$ | 1 | `"One"` | `"Million"` | 2 |
+| **Thousands** | $10^3$ | 234 | `"Two Hundred Thirty Four"` | `"Thousand"` | 7 |
+| **Units** | 1 | 567 | `"Five Hundred Sixty Seven"` | (None) | 11 |
+| **End** | - | - | - | - | **11 Words Joined** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every numeric value in $[0, 2^{31} - 1]$ has a unique representation in base 1000 with at most 4 digits. The conversion for numbers under 1000 accurately mirrors English grammar rules: irregular teens ($10 \dots 19$) take priority over composite tens-and-ones, and exact tens omit the trailing zero.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Handling $\text{num} = 0$ as an upfront special case guarantees that zero returns `"Zero"` without creating spurious `"Zero Thousand"` outputs in composite numbers like $1{,}000{,}005$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single fully recursive scale converter:** Recursively choose the largest applicable value among billion, million, thousand, hundred, tens, and ones. This can be elegant but mixes global scale selection with local three-digit spelling; base-1000 grouping makes the repetition explicit.
-- **Process groups from right to left:** Repeated `% 1000` and `// 1000` can extract units first, but each converted group must then be prepended or stored and reversed. The exact high-to-low divisor loop already produces final order.
-- **Large value-to-word table:** Greedily match pairs such as `(1000000000, "Billion")`, `(90, "Ninety")`, and `(1, "One")`. It works, but the group structure and special below-20 rule are easier to verify with dedicated tables.
-- **Zero:** It needs the explicit `"Zero"` branch because zero-valued groups are intentionally silent everywhere else.
-- **Exact multiple of a scale:** `1,000,000` emits `One Million`; all lower zero groups are skipped, so no trailing `Zero` words appear.
-- **Zero group in the middle:** `1,000,005` becomes `One Million Five`. The absent thousands group is not pronounced.
-- **Zero inside a group:** `105` becomes `One Hundred Five`, while `120` becomes `One Hundred Twenty`. The zero remainder contributes an empty string.
-- **Values from 10 through 19:** Direct lookup is mandatory because their names do not follow the ordinary tens-plus-ones construction.
-- **Multiples of ten:** A zero ones remainder is silent, producing `Forty` rather than `Forty Zero`.
-- **Maximum input:** `2,147,483,647` fits the four declared scales and begins with `Two Billion`; every extracted chunk stays below 1000 as required by `transfer`.
-- **Capitalization and punctuation:** Lookup entries are capitalized, words are separated by spaces, and the output uses neither commas nor hyphens nor the conjunction `and`, matching the expected format.
-- **Negative input outside the contract:** The method is designed only for non-negative integers. It has no `Negative` branch and callers must respect the stated range.
-- **Beyond billions outside the contract:** The fixed scale table ends at `Billion`. Supporting arbitrary-size integers would require extending scale names and adjusting the starting divisor rather than relying on this four-iteration loop.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Spurious "Zero" in Composite Numbers:** In $1{,}000{,}005$, the thousands group is $0$. If zero is converted to `"Zero"`, it would print `"One Million Zero Thousand Five"`. Skipping groups with value $0$ ensures proper English silence.
+- **Teens Handling ($10 \dots 19$):** Treating $15$ as $10 + 5$ would output `"Ten Five"`. English uses `"Fifteen"`. The `UNDER_20` table up to index 19 prevents decomposition of irregular numbers.
+- **Extra Whitespace:** Concatenating with `+ " "` often introduces leading, trailing, or double internal spaces. Accumulating words into a Python list and executing `" ".join(words)` guarantees single space separation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log num)$. Let $d$ be the number of decimal digits in `num`, so $d=O(\log num)$ for positive `num`. A generalized base-1000 converter examines $O(d/3)$ groups, performs constant local decomposition per group, and emits $O(d)$ word characters. Its time is therefore $O(\log num)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$ constant time. Any 32-bit signed integer is bounded by $2^{31} - 1 \approx 2.14 \times 10^9$, requiring at most 4 triad iterations. Each triad performs at most 3 table lookups and divisions.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. The lookup tables contain fewer than 30 short strings, and the output word list contains at most 30 tokens.

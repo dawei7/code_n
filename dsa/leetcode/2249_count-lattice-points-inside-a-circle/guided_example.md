@@ -1,131 +1,195 @@
 # Guided Example: Count Lattice Points Inside a Circle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"circles": [[2, 2, 1]]}`
-- **Required output:** `5`
+Given a 2D integer array $\text{circles}$ where $\text{circles}[i] = [x_i, y_i, r_i]$ describes the center coordinates $(x_i, y_i)$ and radius $r_i$ of the $i$-th circle on a 2D Cartesian plane, the objective is to count the total number of distinct **integer lattice points** that lie inside or on the boundary of at least one circle.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+An integer lattice point is an ordered pair $(x, y)$ where both $x$ and $y$ are integers. Multiple circles may overlap; every covered lattice point must be counted exactly once in the global union.
 
----
+### Representative Instance
 
-## 1. Instance & Teaching Goal
+Consider an instance with two overlapping circles:
+- Circle $1$: Center $(2, 2)$, radius $r_1 = 2$
+- Circle $2$: Center $(3, 4)$, radius $r_2 = 1$
 
-Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $i^{\text{th}}$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
+```mermaid
+flowchart TD
+    accTitle: Lattice Point Union of Two Overlapping Disks
+    accDescr: Diagram illustrating two disks intersecting on a discrete integer grid, highlighting shared and private lattice points.
+    subgraph Disks["Candidate Disks"]
+        C1["Circle 1: Center (2, 2), Radius 2<br/>Covers 13 lattice points"]
+        C2["Circle 2: Center (3, 4), Radius 1<br/>Covers 5 lattice points"]
+    end
+    C1 --- Overlap["Intersection: (2, 4) and (3, 3)<br/>2 shared points"]
+    C2 --- Overlap
+    Overlap --> Union["Unique Lattice Points in Union:<br/>13 + 5 - 2 = 16 points"]
+```
 
-The objective is to compute `5` from `{"circles": [[2, 2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The union of integer points covered by Circle $1$ and Circle $2$ contains $16$ distinct lattice points.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Search every lattice point that could possibly be covered
+### Discrete Disk Equation and Integer Exactness
 
-A lattice point has integer coordinates. For circle center `(x,y)` and radius `r`, a point `(i,j)` is inside or on the circle exactly when
+In Euclidean 2D space, a point $(x, y)$ lies within or on the circumference of a circle centered at $(x_c, y_c)$ with radius $r$ if and only if:
 
-$$
-(i-x)^2 + (j-y)^2 \le r^2.
-$$
+$$\sqrt{(x - x_c)^2 + (y - y_c)^2} \le r$$
 
-The solution enumerates candidate integer coordinates and checks this squared-distance condition. Squared values avoid floating-point square roots and include the circumference through `<=`.
+Squaring both sides eliminates square root operations and floating-point approximations:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"circles": [[2, 2, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+$$(x - x_c)^2 + (y - y_c)^2 \le r^2$$
 
----
+Because coordinates $x, y, x_c, y_c, r$ are all integers, evaluating $(x - x_c)^2 + (y - y_c)^2 \le r^2$ involves only integer subtractions, multiplications, and comparisons. This guarantees exact algebraic truth without floating-point precision loss.
 
-### Step 2: Find global upper coordinate bounds
+### Bounded Universe and Domain Constraints
 
-No circle extends right of `x + r` or above `y + r`. The code computes
+The problem constraints specify:
+- $1 \le x_i, y_i \le 100$
+- $1 \le r_i \le \min(x_i, y_i) \le 100$
 
-`mx = max(x + r for x, _, r in circles)`
+Consequently, any point $(x, y)$ that could possibly lie inside circle $i$ satisfies:
+$$0 \le x_i - r_i \le x \le x_i + r_i \le 200$$
+$$0 \le y_i - r_i \le y \le y_i + r_i \le 200$$
 
-and the analogous `my`. Every covered point must have horizontal coordinate at most `mx` and vertical coordinate at most `my`.
+The entire search space of candidate lattice points is strictly enclosed within the rectangular bounding box:
+$$\mathcal{B} = [0, X_{\max}] \times [0, Y_{\max}] \subseteq [0, 200] \times [0, 200]$$
+where $X_{\max} = \max_i(x_i + r_i) \le 200$ and $Y_{\max} = \max_i(y_i + r_i) \le 200$.
+The total number of integer points in $\mathcal{B}$ is at most $201 \times 201 = 40{,}401$.
 
-The loops begin at zero. This is sufficient because the constraints state `r <= min(x, y)`, so every circle's leftmost coordinate `x-r` and lowest coordinate `y-r` are nonnegative. There are no covered negative-coordinate lattice points to examine.
+### Point-Wise Indicator Union (Short-Circuit Evaluation)
 
-Thus, the rectangle `[0,mx] \times [0,my]` contains the union of all circles.
+Let $\mathcal{C}$ be the set of input circles. For any candidate point $p = (x, y) \in \mathcal{B}$, define the indicator:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$\mathbf{1}_{\text{covered}}(p) = \begin{cases} 1 & \text{if } \exists (x_c, y_c, r) \in \mathcal{C} \text{ such that } (x - x_c)^2 + (y - y_c)^2 \le r^2 \\ 0 & \text{otherwise} \end{cases}$$
 
----
+The total count of unique covered lattice points is:
 
-### Step 3: Test one point against circles
+$$\text{Total} = \sum_{x=0}^{X_{\max}} \sum_{y=0}^{Y_{\max}} \mathbf{1}_{\text{covered}}(x, y)$$
 
-For each integer pair `(i,j)` in the bounding rectangle, the innermost loop visits circles. It calculates `dx = i - x` and `dy = j - y`, then checks
-
-`dx * dx + dy * dy <= r * r`.
-
-On the first circle that contains the point, `ans` is incremented and `break` exits the circle loop.
-
-The break is essential for union counting. A point inside three overlapping circles is still one lattice point and must be counted once, not three times.
-
-If no circle passes, the loop finishes without changing `ans`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+Iterating over all points in $\mathcal{B}$ and checking membership in circles short-circuits as soon as the first satisfying circle is identified, naturally preventing duplicate counting across overlapping circles without requiring dynamic hash sets.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"circles": [[2, 2, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+We analyze the representative instance with Circle $1$: $(2, 2, 2)$ and Circle $2$: $(3, 4, 1)$.
+
+### Phase 1: Lattice Points of Circle 1 $(x_c=2, y_c=2, r=2)$
+Threshold: $r^2 = 4$. Candidate bounds: $x \in [0, 4]$, $y \in [0, 4]$.
+- **$x = 2$ ($dx = 0$):** $dy^2 \le 4 \implies dy \in \{-2, -1, 0, 1, 2\}$.
+  Points: $(2, 0), (2, 1), (2, 2), (2, 3), (2, 4)$ ($5$ points).
+- **$x = 1$ or $x = 3$ ($dx = \pm 1$):** $dy^2 \le 4 - 1 = 3 \implies dy \in \{-1, 0, 1\}$.
+  For $x = 1$: $(1, 1), (1, 2), (1, 3)$ ($3$ points).
+  For $x = 3$: $(3, 1), (3, 2), (3, 3)$ ($3$ points).
+- **$x = 0$ or $x = 4$ ($dx = \pm 2$):** $dy^2 \le 4 - 4 = 0 \implies dy = 0$.
+  For $x = 0$: $(0, 2)$ ($1$ point).
+  For $x = 4$: $(4, 2)$ ($1$ point).
+- Total points covered by Circle $1$: $5 + 3 + 3 + 1 + 1 = 13$ points.
+
+### Phase 2: Lattice Points of Circle 2 $(x_c=3, y_c=4, r=1)$
+Threshold: $r^2 = 1$. Candidate bounds: $x \in [2, 4]$, $y \in [3, 5]$.
+- $dx = 0, dy = 0$: Center $(3, 4)$ (dist $0 \le 1$).
+- $dx = 0, dy = \pm 1$: $(3, 3)$ (dist $1 \le 1$), $(3, 5)$ (dist $1 \le 1$).
+- $dx = \pm 1, dy = 0$: $(2, 4)$ (dist $1 \le 1$), $(4, 4)$ (dist $1 \le 1$).
+- Total points covered by Circle $2$: $5$ points.
+
+### Phase 3: Intersection and Union Reconciliation
+Test the $5$ points of Circle $2$ against Circle $1$ ($(x - 2)^2 + (y - 2)^2 \le 4$):
+1. $(3, 4)$: $(3-2)^2 + (4-2)^2 = 1 + 4 = 5 > 4$ (Only in Circle 2).
+2. $(2, 4)$: $(2-2)^2 + (4-2)^2 = 0 + 4 = 4 \le 4$ (**In both circles!**).
+3. $(4, 4)$: $(4-2)^2 + (4-2)^2 = 4 + 4 = 8 > 4$ (Only in Circle 2).
+4. $(3, 3)$: $(3-2)^2 + (3-2)^2 = 1 + 1 = 2 \le 4$ (**In both circles!**).
+5. $(3, 5)$: $(3-2)^2 + (5-2)^2 = 1 + 9 = 10 > 4$ (Only in Circle 2).
+
+Overlap set: $\{(2, 4), (3, 3)\}$ ($2$ shared points).
+By the Principle of Inclusion-Exclusion:
+$$|\text{Circle } 1 \cup \text{Circle } 2| = 13 + 5 - 2 = 16$$
+The total number of unique lattice points is $16$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Lattice Point Coverage Table for Candidate Coordinates
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The table below catalogs coordinates in the vicinity of the overlap region $[2, 4] \times [2, 5]$:
+
+| Point $(x, y)$ | Dist Sq to $C_1$: $(x-2)^2+(y-2)^2$ | In $C_1$? ($\le 4$) | Dist Sq to $C_2$: $(x-3)^2+(y-4)^2$ | In $C_2$? ($\le 1$) | Covered by Union? | Contributing Circle |
+|---|---|---|---|---|---|---|
+| $(2, 2)$ | $0 + 0 = 0$ | Yes | $1 + 4 = 5$ | No | **Yes** | Circle 1 |
+| $(2, 3)$ | $0 + 1 = 1$ | Yes | $1 + 1 = 2$ | No | **Yes** | Circle 1 |
+| $(2, 4)$ | $0 + 4 = 4$ | Yes | $1 + 0 = 1$ | Yes | **Yes** | Both (Overlap) |
+| $(2, 5)$ | $0 + 9 = 9$ | No | $1 + 1 = 2$ | No | **No** | Neither |
+| $(3, 2)$ | $1 + 0 = 1$ | Yes | $0 + 4 = 4$ | No | **Yes** | Circle 1 |
+| $(3, 3)$ | $1 + 1 = 2$ | Yes | $0 + 1 = 1$ | Yes | **Yes** | Both (Overlap) |
+| $(3, 4)$ | $1 + 4 = 5$ | No | $0 + 0 = 0$ | Yes | **Yes** | Circle 2 |
+| $(3, 5)$ | $1 + 9 = 10$ | No | $0 + 1 = 1$ | Yes | **Yes** | Circle 2 |
+| $(4, 3)$ | $4 + 1 = 5$ | No | $1 + 1 = 2$ | No | **No** | Neither |
+| $(4, 4)$ | $4 + 4 = 8$ | No | $1 + 0 = 1$ | Yes | **Yes** | Circle 2 |
+
+### Circle Lattice Count Breakdown
+
+| Circle Specification $(x_c, y_c, r)$ | $r^2$ | Theoretical Integer Count (Gauss Disk) | Exclusive Points | Shared Points |
+|---|---|---|---|---|
+| **Circle 1: $(2, 2, 2)$** | $4$ | $1 + 4(2) + 4(1) = 13$ | $11$ | $2$ (with Circle 2) |
+| **Circle 2: $(3, 4, 1)$** | $1$ | $1 + 4(1) = 5$ | $3$ | $2$ (with Circle 1) |
+| **Combined Union** | — | — | **Total: $11 + 3 + 2 = 16$** | — |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Per-circle enumeration with a set:** Visit each circle's bounding square and insert covered coordinates into a set. This matches the manifest and can avoid testing distant points against every circle, but uses space proportional to the union.
-- **Scan only each circle's horizontal slices:** For each integer row, derive the covered x interval. Merging intervals can be more efficient but is more complex.
-- **Use Euclidean square roots:** Floating-point calculations are unnecessary and can create boundary precision issues; squared distances are exact.
-- **Overlapping circles:** A point is counted once because its coordinate is visited once and the circle loop breaks.
-- **Point on circumference:** Equality is included.
-- **One circle:** The same global scan checks its exact disk.
-- **Radius one:** The center and four axis neighbors are the only lattice points.
-- **Disjoint circles:** Points from both regions are visited and counted independently.
-- **Nonnegative lower bound:** Starting loops at zero relies on `r <= x` and `r <= y`.
-- **Maximum coordinates:** Global bounds include `x+r` and `y+r` through the `+1` range endpoints.
-- **No set allocation:** Duplicate avoidance comes from visiting each coordinate once.
-- **Input preservation:** Circle definitions are only read.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Geometric Completeness
+
+Any lattice point $(x, y)$ inside at least one circle must satisfy $(x - x_i)^2 + (y - y_i)^2 \le r_i^2$ for some index $i$.
+Because $x \le x_i + r_i \le X_{\max}$ and $y \le y_i + r_i \le Y_{\max}$ with $x, y \ge 0$, every such point is contained within the bounding box $[0, X_{\max}] \times [0, Y_{\max}]$.
+By iterating exhaustively through all integer coordinates in this box, no candidate point is missed.
+
+### Deduplication Soundness
+
+The point-wise iteration tests each integer pair $(x, y)$ exactly once.
+When $(x, y)$ satisfies the distance condition for any circle, the inner loop terminates immediately via a break statement, incrementing the global counter by $1$.
+Even if a point satisfies the condition for multiple overlapping circles, it contributes strictly $1$ to the final tally.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Anti-Patterns
 
-- **Time Complexity:** $O(XYC)$. Let `C` be the number of circles, `X = mx + 1`, and `Y = my + 1`. The code visits `XY` candidate points and may test all `C` circles for each. Worst-case time is `O(XYC)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Edge Cases
+1. **Single Unit Circle ($r = 1$):**
+   A circle with $r = 1$ contains exactly $5$ points: the center and four cardinal neighbors at distance $1$.
+2. **Concentric or Identical Circles:**
+   Two circles with the same center and radius (or where one circle contains the other). Short-circuit evaluation counts each point once without duplicate increments.
+3. **Tangent Circles:**
+   Two circles tangent at an integer coordinate (e.g. $(1, 1, 1)$ and $(3, 1, 1)$ touching at $(2, 1)$). The shared point $(2, 1)$ is properly unified, yielding $5 + 5 - 1 = 9$ points.
+4. **Disjoint Circles:**
+   Separated circles with no overlapping lattice points; total count is the exact sum of individual counts.
+
+### Anti-Patterns to Avoid
+- **Floating-Point Square Root:**
+  Checking `math.sqrt(dx*dx + dy*dy) <= r`. Floating-point rounding errors can cause boundary points where $dx^2 + dy^2 = r^2$ to evaluate to $r + \epsilon > r$, spuriously omitting valid boundary lattice points. Always compare squared integer distances.
+- **Continuous Area Approximation:**
+  Using $\pi r^2$ to approximate lattice points. The Gauss circle problem shows that the number of lattice points deviates from $\pi r^2$ by an error term; continuous calculus cannot replace exact discrete point counting.
+- **Global Hash Set for All Coordinates:**
+  Adding tuple objects `(x, y)` to a Python `set` incurs significant hash table allocation and hashing overhead. A 2D bounded loop with direct break evaluation executes substantially faster in fixed memory.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Bounding Box Sizing:** A linear scan over the $N$ circles determines $X_{\max}$ and $Y_{\max}$ in $O(N)$ time.
+- **Point Verification:**
+  The bounding box contains $(X_{\max} + 1) \times (Y_{\max} + 1)$ points.
+  For each point, distance is checked against at most $N$ circles with immediate break upon finding a covering circle:
+  $$\text{Worst-Case Operations} \le (X_{\max} + 1) \times (Y_{\max} + 1) \times N$$
+  Given $X_{\max}, Y_{\max} \le 200$ and $N \le 200$:
+  $$\text{Operations} \le 201 \times 201 \times 200 \approx 8.08 \times 10^6$$
+  In practice, because most points inside circles break after $1$ or $2$ checks, the loop executes in tens of milliseconds.
+- **Total Time Complexity:** $\mathcal{O}(X_{\max} \cdot Y_{\max} \cdot N)$, comfortably bounded and optimal.
+
+### Space Complexity
+- **Auxiliary Memory:** Only scalar variables (`ans`, `mx`, `my`, `dx`, `dy`) are maintained.
+- **Total Space Complexity:** $\mathcal{O}(1)$ auxiliary space.

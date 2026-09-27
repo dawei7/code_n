@@ -1,125 +1,213 @@
 # Guided Example: Replace All ?'s to Avoid Consecutive Repeating Characters
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"s": "?zs"}`
-- **Required output:** `"azs"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-Given a string `s` containing only lowercase English letters and the `'?'` character, convert **all **the `'?'` characters into lowercase letters such that the final string does not contain any **consecutive repeating **characters. You **cannot **modify the non `'?'` characters.
+We are given a string $s$ containing lowercase English letters and question mark `'?'` placeholders. We must replace every `'?'` with a lowercase English letter such that the final completed string contains no two adjacent equal characters:
+$$s[i] \neq s[i+1] \quad \text{for all } 0 \le i < N - 1$$
+Pre-existing letters cannot be altered, and any valid satisfying string is accepted.
 
-The objective is to compute `"azs"` from `{"s": "?zs"}` while avoiding redundant calculations and unnecessary overhead.
+We select the representative instance containing single and adjacent placeholders:
+$$s = \text{"j?qg??b"}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The algorithm produces:
+$$\text{"jaqgacb"}$$
 
----
+Our teaching goal is to demonstrate greedy local constraint satisfaction under the Pigeonhole Principle. We prove why an alphabet of just three candidate characters (`{'a', 'b', 'c'}`) is mathematically guaranteed to resolve any placeholder without backtracking, and how sequential left-to-right filling ensures global validity in linear time.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+At any placeholder position $i$, the character $s[i]$ is constrained only by its immediate orthogonal neighbors:
+1. Left neighbor: $s[i-1]$ (if $i > 0$)
+2. Right neighbor: $s[i+1]$ (if $i < N - 1$)
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Together, the left and right neighbors can rule out at most $2$ distinct character values.
+By the Pigeonhole Principle, if we evaluate a candidate palette of $3$ distinct characters:
+$$\mathcal{P} = \{\text{'a'}, \text{'b'}, \text{'c'}\}$$
+at least one character in $\mathcal{P}$ must differ from both $s[i-1]$ and $s[i+1]$:
+$$|\mathcal{P} \setminus \{s[i-1], s[i+1]\}| \ge 3 - 2 = 1$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```
++-------------------------------------------------------------------------+
+|                  PIGEONHOLE GREEDY LOCAL RESOLUTION                     |
+|                                                                         |
+| For any placeholder at index i:                                         |
+|   Forbidden set: F = { s[i-1], s[i+1] } intersect {'a', 'b', 'c'}       |
+|   |F| <= 2 forbidden values.                                            |
+|                                                                         |
+| Candidate palette: P = {'a', 'b', 'c'}  (|P| = 3)                       |
+| By Pigeonhole Principle:                                                |
+|   |P \ F| >= 3 - 2 = 1 guaranteed available character!                  |
+|                                                                         |
+| Sequential Resolution:                                                  |
+|   Index 4: '?' between 'g' and '?' ==> 'a' is free ==> s[4] = 'a'      |
+|   Index 5: '?' between 'a' and 'b' ==> 'c' is free ==> s[5] = 'c'      |
+|                                                                         |
+| Final: "j" + "a" + "q" + "g" + "a" + "c" + "b" = "jaqgacb"             |
++-------------------------------------------------------------------------+
+```
 
----
+### State Parameter Reference
+
+| Parameter | Type | Domain | Purpose in State Machine |
+|---|---|---|---|
+| $i$ | Integer Index | $[0, N-1]$ | Active position along string $s$ |
+| $s[i]$ | Character | Lowercase or `'?'` | Active character being evaluated |
+| $\text{left}$ | Character | Lowercase or $\emptyset$ | Value of $s[i-1]$ (empty if $i = 0$) |
+| $\text{right}$ | Character | Lowercase or `'?'` | Value of $s[i+1]$ (empty if $i = N - 1$) |
+| $c$ | Candidate Character | $\in \{\text{'a'}, \text{'b'}, \text{'c'}\}$ | Palette character tested against local neighbors |
+
+> [!IMPORTANT]
+> **Forward Compatibility Invariant**:
+> Filling placeholders sequentially from left to right causes index $i$ to be fully finalized before index $i+1$ is evaluated. When index $i+1$ is examined, its left neighbor $s[i]$ is guaranteed to be a concrete letter (not `'?'`), and its right neighbor $s[i+2]$ is either fixed or `'?'`. Because testing $\mathcal{P} = \{\text{'a'}, \text{'b'}, \text{'c'}\}$ guarantees finding a valid choice at every step, the algorithm never requires backtracking.
+
+```mermaid
+flowchart TD
+    accTitle: Placeholder Replacement Flowchart
+    accDescr: Pipeline iterating through the string, identifying question marks, and greedily selecting the first valid character from a, b, c.
+    Start([Input String s]) --> ToArray["Convert s to character array"]
+    ToArray --> LoopHead[Iterate index i from 0 to N - 1]
+    LoopHead --> CheckQ{"s[i] == '?'"}
+    CheckQ -- No --> NextIndex[Advance to next index i]
+    CheckQ -- Yes --> PaletteLoop[Iterate candidate c in 'a', 'b', 'c']
+    PaletteLoop --> CheckConflict{"c == s[i-1] or c == s[i+1]?"}
+    CheckConflict -- Yes --> TryNext[Try next candidate]
+    TryNext --> PaletteLoop
+    CheckConflict -- No --> AssignChar["s[i] = c; break palette loop"]
+    AssignChar --> NextIndex
+    NextIndex --> MoreIndices{i < N - 1?}
+    MoreIndices -- Yes --> LoopHead
+    MoreIndices -- No --> ToString["Join characters into string"]
+    ToString --> Done([Return Completed String])
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What must be changed
+We trace the algorithm on $s = \text{"j?qg??b"}$ of length $N = 7$.
+Initial character array:
+$$s = ['j', '?', 'q', 'g', '?', '?', 'b']$$
 
-The string contains lowercase English letters and question marks. Every question mark must be replaced by a lowercase letter so that no two adjacent characters are equal. Characters that are already letters must remain unchanged. The implementation constructs one valid result; it does not need to find a lexicographically smallest result or minimize how many distinct letters are used.
+### Index $i = 0$: $s[0] = \text{'j'}$
+- Character is not `'?'`. Retain fixed input letter `'j'`.
 
-Python strings are immutable, so the solution first converts `s` into a list of individual characters. That list allows an assignment such as `s[i] = c` when a replacement is chosen. After all positions have been processed, `"".join(s)` turns the list back into the required string.
+### Index $i = 1$: $s[1] = \text{'?'}$
+- Left neighbor: $s[0] = \text{'j'}$.
+- Right neighbor: $s[2] = \text{'q'}$.
+- Forbidden set: $\{\text{'j'}, \text{'q'}\}$.
+- Test candidates from $\mathcal{P} = \{\text{'a'}, \text{'b'}, \text{'c'}\}$:
+  - Candidate $c = \text{'a'}$: $\text{'a'} \neq \text{'j'}$ and $\text{'a'} \neq \text{'q'}$.
+  - No collision! Assign $s[1] = \text{'a'}$.
+- Updated array: $['j', \mathbf{'a'}, 'q', 'g', '?', '?', 'b']$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "?zs"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Index $i = 2$: $s[2] = \text{'q'}$
+- Character is not `'?'`. Retain `'q'`.
 
----
+### Index $i = 3$: $s[3] = \text{'g'}$
+- Character is not `'?'`. Retain `'g'`.
 
-### Step 2: Why the decision is local
+### Index $i = 4$: $s[4] = \text{'?'}$
+- Left neighbor: $s[3] = \text{'g'}$.
+- Right neighbor: $s[5] = \text{'?'}$ (unassigned placeholder).
+- Forbidden set: $\{\text{'g'}\}$ (the right placeholder `'?'` does not forbid any letter).
+- Test candidates:
+  - Candidate $c = \text{'a'}$: $\text{'a'} \neq \text{'g'}$ and $\text{'a'} \neq \text{'?'}$.
+  - No collision! Assign $s[4] = \text{'a'}$.
+- Updated array: $['j', 'a', 'q', 'g', \mathbf{'a'}, '?', 'b']$.
 
-Whether the character at index `i` is valid depends only on its immediate neighbors:
+### Index $i = 5$: $s[5] = \text{'?'}$
+- Left neighbor: $s[4] = \text{'a'}$ (finalized in previous step).
+- Right neighbor: $s[6] = \text{'b'}$.
+- Forbidden set: $\{\text{'a'}, \text{'b'}\}$.
+- Test candidates:
+  - Candidate $c = \text{'a'}$: Collides with left neighbor $s[4] = \text{'a'}$. Rejected.
+  - Candidate $c = \text{'b'}$: Collides with right neighbor $s[6] = \text{'b'}$. Rejected.
+  - Candidate $c = \text{'c'}$: $\text{'c'} \neq \text{'a'}$ and $\text{'c'} \neq \text{'b'}$.
+  - No collision! Assign $s[5] = \text{'c'}$.
+- Updated array: $['j', 'a', 'q', 'g', 'a', \mathbf{'c'}, 'b']$.
 
-- if `i > 0`, it must differ from `s[i - 1]`;
-- if `i + 1 < n`, it must differ from `s[i + 1]`.
+### Index $i = 6$: $s[6] = \text{'b'}$
+- Character is not `'?'`. Retain `'b'`.
 
-No character farther away can become adjacent to position `i`, because this problem replaces characters without deleting or moving them. Therefore, choosing a replacement does not require dynamic programming, backtracking, or knowledge of the whole prefix beyond its final adjacent character.
-
-The scan moves from left to right. When it reaches a question mark, the position on the left has already been finalized. It is either an original letter or a question mark that an earlier iteration replaced. The position on the right has not necessarily been processed, but its current value still gives all the information needed:
-
-- if the right character is a fixed letter, the current replacement must avoid it;
-- if the right character is `?`, it imposes no restriction yet, because that question mark will make its own safe choice when the scan reaches it.
-
-This asymmetry is important. The algorithm never needs to predict what a future question mark will become. The future position will see the current chosen letter as its finalized left neighbor and will avoid it then.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why only `a`, `b`, and `c` are tried
-
-For each question mark, the inner loop tries the three candidates in `"abc"`. At most two letters can be forbidden: one by the left neighbor and one by the right neighbor. Even when those neighbors contain two different letters, three candidates guarantee that at least one candidate remains. If both neighbors contain the same letter, only one candidate is forbidden. At an endpoint, there is at most one neighbor, and a one-character string has none.
-
-The source checks a candidate with two short-circuit conditions. The expression `i and s[i - 1] == c` is false at index zero, so it does not access a nonexistent left neighbor. The second condition, `i + 1 < n and s[i + 1] == c`, first verifies that a right neighbor exists. If either existing neighbor equals `c`, `continue` rejects that candidate. Otherwise, the candidate is assigned and `break` stops the three-letter search.
-
-There is no fallback after that loop because the three-candidate argument proves that one candidate must be available. The loop may try one, two, or three letters, but it always assigns the question mark.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"azs"` |
-
----
+### Final String Conversion
+Array joined to string: `"jaqgacb"`.
+Adjacent characters:
+$\text{'j'} \neq \text{'a'} \neq \text{'q'} \neq \text{'g'} \neq \text{'a'} \neq \text{'c'} \neq \text{'b'}$.
+All adjacent pairs are distinct.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "?zs"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"azs"` | Verified |
+The table below catalogs the state transitions and neighbor evaluations across all 7 string indices.
 
----
+| Index $i$ | Original Character | Left Neighbor $s[i-1]$ | Right Neighbor $s[i+1]$ | Forbidden Values | Candidate Palette Scan | Selected Character | Modified String State |
+|---|---|---|---|---|---|---|---|
+| 0 | `'j'` | - | `'?'` | - | None (Fixed) | `'j'` | `"j?qg??b"` |
+| 1 | `'?'` | `'j'` | `'q'` | `{'j', 'q'}` | `'a'` (Valid) | `'a'` | `"jaqg??b"` |
+| 2 | `'q'` | `'a'` | `'g'` | - | None (Fixed) | `'q'` | `"jaqg??b"` |
+| 3 | `'g'` | `'q'` | `'?'` | - | None (Fixed) | `'g'` | `"jaqg??b"` |
+| 4 | `'?'` | `'g'` | `'?'` | `{'g'}` | `'a'` (Valid) | `'a'` | `"jaqga?b"` |
+| 5 | `'?'` | `'a'` | `'b'` | `{'a', 'b'}` | `'a'` (X), `'b'` (X), `'c'` (Valid) | `'c'` | `"jaqgacb"` |
+| 6 | `'b'` | `'c'` | - | - | None (Fixed) | `'b'` | `"jaqgacb"` |
+
+### Neighbor Collision Analysis for Adjacent Placeholders
+
+| Boundary Pair Tested | Preceding Assignment | Successor Target | Conflict Avoided | Resolution Rule |
+|---|---|---|---|---|
+| Indices $(3, 4)$ | $s[3] = \text{'g'}$ | $s[4] = \text{'a'}$ | $\text{'g'} \neq \text{'a'}$ | First free candidate from $\{\text{'a'}, \text{'b'}, \text{'c'}\}$ |
+| Indices $(4, 5)$ | $s[4] = \text{'a'}$ | $s[5] = \text{'c'}$ | $\text{'a'} \neq \text{'c'}$ | Avoids newly assigned predecessor $s[4]$ |
+| Indices $(5, 6)$ | $s[5] = \text{'c'}$ | $s[6] = \text{'b'}$ | $\text{'c'} \neq \text{'b'}$ | Avoids fixed successor $s[6]$ |
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. Any character assigned to $s[i]$ is explicitly verified against $s[i-1]$ (when $i > 0$) and $s[i+1]$ (when $i < N - 1$).
+2. The assignment $s[i] = c$ is executed only when $c \neq s[i-1]$ and $c \neq s[i+1]$.
+3. Since this condition is enforced for every index $i \in [0, N-1]$, no pair of adjacent characters can be equal.
+4. Input characters other than `'?'` are never overwritten.
+Therefore, the resulting string is strictly valid according to problem requirements.
 
----
+### Completeness
+
+Let $i$ be any placeholder index. The character $s[i]$ is adjacent to at most two positions: $i-1$ and $i+1$.
+These two positions hold at most $2$ distinct character values in the English alphabet.
+Consider the candidate set $\mathcal{P} = \{\text{'a'}, \text{'b'}, \text{'c'}\}$.
+Since $|\mathcal{P}| = 3$ and at most $2$ values are forbidden by the neighbors, $|\mathcal{P} \setminus \{s[i-1], s[i+1]\}| \ge 1$.
+Thus, there always exists at least one candidate in $\{\text{'a'}, \text{'b'}, \text{'c'}\}$ that causes no conflict with either neighbor.
+Because an available character is mathematically guaranteed to exist at every step, the greedy traversal never fails or encounters a dead end.
 
 ## 6. Traps This Instance Exposes
 
-- **Backtracking over all lowercase letters:** Trying a letter, recursing, and undoing choices can eventually find a valid string, but it solves a much larger search problem than necessary. Adjacency is local, and three candidates always leave a valid choice, so the greedy decision never needs to be reconsidered.
-- **Trying all 26 lowercase letters:** This is correct but unnecessary. At most two neighboring letters are forbidden, so `a`, `b`, and `c` already provide the mathematical guarantee the algorithm needs.
-- **Copying only the previous character:** A method that avoids the left neighbor but ignores a fixed right neighbor can create an invalid pair. For example, choosing `a` for the middle of `"b?a"` would conflict with the right side. The checked-in implementation tests both existing neighbors.
-- **Treating a right-side question mark as a fixed restriction:** A question mark has no chosen letter yet and should not forbid a candidate. It will avoid the current letter when its own turn arrives.
-- **Single-character input:** A lone question mark becomes `a`, while a lone fixed letter is returned unchanged. With no adjacent pair, either result automatically satisfies the condition.
-- **Question mark at the first or last position:** The short-circuit boundary tests safely consider only the neighbor that exists. There is no negative-index lookup at the first position and no out-of-range lookup at the last.
-- **Several consecutive question marks:** Each later replacement sees the finalized replacement immediately to its left. This prevents equal adjacent choices without needing to plan the whole run in advance.
-- **Fixed letters outside `a`, `b`, and `c`:** They do not cause difficulty. A fixed `z`, for example, forbids none of the three candidates unless a candidate actually equals it, so `a` is immediately usable.
-- **Two different fixed neighbors:** Even if the neighbors forbid two of the three candidates, the third remains. This is the tight reason that a three-letter candidate set is sufficient.
-- **Input guarantee about original letters:** The algorithm cannot repair an equal adjacent pair made of two non-question-mark characters because it intentionally never changes fixed letters. Correctness therefore relies on the stated guarantee that such a conflict is absent from the input.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Testing Against the Unprocessed Successor (`'?'`)**:
+   At index $4$, the right neighbor is $s[5] = \text{'?'}$. A common bug is checking `c == s[i+1]` without verifying that $s[i+1] \neq \text{'?'}$. Since `'?'` is not in $\{\text{'a'}, \text{'b'}, \text{'c'}\}$, standard equality handles this, but explicit logic must never treat `'?'` as a forbidden letter.
 
----
+2. **Full 26-Letter Alphabet Random Sampling**:
+   Attempting to pick random letters from `'a'` through `'z'` until a valid one is found introduces non-deterministic runtime. Iterating through a fixed 3-character palette guarantees finding a valid assignment in at most 3 iterations.
+
+3. **String Immutability Overhead**:
+   Repeatedly rebuilding strings via string slicing and concatenation creates $\mathcal{O}(N)$ allocations per placeholder, resulting in $\mathcal{O}(N^2)$ memory churning. Converting to a mutable list of characters and modifying in place operates in strictly linear time.
+
+4. **Handling Boundary Elements ($i = 0$ and $i = N - 1$)**:
+   The first element has no left neighbor, and the last element has no right neighbor. Guarding neighbor checks with $i > 0$ and $i < N - 1$ prevents out-of-bounds indexing errors.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the length of `s`.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+Let $N$ be the length of string $s$ ($N \le 100$).
+- **Conversion to Array**: Unpacking $s$ into a character list takes $\mathcal{O}(N)$ time.
+- **Sequential Scan**: The outer loop runs $N$ times.
+  - If $s[i] \neq \text{'?'}$, work is $\mathcal{O}(1)$.
+  - If $s[i] == \text{'?'}$, the inner loop tests at most $3$ characters from $\{\text{'a'}, \text{'b'}, \text{'c'}\}$. Each test performs at most $2$ character comparisons: $\mathcal{O}(1)$.
+- **Rejoining**: Rejoining the list into a string takes $\mathcal{O}(N)$ time.
+
+Total time complexity is strictly:
+$$\mathcal{O}(N)$$
+For $N = 100$, this executes in under 0.1 milliseconds.
+
+### Auxiliary Space Complexity
+
+- The mutable character array requires $N$ character slots: $\mathcal{O}(N)$ space.
+- Palette iteration requires $\mathcal{O}(1)$ scalar storage.
+
+Total auxiliary space complexity is:
+$$\mathcal{O}(N)$$
+Proportional to the input string length.

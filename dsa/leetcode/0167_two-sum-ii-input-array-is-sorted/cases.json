@@ -47,8 +47,8 @@
     },
     {
       "id": "trial-negative",
-      "name": "negative target",
-      "kind": "trial",
+      "name": "sample: negative target",
+      "kind": "sample",
       "visible": true,
       "input": {
         "numbers": [
@@ -62,6 +62,7 @@
         2
       ],
       "tags": [
+        "sample",
         "negative"
       ]
     },

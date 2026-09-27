@@ -1,162 +1,160 @@
 # Guided Example: Single Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise XOR identity accumulation and duplicate cancellation on representative integer arrays:
 
-- **Input:** `{"nums": [2, 2, 1]}`
-- **Required output:** `1`
+- **Input:** $\text{nums} = [4, 1, 2, 1, 2]$
+- **Required output:** $4$ (Duplicates $1$ and $2$ cancel to $0$, isolating singleton $4$)
+- **Base Instances:** $\text{nums} = [2, 2, 1] \implies 1, \quad \text{nums} = [1] \implies 1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates the mathematical properties of bitwise Exclusive OR (commutativity, associativity, self-inverse $x \oplus x = 0$, and identity $x \oplus 0 = x$), proves why pair order is irrelevant to bit cancellation, and achieves linear $O(N)$ runtime with strictly $O(1)$ auxiliary space without hash sets.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a **non-empty** array of integers `nums`, every element appears *twice* except for one. Find that single one.
+Given a non-empty array of integers $\text{nums} = [4, 1, 2, 1, 2]$ where every element appears exactly twice except for one unique element, find that single element.
+The problem requires an algorithm with linear $O(N)$ runtime complexity and strictly constant $O(1)$ extra space.
 
-The objective is to compute `1` from `{"nums": [2, 2, 1]}` while avoiding redundant calculations and unnecessary overhead.
+In this instance:
+- Value $1$ appears twice (indices $1$ and $3$).
+- Value $2$ appears twice (indices $2$ and $4$).
+- Value $4$ appears exactly once (index $0$).
+Result: $4$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A hash set or frequency map takes $O(N)$ auxiliary space, violating the constant space requirement.
+Sorting takes $O(N \log N)$ time, violating the linear time requirement.
+Bitwise Exclusive OR ($\oplus$) operates at the bit level: because identical bits cancel to $0$ ($1 \oplus 1 = 0$ and $0 \oplus 0 = 0$), accumulating the running XOR of all array values eliminates every paired duplicate, leaving the exact unique value in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Mathematical Properties of XOR ($\oplus$)
+Bitwise XOR satisfies four fundamental algebraic laws:
+1. **Self-Inverse:** Any integer XORed with itself is zero:
+   $$
+   x \oplus x = 0
+   $$
+2. **Identity Element:** Any integer XORed with zero remains unchanged:
+   $$
+   x \oplus 0 = x
+   $$
+3. **Commutativity:** Operand order can be freely rearranged:
+   $$
+   a \oplus b = b \oplus a
+   $$
+4. **Associativity:** Grouping parentheses can be freely repositioned:
+   $$
+   (a \oplus b) \oplus c = a \oplus (b \oplus c)
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Global Cancellation Theorem
+Let $u$ be the unique single element, and let $p_1, p_2, \dots, p_k$ be the duplicate pairs in the array:
+$$
+\text{Result} = \bigoplus_{x \in \text{nums}} x = u \oplus (p_1 \oplus p_1) \oplus (p_2 \oplus p_2) \oplus \dots \oplus (p_k \oplus p_k)
+$$
+Applying the self-inverse identity:
+$$
+\text{Result} = u \oplus 0 \oplus 0 \oplus \dots \oplus 0 = u
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After processing index $i$, the accumulator register $\text{acc} = \bigoplus_{j=0}^i \text{nums}[j]$ stores the XOR sum of all elements in the prefix, in which all complete pairs encountered so far cancel out bit-by-bit.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the frequency guarantee, not a frequency table
+We trace the single-register accumulator on $\text{nums} = [4, 1, 2, 1, 2]$ in binary:
 
-The array has a very strong structure: exactly one value occurs once, and every other value occurs exactly twice. The required constant extra space rules out storing counts or a set proportional to the input.
-
-Bitwise exclusive OR, written XOR, is designed for this cancellation pattern. For one bit, its result is one exactly when the two input bits differ:
-
-| First bit | Second bit | XOR |
-|---:|---:|---:|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
-
-Applying that operation independently to every bit gives several useful integer identities:
-
-$$
-x \mathbin{\oplus} x = 0
-$$
-
-$$
-x \mathbin{\oplus} 0 = x
-$$
-
-XOR is also associative and commutative. Associativity allows parentheses to move, and commutativity allows operands to be reordered. Therefore, equal values can be brought together conceptually even when their occurrences are far apart in the array.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initial State
+- $\text{acc} = 0$ ($000_2$)
 
 ---
 
-### Step 2: What `reduce(xor, nums)` computes
-
-`reduce` takes the first two elements, combines them with `xor`, combines that result with the third element, and continues until one accumulator remains. For `[4, 1, 2, 1, 2]`, the effective expression is:
-
-$$
-4 \mathbin{\oplus} 1 \mathbin{\oplus} 2
-\mathbin{\oplus} 1 \mathbin{\oplus} 2.
-$$
-
-By reordering and regrouping for reasoning, this equals:
-
-$$
-4 \mathbin{\oplus}
-(1 \mathbin{\oplus} 1)
-\mathbin{\oplus}
-(2 \mathbin{\oplus} 2).
-$$
-
-Each pair becomes zero, leaving:
-
-$$
-4 \mathbin{\oplus} 0 \mathbin{\oplus} 0 = 4.
-$$
-
-The actual implementation does not sort or rearrange the array. Those algebraic properties merely prove that the left-to-right reduction has the same result as the pair-grouped expression.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Element $x = 4$ ($100_2$)
+- Bitwise operation:
+  $$
+  \text{acc} \leftarrow 000_2 \oplus 100_2 = 100_2 = 4
+  $$
 
 ---
 
-### Step 3: Why the remaining value is exactly the answer
+### Step 2: Element $x = 1$ ($001_2$)
+- Bitwise operation:
+  $$
+  \text{acc} \leftarrow 100_2 \oplus 001_2 = 101_2 = 5
+  $$
 
-Let the unique value be $u$, and let the repeated values be $p_1,p_2,\ldots,p_k$. The reduction contains:
+---
 
-$$
-u
-\mathbin{\oplus}
-p_1 \mathbin{\oplus} p_1
-\mathbin{\oplus}\cdots\mathbin{\oplus}
-p_k \mathbin{\oplus} p_k.
-$$
+### Step 3: Element $x = 2$ ($010_2$)
+- Bitwise operation:
+  $$
+  \text{acc} \leftarrow 101_2 \oplus 010_2 = 111_2 = 7
+  $$
 
-Every repeated pair contributes zero. XORing any number of zeros with $u$ leaves $u$. Thus the returned accumulator is the value that appears once.
+---
 
-This is not merely detecting oddness of the array length. The result follows from the exact multiplicity guarantee. If another value occurred three times, two copies would cancel and one would remain in the XOR too, so the method would no longer identify a uniquely specified element.
+### Step 4: Element $x = 1$ ($001_2$)
+- Re-encountering $1$:
+  $$
+  \text{acc} \leftarrow 111_2 \oplus 001_2 = 110_2 = 6
+  $$
+- The lowest bit introduced by the first $1$ is now cancelled back to $0$!
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+---
+
+### Step 5: Element $x = 2$ ($010_2$)
+- Re-encountering $2$:
+  $$
+  \text{acc} \leftarrow 110_2 \oplus 010_2 = 100_2 = \mathbf{4}
+  $$
+- The middle bit introduced by the first $2$ is now cancelled back to $0$!
+
+Stream ends. The final accumulator value is $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+```text
+Numbers:        4         1         2         1         2
+Binary:      100_2     001_2     010_2     001_2     010_2
+Acc:  000 -> 100 (4) -> 101 (5) -> 111 (7) -> 110 (6) -> 100 (4)
+                                                ^         ^
+                                            cancels 1  cancels 2
+Final Isolated Value: 4
+```
+
+| Step $i$ | Visited Value $\text{nums}[i]$ | Binary Representation | Prior Accumulator | Bitwise XOR Equation | New Accumulator Value | Parity Note |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| Init | - | - | - | - | 0 ($000_2$) | Base |
+| 1 | 4 | $100_2$ | 0 | $000_2 \oplus 100_2$ | 4 ($100_2$) | Singleton introduced |
+| 2 | 1 | $001_2$ | 4 | $100_2 \oplus 001_2$ | 5 ($101_2$) | First copy of 1 |
+| 3 | 2 | $010_2$ | 5 | $101_2 \oplus 010_2$ | 7 ($111_2$) | First copy of 2 |
+| 4 | 1 | $001_2$ | 7 | $111_2 \oplus 001_2$ | 6 ($110_2$) | **Second copy cancels 1** |
+| **5** | **2** | **$010_2$** | **6** | **$110_2 \oplus 010_2$** | **4 ($100_2$)** | **Second copy cancels 2** |
+| Final | - | - | - | - | **4 (Result)** | Singleton remains |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For each bit position $b$, the $b$-th bit of the XOR sum equals the sum of the $b$-th bits of all numbers modulo 2. If a number appears twice, its bits contribute an even count ($2 \times 1 = 2 \equiv 0 \pmod 2$), contributing $0$ to the final sum. The unique number appears once, contributing an odd count ($1 \equiv 1 \pmod 2$). Thus, the final XOR sum exactly reconstructs the binary representation of the unique number.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every number in the array is included in the sequential XOR fold. No element is skipped, ensuring all duplicates cancel completely.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Hash set toggling:** Add an unseen value and remove a seen value. The final set contains the answer, but it requires $O(n)$ extra space.
-- **Frequency dictionary:** Count occurrences and return the key with count one. It is linear expected time but violates the constant-space requirement.
-- **Sort then scan pairs:** Equal values become adjacent, making the singleton easy to find. It costs $O(n\log n)$ time and may use extra sorting memory or mutate the input.
-- **Arithmetic with a set:** Compute twice the sum of distinct values minus the full sum. It uses $O(n)$ set space and can overflow in fixed-width languages.
-- **One element:** `reduce` returns that element without calling `xor`.
-- **Unique value is zero:** All duplicate pairs cancel to zero, and the remaining zero is correctly returned.
-- **Negative values:** Identical negative integers cancel exactly under bitwise XOR.
-- **Arbitrary ordering:** Pair occurrences need not be adjacent because XOR is associative and commutative.
-- **Malformed multiplicities:** The proof depends on every non-answer appearing exactly twice; the function does not validate that promise.
-- **Runtime dependencies:** The selected source uses `List`, `reduce`, and `xor` without imports. Standalone Python needs `from typing import List`, `from functools import reduce`, and `from operator import xor`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Negative Integers in Bitwise XOR:** Bitwise XOR functions identically for negative integers using two's complement arithmetic (e.g. $-3 \oplus -3 = 0$). The cancellation holds across all signed 32-bit integers.
+- **Requiring Odd Multiplicities Greater Than 1:** The proof strictly relies on the guarantee that non-target numbers appear *exactly twice*. If another number appeared three times, two would cancel and one would remain, polluting the accumulator (see LeetCode 137 for three-copy variations).
+- **Single Element Input:** If `nums = [1]`, the accumulator initialized with `nums[0]` terminates immediately with `1`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. A single loop processes each element once, performing an $O(1)$ hardware bitwise operation.
+- **Auxiliary Space Complexity:** $O(1)$ extra space, using only a single scalar accumulator register.

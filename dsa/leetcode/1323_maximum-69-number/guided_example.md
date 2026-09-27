@@ -1,135 +1,148 @@
 # Guided Example: Maximum 69 Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the greedy positional replacement algorithm for maximizing a two-digit integer on a representative instance:
 
-- **Input:** `{"num": 9669}`
-- **Required output:** `9969`
+- **Input:** `num = 9669`
+- **Required Output:** `9969`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates decimal place-value weighting, comparing potential digit flip gains, and establishing the greedy choice of modifying the most significant occurrence of digit `'6'`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a positive integer `num` consisting only of digits `6` and `9`.
+We are given a positive integer `num` composed exclusively of digits `'6'` and `'9'`. We are permitted to change at most one digit (either turning a `'6'` into a `'9'` or a `'9'` into a `'6'`). We must return the maximum possible integer achievable.
 
-The objective is to compute `9969` from `{"num": 9669}` while avoiding redundant calculations and unnecessary overhead.
+For `num = 9669`:
+- Changing any `'9'` to `'6'` decreases the number by $3 \times 10^k$, which is strictly suboptimal.
+- Changing a `'6'` to `'9'` at positional power $10^k$ increases the value by:
+  $$
+  \Delta = (9 - 6) \times 10^k = 3 \times 10^k
+  $$
+- The available `'6'` digits in $9669$ reside at:
+  - Hundreds place ($k = 2$): Gain $\Delta = 3 \times 10^2 = +300 \implies 9969$.
+  - Tens place ($k = 1$): Gain $\Delta = 3 \times 10^1 = +30 \implies 9699$.
+- To maximize the final integer, we choose the maximum gain $+300$, yielding $9969$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Decimal Alignment:
+  Index from Left:   0       1       2       3
+  Place Value:     10^3    10^2    10^1    10^0
+  Original Digits:   9       6       6       9
+                             ^
+                   Leftmost '6' (k = 2)
+
+Candidate Alterations:
+  - Flip index 1 (k = 2): 9669 + 300 = 9969  <-- Maximum Value
+  - Flip index 2 (k = 1): 9669 +  30 = 9699
+  - No flips:             9669
+```
+
+Testing all candidate single-digit flips requires $\mathcal{O}(D)$ evaluations where $D \le 4$ is the number of decimal digits. Finding the first (leftmost) occurrence of digit `'6'` and replacing it with `'9'` directly computes the optimal answer in a single greedy scan.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the decimal representation of `num` be $d_{m-1} d_{m-2} \dots d_0$ where each $d_j \in \{6, 9\}$ and:
+$$
+\text{num} = \sum_{j=0}^{m-1} d_j \cdot 10^j
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Positional Gain Function
+If digit $d_k$ is flipped from $6$ to $9$:
+$$
+\text{Gain}(k) = 3 \cdot 10^k
+$$
+Because $3 \cdot 10^k > \sum_{j=0}^{k-1} 3 \cdot 10^j = \frac{10^k - 1}{3} \cdot 3 = 10^k - 1$, any flip at position $k$ strictly dominates all possible flips at lower positions $j < k$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Therefore, the greedy choice rule is:
+$$
+k^* = \max \{j \mid d_j = 6\}
+$$
+If no digit equals $6$, no flip can increase the value, and the original number is retained.
+
+| Positional Exponent $k$ | Original Digit $d_k$ | Flipped Digit | Numerical Value Difference $\Delta$ | Greedy Priority |
+|---|---|---|---|---|
+| $3$ ($1000$s) | $9$ | $6$ | $-3000$ (Loss) | Never chosen |
+| $2$ ($100$s) | $6$ | $9$ | $+300$ (Gain) | **Highest Positive Gain** |
+| $1$ ($10$s) | $6$ | $9$ | $+30$ (Gain) | Lower Priority |
+| $0$ ($1$s) | $9$ | $6$ | $-3$ (Loss) | Never chosen |
+
+> **Monotonic Place-Value Invariant.** The decimal base $10$ ensures that the gain at position $k$ strictly exceeds any combination of modifications at strictly lower positions ($j < k$). The first `'6'` encountered when scanning from most to least significant digit uniquely maximizes the value.
+
+```mermaid
+flowchart TD
+    accTitle: Leftmost Digit Replacement Flow
+    accDescr: Pipeline scanning digits from left to right, replacing the first 6 with a 9 and stopping.
+    START["Input: num = 9669"] --> SCAN["Scan digits from left (MSD) to right (LSD)"]
+    SCAN --> CHK{"Is current digit == '6'?"}
+    CHK -- No --> NEXT["Advance to next digit"]
+    NEXT --> SCAN
+    CHK -- Yes --> FLIP["Replace current '6' with '9'"]
+    FLIP --> HALT["Stop scan (at most 1 modification)"]
+    HALT --> OUT["Return modified number: 9969"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why significance decides the choice
+We trace the digit scan on `num = 9669`:
+- Digits from left to right: $D = [9, 6, 6, 9]$.
 
-Changing a six at decimal position $p$, counted from zero at the right, increases the number by:
+### Inspection Step 0 (Thousands Place, $k = 3$)
+- Current digit: $9$.
+- Because the digit is already maximum ($9$), changing it would decrease the value to $6$.
+- Move forward.
 
-$$
-(9-6)\cdot10^p=3\cdot10^p.
-$$
+### Inspection Step 1 (Hundreds Place, $k = 2$)
+- Current digit: $6$.
+- This is the first `'6'` encountered from the left.
+- Apply the single permitted modification:
+  $$
+  d_2 \leftarrow 9
+  $$
+- Numerical update:
+  $$
+  9669 + 3 \times 10^2 = 9669 + 300 = 9969
+  $$
+- Terminate scan immediately because only at most one change is allowed.
 
-A position farther left has a larger power of ten. Therefore, changing the leftmost six creates a larger increase than changing any later six, regardless of the remaining digits.
-
-For `669`:
-
-- changing the first six gives `969`, an increase of 300;
-- changing the second gives `699`, an increase of 30.
-
-The first option is larger.
-
-This is a place-value argument, not merely a lexicographic trick. The earliest differing digit between two equal-length positive decimal strings determines which number is greater.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": 9669}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why changing a nine is never helpful
-
-Replacing a nine with a six decreases its contribution by $3\cdot10^p$. Because the operation is optional—“at most one”—we can always choose to do nothing instead.
-
-Thus, an optimal solution either changes the leftmost six to nine or performs no change when no six exists. There is no useful case for the reverse direction even though the problem permits it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: String conversion exposes digit order
-
-`str(num)` creates the ordinary decimal representation from most significant digit to least significant digit. Python's string `replace(old, new, count)` searches left to right.
-
-The third argument `1` limits replacement to one occurrence. Therefore:
-
-`replace("6", "9", 1)`
-
-changes exactly the first six when one exists and leaves later sixes untouched.
-
-If the string contains no six, `replace` returns an equal string. This naturally implements the “do nothing” option for a number consisting entirely of nines.
-
-Finally, `int(...)` converts the modified digit string back to the required integer return type.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `9969` |
+### Output Verification
+- Final digit sequence: $[9, 9, 6, 9]$.
+- Decimal value: $9969$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 9669}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `9969` | Verified |
+| Step | Index $j$ (from left) | Place Value $10^k$ | Current Digit | Action Taken | Current Number State |
+|---|---|---|---|---|---|
+| 0 | $0$ | $10^3 = 1000$ | $9$ | Leave unchanged (already 9) | $9669$ |
+| 1 | $1$ | $10^2 = 100$ | $6$ | **Flip 6 to 9 (Leftmost 6)** | $9969$ |
+| 2 | $2$ | $10^1 = 10$ | $6$ | Skip (Budget exhausted) | $9969$ |
+| 3 | $3$ | $10^0 = 1$ | $9$ | Skip (Budget exhausted) | $9969$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Flipping a single digit from $6$ to $9$ produces a valid number composed of digits $\{6, 9\}$. The value increases by exactly $3 \times 10^k$, which is strictly positive.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $3 \times 10^a > 3 \times 10^b$ for all $a > b$, maximizing the increase requires maximizing the exponent $k$. The leftmost `'6'` in the decimal representation possesses the highest possible exponent $k^*$. Modifying this digit achieves the global maximum. If all digits are already $9$, no replacement can yield a larger value, and returning the original number is optimal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual character scan:** Convert to a list, find the first six, replace it, and stop. It makes the greedy decision explicit but is longer.
-- **Arithmetic digit scan:** Inspect digits from right to left, remember the highest position containing six, and add $3\cdot10^p$. This uses $O(1)$ auxiliary space.
-- **Try every possible change:** It is correct but unnecessary; the place-value proof identifies the best position immediately.
-- **All digits are nine:** No six is found, so the unchanged input is returned.
-- **Only one six:** That digit is replaced regardless of its position.
-- **Several sixes:** Only the first is replaced because the `count` argument is one.
-- **First digit is six:** It is changed, producing the largest possible place-value increase.
-- **Changing nine to six:** It always lowers the number and is dominated by making no change.
-- **At most one operation:** Leaving an all-nine number unchanged is explicitly allowed.
-- **No leading-zero concern:** The permitted digit changes preserve length and positivity.
-- **String immutability:** `replace` returns a new string rather than modifying the original representation in place, which explains the $O(d)$ space.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Flipping all occurrences of 6:** The problem limits the budget to *at most one* change. Replacing all 6s yields $9999$, which violates the single-operation constraint.
+- **Scanning from right to left:** Scanning from least significant to most significant digit would flip the tens digit first ($9699$), producing a suboptimal increase of $+30$ instead of $+300$.
+- **Flipping 9 to 6:** Since $9 > 6$, flipping $9 \to 6$ strictly reduces the number and must never be performed.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d)$. Let $d$ be the number of decimal digits.
-- **Auxiliary Space Complexity:** $O(d)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(D)$, where $D = \lfloor \log_{10}(\text{num}) \rfloor + 1$ is the number of digits in `num`. Because $\text{num} \le 10^4$, $D \le 4$, making execution virtually instantaneous ($\mathcal{O}(1)$ operations).
+- **Auxiliary Space Complexity:** $\mathcal{O}(D)$ to store the string or digit representation during modification.

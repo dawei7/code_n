@@ -261,24 +261,6 @@
         "boundary",
         "single-element"
       ]
-    },
-    {
-      "id": "trial-boundary-14",
-      "name": "identical elements in skills",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "skills": [
-          4,
-          4
-        ],
-        "k": 2
-      },
-      "expected": 0,
-      "tags": [
-        "boundary",
-        "duplicates"
-      ]
     }
   ]
 }

@@ -1,126 +1,180 @@
 # Guided Example: Tasks Count in the Weekend
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Tasks": [{"task_id": 1, "assignee_id": 1, "submit_date": "2022-06-13"}, {"task_id": 2, "assignee_id": 6, "submit_date": "2022-06-14"}, {"task_id": 3, "assignee_id": 6, "submit_date": "2022-06-15"}, {"task_id": 4, "assignee_id": 3, "submit_date": "2022-06-18"}, {"task_id": 5, "assignee_id": 5, "submit_date": "2022-06-19"}, {"task_id": 6, "assignee_id": 7, "submit_date": "2022-06-19"}]}}`
-- **Required output:** `{"columns": ["weekend_cnt", "working_cnt"], "rows": [[3, 3]]}`
+We are given a relational table `Tasks` recording task submissions made by assignees:
+- `task_id`: unique primary key identifying the task submission.
+- `assignee_id`: identifier of the user who submitted the task.
+- `submit_date`: calendar date on which the task was submitted.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We are required to categorize every task submission into one of two mutually exclusive temporal partitions:
+1. **Weekend Submissions (`weekend_cnt`):** Tasks submitted on either a Saturday or a Sunday.
+2. **Working Day Submissions (`working_cnt`):** Tasks submitted on a weekday (Monday through Friday).
+
+Our objective is to compute the total counts for both categories across all rows in the table, returning a single summary record with columns `weekend_cnt` and `working_cnt`.
+
+Consider the representative database instance:
+
+| `task_id` | `assignee_id` | `submit_date` | Day of Week | Classification |
+|---|---|---|---|---|
+| 1 | 1 | 2022-06-13 | Monday | Working day |
+| 2 | 6 | 2022-06-14 | Tuesday | Working day |
+| 3 | 6 | 2022-06-15 | Wednesday | Working day |
+| 4 | 3 | 2022-06-18 | Saturday | Weekend |
+| 5 | 5 | 2022-06-19 | Sunday | Weekend |
+| 6 | 7 | 2022-06-19 | Sunday | Weekend |
+
+Examining each submission:
+- Task $1$ submitted on `2022-06-13` (Monday) $\implies$ working day.
+- Task $2$ submitted on `2022-06-14` (Tuesday) $\implies$ working day.
+- Task $3$ submitted on `2022-06-15` (Wednesday) $\implies$ working day.
+- Task $4$ submitted on `2022-06-18` (Saturday) $\implies$ weekend.
+- Task $5$ submitted on `2022-06-19` (Sunday) $\implies$ weekend.
+- Task $6$ submitted on `2022-06-19` (Sunday) $\implies$ weekend.
+
+Aggregating the partitioned occurrences:
+$$\text{weekend\_cnt} = 1 + 1 + 1 = 3$$
+$$\text{working\_cnt} = 1 + 1 + 1 = 3$$
+
+The query outputs the single row:
+
+| `weekend_cnt` | `working_cnt` |
+|---|---|
+| 3 | 3 |
+
+```mermaid
+flowchart TD
+    accTitle: Weekend vs Working Day Conditional Aggregation
+    accDescr: Pipeline mapping task submission dates to day-of-week indices and using conditional aggregation to emit weekend and working day counts.
+    A["Tasks Table (submit_date)"] --> B["Extract ISO Day of Week: DOW in {1..7}"]
+    B --> C{"DOW in {6, 7}?"}
+    C -- Yes (Saturday/Sunday) --> D["Accumulate to weekend_cnt"]
+    C -- No (Monday-Friday) --> E["Accumulate to working_cnt"]
+    D --> F["Emit single summary row: [weekend_cnt, working_cnt]"]
+    E --> F
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-Table: `Tasks`
+### Calendar Projection and Modular Day Partitioning
 
-The objective is to compute `{"columns": ["weekend_cnt", "working_cnt"], "rows": [[3, 3]]}` from `{"tables": {"Tasks": [{"task_id": 1, "assignee_id": 1, "submit_date": "2022-06-13"}, {"task_id": 2, "assignee_id": 6, "submit_date": "2022-06-14"}, {"task_id": 3, "assignee_id": 6, "submit_date": "2022-06-15"}, {"task_id": 4, "assignee_id": 3, "submit_date": "2022-06-18"}, {"task_id": 5, "assignee_id": 5, "submit_date": "2022-06-19"}, {"task_id": 6, "assignee_id": 7, "submit_date": "2022-06-19"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Under the ISO 8601 calendar standard, every date $d$ maps deterministically to an integer day-of-week index:
+$$\text{ISODOW}(d) \in \{1, 2, 3, 4, 5, 6, 7\}$$
+where $1$ corresponds to Monday, $2$ to Tuesday, through $6$ for Saturday, and $7$ for Sunday.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The domain of all calendar days $\mathcal{D} = \{1, \dots, 7\}$ partitions into two disjoint subsets:
+$$\mathcal{D}_{\text{weekend}} = \{6, 7\}, \quad \mathcal{D}_{\text{working}} = \{1, 2, 3, 4, 5\}$$
+By set-theoretic complement:
+$$\mathcal{D}_{\text{weekend}} \cap \mathcal{D}_{\text{working}} = \emptyset, \quad \mathcal{D}_{\text{weekend}} \cup \mathcal{D}_{\text{working}} = \mathcal{D}$$
 
----
+Consequently, for every record $r \in \text{Tasks}$:
+$$[\text{ISODOW}(r.submit\_date) \in \{6, 7\}] + [\text{ISODOW}(r.submit\_date) \notin \{6, 7\}] = 1$$
+This guarantees that the conservation law holds:
+$$\text{weekend\_cnt} + \text{working\_cnt} = |\text{Tasks}|$$
 
-## 2. Conceptual Foundation & Invariants
+### Single-Pass Conditional Aggregation
 
-We maintain the core conceptual parameters and state variables:
+Rather than executing two separate queries with `WHERE` filters and combining them with a Cartesian product, relational engines perform conditional aggregation in a single table scan:
+$$\text{weekend\_cnt} = \sum_{r \in \text{Tasks}} \mathbf{1}_{\{\text{ISODOW}(r.submit\_date) \in \{6, 7\}\}}$$
+$$\text{working\_cnt} = \sum_{r \in \text{Tasks}} \mathbf{1}_{\{\text{ISODOW}(r.submit\_date) \notin \{6, 7\}\}}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Convert each date to MySQL's weekday number
-
-MySQL's `WEEKDAY(date)` returns zero for Monday, one for Tuesday, through five for Saturday and six for Sunday.
-
-The weekend is therefore represented exactly by the set `(5,6)`. No textual day names, locale settings, or manual date arithmetic are needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Evaluation Engine | Weekend Predicate | Weekday Predicate | Aggregation Method |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Tasks": [{"task_id": 1, "assignee_id": 1, "submit_date": "2022-06-13"}, {"task_id": 2, "assignee_id": 6, "submit_date": "2022-06-14"}, {"task_id": 3, "assignee_id": 6, "submit_date": "2022-06-15"}, {"task_id": 4, "assignee_id": 3, "submit_date": "2022-06-18"}, {"task_id": 5, "assignee_id": 5, "submit_date": "2022-06-19"}, {"task_id": 6, "assignee_id": 7, "submit_date": "2022-06-19"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| PostgreSQL | `EXTRACT(ISODOW FROM submit_date) IN (6, 7)` | `EXTRACT(ISODOW FROM submit_date) NOT IN (6, 7)` | `COUNT(*) FILTER (WHERE ...)` |
+| MySQL | `WEEKDAY(submit_date) IN (5, 6)` | `WEEKDAY(submit_date) NOT IN (5, 6)` | `SUM(...)` |
+| Standard SQL | `CASE WHEN DOW IN (6,7) THEN 1 ELSE 0 END` | `CASE WHEN DOW NOT IN (6,7) THEN 1 ELSE 0 END` | `SUM(CASE ...)` |
 
 ---
 
-### Step 2: Turn each classification into a zero-or-one value
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-For one task row,
+Let us trace the row-by-row evaluation on the sample `Tasks` table.
 
-`WEEKDAY(submit_date) IN (5, 6)`
+### Row 1: `task_id = 1, submit_date = 2022-06-13`
+- `2022-06-13` is a Monday $\implies \text{ISODOW} = 1$.
+- Condition $\text{ISODOW} \in \{6, 7\}$ evaluates to False ($0$).
+- Condition $\text{ISODOW} \notin \{6, 7\}$ evaluates to True ($1$).
+- Running tallies: $\text{weekend\_cnt} = 0, \, \text{working\_cnt} = 1$.
 
-evaluates to one when the date is Saturday or Sunday and zero otherwise in MySQL's numeric Boolean context.
+### Row 2: `task_id = 2, submit_date = 2022-06-14`
+- `2022-06-14` is a Tuesday $\implies \text{ISODOW} = 2$.
+- Evaluates to working day.
+- Running tallies: $\text{weekend\_cnt} = 0, \, \text{working\_cnt} = 2$.
 
-The complementary expression with `NOT IN` produces one for Monday through Friday and zero for weekend dates.
+### Row 3: `task_id = 3, submit_date = 2022-06-15`
+- `2022-06-15` is a Wednesday $\implies \text{ISODOW} = 3$.
+- Evaluates to working day.
+- Running tallies: $\text{weekend\_cnt} = 0, \, \text{working\_cnt} = 3$.
 
-Because the two conditions are complements for every non-null valid date, each task contributes exactly one to one output count and zero to the other.
+### Row 4: `task_id = 4, submit_date = 2022-06-18`
+- `2022-06-18` is a Saturday $\implies \text{ISODOW} = 6$.
+- Condition $\text{ISODOW} \in \{6, 7\}$ evaluates to True ($1$).
+- Condition $\text{ISODOW} \notin \{6, 7\}$ evaluates to False ($0$).
+- Running tallies: $\text{weekend\_cnt} = 1, \, \text{working\_cnt} = 3$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 5: `task_id = 5, submit_date = 2022-06-19`
+- `2022-06-19` is a Sunday $\implies \text{ISODOW} = 7$.
+- Evaluates to weekend.
+- Running tallies: $\text{weekend\_cnt} = 2, \, \text{working\_cnt} = 3$.
 
----
+### Row 6: `task_id = 6, submit_date = 2022-06-19`
+- `2022-06-19` is a Sunday $\implies \text{ISODOW} = 7$.
+- Evaluates to weekend.
+- Running tallies: $\text{weekend\_cnt} = 3, \, \text{working\_cnt} = 3$.
 
-### Step 3: Aggregate the weekend count
-
-`SUM(WEEKDAY(submit_date) IN (5, 6)) AS weekend_cnt` adds the weekend indicator across all rows.
-
-Each Saturday or Sunday task contributes one regardless of its assignee or task ID. The result is the number of task rows submitted during the weekend, not the number of distinct dates or assignees.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["weekend_cnt", "working_cnt"], "rows": [[3, 3]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Tasks": [{"task_id": 1, "assignee_id": 1, "submit_date": "2022-06-13"}, {"task_id": 2, "assignee_id": 6, "submit_date": "2022-06-14"}, {"task_id": 3, "assignee_id": 6, "submit_date": "2022-06-15"}, {"task_id": 4, "assignee_id": 3, "submit_date": "2022-06-18"}, {"task_id": 5, "assignee_id": 5, "submit_date": "2022-06-19"}, {"task_id": 6, "assignee_id": 7, "submit_date": "2022-06-19"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["weekend_cnt", "working_cnt"], "rows": [[3, 3]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+All rows processed. Final aggregated result: `weekend_cnt = 3, working_cnt = 3`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **CASE expressions:** `SUM(CASE WHEN ... THEN 1 ELSE 0 END)` is more portable and has the same meaning as MySQL Boolean summation.
-- **DAYOFWEEK:** It uses a different numbering convention, so weekend constants must be adjusted carefully.
-- **Count total minus weekend:** Working count can be `COUNT(*)-weekend_cnt`, but the exact query states both classifications independently.
-- **Group by weekday:** It would produce up to seven rows and require another pivot or aggregation to reach the requested two columns.
-- **Saturday:** `WEEKDAY` returns five and the row counts as weekend.
-- **Sunday:** It returns six and also counts as weekend.
-- **Monday through Friday:** Their values zero through four count as working days.
-- **Several tasks on one date:** Every task row contributes separately.
-- **Assignee repetition:** It has no effect because the requested count is not distinct by assignee.
-- **Empty table extension:** Exact `SUM` returns null; `COALESCE` would be required for zero.
-- **Null date extension:** `IN` and `NOT IN` on null produce null, so such a row contributes to neither sum; the stated schema semantics avoid this case.
-- **Single output row:** No ordering clause is useful.
-- **Primary key:** `task_id` uniqueness ensures each stored task is one row, although the aggregation does not need to reference the key explicitly.
-- **Boundary between Friday and Saturday:** `WEEKDAY` changes from four to five, exactly where the weekend predicate becomes true.
-- **Boolean arithmetic:** This compact syntax is MySQL-specific behavior; databases without numeric Booleans should use `CASE`.
-- **No double counting:** `IN` and `NOT IN` are complementary for non-null weekday values, so the two totals sum to the task-row count.
-- **Date rather than timestamp:** The schema's date type avoids timezone-dependent day changes during classification.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Row | `task_id` | `submit_date` | Day Name | Numeric ISODOW | Weekend Flag ($\in \{6, 7\}$) | Working Flag ($\notin \{6, 7\}$) | Cumulative `weekend_cnt` | Cumulative `working_cnt` |
+|---|---|---|---|---|---|---|---|---|
+| $1$ | $1$ | `2022-06-13` | Monday | $1$ | $0$ | $1$ | $0$ | $1$ |
+| $2$ | $2$ | `2022-06-14` | Tuesday | $2$ | $0$ | $1$ | $0$ | $2$ |
+| $3$ | $3$ | `2022-06-15` | Wednesday | $3$ | $0$ | $1$ | $0$ | $3$ |
+| $4$ | $4$ | `2022-06-18` | Saturday | $6$ | $1$ | $0$ | $1$ | $3$ |
+| $5$ | $5$ | `2022-06-19` | Sunday | $7$ | $1$ | $0$ | $2$ | $3$ |
+| $6$ | $6$ | `2022-06-19` | Sunday | $7$ | $1$ | $0$ | $3$ | $3$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(r)$. Let `r` be the number of task rows. The database scans each row, evaluates `WEEKDAY` and two membership predicates, and updates constant-size aggregate state. Conceptual time is `O(r)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Robustness Against Locale and Formatting
+Parsing textual day names such as `"Saturday"` or `"Sunday"` can fail in databases configured with non-English locales (e.g., `"samedi"`, `"Sonntag"`). Extracting numerical ISO day-of-week indices (`ISODOW` or `WEEKDAY`) is locale-invariant and computationally direct, preventing linguistic mismatches.
+
+### Handling Empty Input Tables
+If the `Tasks` table is completely empty ($|\text{Tasks}| = 0$):
+- Standard scalar aggregation on an empty table returns a single row with count $0$ (or null mapped to $0$ via `COALESCE` or `COUNT`).
+- The query emits `weekend_cnt = 0, working_cnt = 0` without crashing.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Multiple Full Table Scans with UNION or Cross Join
+Writing two separate queries:
+`(SELECT COUNT(*) FROM Tasks WHERE is_weekend) JOIN (SELECT COUNT(*) FROM Tasks WHERE is_working)`
+forces the database engine to scan the `Tasks` storage heap twice. Conditional aggregation scans the table exactly once, halving disk I/O.
+
+### Edge Case: Multiple Submissions by the Same Assignee
+If an assignee submits multiple tasks on the same weekend date (like task $5$ and task $6$ on `2022-06-19`), each record has a distinct `task_id` and must be counted separately. The query counts task events, not distinct assignees or distinct dates.
+
+### Edge Case: Zero Weekend or Zero Weekday Tasks
+If all submissions occur on weekdays, `weekend_cnt` correctly evaluates to $0$ while `working_cnt` equals the total count of rows.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Table Scan:** The query reads each of the $N$ rows in the `Tasks` table exactly once.
+- **Date Conversion and Evaluation:** Evaluating the day-of-week function and incrementing the accumulator takes $O(1)$ constant time per row.
+- **Total Time Complexity:** $O(N)$ linear time in the number of rows.
+
+### Space Complexity
+- Accumulation occurs in place using two scalar integer registers (`weekend_cnt` and `working_cnt`).
+- **Auxiliary Space Complexity:** $O(1)$ constant space.

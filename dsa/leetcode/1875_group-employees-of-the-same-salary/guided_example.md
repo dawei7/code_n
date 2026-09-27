@@ -1,106 +1,162 @@
 # Guided Example: Group Employees of the Same Salary
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step salary frequency counting, singleton omission, and dense ranking of qualifying salary cohorts to assign team identifiers:
 
-- **Input:** `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3000}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7400}]}}`
-- **Required output:** `{"columns": ["employee_id", "name", "salary", "team_id"], "rows": [[2, "Meir", 3000, 1], [3, "Michael", 3000, 1], [7, "Addilyn", 7400, 2], [9, "Kannon", 7400, 2]]}`
+- **Input:**
+  - `Employees` table:
+    - ID 2: `"Meir"`, salary 3000
+    - ID 3: `"Michael"`, salary 3000
+    - ID 7: `"Addilyn"`, salary 7400
+    - ID 8: `"Juan"`, salary 6100
+    - ID 9: `"Kannon"`, salary 7400
+- **Required Output:**
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| employee_id | name | salary | team_id |
+|:---:|:---|:---:|:---:|
+| 2 | Meir | 3000 | 1 |
+| 3 | Michael | 3000 | 1 |
+| 7 | Addilyn | 7400 | 2 |
+| 9 | Kannon | 7400 | 2 |
+
+This instance demonstrates identifying and pruning unique salaries (Juan's salary 6100 appears only once), grouping shared salaries (3000 and 7400), assigning contiguous gapless team IDs via dense ranking over ascending salaries, and ordering by `team_id ASC, employee_id ASC`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employees`
+We are given an `Employees` table with employee IDs, names, and salaries.
+Rules for team formation:
+1. A team must consist of at least two employees who share the exact same salary.
+2. Any employee whose salary is unique (frequency equals 1) is disqualified and omitted from the results.
+3. Each distinct qualifying salary is assigned a 1-indexed `team_id` starting from 1 in ascending order of salary, with no gaps.
+4. Output all qualifying employees with their `employee_id`, `name`, `salary`, and `team_id`, ordered first by `team_id` ascending, then by `employee_id` ascending.
 
-The objective is to compute `{"columns": ["employee_id", "name", "salary", "team_id"], "rows": [[2, "Meir", 3000, 1], [3, "Michael", 3000, 1], [7, "Addilyn", 7400, 2], [9, "Kannon", 7400, 2]]}` from `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3000}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7400}]}}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- Salaries present:
+  - $3000$: Employees 2 and 3 $\implies$ count $= 2 \ge 2$ (Qualifying team).
+  - $6100$: Employee 8 $\implies$ count $= 1$ (Singleton, omitted).
+  - $7400$: Employees 7 and 9 $\implies$ count $= 2 \ge 2$ (Qualifying team).
+- Distinct qualifying salaries sorted ascending:
+  1. $3000 \implies \text{team\_id} = 1$.
+  2. $7400 \implies \text{team\_id} = 2$.
+- Assigning team IDs:
+  - Employee 2 (salary 3000) $\to \text{team\_id} = 1$.
+  - Employee 3 (salary 3000) $\to \text{team\_id} = 1$.
+  - Employee 7 (salary 7400) $\to \text{team\_id} = 2$.
+  - Employee 9 (salary 7400) $\to \text{team\_id} = 2$.
+- Sorting by `team_id ASC, employee_id ASC` produces the required 4 rows.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to structure **window partition filtering and dense ranking**:
+1. Filter out rows where `COUNT(*) OVER(PARTITION BY salary) < 2`.
+2. Compute `team_id = DENSE_RANK() OVER(ORDER BY salary)`.
+3. Order the final relation by `team_id, employee_id`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dense Rank Salary Partition Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Salary Cohort Partition & Dense Rank Team Allocation Theorem.**
+> 1. *Singleton Pruning Invariant:* Let $\text{freq}(s) = |\{e \in \text{Employees} \mid e.\text{salary} == s\}|$. An employee $e$ belongs to a valid team if and only if:
+>    $$\text{freq}(e.\text{salary}) \ge 2$$
+> 2. *Contiguous Team Identifier Assignment:* Let $\mathcal{S}_{\text{valid}} = \{s_1 < s_2 < \dots < s_k\}$ be the sorted set of distinct salaries with frequency $\ge 2$. Each salary $s_m$ is assigned:
+>    $$\text{team\_id}(s_m) = m \quad (1 \le m \le k)$$
+>    Dense ranking over $\mathcal{S}_{\text{valid}}$ guarantees consecutive integers $1, 2, \dots, k$ with zero gaps between teams.
+> 3. *Deterministic Multi-Column Sort:* Ordering output rows by `(team_id ASC, employee_id ASC)` yields a strictly deterministic sequence.
+> 4. *Complexity:* Window counting or group aggregation takes $\mathcal{O}(R \log R)$. Dense ranking and final sorting take $\mathcal{O}(R \log R)$ time.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Group Employees of Same Salary Pipeline
+    accDescr: Pipeline showing salary frequency counting, singleton omission, dense ranking for team IDs, and multi-key sorting.
+    A["Employees Table (5 rows)"] --> B["Compute Salary Frequency: count(*) per salary"]
+    B --> C1["Salary 3000: Count 2 >= 2 (Keep)"]
+    B --> C2["Salary 6100: Count 1 < 2 (Omit Juan)"]
+    B --> C3["Salary 7400: Count 2 >= 2 (Keep)"]
+    C1 & C3 --> D["Qualifying Salaries: [3000, 7400]"]
+    D --> E["Assign DENSE_RANK: 3000 -> team_id 1, 7400 -> team_id 2"]
+    E --> F["Sort by team_id ASC, employee_id ASC"]
+    F --> G["Final Projected Relation"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Separate qualification from ranking.** A salary creates a team only if at least two employees have that salary. Team identifiers then rank only those qualifying salaries; a unique salary must not consume a rank. This ordering of operations is the central challenge. The query first discovers qualifying salaries in common table expression `S`, then assigns their ranks in common table expression `T`, and only afterward joins those team definitions back to employee rows. If ranking happened before unique salaries were removed, gaps or incorrect larger identifiers could appear.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3000}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7400}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the relational transformations on the 5 employee records:
 
 ---
 
-### Step 2: Core Step 2
-
-**Build one row per qualifying salary.** The first CTE is
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Salary Frequencies
+Count occurrences of each unique salary across all employees:
+- Salary $3000$: Employees $2$ (`"Meir"`) and $3$ (`"Michael"`). Count $= 2$.
+- Salary $6100$: Employee $8$ (`"Juan"`). Count $= 1$.
+- Salary $7400$: Employees $7$ (`"Addilyn"`) and $9$ (`"Kannon"`). Count $= 2$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Filter Non-Singleton Cohorts ($\text{count} \ge 2$)
+- Salary $6100$ has count $1 < 2 \implies$ Employee $8$ is pruned.
+- Qualifying employees:
+  - Employee $2$: `"Meir"`, salary $3000$.
+  - Employee $3$: `"Michael"`, salary $3000$.
+  - Employee $7$: `"Addilyn"`, salary $7400$.
+  - Employee $9$: `"Kannon"`, salary $7400$.
 
-`SELECT salary FROM Employees GROUP BY salary HAVING COUNT(1) > 1`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["employee_id", "name", "salary", "team_id"], "rows": [[2, "Meir", 3000, 1], [3, "Michael", 3000, 1], [7, "Addilyn", 7400, 2], [9, "Kannon", 7400, 2]]}` |
+### Step 3: Assign `team_id` via Dense Ranking
+Extract distinct qualifying salaries and sort ascending:
+1. Salary $3000$: First distinct salary $\implies \text{team\_id} = 1$.
+2. Salary $7400$: Second distinct salary $\implies \text{team\_id} = 2$.
+
+Map team IDs to qualifying rows:
+- Employee 2: `team_id = 1`
+- Employee 3: `team_id = 1`
+- Employee 7: `team_id = 2`
+- Employee 9: `team_id = 2`
+
+---
+
+### Step 4: Multi-Column Sort
+Order rows by `team_id ASC, employee_id ASC`:
+1. Row 1: `team_id = 1, employee_id = 2` (`"Meir"`, $3000$).
+2. Row 2: `team_id = 1, employee_id = 3` (`"Michael"`, $3000$).
+3. Row 3: `team_id = 2, employee_id = 7` (`"Addilyn"`, $7400$).
+4. Row 4: `team_id = 2, employee_id = 9` (`"Kannon"`, $7400$).
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3000}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7400}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["employee_id", "name", "salary", "team_id"], "rows": [[2, "Meir", 3000, 1], [3, "Michael", 3000, 1], [7, "Addilyn", 7400, 2], [9, "Kannon", 7400, 2]]}` | Verified |
+| `employee_id` | Name | Salary | Salary Frequency | Retained? | Assigned `team_id` | Final Sort Order |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| 2 | Meir | 3000 | 2 | **Yes** ($\ge 2$) | 1 | 1 |
+| 3 | Michael | 3000 | 2 | **Yes** ($\ge 2$) | 1 | 2 |
+| 7 | Addilyn | 7400 | 2 | **Yes** ($\ge 2$) | 2 | 3 |
+| 8 | Juan | 6100 | 1 | **No** ($1 < 2$) | - | Excluded |
+| 9 | Kannon | 7400 | 2 | **Yes** ($\ge 2$) | 2 | 4 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** All returned employees belong to a salary group with frequency at least 2. The assigned team IDs are contiguous positive integers $1, 2, \dots$ strictly matching the ascending order of qualifying salaries, guaranteeing zero spurious IDs or rank gaps.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every employee with a shared salary is retained, and no qualifying salary is skipped in the dense rank enumeration.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Window count followed by dense rank:** A subquery can compute `COUNT(*) OVER (PARTITION BY salary)`, filter counts greater than one, and then rank salaries. Care is needed to rank distinct qualifying salaries rather than every employee row; applying `DENSE_RANK` at the wrong level or before filtering unique salaries can assign incorrect IDs.
-- **Self-join to detect coworkers:** Joining employees to another employee with the same salary and a different ID can identify team members, but it creates duplicate pairs when a salary has many employees and still requires deduplication and salary ranking. Grouping is cleaner and scales better.
-- **Correlated count subquery:** Counting matching salaries separately for every employee expresses eligibility but may repeat work unless the optimizer decorrelates it. The CTE computes each salary count once.
-- **Exactly two employees at one salary:** `COUNT(1) > 1` includes the group, both rows join to the same team, and that salary receives one identifier. The strict comparison is equivalent to “at least two.”
-- **All salaries unique:** `S` and `T` are empty, the inner join returns no rows, and the result is correctly empty. There is no team ID to assign.
-- **Every employee has the same salary:** `S` contains one salary, `ROW_NUMBER` assigns team `1`, and all employees join to it. The final secondary order arranges all members by `employee_id`.
-- **A unique salary between two team salaries:** It is excluded before `ROW_NUMBER`, so it creates no gap. For example, qualifying salaries `3000` and `7400` remain teams `1` and `2` even if unique salary `6100` lies between them.
-- **Multiple employees and duplicate join output:** `T` has one row per eligible salary because it is built from a grouped relation. Therefore each employee matches at most one team row; the join does not multiply an employee even when their salary group is large.
-- **Positional ordering and schema changes:** `ORDER BY 4, 1` depends on `e.*` expanding to exactly the declared three employee columns. Explicit `ORDER BY t.team_id, e.employee_id` would be more maintainable, but the source is exact for the fixed contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Ranking Before Filtering:** Calculating `DENSE_RANK()` on the unfiltered table would assign salary $6100$ a team ID (e.g. team 2), causing salary $7400$ to become team 3. Discarding Juan *afterwards* leaves a hole in the team IDs (`1, 3`), which violates the gapless contiguous constraint ($1, 2, \dots$). Filtering singletons *before* dense ranking is mandatory.
+- **`RANK()` vs `DENSE_RANK()`:** Using `RANK()` skips rank positions when multiple employees share a salary, whereas `DENSE_RANK()` assigns identical identifiers to equal salaries and increments by 1 for the next distinct salary.
+- **Secondary Sort on Employee ID:** Sorting only by `team_id` produces non-deterministic employee order within teams; secondary sorting on `employee_id` is essential.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R\log R)$. Let $R$ be the number of employee rows and let $G$ be the number of distinct salaries that qualify as teams, with $G\le R$. Reading and grouping all employees requires $O(R)$ expected time with hash aggregation or $O(R\log R)$ time with sort-based aggregation. Ordering the $G$ qualifying salaries for `ROW_NUMBER` costs up to $O(G\log G)$. Joining `Employees` to `T` can take $O(R+G)$ expected time with a hash join, while the required final ordering of at most $R$ returned employees costs $O(R\log R)$ in the general case. The overall conservative bound is therefore $O(R\log R)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$, where $R$ is the number of rows in `Employees`. Window aggregation, filtering, dense ranking, and final multi-key sorting all execute in $\mathcal{O}(R \log R)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R)$ to store intermediate window metrics and filtered relations.

@@ -1,117 +1,204 @@
 # Guided Example: Insert Delete GetRandom O(1)
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step dual data structure synchronization (hash map `d` for indices + dense dynamic array `q` for values), constant-time tail swap-and-pop deletion (`q[i] = q[-1]`, `q.pop()`), and uniform random sampling (`choice(q)`) on representative command sequences:
 
-- **Input:** `{"operations": [["insert", 5], ["insert", 5], ["remove", 5]]}`
-- **Required output:** `[true, false, true]`
+- **Input:** Sequence of operations:
+  1. `insert(1)` $\implies \text{true}$ (`q = [1]`, `d = {1: 0}`)
+  2. `remove(2)` $\implies \text{false}$ ($2$ is not present)
+  3. `insert(2)` $\implies \text{true}$ (`q = [1, 2]`, `d = {1: 0, 2: 1}`)
+  4. `getRandom()` $\implies 1$ or $2$ (each with exact probability $1/2$)
+  5. `remove(1)` $\implies \text{true}$ (Swap tail $2$ into slot $0$, pop tail: `q = [2]`, `d = {2: 0}`)
+  6. `insert(2)` $\implies \text{false}$ ($2$ already exists)
+  7. `getRandom()` $\implies 2$ (only element, probability $1$)
+- **Required output:** `[true, false, true, 2, true, false, 2]`
+- **Tail Element Deletion:** Deleting the last element directly handles `i == len(q) - 1` without special branches
+- **Strict Uniformity:** Every element in array `q` occupies an indexed slot in $[0, \text{len}(q) - 1]$, guaranteeing uniform selection probability $1/N$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates combining dynamic arrays and hash tables to support average $O(1)$ operations, mathematically proves why swap-with-last avoids $O(N)$ array shifting, and analyzes memory bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Implement the `RandomizedSet` class:
+Implement the `RandomizedSet` class such that all methods operate in **average $O(1)$ time complexity**:
+- `insert(val)`: Inserts item `val` if not already present. Returns `true` if inserted, `false` otherwise.
+- `remove(val)`: Removes item `val` if present. Returns `true` if removed, `false` otherwise.
+- `getRandom()`: Returns a random element from the current set with each element having **equal probability of being chosen**.
 
-The objective is to compute `[true, false, true]` from `{"operations": [["insert", 5], ["insert", 5], ["remove", 5]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Fundamental Data Structure Trade-off:
+1. Hash Set alone:
+   - insert(val) and remove(val) are O(1).
+   - getRandom() is O(N) because hash buckets have holes and lack contiguous indexing.
+2. Dynamic Array alone:
+   - getRandom() is O(1) via random.choice(arr).
+   - remove(val) is O(N) because finding val and shifting elements takes linear time.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Hybrid O(1) Solution:
+- Array `q`: Stores values contiguously, enabling O(1) getRandom via index sampling.
+- Map `d`: Maps each value `val` to its current index in `q`, enabling O(1) lookup.
+- Deletion: Swap target element with the LAST element of `q`, then pop the tail!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. State Representation:
+- `self.q = []`: Dense dynamic list containing every current element.
+- `self.d = {}`: Hash map where `self.d[val]` is the unique index $i$ such that `self.q[i] == val`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Method Invariants:
+1. **`insert(val: int) -> bool`:**
+   - If `val in self.d`: return **`False`**.
+   - Record index: `self.d[val] = len(self.q)`.
+   - Append to array: `self.q.append(val)`.
+   - Return **`True`**.
+2. **`remove(val: int) -> bool`:**
+   - If `val not in self.d`: return **`False`**.
+   - Retrieve index: `i = self.d[val]`.
+   - Retrieve last value: `last_val = self.q[-1]`.
+   - Overwrite slot $i$ with `last_val`:
+     $$
+     self.d[last\_val] \leftarrow i
+     $$
+     $$
+     self.q[i] \leftarrow last\_val
+     $$
+   - Remove tail from array: `self.q.pop()`.
+   - Remove `val` from dictionary: `self.d.pop(val)`.
+   - Return **`True`**.
+3. **`getRandom() -> int`:**
+   - Return `random.choice(self.q)`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Array `self.q` is always dense (no null holes), and for every element $v$, `self.q[self.d[v]] == v`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why one ordinary data structure is not enough
-
-The class must support membership-aware insertion, membership-aware removal, and uniform random selection, all in average $O(1)$ time.
-
-A hash set or dictionary makes membership, insertion, and deletion fast, but it does not provide compact integer indices. Choosing a uniformly random element would require first walking through or copying its keys, which is linear. A dynamic array has compact indices, so selecting a uniformly random index is constant time, but deleting an element from the middle normally shifts all later elements and costs linear time.
-
-The exact solution combines the strengths of both structures:
-
-- `q` is a dense list containing every current value exactly once;
-- `d` is a dictionary mapping each current value to its index in `q`.
-
-Together they maintain this central invariant:
-
-> For every stored value `v`, `d[v]` is a valid index and `q[d[v]] == v`; conversely, every list entry appears as a key in `d` exactly once.
-
-The list makes random selection efficient, while the dictionary reveals where a value sits so removal can find it without searching.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["insert", 5], ["insert", 5], ["remove", 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the operational sequence:
 
 ---
 
-### Step 2: Insertion keeps both views synchronized
-
-The method first tests `if val in d`. The dictionary’s keys are exactly the current set, so existing membership means insertion must fail. The method returns `false` without modifying either structure.
-
-For a new value, its position will be the current list length. If `q` has three elements, for example, the next appended element receives index `3`. The solution records `d[val] = len(q)` and then executes `q.append(val)`. After the append, the stored index points exactly to `val`, so the invariant holds for the new element. Existing elements do not move, so all their mappings remain valid. The method returns `true` because the set changed.
-
-Recording the index immediately before appending is safe: `len(q)` is precisely the index at which `append` places the next element. The code could append first and store `len(q) - 1`; the chosen order simply avoids that subtraction.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `insert(1)`
+- Check: $1 \in self.d$ is False.
+- Index assigned: $self.d[1] = \text{len}(self.q) = 0$.
+- Append: $self.q.\text{append}(1) \implies self.q = [1]$.
+- State: `q = [1], d = {1: 0}`.
+- Return: **`true`**.
 
 ---
 
-### Step 3: Why ordinary list deletion is too slow
+### Step 2: `remove(2)`
+- Check: $2 \in self.d$ is False.
+- Element does not exist; no state modification.
+- Return: **`false`**.
 
-Suppose `q = [10, 20, 30, 40]` and the caller removes `20`. Deleting index `1` in the usual stable-order manner would shift `30` and `40` left. That shift is linear, and the dictionary indices for both moved values would also need updates.
+---
 
-The class does not promise to preserve insertion order. Therefore, it can fill the removed value’s position with the last list element, then remove the last position. Popping from the end of a dynamic array is constant time because no remaining element needs to shift.
+### Step 3: `insert(2)`
+- Check: $2 \in self.d$ is False.
+- Index assigned: $self.d[2] = \text{len}(self.q) = 1$.
+- Append: $self.q.\text{append}(2) \implies self.q = [1, 2]$.
+- State: `q = [1, 2], d = {1: 0, 2: 1}`.
+- Return: **`true`**.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, false, true]` |
+---
+
+### Step 4: `getRandom()`
+- Array has length 2: elements $[1, 2]$.
+- Uniform index selection: $idx \in \{0, 1\}$.
+- Returns either $1$ or $2$ with equal probability $50\%$.
+
+---
+
+### Step 5: `remove(1)` — The Tail Swap Mechanism
+- Check: $1 \in self.d$ is True.
+- Target index: $i = self.d[1] = \mathbf{0}$.
+- Tail element: $last\_val = self.q[-1] = \mathbf{2}$.
+- **Step A:** Update dictionary mapping for tail element:
+  $$
+  self.d[2] \leftarrow 0
+  $$
+- **Step B:** Overwrite slot $0$ in array with tail element:
+  $$
+  self.q[0] \leftarrow 2 \implies self.q = [2, 2]
+  $$
+- **Step C:** Pop tail element from array:
+  $$
+  self.q.\text{pop}() \implies self.q = [2]
+  $$
+- **Step D:** Delete target from dictionary:
+  $$
+  self.d.\text{pop}(1) \implies self.d = \{2: 0\}
+  $$
+- Return: **`true`**.
+
+---
+
+### Step 6: `insert(2)`
+- Check: $2 \in self.d$ is True (already present at index 0).
+- Insertion rejected.
+- Return: **`false`**.
+
+---
+
+### Step 7: `getRandom()`
+- Array has length 1: $self.q = [2]$.
+- Unique outcome: **`2`** with probability $100\%$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["insert", 5], ["insert", 5], ["remove", 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, false, true]` | Verified |
+```text
+RandomizedSet Operations:
+1. insert(1) -> d={1:0}, q=[1]       -> True
+2. remove(2) -> 2 not in d           -> False
+3. insert(2) -> d={1:0, 2:1}, q=[1,2] -> True
+4. getRandom()-> choice([1, 2])       -> 1 or 2
+5. remove(1) -> swap 2 into slot 0
+                q.pop() -> q=[2]
+                d.pop(1)-> d={2:0}   -> True
+6. insert(2) -> 2 already in d       -> False
+7. getRandom()-> choice([2])          -> 2
+
+Result Stream: [true, false, true, 2, true, false, 2]
+```
+
+| Step | Operation | Parameter | State Before (`q`, `d`) | Action Taken | State After (`q`, `d`) | Return Value |
+|:---:|:---:|:---:|:---|:---|:---|:---:|
+| 1 | `insert` | 1 | `[], {}` | Append 1 at index 0 | `[1], {1: 0}` | **`true`** |
+| 2 | `remove` | 2 | `[1], {1: 0}` | Not found | `[1], {1: 0}` | **`false`** |
+| 3 | `insert` | 2 | `[1], {1: 0}` | Append 2 at index 1 | `[1, 2], {1: 0, 2: 1}` | **`true`** |
+| 4 | `getRandom` | - | `[1, 2], {1: 0, 2: 1}` | Sample index 0 or 1 | Unchanged | **$1$ or $2$** |
+| **5** | **`remove`** | **1** | **`[1, 2], {1: 0, 2: 1}`** | **Swap tail 2 to slot 0, pop tail** | **`[2], {2: 0}`** | **`true`** |
+| 6 | `insert` | 2 | `[2], {2: 0}` | Duplicate check | `[2], {2: 0}` | **`false`** |
+| 7 | `getRandom` | - | `[2], {2: 0}` | Sample index 0 | Unchanged | **`2`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Swapping the element to be deleted with the last element of `self.q` preserves the set of remaining elements while ensuring the deletion target is at the end of the array. Popping the last element from a dynamic array requires no elements to be shifted, ensuring strictly $O(1)$ time. Updating `self.d[self.q[-1]] = i` maintains the invariant that the moved element's stored index accurately reflects its new position.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Because `self.q` is kept strictly dense (contains exactly all $N$ valid elements at indices $0 \dots N - 1$ without holes), calling `random.choice(self.q)` picks each element with probability exactly $1/N$, fulfilling the uniform distribution requirement.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Hash set alone:** Insert and removal are expected $O(1)$, but selecting a uniformly random member requires converting or traversing the set, which costs $O(n)$. It cannot satisfy all three operation bounds simultaneously.
-- **List alone:** Random selection and appending are constant time, but checking for an existing value and locating a requested value for removal require a linear search. Stable removal would also shift elements.
-- **List with tombstones:** Marking removed positions as empty avoids immediate shifting, but random selection could land on holes. Retrying can become arbitrarily slow when most entries are deleted, while periodic compaction introduces linear work. The dense swap-with-last design avoids holes entirely.
+- **Order of Deletion Steps:** If the target value is already the last element (i.e. $val == q[-1]$), setting `d[q[-1]] = i` assigns `d[val] = i`, and the subsequent `d.pop(val)` immediately removes it. However, if dictionary deletion were performed *before* updating `d[q[-1]]`, deleting the tail element could re-insert `val` into `d`! The sequence `d[q[-1]] = i` followed by `d.pop(val)` is strictly required.
+- **Tombstone Overhead:** Marking deleted slots as `None` in the array avoids shifting but causes holes. Over time, `getRandom()` would need rejection sampling, degrading runtime when many deletions occur.
+- **Python Random Choice:** `random.choice(q)` internally generates a random integer in $[0, \text{len}(q) - 1]$ and indexes the array in $O(1)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $n$ be the number of values currently stored.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `insert(val)`: $O(1)$ average time for dictionary lookup, assignment, and list append.
+  - `remove(val)`: $O(1)$ average time for dictionary lookup, array slot overwrite, `q.pop()`, and `d.pop()`.
+  - `getRandom()`: $O(1)$ time to sample a random integer index and retrieve `q[idx]`.
+- **Auxiliary Space Complexity:** $O(N)$, where $N$ is the number of elements currently stored in the set, for list `q` and hash map `d`.

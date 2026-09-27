@@ -1,124 +1,199 @@
 # Guided Example: Complement of Base 10 Integer
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise extraction and inversion over significant binary representations, prove the Significant Bit Mask Theorem and the LSB Positional Reconstruction Invariant, and determine integer complements across representative base-10 inputs:
 
-- **Input:** `{"n": 999999999}`
-- **Required output:** `73741824`
+- **Representative Instance 1 (Odd Value with Alternating Significant Bits):**
+  $$
+  n = 5
+  $$
+- **Required Output:** `2`
+  - Binary representation:
+    - $5_{10} = 101_2$.
+    - Bit length: $B = 3$ significant bits (leading zeroes are omitted from the complement).
+  - Bitwise complement definition:
+    - Flip every significant bit ($0 \leftrightarrow 1$):
+      $$
+      101_2 \implies 010_2 = 2_{10}
+      $$
+  - Bit-by-bit LSB shift execution ($ans = 0, i = 0$):
+    1. **Iteration 1 ($i = 0$):**
+       - LSB of $n$: $n \ \& \ 1 = 5 \ \& \ 1 = 1$.
+       - Invert bit: $1 \oplus 1 = \mathbf{0}$.
+       - Shift into position: $ans \leftarrow ans \mid (0 \ll 0) = 0$.
+       - Advance: $i \leftarrow 1, \quad n \leftarrow 5 \gg 1 = 2$.
+    2. **Iteration 2 ($i = 1$):**
+       - LSB of $n$: $n \ \& \ 1 = 2 \ \& \ 1 = 0$.
+       - Invert bit: $0 \oplus 1 = \mathbf{1}$.
+       - Shift into position: $ans \leftarrow 0 \mid (1 \ll 1) = 2$.
+       - Advance: $i \leftarrow 2, \quad n \leftarrow 2 \gg 1 = 1$.
+    3. **Iteration 3 ($i = 2$):**
+       - LSB of $n$: $n \ \& \ 1 = 1 \ \& \ 1 = 1$.
+       - Invert bit: $1 \oplus 1 = \mathbf{0}$.
+       - Shift into position: $ans \leftarrow 2 \mid (0 \ll 2) = 2$.
+       - Advance: $i \leftarrow 3, \quad n \leftarrow 1 \gg 1 = 0$.
+    4. **Loop Termination ($n = 0$):**
+       - All significant bits of original number have been processed.
+       - Return $ans = \mathbf{2}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Even Value with Trailing Zero):**
+  $$
+  n = 10 = 1010_2 \implies 0101_2 = \mathbf{5}
+  $$
+
+- **Representative Instance 3 (Boundary Zero Case):**
+  $$
+  n = 0 \implies \text{Binary is "0"} \implies \text{Complement is "1"} \implies \mathbf{1}
+  $$
+
+- **Representative Instance 4 (All Bits Set):**
+  $$
+  n = 7 = 111_2 \implies 000_2 = \mathbf{0}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **complement** of an integer is the integer you get when you flip all the `0`'s to `1`'s and all the `1`'s to `0`'s in its binary representation.
+The **complement** of an integer is obtained by flipping all `0`'s to `1`'s and all `1`'s to `0`'s in its binary representation without leading zeros.
+Given integer $n$, return its complement.
 
-The objective is to compute `73741824` from `{"n": 999999999}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Leading Zero Trap:
+  In two's complement arithmetic, ~5 flips all 32 (or 64) bits:
+    ~00000000 00000000 00000000 00000101 = 11111111 11111111 11111111 11111010 (-6)
+  The problem ONLY flips the SIGNIFICANT bits of 5:
+    101 -> 010 = 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Significant Bit Inversion:
+  Find the bit-length B of n.
+  Complement is: ((1 << B) - 1) ^ n
+  Special boundary: n = 0 has binary "0" -> complement is 1.
+```
 
----
+Using Python's bitwise NOT `~n` directly yields negative numbers due to two's-complement sign extension.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Flip only the bits that belong to the ordinary binary representation
-
-Positive integers conceptually have infinitely many leading zero bits, but those leading zeros are not written in the standard binary representation and must not be complemented. For example, five is `101`, not `000...0101`, so only its three significant positions are flipped.
-
-The algorithm processes bits from least significant to most significant and stops once all original significant bits have been consumed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 999999999}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Significant Bit Inversion & LSB Positional Reconstruction Invariant**:
+1. **Zero Singularity:** $n = 0$ represents the base case `"0"`, returning $1$ before the loop.
+2. **Significant Bit Scope:** Only bits up to $\lfloor \log_2 n \rfloor$ are inverted.
+3. **LSB Positional Accumulator:**
+   - Extract the lowest bit: $n \ \& \ 1$.
+   - Invert it using bitwise XOR: $(n \ \& \ 1) \oplus 1$.
+   - Shift into weight $2^i$: $(b \oplus 1) \ll i$.
+   - Shift $n$ rightward: $n \leftarrow n \gg 1$.
+4. Runs in $\mathcal{O}(\log n)$ logarithmic time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
-### Step 2: Handle zero separately
+## 2. Conceptual Foundation & The Bitwise Inversion Invariant
 
-Zero's ordinary binary representation is `"0"`, whose complement is `"1"`, or decimal one.
+```mermaid
+flowchart TD
+    accTitle: Complement of Base 10 Integer Pipeline
+    accDescr: Flowchart illustrating zero check, followed by bit-by-bit LSB extraction, inversion, and positional shift into result
+    Start["bitwiseComplement(n)"] --> CheckZero{"n == 0 ?"}
+    CheckZero -->|"Yes: Base case"| RetOne["Return 1 (Binary '0' -> '1')"]
+    CheckZero -->|"No: Positive integer"| Init["ans = 0, i = 0"]
+    Init --> LoopBits{"n > 0 ?"}
+    LoopBits --> Extract["bit = (n & 1) ^ 1\n(Extract LSB and invert)"]
+    Extract --> Accumulate["ans |= (bit << i)\n(Place inverted bit at weight 2^i)"]
+    Accumulate --> Shift["i += 1\nn >>= 1"]
+    Shift --> LoopBits
+    LoopBits -->|"n reaches 0"| Finish["Return ans"]
+```
 
-The main loop uses `while n`. If `n` were initially zero, it would run zero times and leave `ans = 0`, which would be wrong. The explicit base case returns one before the loop.
+### The Significant Bit Mask Theorem
 
-This is the only input whose significant representation contains a bit even though right-shifting the numeric value offers no loop iteration.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $n \in \mathbb{Z}_{\ge 0}$ be an integer.
+1. **Binary Representation:**
+   For $n > 0$, $n$ has a unique binary representation without leading zeroes:
+   $$
+   n = \sum_{k=0}^{B-1} b_k 2^k \quad \text{where } b_{B-1} = 1 \text{ and } B = \lfloor \log_2 n \rfloor + 1
+   $$
+2. **Complement Formal Definition:**
+   The bitwise complement $\overline{n}$ inverts each significant coefficient $b_k \in \{0, 1\}$:
+   $$
+   \overline{n} = \sum_{k=0}^{B-1} (1 - b_k) 2^k
+   $$
+3. **Equivalence to Mask Subtraction / XOR:**
+   Define the all-ones mask of width $B$:
+   $$
+   M_B = \sum_{k=0}^{B-1} 2^k = 2^B - 1 = (1 \ll B) - 1
+   $$
+   Then:
+   $$
+   \overline{n} = \sum_{k=0}^{B-1} 2^k - \sum_{k=0}^{B-1} b_k 2^k = M_B - n = M_B \oplus n
+   $$
+4. **LSB Loop Equivalence:**
+   The loop extracts $b_k = (n \gg k) \ \& \ 1$ and computes $\overline{b_k} = b_k \oplus 1$.
+   Accumulating $\overline{b_k} \ll k$ into `ans` constructs the exact sum $\sum_{k=0}^{B-1} (1 - b_k) 2^k$.
+   Because the loop runs while $n > 0$, it terminates precisely when $k = B$, inverting all significant bits without affecting higher positions. $\blacksquare$
 
 ---
 
-### Step 3: Extract and flip the current bit
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-At each iteration:
+$n = 5$.
+Condition: $n \ne 0 \implies$ proceed to loop.
+Initialize: $ans = 0, \; i = 0$.
 
-`n & 1`
+### Step-by-Step Bit Processing
+1. **Iteration 1 ($i = 0$):**
+   - $n = 5$ ($101_2$).
+   - Inverted bit: $(5 \ \& \ 1) \oplus 1 = 1 \oplus 1 = 0$.
+   - $ans \leftarrow 0 \mid (0 \ll 0) = 0$.
+   - $i \leftarrow 1, \quad n \leftarrow 5 \gg 1 = 2$.
+2. **Iteration 2 ($i = 1$):**
+   - $n = 2$ ($10_2$).
+   - Inverted bit: $(2 \ \& \ 1) \oplus 1 = 0 \oplus 1 = 1$.
+   - $ans \leftarrow 0 \mid (1 \ll 1) = 2$ ($10_2$).
+   - $i \leftarrow 2, \quad n \leftarrow 2 \gg 1 = 1$.
+3. **Iteration 3 ($i = 2$):**
+   - $n = 1$ ($1_2$).
+   - Inverted bit: $(1 \ \& \ 1) \oplus 1 = 1 \oplus 1 = 0$.
+   - $ans \leftarrow 2 \mid (0 \ll 2) = 2$ ($010_2$).
+   - $i \leftarrow 3, \quad n \leftarrow 1 \gg 1 = 0$.
+4. **Loop Exit ($n = 0$):**
+   - Condition $n > 0$ is False.
 
-extracts the least significant bit. AND with one clears every higher position and leaves either zero or one.
-
-XOR with one flips that bit:
-
-- `0 ^ 1 = 1`;
-- `1 ^ 1 = 0`.
-
-Conceptually, the subexpression is `(n & 1) ^ 1`. It produces the complement bit for the current position.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `73741824` |
+Return $ans = \mathbf{2}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Bit-by-Bit Inversion State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 999999999}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `73741824` | Verified |
+| Iteration $i$ | Current $n$ (Binary) | LSB $n \ \& \ 1$ | Inverted Bit $b \oplus 1$ | Term Added $(b \oplus 1) \ll i$ | Running $ans$ (Binary) | Updated $n \gg 1$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | $5$ ($101_2$) | $1$ | $0$ | $0$ | $0$ ($0_2$) | $2$ ($10_2$) |
+| **$1$** | $2$ ($10_2$) | $0$ | $1$ | $2$ | $2$ ($10_2$) | $1$ ($1_2$) |
+| **$2$** | $1$ ($1_2$) | $1$ | $0$ | $0$ | **$2$ ($010_2$)** | $0$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every bit inverted is strictly a member of the significant binary representation of $n$. Higher unwritten zeroes are omitted from inversion because loop termination occurs the moment $n$ is shifted to $0$.
+2. **Completeness:**
+   The base case explicitly handles $n = 0$, ensuring that the singular case of `"0"` yields `"1"` without being skipped by the while condition.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Same-length all-ones mask:** Compute `mask = (1 << n.bit_length()) - 1` and return `mask ^ n`. It flips all significant positions at once.
-- **Subtract from the mask:** For an all-ones mask of the same bit length, `mask - n` also equals the complement.
-- **Propagate the highest one bit:** Repeated OR-with-shift operations can turn every bit below the highest one into a mask, then XOR with `n`.
-- **Binary-string conversion:** Map each `0` to `1` and each `1` to `0`, then parse. It is clear but allocates text and extra storage.
-- **Bitwise NOT:** Produces a negative two's-complement value unless explicitly masked, so using it alone is incorrect.
-- **`n = 0`:** Requires the explicit result one because the loop would otherwise process no bits.
-- **All one bits:** Values such as seven complement to zero.
-- **Power of two:** A representation such as `1000` becomes `0111`, one less than the original power.
-- **Leading zeros:** They are not part of the representation and are deliberately never visited.
-- **Maximum input:** Fewer than thirty-one loop iterations are needed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Zero Input ($n = 0$) | $n = 0$ | Direct base case guard triggers; returns $1$. | Returning $0$ due to empty while-loop. |
+| Power of Two ($n = 16$) | $16 = 10000_2$ | Complement is $01111_2 = 15 = 2^4 - 1$. | Off-by-one bit position errors. |
+| All Bits One ($n = 7$) | $7 = 111_2$ | Complement is $000_2 = 0$. | Handling all-zero complement results. |
+| Large Input ($n \approx 10^9$) | $n = 999{,}999{,}999$ | Processes all $30$ bits; returns $73{,}741{,}824$. | Integer overflow in 32-bit registers. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B)$. Let `B` be the number of bits in the binary representation of the original positive input.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\log n)$.
+  - The number of iterations equals the bit length $B = \lfloor \log_2 n \rfloor + 1 \le 30$.
+  - Each step executes $\mathcal{O}(1)$ bitwise AND, XOR, and shifts.
+  - Total runtime: $< 0.0001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; operates purely on scalar variables $ans, i, n$.

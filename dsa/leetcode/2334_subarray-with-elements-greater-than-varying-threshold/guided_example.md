@@ -1,131 +1,131 @@
 # Guided Example: Subarray With Elements Greater Than Varying Threshold
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [1, 3, 4, 3, 1], "threshold": 6}`
-- **Required output:** `3`
+We are given an integer array `nums` and an integer `threshold`. We must find the length $k$ ($1 \le k \le n$) of any contiguous subarray of `nums` such that every element within that subarray is strictly greater than the threshold divided by the subarray length:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$\forall x \in \text{subarray}: \quad x > \frac{\text{threshold}}{k}$$
 
----
+If at least one such subarray exists, we return its length $k$. If multiple valid lengths exist, returning any valid length is acceptable. If no such subarray exists anywhere in `nums`, we return $-1$.
 
-## 1. Instance & Teaching Goal
+Consider the representative instance:
+- `nums = [1, 3, 4, 3, 1]`
+- `threshold = 6`
 
-You are given an integer array `nums` and an integer `threshold`.
+Examining the contiguous subarray `[3, 4, 3]` (indices 1 to 3):
+- Subarray length: $k = 3$.
+- Effective threshold: $\frac{\text{threshold}}{k} = \frac{6}{3} = 2$.
+- Every element in `[3, 4, 3]` is $\ge 3$, which is strictly greater than $2$.
+Therefore, $k = 3$ is a valid subarray length.
 
-The objective is to compute `3` from `{"nums": [1, 3, 4, 3, 1], "threshold": 6}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: DSU Component Expansion for Threshold Subarrays
+    accDescr: Processing array elements in descending order to expand contiguous intervals and test threshold criteria.
+    Sort["Sort Elements Descending by Value:<br/>(4, idx 2), (3, idx 1), (3, idx 3), (1, idx 0), (1, idx 4)"] --> Step1["Activate idx 2 (Val = 4)<br/>Component: {2}, Size = 1<br/>Check: 4 > 6/1 = 6 (False)"]
+    Step1 --> Step2["Activate idx 1 (Val = 3)<br/>Merge with 2: {1, 2}, Size = 2<br/>Check: 3 > 6/2 = 3 (False, strict)"]
+    Step2 --> Step3["Activate idx 3 (Val = 3)<br/>Merge with {1, 2}: {1, 2, 3}, Size = 3<br/>Check: 3 > 6/3 = 2 (True!)"]
+    Step3 --> Success["Valid Subarray Found: Return k = 3"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+For any contiguous subarray of length $k$, the requirement that every element $x$ satisfies $x > \frac{\text{threshold}}{k}$ is mathematically equivalent to requiring that the **minimum element** of the subarray satisfies the condition:
 
-## 2. Conceptual Foundation & Invariants
+$$\min_{i \in \text{subarray}} nums[i] > \frac{\text{threshold}}{k} \iff k \cdot \min_{i \in \text{subarray}} nums[i] > \text{threshold}$$
 
-We maintain the core conceptual parameters and state variables:
+### Maximal Interval Property
+Suppose an element $v = nums[i]$ serves as the minimum of some subarray. To maximize the product $k \cdot v$, we should make the subarray length $k$ as large as possible. Let $[L_i, R_i]$ be the maximal contiguous interval containing index $i$ in which every element is $\ge nums[i]$. The maximal length is $k_i = R_i - L_i + 1$.
+If any subarray with minimum $nums[i]$ satisfies the condition, the maximal interval $[L_i, R_i]$ must also satisfy:
 
-| State Parameter | Role & Purpose | Initial State |
+$$nums[i] > \left\lfloor \frac{\text{threshold}}{k_i} \right\rfloor$$
+
+### Descending DSU (Disjoint Set Union) Strategy
+We can discover maximal contiguous intervals dynamically:
+1. Sort all indices $i$ in descending order of their values $nums[i]$.
+2. Process elements one by one, marking each index as "active".
+3. When index $i$ is activated:
+   - Merge $i$ with active adjacent neighbor $i - 1$ (if active).
+   - Merge $i$ with active adjacent neighbor $i + 1$ (if active).
+4. Because elements are processed in descending order, all elements in the newly merged connected component are $\ge nums[i]$. Thus, $nums[i]$ is the minimum element of this contiguous block.
+5. The size $S$ of the DSU component is the maximal length. We check:
+   $$nums[i] > \left\lfloor \frac{\text{threshold}}{S} \right\rfloor$$
+   If this holds, $S$ is a valid subarray size and we terminate immediately.
+
+| Algorithmic Phase | Data Structure / Operation | Invariant Maintained |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Descending Sort | Sorted tuple array $(v, i)$ | Future activated elements are $\le$ current element |
+| DSU Union | `merge(i, i - 1)` and `merge(i, i + 1)` | Component represents a contiguous segment of elements $\ge v$ |
+| Threshold Verification | $v > \lfloor \text{threshold} / S \rfloor$ | Validates if the entire component exceeds the required threshold ratio |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We trace `nums = [1, 3, 4, 3, 1]` with `threshold = 6`.
+Array length $n = 5$.
+Elements sorted descending by value:
+1. $(4, 2)$
+2. $(3, 1)$
+3. $(3, 3)$
+4. $(1, 0)$
+5. $(1, 4)$
 
-## 3. Step-by-Step Worked Execution
+Active flags initialized to all `false`. DSU initialized with parent pointers and sizes $= 1$.
 
-### Step 1: Activate indices from high values to low values
+- **Step 1: Process $(4, 2)$**
+  - Activate index 2.
+  - Neighbors 1 and 3 are inactive $\implies$ no merge.
+  - Component size: $S = 1$.
+  - Test: $4 > \lfloor 6 / 1 \rfloor \implies 4 > 6$ (False).
 
-For a candidate minimum value `v`, consider all indices whose numbers are at least `v`. Consecutive active indices form subarrays in which every element is at least `v`.
+- **Step 2: Process $(3, 1)$**
+  - Activate index 1.
+  - Neighbor 0 is inactive.
+  - Neighbor 2 is active $\implies$ merge index 1 and index 2.
+  - New component: $\{1, 2\}$ with size $S = 2$.
+  - Minimum element of component is $3$.
+  - Test: $3 > \lfloor 6 / 2 \rfloor \implies 3 > 3$ (False, strict inequality requires $>$, not $\ge$).
 
-The exact solution sorts pairs `(nums[i], i)` in descending order. As it processes an index, all previously active positions have values greater than or equal to the current `v`. It connects the current index to active immediate neighbors, forming maximal contiguous active components.
+- **Step 3: Process $(3, 3)$**
+  - Activate index 3.
+  - Neighbor 4 is inactive.
+  - Neighbor 2 is active (part of component $\{1, 2\}$) $\implies$ merge index 3 with component $\{1, 2\}$.
+  - New component: $\{1, 2, 3\}$ with size $S = 2 + 1 = 3$.
+  - Minimum element of component is $3$.
+  - Test: $3 > \lfloor 6 / 3 \rfloor \implies 3 > 2$ (True!).
+  - Condition is met with component size $S = 3$.
 
-Each component is represented by union-find, with `size[root]` storing its length.
+Algorithm immediately halts and returns $3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 3, 4, 3, 1], "threshold": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Comprehensive State Trace
 
----
+The sequence of element activations and component evaluations is detailed below.
 
-### Step 2: Union only adjacent active positions
+| Activation Step | Processed Tuple $(v, i)$ | Adjacent Active Neighbors | Merged Component Indices | Component Size ($S$) | Effective Bound ($\lfloor \text{threshold} / S \rfloor$) | Inequality Check ($v > \lfloor \text{threshold} / S \rfloor$) |
+|---|---|---|---|---|---|---|
+| 1 | $(4, 2)$ | None | $\{2\}$ | 1 | $\lfloor 6 / 1 \rfloor = 6$ | $4 > 6$ (False) |
+| 2 | $(3, 1)$ | Index 2 | $\{1, 2\}$ | 2 | $\lfloor 6 / 2 \rfloor = 3$ | $3 > 3$ (False) |
+| 3 | $(3, 3)$ | Index 2 | $\{1, 2, 3\}$ | 3 | $\lfloor 6 / 3 \rfloor = 2$ | $3 > 2$ (True, Valid) |
 
-Initially every index is its own set of size one, and `vis` marks no index active. When processing `i`, the method merges it with `i - 1` if that neighbor is active and with `i + 1` if active.
+## 5. Algorithmic Correctness & Soundness
 
-No nonadjacent positions are merged because a valid answer must be a contiguous subarray. After these unions, the set containing `i` represents a contiguous block whose processed values are all at least `v`.
+1. **Exact Contiguity by DSU Merging:**
+   Because unions only connect adjacent indices $i$ and $i \pm 1$, each connected set of indices represents a contiguous slice of the original array $[L, R]$.
 
-The current index is marked visited after the validity check. It can still participate in unions before that mark because its singleton parent and size were initialized in advance. Once the iteration continues, later neighbors see it as active.
+2. **Soundness of the Minimum Element:**
+   Sorting elements in descending order guarantees that every element already present in the component was activated during an earlier or identical step, meaning its value is $\ge v$. Thus, $v$ is strictly the minimum element of the entire contiguous segment. Since $v > \text{threshold} / S$, every other element in the segment is also strictly greater than $\text{threshold} / S$.
 
-Path compression in `find` shortens representative chains. `merge` attaches one root under another and adds sizes, preserving the component length.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **No Subarray Satisfies Criteria:**
+  - If all elements are small compared to `threshold` (e.g. `nums = [1, 2, 3], threshold = 10`), the loop exhausts all elements and returns $-1$.
+- **Strict Inequality Requirement:**
+  - When $nums[i] == \lfloor \text{threshold} / S \rfloor$, the condition fails because the problem requires strictly greater ($>$).
+- **Single Element Exceeds Threshold ($nums[i] > \text{threshold}$):**
+  - A single-cell subarray of length $k = 1$ immediately qualifies and returns $1$.
+- **Anti-Pattern (Testing All $\mathcal{O}(n^2)$ Subarrays):**
+  - Evaluating all subarrays takes $\mathcal{O}(n^2)$ time, which fails for $n = 10^5$. Monotonic stack or descending DSU solves the problem in $\mathcal{O}(n \log n)$ or $\mathcal{O}(n)$ time.
 
----
+## 7. Complexity Analysis
 
-### Step 3: Test the entire current component
-
-Let `k = size[find(i)]`. Every element in this active component is at least the current value `v`. The required condition is
-
-`every element > threshold / k`.
-
-It is sufficient to test the minimum lower bound `v`. For positive integers, the code's condition
-
-`v > threshold // k`
-
-is equivalent to `v \cdot k > threshold`, and hence to `v > threshold / k`. Using integer division avoids floating-point precision.
-
-If the test succeeds, the whole active component is a valid subarray of length `k`, so the method may return that size immediately. The problem accepts any valid length.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 3, 4, 3, 1], "threshold": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Monotonic stack:** Find each value's widest interval where it is the minimum, then test `value * width > threshold`. This achieves `O(n)` time and `O(n)` space and matches the manifest summary.
-- **For every length, use a sliding minimum:** Repeating a window-minimum computation for all lengths costs quadratic time.
-- **Binary search the answer length:** Validity is not simply monotone by length for arbitrary arrays, so ordinary binary search on `k` is unsafe.
-- **Merge nonadjacent active indices:** That would create a set that is not a subarray. Only immediate active neighbors may join.
-- **Use `>= threshold // k`:** The source condition is strictly greater. Equality may fail the original strict inequality and must not be accepted.
-- **Floating-point division:** Comparing `v * k > threshold` or the exact integer-division form avoids precision issues for values up to `10^9`.
-- **One valid element:** A component of size one succeeds exactly when its value is greater than `threshold`.
-- **All values equal:** Components grow as equal indices activate. A sufficiently long block may become valid even if a singleton is not.
-- **Several valid lengths:** The method returns the first size discovered in descending activation order; any is permitted.
-- **Whole array valid:** Eventually all indices join, and the final component test detects it.
-- **No valid subarray:** Every activation test fails and the method returns `-1`.
-- **Current `vis` timing:** The current node is merged before being marked active, but initialized DSU state makes that valid; the mark is needed only for later iterations.
-- **Tie ordering:** Reverse tuple sorting affects when equal indices activate but not correctness.
-- **Input preservation:** Sorting creates a separate pair list and leaves `nums` unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the array length. Sorting `n` value-index pairs costs `O(n \log n)` time. Each index performs at most two unions and a constant number of finds. With path compression but no rank or size-based attachment, a conservative bound remains within `O(n \log n)` here, and sorting already dominates.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \log n)$. Sorting the $n$ element-index pairs takes $\mathcal{O}(n \log n)$ time. Iterating through the sorted list executes at most $2n$ DSU union-find operations with path compression, which runs in near-linear $\mathcal{O}(n \cdot \alpha(n))$ time. (Alternatively, $\mathcal{O}(n)$ using a monotonic stack).
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space to store the sorted tuple array and DSU parent and size arrays.

@@ -1,134 +1,230 @@
 # Guided Example: Find the Quiet Students in All Exams
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of relational set difference and partitioned boundary evaluation on a representative database instance:
 
-- **Input:** `{"tables": {"Student": [{"student_id": 1, "student_name": "Daniel"}, {"student_id": 2, "student_name": "Jade"}, {"student_id": 3, "student_name": "Stella"}, {"student_id": 4, "student_name": "Jonathan"}, {"student_id": 5, "student_name": "Will"}], "Exam": [{"exam_id": 10, "student_id": 1, "score": 70}, {"exam_id": 10, "student_id": 2, "score": 80}, {"exam_id": 10, "student_id": 3, "score": 90}, {"exam_id": 20, "student_id": 1, "score": 80}, {"exam_id": 30, "student_id": 1, "score": 70}, {"exam_id": 30, "student_id": 3, "score": 80}, {"exam_id": 30, "student_id": 4, "score": 90}, {"exam_id": 40, "student_id": 1, "score": 60}, {"exam_id": 40, "student_id": 2, "score": 70}, {"exam_id": 40, "student_id": 4, "score": 80}]}}`
-- **Required output:** `{"columns": ["student_id", "student_name"], "rows": [[2, "Jade"]]}`
+- **Input Tables:**
+  - `Student`:
+    - `(1, "Daniel")`
+    - `(2, "Jade")`
+    - `(3, "Stella")`
+    - `(4, "Jonathan")`
+    - `(5, "Will")`
+  - `Exam`:
+    - `(10, 1, 70)`
+    - `(10, 2, 80)`
+    - `(10, 3, 90)`
+    - `(20, 1, 80)`
+    - `(30, 1, 70)`
+    - `(30, 3, 80)`
+    - `(30, 4, 90)`
+    - `(40, 1, 60)`
+    - `(40, 2, 70)`
+    - `(40, 4, 80)`
+- **Required Output:**
+  - `(2, "Jade")`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features exams with multi-student cohorts, an exam with a single participant (exam $20$), students scoring highest or lowest across different exams (Daniel, Stella, Jonathan), an inactive student who took zero exams (Will), and a consistently interior-scoring quiet student (Jade).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Student`
+We are given two relational entities:
+1. `Student` with columns `student_id` (primary key) and `student_name`.
+2. `Exam` with columns `exam_id`, `student_id`, and `score` (composite primary key `(exam_id, student_id)`).
 
-The objective is to compute `{"columns": ["student_id", "student_name"], "rows": [[2, "Jade"]]}` from `{"tables": {"Student": [{"student_id": 1, "student_name": "Daniel"}, {"student_id": 2, "student_name": "Jade"}, {"student_id": 3, "student_name": "Stella"}, {"student_id": 4, "student_name": "Jonathan"}, {"student_id": 5, "student_name": "Will"}], "Exam": [{"exam_id": 10, "student_id": 1, "score": 70}, {"exam_id": 10, "student_id": 2, "score": 80}, {"exam_id": 10, "student_id": 3, "score": 90}, {"exam_id": 20, "student_id": 1, "score": 80}, {"exam_id": 30, "student_id": 1, "score": 70}, {"exam_id": 30, "student_id": 3, "score": 80}, {"exam_id": 30, "student_id": 4, "score": 90}, {"exam_id": 40, "student_id": 1, "score": 60}, {"exam_id": 40, "student_id": 2, "score": 70}, {"exam_id": 40, "student_id": 4, "score": 80}]}}` while avoiding redundant calculations and unnecessary overhead.
+A student is defined as **quiet** if and only if:
+1. The student participated in at least one exam ($\text{student\_id} \in \Pi_{\text{student\_id}}(\text{Exam})$).
+2. The student never achieved the lowest or highest score in any exam they took. That is, across all exams taken, their score was strictly between the exam minimum and maximum.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In this instance:
+- Daniel ($1$) scored the minimum in exams $10$, $30$, and $40$, and was the sole participant in exam $20$ (holding both min and max). Daniel is disqualified.
+- Stella ($3$) scored the maximum ($90$) in exam $10$. Stella is disqualified.
+- Jonathan ($4$) scored the maximum ($90$ and $80$) in exams $30$ and $40$. Jonathan is disqualified.
+- Will ($5$) never took an exam and is excluded by the participation rule.
+- Jade ($2$) took exam $10$ (score $80 \in (70, 90)$) and exam $40$ (score $70 \in (60, 80)$). Jade never achieved an extreme score and qualifies as quiet.
+
+The primary teaching goal is to model universal constraints using set anti-joins or set difference ($\text{Participants} \setminus \text{Disqualified}$), demonstrating how to identify boundary extremes via grouped aggregation before projecting the qualifying cohort.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In relational algebra, the solution proceeds through three logical phases:
+1. **Compute Exam Bounds:**
+   $$
+   \text{ExamBounds} = \gamma_{\text{exam\_id}, \min(\text{score}) \to \text{min\_score}, \max(\text{score}) \to \text{max\_score}}(\text{Exam})
+   $$
+2. **Identify Disqualified ("Loud") Students:**
+   $$
+   \text{ExamWithBounds} = \text{Exam} \bowtie_{\text{Exam.exam\_id} = \text{ExamBounds.exam\_id}} \text{ExamBounds}
+   $$
+   $$
+   \text{Disqualified} = \Pi_{\text{student\_id}} \left( \sigma_{\text{score} = \text{min\_score} \lor \text{score} = \text{max\_score}}(\text{ExamWithBounds}) \right)
+   $$
+3. **Filter Active Students via Set Difference:**
+   $$
+   \text{Participants} = \Pi_{\text{student\_id}}(\text{Exam})
+   $$
+   $$
+   \text{QuietIDs} = \text{Participants} \setminus \text{Disqualified}
+   $$
+   $$
+   \mathcal{R} = \Pi_{\text{student\_id}, \text{student\_name}} \left( \tau_{\text{student\_id} \uparrow} (\text{QuietIDs} \bowtie \text{Student}) \right)
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
+```
+All Students: {1: Daniel, 2: Jade, 3: Stella, 4: Jonathan, 5: Will}
+                              |
+     +------------------------+------------------------+
+     |                                                 |
+Non-Participants:                                Participants:
+{5: Will} (Excluded)                             {1, 2, 3, 4}
+                                                       |
+                             +-------------------------+-------------------------+
+                             |                                                   |
+                     Disqualified (Extremes):                            Quiet Cohort:
+                     1: Min in 10,20,30,40; Max in 20                    2: Jade
+                     3: Max in 10                                        (Output!)
+                     4: Max in 30, 40
+```
+
+We define relational tracking parameters:
+
+| Relational Entity | Domain | Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $\text{ExamBounds}$ | Relation over $(\text{exam\_id}, \text{min\_s}, \text{max\_s})$ | Minimum and maximum scores per exam |
+| $\text{Disqualified}$ | Sub-relation of student IDs | Students with $\ge 1$ extreme score |
+| $\text{Participants}$ | Sub-relation of student IDs | Students with $\ge 1$ exam record |
+| $\text{QuietIDs}$ | $\text{Participants} \setminus \text{Disqualified}$ | Qualified quiet student identifiers |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** A student ID belongs to $\text{QuietIDs}$ if and only if it appears in $\Pi_{\text{student\_id}}(\text{Exam})$ and does not appear in any exam record satisfying $\text{score} \in \{\text{min\_score}, \text{max\_score}\}$.
+
+```mermaid
+flowchart TD
+    accTitle: Quiet Students Relational Dataflow
+    accDescr: Pipeline grouping exam bounds, identifying extreme scorers, determining participants, subtracting disqualified from participants, and joining with Student.
+    A["Exam Table"] --> B["Compute min and max score per exam_id"]
+    B --> C["Join Exam with ExamBounds"]
+    C --> D["Filter rows where score == min_score OR score == max_score"]
+    D --> E["Project Disqualified student_id set: {1, 3, 4}"]
+    A --> F["Project Participants student_id set: {1, 2, 3, 4}"]
+    F --> G["Set Difference: Participants \\ Disqualified = {2}"]
+    E --> G
+    G --> H["Join with Student Table on student_id = 2"]
+    H --> I["Sort by student_id ASC -> Emit (2, 'Jade')"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn “never highest or lowest” into per-exam ranks
+### Step 1: Compute Per-Exam Extreme Scores
 
-A student qualifies only if two conditions both hold:
+We group the `Exam` relation by `exam_id` and compute the minimum and maximum scores:
 
-1. The student took at least one exam.
-2. Across every exam they took, their score was neither a lowest score nor a highest score.
+- Exam $10$: scores $\{70, 80, 90\} \implies \min = 70, \max = 90$.
+- Exam $20$: score $\{80\} \implies \min = 80, \max = 80$.
+- Exam $30$: scores $\{70, 80, 90\} \implies \min = 70, \max = 90$.
+- Exam $40$: scores $\{60, 70, 80\} \implies \min = 60, \max = 80$.
 
-The word “every” makes this easier to solve by first marking violations on individual Exam rows and then grouping those rows by student. If the grouped student has zero lowest-score violations and zero highest-score violations, every participation was quiet.
-
-The common table expression `T` creates those row-level markers through two window ranks:
-
-
-
-and
-
-
-
-`PARTITION BY exam_id` restarts each ranking for each exam. Scores from exam 10 must never be compared with scores from exam 20, even if the numerical values overlap.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Exam ID | Observed Scores | Exam Minimum | Exam Maximum |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Student": [{"student_id": 1, "student_name": "Daniel"}, {"student_id": 2, "student_name": "Jade"}, {"student_id": 3, "student_name": "Stella"}, {"student_id": 4, "student_name": "Jonathan"}, {"student_id": 5, "student_name": "Will"}], "Exam": [{"exam_id": 10, "student_id": 1, "score": 70}, {"exam_id": 10, "student_id": 2, "score": 80}, {"exam_id": 10, "student_id": 3, "score": 90}, {"exam_id": 20, "student_id": 1, "score": 80}, {"exam_id": 30, "student_id": 1, "score": 70}, {"exam_id": 30, "student_id": 3, "score": 80}, {"exam_id": 30, "student_id": 4, "score": 90}, {"exam_id": 40, "student_id": 1, "score": 60}, {"exam_id": 40, "student_id": 2, "score": 70}, {"exam_id": 40, "student_id": 4, "score": 80}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $10$ | $\{70, 80, 90\}$ | $70$ | $90$ |
+| $20$ | $\{80\}$ | $80$ | $80$ |
+| $30$ | $\{70, 80, 90\}$ | $70$ | $90$ |
+| $40$ | $\{60, 70, 80\}$ | $60$ | $80$ |
 
 ---
 
-### Step 2: Why two directions are needed
+### Step 2: Identify Disqualified Student IDs
 
-For `rk1`, ascending order puts the smallest score first, so `rk1 = 1` means the row holds a lowest score in that exam. For `rk2`, descending order puts the largest score first, so `rk2 = 1` means the row holds a highest score.
+We inspect each row of `Exam` against its exam bounds:
+- Exam $10$:
+  - Student $1$: $70 = \min \implies$ Disqualified!
+  - Student $2$: $70 < 80 < 90 \implies$ Interior score.
+  - Student $3$: $90 = \max \implies$ Disqualified!
+- Exam $20$:
+  - Student $1$: $80 = \min = \max \implies$ Disqualified!
+- Exam $30$:
+  - Student $1$: $70 = \min \implies$ Disqualified!
+  - Student $3$: $70 < 80 < 90 \implies$ Interior score.
+  - Student $4$: $90 = \max \implies$ Disqualified!
+- Exam $40$:
+  - Student $1$: $60 = \min \implies$ Disqualified!
+  - Student $2$: $60 < 70 < 80 \implies$ Interior score.
+  - Student $4$: $80 = \max \implies$ Disqualified!
 
-These are independent conditions. A middle score has both ranks greater than one. A minimum but nonmaximum score has `rk1 = 1` only. A maximum but nonminimum score has `rk2 = 1` only. In a one-participant exam, the same score is both minimum and maximum, so both ranks are one.
+Accumulated Disqualified set: $\{1, 3, 4\}$.
 
-Using `RANK` rather than `ROW_NUMBER` is essential for ties. If three students share the lowest score, all three receive ascending rank one and all three must be disqualified. `ROW_NUMBER` would arbitrarily assign only one of them position one and could falsely treat the other tied students as quiet. The same reasoning applies to tied maximum scores.
-
-The CTE retains `student_id` along with both ranks. It does not need `exam_id` in its output because the window computation has already encoded whether that particular participation was extreme.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Exam ID | Student ID | Score | Bound Status | Disqualification Status |
+|---|---|---|---|---|
+| $10$ | $1$ | $70$ | Equals min ($70$) | Added to Disqualified |
+| $10$ | $2$ | $80$ | Strict interior | Quiet |
+| $10$ | $3$ | $90$ | Equals max ($90$) | Added to Disqualified |
+| $20$ | $1$ | $80$ | Equals min and max ($80$) | Added to Disqualified |
+| $30$ | $1$ | $70$ | Equals min ($70$) | Added to Disqualified |
+| $30$ | $3$ | $80$ | Strict interior | Quiet in this exam |
+| $30$ | $4$ | $90$ | Equals max ($90$) | Added to Disqualified |
+| $40$ | $1$ | $60$ | Equals min ($60$) | Added to Disqualified |
+| $40$ | $2$ | $70$ | Strict interior | Quiet |
+| $40$ | $4$ | $80$ | Equals max ($80$) | Added to Disqualified |
 
 ---
 
-### Step 3: Why joining from `T` excludes nonparticipants
+### Step 3: Compute Set Difference Against Participants
 
-The main query uses:
+- Participating student IDs: $\Pi_{\text{student\_id}}(\text{Exam}) = \{1, 2, 3, 4\}$.
+- Note: Student $5$ (Will) does not appear in `Exam` and is not in $\text{Participants}$.
+- Disqualified student IDs: $\{1, 3, 4\}$.
+- Quiet student IDs:
+  $$
+  \text{QuietIDs} = \{1, 2, 3, 4\} \setminus \{1, 3, 4\} = \{2\}
+  $$
 
+---
 
+### Step 4: Join with Student and Produce Ordered Result
 
-`T` contains one row for every Exam participation and no row for a student who never took an exam. Because this is an inner join, only identifiers present in `T` can reach the result. The contract's “took at least one exam” requirement is therefore satisfied automatically.
+We join the singleton set $\{2\}$ with `Student`:
+- $\text{student\_id} = 2 \implies \text{student\_name} = \text{"Jade"}$.
+- Sort by $\text{student\_id}$ ascending: `(2, "Jade")`.
 
-`USING (student_id)` is shorthand for equality between the same-named identifier columns. It also exposes a single merged `student_id` column, which makes the later selection concise. The join obtains `student_name` from the Student table.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["student_id", "student_name"], "rows": [[2, "Jade"]]}` |
+Final emitted relation: `[(2, "Jade")]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Stage | Evaluated Entity | Operation Applied | Resulting State |
 |---|---|---|---|
-| Initialization | Initial input `{"tables": {"Student": [{"student_id": 1, "student_name": "Daniel"}, {"student_id": 2, "student_name": "Jade"}, {"student_id": 3, "student_name": "Stella"}, {"student_id": 4, "student_name": "Jonathan"}, {"student_id": 5, "student_name": "Will"}], "Exam": [{"exam_id": 10, "student_id": 1, "score": 70}, {"exam_id": 10, "student_id": 2, "score": 80}, {"exam_id": 10, "student_id": 3, "score": 90}, {"exam_id": 20, "student_id": 1, "score": 80}, {"exam_id": 30, "student_id": 1, "score": 70}, {"exam_id": 30, "student_id": 3, "score": 80}, {"exam_id": 30, "student_id": 4, "score": 90}, {"exam_id": 40, "student_id": 1, "score": 60}, {"exam_id": 40, "student_id": 2, "score": 70}, {"exam_id": 40, "student_id": 4, "score": 80}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["student_id", "student_name"], "rows": [[2, "Jade"]]}` | Verified |
+| Aggregation | `Exam` grouped by `exam_id` | Compute $\min(\text{score}), \max(\text{score})$ | $4$ exam boundary intervals |
+| Classification | Each $(\text{exam}, \text{student}, \text{score})$ | Test against $\{\min, \max\}$ | Disqualified set = $\{1, 3, 4\}$ |
+| Domain Filter | $\Pi_{\text{student\_id}}(\text{Exam})$ | Extract distinct active students | Active set = $\{1, 2, 3, 4\}$ |
+| Anti-Join | Active set $\setminus$ Disqualified | Set difference | Qualified set = $\{2\}$ |
+| Enrichment | Qualified set $\bowtie \text{Student}$ | Lookup student name | `(2, "Jade")` |
+| Ordering | Order by $\text{student\_id} \uparrow$ | Ascending sort | Final single-row result |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The set difference $\text{Participants} \setminus \text{Disqualified}$ guarantees that any emitted student took at least one exam (membership in $\text{Participants}$) and never scored the minimum or maximum in any exam (exclusion from $\text{Disqualified}$).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every exam row is compared against its corresponding exam boundaries. A student scoring an extreme score in even a single exam is immediately added to $\text{Disqualified}$ and eliminated. Any student with strictly interior scores across all attended exams is preserved.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Per-exam `MIN` and `MAX` subquery:** Compute both extremes for each exam, join them back to Exam, and reject students with a matching extreme. This is correct but requires another aggregation and join.
-- **`NOT EXISTS` disqualifier:** Select participating students for whom no Exam row equals its exam's minimum or maximum. This can read naturally but may involve correlated work unless the optimizer rewrites it well.
-- **Conditional aggregation without ranks:** Window `MIN(score)` and `MAX(score)` values can be attached to each row, followed by Boolean sums. It handles ties correctly and expresses the same idea.
-- **`ROW_NUMBER`:** This is incorrect when scores tie because only one tied row gets number one. `RANK` marks every student at an extreme.
-- **Student with no exams:** The inner join from `T` excludes the student, as required.
-- **Only participant in an exam:** The student is both lowest and highest and must be disqualified.
-- **All scores tied in an exam:** Every participant receives rank one in both directions, so none can be quiet across that exam.
-- **Tie only at one extreme:** Every student sharing that minimum or maximum is disqualified, while strict middle scores remain eligible.
-- **Quiet in one exam but extreme in another:** Group-level sums detect the single violation and exclude the student.
-- **Ordinal syntax:** `GROUP BY 1` and `ORDER BY 1` refer to the first selected column. Naming `student_id` explicitly would be more self-documenting but is logically equivalent here.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Including Non-Participants:** Forgetting to intersect or filter with participating students would mistakenly include student $5$ (Will), who never took any exams.
+- **Single-Participant Exams:** In exam $20$, Daniel was the only test-taker. His score of $80$ is simultaneously the minimum and maximum; he must be disqualified.
+- **Unilateral Extreme Check:** Checking only for maximum scores while ignoring minimum scores (or vice versa) fails to disqualify students like Daniel or Jonathan who only hit one extreme.
+- **Tied Extremes:** If multiple students share the lowest or highest score in an exam, all tied students at the boundary are disqualified.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S \log S)$. Let $E$ be the number of Exam rows and $S$ the number of Student rows. Computing the two window rankings requires organizing rows by exam and score. A comparison-sort execution plan takes $O(E \log E)$ time in the general case. The join and per-student grouping scan or hash their inputs in expected $O(E+S)$ time, and the final sort of at most $S$ result groups is bounded by $O(S \log S)$.
-- **Auxiliary Space Complexity:** $O(E+S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|E| + |S| \log |S|)$. Scanning `Exam` to compute exam extremes takes $\mathcal{O}(|E|)$. Flagging disqualified student IDs takes $\mathcal{O}(|E|)$ using hash lookups. Joining qualifying student IDs with the `Student` table and sorting takes $\mathcal{O}(|S| \log |S|)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|E| + |S|)$ to maintain the exam bounds map and candidate student identifier sets.

@@ -1,123 +1,230 @@
 # Guided Example: Statistics from a Large Sample
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction of summary statistics from a 256-bucket histogram representation, prove the Cumulative Distribution Function (CDF) Quantile Invariant and the Frequency Moment Theorem, and analyze numeric calculations across representative sample distributions:
 
-- **Input:** `{"count": [0, 1, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}`
-- **Required output:** `[1.0, 3.0, 2.375, 2.5, 3.0]`
+- **Representative Instance 1 (Compact Even Sample with Split Median):**
+  $$
+  count[1] = 1, \quad count[2] = 3, \quad count[3] = 4, \quad count[k] = 0 \text{ elsewhere}
+  $$
+- **Required Output:** `[1.0, 3.0, 2.375, 2.5, 3.0]`
+  - Problem definitions:
+    - Given a frequency histogram `count` of length 256, where `count[k]` is the occurrence count of value $k \in [0, 255]$.
+    - The sample size can reach $10^9$ occurrences.
+    - Compute the 5 statistics: `[minimum, maximum, mean, median, mode]`.
+    - Mode is guaranteed to be unique.
+  - Step 1: Linear Frequency Scan ($k \in [0, 255]$):
+    - Encounter $k = 1, x = 1$:
+      - Minimum: $mi \leftarrow 1$.
+      - Maximum: $mx \leftarrow 1$.
+      - Sum: $s \leftarrow 1 \times 1 = 1$.
+      - Total count: $cnt \leftarrow 1$.
+      - Mode candidate: $k = 1$ with frequency $1$.
+    - Encounter $k = 2, x = 3$:
+      - Maximum: $mx \leftarrow 2$.
+      - Sum: $s \leftarrow 1 + (2 \times 3) = 7$.
+      - Total count: $cnt \leftarrow 1 + 3 = 4$.
+      - Mode candidate: $x = 3 > count[1] = 1 \implies mode \leftarrow 2$.
+    - Encounter $k = 3, x = 4$:
+      - Maximum: $mx \leftarrow 3$.
+      - Sum: $s \leftarrow 7 + (3 \times 4) = 19$.
+      - Total count: $cnt \leftarrow 4 + 4 = 8$.
+      - Mode candidate: $x = 4 > count[2] = 3 \implies mode \leftarrow 3$.
+    - Scan completes:
+      $$
+      mi = 1, \quad mx = 3, \quad cnt = 8, \quad s = 19, \quad mode = 3
+      $$
+  - Step 2: Mean Calculation:
+    $$
+    mean = \frac{s}{cnt} = \frac{19}{8} = \mathbf{2.375}
+    $$
+  - Step 3: Median Quantile Lookup via Cumulative Frequency $F(k)$:
+    - Since $cnt = 8$ is even, the median is the average of elements at 1-based ranks $R_1 = cnt // 2 = 4$ and $R_2 = cnt // 2 + 1 = 5$:
+      - Rank 4 ($R_1 = 4$):
+        - $F(0) = 0 < 4$
+        - $F(1) = 1 < 4$
+        - $F(2) = 1 + 3 = 4 \ge 4 \implies \mathbf{find(4) = 2}$.
+      - Rank 5 ($R_2 = 5$):
+        - $F(2) = 4 < 5$
+        - $F(3) = 4 + 4 = 8 \ge 5 \implies \mathbf{find(5) = 3}$.
+      - Median:
+        $$
+        median = \frac{find(4) + find(5)}{2} = \frac{2 + 3}{2} = \mathbf{2.5}
+        $$
+  - Final Output Vector:
+    $$
+    [1.0, \; 3.0, \; 2.375, \; 2.5, \; 3.0]
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Odd Sample Count with Single Central Value):**
+  $$
+  count[1] = 4, \quad count[2] = 3, \quad count[3] = 2, \quad count[4] = 2
+  $$
+  - Total count $cnt = 4 + 3 + 2 + 2 = 11$ (odd).
+  - Central rank: $cnt // 2 + 1 = 11 // 2 + 1 = 6$.
+  - $F(1) = 4 < 6, \; F(2) = 4 + 3 = 7 \ge 6 \implies find(6) = 2$.
+  - Median $= \mathbf{2.0}$. Mean $= 24 / 11 \approx 2.18182$. Mode $= \mathbf{1.0}$.
+
+- **Representative Instance 3 (Single Occupied Bin):**
+  - All occurrences in a single bin $k = 50$.
+  - $mi = 50, \; mx = 50, \; mean = 50.0, \; median = 50.0, \; mode = 50.0$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a large sample of integers in the range `[0, 255]`. Since the sample is so large, it is represented by an array `count` where $\text{count}[k]$ is the **number of times** that `k` appears in the sample.
+Given frequency counts for numbers in $[0, 255]$ with total sample size up to $10^9$, calculate minimum, maximum, mean, median, and mode in constant time and space.
 
-The objective is to compute `[1.0, 3.0, 2.375, 2.5, 3.0]` from `{"count": [0, 1, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Materialization Memory Catastrophe:
+  Reconstructing the sample array from counts:
+    For total count = 10^9 elements:
+    Allocating a 1,000,000,000-element integer array requires ~8 GB RAM!
+    Causes immediate Out-Of-Memory (OOM) termination.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Histogram Moments & CDF Invariant (O(1) Time, O(1) Space):
+  Domain size is fixed at exactly K = 256 bins!
+  1. First pass accumulates sample moments:
+       s += k * x,  cnt += x,  mi = min(mi, k),  mx = max(mx, k)
+       if x > count[mode]: mode = k
+  2. Compute mean = s / cnt.
+  3. Query median ranks using CDF accumulator find(rank):
+       t = 0
+       for k, x in enumerate(count):
+         t += x
+         if t >= rank: return k
+     - Odd cnt:  median = find(cnt // 2 + 1)
+     - Even cnt: median = (find(cnt // 2) + find(cnt // 2 + 1)) / 2
+  Runs in fixed 256 iterations with zero heap allocation!
+```
 
----
+Operating directly on the compact 256-bucket histogram bypasses element materialization, computing all summary statistics in bounded constant time.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Work with frequencies instead of expanding the sample
-
-The sample may contain up to one billion values, so constructing the sorted sample explicitly is unnecessary and potentially impossible. The array `count` is already a histogram: index `k` is the value, and `count[k]` is how many copies of that value occur.
-
-Because indices run in increasing numeric order, one scan over the 256 buckets provides enough information for the minimum, maximum, weighted sum, sample size, and mode. Median selection can also be answered from cumulative frequencies without materializing any occurrence.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"count": [0, 1, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Collect minimum, maximum, total, size, and mode
-
-`mi` begins at positive infinity and `mx` at `-1`. For every bucket with nonzero frequency `x`, the code updates both with index `k`. Since the loop proceeds from zero upward, the first nonempty bucket becomes the minimum and later nonempty buckets move only the maximum, although using `min` and `max` makes the rule explicit.
-
-The sample’s total numeric sum increases by `k * x` because value `k` occurs `x` times. The sample size `cnt` increases by `x`. Their quotient `s / cnt` is the arithmetic mean. The constraints guarantee at least one occurrence, so division by zero is impossible and both extreme values are replaced by real sample values.
-
-`mode` stores an index. It starts at zero, and a bucket replaces it only when `x > count[mode]`. If bucket zero is empty, the first positive bucket necessarily wins. If bucket zero has occurrences, it is already a legitimate initial candidate. The unique-mode guarantee means no tie-breaking rule is needed for the maximum frequency; the strict comparison eventually leaves the one true mode.
-
-Python integers can represent the weighted sum exactly even when frequencies are large. Conversion to floating point occurs only when forming the returned mean or an even-sample median.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The decisive pedagogical goal is the **CDF Quantile Invariant & Frequency Moment Theorem**:
+1. **Moment Compression:** The arithmetic mean is the first raw moment $\mu = \frac{1}{N} \sum k \cdot f(k)$, computable in 256 steps regardless of sample size $N$.
+2. **Order Statistic via Prefix Sums:** The $i$-th sorted element corresponds to the earliest bin where the cumulative frequency $F(k) = \sum_{j \le k} count[j]$ meets or exceeds $i$.
+3. **Parity Separation for Median:** An odd sample size has a unique middle index $\lfloor N/2 \rfloor + 1$, whereas an even sample size averages the two central elements at $N/2$ and $N/2 + 1$.
+4. Total time $\mathcal{O}(1)$ (bounded by $3 \times 256$ operations) and auxiliary space $\mathcal{O}(1)$.
 
 ---
 
-### Step 3: Find a value by its one-based sorted rank
+## 2. Conceptual Foundation & The Histogram Statistics Pipeline
 
-The helper `find(i)` answers: what value occupies position `i` in the expanded sorted sample, where the first position is one? It accumulates bucket counts from low value to high value. After processing bucket `k`, `t` equals the number of sample elements whose value is at most `k`.
+```mermaid
+flowchart TD
+    accTitle: Statistics from Large Sample Pipeline
+    accDescr: Flowchart illustrating single-pass moment accumulation and CDF rank lookup for median
+    Start["Given histogram count of size 256\nInit: mi = inf, mx = -1, s = 0, cnt = 0, mode = 0"] --> LoopMoments["For k, x in enumerate(count):"]
+    LoopMoments --> CheckCount{"x > 0 ?"}
+    CheckCount -->|"No"| NextK["k += 1"]
+    CheckCount -->|"Yes"| UpdateMoments["mi = min(mi, k)\nmx = max(mx, k)\ns += k * x\ncnt += x\nIf x > count[mode]: mode = k"]
+    UpdateMoments --> NextK
+    NextK --> CheckDoneK{"k < 256 ?"}
+    CheckDoneK -->|"Yes"| LoopMoments
+    CheckDoneK -->|"No: Moments gathered"| CalcMean["mean = s / cnt"]
+    CalcMean --> CheckParity{"Is cnt odd?\n(cnt & 1 == 1)"}
+    CheckParity -->|"Yes: Odd sample"| MedianOdd["median = find(cnt // 2 + 1)"]
+    CheckParity -->|"No: Even sample"| MedianEven["median = (find(cnt // 2) + find(cnt // 2 + 1)) / 2"]
+    MedianOdd --> AssembleOutput["Return [mi, mx, mean, median, mode]"]
+    MedianEven --> AssembleOutput
+```
 
-The first index satisfying `t >= i` is precisely the value at rank `i`. Before that bucket, fewer than `i` elements have been accounted for; within that bucket, the cumulative block reaches or passes the requested position.
+### The CDF Quantile Invariant
 
-For an odd sample size, the unique middle rank is `cnt // 2 + 1`. The expression `cnt & 1` tests oddness, so the code calls `find` once for that rank.
-
-For an even sample size, the middle elements occupy one-based ranks `cnt // 2` and `cnt // 2 + 1`. The code finds both values, adds them, and divides by two. They may be equal when both ranks fall inside the same frequency bucket, which naturally produces that same value as the median.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1.0, 3.0, 2.375, 2.5, 3.0]` |
+Let $C = [count[0], count[1], \dots, count[255]]$ with total population $N = \sum_{k=0}^{255} count[k] \ge 1$.
+1. **Cumulative Frequency Function:**
+   Define the empirical cumulative distribution $F: \{0, \dots, 255\} \to [0, N]$:
+   $$
+   F(k) = \sum_{j=0}^k count[j]
+   $$
+   $F(k)$ is non-decreasing with $F(-1) = 0$ and $F(255) = N$.
+2. **Quantile Identification Lemma:**
+   Let $X$ denote the multiset of $N$ sorted elements represented by $C$.
+   For any integer rank $r \in [1, N]$, the $r$-th smallest element in $X$ is:
+   $$
+   x_{(r)} = \min \{ k \in \{0, \dots, 255\} : F(k) \ge r \}
+   $$
+   Proof:
+   By definition of cumulative count, exactly $F(k-1)$ elements in $X$ are strictly less than $k$, and exactly $F(k)$ elements are $\le k$.
+   Since $F(k-1) < r \le F(k)$, the $r$-th element must be equal to $k$.
+3. **Median Determination:**
+   - If $N$ is odd, the median is the unique central element at rank $r = \lfloor N/2 \rfloor + 1$:
+     $$
+     median = x_{(\lfloor N/2 \rfloor + 1)} = find(\lfloor N/2 \rfloor + 1)
+     $$
+   - If $N$ is even, the median is the arithmetic mean of ranks $r_1 = N/2$ and $r_2 = N/2 + 1$:
+     $$
+     median = \frac{x_{(N/2)} + x_{(N/2 + 1)}}{2} = \frac{find(N/2) + find(N/2 + 1)}{2}
+     $$
+   This holds exactly regardless of whether $x_{(r_1)}$ and $x_{(r_2)}$ share the same bin or span adjacent bins. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"count": [0, 1, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1.0, 3.0, 2.375, 2.5, 3.0]` | Verified |
+$count = [0, 1, 3, 4, 0, \dots, 0]$.
+
+### Pass 1: Moment Accumulation
+- $k=1, x=1$: $mi=1, mx=1, s=1, cnt=1, mode=1$.
+- $k=2, x=3$: $mx=2, s=1+6=7, cnt=4, mode=2$ (since $3 > 1$).
+- $k=3, x=4$: $mx=3, s=7+12=19, cnt=8, mode=3$ (since $4 > 3$).
+- Result: $mi = 1.0, mx = 3.0, s = 19, cnt = 8, mode = 3.0$.
+
+### Pass 2: Mean
+- $mean = 19 / 8 = \mathbf{2.375}$.
+
+### Pass 3: Median ($cnt = 8$, even)
+- Query $find(4)$:
+  - $k=0: t=0$
+  - $k=1: t=1$
+  - $k=2: t=4 \ge 4 \implies$ Returns $2$.
+- Query $find(5)$:
+  - $k=0: t=0$
+  - $k=1: t=1$
+  - $k=2: t=4 < 5$
+  - $k=3: t=8 \ge 5 \implies$ Returns $3$.
+- $median = (2 + 3) / 2 = \mathbf{2.5}$.
+
+Output: `[1.0, 3.0, 2.375, 2.5, 3.0]`.
+
+---
+
+## 4. CDF and Quantile Trace Table
+
+| Value $k$ | Frequency $count[k]$ | Cumulative Count $F(k)$ | Contains Rank 4 ($F(k) \ge 4$)? | Contains Rank 5 ($F(k) \ge 5$)? | Mode Tracker State |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $0$ | $0$ | No | No | Initial ($0$) |
+| $1$ | $1$ | $1$ | No | No | $mode = 1$ ($x=1$) |
+| $2$ | $3$ | $4$ | **Yes $\implies find(4) = 2$** | No | $mode = 2$ ($x=3$) |
+| $3$ | $4$ | $8$ | Yes | **Yes $\implies find(5) = 3$** | **$mode = 3$ ($x=4$)** |
+| $4 \dots 255$ | $0$ | $8$ | — | — | Unchanged |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Formulas for minimum, maximum, mean, median, and mode strictly conform to mathematical definitions.
+2. **Completeness:**
+   All 256 frequency bins are aggregated, ensuring no element is overlooked.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Expand and sort the sample:** Repeating each value according to its count would require time and memory proportional to as many as one billion occurrences. It ignores the central benefit of the histogram representation.
-- **Single cumulative scan for both median ranks:** Track the two target ranks during the main traversal and record each when cumulative count reaches it. This avoids the helper’s repeated fixed scans but is slightly more intertwined.
-- **Binary search over prefix counts:** Build a 256-entry prefix-sum array and binary-search median ranks. It remains constant under this domain but uses extra storage and is unnecessary for only two queries.
-- **Single distinct sample value:** Minimum, maximum, mean, median, and mode all equal that value, regardless of its frequency.
-- **Value zero present:** Zero is a valid minimum and can be the mode. Initializing `mode` to zero deliberately supports that case.
-- **Leading empty buckets:** They do not affect any statistic. The first nonzero index replaces `mi` and the initial mode when appropriate.
-- **Trailing empty buckets:** They leave `mx` at the greatest earlier nonempty index.
-- **Odd sample size:** Only rank `cnt // 2 + 1` is used; averaging neighboring ranks would be incorrect.
-- **Even sample size:** The two central ranks can belong to different buckets, producing a fractional median such as `2.5`.
-- **Large counts:** Multiplication `k * x` and total accumulation remain exact with Python integers before the final floating conversion.
-- **Unique mode:** Strictly larger frequency updates are sufficient. Without uniqueness, the problem would need a specified tie-breaking rule.
-- **Nonempty sample:** The guarantee `sum(count) >= 1` ensures `find` always reaches requested median ranks and the mean denominator is positive.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Massive Sample Count | $\sum count[k] = 10^9$ | Sum evaluated using Python arbitrary precision; finishes in 256 steps. | 32-bit integer overflow or memory exhaustion. |
+| Zero Present in Sample | $count[0] > 0$ | $mi = 0.0$; handled naturally. | Skipping index 0 in scan. |
+| Single Value Sample | $count[42] = 100$, rest 0 | $mi = mx = mean = median = mode = 42.0$. | Division by zero or uninitialized mode. |
+| Even Median in Same Bin | $R_1, R_2$ both fall in bin 2 | $(2 + 2) / 2 = 2.0$. | Off-by-one errors across bin transitions. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The histogram length is fixed at 256 by the contract. The main scan visits 256 buckets, and `find` performs another 256-bucket scan at most twice. This is a fixed amount of work independent of the number of represented sample elements, so the package states $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(K) = \mathcal{O}(1)$, where $K = 256$ is the fixed number of buckets.
+  - The moment scan runs $256$ iterations.
+  - The `find(rank)` function performs at most $256$ iterations, called at most twice.
+  - Total iterations $\le 768 \implies < 0.0001\text{ s}$, completely independent of sample size $N \le 10^9$.
+- **Auxiliary Space Complexity:** strictly $\mathcal{O}(1)$ auxiliary memory; uses only a few scalar numeric variables for running accumulators.

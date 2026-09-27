@@ -1,120 +1,186 @@
 # Guided Example: Winning Candidate
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step vote tally aggregation (`GROUP BY CandidateId`), plurality sorting (`ORDER BY COUNT(id) DESC`), winner isolation (`LIMIT 1`), candidate registry relational joining (`INNER JOIN Candidate`), and winning candidate name projection on representative ballot tables:
 
-- **Input:** `{"tables": {"Candidate": [{"id": 1, "Name": "A"}, {"id": 2, "Name": "B"}, {"id": 3, "Name": "C"}, {"id": 4, "Name": "D"}, {"id": 5, "Name": "E"}], "Vote": [{"id": 1, "CandidateId": 2}, {"id": 2, "CandidateId": 4}, {"id": 3, "CandidateId": 3}, {"id": 4, "CandidateId": 2}, {"id": 5, "CandidateId": 5}]}}`
-- **Required output:** `{"columns": ["Name"], "rows": [["B"]]}`
+- **Input:**
+  - `Candidate` table:
+    | `id` | `Name` |
+    |:---:|:---:|
+    | $1$ | `A` |
+    | $2$ | `B` |
+    | $3$ | `C` |
+    | $4$ | `D` |
+    | $5$ | `E` |
+  - `Vote` table:
+    | `id` | `CandidateId` |
+    |:---:|:---:|
+    | $1$ | $2$ |
+    | $2$ | $4$ |
+    | $3$ | $3$ |
+    | $4$ | $2$ |
+    | $5$ | $5$ |
+- **Required output:**
+  | `Name` |
+  |:---:|
+  | `B` |
+  - Election rule: Identify the candidate who accumulated the **strictly largest number of votes**.
+  - Guarantee: Exactly one candidate is guaranteed to win the election in all valid test cases.
+- **Relational Aggregation & Winner Selection Trace:**
+  - **Step 1: Tally Votes per Candidate:**
+    - Group the `Vote` table by `CandidateId` and count records:
+      - Votes for `CandidateId = 2`: Vote $1$, Vote $4$ $\implies \mathbf{2}$ votes.
+      - Votes for `CandidateId = 3`: Vote $3$ $\implies \mathbf{1}$ vote.
+      - Votes for `CandidateId = 4`: Vote $2$ $\implies \mathbf{1}$ vote.
+      - Votes for `CandidateId = 5`: Vote $5$ $\implies \mathbf{1}$ vote.
+      - Candidate $1$ received $0$ votes.
+  - **Step 2: Order by Descending Vote Count and Take Top 1:**
+    - Sort vote tallies in descending order:
+      1. `CandidateId = 2`: $2$ votes (**Highest!**)
+      2. `CandidateId = 3`: $1$ vote
+      3. `CandidateId = 4`: $1$ vote
+      4. `CandidateId = 5`: $1$ vote
+    - Slice the leading record with `LIMIT 1`:
+      $$
+      t = [(\text{id}: 2)]
+      $$
+  - **Step 3: Join with `Candidate` to Retrieve Winner's Name:**
+    - Perform inner join between derived table $t$ and `Candidate` on $t.id = Candidate.id$:
+      - Match $t.id = 2$ with $Candidate.id = 2$.
+      - Retrieve attribute:
+        $$
+        Name = \mathbf{\text{"B"}}
+        $$
+    - Project final column:
+      $$
+      \mathbf{\text{"B"}}
+      $$
+- **Unanimous Election Instance:**
+  - All votes cast for Candidate $3 \implies$ Candidate $3$ has $100\%$ of votes $\implies$ projects Name of Candidate 3.
+- **Large Electorate with Multiple Candidates:**
+  - Plurality sorting (`ORDER BY COUNT(...) DESC LIMIT 1`) executes via a top-1 heap or index scan, extracting the singular winner in logarithmic time.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates plurality voting resolution through relational group aggregation and foreign-key joins, mathematically proves why top-1 ranking isolates the unique maximum vote receiver, and derives $O(V \log K)$ execution time and $O(K)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Candidate`
+Given two tables `Candidate` and `Vote`:
+Find the **name of the winning candidate** (the candidate with the most votes).
 
-The objective is to compute `{"columns": ["Name"], "rows": [["B"]]}` from `{"tables": {"Candidate": [{"id": 1, "Name": "A"}, {"id": 2, "Name": "B"}, {"id": 3, "Name": "C"}, {"id": 4, "Name": "D"}, {"id": 5, "Name": "E"}], "Vote": [{"id": 1, "CandidateId": 2}, {"id": 2, "CandidateId": 4}, {"id": 3, "CandidateId": 3}, {"id": 4, "CandidateId": 2}, {"id": 5, "CandidateId": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Vote Counts:
+  Candidate 2: 2 votes  <-- Most votes!
+  Candidate 3: 1 vote
+  Candidate 4: 1 vote
+  Candidate 5: 1 vote
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Candidate 2 is named "B".
+Output: "B"
+```
+
+### The Two-Stage Relational Flow
+- **Stage 1 (Vote Counting):**
+  Aggregate the `Vote` table to find which `CandidateId` accumulated the highest vote count:
+  $$
+  \text{WinnerId} = \text{argmax}_{c} \left( \sum_{v \in Vote} \mathbf{1}[v.CandidateId == c] \right)
+  $$
+- **Stage 2 (Identity Projection):**
+  Join the winning ID with the `Candidate` table to output the candidate's string `Name`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Winner Identification Subquery:
+```sql
+SELECT CandidateId AS id
+FROM Vote
+GROUP BY CandidateId
+ORDER BY COUNT(id) DESC
+LIMIT 1
+```
+- Groups votes by `CandidateId`.
+- Orders by frequency in descending order.
+- Slices the top 1 winning candidate ID.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Candidate Join:
+```sql
+SELECT c.Name
+FROM ( ... subquery ... ) AS t
+INNER JOIN Candidate AS c ON t.id = c.id
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Uniqueness Invariant.** By the problem specification, exactly one candidate is guaranteed to have the strict maximum number of votes, ensuring `LIMIT 1` uniquely captures the election winner without arbitrary tie-breaking.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Building one group per voted-for candidate
-
-The derived table named `t` reads `Vote` and executes:
-
-
-
-`GROUP BY CandidateId` collects all vote rows with the same `CandidateId` into one group. If candidate 2 appears in three vote rows, the group for candidate 2 contains three rows. The expression `COUNT(id)` then counts the non-`NULL` `Vote.id` values in that group. According to the schema, `Vote.id` is an auto-increment primary key, so it is present and unique for every vote. Consequently, `COUNT(id)` is exactly the number of votes in the group. `COUNT(*)` would express the same fact here, but `COUNT(id)` is correct because that column cannot be `NULL`.
-
-The grouped result conceptually contains one row per candidate who received at least one vote. Although the count is used for ordering, it does not have to appear in the selected output. `ORDER BY COUNT(id) DESC` places the group with the greatest count first. `LIMIT 1` then retains only that first group, leaving the winning candidate’s ID.
-
-The statement guarantees that exactly one candidate wins. This guarantee matters: if two groups had the same maximum count, ordering only by the count would not specify which tied group comes first. The query deliberately has no tie-breaking rule because the input contract says no tie for first place exists. With a unique maximum, the first row after descending ordering is unambiguous.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Candidate": [{"id": 1, "Name": "A"}, {"id": 2, "Name": "B"}, {"id": 3, "Name": "C"}, {"id": 4, "Name": "D"}, {"id": 5, "Name": "E"}], "Vote": [{"id": 1, "CandidateId": 2}, {"id": 2, "CandidateId": 4}, {"id": 3, "CandidateId": 3}, {"id": 4, "CandidateId": 2}, {"id": 5, "CandidateId": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why candidates with zero votes do not need a group
-
-The grouped subquery begins from `Vote`, so a candidate with no ballots never appears in `t`. That is safe. A zero-vote candidate cannot have a strictly larger count than the unique winner when the election contains votes. The winner’s ID must therefore occur in `Vote`. Starting with `Candidate` and left-joining every possible vote count would include extra zero-count rows without changing which candidate has the maximum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Aggregate Ballots
+Group `Vote` by `CandidateId`:
+- Candidate 2: $[1, 4] \implies count = 2$.
+- Candidate 3: $[3] \implies count = 1$.
+- Candidate 4: $[2] \implies count = 1$.
+- Candidate 5: $[5] \implies count = 1$.
 
 ---
 
-### Step 3: Turning the winning ID into the requested name
+### Step 2: Sort and Select Maximum
+- Order: $2 \to (count = 2)$, followed by other candidates $(count = 1)$.
+- `LIMIT 1` selects $id = 2$.
 
-The outer part gives the `Candidate` table the alias `c` and performs:
+---
 
-
-
-The schema states that `Vote.candidateId` references `Candidate.id`. The ID selected by `t` therefore has a matching candidate row. An inner join is the appropriate operation: it combines the single winning-ID row with that matching candidate record. The final `SELECT Name` discards the ID and returns precisely the requested column.
-
-It helps to trace the sample. The vote IDs point to candidates 2, 4, 3, 2, and 5. Grouping produces counts equivalent to `(2, 2)`, `(3, 1)`, `(4, 1)`, and `(5, 1)`, where each pair is candidate ID followed by count. Descending order places candidate 2 first; `LIMIT 1` keeps ID 2; and the join finds `Candidate.id = 2`, whose name is `B`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["Name"], "rows": [["B"]]}` |
+### Step 3: Join on `Candidate.id = 2`
+- Look up $id = 2$ in `Candidate`:
+  - `Name = "B"`
+- Result:
+  $$
+  \mathbf{\text{"B"}}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Candidate": [{"id": 1, "Name": "A"}, {"id": 2, "Name": "B"}, {"id": 3, "Name": "C"}, {"id": 4, "Name": "D"}, {"id": 5, "Name": "E"}], "Vote": [{"id": 1, "CandidateId": 2}, {"id": 2, "CandidateId": 4}, {"id": 3, "CandidateId": 3}, {"id": 4, "CandidateId": 2}, {"id": 5, "CandidateId": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["Name"], "rows": [["B"]]}` | Verified |
+| `CandidateId` | Individual Vote IDs | Total Tally | Rank in Plurality | Subquery Top 1 Output | Joined Name |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$2$** | $1, 4$ | **$2$** | **$1$ (Winner)** | **`id = 2`** | **`"B"`** |
+| $3$ | $3$ | $1$ | $2$ | Discarded | — |
+| $4$ | $2$ | $1$ | $2$ | Discarded | — |
+| $5$ | $5$ | $1$ | $2$ | Discarded | — |
+| **Result** | — | — | — | — | **`"B"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Vote Cast ($Vote$ has 1 row):** That single vote directly decides the winner $\implies$ projected in $O(1)$ time.
+- **Candidates with 0 Votes:** Do not appear in the `Vote` table; grouped tally focuses exclusively on cast ballots.
+- **Large Ballot Volume ($10^5$ votes):** Grouping via hash aggregation aggregates votes in a single linear scan of `Vote`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Aggregate first, then use `MAX`:** A second aggregation can compute the largest count, after which another join selects the group with that count. This avoids `LIMIT` but usually makes the query longer. It must still rely on the unique-winner guarantee or intentionally return every tied winner.
-- **Join names before grouping:** Joining `Vote` to `Candidate` first and grouping by candidate ID and name can also work. It carries name data through aggregation even though only the winning name is needed, so selecting the ID first keeps the intermediate relation narrower.
-- **Window-function ranking:** A count per candidate followed by `ROW_NUMBER` or `RANK` can express the ranking explicitly. It is valuable when tied winners need special handling, but it is more machinery than this unique-winner contract requires.
-- **Correlated count per candidate:** Counting votes separately for every candidate is easy to imagine but may repeatedly scan `Vote`, producing much more work than one grouped pass.
-- **Unique winner:** The lack of a secondary `ORDER BY` key is correct only because exactly one candidate has the largest count. If ties were allowed, `LIMIT 1` would arbitrarily choose one tied row unless the problem specified a tie rule.
-- **Candidates with no votes:** They are absent from the grouped subquery. That does not affect a nonempty election’s unique positive-count winner, and it avoids inventing zero-valued groups.
-- **Foreign-key integrity:** The inner join assumes every voted-for `CandidateId` exists in `Candidate`, exactly as the schema guarantees. Without that guarantee, an invalid winning ID could disappear during the join.
-- **Counting the right column:** `COUNT(id)` is safe because `Vote.id` is a non-`NULL` primary key. Counting a nullable column could undercount rows; `COUNT(*)` is the clearer general choice when nullability is uncertain.
-- **Output order:** Only one row is returned, so no final ordering is needed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Joining Before Grouping ($O(V \cdot C)$):** Joining `Vote` with `Candidate` before grouping duplicates candidate names across every ballot row, creating unnecessary string comparisons. Grouping integers first and joining only the single winner takes $O(1)$ join time.
+- **Forgetting `LIMIT 1`:** Omitting `LIMIT 1` returns every candidate sorted by votes, failing the expected single-value schema.
+- **Assuming Candidate IDs are 1-Indexed Sequential:** Candidates may have arbitrary unique integer IDs. Joining on `Candidate.id` ensures correct mapping.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let $V$ be the number of rows in `Vote`, let $C$ be the number of rows in `Candidate`, and let $G$ be the number of distinct candidate IDs that actually receive votes. We have $G \le C$ and $G \le V$.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $V$ be the number of votes and $C$ be the number of candidates.
+  - Grouping `Vote`: $\mathcal{O}(V)$ time.
+  - Sorting the $C$ candidate tallies: $\mathcal{O}(C \log C)$ (or $O(C)$ with top-1 min-heap).
+  - Joining the 1 winning row with `Candidate`: $\mathcal{O}(\log C)$ with primary key index.
+  - Total Time: $\mathcal{O}(V + C \log C)$. For $V = 10^5, C = 1000$, completes in $< 20$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(C)$ space to store the aggregated vote tallies.

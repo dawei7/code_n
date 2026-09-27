@@ -1,126 +1,131 @@
 # Guided Example: Divide Two Integers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step binary long division (exponential doubling via bit shifts) on a representative integer division instance:
 
-- **Input:** `{"dividend": 10, "divisor": 3}`
-- **Required output:** `3`
+- **Input:** $\text{dividend} = 10$, $\text{divisor} = 3$
+- **Required output:** $3$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates sign normalization, exponential doubling using bit shifts ($\text{divisor} \ll k$), subtracting powers-of-two multiples to compute the quotient in logarithmic time, and 32-bit overflow boundary clamping.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two integers `dividend` and `divisor`, divide two integers **without** using multiplication, division, and mod operator.
+Given two signed 32-bit integers $\text{dividend}$ and $\text{divisor}$, we must compute the truncated integer quotient $\lfloor \text{dividend} / \text{divisor} \rfloor$ strictly **without** using multiplication, division, or modulo operators ($*$, $/$, $\%$).
 
-The objective is to compute `3` from `{"dividend": 10, "divisor": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For $\text{dividend} = 10$ and $\text{divisor} = 3$:
+- Naive repeated subtraction ($10 - 3 - 3 - 3 = 1$) takes $O(\text{dividend})$ time. If $\text{dividend} = 2^{31}-1$ and $\text{divisor} = 1$, naive subtraction requires over $2$ billion operations, causing a Time Limit Exceeded error.
+- Binary long division doubles the divisor exponentially using bit shifts ($3 \times 2^1 = 6 \le 10$), subtracting the largest power-of-two multiple at each step. This computes the quotient in $O(\log^2(\text{dividend}))$ or $O(32) = O(1)$ bit operations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 32-Bit Overflow Edge Case
+The signed 32-bit integer range is $[-2^{31}, 2^{31}-1] = [-2147483648, 2147483647]$.
+There is exactly one case that overflows:
+$$
+\frac{-2^{31}}{-1} = 2^{31} = 2147483648 > 2^{31}-1
+$$
+This single edge case must be clamped to $2^{31}-1 = 2147483647$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Binary Exponential Subtraction
+Any quotient $Q$ can be decomposed into a unique sum of powers of two:
+$$
+Q = \sum_{k} 2^k \implies \text{dividend} = \sum_{k} (2^k \cdot \text{divisor}) + \text{remainder}
+$$
+1. **Sign Resolution:** The quotient is negative if and only if exactly one of $\text{dividend}$ or $\text{divisor}$ is negative:
+   $$
+   \text{is\_negative} = (\text{dividend} < 0) \oplus (\text{divisor} < 0)
+   $$
+2. **Exponential Doubling:** While $\text{current\_divisor} \ll 1 \le \text{remainder}$, double $\text{current\_divisor}$ and the power-of-two contribution.
+3. **Subtraction & Accumulation:** Subtract the largest doubled divisor from $\text{remainder}$ and add the power-of-two multiple to the quotient.
+4. **Repeat:** Continue until $\text{remainder} < \text{divisor}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At each step, $\text{dividend} = \text{quotient} \cdot \text{divisor} + \text{remainder}$, where $\text{remainder} \ge 0$ strictly decreases.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Replace division with subtraction of large doubled chunks
+We trace $\text{dividend} = 10$, $\text{divisor} = 3$:
 
-Division asks how many copies of `b` fit into `a`. Subtracting one copy at a time is correct but can require billions of iterations. The selected implementation repeatedly doubles the divisor with a left shift, finds the largest doubled copy that still fits, subtracts that whole chunk, and adds the corresponding power of two to the quotient.
-
-For example, fitting `3` into `10` can use the doubled chunk `6 = 2 * 3`, contributing two quotient units and leaving four. One more `3` contributes one unit, producing quotient three and remainder one. Ignoring the remainder implements truncation.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"dividend": 10, "divisor": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 0: Setup & Boundary Check
+- Check overflow: Not $(-2^{31}, -1)$.
+- Sign check: Both $10 > 0$ and $3 > 0 \implies \text{sign} = +1$.
+- Work with positive absolute values: $\text{rem} = 10$, $D = 3$.
+- Initial quotient: $Q = 0$.
 
 ---
 
-### Step 2: Work entirely with non-positive magnitudes
-
-Signed 32-bit integers range from $-2^{31}$ through $2^{31}-1$. There is no positive representation of the magnitude of $-2^{31}$ inside that same range. Converting everything to positive magnitudes can therefore overflow in a fixed-width environment.
-
-The source instead converts positive inputs to negative:
-
-
-
-Both working values are now zero or negative, and the full negative 32-bit range remains available. Python itself has arbitrary-precision integers, but this organization respects the intended fixed-width reasoning.
-
-`sign` is computed before conversion. It is true exactly when both original inputs have the same nonzero sign, which means the quotient should be nonnegative. A zero dividend makes `sign` false, but the accumulated answer is zero and `-0` is still zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: First Doubling Phase
+Find the largest multiple $D \cdot 2^k \le \text{rem} = 10$:
+- $k = 0$: $3 \cdot 2^0 = 3 \le 10$
+- $k = 1$: $3 \cdot 2^1 = 6 \le 10$
+- $k = 2$: $3 \cdot 2^2 = 12 > 10$ (exceeds remainder)
+- Largest fitting power: $k = 1$ with value $6$ ($3 \times 2^1$).
+- **Update:**
+  - Subtract chunk: $\text{rem} \leftarrow 10 - 6 = 4$.
+  - Add to quotient: $Q \leftarrow 0 + 2^1 = 2$.
 
 ---
 
-### Step 3: Handle the only overflowing quotient explicitly
+### Step 2: Second Doubling Phase
+Find the largest multiple $D \cdot 2^k \le \text{rem} = 4$:
+- $k = 0$: $3 \cdot 2^0 = 3 \le 4$
+- $k = 1$: $3 \cdot 2^1 = 6 > 4$ (exceeds remainder)
+- Largest fitting power: $k = 0$ with value $3$ ($3 \times 2^0$).
+- **Update:**
+  - Subtract chunk: $\text{rem} \leftarrow 4 - 3 = 1$.
+  - Add to quotient: $Q \leftarrow 2 + 2^0 = 3$.
 
-The quotient magnitude cannot exceed the dividend magnitude except for
+---
 
-$$
-\frac{-2^{31}}{-1}=2^{31},
-$$
-
-which lies one above the maximum signed 32-bit integer. The source returns $2^{31}-1$ for this pair before doing other work.
-
-The earlier `if b == 1: return a` is also safe and fast. Division by positive one never changes the value, including when `a` is $-2^{31}$. It does not intercept the overflowing negative-one case.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Termination
+- Remaining remainder $\text{rem} = 1 < D = 3$.
+- No further multiples of $3$ can be subtracted.
+- Apply sign: $+1 \cdot 3 = 3$.
+- Bounds check: $-2147483648 \le 3 \le 2147483647$.
+- Output: $3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"dividend": 10, "divisor": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Phase | Remainder Before | Subtracted Power Chunk | Chunk Numerical Value | Power $2^k$ Added | Updated Quotient $Q$ | Remainder After |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 10 | $3 \ll 1$ | 6 | $2^1 = 2$ | 2 | 4 |
+| 2 | 4 | $3 \ll 0$ | 3 | $2^0 = 1$ | **3** | 1 |
+| Terminal | 1 | None ($1 < 3$) | - | - | 3 | 1 (Discarded) |
+
+### Large Input Example: $\text{dividend} = 43, \text{divisor} = 3$
+
+| Phase | Remainder | Largest Fitting Chunk | Power Added | Accumulated Quotient |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | 43 | $3 \ll 3 = 24$ | $2^3 = 8$ | 8 |
+| 2 | $43 - 24 = 19$ | $3 \ll 2 = 12$ | $2^2 = 4$ | $8 + 4 = 12$ |
+| 3 | $19 - 12 = 7$ | $3 \ll 1 = 6$ | $2^1 = 2$ | $12 + 2 = 14$ |
+| 4 | $7 - 6 = 1$ | None ($1 < 3$) | - | **14** (Truncated) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** At every step, a quantity $2^k \cdot \text{divisor}$ is subtracted from the remainder, and $2^k$ is simultaneously added to the quotient. By distributive linearity, $\text{dividend} = Q \cdot \text{divisor} + \text{remainder}$. Because the loop halts when $0 \le \text{remainder} < \text{divisor}$, $Q$ is by definition the exact truncated quotient $\lfloor \text{dividend} / \text{divisor} \rfloor$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each doubling phase subtracts at least half of the remaining dividend magnitude. The remainder strictly decreases toward $0$ in at most $32$ iterations, ensuring guaranteed termination for all 32-bit integers.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Precompute all safe doubles:** Build divisor multiples once, then scan from largest to smallest. This guarantees $O(\log D)$ time but uses $O(\log D)$ storage.
-- **Find the largest double once and shift downward:** Reuse powers in descending order for $O(\log D)$ time and $O(1)$ auxiliary space.
-- **Repeated single subtraction:** Correct but takes $O(D)$ time when the divisor magnitude is one.
-- **Binary search for the quotient:** Possible with overflow-safe product checks, but those checks are more complex under the operator restrictions.
-- **Dividend zero:** The outer loop never executes and zero is returned.
-- **Divisor one:** The early return preserves every dividend exactly.
-- **Overflow pair:** `-2**31 / -1` is clamped to `2**31 - 1`.
-- **Same signs:** `sign` is true and the nonnegative count is returned.
-- **Opposite signs:** The accumulated magnitude is negated, implementing truncation toward zero.
-- **Remainder:** It is deliberately ignored when its magnitude becomes smaller than the divisor.
-- **No multiplication or division:** Shifts perform doubling, and subtraction removes chunks; the mathematical multiplication notation is explanatory only.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **32-Bit Overflow Asymmetry:** In two's complement representation, the negative range $[-2^{31}]$ has one more value than the positive range $[2^{31}-1]$. Dividing $-2^{31}$ by $-1$ results in $2^{31}$, which cannot fit in a signed 32-bit integer. Explicit clamping to $2^{31}-1$ is required.
+- **Divisor Equal to 1 or -1:** Dividing by $1$ or $-1$ can be checked early to bypass the bit-shift loop entirely.
+- **Bit Shift Precedence:** In Python and C++, addition has higher precedence than bitwise shifts (`3 << 1 + 1` evaluates as `3 << 2 = 12`, not `(3 << 1) + 1 = 7`). Explicit parentheses around shifts are mandatory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log^2 D)$. Let $D=\lvert\texttt{dividend}\rvert$ and assume a nonzero divisor.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(\log^2(\text{dividend}))$ for nested doubling, or $O(\log(\text{dividend}))$ using a single decreasing shift from 31 down to 0. Since the input is bounded by 32 bits, the loop executes at most 32 times, running in strictly $O(1)$ constant time.
+- **Auxiliary Space Complexity:** $O(1)$. Memory is limited to a few 64-bit integer registers for remainder and quotient tracking.

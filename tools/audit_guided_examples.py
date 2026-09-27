@@ -13,6 +13,16 @@ BOILERPLATE_MARKERS = (
     "Primary Index / Cursor | Tracks current position",
     "Accumulator / Table | Maintains confirmed results",
     "monotone order or invariant state accumulator that advances deterministically",
+    "Tracks active elements, frontier indices, or DP table cells",
+    "Preserves confirmed optimal sub-answers or counts",
+    "Apply initial state rule | Initialized",
+    "Anchors recurrence",
+    "Combines previously solved subproblems",
+    "Yields global result",
+    "Transitions from prior valid states",
+    "Base definition | Initialized | Base condition set",
+    "Optimal combination | Stored | Monotonic progress",
+    "Target Answer | Completed",
 )
 
 FORBIDDEN_CODE_PATTERNS = [
@@ -37,8 +47,11 @@ def audit() -> int:
     code_leaks = []
     missing_sections = []
 
+    target_filter = sys.argv[1:]
     for pkg in sorted(leetcode_dir.iterdir()):
         if not pkg.is_dir() or not (pkg / "metadata.json").is_file():
+            continue
+        if target_filter and not any(t in pkg.name for t in target_filter):
             continue
 
         total_packages += 1

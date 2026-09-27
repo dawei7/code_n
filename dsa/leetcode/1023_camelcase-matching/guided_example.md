@@ -1,133 +1,185 @@
 # Guided Example: Camelcase Matching
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of two-pointer constrained subsequence matching, prove the Uppercase Conservation Lemma and the Greedy Earliest Alignment Theorem, and determine pattern validity across representative CamelCase queries:
 
-- **Input:** `{"queries": ["AbC", "AblueC", "AbcC"], "pattern": "AbC"}`
-- **Required output:** `[true, true, true]`
+- **Representative Instance 1 (Queries with Mixed Uppercase Skeletons):**
+  $$
+  queries = [\text{"FooBar"}, \; \text{"FooBarTest"}, \; \text{"FootBall"}], \quad pattern = \text{"FB"}
+  $$
+- **Required Output:** `[true, false, true]`
+  - CamelCase derivation rule:
+    - A query $s$ matches pattern $t$ if and only if $s$ can be formed by inserting **only lowercase letters** into $t$.
+    - Equivalent formulation:
+      1. $t$ is a subsequence of $s$.
+      2. Every character in $s$ that is **not part of the matched subsequence** MUST be lowercase.
+      3. No extra uppercase letters may exist anywhere in $s$.
+  - Evaluation of queries against $t = \text{"FB"}$:
+    1. **Query $s = \text{"FooBar"}$:**
+       - Match $t[0] = \text{'F'}$:
+         - $s[0] = \text{'F'}$. Match! Advance $i = 1, j = 1$.
+       - Match $t[1] = \text{'B'}$:
+         - $s[1] = \text{'o'}$: lowercase mismatch $\implies$ skip ($i = 2$).
+         - $s[2] = \text{'o'}$: lowercase mismatch $\implies$ skip ($i = 3$).
+         - $s[3] = \text{'B'}$: Match! Advance $i = 4, j = 2$ ($t$ fully matched).
+       - Check trailing suffix of $s$ ($i = 4 \dots 5$):
+         - $s[4] = \text{'a'}$: lowercase $\implies$ skip ($i = 5$).
+         - $s[5] = \text{'r'}$: lowercase $\implies$ skip ($i = 6$).
+       - Reached end of $s$ with zero leftover uppercase $\implies \mathbf{true}$.
+    2. **Query $s = \text{"FooBarTest"}$:**
+       - Matches `'F'` at $s[0]$ and `'B'` at $s[3]$.
+       - Trailing suffix contains $\text{"Test"}$:
+         - $s[6] = \text{'T'}$ is **UPPERCASE**!
+         - Uppercase insertion is strictly forbidden $\implies \mathbf{false}$.
+    3. **Query $s = \text{"FootBall"}$:**
+       - Matches `'F'` at $s[0]$ and `'B'` at $s[4]$.
+       - All unconsumed characters (`'o'`, `'o'`, `'t'`, `'a'`, `'l'`, `'l'`) are lowercase.
+       - Valid match $\implies \mathbf{true}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Extra Uppercase Blocks Early):**
+  $$
+  queries = [\text{"AbC"}, \; \text{"AbXC"}], \quad pattern = \text{"AbC"}
+  $$
+  - Query `"AbC"` matches exactly $\implies \mathbf{true}$.
+  - Query `"AbXC"`: After `'A'` and `'b'`, encounters `'X'` (uppercase) which does not match `'C'` $\implies \mathbf{false}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `queries` and a string `pattern`, return a boolean array `answer` where $\text{answer}[i]$ is `true` if $\text{queries}[i]$ matches `pattern`, and `false` otherwise.
+Given an array of strings `queries` and a string `pattern`, return a boolean array `answer` where `answer[i] = true` if `queries[i]` matches `pattern`.
+A query matches `pattern` if lowercase letters can be inserted into `pattern` so that it equals `queries[i]`.
 
-The objective is to compute `[true, true, true]` from `{"queries": ["AbC", "AblueC", "AbcC"], "pattern": "AbC"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Pure Subsequence Flaw:
+  Testing whether pattern is a subsequence of query:
+    "FB" is a subsequence of "FooBarTest" (F...B...T).
+  Returning True would be WRONG! 'T' is an unmatchable uppercase letter.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Two-Pointer Lowercase Skip Invariant:
+  Pointers i (query s) and j (pattern t):
+  - While j < len(t):
+      Skip lowercase characters in s:
+        while i < len(s) and s[i] != t[j] and s[i].islower(): i += 1
+      If i == len(s) or s[i] != t[j]:
+        Return False (either exhausted, or hit an illegal uppercase character!)
+      Consume both: i += 1, j += 1
+  - Skip trailing lowercase characters in s.
+  - Return True iff i == len(s).
+```
 
----
+Checking uppercase letter counts alone is insufficient when the pattern contains lowercase letters (e.g., `pattern = "FoBa"`).
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate insertion into a constrained subsequence test
-
-A query matches the pattern when it can be created by inserting lowercase letters into the pattern. Looking in the opposite direction, the original pattern characters must appear in the query in the same order, and every query character not used for that match must be lowercase.
-
-The first requirement resembles an ordinary subsequence check. The second requirement is the crucial extra rule. An unmatched lowercase letter may be explained as an insertion, but an unmatched uppercase letter cannot. Therefore, the algorithm may skip lowercase query characters while searching for the next pattern character, but it must reject immediately when a different uppercase character blocks the search.
-
-The helper `check(s, t)` treats `s` as one query and `t` as the pattern. The pointer `i` is the next unprocessed position in `s`, while `j` is the next unmatched position in `t`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"queries": ["AbC", "AblueC", "AbcC"], "pattern": "AbC"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Constrained Subsequence Alignment & Uppercase Invariant**:
+1. **Uppercase Conservation:** Every uppercase letter in the query $s$ must be consumed by an exact match in $t$. Any unconsumed uppercase letter immediately renders the query invalid.
+2. **Greedy Earliest Match:** When searching for $t[j]$, skipping lowercase letters is always valid. Matching the earliest occurrence of $t[j]$ maximizes the remaining suffix of $s$ for future pattern characters.
+3. **Suffix Cleanliness:** Once all pattern characters are consumed, the remaining suffix of $s$ must consist exclusively of lowercase letters.
+4. Completes in linear time $\mathcal{O}(Q \cdot (|s| + |t|))$ and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
-### Step 2: How the inner loop searches safely
+## 2. Conceptual Foundation & The Two-Pointer Invariant
 
-While a pattern character remains, the code runs:
+```mermaid
+flowchart TD
+    accTitle: Camelcase Matching Two Pointer Pipeline
+    accDescr: Flowchart illustrating matching pattern characters against query while skipping lowercase and rejecting uppercase mismatches
+    Start["check(s, t): i = 0, j = 0"] --> LoopJ{"j < len(t) ?"}
+    LoopJ -->|"Yes"| SkipLower["While i < len(s) and s[i] != t[j] and s[i].islower():\n  i += 1 (Skip legal lowercase insertions)"]
+    SkipLower --> CheckMatch{"i < len(s) AND s[i] == t[j] ?"}
+    CheckMatch -->|"No: Blocked by uppercase or end"| RetFalse["Return False\n(Illegal uppercase or missing pattern char)"]
+    CheckMatch -->|"Yes: Exact match"| Advance["i += 1, j += 1\n(Consume matched character)"]
+    Advance --> LoopJ
+    LoopJ -->|"Pattern exhausted (j == len(t))"| SkipSuffix["While i < len(s) and s[i].islower():\n  i += 1 (Skip trailing lowercase)"]
+    SkipSuffix --> CheckComplete{"i == len(s) ?"}
+    CheckComplete -->|"Yes"| RetTrue["Return True\n(All query characters accounted for)"]
+    CheckComplete -->|"No (Found uppercase)"| RetFalse
+```
 
-`while i < m and s[i] != t[j] and s[i].islower(): i += 1`.
+### The Uppercase Conservation & Alignment Theorem
 
-This skips a query character only when all three facts hold:
-
-- The query still has a character.
-- That character does not match the required pattern character.
-- The query character is lowercase.
-
-Such a character can legally be one of the lowercase insertions, so discarding it loses no valid match.
-
-The loop stops for one of three reasons. It may find `s[i] == t[j]`, it may reach the end of the query, or it may encounter a mismatching uppercase character. Only the first reason is successful.
-
-The next condition, `if i == m or s[i] != t[j]: return false`, distinguishes those cases. Reaching the end means the required pattern character is absent. A mismatch while still inside the query means the current query character must be uppercase because mismatching lowercase letters would have been skipped. That uppercase letter cannot be inserted, and it does not equal the required pattern character, so no legal alignment can pass it.
-
-When the characters match, `i, j = i + 1, j + 1` consumes both. Pattern characters cannot be reordered or reused, and this simultaneous advance preserves their required left-to-right order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $s$ be a query string and $t$ be the pattern.
+1. **Formal Derivation Definition:**
+   A string $s$ is derivable from $t$ via lowercase insertions if and only if there exists a strictly increasing index mapping $f: \{0, 1, \dots, |t|-1\} \to \{0, 1, \dots, |s|-1\}$ such that:
+   - $s[f(j)] = t[j]$ for all $j \in [0, |t|-1]$.
+   - For every index $k \notin \text{Im}(f)$, $s[k]$ is a lowercase English letter: $s[k] \in ['a', \dots, 'z']$.
+2. **The Uppercase Monomorphism Lemma:**
+   Let $U(w)$ be the subsequence of uppercase characters in string $w$.
+   If $s$ is derivable from $t$ via lowercase insertions, then $U(s) = U(t)$.
+   Any uppercase character in $s$ not matched to an identical uppercase character in $t$ violates derivability.
+3. **Greedy Earliest-Match Lemma:**
+   Suppose $s$ is derivable from $t$. Let $i_0$ be the smallest index $\ge i$ such that $s[i_0] = t[j]$ and all skipped characters $s[i \dots i_0 - 1]$ are lowercase.
+   Matching $t[j]$ at $i_0$ leaves the largest possible remaining suffix $s[i_0 + 1 \dots |s|-1]$ to match the remaining pattern $t[j + 1 \dots |t|-1]$.
+   Therefore, the earliest valid match never eliminates any viable completion.
+4. **Deterministic Single-Pass Verification:**
+   Because the earliest match is optimal, no backtracking is needed. The two-pointer procedure deterministically proves or disproves derivability in $\mathcal{O}(|s| + |t|)$ steps. $\blacksquare$
 
 ---
 
-### Step 3: Why greedily taking the first match is safe
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-When `s[i] == t[j]`, the helper immediately pairs them instead of searching for a later copy. This earliest-match choice cannot destroy a solution. A later occurrence would leave the current matching query character unused. If the current character is uppercase, leaving it unused is illegal. If it is lowercase, matching it earlier only leaves a longer suffix in which to match the remaining pattern, never a shorter one.
+$s = \text{"FooBar"}, \; t = \text{"FB"}$.
+$m = 6, \; n = 2$.
+Initialize $i = 0, \; j = 0$.
 
-Thus, among all legal alignments, using the earliest available exact match is always at least as flexible as postponing the match. No backtracking or dynamic programming is needed.
+### Character Scan Trace
+1. **Match $t[0] = \text{'F'}$ ($j = 0$):**
+   - $i = 0: s[0] = \text{'F'}$.
+   - Skips: 0. Condition $s[0] == t[0]$ satisfied.
+   - Advance: $i \leftarrow 1, \; j \leftarrow 1$.
+2. **Match $t[1] = \text{'B'}$ ($j = 1$):**
+   - $i = 1: s[1] = \text{'o'}$ (lowercase $\implies i \leftarrow 2$).
+   - $i = 2: s[2] = \text{'o'}$ (lowercase $\implies i \leftarrow 3$).
+   - $i = 3: s[3] = \text{'B'} == t[1]$.
+   - Advance: $i \leftarrow 4, \; j \leftarrow 2$.
+3. **Pattern Finished ($j = 2 == n$):**
+   - Suffix scan:
+     - $i = 4: s[4] = \text{'a'}$ (lowercase $\implies i \leftarrow 5$).
+     - $i = 5: s[5] = \text{'r'}$ (lowercase $\implies i \leftarrow 6$).
+   - Check completion: $i == 6 == m \implies \mathbf{True}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, true, true]` |
+Output for `"FooBar"`: `True`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Pointer Alignment and Character State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"queries": ["AbC", "AblueC", "AbcC"], "pattern": "AbC"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, true, true]` | Verified |
+| Query Index $i$ | Character $s[i]$ | Pattern Index $j$ | Target $t[j]$ | Character Class | Action / Decision | Resulting $(i, j)$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | `'F'` | $0$ | `'F'` | Uppercase | **Exact Match** | $(1, 1)$ |
+| **$1$** | `'o'` | $1$ | `'B'` | Lowercase | Skip insertion | $(2, 1)$ |
+| **$2$** | `'o'` | $1$ | `'B'` | Lowercase | Skip insertion | $(3, 1)$ |
+| **$3$** | `'B'` | $1$ | `'B'` | Uppercase | **Exact Match** | $(4, 2)$ |
+| **$4$** | `'a'` | — | — | Lowercase | Skip suffix insertion | $(5, 2)$ |
+| **$5$** | `'r'` | — | — | Lowercase | Skip suffix insertion | $(6, 2)$ |
+| **Terminal**| End | $2$ | Complete | — | **$i == m \implies \mathbf{True}$** | $(6, 2)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A query is declared `True` only when all pattern characters are matched in sequence and every unconsumed character is verified to be lowercase. No illegal uppercase insertions are permitted.
+2. **Completeness:**
+   By the Greedy Earliest-Match Lemma, advancing to the first available match preserves all remaining valid alignments. No valid query can be falsely rejected.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Ordinary subsequence matching:** Checking only whether `pattern` is a subsequence of a query is insufficient because it would skip unmatched uppercase letters. The lowercase-only insertion restriction must be enforced.
-- **Delete lowercase letters and compare uppercase skeletons:** Matching the uppercase sequences is necessary but not sufficient when the pattern itself contains lowercase letters. The exact positions and order of every pattern character still matter.
-- **Regular expression construction:** One could place a lowercase-letter wildcard around pattern characters, but escaping and anchoring are easy to mishandle, and a two-pointer scan is simpler and strictly linear.
-- **Dynamic programming:** A table over query and pattern positions can model skip-or-match choices, but lowercase skips and forced uppercase matches make the greedy earliest-match argument sufficient. DP adds `O(MP)` time or space without benefit.
-- **Backtracking over repeated lowercase letters:** Trying every occurrence of a pattern character is unnecessary. Matching the earliest occurrence leaves the largest possible suffix and is always safe.
-- **Exact equality:** If query and pattern are identical, every character matches in order, both pointers finish together, and the result is true.
-- **All-lowercase additions:** Extra lowercase letters may appear before, between, or after pattern characters. Both loops allow precisely those insertions.
-- **Unexpected uppercase before a needed character:** It causes immediate failure even if the needed character appears later, because that uppercase character cannot be explained as an insertion.
-- **Unexpected uppercase after the pattern:** The trailing loop stops and returns false, preventing a plain-subsequence false positive.
-- **Lowercase pattern characters:** They must be matched exactly and in order. Other lowercase query characters may be skipped around them.
-- **Pattern containing uppercase and lowercase:** Character case is part of equality. Lowercase `f` never matches uppercase `F`, and uppercase mismatches cannot be skipped.
-- **Repeated characters:** The earliest matching occurrence is consumed. This is safe because pointers only need to preserve order, and earlier consumption leaves at least as much suffix for later pattern characters.
-- **One-character pattern:** The method finds that exact character, rejects any blocking uppercase before it, and then requires every remaining query character to be lowercase.
-- **Nonempty contract:** Both queries and pattern contain at least one character, so the exact code does not need a special empty-pattern branch. Its trailing logic would still describe the right restriction for an empty pattern: only all-lowercase queries could match.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Unmatched Trailing Uppercase | $s = \text{"FooBarTest"}, t = \text{"FB"}$ | Suffix scan encounters `'T'`; returns `False`. | Treating pattern match as complete without checking suffix. |
+| Intervening Uppercase | $s = \text{"ForceFeedBack"}, t = \text{"FB"}$ | Second `'F'` is encountered while expecting `'B'`; returns `False`. | Skipping uppercase characters. |
+| Mixed-Case Pattern | $s = \text{"FooBar"}, t = \text{"FoBa"}$ | Matches `'F'`, skips `'o'`, matches `'o'`, matches `'B'`, matches `'a'`; returns `True`. | Assuming pattern only contains uppercase letters. |
+| Identical Strings | $s = \text{"AbC"}, t = \text{"AbC"}$ | 1:1 match with zero skips; returns `True`. | Off-by-one pointer bounds. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S)$. For one query of length `M` and a pattern of length `P`, pointer `i` only moves forward and advances at most `M` times. Pointer `j` advances at most `P` times. Neither pointer ever retreats, so the helper takes `O(M + P)` time rather than multiplying the two lengths.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(Q \cdot (|s| + |t|))$, where $Q = \text{len}(queries) \le 100$, $|s| \le 100$, and $|t| \le 100$.
+  - For each query, pointers $i$ and $j$ move monotonically forward without backtracking.
+  - Number of operations per query is at most $|s| + |t| \le 200$.
+  - Total runtime across 100 queries: $\le 2 \times 10^4 \implies < 0.002\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; operates in-place using two scalar pointer registers.

@@ -1,127 +1,260 @@
 # Guided Example: Solve the Equation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step equality boundary partitioning (splitting at `'='`), signed polynomial token parsing (`+` and `-` delimiters), variable coefficient aggregation ($x$-terms) and scalar constant summation, linear canonical reduction ($(x_1 - x_2)x = (y_2 - y_1)$), singularity classification (zero coefficient with zero vs non-zero constant), and unique root isolation on representative linear algebraic equations:
 
-- **Input:** `{"equation": "x+5-3+x=6+x-2"}`
-- **Required output:** `"x=2"`
+- **Input:** $equation = \text{"x+5-3+x=6+x-2"}$
+- **Required output:** `\text{"x=2"}`
+  - Problem contract:
+    - Solve for the single variable $x$.
+    - If the equation has a unique integer solution $v$, return formatted as `"x=v"`.
+    - If the equation is an identity valid for all $x$, return `"Infinite solutions"`.
+    - If the equation produces a contradiction (e.g. $0 = 5$), return `"No solution"`.
+- **Linear Canonical Reduction Architecture:**
+  - Any linear equation in one variable reduces to the standard algebraic form:
+    $$
+    A x = B
+    $$
+  - **Parsing Subroutine ($f(side)$):**
+    - Ensure a leading sign: if the expression does not begin with `'-'`, prepend `'+'`.
+    - Parse tokens delimited by sign markers (`'+'` or `'-'`).
+    - For each token of the form $\pm V$:
+      - If $V$ ends with `'x'`:
+        - If $V == \text{'x'}$, coefficient is $\pm 1$.
+        - Otherwise, coefficient is $\pm int(V[:-1])$.
+        - Accumulate into variable coefficient $x_{side}$.
+      - If $V$ does not contain `'x'`:
+        - Accumulate into constant sum $y_{side}$.
+    - Each side transforms into a linear polynomial:
+      $$
+      \text{Left} = x_1 x + y_1, \quad \text{Right} = x_2 x + y_2
+      $$
+  - **Rearrangement and Classification:**
+    $$
+    (x_1 - x_2) x = y_2 - y_1
+    $$
+    - Let $\Delta x = x_1 - x_2$ and $\Delta y = y_2 - y_1$.
+    - **Classification Rules:**
+      1. If $\Delta x == 0$ and $\Delta y == 0$: Identity ($0 \cdot x = 0$) $\implies$ **`"Infinite solutions"`**.
+      2. If $\Delta x == 0$ and $\Delta y \ne 0$: Contradiction ($0 \cdot x = \text{non-zero}$) $\implies$ **`"No solution"`**.
+      3. If $\Delta x \ne 0$: Unique solution $\implies x = \frac{\Delta y}{\Delta x} \implies$ **`"x=" + str(x)`**.
+- **Step-by-Step Worked Execution Trace on $\text{"x+5-3+x=6+x-2"}$:**
+  - Split around `'='`:
+    $$
+    \text{Left} = \text{"x+5-3+x"}, \quad \text{Right} = \text{"6+x-2"}
+    $$
+  - **Step 1: Parse Left Side ($\text{"x+5-3+x"}$):**
+    - Add leading `'+'`: `"+x+5-3+x"`.
+    - Token 1: `+x` $\implies$ variable term with implicit coefficient $1$:
+      $$
+      x_1 \leftarrow 0 + 1 = \mathbf{1}
+      $$
+    - Token 2: `+5` $\implies$ constant term $+5$:
+      $$
+      y_1 \leftarrow 0 + 5 = \mathbf{5}
+      $$
+    - Token 3: `-3` $\implies$ constant term $-3$:
+      $$
+      y_1 \leftarrow 5 - 3 = \mathbf{2}
+      $$
+    - Token 4: `+x` $\implies$ variable term $+1$:
+      $$
+      x_1 \leftarrow 1 + 1 = \mathbf{2}
+      $$
+    - Result for Left:
+      $$
+      2x + 2 \quad (x_1 = 2, \; y_1 = 2)
+      $$
+  - **Step 2: Parse Right Side ($\text{"6+x-2"}$):**
+    - Add leading `'+'`: `"+6+x-2"`.
+    - Token 1: `+6` $\implies$ constant $+6$:
+      $$
+      y_2 \leftarrow 0 + 6 = \mathbf{6}
+      $$
+    - Token 2: `+x` $\implies$ variable term $+1$:
+      $$
+      x_2 \leftarrow 0 + 1 = \mathbf{1}
+      $$
+    - Token 3: `-2` $\implies$ constant $-2$:
+      $$
+      y_2 \leftarrow 6 - 2 = \mathbf{4}
+      $$
+    - Result for Right:
+      $$
+      1x + 4 \quad (x_2 = 1, \; y_2 = 4)
+      $$
+  - **Step 3: Collect Terms and Solve:**
+    - Variable coefficient delta:
+      $$
+      \Delta x = x_1 - x_2 = 2 - 1 = \mathbf{1}
+      $$
+    - Constant value delta:
+      $$
+      \Delta y = y_2 - y_1 = 4 - 2 = \mathbf{2}
+      $$
+    - Equation in canonical form:
+      $$
+      1 \cdot x = 2
+      $$
+    - Check coefficient: $\Delta x = 1 \ne 0 \implies$ Unique root exists!
+    - Solve for $x$:
+      $$
+      x = \frac{\Delta y}{\Delta x} = \frac{2}{1} = \mathbf{2}
+      $$
+    - Format output:
+      $$
+      \mathbf{\text{"x=2"}}
+      $$
+- **Identity Equation Instance ($equation = \text{"x=x"}$):**
+  - Left: $1x + 0$. Right: $1x + 0$.
+  - $\Delta x = 1 - 1 = 0$.
+  - $\Delta y = 0 - 0 = 0$.
+  - Both deltas are 0 $\implies$ Returns **`"Infinite solutions"`**.
+- **Contradiction Instance ($equation = \text{"x=x+2"}$):**
+  - Left: $1x + 0$. Right: $1x + 2$.
+  - $\Delta x = 1 - 1 = 0$.
+  - $\Delta y = 2 - 0 = 2 \ne 0$.
+  - $0 \cdot x = 2$ is impossible $\implies$ Returns **`"No solution"`**.
+- **Zero Root Instance ($equation = \text{"2x=x"}$):**
+  - $\Delta x = 2 - 1 = 1, \; \Delta y = 0 - 0 = 0$.
+  - $x = 0 / 1 = 0 \implies$ Returns **`"x=0"`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates tokenized lexical analysis and linear Diophantine canonical reduction, mathematically proves why coefficient degeneracy partitions solutions into empty vs affine subspaces, and derives $O(L)$ runtime and $O(L)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Solve a given equation and return the value of `'x'` in the form of a string `"x=#value"`. The equation contains only `'+'`, `'-'` operation, the variable `'x'` and its coefficient. You should return `"No solution"` if there is no solution for the equation, or `"Infinite solutions"` if there are infinite solutions for the equation.
+Given an equation string containing numbers, $x$, `+`, `-`, and `=`:
+Solve for $x$.
+Return `"x=value"`, `"Infinite solutions"`, or `"No solution"`.
 
-The objective is to compute `"x=2"` from `{"equation": "x+5-3+x=6+x-2"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+x + 5 - 3 + x = 6 + x - 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Left side:
+  x + x = 2x
+  5 - 3 = 2
+  Left = 2x + 2
+
+Right side:
+  x = 1x
+  6 - 2 = 4
+  Right = 1x + 4
+
+Equation:
+  2x + 2 = 1x + 4
+  (2 - 1)x = 4 - 2
+  1x = 2  ->  x = 2
+
+Result: "x=2"
+```
+
+### The Invariant of the Linear Canonical Form
+- Every valid linear equation reduces to:
+  $$
+  A \cdot x = B
+  $$
+- The solution space is completely determined by the pair $(A, B)$:
+  - $A \ne 0 \implies$ exactly one solution $x = B / A$.
+  - $A == 0$ and $B == 0 \implies$ infinitely many solutions.
+  - $A == 0$ and $B \ne 0 \implies$ zero solutions (impossible).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Token Sign Attachment:
+Every term starts with an explicit sign `+` or `-`:
+- `"+5"` $\implies$ scalar $+5$.
+- `"+x"` $\implies$ variable $+1 \cdot x$.
+- `"-3x"` $\implies$ variable $-3 \cdot x$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Solving Form:
+$$
+\Delta x = x_{left} - x_{right}, \quad \Delta y = y_{right} - y_{left}
+$$
+$$
+x = \frac{\Delta y}{\Delta x}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Affine Rank Invariant.** A 1D affine map $T(x) = Ax - B$ has $\ker(T) = \mathbb{R}$ if and only if $\text{rank}([A \mid B]) = 0$, has $\ker(T) = \emptyset$ if $\text{rank}(A) = 0 < \text{rank}([A \mid B])$, and has $|\ker(T)| = 1$ when $\text{rank}(A) = 1$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reduce each side to one coefficient and one constant
-
-Every allowed term is either a constant integer or a multiple of `x`. Addition and subtraction are the only operations joining terms. Therefore, regardless of how many terms a side contains, that side can always be simplified to:
-
-`coefficient * x + constant`.
-
-The helper `f(s)` performs exactly that simplification. It returns a pair `(x, y)`, where `x` is the accumulated coefficient of the variable and `y` is the accumulated constant. The local variable named `x` is a number here; it is not the unknown itself.
-
-For example, the side `x+5-3+x` simplifies as follows:
-
-- `x` contributes one to the coefficient;
-- `+5` contributes five to the constant;
-- `-3` contributes negative three to the constant;
-- `+x` contributes one more to the coefficient.
-
-The returned pair is therefore `(2, 2)`, representing `2x + 2`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"equation": "x+5-3+x=6+x-2"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $equation = \text{"x+5-3+x=6+x-2"}$:
 
 ---
 
-### Step 2: Normalize the first term so every term has an explicit sign
-
-Terms after the first naturally begin after a plus or minus sign, but the first term may have no leading sign. The parser makes the treatment uniform: if the side does not start with minus, it prepends plus.
-
-After this normalization, the character at the current index is always a sign. The parser records `+1` for plus or `-1` for minus, advances past the sign, and scans forward until the next plus, the next minus, or the end of the side. The substring between those boundaries is exactly one unsigned term.
-
-This design avoids special cases such as “if this is the first term.” A leading negative term already has its sign and is left unchanged; a leading positive term gains the explicit plus that later logic expects.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Split Sides
+- Left: `"x+5-3+x"`.
+- Right: `"6+x-2"`.
 
 ---
 
-### Step 3: Classify a term by its last character
+### Step 2: Sum Left Side
+- `+x`: $+1x$.
+- `+5`: $+5$.
+- `-3`: $-3$.
+- `+x`: $+1x$.
+- $x_1 = 2, y_1 = 2 \implies 2x + 2$.
 
-The permitted syntax makes term classification simple. If a term ends in `x`, it is a variable term. Otherwise, it is a constant.
+---
 
-For a variable term:
+### Step 3: Sum Right Side
+- `+6`: $+6$.
+- `+x`: $+1x$.
+- `-2`: $-2$.
+- $x_2 = 1, y_2 = 4 \implies 1x + 4$.
 
-- `x` has an omitted coefficient, which means one;
-- `2x` has coefficient two;
-- the separately parsed sign makes `-x` contribute negative one and `-12x` contribute negative twelve.
+---
 
-The parser checks the term length. If the term consists only of `x`, it uses coefficient one. Otherwise, it converts the portion before the final `x` to an integer. It multiplies the coefficient by the saved sign and adds it to the coefficient total.
-
-For a constant term, it converts the entire term to an integer, multiplies by the sign, and adds it to the constant total.
-
-Because signs are handled outside the term text, integer conversion never has to interpret an embedded plus or minus.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"x=2"` |
+### Step 4: Solve
+- $\Delta x = 2 - 1 = 1$.
+- $\Delta y = 4 - 2 = 2$.
+- $x = 2 / 1 = \mathbf{2}$.
+- Output: **`"x=2"`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"equation": "x+5-3+x=6+x-2"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"x=2"` | Verified |
+| Token Parsed | Side | Sign | Magnitude / Term | Variable Impact | Constant Impact | Running Polynomial |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `+x` | Left | $+$ | `x` | $+1$ | $0$ | $1x + 0$ |
+| `+5` | Left | $+$ | `5` | $0$ | $+5$ | $1x + 5$ |
+| `-3` | Left | $-$ | `3` | $0$ | $-3$ | $1x + 2$ |
+| `+x` | Left | $+$ | `x` | $+1$ | $0$ | **$2x + 2$** |
+| `+6` | Right | $+$ | `6` | $0$ | $+6$ | $0x + 6$ |
+| `+x` | Right | $+$ | `x` | $+1$ | $0$ | $1x + 6$ |
+| `-2` | Right | $-$ | `2` | $0$ | $-2$ | **$1x + 4$** |
+| **System** | $(2 - 1)x = 4 - 2$ | — | $1x = 2$ | — | — | **`"x=2"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Implicit Coefficient (`"x"` or `"-x"`):** Magnitude defaults to $1$ (coefficient $+1$ or $-1$), not $0$.
+- **Negative Answers (`"x+2=0"`):** Returns `"x=-2"`.
+- **Zero Solution (`"2x=x"`):** Returns `"x=0"`.
+- **Zero Coincident (`"0x=0"`):** Returns `"Infinite solutions"`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Evaluate the entire equation in one pass:** Maintain a side multiplier of plus one before `=` and negative one after it, then accumulate all variable coefficients and constants into one reduced equation. This avoids parsing the two sides separately and can avoid side-string copies, but requires careful sign composition.
-- **Regular-expression tokenization:** A pattern can extract signed terms concisely. It still takes linear time, but it hides some of the parsing logic, allocates match objects, and is easier to get wrong around omitted coefficients such as `x` and `-x`.
-- **Symbolic algebra library:** A general solver is far more powerful than needed and introduces substantial overhead. The restricted one-variable linear grammar reduces to two integer totals directly.
+- **Parsing `"x"` as 0:** Missing the implicit coefficient $1$ when no number precedes `'x'` produces coefficient 0 instead of 1.
+- **Handling Multi-Digit Coefficients (`"10x"`):** Slicing only one character before `'x'` fails on multi-digit numbers like `100x`. Slice $V[:-1]$ to capture all digits.
+- **Integer Truncation on Division:** The problem guarantees integer solutions when a unique solution exists, so integer division `\Delta y // \Delta x` is exact.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N` be the total number of characters in the equation. The equation is split once, and each character in each side is scanned a constant number of times. Parsing terms and accumulating their contributions therefore takes `O(N)` time overall. Python's integer conversions process the term digits; summed across all terms, those digits are still bounded by `N` under the standard fixed-width-value model used for this problem.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Splitting and scanning string of length $L$: $\mathcal{O}(L)$ operations.
+  - Linear equation arithmetic: $\mathcal{O}(1)$.
+  - Total Time: strictly linear $\mathcal{O}(L)$. Completes in $< 1$ ms for $L \le 100$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(L)$ space to store tokens during parsing.

@@ -1,118 +1,153 @@
 # Guided Example: Strobogrammatic Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 180-degree glyph rotation mapping, two-pointer inward mirror matching, and center self-symmetry validation on representative numeric strings:
 
-- **Input:** `{"num": "69"}`
-- **Required output:** `true`
+- **Input:** $\text{num} = \text{"69"}$
+- **Required output:** `true` (Rotated 180 degrees: the first digit `'6'` turns into `'9'` at the end, and the second digit `'9'` turns into `'6'` at the start $\implies \text{"69"}$)
+- **Self-Symmetric Instance:** $\text{num} = \text{"88"} \implies \text{true}$ (Both `'8'`s rotate into themselves)
+- **Invalid Digit Instance:** $\text{num} = \text{"962"} \implies \text{false}$ (Digit `'2'` is unreadable when inverted 180 degrees)
+- **Odd Length Valid Instance:** $\text{num} = \text{"818"} \implies \text{true}$ (Center element `'1'` is self-symmetric)
+- **Odd Length Center Mismatch:** $\text{num} = \text{"696"} \implies \text{false}$ (Center element `'9'` rotates to $\text{'6'} \ne \text{'9'}$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates 180-degree rotational symmetry on decimal glyphs, identifies the five valid invertible digits ($\{0, 1, 6, 8, 9\}$) and the three self-symmetric center digits ($\{0, 1, 8\}$), details the two-pointer inward check ($L \le R$), and operates in $O(N)$ time with $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `num` which represents an integer, return `true` *if* `num` *is a **strobogrammatic number***.
+Given a string `num = "69"`, determine whether it is a **strobogrammatic number** (a number that appears identical after a 180-degree plane rotation):
+```text
+Original:   6 9
+Rotated:    6 9   (Matches original!)
+```
 
-The objective is to compute `true` from `{"num": "69"}` while avoiding redundant calculations and unnecessary overhead.
+### The 180-Degree Inversion Function
+Physical 180-degree rotation of a string produces two transformations:
+1. **Reversal of Position:** The $i^{\text{th}}$ character from the left moves to the $i^{\text{th}}$ position from the right ($N - 1 - i$).
+2. **Inversion of Glyph:** The character itself rotates upside-down:
+   - `'0'` rotates to `'0'` (Self-symmetric)
+   - `'1'` rotates to `'1'` (Self-symmetric)
+   - `'8'` rotates to `'8'` (Self-symmetric)
+   - `'6'` rotates to `'9'` (Reciprocal pair)
+   - `'9'` rotates to `'6'` (Reciprocal pair)
+   - All other digits (`'2', '3', '4', '5', '7'`) are invalid.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+To verify strobogrammatic symmetry without constructing a full reversed string in memory ($O(N)$ extra space), two pointers move inward from the boundaries, checking whether each left character rotates into the corresponding right character.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Rotational Mapping Table
+Define involution $\rho$:
+$$
+\rho(\text{'0'}) = \text{'0'}, \quad \rho(\text{'1'}) = \text{'1'}, \quad \rho(\text{'8'}) = \text{'8'}, \quad \rho(\text{'6'}) = \text{'9'}, \quad \rho(\text{'9'}) = \text{'6'}
+$$
+For any other character $c$, $\rho(c) = \text{invalid}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Two-Pointer Inward Matching Protocol:
+Initialize $L = 0, \quad R = \text{len}(\text{num}) - 1$:
+While $L \le R$:
+1. Check if $\text{num}[L]$ is a valid rotatable character:
+   If $\text{num}[L] \notin \rho$:
+   $$
+   \text{return false}
+   $$
+2. Check if the rotated image of $\text{num}[L]$ matches $\text{num}[R]$:
+   If $\rho(\text{num}[L]) \ne \text{num}[R]$:
+   $$
+   \text{return false}
+   $$
+3. Advance pointers inward:
+   $$
+   L \leftarrow L + 1, \quad R \leftarrow R - 1
+   $$
+Return `true`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+*(Crucial Invariant: The loop condition is $L \le R$, inclusive of $L == R$. This ensures the center digit of an odd-length string is tested: $\rho(c) == c$, which is satisfied only by $\{'0', '1', '8'\}$)*.
+
+> **Invariant.** After checking pair $(L, R)$, the prefix $\text{num}[0 \dots L]$ and suffix $\text{num}[R \dots N-1]$ are guaranteed to form an exact 180-degree mirror reflection of each other.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: How the array encodes rotation
+We trace the algorithm on $\text{num} = \text{"69"}$ ($N = 2$):
 
-The exact solution stores
-
-
-
-The array index is an original digit, and the stored number is its rotated digit. Thus `d[6] == 9` and `d[9] == 6`. Invalid digits map to `-1`. Since every actual character in `num` converts to an integer from `0` through `9`, `-1` can never equal a real mirrored digit. The same comparison detects both an invalid digit and a valid digit paired with the wrong mirror.
-
-An array is a natural fit because there are exactly ten possible decimal digits. It avoids hash lookup and keeps the mapping constant-sized.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "69"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Initialization
+- String: $\text{num}[0] = \text{'6'}, \quad \text{num}[1] = \text{'9'}$.
+- Pointers: $L = 0, \quad R = 1$.
 
 ---
 
-### Step 2: Two pointers compare the positions rotation swaps
-
-Pointer `i` starts at `0`, and pointer `j` starts at `len(num) - 1`. During an iteration, the solution converts `num[i]` and `num[j]` to integers `a` and `b`. It then asks whether `d[a] == b`.
-
-This direction matters. `d[a]` is what the left digit becomes after rotation, and rotation moves it to the mirrored right position. If that result does not equal the existing right digit, the rotated number cannot match the original, so the function returns `false` immediately.
-
-After a successful pair, `i` moves one step right and `j` moves one step left. The outer pair never needs examination again. The loop uses `i <= j`, ensuring that an odd-length number's center digit is checked rather than skipped.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Evaluate Outer Pair $(L = 0, R = 1)$
+- Left character: $\text{num}[L] = \text{'6'}$.
+- Right character: $\text{num}[R] = \text{'9'}$.
+- Apply rotation map to left character:
+  $$
+  \rho(\text{'6'}) = \text{'9'}
+  $$
+- Compare with right character:
+  $$
+  \rho(\text{'6'}) == \text{num}[R] \implies \text{'9'} == \text{'9'} \quad (\mathbf{\text{Match!}})
+  $$
+- Advance pointers:
+  $$
+  L \leftarrow 0 + 1 = 1, \quad R \leftarrow 1 - 1 = 0
+  $$
 
 ---
 
-### Step 3: Why checking one direction per pair is enough
-
-The valid mapping is involutive: rotating twice restores the original digit. In particular, `0`, `1`, and `8` map to themselves, while `6` and `9` map to each other. If the left digit rotates to the right digit, then the right digit necessarily rotates back to the left digit. Therefore, checking `d[a] == b` already validates both destinations of that mirrored pair; a separate `d[b] == a` comparison would be redundant.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Termination Check
+- Check loop condition: $L \le R \implies 1 \le 0$ (False).
+- Loop terminates cleanly.
+- **Return `true`!**
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "69"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+num = "69"
+L = 0, R = 1: num[0] = '6', num[1] = '9'
+rotate('6') = '9' == num[1] -> MATCH!
+L advances to 1, R to 0 -> L > R -> Return True
+```
+
+| Iteration | Left Index $L$ | Right Index $R$ | Left Char $\text{num}[L]$ | Right Char $\text{num}[R]$ | Rotated $\rho(\text{num}[L])$ | Equality Match? | Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **1** | **0** | **1** | `'6'` | `'9'` | `'9'` | **Yes ('9' == '9')** | $L \leftarrow 1, R \leftarrow 0$ |
+| **Finish** | 1 | 0 | - | - | - | - | **`true`** |
+
+### Contrast: Odd-Length Self-Symmetry Failure ($\text{num} = \text{"696"}$)
+- $L = 0, R = 2$: $\text{num}[0] = \text{'6'}, \text{num}[2] = \text{'6'}$.
+  - $\rho(\text{'6'}) = \text{'9'} \ne \text{'6'}$.
+  - Fails on step 1! Returns **`false`**.
+
+### Contrast: Invalid Digit Rejection ($\text{num} = \text{"962"}$)
+- $L = 0, R = 2$: $\text{num}[0] = \text{'9'}, \text{num}[2] = \text{'2'}$.
+  - $\rho(\text{'9'}) = \text{'6'} \ne \text{'2'}$.
+  - Fails on step 1! Returns **`false`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Rotation by 180 degrees sends character at index $i$ to index $N - 1 - i$, inverting its orientation. Testing $\rho(\text{num}[i]) == \text{num}[N - 1 - i]$ for all $0 \le i \le \lfloor N/2 \rfloor$ verifies the exact mathematical definition of 180-degree rotational invariance. Because $\rho$ is an involution on valid pairs ($\rho(\rho(c)) = c$), checking from left to right simultaneously proves the reverse transformation.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character index in the string is evaluated. Because $L \le R$, odd-length center characters are evaluated against themselves, ensuring non-self-symmetric digits like `'6'` or `'9'` cannot falsely pass when placed in the center.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Build the full rotated copy:** Traverse the string backward, map each digit, join the result, and compare it with the input. This is straightforward and $O(n)$ time, but it uses $O(n)$ additional space that the two-pointer check avoids.
-- **Hash-map rotation table:** A dictionary such as `{'0':'0', '1':'1', '6':'9', '8':'8', '9':'6'}` can make the valid pairs self-documenting. It has the same asymptotic bounds; the exact solution uses a ten-entry integer array with `-1` sentinels.
-- **Explicit valid-pair set:** Check whether `(num[i], num[j])` belongs to `{('0','0'), ('1','1'), ('6','9'), ('8','8'), ('9','6')}`. This is equivalent but represents pairs rather than the rotation function.
-- **One digit:** The pointers meet immediately. `0`, `1`, and `8` return `true`; every other digit returns `false`.
-- **Odd-length center `6` or `9`:** Both digits rotate validly in a pair but not into themselves, so either one in the center must be rejected.
-- **Invalid digits `2`, `3`, `4`, `5`, or `7`:** Their table value is `-1`, which cannot match any right-side digit. The method rejects as soon as such a digit is examined from the left side of its mirrored pair.
-- **A nominally invalid digit on the right:** It is still detected. If the left digit is valid, none of its mapped values equals that invalid right digit; if it is paired with another invalid digit, the left maps to `-1`, not the right's numeric value.
-- **`6` paired with `6`:** This is invalid because rotating the left `6` produces `9`. Likewise, `9` paired with `9` is invalid.
-- **Leading zeros:** The input contract excludes them except for the number `"0"`. The pair logic itself would still test a string such as `"00"` as visually strobogrammatic, but numeric-format validity is supplied by the caller's contract.
-- **Long input:** Keeping the number as a string avoids overflow. The algorithm's behavior depends on digit positions, not on the numeric magnitude.
-- **Empty input:** The documented minimum length is one. If given an empty string outside the contract, the loop would not run and the source would return `true`; callers requiring different semantics should validate input explicitly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Skipping Center Digit ($L < R$ vs $L \le R$):** Using $L < R$ skips the center digit of odd-length strings! For example, $\text{"898"}$ has center digit `'9'`. When rotated, $\text{"898"}$ becomes $\text{"868"} \ne \text{"898"}$. Using $L \le R$ tests $\rho(\text{'9'}) == \text{'9'}$ (which evaluates to $\text{'6'} == \text{'9'} \implies \text{false}$), catching the error.
+- **Symmetric Pairs Trap:** `'6'` must pair with `'9'`, never with another `'6'`. $\text{"66"}$ rotated is $\text{"99"} \ne \text{"66"}$.
+- **Unnecessary String Allocations:** Reversing the string and mapping characters requires allocating a new string of length $N$. The two-pointer check uses $O(1)$ auxiliary space.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `num`. Each iteration validates two positions, except that the final odd-length iteration validates one center position. The loop therefore runs $\lceil n/2\rceil$ times. Each iteration performs constant-time character access, single-digit conversion, array lookup, comparison, and pointer updates, giving $O(n)$ total time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of characters in `num`. The two pointers advance toward each other, executing $\lceil N/2 \rceil$ iterations. Each step performs an $O(1)$ dictionary lookup and character comparison.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory. The rotation mapping $\rho$ is a fixed 5-entry dictionary.

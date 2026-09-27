@@ -1,147 +1,166 @@
 # Guided Example: Product of Array Except Self
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step prefix product forwarding, suffix product backward folding, and division-free $O(1)$ auxiliary space aggregation on representative integer arrays:
 
-- **Input:** `{"nums": [1, 2, 3, 4]}`
-- **Required output:** `[24, 12, 8, 6]`
+- **Input:** $\text{nums} = [1, 2, 3, 4]$
+- **Required output:** $[24, 12, 8, 6]$
+- **Single Zero Instance:** $\text{nums} = [-1, 1, 0, -3, 3] \implies [0, 0, 9, 0, 0]$ (Zero cancels all products except its own index)
+- **Multiple Zeroes Instance:** $\text{nums} = [0, 4, 0] \implies [0, 0, 0]$ (Every entry contains at least one zero factor)
+- **Two Element Instance:** $\text{nums} = [2, 5] \implies [5, 2]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates prefix-suffix product factorization ($\text{ans}[i] = \text{prefix}[i] \times \text{suffix}[i]$), strictly enforces the constraint prohibiting arithmetic division (`/`), explains reusing the output array for prefix storage to achieve $O(1)$ extra space, and runs in two linear passes ($2N$ operations, $O(N)$ time).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, return *an array* `answer` *such that* $\text{answer}[i]$ *is equal to the product of all the elements of* `nums` *except* $\text{nums}[i]$.
+Given an integer array $\text{nums} = [1, 2, 3, 4]$ of length $N = 4$:
+Compute $\text{ans}[i] = \prod_{j \ne i} \text{nums}[j]$ for each index $i$:
+- $\text{ans}[0] = 2 \times 3 \times 4 = 24$
+- $\text{ans}[1] = 1 \times 3 \times 4 = 12$
+- $\text{ans}[2] = 1 \times 2 \times 4 = 8$
+- $\text{ans}[3] = 1 \times 2 \times 3 = 6$
+Output: `[24, 12, 8, 6]`.
 
-The objective is to compute `[24, 12, 8, 6]` from `{"nums": [1, 2, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Division Prohibition Constraint
+If division were allowed, one could compute the total product $P = 1 \times 2 \times 3 \times 4 = 24$ and divide $\text{ans}[i] = P / \text{nums}[i]$.
+However:
+1. **Division is explicitly forbidden** by the problem specification.
+2. Even if allowed, division breaks down whenever `nums` contains one or more zeroes ($P / 0$ causes a division-by-zero crash).
+By recognizing that every excluded product factors into the product of elements strictly to the left times elements strictly to the right:
+$$
+\text{ans}[i] = \left(\prod_{j < i} \text{nums}[j]\right) \times \left(\prod_{j > i} \text{nums}[j]\right) = \text{prefix}[i] \times \text{suffix}[i]
+$$
+we compute all answers in $O(N)$ time without division.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Output-Reused Prefix-Suffix Protocol
+We avoid allocating separate $O(N)$ prefix and suffix arrays by storing prefix products directly inside the return array $\text{ans}$ and accumulating suffix products on-the-fly using a single scalar variable `suffix`:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Pass 1: Left-to-Right Prefix Accumulation
+Initialize $\text{prefix} = 1$:
+For $i = 0$ to $N - 1$:
+1. Record prefix product of elements before index $i$:
+   $$
+   \text{ans}[i] \leftarrow \text{prefix}
+   $$
+2. Incorporate $\text{nums}[i]$ into `prefix` for subsequent indices:
+   $$
+   \text{prefix} \leftarrow \text{prefix} \times \text{nums}[i]
+   $$
+*(After Pass 1, $\text{ans}[i]$ holds $\prod_{j=0}^{i-1} \text{nums}[j]$)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Pass 2: Right-to-Left Suffix Accumulation
+Initialize $\text{suffix} = 1$:
+For $i = N - 1$ down to $0$:
+1. Multiply the stored prefix product by the current suffix product:
+   $$
+   \text{ans}[i] \leftarrow \text{ans}[i] \times \text{suffix}
+   $$
+2. Incorporate $\text{nums}[i]$ into `suffix` for preceding indices:
+   $$
+   \text{suffix} \leftarrow \text{suffix} \times \text{nums}[i]
+   $$
+
+> **Invariant.** After Pass 1, $\text{ans}[i]$ stores the exact product of all elements to the left of $i$. During Pass 2, `suffix` holds the exact product of all elements to the right of $i$, so $\text{ans}[i] \times \text{suffix}$ yields the final product except self.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the empty-side product is one
+We trace the two passes on $\text{nums} = [1, 2, 3, 4]$ ($N = 4$):
 
-At index `0`, there are no elements to the left. At index `n - 1`, there are no elements to the right. The product of an empty collection is defined as `1`, the multiplicative identity. That choice is not an arbitrary special case: multiplying by `1` leaves the existing product unchanged. Consequently, the first answer becomes the product of its right side, and the last answer becomes the product of its left side.
+### Pass 1: Forward Prefix Pass
+Start with $\text{prefix} = 1, \quad \text{ans} = [0, 0, 0, 0]$.
 
-The variables `left` and `right` both begin at `1` for this reason.
+- **Index $i = 0$ ($\text{nums}[0] = 1$):**
+  - Stash prefix: $\text{ans}[0] = 1$.
+  - Update prefix: $\text{prefix} \leftarrow 1 \times \text{nums}[0] = 1 \times 1 = 1$.
+- **Index $i = 1$ ($\text{nums}[1] = 2$):**
+  - Stash prefix: $\text{ans}[1] = 1$.
+  - Update prefix: $\text{prefix} \leftarrow 1 \times \text{nums}[1] = 1 \times 2 = 2$.
+- **Index $i = 2$ ($\text{nums}[2] = 3$):**
+  - Stash prefix: $\text{ans}[2] = 2$.
+  - Update prefix: $\text{prefix} \leftarrow 2 \times \text{nums}[2] = 2 \times 3 = 6$.
+- **Index $i = 3$ ($\text{nums}[3] = 4$):**
+  - Stash prefix: $\text{ans}[3] = 6$.
+  - Update prefix: $\text{prefix} \leftarrow 6 \times \text{nums}[3] = 6 \times 4 = 24$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Forward pass: store the exclusive prefix product
-
-Before processing index `i`, `left` equals the product of all elements whose indices are smaller than `i`:
-
-$$
-\text{left}=\prod_{j=0}^{i-1}\text{nums}[j].
-$$
-
-The solution first assigns `ans[i] = left`. Only afterward does it execute `left *= nums[i]`, preparing `left` for the next index. This order is essential. If `nums[i]` were multiplied first, `ans[i]` would include the very element that must be excluded.
-
-After the forward loop, every `ans[i]` contains the complete left factor needed by the formula. The output array is serving as useful working storage; no separate prefix array is necessary.
-
-For `nums = [1, 2, 3, 4]`, the states written to `ans` are:
-
-| Index `i` | `left` before including `nums[i]` | Stored `ans[i]` | `left` after update |
-|---:|---:|---:|---:|
-| 0 | 1 | 1 | 1 |
-| 1 | 1 | 1 | 2 |
-| 2 | 2 | 2 | 6 |
-| 3 | 6 | 6 | 24 |
-
-Thus the intermediate output is `[1, 1, 2, 6]`, precisely the exclusive prefix products.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**State after Pass 1:** $\text{ans} = [1, 1, 2, 6]$.
+*(Notice $\text{ans}[i]$ is the product of all elements left of $i$)*.
 
 ---
 
-### Step 3: Backward pass: generate suffix products on demand
+### Pass 2: Backward Suffix Pass
+Start with $\text{suffix} = 1$.
 
-The second loop travels from `n - 1` down to `0`. Before processing index `i`, `right` equals the product of all elements strictly after `i`:
+- **Index $i = 3$ ($\text{nums}[3] = 4$):**
+  - Combine: $\text{ans}[3] \leftarrow \text{ans}[3] \times \text{suffix} = 6 \times 1 = \mathbf{6}$.
+  - Update suffix: $\text{suffix} \leftarrow 1 \times \text{nums}[3] = 1 \times 4 = 4$.
+- **Index $i = 2$ ($\text{nums}[2] = 3$):**
+  - Combine: $\text{ans}[2] \leftarrow \text{ans}[2] \times \text{suffix} = 2 \times 4 = \mathbf{8}$.
+  - Update suffix: $\text{suffix} \leftarrow 4 \times \text{nums}[2] = 4 \times 3 = 12$.
+- **Index $i = 1$ ($\text{nums}[1] = 2$):**
+  - Combine: $\text{ans}[1] \leftarrow \text{ans}[1] \times \text{suffix} = 1 \times 12 = \mathbf{12}$.
+  - Update suffix: $\text{suffix} \leftarrow 12 \times \text{nums}[1] = 12 \times 2 = 24$.
+- **Index $i = 0$ ($\text{nums}[0] = 1$):**
+  - Combine: $\text{ans}[0] \leftarrow \text{ans}[0] \times \text{suffix} = 1 \times 24 = \mathbf{24}$.
+  - Update suffix: $\text{suffix} \leftarrow 24 \times \text{nums}[0] = 24 \times 1 = 24$.
 
-$$
-\text{right}=\prod_{j=i+1}^{n-1}\text{nums}[j].
-$$
-
-At that moment, `ans[i]` already holds the product strictly before `i`. Multiplying `ans[i] *= right` combines the two disjoint sides and produces the final product except  The solution then runs `right *= nums[i]`, adding the current element only for the benefit of the next index to the left.
-
-Again, update order matters. The suffix accumulator must be used before `nums[i]` enters it; otherwise the result would incorrectly contain the excluded element.
-
-Continuing the example, the backward pass behaves as follows:
-
-| Index `i` | Stored left product | `right` before update | Final `ans[i]` | `right` after update |
-|---:|---:|---:|---:|---:|
-| 3 | 6 | 1 | 6 | 4 |
-| 2 | 2 | 4 | 8 | 12 |
-| 1 | 1 | 12 | 12 | 24 |
-| 0 | 1 | 24 | 24 | 24 |
-
-The result is `[24, 12, 8, 6]`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[24, 12, 8, 6]` |
+**Final Result:** $\text{ans} = [24, 12, 8, 6]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[24, 12, 8, 6]` | Verified |
+```text
+Input: nums = [1, 2, 3, 4]
+
+Pass 1 (Left to Right Prefix):
+i = 0: ans[0] = 1,  prefix becomes 1 * 1 = 1
+i = 1: ans[1] = 1,  prefix becomes 1 * 2 = 2
+i = 2: ans[2] = 2,  prefix becomes 2 * 3 = 6
+i = 3: ans[3] = 6,  prefix becomes 6 * 4 = 24
+ans array after Pass 1: [1, 1, 2, 6]
+
+Pass 2 (Right to Left Suffix):
+i = 3: ans[3] = 6 * 1  = 6,  suffix becomes 1 * 4  = 4
+i = 2: ans[2] = 2 * 4  = 8,  suffix becomes 4 * 3  = 12
+i = 1: ans[1] = 1 * 12 = 12, suffix becomes 12 * 2 = 24
+i = 0: ans[0] = 1 * 24 = 24, suffix becomes 24 * 1 = 24
+
+Final Output: [24, 12, 8, 6]
+```
+
+| Index $i$ | $\text{nums}[i]$ | Stored Prefix $\text{ans}[i]$ | Current Suffix | Combined Value ($\text{prefix} \times \text{suffix}$) | Updated Suffix | Final $\text{ans}[i]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0** | 1 | 1 | 24 | $1 \times 24$ | 24 | **24** |
+| **1** | 2 | 1 | 12 | $1 \times 12$ | 24 | **12** |
+| **2** | 3 | 2 | 4 | $2 \times 4$ | 12 | **8** |
+| **3** | 4 | 6 | 1 | $6 \times 1$ | 4 | **6** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any index $i$, the set of indices $\{0, \dots, N - 1\} \setminus \{i\}$ is the disjoint union of $\{0, \dots, i - 1\}$ and $\{i + 1, \dots, N - 1\}$. By associativity and commutativity of multiplication over integers, $\prod_{j \ne i} \text{nums}[j] = \left(\prod_{j=0}^{i-1} \text{nums}[j]\right) \times \left(\prod_{j=i+1}^{N-1} \text{nums}[j]\right)$. Pass 1 computes the exact left product, and Pass 2 multiplies it by the exact right product.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every index $i \in [0, N - 1]$ is processed. The empty product identity ($1$) ensures boundary indices $0$ and $N - 1$ receive the full products of their respective single-sided complements without zeroing or out-of-bounds access.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Total product followed by division:** This can be linear time for arrays without zero, but division is explicitly forbidden. It also needs special counting logic for zero values and is therefore not the intended formulation.
-- **One multiplication loop per output:** For each index, multiplying every other element is simple but repeats almost all work. It takes $O(n^2)$ time and is too slow for up to $10^5$ elements.
-- **Separate prefix and suffix arrays:** Building `left[i]` and `right[i]` arrays makes the same identity visually explicit and still runs in $O(n)$ time, but it consumes $O(n)$ auxiliary space. The implemented solution compresses one side into the output and the other into one scalar.
-- **One zero:** Only the zero's own position can have a nonzero result; the two-pass multiplication obtains this without detecting the zero explicitly.
-- **Multiple zeros:** Every output contains a zero among its included factors, so all results are zero. No branch or reset is required.
-- **Negative elements:** Prefix and suffix multiplication preserve signs normally. An odd number of included negative factors gives a negative output; an even number gives a nonnegative output.
-- **Array of length two:** The forward and backward invariants still apply. For `[a, b]`, the empty products ensure the answer is `[b, a]`.
-- **Values equal to one or minus one:** They do not break either invariant. They merely preserve or flip the accumulated product as ordinary multiplication dictates.
-- **Overflow assumptions:** The statement guarantees that the relevant products fit in a 32-bit integer. Python integers can grow beyond that anyway, but implementations in fixed-width languages may rely on the stated guarantee rather than introducing division or floating-point arithmetic.
-- **In-place overwrite of `nums`:** Reusing the input array would destroy original values still needed by the backward pass unless they were saved elsewhere. Using the required output array as prefix storage avoids that dependency and preserves the input.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using the Division Operator (`/` or `//`):** Even when passing test cases locally, using division violates the core interview constraint. Furthermore, if `nums` contains `0`, division by zero crashes or requires cumbersome branch handling. The two-pass multiplication naturally handles single or multiple zeroes without any conditional branching.
+- **Accidental Inclusion of Self:** Stashing `ans[i] = prefix` must occur **before** updating `prefix *= nums[i]`. If reversed, $\text{ans}[i]$ includes $\text{nums}[i]$, which violates the "except self" requirement.
+- **Space Overhead:** Creating both `left = [0]*n` and `right = [0]*n` takes $2N$ auxiliary space. Reusing `ans` for the prefix and folding the suffix on-the-fly reduces auxiliary space to $O(1)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of elements in `nums`. The forward pass visits all $n$ indices once, and the backward pass visits all $n$ indices once. Each visit performs a constant amount of work, so the total running time is $O(n)$. The two passes are additive—$O(n)+O(n)=O(n)$—rather than multiplicative.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of `nums`. Pass 1 performs $N$ multiplications, and Pass 2 performs $2N$ multiplications. Total runtime is strictly $3N = O(N)$ arithmetic operations.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. The output array `ans` does not count toward auxiliary space complexity per problem guidelines, and only two scalar variables (`prefix`, `suffix`) are allocated.

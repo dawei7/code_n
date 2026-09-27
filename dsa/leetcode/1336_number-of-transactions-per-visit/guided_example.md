@@ -1,134 +1,184 @@
 # Guided Example: Number of Transactions per Visit
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational multi-table outer join, visit transaction aggregation, and continuous integer series generation on a representative bank visit and transaction history:
 
-- **Input:** `{"tables": {"Visits": [{"user_id": 1, "visit_date": "2020-01-01"}, {"user_id": 2, "visit_date": "2020-01-02"}, {"user_id": 12, "visit_date": "2020-01-01"}, {"user_id": 19, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-02"}, {"user_id": 2, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-04"}, {"user_id": 7, "visit_date": "2020-01-11"}, {"user_id": 9, "visit_date": "2020-01-25"}, {"user_id": 8, "visit_date": "2020-01-28"}], "Transactions": [{"user_id": 1, "transaction_date": "2020-01-02", "amount": 120}, {"user_id": 2, "transaction_date": "2020-01-03", "amount": 22}, {"user_id": 7, "transaction_date": "2020-01-11", "amount": 232}, {"user_id": 1, "transaction_date": "2020-01-04", "amount": 7}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 33}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 66}, {"user_id": 8, "transaction_date": "2020-01-28", "amount": 1}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 99}]}}`
-- **Required output:** `{"columns": ["transactions_count", "visits_count"], "rows": [[0, 4], [1, 5], [2, 0], [3, 1]]}`
+- **Input:** `Visits` and `Transactions` tables:
+  $$\begin{aligned}
+  \text{Visits} = \{
+  &(1, \text{"2020-01-01"}), \; (2, \text{"2020-01-02"}), \; (12, \text{"2020-01-01"}), \\
+  &(19, \text{"2020-01-03"}), \; (1, \text{"2020-01-02"}), \; (2, \text{"2020-01-03"}) \}
+  \end{aligned}$$
+  $$\begin{aligned}
+  \text{Transactions} = \{
+  &(1, \text{"2020-01-01"}, 100), \; (2, \text{"2020-01-02"}, 200), \; (1, \text{"2020-01-02"}, 150), \\
+  &(2, \text{"2020-01-03"}, 50), \; (2, \text{"2020-01-03"}, 75), \; (2, \text{"2020-01-03"}, 120) \}
+  \end{aligned}$$
+- **Required Output:** Full continuous histogram from $0$ to maximum transaction count:
+  $$\begin{aligned}
+  \text{Result} = \{
+  &(0, 2), \; (1, 3), \; (2, 0), \; (3, 1) \}
+  \end{aligned}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates counting transactions per visit date via left outer join, identifying gap counts (zero occurrences for $2$ transactions), synthesizing an unbroken integer sequence $[0, M]$ through recursive relation generation, and preserving zero-count bins.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Visits`
+We are given two relations:
+- `Visits`: records bank branch visits by `(user_id, visit_date)`.
+- `Transactions`: records financial transactions by `(user_id, transaction_date, amount)`. Multiple transactions can occur during a single visit.
 
-The objective is to compute `{"columns": ["transactions_count", "visits_count"], "rows": [[0, 4], [1, 5], [2, 0], [3, 1]]}` from `{"tables": {"Visits": [{"user_id": 1, "visit_date": "2020-01-01"}, {"user_id": 2, "visit_date": "2020-01-02"}, {"user_id": 12, "visit_date": "2020-01-01"}, {"user_id": 19, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-02"}, {"user_id": 2, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-04"}, {"user_id": 7, "visit_date": "2020-01-11"}, {"user_id": 9, "visit_date": "2020-01-25"}, {"user_id": 8, "visit_date": "2020-01-28"}], "Transactions": [{"user_id": 1, "transaction_date": "2020-01-02", "amount": 120}, {"user_id": 2, "transaction_date": "2020-01-03", "amount": 22}, {"user_id": 7, "transaction_date": "2020-01-11", "amount": 232}, {"user_id": 1, "transaction_date": "2020-01-04", "amount": 7}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 33}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 66}, {"user_id": 8, "transaction_date": "2020-01-28", "amount": 1}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 99}]}}` while avoiding redundant calculations and unnecessary overhead.
+We must produce a frequency histogram showing how many visits resulted in exactly $0, 1, 2, \dots, M$ transactions, where $M$ is the maximum transaction count achieved during any visit.
+Crucially:
+1. Visits with zero transactions must be counted.
+2. The sequence of transaction counts must be continuous from $0$ to $M$. If no visit generated $k$ transactions ($0 < k < M$), the bucket for $k$ must still appear with `visits_count = 0`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Per-Visit Transaction Breakdown:
+  - User 12 on 2020-01-01: 0 transactions
+  - User 19 on 2020-01-03: 0 transactions
+  - User 1  on 2020-01-01: 1 transaction  ($100)
+  - User 2  on 2020-01-02: 1 transaction  ($200)
+  - User 1  on 2020-01-02: 1 transaction  ($150)
+  - User 2  on 2020-01-03: 3 transactions ($50, $75, $120)
+
+Distribution of Visit Counts:
+  0 transactions: 2 visits (User 12, User 19)
+  1 transaction:  3 visits (User 1, User 2, User 1)
+  2 transactions: 0 visits (Gap bucket!)
+  3 transactions: 1 visit  (User 2)
+
+Maximum Transactions in any Visit: M = 3
+Required Output Domain: [0, 1, 2, 3]
+Result Table: [(0, 2), (1, 3), (2, 0), (3, 1)]
+```
+
+A standard inner join would omit visits without transactions (dropping $0$), and a simple group-by would omit the gap value $2$ entirely. Using recursive series generation coupled with left outer joins ensures an unbroken domain $[0, M]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $V$ denote the `Visits` relation and $X$ denote the `Transactions` relation.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Relational Pipeline Stages
+1. **Transaction Grouping:** Group transactions by user and date:
+   $$
+   X_{\text{daily}} = \gamma_{\text{user\_id}, \; \text{transaction\_date}, \; \text{COUNT}(*) \to \text{tx\_cnt}}(X)
+   $$
+2. **Visit Matching (Left Outer Join):** Join every visit with its transaction tally, assigning $0$ if unmatched:
+   $$
+   T = \Pi_{\text{user\_id}, \; \text{visit\_date}, \; \text{COALESCE}(\text{tx\_cnt}, 0) \to \text{cnt}} \big(V \ \backslash \bowtie \ X_{\text{daily}}\big)
+   $$
+3. **Maximum Degree Determination:**
+   $$
+   M = \max_{t \in T} t.\text{cnt}
+   $$
+4. **Domain Series Synthesis:** Synthesize the continuous domain of integers:
+   $$
+   S = \{n \in \mathbb{Z} \mid 0 \le n \le M\}
+   $$
+5. **Histogram Aggregation (Left Outer Join):** Outer join domain $S$ with visit tallies $T$ on $S.n = T.\text{cnt}$, counting matches:
+   $$
+   H = \gamma_{S.n, \; \text{COUNT}(T.\text{user\_id}) \to \text{visits\_count}}(S \ \backslash \bowtie_{S.n = T.\text{cnt}} \ T)
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Domain Value $n$ | Matching Visits in $T$ | Counted Visits | Emitted Tuple |
+|---|---|---|---|
+| $0$ | (12, Jan 1), (19, Jan 3) | $2$ | $(0, 2)$ |
+| $1$ | (1, Jan 1), (2, Jan 2), (1, Jan 2) | $3$ | $(1, 3)$ |
+| $2$ | None (Empty match) | $0$ | $(2, 0)$ |
+| $3$ | (2, Jan 3) | $1$ | $(3, 1)$ |
+
+> **Domain Completeness Invariant.** The synthetic series $S$ spans every consecutive integer from $0$ to $M$ without gaps. Left-joining against $T$ and aggregating with `COUNT(T.user_id)` maps empty matches strictly to $0$ rather than omitting the row.
+
+```mermaid
+flowchart TD
+    accTitle: Visit Transaction Histogram Architecture
+    accDescr: Pipeline joining visits with transactions, determining max transactions, synthesizing unbroken integer series, and aggregating visit counts.
+    V["Visits Table (6 rows)"] --> JOIN1["Left Join on user_id, date"]
+    X["Transactions Table (6 rows)"] --> GRP_X["Group by user, date -> tx_cnt"]
+    GRP_X --> JOIN1
+    JOIN1 --> T["Visit Records T with tx_cnt in {0, 1, 3}"]
+    T --> MAX_VAL["Compute M = max(cnt) = 3"]
+    MAX_VAL --> GEN["Generate unbroken series S: [0, 1, 2, 3]"]
+    GEN --> JOIN2["Left Join S with T on S.n = T.cnt"]
+    T --> JOIN2
+    JOIN2 --> HIST["Aggregate COUNT(T.user_id) per n"]
+    HIST --> OUT["Emit: [(0, 2), (1, 3), (2, 0), (3, 1)]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Generate the complete bucket axis
+We trace the relational operators across the dataset:
 
-The recursive common table expression `S` begins with `SELECT 0 AS n`. Its recursive member selects `n + 1` while the current value is smaller than the maximum count belonging to any user and transaction date.
+### Stage 1: Aggregate Daily Transactions
+Group $X$ by `(user_id, transaction_date)`:
+- User 1 on `2020-01-01`: 1 row $\implies \text{tx\_cnt} = 1$
+- User 2 on `2020-01-02`: 1 row $\implies \text{tx\_cnt} = 1$
+- User 1 on `2020-01-02`: 1 row $\implies \text{tx\_cnt} = 1$
+- User 2 on `2020-01-03`: 3 rows $\implies \text{tx\_cnt} = 3$
 
-The scalar subquery finds that maximum in two stages. Its inner query groups `Transactions` by `user_id, transaction_date` and computes `COUNT(1) AS cnt` for each group. Each group corresponds to the transaction rows belonging to one bank visit. The outer `MAX(cnt)` then finds the largest number of transactions performed during any visit.
+### Stage 2: Left Join with Visits
+Join `Visits` with daily transactions:
+- $(1, \text{"2020-01-01"})$: matches $\text{tx\_cnt} = 1$.
+- $(2, \text{"2020-01-02"})$: matches $\text{tx\_cnt} = 1$.
+- $(12, \text{"2020-01-01"})$: no match $\implies \text{COALESCE}(\text{NULL}, 0) = 0$.
+- $(19, \text{"2020-01-03"})$: no match $\implies \text{COALESCE}(\text{NULL}, 0) = 0$.
+- $(1, \text{"2020-01-02"})$: matches $\text{tx\_cnt} = 1$.
+- $(2, \text{"2020-01-03"})$: matches $\text{tx\_cnt} = 3$.
 
-If the maximum is three, recursion produces the rows zero, one, two, and three. The stopping condition is checked against the current `n`, so the row equal to the maximum is created from the preceding row, and recursion stops afterward. This inclusive endpoint is necessary because the most active visit needs its own output bucket.
+Summary table $T$ contains $6$ visit records:
+- Count $0$: $2$ visits
+- Count $1$: $3$ visits
+- Count $3$: $1$ visit
 
-Using `UNION` rather than `UNION ALL` asks SQL to remove duplicates, although this particular recurrence generates each increasing integer only once. The deduplication is not needed for correctness, but it does not change the produced sequence.
+### Stage 3: Maximum Count and Series Generation
+- Maximum transaction count in $T$: $M = \max(0, 1, 3) = 3$.
+- Generated integer series $S$:
+  $$
+  S = \{0, 1, 2, 3\}
+  $$
 
-If `Transactions` has no rows, `MAX(cnt)` is `NULL`. The anchor row zero still exists, while `n < NULL` is not true in SQL’s three-valued logic, so recursion adds nothing. The bucket sequence then correctly consists only of zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Visits": [{"user_id": 1, "visit_date": "2020-01-01"}, {"user_id": 2, "visit_date": "2020-01-02"}, {"user_id": 12, "visit_date": "2020-01-01"}, {"user_id": 19, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-02"}, {"user_id": 2, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-04"}, {"user_id": 7, "visit_date": "2020-01-11"}, {"user_id": 9, "visit_date": "2020-01-25"}, {"user_id": 8, "visit_date": "2020-01-28"}], "Transactions": [{"user_id": 1, "transaction_date": "2020-01-02", "amount": 120}, {"user_id": 2, "transaction_date": "2020-01-03", "amount": 22}, {"user_id": 7, "transaction_date": "2020-01-11", "amount": 232}, {"user_id": 1, "transaction_date": "2020-01-04", "amount": 7}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 33}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 66}, {"user_id": 8, "transaction_date": "2020-01-28", "amount": 1}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 99}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Attach a count to every visit
-
-The second common table expression, `T`, starts from `Visits AS v`. Its derived transaction table groups transaction rows by user and date and computes one `cnt` per group. The notation `GROUP BY 1, 2` refers to the first and second selected expressions, namely `user_id` and `transaction_date`.
-
-The join condition uses both pieces of the visit identity:
-
-- `v.user_id = t.user_id` matches the visitor.
-- `v.visit_date = t.transaction_date` matches the date of that particular visit.
-
-Joining only on the user would incorrectly combine transactions from different visits made by the same person. Joining on the composite key keeps each transaction group attached to exactly the promised visit.
-
-The join is a `LEFT JOIN` from `Visits`. Therefore, a visit remains present even when no grouped transaction row matches it. In that case, `t.cnt` is `NULL`, and `COALESCE(cnt, 0)` turns it into the required zero-transaction count. Because `Visits` has one row per composite primary key and the transaction derived table has at most one row per same key, `T` has exactly one row for every visit.
-
-The transaction `amount` never enters the calculation. The problem asks how many transactions occurred, not how much money they moved. Duplicate transaction rows count separately because each row represents a transaction and `COUNT(1)` counts every row in its group.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Preserve empty histogram buckets
-
-The final query starts from `S AS s` and left-joins `T AS t` using `s.n = t.cnt`. Starting from the generated sequence is essential. If no visit made exactly two transactions, bucket two still survives the left join with null columns from `T`.
-
-The expression `COUNT(user_id)` counts only non-null matched visit identifiers. It does not use `COUNT(*)`, which would count the placeholder row produced by the left join and incorrectly report one visit for an empty bucket. Because `user_id` comes from real visit rows, the result is the number of visits whose transaction count equals `n`, or zero if none match.
-
-`GROUP BY n` creates one result row per bucket. The selected aliases name the bucket `transactions_count` and its frequency `visits_count`. Finally, `ORDER BY n` returns the histogram from zero upward, as required.
-
-The whole construction is exhaustive and exclusive. Every visit appears once in `T` with its exact count, so it joins exactly one bucket. Every required bucket appears once in `S`, even if no visit joins it. The final grouped counts therefore describe all visits without omission or double counting.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["transactions_count", "visits_count"], "rows": [[0, 4], [1, 5], [2, 0], [3, 1]]}` |
+### Stage 4: Outer Join and Histogram Counting
+- **$n = 0$:** Matches $2$ visits $\implies \text{visits\_count} = 2$.
+- **$n = 1$:** Matches $3$ visits $\implies \text{visits\_count} = 3$.
+- **$n = 2$:** Matches $0$ visits (unmatched row from left join) $\implies \text{COUNT}(\text{NULL}) = 0$.
+- **$n = 3$:** Matches $1$ visit $\implies \text{visits\_count} = 1$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Visits": [{"user_id": 1, "visit_date": "2020-01-01"}, {"user_id": 2, "visit_date": "2020-01-02"}, {"user_id": 12, "visit_date": "2020-01-01"}, {"user_id": 19, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-02"}, {"user_id": 2, "visit_date": "2020-01-03"}, {"user_id": 1, "visit_date": "2020-01-04"}, {"user_id": 7, "visit_date": "2020-01-11"}, {"user_id": 9, "visit_date": "2020-01-25"}, {"user_id": 8, "visit_date": "2020-01-28"}], "Transactions": [{"user_id": 1, "transaction_date": "2020-01-02", "amount": 120}, {"user_id": 2, "transaction_date": "2020-01-03", "amount": 22}, {"user_id": 7, "transaction_date": "2020-01-11", "amount": 232}, {"user_id": 1, "transaction_date": "2020-01-04", "amount": 7}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 33}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 66}, {"user_id": 8, "transaction_date": "2020-01-28", "amount": 1}, {"user_id": 9, "transaction_date": "2020-01-25", "amount": 99}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["transactions_count", "visits_count"], "rows": [[0, 4], [1, 5], [2, 0], [3, 1]]}` | Verified |
+| Domain Integer $n$ | Matched Visits in $T$ | Aggregate Function Evaluated | Output `visits_count` | Emitted Row |
+|---|---|---|---|---|
+| $0$ | $(12, \text{Jan 1}), (19, \text{Jan 3})$ | $\text{COUNT}(2 \text{ rows})$ | $2$ | $(0, 2)$ |
+| $1$ | $(1, \text{Jan 1}), (2, \text{Jan 2}), (1, \text{Jan 2})$ | $\text{COUNT}(3 \text{ rows})$ | $3$ | $(1, 3)$ |
+| $2$ | $\emptyset$ (Null joined) | $\text{COUNT}(\text{NULL})$ | $0$ | $(2, 0)$ |
+| $3$ | $(2, \text{Jan 3})$ | $\text{COUNT}(1 \text{ row})$ | $1$ | $(3, 1)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Left-joining `Visits` with daily transactions assigns each visit its exact transaction count, accurately attributing non-transacting visits with $0$. Joining against the synthetic range $[0, M]$ and tallying with `COUNT(T.user_id)` returns the true mathematical frequency of visits for every possible transaction count.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The recursive sequence $S$ generates every integer from $0$ to $M$ without gaps. Because $S$ is on the left side of the outer join, every integer in $[0, M]$ is guaranteed an output row, ensuring missing counts (such as $2$) are represented with count $0$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Calendar or numbers table:** A permanent integer table can replace the recursive `S` sequence. It avoids recursive-CTE limits but requires that the database already provide a sufficiently large range.
-- **Window-based sequence generation:** Some SQL dialects can derive row numbers from an existing large relation. That approach is dialect-specific and must still guarantee a zero row when transaction data is empty.
-- **Correlated count per visit:** A scalar subquery could count transactions for each visit, but repeatedly searching `Transactions` may be slower than grouping once and joining the result.
-- **Starting from transaction groups:** An inner or left join rooted at grouped transactions would lose zero-transaction visits. The query correctly starts `T` from `Visits`.
-- **Using `COUNT(*)` in the final query:** This would count the left-join placeholder for an empty bucket and return one instead of zero. Counting the nullable matched `user_id` avoids that error.
-- **Same user on multiple dates:** Each `(user_id, visit_date)` pair is a separate visit. Both columns must participate in grouping and joining.
-- **Duplicate transaction rows:** They are intentionally counted individually. The query does not use `DISTINCT` because duplicate rows still represent separate transactions under the table contract.
-- **Unused amount column:** Transaction amounts do not affect bucket membership; only the number of transaction rows matters.
-- **No visits in an intermediate bucket:** The recursive sequence preserves the bucket, and the final count is zero.
-- **No transaction rows:** The maximum is null, recursion retains only zero, and all visits join the zero bucket.
-- **Maximum endpoint:** The recursion must include the largest observed count, not stop one value before it. Testing `n < maximum` before producing `n + 1` creates the endpoint correctly.
-- **Recursive depth limits:** A database may cap recursive common-table-expression iterations. If one visit can have a count beyond that configured cap, the session setting or sequence-generation strategy must accommodate it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing zero-frequency bins:** If group-by is run directly on $T$, transaction count $2$ produces no rows and is omitted from the output. Generating the integer sequence $0..M$ is mandatory to preserve gap bins.
+- **Using `COUNT(*)` instead of `COUNT(column)`:** In an outer join, an unmatched row contains `NULL` for the right table attributes. `COUNT(*)` counts the row as $1$, whereas `COUNT(T.user_id)` correctly evaluates to $0$.
+- **Omitting zero-transaction visits:** Visits where no transactions took place must be retained using `LEFT JOIN` and coalesced to $0$. An inner join would drop them, undercounting total visits.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N\log N)$. Let $V$ be the number of rows in `Visits`, $T$ the number of rows in `Transactions`, $U$ the number of grouped visit keys that have transactions, and $K$ the maximum transaction count for one visit. The generated bucket sequence has $K + 1$ rows, and $K \le T$ whenever transactions exist.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|V| + |X| + M \log M)$, where $|V|$ is the number of visits, $|X|$ is the number of transactions, and $M$ is the maximum transaction count. Daily grouping and joining take $\mathcal{O}(|V| + |X|)$ time, and generating and sorting $M + 1$ histogram rows takes $\mathcal{O}(M \log M)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|V| + M)$ to store the visit tally table and the synthetic domain relation.

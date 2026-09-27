@@ -1,137 +1,187 @@
 # Guided Example: Coin Change
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step unbounded knapsack dynamic programming formulation, transition between excluding vs reusing denomination $x$ ($f[i][j] = \min(f[i-1][j], f[i][j-x] + 1)$), infinity sentinel reachability, and optimal coin count extraction on representative money amount instances:
 
-- **Input:** `{"coins": [1, 2, 5], "amount": 11}`
-- **Required output:** `3`
+- **Input:** $\text{coins} = [1, 2, 5], \quad \text{amount} = 11$
+- **Required output:** $3$
+  - Optimal coin combination: $5 + 5 + 1 = 11$ (Uses 3 coins: two $5$s and one $1$)
+  - Suboptimal greedy combination: $5 + 5 + 1 = 11$ (happens to match here, but greedy fails in general)
+- **Greedy Failure Counterexample:** $\text{coins} = [1, 3, 4], \text{amount} = 6$:
+  - Greedy picks largest first: $4 + 1 + 1$ ($3$ coins)
+  - True optimal DP: $3 + 3$ ($2$ coins)
+- **Unreachable Amount Base Case:** $\text{coins} = [2], \text{amount} = 3 \implies -1$ (Odd amount cannot be formed from even coins)
+- **Zero Amount Base Case:** $\text{amount} = 0 \implies 0$ (Requires 0 coins)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates unbounded knapsack recurrence relations, contrasts local greedy heuristics against global dynamic programming, proves why reading $f[i][j-x]$ from the current row models infinite coin supplies, and analyzes $O(M \cdot A)$ time and space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
+Given coin denominations $\text{coins} = [1, 2, 5]$ ($M = 3$) and target $\text{amount} = 11$:
+Find the **minimum number of coins** needed to make up that amount, assuming an unlimited supply of each coin type. If that amount of money cannot be made up by any combination of the coins, return $-1$.
 
-The objective is to compute `3` from `{"coins": [1, 2, 5], "amount": 11}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Denominations: [1, 2, 5]
+Target Amount: 11
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Possible Combinations:
+- Eleven 1-coins:              11 coins
+- Five 2-coins + One 1-coin:    6 coins
+- Two 5-coins + One 1-coin:     3 coins  (OPTIMAL!)
+
+Output: 3
+```
+
+### Why Greedy Selection Fails
+A common greedy instinct is to pick the largest possible denomination first:
+- On $\text{coins} = [1, 3, 4]$ and $\text{amount} = 6$:
+  Greedy selects $4$, leaving $2$, then takes $1$ and $1$ $\implies 3$ coins ($4 + 1 + 1$).
+  However, taking two $3$-coins achieves $3 + 3 = 6$ using only **2 coins**!
+- Because arbitrary coin systems may not be canonical, global Dynamic Programming is required.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 2D DP State Definition
+Let $f[i][j]$ be the minimum number of coins needed to form amount $j$ using only a subset of the first $i$ coin denominations ($\text{coins}[0 \dots i-1]$):
+- Dimensions: $(M + 1) \times (\text{amount} + 1)$.
+- Sentinel: Initialized to $\infty$ (unreachable).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Boundary Conditions:
+- $f[0][0] = 0$: Amount $0$ requires $0$ coins.
+- $f[0][j] = \infty$ for all $j \ge 1$: Impossible to form positive amounts without coins.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Recurrence for Denomination $x = \text{coins}[i - 1]$:
+For each amount $j \in [0, \text{amount}]$:
+1. **Exclude Coin $x$:**
+   $$
+   f[i][j] = f[i - 1][j]
+   $$
+2. **Include At Least One Coin $x$ (if $j \ge x$):**
+   $$
+   f[i][j] = \min(f[i][j], \; f[i][j - x] + 1)
+   $$
+   *(Notice that $f[i][j - x]$ reads from row $i$, NOT row $i - 1$. This directly models an **unlimited supply**, allowing denomination $x$ to be used multiple times).*
+
+> **Invariant.** For any cell $f[i][j]$, its value is the exact minimum number of coins from the first $i$ denominations required to sum to $j$, or $\infty$ if $j$ is unreachable.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why this is an optimization problem, not a greedy counting problem.
-
-For a target `amount`, many different combinations of denominations may produce the same total, and the task asks for the combination with the fewest coins. Taking the largest coin whenever possible is not reliable for arbitrary denominations. With `coins = [1,3,4]` and `amount = 6`, greedy selection takes `4 + 1 + 1`, which uses three coins, while `3 + 3` uses only two. A correct method must compare the possibilities created by every denomination.
-
-The problem has useful optimal substructure. If an optimal combination for total $j$ uses a coin worth $x$, removing one copy of that coin leaves a combination for $j-x$. That remaining combination must itself use the minimum possible number of allowed coins. If it did not, replacing it with a better combination would improve the solution for $j$, contradicting optimality.
-
-The exact source turns this observation into a two-dimensional dynamic program. The extra dimension makes the unlimited-use rule explicit and also gives a clean way to prove that every denomination choice has been considered.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"coins": [1, 2, 5], "amount": 11}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the DP table on $\text{coins} = [1, 2, 5]$ and $\text{amount} = 11$:
+Table initialized with $f[0][0] = 0$ and all other entries $\infty$.
 
 ---
 
-### Step 2: Define the state precisely.
-
-Let $c$ be the number of denominations and let $A$ be `amount`. The table `f` has `c + 1` rows and `A + 1` columns. Its state means:
-
+### Step 1: Row $i = 1$, Coin $x = 1$
+Only coin available is $1$. Every amount $j$ requires exactly $j$ coins:
 $$
-f[i][j] = \text{the minimum number of coins needed to make total } j
-\text{ using only the first } i \text{ denominations}.
+f[1][j] = j \quad \text{for all } j \in [0, 11]
 $$
-
-The word “only” is essential. Row `i` may use `coins[0]` through `coins[i - 1]`, each any number of times, but it may not use later denominations. When the algorithm finishes row $i$, it has solved every target from `0` through $A$ under exactly that set of allowed coin types.
-
-Every cell initially contains infinity. Infinity is a sentinel meaning “this total has not been shown reachable.” With zero denominations, total zero is possible using zero coins, so the source sets
-
-$$
-f[0][0] = 0.
-$$
-
-Every positive total in row zero correctly remains unreachable because no coins are available. As later rows are filled, column zero is copied forward as zero: the empty selection always makes amount zero, regardless of how many denominations are allowed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- $f[1][11] = 11$.
 
 ---
 
-### Step 3: Derive the two choices for one cell.
+### Step 2: Row $i = 2$, Coin $x = 2$
+Coins available: $\{1, 2\}$.
+- For even amounts $j = 2k$, we can use $k$ coins of denomination $2$:
+  - $j = 2: \min(f[1][2]=2, \; f[2][0]+1=1) = \mathbf{1}$.
+  - $j = 4: \min(f[1][4]=4, \; f[2][2]+1=2) = \mathbf{2}$.
+  - $j = 6: \min(f[1][6]=6, \; f[2][4]+1=3) = \mathbf{3}$.
+  - $j = 8: \min(f[1][8]=8, \; f[2][6]+1=4) = \mathbf{4}$.
+  - $j = 10: \min(f[1][10]=10, \; f[2][8]+1=5) = \mathbf{5}$.
+- For odd amounts $j = 2k + 1$:
+  - $j = 1: 1$
+  - $j = 3: \min(f[1][3]=3, \; f[2][1]+1=2) = \mathbf{2}$ ($2 + 1$).
+  - $j = 5: \min(f[1][5]=5, \; f[2][3]+1=3) = \mathbf{3}$ ($2 + 2 + 1$).
+  - $j = 7: \min(f[1][7]=7, \; f[2][5]+1=4) = \mathbf{4}$.
+  - $j = 9: \min(f[1][9]=9, \; f[2][7]+1=5) = \mathbf{5}$.
+  - $j = 11: \min(f[1][11]=11, \; f[2][9]+1=6) = \mathbf{6}$ ($5 \times 2 + 1$).
 
-When row $i$ is being processed, let `x` be its newly available denomination, `coins[i - 1]`. Any combination counted by `f[i][j]` falls into exactly one of two groups.
+---
 
-First, the combination may use no copy of `x`. Then it uses only the previous $i-1$ denominations, and its best coin count is already stored in `f[i - 1][j]`. The source begins by copying that value:
+### Step 3: Row $i = 3$, Coin $x = 5$
+Coins available: $\{1, 2, 5\}$.
+- Amounts $j < 5$ cannot use coin $5$: values remain unchanged from row 2 ($f[3][j] = f[2][j]$).
+- $j = 5: \min(f[2][5]=3, \; f[3][0] + 1 = 0 + 1 = 1) = \mathbf{1}$ (Single coin of 5).
+- $j = 6: \min(f[2][6]=3, \; f[3][1] + 1 = 1 + 1 = 2) = \mathbf{2}$ ($5 + 1$).
+- $j = 7: \min(f[2][7]=4, \; f[3][2] + 1 = 1 + 1 = 2) = \mathbf{2}$ ($5 + 2$).
+- $j = 8: \min(f[2][8]=4, \; f[3][3] + 1 = 2 + 1 = 3) = \mathbf{3}$ ($5 + 2 + 1$).
+- $j = 9: \min(f[2][9]=5, \; f[3][4] + 1 = 2 + 1 = 3) = \mathbf{3}$ ($5 + 2 + 2$).
+- $j = 10: \min(f[2][10]=5, \; f[3][5] + 1 = 1 + 1 = 2) = \mathbf{2}$ ($5 + 5$).
+- **$j = 11$ (Target!):**
+  $$
+  f[3][11] = \min\big(f[2][11]=6, \; f[3][11 - 5] + 1\big) = \min(6, \; f[3][6] + 1) = \min(6, \; 2 + 1) = \mathbf{3}
+  $$
+  (Combination: $5 + 5 + 1 = 11$).
 
+---
+
+### Step 4: Final Value Extraction
+$f[3][11] = 3 < \infty$, so the answer is:
 $$
-f[i][j] = f[i-1][j].
+\mathbf{3}
 $$
-
-Second, the combination may use at least one copy of `x`. Remove one such copy. The remaining coins must make total $j-x$ while still being allowed to use all first $i$ denominations, including `x` again. Its candidate count is therefore
-
-$$
-f[i][j-x] + 1.
-$$
-
-This choice is legal only when $j \ge x$. The transition takes the smaller of the exclude and include candidates:
-
-$$
-f[i][j] = \min\bigl(f[i-1][j],\ f[i][j-x]+1\bigr).
-$$
-
-Notice that the include candidate reads from the current row, not the previous row. This is exactly how the source represents an unlimited supply. After using one `x`, the subproblem may use `x` again. If the transition used `f[i - 1][j - x]`, each denomination could be selected at most once, which would solve a different problem.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"coins": [1, 2, 5], "amount": 11}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+coins = [1, 2, 5], amount = 11
+
+Row 0 (no coins):  f[0][0] = 0, all f[0][1..11] = inf
+Row 1 (coin 1):    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+Row 2 (coins 1,2): [0, 1, 1, 2, 2, 3, 3, 4, 4, 5,  5,  6]
+Row 3 (coins 1,2,5):
+  j=5:  min(3, f[3][0]+1=1) = 1
+  j=6:  min(3, f[3][1]+1=2) = 2
+  j=7:  min(4, f[3][2]+1=2) = 2
+  j=8:  min(4, f[3][3]+1=3) = 3
+  j=9:  min(5, f[3][4]+1=3) = 3
+  j=10: min(5, f[3][5]+1=2) = 2
+  j=11: min(6, f[3][6]+1=3) = 3
+
+Result: f[3][11] = 3
+```
+
+| Target Amount $j$ | Row 1: Coins $\{1\}$ | Row 2: Coins $\{1, 2\}$ | Row 3: Coins $\{1, 2, 5\}$ | Optimal Coins Used | Minimum Coins $f[3][j]$ |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | 0 | 0 | 0 | None | 0 |
+| 1 | 1 | 1 | 1 | $1$ | 1 |
+| 2 | 2 | 1 | 1 | $2$ | 1 |
+| 3 | 3 | 2 | 2 | $2 + 1$ | 2 |
+| 4 | 4 | 2 | 2 | $2 + 2$ | 2 |
+| 5 | 5 | 3 | **1** | $5$ | **1** |
+| 6 | 6 | 3 | **2** | $5 + 1$ | **2** |
+| 7 | 7 | 4 | **2** | $5 + 2$ | **2** |
+| 8 | 8 | 4 | **3** | $5 + 2 + 1$ | **3** |
+| 9 | 9 | 5 | **3** | $5 + 2 + 2$ | **3** |
+| 10 | 10 | 5 | **2** | $5 + 5$ | **2** |
+| **11** | 11 | 6 | **3** | **$5 + 5 + 1$** | **$\mathbf{3}$ (Target)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every state $f[i][j]$ is derived either by omitting denomination $x$ (inheriting the optimal count from $f[i-1][j]$) or by using at least one coin of value $x$ (yielding $1 + f[i][j-x]$). Because all evaluated states correspond to valid coin combinations, any non-infinity value is mathematically sound.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** At each step, every subproblem explores all possible multiples of the newly introduced coin denomination. Because the recurrence evaluates the minimum over all valid choices in topological order of amounts, no coin combination can achieve a smaller count than $f[m][amount]$. If $f[m][amount] = \infty$, no combination exists, and the function correctly returns $-1$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One-dimensional bottom-up DP:** Keep `dp[j]` as the best count for total `j`, then for each denomination scan `j` upward from that coin value to $A$. This uses $O(A)$ space and the same $O(cA)$ time. It is a valid optimization because the current row only needs the previous-row value at `j` and the current-row value at `j-x`; however, it is not what the exact source allocates.
-- **Amount-first one-dimensional DP:** For every total from `1` through $A$, try each denomination as the final coin. This also takes $O(cA)$ time and $O(A)$ space. It derives directly from the last-coin recurrence and allows unlimited reuse because all smaller totals are already known.
-- **Top-down memoization:** Recursively try subtracting each coin and cache the answer for each remaining amount. It has the same $O(cA)$ state-transition bound, but adds recursion overhead and can create a deep call stack when small denominations are present.
+- **Greedy Trap:** Always choosing the largest coin fails on non-canonical systems (e.g. $[1, 3, 4]$ with amount $6$ yields $3$ with greedy, but $2$ with DP).
+- **0/1 Knapsack vs Unbounded Knapsack:** In 0/1 knapsack, each item can be used once, requiring transition from the previous row $f[i-1][j-x]$. In coin change, coins are unlimited, requiring transition from the **current** row $f[i][j-x]$.
+- **Sentinel Initialization:** Unreachable states must be initialized to $\infty$. Using $-1$ or $0$ during recurrence breaks $\min$ comparisons.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(cA)$. Let $c$ be `len(coins)` and $A$ be `amount`. The algorithm fills $(c+1)(A+1)$ table cells, and each cell performs only constant-time comparisons, indexing, and arithmetic. Its time complexity is $O(cA)$.
-- **Auxiliary Space Complexity:** $O(cA)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot A)$, where $M = \text{len}(coins)$ and $A = \text{amount}$. The DP table has $(M + 1) \times (A + 1)$ cells, and each cell is computed in $O(1)$ arithmetic operations.
+- **Auxiliary Space Complexity:** $O(M \cdot A)$ for the full 2D table (or $O(A)$ if optimized to a 1D rolling array).

@@ -1,127 +1,212 @@
 # Guided Example: Nested List Weight Sum II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass recursive traversal (`dfs`), simultaneous unweighted sum ($s$) and forward-weighted sum ($ws$) accumulation, maximum depth tracking ($D$), and algebraic inverse-weight reconstruction ($(D + 1)s - ws$) on representative nested list instances:
 
-- **Input:** `{"nestedList": [[1, 1], 2, [1, 1]]}`
-- **Required output:** `8`
+- **Input:** `nestedList = [[1, 1], 2, [1, 1]]`
+- **Required output:** $8$
+  - Maximum nesting depth across all elements: $D = 2$
+  - Inverse weights calculation: $\text{weight}(d) = D - d + 1$
+    - Element $2$ at depth 1: weight $2 - 1 + 1 = 2 \implies 2 \times 2 = 4$
+    - Four elements of value $1$ at depth 2: weight $2 - 2 + 1 = 1 \implies 4 \times (1 \times 1) = 4$
+    - Total inverse weighted sum: $4 + 4 = \mathbf{8}$
+  - Single-pass algebraic decomposition:
+    - Unweighted sum: $s = 1 + 1 + 2 + 1 + 1 = 6$
+    - Forward-weighted sum: $ws = (1 \times 2) + (1 \times 2) + (2 \times 1) + (1 \times 2) + (1 \times 2) = 10$
+    - Maximum depth: $D = 2$
+    - Final result: $(D + 1) \cdot s - ws = (2 + 1) \times 6 - 10 = 18 - 10 = \mathbf{8}$
+- **Deep Nesting Instance:** `nestedList = [1, [4, [6]]]`
+  - Depth 1: $1$, Depth 2: $4$, Depth 3: $6 \implies D = 3$
+  - $s = 1 + 4 + 6 = 11$, $ws = 1(1) + 4(2) + 6(3) = 27$
+  - Result: $(3 + 1) \times 11 - 27 = 44 - 27 = 17$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates algebraic optimization of non-local tree properties, mathematically proves how factoring $\sum v_i(D - d_i + 1) = (D + 1)\sum v_i - \sum v_i d_i$ eliminates the need for a separate pre-traversal depth discovery pass, and operates in $O(N)$ linear time and $O(D)$ recursion stack space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.
+Given a nested list of integers:
+$$
+\text{nestedList} = [[1, 1], \; 2, \; [1, 1]]
+$$
+The inverse depth weight of an integer at depth $d$ is:
+$$
+\text{weight}(d) = \text{maxDepth} - d + 1
+$$
+where $\text{maxDepth}$ is the maximum nesting depth of any integer in the structure.
+Compute the sum of each integer multiplied by its inverse depth weight:
 
-The objective is to compute `8` from `{"nestedList": [[1, 1], 2, [1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Hierarchical Depths:
+Level 1 (d = 1):  [ ... , 2 , ... ]  -> maxDepth - 1 + 1 = 2
+Level 2 (d = 2):   [1, 1]   [1, 1]   -> maxDepth - 2 + 1 = 1
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+maxDepth = 2
+
+Weighted Contributions:
+  Value 2 at depth 1: 2 * 2 = 4
+  Value 1 at depth 2: 1 * 1 = 1
+  Value 1 at depth 2: 1 * 1 = 1
+  Value 1 at depth 2: 1 * 1 = 1
+  Value 1 at depth 2: 1 * 1 = 1
+
+Total Sum: 4 + 1 + 1 + 1 + 1 = 8
+```
+
+### The Single-Pass Mathematical Identity
+In a standard approach, one must traverse once to find $\text{maxDepth} = D$, and then traverse a second time to compute the weights.
+However, by distributing the formula:
+$$
+\sum_{i=1}^M v_i (D - d_i + 1) = \sum_{i=1}^M \big( (D + 1) v_i - v_i d_i \big) = (D + 1) \sum_{i=1}^M v_i - \sum_{i=1}^M v_i d_i
+$$
+We define:
+- $s = \sum v_i$ (the unweighted sum of all values)
+- $ws = \sum v_i d_i$ (the forward depth-weighted sum)
+Both $s$, $ws$, and $D$ can be accumulated **simultaneously in a single DFS pass**!
+At the end, evaluate $(D + 1) \cdot s - ws$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. State Variables:
+- `maxDepth`: Maximum depth $d$ reached during traversal.
+- `s`: Cumulative sum of integer values.
+- `ws`: Cumulative sum of $(value \times d)$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Recursive Protocol `dfs(x, d)`:
+1. Update global depth:
+   $$
+   maxDepth \leftarrow \max(maxDepth, \; d)
+   $$
+2. **If `x.isInteger()` is True:**
+   $$
+   val = x.\text{getInteger}()
+   $$
+   $$
+   s \leftarrow s + val, \quad ws \leftarrow ws + val \times d
+   $$
+3. **If `x.isInteger()` is False:**
+   For each child $y \in x.\text{getList}()$:
+   $$
+   dfs(y, \; d + 1)
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Final Calculation:
+$$
+\text{Result} = (maxDepth + 1) \times s - ws
+$$
+
+> **Invariant.** At all times, $s$ is the exact sum of visited integers, $ws$ is their forward depth product sum, and $maxDepth$ tracks the deepest level reached.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate the formula into reusable totals.
-
-Suppose the nested structure contains integer values $v_1,v_2,\ldots,v_r$ at depths $d_1,d_2,\ldots,d_r$, and let $D$ be the maximum integer depth. The requested answer is
-
-$$
-\sum_{p=1}^{r}v_p(D-d_p+1).
-$$
-
-Distribute each value and separate the sums:
-
-$$
-\begin{aligned}
-\sum_{p=1}^{r}v_p(D-d_p+1)
-&=\sum_{p=1}^{r}\left((D+1)v_p-v_pd_p\right)\\
-&=(D+1)\sum_{p=1}^{r}v_p-\sum_{p=1}^{r}v_pd_p.
-\end{aligned}
-$$
-
-The source names the first ordinary value sum `s` and the depth-weighted sum `ws`. Once traversal has also found `maxDepth`, it returns `(maxDepth + 1) * s - ws`.
-
-This rearrangement is the key. `maxDepth` is needed only in the final formula, so it can be discovered during the same traversal that accumulates the other two totals.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nestedList": [[1, 1], 2, [1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `nestedList = [[1, 1], 2, [1, 1]]`:
+Initialized: `maxDepth = 0, s = 0, ws = 0`.
+Top-level calls start at depth $d = 1$.
 
 ---
 
-### Step 2: Meaning of depth in the recursive calls.
-
-The outer `nestedList` is the container supplied to the method. Each `NestedInteger` directly inside it has depth one, so the method calls `dfs(x, 1)` for every top-level element.
-
-When `x` stores another list, each child is inside one additional list layer. The recursive call therefore uses `d + 1`. The code does not inspect the platform-provided representation directly; it uses `isInteger()`, `getInteger()`, and `getList()` according to the `NestedInteger` contract.
-
-For `[1,[4,[6]]]`, integer `1` is visited at depth one, `4` at depth two, and `6` at depth three. Thus `s = 11`, `ws = 1*1 + 4*2 + 6*3 = 27`, and `maxDepth = 3`. The final expression gives `4*11 - 27 = 17`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Element 0 (`[1, 1]` at $d = 1$)
+- `x.isInteger()` is False. `maxDepth = \max(0, 1) = 1`.
+- Recurse on children at $d = 1 + 1 = 2$:
+  - **Child 0 ($val = 1$ at $d = 2$):**
+    - $maxDepth = \max(1, 2) = \mathbf{2}$.
+    - $s \leftarrow 0 + 1 = 1$.
+    - $ws \leftarrow 0 + 1 \times 2 = 2$.
+  - **Child 1 ($val = 1$ at $d = 2$):**
+    - $s \leftarrow 1 + 1 = 2$.
+    - $ws \leftarrow 2 + 1 \times 2 = 4$.
 
 ---
 
-### Step 3: What happens at an integer.
+### Step 2: Element 1 ($2$ at $d = 1$)
+- `x.isInteger()` is True.
+- Update depth: $maxDepth = \max(2, 1) = 2$.
+- Value: $val = 2$.
+- Updates:
+  $$
+  s \leftarrow 2 + 2 = \mathbf{4}
+  $$
+  $$
+  ws \leftarrow 4 + 2 \times 1 = \mathbf{6}
+  $$
 
-When `x.isInteger()` is true, `x.getInteger()` supplies the stored value. The source performs two accumulations:
+---
 
-- `s += value` adds the integer to the unweighted total.
-- `ws += value * d` adds its ordinary depth-weighted contribution.
+### Step 3: Element 2 (`[1, 1]` at $d = 1$)
+- `x.isInteger()` is False.
+- Recurse on children at $d = 2$:
+  - **Child 0 ($val = 1$ at $d = 2$):**
+    - $s \leftarrow 4 + 1 = 5$.
+    - $ws \leftarrow 6 + 1 \times 2 = 8$.
+  - **Child 1 ($val = 1$ at $d = 2$):**
+    - $s \leftarrow 5 + 1 = \mathbf{6}$.
+    - $ws \leftarrow 8 + 1 \times 2 = \mathbf{10}$.
 
-No inverse weight is computed yet. That weight would require the final global maximum depth, which may be discovered in a different branch later.
+---
 
-Negative values require no special treatment. Both sums and the final algebra use ordinary signed arithmetic. For example, a negative shallow value receives a larger inverse weight and therefore contributes a more negative amount, exactly as the formula specifies.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
+### Step 4: Final Algebraic Combination
+All elements processed.
+- $maxDepth = 2$
+- $s = 6$
+- $ws = 10$
+Compute formula:
+$$
+(maxDepth + 1) \times s - ws = (2 + 1) \times 6 - 10 = 18 - 10 = \mathbf{8}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nestedList": [[1, 1], 2, [1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
+```text
+DFS Traversal:
+dfs([1, 1], d=1):
+  dfs(1, d=2) -> s=1, ws=2, maxDepth=2
+  dfs(1, d=2) -> s=2, ws=4, maxDepth=2
+dfs(2, d=1):
+  int 2       -> s=4, ws=6, maxDepth=2
+dfs([1, 1], d=1):
+  dfs(1, d=2) -> s=5, ws=8, maxDepth=2
+  dfs(1, d=2) -> s=6, ws=10, maxDepth=2
+
+Totals: maxDepth = 2, s = 6, ws = 10
+Formula: (2 + 1) * 6 - 10 = 8
+```
+
+| Element Inspected | Type | Value | Depth $d$ | Running Sum $s$ | Running Weighted $ws$ | Running $maxDepth$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `[1, 1]` | List | - | 1 | 0 | 0 | 1 |
+| Child 0 | Integer | 1 | 2 | 1 | 2 | 2 |
+| Child 1 | Integer | 1 | 2 | 2 | 4 | 2 |
+| **Integer 2** | Integer | 2 | 1 | 4 | 6 | 2 |
+| `[1, 1]` | List | - | 1 | 4 | 6 | 2 |
+| Child 0 | Integer | 1 | 2 | 5 | 8 | 2 |
+| Child 1 | Integer | 1 | 2 | 6 | 10 | 2 |
+| **Formula Result** | - | - | - | **$(2 + 1) \times 6 - 10$** | - | **$\mathbf{8}$ (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let integers $v_1, \dots, v_M$ have depths $d_1, \dots, d_M$. By algebraic distributivity, $\sum v_i(D - d_i + 1) = (D + 1)\sum v_i - \sum v_i d_i$. Since $s$ computes $\sum v_i$ and $ws$ computes $\sum v_i d_i$ exactly, evaluating $(D + 1)s - ws$ is mathematically identical to applying inverse weights to each element individually.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The recursion visits every node and sub-list in the hierarchical structure. Tracking $maxDepth = \max(maxDepth, d)$ at every call ensures that the global maximum depth is discovered even if deeper elements appear in later sibling branches.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two-pass DFS:** First find the deepest integer, then traverse again and apply each explicit inverse weight. This is conceptually direct and still $O(N)$ time, but it visits the structure twice.
-- **Totals grouped by depth:** Accumulate one sum per depth, find the deepest occupied level, then multiply each bucket by its inverse weight. This matches the manifest summary and uses $O(D)$ explicit bucket storage.
-- **Breadth-first cumulative sum:** Traverse level by level, maintaining an unweighted running sum and adding it to the answer at each level. Values encountered earlier are added more times and therefore receive greater inverse weights. This avoids knowing the final depth in advance but may require a wide queue.
+- **Empty Lists Affecting Depth:** The definition specifies that max depth is determined by the deepest **integer** or list structure. Updating `maxDepth = max(maxDepth, d)` at node entry ensures empty lists at deep levels still establish valid depth geometry.
+- **Negative Integer Values:** Inverse weights are strictly positive ($D - d + 1 \ge 1$). A negative integer at a shallow depth (high inverse weight) will contribute a more negative value to the total. The algebraic formula handles signs accurately.
+- **Two-Pass Traversal Overhead:** Running an initial DFS to compute $D$ and a second DFS to compute weights is redundant; the distributed formula solves it in a single pass.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the total number of `NestedInteger` objects visited, including integer objects and list-valued objects, and let $D$ be the maximum nesting depth.
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the total number of integers and nested list objects. Every object is visited exactly once in the single-pass DFS.
+- **Auxiliary Space Complexity:** $O(D)$, where $D$ is the maximum nesting depth of the structure, bounding the call stack.

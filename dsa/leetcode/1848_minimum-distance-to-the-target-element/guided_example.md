@@ -1,109 +1,147 @@
 # Guided Example: Minimum Distance to the Target Element
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of the 1D discrete metric distance between a designated starting index and qualifying target occurrences in an array:
 
-- **Input:** `{"nums": [1, 2, 3, 4, 5], "target": 5, "start": 3}`
-- **Required output:** `1`
+- **Input:** `nums = [1, 2, 3, 4, 5], target = 5, start = 3`
+- **Required Output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates metric minimization over discrete coordinate indices, evaluating index offsets from a non-zero starting anchor, and distinguishing between linear scans and radially expanding early-termination searches.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` **(0-indexed)** and two integers `target` and `start`, find an index `i` such that $\text{nums}[i] = target$ and $abs(i - start)$ is **minimized**. Note that `abs(x)` is the absolute value of `x`.
+We are given an integer array `nums`, a target value `target` guaranteed to be present at least once in `nums`, and an integer index `start` ($0 \le \text{start} < n$).
+The metric distance between any index $i$ and `start` is the absolute coordinate difference:
+$$d(i, \text{start}) = |i - \text{start}|$$
+We must find an index $i$ such that $\text{nums}[i] = \text{target}$ that minimizes $d(i, \text{start})$.
 
-The objective is to compute `1` from `{"nums": [1, 2, 3, 4, 5], "target": 5, "start": 3}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `nums = [1, 2, 3, 4, 5]` of length $n = 5$.
+- `target = 5`.
+- `start = 3` (which contains value $\text{nums}[3] = 4$).
+- Target $5$ is located at index $4$.
+- The distance is $|4 - 3| = 1$.
+- No other occurrences of $5$ exist.
+- Minimal distance is $1$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to formalize index-based metric minimization over finite sets: showing how both a single-pass linear scan and an outward radial expansion correctly identify the nearest neighbor in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Discrete 1D Metric Minimization Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Discrete 1D Metric Minimization & Radial Search Theorem.**
+> 1. *Target Occurrence Set:* Let $\mathcal{T} = \{i \in [0, n - 1] \mid \text{nums}[i] = \text{target}\}$. The problem guarantees $\mathcal{T} \neq \emptyset$.
+> 2. *Global Metric Minimum:* The optimal distance is uniquely defined as:
+>    $$d^* = \min_{i \in \mathcal{T}} |i - \text{start}|$$
+> 3. *Radial Monotonic Expansion:* If candidates are tested by increasing radius $r = 0, 1, 2, \dots, \max(\text{start}, n - 1 - \text{start})$ by probing $\text{start} - r$ and $\text{start} + r$, the first radius $r$ encountering a target occurrence is guaranteed to be $d^*$, enabling optimal early termination.
+> 4. *Linear Scan Soundness:* Alternatively, a single pass from $i = 0$ to $n - 1$ tracking a running minimum $d_{\min} \gets \min(d_{\min}, |i - \text{start}|)$ visits all elements in $\mathcal{O}(n)$ time without additional data structures.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Minimum Distance to Target Workflow
+    accDescr: Diagram illustrating scanning array indices, calculating absolute difference from start for matching targets, and minimizing distance.
+    A["nums = [1, 2, 3, 4, 5], start = 3, target = 5"] --> B["Initialize min_dist = infinity"]
+    B --> C["Scan index i from 0 to 4"]
+    C --> D{"nums[i] == target?"}
+    D -- No --> C
+    D -- Yes --> E["Compute d = |i - start|"]
+    E --> F["min_dist = min(min_dist, d)"]
+    F --> C
+    C -- End of Array --> G["Output min_dist = 1"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Evaluate every valid target occurrence.** The target may appear once or many times. For any index `i` where `nums[i] == target`, its distance from the starting index is `abs(i - start)`. The required answer is simply the minimum of those distances.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 4, 5], "target": 5, "start": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the linear evaluation pass across all indices of `nums = [1, 2, 3, 4, 5]` with `target = 5` and `start = 3`.
+Initialize $d_{\min} = \infty$.
 
 ---
 
-### Step 2: Core Step 2
-
-The exact solution expresses that definition as one generator passed to `min`:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Index $i = 0$
+- Element: $\text{nums}[0] = 1$.
+- Target check: $1 \neq 5$.
+- Action: Skip (not a target occurrence).
+- Running state: $d_{\min} = \infty$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Evaluate Index $i = 1$
+- Element: $\text{nums}[1] = 2$.
+- Target check: $2 \neq 5$.
+- Action: Skip.
+- Running state: $d_{\min} = \infty$.
 
-`min(abs(i - start) for i, x in enumerate(nums) if x == target)`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 3: Evaluate Index $i = 2$
+- Element: $\text{nums}[2] = 3$.
+- Target check: $3 \neq 5$.
+- Action: Skip.
+- Running state: $d_{\min} = \infty$.
+
+---
+
+### Step 4: Evaluate Index $i = 3$ (Starting Index)
+- Element: $\text{nums}[3] = 4$.
+- Target check: $4 \neq 5$.
+- Action: Skip (the starting index itself is not the target).
+- Running state: $d_{\min} = \infty$.
+
+---
+
+### Step 5: Evaluate Index $i = 4$
+- Element: $\text{nums}[4] = 5$.
+- Target check: $5 == 5$ (Match!).
+- Compute metric distance:
+  $$d(4, 3) = |4 - 3| = 1$$
+- Update running minimum:
+  $$d_{\min} = \min(\infty, 1) = 1$$
+- Running state: $d_{\min} = 1$.
+
+---
+
+### Step 6: Finalization
+- Array boundary reached ($i = 5 = n$).
+- Emit minimum distance: $d_{\min} = 1$.
+- Result: **`1`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 4, 5], "target": 5, "start": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Index $i$ | Value $\text{nums}[i]$ | Equals Target ($5$)? | Absolute Distance $|i - 3|$ | Running Minimum $d_{\min}$ | Decision Note |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 1 | No | $|0 - 3| = 3$ | $\infty$ | Mismatch, ignore |
+| 1 | 2 | No | $|1 - 3| = 2$ | $\infty$ | Mismatch, ignore |
+| 2 | 3 | No | $|2 - 3| = 1$ | $\infty$ | Mismatch, ignore |
+| 3 | 4 | No | $|3 - 3| = 0$ | $\infty$ | Start position mismatch |
+| 4 | 5 | **Yes** | $|4 - 3| = 1$ | **1** | First target match found |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For every index $i$ evaluated against $d_{\min}$, $\text{nums}[i] = \text{target}$ holds true. Thus, every candidate distance is realized by a genuine target location, guaranteeing that $d_{\min}$ never reflects an invalid index.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The traversal exhausts every index from $0$ to $n - 1$. Since the set of all indices containing `target` is a subset of $[0, n - 1]$, no valid occurrence can be skipped, guaranteeing the global minimum is identified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Expand outward from `start`:** Check equal-distance positions on both sides and stop at the first target. It can return early but needs boundary handling.
-- **Explicit running minimum:** Initialize a sentinel and update it inside a loop. This is longer but may be more familiar to beginners.
-- **Map values to sorted positions:** Useful for many repeated queries on the same array, but unnecessary extra `O(n)` storage for one query.
-- **Target at `start`:** Zero is generated and returned, the minimum possible distance.
-- **Target only to the left:** Absolute value converts the negative index difference to the correct positive distance.
-- **Target only to the right:** The ordinary positive difference is returned.
-- **Several equally close occurrences:** They generate the same minimum; only distance is requested, so no index tie rule is needed.
-- **Every element equals target:** The occurrence at `start` produces zero.
-- **Single-element array:** The guaranteed target is at index zero and the result is zero.
-- **Guaranteed existence:** Without it, `min` on the empty generator would fail and a default or explicit branch would be required.
-- **Lazy evaluation:** The generator avoids allocating a length-`n` candidate list.
-- **No early exit in exact code:** Even after seeing distance zero, `min` finishes consuming the generator, preserving `O(n)` runtime.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Absolute Value Omission:** Calculating $(i - \text{start})$ without the absolute value produces negative numbers for target occurrences to the left of `start` (e.g. $i < \text{start}$), which would incorrectly evaluate as smaller than positive distances.
+- **Early Stopping on First Match:** In an unsorted array with arbitrary order, stopping at the first target seen during a left-to-right scan does not guarantee finding the closest target to `start` if `start` is located toward the right.
+- **Start Equal to Target:** When $\text{nums}[\text{start}] = \text{target}$, the distance is $| \text{start} - \text{start} | = 0$, which is the theoretical minimum and allows immediate return.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n = nums.length`. `enumerate` visits all `n` elements, and each equality test and distance calculation is constant time. Python’s `min` consumes the entire filtered generator, so the running time is `O(n)` even when `nums[start]` already equals the target.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `nums`. Each index is checked once with $\mathcal{O}(1)$ arithmetic.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, requiring only scalar variables for the loop index and running minimum.

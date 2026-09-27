@@ -1,136 +1,128 @@
 # Guided Example: Count Asterisks
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "l|*e*et|c**o|*de|"}`
-- **Required output:** `2`
+Given a string $s$ consisting of lowercase English letters, vertical bars `'|'`, and asterisks `'*'`, the vertical bars are guaranteed to appear in pairs. Specifically, every odd-indexed vertical bar (1st, 3rd, 5th, etc.) pairs with the immediately subsequent even-indexed vertical bar (2nd, 4th, 6th, etc.) to delimit an enclosed region.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The objective is to return the number of asterisks `'*'` that appear strictly outside of these paired vertical bar sections. Characters occurring between the 1st and 2nd bars, 3rd and 4th bars, and so forth, are considered inside a pair and must be excluded from the count.
 
----
+Consider the representative instance:
+- String: $s = \text{"l|*e*et|c**o|*de|"}$
 
-## 1. Instance & Teaching Goal
+This string contains four vertical bars at indices 1, 7, 12, and 16, forming two disjoint enclosed pairs:
+1. First enclosed pair: between index 1 and index 7 (`"*e*et"`) containing 2 asterisks.
+2. Second enclosed pair: between index 12 and index 16 (`"*de"`) containing 1 asterisk.
+Outside of these pairs, we observe the segments `"l"`, `"c**o"` (which contains 2 asterisks), and `""`. Hence, exactly 2 asterisks reside outside paired segments.
 
-You are given a string `s`, where every **two** consecutive vertical bars `'|'` are grouped into a **pair**. In other words, the 1^st and 2^nd `'|'` make a pair, the 3^rd and 4^th `'|'` make a pair, and so forth.
+```mermaid
+stateDiagram-v2
+    accTitle: Two-State Parity Automaton for Bar Delimitation
+    accDescr: Finite state machine transitioning between outside and inside states upon encountering vertical bars.
+    [*] --> Outside : Start (ok = 1)
+    Outside --> Inside : Encounter '|' (Toggle ok = 0)
+    Inside --> Outside : Encounter '|' (Toggle ok = 1)
+    Outside --> Outside : Encounter '*' (Increment count)
+    Inside --> Inside : Encounter '*' (Ignore)
+    Outside --> Outside : Other char (Ignore)
+    Inside --> Inside : Other char (Ignore)
+```
 
-The objective is to compute `2` from `{"s": "l|*e*et|c**o|*de|"}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The sequence of vertical bars partitions the string into alternating segments of two distinct types:
+- **Active Segments (Outside Pairs):** The prefix preceding the 1st bar, segments situated between the $(2k)$-th bar and $(2k+1)$-th bar for $k \ge 1$, and the suffix following the final bar. Asterisks within these intervals contribute to the final sum.
+- **Suppressed Segments (Inside Pairs):** Segments situated between the $(2k-1)$-th bar and $(2k)$-th bar for $k \ge 1$. Asterisks here are excluded.
 
----
+### Parity State Machine
+Let a binary state variable $ok \in \{0, 1\}$ represent the counting permission at any point during a left-to-right scan:
+- Initial condition: $ok = 1$ (the scan begins outside any pair).
+- Transition rule on vertical bar: $ok \leftarrow ok \oplus 1$ (bitwise XOR with 1 flips between active and suppressed).
+- Transition rule on asterisk: $\text{count} \leftarrow \text{count} + ok$.
+- Other characters: Leave both $ok$ and $\text{count}$ unchanged.
 
-## 2. Conceptual Foundation & Invariants
+Because the total number of bars is guaranteed to be even, the machine always finishes the string in the active state ($ok = 1$).
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Encountered Symbol | State Variable $ok$ Effect | Accumulator Action |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Vertical Bar (`'|'`) | Flips state ($1 \to 0$ or $0 \to 1$) | No addition |
+| Asterisk (`'*'`) | Unchanged | Adds $ok$ (adds 1 if outside, 0 if inside) |
+| Letter (`'a'`–`'z'`) | Unchanged | No addition |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We trace the representative string $s = \text{"l|*e*et|c**o|*de|"}$ character by character:
 
-## 3. Step-by-Step Worked Execution
+- **Indices 0 to 1 (`"l|"`):**
+  - Index 0 (`'l'`): Letter. State $ok = 1$, $\text{count} = 0$.
+  - Index 1 (`'|'`): 1st bar encountered. State toggles: $ok = 1 \oplus 1 = 0$. Now entering the first enclosed segment.
 
-### Step 1: The parity of bars tells us whether a character is countable
+- **Indices 2 to 7 (`"*e*et|"`):**
+  - Index 2 (`'*'`): Asterisk while $ok = 0$. Disregarded.
+  - Indices 3 to 5 (`"e*e"`): Letters and an asterisk at index 4 while $ok = 0$. Disregarded.
+  - Index 6 (`'t'`): Letter.
+  - Index 7 (`'|'`): 2nd bar encountered. State toggles: $ok = 0 \oplus 1 = 1$. Exiting enclosed segment into active region.
 
-The first and second vertical bars form one pair, the third and fourth form the next pair, and so on. Therefore the scan alternates between two regions:
+- **Indices 8 to 12 (`"c**o|"`):**
+  - Index 8 (`'c'`): Letter.
+  - Index 9 (`'*'`): Asterisk while $ok = 1$. $\text{count} = 0 + 1 = 1$.
+  - Index 10 (`'*'`): Asterisk while $ok = 1$. $\text{count} = 1 + 1 = 2$.
+  - Index 11 (`'o'`): Letter.
+  - Index 12 (`'|'`): 3rd bar encountered. State toggles: $ok = 1 \oplus 1 = 0$. Entering second enclosed segment.
 
-- before the first bar of a pair or after its second bar, asterisks count;
-- after the first bar and before the second, asterisks do not count.
+- **Indices 13 to 16 (`"*de|"`):**
+  - Index 13 (`'*'`): Asterisk while $ok = 0$. Disregarded.
+  - Indices 14 to 15 (`"de"`): Letters.
+  - Index 16 (`'|'`): 4th bar encountered. State toggles: $ok = 0 \oplus 1 = 1$. Exiting enclosed segment.
 
-The solution stores this two-state information in `ok`. It starts at `1`, meaning the scan is outside any paired-bar region and an asterisk is eligible. Every vertical bar toggles the state with `ok ^= 1`:
+String traversal ends. Total valid asterisks accumulated: 2.
 
-- `1 ^ 1 = 0`, so the opening bar changes the state to inside;
-- `0 ^ 1 = 1`, so the closing bar changes the state back to outside.
+## 4. Comprehensive State Trace
 
-Because bars are paired strictly by occurrence order, no stack, pair indices, or substring construction is needed. The parity of how many bars have already been seen completely determines the current region.
+The full sequence of state evaluations across all characters is documented below.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "l|*e*et|c**o|*de|"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step Index | Character | Current State ($ok$) | Character Classification | Action Taken | Updated Asterisk Count |
+|---|---|---|---|---|---|
+| 0 | `'l'` | 1 (Active) | Lowercase letter | No change | 0 |
+| 1 | `'|'` | 1 $\to$ 0 | Bar (1st, Entry) | Toggle $ok \to 0$ | 0 |
+| 2 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 0 |
+| 3 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
+| 4 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 0 |
+| 5 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
+| 6 | `'t'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
+| 7 | `'|'` | 0 $\to$ 1 | Bar (2nd, Exit) | Toggle $ok \to 1$ | 0 |
+| 8 | `'c'` | 1 (Active) | Lowercase letter | No change | 0 |
+| 9 | `'*'` | 1 (Active) | Asterisk | Increment count | 1 |
+| 10 | `'*'` | 1 (Active) | Asterisk | Increment count | 2 |
+| 11 | `'o'` | 1 (Active) | Lowercase letter | No change | 0 + 2 = 2 |
+| 12 | `'|'` | 1 $\to$ 0 | Bar (3rd, Entry) | Toggle $ok \to 0$ | 2 |
+| 13 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 2 |
+| 14 | `'d'` | 0 (Suppressed) | Lowercase letter | No change | 2 |
+| 15 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 2 |
+| 16 | `'|'` | 0 $\to$ 1 | Bar (4th, Exit) | Toggle $ok \to 1$ | 2 |
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 2: Count an asterisk with the state itself
+1. **Parity Preservation:**
+   Because vertical bars are strictly paired, the count of preceding bars at any index $i$ uniquely characterizes the status:
+   - If the number of bars preceding $s[i]$ is even, $s[i]$ lies outside all pairs.
+   - If the number of bars preceding $s[i]$ is odd, $s[i]$ lies inside an open pair.
+   Initializing $ok = 1$ and toggling $ok$ at each bar maintains the invariant $ok \equiv (\text{bars seen} + 1) \pmod 2$. Thus, $ok = 1$ if and only if $s[i]$ is outside all pairs.
 
-When the current character is `"*"`, the code executes `ans += ok`. If the scan is outside, `ok` is one and the answer increases by one. If it is inside, `ok` is zero and the answer does not change.
+2. **Single-Pass Completeness:**
+   Since each character is evaluated under its exact local parity without requiring foresight of future characters or backtracking, summing $ok$ for every `'*'` correctly aggregates all valid asterisks.
 
-This is a compact numeric form of:
+## 6. Edge Cases & Anti-Patterns
 
-`if outside: ans += 1`.
+- **Zero Vertical Bars (`s = "iamprogrammer"` or `"*******"`):**
+  - State $ok$ remains $1$ throughout the entire string, counting every asterisk present.
+- **Empty Enclosed Pair (`s = "||***"`):**
+  - First bar sets $ok = 0$, immediately followed by second bar setting $ok = 1$. The subsequent three asterisks are counted correctly.
+- **All Asterisks Enclosed (`s = "|***|"`):**
+  - All three asterisks encounter $ok = 0$, yielding a total count of 0.
+- **Anti-Pattern (Splitting by Delimiter without Index Tracking):**
+  - Splitting the string on `'|'` yields a list of substrings where even indices ($0, 2, 4, \dots$) represent outside regions. While valid, string splitting allocates unnecessary memory buffers; a streaming parity toggle achieves the same outcome in $\mathcal{O}(1)$ space.
 
-Using an integer state works because Python integers `0` and `1` naturally act as the two contributions required here. The solution never lets `ok` take another value: it starts at one and XOR with one alternates only between zero and one.
+## 7. Complexity Analysis
 
-If the character is not an asterisk, the `elif` checks whether it is a vertical bar. A bar toggles state but is not itself counted. Lowercase letters satisfy neither branch and are ignored, which is correct because they neither contribute to the answer nor delimit regions.
-
-The use of `elif` also reflects that one character cannot be both an asterisk and a bar. State changes happen only for delimiter characters.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Trace the opening and closing roles
-
-Consider the fragment `a|**b|c*`. The scan begins with `ok = 1`. The letter `a` changes nothing. The first bar toggles `ok` to zero, so the next two asterisks add zero. The letter `b` changes nothing. The second bar toggles back to one, and the final asterisk adds one.
-
-The code does not explicitly label a bar as opening or closing. Its role follows automatically from parity. The first, third, fifth, and later odd-numbered bars toggle from outside to inside; the second, fourth, sixth, and later even-numbered bars toggle back.
-
-Consecutive bars are handled naturally. In `||*`, the first bar enters an empty excluded region and the second immediately leaves it. The following asterisk is outside and counts. An empty region requires no special case.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "l|*e*et|c**o|*de|"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Boolean state instead of integer state:** Use `outside = true`, toggle with `not outside`, and increment inside an explicit condition. This is equally correct and may be more descriptive; the exact solution uses `0` and `1` so the state can be added directly.
-- **Split on vertical bars:** `s.split('|')` creates alternating outside and inside segments, after which only even-indexed segments should be counted. This is concise but allocates `O(n)` total substring storage.
-- **Regular expressions:** Remove paired-bar interiors and count remaining asterisks. This adds parsing machinery, may allocate a new string, and requires careful handling of multiple pairs; a two-state scan is simpler.
-- **Store every bar position:** Pair positions and scan the gaps between them. This uses linear extra memory even though current parity is all the future scan needs.
-- **Count every asterisk, then subtract inside counts:** This can work but still needs the same inside/outside tracking and an extra conceptual total. Directly adding only eligible characters is clearer.
-- **Toggle on every non-letter character:** Asterisks must not change region state. Only `"|"` is a delimiter; the `elif` distinguishes the two special character roles.
-- **No vertical bars:** `ok` stays one, so every asterisk counts. If the string has no asterisks either, the answer remains zero.
-- **No asterisks:** State may toggle many times, but `ans` stays zero.
-- **All asterisks outside pairs:** Each one is encountered with `ok = 1` and is counted.
-- **All asterisks inside pairs:** Each one adds zero, so the method returns zero.
-- **Adjacent bars:** They delimit an empty excluded substring. Two immediate toggles return the scan to the outside state.
-- **Several pairs:** State returns to one after every even-numbered bar, so each new pair is handled independently without resetting any other data.
-- **Asterisks immediately beside a bar:** A bar itself is not part of the “between” region. An asterisk just after an opening bar is excluded; one just after a closing bar is counted.
-- **Even-bar guarantee:** It ensures the scan finishes with `ok = 1` and every excluded region has both boundaries. The exact code does not validate this precondition because the problem guarantees it.
-- **Smallest input:** A single lowercase letter or a single asterisk contains zero bars, which is an even count. The method returns zero or one respectively.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the length of `s`. The loop visits every character once and performs a constant amount of work: at most two character comparisons, one addition, or one XOR. The running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of string $s$. The algorithm processes the string in a single linear pass with constant-time boolean and arithmetic operations per character.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. Only two integer scalar variables (the parity state flag and the output accumulator) are stored.

@@ -33,7 +33,7 @@
     {
       "id": "trial-impossible",
       "name": "insufficient multiplicity",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "s": "a",
@@ -41,6 +41,7 @@
       },
       "expected": "",
       "tags": [
+        "sample",
         "duplicates",
         "impossible"
       ]

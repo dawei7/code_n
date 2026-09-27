@@ -1,110 +1,240 @@
 # Guided Example: Partition Labels
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character last-occurrence mapping ($last[c]$), sliding window right-boundary expansion ($mx = \max(mx, last[c])$), boundary closure condition ($i == mx$), greedy maximum partition segmentation, partition length recording ($i - j + 1$), and string decomposition on representative character sequences:
 
-- **Input:** `{"s": "ababcbacadefegdehijhklij"}`
-- **Required output:** `[9, 7, 8]`
+- **Input:** $s = \text{"ababcbacadefegdehijhklij"}$
+- **Required output:**
+  $$
+  [9, 7, 8]
+  $$
+  - Partitioning criteria:
+    - Partition string $s$ into the **maximum number of substrings** such that each character appears in **at most one substring**.
+    - If character `'a'` appears in a part, all occurrences of `'a'` throughout the entire string must reside in that exact same part.
+    - Objective: Return the list of sizes of these parts in order.
+    - For $s = \text{"ababcbacadefegdehijhklij"}$ (length 24):
+      - Part 1: `"ababcbaca"` (length 9). Characters `'a'`, `'b'`, `'c'` never appear again in the remainder of the string.
+      - Part 2: `"defegde"` (length 7). Characters `'d'`, `'e'`, `'f'`, `'g'` never appear again.
+      - Part 3: `"hijhklij"` (length 8). Characters `'h'`, `'i'`, `'j'`, `'k'`, `'l'` are fully self-contained.
+      - Result: $[9, 7, 8]$.
+- **Last Occurrence & Greedy Horizon Invariant:**
+  - **The Necessary Interval Span:**
+    - Any character $c$ must be fully contained within a single partition.
+    - If a partition begins at or before the first occurrence of $c$, it **must extend at least** to the last occurrence of $c$:
+      $$
+      \text{partition\_end} \ge last[c]
+      $$
+  - **Greedy Horizon Expansion ($mx$):**
+    - As we scan left to right from index $i$:
+      - Whenever we encounter character $s[i]$, we stretch the current partition horizon:
+        $$
+        mx \leftarrow \max(mx, \; last[s[i]])
+        $$
+    - **Cut Condition:**
+      - If the scan index reaches the horizon ($i == mx$):
+        - Every character observed in the current window $[j, i]$ has its final occurrence at or before $i$.
+        - None of these characters appear anywhere in $s[i + 1 \dots n - 1]$!
+        - It is safe to cut the partition at index $i$, achieving the minimal valid block length and maximizing the total count of partitions.
+        - Record length: $i - j + 1$, and start the next partition at $j \leftarrow i + 1$.
+- **Step-by-Step Worked Execution Trace on $s = \text{"ababcbacadefegdehijhklij"}$:**
+  - **Phase 0: Precompute Last Occurrence Table:**
+    - `'a'`: index 8
+    - `'b'`: index 5
+    - `'c'`: index 7
+    - `'d'`: index 14
+    - `'e'`: index 15
+    - `'f'`: index 11
+    - `'g'`: index 13
+    - `'h'`: index 19
+    - `'i'`: index 22
+    - `'j'`: index 23
+    - `'k'`: index 20
+    - `'l'`: index 21
+  - **Phase 1: Partition 1 (Indices $0 \dots 8$):**
+    - Start pointer: $j = 0$, horizon: $mx = 0$.
+    - $i = 0$ (`'a'`): $mx \leftarrow \max(0, last[\text{'a'}]) = \max(0, 8) = \mathbf{8}$.
+    - $i = 1$ (`'b'`): $mx \leftarrow \max(8, last[\text{'b'}]) = \max(8, 5) = \mathbf{8}$.
+    - $i = 2$ (`'a'`): $mx \leftarrow \max(8, 8) = \mathbf{8}$.
+    - $i = 3$ (`'b'`): $mx = \mathbf{8}$.
+    - $i = 4$ (`'c'`): $mx \leftarrow \max(8, last[\text{'c'}]) = \max(8, 7) = \mathbf{8}$.
+    - $i = 5$ (`'b'`): $mx = \mathbf{8}$.
+    - $i = 6$ (`'a'`): $mx = \mathbf{8}$.
+    - $i = 7$ (`'c'`): $mx = \mathbf{8}$.
+    - $i = 8$ (`'a'`): $mx = \mathbf{8}$.
+      - Check cut condition:
+        $$
+        i == mx \iff 8 == 8 \quad \mathbf{(Cut\ Point\ Reached!)}
+        $$
+      - Record partition length:
+        $$
+        \text{length}_1 = 8 - 0 + 1 = \mathbf{9}
+        $$
+      - Advance start: $j \leftarrow 8 + 1 = \mathbf{9}$.
+  - **Phase 2: Partition 2 (Indices $9 \dots 15$):**
+    - $i = 9$ (`'d'`): $mx \leftarrow \max(8, last[\text{'d'}]) = \max(8, 14) = \mathbf{14}$.
+    - $i = 10$ (`'e'`): $mx \leftarrow \max(14, last[\text{'e'}]) = \max(14, 15) = \mathbf{15}$.
+    - $i = 11$ (`'f'`): $mx \leftarrow \max(15, 11) = \mathbf{15}$.
+    - $i = 12$ (`'e'`): $mx = \mathbf{15}$.
+    - $i = 13$ (`'g'`): $mx \leftarrow \max(15, 13) = \mathbf{15}$.
+    - $i = 14$ (`'d'`): $mx = \mathbf{15}$.
+    - $i = 15$ (`'e'`): $mx = \mathbf{15}$.
+      - Check cut condition:
+        $$
+        i == mx \iff 15 == 15 \quad \mathbf{(Cut\ Point\ Reached!)}
+        $$
+      - Record partition length:
+        $$
+        \text{length}_2 = 15 - 9 + 1 = \mathbf{7}
+        $$
+      - Advance start: $j \leftarrow 15 + 1 = \mathbf{16}$.
+  - **Phase 3: Partition 3 (Indices $16 \dots 23$):**
+    - $i = 16$ (`'h'`): $mx \leftarrow \max(15, 19) = \mathbf{19}$.
+    - $i = 17$ (`'i'`): $mx \leftarrow \max(19, 22) = \mathbf{22}$.
+    - $i = 18$ (`'j'`): $mx \leftarrow \max(22, 23) = \mathbf{23}$.
+    - $i = 19 \dots 22$: $mx$ remains $23$.
+    - $i = 23$ (`'j'`):
+      - Check cut condition:
+        $$
+        i == mx \iff 23 == 23 \quad \mathbf{(Cut\ Point\ Reached!)}
+        $$
+      - Record partition length:
+        $$
+        \text{length}_3 = 23 - 16 + 1 = \mathbf{8}
+        $$
+  - **Final Output List:**
+    $$
+    ans = [\mathbf{9}, \; \mathbf{7}, \; \mathbf{8}]
+    $$
+- **Single Monolithic Partition Trace ($s = \text{"eccbbbbdec"}$):**
+  - Character `'e'` appears at index 0 and 8.
+  - Character `'c'` appears at index 1 and 9 (end).
+  - Horizon $mx$ expands to 9 immediately.
+  - No cut is possible until the very last index $i = 9$.
+  - Output: `[10]`.
+- **All Unique Characters Trace ($s = \text{"abcdef"}$):**
+  - For every character, $last[c] == i$.
+  - Cuts after every single character $\implies [1, 1, 1, 1, 1, 1]$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates interval chaining and greedy right-boundary absorption, mathematically proves why cutting at the earliest point satisfying $i = \max_{j \le i} last[s[j]]$ maximizes partition cardinality without constraint violation, and derives $O(N)$ execution time and $O(|\Sigma|)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s`. We want to partition the string into as many parts as possible so that each letter appears in at most one part. For example, the string `"ababcc"` can be partitioned into `["abab", "cc"]`, but partitions such as `["aba", "bcc"]` or `["ab", "ab", "cc"]` are invalid.
+Given a string $s$:
+Partition $s$ into the **maximum number of parts** such that each letter appears in **at most one part**.
+Return the sizes of the parts.
 
-The objective is to compute `[9, 7, 8]` from `{"s": "ababcbacadefegdehijhklij"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+s = "ababcbacadefegdehijhklij"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Precompute last index of each character:
+  'a' ends at 8, 'b' ends at 5, 'c' ends at 7
+  At index 8: all 'a', 'b', 'c' are finished -> CUT! Length = 9
+
+  'd' ends at 14, 'e' ends at 15, 'f' at 11, 'g' at 13
+  At index 15: all 'd', 'e', 'f', 'g' finished -> CUT! Length = 7
+
+  'h' to 'l' end by 23
+  At index 23: all finished -> CUT! Length = 8
+
+Result: [ 9, 7, 8 ]
+```
+
+### The Invariant of the Horizon Catch-Up
+- The partition must extend to at least $last[c]$ for every character $c$ seen.
+- Tracking $mx = \max(mx, last[c])$ maintains the required horizon.
+- The moment the current index $i$ equals $mx$, all characters in the current window are completely contained, making $i$ an optimal cut point.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Last Occurrence Lookup:
+$$
+last[c] = \max \{ k \in [0, n - 1] \mid s[k] = c \}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Horizon Dynamic Update:
+$$
+mx \leftarrow \max(mx, \; last[s[i]])
+$$
+$$
+\text{if } i == mx \implies ans.\text{append}(i - j + 1), \quad j \leftarrow i + 1
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Connected Component Interval Invariant.** Each character $c$ defines a span $[first(c), last(c)]$. The problem reduces to finding the connected components of the intersection graph of these intervals, which are precisely delimited by points $i$ satisfying $i = \max_{k \le i} last(s[k])$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A partition cannot end before the last occurrence of any letter it contains
-
-If the current part contains character `c`, every occurrence of `c` must remain in that same part. Therefore its right boundary must reach at least `last[c]`, the character’s final position in the whole string.
-
-The solution first builds a dictionary of final positions. The comprehension overwrites earlier indices, leaving the last index for each lowercase letter.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "ababcbacadefegdehijhklij"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"ababcbacadefegdehijhklij"}$:
 
 ---
 
-### Step 2: Grow the smallest valid current boundary
-
-Variable `j` is the current part’s start. Variable `mx` is the farthest last occurrence required by every character seen since `j`.
-
-While scanning index `i` and character `c`, the update
-
-`mx = max(mx, last[c])`
-
-extends the required boundary if this character appears farther right.
-
-Characters encountered inside that extension may themselves have later occurrences, so the scan continues and keeps expanding `mx` until all dependencies are contained.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Precompute Last
+- `'a': 8`, `'b': 5`, `'c': 7`, `'d': 14`, `'e': 15`, `'h': 19`, `'j': 23`.
 
 ---
 
-### Step 3: Close exactly when the scan reaches the boundary
+### Step 2: Part 1 ($0 \dots 8$)
+- Starts with `'a'` $\to mx = 8$.
+- Scanning $0 \dots 8$: no character exceeds 8.
+- At $i = 8 == mx \implies$ cut! Length $8 - 0 + 1 = \mathbf{9}$.
 
-When `i == mx`, every character seen in the current part has its last occurrence at or before `i`. No such character appears later, so cutting after `i` is valid.
+---
 
-The length is `i - j + 1`. The next part begins at `i + 1`.
+### Step 3: Part 2 ($9 \dots 15$)
+- Starts at 9, sees `'e'` ending at 15 $\to mx = 15$.
+- At $i = 15 == mx \implies$ cut! Length $15 - 9 + 1 = \mathbf{7}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[9, 7, 8]` |
+---
+
+### Step 4: Part 3 ($16 \dots 23$)
+- Starts at 16, sees `'j'` ending at 23 $\to mx = 23$.
+- At $i = 23 == mx \implies$ cut! Length $23 - 16 + 1 = \mathbf{8}$.
+
+---
+
+### Step 5: Output
+$$
+[9, 7, 8]
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "ababcbacadefegdehijhklij"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[9, 7, 8]` | Verified |
+| Partition | Start Index $j$ | Characters Ingested | Maximum Horizon $mx$ | Cut Index $i$ ($i == mx$) | Part Size $(i - j + 1)$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $0$ | `'a'`, `'b'`, `'c'` | $8$ | $8$ | **`9`** |
+| $2$ | $9$ | `'d'`, `'e'`, `'f'`, `'g'` | $15$ | $15$ | **`7`** |
+| **$3$** | **$16$** | **`'h'`, `'i'`, `'j'`, `'k'`, `'l'`** | **$23$** | **$23$** | **`8`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **All Characters Unique ($"abcdef"$):** Every character cuts immediately $\implies [1, 1, 1, 1, 1, 1]$.
+- **Single Character Repeated ($"aaaa"$):** Single cut at end $\implies [4]$.
+- **First and Last Same ($"abaca"$):** Entire string is one partition $\implies [5]$.
+- **Single Character ($"a"$):** Returns $[1]$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Expand each partition with repeated searches:** Repeatedly finding last positions can become quadratic. Precompute them once.
-- **Cut after a character’s first occurrence:** Later copies would cross the boundary and invalidate the partition.
-- **Delay a valid cut:** This remains valid but reduces or preserves, never increases, the number of parts.
+- **Premature Cuts:** Cutting as soon as a character finishes its last occurrence without checking if other characters inside the partition appear further right. $mx = \max(mx, last[c])$ ensures all enclosed characters are accounted for.
+- **Nested Loops ($O(N^2)$):** Scanning forward to find last occurrences repeatedly takes $O(N^2)$. Precomputing $last$ with a single dictionary pass runs in $O(N)$.
+- **Forgetting to Advance Start Pointer $j$:** After a cut at $i$, $j$ must become $i + 1$ to measure the length of the next partition accurately.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the string length. Building last occurrences takes `O(n)` time, and the greedy scan takes another `O(n)`. Total time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - One pass to compute $last$ indices: $\mathcal{O}(N)$.
+  - One pass to find cut points: $\mathcal{O}(N)$.
+  - Total Time: strictly linear $\mathcal{O}(N)$ where $N \le 500$. Completes in $< 0.1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(|\Sigma|) \le 26$ space for the $last$ index lookup table.

@@ -1,150 +1,219 @@
 # Guided Example: Number of Submatrices That Sum to Target
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step counting of 2D submatrices whose elements sum to a specified target, prove the 2D-to-1D Dimension Reduction Theorem and the Prefix Sum Frequency Invariant, and determine exact submatrix counts across representative matrix configurations:
 
-- **Input:** `{"matrix": [[0, 1, 0], [1, 1, 1], [0, 1, 0]], "target": 0}`
-- **Required output:** `4`
+- **Representative Instance 1 (Isolated Zero Cells in 2D Binary Grid):**
+  $$
+  matrix = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 0 \end{pmatrix}, \quad target = 0, \quad m = 3, \; n = 3
+  $$
+- **Required Output:** `4`
+  - Problem definitions:
+    - A submatrix is determined by top-left $(i, c_1)$ and bottom-right $(j, c_2)$ with $0 \le i \le j < m$ and $0 \le c_1 \le c_2 < n$.
+    - Return the total number of non-empty submatrices whose entries sum to $target$.
+  - The 2D-to-1D Dimension Reduction Principle:
+    - For any fixed row interval $[i, j]$, define the compressed column sum vector:
+      $$
+      col[k] = \sum_{r=i}^j matrix[r][k] \quad \text{for } k \in [0, n - 1]
+      $$
+    - The sum of a submatrix bounded by rows $[i, j]$ and columns $[c_1, c_2]$ is:
+      $$
+      \sum_{r=i}^j \sum_{k=c_1}^{c_2} matrix[r][k] = \sum_{k=c_1}^{c_2} col[k]
+      $$
+    - For fixed $(i, j)$, finding valid submatrices reduces identically to finding contiguous 1D subarrays in $col$ that sum to $target$.
+  - Row Pair Iteration and Incremental Compression Trace:
+    1. **Top Row $i = 0$:**
+       - **$j = 0$ (Row band $[0, 0]$):**
+         - $col = [0, 1, 0]$.
+         - 1D Subarray Sum ($target = 0$):
+           - Initial hash map: $d = \{0: 1\}$.
+           - $k = 0$ ($x = 0$): $s = 0, \; s - target = 0 \implies cnt += d[0] = 1$. $d[0] = 2$.
+           - $k = 1$ ($x = 1$): $s = 1, \; s - target = 1 \implies d[1] = 0$. $d[1] = 1$.
+           - $k = 2$ ($x = 0$): $s = 1, \; s - target = 1 \implies cnt += d[1] = 1$. $d[1] = 2$.
+           - Contributes: $1 + 1 = \mathbf{2}$ (submatrices at $[0, 0 \dots 0]$ and $[0, 2 \dots 2]$).
+       - **$j = 1$ (Row band $[0, 1]$):**
+         - $col = [0+1, 1+1, 0+1] = [1, 2, 1]$.
+         - All entries positive; no subarray sums to $0 \implies \mathbf{0}$.
+       - **$j = 2$ (Row band $[0, 2]$):**
+         - $col = [1+0, 2+1, 1+0] = [1, 3, 1]$.
+         - All entries positive; no subarray sums to $0 \implies \mathbf{0}$.
+    2. **Top Row $i = 1$:**
+       - **$j = 1$ (Row band $[1, 1]$):**
+         - $col = [1, 1, 1] \implies \mathbf{0}$.
+       - **$j = 2$ (Row band $[1, 2]$):**
+         - $col = [1+0, 1+1, 1+0] = [1, 2, 1] \implies \mathbf{0}$.
+    3. **Top Row $i = 2$:**
+       - **$j = 2$ (Row band $[2, 2]$):**
+         - $col = [0, 1, 0]$.
+         - Symmetrically identical to row $0 \implies$ Contributes $\mathbf{2}$ (cells at $[2, 0]$ and $[2, 2]$).
+  - Total Target Submatrices:
+    $$
+    ans = 2 + 0 + 0 + 0 + 0 + 2 = \mathbf{4}
+    $$
+    (The four isolated corner cells `(0, 0)`, `(0, 2)`, `(2, 0)`, `(2, 2)`).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Zero-Sum Cancellation Grid):**
+  $$
+  matrix = \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}, \quad target = 0
+  $$
+  - Row $[0, 0]$: $col = [1, -1] \implies$ subarray $[0 \dots 1]$ sums to $0$ (1).
+  - Row $[1, 1]$: $col = [-1, 1] \implies$ subarray $[0 \dots 1]$ sums to $0$ (1).
+  - Row $[0, 1]$: $col = [0, 0] \implies$ $col[0]=0$ (1), $col[1]=0$ (1), $col[0 \dots 1]=0$ (1) $\implies 3$.
+  - Total: $1 + 1 + 3 = \mathbf{5}$.
+
+- **Representative Instance 3 (Single Cell Misses Target):**
+  $$
+  matrix = [[904]], \quad target = 0 \implies \mathbf{0}
+  $$
+
+- **Representative Instance 4 (Single Cell Hits Target):**
+  $$
+  matrix = [[-7]], \quad target = -7 \implies \mathbf{1}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a `matrix` and a `target`, return the number of non-empty submatrices that sum to target.
+Given an $m \times n$ matrix and a target, find the number of non-empty submatrices whose sum equals target.
 
-The objective is to compute `4` from `{"matrix": [[0, 1, 0], [1, 1, 1], [0, 1, 0]], "target": 0}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Naive Boundary Enumeration Fallacy:
+  Choosing 4 boundaries (top, bottom, left, right):
+    Number of submatrices is O(m^2 * n^2).
+    For m = 100, n = 100: (100 * 101 / 2)^2 approx 2.5 * 10^7 combinations.
+    Evaluating each in O(1) still requires tens of millions of iterations.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+2D-to-1D Dimension Reduction Invariant (O(m^2 * n) Time, O(n) Space):
+  Key observation:
+    Fix top row i and bottom row j.
+    Compress column values: col[k] = sum_{r=i}^j matrix[r][k].
+    Submatrix sum between row i, j and columns c1, c2 is sum_{k=c1}^{c2} col[k]!
+  This is the 1D "Subarray Sum Equals K" problem:
+    - Running prefix sum s.
+    - Hash map d[prefix] counts prior occurrences.
+    - cnt += d[s - target].
+  Total operations: (m * (m + 1) / 2) * n <= 5 * 10^5, executing in < 0.05 seconds!
+```
 
----
+Compressing the 2D vertical dimension into a single cumulative vector maps the problem directly to the classic 1D prefix difference frequency algorithm.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Fix two row boundaries to reduce the matrix to one dimension
-
-A submatrix is determined by top, bottom, left, and right boundaries. The solution enumerates every top and bottom row pair. Once those two boundaries are fixed, it compresses all included rows into one array of column sums.
-
-If `col[k]` is the sum of matrix cells in column `k` between the fixed top and bottom rows, then the sum of a submatrix spanning columns `left` through `right` equals the sum of the one-dimensional subarray `col[left:right + 1]`.
-
-The two-dimensional counting problem for one row band therefore becomes the familiar problem of counting one-dimensional subarrays with sum `target`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[0, 1, 0], [1, 1, 1], [0, 1, 0]], "target": 0}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **2D-to-1D Dimension Reduction Theorem & Prefix Sum Frequency Invariant**:
+1. **Incremental Compression:** Extending bottom row $j$ updates $col[k] \leftarrow col[k] + matrix[j][k]$ in $\mathcal{O}(n)$ time without recomputing from row $i$.
+2. **Algebraic Isomorphism:** A 2D submatrix with fixed horizontal boundaries is mathematically identical to a 1D contiguous segment in the column projection vector.
+3. **Prefix Difference Target Matching:** A segment $col[c_1 \dots c_2]$ sums to $target$ iff $P_{c_2} - P_{c_1 - 1} = target \iff P_{c_1 - 1} = P_{c_2} - target$.
+4. Total time $\mathcal{O}(m^2 \cdot n)$ and auxiliary space $\mathcal{O}(n)$.
 
 ---
 
-### Step 2: Count target-sum subarrays with prefix frequencies
+## 2. Conceptual Foundation & The Dimension Reduction Pipeline
 
-The helper `f(nums)` begins:
+```mermaid
+flowchart TD
+    accTitle: Submatrix Sum Target Pipeline
+    accDescr: Flowchart illustrating 2D to 1D dimension reduction across row pairs and 1D prefix sum hash counting
+    Start["matrix of size m x n, target\nans = 0"] --> LoopTop["For top row i from 0 to m - 1:"]
+    LoopTop --> InitCol["Initialize col = [0] * n"]
+    InitCol --> LoopBottom["For bottom row j from i to m - 1:"]
+    LoopBottom --> UpdateCol["Update col[k] += matrix[j][k] for all k in 0 ... n - 1\n(Incremental column compression)"]
+    UpdateCol --> Run1D["Run 1D Subarray Sum Helper: f(col, target)\nMaintain prefix sum s, hash map d[s]\nans += count of subarrays summing to target"]
+    Run1D --> CheckJDone{"j < m - 1 ?"}
+    CheckJDone -->|"Yes"| LoopBottom
+    CheckJDone -->|"No"| CheckIDone{"i < m - 1 ?"}
+    CheckIDone -->|"Yes"| LoopTop
+    CheckIDone -->|"No: All row pairs processed"| Finish["Return ans"]
+```
 
+### The 2D-to-1D Dimension Reduction Theorem
 
-
-`s` is the running prefix sum through the current position. `d[value]` records how many earlier prefixes had that value. `cnt` accumulates matching subarrays.
-
-The artificial empty prefix has sum zero and occurs once. Initializing `d[0] = 1` allows a subarray starting at index zero to be counted. If the current prefix sum itself equals `target`, then `s - target` is zero and that empty prefix supplies one match.
-
-For each value:
-
-
-
-Suppose an earlier prefix sum was `p`. The sum after that prefix through the current index is `s - p`. This subarray equals `target` exactly when:
-
-
-
-Every previous occurrence of `s - target` gives a different starting boundary, so the helper adds its frequency.
-
-Only after counting does it record the current prefix. This order ensures a nonempty subarray: the current prefix cannot pair with itself.
-
-Negative numbers cause no difficulty. Prefix sums need not be monotonic because the hash map finds exact differences rather than relying on a sliding window.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Build each compressed row band incrementally
-
-The outer loops are:
-
-
-
-`i` is the top row. `j` advances from that top through every possible bottom row.
-
-For a new top row, `col` starts at zeros. When bottom `j` is included:
-
-
-
-adds that entire row to the compressed column sums.
-
-After the update, `col[k]` equals:
-
-
-
-The code reuses the previous band rather than recomputing all rows from `i` through `j`. Extending the bottom boundary costs only one pass over columns.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+Let $M$ be an $m \times n$ matrix with entries in $\mathbb{Z}$.
+1. **Submatrix Sum Definition:**
+   A submatrix defined by row interval $[i, j]$ ($0 \le i \le j < m$) and column interval $[c_1, c_2]$ ($0 \le c_1 \le c_2 < n$) has sum:
+   $$
+   S(i, j, c_1, c_2) = \sum_{r=i}^j \sum_{k=c_1}^{c_2} M[r][k]
+   $$
+2. **Summation Interchange:**
+   By Fubini's theorem on finite sums:
+   $$
+   S(i, j, c_1, c_2) = \sum_{k=c_1}^{c_2} \left( \sum_{r=i}^j M[r][k] \right)
+   $$
+   Define the 1D column projection vector $\mathbf{v}^{(i, j)} \in \mathbb{Z}^n$ by $v_k^{(i, j)} = \sum_{r=i}^j M[r][k]$.
+   Then:
+   $$
+   S(i, j, c_1, c_2) = \sum_{k=c_1}^{c_2} v_k^{(i, j)}
+   $$
+3. **Prefix Difference Matching:**
+   For the 1D sequence $\mathbf{v}^{(i, j)}$, define prefix sums $P_c = \sum_{k=0}^c v_k^{(i, j)}$ with $P_{-1} = 0$.
+   The subarray sum condition is:
+   $$
+   \sum_{k=c_1}^{c_2} v_k^{(i, j)} = P_{c_2} - P_{c_1 - 1} = target \iff P_{c_1 - 1} = P_{c_2} - target
+   $$
+   Iterating $c_2$ from $0$ to $n - 1$ while querying and updating a frequency map $d[P]$ counts all matching pairs $(c_1, c_2)$ in $\mathcal{O}(n)$ time.
+4. **Exhaustive Partition:**
+   Since every submatrix has a unique pair of horizontal boundaries $(i, j)$, summing the 1D counts over all $\frac{m(m+1)}{2}$ row pairs partitions the entire 2D search space without omission or double-counting. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[0, 1, 0], [1, 1, 1], [0, 1, 0]], "target": 0}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+$matrix = [[0, 1, 0], [1, 1, 1], [0, 1, 0]], \; target = 0, \; m = 3, \; n = 3$.
+
+### Iteration Highlights
+- **Pair $(i=0, j=0)$:**
+  - $col = [0, 1, 0]$.
+  - $k=0: s=0 \implies d[0]=1 \implies cnt += 1$. $d[0]=2$.
+  - $k=1: s=1 \implies d[1]=0$. $d[1]=1$.
+  - $k=2: s=1 \implies d[1]=1 \implies cnt += 1$. $d[1]=2$.
+  - Subtotal: $\mathbf{2}$.
+- **Pair $(i=0, j=1)$:** $col = [1, 2, 1] \implies$ Subtotal: $\mathbf{0}$.
+- **Pair $(i=0, j=2)$:** $col = [1, 3, 1] \implies$ Subtotal: $\mathbf{0}$.
+- **Pair $(i=1, j=1)$:** $col = [1, 1, 1] \implies$ Subtotal: $\mathbf{0}$.
+- **Pair $(i=1, j=2)$:** $col = [1, 2, 1] \implies$ Subtotal: $\mathbf{0}$.
+- **Pair $(i=2, j=2)$:**
+  - $col = [0, 1, 0] \implies$ Subtotal: $\mathbf{2}$.
+
+Global Sum: $2 + 0 + 0 + 0 + 0 + 2 = \mathbf{4}$.
+
+---
+
+## 4. Row Band Compression & 1D Prefix Evaluation Trace Table
+
+| Top Row $i$ | Bottom Row $j$ | Compressed Column Vector $col$ | Prefix Sum Sequence $P$ | 1D Matches Found | Cumulative Total |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $0$ | `[0, 1, 0]` | `[0, 1, 1]` | **$2$** (`[0]`, `[2]`) | **$2$** |
+| $0$ | $1$ | `[1, 2, 1]` | `[1, 3, 4]` | $0$ | $2$ |
+| $0$ | $2$ | `[1, 3, 1]` | `[1, 4, 5]` | $0$ | $2$ |
+| $1$ | $1$ | `[1, 1, 1]` | `[1, 2, 3]` | $0$ | $2$ |
+| $1$ | $2$ | `[1, 2, 1]` | `[1, 3, 4]` | $0$ | $2$ |
+| $2$ | $2$ | `[0, 1, 0]` | `[0, 1, 1]` | **$2$** (`[0]`, `[2]`) | **$4$** |
+| **Output** | — | — | — | — | **$\mathbf{4}$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every match registered corresponds to an exact 2D submatrix whose entries sum to $target$.
+2. **Completeness:**
+   Every possible 2D submatrix is uniquely defined by its row span $[i, j]$ and column span $[c_1, c_2]$; all row pairs and all column pairs are evaluated.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Choose the smaller paired dimension:** Transpose or branch so the squared dimension is `min(R, C)`. This guarantees the manifest's `O(S^2L)` time and `O(L)` space.
-- **Two-dimensional prefix sums plus four boundaries:** Constant-time rectangle queries still leave `O(R^2C^2)` boundary combinations, much slower than the reduction.
-- **Column-pair compression:** Fix left and right columns, compress row sums, and run the same prefix-map helper. It is symmetric and preferable when columns are fewer.
-- **Target zero:** The initial zero-prefix frequency correctly counts zero-sum intervals, including those created by cancellations.
-- **Negative cells:** A two-pointer window would fail because sums can decrease. Prefix differences remain correct.
-- **One cell:** The single row band and single column interval contribute one exactly when the cell equals target.
-- **One row:** The algorithm reduces directly to one call of the one-dimensional subarray-sum method.
-- **One column:** Every row band produces one compressed value, counting all vertical submatrices with the target sum.
-- **Repeated prefix sums:** Frequencies, not just set membership, are necessary because each occurrence creates a different starting boundary.
-- **Empty prefix:** `d[0] = 1` counts intervals beginning at column zero; it does not represent an empty returned submatrix.
-- **Nonempty submatrices:** Recording the current prefix after the lookup prevents pairing a prefix with itself.
-- **Large count:** Python integers avoid overflow when many boundary combinations match.
-- **Input preservation:** Compression accumulates into `col` and never modifies `matrix`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Target Zero with All Zeros | $2 \times 3$ matrix of $0$'s | Every submatrix matches; returns $18$. | Skipping zero-sum intervals. |
+| Negative Matrix Entries | Mixed signs cancel to zero | Prefix difference handles non-monotonic sums. | Two-pointer sliding window failure. |
+| Single Cell Grid | $1 \times 1$ matrix | Direct comparison; returns $1$ if $M[0][0] == target$, else $0$. | Off-by-one loop crashes. |
+| Rectangular Dimensions | $m \ll n$ or $n \ll m$ | Algorithm runs in $\mathcal{O}(m^2 \cdot n)$ without requiring square matrices. | Out-of-bounds column indices. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R^2C)$. Let `R` be the number of rows and `C` the number of columns.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m^2 \cdot n)$, where $m = \text{len}(matrix) \le 100$ and $n = \text{len}(matrix[0]) \le 100$.
+  - Number of row pairs is $\frac{m(m + 1)}{2} \le 5050$.
+  - Each 1D prefix scan runs in $\mathcal{O}(n) \le 100$ operations.
+  - Total operations $\approx 5050 \times 100 \approx 5.05 \times 10^5 \implies < 0.05\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ auxiliary memory for the compressed column array $col$ and the prefix sum hash map $d$.

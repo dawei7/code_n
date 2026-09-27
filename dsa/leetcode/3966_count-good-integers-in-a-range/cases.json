@@ -242,38 +242,6 @@
         "maximum-endpoint",
         "zero-limit"
       ]
-    },
-    {
-      "id": "trial-boundary-16",
-      "name": "minimal value l=1",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "l": 1,
-        "r": 15,
-        "k": 1
-      },
-      "expected": 12,
-      "tags": [
-        "boundary",
-        "minimal"
-      ]
-    },
-    {
-      "id": "trial-boundary-17",
-      "name": "minimal value r=1",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "l": 10,
-        "r": 1,
-        "k": 1
-      },
-      "expected": -8,
-      "tags": [
-        "boundary",
-        "minimal"
-      ]
     }
   ]
 }

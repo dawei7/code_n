@@ -1,112 +1,212 @@
 # Guided Example: Water and Jug Problem
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state space graph exploration (`dfs(i, j)`), the six discrete jug operations (Fill, Empty, Pour), cycle avoidance via visited set (`vis`), and Bézout's identity / $\gcd(x, y)$ divisibility on representative water jug instances:
 
-- **Input:** `{"x": 3, "y": 5, "target": 4}`
+- **Input:** $x = 3, \quad y = 5, \quad z = 4$
 - **Required output:** `true`
+  - Capable measuring sequence:
+    1. Start: $(0, 0)$ (Both jugs empty)
+    2. Fill jug 2: $(0, 5)$
+    3. Pour jug 2 into jug 1: amount $a = \min(5, 3 - 0) = 3 \implies (3, 2)$
+    4. Empty jug 1: $(0, 2)$
+    5. Pour jug 2 into jug 1: $(2, 0)$
+    6. Fill jug 2: $(2, 5)$
+    7. Pour jug 2 into jug 1: amount $b = \min(5, 3 - 2) = 1 \implies (3, \mathbf{4})$
+  - Second jug contains exactly $4$ liters ($j == 4$) $\implies \text{true}$!
+  - Mathematical confirmation via Bézout's Identity:
+    - $\gcd(3, 5) = 1$
+    - $4 \le 3 + 5 = 8$
+    - $4 \pmod{\gcd(3, 5)} = 4 \pmod 1 = 0 \implies$ Provably solvable!
+- **Target Exceeds Total Capacity:** $x = 2, y = 6, z = 10 \implies z > x + y \implies \text{false}$
+- **Non-Divisible Target Counterexample:** $x = 2, y = 6, z = 5 \implies \gcd(2, 6) = 2$, but $5 \pmod 2 \ne 0 \implies \text{false}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates state space search on implicitly defined transition graphs, connects graph reachability to number-theoretic linear Diophantine equations ($a x + b y = z$), and analyzes state complexity bounded by the jug perimeters.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two jugs with capacities `x` liters and `y` liters. You have an infinite water supply. Return whether the total amount of water in both jugs may reach `target` using the following operations:
+Given two jugs of capacities $x = 3$ and $y = 5$, and an infinite water supply:
+Determine whether it is possible to measure exactly $z = 4$ liters in total across the two jugs:
+Available atomic operations:
+1. **Fill** either jug completely to capacity ($x$ or $y$).
+2. **Empty** either jug completely to $0$.
+3. **Pour** water from one jug into the other until either the donor jug is empty or the receiving jug is full.
 
-The objective is to compute `true` from `{"x": 3, "y": 5, "target": 4}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Capacities: Jug 1 = 3L, Jug 2 = 5L. Target = 4L.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Step-by-Step Pouring Strategy:
+(0, 0) -> Fill Jug 2     -> (0, 5)
+(0, 5) -> Pour J2 to J1  -> (3, 2)
+(3, 2) -> Empty Jug 1    -> (0, 2)
+(0, 2) -> Pour J2 to J1  -> (2, 0)
+(2, 0) -> Fill Jug 2     -> (2, 5)
+(2, 5) -> Pour J2 to J1  -> (3, 4)  <-- JUG 2 HOLDS EXACTLY 4 LITERS!
+
+Target 4L Successfully Measured!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. State Representation $(i, j)$
+A state is a 2-tuple $(i, j)$ where:
+- $i \in [0, x]$: Water currently in jug 1.
+- $j \in [0, y]$: Water currently in jug 2.
+- Terminal Success Condition:
+  $$
+  i == z \quad \lor \quad j == z \quad \lor \quad i + j == z
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The 6 Directed Graph Transitions from $(i, j)$:
+1. `Fill Jug 1`: $(x, j)$
+2. `Fill Jug 2`: $(i, y)$
+3. `Empty Jug 1`: $(0, j)$
+4. `Empty Jug 2`: $(i, 0)$
+5. `Pour J1 -> J2`: Amount $a = \min(i, y - j) \implies (i - a, j + a)$
+6. `Pour J2 -> J1`: Amount $b = \min(j, x - i) \implies (i + b, j - b)$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Cycle Detection
+Because water can be repeatedly filled and emptied, the transition graph contains cycles (e.g. $(0, 0) \to (3, 0) \to (0, 0)$).
+A hash set `vis` records visited states $(i, j)$. If $(i, j) \in vis$, backtrack immediately with `False`.
+
+### 4. Mathematical Ground Truth (Bézout's Lemma)
+Any reachable amount of water is a linear combination:
+$$
+a \cdot x + b \cdot y = z \quad (a, b \in \mathbb{Z})
+$$
+A solution exists if and only if:
+1. $z \le x + y$
+2. $z \pmod{\gcd(x, y)} == 0$
+
+> **Invariant.** All reachable states $(i, j)$ have the property that $i, j,$ and $i + j$ are integer multiples of $\gcd(x, y)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What one state represents.
-
-`dfs(i, j)` means that the first jug currently contains `i` liters and the second contains `j` liters. Capacities guarantee
-
-$$
-0\le i\le x
-\quad\text{and}\quad
-0\le j\le y.
-$$
-
-The initial call `dfs(0, 0)` represents both jugs being empty. The source names the desired amount `z` even though the local Reference calls it `target`; this is only a parameter-name difference.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"x": 3, "y": 5, "target": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the DFS execution for $x = 3, y = 5, z = 4$:
+Root call: `dfs(0, 0)`.
 
 ---
 
-### Step 2: Why the visited set is necessary.
-
-Jug operations create many cycles. From `(0, 0)`, filling the first jug reaches `(x, 0)`, and emptying it returns immediately to `(0, 0)`. Without cycle detection, recursive search could repeat these states forever.
-
-At the beginning of `dfs`, the pair is checked in `vis`. A repeated pair returns false because all states reachable from it were already scheduled or explored during its first visit. A new pair is inserted before generating neighbors, preventing even a recursive edge back to an ancestor from reopening the cycle.
-
-Returning false for a repeated state cannot hide a solution. Future possibilities depend only on the current amounts, not on the sequence used to reach them. Reaching the same `(i, j)` twice gives exactly the same available operations and goal condition.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initial State $(0, 0)$
+- Mark `(0, 0)` in `vis`.
+- Target check: $0 \ne 4, 0 + 0 \ne 4$.
+- Branch to `dfs(0, 5)` (Fill Jug 2).
 
 ---
 
-### Step 3: Recognizing a successful state.
+### Step 2: State $(0, 5)$
+- Mark `(0, 5)` in `vis`.
+- Target check: $0 \ne 4, 5 \ne 4, 5 \ne 4$.
+- Evaluate pour from Jug 2 to Jug 1:
+  $$
+  b = \min(j, \; x - i) = \min(5, \; 3 - 0) = \mathbf{3}
+  $$
+  New state: $(0 + 3, \; 5 - 3) = \mathbf{(3, 2)}$.
+- Recurse into `dfs(3, 2)`.
 
-The contract asks whether the total water across both jugs can equal `target`. The source accepts when `i + j == z`. It also checks `i == z` and `j == z`; those are consistent special cases in which one jug alone holds the desired amount, regardless of whether the other is empty in the current state.
+---
 
-In the ordinary jug formulation, measuring `z` liters in either jug is accepted, and measuring `z` in total is accepted by this statement. Checking all three conditions exactly covers the source's success semantics.
+### Step 3: State $(3, 2)$
+- Mark `(3, 2)` in `vis`.
+- Target check: $3 \ne 4, 2 \ne 4, 3 + 2 = 5 \ne 4$.
+- Branch to `dfs(0, 2)` (Empty Jug 1).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 4: State $(0, 2)$
+- Mark `(0, 2)` in `vis`.
+- Evaluate pour from Jug 2 to Jug 1:
+  $$
+  b = \min(2, \; 3 - 0) = \mathbf{2}
+  $$
+  New state: $(0 + 2, \; 2 - 2) = \mathbf{(2, 0)}$.
+- Recurse into `dfs(2, 0)`.
+
+---
+
+### Step 5: State $(2, 0)$
+- Mark `(2, 0)` in `vis`.
+- Branch to `dfs(2, 5)` (Fill Jug 2).
+
+---
+
+### Step 6: State $(2, 5)$
+- Mark `(2, 5)` in `vis`.
+- Target check: $2 \ne 4, 5 \ne 4, 2 + 5 = 7 \ne 4$.
+- Evaluate pour from Jug 2 to Jug 1:
+  $$
+  b = \min(j, \; x - i) = \min(5, \; 3 - 2) = \mathbf{1}
+  $$
+  New state:
+  $$
+  (2 + 1, \; 5 - 1) = \mathbf{(3, 4)}
+  $$
+- Recurse into `dfs(3, 4)`.
+
+---
+
+### Step 7: Target State $(3, 4)$ — Success!
+- State entered: $i = 3, j = 4$.
+- Evaluate goal predicate:
+  $$
+  j == z \iff 4 == 4 \implies \mathbf{\text{True}}
+  $$
+- Immediate success return propagates back up the call stack!
+- Overall return: **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"x": 3, "y": 5, "target": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+x = 3, y = 5, z = 4
+DFS Search Tree Path:
+(0, 0) -> Fill J2    -> (0, 5)
+(0, 5) -> Pour J2->J1 -> (3, 2) (poured 3L)
+(3, 2) -> Empty J1   -> (0, 2)
+(0, 2) -> Pour J2->J1 -> (2, 0) (poured 2L)
+(2, 0) -> Fill J2    -> (2, 5)
+(2, 5) -> Pour J2->J1 -> (3, 4) (poured 1L)
+At (3, 4): j == 4 == z -> TARGET ACHIEVED! -> Return True
+```
+
+| Step | State $(i, j)$ | Action Performed | Jug 1 (3L) Level | Jug 2 (5L) Level | Sum $i + j$ | Target $z = 4$ Matched? |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | $(0, 0)$ | Initial Setup | 0 | 0 | 0 | No |
+| 2 | $(0, 5)$ | Fill Jug 2 | 0 | 5 | 5 | No |
+| 3 | $(3, 2)$ | Pour Jug 2 $\to$ Jug 1 | 3 | 2 | 5 | No |
+| 4 | $(0, 2)$ | Empty Jug 1 | 0 | 2 | 2 | No |
+| 5 | $(2, 0)$ | Pour Jug 2 $\to$ Jug 1 | 2 | 0 | 2 | No |
+| 6 | $(2, 5)$ | Fill Jug 2 | 2 | 5 | 7 | No |
+| **7** | **$(3, 4)$** | **Pour Jug 2 $\to$ Jug 1** | **3** | **4** | **7** | **Yes ($j == 4$)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every state transition strictly obeys valid physical pouring operations: water is neither created nor destroyed during a pour, and capacities $x$ and $y$ are never exceeded. If a state satisfies $i == z, j == z,$ or $i + j == z$, the volume $z$ is genuinely measurable in one or across both jugs.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Graph search visits every reachable configuration in the $(x+1) \times (y+1)$ grid. Because at least one jug is always empty or full at any operational step, the reachable state space is restricted to the boundary perimeter of size $O(x + y)$. Exhaustive traversal guarantees finding the target if reachable.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Bézout and Euclid:** A target is measurable exactly when it does not exceed `x + y` and is divisible by `gcd(x, y)`. Euclid computes the gcd in $O(\log\min(x,y))$ time and $O(1)$ iterative space. This matches the manifest but is not the checked-in source.
-- **Breadth-first search:** Use an explicit queue with the same six transitions. It has the same reachable-state complexity, avoids recursion-depth failure, and can find a shortest operation sequence if parent links are retained.
-- **Full two-dimensional Boolean table:** Mark every `(i, j)` pair in an array. It gives deterministic lookup but allocates $O(xy)$ space despite only boundary states being reachable.
+- **Infinite Loops Without Visited Set:** Pouring back and forth between jugs produces closed cycles (e.g. $(3, 2) \to (0, 2) \to (3, 2)$). Storing visited tuples $(i, j)$ in `vis` is essential to prevent infinite recursion.
+- **Total Capacity Exceeded:** If $z > x + y$, it is physically impossible to hold $z$ liters of water simultaneously. Checking $z \le x + y$ is an immediate necessary condition.
+- **Python Recursion Limit on Large Inputs:** For large values like $x = 10^6, y = 10^6 + 1$, DFS can hit Python's maximum recursion limit. In production, mathematical evaluation $z \le x + y \land z \pmod{\gcd(x, y)} == 0$ evaluates in $O(\log(\min(x, y)))$ time and $O(1)$ space.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(x+y)$. The boundary contains at most $2(y+1)+2(x+1)$ state positions, with corners counted more than once in that expression. Each newly visited state performs constant work and generates six transitions. Expected visited-set lookup and insertion are $O(1)$, so the exact search takes expected $O(x+y)$ time and $O(x+y)$ visited-set space.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(x + y)$.
+  - In any valid sequence of operations, at least one jug is either completely empty ($0$) or completely full ($x$ or $y$).
+  - The number of reachable states lies along the 4 boundaries of the rectangle $[0, x] \times [0, y]$, bounded by $2(x + y)$.
+  - Each state generates 6 transitions in $O(1)$ time, yielding $O(x + y)$ total operations.
+- **Auxiliary Space Complexity:** $O(x + y)$ to store the visited set `vis` and recursion stack.

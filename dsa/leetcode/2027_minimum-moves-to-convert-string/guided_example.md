@@ -1,120 +1,132 @@
 # Guided Example: Minimum Moves to Convert String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"s": "XXX"}`
-- **Required output:** `1`
+We are given a string $s$ of length $N$ consisting exclusively of the characters `'X'` and `'O'`. In a single move, we can select any three consecutive characters and convert all of them into `'O'`. Any character within the selected window that is already `'O'` remains `'O'`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our goal is to determine the minimum number of length-three conversion moves required to eliminate every occurrence of `'X'` from the string, resulting in an all-`'O'` string.
 
----
+Moves may overlap, and a move is permitted to extend over positions that are already `'O'` if doing so allows it to cover an unconverted `'X'`.
 
-## 1. Instance & Teaching Goal
+### Sample Input Dataset
 
-You are given a string `s` consisting of `n` characters which are either `'X'` or `'O'`.
+Consider the representative configuration:
+$$s = \text{"XXOX"}$$
 
-The objective is to compute `1` from `{"s": "XXX"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We contrast this with a fully unconverted trio:
+$$s_{\text{trio}} = \text{"XXX"}$$
+and an already satisfied string:
+$$s_{\text{clean}} = \text{"OOOO"}$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Always address the leftmost unresolved `X`
+Consider scanning the string from left to right using a pointer $i$.
+- If $s[i] == \text{'O'}$, position $i$ is already in the target state. We simply increment $i \leftarrow i + 1$.
+- If $s[i] == \text{'X'}$, position $i$ is the leftmost unconverted character remaining in the string. Because all positions prior to $i$ are already `'O'`, some conversion move **must** cover index $i$.
 
-The scan index `i` represents the first position not already handled by an earlier conceptual move. If `s[i]` is `O`, that position needs no work, so the code advances by one.
+A valid length-three window covering index $i$ must be chosen from:
+1. Window $[i - 2, i]$
+2. Window $[i - 1, i + 1]$
+3. Window $[i, i + 2]$
 
-If `s[i]` is `X`, at least one additional move is unavoidable. Earlier decisions have already handled every index before `i`, and leaving this `X` untouched cannot lead to an all-`O` string. The source counts one move and advances `i` by three.
+Notice that any characters before index $i$ are already `'O'`. Covering them provides zero new progress towards eliminating `'X'`s. By choosing window $[i, i + 2]$, we satisfy the obligation to eliminate $s[i]$ while extending coverage as far to the right as mathematically possible (up to index $i + 2$).
 
-That jump represents converting the current character and the following two positions to `O`. Their original values do not matter: an `X` becomes `O`, while an `O` remains `O`. Consequently none of those three positions can require another move.
+By the greedy-choice property, aligning the left boundary of the conversion window with the first unsatisfied `'X'` dominates all other window placements. Once window $[i, i + 2]$ is applied, all characters at indices $i, i + 1$, and $i + 2$ become `'O'`. We can therefore safely jump the pointer past the entire window to $i + 3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "XXX"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why beginning at the current position is the best greedy choice
-
-Suppose the leftmost unresolved `X` occurs at index `i` and there are at least three positions beginning there. Any successful solution must use some move whose length-three interval covers `i`. Starting the move earlier would spend part of its coverage on positions before `i`, which the scan has already resolved. Starting it at `i` covers `i` and reaches as far to the right as possible, through `i+2`.
-
-There is no penalty for changing an already-`O` character again, so maximizing rightward coverage cannot make a future position harder. This greedy move handles the mandatory current `X` while covering at least as much still-unresolved territory as any alternative move that also covers it.
-
-The code does not construct a mutable copy of the string. The jump is sufficient bookkeeping: after counting the conceptual move, it never inspects the two newly covered positions because their post-move values are known to be `O`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The special case near the right boundary
-
-If the first unresolved `X` is one of the final two characters, a literal window starting at `i` would extend beyond the string. The count is still correct. Because the input length is at least three, choose the last valid window, covering indices `n-3` through `n-1`. It includes the tail `X` and may overlap positions the scan already considered.
-
-That overlap is harmless: applying a move to `O` leaves it `O`, and there are no unprocessed positions beyond the end. The source's `i += 3` should therefore be understood as “this move finishes the remaining tail,” not as constructing an out-of-bounds substring.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+```mermaid
+flowchart TD
+    accTitle: Greedy Jump-3 Left-to-Right Scan Architecture
+    accDescr: Pipeline showing character inspection, left-aligned window placement, and pointer advancement by 3.
+    A["Input string s of length N"] --> B["Initialize i = 0, moves = 0"]
+    B --> C{"Is i < N?"}
+    C -- "No (End of String)" --> D["Return moves"]
+    C -- "Yes" --> E{"Check s[i]"}
+    E -- "s[i] == 'O'" --> F["Advance i by 1 (Already satisfied)"]
+    F --> C
+    E -- "s[i] == 'X'" --> G["Apply move at [i, i+2]: moves += 1"]
+    G --> H["Advance i by 3 (Skip entire 3-character window)"]
+    H --> C
+```
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step State Progression Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "XXX"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+Let us trace the primary sample $s = \text{"XXOX"}$ ($N = 4$).
+Initial state: $i = 0, \text{moves} = 0$.
 
----
+| Step Pointer $i$ | Character $s[i]$ | Condition Check | Greedy Action Taken | Converted Window Span | Effective String Transformation | Updated Moves | Next Pointer $i$ | Rationale |
+|---|---|---|---|---|---|---|---|---|
+| $0$ | `'X'` | Leftmost `'X'` detected | Place 3-character window starting at $0$ | $[0, 2]$ | `"XXO..." \to "OOO..."` | $0 + 1 = 1$ | $0 + 3 = 3$ | Covers indices $0, 1, 2$ simultaneously |
+| $3$ | `'X'` | Unconverted `'X'` detected | Place 3-character window starting at $3$ | $[3, 5]$ (clamped to $[3, 3]$) | `"...X" \to "...O"` | $1 + 1 = 2$ | $3 + 3 = 6$ | Covers final index $3$ |
+| $6$ | Out of Bounds | $i \ge N$ ($6 \ge 4$) | Terminate traversal | N/A | Fully converted: `"OOOO"` | $2$ | Done | Entire string is `'O'` |
 
-## 5. Algorithmic Correctness
+Total minimum moves required: $2$.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Now, let us contrast this with a longer alternating pattern $s = \text{"OXOXOX"}$ ($N = 6$):
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Pointer $i$ | Character $s[i]$ | Action | Moves | Next $i$ | Substring Addressed |
+|---|---|---|---|---|---|
+| $0$ | `'O'` | Skip `'O'` | $0$ | $1$ | Prefix `"O"` already valid |
+| $1$ | `'X'` | Convert window $[1, 3]$ | $1$ | $4$ | Converts `"XOX"` to `"OOO"` |
+| $4$ | `'O'` | Skip `'O'` | $1$ | $5$ | Index $4$ was already `'O'` |
+| $5$ | `'X'` | Convert window $[5, 7]$ | $2$ | $8$ | Converts final `'X'` at index $5$ |
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Mutate a character array:** Explicitly write `O` into three positions after each move; it is still $O(N)$ but uses $O(N)$ space and performs unnecessary writes.
-- **Dynamic programming:** One can model which recent positions are covered, but the forced leftmost-`X` choice makes that machinery unnecessary.
-- **Count each run independently:** This can overlook a move that covers `X` characters on both sides of a short `O` gap.
-- **All `O` characters:** The loop only takes one-step advances and returns zero.
-- **Exactly three `X` characters:** The first iteration counts one move and jumps to the end.
-- **A single `X` in the middle:** One move covers it and its two following positions whenever that start is in range.
-- **A single `X` at the final index:** Use the final legal three-character window; the source's jump records the correct one move.
-- **A tail of one or two unresolved positions:** One final move is enough because it may overlap already resolved positions.
-- **Existing `O` inside a chosen block:** It remains `O` and does not waste correctness, even though it occupies coverage.
-- **Overlapping moves:** Allowed and sometimes necessary near the end; repeated conversion to `O` has no adverse effect.
-- **Long `X` run:** Each move handles the next three unresolved positions, giving the unavoidable ceiling of run length divided by three when no neighboring coverage changes the grouping.
-- **Minimum input length:** The guarantee $N\ge3$ ensures a valid final three-character window exists for a tail `X`.
-- **Input preservation:** The algorithm reasons about moves without modifying `s`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Total moves: $2$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Time Complexity:** $O(N)$. Let $N=\lvert s\rvert$. The index always increases, by one for an `O` or by three for an `X`. No position is revisited by the loop, so there are at most $N$ iterations and the running time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The transition behavior underscores why greedy alignment guarantees optimal efficiency:
+
+1. **Skipping Irrelevant Characters**: When a window $[i, i + 2]$ is placed, indices $i + 1$ and $i + 2$ are converted to `'O'` regardless of whether they were originally `'X'` or `'O'`. Advancing directly to $i + 3$ ensures we never redundantly evaluate positions already covered by the active window.
+2. **String End Clamping**: When an `'X'` appears near the very end of the string (such as at index $N - 1$), placing a window of length $3$ conceptually extends beyond the string boundary. Because the problem allows selecting any $3$ consecutive indices within the board, or equivalently converting the remaining suffix of length $\le 3$, exactly $1$ move suffices to extinguish all remaining `'X'`s in that final segment.
+3. **No Retroactive Effect**: Because moves only convert `'X' \to \text{'O'}` and never convert `'O' \to \text{'X'}`, prior decisions can never invalidate earlier converted regions.
+
+| Input String Pattern | Length $N$ | Windows Chosen | Moves Used | Operational Insight |
+|---|---|---|---|---|
+| `"XXX"` | $3$ | $[0, 2]$ | $1$ | Single window extinguishes all three `'X'`s |
+| `"XXOX"` | $4$ | $[0, 2]$ and $[3, 5]$ | $2$ | Internal `'O'` at index $2$ is subsumed harmlessly |
+| `"OOOO"` | $4$ | None | $0$ | All characters skip without incrementing moves |
+| `"XOOOOX"` | $6$ | $[0, 2]$ and $[5, 7]$ | $2$ | Intermediate `'O'`s cleanly bypassed via single increments |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Greedy Choice Property
+Let $i$ be the smallest index such that $s[i] == \text{'X'}$. Any valid set of operations must include at least one operation whose window covers index $i$.
+Let $\mathcal{W} = [a, a + 2]$ be any window covering $i$, which implies $a \le i \le a + 2$.
+If we shift $\mathcal{W}$ rightward to $\mathcal{W}^* = [i, i + 2]$:
+- Index $i$ remains covered because $i$ is the left endpoint of $\mathcal{W}^*$.
+- Any index $j < i$ was already `'O'`, so losing coverage on $j < i$ causes zero deficit.
+- The right endpoint of $\mathcal{W}^*$ is $i + 2 \ge a + 2$, which covers at least as many future positions to the right as $\mathcal{W}$.
+Thus, replacing $\mathcal{W}$ with $[i, i + 2]$ preserves feasibility without increasing the total move count. An optimal solution containing $[i, i + 2]$ always exists.
+
+### Optimal Substructure
+After applying the move at $[i, i + 2]$, the prefix $s[0 \dots i + 2]$ consists entirely of `'O'`s. The remaining problem is strictly equivalent to solving the identical subproblem on the suffix $s[i + 3 \dots N - 1]$. By mathematical induction on the string length, the greedy strategy achieves the global minimum number of moves.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Zero Moves on Clean Strings**: If the string contains no `'X'`s, the pointer simply increments through all characters, cleanly returning $0$ moves without deploying unnecessary windows.
+2. **Subsumed `'O'`s**: Some implementations mistakenly try to avoid placing windows over existing `'O'`s. The rules explicitly permit converting characters that are already `'O'`. If an `'X'` is followed by an `'O'` and then an `'X'` (e.g. `"XOX"`), covering the whole block in $1$ move is far superior to trying to treat them separately.
+3. **Index Pointer Leaps**: Forgetting to advance $i$ by $3$ upon encountering `'X'` and only advancing by $1$ would result in overcounting moves, treating each `'X'` in a consecutive block as a separate move.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Pointer Advancement**: In each iteration of the loop, the pointer $i$ advances by either $1$ (if $s[i] == \text{'O'}$) or $3$ (if $s[i] == \text{'X'}$).
+- **Linear Pass**: The index $i$ increases strictly monotonically and exceeds $N$ in at most $N$ iterations.
+- **Total Time Complexity**: $\mathcal{O}(N)$, which is optimal since every character must be inspected at least once.
+
+### Space Complexity
+- **Scalar State**: The algorithm requires only two integer variables: the loop index $i$ and the accumulator $\text{moves}$.
+- **No Auxiliary Arrays**: The string is scanned directly in-place without memory allocation.
+- **Total Auxiliary Space**: $\mathcal{O}(1)$, consuming minimal constant extra space.

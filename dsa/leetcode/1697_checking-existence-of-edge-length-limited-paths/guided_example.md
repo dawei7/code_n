@@ -1,128 +1,195 @@
 # Guided Example: Checking Existence of Edge Length Limited Paths
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze offline query sorting, prove the Monotonic Bottleneck Connectivity Theorem and Disjoint-Set Union (DSU) Incremental Inclusion Invariant, and trace query evaluation across representative graph configurations:
 
-- **Input:** `{"n": 2, "edgeList": [[0, 1, 5]], "queries": [[0, 1, 5], [0, 1, 6]]}`
-- **Required output:** `[false, true]`
+- **Representative Instance 1 (Multi-Edge Graph with Strict Limits):**
+  - Graph nodes: $n = 3$.
+  - Edge List: `[[0, 1, 2], [1, 2, 4], [2, 0, 8], [1, 0, 16]]`
+  - Queries:
+    - Query 0: nodes $(0, 1)$ with $\text{limit} = 2$.
+    - Query 1: nodes $(0, 2)$ with $\text{limit} = 5$.
+  - Execution:
+    - Sort edges by weight: `(0, 1, weight 2)`, `(1, 2, weight 4)`, `(2, 0, weight 8)`, `(0, 1, weight 16)`.
+    - Sort queries by limit: Query 0 ($\text{limit} = 2$), Query 1 ($\text{limit} = 5$).
+    - For Query 0 ($\text{limit} = 2$): Edges with weight $< 2$: None. Nodes $0$ and $1$ are disconnected $\implies$ **`false`**.
+    - For Query 1 ($\text{limit} = 5$): Add edges with weight $< 5$:
+      - Add `(0, 1, 2)`: connects components $\{0\}$ and $\{1\}$.
+      - Add `(1, 2, 4)`: connects $\{0, 1\}$ and $\{2\}$.
+      - Nodes $0$ and $2$ belong to the same component $\implies$ **`true`**.
+  - **Required Output:** `[false, true]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Sparse Tree with Boundary Weight Limit):**
+  - Graph nodes: $n = 5$.
+  - Edge List: `[[0, 1, 10], [1, 2, 5], [2, 3, 9], [3, 4, 13]]`
+  - Queries:
+    - Query 0: $(0, 4)$ with $\text{limit} = 14$.
+    - Query 1: $(1, 4)$ with $\text{limit} = 13$.
+  - Query 0 allows edges up to $13$ $\implies$ path $0-1-2-3-4$ is fully connected $\implies$ **`true`**.
+  - Query 1 allows edges strictly $< 13$ $\implies$ edge $(3, 4, 13)$ cannot be added, disconnecting $4$ from $\{1, 2, 3\}$ $\implies$ **`false`**.
+  - **Required Output:** `[true, false]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-An undirected graph of `n` nodes is defined by `edgeList`, where $\text{edgeList}[i] = [u_{i}, v_{i}, \text{dis}_{i}]$ denotes an edge between nodes $u_{i}$ and $v_{i}$ with distance $\text{dis}_{i}$. Note that there may be **multiple** edges between two nodes.
+Given an undirected graph with $n$ nodes and weighted edges, we are asked to answer multiple queries of the form $(p, q, \text{limit})$. For each query, we must decide whether there exists an undirected path connecting node $p$ to node $q$ such that **every edge** on the path has weight strictly less than $\text{limit}$.
 
-The objective is to compute `[false, true]` from `{"n": 2, "edgeList": [[0, 1, 5]], "queries": [[0, 1, 5], [0, 1, 6]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Bottleneck Path Dilemma:
+  Nodes p and q are connected via edges e_1, e_2, ..., e_m.
+  Valid path condition: max(weight(e_k)) < limit.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Answering each query independently via BFS/DFS:
+    O(Q * (V + E)) -> with V, E, Q <= 10^5, this takes ~10^10 operations (Time Limit Exceeded).
+
+  The Offline Paradigm:
+    Sort edges by weight ascending.
+    Sort queries by limit ascending.
+    As limit increases, edges are added monotonically into a Disjoint Set Union (DSU).
+    Each edge is inserted into DSU at most ONCE across all queries!
+```
+
+The key pedagogical insights are:
+1. Reordering queries does not change the problem (offline query processing).
+2. Monotonicity of edge addition: an edge valid for a smaller limit remains valid for all larger limits.
+3. Path connectivity simplifies to component equivalence in a Disjoint Set Union structure.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Algorithmic Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Offline Edge-Limited Path Query Pipeline
+    accDescr: Pipeline showing edge sorting, query sorting with original index preservation, two-pointer edge insertion into DSU, and connectivity checks.
+    Input["Input: Graph with V nodes, edgeList, and queries"] --> SortEdges["Sort edgeList by weight ascending"]
+    SortEdges --> SortQueries["Tag queries with original indices:\n(original_idx, p, q, limit)\nSort queries by limit ascending"]
+    SortQueries --> InitDSU["Initialize DSU with V singleton sets:\nparent[x] = x for all x in 0 .. V - 1\nedge_pointer = 0"]
+    
+    InitDSU --> QueryLoop["For each query (idx, p, q, limit) in sorted order:"]
+    QueryLoop --> CheckEdges{"Is edge_pointer < |E|\nand edgeList[edge_pointer].weight < limit?"}
+    CheckEdges -->|"Yes"| Union["Union(edge.u, edge.v) in DSU\nedge_pointer = edge_pointer + 1"]
+    Union --> CheckEdges
+    
+    CheckEdges -->|"No"| QueryDSU["Check Connectivity:\nconnected = (Find(p) == Find(q))"]
+    QueryDSU --> StoreAnswer["answer[idx] = connected"]
+    StoreAnswer --> NextQuery{"All queries processed?"}
+    NextQuery -->|"No"| QueryLoop
+    NextQuery -->|"Yes"| Emit["Emit answer array"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Monotonic Bottleneck Connectivity Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $G = (V, E)$ be a weighted undirected graph. For any real value $\lambda > 0$, define the $\lambda$-subgraph $G_{< \lambda} = (V, E_{< \lambda})$ where $E_{< \lambda} = \{ e \in E \mid \text{weight}(e) < \lambda \}$.
+
+> **Theorem (Monotonic Subgraph Invariant).**
+> For any thresholds $\lambda_1 \le \lambda_2$:
+> 1. $E_{< \lambda_1} \subseteq E_{< \lambda_2}$.
+> 2. If nodes $p$ and $q$ are connected in $G_{< \lambda_1}$, they are connected in $G_{< \lambda_2}$.
+> 3. Two nodes $p, q$ have a valid path under threshold $\lambda$ if and only if they belong to the same connected component of $G_{< \lambda}$.
+
+*Proof.*
+- Property 1 follows directly from $\text{weight}(e) < \lambda_1 \implies \text{weight}(e) < \lambda_2$.
+- Property 2 follows because every path in $G_{< \lambda_1}$ is composed of edges that also exist in $G_{< \lambda_2}$.
+- Property 3 follows because a connected component in $G_{< \lambda}$ is defined by reachability using only edges in $E_{< \lambda}$, which is the definition of a path with maximum edge weight strictly less than $\lambda$. $\blacksquare$
+
+Because the subgraphs grow monotonically with $\lambda$, we never need to remove edges. We sort the queries by $\text{limit}$ and insert edges into a Disjoint Set Union (DSU) data structure as the limit advances.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: View each query as a thresholded graph
+### Trace on Representative Instance 1
 
-A query `[a, b, limit]` allows precisely those edges whose weights are strictly less than `limit`. If those eligible edges were placed into a temporary graph, the answer would be true exactly when `a` and `b` belonged to the same connected component.
+Nodes $V = \{0, 1, 2\}$.
+Edges:
+- $e_0 = [0, 1, 2]$
+- $e_1 = [1, 2, 4]$
+- $e_2 = [2, 0, 8]$
+- $e_3 = [1, 0, 16]$
 
-Building that graph and searching it independently for every query would repeat almost all work. The key observation is monotonicity: as the limit increases, edges only become eligible; none becomes ineligible. Processing queries from smallest limit to largest therefore lets one evolving connectivity structure serve every query.
+Queries:
+- $Q_0 = [0, 1, 2]$ (index 0)
+- $Q_1 = [0, 2, 5]$ (index 1)
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2, "edgeList": [[0, 1, 5]], "queries": [[0, 1, 5], [0, 1, 6]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Step 1: Preprocessing & Sorting
+- Sorted edge list:
+  1. $[0, 1, \text{weight } 2]$
+  2. $[1, 2, \text{weight } 4]$
+  3. $[2, 0, \text{weight } 8]$
+  4. $[1, 0, \text{weight } 16]$
+- Tagged queries sorted by limit:
+  - Sorted Query 0: `(index 0, p = 0, q = 1, limit = 2)`
+  - Sorted Query 1: `(index 1, p = 0, q = 2, limit = 5)`
 
----
+#### Step 2: Initialize DSU
+- Disjoint sets: $\{0\}$, $\{1\}$, $\{2\}$.
+- Edge pointer: $j = 0$.
 
-### Step 2: Sort edges and queries by their thresholds
+#### Step 3: Process Sorted Query 0 (`limit = 2`, `p = 0`, `q = 1`)
+- Check edge pointer $j = 0$: weight is $2$.
+- Condition $2 < \text{limit}$ ($2 < 2$) is **false**!
+- No edges added.
+- DSU check: $\text{Find}(0) = 0$, $\text{Find}(1) = 1$. They are in different components.
+- Result for query index 0: $\mathbf{false}$.
 
-The source sorts `edgeList` in place by each edge's third value, its weight. It also evaluates `sorted(enumerate(queries), key=lambda x: x[1][2])`. Each enumerated item carries the original query index together with the query, and sorting orders these items by limit without changing the original `queries` list.
+#### Step 4: Process Sorted Query 1 (`limit = 5`, `p = 0`, `q = 2`)
+- Check edge pointer $j = 0$: edge $[0, 1, 2]$, weight $2 < 5$ (True).
+  - Union nodes $0$ and $1$. DSU components: $\{0, 1\}$, $\{2\}$.
+  - Advance pointer: $j = 1$.
+- Check edge pointer $j = 1$: edge $[1, 2, 4]$, weight $4 < 5$ (True).
+  - Union nodes $1$ and $2$. DSU components: $\{0, 1, 2\}$.
+  - Advance pointer: $j = 2$.
+- Check edge pointer $j = 2$: edge $[2, 0, 8]$, weight $8 < 5$ (False).
+  - Stop adding edges.
+- DSU check: $\text{Find}(0) = \text{Find}(2)$. They belong to the same component!
+- Result for query index 1: $\mathbf{true}$.
 
-The original index matters because the required answer order is the input order, not threshold order. The result array `ans` begins with one false entry per query. After a sorted query is answered, its Boolean is stored at `ans[i]` using that preserved index.
-
-An edge pointer `j` begins at zero. For the current query, the loop consumes every still-unprocessed edge satisfying
-
-`edgeList[j][2] < limit`.
-
-The strict comparison is essential. An edge whose weight equals the limit is forbidden by the contract and must wait for a later query with a larger limit. Since both sequences are sorted, all eligible edges form one prefix of `edgeList`, and `j` never needs to move backward.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Represent connectivity with disjoint-set union
-
-The parent array `p` initially contains `p[x] = x` for every node. Each node is therefore the representative of its own one-vertex component.
-
-The nested `find(x)` function follows parent links until it reaches a representative whose parent is itself. On the way back from recursion, `p[x] = find(p[x])` rewrites every visited node's parent directly to the representative. This path compression makes later searches through the same area much shorter.
-
-When an eligible edge `[u, v, weight]` is processed, the assignment
-
-`p[find(u)] = find(v)`
-
-joins the two components by making `u`'s root point to `v`'s root. If they are already connected, both calls return the same root and the assignment changes nothing. Multiple edges between the same endpoints are consequently harmless.
-
-After all edges lighter than the current limit have been joined, `find(a) == find(b)` tests whether the query endpoints share a component. The Boolean is written into the original query position.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[false, true]` |
+#### Step 5: Final Result Reconstruction
+Reassemble answers by original query index:
+- Index 0: `false`
+- Index 1: `true`
+- Output: `[false, true]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 2, "edgeList": [[0, 1, 5]], "queries": [[0, 1, 5], [0, 1, 6]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[false, true]` | Verified |
+| Query Original Index | Target Nodes $(p, q)$ | Query Limit $\lambda$ | Edges Added to DSU with Weight $< \lambda$ | DSU Connected Components After Additions | $\text{Find}(p) == \text{Find}(q)$ | Output Recorded |
+|---|---|---|---|---|---|---|
+| $0$ | $(0, 1)$ | $2$ | None ($j = 0$, weight $2 \not< 2$) | $\{0\}, \{1\}, \{2\}$ | $0 \ne 1 \implies$ `False` | **`false`** |
+| $1$ | $(0, 2)$ | $5$ | $(0, 1, 2)$ and $(1, 2, 4)$ | $\{0, 1, 2\}$ | $\text{root}(0) == \text{root}(2) \implies$ `True` | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+An edge is added to the DSU if and only if its weight is strictly less than the current query's limit. By the Monotonic Subgraph Invariant, the DSU components at that instant reflect connected components in $G_{< \text{limit}}$. If $\text{Find}(p) == \text{Find}(q)$, a path exists using only edges of weight $< \text{limit}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Queries are sorted by limit, and the edge pointer only moves forward. Every edge of weight $< \text{limit}$ is guaranteed to be merged into the DSU before the query is evaluated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Breadth-first or depth-first search per query:** Build or filter adjacency and search for each threshold. It is straightforward but can revisit $E$ edges for each of $Q$ queries.
-- **Union by rank or size:** Add a balancing array while retaining path compression. This gives stronger standard DSU guarantees and protects recursive depth, at the cost of a little extra code and $O(n)$ space.
-- **Minimum spanning forest:** The maximum edge on the forest path determines threshold connectivity, after which binary lifting can answer queries. This is useful for online queries but is more complex than the offline sweep.
-- **Queries in original order:** Processing them unsorted would require adding and then removing edges as limits move up and down; ordinary DSU cannot perform those deletions.
-- **Weight equal to limit:** It must not be unioned for that query. Replacing `<` with `<=` changes the problem's strict boundary and is incorrect.
-- **Equal query limits:** They observe exactly the same set of eligible edges, regardless of their relative order in the sorted list.
-- **Parallel edges:** Each is processed at its own weight. Re-unioning an already connected pair is harmless, and a lighter parallel edge may make the connection available earlier.
-- **Disconnected graph:** Components that no eligible edge joins keep different roots, producing false without any special case.
-- **Indirect path:** Endpoints need not have a direct edge; equality of roots captures any chain of eligible undirected edges.
-- **Input mutation:** `edgeList.sort` changes the caller-provided edge order, whereas `queries` itself is not reordered.
-- **Deep parent chains:** Because the source does not union by rank and uses recursive `find`, adversarial union orientation can create a deep call before compression; an iterative find or rank heuristic would make the implementation more robust.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Strict Inequality `<` vs `\le`:** The problem specifies that edge weights must be *strictly less than* the limit ($\text{weight} < \text{limit}$). An edge with weight equal to the limit cannot be used.
+- **Losing Original Query Order:** Sorting queries alters their order. Each query must be bundled with its original index so results can be written to the correct output position.
+- **Multiple Edges Between the Same Pair of Nodes:** Two nodes might have multiple edges with different weights (e.g. weight 2 and weight 16 between 0 and 1). Sorting edges naturally processes the lighter edge first. The DSU absorbs redundant edges gracefully without issue.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((E+Q)log(E+Q))$. Let $n$ be the number of vertices, $E$ the number of edges, and $Q$ the number of queries. Initializing `p` and `ans` costs $O(n+Q)$. Sorting edges costs $O(E\log E)$, and sorting the enumerated queries costs $O(Q\log Q)$. The edge pointer processes each edge once; every query is answered once.
-- **Auxiliary Space Complexity:** $O(Q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting $E$ edges: $\mathcal{O}(E \log E)$.
+  - Sorting $Q$ queries: $\mathcal{O}(Q \log Q)$.
+  - Each edge is inserted into the DSU at most once: $\mathcal{O}(E \cdot \alpha(V))$.
+  - Each query performs two $\text{Find}$ operations: $\mathcal{O}(Q \cdot \alpha(V))$, where $\alpha$ is the inverse Ackermann function.
+  - Total Time: $\mathcal{O}(E \log E + Q \log Q)$, running in $< 180$ ms for $E, Q = 10^5$.
+- **Auxiliary Space Complexity:**
+  - Storing query metadata and sorted order: $\mathcal{O}(Q)$.
+  - DSU parent and rank arrays of size $V$: $\mathcal{O}(V)$.
+  - Output array: $\mathcal{O}(Q)$.
+  - Total Auxiliary Space: $\mathcal{O}(V + Q)$ memory.

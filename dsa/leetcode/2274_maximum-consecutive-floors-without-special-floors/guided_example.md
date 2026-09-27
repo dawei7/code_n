@@ -1,136 +1,143 @@
 # Guided Example: Maximum Consecutive Floors Without Special Floors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"bottom": 2, "top": 9, "special": [4, 6]}`
-- **Required output:** `3`
+Alice rents a contiguous block of building floors spanning from $bottom$ to $top$ inclusive. Certain floors within this range are designated as special floors and cannot be used for relaxation. The special floors are provided as an integer array $special$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to compute the maximum number of consecutive floors within the rented range $[bottom, top]$ that do not contain any special floor.
 
----
+Consider the representative instance:
+$$bottom = 2, \quad top = 9, \quad special = [4, 6]$$
 
-## 1. Instance & Teaching Goal
+The rented floor range is $[2, 9]$, encompassing $8$ total floors:
+$$\{2, 3, 4, 5, 6, 7, 8, 9\}$$
 
-Alice manages a company and has rented some floors of a building as office space. Alice has decided some of these floors should be **special floors**, used for relaxation only.
+The special floors are $4$ and $6$. Removing these two floors partitions the remaining floors into three mutually disjoint consecutive blocks:
+1. **Lower Boundary Segment:** Floors below the first special floor:
+   $$[bottom, special[0] - 1] = [2, 3] \implies 2 \text{ floors}$$
+2. **Interior Segment:** Floors between the two special floors:
+   $$[special[0] + 1, special[1] - 1] = [5, 5] \implies 1 \text{ floor}$$
+3. **Upper Boundary Segment:** Floors above the last special floor:
+   $$[special[1] + 1, top] = [7, 9] \implies 3 \text{ floors}$$
 
-The objective is to compute `3` from `{"bottom": 2, "top": 9, "special": [4, 6]}` while avoiding redundant calculations and unnecessary overhead.
+Comparing the lengths of these three available contiguous floor spans: $\max(2, 1, 3) = 3$. The optimal contiguous run consists of floors $7, 8,$ and $9$. Thus, the maximum consecutive floors is $3$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart LR
+    accTitle: Consecutive Floor Partition Across Special Points
+    accDescr: Visual diagram showing the partition of the rented range [2, 9] into three non-special blocks by special floors 4 and 6.
+    subgraph Range["Rented Range [2, 9]"]
+        direction LR
+        B1["Floors [2, 3]<br/>Length = 2"]
+        S1["Special Floor 4"]
+        B2["Floor [5, 5]<br/>Length = 1"]
+        S2["Special Floor 6"]
+        B3["Floors [7, 9]<br/>Length = 3 (Max!)"]
+    end
+    B1 --- S1 --- B2 --- S2 --- B3
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+### Point-Punctured Interval Decomposition
 
-We maintain the core conceptual parameters and state variables:
+Let $S = \{s_0, s_1, \dots, s_{k-1}\}$ denote the set of special floors, sorted in strictly ascending order:
+$$bottom \le s_0 < s_1 < \dots < s_{k-1} \le top$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The non-special floors represent the set difference:
+$$[bottom, top] \setminus S$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because the interval $[bottom, top]$ is one-dimensional and continuous over the integers, puncturing it with $k$ distinct points partitions the remaining valid elements into exactly $k + 1$ disjoint contiguous intervals:
+1. **Lower Boundary Gap:**
+   $$I_0 = [bottom, s_0 - 1], \quad |I_0| = (s_0 - 1) - bottom + 1 = s_0 - bottom$$
+2. **Interior Gaps ($0 \le i < k - 1$):**
+   $$I_{i+1} = [s_i + 1, s_{i+1} - 1], \quad |I_{i+1}| = (s_{i+1} - 1) - (s_i + 1) + 1 = s_{i+1} - s_i - 1$$
+3. **Upper Boundary Gap:**
+   $$I_k = [s_{k-1} + 1, top], \quad |I_k| = top - (s_{k-1} + 1) + 1 = top - s_{k-1}$$
 
----
+The maximum consecutive floor count is the maximum of these interval lengths:
+$$\text{MaxConsecutive} = \max\left(s_0 - bottom, \; \max_{0 \le i < k-1}(s_{i+1} - s_i - 1), \; top - s_{k-1}\right)$$
 
-## 3. Step-by-Step Worked Execution
+### Algorithmic Strategy
 
-### Step 1: Special floors divide the rented range into gaps
+1. Sort the array $special$ in ascending order.
+2. Initialize the answer with the two boundary gap lengths:
+   $$\text{ans} = \max(special[0] - bottom, \; top - special[-1])$$
+3. Iterate across all adjacent pairs $(x, y) = (special[i], special[i+1])$ and update:
+   $$\text{ans} = \max(\text{ans}, \; y - x - 1)$$
+4. Return $\text{ans}$.
 
-Every rented floor from `bottom` through `top` is either special or belongs to one maximal consecutive run of non-special floors. Once the special floor numbers are known in increasing order, those runs can occur only in three places:
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- before the first special floor;
-- between two consecutive special floors;
-- after the last special floor.
+We execute the procedure on $bottom = 2, top = 9, special = [4, 6]$.
 
-The answer is the greatest length among these boundary and interior gaps. There is no need to inspect every floor individually, which would be impossible when floor numbers reach one billion.
+| Evaluation Step | Segment Evaluated | Mathematical Formula | Calculation | Intermediate Gap Length | Running Maximum $\text{ans}$ |
+|---|---|---|---|---|---|
+| Step 1: Sort | Array $special$ | Monotonic ordering | $[4, 6]$ | - | - |
+| Step 2: Lower Boundary | Floors $[2, 3]$ | $special[0] - bottom$ | $4 - 2$ | $2$ | $2$ |
+| Step 3: Upper Boundary | Floors $[7, 9]$ | $top - special[-1]$ | $9 - 6$ | $3$ | $\max(2, 3) = 3$ |
+| Step 4: Interior Pair $(4, 6)$ | Floors $[5, 5]$ | $6 - 4 - 1$ | $2 - 1$ | $1$ | $\max(3, 1) = 3$ |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+- **Step 1:** The input $special = [4, 6]$ is already sorted.
+- **Step 2:** The lower gap spans from $bottom = 2$ up to $4 - 1 = 3$. Length is $4 - 2 = 2$. Running maximum is $2$.
+- **Step 3:** The upper gap spans from $6 + 1 = 7$ up to $top = 9$. Length is $9 - 6 = 3$. Running maximum becomes $\max(2, 3) = 3$.
+- **Step 4:** The interior gap between special floors $4$ and $6$ is $6 - 4 - 1 = 1$ (consisting solely of floor $5$). Since $1 \le 3$, the running maximum remains $3$.
+
+All segments are exhausted, yielding the final answer $3$.
+
+## 4. Comprehensive State Trace
+
+The table below catalogs gap evaluations across diverse structural test configurations.
+
+| Configuration $(bottom, top)$ | $special$ Input | Sorted $special$ | Lower Gap ($s_0 - bottom$) | Interior Gaps ($s_{i+1} - s_i - 1$) | Upper Gap ($top - s_{k-1}$) | Maximum Consecutive |
+|---|---|---|---|---|---|---|
+| $(2, 9)$ | $[4, 6]$ | $[4, 6]$ | $4 - 2 = 2$ | $[6 - 4 - 1] = [1]$ | $9 - 6 = 3$ | **$3$** |
+| $(6, 8)$ | $[7, 6, 8]$ | $[6, 7, 8]$ | $6 - 6 = 0$ | $[7-6-1, 8-7-1] = [0, 0]$ | $8 - 8 = 0$ | **$0$** |
+| $(1, 10)$ | $[5]$ | $[5]$ | $5 - 1 = 4$ | None | $10 - 5 = 5$ | **$5$** |
+| $(10, 20)$ | $[18, 20]$ | $[18, 20]$ | $18 - 10 = 8$ | $[20 - 18 - 1] = [1]$ | $20 - 20 = 0$ | **$8$** |
+| $(2, 10)$ | $[2, 3, 9]$ | $[2, 3, 9]$ | $2 - 2 = 0$ | $[3-2-1, 9-3-1] = [0, 5]$ | $10 - 9 = 1$ | **$5$** |
+| $(1, 10^9)$ | $[999999999, 2]$ | $[2, 999999999]$ | $2 - 1 = 1$ | $[999999999 - 2 - 1] = [999999996]$ | $10^9 - 999999999 = 1$ | **$999999996$** |
+
+In the configuration $(6, 8)$ with $special = [6, 7, 8]$, every single rented floor is special, leaving no available floors. All gaps evaluate to $0$, correctly yielding $0$.
+
+## 5. Algorithmic Correctness & Soundness
+
+The correctness of this algorithm rests on the topology of discrete integer intervals:
+
+1. **Partition Exhaustiveness:**
+   Any floor $f \in [bottom, top]$ is either a member of $S$ or not. If $f \notin S$, then $f$ must satisfy exactly one of three cases relative to the ordered sequence $s_0 < s_1 < \dots < s_{k-1}$:
+   - $f < s_0 \iff bottom \le f \le s_0 - 1$
+   - $s_i < f < s_{i+1}$ for some unique $i \in [0, k-2] \iff s_i + 1 \le f \le s_{i+1} - 1$
+   - $f > s_{k-1} \iff s_{k-1} + 1 \le f \le top$
+   Therefore, the union of these $k + 1$ intervals exactly equals $[bottom, top] \setminus S$.
+2. **Contiguity and Maximality:**
+   Each interval $I$ constructed in this manner is bounded on both sides either by a special floor or the global boundary ($bottom - 1$ or $top + 1$). Thus, no two intervals can merge, and each interval is maximally contiguous.
+3. **Optimality:**
+   The maximum consecutive non-special floors is by definition the maximum cardinality among all connected components of $[bottom, top] \setminus S$. Taking the maximum of these $k + 1$ scalar lengths is guaranteed to find the true global maximum.
+
+## 6. Edge Cases & Anti-Patterns
+
+1. **All Rented Floors are Special:**
+   - If $special = [bottom, bottom+1, \dots, top]$, no valid floor exists.
+   - All computed gap lengths evaluate to $0$. The algorithm correctly returns $0$.
+2. **Only One Special Floor ($k = 1$):**
+   - The special floor partitions $[bottom, top]$ into at most two segments.
+   - The loop over adjacent pairs executes zero times.
+   - The result is simply $\max(s_0 - bottom, top - s_0)$.
+3. **Special Floors at Exact Boundaries ($s_0 = bottom$ or $s_{k-1} = top$):**
+   - If $s_0 = bottom$, $s_0 - bottom = 0$ (no floors below $s_0$).
+   - If $s_{k-1} = top$, $top - s_{k-1} = 0$ (no floors above $s_{k-1}$).
+   - The formula naturally computes $0$ without requiring dedicated conditional branches.
+4. **Large Coordinate Values ($10^9$):**
+   - Rented ranges can span up to $10^9$ floors.
+   - Simulating individual floors in a boolean array or set would exhaust available memory. The coordinate difference approach uses $O(1)$ space and executes instantaneously regardless of coordinate magnitude.
+
+## 7. Complexity Analysis
+
+The complexity parameters are governed by the number of special floors $k = |special|$.
+
+| Operation Phase | Time Complexity | Auxiliary Space Complexity | Explanation |
 |---|---|---|---|
-| Input Slice | `{"bottom": 2, "top": 9, "special": [4, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Sort the special floors
-
-The input list may be in arbitrary order, so `special.sort()` arranges it from smallest to largest. The source guarantees that the values are unique and lie inside the rented range.
-
-After sorting, `special[0]` is the lowest special floor and `special[-1]` is the highest. Every adjacent pair generated by `pairwise(special)` has no other special floor between it.
-
-The method sorts in place. This is operationally important: after the call, the caller's `special` list is ordered even though the requested answer itself does not require returning that order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Count the lower boundary gap
-
-Floors below the first special floor form the inclusive range
-
-$$
-[\texttt{bottom},\ \texttt{special}[0]-1].
-$$
-
-Its length is
-
-$$
-(\texttt{special}[0]-1)-\texttt{bottom}+1
-=
-\texttt{special}[0]-\texttt{bottom}.
-$$
-
-If the first special floor equals `bottom`, this difference is zero, correctly indicating that no non-special floor appears before it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"bottom": 2, "top": 9, "special": [4, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Add boundary sentinels:** Sorting `bottom - 1` and `top + 1` with the special values makes every answer look like one adjacent gap, but it requires extra storage or input modification.
-- **Boolean array over floors:** It is impossible when the coordinate range approaches `10^9` and ignores that only special markers matter.
-- **Hash set plus coordinate scan:** Membership may be constant time, but scanning every rented floor is still proportional to the enormous coordinate span.
-- **Balanced ordered set:** It could support dynamic insertions, but the input is static and one sort is simpler.
-- **One special floor:** There are no interior pairs; the maximum of the two boundary gaps is the complete answer.
-- **Special at** `bottom`: The lower gap is zero.
-- **Special at** `top`: The upper gap is zero.
-- **Adjacent special floors:** Their interior contribution is zero.
-- **Every floor special:** Every evaluated gap is zero, so the answer is zero.
-- **Large coordinate gap:** Direct subtraction finds its length without iterating through its floors.
-- **Unsorted input:** In-place sorting restores the order required for adjacent-gap reasoning.
-- **Unique values:** No duplicate special floor needs to be removed.
-- **Inclusive rented range:** The boundary formulas differ from an interior formula because only one special endpoint borders each boundary.
-- **Inclusive interior endpoints:** Both `x` and `y` are special and excluded, giving `y - x - 1`.
-- **Input mutation:** `special.sort()` permanently reorders the caller's list; sort a copy if that is unacceptable.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(m)$. Let `m` be the number of special floors. Sorting takes `O(m \log m)` time. Initialization is constant time, and `pairwise` produces `m - 1` adjacent pairs for an `O(m)` scan. Total time is `O(m \log m)`.
-- **Auxiliary Space Complexity:** $O(log m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Sorting Special Floors | $O(k \log k)$ | $O(\log k)$ or $O(k)$ | Sorting the $k$ special floor integers in place. |
+| Gap Evaluation Sweep | $O(k)$ | $O(1)$ | A single linear pass evaluating $k - 1$ adjacent pairs and $2$ boundary differences. |
+| Total Complexity | $O(k \log k)$ | $O(1)$ auxiliary | The complexity is completely independent of the floor coordinate range $(top - bottom)$ and scales solely with $k \le 10^5$. |

@@ -39,7 +39,7 @@
     {
       "id": "trial-larger",
       "name": "larger shuffled range",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -56,6 +56,7 @@
       },
       "expected": 8,
       "tags": [
+        "sample",
         "shuffled"
       ]
     },

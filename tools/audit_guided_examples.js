@@ -123,10 +123,15 @@ export function checkGuidedExample(content) {
 }
 
 async function main() {
-  const dirs = fs.readdirSync(LEETCODE_ROOT, { withFileTypes: true })
+  const filterArgs = process.argv.slice(2);
+  let dirs = fs.readdirSync(LEETCODE_ROOT, { withFileTypes: true })
     .filter(d => d.isDirectory())
     .map(d => d.name)
     .sort();
+
+  if (filterArgs.length > 0) {
+    dirs = dirs.filter(d => filterArgs.some(arg => d.includes(arg)));
+  }
 
   console.log(`Auditing ${dirs.length} packages for guided_example.md errors...`);
 

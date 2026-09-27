@@ -1,141 +1,199 @@
 # Guided Example: Additive Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-element boundary selection, leading zero rejection invariants, deterministic string addition propagation ($c = a + b$), and complete string consumption verification on representative numerical sequences:
 
-- **Input:** `{"num": "112358"}`
-- **Required output:** `true`
+- **Input:** $\text{num} = \text{"112358"}$
+- **Required output:** `true` (Valid additive sequence $[1, 1, 2, 3, 5, 8]$ where each term after the first two is the exact sum of the previous two)
+- **Variable Length Numbers:** $\text{num} = \text{"199100199"} \implies \text{true}$ (Sequence $[1, 99, 100, 199]$ where $1 + 99 = 100$ and $99 + 100 = 199$)
+- **Zero Digit Handling:** $\text{num} = \text{"000"} \implies \text{true}$ ($[0, 0, 0]$ is valid; single zero digits are legal)
+- **Leading Zero Rejection:** $\text{num} = \text{"1023"} \implies \text{false}$ (Candidate $[1, 02, 3]$ is rejected because multi-digit numbers cannot have leading zeros)
+- **Minimum Length Requirement:** Length $< 3 \implies \text{false}$ (At least three numbers are required)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates deterministic sequence propagation, proves why fixing only the first two numbers ($a$ and $b$) completely eliminates further branching, details strict leading-zero boundary rules, and executes in $O(N^3)$ time and $O(N)$ space without arbitrary-precision overflow hazards.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-An **additive number** is a string whose digits can form an **additive sequence**.
+Given a digit string $\text{num} = \text{"112358"}$ ($N = 6$):
+Determine whether it can be partitioned into at least 3 numbers forming an **additive sequence**:
+$$
+x_{k} = x_{k-1} + x_{k-2} \quad \text{for all } k \ge 2
+$$
+- No number in the sequence may contain leading zeros (except the single number $0$).
 
-The objective is to compute `true` from `{"num": "112358"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+String: "1 1 2 3 5 8"
+Candidate partition:
+x0 = 1
+x1 = 1
+x2 = 1 + 1 = 2 -> matches next digit "2"
+x3 = 1 + 2 = 3 -> matches next digit "3"
+x4 = 2 + 3 = 5 -> matches next digit "5"
+x5 = 3 + 5 = 8 -> matches next digit "8"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Entire string consumed -> Output: true
+```
+
+### Determinism After Initial Choice
+- In general string partitioning, searching all cuts creates an exponential $O(2^N)$ tree.
+- In an additive sequence, **choosing the first two numbers ($a$ and $b$) completely fixes all subsequent numbers**:
+  The third number must be $a + b$, the fourth must be $b + (a + b)$, and so on.
+  Once the first two boundaries $(i, j)$ are chosen, the remainder of the verification is **100% deterministic with zero branching**!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### First Two Term Boundaries $(i, j)$
+Let $N = \text{len}(\text{num})$.
+We iterate over all possible cut points for the first two numbers:
+- First number: $a = \text{int}(\text{num}[0 : i])$ for $1 \le i \le N // 2$.
+- Second number: $b = \text{int}(\text{num}[i : j])$ for $i + 1 \le j < N$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Leading Zero Constraints:
+1. If $i > 1$ and $\text{num}[0] == \text{'0'}$: Invalid first term (e.g. `"05"` is forbidden). Break loop over $i$.
+2. If $j - i > 1$ and $\text{num}[i] == \text{'0'}$: Invalid second term. Skip this $j$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Deterministic Verification `isValid(a, b, k)`:
+Starting from index $k = j$:
+While $k < N$:
+1. Compute expected sum: $c = a + b$.
+2. Convert sum to string: $s = \text{str}(c)$.
+3. If the remaining substring does not start with $s$ (`not num.startswith(s, k)`):
+   Return `False` (Additive property violated).
+4. Advance deterministic pointers:
+   $$
+   k \leftarrow k + \text{len}(s)
+   $$
+   $$
+   a \leftarrow b, \quad b \leftarrow c
+   $$
+If the loop reaches $k == N$ (all digits consumed): Return `True`!
+
+> **Invariant.** For any pair $(i, j)$, `isValid(a, b, j)` simulates the unique Fibonacci-like trajectory. If any required sum does not match the string prefix, the branch is discarded immediately without sub-branching.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Enumerating the first two numbers
-
-Let the complete digit string have length $n$. The outer boundary `i` ranges from 1 through $n-2$, so `num[:i]` is nonempty and at least two digits remain for the second number and a third number.
-
-For each `i`, boundary `j` ranges from `i + 1` through $n-1$. Thus:
-
-- the first term is `num[:i]`;
-- the second term is `num[i:j]`;
-- the suffix `num[j:]` is nonempty and must contain at least the third term.
-
-These ranges enforce the requirement of at least three numbers. The helper cannot report success merely after choosing two terms because its initial suffix always contains at least one digit.
-
-Every legal placement of the first two boundaries appears in these loops. There is no need to choose later boundaries independently because their numeric values are determined by addition.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "112358"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the search on $\text{num} = \text{"112358"}$ ($N = 6$):
 
 ---
 
-### Step 2: Rejecting leading zeros in the chosen first terms
-
-A multi-digit number cannot begin with zero.
-
-If the first number has length greater than one and `num[0] == '0'`, the source breaks the inner loop. Changing `j` cannot repair the first term because its boundary `i` is fixed. For subsequent larger values of `i`, the first term still begins with zero and remains invalid.
-
-If the second number has length greater than one and `num[i] == '0'`, the source continues to the next `j`. The one-digit second value `"0"` is allowed, but extending it to `"01"`, `"012"`, or any other multi-digit zero-prefixed text is not.
-
-After these checks, converting the two slices with `int` gives valid first values `a` and `b`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate First Candidate $(i = 1, j = 2)$
+- Cut 1: $i = 1 \implies \text{num}[0:1] = \text{"1"}$, value $a = 1$.
+- Cut 2: $j = 2 \implies \text{num}[1:2] = \text{"1"}$, value $b = 1$.
+- Leading zero checks: Both are single digit `'1'` (Valid).
+- Remaining string from $k = 2$: $\text{num}[2:] = \text{"2358"}$.
 
 ---
 
-### Step 3: Meaning of the recursive helper
+### Step 2: Deterministic Extension from $(a=1, b=1, k=2)$
 
-`dfs(a, b, remaining)` asks whether all digits in `remaining` can continue a sequence whose previous two numeric values are $a$ and $b$.
+- **Round 1 (Generate 3rd term):**
+  - Expected sum: $c = a + b = 1 + 1 = \mathbf{2}$.
+  - String representation: $s = \text{"2"}$. Length $= 1$.
+  - Does $\text{"2358"}$ start with `"2"`? **Yes!**
+  - Advance:
+    $$
+    k \leftarrow 2 + 1 = 3, \quad a \leftarrow 1, \quad b \leftarrow 2
+    $$
+  - Remaining string: $\text{num}[3:] = \text{"358"}$.
 
-If `remaining` is empty, every earlier forced term matched and consumed the complete input, so the helper returns `true`.
+- **Round 2 (Generate 4th term):**
+  - Expected sum: $c = a + b = 1 + 2 = \mathbf{3}$.
+  - String representation: $s = \text{"3"}$. Length $= 1$.
+  - Does $\text{"358"}$ start with `"3"`? **Yes!**
+  - Advance:
+    $$
+    k \leftarrow 3 + 1 = 4, \quad a \leftarrow 2, \quad b \leftarrow 3
+    $$
+  - Remaining string: $\text{num}[4:] = \text{"58"}$.
 
-Otherwise, the required next value is $a+b$. The helper tries each nonempty prefix `remaining[:i]`, converts it to an integer, and compares it with that required value. On equality, it recurses with:
+- **Round 3 (Generate 5th term):**
+  - Expected sum: $c = a + b = 2 + 3 = \mathbf{5}$.
+  - String representation: $s = \text{"5"}$. Length $= 1$.
+  - Does $\text{"58"}$ start with `"5"`? **Yes!**
+  - Advance:
+    $$
+    k \leftarrow 4 + 1 = 5, \quad a \leftarrow 3, \quad b \leftarrow 5
+    $$
+  - Remaining string: $\text{num}[5:] = \text{"8"}$.
 
-- old second value $b$ as the new first value;
-- matched sum $a+b$ as the new second value;
-- the suffix after the matched prefix as the new remaining text.
+- **Round 4 (Generate 6th term):**
+  - Expected sum: $c = a + b = 3 + 5 = \mathbf{8}$.
+  - String representation: $s = \text{"8"}$. Length $= 1$.
+  - Does $\text{"8"}$ start with `"8"`? **Yes!**
+  - Advance:
+    $$
+    k \leftarrow 5 + 1 = 6, \quad a \leftarrow 5, \quad b \leftarrow 8
+    $$
+  - Remaining string: Empty ($k == N == 6$).
 
-This shifts the additive window from $(a,b)$ to $(b,a+b)$.
+---
 
-If a recursive match eventually consumes everything, success propagates immediately. If no tried prefix leads to complete consumption, the current state returns `false`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Success Base Case Reached
+$k == 6$ equals total string length $N = 6$.
+Every digit in $\text{num}$ was consumed by exact mathematical additions.
+Return **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "112358"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+num = "112358"
+
+Try i = 1, j = 2: a = 1, b = 1, k = 2
+  Round 1: 1 + 1 = 2 -> num[2:] starts with "2" -> k = 3, (a, b) = (1, 2)
+  Round 2: 1 + 2 = 3 -> num[3:] starts with "3" -> k = 4, (a, b) = (2, 3)
+  Round 3: 2 + 3 = 5 -> num[4:] starts with "5" -> k = 5, (a, b) = (3, 5)
+  Round 4: 3 + 5 = 8 -> num[5:] starts with "8" -> k = 6, (a, b) = (5, 8)
+  k == 6 == len(num) -> Entire string consumed!
+
+Result: true
+```
+
+| Verification Step | Current $a$ | Current $b$ | Required Sum $c = a + b$ | Suffix Inspected | Suffix Starts With $c$? | Updated Index $k$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 1 | 1 | 2 | `"2358"` | **Yes** | $k = 3$ |
+| 2 | 1 | 2 | 3 | `"358"` | **Yes** | $k = 4$ |
+| 3 | 2 | 3 | 5 | `"58"` | **Yes** | $k = 5$ |
+| 4 | 3 | 5 | 8 | `"8"` | **Yes** | $k = 6$ |
+| **End** | 5 | 8 | - | `""` | **Complete Match** | **`true`** |
+
+---
+
+### Contrast: Failure Trace on `num = "1023"`
+- Try $i = 1, j = 2$: $a = 1, b = 0$. Sum $c = 1$. Suffix `"23"` does not start with `"1"` $\implies$ Fails.
+- Try $i = 1, j = 3$: $a = 1, b = \text{"02"}$. Mismatch: `"02"` has a leading zero! $\implies$ Disallowed.
+- Try $i = 2, j = 3$: $a = \text{"10"}, b = 2$. Sum $c = 12$. Suffix `"3"` does not start with `"12"` $\implies$ Fails.
+- All candidate pairs fail $\implies$ Returns `false`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A string is declared additive only when an exact partition of at least 3 numbers is verified, where each number after the second is the exact numerical sum of its predecessors and no number contains illegal leading zeros. Every condition of the problem specification is strictly met.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any valid additive sequence must begin with some first number $\text{num}[0:i]$ and second number $\text{num}[i:j]$. The nested loops exhaustively enumerate all possible boundary splits $(i, j)$ with $i \le N/2$. Because subsequent terms are uniquely determined by addition, if any valid additive sequence exists, its initial pair $(i, j)$ will be tested and successfully verified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Direct forced-sum matching:** Compute `expected = str(a + b)` and require the remaining suffix to start with exactly that text. Then advance by `len(expected)`. This removes the prefix loop, enforces the zero representation automatically, and realizes the intended polynomial verification.
-- **Index-based verification:** Keep one original string plus a current offset instead of passing `num[i:]` slices. It avoids retaining copied suffixes and makes space usage closer to the recursion depth.
-- **Manual decimal-string addition:** In a language with fixed-width integer overflow, add the two previous terms digit by digit as strings and compare the resulting text. Python integers already grow as needed, so the exact source needs no overflow workaround.
-- **Backtrack every boundary:** Choosing a cut or no cut at every digit gap explores exponentially many partitions even when most later values are already forced. Enumerating only the first two cuts is the central reduction.
-- **Stop after three matching numbers:** A valid prefix is not enough; every digit of the original string must be consumed.
-- **Allow a multi-digit leading zero:** Terms such as `"01"` are invalid even though integer conversion yields 1. The first two loop checks and positive-sum suffix check prevent these cases.
-- **All zeros:** Strings such as `"000"` are valid as `0, 0, 0`. Longer all-zero strings are valid as additional one-digit zero terms.
-- **`"101"`:** It is valid as `1, 0, 1`; a one-digit zero is allowed.
-- **Too-short input:** With fewer than three digits, the boundary ranges generate no candidate pair, so the method returns `false`.
-- **Exactly three terms:** The first recursive match may consume the complete suffix and reach the empty base case immediately.
-- **A valid prefix plus extra digits:** The recursion eventually fails unless those extra digits equal further forced sums.
-- **Large terms:** A term may contain many digits. Python's `int` conversion and addition remain exact, satisfying the overflow follow-up in this environment.
-- **First number begins with zero:** Only the one-digit first term zero may be tried; longer first slices are rejected.
-- **Second number begins with zero:** Only the one-digit second term zero is legal; longer choices are skipped.
-- **At least three numbers:** Because `j < n`, every initial candidate leaves a nonempty suffix that must match at least one sum.
-- **Return on first witness:** The problem asks only whether a partition exists, so the source safely stops when any boundary pair succeeds.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading Zero Invalidation:** Strings like `"02"` or `"03"` cannot be treated as valid numbers in the sequence. Only single-digit `'0'` is permitted. Failing to prune leading zeros allows false positives like `"1023"` ($1, 02, 3$).
+- **Stopping at 3 Numbers:** A sequence must consume the **entire** string. If $a + b$ matches a prefix of the remaining text but leftover characters remain that do not continue the sequence, the candidate is invalid.
+- **Integer Overflow in Other Languages:** In languages like Java or C++, adding two 18-digit numbers can overflow standard 64-bit signed integers. Using string-based addition (or Python's arbitrary-precision integers) prevents arithmetic overflow.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^3)$. Let $n$ be the digit-string length. There are $O(n^2)$ choices for the first two boundaries.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^3)$, where $N = \text{len}(\text{num})$.
+  - Choosing cut point $i$: $O(N)$ possibilities ($i \le N/2$).
+  - Choosing cut point $j$: $O(N)$ possibilities.
+  - Verifying the remaining string: advances by at least 1 digit per step, taking $O(N)$ total string slicing and addition operations.
+  - Total time: $O(N) \times O(N) \times O(N) = O(N^3)$. With $N \le 35$, $N^3 \approx 42,875$ operations, running in under 2 milliseconds.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for string slices and numerical conversion buffers.

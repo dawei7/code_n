@@ -1,121 +1,138 @@
 # Guided Example: Divide a String Into Groups of Size k
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal uniform-stride chunking and terminal padding approach on a representative problem instance:
 
-- **Input:** `{"s": "abcdefghi", "k": 3, "fill": "x"}`
-- **Required output:** `["abc", "def", "ghi"]`
+- **Input String (`s`):** `"abcdefghij"`
+- **Chunk Size (`k`):** $3$
+- **Fill Character (`fill`):** `'x'`
+- **Expected Output:** `["abc", "def", "ghi", "jxx"]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A string `s` can be partitioned into groups of size `k` using the following procedure:
-
-The objective is to compute `["abc", "def", "ghi"]` from `{"s": "abcdefghi", "k": 3, "fill": "x"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance demonstrates how contiguous string slicing partitions characters into fixed-width blocks, showing how the total group count is derived from ceiling division and how right-padding seamlessly completes the trailing fractional chunk.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Given a string `s`, a chunk size $k$, and a padding character `fill`, we must partition `s` into consecutive substring groups of length $k$.
+1. The first group takes the first $k$ characters $s[0 \dots k-1]$.
+2. The second group takes the next $k$ characters $s[k \dots 2k-1]$, and so forth.
+3. If the final group contains fewer than $k$ characters, we append `fill` repeatedly to its right until its length equals $k$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Generate every group start exactly once
-
-The range `range(0, len(s), k)` begins at zero and advances by `k`. Since $k \ge 1$, it produces the strictly increasing starts $0,k,2k,\ldots$ that are still less than `len(s)`. Each source index belongs to exactly one interval beginning at one of these positions. There are no gaps because one slice ends where the next begins, and there is no overlap because starts are spaced by exactly the desired group length.
-
-The string is guaranteed non-empty, so the range always produces at least index zero and the result always contains at least one group.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abcdefghi", "k": 3, "fill": "x"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Consider our representative instance: `s = "abcdefghij"` (length $n = 10$), $k = 3$, `fill = 'x'`:
+- Total groups needed: $\lceil 10 / 3 \rceil = 4$.
+- Chunks $0, 1, 2$ each capture exactly $3$ characters: `"abc"`, `"def"`, `"ghi"`.
+- Chunk $3$ captures the lone remainder character `"j"` (length $1$).
+- Padding $3 - 1 = 2$ instances of `'x'` yields `"jxx"`.
+The final collection is `["abc", "def", "ghi", "jxx"]`.
 
 ---
 
-### Step 2: Slice at most k characters
+## 2. Mathematical & Algorithmic Principles
 
-For a start `i`, `s[i : i + k]` selects source indexes from `i` through `i + k - 1`. Python’s slice end is exclusive. If `i + k` is past the string’s end, slicing safely stops at `len(s)` rather than raising an error.
+### Partition Arithmetic
+Let $n = |s|$ be the length of the string.
+The total number of groups $G$ is given by ceiling integer division:
 
-Every non-final start has at least $k$ characters remaining and therefore yields a slice of length exactly $k$. The final start may also yield exactly $k$ characters when the source length is divisible by $k$, or it may yield the remaining $r$ characters where $1 \le r < k$.
+$$G = \left\lceil \frac{n}{k} \right\rceil = \left\lfloor \frac{n + k - 1}{k} \right\rfloor$$
 
-Because all earlier slices have full length, padding each generated slice is equivalent to padding only the last short group. The code does not need to identify the last iteration explicitly.
+For any group index $m \in \{0, 1, \dots, G - 1\}$:
+- The starting index in $s$ is $i = m \cdot k$.
+- The raw substring slice is $T_m = s[i : \min(n, i + k)]$.
+- The length of slice $T_m$ is:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$|T_m| = \min(k, n - i)$$
 
----
+### Terminal Right-Padding
+For all full groups ($m < G - 1$), $|T_m| = k$.
+For the final group ($m = G - 1$):
+- If $n \equiv 0 \pmod k$, $|T_m| = k$, requiring $0$ padding characters.
+- If $n \not\equiv 0 \pmod k$, the remainder is $r = n \bmod k$, requiring $k - r$ copies of `fill`.
 
-### Step 3: Pad with the required fill character
+Padding the slice on the right with $k - |T_m|$ copies of `fill` guarantees that every emitted group has width exactly $k$.
 
-The call `.ljust(k, fill)` returns a string of at least width `k`. If the slice already has length $k$, it is returned unchanged. If it has length $r<k$, `ljust` appends exactly $k-r$ copies of `fill` on the right.
-
-Right padding is essential: the original remaining characters must appear first, followed by fill characters. Prepending fill characters would change the order obtained after removing padding.
-
-The contract guarantees that `fill` is exactly one lowercase English character, which is the valid kind of fill argument for `str.ljust`.
-
-For `s = "abcdefghij"` and `k = 3`, the starts are $0,3,6,9$. Their raw slices are `"abc"`, `"def"`, `"ghi"`, and `"j"`. The first three already have width three. The last is extended by two `"x"` characters to `"jxx"`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["abc", "def", "ghi"]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abcdefghi", "k": 3, "fill": "x"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["abc", "def", "ghi"]` | Verified |
+| Group Index ($m$) | Start Offset ($m \cdot k$) | Raw Slice Extracted | Slice Length | Fill Characters Appended | Formatted Group Output |
+|---|---|---|---|---|---|
+| $0$ | $0$ | $s[0 \dots 2]$ | $3$ | $0$ | `"abc"` |
+| $1$ | $3$ | $s[3 \dots 5]$ | $3$ | $0$ | `"def"` |
+| $2$ | $6$ | $s[6 \dots 8]$ | $3$ | $0$ | `"ghi"` |
+| $3$ (Final) | $9$ | $s[9 \dots 9]$ | $1$ | $2$ (`'x'`) | `"jxx"` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Input: `s = "abcdefghij"`, $k = 3$, `fill = 'x'`.
+Length: $n = 10$.
+Step interval: `range(0, 10, 3)` produces start indices $0, 3, 6, 9$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Group 0: Start Index $i = 0$
+- Slice range: $[0, 3)$.
+- Extracted substring: `s[0:3] = "abc"`.
+- Length check: $|"abc"| = 3 = k$.
+- No padding needed.
+- Emitted group: `"abc"`.
+
+### Group 1: Start Index $i = 3$
+- Slice range: $[3, 6)$.
+- Extracted substring: `s[3:6] = "def"`.
+- Length check: $|"def"| = 3 = k$.
+- No padding needed.
+- Emitted group: `"def"`.
+
+### Group 2: Start Index $i = 6$
+- Slice range: $[6, 9)$.
+- Extracted substring: `s[6:9] = "ghi"`.
+- Length check: $|"ghi"| = 3 = k$.
+- No padding needed.
+- Emitted group: `"ghi"`.
+
+### Group 3: Start Index $i = 9$
+- Slice range: $[9, 12) \to$ clamped to string boundary at index $10$.
+- Extracted substring: `s[9:10] = "j"`.
+- Length check: $|"j"| = 1 < 3$.
+- Deficit: $k - 1 = 3 - 1 = 2$ characters.
+- Append two `'x'` characters: `"j"` $+$ `"xx"` $=$ `"jxx"`.
+- Emitted group: `"jxx"`.
+
+### Completion
+All $4$ groups have been generated with length $3$:
+`["abc", "def", "ghi", "jxx"]`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Explicit while loop:** Advance a pointer by `k`, append each slice, and pad the final result after the loop. This mirrors the editorial and has the same complexity but uses more statements than the exact comprehension.
-- **Manual character accumulation:** Build a current group one character at a time and flush it at size `k`. This works but duplicates behavior already provided by slicing and `ljust`.
-- **Pad the whole source first:** Append enough fill characters to make the total length divisible by `k`, then slice fixed-size groups. This is correct but constructs another padded source string in addition to the output groups.
-- **Length divisible by k:** Every slice already has length `k`, so `ljust` makes no change and no fill character is added.
-- **Length not divisible by k:** Exactly `k - (n % k)` fill characters are appended to the final slice.
-- **k greater than the source length:** The range yields only zero. The entire source becomes the first and last group and is padded to length `k`.
-- **k equals one:** Every character becomes its own one-character group, and padding is never needed.
-- **Source consists of the fill character:** Original fill-looking characters remain ordinary source content. Only the computed suffix padding is newly added.
-- **One-character source:** It forms one group; that group is unchanged when `k = 1` and receives `k-1` padding characters otherwise.
-- **No empty final group:** When $n$ is divisible by $k$, `range` stops at $n-k$ and never produces start $n$, so the method does not append an unnecessary all-fill group.
-- **Exclusive slice endpoint:** `s[i : i + k]` contains at most $k$ characters because `i + k` itself is excluded.
-- **Input immutability:** Strings are immutable; slicing and padding create the returned strings without changing `s`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The extraction and padding transitions across all groups are tabulated below:
+
+| Chunk Index ($m$) | Start Boundary ($i$) | End Boundary ($\min(n, i+k)$) | Raw Substring | Length Deficit ($k - |T|$) | Padded String | Accumulator State |
+|---|---|---|---|---|---|---|
+| $0$ | $0$ | $3$ | `"abc"` | $0$ | `"abc"` | `["abc"]` |
+| $1$ | $3$ | $6$ | `"def"` | $0$ | `"def"` | `["abc", "def"]` |
+| $2$ | $6$ | $9$ | `"ghi"` | $0$ | `"ghi"` | `["abc", "def", "ghi"]` |
+| $3$ | $9$ | $10$ | `"j"` | $2$ | `"jxx"` | `["abc", "def", "ghi", "jxx"]` |
+
+Final returned array: `["abc", "def", "ghi", "jxx"]`.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(G)$. Let $n=\lvert s\rvert$, and let $G=\lceil n/k\rceil k$ be the total number of characters in the returned groups after padding. The slices collectively copy all $n$ source characters. The `ljust` operations produce the group strings whose total length is $G$. Thus the precise time bound is $O(G)$, equivalently $O(n+k)$ because $n \le G < n+k$.
-- **Auxiliary Space Complexity:** $O(n+k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Each slice starts at $i = m \cdot k$ and spans at most $k$ characters. Because $i$ increases by $k$ at each iteration, consecutive slices are contiguous and non-overlapping. Appending $k - |T|$ copies of `fill` to the right of any slice with length $|T| < k$ strictly guarantees that the resulting token has length exactly $k$ without modifying the relative order of existing characters.
+
+**Completeness.** Stepping through $i \in \{0, k, 2k, \dots\}$ with step $k$ until $i \ge n$ partitions the entire interval $[0, n-1]$. Every character from the input string is placed into exactly one group, and the final fractional block is padded to $k$, satisfying all problem constraints.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+- **String Length Divisible by $k$ ($n \pmod k = 0$):** Every slice has length exactly $k$. Zero padding characters are appended, and the number of groups is exactly $n / k$.
+- **Chunk Size Greater than Length ($k > n$):** A single group containing the entire string $s$ followed by $k - n$ fill characters is produced.
+- **Unit Chunk Size ($k = 1$):** Every character forms an independent single-letter string; no padding is ever needed.
+- **Anti-Pattern — Pre-padding the Entire String:** Prepending or appending fill characters to the entire source string to make its length a multiple of $k$ before slicing can create an unnecessary full string allocation. Slicing on demand and right-padding the final slice directly achieves minimal memory overhead.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(n + k)$, where $n$ is the length of `s`. Slicing extracts $n$ characters across all groups. Formatting the final group appends at most $k - 1$ fill characters. Constructing the output strings takes linear time proportional to total output characters $\mathcal{O}(n + k)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n + k)$ auxiliary space to allocate and return the list of group strings.

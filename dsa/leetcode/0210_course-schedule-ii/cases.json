@@ -68,7 +68,7 @@
     {
       "id": "trial-diamond",
       "name": "deterministic diamond order",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "numCourses": 4,
@@ -98,7 +98,24 @@
         3
       ],
       "tags": [
+        "sample",
         "dag"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "numCourses": 1,
+        "prerequisites": []
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample"
       ]
     }
   ]

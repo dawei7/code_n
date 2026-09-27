@@ -51,7 +51,7 @@
     {
       "id": "trial-empty",
       "name": "empty list",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "head": [],
@@ -59,7 +59,27 @@
       },
       "expected": [],
       "tags": [
+        "sample",
         "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "val": 7
+      },
+      "expected": [],
+      "tags": [
+        "sample"
       ]
     },
     {

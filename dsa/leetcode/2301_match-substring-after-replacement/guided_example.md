@@ -1,128 +1,145 @@
 # Guided Example: Match Substring After Replacement
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "fool3e7bar", "sub": "leet", "mappings": [["e", "3"], ["t", "7"], ["t", "8"]]}`
-- **Required output:** `true`
+We are given two strings: a text string $s$ of length $n$ and a pattern string $sub$ of length $m$ ($m \le n$). We are also provided a 2D character array $mappings$ where each entry $mappings[k] = [\text{old}_k, \text{new}_k]$ grants permission to substitute any occurrence of character $\text{old}_k$ in $sub$ with $\text{new}_k$. Each character in $sub$ may be replaced at most once, or left unaltered.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to determine whether it is possible to transform $sub$ into a string that appears as a contiguous substring of $s$. If any valid alignment in $s$ can be matched under the substitution rules, return `true`; otherwise, return `false`.
+
+Consider the representative problem instance:
+$$s = \text{"fool3e7bar"}, \quad sub = \text{"leet"}, \quad mappings = [[\text{'e'}, \text{'3'}], [\text{'t'}, \text{'7'}], [\text{'t'}, \text{'8'}]]$$
+
+The text has length $n = 10$, and the target pattern has length $m = 4$. There are $n - m + 1 = 10 - 4 + 1 = 7$ candidate starting indices $i \in [0, 6]$ in $s$:
+- Alignments $i = 0, 1, 2$ fail immediately on initial characters (`"fool"`, `"ool3"`, `"ol3e"` do not match `'l'`).
+- Consider alignment $i = 3$, corresponding to the 4-character window $s[3 \dots 6] = \text{"l3e7"}$:
+  - Index $j = 0$: $sub[0] = \text{'l'}$, $s[3] = \text{'l'}$. Exact identity match.
+  - Index $j = 1$: $sub[1] = \text{'e'}$, $s[4] = \text{'3'}$. Not identical, but mapping $[\text{'e'}, \text{'3'}]$ is available. Valid substitution!
+  - Index $j = 2$: $sub[2] = \text{'e'}$, $s[5] = \text{'e'}$. Exact identity match.
+  - Index $j = 3$: $sub[3] = \text{'t'}$, $s[6] = \text{'7'}$. Not identical, but mapping $[\text{'t'}, \text{'7'}]$ is available. Valid substitution!
+
+All $4$ character positions in the window $s[3 \dots 6]$ successfully match $sub$ under legal substitutions. The algorithm returns `true`.
+
+```mermaid
+flowchart TD
+    accTitle: Substring Pattern Matching with Character Substitution
+    accDescr: Pipeline constructing mapping hash table, sliding a length-m window over text s, and verifying character compatibility with early exit.
+    A["Construct substitution lookup table: Map old -> Set(new)"] --> B["Iterate window start i from 0 to n - m"]
+    B --> C["Window slice: s[i ... i + m - 1]"]
+    C --> D{"For all j in 0..m-1: s[i+j] == sub[j] OR s[i+j] in Map[sub[j]]?"}
+    D -- Yes --> E["Match confirmed: Return true immediately"]
+    D -- No (mismatch detected) --> F["Advance to next window i + 1"]
+    F --> B
+    B -- All windows exhausted --> G["No valid match found: Return false"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given two strings `s` and `sub`. You are also given a 2D character array `mappings` where $\text{mappings}[i] = [\text{old}_{i}, \text{new}_{i}]$ indicates that you may perform the following operation **any** number of times:
+### Directed Compatibility Relation
 
-The objective is to compute `true` from `{"s": "fool3e7bar", "sub": "leet", "mappings": [["e", "3"], ["t", "7"], ["t", "8"]]}` while avoiding redundant calculations and unnecessary overhead.
+The substitution rules define an asymmetric compatibility relation $\sim$ over the alphabet $\Sigma$:
+$$b \sim a \iff (b = a) \lor (a \in \mathcal{T}(b))$$
+where $\mathcal{T}(b) = \{ y : [b, y] \in mappings \}$ is the set of allowed replacements for character $b$.
+- **Asymmetry:** Permission to substitute $b$ with $a$ does **not** imply permission to substitute $a$ with $b$.
+- **Source Direction:** The character being replaced is always $b \in sub$, transforming into the target character $a \in s$. Characters of $s$ are immutable.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A contiguous slice $s[i \dots i + m - 1]$ matches $sub$ if and only if the component-wise compatibility conjunction holds:
+$$\text{Match}(i) = \bigwedge_{j=0}^{m-1} \big( sub[j] \sim s[i + j] \big)$$
 
----
+### Lookup Acceleration via Direct-Address or Hash Sets
 
-## 2. Conceptual Foundation & Invariants
+Testing whether $a \in \mathcal{T}(b)$ naively takes $O(|mappings|)$ time per character comparison. Preprocessing $mappings$ into a hash map of sets or a $256 \times 256$ 2D boolean lookup matrix allows evaluating $sub[j] \sim s[i + j]$ in $O(1)$ worst-case time.
 
-We maintain the core conceptual parameters and state variables:
+Testing each of the $n - m + 1$ starting positions takes at most $m$ constant-time character checks with early-exit pruning on the first mismatch.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Store replacement permission in the forward direction
-
-Each mapping `[old,new]` permits one character of `sub` equal to `old` to become `new`. The dictionary of sets stores `new` inside `d[old]`.
-
-Sets remove duplicate mapping pairs and provide expected constant-time membership checks. Direction is essential: permission from `o` to `0` does not imply permission from `0` to `o`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Data Structure | Lookup Mechanism | Query Cost | Memory Overhead |
 |---|---|---|---|
-| Input Slice | `{"s": "fool3e7bar", "sub": "leet", "mappings": [["e", "3"], ["t", "7"], ["t", "8"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| 2D Boolean Array / Hash Sets | Direct matrix indexing $\mathcal{M}[\text{ord}(b)][\text{ord}(a)]$ | $O(1)$ | $O(|\Sigma|^2)$ bounded table |
+| Sliding Window Cursor | Linear window increment $i \in [0, n - m]$ | $O(1)$ per step | $O(1)$ index scalar |
+| Component-wise Verifier | Short-circuit boolean conjunction $\bigwedge_j$ | $O(1)$ to $O(m)$ | $O(1)$ loop counter |
 
 ---
 
-### Step 2: Test every possible alignment
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-A matching result must occupy a contiguous substring of `s` with length `len(sub)`. If `S=len(s)` and `P=len(sub)`, its start can be zero through `S-P`.
+Let us trace $s = \text{"fool3e7bar"}$, $sub = \text{"leet"}$, and $mappings = [[\text{'e'}, \text{'3'}], [\text{'t'}, \text{'7'}], [\text{'t'}, \text{'8'}]]$ ($n = 10, m = 4$).
 
-`range(len(s)-len(sub)+1)` enumerates exactly these alignments, including the final one ending at the last character.
+### Step 1: Precompute Substitution Sets
+We populate dictionary $\mathcal{T}$:
+- $\mathcal{T}[\text{'e'}] = \{\text{'3'}\}$
+- $\mathcal{T}[\text{'t'}] = \{\text{'7'}, \text{'8'}\}$
+- All other characters map to empty sets $\emptyset$.
 
-For each start `i`, the slice `s[i:i+len(sub)]` extracts the candidate text.
+### Step 2: Sliding Window Examination
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Window $i = 0$: Substring $s[0 \dots 3] = \text{"fool"}$**
+  - $j = 0$: $sub[0] = \text{'l'}$, $s[0] = \text{'f'}$. $\text{'l'} \ne \text{'f'}$ and $\text{'f'} \notin \mathcal{T}[\text{'l'}]$.
+  - Mismatch detected at $j = 0$. Short-circuit window $0$.
 
----
+- **Window $i = 1$: Substring $s[1 \dots 4] = \text{"ool3"}$**
+  - $j = 0$: $sub[0] = \text{'l'}$, $s[1] = \text{'o'}$. Mismatch. Short-circuit window $1$.
 
-### Step 3: Compare aligned characters
+- **Window $i = 2$: Substring $s[2 \dots 5] = \text{"ol3e"}$**
+  - $j = 0$: $sub[0] = \text{'l'}$, $s[2] = \text{'o'}$. Mismatch. Short-circuit window $2$.
 
-`zip(candidate, sub)` yields `a` from `s` and `b` from `sub` at the same relative position.
-
-That position is compatible when either `a==b`, requiring no replacement, or `a in d[b]`, meaning the original sub character `b` may be replaced directly by target character `a`.
-
-The orientation `a in d[b]` matches old-to-new semantics. Reversing the lookup would incorrectly permit mappings backward.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "fool3e7bar", "sub": "leet", "mappings": [["e", "3"], ["t", "7"], ["t", "8"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+- **Window $i = 3$: Substring $s[3 \dots 6] = \text{"l3e7"}$**
+  - $j = 0$: $sub[0] = \text{'l'}, s[3] = \text{'l'}$. $b = a$. Match!
+  - $j = 1$: $sub[1] = \text{'e'}, s[4] = \text{'3'}$. $b \ne a$, check $\text{'3'} \in \mathcal{T}[\text{'e'}]$. True! Match!
+  - $j = 2$: $sub[2] = \text{'e'}, s[5] = \text{'e'}$. $b = a$. Match!
+  - $j = 3$: $sub[3] = \text{'t'}, s[6] = \text{'7'}$. $b \ne a$, check $\text{'7'} \in \mathcal{T}[\text{'t'}]$. True! Match!
+  - All $4$ positions matched.
+  - Return `true`.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Avoid window slicing:** Compare `s[i+j]` directly to reduce temporary space while keeping the same time bound.
-- **Boolean character matrix:** The fixed alphanumeric alphabet permits constant-size direct lookup instead of sets.
-- **Transitive closure:** It would incorrectly allow more than one replacement per character.
-- **Regular expressions:** Per-character directed mappings are possible to encode but less transparent.
-- **No mappings:** Only exact substring matches pass.
-- **Exact character:** Equality succeeds without consulting mappings.
-- **Repeated use of one mapping:** Different positions may each apply the same allowed replacement.
-- **Reverse-only mapping:** It does not authorize the forward comparison.
-- **Equal string lengths:** There is exactly one alignment.
-- **Final alignment:** The `+1` in the range includes it.
-- **Case sensitivity:** Uppercase and lowercase are distinct.
-- **Early mismatch:** `all` short-circuits safely.
-- **Input preservation:** No input string or mapping row is modified.
-- **Bare direct replacement:** A mapping may be used even when the same old character appears several times; the “once” restriction is per character occurrence, not per mapping rule.
-- **Unused mappings:** Rules unrelated to characters in `sub` simply remain in the dictionary and never affect a comparison.
-- **Duplicate mapping rows:** Set insertion collapses them without changing permission.
-- **Digit characters:** They are ordinary mapping keys and values, not converted to numbers.
-- **Substring contiguity:** Testing fixed-length slices prevents a subsequence-style match with gaps.
-- **Short-circuit success:** The first passing alignment proves existence, so later starts need not be tested.
-- **Mismatching lengths:** Every candidate slice has exactly `len(sub)` characters, making `zip` cover all required positions.
-- **Default dictionary access:** Looking up an unmapped old character creates an empty set in this `defaultdict`, which makes the membership test false.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Window Start $i$ | Substring $s[i \dots i+3]$ | Tested Pattern Index $j$ | $sub[j] \to s[i+j]$ | Relation Valid? | Verification Outcome |
+|---|---|---|---|---|---|
+| $0$ | `"fool"` | $0$ | $\text{'l'} \to \text{'f'}$ | False | Mismatch at position $0$ |
+| $1$ | `"ool3"` | $0$ | $\text{'l'} \to \text{'o'}$ | False | Mismatch at position $0$ |
+| $2$ | `"ol3e"` | $0$ | $\text{'l'} \to \text{'o'}$ | False | Mismatch at position $0$ |
+| $3$ | `"l3e7"` | $0$ | $\text{'l'} \to \text{'l'}$ | True ($b = a$) | Position $0$ passed |
+| $3$ | `"l3e7"` | $1$ | $\text{'e'} \to \text{'3'}$ | True ($\text{'3'} \in \mathcal{T}[\text{'e'}]$) | Position $1$ passed |
+| $3$ | `"l3e7"` | $2$ | $\text{'e'} \to \text{'e'}$ | True ($b = a$) | Position $2$ passed |
+| $3$ | `"l3e7"` | $3$ | $\text{'t'} \to \text{'7'}$ | True ($\text{'7'} \in \mathcal{T}[\text{'t'}]$) | Position $3$ passed; **Global Match** |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(R)$. Let `S=len(s)`, `P=len(sub)`, and `R` be the number of mappings. Building sets takes expected `O(R)` time and `O(R)` space.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Soundness of Short-Circuit Pruning
+At any window position $i$, if an index $j$ is encountered where $sub[j] \ne s[i + j]$ and $s[i + j] \notin \mathcal{T}[sub[j]]$, character $sub[j]$ cannot be transformed to match $s[i + j]$. Because every character in the substring must match its counterpart simultaneously, a single failure immediately disqualifies start position $i$. Aborting the check for window $i$ preserves exact correctness.
+
+### Directional Correctness of Replacement
+The problem permits transforming $sub$ into a substring of $s$. A common defect is querying whether $sub[j] \in \mathcal{T}[s[i + j]]$, which reverses the allowed substitution direction. By strictly testing $s[i + j] \in \mathcal{T}[sub[j]]$, the substitution direction $\text{old} \to \text{new}$ is maintained.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Generating All Transformed Strings
+Attempting to generate all possible strings that $sub$ can morph into results in exponential explosion: if $sub$ has length $100$ and each character has $2$ mappings, there are $2^{100}$ possible strings. Instead, the algorithm fixes the candidate window in $s$ and verifies whether $sub$ can match that specific window in $O(m)$ time.
+
+### Edge Case: Equal Lengths ($n = m$)
+When $|s| = |sub|$, there is exactly one starting position $i = 0$. The algorithm evaluates only this single window.
+
+### Edge Case: No Mappings Required (Exact Substring Match)
+If $sub$ is already an exact substring of $s$ without modifications, the condition $a == b$ succeeds at every position, correctly returning `true` without accessing the mapping dictionary.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Preprocessing Mappings:** Reading $K = |mappings|$ pairs into hash sets takes $O(K)$ time.
+- **Window Enumeration:** There are $n - m + 1$ window positions.
+- **Window Matching:** In each window, at most $m$ character comparisons are performed.
+- Worst-case time is $O((n - m + 1) \cdot m + K)$.
+- For $n \le 5000, m \le 5000$, $(n - m + 1) \cdot m \le (n/2)^2 \approx 6.25 \times 10^6$ operations, executing in under 0.1 seconds.
+
+### Space Complexity
+- Storing the substitution mappings requires storing at most $K$ distinct character transitions.
+- Since the alphabet $\Sigma$ of ASCII characters has size at most $256$, the table consumes at most $O(|\Sigma|^2) = O(1)$ space.
+- **Auxiliary Space Complexity:** $O(K)$ space.

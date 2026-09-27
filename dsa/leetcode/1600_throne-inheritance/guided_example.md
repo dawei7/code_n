@@ -1,89 +1,169 @@
 # Guided Example: Throne Inheritance
 
-We trace the hierarchical Hash Table, Tree, Depth-First Search, Design traversal and subtree aggregation on a representative binary tree.
+This guide demonstrates family-tree preorder traversal modeling and tombstone death markers to compute dynamic dynastic succession in real time.
 
-- **Input:** `{"kingName": "king", "operations": [["birth", ["king", "andy"]], ["birth", ["king", "bob"]], ["birth", ["king", "catherine"]], ["birth", ["andy", "matthew"]], ["birth", ["bob", "alex"]], ["birth", ["bob", "asha"]], ["getInheritanceOrder", []], ["death", ["bob"]], ["getInheritanceOrder", []]]}`
-- **Required output:** `[null, null, null, null, null, null, ["king", "andy", "matthew", "bob", "alex", "asha", "catherine"], null, ["king", "andy", "matthew", "alex", "asha", "catherine"]]`
-
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+- **King Root:** `"king"`
+- **Events:** Multiple births, death of `"bob"`, and inheritance order queries
+- **Target Successions:**
+  - Before death: `["king", "andy", "matthew", "bob", "alex", "asha", "catherine"]`
+  - After death of `"bob"`: `["king", "andy", "matthew", "alex", "asha", "catherine"]`
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Throne Inheritance** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Dynastic succession follows strict lineage precedence:
+1. An individual precedes all of their descendants.
+2. An older child and all of that child's descendants precede any younger sibling and the younger sibling's descendants.
+3. If an individual in the line of succession dies, their living descendants retain their exact position in the line, but the deceased individual is omitted from the royal roster.
+
+```
+                    [king]
+          /           |           \
+      [andy]        [bob]†      [catherine]
+        |           /    \
+    [matthew]   [alex]  [asha]
+```
+*(† denotes deceased individual retained as an structural routing node)*
+
+Our teaching goal is to model royal succession as an ordered $N$-ary tree preorder depth-first traversal with a tombstone death set, executing births and deaths in $\mathcal{O}(1)$ time and succession queries in $\mathcal{O}(P)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+```
++-------------------------------------------------------------------------+
+|                  DYNASTIC PREORDER SUCCESSION MODEL                     |
+|                                                                         |
+|  Data Structures:                                                       |
+|    root:       Name of the founding monarch ("king")                    |
+|    children:   Map from parent -> ordered list of children [c1, c2, ...] |
+|    dead:       Hash set of deceased individuals                         |
+|                                                                         |
+|  Preorder DFS Routine: dfs(person):                                     |
+|    1. If person not in dead:                                            |
+|         append person to result                                         |
+|    2. For each child in children[person] (birth order):                 |
+|         dfs(child)                                                      |
++-------------------------------------------------------------------------+
+```
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+| Component | Formal Type | Algorithmic Responsibility |
+|---|---|---|
+| Dynastic Adjacency Map | $\text{children}: \text{Name} \to [\text{Name}]$ | Preserves chronological birth order of siblings |
+| Tombstone Set | $\text{dead} \subset \text{Names}$ | $\mathcal{O}(1)$ query exclusion without tree mutation |
+| Query Generator | $\text{DFS}(\text{root})$ | Generates instantaneous snapshot of living heirs |
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Tombstone Invariant.** When an individual dies, they must never be severed or removed from the family tree. Deleting a deceased node orphans their children or disrupts the structural branch order. Marking a name in a separate `dead` set allows traversal to pass through deceased ancestors seamlessly while excluding their names from the returned succession list.
+
+```mermaid
+flowchart TD
+    accTitle: Dynastic Succession Tree Preorder
+    accDescr: Tree structure illustrating chronological children ordering and tombstone filtering on Bob.
+    K["king (Order 1)"] --> A["andy (Order 2)"]
+    K --> B["bob [DECEASED - Filtered]"]
+    K --> C["catherine (Order 7)"]
+    A --> M["matthew (Order 3)"]
+    B --> AL["alex (Order 4)"]
+    B --> AS["asha (Order 5)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
-
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: Birth Events Construction
+Execute chronological births:
+- `birth("king", "andy")` $\implies \text{children}[\text{"king"}] = [\text{"andy"}]$
+- `birth("king", "bob")` $\implies \text{children}[\text{"king"}] = [\text{"andy"}, \text{"bob"}]$
+- `birth("king", "catherine")` $\implies \text{children}[\text{"king"}] = [\text{"andy"}, \text{"bob"}, \text{"catherine"}]$
+- `birth("andy", "matthew")` $\implies \text{children}[\text{"andy"}] = [\text{"matthew"}]$
+- `birth("bob", "alex")` $\implies \text{children}[\text{"bob"}] = [\text{"alex"}]$
+- `birth("bob", "asha")` $\implies \text{children}[\text{"bob"}] = [\text{"alex"}, \text{"asha"}]$
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: First Succession Query (`getInheritanceOrder()`)
+Traverse dynastic tree rooted at `"king"` via Preorder DFS:
+1. Visit `"king"`: alive $\implies$ Emit `"king"`.
+2. First child of `"king"` is `"andy"`:
+   - Visit `"andy"`: alive $\implies$ Emit `"andy"`.
+   - First child of `"andy"` is `"matthew"`:
+     - Visit `"matthew"`: alive $\implies$ Emit `"matthew"`.
+     - `"matthew"` has no children; return to `"andy"`.
+   - `"andy"` has no further children; return to `"king"`.
+3. Second child of `"king"` is `"bob"`:
+   - Visit `"bob"`: alive $\implies$ Emit `"bob"`.
+   - First child of `"bob"` is `"alex"`:
+     - Visit `"alex"`: alive $\implies$ Emit `"alex"`.
+   - Second child of `"bob"` is `"asha"`:
+     - Visit `"asha"`: alive $\implies$ Emit `"asha"`.
+   - Return to `"king"`.
+4. Third child of `"king"` is `"catherine"`:
+   - Visit `"catherine"`: alive $\implies$ Emit `"catherine"`.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+Order 1: `["king", "andy", "matthew", "bob", "alex", "asha", "catherine"]`.
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+---
+
+### Step 3: Death Event (`death("bob")`)
+- Insert `"bob"` into `dead`: `dead = {"bob"}`.
+- Graph topology is strictly preserved; no pointers or lists are altered.
+
+---
+
+### Step 4: Second Succession Query (`getInheritanceOrder()`)
+Preorder DFS repeated from `"king"`:
+1. Emit `"king"`.
+2. Visit `"andy"` $\implies$ Emit `"andy"`.
+3. Visit `"matthew"` $\implies$ Emit `"matthew"`.
+4. Visit `"bob"`:
+   - Check membership: `"bob" \in \text{dead}`.
+   - Suppress emission of `"bob"`.
+   - Continue traversal into children of `"bob"` in birth order:
+     - Visit `"alex"`: not in `dead` $\implies$ Emit `"alex"`.
+     - Visit `"asha"`: not in `dead` $\implies$ Emit `"asha"`.
+5. Visit `"catherine"` $\implies$ Emit `"catherine"`.
+
+Order 2: `["king", "andy", "matthew", "alex", "asha", "catherine"]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+| Traversal Sequence | Active Node | Node Status | Action Taken | Current Output Roster |
+|---|---|---|---|---|
+| 1 | `"king"` | Alive | Emit root | `["king"]` |
+| 2 | `"andy"` | Alive | Emit first child of king | `["king", "andy"]` |
+| 3 | `"matthew"` | Alive | Emit child of andy | `["king", "andy", "matthew"]` |
+| 4 | `"bob"` | **Dead** | Filtered; traverse children | `["king", "andy", "matthew"]` |
+| 5 | `"alex"` | Alive | Emit first child of bob | `["king", "andy", "matthew", "alex"]` |
+| 6 | `"asha"` | Alive | Emit second child of bob | `["king", "andy", "matthew", "alex", "asha"]` |
+| 7 | `"catherine"` | Alive | Emit third child of king | `["king", "andy", "matthew", "alex", "asha", "catherine"]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** Preorder traversal visits a parent node before any of its children, and visits children in the order they were inserted into the adjacency list. Because `birth()` appends each new child to the end of the parent's list, insertion order matches chronological birth order. Filtering living individuals through the condition `person not in dead` ensures that only living family members enter the returned sequence without disturbing the relative ordering of any descendants.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Every birth registers an directed edge from an existing parent to a new child, creating an acyclic tree rooted at the monarch. Because DFS exhaustively visits all reachable nodes from the monarch, every living person in the royal lineage is reached and appended.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Structural Pruning Hazard on Death:** Deleting a node when a person dies disconnects their subtree from the root, inadvertently eliminating all of their living descendants from succession. Deaths must be recorded as tombstones.
+- **Eager List Maintenance Pitfall:** Attempting to maintain a flattened dynamic array of living heirs on every birth or death requires expensive mid-array insertions ($\mathcal{O}(P)$) to locate the correct branch. Storing the hierarchy as an adjacency tree keeps `birth` and `death` $\mathcal{O}(1)$.
+- **Deep Lineage Recursion Limits:** In languages with low recursion depth limits, deep linear generational chains (e.g. $10^5$ single-child descendants) can cause stack overflow. An iterative preorder DFS using an explicit stack where children are pushed in reverse birth order guarantees memory safety.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:**
+  - `birth(parent, child)`: $\mathcal{O}(1)$ amortized time to append to the adjacency list.
+  - `death(person)`: $\mathcal{O}(1)$ expected time to insert into the hash set.
+  - `getInheritanceOrder()`: $\mathcal{O}(P)$ time, where $P$ is the total number of people in the dynasty. Every node in the family tree is visited once during the depth-first search.
+- **Auxiliary Space Complexity:** $\mathcal{O}(P)$ auxiliary space to store the child adjacency lists, tombstone set, call stack (or explicit traversal stack), and output roster.

@@ -1,139 +1,183 @@
 # Guided Example: Remove Invalid Parentheses
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-phase search: greedy prefix pre-scan to compute exact minimal deletion quotas ($l$ and $r$), prefix validity pruning ($lcnt \ge rcnt$), remaining-capacity bounding ($N - i \ge l + r$), and pruned DFS backtracking on representative parenthesis strings:
 
-- **Input:** `{"s": "()())()"}`
-- **Required output:** `["(())()", "()()()"]`
+- **Input:** $s = \text{"()())()"}$
+- **Required output:** `["(())()", "()()()"]` (Two unique strings formed by deleting exactly one invalid `')'`)
+- **Letters with Parentheses:** $s = \text{"(a)())()"} \implies \text{["(a())()", "(a)()()"]}$ (Non-parenthesis characters are always preserved)
+- **Opposite Inverted Order:** $s = \text{")("} \implies \text{[""]}$ (Requires removing $1$ `')'` and $1$ `'('`, yielding the empty string)
+- **Already Valid String:** $s = \text{"()()"} \implies \text{["()()"]}$ ($l = 0, r = 0$; zero deletions needed)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates constrained combinatorial pruning, proves why precalculating the exact number of misplaced left and right parentheses reduces the search space from $O(2^N)$ to only valid minimal paths, details prefix balance invariants, and executes within $O(N \cdot 2^P)$ time and $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
+Given a string of parentheses:
+$$
+s = \text{"()())()"} \quad (N = 7)
+$$
+Remove the **minimum number of invalid parentheses** so that the remaining string is valid. Return **all unique** valid configurations.
 
-The objective is to compute `["(())()", "()()()"]` from `{"s": "()())()"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input:  (  )  (  )  )  (  )
+Index:  0  1  2  3  4  5  6
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Valid pairs:
+(0, 1) and (2, 3) match.
+Index 4 is an extra ')' with no opening counterpart.
+Index (5, 6) matches.
+
+Deleting index 1: "())()" -> invalid prefix at index 1
+Deleting index 3: "(())()" -> VALID!
+Deleting index 4: "()()()" -> VALID!
+
+All unique minimal valid outputs: ["(())()", "()()()"]
+```
+
+### The Search Space Challenge
+A string of length $N$ has $2^N$ possible subsequences. Generating and testing all subsequences is infeasible.
+We solve this with a two-phase strategy:
+1. **Pre-scan ($O(N)$):** Determine the exact number of excess `'('` ($l$) and excess `')'` ($r$) that *must* be deleted.
+2. **Constrained DFS:** Backtrack while enforcing two pruning invariants:
+   - **Prefix Balance:** At no point can kept `')'` exceed kept `'('` ($lcnt \ge rcnt$).
+   - **Removal Budget:** Remaining characters must be sufficient to fulfill deletion quotas ($N - i \ge l + r$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Phase 1: Calculating Minimum Removals ($l$ and $r$)
+Scan $s$ from left to right:
+- Maintain `l` (unmatched `'('` available) and `r` (unmatched `')'` that cannot be paired):
+  - On `'('`: $l \leftarrow l + 1$.
+  - On `')'`:
+    - If $l > 0$: Match with an available `'('` $\implies l \leftarrow l - 1$.
+    - Else ($l == 0$): Unmatched right parenthesis $\implies r \leftarrow r + 1$.
+  - Letters do not affect counts.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For $s = \text{"()())()"}$:
+- Step 0: `'('` $\to l = 1, r = 0$
+- Step 1: `')'` $\to l = 0, r = 0$
+- Step 2: `'('` $\to l = 1, r = 0$
+- Step 3: `')'` $\to l = 0, r = 0$
+- Step 4: `')'` $\to l = 0, r = \mathbf{1}$ (Excess `')'`)
+- Step 5: `'('` $\to l = 1, r = 1$
+- Step 6: `')'` $\to l = \mathbf{0}, r = \mathbf{1}$
+Exact minimum deletions required: $l = 0$ (no left removals), $r = 1$ (exactly one right removal).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Phase 2: Backtracking State `dfs(i, l, r, lcnt, rcnt, t)`
+- $i$: Current character index in $s$.
+- $l, r$: Remaining deletions budget for `'('` and `')'`.
+- $lcnt, rcnt$: Count of kept `'('` and `')'` in prefix $t$.
+- $t$: Reconstructed string accumulator.
+
+### Pruning Conditions:
+1. **Budget Exhaustion Check:** If $N - i < l + r$, remaining characters cannot fulfill required deletions $\implies$ Prune.
+2. **Prefix Invariant Violation:** If $lcnt < rcnt$, more closing parentheses were kept than opening ones $\implies$ Prune.
+
+### Branch Transitions at Index $i$:
+1. **Delete Branch (if budget remains):**
+   - If $s[i] == \text{'('}$ and $l > 0$: $\text{dfs}(i + 1, \; l - 1, \; r, \; lcnt, \; rcnt, \; t)$.
+   - If $s[i] == \text{')'}$ and $r > 0$: $\text{dfs}(i + 1, \; l, \; r - 1, \; lcnt, \; rcnt, \; t)$.
+2. **Keep Branch:**
+   $$
+   \text{dfs}(i + 1, \; l, \; r, \; lcnt + [s[i] == \text{'('}], \; rcnt + [s[i] == \text{')'}], \; t + s[i])
+   $$
+
+> **Invariant.** Any completed path reaching $i = N$ with $l = 0$ and $r = 0$ is guaranteed to have minimal deletions and valid parenthesis balancing.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Computing the unavoidable removals
-
-The first scan uses `l` as the number of unmatched opening parentheses currently available and `r` as the number of unmatched closing parentheses that have already been proven invalid.
-
-- On `(`, increment `l`. This opening parenthesis may match a later closing parenthesis.
-- On `)`, if `l > 0`, decrement `l` and match it with one earlier opening parenthesis.
-- On `)` when `l == 0`, increment `r`. No earlier unmatched opening exists, and a later opening cannot move backward to match this closing parenthesis.
-- On a letter, change neither count.
-
-At the end, `r` is the number of closing parentheses that could not be matched with anything before them. Every valid result must delete that many closing parentheses. The final `l` is the number of opening parentheses for which no later closing parenthesis exists. Every valid result must also delete that many opening parentheses.
-
-These counts are not merely estimates. They are a lower bound because the unmatched parentheses cannot participate in any valid matching, and they are attainable because the scan greedily matched every possible closing parenthesis to a preceding opening one. Keeping those matched pairs and removing the unmatched occurrences produces a valid parenthesis structure. Thus, `l + r` is exactly the minimum number of deletions.
-
-For `s = "()())()"`, the scan finishes with `l = 0` and `r = 1`. There is one excess closing parenthesis and no excess opening parenthesis, so every minimum solution must delete exactly one `)`.
-
-For `s = ")("`, the first character creates `r = 1`, and the final opening parenthesis leaves `l = 1`. Both parentheses must be removed, producing the empty string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "()())()"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the DFS on $s = \text{"()())()"}$ with target quotas $l = 0, r = 1$:
 
 ---
 
-### Step 2: Meaning of the backtracking state
-
-The recursive function `dfs(i, l, r, lcnt, rcnt, t)` carries six pieces of information:
-
-- `i` is the next input index to process.
-- `l` is the number of opening-parenthesis deletions still required.
-- `r` is the number of closing-parenthesis deletions still required.
-- `lcnt` is the number of opening parentheses kept in `t`.
-- `rcnt` is the number of closing parentheses kept in `t`.
-- `t` is the output prefix built from already processed characters.
-
-The initial call begins at index zero with the full deletion budgets, no kept parentheses, and an empty output prefix.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Processing Indices $0$ to $2$
+- $i = 0$ (`'('`): $l = 0$, so `'('` cannot be deleted. Must keep: $t = \text{"("}, lcnt = 1, rcnt = 0$.
+- $i = 1$ (`')'`): $r = 1$.
+  - *Branch A (Delete index 1):* $r \leftarrow 0$. State: $t = \text{"("}, lcnt = 1, rcnt = 0$.
+    - Next char $i = 2$ is `'('`: kept $\implies t = \text{"(("}, lcnt = 2$.
+    - Next char $i = 3$ is `')'`: kept $\implies t = \text{"(()"}, lcnt = 2, rcnt = 1$.
+    - Next char $i = 4$ is `')'`: kept $\implies t = \text{"(())"}, lcnt = 2, rcnt = 2$.
+    - Next chars $5, 6$ are `"()"` $\implies$ result: $\mathbf{\text{"(())()"}}$!
+  - *Branch B (Keep index 1):* $t = \text{"()"}, lcnt = 1, rcnt = 1, r = 1$.
 
 ---
 
-### Step 3: The deletion branches
+### Step 2: Exploring Branch B ($t = \text{"()"}, r = 1$)
+- $i = 2$ (`'('`): Must keep ($l = 0$). $t = \text{"()("}, lcnt = 2, rcnt = 1$.
+- $i = 3$ (`')'`):
+  - *Branch B1 (Delete index 3):* $r \leftarrow 0$. $t = \text{"()("}, lcnt = 2, rcnt = 1$.
+    - $i = 4$ (`')'`): Must keep ($r = 0$). $t = \text{"()()"}, lcnt = 2, rcnt = 2$.
+    - $i = 5, 6$ (`"()"`): Must keep. $t = \mathbf{\text{"()()()"}}$!
+  - *Branch B2 (Keep index 3):* $t = \text{"()()"}, lcnt = 2, rcnt = 2, r = 1$.
 
-When `s[i]` is `(` and `l > 0`, the source may delete it. The recursive call advances `i`, reduces `l` by one, and leaves the kept counts and `t` unchanged.
+---
 
-When `s[i]` is `)` and `r > 0`, it may similarly be deleted by reducing `r`. The code uses `elif` because one character cannot be both kinds of parenthesis.
+### Step 3: Exploring Branch B2 ($t = \text{"()()"}, r = 1$)
+- $i = 4$ (`')'`):
+  - *Branch B2a (Delete index 4):* $r \leftarrow 0$. $t = \text{"()()"}, lcnt = 2, rcnt = 2$.
+    - $i = 5, 6$ (`"()"`): Must keep. Result: $\mathbf{\text{"()()()"}}$ (duplicate handled by set).
+  - *Branch B2b (Keep index 4):* $t = \text{"()())"}, lcnt = 2, rcnt = 3$.
+    - Check invariant: $lcnt < rcnt$ ($2 < 3$).
+    - **Violates prefix balance!** Pruned immediately.
 
-There is no deletion branch for a letter: the task permits removing invalid parentheses, not arbitrary letters. There is also no deletion branch once the relevant budget reaches zero. Any extra deletion would exceed the proven minimum, so it cannot belong to an answer.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["(())()", "()()()"]` |
+### Step 4: Deleting Index 6
+- If deletion budget is used on index 6 (`')'`), remaining prefix ends with unclosed `'('` at index 5, leaving $lcnt > rcnt$ at end, which fails $l = 0$ balance check.
+
+Final collected unique valid strings:
+$$
+\mathbf{[\text{"(())()"}, \text{"()()()"}]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "()())()"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["(())()", "()()()"]` | Verified |
+```text
+Initial quotas: l = 0, r = 1 (must remove exactly 1 ')')
+
+Path 1: Delete index 1 -> "(())()" (Valid)
+Path 2: Keep 1, delete index 3 -> "(())()" (Duplicate in set)
+Path 3: Keep 1, 3, delete index 4 -> "()()()" (Valid)
+Path 4: Keep 1, 3, 4 -> lcnt < rcnt (2 < 3) -> PRUNED!
+
+Unique Results: ["(())()", "()()()"]
+```
+
+| Decision Path | Removals Made | Kept String $t$ | $lcnt$ | $rcnt$ | Validity Status | Final Status |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Delete $s[1]$ (`')'`) | Index 1 | `"(())()"` | 3 | 3 | $lcnt == rcnt$ | **Valid Output** |
+| Delete $s[3]$ (`')'`) | Index 3 | `"(())()"` | 3 | 3 | $lcnt == rcnt$ | **Duplicate (Set merges)** |
+| Delete $s[4]$ (`')'`) | Index 4 | `"()()()"` | 3 | 3 | $lcnt == rcnt$ | **Valid Output** |
+| Keep all $s[0..4]$ | None yet | `"()())"` | 2 | 3 | $lcnt < rcnt$ | **Pruned (Invalid Prefix)** |
+| Delete $s[6]$ (`')'`) | Index 6 | `"()())("` | 3 | 2 | End $lcnt \ne rcnt$ | **Pruned at end** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every string accepted at a leaf node $i = N$ has exactly $l = 0$ and $r = 0$, meaning the exact number of excess parentheses calculated in Phase 1 was removed. The prefix check $lcnt \ge rcnt$ ensures that no closing parenthesis ever appears without a preceding opening match, guaranteeing structural validity.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Phase 1 computes the theoretical minimum number of deletions. Because the backtracking search explores all combinations of removals that match these exact counts and prunes only provably invalid prefixes, no valid string with the minimal deletion count can be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Mutable character buffer:** Append a kept character, recurse, and pop it afterward. This avoids retaining a separate copied string at each stack level and realizes $O(n)$ non-output backtracking space.
-- **Breadth-first deletion search:** Generate all strings after one deletion, then two deletions, stopping at the first level containing valid strings. The first valid level guarantees minimum removals, but deduplicating many intermediate strings can consume substantial memory.
-- **Unrestricted keep/delete backtracking:** Try deleting every parenthesis and track the smallest removal count discovered at leaves. It is correct with careful result replacement, but the precomputed budgets prune all branches that delete too few or too many of either type.
-- **Validity check only at the end:** It permits large subtrees beneath prefixes that already have more closing than opening parentheses. Prefix pruning rejects those branches immediately.
-- **Greedily delete a particular unmatched occurrence:** A scan can determine the number and type of required removals, but choosing only one occurrence may miss other distinct valid strings. Backtracking is still needed to enumerate all answers.
-- **Memoizing only `(i, l, r)`:** Two calls with the same index and budgets can have different kept balances and different output prefixes, so that state is insufficient for enumerating exact strings.
-- **Adjacent identical parentheses:** Multiple deletion choices may create the same result. The set removes duplicates even though the DFS does not skip equivalent sibling choices explicitly.
-- **Already valid input:** Initial budgets are zero. No deletion branch is allowed, every character is kept, and the set contains only the original string.
-- **Only letters:** Parenthesis budgets are zero and letters have only keep branches, so the original string is returned unchanged.
-- **Only unmatched closing parentheses:** Each one contributes to `r`; exhausting the budget removes them all, leaving any letters and no invalid prefix.
-- **Only unmatched opening parentheses:** The final `l` equals their count; minimum validity requires removing all of them.
-- **Empty valid result:** Although the input length is at least one, deleting all parentheses may produce `""`, as in `")("`. The empty parenthesis string is valid.
-- **Letters between parentheses:** Letters never affect `lcnt` or `rcnt` and are always copied, but their positions relative to kept parentheses remain unchanged.
-- **Minimum-removal guarantee:** A valid string formed by deleting additional matched pairs is deliberately excluded because the DFS has no deletion budget beyond `l_0+r_0`.
-- **Output order:** The returned list comes from a set and is not sorted. Any order is explicitly accepted.
-- **At most 20 parentheses:** The exponential factor depends on $p$, not on all letters in $n$. This constraint keeps the decision space bounded even though the full string may contain 25 characters.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Outputs:** When multiple identical adjacent parentheses exist (e.g. `"))"`), deleting either character yields the identical string. Using a `set` for `ans` cleanly deduplicates these equivalent paths.
+- **Prefix Pruning Necessity:** Without `lcnt < rcnt` pruning, the search would explore all $2^N$ subsequences before checking validity at the leaves, resulting in severe Time Limit Exceeded.
+- **Preserving Letters:** Letters (e.g. `'a'`) must never be deleted; they have only a "keep" branch in the DFS and bypass parenthesis counter modifications.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(2^p\cdot n)$. Let $n$ be the full string length and $p$ the number of parentheses. Letters do not branch, while each parenthesis has at most a keep and a delete choice. Before pruning, there are at most $2^p$ decision patterns. Building prefixes through `t + s[i]` and hashing a completed string can each involve up to $O(n)$ character work. A conservative worst-case time bound is therefore $O(2^p\cdot n)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot 2^P)$ in the worst case, where $N$ is string length and $P$ is the number of parentheses ($P \le 20$). With precomputed quotas $l$ and $r$, branching is restricted to $\binom{P}{l + r}$, and prefix pruning further curtails the state space.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for recursion stack depth and substring accumulators.

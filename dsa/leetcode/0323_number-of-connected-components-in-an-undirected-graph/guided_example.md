@@ -1,117 +1,183 @@
 # Guided Example: Number of Connected Components in an Undirected Graph
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step undirected adjacency list representation, depth-first search component flooding, visited set membership caching (`vis`), and connected component counting on representative graph instances:
 
-- **Input:** `{"n": 5, "edges": [[0, 1], [1, 2], [3, 4]]}`
-- **Required output:** `2`
+- **Input:** $n = 5, \quad \text{edges} = [[0, 1], [1, 2], [3, 4]]$
+- **Required output:** $2$
+  - Component 1: Vertices $\{0, 1, 2\}$ connected by edges $[0, 1]$ and $[1, 2]$
+  - Component 2: Vertices $\{3, 4\}$ connected by edge $[3, 4]$
+  - Total connected components: $2$
+- **Single Component Instance:** $n = 5, \text{edges} = [[0, 1], [1, 2], [2, 3], [3, 4]] \implies 1$
+- **Completely Disconnected Instance:** $n = 4, \text{edges} = [] \implies 4$ (Every isolated node is its own component)
+- **Cyclic Graph Component:** A triangle graph $[[0, 1], [1, 2], [2, 0]]$ forms 1 connected component
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates connected component partition algorithms on undirected graphs, formalizes the distinction between fresh root exploration and intra-component recursion, proves why marking nodes in `vis` upon entrance prevents infinite cycle loops, and analyzes $O(V + E)$ linear time and space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You have a graph of `n` nodes. You are given an integer `n` and an array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between $a_{i}$ and $b_{i}$ in the graph.
+Given $n = 5$ vertices labeled $0$ to $4$ and $3$ undirected edges:
+$$
+\text{edges} = [[0, 1], [1, 2], [3, 4]]
+$$
+Find the total number of connected components in the graph:
 
-The objective is to compute `2` from `{"n": 5, "edges": [[0, 1], [1, 2], [3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Graph Topology:
+  0 --- 1 --- 2        3 --- 4
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Component 1: {0, 1, 2}
+Component 2: {3, 4}
+
+Total Components: 2
+```
+
+### Connected Component Invariant
+An undirected graph partitions into disjoint equivalence classes of mutually reachable vertices:
+- Starting a traversal (DFS or BFS) at any unvisited node $u$ traverses all vertices in $u$'s connected component.
+- Marking all reached nodes in a `vis` set ensures that each component is counted **exactly once**.
+- Isolated nodes with degree $0$ have no edges and are counted as single-vertex components.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Bidirectional Adjacency List
+Undirected edges must be recorded in both directions:
+For each $[a, b] \in edges$:
+- $g[a].\text{append}(b)$
+- $g[b].\text{append}(a)$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Traversal Counting Function `dfs(i)`:
+- If $i \in vis$: return $0$ (Already accounted for in a previously discovered component).
+- If $i \notin vis$:
+  - Add $i$ to $vis$.
+  - For each neighbor $j \in g[i]$: call $dfs(j)$ (Return values from recursive neighbor calls are ignored).
+  - Return $1$ (Signaling that node $i$ discovered exactly **one new component**).
+- Result: $\sum_{i=0}^{n-1} dfs(i)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For each index $i \in [0, n-1]$, $dfs(i)$ returns $1$ if and only if $i$ belongs to a previously undiscovered connected component.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A component is discovered by one complete graph traversal.
-
-Two vertices belong to the same connected component when some path of undirected edges connects them. Starting a depth-first search from one vertex follows every reachable edge, then every edge reachable from those neighbors, and so on. Therefore, after that search finishes, every vertex in the start vertex's component has been visited.
-
-This leads to a counting rule: scan all vertices, and start a new search only when the current vertex has never been reached before. Each such new search discovers one previously unseen component. Vertices encountered later from that same component are already marked and do not increase the count.
-
-The exact optimal source expresses this rule compactly by making `dfs(i)` return `1` when `i` begins a new traversal and `0` when `i` was already visited. Summing `dfs(i)` over every vertex then gives the number of components.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 5, "edges": [[0, 1], [1, 2], [3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $n = 5$, $\text{edges} = [[0, 1], [1, 2], [3, 4]]$:
+Adjacency lists:
+- $0: [1]$
+- $1: [0, 2]$
+- $2: [1]$
+- $3: [4]$
+- $4: [3]$
+Initialize `vis = set()`.
 
 ---
 
-### Step 2: Build the graph in both directions.
-
-The input supplies endpoint pairs rather than an adjacency structure. The source creates `g`, a list containing one neighbor list for every vertex from `0` through `n - 1`. For each edge `[a,b]`, it performs both updates:
-
-- append `b` to `g[a]`;
-- append `a` to `g[b]`.
-
-Both are necessary because the graph is undirected. If only the first direction were stored, reachability would depend on the arbitrary endpoint order used in `edges`. For example, an input edge written as `[1,0]` must still allow a traversal starting at `0` to reach `1`.
-
-An isolated vertex naturally has an empty neighbor list. It is still present in `g`, because `g` is created from `n`, not merely from vertices mentioned in `edges`. This ensures isolated vertices are counted as one-vertex components.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Node $i = 0$
+- $0 \notin vis$.
+- Mark: `vis.add(0)`.
+- Follow neighbor $1 \in g[0]$:
+  - $1 \notin vis \implies$ `vis.add(1)`.
+  - Neighbors of 1:
+    - $0 \in vis \implies$ returns 0.
+    - Follow neighbor $2 \in g[1]$:
+      - $2 \notin vis \implies$ `vis.add(2)`.
+      - Neighbor $1 \in vis \implies$ returns 0.
+- All reachable nodes from 0 visited: $\{0, 1, 2\}$.
+- $dfs(0)$ returns **$1$** (Discovered Component 1!).
+- Active `vis` set: $\{0, 1, 2\}$.
 
 ---
 
-### Step 3: Meaning and behavior of `dfs(i)`.
+### Step 2: Process Node $i = 1$
+- Check: $1 \in vis$ (**True**).
+- $dfs(1)$ immediately returns **$0$**.
 
-The set `vis` contains every vertex that has already been claimed by a traversal. On entry, the helper first asks whether `i` is in that set.
+---
 
-If it is, `dfs(i)` immediately returns `0`. No new component began, and there is no reason to explore the same neighbors again. This early return is also what prevents infinite recursion in an undirected graph. Every stored edge can lead back to the vertex from which the search just came, and cycles can lead to many previously seen vertices.
+### Step 3: Process Node $i = 2$
+- Check: $2 \in vis$ (**True**).
+- $dfs(2)$ immediately returns **$0$**.
 
-If `i` is not visited, the helper adds it to `vis` before following any edge. Marking before recursion is crucial. If marking were delayed until after the neighbor loop, an edge from `i` to `j` could recurse from `j` straight back to the still-unmarked `i`, causing repeated recursion.
+---
 
-The helper then calls `dfs(j)` for every neighbor `j` in `g[i]`. It does not check `j in vis` in the loop itself; the called helper performs that check at its entrance. Return values from these neighbor calls are deliberately ignored. A neighbor reached during the current traversal belongs to the same component as `i`, so it must not be counted as a separate component even if that neighbor was previously unseen. Only the outer scan's fresh roots contribute to the answer.
+### Step 4: Process Node $i = 3$
+- $3 \notin vis$.
+- Mark: `vis.add(3)`.
+- Follow neighbor $4 \in g[3]$:
+  - $4 \notin vis \implies$ `vis.add(4)`.
+  - Neighbor $3 \in vis \implies$ returns 0.
+- All reachable nodes from 3 visited: $\{3, 4\}$.
+- $dfs(3)$ returns **$1$** (Discovered Component 2!).
+- Active `vis` set: $\{0, 1, 2, 3, 4\}$.
 
-After all reachable neighbors have been explored, the original fresh call returns `1`. That value means “this call started discovery of one component,” not “this component contains one vertex.” Regardless of whether the traversal reaches one vertex or hundreds, its root contributes exactly one.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 5: Process Node $i = 4$
+- Check: $4 \in vis$ (**True**).
+- $dfs(4)$ immediately returns **$0$**.
+
+---
+
+### Step 6: Total Components
+Sum over all $i \in [0, 4]$:
+$$
+\text{Total} = dfs(0) + dfs(1) + dfs(2) + dfs(3) + dfs(4) = 1 + 0 + 0 + 1 + 0 = \mathbf{2}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 5, "edges": [[0, 1], [1, 2], [3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```text
+n = 5, edges = [[0, 1], [1, 2], [3, 4]]
+Adjacency:
+  0: [1]
+  1: [0, 2]
+  2: [1]
+  3: [4]
+  4: [3]
+
+i=0: not in vis -> mark {0, 1, 2} -> returns 1 (Component 1)
+i=1: in vis     -> returns 0
+i=2: in vis     -> returns 0
+i=3: not in vis -> mark {3, 4}    -> returns 1 (Component 2)
+i=4: in vis     -> returns 0
+
+Total Count = 1 + 0 + 0 + 1 + 0 = 2
+```
+
+| Outer Node $i$ | Initially in `vis`? | Action Taken | Nodes Reached in Traversal | `vis` Set After Call | Return Value $dfs(i)$ | Cumulative Count |
+|:---:|:---:|:---|:---:|:---|:---:|:---:|
+| **0** | **No** | **Explore Component** | $\{0, 1, 2\}$ | $\{0, 1, 2\}$ | **1** | **1** |
+| 1 | Yes | Skip | - | $\{0, 1, 2\}$ | 0 | 1 |
+| 2 | Yes | Skip | - | $\{0, 1, 2\}$ | 0 | 1 |
+| **3** | **No** | **Explore Component** | $\{3, 4\}$ | $\{0, 1, 2, 3, 4\}$ | **1** | **2** |
+| 4 | Yes | Skip | - | $\{0, 1, 2, 3, 4\}$ | 0 | 2 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Undirected graph connectivity is an equivalence relation. A DFS from vertex $u$ visits all vertices connected to $u$ by a path. Because every visited vertex is recorded in `vis`, subsequent iterations over vertices in the same component return $0$. Only the first explored vertex of each component returns $1$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The outer loop iterates over every vertex $i \in [0, n-1]$. No vertex can be overlooked, even if it has degree $0$ (isolated). Since every connected component contains at least one vertex that triggers a fresh DFS call, all connected components are counted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Iterative depth-first search:** Use an explicit stack instead of recursive calls. It has the same $O(V+E)$ time and space bounds and follows the same component-counting proof, while avoiding language recursion-depth limits.
-- **Breadth-first search:** A queue can explore every vertex reachable from each fresh root. BFS also counts components in $O(V+E)$ time and uses $O(V+E)$ total storage including the graph. Traversal order changes, but the discovered component does not.
-- **Disjoint set union:** Begin with $V$ components and union the endpoints of each edge, decrementing the count only when two different sets merge. With path compression and union by size, this uses $O(V)$ extra space without an adjacency list and takes $O(V + E\alpha(V))$ time. It matches the current manifest summary but is not the exact optimal solution file.
+- **Undirected Edges Stored One-Way:** Forgetting to add the reverse direction `g[b].append(a)` treats the graph as directed, causing components with opposing arrows to be falsely counted as separate components.
+- **Marking After Neighbor Loop:** If `vis.add(i)` is placed *after* the neighbor loop, an edge from $u$ to $v$ will immediately call $u$ back from $v$, causing infinite recursion and call stack overflow.
+- **Counting Isolated Vertices:** An isolated vertex with no edges still constitutes a valid connected component of size 1. Sizing the adjacency list by $n$ ensures isolated nodes are evaluated.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V)$. Let $V=n$ be the number of vertices and let $E$ be the number of undirected edges. Creating the $V$ empty adjacency lists costs $O(V)$. Adding both endpoints for every input edge costs $O(E)$.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(V + E)$, where $V = n$ is the number of vertices and $E$ is the number of edges.
+  - Constructing the adjacency list takes $O(V + E)$ time.
+  - Each vertex is visited by the outer loop once and traversed in DFS once.
+  - Each undirected edge is traversed exactly twice (once from each endpoint).
+- **Auxiliary Space Complexity:** $O(V + E)$ auxiliary memory for the adjacency list $g$ and visited set `vis`.

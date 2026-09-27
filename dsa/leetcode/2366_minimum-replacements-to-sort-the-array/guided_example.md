@@ -1,128 +1,112 @@
 # Guided Example: Minimum Replacements to Sort the Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [3, 9, 3]}`
-- **Required output:** `2`
+Given an array of positive integers, an elementary operation consists of taking any single value and decomposing it into two positive integers that sum to the original number. These replacement parts replace the original entry in place, preserving the relative order of surrounding elements. An element may undergo this decomposition repeatedly, yielding $k$ total parts from a single original number via exactly $k - 1$ operations. The objective is to determine the minimum total number of replacement operations necessary to render the entire array sorted in non-decreasing order.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Consider the representative input array:
+$$\text{nums} = [3, 10, 3]$$
 
----
+In this sequence, the central value $10$ violates the non-decreasing order with respect to its right neighbor $3$. Because decomposition can only create strictly smaller positive integers, splitting can never increase a value. Hence, our boundary constraints must propagate backward from the rightmost elements.
 
-## 1. Instance & Teaching Goal
+```mermaid
+flowchart LR
+    accTitle: Right to Left Decomposition Pipeline
+    accDescr: Visual flow showing right to left constraint propagation and integer partitioning.
+    N2["Index 2: 3 (Anchor)"] -->|Upper Bound: 3| N1["Index 1: 10 -> [2, 2, 3, 3]"]
+    N1 -->|New Upper Bound: 2| N0["Index 0: 3 -> [1, 2]"]
+    N0 --> Result["Result: [1, 2, 2, 2, 3, 3, 3]"]
+```
 
-You are given a **0-indexed** integer array `nums`. In one operation you can replace any element of the array with **any two** elements that **sum** to it.
+## 2. Mathematical & Algorithmic Principles
 
-The objective is to compute `2` from `{"nums": [3, 9, 3]}` while avoiding redundant calculations and unnecessary overhead.
+Because replacement operations can only decrease values (partitioning an integer into parts strictly smaller than itself), the rightmost element $\text{nums}[n - 1]$ can never be increased. Any partition of $\text{nums}[n - 1]$ would only lower the ceiling for preceding elements without expanding feasibility. Therefore, $\text{nums}[n - 1]$ serves as the fixed upper bound anchor for its immediate left neighbor.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Working backward from index $n - 2$ down to $0$:
+1. Let $\text{upper}$ denote the maximum permissible value that the rightmost piece of $\text{nums}[i]$ may take.
+2. If $\text{nums}[i] \le \text{upper}$, no decomposition is required. The element naturally satisfies the sorting constraint, so we simply set $\text{upper} = \text{nums}[i]$.
+3. If $\text{nums}[i] > \text{upper}$, the element must be partitioned into $k$ positive integers such that every piece is at most $\text{upper}$.
+   - To minimize operations, we must minimize $k$. The smallest number of parts each bounded by $\text{upper}$ is given by:
+     $$k = \left\lceil \frac{\text{nums}[i]}{\text{upper}} \right\rceil = \left\lfloor \frac{\text{nums}[i] + \text{upper} - 1}{\text{upper}} \right\rfloor$$
+   - Generating $k$ parts requires $k - 1$ operations.
+   - To leave the largest possible upper bound for preceding elements to the left, the $k$ parts must be as nearly equal as possible. When partitioning an integer $S$ into $k$ integers, the minimum part size is:
+     $$\text{upper}_{\text{new}} = \left\lfloor \frac{\text{nums}[i]}{k} \right\rfloor$$
+   - Placing the smallest piece at the leftmost position ensures the sub-array remains non-decreasing while maximizing the subsequent constraint $\text{upper}_{\text{new}}$.
 
----
+This backward greedy strategy optimizes both local operations and the remaining global search space in a single linear pass.
 
-## 2. Conceptual Foundation & Invariants
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-We maintain the core conceptual parameters and state variables:
+We execute the algorithm on $\text{nums} = [3, 10, 3]$ with $n = 3$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- **Initialization:**
+  - $\text{total\_ops} = 0$
+  - Set the anchor bound to the final element: $\text{upper} = \text{nums}[2] = 3$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Step 1 (Index 1, Value 10):**
+  - Current value $\text{nums}[1] = 10$, $\text{upper} = 3$.
+  - Since $10 > 3$, a split is required.
+  - Calculate minimal parts count:
+    $$k = \left\lceil \frac{10}{3} \right\rceil = 4$$
+  - Decomposing $10$ into $4$ parts requires $k - 1 = 3$ operations.
+  - $\text{total\_ops} = 0 + 3 = 3$.
+  - To maximize the leftmost piece, we compute:
+    $$\text{upper} = \left\lfloor \frac{10}{4} \right\rfloor = 2$$
+  - Explicit parts for $10$: $[2, 2, 3, 3]$. Notice that all parts are $\le 3$, they sum to $10$, and the leftmost value is $2$.
 
----
+- **Step 2 (Index 0, Value 3):**
+  - Current value $\text{nums}[0] = 3$, $\text{upper} = 2$.
+  - Since $3 > 2$, a split is required.
+  - Calculate minimal parts count:
+    $$k = \left\lceil \frac{3}{2} \right\rceil = 2$$
+  - Decomposing $3$ into $2$ parts requires $k - 1 = 1$ operation.
+  - $\text{total\_ops} = 3 + 1 = 4$.
+  - Update upper bound:
+    $$\text{upper} = \left\lfloor \frac{3}{2} \right\rfloor = 1$$
+  - Explicit parts for $3$: $[1, 2]$. Both parts are $\le 2$, sum to $3$, and the leftmost value is $1$.
 
-## 3. Step-by-Step Worked Execution
+- **Termination:**
+  - The traversal reaches the beginning of the array.
+  - The transformed array is $[1, 2, 2, 2, 3, 3, 3]$, which is strictly non-decreasing.
+  - Total operations performed: $4$.
 
-### Step 1: Process from the fixed right boundary
+## 4. Comprehensive State Trace
 
-Replacing a number creates smaller positive pieces in the same position relative to the rest of the array. To make the final sequence non-decreasing, every piece created from a value must be no larger than the first piece belonging to the already processed suffix on its right.
+The state variables update across each backward inspection step as summarized below:
 
-This boundary is naturally known when scanning from right to left. The algorithm stores it in `mx`. Initially, the last value needs no replacement and is the first value of the processed suffix, so `mx = nums[-1]`.
+| Index $i$ | Value $\text{nums}[i]$ | Incoming $\text{upper}$ | Condition | Parts $k$ | Added Ops ($k - 1$) | Leftmost Part ($\lfloor \text{nums}[i] / k \rfloor$) | Cumulative Ops |
+|---|---|---|---|---|---|---|---|
+| 2 | 3 | — | Anchor | 1 | 0 | 3 | 0 |
+| 1 | 10 | 3 | $10 > 3$ | 4 | 3 | 2 | 3 |
+| 0 | 3 | 2 | $3 > 2$ | 2 | 1 | 1 | 4 |
 
-At each earlier `nums[i]`, the task is local: split its value into the fewest positive pieces such that every piece is at most `mx`. Then arrange those pieces in non-decreasing order before the processed suffix. The smallest piece becomes the new boundary for the next value on the left.
+The resulting decomposition of each element and the final non-decreasing sequence are detailed in the structural mapping below:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 9, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Array Index | Original Value | Decomposed Sequence | Sub-sequence Legality | Running Prefix Bound |
+|---|---|---|---|---|
+| 0 | 3 | $[1, 2]$ | $1 \le 2$ | 1 |
+| 1 | 10 | $[2, 2, 3, 3]$ | $2 \le 2 \le 3 \le 3$ | 2 |
+| 2 | 3 | $[3]$ | $3 \le 3$ | 3 |
 
----
+Concatenating the decomposed sequences produces $[1, 2, 2, 2, 3, 3, 3]$, which is verified non-decreasing with $4$ operations.
 
-### Step 2: Keep a value that already fits
+## 5. Algorithmic Correctness & Soundness
 
-If `nums[i] <= mx`, no split is necessary. Placing this value before a suffix whose first element is at least `mx` preserves non-decreasing order. The new leftmost suffix value is now `nums[i]`, so the code assigns `mx = nums[i]`.
+The correctness of this greedy formulation depends on two mathematical guarantees:
+1. **Minimality of Component Count:** If an element $V$ must be split into integers each no larger than $U$, the Pigeonhole Principle dictates that at least $\lceil V / U \rceil$ integers are mandatory. Creating fewer integers would require at least one part to strictly exceed $U$, violating the ordering constraint with the subsequent element.
+2. **Maximization of Preceding Ceiling:** Suppose $V$ is partitioned into $k$ sorted integers $p_1 \le p_2 \le \dots \le p_k$. The sum is fixed at $\sum p_j = V$. To make $p_1$ as large as possible, the remaining $p_2, \dots, p_k$ must be as close to $p_1$ as possible. The maximum possible value for the minimum entry $p_1$ in any integer partition of $V$ into $k$ parts is $\lfloor V / k \rfloor$.
+3. **Monotonic Feasibility:** Any choice that makes $p_1$ smaller than $\lfloor V / k \rfloor$ would impose a strictly tighter upper bound on all preceding elements, strictly reducing the feasible choices for earlier indices. Thus, choosing $p_1 = \lfloor V / k \rfloor$ dominates any other configuration.
 
-Splitting such a value would add operations and could only make the new boundary smaller, making life harder for values further left. Keeping it whole is always optimal.
+By backward induction, this greedy choice is both locally and globally optimal.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+## 6. Edge Cases & Anti-Patterns
 
----
+- **Already Sorted Arrays:** If $\text{nums} = [1, 2, 3, 4, 5]$, every check $\text{nums}[i] \le \text{upper}$ succeeds without triggering decomposition. The loop executes with $k = 1$, adding $0$ operations and completing in $\mathcal{O}(n)$ time.
+- **Identical Elements:** If $\text{nums} = [5, 5, 5]$, each element matches the bound exactly ($5 \le 5$), adding $0$ operations.
+- **Large Values & Overflow:** With $\text{nums}[i] = 10^9$ and $n = 10^5$, if elements require cascading splits into ones, total operations can reach $\approx 10^{14}$. A 64-bit unsigned/signed accumulator is required to prevent numerical overflow.
+- **Anti-Pattern: Forward Left-to-Right Scan:** Attempting to process elements from index $0$ forward fails because splitting an element can only decrease values. When $nums[i] > nums[i + 1]$, modifying $nums[i]$ from the left cannot anticipate how far right elements will shrink, leading to inconsistent backtracking or exponential search.
 
-### Step 3: Find the minimum required number of pieces
+## 7. Complexity Analysis
 
-Let the current value be $x$ and the maximum allowed piece size be $m=\texttt{mx}$. If $x>m$ and it is split into $k$ pieces, their total capacity under the boundary is $km$. To sum to $x$, they must satisfy:
-
-$$
-km\ge x.
-$$
-
-Thus:
-
-$$
-k\ge \left\lceil\frac{x}{m}\right\rceil.
-$$
-
-The exact code computes this ceiling with integer arithmetic:
-
-
-
-Using fewer pieces is impossible because their combined sum could not reach $x$ without some piece exceeding $m$. Using more pieces is legal but costs more operations and creates an equal or smaller boundary for future work. Therefore, the ceiling is the uniquely optimal piece count for this local decision.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 9, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Actually construct every split piece:** This makes the transformation visible but can require enormous time and memory. The boundary calculation contains all information needed for the count.
-- **Modify `nums` in place:** Replacing `nums[i]` with the new boundary is a common equivalent implementation. The exact solution keeps a separate `mx` and leaves the input unchanged.
-- **Split by repeatedly taking `mx`:** This can leave a very small remainder, such as `[1, 3, 3]` for seven. Balancing preserves a larger boundary for the prefix.
-- **Already non-decreasing input:** Every value fits its right boundary, `k` is never computed, and the answer remains zero.
-- **One element:** The reverse range is empty, so no replacement is needed.
-- **Exact divisibility:** If $x$ is divisible by `mx`, all $k$ pieces may equal `mx` and the boundary remains unchanged.
-- **Non-divisible value:** The ceiling adds one piece, and balanced floor/ceiling sizes keep the largest piece within the boundary.
-- **Strictly decreasing large values:** Many elements may require splits, but each is still processed in constant time rather than once per generated piece.
-- **Positive-value guarantee:** Division boundaries never become zero because $x$ is positive and $k\le x$ when `mx >= 1`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums`. The reverse loop visits each element except the last once. Each iteration performs constant-time comparisons and integer arithmetic, so time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** The backward traversal examines each of the $n$ elements exactly once. Each iteration performs integer division, ceiling division, modulo, and addition, all operating in $\mathcal{O}(1)$ time. Therefore, the overall time complexity is strictly $\mathcal{O}(n)$.
+- **Space Complexity:** The algorithm maintains only a few scalar variables ($\text{upper}$, $k$, and the operations accumulator). No additional arrays or recursive call stacks are created. Hence, the auxiliary space complexity is $\mathcal{O}(1)$.

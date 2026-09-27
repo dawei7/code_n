@@ -1,122 +1,167 @@
 # Guided Example: Final Value of Variable After Performing Operations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and trace the single-variable state accumulator and operation parsing algorithm to calculate the net value of variable $X$ after executing an arbitrary sequence of increment and decrement statements.
 
-- **Input:** `{"operations": ["--X", "X++", "X++"]}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There is a programming language with only **four** operations and **one** variable `X`:
-
-The objective is to compute `1` from `{"operations": ["--X", "X++", "X++"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `operations = ["--X", "X++", "X++"]` ($N = 3$)
+  - Expected Output: `1` (timeline: $0 \xrightarrow{--X} -1 \xrightarrow{X++} 0 \xrightarrow{X++} 1$)
+- **Secondary Instance:** `operations = ["++X", "++X", "X++"]` ($N = 3$)
+  - Expected Output: `3` (three successive increments: $0 \to 1 \to 2 \to 3$)
+- **Balanced Identity Instance:** `operations = ["X++", "++X", "--X", "X--"]` ($N = 4$)
+  - Expected Output: `0` (two increments cancel with two decrements: $0 \to 1 \to 2 \to 1 \to 0$)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+We begin with an integer register $X = 0$. We are supplied a sequence of $N$ instruction tokens drawn from a 4-instruction language:
+- **Prefix Increment (`"++X"`):** Adds $1$ to $X$.
+- **Postfix Increment (`"X++"`):** Adds $1$ to $X$.
+- **Prefix Decrement (`"--X"`):** Subtracts $1$ from $X$.
+- **Postfix Decrement (`"X--"`):** Subtracts $1$ from $X$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We must determine the terminal value of $X$ after executing all instructions in sequence.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Irrelevance of Pre/Post Evaluation Timing
 
----
+In full programming languages (such as C or Java), prefix (`++X`) and postfix (`X++`) operators differ in expression evaluation timing (yielding the pre-incremented or post-incremented value in sub-expressions).
+However, in this isolated sequence:
+- Each instruction stands alone as an independent statement.
+- The net state change on the variable $X$ is mathematically identical:
+  $$\Delta X = \begin{cases} +1 & \text{if op } \in \{\text{"++X"}, \text{"X++"}\} \\ -1 & \text{if op } \in \{\text{"--X"}, \text{"X--"}\} \end{cases}$$
 
-## 3. Step-by-Step Worked Execution
+### The Middle-Character Classification Invariant
 
-### Step 1: Reduce every operation to its sign
+Every valid 3-character token contains its operator symbol at index 1 (the middle position):
+- For `"++X"`: index 1 is `'+'`.
+- For `"X++"`: index 1 is `'+'`.
+- For `"--X"`: index 1 is `'-'`.
+- For `"X--"`: index 1 is `'-'`.
 
-The four strings differ in whether the operator appears before or after `X`, but the final value does not depend on prefix versus postfix form. There is no larger expression that observes the old or new value. Each operation is simply either plus one or minus one.
-
-The exact source maps each string to one for increment or negative one for decrement, then sums those changes. Since `X` starts at zero, the sum of all changes is its final value.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["--X", "X++", "X++"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why character index one identifies the operation
-
-All valid operation strings have length three:
-
-- `"++X"` has plus at index one;
-- `"X++"` also has plus at index one;
-- `"--X"` has minus at index one;
-- `"X--"` also has minus at index one.
-
-Therefore `s[1] == '+'` is true for exactly the two increment forms. The conditional expression returns one when true and -1 otherwise.
-
-The constraints guarantee no malformed string, so the else branch safely means decrement rather than "unknown operation."
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Inspecting index 1 (or testing if `'+'` is contained in the string) classifies every instruction in $\mathcal{O}(1)$ time without multiple string equality comparisons.
 
 ---
 
-### Step 3: Use a lazy generator
+## 2. Invariant Architecture & State Machine
 
-`(1 if s[1] == '+' else -1 for s in operations)` is a generator expression. It produces one integer change at a time as `sum` requests it.
+```mermaid
+flowchart TD
+    accTitle: Variable Accumulator State Machine
+    accDescr: Flowchart initializing X = 0 and applying delta +1 or -1 based on instruction classification until sequence completion.
 
-No intermediate list of $N$ changes is created. `sum` starts from zero, matching the variable's initial value, and accumulates the deltas.
+    START["Initialize Register X = 0"] --> LOOP{"Iterate instruction op in operations"}
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+    LOOP -- Next Instruction --> PARSE{"Inspect operator:<br/>Is '+' present in op?"}
+
+    PARSE -- Yes --> INC["Increment: X = X + 1<br/>(Handles '++X' and 'X++')"]
+    PARSE -- No --> DEC["Decrement: X = X - 1<br/>(Handles '--X' and 'X--')"]
+
+    INC --> LOOP
+    DEC --> LOOP
+
+    LOOP -- All instructions processed --> RET["Return final value of X"]
+```
+
+---
+
+## 3. Step-by-Step State Evolution
+
+We trace the Primary Instance: `operations = ["--X", "X++", "X++"]` ($N = 3$).
+
+### Initialization
+- Variable register: $X = 0$.
+
+---
+
+### Step 1: Execute `operations[0] = "--X"`
+- Instruction string: `"--X"`.
+- Operator check: contains `'-'` (middle character is `'-'`).
+- Semantics: Decrement $X$ by 1.
+- State mutation:
+  $$X \leftarrow 0 - 1 = -1$$
+- Post-instruction state: $X = -1$.
+
+---
+
+### Step 2: Execute `operations[1] = "X++"`
+- Instruction string: `"X++"`.
+- Operator check: contains `'+'` (middle character is `'+'`).
+- Semantics: Increment $X$ by 1.
+- State mutation:
+  $$X \leftarrow -1 + 1 = 0$$
+- Post-instruction state: $X = 0$.
+
+---
+
+### Step 3: Execute `operations[2] = "X++"`
+- Instruction string: `"X++"`.
+- Operator check: contains `'+'`.
+- Semantics: Increment $X$ by 1.
+- State mutation:
+  $$X \leftarrow 0 + 1 = 1$$
+- Post-instruction state: $X = 1$.
+
+---
+
+### Termination
+All $N = 3$ instructions completed.
+Terminal value of $X$: **1**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["--X", "X++", "X++"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+### Primary Instance Trace Table
+
+| Step | Instruction Token | Op Type | Symbol at Index 1 | Delta $\Delta X$ | Computation | Current $X$ Value |
+|---|---|---|---|---|---|---|
+| 0 | - | Baseline | - | - | Initial state | 0 |
+| 1 | `"--X"` | Prefix Decrement | `'-'` | $-1$ | $0 - 1$ | -1 |
+| 2 | `"X++"` | Postfix Increment | `'+'` | $+1$ | $-1 + 1$ | 0 |
+| 3 | `"X++"` | Postfix Increment | `'+'` | $+1$ | $0 + 1$ | 1 |
+
+Final Result: **1**.
+
+### Balanced Sequence Trace: `["X++", "++X", "--X", "X--"]`
+
+| Instruction | Position Type | Operator | Delta Applied | Running Value of $X$ |
+|---|---|---|---|---|
+| Start | - | - | - | 0 |
+| `"X++"` | Postfix | Increment | $+1$ | 1 |
+| `"++X"` | Prefix | Increment | $+1$ | 2 |
+| `"--X"` | Prefix | Decrement | $-1$ | 1 |
+| `"X--"` | Postfix | Decrement | $-1$ | 0 |
+
+Final Result: **0**.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+1. **State Invariant:**
+   Let $I_k$ be the number of increments and $D_k$ be the number of decrements executed among the first $k$ instructions. By mathematical induction, the value of $X$ after $k$ steps is:
+   $$X_k = X_0 + I_k - D_k = I_k - D_k$$
+   Each instruction updates $I$ or $D$ by exactly 1 in accordance with the problem definition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+2. **Exhaustive Classification:**
+   The language constraint limits tokens to `{"++X", "X++", "--X", "X--"}`. The set of tokens containing `'+'` is exactly `{"++X", "X++"}`. The set of tokens containing `'-'` is exactly `{"--X", "X--"}`. The two classes are partition-disjoint and cover all valid tokens, ensuring complete decision soundness.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit simulation loop:** Initialize zero and add or subtract for each operation; equally correct and sometimes clearer to beginners.
-- **Count strings containing plus:** Compute increments minus decrements, but it still scans all operations.
-- **Compare full strings:** Check membership in `{"++X","X++"}`; more verbose but robust if string layout rules changed.
-- **All increments:** The answer is the number of operations.
-- **All decrements:** The answer is the negative operation count.
-- **Balanced signs:** Equal increment and decrement counts return zero.
-- **One operation:** Returns one or negative one according to its sign.
-- **Prefix versus postfix:** They have identical side effects because no expression consumes their produced value.
-- **Middle-character test:** Safe only because every allowed string has the documented three-character format.
-- **Negative final value:** Fully valid; `sum` begins at zero and handles negative deltas.
-- **Generator laziness:** Avoids an $O(N)$ temporary list.
-- **Input preservation:** Strings and the operations list are read without modification.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Over-Complicating with Lexer/Parser:** Building a tokenizer or AST parser for a 4-token language introduces unnecessary overhead when a simple character check suffices.
+- **Negative Integer Handling:** Decrements can drive $X$ below zero (e.g., $X = -1$ after the first step in Example 1). The implementation must support signed integers.
+- **Case Sensitivity:** Operations are uppercase `X`. While guaranteed by constraints, matching should strictly preserve character case.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(N)$. Let $N$ be the number of operations. The generator reads each operation once and examines one fixed-position character, so time is $O(N)$. Any correct method must inspect every operation because changing one sign changes the result.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Sequential Scan:** The loop iterates $N$ times, where $N$ is the length of `operations`.
+  - **Per-Instruction Cost:** Checking character index 1 and performing an addition/subtraction takes $\mathcal{O}(1)$ time.
+  - **Total Time:** $\mathcal{O}(N)$, which for $N \le 100$ executes in less than 0.01 milliseconds.
+
+- **Auxiliary Space Complexity:**
+  - Only a single scalar integer register $X$ is maintained.
+  - **Total Auxiliary Space:** $\mathcal{O}(1)$ constant memory.

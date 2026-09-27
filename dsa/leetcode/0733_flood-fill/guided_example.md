@@ -1,114 +1,240 @@
 # Guided Example: Flood Fill
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 4-directional connected component traversal, initial color preservation ($oc = image[sr][sc]$), identical target color short-circuit guard ($oc == color \implies \text{halt}$), depth-first search recursive expansion, in-place pixel repainting ($image[i][j] \leftarrow color$), barrier isolation (disconnected islands unchanged), and grid mutation on representative 2D raster images:
 
-- **Input:** `{"image": [[1, 1, 1], [1, 1, 0], [1, 0, 1]], "sr": 1, "sc": 1, "color": 2}`
-- **Required output:** `[[2, 2, 2], [2, 2, 0], [2, 0, 1]]`
+- **Input:**
+  $$
+  image = \begin{bmatrix}
+  1 & 1 & 1 \\
+  1 & 1 & 0 \\
+  1 & 0 & 1
+  \end{bmatrix}, \quad sr = 1, \quad sc = 1, \quad color = 2
+  $$
+- **Required output:**
+  $$
+  \begin{bmatrix}
+  2 & 2 & 2 \\
+  2 & 2 & 0 \\
+  2 & 0 & 1
+  \end{bmatrix}
+  $$
+  - Flood fill specifications:
+    - Starting pixel: $(sr, sc) = (1, 1)$ with initial color $oc = image[1][1] = 1$.
+    - Replace the color of the starting pixel and all pixels connected to it 4-directionally (up, down, left, right) that share the **exact same original color** $oc$.
+    - Pixels with a different color (such as `0`) act as impenetrable barriers.
+    - Pixels that share the original color but are isolated behind barriers (such as bottom-right pixel $(2, 2)$) must **not** be modified.
+    - Target replacement color: $color = 2$.
+- **Connected Component Invariant & Color Mutation Tracking:**
+  - **The Graph Representation:**
+    - The grid represents an undirected graph where vertices are pixels $(i, j)$ and edges connect 4-directional adjacent neighbors sharing color $oc$.
+    - The goal is to traverse the entire connected component containing seed $(sr, sc)$.
+  - **The Identical Color Infinite Loop Guard:**
+    - If the new color is identical to the original color ($oc == color$):
+      - Performing DFS without an explicit visited set would re-visit the same pixels indefinitely because $image[x][y] == oc$ would always remain true!
+      - Check upfront: if $oc == color$, return the original image immediately without any operations.
+  - **Implicit Visited Set via In-Place Repainting:**
+    - When $oc \ne color$:
+      - Setting $image[i][j] \leftarrow color$ immediately transforms the pixel away from $oc$.
+      - Subsequent neighbor checks will see $image[i][j] == color \ne oc$, naturally preventing re-traversal!
+      - No auxiliary visited array or hash set is needed; the grid itself serves as the visited record.
+- **Step-by-Step Worked Execution Trace on the $3 \times 3$ Image:**
+  - Dimensions: $m = 3, n = 3$.
+  - Original seed color:
+    $$
+    oc = image[1][1] = \mathbf{1}
+    $$
+  - New target color:
+    $$
+    color = \mathbf{2}
+    $$
+  - Verification: $oc \ne color$ ($1 \ne 2$) $\implies$ proceed with DFS!
+  - **Call 1: `dfs(1, 1)`:**
+    - Paint current pixel:
+      $$
+      image[1][1] \leftarrow \mathbf{2}
+      $$
+    - Check 4 neighbors of $(1, 1)$:
+      1. Up $(0, 1)$: inside grid and $image[0][1] == 1 == oc \implies$ recurse `dfs(0, 1)`.
+  - **Call 2: `dfs(0, 1)`:**
+    - Paint pixel: $image[0][1] \leftarrow \mathbf{2}$.
+    - Check neighbors:
+      - Left $(0, 0)$: $image[0][0] == 1 \implies$ recurse `dfs(0, 0)`.
+  - **Call 3: `dfs(0, 0)`:**
+    - Paint pixel: $image[0][0] \leftarrow \mathbf{2}$.
+    - Check neighbors:
+      - Down $(1, 0)$: $image[1][0] == 1 \implies$ recurse `dfs(1, 0)`.
+  - **Call 4: `dfs(1, 0)`:**
+    - Paint pixel: $image[1][0] \leftarrow \mathbf{2}$.
+    - Check neighbors:
+      - Down $(2, 0)$: $image[2][0] == 1 \implies$ recurse `dfs(2, 0)`.
+  - **Call 5: `dfs(2, 0)`:**
+    - Paint pixel: $image[2][0] \leftarrow \mathbf{2}$.
+    - Check neighbors:
+      - Right $(2, 1)$: $image[2][1] = 0 \ne oc \implies$ Barrier! Stop.
+      - Other neighbors out of bounds or already painted. Backtrack to `dfs(1, 0)`.
+  - Backtrack up to `dfs(0, 1)`:
+    - Check Right $(0, 2)$: $image[0][2] == 1 \implies$ recurse `dfs(0, 2)`.
+  - **Call 6: `dfs(0, 2)`:**
+    - Paint pixel: $image[0][2] \leftarrow \mathbf{2}$.
+    - Check neighbors:
+      - Down $(1, 2)$: $image[1][2] = 0 \ne oc \implies$ Barrier! Stop.
+  - **All Accessible Paths Exhausted:**
+    - Backtrack unwinds to root call `dfs(1, 1)`.
+    - Check remaining neighbors of $(1, 1)$:
+      - Right $(1, 2)$: $0 \ne oc$.
+      - Down $(2, 1)$: $0 \ne oc$.
+    - Entire component painted.
+  - **Inspect Untouched Pixels:**
+    - Pixel $(1, 2) = 0$ (Barrier, unchanged).
+    - Pixel $(2, 1) = 0$ (Barrier, unchanged).
+    - Pixel $(2, 2) = 1$:
+      - Neighbors of $(2, 2)$ are $(1, 2) = 0$ and $(2, 1) = 0$.
+      - Completely walled off from the component by 0s!
+      - Remains strictly **1**.
+  - **Output Grid:**
+    $$
+    ans = \begin{bmatrix}
+    \mathbf{2} & \mathbf{2} & \mathbf{2} \\
+    \mathbf{2} & \mathbf{2} & 0 \\
+    \mathbf{2} & 0 & \mathbf{1}
+    \end{bmatrix}
+    $$
+- **Target Color Matches Original Color ($image = [[0, 0], [0, 0]], color = 0$):**
+  - $oc = 0 == color = 0$.
+  - Returns original grid immediately, avoiding infinite recursion.
+- **Single Pixel Grid ($image = [[5]], sr = 0, sc = 0, color = 8$):**
+  - $oc = 5 \ne 8$.
+  - Paints single cell to 8, returns `[[8]]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates connected component graph flood filling and implicit in-place state marking, mathematically proves why color-shift mutation guarantees acyclic traversal over finite planar lattices, and derives $O(M \cdot N)$ runtime and $O(M \cdot N)$ recursion depth bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an image represented by an `m x n` grid of integers `image`, where $\text{image}[i][j]$ represents the pixel value of the image. You are also given three integers `sr`, `sc`, and `color`. Your task is to perform a **flood fill** on the image starting from the pixel $\text{image}[sr][sc]$.
+Given a 2D image, starting pixel $(sr, sc)$, and a new `color`:
+Perform a **flood fill**: change the color of the starting pixel and all 4-directionally connected pixels of the same original color to `color`.
+Disconnected pixels remain unchanged.
 
-The objective is to compute `[[2, 2, 2], [2, 2, 0], [2, 0, 1]]` from `{"image": [[1, 1, 1], [1, 1, 0], [1, 0, 1]], "sr": 1, "sc": 1, "color": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+image:
+  1 1 1
+  1 1 0
+  1 0 1  <- Note (2, 2) is disconnected from (1, 1) by zeros!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Start at (1, 1) with original color 1.
+Repaint connected component with color 2:
+  2 2 2
+  2 2 0
+  2 0 1  <- (2, 2) remains 1!
+
+Result: [[2, 2, 2], [2, 2, 0], [2, 0, 1]]
+```
+
+### The Invariant of the Implicit Visited State
+- Checking `if oc != color` before starting guarantees that painting `image[i][j] = color` acts as an automatic visited mark.
+- When $image[i][j] \leftarrow color$, subsequent checks see $image[x][y] \ne oc$ and will not re-traverse it.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Guard Condition:
+$$
+oc = image[sr][sc]
+$$
+$$
+\text{if } oc == color \implies \text{return } image
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. DFS Component Expansion:
+For pixel $(i, j)$:
+$$
+image[i][j] \leftarrow color
+$$
+$$
+\forall (x, y) \in \text{Adj}_4(i, j): \quad \text{if } (x, y) \in \text{bounds} \land image[x][y] == oc \implies \text{dfs}(x, y)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Connected Component Invariance.** The connected component $C(v)$ of the vertex $v = (sr, sc)$ in the planar subgraph induced by the fiber $f^{-1}(oc)$ is uniquely traversed in finite steps by DFS, with state mutation $f(u) \leftarrow color$ guaranteeing termination without auxiliary memory.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Flood fill changes one connected component, not every matching pixel
-
-The starting pixel has an original color `oc = image[sr][sc]`. The fill must recolor exactly the pixels that can be reached from that start by repeatedly moving up, right, down, or left through pixels of color `oc`.
-
-A pixel elsewhere in the image may have the same numeric color yet remain unchanged if no four-directional path of original-color pixels connects it to the start. Diagonal contact alone is not a connection.
-
-The exact solution performs a depth-first search from the starting coordinate. The image itself records which connected pixels have already been visited: as soon as DFS enters one, it changes that pixel to the requested `color`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"image": [[1, 1, 1], [1, 1, 0], [1, 0, 1]], "sr": 1, "sc": 1, "color": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why the original color must be saved first
-
-The search decision for a neighbor is whether its value equals the color the component had before filling. Once the first pixel is changed, reading `image[sr][sc]` would no longer reveal that value. Saving it in `oc` before starting preserves the criterion for the entire traversal.
-
-Every recursive call compares possible neighbors with this same `oc`. The target `color` is used only for marking and output.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize
+- $oc = image[1][1] = 1, color = 2$.
+- $1 \ne 2 \implies$ Proceed.
 
 ---
 
-### Step 3: Generate the four directions compactly
+### Step 2: Flood DFS
+- Paint $(1, 1) \to 2$.
+- Paint $(0, 1) \to 2$.
+- Paint $(0, 0) \to 2$.
+- Paint $(1, 0) \to 2$.
+- Paint $(2, 0) \to 2$.
+- Paint $(0, 2) \to 2$.
 
-The tuple
+---
 
-`dirs = (-1, 0, 1, 0, -1)`
+### Step 3: Barriers & Disconnected Cells
+- Cells $(1, 2)$ and $(2, 1)$ are 0 $\implies$ barrier.
+- Cell $(2, 2)$ is 1, but unreachable $\implies$ remains 1.
 
-works with adjacent pairs. `pairwise(dirs)` yields
+---
 
-`(-1, 0), (0, 1), (1, 0), (0, -1)`.
-
-These are precisely up, right, down, and left. There are no diagonal pairs. For a current pixel `(i, j)`, adding a pair `(a, b)` produces neighbor `(i + a, j + b)`.
-
-Before reading a neighbor, the solution verifies that its row and column lie inside the image. This prevents negative indices from wrapping around in Python and prevents indices beyond the bottom or right edges.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[2, 2, 2], [2, 2, 0], [2, 0, 1]]` |
+### Step 4: Output
+$$
+\begin{bmatrix}
+2 & 2 & 2 \\
+2 & 2 & 0 \\
+2 & 0 & 1
+\end{bmatrix}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"image": [[1, 1, 1], [1, 1, 0], [1, 0, 1]], "sr": 1, "sc": 1, "color": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[2, 2, 2], [2, 2, 0], [2, 0, 1]]` | Verified |
+| DFS Step | Pixel Visited $(i, j)$ | Previous Color | Action Taken | Neighbors Checked | Valid Paths Found |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $(1, 1)$ | $1$ | Paint to $2$ | Up, Down, Left, Right | Up $(0, 1)$ |
+| $2$ | $(0, 1)$ | $1$ | Paint to $2$ | Left, Right | Left $(0, 0)$, Right $(0, 2)$ |
+| $3$ | $(0, 0)$ | $1$ | Paint to $2$ | Down | Down $(1, 0)$ |
+| $4$ | $(1, 0)$ | $1$ | Paint to $2$ | Down | Down $(2, 0)$ |
+| $5$ | $(2, 0)$ | $1$ | Paint to $2$ | Right $(2, 1) = 0$ | Dead end (Barrier) |
+| $6$ | $(0, 2)$ | $1$ | Paint to $2$ | Down $(1, 2) = 0$ | Dead end (Barrier) |
+| **End** | **$(2, 2)$** | **$1$** | **Untouched** | **Isolated by 0s** | **Preserved as 1** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **New Color Equals Old Color ($oc == color$):** Caught by the guard `if oc != color`; returns immediately without running DFS.
+- **Entire Grid One Color ($3 \times 3$ of 1s):** Repaints all 9 pixels to `color`.
+- **Single Pixel Grid ($1 \times 1$):** Repaints single cell safely.
+- **No Neighbors of Same Color:** Only the starting pixel $(sr, sc)$ is repainted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Breadth-first search with a queue:** Recolor on enqueue and process neighbors iteratively. It has the same `O(mn)` worst-case time and space and avoids recursion-depth limits.
-- **Explicit visited set:** Track coordinates separately instead of using the changed color. This works even when colors match but uses extra storage. The early equality check makes it unnecessary here.
-- **Scan every matching pixel globally:** This is incorrect because equal-colored pixels in disconnected components must remain unchanged.
+- **Missing $oc == color$ Guard (RecursionError):** If $image[sr][sc] == color$, DFS attempts to paint cells to their existing color, looping between neighbors until maximum recursion depth is exceeded.
+- **Diagonal Traversal:** Flood fill strictly specifies **4-directional** connectivity (horizontal and vertical only). Do not traverse diagonally.
+- **Boundary Index Errors:** Always check $0 \le x < m$ and $0 \le y < n$ before indexing into $image[x][y]$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let `m` be the row count and `n` the column count. Every pixel in the filled component is entered at most once because recoloring removes it from future `oc` checks. Each entry examines four neighbors, a constant amount of work.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Visits each pixel in the connected component at most once.
+  - In each visit, inspects at most 4 cardinal directions: $\mathcal{O}(1)$.
+  - Total Time: strictly $\mathcal{O}(M \cdot N)$ where $M, N \le 50$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M \cdot N)$ in the worst case for the call stack during deep recursion (e.g. a snake-like component), or $\mathcal{O}(1)$ beyond recursion memory.

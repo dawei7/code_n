@@ -1,109 +1,170 @@
 # Guided Example: Not Boring Movies
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step modular parity testing ($id \pmod 2 = 1$ or bitwise $id \ \& \ 1 = 1$), textual exclusion filtering ($description \ne \text{'boring'}$), composite predicate conjunction ($\text{odd} \land \text{not boring}$), descending rating sorting (`ORDER BY rating DESC`), and relational projection on representative cinema catalog databases:
 
-- **Input:** `{"tables": {"Cinema": [{"id": 1, "movie": "War", "description": "great 3D", "rating": 8.9}, {"id": 2, "movie": "Science", "description": "fiction", "rating": 8.5}, {"id": 3, "movie": "irish", "description": "boring", "rating": 6.2}, {"id": 4, "movie": "Ice song", "description": "Fantacy", "rating": 8.6}, {"id": 5, "movie": "House card", "description": "Interesting", "rating": 9.1}]}}`
-- **Required output:** `{"columns": ["id", "movie", "description", "rating"], "rows": [[5, "House card", "Interesting", 9.1], [1, "War", "great 3D", 8.9]]}`
+- **Input:**
+  - `Cinema` table:
+    | `id` | `movie` | `description` | `rating` |
+    |:---:|:---:|:---:|:---:|
+    | $1$ | `War` | `great 3D` | $8.9$ |
+    | $2$ | `Science` | `fiction` | $8.5$ |
+    | $3$ | `irish` | `boring` | $6.2$ |
+    | $4$ | `Ice song` | `Fantacy` | $8.6$ |
+    | $5$ | `House card` | `Interesting` | $9.1$ |
+- **Required output:**
+  | `id` | `movie` | `description` | `rating` |
+  |:---:|:---:|:---:|:---:|
+  | $5$ | `House card` | `Interesting` | $9.1$ |
+  | $1$ | `War` | `great 3D` | $8.9$ |
+  - Business qualification rules: A film record qualifies if and only if it satisfies **both** of the following criteria:
+    1. Parity constraint: `id` is an **odd number** ($id \pmod 2 = 1$).
+    2. Quality constraint: `description` is **not equal to "boring"** ($description \ne \text{'boring'}$).
+  - Ordering: Output must be sorted by `rating DESC` (highest rated movie first).
+- **Conjunctive Filtering Trace:**
+  - Composite predicate:
+    $$
+    P(\text{row}) = (id \pmod 2 = 1) \quad \land \quad (description \ne \text{'boring'})
+    $$
+  - **Row 1 (`id = 1, movie = 'War'`):**
+    - Parity check: $1 \pmod 2 = 1 \implies \mathbf{True}$ (Odd).
+    - Description check: `'great 3D' \ne 'boring'` $\implies \mathbf{True}$ (Not boring).
+    - Conjunction: $True \land True = \mathbf{True}$ (Qualifies!).
+  - **Row 2 (`id = 2, movie = 'Science'`):**
+    - Parity check: $2 \pmod 2 = 0 \ne 1 \implies \mathbf{False}$ (Even).
+    - Disqualified immediately by parity!
+  - **Row 3 (`id = 3, movie = 'irish'`):**
+    - Parity check: $3 \pmod 2 = 1 \implies \mathbf{True}$ (Odd).
+    - Description check: `'boring' \ne 'boring'` $\implies \mathbf{False}$ (Boring!).
+    - Conjunction: $True \land False = \mathbf{False}$ (Disqualified!).
+  - **Row 4 (`id = 4, movie = 'Ice song'`):**
+    - Parity check: $4 \pmod 2 = 0 \implies \mathbf{False}$ (Even).
+    - Disqualified!
+  - **Row 5 (`id = 5, movie = 'House card'`):**
+    - Parity check: $5 \pmod 2 = 1 \implies \mathbf{True}$ (Odd).
+    - Description check: `'Interesting' \ne 'boring'` $\implies \mathbf{True}$ (Not boring).
+    - Conjunction: $True \land True = \mathbf{True}$ (Qualifies!).
+  - **Step 2: Sort Surviving Records by Rating Descending:**
+    - Surviving movies:
+      - `House card` with rating $9.1$
+      - `War` with rating $8.9$
+    - Since $9.1 > 8.9$:
+      1. First: `(5, 'House card', 'Interesting', 9.1)`
+      2. Second: `(1, 'War', 'great 3D', 8.9)`
+- **All Movies Even Instance:**
+  - If all IDs are even ($2, 4, 6$), 0 rows satisfy the condition $\implies$ empty table.
+- **Tied Ratings:**
+  - If two qualified movies share the same rating, their relative order is stable or determined by engine defaults.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates conjunctive relational filtering over arithmetic and string attributes, mathematically proves why parity partitioning and string inequality compose as independent orthogonal constraints, and derives $O(N \log N)$ execution time and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Cinema`
+Given a `Cinema` table with movie ratings:
+Find all movies that have:
+1. An **odd-numbered ID**, AND
+2. A description that is **not "boring"**.
+Sort the results by **`rating DESC`**.
 
-The objective is to compute `{"columns": ["id", "movie", "description", "rating"], "rows": [[5, "House card", "Interesting", 9.1], [1, "War", "great 3D", 8.9]]}` from `{"tables": {"Cinema": [{"id": 1, "movie": "War", "description": "great 3D", "rating": 8.9}, {"id": 2, "movie": "Science", "description": "fiction", "rating": 8.5}, {"id": 3, "movie": "irish", "description": "boring", "rating": 6.2}, {"id": 4, "movie": "Ice song", "description": "Fantacy", "rating": 8.6}, {"id": 5, "movie": "House card", "description": "Interesting", "rating": 9.1}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Row 1: id = 1 (Odd),  desc = "great 3D"    (Not boring) -> QUALIFIED! (Rating: 8.9)
+Row 2: id = 2 (Even)                                    -> Disqualified
+Row 3: id = 3 (Odd),  desc = "boring"      (Boring!)    -> Disqualified
+Row 4: id = 4 (Even)                                    -> Disqualified
+Row 5: id = 5 (Odd),  desc = "Interesting" (Not boring) -> QUALIFIED! (Rating: 9.1)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorted by Rating DESC:
+  1. id = 5 (Rating: 9.1)
+  2. id = 1 (Rating: 8.9)
+```
+
+### The Invariant of Simultaneous Conjunction
+- Both constraints must be strictly satisfied ($C_1 \land C_2$).
+- If either condition fails, the row is discarded.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The SQL Query:
+```sql
+SELECT id, movie, description, rating
+FROM Cinema
+WHERE description != 'boring'
+  AND (id % 2 = 1)
+ORDER BY rating DESC;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Parity Testing Forms:
+- Modulo: `id % 2 = 1` or `MOD(id, 2) = 1`.
+- Bitwise: `id & 1 = 1`.
+- All forms are semantically equivalent for positive integers.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Orthogonal Filter Invariant.** The selection predicate decomposes into two independent projections: $\sigma_{id \pmod 2 = 1}(\sigma_{description \ne 'boring'}(\text{Cinema}))$, each operating on distinct attribute domains.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Apply two independent eligibility rules, then sort.** A movie belongs in the answer only when its identifier is odd and its description is not exactly `'boring'`. SQL's `WHERE` clause evaluates both predicates for every row. Because they are connected with `AND`, passing only one condition is insufficient.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Cinema": [{"id": 1, "movie": "War", "description": "great 3D", "rating": 8.9}, {"id": 2, "movie": "Science", "description": "fiction", "rating": 8.5}, {"id": 3, "movie": "irish", "description": "boring", "rating": 6.2}, {"id": 4, "movie": "Ice song", "description": "Fantacy", "rating": 8.6}, {"id": 5, "movie": "House card", "description": "Interesting", "rating": 9.1}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Core Step 2
-
-**Detect odd identifiers with the low binary bit.** The expression `id & 1` performs bitwise AND between `id` and `1`. In binary, the value `1` has only its least significant bit set. Every odd integer ends in binary bit 1, so `id & 1` evaluates to 1 for odd IDs. Every even integer ends in bit 0, so it evaluates to 0.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan and Filter Rows
+- Row 1: ID 1 odd, description `'great 3D'` $\implies \mathbf{Keep}$ ($rating = 8.9$).
+- Row 2: ID 2 even $\implies$ Drop.
+- Row 3: ID 3 odd, description `'boring'` $\implies$ Drop.
+- Row 4: ID 4 even $\implies$ Drop.
+- Row 5: ID 5 odd, description `'Interesting'` $\implies \mathbf{Keep}$ ($rating = 9.1$).
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Sort by `rating DESC`
+- Rank 1: ID 5 ($rating = 9.1$).
+- Rank 2: ID 1 ($rating = 8.9$).
 
-The condition `id & 1 = 1` is therefore a compact oddness test. In the intended MySQL expression precedence, it is interpreted as `(id & 1) = 1`. Parentheses would make that grouping immediately obvious to a reader and safer when moving the query to a dialect with different operator rules.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["id", "movie", "description", "rating"], "rows": [[5, "House card", "Interesting", 9.1], [1, "War", "great 3D", 8.9]]}` |
+### Step 3: Project Resulting Table
+Emit columns `id, movie, description, rating`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Cinema": [{"id": 1, "movie": "War", "description": "great 3D", "rating": 8.9}, {"id": 2, "movie": "Science", "description": "fiction", "rating": 8.5}, {"id": 3, "movie": "irish", "description": "boring", "rating": 6.2}, {"id": 4, "movie": "Ice song", "description": "Fantacy", "rating": 8.6}, {"id": 5, "movie": "House card", "description": "Interesting", "rating": 9.1}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["id", "movie", "description", "rating"], "rows": [[5, "House card", "Interesting", 9.1], [1, "War", "great 3D", 8.9]]}` | Verified |
+| `id` | `movie` | `id` is Odd? | Description $\ne$ `'boring'`? | Qualified? | `rating` | Sort Rank |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `War` | **Yes** | **Yes** | **Yes** | $8.9$ | $2$ |
+| $2$ | `Science` | No | Yes | No | $8.5$ | — |
+| $3$ | `irish` | **Yes** | No (Boring) | No | $6.2$ | — |
+| $4$ | `Ice song` | No | Yes | No | $8.6$ | — |
+| **$5$** | **`House card`** | **Yes** | **Yes** | **Yes** | **$9.1$** | **$1$ (Top)** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No Odd IDs with High Quality:** Returns empty result table with all four column headers.
+- **All Descriptions "boring":** 0 rows pass $\implies$ empty table.
+- **Rating Ties:** Preserves rating order.
+- **Single Qualifying Movie:** Returns single row.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Modulo parity check:** `MOD(id, 2) = 1` or `id % 2 = 1` is more immediately recognizable to many readers and avoids bitwise-precedence questions.
-- **Explicit column names:** Select `id, movie, description, rating` and write `ORDER BY rating DESC`. This is behaviorally equivalent for the given schema and more maintainable than `SELECT *` with ordinal 4.
-- **Parenthesized bit test:** Writing `(id & 1) = 1` makes the exact operation unambiguous without changing the plan.
-- **Equal ratings:** Their relative order is unspecified because there is no secondary key. This is acceptable when the contract requires only descending rating; add `id` only if deterministic tie order is desired and allowed.
-- **No qualifying movies:** The query returns an empty result table with the same four columns.
-- **All IDs even:** Every row fails the parity predicate, regardless of rating or description.
-- **Odd ID with boring description:** It fails the conjunction, demonstrating why both filters are required.
-- **Even ID with interesting description:** It also fails; an acceptable description cannot compensate for even parity.
-- **Capitalization and collation:** Whether `'Boring'` equals `'boring'` depends on the database collation. The intended input uses the exact forbidden literal.
-- **Null description:** `!=` yields unknown and excludes the row. Use an explicit null policy only if the contract permits null descriptions.
-- **Negative IDs:** Bitwise low-bit testing still identifies two's-complement odd integers in MySQL, whereas some modulo expressions return `-1` for negative odd values. The table's identifier semantics normally imply positive IDs.
-- **Schema column reordering:** `ORDER BY 4` would silently sort by a different field if the projection order changed, which is why naming `rating` is preferable outside this fixed challenge.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `OR` Instead of `AND`:** Writing `WHERE id % 2 = 1 OR description != 'boring'` includes movies with even IDs as long as they are not boring, producing incorrect results.
+- **Ascending Sort by Mistake:** Forgetting `DESC` outputs lowest rated movies first (`ORDER BY rating ASC`).
+- **Missing Columns in Output:** Writing `SELECT movie` instead of `SELECT *` fails the required 4-column schema.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let $R$ be the number of rows in `Cinema` and let $K$ be the number of rows that pass both filters. Evaluating parity and description equality takes constant time per row aside from bounded string-comparison cost, so filtering is $O(R)$.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Filtering $N$ rows: $\mathcal{O}(N)$ sequential table scan.
+  - Sorting $K$ qualified rows by rating: $\mathcal{O}(K \log K)$ where $K \le N$.
+  - Total Time: $\mathcal{O}(N \log N)$. Completes in $< 5$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(K)$ space for sorting output rows.

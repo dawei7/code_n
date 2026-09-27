@@ -54,7 +54,7 @@
     {
       "id": "trial-zero",
       "name": "zero and positive singleton",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -70,6 +70,7 @@
         "kind": "unordered_list"
       },
       "tags": [
+        "sample",
         "boundary"
       ]
     },

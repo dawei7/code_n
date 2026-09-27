@@ -1,136 +1,181 @@
 # Guided Example: Number of Restricted Paths From First to Last Node
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of Dijkstra shortest-path calculation followed by directed acyclic graph (DAG) dynamic programming on a representative problem instance:
 
-- **Input:** `{"n": 1, "edges": []}`
-- **Required output:** `1`
+- **Input:**
+  - `n = 5`
+  - `edges = [[1, 2, 3], [1, 3, 3], [2, 3, 1], [1, 4, 2], [5, 2, 2], [3, 5, 1], [5, 4, 10]]`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features alternative pathways, an indirect edge shortcutting a direct high-cost edge (reaching node $4$ via $1$ rather than directly from $5$), and an invalid branch ($1 \to 4$ where distance increases), clearly illustrating how strict distance descent converts an undirected graph into an acyclic path-counting problem.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is an undirected weighted connected graph. You are given a positive integer `n` which denotes that the graph has `n` nodes labeled from `1` to `n`, and an array `edges` where each $\text{edges}[i] = [u_{i}, v_{i}, \text{weight}_{i}]$ denotes that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight equal to $\text{weight}_{i}$.
+We are given an undirected weighted connected graph with $n$ nodes labeled $1$ to $n$.
+A path from node $1$ to node $n$ is defined as **restricted** if every step along the path from $u$ to $v$ strictly decreases the shortest distance to the destination node $n$:
+$$\text{distToLastNode}(u) > \text{distToLastNode}(v)$$
+We must compute the total number of restricted paths from node $1$ to node $n$, modulo $10^9 + 7$.
 
-The objective is to compute `1` from `{"n": 1, "edges": []}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Two-Phase Algorithm Decomposition
+1. **Shortest Path Distances via Dijkstra:**
+   Run Dijkstra's algorithm from the destination node $n$ across the undirected graph to compute $\text{dist}[u] = \text{distToLastNode}(u)$ for every node $u \in [1, n]$.
+2. **Dynamic Programming on the Implicit DAG:**
+   Direct every edge $(u, v)$ from $u$ to $v$ if and only if $\text{dist}[u] > \text{dist}[v]$.
+   Because distances strictly decrease along every directed edge, the resulting directed graph is guaranteed to be **acyclic** (a DAG).
+   Path counting on a DAG is solved via memoized dynamic programming:
+   $$dp(u) = \sum_{(u, v) \in E, \text{dist}[u] > \text{dist}[v]} dp(v) \pmod{10^9 + 7}, \quad \text{with } dp(n) = 1$$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Distance Vector $\text{dist}$ | Shortest path from $u$ to $n$ in the graph | Defines valid descent directions |
+| Min-Priority Queue $Q$ | Heap of pairs $(d, u)$ | Drives Dijkstra expansion from node $n$ |
+| Path Count $dp(u)$ | Number of restricted paths from $u$ to $n$ | Subproblem memoization |
+| Modulo Constant | $10^9 + 7$ | Prevents integer overflow |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Strict Monotonicity & Acyclicity Theorem.**
+> Let $G = (V, E)$ be an undirected graph with positive edge weights. Orient edges such that:
+> $$\vec{E} = \{(u, v) \mid (u, v) \in E \land \text{dist}[u] > \text{dist}[v]\}$$
+> 1. $\vec{G} = (V, \vec{E})$ is a Directed Acyclic Graph (DAG).
+>    *Proof:* If a directed cycle $v_1 \to v_2 \to \dots \to v_k \to v_1$ existed, we would have $\text{dist}[v_1] > \text{dist}[v_2] > \dots > \text{dist}[v_k] > \text{dist}[v_1]$, an impossibility.
+> 2. Every path from $1$ to $n$ in $\vec{G}$ is by construction a restricted path.
+> 3. Memoized recursion on $\vec{G}$ computes the exact path count without infinite loops.
+
+```mermaid
+flowchart TD
+    accTitle: Restricted Path Counting Workflow
+    accDescr: Pipeline running Dijkstra from node n to compute all distances, followed by DAG memoized DFS from node 1 down to node n.
+    A["Graph: n = 5, 7 weighted edges"] --> B["Phase 1: Dijkstra from Destination Node 5"]
+    B --> C["Compute distToLastNode for all nodes: dist[5]=0, dist[3]=1, dist[2]=2, dist[1]=4, dist[4]=6"]
+    C --> D["Phase 2: Directed Acyclic Graph (DAG) Paths"]
+    D --> E["Edges oriented u -> v only when dist[u] > dist[v]"]
+    E --> F["Node 1 (dist 4) can move to Node 2 (dist 2) and Node 3 (dist 1)"]
+    F --> G["Paths: 1->3->5, 1->2->5, 1->2->3->5"]
+    G --> H["Total Restricted Paths = 3"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The restriction is defined by distances to node `n`
-
-A path is restricted when every step moves from a node with a larger shortest distance to node `n` to a node with a smaller shortest distance to node `n`. The first task is therefore not to count paths. It is to know the exact value of `distanceToLastNode(x)` for every node `x`.
-
-The graph is undirected and all edge weights are positive. Shortest distances to node `n` can be found by running Dijkstra's algorithm with node `n` as the source. In an undirected graph, the shortest distance from `x` to `n` is the same as the shortest distance from `n` to `x`, so this reversed viewpoint computes exactly the quantities in the definition.
-
-The solution builds an adjacency list `g`. Every input edge `[u, v, w]` is inserted once as `(v, w)` in `g[u]` and once as `(u, w)` in `g[v]`. It then creates a distance array initialized to infinity, sets `dist[n] = 0`, and starts a min-heap with `(0, n)`.
-
-Whenever node `u` is removed from the heap, each neighbor `v` is tested. If traveling from `v` through `u` gives a shorter route to the destination, meaning `dist[u] + w < dist[v]`, the solution records that new distance and pushes a new heap entry for `v`. Positive weights and the min-heap ordering ensure that the smallest possible distances propagate outward from node `n`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1, "edges": []}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 5$ with edges:
+`[1, 2, 3], [1, 3, 3], [2, 3, 1], [1, 4, 2], [5, 2, 2], [3, 5, 1], [5, 4, 10]`.
 
 ---
 
-### Step 2: Turn the undirected graph into an implicit directed acyclic graph
+### Phase 1: Dijkstra Shortest Paths from Destination Node $5$
 
-After the distance phase, consider an undirected edge between `i` and `j`. The counting phase may traverse it from `i` to `j` only when `dist[i] > dist[j]`. Conceptually, this orients every usable edge from a greater distance to a smaller distance.
+Initialize: $\text{dist}[5] = 0$, all other $\text{dist} = \infty$. Min-heap $Q = [(0, 5)]$.
 
-That orientation cannot contain a directed cycle. Following a directed edge strictly decreases `dist`, so returning to a previously visited node would require its distance to be both strictly smaller and equal to its earlier value. This contradiction means the usable edges form a directed acyclic graph, even though the original graph can have many cycles.
+1. **Extract $(0, 5)$:**
+   - Relax neighbor $3$ via edge weight $1$: $\text{dist}[3] = 0 + 1 = 1$. Enqueue $(1, 3)$.
+   - Relax neighbor $2$ via edge weight $2$: $\text{dist}[2] = 0 + 2 = 2$. Enqueue $(2, 2)$.
+   - Relax neighbor $4$ via edge weight $10$: $\text{dist}[4] = 0 + 10 = 10$. Enqueue $(10, 4)$.
 
-This is the central simplification. Counting unrestricted simple paths in a general graph can be extremely expensive, but counting paths in a DAG is a dynamic-programming problem.
+2. **Extract $(1, 3)$:**
+   - Relax neighbor $2$ via edge weight $1$: $\text{dist}[3] + 1 = 1 + 1 = 2 \ngtr \text{dist}[2]$ (No change).
+   - Relax neighbor $1$ via edge weight $3$: $\text{dist}[1] = 1 + 3 = 4$. Enqueue $(4, 1)$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+3. **Extract $(2, 2)$:**
+   - Relax neighbor $1$ via edge weight $3$: $2 + 3 = 5 > \text{dist}[1] = 4$ (No change).
+
+4. **Extract $(4, 1)$:**
+   - Relax neighbor $4$ via edge weight $2$:
+     $$\text{dist}[1] + 2 = 4 + 2 = 6 < \text{dist}[4] = 10$$
+     Update: $\text{dist}[4] \leftarrow 6$. Enqueue $(6, 4)$.
+
+5. **Extract $(6, 4)$:** No improvements.
+6. **Extract $(10, 4)$:** Stale entry ($10 > \text{dist}[4] = 6$). Skipped.
+
+#### Final Distances to Node $5$:
+$$\text{dist}[5] = 0, \quad \text{dist}[3] = 1, \quad \text{dist}[2] = 2, \quad \text{dist}[1] = 4, \quad \text{dist}[4] = 6$$
 
 ---
 
-### Step 3: Memoized depth-first counting
+### Phase 2: Directed Acyclic Graph Counting
 
-Define `dfs(i)` as the number of restricted paths that begin at node `i` and finish at node `n`.
+We evaluate $dp(u)$ from $u = 1$ using memoized DFS:
 
-If `i == n`, there is one completed path: the path has already reached its destination. Thus `dfs(n)` returns 1.
+- **Base Case:** $dp(5) = 1$.
 
-For every other node, the function examines its neighbors. It follows only neighbors `j` satisfying `dist[i] > dist[j]`, because exactly those steps preserve the restricted-path condition. Every restricted path from `i` must choose one such first neighbor, and after making that choice it can use any restricted path counted by `dfs(j)`. Therefore,
+- **Evaluate $dp(3)$ ($\text{dist}[3] = 1$):**
+  - Neighbors of $3$: Node $1$ ($\text{dist} = 4$), Node $2$ ($\text{dist} = 2$), Node $5$ ($\text{dist} = 0$).
+  - Valid strictly smaller neighbor: Only Node $5$ ($0 < 1$).
+  - $$dp(3) = dp(5) = 1$$
 
-$$
-\operatorname{dfs}(i)
-=
-\sum_{\substack{j\text{ adjacent to }i\\\texttt{dist}[i]>\texttt{dist}[j]}}
-\operatorname{dfs}(j).
-$$
+- **Evaluate $dp(2)$ ($\text{dist}[2] = 2$):**
+  - Neighbors of $2$: Node $1$ ($\text{dist} = 4$), Node $3$ ($\text{dist} = 1$), Node $5$ ($\text{dist} = 0$).
+  - Valid strictly smaller neighbors:
+    - Node $5$ ($0 < 2 \implies dp(5) = 1$)
+    - Node $3$ ($1 < 2 \implies dp(3) = 1$)
+  - $$dp(2) = dp(5) + dp(3) = 1 + 1 = 2$$
 
-The `@cache` decorator stores each completed result, so if several incoming paths reach the same node, its suffix count is computed once and reused. Each addition is reduced modulo $10^9+7$, as required.
+- **Evaluate $dp(1)$ ($\text{dist}[1] = 4$):**
+  - Neighbors of $1$:
+    - Node $4$: $\text{dist}[4] = 6 \not< 4$ (Invalid! Distance increases; cannot move $1 \to 4$).
+    - Node $2$: $\text{dist}[2] = 2 < 4$ (Valid! Contributes $dp(2) = 2$).
+    - Node $3$: $\text{dist}[3] = 1 < 4$ (Valid! Contributes $dp(3) = 1$).
+  - $$dp(1) = dp(2) + dp(3) = 2 + 1 = 3$$
 
-Although `dfs` is declared before `g`, `dist`, and `mod` are assigned, Python closures look up those names when the function is called. The only call, `dfs(1)`, occurs after the graph and distances are complete, so the references are ready.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Enumeration of the Three Restricted Paths
+1. $1 \to 3 \to 5$ (Distances: $4 \to 1 \to 0$)
+2. $1 \to 2 \to 5$ (Distances: $4 \to 2 \to 0$)
+3. $1 \to 2 \to 3 \to 5$ (Distances: $4 \to 2 \to 1 \to 0$)
+
+Final Answer:
+$$\text{Restricted Paths} = 3$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1, "edges": []}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Node $u$ | Shortest Distance $\text{dist}[u]$ | Neighbors Inspected $v$ | Neighbor Distance $\text{dist}[v]$ | Descent Condition $\text{dist}[u] > \text{dist}[v]$ | Transition Allowed? | Contribution to $dp(u)$ | Cumulative $dp(u)$ |
+|---|---|---|---|---|---|---|---|
+| $5$ | $0$ | Destination | — | — | — | Base case | **$1$** |
+| $3$ | $1$ | $5$ | $0$ | $1 > 0$ (True) | Yes | $dp(5) = 1$ | **$1$** |
+| $2$ | $2$ | $5$ | $0$ | $2 > 0$ (True) | Yes | $dp(5) = 1$ | — |
+| $2$ | $2$ | $3$ | $1$ | $2 > 1$ (True) | Yes | $dp(3) = 1$ | **$2$** |
+| $1$ | $4$ | $4$ | $6$ | $4 > 6$ (False) | **No (Blocked)** | $0$ | — |
+| $1$ | $4$ | $2$ | $2$ | $4 > 2$ (True) | Yes | $dp(2) = 2$ | — |
+| $1$ | $4$ | $3$ | $1$ | $4 > 1$ (True) | Yes | $dp(3) = 1$ | **$3$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Cycle Prevention:**
+   Because each hop on a restricted path must strictly reduce $\text{dist}[u]$, it is mathematically impossible to revisit any previously traversed node. This guarantees that the directed graph is a DAG and the recursion never loops.
+2. **Correctness of Subproblem Summation:**
+   The set of restricted paths starting at $u$ partitions into disjoint sets based on the immediate next node $v$. Summing $dp(v)$ over all valid downward neighbors $v$ obeys the sum rule of combinatorics.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **Dijkstra with a stale-entry guard:** Keep the popped distance and skip the adjacency scan when it is not equal to `dist[u]`. This preserves the same results and attains the manifest's $O((n+E)\log n)$ time bound.
-- **Iterative DAG dynamic programming:** Sort nodes by increasing distance and accumulate path counts without recursion. It avoids recursion-depth risk while using the same distance orientation.
-- **Enumerate complete paths:** Backtracking through all decreasing choices repeats common suffixes and can take exponential time; memoization is essential.
-- **Run Dijkstra from node 1:** That computes distances to the wrong endpoint. The restriction compares shortest distances to node `n`, so the distance source must be `n`.
-- **Breadth-first search:** BFS is insufficient because edge weights vary; the fewest-edge route need not have minimum total weight.
-- **Equal distances:** An edge whose endpoints have equal `dist` values is forbidden because the inequality is strict, not non-increasing.
-- **Positive weights:** They support Dijkstra and ensure shortest-distance reasoning is well behaved. Negative weights would invalidate this method.
-- **Original graph cycles:** They cause no counting cycle because every accepted DFS step strictly decreases distance.
-- **Multiple incoming restricted paths:** Cached suffix counts are intentionally reused; the distinct prefixes still make the complete paths distinct.
-- **Modulo arithmetic:** Reducing after every addition prevents the count from growing needlessly while preserving the final residue.
-- **Single node:** When `n = 1`, `dfs(1)` immediately returns one for the already-complete path.
-- **Connected graph guarantee:** Every `dist` becomes finite. No special unreachable-node behavior is needed.
-- **Deep decreasing chain:** The recursive DFS can reach depth $O(n)$; in Python, a sufficiently long chain may exceed the runtime's recursion limit. An iterative distance-ordered DP avoids that implementation hazard.
-- **Input preservation:** The method builds its own adjacency representation and never mutates `edges`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Configuration | Expected Output | Strategic Handling |
+|---|---|---|---|
+| No Downward Path | Node $1$ has only neighbors with larger/equal distance | $0$ | No valid transition edges; returns $0$. |
+| Single Direct Path | Graph is a simple chain $1 - 2 - 3 - \dots - n$ | $1$ | Unique monotonic descending path. |
+| Equal Distance Neighbors | Adjacent node has identical distance | Excluded | Strict inequality $\text{dist}[u] > \text{dist}[v]$ excludes flat transitions. |
+| Huge Path Count | Complex grid with exponential paths | Correct modulo | Sums modulo $10^9 + 7$ prevent overflow. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(E^2+E\log E+n)$. Let $E$ be the number of undirected edges. Building the adjacency list takes $O(n+E)$ space and $O(E)$ time. The memoized DFS computes at most one result per node and examines every adjacency-list entry at most once during those first computations, so its counting work is $O(n+E)$. The distance array, cache, and recursion stack use $O(n)$ additional space.
-- **Auxiliary Space Complexity:** $O(E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(E \log V + V + E)$ where $V = n$ and $E = |\text{edges}|$.
+  - Phase 1 (Dijkstra): Uses a binary min-heap, processing each edge at most once, taking $\mathcal{O}(E \log V)$ time.
+  - Phase 2 (DAG DP): Visits each node once and inspects each edge at most once, taking $\mathcal{O}(V + E)$ time.
+  - For $V \le 2 \times 10^4$ and $E \le 4 \times 10^4$, total operations are $\approx 4 \times 10^4 \times 15 \approx 6 \times 10^5$, executing in under $0.05\text{ s}$.
+- **Space Complexity:** $\mathcal{O}(V + E)$ auxiliary space to store the adjacency list, Dijkstra priority queue, distance array, and DP memoization cache.

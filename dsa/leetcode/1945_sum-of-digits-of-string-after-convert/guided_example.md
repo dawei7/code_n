@@ -1,116 +1,183 @@
 # Guided Example: Sum of Digits of String After Convert
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace letter-to-alphabet position encoding, multi-digit decimal string expansion, and repeated digital sum transformations on representative string instances:
 
-- **Input:** `{"s": "iiii", "k": 1}`
-- **Required output:** `36`
+- **Primary Input:** `s = "leetcode"`, `k = 2`
+- **Required Output:** `6`
+- **Single-Pass Input:** `s = "iiii"`, `k = 1`
+- **Required Output:** `36`
+- **Two-Digit Letter Input:** `s = "zbax"`, `k = 2`
+- **Required Output:** `8`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates mapping lowercase English characters into 1-indexed alphabet ranks $1 \dots 26$, string concatenation of variable-length decimal representations, and executing $k$ rounds of digit sum contractions.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` consisting of lowercase English letters, and an integer `k`. Your task is to *convert* the string into an integer by a special process, and then *transform* it by summing its digits repeatedly `k` times. More specifically, perform the following steps:
+We are given a string `s` of lowercase English letters and an integer $k$.
+1. **Convert:** Replace each character $c$ with its 1-indexed position in the alphabet: $\text{'a'} \to 1, \dots, \text{'z'} \to 26$. Concatenate these representations into one large numerical string.
+2. **Transform:** Sum the decimal digits of the numerical string. Repeat this digit sum operation $k$ times in total.
+3. Return the resulting integer.
 
-The objective is to compute `36` from `{"s": "iiii", "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "leetcode"` with $k = 2$:
+- **Letter Conversion:**
+  - `'l'` (12th letter) $\to \text{"12"}$
+  - `'e'` (5th letter) $\to \text{"5"}$
+  - `'e'` (5th letter) $\to \text{"5"}$
+  - `'t'` (20th letter) $\to \text{"20"}$
+  - `'c'` (3rd letter) $\to \text{"3"}$
+  - `'o'` (15th letter) $\to \text{"15"}$
+  - `'d'` (4th letter) $\to \text{"4"}$
+  - `'e'` (5th letter) $\to \text{"5"}$
+- Concatenated numerical string:
+  $$\text{"12552031545"}$$
+- **Transform 1 ($k = 1$):**
+  $$1 + 2 + 5 + 5 + 2 + 0 + 3 + 1 + 5 + 4 + 5 = 33$$
+- **Transform 2 ($k = 2$):**
+  $$3 + 3 = 6$$
+- Final result: **6**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **positional digit expansion and iterative digital contraction**:
+1. Mapping ASCII codepoints: $\text{pos}(c) = \text{ord}(c) - \text{ord}('a') + 1$.
+2. Handling variable length digits: Letters `'a'` through `'i'` produce 1 digit ($1 \dots 9$), whereas `'j'` through `'z'` produce 2 digits ($10 \dots 26$).
+3. Digital sum convergence: After the first transformation, the number shrinks exponentially from length $\le 200$ to at most $200 \times 9 = 1800$, and further transformations complete in near-constant time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Digital Root and Contraction Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Digital Root and Contraction Invariant Theorem.**
+> 1. *Alphabet Rank Mapping:* The alphabet position function $\phi: \Sigma \to \{1, \dots, 26\}$ is:
+>    $$\phi(c) = \text{ord}(c) - \text{ord}(\text{'a'}) + 1$$
+> 2. *Base-10 Concatenation:* Let $s = c_1 c_2 \dots c_n$. The converted string $\mathcal{D}_0$ is the decimal concatenation:
+>    $$\mathcal{D}_0 = \phi(c_1) \mathbin{\Vert} \phi(c_2) \mathbin{\Vert} \dots \mathbin{\Vert} \phi(c_n)$$
+>    Its length satisfies $n \le |\mathcal{D}_0| \le 2n$.
+> 3. *Digital Sum Operator:* For any positive integer string $X = d_1 d_2 \dots d_m$, the digital sum operator $\mathcal{S}(X)$ is:
+>    $$\mathcal{S}(X) = \sum_{j=1}^m \text{int}(d_j)$$
+> 4. *Exponential Contraction Bound:* For $n \le 100$, $|\mathcal{D}_0| \le 200$. The first transformation produces:
+>    $$\mathcal{S}(\mathcal{D}_0) \le 200 \times 9 = 1800$$
+>    The second transformation produces:
+>    $$\mathcal{S}(\mathcal{S}(\mathcal{D}_0)) \le 1 + 9 + 9 + 9 = 28$$
+>    Any subsequent transformations remain within $[1, 28]$. For all $k \ge 1$, intermediate numbers comfortably fit within standard machine integer registers.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Alphabet Conversion and Digital Sum Pipeline
+    accDescr: Mapping characters to alphabet rank strings, concatenating, and applying k rounds of digit summation.
+    A["Input string s of length n"] --> B["Map each character c to str(ord(c) - ord('a') + 1)"]
+    B --> C["Concatenate into numerical string D_0"]
+    C --> D["Initialize round = 1"]
+    D --> E["Compute sum of digits: total = sum(int(d) for d in D)"]
+    E --> F["D = str(total)"]
+    F --> G{"Is round == k?"}
+    G -- No --> H["round = round + 1"]
+    H --> E
+    G -- Yes --> I["Return total"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Follow the conversion literally with a digit string
-
-Each lowercase letter is mapped to its one-based alphabet position. The expression `ord(c) - ord('a') + 1` produces values from one through 26. Converting each value with `str` and joining without separators creates exactly the decimal digit sequence described by the problem.
-
-For `s = "zbax"`, the letter values are 26, 2, 1, and 24. Joining their decimal representations produces `"262124"`. Keeping this representation as a string avoids constructing an arbitrarily long integer solely to inspect its decimal digits.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "iiii", "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "leetcode"` with $k = 2$:
 
 ---
 
-### Step 2: Perform exactly $k$ digit-sum transformations
+### Step 1: Character Rank Mapping and Concatenation
+Calculate position for each letter:
+- $c_0 = \text{'l'}: 108 - 97 + 1 = 12 \implies \text{"12"}$
+- $c_1 = \text{'e'}: 101 - 97 + 1 = 5 \implies \text{"5"}$
+- $c_2 = \text{'e'}: 101 - 97 + 1 = 5 \implies \text{"5"}$
+- $c_3 = \text{'t'}: 116 - 97 + 1 = 20 \implies \text{"20"}$
+- $c_4 = \text{'c'}: 99 - 97 + 1 = 3 \implies \text{"3"}$
+- $c_5 = \text{'o'}: 111 - 97 + 1 = 15 \implies \text{"15"}$
+- $c_6 = \text{'d'}: 100 - 97 + 1 = 4 \implies \text{"4"}$
+- $c_7 = \text{'e'}: 101 - 97 + 1 = 5 \implies \text{"5"}$
 
-For each of the $k$ iterations, the generator `int(c) for c in s` converts every current digit character to its numeric value. `sum` adds them into `t`, and `s = str(t)` prepares the decimal representation for the next transformation.
-
-After all iterations, `int(s)` returns the required integer rather than its string form.
-
-The exact code performs all $k$ iterations even if `s` becomes one digit early. Further transformations of a one-digit positive number leave it unchanged, so this does extra constant work without changing correctness.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Concatenation:
+$$\mathcal{D}_0 = \text{"12552031545"}$$
+Total decimal digits: 11.
 
 ---
 
-### Step 3: Why the first transformation could be compressed, but is not
+### Step 2: Transformation Round 1 ($k = 1$)
+Sum each digit in $\text{"12552031545"}$:
+- $1 + 2 = 3$
+- $3 + 5 = 8$
+- $8 + 5 = 13$
+- $13 + 2 = 15$
+- $15 + 0 = 15$
+- $15 + 3 = 18$
+- $18 + 1 = 19$
+- $19 + 5 = 24$
+- $24 + 4 = 28$
+- $28 + 5 = 33$
 
-The digit sum of the concatenated letter positions equals the sum of the digit sums of those positions. Therefore an alternative can compute the first transformed value directly while scanning letters. The concrete solution instead materializes the converted string, closely matching the statement's conversion step. The explanation follows that actual behavior.
+Result after Round 1: $33$.
+Updated string: $\mathcal{D}_1 = \text{"33"}$.
 
-For `s = "leetcode"`, joining values produces `"12552031545"`. The first loop iteration sums those digits to 33; the second sums `"33"` to six.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `36` |
+### Step 3: Transformation Round 2 ($k = 2$)
+Sum each digit in $\text{"33"}$:
+- $3 + 3 = 6$.
+
+Result after Round 2: $6$.
+Updated string: $\mathcal{D}_2 = \text{"6"}$.
+
+---
+
+### Step 4: Final Output
+Both $k = 2$ rounds completed.
+Final integer returned: **6**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "iiii", "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `36` | Verified |
+We trace character expansions for `s = "leetcode"`:
+
+| Index | Character $c$ | ASCII Code $\text{ord}(c)$ | Offset from `'a'` (97) | Alphabet Rank $\phi(c)$ | Substring Appended |
+|---|---|---|---|---|---|
+| 0 | `'l'` | 108 | 11 | 12 | `"12"` |
+| 1 | `'e'` | 101 | 4 | 5 | `"5"` |
+| 2 | `'e'` | 101 | 4 | 5 | `"5"` |
+| 3 | `'t'` | 116 | 19 | 20 | `"20"` |
+| 4 | `'c'` | 99 | 2 | 3 | `"3"` |
+| 5 | `'o'` | 111 | 14 | 15 | `"15"` |
+| 6 | `'d'` | 100 | 3 | 4 | `"4"` |
+| 7 | `'e'` | 101 | 4 | 5 | `"5"` |
+
+We track rounds of digital summation across sample inputs:
+
+| Input String $s$ | $k$ | Converted Numerical String $\mathcal{D}_0$ | Round 1 Sum | Round 2 Sum | Output Result |
+|---|---|---|---|---|---|
+| `"leetcode"` | 2 | `"12552031545"` | 33 | **6** | **6** |
+| `"iiii"` | 1 | `"9999"` | **36** | — | **36** |
+| `"zbax"` | 2 | `"262124"` | 17 | **8** | **8** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Each letter is correctly mapped to its 1-indexed position $\text{ord}(c) - \text{ord}(\text{'a'}) + 1$. The first digit sum exhaustively adds all decimal digits of the concatenated sequence. Subsequent iterations compute the sum of digits of the prior integer. Each operation strictly preserves the mathematical definition specified by the problem.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The loop executes exactly $k$ times. Because digit sums shrink the representation monotonically toward single-digit numbers, each round terminates in finite, deterministic steps, correctly returning the state after round $k$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Direct first digit sum:** For each letter position, add its tens and ones digits, then perform only $k-1$ further transformations. This achieves $O(N)$ time and $O(1)$ auxiliary space.
-- **Build one giant integer:** Repeated multiplication by powers of ten can reproduce concatenation, but string construction is simpler and avoids large-integer digit extraction.
-- **Digital-root shortcut:** Repeated digit sums eventually reach a digital root, but exactly $k$ transformations may stop before then, so applying the shortcut unconditionally is wrong.
-- **One transformation:** The loop performs only the digit sum of the converted letter sequence and returns it.
-- **Already one digit before $k$ ends:** Repeated sums leave the value unchanged; the exact loop continues safely.
-- **Letter `a`:** It contributes the one-character representation `"1"`.
-- **Letter `z`:** It contributes `"26"`, whose digits add as two and six during the first transform.
-- **Concatenation is not addition:** Letters `a` and `b` convert to `"1"` followed by `"2"`, forming `"12"` before transformation; they do not first become the alphabet-position sum three. Both paths happen to share a digit sum in this tiny case, but keeping the specified order is essential to implementing the stated conversion exactly.
-- **Repeated letters:** Each occurrence contributes its own alphabet-position digits in order.
-- **Nonempty string:** The converted representation and every digit sum remain positive, so `int(s)` is always valid.
-- **Exact-source space:** The joined string can be twice the input length, so the concrete method is linear-space despite the abstract constant-space alternative.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single vs. Two-Digit Representation:** Forgetting that letters like `'t'` (20) or `'z'` (26) contribute two separate digits ($2$ and $0$, or $2$ and $6$) to the first sum. You cannot simply sum the ranks $\phi(c)$ directly; you must sum their individual decimal digits. For example, `'t'` contributes $2 + 0 = 2$, not $20$.
+- **Large Initial Number Size:** The concatenated string can have length up to $200$. Parsing it directly into a standard 64-bit integer will overflow. Digits must be read directly as characters or iterated without converting the 200-digit string into a single scalar number.
+- **Round Parameter $k = 1$:** When $k = 1$, only a single digit-summation round is performed. The code must not perform an extra reduction to a single digit.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the original string length. The converted digit string has at most $2N$ characters because alphabet positions have one or two decimal digits. Building it takes $O(N)$ time and $O(N)$ space.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n + k \log(\text{sum}))$, where $n = \text{len}(s)$. The initial conversion and digit sum pass take $\mathcal{O}(n)$ time. The subsequent $k - 1$ rounds operate on numbers bounded by $1800$, each taking $\mathcal{O}(\log_{10} V) \le 4$ operations. Overall time is linear $\mathcal{O}(n)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the converted initial decimal string of length at most $2n$.

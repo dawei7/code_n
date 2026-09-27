@@ -1,133 +1,181 @@
 # Guided Example: Water Bottles
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"numBottles": 9, "numExchange": 3}`
-- **Required output:** `13`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-There are `numBottles` water bottles that are initially full of water. You can exchange `numExchange` empty water bottles from the market with one full water bottle.
+We are provided an initial supply of $b = 15$ full water bottles:
+$$\text{numBottles} = 15, \quad \text{numExchange} = 4$$
+Drinking any full bottle produces an empty bottle. Every batch of $e = 4$ empty bottles can be exchanged at the market for $1$ full bottle.
 
-The objective is to compute `13` from `{"numBottles": 9, "numExchange": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+Our teaching goal is to determine the maximum cumulative number of water bottles a person can drink. We trace the iterative exchange simulation step by step and derive the closed-form mathematical identity based on net empty-bottle depreciation:
+$$\text{Total Drunk} = b + \left\lfloor \frac{b - 1}{e - 1} \right\rfloor$$
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $b$ denote the initial full bottles and $e$ denote the exchange rate $\text{numExchange}$.
+1. **Initial Consumption**:
+   The person immediately drinks all $b$ full bottles, yielding $b$ units of consumed beverage and leaving $b$ empty bottles.
+2. **Iterative Exchange Cycles**:
+   As long as the current supply of empty bottles satisfies $\text{empty} \ge e$:
+   - We exchange as many multiples of $e$ as possible:
+     $$k = \left\lfloor \frac{\text{empty}}{e} \right\rfloor$$
+   - The unexchanged remainder is:
+     $$\text{rem} = \text{empty} \bmod e$$
+   - We receive and immediately consume $k$ new full bottles, adding $k$ to the total drink count.
+   - Consuming those $k$ bottles produces $k$ new empty bottles, updating our inventory:
+     $$\text{empty} \leftarrow \text{rem} + k$$
+3. **Net Cost & Closed-Form Derivation**:
+   Each exchange consumes $e$ empty bottles and yields $1$ full bottle, which after consumption becomes $1$ empty bottle.
+   Thus, the **net cost** of drinking an extra bottle is:
+   $$\Delta_{\text{cost}} = e - 1 \text{ empty bottles}$$
+   However, we cannot enter a debt: to initiate any exchange, we must possess at least $e$ bottles before the transaction.
+   Reserving the final empty bottle (which can never be returned before drinking the last one), we have $b - 1$ disposable empty bottles.
+   Therefore, the total number of extra exchanges possible is:
+   $$\text{extra} = \left\lfloor \frac{b - 1}{e - 1} \right\rfloor$$
+   Yielding the total bottles drunk:
+   $$\text{Total} = b + \left\lfloor \frac{b - 1}{e - 1} \right\rfloor$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
++-------------------------------------------------------------------------------+
+|                       WATER BOTTLE EXCHANGE CYCLES                            |
+|                                                                               |
+|  Initial Supply: 15 full bottles -> Drink 15 -> 15 empty bottles              |
+|                                                                               |
+|  Round 1: 15 / 4 = 3 full bottles (rem = 3) -> Drink 3 -> 3 + 3 = 6 empty    |
+|  Round 2:  6 / 4 = 1 full bottle  (rem = 2) -> Drink 1 -> 2 + 1 = 3 empty    |
+|  Round 3:  3 < 4 (Cannot exchange further)                                    |
+|                                                                               |
+|  Total Bottles Drunk: 15 + 3 + 1 = 19                                         |
+|  Closed-Form: 15 + floor((15 - 1) / (4 - 1)) = 15 + floor(14 / 3) = 19       |
++-------------------------------------------------------------------------------+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The algorithm tracks the following state parameters:
 
----
+| State Parameter | Domain | Initial Value | Transition / Role |
+|---|---|---|---|
+| `empty_inventory` | Integer $\ge 0$ | $b$ | Current pool of empty bottles available for exchange. |
+| `bottles_consumed` | Integer $\ge 0$ | $b$ | Cumulative tally of all bottles drunk so far. |
+| `exchange_rate` | Integer $\ge 2$ | $e$ | Number of empty bottles required to obtain one new full bottle. |
+| `new_bottles` | Integer $\ge 0$ | $0$ | Number of full bottles acquired in the active transaction $\lfloor \text{empty} / e \rfloor$. |
+
+> [!IMPORTANT]
+> **Net Depreciation Invariant**: Each exchange event consumes $e$ empty bottles and replenishes $1$ empty bottle, reducing the net empty inventory by exactly $e - 1$ while increasing total consumption by $1$.
+
+```mermaid
+flowchart TD
+    accTitle: Water Bottle Exchange Simulation Flow
+    accDescr: Flowchart illustrating initial consumption followed by loop exchanging empty bottles until fewer than numExchange remain.
+    A["Initial: numBottles = 15, numExchange = 4"] --> B["bottles_consumed = 15, empty = 15"]
+    B --> C{"empty >= numExchange ?"}
+    C -->|Yes| D["new_full = empty // numExchange"]
+    D --> E["bottles_consumed += new_full"]
+    E --> F["empty = (empty % numExchange) + new_full"]
+    F --> C
+    C -->|No| G["Terminated: Return bottles_consumed"]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What one exchange-and-drink cycle changes
+We walk through the representative instance $b = 15$, $e = 4$.
 
-The source begins with `ans = numBottles` because every initially full bottle can certainly be drunk. After those drinks, the same number of empty bottles exists.
-
-Whenever at least `numExchange` bottles are available for exchange, spending that many empties obtains one full bottle. Drinking that new bottle adds one to the answer and returns one empty bottle.
-
-The net number of available bottles therefore decreases by
-
-$$
-numExchange - 1.
-$$
-
-That is exactly why each loop executes
-
-`numBottles -= numExchange - 1`
-
-and `ans += 1`.
-
-Although the variable is still named `numBottles`, after initialization it is best understood as the current number of bottles available in the exchange cycle, effectively empties after all currently counted full bottles have been drunk.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numBottles": 9, "numExchange": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization Phase
+- Drink all $15$ initial bottles.
+- $\text{bottles\_consumed} = 15$.
+- $\text{empty\_inventory} = 15$.
 
 ---
 
-### Step 2: Why the loop condition is correct
-
-An exchange is possible exactly when the current bottle count is at least `numExchange`. If fewer remain, no combination of waiting or rearranging can create another full bottle, because no new empty bottle appears without first obtaining and drinking a full one.
-
-The loop stops at that point, and `ans` already includes every full bottle ever drunk.
-
-The guarantee `numExchange >= 2` ensures each iteration reduces `numBottles` by at least one. The process must terminate. If the exchange cost were one, every empty could be exchanged for a full bottle that produces another empty, creating an infinite process.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Exchange Round 1
+- Current empty inventory: $15 \ge 4$.
+- Number of full bottles obtained:
+  $$\text{new\_full} = \left\lfloor \frac{15}{4} \right\rfloor = 3$$
+- Unexchanged empty bottles:
+  $$\text{rem} = 15 \bmod 4 = 3$$
+- Drink the $3$ new bottles:
+  $$\text{bottles\_consumed} \leftarrow 15 + 3 = 18$$
+- New empty inventory:
+  $$\text{empty\_inventory} \leftarrow \text{rem} + \text{new\_full} = 3 + 3 = 6$$
 
 ---
 
-### Step 3: A trace for nine bottles and exchange cost three
-
-Initially, `ans = 9` and nine empty bottles remain conceptually.
-
-- Exchange three and drink the result: the usable count drops by two to seven, and answer becomes ten.
-- Repeat until the counts move from seven to five, then three, then one.
-- Four extra bottles have been drunk, so the result is thirteen.
-
-This per-bottle loop differs from batching all possible simultaneous exchanges, but both simulate the same conservation rule.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `13` |
+### Exchange Round 2
+- Current empty inventory: $6 \ge 4$.
+- Number of full bottles obtained:
+  $$\text{new\_full} = \left\lfloor \frac{6}{4} \right\rfloor = 1$$
+- Unexchanged empty bottles:
+  $$\text{rem} = 6 \bmod 4 = 2$$
+- Drink the $1$ new bottle:
+  $$\text{bottles\_consumed} \leftarrow 18 + 1 = 19$$
+- New empty inventory:
+  $$\text{empty\_inventory} \leftarrow \text{rem} + \text{new\_full} = 2 + 1 = 3$$
 
 ---
+
+### Exchange Round 3
+- Current empty inventory: $3 < 4$.
+- Cannot perform further market exchanges.
+- The loop terminates.
+
+Total bottles consumed: $19$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numBottles": 9, "numExchange": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `13` | Verified |
+We collect the complete inventory progression and exchange transactions in the trace table below.
 
----
+| Iteration Stage | Empty Bottles at Start | Div Mod Analysis | New Full Bottles Acquired | Bottles Drunk in Round | Remaining Empties Before Drinking | Updated Empty Pool | Cumulative Consumption |
+|---|---|---|---|---|---|---|---|
+| Initialization | $0$ (Start) | Direct consumption | $15$ | $15$ | $0$ | $15$ | $15$ |
+| Round 1 | $15$ | $15 = 3 \times 4 + 3$ | $3$ | $3$ | $3$ | $3 + 3 = 6$ | $18$ |
+| Round 2 | $6$ | $6 = 1 \times 4 + 2$ | $1$ | $1$ | $2$ | $2 + 1 = 3$ | **$19$** |
+| Termination | $3$ | $3 < 4$ (Insufficient) | $0$ | $0$ | $3$ | $3$ | **$19$** |
+
+### Mathematical Closed-Form Evaluation
+
+Applying the net depreciation formula:
+$$\begin{aligned}
+\text{Total} &= b + \left\lfloor \frac{b - 1}{e - 1} \right\rfloor \\
+             &= 15 + \left\lfloor \frac{15 - 1}{4 - 1} \right\rfloor \\
+             &= 15 + \left\lfloor \frac{14}{3} \right\rfloor \\
+             &= 15 + 4 \\
+             &= 19
+\end{aligned}$$
+The closed-form arithmetic calculation matches the simulation output with precision.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Every bottle counted in `bottles_consumed` is either an initial bottle or acquired via a legitimate market transaction with $\text{numExchange}$ empty bottles.
+No empty bottle is double-counted, as $k \times e$ bottles are deducted from the inventory whenever $k$ full bottles are received.
+Because the simulation halts as soon as $\text{empty} < e$, no illegal exchanges are made.
+Thus, the computed consumption is physically realizable and sound.
 
----
+### Completeness
+
+At any point where $\text{empty} \ge e$, exchanging $\lfloor \text{empty} / e \rfloor$ bottles maximizes the immediate beverage intake without reducing future exchange opportunities (since delaying an exchange cannot increase the total number of bottles obtained).
+Because the exchange relation is strictly monotone, the greedy exchange strategy attains the maximum possible total consumption, proving completeness.
 
 ## 6. Traps This Instance Exposes
 
-- **Closed-form calculation:** Return `B + (B - 1) // (E - 1)`. This achieves the manifest's true $O(1)$ time and $O(1)$ space.
-- **Batch exchanges:** Compute quotient and remainder of current empties to process many exchanges at once. It takes logarithmic-like rounds and is easy to simulate explicitly.
-- **Drink one full bottle at a time:** It is correct but performs more state updates than the net-change loop.
-- **Fewer bottles than exchange cost:** The loop never runs, and the answer is the initial bottle count.
-- **Exact exchange threshold:** One exchange produces exactly one additional drink and leaves one empty.
-- **Exchange cost two:** Every extra drink reduces the pool by one, producing the most loop iterations.
-- **One initial bottle:** No exchange is possible under the valid minimum cost two.
-- **Exchange cost one:** It would imply infinitely many drinks, which is why the contract excludes it.
-- **Unused final empties:** They cannot contribute to another exchange and correctly add no drinks.
-- **At most maximum consumption:** There is no strategic reason to skip an available exchange.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Borrowing Trap**: Assuming you can borrow an empty bottle from a friend, exchange, drink, and return the empty bottle. Under standard problem rules, you cannot borrow bottles; you must possess $e$ empty bottles before making an exchange. The closed-form $\lfloor b / (e - 1) \rfloor$ assumes borrowing is permitted, which yields $15 + \lfloor 15/3 \rfloor = 20$ (an overcount by 1). The correct non-borrowing formula is $\lfloor (b - 1) / (e - 1) \rfloor$.
+- **Modulo Remainder Neglect**: Forgetting to add the unexchanged remainder $\text{empty} \bmod e$ back to the new empties. For $b = 15, e = 4$, if the $3$ remaining bottles from round 1 were discarded, the inventory in round 2 would only be $3$ instead of $3 + 3 = 6$, missing the second exchange entirely.
+- **Infinite Loop When $e = 1$**: If $e = 1$, drinking a bottle gives $1$ empty, which trades for $1$ full bottle, running indefinitely. The problem constraints guarantee $e \ge 2$, ensuring strictly decreasing empty inventories and guaranteed termination.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B/(E-1)$. Let $B$ be the initial full-bottle count and $E$ the exchange requirement. Every iteration decreases the current count by $E-1$. The number of iterations is
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Simulation Method**:
+  In each exchange round, the inventory decreases from $E$ to approximately $E / e + (E \bmod e) \approx E / e$.
+  Because $e \ge 2$, the number of empty bottles decreases geometrically:
+  $$E_{k+1} \le \frac{E_k}{2} + 1$$
+  The while-loop executes at most $\mathcal{O}(\log_e b)$ iterations.
+  With $b \le 100$ and $e \ge 2$, the loop runs at most $7$ times.
+- **Closed-Form Method**:
+  Evaluating $b + (b - 1) // (e - 1)$ requires $\mathcal{O}(1)$ basic arithmetic operations.
+- Overall time complexity is strictly $\mathcal{O}(1)$ or $\mathcal{O}(\log b)$.
+
+### Auxiliary Space Complexity
+
+- The algorithm maintains scalar integer registers (`ans`, `numBottles`, `numExchange`).
+- Auxiliary space complexity is strictly $\mathcal{O}(1)$.

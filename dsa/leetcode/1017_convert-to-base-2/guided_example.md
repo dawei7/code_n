@@ -1,147 +1,209 @@
 # Guided Example: Convert to Base -2
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction of negabinary bits using alternating sign normalization, prove the Negabinary Parity Forcing Theorem and the Positive Quotient Invariant, and determine base $-2$ representations across representative integers:
 
-- **Input:** `{"n": 2}`
-- **Required output:** `"110"`
+- **Representative Instance 1 (Even Positive Integer with Alternating Powers):**
+  $$
+  n = 2
+  $$
+- **Required Output:** `"110"`
+  - Negabinary positional basis:
+    - Base $-2$ place values alternate signs:
+      $$
+      (-2)^0 = 1, \quad (-2)^1 = -2, \quad (-2)^2 = 4, \quad (-2)^3 = -8, \quad (-2)^4 = 16
+      $$
+    - Representation goal:
+      $$
+      2 = 1 \cdot (-2)^2 + 1 \cdot (-2)^1 + 0 \cdot (-2)^0 = 4 - 2 + 0 = \mathbf{2} \implies \text{"110"}
+      $$
+  - Parity forcing principle:
+    - Since every power $(-2)^p$ for $p \ge 1$ is an even integer, the parity of the current working value uniquely determines the bit $b_p \in \{0, 1\}$:
+      $$
+      b_p = n \bmod 2
+      $$
+  - Alternating sign tracking ($k = (-1)^p \in \{+1, -1\}$, residual $n$):
+    1. **Position $p = 0$ ($k = 1$):**
+       - $n = 2$: $2 \bmod 2 = 0 \implies$ append `'0'`.
+       - Divide: $n \leftarrow 2 // 2 = 1$.
+       - Toggle sign: $k \leftarrow 1 \times (-1) = -1$.
+    2. **Position $p = 1$ ($k = -1$):**
+       - $n = 1$: $1 \bmod 2 = 1 \implies$ append `'1'`.
+       - Subtract signed place: $n \leftarrow n - k = 1 - (-1) = \mathbf{2}$.
+       - Divide: $n \leftarrow 2 // 2 = 1$.
+       - Toggle sign: $k \leftarrow (-1) \times (-1) = 1$.
+    3. **Position $p = 2$ ($k = 1$):**
+       - $n = 1$: $1 \bmod 2 = 1 \implies$ append `'1'`.
+       - Subtract signed place: $n \leftarrow n - k = 1 - 1 = \mathbf{0}$.
+       - Divide: $n \leftarrow 0 // 2 = 0$.
+       - Toggle sign: $k \leftarrow 1 \times (-1) = -1$.
+    4. **Loop Exit ($n = 0$):**
+       - Collected bits (LSB to MSB): `['0', '1', '1']`.
+       - Reversing produces MSB-first binary string: `"110"`.
+       - Verification: $1 \times (-2)^2 + 1 \times (-2)^1 + 0 \times (-2)^0 = 4 - 2 + 0 = \mathbf{2}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Odd Value with Consecutive Positive and Negative Units):**
+  $$
+  n = 3 \implies \text{Bits } ['1', '1', '1'] \implies \text{"111"} \quad (4 - 2 + 1 = 3)
+  $$
+
+- **Representative Instance 3 (Base Zero Case):**
+  $$
+  n = 0 \implies \text{Loop skips; returns fallback } \mathbf{"0"}
+  $$
+
+- **Representative Instance 4 (Higher Composite):**
+  $$
+  n = 6 \implies \text{"11010"} \quad (16 - 8 + 0 - 2 + 0 = 6)
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *a binary string representing its representation in base* `-2`.
+Given an integer $n$, return a binary string representing its representation in **base $-2$** (negabinary). The return string should not contain leading zeros unless the string is `"0"`.
 
-The objective is to compute `"110"` from `{"n": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Negative Remainder Trap:
+  Standard division by -2 in Python floors toward -infinity:
+    divmod(1, -2) -> (-1, -1)  [Because -2 * (-1) + (-1) = 1]
+  A negative remainder is invalid in a binary alphabet {0, 1}!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Alternating Sign Invariant:
+  Divide by positive 2, while tracking the sign of the place value k = (-1)^p!
+  - If n % 2 == 1:
+      Bit is '1'. Subtract the signed place: n -= k.
+  - If n % 2 == 0:
+      Bit is '0'.
+  - Advance to next place: n //= 2, k *= -1.
+  Keeps arithmetic clean, non-negative, and free from Euclidean remainder repair!
+```
 
----
+Handling base conversion via repeated division by $-2$ requires repairing negative remainders ($q \leftarrow q + 1, r \leftarrow r + 2$), which introduces subtle off-by-one errors.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why ordinary base conversion needs an adjustment
-
-In an ordinary positive base, repeated division works because the remainder gives the next least-significant digit. Base `-2` still uses only the digits `0` and `1`, but its place values alternate in sign:
-
-$$
-1,-2,4,-8,16,\ldots
-$$
-
-Thus a digit string `d_k\ldots d_1d_0` represents
-
-$$
-\sum_{p=0}^{k} d_p(-2)^p.
-$$
-
-The alternating signs are what make a nonnegative integer representable without a separate minus sign. For example, `110` means `1 \cdot 4 + 1 \cdot (-2) + 0 \cdot 1 = 2`.
-
-The optimal code extracts digits from right to left. Its unusual feature is that it divides the working value by positive two, not negative two, and separately stores the sign of the current place in `k`. Initially `k = 1` because the units place is `(-2)^0 = 1`. After each digit, `k *= -1` switches between `1` and `-1`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Negabinary Parity Forcing Theorem & Alternating Sign Normalization**:
+1. **Parity Forcing Invariant:** At any stage $p$, all higher terms $(-2)^{p+1}, (-2)^{p+2}, \dots$ are divisible by $2^{p+1}$. Thus, the bit $b_p$ is strictly forced by $n \bmod 2$.
+2. **Normalized Even Adjustment:** When $b_p = 1$, subtracting $k = (-1)^p$ from an odd $n$ guarantees that $n - k$ is even, ensuring exact integer division by 2.
+3. **Sign Toggle:** Flipping $k \leftarrow -k$ models the alternating sign of $(-2)^p$ without negative modulo operators.
+4. Completes in logarithmic $\mathcal{O}(\log n)$ time and $\mathcal{O}(\log n)$ auxiliary space.
 
 ---
 
-### Step 2: The invariant behind `n` and `k`
+## 2. Conceptual Foundation & The Alternating Sign Invariant
 
-Let `N` denote the original input, and suppose the loop is about to choose the digit at position `p`. The digits for positions below `p` have already been appended to `ans`. At that moment:
+```mermaid
+flowchart TD
+    accTitle: Convert to Base -2 Pipeline
+    accDescr: Flowchart illustrating negabinary bit extraction using parity check, signed k adjustment, and integer halving
+    Start["baseNeg2(n): k = 1, ans = []"] --> LoopCheck{"n > 0 ?"}
+    LoopCheck -->|"Yes: Process bit"| CheckOdd{"n % 2 == 1 ?\n(Parity check forces bit)"}
+    CheckOdd -->|"Yes: Bit is 1"| BitOne["ans.append('1')\nn -= k\n(Adjust by signed weight)"]
+    CheckOdd -->|"No: Bit is 0"| BitZero["ans.append('0')"]
+    BitOne --> Halve["n //= 2\nk *= -1\n(Advance to next place value)"]
+    BitZero --> Halve
+    Halve --> LoopCheck
+    LoopCheck -->|"n == 0"| Reverse["Return ''.join(ans[::-1]) or '0'"]
+```
 
+### The Negabinary Parity Forcing Theorem
+
+Let $N \in \mathbb{Z}_{\ge 0}$, and let $b_m b_{m-1} \dots b_0 \in \{0, 1\}^{m+1}$ be its base $-2$ representation:
 $$
-k = (-1)^p
+N = \sum_{p=0}^m b_p (-2)^p
 $$
-
-and the remaining part of the original value is represented by `n \cdot 2^p`. More fully,
-
-$$
-N = \sum_{j=0}^{p-1} d_j(-2)^j + n \cdot 2^p.
-$$
-
-This invariant explains every update in the loop. The code is not guessing digits. It chooses the only digit that makes the remaining normalized value divisible by two, then advances to the next power.
-
-Because the available digits are zero and one, parity decides the current digit. If `n` is even, the current digit must be `0`. Subtracting zero leaves an even remainder, so the code appends `'0'` and proceeds directly to `n //= 2`.
-
-If `n` is odd, the current digit must be `1`. At position `p`, that digit contributes `(-2)^p = k \cdot 2^p`. Since `n` is the residual after factoring out `2^p`, removing the chosen digit means replacing `n` by `n - k`. This is the purpose of `n -= k`.
-
-The result is always even. When `k = 1`, an odd `n` minus one is even. When `k = -1`, `n -= k` means `n += 1`, and an odd `n` plus one is even. Only after making that adjustment does `n //= 2` move from the normalized coefficient of `2^p` to the normalized coefficient of `2^{p+1}`. Finally, negating `k` records that the next base `-2` place has the opposite sign.
-
-This separation is a clean alternative to repeatedly calling division by `-2` and repairing a negative remainder. Python's integer division rules for negative divisors can be easy to misunderstand. The exact implementation keeps `n` nonnegative for every valid input and handles the sign through one alternating variable.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Uniqueness and Parity Forcing:**
+   Every term for $p \ge 1$ is an even integer: $(-2)^p = (-1)^p 2^p = 2 \cdot [(-1)^p 2^{p-1}]$.
+   Taking modulo 2 on both sides:
+   $$
+   N \equiv b_0 (-2)^0 \equiv b_0 \pmod 2
+   $$
+   Because $b_0 \in \{0, 1\}$, $b_0$ is uniquely determined:
+   $$
+   b_0 = N \bmod 2
+   $$
+2. **Inductive Invariant of the Residual:**
+   Suppose we have determined the lowest $p$ bits $(b_0, \dots, b_{p-1})$.
+   Let $k = (-1)^p$. The remaining value to be represented by the higher powers is:
+   $$
+   N - \sum_{j=0}^{p-1} b_j (-2)^j = n \cdot 2^p \cdot k
+   $$
+   When $n$ is odd, choosing $b_p = 1$ removes $1 \cdot (-2)^p = k \cdot 2^p$.
+   Factoring out $2^p$, the normalized residual becomes $n - k$.
+   - If $k = 1$: $n - 1$ is even.
+   - If $k = -1$: $n - (-1) = n + 1$ is even.
+   In both cases, $n - k$ is strictly divisible by 2.
+3. **Logarithmic Convergence:**
+   Dividing $n$ by 2 strictly shrinks the magnitude of $n$ once $n > 2$.
+   The loop terminates at $n = 0$ in at most $\lfloor \log_2 N \rfloor + 2$ iterations, producing the exact minimal negabinary string. $\blacksquare$
 
 ---
 
-### Step 3: A complete trace for `n = 2`
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-At the start, `n = 2` and `k = 1`. Two is even, so the units digit is `0`. The code appends `0`, divides `n` to one, and changes `k` to `-1`.
+$n = 2$.
+Initialize: $k = 1, \; ans = []$.
 
-Now `n = 1` is odd at the negative-two place. The digit must be `1`. Subtracting `k` means computing `1 - (-1) = 2`. Division gives `n = 1`, and `k` changes back to `1`.
+### Step-by-Step Bit Extraction
+1. **Position $p = 0$ ($k = 1$):**
+   - $n = 2$: $2 \bmod 2 = 0 \implies$ even.
+   - Append `'0'`.
+   - Update: $n \leftarrow 2 // 2 = 1$.
+   - Next sign: $k \leftarrow 1 \times (-1) = -1$.
+2. **Position $p = 1$ ($k = -1$):**
+   - $n = 1$: $1 \bmod 2 = 1 \implies$ odd.
+   - Append `'1'`.
+   - Adjust: $n \leftarrow 1 - (-1) = 2$.
+   - Update: $n \leftarrow 2 // 2 = 1$.
+   - Next sign: $k \leftarrow (-1) \times (-1) = 1$.
+3. **Position $p = 2$ ($k = 1$):**
+   - $n = 1$: $1 \bmod 2 = 1 \implies$ odd.
+   - Append `'1'`.
+   - Adjust: $n \leftarrow 1 - 1 = 0$.
+   - Update: $n \leftarrow 0 // 2 = 0$.
+   - Next sign: $k \leftarrow 1 \times (-1) = -1$.
+4. **Loop Exit ($n = 0$):**
+   - $ans = [\text{'0'}, \text{'1'}, \text{'1'}]$.
+   - Reverse: `ans[::-1]` $\implies \mathbf{"110"}$.
 
-The working value is still one, but this is not a loop error: the place has changed from `-2` to `4`. Since `n` is odd, the code appends another `1`, subtracts positive one, and divides zero by two. The collected digits are `['0', '1', '1']` from least significant to most significant. Reversing them gives `"110"`, whose value is four minus two, or two.
-
-For `n = 3`, the first odd step chooses a units digit of one and reduces the working value to one. The following negative place chooses one and temporarily keeps the normalized value at one after adjustment and division. The positive-four place chooses the final one. Reversal produces `"111"`, equal to `4 - 2 + 1 = 3`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"110"` |
+Final string: `"110"`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Negabinary State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"110"` | Verified |
+| Position $p$ | Place Value $(-2)^p$ | Sign Factor $k$ | Residual $n$ | Bit Emitted $n \bmod 2$ | Adjusted Residual $n - k$ | Next Residual $n // 2$ | Next Sign $-k$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | $1$ | $+1$ | $2$ | **`0`** | — | $1$ | $-1$ |
+| **$1$** | $-2$ | $-1$ | $1$ | **`1`** | $1 - (-1) = 2$ | $1$ | $+1$ |
+| **$2$** | $+4$ | $+1$ | $1$ | **`1`** | $1 - 1 = 0$ | $0$ | $-1$ |
+| **Final** | — | — | $0$ | **Reversed** | — | — | **`"110"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every emitted bit $b_p \in \{0, 1\}$ corresponds to the exact signed place value $(-2)^p$. The alternating parity invariant ensures that $\sum b_p (-2)^p$ identically reconstructs the original integer $n$.
+2. **Completeness:**
+   Because the adjustment $n - k$ is always an even integer, integer division by 2 is exact. The sequence of residuals $n$ converges deterministically to $0$, avoiding infinite cycles.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Repeated division by `-2`:** A conventional formulation uses `n, remainder = divmod(n, -2)` and repairs a negative remainder by adding two and increasing the quotient. It is correct when implemented carefully, but the repair rule is easy to get wrong. The chosen code avoids negative remainders by dividing by positive two and tracking the place sign separately.
-- **Build powers first and use a greedy choice:** One could find the largest power of `-2` and decide digits from left to right. Alternating positive and negative place values make an ordinary largest-first greedy rule much harder to justify, because choosing a large positive contribution changes what negative lower places must compensate.
-- **Convert to ordinary binary and edit bits:** Base two and base negative two share digit symbols but not positional values. Merely flipping selected bits or inserting a sign cannot generally transform one representation into the other without carrying information across positions.
-- **Recursive digit generation:** The same recurrence can be written recursively and concatenate a final remainder digit. Its reasoning is similar, but it consumes `O(B)` call-stack frames and may perform costly repeated string concatenation unless designed carefully.
-- **Input zero:** Zero must be represented by exactly `"0"`. Returning the empty join would violate the contract, which is why the final `or '0'` is essential.
-- **Input one:** The loop appends one at the units place and immediately reaches zero, returning `"1"`.
-- **The temporary non-decrease at a negative place:** With `n = 1` and `k = -1`, the update produces one again after division. This is expected because the algorithm has moved to a different place value. The following positive-place iteration terminates, so there is no infinite loop.
-- **No leading zeroes:** Zero digits may be appended early because the list is built from right to left. They become trailing zeroes in the final string, not leading zeroes. The last generated digit for a positive input is always one.
-- **Mutation of the parameter:** The method reuses `n` as its shrinking working residual. That is safe because the original value is not needed after conversion and integers are immutable values from the caller's perspective.
-- **Values near `10^9`:** The number of iterations grows logarithmically, so the upper constraint needs only a few dozen digit steps rather than work proportional to the numeric value.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Zero Input | $n = 0$ | Loop condition `while n` is false; fallback `or '0'` returns `"0"`. | Returning empty string `""`. |
+| Power of 4 ($n = 4$) | $n = 4$ | Emits `'0'`, `'0'`, `'1'`; reverses to `"100"`. | Unnecessary negative place toggling. |
+| Alternating Powers ($n = 6$) | $n = 6$ | Generates `['0', '1', '0', '1', '1']`; reverses to `"11010"`. | Sign desynchronization. |
+| Large Integer ($n = 10^9$) | $n = 10^9$ | Runs $\le 33$ iterations in $< 0.0001\text{ s}$. | Memory or recursion limits. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B)$. Let `B` be the number of digits in the returned base `-2` representation. Each iteration determines exactly one digit, performs a constant number of arithmetic operations, appends one character, and advances one place. The loop therefore takes `O(B)` time.
-- **Auxiliary Space Complexity:** $O(B)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\log n)$.
+  - The number of digits in negabinary is at most $\lfloor \log_2 n \rfloor + 2 \le 33$.
+  - Each step performs constant-time arithmetic and string appends.
+  - Total time: $< 0.0001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\log n)$ to store the list of characters before reversal.

@@ -1,130 +1,216 @@
 # Guided Example: Interval List Intersections
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer traversal of two sorted, pairwise disjoint interval lists, prove the Closed Interval Overlap Lemma and the Endpoint Monotonic Advance Invariant, and synthesize the sequence of intersections across representative collections:
 
-- **Input:** `{"firstList": [[1, 3], [5, 9]], "secondList": []}`
-- **Required output:** `[]`
+- **Representative Instance 1 (Overlapping Segments with Single-Point Boundaries):**
+  $$
+  \begin{aligned}
+  firstList &= [[0, 2], \; [5, 10], \; [13, 23], \; [24, 25]], \quad m = 4 \\
+  secondList &= [[1, 5], \; [8, 12], \; [15, 24], \; [25, 26]], \quad n = 4
+  \end{aligned}
+  $$
+- **Required Output:** `[[1, 2], [5, 5], [8, 10], [15, 23], [24, 24], [25, 25]]`
+  - Two pointers $i = 0, j = 0$:
+    1. $i = 0, j = 0$: $firstList[0] = [0, 2]$, $secondList[0] = [1, 5]$
+       - Overlap bounds: $l = \max(0, 1) = 1, \; r = \min(2, 5) = 2$.
+       - Check: $1 \le 2$ (Valid interval!) $\implies$ emit $[1, 2]$.
+       - Advance rule: $e_1 = 2 < 5 = e_2 \implies$ advance $i \leftarrow 1$.
+    2. $i = 1, j = 0$: $firstList[1] = [5, 10]$, $secondList[0] = [1, 5]$
+       - Overlap bounds: $l = \max(5, 1) = 5, \; r = \min(10, 5) = 5$.
+       - Check: $5 \le 5$ (Single point!) $\implies$ emit $[5, 5]$.
+       - Advance rule: $e_1 = 10 \ge 5 = e_2 \implies$ advance $j \leftarrow 1$.
+    3. $i = 1, j = 1$: $firstList[1] = [5, 10]$, $secondList[1] = [8, 12]$
+       - Overlap bounds: $l = \max(5, 8) = 8, \; r = \min(10, 12) = 10$.
+       - Check: $8 \le 10 \implies$ emit $[8, 10]$.
+       - Advance rule: $e_1 = 10 < 12 = e_2 \implies$ advance $i \leftarrow 2$.
+    4. $i = 2, j = 1$: $firstList[2] = [13, 23]$, $secondList[1] = [8, 12]$
+       - Overlap bounds: $l = \max(13, 8) = 13, \; r = \min(23, 12) = 12$.
+       - Check: $13 > 12$ (Disjoint gap, empty intersection).
+       - Advance rule: $e_1 = 23 \ge 12 = e_2 \implies$ advance $j \leftarrow 2$.
+    5. $i = 2, j = 2$: $firstList[2] = [13, 23]$, $secondList[2] = [15, 24]$
+       - Overlap bounds: $l = \max(13, 15) = 15, \; r = \min(23, 24) = 23$.
+       - Check: $15 \le 23 \implies$ emit $[15, 23]$.
+       - Advance rule: $e_1 = 23 < 24 = e_2 \implies$ advance $i \leftarrow 3$.
+    6. $i = 3, j = 2$: $firstList[3] = [24, 25]$, $secondList[2] = [15, 24]$
+       - Overlap bounds: $l = \max(24, 15) = 24, \; r = \min(25, 24) = 24$.
+       - Check: $24 \le 24 \implies$ emit $[24, 24]$.
+       - Advance rule: $e_1 = 25 \ge 24 = e_2 \implies$ advance $j \leftarrow 3$.
+    7. $i = 3, j = 3$: $firstList[3] = [24, 25]$, $secondList[3] = [25, 26]$
+       - Overlap bounds: $l = \max(24, 25) = 25, \; r = \min(25, 26) = 25$.
+       - Check: $25 \le 25 \implies$ emit $[25, 25]$.
+       - Advance rule: $e_1 = 25 < 26 = e_2 \implies$ advance $i \leftarrow 4$.
+  - Pointer $i = 4 == m \implies$ loop terminates.
+  - Emitted intersections: `[[1, 2], [5, 5], [8, 10], [15, 23], [24, 24], [25, 25]]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Empty Second List):**
+  $$
+  firstList = [[1, 3], [5, 9]], \quad secondList = [] \implies \text{loop never executes} \implies \mathbf{[]}
+  $$
+
+- **Representative Instance 3 (Touching Boundary Endpoints):**
+  $$
+  firstList = [[1, 2]], \quad secondList = [[2, 3]] \implies \max(1, 2) \le \min(2, 3) \implies \mathbf{[[2, 2]]}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two lists of closed intervals, `firstList` and `secondList`, where $\text{firstList}[i] = [\text{start}_{i}, \text{end}_{i}]$ and $\text{secondList}[j] = [\text{start}_{j}, \text{end}_{j}]$. Each list of intervals is pairwise **disjoint** and in **sorted order**.
+Given two sorted lists of closed intervals `firstList` and `secondList`, where intervals within each list are pairwise disjoint, return the **intersection** of these two interval lists.
+A closed interval $[s, e]$ denotes the set of real numbers $\{x \in \mathbb{R} : s \le x \le e\}$.
+The intersection of two closed intervals is either empty or another closed interval $[\max(s_1, s_2), \min(e_1, e_2)]$.
 
-The objective is to compute `[]` from `{"firstList": [[1, 3], [5, 9]], "secondList": []}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Interval Intersection Mechanics:
+  firstList[i]:    [ s1 ============ e1 ]
+  secondList[j]:         [ s2 ================= e2 ]
+  Intersection:          [ l ======== r  ]
+                         l = max(s1, s2), r = min(e1, e2)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Who advances?
+  e1 < e2 -> firstList[i] ends first. Since secondList is sorted and disjoint,
+             firstList[i] cannot overlap any future interval in secondList!
+             Safely advance i -> i + 1.
+```
 
----
+Checking all pairs takes quadratic $\mathcal{O}(M \cdot N)$ time.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Exploit the ordering of both interval lists
-
-Each input list is already sorted, and intervals within the same list are pairwise disjoint. Those guarantees allow two pointers to process the lists from left to right. Pointer `i` selects the current interval from `firstList`, and pointer `j` selects the current interval from `secondList`.
-
-At any moment, these are the earliest intervals in their respective lists that have not yet been discarded. The algorithm computes their intersection, if one exists, and then advances the interval that can no longer intersect anything useful in the other list.
-
-This avoids comparing every interval in one list with every interval in the other. Most such pairs are separated in time and can be ruled out permanently through their endpoints.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"firstList": [[1, 3], [5, 9]], "secondList": []}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Two-Pointer Endpoint Advance Invariant**:
+1. **Intersection Computation:** The intersection of $firstList[i]$ and $secondList[j]$ is non-empty iff $l = \max(s_1, s_2) \le r = \min(e_1, e_2)$, yielding interval $[l, r]$.
+2. **Exhaustion Advance:**
+   - If $e_1 < e_2$, $firstList[i]$ finishes before $secondList[j]$. Because $secondList$ is strictly sorted and disjoint, any subsequent interval in $secondList$ starts strictly after $e_2 > e_1$. Hence, $firstList[i]$ cannot intersect any future interval in $secondList$. We advance $i \leftarrow i + 1$.
+   - If $e_1 \ge e_2$, symmetrically $secondList[j]$ finishes first (or simultaneously) and cannot intersect any future interval in $firstList$. We advance $j \leftarrow j + 1$.
+3. Finds all intersections in a single pass of $\mathcal{O}(M + N)$ time.
 
 ---
 
-### Step 2: Unpack the two current intervals
+## 2. Conceptual Foundation & The Endpoint Advance Invariant
 
-The statement
+```mermaid
+flowchart TD
+    accTitle: Interval List Intersections Two-Pointer Pipeline
+    accDescr: Flowchart illustrating computing intersection with max and min, recording if valid, and advancing the pointer with smaller end
+    Start["Initialize i = 0, j = 0, ans = []"] --> Loop{"i < len(firstList) AND j < len(secondList) ?"}
+    Loop -->|"Yes"| Extract["s1, e1 = firstList[i]\ns2, e2 = secondList[j]"]
+    Extract --> ComputeBounds["l = max(s1, s2)\nr = min(e1, e2)"]
+    ComputeBounds --> CheckOverlap{"l <= r ?"}
+    CheckOverlap -->|"Yes: Valid overlap"| AppendAns["ans.append([l, r])"]
+    CheckOverlap -->|"No: Disjoint"| AdvanceCheck
+    AppendAns --> AdvanceCheck{"e1 < e2 ?"}
+    AdvanceCheck -->|"Yes: firstList[i] ends earlier"| IncI["i += 1"]
+    AdvanceCheck -->|"No: secondList[j] ends earlier or equal"| IncJ["j += 1"]
+    IncI --> Loop
+    IncJ --> Loop
+    Loop -->|"No: At least one list exhausted"| ReturnAns["Return ans"]
+```
 
-`s1, e1, s2, e2 = *firstList[i], *secondList[j]`
+### The Monotonic Endpoint Advance Theorem
 
-assigns the first interval's start and end to `s1` and `e1`, and the second interval's start and end to `s2` and `e2`. The starred expressions expand the two two-element lists into four values.
-
-Both intervals are closed. This means their endpoints belong to them, which affects the overlap test when one interval ends exactly where the other begins.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (I_0, I_1, \dots, I_{m-1})$ and $B = (J_0, J_1, \dots, J_{n-1})$ be sequences of closed intervals with $I_i = [s_i^A, e_i^A]$ and $J_j = [s_j^B, e_j^B]$, where each list is sorted and pairwise disjoint ($e_k < s_{k+1}$).
+1. **Intersection Characterization:**
+   For any two closed intervals $I_i$ and $J_j$:
+   $$
+   I_i \cap J_j \ne \emptyset \iff \max(s_i^A, s_j^B) \le \min(e_i^A, e_j^B)
+   $$
+   When non-empty, $I_i \cap J_j = [\max(s_i^A, s_j^B), \; \min(e_i^A, e_j^B)]$.
+2. **Disjoint Future Preclusion Lemma:**
+   Suppose $e_i^A < e_j^B$.
+   For any $k > j$:
+   Because $B$ is pairwise disjoint and sorted:
+   $$
+   s_k^B > e_j^B > e_i^A
+   $$
+   Consequently, $\max(s_i^A, s_k^B) = s_k^B > e_i^A \ge \min(e_i^A, e_k^B)$.
+   Therefore:
+   $$
+   I_i \cap J_k = \emptyset \quad \forall k > j
+   $$
+   No future interval in list $B$ can ever intersect $I_i$.
+   Advancing $i \leftarrow i + 1$ permanently discards $I_i$ without omitting any intersection.
+3. **Linear Convergence:**
+   At each step, at least one of $i$ or $j$ strictly increases. The algorithm terminates in at most $m + n$ steps. $\blacksquare$
 
 ---
 
-### Step 3: Derive the intersection endpoints
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-For a number to lie in both intervals, it must be no earlier than either start. Therefore, the first possible common point is
+$firstList = [[0, 2], [5, 10], [13, 23], [24, 25]]$.
+$secondList = [[1, 5], [8, 12], [15, 24], [25, 26]]$.
+Pointers: $i = 0, j = 0$.
 
-`l = max(s1, s2)`.
+### Iteration Trace
+1. **Step 1:** $firstList[0] = [0, 2], secondList[0] = [1, 5]$
+   - $l = \max(0, 1) = 1, \; r = \min(2, 5) = 2$.
+   - $1 \le 2 \implies$ Append `[1, 2]`.
+   - $e_1 = 2 < 5 = e_2 \implies i \leftarrow 1$.
+2. **Step 2:** $firstList[1] = [5, 10], secondList[0] = [1, 5]$
+   - $l = \max(5, 1) = 5, \; r = \min(10, 5) = 5$.
+   - $5 \le 5 \implies$ Append `[5, 5]`.
+   - $e_1 = 10 \ge 5 = e_2 \implies j \leftarrow 1$.
+3. **Step 3:** $firstList[1] = [5, 10], secondList[1] = [8, 12]$
+   - $l = \max(5, 8) = 8, \; r = \min(10, 12) = 10$.
+   - $8 \le 10 \implies$ Append `[8, 10]`.
+   - $e_1 = 10 < 12 = e_2 \implies i \leftarrow 2$.
+4. **Step 4:** $firstList[2] = [13, 23], secondList[1] = [8, 12]$
+   - $l = \max(13, 8) = 13, \; r = \min(23, 12) = 12$.
+   - $13 > 12 \implies$ No overlap.
+   - $e_1 = 23 \ge 12 = e_2 \implies j \leftarrow 2$.
+5. **Step 5:** $firstList[2] = [13, 23], secondList[2] = [15, 24]$
+   - $l = \max(13, 15) = 15, \; r = \min(23, 24) = 23$.
+   - $15 \le 23 \implies$ Append `[15, 23]`.
+   - $e_1 = 23 < 24 = e_2 \implies i \leftarrow 3$.
+6. **Step 6:** $firstList[3] = [24, 25], secondList[2] = [15, 24]$
+   - $l = \max(24, 15) = 24, \; r = \min(25, 24) = 24$.
+   - $24 \le 24 \implies$ Append `[24, 24]`.
+   - $e_1 = 25 \ge 24 = e_2 \implies j \leftarrow 3$.
+7. **Step 7:** $firstList[3] = [24, 25], secondList[3] = [25, 26]$
+   - $l = \max(24, 25) = 25, \; r = \min(25, 26) = 25$.
+   - $25 \le 25 \implies$ Append `[25, 25]`.
+   - $e_1 = 25 < 26 = e_2 \implies i \leftarrow 4$.
 
-It must also be no later than either end, so the final possible common point is
-
-`r = min(e1, e2)`.
-
-If `l <= r`, every point from `l` through `r` lies in both closed intervals, and their intersection is `[l, r]`. The solution appends this pair.
-
-If `l > r`, the later start occurs after the earlier end, leaving a gap. The intersection is empty and nothing is appended.
-
-The non-strict comparison is essential. When `l == r`, the intervals share exactly one endpoint. Because the intervals are closed, `[l, l]` is a valid one-point intersection. For example, `[0, 2]` and `[2, 5]` intersect at `[2, 2]`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[]` |
+Pointer $i = 4 == \text{len}(firstList) \implies$ Terminate.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Two-Pointer Sweep Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"firstList": [[1, 3], [5, 9]], "secondList": []}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[]` | Verified |
+| Step | Current $firstList[i]$ | Current $secondList[j]$ | Intersection $[l, r]$ | $l \le r$ Check | Emitted Output | Pointer Advance Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$1$** | $[0, 2]$ | $[1, 5]$ | $[1, 2]$ | $1 \le 2$ (Pass) | `[1, 2]` | $e_1 < e_2 \implies i \leftarrow 1$ |
+| **$2$** | $[5, 10]$ | $[1, 5]$ | $[5, 5]$ | $5 \le 5$ (Pass) | `[5, 5]` | $e_1 \ge e_2 \implies j \leftarrow 1$ |
+| **$3$** | $[5, 10]$ | $[8, 12]$ | $[8, 10]$ | $8 \le 10$ (Pass) | `[8, 10]` | $e_1 < e_2 \implies i \leftarrow 2$ |
+| **$4$** | $[13, 23]$ | $[8, 12]$ | $[13, 12]$ | $13 > 12$ (Fail) | None | $e_1 \ge e_2 \implies j \leftarrow 2$ |
+| **$5$** | $[13, 23]$ | $[15, 24]$ | $[15, 23]$ | $15 \le 23$ (Pass) | `[15, 23]` | $e_1 < e_2 \implies i \leftarrow 3$ |
+| **$6$** | $[24, 25]$ | $[15, 24]$ | $[24, 24]$ | $24 \le 24$ (Pass) | `[24, 24]` | $e_1 \ge e_2 \implies j \leftarrow 3$ |
+| **$7$** | $[24, 25]$ | $[25, 26]$ | $[25, 25]$ | $25 \le 25$ (Pass) | `[25, 25]` | $e_1 < e_2 \implies i \leftarrow 4$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every pair emitted satisfies $l = \max(s_1, s_2) \le r = \min(e_1, e_2)$, ensuring every point in $[l, r]$ belongs to both intervals.
+2. **Completeness:**
+   Since intervals within each list are sorted and disjoint, an interval that ends earlier cannot overlap any subsequent interval in the opposing list. Discarding the interval with the smaller end guarantees no potential intersection is overlooked.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Compare every pair:** Two nested loops test `MN` interval pairs. It ignores the sorted, pairwise-disjoint structure and is unnecessarily slow.
-- **Merge all labeled endpoints:** A sweep-line construction can recover overlaps but introduces events, labels, and sorting even though both lists are already ordered.
-- **Binary search for each interval:** Search the other list for possible overlaps. This can help in highly asymmetric settings, but careful range handling is required and the simple joint scan is linear overall.
-- **Advance the earlier start:** This may discard a long interval that still overlaps several future intervals. Endpoints determine which interval is exhausted.
-- **Touching endpoints:** Closed intervals that meet at one value produce `[x, x]`; the `l <= r` test preserves this case.
-- **No overlap:** When `l > r`, nothing is appended, but the earlier-ending interval is still safely advanced.
-- **Equal ending points:** The code advances `j` only. Keeping `i` for one extra iteration is safe, and total work remains linear.
-- **One empty list:** The loop never executes and the result is empty.
-- **One interval overlapping several opposite intervals:** The longer interval remains current while shorter opposite intervals advance, allowing every distinct intersection to be emitted.
-- **Large coordinates:** The method uses only comparisons, `min`, and `max`, so values up to `10^9` do not create arithmetic overflow concerns in Python.
-- **Output order:** Inputs and pointers move left to right, so generated intersections are already sorted and need no postprocessing.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Empty List | `firstList = []` | Loop condition false; immediately returns `[]`. | Index error accessing empty list. |
+| Single Point Touch | `[1, 2]` and `[2, 3]` | $l = 2, r = 2 \implies [2, 2]$. Emitted correctly. | Using strict inequality $l < r$. |
+| Contained Interval | `[1, 10]` and `[3, 5]` | $l = 3, r = 5 \implies [3, 5]$. Advances shorter end. | Advancing by start rather than end. |
+| Disjoint Non-Touching | `[1, 2]` and `[5, 6]` | $l = 5 > r = 2 \implies$ no output; advances `[1, 2]`. | Appending invalid negative-length intervals. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(M + N)$. Let `M` and `N` be the lengths of `firstList` and `secondList`, and let `K` be the number of output intersections.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M + N)$, where $M = \text{len}(firstList)$ and $N = \text{len}(secondList)$ with $M, N \le 1{,}000$.
+  - In each iteration, at least one of pointer $i$ or pointer $j$ advances by 1.
+  - The loop executes at most $M + N$ times.
+  - Total time: $< 0.001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory (ignoring the output list `ans`).

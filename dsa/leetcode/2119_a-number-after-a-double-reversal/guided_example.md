@@ -1,128 +1,125 @@
 # Guided Example: A Number After a Double Reversal
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal digit-loss invariance check on representative problem instances:
 
-- **Input:** `{"num": 526}`
-- **Required output:** `true`
+- **Representative Instance 1:** `num = 526` $\implies$ Expected Output: `true`
+- **Representative Instance 2:** `num = 1800` $\implies$ Expected Output: `false`
+- **Representative Instance 3:** `num = 0` $\implies$ Expected Output: `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-**Reversing** an integer means to reverse all its digits.
-
-The objective is to compute `true` from `{"num": 526}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This example demonstrates the digit-truncation mechanics of integer reversal, proving why trailing zeros are irrecoverably lost and why the result can be determined in $\mathcal{O}(1)$ time using modular arithmetic.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Reversing an integer means reversing the sequence of its decimal digits. However, because standard integers cannot have leading zeros, any leading zeros produced by the reversal are dropped.
+We perform a double reversal:
+1. Reverse $num$ to produce $R_1$.
+2. Reverse $R_1$ to produce $R_2$.
+We need to determine whether $R_2 = num$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Consider our three contrasting instances:
+- When $num = 526$:
+  - First reversal: $526 \to 625$. No leading zeros were generated because the last digit $6 \ne 0$.
+  - Second reversal: $625 \to 526$.
+  - Result: $526 = 526 \implies$ `true`.
+- When $num = 1800$:
+  - First reversal: $1800 \to 0081$, which drops the leading zeros to become $81$.
+  - Second reversal: $81 \to 18$.
+  - Result: $18 \ne 1800 \implies$ `false`.
+- When $num = 0$:
+  - First reversal: $0 \to 0$.
+  - Second reversal: $0 \to 0$.
+  - Result: $0 = 0 \implies$ `true`.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Identify the only information reversal can destroy
+### Information Loss via Trailing Zeros
+Let a positive integer $num$ have decimal digit representation:
 
-Reversing decimal digits is normally reversible. The exception is leading zeros in the reversed representation, because integers do not retain them.
+$$num = \sum_{j=0}^{k-1} d_j \cdot 10^j = (d_{k-1} d_{k-2} \dots d_1 d_0)_{10}$$
 
-Those leading zeros arise precisely from trailing zeros in the original number.
+where $k \ge 1$ is the number of digits and $d_{k-1} \ne 0$.
+Under digit reversal, the units digit $d_0$ becomes the most significant digit of the reversed value:
+- If $d_0 \ne 0$, the reversed number has exactly $k$ digits with leading digit $d_0$. The second reversal maps the digits back to their original positions, preserving length and magnitude identically: $R_2 = num$.
+- If $d_0 = 0$ and $num > 0$, the reversed representation begins with one or more zeros: $(0 \dots 0 d_m \dots d_{k-1})_{10}$. Truncating these leading zeros reduces the digit count from $k$ to $m < k$. Reversing this shortened integer yields a number with at most $m$ digits, strictly smaller than $num$:
 
-For example, 1800 reverses to the integer 81. The two zeros that would have appeared before 81 are discarded. Reversing 81 gives 18, so the original value cannot be recovered.
+$$R_2 \le 10^m - 1 < 10^{k-1} \le num \implies R_2 \ne num$$
 
-By contrast, 526 reverses to 625 and then back to 526 because its last digit is nonzero and no leading zero is lost.
+### Closed-Form Criterion
+Therefore, an integer preserves its identity across double reversal if and only if it has zero trailing zeros, with the single exception of $0$ itself:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+$$R_2 = num \iff (num = 0) \lor (num \not\equiv 0 \pmod{10})$$
+
+This condition can be evaluated via a single modulo operation and a zero equality test in $\mathcal{O}(1)$ time.
+
+| Number Category | Least Significant Digit ($d_0$) | First Reversal Effect | Double Reversal Outcome |
 |---|---|---|---|
-| Input Slice | `{"num": 526}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Zero ($num = 0$) | $0$ | $0 \to 0$ (identity) | `true` |
+| Positive ending in non-zero | $d_0 \in \{1, \dots, 9\}$ | Full $k$ digits preserved | `true` |
+| Positive ending in zero | $d_0 = 0$ | Leading zero(s) truncated ($< k$ digits) | `false` |
 
 ---
 
-### Step 2: Turn the observation into one divisibility test
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-A positive integer has a trailing decimal zero exactly when it is divisible by 10, equivalently when
+We evaluate the decision logic across our representative test cases:
 
-`num % 10 == 0`.
+### Case 1: $num = 526$
+- **Step 1 (Zero Check):** Does $num = 0$? No ($526 \ne 0$).
+- **Step 2 (Modulo Check):** Compute $526 \pmod{10} = 6$.
+- **Step 3 (Comparison):** Is $6 \ne 0$? Yes.
+- **Conclusion:** No trailing zeros exist. Double reversal preserves the number. Output is `true`.
 
-Therefore, every positive number with nonzero last digit survives double reversal, and every positive multiple of 10 fails.
+### Case 2: $num = 1800$
+- **Step 1 (Zero Check):** Does $num = 0$? No ($1800 \ne 0$).
+- **Step 2 (Modulo Check):** Compute $1800 \pmod{10} = 0$.
+- **Step 3 (Comparison):** Is $0 \ne 0$? No.
+- **Conclusion:** $num$ has trailing zeros that are lost during the initial reversal. Output is `false`.
 
-The source returns
-
-`num == 0 or num % 10 != 0`.
-
-This states the two successful cases directly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why zero needs a special case
-
-Zero is divisible by 10, so the second condition alone would reject it. However, reversing 0 produces 0, and reversing again still produces 0.
-
-Zero has no distinct nonzero prefix whose information can be lost. It is the one multiple of 10 that succeeds, which is why `num == 0` appears first.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Case 3: $num = 0$
+- **Step 1 (Zero Check):** Does $num = 0$? Yes.
+- **Conclusion:** The special case $num = 0$ evaluates to `true` immediately via boolean short-circuiting.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Comprehensive State Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 526}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+The evaluation metrics across several representative inputs are tabulated below:
 
----
+| Candidate $num$ | Zero Condition ($num = 0$) | Modulo Residue ($num \pmod{10}$) | Non-Zero Check ($num \pmod{10} \ne 0$) | Final Boolean Decision |
+|---|---|---|---|---|
+| $526$ | False | $6$ | True | `true` |
+| $1800$ | False | $0$ | False | `false` |
+| $0$ | True | $0$ | False (short-circuited) | `true` |
+| $4$ | False | $4$ | True | `true` |
+| $100$ | False | $0$ | False | `false` |
+| $102$ | False | $2$ | True | `true` |
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Convert to a string and reverse twice:** It can simulate the definition but must carefully remove leading zeros after the first reversal. The divisibility observation is simpler.
-- **Arithmetic digit reversal:** Also correct when implemented twice, but takes work proportional to the number of digits.
-- **Zero:** Returns true despite being divisible by 10.
-- **Positive multiple of ten:** Returns false because at least one trailing zero is lost.
-- **Single nonzero digit:** Reversal changes nothing, so it returns true.
-- **Internal zeros:** They are preserved because they never become discarded leading zeros in the first reversal.
-- **Number ending in zero with other zeros:** Any positive trailing-zero count causes failure; its exact count is irrelevant.
-- **Maximum allowed value:** The same last-digit test applies.
-- **No mutation or conversion:** The integer is inspected directly.
-- **Short-circuit order:** When `num == 0`, Python need not rely on the second condition to recognize the special case.
-- **Base dependence:** The reasoning is specifically decimal because reversal and trailing zero use decimal digits.
-- **Information-loss viewpoint:** Double reversal succeeds exactly when the first reversal retains every digit.
-- **Several trailing zeros:** They fail for the same reason as one; their exact count need not be computed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Notice that intermediate zeros (as in $102 \to 201 \to 102$) do not cause truncation; only trailing zeros cause irreversibility.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(1)$. The source performs one equality comparison, one modulo operation, and Boolean logic. Under the fixed numeric constraints, time complexity is $O(1)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Suppose $num > 0$ and $num \pmod{10} = 0$. Then $num$ ends with at least one $0$. By integer literal semantics, converting the reversed digit sequence back into an integer discards all leading zeros. The length of the first reversal $R_1$ is strictly less than the length of $num$. Reversing $R_1$ can never recover the discarded digits because integer reversal preserves or decreases digit length, never increases it. Hence, $R_2 \ne num$ is guaranteed whenever $num > 0$ and $num \pmod{10} = 0$.
+
+**Completeness.** If $num = 0$, both reversals produce $0$, so $R_2 = num$ holds. If $num > 0$ and $num \pmod{10} \ne 0$, the first digit of the reversed number is non-zero, meaning no leading zeros are truncated. Reversing a sequence of $k$ digits twice without truncation is the permutation involution $\tau \circ \tau = \text{id}$, restoring the exact initial number. Thus all cases are fully characterized.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+- **Zero Boundary ($num = 0$):** $0 \pmod{10} = 0$, which would fail the non-zero test if evaluated in isolation. The explicit disjunction `num == 0` correctly handles this boundary.
+- **Single-Digit Numbers ($1 \le num \le 9$):** Single non-zero digits have no trailing zeros and reverse to themselves.
+- **Internal Zeros ($num = 105$):** $105 \to 501 \to 105$. The internal zero remains protected between non-zero digits and is never truncated.
+- **Anti-Pattern — String Conversion and Dual Reversal:** Converting the number to a string, slicing backwards, parsing back to integer, converting to string again, and parsing once more requires multiple heap allocations and string parsing steps. The mathematical condition `num == 0 or num % 10 != 0` executes in $\mathcal{O}(1)$ time without memory allocation.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(1)$. The algorithm executes a single equality comparison and a single integer modulo operation on primitive hardware registers.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. No auxiliary memory, strings, or intermediate data structures are allocated.

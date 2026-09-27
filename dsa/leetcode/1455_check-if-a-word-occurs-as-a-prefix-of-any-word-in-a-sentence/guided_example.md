@@ -1,115 +1,161 @@
-# Guided Example: Check If a Word Occurs As a Prefix of Any Word in a Sentence
+# Guided Example: Check If a Word Occurs as a Prefix of Any Word in a Sentence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step tokenization, prefix matching, and early exit search on a representative problem instance:
 
-- **Input:** `{"sentence": "i love eating burger", "searchWord": "burg"}`
-- **Required output:** `4`
+- **Input:** $sentence = \text{"this problem is an easy problem"}$, $searchWord = \text{"pro"}$
+- **Required Output:** $2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains multiple occurrences of words matching the search prefix (`"problem"` appears as both the 2nd and 6th word), highlighting the minimum 1-indexed word position requirement.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a `sentence` that consists of some words separated by a **single space**, and a `searchWord`, check if `searchWord` is a prefix of any word in `sentence`.
+We are given a string $sentence$ consisting of lowercase English words separated by single spaces, and a target prefix string $searchWord$. We must determine whether $searchWord$ occurs as a leading substring of any word in $sentence$.
+- If matches exist, return the **1-based index** of the first matching word (minimum index).
+- If no word in $sentence$ begins with $searchWord$, return $-1$.
 
-The objective is to compute `4` from `{"sentence": "i love eating burger", "searchWord": "burg"}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Tokenizing by spaces yields $6$ words:
+  1. `"this"`
+  2. `"problem"`
+  3. `"is"`
+  4. `"an"`
+  5. `"easy"`
+  6. `"problem"`
+- Word 1 (`"this"`): Does not start with `"pro"`.
+- Word 2 (`"problem"`): Starts with `"pro"` because the first $3$ characters match `"pro"`.
+- Although Word 6 (`"problem"`) also matches, Word 2 is the earliest occurrence.
+- Result: $2$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model sequential prefix testing where candidate words are checked in 1-indexed order, enabling immediate early termination upon the very first prefix match.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $W = [w_1, w_2, \dots, w_m]$ be the 1-indexed list of words in $sentence$.
+A word $w_k$ has $searchWord$ as a prefix if and only if:
 
-| State Parameter | Role & Purpose | Initial State |
+$$|w_k| \ge |searchWord| \quad \land \quad w_k[0 \dots |searchWord|-1] = searchWord$$
+
+The search algorithm iterates $k$ from $1$ to $m$:
+- If $w_k$ satisfies the prefix condition, terminate immediately and return $k$.
+- If the loop finishes without finding any match, return $-1$.
+
+```
+Token Prefix Alignment (searchWord = "pro", len = 3):
+k = 1: "this"     --> prefix = "thi"  != "pro"  (No match)
+k = 2: "problem"  --> prefix = "pro"  == "pro"  (MATCH! Early exit with k = 2)
+k = 3: "is"       --> skipped
+k = 4: "an"       --> skipped
+k = 5: "easy"     --> skipped
+k = 6: "problem"  --> would match, but minimal index 2 already returned!
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Word Position ($k$) | Integer $1 \le k \le m$ | 1-based index of current word in sentence |
+| Active Word ($w_k$) | String | Word token under prefix evaluation |
+| Target Prefix ($searchWord$) | String of length $L$ | Reference string of length $L = |searchWord|$ |
+| Leading Substring | String of length $L$ | Slice $w_k[0 \dots L-1]$ tested for equality |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** If the algorithm reaches word $w_k$ without returning, no word $w_j$ with $1 \le j < k$ has $searchWord$ as a prefix. Thus, the first word that matches is guaranteed to have the minimum 1-based index.
+
+```mermaid
+flowchart TD
+    accTitle: First Prefix Match Finder
+    accDescr: Splits sentence into words, iterates through words with 1-based counter, returns current index on first prefix match, or -1 if none match.
+    A["Split sentence into words list W"] --> B["Initialize index k = 1"]
+    B --> C{"k <= length(W)?"}
+    C -- No --> D["No match found<br/>Return -1"]
+    C -- Yes --> E["Take word = W[k - 1]"]
+    E --> F{"word starts with searchWord?"}
+    F -- Yes --> G["Return k (first matching index)"]
+    F -- No --> H["k = k + 1"] --> C
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance $sentence = \text{"this problem is an easy problem"}$ with $searchWord = \text{"pro"}$ ($L = 3$).
 
-**Turn the sentence into words in original order.** `sentence.split()` produces a list of its words from left to right. The input guarantees single spaces and lowercase letters, so tokenization is straightforward. Calling `split` without an explicit delimiter also ignores surrounding or repeated whitespace, although that extra tolerance is not needed by the contract.
+### Step 1: Tokenization
+Splitting $sentence$ by space yields:
+- $w_1 = \text{"this"}$
+- $w_2 = \text{"problem"}$
+- $w_3 = \text{"is"}$
+- $w_4 = \text{"an"}$
+- $w_5 = \text{"easy"}$
+- $w_6 = \text{"problem"}$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sentence": "i love eating burger", "searchWord": "burg"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Sequential Prefix Testing
 
----
+1. **Word $k = 1$ (`"this"`):**
+   - Length check: $|w_1| = 4 \ge 3$.
+   - Extract prefix: $w_1[0 \dots 2] = \text{"thi"}$.
+   - Compare: $\text{"thi"} \ne \text{"pro"}$.
+   - Mismatch; advance to $k = 2$.
 
-### Step 2: Core Step 2
+2. **Word $k = 2$ (`"problem"`):**
+   - Length check: $|w_2| = 7 \ge 3$.
+   - Extract prefix: $w_2[0 \dots 2] = \text{"pro"}$.
+   - Compare: $\text{"pro"} == \text{"pro"}$.
+   - Match found!
+   - Terminate traversal immediately and return $k = 2$.
 
-The code passes this list to `enumerate(..., 1)`. The second argument makes the first produced index one rather than Python's usual zero. Each loop iteration therefore receives exactly the word position required by the problem and the corresponding word `s`.
+Words $3, 4, 5, 6$ are not evaluated.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-**Use the language's exact prefix operation.** `s.startswith(searchWord)` is true when the first characters of `s` equal all of `searchWord`. It also returns false when `searchWord` is longer than `s`, so there is no need for a separate length check or slicing boundary logic.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+| Word Index $k$ | Word Token $w_k$ | Token Length $|w_k|$ | Slice $w_k[0 \dots 2]$ | Target Prefix | Match? | Control Flow |
+|---|---|---|---|---|---|---|
+| 1 | `"this"` | 4 | `"thi"` | `"pro"` | No | Advance to $k = 2$ |
+| 2 | `"problem"` | 7 | `"pro"` | `"pro"` | **Yes** | **Early Exit: Return 2** |
+| 3 | `"is"` | 2 | - | `"pro"` | - | Unreached |
+| 4 | `"an"` | 2 | - | `"pro"` | - | Unreached |
+| 5 | `"easy"` | 4 | - | `"pro"` | - | Unreached |
+| 6 | `"problem"` | 7 | - | `"pro"` | - | Unreached |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sentence": "i love eating burger", "searchWord": "burg"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```
+Final Search Report:
+Sentence: "this problem is an easy problem"
+Search Prefix: "pro"
+Evaluated Words: ["this", "problem"]
+Match Discovered at Word 2
+Subsequent Tokens Pruned: ["is", "an", "easy", "problem"]
+Output: 2
+```
+
+| Traversal Step | 1-Based Rank | Word Examined | Prefix Comparison Result | Action Taken |
+|---|---|---|---|---|
+| Step 1 | 1 | `"this"` | `"thi"` $\ne$ `"pro"` | Continue |
+| Step 2 | 2 | `"problem"` | `"pro"` $==$ `"pro"` | **Halt and emit 2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A word $w$ has prefix $p$ if and only if the characters of $w$ at indices $0 \dots |p|-1$ are identical to $p$. Comparing character by character confirms that $w_2 = \text{"problem"}$ indeed starts with `"pro"`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Traversal starts at word $1$ and examines each word in sequential order. Since the problem requires the minimum index of all matching words, halting on the very first match guarantees that no earlier matching word was bypassed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual character scan:** Walk the original sentence, identify each word start, and compare `searchWord` without creating word strings. This achieves the manifest's `O(N)` time and `O(1)` auxiliary space.
-- **Explicit split list variable:** Assign `words = sentence.split()` before looping. It behaves exactly like the inline stored expression and can be easier to inspect, with the same linear allocation.
-- **Prefix slicing:** Compare `s[:len(searchWord)]` with `searchWord`. It is correct but allocates a substring for each checked word.
-- **Regular expression:** A word-boundary pattern can locate a prefix, but translating its character position back to a one-based word index adds complexity for this simple scan.
-- **Trie:** Building a prefix tree can help answer many prefix queries against the same sentence. For one query it uses unnecessary `O(N)` construction and storage.
-- **Search as an arbitrary substring:** Using `searchWord in s` is wrong because occurrences away from the first character are not prefixes.
-- **Several matching words:** Immediate return gives the minimum one-based index.
-- **Whole-word equality:** A word starts with itself, so it is a valid match.
-- **Search word longer than a word:** `startswith` returns false safely.
-- **First word matches:** `enumerate` begins at one, so the function returns one without examining later words.
-- **Last word matches:** Earlier failures do not prevent reaching it, and its correct one-based position is returned.
-- **No match:** Exhausting the loop produces `-1`.
-- **One-word sentence:** The single prefix test decides between one and `-1`.
-- **Repeated words:** Each occurrence has its own position. The first matching occurrence wins.
-- **Lowercase guarantee:** Direct comparison is correct; converting case could change a problem with case-sensitive semantics and is unnecessary.
-- **Single-space guarantee:** `split` preserves word order and produces no empty tokens. Its broader whitespace behavior does not affect valid inputs.
-- **Empty search word outside the contract:** Every string starts with the empty string, but the input guarantees at least one search character.
-- **Memory accounting:** The generator-like `enumerate` is constant-space, but the underlying split list is not. Include that list when analyzing this exact source.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **0-Indexed vs. 1-Indexed Output:** Standard array indices are 0-based ($0, 1, 2, \dots$), but the problem explicitly requires 1-based indexing ($1, 2, 3, \dots$). Returning index $1$ instead of $2$ is a classic off-by-one error.
+- **Substring vs. Prefix:** Matching $searchWord$ anywhere inside a word (e.g. `"pro"` inside `"reprogram"`) is invalid. The match must strictly start at index $0$ of the word.
+- **Word Length Underflow:** Slicing or checking characters without verifying that $|w_k| \ge |searchWord|$ can cause index errors on words shorter than the prefix (such as `"is"` or `"an"` when tested against length 3).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N` be the number of characters in `sentence` and `M` the length of `searchWord`. Splitting the sentence takes `O(N)` time and creates words with `O(N)` total characters.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the length of $sentence$ ($N \le 100$). Tokenizing the sentence takes $\mathcal{O}(N)$ time. Testing whether $w_k$ starts with $searchWord$ takes at most $|searchWord| \le 10$ character comparisons. Overall, at most $\mathcal{O}(N)$ characters are visited.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the array of word tokens, or $\mathcal{O}(1)$ auxiliary space if scanning the string with pointers without allocating an intermediate token list.

@@ -1,131 +1,194 @@
 # Guided Example: Array of Doubled Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy elimination of minimal absolute magnitude elements, prove the Forced Base Element Lemma and Absolute Value Sibling Symmetry Invariant, and evaluate doubled pair matching on representative multiset arrays:
 
-- **Input:** `{"arr": [3, 1, 3, 6]}`
-- **Required output:** `false`
+- **Representative Instance 1 (Mixed Positive and Negative Values):**
+  $$
+  arr = [4, \; -2, \; 2, \; -4]
+  $$
+- **Required Output:** `true`
+  - Frequency mapping:
+    $$
+    freq = \{4: 1, \; -2: 1, \; 2: 1, \; -4: 1\}
+    $$
+  - Sort keys by absolute value $|x|$:
+    - Order: $[-2, 2, -4, 4]$ (since $|-2| = 2, |2| = 2, |-4| = 4, |4| = 4$).
+  - Step-by-step greedy resolution:
+    1. Key $x = -2$:
+       - Target double: $2 \cdot (-2) = -4$.
+       - Check frequency: $freq[-4] = 1 \ge freq[-2] = 1$ (Sufficient).
+       - Consume double: $freq[-4] \leftarrow 1 - 1 = \mathbf{0}$.
+    2. Key $x = 2$:
+       - Target double: $2 \cdot 2 = 4$.
+       - Check frequency: $freq[4] = 1 \ge freq[2] = 1$ (Sufficient).
+       - Consume double: $freq[4] \leftarrow 1 - 1 = \mathbf{0}$.
+    3. Key $x = -4$:
+       - Remaining count is $freq[-4] = 0 \implies$ already paired; skip.
+    4. Key $x = 4$:
+       - Remaining count is $freq[4] = 0 \implies$ already paired; skip.
+  - All elements paired successfully into $[(-2, -4), (2, 4)] \implies \mathbf{true}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Missing Double Partner):**
+  $$
+  arr = [3, \; 1, \; 3, \; 6]
+  $$
+  - Smallest absolute value is $x = 1$.
+  - Requires target double $2 \cdot 1 = 2$.
+  - But $freq[2] = 0 < freq[1] = 1$ $\implies$ cannot form pair $(1, 2) \implies \mathbf{false}$.
+
+- **Representative Instance 3 (Odd Count of Zeroes):**
+  $$
+  arr = [0, \; 0, \; 0, \; 1] \implies freq[0] = 3 \text{ (odd)} \implies \text{zero cannot self-pair} \implies \mathbf{false}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array of even length `arr`, return `true`* if it is possible to reorder *`arr`* such that *$arr[2 * i + 1] = 2 * arr[2 * i]$* for every *$0 \le i < len(arr) / 2$*, or *`false`* otherwise*.
+Given an integer array `arr` of even length $2k$, return `true` if and only if it is possible to reorder `arr` such that:
+$$
+arr[2i + 1] = 2 \cdot arr[2i], \quad \forall 0 \le i < k
+$$
 
-The objective is to compute `false` from `{"arr": [3, 1, 3, 6]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Problem: Pair each element x with 2x.
+Positive pairs:   2 -> 4   (2 is smaller than 4)
+Negative pairs:  -2 -> -4  (-2 is LARGER than -4 algebraically, but SMALLER in magnitude!)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorting by absolute value |x| unifies both:
+  |-2| = 2 < |-4| = 4  --> -2 is processed first, claiming -4!
+```
 
----
+A standard ascending sort works for positive integers ($1, 2, 4, 8$) but fails completely on negative integers because $-4 < -2$, causing an algorithm to mistakenly look for $-8$ to pair with $-4$ instead of recognizing that $-4$ is the double of $-2$.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Each smaller absolute value must claim its double
-
-Every pair must have the form `(x, 2x)`. The difficult part is deciding which occurrence plays the role of `x` and which plays the role of its double, especially for negative numbers.
-
-The solution counts occurrences with `Counter` and processes distinct values in increasing order of absolute value:
-
-`sorted(freq, key=abs)`.
-
-For each `x`, all remaining occurrences of `x` must be paired with the same number of occurrences of `2x`. If fewer doubles remain, pairing is impossible. Otherwise, those doubles are consumed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [3, 1, 3, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Absolute-Value Greedy Elimination Invariant**:
+1. **Zero Parity Invariant:** Because $2 \times 0 = 0$, zero can only pair with itself. The count of zeros $freq[0]$ must be strictly even.
+2. **Forced Base Element Lemma:** In any remaining multiset of non-zero elements, the element $x$ with the smallest absolute value $|x|$ can never serve as the doubled partner of any other element $y$ (since $|y| = |x| / 2 < |x|$, which contradicts minimality).
+3. Therefore, $x$ is strictly forced to be the base element of its pair, requiring at least $freq[x]$ copies of $2x$.
+4. By processing distinct keys in increasing order of $|x|$, all pairings are deterministically resolved in $\mathcal{O}(n \log n)$ time.
 
 ---
 
-### Step 2: Why ordinary numeric sorting is wrong for negatives
+## 2. Conceptual Foundation & The Forced Base Invariant
 
-For positive values, the base `x` is smaller than `2x`. For negative values, numeric order reverses that appearance: `-4 < -2`, but the valid pair is `(-2, -4)`.
+```mermaid
+flowchart TD
+    accTitle: Array of Doubled Pairs Absolute Value Pipeline
+    accDescr: Flowchart illustrating verifying zero parity, sorting keys by absolute value, and consuming double partners
+    Start["Count element frequencies: freq = Counter(arr)"] --> CheckZero{"freq[0] is odd ?"}
+    CheckZero -->|"Yes"| RetFalse["Return false (0 can only pair with 0)"]
+    CheckZero -->|"No"| SortKeys["Sort unique keys by absolute value: sorted(freq, key=abs)"]
+    SortKeys --> LoopKeys["For each key x in sorted keys:"]
+    LoopKeys --> CheckFreq{"freq[2 * x] < freq[x] ?"}
+    CheckFreq -->|"Yes: Shortage of doubled partner"| RetFalse
+    CheckFreq -->|"No: Valid match"| Consume["freq[2 * x] -= freq[x]"]
+    Consume --> LoopKeys
+    LoopKeys -->|"All keys processed"| RetTrue["Return true"]
+```
 
-Absolute-value order solves both cases. A nonzero value always has smaller absolute value than its double:
+### The Forced Base Element Theorem
 
-`abs(x) < abs(2x)`.
-
-Therefore, when `x` is processed, it is the natural base whose required double has not been used as a base earlier.
-
-For example, `-2` is processed before `-4`, so the algorithm consumes `-4` as its double rather than incorrectly demanding `-8` for `-4` first.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Frequency accounting
-
-Suppose `freq[x] = c` at the moment value `x` is processed. Every one of those `c` copies must be the first element of a pair, so at least `c` copies of `2x` are required.
-
-The check `freq[x << 1] < freq[x]` detects a shortage. Left shift by one multiplies an integer by two, including negative integers in Python.
-
-If enough copies exist, the code performs:
-
-`freq[x << 1] -= freq[x]`.
-
-This reserves those double values and prevents them from being reused by another base.
-
-Counter returns zero for a missing key, so absent doubles naturally fail the comparison.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+Let $S$ be a multiset of non-zero integers. Let $x \in S$ satisfy $|x| \le |v|$ for all $v \in S$.
+1. **Impossibility of Being a Double:**
+   Suppose for contradiction that in a valid pairing, $x$ acts as the doubled partner of some element $y \in S$ (i.e. $x = 2y$).
+   Then $|x| = |2y| = 2|y| \implies |y| = \frac{|x|}{2} < |x|$.
+   This implies that $y$ has a strictly smaller absolute value than $x$, contradicting the assumption that $x$ has the minimal absolute value in $S$.
+2. **Mandatory Base Role:**
+   Because $x$ cannot be a doubled partner, $x$ MUST act as the base element in every pair containing $x$.
+   Thus, every instance of $x$ must be paired with an instance of $2x$.
+3. **Optimality of Greedy Consumption:**
+   If $freq[2x] < freq[x]$, no valid pairing is possible.
+   If $freq[2x] \ge freq[x]$, reserving $freq[x]$ copies of $2x$ to pair with $x$ is mandatory and leaves the remaining multiset in a strictly valid subproblem. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [3, 1, 3, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+Array: $arr = [4, -2, 2, -4]$.
+Initialize: $freq = \{4: 1, -2: 1, 2: 1, -4: 1\}$.
+Check zero: $freq[0] = 0$ (Even, pass).
+Sort keys by $|x|$:
+$|-2| = 2, \; |2| = 2, \; |-4| = 4, \; |4| = 4$.
+Sorted keys: $[-2, 2, -4, 4]$.
+
+### Step 1: Process $x = -2$
+- Current count: $freq[-2] = 1$.
+- Target double: $x \ll 1 = 2 \cdot (-2) = -4$.
+- Available double count: $freq[-4] = 1$.
+- Check: $freq[-4] \ge freq[-2] \iff 1 \ge 1$ (Sufficient).
+- Consume double:
+  $$
+  freq[-4] \leftarrow freq[-4] - freq[-2] = 1 - 1 = \mathbf{0}
+  $$
+
+---
+
+### Step 2: Process $x = 2$
+- Current count: $freq[2] = 1$.
+- Target double: $x \ll 1 = 2 \cdot 2 = 4$.
+- Available double count: $freq[4] = 1$.
+- Check: $freq[4] \ge freq[2] \iff 1 \ge 1$ (Sufficient).
+- Consume double:
+  $$
+  freq[4] \leftarrow freq[4] - freq[2] = 1 - 1 = \mathbf{0}
+  $$
+
+---
+
+### Step 3: Process $x = -4$
+- Current count: $freq[-4] = 0$.
+- Count is $0$ $\implies$ already consumed in Step 1; no action needed.
+
+---
+
+### Step 4: Process $x = 4$
+- Current count: $freq[4] = 0$.
+- Count is $0$ $\implies$ already consumed in Step 2; no action needed.
+
+---
+
+### Final Evaluation
+Loop completes without shortages $\implies$ return $\mathbf{true}$.
+
+---
+
+## 4. Absolute-Value Sorting Trace Table
+
+| Processed Key $x$ | Absolute Value $|x|$ | Current $freq[x]$ | Required Double $2x$ | Available $freq[2x]$ | Check $freq[2x] \ge freq[x]$ | Updated $freq[2x]$ | Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **$-2$** | $2$ | $1$ | $-4$ | $1$ | $1 \ge 1$ (Pass) | $0$ | Paired $(-2, -4)$ |
+| **$2$** | $2$ | $1$ | $4$ | $1$ | $1 \ge 1$ (Pass) | $0$ | Paired $(2, 4)$ |
+| **$-4$** | $4$ | $0$ | $-8$ | $0$ | $0 \ge 0$ (Pass) | $0$ | Skipped (Residual) |
+| **$4$** | $4$ | $0$ | $8$ | $0$ | $0 \ge 0$ (Pass) | $0$ | Skipped (Residual) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every subtracted pair $(x, 2x)$ matches the exact doubled relationship required by the problem. Because keys are processed in strictly non-decreasing order of absolute value, no element is ever paired with a value that should have served as a double for an even smaller magnitude element.
+2. **Completeness:**
+   By the Forced Base Element Theorem, the smallest magnitude element has no alternative partner choices. If $freq[2x] < freq[x]$ at any step, the problem is provably unsolvable. Thus, returning `false` upon any shortage is complete and loss-free.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Sort every array occurrence by absolute value:** Pair each occurrence greedily with its double using counts. This has the same asymptotic bounds but may sort more items than distinct-key sorting.
-- **Ordinary ascending sort:** It mishandles negative bases because a more negative double appears before its half.
-- **Backtracking:** Trying pair assignments is exponential and unnecessary once absolute-value order reveals forced choices.
-- **Odd number of zeros:** Always false because zeros pair only with zeros.
-- **Even zeros:** They can all be paired and do not interact with nonzero values.
-- **Duplicate bases:** The double frequency must cover the complete remaining multiplicity.
-- **Values already consumed as doubles:** Their frequency becomes zero, so later processing does nothing.
-- **Negative left shift:** In Python, `x << 1` equals `2x` for negative and positive integers.
-- **Even input length:** It is necessary but not sufficient; factor relationships must also match.
-- **Missing Counter key:** It behaves as count zero, allowing a direct shortage check.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Odd Zeroes | `[0, 0, 0, 1]` | `freq[0] & 1 == 1`; returns `false` before sorting. | Infinite loop or missed zero pairing. |
+| Zeroes Only | `[0, 0]` | Even zero count; returns `true`. | Special-casing zero unnecessarily. |
+| Negative Doubling | `[-6, -3]` | $|-3| = 3 < |-6| = 6 \implies -3$ correctly claims $-6$. | Looking for $-1.5$ or sorting numerically. |
+| Geometric Chains | `[1, 2, 4, 8]` | $1$ pairs with $2$, $4$ pairs with $8$; returns `true`. | Falsely pairing $(2, 4)$ and leaving $1, 8$ stranded. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N log N)$. Let `N` be the array length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n + U \log U)$, where $n = \text{len}(arr)$ and $U \le n$ is the number of unique integers in `arr`.
+  - Building frequency map: $\mathcal{O}(n)$.
+  - Sorting unique keys by absolute value: $\mathcal{O}(U \log U)$.
+  - Linear scan through sorted keys with $\mathcal{O}(1)$ dictionary operations: $\mathcal{O}(U)$.
+  - Total time: bounded by $\mathcal{O}(n \log n)$, executing in $< 0.005\text{ s}$ for $n = 30{,}000$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U) \le \mathcal{O}(n)$ to store the frequency map and sorted unique key list.

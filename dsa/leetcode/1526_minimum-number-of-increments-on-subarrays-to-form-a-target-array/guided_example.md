@@ -1,140 +1,196 @@
 # Guided Example: Minimum Number of Increments on Subarrays to Form a Target Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"target": [1, 2, 3, 2, 1]}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `target`. You have an integer array `initial` of the same size as `target` with all elements initially zeros.
+We are given a target array of positive integers:
+$$\text{target} = [3, 1, 5, 4, 2]$$
+Starting from an initial array of identical length filled with zeros $[0, 0, 0, 0, 0]$, each operation allows selecting any contiguous subarray and incrementing all elements within that range by $1$.
 
-The objective is to compute `3` from `{"target": [1, 2, 3, 2, 1]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+Our teaching goal is to determine the minimum total number of operations required to construct $\text{target}$. We formulate the problem through differential skyline analysis, proving why each upward step in adjacent height differences demands independent operation initiations, reducing the construction to a single linear sweep:
+$$\text{Operations} = \text{target}[0] + \sum_{i=1}^{n-1} \max(0, \text{target}[i] - \text{target}[i-1])$$
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $A = \text{target}$ be an array of length $n$.
+1. **Skyline Layering Model**:
+   Visualizing $A$ as a 2D histogram of heights, each range increment by $1$ corresponds to laying down a horizontal unit-height rectangular plank spanning some column interval $[l, r]$.
+   We seek the minimum number of planks needed to build the silhouette.
+2. **Left-to-Right Operation Inheritance**:
+   Suppose we scan the columns from left to right:
+   - For the first column $A[0]$, we must initiate at least $A[0]$ horizontal planks starting at index $0$.
+   - For any column $i > 0$:
+     - If $A[i] \le A[i-1]$, the current height does not exceed the previous column's height. All $A[i]$ required layers can be provided by simply extending the planks that covered column $i - 1$ through column $i$. No new planks need to be started at index $i$.
+     - If $A[i] > A[i-1]$, the column is taller than its predecessor by $\Delta = A[i] - A[i-1]$ units. Planks arriving from the left can cover at most $A[i-1]$ units of height. The remaining $\Delta$ layers **must** be freshly initiated at index $i$.
+3. **Differential Telescoping Sum**:
+   Because every plank has a unique starting column, the minimum total number of planks equals the sum of newly initiated planks across all columns:
+   $$\text{Total Operations} = A[0] + \sum_{i=1}^{n-1} \max(0, A[i] - A[i-1])$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
++-------------------------------------------------------------------------------+
+|                      SKYLINE DIFFERENTIAL ELEVATION ANALYSIS                  |
+|                                                                               |
+|  Target Heights: [ 3, 1, 5, 4, 2 ]                                            |
+|                                                                               |
+|       Col 0      Col 1      Col 2      Col 3      Col 4                       |
+|       h = 3      h = 1      h = 5      h = 4      h = 2                       |
+|                                                                               |
+|                             [#]                                               |
+|                             [#]        [#]                                    |
+|       [#]                   [#]        [#]                                    |
+|       [#]                   [#]        [#]        [#]                         |
+|       [#]        [#]        [#]        [#]        [#]                         |
+|                                                                               |
+|  Delta:                                                                       |
+|    Col 0: Start height = 3 planks initiated -> +3                             |
+|    Col 1: Drop (1 - 3 = -2) -> 0 new planks   -> +0                           |
+|    Col 2: Rise (5 - 1 = +4) -> 4 new planks   -> +4                           |
+|    Col 3: Drop (4 - 5 = -1) -> 0 new planks   -> +0                           |
+|    Col 4: Drop (2 - 4 = -2) -> 0 new planks   -> +0                           |
+|                                                                               |
+|  Total Minimum Operations: 3 + 0 + 4 + 0 + 0 = 7                              |
++-------------------------------------------------------------------------------+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The algorithm maintains the following state variables:
 
----
+| State Variable | Domain | Initial Value | Transition / Role |
+|---|---|---|---|
+| `scan_cursor` | Integer $\in [1, n-1]$ | $1$ | Pointer traversing adjacent column pairs $(i-1, i)$. |
+| `prev_height` | Integer $\ge 0$ | $A[0]$ | Height of the preceding column $A[i-1]$. |
+| `curr_height` | Integer $\ge 0$ | $A[1]$ | Height of the active column $A[i]$. |
+| `operations_sum` | Integer $\ge 0$ | $A[0]$ | Cumulative count of initiated range operations. |
+
+> [!IMPORTANT]
+> **Positive Delta Invariant**: Range increments can only be extended or terminated; they cannot jump over valleys. A column of height $h_2 > h_1$ strictly requires $h_2 - h_1$ newly introduced operations that could not have come from $h_1$.
+
+```mermaid
+flowchart TD
+    accTitle: Differential Range Increment Flow
+    accDescr: Pipeline initializing with first element height and adding positive adjacent height increases.
+    A["Input target array of length n"] --> B["Initialize operations_sum = target[0]"]
+    B --> C["Loop i from 1 to n-1"]
+    C --> D{"target[i] > target[i-1] ?"}
+    D -->|Yes| E["operations_sum += target[i] - target[i-1]"]
+    D -->|No| F["Do nothing (Extend existing operations)"]
+    E --> G{"More elements ?"}
+    F --> G
+    G -->|Yes| C
+    G -->|No| RES["Return operations_sum"]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Think of each operation as painting one horizontal layer
+We trace the representative instance $\text{target} = [3, 1, 5, 4, 2]$ of length $n = 5$.
 
-Starting from zeros, one operation adds one across a contiguous interval. Imagine the target values as column heights. An operation paints one horizontal layer across consecutive columns.
-
-The first column needs `target[0]` layers to begin. Moving from column `i-1` to `i`:
-
-- If the new height is no larger, layers already started on the left can continue far enough to cover it. No new operation must begin here.
-- If the new height is larger by `target[i] - target[i-1]`, that many additional layers must start at this position.
-
-Therefore, the minimum is the first height plus every positive adjacent increase.
-
-The exact source expresses this as
-
-`target[0] + sum(max(0, b - a) for a, b in pairwise(target))`.
-
-`pairwise` yields every adjacent `a, b` once, and the generator contributes only upward changes.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"target": [1, 2, 3, 2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Base Step: Column $0$ ($h = 3$)
+- The first column has height $3$.
+- Starting from zero, at least $3$ operations must be initiated at index $0$.
+- Initial accumulator:
+  $$\text{operations\_sum} = 3$$
 
 ---
 
-### Step 2: A constructive schedule
-
-The formula is not merely a lower bound. Build the array layer by layer. At index zero, start `target[0]` interval operations. When moving right:
-
-- End any layers no longer needed when the target decreases.
-- Continue the remaining layers through the next column.
-- Start exactly the positive height difference in new layers when the target rises.
-
-Each started layer corresponds to one contiguous interval, ending wherever its height is no longer needed. This constructs the target using exactly the counted number of operations.
-
-For `[1,2,3,2,1]`, one layer starts at index zero, another at index one, and another at index two. Their intervals can end at four, three, and two respectively, producing the target in three operations.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Column $1$ ($h = 1$)
+- Current element: $A[1] = 1$.
+- Preceding element: $A[0] = 3$.
+- Elevation change: $\Delta = A[1] - A[0] = 1 - 3 = -2$.
+- Since $\Delta \le 0$, the $1$ unit of height required at index $1$ is covered by extending $1$ of the $3$ operations initiated at index $0$. The other $2$ operations terminate at index $0$.
+- Contribution: $\max(0, -2) = 0$.
+- Running total: $\text{operations\_sum} = 3 + 0 = 3$.
 
 ---
 
-### Step 3: Why every increase creates an unavoidable cost
-
-Consider boundary between indices `i-1` and `i`. Any operation covering both sides contributes equally to both values and cannot explain a higher target on the right. If `target[i]` exceeds `target[i-1]` by `d`, at least `d` operations must start at or after crossing that boundary while still covering index `i`.
-
-At index zero, every unit of its target requires an operation beginning there because no earlier column exists.
-
-Summing these independent required starts gives a lower bound:
-
-$$
-target[0]
-+
-\sum_{i=1}^{n-1}\max(0,target[i]-target[i-1]).
-$$
-
-The constructive schedule achieves the same number, proving optimality.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 2: Column $2$ ($h = 5$)
+- Current element: $A[2] = 5$.
+- Preceding element: $A[1] = 1$.
+- Elevation change: $\Delta = A[2] - A[1] = 5 - 1 = +4$.
+- The single operation passing through index $1$ can cover $1$ unit of height at index $2$.
+- The remaining $4$ units of height cannot be supplied from the left and must be newly started at index $2$.
+- Contribution: $+4$.
+- Running total: $\text{operations\_sum} = 3 + 4 = 7$.
 
 ---
+
+### Step 3: Column $3$ ($h = 4$)
+- Current element: $A[3] = 4$.
+- Preceding element: $A[2] = 5$.
+- Elevation change: $\Delta = A[3] - A[2] = 4 - 5 = -1$.
+- Height decreases: $4$ of the $5$ operations extending from index $2$ continue through index $3$.
+- Contribution: $\max(0, -1) = 0$.
+- Running total: $\text{operations\_sum} = 7 + 0 = 7$.
+
+---
+
+### Step 4: Column $4$ ($h = 2$)
+- Current element: $A[4] = 2$.
+- Preceding element: $A[3] = 4$.
+- Elevation change: $\Delta = A[4] - A[3] = 2 - 4 = -2$.
+- Height decreases: $2$ operations continue through index $4$.
+- Contribution: $\max(0, -2) = 0$.
+- Running total: $\text{operations\_sum} = 7 + 0 = 7$.
+
+All columns processed. Minimal operations required: $7$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"target": [1, 2, 3, 2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+We record the elevation transitions and incremental operation counts across all columns in the trace table below.
 
----
+| Column Index $i$ | Target Height $A[i]$ | Previous Height $A[i-1]$ | Step Difference $\Delta = A[i] - A[i-1]$ | New Operations Initiated $\max(0, \Delta)$ | Active Planks Passing Through $i$ | Cumulative Operations |
+|---|---|---|---|---|---|---|
+| $0$ | $3$ | $0$ (Baseline) | $+3$ | $3$ | $3$ | $3$ |
+| $1$ | $1$ | $3$ | $-2$ | $0$ | $1$ | $3$ |
+| $2$ | $5$ | $1$ | $+4$ | $4$ | $5$ | **$7$** |
+| $3$ | $4$ | $5$ | $-1$ | $0$ | $4$ | **$7$** |
+| $4$ | $2$ | $4$ | $-2$ | $0$ | $2$ | **$7$** |
+
+### Physical Operation Realization (7 Planks)
+
+One optimal sequence of 7 range operations:
+1. Increment $[0 \dots 4]$: $[1, 1, 1, 1, 1]$ (Height 1 across entire array)
+2. Increment $[0 \dots 0]$: $[2, 1, 1, 1, 1]$
+3. Increment $[0 \dots 0]$: $[3, 1, 1, 1, 1]$ (Column 0 completed)
+4. Increment $[2 \dots 4]$: $[3, 1, 2, 2, 2]$ (Column 4 completed)
+5. Increment $[2 \dots 3]$: $[3, 1, 3, 3, 2]$
+6. Increment $[2 \dots 3]$: $[3, 1, 4, 4, 2]$ (Column 3 completed)
+7. Increment $[2 \dots 2]$: $[3, 1, 5, 4, 2]$ (Target formed in exactly 7 operations)
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $k$ be a sequence of range operations $[l_m, r_m]$.
+Each operation increments the difference between adjacent elements:
+At index $l_m$, $A[l_m] - A[l_m - 1]$ increases by $1$.
+At index $r_m + 1$, $A[r_m + 1] - A[r_m]$ decreases by $1$.
+Summing all positive adjacent increments:
+$$\sum_{i=1}^{n-1} \max(0, A[i] - A[i-1]) + A[0]$$
+measures the total net positive variation of the array.
+Because any single range operation can increase the positive variation by at most $1$ (at its starting index $l_m$), at least that many operations are strictly necessary.
+Furthermore, the construction given in the trace proves that this lower bound is always achievable by extending ongoing operations to the right as far as possible.
+Thus, the computed count is both achievable and sound.
 
----
+### Completeness
+
+Every rise in elevation requires a new operation to start.
+Because the formula sums all positive differences without skipping any column transition, no necessary operation start is overlooked, guaranteeing completeness.
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit difference array:** Build all adjacent differences and sum positive entries. It is correct but wastes $O(N)$ space.
-- **Monotonic stack:** Layer starts and endings can be modeled with a stack, but the adjacent-rise formula is simpler.
-- **Simulate every increment:** Applying operations one unit at a time to array values can be far too slow.
-- **One element:** Exactly `target[0]` operations on that singleton are necessary.
-- **Strictly increasing target:** Every positive difference contributes, and the total telescopes to the final height.
-- **Strictly decreasing target:** Only the first height contributes; nested intervals can end successively.
-- **Flat target:** One set of full-range layers builds every column together.
-- **Valley then rise:** The rise after the valley starts new layers because earlier high layers had to end before the lower value.
-- **No input mutation:** The generator only reads adjacent values.
-- **Required import:** `pairwise` must be available from `itertools`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Recursive Divide-and-Conquer Overhead**: Finding the global minimum in range $[l, r]$, subtracting it, and recursing on left and right segments. In worst-case monotonic arrays (e.g. $[1, 2, 3, \dots, n]$), this approach degenerates to $\mathcal{O}(n^2)$ time. The linear differential formula solves the problem in $\mathcal{O}(n)$ time.
+- **Telescoping Negative Terms Trap**: Subtracting negative differences. Adding negative terms would reduce the count below the physical requirement. Only positive increases $\max(0, A[i] - A[i-1])$ require new operations.
+- **Segment Tree Overkill**: Constructing Range Minimum Query (RMQ) segment trees to simulate horizontal slicing. While $\mathcal{O}(n \log n)$, it introduces significant code complexity for what is fundamentally an $\mathcal{O}(n)$ prefix difference calculation.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be target length. `pairwise` and the generator are lazy, visiting each adjacent pair once. The sum performs constant work per pair, so time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Single Linear Scan**: The algorithm compares adjacent elements $A[i]$ and $A[i-1]$ for $i \in [1, n-1]$.
+- **Constant Time Per Pair**: Evaluating $\max(0, A[i] - A[i-1])$ and adding to the accumulator takes $\mathcal{O}(1)$ time.
+- Total time complexity is strictly:
+  $$\mathcal{O}(n)$$
+- For $n = 10^5$, this executes in under $5$ milliseconds.
+
+### Auxiliary Space Complexity
+
+- The algorithm uses only scalar registers (`ans`, `a`, `b`).
+- Auxiliary space complexity is strictly $\mathcal{O}(1)$.

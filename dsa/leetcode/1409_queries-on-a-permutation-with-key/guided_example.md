@@ -1,130 +1,198 @@
 # Guided Example: Queries on a Permutation With Key
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the Move-to-Front (MTF) dynamic permutation update on a representative problem instance:
 
-- **Input:** `{"queries": [3, 1, 2, 1], "m": 5}`
-- **Required output:** `[2, 1, 2, 1]`
+- **Input:** $queries = [3, 1, 2, 1], m = 5$
+- **Required Output:** $[2, 1, 2, 1]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple queries accessing different positions, repeated queries accessing previously fronted elements, and elements shifting rightward across distinct indices, illustrating dynamic permutation tracking and index reporting.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the array `queries` of positive integers between `1` and `m`, you have to process all $\text{queries}[i]$ (from `i=0` to `i=queries.length-1`) according to the following rules:
+We are given an integer $m$ defining an initial identity permutation $P = [1, 2, 3, \dots, m]$ of length $m$, along with a sequence of query values $queries$. For each query value $q$:
+1. Locate the $0$-based index position $pos$ of value $q$ within the current permutation $P$.
+2. Append $pos$ to the output list.
+3. Relocate value $q$ from its current position $pos$ to index $0$ of $P$, shifting all elements previously residing at indices $0 \le k < pos$ one position to the right. Elements at indices $> pos$ remain unchanged.
 
-The objective is to compute `[2, 1, 2, 1]` from `{"queries": [3, 1, 2, 1], "m": 5}` while avoiding redundant calculations and unnecessary overhead.
+In this instance with $m = 5$, $P$ begins as $[1, 2, 3, 4, 5]$:
+- Query $q = 3$ is at index $2 \implies$ emit $2$, new $P = [3, 1, 2, 4, 5]$.
+- Query $q = 1$ is at index $1 \implies$ emit $1$, new $P = [1, 3, 2, 4, 5]$.
+- Query $q = 2$ is at index $2 \implies$ emit $2$, new $P = [2, 1, 3, 4, 5]$.
+- Query $q = 1$ is at index $1 \implies$ emit $1$, new $P = [1, 2, 3, 4, 5]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model the Move-to-Front heuristic, understand index-tracking invariants under prefix shifts, and contrast array-shift simulation with logarithmic position queries using prefix-sum structures.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $P^{(t)}$ denote the ordered permutation of length $m$ before query step $t$. At step $t$:
+$$
+pos_t = \text{index of } queries[t] \text{ in } P^{(t)}
+$$
+The state transition moves the element at $pos_t$ to index $0$:
+$$
+P^{(t+1)}[0] = queries[t]
+$$
+$$
+P^{(t+1)}[k] = P^{(t)}[k - 1] \quad \text{for } 1 \le k \le pos_t
+$$
+$$
+P^{(t+1)}[k] = P^{(t)}[k] \quad \text{for } pos_t < k < m
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+```
+Before Step (q = 3, pos = 2):
+Index:   0    1    2    3    4
+P:      [1,   2,   3,   4,   5]
+                   ^
+Shift Sub-slice P[0..1] Right (+1):
+Index:        0    1
+Elements:    [1,   2] ---> shifted to positions 1 and 2
+
+Place q at Front:
+Index:   0    1    2    3    4
+P:      [3,   1,   2,   4,   5]
+```
+
+We establish tracking parameters across query evaluations:
+
+| State Variable | Type & Domain | Pedagogical Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Permutation $P$ | Sequence of length $m$ | Current ordered multiset containing all $\{1, \dots, m\}$ |
+| Current Query $q$ | Integer $\in [1, m]$ | Key whose position must be located and moved to front |
+| Position $pos$ | Integer $\in [0, m - 1]$ | $0$-based offset of $q$ in $P$, forming output term |
+| Output List | Array of size $|queries|$ | Accumulated position results |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of step $t$, $P$ is a valid permutation of $\{1, 2, \dots, m\}$. After removing $q$ from $pos$ and inserting it at index $0$, relative ordering among all other elements is strictly preserved while indices in $[0, pos - 1]$ increase by $1$.
+
+```mermaid
+flowchart TD
+    accTitle: Move-to-Front Query Lifecycle
+    accDescr: Pipeline searching for query value in permutation, appending index to output, and moving value to index 0 while shifting prefix right.
+    A["Initial Permutation P = [1, 2, 3, 4, 5]"] --> B["Query 0: q = 3"]
+    B --> C["Scan P: 3 found at index 2<br/>Output appends 2"]
+    C --> D["Shift [1, 2] to indices [1, 2]<br/>Insert 3 at index 0<br/>P becomes [3, 1, 2, 4, 5]"]
+    D --> E["Query 1: q = 1"]
+    E --> F["Scan P: 1 found at index 1<br/>Output appends 1"]
+    F --> G["Shift [3] to index 1<br/>Insert 1 at index 0<br/>P becomes [1, 3, 2, 4, 5]"]
+    G --> H["Query 2: q = 2<br/>Found at index 2 -> P = [2, 1, 3, 4, 5]"]
+    H --> I["Query 3: q = 1<br/>Found at index 1 -> P = [1, 2, 3, 4, 5]"]
+    I --> J["Final Output: [2, 1, 2, 1]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Maintain the permutation exactly as the rules describe
+### Step 1: Initialize Permutation and Execute Query $i = 0$ ($q = 3$)
 
-The stored Optimal implementation uses direct list simulation. It begins with the required permutation:
+- Start with $P = [1, 2, 3, 4, 5]$.
+- Search for $q = 3$ in $P$:
+  - $P[0] = 1 \neq 3$
+  - $P[1] = 2 \neq 3$
+  - $P[2] = 3 \implies pos = 2$.
+- Append $2$ to output list.
+- Relocate $3$ to front:
+  - Slice before index $2$ is $[1, 2]$. Shifting right gives positions $1, 2$.
+  - Place $3$ at index $0$.
+  - Resulting $P = [3, 1, 2, 4, 5]$.
 
-
-
-`range(1, m + 1)` produces every integer from 1 through `m`, and converting it to a list makes the order mutable. The invariant before each query is simple: `p` is exactly the permutation that would exist after applying all earlier move-to-front operations.
-
-The answer list `ans` starts empty. Each query contributes exactly one zero-based position, so values are appended in query order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"queries": [3, 1, 2, 1], "m": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Find the current position, not the original position
-
-For a query value `v`, the statement
-
-
-
-scans `p` from the beginning and returns the zero-based index at which `v` currently appears. The current qualifier matters because previous queries may have moved several values. A precomputed formula based only on the initial permutation would become stale after the first update.
-
-Every query is between 1 and `m`, and `p` always remains a permutation of those values. Therefore, `v` is guaranteed to be present, and `index` will not raise a missing-value error.
-
-The code immediately executes `ans.append(j)`. The requested output for this query is its position before moving it, not the position zero it will have afterward.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Query Index | Query Value ($q$) | Found Index ($pos$) | Shifted Segment | Resulting Permutation ($P$) | Output Buffer |
+|---|---|---|---|---|---|
+| $0$ | $3$ | $2$ | $[1, 2] \to$ right-shifted by $1$ | $[3, 1, 2, 4, 5]$ | $[2]$ |
 
 ---
 
-### Step 3: Move exactly that occurrence to the front
+### Step 2: Execute Query $i = 1$ ($q = 1$)
 
-The two update statements are:
+- Current $P = [3, 1, 2, 4, 5]$.
+- Search for $q = 1$ in $P$:
+  - $P[0] = 3 \neq 1$
+  - $P[1] = 1 \implies pos = 1$.
+- Append $1$ to output list.
+- Relocate $1$ to front:
+  - Slice before index $1$ is $[3]$. Shifting right gives position $1$.
+  - Place $1$ at index $0$.
+  - Resulting $P = [1, 3, 2, 4, 5]$.
 
+| Query Index | Query Value ($q$) | Found Index ($pos$) | Shifted Segment | Resulting Permutation ($P$) | Output Buffer |
+|---|---|---|---|---|---|
+| $1$ | $1$ | $1$ | $[3] \to$ right-shifted by $1$ | $[1, 3, 2, 4, 5]$ | $[2, 1]$ |
 
+---
 
-`pop(j)` removes the element at the recorded position. Because the list is a permutation, that element is exactly `v` and there is no second copy to worry about. Every element after index `j` shifts one position left.
+### Step 3: Execute Query $i = 2$ ($q = 2$)
 
-Then `insert(0, v)` places `v` at the beginning. Existing elements shift one position right to make room. The relative order of every value other than `v` is preserved. This is precisely the specified move-to-front operation.
+- Current $P = [1, 3, 2, 4, 5]$.
+- Search for $q = 2$ in $P$:
+  - $P[0] = 1 \neq 2$
+  - $P[1] = 3 \neq 2$
+  - $P[2] = 2 \implies pos = 2$.
+- Append $2$ to output list.
+- Relocate $2$ to front:
+  - Slice before index $2$ is $[1, 3]$. Shifting right moves them to indices $1, 2$.
+  - Place $2$ at index $0$.
+  - Resulting $P = [2, 1, 3, 4, 5]$.
 
-It would be wrong to insert first and remove using the old index afterward: insertion changes positions, so the later removal could delete a different element or leave two copies. Removing first and then inserting is the safe order.
+| Query Index | Query Value ($q$) | Found Index ($pos$) | Shifted Segment | Resulting Permutation ($P$) | Output Buffer |
+|---|---|---|---|---|---|
+| $2$ | $2$ | $2$ | $[1, 3] \to$ right-shifted by $1$ | $[2, 1, 3, 4, 5]$ | $[2, 1, 2]$ |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 1, 2, 1]` |
+---
+
+### Step 4: Execute Query $i = 3$ ($q = 1$)
+
+- Current $P = [2, 1, 3, 4, 5]$.
+- Search for $q = 1$ in $P$:
+  - $P[0] = 2 \neq 1$
+  - $P[1] = 1 \implies pos = 1$.
+- Append $1$ to output list.
+- Relocate $1$ to front:
+  - Slice before index $1$ is $[2]$. Shifting right moves it to index $1$.
+  - Place $1$ at index $0$.
+  - Resulting $P = [1, 2, 3, 4, 5]$.
+
+| Query Index | Query Value ($q$) | Found Index ($pos$) | Shifted Segment | Resulting Permutation ($P$) | Output Buffer |
+|---|---|---|---|---|---|
+| $3$ | $1$ | $1$ | $[2] \to$ right-shifted by $1$ | $[1, 2, 3, 4, 5]$ | $[2, 1, 2, 1]$ |
+
+All queries have completed. Final returned sequence is $[2, 1, 2, 1]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"queries": [3, 1, 2, 1], "m": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 1, 2, 1]` | Verified |
+| Query Step ($i$) | Target Value ($q$) | Current $P$ Configuration | Located Offset | Elements Shifted Right | New $P$ Configuration | Accumulated Answers |
+|---|---|---|---|---|---|---|
+| Init | — | — | — | — | $[1, 2, 3, 4, 5]$ | $[]$ |
+| $0$ | $3$ | $[1, 2, \mathbf{3}, 4, 5]$ | $2$ | $[1, 2]$ | $[3, 1, 2, 4, 5]$ | $[2]$ |
+| $1$ | $1$ | $[3, \mathbf{1}, 2, 4, 5]$ | $1$ | $[3]$ | $[1, 3, 2, 4, 5]$ | $[2, 1]$ |
+| $2$ | $2$ | $[1, 3, \mathbf{2}, 4, 5]$ | $2$ | $[1, 3]$ | $[2, 1, 3, 4, 5]$ | $[2, 1, 2]$ |
+| $3$ | $1$ | $[2, \mathbf{1}, 3, 4, 5]$ | $1$ | $[2]$ | $[1, 2, 3, 4, 5]$ | $[2, 1, 2, 1]$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every step linearly scans $P$ to determine the exact unique index where $P[pos] = q$. Because $P$ is a permutation containing no duplicate elements, $pos$ is uniquely determined. Relocating $P[pos]$ to index $0$ via a deletion and front insertion strictly replicates the problem specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $q \in \{1, \dots, m\}$ and $P$ maintains a bijection with $\{1, \dots, m\}$ at all times, every query is guaranteed to find its corresponding element. The output array records the result of each query in the exact sequence requested.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Fenwick tree with reserved front positions:** Place initial values after $q$ empty positions, store each value's current coordinate, and use prefix sums to count active elements before it. Each query and move then costs $O(\log(m+q))$, matching the manifest's advertised asymptotic time.
-- **Segment tree:** A tree of active-position counts supports the same prefix-count and point-update operations as a Fenwick tree, but uses more code and typically larger constants.
-- **Linked list:** Moving a known node to the front can be constant time, but locating a value's numerical position still requires a linear traversal unless an additional order-statistics structure is maintained.
-- **Array of positions alone:** Updating only the queried value's position is insufficient because moving it changes the ranks of all values formerly before it.
-- **Rebuilding with slicing:** Constructing `[v] + p[:j] + p[j+1:]` expresses the update compactly but allocates a new list on every query and remains $O(m)$ per update.
-- **Query already at index zero:** The answer is zero, and removing then reinserting the value leaves the permutation unchanged.
-- **Repeated query value:** Immediately repeated queries produce zero after the first occurrence because that value was just moved to the front.
-- **Smallest permutation:** When `m = 1`, every valid query is 1, every reported index is zero, and every update preserves `[1]`.
-- **Maximum value:** The value `m` initially appears at index $m-1$, but earlier moves can change its later index; the algorithm always searches current state.
-- **Zero-based indexing:** Python's `list.index` already returns the required zero-based index. Adding one would produce incorrect one-based positions.
-- **Guaranteed membership:** The input range and permutation invariant ensure `p.index(v)` always succeeds. Without that guarantee, a missing value would need explicit handling.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Index Off-by-One Confusion:** The problem requests $0$-based indices. Returning $1$-based indices (e.g. $[3, 2, 3, 2]$ instead of $[2, 1, 2, 1]$) fails the contract.
+- **Value vs Index Conflation:** Elements in $P$ are integers from $1$ to $m$. Conflating an element's value (such as $3$) with its position in the array (such as $2$) corrupts calculations.
+- **Incorrect Shift Boundaries:** Shifting elements that appear after $pos$ corrupts the permutation. Only indices $< pos$ move right; indices $> pos$ preserve their absolute positions.
+- **Static Index Caching:** Caching the initial indices of values is invalid because every move-to-front modifies the indices of all preceding elements.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m)$. Let $q$ be the length of `queries`. Creating the initial permutation takes $O(m)$ time and $O(m)$ storage. For each query, `p.index(v)` may scan all $m$ elements, so it costs $O(m)$ in the worst case. `p.pop(j)` may shift up to $m-1$ references, and `p.insert(0, v)` shifts the current list to the right; each is also $O(m)$.
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(Q \cdot m)$ for direct list simulation, where $Q = |queries|$ and $m$ is the permutation size. For each query, finding the element takes $\mathcal{O}(m)$ time, and shifting up to $m$ elements takes $\mathcal{O}(m)$ time. With $Q, m \le 1000$, total operations are at most $10^6$, comfortably within execution limits. (With a Fenwick tree or balanced BST, this can be reduced to $\mathcal{O}(Q \log (m + Q))$).
+- **Auxiliary Space Complexity:** $\mathcal{O}(m)$ auxiliary space to store the working permutation array $P$, plus $\mathcal{O}(Q)$ to hold the query results.

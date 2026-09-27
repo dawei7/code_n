@@ -1,129 +1,164 @@
 # Guided Example: Smallest Number in Infinite Set
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"operations": ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"], "arguments": [[], [2], [], [], [], [1], [], [], []]}`
-- **Required output:** `[null, null, 1, 2, 3, null, 1, 4, 5]`
+We are required to design a data structure, `SmallestInfiniteSet`, that initially contains all positive integers:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$\mathcal{S} = \{1, 2, 3, 4, 5, \dots\}$$
 
----
+The class must support the following methods:
+1. `SmallestInfiniteSet()`: Initializes the collection to contain all positive integers.
+2. `popSmallest()`: Removes and returns the smallest integer currently present in the set.
+3. `addBack(num)`: Adds the positive integer `num` back into the set if it is currently absent. If `num` is already in the set, the call has no effect.
 
-## 1. Instance & Teaching Goal
+Consider the representative sequence of operations:
+1. Initialize set.
+2. `addBack(2)`: Integer 2 was never removed; remains in the set.
+3. `popSmallest()`: Returns $1$.
+4. `popSmallest()`: Returns $2$.
+5. `popSmallest()`: Returns $3$.
+6. `addBack(1)`: Restores $1$ into the set.
+7. `popSmallest()`: Returns $1$ (since $1 < 4$).
+8. `popSmallest()`: Returns $4$.
+9. `popSmallest()`: Returns $5$.
 
-You have a set which contains all positive integers `[1, 2, 3, 4, 5, ...]`.
+```mermaid
+flowchart TD
+    accTitle: Dual State Architecture for Infinite Set
+    accDescr: Min-heap of restored integers coupled with an advancing integer frontier for unseen integers.
+    Pop["Call popSmallest()"] --> CheckHeap{"Is restored min-heap non-empty?"}
+    CheckHeap -->|"Yes"| PopHeap["Pop smallest from min-heap<br/>Remove from tracking hash set<br/>Return value"]
+    CheckHeap -->|"No"| PopFrontier["Return current frontier<br/>Advance frontier = frontier + 1"]
 
-The objective is to compute `[null, null, 1, 2, 3, null, 1, 4, 5]` from `{"operations": ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"], "arguments": [[], [2], [], [], [], [1], [], [], []]}` while avoiding redundant calculations and unnecessary overhead.
+    Add["Call addBack(num)"] --> CheckBound{"Is num < frontier?"}
+    CheckBound -->|"No (num >= frontier)"| Ignore["Already in infinite set (No-op)"]
+    CheckBound -->|"Yes"| CheckSet{"Is num already in restored set?"}
+    CheckSet -->|"Yes"| Ignore
+    CheckSet -->|"No"| Insert["Insert num into min-heap and hash set"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Because the universe of positive integers is infinite, storing all members explicitly is impossible. However, the set can be partitioned into two distinct subsets via a frontier cursor $F \in \mathbb{N}$:
+- **Unseen Suffix:** The contiguous ray of all integers $\ge F$, which are implicitly present:
+  $$\mathcal{U} = \{x \in \mathbb{N} \mid x \ge F\}$$
+- **Restored Disjoint Pool:** A finite collection of previously popped integers strictly below $F$ that were subsequently returned via `addBack`:
+  $$\mathcal{R} \subset \{1, 2, \dots, F - 1\}$$
 
-## 2. Conceptual Foundation & Invariants
+The total state of available numbers is the disjoint union:
 
-We maintain the core conceptual parameters and state variables:
+$$\mathcal{S} = \mathcal{R} \cup \mathcal{U}$$
 
-| State Parameter | Role & Purpose | Initial State |
+### Priority Ordering
+The minimum element of $\mathcal{S}$ is:
+
+$$\min(\mathcal{S}) = \begin{cases} \min(\mathcal{R}) & \text{if } \mathcal{R} \ne \emptyset \\ F & \text{if } \mathcal{R} = \emptyset \end{cases}$$
+
+### Operations Mechanics:
+1. **`popSmallest()`:**
+   - If $\mathcal{R}$ is non-empty, extract the minimum from $\mathcal{R}$ (using a min-heap or balanced search tree).
+   - If $\mathcal{R}$ is empty, take $F$ and increment $F \leftarrow F + 1$.
+2. **`addBack(num)`:**
+   - If $num \ge F$, the element already belongs to $\mathcal{U}$; ignore.
+   - If $num < F$ and $num \notin \mathcal{R}$, insert $num$ into $\mathcal{R}$ and its companion hash set.
+
+| Component | Invariant Property | Storage Mechanism |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Frontier Cursor $F$ | Lowest positive integer that has never been extracted | Integer scalar |
+| Restored Set $\mathcal{R}$ | Subset of $\{1, \dots, F - 1\}$ currently present | Min-heap / Ordered set |
+| Membership Filter | Fast $\mathcal{O}(1)$ existence check for $\mathcal{R}$ | Hash set |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We trace the representative operation sequence:
+Initial state: $F = 1$, $\mathcal{R} = \emptyset$, $\text{hash\_set} = \emptyset$.
 
-## 3. Step-by-Step Worked Execution
+- **Op 1: `SmallestInfiniteSet()`**
+  - Frontier: $F = 1$. $\mathcal{R} = \emptyset$.
+  - Output: `null`.
 
-### Step 1: Represent only the observable part of the infinite set
+- **Op 2: `addBack(2)`**
+  - Target: $num = 2$.
+  - Test: $num \ge F \implies 2 \ge 1$.
+  - 2 is already in the infinite suffix $\mathcal{U}$. No change.
+  - Output: `null`.
 
-The mathematical set contains every positive integer, so it cannot literally be stored. The exact implementation uses the operation limits to replace it with a finite representation:
+- **Op 3: `popSmallest()`**
+  - $\mathcal{R}$ is empty $\implies$ pop from frontier.
+  - Result: $1$. Frontier advances: $F = 1 + 1 = 2$.
 
-`SortedSet(range(1, 1001))`.
+- **Op 4: `popSmallest()`**
+  - $\mathcal{R}$ is empty $\implies$ pop from frontier.
+  - Result: $2$. Frontier advances: $F = 2 + 1 = 3$.
 
-At most 1000 total calls are made to `popSmallest` and `addBack`. Even if every call is `popSmallest`, only the first 1000 positive integers can be removed and returned. Reaching 1001 would require a 1001st pop, which the contract forbids. Also, every number passed to `addBack` is at most 1000.
+- **Op 5: `popSmallest()`**
+  - $\mathcal{R}$ is empty $\implies$ pop from frontier.
+  - Result: $3$. Frontier advances: $F = 3 + 1 = 4$.
 
-Therefore no legal sequence of calls can observe whether integers above 1000 were explicitly stored. Keeping 1 through 1000 is behaviorally equivalent to keeping the complete infinite set for every permitted test.
+- **Op 6: `addBack(1)`**
+  - Target: $num = 1$.
+  - Test: $1 < F$ ($1 < 4$) and $1 \notin \text{hash\_set}$.
+  - Add 1 to $\mathcal{R}$ and $\text{hash\_set}$.
+  - State: $F = 4$, $\mathcal{R} = \{1\}$.
+  - Output: `null`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"], "arguments": [[], [2], [], [], [], [1], [], [], []]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Op 7: `popSmallest()`**
+  - $\mathcal{R} = \{1\}$ is non-empty.
+  - Extract $\min(\mathcal{R}) = 1$. Remove 1 from $\mathcal{R}$ and $\text{hash\_set}$.
+  - Frontier remains $F = 4$.
+  - Result: $1$.
 
----
+- **Op 8: `popSmallest()`**
+  - $\mathcal{R}$ is empty $\implies$ pop from frontier.
+  - Result: $4$. Frontier advances: $F = 4 + 1 = 5$.
 
-### Step 2: Why a sorted set matches both required operations
+- **Op 9: `popSmallest()`**
+  - $\mathcal{R}$ is empty $\implies$ pop from frontier.
+  - Result: $5$. Frontier advances: $F = 5 + 1 = 6$.
 
-A set must contain each number at most once. A sorted set combines uniqueness with ascending order:
+Sequence of outputs: `[null, null, 1, 2, 3, null, 1, 4, 5]`.
 
-- inserting a value that is already present changes nothing;
-- the element at index zero is the current minimum;
-- removing a value makes it absent until it is added again.
+## 4. Comprehensive State Trace
 
-The constructor fills `s` with every integer from one through 1000. This represents the initial state in which every observable positive integer is present.
+The state of the data structure after every operation is documented below.
 
-The implementation relies on `SortedSet` from the execution environment. Unlike Python's built-in unordered `set`, it supports retrieving the smallest entry by ordered index.
+| Step | Operation Invoked | Argument | Frontier $F$ | Restored Pool $\mathcal{R}$ | Decision Logic Applied | Output Value |
+|---|---|---|---|---|---|---|
+| 0 | Constructor | - | 1 | $\emptyset$ | Initialize default frontier | `null` |
+| 1 | `addBack` | 2 | 1 | $\emptyset$ | $2 \ge F \implies$ already present | `null` |
+| 2 | `popSmallest` | - | 2 | $\emptyset$ | $\mathcal{R}$ empty $\implies$ take $F = 1$, advance | 1 |
+| 3 | `popSmallest` | - | 3 | $\emptyset$ | $\mathcal{R}$ empty $\implies$ take $F = 2$, advance | 2 |
+| 4 | `popSmallest` | - | 4 | $\emptyset$ | $\mathcal{R}$ empty $\implies$ take $F = 3$, advance | 3 |
+| 5 | `addBack` | 1 | 4 | $\{1\}$ | $1 < F \implies$ insert into $\mathcal{R}$ | `null` |
+| 6 | `popSmallest` | - | 4 | $\emptyset$ | $\mathcal{R}$ non-empty $\implies$ pop $\min(\mathcal{R}) = 1$ | 1 |
+| 7 | `popSmallest` | - | 5 | $\emptyset$ | $\mathcal{R}$ empty $\implies$ take $F = 4$, advance | 4 |
+| 8 | `popSmallest` | - | 6 | $\emptyset$ | $\mathcal{R}$ empty $\implies$ take $F = 5$, advance | 5 |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+## 5. Algorithmic Correctness & Soundness
 
----
+1. **Partition Invariance:**
+   Every positive integer $x \in \mathbb{N}$ resides in exactly one of three states at any time:
+   - Extracted and currently absent ($x < F \land x \notin \mathcal{R}$)
+   - Extracted and restored ($x < F \land x \in \mathcal{R}$)
+   - Never extracted ($x \ge F$)
+   Because any $x \in \mathcal{R}$ satisfies $x < F$, $\min(\mathcal{R})$ is strictly smaller than $F$. Checking $\mathcal{R}$ first guarantees returning the globally minimal available integer.
 
-### Step 3: Pop the smallest present number
+2. **Deduplication on Addition:**
+   Testing both $num < F$ and membership in the hash set prevents duplicate insertions into $\mathcal{R}$, ensuring the set semantics of distinct integers are strictly preserved.
 
-`popSmallest` reads `x = s[0]`. Since the collection is sorted, no present value is smaller than `x`. It then calls `s.remove(x)`, making that number absent, and returns it.
+## 6. Edge Cases & Anti-Patterns
 
-The order of these steps matters. Reading before removal identifies the value to return, and removing before the method finishes ensures a second immediate pop cannot return the same number.
+- **Multiple Redundant `addBack` Calls:**
+  - Repeated calls to `addBack(x)` with the same value $x$ check the hash set and do nothing after the first insertion.
+- **`addBack` of Never-Popped Value:**
+  - Calling `addBack(1000)` while $F = 5$ does nothing because $1000 \ge 5$.
+- **Anti-Pattern (Pre-allocating a Fixed Size Array):**
+  - While test constraints often state $num \le 1000$, hardcoding a static array of size 1000 limits the data structure to a finite universe. The frontier-heap architecture supports unbounded queries up to arbitrarily large integers.
 
-The set cannot be empty during any valid call. Emptying the initial 1000 values requires 1000 pop calls, and there would be no remaining call within the total-call limit to invoke `popSmallest` once more. Add-back calls only increase availability.
+## 7. Complexity Analysis
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, 1, 2, 3, null, 1, 4, 5]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"], "arguments": [[], [2], [], [], [], [1], [], [], []]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, 1, 2, 3, null, 1, 4, 5]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Frontier plus min-heap and membership set:** Store the next never-popped positive integer and only restored smaller values. This represents a truly unbounded set and uses space proportional to add-backs, but needs two structures to deduplicate heap entries.
-- **Frontier plus ordered set:** An ordered set of restored values removes the separate heap-membership set while retaining a truly infinite suffix frontier.
-- **Built-in unordered set of 1 through 1000:** Membership is easy, but finding the minimum would require `O(Q)` scanning per pop.
-- **Boolean presence array:** With the 1000 bound, scan from one upward for every pop and mark entries. This is simple but can make repeated minimum searches quadratic unless a frontier and restored-value handling are added.
-- **Adding back a present number:** `SortedSet.add` is idempotent, so no duplicate appears and later pops remain correct.
-- **Adding back a removed number:** It reenters at its numeric sorted position and may become the next minimum.
-- **Adding back the same removed number repeatedly:** Only the first insertion changes the set.
-- **Popping after an add-back below the current minimum:** The restored smaller number is at index zero and is returned first.
-- **Popping without any add-backs:** Results are 1, 2, 3, and so on through the observable horizon.
-- **Maximum legal number 1000:** It is initially stored and can be restored after removal.
-- **Why 1001 is unnecessary:** Returning it would require more than 1000 pop calls, even if no values are ever restored.
-- **Empty-set indexing:** A valid call sequence cannot request the 1001st removal within the total 1000-call cap.
-- **Constraint dependence:** If total calls could exceed 1000, the finite initialization would no longer faithfully represent infinity.
-- **External type availability:** The exact implementation requires `SortedSet` to be supplied or imported from its supporting library.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(\log Q)$. Let `Q = 1000` be the maximum operation horizon and let `r` be the current sorted-set size. Indexing and removal from a balanced sorted-set structure take logarithmic time in `r`, as does insertion, so each method is `O(\log Q)`. Across at most `Q` calls, operation time is `O(Q \log Q)`, matching the manifest's aggregate form.
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `popSmallest()`: $\mathcal{O}(\log |\mathcal{R}|)$ when popping from the min-heap, and $\mathcal{O}(1)$ when popping from the frontier cursor.
+  - `addBack(num)`: $\mathcal{O}(\log |\mathcal{R}|)$ to insert into the min-heap and $\mathcal{O}(1)$ to insert into the hash set.
+  - Overall time for $Q$ operations is $\mathcal{O}(Q \log Q)$.
+- **Space Complexity:** $\mathcal{O}(K)$ auxiliary space, where $K$ is the maximum number of simultaneously restored numbers in $\mathcal{R}$ ($K \le Q$).

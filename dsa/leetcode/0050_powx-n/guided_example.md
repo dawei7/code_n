@@ -1,125 +1,166 @@
 # Guided Example: Pow(x, n)
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of binary exponentiation (exponentiation by squaring) on representative positive and negative exponent instances:
 
-- **Input:** `{"x": 2.0, "n": 10}`
-- **Required output:** `1024.0`
+- **Positive Exponent:** $x = 2.0, n = 10 \implies 1024.0$
+- **Negative Exponent:** $x = 2.0, n = -2 \implies 0.25$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary exponent decomposition, repeated squaring of the base ($x^{2^k}$), bitwise shifting of the exponent ($n \gg 1$), handling negative exponents via reciprocals ($x \leftarrow 1/x$), and 32-bit signed integer boundary considerations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(x, n)</a>, which calculates `x` raised to the power `n` (i.e., $x^n$).
+Given a floating-point base $x = 2.0$ and an integer exponent $n = 10$, compute $x^n$.
 
-The objective is to compute `1024.0` from `{"x": 2.0, "n": 10}` while avoiding redundant calculations and unnecessary overhead.
+A naive linear multiplication computes $2.0 \times 2.0 \times \dots \times 2.0$ in $O(n)$ time. When $n = 2^{31} - 1 \approx 2.14 \times 10^9$, a linear loop takes billions of operations and times out.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Binary exponentiation observes that any integer $n$ can be expressed uniquely as a sum of powers of two (its binary representation):
+$$
+10 = (1010)_2 = 2^3 + 2^1 = 8 + 2
+$$
+Therefore:
+$$
+x^{10} = x^8 \cdot x^2 = (2.0)^8 \cdot (2.0)^2 = 256.0 \cdot 4.0 = 1024.0
+$$
+By repeatedly squaring the base ($x, x^2, x^4, x^8, \dots$), we compute $x^n$ in only $O(\log n)$ multiplications.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Binary Exponentiation Recurrence
+For any base $x$ and integer $n \ge 0$:
+$$
+x^n =
+\begin{cases}
+1.0 & \text{if } n = 0 \\
+(x^2)^{n/2} & \text{if } n \text{ is even} \\
+x \cdot (x^2)^{(n-1)/2} & \text{if } n \text{ is odd}
+\end{cases}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Iterative Algorithm Formulation
+1. **Handle Negative Powers:**
+   If $n < 0$:
+   $$
+   x \leftarrow \frac{1.0}{x}, \quad n \leftarrow -n
+   $$
+2. **Bitwise Extraction:**
+   Initialize accumulator $\text{res} = 1.0$ and base tracker $\text{base} = x$.
+   While $n > 0$:
+   - If the least significant bit is set ($n \ \& \ 1 == 1$):
+     $$
+     \text{res} \leftarrow \text{res} \cdot \text{base}
+     $$
+   - Square the base for the next bit position:
+     $$
+     \text{base} \leftarrow \text{base} \cdot \text{base}
+     $$
+   - Shift exponent right:
+     $$
+     n \leftarrow n \gg 1
+     $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of each iteration, $\text{res} \cdot \text{base}^n = x^{n_{\text{initial}}}$. As $n \to 0$, $\text{res}$ converges to the exact value of $x^{n_{\text{initial}}}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why multiplying `x` exactly `n` times is unnecessary
+We trace $x = 2.0, n = 10$:
 
-The exponent may have magnitude near $2^{31}$, so a loop performing one multiplication per exponent unit is far too slow. Binary exponentiation uses the fact that repeated squaring creates large powers quickly:
-
-$$
-x,\quad x^2,\quad x^4,\quad x^8,\quad x^{16},\ldots
-$$
-
-Every nonnegative integer exponent is a sum of distinct powers of two. If the binary representation of $n$ has a 1 in a particular position, the corresponding squared power belongs in the result. The algorithm reads those binary bits from least significant to most significant.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"x": 2.0, "n": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $\text{res} = 1.0$
+- $\text{base} = 2.0$ ($x^{2^0} = x^1$)
+- $n = 10 = (1010)_2$
 
 ---
 
-### Step 2: Meaning of the helper variables
-
-`qpow(a, n)` is called only with a nonnegative exponent. `ans` accumulates the powers selected by bits already processed. `a` is the base raised to the power represented by the current bit position. The local `n` contains the remaining unprocessed bits.
-
-Initially, `a` is the original base, corresponding to $x^{2^0}$, no bits have been processed, and `ans = 1` is the multiplicative identity. If the low bit of `n` is 1, the test `n & 1` succeeds and `ans *= a` includes that power.
-
-Then `a *= a` advances from $x^{2^k}$ to $x^{2^{k+1}}$, and `n >>= 1` removes the bit just handled. Right shifting a nonnegative integer by one is integer division by two with the remainder discarded, exactly what is needed to expose the next binary bit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Bit 0 ($n = 10$)
+- Exponent binary status: $10 \ \& \ 1 = 0$ (Even).
+- Action: Bit is 0; do not multiply into $\text{res}$. $\text{res} = 1.0$.
+- Square base: $\text{base} \leftarrow 2.0 \times 2.0 = 4.0$ ($x^{2^1} = x^2$).
+- Shift exponent: $n \leftarrow \lfloor 10 / 2 \rfloor = 5$.
 
 ---
 
-### Step 3: A concrete binary trace
+### Step 2: Bit 1 ($n = 5$)
+- Exponent binary status: $5 \ \& \ 1 = 1$ (Odd).
+- Action: Bit is 1; include current base into accumulator:
+  $$
+  \text{res} \leftarrow \text{res} \cdot \text{base} = 1.0 \times 4.0 = 4.0
+  $$
+- Square base: $\text{base} \leftarrow 4.0 \times 4.0 = 16.0$ ($x^{2^2} = x^4$).
+- Shift exponent: $n \leftarrow \lfloor 5 / 2 \rfloor = 2$.
 
-For exponent 13, the binary representation is `1101`, meaning $13 = 8 + 4 + 1$. The first low bit is 1, so the algorithm includes $x$. It squares the base to $x^2$ and shifts. The next bit is 0, so $x^2$ is not included. Further squaring yields $x^4$, whose bit is 1, and then $x^8$, whose bit is also 1.
+---
 
-The accumulator becomes
+### Step 3: Bit 2 ($n = 2$)
+- Exponent binary status: $2 \ \& \ 1 = 0$ (Even).
+- Action: Bit is 0; $\text{res}$ remains $4.0$.
+- Square base: $\text{base} \leftarrow 16.0 \times 16.0 = 256.0$ ($x^{2^3} = x^8$).
+- Shift exponent: $n \leftarrow \lfloor 2 / 2 \rfloor = 1$.
 
-$$
-x \cdot x^4 \cdot x^8 = x^{13}.
-$$
+---
 
-Only four iterations are needed because 13 has four binary positions, rather than thirteen direct multiplications.
+### Step 4: Bit 3 ($n = 1$)
+- Exponent binary status: $1 \ \& \ 1 = 1$ (Odd).
+- Action: Bit is 1; include current base:
+  $$
+  \text{res} \leftarrow \text{res} \cdot \text{base} = 4.0 \times 256.0 = 1024.0
+  $$
+- Square base: $\text{base} \leftarrow 256.0 \times 256.0 = 65536.0$.
+- Shift exponent: $n \leftarrow \lfloor 1 / 2 \rfloor = 0$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1024.0` |
+---
+
+### Step 5: Termination
+- $n = 0$. Loop terminates.
+- Emitted output: $1024.0$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"x": 2.0, "n": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1024.0` | Verified |
+| Iteration | Exponent $n$ (Decimal) | Exponent $n$ (Binary) | Low Bit $n \ \& \ 1$ | Current $\text{base}$ Value ($x^{2^k}$) | Action on Accumulator | Accumulator $\text{res}$ |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| Start | 10 | `1010` | - | $2.0$ ($2^1$) | Initial state | $1.0$ |
+| 1 | 10 | `1010` | 0 | $2.0$ | Bit is 0; skip multiply | $1.0$ |
+| 2 | 5 | `101` | **1** | $4.0$ ($2^2$) | Multiply $\text{res} \times 4.0$ | **$4.0$** |
+| 3 | 2 | `10` | 0 | $16.0$ ($2^4$) | Bit is 0; skip multiply | $4.0$ |
+| 4 | 1 | `1` | **1** | $256.0$ ($2^8$) | Multiply $\text{res} \times 256.0$ | **$1024.0$** |
+| End | 0 | `0` | - | - | $n = 0 \implies$ Exit loop | **$1024.0$** |
+
+### Negative Exponent Trace ($x = 2.0, n = -2$)
+1. Negative sign detected: $x \leftarrow 1 / 2.0 = 0.5$, $n \leftarrow -(-2) = 2$.
+2. Step 1 ($n = 2$): low bit 0, $\text{base} \leftarrow 0.5^2 = 0.25$, $n \leftarrow 1$.
+3. Step 2 ($n = 1$): low bit 1, $\text{res} \leftarrow 1.0 \times 0.25 = 0.25$, $n \leftarrow 0$.
+4. Result: $0.25$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $n = \sum_{k=0}^M b_k 2^k$ where $b_k \in \{0, 1\}$. By algebraic laws of exponents:
+$$
+x^n = x^{\sum b_k 2^k} = \prod_{k=0}^M (x^{2^k})^{b_k}
+$$
+The loop computes $x^{2^k}$ at step $k$ and multiplies it into $\text{res}$ if and only if $b_k = 1$. When the loop terminates, $\text{res}$ exactly equals $x^n$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Dividing $n$ by 2 strictly reduces the exponent. The loop executes exactly $\lfloor \log_2 n \rfloor + 1$ iterations, guaranteeing termination.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Recursive exponentiation by squaring:** Compute the half power once, square it, and multiply by `x` for an odd exponent. It has the same time bound but uses $O(\log |n|)$ call-stack space.
-- **Naive repeated multiplication:** It is simple but takes $O(|n|)$ time, which is infeasible for the maximum exponent.
-- **Built-in power operator:** `x ** n` is concise but bypasses the requested implementation exercise and hides the binary process.
-- **Exponent zero:** The untouched multiplicative identity 1 is returned.
-- **Negative exponent:** The source computes the positive magnitude first and takes exactly one reciprocal at the end.
-- **Minimum 32-bit exponent:** Python safely evaluates `-n` beyond signed 32-bit range. A fixed-width implementation must widen before negation.
-- **Base zero:** Valid inputs allow it only with positive `n`, for which repeated squaring correctly returns zero.
-- **Base one or negative one:** Squaring quickly stabilizes at one, while selected odd bits preserve the appropriate sign.
-- **Negative base:** The parity of selected exponent bits naturally determines the sign; no special branch is needed.
-- **Floating-point precision:** The algorithm minimizes multiplication count asymptotically but cannot eliminate ordinary rounding in floating-point operations.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **32-bit Integer Overflow for $n = -2^{31}$:** In systems with 32-bit signed integers (C++/Java), the range is $[-2147483648, 2147483647]$. Direct negation $-n$ of $-2^{31}$ overflows $2^{31}-1$. Casting $n$ to a 64-bit integer (`long long`) or using Python's arbitrary-precision integers avoids overflow.
+- **Base Inversion vs Final Division:** Either invert the base at the start ($x \leftarrow 1/x, n \leftarrow -n$) or compute $x^{|n|}$ and return $1.0 / \text{res}$ at the end. Both are mathematically equivalent, but inverting upfront maintains identical loop logic.
+- **Zero Base with Non-Positive Exponent:** $0^0$ is defined as $1.0$, while $0^{-k}$ would divide by zero. LeetCode constraints guarantee valid domain inputs ($x \ne 0$ when $n < 0$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log |n|)$. Each loop iteration shifts the nonnegative exponent right by one, halving it. The number of iterations is the number of bits in $|n|$, which is $O(\log |n|)$ for nonzero `n`; the zero case is constant time. Every iteration performs only constant-time arithmetic at the algorithmic model used by the problem.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(\log n)$. Each iteration performs a bitwise right-shift $n \gg 1$, cutting the exponent in half. At most $32$ iterations occur for any 32-bit signed integer.
+- **Auxiliary Space Complexity:** $O(1)$. The iterative implementation requires only scalar floating-point and integer registers.

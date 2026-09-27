@@ -1,119 +1,227 @@
 # Guided Example: Alien Dictionary
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step lexicographical mismatch edge extraction, prefix violation invalidation, directed acyclic graph (DAG) construction, and Kahn's BFS topological sort on representative alien language dictionary instances:
 
-- **Input:** `{"words": ["wrt", "wrf", "er", "ett", "rftt"]}`
-- **Required output:** `"wertf"`
+- **Input:** $\text{words} = [\text{"wrt"}, \text{"wrf"}, \text{"er"}, \text{"ett"}, \text{"rftt"}]$
+- **Required output:** `"wertf"` (The unique topological ordering of all 5 observed alphabet characters: $w < e < r < t < f$)
+- **Direct Cycle Contradiction:** $\text{words} = [\text{"z"}, \text{"x"}, \text{"z"}] \implies \text{""}$ ($z < x$ and $x < z$ form a 2-cycle; no linear ordering exists)
+- **Prefix Violation Instance:** $\text{words} = [\text{"abc"}, \text{"ab"}] \implies \text{""}$ (A longer word cannot appear before its proper prefix in any valid lexicographical order)
+- **Two-Letter Alphabet:** $\text{words} = [\text{"z"}, \text{"x"}] \implies \text{"zx"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling lexicographical precedence relations as a directed graph, explains why only the first mismatching character between adjacent words produces a valid ordering edge, shows how Kahn's algorithm detects cycles via processed node count verification, and details the prefix corruption trap.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a new alien language that uses the English alphabet. However, the order of the letters is unknown to you.
+Given a list of words sorted according to an unknown alien alphabet:
+$$
+\text{words} = [\text{"wrt"}, \text{"wrf"}, \text{"er"}, \text{"ett"}, \text{"rftt"}]
+$$
+Deduce the order of characters in the alien language. If inconsistent or cyclical, return `""`.
 
-The objective is to compute `"wertf"` from `{"words": ["wrt", "wrf", "er", "ett", "rftt"]}` while avoiding redundant calculations and unnecessary overhead.
+### Lexicographical Comparison Rules
+To establish which letter comes before another in a dictionary:
+1. Words are compared **left-to-right**.
+2. If two words share a common prefix, the **first character that differs** establishes the relative order between those two letters:
+   - For `"wrt"` and `"wrf"`: `w == w`, `r == r`, but `t != f`.
+   - Because `"wrt"` appears before `"wrf"`, the alien alphabet must have $\mathbf{t < f}$!
+   - All subsequent characters after the first mismatch are **completely unconstrained** by this word pair.
+3. **The Prefix Violation:** If word $A$ is a prefix of word $B$ and $A$ is longer than $B$ (e.g. `"abc"` before `"ab"`), the dictionary is mathematically invalid, because a prefix must always precede its extension.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We translate these precedence pairs into directed edges $u \to v$ and compute the **topological sort** of the graph.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Graph Formulation
+- **Vertices ($V$):** Every distinct character present across all words in `words`.
+- **Directed Edges ($E$):** An edge $u \to v$ indicates letter $u$ must appear before letter $v$ in the alphabet.
+- **In-Degree Table:** $\text{indegree}[c]$ tracks the number of immediate predecessors of character $c$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Edge Extraction Algorithm
+For each adjacent pair of words $(w_i, w_{i+1})$:
+- Find the minimum length $L = \min(\text{len}(w_i), \text{len}(w_{i+1}))$.
+- Scan index $j$ from $0$ to $L - 1$:
+  - If $w_i[j] \ne w_{i+1}[j]$:
+    Add directed edge $w_i[j] \to w_{i+1}[j]$.
+    Increment $\text{indegree}[w_{i+1}[j]]$ (if edge is new).
+    **Break immediately** (do not inspect later indices).
+- If no mismatch was found and $\text{len}(w_i) > \text{len}(w_{i+1})$:
+  $$
+  \text{return "" } \quad (\text{Invalid prefix order})
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Kahn's BFS Topological Sort Protocol
+1. Initialize queue $Q$ with all characters having $\text{indegree}[c] == 0$.
+2. While $Q$ is not empty:
+   - Dequeue $u$, append $u$ to result string.
+   - For each neighbor $v$ of $u$:
+     - Decrement $\text{indegree}[v] \leftarrow \text{indegree}[v] - 1$.
+     - If $\text{indegree}[v] == 0$: enqueue $v$.
+3. **Cycle Verification:**
+   - If $\text{len}(\text{result}) == |V|$: All characters ordered successfully $\implies \text{return result}$.
+   - If $\text{len}(\text{result}) < |V|$: A directed cycle prevented some vertices from reaching in-degree 0 $\implies \text{return ""}$.
+
+> **Invariant.** Vertices enter queue $Q$ if and only if all their incoming dependency edges have been satisfied. If the graph is an acyclic DAG, every vertex is eventually dequeued.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat letter order as a directed dependency graph
+We trace the algorithm on $\text{words} = [\text{"wrt"}, \text{"wrf"}, \text{"er"}, \text{"ett"}, \text{"rftt"}]$:
 
-The input does not directly reveal one alphabet string. It reveals comparisons between words that are claimed to be sorted under an unknown alphabet. Each trustworthy comparison can impose a rule of the form “letter `x` must come before letter `y`.” These rules are naturally represented as a directed graph: every distinct letter appearing in the dictionary is a vertex, and an edge `x -> y` means that `x` must precede `y` in any valid alien alphabet.
-
-Once the graph has been built, the requested alphabet is a topological ordering of its vertices—an ordering in which every edge points from an earlier letter to a later letter. If the graph has a directed cycle, no such ordering exists, because following the cycle would require a letter to come before itself. The solution then returns the empty string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["wrt", "wrf", "er", "ett", "rftt"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: A word's internal letters do not create rules
-
-Seeing a word such as `"wrt"` does not imply `w < r < t`. Lexicographic sorting compares different words, not consecutive characters inside one word. The only reliable rules come from comparing words that occupy ordered positions in the given list.
-
-It is enough to compare adjacent words. If the entire list is sorted, every adjacent pair must be in the correct order. Conversely, if every adjacent comparison is compatible with one letter order, transitivity makes all nonadjacent pairs compatible as well. Comparing every pair would add work without providing a fundamentally different source of constraints.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Vertices
+Collect all unique characters:
+$$
+V = \{w, r, t, f, e\} \quad (|V| = 5)
+$$
+Initialize:
+$$
+\text{indegree} = \{w: 0, \; r: 0, \; t: 0, \; f: 0, \; e: 0\}
+$$
+Adjacency lists: $\{w: [], \; r: [], \; t: [], \; f: [], \; e: []\}$.
 
 ---
 
-### Step 3: Only the first differing position matters
+### Step 2: Compare Adjacent Word Pairs
 
-Consider adjacent words `first` and `second`. Scan their characters from left to right. Equal characters provide no new information: both words share that prefix, so the comparison has not yet been decided. At the first index where the characters differ, suppose `first` contains `x` and `second` contains `y`. Since `first` appears earlier in the sorted dictionary, the alien alphabet must place `x` before `y`, so the graph needs edge `x -> y`.
+- **Pair 1: `"wrt"` vs `"wrf"`**
+  - Index 0: `'w' == 'w'`
+  - Index 1: `'r' == 'r'`
+  - Index 2: `'t' != 'f'` $\implies$ Add edge: $\mathbf{t \to f}$.
+  - Update: $\text{adj}[t].\text{append}(f), \quad \text{indegree}[f] \leftarrow 1$.
 
-After that first difference, later characters must be ignored. Lexicographic order has already been decided at the earliest unequal position. Adding edges from later differences would invent constraints that the dictionary does not imply and could falsely make a valid input appear inconsistent.
+- **Pair 2: `"wrf"` vs `"er"`**
+  - Index 0: `'w' != 'e'` $\implies$ Add edge: $\mathbf{w \to e}$.
+  - Update: $\text{adj}[w].\text{append}(e), \quad \text{indegree}[e] \leftarrow 1$.
 
-For example, comparing `"wrt"` with `"wrf"` gives no rule from the shared `w` and `r`; the first difference is `t` versus `f`, so it gives only `t -> f`.
+- **Pair 3: `"er"` vs `"ett"`**
+  - Index 0: `'e' == 'e'`
+  - Index 1: `'r' != 't'` $\implies$ Add edge: $\mathbf{r \to t}$.
+  - Update: $\text{adj}[r].\text{append}(t), \quad \text{indegree}[t] \leftarrow 1$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"wertf"` |
+- **Pair 4: `"ett"` vs `"rftt"`**
+  - Index 0: `'e' != 'r'` $\implies$ Add edge: $\mathbf{e \to r}$.
+  - Update: $\text{adj}[e].\text{append}(r), \quad \text{indegree}[r] \leftarrow 1$.
+
+### Summary of Extracted Graph
+- Edges: $w \to e, \quad e \to r, \quad r \to t, \quad t \to f$.
+- In-degrees:
+  - $w: 0$
+  - $e: 1$
+  - $r: 1$
+  - $t: 1$
+  - $f: 1$
+
+---
+
+### Step 3: Kahn's BFS Topological Sort
+- Initial Queue ($Q$ containing nodes with $\text{indegree} == 0$):
+  $$
+  Q = [w]
+  $$
+  $\text{result} = []$.
+
+- **Iteration 1:**
+  - Dequeue $w \implies \text{result} = [\text{'w'}]$.
+  - Neighbors of $w$: $[e]$.
+  - Decrement $\text{indegree}[e]: 1 - 1 = 0 \implies \text{Enqueue } e$.
+  - State: $Q = [e]$.
+
+- **Iteration 2:**
+  - Dequeue $e \implies \text{result} = [\text{'w'}, \text{'e'}]$.
+  - Neighbors of $e$: $[r]$.
+  - Decrement $\text{indegree}[r]: 1 - 1 = 0 \implies \text{Enqueue } r$.
+  - State: $Q = [r]$.
+
+- **Iteration 3:**
+  - Dequeue $r \implies \text{result} = [\text{'w'}, \text{'e'}, \text{'r'}]$.
+  - Neighbors of $r$: $[t]$.
+  - Decrement $\text{indegree}[t]: 1 - 1 = 0 \implies \text{Enqueue } t$.
+  - State: $Q = [t]$.
+
+- **Iteration 4:**
+  - Dequeue $t \implies \text{result} = [\text{'w'}, \text{'e'}, \text{'r'}, \text{'t'}]$.
+  - Neighbors of $t$: $[f]$.
+  - Decrement $\text{indegree}[f]: 1 - 1 = 0 \implies \text{Enqueue } f$.
+  - State: $Q = [f]$.
+
+- **Iteration 5:**
+  - Dequeue $f \implies \text{result} = [\text{'w'}, \text{'e'}, \text{'r'}, \text{'t'}, \text{'f'}]$.
+  - Neighbors of $f$: None.
+  - State: $Q = []$.
+
+Queue empty!
+Check length: $\text{len}(\text{result}) = 5 == |V| = 5$.
+Topological sort is complete and valid:
+$$
+\mathbf{\text{"wertf"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["wrt", "wrf", "er", "ett", "rftt"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"wertf"` | Verified |
+```text
+Words: ["wrt", "wrf", "er", "ett", "rftt"]
+Unique Characters: {'w', 'r', 't', 'f', 'e'}
+
+Edge Extraction:
+  wrt vs wrf  -> t -> f
+  wrf vs er   -> w -> e
+  er  vs ett  -> r -> t
+  ett vs rftt -> e -> r
+
+Topology: w -> e -> r -> t -> f
+Indegrees: {w: 0, e: 1, r: 1, t: 1, f: 1}
+
+Kahn BFS:
+  Pop w -> Indegree e becomes 0 -> Queue: [e]
+  Pop e -> Indegree r becomes 0 -> Queue: [r]
+  Pop r -> Indegree t becomes 0 -> Queue: [t]
+  Pop t -> Indegree f becomes 0 -> Queue: [f]
+  Pop f -> Queue empty
+
+Final Order: "wertf"
+```
+
+| Adjacent Pair | First Mismatch | Added Directed Edge | In-Degree State After Edge |
+|:---|:---:|:---:|:---|
+| Initial | - | - | $w: 0, \; e: 0, \; r: 0, \; t: 0, \; f: 0$ |
+| `"wrt"` vs `"wrf"` | `'t'` vs `'f'` | $t \to f$ | $f: 1$ |
+| `"wrf"` vs `"er"` | `'w'` vs `'e'` | $w \to e$ | $e: 1$ |
+| `"er"` vs `"ett"` | `'r'` vs `'t'` | $r \to t$ | $t: 1$ |
+| `"ett"` vs `"rftt"` | `'e'` vs `'r'` | $e \to r$ | $r: 1$ |
+
+| Step | Dequeued Vertex | Neighbors Processed | In-Degree Decrements | Enqueued Vertices | Running Result |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $w$ | $[e]$ | $\text{indegree}[e]: 1 \to 0$ | $e$ | `"w"` |
+| 2 | $e$ | $[r]$ | $\text{indegree}[r]: 1 \to 0$ | $r$ | `"we"` |
+| 3 | $r$ | $[t]$ | $\text{indegree}[t]: 1 \to 0$ | $t$ | `"wer"` |
+| 4 | $t$ | $[f]$ | $\text{indegree}[f]: 1 \to 0$ | $f$ | `"wert"` |
+| 5 | $f$ | None | None | None | **`"wertf"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every directed edge $u \to v$ corresponds to an observed adjacent lexicographical precedence $w_i < w_{i+1}$ where $u = w_i[j]$ and $v = w_{i+1}[j]$. Kahn's algorithm outputs vertices in an order where every prerequisite is placed before its successors. Thus, every lexicographical condition is satisfied.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By graph theory, a directed graph admits a topological sort if and only if it contains no directed cycles. If a cycle exists (e.g. $A \to B \to A$), Kahn's algorithm terminates with unprocessed nodes whose in-degrees remain $\ge 1$, correctly triggering the cycle guard $\text{len}(\text{result}) < |V|$ to return `""`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sparse adjacency sets:** Store only actual outgoing neighbors and increment indegree when a set gains a new edge. This gives the manifest's $O(c+e)$ time and $O(a+e)$ space for arbitrary alphabets, but the 26-by-26 matrix is straightforward and safely deduplicates edges under the fixed contract.
-- **DFS topological sort:** Three-state graph coloring can detect a back edge and append vertices after exploring their dependencies. It has the same sparse asymptotic bounds, but its cycle reasoning and reversed finishing order differ from the exact queue-based source.
-- **Compare every pair of words:** Nonadjacent comparisons are unnecessary because adjacent sortedness is sufficient and graph transitivity captures implied relations. Comparing every pair increases work and complicates extraction.
-- **Infer rules from characters within one word:** This is invalid. A word's spelling does not say that each character precedes the next in the alphabet; only the first mismatch between ordered words carries comparison information.
-- **Longer word before its prefix:** Inputs such as `["abc", "ab"]` are impossible regardless of the letter order. They must be rejected even though no mismatching character exists.
-- **Shorter prefix first:** Inputs such as `["ab", "abc"]` are valid and add no edge. Prefix order alone already explains why the shorter word comes first.
-- **Repeated identical words:** They add no edge and cause no prefix failure. Their letters still become graph vertices and must appear in the result.
-- **Duplicate inferred edges:** Several pairs may imply the same rule. The Boolean matrix stores it once, so indegree is incremented once and later decremented once.
-- **Direct contradiction:** If both `x -> y` and `y -> x` are inferred, the source rejects immediately. This optimization is sound because no linear alphabet can satisfy both inequalities.
-- **Longer directed cycle:** A cycle involving three or more letters may evade the reverse-edge shortcut. Kahn's processed-count check is the definitive cycle test and rejects it.
-- **Isolated letters:** A letter with no incident edge starts with indegree zero and is still appended. Its exact location may vary, which is allowed because the evidence does not constrain it.
-- **Multiple valid orders:** When several letters have indegree zero, queue order selects one valid answer. The problem does not require the lexicographically smallest ordinary-English representation.
-- **Single word:** There are no adjacent comparisons, so every distinct letter in that word is isolated. The source returns them in its zero-indegree initialization order, with each distinct letter appearing once.
-- **Single distinct letter:** Repeated occurrences create only one graph vertex, no self-edge, and the result is that one letter.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Extracting Edges Past the First Mismatch:** In `"wrt"` vs `"wrf"`, the first mismatch is `t != f`. One must NOT add edges between subsequent characters. Later characters do not indicate precedence once an earlier character differs.
+- **The Prefix Invalidation Trap:** For `words = ["abc", "ab"]`, all characters of `"ab"` match the prefix of `"abc"`, but `"abc"` appears first. Since `"abc"` is strictly longer than `"ab"`, this violates lexicographical ordering. The code must detect `len(w1) > len(w2)` when no mismatch occurs and return `""`.
+- **Isolated Characters with Zero Constraints:** A character appearing in words that never mismatches (e.g. single-letter words or shared characters with no differences) has $\text{indegree} = 0$. It must still be included in the output string in any valid position.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(a+e)$. Let $c$ be the total number of characters across all words, let $a$ be the number of distinct appearing letters, and let $e$ be the number of distinct precedence edges.
-- **Auxiliary Space Complexity:** $O(26^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(C + V + E)$, where $C$ is the total number of characters across all words in `words`, $V \le 26$ is the number of unique letters in the alien alphabet, and $E \le V^2 \le 26^2$ is the number of precedence edges. Extracting edges takes $O(C)$ time. Kahn's BFS visits each vertex and edge once in $O(V + E) = O(1)$ time relative to fixed alphabet size. Total runtime is strictly linear $O(C)$ in the input text size.
+- **Auxiliary Space Complexity:** $O(V + E) = O(1)$ auxiliary memory for the adjacency graph and in-degree table over the 26 lowercase English letters.

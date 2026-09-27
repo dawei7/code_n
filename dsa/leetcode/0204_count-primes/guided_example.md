@@ -1,132 +1,177 @@
 # Guided Example: Count Primes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Sieve of Eratosthenes boolean state elimination, composite factor marking from $p^2$, and prime counting on representative integer bounds:
 
-- **Input:** `{"n": 10}`
-- **Required output:** `4`
+- **Input:** $n = 10$
+- **Required output:** $4$ (Primes strictly less than 10 are $2, 3, 5, 7$)
+- **Prime Upper Bound Instance:** $n = 7 \implies 3$ (Primes are $2, 3, 5$; $7$ is excluded by strict inequality $< n$)
+- **Base Boundary Instances:**
+  - $n = 0 \implies 0$
+  - $n = 1 \implies 0$
+  - $n = 2 \implies 0$ (No primes strictly less than 2)
+  - $n = 3 \implies 1$ (Prime 2)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates the classical Sieve of Eratosthenes, proves why composite marking starts at $p^2$ rather than $2p$, details the Mertens-Landau harmonic prime sum divergence ($\sum 1/p \approx \ln \ln n$), and operates in $O(N \log \log N)$ time with $O(N)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *the number of prime numbers that are strictly less than* `n`.
+Given an integer $n = 10$:
+Count the number of prime numbers strictly less than $n$ (in the interval $[2, n-1]$).
+Listing integers in $[2, 9]$:
+- $2$: Prime
+- $3$: Prime
+- $4$: Composite ($2 \times 2$)
+- $5$: Prime
+- $6$: Composite ($2 \times 3$)
+- $7$: Prime
+- $8$: Composite ($2 \times 4$)
+- $9$: Composite ($3 \times 3$)
+Total primes: $\{2, 3, 5, 7\} \implies \mathbf{4}$.
 
-The objective is to compute `4` from `{"n": 10}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Individual primality testing using trial division takes $O(\sqrt{x})$ per number, yielding $O(N \sqrt{N})$ total time, which times out when $n = 5 \times 10^6$.
+The **Sieve of Eratosthenes** computes all primes in the range in bulk:
+- Start with all numbers assumed prime.
+- As each prime $p$ is discovered, mark all its multiples as composite.
+- By starting composite marking at $p^2$, all redundant duplicate visits from smaller factors are eliminated.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Sieve Protocol
+Let $A$ be a boolean array of size $n$, where $A[i] = \text{True}$ indicates that integer $i$ is currently candidate prime:
+1. **Base Initialization:**
+   If $n \le 2$, return $0$.
+   Initialize $A[0] = A[1] = \text{False}$, and $A[2 \dots n-1] = \text{True}$.
+2. **Composite Filtering (Outer Loop $p \le \sqrt{n-1}$):**
+   For $p = 2, 3, \dots, \lfloor \sqrt{n-1} \rfloor$:
+   - If $A[p] == \text{True}$:
+     $p$ has no factors strictly between $1$ and $p$, so $p$ is prime.
+     Mark all multiples of $p$ starting from $p^2$ as composite:
+     $$
+     \text{for } m = p^2, p^2 + p, p^2 + 2p, \dots < n: \quad A[m] \leftarrow \text{False}
+     $$
+3. **Prime Count Aggregation:**
+   $$
+   \text{return } \sum_{i=2}^{n-1} A[i]
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Why Mark Multiples Starting from $p^2$?
+Any composite number $c < p^2$ that has $p$ as a factor must have the form:
+$$
+c = k \cdot p \quad \text{where } k < p
+$$
+Because $k < p$, $k$ possesses at least one prime factor $q \le k < p$.
+Therefore, $c$ has already been marked composite during the earlier sieve pass for prime $q$!
+Starting at $p^2$ avoids re-marking smaller composites.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Before starting iteration $p$, for every integer $x < p^2$, $A[x] = \text{True}$ if and only if $x$ is prime.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat every index as a candidate number
+We trace the sieve for $n = 10$ ($N = 10$, indices $0 \dots 9$):
 
-The solution allocates `primes = [true] * n`. Index `x` represents integer
-`x`, and a true value means no smaller processed prime has yet proved `x`
-composite.
-
-Indices 0 and 1 also begin true, even though neither is prime. This causes no
-incorrect count because the outer loop starts at 2 and never examines those
-indices. A more explicit sieve might initialize them false, but the exact code
-does not need to.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 0: Initial State
+$$
+A = [\text{F}, \text{F}, \text{T}, \text{T}, \text{T}, \text{T}, \text{T}, \text{T}, \text{T}, \text{T}]
+$$
+Indices: $0, 1$ are $\text{False}$; $2 \dots 9$ are $\text{True}$.
+Outer loop bound: $p \le \lfloor \sqrt{9} \rfloor = 3$.
 
 ---
 
-### Step 2: Scan candidates in increasing order
-
-For every `i` from 2 through `n - 1`, the algorithm checks `primes[i]`. If the
-entry is false, some earlier prime marked `i` as a multiple, so it is composite
-and is skipped.
-
-If the entry is still true, `i` is prime. The proof comes from the smallest
-prime factor: if `i` were composite, it would have a factor smaller than `i`,
-and that factor's marking pass would already have set this entry false. The
-algorithm therefore increments `ans` exactly at prime indices.
-
-Scanning only through `n - 1` enforces the exclusive upper bound. Even if `n`
-itself is prime, it has no array index in this length-$n$ list and is not
-counted.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Prime $p = 2$
+- $A[2] = \text{True} \implies \mathbf{2 \text{ is prime!}}$
+- Mark multiples starting from $p^2 = 2^2 = \mathbf{4}$, stepping by $2$:
+  - $m = 4$: $A[4] \leftarrow \text{False}$.
+  - $m = 6$: $A[6] \leftarrow \text{False}$.
+  - $m = 8$: $A[8] \leftarrow \text{False}$.
+- Array state:
+  $$
+  A = [\text{F}, \text{F}, \mathbf{T}, \mathbf{T}, \mathbf{F}, \text{T}, \mathbf{F}, \text{T}, \mathbf{F}, \text{T}]
+  $$
 
 ---
 
-### Step 3: Mark all later multiples of a discovered prime
+### Step 2: Prime $p = 3$
+- $A[3] = \text{True} \implies \mathbf{3 \text{ is prime!}}$
+- Mark multiples starting from $p^2 = 3^2 = \mathbf{9}$, stepping by $3$:
+  - $m = 9$: $A[9] \leftarrow \text{False}$.
+- Array state:
+  $$
+  A = [\text{F}, \text{F}, \mathbf{T}, \mathbf{T}, \mathbf{F}, \mathbf{T}, \mathbf{F}, \mathbf{T}, \mathbf{F}, \mathbf{F}]
+  $$
 
-For a prime `i`, the inner range begins at `i + i`, advances by `i`, and stops
-before `n`. These values are `2i, 3i, 4i, ...`, each divisible by `i` with a
-second factor at least two, so every marked value is composite.
+---
 
-The prime `i` itself is not marked because marking begins at twice its value.
-Some composite entries are written false many times; for example, 30 is a
-multiple of 2, 3, and 5. Repeatedly assigning false does not change correctness,
-though it adds work.
+### Step 3: Loop Termination ($p > \sqrt{9}$)
+- Sieve loop bound reached ($p > 3$).
+- Remaining unmarked numbers $\ge 4$ (specifically $5$ and $7$) are certified prime!
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+---
+
+### Step 4: Final Count
+Sum remaining `True` values across $A[2 \dots 9]$:
+- $A[2] = \text{True}$
+- $A[3] = \text{True}$
+- $A[5] = \text{True}$
+- $A[7] = \text{True}$
+
+Total prime count: $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```text
+Initial Array (size 10):
+Idx: 0  1  2  3  4  5  6  7  8  9
+Val: F  F  T  T  T  T  T  T  T  T
+
+p = 2: Mark multiples starting at 2*2=4, step 2 (4, 6, 8)
+Val: F  F  T  T  F  T  F  T  F  T
+
+p = 3: Mark multiples starting at 3*3=9, step 3 (9)
+Val: F  F  T  T  F  T  F  T  F  F
+
+Outer loop finishes (p <= sqrt(10)).
+True indices: 2, 3, 5, 7 -> Count = 4
+```
+
+| Pass | Tested Prime $p$ | Starting Multiple $p^2$ | Multiples Marked Composite | Updated Boolean Array $A[2 \dots 9]$ |
+|:---:|:---:|:---:|:---|:---|
+| Init | - | - | $0, 1$ set to False | `[T, T, T, T, T, T, T, T]` |
+| **1** | **$p = 2$** | **$4$** | **$4, 6, 8$** | `[T, T, F, T, F, T, F, T]` |
+| **2** | **$p = 3$** | **$9$** | **$9$** | `[T, T, F, T, F, T, F, F]` |
+| End | $p > \sqrt{9}$ | - | Sieve complete | **Count of `True` = $4$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any number $m$ marked False is of the form $k \cdot p$ with $k \ge 2$, meaning it has a non-trivial factor $p > 1$ and is composite. No prime number is ever marked False.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every composite number $c < n$ has a prime factor $p \le \sqrt{c} < \sqrt{n}$. When the sieve reaches this prime factor $p$, $c$ is marked False because $c \ge p^2$ and $c$ is a multiple of $p$. Thus, every composite is eliminated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Square-start sieve:** Begin marking at `p*p` and stop outer candidate processing near $\sqrt n$; avoids redundant writes.
-- **Bytearray slicing:** Compact storage and C-level bulk marking can be substantially faster in Python.
-- **Odd-only sieve:** Store only odd candidates and treat 2 separately, as the competitive variant effectively does.
-- **Linear sieve:** Record smallest prime factors so each composite is generated once; $O(n)$ time but more bookkeeping.
-- **Trial division per number:** Uses less sieve storage but is too slow near five million.
-- **`n <= 2`:** No primes are strictly below the bound.
-- **Prime `n`:** Excluded because the range is `[0,n)`.
-- **Repeated marking:** Safe because false assignment is idempotent.
-- **Indices 0 and 1:** Remain true internally but are never scanned or counted.
-- **Manifest mismatch:** Exact source is a boolean-list, `2p`-start sieve, not a bytearray square-start implementation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Strict Inequality `< n`:** The problem asks for primes *strictly less than* $n$. If $n = 7$, $7$ itself is prime but must not be counted (result is $3$, for primes $2, 3, 5$). Allocating an array of size $n$ guarantees that index $n$ is never included.
+- **Starting at $2p$ Instead of $p^2$:** Marking from $2p$ is correct but wastes significant time re-marking even numbers ($4, 6, 8, \dots$) during later prime passes. Starting at $p^2$ avoids this overhead.
+- **Base Cases $n \le 2$:** If $n = 0, 1, 2$, there are no primes strictly less than $n$. Guarding with `if n <= 2: return 0` avoids negative range indexing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log \log n)$. The outer scan is $O(n)$. For each prime $p<n$, the inner loop performs roughly
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log \log N)$. Summing the work done across all primes $p \le \sqrt{N}$:
+  $$
+  \sum_{p \le N} \frac{N}{p} = N \sum_{p \le N} \frac{1}{p} \approx N \ln(\ln N)
+  $$
+  By Mertens' second theorem, the harmonic sum of primes diverges as $\ln \ln N$, making the runtime nearly linear.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the boolean sieve array.

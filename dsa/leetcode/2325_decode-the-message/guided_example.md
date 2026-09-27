@@ -1,134 +1,153 @@
 # Guided Example: Decode the Message
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"key": "the quick brown fox jumps over the lazy dog", "message": "vkbs bs t suepuv"}`
-- **Required output:** `"this is a secret"`
+We are given two strings, `key` and `message`, representing a cipher key and an encoded text respectively. A substitution cipher table is constructed from `key` according to the following rules:
+1. Scan `key` from left to right.
+2. The first time an unmapped lowercase English letter appears, map it to the next available letter in the standard alphabet (`'a'`, `'b'`, `'c'`, $\dots$, `'z'`).
+3. Subsequent appearances of an already mapped letter are skipped.
+4. Spaces `' '` are preserved as spaces and are never assigned an alphabet substitution.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Once all 26 lowercase English letters are mapped, `message` is decoded by replacing each encoded letter with its mapped counterpart while preserving all spaces.
 
----
+Consider the representative instance:
+- `key = "the quick brown fox jumps over the lazy dog"`
+- `message = "vkbs bs t suepuv"`
 
-## 1. Instance & Teaching Goal
+Because `key` contains every letter of the alphabet at least once (a pangram), scanning its distinct characters in order of first appearance defines the complete substitution table. Decoding `"vkbs bs t suepuv"` yields `"this is a secret"`.
 
-You are given the strings `key` and `message`, which represent a cipher key and a secret message, respectively. The steps to decode `message` are as follows:
+```mermaid
+flowchart TD
+    accTitle: Cipher Construction and Decoding Architecture
+    accDescr: Pipeline extracting unique letters from the key in order of first occurrence to build a substitution table for decoding the message.
+    Key["Input Key: 'the quick brown...'"] --> Filter["Extract Distinct Letters<br/>in First-Occurrence Order"]
+    Filter --> Map["Zip with Standard Alphabet<br/>'t'->'a', 'h'->'b', 'e'->'c', ..."]
+    Map --> Table[("Substitution Lookup Table<br/>(26 letters + space)")]
 
-The objective is to compute `"this is a secret"` from `{"key": "the quick brown fox jumps over the lazy dog", "message": "vkbs bs t suepuv"}` while avoiding redundant calculations and unnecessary overhead.
+    Msg["Input Message: 'vkbs bs t suepuv'"] --> Decode["Map Characters via Table"]
+    Table --> Decode
+    Decode --> Res["Decoded Output: 'this is a secret'"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let $\Sigma = \{\text{'a'}, \text{'b'}, \dots, \text{'z'}\}$ be the English lowercase alphabet of size $|\Sigma| = 26$.
+The input `key` is a sequence of characters $k_0, k_1, \dots, k_{m-1} \in \Sigma \cup \{\text{' '}\}$.
 
-## 2. Conceptual Foundation & Invariants
+### Formal Extraction of Cipher Permutation
+We define the ordered sequence of distinct characters $U = \langle u_0, u_1, \dots, u_{25} \rangle$ where:
+- $u_j \in \Sigma$ is the $(j+1)$-th unique letter encountered in `key` from left to right.
+- The mapping $f: \Sigma \to \Sigma$ is established as:
+  $$f(u_j) = \text{chr}(\text{ord}(\text{'a'}) + j)$$
+- For the space delimiter, $f(\text{' '}) = \text{' '}$.
 
-We maintain the core conceptual parameters and state variables:
+Decoding the message $M = m_0 m_1 \dots m_{\ell-1}$ consists of applying the substitution $f$ pointwise:
 
-| State Parameter | Role & Purpose | Initial State |
+$$\operatorname{Decode}(M) = f(m_0) f(m_1) \dots f(m_{\ell-1})$$
+
+| Cipher Step | State Maintained | Action on Encountering Character $c$ |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| First occurrence of letter $c$ | Map index $j \in [0, 25]$ | Store $f(c) = \text{chr}(\text{'a'} + j)$, increment $j$ |
+| Duplicate occurrence of letter $c$ | None | Ignored, mapping preserved |
+| Space character `' '` | Fixed anchor | Statically assigned $f(\text{' '}) = \text{' '}$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We construct the mapping table from `key = "the quick brown fox jumps over the lazy dog"`.
 
-## 3. Step-by-Step Worked Execution
+### Phase 1: Constructing the Substitution Mapping
+Scanning `key` left to right:
+- `'t'`: 1st new letter $\to \text{'a'}$
+- `'h'`: 2nd new letter $\to \text{'b'}$
+- `'e'`: 3rd new letter $\to \text{'c'}$
+- `' '`: Space skipped.
+- `'q'`: 4th new letter $\to \text{'d'}$
+- `'u'`: 5th new letter $\to \text{'e'}$
+- `'i'`: 6th new letter $\to \text{'f'}$
+- `'c'`: 7th new letter $\to \text{'g'}$
+- `'k'`: 8th new letter $\to \text{'h'}$
+- `' '`: Space skipped.
+- `'b'`: 9th new letter $\to \text{'i'}$
+- `'r'`: 10th new letter $\to \text{'j'}$
+- `'o'`: 11th new letter $\to \text{'k'}$
+- `'w'`: 12th new letter $\to \text{'l'}$
+- `'n'`: 13th new letter $\to \text{'m'}$
+- Continuing across the remaining words:
+  - `'f'` $\to \text{'n'}$, `'x'` $\to \text{'o'}$
+  - `'j'` $\to \text{'p'}$, `'m'` $\to \text{'q'}$, `'p'` $\to \text{'r'}$, `'s'` $\to \text{'s'}$
+  - `'v'` $\to \text{'t'}$, `'l'` $\to \text{'u'}$, `'a'` $\to \text{'v'}$, `'z'` $\to \text{'w'}$, `'y'` $\to \text{'x'}$
+  - `'d'` $\to \text{'y'}$, `'g'` $\to \text{'z'}$
 
-### Step 1: The key's first distinct letters define a decoding dictionary
+All 26 letters are registered.
 
-The cipher table is determined by the order in which distinct lowercase letters first appear in `key`. The first distinct key letter maps to plain `a`, the second maps to `b`, and so on through the twenty-sixth mapping to `z`.
+### Phase 2: Decoding the Target Message
+Input message: `message = "vkbs bs t suepuv"`
 
-The solution stores these substitutions in dictionary `d`. It begins with `{" ": " "}` because spaces must survive unchanged. Preloading the space also ensures that spaces encountered while scanning `key` do not consume a position in the alphabet.
+1. Word 1 (`"vkbs"`):
+   - `'v'` $\to \text{'t'}$
+   - `'k'` $\to \text{'h'}$
+   - `'b'` $\to \text{'i'}$
+   - `'s'` $\to \text{'s'}$
+   - Result: `"this"`
+2. Delimiter: `' '` $\to \text{' '}$
+3. Word 2 (`"bs"`):
+   - `'b'` $\to \text{'i'}$
+   - `'s'` $\to \text{'s'}$
+   - Result: `"is"`
+4. Delimiter: `' '` $\to \text{' '}$
+5. Word 3 (`"t"`):
+   - `'t'` $\to \text{'a'}$
+   - Result: `"a"`
+6. Delimiter: `' '` $\to \text{' '}$
+7. Word 4 (`"suepuv"`):
+   - `'s'` $\to \text{'s'}$
+   - `'u'` $\to \text{'e'}$
+   - `'e'` $\to \text{'c'}$
+   - `'p'` $\to \text{'r'}$
+   - `'u'` $\to \text{'e'}$
+   - `'v'` $\to \text{'t'}$
+   - Result: `"secret"`
 
-The integer `i` counts how many distinct lowercase key letters have been mapped. It starts at zero, so the first new letter maps to `ascii_lowercase[0]`, which is `a`.
+Concatenating decoded tokens: `"this is a secret"`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"key": "the quick brown fox jumps over the lazy dog", "message": "vkbs bs t suepuv"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Comprehensive State Trace
 
----
+The table below illustrates the first-appearance ordering and corresponding plaintext assignments.
 
-### Step 2: Ignore every repeated appearance after the first
+| First-Appearance Order | Key Character ($c$) | Target Alphabet Substitution ($f(c)$) | Representative Message Occurrence | Decoded Character Output |
+|---|---|---|---|---|
+| 0 | `'t'` | `'a'` | $message[8]$ (`'t'`) | `'a'` |
+| 1 | `'h'` | `'b'` | - | - |
+| 2 | `'e'` | `'c'` | $message[12]$ (`'e'`) | `'c'` |
+| 3 | `'q'` | `'d'` | - | - |
+| 4 | `'u'` | `'e'` | $message[11], [14]$ (`'u'`) | `'e'` |
+| 7 | `'k'` | `'h'` | $message[1]$ (`'k'`) | `'h'` |
+| 8 | `'b'` | `'i'` | $message[2], [5]$ (`'b'`) | `'i'` |
+| 16 | `'p'` | `'r'` | $message[13]$ (`'p'`) | `'r'` |
+| 17 | `'s'` | `'s'` | $message[3], [6], [10]$ (`'s'`) | `'s'` |
+| 19 | `'v'` | `'t'` | $message[0], [15]$ (`'v'`) | `'t'` |
+| Anchor | `' '` | `' '` | $message[4], [7], [9]$ (`' '`) | `' '` |
 
-The loop visits key characters from left to right. For each character `c`, it checks `if c not in d`. If `c` is a new lowercase letter, the method assigns
+## 5. Algorithmic Correctness & Soundness
 
-`d[c] = ascii_lowercase[i]`
+1. **Bijective Invertibility on Letters:**
+   Because each newly discovered letter from `key` is paired with an incrementing alphabet pointer without reuse or reassignment, the mapping $f: \Sigma \to \Sigma$ is a true bijection (one-to-one and onto).
 
-and increments `i`. If it is a repeated letter, its existing mapping remains unchanged and `i` does not move.
+2. **Delimiter Separation:**
+   Spaces are handled as an invariant fixed point ($f(\text{' '}) = \text{' '}$) and are never added into the alphabet counter progression. Word boundaries and spacing structures are preserved identically.
 
-This precisely implements “use the first appearance.” Once a key character has been assigned its alphabet position, later copies cannot overwrite it.
+## 6. Edge Cases & Anti-Patterns
 
-For a partial key beginning `"happy boy"`, the first new characters are `h`, `a`, `p`, `y`, `b`, and `o`. They receive `a`, `b`, `c`, `d`, `e`, and `f`. The second `p` and the spaces are already in `d` and are skipped.
+- **Duplicate Letters in Key:**
+  - In `"the lazy dog"`, `'t'` and `'e'` reappear. The membership check `c not in table` prevents resetting or advancing the target alphabet pointer.
+- **Alphabetical Key (Identity Cipher):**
+  - If `key` begins with `"abcdefghijklmnopqrstuvwxyz"`, the mapping is the identity permutation ($f(c) = c$).
+- **Rotated or Reverse Alphabet Keys:**
+  - Reverse alphabetical keys map `'z'` to `'a'` and `'a'` to `'z'`.
+- **Anti-Pattern (Searching Key for Each Message Character):**
+  - Finding the first index of each message character inside `key` repeatedly results in $\mathcal{O}(|message| \cdot |key|)$ complexity. Pre-indexing into a direct lookup array achieves $\mathcal{O}(1)$ decode time per character.
 
-The source guarantees that every lowercase English letter appears in the key at least once. At the end of the scan, `d` therefore contains mappings for all 26 letters plus space, and `i` has advanced exactly 26 times.
+## 7. Complexity Analysis
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Translate the message in its original order
-
-The return expression
-
-`"".join(d[c] for c in message)`
-
-looks up each message character and yields its decoded replacement. `join` concatenates those replacements in the same order, producing the final plaintext string.
-
-A lowercase cipher character uses the mapping established by its first key appearance. A space uses the preinstalled mapping to another space. The message constraints guarantee no other character type, so every lookup succeeds.
-
-Repeated message letters are translated repeatedly to the same plaintext letter because the dictionary is fixed after key processing. The procedure is substitution, not stateful decoding; one message character never changes the meaning of a later one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"this is a secret"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"key": "the quick brown fox jumps over the lazy dog", "message": "vkbs bs t suepuv"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"this is a secret"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **A 26-entry array indexed by character code:** Record each cipher letter's plaintext character at `ord(c) - ord('a')`. This has the same asymptotic bounds but needs a separate branch for spaces and explicit index arithmetic.
-- **Build an ordered distinct-key string first:** Remove spaces and duplicates, then zip with the alphabet. This can be readable but may create extra strings or sets; the one-pass dictionary builds the mapping directly.
-- **Use the last appearance of each key letter:** Overwriting mappings would violate the first-appearance order and could assign several alphabet positions incorrectly.
-- **Advance `i` for spaces:** Spaces are not one of the 26 substitution letters. Preloading them in `d` ensures they never consume an alphabet position.
-- **Advance `i` for repeated letters:** Only newly discovered characters advance the substitution order. Repeats must be ignored.
-- **Map plaintext to cipher instead of cipher to plaintext:** Decoding needs to look up each encrypted message character and retrieve its regular alphabet replacement. Reversing the dictionary would require another inversion step.
-- **Key begins with spaces:** They are already mapped and skipped; the first lowercase letter still receives `a`.
-- **Many repeated letters before a new one:** Repetition leaves both the existing mapping and `i` unchanged, preserving first-distinct order.
-- **Message contains only spaces:** Every character maps to itself, so the returned string is identical.
-- **Message repeats one cipher letter:** Each occurrence receives the same decoded character, as a substitution cipher requires.
-- **All 26 letters guaranteed:** No message lowercase lookup can fail because every letter has a key mapping by the end of the first pass.
-- **Missing-letter invalid input:** The contract excludes it. If a missing key letter appeared in the message, direct dictionary lookup would raise an error rather than invent a mapping.
-- **Non-lowercase characters:** The source excludes them. The mapping covers only lowercase English letters and space.
-- **Input preservation:** Both strings are read only, and the result is newly constructed.
-- **Output length:** Substitution replaces each input character with exactly one character, so decoded length equals message length.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(k + m)$. Let `k` be the key length and `m` the message length. The first loop examines each key character once, with expected constant-time dictionary membership and insertion. Decoding examines each message character once, and joining writes an output of length `m`. Total expected time is `O(k + m)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|key| + |message|)$. Constructing the hash table requires a single pass over `key` of length at most a few thousand characters. Decoding `message` takes a single pass of length $|message|$. With alphabet size $|\Sigma| = 26$, lookup operations run in $\mathcal{O}(1)$ time.
+- **Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$ auxiliary space to store the 26 character translation mappings.

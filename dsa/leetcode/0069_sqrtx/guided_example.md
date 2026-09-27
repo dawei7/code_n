@@ -1,96 +1,129 @@
 # Guided Example: Sqrt(x)
 
-We trace the logarithmic Math, Binary Search search on a representative problem instance.
+We trace the step-by-step execution of monotonic bisection search and Newton's method on representative integer instances:
 
-- **Input:** `{"x": 4}`
-- **Required output:** `2`
+- **Non-Square Integer:** $x = 8 \implies 2$ (since $\lfloor \sqrt{8} \rfloor = \lfloor 2.8284 \dots \rfloor = 2$)
+- **Perfect Square:** $x = 4 \implies 2$
+- **Boundary Base Case:** $x = 0 \implies 0$
 
-This instance demonstrates search space bound maintenance, integer midpoint calculation, and monotonic predicate halving.
+This instance demonstrates binary search over a discrete monotonic mathematical domain ($m \mapsto m^2$), preventing 32-bit integer overflow via division ($M \le x / M$), and integer floor convergence.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Sqrt(x)** is to pinpoint the target value or optimal threshold in logarithmic $O(\log N)$ time.
-Linear scanning through all candidates takes $O(N)$ time. By exploiting monotonicity in the search domain, each comparison halves the remaining candidate space.
+Given a non-negative integer $x = 8$, compute and return the square root of $x$ rounded down to the nearest integer ($\lfloor \sqrt{x} \rfloor$). The built-in exponent function or operator (such as `pow(x, 0.5)` or `x ** 0.5`) must not be used.
+
+For $x = 8$:
+- $2^2 = 4 \le 8$
+- $3^2 = 9 > 8$
+The largest integer whose square does not exceed $8$ is $2$.
+
+A linear scan from $1$ upward takes $O(\sqrt{x})$ time, which requires over $46{,}340$ operations when $x \approx 2^{31} - 1$. Because $f(m) = m^2$ is strictly monotonically increasing for $m \ge 0$, binary search determines $\lfloor \sqrt{x} \rfloor$ in $O(\log x)$ time (at most $\approx 31$ iterations).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define an active search interval $[L, R]$. At each iteration, we evaluate the midpoint $M = L + \lfloor (R - L) / 2 \rfloor$.
+### Monotonic Bisection Predicate
+Let $x \ge 1$. The integer square root must lie within range $[1, x]$ (or $[1, \lfloor x / 2 \rfloor]$ for $x \ge 4$).
+At midpoint $M = L + \lfloor (R - L) / 2 \rfloor$:
+- If $M \times M == x$: exact square root discovered. Return $M$.
+- If $M \times M < x$: $M$ is a valid candidate for the integer floor. Record $\text{ans} \leftarrow M$, and search right:
+  $$
+  L \leftarrow M + 1
+  $$
+- If $M \times M > x$: $M$ is strictly too large. Eliminate right half:
+  $$
+  R \leftarrow M - 1
+  $$
 
-| Interval Variable | Role in Bisection |
-|---|---|
-| Lower Bound $L$ | Lowest possible index/value in active range |
-| Upper Bound $R$ | Highest possible index/value in active range |
-| Midpoint $M$ | Probe point dividing interval into equal halves |
+### Avoiding Integer Overflow
+In 32-bit typed systems, computing $M \times M$ when $M \approx 2^{16}$ overflows the 32-bit signed integer limit ($2^{31}-1 = 2{,}147{,}483{,}647$).
+Using division:
+$$
+M \le \lfloor x / M \rfloor
+$$
+is mathematically equivalent to $M^2 \le x$ while remaining entirely within 32-bit arithmetic.
 
-> **Invariant.** If a valid solution exists, it is guaranteed to lie within the inclusive search range $[L, R]$.
+> **Invariant.** Throughout the search, $\text{ans}^2 \le x$, and any value strictly greater than $R$ satisfies value$^2 > x$. When $L > R$, $R$ is identical to $\text{ans}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Initial Bounds Setup
+We trace $x = 8$:
 
-- Set $L = 0$ and $R = N - 1$ (or corresponding domain bounds).
-- Compute initial midpoint $M$.
-
-| Parameter | State |
-|---|---|
-| Search Interval | $[L, R]$ |
-| Midpoint Probe $M$ | $L + \lfloor (R - L) / 2 \rfloor$ |
-| Evaluated Value | Probe result compared against target |
+### Initialization
+- Edge case: $x < 2$ returns $x$ directly.
+- Search bounds: $L = 1, R = \lfloor 8 / 2 \rfloor = 4$.
+- Recorded candidate: $\text{ans} = 1$.
 
 ---
 
-### Step 2: Interval Halving via Monotonicity
-
-- If the probe value satisfies the predicate or is smaller than the target, eliminate the left half ($L = M + 1$).
-- Otherwise, eliminate the right half ($R = M - 1$ or $R = M$).
-
-| Parameter | State |
-|---|---|
-| Discarded Region | Non-viable half eliminated |
-| New Interval | Narrowed $[L, R]$ |
+### Step 1 ($L = 1, R = 4$)
+- Midpoint: $M = 1 + \lfloor (4 - 1) / 2 \rfloor = 2$.
+- Square evaluation: $M^2 = 2 \times 2 = 4$.
+- Compare: $4 \le 8$. Candidate valid!
+- Update: $\text{ans} \leftarrow 2$.
+- Shift search right: $L \leftarrow M + 1 = 3$.
+- Active interval: $[3, 4]$.
 
 ---
 
-### Step 3: Convergence & Target Extraction
+### Step 2 ($L = 3, R = 4$)
+- Midpoint: $M = 3 + \lfloor (4 - 3) / 2 \rfloor = 3$.
+- Square evaluation: $M^2 = 3 \times 3 = 9$.
+- Compare: $9 > 8$. Too large!
+- Shift search left: $R \leftarrow M - 1 = 2$.
+- Active interval: $[3, 2]$.
 
-- Iteration halts when $L > R$ (or $L == R$).
-- Return confirmed target index or boundary answer.
+---
+
+### Step 3: Termination
+- Boundary cross: $L = 3 > R = 2$.
+- Loop terminates.
+- Emitted output: $\text{ans} = 2$ (or returning $R = 2$).
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Iteration | Lower $L$ | Upper $R$ | Midpoint $M$ | Evaluated Value | Decision / Predicate | Halved Interval |
-|---|---|---|---|---|---|---|
-| 1 (Start) | $0$ | $N-1$ | Midpoint | Probe result | Branch selection | Remaining half |
-| 2 (Narrow) | Updated $L$ | Updated $R$ | New Midpoint | Probe result | Further contraction | Narrowed half |
-| Final | Converged | Converged | Target | Match / Boundary | Target confirmed | Result emitted |
+| Iteration | Left $L$ | Right $R$ | Midpoint $M$ | $M^2$ | $M^2 \le 8$? | Recorded $\text{ans}$ | Boundary Adjustment |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 1 | 4 | 2 | 4 | **Yes ($4 \le 8$)** | **2** | Search right: $L \leftarrow 3$ |
+| 2 | 3 | 4 | 3 | 9 | No ($9 > 8$) | 2 | Search left: $R \leftarrow 2$ |
+| Terminal | 3 | **2** | - | - | $L > R$ | **2** | **Exit with $R = 2$** |
+
+### Newton-Raphson Alternative Trace ($x = 8$)
+Starting from $r_0 = 8$:
+$$
+r_{k+1} = \left\lfloor \frac{1}{2} \left( r_k + \frac{x}{r_k} \right) \right\rfloor
+$$
+- $r_1 = \lfloor \frac{1}{2}(8 + 8/8) \rfloor = \lfloor \frac{9}{2} \rfloor = 4$
+- $r_2 = \lfloor \frac{1}{2}(4 + 8/4) \rfloor = \lfloor \frac{6}{2} \rfloor = 3$
+- $r_3 = \lfloor \frac{1}{2}(3 + 8/3) \rfloor = \lfloor \frac{5}{2} \rfloor = 2$
+- $r_4 = \lfloor \frac{1}{2}(2 + 8/2) \rfloor = \lfloor \frac{6}{2} \rfloor = 3 > 2 \implies$ Halt at $2$!
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because the underlying search space is monotonic, any region discarded by the comparison is mathematically proven not to contain the target.
+**Soundness.** Because $M^2$ increases strictly monotonically with $M > 0$, any $M$ satisfying $M^2 > x$ guarantees that all integers $k \ge M$ also satisfy $k^2 > x$. Thus, eliminating the right half upon $M^2 > x$ discards only strictly impossible candidates.
 
-**Completeness.** The interval size strictly decreases by $\lfloor (R - L + 1) / 2 \rfloor$ on every step, guaranteeing termination and discovery of the target.
+**Completeness.** The search interval $[L, R]$ halves in size each iteration. When $L > R$, the boundary pointer $R$ sits at the exact mathematical threshold $\max \{m \in \mathbb{Z} \mid m^2 \le x\}$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Integer Overflow in Midpoint:** Using $(L + R) / 2$ in fixed-width languages can overflow. The form $L + \lfloor(R - L) / 2\rfloor$ is safe.
-- **Infinite Loops on $L == R - 1$:** Misaligned boundary updates ($L = M$ without upper-rounding midpoint) causes infinite loops when two elements remain.
-- **Left vs. Right Insertion Index:** Distinguishing exact match from lower-bound insertion points prevents off-by-one errors.
+- **Integer Multiplication Overflow:** Writing `M * M <= x` causes overflow when $M \ge 46341$ in 32-bit signed integers. Writing `M <= x // M` or using 64-bit arithmetic avoids overflow.
+- **Base Case $x = 0$ and $x = 1$:** When $x = 0$, $L = 1$ would fail division by zero. Handling $x < 2$ returning $x$ upfront ensures division is never called with $M = 0$.
+- **Returning $L$ vs Returning $R$:** When the loop exits with $L > R$, $L$ is the first value whose square exceeds $x$, while $R$ is the greatest value whose square is $\le x$. Returning $R$ (or the recorded candidate $\text{ans}$) is required.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log N)$ because the candidate interval is bisected in each step.
-- **Auxiliary Space Complexity:** $O(1)$ constant extra space using iterative pointers.
+- **Time Complexity:** $O(\log x)$. The search interval has size $x / 2$, which is halved at each step, taking at most $\approx 31$ iterations for any 32-bit non-negative integer.
+- **Auxiliary Space Complexity:** $O(1)$. Memory consumption is strictly constant.

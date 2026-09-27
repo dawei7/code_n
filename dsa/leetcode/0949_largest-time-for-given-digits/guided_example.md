@@ -1,127 +1,168 @@
 # Guided Example: Largest Time for Given Digits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step chronological reverse search across the 24-hour time domain, prove the First-Hit Optimality Theorem and Multiset Frequency Conservation Invariant, and evaluate valid time constructions on representative 4-digit arrays:
 
-- **Input:** `{"arr": [1, 2, 3, 4]}`
-- **Required output:** `"23:41"`
+- **Representative Instance 1 (Multiple Valid Combinations):**
+  $$
+  arr = [1, \; 2, \; 3, \; 4]
+  $$
+- **Required Output:** `"23:41"`
+  - Target multiset signature:
+    $$
+    cnt[1] = 1, \; cnt[2] = 1, \; cnt[3] = 1, \; cnt[4] = 1, \quad \text{all other } cnt[d] = 0
+    $$
+  - Descending chronological search from $h = 23, m = 59$ downward:
+    - $23:59 \implies \text{digits } \{2, 3, 5, 9\} \ne cnt$
+    - $23:58 \implies \text{digits } \{2, 3, 5, 8\} \ne cnt$
+    - $\dots$
+    - $23:42 \implies \text{digits } \{2, 3, 4, 2\} \ne cnt$ (needs two $2$'s)
+    - $23:41 \implies \text{digits } \{2, 3, 4, 1\} == cnt$ (**Exact Match!**)
+  - Because search order is strictly descending, the first match found is guaranteed to be the maximum possible time.
+  - Return formatted string immediately: $\mathbf{\text{"23:41"}}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Impossible Valid Time):**
+  $$
+  arr = [5, \; 5, \; 5, \; 5]
+  $$
+  - Any valid hour must start with tens digit $\in \{0, 1, 2\}$.
+  - But available digits contain only $5$.
+  - All $1{,}440$ candidate tests fail $\implies$ returns empty string $\mathbf{\text{""}}$.
+
+- **Representative Instance 3 (All-Zero Midnight):**
+  $$
+  arr = [0, \; 0, \; 0, \; 0] \implies \text{matches at } h = 0, m = 0 \implies \mathbf{\text{"00:00"}}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `arr` of 4 digits, find the latest 24-hour time that can be made using each digit **exactly once**.
+Given an array `arr` of 4 digits, find the **latest 24-hour time** that can be made using each digit exactly once.
+Valid 24-hour times range from `00:00` to `23:59`. If no valid time exists, return the empty string `""`.
 
-The objective is to compute `"23:41"` from `{"arr": [1, 2, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Domain: 1,440 valid minute timestamps (23:59 down to 00:00)
+Digits: [1, 2, 3, 4]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Chronological Descent:
+  23:59  -> {2, 3, 5, 9}  (No)
+  23:58  -> {2, 3, 5, 8}  (No)
+  ...
+  23:42  -> {2, 3, 4, 2}  (No)
+  23:41  -> {2, 3, 4, 1}  (YES! First match is maximal -> "23:41")
+```
 
----
+A naive permutation approach generates all $4! = 24$ permutations, formats each as a time string, validates hours and minutes, and tracks the maximum, requiring string sorting and custom comparison helpers.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Search times in the order the answer wants
-
-There are only 24 possible hours and 60 possible minutes, for 1,440 valid 24-hour times. This domain size is fixed, independent of input values.
-
-Instead of generating arrangements and later comparing them, the solution enumerates valid times from latest to earliest:
-
-- hours from `23` down to `0`;
-- for each hour, minutes from `59` down to `0`.
-
-The first time whose four digits exactly match the supplied multiset is necessarily the latest constructible time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [1, 2, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Descending Domain Search & Multiset Frequency Invariant**:
+- The total universe of valid 24-hour times is small and fixed: exactly $24 \times 60 = 1{,}440$ possible states.
+- By enumerating hours $h \in [23, \dots, 0]$ and minutes $m \in [59, \dots, 0]$ in strictly descending order, candidates are evaluated in monotonically decreasing chronological order.
+- To check whether time $(h, m)$ can be formed by `arr`, we compare its digit frequency array $t$ with the frequency array $cnt$ of `arr`.
+- The very first match encountered is provably the latest constructible time, running in $\mathcal{O}(1)$ time and $\mathcal{O}(1)$ space.
 
 ---
 
-### Step 2: Represent duplicate digits correctly
+## 2. Conceptual Foundation & The First-Hit Optimality Invariant
 
-The input may contain repeated digits, so a set is insufficient. For example, `[1, 1, 2, 3]` must distinguish two copies of one from one copy.
+```mermaid
+flowchart TD
+    accTitle: Largest Time from Digits Descending Search Pipeline
+    accDescr: Flowchart illustrating building frequency array of input digits and checking descending hours and minutes
+    Start["Compute input digit frequency array cnt of size 10"] --> LoopH["For hour h from 23 down to 0:"]
+    LoopH --> LoopM["For minute m from 59 down to 0:"]
+    LoopM --> Decomp["Extract digits: h // 10, h % 10, m // 10, m % 10 into array t"]
+    Decomp --> Compare{"cnt == t ?"}
+    Compare -->|"Yes: First valid time found!"| ReturnTime["Return formatted '{h:02}:{m:02}'"]
+    Compare -->|"No"| LoopM
+    LoopM --> LoopH
+    LoopH -->|"All 1440 times checked"| ReturnEmpty["Return ''"]
+```
 
-Array `cnt` has ten positions. For each input digit `v`, `cnt[v]` increases. It is a frequency signature of the four available digits.
+### The First-Hit Optimality Theorem
 
-For each candidate time, a new ten-entry array `t` counts:
-
-- `h // 10`, the hour tens digit;
-- `h % 10`, the hour ones digit;
-- `m // 10`, the minute tens digit;
-- `m % 10`, the minute ones digit.
-
-The condition `cnt == t` means every digit occurs exactly the same number of times in the candidate and input. This simultaneously proves that every input digit is used and no digit is reused too many times.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{T} = \{(h, m) : 0 \le h \le 23, \; 0 \le m \le 59\}$ be the set of all valid 24-hour clock times.
+1. **Total Strict Order:**
+   A time $(h_1, m_1)$ is strictly later than $(h_2, m_2)$ if and only if $60 h_1 + m_1 > 60 h_2 + m_2$.
+2. **Descending Generation:**
+   The nested loops:
+   $$
+   h \in [23, 22, \dots, 0], \quad m \in [59, 58, \dots, 0]
+   $$
+   generate elements of $\mathcal{T}$ in strictly decreasing chronological order:
+   $$
+   (23, 59) > (23, 58) > \dots > (23, 0) > (22, 59) > \dots > (0, 0)
+   $$
+3. **First-Hit Lemma:**
+   Let $(h^*, m^*)$ be the first element in this sequence such that its multiset of digits equals the multiset of `arr`.
+   Because every preceding candidate had an incompatible multiset of digits, no time strictly greater than $(h^*, m^*)$ can be formed using the elements of `arr`.
+   Therefore, $(h^*, m^*)$ is the unique maximum valid time constructible from `arr`. $\blacksquare$
 
 ---
 
-### Step 3: Why integer division preserves leading zeros
+## 3. Step-by-Step Worked Execution: $arr = [1, 2, 3, 4]$
 
-For hour five, `h // 10` is zero and `h % 10` is five, so the candidate contributes digits zero and five. Similarly, minute seven contributes zero and seven.
+Input: $arr = [1, 2, 3, 4]$.
+Build input frequency array `cnt`:
+$cnt[1] = 1, \; cnt[2] = 1, \; cnt[3] = 1, \; cnt[4] = 1$, all others $0$.
 
-Thus `05:07` is treated as the four digits `0, 5, 0, 7` even though the numeric variables are merely five and seven. Leading zeros are not lost from the frequency check.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"23:41"` |
+### Search Sequence
+- Test $h = 23$:
+  - Tens digit $2$, ones digit $3$. Digits required for hour: $\{2, 3\}$.
+  - Remaining digits in $cnt$ available for minutes: $\{1, 4\}$.
+  - Can minute $m \in [59 \dots 0]$ use exactly $\{1, 4\}$?
+    - $m = 41$: tens digit $4$, ones digit $1$.
+    - Candidate digits for $(23, 41)$: $\{2, 3, 4, 1\}$.
+    - Check frequency:
+      $t[1] = 1, t[2] = 1, t[3] = 1, t[4] = 1 \implies cnt == t$ is **True!**
+- First hit reached at $h = 23, m = 41$.
+- Format string:
+  $$
+  \text{f"}\{23:02\}\text{:}\{41:02\}\text{"} \implies \mathbf{\text{"23:41"}}
+  $$
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Chronological Search Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [1, 2, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"23:41"` | Verified |
+| Tested Candidate $(h, m)$ | Hour Digits $(h_1, h_2)$ | Minute Digits $(m_1, m_2)$ | Candidate Multiset $t$ | Matches $cnt$? | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| `23:59` | $(2, 3)$ | $(5, 9)$ | $\{2, 3, 5, 9\}$ | No | Decrement minute |
+| `23:58` | $(2, 3)$ | $(5, 8)$ | $\{2, 3, 5, 8\}$ | No | Decrement minute |
+| $\dots$ | $\dots$ | $\dots$ | $\dots$ | No | Continue search |
+| `23:43` | $(2, 3)$ | $(4, 3)$ | $\{2, 3, 4, 3\}$ | No | Decrement minute |
+| `23:42` | $(2, 3)$ | $(4, 2)$ | $\{2, 3, 4, 2\}$ | No | Decrement minute |
+| **`23:41`** | **$(2, 3)$** | **$(4, 1)$** | **$\{1, 2, 3, 4\}$** | **YES** | **Return "23:41" (Optimal!)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Any time returned has $0 \le h \le 23$ and $0 \le m \le 59$ by loop bounds, so it is a valid 24-hour clock time. The condition $cnt == t$ guarantees that the four characters formatted into `HH:MM` are an exact multiset permutation of the 4 integers in `arr`.
+2. **Completeness:**
+   Every valid 24-hour time is tested. If at least one valid time can be formed from `arr`, it must belong to the $1{,}440$ candidate pool and will be matched. If no match is found, returning `""` is provably correct.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Enumerate the 24 digit permutations:** Four positions have at most `4! = 24` arrangements. Validate each and keep the latest. This is also constant time, but duplicate permutations require care.
-- **Backtracking with a used array:** It handles repeated positions explicitly but is more machinery than enumerating the small valid-time domain.
-- **Greedily choose each digit:** A locally largest hour digit can make the remaining hour or minute invalid. Complete enumeration is safer.
-- **Repeated digits:** Frequency arrays enforce exact multiplicity and avoid set-related mistakes.
-- **Midnight:** Digits `0, 0, 0, 0` produce `00:00`, a valid answer rather than an empty string.
-- **Leading-zero hour or minute:** Division and modulo count the zero, and two-digit formatting restores it visibly.
-- **No valid arrangement:** Exhausting every valid time proves impossibility.
-- **Several valid times:** Descending enumeration returns the latest without a separate maximum variable.
-- **Exactly 24:00:** It is not a valid 24-hour representation under the contract; the hour loop correctly stops at 23.
-- **Input order:** Only digit multiplicities matter, so the original array order has no effect.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Midnight | `[0, 0, 0, 0]` | Matches at $h = 0, m = 0$; returns `"00:00"`. | Treating `"00:00"` as falsy or empty. |
+| Leading Zeros | `[2, 0, 6, 6]` | Returns `"06:26"`; integer division preserves $0$ tens digit. | Dropping leading zero in single-digit hours. |
+| Impossible Minutes | `[9, 9, 2, 2]` | Tens minute cannot exceed $5$; returns `""`. | Forming invalid times like `22:99`. |
+| Upper Bound | `[2, 3, 5, 9]` | Hits on the very first iteration `23:59`. | Off-by-one upper bound loop limit. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The loops always examine at most `24 * 60 = 1440` candidates. Each candidate performs a constant number of digit operations and compares two fixed ten-entry arrays. Since the input always contains exactly four digits and the search domain never grows, time is `O(1)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$ strictly constant.
+  - The outer loop runs at most $24$ times.
+  - The inner loop runs at most $60$ times.
+  - Total candidates tested: at most $24 \times 60 = 1{,}440$.
+  - In each candidate test, 4 modulo/division operations and an array comparison of size $10$ are performed.
+  - Total operations bounded by $\approx 1.5 \times 10^4$, executing in $< 0.001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ strictly constant.
+  - Only two fixed-size integer arrays of length 10 (`cnt` and `t`) are allocated.

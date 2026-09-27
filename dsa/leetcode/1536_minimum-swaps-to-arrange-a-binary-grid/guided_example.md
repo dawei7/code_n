@@ -1,123 +1,206 @@
 # Guided Example: Minimum Swaps to Arrange a Binary Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal greedy bubble-selection algorithm on a representative $3 \times 3$ binary grid to achieve a lower-triangular form with minimum adjacent-row swaps.
 
-- **Input:** `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}`
-- **Required output:** `3`
+- **Input Grid:** $\begin{pmatrix} 0 & 0 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}$ of dimension $n = 3$.
+- **Output:** `3` (three adjacent row swaps transform the grid into a valid configuration where all cells above the main diagonal are zero).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates row qualification abstraction via trailing zero counts, greedy nearest-candidate selection, and simulated adjacent-swap displacement without modifying the original two-dimensional grid.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `n x n` binary `grid`, in one step you can choose two **adjacent rows** of the grid and swap them.
+We are given an $n \times n$ binary grid with $n = 3$:
 
-The objective is to compute `3` from `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+$$\text{grid} = \begin{bmatrix} 0 & 0 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A configuration is **valid** if every cell strictly above the main diagonal is zero, meaning $\text{grid}[i][j] = 0$ for all $j > i$.
+
+Equivalently, row $i$ must end with at least $n - 1 - i$ trailing zeros:
+- Row $i = 0$ requires at least $3 - 1 - 0 = 2$ trailing zeros (columns 1 and 2 must be 0).
+- Row $i = 1$ requires at least $3 - 1 - 1 = 1$ trailing zero (column 2 must be 0).
+- Row $i = 2$ requires at least $3 - 1 - 2 = 0$ trailing zeros (no constraint).
+
+In one operation, we can swap any two adjacent rows.
+
+**Teaching Goal:**
+Understand how to abstract two-dimensional grid requirements into a one-dimensional array of trailing zero counts, and prove that greedily picking the closest eligible row from the remaining suffix minimizes total adjacent swaps.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  TRAILING ZERO & BUBBLE SELECTION MODEL                 |
++-------------------------------------------------------------------------+
+|  Initial Grid:                                                          |
+|  Row 0: [0, 0, 1]  --> Trailing Zeros = 0 (rightmost 1 at col 2)        |
+|  Row 1: [1, 1, 0]  --> Trailing Zeros = 1 (rightmost 1 at col 1)        |
+|  Row 2: [1, 0, 0]  --> Trailing Zeros = 2 (rightmost 1 at col 0)        |
+|                                                                         |
+|  Array of Trailing Zeros: T = [0, 1, 2]                                 |
+|                                                                         |
+|  Target Row i = 0 (Requires >= 2 zeros):                                |
+|    Scan T from index 0: T[0]=0 (No), T[1]=1 (No), T[2]=2 (Yes!)         |
+|    Bubble index 2 up to index 0: Cost = 2 - 0 = 2 swaps                 |
+|    State of T becomes: [2, 0, 1]                                        |
+|                                                                         |
+|  Target Row i = 1 (Requires >= 1 zero):                                 |
+|    Scan T from index 1: T[1]=0 (No), T[2]=1 (Yes!)                      |
+|    Bubble index 2 up to index 1: Cost = 2 - 1 = 1 swap                  |
+|    State of T becomes: [2, 1, 0]                                        |
+|                                                                         |
+|  Target Row i = 2 (Requires >= 0 zeros):                                |
+|    Scan T from index 2: T[2]=0 (Yes!)                                   |
+|    Bubble cost = 0 swaps                                                |
+|                                                                         |
+|  Total Adjacent Swaps = 2 + 1 + 0 = 3                                   |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+We establish the core state parameters:
+
+| State Variable | Definition & Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $T$ | Array of trailing zero counts for current rows | $[0, 1, 2]$ |
+| $i$ | Current target row index being satisfied | $0$ |
+| $\text{req}_i$ | Minimum trailing zeros needed at row $i$: $n - 1 - i$ | $\text{req}_0 = 2$ |
+| $k$ | Index of the first row at or below $i$ satisfying $T[k] \ge \text{req}_i$ | Located during scan |
+| $\text{swaps}$ | Cumulative count of adjacent row swaps executed | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Greedy Nearest Candidate Invariant.** At target row $i$, any candidate row $k \ge i$ with $T[k] \ge n - 1 - i$ can satisfy the requirement. Selecting the minimal index $k$ minimizes the immediate swap cost $k - i$ while preserving the relative order of all other remaining rows. If no $k \ge i$ satisfies $T[k] \ge n - 1 - i$, the grid cannot be transformed into valid form and the algorithm emits $-1$.
+
+```mermaid
+graph TD
+    accTitle: Greedy Row Placement Flowchart
+    accDescr: Process of iterating target rows, finding the first row with sufficient trailing zeros, and bubbling it upward.
+    A["Extract trailing zeros T = [0, 1, 2]"] --> B["For target row i from 0 to n-1"]
+    B --> C["Compute required zeros: req = n - 1 - i"]
+    C --> D["Find first k >= i such that T[k] >= req"]
+    D --> E{"Eligible k found?"}
+    E -- "No" --> F["Impossible configuration: Return -1"]
+    E -- "Yes" --> G["Add (k - i) to swaps"]
+    G --> H["Bubble T[k] up to T[i]"]
+    H --> I{"i == n - 1?"}
+    I -- "No" --> B
+    I -- "Yes" --> J["Return swaps (3)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the diagonal rule into a property of each row
+### Preprocessing: Trailing Zero Extraction
 
-In zero-based coordinates, row `i` is valid when every column strictly greater than `i` contains zero. Those cells lie above the main diagonal.
+For each row in $\text{grid}$, we count consecutive zeros from the right:
+- Row 0: `[0, 0, 1]` has rightmost 1 at index 2 $\implies 3 - 1 - 2 = 0$ trailing zeros.
+- Row 1: `[1, 1, 0]` has rightmost 1 at index 1 $\implies 3 - 1 - 1 = 1$ trailing zero.
+- Row 2: `[1, 0, 0]` has rightmost 1 at index 0 $\implies 3 - 1 - 0 = 2$ trailing zeros.
 
-Instead of repeatedly checking many suffix cells, the solution records `pos[i]`, the column of the rightmost one in row `i`. It scans each row from right to left and stops at the first one it finds. An all-zero row keeps the initial value negative one.
-
-Row `r` can occupy final position `i` exactly when `pos[r] <= i`. If its rightmost one is at or before column `i`, every later column is zero. If its rightmost one is after `i`, that one would lie above the diagonal and violate validity.
-
-The negative-one value for an all-zero row naturally satisfies every requirement because $-1 \le i$ for all valid positions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Initial array: $T = [0, 1, 2]$.
 
 ---
 
-### Step 2: Fill final positions from top to bottom
+### Step 1: Satisfying Target Row $i = 0$
+- Required trailing zeros: $\text{req}_0 = n - 1 - 0 = 2$.
+- Search $k \ge 0$ for $T[k] \ge 2$:
+  - $k = 0$: $T[0] = 0 < 2$ (insufficient).
+  - $k = 1$: $T[1] = 1 < 2$ (insufficient).
+  - $k = 2$: $T[2] = 2 \ge 2$ (candidate found!).
+- Cost to bubble row 2 up to position 0:
+  $$\Delta \text{swaps} = k - i = 2 - 0 = 2$$
+  $\text{swaps} \leftarrow 0 + 2 = 2$.
+- Update $T$ by shifting elements between index 0 and 2:
+  - Element $T[2] = 2$ moves to position 0.
+  - Intermediate elements $T[0]$ and $T[1]$ shift right to positions 1 and 2.
+  - New array: $T = [2, 0, 1]$.
 
-The top row is most restrictive: it may contain a one only in column zero. Each lower position is weaker because it allows the rightmost one one column farther right.
-
-For each target position `i`, the solution searches current rows `i` through `n - 1` for the first row whose `pos` value is at most `i`. Call its current position `k`.
-
-Choosing the first such row means choosing the nearest eligible row. Bringing it upward requires exactly `k - i` adjacent swaps. The code adds this amount to `ans`.
-
-It then performs those swaps on `pos` itself. Swapping `pos[k]` with `pos[k - 1]` repeatedly moves the chosen row to position `i` and shifts every intervening row down by one. The original grid does not need to be rearranged because all later decisions depend only on each row's rightmost-one position.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step | Target $i$ | Required Zeros | Found Index $k$ | Swap Cost $k - i$ | Array $T$ After Bubble | Cumulative Swaps |
+|---|---|---|---|---|---|---|
+| Pre | - | - | - | - | $[0, 1, 2]$ | 0 |
+| 1 | 0 | 2 | 2 | 2 | $[2, 0, 1]$ | 2 |
 
 ---
 
-### Step 3: Why adjacent swaps cost k minus i
+### Step 2: Satisfying Target Row $i = 1$
+- Required trailing zeros: $\text{req}_1 = n - 1 - 1 = 1$.
+- Search $k \ge 1$ in $T = [2, 0, 1]$:
+  - $k = 1$: $T[1] = 0 < 1$ (insufficient).
+  - $k = 2$: $T[2] = 1 \ge 1$ (candidate found!).
+- Cost to bubble row 2 up to position 1:
+  $$\Delta \text{swaps} = k - i = 2 - 1 = 1$$
+  $\text{swaps} \leftarrow 2 + 1 = 3$.
+- Update $T$:
+  - Element $T[2] = 1$ moves to position 1.
+  - Element $T[1] = 0$ shifts right to position 2.
+  - New array: $T = [2, 1, 0]$.
 
-An adjacent swap changes a row's position by exactly one. A row beginning at `k` must cross the boundaries between `k` and `k-1`, then `k-1` and `k-2`, continuing until it reaches `i`. There are exactly `k-i` such boundaries.
+| Step | Target $i$ | Required Zeros | Found Index $k$ | Swap Cost $k - i$ | Array $T$ After Bubble | Cumulative Swaps |
+|---|---|---|---|---|---|---|
+| 2 | 1 | 1 | 2 | 1 | $[2, 1, 0]$ | 3 |
 
-No sequence of adjacent row swaps can move that row upward using fewer steps, so the amount added is both achievable and necessary for this choice.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Satisfying Target Row $i = 2$
+- Required trailing zeros: $\text{req}_2 = n - 1 - 2 = 0$.
+- Search $k \ge 2$ in $T = [2, 1, 0]$:
+  - $k = 2$: $T[2] = 0 \ge 0$ (candidate found!).
+- Cost to bubble row 2 to position 2:
+  $$\Delta \text{swaps} = 2 - 2 = 0$$
+- Array remains: $T = [2, 1, 0]$.
+
+All $n = 3$ rows are now valid. Final swap count is **`3`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+The full transition sequence across all target row positions is summarized below:
+
+| Target Row $i$ | Requirement $\text{req}_i$ | Pre-Step $T$ | Scan Traversal | Chosen $k$ | Inversion Distance $k - i$ | Post-Step $T$ | Running Swaps |
+|---|---|---|---|---|---|---|---|
+| 0 | $\ge 2$ | $[0, 1, 2]$ | Check $k=0$ (0), $k=1$ (1), $k=2$ (2) | 2 | $2 - 0 = 2$ | $[2, 0, 1]$ | 2 |
+| 1 | $\ge 1$ | $[2, 0, 1]$ | Check $k=1$ (0), $k=2$ (1) | 2 | $2 - 1 = 1$ | $[2, 1, 0]$ | 3 |
+| 2 | $\ge 0$ | $[2, 1, 0]$ | Check $k=2$ (0) | 2 | $2 - 2 = 0$ | $[2, 1, 0]$ | 3 |
+| End | - | $[2, 1, 0]$ | All constraints satisfied | - | - | Complete | **3** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+- An adjacent swap between rows $r$ and $r+1$ changes only their relative order, leaving all other rows unchanged.
+- Moving a row from index $k$ to $i$ ($k > i$) by successive adjacent swaps requires exactly $k - i$ operations, which is the minimum possible distance in the transposition graph.
+- When $T[k] \ge n - 1 - i$, placing row $k$ at index $i$ guarantees that columns $j \in [i+1, n-1]$ in row $i$ are all zeros, directly satisfying the upper-triangular requirement.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+- Requirement monotonicity: The requirements $\text{req}_i = n - 1 - i$ are strictly decreasing with $i$ ($\text{req}_0 > \text{req}_1 > \dots > \text{req}_{n-1}$).
+- Any row qualifying for target $i$ also qualifies for any subsequent target $i' > i$.
+- By selecting the smallest index $k \ge i$ that satisfies $\text{req}_i$, we leave more qualified rows with larger trailing zero counts intact for lower indices where possible, and avoid unnecessary inversions.
+- If at any step $i$ no remaining row has $\ge \text{req}_i$ trailing zeros, then by the pigeonhole principle no valid assignment of the remaining rows can ever satisfy position $i$, proving that valid rearrangement is impossible and returning $-1$ is correct.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Swap complete grid rows:** It produces the same answer but moves $N$ cells per adjacent swap; updating only `pos` is sufficient.
-- **Recount trailing zeros repeatedly:** It is correct but repeats work that one preprocessing pass avoids.
-- **Choose any eligible row:** Feasibility may survive, but choosing a farther row can add unnecessary adjacent swaps; the nearest eligible row is the minimum-cost greedy choice.
-- **All-zero row:** Its `pos` value is negative one, so it is eligible for every target position.
-- **Already valid grid:** Every current row satisfies its position and each chosen `k` equals `i`, giving zero swaps.
-- **Identical invalid rows:** If no row satisfies an early requirement, row swaps cannot help and the result is negative one.
-- **One-by-one grid:** Its sole row is automatically valid and requires zero swaps.
-- **Rightmost one on the diagonal:** `pos == i` is legal because only cells strictly above the diagonal must be zero.
-- **Rightmost one just beyond the diagonal:** `pos == i + 1` is illegal for that position.
-- **Adjacent-only rule:** The distance `k-i` would not be the correct cost if arbitrary row swaps counted as one operation.
-- **Column swaps:** They are not allowed and are never used.
-- **Last target row:** Every row is eligible there because no column lies to the right of the last diagonal cell.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Full Grid Swapping Overhead:** Physically swapping $n$-element arrays in the 2D matrix during every bubble step takes $\mathcal{O}(n)$ per adjacent swap, inflating total time to $\mathcal{O}(n^3)$. Operating exclusively on the 1D trailing zeros array $T$ reduces each swap to $\mathcal{O}(1)$.
+- **Choosing the Maximally Qualified Row:** Greedily picking the row with the largest trailing zero count instead of the nearest eligible row is incorrect. It may pull a row from deep in the array at huge swap cost when a nearby row with just enough zeros would suffice.
+- **Handling Impossible Grids:** When multiple rows lack sufficient trailing zeros (e.g. four rows of `[0, 1, 1, 0]` where none has 3 trailing zeros), the search for $k$ fails. The algorithm must safely detect this condition and emit $-1$ without entering an infinite loop.
+- **Off-by-One in Trailing Zero Computation:** For an all-zero row, the rightmost 1 does not exist, giving $n$ trailing zeros. Handled properly, $n \ge n - 1 - i$ is always satisfied, correctly identifying all-zero rows as universally eligible.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $N$ be the grid dimension. Finding each rightmost one can scan $N$ columns across $N$ rows, costing $O(N^2)$ time.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Precomputing trailing zero counts across all $n$ rows of length $n$ takes $\mathcal{O}(n^2)$ time.
+  - For each target position $i \in [0, n-1]$:
+    - Scanning for the first eligible row $k \in [i, n-1]$ takes at most $n - i$ steps.
+    - Shifting elements in array $T$ from $k$ down to $i$ takes $k - i \le n$ operations.
+    - Summing over all $n$ positions yields $\sum_{i=0}^{n-1} \mathcal{O}(n) = \mathcal{O}(n^2)$ time.
+  - Overall time complexity is $\mathcal{O}(n^2)$. For $n \le 200$, $n^2 \le 40,000$ operations, which executes in a few milliseconds.
+- **Auxiliary Space Complexity:**
+  - The array $T$ of trailing zero counts requires $\mathcal{O}(n)$ auxiliary memory.
+  - All shifts and updates are performed in-place within $T$, yielding $\mathcal{O}(n)$ total auxiliary space.

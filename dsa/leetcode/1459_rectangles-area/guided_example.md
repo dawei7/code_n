@@ -1,113 +1,192 @@
 # Guided Example: Rectangles Area
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational self-join, coordinate disparity filtering, and area calculation on a representative database instance:
 
-- **Input:** `{"tables": {"Points": [{"id": 9, "x_value": -2, "y_value": -3}]}}`
-- **Required output:** `{"columns": ["p1", "p2", "area"], "rows": []}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** Relation $Points$ containing three 2D coordinates:
+  - Point 1: $(2, 7)$
+  - Point 2: $(4, 8)$
+  - Point 3: $(2, 10)$
+- **Required Output:** Relation with columns $(p1, p2, area)$ ordered by $area \downarrow, p1 \uparrow, p2 \uparrow$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Points`
+We are given a database table $Points(id, x\_value, y\_value)$ where each row represents a unique 2D point on a Cartesian plane. Any two points can form the opposite diagonal corners of an axis-aligned rectangle. A rectangle has **non-zero area** if and only if the two points do not share the same horizontal or vertical line ($x_1 \ne x_2$ and $y_1 \ne y_2$).
+- We must output each pair once, enforcing the canonical ordering constraint $p1 < p2$.
+- Area is calculated as $|x_1 - x_2| \times |y_1 - y_2|$.
+- Results must be sorted by $area$ descending, with ties broken by $p1$ ascending, then $p2$ ascending.
 
-The objective is to compute `{"columns": ["p1", "p2", "area"], "rows": []}` from `{"tables": {"Points": [{"id": 9, "x_value": -2, "y_value": -3}]}}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Pair $(1, 2)$: $(2, 7)$ and $(4, 8) \implies |2 - 4| \times |7 - 8| = 2 \times 1 = 2 \ne 0$. Valid.
+- Pair $(1, 3)$: $(2, 7)$ and $(2, 10) \implies |2 - 2| \times |7 - 10| = 0 \times 3 = 0$. Collinear on $x = 2$, degenerate area $0$. Invalid.
+- Pair $(2, 3)$: $(4, 8)$ and $(2, 10) \implies |4 - 2| \times |8 - 10| = 2 \times 2 = 4 \ne 0$. Valid.
+- Output sorted by area descending: $(2, 3, 4)$, then $(1, 2, 2)$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model geometric pair generation in relational algebra using a strictly ordered self-join ($P_1.id < P_2.id$) combined with a non-degeneracy selection predicate ($\sigma_{x_1 \ne x_2 \land y_1 \ne y_2}$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $P_1$ and $P_2$ denote two aliases of the $Points$ relation.
+We perform an inequality self-join:
 
-| State Parameter | Role & Purpose | Initial State |
+$$J = P_1 \bowtie_{P_1.id < P_2.id} P_2$$
+
+The strict inequality $P_1.id < P_2.id$ guarantees:
+1. No point is paired with itself ($P_1.id \ne P_2.id$).
+2. Each unordered pair of distinct points is considered exactly once.
+
+We filter out collinear pairs that form horizontal or vertical line segments:
+
+$$F = \sigma_{P_1.x\_value \ne P_2.x\_value \; \land \; P_1.y\_value \ne P_2.y\_value}(J)$$
+
+For each qualifying pair in $F$, we compute the non-zero rectangle area:
+$$\text{area} = |P_1.x\_value - P_2.x\_value| \cdot |P_1.y\_value - P_2.y\_value|$$
+
+Finally, we project the output attributes and apply multi-attribute sorting:
+
+$$R = \tau_{area \downarrow, \, p1 \uparrow, \, p2 \uparrow} \left( \Pi_{P_1.id \to p1, \, P_2.id \to p2, \, area}(F) \right)$$
+
+```
+Planar Coordinate Geometry:
+  y ^
+ 10 |        (Point 3: 2, 10)
+  9 |
+  8 |                        (Point 2: 4, 8)
+  7 |        (Point 1: 2, 7)
+    +----------------------------------------> x
+             2               4
+
+Pair (1, 3): Same x-coord (x=2)  --> Area = |2-2| * |7-10| = 0 (DEGENERATE!)
+Pair (1, 2): Diff x=2, Diff y=1  --> Area = 2 * 1 = 2 (VALID)
+Pair (2, 3): Diff x=2, Diff y=2  --> Area = 2 * 2 = 4 (VALID)
+```
+
+We establish tracking parameters across the relational pipeline:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Primary Point ($P_1$) | Relation row $(id_1, x_1, y_1)$ | First corner of potential rectangle |
+| Secondary Point ($P_2$) | Relation row $(id_2, x_2, y_2)$ | Opposite diagonal corner with $id_1 < id_2$ |
+| Horizontal Span ($\Delta x$) | Integer $> 0$ | Distance $|x_1 - x_2|$ |
+| Vertical Span ($\Delta y$) | Integer $> 0$ | Distance $|y_1 - y_2|$ |
+| Rectangle Area | Integer $> 0$ | Product $\Delta x \cdot \Delta y$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** A point pair $(P_1, P_2)$ produces an output row if and only if $P_1.id < P_2.id$, $P_1.x\_value \ne P_2.x\_value$, and $P_1.y\_value \ne P_2.y\_value$, ensuring that every reported area is strictly positive.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Rectangle Area Generator
+    accDescr: Self-joins Points table on id1 < id2, filters pairs with distinct x and y coordinates, computes area, and sorts by area descending.
+    A["Points Table P"] --> B["Self-Join P1 and P2 on P1.id < P2.id"]
+    B --> C["Filter predicate:<br/>P1.x != P2.x and P1.y != P2.y"]
+    C --> D["Compute area = abs(P1.x - P2.x) * abs(P1.y - P2.y)"]
+    D --> E["Project columns: p1, p2, area"]
+    E --> F["Sort by area DESC, p1 ASC, p2 ASC"]
+    F --> G["Emit final result relation"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance with 3 points:
+- Point 1: $(2, 7)$
+- Point 2: $(4, 8)$
+- Point 3: $(2, 10)$
 
-**Any two suitable points determine opposite corners.** For an axis-aligned rectangle, two opposite corners must differ in both their x-coordinates and y-coordinates. Their horizontal side length is the absolute x difference, and their vertical side length is the absolute y difference. The area is their product.
+### Step 1: Generate Candidate Pairs with $p_1 < p_2$
+Possible pairs with $id_1 < id_2$:
+1. Pair $(1, 2)$
+2. Pair $(1, 3)$
+3. Pair $(2, 3)$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Points": [{"id": 9, "x_value": -2, "y_value": -3}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Evaluate Coordinate Deltas and Areas
 
----
+1. **Pair $(1, 2)$:**
+   - Coordinates: $P_1 = (2, 7)$, $P_2 = (4, 8)$.
+   - $\Delta x = |2 - 4| = 2$.
+   - $\Delta y = |7 - 8| = 1$.
+   - Check non-zero condition: $\Delta x > 0$ and $\Delta y > 0$ (Valid).
+   - $\text{area} = 2 \times 1 = 2$.
 
-### Step 2: Core Step 2
+2. **Pair $(1, 3)$:**
+   - Coordinates: $P_1 = (2, 7)$, $P_3 = (2, 10)$.
+   - $\Delta x = |2 - 2| = 0$.
+   - $\Delta y = |7 - 10| = 3$.
+   - Check non-zero condition: $\Delta x = 0$ (Collinear on vertical line $x = 2$).
+   - $\text{area} = 0 \times 3 = 0$.
+   - Disqualified.
 
-The query creates two aliases, `p1` and `p2`, of the `Points` table. Joining them considers pairs of point rows. The condition `p1.id < p2.id` does two jobs at once: it prevents pairing a point with itself, and it keeps exactly one orientation of every unordered pair.
+3. **Pair $(2, 3)$:**
+   - Coordinates: $P_2 = (4, 8)$, $P_3 = (2, 10)$.
+   - Wait, here $id_1 = 2 < id_2 = 3$.
+   - $\Delta x = |4 - 2| = 2$.
+   - $\Delta y = |8 - 10| = 2$.
+   - Check non-zero condition: $\Delta x > 0$ and $\Delta y > 0$ (Valid).
+   - $\text{area} = 2 \times 2 = 4$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Sort Qualifying Tuples
+Qualifying tuples before sort:
+- $(1, 2, 2)$
+- $(2, 3, 4)$
 
----
+Applying sorting criteria ($\text{area} \downarrow, \, p_1 \uparrow, \, p_2 \uparrow$):
+- Area $4 > 2$, so tuple $(2, 3, 4)$ appears first.
+- Tuple $(1, 2, 2)$ appears second.
 
-### Step 3: Core Step 3
-
-Without that inequality, points with IDs one and two would appear both as `1, 2` and `2, 1`. Since the rectangle is the same in both directions, that would duplicate the output. Choosing smaller ID as `p1` also satisfies the contract's canonical `p1 < p2` representation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["p1", "p2", "area"], "rows": []}` |
+| Pair $(P_1, P_2)$ | Corner Coordinates | $\Delta x = |x_1 - x_2|$ | $\Delta y = |y_1 - y_2|$ | Computed Area | Valid Non-zero Area? | Emitted Tuple |
+|---|---|---|---|---|---|---|
+| $(1, 2)$ | $(2,7), (4,8)$ | 2 | 1 | 2 | Yes | $(1, 2, 2)$ |
+| $(1, 3)$ | $(2,7), (2,10)$ | 0 | 3 | 0 | **No (Degenerate)** | *Discarded* |
+| $(2, 3)$ | $(4,8), (2,10)$ | 2 | 2 | 4 | Yes | $(2, 3, 4)$ |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Points": [{"id": 9, "x_value": -2, "y_value": -3}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["p1", "p2", "area"], "rows": []}` | Verified |
+```
+Sorted Final Output Table:
++----+----+------+
+| p1 | p2 | area |
++----+----+------+
+| 2  | 3  |  4   |
+| 1  | 2  |  2   |
++----+----+------+
+Total candidate pairs: 3
+Valid non-zero rectangles: 2
+Degenerate lines discarded: 1 (pair 1-3)
+```
+
+| Output Rank | Point 1 ($p1$) | Point 2 ($p2$) | Diagonal Vertices | Width $\times$ Height | Emitted Area |
+|---|---|---|---|---|---|
+| 1 | 2 | 3 | $(4, 8), (2, 10)$ | $2 \times 2$ | 4 |
+| 2 | 1 | 2 | $(2, 7), (4, 8)$ | $2 \times 1$ | 2 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A pair of points on a 2D plane defines an axis-aligned rectangle of non-zero area if and only if their horizontal displacement $|x_1 - x_2|$ and vertical displacement $|y_1 - y_2|$ are both strictly non-zero. The algebraic predicate $x_1 \ne x_2 \land y_1 \ne y_2$ rigorously guarantees this property. Enforcing $p_1 < p_2$ ensures each geometric rectangle is output exactly once without inverted duplicates.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Self-joining the entire $Points$ relation on $P_1.id < P_2.id$ exhaustively evaluates all $\binom{P}{2}$ possible point pairings. No candidate rectangle is omitted from consideration.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Cross join with a WHERE pair condition:** Writing `CROSS JOIN Points p2 WHERE p1.id < p2.id` is logically equivalent. Keeping the pair condition in `JOIN ... ON` makes pair formation explicit.
-- **Filter on area greater than zero:** This is equivalent for integer coordinates but repeats or aliases the area calculation. Testing coordinate inequality states the geometry directly.
-- **Use LEAST and GREATEST for IDs:** Generate both orientations and normalize the IDs afterward. That performs duplicate work; `p1.id < p2.id` prevents duplicates earlier.
-- **GROUP BY normalized pair:** It could remove duplicated orientations, but correct join construction makes aggregation unnecessary.
-- **Same x-coordinate:** Width is zero, so the pair is excluded.
-- **Same y-coordinate:** Height is zero, so the pair is excluded.
-- **Identical coordinates with different IDs:** Both differences are zero and the pair is excluded even though the rows are distinct.
-- **Negative coordinates:** Absolute differences produce the correct positive side lengths.
-- **Smaller ID lies right or above:** Spatial order does not matter because `ABS` handles direction.
-- **Equal areas:** Rows are ordered by `p1` ascending and then `p2` ascending.
-- **No valid pairs:** The result is empty; the query does not invent rectangles.
-- **Exactly two valid points:** Their one canonical pair produces one row.
-- **Other corners absent from Points:** The pair still determines an axis-aligned rectangle under this contract; no four-point existence check is required.
-- **Unique ID guarantee:** It makes `p1.id < p2.id` a reliable strict ordering and ensures output pair identities are unique.
-- **Area overflow in other systems:** Coordinate ranges and SQL integer promotion should be considered in a broader schema. Casting to a wider numeric type may be needed for extremely large coordinates.
-- **Ordering aliases:** MySQL permits `area`, `p1`, and `p2` in `ORDER BY` because they are selected aliases.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Pairs with Inverted Order:** Joining on $P_1.id \ne P_2.id$ instead of $P_1.id < P_2.id$ would generate both $(2, 3, 4)$ and $(3, 2, 4)$, creating duplicate records. The condition $P_1.id < P_2.id$ is essential to enforce canonical representation.
+- **Including Zero-Area Rectangles:** Pair $(1, 3)$ has $\Delta x = 0$. Its area is $0$. Omitting the predicate $x_1 \ne x_2 \land y_1 \ne y_2$ would emit $(1, 3, 0)$, violating the requirement that area must be non-zero.
+- **Inverting Tie-Break Order:** Area must be sorted descending (`DESC`), whereas tie-breakers $p1$ and $p2$ must be sorted ascending (`ASC`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P^2 + R log R)$. Let `P` be the number of point rows and `R` the number of valid reported pairs. The self-join can consider `P(P - 1) / 2` unordered pairs, so pair generation and filtering take `O(P^2)` work in the conventional nested-pair model.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(P^2 + R \log R)$, where $P$ is the number of points in the $Points$ table and $R \le \binom{P}{2}$ is the number of valid non-zero rectangles.
+  - The inequality join examines $\frac{P(P - 1)}{2} = \mathcal{O}(P^2)$ pairs.
+  - Filtering and computing area for each pair takes $\mathcal{O}(1)$ arithmetic operations.
+  - Sorting the $R$ valid pairs requires $\mathcal{O}(R \log R)$ comparisons.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R)$ to buffer the generated rectangle tuples prior to sorting and presentation.

@@ -1,119 +1,153 @@
 # Guided Example: Text Justification
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy word packing and whitespace distribution algorithm on a representative paragraph:
 
-- **Input:** `{"words": ["word"], "maxWidth": 8}`
-- **Required output:** `["word    "]`
+- **Input:** $\text{words} = [\text{"This"}, \text{"is"}, \text{"an"}, \text{"example"}, \text{"of"}, \text{"text"}, \text{"justification."}]$, $\text{maxWidth} = 16$
+- **Required output:**
+  ```text
+  [
+    "This    is    an",
+    "example  of text",
+    "justification.  "
+  ]
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy word line packing, even whitespace distribution with quotient and remainder ($Q = \lfloor \text{spaces} / \text{gaps} \rfloor$, $R = \text{spaces} \pmod{\text{gaps}}$), giving extra spaces to leftmost slots, and formatting the terminal line as left-justified.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `words` and a width `maxWidth`, format the text such that each line has exactly `maxWidth` characters and is fully (left and right) justified.
+Given an array of strings $\text{words}$ and a maximum width $\text{maxWidth} = 16$, format the text such that each line has exactly 16 characters and is fully justified.
 
-The objective is to compute `["word    "]` from `{"words": ["word"], "maxWidth": 8}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Key formatting rules:
+1. **Greedy Line Packing:** Pack as many words as possible on each line, assuming at least one space between adjacent words.
+2. **Full Justification (Intermediate Lines):** Distribute spaces between words as evenly as possible. If the number of spaces does not divide evenly among slots, assign the extra spaces to the leftmost slots.
+3. **Left Justification (Last Line & Single-Word Lines):** The last line and any line containing only one word must be left-justified, separated by single spaces, with all remaining spaces appended to the right.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 2-Phase Line Justification Algorithm
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Phase 1: Greedy Word Gathering
+Given index $i$, find the maximum index $j$ such that:
+$$
+\sum_{k=i}^{j-1} |\text{words}[k]| + (j - 1 - i) \le \text{maxWidth}
+$$
+where $j - 1 - i$ is the minimum number of single spaces between adjacent words.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### Phase 2: Space Calculation & Slot Distribution
+Let $L = \sum_{k=i}^{j-1} |\text{words}[k]|$ be the total letter length, and let $\text{gaps} = (j - i) - 1$.
+Total spaces to distribute:
+$$
+\text{spaces} = \text{maxWidth} - L
+$$
+
+1. **Case A: Last Line ($j == N$) or Single Word ($\text{gaps} == 0$):**
+   - Join words with a single space `' '`.
+   - Pad the remaining width with trailing spaces on the right:
+     $$
+     \text{trailing} = \text{maxWidth} - \text{len}(\text{joined\_line})
+     $$
+2. **Case B: Intermediate Line with Multiple Words ($\text{gaps} > 0$):**
+   - Base spaces per slot:
+     $$
+     Q = \lfloor \text{spaces} / \text{gaps} \rfloor
+     $$
+   - Remainder extra spaces (distributed one by one to the first $R$ slots):
+     $$
+     R = \text{spaces} \pmod{\text{gaps}}
+     $$
+   - Slot $k \in [0, \text{gaps} - 1]$ receives $Q + 1$ spaces if $k < R$, else $Q$ spaces.
+
+> **Invariant.** Every generated line has length strictly equal to $\text{maxWidth}$, and no word is truncated or reordered.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the problem as line selection followed by line formatting
+We format $\text{words} = [\text{"This"}, \text{"is"}, \text{"an"}, \text{"example"}, \text{"of"}, \text{"text"}, \text{"justification."}]$ with $\text{maxWidth} = 16$:
 
-The solution becomes much easier to reason about when it does not try to choose words and assign spaces at the same time. The outer loop first selects the largest legal consecutive group of words for one line. Only after that group is fixed does it decide how the spaces must look. This separation matters because the rule for choosing words is always greedy, whereas the rule for inserting spaces changes for the last line and for a line containing one word.
-
-The index `i` is the first input word that has not yet been placed. The list `t` stores the words chosen for the current output line. Since every input word is nonempty and no word is wider than `maxWidth`, the solution can always place at least `words[i]`; therefore the outer loop always makes progress.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["word"], "maxWidth": 8}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Measure the minimum width while greedily packing words
-
-The variable `cnt` is the width the selected words would occupy with exactly one mandatory space between neighboring words. It begins as the length of the first chosen word. For every later candidate, the test
-
-`cnt + 1 + len(words[i]) <= maxWidth`
-
-asks whether the existing minimum-width line, one separator, and the candidate word still fit. If they do, the candidate is appended and `cnt` grows by precisely that separator and word length. If they do not, no later word may skip ahead because word order must be preserved. The current group is therefore the maximum legal consecutive group, exactly as greedy packing requires.
-
-For example, with width 16 and the words `"This"`, `"is"`, `"an"`, and `"example"`, the first three have minimum width $4+1+2+1+2=10$. Adding `"example"` would require $10+1+7=18$, so it belongs to the next line. Notice that this decision uses only one space per gap. Additional justification spaces cannot help another word fit; they consume leftover width only after the word group has been chosen.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Line 1 Processing
+- Greedy packing from $i = 0$:
+  - `"This"` ($4$)
+  - `"is"` ($2$): $4 + 1 + 2 = 7 \le 16$.
+  - `"an"` ($2$): $7 + 1 + 2 = 10 \le 16$.
+  - `"example"` ($7$): $10 + 1 + 7 = 18 > 16$. Cannot fit!
+- Selected words for Line 1: `["This", "is", "an"]` ($i = 0 \to j = 3$).
+- Letter count: $L = 4 + 2 + 2 = 8$.
+- Total spaces: $16 - 8 = 8$.
+- Gaps: $3 - 1 = 2$.
+- Distribution:
+  - Base: $Q = \lfloor 8 / 2 \rfloor = 4$.
+  - Remainder: $R = 8 \pmod 2 = 0$.
+  - Both gaps receive exactly 4 spaces.
+- Line 1 assembled: `"This    is    an"` (Length 16).
 
 ---
 
-### Step 3: Handle the two left-justified cases first
+### Line 2 Processing
+- Greedy packing from $i = 3$:
+  - `"example"` ($7$)
+  - `"of"` ($2$): $7 + 1 + 2 = 10 \le 16$.
+  - `"text"` ($4$): $10 + 1 + 4 = 15 \le 16$.
+  - `"justification."` ($14$): $15 + 1 + 14 = 30 > 16$. Cannot fit!
+- Selected words for Line 2: `["example", "of", "text"]` ($i = 3 \to j = 6$).
+- Letter count: $L = 7 + 2 + 4 = 13$.
+- Total spaces: $16 - 13 = 3$.
+- Gaps: $3 - 1 = 2$.
+- Distribution:
+  - Base: $Q = \lfloor 3 / 2 \rfloor = 1$.
+  - Remainder: $R = 3 \pmod 2 = 1$.
+  - Gap 0 (left): receives $Q + 1 = 2$ spaces.
+  - Gap 1 (right): receives $Q = 1$ space.
+- Line 2 assembled: `"example  of text"` (Length 16).
 
-If `i == n`, the current group contains the final input word and is consequently the last output line. If `len(t) == 1`, there is no gap across which spaces could be distributed. In either case, the required result is the same: join the words with one space, then append enough spaces on the right to reach `maxWidth`.
+---
 
-The construction `left = ' '.join(t)` gives the meaningful left-aligned content. The padding length `maxWidth - len(left)` cannot be negative because the greedy fit test already proved that the group fits with single separators. Appending that many spaces produces exactly the required width. Checking the single-word case also prevents division by zero later, because a one-word line has zero inter-word gaps.
+### Line 3 Processing (Terminal Line)
+- Greedy packing from $i = 6$:
+  - `"justification."` ($14 \le 16$).
+  - End of words list ($j = 7 = N$).
+- Selected words: `["justification."]`.
+- Rule applied: **Last Line Rule (Left-Justified)**.
+  - No inter-word gaps ($\text{gaps} = 0$).
+  - Trailing spaces on right: $16 - 14 = 2$ spaces.
+- Line 3 assembled: `"justification.  "` (Length 16).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["word    "]` |
+All words formatted into 3 justified lines.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["word"], "maxWidth": 8}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["word    "]` | Verified |
+| Line | Words Included | Total Word Chars $L$ | Inter-Word Gaps | Total Spaces | Space Allocation Per Gap | Produced Line Output |
+|:---:|:---|:---:|:---:|:---:|:---|:---|
+| 1 | `["This", "is", "an"]` | 8 | 2 | 8 | Gap 0: 4, Gap 1: 4 | `"This    is    an"` |
+| 2 | `["example", "of", "text"]` | 13 | 2 | 3 | Gap 0: 2, Gap 1: 1 | `"example  of text"` |
+| 3 | `["justification."]` | 14 | 0 (Last) | 2 | Left-aligned + 2 trailing | `"justification.  "` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Intermediate lines calculate $Q = \lfloor \text{spaces}/\text{gaps} \rfloor$ and $R = \text{spaces} \pmod{\text{gaps}}$. Because $R < \text{gaps}$, awarding $Q+1$ to the first $R$ gaps and $Q$ to the rest sums to $R(Q + 1) + (\text{gaps} - R)Q = \text{gaps} \cdot Q + R = \text{spaces}$, guaranteeing the output line has length exactly $\text{maxWidth}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since every individual word satisfies $|\text{word}| \le \text{maxWidth}$, each line packs at least one word, monotonically advancing index $i$. All words are eventually placed in order.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Helper-based design:** A `get_words` helper and a separate `create_line` helper can make the two phases even more explicit. It has the same greedy reasoning and asymptotic cost, at the price of additional calls and parameters.
-- **Cycle through gaps:** Repeatedly add one space to gap $0,1,\ldots,k-2$ until the line is full. This is intuitive but can perform more operations than quotient-and-remainder distribution and is easier to make quadratic with immutable strings.
-- **Precompute prefix character sums:** Prefix sums can answer the letter total for any candidate range, but the one-pass scan already maintains exactly the needed total and is simpler.
-- **One word on a nonfinal line:** It must be followed entirely by right padding; attempting to divide spaces among zero gaps would fail.
-- **The final line:** It always uses one space between adjacent words and all remaining spaces on the right, even when full justification would distribute them differently.
-- **A word exactly `maxWidth` characters long:** It forms a one-word line with zero right padding.
-- **Uneven division:** The first `m` gaps receive one more space than the remaining gaps, so larger gaps are always leftmost.
-- **Even division:** When `m` is zero, every gap receives exactly `w` spaces.
-- **Minimum width:** With `maxWidth == 1`, every legal word has length one; each word is emitted as a complete line without padding.
-- **No trailing spaces on ordinary multiword lines:** Their complete space budget is placed inside gaps. Only left-justified lines may place padding after their content.
-- **Input order and content:** Words are only read and appended; the source list and the word strings are not modified.
-- **Width accounting:** The greedy check counts one required separator before a candidate, whereas justification later replaces those minimum separators with the complete calculated gap widths.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Single Word on Intermediate Line:** If a line contains only one long word that fits (e.g. `"acknowledgment"` with width 16), $\text{gaps} = 0$. Attempting division by zero causes a crash. Single-word lines must be treated like the last line (left-justified with all spaces on the right).
+- **Even vs Leftmost Space Bias:** When spaces don't divide evenly (e.g. 3 spaces into 2 gaps), standard typography and problem rules mandate that the extra space belongs to the left gap (`2` then `1`), not the right.
+- **Spaces on Last Line:** Words on the last line must have strictly **one** space between them, with all surplus padding at the tail. Applying full justification to the last line is incorrect.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let $C$ be the total number of characters in all returned lines, including padding spaces. This is the quantity used by the manifest. Every word is examined and selected once. Formatting writes each output word character and each output space a constant number of times, so the total running time is $O(C)$. The temporary slice `t[:-1]`, piece list `row`, joins, and output strings do not change that linear total.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot W)$, where $N$ is the number of words and $W = \text{maxWidth}$. Each word is visited once to determine line membership and once to construct the string.
+- **Auxiliary Space Complexity:** $O(N \cdot W)$ to store the formatted lines list.

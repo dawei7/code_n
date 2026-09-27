@@ -1,133 +1,123 @@
 # Guided Example: Task Scheduler II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tasks": [1, 2, 1, 2, 3, 1], "space": 3}`
-- **Required output:** `9`
+In a sequential task execution queue, tasks must be completed in the exact order presented in the input array `tasks`. Each task is identified by a positive integer type. While tasks of different types can be executed on consecutive days, tasks of the identical type require a mandatory resting duration of at least `space` days between executions. On any given calendar day, the processor can execute at most one task, or it can remain idle to satisfy cooldown constraints.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We seek the minimum number of calendar days required to complete all tasks in the prescribed order.
 
----
+Consider the representative instance:
+- `tasks = [1, 2, 1, 2, 3, 1]`
+- `space = 3`
 
-## 1. Instance & Teaching Goal
+Here, six task items are scheduled with a minimum spacing of 3 idle or foreign-task days between duplicate task IDs.
 
-You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $i^{\text{th}}$ task.
+```mermaid
+flowchart TD
+    accTitle: Task Scheduling Timeline with Cooldown Constraints
+    accDescr: Visual flowchart demonstrating how cooldown constraints force idle gaps between identical task types.
+    D1["Day 1: Execute Task 1 (Next allowed Day 5)"] --> D2["Day 2: Execute Task 2 (Next allowed Day 6)"]
+    D2 --> ID1["Days 3-4: Idle cooldown"]
+    ID1 --> D5["Day 5: Execute Task 1 (Next allowed Day 9)"]
+    D5 --> D6["Day 6: Execute Task 2 (Next allowed Day 10)"]
+    D6 --> D7["Day 7: Execute Task 3 (Next allowed Day 11)"]
+    D7 --> ID2["Day 8: Idle cooldown"]
+    ID2 --> D9["Day 9: Execute Task 1 (Completed)"]
+```
 
-The objective is to compute `9` from `{"tasks": [1, 2, 1, 2, 3, 1], "space": 3}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Let the calendar timeline be represented by a 1-indexed discrete day counter $d \in \mathbb{N}^+$. Executing a task on day $d$ occupies that day completely. 
 
----
+If a task of type $t$ is performed on day $d$, any subsequent occurrence of task $t$ cannot be executed earlier than:
+$$\text{earliest}(t) = d + \text{space} + 1$$
 
-## 2. Conceptual Foundation & Invariants
+Because the task sequence order is immutable, scheduling decisions are strictly greedy and deterministic:
+1. Advancing to the next task requires at least one calendar day increment from the preceding task's completion day: $d \leftarrow d + 1$.
+2. If task $t$ has been executed previously, the current day must also satisfy $d \ge \text{earliest}(t)$. Thus, the calendar day jumps immediately to $\max(d, \text{earliest}(t))$.
+3. After dispatching task $t$ on day $d$, we update the hash map entry for $t$ to record its next permissible execution date: $\text{earliest}(t) \leftarrow d + \text{space} + 1$.
 
-We maintain the core conceptual parameters and state variables:
+This single-pass online formulation guarantees the minimal calendar day for each prefix without needing an explicit simulation of idle day intervals.
 
-| State Parameter | Role & Purpose | Initial State |
+| Property | Definition | Significance |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Sequential Order | Tasks executed strictly from index $0$ to $n-1$ | Eliminates reordering combinatorial search |
+| Cooldown Horizon | Minimum separation $\ge \text{space}$ idle days | Defines earliest next valid calendar day |
+| Temporal Monotonicity | Current day sequence $d_0 < d_1 < \dots < d_{n-1}$ | Ensures greedy timestamp advancement is optimal |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We process `tasks = [1, 2, 1, 2, 3, 1]` with `space = 3`. Initially, current day $d = 0$, and the cooldown map $\text{earliest}$ is empty.
 
-## 3. Step-by-Step Worked Execution
+- **Step 1: Task 1**
+  - Incremental day: $d \leftarrow 0 + 1 = 1$.
+  - Lookup $\text{earliest}(1)$: Not present ($0$).
+  - Effective day: $d = \max(1, 0) = 1$.
+  - Update cooldown: $\text{earliest}(1) = 1 + 3 + 1 = 5$.
 
-### Step 1: The order removes scheduling freedom
+- **Step 2: Task 2**
+  - Incremental day: $d \leftarrow 1 + 1 = 2$.
+  - Lookup $\text{earliest}(2)$: Not present ($0$).
+  - Effective day: $d = \max(2, 0) = 2$.
+  - Update cooldown: $\text{earliest}(2) = 2 + 3 + 1 = 6$.
 
-Tasks must be completed in the given order. At any point, the only productive action is to execute the next task; tasks cannot be swapped to fill a waiting period. Therefore, if that next task is temporarily illegal because the same type was completed too recently, every intervening day is forced to be a break.
+- **Step 3: Task 1**
+  - Incremental day: $d \leftarrow 2 + 1 = 3$.
+  - Lookup $\text{earliest}(1)$: Value is $5$.
+  - Cooldown constraint requires $d \ge 5$. Days 3 and 4 are forced idle breaks.
+  - Effective day: $d = \max(3, 5) = 5$.
+  - Update cooldown: $\text{earliest}(1) = 5 + 3 + 1 = 9$.
 
-This makes an earliest-possible greedy schedule optimal: execute each task on the first day that is both after the previous processed day and legal for its type. Delaying it voluntarily cannot help, because every later task is blocked behind it in the fixed sequence.
+- **Step 4: Task 2**
+  - Incremental day: $d \leftarrow 5 + 1 = 6$.
+  - Lookup $\text{earliest}(2)$: Value is $6$.
+  - Effective day: $d = \max(6, 6) = 6$.
+  - Update cooldown: $\text{earliest}(2) = 6 + 3 + 1 = 10$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tasks": [1, 2, 1, 2, 3, 1], "space": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Step 5: Task 3**
+  - Incremental day: $d \leftarrow 6 + 1 = 7$.
+  - Lookup $\text{earliest}(3)$: Not present ($0$).
+  - Effective day: $d = \max(7, 0) = 7$.
+  - Update cooldown: $\text{earliest}(3) = 7 + 3 + 1 = 11$.
 
----
+- **Step 6: Task 1**
+  - Incremental day: $d \leftarrow 7 + 1 = 8$.
+  - Lookup $\text{earliest}(1)$: Value is $9$. Day 8 is forced idle break.
+  - Effective day: $d = \max(8, 9) = 9$.
+  - Update cooldown: $\text{earliest}(1) = 9 + 3 + 1 = 13$.
 
-### Step 2: Track the next legal day for each type
+All tasks have been scheduled. The final day reached is $9$.
 
-The dictionary `day` maps a task type to the earliest day on which that type may next be completed. Suppose a type is completed on day $d$. The problem requires `space` full days to pass after completion, so the next completion may occur on:
+## 4. Comprehensive State Trace
 
-$$
-d+\texttt{space}+1.
-$$
+The complete transition dynamics across all items are summarized below:
 
-For example, if a task runs on day `2` and `space = 3`, days `3`, `4`, and `5` must pass. The next same-type task can run on day `6`. Storing the next legal day directly avoids repeatedly reconstructing it from the last completion day.
+| Index | Task ID | Day Before Check | Earliest Allowed | Effective Day | Forced Idle Days | Next Allowed |
+|---|---|---|---|---|---|---|
+| 0 | 1 | 1 | 1 | 1 | 0 | 5 |
+| 1 | 2 | 2 | 1 | 2 | 0 | 6 |
+| 2 | 1 | 3 | 5 | 5 | 2 (Days 3-4) | 9 |
+| 3 | 2 | 6 | 6 | 6 | 0 | 10 |
+| 4 | 3 | 7 | 1 | 7 | 0 | 11 |
+| 5 | 1 | 8 | 9 | 9 | 1 (Day 8) | 13 |
 
-`day` is a `defaultdict(int)`, so an unseen task type has stored availability zero. Real completion days begin at one, making zero safely mean “no restriction from an earlier occurrence.”
+## 5. Algorithmic Correctness & Soundness
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The correctness of the greedy temporal jump rests on two structural invariants:
+1. **Order Invariance**: The problem enforces an immutable order of execution: task $i$ must complete strictly before task $i+1$ can begin. Thus, completing task $i$ as early as possible never restricts or delays the earliest feasible completion day of task $i+1$.
+2. **Minimality of Idle Intervals**: The earliest permissible day for task $i$ is uniquely bounded from below by both $d_{i-1} + 1$ (since at most one task can be executed per day) and $\text{last\_executed}(task_i) + \text{space} + 1$. Setting $d_i = \max(d_{i-1} + 1, \text{last\_executed}(task_i) + \text{space} + 1)$ is both valid and minimal.
 
----
+By induction on the prefix length, every prefix $k$ finishes on the strictly minimal possible day.
 
-### Step 3: Advance the global clock
+## 6. Edge Cases & Anti-Patterns
 
-`ans` represents the day on which the most recently processed task was completed. It begins at zero, before any work has occurred. For each next task, the code first performs:
+- **All Distinct Tasks**: When every task ID is unique, no cooldown ever activates. The answer simplifies to $n$ days.
+- **Identical Consecutive Tasks**: When tasks are of the form $[X, X, X]$, each execution incurs exactly $\text{space}$ idle days. Total days evaluate directly to $1 + (n-1) \cdot (\text{space} + 1)$.
+- **Zero Cooldown ($\text{space} = 0$)**: Cooldown requirement is trivially met by normal daily progression.
+- **Large Identifier Spacing**: Task IDs can be large (e.g., $10^9$). Using a direct array index causes memory exhaustion; an associative hash table or dictionary is mandatory.
+- **Anti-Pattern (Day-by-Day Incremental Simulation)**: Simulating days with a counter incrementing by $1$ and checking task queues causes time-limit exceeded errors when `space` is large (e.g., up to $10^9$). The direct calendar jump $\max(d, \text{earliest})$ achieves $\mathcal{O}(1)$ time per task.
 
+## 7. Complexity Analysis
 
-
-This gives the earliest calendar day immediately after the preceding task. Even when the next task has a different type and needs no cooling period, two tasks cannot be performed on the same day, so at least this one-day advance is necessary.
-
-The line
-
-
-
-then compares that chronological next day with this type's availability. If `day[task]` is smaller, the task can run immediately. If it is larger, all days between are forced breaks, and assigning that larger value jumps directly over them.
-
-After executing the task on the chosen `ans` day, the algorithm records:
-
-
-
-This prepares the exact legal boundary for the next occurrence.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `9` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tasks": [1, 2, 1, 2, 3, 1], "space": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `9` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Day-by-day simulation:** It can produce the same schedule, but long cooling gaps cause runtime proportional to the answer rather than the number of tasks.
-- **Store last completion days:** One can save `last[task]` and compute `max(ans + 1, last[task] + space + 1)`. This is equivalent; storing the next legal day makes the lookup directly usable.
-- **Reordering with a priority queue:** That solves a different task-scheduling problem. Here the input order is mandatory, so no choice of another ready task is allowed.
-- **First occurrence of a type:** Its default availability is zero, so it runs on the next chronological day.
-- **Consecutive equal tasks:** The second jumps to the first completion day plus `space + 1`.
-- **Alternating types:** A type's cooling interval can elapse while intervening different tasks are completed, so the maximum may require no jump.
-- **`space = 1`:** One full day must occur between equal types; they can be executed two calendar days apart.
-- **All task types distinct:** No stored availability blocks anything, and the answer is exactly `len(tasks)`.
-- **Every task has the same type:** Each consecutive execution is `space + 1` days apart, and direct jumping handles the large total efficiently.
-- **Large task identifiers:** They are dictionary keys, so their numeric magnitude does not require a value-sized array.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the number of tasks. The loop processes each task exactly once. Dictionary lookup and update are expected $O(1)$, and all arithmetic is constant time under the usual model. Total expected time is $O(n)$, independent of how many break days the schedule contains.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity**: $\mathcal{O}(n)$, where $n$ is the number of tasks. We perform a single sequential pass over the array of tasks, performing $\mathcal{O}(1)$ average-time hash table lookups and updates at each step.
+- **Space Complexity**: $\mathcal{O}(u)$, where $u \le n$ represents the number of unique task types present in `tasks`. A hash map stores the next allowed calendar day for each distinct task identifier.

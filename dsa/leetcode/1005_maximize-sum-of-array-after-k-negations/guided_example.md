@@ -1,130 +1,211 @@
 # Guided Example: Maximize Sum Of Array After K Negations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy negation schedule using frequency histograms over bounded values, prove the Marginal Gain Inversion Theorem and the Residual Parity Conservation Invariant, and determine the maximal achievable array sum across representative instances:
 
-- **Input:** `{"nums": [4, 2, 3], "k": 1}`
-- **Required output:** `5`
+- **Representative Instance 1 (All Positive Values with Odd Parity Operation):**
+  $$
+  nums = [4, \; 2, \; 3], \quad k = 1
+  $$
+- **Required Output:** `5`
+  - Marginal gain principle:
+    - Negating value $x \mapsto -x$ shifts total sum by $\Delta(x) = (-x) - x = -2x$.
+    - If $x > 0$, $\Delta(x) = -2x < 0$ (Inevitably decreases total sum).
+    - To maximize the final sum under a forced positive negation, we must choose the value that minimizes $|-2x|$, which is the **smallest positive element**.
+  - Execution trace:
+    1. **Frequency Histogram Setup:**
+       - Value range $[-100, 100]$.
+       - $cnt = \{4: 1, \; 2: 1, \; 3: 1\}$.
+       - Negative scan $x \in [-100, -1]$: No negative numbers present. $k$ remains $1$.
+    2. **Residual Parity Check ($k = 1$, odd):**
+       - Check if $0$ is present ($cnt[0] == 0$, False). Zero cannot absorb the negation.
+       - Scan positive range $x \in [1, 100]$ to find minimal positive element:
+         - $x = 1$: $cnt[1] = 0$.
+         - $x = 2$: $cnt[2] = 1 > 0$! Found minimal element $x = 2$.
+       - Negate one copy of $2$:
+         $$
+         cnt[2] \leftarrow 1 - 1 = 0, \quad cnt[-2] \leftarrow 0 + 1 = 1
+         $$
+    3. **Compute Final Sum:**
+       $$
+       \text{Total Sum} = (4 \times 1) + (-2 \times 1) + (3 \times 1) = 4 - 2 + 3 = \mathbf{5}
+       $$
+  - Final array: $[4, -2, 3]$ with sum $\mathbf{5}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Zero Absorbs Surplus Odd Parity):**
+  $$
+  nums = [3, \; -1, \; 0, \; 2], \quad k = 3
+  $$
+  - Phase 1 (Negatives): Flip $-1 \to 1$ ($k \leftarrow 3 - 1 = 2$).
+  - Phase 2 (Surplus $k = 2$):
+    - Even remainder or absorbed by $0$: toggling $0 \to -0 = 0$ costs nothing.
+    - Sum: $3 + 1 + 0 + 2 = \mathbf{6}$.
+
+- **Representative Instance 3 (Exhausting Operations on Largest Magnitude Negatives):**
+  $$
+  nums = [2, \; -3, \; -1, \; 5, \; -4], \quad k = 2
+  $$
+  - Ascending scan of negatives:
+    - $x = -4$: Flip $-4 \to 4$, $k \leftarrow 2 - 1 = 1$.
+    - $x = -3$: Flip $-3 \to 3$, $k \leftarrow 1 - 1 = 0$ (Done!).
+    - Element $-1$ remains negative.
+  - Final multiset: $[2, 4, 3, -1, 5]$.
+  - Sum: $2 + 4 + 3 - 1 + 5 = \mathbf{13}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` and an integer `k`, modify the array in the following way:
+Given an integer array `nums` and an integer `k`, modify the array by choosing an index and negating $nums[i] \leftarrow -nums[i]$ exactly `k` times (re-selecting indices is permitted).
+Return the **maximum possible sum** of the array.
 
-The objective is to compute `5` from `{"nums": [4, 2, 3], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Marginal Gain Analysis:
+  x < 0:  Negating x changes sum by +2|x| > 0  (HUGE BENEFIT: prioritize most negative!)
+  x = 0:  Negating 0 changes sum by 0          (FREE SINK: absorbs operations!)
+  x > 0:  Negating x changes sum by -2x < 0    (PENALTY: minimize with smallest x!)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Parity Involution:
+  Negating the same index twice: x -> -x -> x (Net change = 0).
+  Any even remaining k can be absorbed with ZERO loss!
+```
 
----
+Sorting the array repeatedly or utilizing a heap for $k$ iterations can take $\mathcal{O}((N + k) \log N)$ time.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Measure what one negation does to the sum
-
-Replacing value `x` by `-x` changes the total sum by
-
-`(-x) - x = -2x`.
-
-For a negative `x`, this change is positive, and a more negative value gives a larger improvement. For a positive `x`, the change is negative, and the smallest absolute value causes the smallest loss. Negating zero changes nothing.
-
-These observations completely determine the greedy order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [4, 2, 3], "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Greedy Marginal Gain & Parity Conservation Invariant**:
+1. **Marginal Gain Hierarchy:** Negative numbers produce positive gains $\Delta(x) = 2|x|$, with larger magnitudes yielding larger gains. Hence, greedy order strictly flips negatives from $-100$ up to $-1$.
+2. **Parity Involution Theorem:** Two negations on the same element cancel out completely. Once all negative numbers are flipped, any even remaining $k$ requires zero net change.
+3. **Odd Parity Sacrificial Element:** If $k$ is odd and no $0$ exists in the array, exactly one positive element must be flipped to negative. The penalty $2x$ is minimized by selecting the smallest positive element present.
+4. Operates in $\mathcal{O}(N + C)$ linear time where $C = 201$ is the value domain size, bypassing sorting entirely.
 
 ---
 
-### Step 2: Use the small value range as a counting table
+## 2. Conceptual Foundation & The Marginal Gain Invariant
 
-Values lie between negative one hundred and positive one hundred. `Counter(nums)` stores how many occurrences of each value exist.
+```mermaid
+flowchart TD
+    accTitle: Maximize Sum After K Negations Greedy Pipeline
+    accDescr: Flowchart illustrating counting frequencies, greedily flipping negatives, resolving residual odd parity, and computing final sum
+    Start["cnt = Counter(nums)\n(Track frequencies across [-100, 100])"] --> Phase1["For x from -100 to -1: (Most negative first)"]
+    Phase1 --> CheckNeg{"cnt[x] > 0 AND k > 0 ?"}
+    CheckNeg -->|"Yes"| FlipNeg["m = min(cnt[x], k)\ncnt[x] -= m, cnt[-x] += m\nk -= m"]
+    FlipNeg --> CheckK{"k == 0 ?"}
+    CheckK -->|"Yes"| CalcSum
+    CheckK -->|"No"| Phase1
+    CheckNeg -->|"No"| Phase1
+    Phase1 -->|"Negatives exhausted"| Phase2{"k % 2 == 1 AND cnt[0] == 0 ?\n(Odd surplus with no zero sink)"}
+    Phase2 -->|"Yes: Sacrifice smallest positive"| FindMinPos["Scan x from 1 to 100:\nIf cnt[x] > 0:\ncnt[x] -= 1, cnt[-x] += 1\nbreak"]
+    Phase2 -->|"No: Even surplus or zero absorbs"| CalcSum["Return sum(x * v for x, v in cnt.items())"]
+    FindMinPos --> CalcSum
+```
 
-Instead of sorting up to ten thousand elements, the code scans the fixed numeric range from `-100` through `-1`. This visits negative values from most negative to least negative, exactly the order of greatest possible sum improvement.
+### The Marginal Gain Inversion Theorem
 
-The counter also permits flipping many equal occurrences in one operation on their frequency rather than processing them individually.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (x_1, \dots, x_n)$ be an array of integers.
+1. **Linear Marginal Shift:**
+   Let $S = \sum_{i=1}^n x_i$. Negating element $x_j \leftarrow -x_j$ updates the total sum to:
+   $$
+   S' = S - x_j + (-x_j) = S - 2x_j
+   $$
+   The marginal gain is $\Delta(x_j) = -2x_j$.
+2. **Greedy Dominance for Negatives:**
+   For any two negative numbers $x_a < x_b < 0$:
+   $$
+   \Delta(x_a) = 2|x_a| > 2|x_b| = \Delta(x_b) > 0
+   $$
+   Every negation applied to a negative element strictly increases $S$. To maximize the total increase within budget $k$, operations must be greedily allocated in order of strictly decreasing magnitude (increasing value from $-100$ to $-1$).
+3. **Involution of Paired Negations:**
+   For any index $i$, applying two consecutive negations leaves $x_i$ unchanged:
+   $$
+   -(-x_i) = x_i \implies \Delta_2(x_i) = 0
+   $$
+   Therefore, if $k$ remaining operations exist and all negative numbers have been converted to positive, any even budget $2m$ can be applied to the same element with net sum alteration $0$.
+4. **Minimal Odd Penalty:**
+   If the remaining budget is odd ($k \equiv 1 \pmod 2$):
+   - If $0 \in A$: $\Delta(0) = -2(0) = 0$. Applying the remaining negation to $0$ costs $0$.
+   - If $0 \notin A$: Exactly one positive element $x > 0$ must be negated.
+     The penalty is $-2x$. Maximizing $S - 2x$ is strictly equivalent to minimizing $x \in A_{> 0}$. $\blacksquare$
 
 ---
 
-### Step 3: Flip the most negative available values first
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-For current negative value `x`:
+$nums = [4, 2, 3], \; k = 1$.
+Initial histogram: $cnt[4] = 1, cnt[2] = 1, cnt[3] = 1$. All other counts $0$.
 
-`m = min(cnt[x], k)`
-
-is how many occurrences can and should be negated before either that value is exhausted or no operations remain.
-
-The updates
-
-`cnt[x] -= m` and `cnt[-x] += m`
-
-move those occurrences to their positive counterpart. Then `k -= m` consumes the operations.
-
-If `k` reaches zero, the loop breaks because every required operation has been assigned.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Step 1: Phase 1 (Negative Numbers Scan)
+- Scan range $x \in [-100, -1]$:
+  - All $cnt[x] == 0$.
+  - No negative numbers to invert. $k$ remains $1$.
 
 ---
 
-## 4. Complete Execution Trace
+### Step 2: Phase 2 (Residual Parity Resolution)
+- Check condition: `k & 1 and cnt[0] == 0`.
+  - $k = 1$ is odd ($1 \ \& \ 1 == 1$, True).
+  - $cnt[0] = 0$ (True, no zero present to absorb).
+- Scan positive numbers $x \in [1, 100]$:
+  - $x = 1$: $cnt[1] = 0$.
+  - $x = 2$: $cnt[2] = 1 > 0$ (**Minimal positive found!**).
+  - Action: Negate one copy of $2$:
+    $$
+    cnt[2] \leftarrow 1 - 1 = 0, \quad cnt[-2] \leftarrow 0 + 1 = 1
+    $$
+  - Break loop.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 2, 3], "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+---
+
+### Step 3: Compute Final Sum
+$$
+\begin{aligned}
+\text{Total} &= \sum x \cdot cnt[x] \\
+&= (-2 \times 1) + (3 \times 1) + (4 \times 1) \\
+&= -2 + 3 + 4 = \mathbf{5}
+\end{aligned}
+$$
+
+Final result: $\mathbf{5}$.
+
+---
+
+## 4. Value Frequency & Negation Trace Table
+
+| Value $x$ | Initial Frequency | Flipped in Phase 1 (Negatives) | Flipped in Phase 2 (Parity) | Final Frequency | Contribution to Sum $x \cdot cnt[x]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$-2$** | $0$ | — | $+1$ (Sacrificed) | $1$ | $-2 \times 1 = -2$ |
+| **$2$** | $1$ | — | $-1$ | $0$ | $0$ |
+| **$3$** | $1$ | — | — | $1$ | $3 \times 1 = 3$ |
+| **$4$** | $1$ | — | — | $1$ | $4 \times 1 = 4$ |
+| **Total** | — | — | — | — | **$-2 + 3 + 4 = 5$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every operation performed either inverts a negative number (increasing sum) or minimizes the inescapable penalty under odd parity. The total number of negations assigned is exactly $k$, respecting problem constraints.
+2. **Completeness:**
+   Scanning frequencies from $-100$ to $-1$ guarantees optimal greediness. Accounting for zero as a free operation sink and identifying the minimal positive element exhaustively resolves all parity cases.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Sort the array:** Sort ascending, flip negatives while operations remain, then adjust the smallest absolute value for odd parity. It is straightforward but costs `O(N \log N)`.
-- **Min-heap:** Repeatedly negate the current minimum and push it back. This costs `O((N + k)\log N)` and may process canceling flips individually.
-- **Flip an arbitrary negative first:** It can waste a limited operation on a small improvement while a larger-magnitude negative remains.
-- **More operations than elements:** Reusing indices is allowed; after beneficial flips, only leftover parity matters.
-- **Zero present:** It absorbs any odd leftover operation with no sum change.
-- **All positive values:** Even `k` leaves the maximum sum unchanged through paired flips; odd `k` negates the smallest positive.
-- **All negative values with limited `k`:** The method flips the `k` largest magnitudes.
-- **`-100` and `100`:** Both endpoints are included by the fixed range scans.
-- **Zero-count Counter keys:** They do not affect the weighted sum and keeping them is harmless.
-- **Exact operation count:** Canceling pairs justify why unused even operations need no explicit simulation.
-- **Input preservation:** Frequency movement produces the result without rewriting `nums`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Zero Present with Large Odd $k$ | `nums = [3, 0, 2], k = 99` | $k$ becomes odd; $cnt[0] > 0$; zero absorbs odd flip; returns $5$. | Negating positive number when zero exists. |
+| All Negatives with Insufficient $k$ | `nums = [-8, -3, -5], k = 2` | Flips $-8 \to 8, -5 \to 5$; returns $8 + 5 - 3 = 10$. | Flipping $-3$ before $-8$. |
+| Even Surplus $k$ | `nums = [1, 2, 3], k = 4` | $k \ \& \ 1 == 0$; zero adjustments made; returns $6$. | Negating numbers needlessly on even $k$. |
+| $k$ Exceeds Array Length | `len = 2, k = 10000` | $k$ absorbed by parity cancelation; runs in constant time. | Simulating 10,000 steps one-by-one. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N` be the array length.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N + C)$, where $N = \text{len}(nums) \le 10^4$ and value domain size $C = 201$ ($[-100, 100]$).
+  - Frequency counting takes $\mathcal{O}(N)$.
+  - Negative scan loops $100$ times.
+  - Positive scan loops at most $100$ times.
+  - Final sum evaluation loops at most $201$ times.
+  - Total time: $< 0.001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(C) = \mathcal{O}(1)$ to store frequencies for the $201$ possible integers in $[-100, 100]$.

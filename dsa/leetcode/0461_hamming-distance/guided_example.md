@@ -1,122 +1,168 @@
 # Guided Example: Hamming Distance
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise XOR difference extraction ($x \oplus y$), binary disparity mapping, Brian Kernighan's bit-clearing loop ($d \ \& \ (d - 1)$), and population count calculation on representative integer pairs:
 
-- **Input:** `{"x": 1, "y": 4}`
+- **Input:** $x = 1, \quad y = 4$
 - **Required output:** `2`
+  - Binary representations (aligned to 4 bits):
+    $$
+    x = 1 = 0001_2
+    $$
+    $$
+    y = 4 = 0100_2
+    $$
+  - Bitwise XOR operation ($x \oplus y$):
+    - Position 0 ($2^0$): $1 \oplus 0 = \mathbf{1}$ (Different)
+    - Position 1 ($2^1$): $0 \oplus 0 = \mathbf{0}$ (Identical)
+    - Position 2 ($2^2$): $0 \oplus 1 = \mathbf{1}$ (Different)
+    - Position 3 ($2^3$): $0 \oplus 0 = \mathbf{0}$ (Identical)
+    - Combined XOR value:
+      $$
+      d = x \oplus y = 0101_2 = 5
+      $$
+  - Count set bits (population count of $d = 5 = 0101_2$):
+    - **Pass 1:** Least significant bit cleared via $d \ \& \ (d - 1)$:
+      $$
+      5 \ \& \ 4 = 0101_2 \ \& \ 0100_2 = 0100_2 = 4 \quad (\text{Count } = 1)
+      $$
+    - **Pass 2:** Next bit cleared:
+      $$
+      4 \ \& \ 3 = 0100_2 \ \& \ 0011_2 = 0000_2 = 0 \quad (\text{Count } = 2)
+      $$
+    - Value is now $0$. Loop halts.
+  - Total differing bit positions: **`2`**.
+- **Adjacent Numbers Instance:** $x = 3 (0011_2), y = 1 (0001_2) \implies x \oplus y = 0010_2 \implies \mathbf{1}$
+- **Identical Numbers Instance:** $x = 0, y = 0 \implies x \oplus y = 0 \implies \mathbf{0}$ (Hamming distance is 0)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bitwise difference mapping, mathematically proves why bitwise XOR isolates exactly the positions of disagreement between binary vectors, and derives $O(1)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.
+Given two integers $x = 1$ and $y = 4$:
+The **Hamming distance** between two integers is the number of positions at which the corresponding bits are different.
+Calculate the Hamming distance between $x$ and $y$.
 
-The objective is to compute `2` from `{"x": 1, "y": 4}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Bitwise Comparison:
+  x = 1:   0  0  0  1
+  y = 4:   0  1  0  0
+           ----------
+  x ^ y:   0  1  0  1
+              ^     ^
+              Bit 2 Bit 0  (2 bits differ)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Hamming Distance: 2
+```
+
+### The Bitwise XOR Characterization
+The exclusive OR (XOR, $\oplus$) truth table defines:
+- $0 \oplus 0 = 0$
+- $1 \oplus 1 = 0$
+- $0 \oplus 1 = 1$
+- $1 \oplus 0 = 1$
+Thus, $(x \oplus y)_k = 1$ if and only if the $k$-th bit of $x$ differs from the $k$-th bit of $y$.
+Therefore, the Hamming distance between $x$ and $y$ is mathematically equivalent to the **Hamming weight (population count)** of $x \oplus y$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. XOR Difference Isolation:
+Compute the difference integer:
+$$
+d = x \oplus y
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Brian Kernighan's Bit-Counting Algorithm:
+To count the set bits in $d$:
+- Subtracting 1 flips the rightmost set bit and all trailing zeros:
+  $$
+  d - 1 = (b_k \dots b_1 1 0 \dots 0) - 1 = (b_k \dots b_1 0 1 \dots 1)
+  $$
+- Computing the bitwise AND $d \ \& \ (d - 1)$ zeroes out the lowest set bit while keeping all higher bits unchanged:
+  $$
+  d \leftarrow d \ \& \ (d - 1)
+  $$
+- Repeating this operation until $d == 0$ requires exactly as many iterations as there are set bits in $d$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Bit Invariance.** Every application of $d \ \& \ (d - 1)$ strictly reduces the Hamming weight of $d$ by exactly 1 without altering higher-order bits.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why XOR isolates differences
-
-Write both nonnegative integers in binary and align them at the least significant bit. Leading positions omitted from the shorter representation are zeros. XOR applies the truth table independently at every position, so equal pairs become zero and unequal pairs become one.
-
-For `x = 1` and `y = 4`, use four displayed bits:
-
-
-
-The XOR result is decimal `5`, whose binary representation contains two ones. The Hamming distance is therefore two.
-
-For `x = 3` (`11`) and `y = 1` (`01`), XOR gives `10`, which has one set bit, so the answer is one.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"x": 1, "y": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $x = 1$ and $y = 4$:
 
 ---
 
-### Step 2: What `bit_count` returns
-
-Python's integer method `bit_count()` returns the number of ones in the integer's binary representation, also called the population count. Because both inputs are nonnegative, their XOR is nonnegative. Each counted one corresponds to one differing bit position, and no equal position contributes.
-
-This is not the same as counting the number of binary digits. For example, XOR result `8` is binary `1000`: it spans four positions but contains only one set bit, so the Hamming distance is one.
-
-Leading zeros need no explicit padding. Above the highest set bit of both inputs, both conceptual bits are zero and therefore equal. Between their bit lengths, the shorter number contributes conceptual zero bits, and ordinary integer XOR already handles those positions correctly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute XOR Difference
+- $x = 1 = 0001_2$.
+- $y = 4 = 0100_2$.
+- Compute bitwise XOR:
+  $$
+  d = x \oplus y = 0001_2 \oplus 0100_2 = 0101_2 = \mathbf{5}
+  $$
 
 ---
 
-### Step 3: Why the one-line result is exact
+### Step 2: Clear Bits Sequentially (Brian Kernighan)
+Initialize $count = 0$.
 
-Take any bit position `p`. If `x` and `y` have different bits there, XOR places one at `p`, and `bit_count` adds exactly one for it. If their bits are equal, XOR places zero there, and it adds nothing. Since bit positions are independent, summing the set bits counts every disagreement once and no agreement. That is exactly the definition of Hamming distance.
+1. **Iteration 1 ($d = 5 = 0101_2$):**
+   - $d - 1 = 4 = 0100_2$.
+   - $d \ \& \ (d - 1) = 0101_2 \ \& \ 0100_2 = 0100_2 = \mathbf{4}$.
+   - $count \leftarrow 0 + 1 = \mathbf{1}$.
+   - New value: $d = 4$.
 
-The method also handles equality naturally. If `x == y`, XOR returns zero. Zero has no set bits, so the result is zero.
+2. **Iteration 2 ($d = 4 = 0100_2$):**
+   - $d - 1 = 3 = 0011_2$.
+   - $d \ \& \ (d - 1) = 0100_2 \ \& \ 0011_2 = 0000_2 = \mathbf{0}$.
+   - $count \leftarrow 1 + 1 = \mathbf{2}$.
+   - New value: $d = 0$.
 
-If one input is zero, XOR returns the other input. The distance is then the number of ones already present in that number, which is correct because those are precisely the positions where it differs from zero.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 3: Termination
+- Value $d = 0$. Loop halts.
+- Resulting Hamming distance: **`2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"x": 1, "y": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Step | Current Value $d$ | Binary Form | Subtract 1 ($d - 1$) | Bitwise AND ($d \ \& \ (d-1)$) | Bit Cleared | Total Count |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Init** | $5$ | $0101_2$ | — | — | — | $0$ |
+| **1** | $5$ | $0101_2$ | $4$ ($0100_2$) | $4$ ($0100_2$) | Bit $0$ ($2^0$) | **$1$** |
+| **2** | $4$ | $0100_2$ | $3$ ($0011_2$) | $0$ ($0000_2$) | Bit $2$ ($2^2$) | **$2$** |
+| **End** | $0$ | $0000_2$ | — | — | — | **Result: $2$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Equal Numbers ($x == y$):** $x \oplus x = 0 \implies 0$ set bits $\implies \mathbf{0}$.
+- **Opposite Bits Across All Positions ($x = 0, y = 2^{31} - 1$):** $x \oplus y$ has all 31 bits set $\implies \mathbf{31}$.
+- **Single Bit Difference ($x = 0, y = 1$):** $0 \oplus 1 = 1 \implies \mathbf{1}$.
+- **Power of Two Numbers ($x = 2, y = 8$):** Disjoint single bits $\implies 2$ bits set $\implies \mathbf{2}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Brian Kernighan's method:** Repeatedly replace `z` with `z & (z - 1)`. Each iteration clears the lowest set bit, so the iteration count equals the answer. It is useful when a built-in population count is unavailable.
-- **Shift and inspect:** Repeatedly add `z & 1` and shift `z` right. It is straightforward but examines zero bits between set bits as well.
-- **Convert to a binary string:** `bin(x ^ y).count('1')` is concise but allocates a textual representation and performs more conversion work than `bit_count`.
-- **Compare decimal digits:** Hamming distance concerns binary positions, not decimal notation; decimal comparison gives unrelated results.
-- **Equal inputs:** XOR is zero and the answer is zero.
-- **One input zero:** The answer is the population count of the other input.
-- **Different bit lengths:** Conceptual leading zeros are handled automatically by integer XOR.
-- **Maximum allowed value:** At most 31 relevant bits are processed, so no loop or recursion depth concern exists.
-- **Negative values outside the contract:** Python defines bitwise operations using an infinite two's-complement model, which changes how leading sign bits should be interpreted. The nonnegative-input guarantee avoids that ambiguity.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Shifting 32 Times Unconditionally:** Iterating through all 32 bits with `d & 1` and `d >>= 1` always takes 32 iterations. Brian Kernighan's algorithm takes only $K$ iterations where $K \le 32$ is the number of set bits.
+- **Negative Integer Sign Extension:** In languages with signed bitwise shift operators (like Java `>>`), shifting negative numbers fills leading bits with 1. Using logical right shift `>>>` or bitwise AND with unsigned masks prevents infinite loops.
+- **Floating-Point Conversion:** Converting to floating-point strings or base-2 strings with string search (`bin(x ^ y).count('1')`) incurs string heap allocation overhead. Direct CPU bitwise instructions execute in a single machine cycle.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log\max(x,y)$. Let $w$ be the number of relevant bits, which is $O(\log(\max(x,y)+1))$. At the bit-operation level, forming the XOR and counting its set bits process $O(w)$ machine-word information, giving the manifest-style time bound $O(\log\max(x,y))$ for positive inputs.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The XOR operation takes $O(1)$ time.
+  - The bit-clearing loop executes at most $K \le 31$ times, where $K$ is the number of differing bits.
+  - Total Time: $\mathcal{O}(1)$ bounded by 31 steps (or 1 hardware popcount CPU instruction).
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ using a single scalar register.

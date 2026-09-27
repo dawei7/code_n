@@ -1,122 +1,204 @@
 # Guided Example: Students With Invalid Departments
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the relational anti-join filtering strategy on a representative database instance:
 
-- **Input:** `{"tables": {"Departments": [{"id": 1, "name": "Electrical Engineering"}, {"id": 7, "name": "Computer Engineering"}, {"id": 13, "name": "Bussiness Administration"}], "Students": [{"id": 23, "name": "Alice", "department_id": 1}, {"id": 1, "name": "Bob", "department_id": 7}, {"id": 5, "name": "Jennifer", "department_id": 13}, {"id": 2, "name": "John", "department_id": 14}, {"id": 4, "name": "Jasmine", "department_id": 77}, {"id": 3, "name": "Steve", "department_id": 74}, {"id": 6, "name": "Luis", "department_id": 1}, {"id": 8, "name": "Jonathan", "department_id": 7}, {"id": 7, "name": "Daiana", "department_id": 33}, {"id": 11, "name": "Madelynn", "department_id": 1}]}}`
-- **Required output:** `{"columns": ["id", "name"], "rows": [[2, "John"], [7, "Daiana"], [4, "Jasmine"], [3, "Steve"]]}`
+- **Input Tables:**
+  - `Departments`: `[{"id": 1, "name": "Electrical Engineering"}, {"id": 7, "name": "Computer Engineering"}, {"id": 13, "name": "Bussiness Administration"}]`
+  - `Students`: $10$ student enrollment records
+- **Required Output:** `{"columns": ["id", "name"], "rows": [[2, "John"], [7, "Daiana"], [4, "Jasmine"], [3, "Steve"]]}`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it features an active department directory alongside student enrollments referencing both active and abolished department keys, illustrating the exact mechanics of relational anti-join filtering.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Departments`
+We are given two relational entities:
+1. `Departments` with columns `id` (primary key) and `name`.
+2. `Students` with columns `id` (primary key), `name`, and `department_id`.
 
-The objective is to compute `{"columns": ["id", "name"], "rows": [[2, "John"], [7, "Daiana"], [4, "Jasmine"], [3, "Steve"]]}` from `{"tables": {"Departments": [{"id": 1, "name": "Electrical Engineering"}, {"id": 7, "name": "Computer Engineering"}, {"id": 13, "name": "Bussiness Administration"}], "Students": [{"id": 23, "name": "Alice", "department_id": 1}, {"id": 1, "name": "Bob", "department_id": 7}, {"id": 5, "name": "Jennifer", "department_id": 13}, {"id": 2, "name": "John", "department_id": 14}, {"id": 4, "name": "Jasmine", "department_id": 77}, {"id": 3, "name": "Steve", "department_id": 74}, {"id": 6, "name": "Luis", "department_id": 1}, {"id": 8, "name": "Jonathan", "department_id": 7}, {"id": 7, "name": "Daiana", "department_id": 33}, {"id": 11, "name": "Madelynn", "department_id": 1}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our objective is to find the `id` and `name` of all students who are enrolled in departments that do not exist in the `Departments` table.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For the active departments:
+$$
+\text{ActiveDeptIDs} = \{1, 7, 13\}
+$$
+
+Among the $10$ enrolled students:
+- Alice ($23$), Bob ($1$), Jennifer ($5$), Luis ($6$), Jonathan ($8$), and Madelynn ($11$) are assigned to department IDs $1, 7$, or $13$, which are valid and active.
+- John ($2$, dept $14$), Jasmine ($4$, dept $77$), Steve ($3$, dept $74$), and Daiana ($7$, dept $33$) are assigned to department IDs absent from `Departments`.
+- The result must return precisely these $4$ invalidly assigned students.
+
+The primary teaching goal is to model foreign-key reference integrity checks as a relational anti-join or set difference, avoiding quadratic row comparisons and guaranteeing proper null handling.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In relational algebra, finding tuples in relation $R$ that have no matching counterpart in relation $S$ on join condition $\theta$ is formalized by the anti-join operator ($\mathbin{\triangleright}_\theta$):
+$$
+\text{InvalidStudents} = \Pi_{\text{id}, \text{name}} \left( \text{Students} \mathbin{\triangleright}_{\text{Students.department\_id} = \text{Departments.id}} \text{Departments} \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+Equivalently, this operation can be framed as an outer join with a null check, or as set-membership exclusion:
+$$
+D_{\text{valid}} = \Pi_{\text{id}}(\text{Departments})
+$$
+$$
+\text{InvalidStudents} = \Pi_{\text{id}, \text{name}} \left( \sigma_{\text{department\_id} \notin D_{\text{valid}}}(\text{Students}) \right)
+$$
+
+```
+Departments: { 1, 7, 13 }
+                   |
+Students:          v
+(23, Alice,    1)  -> 1 in {1, 7, 13}? YES -> Exclude
+(1,  Bob,      7)  -> 7 in {1, 7, 13}? YES -> Exclude
+(5,  Jennifer, 13) -> 13 in {1, 7, 13}? YES -> Exclude
+(2,  John,     14) -> 14 in {1, 7, 13}? NO  -> MATCH: [2, "John"]
+(4,  Jasmine,  77) -> 77 in {1, 7, 13}? NO  -> MATCH: [4, "Jasmine"]
+(3,  Steve,    74) -> 74 in {1, 7, 13}? NO  -> MATCH: [3, "Steve"]
+(6,  Luis,     1)  -> 1 in {1, 7, 13}? YES -> Exclude
+(8,  Jonathan, 7)  -> 7 in {1, 7, 13}? YES -> Exclude
+(7,  Daiana,   33) -> 33 in {1, 7, 13}? NO  -> MATCH: [7, "Daiana"]
+(11, Madelynn, 1)  -> 1 in {1, 7, 13}? YES -> Exclude
+```
+
+We define relational state tracking parameters:
+
+| State Parameter | Relational Representation | Value on Instance |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Reference Domain ($D_{\text{valid}}$) | Distinct active department keys | $\{1, 7, 13\}$ |
+| Current Candidate Tuple ($t$) | Student record `(id, name, department_id)` | Scanned sequentially |
+| Filter Predicate | Boolean condition $t[\text{department\_id}] \notin D_{\text{valid}}$ | Evaluated per row |
+| Output Projection ($\mathcal{R}$) | Accumulated set of unmatched student attributes | Initialized to $\emptyset$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every examined student record $t$, $t$ is projected into the result relation $\mathcal{R}$ if and only if no tuple in `Departments` satisfies $t[\text{department\_id}] = \text{Departments.id}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Build the set of current identifiers
+### Step 1: Active Department Key Extraction
 
-The subquery `SELECT id FROM Departments` produces every department identifier that currently exists. Because `id` is a primary key, these values are unique and non-null under ordinary SQL primary-key semantics. Duplicate removal is unnecessary.
+Project the set of valid department identifiers from the `Departments` table:
+$$
+D_{\text{valid}} = \Pi_{\text{id}}(\text{Departments}) = \{1, 7, 13\}
+$$
+Because `id` is a primary key of `Departments`, every element in $D_{\text{valid}}$ is unique and non-null.
 
-For each row of `Students`, `NOT IN` asks whether its recorded `department_id` differs from every value returned by that subquery. A true result means no matching current department exists, so the student is enrolled under an obsolete identifier.
-
-The outer `SELECT id, name` returns the student’s own primary-key identifier and name, not the missing department identifier. These are exactly the two requested output columns.
-
-The result order is unrestricted, so there is no `ORDER BY`. Omitting an unnecessary sort avoids work and still satisfies the contract.
-
-In the example, department identifiers one, seven, and thirteen appear in `Departments`. Students whose values are fourteen, seventy-seven, seventy-four, or thirty-three pass `NOT IN` and are returned. Students referring to one, seven, or thirteen are filtered out.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Departments": [{"id": 1, "name": "Electrical Engineering"}, {"id": 7, "name": "Computer Engineering"}, {"id": 13, "name": "Bussiness Administration"}], "Students": [{"id": 23, "name": "Alice", "department_id": 1}, {"id": 1, "name": "Bob", "department_id": 7}, {"id": 5, "name": "Jennifer", "department_id": 13}, {"id": 2, "name": "John", "department_id": 14}, {"id": 4, "name": "Jasmine", "department_id": 77}, {"id": 3, "name": "Steve", "department_id": 74}, {"id": 6, "name": "Luis", "department_id": 1}, {"id": 8, "name": "Jonathan", "department_id": 7}, {"id": 7, "name": "Daiana", "department_id": 33}, {"id": 11, "name": "Madelynn", "department_id": 1}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Department ID | Department Name | Key Registered |
+|---|---|---|
+| $1$ | Electrical Engineering | $1 \in D_{\text{valid}}$ |
+| $7$ | Computer Engineering | $7 \in D_{\text{valid}}$ |
+| $13$ | Business Administration | $13 \in D_{\text{valid}}$ |
 
 ---
 
-### Step 2: Why every selected row is correct
+### Step 2: Evaluating Active Enrollments
 
-If a student passes the predicate, its `department_id` is unequal to every current department `id`, so its department no longer exists and the row belongs in the answer. If a student’s department exists, the subquery contains an equal identifier, making `NOT IN` false and excluding that row. Thus the predicate is both necessary and sufficient for non-null department identifiers.
+Scan the student relation and test foreign key membership:
 
-The use of primary keys also means a matching department appears at most once. Multiplicity would not change membership truth, but uniqueness helps the database build or use an efficient lookup structure.
+1. **Alice (ID 23, Dept 1):** $1 \in D_{\text{valid}}$. Active department. Discard from result.
+2. **Bob (ID 1, Dept 7):** $7 \in D_{\text{valid}}$. Active department. Discard.
+3. **Jennifer (ID 5, Dept 13):** $13 \in D_{\text{valid}}$. Active department. Discard.
+4. **Luis (ID 6, Dept 1):** $1 \in D_{\text{valid}}$. Active department. Discard.
+5. **Jonathan (ID 8, Dept 7):** $7 \in D_{\text{valid}}$. Active department. Discard.
+6. **Madelynn (ID 11, Dept 1):** $1 \in D_{\text{valid}}$. Active department. Discard.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Student Record | Evaluated Dept ID | Membership in $D_{\text{valid}}$ | Retained in Output? |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| `(23, "Alice", 1)` | $1$ | $1 \in \{1, 7, 13\}$ (True) | No |
+| `(1, "Bob", 7)` | $7$ | $7 \in \{1, 7, 13\}$ (True) | No |
+| `(5, "Jennifer", 13)` | $13$ | $13 \in \{1, 7, 13\}$ (True) | No |
+| `(6, "Luis", 1)` | $1$ | $1 \in \{1, 7, 13\}$ (True) | No |
+| `(8, "Jonathan", 7)` | $7$ | $7 \in \{1, 7, 13\}$ (True) | No |
+| `(11, "Madelynn", 1)` | $1$ | $1 \in \{1, 7, 13\}$ (True) | No |
 
 ---
 
-### Step 3: SQL null semantics
+### Step 3: Isolating Invalid Enrollments
 
-`NOT IN` needs care in generalized schemas because SQL uses three-valued logic. If the subquery contained `NULL`, comparisons against that value could make the predicate unknown for otherwise absent identifiers. Here, `Departments.id` is a primary key and therefore cannot be null, so that classic trap does not arise on the right side.
+Continue scanning students whose assigned department key has no match in $D_{\text{valid}}$:
 
-If `Students.department_id` itself is null, `NULL NOT IN (...)` is unknown and the row is not returned. The task describes students as enrolled in a recorded department identifier, so the intended rows use actual identifiers. If a generalized requirement considered a null department invalid, `NOT EXISTS` or an explicit null condition would be safer.
+1. **John (ID 2, Dept 14):** $14 \notin \{1, 7, 13\}$. Retain `[2, "John"]`.
+2. **Jasmine (ID 4, Dept 77):** $77 \notin \{1, 7, 13\}$. Retain `[4, "Jasmine"]`.
+3. **Steve (ID 3, Dept 74):** $74 \notin \{1, 7, 13\}$. Retain `[3, "Steve"]`.
+4. **Daiana (ID 7, Dept 33):** $33 \notin \{1, 7, 13\}$. Retain `[7, "Daiana"]`.
 
-| Parameter | State Before Finalization | Action | Final Value |
+| Student Record | Evaluated Dept ID | Membership in $D_{\text{valid}}$ | Retained in Output? |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["id", "name"], "rows": [[2, "John"], [7, "Daiana"], [4, "Jasmine"], [3, "Steve"]]}` |
+| `(2, "John", 14)` | $14$ | $14 \notin \{1, 7, 13\}$ (False) | **Yes: `[2, "John"]`** |
+| `(4, "Jasmine", 77)` | $77$ | $77 \notin \{1, 7, 13\}$ (False) | **Yes: `[4, "Jasmine"]`** |
+| `(3, "Steve", 74)` | $74$ | $74 \notin \{1, 7, 13\}$ (False) | **Yes: `[3, "Steve"]`** |
+| `(7, "Daiana", 33)` | $33$ | $33 \notin \{1, 7, 13\}$ (False) | **Yes: `[7, "Daiana"]`** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Departments": [{"id": 1, "name": "Electrical Engineering"}, {"id": 7, "name": "Computer Engineering"}, {"id": 13, "name": "Bussiness Administration"}], "Students": [{"id": 23, "name": "Alice", "department_id": 1}, {"id": 1, "name": "Bob", "department_id": 7}, {"id": 5, "name": "Jennifer", "department_id": 13}, {"id": 2, "name": "John", "department_id": 14}, {"id": 4, "name": "Jasmine", "department_id": 77}, {"id": 3, "name": "Steve", "department_id": 74}, {"id": 6, "name": "Luis", "department_id": 1}, {"id": 8, "name": "Jonathan", "department_id": 7}, {"id": 7, "name": "Daiana", "department_id": 33}, {"id": 11, "name": "Madelynn", "department_id": 1}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["id", "name"], "rows": [[2, "John"], [7, "Daiana"], [4, "Jasmine"], [3, "Steve"]]}` | Verified |
+Summary of all student evaluations against the reference set $D_{\text{valid}} = \{1, 7, 13\}$:
+
+| Student ID | Student Name | `department_id` | Foreign Key Status | Joined Department Row | Projected to Result? |
+|---|---|---|---|---|---|
+| $23$ | Alice | $1$ | Valid | `(1, "Electrical Engineering")` | Excluded |
+| $1$ | Bob | $7$ | Valid | `(7, "Computer Engineering")` | Excluded |
+| $5$ | Jennifer | $13$ | Valid | `(13, "Business Administration")` | Excluded |
+| **$2$** | **John** | **$14$** | **Orphaned** | `NULL` | **Included: `[2, "John"]`** |
+| **$4$** | **Jasmine** | **$77$** | **Orphaned** | `NULL` | **Included: `[4, "Jasmine"]`** |
+| **$3$** | **Steve** | **$74$** | **Orphaned** | `NULL` | **Included: `[3, "Steve"]`** |
+| $6$ | Luis | $1$ | Valid | `(1, "Electrical Engineering")` | Excluded |
+| $8$ | Jonathan | $7$ | Valid | `(7, "Computer Engineering")` | Excluded |
+| **$7$** | **Daiana** | **$33$** | **Orphaned** | `NULL` | **Included: `[7, "Daiana"]`** |
+| $11$ | Madelynn | $1$ | Valid | `(1, "Electrical Engineering")` | Excluded |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Relational Equivalence
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $R$ denote `Students` and $S$ denote `Departments`.
+The anti-join $\mathbin{\triangleright}$ can be executed via three standard algebraic plans:
+1. **Hash Anti-Join:** Construct an in-memory hash set of $S.\text{id}$. For each tuple in $R$, probe the hash set. If the key is absent, emit $(R.\text{id}, R.\text{name})$.
+2. **Left Outer Join with Null Filter:** Compute $R \mathbin{\bowtie_{\text{left}, \text{dept\_id} = \text{id}}} S$, and filter for tuples where $S.\text{id}$ is null.
+3. **Correlated Subquery:** Test for non-existence of matching department keys per student tuple.
 
----
+Because `Departments.id` is non-null and unique, all three representations yield identical result sets.
 
-## 6. Traps This Instance Exposes
+### Asymptotic Complexity
 
-- **`NOT EXISTS`:** A correlated anti-membership test using matching IDs is robust to nulls and often optimized into an anti-join.
-- **Left anti-join:** Left-join departments on the identifier and keep rows where the joined department ID is null. It makes the missing-match interpretation visually explicit.
-- **Application-side filtering:** Loading both tables and comparing identifiers outside SQL duplicates database work and moves unnecessary data.
-- **Empty department table:** Every student with a non-null `department_id` passes because the right-hand set is empty.
-- **No invalid students:** The predicate rejects every row and the result is an empty table.
-- **Repeated student names:** Selection is based on department membership and returns student IDs, so equal names would not merge rows.
-- **Non-null primary key:** The right-side `id` cannot contain null, preventing the most dangerous `NOT IN` behavior.
-- **Null student department:** The exact query omits it because the predicate becomes unknown. Add explicit handling if null should mean invalid.
-- **Any output order:** No sort is required, and consumers must not infer a stable order from the execution plan.
-- **Return columns:** The query returns the student’s `id` and `name` only; the obsolete department value is used solely for filtering.
-- **No `DISTINCT` needed:** `Students.id` is a primary key, and the subquery is used as a membership set rather than joined multiplicatively. Each qualifying student row can appear only once in the output.
-- **Missing foreign-key enforcement:** The very existence of invalid department identifiers means this dataset is not relying on an active foreign-key constraint that rejects them. The query intentionally detects those orphan references.
-- **Department renamed but ID retained:** Validity depends only on the identifier. Changing a department’s name does not make its students invalid as long as the same `Departments.id` remains present.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(|S| + |R|)$ using a hash anti-join. Building the hash set of active department keys requires $\mathcal{O}(|S|)$ operations. Scanning the students table and probing the hash set requires $\mathcal{O}(1)$ average time per row, totaling $\mathcal{O}(|R|)$. Total runtime is linear: $\mathcal{O}(|S| + |R|)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|S|)$. The hash structure stores $|S|$ active department identifiers.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(1)$. Let $D$ be the number of department rows and $S$ the number of student rows.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Null Values in Subqueries:** In general three-valued logic, if an subquery contains a `NULL` value, set-exclusion predicates can evaluate to `UNKNOWN` and produce empty results. Here, `Departments.id` is a primary key and guaranteed non-null, ensuring deterministic evaluation.
+- **Empty Result Case:** If all enrolled students belong to active departments, the filter removes every tuple, correctly returning an empty relation with header `[id, name]`.
+- **Entirely Abolished School:** If `Departments` is completely empty, every student's department key is absent, so all students are retained in the result.
+- **Unordered Output Guarantee:** The problem specification permits returning rows in any order. Forcing a sort on `id` would add an unnecessary $\mathcal{O}(|R| \log |R|)$ overhead without semantic benefit.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Relational Anti-Join Flowchart
+    accDescr: Step-by-step filtering of student tuples using a hash set of valid department keys.
+
+    Start(["Read Departments and Students tables"]) --> HashBuild["Extract valid department IDs:<br/>D_valid = {1, 7, 13}"]
+    HashBuild --> ScanLoop{"More rows in Students table?"}
+    ScanLoop -- No --> ReturnResult(["Return accumulated invalid students"])
+    
+    ScanLoop -- Yes --> FetchRow["Fetch next student record:<br/>(id, name, department_id)"]
+    FetchRow --> MembershipCheck{"department_id in D_valid ?"}
+    
+    MembershipCheck -- "Yes (Active)" --> Discard["Discard row (enrollment valid)"]
+    MembershipCheck -- "No (Orphaned)" --> Retain["Add [id, name] to result set"]
+    
+    Discard --> ScanLoop
+    Retain --> ScanLoop
+```

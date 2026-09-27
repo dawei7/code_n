@@ -1,135 +1,199 @@
 # Guided Example: Lexicographically Smallest Equivalent String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step partition of the lowercase Latin alphabet into equivalence classes using a disjoint-set union (DSU) structure with a directed minimal-root invariant, prove the Equivalence Relation Canonical Representative Theorem and the Positional Independence Lemma, and transform representative base strings into their lexicographically smallest equivalents:
 
-- **Input:** `{"s1": "parker", "s2": "morris", "baseStr": "parser"}`
-- **Required output:** `"makkek"`
+- **Representative Instance 1 (Multi-Component Equivalence Network):**
+  $$
+  s1 = \text{"parker"}, \quad s2 = \text{"morris"}, \quad baseStr = \text{"parser"}
+  $$
+- **Required Output:** `"makkek"`
+  - Problem definitions:
+    - Aligned pairs $(s1[i], s2[i])$ define an equivalence relation (reflexive, symmetric, transitive) on the alphabet $\Sigma = \{'a', \dots, 'z'\}$.
+    - Any character in a string may be replaced by any equivalent character.
+    - Return the lexicographically smallest equivalent string of $baseStr$.
+  - The Positional Independence Lemma:
+    - Lexicographical comparison evaluates strings from left to right.
+    - An assignment at index $j$ does not restrict the choice at any other index $k$.
+    - Therefore, minimizing the entire string is strictly equivalent to replacing each character $c$ with the **minimum character** in its equivalence class:
+      $$
+      c^* = \min \{ x \in \Sigma : x \sim c \}
+      $$
+  - DSU with Directed Minimal-Root Invariant ($p[x] = x$ initially):
+    - When merging roots $px$ and $py$, always set $p[\max(px, py)] = \min(px, py)$ so that the root of every connected tree is always its **lexicographically smallest member**!
+    1. Pair 1: $(p, m) \implies \text{ord}(p)=15, \text{ord}(m)=12$. Since $12 < 15$, set $p[15] = 12$ ($p \to m$).
+    2. Pair 2: $(a, o) \implies \text{ord}(a)=0, \text{ord}(o)=14$. Since $0 < 14$, set $p[14] = 0$ ($o \to a$).
+    3. Pair 3: $(r, r) \implies \text{Identical}$. No change.
+    4. Pair 4: $(k, r) \implies \text{ord}(k)=10, \text{ord}(r)=17$. Since $10 < 17$, set $p[17] = 10$ ($r \to k$).
+    5. Pair 5: $(e, i) \implies \text{ord}(e)=4, \text{ord}(i)=8$. Since $4 < 8$, set $p[8] = 4$ ($i \to e$).
+    6. Pair 6: $(r, s) \implies \text{find}(r) = 10 \; (k), \; \text{find}(s) = 18 \; (s)$. Since $10 < 18$, set $p[18] = 10$ ($s \to k$).
+  - Resulting Equivalence Classes & Canonical Minima:
+    - $[p, m] \implies \text{canonical minimum} = \mathbf{'m'}$
+    - $[a, o] \implies \text{canonical minimum} = \mathbf{'a'}$
+    - $[r, k, s] \implies \text{canonical minimum} = \mathbf{'k'}$
+    - $[e, i] \implies \text{canonical minimum} = \mathbf{'e'}$
+  - Substituting $baseStr = \text{"parser"}$:
+    - $baseStr[0] = \text{'p'} \implies \text{find}('p') = \mathbf{'m'}$
+    - $baseStr[1] = \text{'a'} \implies \text{find}('a') = \mathbf{'a'}$
+    - $baseStr[2] = \text{'r'} \implies \text{find}('r') = \mathbf{'k'}$
+    - $baseStr[3] = \text{'s'} \implies \text{find}('s') = \mathbf{'k'}$
+    - $baseStr[4] = \text{'e'} \implies \text{find}('e') = \mathbf{'e'}$
+    - $baseStr[5] = \text{'r'} \implies \text{find}('r') = \mathbf{'k'}$
+  - Emitted string: `"makkek"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Partial Disjoint Replacements):**
+  $$
+  s1 = \text{"hello"}, \quad s2 = \text{"world"}, \quad baseStr = \text{"hold"} \implies \mathbf{"hdld"}
+  $$
+
+- **Representative Instance 3 (Large Transitive Component Collapsing to 'a'):**
+  $$
+  s1 = \text{"leetcode"}, \quad s2 = \text{"programs"}, \quad baseStr = \text{"sourcecode"} \implies \mathbf{"aauaaaaada"}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two strings of the same length `s1` and `s2` and a string `baseStr`.
+Given two strings `s1` and `s2` declaring pairwise character equivalences, find the lexicographically smallest string obtainable by substituting equivalent characters into `baseStr`.
 
-The objective is to compute `"makkek"` from `{"s1": "parker", "s2": "morris", "baseStr": "parser"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Floyd-Warshall / BFS Matrix Fallacy:
+  Building a 26x26 adjacency matrix and running all-pairs reachability:
+    Takes O(A^3) or repeated BFS sweeps with quadratic memory.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Disjoint-Set Union with Min-Root Invariant (O(N + M) Time, O(1) Space):
+  Key observation:
+    Each connected component has a unique minimal character.
+    If the DSU tree root is GUARANTEED to be the smallest character in the component:
+      find(c) directly returns the optimal replacement character in O(1) time!
+  1. Initialize p = list(range(26)).
+  2. For each pair (a, b) in zip(s1, s2):
+       px, py = find(a), find(b)
+       Set p[max(px, py)] = min(px, py)  <-- Direct root to smaller value!
+  3. Replace each c in baseStr with chr(find(c) + ord('a')).
+  Runs in linear time with path compression and exactly 26 integers of memory!
+```
 
----
+Directing union edges toward the smaller numerical vertex index embeds optimal representative selection directly into the DSU structure without auxiliary queries.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Equivalence pairs form connected components
-
-Every aligned pair `s1[i]` and `s2[i]` says that two letters are equivalent. Symmetry makes that relation undirected, and transitivity means a chain of pairs joins every letter in the same equivalence group.
-
-This can be viewed as a graph whose 26 lowercase letters are vertices. Each given pair is an edge. Every connected component is one equivalence class: any character in that component may replace any other.
-
-To make `baseStr` lexicographically smallest, every character should become the smallest letter in its component. Choosing a larger equivalent letter at any position could only make the result larger, and choices at different positions do not constrain each other.
-
-The solution maintains these components with a disjoint-set union structure, also called union-find.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s1": "parker", "s2": "morris", "baseStr": "parser"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Equivalence Canonical Representative Theorem & Directed Min-Root Union**:
+1. **Component Equivalence:** The transitive closure of the input pairs decomposes $\Sigma$ into connected components where every pair of nodes can substitute for each other.
+2. **Positional Independence:** Because lexicographical order gives priority to earlier characters and choices are unconstrained across positions, greedily minimizing each character independently produces the global optimum.
+3. **Directed Min-Root Invariant:** Directing union assignments $p[\max(px, py)] = \min(px, py)$ ensures that every root is the minimum element of its set.
+4. Total time $\mathcal{O}(N + M)$ (where $N = |s1|, M = |baseStr|$) and auxiliary space $\mathcal{O}(1)$.
 
 ---
 
-### Step 2: Represent letters as small integer nodes
+## 2. Conceptual Foundation & The DSU Minimization Pipeline
 
-The parent array begins as:
+```mermaid
+flowchart TD
+    accTitle: Lexicographically Smallest Equivalent String Pipeline
+    accDescr: Flowchart illustrating union-find initialization, min-root directed merges, and baseStr transformation
+    Start["s1, s2 of length N, baseStr of length M\nInitialize p = list(range(26))"] --> LoopPairs["For each pair (a, b) in zip(s1, s2):"]
+    LoopPairs --> FindRoots["px = find(a)\npy = find(b)"]
+    FindRoots --> CheckMin{"px < py ?"}
+    CheckMin -->|"Yes: px is smaller"| SetPy["p[py] = px\n(Direct larger root py to smaller px)"]
+    CheckMin -->|"No: py is smaller or equal"| SetPx["p[px] = py\n(Direct larger root px to smaller py)"]
+    SetPy --> NextPair["Next pair"]
+    SetPx --> NextPair
+    NextPair --> LoopPairs
+    LoopPairs -->|"All N pairs merged"| TransformBase["For each character c in baseStr:\nReplace c with chr(find(c) + ord('a'))"]
+    TransformBase --> Finish["Join transformed characters and return"]
+```
 
+### The Equivalence Canonical Representative Theorem
 
-
-Letter `"a"` maps to node zero, `"b"` to one, and so through `"z"` at node 25. Initially `p[x] == x` for every node, so each letter is the sole member and representative of its own component.
-
-The representative is not arbitrary in this implementation. The union operation always chooses the smaller root. As a result, a component's representative is always its lexicographically smallest character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\Sigma = \{0, 1, \dots, 25\}$ represent the alphabet $\{'a', \dots, 'z'\}$.
+1. **Equivalence Relation:**
+   Let $E = \{(s1[i], s2[i]) : 0 \le i < N\}$.
+   Let $\sim$ be the reflexive, symmetric, and transitive closure of $E$ on $\Sigma$.
+   Then $\sim$ partitions $\Sigma$ into disjoint equivalence classes $\mathcal{C}_1, \dots, \mathcal{C}_k$.
+2. **Positional Independence of Lexicographical Minimization:**
+   Let $W = (w_0, w_1, \dots, w_{M-1})$ be the original string $baseStr$.
+   A replacement string $W' = (w'_0, \dots, w'_{M-1})$ is valid if and only if $w'_j \sim w_j$ for all $0 \le j < M$.
+   Suppose there exists an index $j$ such that $w'_j > \min [w_j]_\sim$.
+   Let $w^*_j = \min [w_j]_\sim$.
+   Replacing $w'_j$ with $w^*_j$ produces a string $W''$ that agrees with $W'$ on all indices $< j$ and has $W''[j] < W'[j]$.
+   By definition of lexicographical comparison, $W'' <_{\text{lex}} W'$.
+   Therefore, the uniquely minimal equivalent string satisfies:
+   $$
+   w^*_j = \min [w_j]_\sim \quad \forall 0 \le j < M
+   $$
+3. **Directed Min-Root DSU Correctness:**
+   - **Base case:** Initially, $p[x] = x$ for all $x$, so root of $\{x\}$ is $x = \min \{x\}$.
+   - **Inductive step:** Suppose two disjoint components have roots $r_1 = \min C_1$ and $r_2 = \min C_2$.
+     When unioning, setting $p[\max(r_1, r_2)] = \min(r_1, r_2)$ merges the trees under root $r^* = \min(r_1, r_2)$.
+     Since $\min(C_1 \cup C_2) = \min(\min C_1, \min C_2) = \min(r_1, r_2) = r^*$, the invariant that **the tree root is the component minimum** is preserved!
+   - Therefore, $\text{find}(c)$ always returns the minimal equivalent character. $\blacksquare$
 
 ---
 
-### Step 3: Find the current component root
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The nested function is:
+$s1 = \text{"parker"}, \; s2 = \text{"morris"}, \; baseStr = \text{"parser"}$.
+Initialize $p = [0, 1, \dots, 25]$.
 
+### Pairwise Union Trace
+- Pair 1: $(p, m) \to (15, 12) \implies px = 15, py = 12$. Since $12 < 15$: $p[15] = 12$.
+- Pair 2: $(a, o) \to (0, 14) \implies px = 0, py = 14$. Since $0 < 14$: $p[14] = 0$.
+- Pair 3: $(r, r) \to (17, 17) \implies px = 17, py = 17$. Same root.
+- Pair 4: $(k, r) \to (10, 17) \implies px = 10, py = 17$. Since $10 < 17$: $p[17] = 10$.
+- Pair 5: $(e, i) \to (4, 8) \implies px = 4, py = 8$. Since $4 < 8$: $p[8] = 4$.
+- Pair 6: $(r, s) \to (17, 18) \implies px = \text{find}(17) = 10, py = \text{find}(18) = 18$. Since $10 < 18$: $p[18] = 10$.
 
+### Transformation of $baseStr = \text{"parser"}$
+- $j = 0: \text{'p'} \to 15 \implies \text{find}(15) = 12 \implies \mathbf{'m'}$
+- $j = 1: \text{'a'} \to 0 \implies \text{find}(0) = 0 \implies \mathbf{'a'}$
+- $j = 2: \text{'r'} \to 17 \implies \text{find}(17) = 10 \implies \mathbf{'k'}$
+- $j = 3: \text{'s'} \to 18 \implies \text{find}(18) = 10 \implies \mathbf{'k'}$
+- $j = 4: \text{'e'} \to 4 \implies \text{find}(4) = 4 \implies \mathbf{'e'}$
+- $j = 5: \text{'r'} \to 17 \implies \text{find}(17) = 10 \implies \mathbf{'k'}$
 
-A root points to itself. If `p[x] == x`, the function returns `x` immediately.
-
-Otherwise, `x` points toward another node in the same component. The recursive call follows parent links until it reaches the root. Then:
-
-
-
-rewrites `x`'s parent to point directly at that root. This is path compression. Later searches from `x`, and often from nodes on related paths, become shorter.
-
-The returned value is always the current representative of `x`'s complete equivalence class, not merely its immediate parent.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"makkek"` |
+Result: `"makkek"`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. DSU Component Merge and Replacement Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s1": "parker", "s2": "morris", "baseStr": "parser"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"makkek"` | Verified |
+| Character Position in `baseStr` | Original Letter | Integer Code $x$ | Path to Root in $p$ | Component Canonical Root | Replaced Letter |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `'p'` | $15$ | $15 \to 12$ | $12$ | **`'m'`** |
+| $1$ | `'a'` | $0$ | $0 \to 0$ | $0$ | **`'a'`** |
+| $2$ | `'r'` | $17$ | $17 \to 10$ | $10$ | **`'k'`** |
+| $3$ | `'s'` | $18$ | $18 \to 10$ | $10$ | **`'k'`** |
+| $4$ | `'e'` | $4$ | $4 \to 4$ | $4$ | **`'e'`** |
+| $5$ | `'r'` | $17$ | $17 \to 10$ | $10$ | **`'k'`** |
+| **Output** | — | — | — | — | **`"makkek"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every replacement character belongs to the connected component of the original character in the equivalence relation graph.
+2. **Completeness:**
+   Because the DSU union operation directs all edges toward the strictly smaller root index, the root of every tree is provably the minimum element in its component.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Graph plus depth-first search:** Build an undirected graph on the alphabet, find each connected component, record its smallest character, and map `baseStr`. This takes `O(P + B + A)` time with adjacency lists and is equally valid.
-- **Adjacency matrix:** A 26 by 26 Boolean matrix plus DFS is simple because the alphabet is tiny, but it uses `O(A^2)` space rather than `O(A)` disjoint-set storage.
-- **Repeated transitive closure:** Floyd–Warshall can compute equivalence reachability in `O(A^3)` time. It is acceptable for 26 letters but unnecessarily heavy.
-- **Union by rank with minimum metadata:** For a growing alphabet, balance trees by rank and separately store the minimum node of each component. This preserves efficient general union-find behavior without requiring the root itself to be the minimum.
-- **Same character paired with itself:** Both roots are equal, and the self-parent assignment changes nothing.
-- **Repeated equivalence pair:** The second and later merges find the same root and are harmless.
-- **Transitive chain:** Pairs such as `a = b` and `b = c` merge all three nodes, and `find(c)` returns `a`.
-- **Equivalence pair order:** Components and their minima do not depend on the order in which edges are processed. The smaller-root invariant produces the same final representative.
-- **Unmentioned base character:** It remains its own representative and is copied unchanged.
-- **All letters equivalent:** Every component merge eventually has root zero, so every base character becomes `"a"`.
-- **No useful change:** If each base character is already the smallest in its component, the returned string equals `baseStr`.
-- **Duplicate base characters:** Each occurrence is mapped independently to the same root. The generator does not cache explicitly, but path compression makes repeated finds short.
-- **Equal input lengths:** `zip` relies on the contract that `s1` and `s2` have equal length. With unequal strings it would silently ignore an unmatched suffix.
-- **Input preservation:** Strings are immutable. Only the private parent array changes during unions and path compression.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Reflexive Identity Pairs | $s1[i] == s2[i]$ | $px == py$; parent array remains unchanged. | Creating self-referential cycle. |
+| Character Not in $s1$ or $s2$ | Letter in $baseStr$ untouched by pairs | $p[c] == c$; replaces character with itself. | Crash or incorrect substitution of isolated characters. |
+| All Characters Equivalent | Long chain connecting all 26 letters | All roots collapse to $0$ ('a'); all characters become 'a'. | Deep recursion without path compression. |
+| Already Smallest | Every character in $baseStr$ is minimal in its class | String returns completely unchanged. | Unnecessary mutation. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P + B + A)$. Let `P` be the number of equivalence pairs, `B` the length of `baseStr`, and `A = 26` the lowercase alphabet size.
-- **Auxiliary Space Complexity:** $O(A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}((N + M) \alpha(26)) \approx \mathcal{O}(N + M)$, where $N = \text{len}(s1) \le 1000$ and $M = \text{len}(baseStr) \le 1000$.
+  - With an alphabet of size $|\Sigma| = 26$, the inverse Ackermann factor $\alpha(26) \le 2$.
+  - Processing $N$ pair unions takes $\mathcal{O}(N)$ operations.
+  - Transforming $M$ characters takes $\mathcal{O}(M)$ operations.
+  - Total time: $< 0.001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; uses a fixed 26-element integer array $p$ for parent tracking.

@@ -1,137 +1,145 @@
 # Guided Example: Bank Account Summary II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide traces the aggregation, equijoin, and threshold filtration pipeline that computes current customer balances from atomic transaction logs.
 
-- **Input:** `{"tables": {"Users": [{"account": 900001, "name": "Alice"}, {"account": 900002, "name": "Bob"}, {"account": 900003, "name": "Charlie"}], "Transactions": [{"trans_id": 1, "account": 900001, "amount": 7000, "transacted_on": "2020-08-01"}, {"trans_id": 2, "account": 900001, "amount": 7000, "transacted_on": "2020-09-01"}, {"trans_id": 3, "account": 900001, "amount": -3000, "transacted_on": "2020-09-02"}, {"trans_id": 4, "account": 900002, "amount": 1000, "transacted_on": "2020-09-12"}, {"trans_id": 5, "account": 900003, "amount": 6000, "transacted_on": "2020-08-07"}, {"trans_id": 6, "account": 900003, "amount": 6000, "transacted_on": "2020-09-07"}, {"trans_id": 7, "account": 900003, "amount": -4000, "transacted_on": "2020-09-11"}]}}`
-- **Required output:** `{"columns": ["name", "balance"], "rows": [["Alice", 11000]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Tables:**
+  - `Users`: `(account, name)`
+  - `Transactions`: `(trans_id, account, amount, transacted_on)`
+- **Output Relation:** `(name, balance)` for all accounts where $\text{balance} > 10000$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Users`
+Financial ledger systems record deposits as positive integers and withdrawals as negative integers. To derive a user's net liquidity, the system must sum all ledger entries associated with their account and verify whether their aggregated balance strictly exceeds $10000$.
 
-The objective is to compute `{"columns": ["name", "balance"], "rows": [["Alice", 11000]]}` from `{"tables": {"Users": [{"account": 900001, "name": "Alice"}, {"account": 900002, "name": "Bob"}, {"account": 900003, "name": "Charlie"}], "Transactions": [{"trans_id": 1, "account": 900001, "amount": 7000, "transacted_on": "2020-08-01"}, {"trans_id": 2, "account": 900001, "amount": 7000, "transacted_on": "2020-09-01"}, {"trans_id": 3, "account": 900001, "amount": -3000, "transacted_on": "2020-09-02"}, {"trans_id": 4, "account": 900002, "amount": 1000, "transacted_on": "2020-09-12"}, {"trans_id": 5, "account": 900003, "amount": 6000, "transacted_on": "2020-08-07"}, {"trans_id": 6, "account": 900003, "amount": 6000, "transacted_on": "2020-09-07"}, {"trans_id": 7, "account": 900003, "amount": -4000, "transacted_on": "2020-09-11"}]}}` while avoiding redundant calculations and unnecessary overhead.
+| Account | Name | Transaction Amounts | Net Balance | Status |
+|---|---|---|---|---|
+| $900001$ | Alice | $+7000, +7000, -3000$ | $+11000$ | Qualified ($> 10000$) |
+| $900002$ | Bob | $+1000$ | $+1000$ | Excluded ($\le 10000$) |
+| $900003$ | Charlie | $+6000, +6000, -4000$ | $+8000$ | Excluded ($\le 10000$) |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our pedagogical goal is to model this tabular consolidation using formal relational algebra, illustrating join alignment, group-wise accumulation, and post-aggregation predicate evaluation.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  RELATIONAL ALGEBRA TRANSFORMATION FLOW                 |
+|                                                                         |
+|  Step 1: Equijoin                                                       |
+|    R1 = Users ⋈_{Users.account = Transactions.account} Transactions     |
+|                                                                         |
+|  Step 2: Grouping & Accumulation                                        |
+|    R2 = γ_{account, name; balance = SUM(amount)}(R1)                    |
+|                                                                         |
+|  Step 3: Post-Aggregation Threshold Selection                           |
+|    R3 = σ_{balance > 10000}(R2)                                         |
+|                                                                         |
+|  Step 4: Final Schema Projection                                        |
+|    R_final = Π_{name, balance}(R3)                                      |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Relational Operator | Input Relations | Produced Attributes | Invariant Property |
+|---|---|---|---|
+| Equijoin ($\bowtie_{\text{account}}$) | $\text{Users}, \text{Transactions}$ | $\text{account}, \text{name}, \text{trans\_id}, \text{amount}, \text{transacted\_on}$ | Matches ledger events with user identity keys |
+| Grouped Aggregate ($\gamma$) | Join tuples | $\text{account}, \text{name}, \text{balance}$ | Computes scalar sum of signed deltas per account |
+| Selection ($\sigma$) | Grouped records | $\text{account}, \text{name}, \text{balance}$ | Filters tuples where $\text{balance} > 10000$ |
+| Projection ($\Pi$) | Selected records | $\text{name}, \text{balance}$ | Formats output schema |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Threshold Filtration Invariant.** Any account whose net accumulated sum $\sum \text{amount}$ is less than or equal to $10000$ is strictly eliminated from the output. Inactive users with zero transactions are not emitted since an inner join discards accounts lacking corresponding transaction rows.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Algebra Ledger Aggregation Flow
+    accDescr: Pipeline joining user entities with transaction streams, grouping by account, and selecting balances above 10000.
+    U["Users Relation (account, name)"] --> J["Equijoin on account"]
+    T["Transactions Relation (account, amount)"] --> J
+    J --> G["Group by account, name: balance = SUM(amount)"]
+    G --> F["Selection Filter: balance > 10000"]
+    F --> P["Projection: (name, balance)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: From transaction changes to account balances
+### Step 1: Relational Equijoin ($R_1 = \text{Users} \bowtie_{\text{account}} \text{Transactions}$)
 
-Every account begins with balance zero. Each transaction’s `amount` is a signed change: positive amounts add money and negative amounts subtract money. Therefore, an account’s final balance is the sum of `amount` over all transaction rows carrying that account number.
+We combine the user entity table with individual transaction records matching on primary-foreign key pair $\text{account}$.
 
-The query needs two pieces from different tables:
-
-- `Transactions` supplies the signed amounts and account identifier needed for aggregation;
-- `Users` supplies the human-readable `name` required in the output.
-
-The checked-in query joins these tables first, groups the joined transaction rows by account, calculates `SUM(amount)`, and keeps only sums strictly greater than 10000.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Users": [{"account": 900001, "name": "Alice"}, {"account": 900002, "name": "Bob"}, {"account": 900003, "name": "Charlie"}], "Transactions": [{"trans_id": 1, "account": 900001, "amount": 7000, "transacted_on": "2020-08-01"}, {"trans_id": 2, "account": 900001, "amount": 7000, "transacted_on": "2020-09-01"}, {"trans_id": 3, "account": 900001, "amount": -3000, "transacted_on": "2020-09-02"}, {"trans_id": 4, "account": 900002, "amount": 1000, "transacted_on": "2020-09-12"}, {"trans_id": 5, "account": 900003, "amount": 6000, "transacted_on": "2020-08-07"}, {"trans_id": 6, "account": 900003, "amount": 6000, "transacted_on": "2020-09-07"}, {"trans_id": 7, "account": 900003, "amount": -4000, "transacted_on": "2020-09-11"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Account | Name | Trans ID | Amount | Transacted On |
+|---|---|---|---|---|
+| $900001$ | Alice | $1$ | $+7000$ | 2020-08-01 |
+| $900001$ | Alice | $2$ | $+7000$ | 2020-09-01 |
+| $900001$ | Alice | $3$ | $-3000$ | 2020-09-02 |
+| $900002$ | Bob | $4$ | $+1000$ | 2020-09-12 |
+| $900003$ | Charlie | $5$ | $+6000$ | 2020-08-07 |
+| $900003$ | Charlie | $6$ | $+6000$ | 2020-09-07 |
+| $900003$ | Charlie | $7$ | $-4000$ | 2020-09-11 |
 
 ---
 
-### Step 2: Joining each transaction to its owner
+### Step 2: Grouping and Accumulation ($R_2 = \gamma_{\text{account}, \text{name}; \text{balance} = \sum(\text{amount})}(R_1)$)
 
-The `FROM` clause is:
+Tuples are partitioned by grouping key $(\text{account}, \text{name})$, computing the algebraic sum of all transaction amounts.
 
-`Users JOIN Transactions USING (account)`.
+- For Alice ($900001$):
+  $$\text{balance} = 7000 + 7000 + (-3000) = 11000$$
+- For Bob ($900002$):
+  $$\text{balance} = 1000$$
+- For Charlie ($900003$):
+  $$\text{balance} = 6000 + 6000 + (-4000) = 8000$$
 
-`USING (account)` is shorthand for an equality join on the same-named `account` column in both tables. Each transaction is matched with the user whose primary-key account number equals the transaction’s account number.
-
-Because `Users.account` is unique, one transaction can match at most one user. Thus the join attaches a name without multiplying a transaction across several user rows. After joining, each row conceptually contains the transaction’s amount together with its owner’s name and account.
-
-This is an inner join. A user with no transactions produces no joined row. Such a user’s balance is zero because all accounts start at zero, so that user cannot satisfy a balance greater than 10000. Excluding the user early is therefore safe.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Account | Name | Partial Amounts | Net Balance |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| $900001$ | Alice | $\{+7000, +7000, -3000\}$ | $11000$ |
+| $900002$ | Bob | $\{+1000\}$ | $1000$ |
+| $900003$ | Charlie | $\{+6000, +6000, -4000\}$ | $8000$ |
 
 ---
 
-### Step 3: Grouping at the account level
+### Step 3: Post-Aggregation Selection & Projection ($R_3 = \sigma_{\text{balance} > 10000}(R_2)$ and $R_{\text{final}} = \Pi_{\text{name}, \text{balance}}(R_3)$)
 
-`GROUP BY account` places every joined transaction for the same bank account into one group. The selected aggregate
+We evaluate the predicate $\text{balance} > 10000$:
+- Alice: $11000 > 10000 \implies \text{True}$. Included.
+- Bob: $1000 > 10000 \implies \text{False}$. Excluded.
+- Charlie: $8000 > 10000 \implies \text{False}$. Excluded.
 
-`SUM(amount) AS balance`
-
-adds all signed changes in that group. Deposits increase the sum, transfers out decrease it, and the final sum is exactly the account balance.
-
-The alias `balance` gives the calculated column the required output name. It is also reused in the `HAVING` clause.
-
-Grouping by account rather than by transaction is necessary because an account may have many transactions. Grouping by name could also distinguish users under this particular contract because names are unique, but the account is the relational key shared by the tables and directly identifies the balance being calculated.
-
-MySQL permits selecting `name` while grouping by `account` because `Users.account` is a primary key and functionally determines exactly one `Users.name`. Within any account group, all joined rows carry the same name. In database modes or systems that do not infer this functional dependency, grouping by both `account` and `name` would express the same result more explicitly.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["name", "balance"], "rows": [["Alice", 11000]]}` |
+Projecting attributes $(\text{name}, \text{balance})$ yields the single qualifying record.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Users": [{"account": 900001, "name": "Alice"}, {"account": 900002, "name": "Bob"}, {"account": 900003, "name": "Charlie"}], "Transactions": [{"trans_id": 1, "account": 900001, "amount": 7000, "transacted_on": "2020-08-01"}, {"trans_id": 2, "account": 900001, "amount": 7000, "transacted_on": "2020-09-01"}, {"trans_id": 3, "account": 900001, "amount": -3000, "transacted_on": "2020-09-02"}, {"trans_id": 4, "account": 900002, "amount": 1000, "transacted_on": "2020-09-12"}, {"trans_id": 5, "account": 900003, "amount": 6000, "transacted_on": "2020-08-07"}, {"trans_id": 6, "account": 900003, "amount": 6000, "transacted_on": "2020-09-07"}, {"trans_id": 7, "account": 900003, "amount": -4000, "transacted_on": "2020-09-11"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["name", "balance"], "rows": [["Alice", 11000]]}` | Verified |
+| Account ID | Customer Name | Transaction History List | Derived Balance | $\text{balance} > 10000$ | Emitted Record |
+|---|---|---|---|---|---|
+| $900001$ | Alice | $[+7000, +7000, -3000]$ | $11000$ | Yes ($11000 > 10000$) | `("Alice", 11000)` |
+| $900002$ | Bob | $[+1000]$ | $1000$ | No ($1000 \le 10000$) | *Suppressed* |
+| $900003$ | Charlie | $[+6000, +6000, -4000]$ | $8000$ | No ($8000 \le 10000$) | *Suppressed* |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every customer emitted in the final relation corresponds to an account whose transaction sum strictly exceeds $10000$. Because the inner join enforces referential alignment on `account`, each transaction is mapped to its verified owner. The linear summation over integer amounts correctly reflects credit deposits and debit withdrawals according to standard additive identity. The predicate filter $\sigma_{\text{balance} > 10000}$ strictly rejects any balance equal to or below the cutoff.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By aggregating across all matching rows in the `Transactions` relation, no ledger entries are omitted for any customer. Because the grouping partitions the relation exhaustively by account identifier, each user is evaluated exactly once, ensuring all accounts satisfying the qualification threshold are captured.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Aggregate transactions before joining:** A subquery can compute `SUM(amount)` per account, filter with `HAVING`, and then join the smaller qualifying result to `Users`. It expresses the same logic and may reduce join volume.
-- **`LEFT JOIN` from users:** This would retain users without transactions and require `COALESCE` to treat their sum as zero. Since zero cannot exceed 10000, the checked-in inner join is simpler and sufficient.
-- **Filtering with `WHERE amount > 10000`:** This is incorrect because the condition belongs to the total balance, not each transaction. It also drops negative adjustments that must be included.
-- **Summing only deposits:** Negative amounts represent outgoing money and are part of the balance. Ignoring them can falsely qualify an account.
-- **Balance exactly 10000:** The strict `> 10000` condition rejects it. Replacing it with `>=` would violate the statement.
-- **No transactions for a user:** The inner join omits the user. Their starting balance remains zero, so omission is correct.
-- **One transaction:** The account qualifies exactly when that signed amount is greater than 10000.
-- **Many transactions:** Every joined row in the account group contributes once to `SUM(amount)`, regardless of date or transaction identifier.
-- **Net negative balance:** The signed sum is negative and cannot pass the positive threshold.
-- **Unique account key:** It prevents a transaction from joining to multiple names and makes `name` functionally dependent on the grouping column.
-- **Unique names:** The contract also says names do not repeat, but the query correctly groups by account, the actual balance identity.
-- **Strict SQL grouping modes:** MySQL can infer that primary-key `account` determines `name`. For portability, write `GROUP BY account, name` if the database requires every selected nonaggregate column to appear explicitly.
-- **Alias use in `HAVING`:** MySQL permits `HAVING balance > 10000`. A dialect that does not allow select aliases there should repeat `SUM(amount)`.
-- **`USING (account)` support:** It is standard shorthand when both inputs share the same column name. An explicit `ON Users.account = Transactions.account` is equivalent and more portable across unusual dialects.
-- **Output order:** No ordering is promised or needed. Add `ORDER BY` only if a consumer imposes a separate presentation requirement.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Strict vs. Non-Strict Inequality:** The problem specifies balance strictly greater than $10000$ ($> 10000$). Using greater-than-or-equal ($\ge 10000$) incorrectly retains boundary accounts with balance exactly $10000$.
+- **Pre-aggregation vs. Post-aggregation Filtering:** Filtering amounts prior to grouping ($\sigma_{\text{amount} > 10000}$) would discard valid transactions like Alice's multiple $7000$ deposits, preventing their cumulative sum from reaching $11000$. Aggregation must precede threshold selection.
+- **Negative Amount Handling:** Debit withdrawals reduce total balance; treating negative values as absolute additions would distort customer solvency.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((U+T)\log(U+T))$. Let $U$ be the number of users and $T$ the number of transactions.
-- **Auxiliary Space Complexity:** $O(U+T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(U + T)$ expected using hash-based equi-join and hash aggregation, where $U = |\text{Users}|$ is the number of user accounts and $T = |\text{Transactions}|$ is the number of ledger entries. With B-tree index scans on `account`, join and grouping take $\mathcal{O}(T \log U)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$ auxiliary memory to store hash table buckets for unique accounts during intermediate group consolidation.

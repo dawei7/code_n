@@ -1,110 +1,155 @@
 # Guided Example: Orderly Queue
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step transformation of a string under restricted prefix-rotation operations, prove the bifurcation between cyclic rotation orbits ($k = 1$) and the full symmetric group $S_n$ ($k \ge 2$), and demonstrate the derivation of the lexicographically smallest reachable string:
 
-- **Input:** `{"s": "cba", "k": 1}`
-- **Required output:** `"acb"`
+- **Representative Instance 1 ($k = 1$, Pure Cyclic Rotations):**
+  $$
+  s = \text{"cba"}, \quad k = 1
+  $$
+  - Feasible operations: only index $0$ can be moved to the tail.
+  - All reachable states (cyclic shifts):
+    1. Shift 0: $\text{"cba"}$
+    2. Shift 1: $\text{"bac"}$
+    3. Shift 2: $\text{"acb"}$
+  - Lexicographically smallest state:
+    $$
+    \min(\text{"cba"}, \text{"bac"}, \text{"acb"}) = \mathbf{"acb"}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 ($k \ge 2$, Full Permutation Symmetry):**
+  $$
+  s = \text{"baaca"}, \quad k = 3
+  $$
+  - With $k \ge 2$, any adjacent transposition $(i, i+1)$ is reachable via prefix selection.
+  - Because adjacent transpositions generate the entire symmetric group $S_n$, every permutation of $s$ is reachable.
+  - Lexicographically smallest permutation:
+    $$
+    \text{sort}(s) = \mathbf{"aaabc"}
+    $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` and an integer `k`. You can choose one of the first `k` letters of `s` and append it at the end of the string.
+Given a string $s$ of length $n$ and an integer $k$: in each move, choose any character from the first $k$ positions of $s$, remove it, and append it to the end.
 
-The objective is to compute `"acb"` from `{"s": "cba", "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+Find the lexicographically smallest string reachable after any number of moves.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Operation with k = 1 on "cba":
+  c | ba  ->  bac  (only index 0 can be moved)
+  b | ac  ->  acb
+  a | cb  ->  cba  (returns to start; exactly n states)
 
----
+Operation with k = 2 on "ba":
+  Can choose index 0: b | a -> ab  (transposition achieved!)
+```
 
-## 2. Conceptual Foundation & Invariants
+A naive graph traversal (BFS across reachable strings) quickly explodes into $\mathcal{O}(n!)$ states when $k \ge 2$, causing memory exhaustion and TLE.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Core Step 1
-
-The set of reachable strings changes completely depending on whether `k` equals 1 or is at least 2. The solution separates those cases because they have different mathematical behavior.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "cba", "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is to establish the **Permutation Group Bifurcation Theorem**:
+1. When $k = 1$, the operation is strictly confined to cyclic group shifts $\mathbb{Z}_n$. Only $n$ distinct strings exist, so examining all $n$ rotations finds the optimum in $\mathcal{O}(n^2)$ time.
+2. When $k \ge 2$, the operation can simulate any adjacent transposition $(i, i+1)$. Since adjacent transpositions generate the entire symmetric group $S_n$, **all** permutations are reachable, meaning the global minimum is simply the multiset sorted in ascending order.
 
 ---
 
-### Step 2: Core Step 2
+## 2. Conceptual Foundation & Permutation Group Invariants
 
-**Case `k == 1`: only rotation is possible.** The only eligible character is the first one. Moving it to the end transforms
+```mermaid
+flowchart TD
+    accTitle: Permutation Group Bifurcation
+    accDescr: Decision tree distinguishing k = 1 cyclic shifts from k >= 2 full permutation sorting
+    Start["Input: String s, parameter k"] --> Decision{"k == 1 ?"}
+    Decision -->|"Yes: k = 1"| Orbit["Cyclic Shift Orbit Z_n"]
+    Decision -->|"No: k >= 2"| Trans["Adjacent Transposition Generator"]
+    Orbit --> Shifts["Generate n cyclic rotations: s[i:] + s[:i]"]
+    Shifts --> MinRot["Find lexicographical minimum rotation"]
+    Trans --> Sym["Symmetric Group S_n fully generated"]
+    Sym --> Sorted["Return multiset sorted characters"]
+```
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### The Adjacent Transposition Invariant ($k \ge 2$)
+
+To prove why any permutation is reachable when $k \ge 2$, it suffices to show that we can swap the first two characters without altering the relative order of any other characters.
+
+1. Suppose the string is $x_1 x_2 x_3 \dots x_n$. We wish to transform it into $x_2 x_1 x_3 \dots x_n$.
+2. Because $k \ge 2$, we can choose to leave $x_1$ in place and move $x_2$ (at index $1$) to the back:
+   $$
+   x_1 x_2 x_3 \dots x_n \xrightarrow{\text{move } x_2} x_1 x_3 x_4 \dots x_n x_2
+   $$
+3. Next, move $x_1$ (now at index $0$) to the back:
+   $$
+   x_1 x_3 x_4 \dots x_n x_2 \xrightarrow{\text{move } x_1} x_3 x_4 \dots x_n x_2 x_1
+   $$
+4. Now perform $n - 2$ standard shifts (moving the character at index $0$ to the back) for each of $x_3, x_4, \dots, x_n$:
+   $$
+   x_3 x_4 \dots x_n x_2 x_1 \xrightarrow{(n-2) \text{ shifts}} x_2 x_1 x_3 x_4 \dots x_n
+   $$
+5. The relative order of all elements $x_3, \dots, x_n$ is preserved, while $x_1$ and $x_2$ have swapped positions.
+6. By rotating the entire string, this adjacent swap can be applied to any pair of adjacent characters $(i, i+1)$.
+7. By the foundational theorem of symmetric groups, the adjacent transpositions $(i, i+1)$ generate the full permutation group $S_n$. Hence, any rearrangement of characters is reachable via a finite sequence of moves.
 
 ---
 
-### Step 3: Optimality Decision
+## 3. Step-by-Step Worked Execution: $k = 1$ on $s = \text{"cba"}$
 
-Synthesize the final answer directly from validated sub-states.
+For $k = 1$, only index $0$ can be rotated to the tail. We trace all $n = 3$ cyclic shifts:
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"acb"` |
+| Shift $i$ | Slicing Operation ($s[i:] + s[:i]$) | Rotated String | Compared with Current Minimum | Updated Running Minimum |
+|:---:|:---|:---:|:---:|:---:|
+| **0** | Base string $s[0:] + s[:0]$ | $\text{"cba"}$ | Baseline initialization | $\text{"cba"}$ |
+| **1** | $s[1:] + s[:1] \implies \text{"ba"} + \text{"c"}$ | $\text{"bac"}$ | $\text{"bac"} < \text{"cba"}$ | $\text{"bac"}$ |
+| **2** | $s[2:] + s[:2] \implies \text{"a"} + \text{"cb"}$ | $\text{"acb"}$ | $\text{"acb"} < \text{"bac"}$ | $\mathbf{"acb"}$ |
+
+After $n - 1$ non-trivial rotations, the process completes a full cycle. The minimum observed string is $\mathbf{"acb"}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Step-by-Step Worked Execution: $k = 3$ on $s = \text{"baaca"}$
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "cba", "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"acb"` | Verified |
+For $k = 3 \ge 2$, the full symmetric group $S_5$ is accessible:
+
+| Character | Frequency in $s$ | Sorted Placement Range |
+|:---:|:---:|:---:|
+| `'a'` | 3 | Indices $0 \dots 2$ |
+| `'b'` | 1 | Index $3$ |
+| `'c'` | 1 | Index $4$ |
+
+Assembling characters in non-decreasing order:
+$$
+\text{Reachable Minimum} = \mathbf{"aaabc"}
+$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness & Completeness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Soundness ($k = 1$):**
+   When $k = 1$, the only available move is $s \mapsto s[1:] + s[0]$. Every reachable string is necessarily a cyclic shift $s[i:] + s[:i]$. Evaluating all $n$ shifts exhaustively guarantees that the returned minimum is an attainable, valid configuration.
+2. **Completeness ($k \ge 2$):**
+   Because adjacent transpositions $(i, i+1)$ can be executed without disturbing the relative ordering of any other characters, the generated subgroup is isomorphic to the symmetric group $S_n$. The lexicographically first permutation in any multiset under standard alphabetical ordering is uniquely the non-decreasing sorted string.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Booth's minimum-rotation algorithm:** It finds the smallest cyclic rotation in $O(n)$ time, improving the `k == 1` case.
-- **Counting sort for lowercase letters:** A 26-entry frequency array can construct the sorted `k > 1` result in $O(n)$ time.
-- **Always sort:** Incorrect for `k == 1` because only rotations are reachable.
-- **Always test rotations:** Incorrect for `k >= 2` because many non-rotation permutations are reachable.
-- **One-character string:** Both branches return the same sole string; no move changes it.
-- **`k` equals string length:** Any character can be moved directly, and the general permutation result applies.
-- **Duplicate letters:** Several operations may lead to identical strings, but comparing them repeatedly does not alter correctness.
-- **Already sorted with `k > 1`:** Sorting returns the input unchanged.
-- **Already minimum among rotations:** The initial `ans = s` ensures the original is considered.
-- **Exactly $n$ rotations:** The $n$-th returns to the original, so checking the original plus $n-1$ new rotations covers the cycle.
-- **Lowercase contract:** Native character sorting matches lexicographic order without locale or case complications.
-- **Input immutability:** The local variable `s` is rebound to new rotation strings; the caller's string cannot be mutated.
-- **Manifest mismatch:** The exact repeated slicing branch must not be described as $O(n)$ merely because a more advanced minimum-rotation method exists.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Character | $s = \text{"z"}, k = 1$ | Returns $\text{"z"}$ immediately. | Index out-of-bounds on rotation loop. |
+| Already Sorted | $s = \text{"abc"}, k = 1$ | Returns $\text{"abc"}$ on shift 0. | Unnecessary mutations or corrupting sorted state. |
+| All Identical Letters | $s = \text{"aaaa"}, k = 2$ | Returns $\text{"aaaa"}$. | Duplicate comparisons causing redundant allocations. |
+| $k \ge n$ | $s = \text{"zyxwv"}, k = 5$ | Full prefix selectable $\implies$ returns $\text{"vwxyz"}$. | Treating $k \ge n$ differently from general $k \ge 2$. |
+| Duplicate Minimal Shifts | $s = \text{"abab"}, k = 1$ | Shifts produce $\text{"abab"}, \text{"baba"}$. Returns $\text{"abab"}$. | Handling ties without breaking lexicographical tie-breakers. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n=\lvert s\rvert$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Case $k = 1$: We generate and compare $n$ cyclic rotations, each requiring $\mathcal{O}(n)$ string slice and lexicographical comparison work. Total time: $\mathcal{O}(n^2)$. (Using Booth's algorithm, this can be reduced to $\mathcal{O}(n)$, but standard slicing $\mathcal{O}(n^2)$ executes in $< 1\text{ ms}$ for $n \le 1000$).
+  - Case $k \ge 2$: Sorting $n$ characters via standard comparison sort takes $\mathcal{O}(n \log n)$ time, or $\mathcal{O}(n)$ using counting sort over the $26$ English lowercase letters.
+- **Auxiliary Space Complexity:**
+  - Case $k = 1$: $\mathcal{O}(n)$ auxiliary space to store candidate rotation slices.
+  - Case $k \ge 2$: $\mathcal{O}(n)$ auxiliary space to assemble the sorted character list into the output string.

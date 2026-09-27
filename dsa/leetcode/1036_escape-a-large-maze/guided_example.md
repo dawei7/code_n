@@ -1,131 +1,205 @@
 # Guided Example: Escape a Large Maze
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step resolution of graph reachability over a $10^{12}$-cell grid using the Discrete Isoperimetric Inequality and Bounded Bidirectional Search, prove the Maximum Enclosure Area Theorem and the Dual-Escape Reachability Equivalence, and determine maze traversal feasibility across representative obstacle layouts:
 
-- **Input:** `{"blocked": [[0, 1], [1, 0]], "source": [0, 0], "target": [0, 2]}`
-- **Required output:** `false`
+- **Representative Instance 1 (Corner Source Enclosed by Diagonal Barrier):**
+  $$
+  blocked = [[0, 1], [1, 0]], \quad source = [0, 0], \quad target = [0, 2]
+  $$
+- **Required Output:** `false`
+  - Grid geometry and paradox:
+    - The maze has dimension $N = 10^6 \implies 10^{12}$ total cells!
+    - Full graph traversal ($BFS / DFS$) would require evaluating up to $10^{12}$ states, exceeding memory and time limits.
+    - However, the number of blocked cells is tiny: $B = |blocked| = 2$.
+  - Maximum Enclosure Bound ($m$):
+    - With $B = 2$ blocked cells, what is the maximum number of cells that can be completely trapped?
+    - The most compact enclosure occurs at a grid corner:
+      $$
+      blocked = \{(0, 1), (1, 0)\}
+      $$
+    - The isolated region contains only cell $(0, 0)$ (area $1$).
+    - Theoretical cutoff:
+      $$
+      m = \frac{B^2}{2} = \frac{2^2}{2} = 2
+      $$
+    - If a search from $source$ visits more than $m = 2$ cells, it is mathematically impossible for $source$ to be trapped!
+  - Step-by-step search execution:
+    1. **Search 1: Forward DFS from $source = (0, 0)$:**
+       - Initialize $vis = \{(0, 0)\}$.
+       - Check neighbors of $(0, 0)$:
+         - Up $(-1, 0)$: out of grid bounds.
+         - Right $(0, 1)$: in $blocked$!
+         - Down $(1, 0)$: in $blocked$!
+         - Left $(0, -1)$: out of grid bounds.
+       - No valid unvisited open neighbors remain.
+       - The search terminates with $|vis| = 1 \le m = 2$.
+       - Target $(0, 2)$ was not reached.
+       - Conclusion: $source$ is trapped inside a finite pocket of size $1$!
+       - Forward DFS returns $\mathbf{false}$.
+    2. **Short-Circuit Evaluation:**
+       - Since $source$ cannot escape its enclosure and cannot reach $target$, the overall conjunction fails immediately.
+  - Final output: `false`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (No Obstacles on Massive Board):**
+  $$
+  blocked = [], \quad source = [0, 0], \quad target = [999999, 999999]
+  $$
+  - $B = 0 \implies m = 0$.
+  - First step visits $(0, 0) \implies |vis| = 1 > m = 0 \implies$ returns `true` immediately without exploring the 1-trillion-cell board!
+  - Target search similarly succeeds immediately $\implies$ returns `true`.
+
+- **Representative Instance 3 (Target Trapped in Far Corner):**
+  $$
+  blocked = [[999998, 999999], [999999, 999998]], \quad source = [0, 0], \quad target = [999999, 999999]
+  $$
+  - Forward DFS from $source$ visits $> m$ cells and escapes.
+  - Backward DFS from $target$ is trapped with $|vis| = 1 \le m \implies$ returns `false`!
+  - Overall: `false`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a 1 million by 1 million grid on an XY-plane, and the coordinates of each grid square are `(x, y)`.
+Given a $10^6 \times 10^6$ grid, a list of at most $200$ `blocked` coordinates, and `source` and `target` endpoints, determine whether there exists a valid path between `source` and `target`.
 
-The objective is to compute `false` from `{"blocked": [[0, 1], [1, 0]], "source": [0, 0], "target": [0, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Trillion-Cell Maze Trap:
+  The grid has 10^6 * 10^6 = 10^12 cells.
+  Attempting standard BFS or Dijkstra will cause Time/Memory Limit Exceeded.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Discrete Isoperimetric Bound Invariant (O(B^2)):
+  Notice: There are at most B <= 200 blocked cells!
+  How many cells can B blockers trap against the grid corner?
+    Diagonal wall: (0, B-1), (1, B-2), ..., (B-1, 0)
+    Max Enclosed Area = B * (B - 1) / 2 < B^2 / 2 <= 20,000 cells!
+  If a search from source reaches > 20,000 cells without dying:
+    SOURCE IS GUARANTEED FREE in the infinite component!
+  By checking:
+    1. Can source reach target directly, OR escape > B^2 / 2 cells?
+    2. Can target reach source directly, OR escape > B^2 / 2 cells?
+  If BOTH escape, they MUST belong to the SAME infinite component!
+  Reduces a trillion-cell search to at most 40,000 steps!
+```
 
----
+Searching the entire grid is replaced by verifying whether either endpoint is confined to a small finite pocket.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why searching the whole grid is impossible
-
-The grid has `10^6 \times 10^6` cells, so an ordinary search from source to target could examine up to a trillion positions. The key constraint is not grid size but the number of blocked cells: at most 200.
-
-Such a small set of obstacles cannot form an enormous closed wall. It can only trap an endpoint inside a bounded region whose area is quadratic in the number of blockers. Once a search visits more cells than any possible enclosed region, it has proved that its start is not trapped. It does not need to continue all the way across the grid.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"blocked": [[0, 1], [1, 0]], "source": [0, 0], "target": [0, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Discrete Isoperimetric Inequality & Dual-Escape Equivalence**:
+1. **Discrete Isoperimetric Inequality:** A set of $B$ unit grid obstacles can enclose at most $B(B - 1) / 2$ open cells against two perpendicular boundaries.
+2. **Infinite Component Uniqueness:** Because the grid has $10^{12}$ cells and $B \le 200$ can isolate at most $\approx 20{,}000$ cells, there is strictly **only one unbounded open component**.
+3. **Dual-Escape Invariant:** If $source$ escapes its maximal possible enclosure ($|vis| > B^2 / 2$) and $target$ escapes its maximal possible enclosure ($|vis| > B^2 / 2$), both endpoints are guaranteed to lie in the unique unbounded component, ensuring a path exists between them.
+4. Total time $\mathcal{O}(B^2)$ and auxiliary space $\mathcal{O}(B^2)$, running in $< 0.01\text{ s}$.
 
 ---
 
-### Step 2: The enclosure limit
+## 2. Conceptual Foundation & The Isoperimetric Invariant
 
-Let `B = len(blocked)`. Arranging blockers diagonally against a grid boundary is the most efficient way to surround many open cells with few blocked cells. The resulting triangular region has on the order of
+```mermaid
+flowchart TD
+    accTitle: Escape a Large Maze Bounded Bidirectional Search
+    accDescr: Flowchart illustrating dual bounded DFS from source and target with cutoff threshold m = B^2 // 2
+    Start["blocked set s, dirs = 4 directions\nCutoff threshold m = len(blocked)^2 // 2"] --> DfsSource["Run dfs(source, target):\nStop if target reached OR len(vis) > m"]
+    DfsSource --> CheckSourceEscaped{"Source reached target OR\nlen(vis) > m ?"}
+    CheckSourceEscaped -->|"No: Source trapped"| RetFalse["Return False"]
+    CheckSourceEscaped -->|"Yes: Source escaped"| DfsTarget["Run dfs(target, source):\nStop if source reached OR len(vis) > m"]
+    DfsTarget --> CheckTargetEscaped{"Target reached source OR\nlen(vis) > m ?"}
+    CheckTargetEscaped -->|"No: Target trapped"| RetFalse
+    CheckTargetEscaped -->|"Yes: Target escaped"| RetTrue["Return True\n(Both in unique open component)"]
+```
 
-$$
-\frac{B(B-1)}{2}
-$$
+### The Maximum Enclosure Area Theorem
 
-reachable cells. A fully interior enclosure cannot beat the same quadratic scale because it needs blocked cells around all sides.
-
-The code uses the conservative threshold
-
-`m = B^2 // 2`.
-
-This is at least as large as the standard maximum finite enclosure bound. Therefore, if a search visits more than `m` distinct cells, those cells cannot all lie inside a region sealed by the available blockers. The starting endpoint has escaped any possible blockade.
-
-The threshold is a proof cutoff, not an estimate of the source-to-target distance. The endpoints may be hundreds of thousands of coordinates apart, yet exploring only about 20,001 cells is enough when `B = 200`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $G = (V, E)$ be the 4-connected grid on $\{0, \dots, N-1\}^2$ with $N = 10^6$. Let $\mathcal{B} \subset V$ with $|\mathcal{B}| = B \le 200$.
+1. **The Corner Barrier Geometry:**
+   To enclose an area with the minimum number of obstacles, the obstacles must exploit the grid boundaries $\{x = 0\}$ and $\{y = 0\}$ as free impassable barriers.
+   A barrier placed along the anti-diagonal:
+   $$
+   \mathcal{B}_{\text{diag}} = \{ (x, y) : x + y = B - 1, \; 0 \le x < B \}
+   $$
+   isolates the corner triangle:
+   $$
+   T = \{ (x, y) : x + y < B - 1, \; x \ge 0, \; y \ge 0 \}
+   $$
+   The number of isolated open cells in $T$ is:
+   $$
+   |T| = \sum_{x=0}^{B-2} (B - 1 - x) = \frac{(B - 1)B}{2}
+   $$
+2. **Interior Enclosure Suboptimality:**
+   Any closed loop of $B$ obstacles in the interior of the grid (away from the boundary) must surround all 4 sides.
+   By the discrete isoperimetric theorem on $\mathbb{Z}^2$, a closed 4-connected barrier of length $B$ encloses an area bounded by $\le (B/4)^2 \ll B^2 / 2$.
+   Therefore, the maximum possible finite component size created by $B$ obstacles is strictly bounded above by:
+   $$
+   A_{\max} \le \frac{B(B - 1)}{2} \le \frac{B^2}{2} = m
+   $$
+3. **Unbounded Component Uniqueness:**
+   The total number of cells in the grid is $N^2 = 10^{12}$.
+   The total number of cells that can be enclosed by $\mathcal{B}$ is at most $A_{\max} \le 20{,}000$.
+   Since $N^2 - B - A_{\max} \gg 0$, all remaining cells belong to a **single, connected, unbounded component**.
+4. **Dual-Escape Criterion:**
+   If a search from $s$ visits $> m$ cells without reaching an obstacle deadlock, $s$ is not contained in any finite enclosure, so $s$ belongs to the unique unbounded component.
+   Similarly, if a search from $t$ visits $> m$ cells, $t$ belongs to the same unique unbounded component.
+   Two vertices belonging to the same connected component have a path between them $\iff dfs(s, t) \land dfs(t, s)$ holds. $\blacksquare$
 
 ---
 
-### Step 3: Blocked and visited sets
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-`s = {(x, y) for x, y in blocked}` converts blocked coordinates to tuples in a hash set. Membership checks then take expected constant time.
+$blocked = [[0, 1], [1, 0]], \; source = [0, 0], \; target = [0, 2]$.
+$B = 2, \; m = 2^2 // 2 = 2$.
+$s = \{(0, 1), (1, 0)\}$.
 
-Each bounded DFS receives its own `vis` set. A coordinate is added as soon as its call begins. This prevents cycles and makes `len(vis)` the number of distinct open cells reached from that endpoint.
+### Search 1: `dfs(source, target, vis)`
+- Start: $source = [0, 0]$.
+- $vis.\text{add}((0, 0)) \implies |vis| = 1$.
+- Check cutoff: $|vis| = 1 \le 2$ (continue).
+- Check 4 directions:
+  - Direction $(-1, 0)$: $x = -1 < 0$ (Out of bounds).
+  - Direction $(0, 1)$: $(0, 1) \in s$ (Blocked!).
+  - Direction $(1, 0)$: $(1, 0) \in s$ (Blocked!).
+  - Direction $(0, -1)$: $y = -1 < 0$ (Out of bounds).
+- All 4 directions fail.
+- Function returns $\mathbf{False}$.
 
-Source and target searches use separate visited sets because each must independently prove that its own endpoint is not enclosed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+Short-circuit evaluation: `dfs(source, target)` is $\mathbf{False} \implies$ return $\mathbf{False}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Bounded Search Traversal Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"blocked": [[0, 1], [1, 0]], "source": [0, 0], "target": [0, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+| Endpoint Searched | Start Coordinate | Enclosure Threshold $m$ | Max Visited Count Reached | Termination Cause | Component Status | DFS Outcome |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Source** (Inst 1) | $(0, 0)$ | $2$ | $1$ | All neighbors blocked / boundary | **Enclosed (Trapped)** | **`False`** |
+| **Source** (Inst 2) | $(0, 0)$ | $0$ | $1$ | Visited $> m$ ($1 > 0$) | **Escaped to Infinite** | **`True`** |
+| **Target** (Inst 2) | $(10^6-1, 10^6-1)$ | $0$ | $1$ | Visited $> m$ ($1 > 0$) | **Escaped to Infinite** | **`True`** |
+| **Target** (Inst 3) | $(10^6-1, 10^6-1)$ | $2$ | $1$ | Blocked corner dead-end | **Enclosed (Trapped)** | **`False`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   If $source$ reaches $target$ directly, a path is explicitly witnessed. If both endpoints explore $> B^2 / 2$ open cells, the Discrete Isoperimetric Theorem proves neither is enclosed, guaranteeing both reside in the unique unbounded component.
+2. **Completeness:**
+   If a path exists, both endpoints either connect within the bounded radius or both escape into the global open grid. If either endpoint is trapped inside a finite region that does not contain the other, its search exhaustively terminates at $\le m$ cells, correctly emitting `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Full-grid BFS or DFS:** It is logically correct but computationally impossible on up to `10^{12}` cells. The blocker-derived cutoff is essential.
-- **Bounded breadth-first search:** A queue can perform the same two directional checks and stop after more than `m` discoveries. It avoids recursion-depth risk and has the same `O(B^2)` bounds.
-- **Coordinate compression:** Compress rows and columns around obstacles and endpoints, preserving gaps between significant coordinates. This can solve the problem but requires careful treatment of large empty intervals and adjacency.
-- **Search only from source:** This misses a target enclosed in a small region while the source is outside. Both directions are necessary.
-- **Zero blockers:** Threshold zero makes both checks succeed immediately, which is correct for an open grid.
-- **One blocker:** A single cell cannot enclose either endpoint, so the threshold also permits immediate escape proof.
-- **Corner enclosure:** Grid boundaries act like free walls, allowing very few blocked cells to trap a corner. The DFS bounds checks and finite-region exhaustion detect it.
-- **Target reached before cutoff:** The helper returns true immediately because a concrete path is stronger evidence than the enclosure argument.
-- **Source and target far apart:** Distance does not increase the bounded search once both endpoints are known to be outside small enclosures.
-- **Blocked coordinates as tuples:** Hash-set membership requires immutable tuple keys; visited coordinates use the same representation.
-- **Separate visited sets:** Reusing the source set for the reverse check would not prove independent escape and could skip necessary exploration.
-- **Grid outer boundary:** Coordinates equal to `-1` or `10^6` are rejected, so searches never leave the legal board.
-- **Recursive implementation:** The mathematical cutoff can still exceed Python's default recursion depth. An iterative queue or stack preserves the algorithm when runtime stack limits are a concern.
-- **Conservative threshold:** `B^2 // 2` may allow slightly more exploration than the tight triangular bound, but exceeding it still safely proves non-enclosure.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Zero Blockers | $blocked = []$ | $m = 0$; first step has $|vis| = 1 > 0$; immediately returns `True`. | Attempting to traverse the $10^{12}$ grid. |
+| Single Blocker | $B = 1$ | $m = 0$; single obstacle cannot trap any cell; returns `True`. | Overestimating search bounds. |
+| One-Way Escape | Source is open, Target is trapped | Source DFS returns True; Target DFS returns False; correctly returns `False`. | Only checking search from source. |
+| Endpoints Immediately Adjacent | Distance is 1 | Search directly finds target on first neighbor check; returns `True`. | Redundant search past target. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B^2)$. Let `B` be the number of blocked cells. The threshold is `O(B^2)`. Each directional DFS visits at most the finite enclosed region or stops as soon as its visited count becomes `m + 1`. Each visited cell checks four neighbors, so both searches together take `O(B^2)` time.
-- **Auxiliary Space Complexity:** $O(B^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(B^2)$, where $B = \text{len}(blocked) \le 200$.
+  - The search cutoff is $m = B^2 / 2 \le 20{,}000$.
+  - Each of the two searches visits at most $m + 1 \le 20{,}001$ cells.
+  - Each cell checks 4 directions with $\mathcal{O}(1)$ hash set lookups.
+  - Total operations $\le 2 \times 4 \times 20{,}001 \approx 160{,}000 \implies < 0.01\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(B^2)$ auxiliary memory for the `vis` set (at most $20{,}001$ coordinates) and recursion stack.

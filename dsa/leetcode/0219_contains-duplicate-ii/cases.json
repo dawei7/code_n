@@ -24,7 +24,7 @@
     {
       "id": "trial-too-far",
       "name": "duplicates exceed distance",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -39,6 +39,7 @@
       },
       "expected": false,
       "tags": [
+        "sample",
         "boundary"
       ]
     },
@@ -62,7 +63,7 @@
     {
       "id": "trial-latest-index",
       "name": "latest occurrence enables match",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -75,6 +76,7 @@
       },
       "expected": true,
       "tags": [
+        "sample",
         "update"
       ]
     }

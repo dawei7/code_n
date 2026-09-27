@@ -1,121 +1,157 @@
 # Guided Example: Reverse Prefix of Word
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the first-occurrence linear scan and two-pointer prefix inversion algorithm on representative strings to invert the substring from index 0 to the earliest target character index.
 
-- **Input:** `{"word": "abcdefd", "ch": "d"}`
-- **Required output:** `"dcbaefd"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given a **0-indexed** string `word` and a character `ch`, **reverse** the segment of `word` that starts at index `0` and ends at the index of the **first occurrence** of `ch` (**inclusive**). If the character `ch` does not exist in `word`, do nothing.
-
-The objective is to compute `"dcbaefd"` from `{"word": "abcdefd", "ch": "d"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `word = "abcdefd"`, `ch = "d"` ($N = 7$)
+  - Expected Output: `"dcbaefd"` (first `'d'` is at index 3; prefix `"abcd"` reverses to `"dcba"`; suffix `"efd"` remains intact)
+- **Secondary Instance:** `word = "xyxzxe"`, `ch = "z"` ($N = 6$)
+  - Expected Output: `"zxyxxe"` (prefix `"xyxz"` reverses to `"zxyx"`; suffix `"xe"` is preserved)
+- **Absent Character Instance:** `word = "abcd"`, `ch = "z"` ($N = 4$)
+  - Expected Output: `"abcd"` (target character does not occur; string is returned unaltered)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+We are given a string `word` and a character `ch`. We must find the index $p$ of the **first occurrence** of `ch` in `word`:
+$$p = \min \{i \in \{0, \dots, N-1\} \mid word[i] == ch\}$$
+- If no such character exists in `word`, the string remains untouched.
+- If $p$ exists, we reverse the segment spanning indices $0$ to $p$ inclusive:
+  $$word[0 \dots p] \longrightarrow \text{reverse}(word[0 \dots p])$$
+  while leaving the suffix subsegment $word[p+1 \dots N-1]$ entirely unaltered.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Locate the exact reversal endpoint
-
-`word.find(ch)` returns the index of the first occurrence of `ch`. That is exactly the endpoint specified by the problem. If the character is absent, Python returns -1.
-
-The source stores this result in `i` and uses a conditional expression. When `i == -1`, it returns the original `word` unchanged. This explicit check is important because using -1 directly in slicing would refer to the last character rather than mean "not found."
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"word": "abcdefd", "ch": "d"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### The First-Occurrence Invariant
+A string may contain multiple instances of `ch` (such as `"abcdefd"`, where `'d'` appears at index 3 and index 6). The problem contract strictly mandates halting at the **first** occurrence. Reversing up to subsequent occurrences violates problem specifications.
 
 ---
 
-### Step 2: Reverse the inclusive prefix with a negative step
+## 2. Inversion Mechanics & Suffix Preservation
 
-When `ch` is present, the prefix includes indices zero through `i`. Python slice
+```mermaid
+flowchart TD
+    accTitle: Prefix Inversion Workflow
+    accDescr: Flowchart scanning for the first occurrence of character ch, applying two-pointer reversal to the prefix, and preserving the suffix.
 
-`word[i::-1]`
+    START["Input String word, Target ch"] --> SCAN["Scan index i from 0 to N-1<br/>Find earliest index p with word[p] == ch"]
 
-starts at index `i`, moves backward by one, and continues to the beginning because the stop is omitted. It therefore yields characters
+    SCAN --> FOUND{"Is ch found?"}
+    FOUND -- No --> NOOP["Return word unchanged"]
 
-`word[i], word[i - 1], ..., word[0]`.
+    FOUND -- Yes --> REV["Partition into Prefix [0, p] and Suffix [p+1, N-1]<br/>Initialize two pointers: L = 0, R = p"]
+    
+    REV --> SWAP{"Is L < R?"}
+    SWAP -- Yes --> DOSWAP["Swap word[L] and word[R]<br/>L = L + 1, R = R - 1"]
+    DOSWAP --> SWAP
 
-The character `ch` itself appears first in this reversed prefix because the endpoint is inclusive.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+    SWAP -- No --> MERGE["Concatenate reversed prefix [0, p] with suffix [p+1, N-1]"]
+    MERGE --> OUT["Return result string"]
+```
 
 ---
 
-### Step 3: Append the untouched suffix
+## 3. Step-by-Step State Evolution
 
-`word[i + 1 :]` contains every character strictly after the first `ch` in its original order. Concatenating the reversed prefix and this suffix produces a string of the same length with exactly the requested segment changed.
+We trace the Primary Instance: `word = "abcdefd"`, `ch = "d"` ($N = 7$).
 
-For `word="abcdefd"` and `ch="d"`, `find` returns three. The first slice is `"dcba"` and the second is `"efd"`, producing `"dcbaefd"`. The later d does not affect the result because `find` chose the first occurrence.
+### Phase 1: Locate Earliest Occurrence $p$
+We scan indices from left to right:
+- Index 0: `word[0] = 'a'` $\neq$ `'d'`
+- Index 1: `word[1] = 'b'` $\neq$ `'d'`
+- Index 2: `word[2] = 'c'` $\neq$ `'d'`
+- Index 3: `word[3] = 'd'` $==$ `'d'` $\implies$ **First occurrence located at $p = 3$**!
+Scan terminates immediately.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"dcbaefd"` |
+---
+
+### Phase 2: Prefix Inversion via Two Pointers
+The active prefix to reverse is $word[0 \dots 3] = \text{"abcd"}$.
+The immutable suffix is $word[4 \dots 6] = \text{"efd"}$.
+
+Initialize boundary pointers:
+$$L = 0, \quad R = 3$$
+
+#### Swap Iteration 1 ($L = 0, R = 3$)
+- Character at $L = 0$: `'a'`
+- Character at $R = 3$: `'d'`
+- Swap positions $0$ and $3$:
+  $$\text{String becomes: } \text{"\underline{d}bc\underline{a}efd"}$$
+- Advance pointers: $L \leftarrow 0 + 1 = 1$, $R \leftarrow 3 - 1 = 2$.
+
+#### Swap Iteration 2 ($L = 1, R = 2$)
+- Character at $L = 1$: `'b'`
+- Character at $R = 2$: `'c'`
+- Swap positions $1$ and $2$:
+  $$\text{String becomes: } \text{"d\underline{c}\underline{b}aefd"}$$
+- Advance pointers: $L \leftarrow 1 + 1 = 2$, $R \leftarrow 2 - 1 = 1$.
+
+#### Termination
+- Pointer check: $L = 2 \ge R = 1$.
+- Inversion complete.
+- Suffix segment indices $4 \dots 6$ (`"efd"`) remained untouched throughout.
+- Final resulting string: `"dcbaefd"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word": "abcdefd", "ch": "d"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"dcbaefd"` | Verified |
+### Primary Instance: `word = "abcdefd"`, `ch = "d"`
+
+| Phase | Pointer $L$ | Pointer $R$ | Active Characters $(word[L], word[R])$ | Action Taken | Prefix Substring $[0 \dots 3]$ | Suffix Substring $[4 \dots 6]$ |
+|---|---|---|---|---|---|---|
+| Scan | - | - | - | Target `'d'` found at index 3 | `"abcd"` | `"efd"` |
+| Swap 1 | 0 | 3 | `('a', 'd')` | Swap indices 0 and 3 | `"dbca"` | `"efd"` |
+| Swap 2 | 1 | 2 | `('b', 'c')` | Swap indices 1 and 2 | `"dcba"` | `"efd"` |
+| Finish | 2 | 1 | - | Condition $L < R$ false; stop | `"dcba"` | `"efd"` |
+
+Final Output: `"dcbaefd"`.
+
+### Secondary Instance: `word = "xyxzxe"`, `ch = "z"`
+
+First occurrence of `'z'` is at index $p = 3$.
+
+| Step | State Description | Characters at Swapping Boundaries | Substring Transformation | Current Array State |
+|---|---|---|---|---|
+| Initial | Locate target $p = 3$ | Target: `word[3] = 'z'` | Prefix: `"xyxz"`, Suffix: `"xe"` | `"xyxzxe"` |
+| Swap 1 | $L = 0, R = 3$ | Swap `word[0] ('x')` and `word[3] ('z')` | `"xyxz"` $\to$ `"zyxx"` | `"zyxxxe"` |
+| Swap 2 | $L = 1, R = 2$ | Swap `word[1] ('y')` and `word[2] ('x')` | `"zyxx"` $\to$ `"zxyx"` | `"zxyxxe"` |
+| Complete | $L = 2, R = 1$ | Inversion boundary crossed | Suffix unchanged | `"zxyxxe"` |
+
+Final Output: `"zxyxxe"`.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+1. **Leftmost Character Invariant:**
+   The initial linear search advances index $i$ from $0$ to $N - 1$, returning as soon as $word[i] == ch$. By induction, no index $j < i$ has $word[j] == ch$. This guarantees that $p$ is strictly the earliest occurrence of $ch$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+2. **Symmetric Inversion Mapping:**
+   The two-pointer swap systematically exchanges element $k$ with element $p - k$ for all $0 \le k \le \lfloor p / 2 \rfloor$. This realizes the exact mathematical reflection:
+   $$\pi(k) = p - k \quad \text{for } 0 \le k \le p$$
+   which precisely defines the reversing bijection.
+
+3. **Suffix Invariance:**
+   Indices strictly greater than $p$ ($k \in [p + 1, N - 1]$) are never accessed or mutated by the two-pointer loop. Thus, their relative order and values are perfectly conserved.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two-pointer character list:** Convert to a list, swap prefix endpoints inward, and join. It is explicit and linear but also uses $O(N)$ Python space.
-- **Stack:** Push through the first target and pop to reverse, then append the suffix; more machinery for the same bounds.
-- **Manual concatenation in a loop:** Repeated immutable-string addition can become $O(N^2)$ in Python.
-- **Character absent:** Return `word`; do not use the -1 index as a real endpoint.
-- **Character at index zero:** Reversing one character leaves the word unchanged.
-- **Character at final index:** The entire word is reversed.
-- **Repeated target character:** Only the first occurrence determines the prefix.
-- **One-character word:** Both present and absent cases are handled.
-- **Inclusive endpoint:** `word[i::-1]` includes `word[i]`.
-- **Suffix preservation:** `word[i + 1 :]` keeps its original order.
-- **Lowercase guarantee:** No case normalization or Unicode matching policy is needed.
-- **Input preservation:** Strings are immutable and the method returns a newly constructed value when reversal occurs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Reversing on Later Occurrences:** Scanning backwards or using `rfind` selects the last occurrence of `ch` instead of the first, reversing an oversized prefix when multiple duplicate characters exist.
+- **Off-by-One in Reversal Bound:** The reversal includes the character `ch` itself (**inclusive**). Reversing up to $p - 1$ leaves `ch` in place, producing an incorrect prefix.
+- **Empty String or Single Character:** When $p = 0$ (the first character is `ch`), the reversal window is $[0, 0]$ of length 1, which correctly leaves the string unchanged.
+- **Handling Absent Characters:** If `ch` does not exist in `word`, attempting to slice with an unvalidated lookup index (such as `-1`) can reverse the whole string or corrupt the output. A presence check must guard the reversal.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(N)$. Let $N$ be the word length. `find` scans up to $N$ characters. When the character is present, the two slices collectively copy $N$ characters and concatenation builds an $N$-character result. Total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **First Occurrence Search:** Scanning for `ch` inspects at most $N$ characters, taking $\mathcal{O}(N)$ time.
+  - **Two-Pointer Reversal:** Swapping the prefix segment of length $p + 1$ requires at most $\lfloor (p + 1) / 2 \rfloor$ swaps, taking $\mathcal{O}(p) = \mathcal{O}(N)$ time.
+  - **Total Time:** $\mathcal{O}(N)$, which for $N \le 250$ executes in less than 0.05 milliseconds.
+
+- **Auxiliary Space Complexity:**
+  - In languages with mutable character arrays, the reversal is performed in-place with $\mathcal{O}(1)$ auxiliary space.
+  - In languages with immutable strings, constructing the output string requires $\mathcal{O}(N)$ space for the final result.
+  - **Total Auxiliary Space:** $\mathcal{O}(1)$ beyond the required output buffer.

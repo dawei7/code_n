@@ -1,142 +1,214 @@
 # Guided Example: Special Positions in a Binary Matrix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"mat": [[1, 0, 0], [0, 0, 1], [1, 0, 0]]}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` binary matrix `mat`, return *the number of special positions in *`mat`*.*
+We are given an $R \times C$ binary matrix $\text{mat}$ where every entry is either `0` or `1`. A cell $(i, j)$ is designated as a **special position** if and only if:
+1. $\text{mat}[i][j] = 1$
+2. Every other cell in row $i$ contains `0`.
+3. Every other cell in column $j$ contains `0`.
 
-The objective is to compute `1` from `{"mat": [[1, 0, 0], [0, 0, 1], [1, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+We must count and return the total number of special positions.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We select the representative $3 \times 3$ instance:
+$$\text{mat} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}$$
 
----
+The total count of special positions is:
+$$1$$
+(Position $(1, 2)$ is the only special position; positions $(0, 0)$ and $(2, 0)$ share column $0$, which contains two ones).
+
+Our teaching goal is to walk through marginal sum aggregation in binary grids. We show how the condition that all other elements in a row and column are zero reduces to checking that the total sum of that row and column equals exactly one, enabling an optimal two-pass $\mathcal{O}(R \cdot C)$ solution with $\mathcal{O}(R + C)$ auxiliary projection vectors.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In a matrix with entries restricted to $\{0, 1\}$, the sum of all elements in row $i$ is:
+$$\text{row\_sum}[i] = \sum_{c=0}^{C-1} \text{mat}[i][c]$$
+and the sum of all elements in column $j$ is:
+$$\text{col\_sum}[j] = \sum_{r=0}^{R-1} \text{mat}[r][j]$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A cell $(i, j)$ with $\text{mat}[i][j] = 1$ has no other ones in row $i$ if and only if:
+$$\text{row\_sum}[i] = 1$$
+Similarly, it has no other ones in column $j$ if and only if:
+$$\text{col\_sum}[j] = 1$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Therefore, a position $(i, j)$ is special if and only if the three conditions hold simultaneously:
+$$\text{mat}[i][j] = 1 \quad \land \quad \text{row\_sum}[i] = 1 \quad \land \quad \text{col\_sum}[j] = 1$$
 
----
+```
++-------------------------------------------------------------------------+
+|                  MARGINAL SUM PROJECTION ARCHITECTURE                   |
+|                                                                         |
+| Matrix mat:              Row Sums:                                      |
+|   [ 1,  0,  0 ]  ----->     1                                           |
+|   [ 0,  0,  1 ]  ----->     1                                           |
+|   [ 1,  0,  0 ]  ----->     1                                           |
+|     |   |   |                                                           |
+|     v   v   v                                                           |
+| Col:2   0   1                                                           |
+|                                                                         |
+| Evaluation of 1s:                                                       |
+|   Cell (0,0): val=1, row_sum=1, col_sum=2 ==> col_sum != 1 (REJECT)     |
+|   Cell (1,2): val=1, row_sum=1, col_sum=1 ==> ALL ONES (SPECIAL!)      |
+|   Cell (2,0): val=1, row_sum=1, col_sum=2 ==> col_sum != 1 (REJECT)     |
+|                                                                         |
+| Total Special Positions = 1                                             |
++-------------------------------------------------------------------------+
+```
+
+### State Parameter Reference
+
+| Parameter | Type | Domain | Role in Marginal Projection |
+|---|---|---|---|
+| $R, C$ | Integers | $[1, 100]$ | Number of rows and columns in the binary matrix |
+| $\text{row\_sum}[i]$ | Integer Array | $[0, C]$ | Total number of ones present in row $i$ |
+| $\text{col\_sum}[j]$ | Integer Array | $[0, R]$ | Total number of ones present in column $j$ |
+| $(i, j)$ | Coordinates | $[0, R-1] \times [0, C-1]$ | Matrix coordinate being verified |
+| $\text{ans}$ | Integer | $[0, \min(R, C)]$ | Accumulated count of verified special positions |
+
+> [!IMPORTANT]
+> **Marginal Projection Invariant**:
+> In any binary matrix, precomputing row sums and column sums decouples cross-axial verification. Checking whether all other elements in row $i$ and column $j$ are zero requires only checking $\text{row\_sum}[i] == 1$ and $\text{col\_sum}[j] == 1$, replacing $\mathcal{O}(R + C)$ ray scans with $\mathcal{O}(1)$ array lookups per cell.
+
+```mermaid
+flowchart TD
+    accTitle: Special Binary Position Verification Flow
+    accDescr: Pipeline precomputing row and column marginal sums and filtering cells with mat[i][j] == 1 and row_sum == col_sum == 1.
+    Start([Input: R x C Matrix]) --> Pass1["Pass 1: Compute row_sum[i] and col_sum[j] for all i, j"]
+    Pass1 --> InitAns["Set ans = 0"]
+    InitAns --> Pass2Loop[Pass 2: Scan all cells i, j]
+    Pass2Loop --> CheckOne{"mat[i][j] == 1?"}
+    CheckOne -- No --> NextCell[Move to next cell]
+    CheckOne -- Yes --> CheckMarginals{"row_sum[i] == 1 and col_sum[j] == 1?"}
+    CheckMarginals -- Yes --> CountSpecial["ans += 1; Special position found!"]
+    CheckMarginals -- No --> RejectCell[Disqualified: shared row or column]
+    CountSpecial --> NextCell
+    RejectCell --> NextCell
+    NextCell --> MoreCells{More cells to inspect?}
+    MoreCells -- Yes --> Pass2Loop
+    MoreCells -- No --> Done([Return ans: Total Special Positions])
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Restating “special” as two counts
+We trace the algorithm on the $3 \times 3$ matrix:
+$$\text{mat} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}$$
 
-A position `(i, j)` is special only when three facts hold:
+### Phase 1: Precomputing Marginal Vectors
 
-- the cell itself contains one;
-- row `i` contains no other one;
-- column `j` contains no other one.
+We initialize arrays $\text{row\_sum}$ of length $3$ and $\text{col\_sum}$ of length $3$ with zeros.
 
-Because the matrix is binary, those facts have a compact numerical form. If `mat[i][j] == 1`, then the row condition is equivalent to the total number of ones in row `i` being exactly one, and the column condition is equivalent to the total number of ones in column `j` being exactly one.
+1. **Row 0**: `[1, 0, 0]`
+   - $\text{row\_sum}[0] = 1 + 0 + 0 = 1$.
+   - $\text{col\_sum}[0] += 1$.
+2. **Row 1**: `[0, 0, 1]`
+   - $\text{row\_sum}[1] = 0 + 0 + 1 = 1$.
+   - $\text{col\_sum}[2] += 1$.
+3. **Row 2**: `[1, 0, 0]`
+   - $\text{row\_sum}[2] = 1 + 0 + 0 = 1$.
+   - $\text{col\_sum}[0] += 1$.
 
-The solution precomputes those totals in `rows` and `cols`. This avoids rescanning an entire row and column separately for every candidate one.
+Final marginal vectors:
+$$\text{row\_sum} = [1, 1, 1]$$
+$$\text{col\_sum} = [2, 0, 1]$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"mat": [[1, 0, 0], [0, 0, 1], [1, 0, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 2: Evaluating Candidate Ones
 
----
+We scan all cells $(i, j)$ where $\text{mat}[i][j] = 1$:
 
-### Step 2: First pass: collect reusable summaries
+#### Candidate 1: Cell $(0, 0)$
+- $\text{mat}[0][0] = 1$.
+- Row sum check: $\text{row\_sum}[0] = 1$. Passed.
+- Column sum check: $\text{col\_sum}[0] = 2$.
+- Evaluation: Column $0$ contains another one (at $(2, 0)$).
+- Status: **Disqualified**.
 
-`rows` has one entry for every matrix row and starts with zeros. `cols` has one entry for every matrix column and also starts with zeros.
+#### Candidate 2: Cell $(1, 2)$
+- $\text{mat}[1][2] = 1$.
+- Row sum check: $\text{row\_sum}[1] = 1$. Passed.
+- Column sum check: $\text{col\_sum}[2] = 1$. Passed.
+- Evaluation: Cell $(1, 2)$ is the only one in row $1$ and the only one in column $2$.
+- Status: **Special Position Verified**. $\text{ans} = 0 + 1 = 1$.
 
-The nested loops use `enumerate` twice. The outer loop yields the row index `i` and the row list itself. The inner loop yields column index `j` and cell value `x`. At each cell, the code executes:
+#### Candidate 3: Cell $(2, 0)$
+- $\text{mat}[2][0] = 1$.
+- Row sum check: $\text{row\_sum}[2] = 1$. Passed.
+- Column sum check: $\text{col\_sum}[0] = 2$.
+- Evaluation: Column $0$ contains another one (at $(0, 0)$).
+- Status: **Disqualified**.
 
-`rows[i] += x`
-
-`cols[j] += x`
-
-Since every `x` is either zero or one, adding `x` directly counts ones. A zero changes neither total; a one increments both the total for its row and the total for its column. An explicit `if x == 1` would produce the same summaries, but binary arithmetic makes the two unconditional additions concise.
-
-After this first complete traversal, `rows[i]` equals the sum of all cells in row `i`, which is exactly its number of ones. Similarly, `cols[j]` equals the number of ones in column `j`.
-
-For the matrix `[[1,0,0],[0,0,1],[1,0,0]]`, the row totals are `[1,1,1]` and the column totals are `[2,0,1]`. This immediately shows why the one at `(0,0)` is not special: its row contains one one, but its column contains two. The one at `(1,2)` has both totals equal to one and is special.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Second pass: test every position in constant time
-
-The second pair of nested loops visits every matrix cell again. It evaluates:
-
-`x == 1 and rows[i] == 1 and cols[j] == 1`.
-
-This Boolean expression is true exactly for a special position. It first ensures the current cell is the one represented by the unique row and column counts. This first condition is logically useful even though a row and column total of one strongly constrain their intersection; stating it directly follows the definition and prevents counting a zero at the crossing of an unrelated one in the row and an unrelated one in the column.
-
-The code adds the Boolean result directly to `ans`. In Python, `true` has integer value one and `false` has integer value zero. Therefore, a special cell increments `ans` by one, while every other cell leaves it unchanged.
-
-This use of Boolean arithmetic is not counting “truth values” as a separate concept. It is a concise conditional increment:
-
-- when all three comparisons are true, add one;
-- otherwise, add zero.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
+### Termination
+All cells scanned. Total special positions found: $\text{ans} = 1$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"mat": [[1, 0, 0], [0, 0, 1], [1, 0, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+The table below catalogs every cell in the matrix, showing value, marginal projections, condition checks, and final determinations.
 
----
+| Coordinate $(i, j)$ | Cell Value $\text{mat}[i][j]$ | Row Sum $\text{row\_sum}[i]$ | Column Sum $\text{col\_sum}[j]$ | Row Unique? ($\text{row\_sum} == 1$) | Col Unique? ($\text{col\_sum} == 1$) | Special Position? | Running Total $\text{ans}$ |
+|---|---|---|---|---|---|---|---|
+| $(0, 0)$ | 1 | 1 | 2 | True | **False** (Col has 2) | No | 0 |
+| $(0, 1)$ | 0 | 1 | 0 | - | - | Skip (Zero) | 0 |
+| $(0, 2)$ | 0 | 1 | 1 | - | - | Skip (Zero) | 0 |
+| $(1, 0)$ | 0 | 1 | 2 | - | - | Skip (Zero) | 0 |
+| $(1, 1)$ | 0 | 1 | 0 | - | - | Skip (Zero) | 0 |
+| $(1, 2)$ | 1 | 1 | 1 | **True** | **True** | **YES (SPECIAL)** | **1** |
+| $(2, 0)$ | 1 | 1 | 2 | True | **False** (Col has 2) | No | 1 |
+| $(2, 1)$ | 0 | 1 | 0 | - | - | Skip (Zero) | 1 |
+| $(2, 2)$ | 0 | 1 | 1 | - | - | Skip (Zero) | 1 |
+
+### Summary of Disqualification Reasons
+
+- Cell $(0, 0)$: Disqualified by column collision with $(2, 0)$.
+- Cell $(2, 0)$: Disqualified by column collision with $(0, 0)$.
+- Cell $(1, 2)$: Row 1 has sum 1, Col 2 has sum 1. Unique in both dimensions.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+A position $(i, j)$ is special if $\text{mat}[i][j] = 1$ and for all $c \neq j$, $\text{mat}[i][c] = 0$, and for all $r \neq i$, $\text{mat}[r][j] = 0$.
+Because every entry is in $\{0, 1\}$:
+$$\text{row\_sum}[i] = \text{mat}[i][j] + \sum_{c \neq j} \text{mat}[i][c] = 1 + \sum_{c \neq j} \text{mat}[i][c]$$
+Since $\text{mat}[i][c] \ge 0$, the sum $\sum_{c \neq j} \text{mat}[i][c]$ equals $0$ if and only if every term $\text{mat}[i][c] = 0$.
+This holds if and only if $\text{row\_sum}[i] = 1$.
+By identical reasoning on the column, every other entry in column $j$ is $0$ if and only if $\text{col\_sum}[j] = 1$.
+Therefore, $\text{mat}[i][j] == 1 \land \text{row\_sum}[i] == 1 \land \text{col\_sum}[j] == 1$ is mathematically equivalent to the problem definition, ensuring soundness.
 
----
+### Completeness
+
+Every matrix cell $(i, j)$ is inspected during the second pass.
+Any position satisfying the special definition will have $\text{row\_sum}[i] = 1$ and $\text{col\_sum}[j] = 1$ and will be counted.
+No valid special position can be skipped or rejected.
 
 ## 6. Traps This Instance Exposes
 
-- **Scan a row and column for every one:** This uses $O(1)$ extra space but can take $O(RC(R+C))$ time in the worst case because the same lines are checked repeatedly.
-- **Store coordinates of all ones:** One could record each one and then examine only those candidates after building row and column counts. That may reduce the second scan for sparse matrices, but it adds up to $O(RC)$ coordinate storage; the checked-in solution simply performs a predictable second pass.
-- **Use sets of occupied rows and columns:** A set records presence but not whether a row or column contains exactly one one. Counts are required to distinguish one occurrence from several.
-- **Mutate the matrix to store counts:** Reusing the first row and column can reduce auxiliary storage, but it complicates marker collisions and alters the input. Separate count arrays are clearer and match the checked-in source.
-- **All-zero matrix:** Every row and column count is zero. The `x == 1` test is always false, so the answer is zero.
-- **Single one in the entire matrix:** Its row and column totals are both one, so it is the sole special position.
-- **One row:** A one is special only if that row contains exactly one one. Each column contains at most its single cell, so the row total is the deciding restriction.
-- **One column:** Symmetrically, a one is special only if the column contains exactly one one.
-- **Identity matrix:** Every row and every column contains one one, so every diagonal one is counted.
-- **Two ones sharing a row:** That row’s count is two, so neither can be special even if their respective column counts are one.
-- **Two ones sharing a column:** The column count of two rejects both positions.
-- **Boolean addition in Python:** The final expression adds one for true and zero for false. A port to a language that does not treat Booleans numerically should use an explicit conditional increment.
-- **Non-binary values:** The direct-sum counting technique depends on the zero-or-one guarantee. For arbitrary cell values, increment counters only when a cell equals one.
-- **Rectangular rather than square input:** `rows` and `cols` have independent lengths, so the solution handles any valid $R\times C$ shape.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Ray Scanning Every 1 ($\mathcal{O}(R + C)$ per Cell)**:
+   For every cell containing a 1, scanning its entire row and column takes $\mathcal{O}(R + C)$ steps, leading to $\mathcal{O}(R \cdot C \cdot (R + C))$ time. Precomputing marginal vectors reduces each test to $\mathcal{O}(1)$, achieving $\mathcal{O}(R \cdot C)$ total time.
 
----
+2. **Checking Only Row Uniqueness**:
+   In Example 1, row 0 contains only a single 1 (at $(0, 0)$). If an algorithm checks only row uniqueness, it falsely identifies $(0, 0)$ as special, ignoring that column 0 contains another 1 at $(2, 0)$. Both row and column uniqueness must be enforced.
+
+3. **Counting Zero Cells with Marginal Sums of One**:
+   Cell $(0, 2)$ has $\text{row\_sum}[0] = 1$ and $\text{col\_sum}[2] = 1$. However, $\text{mat}[0][2] = 0$. One must strictly verify $\text{mat}[i][j] == 1$ before considering marginal sums.
+
+4. **Matrix Dimensions Asymmetry ($R \neq C$)**:
+   When matrices are rectangular ($R \neq C$), indexing row sums with column indices or vice-versa leads to out-of-bounds errors. Using separate sizes $R$ and $C$ prevents this.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(RC)$. Let $R$ be the number of rows and $C$ the number of columns.
-- **Auxiliary Space Complexity:** $O(R+C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+Let $R$ be the number of rows and $C$ be the number of columns ($R, C \le 100$).
+- **Pass 1 (Marginal Accumulation)**: Iterates through all $R \cdot C$ entries to sum rows and columns: $\mathcal{O}(R \cdot C)$ time.
+- **Pass 2 (Special Check)**: Iterates through all $R \cdot C$ entries, checking $\text{mat}[i][j] == 1$ and indexing $\text{row\_sum}$ and $\text{col\_sum}$ in $\mathcal{O}(1)$: $\mathcal{O}(R \cdot C)$ time.
+
+Total time complexity is strictly:
+$$\mathcal{O}(R \cdot C)$$
+For $R, C \le 100$, total operations cannot exceed $20\,000$, executing in under 1 millisecond.
+
+### Auxiliary Space Complexity
+
+- $\text{row\_sum}$ stores $R$ integers: $\mathcal{O}(R)$ space.
+- $\text{col\_sum}$ stores $C$ integers: $\mathcal{O}(C)$ space.
+
+Total auxiliary space complexity is:
+$$\mathcal{O}(R + C)$$
+Minimal and optimal.

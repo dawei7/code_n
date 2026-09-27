@@ -1,99 +1,136 @@
 # Guided Example: Jump Game II
 
-We derive and execute the Array, Dynamic Programming, Greedy recurrence on a representative problem instance.
+We trace the step-by-step execution of the greedy BFS level-frontier expansion on a representative array instance:
 
-- **Input:** `{"nums": [2, 3, 1, 1, 4]}`
-- **Required output:** `2`
+- **Input:** $\text{nums} = [2, 3, 1, 1, 4]$
+- **Required output:** $2$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates modeling jump intervals as implicit breadth-first search (BFS) tiers, tracking current-tier reach versus next-tier horizon ($\text{cur\_end}$ vs $\text{cur\_farthest}$), incrementing jumps only upon exhausting the current boundary, and achieving $O(N)$ time with $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Jump Game II** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an array of non-negative integers $\text{nums}$ of length $N = 5$ where each element $\text{nums}[i]$ represents your maximum jumping length from position $i$, we must reach the last index ($N - 1 = 4$) in the minimum number of jumps. The problem guarantees that the target is reachable.
+
+For $\text{nums} = [2, 3, 1, 1, 4]$:
+- From index 0 ($\text{nums}[0] = 2$), we can reach indices 1 or 2.
+- From index 1 ($\text{nums}[1] = 3$), we can jump directly to index 4 ($1 + 3 = 4$).
+- The minimum number of jumps is $2$: $0 \to 1 \to 4$.
+
+A naive dynamic programming approach computes $DP[i] = 1 + \min_{j}(DP[j])$ in $O(N^2)$ time. The greedy BFS approach observes that all indices reachable in $k$ jumps form a contiguous frontier interval. Expanding this frontier takes $O(N)$ time with $O(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Implicit BFS Layers
+We view the problem as a BFS on an unweighted directed graph where each edge represents a valid jump:
+- **Layer 0:** Index 0 (0 jumps).
+- **Layer 1:** Indices reachable in 1 jump: $[1, 2]$ (since $0 + 2 = 2$).
+- **Layer 2:** Indices reachable in 2 jumps: $[3, 4]$ (since $\max(1 + 3, 2 + 1) = 4$).
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+```text
+Layer 0:  [0]
+           |
+Layer 1:  [1, 2]
+           |  \
+Layer 2:  [3, 4]  -> Target reached!
+```
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+### Greedy Frontier Variables
+We maintain:
+- `cur_end`: The boundary of the current BFS tier (furthest index reachable with the current number of jumps).
+- `cur_farthest`: The maximum reachable index discovered so far for the *next* jump tier.
+- `jumps`: Number of jumps taken.
+
+While iterating $i$ from $0$ to $N - 2$:
+1. Update next horizon: $\text{cur\_farthest} \leftarrow \max(\text{cur\_farthest}, i + \text{nums}[i])$.
+2. If $i == \text{cur\_end}$: We have exhausted all starting positions of the current jump tier. We must commit to another jump:
+   - $\text{jumps} \leftarrow \text{jumps} + 1$
+   - $\text{cur\_end} \leftarrow \text{cur\_farthest}$
+
+> **Invariant.** At any point, `cur_end` is the maximal index reachable in `jumps` steps, and `cur_farthest` is the maximal index reachable in `jumps + 1` steps.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace $\text{nums} = [2, 3, 1, 1, 4]$ with $N = 5$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Initialization
+- $\text{jumps} = 0$.
+- $\text{cur\_end} = 0$.
+- $\text{cur\_farthest} = 0$.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 0 ($i = 0, \text{nums}[0] = 2$)
+- Candidate reach from index 0: $0 + \text{nums}[0] = 0 + 2 = 2$.
+- Update horizon: $\text{cur\_farthest} = \max(0, 2) = 2$.
+- Boundary check: $i == \text{cur\_end}$ ($0 == 0$).
+  - Frontier exhausted! Commit Jump 1.
+  - $\text{jumps} \leftarrow 0 + 1 = 1$.
+  - Update current tier boundary: $\text{cur\_end} \leftarrow 2$.
+  - State: With 1 jump, we can cover the entire interval $[1, 2]$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 1 ($i = 1, \text{nums}[1] = 3$)
+- Candidate reach from index 1: $1 + \text{nums}[1] = 1 + 3 = 4$.
+- Update horizon: $\text{cur\_farthest} = \max(2, 4) = 4$.
+- Boundary check: $i = 1 \ne \text{cur\_end} = 2$.
+  - Still within Layer 1. No jump increment yet.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 2 ($i = 2, \text{nums}[2] = 1$)
+- Candidate reach from index 2: $2 + \text{nums}[2] = 2 + 1 = 3$.
+- Update horizon: $\text{cur\_farthest} = \max(4, 3) = 4$.
+- Boundary check: $i == \text{cur\_end}$ ($2 == 2$).
+  - Frontier exhausted! Commit Jump 2.
+  - $\text{jumps} \leftarrow 1 + 1 = 2$.
+  - Update current tier boundary: $\text{cur\_end} \leftarrow 4$.
+  - State: With 2 jumps, we can cover up to index $4$ (target).
+
+---
+
+### Step 3 ($i = 3, \text{nums}[3] = 1$)
+- Loop terminates because $i$ only needs to iterate up to $N - 2 = 3$. Once $\text{cur\_end} \ge N - 1$, the destination is already reachable.
+
+Final output: $\text{jumps} = 2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Step $i$ | $\text{nums}[i]$ | Reach from $i$ ($i + \text{nums}[i]$) | Next Horizon $\text{cur\_farthest}$ | Current Boundary $\text{cur\_end}$ | Tier End Reached? | Jump Count $\text{jumps}$ | Active Tier Interval |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| Start | - | - | 0 | 0 | - | 0 | $[0, 0]$ (Tier 0) |
+| 0 | 2 | 2 | 2 | 0 | **Yes ($i == 0$)** | **1** | $[1, 2]$ (Tier 1) |
+| 1 | 3 | 4 | 4 | 2 | No ($1 < 2$) | 1 | $[1, 2]$ (Tier 1) |
+| 2 | 1 | 3 | 4 | 2 | **Yes ($i == 2$)** | **2** | $[3, 4]$ (Tier 2) |
+| 3 | 1 | 4 | 4 | 4 | No ($3 < 4$) | 2 | Target reached |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Every increment of `jumps` corresponds to moving to the next BFS depth. Because `cur_farthest` greedily tracks the maximal reachable index from all nodes visited within the current tier, `cur_end` expands as far as possible at every step, ensuring the minimal number of jumps.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Since all elements up to `cur_end` are inspected before taking another jump, no potential jump choice is overlooked. The algorithm stops at $N - 2$ because any jump reaching or exceeding $N - 1$ has already satisfied the goal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Iterating Up to $N - 1$ Instead of $N - 2$:** If the loop runs to $N - 1$, encountering $i == \text{cur\_end}$ at the destination index would mistakenly trigger an extra unnecessary jump. Halting at $N - 2$ guarantees that reaching the final index does not add a redundant jump.
+- **Single-Element Array ($N = 1$):** When $N = 1$, the loop over `range(N - 1)` does not execute at all, correctly returning $\text{jumps} = 0$ because no jumps are needed to start at the destination.
+- **Greedy Subproblem Fallacy:** Jumping greedily to the immediate largest value ($\text{argmax}(\text{nums}[j])$) is suboptimal; the algorithm must maximize $j + \text{nums}[j]$ (future reach), not $\text{nums}[j]$ alone.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. The algorithm traverses the array from index $0$ to $N - 2$ in a single linear pass. Each element performs $O(1)$ scalar updates.
+- **Auxiliary Space Complexity:** $O(1)$. Memory consumption is strictly constant, using only three integer variables (`jumps`, `cur_end`, `cur_farthest`).

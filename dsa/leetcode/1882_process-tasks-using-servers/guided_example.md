@@ -1,106 +1,197 @@
 # Guided Example: Process Tasks Using Servers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the discrete event simulation and dual min-heap priority scheduling on a representative cluster of servers and incoming task streams:
 
-- **Input:** `{"servers": [3, 3, 2], "tasks": [1, 2, 3, 2, 1, 2]}`
-- **Required output:** `[2, 2, 0, 2, 1, 2]`
+- **Input:** `servers = [3, 3, 2]`, `tasks = [1, 2, 3, 2, 1, 2]`
+- **Required Output:** `[2, 2, 0, 2, 1, 2]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates coordinating two priority queues (available servers and busy servers), managing task arrival times with potential time warping when all servers are saturated, enforcing priority criteria (smallest weight, broken by smallest index), and reinserting freed servers immediately upon job completion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two **0-indexed** integer arrays `servers` and `tasks` of lengths `n` and `m` respectively. $\text{servers}[i]$ is the **weight** of the $i^th$ server, and $\text{tasks}[j]$ is the **time needed** to process the $j^th$ task **in seconds**.
+We are given $n$ servers with initial capacities and weights, and $m$ sequential tasks.
+- Task $j$ arrives at second $j$ and requires $\text{tasks}[j]$ seconds of execution time.
+- Unassigned tasks wait in a FIFO queue.
+- At any second, if servers are available, tasks are assigned to the server with:
+  1. Minimum weight $\text{servers}[i]$.
+  2. Minimum index $i$ in case of equal weight.
+- If all servers are occupied, time fast-forwards to the moment the earliest occupied server finishes its task.
 
-The objective is to compute `[2, 2, 0, 2, 1, 2]` from `{"servers": [3, 3, 2], "tasks": [1, 2, 3, 2, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+For `servers = [3, 3, 2]` and `tasks = [1, 2, 3, 2, 1, 2]`:
+- $n = 3$ servers:
+  - Server 0: weight 3
+  - Server 1: weight 3
+  - Server 2: weight 2 (lightest server, highest priority)
+- $m = 6$ tasks arriving at times $t = 0, 1, 2, 3, 4, 5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Step-by-step assignments:
+- At $t = 0$: Task 0 (duration 1) arrives. Server 2 is selected. Busy until $t = 1$. $\implies \text{ans}[0] = 2$.
+- At $t = 1$: Server 2 becomes free. Task 1 (duration 2) arrives. Server 2 is selected. Busy until $t = 3$. $\implies \text{ans}[1] = 2$.
+- At $t = 2$: Task 2 (duration 3) arrives. Available: Servers 0 and 1 (both weight 3). Tie broken by index $\implies$ Server 0 chosen. Busy until $t = 5$. $\implies \text{ans}[2] = 0$.
+- At $t = 3$: Server 2 becomes free. Task 3 (duration 2) arrives. Server 2 is chosen. Busy until $t = 5$. $\implies \text{ans}[3] = 2$.
+- At $t = 4$: Task 4 (duration 1) arrives. Available: Server 1. Server 1 chosen. Busy until $t = 5$. $\implies \text{ans}[4] = 1$.
+- At $t = 5$: All servers finish simultaneously. Task 5 (duration 2) arrives. Server 2 is chosen. $\implies \text{ans}[5] = 2$.
+
+The teaching goal is to understand **event-driven dual-heap coordination**:
+1. Partitioning server states into two priority heaps:
+   - `available`: ordered by `(weight, index)`.
+   - `busy`: ordered by `(free_time, weight, index)`.
+2. How to lazily advance cluster time: $t_{\text{current}} = \max(t_{\text{current}}, j)$, or warping directly to `busy.top().free_time` when `available` is empty.
+3. How to flush all servers whose release times satisfy $\text{free\_time} \le t_{\text{current}}$ before making the next assignment.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual-Heap Event Scheduling & Lexicographical Priority Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Dual-Heap Event Scheduling & Lexicographical Priority Theorem.**
+> 1. *Disjoint State Partition:* At any simulation time $t$, every server $i \in \{0, \dots, n-1\}$ belongs to exactly one of two sets:
+>    $$\text{Available} \cup \text{Busy} = \{0, 1, \dots, n-1\}, \quad \text{Available} \cap \text{Busy} = \emptyset$$
+> 2. *Lexicographical Server Selection:* The priority order in `Available` is defined by the strict tuple comparison:
+>    $$(w_a, a) < (w_b, b) \iff (w_a < w_b) \lor (w_a == w_b \land a < b)$$
+> 3. *Temporal Expiration Order:* The priority in `Busy` is defined by earliest completion time:
+>    $$(t_{\text{free}}, w, i)$$
+>    All servers with $t_{\text{free}} \le t_{\text{current}}$ are popped from `Busy` and pushed into `Available`.
+> 4. *Time Warping Invariant:* If `Available` is empty when task $j$ needs processing, the simulation time jumps instantaneously to the next completion event:
+>    $$t_{\text{current}} = \max(j, \; \text{min-key}(\text{Busy}).t_{\text{free}})$$
+> 5. *Complexity:* Each of the $m$ tasks causes at most one insertion into and deletion from both heaps. Total time is $\mathcal{O}((n + m) \log n)$ using binary min-heaps, with $\mathcal{O}(n + m)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Dual-Heap Server Scheduling Pipeline
+    accDescr: Architecture diagram showing task arrival, release of freed servers, priority selection from available heap, and insertion into busy heap.
+    A["Task Arrival j at time t"] --> B["Update time: t = max(t, j)"]
+    B --> C{"Is Available Heap empty?"}
+    C -->|"Yes"| D["Fast-forward: t = busy_heap.top().free_time"]
+    C -->|"No"| E["Transfer servers with free_time <= t from Busy to Available"]
+    D --> E
+    E --> F["Pop best server from Available: min (weight, index)"]
+    F --> G["Assign task j: record ans[j] = index"]
+    G --> H["Push to Busy: (t + tasks[j], weight, index)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Two different priorities require two heaps.** A free server is selected by smallest weight and then smallest index. A busy server becomes relevant first by earliest completion time, with weight and index breaking ties when several become free together. One ordering cannot represent both roles cleanly. The source therefore maintains `idle` entries as `(weight, index)` and `busy` entries as `(finish_time, weight, index)`. Python compares tuples lexicographically, exactly matching each required priority sequence.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"servers": [3, 3, 2], "tasks": [1, 2, 3, 2, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the heap states across all 6 task assignments:
 
 ---
 
-### Step 2: Core Step 2
-
-**Initialize every server as available.** The list comprehension creates `(x, i)` for each server weight `x` and index `i`, then `heapify(idle)` builds the free-server min-heap in linear time. `busy` starts empty because no task has been assigned. At all later times, each server appears in exactly one of these heaps: free in `idle` or running an assigned task in `busy`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initial Cluster Setup
+- All 3 servers are initially available at $t = 0$.
+- Available Min-Heap:
+  - $(2, 2)$ [Server 2, weight 2]
+  - $(3, 0)$ [Server 0, weight 3]
+  - $(3, 1)$ [Server 1, weight 3]
+- Busy Min-Heap: $\emptyset$.
+- Clock: $t = 0$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Task 0 Arrival ($j = 0$, duration 1)
+- Set clock: $t = \max(0, 0) = 0$.
+- Busy heap is empty $\implies$ no releases.
+- Pop from Available: Server 2 (weight 2).
+- Assignment: $\text{ans}[0] = 2$.
+- Push to Busy: $(t + \text{tasks}[0], \text{weight}, \text{index}) = (0 + 1, 2, 2) = (1, 2, 2)$.
+- Available: $\{ (3, 0), (3, 1) \}$.
 
-**Use task index as its arrival second.** The loop `for j, t in enumerate(tasks)` processes tasks in queue order, and task `j` arrives at second `j`. Before assigning it, the `while` loop moves every busy entry with `finish_time <= j` back into `idle`. Such a server has completed by the task's arrival, so it is legally free. Moving all of them—not just the first—ensures that the free-server heap can compare their weights and indices together.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 2, 0, 2, 1, 2]` |
+### Step 3: Task 1 Arrival ($j = 1$, duration 2)
+- Set clock: $t = \max(0, 1) = 1$.
+- Check Busy heap: Top is $(1, 2, 2)$. Since $1 \le 1$, Server 2 is freed!
+  - Pop $(1, 2, 2)$ from Busy, push $(2, 2)$ into Available.
+- Available: $\{ (2, 2), (3, 0), (3, 1) \}$.
+- Pop from Available: Server 2.
+- Assignment: $\text{ans}[1] = 2$.
+- Push to Busy: $(1 + 2, 2, 2) = (3, 2, 2)$.
+- Available: $\{ (3, 0), (3, 1) \}$.
+
+---
+
+### Step 4: Task 2 Arrival ($j = 2$, duration 3)
+- Set clock: $t = \max(1, 2) = 2$.
+- Check Busy heap: Top is $(3, 2, 2)$. Since $3 > 2$, no servers freed.
+- Available: $\{ (3, 0), (3, 1) \}$. Both have weight 3. Tie-break: index $0 < 1$.
+- Pop from Available: Server 0.
+- Assignment: $\text{ans}[2] = 0$.
+- Push to Busy: $(2 + 3, 3, 0) = (5, 3, 0)$.
+- Available: $\{ (3, 1) \}$.
+
+---
+
+### Step 5: Task 3 Arrival ($j = 3$, duration 2)
+- Set clock: $t = \max(2, 3) = 3$.
+- Check Busy heap: Top is $(3, 2, 2)$. Since $3 \le 3$, Server 2 is freed!
+  - Pop $(3, 2, 2)$ from Busy, push $(2, 2)$ into Available.
+- Next top in Busy: $(5, 3, 0)$ ($5 > 3$, remains busy).
+- Available: $\{ (2, 2), (3, 1) \}$.
+- Pop from Available: Server 2 (weight $2 < 3$).
+- Assignment: $\text{ans}[3] = 2$.
+- Push to Busy: $(3 + 2, 2, 2) = (5, 2, 2)$.
+- Available: $\{ (3, 1) \}$.
+
+---
+
+### Step 6: Task 4 Arrival ($j = 4$, duration 1)
+- Set clock: $t = \max(3, 4) = 4$.
+- Check Busy heap: Earliest finish times are both 5 ($5 > 4$). No servers freed.
+- Available: $\{ (3, 1) \}$.
+- Pop from Available: Server 1.
+- Assignment: $\text{ans}[4] = 1$.
+- Push to Busy: $(4 + 1, 3, 1) = (5, 3, 1)$.
+- Available: $\emptyset$. Cluster fully saturated!
+
+---
+
+### Step 7: Task 5 Arrival ($j = 5$, duration 2)
+- Set clock: $t = \max(4, 5) = 5$.
+- Check Busy heap:
+  - Pop $(5, 2, 2) \implies$ Server 2 pushed to Available.
+  - Pop $(5, 3, 0) \implies$ Server 0 pushed to Available.
+  - Pop $(5, 3, 1) \implies$ Server 1 pushed to Available.
+- Available: $\{ (2, 2), (3, 0), (3, 1) \}$.
+- Pop from Available: Server 2.
+- Assignment: $\text{ans}[5] = 2$.
+- Push to Busy: $(5 + 2, 2, 2) = (7, 2, 2)$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"servers": [3, 3, 2], "tasks": [1, 2, 3, 2, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 2, 0, 2, 1, 2]` | Verified |
+| Task $j$ | Task Duration | Clock $t$ | Busy Servers Released | Available Servers | Chosen Server | Release Time | Result $\text{ans}[j]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | 0 | None | S2(2), S0(3), S1(3) | **Server 2** | $0 + 1 = 1$ | 2 |
+| 1 | 2 | 1 | Server 2 | S2(2), S0(3), S1(3) | **Server 2** | $1 + 2 = 3$ | 2 |
+| 2 | 3 | 2 | None | S0(3), S1(3) | **Server 0** | $2 + 3 = 5$ | 0 |
+| 3 | 2 | 3 | Server 2 | S2(2), S1(3) | **Server 2** | $3 + 2 = 5$ | 2 |
+| 4 | 1 | 4 | None | S1(3) | **Server 1** | $4 + 1 = 5$ | 1 |
+| 5 | 2 | 5 | S2, S0, S1 | S2(2), S0(3), S1(3) | **Server 2** | $5 + 2 = 7$ | 2 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every assignment strictly adheres to the tie-breaking rules: minimum weight first, minimum index second. Servers are marked busy immediately upon task allocation and are never reassigned until their execution window completes.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every task from $0$ to $m - 1$ is assigned in FIFO order. If no server is free, jumping time directly to the earliest completion guarantees no infinite loop or busy-waiting occurs.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Scan all servers for every task:** This can find the right choice but costs $O(NM)$ and wastes work on servers that cannot win. Heaps expose only the relevant minimum.
-- **One heap for all servers:** Free-server priority begins with weight, while busy-server priority begins with finish time. Combining the states without an availability distinction makes comparisons incorrect or forces repeated rebuilding.
-- **Explicit second-by-second simulation:** Advancing through empty time intervals is unnecessary and can be enormous. The busy heap jumps directly to the next completion event.
-- **One server:** Every task is assigned to index zero. When work queues up, the else branch repeatedly extends that server's finish time correctly.
-- **Equal server weights:** The second tuple component, index, deterministically selects the smallest index in `idle` and after tied completion times in `busy`.
-- **Several servers finish simultaneously:** Their busy tuples share the first component, so weight and index supply the specified order. Multiple queued tasks consume them in task order.
-- **A server finishes exactly at task arrival:** The `<= j` release condition makes it free before assignment at second `j`, as required.
-- **Long queue extending beyond all arrival times:** Tasks are still processed in input order. Repeated earliest-finish pops schedule each one at the next legal event even though the loop variable remains its original arrival index.
-- **Output versus auxiliary memory:** The answer necessarily stores $M$ indices. The manifest's $O(N)$ describes heap state; including output makes the total $O(N+M)$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Incrementing Time by 1 Unit:** Simulating second-by-second ($t \leftarrow t + 1$) causes severe Time Limit Exceeded when tasks have long durations (e.g. $10^9$ seconds). Jumping the clock directly to the next completion event is mandatory.
+- **Simultaneous Server Releases:** Multiple servers can complete their tasks at or before the same time $t$. All such servers must be flushed into `Available` before picking the next server; otherwise, a lower-weight server that just finished might be missed.
+- **Clock Regressing:** Time can never move backwards. If a previous task forced $t$ into the future due to server saturation, subsequent tasks arriving at earlier times $j < t$ must still be processed at the advanced cluster time $t$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((N+M)$. Let $N$ be the number of servers and $M$ the number of tasks. Building and heapifying `idle` costs $O(N)$. Every task performs one server selection and one insertion, each involving a heap of at most $N$ servers and costing $O(\log N)$. A busy server moved to idle is popped and pushed, but across the algorithm such movements are associated with completed assignments and total $O(M)$ events. Total time is $O((N+M)\log N)$, with heap construction itself linear.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}((n + m) \log n)$. Initializing the available heap of $n$ servers takes $\mathcal{O}(n \log n)$. Each of the $m$ tasks is pushed and popped from the available and busy heaps at most once, each taking $\mathcal{O}(\log n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n + m)$ to store the $n$ heap elements and the output array of length $m$.

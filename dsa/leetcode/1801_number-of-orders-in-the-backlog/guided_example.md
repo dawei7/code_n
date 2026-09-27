@@ -1,130 +1,175 @@
 # Guided Example: Number of Orders in the Backlog
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step priority queue matching and backlog accumulation of a continuous double auction on a representative problem instance:
 
-- **Input:** `{"orders": [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]}`
-- **Required output:** `6`
+- **Input:** `orders = [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]`
+- **Required Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features batched buy and sell orders, non-matching spreads, multi-level depth clearing (an aggressive buy order consuming multiple cheaper sell tiers), and residual backlog retention.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `orders`, where each $\text{orders}[i] = [\text{price}_{i}, \text{amount}_{i}, \text{orderType}_{i}]$ denotes that $\text{amount}_{i}$_ orders have been placed of type $\text{orderType}_{i}$ at the price $\text{price}_{i}$. The $\text{orderType}_{i}$ is:
+We simulate a continuous double auction order book. Each order in `orders` is specified as $[\text{price}, \text{amount}, \text{orderType}]$:
+- $\text{orderType} = 0$ (Buy Order): Look for the cheapest backlog sell order with $\text{sell\_price} \le \text{price}$. Match and execute the maximum possible amount. If units remain after all eligible sell orders are exhausted, add the remainder to the buy backlog.
+- $\text{orderType} = 1$ (Sell Order): Look for the most expensive backlog buy order with $\text{buy\_price} \ge \text{price}$. Match and execute the maximum possible amount. If units remain after all eligible buy orders are exhausted, add the remainder to the sell backlog.
 
-The objective is to compute `6` from `{"orders": [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+The task is to determine the total number of unexecuted order units remaining in both backlogs after processing all orders, modulo $10^9 + 7$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because order quantities can reach $10^9$, we cannot simulate individual unit transactions. Instead, we maintain orders as aggregated price-level parcels within dual priority queues.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual Priority Queue Order Book Model
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The backlog is partitioned into two heaps:
+1. **Buy Backlog (Max-Heap):** Prioritizes highest buy prices. Modeled via tuples $(-p, a)$ where $-p$ enables Python's min-heap to surface the maximum price.
+2. **Sell Backlog (Min-Heap):** Prioritizes lowest sell prices. Modeled via tuples $(p, a)$ where $p$ surfaces the minimum price.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Continuous Double Auction & Dual Priority Queue Invariant.**
+> At any point in time:
+> 1. **No Crossing Spread:** The backlog heaps never cross:
+>    $$\max_{b \in \text{Buy}} (\text{price}(b)) < \min_{s \in \text{Sell}} (\text{price}(s))$$
+>    Any viable match ($\text{buy\_price} \ge \text{sell\_price}$) is executed immediately upon arrival.
+> 2. **Best Price Execution:**
+>    - An incoming buy order matches greedily against the minimum available sell price until either the buy amount is depleted, the sell heap is empty, or the cheapest sell price exceeds the buy offer.
+>    - An incoming sell order matches greedily against the maximum available buy price until either the sell amount is depleted, the buy heap is empty, or the highest buy bid falls below the sell asking price.
+> 3. **Amortized Complexity:** Each input batch creates at most one backlog entry if unexhausted. A partial fill pops and re-inserts at most one opposite order. Thus, at most $2$ heap insertions occur per input batch, guaranteeing $\mathcal{O}(m \log m)$ runtime across $m$ orders.
+
+```mermaid
+flowchart TD
+    accTitle: Double Auction Backlog Matching
+    accDescr: Logic diagram routing incoming orders to opposite heap for execution or inserting residuals into self heap.
+    A["Incoming Order (price p, amount a, type t)"] --> B{"Order Type t?"}
+    B -- "0 (BUY)" --> C{"a > 0, Sell heap not empty, min_sell <= p?"}
+    C -- "Yes" --> D["Match with min_sell; adjust amounts"]
+    D --> C
+    C -- "No" --> E{"a > 0?"}
+    E -- "Yes" --> F["Push remainder (p, a) to Buy Heap"]
+    E -- "No" --> G["Done"]
+    B -- "1 (SELL)" --> H{"a > 0, Buy heap not empty, max_buy >= p?"}
+    H -- "Yes" --> I["Match with max_buy; adjust amounts"]
+    I --> H
+    H -- "No" --> J{"a > 0?"}
+    J -- "Yes" --> K["Push remainder (p, a) to Sell Heap"]
+    J -- "No" --> G
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The next match always comes from the best opposite price
+We trace `orders = [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]`.
 
-A buy order can match only the cheapest sell order, and only when that sell price is at most the buy price. A sell order symmetrically checks the most expensive buy order and requires that buy price to be at least the sell price.
-
-The solution maintains two priority queues:
-
-- `sell` is a normal min-heap of `(price, amount)`, so its first entry has the lowest sell price;
-- `buy` stores `(-price, amount)`, turning Python's min-heap into a max-heap by price.
-
-Each input row is a batch of independent orders. Storing one tuple with its remaining amount is equivalent to storing that many identical orders, but is vastly more efficient for amounts up to $10^9$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"orders": [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initial State
+- Buy Heap: $\emptyset$
+- Sell Heap: $\emptyset$
 
 ---
 
-### Step 2: Process a buy batch
-
-For a buy batch with price `p` and remaining amount `a`, matching continues while three facts hold: `a` is positive, the sell heap is nonempty, and the cheapest sell price `sell[0][0]` is no greater than `p`.
-
-The cheapest sell tuple `(x, y)` is removed.
-
-- If `a >= y`, the current buy batch executes all `y` sell orders. The solution subtracts `y` from `a`, and that sell tuple is exhausted.
-- If `a < y`, the buy batch executes completely. The solution pushes back `(x, y - a)` for the unexecuted sell remainder and sets `a = 0`.
-
-When no further match is possible, any positive remaining `a` is pushed into `buy` as `(-p, a)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process `[10, 5, 0]` (BUY 5 @ $10)
+- Order type: Buy ($t = 0$), $p = 10, a = 5$.
+- Check Sell Heap: Currently empty. No matching possible.
+- Push entire order to Buy Heap:
+  $$\text{Buy Heap} = \{(\text{price: } 10, \text{amount: } 5)\}$$
+- Backlog state: Buy $= \{10: 5\}$, Sell $= \emptyset$.
 
 ---
 
-### Step 3: Process a sell batch symmetrically
+### Step 2: Process `[15, 2, 1]` (SELL 2 @ $15)
+- Order type: Sell ($t = 1$), $p = 15, a = 2$.
+- Check Buy Heap: Top buy order has price $\$10$.
+- Evaluate matching condition:
+  $$\text{Top Buy Price } (\$10) \ge \text{Sell Asking Price } (\$15) \implies \text{False}$$
+- No match occurs (spread does not cross).
+- Push entire order to Sell Heap:
+  $$\text{Sell Heap} = \{(\text{price: } 15, \text{amount: } 2)\}$$
+- Backlog state: Buy $= \{10: 5\}$, Sell $= \{15: 2\}$.
 
-For a sell batch, the best opposite order is at `buy[0]`. Its real price is `-buy[0][0]`. Matching is allowed while that price is at least the current sell price.
+---
 
-The same amount subtraction either exhausts the older buy tuple or exhausts the current sell batch and pushes back a reduced buy remainder. Any unmatched current sell amount finally enters `sell` as `(p, a)`.
+### Step 3: Process `[25, 1, 1]` (SELL 1 @ $25)
+- Order type: Sell ($t = 1$), $p = 25, a = 1$.
+- Check Buy Heap: Top buy order has price $\$10$.
+- Evaluate matching condition:
+  $$\text{Top Buy Price } (\$10) \ge \text{Sell Asking Price } (\$25) \implies \text{False}$$
+- No match occurs.
+- Push to Sell Heap:
+  $$\text{Sell Heap} = \{(\text{price: } 15, \text{amount: } 2), \ (\text{price: } 25, \text{amount: } 1)\}$$
+- Backlog state: Buy $= \{10: 5\}$, Sell $= \{15: 2, \ 25: 1\}$.
 
-The two cases mirror the execution rules exactly; only heap direction and price inequality change.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+### Step 4: Process `[30, 4, 0]` (BUY 4 @ $30)
+- Order type: Buy ($t = 0$), $p = 30, a = 4$.
+- **Match Iteration 1:**
+  - Sell Heap top is $(15, 2)$.
+  - Check condition: $\text{Sell Price } (\$15) \le \text{Buy Price } (\$30) \implies \text{True}$.
+  - Pop $(15, 2)$ from Sell Heap.
+  - Since incoming $a = 4 \ge 2$, all $2$ units of the sell order are executed:
+    $$a \longleftarrow 4 - 2 = 2$$
+  - Sell order at $\$15$ is fully cleared.
+- **Match Iteration 2:**
+  - Sell Heap top is now $(25, 1)$.
+  - Check condition: $\text{Sell Price } (\$25) \le \text{Buy Price } (\$30) \implies \text{True}$.
+  - Pop $(25, 1)$ from Sell Heap.
+  - Since incoming $a = 2 \ge 1$, all $1$ unit of the sell order is executed:
+    $$a \longleftarrow 2 - 1 = 1$$
+  - Sell order at $\$25$ is fully cleared.
+- **Match Termination:**
+  - Sell Heap is now empty.
+  - Residual amount: $a = 1$.
+  - Push residual buy order to Buy Heap:
+    $$\text{Push } (30, 1) \text{ to Buy Heap}$$
+- Backlog state:
+  - Buy Heap: $\{(\text{price: } 30, \text{amount: } 1), \ (\text{price: } 10, \text{amount: } 5)\}$
+  - Sell Heap: $\emptyset$
+
+---
+
+### Step 5: Tally Total Backlog Units
+Sum the unexecuted amounts remaining across both heaps:
+- Buy Backlog: $1 + 5 = 6$
+- Sell Backlog: $0$
+Total backlog orders:
+$$6 \pmod{10^9 + 7} = \mathbf{6}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"orders": [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+| Order Index | Input `[p, a, t]` | Action Description | Matched Units & Price | Remaining Buy Backlog | Remaining Sell Backlog |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `[10, 5, 0]` | Buy $5$ @ $10$ | None (Sell empty) | `[(10, 5)]` | `[]` |
+| 1 | `[15, 2, 1]` | Sell $2$ @ $15$ | None ($10 < 15$) | `[(10, 5)]` | `[(15, 2)]` |
+| 2 | `[25, 1, 1]` | Sell $1$ @ $25$ | None ($10 < 25$) | `[(10, 5)]` | `[(15, 2), (25, 1)]` |
+| 3 | `[30, 4, 0]` | Buy $4$ @ $30$ | $2$ @ $\$15$, $1$ @ $\$25$ | `[(30, 1), (10, 5)]` | `[]` |
+
+Total backlog orders remaining: $1 + 5 = \mathbf{6}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** All executions obey the rules of price priority and eligibility: buy orders only execute against sell orders priced at or below the buy bid, and sell orders only execute against buy bids priced at or above the sell offer. When multiple matching counterparties exist, priority queues guarantee execution against the best price (lowest sell or highest buy).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every incoming order is processed sequentially. For each order, all possible executions against the existing backlog are performed until no valid opposing order remains. Unfilled quantities are strictly preserved in their respective priority queue. Summing all remaining quantities over both heaps yields the exact backlog count.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Store unit orders:** Amounts reach $10^9$, so expanding a batch into individual heap entries is impossible.
-- **Sorted lists:** Finding the best price is easy, but inserting arbitrary prices can cost $O(n)$ per batch.
-- **Ordered price map:** A balanced tree keyed by price can aggregate equal prices and support extreme-price matching in $O(\log n)$, but Python has no built-in ordered map.
-- **Aggregate identical heap prices:** It may reduce tuple count, though correctness does not require merging equal-price batches.
-- **Equal prices:** Buy and sell prices satisfy both inclusive inequalities and must match.
-- **No opposite backlog:** The entire incoming amount is stored on its own side.
-- **Incompatible best price:** If the best opposite price cannot match, no worse heap entry can match either.
-- **Current batch larger than top backlog batch:** The top is exhausted and matching continues with the next best price.
-- **Current batch smaller than top backlog batch:** The current batch ends and the reduced opposite amount is pushed back.
-- **Exact exhaustion:** Both amounts disappear when equal, and no zero tuple is pushed.
-- **Same-price tuples:** Heap tie-breaking may use amount, but identical prices are interchangeable.
-- **Modulo timing:** Apply it after exact matching, never to intermediate quantities.
-- **Large total backlog:** Python's unbounded integers prevent overflow before the final modulo.
-- **Input order:** Batches must be processed sequentially; sorting `orders` would change execution semantics.
-- **Input preservation:** The loop unpacks values and changes only local `a`, leaving the input rows unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Unit-by-Unit Simulation:** Order amounts can be up to $10^9$. Simulating individual unit decrements leads to Time Limit Exceeded. Orders must be stored as aggregated tuples `(price, amount)`.
+- **Partial Execution Reinsertion:** When an incoming order partially matches a backlog order ($a < y$), the difference $y - a$ must be pushed back into the backlog heap with its original price.
+- **Modulo Application:** The modulo $10^9 + 7$ must only be applied to the final sum of backlog amounts, never to intermediate amounts during transaction matching.
+- **Strict Inequality on Prices:** Equal prices ($\text{buy\_price} == \text{sell\_price}$) are valid matches. Using strict inequality ($<$) would incorrectly leave matching orders in the backlog.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Let $n$ be the number of input batches. Each batch is pushed at most once as a new backlog tuple. Fully exhausted tuples are popped once. A partial match can pop and reinsert one opposite tuple, but it exhausts the current incoming batch, so there is at most one such partial event per input batch. Total heap operations are therefore $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \log m)$ where $m$ is the number of orders. Each order batch is pushed to a heap at most once. Each fully executed batch is popped once. A partially executed batch is popped and re-inserted once, but this partial execution exhausts the incoming batch (at most one partial match per incoming order). Thus, the total number of heap operations is at most $4m$, each costing $\mathcal{O}(\log m)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m)$. In the worst case where no orders match, both heaps store at most $m$ tuples combined.

@@ -1,121 +1,173 @@
 # Guided Example: Delete Characters to Make Fancy String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace and analyze the one-pass greedy run-length clamping algorithm on representative string instances to construct the unique minimal-deletion fancy string.
 
-- **Input:** `{"s": "leeetcode"}`
-- **Required output:** `"leetcode"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A **fancy string** is a string where no **three** **consecutive** characters are equal.
-
-The objective is to compute `"leetcode"` from `{"s": "leeetcode"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `s = "aaabaaaa"` ($N = 8$)
+  - Expected Output: `"aabaa"` (deletes 3 characters)
+- **Secondary Instance:** `s = "leeetcode"` ($N = 9$)
+  - Expected Output: `"leetcode"` (deletes 1 character)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+A string is defined as *fancy* if it does not contain three consecutive identical characters. That is, for any character $c$, the substring $c c c$ is strictly forbidden.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+When an input string contains a contiguous block of identical characters $c^k$ with $k \ge 3$:
+1. To eliminate three consecutive occurrences within this block, at least $k - 2$ characters must be deleted.
+2. Deleting any additional characters from this block beyond $k - 2$ would only increase total deletions unnecessarily.
+3. Because the characters immediately preceding and succeeding this block are different from $c$ (by definition of a maximal contiguous block), keeping exactly $\min(k, 2)$ characters can never produce three consecutive identical characters across block boundaries.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Consequently, the global minimum deletion problem decomposes into independent local clampings of each contiguous character run to at most length 2:
+$$c^k \longrightarrow c^{\min(k, 2)}$$
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Every maximal run can keep at most two characters
-
-A violation consists of three equal consecutive characters. Consider a maximal run of one letter with length $L$. If $L\le2$, all of it can remain. If $L>2$, at least $L-2$ characters must be deleted, and keeping exactly the first two achieves that lower bound.
-
-Different runs are separated by another letter. The algorithm never deletes an entire nonempty run—it keeps at least its first character—so deleting extras cannot merge two runs of the same letter across the separator. Each run can be optimized independently.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "leeetcode"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In `s = "aaabaaaa"`:
+- The first run is `'a'` of length 3: clamped to length 2 (`"aa"`), deleting 1 `'a'`.
+- The second run is `'b'` of length 1: preserved unchanged (`"b"`).
+- The third run is `'a'` of length 4: clamped to length 2 (`"aa"`), deleting 2 `'a'`s.
+- The resulting string is `"aabaa"`, deleting $1 + 0 + 2 = 3$ characters.
 
 ---
 
-### Step 2: Read the exact condition
+## 2. Formal Invariants & Run-Length Clamping
 
-The solution scans the original string with index `i` and character `c`. It appends `c` when at least one of these is true:
+Let $s$ be decomposed into maximal monochromatic contiguous segments:
+$$s = c_1^{k_1} c_2^{k_2} \dots c_m^{k_m}$$
+where $c_j \in \{\texttt{'a'}, \dots, \texttt{'z'}\}$ and $c_j \neq c_{j+1}$ for all $1 \le j < m$.
 
-- `i < 2`, meaning fewer than two original predecessors exist;
-- `c != s[i - 1]`;
-- `c != s[i - 2]`.
+### Output Structure
 
-It skips a character only when $i\ge2$ and the current character equals both immediately preceding original characters. That is exactly the third or later position inside a run of equal characters.
+The unique minimum-deletion fancy string is:
+$$f(s) = c_1^{\min(k_1, 2)} c_2^{\min(k_2, 2)} \dots c_m^{\min(k_m, 2)}$$
 
-For a run `"aaaaa"`, the first two positions are appended. Every later `a` has two original `a` predecessors and is skipped. For `"aabaa"`, no position is the third equal character of its run, so the entire string remains.
+### Streaming Invariant
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+We can construct $f(s)$ incrementally in a single left-to-right streaming pass. Let $R$ be the accumulated result string. When examining character $s[i]$:
+$$\text{Append } s[i] \iff |R| < 2 \;\vee\; R[|R|-1] \neq s[i] \;\vee\; R[|R|-2] \neq s[i]$$
 
----
+If the last two characters in $R$ are already identical to $s[i]$, appending $s[i]$ would create a run of 3 identical characters. Hence $s[i]$ must be dropped.
 
-### Step 3: Why comparing the original string is safe
+```mermaid
+flowchart TD
+    accTitle: Fancy String Streaming Filter
+    accDescr: Flowchart testing whether current character matches the last two appended characters and filtering out third duplicates.
 
-Many streaming solutions compare the current character with the last two characters already kept. This exact code instead compares `s[i - 1]` and `s[i - 2]` in the original string.
-
-That works because the decision is purely run-based. Inside a long run, every character from the third onward has two equal original predecessors and must be removed. At the beginning of a new run, at least one of the two original predecessors differs, so the first character is kept; the second is also kept. Since every separating run keeps characters, deletions never create a new cross-run triple that was not already inside one original run.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"leetcode"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "leeetcode"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"leetcode"` | Verified |
+    READ["Read next character s[i]"] --> CHECK{"|Result| >= 2 AND<br/>Result[end] == s[i] AND<br/>Result[end-1] == s[i]?"}
+    
+    CHECK -- Yes --> DROP["Discard s[i]<br/>Increment deletion counter"]
+    CHECK -- No --> KEEP["Append s[i] to Result"]
+    
+    DROP --> NEXT{"More characters?"}
+    KEEP --> NEXT
+    
+    NEXT -- Yes --> READ
+    NEXT -- No --> DONE["Return Result String"]
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Character-by-Character Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace the streaming evaluation of `s = "aaabaaaa"`:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Initial:** Result buffer $R = \texttt{""}$, Deletions $= 0$.
+
+- **Step 1 ($i = 0, s[0] = \texttt{'a'}$):**
+  - $|R| = 0 < 2$. Condition satisfied.
+  - Append `'a'`. $R = \texttt{"a"}$.
+
+- **Step 2 ($i = 1, s[1] = \texttt{'a'}$):**
+  - $|R| = 1 < 2$. Condition satisfied.
+  - Append `'a'`. $R = \texttt{"aa"}$.
+
+- **Step 3 ($i = 2, s[2] = \texttt{'a'}$):**
+  - $|R| = 2$. Last two characters are $R[1] = \texttt{'a'}$ and $R[0] = \texttt{'a'}$.
+  - $s[2] == R[1] == R[0] == \texttt{'a'}$.
+  - **Discard** $s[2]$. $R = \texttt{"aa"}$, Deletions $= 1$.
+
+- **Step 4 ($i = 3, s[3] = \texttt{'b'}$):**
+  - $s[3] = \texttt{'b'} \neq R[1] = \texttt{'a'}$.
+  - Append `'b'`. $R = \texttt{"aab"}$.
+
+- **Step 5 ($i = 4, s[4] = \texttt{'a'}$):**
+  - $R = \texttt{"aab"}$. Last two are $\texttt{'a'}$ and $\texttt{'b'}$.
+  - Since $R[2] = \texttt{'b'} \neq \texttt{'a'}$, condition satisfied.
+  - Append `'a'`. $R = \texttt{"aaba"}$.
+
+- **Step 6 ($i = 5, s[5] = \texttt{'a'}$):**
+  - $R = \texttt{"aaba"}$. Last two are $R[3] = \texttt{'a'}$, $R[2] = \texttt{'b'}$.
+  - They are not both `'a'`. Condition satisfied.
+  - Append `'a'`. $R = \texttt{"aabaa"}$.
+
+- **Step 7 ($i = 6, s[6] = \texttt{'a'}$):**
+  - $R = \texttt{"aabaa"}$. Last two are $R[4] = \texttt{'a'}$, $R[3] = \texttt{'a'}$.
+  - Both equal $s[6] = \texttt{'a'}$.
+  - **Discard** $s[6]$. $R = \texttt{"aabaa"}$, Deletions $= 2$.
+
+- **Step 8 ($i = 7, s[7] = \texttt{'a'}$):**
+  - $R = \texttt{"aabaa"}$. Last two are both `'a'`.
+  - **Discard** $s[7]$. $R = \texttt{"aabaa"}$, Deletions $= 3$.
+
+Final fancy string is `"aabaa"`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Execution Trace Table
 
-- **Compare against output tail:** Append unless the last two retained characters both equal the current one. This is more general and has the same $O(N)$ bounds.
-- **Run-length encoding:** Explicitly find every run and append its first two characters. It expresses the proof directly but needs more indexing code.
-- **Repeated string deletion:** Removing characters from immutable strings can cause quadratic copying.
-- **Length below three:** Every character satisfies `i < 2` or no triple exists, so the string is returned unchanged.
-- **Exactly three equal characters:** The first two are kept and the third is removed.
-- **Very long run:** Exactly two copies survive regardless of length.
-- **Run length one:** Its sole character is always retained and cannot form a triple.
-- **Alternating letters:** No character equals both prior originals, so all are retained.
-- **Two same, one different, two same:** Both runs of length two remain and the separator prevents merging.
-- **Original-versus-output comparison:** It is safe here specifically because the property and optimal deletions operate independently on maximal runs.
-- **Unique value result:** Different choices of identical occurrences to delete cannot change the resulting character sequence.
-- **Input immutability:** The source does not modify `s`; it builds a new result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Primary Trace: `s = "aaabaaaa"`
+
+| Index $i$ | Character $s[i]$ | Buffer $|R|$ | Last Two Characters in $R$ | Triplet Conflict? | Action Taken | Current Result $R$ | Cumulative Deletions |
+|---|---|---|---|---|---|---|---|
+| 0 | `a` | 0 | None | No ($|R| < 2$) | Append `a` | `"a"` | 0 |
+| 1 | `a` | 1 | `a` | No ($|R| < 2$) | Append `a` | `"aa"` | 0 |
+| 2 | `a` | 2 | `a`, `a` | **Yes (`a` == `a` == `a`)** | Discard `a` | `"aa"` | 1 |
+| 3 | `b` | 2 | `a`, `a` | No (`b` != `a`) | Append `b` | `"aab"` | 1 |
+| 4 | `a` | 3 | `a`, `b` | No (`a` != `b`) | Append `a` | `"aaba"` | 1 |
+| 5 | `a` | 4 | `b`, `a` | No (`b` != `a`) | Append `a` | `"aabaa"` | 1 |
+| 6 | `a` | 5 | `a`, `a` | **Yes (`a` == `a` == `a`)** | Discard `a` | `"aabaa"` | 2 |
+| 7 | `a` | 5 | `a`, `a` | **Yes (`a` == `a` == `a`)** | Discard `a` | `"aabaa"` | 3 |
+
+### Secondary Trace: `s = "leeetcode"`
+
+| Index $i$ | Character $s[i]$ | Buffer Tail ($R[-2], R[-1]$) | Conflict? | Action Taken | Current Result $R$ |
+|---|---|---|---|---|---|
+| 0 | `l` | N/A | No | Append | `"l"` |
+| 1 | `e` | N/A | No | Append | `"le"` |
+| 2 | `e` | `l`, `e` | No | Append | `"lee"` |
+| 3 | `e` | `e`, `e` | **Yes** | Discard | `"lee"` |
+| 4 | `t` | `e`, `e` | No | Append | `"leet"` |
+| 5 | `c` | `e`, `t` | No | Append | `"leetc"` |
+| 6 | `o` | `t`, `c` | No | Append | `"leetco"` |
+| 7 | `d` | `c`, `o` | No | Append | `"leetcod"` |
+| 8 | `e` | `o`, `d` | No | Append | `"leetcode"` |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(N)$. Let $N$ be the string length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Let $R$ be the string produced by the greedy streaming rule. At no point can $R$ contain three equal consecutive characters: if $R$ already ended with two identical characters $c c$, any incoming $c$ is unconditionally rejected. Furthermore, adjacent blocks of characters come from different original monochromatic segments ($c_j \neq c_{j+1}$), so no triplet can arise across block boundaries. Thus, $R$ is strictly fancy.
+
+**Completeness & Minimality.** Consider any maximal contiguous run of identical characters $c^k$ in $s$. In any valid fancy string, this run can contribute at most 2 characters; otherwise, three consecutive $c$'s would appear. Therefore, at least $\max(0, k - 2)$ characters must be deleted from this segment. Summing over all segments $j \in \{1, \dots, m\}$:
+$$\text{Deletions} \ge \sum_{j=1}^m \max(0, k_j - 2)$$
+The greedy algorithm achieves exactly this lower bound by preserving $\min(k_j, 2)$ characters from each segment. Because relative order is preserved and the number of deletions attains the theoretical minimum, the resulting string is the unique optimal fancy string.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Short Strings ($N < 3$):** If $s$ has length 1 or 2 (e.g. `"a"` or `"aa"`), it is already fancy. The buffer check $|R| < 2$ naturally admits the characters without bounds errors or negative indices.
+- **Homogeneous Strings:** If $s = \texttt{"aaaaa"}$ ($N = 5$), the first two are kept and all remaining $N - 2$ are dropped, yielding `"aa"`.
+- **String Immutability Pitfall:** In languages with immutable strings, repeated string concatenation (`res += c`) inside a loop allocates $\mathcal{O}(N^2)$ characters, leading to Time Limit Exceeded. A dynamic character buffer, array builder, or list join guarantees linear time.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - A single pass iterates $N$ characters from index $0$ to $N-1$.
+  - At each step, inspecting the last two elements of the buffer and conditionally appending takes $\mathcal{O}(1)$ amortized time.
+  - Final string conversion from the character buffer takes $\mathcal{O}(N)$.
+  - Total time complexity is strictly $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - Storing the output string requires at most $N$ characters: $\mathcal{O}(N)$.
+  - Outside of the output buffer, only scalar loop indices are used: $\mathcal{O}(1)$ auxiliary space.

@@ -1,130 +1,202 @@
 # Guided Example: Minimum Rounds to Complete All Tasks
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tasks": [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]}`
-- **Required output:** `4`
+Given an integer array $\text{tasks}$ where each element represents the difficulty level of a task, the goal is to determine the minimum number of rounds required to complete all tasks. In each round, an operator may complete either $2$ or $3$ tasks of the same difficulty level. Different difficulty levels cannot be mixed in the same round. If it is impossible to complete all tasks under these conditions, the required output is $-1$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+### Representative Instance
 
----
+Consider an array of $10$ tasks with varying difficulty levels:
+$$\text{tasks} = [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]$$
 
-## 1. Instance & Teaching Goal
+Grouping by difficulty level gives the following counts:
+- Difficulty $2$: occurrences at indices $0, 1, 4 \implies$ count $c_2 = 3$
+- Difficulty $3$: occurrences at indices $2, 3 \implies$ count $c_3 = 2$
+- Difficulty $4$: occurrences at indices $5, 6, 7, 8, 9 \implies$ count $c_4 = 5$
 
-You are given a **0-indexed** integer array `tasks`, where $\text{tasks}[i]$ represents the difficulty level of a task. In each round, you can complete either 2 or 3 tasks of the **same difficulty level**.
+Because each difficulty level is processed in total isolation from the others, the global minimum rounds is the sum of the minimum rounds required for each distinct difficulty level.
 
-The objective is to compute `4` from `{"tasks": [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Different difficulty levels are independent
-
-One round may contain only tasks of the same difficulty. Therefore, tasks of one difficulty can never help form a pair or triple with tasks of another difficulty.
-
-The solution first builds `cnt = Counter(tasks)`. For each difficulty, its frequency `v` becomes an independent grouping problem: partition `v` identical tasks into groups of size two or three using as few groups as possible. The overall minimum is the sum of the independent minima.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tasks": [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+flowchart TD
+    accTitle: Task Frequency Evaluation Pipeline
+    accDescr: Workflow categorizing task counts by difficulty and deriving rounds via linear Diophantine optimization.
+    Input["Input Tasks: [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]"] --> Freq["Aggregate Frequencies:<br/>c(2) = 3, c(3) = 2, c(4) = 5"]
+    Freq --> D2["Difficulty 2: c = 3<br/>1 triple (3 tasks)<br/>Rounds = 1"]
+    Freq --> D3["Difficulty 3: c = 2<br/>1 pair (2 tasks)<br/>Rounds = 1"]
+    Freq --> D4["Difficulty 4: c = 5<br/>1 triple + 1 pair (3 + 2 tasks)<br/>Rounds = 2"]
+    D2 --> Sum["Total Rounds = 1 + 1 + 2 = 4"]
+    D3 --> Sum
+    D4 --> Sum
+```
 
 ---
 
-### Step 2: A single occurrence makes the whole task impossible
+## 2. Mathematical & Algorithmic Principles
 
-If `v = 1`, neither an allowed pair nor an allowed triple can contain that lone task. No grouping of other difficulty levels changes this fact. The method immediately returns `-1`.
+### Independence Across Difficulty Levels
 
-This is the only impossible positive frequency. Every integer `v >= 2` can be formed from twos and threes:
+Let $U$ be the set of distinct task difficulty levels, and for each $d \in U$, let $c_d$ denote its multiplicity in $\text{tasks}$. Because a round cannot combine different difficulty levels:
 
-- two is one pair;
-- three is one triple;
-- four is two pairs;
-- every larger value can add a pair or triple to one of these constructions.
+$$\text{Total Minimum Rounds} = \sum_{d \in U} R(c_d)$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+where $R(c)$ is the minimum rounds to process $c$ tasks of a single difficulty level.
 
----
+### Linear Diophantine Formulation & Frobenius Bound
 
-### Step 3: Use as many triples as the remainder permits
+For a specific difficulty count $c$, each round eliminates either $2$ or $3$ tasks. Hence, we must find non-negative integers $x, y \in \mathbb{N}_0$ representing the number of pairs and triples respectively, such that:
 
-A triple completes more tasks per round than a pair, so minimizing rounds generally means maximizing triples. Write `v = 3q + r`, where `r` is zero, one, or two.
+$$2x + 3y = c$$
 
-- If `r = 0`, use `q` triples. This requires `q` rounds.
-- If `r = 2`, use `q` triples and one pair, for `q + 1` rounds.
-- If `r = 1` and `v >= 4`, using `q` triples would leave one impossible task. Replace one conceptual group of four tasks with two pairs. Algebraically, `v = 3(q - 1) + 2 + 2`, again requiring `q + 1` rounds.
+subject to minimizing the objective function:
 
-These cases are compactly counted by
+$$Z(x, y) = x + y$$
 
-`v // 3 + (v % 3 != 0)`.
+By the Frobenius Coin Problem for denominations $\{2, 3\}$:
+- The Frobenius number is $g(2, 3) = 2 \times 3 - 2 - 3 = 1$.
+- Thus, every integer $c > 1$ (that is, $c \ge 2$) can be expressed as a non-negative linear combination of $2$ and $3$.
+- Conversely, $c = 1$ has no non-negative solution because $2(0) + 3(0) = 0 < 1$ and any positive coefficient yields $\ge 2$. If any difficulty level has count $c = 1$, completion is impossible, and the global answer is immediately $-1$.
 
-In Python, the Boolean comparison contributes one when the remainder is nonzero and zero otherwise. For every feasible `v`, this equals `ceil(v / 3)`.
+### Minimizing Total Rounds
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+To minimize $Z = x + y$, substitute $y = \frac{c - 2x}{3}$:
 
----
+$$Z(x) = x + \frac{c - 2x}{3} = \frac{c + x}{3}$$
 
-## 4. Complete Execution Trace
+Because $c$ is constant, minimizing $Z(x)$ is strictly equivalent to choosing the smallest non-negative integer $x \ge 0$ such that $c - 2x \ge 0$ and $c - 2x \equiv 0 \pmod 3$. The congruence $2x \equiv c \pmod 3$ simplifies to $x \equiv 2c \pmod 3$:
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tasks": [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+1. **Case $c \equiv 0 \pmod 3$:**
+   $x \equiv 0 \pmod 3 \implies \min x = 0$.
+   $$y = \frac{c}{3}, \quad Z = \frac{c}{3}$$
+   Example: $c = 6 \implies 0$ pairs, $2$ triples $\implies 2$ rounds.
 
----
+2. **Case $c \equiv 1 \pmod 3$:**
+   $x \equiv 2(1) \equiv 2 \pmod 3 \implies \min x = 2$.
+   $$y = \frac{c - 4}{3}, \quad Z = 2 + \frac{c - 4}{3} = \frac{c + 2}{3}$$
+   Example: $c = 4 \implies 2$ pairs, $0$ triples $\implies 2$ rounds.
 
-## 5. Algorithmic Correctness
+3. **Case $c \equiv 2 \pmod 3$:**
+   $x \equiv 2(2) \equiv 1 \pmod 3 \implies \min x = 1$.
+   $$y = \frac{c - 2}{3}, \quad Z = 1 + \frac{c - 2}{3} = \frac{c + 1}{3} = \frac{c + 2}{3}$$
+   Example: $c = 5 \implies 1$ pair, $1$ triple $\implies 2$ rounds.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Notice that for all cases $c \ge 2$, the optimal round count matches the ceiling division:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+$$R(c) = \left\lceil \frac{c}{3} \right\rceil = \left\lfloor \frac{c + 2}{3} \right\rfloor$$
 
 ---
 
-## 6. Traps This Instance Exposes
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Sort and count runs:** Sorting exposes equal difficulties together but costs `O(n \log n)` time; hashing counts directly in expected linear time.
-- **Dynamic programming for each frequency:** A coin-change DP with group sizes two and three works but repeats a pattern captured by the remainder formula.
-- **Always take triples:** A remainder of one would be stranded; one triple must effectively become two pairs.
-- **Always take pairs:** It works only for even frequencies and uses more rounds than triples when possible.
-- **Frequency one:** It makes the entire answer `-1`.
-- **Frequency two:** Exactly one pair is required.
-- **Frequency three:** Exactly one triple is optimal.
-- **Frequency four:** Two pairs are required.
-- **Frequency five:** One triple and one pair use two rounds.
-- **Multiple impossible difficulties:** The first encountered frequency one is enough to return `-1`.
-- **One difficulty only:** The same remainder analysis directly gives the complete answer.
-- **Interleaved difficulty values:** Their positions in `tasks` do not constrain which tasks can share a round.
-- **Round ordering:** Changing the order of independently formed rounds never changes how many rounds are required.
-- **Input order and value size:** Neither matters; only equal-value counts are used.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Applying this formula to our representative instance:
+
+### Step 1: Frequency Aggregation
+Scan through $\text{tasks} = [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]$.
+Construct hash map of counts:
+- $\text{count}[2] = 3$
+- $\text{count}[3] = 2$
+- $\text{count}[4] = 5$
+
+### Step 2: Evaluating Each Frequency
+1. **Difficulty $2$ ($c = 3$):**
+   - Check validity: $c = 3 \ne 1$, valid.
+   - Modulo arithmetic: $3 \pmod 3 = 0$.
+   - Rounds required: $\lfloor (3 + 2) / 3 \rfloor = \lfloor 5 / 3 \rfloor = 1$.
+   - Configuration: $1$ triple of difficulty $2$.
+
+2. **Difficulty $3$ ($c = 2$):**
+   - Check validity: $c = 2 \ne 1$, valid.
+   - Modulo arithmetic: $2 \pmod 3 = 2$.
+   - Rounds required: $\lfloor (2 + 2) / 3 \rfloor = \lfloor 4 / 3 \rfloor = 1$.
+   - Configuration: $1$ pair of difficulty $3$.
+
+3. **Difficulty $4$ ($c = 5$):**
+   - Check validity: $c = 5 \ne 1$, valid.
+   - Modulo arithmetic: $5 \pmod 3 = 2$.
+   - Rounds required: $\lfloor (5 + 2) / 3 \rfloor = \lfloor 7 / 3 \rfloor = 2$.
+   - Configuration: $1$ triple $+ 1$ pair ($3 + 2 = 5$) of difficulty $4$.
+
+### Step 3: Total Accumulation
+$$\text{Total} = 1 + 1 + 2 = 4$$
+All tasks are completed in $4$ rounds.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(n)$. Let `n = len(tasks)` and `u` be the number of distinct difficulties. Building the counter takes expected `O(n)` time. Scanning its `u` frequencies takes `O(u)`, and `u <= n`, so total expected time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Per-Difficulty Resolution Table
+
+The table below catalogs the processing of each task difficulty group present in the representative array:
+
+| Difficulty Key $d$ | Multiplicity $c_d$ | Feasibility Check ($c_d \ge 2$) | Remainder $c_d \pmod 3$ | Optimal Pairs ($x$) | Optimal Triples ($y$) | Subproblem Rounds $R(c_d)$ | Running Total Rounds |
+|---|---|---|---|---|---|---|---|
+| **$2$** | $3$ | Passed ($3 \ge 2$) | $0$ | $0$ | $1$ | $\lfloor (3+2)/3 \rfloor = 1$ | $1$ |
+| **$3$** | $2$ | Passed ($2 \ge 2$) | $2$ | $1$ | $0$ | $\lfloor (2+2)/3 \rfloor = 1$ | $2$ |
+| **$4$** | $5$ | Passed ($5 \ge 2$) | $2$ | $1$ | $1$ | $\lfloor (5+2)/3 \rfloor = 2$ | $4$ |
+
+### Mathematical Behavior Across Canonical Counts
+
+The table below demonstrates the ceiling division invariant across representative count magnitudes:
+
+| Count $c$ | Solvability | $c \pmod 3$ | Triples $y$ | Pairs $x$ | Equation Verification $3y + 2x$ | Ceiling Expression $\lceil c / 3 \rceil$ | Rounds $R(c)$ |
+|---|---|---|---|---|---|---|---|
+| **$1$** | Impossible | $1$ | — | — | Cannot form $1$ | — | **$-1$** |
+| **$2$** | Solvable | $2$ | $0$ | $1$ | $3(0) + 2(1) = 2$ | $\lceil 2/3 \rceil = 1$ | $1$ |
+| **$3$** | Solvable | $0$ | $1$ | $0$ | $3(1) + 2(0) = 3$ | $\lceil 3/3 \rceil = 1$ | $1$ |
+| **$4$** | Solvable | $1$ | $0$ | $2$ | $3(0) + 2(2) = 4$ | $\lceil 4/3 \rceil = 2$ | $2$ |
+| **$5$** | Solvable | $2$ | $1$ | $1$ | $3(1) + 2(1) = 5$ | $\lceil 5/3 \rceil = 2$ | $2$ |
+| **$6$** | Solvable | $0$ | $2$ | $0$ | $3(2) + 2(0) = 6$ | $\lceil 6/3 \rceil = 2$ | $2$ |
+| **$7$** | Solvable | $1$ | $1$ | $2$ | $3(1) + 2(2) = 7$ | $\lceil 7/3 \rceil = 3$ | $3$ |
+| **$8$** | Solvable | $2$ | $2$ | $1$ | $3(2) + 2(1) = 8$ | $\lceil 8/3 \rceil = 3$ | $3$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Global Independence Proof
+
+Every round must select tasks of identical difficulty. Formally, if $T_d$ denotes the subset of tasks with difficulty $d$, any valid round operates entirely within some $T_d$. There are no cross-difficulty interactions or constraints. Consequently, the minimum total rounds across all tasks is strictly equal to the independent sum of minimum rounds for each $T_d$:
+
+$$\min \sum \text{rounds} = \sum_{d} \min \text{rounds}(T_d)$$
+
+No choice made for difficulty $d_1$ can alter or constrain the options available for difficulty $d_2$.
+
+### Local Optimality Proof
+
+For a single difficulty with count $c$:
+1. Every round completes at most $3$ tasks. Hence, any valid schedule of $R$ rounds satisfies:
+   $$c \le 3R \implies R \ge \left\lceil \frac{c}{3} \right\rceil$$
+2. The constructive decomposition exhibited in Section 2 achieves exactly $\lceil c / 3 \rceil$ rounds using valid rounds of size $2$ and $3$ for all $c \ge 2$.
+3. Since the lower bound is constructively achieved, $\lceil c / 3 \rceil$ is provably the exact minimum.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Singleton Task ($c = 1$):**
+   If any difficulty level has exactly $1$ occurrence (such as $\text{tasks} = [2, 3, 3]$ where $2$ appears once), it is impossible to complete that task because the minimum batch size is $2$. The algorithm detects $c = 1$ and immediately aborts with $-1$.
+2. **Homogeneous Array:**
+   When all tasks have the same difficulty (for example, ten $7$'s), the algorithm aggregates into a single key with $c = 10$, yielding $\lfloor 12 / 3 \rfloor = 4$ rounds ($2$ triples and $2$ pairs).
+3. **Many Disjoint Pairs:**
+   If all tasks appear exactly twice (such as $[1, 1, 2, 2, 3, 3]$), each difficulty requires $\lceil 2 / 3 \rceil = 1$ round, yielding total rounds equal to the number of distinct elements.
+
+### Anti-Patterns to Avoid
+- **Unconstrained Coin Change Dynamic Programming:**
+  Allocating a DP array up to the maximum frequency count. Because the closed-form formula $R(c) = \lfloor (c + 2) / 3 \rfloor$ runs in $O(1)$, general dynamic programming introduces unnecessary asymptotic overhead and allocations.
+- **Backtracking / Greedy Subtraction of 3 Without Safeguards:**
+  Greedily subtracting $3$ from $c$ until $c \le 0$ without handling the $c = 4$ case. Subtracting $3$ from $4$ leaves $1$, which mistakenly triggers an impossibility condition if not properly redirected to two pairs ($2 + 2$).
+- **Sorting the Entire Array:**
+  Sorting the array in $O(n \log n)$ time is unnecessary; a frequency hash map aggregates counts in linear time $O(n)$.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Frequency Aggregation:** A single linear pass through the array of length $n$ populates the frequency table: $O(n)$ operations.
+- **Round Calculation:** Iterating over the $|U|$ unique difficulty levels and applying the $O(1)$ arithmetic formula $\lfloor (c + 2) / 3 \rfloor$: $O(|U|) \le O(n)$ operations.
+- **Total Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of $\text{tasks}$, which is strictly optimal since every input element must be inspected.
+
+### Space Complexity
+- **Frequency Storage:** The hash map stores one integer key-value pair per unique difficulty level. In the worst case where all elements are distinct, the table holds $n$ entries.
+- **Total Space Complexity:** $\mathcal{O}(n)$ auxiliary memory for the frequency table.

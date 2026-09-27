@@ -1,155 +1,205 @@
 # Guided Example: Find Median from Data Stream
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-heap balanced partition, max-heap lower half routing via negated values, min-heap upper half balancing, and $O(1)$ median extraction on representative sequential stream numbers:
 
-- **Input:** `{"stream": [1, 2, 3, 4, 5]}`
-- **Required output:** `[1.0, 1.5, 2.0, 2.5, 3.0]`
+- **Input:** Stream of operations adding integers $[1, 2, 3, 4, 5]$ with interleaved `findMedian()` queries
+- **Required output:** Medians `[1.0, 1.5, 2.0, 2.5, 3.0]`
+  - After `[1]`: Median is $1.0$ (Odd count, single middle element)
+  - After `[1, 2]`: Median is $(1 + 2) / 2 = 1.5$ (Even count, mean of two middle elements)
+  - After `[1, 2, 3]`: Median is $2.0$
+  - After `[1, 2, 3, 4]`: Median is $(2 + 3) / 2 = 2.5$
+  - After `[1, 2, 3, 4, 5]`: Median is $3.0$
+- **Unordered Stream Insertion:** Adding elements out of order (e.g. $[5, 2, 4, 1, 3]$) maintains the exact same heap partition and yields identical medians
+- **Duplicate Values:** Equal stream elements are partitioned across the two heaps without breaking heap order
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates dynamic stream median tracking, proves how two complementary heaps maintain a split boundary around the median, details the logarithmic rebalancing mechanism, and achieves $O(\log N)$ per insertion with $O(1)$ median queries in $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
+Given a continuous data stream of numbers $[1, 2, 3, 4, 5]$:
+Compute the median after each number is inserted.
+- For an **odd** number of elements, the median is the single middle element.
+- For an **even** number of elements, the median is the arithmetic mean of the two middle elements.
 
-The objective is to compute `[1.0, 1.5, 2.0, 2.5, 3.0]` from `{"stream": [1, 2, 3, 4, 5]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Stream progression:
+Add 1: [1]             -> Median: 1.0
+Add 2: [1, 2]          -> Median: (1 + 2) / 2 = 1.5
+Add 3: [1, 2, 3]       -> Median: 2.0
+Add 4: [1, 2, 3, 4]    -> Median: (2 + 3) / 2 = 2.5
+Add 5: [1, 2, 3, 4, 5] -> Median: 3.0
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The $O(1)$ Query Bottleneck
+- Sorting the array upon each query takes $O(N \log N)$ time per query.
+- Maintaining an insertion-sorted list (via binary search) takes $O(\log N)$ to find position, but $O(N)$ to shift elements on insertion.
+- The **Two-Heap Architecture** divides the data into two equal halves:
+  - `max_heap` (Lower half of numbers): Root gives the maximum of the lower half.
+  - `min_heap` (Upper half of numbers): Root gives the minimum of the upper half.
+Both insertion and rebalancing take $O(\log N)$, while median calculation takes strictly $O(1)$!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Dual-Heap Data Structure
+1. `maxq`: Max-heap holding the smaller half of numbers (stored as negative values in Python `heapq`).
+   Max element is $- \text{maxq}[0]$.
+2. `minq`: Min-heap holding the larger half of numbers.
+   Min element is $\text{minq}[0]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Two System Invariants:
+1. **Ordering Invariant:** Every value in the lower half is $\le$ every value in the upper half:
+   $$
+   \forall x \in \text{lower}, \; \forall y \in \text{upper}: \quad x \le y
+   $$
+2. **Size Balance Invariant:** `minq` either has the same size as `maxq` (even total) or exactly one more element (odd total):
+   $$
+   |\text{minq}| = |\text{maxq}| \quad \text{or} \quad |\text{minq}| = |\text{maxq}| + 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Operations:
+
+#### `addNum(num)`
+1. **Route Candidate via Lower Half:**
+   Push $-\text{num}$ into `maxq`, pop the smallest negative value (which corresponds to the largest positive number in the candidate lower half), negate it back, and push it into `minq`:
+   $$
+   \text{heappush}(\text{minq}, \; -\text{heappushpop}(\text{maxq}, -\text{num}))
+   $$
+2. **Size Rebalancing:**
+   If `minq` has received too many elements ($|\text{minq}| - |\text{maxq}| > 1$):
+   Pop the minimum element from `minq` and move it to `maxq`:
+   $$
+   \text{heappush}(\text{maxq}, \; -\text{heappop}(\text{minq}))
+   $$
+
+#### `findMedian() -> float`
+- If $|\text{minq}| == |\text{maxq}|$ (even total count):
+  $$
+  \text{median} = \frac{\text{minq}[0] - \text{maxq}[0]}{2.0}
+  $$
+- If $|\text{minq}| > |\text{maxq}|$ (odd total count):
+  $$
+  \text{median} = \text{minq}[0]
+  $$
+
+> **Invariant.** The median is always accessible at the roots: $\text{minq}[0]$ for odd counts, and $\frac{\text{minq}[0] + (-\text{maxq}[0])}{2}$ for even counts.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The two invariants
-
-After every call to `addNum`, the data structure maintains two properties.
-
-First, the heaps form an ordered partition:
-
-$$
-\text{every lower-half value} \le \text{every upper-half value}.
-$$
-
-Second, their sizes are balanced so that `minq`, the upper half, either has the same number of elements as `maxq` or has exactly one more:
-
-$$
-\lvert\texttt{minq}\rvert = \lvert\texttt{maxq}\rvert
-$$
-
-or
-
-$$
-\lvert\texttt{minq}\rvert = \lvert\texttt{maxq}\rvert + 1.
-$$
-
-Giving the extra element to `minq` is a design choice. A symmetric implementation could give it to the lower heap, but the insertion and query formulas would then need to follow that opposite convention consistently.
-
-Together, these invariants expose the median at the two roots. If the total count is even, the two heaps have equal sizes, and the sorted middle pair consists of the largest lower value and the smallest upper value. If the total count is odd, `minq` has one extra value, and its smallest element is the single middle value.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"stream": [1, 2, 3, 4, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the two-heap evolution as numbers $[1, 2, 3, 4, 5]$ arrive:
+Initial state: `minq = []`, `maxq = []`.
 
 ---
 
-### Step 2: Routing a new number to the proper side
-
-The compact line
-
-`heappush(minq, -heappushpop(maxq, -num))`
-
-does several carefully ordered operations.
-
-Conceptually, treat `num` as a candidate for the lower half. Because `maxq` stores negated values, the code pushes `-num` into it. It then immediately pops the smallest stored negative value. The smallest negative represents the largest original value among the old lower half plus the new candidate. Negating that popped value converts it back to its original sign, and the outer `heappush` inserts it into `minq`.
-
-In plain language: temporarily place the new value with the lower values, remove the largest value from that candidate group, and send that largest value to the upper heap.
-
-This operation restores the ordering invariant regardless of how small or large `num` is:
-
-- If `num` is very large, it becomes the largest candidate and moves directly to `minq`; the old lower half stays unchanged.
-- If `num` belongs in the lower half, some previous lower-half maximum is displaced into `minq`, leaving `num` among the lower values.
-- If `num` equals boundary values, either copy may cross the boundary. Since equal values satisfy the non-strict ordering relation, the partition remains valid.
-
-After this routing step, every value left in `maxq` is no larger than every value in `minq`. However, `minq` has just received one element and may now exceed `maxq` by two elements.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Add Number $1$
+- Route:
+  - Push $-1$ into `maxq`. `heappushpop([], -1)` returns $-1$.
+  - Negate: $-(-1) = 1$. Push $1$ into `minq`.
+- Heap states: `minq = [1]` (size 1), `maxq = []` (size 0).
+- Size difference: $1 - 0 = 1 \le 1$ (Balanced).
+- **`findMedian()`:** Odd count ($1 > 0$) $\implies \text{minq}[0] = \mathbf{1.0}$.
 
 ---
 
-### Step 3: Restoring the size invariant
+### Step 2: Add Number $2$
+- Route:
+  - Push $-2$ into `maxq`. `heappushpop([], -2)` returns $-2$.
+  - Negate: $-(-2) = 2$. Push $2$ into `minq`.
+- Heap states before rebalance: `minq = [1, 2]` (size 2), `maxq = []` (size 0).
+- Size check: $2 - 0 = 2 > 1$ (**Exceeds balance limit!**).
+- Rebalance:
+  - $\text{heappop}(\text{minq})$ pops $1$.
+  - Push $-1$ into `maxq`.
+- Heap states: `minq = [2]` (size 1), `maxq = [-1]` (size 1).
+- **`findMedian()`:** Even count ($1 == 1$) $\implies \frac{\text{minq}[0] - \text{maxq}[0]}{2} = \frac{2 - (-1)}{2} = \mathbf{1.5}$.
 
-The condition `len(minq) - len(maxq) > 1` detects the only possible size violation. If it holds, the source removes `heappop(minq)`, the smallest upper-half value, negates it, and pushes it into `maxq`.
+---
 
-Moving the smallest upper value down is exactly the safe rebalance. It is no larger than the values remaining in `minq`, and it is at least as large as the existing lower values because the ordering invariant already held. Thus, it becomes the new boundary maximum of the lower half without mixing the two ordered groups.
+### Step 3: Add Number $3$
+- Route:
+  - Push $-3$ into `maxq = [-1]`.
+  - `heappushpop([-1], -3)`: `maxq` has $\{-3, -1\}$. Pops smallest negative ($-3$).
+  - Negate: $-(-3) = 3$. Push $3$ into `minq`.
+- Heap states: `minq = [2, 3]` (size 2), `maxq = [-1]` (size 1).
+- Size difference: $2 - 1 = 1 \le 1$ (Balanced).
+- **`findMedian()`:** Odd count ($2 > 1$) $\implies \text{minq}[0] = \mathbf{2.0}$.
 
-No opposite rebalance is required. The first routing line always sends one candidate to `minq`, and the previous valid size relation ensures `maxq` cannot become larger than `minq` afterward.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1.0, 1.5, 2.0, 2.5, 3.0]` |
+### Step 4: Add Number $4$
+- Route:
+  - Push $-4$ into `maxq = [-1]`. Pops $-4$.
+  - Negate: $-(-4) = 4$. Push $4$ into `minq`.
+- Heap states before rebalance: `minq = [2, 3, 4]` (size 3), `maxq = [-1]` (size 1).
+- Size check: $3 - 1 = 2 > 1$ (**Rebalance needed!**).
+- Rebalance:
+  - $\text{heappop}(\text{minq})$ pops minimum ($2$).
+  - Push $-2$ into `maxq`.
+- Heap states: `minq = [3, 4]` (size 2), `maxq = [-2, -1]` (size 2).
+- Lower half: $\{1, 2\}$ (stored as `[-2, -1]`, max is $2$).
+- Upper half: $\{3, 4\}$ (stored as `[3, 4]`, min is $3$).
+- **`findMedian()`:** Even count ($2 == 2$) $\implies \frac{3 - (-2)}{2} = \frac{3 + 2}{2} = \mathbf{2.5}$.
+
+---
+
+### Step 5: Add Number $5$
+- Route:
+  - Push $-5$ into `maxq = [-2, -1]`. Pops $-5$.
+  - Negate: $5$. Push $5$ into `minq`.
+- Heap states: `minq = [3, 4, 5]` (size 3), `maxq = [-2, -1]` (size 2).
+- Size difference: $3 - 2 = 1 \le 1$ (Balanced).
+- **`findMedian()`:** Odd count ($3 > 2$) $\implies \text{minq}[0] = \mathbf{3.0}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"stream": [1, 2, 3, 4, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1.0, 1.5, 2.0, 2.5, 3.0]` | Verified |
+```text
+Stream: [1, 2, 3, 4, 5]
+
+1. addNum(1) -> minq=[1], maxq=[]           -> median = 1.0
+2. addNum(2) -> minq=[2], maxq=[-1]         -> median = (2 + 1)/2 = 1.5
+3. addNum(3) -> minq=[2, 3], maxq=[-1]      -> median = 2.0
+4. addNum(4) -> minq=[3, 4], maxq=[-2, -1]  -> median = (3 + 2)/2 = 2.5
+5. addNum(5) -> minq=[3, 4, 5], maxq=[-2,-1]-> median = 3.0
+
+Results: [1.0, 1.5, 2.0, 2.5, 3.0]
+```
+
+| Step | `num` Added | Action Taken | `maxq` (Lower Half) | `minq` (Upper Half) | Heap Sizes $(|\text{maxq}|, |\text{minq}|)$ | Computed Median |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | 1 | Push to `minq` | `[]` | `[1]` | $(0, 1)$ | **1.0** |
+| 2 | 2 | Push to `minq`, rebalance to `maxq` | `[-1]` | `[2]` | $(1, 1)$ | **1.5** |
+| 3 | 3 | Route to `minq` | `[-1]` | `[2, 3]` | $(1, 2)$ | **2.0** |
+| 4 | 4 | Push to `minq`, rebalance to `maxq` | `[-2, -1]` | `[3, 4]` | $(2, 2)$ | **2.5** |
+| 5 | 5 | Route to `minq` | `[-2, -1]` | `[3, 4, 5]` | $(2, 3)$ | **3.0** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The ordering invariant ensures that all elements in `maxq` are $\le$ all elements in `minq`. Routing every new number through `maxq` first ensures that the largest candidate in the lower half is filtered into `minq`. Rebalancing moves the smallest element of `minq` into `maxq`, ensuring size parity while maintaining the boundary condition $\max(\text{lower}) \le \min(\text{upper})$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By mathematical definition, if a dataset is divided into two halves of equal size (or with the upper half having one extra element), the median is either the unique middle element ($\text{minq}[0]$) or the mean of the boundary elements ($\frac{\text{minq}[0] + \max(\text{lower})}{2}$). The roots of the two heaps provide these exact values.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort on every median query:** Appending is cheap, but each query can cost $O(n\log n)$. It repeats ordering work and is poor when medians are requested frequently.
-- **Keep one sorted list:** Binary search finds an insertion index in $O(\log n)$ time, but inserting into a Python list can shift $O(n)$ elements. Median lookup is then $O(1)$, with slower updates than the two-heap method.
-- **Balanced search tree with order statistics:** Such a tree can support logarithmic insertion and median selection, but Python has no built-in order-statistic tree, and implementing one is substantially more complex.
-- **Frequency buckets for values in `[0, 100]`:** Under the first follow-up's narrow value range, store 101 counts and scan the buckets for the middle rank. Updates become $O(1)$ and queries take $O(101)$, which is constant with respect to stream length.
-- **Buckets plus outlier structures:** If 99 percent of values lie in `[0, 100]`, counts can cover the dense range while separate ordered structures track values below 0 and above 100. Rank counts determine whether the median lies in the dense range or an outlier side, but the bookkeeping is more specialized.
-- **Reservoir sampling:** It can estimate a median with bounded storage, but the contract requires an exact answer within numerical tolerance, not a statistical approximation.
-- **Putting the extra element in the wrong heap:** This source gives the extra value to `minq`. If `maxq` had the extra element, returning `minq[0]` for odd sizes would be wrong.
-- **Forgetting negation:** `maxq[0]` is a stored negative number. The logical lower maximum is `-maxq[0]`, which explains the subtraction in the even-size formula.
-- **Negative stream values:** Negation still reverses their ordering correctly. For example, original values `-5` and `-2` are represented as 5 and 2 in the lower max-heap mechanism; Python's min-heap root still corresponds to the largest original lower value after the sign conversion.
-- **Duplicate values:** Equal elements may reside on either side of the partition. The invariant uses `<=`, so duplicates do not affect correctness or require unique keys.
-- **One inserted value:** It resides in `minq`, which has one extra element. `findMedian` returns that value directly.
-- **Two inserted values:** The heaps have equal sizes. Their roots are the lower and upper values, and the formula returns their arithmetic mean.
-- **Odd number of values:** `minq` has exactly one extra element, making its root the unique median.
-- **Even number of values:** Both heaps have equal sizes, so the mean of their boundary roots is required even when that result is fractional.
-- **Large positive and negative bounds:** The inputs lie between $-10^5$ and $10^5$. Their sum and negation are safe in Python integers, and `/ 2` produces a floating-point result as the return contract expects.
-- **Query before insertion:** The source does not guard against empty roots because the problem explicitly guarantees at least one stored element before `findMedian` is called.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Negation Arithmetic in Max-Heap:** Python's `heapq` is a min-heap. Storing negative values simulates a max-heap: $\max(\text{lower}) = -\text{maxq}[0]$. When computing the even-size median, subtracting $-\text{maxq}[0]$ correctly adds the positive value: `minq[0] - maxq[0]`.
+- **Integer Division Trap:** In languages like Python 2, C++, or Java, dividing integers using `/ 2` performs floor truncation (e.g. $5 / 2 = 2$). Floating-point division `/ 2.0` is required to produce $2.5$.
+- **Direct Insertion without Boundary Check:** Pushing directly to `minq` or `maxq` based solely on size without checking the value can invert the partition (e.g. putting a small number into `minq`). The `heappushpop` routing guarantees the boundary invariant holds before sizing is resolved.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Suppose $k$ values have already been inserted. Heap insertion, removal, and combined push-pop each take $O(\log k)$ time in the worst case. `addNum` performs one `heappushpop`, one push into `minq`, and, when needed, one pop and one push for rebalancing. The number of heap operations per insertion is constant, so a single insertion costs $O(\log k)$ time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `addNum(num)`: $O(\log N)$ logarithmic time. The method executes at most two heap pushes and two heap pops. Each heap operation on a heap of size $N/2$ costs $O(\log N)$.
+  - `findMedian()`: $O(1)$ constant time. Accesses the roots of the heaps at index `0` and performs basic arithmetic.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the $N$ stream elements distributed across `minq` and `maxq`.

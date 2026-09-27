@@ -1,105 +1,176 @@
 # Guided Example: Construct the Rectangle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step mathematical geometric bounding ($W \le \sqrt{area} \le L$), square-root ceiling initialization ($w = \lfloor\sqrt{area}\rfloor$), descending factor search ($area \pmod w == 0$), minimal difference gap guarantee ($L - W$), and quotient pair emission on representative area targets:
 
-- **Input:** `{"area": 4}`
+- **Input:** $area = 4$
 - **Required output:** `[2, 2]`
+  - Constraints:
+    1. $L \times W = area$
+    2. $L \ge W$
+    3. The difference $L - W$ must be minimized.
+  - **Mathematical Analysis:**
+    - Since $L \ge W$ and $L \times W = area$:
+      $$
+      W^2 \le L \times W = area \implies W \le \sqrt{area}
+      $$
+    - The difference $L - W = \frac{area}{W} - W$ is a strictly decreasing function of $W$ for $W \in (0, \sqrt{area}]$.
+    - Therefore, to minimize $L - W$, **$W$ must be as large as possible** ($\le \sqrt{area}$).
+  - **Execution Trace:**
+    - Calculate starting width:
+      $$
+      w = \lfloor\sqrt{4}\rfloor = \mathbf{2}
+      $$
+    - Check divisibility:
+      $$
+      4 \pmod 2 == 0 \quad (\mathbf{True})
+      $$
+    - Length:
+      $$
+      L = 4 / 2 = \mathbf{2}
+      $$
+    - Pair: $[L, W] = \mathbf{[2, 2]}$ with difference $L - W = 0$.
+- **Prime Number Instance ($area = 37$):**
+  - Start at $w = \lfloor\sqrt{37}\rfloor = 6$:
+    - $37 \pmod 6 = 1 \ne 0 \implies w \leftarrow 5$
+    - $37 \pmod 5 = 2 \ne 0 \implies w \leftarrow 4$
+    - $37 \pmod 4 = 1 \ne 0 \implies w \leftarrow 3$
+    - $37 \pmod 3 = 1 \ne 0 \implies w \leftarrow 2$
+    - $37 \pmod 2 = 1 \ne 0 \implies w \leftarrow 1$
+    - $37 \pmod 1 = 0 \implies L = 37 / 1 = 37$
+  - Minimal difference pair: $\mathbf{[37, 1]}$
+- **Large Composite Instance ($area = 122122$):**
+  - $\sqrt{122122} \approx 349.46 \implies$ scans downwards from $349$ to find the first divisor.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates mathematical divisor optimization via monotonic gap functions, mathematically proves why descending from $\sqrt{area}$ guarantees the minimal aspect ratio difference, and derives $O(\sqrt{area})$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A web developer needs to know how to design a web page's size. So, given a specific rectangular web page’s area, your job by now is to design a rectangular web page, whose length L and width W satisfy the following requirements:
+Given an integer $area$:
+Design a rectangular page with length $L$ and width $W$ satisfying:
+1. The area of the rectangle must equal $area$: $L \times W = area$.
+2. The length $L$ must be at least the width $W$: $L \ge W$.
+3. The difference $L - W$ should be as small as possible.
+Return $[L, W]$.
 
-The objective is to compute `[2, 2]` from `{"area": 4}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Given area = 4:
+  Possible factor pairs (L >= W):
+    [4, 1] -> Difference L - W = 3
+    [2, 2] -> Difference L - W = 0  <- Minimal!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Best rectangle: [2, 2]
+```
+
+### The Monotonicity of the Aspect Ratio Gap
+Consider the difference function as a function of the width $W$:
+$$
+f(W) = L - W = \frac{area}{W} - W
+$$
+Taking the derivative with respect to $W$:
+$$
+f'(W) = -\frac{area}{W^2} - 1 < 0
+$$
+- Because $f'(W)$ is strictly negative for all $W > 0$, the difference $L - W$ is **strictly monotonically decreasing** as $W$ increases!
+- Since $L \ge W \implies W \le \sqrt{area}$, the maximum possible value $W$ can take is $\lfloor\sqrt{area}\rfloor$.
+- Thus, the first integer divisor $W$ we encounter when scanning downwards from $\lfloor\sqrt{area}\rfloor$ to $1$ is **guaranteed to yield the minimum possible difference $L - W$**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Square-Root Search Algorithm:
+1. Initialize width candidate:
+   $$
+   w = \lfloor\sqrt{area}\rfloor
+   $$
+2. While $area \pmod w \ne 0$:
+   $$
+   w \leftarrow w - 1
+   $$
+3. Compute length:
+   $$
+   L = area / w
+   $$
+4. Return $[L, w]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Optimality Invariant.** Any other factor pair $(L', W')$ with $W' < W$ must satisfy $L' > L$, yielding a strictly larger gap $L' - W' > L - W$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The area condition requires `L * W = area`, so `L` and `W` must form an integer factor pair. The condition `L >= W` means `W` is the smaller factor. Among all such pairs, the one with the smallest difference lies closest to a square.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"area": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $area = 4$:
 
 ---
 
-### Step 2: Core Step 2
-
-To see why, write `L = area / W` for a valid divisor `W`. As `W` grows from `1` toward `sqrt(area)`, `L` decreases while `W` increases. Their difference
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize $w$ at Square Root
+$$
+w = \lfloor\sqrt{4}\rfloor = 2
+$$
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Test Divisibility
+$$
+area \pmod w = 4 \pmod 2 = 0
+$$
+Since the remainder is 0, $w = 2$ is an exact divisor of $4$.
 
-therefore becomes smaller. Once `W` exceeds the square root, the factors swap order and violate the chosen `L >= W` orientation. Consequently, the desired width is the largest divisor of `area` that does not exceed `sqrt(area)`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 2]` |
+### Step 3: Compute Complementary Dimension $L$
+$$
+L = \frac{area}{w} = \frac{4}{2} = 2
+$$
+Check constraints:
+- $L \times W = 2 \times 2 = 4 == area$ (Pass).
+- $L \ge W \iff 2 \ge 2$ (Pass).
+- $L - W = 0$ (Absolute global minimum).
+
+---
+
+### Final Pair:
+$$
+\mathbf{[2, 2]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"area": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 2]` | Verified |
+| Target Area | Initial $\lfloor\sqrt{area}\rfloor$ | Divisor Candidates Tested | First Divisor $W$ Found | Complement $L = area / W$ | Difference $L - W$ | Result $[L, W]$ |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| **$4$** | $2$ | $2$ | **$2$** | $2$ | $0$ | **`[2, 2]`** |
+| **$6$** | $2$ | $2$ | **$2$** | $3$ | $1$ | **`[3, 2]`** |
+| **$37$** | $6$ | $6, 5, 4, 3, 2, 1$ | **$1$** | $37$ | $36$ | **`[37, 1]`** |
+| **$100$** | $10$ | $10$ | **$10$** | $10$ | $0$ | **`[10, 10]`** |
+| **$12$** | $3$ | $3$ | **$3$** | $4$ | $1$ | **`[4, 3]`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Unit Area ($area = 1$):** $w = \lfloor\sqrt{1}\rfloor = 1 \implies L = 1 \implies \mathbf{[1, 1]}$.
+- **Prime Areas ($area = 37$):** No factors exist except $1$ and $37$. Loop decrements all the way to $w = 1 \implies \mathbf{[37, 1]}$.
+- **Perfect Squares ($area = K^2$):** $\sqrt{area} = K$ divides $area$ on the very first attempt $\implies \mathbf{[K, K]}$ with optimal difference $0$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Search upward from one:** Every divisor can be remembered as the latest width, but this always scans to the square root. Descending search can stop as soon as the optimal divisor appears.
-- **Enumerate all factor pairs:** This is unnecessary because factor closeness is monotonic as the smaller factor approaches the square root.
-- **Exact integer square root:** `math.isqrt(area)` would compute the starting width without floating point and is preferable if the numeric constraint were much larger.
-- **Perfect square:** The square root divides immediately, returning equal dimensions and the minimum possible difference zero.
-- **Prime area:** Only one is a feasible width below the square root, so the answer is `[area, 1]`.
-- **`area = 1`:** The starting width is one and the result is `[1, 1]`.
-- **Ordering requirement:** Returning `[w, area // w]` would reverse length and width for non-square areas. The source returns the larger quotient first.
-- **Guaranteed termination:** Width one divides every positive area, so the decrement loop cannot pass below one under the stated constraints.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Searching from $1$ Upwards to $\sqrt{area}$:** Scanning $1, 2, 3, \dots$ requires keeping track of the best factor seen so far and doesn't terminate early. Scanning downwards from $\sqrt{area}$ terminates on the very first hit.
+- **Floating-Point Imprecision in Sqrt:** For huge areas ($10^7$), rounding errors in `float(sqrt(area))` could theoretically overshoot by $1$. Using integer truncation `int(sqrt(area))` is safe and exact.
+- **Returning $[W, L]$ Instead of $[L, W]$:** The problem requires $L \ge W$, meaning the larger number must be the first element of the array.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\sqrt{\textit{area}})$. The loop starts at approximately `sqrt(area)` and may decrement to one. In the worst case, such as a prime area, it performs $O(\sqrt{\textit{area}})$ divisibility tests. Each test is treated as constant-time under the standard fixed-width integer model, giving the manifest's $O(\sqrt{\textit{area}})$ time bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - In the worst case (prime number), the while loop decrements $w$ from $\lfloor\sqrt{area}\rfloor$ down to $1$.
+  - Number of iterations is bounded by $\sqrt{area}$.
+  - Total Time: $\mathcal{O}(\sqrt{area})$. For $area \le 10^7$, $\sqrt{10^7} \approx 3,162$ operations, completing in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ extra space using scalar integers.

@@ -1,129 +1,152 @@
 # Guided Example: Calculate Amount Paid in Taxes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"brackets": [[3, 50], [7, 10], [12, 25]], "income": 10}`
-- **Required output:** `2.65`
+We are given a 0-indexed 2D integer array $brackets$ where each entry $brackets[i] = [upper_i, percent_i]$ specifies the upper financial threshold $upper_i$ and the marginal percentage rate $percent_i$ of the $i^{\text{th}}$ tax bracket. The array is strictly sorted in ascending order of $upper_i$. We are also given an integer $income$ representing total earnings.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Taxation is progressive:
+- The first bracket taxes income earned in the interval $[0, upper_0]$ at rate $percent_0 / 100$.
+- Each subsequent bracket $i \ge 1$ taxes income earned in the half-open interval $(upper_{i-1}, upper_i]$ at rate $percent_i / 100$.
+- Once total earnings are fully accounted for, no further tax is assessed on remaining higher brackets.
+
+Our objective is to calculate the total tax paid, formatted as a floating-point number.
+
+Consider the representative problem instance:
+$$brackets = [[3, 50], [7, 10], [12, 25]], \quad income = 10$$
+
+Let us decompose the earnings across progressive tiers:
+- **Bracket $0$ ($[0, 3]$ at $50\%$):**
+  - Income falling into this bracket: $\min(10, 3) - 0 = 3$.
+  - Tax assessed: $3 \times \frac{50}{100} = 1.50$.
+- **Bracket $1$ ($[3, 7]$ at $10\%$):**
+  - Income falling into this bracket: $\min(10, 7) - 3 = 7 - 3 = 4$.
+  - Tax assessed: $4 \times \frac{10}{100} = 0.40$.
+- **Bracket $2$ ($[7, 12]$ at $25\%$):**
+  - Income falling into this bracket: $\min(10, 12) - 7 = 10 - 7 = 3$.
+  - Tax assessed: $3 \times \frac{25}{100} = 0.75$.
+
+Summing taxes across all brackets:
+$$\text{Total Tax} = 1.50 + 0.40 + 0.75 = 2.65$$
+
+```mermaid
+flowchart TD
+    accTitle: Progressive Tax Marginal Slice Accumulation
+    accDescr: Sequential pipeline slicing total income across progressive tax brackets and accumulating proportional tax dues.
+    A["Total Income = 10, prev = 0, tax = 0.0"] --> B["Bracket 0: upper=3, rate=50%"]
+    B --> C["Taxable slice: min(10, 3) - 0 = 3. Tax += 3 * 0.50 = 1.50"]
+    C --> D["Bracket 1: upper=7, rate=10%"]
+    D --> E["Taxable slice: min(10, 7) - 3 = 4. Tax += 4 * 0.10 = 0.40"]
+    E --> F["Bracket 2: upper=12, rate=25%"]
+    F --> G["Taxable slice: min(10, 12) - 7 = 3. Tax += 3 * 0.25 = 0.75"]
+    G --> H["Total Tax Accumulated: 1.50 + 0.40 + 0.75 = 2.65"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $i^{\text{th}}$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
+### Progressive Income Partitioning
 
-The objective is to compute `2.65` from `{"brackets": [[3, 50], [7, 10], [12, 25]], "income": 10}` while avoiding redundant calculations and unnecessary overhead.
+Let the bracket boundaries be an ordered sequence of real coordinates:
+$$u_0 = 0 < u_1 < u_2 < \dots < u_m$$
+where $u_i = brackets[i - 1][0]$ for $i \ge 1$, with corresponding tax rates $r_i = percent_{i-1} / 100$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The total income $I \ge 0$ induces an active interval $[0, I]$. The intersection of $[0, I]$ with each bracket interval $[u_{i-1}, u_i]$ defines the taxable quantum $\Delta_i$ for tier $i$:
+$$\Delta_i = \max\big(0, \, \min(I, u_i) - u_{i-1}\big)$$
 
----
+The total tax liability is the linear combination of these marginal slices:
+$$\mathcal{T}(I) = \sum_{i=1}^m \Delta_i \cdot r_i = \sum_{i=1}^m \max\big(0, \, \min(I, u_i) - u_{i-1}\big) \cdot \frac{percent_{i-1}}{100}$$
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Tax only the slice belonging to each bracket
-
-Tax brackets are progressive. The rate for one bracket applies only to income above the preceding upper bound and at or below the current upper bound.
-
-`prev` stores the previous bracket's upper bound, beginning at zero. For current `upper`, the nominal bracket width is `upper-prev`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Bracket Classification | Condition on Income $I$ | Taxable Slice $\Delta_i$ | Contribution to Total Tax |
 |---|---|---|---|
-| Input Slice | `{"brackets": [[3, 50], [7, 10], [12, 25]], "income": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Fully Covered Bracket | $I \ge u_i$ | $u_i - u_{i-1}$ | $(u_i - u_{i-1}) \cdot r_i$ |
+| Partially Covered Bracket | $u_{i-1} < I < u_i$ | $I - u_{i-1}$ | $(I - u_{i-1}) \cdot r_i$ |
+| Untouched Bracket | $I \le u_{i-1}$ | $0$ | $0$ |
 
 ---
 
-### Step 2: Cap the taxable endpoint at income
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-`min(income,upper)` is the highest earned dollar boundary that lies in this bracket or below. Subtracting `prev` gives the amount of income inside the current interval when income has reached it.
+Let us trace the computation on $brackets = [[3, 50], [7, 10], [12, 25]]$ with $income = 10$.
+Initialize $prev = 0$, $ans = 0$.
 
-If income is already below `prev`, the subtraction is negative. `max(0,...)` clamps it to zero. The exact taxable width is therefore
+### Step 1: Evaluate Bracket $0$ ($upper = 3, percent = 50\%$)
+- Bracket lower bound: $prev = 0$.
+- Bracket upper bound: $upper = 3$.
+- Effective taxable cap: $\min(income, upper) = \min(10, 3) = 3$.
+- Taxable width: $3 - prev = 3 - 0 = 3$.
+- Marginal tax generated: $3 \times 50 = 150$ cents.
+- Update baseline: $prev \leftarrow 3$.
+- Running tax accumulator: $ans \leftarrow 150$.
 
-`max(0,min(income,upper)-prev)`.
+### Step 2: Evaluate Bracket $1$ ($upper = 7, percent = 10\%$)
+- Bracket lower bound: $prev = 3$.
+- Bracket upper bound: $upper = 7$.
+- Effective taxable cap: $\min(10, 7) = 7$.
+- Taxable width: $7 - prev = 7 - 3 = 4$.
+- Marginal tax generated: $4 \times 10 = 40$ cents.
+- Update baseline: $prev \leftarrow 7$.
+- Running tax accumulator: $ans \leftarrow 150 + 40 = 190$.
 
-This one expression handles full, partial, and untouched brackets.
+### Step 3: Evaluate Bracket $2$ ($upper = 12, percent = 25\%$)
+- Bracket lower bound: $prev = 7$.
+- Bracket upper bound: $upper = 12$.
+- Effective taxable cap: $\min(10, 12) = 10$.
+- Taxable width: $10 - prev = 10 - 7 = 3$.
+- Marginal tax generated: $3 \times 25 = 75$ cents.
+- Update baseline: $prev \leftarrow 12$.
+- Running tax accumulator: $ans \leftarrow 190 + 75 = 265$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Accumulate percentage numerators
-
-The code multiplies taxable dollars by the integer `percent` and adds the product to `ans`. At this stage, `ans` is measured in dollar-percent units, one hundred times the monetary tax.
-
-Only after every bracket does the method return `ans/100`, converting the accumulated percentage numerator into the requested monetary value.
-
-Delaying division avoids repeated floating operations inside the loop.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2.65` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"brackets": [[3, 50], [7, 10], [12, 25]], "income": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2.65` | Verified |
+### Step 4: Final Normalization
+Convert cents to currency units:
+$$\frac{ans}{100} = \frac{265}{100} = 2.65$$
+Return $2.65$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Break after reaching income:** Once `upper>=income`, later brackets contribute zero; an early return can reduce practical work.
-- **Divide per bracket:** It is mathematically equivalent but introduces more floating-point operations.
-- **Apply one marginal rate to all income:** That is not progressive taxation and overtaxes lower slices.
-- **Zero income:** Every taxable width is zero.
-- **Zero-percent bracket:** Its slice is processed but contributes zero.
-- **Income exactly at an upper bound:** That bracket is fully taxed and the next has zero width.
-- **Income inside a bracket:** `min` includes only the partial slice.
-- **Income beyond several brackets:** Earlier bracket widths are fully included.
-- **Last bracket guarantee:** It ensures all income is covered by the schedule.
-- **Strictly increasing bounds:** They make every nominal width positive and prevent overlap.
-- **Rates up to 100:** Multiplication remains direct; 100 percent taxes the full slice amount.
-- **Input preservation:** Bracket rows are read in their supplied sorted order.
-- **First bracket:** `prev=0` makes its taxable width begin at the first earned dollar boundary without a special case.
-- **Later zero contributions:** Updating `prev` even after income is exhausted is harmless because `max(0,...)` continues to return zero.
-- **Integer numerator:** Before the final division, `ans` is exact integer arithmetic, so no rounding accumulates between brackets.
-- **Accepted tolerance:** Returning a float after one division satisfies the problem's numerical-output contract.
-- **Income equals zero:** The loop may still visit every bracket, but it never creates a positive taxable slice.
-- **Partial first bracket:** `min(income,upper)` taxes only the earned amount rather than the entire first upper bound.
-- **No deductions or credits:** The source model contains only progressive slices; no other adjustment belongs in the computation.
-- **Unsorted extension:** The formula assumes the guaranteed increasing bounds; arbitrary order could make `prev` invalid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Bracket Index $i$ | Lower Bound $prev$ | Upper Bound $upper$ | Capped Limit $\min(I, upper)$ | Taxable Slice $\Delta$ | Marginal Rate | Incremental Tax | Cumulative Tax Due |
+|---|---|---|---|---|---|---|---|
+| Init | - | - | - | - | - | - | $0.00$ |
+| $0$ | $0$ | $3$ | $3$ | $3$ | $50\%$ | $1.50$ | $1.50$ |
+| $1$ | $3$ | $7$ | $7$ | $4$ | $10\%$ | $0.40$ | $1.90$ |
+| $2$ | $7$ | $12$ | $10$ | $3$ | $25\%$ | $0.75$ | $2.65$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(b)$. Let `b` be the number of brackets. The exact method visits all `b` rows and performs constant arithmetic for each, so time is `O(b)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Conservation of Total Earnings
+Because $brackets$ forms a contiguous partition of the positive real line $[0, u_m]$, the sum of taxable portions across all brackets satisfies:
+$$\sum_{i=1}^m \Delta_i = \sum_{i=1}^m \max(0, \min(I, u_i) - u_{i-1}) = \min(I, u_m) = I$$
+(since income does not exceed the maximal bracket). Every dollar earned is taxed exactly once at its appropriate marginal rate. No income is double-taxed or exempt from classification.
+
+### Numerical Stability
+Accumulating the product $\Delta_i \times percent_i$ using integer arithmetic and performing a single floating-point division by $100$ at the end minimizes intermediate floating-point rounding errors.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Applying Flat Tax to Entire Income
+A common conceptual mistake is taxing the entire income by the bracket rate corresponding to the top bracket reached (e.g. $10 \times 25\% = 2.50$). Progressive taxation taxes each segment strictly within its own marginal interval.
+
+### Edge Case: Zero Income ($income = 0$)
+When $income = 0$, $\min(0, upper_i) = 0$ for all $i$. The expression $\max(0, 0 - prev) = 0$ for every bracket, correctly returning $0.00$.
+
+### Edge Case: Income Exactly Matches a Bracket Boundary
+If $income = 7$, bracket $0$ taxes $[0, 3]$, bracket $1$ taxes $[3, 7]$, and bracket $2$ has $\min(7, 12) - 7 = 0$, correctly contributing $0$ tax.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- The algorithm performs a single pass over the $B$ entries in the $brackets$ array.
+- For each bracket, computing $\min$, $\max$, subtraction, and multiplication takes $O(1)$ time.
+- **Overall Time Complexity:** $O(B)$ where $B$ is the number of tax brackets (typically $B \le 100$), executing instantaneously.
+
+### Space Complexity
+- Only two scalar registers ($prev$ and $ans$) are maintained.
+- **Auxiliary Space Complexity:** strictly $O(1)$ constant memory.

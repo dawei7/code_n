@@ -1,131 +1,205 @@
 # Guided Example: Average Time of Process per Machine
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational aggregation and mathematical equivalence of process execution intervals, prove the Signed Sum Aggregation Theorem and the Process Cohort Mean Invariant, and walk through the evaluation across representative relational instances:
 
-- **Input:** `{"tables": {"Activity": [{"machine_id": 0, "process_id": 0, "activity_type": "start", "timestamp": 0.712}, {"machine_id": 0, "process_id": 0, "activity_type": "end", "timestamp": 1.52}, {"machine_id": 0, "process_id": 1, "activity_type": "start", "timestamp": 3.14}, {"machine_id": 0, "process_id": 1, "activity_type": "end", "timestamp": 4.12}, {"machine_id": 1, "process_id": 0, "activity_type": "start", "timestamp": 0.55}, {"machine_id": 1, "process_id": 0, "activity_type": "end", "timestamp": 1.55}, {"machine_id": 1, "process_id": 1, "activity_type": "start", "timestamp": 0.43}, {"machine_id": 1, "process_id": 1, "activity_type": "end", "timestamp": 1.42}, {"machine_id": 2, "process_id": 0, "activity_type": "start", "timestamp": 4.1}, {"machine_id": 2, "process_id": 0, "activity_type": "end", "timestamp": 4.512}, {"machine_id": 2, "process_id": 1, "activity_type": "start", "timestamp": 2.5}, {"machine_id": 2, "process_id": 1, "activity_type": "end", "timestamp": 5.0}]}}`
-- **Required output:** `{"columns": ["machine_id", "processing_time"], "rows": [[0, 0.894], [1, 0.995], [2, 1.456]]}`
+- **Representative Instance 1 (Three Machines with Parallel Processes):**
+  - Input Table `Activity`:
+    - Machine $0$:
+      - Process $0$: `start` at $0.712$, `end` at $1.520$ $\implies$ duration: $1.520 - 0.712 = 0.808$.
+      - Process $1$: `start` at $3.140$, `end` at $4.120$ $\implies$ duration: $4.120 - 3.140 = 0.980$.
+      - Mean duration: $\frac{0.808 + 0.980}{2} = \frac{1.788}{2} = \mathbf{0.894}$.
+    - Machine $1$:
+      - Process $0$: `start` at $0.550$, `end` at $1.550$ $\implies$ duration: $1.550 - 0.550 = 1.000$.
+      - Process $1$: `start` at $0.430$, `end` at $1.420$ $\implies$ duration: $1.420 - 0.430 = 0.990$.
+      - Mean duration: $\frac{1.000 + 0.990}{2} = \frac{1.990}{2} = \mathbf{0.995}$.
+    - Machine $2$:
+      - Process $0$: `start` at $4.100$, `end` at $4.512$ $\implies$ duration: $4.512 - 4.100 = 0.412$.
+      - Process $1$: `start` at $2.500$, `end` at $5.000$ $\implies$ duration: $5.000 - 2.500 = 2.500$.
+      - Mean duration: $\frac{0.412 + 2.500}{2} = \frac{2.912}{2} = \mathbf{1.456}$.
+  - **Required Output:**
+    - `(0, 0.894)`
+    - `(1, 0.995)`
+    - `(2, 1.456)`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Single Process Machine):**
+  - Input: Machine $7$ runs Process $4$ (`start` at $1.250$, `end` at $3.750$).
+  - Elapsed duration: $3.750 - 1.250 = 2.500$.
+  - Mean duration: $\frac{2.500}{1} = \mathbf{2.500}$.
+  - **Required Output:** `(7, 2.5)`.
+
+- **Representative Instance 3 (Three-Decimal Precision Rounding):**
+  - Input: Machine $3$ runs Process $1$ ($0.000 \to 1.002$, duration $1.002$) and Process $2$ ($2.000 \to 3.006$, duration $1.006$).
+  - Total process duration: $1.002 + 1.006 = 2.008$.
+  - Mean duration: $\frac{2.008}{2} = \mathbf{1.004}$.
+  - **Required Output:** `(3, 1.004)`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Activity`
+The `Activity` relation records lifecycle events of processes executed across distinct machines. Each record specifies a `machine_id`, a `process_id`, an `activity_type` in $\{\text{'start'}, \text{'end'}\}$, and a continuous `timestamp`. The primary key is the composite tuple `(machine_id, process_id, activity_type)`.
 
-The objective is to compute `{"columns": ["machine_id", "processing_time"], "rows": [[0, 0.894], [1, 0.995], [2, 1.456]]}` from `{"tables": {"Activity": [{"machine_id": 0, "process_id": 0, "activity_type": "start", "timestamp": 0.712}, {"machine_id": 0, "process_id": 0, "activity_type": "end", "timestamp": 1.52}, {"machine_id": 0, "process_id": 1, "activity_type": "start", "timestamp": 3.14}, {"machine_id": 0, "process_id": 1, "activity_type": "end", "timestamp": 4.12}, {"machine_id": 1, "process_id": 0, "activity_type": "start", "timestamp": 0.55}, {"machine_id": 1, "process_id": 0, "activity_type": "end", "timestamp": 1.55}, {"machine_id": 1, "process_id": 1, "activity_type": "start", "timestamp": 0.43}, {"machine_id": 1, "process_id": 1, "activity_type": "end", "timestamp": 1.42}, {"machine_id": 2, "process_id": 0, "activity_type": "start", "timestamp": 4.1}, {"machine_id": 2, "process_id": 0, "activity_type": "end", "timestamp": 4.512}, {"machine_id": 2, "process_id": 1, "activity_type": "start", "timestamp": 2.5}, {"machine_id": 2, "process_id": 1, "activity_type": "end", "timestamp": 5.0}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Table Schema:
+  Activity (machine_id, process_id, activity_type, timestamp)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Problem Objective:
+  Compute the average duration of a process for each machine_id:
+    processing_time = (Total time across all processes on machine) / (Number of processes on machine)
+  Round the resulting float to exactly 3 decimal places.
+```
+
+The pedagogical focus centers on two equivalent relational formulation paradigms:
+1. **The Pair-Matching Self-Join Paradigm:**
+   Match each `start` record with its corresponding `end` record sharing the same `(machine_id, process_id)`, compute row-level differences $t_{\text{end}} - t_{\text{start}}$, and group by `machine_id` to aggregate via the arithmetic mean.
+2. **The Signed Single-Pass Aggregation Paradigm:**
+   Avoid table self-joins altogether by observing that subtraction distributes over summation. Each `start` timestamp contributes $-t$, and each `end` timestamp contributes $+t$. Because each process generates exactly two records, the average of signed timestamps across all $2K$ rows equals half the mean process duration. Multiplying by $2$ recovers the exact mean in a single scan.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Aggregation Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Relational Processing Time Pipeline
+    accDescr: Diagram illustrating both self-join and signed-timestamp aggregation strategies to derive machine processing times.
+    Source["Input Table Activity\n(machine_id, process_id, activity_type, timestamp)"] --> Choice{"Aggregation Strategy"}
+    
+    Choice -->|"Approach A: Self-Join"| FilterStart["Filter A1: activity_type = 'start'"]
+    Choice -->|"Approach A: Self-Join"| FilterEnd["Filter A2: activity_type = 'end'"]
+    FilterStart --> JoinOnKey["Inner Join on\nmachine_id AND process_id"]
+    FilterEnd --> JoinOnKey
+    JoinOnKey --> CalcDiff["Compute duration = A2.timestamp - A1.timestamp"]
+    CalcDiff --> GroupJoin["Group by machine_id\nCompute AVG(duration)"]
+    GroupJoin --> RoundRes["ROUND(AVG(duration), 3)"]
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+    Choice -->|"Approach B: Signed Sum"| MapSigned["Project signed value:\nw = (activity_type == 'start' ? -timestamp : timestamp)"]
+    MapSigned --> GroupSigned["Group by machine_id\nCompute raw_avg = AVG(w)"]
+    GroupSigned --> ScaleRes["Scale by 2:\nprocessing_time = ROUND(raw_avg * 2, 3)"]
+    
+    RoundRes --> Emit["Emit (machine_id, processing_time)"]
+    ScaleRes --> Emit
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### The Signed Sum Aggregation Theorem
+
+Let machine $m$ execute a set of $K_m$ distinct processes $\mathcal{P}_m = \{p_1, p_2, \dots, p_{K_m}\}$.
+For each process $p \in \mathcal{P}_m$, the table contains exactly one record with $\text{activity\_type} = \text{'start'}$ at timestamp $t_{\text{start}}(m, p)$ and one record with $\text{activity\_type} = \text{'end'}$ at timestamp $t_{\text{end}}(m, p)$, where $t_{\text{end}}(m, p) > t_{\text{start}}(m, p)$.
+
+1. **Definition of Machine Mean Duration:**
+   The true mean duration $\overline{D}_m$ per process on machine $m$ is:
+   $$
+   \overline{D}_m = \frac{1}{K_m} \sum_{p \in \mathcal{P}_m} \left( t_{\text{end}}(m, p) - t_{\text{start}}(m, p) \right)
+   $$
+
+2. **Equivalence of Signed Relational Average:**
+   Define the signed value function for any row $r$:
+   $$
+   w(r) = \begin{cases} -r.\text{timestamp} & \text{if } r.\text{activity\_type} = \text{'start'} \\ +r.\text{timestamp} & \text{if } r.\text{activity\_type} = \text{'end'} \end{cases}
+   $$
+   The total number of rows belonging to machine $m$ in `Activity` is $N_m = 2 K_m$.
+   The relational average of $w(r)$ over all records belonging to machine $m$ is:
+   $$
+   \text{AVG}_{r \in \text{Activity}_m} [w(r)] = \frac{1}{2 K_m} \sum_{r \in \text{Activity}_m} w(r) = \frac{1}{2 K_m} \left( \sum_{p \in \mathcal{P}_m} t_{\text{end}}(m, p) - \sum_{p \in \mathcal{P}_m} t_{\text{start}}(m, p) \right)
+   $$
+   Factoring out $\frac{1}{2}$:
+   $$
+   \text{AVG}_{r \in \text{Activity}_m} [w(r)] = \frac{1}{2} \cdot \left[ \frac{1}{K_m} \sum_{p \in \mathcal{P}_m} (t_{\text{end}}(m, p) - t_{\text{start}}(m, p)) \right] = \frac{1}{2} \overline{D}_m
+   $$
+   Therefore:
+   $$
+   \overline{D}_m = 2 \times \text{AVG}_{r \in \text{Activity}_m} [w(r)]
+   $$
+
+3. **Invariance to Row Ordering:**
+   Because the relational operators `SUM` and `AVG` are commutative and associative multisets over finite sets of real numbers, the computation produces identical results regardless of physical table order, arrival interleaving, or process ID sequence.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Convert each activity row into a signed contribution
+### Trace on Representative Instance 1 (Machine 0 Partition)
 
-For one process, processing time is
+Rows for `machine_id = 0`:
+- Row 1: `process_id = 0, activity_type = 'start', timestamp = 0.712`
+- Row 2: `process_id = 0, activity_type = 'end', timestamp = 1.520`
+- Row 3: `process_id = 1, activity_type = 'start', timestamp = 3.140`
+- Row 4: `process_id = 1, activity_type = 'end', timestamp = 4.120`
 
-$$
-\text{end timestamp} - \text{start timestamp}.
-$$
+#### Step 1: Mapping Signed Values $w(r)$
+- Row 1: `'start'` $\implies w_1 = -0.712$
+- Row 2: `'end'` $\implies w_2 = +1.520$
+- Row 3: `'start'` $\implies w_3 = -3.140$
+- Row 4: `'end'` $\implies w_4 = +4.120$
 
-The SQL query turns this subtraction into an aggregation-friendly sum. Its `CASE` expression produces `-timestamp` for a `'start'` row and `timestamp` for an `'end'` row. Therefore the two rows for one machine-process pair contribute
+#### Step 2: Summing Signed Values
+- Sum of signed contributions:
+  $$
+  \Sigma_0 = (-0.712) + 1.520 + (-3.140) + 4.120
+  $$
+  $$
+  \Sigma_0 = (1.520 - 0.712) + (4.120 - 3.140) = 0.808 + 0.980 = 1.788
+  $$
 
-$$
--\text{start} + \text{end}
-= \text{end} - \text{start},
-$$
+#### Step 3: Computing the Arithmetic Mean Across Rows
+- Total row count: $N_0 = 4$.
+- Raw row average:
+  $$
+  \text{raw\_avg}_0 = \frac{1.788}{4} = 0.447
+  $$
 
-which is exactly that process’s duration.
-
-The table contract is essential here. The composite primary key ensures at most one row of each activity type for a given machine and process, and the guarantee supplies both one `'start'` and one `'end'`. Consequently every process contributes exactly two rows and exactly one signed duration.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Activity": [{"machine_id": 0, "process_id": 0, "activity_type": "start", "timestamp": 0.712}, {"machine_id": 0, "process_id": 0, "activity_type": "end", "timestamp": 1.52}, {"machine_id": 0, "process_id": 1, "activity_type": "start", "timestamp": 3.14}, {"machine_id": 0, "process_id": 1, "activity_type": "end", "timestamp": 4.12}, {"machine_id": 1, "process_id": 0, "activity_type": "start", "timestamp": 0.55}, {"machine_id": 1, "process_id": 0, "activity_type": "end", "timestamp": 1.55}, {"machine_id": 1, "process_id": 1, "activity_type": "start", "timestamp": 0.43}, {"machine_id": 1, "process_id": 1, "activity_type": "end", "timestamp": 1.42}, {"machine_id": 2, "process_id": 0, "activity_type": "start", "timestamp": 4.1}, {"machine_id": 2, "process_id": 0, "activity_type": "end", "timestamp": 4.512}, {"machine_id": 2, "process_id": 1, "activity_type": "start", "timestamp": 2.5}, {"machine_id": 2, "process_id": 1, "activity_type": "end", "timestamp": 5.0}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Grouping produces one result row per machine
-
-`FROM Activity` scans the activity records. `GROUP BY 1` is MySQL’s positional grouping syntax: `1` refers to the first select-list expression, which is `machine_id`. It is therefore equivalent to `GROUP BY machine_id`.
-
-Inside each machine group, the `CASE` expression evaluates every row, `AVG` combines the signed timestamps, and multiplication by two converts the row average to the process average. Because no `process_id` appears in the final grouping, the output contains one row for each distinct machine.
-
-The problem allows any output order, so the absence of `ORDER BY` is correct. SQL does not promise a particular order without that clause, but none is required.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Round only the completed average
-
-`ROUND(..., 3)` surrounds the complete value after averaging and multiplying. This rounds the final processing time to three decimal places, as requested. Rounding individual process durations or individual timestamps first could accumulate avoidable error, so placing `ROUND` at the outside is the correct numerical order.
-
-The alias `processing_time` gives the calculated column its required output name. The other selected column already has the required name `machine_id`.
-
-For machine zero in the example, the signed values are `-0.712`, `1.520`, `-3.140`, and `4.120`. Their sum is `1.788` and their row average is `0.447`. Multiplying by two gives `0.894`, which is also the average of the two durations `0.808` and `0.980`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["machine_id", "processing_time"], "rows": [[0, 0.894], [1, 0.995], [2, 1.456]]}` |
+#### Step 4: Scaling to Process Duration
+- Each process comprises $2$ rows. Multiply by $2$:
+  $$
+  \overline{D}_0 = 0.447 \times 2 = 0.894
+  $$
+- Round to $3$ decimal places:
+  $$
+  \text{ROUND}(0.894, 3) = \mathbf{0.894}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Activity": [{"machine_id": 0, "process_id": 0, "activity_type": "start", "timestamp": 0.712}, {"machine_id": 0, "process_id": 0, "activity_type": "end", "timestamp": 1.52}, {"machine_id": 0, "process_id": 1, "activity_type": "start", "timestamp": 3.14}, {"machine_id": 0, "process_id": 1, "activity_type": "end", "timestamp": 4.12}, {"machine_id": 1, "process_id": 0, "activity_type": "start", "timestamp": 0.55}, {"machine_id": 1, "process_id": 0, "activity_type": "end", "timestamp": 1.55}, {"machine_id": 1, "process_id": 1, "activity_type": "start", "timestamp": 0.43}, {"machine_id": 1, "process_id": 1, "activity_type": "end", "timestamp": 1.42}, {"machine_id": 2, "process_id": 0, "activity_type": "start", "timestamp": 4.1}, {"machine_id": 2, "process_id": 0, "activity_type": "end", "timestamp": 4.512}, {"machine_id": 2, "process_id": 1, "activity_type": "start", "timestamp": 2.5}, {"machine_id": 2, "process_id": 1, "activity_type": "end", "timestamp": 5.0}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["machine_id", "processing_time"], "rows": [[0, 0.894], [1, 0.995], [2, 1.456]]}` | Verified |
+### Multi-Machine Aggregation Summary Table
+
+| Machine ID | Total Rows $N_m$ | Process Count $K_m$ | Sum of Start Timestamps $\Sigma t_{\text{start}}$ | Sum of End Timestamps $\Sigma t_{\text{end}}$ | Net Duration $\Sigma t_{\text{end}} - \Sigma t_{\text{start}}$ | Mean Duration $\overline{D}_m = \frac{\text{Net}}{K_m}$ | Rounded Result |
+|---|---|---|---|---|---|---|---|
+| $0$ | $4$ | $2$ | $0.712 + 3.140 = 3.852$ | $1.520 + 4.120 = 5.640$ | $5.640 - 3.852 = 1.788$ | $\frac{1.788}{2} = 0.894$ | **`0.894`** |
+| $1$ | $4$ | $2$ | $0.550 + 0.430 = 0.980$ | $1.550 + 1.420 = 2.970$ | $2.970 - 0.980 = 1.990$ | $\frac{1.990}{2} = 0.995$ | **`0.995`** |
+| $2$ | $4$ | $2$ | $4.100 + 2.500 = 6.600$ | $4.512 + 5.000 = 9.512$ | $9.512 - 6.600 = 2.912$ | $\frac{2.912}{2} = 1.456$ | **`1.456`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The problem guarantees that every process has exactly one `start` and one `end` event with $t_{\text{end}} > t_{\text{start}}$. The total elapsed operational time for machine $m$ across all processes is mathematically identical to the difference between the sum of its end timestamps and the sum of its start timestamps:
+$$
+\sum_{p} (t_{\text{end}, p} - t_{\text{start}, p}) = \sum_{p} t_{\text{end}, p} - \sum_{p} t_{\text{start}, p}
+$$
+Dividing by the count of processes $K_m$ yields the exact arithmetic mean of process durations. Applying standard floating-point rounding to $3$ decimals guarantees adherence to the required precision specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Grouping by `machine_id` ensures that every distinct machine present in the `Activity` table forms an independent aggregation bucket. No machine is dropped, and no events belonging to one machine leak into another.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Self-join start and end rows:** Alias `Activity` twice, join on both `machine_id` and `process_id`, filter one alias to `'start'` and the other to `'end'`, then average `end.timestamp - start.timestamp` by machine. This is explicit and does not need the factor two, but requires a join.
-- **Two-stage aggregation:** First group by machine and process to sum signed timestamps into durations, then average those durations by machine. It mirrors the definition closely but adds a derived-table stage.
-- **Conditional sums divided by process count:** Sum end timestamps minus start timestamps and divide by `COUNT(DISTINCT process_id)`. This is clear but distinct counting may cost more than exploiting the guaranteed two-row structure.
-- **Missing one activity row:** The `* 2` derivation would be invalid if a process lacked a start or end. The input guarantee rules this out.
-- **Duplicate activity row:** The composite primary key prevents duplicate start or duplicate end records for one machine-process pair.
-- **Zero-duration process:** Since start may equal end, its signed contribution can be zero. It still counts as one process through its two rows and is correctly included in the average.
-- **Several machines:** `GROUP BY 1` isolates their aggregates; timestamps from different machines can never mix.
-- **Different process counts outside the narrative:** The formula still works because each group’s `AVG` uses that machine’s own number of rows.
-- **Floating-point timestamps:** Rounding happens once after aggregation. Exact internal representation and half-way rounding behavior follow MySQL’s numeric rules for the expression types.
-- **Output ordering:** No `ORDER BY` is needed because the contract explicitly accepts any order.
-- **Ordinal grouping syntax:** `GROUP BY 1` is concise but can become fragile if the select-list order changes. `GROUP BY machine_id` is a more self-documenting equivalent.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Premature Intermediate Rounding:** Rounding individual process durations prior to averaging introduces cumulative precision bias. Rounding must be applied strictly once to the final machine-level average.
+- **Process ID Reuse Across Machines:** Different machines can reuse identical `process_id` values (e.g., both machine $1$ and machine $2$ run `process_id = 0`). If using a self-join approach, the join predicate must combine both keys: `ON a1.machine_id = a2.machine_id AND a1.process_id = a2.process_id`.
+- **Assuming Physical Row Adjacency:** A `start` record is not guaranteed to immediately precede its corresponding `end` record in physical disk order. Relational operations must not rely on row sequence or consecutive offsets.
+- **Denominator Miscount:** When using signed sums, the number of records is $2K$, whereas the number of processes is $K$. Failing to scale the raw average by $2$ yields half the true duration.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(M)$. Let `R` be the number of rows in `Activity` and `M` the number of distinct machines. Conceptually, each row is read once, its `CASE` value is computed in constant time, and it updates one group aggregate. With hash aggregation, this is expected $O(R)$ time and $O(M)$ aggregation space.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Signed Sum Single-Pass Approach:** Reads the table of $N$ rows once, maps values in $\mathcal{O}(1)$, and inserts into an in-memory hash aggregation table keyed by `machine_id`. Total time: strictly $\mathcal{O}(N)$ linear scan time.
+  - **Self-Join Approach:** Filtering into two partitions takes $\mathcal{O}(N)$. Joining on `(machine_id, process_id)` takes $\mathcal{O}(N)$ using hash join. Grouping by `machine_id` takes $\mathcal{O}(N)$. Total time: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - **Signed Sum Approach:** The hash aggregation table maintains running sum and count accumulators for each distinct `machine_id`. For $M$ machines, space is $\mathcal{O}(M)$, which is bounded by $\mathcal{O}(N)$ and typically $\ll N$.
+  - **Self-Join Approach:** Requires materialized hash tables for the join buffer of size $\mathcal{O}(N / 2) = \mathcal{O}(N)$.

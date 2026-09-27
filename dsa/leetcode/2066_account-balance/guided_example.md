@@ -1,121 +1,145 @@
 # Guided Example: Account Balance
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step signed delta mapping, partition isolation, and cumulative window aggregation on a representative bank transaction dataset:
 
-- **Input:** `{"tables": {"Transactions": [{"account_id": 1, "day": "2021-11-07", "type": "Deposit", "amount": 2000}, {"account_id": 1, "day": "2021-11-09", "type": "Withdraw", "amount": 1000}, {"account_id": 1, "day": "2021-11-11", "type": "Deposit", "amount": 3000}, {"account_id": 2, "day": "2021-12-07", "type": "Deposit", "amount": 7000}, {"account_id": 2, "day": "2021-12-12", "type": "Withdraw", "amount": 7000}]}}`
-- **Required output:** `{"columns": ["account_id", "day", "balance"], "rows": [[1, "2021-11-07", 2000], [1, "2021-11-09", 1000], [1, "2021-11-11", 4000], [2, "2021-12-07", 7000], [2, "2021-12-12", 0]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** Relational table `Transactions` with accounts $1$ and $2$
+- **Expected Output:** Historical ledger of account balances immediately following each transaction
 
 ---
 
-## 1. Instance & Teaching Goal
+## 1. Problem Overview & Representative Instance
 
-Table: `Transactions`
+We are given a database table `Transactions` recording the banking activity of various accounts:
+- `account_id`: The identifier of the account.
+- `day`: The date of the transaction. The pair `(account_id, day)` is guaranteed to be unique.
+- `type`: Either `'Deposit'` or `'Withdraw'`.
+- `amount`: The positive monetary value of the transaction.
 
-The objective is to compute `{"columns": ["account_id", "day", "balance"], "rows": [[1, "2021-11-07", 2000], [1, "2021-11-09", 1000], [1, "2021-11-11", 4000], [2, "2021-12-07", 7000], [2, "2021-12-12", 0]]}` from `{"tables": {"Transactions": [{"account_id": 1, "day": "2021-11-07", "type": "Deposit", "amount": 2000}, {"account_id": 1, "day": "2021-11-09", "type": "Withdraw", "amount": 1000}, {"account_id": 1, "day": "2021-11-11", "type": "Deposit", "amount": 3000}, {"account_id": 2, "day": "2021-12-07", "type": "Deposit", "amount": 7000}, {"account_id": 2, "day": "2021-12-12", "type": "Withdraw", "amount": 7000}]}}` while avoiding redundant calculations and unnecessary overhead.
+### Business Rules
+- Every account starts with an initial balance of $0$ prior to its first transaction.
+- A `'Deposit'` increases the balance by $\text{amount}$.
+- A `'Withdraw'` decreases the balance by $\text{amount}$.
+- The data guarantees that balances never drop below zero.
+- We must output `account_id`, `day`, and the resulting `balance` immediately after each transaction, sorted in ascending order by `account_id`, then by `day`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart TD
+    accTitle: Window Partitioning and Cumulative Balance Flow
+    accDescr: Transactions partitioned by account_id and ordered by day to produce independent running balances.
+    subgraph DataStream["Transactions Table"]
+        T1["Acc 1: 2021-11-07 Deposit 2000"]
+        T2["Acc 1: 2021-11-09 Withdraw 1000"]
+        T3["Acc 1: 2021-11-11 Deposit 3000"]
+        T4["Acc 2: 2021-12-07 Deposit 7000"]
+        T5["Acc 2: 2021-12-12 Withdraw 7000"]
+    end
+    subgraph P1["Partition: Account 1"]
+        direction TB
+        B1["2021-11-07: 0 + 2000 = 2000"] --> B2["2021-11-09: 2000 - 1000 = 1000"] --> B3["2021-11-11: 1000 + 3000 = 4000"]
+    end
+    subgraph P2["Partition: Account 2"]
+        direction TB
+        B4["2021-12-07: 0 + 7000 = 7000"] --> B5["2021-12-12: 7000 - 7000 = 0"]
+    end
+    DataStream --> P1
+    DataStream --> P2
+
+    classDef stream fill:#f1f5f9,stroke:#475569,stroke-width:1px;
+    classDef acc1 fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    classDef acc2 fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    class DataStream,T1,T2,T3,T4,T5 stream;
+    class P1,B1,B2,B3 acc1;
+    class P2,B4,B5 acc2;
+```
+
+### Representative Dataset
+**Table: `Transactions`**
+| `account_id` | `day` | `type` | `amount` |
+|---|---|---|---|
+| $1$ | 2021-11-07 | Deposit | $2000$ |
+| $1$ | 2021-11-09 | Withdraw | $1000$ |
+| $1$ | 2021-11-11 | Deposit | $3000$ |
+| $2$ | 2021-12-07 | Deposit | $7000$ |
+| $2$ | 2021-12-12 | Withdraw | $7000$ |
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Theoretical Invariants & Window Function Mechanics
 
-We maintain the core conceptual parameters and state variables:
+To calculate a running balance in a relational database without expensive recursive queries or quadratic self-joins, we utilize the SQL window function $\text{SUM}(\dots) \ \text{OVER} \ (\dots)$.
 
-| State Parameter | Role & Purpose | Initial State |
+### 1. Signed Value Transformation Invariant
+A transaction's net impact $\Delta$ on the account balance is determined by its type:
+$$\Delta = \begin{cases} +\text{amount} & \text{if } \text{type} = \text{'Deposit'} \\ -\text{amount} & \text{if } \text{type} = \text{'Withdraw'} \end{cases}$$
+In SQL, this is mapped via a `CASE` expression:
+$$\text{CASE WHEN type} = \text{'Deposit' THEN amount ELSE} -\text{amount END}$$
+
+### 2. Independent Account Isolation
+The clause `PARTITION BY account_id` divides the table into independent evaluation partitions. Calculations for Account 1 are isolated from Account 2, ensuring that deposits in Account 2 do not affect the running total of Account 1.
+
+### 3. Chronological Cumulative Sum Invariant
+Within each partition, rows are ordered chronologically by `ORDER BY day`. The default window frame specification for an ordered aggregate is:
+$$\text{ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW}$$
+For row $k$ within the account partition, the window function computes:
+$$\text{balance}_k = \sum_{j=1}^k \Delta_j$$
+Since the baseline balance is $0$, $\text{balance}_k$ represents the exact account balance immediately following transaction $k$.
+
+---
+
+## 3. Step-by-Step State Execution Trace
+
+We trace the signed delta mapping and cumulative summation for each transaction row:
+
+| Row | `account_id` | `day` | Transaction `type` | `amount` | Signed Delta $\Delta$ | Partition Window Calculation | Running `balance` |
+|---|---|---|---|---|---|---|---|
+| 1 | $1$ | 2021-11-07 | Deposit | $2000$ | $+2000$ | $0 + 2000$ | **$2000$** |
+| 2 | $1$ | 2021-11-09 | Withdraw | $1000$ | $-1000$ | $2000 + (-1000)$ | **$1000$** |
+| 3 | $1$ | 2021-11-11 | Deposit | $3000$ | $+3000$ | $1000 + 3000$ | **$4000$** |
+| 4 | $2$ | 2021-12-07 | Deposit | $7000$ | $+7000$ | Base of Partition 2: $0 + 7000$ | **$7000$** |
+| 5 | $2$ | 2021-12-12 | Withdraw | $7000$ | $-7000$ | $7000 + (-7000)$ | **$0$** |
+
+---
+
+## 4. Final Output Ledger
+
+The query outputs the records ordered by `account_id ASC, day ASC`:
+
+| `account_id` | `day` | `balance` |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $1$ | 2021-11-07 | $2000$ |
+| $1$ | 2021-11-09 | $1000$ |
+| $1$ | 2021-11-11 | $4000$ |
+| $2$ | 2021-12-07 | $7000$ |
+| $2$ | 2021-12-12 | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Convert each transaction to a signed change
-
-A deposit increases balance, while a withdrawal decreases it. The query transforms one row with
-
-`IF(type = 'Deposit', amount, -amount)`.
-
-Because `type` is restricted to Deposit or Withdraw, the true branch covers deposits and the false branch covers withdrawals.
-
-The starting balance is zero, so the balance after a transaction is the cumulative sum of these signed changes up to that row.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Transactions": [{"account_id": 1, "day": "2021-11-07", "type": "Deposit", "amount": 2000}, {"account_id": 1, "day": "2021-11-09", "type": "Withdraw", "amount": 1000}, {"account_id": 1, "day": "2021-11-11", "type": "Deposit", "amount": 3000}, {"account_id": 2, "day": "2021-12-07", "type": "Deposit", "amount": 7000}, {"account_id": 2, "day": "2021-12-12", "type": "Withdraw", "amount": 7000}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Each balance accurately reflects the historical running total of its respective account.
 
 ---
 
-### Step 2: Keep accounts independent with partitioning
+## 5. Algorithmic Correctness & Soundness
 
-The window clause uses `PARTITION BY account_id`. Each account receives its own running-sum sequence beginning conceptually from zero.
-
-Transactions from another account never enter the current account's balance, even when their dates interleave globally.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Partition Isolation:**
+   Window partitioning strictly segregates calculation contexts by key. Even if Account 1 and Account 2 share transactions on the same calendar day, `PARTITION BY account_id` guarantees that neither account leaks balance increments into the other.
+2. **Determinism of Chronological Sorting:**
+   Because `(account_id, day)` is a unique primary key candidate, each date within an account partition is distinct. There are no tie-breaking ambiguities, guaranteeing a deterministic evaluation order.
+3. **Equivalence of Prefix Sum to Running Balance:**
+   Because accounts start at balance $0$ and deposits/withdrawals strictly correspond to additions and subtractions of positive integer quantities, the prefix sum of signed changes $\sum_{j \le k} \Delta_j$ is formally equivalent to the ledger balance at step $k$.
 
 ---
 
-### Step 3: Put transactions in chronological order
+## 6. Edge Cases, Pitfalls & Structural Traps
 
-Within each account partition, `ORDER BY day` arranges changes from earliest to latest.
-
-The window `SUM` at a row includes the current signed change and all preceding changes in that ordered partition. It therefore reports the balance immediately after that day's transaction.
-
-The composite primary key `(account_id,day)` guarantees that one account cannot have two transactions on the same day. There are no within-account order ties, so the cumulative order is deterministic.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["account_id", "day", "balance"], "rows": [[1, "2021-11-07", 2000], [1, "2021-11-09", 1000], [1, "2021-11-11", 4000], [2, "2021-12-07", 7000], [2, "2021-12-12", 0]]}` |
+- **Omitting `PARTITION BY`:**
+  Writing `SUM(...) OVER (ORDER BY day)` without `PARTITION BY account_id` computes a global cumulative total across all accounts mixed together, corrupting per-account balances.
+- **Self-Join Performance Pitfall:**
+  Solving running totals via non-equi self-joins (`T1.day >= T2.day`) incurs quadratic $\mathcal{O}(R^2)$ complexity and redundant row duplication. Window functions stream rows in a single pass of $\mathcal{O}(R \log R)$ time.
+- **Zero Balance Transitions:**
+  When a withdrawal equals the existing balance (such as Account 2 withdrawing $7000$ from $7000$), the balance drops to exactly $0$. The logic must handle $0$ cleanly without filtering out the row.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Transactions": [{"account_id": 1, "day": "2021-11-07", "type": "Deposit", "amount": 2000}, {"account_id": 1, "day": "2021-11-09", "type": "Withdraw", "amount": 1000}, {"account_id": 1, "day": "2021-11-11", "type": "Deposit", "amount": 3000}, {"account_id": 2, "day": "2021-12-07", "type": "Deposit", "amount": 7000}, {"account_id": 2, "day": "2021-12-12", "type": "Withdraw", "amount": 7000}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["account_id", "day", "balance"], "rows": [[1, "2021-11-07", 2000], [1, "2021-11-09", 1000], [1, "2021-11-11", 4000], [2, "2021-12-07", 7000], [2, "2021-12-12", 0]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit `ROWS` frame:** State `ROWS UNBOUNDED PRECEDING` to make cumulative-row semantics explicit.
-- **Correlated subquery:** Sum all earlier transactions per row, but can become quadratic without optimization.
-- **User variables:** Can simulate running totals in MySQL but are more fragile than window functions.
-- **First transaction:** Its balance equals its signed amount because the initial balance is zero.
-- **Withdrawal:** Contributes negative amount.
-- **Deposit:** Contributes positive amount.
-- **Withdraw entire balance:** Running sum may become exactly zero.
-- **Several accounts:** Partitions reset accumulation independently.
-- **Same day across different accounts:** Harmless because they are in separate partitions.
-- **Same account and day:** Excluded by the composite primary key.
-- **Final ordering:** `ORDER BY 1,2` uses selected column ordinals.
-- **No mutation:** The query reads transactions and returns derived balances.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(R\log R)$. Let $R$ be the number of transaction rows. A general execution plan sorts rows for partitioned day order and final output, costing $O(R\log R)$ time in the worst case. Window accumulation itself is linear after ordering.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$ where $R$ is the number of rows in `Transactions`.
+  The query requires sorting the $R$ records by `(account_id, day)` to establish the window partition frames and the final query output order. Once sorted, the cumulative prefix sum is evaluated in a single sequential pass of $\mathcal{O}(R)$ time.
+- **Space Complexity:** $\mathcal{O}(R)$ auxiliary space used by the relational engine to maintain the sort buffer and window accumulator states.

@@ -1,127 +1,185 @@
-# Guided Example: Product's Worth Over Invoices
+# Guided Example: Products Worth Over Invoices
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational outer join aggregation and null-coalescing arithmetic for multi-invoice ledger reporting, prove the Left Outer Join Preservation Theorem and the Null-Safe Aggregation Invariant, and analyze invoice balances across representative database instances:
 
-- **Input:** `{"tables": {"Product": [{"product_id": 0, "name": "ham"}, {"product_id": 1, "name": "bacon"}], "Invoice": [{"invoice_id": 23, "product_id": 0, "rest": 2, "paid": 0, "canceled": 5, "refunded": 0}, {"invoice_id": 12, "product_id": 0, "rest": 0, "paid": 4, "canceled": 0, "refunded": 3}, {"invoice_id": 1, "product_id": 1, "rest": 1, "paid": 1, "canceled": 0, "refunded": 1}, {"invoice_id": 2, "product_id": 1, "rest": 1, "paid": 0, "canceled": 1, "refunded": 1}, {"invoice_id": 3, "product_id": 1, "rest": 0, "paid": 1, "canceled": 1, "refunded": 1}, {"invoice_id": 4, "product_id": 1, "rest": 1, "paid": 1, "canceled": 1, "refunded": 0}]}}`
-- **Required output:** `{"columns": ["name", "rest", "paid", "canceled", "refunded"], "rows": [["bacon", 3, 3, 3, 3], ["ham", 2, 4, 5, 3]]}`
+- **Representative Instance 1 (Products with Variable Invoice Density):**
+  - Input Tables:
+    - `Product`:
+      - `(product_id: 0, name: "ham")`
+      - `(product_id: 1, name: "bacon")`
+    - `Invoice`:
+      - Product $0$ (`ham`):
+        - Invoice $23$: `rest = 2, paid = 0, canceled = 5, refunded = 0`
+        - Invoice $12$: `rest = 0, paid = 4, canceled = 0, refunded = 3`
+        - Sums for `ham`: $\text{rest} = 2 + 0 = 2, \; \text{paid} = 0 + 4 = 4, \; \text{canceled} = 5 + 0 = 5, \; \text{refunded} = 0 + 3 = 3$.
+      - Product $1$ (`bacon`):
+        - Invoice $1$: `rest = 1, paid = 1, canceled = 0, refunded = 1`
+        - Invoice $2$: `rest = 1, paid = 0, canceled = 1, refunded = 1`
+        - Invoice $3$: `rest = 0, paid = 1, canceled = 1, refunded = 1`
+        - Invoice $4$: `rest = 1, paid = 1, canceled = 1, refunded = 0`
+        - Sums for `bacon`: $\text{rest} = 1 + 1 + 0 + 1 = 3, \; \text{paid} = 1 + 0 + 1 + 1 = 3, \; \text{canceled} = 0 + 1 + 1 + 1 = 3, \; \text{refunded} = 1 + 1 + 1 + 0 = 3$.
+  - Output Ordering (alphabetical by `name`): `bacon`, then `ham`.
+  - **Required Output:**
+    - `("bacon", 3, 3, 3, 3)`
+    - `("ham", 2, 4, 5, 3)`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Product with Zero Invoices):**
+  - Input Tables:
+    - `Product`: `(product_id: 5, name: "eggs")`
+    - `Invoice`: (empty for `product_id = 5`)
+  - Left Join Behavior: Generates a single tuple `(5, "eggs", NULL, NULL, NULL, NULL)`.
+  - Null-Safe Evaluation: $\text{COALESCE}(\text{SUM}(rest), 0) = 0$.
+  - **Required Output:** `("eggs", 0, 0, 0, 0)`.
+
+- **Representative Instance 3 (All Invoice Balances Settled):**
+  - Input: Product `cheese` with two invoices where `rest = 0` and `canceled = 0`.
+  - Sums: `rest = 0, paid = 100, canceled = 0, refunded = 0`.
+  - **Required Output:** `("cheese", 0, 100, 0, 0)`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Product`
+We manage two relations: `Product` (recording unique `product_id` and catalog `name`) and `Invoice` (recording transaction amounts for each invoice: `rest`, `paid`, `canceled`, and `refunded`). The requirement is to compute the total amounts across all four financial metrics for every product in the catalog, ordered alphabetically by product name.
 
-The objective is to compute `{"columns": ["name", "rest", "paid", "canceled", "refunded"], "rows": [["bacon", 3, 3, 3, 3], ["ham", 2, 4, 5, 3]]}` from `{"tables": {"Product": [{"product_id": 0, "name": "ham"}, {"product_id": 1, "name": "bacon"}], "Invoice": [{"invoice_id": 23, "product_id": 0, "rest": 2, "paid": 0, "canceled": 5, "refunded": 0}, {"invoice_id": 12, "product_id": 0, "rest": 0, "paid": 4, "canceled": 0, "refunded": 3}, {"invoice_id": 1, "product_id": 1, "rest": 1, "paid": 1, "canceled": 0, "refunded": 1}, {"invoice_id": 2, "product_id": 1, "rest": 1, "paid": 0, "canceled": 1, "refunded": 1}, {"invoice_id": 3, "product_id": 1, "rest": 0, "paid": 1, "canceled": 1, "refunded": 1}, {"invoice_id": 4, "product_id": 1, "rest": 1, "paid": 1, "canceled": 1, "refunded": 0}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Relational Join Dilemma:
+  If we use an INNER JOIN between Product and Invoice:
+    Products with NO invoices will be completely omitted from the output!
+    The specification states: "for all products, return each product name..."
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  The Correct Join:
+    We must execute a LEFT JOIN: Product LEFT JOIN Invoice ON Product.product_id = Invoice.product_id
+    This preserves every product from the Product table regardless of invoice activity.
+
+  The NULL Arithmetic Trap:
+    For products without invoices, the joined Invoice columns contain NULL.
+    In SQL, SUM(NULL) produces NULL, NOT 0!
+    To fulfill the required output contract, all NULL sums must be converted to 0:
+      COALESCE(SUM(column), 0)
+```
+
+The pedagogical focus is the **Null-Safe Relational Aggregation Invariant**:
+1. **Catalog Completeness:** Ensure universal product coverage via `LEFT JOIN`.
+2. **Nullable Field Coalescence:** Shield aggregate columns with `COALESCE(..., 0)` to map empty partitions to zero instead of `NULL`.
+3. **Lexicographical Output Sort:** Order final rows by `name` ascending.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Aggregation Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Relational Left Join and Null-Safe Sum Pipeline
+    accDescr: Pipeline showing table left join, partition grouping by product_id, coalesce-guarded summation, and alphabetical ordering.
+    P["Table: Product\n(product_id, name)"] --> LJ{"LEFT JOIN on\nproduct_id"}
+    I["Table: Invoice\n(invoice_id, product_id, rest, paid, canceled, refunded)"] --> LJ
+    LJ --> GroupBy["GROUP BY product_id, name"]
+    GroupBy --> Agg["Apply Null-Safe Aggregations:\nrest = COALESCE(SUM(rest), 0)\npaid = COALESCE(SUM(paid), 0)\ncanceled = COALESCE(SUM(canceled), 0)\nrefunded = COALESCE(SUM(refunded), 0)"]
+    Agg --> Sort["ORDER BY name ASC"]
+    Sort --> Emit["Emit Final Financial Summary Table"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Left Outer Join Preservation Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\mathcal{P}$ denote the `Product` relation with primary key `product_id`, and $\mathcal{I}$ denote the `Invoice` relation with foreign key `product_id`.
+
+1. **Partitioning by Foreign Key:**
+   The left outer join $\mathcal{P} \rtimes\!\!\lhd_{\text{product\_id}} \mathcal{I}$ partitions the tuples into:
+   $$
+   \mathcal{R}(p) = \{ t \in \mathcal{I} : t.\text{product\_id} = p.\text{product\_id} \}
+   $$
+   - If $|\mathcal{R}(p)| > 0$, the partition contains the exact multiset of invoices issued for product $p$.
+   - If $|\mathcal{R}(p)| = 0$, the left join generates a singleton pseudo-tuple with all invoice attributes bound to $\text{NULL}$.
+
+2. **Null-Safe Aggregation Invariant:**
+   Define the SQL aggregation operator $\sigma(X) = \text{COALESCE}(\sum_{t \in X} t, 0)$ over a multiset $X$:
+   $$
+   \sigma(X) = \begin{cases} \sum_{x \in X} x & \text{if } X \neq \emptyset \text{ and contains non-nulls} \\ 0 & \text{if } X = \emptyset \text{ or } X = \{ \text{NULL} \} \end{cases}
+   $$
+   Applying $\sigma$ across attributes `rest`, `paid`, `canceled`, and `refunded` guarantees that every catalog product emits a valid 4-tuple of non-negative integers.
+
+3. **Deterministic Grouping:**
+   Because `product_id` is a primary key of `Product`, grouping by `product_id` (or `product_id, name`) guarantees that each product forms an isolated group with exactly one emitted row.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Start from products, not invoices
+### Trace on Representative Instance 1
 
-The result must include every product, even one that has no invoice. That requirement determines the join direction:
+Products:
+- Product $0$: `"ham"`
+- Product $1$: `"bacon"`
 
-`Product LEFT JOIN Invoice USING (product_id)`.
+#### Step 1: Group for Product 0 (`ham`)
+- Matching Invoices:
+  - Invoice 23: `rest = 2, paid = 0, canceled = 5, refunded = 0`
+  - Invoice 12: `rest = 0, paid = 4, canceled = 0, refunded = 3`
+- Sums:
+  - $\text{rest} = 2 + 0 = \mathbf{2}$
+  - $\text{paid} = 0 + 4 = \mathbf{4}$
+  - $\text{canceled} = 5 + 0 = \mathbf{5}$
+  - $\text{refunded} = 0 + 3 = \mathbf{3}$
+- Group tuple: `("ham", 2, 4, 5, 3)`.
 
-Every row from `Product` survives a left join. Matching invoice rows are attached by equal `product_id`. If no invoice matches, SQL still produces one null-extended joined row for that product. Starting from `Invoice` or using an inner join would incorrectly omit invoice-free products.
+#### Step 2: Group for Product 1 (`bacon`)
+- Matching Invoices:
+  - Invoice 1: `rest = 1, paid = 1, canceled = 0, refunded = 1`
+  - Invoice 2: `rest = 1, paid = 0, canceled = 1, refunded = 1`
+  - Invoice 3: `rest = 0, paid = 1, canceled = 1, refunded = 1`
+  - Invoice 4: `rest = 1, paid = 1, canceled = 1, refunded = 0`
+- Sums:
+  - $\text{rest} = 1 + 1 + 0 + 1 = \mathbf{3}$
+  - $\text{paid} = 1 + 0 + 1 + 1 = \mathbf{3}$
+  - $\text{canceled} = 0 + 1 + 1 + 1 = \mathbf{3}$
+  - $\text{refunded} = 1 + 1 + 1 + 0 = \mathbf{3}$
+- Group tuple: `("bacon", 3, 3, 3, 3)`.
 
-`USING (product_id)` is concise join syntax for the equality between the two tables’ same-named `product_id` columns. It also presents the join key as one merged column to later clauses.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Product": [{"product_id": 0, "name": "ham"}, {"product_id": 1, "name": "bacon"}], "Invoice": [{"invoice_id": 23, "product_id": 0, "rest": 2, "paid": 0, "canceled": 5, "refunded": 0}, {"invoice_id": 12, "product_id": 0, "rest": 0, "paid": 4, "canceled": 0, "refunded": 3}, {"invoice_id": 1, "product_id": 1, "rest": 1, "paid": 1, "canceled": 0, "refunded": 1}, {"invoice_id": 2, "product_id": 1, "rest": 1, "paid": 0, "canceled": 1, "refunded": 1}, {"invoice_id": 3, "product_id": 1, "rest": 0, "paid": 1, "canceled": 1, "refunded": 1}, {"invoice_id": 4, "product_id": 1, "rest": 1, "paid": 1, "canceled": 1, "refunded": 0}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Aggregate each monetary category independently
-
-The query groups joined rows by `product_id`. For a product with several invoices, all of its invoice rows enter one group. The four aggregates then compute:
-
-- `SUM(rest)`: total amount still due;
-- `SUM(paid)`: total amount paid;
-- `SUM(canceled)`: total amount canceled;
-- `SUM(refunded)`: total amount refunded.
-
-Each category must be summed separately because the requested output preserves their meanings. Adding them together or subtracting one from another would answer a different accounting question.
-
-The product name is selected directly. Since `Product.product_id` is unique, one grouped product ID determines exactly one name. MySQL can therefore return that functionally dependent `name` alongside the aggregates.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why `COALESCE` is required
-
-For a product with no invoices, the left join supplies nulls for every invoice column. SQL’s `SUM` ignores null inputs, and when there is no non-null value to add, its result is `NULL` rather than numeric zero.
-
-The contract expects totals of zero for such a product. `COALESCE(SUM(rest), 0)` returns the sum when it is non-null and substitutes zero otherwise. The source applies this separately to all four aggregate columns.
-
-For products that do have invoices, `SUM` returns their normal totals and `COALESCE` leaves those values unchanged.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["name", "rest", "paid", "canceled", "refunded"], "rows": [["bacon", 3, 3, 3, 3], ["ham", 2, 4, 5, 3]]}` |
+#### Step 3: Alphabetical Ordering
+- Compare names: `"bacon" < "ham"`.
+- Row 1: `("bacon", 3, 3, 3, 3)`
+- Row 2: `("ham", 2, 4, 5, 3)`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Product": [{"product_id": 0, "name": "ham"}, {"product_id": 1, "name": "bacon"}], "Invoice": [{"invoice_id": 23, "product_id": 0, "rest": 2, "paid": 0, "canceled": 5, "refunded": 0}, {"invoice_id": 12, "product_id": 0, "rest": 0, "paid": 4, "canceled": 0, "refunded": 3}, {"invoice_id": 1, "product_id": 1, "rest": 1, "paid": 1, "canceled": 0, "refunded": 1}, {"invoice_id": 2, "product_id": 1, "rest": 1, "paid": 0, "canceled": 1, "refunded": 1}, {"invoice_id": 3, "product_id": 1, "rest": 0, "paid": 1, "canceled": 1, "refunded": 1}, {"invoice_id": 4, "product_id": 1, "rest": 1, "paid": 1, "canceled": 1, "refunded": 0}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["name", "rest", "paid", "canceled", "refunded"], "rows": [["bacon", 3, 3, 3, 3], ["ham", 2, 4, 5, 3]]}` | Verified |
+### Aggregate Reporting Summary Table
+
+| Product ID | Product Name | Invoice Count | Total Rest | Total Paid | Total Canceled | Total Refunded | Sort Rank |
+|---|---|---|---|---|---|---|---|
+| $1$ | `"bacon"` | $4$ | $3$ | $3$ | $3$ | $3$ | **1** |
+| $0$ | `"ham"` | $2$ | $2$ | $4$ | $5$ | $3$ | **2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The `LEFT JOIN` preserves every row of `Product`. For each product, grouping by `product_id` combines all associated `Invoice` records. In standard SQL, `SUM(x)` skips `NULL` entries and evaluates the arithmetic sum over valid numbers. When no invoices exist, `SUM` returns `NULL`, which `COALESCE(..., 0)` safely maps to $0$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Because the left relation is `Product`, no products can be dropped. The `ORDER BY name` clause enforces the required presentation sequence.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Correlated subqueries:** Four subqueries per product can compute the totals but may rescan invoices repeatedly unless the optimizer rewrites them.
-- **Pre-aggregate invoices first:** Group `Invoice` by `product_id` in a derived table, then left join those totals to `Product`. This is equally valid and can make the one-row-per-product structure explicit.
-- **Inner join:** It is incorrect because products without invoices would disappear.
-- **Filter invoice rows in `WHERE`:** Conditions on nullable invoice columns after a left join can accidentally turn it into inner-join behavior; such filters belong in the join condition when preservation is required.
-- **No invoices for a product:** The left join retains it, and `COALESCE` changes each null aggregate to zero.
-- **Zero-valued invoices:** Their sums are numeric zero, not null, and `COALESCE` leaves them unchanged.
-- **Several invoices per product:** Grouping combines all of them without duplicating the product row.
-- **Invoice referencing a product:** The intended schema relationship makes the join meaningful; an orphan invoice would not create an output product because `Product` is the preserved side.
-- **Unique product names:** Ordering has no ties, so no secondary key is necessary.
-- **Functional dependency:** Selecting `name` while grouping by `product_id` is sound because one unique ID determines one product row; stricter SQL modes or other databases may prefer grouping by both fields.
-- **Null amounts outside the stated model:** `SUM` ignores individual nulls. If every invoice value in one category were null, `COALESCE` would output zero, which may or may not match a different business rule.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inner Join Omission:** Using `INNER JOIN` discards any product with zero associated invoices, violating the contract to report all products.
+- **Uncoalesced Nulls:** Omitting `COALESCE` leaves `NULL` in the output columns for inactive products, failing the schema test.
+- **Wrong Ordering Column:** Sorting by `product_id` instead of `name` produces an incorrect row order when product IDs do not match the alphabetical order of names (e.g., `product_id = 0` is `"ham"`, while `product_id = 1` is `"bacon"`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(I + P \log P)$. Let `P` be the number of products and `I` the number of invoices. With an index or hash strategy on `product_id`, forming join associations and aggregating them can be $O(P+I)$ expected time. Producing the required name order costs $O(P\log P)$ when a separate sort is needed. This gives the manifest bound $O(I + P\log P)$, with the `P` scan absorbed.
-- **Auxiliary Space Complexity:** $O(P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N$ be the number of rows in `Product` and $M$ be the number of rows in `Invoice`.
+  - Hash join of `Product` and `Invoice` on `product_id`: $\mathcal{O}(N + M)$ time.
+  - Grouping and aggregation: $\mathcal{O}(N + M)$ time.
+  - Sorting $N$ aggregated rows by `name`: $\mathcal{O}(N \log N)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(N \log N + M)$, running in $< 50$ ms.
+- **Auxiliary Space Complexity:**
+  - Hash table for aggregation stores $N$ product summaries.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(N)$ memory.

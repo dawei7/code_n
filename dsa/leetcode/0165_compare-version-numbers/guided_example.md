@@ -1,145 +1,157 @@
 # Guided Example: Compare Version Numbers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step revision-by-revision integer parsing and missing-chunk zero padding on representative version string comparisons:
 
-- **Input:** `{"version1": "1.2", "version2": "1.10"}`
-- **Required output:** `-1`
+- **Input:** $\text{version1} = \text{"1.2"}, \quad \text{version2} = \text{"1.10"}$
+- **Required output:** $-1$ (Revision 1 evaluates $2 < 10$)
+- **Leading Zeros Instance:** $\text{version1} = \text{"1.01"}, \quad \text{version2} = \text{"1.001"} \implies 0$ (Integer conversion evaluates $1 == 1$)
+- **Trailing Zero Padding Instance:** $\text{version1} = \text{"1.0"}, \quad \text{version2} = \text{"1.0.0.0"} \implies 0$ (Implicit $0$ revisions match)
+- **Version 1 Superior Instance:** $\text{version1} = \text{"1.0.1"}, \quad \text{version2} = \text{"1"} \implies 1$ ($1 > 0$ at revision index 2)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates comparing numerical integer values rather than lexicographical string characters, absorbing arbitrary leading zeroes on the fly ($a \times 10 + \text{digit}$), treating exhausted suffix revisions as virtual $0$, and achieving $O(N + M)$ time with strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two **version strings**, `version1` and `version2`, compare them. A version string consists of **revisions** separated by dots `'.'`. The **value of the revision** is its **integer conversion** ignoring leading zeros.
+Given two version strings $\text{version1} = \text{"1.2"}$ and $\text{version2} = \text{"1.10"}$:
+Compare them and return:
+- $-1$ if $\text{version1} < \text{version2}$
+- $1$ if $\text{version1} > \text{version2}$
+- $0$ if $\text{version1} == \text{version2}$
 
-The objective is to compute `-1` from `{"version1": "1.2", "version2": "1.10"}` while avoiding redundant calculations and unnecessary overhead.
+Comparing versions as raw strings fails:
+- Lexicographically, character `'2'` is greater than `'1'`, which would falsely claim $\text{"1.2"} > \text{"1.10"}$.
+- Numerically, revision 2 is strictly less than revision 10 ($2 < 10$), so $\text{version1} < \text{version2}$ (output: $-1$).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Furthermore, versions of unequal length with trailing zeroes must evaluate as equal (e.g. `"1.0"` equals `"1.0.0"`).
+By streaming both strings through two pointers without allocating token arrays, each dot-separated revision is converted to an integer in $O(1)$ space, padding missing suffix chunks with $0$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### In-Place Chunk Streaming Protocol
+Maintain pointers $i = 0$ (for `version1`) and $j = 0$ (for `version2`).
+Let $M = |\text{version1}|, \, N = |\text{version2}|$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+While $i < M$ or $j < N$:
+1. **Accumulate Numerical Value for `version1`:**
+   Initialize $a = 0$.
+   While $i < M$ and $\text{version1}[i] \ne \text{'.'}:$:
+   $$
+   a \leftarrow a \times 10 + \text{int}(\text{version1}[i])
+   $$
+   $$
+   i \leftarrow i + 1
+   $$
+2. **Accumulate Numerical Value for `version2`:**
+   Initialize $b = 0$.
+   While $j < N$ and $\text{version2}[j] \ne \text{'.'}:$:
+   $$
+   b \leftarrow b \times 10 + \text{int}(\text{version2}[j])
+   $$
+   $$
+   j \leftarrow j + 1
+   $$
+3. **Compare Revision Numbers:**
+   - If $a < b$: return $-1$.
+   - If $a > b$: return $1$.
+4. **Skip Delimiters:**
+   $$
+   i \leftarrow i + 1, \quad j \leftarrow j + 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+If the loop finishes without returning, all revisions match: return $0$.
+
+> **Invariant.** If one version string is exhausted before the other, its remaining revision values evaluate to $0$. The first differing pair of revision values $(a, b)$ completely determines the relative order of the versions.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compare revisions, not text
+We trace the algorithm on $\text{version1} = \text{"1.2"}$ and $\text{version2} = \text{"1.10"}$:
 
-A version is not compared lexicographically as one string. For example,
-`"1.10"` is greater than `"1.2"` because the second revision values are ten
-and two, even though the character `"1"` comes before `"2"` at that textual
-position.
-
-Leading zeros also have no significance. Revisions `"01"` and `"001"` both
-represent integer one. Finally, a missing revision is treated as zero, so
-`"1.0"` and `"1.0.0.0"` are equal.
-
-The selected solution processes both strings from left to right without
-splitting them. `i` and `j` point to the next unprocessed character in
-`version1` and `version2`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"version1": "1.2", "version2": "1.10"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Revision 0:
+- **`version1` Parse:**
+  - $i = 0: \text{version1}[0] = \text{'1'} \implies a = 0 \times 10 + 1 = \mathbf{1}$.
+  - $i = 1: \text{version1}[1] = \text{'.'}$. Stop parsing.
+- **`version2` Parse:**
+  - $j = 0: \text{version2}[0] = \text{'1'} \implies b = 0 \times 10 + 1 = \mathbf{1}$.
+  - $j = 1: \text{version2}[1] = \text{'.'}$. Stop parsing.
+- **Compare:**
+  $$
+  a == b \quad (1 == 1)
+  $$
+  Equal. Advance over dots: $i \leftarrow 2, \, j \leftarrow 2$.
 
 ---
 
-### Step 2: Build one revision value digit by digit
+### Revision 1:
+- **`version1` Parse:**
+  - $i = 2: \text{version1}[2] = \text{'2'} \implies a = 0 \times 10 + 2 = \mathbf{2}$.
+  - $i = 3 == M$. End of string. Stop parsing.
+- **`version2` Parse:**
+  - $j = 2: \text{version2}[2] = \text{'1'} \implies b = 0 \times 10 + 1 = 1$.
+  - $j = 3: \text{version2}[3] = \text{'0'} \implies b = 1 \times 10 + 0 = \mathbf{10}$.
+  - $j = 4 == N$. End of string. Stop parsing.
+- **Compare:**
+  $$
+  a < b \quad (2 < 10)
+  $$
+  Strictly less!
 
-At the start of each outer iteration, `a` and `b` are reset to zero. For
-`version1`, the inner loop continues until `i` reaches the string end or a dot.
-For each digit it performs:
-
-`a = a * 10 + int(version1[i])`.
-
-Multiplying the accumulated prefix by ten shifts its decimal place left; adding
-the next digit appends that digit. Thus characters `"0010"` produce:
-zero, zero, one, then ten. Leading zeros disappear naturally without a separate
-trim.
-
-The second inner loop constructs `b` by the same rule.
-
-The validity guarantee means every non-dot character is a decimal digit and
-each revision is valid, so conversion of a single character succeeds.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Treat an exhausted version as zero
-
-The outer condition is `i < m or j < n`. It continues while at least one
-version still has a revision to process.
-
-If one string is already exhausted, its inner loop does not run and its
-accumulator remains zero. This exactly implements the rule that missing
-revision values are zero.
-
-After processing the current revisions, the source advances both indices by
-one to step over their dots. If an index was already at or beyond its string
-end, incrementing it again is harmless: all later bounds checks remain false,
-and that side keeps producing virtual zero.
-
-The code never indexes at these beyond-end positions. Every character access
-is protected by `i < m` or `j < n`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `-1` |
+Return $\mathbf{-1}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"version1": "1.2", "version2": "1.10"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `-1` | Verified |
+```text
+version1: "1.2"
+version2: "1.10"
+
+Revision 0:
+  version1: "1"  -> val = 1
+  version2: "1"  -> val = 1
+  Compare: 1 == 1 -> Continue
+
+Revision 1:
+  version1: "2"  -> val = 2
+  version2: "10" -> val = 10
+  Compare: 2 < 10 -> Return -1
+```
+
+| Revision Index | `version1` Substring | Integer Value $a$ | `version2` Substring | Integer Value $b$ | Comparison Condition | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `"1"` | 1 | `"1"` | 1 | $1 == 1$ | Skip dot, continue |
+| **1** | **`"2"`** | **2** | **`"10"`** | **10** | **$2 < 10$** | **Return -1** |
+
+### Contrast: Unequal Length with Trailing Zeroes (`"1.0"` vs `"1.0.0"`)
+- Rev 0: $a = 1, b = 1 \implies 1 == 1$.
+- Rev 1: $a = 0, b = 0 \implies 0 == 0$.
+- Rev 2: $v_1$ exhausted $\implies a = 0$. $v_2$ parses `"0"` $\implies b = 0$. $0 == 0$.
+- Both exhausted $\implies$ Return **0**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Revisions are compared strictly in left-to-right hierarchical order (major, minor, patch, etc.). If the $k$-th revision satisfies $a_k \ne b_k$, the version with the larger revision number is globally greater regardless of subsequent revisions.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Trailing revisions on a shorter version string evaluate to 0 because the accumulator initializes to 0 and the inner parse loop does not execute for exhausted strings. All possible length differences and suffix zeros are handled correctly.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Split both strings:** Convert dot-separated pieces to integers and compare with zero padding. It is simple but allocates $O(m+n)$ substring storage.
-- **Strip trailing `.0` text:** Can normalize some cases, but still requires correct integer comparison and careful handling of leading zeros.
-- **Lexicographic string comparison:** Incorrect for revisions such as two versus ten.
-- **Leading zeros:** Digit accumulation removes their numeric effect automatically.
-- **Different revision counts:** The exhausted side contributes virtual zeros.
-- **Trailing zero revisions:** They do not change equality.
-- **First unequal revision:** It decides the result regardless of later components.
-- **Single revision:** The same parser works without encountering a dot.
-- **Beyond-end indices:** They are incremented but never dereferenced.
-- **Valid-input guarantee:** The source assumes digit-only nonempty revisions separated by dots.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Lexicographical Comparison Hazard:** Directly comparing strings `"1.2"` vs `"1.10"` yields `"1.2" > "1.10"` because `'2' > '1'`. Parsing integers $2 < 10$ is mandatory.
+- **Leading Zeros in Revisions:** Revisions like `"01"` and `"001"` both evaluate to integer $1$. The Horner accumulators $a \times 10 + d$ absorb arbitrary runs of leading zeros naturally.
+- **Asymmetric Revision Counts:** `"1.0"` and `"1.0.0.0"` represent the same version. Simply comparing token array lengths would falsely claim they differ.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m+n)$. Let $m$ and $n$ be the two string lengths. Each real character is visited at
-- **Auxiliary Space Complexity:** $O(m + n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M + N)$, where $M = |\text{version1}|$ and $N = |\text{version2}|$. Each character is processed at most once during digit accumulation and dot skipping.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory when streaming characters with pointers $i$ and $j$, avoiding substring or array allocations.

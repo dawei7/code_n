@@ -1,108 +1,189 @@
 # Guided Example: Game Play Analysis II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step composite tuple matching (`(player_id, event_date)`), earliest login timestamp identification ($\min(event\_date)$), associated attribute retrieval (`device_id`), subquery filtering (`WHERE ... IN`), and projection on representative gaming activity logs:
 
-- **Input:** `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}`
-- **Required output:** `{"columns": ["player_id", "device_id"], "rows": [[1, 2], [2, 3], [3, 1]]}`
+- **Input Table (`Activity`):**
+  | `player_id` | `device_id` | `event_date` | `games_played` |
+  |:---:|:---:|:---:|:---:|
+  | $1$ | $2$ | `2016-03-01` | $5$ |
+  | $1$ | $2$ | `2016-05-02` | $6$ |
+  | $2$ | $3$ | `2017-06-25` | $1$ |
+  | $3$ | $1$ | `2016-03-02` | $0$ |
+  | $3$ | $4$ | `2018-07-03` | $5$ |
+- **Required output:**
+  | `player_id` | `device_id` |
+  |:---:|:---:|
+  | $1$ | $2$ |
+  | $2$ | $3$ |
+  | $3$ | $1$ |
+  - Table primary key: `(player_id, event_date)`
+  - Objective: For each player, report the `device_id` used on their very first login date.
+- **Relational subquery filtering execution trace:**
+  - **Phase 1: Subquery to Find First Login per Player:**
+    - Group table `Activity` by `player_id`:
+      - Player 1: dates $\{ \text{"2016-03-01"}, \text{"2016-05-02"} \} \implies \min = \mathbf{\text{"2016-03-01"}}$
+      - Player 2: dates $\{ \text{"2017-06-25"} \} \implies \min = \mathbf{\text{"2017-06-25"}}$
+      - Player 3: dates $\{ \text{"2016-03-02"}, \text{"2018-07-03"} \} \implies \min = \mathbf{\text{"2016-03-02"}}$
+    - Target composite key set:
+      $$
+      \mathcal{K} = \left\{ (1, \text{"2016-03-01"}), \; (2, \text{"2017-06-25"}), \; (3, \text{"2016-03-02"}) \right\}
+      $$
+  - **Phase 2: Filtering Outer Table with Composite Key Set:**
+    - Scan every row of `Activity` and check if $(player\_id, event\_date) \in \mathcal{K}$:
+      - **Row 1:** $(1, \text{"2016-03-01"})$:
+        - In set $\mathcal{K}$? **Yes!**
+        - Associated `device_id`: $\mathbf{2}$
+        - Retain: $(1, 2)$
+      - **Row 2:** $(1, \text{"2016-05-02"})$:
+        - In set $\mathcal{K}$? No (later login date).
+        - Discard.
+      - **Row 3:** $(2, \text{"2017-06-25"})$:
+        - In set $\mathcal{K}$? **Yes!**
+        - Associated `device_id`: $\mathbf{3}$
+        - Retain: $(2, 3)$
+      - **Row 4:** $(3, \text{"2016-03-02"})$:
+        - In set $\mathcal{K}$? **Yes!**
+        - Associated `device_id`: $\mathbf{1}$
+        - Retain: $(3, 1)$
+      - **Row 5:** $(3, \text{"2018-07-03"})$:
+        - In set $\mathcal{K}$? No (later login date).
+        - Discard.
+  - **Phase 3: Final Projection:**
+    - Project columns `(player_id, device_id)`:
+      $$
+      (1, 2), \quad (2, 3), \quad (3, 1)
+      $$
+- **Device Switch Instance:**
+  - Notice Player 3 logged in on `device_id = 1` in 2016, and switched to `device_id = 4` in 2018. The filter correctly identifies device $1$ as the first device and ignores device $4$.
+- **Single-Device Player Instance:**
+  - Player 2 used only device $3 \implies (2, 3)$ emitted directly.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates correlated semi-join filtering on composite keys, mathematically proves why joining on the primary key $(player\_id, event\_date)$ uniquely recovers non-aggregated row attributes, and derives $O(N)$ runtime and $O(P)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Activity`
+Given the `Activity` table with schema `(player_id, device_id, event_date, games_played)`:
+The composite primary key is `(player_id, event_date)`.
+Find the **device** that was logged into first for each player.
 
-The objective is to compute `{"columns": ["player_id", "device_id"], "rows": [[1, 2], [2, 3], [3, 1]]}` from `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Table Activity:
+  Row 1: Player 1, Device 2, 2016-03-01  <- First login for Player 1!
+  Row 2: Player 1, Device 2, 2016-05-02
+  Row 3: Player 2, Device 3, 2017-06-25  <- First login for Player 2!
+  Row 4: Player 3, Device 1, 2016-03-02  <- First login for Player 3!
+  Row 5: Player 3, Device 4, 2018-07-03
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Result:
+  Player 1 -> Device 2
+  Player 2 -> Device 3
+  Player 3 -> Device 1
+```
+
+### The Non-Aggregated Attribute Challenge in SQL
+- In standard SQL, you cannot simply write:
+  `SELECT player_id, device_id, MIN(event_date) FROM Activity GROUP BY player_id`
+- Why? Because `device_id` is neither in the `GROUP BY` clause nor wrapped in an aggregate function. SQL engines cannot know which row's `device_id` should accompany the minimum `event_date`.
+- Solution:
+  1. Find the unique `(player_id, MIN(event_date))` pairs using a subquery.
+  2. Filter the original table where the composite pair matches the subquery output!
+  3. This cleanly retrieves the exact `device_id` corresponding to that earliest login date.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Composite Tuple Filtering:
+The query structure:
+$$
+\sigma_{(player\_id, event\_date) \in \mathcal{K}}(\text{Activity})
+$$
+where $\mathcal{K}$ is defined by:
+$$
+\mathcal{K} = \gamma_{player\_id, \min(event\_date)}(\text{Activity})
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Primary Key Uniqueness:
+Because `(player_id, event_date)` is the primary key of `Activity`:
+- For any player $p$, their minimum event date $D_{min}$ corresponds to **exactly one row** in the table!
+- There is never any ambiguity or multiple devices on the exact same minimum date.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Primary Key Join Invariant.** Filtering on the composite pair $(player\_id, \min(event\_date))$ guarantees that exactly one unique row per player is selected from the outer table.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The first-login device cannot be obtained by applying `MIN` directly to `device_id`. The smallest device number is unrelated to chronological order. The query therefore solves the problem in two logical stages:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Core Step 2
-
-1. compute each player's earliest `event_date`;
-2. use the pair `(player_id, earliest_date)` to retrieve the original activity row containing the associated `device_id`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Execute Subquery
+Group by `player_id` to compute minimum dates:
+- Player 1: $\min = \text{"2016-03-01"}$
+- Player 2: $\min = \text{"2017-06-25"}$
+- Player 3: $\min = \text{"2016-03-02"}$
+Subquery output set:
+$$
+\mathcal{K} = \{(1, \text{"2016-03-01"}), \; (2, \text{"2017-06-25"}), \; (3, \text{"2016-03-02"})\}
+$$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Filter Rows Against $\mathcal{K}$
+- Row 1: $(1, \text{"2016-03-01"})$ matches $\mathcal{K} \implies$ Output `(1, 2)`.
+- Row 2: $(1, \text{"2016-05-02"})$ does not match $\implies$ Filtered out.
+- Row 3: $(2, \text{"2017-06-25"})$ matches $\mathcal{K} \implies$ Output `(2, 3)`.
+- Row 4: $(3, \text{"2016-03-02"})$ matches $\mathcal{K} \implies$ Output `(3, 1)`.
+- Row 5: $(3, \text{"2018-07-03"})$ does not match $\implies$ Filtered out.
 
-**Build one identifying tuple per player.** The subquery
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["player_id", "device_id"], "rows": [[1, 2], [2, 3], [3, 1]]}` |
+### Step 3: Emit Final Table
+| `player_id` | `device_id` |
+|:---:|:---:|
+| $1$ | $2$ |
+| $2$ | $3$ |
+| $3$ | $1$ |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-05-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-02", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2018-07-03", "games_played": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["player_id", "device_id"], "rows": [[1, 2], [2, 3], [3, 1]]}` | Verified |
+| Row | `player_id` | `device_id` | `event_date` | In Subquery Set $\mathcal{K}$? | Included in Result? | Output Columns Projected |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1** | $1$ | $2$ | `2016-03-01` | **Yes** | **Yes** | `(1, 2)` |
+| **2** | $1$ | $2$ | `2016-05-02` | No | No | — |
+| **3** | $2$ | $3$ | `2017-06-25` | **Yes** | **Yes** | `(2, 3)` |
+| **4** | $3$ | $1$ | `2016-03-02` | **Yes** | **Yes** | `(3, 1)` |
+| **5** | $3$ | $4$ | `2018-07-03` | No | No | — |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Player with Multiple Different Devices on Different Dates:** Correctly selects only the device from the earliest date (Player 3 used device 1 first, then device 4).
+- **Single Activity Row per Player:** Subquery matches the only row $\implies$ returns that device.
+- **Multiple Players Using the Same Device ID:** Different players logging into the same device (e.g. shared console) are preserved independently because partitioning is strictly by `player_id`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **CTE plus inner join:** Materialize `player_id, MIN(event_date)` and join on both columns. It expresses the same relational plan and is more portable than row-value `IN` in some systems.
-- **`ROW_NUMBER` window function:** Partition by player, order by date, and select row one. This directly keeps the associated device but requires window support.
-- **`FIRST_VALUE(device_id)`:** Compute the first device in each ordered player partition and apply `DISTINCT`. It works but can be less transparent about row reduction.
-- **Aggregate `MIN(device_id)`:** This is incorrect because numeric device order is unrelated to login time.
-- **Same date across different players:** Composite tuple matching keeps identities separate.
-- **Multiple dates for one player:** Only the minimum-date tuple matches.
-- **Primary-key guarantee:** It ensures one device row for a player's earliest date, so no tie-breaking is needed.
-- **Any output order:** No final sort is required.
-- **MySQL row constructors:** The exact syntax is supported by MySQL; a join is the portability fallback.
-- **Keep the device attached to its row:** Aggregating `MIN(device_id)` beside `MIN(event_date)` could combine values from different activity rows. Matching the composite tuple retrieves the device recorded on the actual first-login row.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Filtering by `event_date IN (SELECT MIN(event_date) FROM Activity)`:** This checks against the *global* minimum date across the entire table, returning only the single player who logged in first globally, instead of the first login for *each* player. Filtering by the composite tuple `(player_id, event_date)` is mandatory.
+- **Using Non-Standard Window Functions in Strict SQL:** While `ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY event_date)` works, standard tuple `IN` subqueries are portable across MySQL, PostgreSQL, SQLite, and Oracle.
+- **Misordering Output Columns:** The problem requires `(player_id, device_id)`, not `(device_id, player_id)`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P)$. Let $A$ be the number of activity rows and $P$ the number of distinct players. A hash aggregation can compute the $P$ minimum-date tuples in $O(A)$ expected time and $O(P)$ state. With an efficient semijoin or the composite primary-key index, matching source rows can be linear in the scan or near $O(P\log A)$ through lookups. The manifest summarizes the intended optimized execution as $O(A)$ time and $O(P)$ auxiliary state.
-- **Auxiliary Space Complexity:** $O(P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The subquery aggregates $N$ rows using a hash map or index: $\mathcal{O}(N)$.
+  - Storing the $P$ subquery results in a hash set takes $O(P)$ time.
+  - The outer query checks $N$ rows against the set in $O(1)$ time per row.
+  - Total Time: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(P)$ memory where $P$ is the number of distinct players.

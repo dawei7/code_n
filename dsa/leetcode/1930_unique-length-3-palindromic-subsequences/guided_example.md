@@ -1,121 +1,187 @@
 # Guided Example: Unique Length-3 Palindromic Subsequences
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace outer-character boundary pinning and interior alphabet projection for length-3 palindromes on representative string instances:
 
-- **Input:** `{"s": "aabca"}`
-- **Required output:** `3`
+- **Primary Input:** `s = "aabca"`
+- **Required Output:** `3`
+- **Interleaved Input:** `s = "bbcbaba"`
+- **Required Output:** `4`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates exploiting the structural symmetry of length-3 palindromes ($c \cdot m \cdot c$), identifying extreme outer boundaries ($L = \text{first}(c), R = \text{last}(c)$) to maximize candidate intermediate characters, and counting unique character sets in $\mathcal{O}(|\Sigma| \cdot n)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, return *the number of **unique palindromes of length three** that are a **subsequence** of *`s`.
+Given a string `s` of lowercase English letters, determine the number of **unique** palindromes of length 3 that appear as subsequences of `s`.
+- A palindrome of length 3 reads identically forward and backward: it has the form $c \cdot m \cdot c$, where $c$ is the outer character and $m$ is the middle character (which may equal $c$).
+- Duplicate subsequences count only once: the set of distinct length-3 palindromic strings is what is enumerated.
 
-The objective is to compute `3` from `{"s": "aabca"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "aabca"` of length 5:
+- Index 0: `'a'`
+- Index 1: `'a'`
+- Index 2: `'b'`
+- Index 3: `'c'`
+- Index 4: `'a'`
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Outer character candidate `'a'`:
+- First occurrence: index $L = 0$.
+- Last occurrence: index $R = 4$.
+- The substring between these extreme boundaries is $s[1 \dots 3] = \text{"abc"}$.
+- Distinct characters in this interior: `{'a', 'b', 'c'}`.
+- Corresponding length-3 palindromes: `"aaa"` (subsequence indices $(0, 1, 4)$), `"aba"` ($(0, 2, 4)$), and `"aca"` ($(0, 3, 4)$).
+- Count for `'a'`: 3.
+
+Other characters:
+- `'b'` appears only at index 2 ($L = R = 2$). No interior characters exist. Count: 0.
+- `'c'` appears only at index 3 ($L = R = 3$). Count: 0.
+- Total unique palindromes: $3 + 0 + 0 = 3$.
+
+The teaching goal is to understand **extreme-boundary projection and alphabet-driven decomposition**:
+1. Factoring the problem by the outer character $c \in \{'a', \dots, 'z'\}$.
+2. Proving that choosing the earliest $L$ and latest $R$ for character $c$ strictly subsumes all possible middle characters for any other pair of occurrences of $c$.
+3. Reducing the counting problem for each letter to the cardinality of the unique character set in the range $(L, R)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Extreme Boundary Subsumption Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Extreme Boundary Subsumption Theorem.**
+> 1. *Palindromic Form:* Every length-3 palindrome is uniquely identified by the ordered pair of characters $(c, m) \in \Sigma \times \Sigma$, representing the string $c \cdot m \cdot c$.
+> 2. *Extreme Index Invariant:* For any fixed character $c \in \Sigma$, let:
+>    $$L(c) = \min \{i \mid s[i] = c\}, \quad R(c) = \max \{j \mid s[j] = c\}$$
+>    If $c$ appears fewer than 2 times, $R(c) - L(c) \le 1$, and no length-3 palindrome with outer character $c$ can exist.
+> 3. *Maximal Interior Reach:* For any two occurrences of $c$ at indices $i < j$, the interval of available middle positions is $[i + 1, j - 1]$. Since $L(c) \le i < j \le R(c)$, we have:
+>    $$[i + 1, j - 1] \subseteq [L(c) + 1, R(c) - 1]$$
+>    Therefore, the set of distinct characters that can serve as the middle character $m$ for outer letter $c$ is precisely:
+>    $$\mathcal{M}(c) = \{s[k] \mid L(c) < k < R(c)\}$$
+> 4. *Global Cardinality:* Because palindromes with different outer characters $c_1 \neq c_2$ are trivially distinct ($c_1 \cdot m_1 \cdot c_1 \neq c_2 \cdot m_2 \cdot c_2$), the total count of unique palindromes is the disjoint sum:
+>    $$\text{Total} = \sum_{c \in \Sigma, R(c) - L(c) > 1} |\mathcal{M}(c)|$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Boundary Pinning Algorithm
+    accDescr: For each character in alphabet, find first and last occurrences, collect interior characters, and sum set sizes.
+    A["Iterate Outer Character c in {'a' .. 'z'}"] --> B["Find First Index L = s.find(c) and Last Index R = s.rfind(c)"]
+    B --> C{"Is R - L > 1?"}
+    C -- Yes --> D["Extract Interior Substring: s[L + 1 .. R - 1]"]
+    D --> E["Count Distinct Characters: k = len(set(interior))"]
+    E --> F["ans = ans + k"]
+    C -- No --> G["Skip c (fewer than 2 occurrences or no interior)"]
+    F --> H{"More characters in alphabet?"}
+    G --> H
+    H -- Yes --> A
+    H -- No --> I["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Every length-three palindrome has only two choices to identify
+---
 
-A palindrome of length three must have the form $cxc$: the first and last characters are the same outer character $c$, and the middle character $x$ may be any lowercase letter, including $c$ itself. Therefore a unique answer is completely identified by the ordered pair “outer character, middle character.”
+### Execution on Primary String: `s = "aabca"`
 
-The solution considers each possible outer character `c` from `ascii_lowercase`. For that character it finds `l = s.find(c)`, the first occurrence, and `r = s.rfind(c)`, the last occurrence. If at least one index lies strictly between them, every distinct character in `s[l + 1 : r]` can serve as the middle of a palindrome whose outer character is `c`.
+Length $n = 5$. Alphabet scan over active characters:
 
-The expression `len(set(s[l + 1 : r]))` counts those distinct middle characters. A set deliberately discards repeated occurrences. For example, if several `b` characters lie between the chosen outer `a` characters, they may give many index triples spelling `"aba"`, but the problem counts that subsequence value only once.
+#### 1. Outer Character `'a'`
+- First index: $L = 0$.
+- Last index: $R = 4$.
+- Distance check: $R - L = 4 - 0 = 4 > 1$ (Valid).
+- Interior interval: $[0 + 1 \dots 4 - 1] = [1 \dots 3]$.
+- Interior characters: $s[1] = \text{'a'}, s[2] = \text{'b'}, s[3] = \text{'c'}$.
+- Set of unique middle characters: $\mathcal{M}(\text{'a'}) = \{\text{'a'}, \text{'b'}, \text{'c'}\}$.
+- Size: $|\mathcal{M}(\text{'a'})| = 3$.
+- Generated palindromes: `"aaa"`, `"aba"`, `"aca"`.
+- Running total: $\text{ans} = 3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aabca"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### 2. Outer Character `'b'`
+- First index: $L = 2$.
+- Last index: $R = 2$.
+- $R - L = 0 \le 1$.
+- No palindromes possible with outer character `'b'`.
+
+#### 3. Outer Character `'c'`
+- First index: $L = 3$.
+- Last index: $R = 3$.
+- $R - L = 0 \le 1$.
+- No palindromes possible with outer character `'c'`.
+
+#### 4. All Other Alphabet Characters
+- Absent from `s`. $L = -1$. Skipped.
+
+#### Result
+Total unique length-3 palindromes: **3**.
 
 ---
 
-### Step 2: Why the first and last occurrences capture every possibility
+### Execution on Interleaved String: `s = "bbcbaba"`
 
-Suppose some palindrome $cxc$ can be formed using occurrences of $c$ at indices $i$ and $j$, with an $x$ between them. The first occurrence `l` of $c$ cannot be later than $i$, and the last occurrence `r` cannot be earlier than $j$. Thus the same middle occurrence of $x$ also lies strictly between `l` and `r`. Every feasible middle character for any pair of outer `c` occurrences is therefore present inside the widest interval between the first and last `c`.
+Indices:
+- 0: `'b'`, 1: `'b'`, 2: `'c'`, 3: `'b'`, 4: `'a'`, 5: `'b'`, 6: `'a'`
 
-The reverse is immediate: if a character $x$ occurs between `l` and `r`, choosing those two outer occurrences and that middle occurrence produces the subsequence $cxc$. So the set of characters in this widest interval is exactly the set of unique palindromes with outer character $c$.
+#### 1. Outer Character `'a'`
+- First index: $L = 4$.
+- Last index: $R = 6$.
+- Interior: $s[5 \dots 5] = \text{"b"}$.
+- Distinct middle characters: `{'b'}` $\implies$ palindrome `"aba"`.
+- Count: $+1$.
 
-Choosing the widest pair is what lets the algorithm avoid examining all pairs of equal outer-character occurrences. An interior pair can never expose a middle character that is absent from the first-to-last interval.
+#### 2. Outer Character `'b'`
+- First index: $L = 0$.
+- Last index: $R = 5$.
+- Interior: $s[1 \dots 4] = \text{"bcba"}$.
+- Distinct middle characters: `{'b', 'c', 'a'}` $\implies$ palindromes `"bbb"`, `"bcb"`, `"bab"`.
+- Count: $+3$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+#### 3. Outer Character `'c'`
+- First index: $L = 2$, Last: $R = 2 \implies R - L = 0$. Count: 0.
 
----
-
-### Step 3: Why different loop iterations cannot double-count
-
-Within one outer-character iteration, the set ensures each middle character is counted once. Across iterations, the outer character differs. Even if the middle character is the same, palindromes such as `"aba"` and `"cbc"` are different strings, so both should count. Consequently, summing the set sizes over all 26 possible outer characters counts each unique length-three palindrome exactly once.
-
-The guard `r - l > 1` requires at least one position strictly between the outer copies. If a letter is absent, both `find` and `rfind` return `-1`, so the difference is zero and the iteration contributes nothing. If it appears once, the indices are equal. If it appears twice consecutively, their difference is one. All three cases correctly fail the guard.
-
-For `s = "aabca"`, the first `a` is at index zero and the last at index four. The substring between them is `"abc"`, whose set is `{"a", "b", "c"}`. These characters produce `"aaa"`, `"aba"`, and `"aca"`. Considering other outer letters adds nothing, so the answer is three.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+#### Result
+Total unique palindromes: $1 + 3 = \mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aabca"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+We trace the boundary indices and distinct middle character collections for `s = "aabca"`:
+
+| Outer Character $c$ | First Index $L(c)$ | Last Index $R(c)$ | Boundary Spread $R - L$ | Interior Slice $s[L+1 \dots R-1]$ | Distinct Middles $\mathcal{M}(c)$ | Subsequence Palindromes |
+|---|---|---|---|---|---|---|
+| `'a'` | 0 | 4 | 4 | `"abc"` | `{'a', 'b', 'c'}` | `"aaa"`, `"aba"`, `"aca"` |
+| `'b'` | 2 | 2 | 0 | `""` | $\emptyset$ | None |
+| `'c'` | 3 | 3 | 0 | `""` | $\emptyset$ | None |
+| `'d'` .. `'z'` | -1 | -1 | 0 | `""` | $\emptyset$ | None |
+
+We compare results across sample test strings:
+
+| String $s$ | Distinct Letters Present | Active Outer Characters | Unique Palindromes Formed | Output Count |
+|---|---|---|---|---|
+| `"aabca"` | `{'a', 'b', 'c'}` | `'a'` | `"aaa"`, `"aba"`, `"aca"` | **3** |
+| `"bbcbaba"` | `{'a', 'b', 'c'}` | `'a'`, `'b'` | `"aba"`, `"bbb"`, `"bcb"`, `"bab"` | **4** |
+| `"ckafkodfc"` | `{'a', 'c', 'd', 'f', 'k', 'o'}` | `'c'`, `'k'`, `'f'` | Multiple | **4** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any outer character $c$ and middle character $m \in \mathcal{M}(c)$, there exist indices $L < k < R$ such that $s[L] = c$, $s[k] = m$, and $s[R] = c$. The subsequence $(L, k, R)$ forms the string $c \cdot m \cdot c$, which is a valid length-3 palindrome. Because each pair $(c, m)$ is counted exactly once by using a set, no duplicate palindromes are counted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose a length-3 palindrome $c \cdot m \cdot c$ exists in $s$ via indices $i < k < j$. Then $s[i] = c$ implies $L(c) \le i < k$, and $s[j] = c$ implies $k < j \le R(c)$. Thus $L(c) < k < R(c)$, meaning $m = s[k]$ belongs to the interior slice $s[L(c)+1 \dots R(c)-1]$ and is captured by $\mathcal{M}(c)$. No valid palindrome can be omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Precomputed first and last arrays:** One pass can store both indices for all 26 letters, avoiding repeated `find` scans. Scanning each interior interval still gives linear time because the alphabet size is constant.
-- **Prefix character counts:** A 26-by-position prefix table can test which middle letters occur between two endpoints in constant time per letter, but uses $O(26N)$ space and is unnecessary.
-- **Enumerate index triples:** Testing all $O(N^3)$ triples repeats enormous amounts of work and requires extra deduplication.
-- **Scan without slicing:** Iterate indices from `l + 1` to `r - 1` and add characters directly to a set. This keeps the same logic and achieves constant auxiliary space under the fixed alphabet.
-- **Outer letter absent:** Both searches return `-1` and the guard prevents a contribution.
-- **Outer letter appears once:** No palindrome can use it at both ends, and `r - l` is zero.
-- **Two adjacent copies:** There is no position available for a middle character, so the difference-one interval contributes nothing.
-- **Middle equals outer:** A third copy of $c$ between the endpoints adds $c$ to the set and correctly counts `ccc`.
-- **Many ways to form one string:** Repeated middle occurrences and alternative outer pairs still produce one string value; the set and widest interval count it once.
-- **Different outer letters:** Palindromes with the same middle but different ends are different and are counted in separate iterations.
-- **Lowercase-only dependency:** Iterating `ascii_lowercase` is complete only because the contract restricts `s` to lowercase English letters.
-- **Imported alphabet symbol:** The exact method assumes `ascii_lowercase` is available in its execution environment.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Subsequence Index Combinations:** In `s = "aabca"`, the palindrome `"aaa"` can be formed by indices $(0, 1, 4)$. If there were another `'a'`, multiple triples could form `"aaa"`. The problem asks for the count of *unique string values*, not unique index combinations. Counting set cardinality `len(set(...))` naturally deduplicates duplicate subsequences.
+- **Middle Character Matching Outer Character:** A palindrome like `"aaa"` has outer character `'a'` and middle character `'a'`. The algorithm correctly handles this because an interior `'a'` is treated like any other character in the set.
+- **Narrow Boundary Separation:** When $R = L + 1$, the two occurrences are immediately adjacent (e.g. `"aa"`). There are zero intermediate positions between them ($R - L = 1 \ngtr 1$), so no length-3 palindrome can be formed using this boundary pair.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the length of `s`. The loop has exactly 26 iterations because the alphabet is fixed. For each character, `find` may scan $O(N)$ positions, `rfind` may scan $O(N)$ positions, and constructing the slice and its set may inspect another $O(N)$ characters. Therefore the explicit bound is $O(26N)$, which simplifies to $O(N)$ because 26 is constant.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|\Sigma| \cdot n)$, where $|\Sigma| = 26$ is the lowercase English alphabet size and $n = \text{len}(s)$. For each of the 26 characters, scanning to find the first and last occurrence takes $\mathcal{O}(n)$, and taking the set of the interior takes $\mathcal{O}(n)$, yielding $\mathcal{O}(26 \cdot n) = \mathcal{O}(n)$ total time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$ auxiliary space to store the set of distinct interior characters and boundary pointers.

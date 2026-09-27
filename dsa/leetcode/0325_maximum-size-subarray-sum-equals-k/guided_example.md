@@ -1,140 +1,194 @@
 # Guided Example: Maximum Size Subarray Sum Equals k
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step prefix sum calculation, hash map earliest-occurrence caching (`d[s]`), zero-index sentinel initialization (`d = {0: -1}`), algebraic complement lookup ($s - k$), and maximum subarray length maximization on representative integer array instances:
 
-- **Input:** `{"nums": [1, -1, 5, -2, 3], "k": 3}`
-- **Required output:** `4`
+- **Input:** $\text{nums} = [1, -1, 5, -2, 3], \quad k = 3$
+- **Required output:** $4$
+  - Running prefix sums: $[1, 0, 5, 3, 6]$
+  - At index $3$ ($x = -2$), running sum $s = 3$
+  - Target complement: $s - k = 3 - 3 = 0$
+  - Earliest occurrence of prefix sum $0$: index $-1$ (empty prefix)
+  - Subarray length: $3 - (-1) = \mathbf{4}$ (Subarray $\text{nums}[0 \dots 3] = [1, -1, 5, -2]$, sum $= 3$)
+  - At index $4$ ($x = 3$), running sum $s = 6$, $s - k = 3$, length $4 - 3 = 1 \le 4$
+  - Global maximum length: $4$
+- **Negative Numbers Present:** Sliding window fails because sums are non-monotonic; prefix hash map correctly handles negatives
+- **No Matching Subarray:** $\text{nums} = [1, 2, 3], k = 7 \implies 0$
+- **Single Element Match:** $\text{nums} = [5], k = 5 \implies 1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates prefix sum complement lookups with negative integers, mathematically proves why recording only the *earliest* occurrence of each prefix sum maximizes subarray length, explains the `{0: -1}` sentinel, and operates in $O(N)$ linear time and $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` and an integer `k`, return *the maximum length of a **subarray** that sums to* `k`. If there is not one, return `0` instead.
+Given array $\text{nums} = [1, -1, 5, -2, 3]$ ($N = 5$) and target $k = 3$:
+Find the maximum length of a contiguous subarray whose elements sum to $k$:
+$$
+\sum_{j=a}^b \text{nums}[j] = k
+$$
 
-The objective is to compute `4` from `{"nums": [1, -1, 5, -2, 3], "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Indices:     0    1    2    3    4
+nums:        1   -1    5   -2    3
+Prefix sum:  1    0    5    3    6
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Subarrays summing to k = 3:
+- nums[0..3]: [1, -1, 5, -2] -> sum = 3, length = 4 (MAXIMUM!)
+- nums[2..3]: [5, -2]        -> sum = 3, length = 2
+- nums[4..4]: [3]            -> sum = 3, length = 1
+
+Optimal Length: 4
+```
+
+### Why Sliding Window Fails
+A two-pointer sliding window assumes that expanding the right pointer increases the sum and shrinking the left pointer decreases the sum.
+Because $\text{nums}$ contains negative numbers (like $-1$ and $-2$), the prefix sum is **not monotonic**:
+- Adding an element can decrease the total.
+- Removing an element can increase the total.
+The only linear-time method that works with arbitrary signed integers is **Prefix Sum + Hash Map**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Prefix Sum Equation
+Let $P[i] = \sum_{j=0}^i \text{nums}[j]$ be the prefix sum ending at index $i$.
+The sum of subarray $\text{nums}[a \dots i]$ is:
+$$
+\text{Sum}(a \dots i) = P[i] - P[a - 1] = k \iff P[a - 1] = P[i] - k
+$$
+At each index $i$, we know $P[i]$ and $k$. We check if the required preceding prefix sum $P[i] - k$ has already occurred!
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Earliest Index Invariant for Maximum Length
+The length of subarray $\text{nums}[a \dots i]$ is $i - (a - 1)$.
+To **maximize** length for a fixed ending index $i$, we must **minimize** $a - 1$.
+Therefore:
+- In hash map $d$, store the **earliest** index where each prefix sum was seen:
+  $$
+  \text{if } s \notin d: \quad d[s] = i
+  $$
+- Never overwrite an existing key in $d$!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. The Sentinel `{0: -1}`
+If a subarray summing to $k$ starts at index $0$, then $P[i] - k = 0$.
+The required preceding prefix sum is $0$.
+Pre-populating $d[0] = -1$ represents the virtual empty prefix before index $0$:
+$$
+\text{Length} = i - (-1) = i + 1
+$$
+This unifies all lookups without special branching.
+
+> **Invariant.** For every key $s$ in $d$, $d[s]$ stores the minimum index with prefix sum $s$. If $s - k \in d$, $i - d[s - k]$ is the maximum valid subarray length ending at $i$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use contiguity to replace each subarray sum with a prefix difference.
-
-A subarray must contain consecutive positions. That makes prefix sums useful because subtracting two cumulative totals cancels everything before the subarray.
-
-Let $P_i$ be the sum of `nums[0]` through `nums[i]`, and define $P_{-1}=0$ for the empty prefix before the array. The sum of a subarray from index $a$ through index $i$ is
-
-$$
-P_i - P_{a-1}.
-$$
-
-To make that sum equal `k`, the prefix immediately before the subarray must satisfy
-
-$$
-P_i - P_{a-1} = k,
-$$
-
-or, after rearranging,
-
-$$
-P_{a-1} = P_i-k.
-$$
-
-This equation turns the problem around. When the scan reaches ending index `i` and its running prefix sum is `s`, there is no need to test every possible start. It only needs to know whether the specific earlier prefix sum `s - k` has occurred. A hash map provides that lookup in expected constant time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, -1, 5, -2, 3], "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $\text{nums} = [1, -1, 5, -2, 3]$ with $k = 3$:
+Initialized: `d = {0: -1}, ans = 0, s = 0`.
 
 ---
 
-### Step 2: What the map stores and why it stores the earliest index.
-
-The dictionary `d` maps each prefix-sum value to the earliest index where that sum occurred. If `s - k` was first seen at index `p`, then the elements from `p + 1` through `i` sum to `k`, and their length is
-
-$$
-i-p.
-$$
-
-For a fixed ending index `i`, making `p` as small as possible makes this length as large as possible. That is why the source inserts a prefix sum only if it is not already present:
-
-`if s not in d: d[s] = i`.
-
-Overwriting an earlier occurrence with a later one could only shorten every future subarray that uses that prefix value. The actual numeric sum is identical, so the later occurrence provides no advantage for this maximum-length objective.
-
-Repeated prefix sums are common when the array contains positive and negative values. For example, the running sums of `[1,-1,1,3]` are `1,0,1,4`. The sum `1` appears at indices `0` and `2`. If a later end needs a preceding sum of `1`, index `0` always creates a longer subarray than index `2`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Index $0$, $x = 1$
+- Running sum: $s = 0 + 1 = 1$.
+- Complement needed: $s - k = 1 - 3 = -2$.
+- Is $-2 \in d$? No.
+- Record sum: $1 \notin d \implies d[1] = 0$.
+- State: $d = \{0: -1, \; 1: 0\}$, $ans = 0$.
 
 ---
 
-### Step 3: Why the map begins with `{0: -1}`.
+### Step 2: Index $1$, $x = -1$
+- Running sum: $s = 1 + (-1) = 0$.
+- Complement needed: $s - k = 0 - 3 = -3$.
+- Is $-3 \in d$? No.
+- Record sum: $0 \in d$ already ($d[0] = -1$).
+  - **Do not overwrite!** Keeping $-1$ preserves earlier starting positions.
+- State: $d = \{0: -1, \; 1: 0\}$, $ans = 0$.
 
-A valid subarray may start at index zero. If the running sum at index `i` equals `k`, then the desired earlier prefix is `s-k=0`. Conceptually, that zero belongs to the empty prefix ending immediately before index zero, at index `-1`.
+---
 
-Storing `0: -1` unifies this boundary with every other lookup. Its computed length is
+### Step 3: Index $2$, $x = 5$
+- Running sum: $s = 0 + 5 = 5$.
+- Complement needed: $s - k = 5 - 3 = 2$.
+- Is $2 \in d$? No.
+- Record sum: $5 \notin d \implies d[5] = 2$.
+- State: $d = \{0: -1, \; 1: 0, \; 5: 2\}$, $ans = 0$.
 
+---
+
+### Step 4: Index $3$, $x = -2$
+- Running sum: $s = 5 + (-2) = 3$.
+- Complement needed: $s - k = 3 - 3 = \mathbf{0}$.
+- Is $0 \in d$? **Yes!** $d[0] = -1$.
+  - Subarray starts after index $-1$ (i.e. at index 0): $\text{nums}[0 \dots 3]$.
+  - Length: $i - d[0] = 3 - (-1) = \mathbf{4}$.
+  - Update: $ans = \max(0, 4) = \mathbf{4}$.
+- Record sum: $3 \notin d \implies d[3] = 3$.
+- State: $d = \{0: -1, \; 1: 0, \; 5: 2, \; 3: 3\}$, $ans = 4$.
+
+---
+
+### Step 5: Index $4$, $x = 3$
+- Running sum: $s = 3 + 3 = 6$.
+- Complement needed: $s - k = 6 - 3 = \mathbf{3}$.
+- Is $3 \in d$? **Yes!** $d[3] = 3$.
+  - Subarray starts after index $3$ (index 4): $\text{nums}[4 \dots 4] = [3]$.
+  - Length: $i - d[3] = 4 - 3 = 1$.
+  - Update: $ans = \max(4, 1) = 4$.
+- Record sum: $6 \notin d \implies d[6] = 4$.
+
+---
+
+### Final Maximum Length
 $$
-i-(-1)=i+1,
+ans = \mathbf{4}
 $$
-
-which is exactly the number of elements from index `0` through `i`. No separate `if s == k` branch is required.
-
-This initialization is also important when `k = 0`. A zero-sum prefix ending at `i` can use the earliest zero at `-1`, giving the full prefix length rather than starting after a later occurrence of the same cumulative sum.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, -1, 5, -2, 3], "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```text
+nums = [1, -1, 5, -2, 3], k = 3
+d = {0: -1}
+
+i=0, x= 1: s=1, s-k=-2 (not in d), d[1]=0
+i=1, x=-1: s=0, s-k=-3 (not in d), 0 already in d (kept -1)
+i=2, x= 5: s=5, s-k= 2 (not in d), d[5]=2
+i=3, x=-2: s=3, s-k= 0 (FOUND at -1) -> len = 3 - (-1) = 4 -> ans = 4, d[3]=3
+i=4, x= 3: s=6, s-k= 3 (FOUND at  3) -> len = 4 - 3 = 1    -> ans = 4, d[6]=4
+
+Maximum Length: 4
+```
+
+| Index $i$ | Element $x$ | Prefix Sum $s$ | Needed Complement $s - k$ | Found in $d$? | Earliest Index | Subarray Length | Current Max `ans` | Dictionary $d$ After Step |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 1 | 1 | -2 | No | - | - | 0 | `{0: -1, 1: 0}` |
+| 1 | -1 | 0 | -3 | No | - | - | 0 | `{0: -1, 1: 0}` |
+| 2 | 5 | 5 | 2 | No | - | - | 0 | `{0: -1, 1: 0, 5: 2}` |
+| **3** | **-2** | **3** | **0** | **Yes** | **-1** | **$3 - (-1) = 4$** | **4** | `{0: -1, 1: 0, 5: 2, 3: 3}` |
+| 4 | 3 | 6 | 3 | Yes | 3 | $4 - 3 = 1$ | 4 | `{..., 6: 4}` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A subarray from $a$ to $i$ sums to $k$ if and only if $P[i] - P[a-1] = k$, which is algebraically identical to $P[a-1] = P[i] - k$. If $s - k$ exists in $d$ at index $p$, the elements from $p + 1$ to $i$ have sum $s - (s - k) = k$, confirming that the identified contiguous range is a valid candidate.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every possible subarray end index $i \in [0, N-1]$ is inspected. Because $d$ preserves the smallest index where each prefix sum first appeared, the longest possible subarray ending at $i$ is evaluated. Taking the maximum across all $i$ guarantees finding the global maximum size.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Enumerate all starts and ends:** There are $n(n+1)/2$ subarrays. Prefix sums can make each sum query $O(1)$, but enumerating all pairs still takes $O(n^2)$ time, which is too large for $n$ up to $2\cdot10^5$.
-- **Sliding window:** A two-pointer window works when all numbers are nonnegative because expanding cannot decrease the sum and shrinking cannot increase it. Here negative values break that monotonic behavior, so a window can skip valid answers. Prefix differences impose no positivity requirement.
-- **Store the latest prefix index:** This is appropriate for some minimum-length objectives, but it is wrong here. The earliest matching prefix always yields the longest subarray for a fixed end.
+- **Overwriting Earliest Occurrence:** Updating $d[s] = i$ when $s$ is already in $d$ shortens all future candidate subarrays that could use prefix $s$. The check `if s not in d` is critical.
+- **Missing the `{0: -1}` Sentinel:** Without mapping $0$ to $-1$, any valid subarray starting at index $0$ cannot find a matching complement and is omitted unless complex special-case logic is added.
+- **Signed Arithmetic:** In arrays with negative numbers, prefix sums can fluctuate arbitrarily. Only a hash map accurately records arbitrary integer keys in $O(1)$ expected time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be `len(nums)`. The method scans the array once. Each iteration performs a constant number of dictionary lookups or insertions, which are expected $O(1)$ in Python. The expected time complexity is therefore $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. We perform a single linear pass over the array, with each hash table lookup and insertion executing in $O(1)$ expected time.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store at most $N + 1$ distinct prefix sums in hash map $d$.

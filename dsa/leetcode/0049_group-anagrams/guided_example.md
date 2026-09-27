@@ -1,117 +1,153 @@
 # Guided Example: Group Anagrams
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step hash-based anagram bucket categorization on a representative word list instance:
 
-- **Input:** `{"strs": ["eat", "tea", "tan", "ate", "nat", "bat"]}`
-- **Required output:** `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]`
+- **Input:** $\text{strs} = [\text{"eat"}, \text{"tea"}, \text{"tan"}, \text{"ate"}, \text{"nat"}, \text{"bat"}]$
+- **Required output:** $[[\text{"eat"}, \text{"tea"}, \text{"ate"}], \, [\text{"tan"}, \text{"nat"}], \, [\text{"bat"}]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates defining a canonical hashable signature for multiset letter equality (sorted string or 26-element character count tuple), streaming dictionary bucket accumulation, and emitting equivalence classes in $O(N \cdot K)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `strs`, group the anagrams together. You can return the answer in **any order**.
+Given an array of $N = 6$ strings:
+$$
+[\text{"eat"}, \text{"tea"}, \text{"tan"}, \text{"ate"}, \text{"nat"}, \text{"bat"}]
+$$
+where the maximum string length is $K = 3$, group all anagrams together. Two strings are anagrams if and only if they contain the exact same characters with identical frequencies.
 
-The objective is to compute `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]` from `{"strs": ["eat", "tea", "tan", "ate", "nat", "bat"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive pair-wise comparison compares every string against every other string in $O(N^2 \cdot K)$ time. By transforming each string into a canonical signature that is invariant under character permutation, we map anagrams to the same hash table bucket in a single pass.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Signature Formulations
+Two primary methods exist to generate an anagram signature:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Sorted Character String ($O(K \log K)$ per word):**
+   Sort the characters of word $s$ alphabetically:
+   $$
+   \text{key} = \text{sort}(s)
+   $$
+   - $\text{"eat"}, \text{"tea"}, \text{"ate"} \longmapsto \text{"aet"}$
+   - $\text{"tan"}, \text{"nat"} \longmapsto \text{"ant"}$
+   - $\text{"bat"} \longmapsto \text{"abt"}$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Character Frequency Vector ($O(K)$ per word):**
+   Count the frequency of each lowercase English letter in a 26-tuple:
+   $$
+   \text{count} = [c_a, c_b, \dots, c_z]
+   $$
+   - For $\text{"eat"}$: $(a:1, e:1, t:1, \text{others}:0)$.
+   Since tuples are immutable and hashable in Python, `tuple(count)` serves as an exact $O(K)$ hash key.
+
+### Grouping Mechanism
+We maintain a hash map $M: \text{Key} \to \text{List[String]}$:
+- For each word $s \in \text{strs}$:
+  - Compute signature $k$.
+  - Append original word $s$ to bucket $M[k]$.
+- Return the collection of all bucket lists: $\text{list}(M.\text{values}())$.
+
+> **Invariant.** After processing string $s$, all words residing in bucket $M[k]$ are mutual anagrams of each other, and no anagram of $s$ can reside in any other bucket.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Anagrams need a shared canonical signature
+We trace the hash map state as each string in $[\text{"eat"}, \text{"tea"}, \text{"tan"}, \text{"ate"}, \text{"nat"}, \text{"bat"}]$ is ingested:
 
-Two strings are anagrams exactly when they contain the same characters with the same multiplicities. Their original order may differ, so the original string cannot be used directly as the grouping key. The algorithm transforms every string into a canonical form by sorting its characters.
+- **Word 1: $\text{"eat"}$**
+  - Character decomposition: $\{a: 1, e: 1, t: 1\}$.
+  - Sorted key: $\text{"aet"}$.
+  - Lookup $\text{"aet"}$ in map: New key! Initialize bucket.
+  - Bucket state:
+    $$
+    \text{"aet"} \longrightarrow [\text{"eat"}]
+    $$
 
-For example, `"eat"`, `"tea"`, and `"ate"` all become `"aet"`. Strings with different letter counts cannot have the same sorted form: if one contains an extra `e`, that extra character appears somewhere in its sorted sequence. Thus the sorted string is both a necessary and sufficient anagram signature.
+- **Word 2: $\text{"tea"}$**
+  - Character decomposition: $\{a: 1, e: 1, t: 1\}$.
+  - Sorted key: $\text{"aet"}$.
+  - Lookup $\text{"aet"}$: Key exists! Append $\text{"tea"}$.
+  - Bucket state:
+    $$
+    \text{"aet"} \longrightarrow [\text{"eat"}, \text{"tea"}]
+    $$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"strs": ["eat", "tea", "tan", "ate", "nat", "bat"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Word 3: $\text{"tan"}$**
+  - Character decomposition: $\{a: 1, n: 1, t: 1\}$.
+  - Sorted key: $\text{"ant"}$.
+  - Lookup $\text{"ant"}$: New key! Initialize bucket.
+  - Bucket state:
+    $$
+    \text{"ant"} \longrightarrow [\text{"tan"}]
+    $$
 
----
+- **Word 4: $\text{"ate"}$**
+  - Sorted key: $\text{"aet"}$.
+  - Lookup $\text{"aet"}$: Key exists! Append $\text{"ate"}$.
+  - Bucket state:
+    $$
+    \text{"aet"} \longrightarrow [\text{"eat"}, \text{"tea"}, \text{"ate"}]
+    $$
 
-### Step 2: Build groups with a dictionary of lists
+- **Word 5: $\text{"nat"}$**
+  - Sorted key: $\text{"ant"}$.
+  - Lookup $\text{"ant"}$: Key exists! Append $\text{"nat"}$.
+  - Bucket state:
+    $$
+    \text{"ant"} \longrightarrow [\text{"tan"}, \text{"nat"}]
+    $$
 
-`d` maps each signature to the list of original strings having that signature. It is a `defaultdict(list)`, so accessing a new key creates an empty list automatically. The source does not need a separate “if key exists” branch.
+- **Word 6: $\text{"bat"}$**
+  - Sorted key: $\text{"abt"}$.
+  - Lookup $\text{"abt"}$: New key! Initialize bucket.
+  - Bucket state:
+    $$
+    \text{"abt"} \longrightarrow [\text{"bat"}]
+    $$
 
-For each input string `s`, `sorted(s)` returns its characters in non-decreasing order as a list, and `''.join(...)` turns those characters back into a hashable string key `k`. The original `s`, not its sorted version, is appended to `d[k]`. This matters because the result must group the supplied strings, preserving their spellings rather than replacing them with signatures.
-
-After every string has been processed, each dictionary value is one complete anagram group. `list(d.values())` returns those lists. The contract permits any group order and any order inside a group, so dictionary insertion order does not need further normalization.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The grouping invariant
-
-After processing the first `r` input strings, for every dictionary key `k`, `d[k]` contains exactly the processed strings whose sorted characters equal `k`. This is true before processing anything because the dictionary is empty.
-
-For the next string, the algorithm computes its one correct signature and appends it to exactly that key's list. No other group changes, so the invariant remains true. At the end, it covers the entire input.
-
-If two strings are anagrams, their character multisets are equal, sorting produces the same sequence, and the invariant places them together. If they are not anagrams, some character count differs, their sorted sequences differ, and they enter different keys. Therefore, every returned group contains only anagrams and every pair of anagrams belongs to the same group.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]` |
+All strings processed. Extracting values yields 3 groups:
+$$
+[[\text{"eat"}, \text{"tea"}, \text{"ate"}], \, [\text{"tan"}, \text{"nat"}], \, [\text{"bat"}]]
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"strs": ["eat", "tea", "tan", "ate", "nat", "bat"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]` | Verified |
+| Step | Current Word $s$ | Computed Canonical Key | Key Exists in Map? | Target Bucket State After Insertion |
+|:---:|:---:|:---:|:---:|:---|
+| 1 | `"eat"` | `"aet"` | No (New) | `{"aet": ["eat"]}` |
+| 2 | `"tea"` | `"aet"` | Yes | `{"aet": ["eat", "tea"]}` |
+| 3 | `"tan"` | `"ant"` | No (New) | `{"aet": [...], "ant": ["tan"]}` |
+| 4 | `"ate"` | `"aet"` | Yes | `{"aet": ["eat", "tea", "ate"], "ant": ["tan"]}` |
+| 5 | `"nat"` | `"ant"` | Yes | `{"aet": [...], "ant": ["tan", "nat"]}` |
+| 6 | `"bat"` | `"abt"` | No (New) | `{"aet": [...], "ant": [...], "abt": ["bat"]}` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A bucket key uniquely identifies the multiset of characters in a string. Two strings produce the exact same key if and only if they are permutations of one another. Hence, every group emitted by the hash map consists strictly of mutual anagrams.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every string in $\text{strs}$ is mapped to its unique canonical key and appended to the corresponding bucket. Since the hash map preserves all original words, no input string is lost or misclassified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **26-letter frequency tuple:** Count each lowercase English letter and use the 26 counts as a tuple key. It avoids per-string sorting and achieves expected $O(C)$ time, matching the manifest's intended bound.
-- **Prime-product signature:** Assign primes to letters and multiply. It risks enormous integers or overflow in fixed-width languages and is less transparent than a count tuple.
-- **Compare every pair:** Testing anagram equality between strings leads to roughly quadratic comparisons and redundant character work.
-- **Empty string:** Its canonical sorted key is the empty string, so all empty inputs group together automatically.
-- **Repeated identical strings:** They have the same signature and remain as separate entries in one group, preserving input multiplicity.
-- **Single-character strings:** Each character is already its own signature; equal letters group and different letters separate.
-- **Any return order:** The source returns dictionary value order and does not sort groups. This is permitted by the contract.
-- **Lowercase guarantee:** A count-signature alternative can use exactly 26 slots. The sorting method itself would also work for broader comparable characters.
-- **Input preservation:** Neither the outer list nor its immutable strings are modified.
-- **Missing standalone import:** `defaultdict` must be supplied by the runtime or imported from `collections` for this exact file to execute.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Mutating the Input Word:** Storing the sorted string in the result instead of the original string violates the contract. The key is used only for hash map indexing; the original un-sorted word must be appended to the bucket.
+- **Mutable Keys in Hash Maps:** Using a list `[0]*26` directly as a dictionary key causes a runtime `TypeError: unhashable type: 'list'`. Converting the count to an immutable tuple `tuple(count)` makes it hashable.
+- **Empty Strings and Single Letters:** An empty string `""` has canonical key `""`. Single letters `"a"` have key `"a"`. Both are handled uniformly by sorting or count tuples without special casing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O\left(\sum_{i=1}^{m} \ell_i \log \ell_i\right)$. Let string `i` have length $\ell_i$, let $m$ be the number of strings, and let
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - With Sorting: $O(N \cdot K \log K)$, where $N$ is the number of strings and $K$ is the maximum string length.
+  - With 26-tuple Frequency Counting: $O(N \cdot K)$. Counting frequencies takes $O(K)$ time per word, and hashing a 26-element tuple takes $O(26) = O(1)$ time.
+- **Auxiliary Space Complexity:** $O(N \cdot K)$ to store the hash map containing all words and signatures.

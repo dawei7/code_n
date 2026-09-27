@@ -1,117 +1,235 @@
 # Guided Example: Unpopular Books
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational left equi-join and conditional aggregation of book catalog sales, prove the Zero-Sales Null Extension Invariant and the One-Month Eligibility Exclusion Theorem, and evaluate book popularity metrics across representative catalog scenarios:
 
-- **Input:** `{"tables": {"Books": [{"book_id": 1, "name": "Kalila And Demna", "available_from": "2010-01-01"}, {"book_id": 2, "name": "28 Letters", "available_from": "2012-05-12"}, {"book_id": 3, "name": "The Hobbit", "available_from": "2019-06-10"}, {"book_id": 4, "name": "13 Reasons Why", "available_from": "2019-06-01"}, {"book_id": 5, "name": "The Hunger Games", "available_from": "2008-09-21"}], "Orders": [{"order_id": 1, "book_id": 1, "quantity": 2, "dispatch_date": "2018-07-26"}, {"order_id": 2, "book_id": 1, "quantity": 1, "dispatch_date": "2018-11-05"}, {"order_id": 3, "book_id": 3, "quantity": 8, "dispatch_date": "2019-06-11"}, {"order_id": 4, "book_id": 4, "quantity": 6, "dispatch_date": "2019-06-05"}, {"order_id": 5, "book_id": 4, "quantity": 5, "dispatch_date": "2019-06-20"}, {"order_id": 6, "book_id": 5, "quantity": 9, "dispatch_date": "2009-02-02"}, {"order_id": 7, "book_id": 5, "quantity": 8, "dispatch_date": "2010-04-13"}]}}`
-- **Required output:** `{"columns": ["book_id", "name"], "rows": [[1, "Kalila And Demna"], [2, "28 Letters"], [5, "The Hunger Games"]]}`
+- **Representative Instance 1 (Catalog with Recent Releases, Ancient Best-Sellers, and Zero-Order Books):**
+  $$
+  Books = \begin{array}{c|c|c}
+  book\_id & name & available\_from \\
+  \hline
+  1 & \text{Kalila And Demna} & \text{2010-01-01} \\
+  2 & \text{28 Letters} & \text{2012-05-12} \\
+  3 & \text{The Hobbit} & \text{2019-06-10} \\
+  4 & \text{13 Reasons Why} & \text{2019-06-01} \\
+  5 & \text{The Hunger Games} & \text{2008-09-21} \\
+  \end{array}
+  $$
+  $$
+  Orders = \begin{array}{c|c|c|c}
+  order\_id & book\_id & quantity & dispatch\_date \\
+  \hline
+  1 & 1 & 2 & \text{2018-07-26} \\
+  2 & 1 & 1 & \text{2018-11-05} \\
+  3 & 3 & 8 & \text{2019-06-11} \\
+  4 & 4 & 6 & \text{2019-06-05} \\
+  5 & 4 & 5 & \text{2019-06-20} \\
+  6 & 5 & 9 & \text{2009-02-02} \\
+  7 & 5 & 8 & \text{2010-04-13} \\
+  \end{array}
+  $$
+- **Required Output:**
+  $$
+  \begin{array}{c|c}
+  book\_id & name \\
+  \hline
+  1 & \text{Kalila And Demna} \\
+  2 & \text{28 Letters} \\
+  5 & \text{The Hunger Games} \\
+  \end{array}
+  $$
+  - Problem definitions:
+    - Today is assumed to be $\text{2019-06-23}$.
+    - Exclude books that have been available for less than one month from today ($available\_from \ge \text{2019-05-23}$).
+    - Qualifying books must have sold **strictly less than 10 copies** in the last year ($dispatch\_date \ge \text{2018-06-23}$).
+    - Books with zero orders in the last year have sold $0 < 10$ copies and must be included.
+  - Step 1: Release Cutoff Eligibility Filtering:
+    - Threshold: $available\_from < \text{'2019-05-23'}$.
+    - Book 1: $\text{2010-01-01} < \text{2019-05-23} \implies$ **Eligible**.
+    - Book 2: $\text{2012-05-12} < \text{2019-05-23} \implies$ **Eligible**.
+    - Book 3: $\text{2019-06-10} \ge \text{2019-05-23} \implies$ **Excluded (Available $< 1$ month)**.
+    - Book 4: $\text{2019-06-01} \ge \text{2019-05-23} \implies$ **Excluded (Available $< 1$ month)**.
+    - Book 5: $\text{2008-09-21} < \text{2019-05-23} \implies$ **Eligible**.
+  - Step 2: Relational Left Join and Null Extension:
+    - Perform `Books LEFT JOIN Orders USING (book_id)` on eligible books:
+      - Book 1 joins orders 1 and 2.
+      - Book 2 has no orders: order attributes extended with `NULL`.
+      - Book 5 joins orders 6 and 7.
+  - Step 3: Conditional 1-Year Sales Aggregation:
+    - Date cutoff: $dispatch\_date \ge \text{'2018-06-23'}$.
+    - **Book 1 ($\text{Kalila And Demna}$):**
+      - Order 1 ($\text{2018-07-26}$): $2$ copies.
+      - Order 2 ($\text{2018-11-05}$): $1$ copy.
+      - Total 1-year sales: $2 + 1 = 3 < 10 \implies$ **Unpopular!**
+    - **Book 2 ($\text{28 Letters}$):**
+      - Zero orders ($dispatch\_date$ is `NULL`).
+      - Total 1-year sales: $0 < 10 \implies$ **Unpopular!**
+    - **Book 5 ($\text{The Hunger Games}$):**
+      - Order 6 ($\text{2009-02-02}$): dispatch date $< \text{2018-06-23} \implies 0$.
+      - Order 7 ($\text{2010-04-13}$): dispatch date $< \text{2018-06-23} \implies 0$.
+      - Total 1-year sales: $0 + 0 = 0 < 10 \implies$ **Unpopular!**
+  - Final Output Table:
+    $$
+    \big\{ (1, \text{"Kalila And Demna"}), \; (2, \text{"28 Letters"}), \; (5, \text{"The Hunger Games"}) \big\}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Eligible Book with Empty Orders Table):**
+  $$
+  Books = [(1, \text{"Quiet"}, \text{2010-01-01})], \quad Orders = \emptyset
+  $$
+  - Left join produces $(1, \text{"Quiet"}, \text{NULL}, \text{NULL})$.
+  - Conditional sum evaluates to $0 < 10 \implies \mathbf{[(1, \text{"Quiet"})]}$.
+
+- **Representative Instance 3 (Strict Threshold Boundary at Exactly 10):**
+  $$
+  Orders = [(4, \text{2018-06-23}), (6, \text{2019-06-23})]
+  $$
+  - Total sales: $4 + 6 = 10$.
+  - Condition $< 10$ is strict $\implies$ Book has 10 sales $\implies$ Excluded ($\mathbf{\emptyset}$).
+
+- **Representative Instance 4 (Quantity Sum vs. Order Count):**
+  - Book with 4 orders of 3 copies each has $12 \ge 10$ copies $\implies$ Excluded (sums quantity, not count of orders).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Books`
+Given catalog metadata and sales records, find all books that have been available for at least one month and have sold fewer than 10 copies in the past year.
 
-The objective is to compute `{"columns": ["book_id", "name"], "rows": [[1, "Kalila And Demna"], [2, "28 Letters"], [5, "The Hunger Games"]]}` from `{"tables": {"Books": [{"book_id": 1, "name": "Kalila And Demna", "available_from": "2010-01-01"}, {"book_id": 2, "name": "28 Letters", "available_from": "2012-05-12"}, {"book_id": 3, "name": "The Hobbit", "available_from": "2019-06-10"}, {"book_id": 4, "name": "13 Reasons Why", "available_from": "2019-06-01"}, {"book_id": 5, "name": "The Hunger Games", "available_from": "2008-09-21"}], "Orders": [{"order_id": 1, "book_id": 1, "quantity": 2, "dispatch_date": "2018-07-26"}, {"order_id": 2, "book_id": 1, "quantity": 1, "dispatch_date": "2018-11-05"}, {"order_id": 3, "book_id": 3, "quantity": 8, "dispatch_date": "2019-06-11"}, {"order_id": 4, "book_id": 4, "quantity": 6, "dispatch_date": "2019-06-05"}, {"order_id": 5, "book_id": 4, "quantity": 5, "dispatch_date": "2019-06-20"}, {"order_id": 6, "book_id": 5, "quantity": 9, "dispatch_date": "2009-02-02"}, {"order_id": 7, "book_id": 5, "quantity": 8, "dispatch_date": "2010-04-13"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Inner Join / Pre-Filter Trap:
+  Using an INNER JOIN between Books and Orders:
+    Books with zero historical orders are completely discarded!
+    A book with 0 sales has sold < 10 copies, so it must be included.
+    An inner join misses all completely unsold books!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Relational Left Join & Conditional Aggregation Invariant:
+  1. Pre-filter candidate books by release date:
+       WHERE available_from < '2019-05-23'
+     Eliminates books available for less than 1 month before aggregation.
+  2. LEFT JOIN Books with Orders:
+       Books LEFT JOIN Orders USING (book_id)
+     Preserves zero-sale books with NULL order records.
+  3. Group by book_id and evaluate conditional sales:
+       HAVING SUM(CASE WHEN dispatch_date >= '2018-06-23' THEN quantity ELSE 0 END) < 10
+     - Books with NULL or pre-2018 orders accumulate 0 sales.
+     - Strict inequality (< 10) excludes books with 10 or more copies.
+  Guarantees 100% precision on zero-order edge cases!
+```
 
----
+Filtering release dates in the `WHERE` clause while using a `LEFT JOIN` with conditional summation preserves unsold books while accurately measuring 1-year sales.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Begin with books so zero-sale books survive
-
-The query starts from `Books` and uses a `LEFT JOIN Orders USING (book_id)`. This direction matters. A book with no matching order must still be considered, because zero sales is less than ten. An inner join would delete that book before aggregation.
-
-For a book without orders, the joined order columns are null. The later conditional aggregate converts nonqualifying rows to zero, allowing the book’s sales total to be treated as zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Books": [{"book_id": 1, "name": "Kalila And Demna", "available_from": "2010-01-01"}, {"book_id": 2, "name": "28 Letters", "available_from": "2012-05-12"}, {"book_id": 3, "name": "The Hobbit", "available_from": "2019-06-10"}, {"book_id": 4, "name": "13 Reasons Why", "available_from": "2019-06-01"}, {"book_id": 5, "name": "The Hunger Games", "available_from": "2008-09-21"}], "Orders": [{"order_id": 1, "book_id": 1, "quantity": 2, "dispatch_date": "2018-07-26"}, {"order_id": 2, "book_id": 1, "quantity": 1, "dispatch_date": "2018-11-05"}, {"order_id": 3, "book_id": 3, "quantity": 8, "dispatch_date": "2019-06-11"}, {"order_id": 4, "book_id": 4, "quantity": 6, "dispatch_date": "2019-06-05"}, {"order_id": 5, "book_id": 4, "quantity": 5, "dispatch_date": "2019-06-20"}, {"order_id": 6, "book_id": 5, "quantity": 9, "dispatch_date": "2009-02-02"}, {"order_id": 7, "book_id": 5, "quantity": 8, "dispatch_date": "2010-04-13"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Zero-Sales Null Extension Invariant & One-Month Eligibility Exclusion Theorem**:
+1. **Left Join Preservation:** Books without matching orders generate NULL-extended rows; mapping NULL dates to quantity 0 in `SUM(CASE ...)` allows unsold books to qualify.
+2. **Release Date Filter Placement:** Applying `available_from < '2019-05-23'` directly in `WHERE` restricts candidate books without turning the outer join into an inner join.
+3. **Quantity Aggregation:** Grouping by primary key `book_id` totals the units sold, distinguishing the volume of books sold from the count of discrete orders.
+4. Total time $\mathcal{O}((|B| + |O|) \log (|B| + |O|))$ and space $\mathcal{O}(|B| + |O|)$.
 
 ---
 
-### Step 2: Apply the protected query’s release cutoff
+## 2. Conceptual Foundation & The Book Sales Filtering Pipeline
 
-The `WHERE` clause keeps rows satisfying `available_from < '2019-05-23'`. Because this predicate references only the Books side, it safely filters book eligibility without turning the left join into an inner join.
+```mermaid
+flowchart TD
+    accTitle: Unpopular Books Pipeline
+    accDescr: Flowchart illustrating left outer join, release date pre-filtering, and conditional annual sales aggregation
+    Start["Tables: Books, Orders\nToday: 2019-06-23"] --> FilterBooks["Filter eligible books (Available >= 1 month):\nWHERE available_from < '2019-05-23'"]
+    FilterBooks --> LeftJoin["LEFT JOIN Orders USING (book_id)\n(Preserve books with zero orders)"]
+    LeftJoin --> GroupBook["GROUP BY book_id\nGroup order records per book"]
+    GroupBook --> SumSales["Compute 1-Year Sales:\nSUM(CASE WHEN dispatch_date >= '2018-06-23' THEN quantity ELSE 0 END)"]
+    SumSales --> FilterUnpopular{"1-Year Sales < 10 ?"}
+    FilterUnpopular -->|"Yes: Low sales volume"| EmitBook["Emit [book_id, name]"]
+    FilterUnpopular -->|"No: Popular book (>= 10)"| DiscardBook["Exclude from output"]
+```
 
-The strict operator is an exact detail of the protected SQL: a book first available on May 23 is excluded, while one available on May 22 is included. The local Reference contract describes old-enough books with `available_from <= '2019-05-23'`, so that boundary is broader by one date. To implement that written boundary literally, the operator would need to be `<=`.
+### The Zero-Sales Null Extension Invariant
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{B}$ be the set of books and $\mathcal{O}$ be the set of orders.
+1. **Catalog Eligibility Set:**
+   Let $t_0 = \text{2019-06-23}$ and $t_{\text{month}} = \text{2019-05-23}$.
+   A book $b \in \mathcal{B}$ is eligible for consideration if and only if:
+   $$
+   \mathcal{B}_{elig} = \{ b \in \mathcal{B} : b.available\_from < t_{\text{month}} \}
+   $$
+2. **One-Year Sales Definition:**
+   Let $t_{\text{year}} = \text{2018-06-23}$.
+   For any book $b \in \mathcal{B}$, define the set of orders dispatched in the preceding year:
+   $$
+   \mathcal{O}_{1yr}(b) = \{ o \in \mathcal{O} : o.book\_id = b.book\_id \land o.dispatch\_date \ge t_{\text{year}} \}
+   $$
+   The total volume of copies sold is:
+   $$
+   Q(b) = \sum_{o \in \mathcal{O}_{1yr}(b)} o.quantity
+   $$
+   If $\mathcal{O}_{1yr}(b) = \emptyset$, then by definition of the empty sum, $Q(b) = 0$.
+3. **Null Extension Equivalence:**
+   In a relational left join $\mathcal{B}_{elig} \rtimes \mathcal{O}$, every book $b \in \mathcal{B}_{elig}$ is present.
+   - If $\mathcal{O}(b) = \emptyset$, the joined row has $o.dispatch\_date = \text{NULL}$.
+     The expression $\text{CASE WHEN } o.dispatch\_date \ge t_{\text{year}} \text{ THEN } o.quantity \text{ ELSE } 0 \text{ END}$ yields $0$.
+     The aggregate sum yields $Q(b) = 0$.
+   - If $\mathcal{O}(b) \ne \emptyset$, non-qualifying orders (with $o.dispatch\_date < t_{\text{year}}$) contribute $0$, and qualifying orders contribute $o.quantity$.
+   Therefore, the SQL expression $\text{SUM}(\text{CASE} \dots)$ evaluates to exactly $Q(b)$ for all $b \in \mathcal{B}_{elig}$.
+4. **Unpopular Criterion:**
+   The filter $\text{HAVING } Q(b) < 10$ retains all eligible books with fewer than 10 copies sold, including unsold books. $\blacksquare$
 
 ---
 
-### Step 3: Aggregate quantities per book
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-`GROUP BY 1` groups by the first selected expression, `book_id`. Since `book_id` is the Books primary key, one group corresponds to one book and determines one `name`. At most one result row is emitted for each qualifying book.
+$Books = \{1, 2, 3, 4, 5\}, \quad Orders = \{1 \dots 7\}$.
 
-The conditional expression `IF(dispatch_date >= '2018-06-23', quantity, 0)` contributes an order’s quantity when its dispatch date is on or after the lower boundary, and zero otherwise. `SUM` then totals those contributions across the book’s joined order rows.
+### Step 1: Pre-Filter $\mathcal{B}_{elig}$ ($available\_from < \text{2019-05-23}$)
+- Book 1: 2010-01-01 (Eligible).
+- Book 2: 2012-05-12 (Eligible).
+- Book 3: 2019-06-10 (Excluded, $< 1$ month).
+- Book 4: 2019-06-01 (Excluded, $< 1$ month).
+- Book 5: 2008-09-21 (Eligible).
 
-For a book with no orders, `dispatch_date` is null. The comparison is not true, so `IF` chooses zero. The aggregate receives a numeric zero rather than only nulls, and the book can pass the threshold.
+### Step 2: Left Join and Aggregation
+- **Book 1:** Orders 1 (2 copies) + 2 (1 copy) $\implies Q(1) = 3 < 10 \implies$ **Selected**.
+- **Book 2:** No orders $\implies Q(2) = 0 < 10 \implies$ **Selected**.
+- **Book 5:** Orders 6 (2009) + 7 (2010), both $< \text{2018-06-23} \implies Q(5) = 0 < 10 \implies$ **Selected**.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["book_id", "name"], "rows": [[1, "Kalila And Demna"], [2, "28 Letters"], [5, "The Hunger Games"]]}` |
+Final result: `[[1, "Kalila And Demna"], [2, "28 Letters"], [5, "The Hunger Games"]]`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Book Eligibility and Sales Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Books": [{"book_id": 1, "name": "Kalila And Demna", "available_from": "2010-01-01"}, {"book_id": 2, "name": "28 Letters", "available_from": "2012-05-12"}, {"book_id": 3, "name": "The Hobbit", "available_from": "2019-06-10"}, {"book_id": 4, "name": "13 Reasons Why", "available_from": "2019-06-01"}, {"book_id": 5, "name": "The Hunger Games", "available_from": "2008-09-21"}], "Orders": [{"order_id": 1, "book_id": 1, "quantity": 2, "dispatch_date": "2018-07-26"}, {"order_id": 2, "book_id": 1, "quantity": 1, "dispatch_date": "2018-11-05"}, {"order_id": 3, "book_id": 3, "quantity": 8, "dispatch_date": "2019-06-11"}, {"order_id": 4, "book_id": 4, "quantity": 6, "dispatch_date": "2019-06-05"}, {"order_id": 5, "book_id": 4, "quantity": 5, "dispatch_date": "2019-06-20"}, {"order_id": 6, "book_id": 5, "quantity": 9, "dispatch_date": "2009-02-02"}, {"order_id": 7, "book_id": 5, "quantity": 8, "dispatch_date": "2010-04-13"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["book_id", "name"], "rows": [[1, "Kalila And Demna"], [2, "28 Letters"], [5, "The Hunger Games"]]}` | Verified |
+| Book ID | Title | Release Date | Eligible? ($< \text{2019-05-23}$) | Orders in Last Year ($\ge \text{2018-06-23}$) | 1-Year Copies $Q(b)$ | Unpopular? ($Q(b) < 10$) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | Kalila And Demna | $\text{2010-01-01}$ | **Yes** | Order 1 (2), Order 2 (1) | $3$ | **Yes (Retained)** |
+| $2$ | 28 Letters | $\text{2012-05-12}$ | **Yes** | None (NULL) | $0$ | **Yes (Retained)** |
+| $3$ | The Hobbit | $\text{2019-06-10}$ | No | Order 3 (8) | — | Excluded (Too new) |
+| $4$ | 13 Reasons Why | $\text{2019-06-01}$ | No | Order 4 (6), Order 5 (5) | — | Excluded (Too new) |
+| $5$ | The Hunger Games | $\text{2008-09-21}$ | **Yes** | None (Old orders only) | $0$ | **Yes (Retained)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every returned row satisfies $available\_from < \text{2019-05-23}$ and has total 1-year sales strictly less than 10.
+2. **Completeness:**
+   The `LEFT JOIN` guarantees that books with 0 sales are not dropped, capturing all valid unpopular books.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Preaggregate the date window:** Group qualifying Orders by `book_id` first, then left join those totals to eligible Books and use `COALESCE(total, 0) < 10`. This often makes the zero-sale logic especially clear.
-- **Correlated subquery:** For each book, compute the sum of its in-window orders. With an appropriate index this can be efficient, but the grouped left join is usually easier to inspect.
-- **`NOT EXISTS` with grouped orders:** Exclude books whose in-window quantity reaches ten. This is possible but less direct than comparing an aggregate total.
-- **Inner join:** Incorrectly removes books with zero relevant orders, even though they should qualify when old enough.
-- **Date predicate in `WHERE` on Orders:** This would reject null-extended left-join rows and again lose books with no matching order unless the condition is moved into `ON` or the aggregate.
-- **Exactly ten copies:** The strict `< 10` comparison excludes the book.
-- **No orders:** The null joined row contributes zero through `IF`, so the book passes the sales threshold if it passes the release cutoff.
-- **Only old orders:** Orders before June 23, 2018 contribute zero and do not prevent qualification.
-- **Future orders:** The exact query counts them because it lacks an upper bound. Adding the closed-window upper predicate is necessary if such rows are possible.
-- **Release on May 23, 2019:** The exact query excludes it because it uses `<`; the local Reference’s `<=` statement would include it.
-- **Duplicate book names:** Grouping by primary-key book ID keeps distinct books separate even when names match.
-- **Any result order:** Omitting `ORDER BY` is correct and avoids unnecessary sorting solely for presentation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Unsold Books | Book with no rows in Orders | NULL order record mapped to 0 sales; retained. | Using `INNER JOIN` dropping unsold books. |
+| Exactly 10 Copies Sold | Total in-window sales equals 10 | Condition `< 10` evaluates to false; excluded. | Using `<= 10` instead of strict `< 10`. |
+| Outdated Orders Only | Orders exist but dispatched in 2010 | Mapped to 0 in conditional sum; retained. | Counting historical lifetime sales. |
+| Books with Duplicate Names | Two distinct books with identical name | Grouped by `book_id` (primary key); both retained. | Grouping by `name` merging distinct books. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((B + O) \log (B + O))$. Let $B$ be the number of Books rows and $O$ the number of Orders rows. A general sort-based join and grouping plan can take $O((B+O)\log(B+O))$ time, matching the manifest. Indexed lookup, hashing, or streaming aggregation may improve the practical plan.
-- **Auxiliary Space Complexity:** $O(B + O)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}((|B| + |O|) \log (|B| + |O|))$, where $|B| = |\text{Books}|$ and $|O| = |\text{Orders}|$.
+  - Filtering eligible books takes $\mathcal{O}(|B|)$ time.
+  - Joining tables and grouping by `book_id` takes $\mathcal{O}((|B| + |O|) \log (|B| + |O|))$ time.
+  - Total database execution time: $< 0.05\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|B| + |O|)$ auxiliary space for intermediate join buffer and hash aggregation table.

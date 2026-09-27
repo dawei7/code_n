@@ -1,122 +1,133 @@
 # Guided Example: Capitalize the Title
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal piecewise word-length normalization approach on a representative problem instance:
 
-- **Input:** `{"title": "capiTalIze tHe titLe"}`
-- **Required output:** `"Capitalize The Title"`
+- **Input String (`title`):** `"First leTTeR of EACH Word"`
+- **Expected Output:** `"First Letter of Each Word"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a string `title` consisting of one or more words separated by a single space, where each word consists of English letters. **Capitalize** the string by changing the capitalization of each word such that:
-
-The objective is to compute `"Capitalize The Title"` from `{"title": "capiTalIze tHe titLe"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates the conditional casing bifurcation based on token length, showcasing how short words (length $\le 2$) undergo total lowercasing while longer words (length $\ge 3$) receive leading title capitalization with trailing lowercase normalization.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a string `title` consisting of words separated by single space characters. Each word comprises uppercase and lowercase English letters. We must capitalize the string according to length-based rules:
+1. If the length of a word is $1$ or $2$ letters, convert every character to lowercase.
+2. If the length of a word is $3$ or more letters, convert the first character to uppercase and all remaining characters to lowercase.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Consider our representative instance:
+`"First leTTeR of EACH Word"`
+- `"First"`: Length $5 \ge 3 \implies$ Capitalized to `"First"`.
+- `"leTTeR"`: Length $6 \ge 3 \implies$ Capitalized to `"Letter"`.
+- `"of"`: Length $2 \le 2 \implies$ Completely lowercased to `"of"`.
+- `"EACH"`: Length $4 \ge 3 \implies$ Capitalized to `"Each"`.
+- `"Word"`: Length $4 \ge 3 \implies$ Capitalized to `"Word"`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Joined with spaces, the normalized sentence becomes `"First Letter of Each Word"`.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Separate the title into exactly the units governed by the rule
+### Token Partitioning and Invariant Transformation
+Let the string $T$ be partitioned into an ordered sequence of words $W = [w_1, w_2, \dots, w_k]$ delimited by ASCII spaces $0x20$.
+Because each word $w_i$ is processed independently, the title transformation decomposes into a coordinate-wise mapping $\Phi$:
 
-The expression `title.split()` produces the sequence of words. Because it is called without an explicit separator, Python treats whitespace as the separator and omits empty pieces. The problem guarantees one space between words and no leading or trailing spaces, so this behavior gives precisely the stated words. The implementation does not need indexes for the spaces because it reconstructs the separators after transforming the words.
+$$\Phi(w) = \begin{cases} \text{lower}(w), & |w| \le 2 \\ \text{upper}(w[0]) \cdot \text{lower}(w[1 \dots |w|-1]), & |w| \ge 3 \end{cases}$$
 
-The list comprehension visits each word `w` once:
+1. **Short Word Invariant ($|w| \in \{1, 2\}$):** Prepositions, articles, or single initials must not retain any capital letters. For example, `"OF"` and `"oF"` both map to `"of"`, and `"I"` maps to `"i"`.
+2. **Standard Word Invariant ($|w| \ge 3$):** Mixed internal capitalizations (such as `"leTTeR"`) must be systematically lowered to prevent stray capitals from persisting. Only the first character is capitalized.
 
-`[w.lower() if len(w) < 3 else w.capitalize() for w in title.split()]`
+### Single-Pass Linear Transformation
+Words can be transformed in place or accumulated via a streaming string builder, consuming $\mathcal{O}(N)$ time and maintaining the original single space delimiters between words.
 
-The condition `len(w) < 3` is exactly another way to say that the word contains one or two letters. There is no overlap or missing case: positive word lengths below three use the short-word rule, and lengths of at least three use the other rule.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Word Length Rule | Condition | Case Rule for Character at Index $0$ | Case Rule for Characters at Indices $\ge 1$ |
 |---|---|---|---|
-| Input Slice | `{"title": "capiTalIze tHe titLe"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Short Token | $|w| \le 2$ | Lowercase | Lowercase |
+| Standard Token | $|w| \ge 3$ | Uppercase | Lowercase |
 
 ---
 
-### Step 2: Normalize short words completely
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-For a word of length one or two, `w.lower()` converts every uppercase English letter to its lowercase form and leaves an already lowercase letter unchanged. This directly implements the requirement that every letter of a short word be lowercase.
+Input: `title = "First leTTeR of EACH Word"`.
+Word tokens extracted: `["First", "leTTeR", "of", "EACH", "Word"]`.
 
-It is important to normalize the entire word rather than merely lowercasing its first character. An input such as `"OF"` must become `"of"`, not `"oF"`. Calling `lower()` expresses this complete transformation in one operation.
+### Token 1: `"First"`
+- Length $|w| = 5 \ge 3$.
+- Standard token branch selected.
+- Character $0$: `'F' \to \text{'F'}`.
+- Suffix $1 \dots 4$: `"irst" \to \text{"irst"}`.
+- Result: `"First"`.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Token 2: `"leTTeR"`
+- Length $|w| = 6 \ge 3$.
+- Standard token branch selected.
+- Character $0$: `'l' \to \text{'L'}`.
+- Suffix $1 \dots 5$: `"eTTeR" \to \text{"etter"}` (internal capitals lowered).
+- Result: `"Letter"`.
 
----
+### Token 3: `"of"`
+- Length $|w| = 2 \le 2$.
+- Short token branch selected.
+- Entire string lowercased: `"of" \to \text{"of"}`.
+- Result: `"of"`.
 
-### Step 3: Normalize longer words in both directions
+### Token 4: `"EACH"`
+- Length $|w| = 4 \ge 3$.
+- Standard token branch selected.
+- Character $0$: `'E' \to \text{'E'}`.
+- Suffix $1 \dots 3$: `"ACH" \to \text{"ach"}`.
+- Result: `"Each"`.
 
-For a word of at least three letters, `w.capitalize()` makes its first character uppercase and the remaining characters lowercase. Both parts matter. Merely uppercasing the first letter would mishandle mixed-case input such as `"capiTalIze"` because the internal uppercase `T` and `I` would remain. `capitalize()` first establishes the requested leading capital and normalizes the rest, producing `"Capitalize"`.
+### Token 5: `"Word"`
+- Length $|w| = 4 \ge 3$.
+- Standard token branch selected.
+- Character $0$: `'W' \to \text{'W'}`.
+- Suffix $1 \dots 3$: `"ord" \to \text{"ord"}`.
+- Result: `"Word"`.
 
-The input contains only English letters, so there are no punctuation marks, digits, or unusual word-boundary cases to reinterpret. Each source word is non-empty, which also guarantees that there is always a first letter when the long-word branch is selected.
-
-The transformed results are stored in `words`. At this point, an invariant holds for every element already produced: if its original length was below three, all its letters are lowercase; otherwise, its first letter is uppercase and every later letter is lowercase. Since the transformation does not change a word’s length, the branch choice remains valid after capitalization.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Capitalize The Title"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"title": "capiTalIze tHe titLe"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Capitalize The Title"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Manual character scan:** One can locate each word boundary, measure the word, and append transformed characters to a buffer. This is also $O(n)$ time and $O(n)$ output space, but requires more indexing logic and creates more opportunities for off-by-one errors.
-- **Lowercase the entire title first:** After `title.lower()`, the first character of every word of length at least three could be uppercased. This is correct with careful boundary and length tracking, but it still needs a second pass and does not simplify the exact split-and-transform solution.
-- **Using `title.title()`:** This capitalizes every word regardless of length, so it incorrectly turns short words such as `"of"` and `"i"` into `"Of"` and `"I"`.
-- **Uppercasing only the first character:** This fails to lowercase the remaining letters of a long mixed-case word. The `"capiTalIze"` example demonstrates why full normalization is required.
-- **One-letter word:** Its length is below three, so `lower()` is selected. An uppercase `"I"` becomes `"i"` as required.
-- **Two-letter word:** The strict comparison `len(w) < 3` includes length two. Both letters become lowercase, even when both were originally uppercase.
-- **Exactly three letters:** Length three enters the `capitalize()` branch. This boundary is important because the short-word rule applies only to lengths one and two.
-- **Already normalized title:** Applying `lower()` or `capitalize()` again leaves every word in the same required form, so the method is idempotent.
-- **Mixed original casing:** Each selected string method rewrites all relevant letters, making the result independent of the input’s prior capitalization.
-- **One-word title:** `split()` returns a one-element list and `join()` returns that transformed element without adding spaces.
-- **Maximum-length title:** The same linear passes apply when the title has length 100; there is no combinatorial behavior or nested scan over all words.
-- **Whitespace semantics:** Python’s no-argument `split()` would also collapse repeated whitespace, but the contract guarantees exactly one space and no leading or trailing spaces. The implementation’s output therefore preserves the required separator format for every legal input.
-- **Input immutability:** Neither string methods nor `join()` modify `title`; each creates a new string, which matches Python’s immutable string model.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Sentence Reconstruction
+Joining the transformed tokens with single spaces yields:
+`"First" + " " + "Letter" + " " + "of" + " " + "Each" + " " + "Word"`
+$=$ `"First Letter of Each Word"`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `title`, including its spaces. Splitting scans the title and creates word strings whose combined number of letters is at most $n$. For each word, `lower()` or `capitalize()` scans and creates a result proportional to that word’s length. Joining scans the transformed words and writes the final $n$-character result. These are consecutive linear passes, so their costs add rather than multiply. The total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The transformation results for all tokens are detailed below:
+
+| Token Index | Original Token Text | Measured Length | Applicable Rule | Head Transform | Tail Transform | Output Token |
+|---|---|---|---|---|---|---|
+| $0$ | `"First"` | $5$ | Standard ($|w| \ge 3$) | `'F' \to \text{'F'}` | `"irst" \to \text{"irst"}` | `"First"` |
+| $1$ | `"leTTeR"` | $6$ | Standard ($|w| \ge 3$) | `'l' \to \text{'L'}` | `"eTTeR" \to \text{"etter"}` | `"Letter"` |
+| $2$ | `"of"` | $2$ | Short ($|w| \le 2$) | `'o' \to \text{'o'}` | `'f' \to \text{'f'}` | `"of"` |
+| $3$ | `"EACH"` | $4$ | Standard ($|w| \ge 3$) | `'E' \to \text{'E'}` | `"ACH" \to \text{"ach"}` | `"Each"` |
+| $4$ | `"Word"` | $4$ | Standard ($|w| \ge 3$) | `'W' \to \text{'W'}` | `"ord" \to \text{"ord"}` | `"Word"` |
+
+Concatenated result: `"First Letter of Each Word"`.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+**Soundness.** The length threshold $|w| < 3$ partitions words into two mutually exclusive sets: $\{1, 2\}$ and $\{3, 4, \dots\}$. By applying full string lowercasing on words of length 1 or 2, all letters are guaranteed to be lowercase. By applying uppercase conversion to the first character and lowercase conversion to all subsequent characters on words of length $\ge 3$, both the leading capitalization and the trailing lowercase invariants are guaranteed, regardless of the input word's initial casing.
+
+**Completeness.** Every word in `title` is isolated and processed in left-to-right sequence. Because the problem guarantees single-space delimitation with no leading or trailing whitespace, joining the transformed tokens preserves the exact word count, word order, and spacing structure of the original sentence.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+- **Single-Letter Words:** Words like `"a"` or `"I"` have length $1 \le 2$, and are transformed to lowercase (`"a"`, `"i"`).
+- **All Upper-Case Short Words:** A word like `"OF"` must not become `"Of"`; it correctly transforms to `"of"`.
+- **Length Exactly Three:** Words of length $3$ (such as `"the"`) reach the threshold $\ge 3$ and must be capitalized (`"The"`).
+- **Anti-Pattern — Built-in `title()` Method:** Standard language title-case functions (e.g. Python's `str.title()`) capitalize every word unconditionally, incorrectly turning `"of"` into `"Of"`. Applying explicit piecewise length branches is required.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the total number of characters in `title`. Tokenizing the string, calculating word lengths, changing letter cases, and joining the results each take linear time proportional to $N$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary memory to store the list of word tokens and construct the final output string.

@@ -1,123 +1,194 @@
 # Guided Example: Count Equal and Divisible Pairs in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the equal-value index-divisibility counting algorithm on a representative integer array, demonstrating how partitioning indices into value-equivalence buckets and testing modular divisibility criteria avoids false cross-value comparisons and counts qualifying pairs in $O(n^2)$ time.
 
-- **Input:** `{"nums": [3, 1, 2, 2, 2, 1, 3], "k": 2}`
-- **Required output:** `4`
+- **Input:** `nums = [3, 1, 2, 2, 2, 1, 3]`, `k = 2`
+- **Output:** `4`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given a **0-indexed** integer array `nums` of length `n` and an integer `k`, return *the **number of pairs*** `(i, j)` *where* $0 \le i < j < n$, *such that* $\text{nums}[i] = \text{nums}[j]$ *and* $(i * j)$ *is divisible by* `k`.
-
-The objective is to compute `4` from `{"nums": [3, 1, 2, 2, 2, 1, 3], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates strict index ordering, the distinction between stored values and positional coordinates, the zero-index divisibility theorem, and modular product evaluation.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Given a 0-indexed integer array `nums` of length $n$ and a positive integer divisor $k$, we must count the total number of index pairs $(i, j)$ that simultaneously satisfy three conditions:
+1. **Strict Index Ordering:** $0 \le i < j < n$.
+2. **Value Equality:** $\text{nums}[i] = \text{nums}[j]$.
+3. **Index Divisibility:** $(i \cdot j) \bmod k = 0$.
 
-| State Parameter | Role & Purpose | Initial State |
+Crucially, condition 3 applies to the product of the **indices** ($i \cdot j$), not the values stored in the array ($\text{nums}[i] \cdot \text{nums}[j]$).
+
+In our representative instance:
+- `nums = [3, 1, 2, 2, 2, 1, 3]` ($n = 7$), divisor $k = 2$.
+- Elements by index:
+  - $\text{nums}[0] = 3, \; \text{nums}[1] = 1, \; \text{nums}[2] = 2$
+  - $\text{nums}[3] = 2, \; \text{nums}[4] = 2, \; \text{nums}[5] = 1, \; \text{nums}[6] = 3$
+- Candidate pairs with identical values:
+  - Value `3` appears at indices $\{0, 6\}$: Pair $(0, 6)$ gives $0 \cdot 6 = 0$. Since $0 \bmod 2 = 0$, this pair qualifies.
+  - Value `1` appears at indices $\{1, 5\}$: Pair $(1, 5)$ gives $1 \cdot 5 = 5$. Since $5 \bmod 2 = 1 \ne 0$, this pair fails divisibility.
+  - Value `2` appears at indices $\{2, 3, 4\}$:
+    - Pair $(2, 3)$ gives $2 \cdot 3 = 6$. Since $6 \bmod 2 = 0$, it qualifies.
+    - Pair $(2, 4)$ gives $2 \cdot 4 = 8$. Since $8 \bmod 2 = 0$, it qualifies.
+    - Pair $(3, 4)$ gives $3 \cdot 4 = 12$. Since $12 \bmod 2 = 0$, it qualifies.
+- Total qualifying pairs: $1 + 0 + 3 = 4$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Value Equivalence Partitions
+
+Let $\mathcal{I}_v = \{p \in \{0, 1, \dots, n-1\} \mid \text{nums}[p] = v\}$ denote the set of indices where value $v$ resides.
+Because pairs with $\text{nums}[i] \ne \text{nums}[j]$ trivially fail condition 2, qualifying pairs exist only within the Cartesian product $\mathcal{I}_v \times \mathcal{I}_v$ for each distinct value $v$:
+$$\text{Total Pairs} = \sum_{v} \sum_{\substack{i, j \in \mathcal{I}_v \\ i < j}} \mathbf{1}_{\{(i \cdot j) \equiv 0 \pmod k\}}$$
+
+Evaluating pairs strictly within each value bucket $\mathcal{I}_v$ eliminates comparisons between unequal numbers.
+
+### The Zero-Index Divisibility Property
+
+When index $i = 0$:
+$$i \cdot j = 0 \cdot j = 0$$
+For any positive divisor $k \ge 1$:
+$$0 \bmod k = 0$$
+Consequently, index $0$ automatically satisfies the divisibility condition when paired with **any** index $j > 0$ sharing the same value:
+$$\forall j > 0: \quad \text{nums}[j] = \text{nums}[0] \implies (0, j) \text{ is guaranteed valid}$$
+
+### Number-Theoretic Divisibility Condition
+
+For indices $i, j > 0$:
+$$(i \cdot j) \equiv 0 \pmod k \iff k \mid (i \cdot j)$$
+Let $g = \gcd(j, k)$. Then:
+$$k \mid (i \cdot j) \iff \frac{k}{g} \;\Big|\; i$$
+Thus, for a fixed index $j$, any earlier index $i$ sharing the same value qualifies if and only if $i$ is a multiple of $k / \gcd(j, k)$.
+
+| Property / Component | Mathematical Definition | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Index Pair $(i, j)$ | $0 \le i < j < n$ | Search space coordinate |
+| Value Match | $\text{nums}[i] = \text{nums}[j]$ | Prerequisite equivalence filter |
+| Coordinate Product $P$ | $i \cdot j$ | Integer subject to divisibility test |
+| Divisibility Test | $P \bmod k == 0$ | Final qualification gate |
+| Pair Accumulator | $\sum \mathbf{1}_{\{\text{match } \land \text{ divisible}\}}$ | Running count of verified pairs |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+accTitle: Pair Evaluation Decision Flow
+accDescr: Flowchart testing two indices i and j for value equality and coordinate product divisibility by k.
+flowchart TD
+    Pair["Pick Index Pair (i, j) with i < j"] --> ValCheck{"nums[i] == nums[j]?"}
+    ValCheck -- "No" --> Discard["Discard: Values unequal"]
+    ValCheck -- "Yes" --> DivCheck{"(i * j) mod k == 0?"}
+    DivCheck -- "No" --> Reject["Reject: Product not divisible"]
+    DivCheck -- "Yes" --> Valid["Accept: Increment counter by 1"]
+```
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 1: Choose every possible later endpoint
+We trace the algorithm on `nums = [3, 1, 2, 2, 2, 1, 3]`, $k = 2$.
+The search evaluates all pairs with $1 \le j < 7$ against prefix indices $0 \le i < j$.
 
-The outer loop starts `j` at one because index zero has no earlier index with which it can form a pair. It continues through the last valid array index.
+### Step 1: Evaluating Outer Loop $j = 1$ (`nums[1] = 1`)
+- $i = 0$ (`nums[0] = 3`): `nums[0] != nums[1]` ($3 \ne 1$). No match.
 
-For a fixed `j`, the slice `nums[:j]` contains exactly the values at indices zero through `j - 1`. Enumerating that slice produces pairs `(i, x)` where `i` is the original prefix position and `x = nums[i]`.
+### Step 2: Evaluating Outer Loop $j = 2$ (`nums[2] = 2`)
+- $i = 0$ (`3`): $3 \ne 2$. No match.
+- $i = 1$ (`1`): $1 \ne 2$. No match.
 
-Because the slice begins at index zero, `enumerate`'s local index is also the index in the full array. There is no offset to add. This detail would be different for a slice beginning at a nonzero position.
+### Step 3: Evaluating Outer Loop $j = 3$ (`nums[3] = 2`)
+- $i = 0$ (`3`): $3 \ne 2$. No match.
+- $i = 1$ (`1`): $1 \ne 2$. No match.
+- $i = 2$ (`2`): Values match (`nums[2] == nums[3] == 2`)!
+  - Test divisibility: $(2 \cdot 3) \bmod 2 = 6 \bmod 2 = 0$.
+  - Condition satisfied! Increment `ans` from $0$ to $1$.
+  - Discovered pair: $(2, 3)$.
 
-Every iteration of the inner loop therefore corresponds to one unique index pair `(i, j)` satisfying `0 <= i < j < n`.
+### Step 4: Evaluating Outer Loop $j = 4$ (`nums[4] = 2`)
+- $i = 0$ (`3`), $i = 1$ (`1`): Unequal.
+- $i = 2$ (`2`): Values match!
+  - Test divisibility: $(2 \cdot 4) \bmod 2 = 8 \bmod 2 = 0$.
+  - Increment `ans` from $1$ to $2$. Discovered pair: $(2, 4)$.
+- $i = 3$ (`2`): Values match!
+  - Test divisibility: $(3 \cdot 4) \bmod 2 = 12 \bmod 2 = 0$.
+  - Increment `ans` from $2$ to $3$. Discovered pair: $(3, 4)$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Step 5: Evaluating Outer Loop $j = 5$ (`nums[5] = 1`)
+- $i = 0, 2, 3, 4$: Values unequal to $1$.
+- $i = 1$ (`nums[1] = 1`): Values match!
+  - Test divisibility: $(1 \cdot 5) \bmod 2 = 5 \bmod 2 = 1 \ne 0$.
+  - Divisibility fails. `ans` remains $3$.
+
+### Step 6: Evaluating Outer Loop $j = 6$ (`nums[6] = 3`)
+- $i = 0$ (`nums[0] = 3`): Values match!
+  - Test divisibility: $(0 \cdot 6) \bmod 2 = 0 \bmod 2 = 0$.
+  - Condition satisfied! Increment `ans` from $3$ to $4$. Discovered pair: $(0, 6)$.
+- $i = 1, 2, 3, 4, 5$: Values unequal to $3$.
+
+### Step 7: Termination & Result Extraction
+- All pairs examined. Final count is `ans = 4`.
+
+---
+
+## 4. Comprehensive State Trace
+
+The full evaluation table for all pairs sharing identical values is recorded below:
+
+| Pair $(i, j)$ | Stored Value $\text{nums}[i] = \text{nums}[j]$ | Index Product $i \cdot j$ | Divisor $k$ | Modulo Calculation $(i \cdot j) \bmod k$ | Divisible? | Cumulative Count `ans` |
+|---|---|---|---|---|---|---|
+| $(0, 6)$ | 3 | $0 \cdot 6 = 0$ | 2 | $0 \bmod 2 = 0$ | **Yes** | 1 |
+| $(1, 5)$ | 1 | $1 \cdot 5 = 5$ | 2 | $5 \bmod 2 = 1$ | No | 1 |
+| $(2, 3)$ | 2 | $2 \cdot 3 = 6$ | 2 | $6 \bmod 2 = 0$ | **Yes** | 2 |
+| $(2, 4)$ | 2 | $2 \cdot 4 = 8$ | 2 | $8 \bmod 2 = 0$ | **Yes** | 3 |
+| $(3, 4)$ | 2 | $3 \cdot 4 = 12$ | 2 | $12 \bmod 2 = 0$ | **Yes** | **4** |
+
+### Equivalence Bucket Distribution
+
+| Distinct Value | List of Indices $\mathcal{I}_v$ | Total Candidate Pairs $\binom{|\mathcal{I}_v|}{2}$ | Qualifying Pairs |
 |---|---|---|---|
-| Input Slice | `{"nums": [3, 1, 2, 2, 2, 1, 3], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| 3 | $\{0, 6\}$ | 1 | 1 (Pair $(0, 6)$) |
+| 1 | $\{1, 5\}$ | 1 | 0 |
+| 2 | $\{2, 3, 4\}$ | 3 | 3 (Pairs $(2, 3), (2, 4), (3, 4)$) |
+| **All Values** | **$\{0, 1, 2, 3, 4, 5, 6\}$** | **5** | **4** |
 
 ---
 
-### Step 2: Test equality by value
+## 5. Algorithmic Correctness & Soundness
 
-The first condition is `x == nums[j]`. The algorithm compares the stored integer values, not their positions or identities.
+### Soundness of Pair Selection
+A pair is included if and only if:
+1. $i < j$, guaranteeing that every unordered pair $\{i, j\}$ is considered in canonical order exactly once.
+2. $\text{nums}[i] = \text{nums}[j]$, ensuring the value equality predicate holds.
+3. $(i \cdot j) \bmod k = 0$, ensuring the arithmetic divisibility predicate holds.
+No false positive can enter the sum because all three boolean predicates are conjoined via logical AND.
 
-Repeated values are required for a valid pair, but each occurrence remains separate. If the same value appears at three indices, the nested loops examine all three choose two positional pairs individually. This is correct because the answer counts index pairs rather than distinct value pairs.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Test divisibility of the index product
-
-The second condition is `i * j % k == 0`. A remainder of zero is the exact definition that $k$ divides the product $ij$.
-
-The multiplication uses indices, not `nums[i]` and `nums[j]`. This is easy to confuse because the equality condition involves values while the divisibility condition involves positions.
-
-Index zero receives the expected mathematical behavior: $0\cdot j=0$, and zero is divisible by every positive `k` because its remainder modulo `k` is zero. Thus any equal-value pair whose earlier index is zero automatically satisfies the product condition.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Completeness
+The outer loop spans $j \in [1, n - 1]$ and the inner loop spans $i \in [0, j - 1]$.
+The union of all tested pairs is precisely:
+$$\{(i, j) \mid 0 \le i < j < n\}$$
+This covers the entire space of $n(n - 1) / 2$ possible index pairs. No qualifying pair can be missed.
 
 ---
 
-## 4. Complete Execution Trace
+## 6. Edge Cases & Anti-Patterns
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 1, 2, 2, 2, 1, 3], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+### Edge Cases
+1. **Index 0 Guaranteed Divisibility:**
+   - For any pair involving $i = 0$, $0 \cdot j = 0$ is divisible by all $k \ge 1$. Thus, if $\text{nums}[0] = \text{nums}[j]$, the pair is always valid.
+2. **Divisor $k = 1$:**
+   - Every integer product is divisible by $1$. When $k = 1$, the problem reduces purely to counting pairs with equal values ($\sum \binom{|\mathcal{I}_v|}{2}$).
+3. **All Elements Distinct:**
+   - E.g., `nums = [1, 2, 3, 4]`. No pair has equal values; the algorithm returns $0$.
+4. **All Elements Identical:**
+   - E.g., `nums = [5, 5, 5]`, $k = 3$. Indices are $\{0, 1, 2\}$.
+   - Pairs: $(0, 1) \to 0$ (valid), $(0, 2) \to 0$ (valid), $(1, 2) \to 2$ ($2 \bmod 3 = 2 \ne 0$, invalid). Total: $2$.
 
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Direct index loops without slicing:** Loop `i` over `range(j)`. This keeps the same $O(n^2)$ time while reducing auxiliary space to $O(1)$.
-- **Gcd compatibility groups:** For earlier equal values, group indices by `gcd(i, k)` and count classes compatible with the current index. This is the approach summarized by the manifest and can reduce repeated pair tests.
-- **Store indices by value:** A map from each number to its earlier positions avoids equality checks against unrelated values, though it may still examine quadratically many equal pairs.
-- **Length one:** No outer iteration runs, so the answer is zero.
-- **No repeated values:** Every equality test fails and no pair is counted, even when `k = 1`.
-- **`k = 1`:** Every integer product is divisible by one, so the result is simply the number of equal-value index pairs.
-- **Earlier index zero:** Its product with every later index is zero and always passes divisibility.
-- **Equal values are not enough:** The index product must independently have remainder zero.
-- **Divisible product is not enough:** Values at the two positions must independently be equal.
-- **Three or more equal occurrences:** Each distinct index pair is counted once; the algorithm does not collapse them by value.
-- **Positive modulus:** The contract guarantees `k >= 1`, so the remainder operation never divides by zero.
-- **Input preservation:** Prefix slicing copies references and all operations are reads; `nums` is never modified.
-- **Boolean conversion:** `int(true)` is one and `int(false)` is zero, making the predicate a direct numeric contribution.
-- **Manifest discrepancy:** The file is called Optimal, but its stored implementation is exhaustive and slice-based. The bounds above follow executed operations.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Anti-Patterns to Avoid
+- **Multiplying Values Instead of Indices:** Testing `(nums[i] * nums[j]) % k == 0` is the most common conceptual trap. The question explicitly demands divisibility of the **indices** $(i \cdot j)$.
+- **Double Counting Symmetric Pairs:** Looping over all $i$ and $j$ from $0$ to $n - 1$ without restricting to $i < j$ counts every pair twice and miscounts self-pairs $(i, i)$.
+- **Unnecessary Hash Pre-computation for Small $n$:** With $n \le 100$, the maximum number of pairs is $\binom{100}{2} = 4{,}950$. A straightforward nested loop executes in a few microseconds without hash map allocation overhead.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the array length. The number of examined pairs is
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(n^2)$. The nested loops evaluate $\frac{n(n - 1)}{2}$ index pairs. For each pair, value comparison and integer multiplication/modulo take $O(1)$ constant time. For $n \le 100$, at most $4{,}950$ iterations execute, completing in under $1$ millisecond.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary space is strictly $O(1)$ as the simulation maintains only scalar integer counters (`ans`, `i`, `j`) without dynamically allocated collections.

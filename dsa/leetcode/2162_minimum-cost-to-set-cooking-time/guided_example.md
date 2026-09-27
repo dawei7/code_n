@@ -1,137 +1,207 @@
 # Guided Example: Minimum Cost to Set Cooking Time
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the dual-representation minute-second decomposition algorithm on a representative microwave input instance, establishing how trade-offs between finger movements and digit counts determine the optimal typing sequence.
 
-- **Input:** `{"startAt": 1, "moveCost": 2, "pushCost": 1, "targetSeconds": 600}`
-- **Required output:** `6`
+- **Input:** `startAt = 1`, `moveCost = 2`, `pushCost = 1`, `targetSeconds = 600`
+- **Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A generic microwave supports cooking times for:
-
-The objective is to compute `6` from `{"startAt": 1, "moveCost": 2, "pushCost": 1, "targetSeconds": 600}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates time partitioning into minutes and seconds, the single minute-to-second borrow trade-off, stripping leading zeros, and evaluating physical button cost.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A microwave takes an input of up to four pressed digits. The machine pads the typed sequence with leading zeros to four digits:
+$$\text{Digits} = [d_1, d_2, d_3, d_4]$$
+The first two digits represent minutes ($m = 10 d_1 + d_2$), and the last two represent seconds ($s = 10 d_3 + d_4$). The resulting cooking time in seconds is:
+$$\text{Total Time} = m \cdot 60 + s$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Unlike standard clock notation, the seconds field $s$ is allowed to exceed $59$, taking any value up to $99$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Typing costs are governed by:
+- **Move Cost (`moveCost`):** Paid whenever the finger moves from its current digit to a different digit.
+- **Push Cost (`pushCost`):** Paid every time any button is pressed. Repeating the same button incurs no move cost.
+- The finger begins positioned over digit `startAt`.
+- The user does **not** need to press leading zeros.
 
----
+We must find the minimum cost to input an entry yielding exactly `targetSeconds`.
 
-## 3. Step-by-Step Worked Execution
+In our representative instance:
+- `startAt = 1`, `moveCost = 2`, `pushCost = 1`.
+- `targetSeconds = 600`.
 
-### Step 1: There are at most two relevant time representations
+There are two distinct ways to express $600$ seconds under the microwave constraints:
+1. $10$ minutes and $0$ seconds ($10 \times 60 + 0 = 600$).
+2. $9$ minutes and $60$ seconds ($9 \times 60 + 60 = 600$).
 
-Canonical division gives
-
-`m, s = divmod(targetSeconds, 60)`,
-
-where `targetSeconds = 60 * m + s` and $0\le s<60$.
-
-Any other representation of the same total changes minutes by an integer amount and compensates seconds by 60. Increasing minutes by one would require `s - 60`, which is negative. Decreasing minutes by one gives `m - 1, s + 60`, whose seconds may still be below 100.
-
-Decreasing by two would make seconds at least 120, which is invalid. Therefore the only candidates are `(m,s)` and `(m - 1,s + 60)`.
-
-The helper `f` rejects any candidate whose minute or second field lies outside zero through 99 by returning `inf`. This safely handles targets where the borrowed form has negative minutes or seconds of at least 100.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"startAt": 1, "moveCost": 2, "pushCost": 1, "targetSeconds": 600}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We must compare the total mechanical typing cost of each valid representation.
 
 ---
 
-### Step 2: Turn a representation into four digits
+## 2. Mathematical & Algorithmic Principles
 
-For a valid pair, the list
+### Dual Feasible Partition Space
 
-`[m // 10, m % 10, s // 10, s % 10]`
+Any integer $\text{targetSeconds} \in [1, 6039]$ can be represented in at most two valid pairs $(m, s)$ satisfying $0 \le m \le 99$ and $0 \le s \le 99$:
+1. **Primary Representation (Standard Quotient):**
+   $$m_1 = \left\lfloor \frac{\text{targetSeconds}}{60} \right\rfloor, \quad s_1 = \text{targetSeconds} \bmod 60$$
+   This representation is valid if $m_1 \le 99$.
+2. **Alternative Borrowed Representation (Minute Transfer):**
+   $$m_2 = m_1 - 1, \quad s_2 = s_1 + 60$$
+   This representation is valid if $m_2 \ge 0$ and $s_2 \le 99$.
 
-contains the two minute digits and two second digits. Since both fields are below 100, each quotient and remainder is a single decimal digit.
+Borrowing a second minute would yield $s \ge 120 > 99$, which is impossible. Hence, $|\mathcal{C}| \in \{1, 2\}$.
 
-The loop advances `i` past leading zeros. Pressing those zeros is unnecessary because the microwave automatically prepends missing zeros. Omitting them cannot increase cost: an extra zero always requires a positive push cost and cannot avoid more than the direct movement already needed to reach the first meaningful digit.
+### Sequence Formatting & Leading Zero Suppression
 
-The target is at least one second, so the four digits cannot all be zero; at least one digit remains to press.
+For each valid pair $(m, s)$:
+- The 4-digit code is:
+  $$\text{code} = [\lfloor m / 10 \rfloor, \, m \bmod 10, \, \lfloor s / 10 \rfloor, \, s \bmod 10]$$
+- Strip all leading zeros until the first non-zero digit is reached (e.g., $[0, 9, 6, 0] \to [9, 6, 0]$).
+- Because $\text{targetSeconds} \ge 1$, the stripped sequence $D = [d_0, d_1, \dots, d_{L-1}]$ contains between $1$ and $4$ digits.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Deterministic Cost Evaluation
 
----
+For digit sequence $D$, initialize $\text{curr} = \text{startAt}$ and $\text{cost} = 0$:
+- For each digit $d \in D$:
+  - If $d \ne \text{curr}$:
+    $$\text{cost} \leftarrow \text{cost} + \text{moveCost}, \quad \text{curr} \leftarrow d$$
+  - Press the button:
+    $$\text{cost} \leftarrow \text{cost} + \text{pushCost}$$
 
-### Step 3: Simulate finger movement exactly
+The optimal answer is the minimum cost among all valid representations:
+$$\text{MinCost} = \min_{(m, s) \in \mathcal{C}} \text{EvaluateCost}(m, s)$$
 
-`prev` begins at `startAt`. For each pressed digit `v`:
-
-- if `v != prev`, the finger must move to a different digit and pays `moveCost`;
-- pressing always pays `pushCost`;
-- `prev = v` records where the finger now rests.
-
-Repeated identical digits incur no movement between pushes, but every occurrence still pays its own push cost.
-
-For digits `1000` with the finger initially on one, the first push costs only `pushCost`. Moving to zero costs once, and the three zero presses each cost `pushCost`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"startAt": 1, "moveCost": 2, "pushCost": 1, "targetSeconds": 600}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+| Candidate Option | Mathematical Split | 4-Digit Code | Stripped Keystrokes | Move / Press Trade-Off |
+|---|---|---|---|---|
+| Option 1 (Standard) | $10 \text{ min}, 0 \text{ sec}$ | `1000` | `['1', '0', '0', '0']` (4 presses) | $4$ presses, but benefits from repeated `'0'` presses |
+| Option 2 (Borrowed) | $9 \text{ min}, 60 \text{ sec}$ | `0960` | `['9', '6', '0']` (3 presses) | $3$ presses, but requires $3$ separate finger movements |
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We evaluate `startAt = 1, moveCost = 2, pushCost = 1, targetSeconds = 600`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+```
+Target = 600 seconds. Start finger at 1.
+
+Option 1: m = 10, s = 0   => code "1000" (4 digits)
+Option 2: m = 9,  s = 60  => code "0960" -> "960" (3 digits)
+```
+
+### Step 1: Evaluate Option 1 (`"1000"`)
+- Minute-second pair: $m = 10, s = 0$.
+- Formatted string: `"1000"`. No leading zero.
+- Keystrokes: `['1', '0', '0', '0']`.
+- Trace from $\text{curr} = 1$:
+  - **Digit 1 (`'1'`):**
+    - Already at $1$ ($\text{curr} == 1$): $0$ move cost.
+    - Press `'1'`: $+1$ push cost.
+    - Cost so far: $1$. Finger at $1$.
+  - **Digit 2 (`'0'`):**
+    - Move from $1$ to $0$: $+2$ move cost.
+    - Press `'0'`: $+1$ push cost.
+    - Cost so far: $1 + 2 + 1 = 4$. Finger at $0$.
+  - **Digit 3 (`'0'`):**
+    - Already at $0$ ($\text{curr} == 0$): $0$ move cost.
+    - Press `'0'`: $+1$ push cost.
+    - Cost so far: $4 + 1 = 5$. Finger at $0$.
+  - **Digit 4 (`'0'`):**
+    - Already at $0$ ($\text{curr} == 0$): $0$ move cost.
+    - Press `'0'`: $+1$ push cost.
+    - Cost so far: $5 + 1 = 6$. Finger at $0$.
+- Total cost for Option 1: **6**.
+
+### Step 2: Evaluate Option 2 (`"960"`)
+- Minute-second pair: $m = 9, s = 60$.
+- Formatted 4 digits: `"0960"`.
+- Strip leading zero: `"960"`.
+- Keystrokes: `['9', '6', '0']`.
+- Trace from $\text{curr} = 1$:
+  - **Digit 1 (`'9'`):**
+    - Move from $1$ to $9$: $+2$ move cost.
+    - Press `'9'`: $+1$ push cost.
+    - Cost so far: $3$. Finger at $9$.
+  - **Digit 2 (`'6'`):**
+    - Move from $9$ to $6$: $+2$ move cost.
+    - Press `'6'`: $+1$ push cost.
+    - Cost so far: $3 + 2 + 1 = 6$. Finger at $6$.
+  - **Digit 3 (`'0'`):**
+    - Move from $6$ to $0$: $+2$ move cost.
+    - Press `'0'`: $+1$ push cost.
+    - Cost so far: $6 + 2 + 1 = 9$. Finger at $0$.
+- Total cost for Option 2: **9**.
+
+### Step 3: Selection
+- Option 1 cost: $6$.
+- Option 2 cost: $9$.
+- Optimal choice: $\min(6, 9) = 6$.
+
+Even though Option 2 has one fewer digit ($3$ vs $4$), Option 1 avoids two costly finger movements because the finger starts on `'1'` and presses `'0'` three times in place.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Enumerate all minute fields:** Trying values zero through 99 and deriving seconds is still constant under fixed bounds, but the two-representation derivation is sharper.
-- **Always use divmod form:** This can miss a cheaper borrowed-seconds entry such as 9:60 instead of 10:00.
-- **Press all four digits:** It is legal but may add unnecessary push and movement cost for leading zeros.
-- **Remove every zero:** Only leading zeros may be omitted; internal zeros carry place value.
-- **Borrowed minutes become negative:** `f` returns infinity, leaving only the canonical representation.
-- **Borrowed seconds reach 100 or more:** That form is invalid and similarly ignored.
-- **Seconds at least 40:** Then `s + 60` is at least 100, so borrowing one minute is invalid.
-- **Target below 60 seconds:** Canonical minutes are zero; the borrowed candidate has minute minus one and is rejected.
-- **Repeated digit:** Multiple pushes cost separately, but no move is charged while the finger stays on that digit.
-- **First digit equals startAt:** The first movement cost is avoided.
-- **Leading zero equals startAt:** Pressing it would still add a positive push cost and cannot improve the optimal sequence.
-- **Maximum target 6039:** Canonical form is 99:99, within both field limits.
-- **Positive costs:** Removing redundant leading presses is strictly beneficial or neutral in movement and strictly saves pushes.
-- **No state mutation outside helper:** Each candidate resets `prev` to `startAt`, correctly evaluating independent entry attempts.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The table below catalogs every button press and finger transition for both options:
+
+| Option | Digit Index | Target Digit | Previous Finger Location | Movement Required? | Move Cost | Push Cost | Step Cost | Running Cost |
+|---|---|---|---|---|---|---|---|---|
+| **Option 1 (`"1000"`)** | $0$ | `'1'` | $1$ (`startAt`) | No ($1 == 1$) | $0$ | $1$ | $1$ | $1$ |
+| | $1$ | `'0'` | $1$ | Yes ($1 \to 0$) | $2$ | $1$ | $3$ | $4$ |
+| | $2$ | `'0'` | $0$ | No ($0 == 0$) | $0$ | $1$ | $1$ | $5$ |
+| | $3$ | `'0'` | $0$ | No ($0 == 0$) | $0$ | $1$ | $1$ | **6 (Optimum)** |
+| **Option 2 (`"960"`)** | $0$ | `'9'` | $1$ (`startAt`) | Yes ($1 \to 9$) | $2$ | $1$ | $3$ | $3$ |
+| | $1$ | `'6'` | $9$ | Yes ($9 \to 6$) | $2$ | $1$ | $3$ | $6$ |
+| | $2$ | `'0'` | $6$ | Yes ($6 \to 0$) | $2$ | $1$ | $3$ | **9** |
+
+Option 1 achieves the global minimum cost of $6$.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(1)$. There are exactly two candidate calls. Each validates two fields, creates four digits, and scans at most four positions. Time is $O(1)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Exhaustive Representation Bound
+Any entry evaluates to:
+$$\text{Seconds} = 60m + s \quad \text{with } 0 \le m \le 99 \text{ and } 0 \le s \le 99$$
+By Euclidean division, there is a unique representation $60q + r$ with $0 \le r < 60$. Any other representation with integer $m$ must satisfy $m = q - k$ and $s = r + 60k$.
+- If $k \ge 2$, $s \ge 120 > 99$ (Violates maximum two-digit second bound).
+- If $k \le -1$, $s = r - 60 < 0$ (Violates non-negative second bound).
+- Therefore, $k \in \{0, 1\}$ are the only possible integer solutions.
+Testing both $k = 0$ and $k = 1$ when within $[0, 99]$ explores $100\%$ of feasible representations, ensuring completeness and optimality.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Target Less Than 60 Seconds:** E.g., `targetSeconds = 45`.
+   - $m_1 = 0, s_1 = 45 \implies \text{"45"}$.
+   - $m_2 = -1 < 0$ (Borrowing impossible).
+   - Only one valid representation exists.
+2. **Borrowed Seconds Exceed 99:** E.g., `targetSeconds = 100`.
+   - $m_1 = 1, s_1 = 40 \implies \text{"140"}$.
+   - $m_2 = 0, s_2 = 40 + 60 = 100 > 99$ (Invalid).
+   - Only standard representation is valid.
+3. **Move Cost is Zero:** If `moveCost = 0`, cost depends strictly on the number of button presses. The shorter representation always wins.
+4. **Push Cost Dominates:** If `pushCost = 100000` and `moveCost = 1`, minimizing the number of digits is paramount.
+
+### Common Anti-Patterns
+- **Greedy Shorter Sequence Assumption:** Assuming fewer digits is always better fails whenever finger movements cost more than button presses, as seen in the representative instance.
+- **Forgetting to Strip Leading Zeros:** Typing `"0076"` instead of `"76"` adds two redundant zero presses and potential movements.
+- **Missing the Borrowed Minute Option:** Restricting seconds to $s < 60$ misses valid alternative microwave entries like `960` for $10$ minutes.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Generating candidate minute-second pairs requires $2$ division/modulo operations: $O(1)$.
+- Formatting and stripping strings has length at most $4$: $O(1)$.
+- Cost evaluation iterates through at most $4$ characters: $O(1)$.
+- Total time complexity is strictly $O(1)$, executing in under $1$ microsecond.
+
+### Auxiliary Space Complexity
+- Stores strings of length at most $4$ characters.
+- Total auxiliary space complexity is strictly $O(1)$.

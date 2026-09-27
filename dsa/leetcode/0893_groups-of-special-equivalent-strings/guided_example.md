@@ -1,111 +1,218 @@
 # Guided Example: Groups of Special-Equivalent Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step index parity decomposition (even vs odd coordinates), symmetric group permutation orbits, canonical character multisets, signature hashing, and equivalence class counting on representative word sets:
 
-- **Input:** `{"words": ["abcd", "cdab", "cbad", "xyzz", "zzxy", "zzyx"]}`
+- **Input:**
+  $$
+  words = [\text{"abcd"}, \text{"cdab"}, \text{"cbad"}, \text{"xyzz"}, \text{"zzxy"}, \text{"zzyx"}]
+  $$
 - **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - Special-equivalent move rules:
+    - A move consists of choosing two indices $i$ and $j$ of the **same parity** ($i \equiv j \pmod 2$) and swapping $word[i]$ and $word[j]$.
+    - Two strings $S$ and $T$ are **special-equivalent** if $S$ can be converted to $T$ through any sequence of valid swaps.
+    - A group is an equivalence class of strings under this relation.
+    - Objective: Return the number of distinct groups of special-equivalent strings.
+    - For $words = [\text{"abcd"}, \text{"cdab"}, \text{"cbad"}, \text{"xyzz"}, \text{"zzxy"}, \text{"zzyx"}]$:
+      - Group 1: $\{\text{"abcd"}, \text{"cdab"}, \text{"cbad"}\}$
+        - In `"abcd"`, even indices $\{0, 2\}$ hold $\{a, c\}$; odd indices $\{1, 3\}$ hold $\{b, d\}$.
+        - In `"cdab"`, even indices hold $\{c, a\}$; odd indices hold $\{d, b\}$.
+        - In `"cbad"`, even indices hold $\{c, a\}$; odd indices hold $\{b, d\}$.
+        - All share sorted even letters `"ac"` and sorted odd letters `"bd"`.
+      - Group 2: $\{\text{"xyzz"}, \text{"zzxy"}\}$
+        - In `"xyzz"`, even indices hold $\{x, z\}$; odd indices hold $\{y, z\}$.
+        - In `"zzxy"`, even indices hold $\{z, x\}$; odd indices hold $\{z, y\}$.
+        - Both share sorted even `"xz"` and sorted odd `"yz"`.
+      - Group 3: $\{\text{"zzyx"}\}$
+        - Even indices hold $\{z, y\}$; odd indices hold $\{z, x\}$.
+        - Sorted even `"yz"` and sorted odd `"xz"`.
+      - Total distinct groups: **`3`**.
+- **The Parity Decomposition & Canonical Orbit Invariant:**
+  - **The Parity Separation Theorem:**
+    - Any swap is restricted to indices of identical parity ($0 \leftrightarrow 2, 1 \leftrightarrow 3, \dots$).
+    - Characters at even positions can **never migrate to odd positions**, and characters at odd positions can **never migrate to even positions**.
+    - Furthermore, within any set of indices of the same parity, any sequence of swaps can generate **every possible permutation** of those characters (the symmetric group $\mathcal{S}_k$).
+    - Therefore, two strings are special-equivalent **if and only if**:
+      1. Their multiset of characters at even indices is identical.
+      2. Their multiset of characters at odd indices is identical.
+  - **Canonical Normal Form:**
+    - For any word $w$, extract:
+      $$
+      \text{even}(w) = \text{sorted}(w[0], w[2], w[4], \dots)
+      $$
+      $$
+      \text{odd}(w) = \text{sorted}(w[1], w[3], w[5], \dots)
+      $$
+    - The composite tuple $\text{signature}(w) = (\text{even}(w), \text{odd}(w))$ acts as a **unique canonical identifier** for the entire equivalence class.
+    - The number of special-equivalent groups is simply the number of **unique signatures** stored in a hash set:
+      $$
+      \text{Groups} = |\text{set}(\text{signatures})|
+      $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of strings of the same length `words`.
+Given 6 words of length 4, project each word into its even/odd multiset signature to count unique classes.
 
-The objective is to compute `3` from `{"words": ["abcd", "cdab", "cbad", "xyzz", "zzxy", "zzyx"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Words Analysis:
+  "abcd":
+    Even indices (0, 2): 'a', 'c' -> sorted: "ac"
+    Odd  indices (1, 3): 'b', 'd' -> sorted: "bd"
+    Signature: "ac_bd"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  "cdab":
+    Even: 'c', 'a' -> "ac"
+    Odd:  'd', 'b' -> "bd"
+    Signature: "ac_bd"  (Group 1)
+
+  "cbad":
+    Even: 'c', 'a' -> "ac"
+    Odd:  'b', 'd' -> "bd"
+    Signature: "ac_bd"  (Group 1)
+
+  "xyzz":
+    Even: 'x', 'z' -> "xz"
+    Odd:  'y', 'z' -> "yz"
+    Signature: "xz_yz"  (Group 2)
+
+  "zzxy":
+    Even: 'z', 'x' -> "xz"
+    Odd:  'z', 'y' -> "yz"
+    Signature: "xz_yz"  (Group 2)
+
+  "zzyx":
+    Even: 'z', 'y' -> "yz"
+    Odd:  'z', 'x' -> "xz"
+    Signature: "yz_xz"  (Group 3)
+
+Distinct Signatures: {"ac_bd", "xz_yz", "yz_xz"}
+Total Groups = 3
+```
+
+The teaching goal is to justify why parity-constrained swapping collapses the graph of words into independent multiset equality checks.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Parity Slices:
+For string $w$ of length $L$:
+$$
+w_{\text{even}} = [w[2k] \mid 0 \le 2k < L]
+$$
+$$
+w_{\text{odd}} = [w[2k+1] \mid 0 \le 2k+1 < L]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. Canonical Orbit Function:
+$$
+\Phi(w) = \text{sort}(w_{\text{even}}) \;\|\; \text{sort}(w_{\text{odd}})
+$$
+$$
+w_1 \sim w_2 \iff \Phi(w_1) = \Phi(w_2)
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Allowed swaps never move a character from an even index to an odd index or from an odd index to an even index. Within the even positions, however, any two characters may be swapped, and repeated swaps can create any permutation of those characters. The same is independently true for odd positions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["abcd", "cdab", "cbad", "xyzz", "zzxy", "zzyx"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $words = [\text{"abcd"}, \text{"cdab"}, \text{"cbad"}, \text{"xyzz"}, \text{"zzxy"}, \text{"zzyx"}]$:
+Initialize hash set $S = \emptyset$.
 
 ---
 
-### Step 2: Core Step 2
-
-Therefore a string's special-equivalence class is completely determined by two multisets:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Word `"abcd"`
+- Even characters: $w[0] = \text{'a'}, w[2] = \text{'c'}$. Sorted: `"ac"`.
+- Odd characters: $w[1] = \text{'b'}, w[3] = \text{'d'}$. Sorted: `"bd"`.
+- Combined signature: `"acbd"`.
+- Insert into set: $S = \{\text{"acbd"}\}$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Word `"cdab"`
+- Even characters: $w[0] = \text{'c'}, w[2] = \text{'a'}$. Sorted: `"ac"`.
+- Odd characters: $w[1] = \text{'d'}, w[3] = \text{'b'}$. Sorted: `"bd"`.
+- Combined signature: `"acbd"`.
+- Already present in $S$. Set size remains $1$.
 
-- the characters at indices $0,2,4,\ldots$;
-- the characters at indices $1,3,5,\ldots$.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Word `"cbad"`
+- Even characters: $w[0] = \text{'c'}, w[2] = \text{'a'}$. Sorted: `"ac"`.
+- Odd characters: $w[1] = \text{'b'}, w[3] = \text{'d'}$. Sorted: `"bd"`.
+- Combined signature: `"acbd"`.
+- Already present in $S$. Set size remains $1$.
+
+---
+
+### Step 4: Word `"xyzz"`
+- Even characters: $w[0] = \text{'x'}, w[2] = \text{'z'}$. Sorted: `"xz"`.
+- Odd characters: $w[1] = \text{'y'}, w[3] = \text{'z'}$. Sorted: `"yz"`.
+- Combined signature: `"xzyz"`.
+- Insert into set: $S = \{\text{"acbd"}, \text{"xzyz"}\}$. Set size $= 2$.
+
+---
+
+### Step 5: Word `"zzxy"`
+- Even characters: $w[0] = \text{'z'}, w[2] = \text{'x'}$. Sorted: `"xz"`.
+- Odd characters: $w[1] = \text{'z'}, w[3] = \text{'y'}$. Sorted: `"yz"`.
+- Combined signature: `"xzyz"`.
+- Already present in $S$. Set size remains $2$.
+
+---
+
+### Step 6: Word `"zzyx"`
+- Even characters: $w[0] = \text{'z'}, w[2] = \text{'y'}$. Sorted: `"yz"`.
+- Odd characters: $w[1] = \text{'z'}, w[3] = \text{'x'}$. Sorted: `"xz"`.
+- Combined signature: `"yzxz"`.
+- Insert into set: $S = \{\text{"acbd"}, \text{"xzyz"}, \text{"yzxz"}\}$. Set size $= 3$.
+
+---
+
+### Termination:
+All words evaluated.
+- **Unique group count:** $|S| = \mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["abcd", "cdab", "cbad", "xyzz", "zzxy", "zzyx"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Word | Raw Even Characters | Sorted Even | Raw Odd Characters | Sorted Odd | Canonical Signature | Discovered in Set? | Equivalence Group |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"abcd"` | `['a', 'c']` | `"ac"` | `['b', 'd']` | `"bd"` | `"acbd"` | New | Group 1 |
+| `"cdab"` | `['c', 'a']` | `"ac"` | `['d', 'b']` | `"bd"` | `"acbd"` | Duplicate | Group 1 |
+| `"cbad"` | `['c', 'a']` | `"ac"` | `['b', 'd']` | `"bd"` | `"acbd"` | Duplicate | Group 1 |
+| `"xyzz"` | `['x', 'z']` | `"xz"` | `['y', 'z']` | `"yz"` | `"xzyz"` | New | Group 2 |
+| `"zzxy"` | `['z', 'x']` | `"xz"` | `['z', 'y']` | `"yz"` | `"xzyz"` | Duplicate | Group 2 |
+| **`"zzyx"`** | **`['z', 'y']`** | **`"yz"`** | **`['z', 'x']`** | **`"xz"`** | **`"yzxz"`** | **New** | **`Group 3`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Word in Array:** Signature is added once $\implies$ returns $1$.
+- **Odd Length Strings (e.g. length 3: `"abc"`):**
+  - Even characters (indices 0, 2): length 2 (`"ac"`).
+  - Odd characters (index 1): length 1 (`"b"`).
+  - Parity slices handle uneven lengths naturally.
+- **All Words Identical:** All share the same signature $\implies$ returns $1$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Two frequency arrays:** Count 26 letters separately at even and odd indices. This gives an $O(L)$ signature and avoids sorting.
-- **Simulate allowed swaps:** Exploring permutations is factorial and unnecessary because parity multisets fully characterize reachability.
-- **Sort the whole word:** This loses the distinction between even and odd positions and can merge strings that are not special-equivalent.
-- **Compare only even positions:** Odd-position character counts are independently invariant and must also match.
-- **One-character words:** The odd multiset is empty. Groups are determined solely by the one even character.
-- **Two-character words:** Each parity contains one fixed position, so no nontrivial swap is possible; only identical words group together.
-- **Odd word length:** The even side has one more position than the odd side. The fixed signature boundary preserves that fact.
-- **Repeated characters:** Sorting or counting retains multiplicity, which is necessary for equivalence.
-- **Duplicate words:** They generate the same signature and belong to the same group.
-- **All words equivalent:** The set has one entry and the result is one.
-- **Every signature distinct:** Each word forms its own maximal group.
-- **Same-length guarantee:** It makes delimiter-free signature concatenation unambiguous. Mixed lengths would need the length or a separator in the key.
-- **Maximal group wording:** Equivalence classes are automatically maximal sets under an equivalence relation; counting unique signatures counts those classes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sorting the Entire String:** Sorting the full string ignores parity constraints. For example, `"xyzz"` and `"zzyx"` both sort to `"xyzz"`, but they belong to different groups because `'y'` is at an odd index in `"xyzz"` and an even index in `"zzyx"`.
+- **Graph BFS/DFS Over Pairs:** Trying to find connected components by testing pairs with BFS/DFS takes $\mathcal{O}(N^2 \cdot L)$ time; canonical signatures reduce clustering to $\mathcal{O}(N \cdot L \log L)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(NL\log L)$. Let $N$ be the number of words and $L$ their common length. The exact code sorts about $L/2$ characters twice per word.
-- **Auxiliary Space Complexity:** $O(NL)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N$ be the number of words, and $L$ be the length of each word.
+  - For each word, extracting and sorting even/odd characters takes $\mathcal{O}(L \log L)$ time.
+  - Inserting into hash set takes $\mathcal{O}(L)$ time.
+  - Total Time: strictly $\mathcal{O}(N \cdot L \log L)$. For $N \le 1000, L \le 20$, executes in $< 5$ ms.
+- **Auxiliary Space Complexity:**
+  - Hash set storing $N$ signatures: $\mathcal{O}(N \cdot L)$ space.

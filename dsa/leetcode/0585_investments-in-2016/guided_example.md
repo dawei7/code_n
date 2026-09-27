@@ -1,133 +1,175 @@
 # Guided Example: Investments in 2016
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step partition frequency windowing (`COUNT(1) OVER (PARTITION BY tiv_2015)`), geographic coordinate uniqueness validation (`COUNT(1) OVER (PARTITION BY lat, lon)`), dual conjunctive condition filtering ($cnt_1 > 1 \land cnt_2 = 1$), 2016 investment value summation, and 2-decimal rounding on representative insurance policies:
 
-- **Input:** `{"tables": {"Insurance": [{"pid": 1, "tiv_2015": 10, "tiv_2016": 5, "lat": 1, "lon": 1}, {"pid": 2, "tiv_2015": 10, "tiv_2016": 7.5, "lat": 2, "lon": 2}, {"pid": 3, "tiv_2015": 20, "tiv_2016": 100, "lat": 3, "lon": 3}]}}`
-- **Required output:** `{"columns": ["tiv_2016"], "rows": [[12.5]]}`
+- **Input:**
+  - `Insurance` table:
+    | `pid` | `tiv_2015` | `tiv_2016` | `lat` | `lon` |
+    |:---:|:---:|:---:|:---:|:---:|
+    | $1$ | $10$ | $5.0$ | $1$ | $1$ |
+    | $2$ | $10$ | $7.5$ | $2$ | $2$ |
+    | $3$ | $20$ | $100.0$ | $3$ | $3$ |
+- **Required output:**
+  | `tiv_2016` |
+  |:---:|
+  | $12.50$ |
+  - Business qualification criteria:
+    1. **Duplicate 2015 Investment:** Policyholder must share their `tiv_2015` value with **at least one other policyholder** (frequency $> 1$).
+    2. **Unique Geographic Location:** Policyholder must have a **unique $(lat, lon)$ coordinate pair** across the entire table (no collision with any other policyholder, frequency $= 1$).
+    3. Output: Sum of `tiv_2016` for all qualifying policyholders, rounded to $2$ decimal places.
+- **Relational Partition Windowing Trace:**
+  - **Step 1: Compute Frequencies in CTE $T$:**
+    - For each row, calculate two independent analytical counts:
+      - $cnt_1$: Total rows sharing the same `tiv_2015`.
+      - $cnt_2$: Total rows sharing the same $(lat, lon)$.
+    - **Policy 1 (`pid = 1`):**
+      - `tiv_2015 = 10`: Appears in Policy 1 and Policy 2 $\implies cnt_1 = \mathbf{2}$.
+      - `(lat, lon) = (1, 1)`: Unique in table $\implies cnt_2 = \mathbf{1}$.
+    - **Policy 2 (`pid = 2`):**
+      - `tiv_2015 = 10`: Appears in Policy 1 and Policy 2 $\implies cnt_1 = \mathbf{2}$.
+      - `(lat, lon) = (2, 2)`: Unique in table $\implies cnt_2 = \mathbf{1}$.
+    - **Policy 3 (`pid = 3`):**
+      - `tiv_2015 = 20`: Appears only in Policy 3 $\implies cnt_1 = \mathbf{1}$.
+      - `(lat, lon) = (3, 3)`: Unique in table $\implies cnt_2 = \mathbf{1}$.
+  - **Step 2: Evaluate Conjunctive Predicate ($cnt_1 > 1 \land cnt_2 = 1$):**
+    - **Policy 1:** $cnt_1 = 2 > 1$ (True), $cnt_2 = 1$ (True) $\implies \mathbf{Qualifies!}$
+      - Contributes `tiv_2016 = 5.0`.
+    - **Policy 2:** $cnt_1 = 2 > 1$ (True), $cnt_2 = 1$ (True) $\implies \mathbf{Qualifies!}$
+      - Contributes `tiv_2016 = 7.5`.
+    - **Policy 3:** $cnt_1 = 1 \ngtr 1$ (**Fails Criterion 1**) $\implies$ Disqualified.
+  - **Step 3: Aggregate and Round:**
+    - Sum of qualifying 2016 investments:
+      $$
+      \text{Sum} = 5.0 + 7.5 = \mathbf{12.50}
+      $$
+    - Format with 2 decimal places:
+      $$
+      \text{ROUND}(12.50, \; 2) = \mathbf{12.50}
+      $$
+- **Geographic Collision Disqualification Instance:**
+  - Suppose Policy 4 has `tiv_2015 = 10, lat = 1, lon = 1`.
+  - Now Policy 1 and Policy 4 collide on coordinates $(1, 1)$ $\implies cnt_2 = 2 \ne 1$.
+  - Both Policy 1 and Policy 4 fail the location uniqueness test and are dropped!
+- **No Qualifying Policyholders:**
+  - If all policies have unique 2015 values or all collide on location, sum is `NULL` or $0.00$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multi-dimensional partition counting in relational analytical processing, mathematically proves why parallel window aggregations eliminate nested self-joins, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Insurance`
+Given an `Insurance` table with `pid`, `tiv_2015`, `tiv_2016`, `lat`, and `lon`:
+Find the sum of `tiv_2016` (rounded to 2 decimals) for all policyholders who:
+1. Have the same `tiv_2015` as at least one other person.
+2. Have a completely unique `(lat, lon)` coordinate pair.
 
-The objective is to compute `{"columns": ["tiv_2016"], "rows": [[12.5]]}` from `{"tables": {"Insurance": [{"pid": 1, "tiv_2015": 10, "tiv_2016": 5, "lat": 1, "lon": 1}, {"pid": 2, "tiv_2015": 10, "tiv_2016": 7.5, "lat": 2, "lon": 2}, {"pid": 3, "tiv_2015": 20, "tiv_2016": 100, "lat": 3, "lon": 3}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Policies:
+  pid 1: tiv_2015 = 10, lat/lon = (1, 1) -> Shared 2015, unique loc -> VALID! (5.0)
+  pid 2: tiv_2015 = 10, lat/lon = (2, 2) -> Shared 2015, unique loc -> VALID! (7.5)
+  pid 3: tiv_2015 = 20, lat/lon = (3, 3) -> Unique 2015 -> INVALID!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Total 2016 Investment = 5.0 + 7.5 = 12.50
+```
+
+### The Window Function Acceleration
+- Traditional approaches use two subqueries with `IN` and `NOT IN`, requiring multiple table scans.
+- Using window functions:
+  - `cnt1 = COUNT(1) OVER (PARTITION BY tiv_2015)`
+  - `cnt2 = COUNT(1) OVER (PARTITION BY lat, lon)`
+- Both criteria are attached directly to each row in a single pipeline:
+  - Filter: `WHERE cnt1 > 1 AND cnt2 = 1`
+  - Aggregate: `ROUND(SUM(tiv_2016), 2)`
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Dual-Partition CTE:
+```sql
+WITH T AS (
+    SELECT
+        tiv_2016,
+        COUNT(1) OVER (PARTITION BY tiv_2015) AS cnt1,
+        COUNT(1) OVER (PARTITION BY lat, lon) AS cnt2
+    FROM Insurance
+)
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Filter and Summation:
+```sql
+SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
+FROM T
+WHERE cnt1 > 1 AND cnt2 = 1;
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Orthogonal Partition Invariant.** The financial partition (`tiv_2015`) and the spatial partition (`lat, lon`) are statistically independent; window partitioning evaluates each dimension without combinatorial cross-product explosion.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Annotating rather than collapsing
-
-The common table expression `T` reads `Insurance` and returns `tiv_2016` plus two counts:
-
-
-
-and
-
-
-
-An ordinary `GROUP BY tiv_2015` would collapse all policies with the same investment value into one row. That is useful for discovering duplicate values, but the final sum needs each qualifying row’s own `tiv_2016`. A window aggregate instead writes the group count beside every member of that group.
-
-For `cnt1`, `PARTITION BY tiv_2015` forms one logical partition per 2015 investment value. `COUNT(1)` counts every row in that partition because the literal 1 is never `NULL`. If `cnt1 > 1`, at least one other policy has the same `tiv_2015`.
-
-For `cnt2`, partitioning by both `lat` and `lon` treats the two coordinates as one compound location. The count is one exactly when no other policy occupies the same coordinate pair. It would be incorrect to test latitude and longitude uniqueness separately: two policies could share a latitude while having different longitudes and therefore represent different locations.
-
-Using the two columns directly is also safer than concatenating coordinate text. Concatenation can create ambiguous encodings—for example, components `(1, 23)` and `(12, 3)` can both become `"123"` without a robust delimiter and type representation. A multi-column SQL partition preserves tuple identity.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Insurance": [{"pid": 1, "tiv_2015": 10, "tiv_2016": 5, "lat": 1, "lon": 1}, {"pid": 2, "tiv_2015": 10, "tiv_2016": 7.5, "lat": 2, "lon": 2}, {"pid": 3, "tiv_2015": 20, "tiv_2016": 100, "lat": 3, "lon": 3}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Filtering requires both conditions
-
-The outer query applies:
-
-
-
-`AND` is essential. Sharing a `tiv_2015` value is not enough if the location is duplicated, and having a unique location is not enough if the investment value occurs only once.
-
-In the sample, policies 1, 3, and 4 all have `tiv_2015 = 10`, so each gets `cnt1 = 3`. Policy 2 has `tiv_2015 = 20` and gets `cnt1 = 1`. Locations `(10,10)` and `(40,40)` occur once, while `(20,20)` occurs twice. Policies 1 and 4 are the only rows with counts respectively greater than one and equal to one. Their 2016 values, 5 and 40, sum to 45.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Window Aggregation
+- Rows with `tiv_2015 = 10`: policies 1 and 2 $\implies cnt_1 = 2$.
+- Rows with `tiv_2015 = 20`: policy 3 $\implies cnt_1 = 1$.
+- Location $(1, 1)$: policy 1 $\implies cnt_2 = 1$.
+- Location $(2, 2)$: policy 2 $\implies cnt_2 = 1$.
+- Location $(3, 3)$: policy 3 $\implies cnt_2 = 1$.
 
 ---
 
-### Step 3: Aggregating and rounding at the end
+### Step 2: Evaluate Filter Predicate
+- Policy 1: $cnt_1 = 2 > 1$ and $cnt_2 = 1 \implies \mathbf{True}$ (Kept, value 5.0).
+- Policy 2: $cnt_1 = 2 > 1$ and $cnt_2 = 1 \implies \mathbf{True}$ (Kept, value 7.5).
+- Policy 3: $cnt_1 = 1 \ngtr 1 \implies \mathbf{False}$ (Dropped).
 
-After filtering, `SUM(tiv_2016)` combines the 2016 investments from all qualifying policyholders. `ROUND(..., 2)` rounds the combined result to two decimal places:
+---
 
-
-
-Rounding after summation follows the requested operation. Rounding every individual value first and then adding can produce a different total when values contain more than two fractional digits. The alias gives the output its required column name.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["tiv_2016"], "rows": [[12.5]]}` |
+### Step 3: Compute Sum
+$$
+5.0 + 7.5 = \mathbf{12.50}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Insurance": [{"pid": 1, "tiv_2015": 10, "tiv_2016": 5, "lat": 1, "lon": 1}, {"pid": 2, "tiv_2015": 10, "tiv_2016": 7.5, "lat": 2, "lon": 2}, {"pid": 3, "tiv_2015": 20, "tiv_2016": 100, "lat": 3, "lon": 3}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["tiv_2016"], "rows": [[12.5]]}` | Verified |
+| `pid` | `tiv_2015` | `(lat, lon)` | `cnt1` (Shared 2015) | `cnt2` (Unique Loc) | Passes Filter? | `tiv_2016` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$1$** | $10$ | $(1, 1)$ | **$2$** | **$1$** | **Yes** | **$5.0$** |
+| **$2$** | $10$ | $(2, 2)$ | **$2$** | **$1$** | **Yes** | **$7.5$** |
+| $3$ | $20$ | $(3, 3)$ | $1$ | $1$ | No | — |
+| **Total** | — | — | — | — | — | **`12.50`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No Policy Meets Both Criteria:** Output sum is `null` (or $0.00$ depending on coalesce).
+- **Location Collision:** Two policyholders with same coordinates both have $cnt_2 \ge 2$, disqualifying both.
+- **Floating-Point Rounding:** `ROUND(SUM(tiv_2016), 2)` ensures exactly 2 decimal digits are preserved.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Two grouped subqueries and joins:** One subquery finds `tiv_2015` groups with count above one, another finds location groups with count one, and the base table joins both. This is correct but more verbose than annotating each row once with window counts.
-- **Correlated `EXISTS` and `NOT EXISTS`:** Check for another row with equal `tiv_2015` and ensure none with the same location but a different `pid`. Clear logic, but without suitable indexes it may repeatedly scan the table.
-- **Grouped counts joined back:** Precompute both count maps and join them to `Insurance`. This mirrors the window logic explicitly and can be portable where window functions are unavailable.
-- **Concatenated location key:** Avoid it because formatting and delimiter collisions can merge different coordinate pairs. Partition by both columns.
-- **Same latitude only:** Sharing one coordinate does not mean sharing a city; both `lat` and `lon` must match.
-- **Location shared by two otherwise qualifying policies:** Both receive `cnt2 = 2` and both must be excluded.
-- **A `tiv_2015` value occurring once:** Its row fails `cnt1 > 1` even if its location is unique.
-- **More than two duplicate investments:** Every member qualifies for the first condition; “same as one or more” means count at least two, not exactly two.
-- **No qualifying rows:** Standard SQL `SUM` over an empty set returns `NULL`, and `ROUND(NULL, 2)` remains `NULL`. The expected dataset generally supplies a result; `COALESCE` would be needed if the contract demanded numeric zero.
-- **Rounding order:** Sum first, round once. Per-row rounding can alter the final answer.
-- **Non-null coordinates:** The schema guarantee avoids special window grouping semantics for missing locations.
-- **Exact float grouping:** SQL groups stored values according to their exact database equality semantics; visually similar floating-point inputs need not compare equal if stored differently.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Multiple Self-Joins ($O(N^2)$):** Joining `Insurance` on `tiv_2015` and left-joining on `(lat, lon)` generates quadratic intermediate sets. Window functions process partitions in $O(N \log N)$ time.
+- **Grouping by `tiv_2016`:** Aggregating `tiv_2016` directly collapses policies that happen to have the same 2016 payout. Filtering must occur at the policyholder level.
+- **Forgetting Location is a Coordinate Pair:** Testing `lat` and `lon` separately is incorrect. Two people can share the same latitude as long as their longitudes differ; the combination `(lat, lon)` must be unique.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Let $n$ be the number of `Insurance` rows. Computing the two window partitions usually requires hashing or sorting rows by `tiv_2015` and by `(lat, lon)`. A conventional sort-based plan takes $O(n\log n)$ time, matching the manifest. Hash-based partition counting may achieve expected $O(n)$ aggregation work, but SQL does not mandate that plan.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Partitioning by `tiv_2015`: $\mathcal{O}(N \log N)$ sorting/hashing.
+  - Partitioning by `(lat, lon)`: $\mathcal{O}(N \log N)$ sorting/hashing.
+  - Linear scan and summation: $\mathcal{O}(N)$.
+  - Total Time: $\mathcal{O}(N \log N)$. Completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to materialize CTE $T$ columns.

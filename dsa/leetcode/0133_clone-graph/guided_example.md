@@ -1,138 +1,193 @@
 # Guided Example: Clone Graph
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step deep copying of an undirected cyclic graph using a hash-mapped DFS/BFS traversal on a representative 4-node cycle:
 
-- **Input:** `{"adj_list": [[2, 4], [1, 3], [2, 4], [1, 3]]}`
-- **Required output:** `[[2, 4], [1, 3], [2, 4], [1, 3]]`
+- **Input:** `adjList = [[2, 4], [1, 3], [2, 4], [1, 3]]` (A 4-node cycle $1 - 2 - 3 - 4 - 1$)
+- **Required output:** Deep-cloned copy of the graph with identical topology
+- **Base Instances:** $\text{node} = \emptyset \implies \emptyset, \quad \text{adjList} = [[]] \implies \text{Node}(1)$ (isolated node)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates deep cloning mutable cyclic graph structures, preventing infinite recursion via an `original -> clone` hash map, registering clones *before* neighbor recursion, and verifying structural isomorphism in $O(V + E)$ time and $O(V)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a reference of a node in a **<a href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph" target="_blank">connected</a>** undirected graph.
+Given a reference to a node in a connected undirected graph:
+$$
+\begin{matrix}
+1 & \text{---} & 2 \\
+\mid & & \mid \\
+4 & \text{---} & 3
+\end{matrix}
+$$
+where `adjList` defines each node's neighbors:
+- Node 1: `[Node(2), Node(4)]`
+- Node 2: `[Node(1), Node(3)]`
+- Node 3: `[Node(2), Node(4)]`
+- Node 4: `[Node(1), Node(3)]`
 
-The objective is to compute `[[2, 4], [1, 3], [2, 4], [1, 3]]` from `{"adj_list": [[2, 4], [1, 3], [2, 4], [1, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+Return a **deep copy (clone)** of the graph.
+A valid clone satisfies three conditions:
+1. **Object Independence:** Every node in the cloned graph must be a newly allocated `Node` instance (e.g. $\text{clone}(u) \ne u$).
+2. **Topological Isomorphism:** If an edge $(u, v)$ exists in the original graph, an edge $(\text{clone}(u), \text{clone}(v))$ must exist in the clone.
+3. **No Reference Leakage:** No neighbor list in the clone may point to an original node object.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because undirected graphs contain cycles (e.g. $1 \leftrightarrow 2$), a naive recursive copy without cycle tracking will ping-pong infinitely between neighbors.
+Using a hash map `clones: OriginalNode -> ClonedNode` guarantees that each vertex is instantiated exactly once, resolving back-edges to already-instantiated clone references.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Hash-Mapped DFS Clone Protocol
+Maintain a dictionary `clones = {}`.
+Define `clone(node)`:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Null Guard:**
+   If $\text{node} == \emptyset$: return $\emptyset$.
+2. **Cycle & Visited Check:**
+   If $\text{node} \in \text{clones}$:
+   Return the already created clone:
+   $$
+   \text{return } \text{clones}[\text{node}]
+   $$
+3. **Instantiate Clone:**
+   Create a new node with identical value:
+   $$
+   \text{copy} = \text{Node}(\text{node.val})
+   $$
+4. **Register Immediately in Hash Map (Pre-Recursion):**
+   $$
+   \text{clones}[\text{node}] \leftarrow \text{copy}
+   $$
+   *(Registering `copy` BEFORE recursing on neighbors is mandatory to break cyclic back-references)*.
+5. **Recursively Populate Neighbors:**
+   For each neighbor $v \in \text{node.neighbors}$:
+   $$
+   \text{copy.neighbors.append}(\text{clone}(v))
+   $$
+6. **Return Completed Clone:**
+   $$
+   \text{return } \text{copy}
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every original node $u$ that has been visited, `clones[u]` points to its unique corresponding clone, and `clones[u].val == u.val`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A deep copy must preserve relationships, not identities
+We trace the recursive DFS calls on the 4-cycle graph starting from Node 1:
 
-Returning the original starting node would reproduce the visible graph but would not be a clone. A deep copy requires one new object for every reachable original node. Each cloned node must have the same value, and its neighbor list must point only to cloned nodes in the same order as the original neighbor list.
-
-Graphs make this harder than copying a tree. A node can have several incoming edges, and an undirected edge appears in both endpoints’ neighbor lists. Cycles are therefore normal. Recursing from `A` to `B` and then following `B` back to `A` would never terminate unless the algorithm remembers that `A` already has a clone.
-
-The dictionary `g` is the central structure. It maps each original node object to the unique new node representing it:
-
-`original node -> cloned node`
-
-This mapping simultaneously prevents infinite traversal, preserves shared references, and guarantees that two edges pointing to the same original also point to the same clone.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"adj_list": [[2, 4], [1, 3], [2, 4], [1, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Call `clone(Node 1)`
+- Node 1 not in `clones`.
+- Create new node: $C_1 = \text{Node}(1)$.
+- Register: $\text{clones}[N_1] \leftarrow C_1$.
+- Inspect neighbors of Node 1: $[N_2, N_4]$.
+- Recurse on first neighbor: `clone(Node 2)`.
 
 ---
 
-### Step 2: Create the clone before following edges
-
-The nested function `dfs(node)` first handles `null`, which represents the empty graph. It then checks whether the original node is already in `g`. If so, the function immediately returns the existing clone.
-
-For a newly seen node, the function performs these steps in a crucial order:
-
-1. create a new `Node` containing the same `val`;
-2. store that clone in `g`;
-3. recursively clone each neighbor;
-4. append each returned neighbor clone to the new node’s neighbor list.
-
-The dictionary insertion must happen before recursion. Consider two connected nodes `A` and `B`. While cloning `A`, recursion begins cloning `B`. When `B` follows its edge back to `A`, `A` is already in `g`, so that call returns the partially constructed clone of `A` instead of creating another object or recursing forever.
-
-It is safe to return a clone before all its neighbors have been filled. Graph nodes are mutable reference objects. The returned reference points to the same clone that the original call continues populating, so later appends become visible through every edge already connected to it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Call `clone(Node 2)`
+- Node 2 not in `clones`.
+- Create new node: $C_2 = \text{Node}(2)$.
+- Register: $\text{clones}[N_2] \leftarrow C_2$.
+- Inspect neighbors of Node 2: $[N_1, N_3]$.
+- **First Neighbor of 2 ($N_1$):**
+  - Call `clone(Node 1)`.
+  - $N_1 \in \text{clones}$!
+  - **Cycle Broken:** Returns existing reference $C_1$.
+  - $C_2.\text{neighbors.append}(C_1)$.
+- **Second Neighbor of 2 ($N_3$):**
+  - Call `clone(Node 3)`.
 
 ---
 
-### Step 3: What one DFS result guarantees
+### Step 3: Call `clone(Node 3)`
+- Node 3 not in `clones`.
+- Create new node: $C_3 = \text{Node}(3)$.
+- Register: $\text{clones}[N_3] \leftarrow C_3$.
+- Inspect neighbors of Node 3: $[N_2, N_4]$.
+- **First Neighbor of 3 ($N_2$):**
+  - $N_2 \in \text{clones} \implies$ returns $C_2$.
+  - $C_3.\text{neighbors.append}(C_2)$.
+- **Second Neighbor of 3 ($N_4$):**
+  - Call `clone(Node 4)`.
 
-Whenever `dfs(x)` returns, its return value is the one clone assigned to original node `x`. It has the same value. For each neighbor entry in `x.neighbors`, the clone’s list receives the result of cloning that exact original neighbor.
+---
 
-If a neighbor was unseen, recursion constructs it. If it was already seen, the dictionary supplies the previously created object. This distinction preserves graph topology:
+### Step 4: Call `clone(Node 4)`
+- Node 4 not in `clones`.
+- Create new node: $C_4 = \text{Node}(4)$.
+- Register: $\text{clones}[N_4] \leftarrow C_4$.
+- Inspect neighbors of Node 4: $[N_1, N_3]$.
+- **First Neighbor of 4 ($N_1$):**
+  - $N_1 \in \text{clones} \implies$ returns $C_1$.
+  - $C_4.\text{neighbors.append}(C_1)$.
+- **Second Neighbor of 4 ($N_3$):**
+  - $N_3 \in \text{clones} \implies$ returns $C_3$.
+  - $C_4.\text{neighbors.append}(C_3)$.
+- Node 4 has completed both neighbors! Returns $C_4$ to Node 3.
 
-- a cycle closes back to an existing clone;
-- two originals sharing one neighbor also share one neighbor clone;
-- parallel references would remain parallel references, although the stated graph has no repeated edges;
-- the order of neighbor entries is preserved because the loop appends results in original order.
+---
 
-The mapping gives uniqueness. Only the branch for a node absent from `g` calls `Node(node.val)`, and that branch immediately inserts the result. Every later request for the same original returns that object. Thus there is exactly one clone per reachable original.
+### Step 5: Unwinding the Call Stack
+- Node 3 receives $C_4$: $C_3.\text{neighbors.append}(C_4)$. Returns $C_3$ to Node 2.
+- Node 2 receives $C_3$. Returns $C_2$ to Node 1.
+- Node 1 appends $C_2$: $C_1.\text{neighbors.append}(C_2)$.
+- Node 1 inspects second neighbor $N_4$:
+  - Call `clone(Node 4)`.
+  - $N_4 \in \text{clones} \implies$ returns existing $C_4$.
+  - $C_1.\text{neighbors.append}(C_4)$.
+- Node 1 completes both neighbors: $C_1.\text{neighbors} = [C_2, C_4]$.
+- Return $C_1$.
 
-It also gives independence. Every mapped value was produced by a `Node` constructor, and neighbor lists contain those new values rather than original keys. Mutating a cloned node or its neighbor list therefore does not mutate the original graph.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[2, 4], [1, 3], [2, 4], [1, 3]]` |
+Deep clone complete! All 4 nodes cloned with preserved cycles.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"adj_list": [[2, 4], [1, 3], [2, 4], [1, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[2, 4], [1, 3], [2, 4], [1, 3]]` | Verified |
+```text
+Original Graph:                           Cloned Graph:
+   N1(1) --- N2(2)                           C1(1) --- C2(2)
+    |         |                               |         |
+   N4(4) --- N3(3)                           C4(4) --- C3(3)
+
+clones = { N1: C1, N2: C2, N3: C3, N4: C4 }
+```
+
+| Recursion Step | Active Node $u$ | In `clones`? | Action Taken | Clone Instantiated | Cloned Neighbors Appended |
+|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | Node 1 | No | Create $C_1$, register, recurse on 2 | $C_1$ | Awaiting $C_2, C_4$ |
+| 2 | Node 2 | No | Create $C_2$, register, recurse on 1 | $C_2$ | Append $C_1$ (cycle link) |
+| 2.1 | Node 1 | **Yes** | Return existing $C_1$ | - | - |
+| 2.2 | Node 3 | No | Create $C_3$, register, recurse on 2 | $C_3$ | Append $C_2$ (cycle link) |
+| 2.2.1 | Node 2 | **Yes** | Return existing $C_2$ | - | - |
+| 2.2.2 | Node 4 | No | Create $C_4$, register, recurse on 1 | $C_4$ | Append $C_1$, Append $C_3$ |
+| 2.2.2.1 | Node 1 | **Yes** | Return existing $C_1$ | - | - |
+| 2.2.2.2 | Node 3 | **Yes** | Return existing $C_3$ | - | - |
+| Returns | All unwound | - | Full cycle connected | - | $C_1$ links $[C_2, C_4]$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A graph is a set of vertices $V$ and edges $E$. Registering each clone in `clones` before recursing guarantees that every original vertex maps to exactly one cloned vertex. When a neighbor $v$ is processed, returning `clones[v]` ensures that edge $(u, v)$ is duplicated as an edge between the exact corresponding cloned instances.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the input graph is connected, DFS/BFS starting from the initial node visits every vertex in $V$ and examines every edge in $E$. No component of the graph is omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Breadth-first cloning:** Create the starting clone, then use a queue to discover originals and connect their clones. It avoids recursion depth while using the same original-to-clone map.
-- **Iterative depth-first cloning:** A manual stack follows depth-first order without relying on Python’s call stack. Its asymptotic bounds are unchanged.
-- **Two-pass traversal:** First discover every vertex and create every clone, then traverse edges to fill neighbor lists. It can make the phases explicit but requires revisiting adjacency lists.
-- **Map by node value:** Unique values make this possible under the stated contract, but mapping by original object is more robust and directly preserves identity even if value uniqueness changes.
-- **Empty graph:** `null` returns `null`; no clone or dictionary entry is created.
-- **Single isolated node:** Exactly one new node is returned with an empty neighbor list.
-- **Cycles:** Storing a clone before descending is essential; moving `g[node] = cloned` after the neighbor loop would recurse forever.
-- **Self-loops and repeated edges:** The contract excludes them, but the mapping-based algorithm would still clone them faithfully, including repeated neighbor-list entries.
-- **Hashability:** Original nodes are dictionary keys. Ordinary Python objects are identity-hashable unless their class overrides equality without a compatible hash.
-- **Runtime dependency:** The selected file imports `Optional` but calls `defaultdict` without importing it. A standalone execution needs `from collections import defaultdict`; a plain `{}` would also provide every operation this code uses.
-- **Platform-provided type:** `Node` appears only inside a triple-quoted template block because the platform supplies it. The user solution should not recreate it in the native LeetCode environment.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Registering Clone After Neighbor Loop (The Infinite Loop Bug):** If `clones[node] = copy` is placed *after* the `for neighbor in node.neighbors:` loop, the recursive call `clone(neighbor)` will see that `node` is not yet in `clones`, immediately re-cloning `node` and recursing forever! Registration must happen *before* neighbor iteration.
+- **Empty Graph / Null Input:** If `node is None`, the graph is empty. Returning `None` upfront prevents AttributeError on `node.val`.
+- **Single Node Without Neighbors:** A graph with one node `adjList = [[]]` has $N_1$ with `neighbors = []`. The algorithm creates $C_1$ with an empty neighbor list and returns it directly.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V+E)$. Let $V$ be the number of reachable vertices and $E$ the number of undirected edges.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(V + E)$, where $V$ is the number of vertices and $E$ is the number of edges. Each vertex is cloned once, and each edge is traversed twice (once from each endpoint).
+- **Auxiliary Space Complexity:** $O(V)$ to store the hash map mapping all $V$ nodes and $O(V)$ recursion stack depth (or BFS queue size).

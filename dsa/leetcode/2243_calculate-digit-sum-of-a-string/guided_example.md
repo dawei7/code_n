@@ -1,119 +1,190 @@
 # Guided Example: Calculate Digit Sum of a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "11111222223", "k": 3}`
-- **Required output:** `"135"`
+Given a string $s$ consisting of numerical digits and an integer $k$, the task is to repeatedly compress the string until its length becomes less than or equal to $k$. In each round of compression, the current string is divided into consecutive groups of length $k$. If the length of the string is not divisible by $k$, the final group may contain fewer than $k$ digits. Within each group, the individual decimal digits are summed together, and the numeric sum is converted to its decimal string representation. Finally, all resulting group sum strings are concatenated in their original order to produce the new string for the next round.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This iterative transformation continues until $|s| \le k$, at which point the current string is returned.
 
----
+### Representative Instance
 
-## 1. Instance & Teaching Goal
+Consider the following input parameters:
+- String: $s = \text{"11111222223"}$
+- Group size threshold: $k = 3$
+- Initial string length: $|s| = 11$
 
-You are given a string `s` consisting of digits and an integer `k`.
+Since $|s| = 11 > 3$, the reduction process must execute through multiple discrete rounds.
 
-The objective is to compute `"135"` from `{"s": "11111222223", "k": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Digit Sum Reduction Workflow
+    accDescr: Iterative grouping, sum calculation, and concatenation of a digit string until length is at most k.
+    Start(["Input: s = '11111222223', k = 3"]) --> Cond{"Length of s > k ?"}
+    Cond -- "Yes (|s| = 11 > 3)" --> Round1["Round 1: Group into '111', '112', '222', '23'<br/>Sums: 3, 4, 6, 5<br/>New string: '3465'"]
+    Round1 --> Cond2{"Length of s > k ?"}
+    Cond2 -- "Yes (|s| = 4 > 3)" --> Round2["Round 2: Group into '346', '5'<br/>Sums: 13, 5<br/>New string: '135'"]
+    Round2 --> Cond3{"Length of s > k ?"}
+    Cond3 -- "No (|s| = 3 <= 3)" --> Done(["Terminate: Return '135'"])
+```
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Simulate exactly while another round is allowed
+### Deterministic Group Partitioning
 
-A round occurs only when `len(s) > k`. The outer `while` uses that exact condition. If the initial string is already no longer than `k`, the method returns it unchanged.
+In any round with string length $n$, the string is partitioned into $m = \lceil n / k \rceil$ blocks:
 
-Each round must divide the current string into consecutive groups of at most `k` digits, sum each group's digits, convert each sum to decimal text, and concatenate those texts. The implementation follows these steps directly.
+$$s = G_0 \circ G_1 \circ \dots \circ G_{m-1}$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "11111222223", "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+where each contiguous substring $G_i = s[i \cdot k \,:\, \min((i + 1) \cdot k, n)]$ satisfies:
+- $|G_i| = k$ for all $0 \le i < m - 1$
+- $1 \le |G_{m-1}| \le k$ for the final trailing group
 
----
+For each group $G_i$, let its constituent characters be $c_{i, 0}, c_{i, 1}, \dots, c_{i, |G_i|-1}$. The numeric evaluation function maps $G_i$ to a non-negative integer:
 
-### Step 2: Choose every group boundary
+$$\sigma(G_i) = \sum_{j=0}^{|G_i|-1} \text{val}(c_{i, j})$$
 
-At the start of a round, `n = len(s)`. The loop
+where $\text{val}(c) \in \{0, 1, \dots, 9\}$ is the decimal integer value of digit character $c$. The transformed block is the base-10 character representation of this integer, $\text{str}(\sigma(G_i))$. The updated string for the next round is obtained via concatenation:
 
-`for i in range(0, n, k)`
+$$s' = \text{str}(\sigma(G_0)) \circ \text{str}(\sigma(G_1)) \circ \dots \circ \text{str}(\sigma(G_{m-1}))$$
 
-uses starting indices zero, `k`, `2k`, and so forth. Therefore, groups are consecutive, non-overlapping, and cover the string in order.
+### Contraction & Termination Guarantees
 
-The inner endpoint is `min(i + k, n)`. Full groups contain exactly `k` characters, while the last group stops at `n` if fewer than `k` remain.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Compute one digit sum
-
-`x` begins at zero for each group. The inner loop converts every character `s[j]` to its integer digit and adds it. Since the input and every generated string contain decimal digits, `int(s[j])` is always valid.
-
-After the group is consumed, `str(x)` converts the numeric sum to its usual decimal representation and appends it to `t`. A sum such as thirteen contributes two characters `"13"`. A zero sum contributes one character `"0"`, which is why groups of zeros shrink to one zero each rather than preserving their original width.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"135"` |
+Why does this iterative process always terminate?
+- Each group of size up to $k$ has maximum possible sum $9 \cdot k$.
+- The number of digits in $\text{str}(\sigma(G_i))$ is:
+  $$d_i = \lfloor \log_{10}(\sigma(G_i)) \rfloor + 1 \le \lfloor \log_{10}(9k) \rfloor + 1$$
+- For constraints where $k \ge 2$:
+  - When $k = 2$, maximum group sum is $9 + 9 = 18$ ($2$ digits). An input with length $> 2$ has at least $2$ groups. If a string does not immediately shrink, subsequent sums rapidly produce single digits unless all characters are $9$.
+  - When $k \ge 3$, $9k < 10^{k-1}$ for all practical $k$. For instance, with $k = 3$, $9 \times 3 = 27$ yields $2 < 3$ digits. Each block of $3$ characters shrinks into at most $2$ characters.
+  - For $k = 4$, $9 \times 4 = 36$ yields $2 < 4$ digits.
+- Because each full block of $k$ characters strictly compresses to fewer than $k$ characters on average, the string length monotonically decreases until $|s| \le k$.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "11111222223", "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"135"` | Verified |
+### Round 1 Execution
+
+Initial state: $s = \text{"11111222223"}$, length $n = 11$, $k = 3$.
+Number of groups: $m = \lceil 11 / 3 \rceil = 4$.
+
+1. **Group 0:** Indices $[0, 3)$, substring $\text{"111"}$.
+   - Sum: $1 + 1 + 1 = 3$.
+   - Output string segment: $\text{"3"}$.
+2. **Group 1:** Indices $[3, 6)$, substring $\text{"112"}$.
+   - Sum: $1 + 1 + 2 = 4$.
+   - Output string segment: $\text{"4"}$.
+3. **Group 2:** Indices $[6, 9)$, substring $\text{"222"}$.
+   - Sum: $2 + 2 + 2 = 6$.
+   - Output string segment: $\text{"6"}$.
+4. **Group 3:** Indices $[9, 11)$, substring $\text{"23"}$ (short final group of length 2).
+   - Sum: $2 + 3 = 5$.
+   - Output string segment: $\text{"5"}$.
+
+Concatenating segments: $s' = \text{"3"} \circ \text{"4"} \circ \text{"6"} \circ \text{"5"} = \text{"3465"}$.
+New length: $|s'| = 4$.
+Since $4 > k = 3$, the loop proceeds to Round 2.
+
+### Round 2 Execution
+
+Current state: $s = \text{"3465"}$, length $n = 4$, $k = 3$.
+Number of groups: $m = \lceil 4 / 3 \rceil = 2$.
+
+1. **Group 0:** Indices $[0, 3)$, substring $\text{"346"}$.
+   - Sum: $3 + 4 + 6 = 13$.
+   - Output string segment: $\text{"13"}$ (two digits).
+2. **Group 1:** Indices $[3, 4)$, substring $\text{"5"}$ (short final group of length 1).
+   - Sum: $5$.
+   - Output string segment: $\text{"5"}$.
+
+Concatenating segments: $s'' = \text{"13"} \circ \text{"5"} = \text{"135"}$.
+New length: $|s''| = 3$.
+Check condition: $|s''| = 3 \le k = 3$. The termination condition is met.
+Final result returned: $\text{"135"}$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Group Breakdown Across Rounds
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The table below catalogs every group evaluated during each round of transformation:
 
----
+| Round | Group Index $i$ | Substring Window | Characters in Group | Arithmetic Sum $\sigma(G_i)$ | Formatted Segment | Cumulative Round Output |
+|---|---|---|---|---|---|---|
+| **1** | 0 | $[0, 3)$ | $\text{"111"}$ | $1 + 1 + 1 = 3$ | $\text{"3"}$ | $\text{"3"}$ |
+| **1** | 1 | $[3, 6)$ | $\text{"112"}$ | $1 + 1 + 2 = 4$ | $\text{"4"}$ | $\text{"34"}$ |
+| **1** | 2 | $[6, 9)$ | $\text{"222"}$ | $2 + 2 + 2 = 6$ | $\text{"6"}$ | $\text{"346"}$ |
+| **1** | 3 | $[9, 11)$ | $\text{"23"}$ | $2 + 3 = 5$ | $\text{"5"}$ | $\text{"3465"}$ |
+| **2** | 0 | $[0, 3)$ | $\text{"346"}$ | $3 + 4 + 6 = 13$ | $\text{"13"}$ | $\text{"13"}$ |
+| **2** | 1 | $[3, 4)$ | $\text{"5"}$ | $5$ | $\text{"5"}$ | $\text{"135"}$ |
 
-## 6. Traps This Instance Exposes
+### Round-by-Round Evolution
 
-- **Recursive simulation:** It can perform one round per call but adds stack usage without simplifying the process.
-- **Repeated string concatenation:** Appending text directly to an immutable string can create avoidable copying; collecting pieces and joining is cleaner.
-- **Sum numeric value of the whole string:** Group boundaries matter, so one global digit sum produces the wrong transformation.
-- **Initial length at most `k`:** No round occurs and the original string is returned.
-- **Length exactly `k + 1`:** It forms one full group and one single-character final group.
-- **Last short group:** `min(i + k, n)` includes every remaining digit without padding.
-- **Group sum above nine:** Its multi-digit decimal representation contributes every digit to the next round.
-- **All zeros:** Each group becomes one zero, and leading zero characters are preserved as separate group results.
-- **`k = 2`:** A round may temporarily retain length for high-sum pairs, but subsequent rounds still reduce the string.
-- **Length equal to `k` after a round:** The strict `> k` condition stops immediately.
-- **Digit conversion:** Every generated character remains a decimal digit, so later `int` calls stay valid.
-- **Input preservation:** Local reassignment creates new strings and has no external side effect.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Round | Input String to Round | Input Length | Number of Chunks | Chunk Sums Produced | Concatenated Output | Termination Check ($|s| \le k$) |
+|---|---|---|---|---|---|---|
+| **Start** | $\text{"11111222223"}$ | $11$ | — | — | — | $11 > 3 \implies \text{Continue}$ |
+| **Round 1** | $\text{"11111222223"}$ | $11$ | $4$ | $[3, 4, 6, 5]$ | $\text{"3465"}$ | $4 > 3 \implies \text{Continue}$ |
+| **Round 2** | $\text{"3465"}$ | $4$ | $2$ | $[13, 5]$ | $\text{"135"}$ | $3 \le 3 \implies \text{Halt}$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n)$. Let `n` be the initial string length. One round scans its current length and uses proportional temporary output space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Preservation of Ordering
+
+The simulation strictly maintains spatial ordering by processing chunks from left to right with stride $k$. Appending the decimal representations of each chunk sum to an ordered list and subsequently joining them ensures that relative positional semantics are never permuted or inverted.
+
+### Multi-Digit Sum Expansion
+
+When a chunk sum exceeds $9$ (such as $3 + 4 + 6 = 13$), its string conversion naturally generates multiple characters. The specification mandates converting the numeric value to a string rather than taking modulo $10$. By treating the resulting string as atomic characters in the next round, subsequent divisions correctly split multi-digit sums across groups if necessary.
+
+### Invariant Maintenance
+
+At the start of every iteration, the invariant holds:
+- $s$ is composed purely of decimal digits ASCII $'0'$ through $'9'$.
+- $|s|$ represents the valid current state of repeated group-summing.
+- When the condition $|s| \le k$ is reached, the while-loop exits immediately without performing an extraneous unnecessary round.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Initial Length Already $\le k$:**
+   If $|s| \le k$ upon invocation (for example $s = \text{"123"}$ and $k = 3$), the loop condition is false from the outset. The string is returned immediately without modification.
+2. **String Composed Entirely of Zeroes:**
+   For $s = \text{"00000000"}$ with $k = 3$:
+   - Groups: $\text{"000"} \to 0 \to \text{"0"}$, $\text{"000"} \to 0 \to \text{"0"}$, $\text{"00"} \to 0 \to \text{"0"}$.
+   - Round 1 output: $\text{"000"}$, length $3 \le 3$.
+   - Output correctly retains multiple zeroes rather than collapsing to a single zero.
+3. **Minimum $k = 2$ with High Digits:**
+   If $s = \text{"9999"}$ and $k = 2$:
+   - $\text{"99"} \to 18$, $\text{"99"} \to 18$.
+   - Result: $\text{"1818"}$ (length remains 4).
+   - Next round: $\text{"18"} \to 9$, $\text{"18"} \to 9 \implies \text{"99"}$ (length 2).
+   - Halts at $\text{"99"}$.
+   The length strictly decreases within at most 2 rounds even in extreme carry scenarios.
+
+### Anti-Patterns to Avoid
+- **Recursive Digit Summing Within Groups:** Summing digits of a multi-digit group sum repeatedly until single-digit (digital root) is incorrect. If the sum is $13$, it remains $\text{"13"}$, not $1 + 3 = 4$.
+- **In-Place String Mutation / String Reallocation:** Repeatedly modifying strings in place or doing quadratic string slice concatenation inside inner loops. Assembling a list of string fragments and joining them once per round is both idiomatic and time-optimal.
+- **Ignoring the Final Incomplete Chunk:** Dropping the leftover digits when $|s|$ is not an exact multiple of $k$ leads to data loss. The final group must process all remaining characters $\min(i + k, n)$.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- In each round, every character of the current string is accessed once to convert to an integer and add to the group accumulator: $O(|s|)$.
+- Formatted chunk sums are joined into a new string: $O(|s'|)$.
+- For $k \ge 3$, the length contracts by at least a factor of $k / 2$ each round. For $k = 2$, length decreases strictly within at most two iterations per step.
+- The total length across all rounds forms a rapidly decaying geometric series:
+  $$T(n) = n + \frac{n}{c} + \frac{n}{c^2} + \dots = O(n)$$
+- Total Time Complexity: $\mathcal{O}(n)$ where $n$ is the initial length of string $s$.
+
+### Space Complexity
+- Each round constructs an auxiliary list of group sum strings whose concatenated length is bounded by the current string length $O(n)$.
+- Total Space Complexity: $\mathcal{O}(n)$ auxiliary memory to store intermediate chunk strings and buffer the joined round result.

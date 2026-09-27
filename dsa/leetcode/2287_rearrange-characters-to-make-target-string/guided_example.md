@@ -1,132 +1,172 @@
 # Guided Example: Rearrange Characters to Make Target String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "ilovecodingonleetcode", "target": "code"}`
-- **Required output:** `2`
+We are given two strings: a source repository string $s$ and an objective pattern string $target$. We may extract individual characters from $s$ and rearrange them arbitrarily to construct copies of $target$. Each character in $s$ may be consumed at most once.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our goal is to compute the maximum number of non-overlapping, complete copies of $target$ that can be formed simultaneously.
+
+Consider the representative problem instance:
+$$s = \text{"ilovecodingonleetcode"}, \quad target = \text{"code"}$$
+
+Examining the multi-set composition:
+- The target string $target = \text{"code"}$ has length $4$ and requires:
+  - $1$ copy of `'c'`
+  - $1$ copy of `'o'`
+  - $1$ copy of `'d'`
+  - $1$ copy of `'e'`
+- The source string $s = \text{"ilovecodingonleetcode"}$ of length $21$ contains:
+  - $2$ copies of `'c'`
+  - $4$ copies of `'o'`
+  - $2$ copies of `'d'`
+  - $4$ copies of `'e'`
+  - Additional letters `'i', 'l', 'v', 'n', 't'` which are irrelevant to forming $target$.
+
+For each needed distinct character $c$, we compute the maximum integer number of target instances that the supply of $c$ can sustain:
+- Character `'c'`: $\lfloor 2 / 1 \rfloor = 2$
+- Character `'o'`: $\lfloor 4 / 1 \rfloor = 4$
+- Character `'d'`: $\lfloor 2 / 1 \rfloor = 2$
+- Character `'e'`: $\lfloor 4 / 1 \rfloor = 4$
+
+Because all required characters must be present simultaneously to form complete target copies, the global bottleneck is determined by the minimum capacity across all required characters:
+$$\min(2, 4, 2, 4) = 2$$
+
+Thus, at most $2$ complete copies of $\text{"code"}$ can be formed.
+
+```mermaid
+flowchart TD
+    accTitle: Multi-Set Multiplicity Bottleneck Derivation
+    accDescr: Diagram illustrating character frequency counting and component-wise bottleneck division to find the maximum possible target copies.
+    A["Source String s"] --> B["Compute Source Histogram count_s"]
+    C["Target String target"] --> D["Compute Target Requirement count_target"]
+    B --> E["For each char c in target: floor(count_s(c) / count_target(c))"]
+    D --> E
+    E --> F["Find Minimum Ratio across all c"]
+    F --> G["Return Optimal Copy Count: 2"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given two **0-indexed** strings `s` and `target`. You can take some letters from `s` and rearrange them to form new strings.
+### Multi-Set Intersection & Vector Dominance
 
-The objective is to compute `2` from `{"s": "ilovecodingonleetcode", "target": "code"}` while avoiding redundant calculations and unnecessary overhead.
+Let $\Sigma$ denote the alphabet of lowercase English letters. We represent strings $s$ and $target$ by their Parikh frequency vectors in $\mathbb{N}^{|\Sigma|}$:
+$$S(c) = \text{frequency of } c \text{ in } s, \quad T(c) = \text{frequency of } c \text{ in } target$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Forming $k$ disjoint copies of $target$ requires a total character allocation vector of $k \cdot T$. Because each character is extracted without replacement from the source supply $S$, the feasibility condition is governed by component-wise vector domination:
+$$k \cdot T(c) \le S(c) \quad \text{for all } c \in \Sigma \text{ with } T(c) > 0$$
 
----
+Dividing by $T(c) > 0$ yields an independent upper bound for each distinct character:
+$$k \le \left\lfloor \frac{S(c)}{T(c)} \right\rfloor$$
 
-## 2. Conceptual Foundation & Invariants
+Because all character constraints must hold concurrently (satisfying the logical conjunction over all $c \in \text{support}(T)$), the maximal achievable integer scalar $k^*$ is given by the infimum of these individual bounds:
+$$k^* = \min_{c \in \Sigma, \, T(c) > 0} \left\lfloor \frac{S(c)}{T(c)} \right\rfloor$$
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Symbol | Mathematical Domain | Operational Meaning |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count resources and per-copy requirements
-
-Rearrangement means positions do not matter; only character multiplicities matter. `cnt1 = Counter(s)` records available copies of every letter, while `cnt2 = Counter(target)` records how many of each letter one target copy consumes.
-
-Letters present in `s` but absent from `target` cannot help and need no further consideration.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "ilovecodingonleetcode", "target": "code"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $S(c)$ | Non-negative integers $\mathbb{N}_0$ | Supply count of character $c$ available in string $s$ |
+| $T(c)$ | Positive integers $\mathbb{Z}^+$ | Multiplicity demand of character $c$ required per target copy |
+| $\lfloor S(c) / T(c) \rfloor$ | Integer quotient | Independent capacity limit imposed by resource $c$ |
+| $k^*$ | Minimal quotient | Binding bottleneck that limits simultaneous assembly |
 
 ---
 
-### Step 2: Compute the limit imposed by one letter
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-If target needs `v` copies of character `c` and the source provides `cnt1[c]`, then at most
+Let us trace the calculation for $s = \text{"ilovecodingonleetcode"}$ and $target = \text{"code"}$.
 
-$$
-\left\lfloor\frac{\texttt{cnt1}[c]}{v}\right\rfloor
-$$
+### Step 1: Compute Target Requirement Histogram
+We parse each character of $target$:
+- `'c'` appears $1$ time: $T(\text{'c'}) = 1$
+- `'o'` appears $1$ time: $T(\text{'o'}) = 1$
+- `'d'` appears $1$ time: $T(\text{'d'}) = 1$
+- `'e'` appears $1$ time: $T(\text{'e'}) = 1$
 
-complete targets can be supported by that character. Integer floor division implements this directly.
+### Step 2: Compute Source Supply Histogram
+We tally occurrences across $s$:
+- Total occurrences of `'c'` in $s$: $2$
+- Total occurrences of `'o'` in $s$: $4$
+- Total occurrences of `'d'` in $s$: $2$
+- Total occurrences of `'e'` in $s$: $4$
+- Other letters present: `'i': 1, 'l': 2, 'v': 1, 'n': 2, 't': 1`. These characters have $T(c) = 0$ and impose no constraints.
 
-For example, six available `a` characters and a requirement of two `a` characters per target support at most three copies.
+### Step 3: Evaluate Component Bounds
+We evaluate each distinct character in the target set:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. Character `'c'`:
+   - Supply $S(\text{'c'}) = 2$, Demand $T(\text{'c'}) = 1$.
+   - Quotient: $\lfloor 2 / 1 \rfloor = 2$.
+   - Current running minimum: $2$.
 
----
+2. Character `'o'`:
+   - Supply $S(\text{'o'}) = 4$, Demand $T(\text{'o'}) = 1$.
+   - Quotient: $\lfloor 4 / 1 \rfloor = 4$.
+   - Current running minimum: $\min(2, 4) = 2$.
 
-### Step 3: Take the tightest resource bound
+3. Character `'d'`:
+   - Supply $S(\text{'d'}) = 2$, Demand $T(\text{'d'}) = 1$.
+   - Quotient: $\lfloor 2 / 1 \rfloor = 2$.
+   - Current running minimum: $\min(2, 2) = 2$.
 
-Every target copy needs every required character simultaneously. If one character supports only two copies while all others support five, no third complete target can be formed. The answer is therefore the minimum quotient across `cnt2.items()`.
+4. Character `'e'`:
+   - Supply $S(\text{'e'}) = 4$, Demand $T(\text{'e'}) = 1$.
+   - Quotient: $\lfloor 4 / 1 \rfloor = 4$.
+   - Current running minimum: $\min(2, 4) = 2$.
 
-`target` is nonempty, so `cnt2` has at least one entry and `min` never receives an empty generator. Each requirement `v` is positive, so division by zero cannot occur.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "ilovecodingonleetcode", "target": "code"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Repeatedly remove one target:** It simulates construction and can redo scans; frequency quotients obtain the answer directly.
-- **Sort both strings:** Sorting loses no multiplicity information but costs extra `O(S\log S+T\log T)` time.
-- **Use sets:** Sets discard repeated-letter requirements and are incorrect for targets such as `"aaaaa"`.
-- **Binary search the number of copies:** Feasibility checks are easy, but the minimum quotient already gives the exact boundary.
-- **Missing required letter:** Counter default zero makes the answer zero.
-- **One-character target:** The answer equals that character's frequency in `s`.
-- **Repeated target letter:** Its full multiplicity is the divisor.
-- **Extra source letters:** Characters absent from target are harmless leftovers.
-- **Exact consumption:** A zero remainder is not required; unused letters are allowed.
-- **Nonempty target:** It guarantees the minimum generator is nonempty.
-- **Lowercase alphabet:** Fixed 26-key storage justifies constant auxiliary space.
-- **Input preservation:** Counting creates derived mappings only.
-- **Multiple bottleneck letters:** Several quotients may attain the same minimum; any one proves that an additional target copy is impossible.
-- **Availability not divisible by requirement:** Floor division correctly leaves the unusable remainder for that character.
-- **Target longer than source:** The quotient argument necessarily produces zero for at least one required resource, even without a separate length check.
-- **Target equal to source:** Every required count is available exactly, so the minimum quotient is at least one and is exactly one unless the source contains enough repeated resources for more, which equal lengths preclude.
-- **Source with only irrelevant letters:** Every required target key reads availability zero, producing answer zero.
-- **Character order:** Anagrams and arbitrary rearrangement make order, adjacency, and original indices irrelevant.
-- **Counter item iteration:** The minimum is independent of dictionary order because it is a commutative aggregate over all requirements.
-- **Resource independence:** Consuming one character type never reduces availability of another, so satisfying every frequency inequality is sufficient.
-- **No letter reuse:** Multiplying each per-copy requirement by the proposed number explicitly accounts for distinct source occurrences.
-- **Maximum source length:** Counts are small here, but the same quotient proof applies without changing the algorithm.
-- **Returned value only:** The method deliberately does not construct the target copies or report leftover characters.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 4: Final Bottleneck Extraction
+Every character in $target$ has been evaluated. The minimum quotient across all required characters is $2$.
+The maximal number of rearrangeable copies is $2$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(S+T)$. Let `S` and `T` be the lengths of `s` and `target`. Building the counters takes `O(S+T)` time. The minimum scans at most 26 target-letter entries, so total time is `O(S+T)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Distinct Target Character $c$ | Demand $T(c)$ | Supply $S(c)$ in $s$ | Feasible Copies $\lfloor S(c)/T(c) \rfloor$ | Running Minimum $k^*$ | Binding Constraint Status |
+|---|---|---|---|---|---|
+| `'c'` | $1$ | $2$ | $2$ | $2$ | Binding bottleneck |
+| `'o'` | $1$ | $4$ | $4$ | $2$ | Slack present ($+2$ surplus) |
+| `'d'` | $1$ | $2$ | $2$ | $2$ | Binding bottleneck |
+| `'e'` | $1$ | $4$ | $4$ | $2$ | Slack present ($+2$ surplus) |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Sufficiency and Necessary Condition
+
+- **Necessity:** To construct $k$ disjoint copies of $target$, the multiset sum of $k$ copies demands exactly $k \cdot T(c)$ instances of character $c$. If $k > \lfloor S(c) / T(c) \rfloor$ for any $c$, then $k \cdot T(c) > S(c)$, violating the available supply. Hence, no valid configuration can exceed $k^*$.
+- **Sufficiency:** Because characters can be chosen from any positions in $s$ without ordering or adjacency restrictions, we can greedily select $k^* \cdot T(c)$ characters of type $c$ for each $c \in target$. Since $k^* \cdot T(c) \le S(c)$ holds simultaneously for all required letters, all $k^*$ copies can be assembled without collision or deficit.
+- Therefore, $k^* = \min_{c} \lfloor S(c) / T(c) \rfloor$ is exact.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Simulation by String Slicing or Deletion
+
+An inefficient approach is repeatedly searching for characters of $target$ in $s$ and deleting them until a character cannot be found. Modifying strings repeatedly incurs quadratic $O(|s| \cdot |target| \cdot k)$ runtime. In contrast, frequency counting abstracts away spatial ordering and solves the allocation in linear time.
+
+### Edge Case: Missing Required Character ($S(c) = 0$)
+
+If any character required by $target$ does not appear in $s$, then $S(c) = 0$. The integer division yields $\lfloor 0 / T(c) \rfloor = 0$. The running minimum immediately becomes $0$, correctly reflecting that not even a single copy can be constructed.
+
+### Edge Case: Repeated Characters in Target
+
+Consider $target = \text{"aaaa"}$ where $T(\text{'a'}) = 4$. If $s$ contains $10$ `'a'`s, the integer quotient $\lfloor 10 / 4 \rfloor = 2$ properly handles higher multiplicities without overcounting.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Source Frequency Counting:** Scanning $s$ once to build the character histogram takes $O(|s|)$ time.
+- **Target Frequency Counting:** Scanning $target$ once to build the demand histogram takes $O(|target|)$ time.
+- **Quotient Minimization:** Iterating over the distinct characters in $target$ takes at most $O(|\Sigma|)$ operations, where $|\Sigma| = 26$ for lowercase English letters.
+- **Overall Time Complexity:** $O(|s| + |target|)$, which is strictly linear and optimal.
+
+### Space Complexity
+
+- The frequency histograms store counts for at most $|\Sigma| = 26$ lowercase English letters.
+- Since $|\Sigma|$ is a small fixed constant ($26$), auxiliary storage is $O(|\Sigma|) = O(1)$ constant extra space.

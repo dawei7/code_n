@@ -1,136 +1,228 @@
 # Guided Example: Design Compressed String Iterator
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step run-length token serialization (`[char, count]`), multi-digit integer parsing ($x \leftarrow x \cdot 10 + d$), active token index tracking ($p$), decrement-and-advance lazy character streaming (`next()`), exhaustion predicate verification (`hasNext()`), and empty fallback space emission (`' '`) on representative compressed strings:
 
-- **Input:** `{"compressedString": "z1", "operations": [["next"], ["next"], ["next"], ["hasNext"]]}`
-- **Required output:** `["z", " ", " ", false]`
+- **Input:**
+  - Compressed string: `"L1e2t1C1o1d1e1"`
+  - Operation sequence:
+    ```text
+    StringIterator iterator = new StringIterator("L1e2t1C1o1d1e1")
+    iterator.next()     // returns 'L'
+    iterator.next()     // returns 'e'
+    iterator.next()     // returns 'e'
+    iterator.next()     // returns 't'
+    iterator.next()     // returns 'C'
+    iterator.next()     // returns 'o'
+    iterator.hasNext()  // returns true
+    iterator.next()     // returns 'd'
+    iterator.hasNext()  // returns true
+    ```
+- **Required outputs:**
+  - `'L'`, `'e'`, `'e'`, `'t'`, `'C'`, `'o'`, `true`, `'d'`, `true`
+  - Uncompressed reference string: `"LeetCode"`
+  - Behavior contract:
+    - `next()`: Yields the next character in sequence. If all characters have been consumed, returns a single space `' '`.
+    - `hasNext()`: Returns `true` if unread characters remain; `false` otherwise.
+- **Run-Length Token Architecture:**
+  - Decompressing the entire string into memory up front can cause Out-Of-Memory (OOM) errors if a count is huge (e.g. `"a1000000000"`).
+  - Instead, the iterator operates **lazily** over parsed run-length tokens:
+    $$
+    d = [[c_1, k_1], \; [c_2, k_2], \; \dots, \; [c_m, k_m]]
+    $$
+  - Pointer $p$: Points to the active token currently being consumed ($p \in [0, m - 1]$).
+  - Token state: `[char, remaining_count]`.
+  - When `next()` is called:
+    - Decrement `remaining_count` by $1$.
+    - When `remaining_count` hits $0$, advance pointer $p \leftarrow p + 1$.
+- **Step-by-Step Construction & Streaming Trace:**
+  - **Phase 1: Parse Compressed String into Tokens:**
+    - Input: `"L1e2t1C1o1d1e1"`.
+    - Token 0: character `'L'`, digits `"1"` $\implies ['L', 1]$
+    - Token 1: character `'e'`, digits `"2"` $\implies ['e', 2]$
+    - Token 2: character `'t'`, digits `"1"` $\implies ['t', 1]$
+    - Token 3: character `'C'`, digits `"1"` $\implies ['C', 1]$
+    - Token 4: character `'o'`, digits `"1"` $\implies ['o', 1]$
+    - Token 5: character `'d'`, digits `"1"` $\implies ['d', 1]$
+    - Token 6: character `'e'`, digits `"1"` $\implies ['e', 1]$
+    - Initial token list:
+      $$
+      d = [[\text{'L'}, 1], \; [\text{'e'}, 2], \; [\text{'t'}, 1], \; [\text{'C'}, 1], \; [\text{'o'}, 1], \; [\text{'d'}, 1], \; [\text{'e'}, 1]]
+      $$
+    - Active pointer: $p = 0$.
+  - **Phase 2: Step-by-Step Iterator Calls:**
+    - **Call 1: `next()`:**
+      - $p = 0$: Current token is `['L', 1]`.
+      - Character to return: `'L'`.
+      - Decrement count: $1 - 1 = 0$.
+      - Count reached 0 $\implies$ Advance pointer: $p \leftarrow 1$.
+      - Returns: **`'L'`**.
+    - **Call 2: `next()`:**
+      - $p = 1$: Current token is `['e', 2]`.
+      - Character to return: `'e'`.
+      - Decrement count: $2 - 1 = \mathbf{1}$.
+      - Count is $1 > 0 \implies$ Pointer stays at $p = 1$.
+      - Returns: **`'e'`**.
+    - **Call 3: `next()`:**
+      - $p = 1$: Current token is `['e', 1]`.
+      - Character to return: `'e'`.
+      - Decrement count: $1 - 1 = 0$.
+      - Count reached 0 $\implies$ Advance pointer: $p \leftarrow 2$.
+      - Returns: **`'e'`**.
+    - **Call 4: `next()`:**
+      - $p = 2$: Current token is `['t', 1]`.
+      - Returns: **`'t'`**, advances $p \leftarrow 3$.
+    - **Call 5: `next()`:**
+      - $p = 3$: Current token is `['C', 1]`.
+      - Returns: **`'C'`**, advances $p \leftarrow 4$.
+    - **Call 6: `next()`:**
+      - $p = 4$: Current token is `['o', 1]`.
+      - Returns: **`'o'`**, advances $p \leftarrow 5$.
+    - **Call 7: `hasNext()`:**
+      - Check condition: $p = 5 < \text{len}(d) = 7$ and $d[5][1] = 1 > 0$.
+      - Tokens 5 (`'d'`) and 6 (`'e'`) remain unconsumed.
+      - Returns: **`true`**.
+    - **Call 8: `next()`:**
+      - $p = 5$: Current token is `['d', 1]`.
+      - Returns: **`'d'`**, advances $p \leftarrow 6$.
+    - **Call 9: `hasNext()`:**
+      - $p = 6 < 7$ and $d[6][1] = 1 > 0$.
+      - Token 6 (`'e'`) remains unconsumed.
+      - Returns: **`true`**.
+- **Post-Exhaustion Space Return Instance:**
+  - After consuming the final `'e'` from token 6, $p$ advances to $7 == \text{len}(d)$.
+  - `hasNext()` returns `false`.
+  - Any subsequent call to `next()` returns `' '` (single space character).
+- **Multi-Digit Repetition Count (`"a12b1"`):**
+  - Digits `'1'` and `'2'` accumulate: $1 \times 10 + 2 = 12$.
+  - First token is `['a', 12]`, which yields `'a'` for twelve consecutive `next()` calls before advancing to `'b'`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates stateful run-length decompression streaming via pointer-index token consumption, mathematically proves why lazy evaluation achieves $O(1)$ amortized runtime while bounding memory to token count, and derives $O(T)$ construction time and $O(1)$ per-call bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design and implement a data structure for a compressed string iterator. The given compressed string will be in the form of each letter followed by a positive integer representing the number of this letter existing in the original uncompressed string.
+Given a compressed string like `"L1e2t1C1o1d1e1"` representing `"LeetCode"`:
+Design an iterator supporting:
+- `next()`: Returns the next character, or `' '` if finished.
+- `hasNext()`: Returns whether characters remain.
 
-The objective is to compute `["z", " ", " ", false]` from `{"compressedString": "z1", "operations": [["next"], ["next"], ["next"], ["hasNext"]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: "L1e2t1C1o1d1e1"
+Tokens:
+  [L: 1] -> yield 'L'
+  [e: 2] -> yield 'e', then 'e'
+  [t: 1] -> yield 't'
+  [C: 1] -> yield 'C'
+  [o: 1] -> yield 'o'
+  [d: 1] -> yield 'd'
+  [e: 1] -> yield 'e'
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Output: L -> e -> e -> t -> C -> o -> d -> e -> ' ' (exhausted)
+```
+
+### The Invariant of Lazy Expansion
+- A compressed string like `"a1000000000"` represents 1 billion characters.
+- Expanding the full string into memory will crash with Out Of Memory.
+- Instead, store only the **run-length metadata** (character and integer count).
+- The iterator decrements the active integer count in $O(1)$ time without materializing any extra characters.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Token Construction:
+Scan the string to parse `(char, integer)` pairs:
+- Character $c$ followed by digits parsed via $x = x \cdot 10 + \text{digit}$.
+- Stored as `[c, x]` in token array $d$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Iterator Invariant:
+- Pointer $p$ always points to the first token that has `remaining_count > 0`.
+- `hasNext()` is true if and only if $p < |d|$.
+- `next()`:
+  - If $p \ge |d|$: return `' '`.
+  - Decrement count: $d[p][1] \leftarrow d[p][1] - 1$.
+  - If count reaches 0: advance $p \leftarrow p + 1$.
+  - Return the character $d[p_{old}][0]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Zero Inflation Invariant.** The memory footprint remains bounded by the compressed token count $O(T)$ regardless of the decompressed string length $\sum k_i$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Parsing the encoded input once
-
-The constructor scans `compressedString` from left to right. At the start of a run, `compressedString[i]` is the character `c`. It advances once, then parses all following digits into integer `x`:
-
-
-
-Multiplying the existing value by ten shifts its decimal digits left, and adding the new digit appends that digit. Thus, characters `'1'`, `'2'`, and `'3'` become count 123 rather than three separate counts.
-
-The pair `[c, x]` is appended to `d`. A list rather than tuple is used because `next` will decrement the stored count in place.
-
-The input grammar guarantees alternating letters and positive decimal counts, so the constructor does not need error recovery for missing digits, zero counts, or punctuation.
-
-For `"L1e2t1"`, the parsed state becomes logically:
-
-
-
-This storage is proportional to the compressed representation, not the potentially much larger expansion `"Leet"`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"compressedString": "z1", "operations": [["next"], ["next"], ["next"], ["hasNext"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `"L1e2"`:
 
 ---
 
-### Step 2: The pointer invariant
-
-`p` is the index of the first run that may still have output remaining. For a valid active iterator:
-
-- every run before `p` has remaining count zero;
-- run `p` has a positive count;
-- later runs have their original positive counts.
-
-The constructor establishes this with `p = 0` and positive counts. `next` preserves it by decrementing the current count and advancing exactly when that count becomes zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Parse Tokens
+- Token 0: `['L', 1]`
+- Token 1: `['e', 2]`
+- $p = 0$.
 
 ---
 
-### Step 3: Checking availability
+### Step 2: First `next()`
+- $p = 0$, char `'L'`, count $1 - 1 = 0$.
+- Count is 0 $\implies p \leftarrow 1$.
+- Return `'L'`.
 
-`hasNext` returns:
+---
 
+### Step 3: Second `next()`
+- $p = 1$, char `'e'`, count $2 - 1 = 1$.
+- Count is $1 > 0 \implies p$ remains 1.
+- Return `'e'`.
 
+---
 
-The first half ensures the pointer still names a run. Python’s short-circuit `and` prevents out-of-range access if all runs are exhausted. The second half verifies a remaining occurrence.
+### Step 4: Third `next()`
+- $p = 1$, char `'e'`, count $1 - 1 = 0$.
+- Count is 0 $\implies p \leftarrow 2$.
+- Return `'e'`.
 
-Under the pointer invariant, an in-range current run always has positive count, so the second test is defensive and documents the required state.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["z", " ", " ", false]` |
+### Step 5: `hasNext()` and Fourth `next()`
+- $p = 2 == \text{len}(d) \implies hasNext() = \mathbf{False}$.
+- `next()` returns `' '`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"compressedString": "z1", "operations": [["next"], ["next"], ["next"], ["hasNext"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["z", " ", " ", false]` | Verified |
+| Call | Active $p$ | Active Token | Remaining Count Before | Action Taken | Remaining Count After | Return Value |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `next()` | $0$ | `['L', 1]` | $1$ | Decrement, advance $p$ | $0$ | **`'L'`** |
+| `next()` | $1$ | `['e', 2]` | $2$ | Decrement, keep $p=1$ | $1$ | **`'e'`** |
+| `next()` | $1$ | `['e', 1]` | $1$ | Decrement, advance $p$ | $0$ | **`'e'`** |
+| `next()` | $2$ | `['t', 1]` | $1$ | Decrement, advance $p$ | $0$ | **`'t'`** |
+| `hasNext()`| $3$ | `['C', 1]` | $1$ | Check $p < 7$ | $1$ | **`true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Multi-Digit Numbers (`"a10b2"`):** Number parser correctly reads $10$.
+- **Repeated Calls After Exhaustion:** Safely returns `' '` repeatedly without index-out-of-bounds error.
+- **Single Character (`"x1"`):** Handled identically.
+- **Large Counts ($10^9$):** Uses 64-bit integer counts in $O(1)$ space.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Demand parsing:** Keep an index into the compressed string and parse the next run only when the current count reaches zero. Uses constant iterator state beyond the stored input.
-- **Fully uncompress:** Makes `next` simple but takes $O(E)$ time and space and fails for counts near $10^9$.
-- **Regex precomputation:** Split letters and counts into parallel arrays. Similar $O(C)$ storage, with more parsing machinery.
-- **Multi-digit count:** Decimal accumulation must read all consecutive digits; treating digits individually is incorrect.
-- **Count of one:** The first return exhausts the run and advances immediately.
-- **Huge count:** Only one integer is stored; no repeated characters are allocated.
-- **Exhausted iterator:** `hasNext` is false and `next` returns one space.
-- **Repeated `hasNext` calls:** They do not consume data.
-- **Uppercase and lowercase:** Both are stored as exact characters; case is preserved.
-- **Adjacent runs with same letter:** If valid input supplied them separately, the iterator would return them consecutively; merging is unnecessary for correctness.
-- **Positive-count guarantee:** Prevents constructor-created empty runs from violating the pointer invariant.
-- **Short-circuit bound check:** Pointer range is tested before indexing the current pair.
-- **Space fidelity:** Run precomputation is $O(C)$, not $O(1)$, even though it is exponentially smaller than a possible $O(E)$ expansion.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Materializing the Decompressed String:** Building the uncompressed string as a string or list causes Memory Limit Exceeded on large test cases.
+- **Assuming Counts Are Single Digits:** Scanning only one character after the letter breaks on counts like `"a12"`. A `while isdigit()` loop is required to parse multi-digit counts.
+- **Off-by-One Pointer Advance:** Advancing $p$ before checking count 0 can skip the final repetition of a character.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C+q)$. Let $C$ be encoded length, $r$ the number of runs, $q$ the number of operations, and $E$ the expanded length. Constructor parsing visits each encoded character once, taking $O(C)$ time. Each `hasNext` and `next` performs constant work, so all operations cost $O(q)$ and total lifetime time is $O(C+q)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Constructor: $\mathcal{O}(L)$ where $L$ is the length of the compressed string.
+  - `next()`: $\mathcal{O}(1)$ amortized time.
+  - `hasNext()`: $\mathcal{O}(1)$ strictly.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(T)$ space to store the $T$ tokens where $T \le L / 2$. Memory is completely independent of total uncompressed character counts.

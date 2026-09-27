@@ -1,122 +1,159 @@
 # Guided Example: Permutations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step recursive depth-first backtracking search on a representative distinct array instance:
 
-- **Input:** `{"nums": [0, 1]}`
-- **Required output:** `[[0, 1], [1, 0]]`
+- **Input:** $\text{nums} = [1, 2, 3]$
+- **Required output:** `[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates generating all $N!$ distinct orderings, state vector tracking with a boolean `used` mask, in-order path appending, and state restoration during backtracking unwind.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in **any order**.
+Given an array $\text{nums}$ of $N = 3$ distinct integers, we must return all possible permutations.
 
-The objective is to compute `[[0, 1], [1, 0]]` from `{"nums": [0, 1]}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{nums} = [1, 2, 3]$:
+- Position 0 has 3 choices ($1, 2, 3$).
+- Position 1 has 2 remaining choices.
+- Position 2 has 1 remaining choice.
+- Total valid orderings:
+  $$
+  N! = 3 \times 2 \times 1 = 6
+  $$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The objective is to systematically explore all 6 paths of the permutation tree using depth-first search (DFS). By maintaining a boolean `used` table, each sub-branch selects only from currently unchosen elements, guaranteeing that each emitted array contains all original elements in a unique sequence.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Decision Tree Structure
+```text
+Root:                               []
+                /                    |                    \
+Pos 0:        [1]                   [2]                   [3]
+             /   \                 /   \                 /   \
+Pos 1:    [1,2]  [1,3]          [2,1]  [2,3]          [3,1]  [3,2]
+            |      |              |      |              |      |
+Pos 2:   [1,2,3] [1,3,2]       [2,1,3] [2,3,1]       [3,1,2] [3,2,1]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Backtracking Transitions
+We maintain:
+- `path`: Current list of selected numbers ($0 \le |\text{path}| \le N$).
+- `used`: Boolean array of length $N$ indicating whether $\text{nums}[j]$ is currently inside `path`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Recursive Function `dfs()`:
+1. **Base Case:** If $|\text{path}| == N$, append a clone of `path` to the output list and return.
+2. **Expansion:** For each index $j \in [0, N - 1]$:
+   - If $\text{used}[j]$ is False:
+     - Mark $\text{used}[j] \leftarrow \text{True}$.
+     - Append $\text{nums}[j]$ to `path`.
+     - Recurse: `dfs()`.
+     - Rollback: Pop $\text{nums}[j]$ from `path`, and reset $\text{used}[j] \leftarrow \text{False}$.
+
+> **Invariant.** At recursion depth $d$, `path` contains exactly $d$ distinct elements from $\text{nums}$, and $\text{used}$ accurately reflects their indices.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A permutation is a sequence of position choices
+We trace the DFS traversal for $\text{nums} = [1, 2, 3]$:
 
-The input has $n$ distinct values, and a permutation must place each one into exactly one of $n$ output positions. The solution fills those positions from left to right. At depth `i`, positions 0 through `i - 1` are already fixed, position `i` is the next decision, and every not-yet-used input index is a legal choice.
-
-This turns the problem into a backtracking tree. The root has $n$ choices for the first position, each child has $n-1$ choices for the second, and the number of leaves is
-
-$$
-n(n-1)(n-2)\cdots 1 = n!.
-$$
-
-Every leaf corresponds to one complete ordering, so visiting all leaves is unavoidable when all permutations must be returned.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [0, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why the algorithm tracks indices with `vis`
-
-`vis[j]` records whether input position `j` is already represented in the current partial permutation. A value becomes unavailable immediately after it is placed and becomes available again when backtracking leaves that branch.
-
-Tracking indices is precise because the requirement is to use every input element once. The contract says the values are distinct, so tracking values in a set could also work, but an index-based Boolean list avoids hashing and maps directly to the iteration over `nums`.
-
-At entry to `dfs(i)`, exactly `i` entries of `vis` are true, and `t[0:i]` contains those corresponding values in the order selected. This is the central invariant. It holds initially for `dfs(0)` because no positions are filled and every flag is false.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Subtree 1: Anchor on $1$ ($\text{path} = [1]$)
+- Index 0 marked used: $\text{used} = [\text{T}, \text{F}, \text{F}]$.
+- **Branch 1A (Choose $2$):**
+  - $\text{path} = [1, 2]$, $\text{used} = [\text{T}, \text{T}, \text{F}]$.
+  - Only index 2 ($3$) is available.
+  - $\text{path} = [1, 2, 3]$. Length is 3!
+  - **Record Permutation 1: `[1, 2, 3]`**.
+  - Rollback $3$, rollback $2$.
+- **Branch 1B (Choose $3$):**
+  - $\text{path} = [1, 3]$, $\text{used} = [\text{T}, \text{F}, \text{T}]$.
+  - Only index 1 ($2$) is available.
+  - $\text{path} = [1, 3, 2]$. Length is 3!
+  - **Record Permutation 2: `[1, 3, 2]`**.
+  - Rollback $2$, rollback $3$, rollback $1$.
 
 ---
 
-### Step 3: Use a preallocated path array
+### Subtree 2: Anchor on $2$ ($\text{path} = [2]$)
+- Index 1 marked used: $\text{used} = [\text{F}, \text{T}, \text{F}]$.
+- **Branch 2A (Choose $1$):**
+  - $\text{path} = [2, 1]$, $\text{used} = [\text{T}, \text{T}, \text{F}]$.
+  - Only index 2 ($3$) is available.
+  - $\text{path} = [2, 1, 3]$.
+  - **Record Permutation 3: `[2, 1, 3]`**.
+  - Rollback $3$, rollback $1$.
+- **Branch 2B (Choose $3$):**
+  - $\text{path} = [2, 3]$, $\text{used} = [\text{F}, \text{T}, \text{T}]$.
+  - Only index 0 ($1$) is available.
+  - $\text{path} = [2, 3, 1]$.
+  - **Record Permutation 4: `[2, 3, 1]`**.
+  - Rollback $1$, rollback $3$, rollback $2$.
 
-`t = [0] * n` reserves all output positions once. When unused input index `j` is chosen at depth `i`, the code writes `t[i] = nums[j]`. This avoids appending and popping path values; recursion depth itself identifies which slot to overwrite.
+---
 
-The placeholder zeros have no semantic meaning. Even if zero is an actual input value, every slot is overwritten along a complete root-to-leaf path before a result is recorded. The algorithm never interprets an unfilled placeholder as a selected value; `vis` is the authoritative usage state.
+### Subtree 3: Anchor on $3$ ($\text{path} = [3]$)
+- Index 2 marked used: $\text{used} = [\text{F}, \text{F}, \text{T}]$.
+- **Branch 3A (Choose $1$):**
+  - $\text{path} = [3, 1]$, $\text{used} = [\text{T}, \text{F}, \text{T}]$.
+  - Only index 1 ($2$) is available.
+  - $\text{path} = [3, 1, 2]$.
+  - **Record Permutation 5: `[3, 1, 2]`**.
+  - Rollback $2$, rollback $1$.
+- **Branch 3B (Choose $2$):**
+  - $\text{path} = [3, 2]$, $\text{used} = [\text{F}, \text{T}, \text{T}]$.
+  - Only index 0 ($1$) is available.
+  - $\text{path} = [3, 2, 1]$.
+  - **Record Permutation 6: `[3, 2, 1]`**.
+  - Rollback $1$, rollback $2$, rollback $3$.
 
-After setting `vis[j] = true` and writing the value, `dfs(i + 1)` receives a state with one more filled position and one more used index, so the invariant is preserved. When the child returns, the code sets `vis[j] = false`. It does not clear `t[i]`, and that is safe: the next sibling choice overwrites the same slot before descending, and no snapshot is taken until all positions are filled.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 1], [1, 0]]` |
+DFS completes. Output contains all 6 permutations.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 1], [1, 0]]` | Verified |
+| DFS Call Sequence | Active `path` | Element Added | Active `used` Flags $[0, 1, 2]$ | Target Depth Met? | Output Emitted |
+|:---|:---|:---:|:---:|:---:|:---|
+| Root | `[]` | - | `[F, F, F]` | No | - |
+| Depth 1 | `[1]` | 1 | `[T, F, F]` | No | - |
+| Depth 2 | `[1, 2]` | 2 | `[T, T, F]` | No | - |
+| Depth 3 | `[1, 2, 3]` | 3 | `[T, T, T]` | **Yes ($d=3$)** | **`[1, 2, 3]`** |
+| Depth 2 (Alternate) | `[1, 3]` | 3 | `[T, F, T]` | No | - |
+| Depth 3 | `[1, 3, 2]` | 2 | `[T, T, T]` | **Yes ($d=3$)** | **`[1, 3, 2]`** |
+| Depth 1 (Anchor 2) | `[2]` | 2 | `[F, T, F]` | No | - |
+| Depth 2 | `[2, 1]` | 1 | `[T, T, F]` | No | - |
+| Depth 3 | `[2, 1, 3]` | 3 | `[T, T, T]` | **Yes ($d=3$)** | **`[2, 1, 3]`** |
+| Depth 2 (Alternate) | `[2, 3]` | 3 | `[F, T, T]` | No | - |
+| Depth 3 | `[2, 3, 1]` | 1 | `[T, T, T]` | **Yes ($d=3$)** | **`[2, 3, 1]`** |
+| Depth 1 (Anchor 3) | `[3]` | 3 | `[F, F, T]` | No | - |
+| Depth 2 | `[3, 1]` | 1 | `[T, F, T]` | No | - |
+| Depth 3 | `[3, 1, 2]` | 2 | `[T, T, T]` | **Yes ($d=3$)** | **`[3, 1, 2]`** |
+| Depth 2 (Alternate) | `[3, 2]` | 2 | `[F, T, T]` | No | - |
+| Depth 3 | `[3, 2, 1]` | 1 | `[T, T, T]` | **Yes ($d=3$)** | **`[3, 2, 1]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because each level checks `not used[j]` before picking $\text{nums}[j]$, no element is picked more than once per path. When depth reaches $N$, `path` contains all $N$ distinct elements, forming a valid permutation.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** At each step, the loop visits every unchosen element. Because the DFS visits all branches of the $N!$ factorial tree, all unique permutations are generated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Append/pop path:** Maintain a variable-length list instead of preallocating `t`. This is equally correct and makes filled length visible directly, while the selected source avoids repeated path resizing.
-- **In-place swapping:** At depth `i`, swap each suffix value into position `i`, recurse, and swap back. It removes the visited array but mutates the input temporarily and requires careful restoration.
-- **Pass a sliced remaining list:** Recurse with all elements except the chosen one. The state is intuitive but repeated slicing and path concatenation increase allocation and copying costs.
-- **Iterative next-permutation generation:** Sort the values and repeatedly transform to the next lexicographic permutation. It uses constant path overhead but mutates order and requires a separate snapshot for every result.
-- **One input value:** The only branch fills position 0 and records the one-element permutation.
-- **Placeholder zero:** It cannot leak into an answer because a leaf is reached only after every path slot has been assigned.
-- **Distinctness guarantee:** If duplicate values were allowed, different index paths could produce identical value sequences. That separate problem needs depth-level duplicate suppression.
-- **Input preservation:** The solution reads `nums` without swapping or sorting it, so the caller's array is unchanged.
-- **Any output order:** Depth-first order follows the original input ordering, but the contract accepts any order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Clone Path:** Storing `ans.append(path)` appends a reference to the mutable list `path`. When subsequent backtrack calls pop elements, all previously stored answers become corrupted. Cloning via `path[:]` is mandatory.
+- **Incomplete State Rollback:** Both the path list (`path.pop()`) and the boolean mask (`used[j] = False`) must be reverted on backtracking. Forgetting either causes subsequent branches to miss elements.
+- **In-Place Swap Alternative:** Permutations can also be generated by swapping elements in-place (`swap(nums[i], nums[j])`). While it saves the `used` array, maintaining an explicit boolean array is often easier to reason about and keeps lexicographical ordering intact.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \cdot n!)$. There are $n!$ output permutations, each containing $n$ values. Copying the path at every leaf alone costs $\Theta(n \cdot n!)$ time. The internal search also loops over up to $n$ indices at its states, which remains within the same conventional $O(n \cdot n!)$ bound. This matches the manifest and is asymptotically optimal with respect to the size of the required output.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot N!)$. There are $N!$ leaf nodes (permutations). Constructing and copying each permutation of length $N$ takes $O(N)$ time. Total operations across all tree nodes is $\sum_{k=1}^N P(N, k) \cdot O(1) \approx O(N \cdot N!)$.
+- **Auxiliary Space Complexity:** $O(N)$ for the recursion stack and `used` boolean array.

@@ -1,106 +1,221 @@
 # Guided Example: Prime Number of Set Bits in Binary Representation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Hamming weight population count evaluation ($\text{popcount}(i)$), 20-bit integer upper bound constraint analysis ($right \le 10^6 < 2^{20}$), small prime lookup set construction ($\mathcal{P}_{<20} = \{2, 3, 5, 7, 11, 13, 17, 19\}$), bitwise cardinality predicate testing, and inclusive range summation over representative numerical sequences:
 
-- **Input:** `{"left": 6, "right": 10}`
+- **Input:** $left = 6, \quad right = 10$
 - **Required output:** `4`
+  - Counting criteria:
+    - For each integer $x \in [left, right]$:
+      - Express $x$ in base-2 binary representation.
+      - Count the number of set bits (bits equal to `1`), denoted by $\text{popcount}(x)$.
+      - Determine whether $\text{popcount}(x)$ is a **prime number** (greater than 1 with no positive divisors other than 1 and itself).
+    - Objective: Return the total count of numbers in $[left, right]$ whose set bit count is prime.
+    - Note on 1: The integer 1 is **not** a prime number.
+    - For the range $[6, 10]$:
+      - $x = 6$: Binary `110` $\implies 2$ set bits. 2 is prime $\implies$ **Counted**.
+      - $x = 7$: Binary `111` $\implies 3$ set bits. 3 is prime $\implies$ **Counted**.
+      - $x = 8$: Binary `1000` $\implies 1$ set bit. 1 is not prime $\implies$ Discarded.
+      - $x = 9$: Binary `1001` $\implies 2$ set bits. 2 is prime $\implies$ **Counted**.
+      - $x = 10$: Binary `1010` $\implies 2$ set bits. 2 is prime $\implies$ **Counted**.
+      - Total matching integers: $1 + 1 + 0 + 1 + 1 = \mathbf{4}$.
+- **Bounded Bitness & Static Prime Set Invariant:**
+  - **Upper Bound on Bit Count:**
+    - The problem constraints specify $right \le 10^6$.
+    - Since $2^{19} = 524{,}288 < 10^6 < 2^{20} = 1{,}048{,}576$:
+      - Any integer $x \le 10^6$ can have at most **19 set bits**!
+      - Thus, $\text{popcount}(x) \in [0, 19]$.
+  - **The Complete Prime Target Set ($\mathcal{P}$):**
+    - The prime numbers strictly less than 20 are completely enumerated as:
+      $$
+      \mathcal{P} = \{ 2, \; 3, \; 5, \; 7, \; 11, \; 13, \; 17, \; 19 \}
+      $$
+    - Testing primality requires only checking if $\text{popcount}(x) \in \mathcal{P}$, which runs in $\mathcal{O}(1)$ time using a hash set or bitmask!
+  - **Range Summation:**
+    $$
+    ans = \sum_{x = left}^{right} \mathbf{1}_{[\text{popcount}(x) \in \mathcal{P}]}
+    $$
+- **Step-by-Step Worked Execution Trace on Range $[6, 10]$:**
+  - Define prime predicate set: $\mathcal{P} = \{2, 3, 5, 7, 11, 13, 17, 19\}$.
+  - Initialize counter: $ans = 0$.
+  - **Integer $x = 6$:**
+    - Binary representation:
+      $$
+      6 = 4 + 2 = (110)_2
+      $$
+    - Population count:
+      $$
+      \text{popcount}(6) = \mathbf{2}
+      $$
+    - Set membership: $2 \in \mathcal{P} \implies \mathbf{Prime!}$
+    - Increment: $ans \leftarrow 0 + 1 = \mathbf{1}$.
+  - **Integer $x = 7$:**
+    - Binary representation:
+      $$
+      7 = 4 + 2 + 1 = (111)_2
+      $$
+    - Population count:
+      $$
+      \text{popcount}(7) = \mathbf{3}
+      $$
+    - Set membership: $3 \in \mathcal{P} \implies \mathbf{Prime!}$
+    - Increment: $ans \leftarrow 1 + 1 = \mathbf{2}$.
+  - **Integer $x = 8$:**
+    - Binary representation:
+      $$
+      8 = 2^3 = (1000)_2
+      $$
+    - Population count:
+      $$
+      \text{popcount}(8) = \mathbf{1}
+      $$
+    - Set membership: $1 \notin \mathcal{P} \implies \mathbf{Not\ Prime.}$
+    - Counter unchanged: $ans = 2$.
+  - **Integer $x = 9$:**
+    - Binary representation:
+      $$
+      9 = 8 + 1 = (1001)_2
+      $$
+    - Population count:
+      $$
+      \text{popcount}(9) = \mathbf{2}
+      $$
+    - Set membership: $2 \in \mathcal{P} \implies \mathbf{Prime!}$
+    - Increment: $ans \leftarrow 2 + 1 = \mathbf{3}$.
+  - **Integer $x = 10$:**
+    - Binary representation:
+      $$
+      10 = 8 + 2 = (1010)_2
+      $$
+    - Population count:
+      $$
+      \text{popcount}(10) = \mathbf{2}
+      $$
+    - Set membership: $2 \in \mathcal{P} \implies \mathbf{Prime!}$
+    - Increment: $ans \leftarrow 3 + 1 = \mathbf{4}$.
+  - **Termination:**
+    - Reached $right = 10$.
+    - Final result:
+      $$
+      ans = \mathbf{4}
+      $$
+- **Range $[10, 15]$ Trace:**
+  - $10$ (`1010`): $2 \implies$ Yes
+  - $11$ (`1011`): $3 \implies$ Yes
+  - $12$ (`1100`): $2 \implies$ Yes
+  - $13$ (`1101`): $3 \implies$ Yes
+  - $14$ (`1110`): $3 \implies$ Yes
+  - $15$ (`1111`): $4 \implies$ No (4 is composite)
+  - Total: 5.
+- **Power of Two Boundary ($x = 1, 2, 4, 8$):**
+  - All powers of two have $\text{popcount}(x) = 1$.
+  - Since 1 is not prime, all powers of two evaluate to **0**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates finite Hamming weight projection and static sieve reduction over bounded integer domains, mathematically proves why $\lceil \log_2(\max R) \rceil \le 20$ bounds the prime candidate domain to 8 static elements, and derives $O(R - L + 1)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two integers `left` and `right`, return *the **count** of numbers in the **inclusive** range *`[left, right]`* having a **prime number of set bits** in their binary representation*.
+Given $[left, right]$:
+Count how many numbers have a **prime number of 1s** in their binary representation.
 
-The objective is to compute `4` from `{"left": 6, "right": 10}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Range: [ 6, 10 ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+6  = 110  -> 2 bits -> PRIME
+7  = 111  -> 3 bits -> PRIME
+8  = 1000 -> 1 bit  -> NOT prime (1 is not prime!)
+9  = 1001 -> 2 bits -> PRIME
+10 = 1010 -> 2 bits -> PRIME
+
+4 numbers have a prime number of set bits!
+Result: 4
+```
+
+### The Invariant of the Finite Prime Set
+- Since $right \le 10^6 < 2^{20}$, any number has at most 19 set bits.
+- The primes $\le 19$ are strictly $\{2, 3, 5, 7, 11, 13, 17, 19\}$.
+- Population count lookup against this static set runs in strictly $O(1)$ time per integer.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Bounded Prime Set:
+$$
+\mathcal{P} = \{2, 3, 5, 7, 11, 13, 17, 19\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Indicator Aggregation:
+$$
+ans = \sum_{x = left}^{right} [\text{popcount}(x) \in \mathcal{P}]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Hamming Projection Invariant.** The bit count map $w_H: [left, right] \to \{0, \dots, 19\}$ projects into a finite co-domain, where membership in the prime fiber bundle $w_H^{-1}(\mathcal{P})$ is decidable in $O(1)$ machine instructions via CPU popcount.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Check each integer’s population count
-
-The range width is at most ten thousand, so every integer can be examined directly. For a candidate `i`, Python’s `i.bit_count()` returns the number of one bits in its binary representation.
-
-The number qualifies exactly when that count is prime.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"left": 6, "right": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $[6, 10]$:
 
 ---
 
-### Step 2: Why the prime set is fixed
-
-The maximum value is `10^6`, which needs at most 20 binary digits because `2^19 < 10^6 < 2^20`. A number in the domain can therefore have between one and twenty set bits.
-
-The primes in that complete possible range are
-
-`2, 3, 5, 7, 11, 13, 17, 19`.
-
-The solution stores precisely these values in a hash set. One is intentionally absent because prime numbers have exactly two positive divisors, and one has only one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Numbers
+- $6 \to 2$ set bits $\in \mathcal{P} \implies$ Yes.
+- $7 \to 3$ set bits $\in \mathcal{P} \implies$ Yes.
+- $8 \to 1$ set bit $\notin \mathcal{P} \implies$ No.
+- $9 \to 2$ set bits $\in \mathcal{P} \implies$ Yes.
+- $10 \to 2$ set bits $\in \mathcal{P} \implies$ Yes.
 
 ---
 
-### Step 3: Use the inclusive range correctly
+### Step 2: Sum
+- $1 + 1 + 0 + 1 + 1 = \mathbf{4}$.
 
-Python excludes the stop value of `range`, so the loop uses `right + 1`. Every integer from `left` through `right` is visited exactly once.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Step 3: Output
+$$
+\mathbf{4}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"left": 6, "right": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| Integer $x$ | Binary Form | Set Bit Count $\text{popcount}(x)$ | Prime? ($\in \mathcal{P}$) | Cumulative Total |
+|:---:|:---:|:---:|:---:|:---:|
+| $6$ | `110` | $2$ | Yes | $1$ |
+| $7$ | `111` | $3$ | Yes | $2$ |
+| $8$ | `1000` | $1$ | No (1 is not prime) | $2$ |
+| $9$ | `1001` | $2$ | Yes | $3$ |
+| **$10$** | **`1010`** | **$2$** | **Yes** | **`4`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Number Range ($[6, 6]$):** Returns 1.
+- **Number with 1 Set Bit (Powers of 2):** 1 is not prime $\implies$ discarded.
+- **Upper Limit ($10^6$):** $10^6 = (11110100001001000000)_2$ has 7 set bits (prime) $\implies$ properly detected.
+- **Numbers with 4 Set Bits ($15 = 1111$):** 4 is composite $\implies$ discarded.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Manually clear the lowest set bit:** Repeatedly apply `x &= x - 1` and count iterations. This is correct but more verbose than `bit_count`.
-- **Convert to a binary string:** Count `'1'` characters. It is readable but allocates a string for every candidate.
-- **Run a generic primality test:** Unnecessary because all possible counts are known and bounded.
+- **Treating 1 as Prime:** 1 is neither prime nor composite. Including 1 in the prime set causes false positives on all powers of 2.
+- **Dynamic Primality Testing on Every Number:** Running trial division to check if the bit count is prime is unnecessary overhead. Pre-defining the 8 possible primes $\le 19$ enables $O(1)$ set lookup.
+- **String Conversion for Bit Counting:** Converting numbers to binary strings `bin(x).count('1')` is much slower than using built-in integer bit count `x.bit_count()` or bitwise operations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(W)$. Let `W = right - left + 1`. The method processes `W` integers. Under fixed-width machine-integer treatment, `bit_count` and set membership are constant time, so total time is `O(W)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Loop runs $N = right - left + 1$ iterations ($N \le 10^4$).
+  - For each number, `bit_count()` and set lookup take $\mathcal{O}(1)$ time.
+  - Total Time: strictly linear in range $\mathcal{O}(N)$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ memory for the static prime set containing 8 integers.

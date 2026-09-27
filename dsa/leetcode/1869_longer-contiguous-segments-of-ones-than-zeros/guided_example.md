@@ -1,113 +1,149 @@
 # Guided Example: Longer Contiguous Segments of Ones than Zeros
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass contiguous streak tracking and strict maximal segment length comparison on a binary string:
 
-- **Input:** `{"s": "1101"}`
-- **Required output:** `true`
+- **Input:** `s = "1101"`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates tracking active runs of identical characters, resetting alternating counters when characters switch, updating global maximal segment lengths, and enforcing strict inequality ($L_1 > L_0$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a binary string `s`, return `true`* if the **longest** contiguous segment of *`1`'*s is **strictly longer** than the **longest** contiguous segment of *`0`'*s in *`s`, or return `false`* otherwise*.
+We are given a binary string `s`.
+A contiguous segment is an uninterrupted sequence of identical characters.
+We must determine whether the maximum length of any contiguous segment of `'1'`s is strictly greater than the maximum length of any contiguous segment of `'0'`s:
+$$L_{\max}(1) > L_{\max}(0)$$
+Ties ($L_{\max}(1) == L_{\max}(0)$) and cases where zeros dominate ($L_{\max}(1) \le L_{\max}(0)$) both return `false`.
 
-The objective is to compute `true` from `{"s": "1101"}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `s = "1101"` of length $n = 4$.
+- Segment decomposition:
+  - Substring `s[0..1] = "11"`: Contiguous `'1'` segment of length $2$.
+  - Substring `s[2..2] = "0"`: Contiguous `'0'` segment of length $1$.
+  - Substring `s[3..3] = "1"`: Contiguous `'1'` segment of length $1$.
+- Maximum length of contiguous `'1'`s: $L_{\max}(1) = \max(2, 1) = 2$.
+- Maximum length of contiguous `'0'`s: $L_{\max}(0) = 1$.
+- Strict comparison: $2 > 1$ is **True**.
+- Output: `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to maintain **active running streaks in a single linear pass**: incrementing the active counter for the current character while resetting the opposite counter to zero, recording peak lengths in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Run-Length Streak Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Run-Length Streak Invariant & Strict Segment Maximality Theorem.**
+> 1. *Contiguous Streak Invariant:* Let $\text{streak}_1$ and $\text{streak}_0$ be the current consecutive counts of `'1'` and `'0'` ending at the current character $s[i]$:
+>    - If $s[i] == \text{'1'}$: $\text{streak}_1 \gets \text{streak}_1 + 1, \quad \text{streak}_0 \gets 0$.
+>    - If $s[i] == \text{'0'}$: $\text{streak}_0 \gets \text{streak}_0 + 1, \quad \text{streak}_1 \gets 0$.
+> 2. *Peak Tracking:* At each character, the global maximums update as:
+>    $$L_{\max}(1) \gets \max(L_{\max}(1), \text{streak}_1), \quad L_{\max}(0) \gets \max(L_{\max}(0), \text{streak}_0)$$
+> 3. *Strict Inequality Predicate:* The return value is uniquely:
+>    $$B = [L_{\max}(1) > L_{\max}(0)]$$
+> 4. *Complexity:* The array is traversed once from index $0$ to $n - 1$. Each character is evaluated in $\mathcal{O}(1)$ time, yielding total time $\mathcal{O}(n)$ and auxiliary space $\mathcal{O}(1)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Contiguous Streak Tracking Flow
+    accDescr: Pipeline showing single-pass character traversal, streak updating, resetting, and final strict length comparison.
+    A["Input: s = '1101'"] --> B["Initialize streak1=0, max1=0, streak0=0, max0=0"]
+    B --> C["Scan character s[i] from i = 0 to 3"]
+    C --> D{"s[i] == '1'?"}
+    D -- Yes --> E["streak1++, streak0 = 0<br/>max1 = max(max1, streak1)"]
+    D -- No --> F["streak0++, streak1 = 0<br/>max0 = max(max0, streak0)"]
+    E & F --> G{"End of string?"}
+    G -- No --> C
+    G -- Yes --> H["Compare: max1 > max0<br/>2 > 1 -> true"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Measure the longest run of one chosen character.** The helper `f(x)` computes the maximum length of a contiguous segment containing only character `x`. The main method calls it once for one and once for zero, then compares the two results strictly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "1101"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "1101"`.
+Initialize $\text{streak}_1 = 0, \text{max}_1 = 0, \text{streak}_0 = 0, \text{max}_0 = 0$.
 
 ---
 
-### Step 2: Core Step 2
-
-Inside the helper, `cnt` is the length of the current run ending at the most recently scanned character, while `mx` is the longest completed or current run seen anywhere so far.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Index $i = 0$ ($s[0] = \text{'1'}$)
+- Incoming character: `'1'`.
+- Update streaks:
+  $$\text{streak}_1 \gets 0 + 1 = 1, \quad \text{streak}_0 \gets 0$$
+- Update peaks:
+  $$\text{max}_1 \gets \max(0, 1) = 1, \quad \text{max}_0 \gets \max(0, 0) = 0$$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Process Index $i = 1$ ($s[1] = \text{'1'}$)
+- Incoming character: `'1'`.
+- Update streaks:
+  $$\text{streak}_1 \gets 1 + 1 = 2, \quad \text{streak}_0 \gets 0$$
+- Update peaks:
+  $$\text{max}_1 \gets \max(1, 2) = 2, \quad \text{max}_0 \gets 0$$
 
-**Extend a matching run.** When `c == x`, `cnt += 1` extends the current contiguous segment. `mx = max(mx, cnt)` immediately records it if this is a new longest run.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Process Index $i = 2$ ($s[2] = \text{'0'}$)
+- Incoming character: `'0'`. Character switches!
+- Update streaks:
+  $$\text{streak}_0 \gets 0 + 1 = 1, \quad \text{streak}_1 \gets 0$$
+- Update peaks:
+  $$\text{max}_0 \gets \max(0, 1) = 1, \quad \text{max}_1 \gets 2$$
+
+---
+
+### Step 4: Process Index $i = 3$ ($s[3] = \text{'1'}$)
+- Incoming character: `'1'`. Character switches!
+- Update streaks:
+  $$\text{streak}_1 \gets 0 + 1 = 1, \quad \text{streak}_0 \gets 0$$
+- Update peaks:
+  $$\text{max}_1 \gets \max(2, 1) = 2, \quad \text{max}_0 \gets 1$$
+
+---
+
+### Step 5: Final Evaluation
+- End of string reached.
+- Confirmed peaks: $\text{max}_1 = 2, \text{max}_0 = 1$.
+- Evaluate strict predicate:
+  $$\text{max}_1 > \text{max}_0 \iff 2 > 1 \implies \mathbf{true}$$
+Output: **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "1101"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Index $i$ | Character $s[i]$ | Active $\text{streak}_1$ | Active $\text{streak}_0$ | Global $\text{max}_1$ | Global $\text{max}_0$ | Transition Note |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| Init | - | 0 | 0 | 0 | 0 | Base initialization |
+| 0 | `'1'` | 1 | 0 | 1 | 0 | First 1-streak starts |
+| 1 | `'1'` | 2 | 0 | **2** | 0 | 1-streak extends to 2 |
+| 2 | `'0'` | 0 | 1 | 2 | **1** | Character switches to 0 |
+| 3 | `'1'` | 1 | 0 | 2 | 1 | Character switches to 1 |
+| **Final** | - | - | - | **2** | **1** | **$2 > 1 \implies \text{true}$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Resetting the active streak to zero whenever the character alternates guarantees that only consecutive identical characters accumulate in each streak counter. Tracking the maximum of each streak across all positions guarantees that $L_{\max}(1)$ and $L_{\max}(0)$ precisely equal the lengths of the longest contiguous subsegments.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character of the string is inspected sequentially. Because maximums are updated monotonically at each position, no contiguous run—including boundary runs at the very beginning or end of the string—can be overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One-pass dual tracking:** Maintain the current character, current run length, and maxima for zero and one in one traversal.
-- **Split on the opposite bit:** Maximum token length after splitting can work, but creates substring lists and uses `O(n)` space.
-- **Regular expressions:** They can find runs but add unnecessary machinery and allocation.
-- **All ones:** Longest one run is `n` and longest zero run is zero.
-- **All zeros:** Longest one run is zero, so the strict condition is false.
-- **Equal maxima:** The answer is false because one must be strictly longer.
-- **Alternating input:** Both maximum runs are one when both symbols occur, so the answer is false.
-- **Single character one:** The maxima are one and zero, returning true.
-- **Single character zero:** The maxima are zero and one, returning false.
-- **Run at the end:** Updating `mx` on every match records it without a post-loop branch.
-- **Several separate runs:** Resetting `cnt` prevents their lengths from being combined.
-- **Input preservation:** The immutable string is scanned twice and never modified.
-- **Run of length one between separators:** It raises `mx` only if no longer run has appeared; surrounding opposite bits keep it separate.
-- **Historical maximum after reset:** Resetting `cnt` never resets `mx`, so a strong early segment remains recorded.
-- **Strict comparison direction:** The method asks whether the one-run is longer than the zero-run, so reversing operands would solve the opposite question.
-- **No integer conversion:** Direct character comparison avoids parsing and exactly matches the binary symbols supplied.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Counting Total Occurrences Instead of Contiguous Run:** If one merely counts the total number of 1s and 0s (for `"111000"`, three 1s and three 0s), one would get the same result; but for `"110100010"`, total 1s is 4 and total 0s is 5, yet contiguous 0s is 3 and contiguous 1s is 2. The problem requires *unbroken contiguous lengths*, not global frequency.
+- **Equal Length Failure:** When $\text{max}_1 == \text{max}_0$ (as in `"111000"` where both are 3), the condition requires *strictly* longer ones. Equality must return `false`.
+- **Absent Digit Handling:** If a digit never appears (e.g. `"111"`), its maximum length is correctly $0$, and $3 > 0$ yields `true`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Each call to `f` visits all `n` characters and performs constant work. Two calls take `2n` operations, which is `O(n)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of string `s`. A single pass evaluates each character in $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, requiring only four scalar integer counters.

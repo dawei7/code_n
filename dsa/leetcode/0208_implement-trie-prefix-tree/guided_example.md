@@ -1,158 +1,211 @@
 # Guided Example: Implement Trie (Prefix Tree)
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 26-ary tree node creation, shared prefix path traversal, and terminal flag distinction on representative Trie string operations:
 
-- **Input:** `{"operations": [["search", "bat"], ["startsWith", "b"]]}`
-- **Required output:** `[false, false]`
+- **Sequential Operations:**
+  1. `Trie()` (Initialize root node)
+  2. `insert("apple")` (Creates path `a -> p -> p -> l -> e` with `is_end = true` at `'e'`)
+  3. `search("apple")` $\implies \mathbf{true}$ (Full path exists and `is_end == true`)
+  4. `search("app")` $\implies \mathbf{false}$ (Prefix exists, but `is_end == false` at `'p'`)
+  5. `startsWith("app")` $\implies \mathbf{true}$ (Prefix path exists down to `'p'`)
+  6. `insert("app")` (Reuses existing nodes `a -> p -> p` and marks `'p'` with `is_end = true`)
+  7. `search("app")` $\implies \mathbf{true}$ (`is_end` is now true!)
+- **Uninserted Search Instance:** `search("bat") \implies \text{false}` (Root has no child for `'b'`)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates prefix tree data structures, proves why `search` and `startsWith` differ on the terminal boolean flag (`is_end`), illustrates prefix node sharing without duplicate allocations, and achieves strictly $O(L)$ runtime per operation where $L$ is query string length.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A <a href="https://en.wikipedia.org/wiki/Trie" target="_blank">**trie**</a> (pronounced as "try") or **prefix tree** is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+We trace the operational lifecycle of a Trie across a sequence of string mutations and queries:
+```text
+Trie trie = new Trie();
+trie.insert("apple");
+trie.search("apple");   // -> true
+trie.search("app");     // -> false
+trie.startsWith("app"); // -> true
+trie.insert("app");
+trie.search("app");     // -> true
+```
 
-The objective is to compute `[false, false]` from `{"operations": [["search", "bat"], ["startsWith", "b"]]}` while avoiding redundant calculations and unnecessary overhead.
+### The Architectural Role of the Trie
+In a standard hash set (`set`), searching for a complete word takes $O(L)$ time, but checking whether any stored word begins with prefix `"app"` requires an exhaustive $O(W \cdot L)$ scan across all $W$ stored words.
+A **Trie (Prefix Tree)** organizes characters along tree edges:
+- The root represents the empty string `""`.
+- Each edge represents a character $c \in [a-z]$.
+- Successive nodes represent prefix strings: `"" -> "a" -> "ap" -> "app" -> "appl" -> "apple"`.
+- A boolean flag `is_end` differentiates **complete inserted words** from **intermediate prefix paths**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Visualizing the Trie after inserting `"apple"` and `"app"`:
+```text
+         (root)
+           | 'a'
+          (a)
+           | 'p'
+          (p)
+           | 'p'
+          (p) [is_end = true]  <-- "app" ends here!
+           | 'l'
+          (l)
+           | 'e'
+          (e) [is_end = true]  <-- "apple" ends here!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Trie Node Structure
+Each node contains:
+1. `children`: an array of size 26 (or dictionary), where index $\text{ord}(c) - \text{ord}('a')$ references the child node for character $c$.
+2. `is_end`: a boolean flag initialized to `false`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Core Operations:
+1. **`insert(word)`:**
+   Traverse from `root`. For each character $c$:
+   - If `children[c]` does not exist, instantiate a new node.
+   - Advance `curr = children[c]`.
+   - After processing all $L$ characters, set `curr.is_end = true`.
+2. **`search(word)`:**
+   Traverse from `root`. For each character $c$:
+   - If `children[c]` does not exist, return `false`.
+   - Advance `curr = children[c]`.
+   - Return `curr.is_end` *(must match a complete word!)*.
+3. **`startsWith(prefix)`:**
+   Traverse from `root`. For each character $c$:
+   - If `children[c]` does not exist, return `false`.
+   - Advance `curr = children[c]`.
+   - Return `true` *(prefix path exists; `is_end` is irrelevant)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any node at depth $d$, the sequence of edge characters from the root to that node represents a unique prefix of length $d$. `node.is_end == true` if and only if that exact prefix was explicitly inserted as a full word.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What the data structure must remember
+We trace the operational sequence:
 
-The class receives operations over time, so this is not a problem where one
-answer is computed from one input and then discarded. Every call to `insert`
-changes the state that later calls to `search` and `startsWith` observe. The
-essential distinction is between a complete stored word and a path that merely
-exists because it is the beginning of a longer word. After inserting `apple`,
-the letters of `app` are present in the structure, which makes
-`startsWith("app")` true, but `search("app")` must remain false until `app`
-itself is inserted.
-
-A trie represents that distinction naturally. Its root stands for the empty
-prefix. Following one edge labelled with a character extends the represented
-prefix by that character. Thus, along the route for `apple`, successive nodes
-represent `a`, `ap`, `app`, `appl`, and `apple`. Words with a common beginning
-share the same initial nodes. Inserting `application` after `apple`, for
-example, reuses the nodes for `a`, `ap`, and `app`; only the remainder needs a
-different route.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["search", "bat"], ["startsWith", "b"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Operation 1: `insert("apple")`
+- Start at `root`.
+- $c = \text{'a'}$: `children['a']` is null $\implies$ create Node(a). Advance to Node(a).
+- $c = \text{'p'}$: `children['p']` is null $\implies$ create Node(p1). Advance to Node(p1).
+- $c = \text{'p'}$: `children['p']` is null $\implies$ create Node(p2). Advance to Node(p2).
+- $c = \text{'l'}$: `children['l']` is null $\implies$ create Node(l). Advance to Node(l).
+- $c = \text{'e'}$: `children['e']` is null $\implies$ create Node(e). Advance to Node(e).
+- Set `Node(e).is_end = true`.
 
 ---
 
-### Step 2: One `Trie` object is also one trie node
-
-The exact optimal implementation does not define a separate `TrieNode` class.
-Every instance of `Trie` is a node, and the object constructed by `Trie()` is
-the root node. Each node owns two fields:
-
-- `children` is a list of exactly 26 positions. Position 0 represents `a`,
-  position 1 represents `b`, and so on through position 25 for `z`. A `null`
-  entry means that no inserted word continues through that letter from this
-  node. A non-`null` entry points to another `Trie` instance.
-- `is_end` records whether at least one inserted word ends at this exact node.
-  It says nothing about whether the node has children. A node can be both a
-  word ending and the start of longer stored words.
-
-The fixed array is justified by the contract that every word and prefix uses
-only lowercase English letters. For a character `c`, the expression
-`ord(c) - ord('a')` converts it into the required index from 0 through 25.
-This conversion is constant time, and direct indexing avoids searching among
-the outgoing edges.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Operation 2: `search("apple")`
+- Start at `root`.
+- Traverse path: `root -> 'a' -> 'p' -> 'p' -> 'l' -> 'e'`.
+- All nodes exist. Terminal node reached: Node(e).
+- Check `Node(e).is_end`:
+  $$
+  \text{Node(e).is\_end} == \mathbf{true}
+  $$
+- Return `true`.
 
 ---
 
-### Step 3: Inserting a word
+### Operation 3: `search("app")`
+- Start at `root`.
+- Traverse path: `root -> 'a' -> 'p' -> 'p'`.
+- All nodes exist. Terminal node reached: Node(p2).
+- Check `Node(p2).is_end`:
+  $$
+  \text{Node(p2).is\_end} == \mathbf{false}
+  $$
+- While `"app"` exists as a path prefix, it was not inserted as a complete word!
+- Return `false`.
 
-`insert` begins with `node = self`, so traversal starts at the root. For each
-character `c` in the word, it computes the corresponding child index. If that
-child position is empty, this is the first inserted word that needs this exact
-prefix, so the method creates a new `Trie` object and stores it there. Whether
-the child was newly created or already existed, traversal then moves to that
-child. Reusing an existing child is what makes common prefixes share storage.
+---
 
-Only after all characters have been consumed does the method set
-`node.is_end = true`. That timing is crucial. Setting the flag on intermediate
-nodes would incorrectly turn every prefix into a complete word. Conversely,
-failing to set it at the final node would make the path discoverable by
-`startsWith` but invisible to exact `search`.
+### Operation 4: `startsWith("app")`
+- Start at `root`.
+- Traverse path: `root -> 'a' -> 'p' -> 'p'`.
+- All 3 characters exist along the path.
+- In `startsWith`, the `is_end` flag is ignored!
+- Return `true`.
 
-Consider inserting `apple` into an empty trie. The method creates five nodes,
-one for each successive prefix, and marks only the `apple` node as an ending.
-Inserting `app` afterward walks through three already-existing nodes and marks
-the `app` node. It neither deletes the two later nodes nor creates duplicates.
-Consequently, both words remain stored. Inserting `apple` again simply follows
-the same path and assigns `true` to a flag that is already true, so duplicate
-insertion is harmless and needs no special case.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[false, false]` |
+### Operation 5: `insert("app")`
+- Start at `root`.
+- $c = \text{'a'}$: Node(a) already exists $\implies$ Reuse Node(a).
+- $c = \text{'p'}$: Node(p1) already exists $\implies$ Reuse Node(p1).
+- $c = \text{'p'}$: Node(p2) already exists $\implies$ Reuse Node(p2).
+- Word completed. Set `Node(p2).is_end = true`.
+- Zero new nodes created; existing prefix path updated!
+
+---
+
+### Operation 6: `search("app")`
+- Start at `root`.
+- Traverse to Node(p2).
+- Check `Node(p2).is_end`:
+  $$
+  \text{Node(p2).is\_end} == \mathbf{true}
+  $$
+- Return `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["search", "bat"], ["startsWith", "b"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[false, false]` | Verified |
+```text
+1. insert("apple"):
+   root -> 'a' -> 'p' -> 'p' -> 'l' -> 'e'*
+   Created 5 nodes. 'e'* marked is_end=True.
+
+2. search("apple"):
+   Follow root->a->p->p->l->e*. Exists and is_end=True -> TRUE
+
+3. search("app"):
+   Follow root->a->p->p. Exists but is_end=False       -> FALSE
+
+4. startsWith("app"):
+   Follow root->a->p->p. Path exists                   -> TRUE
+
+5. insert("app"):
+   Follow existing root->a->p->p*. Mark is_end=True    -> OK
+
+6. search("app"):
+   Follow root->a->p->p*. Exists and is_end=True       -> TRUE
+```
+
+| Step | Operation Invoked | Argument | Traversed Node Path | Node Status at End of Path | Return Value |
+|:---:|:---|:---:|:---|:---:|:---:|
+| 1 | `insert` | `"apple"` | `root -> a -> p -> p -> l -> e` | Mark `is_end = true` | `null` |
+| **2** | **`search`** | **`"apple"`** | `root -> a -> p -> p -> l -> e` | `is_end == true` | **`true`** |
+| **3** | **`search`** | **`"app"`** | `root -> a -> p -> p` | `is_end == false` | **`false`** |
+| **4** | **`startsWith`** | **`"app"`** | `root -> a -> p -> p` | Path found | **`true`** |
+| 5 | `insert` | `"app"` | `root -> a -> p -> p` | Mark `is_end = true` | `null` |
+| **6** | **`search`** | **`"app"`** | `root -> a -> p -> p` | `is_end == true` | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every character in an inserted word defines a unique edge in the 26-ary tree. A word $W$ is confirmed by `search` if and only if all $|W|$ edges exist and the final node's `is_end` flag is set. A prefix $P$ is confirmed by `startsWith` if and only if all $|P|$ edges exist from the root, regardless of whether a word terminates there.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Traversal advances deterministically one character per step. Since character transitions are indexed by $\text{ord}(c) - \text{ord}('a')$, no valid path can be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Hash-map children:** Store only existing outgoing edges in a dictionary. This can save memory for sparse nodes and support larger alphabets, but dictionary entries have more per-edge overhead and lookups rely on expected constant-time hashing; the exact solution instead exploits the guaranteed 26-letter alphabet with direct array access.
-- **Hash set of complete words:** Exact `search` is expected $O(L)$, but answering `startsWith` by scanning stored words can be far more expensive. Storing every prefix in a second set restores fast prefix checks while duplicating substantial string data.
-- **Sorted set or balanced search tree:** Lexicographic ordering can locate the first candidate near a prefix, but operations generally introduce an $O(\log W)$ factor for $W$ stored words and compare strings. The trie makes work depend directly on the queried length.
-- **Compressed trie or radix tree:** Collapsing single-child chains into string-labelled edges can reduce node overhead. It adds substring comparison and edge-splitting logic, which is unnecessary for the required operations and fixed constraints.
-- **A word that extends an existing word:** Inserting `apple` after `app` follows the existing `app` path, leaves its ending flag true, and creates only the missing `l` and `e` nodes. Both exact searches remain true.
-- **A word that is an existing word's prefix:** Inserting `app` after `apple` creates no nodes; it marks the already-present `app` endpoint. This is precisely why path existence and `is_end` must be separate facts.
-- **Absent character in the middle:** `_search_prefix` returns `null` as soon as a required child is missing. Later characters cannot repair a broken root-to-node path, so early termination is both safe and efficient.
-- **Duplicate insertion:** The same path is reused and the final boolean remains true. The structure models membership rather than insertion frequency, which is exactly what the contract asks.
-- **Maximum-length strings and many calls:** Iterative traversal avoids recursion depth problems even when a string has length 2000. Shared prefixes can greatly reduce created nodes, while completely different suffixes correctly receive separate branches.
-- **Lowercase-only precondition:** The index formula is valid because the reference contract excludes uppercase letters, punctuation, and other characters. Supporting a broader alphabet would require validation or a different child representation; silently feeding such input to this implementation would violate its contract.
-- **Empty strings:** Public inputs are guaranteed nonempty. Internally, `_search_prefix("")` would return the root, making `startsWith("")` true and `search("")` depend on the root's flag, but those behaviors are outside the required input domain and need no special branch.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Confusing `search` and `startsWith`:** Returning `true` in `search` simply because the path exists causes `"app"` to return `true` before being inserted! `search` must verify `node.is_end == true`.
+- **Duplicate Insertions:** Inserting `"apple"` multiple times must be idempotent. Traversing existing nodes without overwriting `is_end` to false ensures correct set semantics.
+- **Fixed-Size Array vs Hash Map:** For lowercase English letters ($a-z$), an array of size 26 provides $O(1)$ direct indexing with lower pointer overhead than a hash table.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L)$. Let $L$ be the length of the word or prefix supplied to one operation. Each
-- **Auxiliary Space Complexity:** $O(T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `insert(word)`: $O(L)$, where $L$ is the length of `word`. Exactly $L$ node transitions.
+  - `search(word)`: $O(L)$ character comparisons.
+  - `startsWith(prefix)`: $O(P)$, where $P$ is the length of `prefix`.
+- **Auxiliary Space Complexity:** $O(\Sigma \cdot \sum L)$ in the worst case where no words share prefixes, where $\Sigma = 26$ is the alphabet size. Reusing common prefixes significantly reduces actual node allocations.

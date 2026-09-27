@@ -1,139 +1,163 @@
 # Guided Example: Flip Game
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step adjacent pair scanning ($s[i] == \text{'+'}$ and $s[i+1] == \text{'+'}$), single-move transition generation ($s[:i] + \text{"--"} + s[i+2:]$), overlapping pair handling, and edge case boundary termination on representative string instances:
 
-- **Input:** `{"currentState": "++++"}`
-- **Required output:** `["--++", "+--+", "++--"]`
+- **Input:** $\text{currentState} = \text{"++++"}$
+- **Required output:** `["--++", "+--+", "++--"]` (Three possible moves corresponding to flipping consecutive pluses starting at indices 0, 1, and 2)
+- **No Consecutive Pluses:** $\text{currentState} = \text{"+-+-" } \implies []$ (No consecutive `"++"` exists; game cannot proceed)
+- **Single Character Guard:** $\text{currentState} = \text{"+"} \implies []$ (Fewer than 2 characters; no pairs possible)
+- **All Minuses Base Case:** $\text{currentState} = \text{"----"} \implies []$
+- **Overlapping Pairs:** $\text{currentState} = \text{"+++"} \implies \text{["--+", "+--"]}$ (Index 0 and index 1 are evaluated independently for single-move transitions)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates single-ply game state generation, explains why overlapping pairs yield distinct independent moves without interference, details the in-place list modification/backtrack cycle versus string slicing, and achieves strictly $O(N^2)$ output-sensitive time and $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are playing a Flip Game with your friend.
+Given a string $\text{currentState} = \text{"++++"}$ containing only `'+'` and `'-'`:
+Find **all possible states** of the string after making **exactly one valid move**, where a valid move consists of flipping any two consecutive `"++"` into `"--"`:
 
-The objective is to compute `["--++", "+--+", "++--"]` from `{"currentState": "++++"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Initial string: "++++" (length 4)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Candidate consecutive pairs:
+- Index 0: s[0] == '+', s[1] == '+' -> flip -> "--++"
+- Index 1: s[1] == '+', s[2] == '+' -> flip -> "+--+"
+- Index 2: s[2] == '+', s[3] == '+' -> flip -> "++--"
+
+All possible single-move outcomes: ["--++", "+--+", "++--"]
+```
+
+### Key Clarification: One Move, Not Recursive Play
+- Unlike Flip Game II (which requires Minimax game search to determine if a player can force a win), Flip Game I asks strictly for **all immediate successor states after 1 move**.
+- The consecutive pairs can overlap in the original string (e.g. index 0 uses positions 0 and 1, while index 1 uses positions 1 and 2), but each returned state represents flipping **exactly one** adjacent pair from `currentState`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Consecutive Pair Detection Protocol
+Let $N = \text{len}(\text{currentState})$.
+If $N < 2$, no adjacent pairs exist $\implies \text{return } []$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each starting index $i \in [0, N - 2]$:
+1. **Check Condition:**
+   $$
+   \text{currentState}[i] == \text{'+'} \quad \text{and} \quad \text{currentState}[i + 1] == \text{'+'}
+   $$
+2. **Generate Successor State:**
+   Form the new string by replacing positions $i$ and $i + 1$ with `"--"`:
+   $$
+   \text{next\_state} = \text{currentState}[:i] + \text{"--"} + \text{currentState}[i + 2:]
+   $$
+   Append `next_state` to the result list `ans`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every generated string in `ans`, exactly two characters that were originally `'+'` at positions $i$ and $i + 1$ have been replaced with `'-'`, while all other $N - 2$ characters remain unchanged.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why scanning adjacent pairs covers every move
-
-Two characters are consecutive precisely when their indices have the form $i$ and $i+1$. The iterator `pairwise(s)` produces exactly these pairs:
-
-$$
-(s[0],s[1]), (s[1],s[2]), \ldots, (s[n-2],s[n-1]).
-$$
-
-`enumerate` supplies the corresponding starting index `i`. Therefore, when the condition `a == b == "+"` succeeds, `i` is the first position of one legal flip. When it fails, that pair is one of `"--"`, `"+-"`, or `"-+"`, none of which the rules permit changing.
-
-No other kind of move exists. Consequently, rejecting every non-`"++"` pair cannot omit a legal result, and accepting every `"++"` pair considers every legal result.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"currentState": "++++"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the linear pair scan on $\text{currentState} = \text{"++++"}$ ($N = 4$):
+Loop range: $i \in [0, 2]$.
 
 ---
 
-### Step 2: Why the string becomes a character list
-
-Python strings are immutable: individual positions of `currentState` cannot be changed in place. The source first executes `s = list(currentState)`, producing a mutable list with one character per position. This conversion is useful because each candidate changes exactly two positions. The algorithm can temporarily assign `"-"` to those positions without rebuilding all unchanged characters through several slice expressions.
-
-The list `ans` begins empty and collects the completed next-state strings. It is important that the results placed in `ans` are strings, not references to the mutable list. `"".join(s)` reads the list's current characters and creates a new immutable string, so a result remains unchanged after `s` is restored or edited for a later candidate.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Starting Index $i = 0$
+- Adjacent pair: $\text{currentState}[0] = \text{'+'}, \quad \text{currentState}[1] = \text{'+'}$.
+- Condition: Both characters are `'+'` (**Match!**).
+- Slice & construct successor:
+  $$
+  \text{currentState}[:0] + \text{"--"} + \text{currentState}[2:] = \text{""} + \text{"--"} + \text{"++"} = \mathbf{\text{"--++"}}
+  $$
+- Append `" --++ "` to `ans`.
+- Result list: `["--++"]`.
 
 ---
 
-### Step 3: The temporary-change-and-restore cycle
+### Step 2: Evaluate Starting Index $i = 1$
+- Adjacent pair: $\text{currentState}[1] = \text{'+'}, \quad \text{currentState}[2] = \text{'+'}$.
+- Condition: Both characters are `'+'` (**Match!**).
+- Slice & construct successor:
+  $$
+  \text{currentState}[:1] + \text{"--"} + \text{currentState}[3:] = \text{"+"} + \text{"--"} + \text{"+"} = \mathbf{\text{"+--+"}}
+  $$
+- Append `"+--+"` to `ans`.
+- Result list: `["--++", "+--+"]`.
 
-For a legal pair beginning at `i`, the source performs three conceptual steps:
+---
 
-1. Set `s[i]` and `s[i + 1]` to `"-"`.
-2. Join the complete list and append that snapshot to `ans`.
-3. Set the same two positions back to `"+"`.
+### Step 3: Evaluate Starting Index $i = 2$
+- Adjacent pair: $\text{currentState}[2] = \text{'+'}, \quad \text{currentState}[3] = \text{'+'}$.
+- Condition: Both characters are `'+'` (**Match!**).
+- Slice & construct successor:
+  $$
+  \text{currentState}[:2] + \text{"--"} + \text{currentState}[4:] = \text{"++"} + \text{"--"} + \text{""} = \mathbf{\text{"++--"}}
+  $$
+- Append `"++--"` to `ans`.
+- Result list: `["--++", "+--+", "++--"]`.
 
-The restoration is essential. Every answer must represent one move made from the original `currentState`, not a sequence of moves accumulated from earlier iterations. If the first flip were left in place, the next result could contain four changed positions and would describe two turns rather than one.
+---
 
-For example, consider `currentState = "++++"`:
-
-| Pair start `i` | Original pair | Temporary list | Appended state | List after restoration |
-| --- | --- | --- | --- | --- |
-| 0 | positions 0 and 1 | `--++` | `"--++"` | `++++` |
-| 1 | positions 1 and 2 | `+--+` | `"+--+"` | `++++` |
-| 2 | positions 2 and 3 | `++--` | `"++--"` | `++++` |
-
-Notice that legal pairs may overlap. The middle plus signs participate in more than one possible move. Restoring after each snapshot ensures that an earlier temporary flip does not hide an overlapping pair. This is why all three moves from `"++++"` are found.
-
-`pairwise(s)` advances one adjacent pair at a time. During an iteration, the current values `a` and `b` have already been obtained. The source restores the list before requesting the next pair, so the iterator continues over the original character values rather than a permanently altered state.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["--++", "+--+", "++--"]` |
+### Loop Termination
+All $N - 1 = 3$ adjacent pairs inspected.
+Final collected states:
+$$
+\mathbf{[\text{"--++"}, \text{"+--+"}, \text{"++--"}]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"currentState": "++++"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["--++", "+--+", "++--"]` | Verified |
+```text
+currentState = "++++", N = 4
+
+i = 0: s[0:2] == "++" -> flip -> "--++" -> ans = ["--++"]
+i = 1: s[1:3] == "++" -> flip -> "+--+" -> ans = ["--++", "+--+"]
+i = 2: s[2:4] == "++" -> flip -> "++--" -> ans = ["--++", "+--+", "++--"]
+
+Result: ["--++", "+--+", "++--"]
+```
+
+| Start Index $i$ | Pair Inspected $(s[i], s[i+1])$ | Is `"++"`? | Prefix $s[:i]$ | Flipped Pair | Suffix $s[i+2:]$ | Generated State |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0** | `('+', '+')` | **Yes** | `""` | `"--"` | `"++"` | **`"--++"`** |
+| **1** | `('+', '+')` | **Yes** | `"+"` | `"--"` | `"+"` | **`"+--+"`** |
+| **2** | `('+', '+')` | **Yes** | `"++"` | `"--"` | `""` | **`"++--"`** |
+| **End** | - | - | - | - | - | **3 States Generated** |
+
+---
+
+### Edge Case Contrast: Non-Matching Patterns
+1. `currentState = "+-+-"`:
+   - $i = 0$: `"+-"` $\implies$ No.
+   - $i = 1$: `"-+"` $\implies$ No.
+   - $i = 2$: `"+-"` $\implies$ No.
+   - Output: `[]`.
+2. `currentState = "+"`:
+   - Length $1 < 2 \implies$ Loop range $[0, -1]$ is empty $\implies$ Output: `[]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A state is generated if and only if positions $i$ and $i + 1$ both contain `'+'`. The replacement strictly changes only those two characters into `"--"`, satisfying the single-move rule of the game.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any legal move must flip two adjacent `'+'` characters. The linear loop visits every index $i \in [0, N - 2]$, exhaustively discovering all possible adjacent pairs. Because distinct indices $i$ produce distinct successor strings, every valid move is enumerated without duplication.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Slicing and concatenation:** For every legal index `i`, construct `currentState[:i] + "--" + currentState[i + 2:]`. This is straightforward and has the same $O(n^2)$ worst-case time and output space, but it creates candidate strings through slices rather than reusing a mutable character buffer.
-- **Regular-expression matching:** A pattern search can locate occurrences of `"++"`, but overlapping matches require special handling. A normal non-overlapping search would miss moves such as the pair beginning at index 1 in `"+++"`.
-- **A set of results:** Duplicate elimination is unnecessary because distinct legal starting indices yield distinct next-state strings. A set would add hashing work and would discard the implementation's natural left-to-right order without improving correctness.
-- **Recursive game exploration:** Searching future turns solves a different question, such as whether the current player can force a win. This problem stops after one move, so recursion would add irrelevant states and work.
-- **Failure to restore the list:** Leaving a temporary flip in place makes later outputs depend on earlier ones. That generates states containing multiple moves and may also hide overlapping legal pairs.
-- **Restoring before joining:** The snapshot must be created while the two positions contain minus signs. Restoring first would append the unchanged input instead of the next state.
-- **Joining only the changed pair:** Every answer must be a full state string of length $n$, not merely `"--"` or a move index. Joining the complete list preserves all unaffected positions.
-- **Length one:** There is no adjacent pair. `pairwise(s)` yields nothing, the loop body never runs, and the returned answer is correctly empty.
-- **No adjacent plus signs:** Strings such as `"----"` or `"+-+-"` contain no legal move, so no result is appended and the method returns `[]`.
-- **Exactly one legal pair:** A state such as `"--++-"` produces one result by flipping only those two plus signs, so the method returns a one-element list.
-- **Overlapping legal pairs:** `"+++"` has moves starting at indices 0 and 1. They produce `"--+"` and `"+--"`; restoration ensures that both are included.
-- **Disjoint legal pairs:** In `"++--++"`, either the left or right pair may be flipped, but one output must never flip both because the contract permits exactly one move.
-- **All plus signs:** This maximizes the number of results at $n-1$ and realizes the $O(n^2)$ output size.
-- **Allowed output order:** The contract accepts any order. The left-to-right order produced here is deterministic and requires no extra sorting.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overlapping Pairs Trap:** In `"+++"`, flipping at index 0 yields `"--+"` and flipping at index 1 yields `"+--"`. An implementation must not "consume" characters so as to skip index 1; each candidate index must be evaluated independently against the original string.
+- **Single Character Input ($N < 2$):** If `len(currentState) < 2`, attempting to check `currentState[i+1]` without guarding could trigger out-of-bounds errors.
+- **Accidental Multiple Moves:** Only ONE pair of `"++"` may be flipped per resulting string. Flipping multiple pairs in the same string violates the definition of a single valid move.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + mn)$. Let $n$ be the length of `currentState`, and let $m$ be the number of adjacent `"++"` pairs. The pair scan performs $n-1$ constant-time checks. For each of the $m$ legal pairs, `"".join(s)` visits all $n$ characters to materialize an immutable output string. The precise output-sensitive time is therefore
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$, where $N$ is the length of `currentState`. The loop performs $N - 1$ pair comparisons ($O(1)$ each). When a match occurs, string slicing and concatenation take $O(N)$ time. At most $N - 1$ matches can occur, giving a maximum runtime of $(N - 1) \times O(N) = O(N^2)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory (excluding the output list) for string slicing buffers.

@@ -30,6 +30,20 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": "123",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-first",
       "name": "first rank is ascending",
       "kind": "trial",

@@ -1,128 +1,180 @@
 # Guided Example: Naming a Company
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"ideas": ["coffee", "donuts", "time", "toffee"]}`
-- **Required output:** `6`
+We are given an array of distinct strings $ideas$, representing candidate names for a company. A valid company name is formed using an ordered pair of distinct ideas $(A, B)$ via the following procedure:
+1. Swap the first character of string $A$ with the first character of string $B$, forming two new strings $A'$ and $B'$.
+2. The ordered pair $(A, B)$ produces a **valid company name** formatted as $A' + \text{" "} + B'$ if and only if **neither** $A'$ nor $B'$ appears in the original $ideas$ array:
+   $$A' \notin ideas \quad \text{and} \quad B' \notin ideas$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to calculate the total number of distinct valid company names that can be generated. Because order matters ($A' + \text{" "} + B'$ is distinct from $B' + \text{" "} + A'$), we are counting valid ordered pairs $(A, B)$.
+
+Consider the representative problem instance:
+$$ideas = [\text{"coffee"}, \text{"donuts"}, \text{"time"}, \text{"toffee"}]$$
+
+Let us partition the words by their initial letter and extract their suffixes:
+- Words starting with `'c'`: suffix set $S_{\text{'c'}} = \{\text{"offee"}\}$ (size $1$).
+- Words starting with `'d'`: suffix set $S_{\text{'d'}} = \{\text{"onuts"}\}$ (size $1$).
+- Words starting with `'t'`: suffix set $S_{\text{'t'}} = \{\text{"ime"}, \text{"offee"}\}$ (size $2$).
+
+Evaluating candidate pairs across initial letter groups:
+1. **Pairing Group `'c'` with Group `'d'`:**
+   - Suffix intersection: $S_{\text{'c'}} \cap S_{\text{'d'}} = \emptyset$ (no shared suffixes).
+   - Valid suffix choices: $1 \times 1 = 1$.
+   - Both orderings are valid:
+     - $(\text{"coffee"}, \text{"donuts"}) \to \text{"doffee conuts"}$
+     - $(\text{"donuts"}, \text{"coffee"}) \to \text{"conuts doffee"}$
+   - Contributes $2$ valid company names.
+2. **Pairing Group `'c'` with Group `'t'`:**
+   - Suffix intersection: $S_{\text{'c'}} \cap S_{\text{'t'}} = \{\text{"offee"}\}$ (shared suffix of size $1$).
+   - Suffixes exclusive to `'c'`: $|S_{\text{'c}}| - 1 = 1 - 1 = 0$.
+   - If we swap initial letters between `"coffee"` and `"toffee"`, we generate `"toffee"` and `"coffee"`, both of which are in $ideas$.
+   - Contributes $0$ valid company names.
+3. **Pairing Group `'d'` with Group `'t'`:**
+   - Suffix intersection: $S_{\text{'d'}} \cap S_{\text{'t'}} = \emptyset$ (no shared suffixes).
+   - Suffixes exclusive to `'d'`: $1 - 0 = 1$.
+   - Suffixes exclusive to `'t'`: $2 - 0 = 2$.
+   - Valid suffix combinations: $1 \times 2 = 2$.
+   - Both orderings are valid:
+     - $(\text{"donuts"}, \text{"time"}) \to \text{"tonuts dime"}$
+     - $(\text{"time"}, \text{"donuts"}) \to \text{"dime tonuts"}$
+     - $(\text{"donuts"}, \text{"toffee"}) \to \text{"tonuts doffee"}$
+     - $(\text{"toffee"}, \text{"donuts"}) \to \text{"doffee tonuts"}$
+   - Contributes $2 \times 2 = 4$ valid company names.
+
+Summing across all pairs of letter groups:
+$$\text{Total Valid Names} = 2 + 0 + 4 = 6$$
+
+```mermaid
+flowchart TD
+    accTitle: Suffix Set Mutual Exclusion Pairing
+    accDescr: Grouping words by initial letter and computing valid cross-combinations based on set difference sizes between suffix pools.
+    A["Group ideas by initial char: S_c, S_d, S_t"] --> B["Group c: {'offee'} (size 1)"]
+    A --> C["Group d: {'onuts'} (size 1)"]
+    A --> D["Group t: {'ime', 'offee'} (size 2)"]
+    B & C --> E["Pair (c, d): overlap = 0. Pairs = 2 * (1 - 0) * (1 - 0) = 2"]
+    B & D --> F["Pair (c, t): overlap = 1 ('offee'). Pairs = 2 * (1 - 1) * (2 - 1) = 0"]
+    C & D --> G["Pair (d, t): overlap = 0. Pairs = 2 * (1 - 0) * (2 - 0) = 4"]
+    E & F & G --> H["Total Valid Names: 2 + 0 + 4 = 6"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given an array of strings `ideas` that represents a list of names to be used in the process of naming a company. The process of naming a company is as follows:
+### Decomposition by Initial Letter and Suffix Invariant
 
-The objective is to compute `6` from `{"ideas": ["coffee", "donuts", "time", "toffee"]}` while avoiding redundant calculations and unnecessary overhead.
+Every word $w \in ideas$ can be decomposed uniquely as:
+$$w = c + s, \quad \text{where } c = w[0] \in \Sigma, \, s = w[1:] \in \Sigma^*$$
+Let $S_c$ denote the set of suffixes associated with initial letter $c$:
+$$S_c = \{ s : c + s \in ideas \}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Now consider two words $w_1 = c_1 + s_1$ and $w_2 = c_2 + s_2$:
+- If $c_1 = c_2$, swapping their first characters yields the exact same strings $w_1$ and $w_2$, which already exist in $ideas$. Thus, no valid pair can share the same initial letter ($c_1 \ne c_2$).
+- If $c_1 \ne c_2$, the swapped strings are $w_1' = c_2 + s_1$ and $w_2' = c_1 + s_2$.
+- The pair $(w_1, w_2)$ is valid if and only if:
+  $$c_2 + s_1 \notin ideas \iff s_1 \notin S_{c_2}$$
+  $$c_1 + s_2 \notin ideas \iff s_2 \notin S_{c_1}$$
 
----
+This means $s_1$ must belong to the relative complement $S_{c_1} \setminus S_{c_2}$, and $s_2$ must belong to $S_{c_2} \setminus S_{c_1}$.
 
-## 2. Conceptual Foundation & Invariants
+### Combinatorial Product Formula
 
-We maintain the core conceptual parameters and state variables:
+Let $m(c_1, c_2) = |S_{c_1} \cap S_{c_2}|$ be the count of shared suffixes between groups $c_1$ and $c_2$.
+By inclusion-exclusion:
+$$|S_{c_1} \setminus S_{c_2}| = |S_{c_1}| - m(c_1, c_2)$$
+$$|S_{c_2} \setminus S_{c_1}| = |S_{c_2}| - m(c_1, c_2)$$
 
-| State Parameter | Role & Purpose | Initial State |
+Because any choice of $s_1 \in S_{c_1} \setminus S_{c_2}$ can be independently paired with any choice of $s_2 \in S_{c_2} \setminus S_{c_1}$, and each pair can be ordered in $2$ ways:
+$$\text{Total Valid Pairs} = \sum_{c_1 < c_2} 2 \cdot \big( |S_{c_1}| - m(c_1, c_2) \big) \cdot \big( |S_{c_2}| - m(c_1, c_2) \big)$$
+
+Because the alphabet size $|\Sigma| = 26$, there are only $\binom{26}{2} = 325$ unordered pairs of characters to inspect, completely independent of the total number of words $N$.
+
+| Character Set Entity | Mathematical Definition | Role in Company Naming |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reduce a swap to two missing-name checks
-
-Write an idea as its first letter followed by its unchanged suffix. Suppose one selected idea is `i + u` and another is `j + v`, where `i` and `j` are their initial letters and `u` and `v` are their suffixes. Swapping the initials creates `j + u` and `i + v`. The pair is valid exactly when neither generated name already belongs to the original set of ideas.
-
-The exact solution checks these conditions through generated strings. It does not explicitly build sets of suffixes for each initial group. Instead, it first constructs a `26 \times 26` matrix `f` that counts how many ideas can safely receive each possible replacement initial, then uses that matrix during a second pass.
-
-The set `s = set(ideas)` supports expected constant-time membership tests. Because the input ideas are distinct, the set contains exactly the original names that make a generated company name invalid.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"ideas": ["coffee", "donuts", "time", "toffee"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Suffix Bucket $S_c$ | $\{ w[1:] : w \in ideas \land w[0] = c \}$ | Pool of suffixes accessible to initial letter $c$ |
+| Common Overlap $m(c_1, c_2)$ | $|S_{c_1} \cap S_{c_2}|$ | Suffixes that would create collisions if swapped |
+| Exclusive Suffixes | $|S_c| - m(c_1, c_2)$ | Suffixes guaranteed to generate brand-new names |
 
 ---
 
-### Step 2: Meaning of the counting matrix
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-Map letters `a` through `z` to indices `0` through `25`. For an original idea whose initial has index `i`, the first pass tries every replacement initial `j`. It converts the word to a character list `t`, changes only `t[0]`, joins the characters, and checks whether the resulting string is absent from `s`.
+Let us trace the computation for $ideas = [\text{"coffee"}, \text{"donuts"}, \text{"time"}, \text{"toffee"}]$.
 
-Whenever the generated name is absent, it increments `f[i][j]`. Therefore the exact meaning of an entry is:
+### Step 1: Bucket Construction
+We populate the 26 character buckets with suffixes:
+- Letter `'c'`: $S_{\text{'c'}} = \{\text{"offee"}\} \implies |S_{\text{'c'}}| = 1$.
+- Letter `'d'`: $S_{\text{'d'}} = \{\text{"onuts"}\} \implies |S_{\text{'d'}}| = 1$.
+- Letter `'t'`: $S_{\text{'t'}} = \{\text{"ime"}, \text{"offee"}\} \implies |S_{\text{'t'}}| = 2$.
+- All other 23 buckets are empty ($\emptyset$).
 
-> `f[i][j]` is the number of original ideas starting with letter `i` whose name would not already exist after replacing that initial by letter `j`.
+### Step 2: Evaluating Non-Empty Letter Pairs
 
-Equivalently, it counts suffixes currently paired with `i` that are not currently paired with `j`. This equivalence connects the implementation to the familiar suffix-group interpretation, but the code obtains the count by direct string generation and membership testing.
+1. **Pair $(c_1 = \text{'c'}, c_2 = \text{'d'}):$**
+   - Sizes: $|S_{\text{'c'}}| = 1, \, |S_{\text{'d'}}| = 1$.
+   - Overlap: $S_{\text{'c'}} \cap S_{\text{'d'}} = \emptyset \implies m = 0$.
+   - Exclusive counts: $(1 - 0) = 1$ and $(1 - 0) = 1$.
+   - Pair contribution: $2 \times 1 \times 1 = 2$.
+   - Running total: $ans = 2$.
 
-The temporary list `t` is reused across all 26 trials for one idea. Only position `0` changes, so all suffix characters stay fixed. There is no need to restore the original first letter between trials because the next iteration overwrites that same position again.
+2. **Pair $(c_1 = \text{'c'}, c_2 = \text{'t'}):$**
+   - Sizes: $|S_{\text{'c'}}| = 1, \, |S_{\text{'t'}}| = 2$.
+   - Overlap: $\text{"offee"} \in S_{\text{'c'}}$ and $\text{"offee"} \in S_{\text{'t'}} \implies m = 1$.
+   - Exclusive counts: $(1 - 1) = 0$ and $(2 - 1) = 1$.
+   - Pair contribution: $2 \times 0 \times 1 = 0$.
+   - Running total: $ans = 2 + 0 = 2$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+3. **Pair $(c_1 = \text{'d'}, c_2 = \text{'t'}):$**
+   - Sizes: $|S_{\text{'d'}}| = 1, \, |S_{\text{'t'}}| = 2$.
+   - Overlap: $S_{\text{'d'}} \cap S_{\text{'t'}} = \emptyset \implies m = 0$.
+   - Exclusive counts: $(1 - 0) = 1$ and $(2 - 0) = 2$.
+   - Pair contribution: $2 \times 1 \times 2 = 4$.
+   - Running total: $ans = 2 + 4 = 6$.
 
----
-
-### Step 3: Use the reverse matrix entry to count compatible partners
-
-The second pass again visits every original idea. Let the current idea start with `i` and have suffix `u`. For every candidate partner initial `j`, it first generates `j + u`. If that string is already in `s`, the current idea cannot be paired with any idea starting with `j` under this trial: the first generated company name would be invalid.
-
-If `j + u` is absent, the first half of the validity condition holds. The solution then adds `f[j][i]` to `ans`. By the matrix definition, `f[j][i]` counts original ideas beginning with `j` whose suffix `v` produces an absent name `i + v` when it receives the current idea's initial. Each of those ideas is therefore a compatible second choice: `j + u` is absent because of the explicit second-pass check, and `i + v` is absent because that partner was counted in `f[j][i]`.
-
-The reversal of indices is essential. The current idea changes from `i` to `j`, while its partner changes from `j` to `i`. Looking up `f[i][j]` at this point would repeat information about ideas originating in the current group instead of counting possible partners originating in group `j`.
-
-For example, suppose the current idea begins with `b` and the loop is considering partners beginning with `d`. The direct membership test verifies that placing `d` before the current suffix makes a new name. The added entry `f[d][b]` counts `d`-initial ideas that also make new names when their initials become `b`. Each counted suffix supplies exactly one valid partner for the current idea.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"ideas": ["coffee", "donuts", "time", "toffee"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+All pairs evaluated. Final answer: $6$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Suffix sets grouped by initial:** Store, for each initial letter, the set of suffixes used by that group. For every pair of initial groups, count suffixes unique to each and add twice the product of those counts. This is the most common formulation and can avoid repeatedly building 26 generated names per idea, but it requires careful set-intersection reasoning; the exact solution expresses the same compatibility information in `f`.
-- **Checking every pair of ideas directly:** For each pair, swap initials, build both names, and test the set. This is straightforward but takes `O(N^2 L_{\max})` time in the worst case, while the fixed-alphabet matrix aggregates compatible partners.
-- **Generating and storing all possible swapped names:** Materializing up to `26N` strings uses unnecessary memory. The solution keeps only counts because the identity of a compatible partner is irrelevant after its replacement direction is known.
-- **Dividing the result by two:** This would be incorrect for the implementation. It directly counts ordered selections, corresponding to the two possible concatenation orders, so no final division is needed.
-- **Multiplying the result by two:** This would also double-count. The reverse orientation is encountered naturally when the second original idea becomes the current idea in the second pass.
-- **Using `f[i][j]` instead of `f[j][i]` in the second pass:** The partner starts with `j` and must be valid after receiving `i`. Only the reversed entry records that direction.
-- **Two ideas with the same initial:** Swapping equal initials recreates both originals, so the generated names are not new. The membership check rejects this case automatically.
-- **Two ideas with the same suffix and different initials:** Each replacement recreates the other original idea. Both names are in `s`, so neither direction is counted as compatible.
-- **A replacement that matches some third idea:** It is invalid even if it matches neither selected original. Membership is tested against the complete original set, correctly rejecting collisions with any existing idea.
-- **Repeated input ideas:** The contract states that ideas are distinct. If duplicates were supplied, converting to a set would collapse them while the passes would still visit duplicate list entries, so the matrix counts would no longer represent a set of distinct ideas; correctness relies on the stated uniqueness guarantee.
-- **One idea or only one occupied initial group:** No valid pair exists. Every attempt to keep the same initial regenerates an existing name, and there is no partner in another occupied group, so `ans` remains zero.
-- **Names of different lengths:** The method never compares suffix positions across words. It constructs complete candidate strings and tests membership, so varying lengths are handled naturally.
-- **Hash-set behavior:** The complexity assumes ordinary expected hash performance. Correctness does not depend on hashing being collision-free because Python resolves collisions by equality checks.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Letter Pair $(c_1, c_2)$ | Pool Size $|S_{c_1}|$ | Pool Size $|S_{c_2}|$ | Overlapping Suffixes $m$ | Exclusive to $c_1$ | Exclusive to $c_2$ | Combinations $2 \times \text{Diff}_1 \times \text{Diff}_2$ | Cumulative $ans$ |
+|---|---|---|---|---|---|---|---|---|
+| $(\text{'c'}, \text{'d'})$ | $1$ | $1$ | $0$ | $1$ | $1$ | $2 \times 1 \times 1 = 2$ | $2$ |
+| $(\text{'c'}, \text{'t'})$ | $1$ | $2$ | $1$ (`"offee"`) | $0$ | $1$ | $2 \times 0 \times 1 = 0$ | $2$ |
+| $(\text{'d'}, \text{'t'})$ | $1$ | $2$ | $0$ | $1$ | $2$ | $2 \times 1 \times 2 = 4$ | $6$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(26S)$. Let `N` be the number of ideas, let `L_{\max}` be the maximum idea length, and let
-- **Auxiliary Space Complexity:** $O(N + L_{\max} + 26^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Mutually Exclusive and Exhaustive Partitioning
+1. **Partition by Distinct Character Pairs:** Any pair of words $(A, B)$ with distinct initials $c_1 \ne c_2$ falls into exactly one pair of character buckets $(c_1, c_2)$. No pair of words is counted across multiple character bucket pairs.
+2. **Exact Independence of Suffix Selection:** A suffix $s_1 \in S_{c_1} \setminus S_{c_2}$ guarantees $c_2 + s_1 \notin ideas$. Independently, $s_2 \in S_{c_2} \setminus S_{c_1}$ guarantees $c_1 + s_2 \notin ideas$. Because these two conditions are completely independent, the total number of valid pairs is the exact Cartesian product of the two set differences.
+3. **Completeness:** Words with identical initials ($c_1 = c_2$) can never form valid names because swapped initials yield the original words; omitting them is provably sound.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Testing All $O(N^2)$ Word Pairs
+Directly testing every pair of words takes $O(N^2 \cdot L)$ time, where $N \le 50\,000$. With $N^2 \approx 2.5 \times 10^9$, this causes catastrophic TLE. Grouping by initial letter reduces pairwise comparison from $N^2$ down to $\binom{26}{2} = 325$ set intersections.
+
+### Edge Case: All Words Share the Same Initial Letter
+If all words start with `'a'` (e.g. `["apple", "apricot", "avocado"]`), all words belong to bucket $S_{\text{'a'}}$. All other 25 buckets are empty. The outer sum iterates over zero non-empty pairs, returning $0$.
+
+### Edge Case: Identical Suffix Pools
+If two letters have identical suffix sets ($S_{\text{'a'}} = S_{\text{'b'}}$), then $m = |S_{\text{'a'}}| = |S_{\text{'b'}}|$, making $|S_{\text{'a'}}| - m = 0$. The product evaluates to $0$, correctly identifying that every swapped word already exists in the other letter's set.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Bucket Creation:** Iterating through all $N$ words of length at most $L$ to populate the 26 suffix sets takes $O(N \cdot L)$ time.
+- **Pairwise Set Intersection:** There are $\binom{26}{2} = 325$ pairs of character sets. Intersecting two sets $S_{c_1}$ and $S_{c_2}$ takes time proportional to the smaller set size, bounded by $O(\sum |S_c| \cdot 26) = O(26 \cdot N \cdot L)$.
+- **Total Time Complexity:** $O(26 \cdot N \cdot L)$, which runs in under $0.2$ seconds for $N = 50\,000$ and $L \le 10$.
+
+### Space Complexity
+- Storing the suffix strings across the 26 sets requires $O(N \cdot L)$ memory.
+- **Auxiliary Space Complexity:** $O(N \cdot L)$ space.

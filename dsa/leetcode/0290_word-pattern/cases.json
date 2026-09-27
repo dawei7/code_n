@@ -34,7 +34,7 @@
     {
       "id": "trial-repeat-fail",
       "name": "repeated character conflicts",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "pattern": "aaaa",
@@ -42,6 +42,7 @@
       },
       "expected": false,
       "tags": [
+        "sample",
         "conflict"
       ]
     },

@@ -1,128 +1,193 @@
 # Guided Example: Max Difference You Can Get From Changing an Integer
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of independent greedy digit substitution on a representative problem instance:
 
-- **Input:** `{"num": 555}`
-- **Required output:** `888`
+- **Input:** $num = 555$
+- **Required Output:** $888$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple occurrences of the same digit, demonstrates the maximization policy (promoting to $9$) and minimization policy (demoting to $1$ while avoiding leading zeros), and illustrates simultaneous multi-position substitution.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `num`. You will apply the following steps to `num` **two** separate times:
+We are given a positive integer $num$. We perform the digit-substitution operation two separate times independently:
+1. Pick a digit $x \in [0, 9]$ and replace all occurrences of $x$ in $num$ with another digit $y \in [0, 9]$ to obtain an integer $a$.
+2. Pick a digit $x' \in [0, 9]$ and replace all occurrences of $x'$ in $num$ with another digit $y' \in [0, 9]$ to obtain an integer $b$.
 
-The objective is to compute `888` from `{"num": 555}` while avoiding redundant calculations and unnecessary overhead.
+The constraints dictate that:
+- Neither $a$ nor $b$ may contain leading zeros.
+- Neither $a$ nor $b$ may equal $0$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We seek to maximize the difference:
+$$
+\Delta = a - b
+$$
+which is equivalent to independently maximizing $a$ and minimizing $b$.
+
+In $num = 555$:
+- To maximize $a$: the most significant digit is $5$. Replacing all occurrences of $5$ with $9$ yields $a = 999$.
+- To minimize $b$: the leading digit is $5$. Replacing it with $0$ would produce leading zeros, which is forbidden; the smallest valid non-zero digit is $1$. Replacing all occurrences of $5$ with $1$ yields $b = 111$.
+- Maximum difference: $a - b = 999 - 111 = 888$.
+
+The primary teaching goal is to establish positional greedy policies for both extrema: targeting the highest-order replaceable digit for maximum weight, while strictly adhering to leading-zero boundary constraints.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $s$ be the decimal string representation of $num$ with length $n = |s|$.
 
-| State Parameter | Role & Purpose | Initial State |
+### Maximization Policy (Computing $a$)
+To make $a$ as large as possible:
+- Scan digits from left to right ($i = 0 \dots n - 1$).
+- Locate the first digit $s[i] \neq \text{'9'}$.
+- If such a digit $x$ exists: replace every occurrence of $x$ in $s$ with `'9'`.
+- If all digits are already `'9'`, no increase is possible; set $a = num$.
+
+### Minimization Policy (Computing $b$)
+To make $b$ as small as possible while preventing leading zeros:
+- **Case 1: Leading digit $s[0] \neq \text{'1'}$:**
+  The most significant position can be minimized to `'1'`. Set $x = s[0]$ and replace all occurrences of $x$ in $s$ with `'1'`.
+- **Case 2: Leading digit $s[0] == \text{'1'}$:**
+  The leading digit is already minimally optimal ($1$). We scan remaining digits $i = 1 \dots n - 1$ for the first digit $x$ that is neither `'0'` nor `'1'`:
+  $$
+  x \notin \{\text{'0'}, \text{'1'}\}
+  $$
+  We cannot pick $x = \text{'1'}$ because replacing `'1'` with `'0'` would also turn the leading digit $s[0]$ into `'0'`.
+  Replace every occurrence of this selected digit $x$ with `'0'`.
+  If no such digit exists (e.g. $s = \text{"1000"}$), set $b = num$.
+
+```
+Maximization Branch (Target: largest possible a):
+s = "5 5 5"
+First digit != '9' is '5' at index 0.
+Replace all '5' -> '9':
+a = "9 9 9" = 999
+
+Minimization Branch (Target: smallest valid b):
+s = "5 5 5"
+Leading digit s[0] = '5' != '1'.
+Replace all '5' -> '1' (cannot use '0' due to leading zero rule):
+b = "1 1 1" = 111
+
+Max Difference:
+Delta = a - b = 999 - 111 = 888
+```
+
+We establish tracking parameters across both branches:
+
+| State Variable | Domain | Role in Optimization |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| String $s$ | Digits string of length $n$ | Base decimal representation of $num$ |
+| Maximization Target ($x_a$) | Digit $\in [0, 8]$ | First non-9 digit chosen for replacement |
+| Minimization Target ($x_b$) | Digit $\in [0, 9]$ | First reducible digit chosen for replacement |
+| Maximized Value ($a$) | Integer $\ge num$ | Optimal upper substitution |
+| Minimized Value ($b$) | Positive integer $\le num$ | Optimal lower substitution |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The greedy substitutions for $a$ and $b$ independently maximize and minimize the decimal value of $num$ across all valid single-digit substitutions without producing leading zeros.
+
+```mermaid
+flowchart TD
+    accTitle: Independent Digit Substitution Workflow
+    accDescr: Maximizes a by replacing first non-9 digit with 9, minimizes b by replacing leading digit with 1 or interior digit with 0, and returns a - b.
+    A["Input num = 555"] --> B["Compute a: Find first digit != '9'<br/>Found '5' -> Replace '5' with '9'<br/>a = 999"]
+    A --> C["Compute b: Inspect leading digit s[0]"]
+    C --> D{"Is s[0] != '1'?"}
+    D -- Yes --> E["Replace all occurrences of s[0] with '1'<br/>b = 111"]
+    D -- No --> F["Find first digit in s[1..] not in {'0', '1'}<br/>Replace with '0'"]
+    B --> G["Compute difference:<br/>Delta = a - b = 999 - 111 = 888"]
+    E --> G
+    F --> G
+    G --> H["Return 888"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Maximize one independent result and minimize the other
+### Step 1: Maximizing $a$
 
-The two replacement operations are applied independently to the original number. Therefore, maximizing $a-b$ separates into:
+- Decimal representation: $s = \text{"555"}$.
+- Scan from left:
+  - Index $0$: $s[0] = \text{'5'} \neq \text{'9'}$.
+  - Target digit identified: $x = \text{'5'}$.
+- Replace all occurrences of `'5'` with `'9'`:
+  $$
+  \text{"555"} \xrightarrow{'5' \to '9'} \text{"999"}
+  $$
+- Maximized value: $a = 999$.
 
-- Make `a` as large as any legal single all-occurrences replacement can make it.
-- Make `b` as small as any legal replacement can make it without a leading zero or a zero result.
-
-The code stores two independent decimal strings:
-
-
-
-Changing `a` never changes `b`, which matches the problem's independent operations.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": 555}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Scan Index ($i$) | Digit Inspected | Condition Check ($\neq '9'$) | Chosen $x \to y$ | Resulting String | Integer Value ($a$) |
+|---|---|---|---|---|---|
+| $0$ | `'5'` | True ($5 \neq 9$) | `'5' \to '9'` | `"999"` | $999$ |
 
 ---
 
-### Step 2: Why the earliest changed digit dominates
+### Step 2: Minimizing $b$
 
-Decimal place values decrease from left to right. Improving the first position where two candidate numbers differ has more effect than every possible change to later positions combined.
+- Decimal representation: $s = \text{"555"}$.
+- Inspect leading digit:
+  - $s[0] = \text{'5'} \neq \text{'1'}$.
+  - Because it is the leading digit, replacing with `'0'` would yield `"000"`, which has leading zeros and equals $0$ (strictly forbidden).
+  - The minimal valid non-zero digit is `'1'`.
+- Target digit identified: $x = \text{'5'}, y = \text{'1'}$.
+- Replace all occurrences of `'5'` with `'1'`:
+  $$
+  \text{"555"} \xrightarrow{'5' \to '1'} \text{"111"}
+  $$
+- Minimized value: $b = 111$.
 
-For example, increasing the thousands digit by one adds 1000, while all three later digits together can change by at most 999. Thus both the maximum and minimum strategies should make the best legal replacement involving the earliest digit that can improve the number.
-
-Because one chosen digit must be replaced at all its occurrences, the algorithm selects which original digit to change based on its first relevant appearance, then uses `replace` globally.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step Component | Digit Evaluated | Leading Zero Constraint | Chosen $x \to y$ | Resulting String | Integer Value ($b$) |
+|---|---|---|---|---|---|
+| Leading Digit | $s[0] = \text{'5'}$ | Cannot replace with `'0'` | `'5' \to '1'` | `"111"` | $111$ |
 
 ---
 
-### Step 3: Construct the largest possible result
+### Step 3: Compute Difference
 
-The loop scans `a` from most significant digit to least:
+- Values obtained: $a = 999$, $b = 111$.
+- Arithmetic difference:
+  $$
+  \Delta = a - b = 999 - 111 = 888
+  $$
 
-
-
-A digit already equal to 9 cannot be increased. The first digit that is not 9 is the earliest improvable position. Replacing its digit value with 9 gives the largest possible value at that decisive position. Every later occurrence of the same digit must also be replaced under the operation rule, and changing it to 9 can only further increase the result.
-
-Choosing a later original digit would leave this earlier non-9 position unchanged and produce a smaller number. Choosing a replacement below 9 would also be smaller at the first changed position.
-
-If every digit is already 9, no replacement can increase the number. The loop performs no change, which is legal because the selected replacement digits may be equal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `888` |
+| Operand | String Representation | Numeric Value |
+|---|---|---|
+| Maximized $a$ | `"999"` | $999$ |
+| Minimized $b$ | `"111"` | $111$ |
+| Difference ($a - b$) | — | $888$ |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 555}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `888` | Verified |
+| Phase | Target Variable | Input String | Scan Decision | Replacement Rule | Resulting Value |
+|---|---|---|---|---|---|
+| Upper Bound | $a$ | `"555"` | First non-9 at index 0 | `'5' \implies '9'` | $999$ |
+| Lower Bound | $b$ | `"555"` | Leading digit is not 1 | `'5' \implies '1'` | $111$ |
+| Subtraction | $\Delta$ | — | $a - b$ | $999 - 111$ | $888$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every transformation replaces all occurrences of a single chosen digit $x$ with another digit $y$. The leading digit is never set to $0$, ensuring that neither $a$ nor $b$ has leading zeros or evaluates to $0$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since decimal place value decreases exponentially from left to right ($10^k > \sum_{j=0}^{k-1} 9 \cdot 10^j$), altering the most significant available position maximizes the arithmetic impact. For $a$, changing the earliest non-9 digit to 9 gives the greatest possible increase. For $b$, reducing the leading digit to 1 (or the earliest interior digit $\notin \{0, 1\}$ to 0) achieves the minimal legal value.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Enumerate all digit replacements:** Try every original and replacement digit pair, reject leading-zero results, and retain maximum and minimum. It is correct but obscures the place-value greedy insight.
-- **Arithmetic digit manipulation:** Compute place values without strings. It avoids string methods but makes replacing every equal digit more verbose.
-- **All nines:** The maximum result is unchanged because no digit can increase.
-- **Single digit nine:** Maximum is 9, minimum is 1, and the difference is 8.
-- **Leading digit already one:** It cannot be changed to zero, so minimization searches the suffix.
-- **Suffix contains only zero and one:** No legal replacement can reduce the number further.
-- **Repeated chosen digit:** Every occurrence must change; `replace` enforces this rule exactly.
-- **Replacement digit equals original:** This permits leaving an already optimal maximum or minimum unchanged.
-- **No leading zero:** The minimum uses 1 for a changed leading digit and never replaces a leading one with zero.
-- **Independent operations:** The digit choice used for `a` has no effect on which digit may be chosen for `b`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading Zero Invalidation:** Changing the first digit to $0$ creates an invalid number (e.g. turning $555$ into $000$). The first digit can only be reduced to $1$.
+- **Cascading Leading Zero Trap:** If the leading digit is already $1$ (e.g. $123456$), attempting to minimize an interior digit that equals $1$ to $0$ will also change the leading digit to $0$. Interior reduction to $0$ is only permitted for digits $x \notin \{0, 1\}$.
+- **Partial Replacement:** Replacing only the first occurrence of digit $x$ instead of all occurrences violates the problem contract.
+- **Already Optimal Numbers:** If a number is already $999$, $a = 999$; if a number is $1000$, $b = 1000$. The logic must handle no-op cases gracefully.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d)$. Let $d$ be the number of decimal digits. Each scan visits at most $d$ characters. Python's `str.replace` also scans and creates a length-$d$ string, and integer conversion is linear in the digit count. Total time is $O(d)$.
-- **Auxiliary Space Complexity:** $O(d)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\log_{10} num)$, where $\log_{10} num$ is the number of decimal digits in $num$. Since $num \le 10^8$, the string has at most $9$ digits. Scanning and replacing digits takes at most a few dozen operations, running in sub-microsecond time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\log_{10} num)$ to store the string representation of $num$ and its substituted variations.

@@ -1,135 +1,181 @@
 # Guided Example: Finding the Users Active Minutes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of user active minutes via set-based deduplication and histogram bucket aggregation on a representative problem instance:
 
-- **Input:** `{"logs": [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]], "k": 5}`
-- **Required output:** `[0, 2, 0, 0, 0]`
+- **Input:** `logs = [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]], k = 5`
+- **Required Output:** `[0, 2, 0, 0, 0]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how multiple actions by the same user within the same minute are deduplicated, how distinct active minutes are counted per user, and how the resulting user active minutes are binned into a 1-indexed frequency histogram.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given the logs for users' actions on LeetCode, and an integer `k`. The logs are represented by a 2D integer array `logs` where each $\text{logs}[i] = [\text{ID}_{i}, \text{time}_{i}]$ indicates that the user with $\text{ID}_{i}$ performed an action at the minute $\text{time}_{i}$.
+We are given a 2D integer array `logs` where each record $[\text{ID}_i, \text{time}_i]$ indicates that the user with identifier $\text{ID}_i$ performed an action at minute $\text{time}_i$. Multiple actions can occur at the same minute.
+We are also given an integer $k$.
 
-The objective is to compute `[0, 2, 0, 0, 0]` from `{"logs": [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]], "k": 5}` while avoiding redundant calculations and unnecessary overhead.
+Definitions:
+- The **User Active Minutes (UAM)** for a given user is the number of **unique** minutes in which that user performed at least one action.
+- We must return a 1-indexed array of length $k$, represented as a 0-indexed list $\text{ans}$ of length $k$, where $\text{ans}[j - 1]$ is the number of users whose UAM equals $j$ for $1 \le j \le k$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- `logs = [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]]`
+- $k = 5$
+- User $0$ performed actions at minutes $5$, $2$, and $5$. The unique minutes are $\{2, 5\}$, so $\text{UAM}(0) = 2$.
+- User $1$ performed actions at minutes $2$ and $3$. The unique minutes are $\{2, 3\}$, so $\text{UAM}(1) = 2$.
+- Both users have a UAM of $2$. No users have UAM equal to $1$, $3$, $4$, or $5$.
+- Result histogram: `[0, 2, 0, 0, 0]`.
+
+The teaching goal is to decouple the problem into two sequential phases: first, grouping and set-deduplicating timestamps by user ID; second, computing the size of each user's unique minute set and incrementing the corresponding bucket in the frequency array.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### User Activity Projection & Deduplication
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $\mathcal{L} = \{(\text{ID}_i, \text{time}_i)\}$ denote the log entries.
+For each distinct user $u$, define their active minute set:
+$$M_u = \{ t : (u, t) \in \mathcal{L} \}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The cardinality $|M_u|$ represents the user's active minutes:
+$$\text{UAM}(u) = |M_u|$$
+
+Duplicate logs for the same user at the same minute (such as $[0, 5]$ appearing twice) do not increase $|M_u|$ because sets contain only unique elements.
+
+### Relational Deduplication & Histogram Aggregation Theorem
+
+> **Relational Deduplication & Histogram Aggregation Theorem.**
+> Let $\mathcal{U}$ be the set of unique user IDs appearing in $\mathcal{L}$.
+> The distribution of user activity across the population is given by the frequency histogram $H$ of length $k$:
+> $$H[j - 1] = \sum_{u \in \mathcal{U}} [\text{UAM}(u) = j], \quad 1 \le j \le k$$
+> where $[\cdot]$ is the Iverson indicator bracket.
+> Because each log entry $(u, t)$ is processed once to update the set $M_u$ via a hash map, and each unique user's set cardinality $|M_u|$ increments exactly one bucket $H[|M_u| - 1]$, the two-phase aggregation is exact, deterministic, and executes in linear time with respect to the number of log entries.
+
+```mermaid
+flowchart TD
+    accTitle: User Active Minutes Two-Phase Flow
+    accDescr: Diagram illustrating grouping log entries by user into sets of unique timestamps, computing set sizes, and populating the histogram.
+    A["Input logs: [[0,5], [1,2], [0,2], [0,5], [1,3]], k = 5"] --> B["Group by User ID with Set Deduplication"]
+    B --> C["User 0: {2, 5} -> UAM = 2"]
+    B --> D["User 1: {2, 3} -> UAM = 2"]
+    C --> E["Increment Histogram Bucket at index UAM - 1"]
+    D --> E
+    E --> F["Bucket index 1 (UAM = 2): Count = 2"]
+    F --> G["Final Histogram: [0, 2, 0, 0, 0]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Deduplicate minutes separately for every user
-
-The same user may perform several actions during one minute, but that minute contributes only once to the user's active-minute count. Different users acting at the same minute must remain separate.
-
-The appropriate representation is therefore a mapping:
-
-`user ID -> set of action minutes`.
-
-The protected solution creates `d = defaultdict(set)`. For every log `[i, t]`, it executes `d[i].add(t)`.
-
-If the user has not appeared before, the default factory creates an empty set. If the exact minute is already present, adding it again changes nothing. This enforces uniqueness locally per user.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"logs": [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]], "k": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `logs = [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]]` with $k = 5$.
 
 ---
 
-### Step 2: Convert each user's set size into one histogram bucket
+### Step 1: Initialize User Timestamp Sets
 
-After processing all logs, `len(ts)` is that user's UAM.
-
-The requested answer is described with one-based UAM values but returned as a normal zero-based Python list. Therefore:
-
-- UAM 1 belongs at index 0;
-- UAM 2 belongs at index 1;
-- in general, UAM $j$ belongs at index $j-1$.
-
-The solution creates `ans = [0] * k` and, for each user's set `ts`, increments
-
-`ans[len(ts) - 1]`.
-
-The constraint guarantees `k` is at least the maximum UAM, so this index is always within the list.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Create a hash map $D$ mapping user ID to a set of timestamps:
+$$D = \{\}$$
 
 ---
 
-### Step 3: Following the first example
+### Step 2: Stream Log Records into the Hash Map
 
-Logs for user 0 contain minutes 5, 2, and 5. Their set becomes `{2,5}`, so UAM is two.
+Process each log record $[\text{ID}, \text{time}]$:
 
-User 1 has minutes 2 and 3, also giving UAM two.
+1. **Log $0$:** `[0, 5]`
+   - User $0$ is seen for the first time. Initialize set $\{5\}$.
+   - State: $D = \{0: \{5\}\}$.
 
-Both users increment index one. The result `[0,2,0,0,0]` means zero users have UAM one, two users have UAM two, and none have larger UAM values.
+2. **Log $1$:** `[1, 2]`
+   - User $1$ is seen for the first time. Initialize set $\{2\}$.
+   - State: $D = \{0: \{5\}, 1: \{2\}\}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 2, 0, 0, 0]` |
+3. **Log $2$:** `[0, 2]`
+   - User $0$ adds minute $2$.
+   - State: $D = \{0: \{2, 5\}, 1: \{2\}\}$.
+
+4. **Log $3$:** `[0, 5]`
+   - User $0$ attempts to add minute $5$. Since $5 \in \{2, 5\}$, the set is unchanged.
+   - State: $D = \{0: \{2, 5\}, 1: \{2\}\}$.
+
+5. **Log $4$:** `[1, 3]`
+   - User $1$ adds minute $3$.
+   - State: $D = \{0: \{2, 5\}, 1: \{2, 3\}\}$.
+
+All logs have been ingested.
+
+---
+
+### Step 3: Compute UAM and Accumulate Histogram
+
+Initialize output histogram array of length $k = 5$ with all zeros:
+$$\text{ans} = [0, 0, 0, 0, 0]$$
+
+Iterate over each user in $D$:
+- **User $0$:**
+  - Unique minute set: $\{2, 5\}$
+  - $\text{UAM} = |\{2, 5\}| = 2$
+  - 0-indexed bucket: $\text{UAM} - 1 = 2 - 1 = 1$
+  - Increment $\text{ans}[1]$ from $0 \to 1$.
+  - State: $\text{ans} = [0, 1, 0, 0, 0]$.
+
+- **User $1$:**
+  - Unique minute set: $\{2, 3\}$
+  - $\text{UAM} = |\{2, 3\}| = 2$
+  - 0-indexed bucket: $\text{UAM} - 1 = 2 - 1 = 1$
+  - Increment $\text{ans}[1]$ from $1 \to 2$.
+  - State: $\text{ans} = [0, 2, 0, 0, 0]$.
+
+All users processed.
+
+---
+
+### Step 4: Final Output
+
+Output array: `[0, 2, 0, 0, 0]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"logs": [[0, 5], [1, 2], [0, 2], [0, 5], [1, 3]], "k": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 2, 0, 0, 0]` | Verified |
+| Log Index | Processed Record | Target User | Minute Recorded | User's Set After Insertion | Status / Observation |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| $0$ | `[0, 5]` | User $0$ | $5$ | $\{5\}$ | New user registered |
+| $1$ | `[1, 2]` | User $1$ | $2$ | $\{2\}$ | New user registered |
+| $2$ | `[0, 2]` | User $0$ | $2$ | $\{2, 5\}$ | New minute added |
+| $3$ | `[0, 5]` | User $0$ | $5$ | $\{2, 5\}$ | Duplicate minute ignored |
+| $4$ | `[1, 3]` | User $1$ | $3$ | $\{2, 3\}$ | New minute added |
+
+**User Summary & Histogram Mapping:**
+
+| User ID | Unique Active Minutes Set | Cardinality ($\text{UAM}$) | Target Index ($\text{UAM} - 1$) | Histogram Bucket Updated |
+|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $\{2, 5\}$ | $2$ | $1$ | $\text{ans}[1] \to 1$ |
+| $1$ | $\{2, 3\}$ | $2$ | $1$ | $\text{ans}[1] \to 2$ |
+
+Final result vector: **`[0, 2, 0, 0, 0]`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Mathematical sets strictly reject duplicate values. Inserting timestamps for a user into a hash set ensures that multiple actions occurring during the same minute contribute exactly $1$ to that user's active minutes count. Mapping a user with $\text{UAM} = j$ to index $j - 1$ correctly matches the 1-indexed definition of the histogram.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every log record is ingested, and every distinct user appearing in the logs is iterated over. Since all users with at least one action have $\text{UAM} \ge 1$, every active user is counted in the histogram.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort logs by user and minute:** Deduplicate adjacent pairs and count runs in $O(n\log n)$ time without nested sets.
-- **Global set of pairs:** `(user, minute)` pairs deduplicate correctly, but another grouping pass is still needed.
-- **Count every log:** It overcounts users who perform several actions in one minute.
-- **Global minute set:** It incorrectly merges different users' activity.
-- **Duplicate identical log:** Set insertion leaves UAM unchanged.
-- **Same user, different minutes:** Every distinct minute increases that user's set size.
-- **Different users, same minute:** Each user's separate set counts the minute independently.
-- **One log:** One user has UAM one and increments the first entry.
-- **All logs for one user and minute:** The first answer bucket is one regardless of duplicate count.
-- **Maximum UAM equals `k`:** Index `k - 1` is valid and receives the user.
-- **Large sparse user IDs:** A dictionary avoids allocating an array up to the largest ID.
-- **No zero-UAM bucket:** Only users present in logs are considered.
-- **Output indexing:** Human UAM value $j$ maps to Python index $j-1$.
-- **Input preservation:** Sets summarize logs without modifying the input rows.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Minute Counting:** Counting raw log rows instead of unique minutes artificially inflates User $0$'s UAM to $3$, leading to an incorrect result of `[0, 1, 1, 0, 0]`.
+- **1-Indexed to 0-Indexed Conversion:** UAM values range from $1$ to $k$, but array indices range from $0$ to $k - 1$. Failing to subtract $1$ causes out-of-bounds errors for $\text{UAM} = k$ and leaves index $0$ unused.
+- **Cross-User Timestamp Collisions:** Both User $0$ and User $1$ acted at minute $2$. Active minutes are independent per user; actions by different users at the same minute do not interfere with each other.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(U)$. Let $n$ be the number of logs and $U$ the number of users. Each expected hash-map lookup and set insertion is $O(1)$, so building `d` takes expected $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(n + k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N + k)$, where $N$ is the number of elements in `logs`. Iterating through `logs` takes $\mathcal{O}(N)$ time with $\mathcal{O}(1)$ average set insertion time. Iterating through all users to populate the histogram takes $\mathcal{O}(U)$ time where $U \le N$ is the number of unique users. Initializing the histogram of size $k$ takes $\mathcal{O}(k)$ time. Overall time is $\mathcal{O}(N + k)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N + k)$ to store the hash map of timestamp sets for all users and the histogram array of size $k$.

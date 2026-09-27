@@ -1,128 +1,190 @@
 # Guided Example: Add Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step column-by-column decimal full-adder addition, backward two-pointer traversal, base-10 digit splitting ($\text{divmod}(a + b + c, 10)$), and carry propagation on representative big-integer strings:
 
-- **Input:** `{"num1": "11", "num2": "123"}`
-- **Required output:** `"134"`
+- **Input:** $num1 = \text{"456"}, \quad num2 = \text{"77"}$
+- **Required output:** `"533"`
+  - Pointers start at least significant digits:
+    - $i = |num1| - 1 = 2 \quad (num1[2] = \text{'6'})$
+    - $j = |num2| - 1 = 1 \quad (num2[1] = \text{'7'})$
+    - Carry: $c = 0$
+  - Column 0 ($10^0$, Units):
+    - Digits: $a = 6, b = 7, c = 0$
+    - Sum: $6 + 7 + 0 = 13$
+    - Carry: $c \leftarrow \lfloor 13 / 10 \rfloor = 1$
+    - Current digit: $v = 13 \bmod 10 = 3$
+    - Emitted digit: `'3'`
+  - Column 1 ($10^1$, Tens):
+    - Digits: $a = 5, b = 7, c = 1$
+    - Sum: $5 + 7 + 1 = 13$
+    - Carry: $c \leftarrow \lfloor 13 / 10 \rfloor = 1$
+    - Current digit: $v = 13 \bmod 10 = 3$
+    - Emitted digit: `'3'`
+  - Column 2 ($10^2$, Hundreds):
+    - Digits: $a = 4, b = 0$ (exhausted), $c = 1$
+    - Sum: $4 + 0 + 1 = 5$
+    - Carry: $c \leftarrow \lfloor 5 / 10 \rfloor = 0$
+    - Current digit: $v = 5 \bmod 10 = 5$
+    - Emitted digit: `'5'`
+  - Final assembly:
+    - Reverse emitted digits: `'3', '3', '5'` reversed is `"533"`.
+- **Leading Carry Expansion:** $num1 = \text{"99"}, num2 = \text{"1"} \implies 9+1=10 \to 9+1=10 \to$ final carry $1 \implies \text{"100"}$
+- **Zero Addition:** $num1 = \text{"0"}, num2 = \text{"0"} \implies \text{"0"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates simulating base-10 positional arithmetic on arbitrary-precision strings without using native big-integer conversions, deriving $O(\max(M, N))$ runtime and $O(\max(M, N))$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two non-negative integers, `num1` and `num2` represented as string, return *the sum of* `num1` *and* `num2` *as a string*.
+Given two non-negative integers represented as strings $num1 = \text{"456"}$ and $num2 = \text{"77"}$:
+Calculate the sum of $num1$ and $num2$ as a string, without converting the inputs directly to integers or using built-in big-integer libraries:
 
-The objective is to compute `"134"` from `{"num1": "11", "num2": "123"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Align by Place Value (Right-to-Left):
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+       [Carry: 1  1  0]
+  num1:        4  5  6
++ num2:           7  7
+-----------------------
+  Sum:         5  3  3
+```
+
+### The Big-Integer Addition Rule
+Because integers in string form can be arbitrarily large (exceeding standard 64-bit primitive integer limits), addition must process the digits column by column from the least significant digit (rightmost) to the most significant digit (leftmost), maintaining a running **carry** bit $c \in \{0, 1\}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Decimal Full-Adder Equations:
+At place value index $k$:
+- Let $a$ be the digit from $num1$ (or $0$ if $num1$ is exhausted).
+- Let $b$ be the digit from $num2$ (or $0$ if $num2$ is exhausted).
+- Let $c_{in}$ be the incoming carry ($0$ or $1$).
+The column sum is:
+$$
+S = a + b + c_{in}
+$$
+The value written to the current place is:
+$$
+v = S \bmod 10
+$$
+The outgoing carry to the next column is:
+$$
+c_{out} = \lfloor S / 10 \rfloor
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Termination Condition:
+The addition loop continues as long as:
+$$
+(i \ge 0) \lor (j \ge 0) \lor (c > 0)
+$$
+Even if both strings have been completely traversed ($i < 0$ and $j < 0$), an outstanding carry ($c = 1$) must still be emitted as the most significant digit.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of processing column $k$, the collected prefix of emitted digits represents the exact mathematical sum of the least-significant $k$ digits of $num1$ and $num2$, plus $c \times 10^k$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Recreate elementary addition one decimal column at a time
-
-The inputs may contain up to $10^4$ digits, so converting an entire string to a built-in integer is both forbidden and contrary to the purpose of the problem. The optimal method performs the same right-to-left addition taught on paper.
-
-Decimal place values align at the right edge. The final character of each string is the ones digit, the preceding character is the tens digit, and so on. The pointers
-
-`i = len(num1) - 1` and `j = len(num2) - 1`
-
-therefore begin at corresponding least-significant digits. Moving both pointers left after each iteration advances to the next place value.
-
-The result digits are discovered from least significant to most significant. They are appended to `ans` in that convenient discovery order and reversed only once at the end.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num1": "11", "num2": "123"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $num1 = \text{"456"}$ ($M = 3$), $num2 = \text{"77"}$ ($N = 2$):
+Initialize pointers $i = 2, j = 1$, carry $c = 0$, buffer `digits = []`.
 
 ---
 
-### Step 2: Treat a missing digit as zero
-
-The two strings need not have equal lengths. While pointer `i` remains valid, `a = int(num1[i])`; once it becomes negative, `a = 0`. The same rule produces `b` from `num2` and pointer `j`.
-
-Converting one character such as `'7'` to the small integer `7` is not converting the input number as a whole. It is exactly the per-digit interpretation required for manual arithmetic. A missing higher place in the shorter input contributes zero, just as writing leading zeros for alignment would do, but the algorithm does not actually allocate padded strings.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Units Column ($10^0$)
+- Pointers: $i = 2 \implies num1[2] = \text{'6'}$, $j = 1 \implies num2[1] = \text{'7'}$.
+- Digits: $a = 6, b = 7$.
+- Calculate:
+  $$
+  S = 6 + 7 + 0 = \mathbf{13}
+  $$
+  $$
+  v = 13 \bmod 10 = \mathbf{3}, \quad c \leftarrow \lfloor 13 / 10 \rfloor = \mathbf{1}
+  $$
+- Append `'3'` to buffer: `['3']`.
+- Advance pointers: $i \leftarrow 1, j \leftarrow 0$.
 
 ---
 
-### Step 3: Separate the current digit from the carry
+### Step 2: Tens Column ($10^1$)
+- Pointers: $i = 1 \implies num1[1] = \text{'5'}$, $j = 0 \implies num2[0] = \text{'7'}$.
+- Digits: $a = 5, b = 7$, incoming carry $c = 1$.
+- Calculate:
+  $$
+  S = 5 + 7 + 1 = \mathbf{13}
+  $$
+  $$
+  v = 13 \bmod 10 = \mathbf{3}, \quad c \leftarrow \lfloor 13 / 10 \rfloor = \mathbf{1}
+  $$
+- Append `'3'` to buffer: `['3', '3']`.
+- Advance pointers: $i \leftarrow 0, j \leftarrow -1$.
 
-The variable `c` is the carry entering the current column. Initially it is zero. For digit values `a` and `b`, the column total is `a + b + c`.
+---
 
-The line
+### Step 3: Hundreds Column ($10^2$)
+- Pointers: $i = 0 \implies num1[0] = \text{'4'}$, $j = -1 \implies$ string exhausted, $b = 0$.
+- Digits: $a = 4, b = 0$, incoming carry $c = 1$.
+- Calculate:
+  $$
+  S = 4 + 0 + 1 = \mathbf{5}
+  $$
+  $$
+  v = 5 \bmod 10 = \mathbf{5}, \quad c \leftarrow \lfloor 5 / 10 \rfloor = \mathbf{0}
+  $$
+- Append `'5'` to buffer: `['3', '3', '5']`.
+- Advance pointers: $i \leftarrow -1, j \leftarrow -2$.
 
-`c, v = divmod(a + b + c, 10)`
+---
 
-computes quotient and remainder when that total is divided by ten. The remainder `v` is the output digit for the current place, because it lies from `0` through `9`. The quotient becomes the carry into the next column.
-
-The maximum total is `9 + 9 + 1 = 19`, so the new carry is always either zero or one. For example, adding digits `8` and `7` with incoming carry `1` gives `16`; `divmod(16, 10)` returns `(1, 6)`. The algorithm appends `'6'` now and carries `1` leftward.
-
-The digit is converted back to text with `str(v)` before being appended. As a result, `ans` is a list of string pieces ready for the final join.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"134"` |
+### Step 4: Loop Exit & Reversal
+- Check condition: $i = -1 < 0$, $j = -2 < 0$, $c = 0$.
+- Loop terminates.
+- Reverse buffer:
+  $$
+  [\text{'3'}, \text{'3'}, \text{'5'}] \xrightarrow{\text{Reverse}} [\text{'5'}, \text{'3'}, \text{'3'}] \implies \text{"533"}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num1": "11", "num2": "123"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"134"` | Verified |
+| Column | Place Value | Pointer $i$ ($num1[i]$) | Pointer $j$ ($num2[j]$) | Incoming Carry $c$ | Column Sum $S = a + b + c$ | Written Digit $S \bmod 10$ | Outgoing Carry $\lfloor S/10 \rfloor$ | Accumulated Reversed Buffer |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **Init** | — | $2$ | $1$ | $0$ | — | — | — | `[]` |
+| **1** | $10^0$ (Units) | $2$ (`'6'`) | $1$ (`'7'`) | $0$ | $6 + 7 + 0 = 13$ | **`3`** | **`1`** | `['3']` |
+| **2** | $10^1$ (Tens) | $1$ (`'5'`) | $0$ (`'7'`) | $1$ | $5 + 7 + 1 = 13$ | **`3`** | **`1`** | `['3', '3']` |
+| **3** | $10^2$ (Hundreds) | $0$ (`'4'`) | $-1$ (`0`) | $1$ | $4 + 0 + 1 = 5$ | **`5`** | **`0`** | `['3', '3', '5']` |
+| **Done** | — | $-1$ | $-2$ | $0$ | — | — | — | **Reversed: `"533"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Unequal Lengths ($num1 = \text{"11"}, num2 = \text{"123"}$):** Shorter string exhausts earlier. Safe fallback evaluates missing digits as $0$ without null-pointer exceptions. Result: `"134"`.
+- **Final Carry Overflow ($num1 = \text{"99"}, num2 = \text{"1"}$):** Both $i$ and $j$ reach $-1$, but $c = 1$. The loop condition `c > 0` triggers an extra iteration, emitting `'1'` and expanding output length to 3 digits (`"100"`).
+- **Both Zeroes ($num1 = \text{"0"}, num2 = \text{"0"}$):** Single iteration evaluates $0 + 0 + 0 = 0$, emitting `"0"`. No invalid empty string or multiple leading zeros.
+- **Large Inputs ($|num1|, |num2| \le 10^4$):** Because addition operates in linear time and appends to a mutable list, performance is instantaneous and does not suffer from quadratic string reallocation costs.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Convert both full strings to integers:** This violates the explicit contract and may rely on arbitrary-precision library behavior the exercise asks the solution to implement.
-- **Prepend each new digit to a string:** It mirrors written order but is inefficient with immutable strings because every prepend can copy the accumulated result. A list plus one reversal is linear.
-- **Pad the shorter input with leading zeros:** This can simplify indexing and still be correct, but it allocates extra strings unnecessarily. Conditional zero digits provide the same alignment in constant auxiliary state beyond the result.
-- **Use character-code subtraction instead of `int` per digit:** `ord(ch) - ord('0')` is equivalent and avoids the digit conversion helper. Both respect the prohibition on converting the complete input.
-- **Different input lengths:** Once one pointer is negative, its digit is zero while the other number continues normally.
-- **Final carry:** Sums such as `"9" + "1"` need an additional most-significant digit. Including `c` in the loop condition produces it.
-- **No final carry:** The loop stops after the last real column and adds no spurious leading zero.
-- **Both inputs equal zero:** One column produces `'0'`, and the normalized result is exactly `"0"`.
-- **Long chains of carries:** Inputs such as `"9999" + "1"` propagate `c = 1` across every column; the invariant handles each independently.
-- **Normalized input guarantee:** Except for `"0"`, inputs have no leading zeros. The algorithm would still compute the numeric sum if leading zeros were present, but normalization of the returned representation relies on the stated contract.
-- **Maximum-length inputs:** Work and storage grow linearly with the number of digits; no recursion or whole-number conversion risks numeric overflow.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Direct String Prepends:** Writing `ans = str(v) + ans` inside the loop causes $O(K^2)$ quadratic runtime due to repeated memory allocations for strings of length $1, 2, \dots, K$. Appending to a list and reversing once at the end guarantees strict $O(K)$ linear time.
+- **Premature Loop Termination:** Writing `while i >= 0 and j >= 0` terminates as soon as the shorter string runs out, dropping the higher place values of the longer number.
+- **Dropping the Final Carry:** Omitting `or c` from the loop condition misses the overflow digit in cases like `"99" + "1"`, yielding `"00"` instead of `"100"`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\max(m,n)$. Let $m = \lvert\texttt{num1}\rvert$ and $n = \lvert\texttt{num2}\rvert$. The loop processes one decimal column per iteration and may run once more for a final carry. It therefore executes at most $\max(m,n)+1$ times, giving $O(\max(m,n))$ time. Reversing the digit list and joining it also take linear time in the output length, so the bound is unchanged.
-- **Auxiliary Space Complexity:** $O(\max(m,n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $M = |num1|$ and $N = |num2|$.
+  - The loop runs for $\max(M, N) + 1$ iterations.
+  - In each iteration, digit lookup, modular arithmetic, and list appending take $O(1)$ time.
+  - Final array reversal takes $O(\max(M, N))$ time.
+  - Total Time: $\mathcal{O}(\max(M, N))$.
+- **Auxiliary Space Complexity:**
+  - The list buffer stores $\max(M, N) + 1$ characters.
+  - Total Auxiliary Space: $\mathcal{O}(\max(M, N))$ to construct the resulting string.

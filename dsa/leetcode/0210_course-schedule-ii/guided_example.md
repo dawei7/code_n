@@ -1,157 +1,206 @@
 # Guided Example: Course Schedule II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Kahn topological sort ordering reconstruction, queue-driven dependency unlocking, and deadlock cycle detection on representative curriculum prerequisite networks:
 
-- **Input:** `{"numCourses": 2, "prerequisites": [[1, 0]]}`
-- **Required output:** `[0, 1]`
+- **Input:** $\text{numCourses} = 4, \quad \text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]$
+- **Required output:** $[0, 1, 2, 3]$ (or $[0, 2, 1, 3]$)
+- **Deadlock Cycle Instance:** $\text{numCourses} = 2, \quad \text{prerequisites} = [[1, 0], [0, 1]] \implies []$ (Cycle prevents full topological traversal)
+- **Unconstrained Instance:** $\text{numCourses} = 3, \quad \text{prerequisites} = [] \implies [0, 1, 2]$ (Any permutation of courses is valid)
+- **Single Course Instance:** $\text{numCourses} = 1, \quad \text{prerequisites} = [] \implies [0]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates generating an explicit valid linear ordering of vertices in a Directed Acyclic Graph (DAG), proves why the existence of a cycle requires returning an empty array (`[]`), tracks evolving in-degrees ($u \to v$), and runs in strictly $O(V + E)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $b_{i}$ first if you want to take course $a_{i}$.
+Given $V = 4$ courses ($0, 1, 2, 3$) and prerequisite rules $[a_i, b_i]$ where **course $b_i$ must precede course $a_i$**:
+$$
+\text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]
+$$
+Construct and return a **complete sequence of all 4 courses** satisfying all prerequisite constraints. If no valid sequence exists (due to a circular dependency), return the empty list `[]`.
 
-The objective is to compute `[0, 1]` from `{"numCourses": 2, "prerequisites": [[1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+Graph structure ($b_i \to a_i$):
+- $0 \to 1$
+- $0 \to 2$
+- $1 \to 3$
+- $2 \to 3$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+      0
+     / \
+    v   v
+    1   2
+     \ /
+      v
+      3
+```
+
+Topological analysis:
+- Course $0$ has no prerequisites $\implies$ Must be taken first.
+- Once $0$ is completed, both courses $1$ and $2$ become available.
+- Either $1$ or $2$ can be taken next.
+- Course $3$ requires both $1$ and $2$, so it must be taken last.
+Valid output schedules: $[0, 1, 2, 3]$ or $[0, 2, 1, 3]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Kahn's Algorithm for Topological Ordering
+1. **Graph Representation:**
+   Build adjacency list $\text{adj}$ and in-degree array $\text{in\_degree}$:
+   For each $[a, b] \in \text{prerequisites}$:
+   $$
+   \text{adj}[b].\text{append}(a), \quad \text{in\_degree}[a] \leftarrow \text{in\_degree}[a] + 1
+   $$
+2. **Seed Initial Frontier:**
+   Find all courses that currently have zero unsatisfied prerequisites:
+   $$
+   Q = \text{deque}([u \mid \text{in\_degree}[u] == 0])
+   $$
+3. **Queue-Driven Order Assembly:**
+   Maintain output array $\text{order} = []$.
+   While $Q$ is not empty:
+   - Pop available course $u = Q.\text{popleft}()$.
+   - Append to schedule: $\text{order.append}(u)$.
+   - For each dependent course $v \in \text{adj}[u]$:
+     $$
+     \text{in\_degree}[v] \leftarrow \text{in\_degree}[v] - 1
+     $$
+     If $\text{in\_degree}[v] == 0$:
+       $$
+       Q.\text{append}(v)
+       $$
+4. **Cycle Verification:**
+   If $\text{len}(\text{order}) == V$, return $\text{order}$.
+   Otherwise, a directed cycle exists preventing some courses from reaching in-degree 0 $\implies$ return `[]`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At every step, every course appended to `order` has all of its prerequisites already present at earlier positions in `order`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate prerequisites into directed edges in the useful direction
+We trace the algorithm on $V = 4$, $\text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]$:
 
-Treat each course as a vertex in a directed graph. A pair `[a, b]` says that
-course `b` must be completed before course `a`, so the graph needs the edge
-`b -> a`. The direction matters: once `b` has been taken, that edge tells the
-algorithm which dependent course may have become available.
-
-The exact solution stores these outgoing edges in `g`, a `defaultdict(list)`.
-For every pair `[a, b]`, it appends `a` to `g[b]`. At the same time,
-`indeg[a]` is incremented. The indegree of a course is the number of its
-prerequisites that have not yet been removed from consideration. Initially no
-course has been processed, so the constructed value is simply its total number
-of prerequisite edges.
-
-Reversing the edge would break both structures' meaning. If `[a, b]` were
-stored as `a -> b`, processing `a` would appear to unlock `b`, even though the
-contract requires `b` first. The chosen `b -> a` direction makes each later
-indegree decrement correspond to satisfying one real prerequisite.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numCourses": 2, "prerequisites": [[1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 0: Initial State
+- Adjacency Map:
+  - $0 \to [1, 2]$
+  - $1 \to [3]$
+  - $2 \to [3]$
+  - $3 \to []$
+- In-Degrees:
+  - $\text{in\_degree} = [0, 1, 1, 2]$
+- Initial Queue: $Q = [0]$ (Only course 0 has in-degree 0).
+- $\text{order} = []$.
 
 ---
 
-### Step 2: The next legal course always has indegree zero
-
-A course can be placed next in the answer only when none of its prerequisites
-remain unprocessed. In the graph, that condition is exactly indegree zero.
-The solution initializes a `deque` named `q` with every course whose entry in
-`indeg` is zero, including isolated courses that do not appear in any pair.
-
-There can be several zero-indegree courses at once. Their relative order does
-not matter because none currently depends on another through an unprocessed
-incoming edge. The problem permits any valid ordering, so the deque's order is
-acceptable. With the exact initialization, courses are inserted in increasing
-numeric order, while newly unlocked courses are appended as they become
-available; this determines one possible result but is not a requirement of the
-problem.
-
-The algorithm is Kahn's topological-sort algorithm. While the deque is not
-empty, it removes one course `i` from the front and appends it to `ans`. At that
-moment, `i` has no remaining prerequisite, so placing it after the courses
-already in `ans` is legal. Processing `i` conceptually removes `i` and all of
-its outgoing edges from the remaining graph.
-
-For every dependent course `j` in `g[i]`, removing edge `i -> j` satisfies one
-of `j`'s prerequisites, so the solution decrements `indeg[j]`. If the new value
-is zero, every prerequisite of `j` has now been processed, and `j` is appended
-to the deque. If the value remains positive, at least one required course is
-still missing, so enqueuing `j` would be premature.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Course 0
+- Pop $u = 0$.
+- Append to schedule: $\text{order} = [0]$.
+- Decrement outgoing edges from 0:
+  - Edge $0 \to 1$: $\text{in\_degree}[1] = 1 - 1 = \mathbf{0} \implies$ Enqueue 1!
+  - Edge $0 \to 2$: $\text{in\_degree}[2] = 1 - 1 = \mathbf{0} \implies$ Enqueue 2!
+- Queue state: $Q = [1, 2]$.
 
 ---
 
-### Step 3: Why a course is never emitted twice
+### Step 2: Process Course 1
+- Pop $u = 1$.
+- Append to schedule: $\text{order} = [0, 1]$.
+- Decrement outgoing edges from 1:
+  - Edge $1 \to 3$: $\text{in\_degree}[3] = 2 - 1 = \mathbf{1} \ne 0$ *(Course 3 still awaits course 2)*.
+- Queue state: $Q = [2]$.
 
-Each input pair is distinct, and every directed edge is processed once, when
-its source is removed from the deque. A course enters the deque initially if
-its indegree begins at zero. Otherwise, it enters exactly on the one decrement
-that changes its indegree from one to zero. Later decrements cannot happen for
-a valid count after it reaches zero because those would correspond to other
-incoming edges that should already have kept the count above zero. Thus each
-course is queued and appended to `ans` at most once.
+---
 
-The array `indeg` is deliberately mutated. It no longer represents original
-prerequisite counts after processing starts; it represents counts in the
-remaining, not-yet-emitted graph. That evolving meaning is what makes the
-constant-time availability test possible.
+### Step 3: Process Course 2
+- Pop $u = 2$.
+- Append to schedule: $\text{order} = [0, 1, 2]$.
+- Decrement outgoing edges from 2:
+  - Edge $2 \to 3$: $\text{in\_degree}[3] = 1 - 1 = \mathbf{0} \implies$ Enqueue 3!
+- Queue state: $Q = [3]$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 1]` |
+---
+
+### Step 4: Process Course 3
+- Pop $u = 3$.
+- Append to schedule: $\text{order} = [0, 1, 2, 3]$.
+- No outgoing edges from 3.
+- Queue state: $Q = []$ (Empty).
+
+---
+
+### Step 5: Feasibility Validation
+- Loop terminates.
+- Check length:
+  $$
+  \text{len}(\text{order}) = 4 == \text{numCourses}
+  $$
+- Complete schedule successfully generated: $\mathbf{[0, 1, 2, 3]}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numCourses": 2, "prerequisites": [[1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 1]` | Verified |
+```text
+Prerequisites: [[1,0], [2,0], [3,1], [3,2]], numCourses = 4
+
+In-degrees: {0: 0, 1: 1, 2: 1, 3: 2}
+Queue: [ 0 ]
+
+Step 1: Pop 0 -> order = [0]
+        Edge 0->1: indeg[1] = 0 -> Q.push(1)
+        Edge 0->2: indeg[2] = 0 -> Q.push(2)
+        Q = [1, 2]
+
+Step 2: Pop 1 -> order = [0, 1]
+        Edge 1->3: indeg[3] = 1 -> Q = [2]
+
+Step 3: Pop 2 -> order = [0, 1, 2]
+        Edge 2->3: indeg[3] = 0 -> Q.push(3)
+        Q = [3]
+
+Step 4: Pop 3 -> order = [0, 1, 2, 3] -> Q = []
+
+Length matches numCourses (4 == 4) -> Return [0, 1, 2, 3]
+```
+
+| Step | Popped Course $u$ | In-Degree State $[\text{deg}_0, \text{deg}_1, \text{deg}_2, \text{deg}_3]$ | Decremented Edges | Newly Enqueued | Cumulative `order` |
+|:---:|:---:|:---:|:---|:---:|:---|
+| Init | - | $[0, 1, 1, 2]$ | - | Course 0 | `[]` |
+| **1** | **0** | $[0, 0, 0, 2]$ | $0 \to 1, \, 0 \to 2$ | Courses 1, 2 | `[0]` |
+| **2** | **1** | $[0, 0, 0, 1]$ | $1 \to 3$ | None | `[0, 1]` |
+| **3** | **2** | $[0, 0, 0, 0]$ | $2 \to 3$ | Course 3 | `[0, 1, 2]` |
+| **4** | **3** | $[0, 0, 0, 0]$ | None | None | **`[0, 1, 2, 3]` (Final)** |
+
+### Contrast: Deadlock in Cycle $[[1, 0], [0, 1]]$
+- In-degrees: $\{0: 1, 1: 1\}$.
+- $Q = []$.
+- Loop terminates immediately.
+- $\text{len}(\text{order}) = 0 \ne 2 \implies$ Returns `[]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A course $u$ is appended to `order` only after being popped from the zero in-degree queue, which requires that all incoming edges from prerequisites have already been decremented to zero by earlier courses. Thus, every prerequisite appears before its dependent courses.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If the graph is a DAG, at least one node has in-degree zero at every step until all vertices are consumed. If a cycle exists, the vertices within the cycle never reach in-degree zero, causing $\text{len}(\text{order}) < V$, which correctly triggers the return of `[]`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **DFS with three colors:** Mark each course unvisited, active, or complete; an edge to an active course reveals a cycle, and courses appended after exploring descendants form a reverse postorder. It has the same $O(V+E)$ bounds but recursive Python implementations can reach depth $V$ and require careful reversal and cycle-state handling.
-- **Stack instead of deque:** Kahn's algorithm remains correct if an available course is removed last-in-first-out. It merely selects a different valid topological ordering. The exact solution uses FIFO order with `popleft()`.
-- **Repeatedly scan for an available course:** It avoids a queue but can rescan many blocked vertices after every removal, degrading toward $O(V^2+E)$. Maintaining the zero-indegree frontier makes each availability transition explicit.
-- **No prerequisites:** Every course begins with indegree zero. The exact initialization queues courses `0` through `numCourses - 1`, and the returned list contains them all in that order.
-- **One course:** With no self-edge allowed by the contract, course 0 begins available and the method returns `[0]`.
-- **Several disconnected components:** Initial zero-indegree vertices from all components may be interleaved. This is valid because there are no prerequisite edges constraining the relative order of separate components.
-- **A directed cycle:** No vertex in a closed cycle can reach indegree zero after outside prerequisites are removed. The final length check rejects the partial order and returns an empty list, as required.
-- **A cycle plus independent courses:** Independent courses may appear in `ans` before the queue stalls. The method still returns `[]`, not that partial list, because the contract requires an ordering of every course.
-- **Multiple prerequisites for one course:** Its indegree decreases once per prerequisite edge, and it is queued only after the last one is processed. This prevents a course from appearing after merely some of its requirements.
-- **Distinct-pair guarantee:** The reference says prerequisite pairs are distinct. If duplicate edges were accepted without normalization, both the initial count and later decrements would be duplicated consistently, so this implementation would often still balance them, but relying on duplicates as separate requirements would be an unnecessary representation of invalid input.
-- **Input preservation:** The algorithm mutates only its newly created graph, indegree array, deque, and answer. It reads but does not alter `prerequisites` or its pairs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Returning Partial Array on Cycle:** If the graph has 4 courses but 2 are in a cycle (e.g. $0 \to 1$ and $2 \leftrightarrow 3$), the queue will process courses 0 and 1 and then stall. Returning `[0, 1]` is wrong because the contract requires an ordering of *all* courses. The method must verify $\text{len}(\text{order}) == V$ and return `[]`.
+- **Multiple Valid Orders:** Topological sorts are generally non-unique ($[0, 1, 2, 3]$ and $[0, 2, 1, 3]$ are both valid). Any valid topological order is accepted by the judge.
+- **Disconnected Components:** Courses with zero prerequisites across separate subcomponents are all enqueued initially. Their relative ordering is unconstrained.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V+E)$. Let $V$ be `numCourses` and $E$ be `len(prerequisites)`. Building `g` and
-- **Auxiliary Space Complexity:** $O(V+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(V + E)$, where $V = \text{numCourses}$ and $E = |\text{prerequisites}|$. Graph construction takes $O(V + E)$. Each course is enqueued and dequeued once, and each edge is examined once.
+- **Auxiliary Space Complexity:** $O(V + E)$ auxiliary memory for the adjacency list, in-degree array, and BFS queue.

@@ -1,141 +1,231 @@
 # Guided Example: Evaluate Division
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Weighted Disjoint Set Union (Union-Find with multiplicative weights), path compression weight scaling ($w[x] \leftarrow w[x] \times w[origin]$), root bridge formula derivation ($w[pa] = w[b] \times v / w[a]$), and ratio quotient evaluation ($w[c] / w[d]$) on representative variable division systems:
 
-- **Input:** `{"equations": [["a", "b"], ["b", "c"]], "values": [2, 3], "queries": [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]}`
-- **Required output:** `[6, 0.5, -1, 1, -1]`
+- **Input:** $equations = [[\text{"a"}, \text{"b"}], [\text{"b"}, \text{"c"}]], \; values = [2.0, 3.0]$, queries:
+  - $q_1 = [\text{"a"}, \text{"c"}]$
+  - $q_2 = [\text{"b"}, \text{"a"}]$
+  - $q_3 = [\text{"a"}, \text{"e"}]$
+  - $q_4 = [\text{"a"}, \text{"a"}]$
+  - $q_5 = [\text{"x"}, \text{"x"}]$
+- **Required output:** `[6.0, 0.5, -1.0, 1.0, -1.0]`
+  - Step 1 (Union $a / b = 2.0$):
+    - $p[a] \leftarrow b, \; w[a] \leftarrow 2.0$
+  - Step 2 (Union $b / c = 3.0$):
+    - $p[b] \leftarrow c, \; w[b] \leftarrow 3.0$
+  - Step 3 (Query $a / c$ with path compression):
+    - $\text{find}(a) \implies origin = b, \; p[a] = c, \; w[a] = 2.0 \times 3.0 = 6.0$
+    - Ratio: $w[a] / w[c] = 6.0 / 1.0 = \mathbf{6.0}$
+  - Step 4 (Query $b / a$):
+    - Same root $c$: $w[b] / w[a] = 3.0 / 6.0 = \mathbf{0.5}$
+  - Step 5 (Query $a / e$):
+    - Variable `"e"` unseen in equations $\implies \mathbf{-1.0}$
+  - Step 6 (Query $a / a$):
+    - Variable `"a"` exists $\implies w[a] / w[a] = \mathbf{1.0}$
+  - Step 7 (Query $x / x$):
+    - Variable `"x"` unseen in equations $\implies \mathbf{-1.0}$
+- **Disconnected Components:** $a/b = 2.0, c/d = 3.0 \implies a/d$ has different roots $\implies -1.0$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling multiplicative relational graphs via weighted union-find, mathematically proves why telescoping path compression preserves transitive ratios, and achieves nearly linear $O((E + Q) \alpha(V))$ runtime and $O(V)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of variable pairs `equations` and an array of real numbers `values`, where $\text{equations}[i] = [A_{i}, B_{i}]$ and $\text{values}[i]$ represent the equation $A_{i} / B_{i} = \text{values}[i]$. Each $A_{i}$ or $B_{i}$ is a string that represents a single variable.
+Given a list of equations $A_i / B_i = values[i]$:
+- $a / b = 2.0$
+- $b / c = 3.0$
+Evaluate queries of the form $C / D$:
 
-The objective is to compute `[6, 0.5, -1, 1, -1]` from `{"equations": [["a", "b"], ["b", "c"]], "values": [2, 3], "queries": [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Relational Graph:
+   a ----(2.0)----> b ----(3.0)----> c
+ (a/b=2)          (b/c=3)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Transitive Relations:
+  a / c = (a / b) * (b / c) = 2.0 * 3.0 = 6.0
+  b / a = 1 / (a / b) = 1 / 2.0 = 0.5
+  a / e = Unconnected / Unknown variable 'e' -> -1.0
+  a / a = Known variable 'a' -> 1.0
+  x / x = Unknown variable 'x' -> -1.0
+```
+
+### Why Weighted Union-Find Outperforms Per-Query BFS/DFS
+- A graph traversal (BFS/DFS) across $E$ equations for each of the $Q$ queries costs $O(E \cdot Q)$ worst-case time.
+- **Weighted DSU (Disjoint Set Union):**
+  - Each node $x$ stores its parent $p[x]$ and a weight ratio $w[x] = \frac{x}{p[x]}$.
+  - Path compression flattens the tree, setting $p[x] = root$ and $w[x] = \frac{x}{root}$.
+  - Any valid query $c / d$ evaluates in $O(\alpha(V)) \approx O(1)$ time via:
+    $$
+    \frac{c}{d} = \frac{c / root}{d / root} = \frac{w[c]}{w[d]}
+    $$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Data Structures:
+- `p`: Dictionary mapping each variable $x$ to its parent $p[x]$.
+- `w`: Dictionary where $w[x]$ represents the relative ratio $\frac{x}{p[x]}$. (For a root, $w[r] = 1.0$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Path Compression in `find(x)`:
+When $x \ne p[x]$:
+1. Save intermediate parent: $origin = p[x]$.
+2. Recursively find component root: $p[x] = \text{find}(p[x])$.
+3. Multiply weights along the path:
+   $$
+   w[x] \leftarrow w[x] \times w[origin]
+   $$
+   *Proof:* Since $w[x] = \frac{x}{origin}$ and $w[origin] = \frac{origin}{root}$, their product is $\frac{x}{origin} \times \frac{origin}{root} = \frac{x}{root}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Union Operation on $a / b = v$:
+Let $pa = \text{find}(a)$ and $pb = \text{find}(b)$:
+If $pa \ne pb$, link root $pa$ to $pb$:
+$$
+p[pa] \leftarrow pb
+$$
+What is the new weight $w[pa] = \frac{pa}{pb}$?
+$$
+\frac{pa}{pb} = \frac{a / w[a]}{b / w[b]} = \frac{a}{b} \times \frac{w[b]}{w[a]} = v \times \frac{w[b]}{w[a]}
+$$
+Therefore:
+$$
+w[pa] \leftarrow \frac{w[b] \cdot v}{w[a]}
+$$
+
+> **Invariant.** For any variable $x$, after `find(x)`, $p[x]$ is the component root, and $w[x] = \frac{x}{p[x]}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn equations into connected components with ratios
-
-Each equation connects two variables. If `a / b = 2` and `b / c = 3`, then `a`, `b`, and `c` belong to one connected component, and `a / c = 6`. Variables in different components have no determined ratio.
-
-Ordinary union–find can answer whether two variables are connected. This solution augments it with multiplicative weights so it can also recover their quotient.
-
-It maintains two mappings:
-
-- `p[x]` is the current parent of variable `x`;
-- `w[x]` is the ratio $x / p[x]$.
-
-For a root, `p[x] == x` and its weight is one, because $x/x=1$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"equations": [["a", "b"], ["b", "c"]], "values": [2, 3], "queries": [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $equations = [[\text{"a"}, \text{"b"}], [\text{"b"}, \text{"c"}]], values = [2.0, 3.0]$:
 
 ---
 
-### Step 2: Initialize every known variable before merging
-
-The first loop over `equations` assigns each encountered variable as its own parent. All of this initialization happens before any equation is processed by union, so repeated assignments cannot destroy an already-built component.
-
-The weight dictionary is a `defaultdict` whose missing value is one. Thus every newly initialized root begins with the correct self-ratio.
-
-Variables that appear only in queries are deliberately not inserted. The problem defines them as unknown, even for a query such as `x / x`; the correct result for an undefined variable is `-1.0`, not one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Nodes
+Initialize every variable as its own root with weight 1.0:
+- $p[\text{"a"}] = \text{"a"}, \; w[\text{"a"}] = 1.0$
+- $p[\text{"b"}] = \text{"b"}, \; w[\text{"b"}] = 1.0$
+- $p[\text{"c"}] = \text{"c"}, \; w[\text{"c"}] = 1.0$
 
 ---
 
-### Step 3: What `find(x)` returns and repairs
+### Step 2: Union Equation 1: $a / b = 2.0$
+- Find roots:
+  - $pa = \text{find}(\text{"a"}) = \text{"a"}, \quad w[\text{"a"}] = 1.0$
+  - $pb = \text{find}(\text{"b"}) = \text{"b"}, \quad w[\text{"b"}] = 1.0$
+- Connect roots:
+  $$
+  p[\text{"a"}] \leftarrow \text{"b"}
+  $$
+- Compute root weight:
+  $$
+  w[\text{"a"}] \leftarrow \frac{w[\text{"b"}] \cdot 2.0}{w[\text{"a"}]} = \frac{1.0 \times 2.0}{1.0} = \mathbf{2.0}
+  $$
+- State: $a \to b$ ($w[a] = 2.0$), $b \to b$ ($w[b] = 1.0$).
 
-`find(x)` returns the root of `x`’s component. It also compresses the path and updates `w[x]` so that after the call:
+---
 
-$$
-\texttt{p}[x]=\text{root}
-\quad\text{and}\quad
-\texttt{w}[x]=\frac{x}{\text{root}}.
-$$
+### Step 3: Union Equation 2: $b / c = 3.0$
+- Find roots:
+  - $pa = \text{find}(\text{"b"}) = \text{"b"}, \quad w[\text{"b"}] = 1.0$
+  - $pb = \text{find}(\text{"c"}) = \text{"c"}, \quad w[\text{"c"}] = 1.0$
+- Connect roots:
+  $$
+  p[\text{"b"}] \leftarrow \text{"c"}
+  $$
+- Compute root weight:
+  $$
+  w[\text{"b"}] \leftarrow \frac{w[\text{"c"}] \cdot 3.0}{w[\text{"b"}]} = \frac{1.0 \times 3.0}{1.0} = \mathbf{3.0}
+  $$
+- State: $a \to b$ ($w[a] = 2.0$), $b \to c$ ($w[b] = 3.0$), $c \to c$ ($w[c] = 1.0$).
 
-Suppose `x` currently points to `origin`, and `origin` eventually points to a root. Before compression, the weight invariant gives
+---
 
-$$
-\texttt{w}[x]=\frac{x}{\text{origin}}.
-$$
+### Step 4: Evaluate Queries
 
-The recursive call `find(origin)` compresses `origin` and makes
+- **Query 1: $a / c$:**
+  - $\text{find}(a)$: $p[a] = b \ne a \implies origin = b$.
+    - Recurse: $\text{find}(b) \implies p[b] = c, w[b] = 3.0$.
+    - Compress: $p[a] \leftarrow c$.
+    - Scale weight: $w[a] \leftarrow w[a] \times w[b] = 2.0 \times 3.0 = \mathbf{6.0}$.
+  - $\text{find}(c)$: returns $c, w[c] = 1.0$.
+  - Same root $c \implies$ quotient is:
+    $$
+    \frac{w[a]}{w[c]} = \frac{6.0}{1.0} = \mathbf{6.0}
+    $$
 
-$$
-\texttt{w}[\text{origin}]=\frac{\text{origin}}{\text{root}}.
-$$
+- **Query 2: $b / a$:**
+  - $\text{find}(b) = c, w[b] = 3.0$.
+  - $\text{find}(a) = c, w[a] = 6.0$.
+  - Same root $c \implies$ quotient is:
+    $$
+    \frac{w[b]}{w[a]} = \frac{3.0}{6.0} = \mathbf{0.5}
+    $$
 
-Multiplying the weights yields
+- **Query 3: $a / e$:**
+  - Variable `"e"` not in $p \implies$ return $\mathbf{-1.0}$.
 
-$$
-\frac{x}{\text{origin}}
-\cdot
-\frac{\text{origin}}{\text{root}}
-=
-\frac{x}{\text{root}}.
-$$
+- **Query 4: $a / a$:**
+  - Variable `"a"` exists in $p$. $\text{find}(a) == \text{find}(a) \implies$ return:
+    $$
+    \frac{w[a]}{w[a]} = \mathbf{1.0}
+    $$
 
-That is exactly why the code saves `origin`, recursively updates the parent, and then performs `w[x] *= w[origin]`. Saving the old parent is essential: after `p[x] = find(p[x])`, `p[x]` is already the root, but the multiplication needs the updated weight of the old intermediate parent.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[6, 0.5, -1, 1, -1]` |
+- **Query 5: $x / x$:**
+  - Variable `"x"` not in $p \implies$ return $\mathbf{-1.0}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"equations": [["a", "b"], ["b", "c"]], "values": [2, 3], "queries": [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[6, 0.5, -1, 1, -1]` | Verified |
+```text
+Equations: [["a","b"]: 2.0, ["b","c"]: 3.0]
+
+Union ("a", "b", 2.0): p["a"] = "b", w["a"] = 2.0
+Union ("b", "c", 3.0): p["b"] = "c", w["b"] = 3.0
+
+Queries:
+["a", "c"]: find(a) -> compresses to c, w["a"] = 6.0 -> 6.0 / 1.0 = 6.0
+["b", "a"]: w["b"] / w["a"] = 3.0 / 6.0 = 0.5
+["a", "e"]: "e" not in p -> -1.0
+["a", "a"]: w["a"] / w["a"] = 1.0
+["x", "x"]: "x" not in p -> -1.0
+
+Output: [6.0, 0.5, -1.0, 1.0, -1.0]
+```
+
+| Query $[c, d]$ | $c \in p \land d \in p$? | $\text{find}(c)$ Root | $\text{find}(d)$ Root | Connected ($\text{root}_c == \text{root}_d$)? | Weight $w[c]$ | Weight $w[d]$ | Result $\frac{w[c]}{w[d]}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `["a", "c"]` | True | `"c"` | `"c"` | True | 6.0 | 1.0 | **`6.0`** |
+| `["b", "a"]` | True | `"c"` | `"c"` | True | 3.0 | 6.0 | **`0.5`** |
+| `["a", "e"]` | False (`"e" \notin p`) | - | - | - | - | - | **`-1.0`** |
+| `["a", "a"]` | True | `"c"` | `"c"` | True | 6.0 | 6.0 | **`1.0`** |
+| **`["x", "x"]`**| **False (`"x" \notin p`)** | - | - | - | - | - | **`-1.0`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because path compression recursively updates $w[x] = w[x] \times w[origin]$, $w[x]$ always satisfies $w[x] = x / root$. For any two variables $c$ and $d$ sharing the same root $r$, the ratio $c / d = (c / r) / (d / r) = w[c] / w[d]$. If $c$ and $d$ belong to different components, no chain of equations connects them, making the answer undefined (returning $-1.0$).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every given equation is merged. If a chain of equalities exists between $c$ and $d$, they will share the same root in the DSU. Unknown variables are caught by checking membership in $p$, ensuring all possible query categories are handled correctly.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Weighted graph plus DFS:** Add edges `a -> b` with weight `v` and `b -> a` with weight `1/v`. For each query, search a path and multiply weights. This is simpler to derive but can revisit the graph for every query, costing $O(eq)$ in the worst case.
-- **Weighted graph plus BFS:** Uses the same ratio-product idea with an explicit queue instead of recursion. It has similar per-query complexity.
-- **Union by rank or size:** Tracking component rank/size while retaining the weight algebra would prevent tall trees and, together with path compression, support the manifest’s inverse-Ackermann amortized bound.
+- **Undefined Self-Query ($x / x$):** If variable `x` never appeared in any equation, $x / x$ cannot be assumed to be $1.0$ because $x$ is completely undefined in the system. It must return $-1.0$.
+- **Path Compression Weight Multiplication Order:** Saving `origin = p[x]` before calling `p[x] = find(p[x])` is mandatory. Calling `find` mutates `p[x]`, so without caching `origin`, the previous parent's weight cannot be fetched.
+- **Union Weight Formula Derivation:** Setting $p[pa] = pb$ requires $w[pa] = w[b] \times v / w[a]$. Inverting or misaligning this formula corrupts component ratios.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((e + q) \alpha(v))$. Let $e$ be the number of equations, $q$ the number of queries, and $v$ the number of distinct variables.
-- **Auxiliary Space Complexity:** $O(v)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O((E + Q) \alpha(V))$, where $E = \text{len}(equations)$, $Q = \text{len}(queries)$, and $V$ is the number of unique variables.
+  - Adding $E$ equations performs $E$ union operations.
+  - Processing $Q$ queries performs $2Q$ find operations.
+  - With path compression, DSU operations run in amortized inverse-Ackermann time $O(\alpha(V)) \approx O(1)$.
+- **Auxiliary Space Complexity:** $O(V)$ auxiliary space to store parent pointers and weights for the $V$ distinct variables in hash maps $p$ and $w$.

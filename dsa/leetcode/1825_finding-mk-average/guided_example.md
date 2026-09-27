@@ -1,111 +1,224 @@
 # Guided Example: Finding MK Average
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state management of a sliding window three-tier ordered partition on a representative stream of operations:
 
-- **Input:** `{"operations": ["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"], "arguments": [[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]}`
-- **Required output:** `[null, null, null, -1, null, 3, null, null, null, 5]`
+- **Input:**
+  - Operations: `["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"]`
+  - Arguments: `[[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]`
+- **Required Output:** `[null, null, null, -1, null, 3, null, null, null, 5]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how maintaining three balanced ordered multisets ($\text{lo}$, $\text{mid}$, $\text{hi}$) enables $\mathcal{O}(\log m)$ stream updates and $\mathcal{O}(1)$ average queries without sorting the entire sliding window on each query.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two integers, `m` and `k`, and a stream of integers. You are tasked to implement a data structure that calculates the **MKAverage** for the stream.
+We must design a data structure `MKAverage(m, k)` that maintains a stream of integers:
+1. `addElement(num)`: Inserts a new number into the stream.
+2. `calculateMKAverage()`:
+   - If the stream contains fewer than $m$ numbers, returns $-1$.
+   - Otherwise, takes the last $m$ numbers in the stream, removes the $k$ smallest numbers and the $k$ largest numbers, and computes the arithmetic average of the remaining $m - 2k$ numbers, rounded down to the nearest integer:
+     $$\left\lfloor \frac{\sum \text{middle}}{m - 2k} \right\rfloor$$
 
-The objective is to compute `[null, null, null, -1, null, 3, null, null, null, 5]` from `{"operations": ["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"], "arguments": [[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- $m = 3, k = 1$. The sliding window has length $3$.
+- Discard the smallest $k = 1$ element and largest $k = 1$ element, leaving $m - 2k = 3 - 2 = 1$ middle element.
+- Initial calls:
+  - Add $3 \implies$ stream has $1$ element ($< 3$).
+  - Add $1 \implies$ stream has $2$ elements ($< 3$).
+  - Query: returns $-1$ (insufficient elements).
+  - Add $10 \implies$ stream has $3$ elements: $[3, 1, 10]$. Sorted: $[1, 3, 10]$. Discard $1$ and $10$; middle is $3$.
+  - Query: returns $\lfloor 3 / 1 \rfloor = 3$.
+  - Add $5 \implies$ window shifts to $[1, 10, 5]$. Sorted: $[1, 5, 10]$. Discard $1$ and $10$; middle is $5$.
+  - Add $5 \implies$ window shifts to $[10, 5, 5]$. Sorted: $[5, 5, 10]$. Middle is $5$.
+  - Add $5 \implies$ window shifts to $[5, 5, 5]$. Middle is $5$.
+  - Query: returns $\lfloor 5 / 1 \rfloor = 5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to avoid re-sorting the window on every query (which would cost $\mathcal{O}(m \log m)$ per query). Instead, we partition the $m$ active elements into three dynamic ordered collections ($\text{lo}$, $\text{mid}$, $\text{hi}$) and maintain the running sum of the $\text{mid}$ partition online.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Tri-Partition Architecture
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We maintain a FIFO queue of capacity $m$ to identify elements as they enter and expire, along with three ordered multisets:
+1. **$\text{lo}$:** Holds the smallest $k$ elements in the active window. Target size: $|\text{lo}| = k$.
+2. **$\text{hi}$:** Holds the largest $k$ elements in the active window. Target size: $|\text{hi}| = k$.
+3. **$\text{mid}$:** Holds the remaining $m - 2k$ elements. Target size: $|\text{mid}| = m - 2k$.
+4. **$S$:** Running scalar sum of all elements currently residing in $\text{mid}$:
+   $$S = \sum_{x \in \text{mid}} x$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Three-Tier Balanced Multiset Invariant Theorem
+
+> **Three-Tier Balanced Multiset Invariant Theorem.**
+> At the end of every `addElement` call once the stream length reaches at least $m$:
+> 1. **Cardinality Guarantees:** $|\text{lo}| = k$, $|\text{hi}| = k$, and $|\text{mid}| = m - 2k$.
+> 2. **Boundary Ordering Invariant:**
+>    $$\max(\text{lo}) \le \min(\text{mid}) \quad \text{and} \quad \max(\text{mid}) \le \min(\text{hi})$$
+> 3. **Instantaneous Query Invariant:** Because $\text{mid}$ contains exactly the elements that remain after excluding the $k$ smallest and $k$ largest values, the MK Average is strictly:
+>    $$\left\lfloor \frac{S}{m - 2k} \right\rfloor$$
+>    evaluable in $\mathcal{O}(1)$ time.
+> 4. When a new element arrives, it is placed in $\text{lo}$, $\text{mid}$, or $\text{hi}$ based on boundary comparisons. If the queue length exceeds $m$, the oldest element is removed from its respective multiset. Rebalancing shifts at most $\mathcal{O}(1)$ boundary elements between adjacent multisets, maintaining all invariants in $\mathcal{O}(\log m)$ time per insertion.
+
+```mermaid
+flowchart LR
+    accTitle: Tri-Partition Balanced Multiset Structure
+    accDescr: Diagram showing window elements divided into lo of size k, mid of size m-2k, and hi of size k, with running sum maintained on mid.
+    subgraph Window ["Sliding Window of Last m Elements"]
+        LO["lo: Smallest k elements (size = k)"]
+        MID["mid: Middle elements (size = m - 2k, Sum = S)"]
+        HI["hi: Largest k elements (size = k)"]
+    end
+    LO <=-=>|"Boundary Balance"| MID
+    MID <=-=>|"Boundary Balance"| HI
+    MID --> Query["Query: floor(S / (m - 2k)) in O(1)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Keep only the active window and split it by rank.** An MKAverage depends exclusively on the last `m` stream values. Among those values, the smallest `k` and largest `k` must be discarded, while the remaining `m - 2k` values must be summed and averaged. Re-sorting all `m` values for every query would repeat almost all previous work. This implementation instead maintains the window continuously in three ordered multisets:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"], "arguments": [[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the full sequence of calls with $m = 3, k = 1$, where $m - 2k = 1$:
 
 ---
 
-### Step 2: Core Step 2
-
-- `lo` contains the smallest values, with a target size of `k`.
-- `mid` contains the values that contribute to the average.
-- `hi` contains the largest values, with a target size of `k`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialization
+- Execute `MKAverage(3, 1)`.
+- Set $m = 3, k = 1$. Initialize empty queue $Q = []$, empty multisets $\text{lo} = \emptyset, \text{mid} = \emptyset, \text{hi} = \emptyset$, and sum $S = 0$.
+- Emits: `null`.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: `addElement(3)`
+- Insert $3$ into $\text{lo}$ (as $\text{lo}$ is empty).
+- Append $3 \to Q$.
+- Current state: $Q = [3]$, $\text{lo} = \{3\}$, $\text{mid} = \emptyset$, $\text{hi} = \emptyset$, $S = 0$.
+- Emits: `null`.
 
-All three are `SortedList` objects, so equal values are preserved as separate occurrences and the smallest or largest element can be accessed by position. The ordering invariant is that every value in `lo` is no greater than every value in `mid`, and every value in `mid` is no greater than every value in `hi`. Boundaries may contain equal values; rank removal does not require equal copies to have distinct identities.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, null, -1, null, 3, null, null, null, 5]` |
+### Step 3: `addElement(1)`
+- Compare $1$ with $\max(\text{lo}) = 3$: since $1 \le 3$, insert $1$ into $\text{lo} \implies \text{lo} = \{1, 3\}$.
+- Append $1 \to Q$.
+- Rebalance $\text{lo}$ size ($|\text{lo}| = 2 > k = 1$):
+  - Pop largest element of $\text{lo}$ ($3$) and insert into $\text{mid}$.
+  - Update sum: $S \to S + 3 = 3$.
+- Current state: $Q = [3, 1]$, $\text{lo} = \{1\}$, $\text{mid} = \{3\}$, $\text{hi} = \emptyset$, $S = 3$.
+- Emits: `null`.
+
+---
+
+### Step 4: `calculateMKAverage()`
+- Check active window length: $|Q| = 2 < m = 3$.
+- Insufficient elements.
+- Emits: **`-1`**.
+
+---
+
+### Step 5: `addElement(10)`
+- Compare $10$: since $\text{hi}$ is empty and $10 > \max(\text{lo}) = 1$, insert $10$ into $\text{hi}$.
+- Append $10 \to Q$.
+- Window length $|Q| = 3 == m$.
+- Multisets: $\text{lo} = \{1\}$, $\text{mid} = \{3\}$, $\text{hi} = \{10\}$.
+- Cardinalities: $|\text{lo}| = 1 = k$, $|\text{mid}| = 1 = m - 2k$, $|\text{hi}| = 1 = k$. Invariants hold!
+- Sum $S = 3$.
+- Emits: `null`.
+
+---
+
+### Step 6: `calculateMKAverage()`
+- Window length $|Q| = 3 \ge m$.
+- Compute average from $\text{mid}$:
+  $$\left\lfloor \frac{S}{m - 2k} \right\rfloor = \left\lfloor \frac{3}{1} \right\rfloor = 3$$
+- Emits: **`3`**.
+
+---
+
+### Step 7: `addElement(5)`
+- Stream queue exceeds $m = 3$: pop oldest element $x = Q[0] = 3$.
+  - $3 \in \text{mid}$. Remove $3$ from $\text{mid}$.
+  - Update sum: $S \to S - 3 = 0$.
+- Insert new element $5$:
+  - Compare $5$: $1 < 5 < 10 \implies$ insert into $\text{mid}$.
+  - Update sum: $S \to S + 5 = 5$.
+- Current state: $Q = [1, 10, 5]$, $\text{lo} = \{1\}$, $\text{mid} = \{5\}$, $\text{hi} = \{10\}$, $S = 5$.
+- Emits: `null`.
+
+---
+
+### Step 8: `addElement(5)`
+- Pop oldest element $x = Q[0] = 1$.
+  - $1 \in \text{lo}$. Remove $1$ from $\text{lo} \implies \text{lo} = \emptyset$.
+- Insert new element $5$:
+  - Insert into $\text{mid} \implies \text{mid} = \{5, 5\}$, $S = 5 + 5 = 10$.
+- Rebalance: $|\text{lo}| = 0 < k = 1$.
+  - Pop smallest element from $\text{mid}$ ($5$) and insert into $\text{lo}$.
+  - Update sum: $S \to S - 5 = 5$.
+- Current state: $Q = [10, 5, 5]$, $\text{lo} = \{5\}$, $\text{mid} = \{5\}$, $\text{hi} = \{10\}$, $S = 5$.
+- Emits: `null`.
+
+---
+
+### Step 9: `addElement(5)`
+- Pop oldest element $x = Q[0] = 10$.
+  - $10 \in \text{hi}$. Remove $10$ from $\text{hi} \implies \text{hi} = \emptyset$.
+- Insert new element $5$:
+  - Insert into $\text{mid} \implies \text{mid} = \{5, 5\}$, $S = 5 + 5 = 10$.
+- Rebalance: $|\text{hi}| = 0 < k = 1$.
+  - Pop largest element from $\text{mid}$ ($5$) and insert into $\text{hi}$.
+  - Update sum: $S \to S - 5 = 5$.
+- Current state: $Q = [5, 5, 5]$, $\text{lo} = \{5\}$, $\text{mid} = \{5\}$, $\text{hi} = \{5\}$, $S = 5$.
+- Emits: `null`.
+
+---
+
+### Step 10: `calculateMKAverage()`
+- Window length $|Q| = 3 \ge m$.
+- Compute average:
+  $$\left\lfloor \frac{S}{m - 2k} \right\rfloor = \left\lfloor \frac{5}{1} \right\rfloor = 5$$
+- Emits: **`5`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"], "arguments": [[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, null, -1, null, 3, null, null, null, 5]` | Verified |
+| Op # | Method Invocation | Argument | Window Queue $Q$ | $\text{lo}$ ($k = 1$) | $\text{mid}$ ($m - 2k = 1$) | $\text{hi}$ ($k = 1$) | Running Sum $S$ | Output |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `MKAverage` | `[3, 1]` | `[]` | $\emptyset$ | $\emptyset$ | $\emptyset$ | $0$ | `null` |
+| $2$ | `addElement` | `3` | `[3]` | $\{3\}$ | $\emptyset$ | $\emptyset$ | $0$ | `null` |
+| $3$ | `addElement` | `1` | `[3, 1]` | $\{1\}$ | $\{3\}$ | $\emptyset$ | $3$ | `null` |
+| $4$ | `calculateMKAverage` | `[]` | `[3, 1]` | $\{1\}$ | $\{3\}$ | $\emptyset$ | $3$ | **`-1`** |
+| $5$ | `addElement` | `10` | `[3, 1, 10]` | $\{1\}$ | $\{3\}$ | $\{10\}$ | $3$ | `null` |
+| $6$ | `calculateMKAverage` | `[]` | `[3, 1, 10]` | $\{1\}$ | $\{3\}$ | $\{10\}$ | $3$ | **`3`** |
+| $7$ | `addElement` | `5` | `[1, 10, 5]` | $\{1\}$ | $\{5\}$ | $\{10\}$ | $5$ | `null` |
+| $8$ | `addElement` | `5` | `[10, 5, 5]` | $\{5\}$ | $\{5\}$ | $\{10\}$ | $5$ | `null` |
+| $9$ | `addElement` | `5` | `[5, 5, 5]` | $\{5\}$ | $\{5\}$ | $\{5\}$ | $5$ | `null` |
+| $10$ | `calculateMKAverage` | `[]` | `[5, 5, 5]` | $\{5\}$ | $\{5\}$ | $\{5\}$ | $5$ | **`5`** |
+
+Sequence of results: `[null, null, null, -1, null, 3, null, null, null, 5]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because the queue enforces strict FIFO sliding window semantics, the multisets always contain exactly the last $m$ elements. Maintaining $\max(\text{lo}) \le \min(\text{mid}) \le \max(\text{mid}) \le \min(\text{hi})$ guarantees that the $k$ smallest and $k$ largest elements are segregated into $\text{lo}$ and $\text{hi}$, ensuring that $\text{mid}$ contains precisely the remaining $m - 2k$ elements. Thus, $\lfloor S / (m - 2k) \rfloor$ computes the exact required mathematical average.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every insertion and eviction triggers local rebalancing to maintain target sizes. Because an insertion adds $1$ element and eviction removes $1$ element, at most one boundary migration between adjacent multisets is ever required per update, ensuring invariants hold at all times.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort on every calculation:** Copying and sorting the last `m` values is simple, but each query costs `O(m log m)` instead of reusing the maintained rank partition.
-- **Fenwick tree over the bounded value domain:** Frequency and sum trees can locate rank cutoffs and compute retained sums in `O(log U)` time, where `U` is the maximum value. This is efficient but requires coordinate or domain indexing and more intricate rank-sum logic.
-- **Two heaps alone:** Heaps expose extremes but do not support arbitrary expired-value deletion cleanly without lazy-deletion maps and careful duplicate accounting. Three ordered multisets express the needed ranks more directly.
-- **Fewer than `m` values:** The partitions may not yet have both boundary groups at full size, but `calculateMKAverage` deliberately returns `-1` and never divides an incomplete middle.
-- **Exactly `m` values:** No expiration occurs until the next insertion; the first complete window is already fully partitioned and queryable.
-- **More than `m` values:** Exactly one oldest value is removed per insertion, so `q` and all three sorted lists represent only the latest window.
-- **Many duplicate boundary values:** Equal occurrences can be stored in different buckets. Removing any one equal copy is equivalent, and the subsequent size repair keeps the middle sum correct.
-- **A removed middle value:** The code subtracts it from `s` immediately, then may move a boundary value into the middle and add that replacement.
-- **A removed low or high value:** No immediate sum change is needed because boundary values were excluded; if a middle value fills the gap, that move subtracts the value from `s`.
-- **Integer rounding:** Positive inputs and a positive denominator make `//` the required mathematical floor.
-- **Repeated queries without additions:** They do not mutate any structure, so every such call returns the same value in constant time.
-- **Library requirement:** The solution relies on `SortedList` supporting duplicates and ordered index operations; replacing it with a plain Python list would make middle insertions and removals linear.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Values Across Multisets:** Multiple identical values can span across $\text{lo}$, $\text{mid}$, and $\text{hi}$ (as in Step 9 where $5$ appears in all three). Multisets (frequency-aware ordered lists or balanced BSTs) must distinguish duplicate elements and delete only one instance of an evicted value.
+- **Integer Division vs. Floating Point:** The problem specifies integer truncation ($\lfloor \cdot \rfloor$), not round-to-nearest.
+- **Window Initialization Guard:** Calling `calculateMKAverage` before $m$ elements have been added must return $-1$ immediately.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(q log m)$. Let `m` be the window size and let `q` be the number of calls to `addElement`. Each sorted partition holds at most `m` active occurrences in total. A `SortedList` search, insertion, membership test, removal, or boundary pop takes logarithmic time in the active size under the ordered-container interface used here. Each added value is inserted once, at most one expired value is removed, and only a constant number of boundary values can move during that call: insertion or deletion changes a bucket size by only one. Therefore `addElement` takes `O(log m)` time, and `q` additions take `O(q log m)` time. `calculateMKAverage` performs only a length check, subtraction, multiplication, and floor division, so it takes `O(1)` time.
-- **Auxiliary Space Complexity:** $O(m+U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `addElement`: $\mathcal{O}(\log m)$. Inserting into and removing from an ordered list or balanced BST takes $\mathcal{O}(\log m)$ time. Rebalancing shifts at most $\mathcal{O}(1)$ elements, each costing $\mathcal{O}(\log m)$.
+  - `calculateMKAverage`: $\mathcal{O}(1)$. The sum $S$ is tracked incrementally, so computing the average requires a single integer division.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m)$ to store the $m$ active elements in the queue and the three ordered multisets.

@@ -1,116 +1,139 @@
 # Guided Example: Valid Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state machine / grammar verification on representative valid and invalid numerical strings:
 
-- **Input:** `{"s": "-90E3"}`
-- **Required output:** `true`
+- **Valid Scientific Notation:** $s = \text{"-90E3"} \implies \text{True}$
+- **Valid Decimal Without Trailing Digit:** $s = \text{"3."} \implies \text{True}$
+- **Invalid Malformed Instances:** $s = \text{"."}$, $s = \text{"e3"}$, $s = \text{"1e"} \implies \text{False}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling numeric syntax as a deterministic state machine, validating sign placements ($i = 0$ or after `e`), enforcing dot exclusivity before exponents, and requiring digit presence after exponent markers in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, return whether `s` is a **valid number**.
+A **valid number** can be split into:
+1. A **decimal number** or an **integer**.
+2. (Optional) An **exponent** consisting of `'e'` or `'E'` followed by an integer.
 
-The objective is to compute `true` from `{"s": "-90E3"}` while avoiding redundant calculations and unnecessary overhead.
+- An **integer** consists of an optional sign (`'+'` or `'-'`) followed by one or more digits.
+- A **decimal number** consists of an optional sign followed by:
+  - At least one digit followed by a dot `.` (e.g. `"3."`).
+  - At least one digit followed by a dot followed by digits (e.g. `"3.14"`).
+  - A dot followed by at least one digit (e.g. `".1"`).
+  *(A dot alone `"."` with no digits is invalid).*
+- An **exponent** cannot contain dots, and must be followed by an integer with at least one digit.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive regular expression can be slow and prone to catastrophic backtracking on crafted strings. The optimal approach processes characters linearly using three boolean flags: `seen_digit`, `seen_dot`, and `seen_exponent`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 3-Flag State Tracking Rules
+We iterate through characters $s[i]$ from $i = 0$ to $N - 1$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Digit ($0 \dots 9$):**
+   - Set $\text{seen\_digit} \leftarrow \text{True}$.
+2. **Sign (`'+'` or `'-'`):**
+   - A sign is legally valid **only** if:
+     - It is the very first character ($i == 0$), OR
+     - It immediately follows an exponent character ($s[i - 1] \in \{\text{'e'}, \text{'E'}\}$).
+   - If a sign appears anywhere else, return $\text{False}$.
+3. **Decimal Point (`'.'`):**
+   - A dot is legally valid **only** if:
+     - No dot has appeared yet ($\neg \text{seen\_dot}$), AND
+     - No exponent has appeared yet ($\neg \text{seen\_exponent}$).
+   - If valid, set $\text{seen\_dot} \leftarrow \text{True}$. Otherwise, return $\text{False}$.
+4. **Exponent Marker (`'e'` or `'E'`):**
+   - An exponent is legally valid **only** if:
+     - No exponent has appeared yet ($\neg \text{seen\_exponent}$), AND
+     - At least one digit has appeared in the mantissa ($\text{seen\_digit} == \text{True}$).
+   - If valid:
+     - Set $\text{seen\_exponent} \leftarrow \text{True}$.
+     - Reset $\text{seen\_digit} \leftarrow \text{False}$ *(because an exponent must be followed by at least one new integer digit!)*.
+   - Otherwise, return $\text{False}$.
+5. **Any Other Character:**
+   - Return $\text{False}$ immediately.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Final Acceptance Condition
+After scanning all characters, the string is valid if and only if:
+$$
+\text{seen\_digit} == \text{True}
+$$
+*(Guarantees that trailing exponents like `"1e"` or bare dots `"."` are rejected).*
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Validate structure rather than converting the value
+### Case 1: Valid Exponent $s = \text{"-90E3"}$
+Initialize $\text{seen\_digit} = \text{False}, \text{seen\_dot} = \text{False}, \text{seen\_exponent} = \text{False}$.
 
-The task asks whether the entire string follows a numeric grammar. Calling a floating-point conversion would mix parsing with language-specific behavior and might accept formats outside the contract. The selected solution instead scans every character and records whether a decimal point or exponent has already appeared.
-
-The accepted high-level shape is a signed or unsigned integer/decimal mantissa followed by an optional signed integer exponent. A sign is legal only at the very beginning or immediately after `e` or `E`. A dot is legal only in the mantissa and at most once. An exponent marker is legal at most once and must have digits on both sides in the required senses.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "-90E3"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Consume the optional leading sign
-
-`i` begins at zero. If `s[i]` is `'+'` or `'-'`, the source advances `i`. The contract guarantees `len(s) >= 1`, so the initial access is safe.
-
-If advancing the sign reaches `n`, the string contains only a sign and is invalid. This check also establishes that `s[i]` is the first mantissa character for all later position reasoning.
-
-Signs appearing later are not accepted by the ordinary-character branch because they are not numeric. The only exception is handled explicitly after an exponent marker.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Character 0 ($i = 0, c = \text{'-'}$):**
+  - Sign at index 0: Allowed!
+- **Character 1 ($i = 1, c = \text{'9'}$):**
+  - Digit: $\text{seen\_digit} \leftarrow \text{True}$.
+- **Character 2 ($i = 2, c = \text{'0'}$):**
+  - Digit: $\text{seen\_digit} \leftarrow \text{True}$.
+- **Character 3 ($i = 3, c = \text{'E'}$):**
+  - Exponent check: $\text{seen\_digit}$ is True, $\text{seen\_exponent}$ is False. Allowed!
+  - State update: $\text{seen\_exponent} \leftarrow \text{True}, \text{seen\_digit} \leftarrow \text{False}$.
+- **Character 4 ($i = 4, c = \text{'3'}$):**
+  - Digit: $\text{seen\_digit} \leftarrow \text{True}$.
+- **End of String:**
+  - Check acceptance: $\text{seen\_digit} == \text{True}$.
+  - Result: $\text{True}$.
 
 ---
 
-### Step 3: Reject a mantissa dot with no digit around it
+### Case 2: Trap Breakdown Analysis
 
-The condition for `s[i] == '.'` rejects the dot when it is the final character or when the following character is an exponent marker. This rules out `"."`, `"+."`, `".e1"`, and `"-.E2"`.
-
-If a dot is first but followed by a digit, forms such as `".9"` remain possible. If digits precede a dot, forms such as `"4."` are valid even when no digit follows the dot. The targeted check captures the only digitless-dot case that could otherwise slip through the later flag logic.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+| Input String | Failure Point / Rule Violation | Accepted? |
+|:---:|:---|:---:|
+| `"."` | $\text{seen\_digit}$ is False upon termination | **False** |
+| `"e3"` | Exponent encountered when $\text{seen\_digit}$ is False | **False** |
+| `"1e"` | After `'e'`, $\text{seen\_digit}$ reset to False and string ended | **False** |
+| `"1a"` | Letter `'a'` is not a digit, sign, dot, or exponent | **False** |
+| `"+-5"` | Sign `'-'` at index 1 does not follow `'e'` | **False** |
+| `"99e2.5"` | Dot `'.'` encountered when $\text{seen\_exponent}$ is True | **False** |
+| `"3."` | Dot is valid, $\text{seen\_digit}$ was set by `'3'`, terminates True | **True** |
+| `".1"` | Dot valid, $\text{seen\_digit}$ set by `'1'`, terminates True | **True** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "-90E3"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+### Trace for $s = \text{"-90E3"}$
+
+| Index $i$ | Token $c$ | Validation Rule Applied | Flag: `seen_digit` | Flag: `seen_dot` | Flag: `seen_exponent` | Outcome |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 0 | `'-'` | Leading sign at index 0 | False | False | False | Valid |
+| 1 | `'9'` | First mantissa digit | **True** | False | False | Valid |
+| 2 | `'0'` | Subsequent digit | **True** | False | False | Valid |
+| 3 | `'E'` | Exponent preceded by digit | **False (Reset)** | False | **True** | Valid |
+| 4 | `'3'` | Exponent integer digit | **True** | False | True | Valid |
+| Exit | - | Terminal test: `seen_digit == True` | **True** | False | True | **Emit True** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every character transition enforces the context-free numeric grammar defined by the problem. Any illegal combination—such as misplaced signs, duplicate dots, dots inside exponents, or unknown characters—triggers an immediate `False` verdict.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ is examined once in order. Resetting $\text{seen\_digit} = \text{False}$ upon reading an exponent ensures that no incomplete number like `"12e"` or `"12e+"` can terminate in an accepting state without at least one subsequent digit.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Deterministic finite automaton:** Classify each character and transition between grammar states. It is systematic and linear but requires a carefully verified state table.
-- **Split around `e` or `E`:** Validate a decimal/integer mantissa and integer exponent separately. This can be readable but must reject multiple markers and avoid substring-allocation assumptions.
-- **Regular expression:** A complete anchored expression can encode the grammar concisely, though it is harder for beginners to debug and may obscure why cases fail.
-- **Built-in numeric conversion:** It may accept whitespace, infinity, or other implementation-specific formats and should not define this exact grammar.
-- **Only a sign:** Rejected immediately after leading-sign consumption.
-- **Only a dot:** Rejected because no adjacent digit exists.
-- **Dot before digits:** Valid when a digit follows, as in `"-.9"`.
-- **Dot after digits:** Valid without a following fractional digit, as in `"4."`.
-- **Exponent sign:** Legal only immediately after `e` or `E` and only when followed by a digit.
-- **Whitespace:** This scanner rejects it; whitespace is absent from the stated input alphabet.
-- **Unicode numerics outside the contract:** `isnumeric()` may accept them even though the formal grammar names only ASCII digits.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Lone Signs or Lone Dots:** A string containing only `"+"` or `"."` passes local character validation but fails the terminal $\text{seen\_digit} == \text{True}$ test.
+- **Signs After Exponent:** A sign is valid after `'e'` (e.g. `"1e-5"` or `"2e+3"`). Restricting signs to only index 0 would wrongly reject valid signed exponents.
+- **No Dots in Exponent:** Numbers like `"1e2.5"` are invalid in standard scientific notation. The condition `not seen_exponent` during dot handling prevents this.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Every character is examined at most once. Consuming an exponent sign increments `j` early but does not cause any character to be revisited. Time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the string length. The loop executes $N$ iterations, doing $O(1)$ operations per character.
+- **Auxiliary Space Complexity:** $O(1)$. Memory consumption is strictly constant using three boolean flags.

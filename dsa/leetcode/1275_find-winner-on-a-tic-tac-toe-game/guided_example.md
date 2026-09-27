@@ -1,122 +1,158 @@
 # Guided Example: Find Winner on a Tic Tac Toe Game
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step game progression and winning condition evaluation for a standard Tic-Tac-Toe match on a representative problem instance:
 
-- **Input:** `{"moves": [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]}`
-- **Required output:** `"A"`
+- **Input:**
+  `moves = [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]`
+- **Required Output:** `"A"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates alternating player turns, the eight canonical winning lines on a $3 \times 3$ grid, incremental line-sum tracking, and early termination on victory.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-**Tic-tac-toe** is played by two players `A` and `B` on a `3 x 3` grid. The rules of Tic-Tac-Toe are:
+The game is played on a $3 \times 3$ grid initialized with empty cells:
+- Player `A` always moves first (even-indexed moves $0, 2, 4, \dots$) placing `'X'`.
+- Player `B` always moves second (odd-indexed moves $1, 3, 5, \dots$) placing `'O'`.
+- A player wins if they place three of their marks along any of the $8$ winning lines:
+  - 3 Rows: Row $0$, Row $1$, Row $2$
+  - 3 Columns: Col $0$, Col $1$, Col $2$
+  - 2 Diagonals: Main Diagonal ($i = j$) and Anti-Diagonal ($i + j = 2$)
+- If all $9$ moves are played without a winner, the outcome is `"Draw"`.
+- If fewer than $9$ moves are played and no player has won, the outcome is `"Pending"`.
 
-The objective is to compute `"A"` from `{"moves": [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```
+Move 0: A plays (0, 0)      Move 1: B plays (2, 0)      Move 2: A plays (1, 1)
+  X . .                       X . .                       X . .
+  . . .                       . . .                       . X .
+  . . .                       O . .                       O . .
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Move 3: B plays (2, 1)      Move 4: A plays (2, 2)      Final Board:
+  X . .                       X . .                       X  .  .
+  . X .                       . X .                       .  X  .
+  O O .                       O O X                       O  O [X]  <-- Diagonal Win!
+```
+
+The teaching goal is to maintain counters for the $8$ possible winning lines so that win detection requires $\mathcal{O}(1)$ work per move, avoiding complete grid rescans.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Each cell $(r, c)$ on the $3 \times 3$ grid participates in:
+1. Row $r$ (index $r \in \{0, 1, 2\}$)
+2. Column $c$ (index $c \in \{0, 1, 2\}$)
+3. Main Diagonal if $r = c$ (cells $(0, 0), (1, 1), (2, 2)$)
+4. Anti-Diagonal if $r + c = 2$ (cells $(0, 2), (1, 1), (2, 0)$)
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Notice that the center cell $(1, 1)$ satisfies both diagonal conditions simultaneously.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Line Vector Tracking
+Instead of checking all lines from scratch, we can attribute signed point scores to each line:
+- Player A adds $+1$ to all lines containing their chosen cell.
+- Player B adds $-1$ to all lines containing their chosen cell.
+- If any line counter reaches $+3$, Player A wins immediately.
+- If any line counter reaches $-3$, Player B wins immediately.
+
+| Line Index | Description | Coordinates Included | Player A Target | Player B Target |
+|---|---|---|---|---|
+| $0, 1, 2$ | Rows $0, 1, 2$ | $(r, 0), (r, 1), (r, 2)$ | $+3$ | $-3$ |
+| $3, 4, 5$ | Cols $0, 1, 2$ | $(0, c), (1, c), (2, c)$ | $+3$ | $-3$ |
+| $6$ | Main Diagonal | $(0, 0), (1, 1), (2, 2)$ | $+3$ | $-3$ |
+| $7$ | Anti-Diagonal | $(0, 2), (1, 1), (2, 0)$ | $+3$ | $-3$ |
+
+> **Monotone Line Count Invariant.** In each turn, only lines passing through the current move coordinate are altered. A line counter reaches $3$ if and only if all three collinear cells have been occupied by the same player.
+
+```mermaid
+flowchart TD
+    accTitle: Tic Tac Toe Move Evaluation Flow
+    accDescr: Pipeline showing player turn determination, line counter updates, and winning checks.
+    M["Move (r, c) at index k"] --> P{"Player Turn: k % 2 == 0?"}
+    P -- Yes --> A["Player A (+1)"]
+    P -- No --> B["Player B (-1)"]
+    A --> UPD["Update: Row[r], Col[c], and Diagonals if applicable"]
+    B --> UPD
+    UPD --> WIN{"Any line counter == 3 or -3?"}
+    WIN -- Yes --> DECLARE["Return 'A' or 'B'"]
+    WIN -- No --> CONT{"k == 8 (all 9 moves played)?"}
+    CONT -- Yes --> DRAW["Return 'Draw'"]
+    CONT -- No --> PEND["Return 'Pending'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Only the last player can be the winner
+We track Player A's and Player B's moves incrementally across the $8$ lines.
 
-The move list is guaranteed valid, and play stops as soon as someone wins. Therefore, if a winner exists, that winner made the final recorded move. Player A uses even move indices and player B uses odd indices. The exact source exploits this fact by examining only indices with the same parity as `n - 1`:
+### Move 0: Player A plays $(0, 0)$
+- Row $0$ count: $+1$
+- Col $0$ count: $+1$
+- Main diagonal ($0 = 0$): $+1$
+- Anti-diagonal ($0 + 0 \ne 2$): $0$
+- No line has reached $3$.
 
-`range(n - 1, -1, -2)`.
+### Move 1: Player B plays $(2, 0)$
+- Row $2$ count: $-1$
+- Col $0$ count: $-1$
+- Main diagonal ($2 \ne 0$): $0$
+- Anti-diagonal ($2 + 0 = 2$): $-1$
+- No line has reached $-3$.
 
-Starting from the last move and subtracting two visits every move made by the last player and none made by the opponent. It is unnecessary to represent opponent marks because a valid finished game cannot contain an opponent win followed by another move.
+### Move 2: Player A plays $(1, 1)$
+- Row $1$ count: $+1$
+- Col $1$ count: $+1$
+- Main diagonal ($1 = 1$): $+1 \implies$ accumulated count $= 1 + 1 = 2$
+- Anti-diagonal ($1 + 1 = 2$): $+1 \implies$ accumulated count $= 0 + 1 = 1$
+- No line has reached $3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"moves": [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Move 3: Player B plays $(2, 1)$
+- Row $2$ count: $-1 \implies$ accumulated count $= -1 + (-1) = -2$
+- Col $1$ count: $-1$
+- Main diagonal ($2 \ne 1$): unchanged
+- Anti-diagonal ($2 + 1 \ne 2$): unchanged
+- No line has reached $-3$.
 
----
+### Move 4: Player A plays $(2, 2)$
+- Row $2$ count: $+1$ (Player A)
+- Col $2$ count: $+1$
+- Main diagonal ($2 = 2$): $+1 \implies$ accumulated count $= 2 + 1 = 3$!
+- Anti-diagonal ($2 + 2 \ne 2$): unchanged
 
-### Step 2: Eight counters represent all winning lines
-
-The $3$ by $3$ board has three rows, three columns, one main diagonal, and one anti-diagonal. Array `cnt` has eight entries. For move `(i, j)`, `cnt[i]` counts the chosen player's marks in row `i`, while `cnt[j + 3]` counts marks in column `j`.
-
-If `i == j`, the cell lies on the main diagonal and `cnt[6]` increases. If `i + j == 2`, it lies on the anti-diagonal and `cnt[7]` increases. The center cell satisfies both conditions and correctly contributes to both diagonals.
-
-After each processed mark, `any(v == 3 for v in cnt)` checks all eight possible lines. A count of three means the last player owns all three cells of that line because the input contains no repeated moves and only that player's moves were counted.
-
-Although traversal goes backward in time, line membership is independent of ordering. Once all three marks of a winning line have been encountered, the counter reaches three. All visited indices have the same parity, so returning `"B" if k & 1 else "A"` identifies the last player. `k & 1` is one for an odd index and zero for an even index.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why ignoring the other player is safe
-
-Suppose player A had won before B's final move. The rules would have ended the game immediately, making B's later move invalid. The valid-input guarantee rules this out. Thus, when the list ends on B's move, only B can possibly be the winner; symmetrically, a list ending on A's move can only have A as winner.
-
-If the last player has a winning line, the loop eventually counts its three cells and returns that player. If the loop finishes without a counter reaching three, the last player did not win, and validity implies the opponent did not win either.
-
-For the first example, the last move index is four, so the loop counts A's moves at indices four, two, and zero. Those coordinates fill the main diagonal, making counter six reach three and returning A.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"A"` |
+Line $6$ (Main Diagonal) has reached $+3$. Player A has placed marks at $(0, 0)$, $(1, 1)$, and $(2, 2)$, completing a winning diagonal. The game terminates with winner `"A"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"moves": [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"A"` | Verified |
+| Turn $k$ | Player | Cell Played $(r, c)$ | Affected Lines | Main Diag Count | Anti Diag Count | Outcome Check |
+|---|---|---|---|---|---|---|
+| $0$ | A | $(0, 0)$ | Row 0, Col 0, Main Diag | $1$ | $0$ | Continue |
+| $1$ | B | $(2, 0)$ | Row 2, Col 0, Anti Diag | $1$ | $-1$ | Continue |
+| $2$ | A | $(1, 1)$ | Row 1, Col 1, Both Diags | $2$ | $0$ | Continue |
+| $3$ | B | $(2, 1)$ | Row 2, Col 1 | $2$ | $0$ | Continue |
+| $4$ | A | $(2, 2)$ | Row 2, Col 2, Main Diag | $3$ | $0$ | Win: Return `"A"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A player wins if and only if three of their tokens occupy a row, column, or diagonal. Because moves are played without replacement on a $3 \times 3$ grid, an accumulator for a given line reaching $3$ proves that all three cells of that line belong to Player A. Since Move 4 was made by Player A and caused the main diagonal sum to reach $3$, Player A is correctly declared the winner.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every move in the input sequence is processed in chronological order. Checking the win condition after each move ensures that a win is detected immediately when it occurs. If all moves are exhausted with total count $9$ and no line equals $3$ or $-3$, the grid is full, guaranteeing `"Draw"`. If fewer than $9$ moves were played without a win, the state is correctly determined to be `"Pending"`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Process both players with signed counters:** Add one for A and minus one for B to rows, columns, and diagonals. An absolute value of three identifies a winner and supports checking moves forward.
-- **Build the full board:** Mark each move and scan its row, column, and diagonals. It is intuitive but stores more state and may rescan cells.
-- **Count only the last player without valid-input guarantee:** This would be unsafe if moves could continue after an earlier win. The optimization depends on the stated validity.
-- **Center move:** It increments its row, column, main diagonal, and anti-diagonal counters.
-- **Corner move:** It belongs to one row, one column, and one or possibly both relevant diagonals according to the tests.
-- **Winning final move:** Backward counting finds the completed line regardless of the order in which that player's earlier marks are encountered.
-- **Nine moves without a winner:** Every square is occupied, so the result is `"Draw"`.
-- **Fewer than nine moves without a winner:** At least one legal move remains, so the result is `"Pending"`.
-- **Odd final index:** The last mover is B; every loop index is odd and the parity expression returns `"B"`.
-- **Even final index:** The last mover is A and the parity expression returns `"A"`.
-- **No repeated coordinates:** This guarantee prevents one cell from inflating a line counter more than once.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Premature termination:** Checking for a draw before verifying if the final $9\text{th}$ move creates a winning line can misclassify a last-move win as a draw. The win condition must be checked first.
+- **Center cell double diagonal:** The center cell $(1, 1)$ belongs to both the main diagonal and the anti-diagonal. If a move is made at $(1, 1)$, both diagonal counters must increment.
+- **Order of play:** Player A always moves on even indices $0, 2, 4, 6, 8$, and Player B moves on odd indices $1, 3, 5, 7$. Associating the move index parity with player identity avoids explicit turn-state management.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m)$. Let $m$ be the number of moves. The loop visits only one player's moves, at most $\lceil m/2\rceil$. Updating counters is constant work, and checking eight entries is also constant because the board size is fixed. Total time is $O(m)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M)$, where $M \le 9$ is the number of moves played. Each move updates at most $4$ line counters (row, column, and up to two diagonals) and checks if any counter equals $3$. Because $M \le 9$, the maximum number of operations is bounded by a small constant ($\le 40$ operations), running in $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Maintaining the array of $8$ line accumulators requires a fixed $8$-element vector.

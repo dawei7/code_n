@@ -1,119 +1,123 @@
 # Guided Example: Plus One
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step backward carry propagation on representative increment instances:
 
-- **Input:** `{"digits": [1, 2, 3]}`
-- **Required output:** `[1, 2, 4]`
+- **Cascade Carry Overflow:** $\text{digits} = [9, 9, 9] \implies [1, 0, 0, 0]$
+- **Standard Terminal Case:** $\text{digits} = [1, 2, 9] \implies [1, 3, 0]$
+- **Single-Digit Absorbed:** $\text{digits} = [4, 3, 2, 1] \implies [4, 3, 2, 2]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place right-to-left decimal addition, terminating early when a digit does not overflow ($\text{digits}[i] \ne 9$), carry cascading across consecutive nines, and prepending a leading 1 when the entire array overflows.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a **large integer** represented as an integer array `digits`, where each $\text{digits}[i]$ is the $i^{\text{th}}$ digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
+Given a non-empty array of decimal digits representing a non-negative integer without leading zeros, increment the large integer by one and return the resulting array of digits.
 
-The objective is to compute `[1, 2, 4]` from `{"digits": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+Consider two contrasting behaviors:
+1. **Early Absorbed Increment:** For $[1, 2, 9]$, adding 1 turns $9$ into $0$ with a carry. At the tens place, $2 + 1 = 3 < 10$. The carry is absorbed, returning $[1, 3, 0]$ immediately without touching leading digits.
+2. **All-Nines Overflow:** For $[9, 9, 9]$, every digit rolls over to $0$. The carry exhausts the array bounds, requiring an additional leading digit: $[1, 0, 0, 0]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach converts the array to an integer, adds 1, and converts back to a string/list. However, in fixed-width integer environments (or where $N \le 100$), numbers exceed 64-bit bounds ($10^{100}$). The optimal algorithm mutates the array in place in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Right-to-Left Carry Algorithm
+We iterate pointer $i$ backwards from the least significant digit $N - 1$ down to $0$:
+1. **If $\text{digits}[i] < 9$:**
+   - Increment: $\text{digits}[i] \leftarrow \text{digits}[i] + 1$.
+   - The increment has been completely absorbed without generating a further carry.
+   - Return $\text{digits}$ immediately.
+2. **If $\text{digits}[i] == 9$:**
+   - Roll over: $\text{digits}[i] \leftarrow 0$.
+   - Carry continues to the left (next iteration $i - 1$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Global Array Overflow Case
+If the loop completes without an early return, every digit in the original array was $9$ (e.g. $[9, 9, \dots, 9]$) and is now $0$.
+- Prepend a leading $1$ to the array:
+  $$
+  \text{return } [1] + \text{digits}
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Before index $i$, all positions to the right ($i + 1 \dots N - 1$) have been finalized to $0$, and a carry of $1$ is pending at index $i$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Addition begins at the least significant digit
+### Case 1: All-Nines Overflow ($[9, 9, 9]$, $N = 3$)
 
-The array stores the most significant digit first, so the units digit is at the final index. Adding one affects that digit first. Only when it overflows from 9 to 0 does a carry need to move left.
-
-The loop therefore visits indices from `n - 1` down to 0. It stops as soon as a digit absorbs the increment without overflow. Digits farther left are then unchanged, exactly as in ordinary decimal addition.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"digits": [1, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: How three short statements encode carry propagation
-
-For the current digit, the source performs:
-
-1. add one;
-2. reduce modulo 10;
-3. return if the result is not zero.
-
-Given the contract that every entry is from 0 through 9, there are only two cases. An original digit from 0 through 8 becomes 1 through 9 after modulo, which is nonzero. It absorbs the carry, so the complete answer is ready. An original 9 becomes 10 and then 0, which means one carry must be applied to the next position on the left.
-
-The test `digits[i] != 0` is therefore equivalent to “the carry has ended” for this exact operation. It would not be a general carry test for arbitrary added values, but it is exact when adding one to one decimal digit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Step 1 ($i = 2$, Units Place):**
+  - $\text{digits}[2] = 9$.
+  - Rollover: $\text{digits}[2] \leftarrow 0$. Carry continues left.
+  - Array state: $[9, 9, \mathbf{0}]$.
+- **Step 2 ($i = 1$, Tens Place):**
+  - $\text{digits}[1] = 9$.
+  - Rollover: $\text{digits}[1] \leftarrow 0$. Carry continues left.
+  - Array state: $[9, \mathbf{0}, 0]$.
+- **Step 3 ($i = 0$, Hundreds Place):**
+  - $\text{digits}[0] = 9$.
+  - Rollover: $\text{digits}[0] \leftarrow 0$. Carry continues left.
+  - Array state: $[\mathbf{0}, 0, 0]$.
+- **Post-Loop Processing:**
+  - Loop finished with unabsorbed carry.
+  - Prepend $1$: $[1] + [0, 0, 0] = [1, 0, 0, 0]$.
+- Result: $[1, 0, 0, 0]$.
 
 ---
 
-### Step 3: Trace without a long carry
+### Case 2: Partial Carry Cascade ($[1, 2, 9]$, $N = 3$)
 
-For `[1,2,3]`, the loop visits only the final digit. It becomes 4, remains nonzero, and the method returns `[1,2,4]`. The first two entries are never touched.
-
-For `[1,2,9]`, the final 9 becomes 0 and the loop continues. The 2 becomes 3, so the method returns `[1,3,0]`. The zero already written at the end is the correct result of the propagated carry.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 4]` |
+- **Step 1 ($i = 2$):**
+  - $\text{digits}[2] = 9 \implies \text{digits}[2] \leftarrow 0$.
+  - Array state: $[1, 2, \mathbf{0}]$.
+- **Step 2 ($i = 1$):**
+  - $\text{digits}[1] = 2 < 9$.
+  - Increment: $\text{digits}[1] \leftarrow 2 + 1 = 3$.
+  - **Early Exit:** No carry generated! Return $[1, 3, 0]$ immediately.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"digits": [1, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 4]` | Verified |
+### All-Nines Trace Table ($[9, 9, 9]$)
+
+| Step | Index $i$ | Original Digit | Condition ($\text{val} < 9$) | Action Taken | Array State After Step | Status |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | 2 | 9 | False | Rollover to 0 | `[9, 9, 0]` | Carry continues |
+| 2 | 1 | 9 | False | Rollover to 0 | `[9, 0, 0]` | Carry continues |
+| 3 | 0 | 9 | False | Rollover to 0 | `[0, 0, 0]` | Loop terminates |
+| Overflow | - | - | - | Prepend `[1]` | **`[1, 0, 0, 0]`** | **Final Output** |
+
+### Comparison Across Input Types
+
+| Input Array | Roll-overs Encountered | Terminating Index | Returned Array | Auxiliary Reallocation? |
+|:---:|:---:|:---:|:---:|:---:|
+| `[4, 3, 2, 1]` | 0 | $i = 3$ | `[4, 3, 2, 2]` | No (In-place) |
+| `[1, 2, 9]` | 1 | $i = 1$ | `[1, 3, 0]` | No (In-place) |
+| `[9]` | 1 | Post-loop | `[1, 0]` | Yes ($+1$ digit) |
+| `[9, 9, 9]` | 3 | Post-loop | `[1, 0, 0, 0]` | Yes ($+1$ digit) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Decimal addition adds 1 to the units place. If the digit is $< 9$, $d + 1 \le 9$ produces no carry, leaving all higher-order digits unchanged. If $d = 9$, $9 + 1 = 10$, setting the current digit to $0$ and carrying $1$ to position $i - 1$. This directly models arithmetic addition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The loop checks every position from $N - 1$ down to $0$. If all digits are $9$, prepending $1$ to an array of zeroes yields $10^N$, the exact value of $(10^N - 1) + 1$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit carry variable:** Start `carry = 1`, use `divmod(digit + carry, 10)`, and stop when carry becomes zero. It generalizes more easily to adding other values.
-- **Check for 9 directly:** Set a 9 to zero; otherwise increment and return. This is the competitive branch's more verbal form of the same logic.
-- **Convert to an integer:** It is concise in Python but defeats the digit-array exercise and would overflow fixed-width types for long input.
-- **Final digit below 9:** Only one array entry changes, giving best-case constant time.
-- **Trailing run of nines:** Exactly that suffix becomes zero, and the first lower digit increments.
-- **All nines:** A new leading 1 is prepended to the zeroed original digits.
-- **Single zero:** It becomes `[1]`; zero is the one valid representation that may contain digit 0 alone.
-- **Single nine:** The original list becomes `[0]`, and the returned new list is `[1,0]`.
-- **No leading zeros:** The algorithm never needs to normalize or discard a prefix.
-- **Caller-visible mutation:** The input is modified even in the branch that ultimately returns a newly allocated list.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Integer Conversion Overflow:** In languages like Java or C++, converting `digits` to `long long` fails when $N > 18$ ($10^{18} > 2^{63}-1$). The array manipulation approach scales to arbitrary lengths.
+- **Unnecessary Allocation on Non-Overflow Cases:** Pre-allocating a new list for every increment wastes memory; mutating `digits` in place and prepending `[1]` only upon total overflow achieves $O(1)$ extra memory for $> 99\%$ of cases.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. In the worst case, every digit is 9 and the loop visits all $n$ entries. Constructing the longer result also copies $n$ zeros, so time is $O(n)$. When the last digit is below 9, the method returns after constant work.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ worst case (when all digits are $9$). Best and average case is $O(1)$, since the units digit is $< 9$ in $9$ out of $10$ numbers, halting after a single step.
+- **Auxiliary Space Complexity:** $O(1)$ in-place modification for normal cases, and $O(N)$ only when allocating the $(N+1)$-digit array upon all-nines overflow.

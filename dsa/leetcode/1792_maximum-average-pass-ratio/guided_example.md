@@ -1,149 +1,164 @@
 # Guided Example: Maximum Average Pass Ratio
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step priority queue simulation and marginal gain optimization on a representative problem instance:
 
-- **Input:** `{"classes": [[1, 2], [3, 5], [2, 2]], "extraStudents": 2}`
-- **Required output:** `0.7833333333333333`
+- **Input:** `classes = [[1, 2], [3, 5], [2, 2]]`, `extraStudents = 2`
+- **Required Output:** `0.7833333333333333`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how class size and existing ratios interact to determine the marginal increase in passing ratio, and how discrete concavity validates assigning each extra student greedily via a max-priority queue.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $i^{\text{th}}$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
+We are given $m$ classes, where class $i$ currently has $p_i$ passing students out of $t_i$ total students. Its current pass ratio is $p_i / t_i$. We are given $k = \text{extraStudents}$ additional students, each guaranteed to pass the exam. Assigning an extra student to class $i$ increases both $p_i$ and $t_i$ by $1$.
 
-The objective is to compute `0.7833333333333333` from `{"classes": [[1, 2], [3, 5], [2, 2]], "extraStudents": 2}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to assign all $k$ students to classes such that the average pass ratio across all classes,
+$$\bar{R} = \frac{1}{m} \sum_{i=1}^m \frac{p_i}{t_i}$$
+is maximized.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because the number of classes $m$ is constant, maximizing the average ratio is mathematically equivalent to maximizing the sum of individual ratios. A naive greedy choice might pick the class with the lowest current ratio, or attempt to distribute students evenly. However, the true metric of improvement is the marginal gain produced by adding one student to a specific class.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Marginal Gain Formula
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+When one passing student is assigned to a class with $p$ passing and $t$ total students, the pass ratio changes from $p/t$ to $(p+1)/(t+1)$. The marginal improvement is:
+$$\Delta(p, t) = \frac{p+1}{t+1} - \frac{p}{t} = \frac{t(p+1) - p(t+1)}{t(t+1)} = \frac{t - p}{t(t+1)}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Key observations:
+1. **Unpassed Students Matter:** The numerator is $t - p$, the number of failing students in the class. If $p = t$ (a $100\%$ pass rate), the numerator is $0$, meaning zero gain can ever be extracted by adding more students to an already perfect class.
+2. **Class Size Matters:** The denominator is $t(t+1)$. For identical numbers of failing students, smaller classes experience substantially larger gains than larger classes.
+
+### Discrete Concavity and Greedy Optimality
+
+> **Diminishing Marginal Gains & Greedy Priority Optimality Theorem.**
+> For any class with baseline $(p, t)$, let $g_s = \Delta(p + s, t + s)$ be the marginal gain gained by allocating the $(s+1)^{\text{th}}$ extra student to this class:
+> $$g_s = \frac{t - p}{(t + s)(t + s + 1)}$$
+> As $s$ increases, the numerator $t - p$ remains constant while the denominator $(t + s)(t + s + 1)$ strictly increases. Therefore:
+> $$g_0 > g_1 > g_2 > \dots \ge 0$$
+> Each class exhibits strictly diminishing marginal returns (discrete concavity).
+> By the Fox-Groenevelt discrete resource allocation theorem, when allocating discrete units among separable concave objectives, the greedy policy—allocating each successive unit to the component currently exhibiting the maximum marginal gain—achieves the global maximum.
+
+```mermaid
+flowchart TD
+    accTitle: Marginal Gain Max-Heap Process
+    accDescr: Pipeline initializing priority queue with initial marginal gains and repeatedly extracting the maximum gain to update class ratios.
+    A["Compute initial gains Δ(p, t) for all classes"] --> B["Build Max-Priority Queue"]
+    B --> C{"Any extra students remaining?"}
+    C -- "Yes" --> D["Extract class with max gain Δ(p, t)"]
+    D --> E["Assign student: p = p + 1, t = t + 1"]
+    E --> F["Recompute new gain Δ(p, t) = (t - p) / (t(t + 1))"]
+    F --> G["Insert updated class back into heap"]
+    G --> C
+    C -- "No" --> H["Sum final ratios p / t across all classes"]
+    H --> I["Divide by m to obtain average ratio"]
+    I --> J["Output: 0.7833333333333333"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Optimize the improvement, not the current ratio
+We trace `classes = [[1, 2], [3, 5], [2, 2]]` with `extraStudents = 2`.
 
-For a class with $p$ passing students out of $t$ total students, its current pass ratio is $p/t$. Assigning one guaranteed-to-pass student changes both counts, producing $(p+1)/(t+1)$.
+### Step 1: Initial State & Heap Construction
 
-The useful quantity for deciding where that student should go is the marginal gain
+Evaluate the current ratio and immediate marginal gain $\Delta(p, t)$ for each of the $m = 3$ classes:
 
-$$
-\Delta(p,t)
-=
-\frac{p+1}{t+1}-\frac{p}{t}
-=
-\frac{t-p}{t(t+1)}.
-$$
+1. **Class 0:** $p = 1, t = 2$
+   - Current ratio: $1/2 = 0.500000$
+   - Marginal gain:
+     $$\Delta(1, 2) = \frac{2 - 1}{2 \times 3} = \frac{1}{6} \approx 0.166667$$
+2. **Class 1:** $p = 3, t = 5$
+   - Current ratio: $3/5 = 0.600000$
+   - Marginal gain:
+     $$\Delta(3, 5) = \frac{5 - 3}{5 \times 6} = \frac{2}{30} = \frac{1}{15} \approx 0.066667$$
+3. **Class 2:** $p = 2, t = 2$
+   - Current ratio: $2/2 = 1.000000$
+   - Marginal gain:
+     $$\Delta(2, 2) = \frac{2 - 2}{2 \times 3} = 0.000000$$
 
-A class with the lowest current ratio does not necessarily have the greatest gain. Class size matters: changing one student has more influence on a small class than on a very large class. The algorithm must compare $\Delta$, not merely $p/t$, $p$, or $t$.
-
-Because the number of classes is fixed, maximizing the average pass ratio is equivalent to maximizing the sum of class ratios. Dividing the final sum by the number of classes does not affect which assignment is optimal.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"classes": [[1, 2], [3, 5], [2, 2]], "extraStudents": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Each class has diminishing returns
-
-Suppose a class has already received $x$ extra students. Its next gain is
-
-$$
-\Delta_x
-=
-\frac{p+x+1}{t+x+1}-\frac{p+x}{t+x}
-=
-\frac{t-p}{(t+x)(t+x+1)}.
-$$
-
-The numerator $t-p$ remains constant because every added student increases both passing and total counts by one. The denominator grows with $x$, so the next gain never increases. A class may deserve several students, but after each assignment its priority must be recalculated.
-
-This diminishing-return property is what makes a greedy decision valid. At any moment, every class exposes its next available gain. Choose the largest one. If an allegedly optimal allocation used a smaller currently available gain instead, exchange that assigned student for the larger gain. The total cannot decrease. Later gains from the chosen class are no larger than its current gain, so respecting the per-class order does not create a hidden advantage that invalidates the exchange. Repeating this exchange transforms an optimal allocation into the greedy sequence.
-
-Another view is that each class offers a descending list of marginal gains. Assigning $x$ students to that class takes the first $x$ entries of its list. The goal is to select `extraStudents` gains across all lists while respecting those prefixes. Since each list is descending, repeatedly selecting the greatest exposed head produces the greatest possible total.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Priority order based on marginal gain:
+$$\text{Class 0 } (0.166667) > \text{Class 1 } (0.066667) > \text{Class 2 } (0.000000)$$
 
 ---
 
-### Step 3: Represent a max-priority rule with Python's min-heap
+### Step 2: Allocate 1st Extra Student
+- **Select Maximum Gain:** Class 0 has the highest gain ($\approx 0.166667$).
+- **Assign Student:**
+  - $p_0 = 1 + 1 = 2$
+  - $t_0 = 2 + 1 = 3$
+  - Updated ratio: $2/3 \approx 0.666667$
+- **Recompute Marginal Gain for Class 0:**
+  $$\Delta(2, 3) = \frac{3 - 2}{3 \times 4} = \frac{1}{12} \approx 0.083333$$
+- **Updated Pool of Gains:**
+  - Class 0: $\Delta = 1/12 \approx 0.083333$
+  - Class 1: $\Delta = 1/15 \approx 0.066667$
+  - Class 2: $\Delta = 0.000000$
 
-Python's heap removes the smallest key, but the desired class has the largest positive gain. The protected solution stores
+---
 
-`a / b - (a + 1) / (b + 1)`,
+### Step 3: Allocate 2nd Extra Student
+- **Compare Gains:**
+  $$0.083333 \text{ (Class 0)} > 0.066667 \text{ (Class 1)} > 0.000000 \text{ (Class 2)}$$
+- **Select Maximum Gain:** Class 0 still offers the largest gain.
+- **Assign Student:**
+  - $p_0 = 2 + 1 = 3$
+  - $t_0 = 3 + 1 = 4$
+  - Updated ratio: $3/4 = 0.750000$
+- **Recompute Marginal Gain for Class 0:**
+  $$\Delta(3, 4) = \frac{4 - 3}{4 \times 5} = \frac{1}{20} = 0.050000$$
+- All $2$ extra students have now been allocated.
 
-which is exactly $-\Delta(a,b)$. The largest gain becomes the most negative key, so it rises to the top of the min-heap.
+---
 
-Each heap entry is a tuple containing that negative gain, the current passing count `a`, and the current total `b`. The list comprehension creates one entry per class, and `heapify` organizes all entries in linear time.
+### Step 4: Final Ratio Calculation
+Sum the finalized pass ratios across all $3$ classes:
+- Class 0: $3/4 = 0.750000$
+- Class 1: $3/5 = 0.600000$
+- Class 2: $2/2 = 1.000000$
 
-For each extra student, the solution removes the top entry, increments both `a` and `b`, recomputes the class's new negative marginal gain, and pushes the updated tuple back. The heap always contains exactly one current entry for every class.
+Total ratio sum:
+$$\sum_{i=0}^2 \frac{p_i}{t_i} = 0.75 + 0.60 + 1.00 = 2.35$$
 
-The extra tuple fields also provide deterministic tie-breaking when two floating-point gain keys compare equal. Either tied class is an optimal choice because their immediate improvements are equal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0.7833333333333333` |
+Compute the average pass ratio:
+$$\bar{R} = \frac{2.35}{3} = \frac{47}{60} \approx 0.7833333333333333$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"classes": [[1, 2], [3, 5], [2, 2]], "extraStudents": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0.7833333333333333` | Verified |
+| Allocation Step | Active Class Chosen | Class State Before | Marginal Gain $\Delta$ | Class State After | New Ratio | Heap Top Next |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Setup | — | — | — | — | — | Class 0 ($0.1667$) |
+| Student 1 | Class 0 | $[1, 2]$ | $1/6 \approx 0.1667$ | $[2, 3]$ | $2/3 \approx 0.6667$ | Class 0 ($0.0833$) |
+| Student 2 | Class 0 | $[2, 3]$ | $1/12 \approx 0.0833$ | $[3, 4]$ | $3/4 = 0.7500$ | Class 1 ($0.0667$) |
+
+Final average pass ratio: $(0.75 + 0.60 + 1.00) / 3 = 0.7833333333333333$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every allocation of a student to a class increases the total sum of pass ratios by precisely the computed marginal gain $\Delta(p, t)$. Because each student is added to an existing class, all intermediate counts $p_i \le t_i$ remain valid, and every student accounted for is guaranteed to pass.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By the Diminishing Marginal Gains Theorem, each subsequent student allocated to the same class yields a strictly smaller gain. Because all candidate choices exhibit independent, decreasing marginal utilities, no future allocation sequence can achieve a larger sum than the sequence formed by iteratively picking the largest current marginal gain.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Rescan every class per student:** It makes the same greedy choice but costs $O(en)$ time, which is too slow at the maximum constraints.
-- **Choose the smallest current ratio:** This ignores class size and may select a class with a smaller marginal improvement.
-- **Assign all students at once to one class:** Marginal gains decrease after every assignment, so another class can become better partway through.
-- **Binary search on a gain threshold:** More advanced resource-allocation methods are possible, but the heap directly implements the discrete choices within the constraints.
-- **Exact fraction comparison:** Compare $(t-p)/(t(t+1))$ values by cross multiplication to avoid floating-point heap keys; integer products must use sufficient width.
-- **Already perfect class:** When $p=t$, its gain is zero because adding another passing student keeps the ratio at one.
-- **All classes perfect:** Every assignment has zero gain and the returned average remains exactly one.
-- **One class:** Every extra student necessarily goes there; repeated pop-update-push operations produce its final ratio.
-- **Repeated assignment to one class:** Its tuple is updated after each student, so the next decision uses its smaller new gain.
-- **Equal gains:** Either class can be chosen without changing the best possible total.
-- **Large `extraStudents`:** The loop performs exactly one allocation per student, and each maintains the heap invariant.
-- **Tuple tie-breaking:** Passing and total counts may decide heap order after equal keys, but this cannot harm optimality.
-- **Accepted precision:** The answer is a float and is judged with tolerance rather than exact textual equality.
-- **Input preservation:** The original `classes` rows are not modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Lowest-Ratio Fallacy:** Class 0 had a lower ratio ($0.50$) than Class 1 ($0.60$), but if Class 1 were instead $[10, 100]$ (ratio $0.10$), its gain would be $(100 - 10)/(100 \times 101) = 90/10100 \approx 0.0089$, far lower than Class 0's $0.1667$. Selecting by lowest ratio fails completely.
+- **Equal Allocation Fallacy:** Distributing extra students evenly across all classes ignores differences in class size and diminishing returns. Here, both students are optimally assigned to Class 0.
+- **Perfect Ratio Zero Gain:** Classes with $p = t$ have zero failing students ($t - p = 0$). Adding students to such classes never increases the ratio. They must naturally sit at the bottom of the priority queue.
+- **Floating-Point Precision in Heaps:** Representing marginal gains as floats can lead to subtle ordering issues if precision is lost; however, within standard double-precision floating-point arithmetic, the differences between class sizes up to $10^5$ are well within machine epsilon.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+e\log n)$. Let $n$ be the number of classes and $e$ be `extraStudents`. Creating the $n$ entries and calling `heapify` costs $O(n)$. Each of the $e$ assignments performs one heap removal and one insertion, each $O(\log n)$, for $O(e\log n)$ total. The final ratio sum scans $n$ entries in $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m + k \log m)$, where $m$ is the number of classes and $k = \text{extraStudents}$. Constructing the initial heap takes linear $\mathcal{O}(m)$ time via bottom-up heapification. Each of the $k$ student allocations performs one extraction and one insertion in the heap of size $m$, costing $\mathcal{O}(\log m)$ per student. Computing the final ratio sum takes $\mathcal{O}(m)$. Total time is $\mathcal{O}(m + k \log m)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m)$. The priority queue maintains exactly one tuple per class, requiring $\mathcal{O}(m)$ auxiliary space.

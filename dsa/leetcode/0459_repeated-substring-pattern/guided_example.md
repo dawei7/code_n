@@ -1,126 +1,169 @@
 # Guided Example: Repeated Substring Pattern
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step string period duplication theorem ($s \in (s + s)[1:-1]$), string doubling circular shift analysis, KMP failure function border periodicity ($n \pmod{n - \pi[n-1]} == 0$), and sub-block tiling verification on representative string instances:
 
-- **Input:** `{"s": "abab"}`
+- **Input:** $s = \text{"abab"}$
 - **Required output:** `true`
+  - Total length: $n = 4$
+  - String concatenation doubling:
+    $$
+    s + s = \text{"abab"} + \text{"abab"} = \text{"abababab"}
+    $$
+  - Boundary character trimming (remove index $0$ and index $2n - 1$):
+    $$
+    T' = (s + s)[1 : 7] = \text{"bababa"}
+    $$
+  - Substring search for target $s = \text{"abab"}$ within $T'$:
+    - Index 0 in $T'$: `"baba"` $\ne$ `"abab"`
+    - Index 1 in $T'$: `"abab"` $==$ `"abab"` (**Match Found!**)
+  - Because $s$ occurs at an internal shift (index $1$ in $T'$, corresponding to shift $L = 2$ in $s + s$), $s$ is composed of repeating sub-blocks of length $2$ (`"ab"` repeated twice).
+  - Return **`true`**.
+- **Non-Periodic Instance:** $s = \text{"aba"}$ ($n = 3$)
+  - Doubled: $s + s = \text{"abaaba"}$
+  - Trimmed: $T' = \text{"baab"}$
+  - Search `"aba"` in `"baab"`: not found $\implies \mathbf{false}$
+- **Multiple Copies Instance:** $s = \text{"abcabcabcabc"}$ ($n = 12$)
+  - Block length $3$ (`"abc"` repeated 4 times) $\implies$ First match at shift $3 < 12 \implies \mathbf{true}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates string periodicity theorems, mathematically proves why doubled string containment $(s + s)[1:-1]$ is equivalent to existence of a non-trivial period, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+Given a string $s = \text{"abab"}$:
+Check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
 
-The objective is to compute `true` from `{"s": "abab"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Original String s: "abab"
+Candidate Sub-block: "ab" (repeated 2 times)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Doubled String Concatenation:
+  s + s:   [ a  b  a  b ] [ a  b  a  b ]
+  Indices:   0  1  2  3     4  5  6  7
+
+Trim Outermost Characters:
+  (s + s)[1:-1]:    b [ a  b  a  b ] a
+                      ^-----------^
+                      Target 'abab' found at internal shift index 2!
+
+Result: true (Period L = 2 exists)
+```
+
+### The String Doubling Theorem
+Let $s$ have length $n$.
+- If $s$ is formed by repeating a block $P$ of length $L$ ($k \ge 2$ times), then $s = P^k$.
+- Consider the doubled string:
+  $$
+  s + s = P^{2k}
+  $$
+- Copies of $s$ occur inside $s + s$ starting at every multiple of $L$:
+  $$
+  \text{Occurrences of } s \text{ in } s + s \text{ start at indices: } 0, \; L, \; 2L, \; \dots, \; (2k - k)L = n
+  $$
+- Since $k \ge 2$, the first internal period occurs at index $L \le \frac{n}{2} < n$.
+- If we remove the first character (index 0) and the last character (index $2n - 1$) to form $T' = (s + s)[1 : 2n - 1]$:
+  - The trivial match at index 0 is destroyed.
+  - The trivial match at index $n$ is destroyed.
+  - Therefore, $s$ is found inside $T'$ **if and only if** there exists an internal period $L \in [1, n - 1]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Doubling Invariant:
+$$
+s \text{ is periodic} \iff s \in (s + s)[1 : -1]
+$$
+- If $s$ is periodic with period $L$, a full copy of $s$ begins at shift index $L$ in $s + s$. Since $1 \le L \le n - 1$, this copy is entirely contained within the interior of $(s + s)$ excluding the first and last characters.
+- If $s$ is not periodic, the only occurrences of $s$ in $s + s$ are at index $0$ and index $n$. Trimming the first and last characters excludes both trivial matches, so the search returns $-1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Equivalent KMP Failure Function Invariant:
+Let $\pi$ be the prefix function (failure table) of $s$:
+- $\pi[n - 1]$ is the length of the longest proper prefix of $s$ that is also a suffix of $s$.
+- If $s$ is periodic:
+  - The length of the minimal repeating unit is $L = n - \pi[n - 1]$.
+  - The string is periodic if and only if $\pi[n - 1] > 0$ and $n \pmod L == 0$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Periodicity Theorem.** A string of length $n$ is a repetition of a shorter substring if and only if its shortest non-zero shift in the circular string space equals the length of that repeating substring.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why `s + s` contains rotations
-
-Let `n = len(s)`. Start at offset `d` inside the doubled string, where $0\le d<n$, and take the next `n` characters. The slice first takes the suffix `s[d:]`, then wraps into the second copy for the prefix `s[:d]`. It is therefore the left rotation
-
-`s[d:] + s[:d]`.
-
-As `d` ranges from zero through `n - 1`, the length-`n` windows in `s + s` represent every cyclic rotation of `s`.
-
-The call `(s + s).index(s, 1)` asks for the first occurrence of `s` whose starting position is at least one. Starting at one deliberately ignores the trivial original occurrence at position zero.
-
-There is always at least one later occurrence: the second literal copy begins at index `n`. Therefore `.index` cannot fail for a nonempty `s`; no exception handling is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abab"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"abab"}$ ($n = 4$):
 
 ---
 
-### Step 2: Why an occurrence before `n` proves repetition
-
-Suppose the search returns an offset `d` with $1\le d<n$. Then the rotation of `s` by `d` positions equals `s` itself. Character equality around that rotation means positions repeat with period determined by `d`; more precisely, indices connected by repeatedly adding `d` modulo `n` carry equal characters. The string is therefore made from a block whose length is $\gcd(n,d)$.
-
-Because `d` is strictly between zero and `n`, $\gcd(n,d)<n$. The block is a proper nonempty prefix, and it repeats exactly $n/\gcd(n,d)$ times, which is at least two. Thus a match beginning before `n` proves the required repeated-substring structure.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Form Concatenated Doubled String
+Concatenate $s$ with itself:
+$$
+s + s = \text{"abab"} + \text{"abab"} = \text{"abababab"} \quad (|s+s| = 8)
+$$
 
 ---
 
-### Step 3: Why every repeated string creates an early occurrence
-
-Conversely, suppose `s` consists of `k >= 2` copies of a block `p` of length `d`. Rotating `s` left by exactly `d` positions removes the first copy of `p` and appends an identical copy at the end, so the string does not change. The doubled string therefore contains `s` starting at offset `d`.
-
-Since at least two copies exist, $1\le d<n$. The search begins at one and will find this occurrence or an even earlier nontrivial occurrence. Its index is consequently less than `len(s)`, and the method returns `true`.
-
-These two directions show the exact equivalence:
-
+### Step 2: Trim Extremities
+Drop the first character at index $0$ (`'a'`) and the last character at index $7$ (`'b'`):
 $$
-\text{proper repeated block exists}
-\quad\Longleftrightarrow\quad
-1\le\text{next occurrence index}<n.
+T' = (s + s)[1 : 7] = \text{"bababa"} \quad (|T'| = 6)
 $$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 3: Search for $s = \text{"abab"}$ in $T'$
+Scan $T'$ for target pattern `"abab"` of length 4:
+- Offset 0: $T'[0:4] = \text{"baba"} \ne \text{"abab"}$
+- Offset 1: $T'[1:5] = \text{"abab"} == \text{"abab"}$ (**Exact Match!**)
+Match starts at offset 1 in $T'$, which corresponds to shift $1 + 1 = 2$ in $s + s$.
+Since $2 < 4$, a non-trivial repetition period exists ($L = 2$).
+Return **`true`**.
+
+---
+
+### Counter-Example Walk: $s = \text{"aba"}$ ($n = 3$)
+- $s + s = \text{"abaaba"}$
+- Trimmed $T' = \text{"baab"}$
+- Check offsets for target `"aba"`:
+  - Offset 0: $T'[0:3] = \text{"baa"} \ne \text{"aba"}$
+  - Offset 1: $T'[1:4] = \text{"aab"} \ne \text{"aba"}$
+- Target `"aba"` not found in $T'$.
+- Return **`false`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abab"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Candidate String $s$ | Length $n$ | Doubled $s + s$ | Trimmed Interior $(s+s)[1:-1]$ | Match Location in Interior | Found? | Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"abab"` | $4$ | `"abababab"` | `"bababa"` | Index 1 (Shift 2) | **Yes** | **`true`** |
+| `"aba"` | $3$ | `"abaaba"` | `"baab"` | None | No | **`false`** |
+| `"abcabcabcabc"` | $12$ | `"abc...abc"` | `"bc...ab"` | Index 2 (Shift 3) | **Yes** | **`true`** |
+| `"a"` | $1$ | `"aa"` | `""` | None | No | **`false`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Character ($s = \text{"a"}):$** A repeated substring requires at least 2 copies of a non-empty substring ($k \ge 2$), so $|s|$ must be $\ge 2$. $s + s = \text{"aa"}$, trimming leaves `""`, search fails $\implies \mathbf{false}$.
+- **All Identical Characters ($s = \text{"aaaa"}):$** $L = 1$. Interior search finds match at shift $1 \implies \mathbf{true}$.
+- **Prime Length String with Alternating Substrings ($s = \text{"ababa"}):$** Ends and starts with `"aba"`, but cannot tile the full string without overlap $\implies \mathbf{false}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Try every prefix length that divides `n`:** Repeat each candidate prefix and compare with `s`. It is easy to derive but can perform repeated full-string construction and comparison.
-- **KMP prefix function:** Let `L` be the longest proper prefix of `s` that is also a suffix. The string repeats exactly when `L > 0` and `n % (n - L) == 0`. This guarantees $O(n)$ time and $O(n)$ space without depending on library substring search.
-- **Rolling hash:** Hashes can test candidate periods efficiently, but collisions require verification or multiple hashes and add needless risk here.
-- **One-character string:** The only later match starts at index one, equal to `n`, so it correctly returns false; a proper nonempty substring cannot exist.
-- **All one character:** For length greater than one, the search finds `s` starting at index one, proving repetition of the one-character block.
-- **Prime length:** A repeated pattern is possible only with block length one; the rotation test handles this without explicitly factoring `n`.
-- **Overlapping occurrence:** `.index` considers overlapping matches, which is necessary for strings such as `"aaaa"` whose next occurrence starts at one.
-- **Guaranteed nonempty input:** The proof assumes `n > 0`. The source contract supplies that guarantee.
-- **Strict properness:** A match at exactly `n` represents merely the second copy and is intentionally rejected.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Searching in $s + s$ Without Trimming:** Searching $s$ in $s + s$ directly always matches at index $0$ (the first copy itself), falsely concluding that every string is periodic. Trimming the boundary characters is mandatory to eliminate trivial matches.
+- **Trial-and-Error Divisor Loop ($O(N \sqrt{N})$):** Testing every divisor of $n$ and repeatedly checking `s[:d] * (n // d) == s` works, but is slower than the elegant $O(N)$ string doubling or KMP check.
+- **Off-by-One in Trim Slicing:** In 0-indexed slicing, taking `(s + s)[1:-1]` removes exactly the first and last characters. Removing more characters can destroy valid period matches.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. Constructing `s + s` creates a string of length `2n`, taking $O(n)$ time and $O(n)$ space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - String concatenation $s + s$ takes $O(N)$ time.
+  - Slicing and substring search using Knuth-Morris-Pratt (or Python's optimized Boyer-Moore-Horspool search) takes $O(N)$ time.
+  - Total Time: $\mathcal{O}(N)$. For $N = 10^4$, completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ auxiliary space to allocate the doubled string.

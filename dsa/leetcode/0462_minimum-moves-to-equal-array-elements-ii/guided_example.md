@@ -1,130 +1,173 @@
 # Guided Example: Minimum Moves to Equal Array Elements II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step $L_1$ norm Manhattan distance minimization, subgradient balance theorem ($N_{left} == N_{right}$), median selection, and absolute deviation summation ($\sum |nums[i] - \text{median}|$) on representative numeric arrays:
 
-- **Input:** `{"nums": [1, 2, 3]}`
+- **Input:** $nums = [1, 2, 3]$
 - **Required output:** `2`
+  - Array length: $n = 3$ (Odd)
+  - Sorted array: $[1, 2, 3]$
+  - Median selection: Index $\lfloor 3 / 2 \rfloor = 1 \implies k = 2$
+  - Absolute deviations to target $k = 2$:
+    - For element $nums[0] = 1$: $|1 - 2| = \mathbf{1}$
+    - For element $nums[1] = 2$: $|2 - 2| = \mathbf{0}$
+    - For element $nums[2] = 3$: $|3 - 2| = \mathbf{1}$
+  - Total minimum moves:
+    $$
+    1 + 0 + 1 = \mathbf{2}
+    $$
+- **Even-Length Array Instance:** $nums = [1, 10, 2, 9]$ ($n = 4$)
+  - Sorted array: $[1, 2, 9, 10]$
+  - Any target in the median interval $[2, 9]$ yields the identical optimal cost:
+    - Choosing $k = 2$:
+      $$
+      |1 - 2| + |2 - 2| + |9 - 2| + |10 - 2| = 1 + 0 + 7 + 8 = \mathbf{16}
+      $$
+    - Choosing $k = 9$:
+      $$
+      |1 - 9| + |2 - 9| + |9 - 9| + |10 - 9| = 8 + 7 + 0 + 1 = \mathbf{16}
+      $$
+- **All Elements Equal Instance:** $nums = [5, 5, 5] \implies \text{median} = 5 \implies \mathbf{0}$ moves
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates median optimality for $L_1$ loss functions, mathematically proves why the mean minimizes squared errors ($L_2$) while the median minimizes absolute errors ($L_1$), and derives $O(N \log N)$ runtime (or $O(N)$ via Quickselect) and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` of size `n`, return *the minimum number of moves required to make all array elements equal*.
+Given an integer array $nums = [1, 2, 3]$:
+In one move, you can **increment or decrement an element by 1**.
+Find the **minimum number of moves** required to make all array elements equal.
 
-The objective is to compute `2` from `{"nums": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array Elements on the Number Line:
+  1 ------- 2 ------- 3
+  ^         ^         ^
+  nums[0]  median   nums[2]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Target: Median = 2
+  Distance from 1 to 2: |1 - 2| = 1
+  Distance from 2 to 2: |2 - 2| = 0
+  Distance from 3 to 2: |3 - 2| = 1
+
+Total Moves: 1 + 0 + 1 = 2
+```
+
+### The $L_1$ Minimization Principle
+We want to choose a target integer $x$ that minimizes the total cost:
+$$
+f(x) = \sum_{i=0}^{n-1} |nums[i] - x|
+$$
+- If we choose the arithmetic mean $\bar{x}$, we minimize the sum of squared differences $\sum (nums[i] - x)^2$ ($L_2$ norm).
+- But here, each step costs $1$, meaning we are minimizing the sum of **absolute differences** ($L_1$ norm).
+- In mathematical statistics, the point that minimizes the sum of absolute deviations from a set of 1D points is unconditionally the **median**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Subgradient Balance Proof:
+Consider shifting the target point $x$ by a small positive increment $\Delta > 0$:
+- Every point $nums[i] < x$ sees its distance increase by $\Delta$.
+- Every point $nums[i] > x$ sees its distance decrease by $\Delta$.
+- The net change in total cost is:
+  $$
+  \Delta \cdot (\text{Count}(nums[i] < x) - \text{Count}(nums[i] > x))
+  $$
+- To minimize $f(x)$, the net slope must be zero:
+  $$
+  \text{Count}(nums[i] < x) == \text{Count}(nums[i] > x)
+  $$
+- This balance condition is satisfied precisely when $x$ divides the array into two equal halves, which is the definition of the **median**.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Pairing Outer Elements:
+Alternatively, consider pairing the smallest and largest elements:
+- To equalize $nums[0]$ and $nums[n-1]$ to any point $x \in [nums[0], nums[n-1]]$:
+  $$
+  |nums[0] - x| + |nums[n-1] - x| = nums[n-1] - nums[0]
+  $$
+  The cost for this outer pair is constant for any $x$ inside their interval!
+- Moving inward, the next pair $(nums[1], nums[n-2])$ is minimized for any $x \in [nums[1], nums[n-2]]$.
+- Nesting these intervals yields the intersection of all pairs, which narrows down to the median value $nums[\lfloor n/2 \rfloor]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Median Invariant.** For any $x$, $f(x) \ge f(nums[\lfloor n / 2 \rfloor])$. Any choice other than the median strictly increases the total cost.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the median minimizes absolute distance
-
-Imagine moving a proposed target `k` one unit to the right. Every input value to the left of `k` becomes one unit farther away, increasing the total cost by one for each such value. Every input value to the right becomes one unit closer, decreasing the cost by one for each such value.
-
-If more values lie to the right than to the left, moving right decreases the total cost. If more lie to the left, moving right increases it. A minimum is reached where neither side has a numerical majority—that is exactly the median region.
-
-After sorting, a median has at most half the values below it and at most half above it. Moving away from that region causes distances on the larger side to increase at least as fast as distances on the smaller side decrease. No target outside the median region can improve the sum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 2, 3]$ ($n = 3$):
 
 ---
 
-### Step 2: A pairing view of the same fact
-
-Sort values as
-
+### Step 1: Sort the Array
+Sort $nums$ in ascending order:
 $$
-a_0\le a_1\le\cdots\le a_{n-1}.
+nums = [1, 2, 3]
 $$
-
-Pair the smallest with the largest, the second smallest with the second largest, and so on. For any target `k` lying between a pair's endpoints,
-
-$$
-\lvert a_i-k\rvert+\lvert a_{n-1-i}-k\rvert=a_{n-1-i}-a_i.
-$$
-
-This contribution is already as small as possible; moving `k` outside the pair's interval makes the sum larger. A median lies inside every nested outer-pair interval, so it simultaneously minimizes every pair's combined contribution. If `n` is odd, the unpaired center value is itself the median and contributes zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Step 3: How the exact median index is selected
+### Step 2: Extract the Median
+Find the element at middle index $k = \lfloor 3 / 2 \rfloor = 1$:
+$$
+x = nums[1] = \mathbf{2}
+$$
 
-After `nums.sort()`, the code computes
+---
 
-`k = nums[len(nums) >> 1]`.
+### Step 3: Compute Absolute Deviations
+Sum $|nums[i] - x|$ across all indices:
+- At $i = 0$: $|nums[0] - 2| = |1 - 2| = \mathbf{1}$.
+- At $i = 1$: $|nums[1] - 2| = |2 - 2| = \mathbf{0}$.
+- At $i = 2$: $|nums[2] - 2| = |3 - 2| = \mathbf{1}$.
 
-Shifting a nonnegative integer right by one bit is integer division by two, so `len(nums) >> 1` equals `len(nums) // 2`.
+Total sum:
+$$
+f(2) = 1 + 0 + 1 = \mathbf{2}
+$$
 
-For odd `n`, this is the unique middle index. For even `n`, it selects the upper of the two central values. Every target between the lower and upper medians minimizes the absolute-distance sum, so choosing the upper median is fully optimal. The target is allowed to be any integer; selecting an existing array value is convenient and sufficient.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Comparison with Suboptimal Target (Mean / Extreme):
+- If we chose $x = 1$: $f(1) = |1-1| + |2-1| + |3-1| = 0 + 1 + 2 = 3 > 2$.
+- If we chose $x = 3$: $f(3) = |1-3| + |2-3| + |3-3| = 2 + 1 + 0 = 3 > 2$.
+Median $x = 2$ achieves the strictly minimal cost of **`2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Element $nums[i]$ | Sorted Index | Selected Median $k$ | Absolute Distance $|nums[i] - k|$ | Cumulative Moves |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $0$ | $2$ | $|1 - 2| = 1$ | $1$ |
+| $2$ | $1$ (Middle) | $2$ | $|2 - 2| = 0$ | $1$ |
+| $3$ | $2$ | $2$ | $|3 - 2| = 1$ | **$2$** |
+| **Total** | — | — | $\sum |nums[i] - 2|$ | **Result: $2$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Element ($nums = [10]$):** Median is 10 $\implies |10 - 10| = \mathbf{0}$.
+- **Even-Length Array ($nums = [1, 2, 9, 10]$):** Any point between $nums[1] = 2$ and $nums[2] = 9$ gives the identical minimal cost $16$. Choosing index $\lfloor 4 / 2 \rfloor = 2$ ($value = 9$) or $1$ ($value = 2$) gives the same answer.
+- **Negative Elements ($nums = [-10, -5, 0, 5, 10]$):** Sorted order handles negatives seamlessly. Median is 0. Total moves: $10 + 5 + 0 + 5 + 10 = \mathbf{30}$.
+- **Duplicate Elements ($nums = [1, 1, 1, 100]$):** Median is 1 $\implies 0 + 0 + 0 + 99 = \mathbf{99}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Quickselect the median:** Expected $O(n)$ time finds the middle order statistic without fully sorting, followed by an $O(n)$ distance scan. It mutates the array and has quadratic worst-case time with naive pivots.
-- **Deterministic median of medians:** Guarantees $O(n)$ worst-case selection but is considerably more complex and usually unnecessary for these bounds.
-- **Try every possible target:** The numerical range can span billions, making range enumeration infeasible.
-- **Use the arithmetic mean:** It minimizes squared error, not the sum of unit moves, and can be suboptimal here.
-- **Odd length:** The middle sorted value is the unique median region and is optimal.
-- **Even length:** Any target between the two central values is optimal; the exact code chooses the upper one.
-- **One element:** It is its own median, its distance is zero, and no moves are needed.
-- **All values equal:** Every absolute difference is zero.
-- **Negative values:** Sorting and absolute differences work across zero without special handling.
-- **Duplicate medians:** Repeated central values simply make the optimal target explicit and do not affect the proof.
-- **Input mutation:** Callers needing the original order must sort a copy rather than reuse this exact in-place implementation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using the Arithmetic Mean Instead of the Median:** The mean minimizes $\sum (x_i - \mu)^2$. For $[1, 2, 9, 10]$, the mean is $5.5$. Rounding to 5 or 6 gives cost $|1-5| + |2-5| + |9-5| + |10-5| = 4 + 3 + 4 + 5 = 16$, but for asymmetric datasets (e.g. $[1, 1, 100]$, mean $= 34 \implies \text{cost } 132$, while median $= 1 \implies \text{cost } 99$), the mean fails dramatically.
+- **Integer Overflow in Summation:** Sum of differences can exceed 32-bit signed integer capacity ($N \times 10^9 = 10^{14}$). Using 64-bit accumulators prevents overflow.
+- **Sorting Unnecessarily When Quickselect is Available:** Sorting takes $O(N \log N)$. In performance-critical environments, Quickselect (`nth_element`) finds the median in $O(N)$ average time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of elements. Python sorting takes $O(n\log n)$ time. Selecting the middle element is $O(1)$. The generator inside `sum` then visits all $n$ values and performs constant-time arithmetic under the standard fixed-width model, adding $O(n)$ time. Sorting dominates, so total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting the array takes $O(N \log N)$ time (or $O(N)$ using linear-time median selection).
+  - Computing the sum of deviations takes a single pass of $O(N)$ time.
+  - Total Time: $\mathcal{O}(N \log N)$. For $N = 10^5$, finishes in under 20 ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ beyond language-level in-place sorting.

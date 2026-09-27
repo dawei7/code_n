@@ -1,130 +1,184 @@
 # Guided Example: Longest Happy Prefix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the Knuth-Morris-Pratt (KMP) prefix function on a representative problem instance:
 
-- **Input:** `{"s": "level"}`
+- **Input:** `s = "level"`
 - **Required output:** `"l"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because internal symmetry and repeated letters (`'e'`) test prefix matching without premature termination, concluding when the final character matches the opening character to confirm `"l"` as the longest proper prefix that is also a suffix.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A string is called a **happy prefix** if it is a **non-empty** prefix which is also a suffix (excluding itself).
+A **happy prefix** of a string $s$ is defined as a non-empty prefix of $s$ that is also a suffix of $s$, strictly excluding the full string $s$ itself. We must find the longest such prefix, or return `""` if none exists.
 
-The objective is to compute `"l"` from `{"s": "level"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "level"` of length $n = 5$:
+- Proper prefixes: `["l", "le", "lev", "leve"]`
+- Proper suffixes: `["l", "el", "vel", "evel"]`
+- Common substrings: The only common string between proper prefixes and proper suffixes is `"l"`.
+- Longest happy prefix: `"l"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach checks candidate prefix/suffix pairs of decreasing lengths $n-1, n-2, \dots, 1$, which can take $\mathcal{O}(n^2)$ time in the worst case (e.g., strings of identical characters).
+
+The primary teaching goal is to recognize that computing the longest happy prefix is identical to computing the final value of the **Knuth-Morris-Pratt (KMP) prefix function** $\pi[n - 1]$, executing in deterministic $\mathcal{O}(n)$ time without hashing or string slicing overhead.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+The KMP prefix function $\pi$ is an array of length $n$, where $\pi[i]$ denotes the length of the longest proper prefix of the substring $s[0 \dots i]$ that is also a suffix of $s[0 \dots i]$:
 
-| State Parameter | Role & Purpose | Initial State |
+$$
+\pi[i] = \max \{ k \mid 0 \le k < i + 1 \text{ and } s[0 \dots k-1] = s[i-k+1 \dots i] \}
+$$
+
+By definition, the longest happy prefix of the entire string $s$ has length exactly equal to $\pi[n - 1]$, and corresponds to substring $s[0 \dots \pi[n - 1] - 1]$.
+
+```
+Prefix Function Alignment for "level":
+Index:          0    1    2    3    4
+Character:      l    e    v    e    l
+pi[i]:          0    0    0    0    1
+                                    ^
+pi[4] = 1 means prefix s[0..0] ("l") == suffix s[4..4] ("l")
+```
+
+The linear-time computation maintains a pointer $j = \pi[i - 1]$ representing the length of the matched prefix before considering character $s[i]$:
+1. While $j > 0$ and $s[i] \ne s[j]$, backtrack using the previously computed prefix lengths: $j \leftarrow \pi[j - 1]$.
+2. If $s[i] = s[j]$, increment $j$ by $1$.
+3. Assign $\pi[i] = j$.
+
+We define state tracking parameters:
+
+| State Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Scan Index ($i$) | Current position in $s$ ($1 \dots n-1$) | $1$ |
+| Prefix Length ($j$) | Length of matched prefix candidate | $0$ |
+| Array $\pi$ | Precomputed prefix function table | $\pi[0] = 0$ |
+| Final Output | Substring $s[0 \dots \pi[n-1]-1]$ | Determined at $i = n-1$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every processed index $i$, $\pi[i]$ is the exact maximal length $k < i + 1$ such that prefix $s[0 \dots k - 1]$ equals suffix $s[i - k + 1 \dots i]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compare candidate prefix and suffix lengths from longest to shortest
+We trace the KMP prefix function construction for $s = \text{"level"}$ ($n = 5$):
 
-A happy prefix must be a proper prefix: it begins at index zero but cannot equal the entire string. It must also equal a suffix ending at the final character.
+### Base Step: Index $i = 0$
 
-For an offset `i` between one and `len(s) - 1`:
-
-- `s[:-i]` removes the last $i$ characters and is a prefix of length $n-i$.
-- `s[i:]` removes the first $i$ characters and is a suffix of the same length $n-i$.
-
-The equality test `s[:-i] == s[i:]` therefore asks whether the prefix and suffix of length $n-i$ are identical.
-
-The loop tries `i = 1` first, which corresponds to the longest possible proper prefix length $n-1$. Increasing `i` shortens both candidates one character at a time. Consequently, the first equality found is automatically the longest happy prefix, and returning `s[i:]` is correct.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "level"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- Base definition: Substring of length $1$ (`"l"`) has no non-empty proper prefix.
+- Assign $\pi[0] = 0$.
 
 ---
 
-### Step 2: Why the slices have equal length
+### Step 1: Index $i = 1$ ($s[1] = \text{'e'}$)
 
-This detail prevents an off-by-one mistake. `s[:-i]` contains positions zero through $n-i-1$, a total of $n-i$ characters. `s[i:]` contains positions $i$ through $n-1$, also $n-i$ characters. They may overlap in the original string, which the problem explicitly allows.
+- Current prefix candidate length: $j = \pi[0] = 0$.
+- Character comparison: Compare $s[i] = \text{'e'}$ with $s[j] = s[0] = \text{'l'}$.
+- Mismatch ($\text{'e'} \ne \text{'l'}$).
+- Since $j = 0$, no backtracking is possible.
+- Assign $\pi[1] = 0$.
 
-For `"ababab"` with $n=6$:
-
-- At `i=1`, `"ababa"` and `"babab"` differ.
-- At `i=2`, `"abab"` and `"abab"` match.
-
-The method immediately returns `"abab"`. It never reaches shorter matches such as `"ab"` because the first one is already longest.
-
-For `"level"`, offsets one through three fail. At `i=4`, the one-character prefix and suffix are both `"l"`, so it returns `"l"`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Index ($i$) | Character $s[i]$ | Active $j$ | Comparison ($s[i] == s[j]$) | Action Taken | $\pi[i]$ Assigned |
+|---|---|---|---|---|---|
+| $0$ | `'l'` | - | Base condition | Set to 0 | $0$ |
+| $1$ | `'e'` | $0$ | `'e' == 'l'` (False) | No match, $j = 0$ | $0$ |
 
 ---
 
-### Step 3: Why the entire string is excluded
+### Step 2: Index $i = 2$ ($s[2] = \text{'v'}$)
 
-The range begins at one rather than zero. An offset of zero would compare the whole string with itself, but the definition says the happy prefix must exclude the string itself. Every tested candidate has length at most $n-1$ and is therefore proper.
+- Current prefix candidate length: $j = \pi[1] = 0$.
+- Compare $s[i] = \text{'v'}$ with $s[0] = \text{'l'}$.
+- Mismatch ($\text{'v'} \ne \text{'l'}$).
+- Assign $\pi[2] = 0$.
 
-The range stops before `len(s)`. At offset $n$, both slices would be empty. A happy prefix must be nonempty, so that candidate must not be accepted. `range(1, len(s))` enforces both boundaries exactly.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"l"` |
+### Step 3: Index $i = 3$ ($s[3] = \text{'e'}$)
+
+- Current prefix candidate length: $j = \pi[2] = 0$.
+- Compare $s[i] = \text{'e'}$ with $s[0] = \text{'l'}$.
+- Mismatch ($\text{'e'} \ne \text{'l'}$).
+- Assign $\pi[3] = 0$.
+
+---
+
+### Step 4: Index $i = 4$ ($s[4] = \text{'l'}$)
+
+- Current prefix candidate length: $j = \pi[3] = 0$.
+- Compare $s[i] = \text{'l'}$ with $s[j] = s[0] = \text{'l'}$.
+- Match found! ($\text{'l'} = \text{'l'}$).
+- Increment prefix length: $j \leftarrow 0 + 1 = 1$.
+- Assign $\pi[4] = 1$.
+
+Terminal state reached. Length of longest happy prefix is $\pi[4] = 1$.
+Slice substring: $s[0 \dots 0] = \text{"l"}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "level"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"l"` | Verified |
+| Step ($i$) | $s[i]$ | Candidate $j$ | $s[j]$ | Match? | Resulting $\pi[i]$ | Longest Match for Prefix $s[0 \dots i]$ |
+|---|---|---|---|---|---|---|
+| $0$ | `'l'` | - | - | - | $0$ | `""` |
+| $1$ | `'e'` | $0$ | `'l'` | No | $0$ | `""` |
+| $2$ | `'v'` | $0$ | `'l'` | No | $0$ | `""` |
+| $3$ | `'e'` | $0$ | `'l'` | No | $0$ | `""` |
+| $4$ | `'l'` | $0$ | `'l'` | **Yes** | **$1$** | **`"l"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Amortized Linear Complexity Proof
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+At each iteration $i$, pointer $j$ increases by at most $1$ (in the single step $j \leftarrow j + 1$).
+- Across all $n$ iterations, $j$ can increase at most $n - 1$ times.
+- Each execution of the backtracking step $j \leftarrow \pi[j - 1]$ strictly decreases $j$ by at least $1$.
+- Since $j \ge 0$ at all times, the total number of decrements across the entire algorithm cannot exceed the total number of increments.
+- Thus, the inner backtracking loop executes at most $n - 1$ times in total over all iterations.
+- Total runtime is strictly bounded by $\mathcal{O}(n)$.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **KMP prefix function:** Compute the longest proper border length in one pass and return the prefix of that length. This achieves the manifest's $O(n)$ time and $O(n)$ space.
-- **Rolling hash:** Compare prefix and suffix hashes for each length, often in $O(n)$ preprocessing and constant expected comparison time, but hash collisions require care.
-- **Z-function:** A linear string-matching table can identify suffixes that match the prefix and select the longest proper one.
-- **Single character:** The loop is empty because no nonempty proper prefix exists, so it returns `""`.
-- **All characters equal:** The first candidate of length $n-1$ matches and is returned.
-- **No matching border:** Every candidate fails and the empty string is returned.
-- **Overlapping occurrences:** They are valid and handled naturally by slicing.
-- **Proper-prefix boundary:** Starting the offset at one prevents returning the entire string.
-- **Nonempty boundary:** Stopping before offset $n$ prevents accepting two empty slices.
-- **First match:** Candidate lengths decrease monotonically, so returning immediately cannot miss a longer result.
-- **Unicode or lowercase:** The method works for arbitrary Python strings, though the contract supplies lowercase English letters.
-- **Input immutability:** String slicing creates new strings and never changes `s`.
-- **Performance constraint:** The direct method is pedagogically simple but can be too slow at the maximum length; prefix-function matching is the practical optimal replacement.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(n)$. Building the $\pi$ table inspects each character in amortized $\mathcal{O}(1)$ time. Slicing the prefix of length $\pi[n - 1]$ takes $\mathcal{O}(\pi[n - 1]) \le \mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the prefix function array $\pi$. (Can be reduced to $\mathcal{O}(1)$ space using Rabin-Karp rolling hash, though rolling hash carries collision risks).
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. The exact implementation may test $n-1$ offsets. At offset $i$, Python constructs two slices of length $n-i$, and comparing them may also examine $O(n-i)$ characters. In a worst case with many long near-matches, total work is
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Self-Identity Exclusion:** The happy prefix cannot be the entire string $s$ itself. A trivial equality check of $s$ against $s$ would violate the "proper prefix" constraint.
+- **Empty Return Value:** If $\pi[n - 1] = 0$, no proper prefix matches any proper suffix. The algorithm must return the empty string `""`.
+- **Single-Character String ($n = 1$):** When $s$ has length $1$, there is no proper non-empty prefix, so $\pi[0] = 0$, correctly yielding `""`.
+- **Overlapping Prefixes and Suffixes:** Suffixes and prefixes are allowed to overlap (e.g., in $s = \text{"aaaa"}$, $\pi[3] = 3$, returning `"aaa"`). KMP naturally handles overlaps without special logic.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: KMP Prefix Function Flowchart
+    accDescr: Computes the KMP pi table to identify the longest proper prefix that is also a suffix.
+
+    Start(["Start with string s of length n"]) --> Init["pi = array of zeros of size n<br>j = 0, i = 1"]
+    Init --> Loop{"i < n ?"}
+    
+    Loop -- "Done" --> Extract["k = pi[n - 1]<br>Return s[0 : k]"]
+    Extract --> Done(["Finish"])
+    
+    Loop -- "Next i" --> Backtrack{"j > 0 AND s[i] != s[j] ?"}
+    Backtrack -- "Yes" --> StepBack["j = pi[j - 1]"]
+    StepBack --> Backtrack
+    
+    Backtrack -- "No" --> CheckMatch{"s[i] == s[j] ?"}
+    CheckMatch -- "Yes" --> IncJ["j += 1"]
+    CheckMatch -- "No" --> SetPi["pi[i] = j<br>i += 1"]
+    IncJ --> SetPi
+    
+    SetPi --> Loop
+```

@@ -1,119 +1,167 @@
 # Guided Example: Group the People Given the Group Size They Belong To
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bucketing and chunking partitioning of individuals into required group sizes on a representative problem instance:
 
-- **Input:** `{"groupSizes": [3, 3, 3, 3, 3, 1, 3]}`
-- **Required output:** `[[5], [0, 1, 2], [3, 4, 6]]`
+- **Input:**
+  `groupSizes = [3, 3, 3, 3, 3, 1, 3]`
+- **Required Output:**
+  ```text
+  [
+    [5],
+    [0, 1, 2],
+    [3, 4, 6]
+  ]
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates equivalence grouping by size attributes, greedy batch chunking, and partition invariance.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` people that are split into some unknown number of groups. Each person is labeled with a **unique ID** from `0` to $n - 1$.
+We are given $N = 7$ people indexed from $0$ to $6$. Each person $i$ specifies their mandatory group size $S_i = \text{groupSizes}[i]$:
+- Person $0$: size $3$
+- Person $1$: size $3$
+- Person $2$: size $3$
+- Person $3$: size $3$
+- Person $4$: size $3$
+- Person $5$: size $1$
+- Person $6$: size $3$
 
-The objective is to compute `[[5], [0, 1, 2], [3, 4, 6]]` from `{"groupSizes": [3, 3, 3, 3, 3, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
+The objective is to partition all individuals into disjoint subsets such that every person $i$ belongs to a subset of exactly size $S_i$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Person Index:   0   1   2   3   4   5   6
+Required Size:  3   3   3   3   3   1   3
+
+Bucket by Required Size:
+  Bucket [1]: [5]                   --> Chunk of 1: [5]
+  Bucket [3]: [0, 1, 2, 3, 4, 6]    --> Chunk of 3: [0, 1, 2]
+                                    --> Chunk of 3: [3, 4, 6]
+
+Final Disjoint Partition:
+  Group 1 (Size 1): [5]
+  Group 2 (Size 3): [0, 1, 2]
+  Group 3 (Size 3): [3, 4, 6]
+```
+
+Any arbitrary grouping across different target sizes is invalid. However, among people requiring the exact same size $S$, individuals are interchangeable.
+The optimal strategy collects indices into size-keyed buckets and segments each bucket into contiguous chunks of length $S$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $I_S = \{ i \mid \text{groupSizes}[i] = S \}$ denote the collection of people requiring group size $S$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Exact Divisibility Guarantee
+Because a valid grouping is guaranteed by the problem specification:
+- Every person in $I_S$ must be placed into a group of size $S$.
+- Groups within $I_S$ are disjoint and contain only members of $I_S$.
+- Therefore, the total count $|I_S|$ must be an exact integer multiple of $S$:
+  $$
+  |I_S| = k \cdot S \quad \text{for some integer } k \ge 1
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Chunking Mechanism
+For each size bucket $I_S$:
+1. Read elements sequentially: $p_0, p_1, \dots, p_{|I_S|-1}$.
+2. Split the list into $k = |I_S| / S$ chunks of size $S$:
+   $$
+   G_0 = [p_0 \dots p_{S-1}], \quad G_1 = [p_S \dots p_{2S-1}], \quad \dots, \quad G_{k-1} = [p_{(k-1)S} \dots p_{kS-1}]
+   $$
+3. Append each chunk $G_m$ to the final result list.
+
+| Bucket Key $S$ | People Collected $I_S$ | Total Count $|I_S|$ | Number of Groups $k = |I_S| / S$ | Generated Chunks |
+|---|---|---|---|---|
+| $S = 1$ | `[5]` | $1$ | $1 / 1 = 1$ | `[5]` |
+| $S = 3$ | `[0, 1, 2, 3, 4, 6]` | $6$ | $6 / 3 = 2$ | `[0, 1, 2]`, `[3, 4, 6]` |
+
+> **Interchangeability Invariant.** Within any size bucket $I_S$, all members share the identical requirement $S$. Any partition of $I_S$ into subsets of size $S$ is equally valid. Contiguous chunking satisfies the constraint greedily without backtracking or search.
+
+```mermaid
+flowchart TD
+    accTitle: Bucket and Chunk Partitioning Flow
+    accDescr: Pipeline showing people mapped to size buckets, followed by chunking into groups of required capacity.
+    ARR["Input: groupSizes = [3, 3, 3, 3, 3, 1, 3]"] --> BUCKET["Bucket by size: Bucket[1] = [5], Bucket[3] = [0, 1, 2, 3, 4, 6]"]
+    BUCKET --> CH1["Bucket[1] -> Split into chunks of 1: [5]"]
+    BUCKET --> CH3["Bucket[3] -> Split into chunks of 3: [0, 1, 2] and [3, 4, 6]"]
+    CH1 --> OUT["Assemble Output Groups: [[5], [0, 1, 2], [3, 4, 6]]"]
+    CH3 --> OUT
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: People requiring different sizes can never share a group
+### Phase 1: Bucket Construction
+We iterate through `groupSizes = [3, 3, 3, 3, 3, 1, 3]` by person index $i$:
+- $i = 0$: size $3 \implies$ append to Bucket $3$: `[0]`
+- $i = 1$: size $3 \implies$ append to Bucket $3$: `[0, 1]`
+- $i = 2$: size $3 \implies$ append to Bucket $3$: `[0, 1, 2]`
+- $i = 3$: size $3 \implies$ append to Bucket $3$: `[0, 1, 2, 3]`
+- $i = 4$: size $3 \implies$ append to Bucket $3$: `[0, 1, 2, 3, 4]`
+- $i = 5$: size $1 \implies$ append to Bucket $1$: `[5]`
+- $i = 6$: size $3 \implies$ append to Bucket $3$: `[0, 1, 2, 3, 4, 6]`
 
-If person `i` has `groupSizes[i] = q`, everyone placed with that person must belong to a group containing exactly `q` people. Therefore a person requesting size two cannot share a group with one requesting size three. The first step is to bucket people by their required group size.
+Resulting buckets:
+- Bucket $1$: `[5]`
+- Bucket $3$: `[0, 1, 2, 3, 4, 6]`
 
-The dictionary `g` maps a size to the list of person identifiers requesting it. Iterating with `enumerate(groupSizes)` provides each unique identifier `i` and its required size `v`. The statement `g[v].append(i)` records the person in exactly one bucket.
+### Phase 2: Chunking and Group Assembly
+1. **Processing Bucket $1$ (Target chunk size $1$):**
+   - Slice from index $0$ to $1$: `[5]`.
+   - Length is $1$, matching target size $1$.
+   - Output group emitted: `[5]`.
+2. **Processing Bucket $3$ (Target chunk size $3$):**
+   - Slice 1 from index $0$ to $3$: `[0, 1, 2]`.
+     - Length is $3$, matching target size $3$.
+     - Output group emitted: `[0, 1, 2]`.
+   - Slice 2 from index $3$ to $6$: `[3, 4, 6]`.
+     - Length is $3$, matching target size $3$.
+     - Output group emitted: `[3, 4, 6]`.
 
-Because `g` is a `defaultdict(list)`, the first person for a size automatically creates an empty list. No separate existence check is necessary.
-
-For `[3,3,3,3,3,1,3]`, bucket three becomes `[0,1,2,3,4,6]` and bucket one becomes `[5]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"groupSizes": [3, 3, 3, 3, 3, 1, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Split each bucket into consecutive chunks of its key size
-
-In the return comprehension, `i` is the dictionary key representing a required group size, while `v` is the complete list of people requesting that size. The inner range `range(0, len(v), i)` produces chunk starts zero, `i`, `2 * i`, and so on.
-
-Slice `v[j : j + i]` copies exactly `i` consecutive identifiers into one output group. In the size-three bucket above, starts zero and three produce `[0,1,2]` and `[3,4,6]`. The size-one bucket produces `[5]`.
-
-The variable name `i` serves a different role in the comprehension than it did in the earlier enumeration. Python's comprehension scope and completed first loop make this safe, although names such as `size` and `members` would be more descriptive.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why every chunk is complete
-
-The problem guarantees that at least one valid grouping exists. For any requested size $q$, the number of people requesting $q$ must therefore be divisible by $q$. Otherwise, after forming full $q$-person groups, an incomplete remainder would be unavoidable.
-
-This divisibility guarantee means the final slice in every bucket contains exactly its requested number of people. The code does not explicitly validate it because the contract proves it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[5], [0, 1, 2], [3, 4, 6]]` |
+All buckets have been processed completely with zero leftover elements.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"groupSizes": [3, 3, 3, 3, 3, 1, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[5], [0, 1, 2], [3, 4, 6]]` | Verified |
+| Bucket Key $S$ | Slice Range $[j \dots j + S]$ | Members in Group | Valid Size Check | Cumulative Groups Created |
+|---|---|---|---|---|
+| $1$ | $[0 \dots 1]$ | `[5]` | Length $= 1 = S$ | `[[5]]` |
+| $3$ | $[0 \dots 3]$ | `[0, 1, 2]` | Length $= 3 = S$ | `[[5], [0, 1, 2]]` |
+| $3$ | $[3 \dots 6]$ | `[3, 4, 6]` | Length $= 3 = S$ | `[[5], [0, 1, 2], [3, 4, 6]]` |
+
+Final assembled output:
+```text
+[ [5],
+  [0, 1, 2],
+  [3, 4, 6] ]
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every emitted group $G$ consists of people drawn from the bucket corresponding to size $S = |G|$. Thus, every person $i \in G$ has $\text{groupSizes}[i] = S = |G|$, satisfying the problem constraint. Because each person index appears in exactly one bucket and within that bucket in exactly one non-overlapping chunk, every person belongs to exactly one group.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since a valid solution exists, the size of each bucket $|I_S|$ is divisible by $S$. Stepping through each bucket in increments of $S$ exhausts all elements with zero remainder. Thus, no person is left unassigned.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Emit full buckets immediately:** Append each identifier to a temporary list for its size and move that list to the answer when full. It has the same asymptotic bounds and may retain fewer waiting identifiers.
-- **Sort people by required size:** Sorting then chunking works but costs $O(n\log n)$ time when hashing already gives linear grouping.
-- **Incomplete final chunk:** It cannot occur under the valid-solution guarantee; without that guarantee, the exact source would return an undersized invalid group.
-- **Group size one:** Every person in that bucket becomes a singleton slice.
-- **One group of size `n`:** All identifiers share one bucket and one output slice.
-- **Several groups with the same size:** Consecutive chunks arbitrarily divide that bucket, which is allowed because any valid grouping may be returned.
-- **Every person exactly once:** Bucket insertion and nonoverlapping slices guarantee no omission or duplication.
-- **Output order:** Dictionary and list order make one deterministic answer, but callers must not depend on a particular order because the contract permits any.
-- **Unique identifiers:** Array indices provide the required IDs from zero through $n-1$ without a separate field.
-- **Positive sizes:** The lower bound of one prevents a zero step in `range` and makes every group meaningful.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Mixing different group sizes:** Placing person $5$ (size 1) in a group with person $0$ (size 3) violates the constraint for both people. Strict key-based segregation by size avoids this.
+- **Leftover elements in buckets:** In an arbitrary input, a bucket might have a size not divisible by $S$. The problem statement guarantees feasibility, so $|I_S| \bmod S = 0$ is an invariant.
+- **Dynamic emission vs post-chunking:** We can either accumulate all elements into buckets first and chunk afterwards, or maintain a temporary buffer for each size and flush a group the moment its size reaches $S$. Both approaches are equivalent in asymptotic complexity.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of people. Building the buckets performs $n$ expected constant-time dictionary appends. Across all buckets, slicing copies exactly $n$ identifiers into result groups. Total expected time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the number of people.
+  - Phase 1 visits each of the $N$ people once, performing an $\mathcal{O}(1)$ hash map lookup and list append, taking $\mathcal{O}(N)$ total time.
+  - Phase 2 slices each element into a group exactly once, performing $\mathcal{O}(N)$ total assignments across all groups.
+  - Overall time is strictly linear $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the bucket lists and the final output groups.

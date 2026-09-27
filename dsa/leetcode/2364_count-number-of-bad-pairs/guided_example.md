@@ -1,140 +1,176 @@
 # Guided Example: Count Number of Bad Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [4, 1, 3, 3]}`
-- **Required output:** `5`
+We are given a 0-indexed integer array `nums`. A pair of indices $(i, j)$ is defined as **bad** if:
+1. $i < j$
+2. $j - i \ne nums[j] - nums[i]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Conversely, a pair is defined as **good** if $j - i = nums[j] - nums[i]$. Our objective is to calculate the total number of bad pairs present in `nums`.
 
----
+Consider the representative instance:
+- `nums = [4, 1, 3, 3]`
+- Array length: $n = 4$
 
-## 1. Instance & Teaching Goal
+The total number of index pairs $(i, j)$ with $i < j$ is:
+$$\binom{4}{2} = \frac{4 \times 3}{2} = 6$$
 
-You are given a **0-indexed** integer array `nums`. A pair of indices `(i, j)` is a **bad pair** if `i < j` and $j - i \neq \text{nums}[j] - \text{nums}[i]$.
+Let us evaluate the condition $j - i = nums[j] - nums[i]$ across all $6$ index pairs:
+- $(0, 1)$: $1 - 0 = 1$, whereas $nums[1] - nums[0] = 1 - 4 = -3$. Since $1 \ne -3 \implies$ **Bad pair**.
+- $(0, 2)$: $2 - 0 = 2$, whereas $nums[2] - nums[0] = 3 - 4 = -1$. Since $2 \ne -1 \implies$ **Bad pair**.
+- $(0, 3)$: $3 - 0 = 3$, whereas $nums[3] - nums[0] = 3 - 4 = -1$. Since $3 \ne -1 \implies$ **Bad pair**.
+- $(1, 2)$: $2 - 1 = 1$, whereas $nums[2] - nums[1] = 3 - 1 = 2$. Since $1 \ne 2 \implies$ **Bad pair**.
+- $(1, 3)$: $3 - 1 = 2$, whereas $nums[3] - nums[1] = 3 - 1 = 2$. Since $2 = 2 \implies$ **Good pair**.
+- $(2, 3)$: $3 - 2 = 1$, whereas $nums[3] - nums[2] = 3 - 3 = 0$. Since $1 \ne 0 \implies$ **Bad pair**.
 
-The objective is to compute `5` from `{"nums": [4, 1, 3, 3]}` while avoiding redundant calculations and unnecessary overhead.
+There is exactly $1$ good pair: $(1, 3)$.
+The remaining $6 - 1 = 5$ pairs are bad. The final answer is $5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart TD
+    accTitle: Complementary Counting and Coordinate Transposition
+    accDescr: Transforming index slope equations into invariant difference keys to compute good pairs via hash frequency and subtract from total pairs.
+    Input["nums = [4, 1, 3, 3], n = 4"] --> Total["Total Pairs: 4 * 3 / 2 = 6"]
+    Input --> Transform["Transform: D[k] = nums[k] - k<br/>D[0] = 4 - 0 = 4<br/>D[1] = 1 - 1 = 0<br/>D[2] = 3 - 2 = 1<br/>D[3] = 3 - 3 = 0"]
+    Transform --> GoodCount["Group by D[k] to find Good Pairs:<br/>D = 0: indices {1, 3} -> 1 good pair<br/>D = 4: singleton {0} -> 0<br/>D = 1: singleton {2} -> 0<br/>Total Good Pairs = 1"]
+    Total --> Subtraction["Complementary Subtraction:<br/>Bad Pairs = Total Pairs - Good Pairs<br/>Bad Pairs = 6 - 1 = 5"]
+    GoodCount --> Subtraction
+    Subtraction --> Out["Output: 5"]
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+Directly searching for pairs that violate $j - i \ne nums[j] - nums[i]$ requires checking inequality across $\mathcal{O}(n^2)$ pairs. We can reduce this to linear time using coordinate rearrangement and complementary counting.
 
-We maintain the core conceptual parameters and state variables:
+### Algebraic Transposition of the Good Pair Invariant
+Rearrange the equality condition:
 
-| State Parameter | Role & Purpose | Initial State |
+$$j - i = nums[j] - nums[i]$$
+
+Grouping terms with index $i$ on the left and index $j$ on the right:
+
+$$nums[i] - i = nums[j] - j$$
+
+Define the transformed sequence:
+
+$$D[k] = nums[k] - k \quad \text{for } 0 \le k < n$$
+
+Under this transformation:
+
+$$(i, j) \text{ is a good pair} \iff D[i] = D[j]$$
+
+A pair of indices is good if and only if both indices evaluate to the exact same value in array $D$.
+
+### Complementary Counting Strategy
+The total number of pairs of indices with $0 \le i < j < n$ is given by the binomial coefficient:
+
+$$N_{\text{total}} = \binom{n}{2} = \frac{n(n - 1)}{2}$$
+
+By the law of the excluded middle, every pair $(i, j)$ is either good or bad, but never both. Therefore:
+
+$$N_{\text{bad}} = N_{\text{total}} - N_{\text{good}}$$
+
+Let the distinct values in $D$ be partitioned into frequency classes, where $C(v) = |\{k \mid D[k] = v\}|$.
+The total number of good pairs is the sum of combinations of choosing two identical values within each frequency bucket:
+
+$$N_{\text{good}} = \sum_{v} \binom{C(v)}{2} = \sum_{v} \frac{C(v)(C(v) - 1)}{2}$$
+
+### Online Single-Pass Formulation
+Equivalently, as we iterate from $j = 0$ to $n - 1$:
+- When we arrive at index $j$, there are $j$ preceding elements $i < j$.
+- Exactly $H[D[j]]$ of these preceding elements have $D[i] = D[j]$ (good pairs).
+- The remaining $j - H[D[j]]$ preceding elements have $D[i] \ne D[j]$ (bad pairs).
+- We accumulate the bad pairs: $\text{ans} \leftarrow \text{ans} + (j - H[D[j]])$.
+- We then increment the frequency: $H[D[j]] \leftarrow H[D[j]] + 1$.
+
+| Metric / Term | Mathematical Formula | Algorithmic Function |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Pairs $N_{\text{total}}$ | $\frac{n(n-1)}{2}$ | Upper bound on possible pairs |
+| Transformed Value $D[k]$ | $nums[k] - k$ | Maps the condition to simple equality $D[i] = D[j]$ |
+| Good Pairs $N_{\text{good}}$ | $\sum \binom{C(v)}{2}$ | Equal-key collisions in the hash map |
+| Bad Pairs $N_{\text{bad}}$ | $N_{\text{total}} - N_{\text{good}}$ | Final target result |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+Let us trace `nums = [4, 1, 3, 3]` with $n = 4$.
+We use the online single-pass approach with running accumulator $\text{bad\_count} = 0$ and frequency map $H$.
 
-## 3. Step-by-Step Worked Execution
+### Step 0: Index $j = 0, nums[0] = 4$
+- Transformed difference: $D[0] = nums[0] - 0 = 4 - 0 = 4$.
+- Preceding elements: $j = 0$.
+- Preceding matches with value $4$: $H[4] = 0$.
+- New bad pairs: $0 - 0 = 0$.
+- Update accumulator: $\text{bad\_count} \leftarrow 0 + 0 = 0$.
+- Record frequency: $H[4] \leftarrow 0 + 1 = 1$.
+- State: $\text{bad\_count} = 0, H = \{4: 1\}$.
 
-### Step 1: Count each pair when its right endpoint arrives
+### Step 1: Index $j = 1, nums[1] = 1$
+- Transformed difference: $D[1] = nums[1] - 1 = 1 - 1 = 0$.
+- Preceding elements: $j = 1$ (index 0).
+- Preceding matches with value $0$: $H[0] = 0$.
+- New bad pairs: $1 - 0 = 1$ (pair $(0, 1)$).
+- Update accumulator: $\text{bad\_count} \leftarrow 0 + 1 = 1$.
+- Record frequency: $H[0] \leftarrow 0 + 1 = 1$.
+- State: $\text{bad\_count} = 1, H = \{4: 1, 0: 1\}$.
 
-For a fixed index `i`, there are exactly `i` earlier indices: `0` through `i - 1`. Therefore, there are `i` pairs whose right endpoint is `i`. If we can quickly determine how many of those pairs are good, the number of newly completed bad pairs is:
+### Step 2: Index $j = 2, nums[2] = 3$
+- Transformed difference: $D[2] = nums[2] - 2 = 3 - 2 = 1$.
+- Preceding elements: $j = 2$ (indices 0, 1).
+- Preceding matches with value $1$: $H[1] = 0$.
+- New bad pairs: $2 - 0 = 2$ (pairs $(0, 2)$ and $(1, 2)$).
+- Update accumulator: $\text{bad\_count} \leftarrow 1 + 2 = 3$.
+- Record frequency: $H[1] \leftarrow 0 + 1 = 1$.
+- State: $\text{bad\_count} = 3, H = \{4: 1, 0: 1, 1: 1\}$.
 
-$$
-i-\text{number of good earlier partners}.
-$$
+### Step 3: Index $j = 3, nums[3] = 3$
+- Transformed difference: $D[3] = nums[3] - 3 = 3 - 3 = 0$.
+- Preceding elements: $j = 3$ (indices 0, 1, 2).
+- Preceding matches with value $0$: $H[0] = 1$ (index 1).
+- New bad pairs: $3 - 1 = 2$ (pairs $(0, 3)$ and $(2, 3)$; pair $(1, 3)$ is good).
+- Update accumulator: $\text{bad\_count} \leftarrow 3 + 2 = 5$.
+- Record frequency: $H[0] \leftarrow 1 + 1 = 2$.
+- State: $\text{bad\_count} = 5, H = \{4: 1, 0: 2, 1: 1\}$.
 
-Summing that contribution while scanning left to right counts every pair exactly once. A pair is counted on the iteration of its larger index, never before and never again.
+Loop complete. Final bad pair count is $5$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [4, 1, 3, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Comprehensive State Trace
 
----
+The evaluation of each index and the cumulative resolution of bad pairs is detailed below.
 
-### Step 2: Transform the good-pair equation into equal keys
+| Index $j$ | Element $nums[j]$ | Difference $D[j]$ | Preceding Count $j$ | Historical Matches $H[D[j]]$ | Good Pairs at $j$ | Bad Pairs Added ($j - H$) | Running Total Bad Pairs |
+|---|---|---|---|---|---|---|---|
+| $0$ | $4$ | $4$ | $0$ | $0$ | $0$ | $0$ | $0$ |
+| $1$ | $1$ | $0$ | $1$ | $0$ | $0$ | $1$ | $1$ |
+| $2$ | $3$ | $1$ | $2$ | $0$ | $0$ | $2$ | $3$ |
+| $3$ | $3$ | $0$ | $3$ | $1$ (Idx 1) | $1$ (`(1, 3)`) | $2$ | **5** |
 
-The definition says a pair with earlier index $j$ and later index $i$ is good when:
+Total bad pairs: $5$.
 
-$$
-i-j=\texttt{nums}[i]-\texttt{nums}[j].
-$$
+## 5. Algorithmic Correctness & Soundness
 
-Rearrange terms belonging to the same index:
+1. **Bijective Algebraic Equivalence:**
+   The equation $j - i = nums[j] - nums[i]$ holds if and only if $nums[i] - i = nums[j] - j$. Because integer subtraction is deterministic and invertible, two indices satisfy the good pair relationship if and only if their mapped values $D[i]$ and $D[j]$ are equal.
 
-$$
-i-\texttt{nums}[i]=j-\texttt{nums}[j].
-$$
+2. **Completeness of Disjoint Partitioning:**
+   Every pair of indices $(i, j)$ with $i < j$ satisfies either $D[i] = D[j]$ or $D[i] \ne D[j]$. Since the set of all pairs is partitioned into good and bad pairs without overlap, $N_{\text{bad}} = N_{\text{total}} - N_{\text{good}}$ is exact.
 
-This shows that each index can be assigned the key `index - value`. Two indices form a good pair exactly when their keys are equal. The original comparison of two differences has become a frequency lookup.
+3. **Invariance of Summation Order:**
+   Adding $j - H[D[j]]$ at step $j$ counts all pairs $(i, j)$ with $i < j$ such that $D[i] \ne D[j]$. Because every pair is inspected exactly once at the moment of its right endpoint $j$, no pair is missed or counted twice.
 
-The sign could be reversed for every key—`value - index` would group the same indices—but the exact implementation uses `i - x`, where `x` is `nums[i]`.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **All Pairs Good (`nums = [1, 2, 3, 4, 5]`):**
+  - $D[k] = nums[k] - k = 1$ for all $k$.
+  - All $5$ elements share the same difference $1$.
+  - Good pairs $= \binom{5}{2} = 10$. Bad pairs $= 10 - 10 = 0$.
+- **All Pairs Bad (All $D[k]$ Distinct):**
+  - Good pairs $= 0$. Bad pairs $= \frac{n(n-1)}{2}$.
+- **Large Arrays (64-Bit Integer Requirement):**
+  - If $n = 10^5$, total pairs can reach $\approx 5 \times 10^9$, exceeding 32-bit signed integer capacity. The accumulator must be stored as a 64-bit integer (`long long` in C++, `long` in Java).
+- **Anti-Pattern (Nested Pair Checking):**
+  - Evaluating every $(i, j)$ via nested loops takes $\mathcal{O}(n^2)$ time. Transforming coordinates and hashing differences reduces time to strictly linear $\mathcal{O}(n)$.
 
----
+## 7. Complexity Analysis
 
-### Step 3: Maintain frequencies of earlier keys
-
-`cnt` is a `Counter` mapping each key to the number of previously processed indices with that key. A Counter returns zero for a missing key, which handles the first occurrence without a special branch.
-
-At the start of index `i`'s iteration, `cnt` contains only indices smaller than `i` because the current key is added after its contribution is calculated. Thus:
-
-
-
-is exactly the number of earlier indices that form good pairs with `i`.
-
-The line
-
-
-
-adds all `i` possible earlier pairs minus those good pairs. It then performs `cnt[i - x] += 1` so this index becomes available as a possible partner for later indices.
-
-The order of lookup and increment matters. Incrementing first would count the current index as its own matching predecessor, even though a valid pair requires two different indices with the earlier one strictly smaller.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 1, 3, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Total pairs minus good pairs:** Count each key frequency and use $\binom{f}{2}$ for good pairs, then subtract from $\binom{n}{2}$. This is correct but requires a second aggregation step or final frequency loop.
-- **Brute-force pair enumeration:** Testing every `(i, j)` directly is simple but takes $O(n^2)$ time and is too slow for $10^5$ elements.
-- **Use `nums[i] - i` as the key:** Reversing every key's sign preserves equality, so it is equally correct. The exact code uses `i - nums[i]`.
-- **One element:** There are no index pairs. The only contribution is zero, and the result is `0`.
-- **All keys equal:** Every pair is good; at index `i` the matching frequency equals `i`, so no bad pairs are added.
-- **All keys distinct:** No pair is good; the contributions are `0, 1, ..., n - 1` and the answer is all $\binom{n}{2}$ pairs.
-- **Large values:** A key may be a large negative integer, but Counter keys support it directly.
-- **Update order:** The frequency must be read before the current index is inserted, or the current index would be incorrectly treated as an earlier partner.
-- **Duplicate array values:** Equal values at different indices do not automatically make a pair good; equality depends on `i - nums[i]`, which changes with the index.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums`. The loop visits every element once. Computing the integer key, reading and updating a Counter entry, and updating `ans` take expected $O(1)$ time each. Total expected time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `nums`. We perform a single sequential pass across $n$ elements. Each hash map lookup and insertion takes $\mathcal{O}(1)$ average time.
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space to store the frequency map of transformed differences $D[k]$.

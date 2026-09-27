@@ -1,125 +1,158 @@
 # Guided Example: Maximum Ascending Subarray Sum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of streaming run accumulation and segment boundary resetting on a representative problem instance:
 
-- **Input:** `{"nums": [10, 20, 30, 5, 10, 50]}`
-- **Required output:** `65`
+- **Input:** `nums = [10, 20, 30, 5, 10, 50]`
+- **Required Output:** `65`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features two disjoint ascending segments with an intermediate downward drop ($30 \to 5$), illustrating how strict monotonicity boundaries partition the array and how all-positive elements guarantee that maximal segments dominate all internal subsegments.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of positive integers `nums`, return the **maximum** possible sum of an strictly increasing subarray in* *`nums`.
+Given an array of positive integers `nums`, a subarray `nums[i..j]` is **strictly ascending** if:
+$$\text{nums}[k] < \text{nums}[k+1] \quad \text{for all } i \le k < j$$
 
-The objective is to compute `65` from `{"nums": [10, 20, 30, 5, 10, 50]}` while avoiding redundant calculations and unnecessary overhead.
+The score of an ascending subarray is the sum of its elements. We must find the maximum possible sum of any strictly ascending subarray in `nums`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach might consider all $\mathcal{O}(n^2)$ subarrays, checking whether each is strictly ascending and computing its sum. The optimal linear approach uses the fact that strict increase partitions the array into non-overlapping maximal runs, and that positive values ensure maximal runs always produce the highest sums.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Segment Partitioning and Positivity Dominance
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let array `nums` be of length $n$.
+1. **Unambiguous Partition:**
+   The relationship $\text{nums}[i] > \text{nums}[i-1]$ uniquely partitions the array into maximal contiguous ascending segments:
+   $$P_1, P_2, \dots, P_m$$
+   Whenever $\text{nums}[i] \le \text{nums}[i-1]$, strict monotonicity is violated. No strictly ascending subarray can span across index $i - 1$ and index $i$. Thus, index $i$ must mark the beginning of a new segment.
+2. **Positivity Dominance:**
+   Every element is positive ($\text{nums}[k] \ge 1$). For any subsegment $[a, b] \subseteq [L, R]$ within a maximal ascending run $[L, R]$:
+   $$\sum_{k=a}^b \text{nums}[k] \le \sum_{k=L}^R \text{nums}[k]$$
+   Equality holds if and only if $[a, b] = [L, R]$. Therefore, the optimal ascending subarray is guaranteed to be one of the full, maximal ascending runs.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Contiguous Ascending Partition & Positivity Sum Dominance Theorem.**
+> Because strict monotonicity creates pairwise disjoint maximal intervals and all elements are strictly positive, the maximum ascending subarray sum is exactly:
+> $$\max_{k=1}^m \left( \sum_{x \in P_k} x \right)$$
+> Tracking a running sum $t$ that accumulates while $\text{nums}[i] > \text{nums}[i-1]$ and resets to $\text{nums}[i]$ when $\text{nums}[i] \le \text{nums}[i-1]$ finds the global maximum in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ space.
+
+```mermaid
+flowchart TD
+    accTitle: Ascending Subarray Streaming Logic
+    accDescr: Sequential scan extending the current sum on strict increase and resetting to the current element on non-increase.
+    A["Read nums[i] = v"] --> B{"i == 0 or v > nums[i-1]?"}
+    B -- "Yes (Strict Increase)" --> C["Extend run: t = t + v"]
+    C --> D["ans = max(ans, t)"]
+    B -- "No (v <= nums[i-1])" --> E["Reset run: t = v"]
+    D --> F{"More elements?"}
+    E --> F
+    F -- "Yes" --> A
+    F -- "No" --> G["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Split the array at every failed strict increase
+We trace `nums = [10, 20, 30, 5, 10, 50]` of length $n = 6$.
 
-A strictly increasing subarray can continue from index $i-1$ to index $i$ exactly when `nums[i] > nums[i - 1]`. If that inequality fails, no increasing subarray can contain both adjacent positions, so a new ascending run must begin at $i$.
-
-The protected solution scans once while maintaining:
-
-- `t`, the sum of the current maximal ascending run ending at the processed position;
-- `ans`, the greatest ascending-run sum confirmed so far.
-
-Both start at zero. On index zero, the condition `i == 0` starts the first run without trying to access an earlier element.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [10, 20, 30, 5, 10, 50]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Trace Setup
+- Running run sum: $t = 0$.
+- Global maximum sum: $\text{ans} = 0$.
 
 ---
 
-### Step 2: Extend a run when the next value is larger
-
-If the current value `v` is strictly greater than `nums[i - 1]`, appending it preserves the ascending property. The solution adds it to `t` and immediately updates `ans = max(ans, t)`.
-
-Every number is positive. Therefore, extending a valid ascending run always increases its sum. For a fixed run, its full maximal length has at least as large a sum as any shorter subarray inside it. Tracking the growing prefixes is safe, and the largest value reached by `t` for that run is its complete sum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Index $i = 0$, Value $v = 10$
+- Boundary condition: $i = 0$.
+- Starts the first ascending run:
+  $$t = 0 + 10 = 10$$
+  $$\text{ans} = \max(0, 10) = 10$$
+- State: $t = 10$, $\text{ans} = 10$.
 
 ---
 
-### Step 3: Reset when equality or a decrease breaks the run
+### Step 2: Index $i = 1$, Value $v = 20$
+- Compare with prior: $\text{nums}[1] = 20 > \text{nums}[0] = 10$ (Strict increase).
+- Extend run:
+  $$t = 10 + 20 = 30$$
+  $$\text{ans} = \max(10, 30) = 30$$
+- State: $t = 30$, $\text{ans} = 30$.
 
-If `v <= nums[i - 1]`, strict ascent fails. The current index cannot belong to the previous run, so `t` is replaced with `v`. This represents the new one-element ascending subarray beginning at $i$.
+---
 
-The exact code does not update `ans` inside this reset branch. That is safe under the positive-input guarantee. Since `v <= nums[i - 1]` and the previous run's sum includes the positive value `nums[i - 1]`, the previous run sum is at least `nums[i - 1]` and therefore at least `v`. That previous sum was already considered during its last extension. The new singleton cannot beat `ans` at the moment it is created.
+### Step 3: Index $i = 2$, Value $v = 30$
+- Compare with prior: $\text{nums}[2] = 30 > \text{nums}[1] = 20$ (Strict increase).
+- Extend run:
+  $$t = 30 + 30 = 60$$
+  $$\text{ans} = \max(30, 60) = 60$$
+- State: $t = 60$, $\text{ans} = 60$.
 
-If the new run later extends, the ascending branch updates `ans` with its growing sum. If it remains a singleton at the end, the inequality above proves it still cannot exceed the previous run's already-recorded sum.
+---
 
-This omitted reset update would require reconsideration if negative numbers were allowed. The source's positivity constraint is part of the implementation proof.
+### Step 4: Index $i = 3$, Value $v = 5$
+- Compare with prior: $\text{nums}[3] = 5 \le \text{nums}[2] = 30$ (Increase broken!).
+- A new segment must begin at index $3$.
+- Reset run sum to the current singleton:
+  $$t = 5$$
+- Note on $\text{ans}$: Prior run achieved $60$. Since $5 \le 30 \le 60$, the new singleton cannot exceed $\text{ans}$.
+- State: $t = 5$, $\text{ans} = 60$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `65` |
+---
+
+### Step 5: Index $i = 4$, Value $v = 10$
+- Compare with prior: $\text{nums}[4] = 10 > \text{nums}[3] = 5$ (Strict increase).
+- Extend run:
+  $$t = 5 + 10 = 15$$
+  $$\text{ans} = \max(60, 15) = 60$$
+- State: $t = 15$, $\text{ans} = 60$.
+
+---
+
+### Step 6: Index $i = 5$, Value $v = 50$
+- Compare with prior: $\text{nums}[5] = 50 > \text{nums}[4] = 10$ (Strict increase).
+- Extend run:
+  $$t = 15 + 50 = 65$$
+  $$\text{ans} = \max(60, 65) = 65$$
+- State: $t = 65$, $\text{ans} = 65$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [10, 20, 30, 5, 10, 50]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `65` | Verified |
+| Index $i$ | $\text{nums}[i]$ | Comparison with Previous | Branch Taken | Active Run Elements | Running Sum $t$ | Global Max $\text{ans}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $10$ | $i = 0$ | Start Run 1 | `[10]` | $10$ | $10$ |
+| $1$ | $20$ | $20 > 10$ | Extend Run 1 | `[10, 20]` | $30$ | $30$ |
+| $2$ | $30$ | $30 > 20$ | Extend Run 1 | `[10, 20, 30]` | $60$ | $60$ |
+| $3$ | $5$ | $5 \le 30$ | Break & Reset | `[5]` | $5$ | $60$ |
+| $4$ | $10$ | $10 > 5$ | Extend Run 2 | `[5, 10]` | $15$ | $60$ |
+| $5$ | $50$ | $50 > 10$ | Extend Run 2 | `[5, 10, 50]` | $65$ | **$65$** |
+
+At end of traversal, the maximal ascending sum is **$65$**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every time $\text{ans}$ is updated with $t$, $t$ represents the exact sum of a verified strictly ascending contiguous subarray starting at some index $L$ and ending at $i$. Because every element in `nums` is strictly positive, the sum is algebraically correct and non-negative.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any strictly ascending subarray must reside entirely within one of the maximal contiguous ascending segments. Within any maximal segment, adding more positive elements monotonically increases the sum, so the full segment sum is maximal for that run. Since $t$ computes the total sum for every maximal segment and $\text{ans}$ captures the running maximum, no superior ascending subarray can exist.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Start from every index:** Extending a run separately from each start repeats work and can take $O(n^2)$ time.
-- **Store all run sums:** It works but uses unnecessary $O(n)$ space; only the maximum and current sum matter.
-- **Generic maximum-subarray algorithm:** Kadane's algorithm addresses arbitrary negative values but does not enforce strict ascent by itself.
-- **Equality boundary:** Equal adjacent values break the run because ascending means strictly increasing, not non-decreasing.
-- **Single element:** Index zero starts a run, updates `ans`, and returns that value.
-- **Fully increasing array:** No reset occurs, so the answer is the total array sum.
-- **Strictly decreasing array:** Every element starts a singleton; the first, largest value remains the answer.
-- **New run at the end:** Its singleton cannot beat the previous run at a non-increasing positive boundary, explaining the safe missing reset update.
-- **Positive values:** They make a complete ascending run better than every shorter subarray within it.
-- **Potential negative-value variant:** The exact reset logic and maximal-run argument would need modification because extending could lower a sum.
-- **Strict comparison:** The source uses `>` rather than `>=` to preserve the definition.
-- **Contiguous requirement:** A decrease cannot be skipped; doing so would form a subsequence rather than a subarray.
-- **Input preservation:** The algorithm reads `nums` without changing it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Non-Decreasing vs Strictly Increasing:** Adjacent equal values (e.g. `[10, 10]`) violate strict increase ($10 \not> 10$). Equal elements must break the run and trigger a reset.
+- **Subarray vs Subsequence:** Subarrays must be contiguous. One cannot skip the drop $30 \to 5$ to join $10, 20, 30$ with $50$.
+- **Single Element Arrays:** If $n = 1$, the loop executes once on $i = 0$, setting $t = \text{nums}[0]$ and $\text{ans} = \text{nums}[0]$, returning correctly.
+- **Strictly Decreasing Arrays:** For `[50, 40, 30]`, each step resets $t$ to the current element. The answer is correctly the single largest element ($50$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums`. Each element is visited once, and every iteration performs constant-time comparison, addition, assignment, and maximum operations. Time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of `nums`. The single `for` loop visits each element exactly once, performing constant-time comparisons, arithmetic additions, and maximum selections. Total runtime is strictly linear.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. The algorithm requires only two integer scalar variables ($t$ and $\text{ans}$), using strictly constant additional memory.

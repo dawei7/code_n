@@ -1,136 +1,186 @@
 # Guided Example: Rank Scores
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step SQL window ranking evaluation comparing `DENSE_RANK()`, `RANK()`, and `ROW_NUMBER()` on representative competition score tables:
 
-- **Input:** `{"tables": {"Scores": [{"id": 1, "score": 8}]}}`
-- **Required output:** `{"columns": ["score", "rank"], "rows": [[8, 1]]}`
+- **Input Table `Scores`:**
+  - `[(1, 3.50), (2, 3.65), (3, 4.00), (4, 3.85), (5, 4.00), (6, 3.65)]`
+- **Required output:**
+  - `[[4.00, 1], [4.00, 1], [3.85, 2], [3.65, 3], [3.65, 3], [3.50, 4]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates SQL window ranking functions, contrasts dense ranking against sparse ranking and monotonic row numbers, explains why consecutive integer ranks without gaps require `DENSE_RANK()`, and analyzes execution performance in $O(N \log N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Scores`
+Given the `Scores` table:
+$$
+\begin{array}{|c|c|}
+\hline
+\textbf{id} & \textbf{score} \\
+\hline
+1 & 3.50 \\
+2 & 3.65 \\
+3 & 4.00 \\
+4 & 3.85 \\
+5 & 4.00 \\
+6 & 3.65 \\
+\hline
+\end{array}
+$$
+Rank all scores from highest to lowest according to the following rules:
+1. Higher scores receive lower rank numbers (score $4.00$ gets rank 1).
+2. Tied scores share the exact same rank (both rows with $4.00$ get rank 1).
+3. The next distinct score must receive the **next consecutive integer** without skipping numbers (score $3.85$ must receive rank 2, NOT rank 3).
+4. Return the result table ordered by `score` descending.
 
-The objective is to compute `{"columns": ["score", "rank"], "rows": [[8, 1]]}` from `{"tables": {"Scores": [{"id": 1, "score": 8}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Ranking Function Comparison
+Given scores `[4.00, 4.00, 3.85, 3.65, 3.65, 3.50]`:
+- `ROW_NUMBER()`: $[1, 2, 3, 4, 5, 6]$ (Arbitrarily breaks ties).
+- `RANK()`: $[1, 1, 3, 4, 4, 6]$ (Ties share rank, but leaves gaps proportional to tie counts).
+- `DENSE_RANK()`: $[1, 1, 2, 3, 3, 4]$ (**Correct**: ties share rank, and the next rank is consecutive).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Window Function `DENSE_RANK()` (Optimal)
+```sql
+SELECT 
+    score, 
+    DENSE_RANK() OVER (ORDER BY score DESC) AS `rank`
+FROM Scores
+ORDER BY score DESC;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Mechanics of `DENSE_RANK() OVER (...)`:
+1. `ORDER BY score DESC`: Sorts the window frame from largest to smallest score.
+2. Partitioning: Since there is no `PARTITION BY`, all rows belong to a single global window frame.
+3. Peer Groups: Rows with identical `score` values form a peer group and are assigned the identical integer rank.
+4. Consecutive Increment: Transitioning to the next peer group increments the rank counter by exactly $+1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Correlated Subquery (Engine-Agnostic)
+```sql
+SELECT 
+    s1.score,
+    (
+        SELECT COUNT(DISTINCT s2.score)
+        FROM Scores s2
+        WHERE s2.score >= s1.score
+    ) AS `rank`
+FROM Scores s1
+ORDER BY s1.score DESC;
+```
+For each score $s_1$, the rank is precisely the count of distinct scores in the table that are greater than or equal to $s_1$.
+- For $4.00$: Distinct scores $\ge 4.00$ is $\{4.00\}$, count $= 1$.
+- For $3.85$: Distinct scores $\ge 3.85$ is $\{4.00, 3.85\}$, count $= 2$.
+- For $3.65$: Distinct scores $\ge 3.65$ is $\{4.00, 3.85, 3.65\}$, count $= 3$.
+- For $3.50$: Distinct scores $\ge 3.50$ is $\{4.00, 3.85, 3.65, 3.50\}$, count $= 4$.
+
+> **Invariant.** For any row with score $v$, its rank equals $1 + |\text{distinct } s \in \text{Scores} \text{ such that } s > v|$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use dense rank because ties must not create gaps
+We trace the rows sorted descending by score:
+Sorted scores: $[4.00, \, 4.00, \, 3.85, \, 3.65, \, 3.65, \, 3.50]$.
 
-The required sequence is a dense ranking:
-
-- the highest distinct score receives rank one;
-- equal scores receive the same rank;
-- the next lower distinct score receives the next consecutive integer.
-
-`DENSE_RANK()` implements exactly these rules. It differs from `ROW_NUMBER`,
-which would give tied rows different numbers, and from `RANK`, which would skip
-numbers after a tie.
-
-The query applies the function as a window expression so that every input game
-row remains in the output. A `GROUP BY score` would collapse ties into one row,
-violating the requirement to retain every score row.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Scores": [{"id": 1, "score": 8}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Row 1: ID 3, Score 4.00
+- First distinct score encountered.
+- Assigned rank: $\mathbf{1}$.
+- Output row: `[4.00, 1]`.
 
 ---
 
-### Step 2: Order the ranking window by score descending
-
-The window clause is:
-
-`OVER (ORDER BY score DESC)`.
-
-This tells `DENSE_RANK` to process higher score values before lower ones. Rows
-with equal `score` are peers and receive the same rank. Whenever the score
-changes to a lower distinct value, the rank increases by one.
-
-No `PARTITION BY` appears, so all rows belong to one global competition. Adding
-a partition would restart ranking separately for each partition and answer a
-different question.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 2: ID 5, Score 4.00
+- Score is $4.00$, matching previous row (Peer group tie).
+- Rank remains unchanged: $\mathbf{1}$.
+- Output row: `[4.00, 1]`.
 
 ---
 
-### Step 3: Trace the sample ranks
+### Row 3: ID 4, Score 3.85
+- Score drops to a new distinct value ($3.85 < 4.00$).
+- Rank increments by 1: $\text{rank} \leftarrow 1 + 1 = \mathbf{2}$.
+- *(Note: `RANK()` would have jumped to 3; `DENSE_RANK()` produces consecutive 2)*.
+- Output row: `[3.85, 2]`.
 
-The highest distinct value is 4.00. Both rows with that value are peers and
-receive rank one.
+---
 
-The next lower value is 3.85, so it receives rank two. The two rows at 3.65
-share rank three. Finally, 3.50 receives rank four.
+### Row 4: ID 2, Score 3.65
+- Score drops to a new distinct value ($3.65 < 3.85$).
+- Rank increments by 1: $\text{rank} \leftarrow 2 + 1 = \mathbf{3}$.
+- Output row: `[3.65, 3]`.
 
-The rank after the two 4.00 rows is two rather than three. That no-gap behavior
-is precisely why dense rank is selected.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["score", "rank"], "rows": [[8, 1]]}` |
+### Row 5: ID 6, Score 3.65
+- Score is $3.65$, matching previous row (Peer group tie).
+- Rank remains unchanged: $\mathbf{3}$.
+- Output row: `[3.65, 3]`.
+
+---
+
+### Row 6: ID 1, Score 3.50
+- Score drops to a new distinct value ($3.50 < 3.65$).
+- Rank increments by 1: $\text{rank} \leftarrow 3 + 1 = \mathbf{4}$.
+- Output row: `[3.50, 4]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Scores": [{"id": 1, "score": 8}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["score", "rank"], "rows": [[8, 1]]}` | Verified |
+```text
+Input Rows (Sorted by Score DESC):
+ID 3: 4.00 -> Rank 1
+ID 5: 4.00 -> Rank 1 (Tie with ID 3)
+ID 4: 3.85 -> Rank 2 (Next consecutive distinct rank)
+ID 2: 3.65 -> Rank 3
+ID 6: 3.65 -> Rank 3 (Tie with ID 2)
+ID 1: 3.50 -> Rank 4
+
+Result Table:
++-------+------+
+| score | rank |
++-------+------+
+| 4.00  | 1    |
+| 4.00  | 1    |
+| 3.85  | 2    |
+| 3.65  | 3    |
+| 3.65  | 3    |
+| 3.50  | 4    |
++-------+------+
+```
+
+| Row Order | Source `id` | `score` | Distinct Score Group | `DENSE_RANK()` | `RANK()` Contrast (Gaps) | `ROW_NUMBER()` Contrast |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 3 | 4.00 | Group 1 | **1** | 1 | 1 |
+| 2 | 5 | 4.00 | Group 1 | **1** | 1 | 2 |
+| 3 | 4 | 3.85 | Group 2 | **2** | 3 *(gap)* | 3 |
+| 4 | 2 | 3.65 | Group 3 | **3** | 4 | 4 |
+| 5 | 6 | 3.65 | Group 3 | **3** | 4 | 5 |
+| **6** | **1** | **3.50** | **Group 4** | **4** | **6 *(gap)*** | **6** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `DENSE_RANK()` is defined in ANSI SQL to assign identical ranks to peers within an ordering window and increment by exactly 1 for each distinct subsequent value. This guarantees that all identical scores receive equal rank without generating rank gaps.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Window functions preserve every original row in the input relation. Unlike `GROUP BY`, which would collapse identical scores into a single aggregate row, the window specification emits all six participant rows.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Correlated distinct count:** Compute one plus the number of distinct greater scores for each row. It is clear mathematically but can be $O(n^2)$.
-- **Self-join and grouping:** Join each row with scores greater than or equal to it, then count distinct joined values; also potentially quadratic.
-- **`RANK()`:** Incorrect because ties create gaps in later ranks.
-- **`ROW_NUMBER()`:** Incorrect because tied rows receive different numbers.
-- **All scores equal:** Every row receives rank one.
-- **Repeated ties:** Every peer is retained and shares one dense rank.
-- **One row:** Receives rank one.
-- **Required row order:** Add an outer `ORDER BY score DESC`; window ordering alone is insufficient.
-- **MySQL version:** Window functions require MySQL 8.0 or newer.
-- **Alias syntax:** `'rank'` works in MySQL's select alias context but an identifier quote is clearer.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `RANK()` Instead of `DENSE_RANK()`:** `RANK()` leaves gaps after ties (e.g. ranks become $1, 1, 3$ instead of $1, 1, 2$).
+- **Reserved Keyword Escaping:** In MySQL, `RANK` is a reserved keyword. The output column alias must be quoted with backticks: `` `rank` `` or `'rank'`.
+- **Missing Outer `ORDER BY`:** Specifying `OVER (ORDER BY score DESC)` dictates the order within the window calculation, but standard SQL does not guarantee the final output display order without an explicit query-level `ORDER BY score DESC`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the score-row count. A typical window plan sorts rows by score in
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log N)$, where $N$ is the number of rows in `Scores`. The database engine sorts the table by score once, then assigns ranks in a single linear sweep $O(N)$.
+- **Auxiliary Space Complexity:** $O(N)$ working memory to buffer the sorted result set.

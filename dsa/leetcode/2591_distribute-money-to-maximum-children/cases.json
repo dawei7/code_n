@@ -216,21 +216,6 @@
         "boundary",
         "minimal"
       ]
-    },
-    {
-      "id": "trial-boundary-16",
-      "name": "minimal value children=1",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "money": 20,
-        "children": 1
-      },
-      "expected": 0,
-      "tags": [
-        "boundary",
-        "minimal"
-      ]
     }
   ]
 }

@@ -1,130 +1,180 @@
 # Guided Example: Number of Different Subsequences GCDs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step counting of distinct subsequence greatest common divisors via harmonic multiple sieving on a representative problem instance:
 
-- **Input:** `{"nums": [6, 10, 3]}`
-- **Required output:** `5`
+- **Input:** `nums = [6, 10, 3]`
+- **Required Output:** `5`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how reformulating a combinatorial search over $2^n$ subsequences into a divisibility sieve over candidate divisors in $[1, \max(\text{nums})]$ enables exact determination of all realizable GCDs in $\mathcal{O}(M \log M)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `nums` that consists of positive integers.
+We are given an array `nums` of positive integers.
+The greatest common divisor ($\gcd$) of a sequence is the largest positive integer that divides every element of the sequence.
+A **subsequence** is obtained by deleting zero or more elements from the array.
+We must return the number of **different** $\gcd$ values that can be produced by non-empty subsequences of `nums`.
 
-The objective is to compute `5` from `{"nums": [6, 10, 3]}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `nums = [6, 10, 3]`
+- All non-empty subsequences and their respective $\gcd$ values:
+  - `[6]` $\implies \gcd = 6$
+  - `[10]` $\implies \gcd = 10$
+  - `[3]` $\implies \gcd = 3$
+  - `[6, 10]` $\implies \gcd = \gcd(6, 10) = 2$
+  - `[6, 3]` $\implies \gcd = \gcd(6, 3) = 3$
+  - `[10, 3]` $\implies \gcd = \gcd(10, 3) = 1$
+  - `[6, 10, 3]` $\implies \gcd = \gcd(6, 10, 3) = 1$
+- The set of distinct $\gcd$ values obtained is $\{1, 2, 3, 6, 10\}$.
+- The cardinality of this set is $5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to avoid enumerating the exponentially many $2^n - 1$ subsequences. Instead, we test each candidate integer $x \in [1, \max(\text{nums})]$ directly by accumulating the $\gcd$ of all multiples of $x$ present in the array.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Bounding the Candidate Domain
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $M = \max(\text{nums})$.
+Because the $\gcd$ of any non-empty subsequence cannot exceed any element in that subsequence, every possible subsequence $\gcd$ must be a positive integer in the bounded interval $[1, M]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Subsequence GCD Existence Theorem
+
+> **Subsequence GCD Existence Theorem (Harmonic Multiples Sieve Invariant).**
+> A positive integer $x \le M$ is the greatest common divisor of some non-empty subsequence of `nums` if and only if the $\gcd$ of **all** elements in `nums` that are multiples of $x$ is equal to $x$:
+> $$\gcd\left(\{ y \in \text{nums} : x \mid y \}\right) = x$$
+>
+> **Proof:**
+> 1. *Necessity:* Suppose a subsequence $S \subseteq \text{nums}$ has $\gcd(S) = x$. By definition of common divisor, every element $s \in S$ must be divisible by $x$. Thus, $S \subseteq \{ y \in \text{nums} : x \mid y \}$.
+> 2. *Monotonicity of GCD:* Appending additional multiples of $x$ to $S$ can only preserve or further restrict the set of common divisors. Because every added element is a multiple of $x$, $x$ remains a common divisor of the enlarged set.
+> 3. *Sufficiency:* If $\gcd(S) = x$, then the $\gcd$ of all multiples of $x$ present in `nums` must divide $\gcd(S) = x$, while simultaneously being a multiple of $x$. Hence, the $\gcd$ of all multiples of $x$ in `nums` must equal $x$.
+>
+> Therefore, to verify if $x$ can be formed, we do not need to test subsets of multiples; we simply compute the running $\gcd$ across all multiples of $x$ present in `nums` and check if it reaches $x$.
+
+```mermaid
+flowchart TD
+    accTitle: Subsequence GCD Sieve Workflow
+    accDescr: Diagram illustrating scanning each candidate divisor x from 1 to M, collecting multiples present in nums, and testing if running GCD equals x.
+    A["Input: nums = [6, 10, 3], M = 10"] --> B["Build lookup set: vis = {3, 6, 10}"]
+    B --> C["Iterate candidate x from 1 to 10"]
+    C --> D["Find multiples of x in vis: {y = k*x in vis}"]
+    D --> E["Accumulate g = gcd(multiples)"]
+    E --> F{"Does g == x?"}
+    F -- "Yes" --> G["Increment answer count"]
+    F -- "No" --> H["Skip candidate x"]
+    G --> I["Repeat until x = M -> Return Total Valid GCDs"]
+    H --> I
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Test each possible GCD value directly
-
-Every nonempty subsequence GCD is a positive integer no larger than the largest array value `mx`. The solution tests every candidate `x` from 1 through `mx`.
-
-The crucial question is: how can we determine whether some subsequence has GCD exactly $x$ without enumerating subsequences?
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [6, 10, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `nums = [6, 10, 3]` where $M = 10$.
+The presence set is $\text{vis} = \{3, 6, 10\}$.
+We test each integer $x \in [1, 10]$:
 
 ---
 
-### Step 2: Only multiples of `x` can participate
+### Step 1: Evaluate Candidates $x = 1, 2, 3$
 
-If a sequence has GCD $x$, every selected number must be divisible by $x$. Therefore all possible members of such a subsequence come from input values that are multiples of $x$.
+- **Candidate $x = 1$:**
+  - Multiples of $1$ up to $10$: $1, 2, \dots, 10$.
+  - Multiples present in $\text{vis}$: $3, 6, 10$.
+  - Compute running $\gcd$:
+    - First element $3$: $g = 3$.
+    - Next element $6$: $g = \gcd(3, 6) = 3$.
+    - Next element $10$: $g = \gcd(3, 10) = 1$.
+  - Since $g == 1$, candidate $x = 1$ is **valid**! (Running count: $1$).
 
-The solution stores distinct input values in set `vis` and scans potential multiples:
+- **Candidate $x = 2$:**
+  - Multiples of $2$ up to $10$: $2, 4, 6, 8, 10$.
+  - Multiples present in $\text{vis}$: $6, 10$.
+  - Compute running $\gcd$:
+    - First element $6$: $g = 6$.
+    - Next element $10$: $g = \gcd(6, 10) = 2$.
+  - Since $g == 2$, candidate $x = 2$ is **valid**! (Running count: $2$).
 
-`x, 2*x, 3*x, ...` up to `mx`.
-
-Whenever a multiple is present, it is folded into running GCD `g`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Candidate $x = 3$:**
+  - Multiples of $3$ up to $10$: $3, 6, 9$.
+  - Multiples present in $\text{vis}$: $3, 6$.
+  - Compute running $\gcd$:
+    - First element $3$: $g = 3$.
+    - Next element $6$: $g = \gcd(3, 6) = 3$.
+  - Since $g == 3$, candidate $x = 3$ is **valid**! (Running count: $3$).
 
 ---
 
-### Step 3: Why the GCD of all present multiples is the decisive test
+### Step 2: Evaluate Candidates $x = 4, 5$
 
-Let $A_x$ be the set of input values divisible by $x$, and let
+- **Candidate $x = 4$:**
+  - Multiples: $4, 8$.
+  - Multiples present in $\text{vis}$: None.
+  - $g = 0 \neq 4$. Candidate $x = 4$ is invalid.
 
-$$
-g_x=\gcd(A_x).
-$$
+- **Candidate $x = 5$:**
+  - Multiples: $5, 10$.
+  - Multiples present in $\text{vis}$: $10$.
+  - Running $\gcd$: $g = 10$.
+  - Since $g = 10 \neq 5$, candidate $x = 5$ is invalid.
+    *(No subsequence can have $\gcd = 5$ because the only multiple available is $10$, which has $\gcd = 10$.)*
 
-If $g_x=x$, selecting one occurrence of every distinct value in $A_x$ forms a valid subsequence whose GCD is exactly $x$. So $x$ is achievable.
+---
 
-If $g_x>x$, every value in $A_x$ is divisible by $g_x$. Any subsequence using only those values also has every member divisible by $g_x$, so its GCD cannot be the smaller value $x$. Values outside $A_x$ are not divisible by $x$ and cannot belong to a sequence with GCD $x$.
+### Step 3: Evaluate Candidates $x = 6, 7, 8, 9, 10$
 
-Thus $x$ appears as a subsequence GCD if and only if the GCD of all present multiples of $x$ equals $x$.
+- **Candidate $x = 6$:**
+  - Multiples present in $\text{vis}$: $6$.
+  - Running $\gcd$: $g = 6 == 6$. Candidate $x = 6$ is **valid**! (Running count: $4$).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+- **Candidate $x = 7, 8, 9$:**
+  - No multiples present in $\text{vis}$. All invalid.
+
+- **Candidate $x = 10$:**
+  - Multiples present in $\text{vis}$: $10$.
+  - Running $\gcd$: $g = 10 == 10$. Candidate $x = 10$ is **valid**! (Running count: $5$).
+
+All candidates in $[1, 10]$ checked.
+Total valid GCDs: **`5`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [6, 10, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Candidate $x$ | Multiples Tested ($k \cdot x \le 10$) | Multiples Found in `vis` | Running $\gcd$ Computation | Final $g$ | $g == x$? | Running Valid Count |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|
+| $1$ | $1, 2, \dots, 10$ | $3, 6, 10$ | $\gcd(3, 6)=3 \to \gcd(3, 10)=1$ | $1$ | **Yes** | $1$ |
+| $2$ | $2, 4, 6, 8, 10$ | $6, 10$ | $\gcd(6, 10) = 2$ | $2$ | **Yes** | $2$ |
+| $3$ | $3, 6, 9$ | $3, 6$ | $\gcd(3, 6) = 3$ | $3$ | **Yes** | $3$ |
+| $4$ | $4, 8$ | None | None | $0$ | No | $3$ |
+| $5$ | $5, 10$ | $10$ | $g = 10$ | $10$ | No | $3$ |
+| $6$ | $6$ | $6$ | $g = 6$ | $6$ | **Yes** | $4$ |
+| $7$ | $7$ | None | None | $0$ | No | $4$ |
+| $8$ | $8$ | None | None | $0$ | No | $4$ |
+| $9$ | $9$ | None | None | $0$ | No | $4$ |
+| $10$ | $10$ | $10$ | $g = 10$ | $10$ | **Yes** | **`5`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every counted $x$ has the property that the set of its multiples in `nums` yields $\gcd = x$. By taking those exact multiples as the subsequence, we obtain a concrete witness subsequence whose $\gcd$ is $x$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose there exists some subsequence $S$ with $\gcd(S) = x$. Then every element in $S$ is a multiple of $x$. The set of all multiples of $x$ in `nums` contains $S$. Adding additional multiples of $x$ cannot increase the $\gcd$ nor introduce non-multiples of $x$. Therefore, the $\gcd$ of all multiples of $x$ must also equal $x$. The harmonic sieve will never miss any valid $x$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Enumerate all subsequences:** There are $2^n-1$ nonempty subsequences, which is impossible.
-- **Maintain GCDs of subsequences ending at each index:** It can also compress repeated GCD values, but the multiples test exploits the bounded value domain directly.
-- **Boolean presence array:** It replaces expected hash membership with deterministic indexing at $O(M)$ space.
-- **Count duplicates separately:** It is unnecessary because multiplicity does not create new GCD values.
-- **Candidate appears directly:** A singleton containing value $x$ immediately proves GCD $x$.
-- **Candidate absent:** It may still be achievable, such as 2 from values 6 and 10.
-- **No present multiple:** Running GCD remains zero and the candidate is rejected.
-- **Only one present multiple:** The candidate works only if that value equals $x$.
-- **Early GCD equality:** Once `g == x`, later multiples cannot change it away from $x$.
-- **Value one present:** Singleton one proves GCD one immediately.
-- **GCD one without value one:** Several larger values may still reduce the running GCD to one.
-- **All values equal:** Only that value is achievable as a subsequence GCD.
-- **Subsequence order:** Original order never changes the GCD of chosen occurrences.
-- **Positive inputs:** Candidate zero is irrelevant and never tested.
-- **Maximum bound:** No subsequence GCD can exceed the largest selected value, so testing through $M$ is exhaustive.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Combinatorial Exploration:** Trying to generate all $2^n$ subsequences fails because $n$ can be up to $10^5$.
+- **Early Break Optimization:** As soon as the running $\gcd$ reaches $x$, we can terminate the inner loop for candidate $x$ immediately because the $\gcd$ of positive multiples of $x$ cannot decrease below $x$.
+- **Missing Single Multiples:** If only one multiple $y > x$ exists for candidate $x$ (such as $x = 5$ with single multiple $10$), the running $\gcd$ is $10 \neq 5$, correctly rejecting $5$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+M\log M)$. Let $n$ be the input length and $M=\max(\texttt{nums})$. Building `vis` and finding $M$ take expected $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M \log M)$, where $M = \max(\text{nums}) \le 2 \times 10^5$. The outer loop runs $M$ times. The inner loop steps through multiples $x, 2x, 3x, \dots \le M$, executing $\sum_{x=1}^M \lfloor M / x \rfloor \approx M \ln M$ total iterations. Each iteration involves an $\mathcal{O}(\log M)$ Euclidean $\gcd$ operation, well within standard time limits.
+- **Auxiliary Space Complexity:** $\mathcal{O}(M)$ or $\mathcal{O}(n)$ to store the existence hash set or boolean frequency array for `nums`.

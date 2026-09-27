@@ -1,142 +1,167 @@
 # Guided Example: Find the K-Sum of an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [2, 4, -2], "k": 5}`
-- **Required output:** `2`
+Given an integer array $\text{nums}$ of $n$ elements (where $-10^9 \le \text{nums}[i] \le 10^9$) and an integer $k$ ($1 \le k \le \min(2000, 2^n)$), consider all $2^n$ possible subsequences. Each subsequence is assigned the sum of its constituent elements, with the empty subsequence defined to have sum $0$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The task is to determine the $k$-th largest subsequence sum, counting identical sums at their full multiplicity.
 
----
+Consider the representative instance:
+$$\text{nums} = [2, 4, -2], \quad k = 5$$
 
-## 1. Instance & Teaching Goal
+The array contains $n = 3$ elements, yielding $2^3 = 8$ subsequences. Sorting all $8$ subsequence sums in descending order gives:
+$$[6, 4, 4, 2, 2, 0, 0, -2]$$
+The $5$-th largest value is $2$.
 
-You are given an integer array `nums` and a **positive** integer `k`. You can choose any **subsequence** of the array and sum all of its elements together.
+Because $n$ can reach $10^5$, generating all $2^n$ subsequences requires exponential time and memory, which is completely intractable. However, because $k \le 2000$, we can reframe the search as finding the $k$-th smallest reduction from the global maximum sum.
 
-The objective is to compute `2` from `{"nums": [2, 4, -2], "k": 5}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Duality Reduction to K-Smallest Deviations
+    accDescr: Mapping the k-th largest subsequence sum to the global maximum minus the k-th smallest subset sum of absolute values.
+    Smax["Global Maximum Subsequence Sum S_max<br/>Sum of all positive elements: 2 + 4 = 6"]
+    AbsArr["Absolute Value Array A = [2, 2, 4] (Sorted)"]
+    Heap["Min-Heap Priority Queue<br/>Extract k - 1 smallest subset deviations"]
+    Smax --> Result["Answer: S_max - (k-th smallest deviation)<br/>6 - 4 = 2"]
+    AbsArr --> Heap
+    Heap --> Result
+    classDef highlight fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class Smax,Result highlight;
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+### Duality Reduction:
+1. **The Global Maximum Sum ($S_{\max}$):**
+   The single largest subsequence sum is obtained by selecting every positive element and excluding every negative or zero element:
+   $$S_{\max} = \sum_{x \in \text{nums}, x > 0} x$$
+2. **Deviation from Maximum:**
+   Any arbitrary subsequence can be viewed as an alteration from this optimal selection:
+   - Excluding a positive element $x > 0$ decreases the sum by $x = |x|$.
+   - Including a negative element $y \le 0$ decreases the sum by $-y = |y|$.
+   Therefore, every subsequence sum corresponds uniquely to:
+   $$\text{Sum} = S_{\max} - \sum_{e \in S} |e|$$
+   for some subset $S \subseteq \text{nums}$.
+3. **Problem Equivalence:**
+   Finding the $k$-th largest subsequence sum in $\text{nums}$ is mathematically identical to finding:
+   $$S_{\max} - \Delta_k$$
+   where $\Delta_k$ is the $k$-th smallest subset sum of the transformed array of absolute values:
+   $$A = [|\text{nums}[0]|,\, |\text{nums}[1]|,\, \dots,\, |\text{nums}[n - 1]|]$$
 
-## 2. Conceptual Foundation & Invariants
+### Min-Heap Subset Generation:
+Sort $A$ in non-decreasing order: $A[0] \le A[1] \le \dots \le A[n - 1]$.
+The $1$-st smallest subset sum is the empty set with sum $\Delta_1 = 0$.
+To generate subsequent subset sums in strictly increasing order without duplicate exploration, we use a min-heap storing tuples $(\text{sum}, i)$, where $\text{sum}$ is the total sum of a subset whose rightmost chosen element is at index $i$:
+- Seed the heap with the smallest singleton: $(A[0], 0)$.
+- At each step, pop the minimal state $(\text{sum}, i)$ from the heap:
+  - **Branch 1 (Include next element):** Form a larger subset by appending the next element:
+    $$(\text{sum} + A[i + 1],\, i + 1)$$
+  - **Branch 2 (Replace current element):** Swap the current element for the next element, maintaining subset cardinality:
+    $$(\text{sum} - A[i] + A[i + 1],\, i + 1)$$
+  - Both branches are valid whenever $i + 1 < n$.
 
-We maintain the core conceptual parameters and state variables:
+Extracting $k - 1$ elements from the min-heap yields $\Delta_k$, completing the solution in $\mathcal{O}(n \log n + k \log k)$ time.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We trace the algorithm on $\text{nums} = [2, 4, -2]$ with $k = 5$.
 
----
+- **Phase 1: Base Parameters:**
+  - Positive sum: $S_{\max} = 2 + 4 = 6$.
+  - Absolute values: $[|2|, |4|, |-2|] = [2, 4, 2]$.
+  - Sorted array: $A = [2, 2, 4]$ ($n = 3$).
 
-## 3. Step-by-Step Worked Execution
+- **Phase 2: Priority Queue Transitions ($k = 5$):**
+  - **Rank 1:** Empty subset: $\Delta_1 = 0$.
+    Result for rank 1: $S_{\max} - 0 = 6$.
+    Initialize heap with $(A[0], 0) = (2, 0)$.
 
-### Step 1: Express every subsequence sum as a loss from the maximum
+  - **Extraction 1 (Determines Rank 2):**
+    - Pop minimum: $(\text{sum} = 2, i = 0)$.
+    - Deviation: $\Delta_2 = 2$.
+    - Equivalent subsequence sum: $6 - 2 = 4$.
+    - Push Branch 1 (include next): $(2 + A[1], 1) = (2 + 2, 1) = (4, 1)$.
+    - Push Branch 2 (replace current): $(2 - A[0] + A[1], 1) = (2 - 2 + 2, 1) = (2, 1)$.
+    - Heap contents: $[(2, 1), (4, 1)]$.
 
-The largest possible subsequence sum is obtained by including every positive value and excluding every negative value. The code stores this sum in `mx`.
+  - **Extraction 2 (Determines Rank 3):**
+    - Pop minimum: $(\text{sum} = 2, i = 1)$.
+    - Deviation: $\Delta_3 = 2$.
+    - Equivalent subsequence sum: $6 - 2 = 4$.
+    - Push Branch 1 (include next): $(2 + A[2], 2) = (2 + 4, 2) = (6, 2)$.
+    - Push Branch 2 (replace current): $(2 - A[1] + A[2], 2) = (2 - 2 + 4, 2) = (4, 2)$.
+    - Heap contents: $[(4, 1), (4, 2), (6, 2)]$.
 
-Any other subsequence differs from that maximizing choice in some positions:
+  - **Extraction 3 (Determines Rank 4):**
+    - Pop minimum: $(\text{sum} = 4, i = 1)$.
+    - Deviation: $\Delta_4 = 4$.
+    - Equivalent subsequence sum: $6 - 4 = 2$.
+    - Push Branch 1: $(4 + A[2], 2) = (4 + 4, 2) = (8, 2)$.
+    - Push Branch 2: $(4 - A[1] + A[2], 2) = (4 - 2 + 4, 2) = (6, 2)$.
+    - Heap contents: $[(4, 2), (6, 2), (6, 2), (8, 2)]$.
 
-- Excluding a positive value `x` lowers the sum by `x`.
-- Including a negative value `-x` lowers the sum by `x`.
-- A zero changes the sum by zero whether selected or not.
+  - **Extraction 4 (Determines Rank 5):**
+    - Pop minimum: $(\text{sum} = 4, i = 2)$.
+    - Deviation: $\Delta_5 = 4$.
+    - Equivalent subsequence sum: $6 - 4 = 2$.
+    - Target rank $k = 5$ reached!
 
-After the first loop, every entry in `nums` is nonnegative: positives stay unchanged, while nonpositives are negated. These values are the possible losses. Every original subsequence sum can be written as:
+- **Final Answer:**
+  $$S_{\max} - \Delta_5 = 6 - 4 = 2$$
 
-$$
-\textit{mx}-\text{a subset sum of the loss values}.
-$$
+## 4. Comprehensive State Trace
 
-Duplicate subsequences remain distinct choices even when they produce equal losses, which is correct because the problem says sums need not be distinct.
+The min-heap extraction sequence is detailed in the ledger below:
 
-Thus, the $k$-th largest subsequence sum equals `mx` minus the $k$-th smallest subset loss.
+| Subsequence Rank $r$ | Popped State $(\text{sum}, i)$ | Popped Deviation $\Delta_r$ | Generated Include Branch | Generated Replace Branch | Active Heap Minima | Realized Subsequence Sum $S_{\max} - \Delta_r$ |
+|---|---|---|---|---|---|---|
+| 1 | Baseline (Empty) | 0 | Seed $(2, 0)$ | — | $[(2, 0)]$ | $6 - 0 = 6$ |
+| 2 | $(2, 0)$ | 2 | $(4, 1)$ | $(2, 1)$ | $[(2, 1), (4, 1)]$ | $6 - 2 = 4$ |
+| 3 | $(2, 1)$ | 2 | $(6, 2)$ | $(4, 2)$ | $[(4, 1), (4, 2), (6, 2)]$ | $6 - 2 = 4$ |
+| 4 | $(4, 1)$ | 4 | $(8, 2)$ | $(6, 2)$ | $[(4, 2), (6, 2), (6, 2), (8, 2)]$ | $6 - 4 = 2$ |
+| 5 | $(4, 2)$ | 4 | — ($i+1 = n$) | — | Remaining Heap | $6 - 4 = 2$ |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 4, -2], "k": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The complete mapping of all 8 subsets and their corresponding subsequence realizations is summarized below:
 
----
+| Subset of Absolute Array $A = [2, 2, 4]$ | Subset Sum $\Delta$ | Originating Subsequence of $\text{nums}$ | Calculated Sum ($6 - \Delta$) | Rank in Non-Increasing Order |
+|---|---|---|---|---|
+| $\emptyset$ | 0 | $\{2, 4\}$ | 6 | 1 |
+| $\{A[0]\}$ | 2 | $\{4\}$ (exclude 2) | 4 | 2 |
+| $\{A[1]\}$ | 2 | $\{2, 4, -2\}$ (include -2) | 4 | 3 |
+| $\{A[2]\}$ | 4 | $\{2\}$ (exclude 4) | 2 | 4 |
+| $\{A[0], A[1]\}$ | 4 | $\{4, -2\}$ | 2 | 5 |
+| $\{A[0], A[2]\}$ | 6 | $\emptyset$ | 0 | 6 |
+| $\{A[1], A[2]\}$ | 6 | $\{2, -2\}$ | 0 | 7 |
+| $\{A[0], A[1], A[2]\}$ | 8 | $\{-2\}$ | -2 | 8 |
 
-### Step 2: Sort losses to create a monotone generation tree
+Rank 5 yields subsequence sum $2$.
 
-The losses are sorted in non-decreasing order. This allows a subset-enumeration tree whose child losses are never smaller than their parent loss.
+## 5. Algorithmic Correctness & Soundness
 
-The heap initially contains `(0, 0)`, representing the empty loss subset with sum zero and no selected maximum index. This is the smallest possible loss and corresponds to the largest subsequence sum `mx`.
+The correctness of the duality reduction and heap traversal is justified by:
+1. **Bijective Inversion:** Every selection of indices in the original array corresponds bijectively to a choice of deviations in $A$. Since the baseline sum is constant ($S_{\max}$), sorting subsequence sums in descending order is isomorphic to sorting deviation sums in ascending order.
+2. **Canonical Search Tree Property:**
+   Any non-empty subset of sorted array $A$ can be uniquely represented by its elements $A[j_1], A[j_2], \dots, A[j_m]$ where $j_1 < j_2 < \dots < j_m$. The two branch operations (appending $A[j_m + 1]$ or replacing $A[j_m]$ with $A[j_m + 1]$) define a rooted binary tree that spans every non-empty subset of $A$ without cycles, redundancy, or omission.
+3. **Monotonicity of Heap Extraction:**
+   Because all elements in $A$ are non-negative ($A[i] \ge 0$), and $A$ is sorted, any generated child state has sum at least as large as the parent state from which it originated. By the invariant of priority queues, states are extracted in non-decreasing order of deviation sum.
 
-For a heap state `(s, i)` with `i < n`, the algorithm creates:
+## 6. Edge Cases & Anti-Patterns
 
+- **First Rank ($k = 1$):** Directly returns $S_{\max}$ without entering the heap loop.
+- **All Elements Negative:** $S_{\max} = 0$. Deviations represent adding negative numbers. The sums will be non-positive, with the empty set achieving the maximum ($0$).
+- **Identical Elements (Duplicates):** Handled naturally by index-based branching. The tree branches on indices, ensuring that multiple subsets with identical numerical sums are counted at their proper algebraic multiplicity.
+- **Anti-Pattern: Exponential Subset Enumeration:** Using recursion to generate all $2^n$ subsequences causes immediate Time Limit Exceeded when $n > 20$. The duality reduction reduces search space from $2^{100000}$ to at most $k \le 2000$ states.
 
+## 7. Complexity Analysis
 
-This child adds loss index `i` to the represented subset.
-
-When `i > 0`, it also creates:
-
-
-
-Every non-root state at level `i` represents a subset whose largest selected index is `i - 1`. The second child replaces that largest loss with the next sorted loss at index `i`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why these two children generate every subset exactly once
-
-Consider a nonempty subset whose largest selected index is $r$. If it also contains $r-1$, its unique parent is obtained by removing $r$; the first child operation adds $r$ back.
-
-If it does not contain $r-1$, its unique parent is obtained by replacing $r$ with $r-1$; the second child operation replaces $r-1$ with $r$.
-
-In either case, the parent has largest index $r-1$. This gives every nonempty subset exactly one parent and prevents duplicate generation paths. Equal numeric losses may still occur from different subsets, and those separate heap states are intentionally retained.
-
-Because the array is sorted and nonnegative, adding `nums[i]` cannot decrease the sum, and replacing `nums[i-1]` by `nums[i]` changes it by a nonnegative amount. Child keys are therefore at least their parent's key.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 4, -2], "k": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Enumerate all subsequences:** It generates $2^n$ sums and is impossible for $n=10^5$.
-- **Keep only the smallest `k` losses by iterative merging:** Other bounded-list techniques exist but require careful duplicate handling; the heap tree generates ranks lazily.
-- **All positive values:** `mx` is their total, and each loss represents omitted positives.
-- **All negative values:** `mx = 0` from the empty subsequence, and losses represent included magnitudes.
-- **Zeros:** They create distinct subset choices with equal loss zero, so duplicate top sums are counted correctly.
-- **`k = 1`:** The loop does not pop; heap loss zero yields the maximum sum `mx`.
-- **Duplicate magnitudes:** Separate indices create separate heap states, preserving “not necessarily distinct” ranking.
-- **Input mutation:** Negatives are replaced by magnitudes and the list is sorted; copy first if caller-visible preservation is required.
-- **Large sums:** Python integers handle totals beyond fixed 32-bit range.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the array length. Transforming values takes $O(n)$ time, and sorting losses takes $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Computing $S_{\max}$ and generating absolute values takes $\mathcal{O}(n)$ time.
+  - Sorting the array $A$ of size $n$ takes $\mathcal{O}(n \log n)$ time.
+  - The heap algorithm runs $k - 1$ pop and push cycles.
+  - The heap size is bounded by $2k$. Each heap operation takes $\mathcal{O}(\log k)$ time.
+  - Total time complexity is strictly $\mathcal{O}(n \log n + k \log k)$.
+  - For $n \le 10^5$ and $k \le 2000$, this executes in under $0.05$ seconds.
+- **Space Complexity:**
+  - Storing the sorted absolute value array $A$ requires $\mathcal{O}(n)$ space.
+  - The priority queue holds at most $2k$ tuple entries: $\mathcal{O}(k)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(n + k)$.

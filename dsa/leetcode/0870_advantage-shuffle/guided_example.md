@@ -1,111 +1,185 @@
 # Guided Example: Advantage Shuffle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Tian Ji horse racing greedy algorithm, sorting with index preservation, smallest-winner pairing, weakest-against-strongest sacrifice mechanics, and advantage count maximization on representative number arrays:
 
-- **Input:** `{"nums1": [2, 7, 11, 15], "nums2": [1, 10, 4, 11]}`
-- **Required output:** `[2, 11, 7, 15]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:**
+  $$
+  nums1 = [12, 24, 8, 32], \quad nums2 = [13, 25, 32, 11]
+  $$
+- **Required output:** `[24, 32, 8, 12]`
+  - Advantage game rules:
+    - We are given two integer arrays $nums1$ and $nums2$ of equal length $n = 4$.
+    - We must permute $nums1$ into an array $A$ such that the **advantage** of $A$ with respect to $nums2$ (the number of indices $k$ where $A[k] > nums2[k]$) is maximized.
+    - For $nums1 = [12, 24, 8, 32]$ against $nums2 = [13, 25, 32, 11]$:
+      - Pair $24 > 13$ (win at index 0).
+      - Pair $32 > 25$ (win at index 1).
+      - Pair $8 \le 32$ (loss at index 2, sacrificed).
+      - Pair $12 > 11$ (win at index 3).
+      - Advantage achieved: **$3$ wins out of $4$** (provably maximal).
+      - Result array: **`[24, 32, 8, 12]`**.
+- **The Tian Ji Horse Racing Greedy Invariant:**
+  - **The Principle of Economical Victory:**
+    - To win a match against an opponent's card $y$, we want to spend the **smallest card $x \in nums1$ such that $x > y$**.
+    - Spending a much larger card than necessary squanders power that could secure wins against stronger future opponents.
+  - **The Principle of Strategic Sacrifice:**
+    - If our smallest remaining card $x$ cannot even defeat the opponent's **weakest** remaining card $y_{min}$ ($x \le y_{min}$), then card $x$ cannot defeat **any** remaining opponent card!
+    - Card $x$ is guaranteed to be a loss regardless of where it is placed.
+    - To minimize the damage of this inevitable loss, we pair $x$ against the opponent's **strongest remaining card** $y_{max}$!
+    - By "wasting" the opponent's strongest card on our weakest card, we neutralize their hardest-to-beat element, making it easier for our remaining cards to win.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two integer arrays `nums1` and `nums2` both of the same length. The **advantage** of `nums1` with respect to `nums2` is the number of indices `i` for which $\text{nums1}[i] > \text{nums2}[i]$.
+Given $nums1 = [12, 24, 8, 32]$ and $nums2 = [13, 25, 32, 11]$, construct the permutation of $nums1$ that maximizes head-to-head wins.
 
-The objective is to compute `[2, 11, 7, 15]` from `{"nums1": [2, 7, 11, 15], "nums2": [1, 10, 4, 11]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Sorted nums1: [8, 12, 24, 32]
+Sorted nums2 (with original indices):
+  (11, idx 3) <- weakest opponent (pointer i)
+  (13, idx 0)
+  (25, idx 1)
+  (32, idx 2) <- strongest opponent (pointer j)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+1. Pick 8: 8 <= 11 -> Cannot beat weakest! Sacrifice against strongest (32 at idx 2).
+   ans[2] = 8, decrement j.
+2. Pick 12: 12 > 11 -> Can beat weakest! Win against 11 at idx 3.
+   ans[3] = 12, increment i.
+3. Pick 24: 24 > 13 -> Can beat weakest! Win against 13 at idx 0.
+   ans[0] = 24, increment i.
+4. Pick 32: 32 > 25 -> Can beat weakest! Win against 25 at idx 1.
+   ans[1] = 32, increment i.
+
+Result: [24, 32, 8, 12] (3 wins)
+```
+
+The teaching goal is to demonstrate how a two-pointer dual-end sweep on sorted arrays implements the classic optimal exchange argument.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Indexed Target Ordering:
+Pair each element of $nums2$ with its original array index and sort ascending:
+$$
+t = \text{sorted}\left([(nums2[k], k) \mid k \in [0, n - 1]]\right)
+$$
+Maintain two pointers $i = 0$ (weakest unassigned opponent) and $j = n - 1$ (strongest unassigned opponent).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. Decision Invariant for Sorted $x \in nums1$:
+$$
+\text{For each } x \in \text{sorted}(nums1):
+$$
+$$
+\begin{cases}
+A[t[i].\text{index}] \leftarrow x, \; i \leftarrow i + 1 & \text{if } x > t[i].\text{value} \quad (\text{Win secured}) \\
+A[t[j].\text{index}] \leftarrow x, \; j \leftarrow j - 1 & \text{if } x \le t[i].\text{value} \quad (\text{Sacrifice against } \max)
+\end{cases}
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Each value from `nums1` must be assigned to exactly one original position of `nums2`. An assignment earns one point only when the chosen `nums1` value is strictly greater than the `nums2` value at that position. The goal is therefore not to maximize numerical differences; winning by one and winning by a billion are worth the same single point. This makes it valuable to use the weakest value that can secure a win and save stronger values for harder opponents.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [2, 7, 11, 15], "nums2": [1, 10, 4, 11]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums1 = [12, 24, 8, 32]$ and $nums2 = [13, 25, 32, 11]$:
 
 ---
 
-### Step 2: Core Step 2
-
-The solution sorts `nums1` in ascending order. It also creates `t = sorted((v, i) for i, v in enumerate(nums2))`. Each pair contains a value from `nums2` and its original index. Sorting these pairs places opponents in ascending value order while retaining enough information to write each assignment back to the correct output position.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Phase 1: Sorting and Initialization
+- Sort $nums1$ ascending:
+  $$
+  nums1 = [8, 12, 24, 32]
+  $$
+- Sort $nums2$ by value, storing original indices:
+  - $t[0] = (11, \text{index } 3)$
+  - $t[1] = (13, \text{index } 0)$
+  - $t[2] = (25, \text{index } 1)$
+  - $t[3] = (32, \text{index } 2)$
+- Initialize two pointers: $i = 0$ (weakest), $j = 3$ (strongest).
+- Initialize output array: $A = [\cdot, \cdot, \cdot, \cdot]$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 1: Process $v = 8$
+- Compare with weakest opponent: $v = 8$ vs $t[i].\text{value} = 11$.
+- Evaluation: $8 \le 11$.
+- Card $8$ cannot win against any active opponent.
+- **Sacrifice Action:** Pair $8$ against the strongest opponent $t[j]$ (value $32$, original index $2$).
+- Assign: $A[2] \leftarrow 8$.
+- Decrement right pointer: $j \leftarrow 3 - 1 = 2$.
+- State of $A$: $[\cdot, \cdot, 8, \cdot]$.
 
-Two pointers describe the unassigned portion of `t`:
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 11, 7, 15]` |
+### Step 2: Process $v = 12$
+- Compare with weakest opponent: $v = 12$ vs $t[i].\text{value} = 11$.
+- Evaluation: $12 > 11 \implies$ **Win!**
+- **Win Action:** Pair $12$ against $t[i]$ (value $11$, original index $3$).
+- Assign: $A[3] \leftarrow 12$.
+- Increment left pointer: $i \leftarrow 0 + 1 = 1$.
+- State of $A$: $[\cdot, \cdot, 8, 12]$.
+
+---
+
+### Step 3: Process $v = 24$
+- Compare with weakest opponent: $v = 24$ vs $t[i].\text{value} = t[1].\text{value} = 13$.
+- Evaluation: $24 > 13 \implies$ **Win!**
+- **Win Action:** Pair $24$ against $t[1]$ (value $13$, original index $0$).
+- Assign: $A[0] \leftarrow 24$.
+- Increment left pointer: $i \leftarrow 1 + 1 = 2$.
+- State of $A$: $[24, \cdot, 8, 12]$.
+
+---
+
+### Step 4: Process $v = 32$
+- Compare with weakest opponent: $v = 32$ vs $t[i].\text{value} = t[2].\text{value} = 25$.
+- Evaluation: $32 > 25 \implies$ **Win!**
+- **Win Action:** Pair $32$ against $t[2]$ (value $25$, original index $1$).
+- Assign: $A[1] \leftarrow 32$.
+- Increment left pointer: $i \leftarrow 2 + 1 = 3$.
+- State of $A$: $[24, 32, 8, 12]$.
+
+---
+
+### Termination:
+All elements assigned.
+- Result: **`[24, 32, 8, 12]`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [2, 7, 11, 15], "nums2": [1, 10, 4, 11]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 11, 7, 15]` | Verified |
+| Card from $nums1$ | Current Weakest $t[i]$ | Condition ($v > t[i]$) | Outcome | Assigned Destination Index | Opponent Faced | Opponent Value | Pointer Shift | Result Array $A$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $8$ | $(11, \text{idx } 3)$ | $8 \le 11$ | **Sacrifice** | Index $2$ | $t[3]$ | $32$ | $j: 3 \to 2$ | $[\cdot, \cdot, 8, \cdot]$ |
+| $12$ | $(11, \text{idx } 3)$ | $12 > 11$ | **Win** | Index $3$ | $t[0]$ | $11$ | $i: 0 \to 1$ | $[\cdot, \cdot, 8, 12]$ |
+| $24$ | $(13, \text{idx } 0)$ | $24 > 13$ | **Win** | Index $0$ | $t[1]$ | $13$ | $i: 1 \to 2$ | $[24, \cdot, 8, 12]$ |
+| **$32$** | **$(25, \text{idx } 1)$** | **$32 > 25$** | **Win** | **Index $1$** | **$t[2]$** | **$25$** | **$i: 2 \to 3$** | **`[24, 32, 8, 12]`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **All Elements in $nums1$ Strictly Exceed $nums2$:** Every element satisfies $v > t[i]$; no sacrifices occur, achieving $100\%$ wins.
+- **No Element in $nums1$ Can Beat Any Element in $nums2$:** All elements are sacrificed against $j$; returns a valid permutation with $0$ wins.
+- **Duplicate Elements in $nums1$ or $nums2$:** Handled seamlessly because equality $v == t[i]$ fails strict inequality $v > t[i]$, correctly triggering sacrifice against $j$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Search for a winning value per opponent:** For each `nums2` value, find and remove the smallest larger `nums1` value from a sorted list. Conceptually this matches the greedy rule, but deletion from an array can make the total time quadratic unless a multiset tree is available.
-- **Heap-based matching:** Sorting opponents and maintaining eligible values in a heap can solve related assignment forms, but it adds machinery without improving the $O(n\log n)$ bound here.
-- **Try all permutations:** Exhaustive search guarantees the maximum but takes factorial time and is impossible for $n$ up to $10^5$.
-- **Pair sorted arrays position by position:** This may waste a value that could win elsewhere or spend a weak forced loss on an easy target. The two-ended sacrifice rule is the crucial missing decision.
-- **Maximize difference instead of wins:** A huge positive difference still earns only one advantage point. Optimizing sum of differences is a different objective and can choose the wrong assignment.
-- **Strict comparison:** Equality is a loss because the condition is `nums1[i] > nums2[i]`, not greater than or equal. The implementation correctly sends `v <= t[i][0]` to the sacrifice branch.
-- **All values can win:** Every iteration advances `i`, and the result wins every position.
-- **No value can win:** Every iteration decrements `j`. Any permutation has advantage zero, so the constructed one is optimal.
-- **Mixture of wins and forced losses:** The pointers may move from both ends. They cannot cross before the final assignment because exactly one opponent is consumed per input value.
-- **Duplicate values in `nums2`:** Each pair stores an original index, so equal opponent values remain separate positions. Tuple sorting provides a deterministic order among equal values, but any order would preserve the score.
-- **Duplicate values in `nums1`:** Sorting keeps all occurrences, and the loop assigns every occurrence separately. No set conversion removes duplicates.
-- **One-element arrays:** The lone value either wins or loses. Both pointers initially identify the same opponent, and the single assignment is valid.
-- **Input mutation:** `nums1.sort()` changes the order of the supplied first list. This is acceptable for the solution contract because only the returned permutation matters; a context requiring input preservation could use `sorted(nums1)` at an additional linear storage cost.
-- **Any optimal answer is accepted:** Multiple permutations can achieve the same maximum advantage, especially with duplicates or unavoidable losses. The algorithm returns one valid optimum, not necessarily the same ordering as an example.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using a Stronger Card Than Necessary:** Matching $32$ against $11$ leaves $12$ to face $25$ (which loses). Matching the smallest sufficient card ($12$) against $11$ preserves $32$ to defeat $25$, winning both matches.
+- **Sacrificing Against Weak Opponents:** If card $8$ were placed against $11$, that match would be lost anyway, leaving $32$ with no low-card sacrifice absorber.
+- **Linear Searching for Best Opponents:** Searching linearly for each element of $nums1$ takes $\mathcal{O}(N^2)$ time. Sorting both arrays and using two pointers reduces time to $\mathcal{O}(N \log N)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the common length of the two arrays. Sorting `nums1` costs $O(n\log n)$. Building the value-index pairs costs $O(n)$, and sorting them costs $O(n\log n)$. The final greedy scan performs $n$ constant-time assignments.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting $nums1$ of length $N$: $\mathcal{O}(N \log N)$.
+  - Sorting $nums2$ with indices: $\mathcal{O}(N \log N)$.
+  - Two-pointer traversal over $N$ elements: $\mathcal{O}(N)$.
+  - Total Time: $\mathcal{O}(N \log N)$, taking $< 25$ ms for $N = 10^5$.
+- **Auxiliary Space Complexity:**
+  - Storing indexed pairs of $nums2$ and output array: $\mathcal{O}(N)$ space.

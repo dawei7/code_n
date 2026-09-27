@@ -30,7 +30,7 @@
     {
       "id": "trial-two",
       "name": "reverse two nodes",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "head": [
@@ -43,19 +43,21 @@
         1
       ],
       "tags": [
+        "sample",
         "boundary"
       ]
     },
     {
       "id": "trial-empty",
       "name": "empty list",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "head": []
       },
       "expected": [],
       "tags": [
+        "sample",
         "empty"
       ]
     },

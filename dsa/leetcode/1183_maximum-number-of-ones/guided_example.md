@@ -1,115 +1,165 @@
 # Guided Example: Maximum Number of Ones
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"width": 3, "height": 3, "sideLength": 2, "maxOnes": 1}`
-- **Required output:** `4`
+We are tasked with populating a 2D binary grid of dimensions $\text{width} \times \text{height}$ with the maximum possible number of ones ($1$s) such that every square subgrid of size $\text{sideLength} \times \text{sideLength}$ contains at most $\text{maxOnes}$ ones.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A naive constraint-satisfaction model or integer linear programming formulation quickly becomes intractable due to the astronomical combinatorial state space ($2^{\text{width} \times \text{height}}$ configurations).
+
+The mathematical core of this problem lies in **2D Modular Periodicity**:
+1. **Residue Class Invariance**: Let $S = \text{sideLength}$. Any contiguous window of length $S$ along a 1D line contains every residue modulo $S$ ($\{0, 1, \dots, S-1\}$) exactly once. By Cartesian extension, every contiguous $S \times S$ square subgrid in the 2D plane contains each residue pair $(r, c) \in [0, S-1] \times [0, S-1]$ precisely once.
+2. **Global Constraint Decoupling**: If we choose a set of coordinate offsets $\Omega \subset \{0, \dots, S-1\}^2$ with $|\Omega| \le \text{maxOnes}$, and place a $1$ at cell $(i, j)$ if and only if $(i \bmod S, j \bmod S) \in \Omega$, then **every** $S \times S$ subgrid throughout the entire board will contain exactly $|\Omega|$ ones. This guarantees zero constraint violations everywhere.
+3. **Frequency Disparity & Greedy Selection**: Across the full grid of size $W \times H$, different residue pairs $(r, c)$ do not appear an equal number of times unless both $W$ and $H$ are exact multiples of $S$. The cells near the top-left of each period appear more frequently when $W \bmod S \neq 0$ or $H \bmod S \neq 0$. Therefore, each residue class $(r, c)$ has an easily computable global replication frequency $f(r, c)$. To maximize the global sum of ones, we simply pick the $\text{maxOnes}$ residue classes that possess the largest replication frequencies.
+
+```
+Full Grid (Width 5, Height 4, S = 3):
+Residues:
+(0,0) (0,1) (0,2) | (0,0) (0,1)
+(1,0) (1,1) (1,2) | (1,0) (1,1)
+(2,0) (2,1) (2,2) | (2,0) (2,1)
+------------------+------------
+(0,0) (0,1) (0,2) | (0,0) (0,1)
+
+Residue (0,0) appears 4 times! Residue (2,2) appears only 1 time!
+Greedy strategy: Activate cells with highest replication count first.
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Consider a matrix `M` with dimensions $width * height$, such that every cell has value `0` or `1`, and any **square** sub-matrix of `M` of size $sideLength * sideLength$ has at most `maxOnes` ones.
+Let $W = \text{width}$, $H = \text{height}$, $S = \text{sideLength}$, and $K = \text{maxOnes}$.
+Define the 2D periodic projection $\pi: \{0, \dots, W-1\} \times \{0, \dots, H-1\} \to \{0, \dots, S-1\}^2$:
+$$\pi(i, j) = (i \bmod S, j \bmod S)$$
 
-The objective is to compute `4` from `{"width": 3, "height": 3, "sideLength": 2, "maxOnes": 1}` while avoiding redundant calculations and unnecessary overhead.
+### Lemma: Uniform Representation in Subgrids
+For any top-left coordinate $(x, y)$ such that $0 \le x \le W - S$ and $0 \le y \le H - S$, the subgrid $\mathcal{B}(x, y) = \{(x + u, y + v) \mid 0 \le u, v < S\}$ satisfies:
+$$\pi(\mathcal{B}(x, y)) = \{0, \dots, S-1\} \times \{0, \dots, S-1\}$$
+where the mapping $\pi$ restricted to $\mathcal{B}(x, y)$ is a bijection.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Replication Frequency Formula
+For a residue coordinate $r \in [0, S-1]$ along the horizontal dimension, the number of integer coordinates $i \in [0, W-1]$ with $i \equiv r \pmod S$ is:
+$$C_W(r) = \lfloor \frac{W}{S} \rfloor + [r < (W \bmod S)]$$
+Similarly, along the vertical dimension for $c \in [0, S-1]$:
+$$C_H(c) = \lfloor \frac{H}{S} \rfloor + [c < (H \bmod S)]$$
+By independence of dimensions, the total number of cells in the entire board mapping to residue $(r, c)$ is:
+$$\text{Freq}(r, c) = C_W(r) \times C_H(c)$$
+
+### Optimization Objective
+Let $\mathbf{x}: \{0, \dots, S-1\}^2 \to \{0, 1\}$ be an indicator function choosing whether to place a 1 at residue class $(r, c)$. The problem reduces to:
+$$\max \sum_{r=0}^{S-1} \sum_{c=0}^{S-1} \text{Freq}(r, c) \cdot \mathbf{x}(r, c) \quad \text{subject to} \quad \sum_{r=0}^{S-1} \sum_{c=0}^{S-1} \mathbf{x}(r, c) \le K$$
+
+Because this is a standard linear 0-1 knapsack problem with uniform unit weights (each item consumes 1 unit of capacity against budget $K$), the optimal strategy is greedy: sort the $S^2$ frequency values in descending order and sum the top $K$ values.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the configuration:
+- $\text{width} = 3$, $\text{height} = 3$
+- $\text{sideLength} = 2$
+- $\text{maxOnes} = 1$
 
-| State Parameter | Role & Purpose | Initial State |
+### Frequency Calculation Trace for $S = 2$ ($2 \times 2$ period)
+Here $W = 3, H = 3, S = 2$.
+$W / S = 1$ with remainder $3 \bmod 2 = 1$.
+- $C_W(0) = 1 + 1 = 2$ (indices 0, 2)
+- $C_W(1) = 1 + 0 = 1$ (index 1)
+- $C_H(0) = 1 + 1 = 2$ (indices 0, 2)
+- $C_H(1) = 1 + 0 = 1$ (index 1)
+
+| Residue Pair $(r, c)$ | Horizontal Count $C_W(r)$ | Vertical Count $C_H(c)$ | Global Frequency $C_W(r) \times C_H(c)$ | Board Coordinates Mapped |
+|---|---|---|---|---|
+| $(0, 0)$ | 2 | 2 | **4** | $(0,0), (0,2), (2,0), (2,2)$ |
+| $(0, 1)$ | 2 | 1 | **2** | $(0,1), (2,1)$ |
+| $(1, 0)$ | 1 | 2 | **2** | $(1,0), (1,2)$ |
+| $(1, 1)$ | 1 | 1 | **1** | $(1,1)$ |
+
+```mermaid
+flowchart TD
+    accTitle: Modular Frequency Aggregation and Selection
+    accDescr: Pipeline decomposing grid dimensions into modular frequencies and greedily selecting top entries.
+    
+    A["Input: W=3, H=3, S=2, maxOnes=1"] --> B["Compute Horizontal Multiplicities: C_W = [2, 1]"]
+    A --> C["Compute Vertical Multiplicities: C_H = [2, 1]"]
+    B & C --> D["Form S^2 Outer Product Matrix of Frequencies"]
+    D --> E["Residue Frequencies: [4, 2, 2, 1]"]
+    E --> F["Sort in Descending Order: [4, 2, 2, 1]"]
+    F --> G["Select Top maxOnes = 1 Elements: {4}"]
+    G --> H["Sum Selected Frequencies: 4 ones"]
+```
+
+### Resulting Matrix Visualization
+With $\text{maxOnes} = 1$, we select the single highest frequency residue, $(0, 0)$:
+
+$$\begin{bmatrix} 1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1 \end{bmatrix}$$
+
+Verification of all $2 \times 2$ subgrids:
+1. Top-Left $[0 \dots 1] \times [0 \dots 1]$: contains $(0,0) \implies 1$ one.
+2. Top-Right $[0 \dots 1] \times [1 \dots 2]$: contains $(0,2) \implies 1$ one.
+3. Bottom-Left $[1 \dots 2] \times [0 \dots 1]$: contains $(2,0) \implies 1$ one.
+4. Bottom-Right $[1 \dots 2] \times [1 \dots 2]$: contains $(2,2) \implies 1$ one.
+
+Every $2 \times 2$ subgrid contains exactly $1 \le \text{maxOnes}$ one. Total ones placed = **4**.
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Dimension / Approach | Backtracking Search / Constraint Solver | Full Grid Coordinate Iteration ($\mathcal{O}(W \cdot H)$) | Analytical Multiplicity Outer Product (Optimal) |
+|---|---|---|---|
+| **Time Complexity** | Exponential ($\mathcal{O}(2^{W \cdot H})$) | $\mathcal{O}(W \cdot H + S^2 \log S)$ | $\mathcal{O}(S^2 + S^2 \log S)$ |
+| **Space Complexity** | $\mathcal{O}(W \cdot H)$ recursion stack | $\mathcal{O}(S^2)$ frequency array | $\mathcal{O}(S^2)$ or $\mathcal{O}(S)$ |
+| **Handling Large Grids** | Infeasible beyond $5 \times 5$ | Practical for $W, H \le 10^4$ | Instantaneous even if $W, H \ge 10^9$ |
+| **Implementation Complexity**| Extreme | Very straightforward | Mathematical and clean |
+
+```
+Frequency Distribution Pattern:
+High frequency cells cluster at residue indices < (W % S, H % S):
+
+      c=0    c=1    c=2
+r=0 [ High | Med  | Med  ]
+r=1 [ Med  | Low  | Low  ]
+r=2 [ Med  | Low  | Low  ]
+```
+
+---
+
+## 5. Algorithmic Edge Cases & Boundary Analysis
+
+| Boundary Scenario | Configuration State | Mathematical Behavior & Result |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why a repeating template satisfies every square
-
-Take any `x` consecutive column indices. Their residues modulo `x` are all distinct and collectively equal zero through `x - 1`, regardless of the starting column. The same fact holds for any `x` consecutive row indices. Their Cartesian product therefore contains every residue pair exactly once.
-
-Imagine choosing some template positions to be active and placing a one in every matrix cell whose residue pair is active. Every contiguous `x` by `x` square then contains exactly one copy of each active template position. If at most `maxOnes` positions are active, every constrained square has at most `maxOnes` ones automatically. This turns a large matrix-placement problem into choosing at most `maxOnes` positions from an $x^2$-cell template.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"width": 3, "height": 3, "sideLength": 2, "maxOnes": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **$S = 1$ (Unit Square)** | $\text{sideLength} = 1$ | Every cell is its own square. Maximum ones $= \text{maxOnes} \times W \times H$. If $\text{maxOnes} = 0$, returns 0; if $\text{maxOnes} = 1$, returns $W \times H$. |
+| **$\text{maxOnes} \ge S^2$** | Maximum budget | We can activate all $S^2$ residue classes; returns $W \times H$ (every cell in the board is 1). |
+| **$\text{maxOnes} = 0$** | Zero budget | We can activate zero residue classes; sum of top 0 elements is 0. |
+| **Exact Multiple Dimensions** | $W \bmod S = 0$ and $H \bmod S = 0$ | All $S^2$ residue classes have identical frequencies $\frac{W \cdot H}{S^2}$. Any choice of $K$ classes gives exactly $K \cdot \frac{W \cdot H}{S^2}$. |
+| **$S$ Equal to Full Grid** | $S = W = H$ | Exactly one subgrid covers the entire board; answer is strictly $\min(W \cdot H, \text{maxOnes})$. |
 
 ---
 
-### Step 2: Not every template position occurs equally often
+## 6. Mathematical Verification & Complexity Derivation
 
-When `width` or `height` is not a multiple of `x`, some residues appear one more time than others near the matrix boundary. Selecting a frequently repeated template position creates more total ones than selecting a less frequent one, while each constrained square still sees that selected residue exactly once.
+Let $W = \text{width}$, $H = \text{height}$, $S = \text{sideLength}$, and $K = \text{maxOnes}$.
 
-The list `cnt` measures these multiplicities. It begins with $x^2$ zeros. The nested loops visit every actual matrix coordinate, compute its flattened residue index `k`, and increment `cnt[k]`. Afterward, `cnt[k]` equals the number of matrix cells that would become one if template position `k` were selected.
+### 1. Frequency Generation:
+- **Approach A (Double Loop over Grid)**:
+  Iterating over all $i \in [0, W-1]$ and $j \in [0, H-1]$, computing $(i \bmod S) \cdot S + (j \bmod S)$ and incrementing an array of size $S^2$ takes $\mathcal{O}(W \cdot H)$ steps.
+- **Approach B (1D Coordinate Multiplicity)**:
+  Precomputing $C_W(r)$ for $r \in [0, S-1]$ takes $\mathcal{O}(S)$ steps. Precomputing $C_H(c)$ for $c \in [0, S-1]$ takes $\mathcal{O}(S)$ steps. Forming the $S^2$ products takes $\mathcal{O}(S^2)$ operations, completely independent of the magnitudes of $W$ and $H$.
 
-For instance, with width and height both three and `x = 2`, residue zero appears at coordinates using column residues zero and row residues zero. That residue pair occurs four times, while other pairs occur fewer times. With `maxOnes = 1`, selecting the frequency-four position places ones at the four corners and makes every two-by-two square contain one one.
+### 2. Selection of Top $K$ Frequencies:
+- Sorting the array of $S^2$ frequencies takes $\mathcal{O}(S^2 \log(S^2)) = \mathcal{O}(S^2 \log S)$ comparisons.
+- Alternatively, using a linear selection algorithm (such as Introselect / Quickselect) takes $\mathcal{O}(S^2)$ worst/average time.
+- Summing the top $K$ elements takes $\mathcal{O}(K) \le \mathcal{O}(S^2)$ time.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Choose the most valuable allowed positions
-
-Every selected template position consumes exactly one unit of the per-square allowance, because it appears once in every full `x` by `x` square. Its benefit is its multiplicity from `cnt`. All costs are identical, so the best choice is simply to take the `maxOnes` largest benefits.
-
-The code sorts `cnt` in descending order and returns `sum(cnt[:maxOnes])`. If `maxOnes` is zero, the slice is empty and the sum is zero. If `maxOnes = x * x`, the slice includes every residue class and the sum is the entire matrix size, which corresponds to filling every cell with one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Total Asymptotics:
+- **Time Complexity:** $\mathcal{O}(W \cdot H + S^2 \log S)$ for full-grid tallying, or $\mathcal{O}(S^2 \log S)$ with closed-form coordinate products.
+- **Space Complexity:** $\mathcal{O}(S^2)$ auxiliary storage to retain the $S \times S$ period frequency values.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Synthesis & Strategic Takeaways
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"width": 3, "height": 3, "sideLength": 2, "maxOnes": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Compute residue frequencies arithmetically:** The number of coordinates with a given residue can be derived from quotient and remainder division in each dimension, avoiding the $O(wh)$ nested loop. This can reduce counting to $O(s^2)$ while preserving the same sorting step.
-- **Min-heap of the best frequencies:** Keep only the largest `maxOnes` counts instead of sorting all $s^2$ entries. This may help when `maxOnes` is much smaller than $s^2$, but full sorting is simpler at these constraints.
-- **Construct the full matrix:** Repeating the chosen template would produce a witness matrix, but the contract asks only for the maximum count, so allocating it is unnecessary.
-- **`maxOnes = 0`:** No constrained square may contain a one. The empty sorted slice sums to zero.
-- **`maxOnes = sideLength * sideLength`:** Every template position may be selected, so every matrix cell can be one and the result is `width * height`.
-- **`sideLength = 1`:** There is one residue class. If `maxOnes` is one, its frequency is the whole matrix size; if it is zero, the answer is zero.
-- **Dimensions equal to `sideLength`:** The whole matrix is one constrained square, every residue occurs once, and the answer is exactly `maxOnes`.
-- **Dimensions not divisible by `sideLength`:** Residue frequencies differ. Sorting is essential because selecting the more frequent residues yields additional boundary cells at no extra per-window cost.
-- **Width and height orientation:** The loops name the width coordinate `i` and height coordinate `j`. Swapping the axes would produce the same multiset of frequency products, so the final maximum is unchanged.
-- **Flattened residue index:** Multiplying the first residue by `x` and adding the second gives a unique index from zero through $x^2-1$. Omitting the multiplication would mix distinct residue pairs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(wh+s^2\log s)$. Let $w$ be `width`, $h$ be `height`, and $s$ be `sideLength`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Modular Invariance as Dimensionality Reduction**: In geometric grid problems with local translation-invariant constraints (e.g., fixed-size sliding windows), modular arithmetic collapses an infinite or large board into a compact fundamental domain (the torus $\mathbb{Z}_S \times \mathbb{Z}_S$).
+2. **Greedy Optimality in Unit-Cost Knapsacks**: Whenever decisions are independent and binary with identical marginal resource costs (each residue selection consumes exactly 1 unit of `maxOnes`), greedy prioritization by marginal yield (replication frequency) is provably optimal.
+3. **Multiplicity Factorization**: Because horizontal and vertical coordinates translate independently under the Euclidean metric, 2D cell frequency decomposes into the product of 1D marginal frequencies ($C_W(r) \times C_H(c)$), providing a classic example of dimensional separability.

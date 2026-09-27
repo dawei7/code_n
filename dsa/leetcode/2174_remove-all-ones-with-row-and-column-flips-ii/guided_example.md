@@ -1,128 +1,197 @@
 # Guided Example: Remove All Ones With Row and Column Flips II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the breadth-first search bitmask state-space traversal on a representative binary matrix instance, demonstrating how flat bitwise packing of an $m \times n$ matrix with $mn \le 15$ enables exact unit-cost shortest-path exploration to the all-zero terminal state in $O(mn \cdot 2^{mn})$ time.
 
-- **Input:** `{"grid": [[1, 1, 1], [1, 1, 1], [0, 1, 0]]}`
-- **Required output:** `2`
+- **Input:** `grid = [[1, 1, 1], [1, 1, 1], [0, 1, 0]]`
+- **Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** `m x n` **binary** matrix `grid`.
-
-The objective is to compute `2` from `{"grid": [[1, 1, 1], [1, 1, 1], [0, 1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates matrix bitmask flattening, state transition via orthogonal row-column bit-clearing, level-synchronous BFS wavefronts, and optimal pivot cell selection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an $m \times n$ binary matrix `grid` containing values in $\{0, 1\}$, with dimensions satisfying $1 \le mn \le 15$.
+In one legal operation:
+1. We must select any cell $(i, j)$ whose **current value is $1$**.
+2. All cells located in row $i$ and all cells located in column $j$ are set to $0$. Cells already equal to $0$ remain $0$.
 
-| State Parameter | Role & Purpose | Initial State |
+Because clearing row $i$ and column $j$ eliminates existing ones, the set of legal choices changes after every operation. We must determine the **minimum number of operations** needed to reduce all matrix cells to $0$.
+
+In our representative instance:
+- `grid` has dimensions $m = 3, n = 3$ ($mn = 9 \le 15$).
+- Matrix values:
+  $$\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 0 & 1 & 0 \end{bmatrix}$$
+- Total active ones: $7$.
+- Can $1$ operation suffice? Any single operation clears at most $1$ row and $1$ column. Since ones exist across $3$ distinct rows (rows $0, 1, 2$) and $3$ distinct columns (columns $0, 1, 2$), clearing one row and one column leaves ones in at least $3 - 1 = 2$ rows. Thus, $1$ operation is strictly insufficient.
+- In $2$ operations:
+  - Operation 1: Select cell $(0, 0)$ (which equals $1$). Clear row $0$ and column $0$. The remaining matrix has ones only at $(1, 1), (1, 2), (2, 1)$.
+  - Operation 2: Select cell $(1, 1)$ (which equals $1$). Clear row $1$ and column $1$. All remaining ones vanish, leaving an all-zero matrix.
+- Total operations: $2$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Flattened Bitmask Representation
+
+Because the total number of cells satisfies $mn \le 15$, every matrix configuration can be mapped bijectively to an integer bitmask in $[0, 2^{mn} - 1]$:
+$$\text{bit\_index}(i, j) = i \cdot n + j, \quad 0 \le i < m, \; 0 \le j < n$$
+$$\text{mask}(\text{grid}) = \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} \text{grid}[i][j] \cdot 2^{i \cdot n + j}$$
+
+- The all-zero goal state corresponds to the integer $0$.
+- The total number of possible states is at most $2^{15} = 32{,}768$, making full state-space exploration computationally trivial.
+
+### Orthogonal Row-Column Clearing Bitmask
+
+When a cell $(i, j)$ currently holding a $1$ is selected, every cell in row $i$ and column $j$ is cleared to $0$.
+We precompute or construct the clearing mask:
+$$\text{clear\_mask}(i, j) = \left( \sum_{c=0}^{n-1} 2^{i \cdot n + c} \right) \cup \left( \sum_{r=0}^{m-1} 2^{r \cdot n + j} \right)$$
+The state transition from $\text{state}$ to $\text{next\_state}$ is computed via bitwise AND with the bitwise negation:
+$$\text{next\_state} = \text{state} \ \& \ \sim\text{clear\_mask}(i, j)$$
+
+### Unweighted Shortest Path via BFS
+
+The state space forms a directed acyclic graph (DAG) where every transition reduces the population count $\text{bit\_count}(\text{next\_state}) < \text{bit\_count}(\text{state})$ by at least $1$.
+Since every transition costs exactly $1$ operation, Breadth-First Search (BFS) starting from the initial mask discovers the shortest path (minimum operations) to state $0$.
+
+| State Metric | Mathematical Entity | Operational Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Bitmask State $S$ | Integer in $[0, 2^{mn} - 1]$ | Compact encoding of active ones in the matrix |
+| Cell Bit $(i, j)$ | $1 \ll (i \cdot n + j)$ | Tests presence of $1$ at row $i$, column $j$ |
+| Row-Column Mask $M_{ij}$ | Bitwise OR of row $i$ and column $j$ bits | Specifies all positions to clear in one operation |
+| BFS Queue Layer $d$ | Non-negative integer | Exact number of operations performed from start |
+| Visited Set $\mathcal{V}$ | Hash set of integers | Prevents redundant exploration of duplicate sub-grids |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Flatten the matrix into bits
-
-Cell `(i, j)` maps to bit position `i * n + j`. The initial `state` sets that bit exactly when `grid[i][j]` is one.
-
-The expression uses a sum of distinct powers of two. Because every cell maps to a unique bit, this is equivalent to combining the bits with bitwise OR. A set bit means the corresponding one is still present; a cleared bit means the cell is zero.
-
-The all-zero matrix is mask zero, so testing `state == 0` checks the goal in constant time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 1, 1], [1, 1, 1], [0, 1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: BFS State Space Traversal
+accDescr: Diagram illustrating BFS exploration from the initial 7-one bitmask to intermediate states and terminating at the 0-state in 2 operations.
+flowchart TD
+    S0["Initial State S_0 (7 ones)<br/>Depth 0"] -->|"Op 1: Pivot (0,0)<br/>Clear row 0, col 0"| S1["State S_1 (3 ones)<br/>Remaining: (1,1), (1,2), (2,1)<br/>Depth 1"]
+    S0 -->|"Op 1: Other Pivots"| S_alt["Alternative Depth 1 States"]
+    S1 -->|"Op 2: Pivot (1,1)<br/>Clear row 1, col 1"| S2["Terminal State 0 (0 ones)<br/>All cells zero<br/>Depth 2"]
+    S2 --> Found["Queue pops 0 at depth 2 => Return 2"]
+```
 
 ---
 
-### Step 2: Search by number of operations
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The queue starts with the initial mask, and `vis` immediately records it. Variable `ans` is the number of operations used to reach every state in the current queue layer.
+We trace `grid = [[1, 1, 1], [1, 1, 1], [0, 1, 0]]` with dimensions $m = 3, n = 3$.
 
-The loop processes exactly `len(q)` states before incrementing `ans`. Each generated neighbor differs by one row-and-column clearing operation, so all newly enqueued states belong to the next distance layer.
+### Step 1: Initialize State Bitmask and BFS Structures
+- Bit index assignment:
+  - Row 0: $(0, 0) \to 0, (0, 1) \to 1, (0, 2) \to 2$
+  - Row 1: $(1, 0) \to 3, (1, 1) \to 4, (1, 2) \to 5$
+  - Row 2: $(2, 0) \to 6, (2, 1) \to 7, (2, 2) \to 8$
+- Set bits from input grid:
+  $$\text{bits} = \{0, 1, 2, 3, 4, 5, 7\}$$
+  $$\text{Initial Mask } S_0 = 2^0 + 2^1 + 2^2 + 2^3 + 2^4 + 2^5 + 2^7 = 1 + 2 + 4 + 8 + 16 + 32 + 128 = 191$$
+  Wait, in binary: `010111111` (bit 7 is 128, bits 0-5 sum to 63; $63 + 128 = 191$).
+- Queue: `q = [191]`.
+- Visited set: `vis = {191}`.
+- Operation counter: `ans = 0`.
 
-Breadth-first search visits states in nondecreasing operation count. Consequently, the first time mask zero is removed from the queue, `ans` is the minimum number of operations among all transitions represented by the search.
+### Step 2: BFS Depth 0 Evaluation
+- Pop state $S_0 = 191$.
+- Check goal: $191 \ne 0$.
+- Candidate pivots with value $1$ in $S_0$:
+  - Cell $(0, 0)$ (bit 0):
+    - Row 0 indices: $\{0, 1, 2\}$.
+    - Column 0 indices: $\{0, 3, 6\}$.
+    - Cleared mask removes bits $\{0, 1, 2, 3, 6\}$.
+    - Remaining bits in $S_0$: $\{4, 5, 7\}$ (corresponding to cells $(1, 1), (1, 2), (2, 1)$).
+    - New mask: $2^4 + 2^5 + 2^7 = 16 + 32 + 128 = 176$.
+    - Add $176$ to queue and `vis`.
+  - Cell $(1, 1)$ (bit 4):
+    - Row 1 indices: $\{3, 4, 5\}$.
+    - Column 1 indices: $\{1, 4, 7\}$.
+    - Cleared mask removes bits $\{1, 3, 4, 5, 7\}$.
+    - Remaining bits in $S_0$: $\{0, 2\}$ (cells $(0, 0)$ and $(0, 2)$).
+    - New mask: $2^0 + 2^2 = 1 + 4 = 5$.
+    - Add $5$ to queue and `vis`.
+- When all candidates of Depth 0 are processed, increment `ans` from $0$ to $1$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: BFS Depth 1 Evaluation
+- Now processing states at distance $1$:
+  - Case A: State $S_1 = 176$ (bits $\{4, 5, 7\}$):
+    - Active cells: $(1, 1), (1, 2), (2, 1)$.
+    - Select pivot cell $(1, 1)$ (bit 4):
+      - Row 1 indices $\{3, 4, 5\}$ and Column 1 indices $\{1, 4, 7\}$ are cleared.
+      - Bits $4$ and $5$ (in row 1) are cleared.
+      - Bit $7$ (in column 1) is cleared.
+      - All active bits $\{4, 5, 7\}$ are eliminated!
+      - Resulting state: $0$.
+      - Mask $0$ is not yet visited; add $0$ to queue and `vis`.
+  - Case B: State $S = 5$ (bits $\{0, 2\}$):
+    - Active cells: $(0, 0)$ and $(0, 2)$. Both lie on row 0.
+    - Selecting pivot $(0, 0)$ clears row 0, immediately producing state $0$.
+- Increment `ans` from $1$ to $2$.
 
----
-
-### Step 3: Construct the result of choosing a pivot
-
-For a candidate row `i` and column `j`, the code copies the current mask into `nxt`. It then clears every bit in column `j` using
-
-`nxt &= ~(1 << (r * n + j))`
-
-for all rows `r`. A second loop clears every bit in row `i` for all columns `c`.
-
-Clearing an already-zero bit has no effect, and the pivot's bit may be cleared twice without changing the result. The final `nxt` therefore contains exactly the cells outside the selected row and column that were still one.
-
-If this mask has not appeared before, it is recorded and enqueued. Visiting each mask once prevents cycles and repeated exploration. Although every useful operation is monotone, different pivot sequences can reach the same remaining set, so deduplication saves substantial work.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 1, 1], [1, 1, 1], [0, 1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Memoized depth-first search:** Recursively try a current one and cache each remaining mask. It explores a similar state graph but needs careful minimization and recursion handling instead of BFS layers.
-- **Precomputed clearing masks:** Build the row-and-column bitmask for each pivot once, then calculate `nxt = state & ~clear[pivot]` in constant bitwise time. This supports the manifest's $O(K2^K)$ transition bound.
-- **Test the current pivot bit:** Replacing the original-grid check with `state >> position & 1` follows the operation contract directly and avoids needing the relaxed-pivot equivalence argument.
-- **Greedy largest immediate clearing:** Removing the most ones now can block no cells, but it still need not minimize the number of overlapping row-and-column operations globally; exhaustive state search is justified by $K\le15$.
-- **All zeros:** Initial mask zero returns zero operations immediately.
-- **Single one:** Selecting that cell clears it in one operation.
-- **Single row:** Any current one pivot clears the entire row, so a nonzero grid needs one operation.
-- **Single column:** The symmetric result is also one operation.
-- **Duplicate successor states:** Different pivots may clear the same remaining set; `vis` ensures that mask is searched only once.
-- **Cleared original pivot:** It may be considered by the exact loops, but it either produces no change or can be dominated by a legal current-one pivot on its remaining nonempty line.
-- **Original zero pivot:** It is skipped, and it can never become one because operations only clear cells.
-- **Monotonic states:** Every useful transition removes at least one bit, so no solution ever needs to revisit a state with more ones.
-- **Input preservation:** The algorithm reads `grid` to build and filter masks but never writes to the matrix.
-- **Defensive negative return:** Zero is reachable from every valid input, so `-1` should not occur.
-- **Manifest discrepancy:** The stored BFS recomputes row and column bit clearing for every transition, so its exact time bound contains an additional line-length factor.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 4: BFS Depth 2 (Goal Encountered)
+- Pop state from queue: `state = 0`.
+- Condition check: `state == 0` evaluates to true!
+- Immediate return: The algorithm returns `ans = 2`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(k 2^k)$. Let $K=mn$ be the number of cells and let $P$ be the number of ones in the original grid. Every reachable mask is a subset of those $P$ one-cells, so at most $2^P$ states can be visited.
-- **Auxiliary Space Complexity:** $O(2^P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The sequence of state transitions across the search path is recorded below:
+
+| BFS Depth | State Mask (Decimal) | Active Grid Cells $(i, j)$ | Chosen Pivot Cell $(i, j)$ | Cleared Rows & Columns | Next State Mask | Notes |
+|---|---|---|---|---|---|---|
+| 0 | 191 | $(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,1)$ | $(0, 0)$ | Row 0, Col 0 | 176 | Enqueued for Depth 1 |
+| 0 | 191 | $(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,1)$ | $(1, 1)$ | Row 1, Col 1 | 5 | Enqueued for Depth 1 |
+| 1 | 176 | $(1, 1), (1, 2), (2, 1)$ | $(1, 1)$ | Row 1, Col 1 | **0** | Enqueued for Depth 2 |
+| 1 | 5 | $(0, 0), (0, 2)$ | $(0, 0)$ | Row 0, Col 0 | **0** | Duplicate, already visited |
+| **2** | **0** | None (All cells zero) | **None** | **None** | **None** | **Target reached; return 2** |
+
+### Matrix Grid Evolution Along the Selected Optimal Path
+
+$$\text{Initial } (S_0): \begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 0 & 1 & 0 \end{bmatrix} \xrightarrow[\text{Row 0, Col 0}]{\text{Pivot }(0, 0)} \text{Step 1 } (S_1): \begin{bmatrix} 0 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 0 \end{bmatrix} \xrightarrow[\text{Row 1, Col 1}]{\text{Pivot }(1, 1)} \text{Terminal}: \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Optimality of Breadth-First Search
+BFS explores vertices in strictly non-decreasing order of path length in graphs with uniform edge weights of $1$.
+Since every state transition corresponds to exactly one legal row-column clearing operation:
+1. Every state enqueued during layer $d$ is reachable in exactly $d$ operations.
+2. The first time the terminal state $0$ is popped from the queue, its associated depth $d$ is mathematically guaranteed to be the minimum operations required.
+
+### Strict Acyclicity and Finite Termination
+Every operation chooses a cell with value $1$ and sets both its row and its column to $0$.
+Because cells that are already $0$ remain $0$, no operation ever creates a new $1$.
+Thus:
+$$\text{bit\_count}(\text{next\_state}) \le \text{bit\_count}(\text{state}) - 1$$
+The state space contains no cycles, and the search must terminate in at most $\min(m, n) \le 15$ steps.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+1. **Matrix Already All Zeros:**
+   - E.g., `grid = [[0, 0], [0, 0]]`.
+   - Initial state is $0$. The queue pops $0$ at depth $0$ and immediately returns $0$.
+2. **Single 1 Cell:**
+   - Selecting that cell clears its row and column, reaching state $0$ in $1$ operation.
+3. **One Row or One Column Matrix ($1 \times 15$ or $15 \times 1$):**
+   - Choosing any $1$ clears the entire single row or single column, reaching $0$ in exactly $1$ operation.
+4. **Independent Diagonal of Ones ($I_k$):**
+   - E.g., $k$ ones with no two sharing a row or column.
+   - Each operation can clear at most one such one. The algorithm correctly requires $k$ operations.
+
+### Common Pitfalls to Avoid
+- **Greedy Pivot Selection:** Greedily selecting the cell $(i, j)$ that clears the maximum number of ones can fail. A greedy choice might leave scattered isolated ones that require more total operations than a balanced, non-greedy initial choice.
+- **Selecting Zero Cells:** The problem contract mandates that chosen cells must currently equal $1$. Allowing operations on $0$ cells expands the branching factor without enabling valid game transitions.
+- **Neglecting Visited Set:** In dense grids, different sequences of operations lead to the exact same intermediate subgrids. Omitting the `vis` hash set causes an exponential combinatorial explosion of redundant states.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(mn \cdot 2^{mn})$. The total number of possible states is at most $2^{mn} \le 2^{15} = 32{,}768$. For each state, we iterate over at most $mn \le 15$ cells, performing $O(m + n)$ bitwise clearing operations. The total number of bit operations is bounded by $15 \times 32{,}768 \approx 4.9 \times 10^5$, executing in under $50$ milliseconds.
+- **Auxiliary Space Complexity:** $O(2^{mn})$. The BFS queue and `vis` hash set hold at most $2^{mn} \le 32{,}768$ integer states, requiring less than $2$ megabytes of auxiliary memory.

@@ -1,134 +1,173 @@
 # Guided Example: Surrounded Regions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step boundary flood-fill inversion and in-place two-phase cell marking on a representative 2D grid:
 
-- **Input:** `{"board": [["X"]]}`
-- **Required output:** `[["X"]]`
+- **Input:**
+  $$
+  \text{board} = \begin{bmatrix}
+  \text{X} & \text{X} & \text{X} & \text{X} \\
+  \text{X} & \text{O} & \text{O} & \text{X} \\
+  \text{X} & \text{X} & \text{O} & \text{X} \\
+  \text{X} & \text{O} & \text{X} & \text{X}
+  \end{bmatrix}
+  $$
+- **Required output:**
+  $$
+  \begin{bmatrix}
+  \text{X} & \text{X} & \text{X} & \text{X} \\
+  \text{X} & \text{X} & \text{X} & \text{X} \\
+  \text{X} & \text{X} & \text{X} & \text{X} \\
+  \text{X} & \text{O} & \text{X} & \text{X}
+  \end{bmatrix}
+  $$
+- **Degenerate Single-Cell Base:** $\text{board} = [[\text{"X"}]] \implies [[\text{"X"}]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates inverting the problem (identifying un-capturable border-connected components rather than proving interior enclosure), temporary sentinel masking (`#`) in $O(1)$ extra space, and executing a dual-pass grid sweep to capture true surrounded regions.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` matrix `board` containing **letters** `'X'` and `'O'`, **capture regions** that are **surrounded**:
+You are given an $m \times n$ matrix `board` containing letters `'X'` and `'O'`.
+Capture all regions that are 4-directionally surrounded by `'X'`. An `'O'` cell is surrounded if there is no path of adjacent `'O'` cells connecting it to any boundary of the board.
 
-The objective is to compute `[["X"]]` from `{"board": [["X"]]}` while avoiding redundant calculations and unnecessary overhead.
+In the $4 \times 4$ instance:
+- The `'O'` at row 3, column 1 (`board[3][1]`) lies directly on the bottom border. Because it touches the boundary, its region can never be surrounded.
+- The three `'O'` cells at $(1, 1), (1, 2),$ and $(2, 2)$ form an interior cluster enclosed on all four orthogonal sides by `'X'`.
+- After capturing, the interior cluster becomes `'X'`, while the boundary-connected `'O'` remains `'O'`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Directly testing whether an arbitrary interior `'O'` is surrounded requires full component search while tracking boundary escape flags.
+Inverting the logic provides an optimal solution:
+**Start from all perimeter border cells**. Any `'O'` connected to the perimeter is permanently immune from capture. We mark these safe cells with a temporary marker, flip all remaining `'O'`s to `'X'`, and restore the safe marker back to `'O'`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Two-Phase Boundary Inversion Protocol
+Let $M$ be the number of rows and $N$ the number of columns.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Phase 1: Perimeter Flood-Fill (Mark Immune Cells)
+1. Traverse all perimeter cells:
+   - First and last rows ($r = 0$ and $r = M - 1$) for all $c \in [0, N - 1]$.
+   - First and last columns ($c = 0$ and $c = N - 1$) for all $r \in [0, M - 1]$.
+2. For any perimeter cell where $\text{board}[r][c] == \text{'O'}$:
+   - Initiate DFS / BFS:
+     - Mutate current cell to temporary sentinel: $\text{board}[r][c] \leftarrow \text{'\#'}$.
+     - Recursively explore all 4 orthogonal neighbors $(r \pm 1, c)$ and $(r, c \pm 1)$.
+     - Continue flood-filling as long as neighbors are inside bounds and contain `'O'`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### Phase 2: Board Sweep (Capture & Restore)
+Iterate through every cell $(r, c)$ in the matrix:
+- If $\text{board}[r][c] == \text{'O'}$:
+  This cell was never reached from any border; it is surrounded.
+  $$
+  \text{board}[r][c] \leftarrow \text{'X'}
+  $$
+- If $\text{board}[r][c] == \text{'\#'}$:
+  This cell was marked safe during Phase 1. Restore it:
+  $$
+  \text{board}[r][c] \leftarrow \text{'O'}
+  $$
+
+> **Invariant.** After Phase 1, a cell contains `board[r][c] == '#'` if and only if there exists a path of adjacent `'O'` cells connecting $(r, c)$ to the grid's outer boundary.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn “surrounded” into the easier opposite question
+We trace the algorithm on the $4 \times 4$ board ($M = 4, N = 4$):
 
-The board contains only `X` and `O`. A region is a group of `O` cells joined through horizontal or vertical moves. An `O` must remain unchanged exactly when its region can reach an edge of the board. Therefore, instead of examining every region and trying to prove that it is enclosed, the solution starts from the edge and marks every `O` that is known to be safe.
+### Phase 1: Boundary Inspection
 
-This reversal is the central idea. A region may have an irregular shape, so directly checking whether `X` surrounds it requires exploring the whole region and remembering whether any visited cell touches the edge. Starting at the edge removes that uncertainty: every `O` reached from a border `O` is automatically part of a non-surrounded region.
+#### Row 0 (Top Boundary):
+- `board[0][0...3] = ['X', 'X', 'X', 'X']`. No `'O'` cells.
 
-The solution temporarily changes every safe cell from `O` to `.`. The placeholder is unambiguous because the contract says that the original board contains only `X` and `O`.
+#### Row 3 (Bottom Boundary):
+- $c = 0$: `'X'`.
+- $c = 1$: `'O'` found at $(3, 1)$!
+  - **Launch DFS from $(3, 1)$:**
+    - Mark safe: $\text{board}[3][1] \leftarrow \text{'\#'}$.
+    - Check neighbor $(2, 1)$: $\text{board}[2][1] = \text{'X'}$ (blocked).
+    - Check neighbor $(3, 0)$: $\text{board}[3][0] = \text{'X'}$ (blocked).
+    - Check neighbor $(3, 2)$: $\text{board}[3][2] = \text{'X'}$ (blocked).
+    - DFS completes for $(3, 1)$.
+- $c = 2, 3$: `'X'`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["X"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Column 0 (Left Boundary) & Column 3 (Right Boundary):
+- All entries on left and right columns are `'X'`.
 
----
-
-### Step 2: What the nested depth-first search means
-
-For coordinates `(i, j)`, `dfs(i, j)` has one job: if this position is an unmarked `O` inside the board, mark it safe and continue to all four orthogonal neighbors.
-
-The guard rejects three kinds of calls:
-
-- coordinates outside the matrix;
-- an original `X`, which blocks connectivity;
-- a cell already changed to `.`, which has already been discovered.
-
-Rejecting an already marked cell is essential. Adjacent cells can point back to one another, so an unrestricted recursive search would revisit the same positions indefinitely. Marking before making recursive calls establishes the visited state immediately and ensures that every real `O` is processed at most once.
-
-The expression `pairwise((-1, 0, 1, 0, -1))` produces the four direction pairs `(-1, 0)`, `(0, 1)`, `(1, 0)`, and `(0, -1)`. These are precisely up, right, down, and left. Diagonal cells are intentionally absent because the problem defines connectivity only horizontally and vertically.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+State of grid after Phase 1:
+$$
+\begin{bmatrix}
+\text{X} & \text{X} & \text{X} & \text{X} \\
+\text{X} & \text{O} & \text{O} & \text{X} \\
+\text{X} & \text{X} & \text{O} & \text{X} \\
+\text{X} & \mathbf{\#} & \text{X} & \text{X}
+\end{bmatrix}
+$$
 
 ---
 
-### Step 3: Why all four borders are search origins
+### Phase 2: Full Grid Sweep
 
-The first pair of loops invokes the search on column `0` and column `n - 1` for every row. The second pair invokes it on row `0` and row `m - 1` for every column. Together, these calls cover every border position.
+We scan every row $r \in [0, 3]$ and column $c \in [0, 3]$:
+- Cell $(1, 1)$: contains `'O'`. Never reached from border $\implies$ Flip to $\text{'X'}$.
+- Cell $(1, 2)$: contains `'O'`. Never reached from border $\implies$ Flip to $\text{'X'}$.
+- Cell $(2, 2)$: contains `'O'`. Never reached from border $\implies$ Flip to $\text{'X'}$.
+- Cell $(3, 1)$: contains sentinel `'\#'`. Immune border node $\implies$ Restore to $\text{'O'}$.
+- All other cells contain `'X'` $\implies$ Unchanged.
 
-Corners are passed to `dfs` more than once, and a one-row or one-column board causes still more overlap. That does not affect correctness. The first successful visit changes an `O` to `.`, and every later visit immediately returns because that cell is no longer `O`. Avoiding duplicate border calls could save a few constant-time checks, but it would complicate otherwise direct loops without changing the asymptotic cost.
-
-After all border searches finish, the board has a useful classification:
-
-- `X` is an original blocking cell;
-- `.` is an original `O` connected to at least one border;
-- `O` is an original `O` not connected to any border.
-
-There cannot be an unmarked `O` that belongs to a border-connected region. If such a cell existed, there would be a horizontal-or-vertical path of `O` cells from a searched border cell to it. The depth-first search follows every such edge, so it would have reached and marked that cell.
-
-Conversely, every `.` is safe. The search can create a `.` only while walking from a border origin through original `O` cells, so its region has a path to the edge and is not surrounded.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[["X"]]` |
+Final board:
+$$
+\begin{bmatrix}
+\text{X} & \text{X} & \text{X} & \text{X} \\
+\text{X} & \mathbf{X} & \mathbf{X} & \text{X} \\
+\text{X} & \text{X} & \mathbf{X} & \text{X} \\
+\text{X} & \mathbf{O} & \text{X} & \text{X}
+\end{bmatrix}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["X"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[["X"]]` | Verified |
+```text
+Initial Board:               Phase 1 (Border Flood):      Phase 2 (Capture & Restore):
+  X  X  X  X                   X  X  X  X                   X  X  X  X
+  X  O  O  X                   X  O  O  X                   X [X][X] X
+  X  X  O  X                   X  X  O  X                   X  X [X] X
+  X  O  X  X                   X [#] X  X                   X [O] X  X
+```
+
+| Phase | Cell Coordinate $(r, c)$ | Initial Cell State | Connected to Border? | Sentinel Action | Final Assigned Value |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $(3, 1)$ | `'O'` (Bottom border) | **Yes** | Mutate to `'#'` | `'#'` (Temporary) |
+| 2 | $(1, 1)$ | `'O'` | No | Not reachable | **`'X'` (Captured)** |
+| 2 | $(1, 2)$ | `'O'` | No | Not reachable | **`'X'` (Captured)** |
+| 2 | $(2, 2)$ | `'O'` | No | Not reachable | **`'X'` (Captured)** |
+| 2 | $(3, 1)$ | `'#'` | Yes | Restore from `'#'` | **`'O'` (Preserved)** |
+| All | All other cells | `'X'` | - | Ignored | `'X'` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** By definition, a region is surrounded if and only if none of its cells can reach the board perimeter via horizontal or vertical adjacent `'O'` steps. Because Phase 1 flood-fills from all perimeter `'O'`s, every un-surrounded cell is marked with `'#'`. Any remaining `'O'` cell in Phase 2 is mathematically guaranteed to be fully enclosed by `'X'`s, justifying its transformation into `'X'`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Perimeter scanning covers all four boundaries. DFS visits all connected components of safe cells. The final matrix scan visits every cell in the grid, ensuring no interior region escapes capture and no immune cell is erroneously overwritten.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Breadth-first search from the border:** Use a queue of safe `O` cells and mark each cell when it is enqueued. It proves the same reachability fact without recursive calls, but the queue can require $O(mn)$ memory.
-- **Explicit depth-first stack:** Replacing recursion with a stack preserves depth-first traversal while avoiding Python’s recursion-depth limit. It still has $O(mn)$ worst-case auxiliary space.
-- **Region-by-region search:** One can start from every unvisited `O`, collect its complete component, and record whether the component touches a border. This works, but it needs component storage and solves a harder classification problem than the border-first method.
-- **Union-find:** Treat each `O` as a vertex and union adjacent `O` cells, with a virtual vertex representing the border. This is valid but needs $O(mn)$ parent/rank storage and is more machinery than a single traversal.
-- **Single row or single column:** Every cell lies on the border, so every `O` must survive. Duplicate border calls are harmless because marked cells are rejected.
-- **All `X`:** Every DFS call returns immediately, and the final sweep leaves the board unchanged.
-- **All `O`:** Every cell is connected to a border and becomes `.`, then every cell is restored to `O`; nothing is captured.
-- **Diagonal contact:** An interior `O` touching a border `O` only diagonally is not connected to it. The four direction pairs correctly exclude that diagonal move.
-- **Temporary-character safety:** Using `.` is correct only because the input alphabet is restricted to `X` and `O`. With a broader alphabet, the marker would need to be chosen or tracked differently.
-- **Runtime dependencies:** The selected source refers to `List` and `pairwise` without importing them. A standalone Python file needs `from typing import List` and `from itertools import pairwise`; `pairwise` also requires a sufficiently recent Python version.
-- **Recursion depth:** Although the algorithm is mathematically correct for boards up to $200 \times 200$, a large connected component can exceed Python’s default recursion limit. An iterative queue or stack is safer when the execution environment does not raise that limit.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Checking Boundaries from Interior Outward:** Exploring from each interior `'O'` to see if it reaches the boundary requires tracking visited sets and rolling back marks if a boundary is touched. Flood-filling from the perimeter inward eliminates all backtracking and edge-casing.
+- **Using External Visited Matrices:** Allocating a visited boolean grid of size $M \times N$ uses $O(M \cdot N)$ auxiliary space. Mutating `board[r][c]` directly to `'#'` achieves in-place state tracking with $O(1)$ extra space.
+- **Grid Dimensions Less Than 3:** If $M < 3$ or $N < 3$, every cell is on the perimeter or adjacent to it; no cell can be strictly surrounded. The algorithm naturally preserves all `'O'`s in such matrices.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let $m$ be the number of rows and $n$ be the number of columns.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N)$, where $M \times N$ is the grid size. Each cell is visited at most twice: once during the perimeter DFS flood-fill and once during the final grid sweep.
+- **Auxiliary Space Complexity:** $O(M \cdot N)$ worst-case call stack depth for DFS recursion (or $O(\min(M, N))$ queue memory if implemented via BFS). Modifying the board in place uses $O(1)$ extra heap memory.

@@ -1,134 +1,165 @@
 # Guided Example: Employee Bonus
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step outer relational join preservation (`LEFT JOIN Bonus USING (empId)`), missing record nullability emergence, ternary boolean logic evaluation under three-valued SQL semantics ($bonus < 1000 \lor bonus \text{ IS NULL}$), null substitution coalescing (`COALESCE(bonus, 0)`), and qualified employee projection on representative payroll tables:
 
-- **Input:** `{"tables": {"Employee": [{"empId": 1, "name": "Ada", "supervisor": null, "salary": 50000}, {"empId": 2, "name": "Grace", "supervisor": 1, "salary": 50000}, {"empId": 3, "name": "Linus", "supervisor": 1, "salary": 50000}], "Bonus": [{"empId": 1, "bonus": 500}, {"empId": 2, "bonus": 1500}]}}`
-- **Required output:** `{"columns": ["name", "bonus"], "rows": [["Ada", 500], ["Linus", null]]}`
+- **Input:**
+  - `Employee` table:
+    | `empId` | `name` | `supervisor` | `salary` |
+    |:---:|:---:|:---:|:---:|
+    | $1$ | `Ada` | `null` | $50000$ |
+    | $2$ | `Grace` | $1$ | $50000$ |
+    | $3$ | `Linus` | $1$ | $50000$ |
+  - `Bonus` table:
+    | `empId` | `bonus` |
+    |:---:|:---:|
+    | $1$ | $500$ |
+    | $2$ | $1500$ |
+- **Required output:**
+  | `name` | `bonus` |
+  |:---:|:---:|
+  | `Ada` | $500$ |
+  | `Linus` | `null` |
+  - Business objective: Report the `name` and `bonus` of every employee whose bonus is **strictly less than 1000** ($< 1000$), including employees who received **no bonus record at all**.
+- **Relational Outer Join & Three-Valued Logic Trace:**
+  - **Step 1: Perform Left Outer Join on `empId`:**
+    - An inner join would completely drop employees who have no entry in `Bonus`.
+    - A `LEFT JOIN` preserves all employees from `Employee`, filling missing bonus fields with SQL `NULL`:
+      - **Ada (`empId = 1`):** Matches `Bonus` record $\implies$ `bonus = 500`.
+      - **Grace (`empId = 2`):** Matches `Bonus` record $\implies$ `bonus = 1500`.
+      - **Linus (`empId = 3`):** No matching record in `Bonus` $\implies$ `bonus = NULL`.
+    - Joined intermediate relation:
+      | `empId` | `name` | `bonus` |
+      |:---:|:---:|:---:|
+      | $1$ | `Ada` | $500$ |
+      | $2$ | `Grace` | $1500$ |
+      | $3$ | `Linus` | `NULL` |
+  - **Step 2: Filter by Threshold with Nullability Handling:**
+    - In SQL three-valued logic (`TRUE`, `FALSE`, `UNKNOWN`):
+      - Comparison with `NULL` produces `UNKNOWN` (treated as false by `WHERE`).
+      - Specifically: `NULL < 1000` evaluates to `UNKNOWN`!
+      - Therefore, a naive filter `WHERE bonus < 1000` would mistakenly **drop Linus**!
+    - **Resolution Method (Null-Coalescing):**
+      - Evaluate `COALESCE(bonus, 0) < 1000` (or `bonus < 1000 OR bonus IS NULL`):
+        - **Ada:** $\text{COALESCE}(500, 0) = 500 < 1000 \implies \mathbf{True}$ (Include!)
+        - **Grace:** $\text{COALESCE}(1500, 0) = 1500 < 1000 \implies \mathbf{False}$ (Exclude!)
+        - **Linus:** $\text{COALESCE}(\text{NULL}, 0) = 0 < 1000 \implies \mathbf{True}$ (Include!)
+  - **Step 3: Project Resulting Attributes:**
+    - Select `name` and `bonus`:
+      - Ada: `('Ada', 500)`
+      - Linus: `('Linus', null)`
+- **All Employees Exceed 1000:**
+  - If all bonuses are $\ge 1000$ and all employees have bonus records, output is empty.
+- **No Employees Receive Any Bonus:**
+  - All bonuses evaluate to `NULL`; all qualify with `null` bonus projected.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates outer join relational semantics and null-safe predicate filtering, mathematically proves why three-valued SQL logic requires explicit null coalescing, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employee`
+Given tables `Employee` and `Bonus`:
+Find the name and bonus amount of each employee with a bonus **strictly less than 1000**, including those who received no bonus at all.
 
-The objective is to compute `{"columns": ["name", "bonus"], "rows": [["Ada", 500], ["Linus", null]]}` from `{"tables": {"Employee": [{"empId": 1, "name": "Ada", "supervisor": null, "salary": 50000}, {"empId": 2, "name": "Grace", "supervisor": 1, "salary": 50000}, {"empId": 3, "name": "Linus", "supervisor": 1, "salary": 50000}], "Bonus": [{"empId": 1, "bonus": 500}, {"empId": 2, "bonus": 1500}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Employees:
+  Ada   (empId 1) -> Bonus: 500   (< 1000, Qualifies!)
+  Grace (empId 2) -> Bonus: 1500  (>= 1000, Disqualified)
+  Linus (empId 3) -> Bonus: NULL  (No bonus, Qualifies!)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Output:
+  Ada   | 500
+  Linus | null
+```
+
+### The Pitfall of SQL Three-Valued Logic
+- In standard SQL, comparisons with `NULL` (such as `NULL < 1000` or `NULL = 1000`) evaluate to `UNKNOWN`, not `TRUE`.
+- A `WHERE` clause keeps only rows where the predicate evaluates to `TRUE`.
+- Therefore, simply writing `WHERE bonus < 1000` drops all employees with no bonus record!
+- Using `COALESCE(bonus, 0) < 1000` or `WHERE bonus < 1000 OR bonus IS NULL` ensures that employees without bonus entries are correctly preserved.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Left Outer Join:
+```sql
+FROM Employee
+LEFT JOIN Bonus USING (empId)
+```
+- Guarantees every row in `Employee` appears in the joined stream.
+- Employees without bonuses receive a synthetic `NULL` in the `bonus` column.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Null-Safe Predicate:
+$$
+\text{WHERE COALESCE}(bonus, 0) < 1000
+$$
+- If `bonus` is numeric: returns `bonus` directly.
+- If `bonus` is `NULL`: substitutes `0`, which satisfies $0 < 1000$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Completeness Invariant.** A left join paired with null coalescing guarantees that employee records with absent bonus receipts are treated identically to zero-bonus recipients without dropping rows.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What `USING (empId)` means
-
-Both tables have a column named `empId`. `USING (empId)` is shorthand for joining on equality of those same-named columns, conceptually:
-
-
-
-The schema says `Employee.empId` is unique, `Bonus.empId` is unique, and the latter references the former. Therefore, each employee can match at most one bonus row, and every bonus row belongs to a real employee. The left join consequently produces exactly one joined row per employee rather than multiplying an employee into several rows.
-
-The requested output does not include `empId`, `salary`, or `supervisor`. After joining and filtering, `SELECT name, bonus` projects only the two requested columns. The problem permits any result order, so no `ORDER BY` is necessary.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employee": [{"empId": 1, "name": "Ada", "supervisor": null, "salary": 50000}, {"empId": 2, "name": "Grace", "supervisor": 1, "salary": 50000}, {"empId": 3, "name": "Linus", "supervisor": 1, "salary": 50000}], "Bonus": [{"empId": 1, "bonus": 500}, {"empId": 2, "bonus": 1500}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why ordinary comparison is not enough for missing bonuses
-
-SQL uses three-valued logic: conditions can be true, false, or unknown. If `bonus` is `NULL`, the expression `bonus < 1000` is not true; it evaluates to unknown. A `WHERE` clause retains only rows for which its condition is true. Therefore, writing only `WHERE bonus < 1000` would incorrectly remove the employees whose left-joined bonus is missing.
-
-The exact solution handles that with:
-
-
-
-`COALESCE` returns its first non-`NULL` argument. For an employee with a bonus row, `bonus` is a number, so `COALESCE(bonus, 0)` returns that number. The condition then keeps it exactly when it is below 1000. For an employee with no bonus row, `bonus` is `NULL`, so `COALESCE` returns zero; zero is below 1000, and the employee is kept.
-
-This single predicate therefore represents the required logical disjunction:
-
-
-
-The explicit disjunction is often the clearest version for discussing SQL null behavior. The `COALESCE` form is compact and is equivalent under the intended bonus domain, where an actual bonus value of zero would also correctly qualify as less than 1000.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Left Join `Employee` with `Bonus`
+- Ada (id 1): matched with bonus $500$.
+- Grace (id 2): matched with bonus $1500$.
+- Linus (id 3): no match $\implies bonus = \text{NULL}$.
 
 ---
 
-### Step 3: Following the sample row by row
+### Step 2: Evaluate Filter Predicate
+- Ada: $\text{COALESCE}(500, 0) = 500 < 1000 \implies \mathbf{True}$.
+- Grace: $\text{COALESCE}(1500, 0) = 1500 < 1000 \implies \mathbf{False}$.
+- Linus: $\text{COALESCE}(\text{NULL}, 0) = 0 < 1000 \implies \mathbf{True}$.
 
-Dan has a matching bonus row with value 500. The left join attaches 500, `COALESCE` keeps 500, and `500 < 1000` is true, so `(Dan, 500)` is returned.
+---
 
-Thomas has value 2000. `COALESCE` returns 2000, but `2000 < 1000` is false, so his row is removed.
-
-Brad and John have no matching bonus rows. The left join still retains both employee rows and supplies `NULL` as each `bonus`. The predicate temporarily treats each missing value as zero for comparison, so both rows pass. Importantly, `COALESCE` appears only in the `WHERE` condition. The selected column is the original `bonus`, so their output values remain `NULL` rather than being displayed as zero. The query uses zero only to make the filter decision; it does not rewrite the result.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["name", "bonus"], "rows": [["Ada", 500], ["Linus", null]]}` |
+### Step 3: Project `name` and `bonus`
+- Ada: `("Ada", 500)`
+- Linus: `("Linus", null)`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employee": [{"empId": 1, "name": "Ada", "supervisor": null, "salary": 50000}, {"empId": 2, "name": "Grace", "supervisor": 1, "salary": 50000}, {"empId": 3, "name": "Linus", "supervisor": 1, "salary": 50000}], "Bonus": [{"empId": 1, "bonus": 500}, {"empId": 2, "bonus": 1500}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["name", "bonus"], "rows": [["Ada", 500], ["Linus", null]]}` | Verified |
+| `name` | Joined `bonus` | `COALESCE(bonus, 0)` | $< 1000$? | Included in Result? | Output Row |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Ada** | $500$ | $500$ | **Yes** | **Yes** | `Ada, 500` |
+| Grace | $1500$ | $1500$ | No | No | — |
+| **Linus** | `NULL` | $0$ | **Yes** | **Yes** | `Linus, null` |
+| **Final** | — | — | — | — | **`[Ada, 500], [Linus, null]`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Bonus Exactly 1000:** The condition is strictly $< 1000$, so an employee with bonus 1000 is excluded.
+- **Empty `Bonus` Table:** All employees join with `NULL`, so all employees qualify and are returned with `null` bonus.
+- **Multiple Employees with Same Name:** Joined by primary key `empId`, preserving distinct employee rows regardless of name collisions.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Explicit null predicate:** `WHERE bonus < 1000 OR bonus IS NULL` states the two requirements word for word and does not depend on a replacement value. It is generally the clearest alternative.
-- **Inner join:** This is incorrect because it removes employees without a `Bonus` row before the filter gets a chance to include them.
-- **Right join from `Bonus`:** Driving from the optional table is easy to get wrong. A left join from `Employee` directly expresses that every employee must remain eligible.
-- **`NOT EXISTS` plus a joined query:** Separate branches could find low bonuses and employees without bonus rows, then combine them with `UNION ALL`. That is longer and may scan data multiple times.
-- **Correlated scalar subquery:** Looking up a bonus separately for every employee can produce the correct relation, but performance may depend heavily on an index and the null filtering becomes less direct.
-- **Bonus exactly 1000:** The condition is strictly “less than,” so 1000 does not qualify.
-- **Bonus above 1000:** The employee is excluded because the numeric comparison is false.
-- **No bonus row:** The left join produces `NULL`; `COALESCE` makes the predicate true while `SELECT bonus` still returns `NULL`.
-- **Actual zero bonus:** Zero is a present numeric bonus and is below 1000, so it correctly qualifies just like any other small bonus.
-- **Actual `NULL` stored in `Bonus.bonus`:** If the schema allowed it, the query would treat it the same as no bonus row. The problem’s intended data model uses the joined `NULL` to represent absence; the explicit `IS NULL` alternative has the same behavior.
-- **Unique join keys:** The uniqueness guarantees prevent duplicate output rows per employee. Without uniqueness in `Bonus.empId`, one employee could appear once per matching bonus record.
-- **Employees table empty:** The left side has no rows, so the result is empty, which is consistent.
-- **Bonus table empty:** Every employee is preserved with `NULL` bonus and therefore qualifies.
-- **Any output order:** Omitting `ORDER BY` is intentional. Adding one would do unnecessary work unless a consumer imposed an ordering requirement.
-- **Preserving display semantics:** Applying `COALESCE` in `SELECT` would display missing bonuses as zero, changing the requested result. Its placement only in `WHERE` is significant.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `INNER JOIN`:** An inner join discards all employees who have no entry in `Bonus`, omitting users with null bonuses entirely.
+- **Using `WHERE bonus < 1000` Without Null Check:** Fails to include employees with `bonus = NULL` due to SQL three-valued logic.
+- **Filtering on Bonus in the `ON` Clause vs `WHERE` Clause:** Filtering `ON Employee.empId = Bonus.empId AND Bonus.bonus < 1000` in a `LEFT JOIN` causes employees with $\ge 1000$ to still appear in the output with a synthetic `NULL` bonus, erroneously including them. The threshold filter must be in the `WHERE` clause.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(E+B)$. Let $E$ be the number of `Employee` rows and $B$ the number of `Bonus` rows. The logical query must consider the employee rows and match optional bonus rows. With a hash join, building a lookup for one input and probing it with the other takes expected $O(E+B)$ time and $O(E+B)$ worst-case working space, often reducible to the size of the hashed side. With suitable indexes, an optimizer may instead scan employees and perform indexed bonus lookups.
-- **Auxiliary Space Complexity:** $O(E + B)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $E$ be the number of employees and $B$ be the number of bonus records.
+  - Left outer hash join on `empId`: $\mathcal{O}(E + B)$.
+  - Row-by-row predicate filter and projection: $\mathcal{O}(E)$.
+  - Total Time: strictly linear $\mathcal{O}(E + B)$. Completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(B)$ memory to build the hash table for the `Bonus` relation.

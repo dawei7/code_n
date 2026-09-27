@@ -34,7 +34,7 @@
     {
       "id": "trial-trailing-zeroes",
       "name": "missing revisions equal zero",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "version1": "1.0",
@@ -42,6 +42,7 @@
       },
       "expected": 0,
       "tags": [
+        "sample",
         "trailing-zeroes"
       ]
     },

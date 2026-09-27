@@ -1,132 +1,193 @@
 # Guided Example: Find Closest Number to Zero
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the online single-pass composite extremum scan algorithm for identifying the integer closest to zero with directional tie-breaking in $O(n)$ time and $O(1)$ auxiliary space.
 
-- **Input:** `{"nums": [-4, -2, 1, 4, 8]}`
-- **Required output:** `1`
+- **Input:** `nums = [-4, -2, 1, 4, 8]`
+- **Output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given an integer array `nums` of size `n`, return *the number with the value **closest** to *`0`* in *`nums`. If there are multiple answers, return *the number with the **largest** value*.
-
-The objective is to compute `1` from `{"nums": [-4, -2, 1, 4, 8]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates distance metric evaluation via absolute value, asymmetric lexicographical tie-breaking, streaming argmin maintenance, and linear order invariance.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+You are given an integer array `nums` of size $n$.
+Our objective is to return the number in `nums` that is **closest to 0**.
+If there are multiple numbers that are equally close to 0 (meaning their absolute values are identical), return the number with the **largest numerical value** (i.e. if both $-x$ and $x$ are present and tied for minimum distance, return $x$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Representative Instance Breakdown
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Consider `nums = [-4, -2, 1, 4, 8]`:
+- Absolute distance from 0 for each element:
+  - $x = -4 \implies |-4| = 4$
+  - $x = -2 \implies |-2| = 2$
+  - $x = 1 \implies |1| = 1$
+  - $x = 4 \implies |4| = 4$
+  - $x = 8 \implies |8| = 8$
 
----
+Minimum distance among all elements is $1$, achieved uniquely by element $1$.
+Output: $1$.
 
-## 3. Step-by-Step Worked Execution
+### Tie-Breaking Nuance
 
-### Step 1: Measure closeness with absolute value
-
-The distance from an integer `x` to zero is `abs(x)`. Negative and positive values with the same magnitude are equally close, so distance alone does not always determine the answer. When distances tie, the larger numeric value must win; between `-a` and `a`, that is the positive value.
-
-The solution scans once while storing:
-
-- `ans`, the best value seen so far;
-- `d`, its distance from zero.
-
-It initializes `ans = 0` and `d = inf`. Positive infinity is larger than every finite input distance, so the first array element always becomes a genuine candidate. The initial zero is only a placeholder used by the tie expression; it cannot prevent the first update because every finite distance is below infinity.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [-4, -2, 1, 4, 8]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+If the array contained both $-1$ and $1$ (e.g. `nums = [2, -1, 1]`):
+- Both have $|-1| = |1| = 1$.
+- The tie-breaking rule specifies selecting the strictly greater signed value: $\max(-1, 1) = 1$.
 
 ---
 
-### Step 2: Evaluate one candidate
+## 2. Mathematical & Algorithmic Principles
 
-For each `x`, the assignment expression `y := abs(x)` calculates its distance once and stores it in `y` for both comparisons.
+### Composite Lexicographical Total Order
 
-The update condition is:
+We define a binary relation $\prec$ that establishes a strict total order over the elements of $\mathbb{Z}$:
+$$x \prec y \iff (|x| < |y|) \lor (|x| = |y| \land x > y)$$
 
-`y < d or (y == d and x > ans)`.
+In this ordering:
+- A candidate with a strictly smaller absolute magnitude $|x|$ is preferred over one with a larger magnitude.
+- When two candidates have identical absolute magnitudes ($|x| = |y|$), the candidate with the larger algebraic signed value ($x > y$) is preferred.
+This is mathematically equivalent to minimizing the 2-tuple:
+$$(|x|, -x)$$
+under standard lexicographical comparison.
 
-The first part accepts a strictly closer value. The second handles equal distance and accepts only a larger numeric value. If either is true, `ans, d = x, y` updates the value and its matching distance together.
+### Streaming Online Argmin Invariant
 
-Keeping the two variables synchronized is important. After an update, `d` must describe the new `ans`, not the prior one.
+We maintain two scalar variables throughout a single linear scan:
+- `ans`: the best candidate encountered so far.
+- `d`: the minimum absolute distance observed so far ($\text{d} = |ans|$).
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+For each element $x \in \text{nums}$, let $y = |x|$. We update the state $(ans, d) \leftarrow (x, y)$ if and only if:
+$$y < d \quad \text{or} \quad (y = d \land x > ans)$$
 
----
+```mermaid
+flowchart TD
+    accTitle: Closest Number to Zero Scan Workflow
+    accDescr: Flowchart showing iterating through elements, checking if absolute value is smaller or equal with larger signed value, and updating current best answer.
 
-### Step 3: The maintained best-candidate rule
-
-After processing any prefix of `nums`, `ans` is the correct answer for that prefix: it has the smallest absolute value, and among values at that distance it is the largest.
-
-The statement holds after the first element because it replaces the infinite placeholder. For a later `x`:
-
-- if `x` is closer, every earlier candidate loses on the primary rule, so replacing `ans` is correct;
-- if it ties in distance but is larger, it wins the secondary rule;
-- otherwise, the existing `ans` remains at least as good.
-
-By induction, after the final element `ans` is the required answer for the entire array.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [-4, -2, 1, 4, 8]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+    Start(["Input: nums"]) --> Init["ans = 0, d = infinity"]
+    Init --> Loop{"For each x in nums"}
+    Loop -- Next x --> CalcDist["y = abs(x)"]
+    CalcDist --> CheckBetter{"y < d OR<br/>(y == d AND x > ans) ?"}
+    CheckBetter -- Yes --> Update["ans = x<br/>d = y"]
+    CheckBetter -- No --> Loop
+    Update --> Loop
+    Loop -- Complete --> Done(["Return ans"])
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `nums = [-4, -2, 1, 4, 8]`.
+Initialize $\text{ans} = 0$, $d = \infty$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 1: Element $x = -4$
+- Absolute distance: $y = |-4| = 4$.
+- Compare: $4 < \infty \implies$ **True**.
+- Update: $\text{ans} \leftarrow -4$, $d \leftarrow 4$.
+- State: $\text{ans} = -4, d = 4$.
+
+### Step 2: Element $x = -2$
+- Absolute distance: $y = |-2| = 2$.
+- Compare: $2 < 4 \implies$ **True**.
+- Update: $\text{ans} \leftarrow -2$, $d \leftarrow 2$.
+- State: $\text{ans} = -2, d = 2$.
+
+### Step 3: Element $x = 1$
+- Absolute distance: $y = |1| = 1$.
+- Compare: $1 < 2 \implies$ **True**.
+- Update: $\text{ans} \leftarrow 1$, $d \leftarrow 1$.
+- State: $\text{ans} = 1, d = 1$.
+
+### Step 4: Element $x = 4$
+- Absolute distance: $y = |4| = 4$.
+- Compare: $4 < 1$ is False; $4 == 1$ is False.
+- No update.
+- State: $\text{ans} = 1, d = 1$.
+
+### Step 5: Element $x = 8$
+- Absolute distance: $y = |8| = 8$.
+- Compare: $8 < 1$ is False; $8 == 1$ is False.
+- No update.
+- State: $\text{ans} = 1, d = 1$.
+
+### Termination
+All elements processed. Return $\text{ans} = 1$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Sort with a custom key:** Sorting by `(abs(x), -x)` and taking the first value works, but costs `O(n \log n)` time and extra storage or input mutation.
-- **Use `min` with a key:** `min(nums, key=lambda x: (abs(x), -x))` compactly expresses the same ordering, though the explicit scan makes the tie logic visible.
-- **Track only minimum absolute value:** Without storing the chosen signed value, the larger-value tie cannot be resolved.
-- **Return the first closest value:** This fails when `-a` appears before `a`.
-- **Zero present:** It is always the answer.
-- **All values positive:** The smallest positive value is closest.
-- **All values negative:** The negative value nearest zero is also the numerically largest among them.
-- **Both `-a` and `a`:** The positive `a` wins.
-- **Duplicate values:** They do not affect the returned number.
-- **Single element:** It replaces the infinite sentinel and is returned.
-- **Maximum magnitudes:** Absolute values within the constraints are represented safely.
-- **Input preservation:** The method never sorts or modifies `nums`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Complete Linear Scan Step Trace
+
+| Step $i$ | Element $x$ | Magnitude $y = |x|$ | Current Best $\text{ans}$ | Current Min Distance $d$ | Condition $y < d$ | Tie Check $(y == d \land x > \text{ans})$ | Updated State $(\text{ans}, d)$ |
+|---|---|---|---|---|---|---|---|
+| Initial | - | - | 0 | $\infty$ | - | - | $(0, \infty)$ |
+| 0 | -4 | 4 | 0 | $\infty$ | **True** ($4 < \infty$) | - | $(-4, 4)$ |
+| 1 | -2 | 2 | -4 | 4 | **True** ($2 < 4$) | - | $(-2, 2)$ |
+| 2 | 1 | 1 | -2 | 2 | **True** ($1 < 2$) | - | $(1, 1)$ |
+| 3 | 4 | 4 | 1 | 1 | False ($4 > 1$) | False | $(1, 1)$ |
+| 4 | 8 | 8 | 1 | 1 | False ($8 > 1$) | False | $(1, 1)$ |
+
+### Comparative Verification Across Ambiguous Scenarios
+
+| Test Array `nums` | Candidate Magnitudes | Competing Best Elements | Tie-Breaking Reason | Returned Result |
+|---|---|---|---|---|
+| `[-4, -2, 1, 4, 8]` | $\{4, 2, 1, 4, 8\}$ | $\{1\}$ | Strictly minimum magnitude $1$ | **1** |
+| `[2, -1, 1]` | $\{2, 1, 1\}$ | $\{-1, 1\}$ | Tied at magnitude $1$; $1 > -1$ | **1** |
+| `[-5, -5, -5]` | $\{5, 5, 5\}$ | $\{-5\}$ | Identical candidates | **-5** |
+| `[0, -10, 10]` | $\{0, 10, 10\}$ | $\{0\}$ | Magnitude $0$ is optimal | **0** |
+| `[-1000]` | $\{1000\}$ | $\{-1000\}$ | Single element | **-1000** |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n)$. Let `n = len(nums)`. The loop examines every element exactly once and performs constant work per element. Time complexity is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Preservation of the Total Order Invariant
+
+1. **Strict Total Order:** For any two integers $a, b$:
+   - Either $a \prec b$, $b \prec a$, or $a = b$.
+   - The relation $\prec$ is transitive: $a \prec b \land b \prec c \implies a \prec c$.
+2. **Inductive Correctness:** Let $P(k)$ be the proposition that after processing the prefix $\text{nums}[0 \dots k]$, `ans` holds the minimum element of the prefix under $\prec$.
+   - Base case: For $k = 0$, $x_0$ is evaluated against $\infty$, setting $\text{ans} = x_0$. $P(0)$ holds.
+   - Inductive step: Assume $P(k-1)$ holds. When inspecting $x_k$, the algorithm updates `ans` to $x_k$ if and only if $x_k \prec \text{ans}$. Thus `ans` remains the minimum under $\prec$ for $\text{nums}[0 \dots k]$.
+3. **Soundness:** Upon completing the scan of all $n$ elements, `ans` is guaranteed to be the global minimum under $\prec$.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Presence of Zero ($0 \in \text{nums}$):**
+   - If $0$ is in the array, $|0| = 0$. Since distance cannot be negative, $d$ becomes $0$ and no other non-zero number can surpass it.
+2. **All Negative Elements:**
+   - E.g., `nums = [-5, -2, -8]`.
+   - Magnitudes are $5, 2, 8$. The smallest magnitude is $2$, yielding $-2$.
+3. **Bilateral Symmetrical Pairs ($[-x, x]$):**
+   - E.g., `nums = [-7, 7]`.
+   - Encountering $-7$ sets $\text{ans} = -7, d = 7$.
+   - Encountering $+7$ triggers $y == d$ and $7 > -7$, correctly updating $\text{ans} = 7$.
+
+### Common Anti-Patterns
+
+- **Two-Pass Approach (Find Min Distance First, Filter Second):**
+  Scanning once to find $\min(|x|)$ and then scanning again to find the maximum $x$ with that magnitude uses $2n$ passes when a single pass with composite logic suffices.
+- **Sorting with Custom Comparator ($O(n \log n)$):**
+  Sorting the entire array with a custom comparator achieves the result in $O(n \log n)$ time, which is strictly inferior to the $O(n)$ streaming linear scan.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- The algorithm performs a single pass through the $n$ elements of `nums`.
+- In each iteration, it performs one absolute value calculation, at most two scalar comparisons, and conditional assignments.
+- **Total Time Complexity:** Strictly $O(n)$ time.
+
+### Auxiliary Space Complexity
+
+- The algorithm maintains two primitive scalar variables (`ans` and `d`).
+- No heap objects or auxiliary arrays are allocated.
+- **Total Auxiliary Space Complexity:** Strictly $O(1)$ auxiliary space.

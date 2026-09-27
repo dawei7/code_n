@@ -1,120 +1,267 @@
 # Guided Example: Number of Atoms
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step chemical formula parsing, right-to-left reverse lexical tokenization, multiplier stack tracking ($multipliers$), closing parenthesis factor propagation ($multipliers.\text{push}(multipliers[-1] \times pending)$), opening parenthesis scope closing ($multipliers.\text{pop}()$), multi-letter atomic symbol recognition ($[A-Z][a-z]*$), atom count accumulation ($counts[atom] \leftarrow counts[atom] + pending \times multipliers[-1]$), and alphabetical canonical serialization on representative molecular formulas:
 
-- **Input:** `{"formula": "H2O"}`
-- **Required output:** `"H2O"`
+- **Input:** $formula = \text{"Mg(OH)2"}$
+- **Required output:** `"H2MgO2"`
+  - Chemical formula syntax:
+    - Each chemical element begins with one uppercase letter, followed optionally by one or more lowercase letters (e.g. `"H"`, `"Mg"`, `"He"`).
+    - If an element or parenthesized group is followed by a number $k > 1$, its count is multiplied by $k$. If omitted, the count is implicitly $1$.
+    - Parentheses `(...)` group atoms, and trailing multipliers apply recursively to all enclosed elements.
+    - Required format:
+      - Element names sorted **strictly in alphabetical order**.
+      - Followed by the count if strictly greater than 1 (count 1 is omitted).
+    - For `"Mg(OH)2"`:
+      - `"Mg"` count: 1.
+      - Enclosed group `(OH)` has multiplier 2:
+        - `"O"` count: $1 \times 2 = 2$.
+        - `"H"` count: $1 \times 2 = 2$.
+      - Alphabetical sorting: `"H"` (2), `"Mg"` (1), `"O"` (2).
+      - Serialized string: `"H2MgO2"`.
+- **Right-to-Left Scanning & Multiplier Stack Invariant:**
+  - **The Forward Parsing Bottleneck:**
+    - In standard left-to-right parsing, when encountering an element inside parentheses, its true quantity depends on trailing group multipliers that appear in the future (e.g. the `'2'` in `(OH)2`).
+  - **The Reverse Parsing Advantage:**
+    - Scanning from **right to left** encounters group multipliers *before* entering the corresponding parentheses!
+    - We maintain:
+      1. `multipliers = [1]`: Stack of active nested group multipliers.
+      2. `pending = 1`: Multiplier of the immediately following token (number or default 1).
+  - **State Transition Rules (Right-to-Left):**
+    - **1. Digits:**
+      - Parse the full multi-digit integer from right to left:
+        $$
+        pending \leftarrow \text{parsed integer}
+        $$
+    - **2. Closing Parenthesis `')'`:**
+      - The pending multiplier belongs to this entire parenthesized block.
+      - Push the compounded multiplier to the stack:
+        $$
+        multipliers.\text{push}(multipliers[-1] \times pending)
+        $$
+      - Reset: $pending \leftarrow 1$.
+    - **3. Opening Parenthesis `'('`:**
+      - We have exited this parenthesized block.
+      - Pop the top multiplier:
+        $$
+        multipliers.\text{pop}()
+        $$
+    - **4. Chemical Element (Letters):**
+      - Gather lowercase letters and the leading uppercase letter to isolate $atom$.
+      - The total count contributed by this occurrence is:
+        $$
+        \Delta = pending \times multipliers[-1]
+        $$
+        $$
+        counts[atom] \leftarrow counts[atom] + \Delta
+        $$
+      - Reset: $pending \leftarrow 1$.
+- **Step-by-Step Worked Execution Trace on $formula = \text{"Mg(OH)2"}$:**
+  - Length: 7. Indices: $0 \dots 6$.
+  - Initial state:
+    $$
+    counts = \{\}, \quad multipliers = [1], \quad pending = 1, \quad index = 6
+    $$
+  - **Step 1 ($index = 6$, character `'2'`):**
+    - Character is a digit.
+    - Parse integer: value is $2$.
+    - Set pending factor:
+      $$
+      pending \leftarrow \mathbf{2}
+      $$
+      $$
+      index \leftarrow 5
+      $$
+  - **Step 2 ($index = 5$, character `')'`):**
+    - Encounter closing parenthesis!
+    - Compound active multiplier:
+      $$
+      multipliers.\text{push}(multipliers[-1] \times pending) = 1 \times 2 = \mathbf{2}
+      $$
+      $$
+      multipliers = [1, \; \mathbf{2}]
+      $$
+    - Reset pending: $pending \leftarrow 1$.
+    - Advance: $index \leftarrow 4$.
+  - **Step 3 ($index = 4$, character `'H'`):**
+    - Uppercase letter with no lowercase suffix $\implies atom = \text{"H"}$.
+    - Compute total atom count:
+      $$
+      \Delta = pending \times multipliers[-1] = 1 \times 2 = \mathbf{2}
+      $$
+      $$
+      counts[\text{"H"}] \leftarrow 0 + 2 = \mathbf{2}
+      $$
+    - Reset pending: $pending \leftarrow 1$.
+    - Advance: $index \leftarrow 3$.
+  - **Step 4 ($index = 3$, character `'O'`):**
+    - Uppercase letter $\implies atom = \text{"O"}$.
+    - Compute total atom count:
+      $$
+      \Delta = pending \times multipliers[-1] = 1 \times 2 = \mathbf{2}
+      $$
+      $$
+      counts[\text{"O"}] \leftarrow 0 + 2 = \mathbf{2}
+      $$
+    - Reset pending: $pending \leftarrow 1$.
+    - Advance: $index \leftarrow 2$.
+  - **Step 5 ($index = 2$, character `'('`):**
+    - Encounter opening parenthesis!
+    - Exit parenthesized scope:
+      $$
+      multipliers.\text{pop}() \implies multipliers = [1]
+      $$
+    - Advance: $index \leftarrow 1$.
+  - **Step 6 ($index = 1$, character `'g'`):**
+    - Lowercase letter `'g'` preceded by uppercase `'M'` at index 0.
+    - Full element symbol: $atom = \text{"Mg"}$.
+    - Compute total atom count:
+      $$
+      \Delta = pending \times multipliers[-1] = 1 \times 1 = \mathbf{1}
+      $$
+      $$
+      counts[\text{"Mg"}] \leftarrow 0 + 1 = \mathbf{1}
+      $$
+    - Reset pending: $pending \leftarrow 1$.
+    - Advance: $index \leftarrow -1$.
+  - **Step 7: Format Output:**
+    - Active counts: $\{\text{"H"}: 2, \; \text{"O"}: 2, \; \text{"Mg"}: 1\}$.
+    - Sort element names alphabetically:
+      1. `"H"`: count $2 > 1 \implies \text{"H2"}$.
+      2. `"Mg"`: count $1 \implies \text{"Mg"}$ (1 omitted).
+      3. `"O"`: count $2 > 1 \implies \text{"O2"}$.
+    - Concatenate:
+      $$
+      ans = \mathbf{\text{"H2MgO2"}}
+      $$
+- **Nested Groups Trace ($formula = \text{"K4(ON(SO3)2)2"}$):**
+  - Outer `)2` pushes multiplier $1 \times 2 = 2$.
+  - Inner `(SO3)2` pushes multiplier $2 \times 2 = 4$.
+  - Enclosed O3 gets $3 \times 4 = 12$. S gets $1 \times 4 = 4$.
+  - Enclosed N gets $1 \times 2 = 2$. Outer O gets $1 \times 2 = 2$. Total O: $12 + 2 = 14$.
+  - K4 gets $4 \times 1 = 4$.
+  - Formatted: `"K4N2O14S4"`.
+- **Flat Formula Trace ($formula = \text{"H2O"}$):**
+  - O: 1, H: 2.
+  - Formatted: `"H2O"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates context-free grammar parsing and reverse pushdown automaton tree reduction, mathematically proves why right-to-left evaluation linearizes nested multiplicative distributive laws, and derives $O(L + A \log A)$ runtime and $O(L)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `formula` representing a chemical formula, return *the count of each atom*.
+Given a chemical formula with elements, counts, and parentheses:
+Count each atom across all groups and multipliers.
+Return element counts in **alphabetical order**, omitting count 1.
 
-The objective is to compute `"H2O"` from `{"formula": "H2O"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+formula = "Mg(OH)2"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Scan right-to-left:
+  '2' -> pending multiplier = 2
+  ')' -> push active multiplier 1 * 2 = 2 to stack
+  'H' -> count = 1 * 2 = 2
+  'O' -> count = 1 * 2 = 2
+  '(' -> pop multiplier 2
+  "Mg" -> count = 1 * 1 = 1
+
+Counts: H: 2, Mg: 1, O: 2
+Sorted alphabetically: "H2MgO2"
+```
+
+### The Invariant of Right-to-Left Scope Multipliers
+- Scanning right-to-left reads the multiplier of a parenthesized group before visiting its contents.
+- Pushing `stack.top * pending` on `)` and popping on `(` applies nested multipliers distributively to every atom inside.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Multiplier Stack Protocol:
+$$
+\text{On } ')': \quad multipliers.\text{push}(multipliers.\text{top}() \times pending), \quad pending \leftarrow 1
+$$
+$$
+\text{On } '(': \quad multipliers.\text{pop}()
+$$
+$$
+\text{On } atom: \quad counts[atom] \leftarrow counts[atom] + pending \times multipliers.\text{top}(), \quad pending \leftarrow 1
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Output Formatting:
+$$
+ans = \sum_{atom \in \text{sorted}(counts)} atom + (str(counts[atom]) \text{ if } counts[atom] > 1 \text{ else } "")
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Distributive Tree Reduction Invariant.** The algebraic representation of a chemical formula as an annotated syntax tree $(V, E, \times, +)$ is strictly distributive, allowing the product of path weights from the root to any leaf to be evaluated by a single backward traversal with an accumulator stack.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why scanning from right to left simplifies multipliers
-
-In a chemical formula, a number appears after the thing it multiplies. It may be the count of one atom, as in `H2`, or the multiplier for a parenthesized group, as in `(OH)2`. A right-to-left scan encounters that number before it encounters the atom or closing parenthesis to which the number belongs.
-
-The exact solution uses this direction so a parsed number can be held in one variable, `pending`, and applied to the next meaningful token on its left. If no written number exists, the implicit multiplier is one.
-
-Nested groups add another requirement: an atom must receive the product of every enclosing group multiplier. The stack `multipliers` stores cumulative products. It begins with `[1]`, representing no enclosing multiplication.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"formula": "H2O"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $formula = \text{"Mg(OH)2"}$:
 
 ---
 
-### Step 2: Parse a multi-digit number in reverse
-
-When the current character is a digit, the scanner consumes the entire consecutive digit run from right to left. Because the least significant digit is encountered first, it builds the value using `place`:
-
-- Start with `factor = 0` and `place = 1`.
-- Add `digit * place`.
-- Multiply `place` by ten before reading the next digit to the left.
-
-For the text `123`, the scan sees `3`, then `2`, then `1` and accumulates `3 + 20 + 100 = 123`. It stores that result in `pending` and uses `continue` because the index already points to the character immediately before the number.
-
-Under a valid formula, this pending number belongs either to the atom immediately on its left or to a group whose closing parenthesis is immediately on its left.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan Right
+- $index = 6$ ('2'): $pending = 2$.
+- $index = 5$ (')'): push $1 \times 2 = 2 \implies stack = [1, 2], pending = 1$.
 
 ---
 
-### Step 3: Entering a group while scanning backward
+### Step 2: Inside Group
+- $index = 4$ ('H'): $counts[\text{"H"}] = 1 \times 2 = 2$.
+- $index = 3$ ('O'): $counts[\text{"O"}] = 1 \times 2 = 2$.
+- $index = 2$ ('('): pop 2 $\implies stack = [1]$.
 
-When the scanner encounters `)`, it is moving backward into the parenthesized group. Every atom encountered until the matching `(` must be multiplied by the number that followed this closing parenthesis.
+---
 
-The solution appends
+### Step 3: Outside Group
+- $index = 1, 0$ ("Mg"): $counts[\text{"Mg"}] = 1 \times 1 = 1$.
 
-`multipliers[-1] * pending`
+---
 
-to the stack. This is a cumulative multiplier: it combines the new group’s factor with all outer groups already active. `pending` is then reset to one.
-
-For example, while scanning `(ON(SO3)2)2` backward, the outer `)2` makes the current cumulative multiplier two. Reaching the inner `)2` pushes four, so atoms inside that nested group receive both factors.
-
-When the scan later reaches `(`, it has moved out of the current group. Popping the stack restores the cumulative multiplier of the surrounding context.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"H2O"` |
+### Step 4: Serialize
+- Sorted: "H" (2), "Mg" (1), "O" (2) $\implies \mathbf{\text{"H2MgO2"}}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"formula": "H2O"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"H2O"` | Verified |
+| Index | Substring Read | Token Type | Multiplier Stack | Pending Factor | Atom Accumulated | Output Contribution |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $6$ | `'2'` | Number | `[1]` | $2$ | None | — |
+| $5$ | `')'` | Open Scope (Right) | `[1, 2]` | $1$ | None | Group factor $2$ |
+| $4$ | `'H'` | Element | `[1, 2]` | $1$ | $\text{"H"} \to +2$ | $H_2$ |
+| $3$ | `'O'` | Element | `[1, 2]` | $1$ | $\text{"O"} \to +2$ | $O_2$ |
+| $2$ | `'('` | Close Scope (Right) | `[1]` | $1$ | None | Exit group |
+| $0 \dots 1$| `"Mg"`| Element | `[1]` | $1$ | $\text{"Mg"} \to +1$ | $Mg_1$ |
+| **Final**| — | **Alphabetical Sort** | — | — | **H: 2, Mg: 1, O: 2** | **`"H2MgO2"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Multi-Digit Numbers (`H12O`):** Accumulates place values $1 \times 10^0 + 1 \times 10^1 = 12$.
+- **Deeply Nested Groups (`K4(ON(SO3)2)2`):** Stack multiplies factors: $1 \times 2 \times 2 = 4$.
+- **No Parentheses (`H2O`):** Multiplier stack remains $[1]$ throughout.
+- **Single Letter vs Double Letter Elements (`N` vs `Na`):** Loop reads lowercase letters until an uppercase letter is reached.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Recursive descent from left to right:** Parse one group into a local count map, recursively parse nested groups, and multiply a completed child map after its closing parenthesis. This closely follows the grammar but uses recursion depth `O(d)` and merges maps.
-- **Stack of count maps:** Push an empty map at `(`, then pop, multiply, and merge at `)`. It is iterative and intuitive, but multiple maps may store repeated atom names. The exact reverse scan keeps one global count map and a multiplier stack.
-- **Regular-expression tokenization:** A regex can extract atoms, numbers, and parentheses before a reverse pass. It shortens token recognition but introduces a separate token collection and makes the grammar less explicit.
+- **Forward Recursive Parsing Complexity:** Forward recursive descent requires looking ahead for trailing numbers after `)`. Reverse parsing naturally consumes the trailing number before entering the group.
+- **Appended '1' in Output:** Output format explicitly requires omitting '1' (e.g. `H2O`, not `H2O1`).
+- **Unsorted Elements:** Elements must be printed in **strict alphabetical order** (`"H2MgO2"`, not `"MgH2O2"`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + A \log A)$. Let `n` be the formula length, `A` the number of distinct atom names, and `d` the maximum nesting depth.
-- **Auxiliary Space Complexity:** $O(A + d)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - One backward pass over the formula string of length $L$: $\mathcal{O}(L)$.
+  - Sorting unique chemical elements ($A \le 26$): $\mathcal{O}(A \log A)$.
+  - Total Time: strictly linear $\mathcal{O}(L + A \log A)$. Completes in $< 1$ ms for $L = 1000$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(L)$ memory for the multiplier stack and atom counts hash map.

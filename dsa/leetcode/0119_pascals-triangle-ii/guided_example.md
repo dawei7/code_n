@@ -1,99 +1,141 @@
 # Guided Example: Pascal's Triangle II
 
-We derive and execute the Array, Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step $O(k)$ space backward DP update and direct combinatorial binomial multiplication on a representative row index:
 
-- **Input:** `{"rowIndex": 3}`
+- **Input:** $\text{rowIndex} = 3$
 - **Required output:** `[1, 3, 3, 1]`
+- **Row Zero Base:** $\text{rowIndex} = 0 \implies [1]$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates space optimization from $O(k^2)$ matrix storage down to a single $O(k)$ buffer using backward in-place summation ($j$ from $i$ down to $1$), and derives the direct $O(k)$ closed-form multiplicative recurrence: $\binom{k}{i} = \binom{k}{i-1} \times \frac{k - i + 1}{i}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Pascal's Triangle II** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an integer $\text{rowIndex} = 3$, return the $3$-rd (0-indexed) row of Pascal's triangle:
+- Row 0: `[1]`
+- Row 1: `[1, 1]`
+- Row 2: `[1, 2, 1]`
+- Row 3: `[1, 3, 3, 1]`
+
+The problem explicitly asks: *Could you optimize your algorithm to use only $O(k)$ extra space?*
+
+Storing all previous rows wastes $O(k^2)$ space when only the single final row is required.
+We analyze two distinct $O(k)$ space algorithms:
+1. **In-Place Backward Summation ($O(k^2)$ Time, $O(k)$ Space):**
+   Using a single array of length $k + 1$, each new level is accumulated by iterating backwards ($j = i \dots 1$) so that $row[j]$ consumes the prior row's $row[j-1]$ before $row[j-1]$ is modified.
+2. **Direct Combinatorial Multiplicative Recurrence ($O(k)$ Time, $O(k)$ Space):**
+   By recognizing that row $k$ contains $\binom{k}{0}, \binom{k}{1}, \dots, \binom{k}{k}$, successive terms can be computed directly in $O(1)$ arithmetic operations each without generating previous rows at all.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Method 1: In-Place Backward DP Protocol
+Maintain an array `row = [1] + [0] * rowIndex`.
+For each step $i$ from $1$ up to $\text{rowIndex}$:
+Iterate $j$ **backwards** from $i$ down to $1$:
+$$
+\text{row}[j] \leftarrow \text{row}[j] + \text{row}[j - 1]
+$$
+Because $j$ decreases, computing $\text{row}[j]$ relies on $\text{row}[j-1]$ from the previous level $i-1$, preventing the newly written values from cascading forward.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Method 2: Combinatorial Multiplicative Step
+For a fixed row index $k$, let $C(k, i) = \binom{k}{i}$.
+The ratio between adjacent binomial terms is:
+$$
+\frac{\binom{k}{i}}{\binom{k}{i-1}} = \frac{\frac{k!}{i!(k-i)!}}{\frac{k!}{(i-1)!(k-i+1)!}} = \frac{k - i + 1}{i}
+$$
+Therefore:
+$$
+C(k, 0) = 1
+$$
+$$
+C(k, i) = C(k, i - 1) \times \frac{k - i + 1}{i} \quad \text{for } 1 \le i \le k
+$$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** Under backward iteration, at the end of step $i$, the prefix $\text{row}[0 \dots i]$ contains the exact entries of Pascal's triangle at row $i$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+### Execution via Method 1 (In-Place Backward DP)
+Target $\text{rowIndex} = 3$.
+Initialize buffer: `row = [1, 0, 0, 0]`.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+#### Step $i = 1$:
+- Iterate $j$ from $1$ down to $1$:
+  - $j = 1$: $\text{row}[1] = \text{row}[1] + \text{row}[0] = 0 + 1 = 1$.
+- Buffer state: `[1, 1, 0, 0]` (Represents Row 1).
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+#### Step $i = 2$:
+- Iterate $j$ from $2$ down to $1$:
+  - $j = 2$: $\text{row}[2] = \text{row}[2] + \text{row}[1] = 0 + 1 = 1$.
+  - $j = 1$: $\text{row}[1] = \text{row}[1] + \text{row}[0] = 1 + 1 = 2$.
+- Buffer state: `[1, 2, 1, 0]` (Represents Row 2).
+
+#### Step $i = 3$:
+- Iterate $j$ from $3$ down to $1$:
+  - $j = 3$: $\text{row}[3] = \text{row}[3] + \text{row}[2] = 0 + 1 = 1$.
+  - $j = 2$: $\text{row}[2] = \text{row}[2] + \text{row}[1] = 1 + 2 = 3$.
+  - $j = 1$: $\text{row}[1] = \text{row}[1] + \text{row}[0] = 2 + 1 = 3$.
+- Buffer state: `[1, 3, 3, 1]` (Represents Row 3).
+
+Final answer: `[1, 3, 3, 1]`.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
-
----
-
-### Step 3: Terminal State Resolution
-
-- Extract the final value from the designated terminal state $DP[N]$.
-
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Execution via Method 2 (Direct Combinatorial Multiplication)
+Target $k = 3$:
+1. $i = 0$: $C(3, 0) = \mathbf{1}$.
+2. $i = 1$:
+   $$
+   C(3, 1) = 1 \times \frac{3 - 1 + 1}{1} = 1 \times \frac{3}{1} = \mathbf{3}
+   $$
+3. $i = 2$:
+   $$
+   C(3, 2) = 3 \times \frac{3 - 2 + 1}{2} = 3 \times \frac{2}{2} = \mathbf{3}
+   $$
+4. $i = 3$:
+   $$
+   C(3, 3) = 3 \times \frac{3 - 3 + 1}{3} = 3 \times \frac{1}{3} = \mathbf{1}
+   $$
+Assembled in 4 steps: `[1, 3, 3, 1]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### Buffer Mutations Across DP Passes
+
+| Step $i$ | Inner Loop ($j$ from $i \dots 1$) | Calculation at Each Cell | Array State After Iteration |
+|:---:|:---:|:---|:---|
+| Init | - | Buffer allocation | `[1, 0, 0, 0]` |
+| 1 | $j = 1$ | $\text{row}[1] = 0 + 1 = 1$ | `[1, 1, 0, 0]` |
+| 2 | $j = 2, 1$ | $\text{row}[2] = 0 + 1 = 1$, $\text{row}[1] = 1 + 1 = 2$ | `[1, 2, 1, 0]` |
+| 3 | $j = 3, 2, 1$ | $\text{row}[3] = 0 + 1 = 1$, $\text{row}[2] = 1 + 2 = 3$, $\text{row}[1] = 2 + 1 = 3$ | **`[1, 3, 3, 1]` (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Under in-place backward DP, index $j$ only depends on indices $j$ and $j-1$. By updating from right to left, index $j-1$ remains untouched at its previous-tier value until after all indices $> j-1$ have read it. Under the multiplicative formula, integer division $\frac{(C(k, i-1) \cdot (k - i + 1))}{i}$ is always exact because the product of $i$ consecutive integers is divisible by $i!$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Both algorithms generate exactly $k + 1$ elements corresponding to $\binom{k}{0} \dots \binom{k}{k}$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Forward Iteration Bug in Single Array:** If $j$ is iterated forward ($1 \dots i$), $\text{row}[1]$ becomes $2$, and then $\text{row}[2] = \text{row}[2] + \text{row}[1]$ reads the *new* value $2$ instead of the old value $1$, producing corrupted outputs like `[1, 3, 4, 1]`. Backward iteration is mandatory.
+- **Integer Division Truncation:** In languages where division truncates (e.g. `//`), writing `(C * (k - i + 1)) // i` must multiply before dividing, because `(k - i + 1) // i` might truncate to $0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:**
+  - **Backward DP:** $O(k^2)$, performing $\frac{k(k+1)}{2}$ additions.
+  - **Combinatorial Multiplicative:** $O(k)$, performing exactly $k$ multiplications and divisions.
+- **Auxiliary Space Complexity:** $O(k)$ extra space to store the output array of length $k + 1$.

@@ -73,6 +73,33 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            4,
+            7
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          7
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-contained",
       "name": "contained intervals do not shrink the end",
       "kind": "trial",

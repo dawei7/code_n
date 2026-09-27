@@ -1,124 +1,167 @@
 # Guided Example: Primary Department for Each Employee
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational evaluation of bifurcated selection and grouping on a representative database instance:
 
-- **Input:** `{"tables": {"Employee": [{"employee_id": 1, "department_id": 1, "primary_flag": "N"}, {"employee_id": 2, "department_id": 1, "primary_flag": "Y"}, {"employee_id": 2, "department_id": 2, "primary_flag": "N"}, {"employee_id": 3, "department_id": 3, "primary_flag": "N"}, {"employee_id": 4, "department_id": 2, "primary_flag": "N"}, {"employee_id": 4, "department_id": 3, "primary_flag": "Y"}, {"employee_id": 4, "department_id": 4, "primary_flag": "N"}]}}`
-- **Required output:** `{"columns": ["employee_id", "department_id"], "rows": [[1, 1], [2, 1], [3, 3], [4, 3]]}`
+- **Input:**
+  Table `Employee`:
+  ```text
+  +-------------+---------------+--------------+
+  | employee_id | department_id | primary_flag |
+  +-------------+---------------+--------------+
+  | 1           | 1             | N            |
+  | 2           | 1             | Y            |
+  | 2           | 2             | N            |
+  | 3           | 3             | N            |
+  | 4           | 2             | N            |
+  | 4           | 3             | Y            |
+  | 4           | 4             | N            |
+  +-------------+---------------+--------------+
+  ```
+- **Required Output:**
+  ```text
+  +-------------+---------------+
+  | employee_id | department_id |
+  +-------------+---------------+
+  | 1           | 1             |
+  | 2           | 1             |
+  | 3           | 3             |
+  | 4           | 3             |
+  +-------------+---------------+
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features both single-department employees (employees $1$ and $3$) whose only rows carry `primary_flag = 'N'`, and multi-department employees (employees $2$ and $4$) whose designated primary department carries `primary_flag = 'Y'`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employee`
+In relational modeling, flags often exhibit semantic asymmetry. Here, the business rules state:
+1. When an employee belongs to multiple departments, exactly one row has `primary_flag = 'Y'`, designating the primary department. All other rows for that employee have `primary_flag = 'N'`.
+2. When an employee belongs to exactly one department, their sole row has `primary_flag = 'N'`.
 
-The objective is to compute `{"columns": ["employee_id", "department_id"], "rows": [[1, 1], [2, 1], [3, 3], [4, 3]]}` from `{"tables": {"Employee": [{"employee_id": 1, "department_id": 1, "primary_flag": "N"}, {"employee_id": 2, "department_id": 1, "primary_flag": "Y"}, {"employee_id": 2, "department_id": 2, "primary_flag": "N"}, {"employee_id": 3, "department_id": 3, "primary_flag": "N"}, {"employee_id": 4, "department_id": 2, "primary_flag": "N"}, {"employee_id": 4, "department_id": 3, "primary_flag": "Y"}, {"employee_id": 4, "department_id": 4, "primary_flag": "N"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to produce a relation with attributes `(employee_id, department_id)` containing each employee mapped to their unambiguous primary department.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive query filtering strictly on `primary_flag = 'Y'` drops all single-department employees. Conversely, a naive query filtering on `primary_flag = 'N'` includes non-primary departments of multi-department staff. The optimal approach cleanly partitions the employee domain into two mutually exclusive sets and unifies their outputs.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Relational Domain Partitioning
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $\mathcal{E}$ denote the set of distinct `employee_id`s in `Employee`. For any employee $e \in \mathcal{E}$, let $D(e)$ be the set of departments to which $e$ belongs:
+$$D(e) = \{ d \mid (e, d, \text{flag}) \in \text{Employee} \}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The population $\mathcal{E}$ partitions into two disjoint sets:
+- **Single-Department Employees ($\mathcal{E}_1$):** $|D(e)| = 1$. The only row for $e$ has $\text{flag} = \text{'N'}$. The primary department is the sole $d \in D(e)$.
+- **Multi-Department Employees ($\mathcal{E}_{>1}$):** $|D(e)| > 1$. Exactly one row has $\text{flag} = \text{'Y'}$, and all other $|D(e)| - 1$ rows have $\text{flag} = \text{'N'}$. The primary department is the unique $d$ where $\text{flag} = \text{'Y'}$.
+
+> **Relational Partition & Disjoint Union Theorem.**
+> Because $\mathcal{E}_1 \cap \mathcal{E}_{>1} = \emptyset$ and $\mathcal{E}_1 \cup \mathcal{E}_{>1} = \mathcal{E}$:
+> 1. The selection $R_Y = \sigma_{\text{primary\_flag} = \text{'Y'}}(\text{Employee})$ extracts exactly one primary record for every employee $e \in \mathcal{E}_{>1}$, and zero records for employees in $\mathcal{E}_1$.
+> 2. The aggregate filter $R_1 = \pi_{e, d}(\sigma_{|D(e)| = 1}(\text{Employee}))$ extracts the unique department for every employee $e \in \mathcal{E}_1$, and zero records for employees in $\mathcal{E}_{>1}$.
+> 3. The relational union $R_Y \cup R_1$ is strictly disjoint, completely covers $\mathcal{E}$, and contains exactly one primary department for every employee.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Employee Partition Workflow
+    accDescr: Diagram showing bifurcation of Employee relation into explicit primary flag filter and single-membership group filter, combined via Union.
+    A["Table: Employee"] --> B["Branch 1: Filter primary_flag = 'Y'"]
+    A --> C["Branch 2: Group by employee_id HAVING COUNT = 1"]
+    B --> D["Multi-department primaries: (2, 1), (4, 3)"]
+    C --> E["Single-department primaries: (1, 1), (3, 3)"]
+    D --> F["UNION"]
+    E --> F
+    F --> G["Final Relation: (1, 1), (2, 1), (3, 3), (4, 3)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: There are two kinds of employees
-
-The table stores one row for each employee-department membership, with `(employee_id, department_id)` as the composite primary key. The requested output needs one department for each employee, but the rule depends on how many memberships that employee has:
-
-- if the employee belongs to multiple departments, select the row explicitly marked `primary_flag = 'Y'`;
-- if the employee belongs to exactly one department, select that only row even though its flag is `'N'`.
-
-The protected SQL solution handles these as two separate queries and combines their results.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employee": [{"employee_id": 1, "department_id": 1, "primary_flag": "N"}, {"employee_id": 2, "department_id": 1, "primary_flag": "Y"}, {"employee_id": 2, "department_id": 2, "primary_flag": "N"}, {"employee_id": 3, "department_id": 3, "primary_flag": "N"}, {"employee_id": 4, "department_id": 2, "primary_flag": "N"}, {"employee_id": 4, "department_id": 3, "primary_flag": "Y"}, {"employee_id": 4, "department_id": 4, "primary_flag": "N"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the evaluation across the two relational branches.
 
 ---
 
-### Step 2: First query: take explicit primary rows
+### Step 1: Evaluate Branch 1 (Explicit Flag Filter)
 
-The first `SELECT` reads `employee_id` and `department_id` from `Employee` with the filter `primary_flag = 'Y'`. This directly handles employees with several membership rows. Their chosen department is encoded in the row itself, so no aggregation is necessary in this branch.
+Scan each tuple in `Employee` and test the predicate `primary_flag = 'Y'`:
 
-Single-department employees do not appear here because the description states that their sole row has flag `'N'`. They are deliberately supplied by the second branch.
+| `employee_id` | `department_id` | `primary_flag` | `primary_flag = 'Y'`? | Retained in $R_Y$? |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | N | False | No |
+| $2$ | $1$ | Y | True | **Yes $\to (2, 1)$** |
+| $2$ | $2$ | N | False | No |
+| $3$ | $3$ | N | False | No |
+| $4$ | $2$ | N | False | No |
+| $4$ | $3$ | Y | True | **Yes $\to (4, 3)$** |
+| $4$ | $4$ | N | False | No |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Result of Branch 1:
+$$R_Y = \{ (2, 1), (4, 3) \}$$
 
 ---
 
-### Step 3: Second query: identify one-row employee groups
+### Step 2: Evaluate Branch 2 (Single-Membership Grouping)
 
-The second `SELECT` groups the table by its first selected expression. `GROUP BY 1` is ordinal syntax: the number 1 refers to `employee_id`, the first expression in the select list. It does not group by the literal integer one.
+Group all records by `employee_id` and compute the group cardinality $|D(e)|$:
 
-`COUNT(1)` counts the rows in each employee group. The `HAVING COUNT(1) = 1` condition is applied after grouping and keeps only employees who have exactly one membership row. For such a group, that one row's `department_id` is necessarily the department to report.
+| `employee_id` | Associated Departments | Membership Count $|D(e)|$ | Condition: $|D(e)| = 1$? | Output Tuple $(e, d)$ |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\{1\}$ | $1$ | True | **$(1, 1)$** |
+| $2$ | $\{1, 2\}$ | $2$ | False | — |
+| $3$ | $\{3\}$ | $1$ | True | **$(3, 3)$** |
+| $4$ | $\{2, 3, 4\}$ | $3$ | False | — |
 
-`HAVING` is required rather than `WHERE` because the condition depends on an aggregate count computed for a whole group. A row-level `WHERE` clause cannot know how many sibling rows share its employee ID.
+Result of Branch 2:
+$$R_1 = \{ (1, 1), (3, 3) \}$$
 
-The composite primary key guarantees that two rows for the same employee cannot repeat the same department. Consequently, counting rows is equivalent to counting that employee's department memberships; `COUNT(DISTINCT department_id)` is unnecessary.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["employee_id", "department_id"], "rows": [[1, 1], [2, 1], [3, 3], [4, 3]]}` |
+### Step 3: Relational Union of the Disjoint Branches
+
+Combine the tuples from both branches:
+$$R_{\text{final}} = R_Y \cup R_1 = \{ (2, 1), (4, 3) \} \cup \{ (1, 1), (3, 3) \}$$
+
+Evaluating set membership:
+- Employee $1$: Present in $R_1 \implies (1, 1)$
+- Employee $2$: Present in $R_Y \implies (2, 1)$
+- Employee $3$: Present in $R_1 \implies (3, 3)$
+- Employee $4$: Present in $R_Y \implies (4, 3)$
+
+The combined relation matches the target output exactly.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employee": [{"employee_id": 1, "department_id": 1, "primary_flag": "N"}, {"employee_id": 2, "department_id": 1, "primary_flag": "Y"}, {"employee_id": 2, "department_id": 2, "primary_flag": "N"}, {"employee_id": 3, "department_id": 3, "primary_flag": "N"}, {"employee_id": 4, "department_id": 2, "primary_flag": "N"}, {"employee_id": 4, "department_id": 3, "primary_flag": "Y"}, {"employee_id": 4, "department_id": 4, "primary_flag": "N"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["employee_id", "department_id"], "rows": [[1, 1], [2, 1], [3, 3], [4, 3]]}` | Verified |
+| Employee $e$ | Raw Records in Table | Classification | Active Branch | Primary Department Assigned |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $(1, 1, \text{N})$ | Single ($|D(1)| = 1$) | Branch 2 (`COUNT = 1`) | Department $1$ |
+| $2$ | $(2, 1, \text{Y}), (2, 2, \text{N})$ | Multiple ($|D(2)| = 2$) | Branch 1 (`flag = 'Y'`) | Department $1$ |
+| $3$ | $(3, 3, \text{N})$ | Single ($|D(3)| = 1$) | Branch 2 (`COUNT = 1`) | Department $3$ |
+| $4$ | $(4, 2, \text{N}), (4, 3, \text{Y}), (4, 4, \text{N})$ | Multiple ($|D(4)| = 3$) | Branch 1 (`flag = 'Y'`) | Department $3$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every row generated by Branch 1 has `primary_flag = 'Y'`, which under the domain contract constitutes the verified primary department for a multi-department employee. Every row generated by Branch 2 belongs to an employee with exactly one department membership, where the sole available department is unambiguously primary.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since every employee in the table belongs to either $\mathcal{E}_1$ or $\mathcal{E}_{>1}$, no employee is missed. Because the two criteria are mutually exclusive, no employee can produce duplicate differing rows in the output.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`UNION ALL`:** Under the stated rules the two branches are disjoint, so it can avoid duplicate elimination. Plain `UNION` is safer against overlapping rows and is what the protected source uses.
-- **Window count:** Compute `COUNT(*) OVER (PARTITION BY employee_id)` for every row, then retain rows whose count is one or whose flag is `'Y'`. This expresses both cases in one filter and is portable on engines with window functions.
-- **Grouped subquery plus join:** Find employee IDs having one row, join them back for their department, and union with `'Y'` rows. This avoids selecting a non-grouped column under strict SQL modes.
-- **Conditional aggregation:** Group per employee and choose the flagged department, falling back to the only department. It can work but needs careful handling of the single-row `'N'` case.
-- **Filter only `'Y'`:** This omits every employee who belongs to one department because those rows deliberately use `'N'`.
-- **Return every `'N'` row:** This wrongly includes non-primary memberships of multi-department employees.
-- **`WHERE COUNT(1) = 1`:** Aggregate values are unavailable to `WHERE`; the group-count predicate belongs in `HAVING`.
-- **`GROUP BY 1` meaning:** The ordinal refers to the first select expression, `employee_id`, not to a constant.
-- **Composite primary key:** It prevents duplicate employee-department memberships and makes row count a membership count.
-- **One-department employee:** The only row is returned regardless of its `'N'` flag.
-- **Multi-department employee:** The designated `'Y'` row is returned; its other `'N'` rows are excluded.
-- **Any output order:** No ordering clause is necessary, and consumers must not rely on branch order.
-- **Strict MySQL mode:** `ONLY_FULL_GROUP_BY` may reject the exact second branch; a join or window formulation is more portable.
-- **Declarative execution:** Complexity can vary with indexes, statistics, memory limits, and the optimizer even though the logical result is fixed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Global Flag Filtering (`WHERE primary_flag = 'Y'`):** Completely excludes employees who belong to only one department, as their flag is `'N'`. For this instance, employees $1$ and $3$ would be missing.
+- **Filtering by `primary_flag = 'N'`:** Incorrectly includes non-primary departments for multi-department employees (e.g. $(2, 2)$ and $(4, 2), (4, 4)$).
+- **`WHERE` vs `HAVING`:** Group count conditions like `COUNT(1) = 1` operate on groups formed by aggregation and must appear in `HAVING`, not `WHERE`.
+- **Duplicate Rows from Union:** Because the predicate `primary_flag = 'Y'` and the predicate `COUNT(1) = 1` partition the employee IDs into disjoint sets, `UNION ALL` is logically equivalent to `UNION`, allowing the query planner to bypass redundant deduplication sorting if desired.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(M)$. Let $R$ be the number of rows in `Employee` and $M$ the number of distinct employees. SQL describes a result rather than prescribing one physical execution plan, so exact costs depend on indexes and the database optimizer.
-- **Auxiliary Space Complexity:** $O(M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M)$ where $M$ is the number of rows in the `Employee` table. Branch 1 performs a linear scan filtering on the flag column in $\mathcal{O}(M)$ time. Branch 2 groups by `employee_id` using hash aggregation or sort aggregation in $\mathcal{O}(M)$ time. Combining the streams takes $\mathcal{O}(E)$ time where $E$ is the number of distinct employees.
+- **Auxiliary Space Complexity:** $\mathcal{O}(E)$ auxiliary memory to store hash buckets for the grouping operator and intermediate result buffers for the union.

@@ -1,130 +1,200 @@
 # Guided Example: The Users That Are Eligible for Discount
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the parameterized relational filter query that identifies distinct customer accounts satisfying temporal interval and minimum spend criteria in $O(n)$ scan time and $O(u)$ auxiliary space.
 
-- **Input:** `{"tables": {"Purchases": [{"user_id": 1, "time_stamp": "2022-04-20 09:03:00", "amount": 4416}, {"user_id": 2, "time_stamp": "2022-03-19 19:24:02", "amount": 678}, {"user_id": 3, "time_stamp": "2022-03-18 12:03:09", "amount": 4523}, {"user_id": 3, "time_stamp": "2022-03-30 09:43:42", "amount": 626}], "Parameters": [{"startDate": "2022-03-08 00:00:00", "endDate": "2022-03-20 00:00:00", "minAmount": 1000}]}}`
-- **Required output:** `{"columns": ["user_id"], "rows": [[3]]}`
+- **Input:** `Purchases` table with transactions across users 1, 2, and 3; parameters `startDate = "2022-03-08"`, `endDate = "2022-03-20"`, `minAmount = 1000`.
+- **Output:** `user_id` list `[3]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Purchases`
-
-The objective is to compute `{"columns": ["user_id"], "rows": [[3]]}` from `{"tables": {"Purchases": [{"user_id": 1, "time_stamp": "2022-04-20 09:03:00", "amount": 4416}, {"user_id": 2, "time_stamp": "2022-03-19 19:24:02", "amount": 678}, {"user_id": 3, "time_stamp": "2022-03-18 12:03:09", "amount": 4523}, {"user_id": 3, "time_stamp": "2022-03-30 09:43:42", "amount": 626}], "Parameters": [{"startDate": "2022-03-08 00:00:00", "endDate": "2022-03-20 00:00:00", "minAmount": 1000}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates multi-attribute predicate conjunction, timestamp range boundary validation, single-transaction threshold enforcement (contrasted with cumulative aggregation), and distinct entity projection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a relational database table `Purchases`:
+- `user_id` (integer): Identifier for the customer making the purchase.
+- `time_stamp` (datetime): The timestamp when the transaction occurred.
+- `amount` (integer): The monetary value of the purchase transaction.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We are implementing a stored function or procedure taking three parameters:
+- `startDate` (date): The inclusive start of the promotional window.
+- `endDate` (date): The inclusive end of the promotional window.
+- `minAmount` (integer): The minimum purchase amount required on a single transaction.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+A user is eligible for a discount if they have completed **at least one purchase** that simultaneously satisfies:
+1. `amount >= minAmount`
+2. `time_stamp >= startDate`
+3. `time_stamp <= endDate`
 
----
+The query must return distinct `user_id` values sorted in ascending order.
 
-## 3. Step-by-Step Worked Execution
+### Representative Instance Breakdown
 
-### Step 1: Eligibility is proven by one qualifying purchase row
+Consider the parameters:
+$$\text{startDate} = \text{"2022-03-08 00:00:00"}, \quad \text{endDate} = \text{"2022-03-20 00:00:00"}, \quad \text{minAmount} = 1000$$
 
-A user needs at least one purchase satisfying all three predicates:
+Evaluating the rows in `Purchases`:
+- **Row 1:** `user_id = 1`, `time_stamp = "2022-04-20 09:03:00"`, `amount = 4416`.
+  - Amount: $4416 \ge 1000$ (Satisfied).
+  - Time: April 20 is after March 20 (Violated).
+  - Ineligible.
+- **Row 2:** `user_id = 2`, `time_stamp = "2022-03-19 19:24:02"`, `amount = 678`.
+  - Time: March 19 falls within March 8 to March 20 (Satisfied).
+  - Amount: $678 < 1000$ (Violated).
+  - Ineligible.
+- **Row 3:** `user_id = 3`, `time_stamp = "2022-03-18 12:03:09"`, `amount = 4523`.
+  - Time: March 18 falls within March 8 to March 20 (Satisfied).
+  - Amount: $4523 \ge 1000$ (Satisfied).
+  - **Eligible!** User 3 qualifies.
+- **Row 4:** `user_id = 3`, `time_stamp = "2022-03-30 09:43:42"`, `amount = 626`.
+  - Time: March 30 is after March 20 (Violated).
+  - Amount: $626 < 1000$ (Violated).
+  - Ineligible.
 
-- `amount >= minAmount`;
-- `time_stamp >= startDate`; and
-- `time_stamp <= endDate`.
-
-The SQL procedure filters purchase rows directly. It does not aggregate amounts across purchases because the rule applies to one purchase with at least the threshold amount, not to a user's total spending.
-
-The exact predicate is
-
-`amount >= minAmount AND time_stamp BETWEEN startDate AND endDate`.
-
-In MySQL, `BETWEEN` is inclusive at both endpoints, so it expresses the two time comparisons together.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Purchases": [{"user_id": 1, "time_stamp": "2022-04-20 09:03:00", "amount": 4416}, {"user_id": 2, "time_stamp": "2022-03-19 19:24:02", "amount": 678}, {"user_id": 3, "time_stamp": "2022-03-18 12:03:09", "amount": 4523}, {"user_id": 3, "time_stamp": "2022-03-30 09:43:42", "amount": 626}], "Parameters": [{"startDate": "2022-03-08 00:00:00", "endDate": "2022-03-20 00:00:00", "minAmount": 1000}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Understand the date-to-datetime boundary exactly
-
-The procedure parameters `startDate` and `endDate` have type `DATE`, while `time_stamp` is `DATETIME`. When MySQL compares them, a date is treated as the start of that day at `00:00:00`.
-
-That behavior is explicitly required by the problem. If `endDate` is `2022-03-20`, the upper endpoint is `2022-03-20 00:00:00`. A purchase at exactly midnight is included, but a purchase later that same calendar day is after the stated endpoint and is excluded.
-
-This differs from many business reports where an ending date informally means the entire day. The solution must follow this problem's start-of-day instruction and must not rewrite the condition as “before the next day.”
-
-Likewise, a purchase before midnight at the start date is outside, while one exactly at `startDate 00:00:00` is included.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Distinct eligible users: `[3]`.
 
 ---
 
-### Step 3: Apply amount and time conditions to the same row
+## 2. Mathematical & Algorithmic Principles
 
-SQL evaluates the conjunction for each row. A user does not qualify by combining one purchase that meets the amount with another purchase that meets the date interval. One row must satisfy both.
+### Conjunctive Filter Formulation
 
-This explains the example: user `1` has a sufficiently large amount but its timestamp is outside the interval. User `2` is inside the time interval but below `minAmount`. Only user `3` has one row meeting both predicates.
+For a purchase record $r \in \text{Purchases}$, the eligibility indicator function is a Boolean conjunction of three atomic predicates:
+$$\Phi(r) = (r.\text{amount} \ge \text{minAmount}) \land (r.\text{time\_stamp} \ge \text{startDate}) \land (r.\text{time\_stamp} \le \text{endDate})$$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id"], "rows": [[3]]}` |
+The relational algebra expression for the result is:
+$$\text{Result} = \tau_{\text{user\_id} \uparrow} \left( \pi_{\text{user\_id}} \left( \sigma_{\Phi(r)} (\text{Purchases}) \right) \right)$$
+where:
+- $\sigma_{\Phi(r)}$ filters individual records meeting all three constraints.
+- $\pi_{\text{user\_id}}$ projects only the customer identifier column.
+- Relational deduplication (`DISTINCT`) collapses multiple qualifying purchases per customer into a single identifier.
+- $\tau_{\text{user\_id} \uparrow}$ sorts the unique keys in ascending numerical order.
 
----
+```mermaid
+flowchart TD
+    accTitle: Discount Eligibility Query Workflow
+    accDescr: Pipeline showing table scanning with three-condition predicate filter, followed by distinct user projection and ascending sorting.
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Purchases": [{"user_id": 1, "time_stamp": "2022-04-20 09:03:00", "amount": 4416}, {"user_id": 2, "time_stamp": "2022-03-19 19:24:02", "amount": 678}, {"user_id": 3, "time_stamp": "2022-03-18 12:03:09", "amount": 4523}, {"user_id": 3, "time_stamp": "2022-03-30 09:43:42", "amount": 626}], "Parameters": [{"startDate": "2022-03-08 00:00:00", "endDate": "2022-03-20 00:00:00", "minAmount": 1000}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id"], "rows": [[3]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Group by user:** Filter rows and use `GROUP BY user_id` instead of `DISTINCT`. It can produce the same IDs, but `DISTINCT` states the intent directly because no aggregate is needed.
-- **Use `EXISTS` over a users table:** This would be useful if a separate user table were required, but the only needed IDs already occur in qualifying purchase rows.
-- **Aggregate each user's total amount:** That changes the contract. One purchase must individually meet `minAmount`.
-- **Use an end-exclusive next-day boundary:** Common reporting logic such as `time_stamp < endDate + INTERVAL 1 DAY` would include the whole end date, contradicting the explicit midnight interpretation here.
-- **Purchase exactly at `startDate 00:00:00`:** It is included by `BETWEEN`.
-- **Purchase exactly at `endDate 00:00:00`:** It is also included.
-- **Purchase later on the ending date:** It is excluded because the `DATE` parameter represents midnight.
-- **Amount exactly equal to `minAmount`:** `>=` includes it.
-- **Several qualifying purchases:** `DISTINCT` returns the user once.
-- **No qualifying rows:** The procedure returns an empty result table.
-- **One row meets amount and another meets time:** The user remains ineligible because `AND` applies both requirements to each individual row.
-- **Required ordering:** `ORDER BY user_id` is necessary even after `DISTINCT`.
-- **Null data:** The declared schema does not state nullability here; if a compared value were null, the predicate would not be true under SQL three-valued logic.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    Table["Table: Purchases"] --> Filter["Filter where:<br/>amount >= minAmount<br/>AND time_stamp >= startDate<br/>AND time_stamp <= endDate"]
+    Filter --> Project["Extract user_id"]
+    Project --> Deduplicate["Deduplicate via DISTINCT"]
+    Deduplicate --> Sort["ORDER BY user_id ASC"]
+    Sort --> ResultTable(["Output Eligible user_id Table"])
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(r log r)$. Let `r` be the number of purchase rows. Without an index tailored to the filter, the database scans `r` rows, taking `O(r)` predicate-evaluation time.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace the query execution on the 4-row dataset.
+Parameters: $\text{startDate} = \text{"2022-03-08"}$, $\text{endDate} = \text{"2022-03-20"}$, $\text{minAmount} = 1000$.
+
+### Phase 1: Record-Level Predicate Evaluation
+
+1. **Row 1: User 1**
+   - Record: `(user_id: 1, time_stamp: "2022-04-20 09:03:00", amount: 4416)`
+   - Predicate 1 (Amount): $4416 \ge 1000 \implies$ True.
+   - Predicate 2 (Start Bound): $\text{"2022-04-20"} \ge \text{"2022-03-08"} \implies$ True.
+   - Predicate 3 (End Bound): $\text{"2022-04-20"} \le \text{"2022-03-20"} \implies$ False.
+   - Conjunction: $\text{True} \land \text{True} \land \text{False} = \text{False}$.
+   - Disposition: Dropped.
+
+2. **Row 2: User 2**
+   - Record: `(user_id: 2, time_stamp: "2022-03-19 19:24:02", amount: 678)`
+   - Predicate 1 (Amount): $678 \ge 1000 \implies$ False.
+   - Conjunction: Short-circuits to False.
+   - Disposition: Dropped.
+
+3. **Row 3: User 3 (Transaction 1)**
+   - Record: `(user_id: 3, time_stamp: "2022-03-18 12:03:09", amount: 4523)`
+   - Predicate 1 (Amount): $4523 \ge 1000 \implies$ True.
+   - Predicate 2 (Start Bound): $\text{"2022-03-18"} \ge \text{"2022-03-08"} \implies$ True.
+   - Predicate 3 (End Bound): $\text{"2022-03-18"} \le \text{"2022-03-20"} \implies$ True.
+   - Conjunction: $\text{True} \land \text{True} \land \text{True} = \text{True}$.
+   - Disposition: Retained. Projected candidate: `user_id = 3`.
+
+4. **Row 4: User 3 (Transaction 2)**
+   - Record: `(user_id: 3, time_stamp: "2022-03-30 09:43:42", amount: 626)`
+   - Predicate 1 (Amount): $626 \ge 1000 \implies$ False.
+   - Conjunction: Evaluates to False.
+   - Disposition: Dropped.
+
+---
+
+### Phase 2: Deduplication and Sorting
+
+- Candidates passing filter: `[3]`.
+- Distinct deduplication: $\{3\}$.
+- Ascending sort: `[3]`.
+- Output table:
+  `user_id: 3`
+
+---
+
+## 4. Comprehensive State Trace
+
+### Record Evaluation Matrix
+
+| Row | `user_id` | `time_stamp` | `amount` | `amount >= 1000` | Temporal Window Valid? | Conjunction $\Phi(r)$ | Disposition |
+|---|---|---|---|---|---|---|---|
+| 1 | 1 | 2022-04-20 09:03:00 | 4416 | True | False (after end date) | False | Discarded |
+| 2 | 2 | 2022-03-19 19:24:02 | 678 | False | True | False | Discarded |
+| 3 | 3 | 2022-03-18 12:03:09 | 4523 | True | True | **True** | **Accepted** |
+| 4 | 3 | 2022-03-30 09:43:42 | 626 | False | False (after end date) | False | Discarded |
+
+### Final User Grouping & Distinct Projection
+
+| `user_id` | Total Transactions | Transactions Meeting All Criteria | Eligible for Discount? | Included in Output |
+|---|---|---|---|---|
+| 1 | 1 | 0 | No | No |
+| 2 | 1 | 0 | No | No |
+| 3 | 2 | 1 (Row 3) | **Yes** | **Yes (Row 1)** |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Independence of Transactions
+
+The discount qualification rule is defined on individual purchases rather than aggregated spending.
+- If a user performs multiple small transactions inside the date window that sum to over `minAmount`, but no individual purchase reaches `minAmount`, the user is not eligible.
+- Conversely, a single transaction with `amount >= minAmount` occurring between `startDate` and `endDate` is both necessary and sufficient to grant eligibility.
+- Because the `WHERE` clause applies row-level filtering without grouping, every transaction is tested independently, guaranteeing adherence to the single-transaction threshold semantic.
+- The `DISTINCT` operator ensures that if a user has multiple qualifying purchases within the window, their `user_id` is output exactly once.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Exact Boundary Dates:**
+   - A purchase occurring at `startDate` or `endDate` satisfies the condition because comparisons are inclusive ($\ge$ and $\le$).
+2. **Exact Boundary Amount:**
+   - A purchase with `amount == minAmount` satisfies `amount >= minAmount`.
+3. **No Qualifying Purchases:**
+   - If no purchases satisfy all criteria, the query returns an empty result table with the `user_id` schema.
+4. **Users with Multiple Qualifying Purchases:**
+   - E.g., User 3 has two purchases of 5000 units in the window. `DISTINCT` prevents multiple duplicate output rows for User 3.
+
+### Common Anti-Patterns
+
+- **Aggregating Amounts via `SUM(amount)` with `GROUP BY`:**
+  A common mistake is grouping by `user_id` and requiring `SUM(amount) >= minAmount`. This erroneously qualifies users who made several minor purchases below the single-transaction threshold.
+- **Strict Inequality on Date Ranges:**
+  Using `>` or `<` instead of `>=` and `<=` excludes purchases made on the boundary days.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Table Scan & Filtering:** Scanning $n$ rows in `Purchases` and evaluating three comparison operations per row takes $O(n)$ time. If an index on `(time_stamp, amount)` or `(amount, time_stamp)` exists, candidate retrieval takes $O(\log n + k)$ time where $k$ is the number of matching rows.
+- **Deduplication and Sorting:** Deduplicating and sorting the $k$ qualifying rows takes $O(k \log k)$ time, bounded by $O(n \log n)$ in the worst case.
+- **Total Time Complexity:** $O(n \log n)$ time worst case, $O(n)$ expected with hash deduplication.
+
+### Auxiliary Space Complexity
+
+- **Hash / Sort Buffer:** The query engine allocates memory to store the distinct qualifying `user_id` values: $O(u)$ space where $u \le n$ is the number of distinct eligible users.
+- **Total Auxiliary Space Complexity:** $O(u)$ space.

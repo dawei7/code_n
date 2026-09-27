@@ -1,127 +1,192 @@
 # Guided Example: Find Array Given Subset Sums
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and execute the recursive difference-bisection and zero-containment reconstruction algorithm on representative subset-sum multisets to recover the original integer array.
 
-- **Input:** `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}`
-- **Required output:** `[1, 2, -3]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an integer `n` representing the length of an unknown array that you are trying to recover. You are also given an array `sums` containing the values of all $2^n$ **subset sums** of the unknown array (in no particular order).
-
-The objective is to compute `[1, 2, -3]` from `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** $n = 3$, `sums = [-3, -2, -1, 0, 0, 1, 2, 3]` ($2^3 = 8$ sums)
+  - Expected Output: `[1, 2, -3]`
+- **Secondary Instance:** $n = 2$, `sums = [0, 0, 0, 0]` ($2^2 = 4$ sums)
+  - Expected Output: `[0, 0]`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+An unknown array $A = [a_1, a_2, \dots, a_n]$ generated $2^n$ subset sums, which are supplied in arbitrary order with duplicates. We wish to invert this exponential mapping and reconstruct a valid array $A$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Consider the two smallest values in the sorted multiset of subset sums: $s_0$ and $s_1$.
+- The global minimum sum $s_0$ is achieved by selecting all strictly negative numbers in $A$ (and omitting all positive ones).
+- The second smallest sum $s_1$ must be formed by making the minimal possible positive change:
+  - Either by including the smallest positive element $x > 0$ (so $s_1 = s_0 + x$).
+  - Or by excluding the negative element with the smallest absolute value $x < 0$ (so $s_1 = s_0 - x = s_0 + |x|$).
+In both cases, the difference:
+$$d = s_1 - s_0$$
+must be the absolute value of some element in the original array: $|x| = d$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Once difference $d$ is identified, the $2^n$ sums can be partitioned into $2^{n-1}$ pairs of the form $(u, u + d)$. This splits the sums into two multisets of size $2^{n-1}$:
+- $\mathcal{S}_0$: the lower half of each pair ($u$).
+- $\mathcal{S}_1$: the upper half of each pair ($u + d$).
+
+How do we decide whether the true element was $+d$ or $-d$?
+The empty subset always has sum $0$. Therefore, the subset sums of $A \setminus \{x\}$ must contain $0$:
+- If $0 \in \mathcal{S}_0$, the removed element was $+d$. We record $+d$ and recurse on $\mathcal{S}_0$.
+- If $0 \notin \mathcal{S}_0$ (meaning $0 \in \mathcal{S}_1$), the removed element was $-d$. We record $-d$ and recurse on $\mathcal{S}_1$.
+
+Repeating this halving process $n$ times recovers all $n$ elements in $\mathcal{O}(n \cdot 2^n)$ time.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical Formalism & Difference-Pairing Invariants
 
-### Step 1: Convert the signed problem into a nonnegative one
+Let $\Sigma(A)$ denote the multiset of all $2^{|A|}$ subset sums of array $A$.
 
-The smallest subset sum is obtained by including every negative original element and no positive element. Let that minimum be `min(sums)` and define
+### Invariant 1: Algebraic Factorization of Subset Sums
 
-`m = -min(sums)`.
+If array $A = A' \cup \{x\}$, then every subset sum of $A$ either includes $x$ or does not. Thus:
+$$\Sigma(A) = \Sigma(A') \uplus \Big(\Sigma(A') + x\Big)$$
+where $\uplus$ denotes multiset sum and $\Sigma(A') + x = \{s + x \mid s \in \Sigma(A')\}$.
 
-Thus $m$ is the sum of the absolute values of the original negative elements.
+### Invariant 2: Pairing Property
 
-The source adds $m$ to every supplied subset sum and stores the shifted multiset in a `SortedList`. This shifted collection is exactly the subset-sum multiset of the unknown elements' absolute values.
+For $d = |x|$:
+- If $x = +d > 0$, then $\Sigma(A') = \mathcal{S}_0$ and $\Sigma(A') + d = \mathcal{S}_1$.
+- If $x = -d < 0$, then $\Sigma(A') = \mathcal{S}_1$ and $\Sigma(A') - d = \mathcal{S}_0$.
 
-To see why, consider an original negative value $-x$. In a supplied subset, including it contributes $-x$; after adding the total $m$, that contribution is canceled, while excluding it leaves the corresponding $+x$ inside the shift. This complements the inclusion choice for every negative element. Positive elements keep their ordinary inclusion choice. Across all subsets, the shifted sums therefore enumerate all subsets of the nonnegative magnitudes.
+### Invariant 3: The Zero Anchor
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Because the empty set $\emptyset \subseteq A'$ always has sum $\sum_{e \in \emptyset} e = 0$:
+$$0 \in \Sigma(A')$$
+Therefore, between the two candidate halves $\mathcal{S}_0$ and $\mathcal{S}_1$, the subproblem representing $A'$ must contain $0$.
+
+```mermaid
+flowchart TD
+    accTitle: Subset Sums Bisection and Recovery
+    accDescr: Pipeline showing sorting of subset sums, computing difference d = s1 - s0, pairing elements, checking zero containment, and recursing on half.
+
+    START["Input 2^k sums (initially k = n)"] --> SORT["Sort sums in ascending order"]
+    
+    SORT --> DIFF["Compute difference: d = s_1 - s_0"]
+    DIFF --> PAIR["Pairwise partition into S_0 and S_1:<br/>S_0 = lower elements u<br/>S_1 = upper elements u + d"]
+    
+    PAIR --> CHK{"Does S_0 contain 0?"}
+    
+    CHK -- Yes --> POS["Recovered element: +d<br/>Next subproblem: S_0"]
+    CHK -- No --> NEG["Recovered element: -d<br/>Next subproblem: S_1"]
+    
+    POS --> STEP_DOWN["k = k - 1"]
+    NEG --> STEP_DOWN
+    
+    STEP_DOWN --> BASE{"k == 0?"}
+    BASE -- No --> SORT
+    BASE -- Yes --> OUT["Return Recovered Array of n elements"]
+```
+
+---
+
+## 3. Step-by-Step State Evolution
+
+We trace the primary instance with $n = 3$:
+$$\text{sums} = [-3, -2, -1, 0, 0, 1, 2, 3]$$
+
+### Level $k = 3$ ($2^3 = 8$ sums)
+- Sorted sums: `[-3, -2, -1, 0, 0, 1, 2, 3]`.
+- Two smallest sums: $s_0 = -3, s_1 = -2$.
+- Difference: $d = s_1 - s_0 = -2 - (-3) = 1$.
+- Pair matching with $d = 1$:
+  - Smallest available: $-3 \implies$ matched with $-3 + 1 = -2$. Pair: $(-3, -2)$.
+  - Smallest available: $-1 \implies$ matched with $-1 + 1 = 0$. Pair: $(-1, 0)$.
+  - Smallest available: $0 \implies$ matched with $0 + 1 = 1$. Pair: $(0, 1)$.
+  - Smallest available: $2 \implies$ matched with $2 + 1 = 3$. Pair: $(2, 3)$.
+- Formed partitions:
+  - $\mathcal{S}_0 = [-3, -1, 0, 2]$
+  - $\mathcal{S}_1 = [-2, 0, 1, 3]$
+- Zero check: $0 \in \mathcal{S}_0$? **Yes!**
+- Recovered element: $+d = \mathbf{+1}$.
+- Recurse with $\mathcal{S}_0 = [-3, -1, 0, 2]$.
+
+### Level $k = 2$ ($2^2 = 4$ sums)
+- Active sums: `[-3, -1, 0, 2]`.
+- Two smallest sums: $s_0 = -3, s_1 = -1$.
+- Difference: $d = s_1 - s_0 = -1 - (-3) = 2$.
+- Pair matching with $d = 2$:
+  - Smallest available: $-3 \implies$ matched with $-3 + 2 = -1$. Pair: $(-3, -1)$.
+  - Smallest available: $0 \implies$ matched with $0 + 2 = 2$. Pair: $(0, 2)$.
+- Formed partitions:
+  - $\mathcal{S}_0 = [-3, 0]$
+  - $\mathcal{S}_1 = [-1, 2]$
+- Zero check: $0 \in \mathcal{S}_0$? **Yes!**
+- Recovered element: $+d = \mathbf{+2}$.
+- Recurse with $\mathcal{S}_0 = [-3, 0]$.
+
+### Level $k = 1$ ($2^1 = 2$ sums)
+- Active sums: `[-3, 0]`.
+- Two smallest sums: $s_0 = -3, s_1 = 0$.
+- Difference: $d = s_1 - s_0 = 0 - (-3) = 3$.
+- Pair matching with $d = 3$:
+  - Pair: $(-3, 0)$.
+- Formed partitions:
+  - $\mathcal{S}_0 = [-3]$
+  - $\mathcal{S}_1 = [0]$
+- Zero check: $0 \in \mathcal{S}_0$? **No!** ($0 \in \mathcal{S}_1$).
+- Recovered element: $-d = \mathbf{-3}$.
+- Recurse with $\mathcal{S}_1 = [0]$.
+
+### Level $k = 0$: Base State
+- Active sum is solely `[0]`. Recursion terminates.
+- Reconstructed array: $[1, 2, -3]$.
+
+---
+
+## 4. Execution Trace Table
+
+### Bisection and Recovery Log
+
+| Level $k$ | Input Multiset | Smallest $s_0, s_1$ | Difference $d = s_1 - s_0$ | Partition Pairs $(u, u+d)$ | Lower Half $\mathcal{S}_0$ | Upper Half $\mathcal{S}_1$ | Zero Location | Recovered Value |
+|---|---|---|---|---|---|---|---|---|
+| 3 | `[-3, -2, -1, 0, 0, 1, 2, 3]` | $-3, -2$ | 1 | $(-3, -2), (-1, 0), (0, 1), (2, 3)$ | `[-3, -1, 0, 2]` | `[-2, 0, 1, 3]` | In $\mathcal{S}_0$ | **$+1$** |
+| 2 | `[-3, -1, 0, 2]` | $-3, -1$ | 2 | $(-3, -1), (0, 2)$ | `[-3, 0]` | `[-1, 2]` | In $\mathcal{S}_0$ | **$+2$** |
+| 1 | `[-3, 0]` | $-3, 0$ | 3 | $(-3, 0)$ | `[-3]` | `[0]` | In $\mathcal{S}_1$ | **$-3$** |
+
+### Verification of Reconstructed Array `[1, 2, -3]`
+
+| Subset Pattern | Chosen Elements | Calculated Subset Sum | Count in Output Multiset |
 |---|---|---|---|
-| Input Slice | `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $\emptyset$ | None | 0 | 1 |
+| $\{a_1\}$ | 1 | 1 | 1 |
+| $\{a_2\}$ | 2 | 2 | 1 |
+| $\{a_3\}$ | -3 | -3 | 1 |
+| $\{a_1, a_2\}$ | $1 + 2$ | 3 | 1 |
+| $\{a_1, a_3\}$ | $1 - 3$ | -2 | 1 |
+| $\{a_2, a_3\}$ | $2 - 3$ | -1 | 1 |
+| $\{a_1, a_2, a_3\}$ | $1 + 2 - 3$ | 0 | 2 |
+
+Combined subset sums: `[-3, -2, -1, 0, 0, 1, 2, 3]`, perfectly matching the input!
 
 ---
 
-### Step 2: Why a sorted multiset is required
+## 5. Algorithmic Correctness & Soundness
 
-Subset sums can repeat, especially when elements are equal or zero. A plain set would lose multiplicities and make later removals incorrect. `SortedList` retains duplicates, supports finding the smallest remaining value at index zero, and removes one occurrence at a time.
+**Soundness.** Let $A = [a_1, \dots, a_k]$. Suppose $\mathcal{S}$ is the multiset of subset sums of $A$. In any multiset of subset sums, the smallest value $s_0$ is the sum of all negative elements. The next smallest value $s_1$ must differ from $s_0$ by some $|x|$ where $x \in A$. Hence $d = s_1 - s_0 = |x|$ must equal the magnitude of an element in $A$. Pairing every element $u$ with $u + d$ partitions $\mathcal{S}$ into $\Sigma(A \setminus \{x\})$ and $\Sigma(A \setminus \{x\}) + x$. Because $\emptyset \subseteq A \setminus \{x\}$, the set of subset sums of $A \setminus \{x\}$ must contain $0$. Checking whether $0 \in \mathcal{S}_0$ or $0 \in \mathcal{S}_1$ unambiguously determines the sign of $x$. By induction, each step reduces the problem size from $k$ to $k-1$ while preserving exact multiset equality.
 
-The shifted multiset contains zero for the empty magnitude subset. The source removes exactly one zero before recovery begins.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Completeness.** Since the input is guaranteed to admit at least one valid reconstruction, a valid choice between $+d$ and $-d$ always exists at every level. The recursion depth is strictly $n$, so the algorithm deterministically terminates and yields exactly $n$ integers.
 
 ---
 
-### Step 3: Recover magnitudes from smallest remaining sums
+## 6. Edge Cases & Traps
 
-After empty zero is removed, the smallest remaining subset sum must be the smallest element magnitude, so the source begins `ans = [sl[0]]`.
-
-The recovery invariant is: before selecting the next element, remove all nonempty subset sums that can be formed entirely from magnitudes already recovered. Once those known sums are removed, the smallest remaining value must be the next smallest unrecovered magnitude. Its singleton subset exists, and every subset containing an unrecovered magnitude is at least as large because all magnitudes are nonnegative.
-
-The loop implements removals by highest included index. At stage `i`, the newest known magnitude has index `i - 1`. It enumerates all masks over the first `i` known values but processes only masks whose bit `i - 1` is set. Those are exactly the known-element subsets containing the newest value. Subsets not containing it were removed in earlier stages.
-
-For each such mask, it recomputes the subset sum and removes one matching occurrence from `sl`. After all these removals, `sl[0]` is appended as the next magnitude.
-
-This scheme handles duplicates correctly because removal is by multiset occurrence, not unique numeric value.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, -3]` |
+- **Zero Difference ($d = 0$):** If the array contains zeros (e.g. `[0, 0]`), $s_0 = 0$ and $s_1 = 0$, giving $d = 0$. Pairs are $(u, u)$, and $\mathcal{S}_0$ and $\mathcal{S}_1$ are identical. The algorithm correctly extracts $0$ at each step.
+- **Sign Ambiguity Resolution:** If $0$ is present in both $\mathcal{S}_0$ and $\mathcal{S}_1$, choosing either branch yields a valid reconstruction. The algorithm may pick $\mathcal{S}_0$ by convention.
+- **Multiset Frequency Accounting:** A hash map or frequency table must be used during pairing so that duplicate numbers are properly paired one-to-one without consuming an element multiple times.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, -3]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Recursive partition by a candidate magnitude:** Split sorted sums into pairs differing by that magnitude and recurse on the half containing zero; this is another standard $O(N2^N)$ strategy.
-- **Plain set:** Incorrect because repeated subset sums carry essential multiplicity.
-- **Recover signs during magnitude extraction:** Possible, but the shift cleanly separates magnitude recovery from one final subset-sum sign choice.
-- **All elements nonnegative:** The minimum sum is zero, $m=0$, and the empty sign subset succeeds without negating anything.
-- **All elements negative:** Their magnitudes sum to $m$, so the sign search can negate the full recovered array.
-- **Zero elements:** Repeated zero sums allow zero magnitudes to be recovered correctly.
-- **Duplicate magnitudes:** `SortedList` removes one occurrence at a time, preserving multiplicity.
-- **Several valid arrays:** Any recovered order and any sign subset totaling $m$ is accepted.
-- **Guaranteed solvability:** Every requested removal and the final sign subset exist for valid generated input.
-- **Exponential input size:** $O(2^N)$ space is unavoidable merely to receive all supplied sums.
-- **Imported data structure:** The exact source assumes `SortedList` is provided by the execution environment.
-- **Input preservation:** It creates shifted values rather than sorting or changing `sums` itself.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(\log Q)$. Let $N$ be the unknown array length and $Q=2^N$ the number of supplied sums. Sorting the initial values costs $O(Q\log Q)=O(N2^N)$. The recovery and sign-search loops enumerate $O(2^N)$ masks and compute each selected sum in up to $O(N)$ time. `SortedList.remove` also costs logarithmic time, $O(\log Q)=O(N)$.
-- **Auxiliary Space Complexity:** $O(2^N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - At level $k$, there are $2^k$ integers.
+  - Sorting or two-pointer pairing takes $\mathcal{O}(k \cdot 2^k)$ time.
+  - Summing across all $k \in \{1, \dots, n\}$:
+    $$\sum_{k=1}^n \mathcal{O}(k \cdot 2^k) = \mathcal{O}(n \cdot 2^n)$$
+  - For $n = 15$, $2^{15} = 32{,}768$, and $15 \times 32{,}768 \approx 5 \times 10^5$ operations, completing in under 10 milliseconds.
+- **Auxiliary Space Complexity:**
+  - Storing the paired subsets $\mathcal{S}_0$ and $\mathcal{S}_1$ across recursive call frames requires $\sum_{k=1}^n \mathcal{O}(2^k) = \mathcal{O}(2^n)$ memory.
+  - Total auxiliary space is $\mathcal{O}(2^n)$.

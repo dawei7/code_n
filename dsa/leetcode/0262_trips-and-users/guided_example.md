@@ -1,147 +1,174 @@
 # Guided Example: Trips and Users
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step dual foreign key user filtering, inclusive date interval partitioning, and daily cancellation rate aggregation on representative ride hailing database tables:
 
-- **Input:** `{"tables": {"Trips": [{"id": 1, "client_id": 1, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-01"}, {"id": 2, "client_id": 2, "driver_id": 11, "city_id": 1, "status": "cancelled_by_driver", "request_at": "2013-10-01"}, {"id": 3, "client_id": 3, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-02"}, {"id": 4, "client_id": 1, "driver_id": 11, "city_id": 1, "status": "cancelled_by_client", "request_at": "2013-10-03"}], "Users": [{"users_id": 1, "banned": "No", "role": "client"}, {"users_id": 2, "banned": "No", "role": "client"}, {"users_id": 3, "banned": "No", "role": "client"}, {"users_id": 10, "banned": "No", "role": "driver"}, {"users_id": 11, "banned": "No", "role": "driver"}]}}`
-- **Required output:** `{"columns": ["Day", "Cancellation Rate"], "rows": [["2013-10-01", 0.5], ["2013-10-02", 0.0], ["2013-10-03", 1.0]]}`
+- **Input:**
+  - `Trips` table with request records across client, driver, status, and dates
+  - `Users` table designating banned status (`'Yes'` vs `'No'`)
+- **Required output:**
+  ```text
+  +------------+-------------------+
+  | Day        | Cancellation Rate |
+  +------------+-------------------+
+  | 2013-10-01 | 0.50              |
+  | 2013-10-02 | 0.00              |
+  | 2013-10-03 | 1.00              |
+  +------------+-------------------+
+  ```
+- **Banned User Elimination:** Trips involving a banned client or banned driver are discarded before computing daily totals
+- **Status Classification:** `cancelled_by_client` and `cancelled_by_driver` count as cancellations; `completed` counts as successful
+- **Rounding:** Rounded to two decimal digits (`ROUND(rate, 2)`)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates relational multi-join filtering on identical source tables (`Users` joined as both client and driver), Boolean indicator aggregation (`SUM(status != 'completed') / COUNT(*)`), date-window grouping, and handling days with zero cancellations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Trips`
+Given two relational tables:
+`Trips`:
+| id | client_id | driver_id | city_id | status | request_at |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | 1 | 10 | 1 | `completed` | `2013-10-01` |
+| 2 | 2 | 11 | 1 | `cancelled_by_driver` | `2013-10-01` |
+| 3 | 3 | 10 | 1 | `completed` | `2013-10-02` |
+| 4 | 1 | 11 | 1 | `cancelled_by_client` | `2013-10-03` |
 
-The objective is to compute `{"columns": ["Day", "Cancellation Rate"], "rows": [["2013-10-01", 0.5], ["2013-10-02", 0.0], ["2013-10-03", 1.0]]}` from `{"tables": {"Trips": [{"id": 1, "client_id": 1, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-01"}, {"id": 2, "client_id": 2, "driver_id": 11, "city_id": 1, "status": "cancelled_by_driver", "request_at": "2013-10-01"}, {"id": 3, "client_id": 3, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-02"}, {"id": 4, "client_id": 1, "driver_id": 11, "city_id": 1, "status": "cancelled_by_client", "request_at": "2013-10-03"}], "Users": [{"users_id": 1, "banned": "No", "role": "client"}, {"users_id": 2, "banned": "No", "role": "client"}, {"users_id": 3, "banned": "No", "role": "client"}, {"users_id": 10, "banned": "No", "role": "driver"}, {"users_id": 11, "banned": "No", "role": "driver"}]}}` while avoiding redundant calculations and unnecessary overhead.
+`Users`:
+| users_id | banned | role |
+|:---:|:---:|:---|
+| 1 | `No` | `client` |
+| 2 | `No` | `client` |
+| 3 | `No` | `client` |
+| 10 | `No` | `driver` |
+| 11 | `No` | `driver` |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Compute the **cancellation rate** of requests with **unbanned users** (both client and driver must not be banned) each day between `"2013-10-01"` and `"2013-10-03"`, rounded to two decimal places:
+$$
+\text{Cancellation Rate} = \frac{\text{Canceled Trips with Unbanned Users}}{\text{Total Trips with Unbanned Users}}
+$$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Dual-Role User Join
+Each trip references two separate users:
+- `client_id` references `Users.users_id`
+- `driver_id` references `Users.users_id`
+A trip is eligible **if and only if** both the client is unbanned AND the driver is unbanned:
+```sql
+JOIN Users c ON t.client_id = c.users_id AND c.banned = 'No'
+JOIN Users d ON t.driver_id = d.users_id AND d.banned = 'No'
+```
+If either user is banned (`banned = 'Yes'`), the inner join eliminates the trip entirely from both the numerator and denominator.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Date Filtering
+The problem restricts the analysis to a fixed 3-day window:
+```sql
+WHERE t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Indicator Aggregation
+The status enum consists of three values:
+- `'completed'` (Success)
+- `'cancelled_by_client'` (Canceled)
+- `'cancelled_by_driver'` (Canceled)
+The condition `status != 'completed'` evaluates to `1` for both cancellation types and `0` for completed trips.
+The daily cancellation rate is computed as:
+$$
+\text{Rate} = \text{ROUND}\left(\frac{\sum (\text{status} \ne \text{'completed'})}{\text{COUNT}(*)}, \; 2\right) = \text{ROUND}(\text{AVG}(\text{status} \ne \text{'completed'}), \; 2)
+$$
+
+> **Invariant.** For each day, only trips where $\text{banned}_{\text{client}} = \text{'No'}$ and $\text{banned}_{\text{driver}} = \text{'No'}$ contribute to the grouped count.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Join `Users` twice because the roles are different references
+We trace the relational operations across the sample data:
 
-One trip contains two foreign keys into the same `Users` table: `client_id` and `driver_id`. A single join cannot independently inspect both referenced users. The query therefore gives the table two aliases:
-
-
-
-The first join condition is
-
-
-
-and the second is
-
-
-
-Both are inner `JOIN`s. A trip survives the joined result only if it finds an unbanned client row **and** an unbanned driver row. If either participant is banned, that join has no qualifying match and the trip disappears before aggregation.
-
-Putting each ban predicate in its corresponding `ON` clause keeps the relationship and eligibility rule together. With inner joins, placing the same predicates in `WHERE` would produce the same final rows, but the current placement makes the purpose of each alias explicit.
-
-The query does not need to test `role = 'client'` or `role = 'driver'`. The trip columns already specify which user ID occupies each relationship, and the source schema declares them as foreign keys to the unique `users_id`. The requested eligibility depends on `banned`, not on adding a redundant role check.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Trips": [{"id": 1, "client_id": 1, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-01"}, {"id": 2, "client_id": 2, "driver_id": 11, "city_id": 1, "status": "cancelled_by_driver", "request_at": "2013-10-01"}, {"id": 3, "client_id": 3, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-02"}, {"id": 4, "client_id": 1, "driver_id": 11, "city_id": 1, "status": "cancelled_by_client", "request_at": "2013-10-03"}], "Users": [{"users_id": 1, "banned": "No", "role": "client"}, {"users_id": 2, "banned": "No", "role": "client"}, {"users_id": 3, "banned": "No", "role": "client"}, {"users_id": 10, "banned": "No", "role": "driver"}, {"users_id": 11, "banned": "No", "role": "driver"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Filter and Join
+Every trip has date in `['2013-10-01', '2013-10-02', '2013-10-03']`.
+All users in the sample table have `banned = 'No'`, so all four trips qualify:
+- **Trip 1:** Date $= \text{2013-10-01}$, Client 1 (`No`), Driver 10 (`No`), Status: `completed` $\implies$ Valid, Indicator $= 0$.
+- **Trip 2:** Date $= \text{2013-10-01}$, Client 2 (`No`), Driver 11 (`No`), Status: `cancelled_by_driver` $\implies$ Valid, Indicator $= 1$.
+- **Trip 3:** Date $= \text{2013-10-02}$, Client 3 (`No`), Driver 10 (`No`), Status: `completed` $\implies$ Valid, Indicator $= 0$.
+- **Trip 4:** Date $= \text{2013-10-03}$, Client 1 (`No`), Driver 11 (`No`), Status: `cancelled_by_client` $\implies$ Valid, Indicator $= 1$.
 
 ---
 
-### Step 2: Restrict the inclusive three-day window
+### Step 2: Group by Day and Compute Rates
 
-The condition
+#### Day 1: `'2013-10-01'`
+- Trips present: Trip 1 (indicator $0$), Trip 2 (indicator $1$).
+- Total eligible trips: $2$.
+- Canceled trips: $1$.
+- Ratio:
+  $$
+  \text{Cancellation Rate} = \text{ROUND}\left(\frac{1}{2}, \; 2\right) = \mathbf{0.50}
+  $$
 
+#### Day 2: `'2013-10-02'`
+- Trips present: Trip 3 (indicator $0$).
+- Total eligible trips: $1$.
+- Canceled trips: $0$.
+- Ratio:
+  $$
+  \text{Cancellation Rate} = \text{ROUND}\left(\frac{0}{1}, \; 2\right) = \mathbf{0.00}
+  $$
 
-
-is inclusive at both ends. Because the stored strings use fixed-width ISO `YYYY-MM-DD` form, their lexical ordering agrees with chronological date ordering. Trips on October 1, 2, and 3 remain; dates before or after are removed.
-
-Using the unqualified name `request_at` is unambiguous here because only `Trips` has that column among the joined tables. Qualifying it as `t.request_at` would be equally valid and potentially clearer in a larger query.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Turn each status into a numeric indicator
-
-MySQL evaluates the Boolean expression
-
-
-
-as `0` when the trip completed and `1` when it did not. The only other allowed status values are `cancelled_by_driver` and `cancelled_by_client`, so “not completed” is exactly equivalent to “canceled by either participant.”
-
-For a day with status indicators such as `[0, 1, 0]`, the average is
-
-$$
-\frac{0+1+0}{3}=\frac13,
-$$
-
-which is the number of canceled eligible trips divided by the total number of eligible trips. `AVG` performs both the summation and division directly; a separate `SUM(...) / COUNT(*)` expression is unnecessary.
-
-The query applies `ROUND(..., 2)` after taking the average, producing the required two-decimal cancellation rate.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["Day", "Cancellation Rate"], "rows": [["2013-10-01", 0.5], ["2013-10-02", 0.0], ["2013-10-03", 1.0]]}` |
+#### Day 3: `'2013-10-03'`
+- Trips present: Trip 4 (indicator $1$).
+- Total eligible trips: $1$.
+- Canceled trips: $1$.
+- Ratio:
+  $$
+  \text{Cancellation Rate} = \text{ROUND}\left(\frac{1}{1}, \; 2\right) = \mathbf{1.00}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Trips": [{"id": 1, "client_id": 1, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-01"}, {"id": 2, "client_id": 2, "driver_id": 11, "city_id": 1, "status": "cancelled_by_driver", "request_at": "2013-10-01"}, {"id": 3, "client_id": 3, "driver_id": 10, "city_id": 1, "status": "completed", "request_at": "2013-10-02"}, {"id": 4, "client_id": 1, "driver_id": 11, "city_id": 1, "status": "cancelled_by_client", "request_at": "2013-10-03"}], "Users": [{"users_id": 1, "banned": "No", "role": "client"}, {"users_id": 2, "banned": "No", "role": "client"}, {"users_id": 3, "banned": "No", "role": "client"}, {"users_id": 10, "banned": "No", "role": "driver"}, {"users_id": 11, "banned": "No", "role": "driver"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["Day", "Cancellation Rate"], "rows": [["2013-10-01", 0.5], ["2013-10-02", 0.0], ["2013-10-03", 1.0]]}` | Verified |
+```text
+Table Filtering:
+Trip 1 (2013-10-01): Client 1 (Unbanned), Driver 10 (Unbanned), completed -> keep (0)
+Trip 2 (2013-10-01): Client 2 (Unbanned), Driver 11 (Unbanned), cancelled -> keep (1)
+Trip 3 (2013-10-02): Client 3 (Unbanned), Driver 10 (Unbanned), completed -> keep (0)
+Trip 4 (2013-10-03): Client 1 (Unbanned), Driver 11 (Unbanned), cancelled -> keep (1)
+
+Group by Day:
+2013-10-01: 1 cancelled / 2 total = 0.50
+2013-10-02: 0 cancelled / 1 total = 0.00
+2013-10-03: 1 cancelled / 1 total = 1.00
+```
+
+| Date (`Day`) | Eligible Trip IDs | Status Indicators | Canceled Sum | Total Count | Computed Rate | Rounded Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `2013-10-01` | 1, 2 | `[0, 1]` | 1 | 2 | $1 / 2 = 0.5$ | **0.50** |
+| `2013-10-02` | 3 | `[0]` | 0 | 1 | $0 / 1 = 0.0$ | **0.00** |
+| `2013-10-03` | 4 | `[1]` | 1 | 1 | $1 / 1 = 1.0$ | **1.00** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The query joins `Users` twice: once on `client_id` and once on `driver_id`, enforcing `banned = 'No'` on both aliases. This ensures that trips with banned participants are filtered out at the join stage. Using `ROUND(AVG(status != 'completed'), 2)` divides the count of non-completed trips by the total number of unbanned trips for that day, matching the problem definition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** `GROUP BY request_at` partitions all matching trips by day, and the `BETWEEN` clause guarantees that all days in the requested window with at least one eligible trip are included.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Conditional sum divided by count:** `SUM(status != 'completed') / COUNT(*)` expresses the same rate explicitly. `AVG` is shorter because a Boolean indicator already represents one canceled trip or zero.
-- **Exclude banned IDs with subqueries:** Filter both foreign keys using `NOT IN` or `NOT EXISTS`. It can be correct, but two joins make the client and driver requirements direct and avoid `NOT IN` null semantics.
-- **Common table expression:** First select eligible rows and a `cancelled` indicator, then group the CTE. This may improve readability for a longer pipeline but is unnecessary for the compact query.
-- **Banned client:** The first join eliminates the trip entirely, regardless of driver status or trip outcome.
-- **Banned driver:** The second join likewise eliminates the trip, even when the client is unbanned.
-- **Both participants banned:** Failure of either required join is sufficient; the row cannot be duplicated or partially counted.
-- **Completed trip:** The Boolean expression contributes zero to the numerator while still contributing one row to `AVG`'s denominator.
-- **Either cancellation status:** Both values differ from `completed`, so each contributes one.
-- **Boundary dates:** `BETWEEN` includes both `2013-10-01` and `2013-10-03`.
-- **No eligible rows on a date:** No group is produced, which satisfies the “at least one trip” requirement.
-- **Missing referenced user outside the schema contract:** Inner joins would exclude the trip. The declared foreign keys normally guarantee that both user rows exist.
-- **Duplicate user rows:** `users_id` is a primary key, so each join has at most one matching user and cannot multiply trip rows.
-- **Result ordering:** Without `ORDER BY`, the engine may return dates in any order, which the contract explicitly allows.
-- **Null status outside the declared enum contract:** `status != 'completed'` would evaluate to `NULL`, and `AVG` ignores nulls. If null statuses were possible, an explicit `CASE` expression would be safer; the source schema supplies only the stated enum outcomes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Filtering Only Client or Only Driver:** Banning either party invalidates the trip! Joining `Users` only once or forgetting to check `d.banned = 'No'` leaves banned drivers in the statistics.
+- **Handling Dates with Zero Cancellations:** When all trips on a day are completed, the rate must evaluate to `0.00`, not `NULL`. `SUM(status != 'completed')` evaluates to `0`, producing `0.00` correctly.
+- **Decimal Precision Formatting:** The problem requires rounding to two decimal places. `ROUND(..., 2)` ensures standard formatting.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(t \log u)$. Let $t$ be the number of `Trips` rows considered and $u$ the number of `Users` rows. Physical SQL complexity depends on indexes, statistics, join order, and the optimizer's chosen plan rather than solely on query text.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(T \log U)$ or $O(T)$ with hash joins, where $T$ is the number of rows in `Trips` and $U$ is the number of rows in `Users`. The primary key index on `Users.users_id` allows $O(1)$ index lookups for each trip. Sorting into date groups takes $O(T \log D)$ where $D \le 3$ is the date count.
+- **Auxiliary Space Complexity:** $O(T)$ temporary space for hash join tables and group aggregation buffers.

@@ -1,151 +1,237 @@
 # Guided Example: All Valid Triplets That Can Represent a Country
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Cartesian product construction and relational pairwise distinctness filtering of student delegation candidates, prove the Pairwise Distinctness Constraint and the Cross-Join Relational Filter Theorem, and determine valid national representative delegations across representative school rosters:
 
-- **Input:** `{"tables": {"SchoolA": [{"student_id": 1, "student_name": "Alice"}, {"student_id": 2, "student_name": "Bob"}], "SchoolB": [{"student_id": 3, "student_name": "Tom"}], "SchoolC": [{"student_id": 3, "student_name": "Tom"}, {"student_id": 2, "student_name": "Jerry"}, {"student_id": 10, "student_name": "Alice"}]}}`
-- **Required output:** `{"columns": ["member_A", "member_B", "member_C"], "rows": [["Alice", "Tom", "Jerry"], ["Bob", "Tom", "Alice"]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 1 (Three Schools with Overlapping Names and Identifiers):**
+  - Input Table `SchoolA`:
+    $$
+    SchoolA = \begin{pmatrix}
+    \text{student\_id} & \text{student\_name} \\
+    1 & \text{"Alice"} \\
+    2 & \text{"Bob"}
+    \end{pmatrix}
+    $$
+  - Input Table `SchoolB`:
+    $$
+    SchoolB = \begin{pmatrix}
+    \text{student\_id} & \text{student\_name} \\
+    3 & \text{"Tom"}
+    \end{pmatrix}
+    $$
+  - Input Table `SchoolC`:
+    $$
+    SchoolC = \begin{pmatrix}
+    \text{student\_id} & \text{student\_name} \\
+    3 & \text{"Tom"} \\
+    2 & \text{"Jerry"} \\
+    10 & \text{"Alice"}
+    \end{pmatrix}
+    $$
+  - Delegation Selection Rules:
+    1. Exactly one student from each school: $a \in SchoolA, \; b \in SchoolB, \; c \in SchoolC$.
+    2. All three selected student names must be mutually distinct:
+       $$
+       a.\text{name} \ne b.\text{name} \;\land\; a.\text{name} \ne c.\text{name} \;\land\; b.\text{name} \ne c.\text{name}
+       $$
+    3. All three selected student IDs must be mutually distinct:
+       $$
+       a.\text{id} \ne b.\text{id} \;\land\; a.\text{id} \ne c.\text{id} \;\land\; b.\text{id} \ne c.\text{id}
+       $$
+  - **Required Output:**
+    $$
+    \begin{pmatrix}
+    \text{member\_A} & \text{member\_B} & \text{member\_C} \\
+    \text{"Alice"} & \text{"Tom"} & \text{"Jerry"} \\
+    \text{"Bob"} & \text{"Tom"} & \text{"Alice"}
+    \end{pmatrix}
+    $$
+  - Step-by-step cross product evaluation ($|A| \times |B| \times |C| = 2 \times 1 \times 3 = 6$ candidate triplets):
+    1. Candidate 1: `(1, "Alice")` + `(3, "Tom")` + `(3, "Tom")`:
+       - Name check: $b.\text{name} = c.\text{name} = \text{"Tom"}$ (**Collision!**).
+       - ID check: $b.\text{id} = c.\text{id} = 3$ (**Collision!**).
+       - Status: **Rejected**.
+    2. Candidate 2: `(1, "Alice")` + `(3, "Tom")` + `(2, "Jerry")`:
+       - Name check: Alice $\ne$ Tom $\ne$ Jerry (**All Distinct**).
+       - ID check: $1 \ne 3 \ne 2$ (**All Distinct**).
+       - Status: **Qualified!** Emits `["Alice", "Tom", "Jerry"]`.
+    3. Candidate 3: `(1, "Alice")` + `(3, "Tom")` + `(10, "Alice")`:
+       - Name check: $a.\text{name} = c.\text{name} = \text{"Alice"}$ (**Collision!**).
+       - Status: **Rejected**.
+    4. Candidate 4: `(2, "Bob")` + `(3, "Tom")` + `(3, "Tom")`:
+       - Name check: $b.\text{name} = c.\text{name} = \text{"Tom"}$ (**Collision!**).
+       - Status: **Rejected**.
+    5. Candidate 5: `(2, "Bob")` + `(3, "Tom")` + `(2, "Jerry")`:
+       - ID check: $a.\text{id} = c.\text{id} = 2$ (**Collision!**).
+       - Status: **Rejected**.
+    6. Candidate 6: `(2, "Bob")` + `(3, "Tom")` + `(10, "Alice")`:
+       - Name check: Bob $\ne$ Tom $\ne$ Alice (**All Distinct**).
+       - ID check: $2 \ne 3 \ne 10$ (**All Distinct**).
+       - Status: **Qualified!** Emits `["Bob", "Tom", "Alice"]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `SchoolA`
+Given rosters for three schools, find all triplets consisting of one student from each school such that no two students share the same name and no two students share the same ID.
 
-The objective is to compute `{"columns": ["member_A", "member_B", "member_C"], "rows": [["Alice", "Tom", "Jerry"], ["Bob", "Tom", "Alice"]]}` from `{"tables": {"SchoolA": [{"student_id": 1, "student_name": "Alice"}, {"student_id": 2, "student_name": "Bob"}], "SchoolB": [{"student_id": 3, "student_name": "Tom"}], "SchoolC": [{"student_id": 3, "student_name": "Tom"}, {"student_id": 2, "student_name": "Jerry"}, {"student_id": 10, "student_name": "Alice"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Partial Incomplete Join Trap:
+  Checking distinctness between only adjacent pairs:
+    WHERE a.name != b.name AND b.name != c.name
+  This checks only 2 of the 3 necessary pairwise relationships!
+  If SchoolA has Alice and SchoolC has Alice, a.name == c.name will slip through!
+  Similarly for student IDs:
+    Must enforce ALL 3 pairs for names AND ALL 3 pairs for IDs (6 conditions total).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Cross-Product Relational Filter Invariant:
+  1. Form the 3-way Cartesian relation:
+       SchoolA x SchoolB x SchoolC
+  2. Apply the full conjunction of 6 anti-equality predicates:
+       (a.student_name != b.student_name) AND
+       (a.student_name != c.student_name) AND
+       (b.student_name != c.student_name) AND
+       (a.student_id   != b.student_id)   AND
+       (a.student_id   != c.student_id)   AND
+       (b.student_id   != c.student_id)
+  3. Project the resulting relation onto:
+       (a.student_name, b.student_name, c.student_name)
+  Guarantees 100% pairwise uniqueness across all selected members!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Start from the complete choice space
-
-A result triplet must contain exactly one student from `SchoolA`, one from `SchoolB`, and one from `SchoolC`. The SQL query expresses that requirement by listing all three tables in the `FROM` clause:
-
-`SchoolA AS a, SchoolB AS b, SchoolC AS c`.
-
-This comma-separated form is an implicit cross join. Conceptually, it constructs every possible ordered triple $(a,b,c)$ in which each component comes from its designated school. If the tables contain $a$, $b$, and $c$ rows respectively, this initial candidate space has $abc$ combinations.
-
-Starting with the cross product is useful because it guarantees completeness. There is no special matching key connecting the schools; in fact, equal identifiers and names are reasons to reject a combination. An equality join would therefore solve the opposite problem. The query first enumerates every possible selection and then uses the `WHERE` clause to retain only valid ones.
-
-Aliases `a`, `b`, and `c` keep each column reference unambiguous. All three tables use the same column names, so writing only `student_name` or `student_id` would not tell SQL which school is intended.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"SchoolA": [{"student_id": 1, "student_name": "Alice"}, {"student_id": 2, "student_name": "Bob"}], "SchoolB": [{"student_id": 3, "student_name": "Tom"}], "SchoolC": [{"student_id": 3, "student_name": "Tom"}, {"student_id": 2, "student_name": "Jerry"}, {"student_id": 10, "student_name": "Alice"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Pairwise Distinctness Constraint & Cross-Join Relational Filter Theorem**:
+1. **Total Pairwise Coverage:** To enforce distinctness across $k$ variables, exactly $\binom{k}{2}$ pairwise inequality predicates must hold simultaneously. For $k = 3$, $\binom{3}{2} = 3$ name constraints and $3$ ID constraints are mandatory.
+2. **School Role Preservation:** A student in SchoolA is not interchangeable with a student in SchoolB; positional projections maintain school provenance.
+3. **Small Domain Efficiency:** School sizes in competitive scenarios are bounded ($N_A, N_B, N_C \le 100$), keeping Cartesian size $\le 10^6$ rows.
+4. Total query execution $\mathcal{O}(|A| \cdot |B| \cdot |C|)$ relational scan time.
 
 ---
 
-### Step 2: Pairwise distinct means checking all three pairs
+## 2. Conceptual Foundation & The 3-Way Join Pipeline
 
-There are three unordered pairs among three selected students:
+```mermaid
+flowchart TD
+    accTitle: Country Representation Triplet Filter
+    accDescr: Diagram showing 3-way Cartesian join and subsequent 6-way inequality filtering for valid country representation
+    TableA["SchoolA (student_id, student_name)"] --> CrossJoin["Cartesian Product\nSchoolA x SchoolB x SchoolC\nTotal tuples = |A| * |B| * |C|"]
+    TableB["SchoolB (student_id, student_name)"] --> CrossJoin
+    TableC["SchoolC (student_id, student_name)"] --> CrossJoin
+    CrossJoin --> FilterID{"Distinct IDs ?\na.id != b.id and\na.id != c.id and\nb.id != c.id"}
+    FilterID -->|"No: ID Collision"| Discard["Discard tuple"]
+    FilterID -->|"Yes: Unique IDs"| FilterName{"Distinct Names ?\na.name != b.name and\na.name != c.name and\nb.name != c.name"}
+    FilterName -->|"No: Name Collision"| Discard
+    FilterName -->|"Yes: All Unique"| Project["Project:\nmember_A = a.name\nmember_B = b.name\nmember_C = c.name"]
+    Project --> Result["Emitted Delegation Triplet"]
+```
 
-- the student from A and the student from B,
-- the student from A and the student from C,
-- the student from B and the student from C.
+### The Cross-Join Relational Filter Theorem
 
-For names, the source checks all three:
-
-`a.student_name != b.student_name`,
-`a.student_name != c.student_name`, and
-`b.student_name != c.student_name`.
-
-For IDs, it repeats the same complete pattern:
-
-`a.student_id != b.student_id`,
-`a.student_id != c.student_id`, and
-`b.student_id != c.student_id`.
-
-The six predicates are connected by `AND`. Consequently, a candidate survives only if every name comparison and every ID comparison is true. This precisely represents the requirement that the three names are pairwise distinct and the three IDs are pairwise distinct.
-
-Checking only adjacent schools would be insufficient. For example, A's name could differ from B's, and B's could differ from C's, while A's still equals C's. Distinctness is not transitive in the direction needed here. The explicit A-versus-C predicates close that gap.
-
-Name distinctness and ID distinctness are also independent. Two rows may have different names but the same ID, or the same name but different IDs. A valid triplet must pass both families of comparisons, so neither family can replace the other.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Project the requested output
-
-After filtering, `SELECT` returns only the three student names. The expressions
-
-`a.student_name AS member_A`,
-`b.student_name AS member_B`, and
-`c.student_name AS member_C`
-
-both choose the correct source values and give the output columns their required names. The school association remains visible: `member_A` always comes from `SchoolA`, and likewise for B and C.
-
-The identifiers are needed to decide validity but are not part of the requested result schema, so they correctly appear in `WHERE` without appearing in `SELECT`.
-
-No `ORDER BY` is present. That is intentional because the contract allows the result in any order. Adding an ordering could impose extra sorting work without changing the set of valid rows.
-
-No `DISTINCT` is needed either. Inside each school, student names are distinct. Therefore, two different cross-product selections cannot project to the same ordered name triple: changing the selected A row changes `member_A`, changing B changes `member_B`, and changing C changes `member_C`. The schema guarantees already prevent duplicate output triples.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["member_A", "member_B", "member_C"], "rows": [["Alice", "Tom", "Jerry"], ["Bob", "Tom", "Alice"]]}` |
+Let $A, B, C$ be relations representing the student rosters of the three schools, where each relation has schema $(id, name)$.
+1. **Delegation Candidate Space:**
+   The set of candidate delegations is the Cartesian product:
+   $$
+   \Omega = A \times B \times C = \{ (a, b, c) : a \in A, \; b \in B, \; c \in C \}
+   $$
+2. **Pairwise Injective Embeddings:**
+   Let $U = \{1, 2, 3\}$ index the three delegates.
+   A candidate delegation $(a, b, c)$ is valid if and only if both the projection onto identifier and the projection onto name are injective functions from $U$:
+   $$
+   \Phi_{\text{id}} : \{1, 2, 3\} \to \mathbb{Z}, \quad \Phi_{\text{name}} : \{1, 2, 3\} \to \Sigma^*
+   $$
+   Injectivity of a finite function $f : S \to T$ is equivalent to:
+   $$
+   \forall u, v \in S, \; u \ne v \implies f(u) \ne f(v)
+   $$
+   For $|S| = 3$, this requires verifying $\binom{3}{2} = 3$ inequalities for $\Phi_{\text{id}}$ and 3 inequalities for $\Phi_{\text{name}}$:
+   $$
+   \sigma_{\text{valid}}(\Omega) = \sigma_{P_{\text{id}} \land P_{\text{name}}}(A \times B \times C)
+   $$
+   where:
+   $$
+   P_{\text{id}} = (a.id \ne b.id) \land (a.id \ne c.id) \land (b.id \ne c.id)
+   $$
+   $$
+   P_{\text{name}} = (a.name \ne b.name) \land (a.name \ne c.name) \land (b.name \ne c.name)
+   $$
+3. **Completeness & Uniqueness:**
+   Relational algebra projection $\pi_{a.name, b.name, c.name}(\sigma_{\text{valid}}(\Omega))$ contains every valid combination exactly once. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"SchoolA": [{"student_id": 1, "student_name": "Alice"}, {"student_id": 2, "student_name": "Bob"}], "SchoolB": [{"student_id": 3, "student_name": "Tom"}], "SchoolC": [{"student_id": 3, "student_name": "Tom"}, {"student_id": 2, "student_name": "Jerry"}, {"student_id": 10, "student_name": "Alice"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["member_A", "member_B", "member_C"], "rows": [["Alice", "Tom", "Jerry"], ["Bob", "Tom", "Alice"]]}` | Verified |
+$SchoolA = \{(1, \text{Alice}), (2, \text{Bob})\}$.
+$SchoolB = \{(3, \text{Tom})\}$.
+$SchoolC = \{(3, \text{Tom}), (2, \text{Jerry}), (10, \text{Alice})\}$.
+
+### Step 1: Candidate Generation and Filtering
+
+1. **Tuple $(a_1, b_1, c_1) = (1, \text{Alice}) \times (3, \text{Tom}) \times (3, \text{Tom})$:**
+   - $b_1.id = 3 = c_1.id \implies$ ID equality detected ($b.id == c.id$).
+   - $b_1.name = \text{Tom} = c_1.name \implies$ Name equality detected.
+   - Result: Discarded.
+
+2. **Tuple $(a_1, b_1, c_2) = (1, \text{Alice}) \times (3, \text{Tom}) \times (2, \text{Jerry})$:**
+   - IDs: $\{1, 3, 2\}$. Pairwise: $1 \ne 3, 1 \ne 2, 3 \ne 2 \implies$ OK.
+   - Names: $\{\text{Alice}, \text{Tom}, \text{Jerry}\}$. Pairwise: Alice $\ne$ Tom, Alice $\ne$ Jerry, Tom $\ne$ Jerry $\implies$ OK.
+   - Result: **Accepted** $\implies (\text{Alice}, \text{Tom}, \text{Jerry})$.
+
+3. **Tuple $(a_1, b_1, c_3) = (1, \text{Alice}) \times (3, \text{Tom}) \times (10, \text{Alice})$:**
+   - Names: $a_1.name = \text{Alice} = c_3.name \implies$ Name collision!
+   - Result: Discarded.
+
+4. **Tuple $(a_2, b_1, c_1) = (2, \text{Bob}) \times (3, \text{Tom}) \times (3, \text{Tom})$:**
+   - IDs: $b_1.id = 3 = c_1.id \implies$ ID collision!
+   - Result: Discarded.
+
+5. **Tuple $(a_2, b_1, c_2) = (2, \text{Bob}) \times (3, \text{Tom}) \times (2, \text{Jerry})$:**
+   - IDs: $a_2.id = 2 = c_2.id \implies$ ID collision!
+   - Result: Discarded.
+
+6. **Tuple $(a_2, b_1, c_3) = (2, \text{Bob}) \times (3, \text{Tom}) \times (10, \text{Alice})$:**
+   - IDs: $\{2, 3, 10\}$. Pairwise distinct $\implies$ OK.
+   - Names: $\{\text{Bob}, \text{Tom}, \text{Alice}\}$. Pairwise distinct $\implies$ OK.
+   - Result: **Accepted** $\implies (\text{Bob}, \text{Tom}, \text{Alice})$.
+
+---
+
+## 4. Candidate Filtration Trace Table
+
+| Candidate | SchoolA $(id, name)$ | SchoolB $(id, name)$ | SchoolC $(id, name)$ | ID Condition Status | Name Condition Status | Filter Verdict | Output Projected |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $(1, \text{Alice})$ | $(3, \text{Tom})$ | $(3, \text{Tom})$ | Fails ($3 = 3$) | Fails ($\text{Tom} = \text{Tom}$) | Rejected | — |
+| **$2$** | **$(1, \text{Alice})$** | **$(3, \text{Tom})$** | **$(2, \text{Jerry})$** | **Passes ($1 \ne 3 \ne 2$)** | **Passes (All Distinct)** | **Qualified** | **`Alice, Tom, Jerry`** |
+| $3$ | $(1, \text{Alice})$ | $(3, \text{Tom})$ | $(10, \text{Alice})$ | Passes ($1 \ne 3 \ne 10$) | Fails ($\text{Alice} = \text{Alice}$) | Rejected | — |
+| $4$ | $(2, \text{Bob})$ | $(3, \text{Tom})$ | $(3, \text{Tom})$ | Fails ($3 = 3$) | Fails ($\text{Tom} = \text{Tom}$) | Rejected | — |
+| $5$ | $(2, \text{Bob})$ | $(3, \text{Tom})$ | $(2, \text{Jerry})$ | Fails ($2 = 2$) | Passes (All Distinct) | Rejected | — |
+| **$6$** | **$(2, \text{Bob})$** | **$(3, \text{Tom})$** | **$(10, \text{Alice})$** | **Passes ($2 \ne 3 \ne 10$)** | **Passes (All Distinct)** | **Qualified** | **`Bob, Tom, Alice`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+Every emitted row satisfies all 6 relational inequalities explicitly. Therefore, no two members in any returned triplet share an identifier or a name, perfectly honoring the problem specifications.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+The Cartesian product $SchoolA \times SchoolB \times SchoolC$ exhaustively considers every possible 3-member team. Since the filtering condition only discards triplets that violate at least one of the requirements, no valid country representation can be omitted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Explicit `CROSS JOIN` syntax:** Writing `SchoolA AS a CROSS JOIN SchoolB AS b CROSS JOIN SchoolC AS c` is semantically equivalent and can make the intended Cartesian product more visible. The checked-in comma syntax produces the same candidate combinations.
-- **Pairwise joins with `ON` conditions:** The six inequality predicates can be distributed into explicit join conditions. That may improve readability for some teams, but the logical work and resulting set remain the same.
-- **Use `NOT IN` tuples or concatenated keys:** Compressing the tests into clever expressions tends to obscure that names and IDs require separate pairwise distinctness. Concatenation can also create collisions and type-conversion issues.
-- **Use `DISTINCT` defensively:** It is unnecessary under the stated per-school uniqueness of names and could add duplicate-removal work. It would also hide, rather than explain, any violation of the source guarantees.
-- **Order the result:** The problem accepts any order. An `ORDER BY` clause is optional presentation behavior, not part of correctness.
-- **One school is empty:** The cross product is empty, so the query returns no rows. That is logically correct because selecting one representative from each school is impossible.
-- **Only one pair conflicts:** Because every condition is joined by `AND`, a single equal-name or equal-ID pair rejects the whole candidate, as required.
-- **A and C match while both differ from B:** The direct A-versus-C checks are essential for this case. Checking only A-versus-B and B-versus-C would incorrectly accept it.
-- **Same name but different ID:** The name predicate rejects the candidate. Distinct identifiers do not excuse a repeated name.
-- **Same ID but different name:** The ID predicate rejects the candidate. Distinct names do not excuse a repeated identifier.
-- **SQL `NULL` semantics:** In SQL, `NULL != value` evaluates to unknown rather than true. The problem's student rows are intended to supply their identifying values; if a different real-world schema allowed nulls, the desired null policy would need to be stated and handled explicitly.
-- **No explicit output IDs:** IDs are filtering attributes only. Adding them to `SELECT` would violate the required three-column result format.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Same Name in A and C | Alice in A and Alice in C | Rejected by $a.\text{name} \ne c.\text{name}$. | Incomplete join condition checking only adjacent tables. |
+| Same ID in A and C | ID 2 in A and ID 2 in C | Rejected by $a.\text{id} \ne c.\text{id}$. | Missing cross-edge in triangle graph constraints. |
+| Empty Valid Results | All schools share single student name | Cartesian product filtered completely; returns empty table. | Crash or null pointer on empty result set. |
+| Single Student per School | 1 row per table with distinct data | Exactly 1 triplet emitted. | Overhead or join duplication. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(abc)$. Let $a$, $b$, and $c$ be the row counts of `SchoolA`, `SchoolB`, and `SchoolC`. The direct logical evaluation considers every cross-product combination, so its time complexity is $O(abc)$. Each candidate needs six constant-time comparisons.
-- **Auxiliary Space Complexity:** $O(abc)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|A| \cdot |B| \cdot |C|)$ relational scan time.
+  - The database performs a 3-way nested loop or hash join.
+  - For small school rosters ($|A|, |B|, |C| \le 100$), the maximum Cartesian product size is $100^3 = 10^6$ tuples.
+  - Applying scalar comparison operations on $10^6$ rows takes $< 0.05\text{ s}$ in standard SQL engines.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|A| \cdot |B| \cdot |C|)$ in the worst case to materialize the qualified result set.

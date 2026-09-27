@@ -1,126 +1,143 @@
 # Guided Example: Best Poker Hand
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"ranks": [13, 2, 3, 1, 9], "suits": ["a", "a", "a", "a", "a"]}`
-- **Required output:** `"Flush"`
+We are given two 0-indexed arrays representing a hand of $5$ cards: an integer array `ranks` of length $5$ and a character array `suits` of length $5$. The $i$-th card has rank `ranks[i]` and suit `suits[i]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must determine the highest-ranking poker hand category achieved by this 5-card collection. The four candidate hand types, listed in strict descending order of priority, are defined as follows:
+1. `"Flush"`: All $5$ cards share the exact same suit.
+2. `"Three of a Kind"`: There are at least $3$ cards that share the exact same rank.
+3. `"Pair"`: There are at least $2$ cards that share the exact same rank (and fewer than $3$).
+4. `"High Card"`: All $5$ cards have distinct ranks and do not share the same suit.
 
----
+Consider the representative instance:
+- `ranks = [4, 4, 2, 4, 4]`
+- `suits = ["d", "a", "a", "b", "c"]`
 
-## 1. Instance & Teaching Goal
+Let us evaluate the hand according to the decision priority:
+1. **Flush Evaluation:** The suits are `["d", "a", "a", "b", "c"]`. There are $4$ distinct suits (`d`, `a`, `b`, `c`). Because the cards do not all share the same suit, the hand is not a Flush.
+2. **Rank Multiplicity Evaluation:** The ranks are `[4, 4, 2, 4, 4]`.
+   - Rank $4$ appears $4$ times.
+   - Rank $2$ appears $1$ time.
+   - The maximum rank frequency is $4$.
+3. **Classification:** Because the maximum rank frequency is $\ge 3$, the hand qualifies as `"Three of a Kind"`.
 
-You are given an integer array `ranks` and a character array `suits`. You have `5` cards where the $i^{\text{th}}$ card has a rank of $\text{ranks}[i]$ and a suit of $\text{suits}[i]$.
+The resulting classification is `"Three of a Kind"`.
 
-The objective is to compute `"Flush"` from `{"ranks": [13, 2, 3, 1, 9], "suits": ["a", "a", "a", "a", "a"]}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Poker Hand Precedence and Multiplicity Decision Tree
+    accDescr: Sequential decision hierarchy checking uniform suits for Flush first, then evaluating maximum rank frequency for Three of a Kind, Pair, or High Card.
+    Input["5-Card Hand<br/>ranks = [4, 4, 2, 4, 4]<br/>suits = ['d', 'a', 'a', 'b', 'c']"] --> SuitCheck{"All 5 suits identical?"}
+    SuitCheck -->|"Yes"| Flush["Return 'Flush'"]
+    SuitCheck -->|"No"| FreqCalc["Compute max frequency M of ranks<br/>Rank 4: count 4<br/>Rank 2: count 1<br/>M = 4"]
+    FreqCalc --> RankCheck{"Evaluate M"}
+    RankCheck -->|"M >= 3"| Three["Return 'Three of a Kind'"]
+    RankCheck -->|"M == 2"| Pair["Return 'Pair'"]
+    RankCheck -->|"M == 1"| High["Return 'High Card'"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let a 5-card hand be represented as a multiset of pairs:
 
-## 2. Conceptual Foundation & Invariants
+$$\mathcal{H} = \{(r_i, s_i) \mid 0 \le i < 5\}, \quad r_i \in \{1, \dots, 13\}, \; s_i \in \{'a', 'b', 'c', 'd'\}$$
 
-We maintain the core conceptual parameters and state variables:
+### Predicate Hierarchy and Mutual Exclusivity
+The evaluation operates as a prioritized decision list over property predicates:
 
-| State Parameter | Role & Purpose | Initial State |
+$$f(\mathcal{H}) = \begin{cases} \text{"Flush"} & \text{if } P_{\text{flush}}(\mathcal{H}) \\ \text{"Three of a Kind"} & \text{if } \neg P_{\text{flush}}(\mathcal{H}) \land M(ranks) \ge 3 \\ \text{"Pair"} & \text{if } \neg P_{\text{flush}}(\mathcal{H}) \land M(ranks) = 2 \\ \text{"High Card"} & \text{otherwise} \end{cases}$$
+
+where:
+- The flush predicate tests set cardinality of the suit projection:
+  $$P_{\text{flush}}(\mathcal{H}) \iff |\pi_s(\mathcal{H})| = 1 \iff \forall i \in \{1, 2, 3, 4\}, \; s_i = s_0$$
+- The maximum rank frequency is:
+  $$M(ranks) = \max_{v \in \{1, \dots, 13\}} \sum_{i=0}^4 \mathbb{I}(ranks[i] = v)$$
+
+### Partition of Rank Multiset Partitions of Size 5
+Since $\sum_{v} \text{count}(v) = 5$, the integer partitions of 5 characterize all possible rank distributions:
+
+| Integer Partition of 5 | Maximum Frequency $M$ | Hand Outcome (assuming not Flush) |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $(5)$ | $5$ | "Three of a Kind" |
+| $(4, 1)$ | $4$ | "Three of a Kind" |
+| $(3, 2)$ | $3$ | "Three of a Kind" |
+| $(3, 1, 1)$ | $3$ | "Three of a Kind" |
+| $(2, 2, 1)$ | $2$ | "Pair" |
+| $(2, 1, 1, 1)$ | $2$ | "Pair" |
+| $(1, 1, 1, 1, 1)$ | $1$ | "High Card" |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+This partition table shows that any hand with $M \ge 3$ unambiguously falls into "Three of a Kind", $M = 2$ corresponds to "Pair", and $M = 1$ corresponds to "High Card".
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-## 3. Step-by-Step Worked Execution
+Let us trace the representative instance `ranks = [4, 4, 2, 4, 4]` and `suits = ["d", "a", "a", "b", "c"]`.
 
-### Step 1: Test hand categories from best to worst
+### Phase 1: Suit Consistency Check
+We inspect `suits = ['d', 'a', 'a', 'b', 'c']`:
+- Reference suit from card 0: `'d'`.
+- Card 1: `'a' \ne 'd'`.
+- Consistency fails immediately on the second card.
+- Result: Flush condition is **False**. Proceed to rank frequency evaluation.
 
-The requested categories have a strict priority:
+### Phase 2: Rank Frequency Accumulation
+Initialize an array or map of counts for ranks $1$ through $13$:
+- Card 0 ($r = 4$): count of 4 becomes $1$.
+- Card 1 ($r = 4$): count of 4 becomes $2$.
+- Card 2 ($r = 2$): count of 2 becomes $1$.
+- Card 3 ($r = 4$): count of 4 becomes $3$.
+- Card 4 ($r = 4$): count of 4 becomes $4$.
 
-`Flush > Three of a Kind > Pair > High Card`.
+Final non-zero frequency counts:
+- Rank 4: multiplicity 4.
+- Rank 2: multiplicity 1.
 
-The method checks them in exactly that order and returns immediately when one applies. This matters because the same five cards may satisfy more than one lower category. Four equal ranks, for example, include many pairs but must be reported as “Three of a Kind” because that is the strongest listed rank-based category.
+### Phase 3: Maximum Frequency Selection
+Compute $M$:
+$$M = \max(4, 1) = 4$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"ranks": [13, 2, 3, 1, 9], "suits": ["a", "a", "a", "a", "a"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 4: Priority Branch Matching
+1. Check $M \ge 3$: $4 \ge 3$ is **True**.
+2. Hand category assigned: `"Three of a Kind"`.
 
----
+The algorithm returns `"Three of a Kind"`.
 
-### Step 2: Recognize a flush through adjacent suit equality
+## 4. Comprehensive State Trace
 
-`pairwise(suits)` yields the four adjacent pairs of the five suits. The generator checks `a == b` for each, and `all` returns true only if every adjacent pair matches.
+The table below contrasts multiple diverse hands through the sequential evaluation pipeline.
 
-Equality is transitive: if suit zero equals suit one, suit one equals suit two, and so on, then all five suits are equal. Therefore this adjacent check is equivalent to testing whether the suit set has size one.
+| Hand Ranks | Hand Suits | Uniform Suit Test | Rank Frequencies | Max Frequency $M$ | Hand Classification |
+|---|---|---|---|---|---|
+| `[13, 2, 3, 1, 9]` | `['a', 'a', 'a', 'a', 'a']` | **True** (all 'a') | $1, 1, 1, 1, 1$ | $1$ | `"Flush"` |
+| `[4, 4, 2, 4, 4]` | `['d', 'a', 'a', 'b', 'c']` | False | $4: 4, \; 2: 1$ | $4$ | `"Three of a Kind"` |
+| `[10, 10, 2, 10, 9]` | `['a', 'b', 'c', 'a', 'd']` | False | $10: 3, \; 2: 1, \; 9: 1$ | $3$ | `"Three of a Kind"` |
+| `[10, 10, 2, 12, 9]` | `['a', 'b', 'c', 'a', 'd']` | False | $10: 2, \; 2: 1, \; 12: 1, \; 9: 1$ | $2$ | `"Pair"` |
+| `[1, 2, 3, 4, 5]` | `['a', 'b', 'c', 'd', 'a']` | False | All $1$ | $1$ | `"High Card"` |
 
-If true, the method returns `'Flush'` before inspecting ranks. Flush is the highest category in this problem, so no other property can improve the answer.
+## 5. Algorithmic Correctness & Soundness
 
-The commented-out set expression shows an alternative but is not executed.
+1. **Precedence Hierarchy Adherence:**
+   Testing the Flush condition first strictly honors the problem specification, which ranks Flush strictly above Three of a Kind, Pair, and High Card.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+2. **Soundness of Threshold Comparison:**
+   The specification groups four-of-a-kind and full house hands into `"Three of a Kind"` (requiring at least three cards of the same rank). The predicate $M \ge 3$ correctly identifies all instances where at least three identical ranks exist.
 
----
+3. **Disjoint Exhaustiveness:**
+   Since $M$ is an integer in $\{1, 2, 3, 4, 5\}$, the conditions $M \ge 3$, $M = 2$, and $M = 1$ partition the remaining non-Flush outcome space without gaps or overlaps.
 
-### Step 3: Count rank multiplicities
+## 6. Edge Cases & Anti-Patterns
 
-If the hand is not a flush, `Counter(ranks)` maps each rank to its number of cards.
+- **All Five Cards Identical Rank and Different Suits (`ranks = [7, 7, 7, 7, 7]`, different suits):**
+  - $M = 5 \ge 3 \implies$ returns `"Three of a Kind"`.
+- **All Five Cards Identical Rank and Same Suit (`ranks = [7, 7, 7, 7, 7]`, all suit 'a'):**
+  - All suits match $\implies$ returns `"Flush"` because Flush has higher priority than Three of a Kind.
+- **Two Pairs (`ranks = [3, 3, 5, 5, 8]`):**
+  - Frequencies: $3: 2, 5: 2, 8: 1$.
+  - $M = 2 \implies$ returns `"Pair"`.
+- **Anti-Pattern (Standard Poker Rules Confusion):**
+  - Traditional poker distinguishes Four of a Kind and Full House from Three of a Kind, and Two Pair from One Pair. Implementing standard poker hierarchies causes incorrect classifications because this problem defines strictly four simplified categories.
 
-`any(v >= 3 for v in cnt.values())` detects a rank appearing at least three times. The source category list does not separately name four of a kind, so a frequency of four still qualifies as the best available `'Three of a Kind'` response.
+## 7. Complexity Analysis
 
-This check precedes pair detection because any frequency of three or four also contains at least one pair.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Flush"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"ranks": [13, 2, 3, 1, 9], "suits": ["a", "a", "a", "a", "a"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Flush"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Set of suits:** `len(set(suits)) == 1` is an equally direct flush test using fixed-size storage.
-- **Fixed rank-frequency array:** An array of 14 counts avoids a Counter and remains constant-size.
-- **Sort ranks:** Equal ranks become consecutive, but sorting is unnecessary for five fixed cards and may mutate input.
-- **Check Pair before Three of a Kind:** A triple contains a pair subset and would be misclassified, so stronger categories must come first.
-- **Check ranks before Flush:** A flush that also contains repeated ranks must still return Flush, the highest category.
-- **Four equal ranks:** It satisfies `v >= 3` and returns Three of a Kind because no four-of-a-kind category exists.
-- **Two separate pairs:** No triple exists, but a size-two group does, so Pair is returned.
-- **All ranks distinct and suits mixed:** Only High Card applies.
-- **All suits equal:** Flush is returned regardless of rank frequencies.
-- **Exactly three equal ranks:** Three of a Kind is returned.
-- **One pair:** Pair is returned if the hand is not a flush.
-- **Adjacent-pair logic:** All four comparisons must be true; one mismatched boundary rules out a flush.
-- **Pairwise helper availability:** The exact source relies on `pairwise`, conventionally from `itertools`.
-- **Counter helper availability:** Rank frequencies rely on `Counter`, conventionally from `collections`.
-- **Input preservation:** Both arrays are read only.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(1)$. The input always contains exactly five cards. Suit comparison examines four adjacent pairs, and rank counting examines five values with at most five Counter entries. All work is bounded by a fixed constant, so time is `O(1)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$. The hand contains exactly $5$ cards. Verifying suit uniformity checks $4$ character equality comparisons. Counting ranks processes $5$ integers into a frequency table of size $\le 13$. The entire classification executes in bounded constant time.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. A frequency table of at most $13$ integer entries is allocated.

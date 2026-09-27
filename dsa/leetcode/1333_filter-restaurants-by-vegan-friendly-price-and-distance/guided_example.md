@@ -1,129 +1,165 @@
 # Guided Example: Filter Restaurants by Vegan-Friendly, Price and Distance
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace multi-attribute relational filtering and dual-key sorting on a representative restaurant directory:
 
-- **Input:** `{"restaurants": [[1, 4, 1, 40, 10], [2, 8, 0, 50, 5], [3, 8, 1, 30, 4], [4, 10, 0, 10, 3], [5, 1, 1, 15, 1]], "veganFriendly": 1, "maxPrice": 50, "maxDistance": 10}`
-- **Required output:** `[3, 1, 5]`
+- **Input:** `restaurants = [[1, 4, 1, 40, 10], [2, 8, 0, 50, 5], [3, 8, 1, 30, 4], [4, 10, 0, 10, 3], [5, 1, 1, 15, 1]]`, `veganFriendly = 1`, `maxPrice = 50`, `maxDistance = 10`
+- **Required Output:** `[3, 1, 5]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates boolean and numeric threshold filtering, handling conditional constraints ($vegan \ge veganFriendly$), and sorting candidates by descending rating with descending identifier tie-breaking.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the array `restaurants` where  $\text{restaurants}[i] = [\text{id}_{i}, \text{rating}_{i}, \text{veganFriendly}_{i}, \text{price}_{i}, \text{distance}_{i}]$. You have to filter the restaurants using three filters.
+Each entry in the `restaurants` dataset consists of $5$ attributes:
+$$
+[\text{id}, \; \text{rating}, \; \text{veganFriendly}, \; \text{price}, \; \text{distance}]
+$$
+We are given query criteria:
+- `veganFriendly`: if $1$, only vegan-friendly restaurants are permitted; if $0$, all restaurants are permitted.
+- `maxPrice`: maximum acceptable price.
+- `maxDistance`: maximum acceptable distance.
 
-The objective is to compute `[3, 1, 5]` from `{"restaurants": [[1, 4, 1, 40, 10], [2, 8, 0, 50, 5], [3, 8, 1, 30, 4], [4, 10, 0, 10, 3], [5, 1, 1, 15, 1]], "veganFriendly": 1, "maxPrice": 50, "maxDistance": 10}` while avoiding redundant calculations and unnecessary overhead.
+We must return the list of restaurant IDs that satisfy all three constraints, sorted by:
+1. `rating` descending.
+2. In case of tied ratings, `id` descending.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Input Restaurants:
+  R1: [id: 1, rating:  4, vegan: 1, price: 40, dist: 10]
+  R2: [id: 2, rating:  8, vegan: 0, price: 50, dist:  5]
+  R3: [id: 3, rating:  8, vegan: 1, price: 30, dist:  4]
+  R4: [id: 4, rating: 10, vegan: 0, price: 10, dist:  3]
+  R5: [id: 5, rating:  1, vegan: 1, price: 15, dist:  1]
+
+Filter Check (veganFriendly=1, maxPrice=50, maxDistance=10):
+  - R1: vegan=1 (OK), price=40<=50 (OK), dist=10<=10 (OK)  --> Qualifies
+  - R2: vegan=0 (FAILS: veganFriendly=1 required)          --> Disqualified
+  - R3: vegan=1 (OK), price=30<=50 (OK), dist=4<=10 (OK)   --> Qualifies
+  - R4: vegan=0 (FAILS: veganFriendly=1 required)          --> Disqualified
+  - R5: vegan=1 (OK), price=15<=50 (OK), dist=1<=10 (OK)   --> Qualifies
+
+Qualifying Set: { R3 (rating 8), R1 (rating 4), R5 (rating 1) }
+Sorted Order by Rating DESC, ID DESC: [3, 1, 5]
+```
+
+Filtering first and sorting only the surviving records avoids sorting disqualified elements, running in $\mathcal{O}(N + K \log K)$ time where $K \le N$ is the number of qualifying restaurants.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $r = (\text{id}, \text{rating}, \text{vegan}, \text{price}, \text{dist})$ be a restaurant record.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Predicate Filtering Condition
+A restaurant $r$ is accepted if and only if:
+$$
+\text{Valid}(r) \iff (\text{vegan} \ge \text{veganFriendly}) \land (\text{price} \le \text{maxPrice}) \land (\text{dist} \le \text{maxDistance})
+$$
+- When $\text{veganFriendly} = 1$, the condition $\text{vegan} \ge 1$ forces $\text{vegan} = 1$.
+- When $\text{veganFriendly} = 0$, the condition $\text{vegan} \ge 0$ is trivially satisfied for all binary values $\text{vegan} \in \{0, 1\}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Dual-Key Comparison
+For any two valid restaurants $r_a$ and $r_b$, $r_a$ precedes $r_b$ ($r_a \succ r_b$) if:
+$$
+\text{rating}_a > \text{rating}_b \quad \lor \quad (\text{rating}_a == \text{rating}_b \land \text{id}_a > \text{id}_b)
+$$
+
+| Restaurant | Attributes $[id, \text{rate}, \text{veg}, \text{price}, \text{dist}]$ | Vegan Check ($\ge 1$) | Price Check ($\le 50$) | Distance Check ($\le 10$) | Overall Status |
+|---|---|---|---|---|---|
+| R1 | $[1, 4, 1, 40, 10]$ | Pass ($1 \ge 1$) | Pass ($40 \le 50$) | Pass ($10 \le 10$) | **Accepted** |
+| R2 | $[2, 8, 0, 50, 5]$ | Fail ($0 < 1$) | Pass ($50 \le 50$) | Pass ($5 \le 10$) | Disqualified |
+| R3 | $[3, 8, 1, 30, 4]$ | Pass ($1 \ge 1$) | Pass ($30 \le 50$) | Pass ($4 \le 10$) | **Accepted** |
+| R4 | $[4, 10, 0, 10, 3]$ | Fail ($0 < 1$) | Pass ($10 \le 50$) | Pass ($3 \le 10$) | Disqualified |
+| R5 | $[5, 1, 1, 15, 1]$ | Pass ($1 \ge 1$) | Pass ($15 \le 50$) | Pass ($1 \le 10$) | **Accepted** |
+
+> **Selection and Total Order Invariant.** The selection predicate partitions the dataset into feasible and infeasible subsets. Because IDs are unique, the comparator $(-\text{rating}, -\text{id})$ forms a strict, unambiguous total order over all qualifying entities.
+
+```mermaid
+flowchart TD
+    accTitle: Restaurant Filter and Sort Pipeline
+    accDescr: Pipeline filtering restaurants across vegan, price, and distance criteria, followed by dual-key ranking.
+    START["Input: 5 Restaurants"] --> FLT["Filter: vegan >= 1 and price <= 50 and dist <= 10"]
+    FLT --> CHECK{"Does restaurant satisfy all 3 filters?"}
+    CHECK -- No --> DROP["Discard restaurant"]
+    CHECK -- Yes --> KEEP["Collect into qualifying candidate list"]
+    KEEP --> SORT["Sort qualifying list by (-rating, -id)"]
+    SORT --> EXTRACT["Extract restaurant IDs: [3, 1, 5]"]
+    EXTRACT --> OUT["Return Final ID List"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Encode the required descending order
+We trace the criteria evaluation for all $5$ restaurants:
 
-Python sorts keys in ascending order by default. The key function returns `(-x[1], -x[0])` for a restaurant `x`:
+### Step 1: Evaluate Restaurant 1 ($[1, 4, 1, 40, 10]$)
+- Vegan check: $\text{vegan} = 1 \ge 1$ (Pass).
+- Price check: $\text{price} = 40 \le 50$ (Pass).
+- Distance check: $\text{dist} = 10 \le 10$ (Pass).
+- Retained candidate: $(\text{id} = 1, \text{rating} = 4)$.
 
-- `x[1]` is the rating, so a larger rating becomes a smaller negative number and appears earlier.
-- `x[0]` is the identifier, so among equal ratings, a larger identifier likewise appears earlier.
+### Step 2: Evaluate Restaurant 2 ($[2, 8, 0, 50, 5]$)
+- Vegan check: $\text{vegan} = 0 < 1$ (Fail).
+- Disqualified immediately (non-vegan).
 
-For example, suppose three restaurants have rating and identifier pairs `(5, 3)`, `(8, 1)`, and `(5, 7)`. Their keys are `(-5, -3)`, `(-8, -1)`, and `(-5, -7)`. Ascending tuple order places rating eight first. Among the two rating-five records, `(-5, -7)` comes before `(-5, -3)`, so identifier seven correctly precedes identifier three.
+### Step 3: Evaluate Restaurant 3 ($[3, 8, 1, 30, 4]$)
+- Vegan check: $\text{vegan} = 1 \ge 1$ (Pass).
+- Price check: $\text{price} = 30 \le 50$ (Pass).
+- Distance check: $\text{dist} = 4 \le 10$ (Pass).
+- Retained candidate: $(\text{id} = 3, \text{rating} = 8)$.
 
-The call `restaurants.sort(...)` sorts the supplied list in place. After this line, every record is already in the exact priority order required for the final answer.
+### Step 4: Evaluate Restaurant 4 ($[4, 10, 0, 10, 3]$)
+- Vegan check: $\text{vegan} = 0 < 1$ (Fail).
+- Disqualified immediately (non-vegan, despite highest rating of $10$).
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"restaurants": [[1, 4, 1, 40, 10], [2, 8, 0, 50, 5], [3, 8, 1, 30, 4], [4, 10, 0, 10, 3], [5, 1, 1, 15, 1]], "veganFriendly": 1, "maxPrice": 50, "maxDistance": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 5: Evaluate Restaurant 5 ($[5, 1, 1, 15, 1]$)
+- Vegan check: $\text{vegan} = 1 \ge 1$ (Pass).
+- Price check: $\text{price} = 15 \le 50$ (Pass).
+- Distance check: $\text{dist} = 1 \le 10$ (Pass).
+- Retained candidate: $(\text{id} = 5, \text{rating} = 1)$.
 
----
-
-### Step 2: Read each field according to the record contract
-
-The loop header `for idx, _, vegan, price, dist in restaurants` unpacks the five fields:
-
-- `idx` receives the restaurant identifier.
-- `_` receives the rating. The conventional underscore name signals that no later calculation needs it because sorting has already used it.
-- `vegan` receives the binary vegan-friendly flag.
-- `price` and `dist` receive the two numeric limits being tested.
-
-Using field positions exactly is important. The restaurant identifier is not the record’s list index, and the price and distance constraints are separate. Unpacking gives descriptive names and makes each comparison correspond directly to one part of the contract.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: One comparison handles both vegan modes
-
-The condition is `vegan >= veganFriendly`. Both values are binary:
-
-- When `veganFriendly` is zero, both zero and one are greater than or equal to zero, so the vegan flag does not exclude any restaurant.
-- When `veganFriendly` is one, only a restaurant whose flag is one passes.
-
-This avoids a separate branch for the two request modes. It is correct because the allowed values are exactly zero and one; the comparison should not be generalized blindly to unrelated flags.
-
-The remaining tests are `price <= maxPrice` and `dist <= maxDistance`. The inclusive comparisons matter: a restaurant costing exactly `maxPrice` or located exactly `maxDistance` away is allowed. All three tests are connected by `and`, so a record is appended only if every required condition is true.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 1, 5]` |
+### Step 6: Dual-Key Sorting of Candidates
+Qualifying set: $\{(\text{id}: 1, \text{rating}: 4), \; (\text{id}: 3, \text{rating}: 8), \; (\text{id}: 5, \text{rating}: 1)\}$.
+- Sort by $\text{rating}$ descending:
+  - Highest rating: R3 ($\text{rating} = 8$).
+  - Middle rating: R1 ($\text{rating} = 4$).
+  - Lowest rating: R5 ($\text{rating} = 1$).
+- No ties occur among the surviving records.
+- Extract IDs: `[3, 1, 5]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"restaurants": [[1, 4, 1, 40, 10], [2, 8, 0, 50, 5], [3, 8, 1, 30, 4], [4, 10, 0, 10, 3], [5, 1, 1, 15, 1]], "veganFriendly": 1, "maxPrice": 50, "maxDistance": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 1, 5]` | Verified |
+| Restaurant ID | Rating | Vegan Friendly? | Price | Distance | Filter Decision | Sort Key $(-\text{rating}, -\text{id})$ | Output Order |
+|---|---|---|---|---|---|---|---|
+| $3$ | $8$ | $1$ | $30$ | $4$ | Accepted | $(-8, -3)$ | **1st (ID: 3)** |
+| $1$ | $4$ | $1$ | $40$ | $10$ | Accepted | $(-4, -1)$ | **2nd (ID: 1)** |
+| $5$ | $1$ | $1$ | $15$ | $1$ | Accepted | $(-1, -5)$ | **3rd (ID: 5)** |
+| $2$ | $8$ | $0$ | $50$ | $5$ | Rejected ($vegan=0$) | - | Excluded |
+| $4$ | $10$ | $0$ | $10$ | $3$ | Rejected ($vegan=0$) | - | Excluded |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every element in the output list is verified against all three criteria ($\text{vegan} \ge \text{veganFriendly}$, $\text{price} \le \text{maxPrice}$, $\text{dist} \le \text{maxDistance}$). The sorting key enforces descending ratings and descending IDs for tie-breaking, matching the specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every restaurant in the input list is inspected. Because filter evaluation is decoupled from sorting, no eligible restaurant can be prematurely discarded, and all qualifiers are present in the final ranked result.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Filter before sorting:** Build a list of qualifying records first, then sort only those records by rating and identifier. This has $O(n + q \log q)$ time for $q$ matches and avoids sorting rejected records, but it requires storing the qualifying records before extracting identifiers.
-- **Non-mutating sorted copy:** Use `sorted(restaurants, key=...)` to preserve the caller’s input order. It has the same asymptotic time and space bounds but allocates a separate list.
-- **Sorting with positive keys and reverse mode:** A key of `(rating, id)` together with `reverse=true` also produces descending order for both fields. Negative keys make the two required directions explicit without relying on a global reversal.
-- **Heap-based selection:** A heap is useful when only the best few results are requested. Here every qualifying identifier must be returned, so a complete ordered result still requires work comparable to sorting.
-- **Vegan filter disabled:** When `veganFriendly == 0`, restaurants with either flag value pass the vegan test. The `>=` comparison implements this without a special case.
-- **Vegan filter enabled:** When `veganFriendly == 1`, only records whose vegan field is one pass. A zero is rejected before the identifier can be appended.
-- **Inclusive limits:** Prices and distances equal to their maximum limits must be accepted. Replacing `<=` with `<` would incorrectly remove boundary records.
-- **Equal ratings:** Larger identifiers must come first. The second component `-x[0]` supplies exactly that tie-breaker.
-- **No matches:** The loop performs no append and returns `[]`, which is already a valid ordered result.
-- **All records match:** Every identifier is returned in the order established by the initial sort; the result may use $O(n)$ space.
-- **Input side effect:** Because the sort is in place, code outside this method observes the reordered restaurant records. Use a copied or non-mutating sort if preserving the original list is an additional requirement.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **High rating on disqualified records:** Restaurant 4 has the highest rating ($10$), but fails the vegan filter. High ratings must never bypass boolean or threshold exclusions.
+- **Tie-breaking orientation:** In case of tied ratings, the problem specifies *higher* IDs appear first (`-id`). Sorting IDs in ascending order would invert tie resolution.
+- **Interpreting `veganFriendly = 0`:** When `veganFriendly = 0`, non-vegan restaurants are allowed, but vegan restaurants are *also* allowed (it is not a restriction against vegan food). The expression $\text{vegan} \ge \text{veganFriendly}$ handles both $0$ and $1$ query settings uniformly.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log n)$. Let $n$ be the number of restaurant records.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N + K \log K)$, where $N$ is the number of restaurants and $K \le N$ is the number of qualifying restaurants. Inspecting $N$ entries takes $\mathcal{O}(N)$ time. Sorting $K$ filtered elements takes $\mathcal{O}(K \log K)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ to store the filtered list of candidate restaurant tuples before returning their IDs.

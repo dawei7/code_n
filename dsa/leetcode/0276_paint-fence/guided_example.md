@@ -1,99 +1,164 @@
 # Guided Example: Paint Fence
 
-We derive and execute the Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step state decomposition between identical and distinct adjacent color choices ($\text{same}$ vs $\text{diff}$), color multiplier transitions, and $O(1)$ rolling variable space compression on representative fence painting instances:
 
-- **Input:** `{"n": 3, "k": 2}`
-- **Required output:** `6`
+- **Input:** $n = 3, \quad k = 2$
+- **Required output:** $6$ (The 6 valid colorings using 2 colors {R, G}: RRG, RGR, RGG, GRR, GRG, GGR; colorings RRR and GGG are invalid)
+- **Single Post Base Case:** $n = 1, \quad k = 2 \implies 2$ (Any of the $k$ colors)
+- **Two Posts Square Instance:** $n = 2, \quad k = 2 \implies 4$ ($k^2$; all two-post combinations are legal)
+- **Zero Posts Guard:** $n = 0 \implies 0$
+- **Single Color with Multiple Posts:** $n = 3, \quad k = 1 \implies 0$ (Cannot avoid 3 consecutive same colors)
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates dynamic programming state partitioning with adjacency constraints, proves why post $i$ can only match post $i - 1$ if post $i - 1$ differed from post $i - 2$ ($\text{same}[i] = \text{diff}[i-1]$), details the $(k - 1)$ multiplier for color changes, and operates in strictly $O(N)$ linear time and $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Paint Fence** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given $n = 3$ fence posts and $k = 2$ available colors (e.g. Red and Green):
+Determine how many ways the fence can be painted such that **no more than two adjacent posts have the same color**.
+Total unconstrained colorings: $k^n = 2^3 = 8$.
+- All Red: $\text{R R R}$ (3 adjacent same colors $\implies$ **Invalid**)
+- All Green: $\text{G G G}$ (3 adjacent same colors $\implies$ **Invalid**)
+- The remaining $8 - 2 = 6$ colorings are valid:
+  1. $\text{R R G}$
+  2. $\text{R G R}$
+  3. $\text{R G G}$
+  4. $\text{G R R}$
+  5. $\text{G R G}$
+  6. $\text{G G R}$
+Output: $\mathbf{6}$.
+
+### The Adjacent Pair Invariant
+To prevent 3 consecutive identical colors:
+If post $i$ has the same color as post $i - 1$, then post $i - 1$ **must have had a different color from post $i - 2$**.
+This naturally splits the dynamic programming state into two mutually exclusive cases at each post:
+1. $\text{same}[i]$: Number of valid colorings where post $i$ has the **same** color as post $i - 1$.
+2. $\text{diff}[i]$: Number of valid colorings where post $i$ has a **different** color from post $i - 1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Recurrence Relations
+For post $i \ge 3$:
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+1. **Case 1: Post $i$ matches Post $i - 1$ ($\text{same}[i]$):**
+   The color of post $i$ is uniquely forced (1 choice).
+   To prevent three identical adjacent posts, post $i - 1$ could not have matched post $i - 2$.
+   Therefore, this state transitions exclusively from $\text{diff}[i - 1]$:
+   $$
+   \text{same}[i] = \text{diff}[i - 1]
+   $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+2. **Case 2: Post $i$ differs from Post $i - 1$ ($\text{diff}[i]$):**
+   Post $i$ can choose any of the remaining $k - 1$ colors distinct from post $i - 1$.
+   Post $i - 1$ could have either matched or differed from post $i - 2$ (both are valid):
+   $$
+   \text{diff}[i] = (\text{same}[i - 1] + \text{diff}[i - 1]) \times (k - 1)
+   $$
+
+### Base Cases:
+- $n = 0$: Return $0$.
+- $n = 1$: Return $k$ (Post 1 can be any of the $k$ colors).
+- $n = 2$:
+  - $\text{same}[2] = k$ (Post 2 picks the same color as Post 1; $k \times 1 = k$).
+  - $\text{diff}[2] = k \times (k - 1)$ (Post 2 picks any other color).
+  - Total for 2 posts: $\text{total}[2] = k + k(k - 1) = k^2$.
+
+> **Invariant.** For any post $i$, $\text{same}[i] + \text{diff}[i]$ accounts for all valid colorings of prefix $1 \dots i$ without any sequence of three consecutive matching colors.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace the algorithm on $n = 3, \quad k = 2$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Base Cases ($n = 1, n = 2$)
+- For $n = 1$: $k = 2$ ways.
+- For $n = 2$:
+  - $\text{same} = k = \mathbf{2}$ (Configurations: RR, GG).
+  - $\text{diff} = k \times (k - 1) = 2 \times (2 - 1) = \mathbf{2}$ (Configurations: RG, GR).
+  - Total at post 2: $2 + 2 = 4$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Transition to Post 3 ($i = 3$)
+Current state from post 2: $\text{same} = 2, \quad \text{diff} = 2$.
+Available distinct colors multiplier: $k - 1 = 2 - 1 = \mathbf{1}$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+1. Compute new $\text{same}$:
+   $$
+   \text{new\_same} = \text{diff} = \mathbf{2}
+   $$
+   *(Generated by extending RG $\to$ RGG, and GR $\to$ GRR)*.
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+2. Compute new $\text{diff}$:
+   $$
+   \text{new\_diff} = (\text{same} + \text{diff}) \times (k - 1) = (2 + 2) \times 1 = 4 \times 1 = \mathbf{4}
+   $$
+   *(Generated by extending RR $\to$ RRG, GG $\to$ GGR, RG $\to$ RGR, GR $\to$ GRG)*.
+
+3. Update state:
+   $$
+   \text{same} = 2, \quad \text{diff} = 4
+   $$
+
+---
+
+### Step 3: Total Summation at Post $n = 3$
+$$
+\text{total} = \text{same} + \text{diff} = 2 + 4 = \mathbf{6}
+$$
+
+Output: $\mathbf{6}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+```text
+n = 3, k = 2
+
+Base Case (i = 2):
+  same = 2 (RR, GG)
+  diff = 2 (RG, GR)
+  Total = 4
+
+Post 3 (i = 3):
+  new_same = diff = 2                 -> {RGG, GRR}
+  new_diff = (2 + 2) * (2 - 1) = 4    -> {RRG, GGR, RGR, GRG}
+  same = 2, diff = 4
+  Total = 2 + 4 = 6
+
+Final Answer: 6
+```
+
+| Post $i$ | $\text{same}[i]$ | $\text{diff}[i]$ | Derivation of $\text{diff}[i]$ | Total Ways ($\text{same} + \text{diff}$) | Concrete Colorings |
+|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | - | - | - | $k = 2$ | R, G |
+| 2 | 2 | 2 | $k(k - 1) = 2 \times 1 = 2$ | 4 | RR, GG, RG, GR |
+| **3** | **2** | **4** | $(2 + 2) \times 1 = 4$ | **$\mathbf{6}$** | **RGG, GRR, RRG, GGR, RGR, GRG** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Every counted coloring in $\text{same}[i]$ is formed by taking a coloring from $\text{diff}[i - 1]$ and setting post $i$ to match post $i - 1$. Since post $i - 1$ differed from post $i - 2$, the run of identical colors at post $i$ is exactly 2, which satisfies the constraint. Every counted coloring in $\text{diff}[i]$ picks a color distinct from post $i - 1$, starting a new color run of length 1. No configuration with 3 consecutive identical colors can ever be generated.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Any valid coloring must end with post $n$ either matching or differing from post $n - 1$. By induction, the recurrence partitions the full solution space into these two disjoint sets, guaranteeing that no valid coloring is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **$k = 1$ with $n \ge 3$:** If $k = 1$ and $n \ge 3$, the multiplier $k - 1 = 0$. $\text{diff}$ becomes $0$, and $\text{same}$ becomes $0$, returning $0$. It is impossible to paint $\ge 3$ posts with 1 color without having 3 adjacent matching posts.
+- **Three Identical Color Runs:** Overlooking the condition $\text{same}[i] = \text{diff}[i - 1]$ and writing $\text{same}[i] = \text{same}[i - 1] + \text{diff}[i - 1]$ would allow 3, 4, or more consecutive identical colors.
+- **Rolling Variable Reuse Bug:** When updating `same` and `diff` in-place, `same` must be saved into a temporary variable before computing `diff`, or updated simultaneously: `same, diff = diff, (same + diff) * (k - 1)`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(N)$, where $N = n$. A single loop iterates from $3$ to $n$, performing $O(1)$ additions and multiplications per post.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory. Only two integer variables (`same` and `diff`) are maintained across iterations.

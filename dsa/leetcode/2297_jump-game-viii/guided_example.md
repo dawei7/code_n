@@ -1,126 +1,192 @@
 # Guided Example: Jump Game VIII
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [3, 2, 4, 4, 1], "costs": [3, 7, 6, 4, 2]}`
-- **Required output:** `8`
+We are given two 0-indexed integer arrays $nums$ and $costs$, each of length $n$. We begin at index $0$ with an initial accumulated cost of $0$ and must reach the terminal index $n - 1$. 
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+From any current position $i$, a forward jump to a higher index $j > i$ is permitted if and only if at least one of two transition criteria is met:
+1. **Upward Boundary Condition:** $nums[i] \le nums[j]$, and all intermediate elements strictly lie below $nums[i]$:
+   $$\forall k \in (i, j), \quad nums[k] < nums[i]$$
+2. **Downward Boundary Condition:** $nums[i] > nums[j]$, and all intermediate elements are at least $nums[i]$:
+   $$\forall k \in (i, j), \quad nums[k] \ge nums[i]$$
+
+Making a jump from $i$ to $j$ incurs an additional cost of $costs[j]$. Our goal is to determine the minimum total cost required to navigate from index $0$ to index $n - 1$.
+
+Consider the representative problem instance:
+$$nums = [3, 2, 4, 4, 1], \quad costs = [3, 7, 6, 4, 2]$$
+
+Analyzing the jump possibilities from each index:
+- **From Index $0$ ($nums[0] = 3$):**
+  - Upward jump: the first rightward index with value $\ge 3$ is index $2$ ($nums[2] = 4 \ge 3$). The only intermediate is $nums[1] = 2 < 3$. Valid jump $0 \to 2$.
+  - Downward jump: the first rightward index with value $< 3$ is index $1$ ($nums[1] = 2 < 3$). There are no intermediates. Valid jump $0 \to 1$.
+- **From Index $1$ ($nums[1] = 2$):**
+  - Upward jump: first element $\ge 2$ is index $2$ ($nums[2] = 4$). Valid jump $1 \to 2$.
+  - Downward jump: first element $< 2$ is index $4$ ($nums[4] = 1$). Intermediates are $nums[2] = 4 \ge 2$ and $nums[3] = 4 \ge 2$. Valid jump $1 \to 4$.
+- **From Index $2$ ($nums[2] = 4$):**
+  - Upward jump: first element $\ge 4$ is index $3$ ($nums[3] = 4$). Valid jump $2 \to 3$.
+  - Downward jump: first element $< 4$ is index $4$ ($nums[4] = 1$). Intermediate $nums[3] = 4 \ge 4$. Valid jump $2 \to 4$.
+- **From Index $3$ ($nums[3] = 4$):**
+  - Downward jump: first element $< 4$ is index $4$ ($nums[4] = 1$). Valid jump $3 \to 4$.
+
+Evaluating paths to reach $n - 1 = 4$:
+- Path $1$: $0 \to 1 \to 4 \implies \text{Cost} = costs[1] + costs[4] = 7 + 2 = 9$.
+- Path $2$: $0 \to 2 \to 4 \implies \text{Cost} = costs[2] + costs[4] = 6 + 2 = 8$.
+- Path $3$: $0 \to 2 \to 3 \to 4 \implies \text{Cost} = 6 + 4 + 2 = 12$.
+
+The minimum achievable cost is $8$.
+
+```mermaid
+flowchart LR
+    accTitle: DAG Monotonic Jump Graph
+    accDescr: Directed acyclic graph showing reachable edges between indices restricted to next greater or equal and next strictly smaller targets.
+    N0["0 (val=3)"] -->|cost=7| N1["1 (val=2)"]
+    N0 -->|cost=6| N2["2 (val=4)"]
+    N1 -->|cost=6| N2
+    N1 -->|cost=2| N4["4 (val=1)"]
+    N2 -->|cost=4| N3["3 (val=4)"]
+    N2 -->|cost=2| N4
+    N3 -->|cost=2| N4
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given a **0-indexed** integer array `nums` of length `n`. You are initially standing at index `0`. You can jump from index `i` to index `j` where `i < j` if:
+### Out-Degree Boundedness: At Most Two Candidate Jumps Per Index
 
-The objective is to compute `8` from `{"nums": [3, 2, 4, 4, 1], "costs": [3, 7, 6, 4, 2]}` while avoiding redundant calculations and unnecessary overhead.
+A naive graph construction tests all $O(n^2)$ pairs $(i, j)$ and inspects intermediate subarrays, requiring $O(n^3)$ operations. However, the problem conditions strictly constrain the out-degree of every vertex to at most $2$:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+1. **Next Greater or Equal Element (NGE):**
+   Condition 1 requires $nums[j] \ge nums[i]$ and $nums[k] < nums[i]$ for all $i < k < j$.
+   - Suppose such a $j$ exists. By definition, $j$ is the **earliest** index to the right of $i$ with $nums[j] \ge nums[i]$.
+   - If we attempt to jump to any further index $j' > j$ with $nums[j'] \ge nums[i]$, the index $j$ itself acts as an intermediate element ($i < j < j'$), but $nums[j] \ge nums[i]$, directly violating the condition that all intermediates must be strictly smaller than $nums[i]$.
+   - Hence, Condition 1 admits at most **one** target: the immediate Next Greater or Equal element.
 
----
+2. **Next Strictly Smaller Element (NSE):**
+   Condition 2 requires $nums[j] < nums[i]$ and $nums[k] \ge nums[i]$ for all $i < k < j$.
+   - By identical logic, $j$ must be the **earliest** index to the right of $i$ with $nums[j] < nums[i]$.
+   - Any further index $j'' > j$ would have $j$ as an intermediate element with $nums[j] < nums[i]$, violating the requirement that all intermediates be $\ge nums[i]$.
+   - Hence, Condition 2 admits at most **one** target: the immediate Next Strictly Smaller element.
 
-## 2. Conceptual Foundation & Invariants
+Therefore, the jump relations define a directed acyclic graph (DAG) where $|V| = n$ and $|E| \le 2n$.
 
-We maintain the core conceptual parameters and state variables:
+### Dual Monotonic Stacks and Topological Dynamic Programming
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We precompute the two edges for every index $i$ in $O(n)$ time using two monotonic stack passes:
+- **NGE Pass (Right-to-Left):** Maintain a monotonic stack of candidate targets. To find the first element $\ge nums[i]$, pop all stack elements strictly smaller than $nums[i]$. The top of the stack is the target.
+- **NSE Pass (Right-to-Left):** Maintain a monotonic stack. To find the first element $< nums[i]$, pop all stack elements $\ge nums[i]$. The top of the stack is the target.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Once edges are established, the natural topological order of the DAG is the spatial order $0, 1, \dots, n-1$ (since all edges satisfy $i < j$). We compute single-source shortest path via 1D DP:
+$$f[j] = \min_{(i, j) \in E} (f[i] + costs[j])$$
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: There are at most two useful jumps from one index
-
-For the first jump rule, `nums[i] \le nums[j]` and every intermediate value must be strictly below `nums[i]`. Therefore, `j` must be the first index to the right whose value is at least `nums[i]`. If a nearer such index existed, it would be an intermediate value violating the strict-below condition.
-
-For the second rule, `nums[i] > nums[j]` and every intermediate value must be at least `nums[i]`. Thus, `j` must be the first index to the right whose value is strictly smaller than `nums[i]`.
-
-So the complete outgoing jump set has at most two edges: the next greater-or-equal boundary and the next strictly-smaller boundary.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Algorithmic Stage | Mechanism | Complexity | Invariant Maintained |
 |---|---|---|---|
-| Input Slice | `{"nums": [3, 2, 4, 4, 1], "costs": [3, 7, 6, 4, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| NGE Edge Generation | Decreasing monotonic stack | $O(n)$ | Edge $i \to j$ points to leftmost index with $nums[j] \ge nums[i]$ |
+| NSE Edge Generation | Increasing monotonic stack | $O(n)$ | Edge $i \to j$ points to leftmost index with $nums[j] < nums[i]$ |
+| Dynamic Programming | Forward relaxation over DAG | $O(n)$ | $f[i]$ stores proven minimal cost from $0$ to $i$ |
 
 ---
 
-### Step 2: Find the next greater-or-equal boundary
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The first right-to-left monotonic-stack pass pops while
+Let us trace the computation for $nums = [3, 2, 4, 4, 1]$ and $costs = [3, 7, 6, 4, 2]$.
 
-`nums[stk[-1]] < nums[i]`.
+### Step 1: Precomputing Edges via Monotonic Stacks
+- **NGE Pass (candidates $\ge nums[i]$):**
+  - $i = 4$ ($nums=1$): stack empty. Stack: $[4]$.
+  - $i = 3$ ($nums=4$): pop $4$ ($1 < 4$). Stack empty. Stack: $[3]$.
+  - $i = 2$ ($nums=4$): top is $3$ ($nums[3]=4 \ge 4$). Edge $2 \to 3$. Stack: $[3, 2]$.
+  - $i = 1$ ($nums=2$): top is $2$ ($nums[2]=4 \ge 2$). Edge $1 \to 2$. Stack: $[3, 2, 1]$.
+  - $i = 0$ ($nums=3$): pop $1$ ($2 < 3$). Top is $2$ ($nums[2]=4 \ge 3$). Edge $0 \to 2$. Stack: $[3, 2, 0]$.
+- **NSE Pass (candidates $< nums[i]$):**
+  - $i = 4$ ($nums=1$): stack empty. Stack: $[4]$.
+  - $i = 3$ ($nums=4$): top is $4$ ($nums[4]=1 < 4$). Edge $3 \to 4$. Stack: $[4, 3]$.
+  - $i = 2$ ($nums=4$): pop $3$ ($nums[3]=4 \ge 4$). Top is $4$ ($nums[4]=1 < 4$). Edge $2 \to 4$. Stack: $[4, 2]$.
+  - $i = 1$ ($nums=2$): pop $2$ ($nums[2]=4 \ge 2$). Top is $4$ ($nums[4]=1 < 2$). Edge $1 \to 4$. Stack: $[4, 1]$.
+  - $i = 0$ ($nums=3$): top is $1$ ($nums[1]=2 < 3$). Edge $0 \to 1$. Stack: $[4, 1, 0]$.
 
-Those smaller values are permitted intermediates for the first rule, so they are skipped. When popping stops, the stack top, if present, is the nearest rightward value at least as large as `nums[i]`. The code appends that index to `g[i]`.
+Compiled adjacency list:
+- $g[0] = [2, 1]$
+- $g[1] = [2, 4]$
+- $g[2] = [3, 4]$
+- $g[3] = [4]$
+- $g[4] = []$
 
-Any popped index cannot be the first-rule destination for `i` because its value is too small. Any farther qualifying destination is blocked by the nearer retained boundary.
+### Step 2: Dynamic Programming State Relaxation
+Initialize $f = [0, \infty, \infty, \infty, \infty]$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Process $i = 0$ ($f[0] = 0$):**
+  - Relax edge $0 \to 2$: $f[2] = \min(\infty, 0 + costs[2]) = 0 + 6 = 6$.
+  - Relax edge $0 \to 1$: $f[1] = \min(\infty, 0 + costs[1]) = 0 + 7 = 7$.
+  - State: $f = [0, 7, 6, \infty, \infty]$.
 
----
+- **Process $i = 1$ ($f[1] = 7$):**
+  - Relax edge $1 \to 2$: $f[2] = \min(6, 7 + costs[2]) = \min(6, 7 + 6) = 6$.
+  - Relax edge $1 \to 4$: $f[4] = \min(\infty, 7 + costs[4]) = 7 + 2 = 9$.
+  - State: $f = [0, 7, 6, \infty, 9]$.
 
-### Step 3: Find the next strictly-smaller boundary
+- **Process $i = 2$ ($f[2] = 6$):**
+  - Relax edge $2 \to 3$: $f[3] = \min(\infty, 6 + costs[3]) = 6 + 4 = 10$.
+  - Relax edge $2 \to 4$: $f[4] = \min(9, 6 + costs[4]) = \min(9, 6 + 2) = 8$.
+  - State: $f = [0, 7, 6, 10, 8]$.
 
-The second pass pops while
+- **Process $i = 3$ ($f[3] = 10$):**
+  - Relax edge $3 \to 4$: $f[4] = \min(8, 10 + costs[4]) = \min(8, 10 + 2) = 8$.
+  - State: $f = [0, 7, 6, 10, 8]$.
 
-`nums[stk[-1]] >= nums[i]`.
-
-These greater-or-equal values are permitted intermediates for the second rule. The first remaining stack top is strictly smaller and becomes the second possible edge.
-
-Again, a farther smaller destination would have this nearer smaller value as an intermediate, violating the requirement that all intermediates be at least `nums[i]`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 2, 4, 4, 1], "costs": [3, 7, 6, 4, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Test every later index:** Verifying all possible jumps takes quadratic time and repeats boundary work.
-- **Dijkstra's algorithm:** Edge costs are nonnegative, but the graph is already a forward DAG, so index-order relaxation is simpler and linear.
-- **Build edges on the fly:** It can combine stack discovery and DP with careful ordering; the exact source separates graph construction from relaxation.
-- **Pop equality in the first stack:** That would skip a valid equal destination.
-- **Keep equality in the second stack:** That would choose an invalid destination that is not strictly smaller.
-- **Adjacent values:** Exactly one rule always permits the adjacent jump.
-- **Duplicate values:** They are valid destinations for the greater-or-equal rule and valid intermediates for the strictly-smaller rule.
-- **Zero landing cost:** Relaxation handles it normally.
-- **Cost at index zero:** It is never paid because the player starts there rather than jumping to it.
-- **One element:** The minimum cost is zero.
-- **Two edges to different boundaries:** Both are relaxed because either can lead to the optimal route.
-- **Forward-only property:** It makes index order a valid topological order.
-- **Input preservation:** Both arrays are read without modification.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Process $i = 4$ ($f[4] = 8$):**
+  - Destination reached. Final cost is $f[4] = 8$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(n)$. Each index is pushed and popped at most once in each monotonic-stack pass. Graph construction is `O(n)` time and stores at most two edges per index.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Source Index $i$ | $nums[i]$ | Outgoing Edges $i \to j$ | Base Cost $f[i]$ | Target $j$ ($costs[j]$) | Candidate Cost $f[i] + costs[j]$ | Updated $f[j]$ |
+|---|---|---|---|---|---|---|
+| $0$ | $3$ | $2, 1$ | $0$ | $2$ ($6$) | $0 + 6 = 6$ | $f[2] = 6$ |
+| $0$ | $3$ | $2, 1$ | $0$ | $1$ ($7$) | $0 + 7 = 7$ | $f[1] = 7$ |
+| $1$ | $2$ | $2, 4$ | $7$ | $2$ ($6$) | $7 + 6 = 13$ | $f[2] = \min(6, 13) = 6$ |
+| $1$ | $2$ | $2, 4$ | $7$ | $4$ ($2$) | $7 + 2 = 9$ | $f[4] = 9$ |
+| $2$ | $4$ | $3, 4$ | $6$ | $3$ ($4$) | $6 + 4 = 10$ | $f[3] = 10$ |
+| $2$ | $4$ | $3, 4$ | $6$ | $4$ ($2$) | $6 + 2 = 8$ | $f[4] = \min(9, 8) = 8$ |
+| $3$ | $4$ | $4$ | $10$ | $4$ ($2$) | $10 + 2 = 12$ | $f[4] = \min(8, 12) = 8$ |
+| $4$ | $1$ | None | $8$ | - | Terminal vertex | $f[4] = 8$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Completeness of the Two-Edge Property
+Suppose an index $k > i$ is reachable from $i$ under Condition 1. By Condition 1, all intermediate indices $m \in (i, k)$ have $nums[m] < nums[i]$. If $k$ is not the first index with $nums \ge nums[i]$, let $j \in (i, k)$ be the first such index. Then $j$ is an intermediate between $i$ and $k$ with $nums[j] \ge nums[i]$, contradicting the definition of Condition 1 for $k$. Thus, no qualifying destination beyond $j$ exists for Condition 1. Symmetrical reasoning holds for Condition 2. Hence, keeping at most these two edges captures every valid jump.
+
+### DAG Topological Ordering Guarantee
+Since every jump strictly increases the index ($i < j$), the directed graph contains no cycles. The linear index sequence $0, 1, \dots, n-1$ is a valid topological ordering. Relaxing edges in ascending order of $i$ guarantees that when index $i$ is reached, $f[i]$ is the absolute minimum cost to reach $i$.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Full Dijkstra with Priority Queue
+Because the graph has $V = n$ and $E \le 2n$ and is strictly acyclic, using Dijkstra's algorithm adds an unnecessary $O(n \log n)$ factor. Simple forward DP over the topological order achieves strictly linear $O(n)$ time.
+
+### Edge Case: Two Elements ($n = 2$)
+When $n = 2$, either $nums[0] \le nums[1]$ (Condition 1) or $nums[0] > nums[1]$ (Condition 2). In either case, edge $0 \to 1$ exists with no intermediates. The result is simply $costs[1]$.
+
+### Edge Case: All Equal Elements
+When all elements in $nums$ are identical (e.g. $[5, 5, 5, 5]$), Condition 1 matches each element to its immediate right neighbor ($i \to i + 1$). The path steps through all vertices, summing costs sequentially.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Monotonic Stack Precomputation:** Each index is pushed and popped at most once during the NGE pass and once during the NSE pass, taking $O(n)$ time.
+- **Graph Construction:** At most $2n$ directed edges are stored, taking $O(n)$ time.
+- **DAG DP Relaxation:** Iterating through all $n$ vertices and relaxing at most $2$ outgoing edges per vertex requires $O(n)$ operations.
+- **Total Time Complexity:** $O(n)$, which is strictly linear and optimal.
+
+### Space Complexity
+- Storing adjacency list $g$ requires at most $2n$ edge entries.
+- Storing the DP array $f$ requires $n$ numbers.
+- Monotonic stacks hold at most $n$ indices.
+- **Auxiliary Space Complexity:** strictly $O(n)$.

@@ -2,122 +2,153 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"tables": {"Employees": [{"employee_id": 9, "name": "Hercy", "reports_to": null, "age": 43}, {"employee_id": 6, "name": "Alice", "reports_to": 9, "age": 41}, {"employee_id": 4, "name": "Bob", "reports_to": 9, "age": 36}, {"employee_id": 2, "name": "Winston", "reports_to": null, "age": 37}]}}`
-- **Required output:** `{"columns": ["employee_id", "name", "reports_count", "average_age"], "rows": [[9, "Hercy", 2, 39]]}`
+- **Input Table (`Employees`):**
+  | `employee_id` | `name` | `reports_to` | `age` |
+  |---|---|---|---|
+  | `9` | `Hercy` | `null` | `43` |
+  | `6` | `Alice` | `9` | `41` |
+  | `4` | `Bob` | `9` | `36` |
+  | `2` | `Winston` | `null` | `37` |
+- **Required Output:**
+  | `employee_id` | `name` | `reports_count` | `average_age` |
+  |---|---|---|---|
+  | `9` | `Hercy` | `2` | `39` |
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains root managers, reporting subordinates, and standalone individual contributors, demonstrating how self-joins isolate managerial relationships and aggregate subordinate attributes.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employees`
+We are given an `Employees` table with attributes:
+$$(\text{employee\_id} : \text{INT}, \text{name} : \text{VARCHAR}, \text{reports\_to} : \text{INT}, \text{age} : \text{INT})$$
+where `employee_id` is the primary key. An employee is formally classified as a **manager** if and only if at least one other employee directly reports to them ($\text{reports\_to} = \text{manager's employee\_id}$).
 
-The objective is to compute `{"columns": ["employee_id", "name", "reports_count", "average_age"], "rows": [[9, "Hercy", 2, 39]]}` from `{"tables": {"Employees": [{"employee_id": 9, "name": "Hercy", "reports_to": null, "age": 43}, {"employee_id": 6, "name": "Alice", "reports_to": 9, "age": 41}, {"employee_id": 4, "name": "Bob", "reports_to": 9, "age": 36}, {"employee_id": 2, "name": "Winston", "reports_to": null, "age": 37}]}}` while avoiding redundant calculations and unnecessary overhead.
+The goal is to report:
+1. `employee_id` and `name` of each manager
+2. `reports_count`: total count of direct subordinates
+3. `average_age`: mean age of direct subordinates rounded to the nearest integer
+4. Ordered ascending by `employee_id`
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+An inner self-join between reporting employees ($e_1$) and their corresponding manager ($e_2$) on $e_1.\text{reports\_to} = e_2.\text{employee\_id}$ naturally filters out non-managers, while grouping by manager ID computes both required aggregates directly.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Relational Role | Table Alias | Primary Key Match | Target Attributes Extracted |
+|---|---|---|---|
+| Subordinate (Report) | $e_1$ | Foreign key: $e_1.\text{reports\_to}$ | $e_1.\text{age}$ for counting and averaging |
+| Manager (Supervisor) | $e_2$ | Primary key: $e_2.\text{employee\_id}$ | $e_2.\text{employee\_id}, e_2.\text{name}$ for grouping and projection |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Inner Join Manager Filtering Theorem.**
+> Let $E$ be the set of all employee tuples. The inner equijoin:
+> $$J = E_{e_1} \bowtie_{e_1.\text{reports\_to} = e_2.\text{employee\_id}} E_{e_2}$$
+> satisfies:
+> 1. If an employee $m \in E$ has zero subordinates, no tuple in $E_{e_1}$ has $e_1.\text{reports\_to} = m.\text{employee\_id}$. Hence $m$ produces zero joined rows and is excluded automatically.
+> 2. If an employee has $k \ge 1$ subordinates, exactly $k$ joined rows exist with manager $e_2 = m$.
+> 3. Subordinates with $\text{reports\_to} = \text{NULL}$ evaluate to false under the join equality, discarding unmanaged root nodes from the report role.
+
+```mermaid
+flowchart TD
+    accTitle: Self-Join and Aggregation Workflow
+    accDescr: Pipeline showing self-join on reports_to = employee_id, grouping by manager, aggregate calculation, and ordering.
+    A["Employees Table (e1: Subordinates)"] --> C["Inner Join: e1.reports_to = e2.employee_id"]
+    B["Employees Table (e2: Managers)"] --> C
+    C --> D["Joined Stream of (Manager, Subordinate) Pairs"]
+    D --> E["Group By e2.employee_id, e2.name"]
+    E --> F["Compute COUNT(1) AS reports_count"]
+    E --> G["Compute ROUND(AVG(e1.age)) AS average_age"]
+    F --> H["Sort by employee_id ASC"]
+    G --> H
+    H --> I["Final Result Projection"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use two roles of the same employee table
+Given the 4 employee records:
+- $E_1: (9, \text{Hercy}, \text{null}, 43)$
+- $E_2: (6, \text{Alice}, 9, 41)$
+- $E_3: (4, \text{Bob}, 9, 36)$
+- $E_4: (2, \text{Winston}, \text{null}, 37)$
 
-Every direct-report relationship is stored in one employee row: `reports_to` contains that employee's manager ID. Manager identity and name are stored in another row of the same table.
+### Step 1: Execute Equijoin $e_1.\text{reports\_to} = e_2.\text{employee\_id}$
 
-The query therefore uses a self-join:
+We inspect each potential subordinate row $e_1$:
+1. $e_1 = (9, \text{Hercy})$: $\text{reports\_to} = \text{null} \implies$ No match in $e_2$.
+2. $e_1 = (6, \text{Alice})$: $\text{reports\_to} = 9 \implies$ Matches $e_2 = (9, \text{Hercy})$.
+   - Joined Tuple: $(e_2.\text{id}=9, e_2.\text{name}=\text{Hercy}, e_1.\text{id}=6, e_1.\text{age}=41)$
+3. $e_1 = (4, \text{Bob})$: $\text{reports\_to} = 9 \implies$ Matches $e_2 = (9, \text{Hercy})$.
+   - Joined Tuple: $(e_2.\text{id}=9, e_2.\text{name}=\text{Hercy}, e_1.\text{id}=4, e_1.\text{age}=36)$
+4. $e_1 = (2, \text{Winston})$: $\text{reports\_to} = \text{null} \implies$ No match in $e_2$.
 
-- `e1` represents reporting employees.
-- `e2` represents their managers.
-
-The condition `e1.reports_to = e2.employee_id` pairs each report with the employee row for that report's manager.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Intermediate joined relation $J$:
+| $e_2.\text{employee\_id}$ | $e_2.\text{name}$ | $e_1.\text{employee\_id}$ | $e_1.\text{age}$ |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"employee_id": 9, "name": "Hercy", "reports_to": null, "age": 43}, {"employee_id": 6, "name": "Alice", "reports_to": 9, "age": 41}, {"employee_id": 4, "name": "Bob", "reports_to": 9, "age": 36}, {"employee_id": 2, "name": "Winston", "reports_to": null, "age": 37}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $9$ | `Hercy` | $6$ | $41$ |
+| $9$ | `Hercy` | $4$ | $36$ |
 
 ---
 
-### Step 2: Why an inner join returns only managers
+### Step 2: Group By Manager and Compute Aggregates
 
-An employee is a manager for this problem only if at least one other employee reports directly to them. Such an employee appears as `e2` in at least one joined pair.
+Grouping by $(e_2.\text{employee\_id}, e_2.\text{name})$ isolates a single partition:
+- Key: $(9, \text{Hercy})$
+- Subordinate ages: $\{41, 36\}$
 
-Employees with no reports produce no joined rows and are absent automatically. Employees whose `reports_to` is null also do not match a manager row as `e1`, which is correct because they are not direct reports of anyone.
-
-No separate `HAVING COUNT > 0` is needed because every output group is created from at least one successful join.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Subordinate Count:**
+   $$\text{reports\_count} = \text{COUNT}(1) = 2$$
+2. **Mean Age Calculation:**
+   $$\text{AVG}(e_1.\text{age}) = \frac{41 + 36}{2} = \frac{77}{2} = 38.5$$
+3. **Nearest Integer Rounding:**
+   $$\text{ROUND}(38.5) = 39$$
 
 ---
 
-### Step 3: Group report rows by manager
+### Step 3: Project and Order
 
-`GROUP BY 1` groups by the first select expression, `e2.employee_id`. Since `employee_id` is unique, each group corresponds to one manager.
-
-`e2.name` is functionally determined by that unique employee ID. MySQL can project the manager's name alongside the grouped key without creating separate groups for duplicate names. Two managers may share a name but remain separate because their IDs differ.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["employee_id", "name", "reports_count", "average_age"], "rows": [[9, "Hercy", 2, 39]]}` |
+With only one manager group present, sorting by $\text{employee\_id} = 9$ trivially maintains order.
+Final tuple: `(9, "Hercy", 2, 39)`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Stage | Operation | Input / Condition | Resulting Tuples | Status |
+|---|---|---|---|---|
+| Join Filter | Scan $e_1$ | Evaluate $e_1.\text{reports\_to} \text{ IS NOT NULL}$ | Rows for Alice and Bob retained | Filter applied |
+| Join Match | Match $e_2$ | $e_1.\text{reports\_to} = e_2.\text{employee\_id}$ | $(9, \text{Hercy}, 6, 41)$, $(9, \text{Hercy}, 4, 36)$ | $2$ joined records |
+| Grouping | Group by Manager | Key: $(9, \text{Hercy})$ | 1 group formed | Group formed |
+| Aggregation | $\text{COUNT}$ & $\text{ROUND}(\text{AVG})$ | $\text{count} = 2, \text{round}(38.5) = 39$ | $(9, \text{Hercy}, 2, 39)$ | Aggregates computed |
+| Finalization | Sort by `employee_id` ASC | Single record with ID $9$ | Output table produced | Complete |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Feature | Expected Behavior | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"employee_id": 9, "name": "Hercy", "reports_to": null, "age": 43}, {"employee_id": 6, "name": "Alice", "reports_to": 9, "age": 41}, {"employee_id": 4, "name": "Bob", "reports_to": 9, "age": 36}, {"employee_id": 2, "name": "Winston", "reports_to": null, "age": 37}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["employee_id", "name", "reports_count", "average_age"], "rows": [[9, "Hercy", 2, 39]]}` | Verified |
+| No Managers in Company | All employees have $\text{reports\_to} = \text{null}$ | Empty result set | Equijoin yields 0 rows; returns empty table cleanly. |
+| Multi-Level Hierarchy | Employee A manages B, B manages C | Both A and B appear in output | A appears with report B; B appears with report C; distinct group per manager. |
+| Half-Integer Rounding | Average age evaluates to $X.5$ | Rounds to nearest integer ($X + 1$) | Relational $\text{ROUND}(\dots)$ standard round-half-up handles fractional age correctly. |
+| Single Subordinate | Manager has exactly 1 direct report | Count is $1$, average is report's age | $\text{AVG}(a) = a$, $\text{ROUND}(a) = a$, $\text{COUNT} = 1$. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Why Outer Join is Not Used:**
+   Using a `LEFT JOIN` on $e_2 \bowtie e_1$ would keep employees who have 0 reports (producing NULLs for reports). The definition explicitly defines a manager as having at least 1 direct report. The inner join naturally enforces this restriction at zero extra cost.
+2. **Subordinate Age Integrity:**
+   The average is computed strictly over $e_1.\text{age}$ (the reporting employees' ages), completely excluding the manager's own age ($e_2.\text{age}$), fulfilling the contract requirement.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Group by `reports_to` then join:** Aggregate report counts and ages first, then join the smaller manager summary to Employees for names. It is logically equivalent.
-- **Correlated subqueries:** Count and average reports separately for every employee. Without good indexing, this repeats work.
-- **Left self-join:** It would include nonmanagers unless filtered with `HAVING COUNT(e1.employee_id)>0`; the inner join naturally excludes them.
-- **One direct report:** Count is one and average age equals that report's age.
-- **Several hierarchy levels:** Only rows naming the manager directly enter the group.
-- **Top-level employee:** A null `reports_to` does not make someone a report, but they can still appear as a manager through other rows.
-- **Same manager names:** Unique IDs keep their groups separate.
-- **Manager's own age:** It is excluded because averaging uses `e1.age`.
-- **Half-value average:** MySQL `ROUND` produces the required nearest integer for positive ages.
-- **No reports:** The employee has no joined group and is not returned.
-- **Invalid manager reference outside the stated relational model:** An inner join would omit that reporting row because no manager identity exists.
-- **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 1` rely on manager ID remaining the first select expression.
-- **Functional dependency:** Manager name is fixed by unique employee ID, allowing it to be selected with that group key.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(M)$. Let $E$ be the number of employee rows and $M$ the number of managers with reports. With a hash lookup or index on the unique manager ID, the self-join and aggregation can process rows in expected $O(E)$ time while storing $O(M)$ group states, matching the manifest.
-- **Auxiliary Space Complexity:** $O(M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$ where $N$ is the number of rows in `Employees`. Building the hash index for the equijoin takes $\mathcal{O}(N)$ time. Aggregation takes $\mathcal{O}(N)$ time, and sorting $M \le N$ managers by ID takes $\mathcal{O}(M \log M)$ time.
+- **Space Complexity:** $\mathcal{O}(N)$ auxiliary working memory required by the query planner for hash join buckets and group accumulation tables.

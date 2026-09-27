@@ -1,153 +1,218 @@
 # Guided Example: The Skyline Problem
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step sweep-line critical event generation, priority queue maximum height tracking, and lazy boundary eviction on representative multi-building silhouettes:
 
-- **Input:** `{"buildings": [[0, 2, 3], [2, 5, 3]]}`
-- **Required output:** `[[0, 3], [5, 0]]`
+- **Input:** $\text{buildings} = [[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]$
+- **Required output:** $[[2, 10], [3, 15], [7, 12], [12, 0], [15, 10], [20, 8], [24, 0]]$
+- **Touching Buildings Instance:** $\text{buildings} = [[0, 2, 3], [2, 5, 3]] \implies [[0, 3], [5, 0]]$ (Contiguous equal-height segments merge into one)
+- **Nested Building Instance:** Shorter building completely enclosed under a taller building produces zero additional key points
+- **Separated Islands Instance:** Buildings separated by a gap return to ground level $[x_{\text{end}}, 0]$ before rising again
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates geometric sweep-line algorithms, explains event sorting conventions that prevent spurious zero-height drops when buildings touch, implements lazy heap deletion of expired right boundaries ($R \le x$), and achieves strictly $O(N \log N)$ runtime.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A city's **skyline** is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Given the locations and heights of all the buildings, return *the **skyline** formed by these buildings collectively*.
+Given 5 rectangular buildings $[L_i, R_i, H_i]$:
+1. $B_1 = [2, 9, 10]$
+2. $B_2 = [3, 7, 15]$
+3. $B_3 = [5, 12, 12]$
+4. $B_4 = [15, 20, 10]$
+5. $B_5 = [19, 24, 8]$
 
-The objective is to compute `[[0, 3], [5, 0]]` from `{"buildings": [[0, 2, 3], [2, 5, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+Extract the **skyline key points**: the coordinates $[x, y]$ marking the top-left vertex of each horizontal segment on the outer visible silhouette.
+When viewed collectively:
+- At $x = 2$: Building 1 starts, raising the skyline from $0$ to $10 \implies [2, 10]$.
+- At $x = 3$: Building 2 starts, raising the skyline from $10$ to $15 \implies [3, 15]$.
+- At $x = 5$: Building 3 starts with height $12$, but Building 2 ($H = 15$) is taller $\implies$ No change!
+- At $x = 7$: Building 2 ends. The skyline drops to Building 3's height ($12$) $\implies [7, 12]$.
+- At $x = 9$: Building 1 ends ($H = 10$). Building 3 ($H = 12$) is still active $\implies$ No change!
+- At $x = 12$: Building 3 ends. No buildings active $\implies$ Drops to ground level $0 \implies [12, 0]$.
+- At $x = 15$: Building 4 starts $\implies [15, 10]$.
+- At $x = 19$: Building 5 starts ($H = 8$). Building 4 ($H = 10$) is taller $\implies$ No change!
+- At $x = 20$: Building 4 ends. Skyline drops to Building 5 ($H = 8$) $\implies [20, 8]$.
+- At $x = 24$: Building 5 ends $\implies [24, 0]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Skyline: $[[2, 10], [3, 15], [7, 12], [12, 0], [15, 10], [20, 8], [24, 0]]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Sweep-Line Event Model
+The visible skyline height can change **only at critical $x$-coordinates**: the left edge ($L$) where a building starts or the right edge ($R$) where it ends.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each building $[L, R, H]$, generate two events:
+1. **Left Boundary Event:** $(L, -H, R)$ (Using negative height $-H$ sorts taller buildings first and distinguishes start events from end events).
+2. **Right Boundary Event:** $(R, 0, 0)$ (Signaling an evaluation point at coordinate $R$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Event Sorting Tie-Breaker Invariants:
+When sorting events by coordinate $x$:
+- If two left edges share the same $x$: process the **taller building first** (more negative $-H$), establishing the true peak immediately.
+- If two right edges share the same $x$: process the shorter building first.
+- If a left edge and a right edge share the same $x$: process the **left edge first** (since $-H < 0$), ensuring that continuous or touching buildings do not falsely dip to 0!
+
+### Priority Queue Max-Height Tracking (with Lazy Deletion):
+Store active building tuples $(-\text{height}, \text{right})$ in a min-heap:
+- Ground baseline: always keep $(0, \infty)$ in the heap.
+- At event coordinate $x$:
+  - If it is a start event: push $(-H, R)$ into the heap.
+  - **Lazy Eviction:** Pop all elements from the top of the heap whose right boundary has expired ($\text{right} \le x$).
+  - Measure the current maximum visible height: $\text{curr\_height} = -\text{heap}[0][0]$.
+  - If $\text{curr\_height} \ne \text{prev\_height}$:
+    A key point is formed! Record $[x, \text{curr\_height}]$ and update $\text{prev\_height} \leftarrow \text{curr\_height}$.
+
+> **Invariant.** At any coordinate $x$, after evicting all expired buildings from the heap top, $-\text{heap}[0][0]$ strictly equals the maximum height of all buildings covering the half-open interval $[x, x + \epsilon)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A skyline can change only at a building boundary
+We trace the sweep-line across the events of $\text{buildings}$:
 
-Between two consecutive building edges, the set of rectangles covering the
-ground does not change. Therefore the visible maximum height is constant on
-that open horizontal interval. A key point can occur only at some building's
-left edge, where a rectangle begins, or right edge, where one stops
-contributing.
-
-The exact solution collects both coordinates from every building in `lines`
-and sorts that list. It deliberately keeps duplicate coordinates. Processing a
-coordinate more than once is harmless because the output logic suppresses an
-unchanged height; retaining duplicates avoids a separate set construction.
-There are only $2n$ entries for $n$ buildings.
-
-The input guarantee that `buildings` is already sorted by non-decreasing left
-coordinate is essential to the `city` pointer. As the sweep visits boundary
-coordinates from left to right, `city` identifies the first building not yet
-inserted into the active priority queue.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"buildings": [[0, 2, 3], [2, 5, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initial State:
+- Heap contains ground level: $[(0, \infty)]$.
+- $\text{prev\_height} = 0$.
+- $\text{skyline} = []$.
 
 ---
 
-### Step 2: What it means for a building to be active
-
-A building `[left, right, height]` contributes at coordinate $x$ exactly when
-
-$$
-\texttt{left} \le x < \texttt{right}.
-$$
-
-The left edge counts, so every building whose left coordinate is at most the
-current `line` must be inserted before measuring the height there. The right
-edge does not count, so a building whose right coordinate is at most `line`
-must be ignored before measuring.
-
-The loop
-`while city < n and buildings[city][0] <= line` inserts all newly started
-buildings. Since the building list is left-sorted, once the first not-yet-added
-building starts after `line`, every later one does too, and the loop can stop.
-Each building is inserted exactly once, and `city` never moves backward.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Event $x = 2$ (Start $B_1$, $H=10, R=9$):
+- Push $(-10, 9)$ into heap.
+- Heap top: $(-10, 9) \implies \text{curr\_height} = 10$.
+- $10 \ne 0 \implies$ **Emit Key Point $[2, 10]$**.
+- $\text{prev\_height} = 10$.
 
 ---
 
-### Step 3: Use a min-priority queue as a max-height structure
+### Event $x = 3$ (Start $B_2$, $H=15, R=7$):
+- Push $(-15, 7)$ into heap.
+- Heap top: $(-15, 7) \implies \text{curr\_height} = 15$.
+- $15 \ne 10 \implies$ **Emit Key Point $[3, 15]$**.
+- $\text{prev\_height} = 15$.
 
-Python's `PriorityQueue` returns the lexicographically smallest stored entry.
-The source stores each building as
-`[-height, left, right]`. A taller positive height has a more negative first
-field, so the smallest entry corresponds to the greatest height. Thus
-`-pq.queue[0][0]` is the current visible height once expired entries at the top
-have been removed.
+---
 
-The `left` and `right` fields break ties between equal heights. Their exact tie
-order does not affect the visible maximum; the right coordinate is also needed
-to decide whether the top building has ended. The source peeks through
-`pq.queue[0]`, the internal list used by `PriorityQueue`, rather than calling a
-public peek method because that class does not expose one.
+### Event $x = 5$ (Start $B_3$, $H=12, R=12$):
+- Push $(-12, 12)$ into heap.
+- Heap top: $(-15, 7) \implies \text{curr\_height} = 15$.
+- $15 == 15 \implies$ No change. No key point emitted.
 
-If no active building remains, the visible height is ground level 0.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 3], [5, 0]]` |
+### Event $x = 7$ (Evaluation / End $B_2$):
+- Evict expired buildings: $(-15, 7)$ has $R = 7 \le 7 \implies$ Pop!
+- New heap top: $(-12, 12) \implies \text{curr\_height} = 12$.
+- $12 \ne 15 \implies$ **Emit Key Point $[7, 12]$**.
+- $\text{prev\_height} = 12$.
+
+---
+
+### Event $x = 9$ (Evaluation / End $B_1$):
+- Heap top is $(-12, 12)$ with $R = 12 > 9$ (Active).
+- $(-10, 9)$ is buried inside the heap; lazy deletion skips it until it surfaces.
+- $\text{curr\_height} = 12 == 12 \implies$ No change.
+
+---
+
+### Event $x = 12$ (Evaluation / End $B_3$):
+- Evict expired buildings:
+  - $(-12, 12)$ has $R = 12 \le 12 \implies$ Pop!
+  - $(-10, 9)$ has $R = 9 \le 12 \implies$ Pop!
+- New heap top: $(0, \infty) \implies \text{curr\_height} = 0$.
+- $0 \ne 12 \implies$ **Emit Key Point $[12, 0]$**.
+- $\text{prev\_height} = 0$.
+
+---
+
+### Event $x = 15$ (Start $B_4$, $H=10, R=20$):
+- Push $(-10, 20)$.
+- Heap top: $(-10, 20) \implies \text{curr\_height} = 10$.
+- $10 \ne 0 \implies$ **Emit Key Point $[15, 10]$**.
+- $\text{prev\_height} = 10$.
+
+---
+
+### Event $x = 19$ (Start $B_5$, $H=8, R=24$):
+- Push $(-8, 24)$.
+- Heap top: $(-10, 20) \implies \text{curr\_height} = 10 == 10$. No change.
+
+---
+
+### Event $x = 20$ (Evaluation / End $B_4$):
+- Evict $(-10, 20)$ with $R = 20 \le 20 \implies$ Pop!
+- New heap top: $(-8, 24) \implies \text{curr\_height} = 8$.
+- $8 \ne 10 \implies$ **Emit Key Point $[20, 8]$**.
+- $\text{prev\_height} = 8$.
+
+---
+
+### Event $x = 24$ (Evaluation / End $B_5$):
+- Evict $(-8, 24)$ with $R = 24 \le 24 \implies$ Pop!
+- New heap top: $(0, \infty) \implies \text{curr\_height} = 0$.
+- $0 \ne 8 \implies$ **Emit Key Point $[24, 0]$**.
+- $\text{prev\_height} = 0$.
+
+All events processed.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"buildings": [[0, 2, 3], [2, 5, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 3], [5, 0]]` | Verified |
+```text
+Buildings:
+B1: [2, 9, 10]
+B2: [3, 7, 15]
+B3: [5, 12, 12]
+B4: [15, 20, 10]
+B5: [19, 24, 8]
+
+Events Chronology:
+x = 2:  Add B1(10) -> max: 10 -> [2, 10]
+x = 3:  Add B2(15) -> max: 15 -> [3, 15]
+x = 5:  Add B3(12) -> max: 15 -> (no change)
+x = 7:  End B2(15) -> max: 12 -> [7, 12]
+x = 9:  End B1(10) -> max: 12 -> (no change)
+x = 12: End B3(12) -> max: 0  -> [12, 0]
+x = 15: Add B4(10) -> max: 10 -> [15, 10]
+x = 19: Add B5(8)  -> max: 10 -> (no change)
+x = 20: End B4(10) -> max: 8  -> [20, 8]
+x = 24: End B5(8)  -> max: 0  -> [24, 0]
+```
+
+| Event $x$ | Event Trigger | Active Max-Heap Top | New Visible Height | Previous Height | Key Point Emitted |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| **2** | Start $B_1$ ($H=10$) | $(10, 9)$ | 10 | 0 | **`[2, 10]`** |
+| **3** | Start $B_2$ ($H=15$) | $(15, 7)$ | 15 | 10 | **`[3, 15]`** |
+| 5 | Start $B_3$ ($H=12$) | $(15, 7)$ | 15 | 15 | None |
+| **7** | Evict $B_2$ ($R=7$) | $(12, 12)$ | 12 | 15 | **`[7, 12]`** |
+| 9 | End $B_1$ ($R=9$) | $(12, 12)$ | 12 | 12 | None |
+| **12** | Evict $B_3$ ($R=12$) | $(0, \infty)$ | 0 | 12 | **`[12, 0]`** |
+| **15** | Start $B_4$ ($H=10$) | $(10, 20)$ | 10 | 0 | **`[15, 10]`** |
+| 19 | Start $B_5$ ($H=8$) | $(10, 20)$ | 10 | 10 | None |
+| **20** | Evict $B_4$ ($R=20$) | $(8, 24)$ | 8 | 10 | **`[20, 8]`** |
+| **24** | Evict $B_5$ ($R=24$) | $(0, \infty)$ | 0 | 8 | **`[24, 0]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A key point is emitted at coordinate $x$ if and only if the maximum visible building height changes from $\text{prev\_height}$ to $\text{curr\_height}$. The event ordering sorts start events before end events at the same coordinate, which guarantees that touching buildings of equal height maintain continuity without producing an erroneous zero-height dip.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since building heights are piecewise constant on intervals between boundary coordinates, any change in the skyline contour must occur at an endpoint $L_i$ or $R_i$. Because all $2N$ boundary events are processed in sorted order, no contour transition can be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`heapq` instead of `PriorityQueue`:** A plain heap list provides the same negative-height lazy-deletion algorithm with less synchronization overhead. `PriorityQueue` is thread-safe but the exact source peeks into its internal `.queue` list, so it already relies on implementation details.
-- **Explicit start/end events with a multiset:** Add a height at every left edge and remove it at every right edge, then read the maximum. A balanced multiset supports arbitrary deletion but Python's standard library lacks a direct built-in version.
-- **Divide and conquer:** Recursively compute skylines for building halves and merge two contour lists by x-coordinate while tracking both current heights. It also achieves $O(n\log n)$ time but requires careful equal-coordinate and redundant-height handling.
-- **Coordinate compression with direct range updates:** Evaluate height on intervals between unique edges. A naive update touches many intervals per building and can degrade to $O(n^2)$ unless paired with a more advanced structure.
-- **Several starts at one coordinate:** All are inserted before height measurement, so only their maximum can create the key point.
-- **Several ends at one coordinate:** Expired top entries are repeatedly removed. A shorter expired entry may stay buried, but it cannot affect the current maximum and will be removed if it later surfaces.
-- **A start and an end at the same coordinate:** The ending building is excluded and the starting building is included at that x, matching `[left, right)` coverage and avoiding a false intermediate gap.
-- **One building:** Its left edge produces `[left,height]`; its right edge expires the only heap entry and produces `[right,0]`.
-- **Nested buildings:** A shorter nested building never changes the contour while covered by a taller one. Lazy retention handles it without unnecessary output.
-- **Equal-height touching or overlapping buildings:** The height-change check merges them into one continuous horizontal segment, as the note requires.
-- **Gaps between groups:** When the previous active heap empties, a zero key point begins the ground segment. A later left edge raises the height again and creates another point.
-- **Large coordinates and heights:** The algorithm compares Python integers and negates heights without overflow. It never allocates memory proportional to coordinate magnitude.
-- **Input ordering:** The `city` pointer is correct because the reference guarantees non-decreasing left edges. With unsorted buildings, the method would need to sort them by left coordinate first.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Touching Buildings of Equal Height:** For $[[0, 2, 3], [2, 5, 3]]$, processing the start of the second building before the end of the first maintains height $3$ across $x = 2$, correctly emitting $[[0, 3], [5, 0]]$ without an intermediate $[2, 0]$.
+- **Immediate Eager Heap Deletion:** Deleting arbitrary elements from a binary heap takes $O(N)$ time, degrading total runtime to $O(N^2)$. Lazy deletion only removes expired elements when they reach the top of the heap, ensuring $O(\log N)$ amortized cost per operation.
+- **Adjacent Duplicate Points:** Consecutive segments of equal height must not generate redundant points. Verifying $\text{curr\_height} \ne \text{prev\_height}$ automatically filters out redundant horizontal markers.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of buildings. Collecting `lines` takes $O(n)$ time and
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log N)$, where $N$ is the number of buildings. Creating and sorting the $2N$ events takes $O(N \log N)$ time. Each building is pushed into the heap once and popped at most once ($2N$ heap operations $\times O(\log N)$). Total runtime is strictly $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the event list and the priority queue.

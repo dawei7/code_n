@@ -10,7 +10,7 @@ A mapping of digits to letters (just like on the telephone buttons) is given bel
 
 **Inputs**
 
-- `digits`: A non-empty string of telephone digits from `2` through `9`.
+- `digits`: A string of telephone digits from `2` through `9` (may be empty).
 
 **Return value**
 
@@ -28,8 +28,13 @@ Return all strings formed by selecting one mapped letter for each digit, in any 
 - **Input:** $digits = "2"$
 - **Output:** `["a","b","c"]`
 
+#### Example 3
+
+- **Input:** $digits = ""$
+- **Output:** `[]`
+
 ### 4. Constraints
 
-- $1 \le \text{digits.length} \le 4$
+- $0 \le \text{digits.length} \le 4$
 
 - $\text{digits}[i]$ is a digit in the range `['2', '9']`.

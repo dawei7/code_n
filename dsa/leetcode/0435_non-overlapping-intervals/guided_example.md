@@ -1,99 +1,194 @@
 # Guided Example: Non-overlapping Intervals
 
-We derive and execute the Array, Dynamic Programming, Greedy, Sorting recurrence on a representative problem instance.
+We trace the step-by-step Interval Scheduling greedy reduction, end-time ascending sort ordering, compatibility frontier tracking ($start \ge pre$), greedy exchange argument, and minimum removal calculation on representative interval sets:
 
-- **Input:** `{"intervals": [[1, 2], [2, 3], [3, 4], [1, 3]]}`
+- **Input:** $intervals = [[1, 2], [2, 3], [3, 4], [1, 3]]$
 - **Required output:** `1`
+  - Total intervals: $N = 4$
+  - Step 1 (Sort ascending by end time $r$):
+    - Interval A: $[1, 2]$ (end = $2$)
+    - Interval B: $[1, 3]$ (end = $3$)
+    - Interval C: $[2, 3]$ (end = $3$)
+    - Interval D: $[3, 4]$ (end = $4$)
+  - Step 2 (Greedy selection of compatible intervals):
+    - Frontier initialization: $pre = -\infty, \; kept = 0$
+    - Evaluate $[1, 2]$: $start = 1 \ge -\infty \implies$ **Retained**. Update $pre \leftarrow 2, kept \leftarrow 1$
+    - Evaluate $[1, 3]$: $start = 1 < 2$ (Overlaps with $[1, 2]$) $\implies$ **Removed**. $kept$ stays $1$
+    - Evaluate $[2, 3]$: $start = 2 \ge 2$ (Touches boundary, non-overlapping) $\implies$ **Retained**. Update $pre \leftarrow 3, kept \leftarrow 2$
+    - Evaluate $[3, 4]$: $start = 3 \ge 3 \implies$ **Retained**. Update $pre \leftarrow 4, kept \leftarrow 3$
+  - Step 3 (Duality subtraction):
+    $$
+    \text{Min Removals} = N - kept = 4 - 3 = \mathbf{1}
+    $$
+- **All Overlapping Identical Intervals:** $intervals = [[1, 2], [1, 2], [1, 2]] \implies kept = 1 \implies \text{Removals} = 3 - 1 = \mathbf{2}$
+- **Already Non-Overlapping Set:** $intervals = [[1, 2], [2, 3]] \implies kept = 2 \implies \text{Removals} = 2 - 2 = \mathbf{0}$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates the classical Interval Scheduling duality, proves by greedy exchange why sorting by earliest finish time strictly maximizes the number of mutually compatible intervals, and derives $O(N \log N)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Non-overlapping Intervals** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given a collection of intervals $intervals = [[1, 2], [2, 3], [3, 4], [1, 3]]$:
+Find the **minimum number of intervals** you need to remove to make the rest of the intervals non-overlapping.
+Intervals sharing only an endpoint (such as $[1, 2]$ and $[2, 3]$) are considered non-overlapping.
+
+```text
+Intervals along the Number Line:
+  [1, 2]:  |---|
+  [1, 3]:  |-------|          <- Conflict with [1, 2] and [2, 3]
+  [2, 3]:      |---|
+  [3, 4]:          |---|
+
+Optimal Retention: [1, 2], [2, 3], [3, 4] (3 intervals kept)
+Minimum Removals: 4 - 3 = 1 interval removed ([1, 3])
+```
+
+### The Complementary Duality Principle
+Minimizing the number of removed intervals is mathematically equivalent to **maximizing the number of mutually non-overlapping intervals kept**:
+$$
+\min(\text{Removals}) = N - \max(\text{Mutually Compatible Intervals Kept})
+$$
+This reformulates the problem into the classic **Interval Scheduling Problem**, which is solved optimally by the earliest-deadline-first greedy strategy.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### 1. Earliest Finish Time Greedy Policy:
+To maximize the number of intervals we can accommodate:
+- We always select the available compatible interval that **finishes earliest** (smallest end coordinate $r$).
+- **Exchange Argument Proof:**
+  Suppose an optimal solution $OPT$ chooses an interval $I_{first}$ that ends at $r_{opt}$.
+  Our greedy strategy chooses $I_{greedy}$ that ends at $r_{greedy} \le r_{opt}$.
+  Because $r_{greedy} \le r_{opt}$, replacing $I_{first}$ with $I_{greedy}$ cannot overlap with any subsequent interval in $OPT$ that began after $r_{opt}$.
+  Thus, the greedy choice leaves at least as much remaining time as any alternative choice, guaranteeing global optimality.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### 2. Compatibility Test Invariant:
+Let $pre$ be the end time of the most recently retained interval:
+- An interval $[l, r]$ is compatible if and only if:
+  $$
+  l \ge pre
+  $$
+- If $l \ge pre$, we retain $[l, r]$ and advance $pre \leftarrow r$.
+- If $l < pre$, $[l, r]$ conflicts with the current active set and must be eliminated.
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Greedy Invariant.** At every step, the set of selected intervals represents the maximum possible count of mutually disjoint intervals that can fit within $[-\infty, pre]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
-
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+We trace $intervals = [[1, 2], [2, 3], [3, 4], [1, 3]]$ ($N = 4$):
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Sort by End Time
+Sort all intervals ascending by their end coordinate $r$:
+$$
+\text{Sorted List: } [[1, 2], [1, 3], [2, 3], [3, 4]]
+$$
+Initialize:
+$$
+pre = -\infty, \quad kept = 0
+$$
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Evaluate $[1, 2]$
+- Start: $l = 1$, End: $r = 2$.
+- Compatibility check:
+  $$
+  1 \ge -\infty \quad (\text{True})
+  $$
+- Action: Retain $[1, 2]$.
+  $$
+  kept \leftarrow 0 + 1 = 1, \quad pre \leftarrow 2
+  $$
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 3: Evaluate $[1, 3]$
+- Start: $l = 1$, End: $r = 3$.
+- Compatibility check:
+  $$
+  1 \ge 2 \quad (\text{False! Overlap detected with previous interval})
+  $$
+- Action: Eliminate $[1, 3]$.
+  $$
+  kept \text{ stays } 1, \quad pre \text{ remains } 2
+  $$
+
+---
+
+### Step 4: Evaluate $[2, 3]$
+- Start: $l = 2$, End: $r = 3$.
+- Compatibility check:
+  $$
+  2 \ge 2 \quad (\text{True! Endpoints touching is allowed})
+  $$
+- Action: Retain $[2, 3]$.
+  $$
+  kept \leftarrow 1 + 1 = 2, \quad pre \leftarrow 3
+  $$
+
+---
+
+### Step 5: Evaluate $[3, 4]$
+- Start: $l = 3$, End: $r = 4$.
+- Compatibility check:
+  $$
+  3 \ge 3 \quad (\text{True})
+  $$
+- Action: Retain $[3, 4]$.
+  $$
+  kept \leftarrow 2 + 1 = 3, \quad pre \leftarrow 4
+  $$
+
+---
+
+### Step 6: Compute Minimum Removals
+Total intervals kept: $kept = 3$.
+$$
+\text{Removed Count} = N - kept = 4 - 3 = \mathbf{1}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Candidate Interval $[l, r]$ | Finish Time $r$ | Prior Finish $pre$ | Condition $l \ge pre$ | Decision | Retained Count | New $pre$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$[1, 2]$** | $2$ | $-\infty$ | $1 \ge -\infty$ (**True**) | **Retain** | $1$ | $2$ |
+| **$[1, 3]$** | $3$ | $2$ | $1 \ge 2$ (False) | **Remove** | $1$ | $2$ |
+| **$[2, 3]$** | $3$ | $2$ | $2 \ge 2$ (**True**) | **Retain** | $2$ | $3$ |
+| **$[3, 4]$** | $4$ | $3$ | $3 \ge 3$ (**True**) | **Retain** | $3$ | $4$ |
+| **Final** | — | — | — | **Result: $4 - 3 = \mathbf{1}$** | — | — |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
-
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+- **Single Interval ($intervals = [[1, 2]]$):** $N = 1, kept = 1 \implies 1 - 1 = \mathbf{0}$.
+- **All Duplicates ($[[1, 2], [1, 2], [1, 2]]$):** First interval retained, subsequent two fail $1 \ge 2 \implies 3 - 1 = \mathbf{2}$ removed.
+- **Touching Endpoints ($[[1, 2], [2, 3], [3, 4]]$):** Boundary condition $l \ge pre$ permits touching endpoints $\implies 0$ removed.
+- **Negative Coordinates ($[[-10, -5], [-6, -2], [-4, 0]]$):** Standard end-time ordering correctly sequences negative values without modification.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Sorting by Start Time Instead of End Time:** Sorting by start time causes greedy choices to pick long intervals that start early (e.g. $[0, 10]$ before $[1, 2]$ and $[2, 3]$), eliminating multiple viable future intervals. Sorting by *end time* is strictly required.
+- **Strict Inequality on Touching Endpoints:** Using `l > pre` instead of `l >= pre` treats touching intervals like $[1, 2]$ and $[2, 3]$ as overlapping, discarding valid non-overlapping configurations.
+- **Dynamic Array Removal ($O(N^2)$):** Physically mutating or deleting items from a list takes $O(N)$ per deletion. Simply keeping a running count of retained intervals completes in $O(1)$ auxiliary memory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:**
+  - Sorting $N$ intervals by end time takes $O(N \log N)$ time.
+  - The linear greedy scan inspects each interval exactly once in $O(1)$ time.
+  - Total Time: $\mathcal{O}(N \log N)$. For $N = 10^5$, sorting takes $\approx 1.7 \times 10^6$ operations, executing in under 20 ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ beyond the in-place sort storage (or $\mathcal{O}(N)$ depending on language sorting implementations).

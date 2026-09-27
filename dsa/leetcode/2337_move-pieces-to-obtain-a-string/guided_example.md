@@ -1,124 +1,153 @@
 # Guided Example: Move Pieces to Obtain a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"start": "_L__R__R_", "target": "L______RR"}`
-- **Required output:** `true`
+We are given two strings, `start` and `target`, both of length $n$, consisting only of the characters `'L'`, `'R'`, and `'_'`:
+- `'L'` represents a piece that can move to the left into an immediately adjacent blank space `'_'`.
+- `'R'` represents a piece that can move to the right into an immediately adjacent blank space `'_'`.
+- `'_'` represents an empty cell.
+- Pieces cannot jump over one another; their relative ordering along the string is strictly preserved.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must determine if `start` can be transformed into `target` using any number of valid moves. Return `true` if possible, and `false` otherwise.
 
----
+Consider the representative instance:
+- `start = "_L__R__R_"`
+- `target = "L______RR"`
 
-## 1. Instance & Teaching Goal
+Both strings have length $9$.
+In `start`:
+- `'L'` is at index 1.
+- First `'R'` is at index 4.
+- Second `'R'` is at index 7.
 
-You are given two strings `start` and `target`, both of length `n`. Each string consists **only** of the characters `'L'`, `'R'`, and `'_'` where:
+In `target`:
+- `'L'` is at index 0.
+- First `'R'` is at index 7.
+- Second `'R'` is at index 8.
 
-The objective is to compute `true` from `{"start": "_L__R__R_", "target": "L______RR"}` while avoiding redundant calculations and unnecessary overhead.
+The `'L'` at index 1 moves left to index 0. The first `'R'` at index 4 moves right to index 7, and the second `'R'` at index 7 moves right to index 8. None of the pieces collide or cross each other. Transformation is valid, returning `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart TD
+    accTitle: Unidirectional Movement Invariant Validation
+    accDescr: Sequential alignment of non-blank characters verifying sequence identity and directional feasibility constraints.
+    Extract["Extract non-blank tokens with indices:<br/>start: [('L', 1), ('R', 4), ('R', 7)]<br/>target: [('L', 0), ('R', 7), ('R', 8)]"] --> CheckCount{"Equal token counts?"}
+    CheckCount -->|"No"| Fail["Return False"]
+    CheckCount -->|"Yes"| MatchTokens["Pairwise check for each token k:"]
 
----
+    MatchTokens --> MatchChar{"char_start == char_target?"}
+    MatchChar -->|"No"| Fail
+    MatchChar -->|"Yes"| DirCheck{"Check Directional Constraints:<br/>If 'L': i >= j (can only move left)<br/>If 'R': i <= j (can only move right)"}
+    DirCheck -->|"Violated"| Fail
+    DirCheck -->|"Satisfied"| Next{"More tokens?"}
+    Next -->|"Yes"| MatchTokens
+    Next -->|"No"| Success["Return True"]
+```
 
-## 2. Conceptual Foundation & Invariants
+## 2. Mathematical & Algorithmic Principles
 
-We maintain the core conceptual parameters and state variables:
+Because pieces cannot bypass each other, the string acts as a 1D corridor with strict collision dynamics.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Invariant 1: Topological Sequence Preservation
+Let $\operatorname{strip}(S)$ denote the subsequence of non-blank characters in $S$.
+Because moves exchange a piece with an adjacent blank, no move can ever swap the relative order of two pieces. A necessary condition is:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+$$\operatorname{strip}(start) = \operatorname{strip}(target)$$
 
----
+If the sequence of `'L'` and `'R'` characters differs in identity or length, transformation is immediately impossible.
 
-## 3. Step-by-Step Worked Execution
+### Invariant 2: Directional Monotonicity Constraints
+Suppose $\operatorname{strip}(start) = \operatorname{strip}(target) = \langle p_0, p_1, \dots, p_{m-1} \rangle$.
+Let $i_k$ be the original index of piece $p_k$ in `start`, and $j_k$ be its target index in `target`.
+- **Left Pieces ($p_k = \text{'L'}$):** A piece `'L'` can only decrement its coordinate ($i_k \to j_k$ with $j_k \le i_k$).
+  $$\text{Condition: } i_k \ge j_k$$
+  If $i_k < j_k$, the piece would have to move right, which is forbidden.
+- **Right Pieces ($p_k = \text{'R'}$):** A piece `'R'` can only increment its coordinate ($i_k \to j_k$ with $j_k \ge i_k$).
+  $$\text{Condition: } i_k \le j_k$$
+  If $i_k > j_k$, the piece would have to move left, which is forbidden.
 
-### Step 1: Blanks move around pieces, but pieces never cross
+Because blank spaces permit arbitrary sliding as long as pieces do not cross, these two conditions are both necessary and sufficient.
 
-An `L` piece may swap only with a blank immediately to its left, and an `R` piece may swap only with a blank immediately to its right. Neither move lets one piece jump over another piece.
-
-Therefore, if all underscores are deleted, the remaining sequence of `L` and `R` characters must be identical in `start` and `target`. The first nonblank piece in the start must correspond to the first nonblank piece in the target, the second to the second, and so on.
-
-The exact solution records these ordered pieces with their positions:
-
-`a = [(piece, index) ... from start]`
-
-and the analogous list `b` for `target`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Piece Type | Valid Movement Direction | Mathematical Inequality Constraint | Violation Condition |
 |---|---|---|---|
-| Input Slice | `{"start": "_L__R__R_", "target": "L______RR"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `'L'` | Leftward only | $i \ge j$ (source $\ge$ target) | $i < j$ (requires moving right) |
+| `'R'` | Rightward only | $i \le j$ (source $\le$ target) | $i > j$ (requires moving left) |
+| `'_'` | Passive space | Displaced by moving pieces | - |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: First ensure both strings contain the same number of pieces
+We evaluate `start = "_L__R__R_"` and `target = "L______RR"`.
 
-Moves exchange a piece with a blank. They never create or destroy pieces. If `len(a) != len(b)`, one string contains more nonblank pieces than the other and transformation is impossible.
+### Step 1: Extracting Non-Blank Pieces and Positions
+- `start` pieces:
+  - Token 0: character `'L'` at index $i_0 = 1$.
+  - Token 1: character `'R'` at index $i_1 = 4$.
+  - Token 2: character `'R'` at index $i_2 = 7$.
+- `target` pieces:
+  - Token 0: character `'L'` at index $j_0 = 0$.
+  - Token 1: character `'R'` at index $j_1 = 7$.
+  - Token 2: character `'R'` at index $j_2 = 8$.
 
-Equal counts are necessary but not sufficient. The corresponding types and movement directions must also be checked.
+### Step 2: Comparing Token Lengths and Sequences
+- Length check: Both strings contain exactly 3 non-blank pieces ($3 = 3$).
+- Character alignment:
+  - Token 0: `'L'` vs `'L'` (Match).
+  - Token 1: `'R'` vs `'R'` (Match).
+  - Token 2: `'R'` vs `'R'` (Match).
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Verifying Coordinate Inequalities
+- **Token 0 (`'L'`):**
+  - Source index $i_0 = 1$, target index $j_0 = 0$.
+  - Required for `'L'`: $i_0 \ge j_0$.
+  - Check: $1 \ge 0$ (Satisfied: moved left by 1 position).
+- **Token 1 (`'R'`):**
+  - Source index $i_1 = 4$, target index $j_1 = 7$.
+  - Required for `'R'`: $i_1 \le j_1$.
+  - Check: $4 \le 7$ (Satisfied: moved right by 3 positions).
+- **Token 2 (`'R'`):**
+  - Source index $i_2 = 7$, target index $j_2 = 8$.
+  - Required for `'R'`: $i_2 \le j_2$.
+  - Check: $7 \le 8$ (Satisfied: moved right by 1 position).
 
----
+All invariants hold across all tokens. Result is `true`.
 
-### Step 3: Pair pieces by their invariant order
+## 4. Comprehensive State Trace
 
-`zip(a, b)` pairs the first start piece with the first target piece, then the second with the second, and so on. If paired characters `c` and `d` differ, achieving the target would require an `L` and an `R` to exchange relative order or change type. Neither operation is legal, so the method returns `false`.
+The pointwise comparison between corresponding pieces in `start` and `target` is recorded below.
 
-This catches examples such as a nonblank sequence `RL` in the start and `LR` in the target. Even if individual directions appear favorable, the pieces cannot pass through each other.
+| Token Index $k$ | Character ($c$) | Start Position ($i_k$) | Target Position ($j_k$) | Net Displacement ($j_k - i_k$) | Feasibility Predicate | Check Outcome |
+|---|---|---|---|---|---|---|
+| 0 | `'L'` | 1 | 0 | $-1$ (Left) | $i_0 \ge j_0 \iff 1 \ge 0$ | Valid |
+| 1 | `'R'` | 4 | 7 | $+3$ (Right) | $i_1 \le j_1 \iff 4 \le 7$ | Valid |
+| 2 | `'R'` | 7 | 8 | $+1$ (Right) | $i_2 \le j_2 \iff 7 \le 8$ | Valid |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+Verification on counter-example `start = "R_L_"`, `target = "__LR"`:
 
----
+| Token Index $k$ | Start Token $(c, i)$ | Target Token $(d, j)$ | Character Equality | Coordinate Inequality | Result |
+|---|---|---|---|---|---|
+| 0 | $(\text{'R'}, 0)$ | $(\text{'L'}, 2)$ | $\text{'R'} \ne \text{'L'}$ | Mismatched characters | Infeasible (`false`) |
 
-## 4. Complete Execution Trace
+## 5. Algorithmic Correctness & Soundness
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"start": "_L__R__R_", "target": "L______RR"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+1. **Topological Order Invariance:**
+   Because a move only allows a piece to step into an adjacent empty space, no piece can cross over another piece. The sequence of non-blank characters remains an invariant of the system.
 
----
+2. **Sufficiency of Directional Inequalities:**
+   Any configuration satisfying $\operatorname{strip}(start) = \operatorname{strip}(target)$ and the coordinate bounds $i \ge j$ (for L) and $i \le j$ (for R) can be reached by executing moves in topological order (e.g., shifting L pieces leftward from left to right, and shifting R pieces rightward from right to left) without ever creating deadlocks.
 
-## 5. Algorithmic Correctness
+## 6. Edge Cases & Anti-Patterns
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+- **Different String Lengths:**
+  - Guaranteed by problem definition to be equal ($n = |start| = |target|$).
+- **Mismatched Piece Counts:**
+  - If `start` has 2 pieces and `target` has 3, length check fails and returns `false`.
+- **Opposing Movements:**
+  - `start = "_R"`, `target = "R_"` requires R to move left ($i = 1, j = 0 \implies 1 \le 0$ fails).
+  - `start = "L_"`, `target = "_L"` requires L to move right ($i = 0, j = 1 \implies 0 \ge 1$ fails).
+- **Anti-Pattern (State Space Graph BFS):**
+  - Exploring reachable configurations via BFS produces exponential states ($\sim \binom{n}{k}$). Two-pointer comparison checks the invariants directly in $\mathcal{O}(n)$ time.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+## 7. Complexity Analysis
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Two pointers skipping blanks:** Walk through both strings, compare the next pieces and their indices immediately. This preserves `O(n)` time while achieving true `O(1)` auxiliary space.
-- **Breadth-first search over configurations:** It explores an enormous state graph and is unnecessary because reachability has a simple invariant characterization.
-- **Compare only strings with underscores removed:** Matching piece order is necessary, but direction constraints are also required; `"_R"` cannot become `"R_"`.
-- **Check only each character count:** Equal numbers of L and R do not preserve their relative order. Pieces cannot cross.
-- **Allow pieces to jump over one another:** The rules permit only adjacent piece-blank swaps, so jumps would solve a different problem.
-- **No pieces:** Both strings consist only of blanks, both lists are empty, and the transformation is already complete.
-- **Different piece counts:** Immediate false because moves conserve pieces.
-- **Same counts but different order:** Paired characters differ, proving a crossing would be necessary.
-- **L stays in place:** `i == j` satisfies the left-only constraint.
-- **R stays in place:** `i == j` satisfies the right-only constraint.
-- **L target to the left:** It may traverse the intervening blanks without crossing matched earlier pieces.
-- **R target to the right:** It may traverse blanks toward that position.
-- **Adjacent opposing pieces:** Their order cannot reverse because neither can move through the other.
-- **Input preservation:** The method builds separate pair lists and never modifies either string.
-- **Exact-source space:** Storing nonblank tuples is linear even though the underlying reachability test can be streamed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the common string length. Each list comprehension scans its string once, and the paired loop visits at most `n` pieces. Total time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of strings `start` and `target`. Filtering non-blank indices and validating directional inequalities requires a single linear pass of length $n$.
+- **Space Complexity:** $\mathcal{O}(n)$ to store the filtered index tuples, or $\mathcal{O}(1)$ auxiliary space if evaluated using two pointers moving through both strings concurrently.

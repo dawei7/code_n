@@ -1,124 +1,196 @@
 # Guided Example: Most Frequent Number Following Key In an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the single-pass frequency aggregation algorithm for identifying the most frequent target integer immediately succeeding a specified key within a finite sequence, establishing $O(n)$ time complexity and $O(u)$ auxiliary space where $u \le 1000$ represents the domain of distinct candidate values.
 
-- **Input:** `{"nums": [1, 100, 200, 1, 100], "key": 1}`
-- **Required output:** `100`
+- **Input:** `nums = [1, 200, 1, 300, 1, 200, 400, 1, 200]`, `key = 1`
+- **Output:** `200`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums`.** **You are also given an integer `key`, which is present in `nums`.
-
-The objective is to compute `100` from `{"nums": [1, 100, 200, 1, 100], "key": 1}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance highlights adjacent pair inspection, selective conditional filtering against a target key, online tracking of running frequency maxima, and robust handling of interleaved non-key elements.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Given a 0-indexed integer array `nums` and an integer `key` guaranteed to be present in `nums`, we consider every index $i \in \{0, 1, \dots, n - 2\}$ such that $\text{nums}[i] = \text{key}$.
+For each such index $i$, the element $\text{nums}[i + 1]$ is denoted as an immediate successor (or target) of `key`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Our objective is to return the target integer that appears with the maximum frequency across all immediate successor positions following `key`. The problem specification guarantees that the maximum frequency is achieved by a unique target value.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
+
+Consider the sequence:
+$$\text{nums} = [1, 200, 1, 300, 1, 200, 400, 1, 200], \quad \text{key} = 1$$
+
+Here, the total array length is $n = 9$. The key $1$ appears at indices $0, 2, 4,$ and $7$:
+1. At index $0$: $\text{nums}[0] = 1$, followed by $\text{nums}[1] = 200$.
+2. At index $2$: $\text{nums}[2] = 1$, followed by $\text{nums}[3] = 300$.
+3. At index $4$: $\text{nums}[4] = 1$, followed by $\text{nums}[5] = 200$.
+4. At index $7$: $\text{nums}[7] = 1$, followed by $\text{nums}[8] = 200$.
+
+The observed successor multiset is $\{200, 300, 200, 200\}$. The frequency distribution is:
+- $\text{freq}(200) = 3$
+- $\text{freq}(300) = 1$
+
+The unique maximum frequency is $3$, corresponding to target $200$.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Generate adjacent pairs directly
+### Formal Definition of Successor Multiset
 
-`pairwise(nums)` yields
+Let $S_{\text{key}}(\text{nums})$ denote the multiset of values immediately succeeding `key`:
+$$S_{\text{key}}(\text{nums}) = \{\!\{\text{nums}[i + 1] \mid 0 \le i \le n - 2 \land \text{nums}[i] = \text{key}\}\!\}$$
 
-`(nums[0], nums[1])`, `(nums[1], nums[2])`, and so on through the final adjacent pair.
+For each distinct value $v \in S_{\text{key}}(\text{nums})$, its count is defined as:
+$$\text{count}(v) = \sum_{i=0}^{n-2} \mathbf{1}_{(\text{nums}[i] = \text{key} \land \text{nums}[i+1] = v)}$$
 
-Each yielded pair is assigned to `a, b`. Here `a` represents `nums[i]` and `b` represents `nums[i + 1]` for one index `i`.
+The target result is:
+$$v^* = \arg\max_{v} \text{count}(v)$$
 
-This avoids manual index arithmetic while covering exactly the allowed range from zero through `len(nums) - 2`. The last array element appears as a follower but never as the first component of a nonexistent pair beyond the array.
+### Streaming Online Maximum Maintenance
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Rather than performing a two-pass procedure (first accumulating all counts into a hash map and subsequently finding the global maximum), we can maintain the running maximum online during the single linear scan:
+- Maintain a running map $\text{cnt}$ from value to integer frequency.
+- Maintain the maximum observed count $m_x$ (initially $0$) and current optimal value $a^*$ (initially undefined or $0$).
+- As each adjacent pair $(\text{nums}[i], \text{nums}[i + 1])$ is visited:
+  - If $\text{nums}[i] = \text{key}$:
+    - Let $v = \text{nums}[i + 1]$.
+    - Increment $\text{cnt}[v] \leftarrow \text{cnt}[v] + 1$.
+    - If $\text{cnt}[v] > m_x$, update $m_x \leftarrow \text{cnt}[v]$ and $a^* \leftarrow v$.
+
+```mermaid
+flowchart TD
+    accTitle: Single Pass Successor Counting Workflow
+    accDescr: Flowchart illustrating adjacent pair inspection, key matching condition, frequency map increment, and online maximum update.
+
+    Start(["Start Scan at i = 0"]) --> CheckIndex{"i <= n - 2?"}
+    CheckIndex -- Yes --> InspectPair["Examine pair (nums[i], nums[i+1])"]
+    CheckIndex -- No --> Terminate(["Return a*"])
+
+    InspectPair --> IsKey{"nums[i] == key?"}
+    IsKey -- No --> Advance["i = i + 1"]
+    IsKey -- Yes --> Increment["v = nums[i+1]<br/>cnt[v] = cnt[v] + 1"]
+
+    Increment --> CheckMax{"cnt[v] > m_x?"}
+    CheckMax -- Yes --> UpdateMax["m_x = cnt[v]<br/>a* = v"]
+    CheckMax -- No --> Advance
+    UpdateMax --> Advance
+    Advance --> CheckIndex
+```
+
+---
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+We trace the representative instance `nums = [1, 200, 1, 300, 1, 200, 400, 1, 200]` with `key = 1`.
+
+### Step 1: Pair $(0, 1) \to (1, 200)$
+- Left element $\text{nums}[0] = 1 = \text{key}$.
+- Successor $v = \text{nums}[1] = 200$.
+- Counter update: $\text{cnt}[200] \leftarrow 0 + 1 = 1$.
+- Comparison: $\text{cnt}[200] = 1 > m_x = 0 \implies m_x \leftarrow 1, a^* \leftarrow 200$.
+
+### Step 2: Pair $(1, 2) \to (200, 1)$
+- Left element $\text{nums}[1] = 200 \ne \text{key}$.
+- Condition not met; counter and running maximum remain unchanged.
+
+### Step 3: Pair $(2, 3) \to (1, 300)$
+- Left element $\text{nums}[2] = 1 = \text{key}$.
+- Successor $v = \text{nums}[3] = 300$.
+- Counter update: $\text{cnt}[300] \leftarrow 0 + 1 = 1$.
+- Comparison: $\text{cnt}[300] = 1 \ngtr m_x = 1 \implies m_x$ and $a^*$ remain $1$ and $200$.
+
+### Step 4: Pair $(3, 4) \to (300, 1)$
+- Left element $\text{nums}[3] = 300 \ne \text{key}$.
+- Condition not met; no modification.
+
+### Step 5: Pair $(4, 5) \to (1, 200)$
+- Left element $\text{nums}[4] = 1 = \text{key}$.
+- Successor $v = \text{nums}[5] = 200$.
+- Counter update: $\text{cnt}[200] \leftarrow 1 + 1 = 2$.
+- Comparison: $\text{cnt}[200] = 2 > m_x = 1 \implies m_x \leftarrow 2, a^* \leftarrow 200$.
+
+### Step 6: Pair $(5, 6) \to (200, 400)$
+- Left element $\text{nums}[5] = 200 \ne \text{key}$.
+- Condition not met; no modification.
+
+### Step 7: Pair $(6, 7) \to (400, 1)$
+- Left element $\text{nums}[6] = 400 \ne \text{key}$.
+- Condition not met; no modification.
+
+### Step 8: Pair $(7, 8) \to (1, 200)$
+- Left element $\text{nums}[7] = 1 = \text{key}$.
+- Successor $v = \text{nums}[8] = 200$.
+- Counter update: $\text{cnt}[200] \leftarrow 2 + 1 = 3$.
+- Comparison: $\text{cnt}[200] = 3 > m_x = 2 \implies m_x \leftarrow 3, a^* \leftarrow 200$.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below outlines the state evolution across all adjacent pairs of the input array.
+
+| Index $i$ | Pair $(a, b)$ | Condition $a = 1$? | Target $b$ | Updated $\text{cnt}[b]$ | Running $m_x$ | Current Best $a^*$ |
+|---|---|---|---|---|---|---|
+| $0$ | $(1, 200)$ | Yes | $200$ | $1$ | $1$ | $200$ |
+| $1$ | $(200, 1)$ | No | — | — | $1$ | $200$ |
+| $2$ | $(1, 300)$ | Yes | $300$ | $1$ | $1$ | $200$ |
+| $3$ | $(300, 1)$ | No | — | — | $1$ | $200$ |
+| $4$ | $(1, 200)$ | Yes | $200$ | $2$ | $2$ | $200$ |
+| $5$ | $(200, 400)$ | No | — | — | $2$ | $200$ |
+| $6$ | $(400, 1)$ | No | — | — | $2$ | $200$ |
+| $7$ | $(1, 200)$ | Yes | $200$ | $3$ | $3$ | $200$ |
+
+### Successor Frequency Summary Table
+
+| Candidate Target $v$ | Total Follower Occurrences | Relative Frequency in Multiset | Final Selection |
 |---|---|---|---|
-| Input Slice | `{"nums": [1, 100, 200, 1, 100], "key": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $200$ | $3$ | $3 / 4 = 75\%$ | Selected (Maximum) |
+| $300$ | $1$ | $1 / 4 = 25\%$ | Discarded |
 
 ---
 
-### Step 2: Filter on the key position
+## 5. Algorithmic Correctness & Soundness
 
-The code enters its counting block only when `a == key`. In that case, `b` is precisely a target that immediately follows an occurrence of `key`, so `cnt[b]` increases by one.
+### Loop Invariant
 
-If `a` is not the key, the adjacent value `b` is irrelevant for this problem and no counter changes.
+At index $k \in \{0, 1, \dots, n - 2\}$:
+1. The frequency map $\text{cnt}$ accurately reflects the exact count of each target value occurring immediately after $\text{key}$ in the prefix subarray $\text{nums}[0 \dots k + 1]$.
+2. The scalar $m_x$ equals $\max_{v} \text{cnt}[v]$ over the prefix.
+3. The candidate $a^*$ holds a value $v$ whose count in the prefix equals $m_x$.
 
-Notice that `b` may itself equal `key`. Consecutive copies of the key are valid: in `[2,2,2]`, the second two follows the first, and the third follows the second, so target two receives two votes.
+### Termination & Uniqueness Guarantee
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Maintain the best count online
-
-`mx` stores the greatest follower frequency observed so far, and `ans` stores the follower that achieved it.
-
-After incrementing `cnt[b]`, the code compares it with `mx`. If it is strictly larger, both `mx` and `ans` are updated. If it merely ties the current maximum, the stored answer remains unchanged.
-
-The contract guarantees that the final maximum target is unique. Temporary ties during the scan therefore do not create ambiguity in the returned result. The eventual unique winner must at some point raise its count above every competitor and trigger an update.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `100` |
+When the loop terminates at $k = n - 2$, every valid adjacent pair in $\text{nums}$ has been inspected exactly once.
+Because the problem statement guarantees that the global maximizer of the successor counts is strictly unique, there exists a unique value $v^*$ such that $\text{count}(v^*) > \text{count}(v)$ for all $v \ne v^*$.
+Hence, upon the final increment of $\text{cnt}[v^*]$, the condition $\text{cnt}[v^*] > m_x$ will have been triggered, leaving $a^* = v^*$ at termination.
 
 ---
 
-## 4. Complete Execution Trace
+## 6. Edge Cases & Anti-Patterns
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 100, 200, 1, 100], "key": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `100` | Verified |
+### Edge Case Considerations
+- **Consecutive Keys:** When `nums = [1, 1, 1]`, the second element acts both as the successor of the first key and as the key for the second pair. In this scenario, the target $1$ occurs twice, correctly resulting in $1$.
+- **Key at Array Tail:** If the final element $\text{nums}[n - 1] = \text{key}$, no element follows it. Iterating strictly over $0 \le i \le n - 2$ prevents an index out-of-bounds error.
+- **Minimum Array Size ($n = 2$):** If `nums = [1, 2]` and `key = 1`, only pair $(0, 1)$ exists. The loop runs exactly once, immediately setting $a^* = 2$ with count $1$.
 
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Anti-Patterns to Avoid
+- **Unbounded Index Lookahead:** Looping through $i \in \{0, \dots, n - 1\}$ and querying $i + 1$ without boundary checks raises out-of-bounds exceptions when $i = n - 1$.
+- **Two-Pass Overhead:** Building a separate list of all followers before calling a sorting or full-table maximum routine incurs unnecessary extra allocations when a single online pass is sufficient.
+- **Ignoring Consecutive Occurrences:** Treating pairs as non-overlapping disjoint blocks of size $2$ misses valid successor relationships where $\text{nums}[i + 1] = \text{nums}[(i + 1) + 1]$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 7. Complexity Analysis
 
-- **Count then call `most_common`:** First build all follower counts, then select the maximum. It is correct but performs a separate pass over distinct targets.
-- **Fixed frequency array:** Values are at most 1000, so a 1001-entry list can replace the Counter and make the constant-space interpretation explicit.
-- **Manual index loop:** Iterate `i` through `range(len(nums) - 1)` and inspect `nums[i + 1]`. It has identical behavior.
-- **Consecutive keys:** The key itself is a valid target when one key immediately follows another.
-- **Key at the final index:** That occurrence creates no pair because nothing follows it.
-- **Several key occurrences:** Each immediate follower occurrence contributes independently, even when positions share the same target value.
-- **Temporary tie:** Strict comparison keeps the earlier leader, but the guaranteed unique final maximum eventually overtakes all others.
-- **Unique final winner:** No explicit tie-breaking rule is needed.
-- **Minimum array length two:** There is one adjacent pair, which is counted if its first value is the key.
-- **Values unrelated to key:** Followers after non-key values never enter the Counter.
-- **Lazy adjacency:** `pairwise` avoids an $O(n)$ list of tuples.
-- **Input preservation:** The array and key are only read.
-- **Fixed-domain space:** The Counter is logically bounded by 1000 possible positive values under the contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Time Complexity
+- The adjacent pair generator inspects $n - 1$ consecutive pairs.
+- For each pair where the first element equals `key`, map lookup and increment require $O(1)$ amortized time.
+- Updating scalar values $m_x$ and $a^*$ takes $O(1)$ time.
+- Total Time Complexity: $\mathcal{O}(n)$, which is asymptotically optimal as every element must be read at least once.
 
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. `pairwise` produces $n-1$ adjacent pairs, and each iteration performs expected constant-time Counter operations. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Space Complexity
+- The frequency map stores counts for distinct values that directly follow `key`.
+- Under the problem constraints, $1 \le \text{nums}[i] \le 1000$, so the number of distinct values $u$ satisfies $u \le \min(n, 1000)$.
+- Auxiliary Space Complexity: $\mathcal{O}(u) = \mathcal{O}(\min(n, 1000))$, which behaves as $\mathcal{O}(1)$ auxiliary space under bounded integer domains.

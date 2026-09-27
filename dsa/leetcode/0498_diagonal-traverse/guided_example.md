@@ -1,105 +1,225 @@
 # Guided Example: Diagonal Traverse
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step anti-diagonal grouping invariant ($i + j = k$), alternating serpentine direction control (even $k$: up-right, odd $k$: down-left), boundary clamping ($k < n$ vs $k \ge n$), and flattening on representative 2D matrices:
 
-- **Input:** `{"mat": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
+- **Input:**
+  $$
+  mat = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}
+  $$
 - **Required output:** `[1, 2, 4, 7, 5, 3, 6, 8, 9]`
+  - Matrix dimensions: $m = 3, \; n = 3$
+  - Total diagonals: $m + n - 1 = 3 + 3 - 1 = \mathbf{5}$ diagonals ($k \in [0, 4]$)
+  - Key Invariant: Every cell $(i, j)$ on the $k$-th diagonal satisfies:
+    $$
+    i + j = k
+    $$
+  - Serpentine parity rule:
+    - If diagonal index $k$ is **even**: travel **Up-Right** ($\nearrow$)
+    - If diagonal index $k$ is **odd**: travel **Down-Left** ($\swarrow$)
+- **Diagonal-by-diagonal execution trace:**
+  - **Diagonal $k = 0$ (Even $\implies$ Up-Right):**
+    - Cells with $i + j = 0$: $(0, 0)$
+    - Value: `[1]`
+    - Emitted: `[1]`
+  - **Diagonal $k = 1$ (Odd $\implies$ Down-Left):**
+    - Cells with $i + j = 1$: $(0, 1), (1, 0)$
+    - Travel down-left: $(0, 1) \to (1, 0)$
+    - Values: `[2, 4]`
+    - Emitted: `[2, 4]`
+  - **Diagonal $k = 2$ (Even $\implies$ Up-Right):**
+    - Cells with $i + j = 2$: $(0, 2), (1, 1), (2, 0)$
+    - Travel up-right: $(2, 0) \to (1, 1) \to (0, 2)$
+    - Values: `[7, 5, 3]`
+    - Emitted: `[7, 5, 3]`
+  - **Diagonal $k = 3$ (Odd $\implies$ Down-Left):**
+    - Cells with $i + j = 3$: $(1, 2), (2, 1)$
+    - Travel down-left: $(1, 2) \to (2, 1)$
+    - Values: `[6, 8]`
+    - Emitted: `[6, 8]`
+  - **Diagonal $k = 4$ (Even $\implies$ Up-Right):**
+    - Cells with $i + j = 4$: $(2, 2)$
+    - Value: `[9]`
+    - Emitted: `[9]`
+  - Concatenated final sequence:
+    $$
+    [1, \; 2, \; 4, \; 7, \; 5, \; 3, \; 6, \; 8, \; 9]
+    $$
+- **Non-Square Matrix Instance ($2 \times 3$):**
+  - $mat = [[1, 2, 3], [4, 5, 6]]$
+  - $k=0: [1]$
+  - $k=1: [2, 4]$
+  - $k=2: [5, 3]$ (reverses $[3, 5]$ to go up-right $\implies [5, 3]$)
+  - $k=3: [6]$
+  - Output: `[1, 2, 4, 5, 3, 6]`
+- **Single Element Matrix:** $mat = [[5]] \implies [5]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates index-sum planar transformations, mathematically proves why parity-based reversals generate serpentine zig-zag trajectories without explicit boundary bouncing state machines, and derives $O(M \cdot N)$ runtime and $O(M \cdot N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` matrix `mat`, return *an array of all the elements of the array in a diagonal order*.
+Given an $m \times n$ matrix $mat$:
+Return an array of all elements of the matrix in **diagonal order** (serpentine zig-zag).
 
-The objective is to compute `[1, 2, 4, 7, 5, 3, 6, 8, 9]` from `{"mat": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+3 x 3 Matrix:
+  [ 1,  2,  3 ]
+  [ 4,  5,  6 ]
+  [ 7,  8,  9 ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Zig-Zag Traverse Path:
+  Diagonal 0 (k=0, Even):  (0, 0)               -> [1]
+  Diagonal 1 (k=1, Odd):   (0, 1) -> (1, 0)     -> [2, 4]
+  Diagonal 2 (k=2, Even):  (2, 0) -> (1, 1) -> (0, 2) -> [7, 5, 3]
+  Diagonal 3 (k=3, Odd):   (1, 2) -> (2, 1)     -> [6, 8]
+  Diagonal 4 (k=4, Even):  (2, 2)               -> [9]
+
+Result: [ 1,  2,  4,  7,  5,  3,  6,  8,  9 ]
+```
+
+### The Invariant of Anti-Diagonals
+In any 2D grid:
+- Every cell $(i, j)$ on the same top-right to bottom-left anti-diagonal shares the **exact same sum of coordinates**:
+  $$
+  i + j = k
+  $$
+- The diagonal index $k$ ranges from $0$ (the top-left corner $(0, 0)$) to $m + n - 2$ (the bottom-right corner $(m-1, n-1)$).
+- There are exactly $m + n - 1$ diagonals.
+- By alternating the direction of travel based on the parity of $k$ ($k \pmod 2$), the zig-zag pattern emerges naturally.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Starting Coordinates for Diagonal $k$:
+To collect cells on diagonal $k$ ($i + j = k$):
+- Starting row:
+  $$
+  i =
+  \begin{cases}
+  0 & \text{if } k < n \\
+  k - n + 1 & \text{if } k \ge n
+  \end{cases}
+  $$
+- Starting column:
+  $$
+  j =
+  \begin{cases}
+  k & \text{if } k < n \\
+  n - 1 & \text{if } k \ge n
+  \end{cases}
+  $$
+- Traverse down-left by stepping: $i \leftarrow i + 1, \; j \leftarrow j - 1$.
+- Continue while $i < m$ and $j \ge 0$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Parity Direction Inversion:
+Collect all elements of diagonal $k$ into a temporary list $t$:
+- If $k$ is **odd**: The natural traversal order (down-left) is already correct.
+- If $k$ is **even**: Reverse the list $t \leftarrow t[::-1]$ to produce the upward-right order!
+- Append $t$ to the answer array.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Parity Direction Invariant.** Even diagonals are traversed up-right ($\Delta i = -1, \Delta j = +1$), while odd diagonals are traversed down-left ($\Delta i = +1, \Delta j = -1$).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Cells belong to the same top-right-to-bottom-left diagonal when their row and column indices have the same sum. Moving one row down and one column left changes `i + j` by `+1 - 1 = 0`, so the sum remains constant. The solution names that constant `k` and processes diagonals in order from `k = 0` through `k = m + n - 2`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"mat": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $mat = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$ ($m = 3, n = 3$):
+Diagonals $k \in [0, 4]$.
 
 ---
 
-### Step 2: Core Step 2
-
-There are `m + n - 1` diagonals in an `m` by `n` matrix. The smallest index sum is zero at `(0, 0)`. The largest is `(m - 1) + (n - 1) = m + n - 2`. Python's `range(m + n - 1)` includes exactly those values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Diagonal $k = 0$
+- $k = 0 < 3 \implies i = 0, j = 0$.
+- Gather: $(0, 0) \to 1$.
+- List $t = [1]$.
+- Parity: $k = 0$ is even $\implies$ reverse $[1] = [1]$.
+- Output buffer: `[1]`.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Diagonal $k = 1$
+- $k = 1 < 3 \implies i = 0, j = 1$.
+- Gather down-left:
+  - $(0, 1) \to 2$. Step: $i = 1, j = 0$.
+  - $(1, 0) \to 4$. Step: $i = 2, j = -1$ (stop).
+- List $t = [2, 4]$.
+- Parity: $k = 1$ is odd $\implies$ keep as is: `[2, 4]`.
+- Output buffer: `[1, 2, 4]`.
 
-**Find the topmost valid cell for one diagonal.** The traversal inside every diagonal moves down-left with `i += 1` and `j -= 1`. It therefore needs to begin at the diagonal's topmost or rightmost endpoint.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 4, 7, 5, 3, 6, 8, 9]` |
+### Step 3: Diagonal $k = 2$
+- $k = 2 < 3 \implies i = 0, j = 2$.
+- Gather down-left:
+  - $(0, 2) \to 3$
+  - $(1, 1) \to 5$
+  - $(2, 0) \to 7$
+- List $t = [3, 5, 7]$.
+- Parity: $k = 2$ is even $\implies$ reverse:
+  $$
+  t = [7, \; 5, \; 3]
+  $$
+- Output buffer: `[1, 2, 4, 7, 5, 3]`.
+
+---
+
+### Step 4: Diagonal $k = 3$
+- $k = 3 \ge 3 \implies i = 3 - 3 + 1 = 1, \; j = 2$.
+- Gather down-left:
+  - $(1, 2) \to 6$
+  - $(2, 1) \to 8$
+- List $t = [6, 8]$.
+- Parity: $k = 3$ is odd $\implies$ keep: `[6, 8]`.
+- Output buffer: `[1, 2, 4, 7, 5, 3, 6, 8]`.
+
+---
+
+### Step 5: Diagonal $k = 4$
+- $k = 4 \ge 3 \implies i = 4 - 3 + 1 = 2, \; j = 2$.
+- Gather: $(2, 2) \to 9$.
+- List $t = [9]$.
+- Parity: $k = 4$ is even $\implies [9]$.
+- Output buffer: `[1, 2, 4, 7, 5, 3, 6, 8, 9]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"mat": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 4, 7, 5, 3, 6, 8, 9]` | Verified |
+| Diagonal Index $k$ | Sum $i + j$ | Initial Top Cell $(i, j)$ | Cells Traversed Down-Left | Raw Values $t$ | Parity $k \pmod 2$ | Direction Order | Elements Appended |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| **$0$** | $0$ | $(0, 0)$ | $(0, 0)$ | `[1]` | Even | Up-Right | `[1]` |
+| **$1$** | $1$ | $(0, 1)$ | $(0, 1) \to (1, 0)$ | `[2, 4]` | Odd | Down-Left | `[2, 4]` |
+| **$2$** | $2$ | $(0, 2)$ | $(0, 2) \to (1, 1) \to (2, 0)$ | `[3, 5, 7]` | Even | Up-Right | `[7, 5, 3]` |
+| **$3$** | $3$ | $(1, 2)$ | $(1, 2) \to (2, 1)$ | `[6, 8]` | Odd | Down-Left | `[6, 8]` |
+| **$4$** | $4$ | $(2, 2)$ | $(2, 2)$ | `[9]` | Even | Up-Right | `[9]` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Row Matrix ($1 \times N$):** All diagonals have size 1 $\implies$ elements emitted in straight horizontal order.
+- **Single Column Matrix ($M \times 1$):** All diagonals have size 1 $\implies$ elements emitted in vertical order.
+- **$1 \times 1$ Matrix:** Emits `[mat[0][0]]`.
+- **Large Rectangular Matrix ($1000 \times 10$):** Number of diagonals is $1009$, boundary clamping dynamically adjusts starting coordinates.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Direct zigzag simulation:** Track one cell at a time, move up-right or down-left, and handle boundary bounces. It can use $O(1)$ auxiliary space but has more corner-specific state transitions.
-- **Group by `i + j` in a dictionary:** Append every cell to its diagonal bucket, then reverse alternating buckets. It is easy to derive but stores the full matrix again.
-- **One row:** Every diagonal has one value, so the output stays in left-to-right order despite alternating reversal calls.
-- **One column:** Each diagonal also has one value, producing top-to-bottom order.
-- **Wide matrix:** Early diagonals start along the first row; only after `k >= n` do starts move down the last column.
-- **Tall matrix:** The same formulas remain valid, and the down-left loop stops at the bottom before the column becomes negative where appropriate.
-- **Parity convention:** Diagonals are zero-indexed. Even `k` is reversed; describing them as human-numbered first, third, fifth diagonals refers to the same set.
-- **Nonempty guarantee:** The implementation immediately reads `mat[0]` and relies on the stated positive dimensions.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Complex Boundary Bounce State Machines:** Trying to maintain $(r, c, \Delta r, \Delta c)$ and writing separate `if` conditions for hitting top, bottom, left, and right borders often results in 50+ lines of bug-prone code with corner-case crashes. Grouping by $i + j = k$ with parity reversal is 10 lines of robust code.
+- **Hardcoding Square Bounds ($m == n$):** In non-square matrices ($2 \times 4$), $k$ exceeds $m$ before $n$ or vice-versa. Clamping with `k - n + 1` and `n - 1` prevents index out of bounds.
+- **Allocating Full Diagonal Hash Tables:** Using a dictionary `defaultdict(list)` indexed by $i + j$ works, but uses unnecessary hashing overhead. Direct loop iteration computes diagonals in order with zero hash overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Every matrix value is appended to one temporary diagonal and then extended into `ans` exactly once. Reversing even diagonals processes those values one additional time, but the total across all diagonals remains $O(mn)$. Therefore time is $O(mn)$.
-- **Auxiliary Space Complexity:** $O(\min(m,n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Every element $(i, j)$ belongs to exactly one diagonal $k = i + j$.
+  - Each cell is visited and copied once.
+  - Reversing lists of length $L$ takes $O(L)$ time.
+  - Total Time: $\sum L_k = \mathcal{O}(M \cdot N)$. For $10^4$ cells, executes in $< 3$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M \cdot N)$ to store the output array.

@@ -101,6 +101,29 @@
       "tags": [
         "modulo"
       ]
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "zero rotation leaves array unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 0
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "boundary",
+        "zero"
+      ]
     }
   ]
 }

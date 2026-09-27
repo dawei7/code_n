@@ -1,131 +1,204 @@
 # Guided Example: Removing Minimum Number of Magic Beans
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the sorting-based prefix-suffix optimization algorithm for equalizing non-empty bag capacities on a representative bean multiset, demonstrating how duality between beans removed and beans retained reduces an exhaustive search to a linear scan over sorted pivots in $O(n \log n)$ time.
 
-- **Input:** `{"beans": [4, 1, 6, 5]}`
-- **Required output:** `4`
+- **Input:** `beans = [4, 1, 6, 5]`
+- **Output:** `4`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an array of **positive** integers `beans`, where each integer represents the number of magic beans found in a particular magic bag.
-
-The objective is to compute `4` from `{"beans": [4, 1, 6, 5]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates sorting normalization, the geometric rectangle interpretation of retained beans, prefix emptying, suffix leveling, and minimum removal identification.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an array of positive integers `beans`, where `beans[i]` represents the number of magic beans in the $i$-th bag.
+In each operation, we may remove any number of beans from any bag.
+Our objective is to make the number of beans in every **non-empty** bag equal, while **minimizing the total number of beans removed**.
+Bags reduced to $0$ beans are considered empty and do not violate equality.
 
-| State Parameter | Role & Purpose | Initial State |
+In our representative instance:
+- `beans = [4, 1, 6, 5]` of length $n = 4$.
+- Total beans across all bags: $S = 4 + 1 + 6 + 5 = 16$.
+- If we target $4$ beans per non-empty bag:
+  - Bag with $1$ bean cannot reach $4$ by removals, so it must be emptied entirely ($1 \to 0$, $1$ bean removed).
+  - Bag with $4$ beans is kept as is ($4 \to 4$, $0$ beans removed).
+  - Bag with $5$ beans is reduced to $4$ ($5 \to 4$, $1$ bean removed).
+  - Bag with $6$ beans is reduced to $4$ ($6 \to 4$, $2$ beans removed).
+  - Total removed: $1 + 0 + 1 + 2 = 4$ beans.
+- Remaining configuration: $[0, 4, 4, 4]$ (all non-empty bags contain exactly $4$ beans).
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Complementary Duality: Retained vs. Removed Beans
+
+Let $S = \sum_{j=0}^{n-1} \text{beans}[j]$ be the invariant total initial bean sum.
+For any target height $h > 0$ chosen for the non-empty bags:
+$$\text{removed}(h) = S - \text{retained}(h)$$
+
+Minimizing the total removed beans is strictly equivalent to **maximizing the total retained beans**:
+$$\min_h \text{removed}(h) \iff \max_h \text{retained}(h)$$
+
+### The Pivot Candidate Theorem
+
+If a bag originally has strictly fewer than $h$ beans, it cannot reach $h$ via removal and must be emptied to $0$.
+If a bag originally has at least $h$ beans, it can be leveled down to retain exactly $h$ beans.
+Therefore, if $k$ bags satisfy $\text{beans}[j] \ge h$, the total beans retained is exactly:
+$$\text{retained}(h) = k \cdot h$$
+
+Suppose $h$ does not equal any element in `beans`.
+If we increase $h$ to the next smallest element actually present in `beans`, the number of qualifying bags $k$ does not change, but $h$ increases, strictly increasing $k \cdot h$.
+Thus, the optimal target $h^*$ must coincide with an element present in the original input:
+$$h^* \in \{\text{beans}[0], \text{beans}[1], \dots, \text{beans}[n-1]\}$$
+
+### Sorted Suffix Formulation
+
+Sorting the array in ascending order:
+$$\text{beans}[0] \le \text{beans}[1] \le \dots \le \text{beans}[n-1]$$
+
+When we choose the $i$-th sorted bag as the pivot height $h = \text{beans}[i]$:
+- Every prefix bag $j < i$ has $\text{beans}[j] < \text{beans}[i]$ and is emptied to $0$.
+- Every suffix bag $j \ge i$ has $\text{beans}[j] \ge \text{beans}[i]$ and retains exactly $\text{beans}[i]$ beans.
+- There are exactly $n - i$ suffix bags.
+- Total retained beans:
+  $$\text{retained}(i) = \text{beans}[i] \times (n - i)$$
+- Total removed beans:
+  $$\text{removed}(i) = S - \text{beans}[i] \times (n - i)$$
+
+A single pass over $i \in \{0, 1, \dots, n-1\}$ evaluates all candidate pivots in $O(n)$ time after sorting.
+
+| Variable / Metric | Mathematical Expression | Algorithmic Meaning |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Initial Sum $S$ | $\sum_{j=0}^{n-1} \text{beans}[j]$ | Invariant total bean inventory |
+| Pivot Height $h_i$ | $\text{beans}[i]$ | Selected uniform capacity for non-empty bags |
+| Suffix Bag Count $n - i$ | $n - i$ | Number of bags with initial capacity $\ge h_i$ |
+| Retained Beans | $\text{beans}[i] \times (n - i)$ | Total beans surviving after leveling |
+| Removed Beans | $S - \text{beans}[i] \times (n - i)$ | Objective function to minimize |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Turn minimization into retained-bean maximization
-
-Let `s = sum(beans)` be the original total. If a plan retains $R$ beans, it removes exactly $s-R$. Because $s$ is fixed, minimizing removed beans is identical to maximizing retained beans.
-
-For a chosen target $x$, every surviving bag contains exactly $x$. If $k$ bags survive, the retained total is $xk$. This means the algorithm only needs to determine which target values are worth considering and how many bags can support each one.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"beans": [4, 1, 6, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: Retained Beans Histogram Rectangle
+accDescr: Diagram depicting sorted beans array and the largest inscribed rectangle under the histogram representing retained beans.
+flowchart TD
+    A["Sort array: [1, 4, 5, 6], S = 16"] --> B["Evaluate i = 0 (h=1): Retained = 1 * 4 = 4 => Removed = 12"]
+    A --> C["Evaluate i = 1 (h=4): Retained = 4 * 3 = 12 => Removed = 4"]
+    A --> D["Evaluate i = 2 (h=5): Retained = 5 * 2 = 10 => Removed = 6"]
+    A --> E["Evaluate i = 3 (h=6): Retained = 6 * 1 = 6 => Removed = 10"]
+    C --> F["Max Retained = 12 at h = 4 => Min Removed = 4"]
+```
 
 ---
 
-### Step 2: Sort to make eligible bags a suffix
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-After `beans.sort()`, the counts are in nondecreasing order. At index `i`, let `x = beans[i]`. Every bag before `i` has a count no greater than $x$, and every bag from `i` onward has at least $x$ beans.
+We trace `beans = [4, 1, 6, 5]`.
 
-Using $x$ as the common amount, the algorithm empties all bags before `i` and reduces all `n-i` bags in the suffix to exactly $x$. Those surviving bags retain
+### Step 1: Sorting and Sum Calculation
+- Sort `beans` ascending: `beans = [1, 4, 5, 6]`.
+- Array length $n = 4$.
+- Compute total sum $S = 1 + 4 + 5 + 6 = 16$.
+- Initialize `min_removed = infinity` (or `max_retained = 0`).
 
-$$
-x(n-i)
-$$
+### Step 2: Evaluate Pivot $i = 0$ (`beans[0] = 1`)
+- Target height $h = 1$.
+- Suffix count: $n - 0 = 4$ bags ($[1, 4, 5, 6]$).
+- Prefix bags emptied: none.
+- Retained beans: $1 \times 4 = 4$.
+- Removed beans: $S - \text{retained} = 16 - 4 = 12$.
+- Resulting bags: $[1, 1, 1, 1]$.
+- Update: `min_removed = min(infinity, 12) = 12`.
 
-beans in total. The number removed is consequently
+### Step 3: Evaluate Pivot $i = 1$ (`beans[1] = 4`)
+- Target height $h = 4$.
+- Suffix count: $n - 1 = 3$ bags ($[4, 5, 6]$).
+- Prefix bags emptied: index $0$ (`beans[0] = 1`, removed: $1$).
+- Retained beans: $4 \times 3 = 12$.
+- Removed beans: $S - \text{retained} = 16 - 12 = 4$.
+- Breakdown: Bag $0$ loses $1$, Bag $1$ loses $0$, Bag $2$ loses $1$, Bag $3$ loses $2$. Total removed: $1 + 0 + 1 + 2 = 4$.
+- Resulting bags: $[0, 4, 4, 4]$.
+- Update: `min_removed = min(12, 4) = 4`.
 
-$$
-s-x(n-i).
-$$
+### Step 4: Evaluate Pivot $i = 2$ (`beans[2] = 5`)
+- Target height $h = 5$.
+- Suffix count: $n - 2 = 2$ bags ($[5, 6]$).
+- Prefix bags emptied: index $0$ ($1$) and index $1$ ($4$).
+- Retained beans: $5 \times 2 = 10$.
+- Removed beans: $S - \text{retained} = 16 - 10 = 6$.
+- Resulting bags: $[0, 0, 5, 5]$.
+- Update: `min_removed = min(4, 6) = 4`.
 
-The generator expression computes this value for every pair `(i, x)` produced by `enumerate(beans)`, and `min` returns the smallest removal total.
+### Step 5: Evaluate Pivot $i = 3$ (`beans[3] = 6`)
+- Target height $h = 6$.
+- Suffix count: $n - 3 = 1$ bag ($[6]$).
+- Prefix bags emptied: indices $0, 1, 2$ (total $1 + 4 + 5 = 10$).
+- Retained beans: $6 \times 1 = 6$.
+- Removed beans: $S - \text{retained} = 16 - 6 = 10$.
+- Resulting bags: $[0, 0, 0, 6]$.
+- Update: `min_removed = min(4, 10) = 4`.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why an optimal target is one of the original bag sizes
-
-At first, it may appear necessary to try every positive integer up to the largest bag. That is not needed.
-
-Consider any feasible target $t$ and the bags that remain nonempty. If every surviving bag originally contained strictly more than $t$, then $t$ can be increased until it reaches the smallest original count among those survivors. The same bags can still support the larger target, and increasing the retained amount in every survivor removes fewer beans. Therefore the smaller $t$ could not have been optimal.
-
-So, in an optimal plan, the target equals the original size of at least one surviving bag—specifically, the smallest survivor. Every such value appears somewhere in the sorted array and is considered by the generator.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"beans": [4, 1, 6, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 6: Finalization
+- All $n = 4$ pivots evaluated.
+- Minimum removal across all choices is $4$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Prefix sums after sorting:** Explicit prefix sums can calculate removal from the emptied prefix and reduced suffix separately. They are correct but unnecessary because total original beans minus total retained beans gives the candidate in one formula.
-- **Frequency counting by value:** Since bag sizes are bounded, a frequency array can aggregate equal counts and scan possible targets. This can avoid comparison sorting but uses space tied to the maximum value and is less direct than the stored solution.
-- **Try every positive target:** Values between consecutive bag sizes cannot be better than raising the target to the next eligible bag size, so testing them wastes work.
-- **Keep only the largest bag:** This is always legal and corresponds to the last sorted index, providing a fallback candidate.
-- **One bag:** Choosing its existing size removes zero beans, and the only generator candidate returns zero.
-- **All bags equal:** The first occurrence keeps all beans, so the answer is zero.
-- **Highly uneven counts:** Emptying many small bags may be cheaper than reducing a very large bag to a tiny common amount; checking all targets captures this tradeoff.
-- **Duplicate target values:** Later equal occurrences keep fewer bags and cannot improve on the first occurrence, but including them does not change the minimum.
-- **Positive-input guarantee:** Every considered target is positive, so every suffix bag remains nonempty as required.
-- **No bean transfers:** The retained-total formula never moves beans between bags; it only discards the difference between original and final totals.
-- **All eligible bags should remain:** Once a bag has at least the target, keeping $x$ beans from it strictly increases retention and has no effect on other bags.
-- **Input mutation:** `beans.sort()` permanently reorders the caller's list. The returned count is correct, but callers that need the original order must pass a copy or use `sorted(beans)` in a different implementation.
-- **Generator memory:** `min` consumes candidate values lazily, so the formula does not allocate a separate length-$n$ list.
-- **Large totals:** With up to $10^5$ bags and $10^5$ beans per bag, the total can reach $10^{10}$; Python handles this exactly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The evaluation across all candidate pivots is documented below:
+
+| Pivot Index $i$ | Pivot Height $h = \text{beans}[i]$ | Qualifying Suffix Bags $n - i$ | Retained Beans $h \times (n - i)$ | Total Removed $S - \text{Retained}$ | Best So Far |
+|---|---|---|---|---|---|
+| 0 | 1 | 4 | 4 | 12 | 12 |
+| 1 | 4 | 3 | 12 | **4** | **4** |
+| 2 | 5 | 2 | 10 | 6 | 4 |
+| 3 | 6 | 1 | 6 | 10 | 4 |
+
+### Bag State Transformation for the Optimal Pivot ($i = 1, h = 4$)
+
+| Bag Index $j$ | Initial Beans | Action Taken | Final Beans | Beans Discarded |
+|---|---|---|---|---|
+| 0 | 1 | Empty bag entirely ($1 < 4$) | 0 | 1 |
+| 1 | 4 | Retain unchanged ($4 = 4$) | 4 | 0 |
+| 2 | 5 | Level down by removing $1$ | 4 | 1 |
+| 3 | 6 | Level down by removing $2$ | 4 | 2 |
+| **Sum** | **16** | **All non-empty bags equal $4$** | **12** | **4** |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of bags. Python's sort takes $O(n\log n)$ time. Computing the sum is $O(n)$, and the generator evaluates one constant-time arithmetic expression for each element, adding another $O(n)$. Sorting dominates, so total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Exhaustive Optimality of Pivot Set
+Let $h^*$ be the height of the non-empty bags in an optimal configuration.
+1. If $h^*$ is strictly greater than the maximum element in `beans`, no bag can reach $h^*$, retaining $0$ beans, which is strictly suboptimal compared to retaining at least one bag.
+2. If $h^*$ lies in an open interval $(\text{beans}[k], \text{beans}[k+1])$, then the set of bags with capacity $\ge h^*$ is identical to the set of bags with capacity $\ge \text{beans}[k+1]$. Let $m = n - (k + 1)$ be the count of such bags. The retained beans for height $h^*$ is $m \cdot h^* < m \cdot \text{beans}[k+1]$. Thus, snapping $h^*$ upward to $\text{beans}[k+1]$ strictly increases retained beans without losing any bag.
+3. Therefore, the global maximum of $\text{retained}(h)$ must occur at some $h \in \{\text{beans}[0], \dots, \text{beans}[n-1]\}$.
+Since our algorithm tests every element in the sorted array, it evaluates the complete set of candidate optimal heights, guaranteeing global optimality.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Single Bag ($n = 1$):**
+   - E.g., `beans = [7]`.
+   - Pivot $i = 0, h = 7$. Retained: $7 \times 1 = 7$. Removed: $7 - 7 = 0$.
+   - Already uniform; zero removals required.
+2. **All Bags Identical Capacity:**
+   - E.g., `beans = [3, 3, 3, 3]`.
+   - Pivot $i = 0, h = 3$. Retained: $3 \times 4 = 12$. Removed: $12 - 12 = 0$.
+   - No removals needed.
+3. **Large Magnitude Values ($10^5$ elements of size $10^5$):**
+   - Total sum $S$ can reach $10^{10}$, exceeding standard 32-bit signed integer limits ($2^{31} - 1 \approx 2.14 \times 10^9$).
+   - Calculations must use 64-bit integer arithmetic to prevent arithmetic overflow.
+
+### Anti-Patterns to Avoid
+- **Simulating Removals Iteratively:** Trying to decrement bean counts one by one or exploring a search tree results in exponential or polynomial time blowup.
+- **Testing Non-Element Heights:** Searching through all integer heights from $1$ to $\max(\text{beans})$ takes $O(\max(\text{beans}))$ time, which fails when bean counts are up to $10^5$.
+- **Prefix Sum Accumulation Overhead:** Recomputing $\sum_{j<i} \text{beans}[j] + \sum_{j \ge i} (\text{beans}[j] - h)$ directly for each $i$ without using the algebraic simplification $S - h \times (n - i)$ creates unnecessary code complexity.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(n \log n)$. Sorting the array of length $n$ takes $O(n \log n)$ time. Computing the total sum $S$ takes $O(n)$ time. The subsequent single-pass linear sweep over all $n$ pivots takes $O(n)$ time, with each pivot evaluated via $O(1)$ arithmetic operations. The overall time complexity is dominated by sorting, $O(n \log n)$.
+- **Auxiliary Space Complexity:** $O(1)$ or $O(n)$ depending on the sorting implementation. In-place sorting algorithms require $O(1)$ or $O(\log n)$ call-stack space. No auxiliary arrays or lookup hash maps are required.

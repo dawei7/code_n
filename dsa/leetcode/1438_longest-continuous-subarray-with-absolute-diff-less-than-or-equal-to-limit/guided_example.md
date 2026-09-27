@@ -1,123 +1,184 @@
 # Guided Example: Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of dual monotonic deques driving a sliding window on a representative problem instance:
 
-- **Input:** `{"nums": [8, 2, 4, 7], "limit": 4}`
-- **Required output:** `2`
+- **Input:** $nums = [10, 1, 2, 4, 7, 2]$, $limit = 5$
+- **Required Output:** $4$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains rapid element drops, window invalidation, and a multi-element maximal valid subarray $[2, 4, 7, 2]$ where $\max - \min = 7 - 2 = 5 \le 5$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `nums` and an integer `limit`, return the size of the longest **non-empty** subarray such that the absolute difference between any two elements of this subarray is less than or equal to `limit`*.*
+We are given an integer array $nums$ and an integer $limit$. We must find the length of the longest continuous subarray such that the absolute difference between any two elements in that subarray is at most $limit$:
 
-The objective is to compute `2` from `{"nums": [8, 2, 4, 7], "limit": 4}` while avoiding redundant calculations and unnecessary overhead.
+$$\max_{L \le i, j \le R} |nums[i] - nums[j]| \le limit$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because $|nums[i] - nums[j]|$ is maximized when one element is the subarray maximum and the other is the subarray minimum, the condition simplifies to:
+
+$$\max_{L \le k \le R} nums[k] - \min_{L \le k \le R} nums[k] \le limit$$
+
+In the representative instance:
+- Subarray $[10]$ has range $10 - 10 = 0 \le 5$.
+- Subarray $[10, 1]$ has range $10 - 1 = 9 > 5$ (invalid).
+- Subarray $[1, 2, 4]$ has range $4 - 1 = 3 \le 5$ (length $3$).
+- Subarray $[1, 2, 4, 7]$ has range $7 - 1 = 6 > 5$ (invalid).
+- Subarray $[2, 4, 7, 2]$ has range $7 - 2 = 5 \le 5$ (length $4$).
+- The maximum length achievable is $4$.
+
+The primary teaching goal is to demonstrate how two monotonic deques maintain the window maximum and minimum in amortized $\mathcal{O}(1)$ time per step, enabling the sliding window to expand and contract in strictly linear $\mathcal{O}(n)$ total time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the sliding window span indices $[L, R]$. To verify validity in $\mathcal{O}(1)$ time without rescanning, we maintain two monotonic double-ended queues:
+1. **Max-Deque ($Q_{\max}$):** Monotonically decreasing queue storing candidate maximums. The front element $Q_{\max}[0]$ always equals $\max_{L \le k \le R} nums[k]$.
+2. **Min-Deque ($Q_{\min}$):** Monotonically increasing queue storing candidate minimums. The front element $Q_{\min}[0]$ always equals $\min_{L \le k \le R} nums[k]$.
 
-| State Parameter | Role & Purpose | Initial State |
+When a new element $nums[R]$ enters the window:
+- Evict all elements $< nums[R]$ from the tail of $Q_{\max}$ before appending $nums[R]$.
+- Evict all elements $> nums[R]$ from the tail of $Q_{\min}$ before appending $nums[R]$.
+
+If $Q_{\max}[0] - Q_{\min}[0] > limit$, the window is invalid. We contract from the left by advancing $L$:
+- If $nums[L] == Q_{\max}[0]$, evict the front of $Q_{\max}$.
+- If $nums[L] == Q_{\min}[0]$, evict the front of $Q_{\min}$.
+- Increment $L$ by $1$.
+
+```
+Sliding Window State Progression:
+Index:       0     1     2     3     4     5
+Value:     [10,    1,    2,    4,    7,    2]
+Window:                 [L=2 -------------- R=5]
+Subarray:               [2,    4,    7,    2]
+
+Q_max (Monotonic Decreasing): [7, 2]       --> Front is max: 7
+Q_min (Monotonic Increasing): [2, 2]       --> Front is min: 2
+Window Range: 7 - 2 = 5 <= 5 (VALID, Length = 4)
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Left Boundary ($L$) | Integer $0 \le L \le R$ | Start index of active continuous subarray |
+| Right Boundary ($R$) | Integer $0 \le R < n$ | Expansion cursor scanning each element once |
+| Max-Deque ($Q_{\max}$) | Monotonic decreasing queue | Tracks window maximum candidates; front is $\max$ |
+| Min-Deque ($Q_{\min}$) | Monotonic increasing queue | Tracks window minimum candidates; front is $\min$ |
+| Maximum Length | Integer $1 \le \text{len} \le n$ | Best valid window length discovered so far |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every active window $[L, R]$, $Q_{\max}[0]$ is the maximum value in $nums[L \dots R]$, $Q_{\min}[0]$ is the minimum value in $nums[L \dots R]$, and the elements in both deques preserve their relative index order.
+
+```mermaid
+flowchart TD
+    accTitle: Dual Monotonic Deque Sliding Window
+    accDescr: Expanding right pointer, maintaining min/max deques, shrinking left pointer when diff exceeds limit, updating maximum length.
+    A["Initialize L = 0, R = 0, max_len = 0"] --> B{"R < n?"}
+    B -- No --> C["Return max_len"]
+    B -- Yes --> D["Push nums[R] into Q_max (pop smaller from tail)"]
+    D --> E["Push nums[R] into Q_min (pop larger from tail)"]
+    E --> F{"Q_max.front - Q_min.front > limit?"}
+    F -- Yes --> G["If nums[L] == Q_max.front, pop Q_max front<br/>If nums[L] == Q_min.front, pop Q_min front<br/>L = L + 1"] --> F
+    F -- No --> H["max_len = max(max_len, R - L + 1)<br/>R = R + 1"] --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Only the window minimum and maximum determine validity
+We walk through the representative instance $nums = [10, 1, 2, 4, 7, 2]$ with $limit = 5$.
 
-For any set of numbers, the largest absolute difference between a pair is:
+### Step 1: Process $R = 0$ ($nums[0] = 10$)
+- Insert $10$ into $Q_{\max} \implies [10]$.
+- Insert $10$ into $Q_{\min} \implies [10]$.
+- Diff: $10 - 10 = 0 \le 5$. Valid window $[0, 0]$.
+- $\text{max\_len} = \max(0, 0 - 0 + 1) = 1$.
 
-$$
-\max-\min.
-$$
+### Step 2: Process $R = 1$ ($nums[1] = 1$)
+- Insert $1$ into $Q_{\max} \implies [10, 1]$.
+- Tail $10 > 1$ in $Q_{\min}$, pop $10 \implies Q_{\min} = [1]$.
+- Diff: $10 - 1 = 9 > 5$. Invalidation detected!
+- Shrink left at $L = 0$: $nums[0] = 10 == Q_{\max}[0]$, so pop $10$ from $Q_{\max} \implies Q_{\max} = [1]$. $L$ advances to $1$.
+- New diff: $1 - 1 = 0 \le 5$. Valid window $[1, 1]$.
+- $\text{max\_len} = \max(1, 1 - 1 + 1) = 1$.
 
-If that extreme difference is at most `limit`, every other pair is also within the limit. If it exceeds the limit, the minimum and maximum themselves form a violating pair.
+### Step 3: Process $R = 2$ ($nums[2] = 2$)
+- Tail $1 < 2$ in $Q_{\max}$, pop $1 \implies Q_{\max} = [2]$.
+- Insert $2$ into $Q_{\min} \implies [1, 2]$.
+- Diff: $2 - 1 = 1 \le 5$. Valid window $[1, 2]$.
+- $\text{max\_len} = \max(1, 2 - 1 + 1) = 2$.
 
-The algorithm therefore maintains a sliding window and a sorted multiset `sl` containing exactly its elements. The first sorted value is its minimum and the last is its maximum.
+### Step 4: Process $R = 3$ ($nums[3] = 4$)
+- Tail $2 < 4$ in $Q_{\max}$, pop $2 \implies Q_{\max} = [4]$.
+- Insert $4$ into $Q_{\min} \implies [1, 2, 4]$.
+- Diff: $4 - 1 = 3 \le 5$. Valid window $[1, 3]$.
+- $\text{max\_len} = \max(2, 3 - 1 + 1) = 3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [8, 2, 4, 7], "limit": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 5: Process $R = 4$ ($nums[4] = 7$)
+- Tail $4 < 7$ in $Q_{\max}$, pop $4 \implies Q_{\max} = [7]$.
+- Insert $7$ into $Q_{\min} \implies [1, 2, 4, 7]$.
+- Diff: $7 - 1 = 6 > 5$. Invalidation detected!
+- Shrink left at $L = 1$: $nums[1] = 1 == Q_{\min}[0]$, so pop $1$ from $Q_{\min} \implies Q_{\min} = [2, 4, 7]$. $L$ advances to $2$.
+- New diff: $7 - 2 = 5 \le 5$. Valid window $[2, 4]$.
+- $\text{max\_len} = \max(3, 4 - 2 + 1) = 3$.
 
----
+### Step 6: Process $R = 5$ ($nums[5] = 2$)
+- Insert $2$ into $Q_{\max} \implies [7, 2]$.
+- Tail elements $7 > 2$ and $4 > 2$ in $Q_{\min}$ are popped $\implies Q_{\min} = [2, 2]$.
+- Diff: $7 - 2 = 5 \le 5$. Valid window $[2, 5]$.
+- $\text{max\_len} = \max(3, 5 - 2 + 1) = 4$.
 
-### Step 2: What the two boundaries mean
-
-`j` is the left endpoint of the current window. The outer loop's index `i` is its right endpoint. After adding `nums[i]` and shrinking as needed, the window is `nums[j:i+1]`.
-
-`ans` stores the longest valid window length observed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: A sorted multiset is required, not a plain set
-
-`SortedList` keeps values in nondecreasing order and allows duplicates. Duplicate support matters: if the current window contains three copies of 2, removing one leftmost 2 must leave the other two present.
-
-For each new value:
-
-
-
-inserts it into sorted position. Then `sl[0]` is the current minimum and `sl[-1]` is the current maximum.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+| Index $R$ | Value $nums[R]$ | $Q_{\max}$ State | $Q_{\min}$ State | $L$ Before/After | Window Range ($\max - \min$) | Valid? | Max Length |
+|---|---|---|---|---|---|---|---|
+| 0 | 10 | $[10]$ | $[10]$ | $L = 0 \to 0$ | $10 - 10 = 0 \le 5$ | Yes | 1 |
+| 1 | 1 | $[1]$ | $[1]$ | $L = 0 \to 1$ | $10 - 1 = 9 > 5 \to 0 \le 5$ | Adjusted | 1 |
+| 2 | 2 | $[2]$ | $[1, 2]$ | $L = 1 \to 1$ | $2 - 1 = 1 \le 5$ | Yes | 2 |
+| 3 | 4 | $[4]$ | $[1, 2, 4]$ | $L = 1 \to 1$ | $4 - 1 = 3 \le 5$ | Yes | 3 |
+| 4 | 7 | $[7]$ | $[2, 4, 7]$ | $L = 1 \to 2$ | $7 - 1 = 6 > 5 \to 5 \le 5$ | Adjusted | 3 |
+| 5 | 2 | $[7, 2]$ | $[2, 2]$ | $L = 2 \to 2$ | $7 - 2 = 5 \le 5$ | Yes | 4 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [8, 2, 4, 7], "limit": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```
+Final Result Summary:
+Optimal Subarray: nums[2..5] = [2, 4, 7, 2]
+Elements: {2, 4, 7, 2}
+Window Extrema: Min = 2, Max = 7
+Absolute Difference: |7 - 2| = 5 <= 5
+Total Length: 5 - 2 + 1 = 4
+```
+
+| Window State $[L, R]$ | Subarray Slice | $Q_{\max}[0]$ | $Q_{\min}[0]$ | Current Spread | Action / Decision |
+|---|---|---|---|---|---|
+| $[0, 0]$ | $[10]$ | 10 | 10 | 0 | Window valid; record length $1$ |
+| $[0, 1] \to [1, 1]$ | $[1]$ | 1 | 1 | 0 | Spread $9 > 5$; evict $10$, advance $L \leftarrow 1$ |
+| $[1, 2]$ | $[1, 2]$ | 2 | 1 | 1 | Window valid; record length $2$ |
+| $[1, 3]$ | $[1, 2, 4]$ | 4 | 1 | 3 | Window valid; record length $3$ |
+| $[1, 4] \to [2, 4]$ | $[2, 4, 7]$ | 7 | 2 | 5 | Spread $6 > 5$; evict $1$, advance $L \leftarrow 2$ |
+| $[2, 5]$ | $[2, 4, 7, 2]$ | 7 | 2 | 5 | Window valid; record new maximum length $4$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any window $[L, R]$, the monotonic invariant ensures that $Q_{\max}[0]$ and $Q_{\min}[0]$ precisely reflect the extreme values of the subarray. Hence, testing $Q_{\max}[0] - Q_{\min}[0] \le limit$ is necessary and sufficient to guarantee that every pair of elements in $[L, R]$ satisfies the limit constraint.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since both $L$ and $R$ advance monotonically from left to right, no valid subarray starting at any index is prematurely truncated before achieving its maximal contiguous extension for that start position. Each element is added once at $R$ and removed at most once at $L$, guaranteeing exhaustive coverage of all maximal valid intervals.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two monotonic deques:** Maintain decreasing maximum candidates and increasing minimum candidates. Each index enters and leaves each deque once, realizing $O(n)$ time.
-- **Two heaps with lazy deletion:** Track minimum and maximum with indices. It is correct but uses logarithmic operations and more stale-entry handling.
-- **Balanced frequency map:** A sorted dictionary from values to counts implements the same multiset idea as SortedList.
-- **Brute-force subarrays:** Recomputing extremes for every range can take quadratic or cubic time.
-- **`limit = 0`:** A valid window can contain only equal values; duplicate-aware removal is essential.
-- **All equal values:** The window never shrinks and the answer is $n$.
-- **One element:** Difference is zero, so the result is one.
-- **Duplicate minimum or maximum:** Removing one occurrence must not erase the others; SortedList handles multiplicity.
-- **Large new outlier:** The while loop may remove many left elements, but each array position is removed only once overall.
-- **Contiguity:** Shrinking always removes `nums[j]`, not an arbitrary extreme value.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Rescanning for Extrema on Invalidation:** Recomputing the maximum and minimum across the current window from scratch takes $\mathcal{O}(R - L)$ time per contraction, leading to worst-case $\mathcal{O}(n^2)$ time on sorted arrays. Deques maintain extrema in amortized $\mathcal{O}(1)$ time.
+- **Evicting by Value vs. Identity:** When duplicate values exist (such as the two `2`s in this instance), evicting simply because $nums[L] == Q[0]$ requires careful alignment: the deque front matches the element at index $L$ because elements are processed strictly in FIFO index order.
+- **Sorted Multi-set Overhead:** While a balanced binary search tree (or multiset) also maintains window extrema, it incurs an $\mathcal{O}(\log n)$ factor per insertion/deletion, resulting in $\mathcal{O}(n \log n)$ time instead of the optimal $\mathcal{O}(n)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the array length. Each element is inserted into `SortedList` once and removed at most once. Balanced sorted-container insertion and removal cost $O(\log n)$, while reading either endpoint is $O(1)$. Total time for the exact stored implementation is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of $nums$. Each element is pushed onto $Q_{\max}$ and $Q_{\min}$ exactly once. Each element is popped from the back of each deque at most once and popped from the front at most once. The pointer $L$ advances at most $n$ times and $R$ advances exactly $n$ times. Therefore, the total number of operations across all steps is bounded by $\mathcal{O}(n)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ in the worst case to store indices or values inside the two monotonic deques when elements are arranged monotonically.

@@ -1,89 +1,152 @@
 # Guided Example: Maximum Depth of Binary Tree
 
-We trace the hierarchical Tree, Depth-First Search, Breadth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step post-order divide-and-conquer depth recurrence and BFS tier counting on a representative binary tree:
 
-- **Input:** `{"root": [3, 9, 20, null, null, 15, 7]}`
-- **Required output:** `3`
+- **Input:** $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$
+- **Required output:** $3$
+- **Base Instances:** $\text{root} = [] \implies 0, \quad \text{root} = [1] \implies 1$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates recursive post-order subtree height aggregation ($1 + \max(\text{left}, \text{right})$), base case resolution on null pointers, bottom-up inductive depth synthesis, and BFS level counting in $O(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Maximum Depth of Binary Tree** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given the root of a binary tree:
+$$
+\begin{gathered}
+3 \\
+\swarrow \quad \searrow \\
+9 \qquad\quad 20 \\
+\qquad\quad \swarrow \quad \searrow \\
+\qquad\quad 15 \qquad\quad 7
+\end{gathered}
+$$
+return its maximum depth (the number of nodes along the longest path from the root node down to the farthest leaf node).
+
+Paths from the root to each leaf:
+1. Path $3 \to 9$: length $2$ nodes.
+2. Path $3 \to 20 \to 15$: length $3$ nodes.
+3. Path $3 \to 20 \to 7$: length $3$ nodes.
+The maximum depth is $\max(2, 3, 3) = 3$.
+
+Depth-First Search computes this bottom-up using optimal substructure: the depth of any node is $1$ plus the maximum of its children's depths.
+Alternatively, Breadth-First Search counts the exact number of horizontal tiers processed before the queue empties. Both run in $O(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Recursive Post-Order Recurrence
+We define $\text{maxDepth}(\text{node})$:
+1. **Base Case (Empty Subtree):**
+   If $\text{node} == \emptyset$:
+   $$
+   \text{return } 0
+   $$
+2. **Recursive Divide:**
+   Recursively evaluate the maximum depths of left and right subtrees:
+   $$
+   L = \text{maxDepth}(\text{node.left})
+   $$
+   $$
+   R = \text{maxDepth}(\text{node.right})
+   $$
+3. **Inductive Conquer:**
+   Combine the child heights by selecting the taller subtree and adding $1$ for the current node:
+   $$
+   \text{maxDepth}(\text{node}) = 1 + \max(L, R)
+   $$
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
-
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** For every visited node, $\text{maxDepth}(\text{node})$ evaluates to the exact length of the longest simple path from that node down to any descendant leaf.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace the recursive post-order call stack on $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: Subtree at Node 9 (Left Child of Root 3)
+- Left child is $\emptyset \implies L = 0$.
+- Right child is $\emptyset \implies R = 0$.
+- Evaluate: $1 + \max(0, 0) = 1$.
+- Returns: $\text{maxDepth}(\text{Node}(9)) = 1$.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: Subtree at Node 15 (Left Child of Node 20)
+- Left child is $\emptyset \implies L = 0$.
+- Right child is $\emptyset \implies R = 0$.
+- Evaluate: $1 + \max(0, 0) = 1$.
+- Returns: $\text{maxDepth}(\text{Node}(15)) = 1$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 3: Subtree at Node 7 (Right Child of Node 20)
+- Left child is $\emptyset \implies L = 0$.
+- Right child is $\emptyset \implies R = 0$.
+- Evaluate: $1 + \max(0, 0) = 1$.
+- Returns: $\text{maxDepth}(\text{Node}(7)) = 1$.
+
+---
+
+### Step 4: Subtree at Node 20 (Right Child of Root 3)
+- Left child $\text{Node}(15)$ returned depth $L = 1$.
+- Right child $\text{Node}(7)$ returned depth $R = 1$.
+- Evaluate: $1 + \max(1, 1) = 1 + 1 = 2$.
+- Returns: $\text{maxDepth}(\text{Node}(20)) = 2$.
+
+---
+
+### Step 5: Root Node 3
+- Left child $\text{Node}(9)$ returned depth $L = 1$.
+- Right child $\text{Node}(20)$ returned depth $R = 2$.
+- Evaluate:
+  $$
+  \text{maxDepth}(\text{Node}(3)) = 1 + \max(1, 2) = 1 + 2 = \mathbf{3}
+  $$
+- Root evaluation finishes, returning $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+```text
+                  maxDepth(3) = 1 + max(1, 2) = 3
+                 /                              \
+       maxDepth(9) = 1               maxDepth(20) = 1 + max(1, 1) = 2
+        /         \                   /                          \
+     null(0)    null(0)       maxDepth(15) = 1             maxDepth(7) = 1
+                               /            \               /           \
+                            null(0)       null(0)        null(0)      null(0)
+```
+
+| Node Evaluated | Left Subtree Depth $L$ | Right Subtree Depth $R$ | Combination Formula | Returned Depth |
+|:---:|:---:|:---:|:---:|:---:|
+| $\text{Node}(9)$ | 0 | 0 | $1 + \max(0, 0)$ | 1 |
+| $\text{Node}(15)$ | 0 | 0 | $1 + \max(0, 0)$ | 1 |
+| $\text{Node}(7)$ | 0 | 0 | $1 + \max(0, 0)$ | 1 |
+| $\text{Node}(20)$ | 1 (Node 15) | 1 (Node 7) | $1 + \max(1, 1)$ | 2 |
+| **$\text{Node}(3)$ (Root)** | **1 (Node 9)** | **2 (Node 20)** | **$1 + \max(1, 2)$** | **3 (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** By definition, the depth of an empty tree is 0. For any non-empty tree, every path from the root to a leaf begins at the root (cost 1) and continues through either the left or right subtree. Taking $1 + \max(L, R)$ strictly evaluates the maximum path length over all candidate paths.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** The post-order traversal visits every node in the tree. Because base cases return $0$ and internal nodes accurately take the maximum over both children, no deeper path can be overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Base Case Distinction from Minimum Depth:** In *Maximum* Depth, an absent child correctly contributes $0$, and $\max(L, R)$ picks the non-empty branch. In *Minimum* Depth (LeetCode 111), a node with one child cannot use the empty child (which has depth 0) because depth must be measured to a leaf.
+- **Degenerate Skew Trees:** If the tree is a straight line ($1 \to 2 \to 3 \to 4$), the recursion stack reaches depth $N$. In languages with small default stack sizes, an iterative BFS or DFS with explicit stack prevents stack overflow.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Every node is visited once and performs $O(1)$ operations.
+- **Auxiliary Space Complexity:** $O(H)$, where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ for degenerate skewed trees), representing the call stack.

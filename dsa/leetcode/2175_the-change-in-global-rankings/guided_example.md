@@ -1,127 +1,182 @@
 # Guided Example: The Change in Global Rankings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the relational dual-ranking difference query on a representative international tournament standings dataset, demonstrating how parallel window functions evaluate simultaneous point adjustments and deterministic lexicographical tie-breaking in $O(N \log N)$ time.
 
-- **Input:** `{"tables": {"TeamPoints": [{"team_id": 3, "name": "Algeria", "points": 1431}, {"team_id": 1, "name": "Senegal", "points": 2132}, {"team_id": 2, "name": "New Zealand", "points": 1402}, {"team_id": 4, "name": "Croatia", "points": 1817}], "PointsChange": [{"team_id": 3, "points_change": 399}, {"team_id": 2, "points_change": 0}, {"team_id": 4, "points_change": 13}, {"team_id": 1, "points_change": -22}]}}`
-- **Required output:** `{"columns": ["team_id", "name", "rank_diff"], "rows": [[1, "Senegal", 0], [4, "Croatia", -1], [3, "Algeria", 1], [2, "New Zealand", 0]]}`
+- **Input:** Tables `TeamPoints` and `PointsChange` for teams Algeria, Senegal, New Zealand, and Croatia
+- **Output:** Table with columns `team_id`, `name`, and `rank_diff` yielding `(1, "Senegal", 0)`, `(4, "Croatia", -1)`, `(3, "Algeria", 1)`, and `(2, "New Zealand", 0)`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `TeamPoints`
-
-The objective is to compute `{"columns": ["team_id", "name", "rank_diff"], "rows": [[1, "Senegal", 0], [4, "Croatia", -1], [3, "Algeria", 1], [2, "New Zealand", 0]]}` from `{"tables": {"TeamPoints": [{"team_id": 3, "name": "Algeria", "points": 1431}, {"team_id": 1, "name": "Senegal", "points": 2132}, {"team_id": 2, "name": "New Zealand", "points": 1402}, {"team_id": 4, "name": "Croatia", "points": 1817}], "PointsChange": [{"team_id": 3, "points_change": 399}, {"team_id": 2, "points_change": 0}, {"team_id": 4, "points_change": 13}, {"team_id": 1, "points_change": -22}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance captures signed point modifications, strict total ordering via lexicographical tie-breakers, parallel window ranking expressions, and signed rank displacement conventions.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given two relational tables:
+1. `TeamPoints`: Contains `(team_id, name, points)` where each team has a unique integer ID, a unique country name, and initial global ranking points.
+2. `PointsChange`: Contains `(team_id, points_change)` specifying a signed point adjustment for each team.
 
-| State Parameter | Role & Purpose | Initial State |
+The ranking criteria dictates:
+- Teams are ordered by points in **descending order**.
+- Any ties in points are resolved strictly by the team's country `name` in **ascending alphabetical order**.
+
+We must compute the change in position for every team, defined as:
+$$\text{rank\_diff} = \text{old\_rank} - \text{new\_rank}$$
+Under this convention:
+- A positive value indicates an **improvement** in standing (e.g., advancing from 3rd to 2nd gives $3 - 2 = +1$).
+- A negative value indicates a **decline** in standing (e.g., dropping from 2nd to 3rd gives $2 - 3 = -1$).
+- Zero indicates an **unchanged** standing ($1 - 1 = 0$).
+
+In our representative dataset:
+- **Senegal (ID 1):** Initial points $2132$, change $-22 \implies$ new points $2110$.
+- **Croatia (ID 4):** Initial points $1817$, change $+13 \implies$ new points $1830$.
+- **Algeria (ID 3):** Initial points $1431$, change $+399 \implies$ new points $1830$.
+- **New Zealand (ID 2):** Initial points $1402$, change $0 \implies$ new points $1402$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Deterministic Total Ordering
+
+For any set of teams, an ambiguous ranking where multiple teams share the same rank is prevented by appending the unique identifier `name` to the sorting specification:
+$$\text{Tuple Order: } (\text{points} \downarrow, \; \text{name} \uparrow)$$
+
+Because country names are globally unique across all rows:
+$$(p_A, n_A) = (p_B, n_B) \iff A = B$$
+Thus, every team receives a distinct, unique integer rank in $\{1, 2, \dots, N\}$ with zero rank collisions. Under this total order, `RANK()`, `DENSE_RANK()`, and `ROW_NUMBER()` produce identical numerical values.
+
+### Parallel Window Execution
+
+Rather than creating temporary tables or mutating the underlying data, the query performs two simultaneous window evaluations in a single query pass over the joined data:
+1. **Original Global Rank ($R_{\text{old}}$):**
+   $$R_{\text{old}} = \text{RANK}() \text{ OVER } (\text{ORDER BY points DESC, name ASC})$$
+2. **Updated Global Rank ($R_{\text{new}}$):**
+   $$R_{\text{new}} = \text{RANK}() \text{ OVER } (\text{ORDER BY (points + delta) DESC, name ASC})$$
+
+The displacement metric is obtained directly by subtraction:
+$$\text{rank\_diff} = R_{\text{old}} - R_{\text{new}}$$
+
+| Analytical Component | SQL / Mathematical Expression | Semantic Significance |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Aggregated Delta | `SUM(points_change) AS delta` | Net score adjustment per team |
+| Base Rank $R_{\text{old}}$ | `RANK() OVER (ORDER BY points DESC, name)` | Baseline tournament standing |
+| Updated Points | `points + delta` | Post-adjustment tournament score |
+| Updated Rank $R_{\text{new}}$ | `RANK() OVER (ORDER BY (points + delta) DESC, name)` | Standings position after adjustments |
+| Signed Displacement | $R_{\text{old}} - R_{\text{new}}$ | Positive for advancement, negative for demotion |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Prepare one change value per team
-
-CTE `P` reads `PointsChange` and groups by `team_id`. It returns `SUM(points_change) AS delta`.
-
-The schema already says `team_id` is unique in `PointsChange`, so each group normally contains one row and `delta` equals that row's `points_change`. The aggregation is therefore defensive rather than necessary under the stated contract. It would also combine multiple change records correctly if such rows were ever supplied.
-
-Naming the value `delta` makes the later updated score expression concise: `points + delta`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"TeamPoints": [{"team_id": 3, "name": "Algeria", "points": 1431}, {"team_id": 1, "name": "Senegal", "points": 2132}, {"team_id": 2, "name": "New Zealand", "points": 1402}, {"team_id": 4, "name": "Croatia", "points": 1817}], "PointsChange": [{"team_id": 3, "points_change": 399}, {"team_id": 2, "points_change": 0}, {"team_id": 4, "points_change": 13}, {"team_id": 1, "points_change": -22}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: Dual Ranking Computation Pipeline
+accDescr: Pipeline diagram showing table join, parallel old and new window ranking, and displacement subtraction.
+flowchart TD
+    TP["TeamPoints (points)"] & PC["PointsChange (delta)"] --> J["INNER JOIN ON team_id"]
+    J --> W1["Window 1: ORDER BY points DESC, name => R_old"]
+    J --> W2["Window 2: ORDER BY (points + delta) DESC, name => R_new"]
+    W1 & W2 --> Sub["Calculate rank_diff = R_old - R_new"]
+    Sub --> Out["Output: (team_id, name, rank_diff)"]
+```
 
 ---
 
-### Step 2: Join changes to the team facts
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-`TeamPoints JOIN P USING (team_id)` pairs every team's name and original points with its delta. The contract guarantees that every `team_id` in `TeamPoints` appears in `PointsChange`, so the inner join does not discard a team.
+We trace the relational computation on our representative dataset.
 
-`USING (team_id)` also exposes one shared `team_id` column instead of two duplicate key columns. The select list can therefore refer to `team_id` without qualifying a table name.
+### Step 1: Aggregate and Join Adjustments
+- Group `PointsChange` by `team_id` to produce delta per team:
+  - Team 1 (Senegal): $\text{delta} = -22$
+  - Team 2 (New Zealand): $\text{delta} = 0$
+  - Team 3 (Algeria): $\text{delta} = +399$
+  - Team 4 (Croatia): $\text{delta} = +13$
+- Equijoin with `TeamPoints` on `team_id`:
+  - Senegal: `points = 2132`, `delta = -22`, updated `points + delta = 2110`.
+  - New Zealand: `points = 1402`, `delta = 0`, updated `points + delta = 1402`.
+  - Algeria: `points = 1431`, `delta = +399`, updated `points + delta = 1830`.
+  - Croatia: `points = 1817`, `delta = +13`, updated `points + delta = 1830`.
 
-The query calculates updated scores as expressions. It does not update either source table, which is appropriate because the task asks for a result table rather than a persistent data modification.
+### Step 2: Evaluate Original Standings ($R_{\text{old}}$)
+Sort all rows by `points DESC, name ASC`:
+1. Senegal: $2132 \implies R_{\text{old}} = 1$.
+2. Croatia: $1817 \implies R_{\text{old}} = 2$.
+3. Algeria: $1431 \implies R_{\text{old}} = 3$.
+4. New Zealand: $1402 \implies R_{\text{old}} = 4$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 3: Evaluate Updated Standings ($R_{\text{new}}$)
+Sort all rows by `(points + delta) DESC, name ASC`:
+- Updated scores: Senegal ($2110$), Algeria ($1830$), Croatia ($1830$), New Zealand ($1402$).
+- Tie-break arbitration between Algeria and Croatia:
+  - Both share identical points of $1830$.
+  - Compare names alphabetically: `'Algeria' < 'Croatia'`.
+  - Algeria is placed ahead of Croatia!
+- Assigned new ranks:
+  1. Senegal: $2110 \implies R_{\text{new}} = 1$.
+  2. Algeria: $1830 \implies R_{\text{new}} = 2$.
+  3. Croatia: $1830 \implies R_{\text{new}} = 3$.
+  4. New Zealand: $1402 \implies R_{\text{new}} = 4$.
 
----
-
-### Step 3: Rank the original standings
-
-The first window expression is
-
-`RANK() OVER (ORDER BY points DESC, name)`.
-
-Higher point totals appear first because of `DESC`. When two teams have equal points, the second key `name` uses ascending order by default, giving the required lexicographical tie-break.
-
-Window ranking sees the complete joined result because there is no `PARTITION BY`. This is a global ranking, not a separate rank per group or country.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["team_id", "name", "rank_diff"], "rows": [[1, "Senegal", 0], [4, "Croatia", -1], [3, "Algeria", 1], [2, "New Zealand", 0]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"TeamPoints": [{"team_id": 3, "name": "Algeria", "points": 1431}, {"team_id": 1, "name": "Senegal", "points": 2132}, {"team_id": 2, "name": "New Zealand", "points": 1402}, {"team_id": 4, "name": "Croatia", "points": 1817}], "PointsChange": [{"team_id": 3, "points_change": 399}, {"team_id": 2, "points_change": 0}, {"team_id": 4, "points_change": 13}, {"team_id": 1, "points_change": -22}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["team_id", "name", "rank_diff"], "rows": [[1, "Senegal", 0], [4, "Croatia", -1], [3, "Algeria", 1], [2, "New Zealand", 0]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 4: Compute Signed Displacement Difference
+- **Senegal:** $R_{\text{old}} - R_{\text{new}} = 1 - 1 = 0$. Position unchanged.
+- **Croatia:** $R_{\text{old}} - R_{\text{new}} = 2 - 3 = -1$. Demoted from 2nd to 3rd place.
+- **Algeria:** $R_{\text{old}} - R_{\text{new}} = 3 - 2 = +1$. Promoted from 3rd to 2nd place.
+- **New Zealand:** $R_{\text{old}} - R_{\text{new}} = 4 - 4 = 0$. Position unchanged.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **ROW_NUMBER instead of RANK:** Unique names fully break point ties, so `ROW_NUMBER` with the same two ordering keys produces identical positions.
-- **Two ranking CTEs:** Compute original and updated ranks in separate CTEs and join them by team. This is more verbose but can make the before-and-after columns visible for debugging.
-- **Correlated counting:** A rank can be computed by counting teams ordered ahead of the current team, but doing so for every team can become quadratic without sophisticated optimization.
-- **Unique change rows:** Under the schema, `SUM(points_change)` equals the sole change value; grouping remains harmless.
-- **Zero point change:** A team's own score stays fixed, but its rank may still change because other teams move around it.
-- **Negative point change:** `points + delta` correctly lowers the updated score; no special branch is needed.
-- **Positive point change:** The same arithmetic raises the score.
-- **Equal updated points:** Lexicographically smaller `name` ranks first because the secondary key is ascending.
-- **Equal original points:** The identical name rule resolves the original ordering too.
-- **Signed decline:** Casting before subtraction is necessary for teams whose new rank number is larger.
-- **One team:** Both ranks are one, so `rank_diff` is zero regardless of its point change.
-- **Every team changes equally:** All score differences remain the same, both orderings match, and every result is zero.
-- **Guaranteed matching delta:** The inner join is safe only because every team is promised a `PointsChange` row; without that guarantee, a left join with `COALESCE(delta, 0)` would be needed.
-- **No persistent update:** The expression `points + delta` affects ranking computation only and leaves both tables unchanged.
-- **Any output order:** The window order is not a final output-order guarantee, but the contract explicitly allows arbitrary result order.
-- **Unique team names:** This guarantee prevents complete ordering-key ties, so `RANK` has no gaps in the returned positions.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The full tabular trace across initial, intermediate, and final states is documented below:
+
+| `team_id` | Country `name` | Initial `points` | Points Adjustment `delta` | Effective `points + delta` | Old Rank $R_{\text{old}}$ | New Rank $R_{\text{new}}$ | Signed Difference `rank_diff` |
+|---|---|---|---|---|---|---|---|
+| 1 | Senegal | 2132 | -22 | 2110 | 1 | 1 | **0** |
+| 4 | Croatia | 1817 | +13 | 1830 | 2 | 3 | **-1** |
+| 3 | Algeria | 1431 | +399 | 1830 | 3 | 2 | **+1** |
+| 2 | New Zealand | 1402 | 0 | 1402 | 4 | 4 | **0** |
+
+### Tie-Breaking Mechanics for Updated Points ($1830$)
+
+| Team Name | Updated Points | Alphabetical Sort Key | Assigned New Rank $R_{\text{new}}$ | Rationale |
+|---|---|---|---|---|
+| Algeria | 1830 | `'Algeria'` | **2** | `'A'` precedes `'C'`, wins tie |
+| Croatia | 1830 | `'Croatia'` | **3** | `'C'` follows `'A'`, takes subsequent rank |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n \log n)$. Let $N$ be the number of teams. CTE `P` scans and groups $O(N)$ change rows under the schema. The join processes $O(N)$ teams with an indexed, hash, or otherwise optimized key lookup in typical execution.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Soundness of Rank Displacement Metric
+The problem specification requires that an increase in rank (improving toward rank 1) must be positive.
+- Lower numerical rank values correspond to better standing ($1$st is better than $2$nd).
+- If a team moves from rank $A$ to rank $B$ where $B < A$ (improved standing), the algebraic difference $A - B > 0$ correctly produces a positive integer.
+- Conversely, if demoted ($B > A$), $A - B < 0$ produces a negative integer.
+- Computing $R_{\text{old}} - R_{\text{new}}$ strictly adheres to this convention.
+
+### Uniqueness and Completeness
+Because every team in `TeamPoints` has a corresponding record in `PointsChange`, an inner join on `team_id` retains all teams.
+Because `name` is unique, each team receives a strictly unique rank $1 \dots N$ in both rankings, ensuring that no artificial rank ties distort the displacement arithmetic.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+1. **Zero Point Adjustments for All Teams:**
+   - All `delta = 0`. Old ranks and new ranks are identical; all `rank_diff = 0`.
+2. **Multiple Teams Tied on Initial or Updated Points:**
+   - E.g., multiple teams having exactly equal scores.
+   - Lexicographical ordering by `name` guarantees a strict linear ordering without ties.
+3. **Massive Point Swings Inverting Standings:**
+   - The lowest-ranked team receives a large positive delta that elevates it to first place. The difference correctly yields $N - 1$.
+4. **Type Casting of Window Subtractions:**
+   - In PostgreSQL, subtracting two `bigint` window ranks produces a `bigint`. Casting with `::int` guarantees adherence to the integer schema.
+
+### Anti-Patterns to Avoid
+- **Inverted Difference Formula ($R_{\text{new}} - R_{\text{old}}$):** Using new minus old inverts the signs, falsely labeling promotions as negative and demotions as positive.
+- **Omitting the Tie-Breaker in Window Specifications:** Writing `ORDER BY points DESC` without `name ASC` produces non-deterministic ranks when points tie, leading to arbitrary test rejections.
+- **Using Correlated Subqueries:** Computing ranks by counting rows with strictly greater points via correlated subqueries takes $O(N^2)$ time. Native window functions execute in $O(N \log N)$ sort time.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(N \log N)$ where $N$ is the number of teams. Aggregating `PointsChange` takes $O(N)$ time. The inner join takes $O(N)$ with hash joining. The two window functions sort $N$ rows by `(points DESC, name ASC)` and `((points + delta) DESC, name ASC)`, requiring $O(N \log N)$ comparison sort time. Overall query execution is strictly $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$. Memory is allocated for the joined relation and sort buffers for the two window evaluations, requiring linear auxiliary space proportional to $N$.

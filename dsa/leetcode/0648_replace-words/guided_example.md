@@ -1,121 +1,208 @@
 # Guided Example: Replace Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step prefix tree (Trie) dictionary indexing ($26$-ary letter tree), tokenized sentence stream parsing, character-by-character prefix path traversal ($node \leftarrow node.children[c]$), earliest terminal root hit detection ($node.is\_end \implies w[:i]$), shortest root replacement invariant, and reconstituted sentence synthesis on representative linguistic texts:
 
-- **Input:** `{"dictionary": ["a", "b", "c"], "sentence": "aadsfasf absbs bbab cadsfafs"}`
-- **Required output:** `"a a b c"`
+- **Input:**
+  - Root dictionary: $dictionary = [\text{"cat"}, \; \text{"bat"}, \; \text{"rat"}]$
+  - Original sentence: $sentence = \text{"the cattle was rattled by the battery"}$
+- **Required output:** `\text{"the cat was rat by the bat"}`
+  - Linguistic definitions:
+    - A **root** is a word stem that prefixes a longer derivative word (e.g. `"cat"` prefixes `"cattle"`).
+    - If a word can be formed by multiple roots (e.g. roots `"c"` and `"cat"` for `"cattle"`), it must be replaced by the **shortest valid root** (here `"c"`).
+    - Words without any matching dictionary root in the prefix position remain unchanged.
+- **Prefix Tree (Trie) Shortest Root Invariant:**
+  - **Trie Construction:**
+    - Insert every root word from $dictionary$ into a 26-ary Trie.
+    - Mark the terminal node of each root with a boolean flag: $node.is\_end = \mathbf{True}$.
+  - **Greedy Earliest-Exit Search:**
+    - For each word $w$ in the sentence:
+      - Start at the Trie root and trace characters $c = w[0], w[1], \dots$
+      - At each character position $i$ (1-indexed):
+        1. If the character link $node.children[c]$ does not exist:
+           - No root prefixes this word $\implies$ return original word $w$.
+        2. Advance to the child node: $node \leftarrow node.children[c]$.
+        3. If $node.is\_end == \mathbf{True}$:
+           - We have encountered the **shortest root** that matches this word!
+           - Immediately return prefix slice $w[:i]$ without traversing further.
+      - If the word terminates without reaching any node with $is\_end == True$, return the original word $w$.
+- **Step-by-Step Worked Execution Trace:**
+  - **Step 1: Populate Trie:**
+    - Insert `"cat"`: `root -> 'c' -> 'a' -> 't'` ($is\_end = True$).
+    - Insert `"bat"`: `root -> 'b' -> 'a' -> 't'` ($is\_end = True$).
+    - Insert `"rat"`: `root -> 'r' -> 'a' -> 't'` ($is\_end = True$).
+  - **Step 2: Tokenize Sentence:**
+    - Words: `["the", "cattle", "was", "rattled", "by", "the", "battery"]`.
+  - **Step 3: Process Each Word:**
+    - **Word 1: `"the"`:**
+      - Test $w[0] = \text{'t'}$.
+      - Trie root has no child `'t'` $\implies$ Link is `None`.
+      - Output retains:
+        $$
+        \mathbf{\text{"the"}}
+        $$
+    - **Word 2: `"cattle"`:**
+      - Character 1 ($i = 1$): `'c'` exists in Trie $\to node = \text{'c'}$. $is\_end = False$.
+      - Character 2 ($i = 2$): `'a'` exists in Trie $\to node = \text{'a'}$. $is\_end = False$.
+      - Character 3 ($i = 3$): `'t'` exists in Trie $\to node = \text{'t'}$.
+        - Inspect node flag: $is\_end == \mathbf{True!}$
+        - Root `"cat"` matched at length $3$.
+        - Shortest root reached: halt search and return $w[:3] = \text{"cat"}$.
+      - Replaced with:
+        $$
+        \mathbf{\text{"cat"}}
+        $$
+    - **Word 3: `"was"`:**
+      - Test $w[0] = \text{'w'}$.
+      - Child `'w'` does not exist $\implies$ Link is `None`.
+      - Output retains:
+        $$
+        \mathbf{\text{"was"}}
+        $$
+    - **Word 4: `"rattled"`:**
+      - Character 1 ($i = 1$): `'r'` exists $\to is\_end = False$.
+      - Character 2 ($i = 2$): `'a'` exists $\to is\_end = False$.
+      - Character 3 ($i = 3$): `'t'` exists $\to is\_end = \mathbf{True!}$
+      - Root `"rat"` matched. Return $w[:3] = \text{"rat"}$.
+      - Replaced with:
+        $$
+        \mathbf{\text{"rat"}}
+        $$
+    - **Word 5: `"by"`:**
+      - Character 1: `'b'` exists $\to is\_end = False$.
+      - Character 2: `'y'`. Child `'y'` under `'b'` does not exist (`None`).
+      - Output retains:
+        $$
+        \mathbf{\text{"by"}}
+        $$
+    - **Word 6: `"the"`:**
+      - Link `None` $\implies$ Retains **`"the"`**.
+    - **Word 7: `"battery"`:**
+      - Character 1: `'b'` exists $\to is\_end = False$.
+      - Character 2: `'a'` exists $\to is\_end = False$.
+      - Character 3: `'t'` exists $\to is\_end = \mathbf{True!}$
+      - Root `"bat"` matched. Return $w[:3] = \text{"bat"}$.
+      - Replaced with:
+        $$
+        \mathbf{\text{"bat"}}
+        $$
+  - **Step 4: Join Output Tokens:**
+    $$
+    ans = \text{"the cat was rat by the bat"}
+    $$
+- **Shortest Root Precedence Instance:**
+  - Suppose $dictionary = [\text{"c"}, \text{"cat"}]$ and word is `"cattle"`.
+  - At character 1 ($i = 1$, `'c'`), $node.is\_end == True$.
+  - The search immediately returns `"c"`, ignoring the longer root `"cat"`.
+- **Root Equal to Word:**
+  - If $w = \text{"cat"}$, it matches root `"cat"` and returns `"cat"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates deterministic finite-state prefix matching on retrieval trees, mathematically proves why earliest terminal state detection satisfies shortest root lexicographical minimization, and derives $O(D \cdot L_{dict} + S)$ runtime and $O(D \cdot L_{dict})$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-In English, we have a concept called **root**, which can be followed by some other word to form another longer word - let's call this word **derivative**. For example, when the **root** `"help"` is followed by the word `"ful"`, we can form a derivative `"helpful"`.
+Given a dictionary of roots and a sentence:
+Replace each word with the **shortest root** that forms its prefix.
+If no root matches, leave the word unchanged.
 
-The objective is to compute `"a a b c"` from `{"dictionary": ["a", "b", "c"], "sentence": "aadsfasf absbs bbab cadsfafs"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Roots: ["cat", "bat", "rat"]
+Sentence: "the cattle was rattled by the battery"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Replacements:
+  "the"     -> no root     -> "the"
+  "cattle"  -> root "cat"  -> "cat"
+  "was"     -> no root     -> "was"
+  "rattled" -> root "rat"  -> "rat"
+  "by"      -> no root     -> "by"
+  "the"     -> no root     -> "the"
+  "battery" -> root "bat"  -> "bat"
+
+Result: "the cat was rat by the bat"
+```
+
+### The Invariant of the Earliest Terminal
+- By walking the Trie character-by-character from the root, the **first** node encountered that has `is_end == True` is guaranteed to be the shortest matching root.
+- Halting search immediately upon finding `is_end` ensures optimal runtime and satisfies the shortest-root requirement.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Trie Traversal Rule:
+For each word $w$:
+$$
+node \leftarrow root
+$$
+For $i = 1 \dots |w|$ with character $c = w[i-1]$:
+- If $node.children[c] == \text{null} \implies$ return $w$
+- $node \leftarrow node.children[c]$
+- If $node.is\_end \implies$ return $w[:i]$
+Return $w$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Prefix Prefix-Closed Invariant.** In a prefix tree, any path from root to a marked terminal node represents a valid word in the language, with parent-ancestor terminals strictly dominating descendant terminals under the length metric.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The replacement relation is a prefix relation
-
-A dictionary root can replace a sentence word only when the root appears at the very beginning of that word. For example, `"cat"` can replace `"cattle"`, but it cannot replace a word merely because `"cat"` occurs in the middle.
-
-When several roots match, the shortest one must win. This means a search should examine a word from left to right and stop at the first dictionary root it completes.
-
-A trie is designed for exactly this operation. It stores common prefixes once and lets the search consume one character at a time without repeatedly constructing and hashing every possible prefix.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"dictionary": ["a", "b", "c"], "sentence": "aadsfasf absbs bbab cadsfafs"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $w = \text{"cattle"}$ against roots `cat, bat, rat`:
 
 ---
 
-### Step 2: What one trie node means
-
-The root trie node represents the empty prefix. Following an edge labeled with a letter extends that prefix by one character. A path from the root therefore spells a dictionary prefix.
-
-Each node contains:
-
-- `children`, an array of 26 child references for lowercase English letters;
-- `is_end`, which says whether the path ending at this node is a complete dictionary root.
-
-The array index for character `c` is `ord(c) - ord("a")`. Thus `a` maps to zero, `b` to one, and `z` to twenty-five. The source guarantees lowercase letters, so every dictionary and sentence-word character maps to a valid slot.
-
-It is important to distinguish “this prefix exists” from “this prefix is a root.” A node may exist only because it is on the path to a longer dictionary word. `is_end` records when stopping at that node is legally allowed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Character `'c'`
+- Child exists. $is\_end = False$.
 
 ---
 
-### Step 3: Insert every dictionary root
+### Step 2: Character `'a'`
+- Child exists. $is\_end = False$.
 
-Insertion starts at the trie root and processes the letters of a dictionary word in order. For each letter:
+---
 
-1. Compute its child index.
-2. Create a child node if that edge does not exist.
-3. Move to the child.
-
-After the last letter, mark `is_end = true`.
-
-If several roots share a prefix, they reuse the same initial nodes. For dictionary roots `"cat"` and `"car"`, the `c` and `a` nodes are shared, then the paths branch. If one root is a prefix of another, such as `"a"` and `"apple"`, the node for `a` is terminal and still has descendants.
-
-Inserting the same root more than once simply sets the same Boolean to true again. Duplicate dictionary entries, if present, do not alter replacement behavior.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"a a b c"` |
+### Step 3: Character `'t'`
+- Child exists. $is\_end = \mathbf{True!}$
+- Shortest root reached: return `"cat"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"dictionary": ["a", "b", "c"], "sentence": "aadsfasf absbs bbab cadsfafs"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"a a b c"` | Verified |
+| Word in Sentence | Trie Path Evaluated | Failure or Success Event | Output Word |
+|:---:|:---:|:---:|:---:|
+| `"the"` | `'t'` | Child `'t'` is null | `"the"` |
+| `"cattle"` | `'c' \to 'a' \to 't'` | $is\_end = True$ on `'t'` | **`"cat"`** |
+| `"was"` | `'w'` | Child `'w'` is null | `"was"` |
+| `"rattled"` | `'r' \to 'a' \to 't'` | $is\_end = True$ on `'t'` | **`"rat"`** |
+| `"by"` | `'b' \to 'y'` | Child `'y'` is null | `"by"` |
+| `"the"` | `'t'` | Child `'t'` is null | `"the"` |
+| `"battery"` | `'b' \to 'a' \to 't'` | $is\_end = True$ on `'t'` | **`"bat"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Multiple Matching Roots (`"c"`, `"ca"`, `"cat"`):** The algorithm halts at `"c"` on step 1, correctly choosing the shortest root.
+- **Root Longer Than Word:** Fails naturally when word characters are exhausted.
+- **Empty Sentence:** Returns empty string.
+- **Single Letter Roots (`"a"` for `"apple"`):** Halts after 1 step $\implies$ `"a"`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Hash set of roots:** Put all roots in a set and test every prefix of each word from shortest to longest. The logic is simple, but Python slicing constructs progressively longer strings, which can make processing one long word quadratic in its length.
-- **Sort roots by length and test each against each word:** This guarantees that the first match is shortest but may compare many unrelated roots for every word, performing much more work than following one trie path.
-- **Dictionary child maps:** A hash map per trie node stores only existing edges and may use less space for sparse nodes. The 26-slot array offers direct indexing and predictable behavior for the fixed alphabet.
+- **Searching All Dictionary Roots Linearly ($O(D \cdot W)$ per word):** Comparing every dictionary word against every sentence word takes quadratic time. A Trie searches in $O(L)$ where $L$ is word length.
+- **Not Halting on First Match:** If you find a matching root and continue traversing to see if there is a longer root, you violate the shortest root rule.
+- **Handling Whitespace Incorrectly:** Use `sentence.split()` and `" ".join(...)` to preserve single space tokenization.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(D + S)$. Let `D` be the total number of characters across all dictionary roots and `S` be the number of characters in the input sentence.
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Inserting $D$ dictionary roots of average length $L_d$: $\mathcal{O}(\sum L_d)$.
+  - Searching $W$ words in sentence: each word takes at most $\mathcal{O}(L_w)$ steps where $L_w$ is its length.
+  - Total Time: $\mathcal{O}(\sum L_d + \text{len}(sentence))$. Strictly linear in the total input text size. Completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(26 \cdot \sum L_d)$ space for the Trie data structure.

@@ -1,115 +1,261 @@
 # Guided Example: Candy Crush
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step simultaneous match detection ($|\text{run}| \ge 3$), in-place negative sign tagging ($board[i][j] \leftarrow -|val|$), simultaneous horizontal and vertical triplet intersection preservation, bottom-up column gravity compaction, empty cell zero-padding, and cascade round iteration until board stabilization on representative game grids:
 
-- **Input:** `{"board": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
-- **Required output:** `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+- **Input:**
+  $$
+  board = \begin{bmatrix}
+  1 & 1 & 1 \\
+  2 & 3 & 4 \\
+  5 & 6 & 7
+  \end{bmatrix}
+  $$
+- **Required output:**
+  $$
+  \begin{bmatrix}
+  0 & 0 & 0 \\
+  2 & 3 & 4 \\
+  5 & 6 & 7
+  \end{bmatrix}
+  $$
+  - Game mechanics:
+    - Positive integers represent distinct candy colors; $0$ represents empty space.
+    - A contiguous horizontal or vertical run of **3 or more identical candies** must be crushed.
+    - **Simultaneous Crushing:** All qualifying runs must crush concurrently. A candy participating in both a horizontal and vertical run must be cleared in the same step.
+    - **Gravity Drop:** After crushing, surviving candies fall straight down to fill empty voids below them. Empty spaces at the top are filled with $0$.
+    - **Cascade Loop:** If dropping candies creates new crushable runs, the cycle repeats until the board reaches a static equilibrium.
+- **Negative In-Place Tagging & Gravity Compaction Invariant:**
+  - **The Simultaneous Crushing Dilemma:**
+    - If matching candies were immediately overwritten with $0$, a candy shared between a horizontal run and a vertical run would be wiped out before the vertical scan detects the second run!
+  - **In-Place Negative Sign Tagging:**
+    - To preserve candy color while marking it for destruction, negate its value:
+      $$
+      board[i][j] \leftarrow -|board[i][j]|
+      $$
+    - During scanning, inspect absolute values:
+      $$
+      |board[i][j]| == |board[i][j-1]| == |board[i][j-2]|
+      $$
+    - Any candy marked negative still reveals its original color to subsequent overlapping checks.
+  - **Column-by-Column Gravity Compaction:**
+    - For each column $j$, iterate from the bottom row ($m - 1$) upward to row $0$:
+      - Maintain write pointer $k = m - 1$.
+      - If $board[i][j] > 0$ (a surviving candy that was never crushed):
+        $$
+        board[k][j] \leftarrow board[i][j], \quad k \leftarrow k - 1
+        $$
+      - Crushed candies (negative values) are bypassed.
+    - Once all surviving candies have settled, fill all remaining upper cells ($k \ge 0$) with $0$:
+      $$
+      board[k][j] \leftarrow 0 \quad (\text{while } k \ge 0)
+      $$
+  - **Stability Halting Condition:**
+    - If an entire round completes without tagging any candies (`run == false`), the board is completely stable $\implies$ halt and return $board$.
+- **Step-by-Step Worked Execution Trace on the $3 \times 3$ Board:**
+  - Board dimensions: $m = 3, n = 3$.
+  - **Round 1:**
+    - Initialize round flag: $run = \text{false}$.
+    - **Phase 1: Horizontal Triplet Scan:**
+      - Row 0 ($[1, 1, 1]$):
+        - Check triplet at $j = 2$:
+          $$
+          |board[0][2]| == |board[0][1]| == |board[0][0]| \iff |1| == |1| == |1| \quad \mathbf{(Match!)}
+          $$
+        - Tag all 3 candies as crushed:
+          $$
+          board[0][0] = board[0][1] = board[0][2] \leftarrow -1
+          $$
+        - Activate round flag: $run \leftarrow \mathbf{true}$.
+      - Row 1 ($[2, 3, 4]$): All distinct.
+      - Row 2 ($[5, 6, 7]$): All distinct.
+    - **Phase 2: Vertical Triplet Scan:**
+      - Col 0 ($[-1, 2, 5]$): Distinct.
+      - Col 1 ($[-1, 3, 6]$): Distinct.
+      - Col 2 ($[-1, 4, 7]$): Distinct.
+    - Board state after Tagging:
+      $$
+      \begin{bmatrix}
+      \mathbf{-1} & \mathbf{-1} & \mathbf{-1} \\
+      2 & 3 & 4 \\
+      5 & 6 & 7
+      \end{bmatrix}
+      $$
+    - **Phase 3: Gravity Compaction (Column by Column):**
+      - **Column 0:**
+        - Read from bottom:
+          - $i = 2$: $board[2][0] = 5 > 0 \implies board[2][0] \leftarrow 5, \; k = 1$.
+          - $i = 1$: $board[1][0] = 2 > 0 \implies board[1][0] \leftarrow 2, \; k = 0$.
+          - $i = 0$: $board[0][0] = -1 < 0 \implies$ Bypassed!
+        - Fill remaining cells with 0:
+          - $k = 0 \implies board[0][0] \leftarrow \mathbf{0}$.
+        - Col 0 becomes: $[0, 2, 5]^T$.
+      - **Column 1:**
+        - Surviving candies: $7 \to 6 \to 3$.
+        - Crushed candy: $-1$ bypassed.
+        - $board[0][1] \leftarrow \mathbf{0}, board[1][1] \leftarrow 3, board[2][1] \leftarrow 6$.
+        - Col 1 becomes: $[0, 3, 6]^T$.
+      - **Column 2:**
+        - Surviving candies: $7, 4$.
+        - Crushed candy: $-1$ bypassed.
+        - Col 2 becomes: $[0, 4, 7]^T$.
+    - Board state after Gravity:
+      $$
+      \begin{bmatrix}
+      \mathbf{0} & \mathbf{0} & \mathbf{0} \\
+      2 & 3 & 4 \\
+      5 & 6 & 7
+      \end{bmatrix}
+      $$
+  - **Round 2 (Equilibrium Check):**
+    - Scan horizontal triplets: None found.
+    - Scan vertical triplets: None found.
+    - $run == \text{false} \implies \mathbf{Board\ is\ Stable!}$
+    - Cascade terminates.
+  - **Step 4: Output Final Board:**
+    $$
+    ans = \begin{bmatrix}
+    0 & 0 & 0 \\
+    2 & 3 & 4 \\
+    5 & 6 & 7
+    \end{bmatrix}
+    $$
+- **Cross/Intersection Match Trace (T-Shape of 3s):**
+  - A horizontal run of three 3s shares its center with a vertical run of three 3s.
+  - Negating the horizontal triplet marks the center as $-3$.
+  - The vertical scan checks $|-3| == |3| == |3|$ and successfully tags the vertical branch!
+  - All 5 candies crush simultaneously into 0.
+- **Already Stable Board ($[[1, 2, 3], [4, 5, 6], [7, 8, 9]]$):**
+  - No triplets in either dimension $\implies$ returns identical board in 1 round.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates cellular automata simulation and concurrent multi-directional pattern matching, mathematically proves why signed magnitude tagging preserves state history during concurrent rewrite phases, and derives $O(R \cdot M \cdot N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-This question is about implementing a basic elimination algorithm for Candy Crush.
+Given an $m \times n$ Candy Crush grid:
+1. Crush all horizontal and vertical runs of $\ge 3$ adjacent identical candies **simultaneously**.
+2. Apply **gravity** so surviving candies drop down to the bottom.
+3. Repeat until no more candies can be crushed (stable board).
 
-The objective is to compute `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` from `{"board": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+board:
+  1 1 1  <- 3 matching candies in a row!
+  2 3 4
+  5 6 7
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Crush row 0: tag with -1
+  -1 -1 -1
+   2  3  4
+   5  6  7
+
+Apply gravity (drop down, fill top with 0):
+   0  0  0
+   2  3  4
+   5  6  7
+
+Stable! (No more matches)
+```
+
+### The Invariant of Negative Value Tagging
+- Tagging crushed candies as `-abs(val)` allows other checks in the same round to still see the candy's original color via `abs(...)`.
+- This ensures horizontal and vertical intersecting crosses are both detected and crushed simultaneously.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Triplet Tagging Predicate:
+Horizontal:
+$$
+|board[i][j]| == |board[i][j-1]| == |board[i][j-2]| \ne 0 \implies \text{tag all three as } -|val|
+$$
+Vertical:
+$$
+|board[i][j]| == |board[i-1][j]| == |board[i-2][j]| \ne 0 \implies \text{tag all three as } -|val|
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. In-Place Column Compaction:
+For each column $j$:
+$$
+\text{Read } i = m-1 \dots 0: \quad \text{if } board[i][j] > 0 \implies board[k][j] \leftarrow board[i][j], \; k \leftarrow k - 1
+$$
+$$
+\text{Pad zeros: } \quad board[k][j] \leftarrow 0 \quad \forall k \ge 0
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Synchronous Cellular Rewrite Invariant.** The rewrite rule $\mathcal{R}: \mathbb{Z}^{m \times n} \to \mathbb{Z}^{m \times n}$ decomposes into a simultaneous marking phase followed by a strictly monotonic vertical compaction operator, ensuring finite termination on any discrete bounded lattice.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Simulate rounds until no crush is possible
-
-One crush can cause candies above it to fall, and those moved candies may create new groups. Therefore a single scan is not sufficient. The exact solution repeats complete rounds:
-
-1. Find and mark every horizontal group that must be crushed.
-2. Find and mark every vertical group that must be crushed.
-3. If anything was marked, apply gravity to every column.
-4. Start another round on the changed board.
-
-The loop ends only when a full marking pass finds no group. At that moment gravity is unnecessary and the board is stable by definition.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Why crushing must be simultaneous within a round
-
-All groups present at the beginning of a round must disappear together. If a horizontal group were immediately replaced with zero before checking vertical groups, an intersecting vertical group might be broken and missed.
-
-The solution solves this by marking a candy for removal with the negative version of its type. A positive value is a live candy. A negative value is scheduled to be removed in the current round. Zero is empty.
-
-The candy’s magnitude is preserved, so comparisons use `abs(board[i][j])`. A horizontally marked candy can still participate in a vertical match during the same marking phase. This is exactly what simultaneous detection requires.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan
+- Row 0 has triplet `[1, 1, 1]`.
+- Tag row 0 as `[-1, -1, -1]`.
+- $run = \text{True}$.
 
 ---
 
-### Step 3: Mark every horizontal run
+### Step 2: Gravity
+- Column 0: 5 at row 2, 2 at row 1, 0 at row 0.
+- Column 1: 6 at row 2, 3 at row 1, 0 at row 0.
+- Column 2: 7 at row 2, 4 at row 1, 0 at row 0.
 
-For each row, the scan considers every position `j` from `2` onward as the right endpoint of a length-three window. It checks that the current cell is nonzero and that the absolute values at `j`, `j - 1`, and `j - 2` are equal.
+---
 
-When they match, all three cells are assigned the negative absolute candy type and `run` becomes true.
+### Step 3: Check Next Round
+- No runs $\ge 3 \implies$ Stable.
 
-Checking overlapping triples is sufficient for runs longer than three. A run of four equal candies contains triples ending at its third and fourth positions. The first triple marks the first three; the next comparison still recognizes their type through `abs` and marks the fourth as part of the overlapping triple. The same reasoning covers any longer run.
+---
 
-The nonzero check prevents three empty cells from being treated as a candy group. A negative marked value remains truthy, so it can still extend another same-type triple in the current phase.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` |
+### Step 4: Output
+$$
+\begin{bmatrix}
+0 & 0 & 0 \\
+2 & 3 & 4 \\
+5 & 6 & 7
+\end{bmatrix}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` | Verified |
+| Round | Candidate Cell $(i, j)$ | Neighbor Match Checked | Value Tagged | Column Affected | Compaction Profile | Stable? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $(0, 2)$ | $(0, 0), (0, 1), (0, 2) \to 1$ | `-1` | Rows $0 \dots 2$ | Tagged as $-1$ | No |
+| $1$ | Gravity Drop | — | — | All Columns | $[0, 2, 5], [0, 3, 6], [0, 4, 7]$ | Yes |
+| **$2$** | **Verification** | **No triplets found** | — | — | **Unchanged** | **Halt** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Already Stable Board:** 0 runs tagged $\implies$ terminates in 1 iteration.
+- **Cascading Collapses:** When dropping candies forms a new run of $\ge 3$, the loop automatically runs again.
+- **Minimum Grid Size ($3 \times 3$):** Correctly handles smallest dimensions that can support a triplet.
+- **Multiple Intersecting Runs (Cross/T-shape):** Simultaneous negative tagging ensures all arms of the cross crush together.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Collect coordinates in a set:** Scan the board and add every crushable position to a set, then clear those cells and apply gravity. This is conceptually direct but needs `O(mn)` extra space in the worst case. Negative marking stores the same information inside the board.
-- **Crush immediately while scanning:** This is incorrect because an erased cell may belong to another horizontal or vertical group that must be detected simultaneously. Mark first, then remove.
-- **Copy the board for each round:** Comparing against an unchanged snapshot also preserves simultaneity, but it requires `O(mn)` additional memory per working copy. Absolute-value marking achieves the same effect in place.
+- **Setting Cells to 0 Immediately:** Overwriting cells with 0 during the horizontal scan destroys vertical runs that share the same candy. Using negative signs `-abs(val)` preserves color information.
+- **Top-Down Compaction:** Compacting from top to bottom overwrites candies before they can drop. Always read and write from the **bottom up** ($m - 1 \to 0$).
+- **Single Direction Only:** Check both horizontal triplets AND vertical triplets in every round.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((R + 1)$. Let `m` be the number of rows, `n` the number of columns, and `R` the number of successful crushing rounds.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - In each round, scans all $M \times N$ cells horizontally, vertically, and during compaction: $\mathcal{O}(M \cdot N)$.
+  - In the worst case, each cascade round eliminates at least 3 candies, bounding rounds $R \le (M \cdot N) / 3$.
+  - Total Time: $\mathcal{O}(R \cdot M \cdot N)$. For $M = N = 50$, executes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (in-place tagging on the existing board).

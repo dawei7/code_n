@@ -1,133 +1,207 @@
 # Guided Example: Count Array Pairs Divisible by K
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the number-theoretic greatest common divisor (GCD) frequency aggregation algorithm on a representative integer array, demonstrating how projecting array values onto the divisor lattice of $k$ reduces pair divisibility checking from $O(n^2)$ to $O(n \cdot d(k))$ time.
 
-- **Input:** `{"nums": [1, 2, 3, 4, 5], "k": 2}`
-- **Required output:** `7`
+- **Input:** `nums = [1, 2, 3, 4, 5]`, `k = 2`
+- **Output:** `7`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given a **0-indexed** integer array `nums` of length `n` and an integer `k`, return *the **number of pairs*** `(i, j)` *such that:*
-
-The objective is to compute `7` from `{"nums": [1, 2, 3, 4, 5], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates $p$-adic prime valuation equivalence, divisor lattice projection, streaming frequency histogram accumulation, and 64-bit pair counting.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Given a 0-indexed integer array `nums` of length $n$ and a positive integer $k$, we must count the number of index pairs $(i, j)$ with $0 \le i < j < n$ such that the product of their values is divisible by $k$:
+$$(\text{nums}[i] \cdot \text{nums}[j]) \bmod k = 0$$
 
-| State Parameter | Role & Purpose | Initial State |
+The values themselves do not need to be individually divisible by $k$; separate prime factors from $\text{nums}[i]$ and $\text{nums}[j]$ may combine to satisfy the factorization of $k$.
+
+In our representative instance:
+- `nums = [1, 2, 3, 4, 5]` of length $n = 5$, with divisor $k = 2$.
+- The total number of index pairs is $\binom{5}{2} = 10$.
+- For $k = 2$, a product $a \cdot b$ is even if and only if at least one of $a$ or $b$ is even.
+- The even numbers in `nums` are $2$ (index 1) and $4$ (index 3).
+- The odd numbers in `nums` are $1$ (index 0), $3$ (index 2), and $5$ (index 4).
+- Pairs consisting of two odd numbers fail:
+  - $(1, 3), (1, 5), (3, 5)$ fail ($3$ pairs).
+- All other $10 - 3 = 7$ pairs contain at least one even number and qualify:
+  - $(1, 2), (2, 3), (2, 4), (2, 5), (1, 4), (3, 4), (4, 5)$ ($7$ pairs).
+- Total qualifying pairs: $7$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### The GCD Divisibility Reduction Theorem
+
+Let $a$ and $b$ be positive integers. Any prime factors of $a$ and $b$ that do not divide $k$ are irrelevant to whether $k$ divides $a \cdot b$.
+Define:
+$$g_a = \gcd(a, k), \quad g_b = \gcd(b, k)$$
+
+**Theorem.** For any integers $a, b, k \ge 1$:
+$$k \mid (a \cdot b) \iff k \mid (\gcd(a, k) \cdot \gcd(b, k))$$
+
+*Proof.*
+Consider the prime factorization of $k = \prod p_i^{e_i}$.
+For each prime $p_i$, let the $p_i$-adic valuations of $a$ and $b$ be $u_i = v_{p_i}(a)$ and $w_i = v_{p_i}(b)$.
+- $k \mid (a \cdot b) \iff u_i + w_i \ge e_i$ for all prime factors $p_i$.
+- By definition of the greatest common divisor:
+  $$v_{p_i}(\gcd(a, k)) = \min(u_i, e_i), \quad v_{p_i}(\gcd(b, k)) = \min(w_i, e_i)$$
+- If $u_i + w_i \ge e_i$:
+  - If either $u_i \ge e_i$ or $w_i \ge e_i$, then $\min(u_i, e_i) + \min(w_i, e_i) \ge e_i + 0 = e_i$.
+  - If both $u_i < e_i$ and $w_i < e_i$, then $\min(u_i, e_i) + \min(w_i, e_i) = u_i + w_i \ge e_i$.
+In all cases, $\min(u_i, e_i) + \min(w_i, e_i) \ge e_i \iff u_i + w_i \ge e_i$.
+Thus, replacing each value $x$ by $\gcd(x, k)$ preserves divisibility by $k$ with zero loss of precision.
+
+### The Bounded Divisor Space
+
+Every value of $\gcd(x, k)$ is, by definition, a **divisor of $k$**.
+Let $d(k)$ be the number of divisors of $k$.
+For $k \le 10^5$:
+$$\max_{k \le 10^5} d(k) = 128 \quad (\text{achieved at } k = 75{,}600 \text{ and } 90{,}720)$$
+
+Even though the array `nums` can contain $10^5$ distinct elements, their projected GCD values belong to a set of size at most $128$.
+By maintaining a frequency map of seen GCD values:
+- For each number $x \in \text{nums}$, compute $g = \gcd(x, k)$ in $O(\log k)$ time.
+- Iterate over the at most $128$ keys in the frequency map.
+- If $(g \cdot d) \bmod k == 0$, add $\text{count}[d]$ to the answer.
+- Increment $\text{count}[g] += 1$.
+
+| Parameter / Entity | Mathematical Form | Meaning in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Target Divisor $k$ | Integer in $[1, 10^5]$ | Universal modulus for pair products |
+| Current GCD $g$ | $\gcd(\text{nums}[j], k)$ | Prime factor contribution of current element |
+| Previous Divisor $d$ | Divisor of $k$ | GCD of an already-processed element |
+| Compatibility Test | $(g \cdot d) \bmod k == 0$ | Verifies if pair product is a multiple of $k$ |
+| Divisor Count $d(k)$ | $|\{d \in \mathbb{N} : d \mid k\}| \le 128$ | Upper bound on active hash map keys |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reduce each value to a gcd class
-
-For current `value`, the code computes
-
-`current_gcd = gcd(value, k)`.
-
-This gcd contains every prime factor of `k` that the value can contribute, capped at the exponent needed by `k`. Factors of `value` that do not divide `k` are irrelevant to divisibility by `k` and can be discarded.
-
-For example, with `k = 12`, values whose gcds with 12 are four and three have a product of gcd classes twelve, so any such pair's value product is divisible by twelve.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 4, 5], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: GCD Divisor Projection and Query
+accDescr: Flowchart illustrating computing gcd of value with k, querying existing divisor counts, and updating the map.
+flowchart TD
+    Elem["Read value = nums[j]"] --> Compute["Compute g = gcd(value, k)"]
+    Compute --> Query["Iterate over existing (d, count) in gcd_counts:<br/>If (g * d) mod k == 0, add count to answer"]
+    Query --> Update["gcd_counts[g] += 1"]
+    Update --> Next["Advance to next element"]
+```
 
 ---
 
-### Step 2: Why gcd products are a complete compatibility test
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-Consider one prime $p$ whose exponent in $k$ is $e$. If its exponents in values $a$ and $b$ are $u$ and $v$, then $ab$ supplies enough of $p$ exactly when $u+v\ge e$.
+We trace `nums = [1, 2, 3, 4, 5]` with $k = 2$.
+Divisors of $k = 2$ are $\{1, 2\}$.
+Initialize `gcd_counts = Counter()`, `answer = 0`.
 
-The gcds with $k$ retain exponents $\min(u,e)$ and $\min(v,e)$. Their sum reaches at least $e$ exactly when $u+v$ does. Repeating this reasoning for every prime factor of $k$ proves
+### Step 1: Processing Index $j = 0$ (`nums[0] = 1`)
+- Compute GCD: $g = \gcd(1, 2) = 1$.
+- Query `gcd_counts`: Empty. No pairs formed.
+- Update `gcd_counts`: `gcd_counts[1] += 1`.
+- State: `gcd_counts = {1: 1}`, `answer = 0`.
 
-$$
-k\mid ab
-\quad\Longleftrightarrow\quad
-k\mid\gcd(a,k)\gcd(b,k).
-$$
+### Step 2: Processing Index $j = 1$ (`nums[1] = 2`)
+- Compute GCD: $g = \gcd(2, 2) = 2$.
+- Query `gcd_counts`:
+  - Divisor $d = 1$ (count 1): $(2 \cdot 1) \bmod 2 = 2 \bmod 2 = 0$. Condition holds!
+  - Add count $1$ to `answer`: `answer = 0 + 1 = 1` (Pair $(1, 2)$).
+- Update `gcd_counts`: `gcd_counts[2] += 1`.
+- State: `gcd_counts = {1: 1, 2: 1}`, `answer = 1`.
 
-Therefore no necessary divisibility information is lost by replacing full values with gcd classes.
+### Step 3: Processing Index $j = 2$ (`nums[2] = 3`)
+- Compute GCD: $g = \gcd(3, 2) = 1$.
+- Query `gcd_counts`:
+  - Divisor $d = 1$ (count 1): $(1 \cdot 1) \bmod 2 = 1 \ne 0$. Fails.
+  - Divisor $d = 2$ (count 1): $(1 \cdot 2) \bmod 2 = 2 \bmod 2 = 0$. Condition holds!
+  - Add count $1$ to `answer`: `answer = 1 + 1 = 2` (Pair $(2, 3)$).
+- Update `gcd_counts`: `gcd_counts[1] += 1`.
+- State: `gcd_counts = {1: 2, 2: 1}`, `answer = 2`.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 4: Processing Index $j = 3$ (`nums[3] = 4`)
+- Compute GCD: $g = \gcd(4, 2) = 2$.
+- Query `gcd_counts`:
+  - Divisor $d = 1$ (count 2): $(2 \cdot 1) \bmod 2 = 0$. Condition holds! Add $2$.
+  - Divisor $d = 2$ (count 1): $(2 \cdot 2) \bmod 2 = 0$. Condition holds! Add $1$.
+  - Added this step: $2 + 1 = 3$ (Pairs $(1, 4), (3, 4), (2, 4)$).
+  - `answer = 2 + 3 = 5`.
+- Update `gcd_counts`: `gcd_counts[2] += 1`.
+- State: `gcd_counts = {1: 2, 2: 2}`, `answer = 5`.
 
----
+### Step 5: Processing Index $j = 4$ (`nums[4] = 5`)
+- Compute GCD: $g = \gcd(5, 2) = 1$.
+- Query `gcd_counts`:
+  - Divisor $d = 1$ (count 2): $(1 \cdot 1) \bmod 2 = 1 \ne 0$. Fails.
+  - Divisor $d = 2$ (count 2): $(1 \cdot 2) \bmod 2 = 0$. Condition holds! Add $2$.
+  - Added this step: $2$ (Pairs $(2, 5), (4, 5)$).
+  - `answer = 5 + 2 = 7`.
+- Update `gcd_counts`: `gcd_counts[1] += 1`.
+- State: `gcd_counts = {1: 3, 2: 2}`, `answer = 7`.
 
-### Step 3: Count compatible earlier classes
-
-`gcd_counts` stores how many previously scanned values belong to each gcd class. For the current class, the generator examines every stored `previous_gcd` and includes its `count` when
-
-`(current_gcd * previous_gcd) % k == 0`.
-
-The sum is the number of earlier array positions that can pair with the current position. Adding that number to `answer` counts all newly completed valid pairs at once.
-
-Only after counting does the code increment `gcd_counts[current_gcd]`. Thus the current element cannot pair with itself, and every counted partner has a smaller index.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 4, 5], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Enumerate all pairs:** It is simple but costs $O(n^2)$, which is too large for $n=10^5$.
-- **Precompute compatible divisor lists:** Enumerate divisors of `k` and store which class pairs work. This can reduce repeated modulus checks at the cost of setup and extra tables.
-- **Count all classes first:** Combine compatible class frequencies with careful handling of identical classes. It is valid but easier to double-count than the online scan.
-- **Value divisible by `k`:** Its gcd class is `k`, which is compatible with every previous class, so it pairs with every earlier value.
-- **`k = 1`:** Every product is divisible by one, and the answer is $\binom n2$.
-- **No compatible classes:** The generator sum is zero and the current value adds no pairs.
-- **Repeated equal values:** Equality is irrelevant; only product divisibility matters, and each occurrence is retained in its class count.
-- **Current element inserted afterward:** This prevents self-pairing and enforces the index order.
-- **Prime `k`:** Gcd classes are only one and `k`; a pair works exactly when at least one value is divisible by `k`.
-- **Composite prime powers:** The gcd retains partial exponents, allowing two values to combine their factors.
-- **Factors outside `k`:** They are discarded by gcd because they cannot help satisfy divisibility by `k`.
-- **Large answer:** Up to $\binom n2$ pairs may qualify; Python integers avoid overflow.
-- **Input preservation:** The array is only scanned, while all state lives in the counter.
-- **Counter iteration safety:** The counter is updated only after the generator sum finishes, so its size does not change during iteration.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 6: Finalization
+- Array fully traversed. Return `answer = 7`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(D)$. Let $n$ be the array length and $D=\tau(k)$ be the number of positive divisors of `k`. Computing one gcd takes $O(\log k)$ time, and scanning the current counter takes at most $O(D)$. Total time is
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The full state evolution across all elements is recorded below:
+
+| Index $j$ | Element `nums[j]` | Current GCD $g$ | Compatible Stored Divisors $d$ | Additive Pairs Discovered | Cumulative `answer` | Updated `gcd_counts` |
+|---|---|---|---|---|---|---|
+| 0 | 1 | 1 | None (Map empty) | 0 | 0 | `{1: 1}` |
+| 1 | 2 | 2 | $d = 1$ (count 1) | 1 (Pair $(1, 2)$) | 1 | `{1: 1, 2: 1}` |
+| 2 | 3 | 1 | $d = 2$ (count 1) | 1 (Pair $(2, 3)$) | 2 | `{1: 2, 2: 1}` |
+| 3 | 4 | 2 | $d = 1$ (cnt 2), $d = 2$ (cnt 1) | 3 (Pairs $(1, 4), (3, 4), (2, 4)$) | 5 | `{1: 2, 2: 2}` |
+| 4 | 5 | 1 | $d = 2$ (count 2) | 2 (Pairs $(2, 5), (4, 5)$) | **7** | `{1: 3, 2: 2}` |
+
+### Complementary Factor Analysis for $k = 6$ (`nums = [2, 3]`)
+
+| Element | Computed GCD $g = \gcd(x, 6)$ | Prime Factors Supplied | Stored Complement $d$ | Combined Factors | Divisible by 6? |
+|---|---|---|---|---|---|
+| 2 | 2 | $\{2^1\}$ | — | — | — |
+| 3 | 3 | $\{3^1\}$ | $d = 2$ | $\{2^1, 3^1\} = 6$ | **Yes** ($2 \times 3 = 6 \equiv 0 \pmod 6$) |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness of Left-to-Right Online Accumulation
+Every pair $(i, j)$ satisfies $i < j$.
+When processing index $j$, the map `gcd_counts` contains exactly the GCD projections of all indices $i < j$.
+No future element $k > j$ is in the map, so $(j, k)$ is not counted prematurely.
+When index $j$ finishes, its GCD is added to the map so that all future elements can pair with it.
+Thus, every unordered pair $\{i, j\}$ is considered exactly once, guaranteeing completeness and zero double counting.
+
+### Precision of Divisor Modulo Check
+Because $\gcd(a, k)$ contains all and only the prime powers of $k$ that divide $a$, the product $\gcd(a, k) \cdot \gcd(b, k)$ is a multiple of $k$ if and only if $a \cdot b$ is a multiple of $k$.
+Hence, no false positive or false negative can occur.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **$k = 1$ (Universal Divisibility):**
+   - Every product is divisible by $1$.
+   - $\gcd(x, 1) = 1$ for all $x$. The map contains only key $1$.
+   - For each step $j$, adds $j$ to the answer, resulting in $\sum_{j=0}^{n-1} j = \frac{n(n - 1)}{2}$.
+2. **Prime Modulus $k$ (e.g., $k = 7$):**
+   - Divisors are only $\{1, k\}$.
+   - $(g \cdot d) \bmod k == 0 \iff g = k \lor d = k$.
+   - Exactly matches the requirement that at least one number must be a multiple of $k$.
+3. **64-Bit Integer Overflow:**
+   - For $n = 10^5$, the number of pairs can reach $\approx 5 \times 10^9$, exceeding standard 32-bit integer limits.
+   - `answer` must be a 64-bit integer (`long long`).
+4. **No Pairs Qualify (e.g. `nums = [1, 2, 3, 4]`, $k = 5$):**
+   - No combination contains factor $5$; correctly returns $0$.
+
+### Anti-Patterns to Avoid
+- **Naive $O(n^2)$ Product Check:** Iterating through all pairs and checking `(nums[i] * nums[j]) % k == 0` requires $5 \times 10^9$ operations, causing immediate TLE.
+- **Large Integer Overflow in Direct Multiplication:** If $nums[i] \approx 10^5$, direct product $10^{10}$ fits in 64 bits, but if extended to larger numbers, multiplying values directly can overflow standard machine registers. Multiplying GCDs $g \cdot d \le k^2 \le 10^{10}$ remains strictly bounded.
+- **Iterating Over All Integers $1 \dots k$:** Iterating over all numbers instead of the populated keys in `gcd_counts` takes $O(k)$ per step instead of $O(d(k))$, degrading performance by orders of magnitude.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(n \cdot (\log(\min(\max(\text{nums}), k)) + d(k)))$ where $n$ is array length and $d(k) \le 128$ is the number of divisors of $k$. For each of the $n$ numbers, computing the GCD takes $O(\log k)$ Euclidean steps ($\le 17$ iterations). Querying the active divisors takes at most $d(k) \le 128$ iterations. Total operations are bounded by $10^5 \times (17 + 128) \approx 1.45 \times 10^7$, running in under $0.2$ seconds.
+- **Auxiliary Space Complexity:** $O(d(k))$. The hash map stores at most $d(k)$ distinct keys. For $k \le 10^5$, $d(k) \le 128$, requiring less than $1$ kilobyte of auxiliary memory.

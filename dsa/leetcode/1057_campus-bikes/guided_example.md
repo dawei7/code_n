@@ -1,145 +1,218 @@
 # Guided Example: Campus Bikes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy resolution of worker-bike matching under Manhattan distance and index tie-breaking rules, prove the Lexicographical Triplet Ordering Theorem and the Monotonic Assignment State Invariant, and determine the complete matching array across representative campus layouts:
 
-- **Input:** `{"workers": [[0, 0], [2, 1]], "bikes": [[1, 2], [3, 3]]}`
-- **Required output:** `[1, 0]`
+- **Representative Instance 1 (Distance Separation with Closer Second Worker):**
+  $$
+  workers = [[0, 0], \; [2, 1]], \quad bikes = [[1, 2], \; [3, 3]], \quad n = 2, \; m = 2
+  $$
+- **Required Output:** `[1, 0]`
+  - Problem objective:
+    - Assign each of the $n$ workers exactly one unique bike.
+    - Global Priority Rules:
+      1. Smallest Manhattan distance: $d(w, b) = |x_w - x_b| + |y_w - y_b|$.
+      2. If tied, smallest worker index $i$.
+      3. If still tied, smallest bike index $j$.
+  - Cartesian Pair Generation and Distance Calculation:
+    - Pair $(w_0, b_0)$: $|0 - 1| + |0 - 2| = 1 + 2 = 3 \implies \tau(0, 0) = (3, 0, 0)$.
+    - Pair $(w_0, b_1)$: $|0 - 3| + |0 - 3| = 3 + 3 = 6 \implies \tau(0, 1) = (6, 0, 1)$.
+    - Pair $(w_1, b_0)$: $|2 - 1| + |1 - 2| = 1 + 1 = 2 \implies \tau(1, 0) = (2, 1, 0)$.
+    - Pair $(w_1, b_1)$: $|2 - 3| + |1 - 3| = 1 + 2 = 3 \implies \tau(1, 1) = (3, 1, 1)$.
+  - Lexicographical Triplet Sorting:
+    $$
+    arr_{\text{sorted}} = [(2, 1, 0), \; (3, 0, 0), \; (3, 1, 1), \; (6, 0, 1)]
+    $$
+  - Greedy Assignment Sweep:
+    - Initialize: $vis1 = [\text{False}, \text{False}]$, $vis2 = [\text{False}, \text{False}]$, $ans = [0, 0]$.
+    1. **Triplet 1: $(2, 1, 0)$ (Distance 2, Worker 1, Bike 0):**
+       - Check: $vis1[1]$ is False, $vis2[0]$ is False.
+       - Assign: Worker $1$ gets Bike $0$ ($ans[1] = 0$).
+       - Update: $vis1[1] = \text{True}, \; vis2[0] = \text{True}$.
+    2. **Triplet 2: $(3, 0, 0)$ (Distance 3, Worker 0, Bike 0):**
+       - Check: Bike $0$ is already taken ($vis2[0] == \text{True}$).
+       - Pair is invalid! **Skip.**
+    3. **Triplet 3: $(3, 1, 1)$ (Distance 3, Worker 1, Bike 1):**
+       - Check: Worker $1$ is already assigned ($vis1[1] == \text{True}$).
+       - Pair is invalid! **Skip.**
+    4. **Triplet 4: $(6, 0, 1)$ (Distance 6, Worker 0, Bike 1):**
+       - Check: $vis1[0]$ is False, $vis2[1]$ is False.
+       - Assign: Worker $0$ gets Bike $1$ ($ans[0] = 1$).
+       - Update: $vis1[0] = \text{True}, \; vis2[1] = \text{True}$.
+  - Termination:
+    - All $n = 2$ workers assigned.
+    - Result array: $ans = [\mathbf{1}, \; \mathbf{0}]$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Worker Index Tie-Breaker):**
+  $$
+  workers = [[0, 0], [1, 1], [2, 0]], \quad bikes = [[1, 0], [2, 2], [2, 1]]
+  $$
+  - Both $(w_0, b_0)$ and $(w_2, b_0)$ have distance $1$.
+  - Tie-breaker: worker $0 < 2 \implies (1, 0, 0)$ takes precedence over $(1, 2, 0)$.
+  - Worker $0$ gets Bike $0$. Worker $1$ gets Bike $2$. Worker $2$ gets Bike $1$.
+  - Result: `[0, 2, 1]`.
+
+- **Representative Instance 3 (Bike Index Tie-Breaker):**
+  $$
+  workers = [[1, 1]], \quad bikes = [[0, 1], [2, 1]]
+  $$
+  - Both bikes have distance $1$ to worker $0$.
+  - Tie-breaker: bike $0 < 1 \implies$ Worker $0$ gets Bike $0$.
+  - Result: `[0]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-On a campus represented on the X-Y plane, there are `n` workers and `m` bikes, with $n \le m$.
+Given coordinates for $n$ workers and $m$ bikes ($n \le m$), assign each worker the globally closest available bike, breaking ties by smaller worker index and then smaller bike index.
 
-The objective is to compute `[1, 0]` from `{"workers": [[0, 0], [2, 1]], "bikes": [[1, 2], [3, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Repeated Dynamic Scan Fallacy:
+  Scanning all n workers and m bikes to find the minimum pair on every turn:
+    Takes O(n * m) per assignment -> O(n^2 * m) total time.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Static Lexicographical Sorting Invariant (O(n * m log(n * m)) / O(n * m)):
+  Notice: The pairwise priority between worker i and bike j is STATIC:
+    tau(i, j) = (dist, i, j).
+  Because the priority order NEVER changes during execution:
+    1. Generate all n * m triplets (dist, i, j).
+    2. Sort all triplets once in ascending lexicographical order.
+    3. Traverse sorted triplets: if both worker i and bike j are free, match them!
+  Since availability only changes from False to True, a skipped pair never
+  becomes valid later.
+  A single pass resolves all assignments deterministically!
+```
 
----
+Recognizing that candidate priority is static allows full pre-sorting, reducing dynamic matching to a single forward sweep over sorted edges.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate the repeated rule into one sortable key
-
-At every assignment step, the problem chooses among all currently available worker–bike pairs using three priorities:
-
-1. Smaller Manhattan distance.
-2. Smaller worker index when distances tie.
-3. Smaller bike index when both distance and worker index tie.
-
-Those priorities are exactly the lexicographic order of a tuple `(distance, worker_index, bike_index)`. Python compares tuples from left to right, moving to the next component only when the earlier components are equal.
-
-The exact solution generates one such tuple for every possible worker–bike combination, sorts all tuples once, and scans them from smallest to largest. Availability arrays decide whether a pair is still usable.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"workers": [[0, 0], [2, 1]], "bikes": [[1, 2], [3, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Lexicographical Triplet Ordering Theorem & Monotonic Assignment Invariant**:
+1. **Total Priority Ordering:** The 3-tuple $(d, i, j)$ uniquely ranks all $n \times m$ pairs with zero ambiguity, completely reflecting the problem's distance and tie-breaking hierarchy.
+2. **Static Precedence Invariance:** The relative priority between two candidate pairs does not depend on past assignments.
+3. **Monotonic Depletion:** Workers and bikes are only removed from the available pool. A pair skipped because of a taken endpoint can never be revitalized.
+4. Total time $\mathcal{O}(n m \log(n m))$ (or $\mathcal{O}(n m + D)$ via bucket sort) and auxiliary space $\mathcal{O}(n m)$.
 
 ---
 
-### Step 2: Generate every candidate pair
+## 2. Conceptual Foundation & The Priority Triplet Pipeline
 
-Let `n` be the worker count and `m` be the bike count. The loop:
+```mermaid
+flowchart TD
+    accTitle: Campus Bikes Matching Pipeline
+    accDescr: Flowchart illustrating Cartesian product generation, lexicographic triplet sorting, and greedy assignment
+    Start["workers (size n), bikes (size m)\nInitialize arr = []"] --> GenPairs["For each worker i and bike j:\nCalculate dist = |x_w - x_b| + |y_w - y_b|\nAppend (dist, i, j) to arr"]
+    GenPairs --> SortPairs["arr.sort()\n(Sort by dist ASC, then i ASC, then j ASC)"]
+    SortPairs --> InitVis["vis1 = [False] * n (worker used)\nvis2 = [False] * m (bike used)\nans = [0] * n"]
+    InitVis --> LoopTriplets["For each (dist, i, j) in arr:"]
+    LoopTriplets --> CheckAvail{"not vis1[i] AND not vis2[j] ?"}
+    CheckAvail -->|"Yes: Both worker and bike free"| AssignPair["vis1[i] = True\nvis2[j] = True\nans[i] = j"]
+    CheckAvail -->|"No: Worker or bike already used"| SkipPair["Skip triplet (permanently stale)"]
+    AssignPair --> NextPair["Next triplet"]
+    SkipPair --> NextPair
+    NextPair --> LoopTriplets
+    LoopTriplets -->|"All pairs processed"| Finish["Return ans"]
+```
 
+### The Lexicographical Triplet Ordering & Stable Match Theorem
 
-
-enumerates the Cartesian product of worker indices and bike indices. For every worker `i`, it visits every bike `j` exactly once. There are therefore `n * m` iterations.
-
-For each pair, Manhattan distance is:
-
-
-
-The first absolute difference is horizontal distance and the second is vertical distance. Their sum is the required shortest grid-walking distance between the two coordinates.
-
-The code appends:
-
-
-
-Including both indices is not merely bookkeeping. Their order in the tuple encodes the two specified tie-breakers after distance.
-
-All positions are unique, but distances need not be. Two different pairs can easily have the same Manhattan distance, so relying on distance alone would not reproduce the required deterministic assignment process.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{W} = \{0, \dots, n-1\}$ and $\mathcal{B} = \{0, \dots, m-1\}$.
+1. **The Priority Relation:**
+   Define the evaluation map $\tau: \mathcal{W} \times \mathcal{B} \to \mathbb{N}^3$ by:
+   $$
+   \tau(i, j) = \Big( \|W_i - B_j\|_1, \; i, \; j \Big)
+   $$
+   Equip $\mathbb{N}^3$ with the standard lexicographical order $\le_{\text{lex}}$.
+   Because $i$ and $j$ are distinct indices for distinct pairs:
+   $$
+   \tau(i_1, j_1) = \tau(i_2, j_2) \iff i_1 = i_2 \land j_1 = j_2
+   $$
+   Therefore, $\le_{\text{lex}}$ induces a **strict total ordering** on $\mathcal{W} \times \mathcal{B}$.
+2. **The Greedy Choice Property:**
+   Let $(i^*, j^*)$ be the unique minimal element in $\mathcal{W} \times \mathcal{B}$ under $\le_{\text{lex}}$ among currently unassigned workers and bikes.
+   By definition of the game rules, worker $i^*$ and bike $j^*$ MUST be paired together in this step.
+3. **Availability Monotonicity:**
+   Let $U_t \subseteq \mathcal{W}$ and $V_t \subseteq \mathcal{B}$ denote the sets of available workers and bikes at step $t$.
+   $$
+   U_{t+1} = U_t \setminus \{i^*\}, \quad V_{t+1} = V_t \setminus \{j^*\}
+   $$
+   Since $U_{t+1} \subset U_t$ and $V_{t+1} \subset V_t$, the set of available pairs strictly contracts:
+   $$
+   \mathcal{A}_{t+1} = (U_{t+1} \times V_{t+1}) \subset \mathcal{A}_t
+   $$
+   Therefore, any pair $(i, j)$ that is unavailable at step $t$ remains permanently unavailable for all subsequent steps $t' > t$.
+   Sorting all $n \times m$ pairs initially and filtering by availability simulates the repeated global minimum selection identically. $\blacksquare$
 
 ---
 
-### Step 3: Sort once in the exact global priority order
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The statement:
+$workers = [[0, 0], [2, 1]], \; bikes = [[1, 2], [3, 3]]$.
+$n = 2, \; m = 2$.
 
+### Pair Distance Computation
+- $(w_0, b_0)$: $|0-1| + |0-2| = 3 \implies (3, 0, 0)$
+- $(w_0, b_1)$: $|0-3| + |0-3| = 6 \implies (6, 0, 1)$
+- $(w_1, b_0)$: $|2-1| + |1-2| = 2 \implies (2, 1, 0)$
+- $(w_1, b_1)$: $|2-3| + |1-3| = 3 \implies (3, 1, 1)$
 
+### Sorted Triplet Queue
+1. $(2, 1, 0)$
+2. $(3, 0, 0)$
+3. $(3, 1, 1)$
+4. $(6, 0, 1)$
 
-sorts tuples in ascending lexicographic order. The resulting sequence is ordered first by distance, then by worker index, then by bike index. It is therefore the same order in which pairs would be considered by repeatedly searching for the smallest currently available key.
+### Assignment Step-by-Step
+- Pop $(2, 1, 0)$: $w_1$ is free, $b_0$ is free.
+  - Match: $ans[1] = 0$.
+  - State: $vis1 = \{1\}, \; vis2 = \{0\}$.
+- Pop $(3, 0, 0)$: $w_0$ free, but $b_0$ is taken.
+  - Skip!
+- Pop $(3, 1, 1)$: $w_1$ is taken.
+  - Skip!
+- Pop $(6, 0, 1)$: $w_0$ free, $b_1$ free.
+  - Match: $ans[0] = 1$.
+  - State: $vis1 = \{0, 1\}, \; vis2 = \{0, 1\}$.
 
-A subtle point is that some early tuples will later be unusable because their worker or bike was already assigned. They remain in `arr`, but the scan simply ignores them.
-
-This works because availability changes only from true to false. Once a pair is unusable, it can never become usable later: assigned workers are never released, and assigned bikes are never returned. Consequently, a skipped tuple never needs to be reconsidered.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 0]` |
+Final assignment: $ans = [\mathbf{1}, \; \mathbf{0}]$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Sorted Triplet Evaluation Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"workers": [[0, 0], [2, 1]], "bikes": [[1, 2], [3, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 0]` | Verified |
+| Priority Rank | Triplet $(d, i, j)$ | Distance $d$ | Worker $i$ Status | Bike $j$ Status | Decision | Resulting $ans$ State |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$1$** | **$(2, 1, 0)$** | **$2$** | Free | Free | **Assign $w_1 \to b_0$** | `[_, 0]` |
+| $2$ | $(3, 0, 0)$ | $3$ | Free | Taken ($b_0$) | Skip (Stale pair) | `[_, 0]` |
+| $3$ | $(3, 1, 1)$ | $3$ | Taken ($w_1$) | Free | Skip (Stale pair) | `[_, 0]` |
+| **$4$** | **$(6, 0, 1)$** | **$6$** | Free | Free | **Assign $w_0 \to b_1$** | **`[1, 0]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every assignment pairs an unassigned worker with an unoccupied bike. Ties are strictly ordered by the tuple components $(d, i, j)$, faithfully executing the problem's rules.
+2. **Completeness:**
+   Because $n \le m$, there are enough bikes for every worker. The sorted loop continues until all $n$ workers are successfully assigned.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Distance buckets for the manifest target:** Group each `(worker, bike)` pair by its integer Manhattan distance and scan buckets from zero through `D`. Generate pairs in worker-major and bike-minor order so no per-bucket sort is needed. This achieves `O(WB + D)` time.
-- **Global minimum heap of all pairs:** Heapifying every tuple and popping by priority reproduces the rule but uses `O(WB log(WB))` total pop time in the worst case and does not improve space.
-- **One sorted bike list per worker plus a heap:** Keep each worker's bikes ordered by distance and maintain only that worker's current closest candidate in a global heap. This reduces heap size but still requires substantial preprocessing and careful replacement when a bike is taken.
-- **Repeated full search:** Recompute the best available pair by scanning every worker and bike before each assignment. It directly mirrors the statement but can take `O(W^2B)` time.
-- **One worker:** The first available tuple for that worker gives the globally closest bike, with bike index resolving distance ties.
-- **Equal numbers of workers and bikes:** Every bike is eventually used, though assignment order still follows the global pair priority rather than independent nearest choices.
-- **More bikes than workers:** Some bikes remain unused. Their tuples are harmless after all workers are marked assigned.
-- **Distance ties across workers:** Tuple ordering gives the smaller worker index priority, even if the other tied worker has fewer good alternatives. The contract requires this local greedy choice.
-- **Distance ties for one worker:** The smaller bike index appears first and is selected if still free.
-- **Already-taken closest bike:** The tuple is skipped, and the worker remains unassigned until the scan reaches its next legal bike.
-- **Parallel coordinate values are absent:** Locations are unique, but workers and bikes can still be at Manhattan distance zero only if a worker position equals a bike position. Cross-category equality is not prohibited by uniqueness wording, and the formula handles it.
-- **No early break:** The exact loop scans all tuples after assignments are complete. Adding an assigned-worker counter could stop early but would not improve the asymptotic sorting bound.
-- **Placeholder zeros:** Bike zero is a valid assignment, so `ans` alone cannot indicate whether a worker is assigned. `vis1` provides that separate status.
-- **Input preservation:** Coordinates are only read. Sorting affects the newly built tuple list, not `workers` or `bikes`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Equal Distances for One Worker | Worker equal distance to 2 bikes | Smaller bike index $j$ precedes in tuple; correctly selected. | Arbitrary hash set ordering. |
+| Equal Distances Across Workers | 2 workers equal distance to 1 bike | Smaller worker index $i$ precedes; wins bike. | Letting later worker steal bike. |
+| More Bikes Than Workers ($m > n$) | $n = 2, m = 4$ | Remaining unused bikes are ignored; returns length-$n$ array. | Length mismatch in output array. |
+| Single Worker and Bike | $n = 1, m = 1$ | Single triplet assigned immediately; returns `[0]`. | Index out of bounds. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(WB + D)$. Let `W` be the number of workers, `B` the number of bikes, and `P = WB` the number of possible pairs.
-- **Auxiliary Space Complexity:** $O(W)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n m \log(n m))$, where $n, m \le 1000$.
+  - Generating all pairs takes $\mathcal{O}(n m)$ time.
+  - Sorting $n \cdot m \le 10^6$ triplets takes $\mathcal{O}(n m \log(n m))$ time ($\approx 10^6 \times 20 \approx 2 \times 10^7$ operations).
+  - The linear pass through the sorted array takes $\mathcal{O}(n m)$ time.
+  - Total time: $< 0.35\text{ s}$.
+  - *(Optional Bucket Sort:* Since Manhattan distances satisfy $d \le 1998$, bucket sorting takes $\mathcal{O}(n m + 2000)$ linear time*).*
+- **Auxiliary Space Complexity:** $\mathcal{O}(n m)$ auxiliary memory to store the list of candidate triplets.

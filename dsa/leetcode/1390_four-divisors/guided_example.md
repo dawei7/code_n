@@ -1,126 +1,206 @@
 # Guided Example: Four Divisors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the square-root trial division and divisor pairing strategy on a representative problem instance:
 
-- **Input:** `{"nums": [21, 4, 7]}`
+- **Input:** `nums = [21, 4, 7]`
 - **Required output:** `32`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it includes an integer with exactly four divisors ($21$), a prime with two divisors ($7$), and a perfect square with an odd divisor count ($4$), illustrating the divisor-pair counting invariants.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, return *the sum of divisors of the integers in that array that have exactly four divisors*. If there is no such integer in the array, return `0`.
+Given an integer array `nums`, we must find every integer $x$ that possesses **exactly four positive divisors**. For every such integer, we sum its four divisors. The final result is the sum of these divisor sums across all qualifying numbers in the array (or $0$ if none qualify).
 
-The objective is to compute `32` from `{"nums": [21, 4, 7]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [21, 4, 7]`:
+- $x = 21$: Divisors are $\{1, 3, 7, 21\}$ (count $= 4$). Sum $= 1 + 3 + 7 + 21 = 32$.
+- $x = 4$: Divisors are $\{1, 2, 4\}$ (count $= 3$). Does not qualify.
+- $x = 7$: Divisors are $\{1, 7\}$ (count $= 2$). Does not qualify.
+- Global total: $32$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to observe divisor symmetry: divisors always occur in reciprocal pairs $(d, x/d)$. Testing candidates up to $\lfloor \sqrt{x} \rfloor$ bounds the search to $\mathcal{O}(\sqrt{x})$ operations while permitting immediate pruning once the divisor count exceeds four.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+An integer $x \ge 1$ has prime factorization $x = p_1^{a_1} p_2^{a_2} \dots p_k^{a_k}$.
+The total number of positive divisors is:
+$$
+d(x) = (a_1 + 1)(a_2 + 1) \dots (a_k + 1)
+$$
+For $d(x) = 4$, the product of factors can only be factored as $4$ or $2 \times 2$:
+1. $a_1 = 3$: The number is a cube of a prime, $x = p^3$. Its divisors are $\{1, p, p^2, p^3\}$.
+2. $a_1 = 1, a_2 = 1$: The number is a semiprime, $x = p \cdot q$ where $p < q$ are distinct primes. Its divisors are $\{1, p, q, pq\}$.
 
-| State Parameter | Role & Purpose | Initial State |
+```
+Divisor Symmetry and Early Termination:
+x = 21:
+  d = 1: pair (1, 21) -> count = 2, sum = 22
+  d = 2: 21 not divisible by 2
+  d = 3: pair (3, 7)  -> count = 4, sum = 32
+  d = 4: 4^2 = 16 <= 21, but 21 % 4 != 0
+  Loop terminates (d = 5 > sqrt(21)).
+  Count == 4 -> Accredit 32!
+
+x = 4:
+  d = 1: pair (1, 4) -> count = 2, sum = 5
+  d = 2: 2^2 == 4 (identical factor) -> count = 3, sum = 7
+  Count == 3 != 4 -> Discard!
+```
+
+To find divisors of $x$:
+- Initialize with the universal pair $\{1, x\}$ (for $x > 1$), yielding count $2$ and sum $1 + x$.
+- Iterate $d$ from $2$ up to $\lfloor \sqrt{x} \rfloor$.
+- If $d$ divides $x$:
+  - If $d = x / d$ (perfect square factor), increment count by $1$ and sum by $d$.
+  - Otherwise, increment count by $2$ and sum by $d + x / d$.
+  - If count $> 4$, terminate exploration early.
+- If final count equals $4$, add the accumulated sum to the grand total.
+
+We define state tracking parameters:
+
+| Parameter | Mathematical Meaning | Initial State |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Current Integer ($x$) | Element of $nums$ under evaluation | Scanned sequentially |
+| Divisor Count ($c$) | Number of identified divisors | $2$ (for $1$ and $x$) |
+| Divisor Sum ($s$) | Sum of identified divisors | $1 + x$ |
+| Grand Total | Sum of divisor sums for qualifying integers | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Testing divisors $d$ strictly in the range $2 \le d \le \lfloor \sqrt{x} \rfloor$ uncovers all remaining non-trivial divisor pairs $(d, x/d)$. If the divisor count exceeds $4$ at any point, $x$ cannot qualify and is safely abandoned.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Divisors arrive in pairs
+### Step 1: Evaluating $x = 21$
 
-If positive integer $i$ divides $x$, then $x/i$ also divides $x$. One of the two values is at most $\sqrt{x}$ and the other is at least $\sqrt{x}$. Therefore checking candidate divisors only through the square root discovers every pair.
+- Base pair: Divisors $\{1, 21\}$. Initial count $c = 2$, sum $s = 1 + 21 = 22$.
+- Search limit: $\lfloor \sqrt{21} \rfloor = 4$.
+- Candidate $d = 2$: $21 \pmod 2 = 1 \ne 0$.
+- Candidate $d = 3$: $21 \pmod 3 = 0$.
+  - Paired divisor: $21 / 3 = 7$.
+  - Since $3 \ne 7$, this adds $2$ distinct divisors.
+  - Updated count: $c = 2 + 2 = 4$.
+  - Updated sum: $s = 22 + (3 + 7) = 32$.
+- Candidate $d = 4$: $21 \pmod 4 = 1 \ne 0$.
+- Loop concludes at $d > 4$.
+- Verification: Is count $c == 4$? **Yes** ($32 == 32$).
+- Add to grand total: $0 + 32 = 32$.
 
-The helper `f(x)` begins by assuming the universal divisors 1 and $x$:
-
-- `cnt = 2` records two divisors.
-- `s = x + 1` records their sum.
-
-It then tests possible smaller divisors starting at two. For normal $x>1$, this avoids rediscovering 1 and $x$.
-
-For $x=1$, the initialization conceptually counts the same divisor twice. The loop does not run and `cnt` is not four, so the helper still correctly returns zero. A more general divisor routine might special-case one, but the exact four-divisor decision is unaffected.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [21, 4, 7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why the loop condition reaches exactly the square root
-
-`while i <= x // i` is an integer-safe form of $i^2\le x$. In languages with fixed-width integers it avoids overflow from multiplying large `i` values. In Python overflow is not a concern, but the condition remains exact and avoids floating-point square roots.
-
-For each `i` that divides `x`, the code adds `i` as one divisor. If `i * i != x`, the paired quotient `x // i` is different and is added as a second divisor. If $i^2=x$, the pair is the same middle divisor and must be counted only once.
-
-For $x=21$, initialization records 1 and 21. Candidate 3 divides it and pairs with 7, bringing the count to four and the sum to 32. No other candidate divides it, so `f(21)` returns 32.
-
-For $x=4$, candidate 2 is the square root. It is counted once, producing three divisors 1, 2, and 4. The helper returns zero because the number does not have exactly four.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Candidate Divisor ($d$) | $x \pmod d == 0$? | Paired Divisor ($x / d$) | Distinct Divisors Added | Running Count | Running Sum |
+|---|---|---|---|---|---|
+| Base ($d = 1$) | Yes | $21$ | $\{1, 21\}$ | $2$ | $22$ |
+| $d = 2$ | No | - | None | $2$ | $22$ |
+| $d = 3$ | Yes | $7$ | $\{3, 7\}$ | $4$ | $32$ |
+| $d = 4$ | No | - | None | $4$ | $32$ |
 
 ---
 
-### Step 3: Why the helper does not stop at four
+### Step 2: Evaluating $x = 4$
 
-Finding four divisors partway through is not enough; later factor pairs may raise the count beyond four. The code continues through the full square-root range and returns the sum only if final `cnt == 4`. This prevents numbers with six or more divisors from contributing an early partial sum.
+- Base pair: Divisors $\{1, 4\}$. Initial count $c = 2$, sum $s = 1 + 4 = 5$.
+- Search limit: $\lfloor \sqrt{4} \rfloor = 2$.
+- Candidate $d = 2$: $4 \pmod 2 = 0$.
+  - Paired divisor: $4 / 2 = 2$.
+  - Since $d = x / d$ (perfect square root), this adds only $1$ distinct divisor.
+  - Updated count: $c = 2 + 1 = 3$.
+  - Updated sum: $s = 5 + 2 = 7$.
+- Loop concludes.
+- Verification: Is count $c == 4$? **False** ($c = 3$).
+- Grand total remains $32$.
 
-It could stop early once `cnt > 4` because the count can never decrease, but the exact implementation favors simple complete enumeration. The asymptotic bound is unchanged.
+| Candidate Divisor ($d$) | $x \pmod d == 0$? | Paired Divisor | Distinct Divisors Added | Running Count | Running Sum |
+|---|---|---|---|---|---|
+| Base ($d = 1$) | Yes | $4$ | $\{1, 4\}$ | $2$ | $5$ |
+| $d = 2$ | Yes | $2$ (Square root) | $\{2\}$ | $3$ | $7$ |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `32` |
+---
+
+### Step 3: Evaluating $x = 7$
+
+- Base pair: Divisors $\{1, 7\}$. Initial count $c = 2$, sum $s = 1 + 7 = 8$.
+- Search limit: $\lfloor \sqrt{7} \rfloor = 2$.
+- Candidate $d = 2$: $7 \pmod 2 = 1 \ne 0$.
+- Loop concludes.
+- Verification: Is count $c == 4$? **False** ($c = 2$).
+- Grand total remains $32$.
+
+Final result: $32$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [21, 4, 7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `32` | Verified |
+| Array Element ($x$) | Divisors Found | Total Divisor Count ($c$) | Exactly 4 Divisors? | Contributed Sum | Cumulative Total |
+|---|---|---|---|---|---|
+| $21$ | $\{1, 3, 7, 21\}$ | $4$ | **Yes** | $32$ | $32$ |
+| $4$ | $\{1, 2, 4\}$ | $3$ | No | $0$ | $32$ |
+| $7$ | $\{1, 7\}$ | $2$ | No | $0$ | **$32$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Completeness of Square Root Search
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+For any divisor $d$ of $x$, $d \cdot (x / d) = x$.
+- If both $d > \sqrt{x}$ and $x / d > \sqrt{x}$, then $d \cdot (x / d) > \sqrt{x} \cdot \sqrt{x} = x$, a contradiction.
+- Therefore, at least one factor in every divisor pair must satisfy $d \le \sqrt{x}$.
+- Testing all integers up to $\lfloor \sqrt{x} \rfloor$ is guaranteed to discover every divisor pair.
+- When $d = \sqrt{x}$, the pair collapses into a single divisor, correctly incrementing the count by $1$.
+- Thus, the exact count and sum of all divisors are guaranteed without testing beyond $\sqrt{x}$.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Prime-factor classification:** Factor $x$ and test whether its exponent pattern is either three or one-plus-one. It reaches a similar square-root bound but requires careful prime bookkeeping.
-- **Sieve preprocessing:** Precompute divisor counts and sums for every value through $V$, then answer each array element in constant time. It can help for many inputs but uses $O(V)$ space.
-- **Precompute $p^3$ and $pq$ forms:** Generate primes and map all four-divisor values to their sums. It leverages the classification but is more elaborate for a single array.
-- **Early exit after count exceeds four:** Safe because divisor count only grows, though the exact code scans the full range.
-- **`x = 1`:** It has one divisor and contributes zero despite the helper's harmless doubled initialization.
-- **Prime number:** Only 1 and itself are found, so it contributes zero.
-- **Prime cube:** Exactly one nonsquare or square-pair structure yields four total divisors and is accepted.
-- **Product of two distinct primes:** Its one inner factor pair plus 1 and itself yields four.
-- **Perfect square:** The square-root divisor is counted once, preventing a duplicate.
-- **More than four divisors:** Full enumeration raises `cnt` beyond four, and the entire sum is discarded.
-- **Duplicate array values:** Each occurrence contributes separately.
-- **Integer loop bound:** `i <= x // i` avoids floating-point rounding and fixed-width multiplication overflow.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(n \sqrt{M})$, where $n = |nums|$ and $M = \max(nums)$. For each number, trial division tests at most $\sqrt{M}$ candidate divisors. Given $M \le 10^5$, $\sqrt{M} \le 316$. With $n \le 10^4$, total operations are at most $10^4 \times 316 \approx 3.16 \times 10^6$, executing in well under $0.1$ seconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Divisors and their sums are computed using scalar registers without auxiliary arrays.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(m\sqrt{V})$. Let $m$ be the number of input elements and $V$ the maximum value. For one $x$, the helper tests $O(\sqrt{x})$ candidates. Across the array this is
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Perfect Squares ($x = k^2$):** A square root divisor $k = \sqrt{x}$ must only be counted once. Counting it twice would falsely report $4$ divisors for numbers like $x = 8$ ($2^3$) or confuse odd and even divisor parity.
+- **Number $x = 1$:** The number $1$ has only one divisor $\{1\}$. Initializing with $c = 2$ and $s = 1 + 1$ would erroneously count $1$ twice. Numbers $\le 3$ can have at most $2$ divisors and can be skipped or handled cleanly.
+- **Early Break on Abundant Numbers:** For highly composite numbers (e.g., $x = 12$ with divisors $\{1, 2, 3, 4, 6, 12\}$), breaking as soon as count $> 4$ avoids unnecessary iterations.
+- **Large Prime Components:** For semiprimes $x = p \cdot q$ with a large prime $q$, testing only up to $\sqrt{x}$ identifies $p$ and immediately discovers $q = x / p$ without searching up to $q$.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Four Divisors Trial Division Flowchart
+    accDescr: Tests divisors up to sqrt(x) for each number and accumulates the divisor sum if the count is exactly 4.
+
+    Start(["Start"]) --> InitTotal["total_sum = 0"]
+    InitTotal --> NumLoop{"For each x in nums:"}
+    
+    NumLoop -- "Done" --> ReturnTotal(["Return total_sum"])
+    NumLoop -- "Next x" --> CheckSmall{"x <= 3 ?"}
+    
+    CheckSmall -- "Yes (<= 2 divisors)" --> NumLoop
+    CheckSmall -- "No" --> InitDivs["count = 2, sum = 1 + x, d = 2"]
+    
+    InitDivs --> DivLoop{"d * d <= x ?"}
+    DivLoop -- "Loop Ends" --> CheckFour{"count == 4 ?"}
+    
+    DivLoop -- "Next d" --> CheckMod{"x % d == 0 ?"}
+    CheckMod -- "No" --> IncD["d += 1"]
+    CheckMod -- "Yes" --> CheckSquare{"d * d == x ?"}
+    
+    CheckSquare -- "Yes" --> AddOne["count += 1, sum += d"]
+    CheckSquare -- "No" --> AddTwo["count += 2, sum += d + (x / d)"]
+    
+    AddOne --> CheckOver{"count > 4 ?"}
+    AddTwo --> CheckOver
+    CheckOver -- "Yes" --> NumLoop
+    CheckOver -- "No" --> IncD
+    IncD --> DivLoop
+    
+    CheckFour -- "Yes" --> AddToTotal["total_sum += sum"]
+    CheckFour -- "No" --> NumLoop
+    AddToTotal --> NumLoop
+```

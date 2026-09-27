@@ -1,126 +1,179 @@
 # Guided Example: Running Total for Different Genders
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational window aggregation computing gender-partitioned cumulative score progressions on a representative match history:
 
-- **Input:** `{"tables": {"Scores": [{"player_name": "Aron", "gender": "F", "day": "2020-01-01", "score_points": 17}, {"player_name": "Alice", "gender": "F", "day": "2020-01-07", "score_points": 23}, {"player_name": "Bajrang", "gender": "M", "day": "2020-01-07", "score_points": 7}, {"player_name": "Khali", "gender": "M", "day": "2019-12-25", "score_points": 11}, {"player_name": "Slaman", "gender": "M", "day": "2019-12-30", "score_points": 13}, {"player_name": "Joe", "gender": "M", "day": "2019-12-31", "score_points": 3}, {"player_name": "Jose", "gender": "M", "day": "2019-12-18", "score_points": 2}, {"player_name": "Priya", "gender": "F", "day": "2019-12-31", "score_points": 23}, {"player_name": "Priyanka", "gender": "F", "day": "2019-12-30", "score_points": 17}]}}`
-- **Required output:** `{"columns": ["gender", "day", "total"], "rows": [["F", "2019-12-30", 17], ["F", "2019-12-31", 40], ["F", "2020-01-01", 57], ["F", "2020-01-07", 80], ["M", "2019-12-18", 2], ["M", "2019-12-25", 13], ["M", "2019-12-30", 26], ["M", "2019-12-31", 29], ["M", "2020-01-07", 36]]}`
+- **Input:** `Scores` table with tuples:
+  $$\begin{aligned}
+  \text{Scores} = \{ &(\text{"Jose"}, \text{'M'}, \text{"2019-12-18"}, 2), \; (\text{"Khali"}, \text{'M'}, \text{"2019-12-25"}, 11), \\
+  &(\text{"Priyanka"}, \text{'F'}, \text{"2019-12-30"}, 17), \; (\text{"Slaman"}, \text{'M'}, \text{"2019-12-30"}, 13), \\
+  &(\text{"Priya"}, \text{'F'}, \text{"2019-12-31"}, 23), \; (\text{"Joe"}, \text{'M'}, \text{"2019-12-31"}, 3), \\
+  &(\text{"Aron"}, \text{'F'}, \text{"2020-01-01"}, 17), \; (\text{"Alice"}, \text{'F'}, \text{"2020-01-07"}, 23), \\
+  &(\text{"Bajrang"}, \text{'M'}, \text{"2020-01-07"}, 7) \}
+  \end{aligned}$$
+- **Required Output:** Cumulative series sorted by `gender` ascending and `day` ascending:
+  $$\begin{aligned}
+  \text{Result} = \{ &(\text{'F'}, \text{"2019-12-30"}, 17), \; (\text{'F'}, \text{"2019-12-31"}, 40), \\
+  &(\text{'F'}, \text{"2020-01-01"}, 57), \; (\text{'F'}, \text{"2020-01-07"}, 80), \\
+  &(\text{'M'}, \text{"2019-12-18"}, 2), \; (\text{'M'}, \text{"2019-12-25"}, 13), \\
+  &(\text{'M'}, \text{"2019-12-30"}, 26), \; (\text{'M'}, \text{"2019-12-31"}, 29), \\
+  &(\text{'M'}, \text{"2020-01-07"}, 36) \}
+  \end{aligned}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates relational window partitioning, chronologically ordering rows within each partition, and maintaining prefix sums over unbounded preceding frames.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Scores`
+The `Scores` table records daily match scores where the pair `(gender, day)` is guaranteed to be unique. We must output the cumulative total points scored by players of each gender up to and including each day.
 
-The objective is to compute `{"columns": ["gender", "day", "total"], "rows": [["F", "2019-12-30", 17], ["F", "2019-12-31", 40], ["F", "2020-01-01", 57], ["F", "2020-01-07", 80], ["M", "2019-12-18", 2], ["M", "2019-12-25", 13], ["M", "2019-12-30", 26], ["M", "2019-12-31", 29], ["M", "2020-01-07", 36]]}` from `{"tables": {"Scores": [{"player_name": "Aron", "gender": "F", "day": "2020-01-01", "score_points": 17}, {"player_name": "Alice", "gender": "F", "day": "2020-01-07", "score_points": 23}, {"player_name": "Bajrang", "gender": "M", "day": "2020-01-07", "score_points": 7}, {"player_name": "Khali", "gender": "M", "day": "2019-12-25", "score_points": 11}, {"player_name": "Slaman", "gender": "M", "day": "2019-12-30", "score_points": 13}, {"player_name": "Joe", "gender": "M", "day": "2019-12-31", "score_points": 3}, {"player_name": "Jose", "gender": "M", "day": "2019-12-18", "score_points": 2}, {"player_name": "Priya", "gender": "F", "day": "2019-12-31", "score_points": 23}, {"player_name": "Priyanka", "gender": "F", "day": "2019-12-30", "score_points": 17}]}}` while avoiding redundant calculations and unnecessary overhead.
+```
+Input Tuple Distribution:
+  Female ('F') Records (Chronological):
+    2019-12-30: 17
+    2019-12-31: 23
+    2020-01-01: 17
+    2020-01-07: 23
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Male ('M') Records (Chronological):
+    2019-12-18: 2
+    2019-12-25: 11
+    2019-12-30: 13
+    2019-12-31: 3
+    2020-01-07: 7
+```
+
+A standard relational grouping collapses all dates for a gender into a single aggregated scalar sum. To preserve each daily timestamp alongside its running cumulative progress, the relational engine utilizes an analytic window partition:
+$$
+\text{total}(g, d) = \sum_{t \le d, \; \text{gender}=g} \text{score\_points}(t)
+$$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S$ denote the input relation with attributes $(p, g, d, s)$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Relational Window Partitioning
+1. **Partitioning:** Divide $S$ into disjoint subsets based on gender:
+   $$
+   S = S_F \cup S_M, \quad \text{where } S_g = \{t \in S \mid t.g = g\}
+   $$
+2. **Ordering:** Sort each partition $S_g$ chronologically by date $d$:
+   $$
+   (t_1, t_2, \dots, t_{k_g}) \quad \text{such that } t_1.d < t_2.d < \dots < t_{k_g}.d
+   $$
+3. **Cumulative Frame Aggregation:** For the $i$-th row in partition $S_g$:
+   $$
+   \text{total}_i = \sum_{j=1}^i t_j.s = \text{total}_{i-1} + t_i.s
+   $$
+4. **Ordering & Projection:** Emit tuples $(g, d, \text{total})$ ordered by $g$ ascending, then $d$ ascending.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Partition Attribute | Window Frame | Aggregation Function | Reset Condition |
+|---|---|---|---|
+| `gender` | Unbounded Preceding to Current Row | Summation of `score_points` | Value change in `gender` |
+| `day` (ordering) | Monotonically increasing dates | - | New partition boundary |
+
+> **Cumulative Prefix Invariant.** Within any partition $S_g$, the running total associated with row index $i$ is identically equal to the sum of all points scored on or before day $t_i.d$ for that gender. Partition changes reset the running accumulator to zero.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Window Partitioning and Cumulative Sum
+    accDescr: Splitting the dataset by gender, sorting each partition chronologically, and computing running totals.
+    IN["Scores Table (N rows)"] --> SPLIT["Partition by gender"]
+    SPLIT --> PF["Partition 'F'"]
+    SPLIT --> PM["Partition 'M'"]
+    PF --> SORT_F["Sort by day ASC"]
+    PM --> SORT_M["Sort by day ASC"]
+    SORT_F --> ACC_F["Prefix Sum: total += score"]
+    SORT_M --> ACC_M["Prefix Sum: total += score"]
+    ACC_F --> MERGE["Order by gender, day"]
+    ACC_M --> MERGE
+    MERGE --> OUT["Final Result Table"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separating the two teams
+We trace the cumulative summation across both partitions.
 
-The expression begins with
+### Partition: Female (`gender = 'F'`)
+- **Row 1 (`day = "2019-12-30"`, points = $17$):**
+  $$
+  \text{total} = 17
+  $$
+- **Row 2 (`day = "2019-12-31"`, points = $23$):**
+  $$
+  \text{total} = 17 + 23 = 40
+  $$
+- **Row 3 (`day = "2020-01-01"`, points = $17$):**
+  $$
+  \text{total} = 40 + 17 = 57
+  $$
+- **Row 4 (`day = "2020-01-07"`, points = $23$):**
+  $$
+  \text{total} = 57 + 23 = 80
+  $$
 
-`SUM(score_points) OVER (PARTITION BY gender ...)`.
-
-`PARTITION BY gender` creates an independent window partition for each distinct gender. Female rows contribute only to female totals, and male rows contribute only to male totals. The running accumulation restarts when the partition changes.
-
-This partitioning is different from `GROUP BY gender`. A grouped query would reduce each gender to one row, losing the per-day results. The window aggregate keeps the original `gender` and `day` row while attaching a cumulative sum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Scores": [{"player_name": "Aron", "gender": "F", "day": "2020-01-01", "score_points": 17}, {"player_name": "Alice", "gender": "F", "day": "2020-01-07", "score_points": 23}, {"player_name": "Bajrang", "gender": "M", "day": "2020-01-07", "score_points": 7}, {"player_name": "Khali", "gender": "M", "day": "2019-12-25", "score_points": 11}, {"player_name": "Slaman", "gender": "M", "day": "2019-12-30", "score_points": 13}, {"player_name": "Joe", "gender": "M", "day": "2019-12-31", "score_points": 3}, {"player_name": "Jose", "gender": "M", "day": "2019-12-18", "score_points": 2}, {"player_name": "Priya", "gender": "F", "day": "2019-12-31", "score_points": 23}, {"player_name": "Priyanka", "gender": "F", "day": "2019-12-30", "score_points": 17}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Putting dates in accumulation order
-
-Inside each partition, `ORDER BY gender, day` determines the order used by the window calculation. Because every row in a partition already has the same `gender`, the first ordering key is redundant there. `ORDER BY day` would define the same within-gender sequence.
-
-For one gender, the earliest date comes first. Its window includes its own score, so its total equals that first score. The next date includes both the first and second rows, and so on.
-
-For example, female scores $17$, $23$, $17$, and $23$ in ascending date order produce totals $17$, $40$, $57$, and $80$. The value $57$ is not the score for one day; it is $17+23+17$ through that date.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The implicit window frame
-
-MySQL supplies a default frame when an aggregate window has `ORDER BY` and no explicit frame clause. Conceptually, the cumulative frame extends from the beginning of the partition through the current ordering value.
-
-The schema declares `(gender, day)` as a primary key, so no gender has two rows on the same day. As a result, peer-row differences between a `RANGE` frame and a `ROWS` frame do not affect this dataset: within a gender, each day identifies one row.
-
-An explicit form such as
-
-`ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`
-
-would make the running-row intent clearer. Under the key guarantee, it produces the same totals as the exact source.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["gender", "day", "total"], "rows": [["F", "2019-12-30", 17], ["F", "2019-12-31", 40], ["F", "2020-01-01", 57], ["F", "2020-01-07", 80], ["M", "2019-12-18", 2], ["M", "2019-12-25", 13], ["M", "2019-12-30", 26], ["M", "2019-12-31", 29], ["M", "2020-01-07", 36]]}` |
+### Partition: Male (`gender = 'M'`)
+- Accumulator resets to $0$ on partition boundary.
+- **Row 1 (`day = "2019-12-18"`, points = $2$):**
+  $$
+  \text{total} = 2
+  $$
+- **Row 2 (`day = "2019-12-25"`, points = $11$):**
+  $$
+  \text{total} = 2 + 11 = 13
+  $$
+- **Row 3 (`day = "2019-12-30"`, points = $13$):**
+  $$
+  \text{total} = 13 + 13 = 26
+  $$
+- **Row 4 (`day = "2019-12-31"`, points = $3$):**
+  $$
+  \text{total} = 26 + 3 = 29
+  $$
+- **Row 5 (`day = "2020-01-07"`, points = $7$):**
+  $$
+  \text{total} = 29 + 7 = 36
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Scores": [{"player_name": "Aron", "gender": "F", "day": "2020-01-01", "score_points": 17}, {"player_name": "Alice", "gender": "F", "day": "2020-01-07", "score_points": 23}, {"player_name": "Bajrang", "gender": "M", "day": "2020-01-07", "score_points": 7}, {"player_name": "Khali", "gender": "M", "day": "2019-12-25", "score_points": 11}, {"player_name": "Slaman", "gender": "M", "day": "2019-12-30", "score_points": 13}, {"player_name": "Joe", "gender": "M", "day": "2019-12-31", "score_points": 3}, {"player_name": "Jose", "gender": "M", "day": "2019-12-18", "score_points": 2}, {"player_name": "Priya", "gender": "F", "day": "2019-12-31", "score_points": 23}, {"player_name": "Priyanka", "gender": "F", "day": "2019-12-30", "score_points": 17}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["gender", "day", "total"], "rows": [["F", "2019-12-30", 17], ["F", "2019-12-31", 40], ["F", "2020-01-01", 57], ["F", "2020-01-07", 80], ["M", "2019-12-18", 2], ["M", "2019-12-25", 13], ["M", "2019-12-30", 26], ["M", "2019-12-31", 29], ["M", "2020-01-07", 36]]}` | Verified |
+| Partition | Sequence # | Date (`day`) | Daily Points | Incremental Sum Calculation | Emitted Output Tuple |
+|---|---|---|---|---|---|
+| `'F'` | 1 | `2019-12-30` | $17$ | $0 + 17 = 17$ | `('F', '2019-12-30', 17)` |
+| `'F'` | 2 | `2019-12-31` | $23$ | $17 + 23 = 40$ | `('F', '2019-12-31', 40)` |
+| `'F'` | 3 | `2020-01-01` | $17$ | $40 + 17 = 57$ | `('F', '2020-01-01', 57)` |
+| `'F'` | 4 | `2020-01-07` | $23$ | $57 + 23 = 80$ | `('F', '2020-01-07', 80)` |
+| `'M'` | 1 | `2019-12-18` | $2$ | $0 + 2 = 2$ | `('M', '2019-12-18', 2)` |
+| `'M'` | 2 | `2019-12-25` | $11$ | $2 + 11 = 13$ | `('M', '2019-12-25', 13)` |
+| `'M'` | 3 | `2019-12-30` | $13$ | $13 + 13 = 26$ | `('M', '2019-12-30', 26)` |
+| `'M'` | 4 | `2019-12-31` | $3$ | $26 + 3 = 29$ | `('M', '2019-12-31', 29)` |
+| `'M'` | 5 | `2020-01-07` | $7$ | $29 + 7 = 36$ | `('M', '2020-01-07', 36)` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since the problem specification establishes that `(gender, day)` forms the primary key, no two rows within the same partition share the same date. Chronological ordering creates a strict, well-defined total order. Summing from the start of the partition up to the current row computes the exact running total without ambiguity or ties.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every input row belongs to a gender partition and is assigned a unique rank based on `day`. The window function processes all $N$ tuples, emitting exactly $N$ rows in the final result set.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Correlated subquery:** For each row, sum same-gender scores with dates at or before the current date. It is logically direct but can approach $O(n^2)$ without effective indexing or optimizer rewriting.
-- **Self-join and group:** Joining each row to all earlier same-gender rows and grouping by the current row also works, but creates a large intermediate relation.
-- **Explicit `ROWS` frame:** Adding `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` makes cumulative semantics explicit and avoids peer-group surprises if uniqueness changes.
-- **Required outer ordering:** The exact source needs final `ORDER BY gender, day`. Window-local order alone is not a result-order guarantee.
-- **Redundant gender window key:** Inside a `gender` partition, ordering by `gender` adds no distinction. Keeping it is harmless but less concise than ordering by `day` alone.
-- **First date for a gender:** Its frame contains only itself, so total equals that row's score.
-- **Only one row for a gender:** That row remains in the output and its total equals its score.
-- **Different genders on nearby dates:** Partitioning prevents one team's scores from entering the other team's total.
-- **Unique date within gender:** The composite primary key ensures no tied `day` peers in one partition, so implicit `RANGE` and explicit cumulative `ROWS` agree.
-- **Negative score outside the likely scenario:** `SUM` would still compute an arithmetic running total, which could decrease. The algorithm does not require monotone scores.
-- **No guaranteed natural order:** Table storage and index choice do not replace an outer `ORDER BY` when ordering is part of the answer contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Cross-partition accumulation:** Failing to partition by gender causes scores to accumulate across female and male players indiscriminately.
+- **Date ties handling:** If `(gender, day)` were not unique, standard SQL window ordering with duplicate dates would produce identical range totals for ties. Here, the unique primary key constraint guarantees distinct sequential frame bounds.
+- **Output ordering requirement:** The problem requires rows ordered by `gender` ascending, then `day` ascending. Relying on partition ordering without an explicit final ordering clause can result in unspecified relational tuple order.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of rows in `Scores`. A typical execution plan must arrange rows by the partition and ordering keys `(gender, day)`. Without a supporting access order, sorting costs $O(n\log n)$ time. After ordering, the database can maintain a running sum in one pass, costing $O(n)$ additional time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$ where $N$ is the number of rows in `Scores`. Sorting the tuples by `(gender, day)` takes $\mathcal{O}(N \log N)$, and the subsequent linear scan computing running totals takes $\mathcal{O}(N)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the sorted partitions and output buffer during query execution.

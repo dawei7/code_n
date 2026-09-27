@@ -1,121 +1,190 @@
 # Guided Example: Word Ladder II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step level-synchronized BFS predecessor DAG construction and backtracking path reconstruction on representative word ladder instances:
 
-- **Input:** `{"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log"]}`
-- **Required output:** `[]`
+- **Input:** `beginWord = "hit"`, `endWord = "cog"`, `wordList = ["hot", "dot", "dog", "lot", "log", "cog"]`
+- **Required output:** `[["hit", "hot", "dot", "dog", "cog"], ["hit", "hot", "lot", "log", "cog"]]`
+- **Missing Destination Trap:** `beginWord = "hit"`, `endWord = "cog"`, `wordList = ["hot", "dot", "dog", "lot", "log"]` $\implies []$ (`endWord` must exist in `wordList`)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates level-synchronized word removal (allowing sibling parents to discover the same child before retirement), building a Directed Acyclic Graph (DAG) of shortest predecessor edges, halting BFS immediately upon completing the first tier containing `endWord`, and DFS backtracking to emit all minimal transformation sequences.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words $beginWord -> s_{1} -> s_{2} -> ... -> s_{k}$ such that:
+Given two words `beginWord = "hit"` and `endWord = "cog"`, and a dictionary `wordList = ["hot", "dot", "dog", "lot", "log", "cog"]`:
+A transformation sequence changes exactly one character at a time such that every intermediate word exists in `wordList`.
+Find **all** shortest transformation sequences.
 
-The objective is to compute `[]` from `{"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log"]}` while avoiding redundant calculations and unnecessary overhead.
+In this instance, two equally short 5-word paths exist:
+1. $\text{hit} \to \text{hot} \to \mathbf{dot} \to \mathbf{dog} \to \text{cog}$
+2. $\text{hit} \to \text{hot} \to \mathbf{lot} \to \mathbf{log} \to \text{cog}$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive BFS storing full path lists in the queue causes exponential memory explosion and Time Limit Exceeded (TLE).
+The optimal two-phase architecture:
+1. **Phase 1 (Breadth-First Search):** Traverses the state space level-by-level to determine shortest distances and build a compact Predecessor Map (`parents[v] = [u1, u2, ...]`). Crucially, words discovered at depth $d$ are only retired from the dictionary after depth $d$ completes, preserving parallel convergence.
+2. **Phase 2 (Depth-First Backtracking):** Walks backward from `endWord` to `beginWord` along the constructed predecessor DAG, assembling all valid minimal paths without searching dead ends.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Level-Synchronized BFS & Predecessor Map Protocol
+Let `words` be a hash set of words in `wordList`.
+If `endWord` $\notin$ `words`: return `[]`.
+Initialize `curr_level = {beginWord}` and `parents = defaultdict(list)`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+While `curr_level` is non-empty and `endWord` not reached:
+1. **Remove Active Level from Dictionary:**
+   $$
+   \text{words.difference\_update}(\text{curr\_level})
+   $$
+   This prevents cycles while still allowing multiple words in `curr_level` to link to the same child in `next_level`.
+2. **Expand Neighbors:**
+   For each word $u \in \text{curr\_level}$:
+   - Generate all 1-character mutations $v$:
+     For each index $i$ and character $c \in \text{'a'} \dots \text{'z'}$:
+     $$
+     v = u[:i] + c + u[i+1:]
+     $$
+   - If $v \in \text{words}$:
+     - $\text{parents}[v].\text{append}(u)$
+     - Add $v$ to `next_level`.
+3. **Check Destination:**
+   If `endWord` $\in$ `next_level`:
+   - Set `found = True`.
+   - Halt BFS after committing `parents` (do not advance to depth $d+1$).
+4. **Advance Level:**
+   $\text{curr\_level} \leftarrow \text{next\_level}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Phase 2: DFS Path Reconstruction
+Define $\text{backtrack}(\text{word})$:
+- If $\text{word} == \text{beginWord}$: return `[[beginWord]]`.
+- For each $p \in \text{parents}[\text{word}]$:
+  - For each path in $\text{backtrack}(p)$:
+    - Return $\text{path} + [\text{word}]$.
+
+> **Invariant.** For every entry $p \in \text{parents}[v]$, the length of the shortest path from `beginWord` to $p$ is strictly $1$ less than that to $v$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the end word must be in the dictionary
+We trace the algorithm on `beginWord = "hit"`, `endWord = "cog"`:
+Initial `words = {"hot", "dot", "dog", "lot", "log", "cog"}`.
 
-Every sequence word after `beginWord`, including the final word, must belong to `wordList`. If `endWord` is absent from the set, no valid sequence exists and the method returns `[]` immediately.
-
-`beginWord` is different: the contract explicitly says it need not be in the dictionary. `words.discard(beginWord)` removes it if present and safely does nothing otherwise. This prevents transformations from cycling back to the start.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Generating graph neighbors without comparing every pair
-
-For current word `p`, the source converts it to mutable character list `s`. For each position, it tries every lowercase letter, joins the characters into candidate `t`, and later restores the original character.
-
-Any generated candidate differs from `p` in at most one position. Trying the original letter produces `p` itself, but it is not in the remaining `words` set and does not create a forward edge.
-
-Set membership filters generated strings to dictionary words. This avoids scanning all dictionary words and counting character differences for every current vertex.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Level 0: `curr_level = {"hit"}`
+- Retire `curr_level`: `words.discard("hit")`.
+- Neighbors of `"hit"`:
+  - Mutate index 1 (`'i'` $\to$ `'o'`): `"hot"` $\in$ `words`.
+  - Link: $\text{parents}[\text{"hot"}].\text{append}(\text{"hit"})$.
+- `next_level = {"hot"}`.
+- Advance: `curr_level = {"hot"}`.
 
 ---
 
-### Step 3: The BFS layer invariant
+### Level 1: `curr_level = {"hot"}`
+- Retire `curr_level`: `words.remove("hot")`.
+- Active dictionary: `{"dot", "dog", "lot", "log", "cog"}`.
+- Neighbors of `"hot"`:
+  - Mutate index 0 (`'h'` $\to$ `'d'`): `"dot"` $\in$ `words`.
+    - $\text{parents}[\text{"dot"}].\text{append}(\text{"hot"})$.
+  - Mutate index 0 (`'h'` $\to$ `'l'`): `"lot"` $\in$ `words`.
+    - $\text{parents}[\text{"lot"}].\text{append}(\text{"hot"})$.
+- `next_level = {"dot", "lot"}`.
+- Advance: `curr_level = {"dot", "lot"}`.
 
-`dist[beginWord] = 0`, and the queue initially contains only the beginning. At the start of each outer iteration, every queued word is at distance `step - 1`; after incrementing `step`, generated undiscovered neighbors belong at distance `step`.
+---
 
-The fixed `range(len(q), 0, -1)` processes exactly the current queue layer. Children appended during this loop wait for the next outer iteration.
+### Level 2: `curr_level = {"dot", "lot"}`
+- Retire `curr_level`: `words.difference_update({"dot", "lot"})`.
+- Active dictionary: `{"dog", "log", "cog"}`.
+- Neighbors of `"dot"`:
+  - Mutate index 2 (`'t'` $\to$ `'g'`): `"dog"` $\in$ `words`.
+  - $\text{parents}[\text{"dog"}].\text{append}(\text{"dot"})$.
+- Neighbors of `"lot"`:
+  - Mutate index 2 (`'t'` $\to$ `'g'`): `"log"` $\in$ `words`.
+  - $\text{parents}[\text{"log"}].\text{append}(\text{"lot"})$.
+- `next_level = {"dog", "log"}`.
+- Advance: `curr_level = {"dog", "log"}`.
 
-This level boundary is essential. Once `endWord` is found, the algorithm must still finish every word in the current layer so it captures all other shortest predecessors of `endWord`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[]` |
+### Level 3: `curr_level = {"dog", "log"}`
+- Retire `curr_level`: `words.difference_update({"dog", "log"})`.
+- Active dictionary: `{"cog"}`.
+- Neighbors of `"dog"`:
+  - Mutate index 0 (`'d'` $\to$ `'c'`): `"cog"` $\in$ `words`.
+  - $\text{parents}[\text{"cog"}].\text{append}(\text{"dog"})$.
+- Neighbors of `"log"`:
+  - Mutate index 0 (`'l'` $\to$ `'c'`): `"cog"` $\in$ `words`.
+  - $\text{parents}[\text{"cog"}].\text{append}(\text{"log"})$.
+  *(Notice: "cog" receives two parents from the same tier!)*
+- `endWord = "cog"` is in `next_level`!
+- Set `found = True`. BFS halts!
+
+---
+
+### Phase 2: Backtracking from `"cog"`
+- $\text{parents}[\text{"cog"}] = [\text{"dog"}, \text{"log"}]$:
+  - Branch 1 through `"dog"`:
+    - $\text{parents}[\text{"dog"}] = [\text{"dot"}]$
+    - $\text{parents}[\text{"dot"}] = [\text{"hot"}]$
+    - $\text{parents}[\text{"hot"}] = [\text{"hit"}]$
+    - Reconstruct: `["hit", "hot", "dot", "dog", "cog"]`.
+  - Branch 2 through `"log"`:
+    - $\text{parents}[\text{"log"}] = [\text{"lot"}]$
+    - $\text{parents}[\text{"lot"}] = [\text{"hot"}]$
+    - $\text{parents}[\text{"hot"}] = [\text{"hit"}]$
+    - Reconstruct: `["hit", "hot", "lot", "log", "cog"]`.
+
+Output: `[["hit", "hot", "dot", "dog", "cog"], ["hit", "hot", "lot", "log", "cog"]]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[]` | Verified |
+### Predecessor DAG Construction Graph
+
+```text
+Level 0:                "hit"
+                          |
+Level 1:                "hot"
+                       /     \
+Level 2:            "dot"   "lot"
+                      |       |
+Level 3:            "dog"   "log"
+                       \     /
+Level 4:                "cog"
+```
+
+| BFS Level $d$ | Frontier `curr_level` | Words Retired from Dict | Discovered Successors | Added Predecessor Edges | Destination Found? |
+|:---:|:---|:---|:---|:---|:---:|
+| 0 | `["hit"]` | `{"hit"}` | `"hot"` | $\text{parents}[\text{"hot"}] = [\text{"hit"}]$ | No |
+| 1 | `["hot"]` | `{"hot"}` | `"dot"`, `"lot"` | $\text{parents}[\text{"dot"}] = [\text{"hot"}]$, $\text{parents}[\text{"lot"}] = [\text{"hot"}]$ | No |
+| 2 | `["dot", "lot"]` | `{"dot", "lot"}` | `"dog"`, `"log"` | $\text{parents}[\text{"dog"}] = [\text{"dot"}]$, $\text{parents}[\text{"log"}] = [\text{"lot"}]$ | No |
+| **3** | **`["dog", "log"]`** | **`{"dog", "log"}`** | **`"cog"`** | **$\text{parents}[\text{"cog"}] = [\text{"dog"}, \text{"log"}]$** | **Yes (`"cog"`)** |
+| 4 | - | - | - | **Halt BFS** | - |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** BFS discovers nodes in strict order of edge distance from `beginWord`. Any path constructed by following predecessor edges from `endWord` backward to `beginWord` consists solely of edges $(u, v)$ where $\text{dist}(u) = \text{dist}(v) - 1$. Therefore, every reconstructed sequence is strictly a shortest path.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By deferring the removal of visited words until after each tier completes, all parallel paths reaching the same node at the same minimal depth are preserved in `parents`. Halting once `endWord` is detected prevents exploring sub-optimal longer paths.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Bidirectional BFS plus DAG backtracking:** Expands the smaller frontier and may inspect far fewer words, but edge orientation must remain from begin to end.
-- **Wildcard-pattern buckets:** Map patterns such as `h*t` to words and retrieve neighbors through shared buckets. It trades preprocessing memory for neighbor lookup.
-- **Pairwise word comparison:** Check every dictionary pair for one-character difference. It is simple but can cost $O(W^2L)$.
-- **Store complete paths in the BFS queue:** Easy to write but duplicates long prefixes and can consume enormous memory.
-- **Remove words only after a whole level:** Naturally retains multiple parents but needs a per-level visited set. The selected distance check achieves the same goal with immediate removal.
-- **Stop immediately on first `endWord`:** Incorrect because other parents in the same layer may lead to additional shortest sequences.
-- **Missing end word:** Return `[]` before BFS.
-- **Beginning absent from dictionary:** Fully supported.
-- **One-letter words:** Mutation generation and layering work unchanged.
-- **Duplicate dictionary words:** Excluded by contract; converting to a set would deduplicate them anyway.
-- **Output order:** Predecessor sets make ordering nondeterministic, which the contract permits.
-- **Path snapshots:** `path[::-1]` must create a new list before backtracking mutates `path`.
-- **No longer paths:** Removing discovered words and stopping after the found layer prevent them.
-- **Missing imports:** `List`, `defaultdict`, and `deque` must be supplied.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Immediate Word Removal (The Parallel Parent Erasure Bug):** If `"cog"` is removed from `words` the instant `"dog"` discovers it, then `"log"` will not find `"cog"` in `words`, missing the second valid shortest path `["hit", "hot", "lot", "log", "cog"]`. Words must be removed level-by-level, not neighbor-by-neighbor.
+- **Storing Full Paths in BFS Queues (Memory Explosion TLE):** Storing full paths `[["hit", "hot", ...], ...]` inside the queue duplicates sub-paths combinatorially. Separating BFS into parent graph construction followed by DFS path extraction runs an order of magnitude faster.
+- **Missing `endWord` Check:** If `endWord` $\notin$ `wordList`, return `[]` immediately before running any search.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(WL^2+E+R)$. Let $W$ be the number of dictionary words, $L$ their common length, $E$ the number of stored predecessor edges, and $R$ the total number of word references across all returned sequences.
-- **Auxiliary Space Complexity:** $O(W+E+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot L \cdot 26 + K \cdot L)$, where $N$ is the number of words, $L$ is word length ($L \le 10$), and $K$ is the number of shortest paths. Each word generates $L \times 26$ candidates, evaluated against a hash set in $O(L)$ time.
+- **Auxiliary Space Complexity:** $O(N \cdot L)$ to store the dictionary, the predecessor map, and the queue frontiers.

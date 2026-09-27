@@ -1,130 +1,180 @@
 # Guided Example: Check if String Is Decomposable Into Value-Equal Substrings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace run-length grouping, modular partition constraints, and exact single-pair enforcement on representative digit strings:
 
-- **Input:** `{"s": "000111000"}`
-- **Required output:** `false`
+- **Primary Input:** `s = "00011111222"`
+- **Required Output:** `true`
+- **Zero-Pair Input (Missing Length 2):** `s = "000111000"`
+- **Required Output:** `false`
+- **Invalid Remainder Input:** `s = "01110"`
+- **Required Output:** `false`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates decomposing homogeneous run-length blocks into triplets and pairs, deriving the algebraic impossibility of $L \equiv 1 \pmod 3$, and verifying the global condition that exactly one length-2 block exists.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **value-equal** string is a string where **all** characters are the same.
+A string is defined as **decomposable** into value-equal substrings if it can be partitioned into contiguous non-empty substrings such that:
+1. **Exactly one** substring has length $2$ and consists of identical characters.
+2. **All other** substrings have length $3$ and consist of identical characters.
 
-The objective is to compute `false` from `{"s": "000111000"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "00011111222"`:
+- Run-length blocks of identical adjacent characters:
+  - Block 1: `"000"`, character `'0'`, length $L = 3$.
+  - Block 2: `"11111"`, character `'1'`, length $L = 5$.
+  - Block 3: `"222"`, character `'2'`, length $L = 3$.
+- Block 1 ($L = 3$): Decomposes into one triplet: `"000"` ($3 \times 1$). Contributes zero 2s.
+- Block 2 ($L = 5$): Decomposes into one triplet and one pair: `"111"` and `"11"` ($3 \times 1 + 2$). Contributes exactly one 2.
+- Block 3 ($L = 3$): Decomposes into one triplet: `"222"` ($3 \times 1$). Contributes zero 2s.
+- Total length-2 substrings across all blocks: exactly **1**.
+- Result: **true**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **isolated run-length partitioning and Frobenius coin constraints**:
+1. Why different adjacent characters cannot share a substring, isolating the partition problem to each maximal homogeneous block.
+2. Characterizing block length modulo 3:
+   - $L \equiv 0 \pmod 3$: Partitionable purely into triplets ($3k$).
+   - $L \equiv 2 \pmod 3$: Requires at least one pair ($3k + 2$).
+   - $L \equiv 1 \pmod 3$: Requires at least two pairs ($3(k - 1) + 2 + 2$), which immediately violates the single-pair rule.
+3. Establishing the necessary and sufficient condition: zero blocks with $L \equiv 1 \pmod 3$, and exactly one block with $L \equiv 2 \pmod 3$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Run-Length Modular Decomposition Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Run-Length Modular Decomposition Theorem.**
+> 1. *Block Isolation Invariant:* Because every valid substring must contain identical characters, a valid substring cannot cross the boundary between two different characters. Thus, any valid decomposition of $s$ induces an independent decomposition for each maximal run-length block $B_i$ of length $L_i$.
+> 2. *Integer Representation by $\{2, 3\}$:* Each block of length $L$ must be expressed as:
+>    $$L = 3 \cdot a + 2 \cdot b \quad (a \ge 0, b \ge 0)$$
+>    where $\sum b$ over all blocks must equal exactly $1$.
+> 3. *Modular Residue Classification:*
+>    - **Case $L \equiv 0 \pmod 3$:** $L = 3k$. Can be formed with $b = 0$ (all triplets).
+>    - **Case $L \equiv 2 \pmod 3$:** $L = 3k + 2$. Can be formed with $b = 1$ (one pair, $k$ triplets).
+>    - **Case $L \equiv 1 \pmod 3$:** To satisfy $3a + 2b \equiv 1 \pmod 3$, we must have $2b \equiv 1 \pmod 3 \implies -b \equiv 1 \pmod 3 \implies b \equiv 2 \pmod 3$. Thus $b \ge 2$, requiring at least two pairs within this single block.
+> 4. *Global Decidability Criterion:* A string $s$ is decomposable if and only if:
+>    - No block satisfies $L \equiv 1 \pmod 3$.
+>    - Exactly one block satisfies $L \equiv 2 \pmod 3$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Run-Length Decomposition Logic
+    accDescr: Flowchart scanning maximal character blocks and evaluating their lengths modulo 3.
+    A["Extract next maximal identical block of length L"] --> B{"Evaluate L mod 3"}
+    B -- "L mod 3 == 1" --> C["Requires >= 2 pairs: Impossible! Return false"]
+    B -- "L mod 3 == 2" --> D["Increment cnt2 (pair count)"]
+    D --> E{"Is cnt2 > 1?"}
+    E -- Yes --> F["Exceeded allowed single pair: Return false"]
+    E -- No --> G["Valid block"]
+    B -- "L mod 3 == 0" --> G
+    G --> H{"More blocks in string?"}
+    H -- Yes --> A
+    H -- No --> I{"Is cnt2 == 1?"}
+    I -- Yes --> J["Return true"]
+    I -- No --> K["Return false (No length 2 pair found)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Maximal runs are independent
+---
 
-A value-equal substring contains only one digit. Therefore no chosen piece can cross a position where the digit changes. The input can be split conceptually into maximal runs of equal characters, and each run must be partitioned entirely into pieces of length two or three.
+### Primary Instance: `s = "00011111222"`
 
-The exact solution discovers one run at a time with two pointers. `i` is the first index of the current run. `j` advances while `s[j] == s[i]`. When that loop ends, `j - i` is the run length, and setting `i = j` starts the next run. Every character is consumed by exactly one run.
+Length $n = 11$. Initialize pair counter $\text{cnt2} = 0$.
 
-The global rule is stricter than merely using lengths two and three: exactly one piece in the entire decomposition must have length two, and every other piece must have length three.
+#### Block 1: Indices $[0 \dots 2]$ (`"000"`)
+- Character: `'0'`.
+- Length: $L_1 = 3 - 0 = 3$.
+- Check residue: $3 \bmod 3 = 0$.
+- Contribution to $\text{cnt2}$: $0$.
+- Running pair count: $\text{cnt2} = 0$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "000111000"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Block 2: Indices $[3 \dots 7]$ (`"11111"`)
+- Character: `'1'`.
+- Length: $L_2 = 8 - 3 = 5$.
+- Check residue: $5 \bmod 3 = 2$.
+- Remainder is 2: Requires one length-2 pair.
+- Increment pair count: $\text{cnt2} = 0 + 1 = 1$.
+- Check excess: $\text{cnt2} = 1 \le 1$ (Allowed).
+
+#### Block 3: Indices $[8 \dots 10]$ (`"222"`)
+- Character: `'2'`.
+- Length: $L_3 = 11 - 8 = 3$.
+- Check residue: $3 \bmod 3 = 0$.
+- Contribution to $\text{cnt2}$: $0$.
+- Running pair count: $\text{cnt2} = 1$.
+
+#### Final Verification
+- Entire string processed.
+- Final pair count: $\text{cnt2} = 1$.
+- Condition $\text{cnt2} == 1$ holds.
+- Final Output: **true**.
 
 ---
 
-### Step 2: Use the run length modulo three
+### Secondary Instance: `s = "000111000"`
 
-For a run of length $L$, removing as many length-three pieces as possible leaves one of three remainders.
-
-If $L\bmod3=0$, the whole run can be divided into threes. This run needs no length-two piece.
-
-If $L\bmod3=2$, divide off the threes and use one length-two piece for the remainder. For example, length eight becomes $3+3+2$. This run necessarily consumes the one globally allowed length-two piece, so the code increments `cnt2`.
-
-If $L\bmod3=1$, the run cannot fit the required global structure. It cannot use only threes, and using exactly one two leaves a remainder congruent to two modulo three rather than zero. The smallest repair is two length-two pieces: for example, $4=2+2$, and more generally $3q+1=3(q-1)+2+2$ when large enough. But the whole string permits exactly one length-two substring. Therefore encountering remainder one makes the answer immediately false.
-
-This explains the first rejection:
-
-`if (j - i) % 3 == 1: return false`.
-
-For a remainder-two run, the Boolean expression `(j - i) % 3 == 2` is `true`. In Python, a Boolean behaves as integer one in addition, so `cnt2 += ...` counts how many runs require one length-two piece. If that count exceeds one, at least two such pieces are unavoidable and the method returns false.
-
-After all runs, `cnt2 == 1` enforces “exactly one.” A string whose every run length is divisible by three is perfectly decomposable into threes, but it is still invalid because it contains zero length-two pieces.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- Block 1: `"000"`, $L = 3 \implies 3 \bmod 3 = 0 \implies \text{cnt2} = 0$.
+- Block 2: `"111"`, $L = 3 \implies 3 \bmod 3 = 0 \implies \text{cnt2} = 0$.
+- Block 3: `"000"`, $L = 3 \implies 3 \bmod 3 = 0 \implies \text{cnt2} = 0$.
+- Termination: String consumed, but $\text{cnt2} = 0 \neq 1$. No length-2 pair exists.
+- Final Output: **false**.
 
 ---
 
-### Step 3: Why run remainders fully characterize the answer
+### Infeasible Remainder Instance: `s = "01110"`
 
-Suppose the method returns true. No run has remainder one, exactly one run has remainder two, and every other run has remainder zero. Partition each zero-remainder run into threes. Partition the one remainder-two run into threes plus one final pair. Every part stays inside a maximal equal-character run, so every part is value-equal. There is exactly one length-two part.
-
-Conversely, suppose a valid decomposition exists. Pieces cannot cross run boundaries. A run receiving no pair is composed only of threes and has remainder zero. The unique run receiving the one pair has length $3q+2$ and remainder two. No run can have remainder one, and no second run can have remainder two. The solution checks precisely these necessary properties, so it cannot reject a valid decomposition or accept an invalid one.
-
-The particular order of the pair and triple pieces within a run is irrelevant. For length eight, `2+3+3`, `3+2+3`, and `3+3+2` all demonstrate existence; the problem asks only whether some decomposition exists.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+- Block 1: `"0"`, $L = 1 \implies 1 \bmod 3 = 1$.
+- Immediately triggers rule: $L \equiv 1 \pmod 3$ requires at least two pairs.
+- Early exit: **false**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "000111000"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+We trace block evaluations across different input strings:
+
+| String $s$ | Block Substring | Character | Block Length $L$ | $L \bmod 3$ | Effect on Pair Count | Running $\text{cnt2}$ |
+|---|---|---|---|---|---|---|
+| `"00011111222"` | `"000"` | `'0'` | 3 | 0 | None ($+0$) | 0 |
+| `"00011111222"` | `"11111"` | `'1'` | 5 | **2** | Single pair ($+1$) | **1** |
+| `"00011111222"` | `"222"` | `'2'` | 3 | 0 | None ($+0$) | 1 |
+| `"000111000"` | `"000"`, `"111"`, `"000"` | Various | 3, 3, 3 | 0, 0, 0 | None ($+0$) | 0 (Fails: no pair) |
+| `"01110"` | `"0"` | `'0'` | 1 | **1** | Requires $\ge 2$ pairs | Early exit (`false`) |
+
+We summarize the mathematical feasibility of individual block lengths:
+
+| Block Length $L$ | $L \bmod 3$ | Minimal Form $3a + 2b$ | Pairs $b$ Required | Feasible within 1-Pair Budget? |
+|---|---|---|---|---|
+| 1 | 1 | Cannot be represented ($1 < 2$) | $\ge 2$ ($2 \times 2 = 4 > 1$) | **Never** |
+| 2 | 2 | $3(0) + 2(1)$ | 1 | Yes (Consumes budget) |
+| 3 | 0 | $3(1) + 2(0)$ | 0 | Yes (Zero pairs used) |
+| 4 | 1 | $3(0) + 2(2)$ | 2 | **Never** (Exceeds budget) |
+| 5 | 2 | $3(1) + 2(1)$ | 1 | Yes (Consumes budget) |
+| 6 | 0 | $3(2) + 2(0)$ | 0 | Yes (Zero pairs used) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since characters differ across block boundaries, no valid substring can span multiple blocks. Therefore, the global counts of length-2 and length-3 substrings equal the sums of the local counts within individual blocks. A block of length $L$ can contribute $b$ length-2 substrings if and only if $L - 2b$ is a non-negative multiple of 3. If $L \equiv 1 \pmod 3$, $b \ge 2$, which immediately makes the global requirement $\sum b = 1$ impossible. If $L \equiv 2 \pmod 3$, $b$ must be at least 1. Requiring $\text{cnt2} == 1$ at termination guarantees exactly one length-2 substring exists.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Two-pointer traversal parses the string into maximal homogeneous blocks in $\mathcal{O}(n)$ time. By testing all blocks against the necessary modular conditions, any decomposable string is accepted and any non-decomposable string is rejected.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Regular expression or explicit run list:** Grouping equal characters first and then checking lengths is valid, but storing all runs uses unnecessary $O(N)$ space.
-- **Dynamic programming over positions:** A DP can test partitions of lengths two and three while tracking whether the pair was used. It is more general but overlooks the simpler independent-run structure.
-- **Greedy chunks without finding runs:** Taking groups of three from the raw string can accidentally cross a digit change and create a non-value-equal substring. Runs must define the boundaries.
-- **Run length one:** Its remainder is one, so it can never be covered by allowed pieces.
-- **Run length two:** It uses the one permitted pair and is valid if every other run is divisible by three.
-- **Run length three:** It forms one triple but contributes no pair; a string consisting only of this run is invalid because exactly one pair is required.
-- **Run length four:** It requires two pairs and is immediately rejected through remainder one.
-- **Two remainder-two runs:** Each needs at least one pair, so `cnt2 > 1` correctly rejects the string.
-- **All run lengths divisible by three:** The final counter is zero, and the method returns false because “exactly one” does not mean “at most one.”
-- **Pair placement within a run:** Any location that leaves multiples of three on both sides works; only existence matters.
-- **Different adjacent digits:** They can never share a piece, even if combining their lengths would give a convenient total.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Remainder 1 Block Trap:** An isolated character ($L = 1$) or block of length 4 cannot contribute a single pair. For $L = 4$, $4 = 2 + 2$, which forces two pairs. For $L = 1$, no partition into sizes 2 and 3 exists. Checking `(L % 3) == 1` catches both cases.
+- **Multiple Remainder 2 Blocks:** Two blocks of length 2 or 5 would produce two length-2 substrings, violating the "exactly one" constraint. Tracking $\text{cnt2} > 1$ terminates early.
+- **Complete String Consumed Without Pairs:** If all blocks have length divisible by 3 (e.g. `"000111"`), all substrings have length 3, leaving zero substrings of length 2. The final check `cnt2 == 1` correctly rejects this case.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the length of `s`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `s`. The two-pointer scan visits each character exactly once to determine block lengths.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Only scalar indices ($i, j$) and a single integer counter ($\text{cnt2}$) are maintained.

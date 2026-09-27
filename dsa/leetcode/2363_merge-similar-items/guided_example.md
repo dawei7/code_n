@@ -1,127 +1,170 @@
 # Guided Example: Merge Similar Items
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"items1": [[1, 1], [4, 5], [3, 8]], "items2": [[3, 1], [1, 5]]}`
-- **Required output:** `[[1, 6], [3, 9], [4, 5]]`
+We are given two 2D integer arrays, `items1` and `items2`, representing two separate collections of weighted items. Each collection is represented as a list of pairs $[v, w]$, where:
+- $v$ is the distinct value of the item.
+- $w$ is the associated weight of the item.
+- Each value $v$ appears at most once within `items1`, and at most once within `items2`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must merge these collections into a single unified 2D array `ret` such that:
+1. Every distinct value present in either `items1` or `items2` appears exactly once in `ret`.
+2. The weight for a value $v$ is the sum of its weights from both collections.
+3. The resulting list is sorted in strictly **ascending order of value $v$**.
 
----
+Consider the representative instance:
+- `items1 = [[1, 1], [4, 5], [3, 8]]`
+- `items2 = [[3, 1], [1, 5]]`
 
-## 1. Instance & Teaching Goal
+Let us group the contributions by item value $v$:
+- **Value 1:**
+  - Appears in `items1` with weight $1$.
+  - Appears in `items2` with weight $5$.
+  - Combined weight: $1 + 5 = 6$.
+- **Value 3:**
+  - Appears in `items1` with weight $8$.
+  - Appears in `items2` with weight $1$.
+  - Combined weight: $8 + 1 = 9$.
+- **Value 4:**
+  - Appears in `items1` with weight $5$.
+  - Absent in `items2` (implicit weight $0$).
+  - Combined weight: $5 + 0 = 5$.
 
-You are given two 2D integer arrays, `items1` and `items2`, representing two sets of items. Each array `items` has the following properties:
+Sorting the merged items by value in ascending order:
+$$\text{ret} = [[1, 6], [3, 9], [4, 5]]$$
 
-The objective is to compute `[[1, 6], [3, 9], [4, 5]]` from `{"items1": [[1, 1], [4, 5], [3, 8]], "items2": [[3, 1], [1, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Associative Weight Aggregation and Value-Ordered Synthesis
+    accDescr: Streaming pairs from both item lists into an associative accumulator to sum weights by value and sort keys ascendingly.
+    I1["items1: [1, 1], [4, 5], [3, 8]"] --> Acc["Associative Weight Accumulator"]
+    I2["items2: [3, 1], [1, 5]"] --> Acc
+    Acc --> V1["Value 1: 1 + 5 = 6"]
+    Acc --> V3["Value 3: 8 + 1 = 9"]
+    Acc --> V4["Value 4: 5 + 0 = 5"]
+    V1 --> Sort["Sort Unique Values Ascending:<br/>1 < 3 < 4"]
+    V3 --> Sort
+    V4 --> Sort
+    Sort --> Out["Output: [[1, 6], [3, 9], [4, 5]]"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Each collection of items can be viewed as a formal linear combination over the set of discrete positive values $\mathcal{V} \subset \mathbb{Z}^+$:
 
-## 2. Conceptual Foundation & Invariants
+$$C_1 = \sum_{(v, w) \in items1} w \cdot \mathbf{e}_v, \quad C_2 = \sum_{(v, w) \in items2} w \cdot \mathbf{e}_v$$
 
-We maintain the core conceptual parameters and state variables:
+where $\mathbf{e}_v$ is the standard basis vector representing item identity $v$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Direct Algebraic Addition
+The merged collection is simply the vector addition $C = C_1 + C_2$.
+For any value $v \in \mathcal{V}_1 \cup \mathcal{V}_2$, the cumulative weight function evaluates as:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+$$W(v) = w_1(v) + w_2(v)$$
 
----
+where $w_k(v)$ is the weight of value $v$ in collection $k$ (defaulting to $0$ if value $v$ is absent).
 
-## 3. Step-by-Step Worked Execution
+### Order Structure
+Let $\mathcal{U} = \mathcal{V}_1 \cup \mathcal{V}_2$ denote the union of distinct values.
+We impose the standard strict total order on the key space:
 
-### Step 1: Treat value as the grouping key
+$$u_1 < u_2 < \dots < u_m, \quad u_i \in \mathcal{U}$$
 
-Each item is a pair `[value, weight]`. The result needs one entry for every value appearing in either input, and that entry's weight must be the sum of all weights attached to the value. This is an aggregation problem: `value` is the key, and `weight` is the quantity accumulated under that key.
+The final representation is an ordered sequence of 2-tuples:
 
-Values are unique within `items1` and within `items2`, but the same value may occur once in each array. Therefore, a value has at most two input contributions under this contract. The algorithm does not need to rely on that limit; repeated contributions would still be summed correctly.
+$$\text{ret} = \left[ (u_1, W(u_1)), \; (u_2, W(u_2)), \; \dots, \; (u_m, W(u_m)) \right]$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Implementation Options
+1. **Hash Table + Post-Sorting:**
+   Accumulate weights into a standard hash map in $\mathcal{O}(|items1| + |items2|)$ time. Extract the keys, sort them in $\mathcal{O}(m \log m)$ time, and format the output.
+2. **Direct-Address Array:**
+   Since $1 \le v \le 1000$, an array of size $1001$ can accumulate weights at index $v$ in $\mathcal{O}(1)$ time. A single linear scan from index $1$ to $1000$ collects non-zero weights in automatically sorted order in $\mathcal{O}(V_{\max})$ time without explicit sorting.
+
+| Component | Mathematical Meaning | Handling of Missing Keys | Output Role |
 |---|---|---|---|
-| Input Slice | `{"items1": [[1, 1], [4, 5], [3, 8]], "items2": [[3, 1], [1, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Key $v$ | Unique item valuation | Present in $\mathcal{V}_1 \cup \mathcal{V}_2$ | Primary sort coordinate |
+| Partial Weight $w_k(v)$ | Weight contribution from collection $k$ | Defaults to $0$ if absent | Summands in $W(v)$ |
+| Total Weight $W(v)$ | Total aggregated mass $w_1(v) + w_2(v)$ | Strictly positive ($W(v) > 0$) | Value companion in pair |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Traverse both arrays as one stream
+Let us trace `items1 = [[1, 1], [4, 5], [3, 8]]` and `items2 = [[3, 1], [1, 5]]`.
+Initialize a direct weight accumulator map $M = \{\}$.
 
-The implementation uses:
+### Phase 1: Ingest `items1`
+- **Item `[1, 1]`:**
+  - Key $v = 1$, weight $w = 1$.
+  - Record: $M[1] \leftarrow 0 + 1 = 1$.
+- **Item `[4, 5]`:**
+  - Key $v = 4$, weight $w = 5$.
+  - Record: $M[4] \leftarrow 0 + 5 = 5$.
+- **Item `[3, 8]`:**
+  - Key $v = 3$, weight $w = 8$.
+  - Record: $M[3] \leftarrow 0 + 8 = 8$.
 
+State after collection 1: $M = \{1: 1, 4: 5, 3: 8\}$.
 
+### Phase 2: Ingest `items2`
+- **Item `[3, 1]`:**
+  - Key $v = 3$, weight $w = 1$.
+  - Value $3$ already exists with weight $8$.
+  - Update: $M[3] \leftarrow 8 + 1 = 9$.
+- **Item `[1, 5]`:**
+  - Key $v = 1$, weight $w = 5$.
+  - Value $1$ already exists with weight $1$.
+  - Update: $M[1] \leftarrow 1 + 5 = 6$.
 
-`chain` does not create a combined copy. It yields all pairs from `items1` and then all pairs from `items2`. This lets one loop apply identical logic to both sources:
+State after collection 2: $M = \{1: 6, 4: 5, 3: 9\}$.
 
+### Phase 3: Sort by Key and Materialize
+Extract all distinct keys: $\{1, 3, 4\}$.
+Sort keys ascending:
+$$1 < 3 < 4$$
+Construct output pairs:
+- For $v = 1$: pair is `[1, 6]`
+- For $v = 3$: pair is `[3, 9]`
+- For $v = 4$: pair is `[4, 5]`
 
+Result: `[[1, 6], [3, 9], [4, 5]]`.
 
-Tuple unpacking names the pair's first component `v` and second component `w`. A `Counter` behaves like a dictionary whose missing keys have count zero. On the first occurrence of value `v`, `cnt[v] += w` is effectively `0 + w`. On a matching occurrence from the other array, it adds that second weight to the already stored total.
+## 4. Comprehensive State Trace
 
-Although `Counter` is often used to count occurrences by adding one, it can accumulate arbitrary numeric quantities. Here it is a value-to-total-weight map.
+The state of each distinct value across both input streams is captured in the trace table below.
 
-For `items1 = [[1,1],[4,5],[3,8]]` and `items2 = [[3,1],[1,5]]`, processing the first array produces totals `1 -> 1`, `4 -> 5`, and `3 -> 8`. The second array changes `3` to `9` and `1` to `6`. At the end, every map entry already contains its required result weight.
+| Item Value $v$ | Present in `items1`? | Weight in `items1` ($w_1$) | Present in `items2`? | Weight in `items2` ($w_2$) | Merged Weight $W(v)$ | Output Position (Sorted) |
+|---|---|---|---|---|---|---|
+| $1$ | Yes | $1$ | Yes | $5$ | $1 + 5 = 6$ | Index 0 (`[1, 6]`) |
+| $3$ | Yes | $8$ | Yes | $1$ | $8 + 1 = 9$ | Index 1 (`[3, 9]`) |
+| $4$ | Yes | $5$ | No | $0$ | $5 + 0 = 5$ | Index 2 (`[4, 5]`) |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Final sorted array: `[[1, 6], [3, 9], [4, 5]]`.
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 3: Sort by value for the required order
+1. **Weight Conservation:**
+   Because each collection guarantees uniqueness of values within itself, no value appears more than once in `items1` or more than once in `items2`. Thus, the additive operation $w_1(v) + w_2(v)$ accurately captures the totality of weight from both sources without double-counting.
 
-Dictionary-style containers preserve insertion history rather than guaranteeing numeric key order. The result must be ascending by value, so the method returns:
+2. **Completeness of Union:**
+   Any value present in either input list is registered in the accumulator map. No items are omitted or dropped.
 
+3. **Deterministic Ordering:**
+   Explicit sorting of the unique keys ensures that the output is sorted in strictly increasing order of item value, adhering to the contract specification.
 
+## 6. Edge Cases & Anti-Patterns
 
-`cnt.items()` yields `(value, total_weight)` pairs. Python compares these tuples lexicographically, first comparing the value. Because each value occurs only once in the map, the second field is never needed to break a tie. Sorting therefore places the entries in strictly ascending value order.
+- **Disjoint Item Collections (`items1 = [[1, 2]]`, `items2 = [[2, 3]]`):**
+  - No overlap in values. Merged array contains `[[1, 2], [2, 3]]`.
+- **Complete Value Overlap:**
+  - Every value appears in both arrays. Every output pair reflects a sum of two positive weights.
+- **One Empty Collection:**
+  - If one list is empty, the output is simply the sorted representation of the other list.
+- **Anti-Pattern (Concatenation and In-Place Bubble Sorting):**
+  - Concatenating and searching pairwise takes quadratic $\mathcal{O}((n_1 + n_2)^2)$ time. Hash map or direct-address aggregation reduces the merge to optimal $\mathcal{O}(N \log N)$ or $\mathcal{O}(N + V_{\max})$ time.
 
-The resulting Python object is a list of tuples rather than a list of mutable lists. Each tuple is still a two-element sequence containing the required integers, and the judge's serialized result treats it as the requested pair representation.
+## 7. Complexity Analysis
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 6], [3, 9], [4, 5]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"items1": [[1, 1], [4, 5], [3, 8]], "items2": [[3, 1], [1, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 6], [3, 9], [4, 5]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Fixed frequency array:** Allocate totals for values `0` through `1000`, add each weight, and scan in numeric order. This exactly realizes $O(n+V)$ time and $O(V)$ space without comparison sorting.
-- **Plain dictionary:** A normal dictionary with `get(v, 0)` works identically; `Counter` supplies the missing-zero behavior directly.
-- **Sort and merge two arrays:** Sort both inputs by value and advance two pointers, combining equal keys. This uses less hash machinery but costs sorting time unless the inputs are already ordered.
-- **A value appears in only one array:** Its stored total is simply that one positive weight, and it still appears in the sorted output.
-- **A value appears in both arrays:** The second update adds to the first instead of replacing it.
-- **No overlap between arrays:** All values remain separate keys; the final sort interleaves them into one ordered result.
-- **All weights are positive:** Totals cannot cancel to zero, so no post-aggregation filtering is needed.
-- **Input order is arbitrary:** Hash accumulation ignores order, and the explicit final sort establishes the required result order.
-- **Tuple result rows:** `sorted(cnt.items())` returns tuples. They represent the same two integer fields and are accepted by sequence-based serialization.
-- **Maximum value boundary:** Value `1000` is an ordinary Counter key and naturally sorts after every smaller allowed value.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the total number of item pairs across both arrays and let $U$ be the number of distinct values in their union. Chaining and accumulating visits each pair once. Counter access and update take expected $O(1)$ time, so this phase takes expected $O(n)$ time and $O(U)$ storage.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}((n_1 + n_2) \log(n_1 + n_2))$, where $n_1$ is the length of `items1` and $n_2$ is the length of `items2`.
+  - Inserting all $n_1 + n_2$ elements into a hash table takes $\mathcal{O}(n_1 + n_2)$ average time.
+  - Sorting the $m \le n_1 + n_2$ unique keys takes $\mathcal{O}(m \log m)$ time.
+  - When using a fixed-size direct-address array over bounded values $v \le 1000$, the time complexity is $\mathcal{O}(n_1 + n_2 + V_{\max})$, which runs in strictly linear $\mathcal{O}(n_1 + n_2)$ time.
+- **Space Complexity:** $\mathcal{O}(n_1 + n_2)$ auxiliary space to store the merged frequency table and result array.

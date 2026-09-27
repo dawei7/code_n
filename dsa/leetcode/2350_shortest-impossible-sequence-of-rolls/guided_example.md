@@ -1,128 +1,165 @@
 # Guided Example: Shortest Impossible Sequence of Rolls
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"rolls": [4, 2, 1, 2, 3, 3, 2, 4, 1], "k": 4}`
-- **Required output:** `3`
+We are given an integer array `rolls` of length $n$ and an integer $k$. This array represents the outcomes of rolling a fair $k$-sided die $n$ times, where each outcome is an integer from $1$ to $k$. We wish to determine the length of the shortest sequence of rolls (each term taking a value in $\{1, \dots, k\}$) that **cannot** be obtained as a subsequence of `rolls`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A sequence $S$ is a subsequence of `rolls` if $S$ can be derived from `rolls` by deleting some (or no) elements without changing the relative order of the remaining elements.
 
----
+Consider the representative instance:
+- `rolls = [4, 2, 1, 2, 3, 3, 2, 4, 1]`
+- Alphabet size: $k = 4$
+- Array length: $n = 9$
 
-## 1. Instance & Teaching Goal
+Let us partition `rolls` greedily into phases where all $4$ distinct die faces $\{1, 2, 3, 4\}$ appear:
+1. **First Phase:** Reading from the left:
+   - Elements encountered: $4, 2, 1, 2, 3$.
+   - The set of distinct values accumulated is $\{1, 2, 3, 4\}$.
+   - All $4$ faces have appeared at least once. This phase completes at index $4$ (value $3$).
+2. **Second Phase:** Reading subsequent elements:
+   - Elements encountered: $3, 2, 4, 1$.
+   - The set of distinct values accumulated is $\{1, 2, 3, 4\}$.
+   - All $4$ faces have appeared again. This phase completes at index $8$ (value $1$).
+3. **Third Phase:** No remaining elements exist in `rolls`.
 
-You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $i^{\text{th}}$ roll is $\text{rolls}[i]$.
+Because we completed $2$ full phases containing all $k$ symbols, every sequence of length $2$ can be formed as a subsequence. However, we cannot guarantee forming every sequence of length $3$. For example, the sequence $[3, 1, 4]$ cannot be formed because matching the final element of each phase forces the search to the end of the array, leaving no elements to match the third symbol. The shortest impossible sequence length is $2 + 1 = 3$.
 
-The objective is to compute `3` from `{"rolls": [4, 2, 1, 2, 3, 3, 2, 4, 1], "k": 4}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Greedy Alphabet Partitioning into Full Symbol Phases
+    accDescr: Segmenting rolls into contiguous phases containing all k symbols to establish the maximum possible sequence length.
+    Input["rolls = [4, 2, 1, 2, 3, 3, 2, 4, 1], k = 4"] --> Phase1["Phase 1: [4, 2, 1, 2, 3]<br/>Collects {1, 2, 3, 4}<br/>Closes at index 4 (last: 3)"]
+    Phase1 --> Phase2["Phase 2: [3, 2, 4, 1]<br/>Collects {1, 2, 3, 4}<br/>Closes at index 8 (last: 1)"]
+    Phase2 --> Tail["Remaining Tail: []<br/>Incomplete (size 0 < 4)"]
+    Phase1 --> Lemma["Guarantees all length-1 prefixes"]
+    Phase2 --> Lemma2["Guarantees all length-2 sequences"]
+    Tail --> Adversary["Adversarial Counterexample of length 3:<br/>[3, 1, x] cannot be formed"]
+    Adversary --> Result["Shortest Impossible Length: 2 + 1 = 3"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let $\Sigma = \{1, 2, \dots, k\}$ be the alphabet of possible die roll values. A string $w = (w_1, w_2, \dots, w_m) \in \Sigma^m$ is a subsequence of `rolls` (denoted $w \sqsubseteq rolls$) if there exist indices $0 \le i_1 < i_2 < \dots < i_m < n$ such that:
 
-## 2. Conceptual Foundation & Invariants
+$$rolls[i_j] = w_j \quad \text{for all } j \in \{1, \dots, m\}$$
 
-We maintain the core conceptual parameters and state variables:
+We seek the minimal $m \ge 1$ such that:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+$$\exists w \in \Sigma^m, \quad w \not\sqsubseteq rolls$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Alphabet Partitioning Lemma
+Suppose `rolls` is greedily partitioned from left to right into $M$ non-overlapping contiguous blocks $B_1, B_2, \dots, B_M$ such that:
+1. Each block $B_p$ contains every symbol in $\Sigma$ at least once:
+   $$\{rolls[t] \mid t \in B_p\} = \Sigma$$
+2. Each block $B_p$ is minimal: its final element $rolls[\text{end}(B_p)]$ is the first time all $k$ symbols have appeared within $B_p$.
+3. The remaining suffix $T = rolls[\text{end}(B_M) + 1 \dots n - 1]$ does not contain all $k$ symbols ($|\{rolls[t] \mid t \in T\}| < k$).
 
----
+**Theorem:** The shortest sequence impossible to form from `rolls` has length exactly $M + 1$.
 
-## 3. Step-by-Step Worked Execution
+*Proof:*
+1. **Sufficiency (Every sequence of length $M$ exists):**
+   Let $w = (w_1, w_2, \dots, w_M) \in \Sigma^M$ be an arbitrary sequence of length $M$.
+   Because block $B_1$ contains all symbols in $\Sigma$, symbol $w_1$ appears somewhere in $B_1$. Let $i_1 \in B_1$ be its earliest occurrence.
+   Next, because block $B_2$ contains all symbols in $\Sigma$, symbol $w_2$ appears somewhere in $B_2$ at index $i_2 \in B_2$. Since all indices in $B_2$ are strictly greater than all indices in $B_1$, $i_1 < i_2$.
+   By induction across all $M$ blocks, there exist indices $i_1 < i_2 < \dots < i_M$ matching $w$. Since $w$ was arbitrary, every sequence of length $M$ is a valid subsequence of `rolls`.
 
-### Step 1: Partition the stream into earliest complete face blocks
+2. **Necessity (An impossible sequence of length $M + 1$ exists):**
+   By definition, the remaining suffix $T$ lacks at least one symbol $x \in \Sigma$.
+   Let $u_p = rolls[\text{end}(B_p)]$ be the closing element of block $B_p$. By minimality, $u_p$ appeared nowhere else earlier in block $B_p$.
+   Construct the specific adversarial sequence:
+   $$w^* = (u_1, u_2, \dots, u_M, x)$$
+   To match $u_1$, any subsequence search must advance at least to $\text{end}(B_1)$.
+   To match $u_2$, the search must advance at least to $\text{end}(B_2)$.
+   By induction, matching the prefix $(u_1, \dots, u_M)$ forces the scan to reach or exceed $\text{end}(B_M)$.
+   The final symbol $x$ must then be matched within the remaining suffix $T$. But $x$ does not appear in $T$.
+   Therefore, $w^*$ cannot be formed, proving that at least one sequence of length $M + 1$ is impossible.
 
-The set `s` collects distinct die faces seen since the most recent reset. Whenever its size reaches `k`, the current segment contains every possible face from 1 through `k`.
+Thus, the answer is unconditionally $M + 1$.
 
-At that moment, the method increments `ans` and clears `s`, beginning a new block after the earliest prefix that completed the alphabet.
-
-If the scan forms `g` complete blocks, `ans` ends as `g + 1` because it starts at one and increments once per block.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Partition Segment | Symbol Coverage | Subsequence Guarantee | Next Action |
 |---|---|---|---|
-| Input Slice | `{"rolls": [4, 2, 1, 2, 3, 3, 2, 4, 1], "k": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Complete Block $B_p$ | Contains all $k$ distinct symbols | Extends guaranteed universal length by $+1$ | Clear set, start new block |
+| Final Incomplete Suffix $T$ | Contains strictly fewer than $k$ symbols | Identifies missing terminal symbol $x$ | Impossible length is $M + 1$ |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Why every sequence of length g exists
+Let us trace `rolls = [4, 2, 1, 2, 3, 3, 2, 4, 1]` with $k = 4$.
+We maintain:
+- $M = 0$: count of completed blocks.
+- $S = \emptyset$: set of distinct symbols observed in the current active block.
 
-Take any desired roll sequence `[a_1,a_2,...,a_g]` of length `g`. The first complete block contains every face, so choose an occurrence of `a_1` from it. The second block lies entirely later and contains `a_2`, so choose that. Continue one choice per block.
+### Phase 1: Processing Block 1
+- **Index 0 ($v = 4$):** $S \leftarrow \{4\}$. $|S| = 1 < 4$.
+- **Index 1 ($v = 2$):** $S \leftarrow \{2, 4\}$. $|S| = 2 < 4$.
+- **Index 2 ($v = 1$):** $S \leftarrow \{1, 2, 4\}$. $|S| = 3 < 4$.
+- **Index 3 ($v = 2$):** $2 \in S$, no change. $|S| = 3 < 4$.
+- **Index 4 ($v = 3$):** $S \leftarrow \{1, 2, 3, 4\}$. $|S| = 4 = k$.
+  - All $k$ symbols observed.
+  - Complete block 1: $M \leftarrow 0 + 1 = 1$.
+  - Reset set: $S \leftarrow \emptyset$.
 
-The selected positions increase from block to block, making them a subsequence of `rolls`. Since the desired values were arbitrary, every possible length-`g` sequence occurs.
+### Phase 2: Processing Block 2
+- **Index 5 ($v = 3$):** $S \leftarrow \{3\}$. $|S| = 1 < 4$.
+- **Index 6 ($v = 2$):** $S \leftarrow \{2, 3\}$. $|S| = 2 < 4$.
+- **Index 7 ($v = 4$):** $S \leftarrow \{2, 3, 4\}$. $|S| = 3 < 4$.
+- **Index 8 ($v = 1$):** $S \leftarrow \{1, 2, 3, 4\}$. $|S| = 4 = k$.
+  - All $k$ symbols observed.
+  - Complete block 2: $M \leftarrow 1 + 1 = 2$.
+  - Reset set: $S \leftarrow \emptyset$.
 
-Any shorter sequence also occurs by using only the first required number of complete blocks. Therefore the shortest impossible length is greater than `g`.
+### Phase 3: Final Output Computation
+Traversal of `rolls` terminates.
+Total complete blocks: $M = 2$.
+The shortest impossible sequence length is:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$M + 1 = 2 + 1 = 3$$
 
----
+## 4. Comprehensive State Trace
 
-### Step 3: Construct a missing sequence of length g plus one
+The state of the streaming partition algorithm across all indices is tabulated below.
 
-The trailing incomplete segment after the last reset omits at least one face; call it `z`. If no complete block exists, `[z]` is already a missing sequence of length one.
+| Index $t$ | Roll $rolls[t]$ | Active Set $S$ Before | Updated Set $S$ | Set Size $|S|$ | Threshold Met ($|S| = k$)? | Completed Blocks $M$ |
+|---|---|---|---|---|---|---|
+| $0$ | $4$ | $\emptyset$ | $\{4\}$ | $1$ | No | $0$ |
+| $1$ | $2$ | $\{4\}$ | $\{2, 4\}$ | $2$ | No | $0$ |
+| $2$ | $1$ | $\{2, 4\}$ | $\{1, 2, 4\}$ | $3$ | No | $0$ |
+| $3$ | $2$ | $\{1, 2, 4\}$ | $\{1, 2, 4\}$ | $3$ | No | $0$ |
+| $4$ | $3$ | $\{1, 2, 4\}$ | $\{1, 2, 3, 4\}$ | $4$ | **Yes** (Reset $S \to \emptyset$) | $1$ |
+| $5$ | $3$ | $\emptyset$ | $\{3\}$ | $1$ | No | $1$ |
+| $6$ | $2$ | $\{3\}$ | $\{2, 3\}$ | $2$ | No | $1$ |
+| $7$ | $4$ | $\{2, 3\}$ | $\{2, 3, 4\}$ | $3$ | No | $1$ |
+| $8$ | $1$ | $\{2, 3, 4\}$ | $\{1, 2, 3, 4\}$ | $4$ | **Yes** (Reset $S \to \emptyset$) | $2$ |
 
-For each complete block, consider the face whose first appearance in that block caused the set to reach size `k`. Call these completion faces `c_1,c_2,...,c_g`. By construction, `c_t` does not appear earlier inside block `t`; its first block occurrence is the block's final character.
+Completed blocks: $2$. Result: $2 + 1 = 3$.
 
-Now consider sequence
+## 5. Algorithmic Correctness & Soundness
 
-`[c_1,c_2,...,c_g,z]`.
+1. **Greedy Choice Property:**
+   Completing each block at the earliest possible index where all $k$ symbols have appeared maximizes the remaining suffix available to form subsequent blocks. Since symbol appearances are monotonic, postponing the closure of a block cannot increase the total number of blocks formed.
 
-To match `c_1`, a subsequence cannot finish that choice before the end of block one. After that, matching `c_2` cannot occur before the end of block two, and so on. Inductively, after matching `c_g` the subsequence is in the trailing incomplete segment. That segment contains no `z`, so the final symbol cannot be matched.
+2. **Tightness of Lower Bound:**
+   Because each of the $M$ blocks contains the complete alphabet $\Sigma$, any arbitrary combination of $M$ symbols can be greedily matched one symbol per block. Thus, no impossible sequence of length $\le M$ can exist.
 
-Thus at least one sequence of length `g + 1` is impossible. Combined with the previous lower bound, the shortest impossible length is exactly `g + 1 = ans`.
+3. **Constructive Counterexample:**
+   Selecting the closing symbol of each block followed by any symbol absent from the remaining tail constructs an explicit sequence of length $M + 1$ that cannot be matched by any greedy or non-greedy alignment.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+## 6. Edge Cases & Anti-Patterns
 
----
+- **Missing Symbol in Entire Array (`rolls = [1, 2, 2, 1]`, $k = 3$):**
+  - Symbol $3$ never appears.
+  - Set never reaches size $3 \implies M = 0$.
+  - Shortest impossible length: $0 + 1 = 1$ (the sequence `[3]`).
+- **Array Size Smaller than $k$ ($n < k$):**
+  - Impossible to see all $k$ symbols in fewer than $k$ rolls.
+  - $M = 0 \implies$ returns $1$.
+- **All Rolls Form Perfect Blocks of Length $k$:**
+  - `rolls = [1, 2, 3, 1, 2, 3]`, $k = 3$.
+  - $M = 2$, tail is empty.
+  - Output is $2 + 1 = 3$.
+- **Anti-Pattern (Generating and Testing Candidate Sequences):**
+  - There are $k^L$ possible roll sequences of length $L$. Testing whether each sequence is a subsequence takes exponential time $\mathcal{O}(k^L \cdot n)$. The greedy alphabet-partitioning theorem reduces the problem to an optimal single linear scan in $\mathcal{O}(n)$ time.
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rolls": [4, 2, 1, 2, 3, 3, 2, 4, 1], "k": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Dynamic programming over all sequences:** There are `k^\ell` sequences of length `\ell`, making explicit enumeration infeasible.
-- **Count total frequency of every face:** Frequency alone ignores order. Complete blocks capture the sequential ability to choose arbitrary symbols.
-- **Do not clear after completion:** One global set can prove only that all length-one sequences occur; it cannot measure repeated universality.
-- **Delay clearing:** It cannot increase the number of complete blocks and may waste useful rolls for the next block.
-- **Missing face globally:** No complete block forms, so answer one.
-- **Exactly one complete block:** Every one-symbol sequence exists, while the construction finds a missing sequence of length two.
-- **Incomplete tail empty:** After the last block, every face is absent from the empty tail, so any `z` can finish the missing construction.
-- **`k = 1`:** Every roll is face one and completes a block individually; the answer is `n + 1` because all shorter all-one sequences occur.
-- **Repeated faces within a block:** Set insertion ignores duplicates until all distinct faces arrive.
-- **Block-completion face:** Its first occurrence in that block is necessarily the final character that made the set complete.
-- **Subsequence rather than subarray:** Choices may skip rolls inside each block, which is why one complete block can supply any requested single face.
-- **Input preservation:** Only the temporary set changes.
-- **Hash-set assumptions:** Complexity uses expected constant-time insertion for bounded integer faces.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the roll count. Each roll is inserted into a hash set once, and each clear operation discards at most `k` distinct entries. Across the scan, expected running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `rolls`. We perform a single linear scan through the array. Inserting each element into a hash set or boolean marker array takes $\mathcal{O}(1)$ time. When the set size reaches $k$, clearing the set takes $\mathcal{O}(k)$ time, which occurs at most $\lfloor n / k \rfloor$ times. Thus, overall time is strictly linear $\mathcal{O}(n)$.
+- **Space Complexity:** $\mathcal{O}(k)$ auxiliary space to maintain the set of distinct integers observed in the current block, where $1 \le k \le 10^5$.

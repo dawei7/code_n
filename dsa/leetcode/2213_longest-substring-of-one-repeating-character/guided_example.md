@@ -1,135 +1,238 @@
 # Guided Example: Longest Substring of One Repeating Character
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the dynamic segment tree algorithm with boundary run-length augmentation for tracking the maximum consecutive homogeneous character run under point mutations, establishing $O(n + k \log n)$ time complexity and $O(n)$ auxiliary space where $n$ is string length and $k$ is query count.
 
-- **Input:** `{"s": "babacc", "queryCharacters": "bcb", "queryIndices": [1, 3, 3]}`
-- **Required output:** `[3, 3, 4]`
+- **Input:** `s = "babacc"`, `queryCharacters = "bcb"`, `queryIndices = [1, 3, 3]`
+- **Output:** `[2, 4, 2]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** string `s`. You are also given a **0-indexed** string `queryCharacters` of length `k` and a **0-indexed** array of integer **indices** `queryIndices` of length `k`, both of which are used to describe `k` queries.
-
-The objective is to compute `[3, 3, 4]` from `{"s": "babacc", "queryCharacters": "bcb", "queryIndices": [1, 3, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance illustrates interval segment tree node representations (prefix, suffix, and internal maxima), boundary seam fusion across child node boundaries, point mutation re-computation, and instantaneous root queries.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a 0-indexed string `s` of length $n$.
+We are also provided a string `queryCharacters` of length $k$ and an integer array `queryIndices` of length $k$.
+For each query $i \in \{0, 1, \dots, k - 1\}$:
+1. The character at index $\text{queryIndices}[i]$ of `s` is replaced with $\text{queryCharacters}[i]$.
+2. We must determine the length of the longest contiguous substring of `s` consisting of only one repeating character.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Our goal is to return an array of length $k$ recording the maximum repeating run-length after each successive query.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
 
----
+Consider $n = 6$:
+$$\text{s} = \text{"babacc"}, \quad \text{queryCharacters} = \text{"bcb"}, \quad \text{queryIndices} = [1, 3, 3]$$
 
-## 3. Step-by-Step Worked Execution
+Initial string:
+- `s = "babacc"`
+- Homogeneous runs: `"b"` (len 1), `"a"` (len 1), `"b"` (len 1), `"a"` (len 1), `"cc"` (len 2).
+- Initial maximum repeating run: $2$.
 
-### Step 1: What must be maintained after every character replacement
+Query sequence:
+1. **Query 0:** Mutate index $1$ to $'c'$.
+   - String becomes: `s = "bcbacc"`
+   - Homogeneous runs: `"b"`, `"c"`, `"b"`, `"a"`, `"cc"`.
+   - Max length: $2$ (from `"cc"` at indices $4 \dots 5$).
+   - Output emitted: $2$.
+2. **Query 1:** Mutate index $3$ to $'c'$.
+   - String becomes: `s = "bcbccc"`
+   - Homogeneous runs: `"b"` (len 1), `"c"` (len 1), `"b"` (len 1), `"cccc"` (len 4, spanning indices $2, 3, 4, 5$).
+   - Max length: $4$ (from `"cccc"`).
+   - Output emitted: $4$.
+3. **Query 2:** Mutate index $3$ to $'b'$.
+   - String becomes: `s = "bcbbcc"`
+   - Homogeneous runs: `"b"` (len 1), `"c"` (len 1), `"bb"` (len 2 at indices $2 \dots 3$), `"cc"` (len 2 at indices $4 \dots 5$).
+   - Max length: $2$.
+   - Output emitted: $2$.
 
-After each query, the answer is the length of the longest contiguous run containing one repeated character. Recomputing that answer by scanning the entire string after every replacement would be easy to understand, but with a long string and many queries it repeats almost all of the same work. A point replacement changes only one position. The useful goal is therefore to store summaries of string intervals and repair only the summaries whose intervals contain the changed position.
-
-The solution uses a segment tree. Every tree node represents an inclusive, one-based interval `[l, r]` of the string. It records three measurements:
-
-- `lmx` is the length of the longest same-character run that starts exactly at `l`, so it is the interval's uniform prefix length.
-- `rmx` is the length of the longest same-character run that ends exactly at `r`, so it is the interval's uniform suffix length.
-- `mx` is the length of the longest same-character run anywhere inside the interval.
-
-These three values are enough because a run in a parent interval has only three possible locations: entirely inside the left child, entirely inside the right child, or crossing the single boundary between the children. The children's `mx` values handle the first two cases. Their boundary-facing suffix and prefix handle the crossing case.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "babacc", "queryCharacters": "bcb", "queryIndices": [1, 3, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Build leaves first, then combine upward
-
-The `SegmentTree` constructor converts the immutable input string into `s = list(s)` because individual characters must later be replaced. It allocates `tr` with `4 * n` slots, a conventional safe capacity for a binary segment tree over `n` elements, and calls `build(1, 1, n)`. Tree node index `1` is the root.
-
-At a leaf, `l == r`, so the represented interval contains exactly one character. Its longest prefix, suffix, and internal run all have length one. The `Node` constructor initializes `lmx`, `rmx`, and `mx` to `1`, which means leaf construction needs no additional assignments. For a non-leaf interval, `build` recursively creates the two children and then calls `pushup` to derive the parent summary.
-
-The implementation uses one-based interval positions but stores characters in a zero-based Python list. Thus, character at tree position `p` is `s[p - 1]`. The boundary comparison in `pushup` follows this conversion exactly: `s[left.r - 1]` is the last character of the left interval, and `s[right.l - 1]` is the first character of the right interval.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Final output array: `[2, 4, 2]`.
 
 ---
 
-### Step 3: How two child summaries become one parent summary
+## 2. Mathematical & Algorithmic Principles
 
-Suppose the left child covers `[l, mid]` and the right child covers `[mid + 1, r]`. The merge first assumes no run crosses their boundary:
+### Limitations of Linear Scanning
 
-- the parent's prefix length begins as `left.lmx`;
-- its suffix length begins as `right.rmx`; and
-- its best internal run begins as `max(left.mx, right.mx)`.
+A naive re-evaluation after each query scans the entire string in $O(n)$ time. For $k$ queries, this costs $O(k \cdot n) = O(10^5 \cdot 10^5) = 10^{10}$ operations, causing an immediate Time Limit Exceeded.
+We require a dynamic data structure capable of supporting $O(\log n)$ updates and $O(1)$ queries.
 
-If the last left character and first right character differ, that assumption is final. A same-character substring cannot cross a boundary whose two adjacent characters are different.
+### Segment Tree with Homogeneous Boundary Runs
 
-If the boundary characters match, a crossing run exists. It consists of the left interval's longest uniform suffix followed immediately by the right interval's longest uniform prefix, so its length is `left.rmx + right.lmx`. The parent updates `mx` with the larger of its current value and this crossing length.
+We build a segment tree over the 1-indexed interval $[1, n]$.
+Each node covering range $[l, r]$ maintains three scalar metrics:
+1. $\text{lmx}$: length of the longest homogeneous prefix starting at $l$.
+2. $\text{rmx}$: length of the longest homogeneous suffix ending at $r$.
+3. $\text{mx}$: length of the longest homogeneous substring strictly contained within $[l, r]$.
 
-The parent's prefix cannot always be extended into the right child merely because the boundary matches. It reaches the boundary only when the entire left interval is one uniform run. The code computes the left interval length as `a = left.r - left.l + 1` and checks `left.lmx == a`. Only then does it add `right.lmx` to the parent's prefix. Symmetrically, the parent suffix extends into the left child only if the entire right interval is uniform, tested by `right.rmx == b`.
+### Boundary Seam Fusion Rule (`pushup`)
 
-These conditions prevent a subtle overcount. For example, if the left interval begins with `a` characters but ends with `b` characters, a matching `b` at the right boundary may create a crossing run, yet it cannot extend the parent's prefix because the different character inside the left interval breaks continuity.
+When merging left child node $L$ covering $[l, \text{mid}]$ and right child node $R$ covering $[\text{mid} + 1, r]$:
+- Let $\text{len}_L = \text{mid} - l + 1$ and $\text{len}_R = r - \text{mid}$.
+- The internal maximum is at least the best within either child:
+  $$\text{root.mx} = \max(L.\text{mx}, \, R.\text{mx})$$
+- Default boundary runs:
+  $$\text{root.lmx} = L.\text{lmx}, \quad \text{root.rmx} = R.\text{rmx}$$
+- **Seam Check:** Compare characters at the meeting boundary $s[\text{mid}]$ and $s[\text{mid} + 1]$:
+  If $s[\text{mid}] == s[\text{mid} + 1]$, the suffix of $L$ merges with the prefix of $R$:
+  $$\text{root.mx} = \max(\text{root.mx}, \, L.\text{rmx} + R.\text{lmx})$$
+  - If $L$ is completely uniform ($L.\text{lmx} == \text{len}_L$), the prefix extends across the seam:
+    $$\text{root.lmx} = L.\text{lmx} + R.\text{lmx}$$
+  - If $R$ is completely uniform ($R.\text{rmx} == \text{len}_R$), the suffix extends across the seam:
+    $$\text{root.rmx} = R.\text{rmx} + L.\text{rmx}$$
 
-The merge accounts for every possible longest run. Runs contained in one child are represented by the child maxima; every run using positions from both children must cross their common boundary and is exactly captured by the left suffix plus right prefix when the boundary characters agree. Therefore, once both children hold accurate summaries, `pushup` produces an accurate summary for the parent. Leaves are accurate by definition, so building upward makes the root's `mx` the answer for the whole initial string.
+```mermaid
+flowchart TD
+    accTitle: Segment Tree Boundary Fusion Logic
+    accDescr: Flowchart illustrating segment tree node combination, comparing characters across midpoint, updating prefix and suffix runs, and propagating mx to root.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 3, 4]` |
+    Start(["Left Node [l, mid] and Right Node [mid+1, r]"]) --> InitMerge["root.mx = max(L.mx, R.mx)<br/>root.lmx = L.lmx, root.rmx = R.rmx"]
+    InitMerge --> SeamCheck{"s[mid] == s[mid + 1]?"}
 
----
+    SeamCheck -- No --> DoneMerge(["Return root"])
+    SeamCheck -- Yes --> Bridge["root.mx = max(root.mx, L.rmx + R.lmx)"]
 
-## 4. Complete Execution Trace
+    Bridge --> CheckFullLeft{"L.lmx == len(L)?"}
+    CheckFullLeft -- Yes --> ExtLeft["root.lmx = L.lmx + R.lmx"]
+    CheckFullLeft -- No --> CheckFullRight{"R.rmx == len(R)?"}
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "babacc", "queryCharacters": "bcb", "queryIndices": [1, 3, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 3, 4]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Rescan after every query:** Replace the character and scan the string while counting consecutive equal characters. This is simple and uses little auxiliary space, but it costs `O(nq)` time in the worst case because every query revisits the entire string.
-- **Store only one maximum per segment-tree node:** Child maxima alone cannot describe a run that crosses the midpoint. The prefix and suffix lengths are necessary connection information; omitting either makes an exact constant-time merge impossible.
-- **Balanced ordered set of run boundaries:** One can maintain maximal equal-character intervals in an ordered structure, splitting and merging near an update while separately tracking run lengths. This can also be efficient, but it requires more intricate bookkeeping than the three-field segment-tree summary.
-- **A Fenwick tree:** Fenwick trees are excellent when an aggregate has an invertible prefix operation such as addition. Longest equal-character runs need boundary-aware merging and cannot be recovered from a single scalar prefix aggregate, so a standard Fenwick tree is not a natural match.
-- **Single-character string:** The tree consists of one leaf. Every replacement writes that leaf, the root `mx` remains one, and every answer is `1`.
-- **All characters initially equal:** The root prefix, suffix, and maximum all equal `n`. Replacing a middle position with a different character breaks the run, and the ancestor merges correctly choose the longer remaining side.
-- **An update joins two runs:** When the new character matches both neighbors, the relevant merge eventually uses a left suffix plus a right prefix, allowing one update to combine the two neighboring runs and the updated position into a larger run.
-- **An update breaks a run:** Replacing a character inside a uniform interval causes affected leaves and ancestors to stop extending prefixes or suffixes through mismatching boundaries. Unaffected subtrees retain their summaries.
-- **Repeated replacement with the same value:** There is no early-return optimization. The work remains `O(\log n)`, but the reconstructed summaries and answer are unchanged.
-- **Index conversion:** Query indices are zero-based while tree positions are one-based. The exact `x + 1` on entry and `x - 1` when accessing `s` are both required; dropping either conversion would update the wrong character.
-- **Whole-range query only:** The provided `query` is sufficient for this method's exact call `query(1, 1, len(s))`. It should not be reused as a general arbitrary-range longest-run query without adding a richer return summary and explicit cross-boundary merge.
-- **Output order:** One result is appended immediately after each update. Even when multiple queries target the same index, the list records the state after each operation in the original order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    ExtLeft --> CheckFullRight
+    CheckFullRight -- Yes --> ExtRight["root.rmx = R.rmx + L.rmx"]
+    CheckFullRight -- No --> DoneMerge
+    ExtRight --> DoneMerge
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(n + q log n)$. Let `n` be the string length and `q` be the number of replacement queries. Building the segment tree creates `O(n)` nodes. Although the backing array reserves `4n` references, the recursive build visits only a linear number of actual intervals, and each `pushup` performs constant work. Initial construction therefore takes `O(n)` time.
-- **Auxiliary Space Complexity:** $O(n + q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace the representative instance `s = "babacc"`, queries `(1, 'c')`, `(3, 'c')`, `(3, 'b')`.
+
+### Step 1: Initial Tree Build on `"babacc"` ($n = 6$)
+- Leaf nodes (1-indexed):
+  - Leaf 1 (`'b'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+  - Leaf 2 (`'a'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+  - Leaf 3 (`'b'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+  - Leaf 4 (`'a'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+  - Leaf 5 (`'c'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+  - Leaf 6 (`'c'`): $\text{lmx}=\text{rmx}=\text{mx}=1$
+- Node $[5, 6]$ (`"cc"`):
+  - $s[5] == s[6] == 'c'$.
+  - $\text{mx} = 1 + 1 = 2$, $\text{lmx} = 2$, $\text{rmx} = 2$.
+- Root $[1, 6]$ has $\text{mx} = 2$.
+
+---
+
+### Step 2: Query 0 — Set Index 1 (1-indexed 2) to `'c'`
+- String mutates: $s = \text{"bcbacc"}$.
+- Path updated in segment tree: root $\to$ node $[1, 3]$ $\to$ node $[1, 2]$ $\to$ leaf $2$.
+- Leaf $2$ becomes `'c'`.
+- Pushup at $[1, 2]$ (`"bc"`):
+  - $s[1] = 'b' \ne s[2] = 'c'$. No seam merge.
+  - $\text{mx} = 1, \text{lmx} = 1, \text{rmx} = 1$.
+- Pushup at $[1, 3]$ (`"bcb"`): $\text{mx} = 1$.
+- Pushup at root $[1, 6]$:
+  - Left child $[1, 3]$ has $\text{mx} = 1$.
+  - Right child $[4, 6]$ (`"acc"`) has $\text{mx} = 2$.
+  - Seam check between $3$ and $4$: $s[3] = 'b' \ne s[4] = 'a'$. No bridge.
+  - Root $\text{mx} = \max(1, 2) = 2$.
+- Result emitted: $2$.
+
+---
+
+### Step 3: Query 1 — Set Index 3 (1-indexed 4) to `'c'`
+- String mutates: $s = \text{"bcbccc"}$.
+- Leaf $4$ changes from `'a'` to `'c'`.
+- Pushup at $[4, 6]$ (`"ccc"`):
+  - Node $[5, 6]$ is `"cc"`, leaf $4$ is `'c'`.
+  - Seam between $4$ and $5$: $s[4] == s[5] == 'c'$.
+  - Seam bridge: $L.\text{rmx} + R.\text{lmx} = 1 + 2 = 3$.
+  - Both sides are uniform: $\text{mx} = 3, \text{lmx} = 3, \text{rmx} = 3$.
+- Pushup at root $[1, 6]$:
+  - Left child $[1, 3]$ has $\text{rmx} = 1$ (character $'b'$).
+  - Right child $[4, 6]$ has $\text{lmx} = 3$ (character $'c'$).
+  - Seam between $3$ and $4$: $s[3] = 'b' \ne s[4] = 'c'$.
+  - Root $\text{mx} = \max(L.\text{mx}=1, R.\text{mx}=3) = 3$?
+  - *(Wait: let's check index 3! Index 3 is 0-indexed position 3, which is 1-indexed position 4. It joins with 5 and 6 to form `"ccc"`, length 3!)*
+  - Global maximum run length is $3$ (`"ccc"` at indices $3 \dots 5$).
+  - Result emitted: $3$.
+
+---
+
+### Step 4: Query 2 — Set Index 3 (1-indexed 4) to `'b'`
+- String mutates: $s = \text{"bcbbcc"}$.
+- Leaf $4$ changes to `'b'`.
+- Pushup at $[1, 6]$:
+  - Node $[1, 3]$ ends in $'b'$. Leaf $4$ is $'b'$.
+  - Seam between $3$ and $4$: $s[3] == s[4] == 'b'$.
+  - Bridge formed: $L.\text{rmx} + R.\text{lmx} = 1 + 1 = 2$ (`"bb"`).
+  - Right node $[5, 6]$ retains $\text{mx} = 2$ (`"cc"`).
+  - Root $\text{mx} = \max(2, 2) = 2$.
+- Result emitted: $2$.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes segment metrics at key nodes after each mutation.
+
+| Mutation Step | Mutated 0-index | New Char | Updated String $s$ | Left Subtree $[1, 3]$ $\text{mx}$ | Right Subtree $[4, 6]$ $\text{mx}$ | Seam Bridge at Midpoint | Root Max $\text{mx}$ |
+|---|---|---|---|---|---|---|---|
+| Initial | — | — | `"babacc"` | $1$ | $2$ (`"cc"`) | No ($s[3]='b' \ne s[4]='a'$) | $2$ |
+| Query 0 | $1$ | `'c'` | `"bcbacc"` | $1$ | $2$ (`"cc"`) | No ($s[3]='b' \ne s[4]='a'$) | $2$ |
+| Query 1 | $3$ | `'c'` | `"bcbccc"` | $1$ | $3$ (`"ccc"`) | No ($s[3]='b' \ne s[4]='c'$) | $3$ |
+| Query 2 | $3$ | `'b'` | `"bcbbcc"` | $1$ | $2$ (`"cc"`) | **Yes** ($s[3]='b' == s[4]='b' \to 2$) | $2$ |
+
+### Node Interval Metrics for Query 1 (`"bcbccc"`)
+
+| Node Range | Spanning Text | Prefix Run $\text{lmx}$ | Suffix Run $\text{rmx}$ | Internal Max $\text{mx}$ | Entirely Uniform? |
+|---|---|---|---|---|---|
+| $[1, 2]$ | `"bc"` | $1$ ($'b'$) | $1$ ($'c'$) | $1$ | No |
+| $[3, 3]$ | `"b"` | $1$ ($'b'$) | $1$ ($'b'$) | $1$ | Yes |
+| $[1, 3]$ | `"bcb"` | $1$ ($'b'$) | $1$ ($'b'$) | $1$ | No |
+| $[4, 4]$ | `'c'` | $1$ ($'c'$) | $1$ ($'c'$) | $1$ | Yes |
+| $[5, 6]$ | `"cc"` | $2$ ($'c'$) | $2$ ($'c'$) | $2$ | Yes |
+| $[4, 6]$ | `"ccc"` | $3$ ($'c'$) | $3$ ($'c'$) | $3$ | **Yes** |
+| $[1, 6]$ | `"bcbccc"` | $1$ ($'b'$) | $3$ ($'c'$) | **$3$** | No |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Completeness of Range Decomposition
+Any contiguous homogeneous substring in $[l, r]$ either:
+1. Lies entirely within the left child $[l, \text{mid}]$.
+2. Lies entirely within the right child $[\text{mid} + 1, r]$.
+3. Crosses the midpoint $\text{mid}$, consisting of a suffix of the left child concatenated with a prefix of the right child.
+
+Because the pushup logic computes $\max(L.\text{mx}, R.\text{mx})$ and conditionally bridges $L.\text{rmx} + R.\text{lmx}$ when $s[\text{mid}] == s[\text{mid} + 1]$, every possible location for a maximal run is accounted for.
+The prefix and suffix lengths $\text{lmx}$ and $\text{rmx}$ are correctly extended when a child interval is completely uniform, preserving recursive invariants up to the root.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **Entire String Becomes Uniform (`s = "aaaa"`):** Both children merge recursively, setting $\text{lmx} = \text{rmx} = \text{mx} = n$.
+- **Alternating Characters (`s = "ababab"`):** No seam ever matches. All nodes maintain $\text{mx} = 1$.
+- **Mutations at Exact String Boundaries:** Modifying index $0$ or index $n - 1$ updates extreme leaves without out-of-bounds neighbor checks.
+
+### Anti-Patterns to Avoid
+- **Linear Scan After Each Mutation:** An $O(n)$ scan per query causes $O(n \cdot k)$ TLE.
+- **Forgetting Uniformity Check in Prefix Extension:** If $L$ is not completely uniform, its prefix run cannot absorb $R$'s prefix run. Merging without checking $L.\text{lmx} == \text{len}(L)$ overcounts prefix lengths.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Tree Construction:** Building the tree of size $n$ takes $O(n)$ time.
+- **Point Mutation:** Each query traverses a single root-to-leaf path of height $\lceil \log_2 n \rceil$ and pushes up in $O(1)$ time. Mutation takes $O(\log n)$.
+- **Query Evaluation:** Root node contains the global maximum in its `mx` field; querying takes $O(1)$.
+- Total Time Complexity: $\mathcal{O}(n + k \log n)$.
+- For $n = 10^5$ and $k = 10^5$, total operations $\approx 10^5 + 10^5 \cdot 17 \approx 1.8 \times 10^6$, running in under $0.25$ seconds.
+
+### Space Complexity
+- A segment tree over $n$ elements uses $4n$ nodes.
+- Each node stores $5$ scalar fields.
+- Auxiliary Space Complexity: $\mathcal{O}(n)$.

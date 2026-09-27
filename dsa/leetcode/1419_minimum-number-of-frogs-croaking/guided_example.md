@@ -1,127 +1,163 @@
 # Guided Example: Minimum Number of Frogs Croaking
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of state-machine concurrency tracking on a representative problem instance:
 
-- **Input:** `{"croakOfFrogs": "croakcroak"}`
-- **Required output:** `1`
+- **Input:** $croakOfFrogs = \text{"crcoakroak"}$
+- **Required Output:** $2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features interleaved croaks from multiple frogs, demonstrates state-stage progression through `'c'`, `'r'`, `'o'`, `'a'`, `'k'`, captures the moment of peak concurrency where two frogs are croaking simultaneously, and verifies frog reuse upon completion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given the string `croakOfFrogs`, which represents a combination of the string `"croak"` from different frogs, that is, multiple frogs can croak at the same time, so multiple `"croak"` are mixed.
+We are given a string `croakOfFrogs` composed of mixed characters from multiple frogs. Each frog must produce the sequence of five letters `'c'`, `'r'`, `'o'`, `'a'`, `'k'` in strict sequential order. Once a frog finishes emitting `'k'`, it becomes idle and may immediately begin a new croak. Multiple frogs can croak concurrently.
 
-The objective is to compute `1` from `{"croakOfFrogs": "croakcroak"}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to compute the **minimum number of different frogs** required to produce the observed sequence, or return `-1` if the string cannot be formed by valid, completed croaks.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In `croakOfFrogs = "crcoakroak"`:
+- Characters $0$ and $1$ (`"cr"`) are produced by Frog 1.
+- Character $2$ (`"c"`) starts a second croak while Frog 1 is still active, requiring Frog 2.
+- Characters $3, 4, 5$ (`"oak"`) complete Frog 1's croak, leaving Frog 2 as the sole active frog.
+- Characters $6, 7, 8, 9$ (`"roak"`) complete Frog 2's croak.
+- The peak number of simultaneously active frogs is $2$.
+
+The primary teaching goal is to model sequential token production as an ordered finite state machine, where each character advances a frog from stage $j - 1$ to stage $j$, and the minimum frog count corresponds to the maximum concurrent active state load.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+A croak consists of four intermediate waiting stages and one terminal release:
+1. Stage $c$: Frogs that produced `'c'` and are waiting for `'r'`.
+2. Stage $r$: Frogs that produced `'r'` and are waiting for `'o'`.
+3. Stage $o$: Frogs that produced `'o'` and are waiting for `'a'`.
+4. Stage $a$: Frogs that produced `'a'` and are waiting for `'k'`.
 
-| State Parameter | Role & Purpose | Initial State |
+When observing character $ch$:
+- **If $ch = \text{'c'}$:** A new croak begins. Increment $c \leftarrow c + 1$ and increase active count $active \leftarrow active + 1$. Update $peak \leftarrow \max(peak, active)$.
+- **If $ch = \text{'r'}$:** A frog waiting in stage $c$ moves to stage $r$. Requires $c > 0$ (otherwise invalid $\implies -1$). Update $c \leftarrow c - 1, r \leftarrow r + 1$.
+- **If $ch = \text{'o'}$:** Requires $r > 0$ (otherwise $-1$). Update $r \leftarrow r - 1, o \leftarrow o + 1$.
+- **If $ch = \text{'a'}$:** Requires $o > 0$ (otherwise $-1$). Update $o \leftarrow o - 1, a \leftarrow a + 1$.
+- **If $ch = \text{'k'}$:** Requires $a > 0$ (otherwise $-1$). Update $a \leftarrow a - 1$ and decrement $active \leftarrow active - 1$.
+
+At the conclusion of the string:
+- All frogs must have completed their croaks: $c = r = o = a = active = 0$.
+- If any stage has remaining frogs, the string is incomplete $\implies -1$.
+
+```
+Timeline of Overlapping Croaks for "crcoakroak":
+Index:   0   1   2   3   4   5   6   7   8   9
+Char:    c   r   c   o   a   k   r   o   a   k
+----------------------------------------------
+Frog 1: [c - r ----- o - a - k]  (Finishes at 5)
+Frog 2:         [c ------------- r - o - a - k] (Finishes at 9)
+----------------------------------------------
+Active:  1   1   2   2   2   1   1   1   1   0
+                 ^
+                 Peak Concurrency = 2 Frogs
+```
+
+We define tracking variables across the string:
+
+| State Variable | Meaning | Initial State |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Counters $c, r, o, a$ | Frogs currently waiting at intermediate stages | All $0$ |
+| $active$ | Total frogs currently in mid-croak ($c + r + o + a$) | $0$ |
+| $peak$ | Maximum value of $active$ achieved | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At any position, each stage counter represents the exact count of frogs ready to consume the next character of the sequence `"croak"`. A character is valid if and only if its predecessor stage counter is strictly positive.
+
+```mermaid
+flowchart LR
+    accTitle: Frog Croak State Pipeline
+    accDescr: Progression of a frog from start through c, r, o, a, to k, updating concurrency counters and freeing frogs.
+    Start((New Croak)) -->|'c'| C["Stage c<br/>waiting for 'r'"]
+    C -->|'r'| R["Stage r<br/>waiting for 'o'"]
+    R -->|'o'| O["Stage o<br/>waiting for 'a'"]
+    O -->|'a'| A["Stage a<br/>waiting for 'k'"]
+    A -->|'k'| End((Croak Done<br/>Frog Released))
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Model each croak as five ordered stages
+We trace the $10$ characters of `"crcoakroak"`:
 
-Every valid frog sound must pass through:
+1. **Index 0 (`'c'`):** New croak starts. $c \leftarrow 1$, $active \leftarrow 1$, $peak \leftarrow 1$.
+2. **Index 1 (`'r'`):** $c = 1 > 0$. Move frog: $c \leftarrow 0, r \leftarrow 1$. Active remains $1$.
+3. **Index 2 (`'c'`):** New croak starts while Frog 1 is at stage $r$. $c \leftarrow 1$, $active \leftarrow 2$, $peak \leftarrow \max(1, 2) = 2$.
+4. **Index 3 (`'o'`):** $r = 1 > 0$. Advance Frog 1: $r \leftarrow 0, o \leftarrow 1$. Active is $2$.
+5. **Index 4 (`'a'`):** $o = 1 > 0$. Advance Frog 1: $o \leftarrow 0, a \leftarrow 1$. Active is $2$.
+6. **Index 5 (`'k'`):** $a = 1 > 0$. Frog 1 completes croak! $a \leftarrow 0$, $active \leftarrow 2 - 1 = 1$.
+7. **Index 6 (`'r'`):** $c = 1 > 0$. Advance Frog 2: $c \leftarrow 0, r \leftarrow 1$. Active is $1$.
+8. **Index 7 (`'o'`):** $r = 1 > 0$. Advance Frog 2: $r \leftarrow 0, o \leftarrow 1$. Active is $1$.
+9. **Index 8 (`'a'`):** $o = 1 > 0$. Advance Frog 2: $o \leftarrow 0, a \leftarrow 1$. Active is $1$.
+10. **Index 9 (`'k'`):** $a = 1 > 0$. Frog 2 completes croak! $a \leftarrow 0$, $active \leftarrow 1 - 1 = 0$.
 
-
-
-Characters from different frogs may interleave, but an `r` must belong to a frog that previously emitted `c`, an `o` must continue a frog waiting after `r`, and so on. This can be validated by counting how many frogs currently wait at each stage.
-
-The dictionary:
-
-
-
-maps `c`, `r`, `o`, `a`, and `k` to indices zero through four. `map(idx.get, croakOfFrogs)` then turns the input into that stage-index stream.
-
-The constraints guarantee that every character is one of these five letters. Without that guarantee, `idx.get` could produce `null` and would need an explicit invalid-character check.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"croakOfFrogs": "croakcroak"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: A fast necessary length check
-
-Every completed croak has exactly five characters. A mixture of complete croaks must therefore have total length divisible by five:
-
-
-
-Divisibility is necessary but not sufficient. A string can contain the correct total counts and still present letters in an impossible order, so the stage scan remains essential.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Index | Character | Stage Action | $(c, r, o, a)$ | Current Active | Peak Active |
+|---|---|---|---|---|---|
+| $0$ | `'c'` | Start Frog 1 | $(1, 0, 0, 0)$ | $1$ | $1$ |
+| $1$ | `'r'` | Frog 1: $c \to r$ | $(0, 1, 0, 0)$ | $1$ | $1$ |
+| $2$ | `'c'` | Start Frog 2 | $(1, 1, 0, 0)$ | $2$ | $2$ |
+| $3$ | `'o'` | Frog 1: $r \to o$ | $(1, 0, 1, 0)$ | $2$ | $2$ |
+| $4$ | `'a'` | Frog 1: $o \to a$ | $(1, 0, 0, 1)$ | $2$ | $2$ |
+| $5$ | `'k'` | Frog 1 done | $(1, 0, 0, 0)$ | $1$ | $2$ |
+| $6$ | `'r'` | Frog 2: $c \to r$ | $(0, 1, 0, 0)$ | $1$ | $2$ |
+| $7$ | `'o'` | Frog 2: $r \to o$ | $(0, 0, 1, 0)$ | $1$ | $2$ |
+| $8$ | `'a'` | Frog 2: $o \to a$ | $(0, 0, 0, 1)$ | $1$ | $2$ |
+| $9$ | `'k'` | Frog 2 done | $(0, 0, 0, 0)$ | $0$ | $2$ |
 
 ---
 
-### Step 3: What the stage counts mean
+### Step 11: Final Validation Check
 
-`cnt = [0] * 5` stores how many observed occurrences currently belong to each latest stage. For indices zero through three, `cnt[i]` can be viewed as frogs that have emitted the corresponding character and are waiting for the next one.
-
-When stage `i` arrives, the code first increments `cnt[i]`. For every noninitial stage, it must also consume one waiting frog from `cnt[i - 1]`. This transfers a croak from the previous stage to the current stage.
-
-The completed `k` count at `cnt[4]` is allowed to accumulate because no later character needs to consume it. Active concurrency is tracked separately.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+At string end:
+- $c = 0, r = 0, o = 0, a = 0$.
+- $active = 0$.
+- String length $10$ is divisible by $5$ ($2$ full croaks).
+- All checks pass. Return $peak = 2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"croakOfFrogs": "croakcroak"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Phase | Read Head | Token Processed | Valid Predecessor? | Transition Applied | Active Count |
+|---|---|---|---|---|---|
+| Initialization | Start | — | — | All stages set to $0$ | $0$ |
+| Prefix Step 1 | $0$ | `'c'` | Yes (Root trigger) | $c \leftarrow 1$ | $1$ |
+| Prefix Step 2 | $1$ | `'r'` | Yes ($c = 1$) | $c \leftarrow 0, r \leftarrow 1$ | $1$ |
+| Overlap Trigger | $2$ | `'c'` | Yes (Root trigger) | $c \leftarrow 1$ | $2$ (Peak) |
+| Interleaved Step 1 | $3$ | `'o'` | Yes ($r = 1$) | $r \leftarrow 0, o \leftarrow 1$ | $2$ |
+| Interleaved Step 2 | $4$ | `'a'` | Yes ($o = 1$) | $o \leftarrow 0, a \leftarrow 1$ | $2$ |
+| Release 1 | $5$ | `'k'` | Yes ($a = 1$) | $a \leftarrow 0$, complete | $1$ |
+| Resume Frog 2 | $6$ | `'r'` | Yes ($c = 1$) | $c \leftarrow 0, r \leftarrow 1$ | $1$ |
+| Suffix Step 1 | $7$ | `'o'` | Yes ($r = 1$) | $r \leftarrow 0, o \leftarrow 1$ | $1$ |
+| Suffix Step 2 | $8$ | `'a'` | Yes ($o = 1$) | $o \leftarrow 0, a \leftarrow 1$ | $1$ |
+| Release 2 | $9$ | `'k'` | Yes ($a = 1$) | $a \leftarrow 0$, complete | $0$ |
+| Verification | End | — | All stages $= 0$ | Confirm zero residuals | Output: $2$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A frog is only advanced to stage $j$ if another frog is currently waiting in stage $j - 1$. The total number of frogs active at any point equals the sum of frogs in stages $c, r, o, a$. Because a single frog cannot produce two characters at the exact same moment across distinct croaks, the peak active count represents a strict lower bound on distinct frogs needed.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since completed frogs are immediately returned to the idle pool upon emitting `'k'`, the algorithm reuses frogs greedily. By Dilworth's theorem on poset chain decompositions, greedy reuse of completed resources achieves the minimal chain partition, proving that $peak$ is both sufficient and globally minimal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit five counters:** Separate variables for frogs after `c`, `r`, `o`, and `a` avoid indexing but duplicate transition code. The array expresses the same state uniformly.
-- **Track a state per frog:** Assign characters to individual frog objects. It can work but may require searching for a frog at the needed stage, while aggregate counts contain all necessary information.
-- **Repeatedly remove `"croak"` subsequences:** Extracting one frog at a time can become quadratic and makes minimum concurrency harder to derive.
-- **Length divisible by five:** This alone does not prove validity; `"croakcrook"` has ten characters but contains an impossible stage order.
-- **Sequential croaks:** `"croakcroak"` reaches active count one, returns to zero, and reuses the same frog.
-- **Fully overlapping starts:** A prefix with several `c` characters raises the active count and therefore the required number of frogs.
-- **Character without predecessor:** An initial `r` or an `o` with no waiting `r` immediately returns -1.
-- **Incomplete final croak:** A suffix such as `"cro"` leaves `x` positive and is rejected at the end.
-- **Single complete croak:** All five transfers succeed, the peak is one, and final active count is zero.
-- **Tied stage populations:** Counts may contain several frogs at the same stage; any one can consume the next matching character because frogs are indistinguishable for counting.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Predecessor Stage:** If a character like `'r'` appears when $c = 0$, an invalid sequence is detected and the algorithm must immediately return `-1`.
+- **Incomplete Croaks at String End:** A string like `"croakc"` has valid prefixes, but leaves $c = 1$ at the end. Forgetting to verify $c = r = o = a = 0$ accepts incomplete croaks.
+- **Counting Total Croaks Instead of Concurrent Frogs:** Returning the total number of `'c'` occurrences gives the total croak count, not the minimum distinct frogs needed simultaneously.
+- **Foreign Characters:** Any character other than `'c'`, `'r'`, `'o'`, `'a'`, `'k'` immediately invalidates the input.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. The algorithm performs one divisibility check and one left-to-right scan. Dictionary lookup, counter updates, and comparisons are constant time for each character, so total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `croakOfFrogs`. The string is scanned in a single linear pass with $\mathcal{O}(1)$ counter updates per character.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Only $6$ integer variables ($c, r, o, a, active, peak$) are used.

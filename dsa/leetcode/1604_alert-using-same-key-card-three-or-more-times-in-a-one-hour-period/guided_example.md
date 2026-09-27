@@ -1,132 +1,158 @@
 # Guided Example: Alert Using Same Key-Card Three or More Times in a One Hour Period
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates timestamp normalization, hash-based timeline grouping, and sliding consecutive triple window analysis to detect security key-card alert conditions within one-hour sliding intervals.
 
-- **Input:** `{"keyName": ["amy", "amy", "amy"], "keyTime": ["10:00", "10:30", "11:00"]}`
-- **Required output:** `["amy"]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Key Names:** `["daniel", "daniel", "daniel", "luis", "luis", "luis", "luis"]`
+- **Key Times:** `["10:00", "10:40", "11:00", "09:00", "11:00", "13:00", "15:00"]`
+- **Target Output:** `["daniel"]`
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-LeetCode company workers use key-cards to unlock office doors. Each time a worker uses their key-card, the security system saves the worker's name and the time when it was used. The system emits an **alert** if any worker uses the key-card **three or more times** in a one-hour period.
+A security system logs employee key-card badge swipes throughout a single 24-hour day. A key-card violation occurs if a single employee uses their card three or more times within any rolling 60-minute window $[T, T + 60]$ (inclusive). For example, access times `10:00` and `11:00` span exactly $60$ minutes and belong to the same valid one-hour interval.
 
-The objective is to compute `["amy"]` from `{"keyName": ["amy", "amy", "amy"], "keyTime": ["10:00", "10:30", "11:00"]}` while avoiding redundant calculations and unnecessary overhead.
+We must return a list of all distinct employee names who triggered an alert, sorted in ascending alphabetical order.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Daniel's Timeline:
+  10:00 (600m) ──[+40m]──> 10:40 (640m) ──[+20m]──> 11:00 (660m)
+  Span from 1st to 3rd swipe: 660 - 600 = 60 minutes <= 60  [ALERT TRIGGERED]
+
+Luis's Timeline:
+  09:00 (540m) ──────────> 11:00 (660m) ──────────> 13:00 (780m) ──────────> 15:00 (900m)
+  Window 1 [09:00 - 13:00]: 780 - 540 = 240 minutes > 60    [OK]
+  Window 2 [11:00 - 15:00]: 900 - 660 = 240 minutes > 60    [OK]
+```
+
+Our teaching goal is to model clock conversion ($HH:MM \to \text{minutes}$) and prove why checking adjacent triples $t_{i+2} - t_i \le 60$ on sorted personal timestamps is both necessary and sufficient in $\mathcal{O}(N \log N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  TIMELINE PARTITION & TRIPLE SCAN                       |
+|                                                                         |
+|  Step 1: Clock Normalization                                            |
+|    minute(HH:MM) = int(HH) * 60 + int(MM)                               |
+|                                                                         |
+|  Step 2: Partition by Worker                                            |
+|    group[name].append(minute(time))                                     |
+|                                                                         |
+|  Step 3: Per-Worker Monotonic Sort                                      |
+|    ts = sorted(group[name])                                             |
+|                                                                         |
+|  Step 4: Adjacent Triple Sliding Window                                 |
+|    For index i from 0 to len(ts) - 3:                                   |
+|        if ts[i + 2] - ts[i] <= 60:                                      |
+|            alert(name); break                                           |
+|                                                                         |
+|  Step 5: Lexicographical Final Sort                                     |
+|    return sorted(alerts)                                                |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Representation | Algorithmic Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Normalized Timestamp | $t = 60 \cdot H + M \in [0, 1439]$ | Maps clock strings to linear integer minutes |
+| Personal Access List | $T_w = [t_{(0)}, t_{(1)}, \dots, t_{(k-1)}]$ | Monotonically ascending order of worker $w$'s card uses |
+| Triple Interval Span | $\Delta_i = t_{(i+2)} - t_{(i)}$ | Time elapsed across three consecutive uses |
+| Alert Criterion | $\exists i : \Delta_i \le 60$ | Confirms $\ge 3$ accesses within a 60-minute period |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Consecutive Triple Sufficiency Invariant.** If any subset of three or more timestamps $t_a \le t_b \le t_c$ satisfies $t_c - t_a \le 60$, then the two timestamps immediately succeeding $t_a$ in the sorted array, $t_{a+1}$ and $t_{a+2}$, must satisfy $t_{a+2} \le t_c$. Consequently, $t_{a+2} - t_a \le t_c - t_a \le 60$. Thus, inspecting only consecutive triples $t_{i+2} - t_i$ is guaranteed to discover every qualifying window without combinatorial search.
+
+```mermaid
+flowchart TD
+    accTitle: Key-Card Alert Verification Pipeline
+    accDescr: Pipeline showing parsing of HH:MM to integer minutes, grouping by name, sorting timestamps, checking consecutive triples, and sorting flagged names.
+    Raw["Raw Logs: (name, HH:MM)"] --> Parse["Convert HH:MM -> minutes"]
+    Parse --> Group["Group into Hash Map: map[name] = [times]"]
+    Group --> CheckLen{"len(times) >= 3?"}
+    CheckLen -->|No| Safe["Skip: Insufficient swipes"]
+    CheckLen -->|Yes| SortW["Sort worker times ascending"]
+    SortW --> Slide["Scan consecutive triples: ts[i+2] - ts[i] <= 60?"]
+    Slide -->|Found| Flag["Add name to Alert Set; break"]
+    Slide -->|Exhausted| Safe
+    Flag --> Alpha["Sort flagged names alphabetically"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Group access times by worker
+### Step 1: Clock Normalization and Grouping
+Convert each time string to integer minutes from midnight:
+- `"10:00"` $\to 10 \times 60 + 0 = 600$
+- `"10:40"` $\to 10 \times 60 + 40 = 640$
+- `"11:00"` $\to 11 \times 60 + 0 = 660$
+- `"09:00"` $\to 9 \times 60 + 0 = 540$
+- `"13:00"` $\to 13 \times 60 + 0 = 780$
+- `"15:00"` $\to 15 \times 60 + 0 = 900$
 
-An alert concerns three uses by the same person, so accesses from different names must never be mixed. The solution builds `d` as a mapping from each worker name to that worker’s list of access times.
-
-It reads corresponding entries with `zip(keyName, keyTime)`. The arrays have equal length by contract, so every name is paired with its time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"keyName": ["amy", "amy", "amy"], "keyTime": ["10:00", "10:30", "11:00"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Convert clock strings to comparable minutes
-
-Each time has format `"HH:MM"`. The source converts it to minutes after midnight:
-
-`int(t[:2]) * 60 + int(t[3:])`.
-
-For example, `"10:40"` becomes $10\cdot60+40=640$, and `"11:00"` becomes 660. Their difference is then ordinary integer subtraction.
-
-The statement says every access belongs to a single day. Therefore, chronological order is the same as numeric minutes from zero through 1439. There is no interval crossing midnight that would require day adjustment.
-
-Each converted value is appended to `d[name]`. Input order does not need to be chronological.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Hash map populated:
+- `group["daniel"] = [600, 640, 660]`
+- `group["luis"] = [540, 660, 780, 900]`
 
 ---
 
-### Step 3: Sort each person’s timeline
+### Step 2: Evaluating `"daniel"`
+- Number of accesses: $3 \ge 3$. Candidate for inspection.
+- Already sorted: $T_{\text{daniel}} = [600, 640, 660]$.
+- Check consecutive triple at $i = 0$:
+  $$\Delta_0 = T_{\text{daniel}}[2] - T_{\text{daniel}}[0] = 660 - 600 = 60$$
+- Comparison: $60 \le 60$ is **True**.
+- Alert condition satisfied! Add `"daniel"` to alerts and break.
 
-For one dictionary entry `name, ts`, the walrus expression `(n := len(ts)) > 2` both stores the number of accesses and checks that at least three exist.
+---
 
-A person with zero, one, or two accesses cannot trigger a three-use alert and is skipped without sorting.
+### Step 3: Evaluating `"luis"`
+- Number of accesses: $4 \ge 3$. Candidate for inspection.
+- Already sorted: $T_{\text{luis}} = [540, 660, 780, 900]$.
+- Check consecutive triple at $i = 0$:
+  $$\Delta_0 = T_{\text{luis}}[2] - T_{\text{luis}}[0] = 780 - 540 = 240 > 60 \implies \text{False}$$
+- Check consecutive triple at $i = 1$:
+  $$\Delta_1 = T_{\text{luis}}[3] - T_{\text{luis}}[1] = 900 - 660 = 240 > 60 \implies \text{False}$$
+- No qualifying window. `"luis"` is not alerted.
 
-For a possible candidate, `ts.sort()` arranges their minute values in ascending order. The code then checks every consecutive window of three:
+---
 
-`ts[i], ts[i + 1], ts[i + 2]`.
-
-The window lies within one hour exactly when:
-
-`ts[i + 2] - ts[i] <= 60`.
-
-Equality is accepted, matching the rule that `"10:00"` through `"11:00"` is within the period.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["amy"]` |
+### Step 4: Lexicographical Output Formatting
+- Alerted names set: `["daniel"]`.
+- Sorted lexicographically: `["daniel"]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"keyName": ["amy", "amy", "amy"], "keyTime": ["10:00", "10:30", "11:00"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["amy"]` | Verified |
+| Worker Name | Raw Timestamps | Converted Minutes $T_w$ | Window Tested $(i, i+1, i+2)$ | Span $\Delta = t_{i+2} - t_i$ | $\le 60$ Min Check | Alert Status |
+|---|---|---|---|---|---|---|
+| `"daniel"` | `10:00`, `10:40`, `11:00` | $[600, 640, 660]$ | $(600, 640, 660)$ | $660 - 600 = 60$ | **Pass** ($60 \le 60$) | **Flagged** |
+| `"luis"` | `09:00`, `11:00`, `13:00`, `15:00` | $[540, 660, 780, 900]$ | $(540, 660, 780)$ | $780 - 540 = 240$ | Fail ($240 > 60$) | Safe |
+| `"luis"` | — | — | $(660, 780, 900)$ | $900 - 660 = 240$ | Fail ($240 > 60$) | Safe |
+
+Final output array: `["daniel"]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A worker is added to the alert list only if there exists an index $i$ in their chronologically sorted timeline such that $t_{i+2} - t_i \le 60$. The three timestamps $t_i, t_{i+1}, t_{i+2}$ represent three genuine, distinct key-card usages occurring in the closed interval $[t_i, t_i + 60]$, which satisfies the problem definition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose an employee used their card three or more times in some arbitrary one-hour window $[S, S + 60]$. Let $t_a$ be the earliest use in that window, and let $t_c$ be any third use in that window ($t_c \le S + 60$). In the employee's sorted timeline, the timestamp two positions ahead of $t_a$ is $t_{a+2}$. Because all entries between $t_a$ and $t_c$ fall within $[t_a, t_c]$, we have $t_{a+2} \le t_c$, meaning $t_{a+2} - t_a \le t_c - t_a \le 60$. Hence, scanning consecutive triples guarantees that at least one triple will satisfy the alert criterion.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort all records globally by name and time:** This can also group timelines, but the dictionary plus per-name sorts is direct and preserves the same $O(N\log N)$ bound.
-- **Sliding window with two pointers:** It can detect whether a sorted window contains at least three accesses. Fixed consecutive triples are simpler because exactly three are sufficient.
-- **Enumerate all triples:** This is unnecessary and can be cubic per worker. Any qualifying triple implies a qualifying consecutive triple.
-- **Use raw `"HH:MM"` strings:** Fixed-width 24-hour strings sort chronologically, so this can work, but minute conversion makes the inclusive 60-minute test straightforward.
-- **Exactly three accesses:** One window is checked.
-- **Fewer than three accesses:** The worker is skipped and cannot alert.
-- **Exactly 60 minutes:** The `<= 60` comparison includes the boundary.
-- **More than 60 minutes:** A span of 61 or greater does not qualify.
-- **Several qualifying windows:** `break` ensures the name appears once.
-- **Unsorted input:** Each personal list is sorted before checking.
-- **Same-day assumption:** Minute subtraction is valid because no interval crosses into a second day.
-- **Unique name-time pair:** Duplicate records for the same worker at the exact same time are excluded by contract, though the algorithm would count them as separate uses if present.
-- **Alphabetical result:** Explicit final sorting satisfies the requirement independently of dictionary insertion order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Strict Inequality on the 60-Minute Boundary:** Using `< 60` instead of `\le 60` incorrectly rejects standard one-hour intervals like `10:00` to `11:00` (which span exactly 60 minutes).
+- **Redundant Combinatorial Triples:** Generating all $\binom{k}{3}$ triples per worker causes $\mathcal{O}(k^3)$ time per person. Sorting in $\mathcal{O}(k \log k)$ and testing only adjacent triples reduces the inspection to $\mathcal{O}(k)$ linear time.
+- **Duplicate Output Names:** An employee who triggers multiple alert windows throughout the day must be returned exactly once. Breaking out of the triple scan upon the first detected alert prevents duplicates.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the total number of access records, and let worker $w$ have $N_w$ records.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N$ is the total number of key-card records. Converting and grouping timestamps takes $\mathcal{O}(N)$ time. Sorting the timestamps for each individual employee takes $\sum \mathcal{O}(k_w \log k_w) \le \mathcal{O}(N \log N)$ time. Scanning consecutive triples takes $\mathcal{O}(N)$ total time. Sorting the final list of alerted names takes $\mathcal{O}(W \log W) \le \mathcal{O}(N \log N)$, where $W \le N$ is the number of distinct employees.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary space to store the hash map of normalized integer timestamps and the list of alerted names.

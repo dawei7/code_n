@@ -1,99 +1,239 @@
 # Guided Example: Largest Plus Sign
 
-We derive and execute the Array, Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step 2D grid mine mapping ($grid[r][c] = 0$), 4-directional consecutive ones arm length accumulation (left, right, up, down), 4-way minimum arm bottleneck bound ($order(r, c) = \min(L, R, U, D)$), symmetric dual-pointer row/column scanning, and global maximum order plus sign identification on representative spatial grids:
 
-- **Input:** `{"n": 5, "mines": [[4, 2]]}`
+- **Input:** $n = 5, \quad mines = [[4, 2]]$
 - **Required output:** `2`
+  - Plus sign geometry & order specifications:
+    - An $n \times n$ grid initially consists entirely of `1`s, with specific obstacle cells marked as `0` (`mines`).
+    - An axis-aligned plus sign of **order $k$** centered at $(r, c)$ consists of:
+      - The center cell $(r, c)$ with value 1.
+      - Four arms extending left, right, up, and down, each consisting of $k - 1$ contiguous cells of value 1.
+      - Total length along both axes: $2k - 1$.
+      - If $k = 1$, the plus sign is just a single cell of value 1.
+    - Objective: Find the **maximum order $k$** among all possible centers $(r, c)$. If no 1s exist, return `0`.
+    - For $n = 5$ with a mine at $(4, 2)$:
+      - Center candidate $(2, 2)$:
+        - Up arm: cells $(1, 2), (0, 2) \implies$ extends 2 steps (total length 3).
+        - Left arm: cells $(2, 1), (2, 0) \implies$ extends 2 steps (total length 3).
+        - Right arm: cells $(2, 3), (2, 4) \implies$ extends 2 steps (total length 3).
+        - Down arm: cell $(3, 2)$ is 1, but cell $(4, 2)$ is a mine (`0`)! The down arm is blocked at distance 1.
+        - Bottleneck arm:
+          $$
+          \text{order}(2, 2) = \min(\text{Left}: 3, \; \text{Right}: 3, \; \text{Up}: 3, \; \text{Down}: 2) = \mathbf{2}
+          $$
+      - An order 3 plus sign would require down arm reaching $(4, 2)$, which is obstructed.
+      - Maximum achievable order is **2**.
+- **4-Directional Arm Minimum & Dynamic Programming Invariant:**
+  - **The Bottleneck Property:**
+    - The largest order plus sign centered at any cell $(r, c)$ is strictly constrained by the **shortest** of its 4 contiguous arms of 1s:
+      $$
+      order(r, c) = \min\big(left[r][c], \; right[r][c], \; up[r][c], \; down[r][c]\big)
+      $$
+    - If cell $(r, c)$ is a mine, its order is 0.
+  - **Simultaneous Symmetric Scanning:**
+    - Initialize an $n \times n$ table $dp[r][c]$ to $n$ (or 0 for mines).
+    - For each row/column index $i \in [0, n - 1]$:
+      - Scan bidirectional coordinates $j \in [0, n - 1]$ and $k = n - 1 - j$:
+        - Accumulate running count of 1s:
+          $$
+          left = (left + 1) \text{ if } dp[i][j] > 0 \text{ else } 0
+          $$
+          $$
+          right = (right + 1) \text{ if } dp[i][k] > 0 \text{ else } 0
+          $$
+          $$
+          up = (up + 1) \text{ if } dp[j][i] > 0 \text{ else } 0
+          $$
+          $$
+          down = (down + 1) \text{ if } dp[k][i] > 0 \text{ else } 0
+          $$
+        - Refine $dp$ at each point by taking the minimum:
+          $$
+          dp[i][j] \leftarrow \min(dp[i][j], \; left)
+          $$
+          $$
+          dp[i][k] \leftarrow \min(dp[i][k], \; right)
+          $$
+          $$
+          dp[j][i] \leftarrow \min(dp[j][i], \; up)
+          $$
+          $$
+          dp[k][i] \leftarrow \min(dp[k][i], \; down)
+          $$
+    - After all 4 directional sweeps, each cell $dp[r][c]$ contains the exact bottleneck order.
+    - Global answer:
+      $$
+      ans = \max_{r, c} dp[r][c]
+      $$
+- **Step-by-Step Worked Execution Trace on Center $(2, 2)$ ($n = 5$):**
+  - Grid dimensions: $5 \times 5$, mine at $(4, 2)$.
+  - **Step 1: Measure Left Arm from Column 0 to Column 4 along Row 2:**
+    - $(2, 0) = 1 \implies left = 1$.
+    - $(2, 1) = 1 \implies left = 2$.
+    - $(2, 2) = 1 \implies left = \mathbf{3}$.
+    - $(2, 3) = 1 \implies left = 4$.
+    - $(2, 4) = 1 \implies left = 5$.
+    - Left count at $(2, 2)$ is $3$.
+  - **Step 2: Measure Right Arm from Column 4 down to Column 0 along Row 2:**
+    - $(2, 4) = 1 \implies right = 1$.
+    - $(2, 3) = 1 \implies right = 2$.
+    - $(2, 2) = 1 \implies right = \mathbf{3}$.
+    - Right count at $(2, 2)$ is $3$.
+  - **Step 3: Measure Up Arm from Row 0 to Row 4 along Column 2:**
+    - $(0, 2) = 1 \implies up = 1$.
+    - $(1, 2) = 1 \implies up = 2$.
+    - $(2, 2) = 1 \implies up = \mathbf{3}$.
+    - Up count at $(2, 2)$ is $3$.
+  - **Step 4: Measure Down Arm from Row 4 up to Row 0 along Column 2:**
+    - $(4, 2) = 0 \implies \mathbf{Mine!} \quad down = 0$.
+    - $(3, 2) = 1 \implies down = 1$.
+    - $(2, 2) = 1 \implies down = 1 + 1 = \mathbf{2}$.
+    - $(1, 2) = 1 \implies down = 3$.
+    - Down count at $(2, 2)$ is $2$.
+  - **Step 5: Compute Center $(2, 2)$ Order:**
+    - Take the minimum across all 4 cardinal directions:
+      $$
+      order(2, 2) = \min(left: 3, \; right: 3, \; up: 3, \; down: 2) = \mathbf{2}
+      $$
+  - **Step 6: Inspect Global Optimum:**
+    - All other potential centers closer to the grid boundaries have at most arm length 2.
+    - No cell can achieve order $\ge 3$ because $(2, 2)$ is the only cell with margin 2 from all 4 boundaries, and its down arm is curtailed by the mine.
+    - Maximum order across the entire grid:
+      $$
+      ans = \mathbf{2}
+      $$
+- **Single Mined Cell Grid Trace ($n = 1, mines = [[0, 0]]$):**
+  - Cell $(0, 0)$ is 0.
+  - $dp[0][0] = 0 \implies ans = \mathbf{0}$.
+- **Unobstructed Grid ($n = 5, mines = []$):**
+  - Symmetric center $(2, 2)$ has $L = 3, R = 3, U = 3, D = 3$.
+  - Order is $\min(3, 3, 3, 3) = \mathbf{3}$.
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates multidirectional dynamic programming and spatial cross-neighborhood minimization, mathematically proves why pointwise minimum over 4 directional distance fields computes the exact radius of maximal cross-polytopes, and derives $O(N^2)$ runtime and $O(N^2)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Largest Plus Sign** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an $n \times n$ grid with obstacles (`mines`):
+Find the **order of the largest plus sign** of 1s (center and 4 arms of length $k-1$).
+Return 0 if no 1s exist.
+
+```text
+n = 5, mine at (4, 2)
+
+Grid:
+  1 1 1 1 1
+  1 1 1 1 1
+  1 1 1 1 1  <- Center at (2, 2)
+  1 1 1 1 1
+  1 1 0 1 1  <- Mine at (4, 2) blocks the down arm!
+
+At center (2, 2):
+  Up arm:    extends to (0, 2) -> length 3
+  Left arm:  extends to (2, 0) -> length 3
+  Right arm: extends to (2, 4) -> length 3
+  Down arm:  blocked by (4, 2) -> length 2
+
+Order = min(3, 3, 3, 2) = 2.
+Result: 2
+```
+
+### The Invariant of the 4-Directional Minimum
+- The maximum order of a plus sign centered at $(r, c)$ equals the minimum consecutive 1s extending left, right, up, and down: $order(r, c) = \min(L, R, U, D)$.
+- Accumulating running counts in each direction allows finding all arm lengths in $O(N^2)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### 1. Directional Arm Extension:
+For each cell $(r, c)$ with $grid[r][c] = 1$:
+$$
+L(r, c) = L(r, c - 1) + 1, \quad R(r, c) = R(r, c + 1) + 1
+$$
+$$
+U(r, c) = U(r - 1, c) + 1, \quad D(r, c) = D(r + 1, c) + 1
+$$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### 2. Center Order Evaluation:
+$$
+order(r, c) = \min(L(r, c), \; R(r, c), \; U(r, c), \; D(r, c))
+$$
+$$
+ans = \max_{r, c} order(r, c)
+$$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Cross-Polytope Metric Invariant.** The order of an axis-aligned plus sign centered at $x \in \mathbb{Z}^2$ is the maximal radius $k$ such that the discrete $L_1$ cross-polytope star $S_k(x) = \{x \pm m e_i \mid 0 \le m < k, \; i \in \{1, 2\}\}$ is contained in the free domain $V \setminus mines$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
-
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+We trace $n = 5, mines = [[4, 2]]$ at center $(2, 2)$:
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Step 1: Initialize
+- Set $(4, 2)$ to 0.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Step 2: Compute Arms at $(2, 2)$
+- Left: 3 cells $(2, 0), (2, 1), (2, 2) \implies L = 3$.
+- Right: 3 cells $(2, 4), (2, 3), (2, 2) \implies R = 3$.
+- Up: 3 cells $(0, 2), (1, 2), (2, 2) \implies U = 3$.
+- Down: mine at $(4, 2) \implies$ only 2 cells $(3, 2), (2, 2) \implies D = 2$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Step 3: Minimum Arm
+- $\min(3, 3, 3, 2) = \mathbf{2}$.
+
+---
+
+### Step 4: Output
+$$
+ans = \mathbf{2}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Candidate Center $(r, c)$ | Left Arm $L$ | Right Arm $R$ | Up Arm $U$ | Down Arm $D$ | Bottleneck Order $\min(L, R, U, D)$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(2, 2)$ | $3$ | $3$ | $3$ | **$2$ (blocked by mine)** | **`2`** |
+| $(1, 2)$ | $3$ | $3$ | $2$ (boundary) | $3$ | $2$ |
+| $(2, 1)$ | $2$ | $4$ | $3$ | $3$ | $2$ |
+| $(2, 3)$ | $4$ | $2$ | $3$ | $3$ | $2$ |
+| **Max** | — | — | — | — | **`2`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
-
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+- **All Mined Grid ($n = 1, mines = [[0, 0]]$):** No 1s $\implies$ returns 0.
+- **Empty Mines ($mines = []$):** Center has $\lceil n / 2 \rceil$ in all directions $\implies$ order $\lceil n / 2 \rceil$.
+- **Mines along Perimeter:** Reduces arm lengths for interior cells reaching the boundary.
+- **Order 1 (Isolated Single 1):** Cell with 1 surrounded by mines has order 1.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Expanding Arms Radially for Every Cell ($O(N^3)$):** Expanding outwards from every candidate center takes $O(N)$ per cell, leading to $O(N^3)$ total time ($500^3 = 1.25 \times 10^8$, dangerously close to TLE). 4-directional DP precomputation runs in strictly $O(N^2)$.
+- **Using 4 Separate $N \times N$ Matrices:** Allocating 4 full matrices uses excessive memory. A single $dp$ array updated in-place via $\min$ achieves the exact same result in $\mathcal{O}(N^2)$ space.
+- **Off-By-One on Plus Sign Order:** A plus sign of order $k$ has arm length $k - 1$ plus the center cell, so total consecutive 1s in that direction equals $k$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:**
+  - One pass to mark mines in $dp$: $\mathcal{O}(|mines|)$.
+  - Outer loop runs $N$ times; inner loop sweeps $N$ elements across 4 directions: $\mathcal{O}(N^2)$.
+  - Total Time: strictly $\mathcal{O}(N^2)$ where $N \le 500 \implies \le 2.5 \times 10^5$ operations. Completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N^2)$ memory for the $dp$ grid matrix.

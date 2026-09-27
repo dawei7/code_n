@@ -47,7 +47,7 @@
     {
       "id": "trial-diagonal",
       "name": "diagonal ones do not form square side two",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "matrix": [
@@ -63,13 +63,14 @@
       },
       "expected": 1,
       "tags": [
+        "sample",
         "boundary"
       ]
     },
     {
       "id": "trial-zero",
       "name": "all-zero matrix",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "matrix": [
@@ -80,6 +81,7 @@
       },
       "expected": 0,
       "tags": [
+        "sample",
         "zero"
       ]
     },

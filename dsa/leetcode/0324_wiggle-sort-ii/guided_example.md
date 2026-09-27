@@ -1,140 +1,214 @@
 # Guided Example: Wiggle Sort II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step array partition into lower and upper halves, reverse order interleaving ($L_{\text{descending}}$ at even indices, $U_{\text{descending}}$ at odd indices), duplicate median separation, and in-place strict wiggle sequence construction on representative array instances:
 
-- **Input:** `{"nums": [1, 5, 1, 1, 6, 4]}`
-- **Required output:** `[1, 6, 1, 5, 1, 4]`
+- **Input:** $\text{nums} = [1, 5, 1, 1, 6, 4]$
+- **Required output:** $[1, 6, 1, 5, 1, 4]$
+  - Sorted array: $[1, 1, 1, 4, 5, 6]$
+  - Lower half: $[1, 1, 1]$ (indices $0..2$)
+  - Upper half: $[4, 5, 6]$ (indices $3..5$)
+  - Reverse interleaving:
+    - Even indices: $[1, 1, 1]$ (from right of lower half)
+    - Odd indices: $[6, 5, 4]$ (from right of upper half)
+    - Combined: $[1, 6, 1, 5, 1, 4]$
+  - Satisfies: $1 < 6 > 1 < 5 > 1 < 4$ strictly
+- **Odd Length Array:** $\text{nums} = [1, 3, 2, 2, 3, 1] \implies [2, 3, 1, 3, 1, 2]$
+- **Identical Numbers at Boundary:** Duplicate median elements are kept strictly separated by reverse indexing
+- **Minimal Two Element Array:** $[1, 2] \implies [1, 2]$ ($1 < 2$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates median-split interleaving, mathematically proves why reading both halves in descending order prevents duplicate median values from landing in adjacent positions, contrasts forward vs reverse interleaving, and analyzes time ($O(N \log N)$) and space ($O(N)$) bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, reorder it such that $\text{nums}[0] < \text{nums}[1] > \text{nums}[2] < \text{nums}[3]...$.
+Given an integer array $\text{nums} = [1, 5, 1, 1, 6, 4]$ ($N = 6$):
+Reorder $\text{nums}$ in-place such that:
+$$
+\text{nums}[0] < \text{nums}[1] > \text{nums}[2] < \text{nums}[3] > \text{nums}[4] < \text{nums}[5]
+$$
+Note that **strict** inequalities are required ($<$ and $>$, not $\le$ or $\ge$).
 
-The objective is to compute `[1, 6, 1, 5, 1, 4]` from `{"nums": [1, 5, 1, 1, 6, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: [1, 5, 1, 1, 6, 4]
+Sorted: [1, 1, 1, 4, 5, 6]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Lower Half (valleys): [1, 1, 1]
+Upper Half (peaks):   [4, 5, 6]
+
+Even positions (0, 2, 4): filled from lower half in reverse -> 1, 1, 1
+Odd positions  (1, 3, 5): filled from upper half in reverse -> 6, 5, 4
+
+Wiggled Result:
+Index:   0    1    2    3    4    5
+Value:   1 <  6  > 1 <  5  > 1 <  4
+
+Strict Wiggle Validated!
+```
+
+### The Median Collision Trap
+Why can't we interleave the sorted halves forward (left-to-right)?
+Consider $\text{nums} = [1, 2, 2, 3]$.
+- Lower half: $[1, 2]$, Upper half: $[2, 3]$.
+- Forward interleaving:
+  - $\text{nums}[0] = 1$
+  - $\text{nums}[1] = 2$
+  - $\text{nums}[2] = 2$
+  - $\text{nums}[3] = 3$
+  $\implies [1, 2, 2, 3]$, which fails at $\text{nums}[1] > \text{nums}[2]$ because $2 \ngtr 2$!
+- **The Reverse Interleaving Solution:**
+  Reading both halves **backward** places the largest lower-half element at index $0$ and the largest upper-half element at index $1$. The duplicate medians are pushed to opposite ends of the resulting array, preventing collisions!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Array Partition Bounds
+Let $arr = \text{sorted}(nums)$ of length $n$:
+- Lower half end pointer: $i = (n - 1) \gg 1$.
+  - Covers indices $[0, i]$.
+  - For $n = 6$: $i = (6 - 1) // 2 = 2$. Lower half: $arr[0..2]$ (length 3).
+  - For odd $n = 2q + 1$: $i = q$. Lower half has $q + 1$ elements (matching $q + 1$ even indices).
+- Upper half end pointer: $j = n - 1$.
+  - Covers indices $[i + 1, n - 1]$.
+  - For $n = 6$: $j = 5$. Upper half: $arr[3..5]$ (length 3).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Placement Loop:
+Iterate destination index $k$ from $0$ to $n - 1$:
+- If $k$ is even ($k \pmod 2 == 0$):
+  $$
+  \text{nums}[k] = arr[i], \quad i \leftarrow i - 1
+  $$
+- If $k$ is odd ($k \pmod 2 == 1$):
+  $$
+  \text{nums}[k] = arr[j], \quad j \leftarrow j - 1
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every even index $2m$ and adjacent odd index $2m+1$, $\text{nums}[2m] < \text{nums}[2m+1]$ and $\text{nums}[2m+1] > \text{nums}[2m+2]$, because the descending traversal ensures elements drawn from the upper half are strictly greater than elements drawn from the lower half at corresponding offsets.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn the inequalities into alternating roles.
-
-The required pattern is
-
-$$
-\text{nums}[0] < \text{nums}[1] > \text{nums}[2] < \text{nums}[3] > \cdots.
-$$
-
-Even indices are valleys and odd indices are peaks. It is therefore natural to reserve the smaller half of the values for even positions and the larger half for odd positions. Sorting first makes those two groups explicit.
-
-The exact optimal source creates `arr = sorted(nums)`. This is a new ascending copy; all later reads come from `arr`, while assignments overwrite the original `nums`. Keeping a separate copy prevents early writes from destroying values that have not yet been placed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 5, 1, 1, 6, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the placement on $\text{nums} = [1, 5, 1, 1, 6, 4]$ ($n = 6$):
+Sorted copy: $arr = [1, 1, 1, 4, 5, 6]$.
+Pointers:
+- $i = (6 - 1) \gg 1 = 2$ (points to $arr[2] = 1$).
+- $j = 6 - 1 = 5$ (points to $arr[5] = 6$).
 
 ---
 
-### Step 2: Split the sorted values into lower and upper halves.
-
-Let $n$ be the array length. The index
-
-$$
-i = \left\lfloor\frac{n-1}{2}\right\rfloor
-$$
-
-is the final index of the lower half, and `j = n - 1` is the final index of the upper half.
-
-For an even length $n=2q$, the lower and upper halves each contain $q$ values:
-
-$$
-\text{lower} = \text{arr}[0:q],
-\qquad
-\text{upper} = \text{arr}[q:2q].
-$$
-
-For an odd length $n=2q+1$, there are $q+1$ even positions but only $q$ odd positions. Accordingly, the lower half contains $q+1$ values and the upper half contains $q$:
-
-$$
-\text{lower} = \text{arr}[0:q+1],
-\qquad
-\text{upper} = \text{arr}[q+1:2q+1].
-$$
-
-This size difference is why the formula uses `(n - 1) >> 1`, which is integer division of $n-1$ by two. The extra value for an odd-length array belongs in a valley position, including the unpaired final even index.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: $k = 0$ (Even Index — Valley)
+- $k \pmod 2 == 0 \implies$ take from lower pointer $i = 2$:
+  $$
+  \text{nums}[0] = arr[2] = \mathbf{1}
+  $$
+- Decrement pointer: $i \leftarrow 2 - 1 = 1$.
 
 ---
 
-### Step 3: Read both halves backward.
+### Step 2: $k = 1$ (Odd Index — Peak)
+- $k \pmod 2 == 1 \implies$ take from upper pointer $j = 5$:
+  $$
+  \text{nums}[1] = arr[5] = \mathbf{6}
+  $$
+- Decrement pointer: $j \leftarrow 5 - 1 = 4$.
+- Subsequence: $[1, 6]$ ($1 < 6$ holds).
 
-The loop visits destination index `k` from left to right. At an even `k`, it writes `arr[i]` and decrements `i`; at an odd `k`, it writes `arr[j]` and decrements `j`. The resulting arrangement has the form
+---
 
-$$
-L_0, U_0, L_1, U_1, L_2, U_2, \ldots,
-$$
+### Step 3: $k = 2$ (Even Index — Valley)
+- $k \pmod 2 == 0 \implies$ take from lower pointer $i = 1$:
+  $$
+  \text{nums}[2] = arr[1] = \mathbf{1}
+  $$
+- Decrement pointer: $i \leftarrow 1 - 1 = 0$.
+- Subsequence: $[1, 6, 1]$ ($6 > 1$ holds).
 
-where $L_0,L_1,\ldots$ are the lower-half values in descending order and $U_0,U_1,\ldots$ are the upper-half values in descending order.
+---
 
-Using descending order inside each half is essential when duplicates exist. If both halves were read from left to right, equal values near the split could land next to each other. For the sorted array `[1,2,2,2,3,3]`, ascending interleaving would begin `[1,2,2,3,...]`, which already fails at `2 > 2`. Reversing the halves separates the equal values: lower descending is `[2,2,1]`, upper descending is `[3,3,2]`, and their interleaving is `[2,3,2,3,1,2]`.
+### Step 4: $k = 3$ (Odd Index — Peak)
+- $k \pmod 2 == 1 \implies$ take from upper pointer $j = 4$:
+  $$
+  \text{nums}[3] = arr[4] = \mathbf{5}
+  $$
+- Decrement pointer: $j \leftarrow 4 - 1 = 3$.
+- Subsequence: $[1, 6, 1, 5]$ ($1 < 5$ holds).
 
-The reversal places the largest lower value first, but it also pairs it with the largest upper value. As the lower choices decrease, the upper choices decrease in step. Duplicate values around the median are pushed apart instead of being aligned across an early peak boundary.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 6, 1, 5, 1, 4]` |
+### Step 5: $k = 4$ (Even Index — Valley)
+- $k \pmod 2 == 0 \implies$ take from lower pointer $i = 0$:
+  $$
+  \text{nums}[4] = arr[0] = \mathbf{1}
+  $$
+- Decrement pointer: $i \leftarrow 0 - 1 = -1$.
+- Subsequence: $[1, 6, 1, 5, 1]$ ($5 > 1$ holds).
+
+---
+
+### Step 6: $k = 5$ (Odd Index — Peak)
+- $k \pmod 2 == 1 \implies$ take from upper pointer $j = 3$:
+  $$
+  \text{nums}[5] = arr[3] = \mathbf{4}
+  $$
+- Decrement pointer: $j \leftarrow 3 - 1 = 2$.
+- Final sequence:
+  $$
+  \mathbf{[1, 6, 1, 5, 1, 4]}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 5, 1, 1, 6, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 6, 1, 5, 1, 4]` | Verified |
+```text
+nums = [1, 5, 1, 1, 6, 4]
+arr  = [1, 1, 1, 4, 5, 6]
+i = 2, j = 5
+
+k=0 (even): nums[0] = arr[2] = 1, i becomes 1
+k=1 (odd):  nums[1] = arr[5] = 6, j becomes 4
+k=2 (even): nums[2] = arr[1] = 1, i becomes 0
+k=3 (odd):  nums[3] = arr[4] = 5, j becomes 3
+k=4 (even): nums[4] = arr[0] = 1, i becomes -1
+k=5 (odd):  nums[5] = arr[3] = 4, j becomes 2
+
+Result: [1, 6, 1, 5, 1, 4]
+Validation: 1 < 6 > 1 < 5 > 1 < 4
+```
+
+| Step $k$ | Parity | Source Pointer Used | Pointer Index | Value Written $\text{nums}[k]$ | Pointer Updated | Current Sequence | Verification |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | Even | Lower ($i$) | 2 | **1** | $i = 1$ | `[1]` | Baseline |
+| 1 | Odd | Upper ($j$) | 5 | **6** | $j = 4$ | `[1, 6]` | $1 < 6$ |
+| 2 | Even | Lower ($i$) | 1 | **1** | $i = 0$ | `[1, 6, 1]` | $6 > 1$ |
+| 3 | Odd | Upper ($j$) | 4 | **5** | $j = 3$ | `[1, 6, 1, 5]` | $1 < 5$ |
+| 4 | Even | Lower ($i$) | 0 | **1** | $i = -1$ | `[1, 6, 1, 5, 1]` | $5 > 1$ |
+| 5 | Odd | Upper ($j$) | 3 | **4** | $j = 2$ | `[1, 6, 1, 5, 1, 4]` | $1 < 4$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The array is divided into a lower half ($arr[0 \dots i]$) and upper half ($arr[i+1 \dots n-1]$). Even indices are populated from the lower half, and odd indices from the upper half. Because the problem guarantees a valid wiggle sort exists, the maximum frequency of any element cannot exceed $\lceil n / 2 \rceil$. Reversing both halves ensures that median elements in the lower half (placed at $k = 0, 2, \dots$) and median elements in the upper half (placed at the trailing odd indices) are maximally spaced, guaranteeing strict inequality between all adjacent elements.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every element from $arr$ is written to exactly one position in $\text{nums}$. The loop runs for all $n$ indices, completely overwriting $\text{nums}$ in-place without losing or creating values.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Quickselect plus virtual indexing:** Select the median in expected $O(n)$ time, then three-way partition values through the index mapping that visits odd positions before even positions. This can meet the expected $O(n)$-time and $O(1)$-space follow-up, but it is considerably more intricate and is not the exact source shown here.
-- **Sort and interleave halves in ascending order:** This looks similar but fails with duplicates around the median, because equal boundary values can become adjacent. Reversing both halves is the detail that spreads duplicates safely.
-- **Sort without a separate copy:** Rearranging `nums` while also using it as the unread sorted source risks overwriting values before they are consumed. The copied `arr` cleanly separates reads from writes.
+- **Overwriting In-Place Without a Copy:** Modifying $\text{nums}$ directly while reading from it corrupts future values before they are placed. Sorting into a separate buffer `arr` is necessary.
+- **Forward Interleaving Failure:** Forward interleaving ($arr[0]$ to even, $arr[half]$ to odd) fails whenever elements equal to the median occur more than once, because $arr[half-1]$ and $arr[half]$ can be identical and placed adjacently. Reversing both streams prevents this.
+- **Odd Length Arrays:** When $n$ is odd, the lower half must have $\frac{n+1}{2}$ elements and the upper half $\frac{n-1}{2}$ elements. Using $(n - 1) \gg 1$ correctly assigns the extra element to the valleys.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of elements. Creating `arr = sorted(nums)` takes $O(n\log n)$ time. The placement loop visits every destination once and takes $O(n)$ time, so the exact implementation's total time complexity is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log N)$, where $N$ is the number of elements in `nums`.
+  - Sorting `nums` takes $O(N \log N)$ time.
+  - The placement loop makes a single pass of $N$ steps, copying elements in $O(N)$ time.
+  - Total runtime is $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the sorted copy `arr`.

@@ -43,7 +43,7 @@
     {
       "id": "trial-many",
       "name": "duplicate appears many times",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -56,6 +56,7 @@
       },
       "expected": 3,
       "tags": [
+        "sample",
         "repeated"
       ]
     },

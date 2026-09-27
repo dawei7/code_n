@@ -1,125 +1,161 @@
 # Guided Example: Count Substrings with Only One Distinct Letter
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"s": "aaaba"}`
-- **Required output:** `8`
+We are given a string $s$ consisting of lowercase English letters. A substring of $s$ is defined as a contiguous non-empty sequence of characters. Our objective is to count the total number of substrings that contain exactly one distinct character (i.e., all characters within the substring are identical).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A naive brute-force method would examine all $\frac{N(N+1)}{2}$ possible substrings, verify character homogeneity for each in $\mathcal{O}(N)$ time, resulting in an $\mathcal{O}(N^3)$ (or $\mathcal{O}(N^2)$ with rolling validation) runtime.
 
----
+However, the problem exhibits a clean decomposition property:
+1. **Boundary Independence**: A substring of identical characters cannot cross a boundary between two distinct characters. For instance, in the string `"aaabb"`, no valid substring can contain both an `'a'` and a `'b'`.
+2. **Maximal Run Partition**: The entire string can be uniquely partitioned into maximal contiguous runs of identical characters:
+   $$s = \sigma_1^{L_1} \sigma_2^{L_2} \dots \sigma_k^{L_k} \quad \text{where } \sigma_i \neq \sigma_{i+1}$$
+3. **Triangular Number Summation**: Within a single homogeneous block of length $L$, any contiguous subsegment is guaranteed to consist of the same character. The number of such subsegments of length 1 is $L$, of length 2 is $L-1$, down to length $L$ which is 1. The total number of valid substrings formed entirely within this block is precisely the $L$-th triangular number:
+   $$\text{Count}(L) = \sum_{i=1}^L i = \frac{L(L+1)}{2}$$
 
-## 1. Instance & Teaching Goal
+Because these blocks are disjoint and non-overlapping, the global answer is simply the sum of the triangular numbers of all maximal run lengths.
 
-Given a string `s`, return *the number of substrings that have only **one distinct** letter*.
+```
+String: "a a a b b a"
+Runs:   [a: len 3]   [b: len 2]   [a: len 1]
+Counts:  3*4/2 = 6    2*3/2 = 3    1*2/2 = 1
 
-The objective is to compute `8` from `{"s": "aaaba"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Total = 6 + 3 + 1 = 10 valid substrings
+```
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical Formalism & Invariants
 
-### Step 1: Counting one equal-character run
+Let $s$ be a string of length $n$ indexed from $0$ to $n-1$.
+Define a substring $s[i \dots j]$ ($0 \le i \le j < n$) to be homogeneous if:
+$$\forall k \in [i, j], \quad s[k] = s[i]$$
 
-Inside a run, every position contains the same letter, so every nonempty contiguous interval is valid. There are $L$ substrings of length one, $L-1$ substrings of length two, and so on, down to one substring of length $L$. Their total is
+### Partitioning Theorem
+The index set $\{0, 1, \dots, n-1\}$ can be partitioned into $m$ contiguous intervals $[l_r, r_r]$ ($1 \le r \le m$) such that:
+1. $l_1 = 0$, $r_m = n-1$.
+2. For all $r \in [1, m-1]$, $l_{r+1} = r_r + 1$.
+3. For each interval $r$, $\forall k \in [l_r, r_r], \ s[k] = s[l_r]$.
+4. For adjacent intervals, $s[r_r] \neq s[l_{r+1}]$.
 
-$$
-L+(L-1)+\cdots+1=\frac{L(L+1)}{2}.
-$$
+### Count Invariant
+Any valid homogeneous substring $s[i \dots j]$ must satisfy:
+$$\exists ! r \in [1, m] \quad \text{such that } l_r \le i \le j \le r_r$$
 
-Another beginner-friendly way to see the same formula is to count by starting position. From the run’s first position, a valid substring may end at any of $L$ positions. From the second position, it has $L-1$ choices. This continues until the last position has one choice. Both views count every interval once.
+Proof: If $s[i \dots j]$ crossed a partition boundary, say $j \ge l_{r+1}$ with $i \le r_r$, then $s[r_r] = s[i] = s[j] = s[l_{r+1}]$, contradicting the maximal boundary condition $s[r_r] \neq s[l_{r+1}]$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Therefore, the set of all homogeneous substrings is the disjoint union of homogeneous substrings within each maximal run:
+
+$$\text{Total Substrings} = \sum_{r=1}^m \frac{(r_r - l_r + 1)(r_r - l_r + 2)}{2} = \sum_{r=1}^m \frac{L_r(L_r + 1)}{2}$$
+
+---
+
+## 3. Concrete Example Execution & State Evolution
+
+Consider the input string $s = \text{"aaaba"}$ of length $n = 5$.
+
+### Run-Length Partitioning Trace
+
+| Run Index $r$ | Character $\sigma_r$ | Start Index $l_r$ | End Index $r_r$ | Run Length $L_r$ | Formula $\frac{L_r(L_r+1)}{2}$ | Substrings Generated | Running Total |
+|---|---|---|---|---|---|---|---|
+| 1 | `'a'` | 0 | 2 | 3 | $\frac{3 \times 4}{2} = 6$ | `"a" (x3)`, `"aa" (x2)`, `"aaa"` | 6 |
+| 2 | `'b'` | 3 | 3 | 1 | $\frac{1 \times 2}{2} = 1$ | `"b"` | 7 |
+| 3 | `'a'` | 4 | 4 | 1 | $\frac{1 \times 2}{2} = 1$ | `"a"` | **8** |
+
+```mermaid
+flowchart TD
+    accTitle: Two-Pointer Run Length Decomposition
+    accDescr: String parsed sequentially into blocks of identical characters, accumulating triangular counts.
+    
+    A["Input String: 'aaaba'"] --> B["Pointer i = 0, j = 0"]
+    B --> C["Scan matching chars: s[0..2] == 'a'"]
+    C --> D["Run length L = 3 - 0 = 3"]
+    D --> E["Accumulate: 3 * 4 / 2 = 6"]
+    E --> F["Advance pointer i to j = 3"]
+    
+    F --> G["Scan matching chars: s[3] == 'b'"]
+    G --> H["Run length L = 4 - 3 = 1"]
+    H --> I["Accumulate: 1 * 2 / 2 = 1 (Total = 7)"]
+    I --> J["Advance pointer i to j = 4"]
+    
+    J --> K["Scan matching chars: s[4] == 'a'"]
+    K --> L["Run length L = 5 - 4 = 1"]
+    L --> M["Accumulate: 1 * 2 / 2 = 1 (Total = 8)"]
+    M --> N["Pointer i reaches n = 5: Output 8"]
+```
+
+### Dynamic Rolling Window Alternative View
+Alternatively, maintaining a single integer for the current consecutive streak:
+At each character index $k$:
+- If $s[k] == s[k-1]$, $\text{streak} = \text{streak} + 1$.
+- Else, $\text{streak} = 1$.
+- $\text{Total} = \text{Total} + \text{streak}$.
+
+| Index $k$ | Character $s[k]$ | Previous Character | Streak Length | Substrings Ending at $k$ | Cumulative Total |
+|---|---|---|---|---|---|
+| 0 | `'a'` | (None) | 1 | $s[0 \dots 0]$ (`"a"`) | 1 |
+| 1 | `'a'` | `'a'` | 2 | $s[1 \dots 1]$ (`"a"`), $s[0 \dots 1]$ (`"aa"`) | 3 |
+| 2 | `'a'` | `'a'` | 3 | $s[2 \dots 2]$, $s[1 \dots 2]$, $s[0 \dots 2]$ | 6 |
+| 3 | `'b'` | `'a'` | 1 | $s[3 \dots 3]$ (`"b"`) | 7 |
+| 4 | `'a'` | `'b'` | 1 | $s[4 \dots 4]$ (`"a"`) | 8 |
+
+Both formulations are mathematically isomorphic.
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Metric / Dimension | All Substrings Naive Validation | Dynamic Window Expansion | Run-Length Triangular Aggregation (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"s": "aaaba"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Time Complexity** | $\mathcal{O}(N^3)$ | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ |
+| **Space Complexity** | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| **Loop Operations** | Triple nested loops | Single forward loop | Two-pointer block skips |
+| **Arithmetic Cost** | $\approx N^3$ equality checks | $N$ additions | $M$ multiplications/divisions ($M \le N$) |
+| **Code Simplicity** | Low efficiency | Single accumulator variable | Clean two-pointer / run-length structure |
+
+```
+Execution Comparison on Run of Length 1000:
+- Naive: Checks 500,500 substrings individually
+- Rolling: Adds 1 + 2 + ... + 1000 across 1000 loop cycles
+- Triangular: Directly computes (1000 * 1001) / 2 = 500,500 in one arithmetic operation
+```
 
 ---
 
-### Step 2: How the two pointers discover maximal runs
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The code begins with `i = 0`. This variable is the first index of the next run that has not yet been counted. While `i < n`, it sets `j = i` and advances `j` while two conditions hold: `j` is still inside the string, and `s[j] == s[i]`. Because `s[i]` is the run’s character, the inner loop moves across exactly the consecutive copies of that character.
-
-When the inner loop stops, `j` is the exclusive end of the run. Either `j == n`, meaning the run reaches the end of the string, or `s[j]` differs from `s[i]`, meaning a new run begins at `j`. The run occupies the half-open interval from `i` through `j` and has length `j - i`. Here “through `j`” means up to but not including `j`; the half-open form avoids adding or subtracting one when measuring the length.
-
-The solution adds
-
-`(1 + j - i) * (j - i) // 2`
-
-to `ans`. If $L=j-i$, this is exactly $(L+1)L/2$. The division is performed after multiplication. One of two consecutive integers $L$ and $L+1$ is always even, so the product is divisible by two and integer division loses nothing.
-
-Finally, `i = j` moves the outer pointer directly to the first character of the next run. No character from the completed run is reconsidered by a later outer iteration.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Scenario | Input Example | Expected Output | Behavioral Verification |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Single Character String** | `"z"` | 1 | Single run of length 1: $\frac{1 \times 2}{2} = 1$. |
+| **All Identical Characters** | `"aaaaa"` ($n = 5$) | 15 | Single run of length 5: $\frac{5 \times 6}{2} = 15$. |
+| **All Distinct Characters** | `"abcdef"` ($n = 6$) | 6 | 6 runs of length 1 each: $6 \times \frac{1 \times 2}{2} = 6$. |
+| **Alternating Characters** | `"ababab"` ($n = 6$) | 6 | Each character is an isolated run of length 1. |
+| **Large Homogeneous Run** | String with $n = 1000$ identical characters | 500500 | Evaluates $\frac{1000 \times 1001}{2} = 500500$ without integer overflow in standard 32-bit/64-bit integer types. |
 
 ---
 
-### Step 3: Following the example from start to finish
+## 6. Mathematical Verification & Complexity Derivation
 
-For `s = "aaaba"`, the first run starts at zero. The inner pointer advances to three, so $L=3$ and the solution adds $3 \cdot 4 / 2=6$. Those six occurrences are three length-one substrings, two length-two substrings, and one length-three substring.
+Let $N = |s|$ be the total number of characters in the string.
+Let the maximal homogeneous runs be of lengths $L_1, L_2, \dots, L_m$, where $\sum_{r=1}^m L_r = N$.
 
-The next run is the single `"b"` at index three. Its length is one, so it contributes one. The last `"a"` is another separate length-one run and contributes one. It must not be combined with the earlier `"a"` characters because the `"b"` between them prevents a contiguous substring from using both regions. The final answer is $6+1+1=8$.
+### Time Complexity Derivation:
+1. The outer two-pointer loop starts with index $i = 0$.
+2. The inner loop advances index $j$ until $s[j] \neq s[i]$ or $j = N$. Each character index in $s$ is visited by $j$ exactly once throughout the entire algorithm.
+3. The arithmetic computation $\frac{L_r(L_r+1)}{2}$ requires $\mathcal{O}(1)$ basic arithmetic operations per run.
+4. The outer pointer jumps to $i = j$.
+5. Since each character is examined at most twice (once by $j$ and once by $i$), the total number of steps is strictly bounded by $2N$.
+- **Total Time Complexity:** $\mathcal{O}(N)$ linear time.
 
-For a string of ten identical letters, there is one run of length ten, so the answer is $10 \cdot 11 / 2=55$. The algorithm obtains that result without constructing any of the 55 substrings.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aaaba"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
+### Space Complexity Derivation:
+- The algorithm uses only a constant number of scalar index pointers ($i, j$) and accumulator counters ($ans$).
+- No additional strings, vectors, or dynamic memory structures are allocated.
+- **Total Auxiliary Space Complexity:** $\mathcal{O}(1)$ constant space.
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Ending-at-this-index dynamic programming:** Track the number of valid substrings ending at the current character. Increase that number when the character matches its predecessor; otherwise reset it to one. Adding these values also gives $O(n)$ time and $O(1)$ space.
-- **Enumerate all substrings:** Generating intervals and checking their distinct letters is unnecessarily expensive, taking at least quadratic time and potentially cubic work with repeated scans.
-- **Single-character string:** One maximal run of length one contributes $1 \cdot 2 / 2=1$, so the only substring is counted.
-- **All characters equal:** The inner loop reaches `n` once, and the formula counts all $n(n+1)/2$ nonempty substrings.
-- **Every adjacent character differs:** Every run has length one. Each contributes one, so the answer is exactly $n$.
-- **Same letter in separated runs:** Runs such as the two `"a"` regions in `"aba"` must remain separate. Contiguity prevents combining them across the different middle character.
-- **Exclusive run endpoint:** When the inner loop ends, `j` is not part of the completed run. The correct length is `j - i`, and setting `i = j` starts precisely at the unprocessed character.
-- **Occurrence counting rather than distinct text:** Two equal substrings at different index intervals both count. The run formula naturally counts intervals, not unique string values.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. Although the solution contains a loop inside another loop, it is not quadratic. Within a run, `j` advances across each character once. After the run is counted, `i` jumps to that same exclusive endpoint. Across the entire execution, the inner-loop pointer performs $n$ successful character visits in total, plus a constant amount of boundary work per run.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **The Triangular Counting Formula**: Whenever counting all contiguous subsegments of an interval of length $L$, the number of choices is given by $\binom{L+1}{2} = \frac{L(L+1)}{2}$. Recognizing this formula replaces nested iteration with instant closed-form evaluation.
+2. **Disjoint Partitioning for Multi-Condition Substrings**: When a substring validity property cannot survive across transitions between different symbols, the problem immediately reduces to independent, mutually disjoint blocks.
+3. **Equivalence of Two-Pointer Block Scanning and Stream Accumulation**: Summing triangular numbers at the end of each run and adding the active streak length at every single step are mathematically identical. Choosing the two-pointer block formulation minimizes memory writes and loop iterations.

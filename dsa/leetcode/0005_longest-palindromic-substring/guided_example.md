@@ -1,146 +1,164 @@
 # Guided Example: Longest Palindromic Substring
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step dynamic programming evaluation on a representative string instance:
 
-- **Input:** `{"s": "babad"}`
-- **Required output:** `"bab"`
+- **Input:** $s = \text{"babad"}$
+- **Required output:** $\text{"bab"}$ (or $\text{"aba"}$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is selected because it demonstrates both essential dynamic programming behaviors: decomposing an outer interval into an inner subproblem, and rejecting candidates where outer characters match but inner substrings fail or vice versa.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, return *the longest* *palindromic* *substring* in `s`.
+Given a string $s$, we seek the longest contiguous substring that reads identically forward and backward. 
 
-The objective is to compute `"bab"` from `{"s": "babad"}` while avoiding redundant calculations and unnecessary overhead.
+For $s = \text{"babad"}$, the indices are:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+| Index | 0 | 1 | 2 | 3 | 4 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Character | `b` | `a` | `b` | `a` | `d` |
+
+A naive approach checks all $O(N^2)$ candidate substrings, verifying each in $O(N)$ time for an overall $O(N^3)$ complexity. The optimal dynamic programming method reuses truth values of smaller inner substrings, verifying each interval in $O(1)$ time and reducing the overall complexity to $O(N^2)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $f[i][j]$ denote whether the substring $s[i \dots j]$ (from index $i$ to $j$ inclusive) is a palindrome.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A substring $s[i \dots j]$ is palindromic if and only if:
+1. The boundary characters match: $s[i] = s[j]$; and
+2. The remaining interior $s[i+1 \dots j-1]$ is also palindromic (or has length $\le 1$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+This gives the recurrence relation:
+
+$$
+f[i][j] = (s[i] = s[j]) \land \big(j - i < 2 \lor f[i+1][j-1]\big)
+$$
+
+### Base Cases
+- **Length 1:** Every single character $s[i \dots i]$ is vacuously a palindrome: $f[i][i] = \text{True}$.
+- **Length 2:** Two adjacent characters $s[i \dots i+1]$ form a palindrome if and only if $s[i] = s[i+1]$.
+- **Empty interior:** When $j - i < 2$, there is no inner substring to check.
+
+> **Invariant.** Before evaluating any interval of length $L = j - i + 1$, all sub-intervals of length strictly less than $L$ have been computed and stored in $f$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Build larger palindromes from smaller inner substrings
+We systematically evaluate candidate substrings ordered by increasing length $L = 1, 2, 3, 4, 5$.
 
-A string is a palindrome when it reads the same from left to right and right to left. For a substring with inclusive endpoints `i` and `j`, two facts are needed:
+### Length $L = 1$ (Single Characters)
+Every single character is inherently a palindrome:
+- $s[0 \dots 0] = \text{"b"} \implies f[0][0] = \text{True}$
+- $s[1 \dots 1] = \text{"a"} \implies f[1][1] = \text{True}$
+- $s[2 \dots 2] = \text{"b"} \implies f[2][2] = \text{True}$
+- $s[3 \dots 3] = \text{"a"} \implies f[3][3] = \text{True}$
+- $s[4 \dots 4] = \text{"d"} \implies f[4][4] = \text{True}$
 
-1. the outer characters match: `s[i] == s[j]`;
-2. everything between them, `s[i + 1:j]`, is itself a palindrome.
-
-This gives the recurrence
-
-$$
-f[i][j] = (s[i] = s[j]) \land f[i+1][j-1].
-$$
-
-Here `f[i][j]` means “the contiguous substring `s[i:j+1]` is a palindrome.” The table remembers answers for inner substrings, allowing an outer substring to be classified in constant time instead of comparing all its character pairs again.
-
-The method is dynamic programming because a state for one interval is derived from a smaller state whose answer has already been stored.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "babad"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Current best palindrome: $\text{"b"}$ (length 1).
 
 ---
 
-### Step 2: Why the table starts entirely `True`
+### Length $L = 2$ (Adjacent Pairs)
+For length 2, $j = i + 1$. We only need to check if $s[i] = s[j]$:
+- $s[0 \dots 1] = \text{"ba"}$: $s[0] = \text{'b'} \ne s[1] = \text{'a'} \implies f[0][1] = \text{False}$
+- $s[1 \dots 2] = \text{"ab"}$: $s[1] = \text{'a'} \ne s[2] = \text{'b'} \implies f[1][2] = \text{False}$
+- $s[2 \dots 3] = \text{"ba"}$: $s[2] = \text{'b'} \ne s[3] = \text{'a'} \implies f[2][3] = \text{False}$
+- $s[3 \dots 4] = \text{"ad"}$: $s[3] = \text{'a'} \ne s[4] = \text{'d'} \implies f[3][4] = \text{False}$
 
-The code creates
-
-
-
-At first this can look surprising: surely not every substring is a palindrome. Most meaningful entries are overwritten by the nested loops. The initial `true` values serve two base cases through their table positions:
-
-- `f[i][i]` represents a one-character substring, which is always a palindrome;
-- `f[i + 1][i]` represents the empty interior of a two-character substring `s[i:i+2]`, and an empty string is considered palindromic.
-
-The second case is stored below the main diagonal, where the left boundary is greater than the right boundary. For adjacent endpoints `j = i + 1`, the recurrence reads `f[i + 1][j - 1] = f[i + 1][i]`. Leaving that entry `true` means two equal adjacent characters, such as `"bb"`, are recognized as a palindrome without a separate length-two branch.
-
-Entries above the diagonal correspond to real substrings of length at least two. Every such entry visited by the loops is explicitly set to `false` before the matching-character test, so the broad initialization does not falsely mark an examined substring.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+No length 2 palindromes exist in this instance. Current best remains $\text{"b"}$ (length 1).
 
 ---
 
-### Step 3: Choose an order that computes the inner state first
+### Length $L = 3$ (Three-Character Windows)
+For length 3, $j = i + 2$. We check $s[i] = s[j]$ and consult the inner single character $f[i+1][j-1]$:
+- $s[0 \dots 2] = \text{"bab"}$:
+  - Outer check: $s[0] = \text{'b'}$ and $s[2] = \text{'b'}$ (match).
+  - Inner check: $f[1][1] = \text{True}$ (center $\text{"a"}$).
+  - Result: $f[0][2] = \text{True}$.
+  - Update best: $\text{"bab"}$ (length 3).
+- $s[1 \dots 3] = \text{"aba"}$:
+  - Outer check: $s[1] = \text{'a'}$ and $s[3] = \text{'a'}$ (match).
+  - Inner check: $f[2][2] = \text{True}$ (center $\text{"b"}$).
+  - Result: $f[1][3] = \text{True}$.
+  - Both $\text{"bab"}$ and $\text{"aba"}$ have maximal length 3.
+- $s[2 \dots 4] = \text{"bad"}$:
+  - Outer check: $s[2] = \text{'b'} \ne s[4] = \text{'d'}$ (mismatch).
+  - Result: $f[2][4] = \text{False}$.
 
-The recurrence for `f[i][j]` depends on `f[i + 1][j - 1]`. Therefore the row with the larger start index `i + 1` must already be complete before row `i` is processed.
+---
 
-The outer loop moves `i` backward:
+### Length $L = 4$ (Four-Character Windows)
+For length 4, $j = i + 3$:
+- $s[0 \dots 3] = \text{"baba"}$: $s[0] = \text{'b'} \ne s[3] = \text{'a'} \implies f[0][3] = \text{False}$.
+- $s[1 \dots 4] = \text{"abad"}$: $s[1] = \text{'a'} \ne s[4] = \text{'d'} \implies f[1][4] = \text{False}$.
 
+---
 
+### Length $L = 5$ (Full String)
+For the full string $s[0 \dots 4] = \text{"babad"}$:
+- Outer check: $s[0] = \text{'b'} \ne s[4] = \text{'d'} \implies f[0][4] = \text{False}$.
 
-It begins at `n - 2` because the final one-character state on the diagonal already has its base value. The inner loop moves `j` from `i + 1` to the end:
-
-
-
-When the algorithm reaches `(i, j)`, the dependency `(i + 1, j - 1)` lies in the next row, which was processed during an earlier outer-loop iteration, or on/below the diagonal, where the base initialization is correct.
-
-This ordering is essential. Scanning `i` from left to right would ask for states in row `i + 1` before that row had been computed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"bab"` |
+The search terminates having evaluated all valid substrings.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "babad"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"bab"` | Verified |
+### Step-by-Step Substring Evaluation
+
+| Window Length $L$ | Substring $s[i \dots j]$ | Outer Match ($s[i] = s[j]$) | Interior State $f[i+1][j-1]$ | Is Palindrome $f[i][j]$ | Longest Found |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $s[0 \dots 0] = \text{"b"}$ | Identical (Base Case) | - | **True** | $\text{"b"}$ ($L=1$) |
+| 1 | $s[1 \dots 1] = \text{"a"}$ | Identical (Base Case) | - | **True** | $\text{"b"}$ ($L=1$) |
+| 1 | $s[2 \dots 2] = \text{"b"}$ | Identical (Base Case) | - | **True** | $\text{"b"}$ ($L=1$) |
+| 1 | $s[3 \dots 3] = \text{"a"}$ | Identical (Base Case) | - | **True** | $\text{"b"}$ ($L=1$) |
+| 1 | $s[4 \dots 4] = \text{"d"}$ | Identical (Base Case) | - | **True** | $\text{"b"}$ ($L=1$) |
+| 2 | $s[0 \dots 1] = \text{"ba"}$ | $\text{'b'} \ne \text{'a'}$ | - | **False** | $\text{"b"}$ ($L=1$) |
+| 2 | $s[1 \dots 2] = \text{"ab"}$ | $\text{'a'} \ne \text{'b'}$ | - | **False** | $\text{"b"}$ ($L=1$) |
+| 2 | $s[2 \dots 3] = \text{"ba"}$ | $\text{'b'} \ne \text{'a'}$ | - | **False** | $\text{"b"}$ ($L=1$) |
+| 2 | $s[3 \dots 4] = \text{"ad"}$ | $\text{'a'} \ne \text{'d'}$ | - | **False** | $\text{"b"}$ ($L=1$) |
+| 3 | $s[0 \dots 2] = \text{"bab"}$ | $\text{'b'} = \text{'b'}$ | $f[1][1] = \text{True}$ | **True** | $\text{"bab"}$ ($L=3$) |
+| 3 | $s[1 \dots 3] = \text{"aba"}$ | $\text{'a'} = \text{'a'}$ | $f[2][2] = \text{True}$ | **True** | $\text{"bab"}$ ($L=3$) |
+| 3 | $s[2 \dots 4] = \text{"bad"}$ | $\text{'b'} \ne \text{'d'}$ | - | **False** | $\text{"bab"}$ ($L=3$) |
+| 4 | $s[0 \dots 3] = \text{"baba"}$ | $\text{'b'} \ne \text{'a'}$ | - | **False** | $\text{"bab"}$ ($L=3$) |
+| 4 | $s[1 \dots 4] = \text{"abad"}$ | $\text{'a'} \ne \text{'d'}$ | - | **False** | $\text{"bab"}$ ($L=3$) |
+| 5 | $s[0 \dots 4] = \text{"babad"}$ | $\text{'b'} \ne \text{'d'}$ | - | **False** | $\text{"bab"}$ ($L=3$) |
+
+### Final 2D Dynamic Programming Table
+
+The resulting truth table $f[i][j]$ for all $0 \le i \le j < 5$:
+
+| $i \backslash j$ | 0 (`b`) | 1 (`a`) | 2 (`b`) | 3 (`a`) | 4 (`d`) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0 (`b`)** | **True** | False | **True** | False | False |
+| **1 (`a`)** | - | **True** | False | **True** | False |
+| **2 (`b`)** | - | - | **True** | False | False |
+| **3 (`a`)** | - | - | - | **True** | False |
+| **4 (`d`)** | - | - | - | - | **True** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A substring $s[i \dots j]$ is declared a palindrome if and only if its boundary characters match ($s[i] = s[j]$) and its strictly smaller interior is already verified as palindromic ($f[i+1][j-1] = \text{True}$). Since base cases of length $1$ and length $2$ are exact, induction guarantees that no non-palindromic substring can be marked $\text{True}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every contiguous substring corresponds to a unique pair of indices $(i, j)$ with $0 \le i \le j < N$. By iterating through all lengths $L$ from $1$ to $N$, the algorithm evaluates all $\frac{N(N+1)}{2}$ substrings without omission. Thus, the global maximum length palindrome is guaranteed to be identified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manacher's algorithm:** Transform the string to unify odd and even centers, reuse mirrored palindrome radii, and expand only beyond the farthest known boundary. It achieves $O(n)$ time and $O(n)$ space, matching the manifest, but is substantially more intricate than this DP recurrence.
-- **Expand around every center:** Treat each character and each gap as a possible palindrome center. It uses $O(1)$ auxiliary space and $O(n^2)$ worst-case time, avoiding the full table while remaining interview-friendly.
-- **Check all substrings independently:** Testing $O(n^2)$ substrings with an $O(n)$ two-pointer palindrome check costs $O(n^3)$ in the worst case and repeats inner comparisons that DP reuses.
-- **Store only recent DP rows:** Because `f[i][j]` depends on row `i + 1`, memory can be compressed with careful iteration. However, reconstructing or tracking the answer must remain explicit, and center expansion is often simpler for $O(1)$ auxiliary space.
-- **One-character string:** The loops do not run, and the initialized `k = 0`, `mx = 1` returns that character.
-- **Two equal characters:** The below-diagonal empty-interior state is `true`, so the pair is recognized and becomes the answer.
-- **Two different characters:** Their state stays false, and the valid one-character initial answer is returned.
-- **All characters equal:** Every interval is palindromic. The table still visits all $O(n^2)$ states, and the full string eventually becomes the best answer.
-- **Several longest answers:** The strict update keeps whichever maximum-length palindrome was found first in this traversal order. For `"babad"`, either `"bab"` or `"aba"` is valid under the contract.
-- **Odd and even lengths:** A diagonal `true` state anchors odd palindromes, while a below-diagonal `true` state anchors equal adjacent characters for even palindromes.
-- **Contiguous requirement:** Every state uses a complete inclusive interval `s[i:j+1]`; the recurrence never skips interior characters, so it cannot return a subsequence.
-- **Digits and letter case:** Characters are compared exactly. Digits participate like letters, and uppercase and lowercase letters are distinct.
-- **Input preservation:** The string and table states are read independently; the method never changes `s`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inner Palindrome Dependency:** Outer character agreement alone is insufficient. For instance, in $s[0 \dots 3] = \text{"baba"}$, testing only matching characters at alternating positions would fail; checking strict boundary equality and recursive interior truth is essential.
+- **Order of Subproblem Resolution:** Computing $f[i][j]$ requires that $f[i+1][j-1]$ already be populated. Iterating by window length $L$ guarantees that shorter subproblems are always finalized before longer ones.
+- **Multiple Optimal Answers:** Both $\text{"bab"}$ and $\text{"aba"}$ are valid length-3 palindromes. Problem contracts permitting any valid maximal palindrome accept either choice.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be `len(s)`.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$. There are $\frac{N(N+1)}{2}$ substring pairs $(i, j)$. For each pair, checking boundary characters and querying the memoized interior takes $O(1)$ operations. Thus, the total time is $O(N^2)$, where $N = |s|$.
+- **Auxiliary Space Complexity:** $O(N^2)$. An $N \times N$ boolean table stores the truth values for all subproblems. (Expanding around centers can reduce auxiliary space to $O(1)$ while retaining $O(N^2)$ time).

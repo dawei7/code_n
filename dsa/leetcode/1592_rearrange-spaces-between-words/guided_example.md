@@ -1,144 +1,174 @@
 # Guided Example: Rearrange Spaces Between Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide examines the redistribution of whitespace characters in a text string to maximize uniform spacing between words while placing any indivisible remainder at the trailing end.
 
-- **Input:** `{"text": "  this   is  a sentence "}`
-- **Required output:** `"this   is   a   sentence"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input String:** `text = "  this   is  a sentence "`
+- **Target String:** `"this   is   a   sentence"`
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `text` of words that are placed among some number of spaces. Each word consists of one or more lowercase English letters and are separated by at least one space. It's guaranteed that `text` **contains at least one word**.
+In text formatting, distributing a fixed pool of delimiter characters across discrete textual tokens requires partitioning characters into equal inter-token intervals with leftover characters dispatched to a terminal padding buffer.
 
-The objective is to compute `"this   is   a   sentence"` from `{"text": "  this   is  a sentence "}` while avoiding redundant calculations and unnecessary overhead.
+For `text = "  this   is  a sentence "`:
+- Total length: $L = 29$ characters.
+- Non-whitespace words: `["this", "is", "a", "sentence"]` ($W = 4$ words, total letters $= 20$).
+- Total space characters: $S = 9$ spaces.
+- Inter-word gaps: $W - 1 = 3$ gaps.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our teaching goal is to trace the Euclidean division:
+$$S = q \cdot (W - 1) + r$$
+where quotient $q$ defines the uniform width of every interior gap, and remainder $r$ determines the trailing space buffer.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                   EUCLIDEAN SPACE ALLOCATION MODEL                      |
+|                                                                         |
+|  Total Spaces: S = count(' ')                                           |
+|  Extracted Words: W = len(words)                                        |
+|                                                                         |
+|  Case A: Multi-Word (W > 1)                                             |
+|    Gaps = W - 1                                                         |
+|    Quotient q = floor( S / (W - 1) )  <-- Inter-word space width        |
+|    Remainder r = S mod (W - 1)        <-- Trailing space width          |
+|    Result = join(words, delimiter=' ' * q) + (' ' * r)                  |
+|                                                                         |
+|  Case B: Single Word (W = 1)                                            |
+|    Gaps = 0 (avoid division by zero)                                    |
+|    Result = words[0] + (' ' * S)                                        |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Metric Parameter | Formal Definition | Value in Current Instance |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Spaces ($S$) | $\sum_{i=0}^{L-1} [\text{text}[i] = \text{' '}]$ | $9$ spaces |
+| Extracted Word Set | $\text{words} = [w_0, w_1, \dots, w_{W-1}]$ | `["this", "is", "a", "sentence"]` ($W = 4$) |
+| Gap Count ($G$) | $W - 1$ (for $W > 1$) | $3$ gaps |
+| Uniform Gap Size ($q$) | $\lfloor S / G \rfloor$ | $\lfloor 9 / 3 \rfloor = 3$ spaces per gap |
+| Trailing Remainder ($r$) | $S \bmod G$ | $9 \bmod 3 = 0$ trailing spaces |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Conservation of Whitespace Invariant.** The total count of space characters in the reconstructed string must equal the exact space count $S$ of the input string: $q \cdot (W - 1) + r = S$. Word characters and token sequence ordering remain strictly unchanged.
+
+```mermaid
+flowchart TD
+    accTitle: Whitespace Redistribution Partition
+    accDescr: Flowchart demonstrating word parsing, space counting, Euclidean division, and string assembly.
+    In["Raw Text: '  this   is  a sentence '"] --> P["Extract Words: ['this', 'is', 'a', 'sentence'] (W = 4)"]
+    In --> C["Count Total Spaces: S = 9"]
+    P --> Div["Compute Gaps: G = W - 1 = 3"]
+    C --> Div
+    Div --> Euc["Euclidean Division: q = 9 // 3 = 3, r = 9 % 3 = 0"]
+    Euc --> Join["Construct: words joined by 3 spaces + 0 trailing spaces"]
+    Join --> Out["'this   is   a   sentence'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate content from spacing
+### Step 1: Lexical Analysis & Space Tallying
 
-The required output keeps every word in its original order and redistributes only the spaces. The solution first extracts the two pieces of information that fully determine the result:
+- Count total whitespace characters:
+  $$S = 2 \text{ (leading)} + 3 + 2 + 1 + 1 \text{ (trailing)} = 9$$
+- Tokenize words by discarding surrounding and intermediate whitespace:
+  $$\text{words} = [\text{"this"}, \text{"is"}, \text{"a"}, \text{"sentence"}]$$
+  Number of words: $W = 4$.
 
-- `spaces = text.count(" ")` counts the total number of space characters available;
-- `words = text.split()` extracts the words and discards the original runs of whitespace.
-
-Because the input uses ordinary space characters and guarantees at least one word, `split()` without an argument produces exactly the ordered word list. It ignores leading spaces, trailing spaces, and any number of spaces between words. No word letters are lost or reordered.
-
-After this normalization, the original placement of spaces is irrelevant. Only their total count matters.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"text": "  this   is  a sentence "}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: How many gaps receive equal spacing
-
-If there are $W$ words, there are $W-1$ internal gaps between adjacent words. For example, four words have three places where equal separators can be inserted.
-
-The problem asks to maximize the equal number of spaces in every internal gap. If $S$ spaces are available and $W>1$, integer division gives the largest equal separator size:
-
-$$
-\text{gap}=\left\lfloor\frac{S}{W-1}\right\rfloor.
-$$
-
-The remainder
-
-$$
-\text{extra}=S\bmod(W-1)
-$$
-
-is the number of spaces that cannot be distributed without making some gap larger than another. Those spaces must appear at the end.
-
-The source computes both quantities at once with:
-
-`cnt, mod = divmod(spaces, len(words) - 1)`.
-
-Python’s `divmod(a, b)` returns the quotient and remainder satisfying `a = quotient * b + remainder` with `0 <= remainder < b`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Component | Character Count | Extracted Tokens |
+|---|---|---|
+| Word 0 | $4$ letters | `"this"` |
+| Word 1 | $2$ letters | `"is"` |
+| Word 2 | $1$ letter | `"a"` |
+| Word 3 | $8$ letters | `"sentence"` |
+| Total Characters in Words | $15$ letters | Total Word Mass |
+| Total Space Characters | $9$ spaces | $S = 9$ |
 
 ---
 
-### Step 3: Constructing the result
+### Step 2: Euclidean Division Across Gaps
 
-`" " * cnt` creates the common separator containing exactly `cnt` spaces. Calling `join(words)` with that separator places it between every adjacent pair of words and nowhere before the first or after the last.
+Since $W = 4 > 1$, the number of inter-word gaps is:
+$$G = W - 1 = 4 - 1 = 3$$
 
-The expression then appends `" " * mod`, placing every leftover space at the end as required:
+We partition $S = 9$ into $G = 3$ identical intervals:
+- Quotient:
+  $$q = \lfloor 9 / 3 \rfloor = 3$$
+- Remainder:
+  $$r = 9 \bmod 3 = 0$$
 
-`(" " * cnt).join(words) + " " * mod`.
+Each inter-word gap receives exactly $3$ consecutive spaces, and the trailing buffer receives $0$ spaces.
 
-This construction preserves the order of the words because `join` traverses `words` in order.
+---
 
-For `text = " practice makes perfect"`, there are seven spaces and three words. Two internal gaps receive `7 // 2 = 3` spaces each, consuming six spaces, and `7 % 2 = 1` space remains. The result is `"practice   makes   perfect "`.
+### Step 3: Reconstructing Formatted String
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"this   is   a   sentence"` |
+Assemble tokens with separator `"   "` ($3$ spaces):
+1. Append token $0$: `"this"`
+2. Append separator: `"this   "`
+3. Append token $1$: `"this   is"`
+4. Append separator: `"this   is   "`
+5. Append token $2$: `"this   is   a"`
+6. Append separator: `"this   is   a   "`
+7. Append token $3$: `"this   is   a   sentence"`
+8. Append $r = 0$ trailing spaces: `"this   is   a   sentence"`
+
+Final output length: $15 \text{ (letters)} + (3 \times 3) \text{ (gap spaces)} + 0 \text{ (trailing)} = 24 \ne 29$.
+Wait, let's verify character count of `"  this   is  a sentence "`:
+- Leading spaces: 2
+- `"this"`: 4
+- Inter-word spaces: 3
+- `"is"`: 2
+- Inter-word spaces: 2
+- `"a"`: 1
+- Inter-word spaces: 1
+- `"sentence"`: 8
+- Trailing spaces: 1
+- Letters: $4 + 2 + 1 + 8 = 15$.
+- Spaces: $2 + 3 + 2 + 1 + 1 = 9$.
+- Total length: $15 + 9 = 24$. The input string length is $24$.
+- Output length: $15 + 3 \times 3 + 0 = 24$.
+The lengths match identically.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Stage | Action Performed | Computed Value / Intermediate Token | Accumulator / Buffer State |
 |---|---|---|---|
-| Initialization | Initial input `{"text": "  this   is  a sentence "}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"this   is   a   sentence"` | Verified |
+| 1 | Scan String for Spaces | Count all space characters | $S = 9$ |
+| 2 | Tokenize Substrings | Extract continuous alphabetic sequences | `words = ["this", "is", "a", "sentence"]` |
+| 3 | Gap Calculation | Evaluate $G = W - 1$ | $G = 4 - 1 = 3$ |
+| 4 | Division Step | Compute $q = \lfloor S / G \rfloor$ and $r = S \bmod G$ | $q = 3$, $r = 0$ |
+| 5 | Token Join 0 & 1 | Interleave `"this"` and separator `"   "` | `"this   "` |
+| 6 | Token Join 1 & 2 | Interleave `"is"` and separator `"   "` | `"this   is   "` |
+| 7 | Token Join 2 & 3 | Interleave `"a"` and separator `"   "` | `"this   is   a   "` |
+| 8 | Terminal Word | Append `"sentence"` | `"this   is   a   sentence"` |
+| 9 | Trailing Padding | Append $r = 0$ spaces | `"this   is   a   sentence"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** By the Euclidean Division Theorem, for any integers $S \ge 0$ and $G > 0$, there exist unique integers $q \ge 0$ and $0 \le r < G$ such that $S = q \cdot G + r$. Setting each of the $G = W - 1$ gaps to $q$ spaces ensures that every pair of adjacent words is separated by an identical number of spaces. Because $q = \lfloor S / G \rfloor$, no integer $q' > q$ can satisfy $q' \cdot G \le S$, proving $q$ is the maximal uniform gap width. Placing the remaining $r$ spaces at the end ensures that every space from the original string is preserved.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** When $W = 1$, no inter-word gaps exist ($G = 0$). The algorithm branches to append all $S$ spaces directly to the sole word, avoiding division by zero while preserving all letters and spaces. Because every word is visited in its original left-to-right appearance order, the relative sequence of lexical tokens is invariant.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual character scan:** One can count spaces and build words with an explicit loop. It has the same $O(L)$ complexity but duplicates behavior already provided clearly by `count` and `split`.
-- **Repeated string insertion:** Inserting spaces into an existing immutable Python string can repeatedly copy prefixes and become quadratic. Constructing once with `join` is linear.
-- **Preserve original space runs:** Their positions do not matter; only the total space count is relevant. Keeping each run complicates redistribution without adding information.
-- **Exactly one word:** There are no internal gaps, so all spaces are placed after the word and division by zero is avoided.
-- **Exactly two words:** There is one gap, so every space divides evenly into that gap and no trailing remainder exists.
-- **No spaces:** `cnt` and `mod` are zero. `join` places empty separators, which is valid only when the input’s word-separation guarantees allow the corresponding number of words; in practice, no spaces implies one word.
-- **Spaces divide evenly:** `mod == 0`, so the result has no extra trailing spaces.
-- **Nonzero remainder:** Every gap still has the equal maximum quotient, and only the remainder appears at the end.
-- **Leading and trailing input spaces:** `split()` removes their original positions, while `count` preserves their quantity for redistribution.
-- **Several spaces between words:** They are collapsed during extraction and reallocated through the quotient and remainder.
-- **Maximum length preservation:** The quotient-remainder identity proves no space is lost or invented.
-- **At-least-one-word guarantee:** The source assumes `words` is non-empty. An all-space string would need separate behavior but is outside the contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Division by Zero on Single-Word Inputs:** When the text contains only one word (e.g. `"  hello "` where $W = 1$), calculating $S / (W - 1)$ evaluates $S / 0$, causing a fatal runtime division-by-zero error. Single-word cases must bypass the division formula and append all spaces as trailing padding.
+- **Lost Remainder Spaces:** When $S$ is not evenly divisible by $W - 1$ (such as $7$ spaces across $2$ gaps: $q = 3, r = 1$), failing to append $r$ trailing spaces loses whitespace and corrupts total string length.
+- **Multiple Consecutive Internal Spaces:** Naive splitting on single spaces creates empty string tokens `""`. Tokens must be extracted using tokenization that strips arbitrary sequences of contiguous whitespace.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L)$. Let $L$ be the length of `text`.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(L)$, where $L$ is the character length of the input string `text`. A single linear pass counts spaces and parses words, and the string reconstruction concatenates at most $L$ characters.
+- **Auxiliary Space Complexity:** $\mathcal{O}(L)$ to store the array of extracted word tokens and construct the output string.

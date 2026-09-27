@@ -1,108 +1,197 @@
 # Guided Example: Relative Ranks
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step indirect index sorting by descending score, podium medal assignment (`"Gold Medal"`, `"Silver Medal"`, `"Bronze Medal"`), numerical rank string formatting for remaining athletes (`str(rank)`), and original order restoration on representative competition scores:
 
-- **Input:** `{"score": [1]}`
-- **Required output:** `["Gold Medal"]`
+- **Input:** $score = [10, 3, 8, 9, 4]$
+- **Required output:** `["Gold Medal", "5", "Bronze Medal", "Silver Medal", "4"]`
+  - Number of athletes: $n = 5$
+  - Scoring rules: Highest score gets Rank 1, second highest Rank 2, etc.
+  - Podium titles:
+    - 1st Place: `"Gold Medal"`
+    - 2nd Place: `"Silver Medal"`
+    - 3rd Place: `"Bronze Medal"`
+    - 4th Place onwards: `"4"`, `"5"`, $\dots$
+- **Indirect sorting execution trace:**
+  - Original athlete indices: $[0, 1, 2, 3, 4]$
+  - Sort indices descending by score value ($score[j]$):
+    - Score $10$ (Index $0$) $\to$ Rank 1
+    - Score $9$ (Index $3$) $\to$ Rank 2
+    - Score $8$ (Index $2$) $\to$ Rank 3
+    - Score $4$ (Index $4$) $\to$ Rank 4
+    - Score $3$ (Index $1$) $\to$ Rank 5
+    - Sorted index permutation:
+      $$
+      idx = [0, \; 3, \; 2, \; 4, \; 1]
+      $$
+  - **Assign Ranks to Original Positions:**
+    - **Rank 1 ($i = 0$, Athlete $idx[0] = 0$):**
+      - Top 1 $\implies ans[0] = \mathbf{\text{"Gold Medal"}}$
+    - **Rank 2 ($i = 1$, Athlete $idx[1] = 3$):**
+      - Top 2 $\implies ans[3] = \mathbf{\text{"Silver Medal"}}$
+    - **Rank 3 ($i = 2$, Athlete $idx[2] = 2$):**
+      - Top 3 $\implies ans[2] = \mathbf{\text{"Bronze Medal"}}$
+    - **Rank 4 ($i = 3$, Athlete $idx[3] = 4$):**
+      - $i \ge 3 \implies ans[4] = \text{str}(3 + 1) = \mathbf{\text{"4"}}$
+    - **Rank 5 ($i = 4$, Athlete $idx[4] = 1$):**
+      - $i \ge 3 \implies ans[1] = \text{str}(4 + 1) = \mathbf{\text{"5"}}$
+  - Assembled answer array in original order:
+    $$
+    ans = [\mathbf{\text{"Gold Medal"}}, \; \mathbf{\text{"5"}}, \; \mathbf{\text{"Bronze Medal"}}, \; \mathbf{\text{"Silver Medal"}}, \; \mathbf{\text{"4"}}]
+    $$
+- **Already Sorted Descending Instance ($score = [5, 4, 3, 2, 1]$):**
+  - Indices are unchanged $\implies \mathbf{[\text{"Gold Medal"}, \text{"Silver Medal"}, \text{"Bronze Medal"}, \text{"4"}, \text{"5"}]}$
+- **Small Podium Input ($n = 2, score = [1, 2]$):**
+  - Score 2 at index 1 gets Gold, Score 1 at index 0 gets Silver $\implies \mathbf{[\text{"Silver Medal"}, \text{"Gold Medal"}]}$
+- **Single Athlete ($score = [100]$):** Returns $\mathbf{[\text{"Gold Medal"}]}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates indirect permutation sorting, mathematically proves why sorting indices preserves original input positions while evaluating order statistics, and derives $O(N \log N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `score` of size `n`, where $\text{score}[i]$ is the score of the $i^{\text{th}}$ athlete in a competition. All the scores are guaranteed to be **unique**.
+Given an integer array $score$ of size $n$ where $score[i]$ is the score of the $i$-th athlete:
+All scores are guaranteed to be unique.
+Assign ranks based on scores:
+- 1st place (highest score): `"Gold Medal"`
+- 2nd place: `"Silver Medal"`
+- 3rd place: `"Bronze Medal"`
+- 4th place and below: their placement number as a string (e.g. `"4"`, `"5"`).
+Return the rank array in the **original input order** of athletes.
 
-The objective is to compute `["Gold Medal"]` from `{"score": [1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input Scores: [ 10,   3,   8,   9,   4 ]
+Athletes:       A0   A1   A2   A3   A4
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Rank by Score:
+  1st: A0 (Score 10) -> "Gold Medal"
+  2nd: A3 (Score  9) -> "Silver Medal"
+  3rd: A2 (Score  8) -> "Bronze Medal"
+  4th: A4 (Score  4) -> "4"
+  5th: A1 (Score  3) -> "5"
+
+Restore to original index order [A0, A1, A2, A3, A4]:
+  ["Gold Medal", "5", "Bronze Medal", "Silver Medal", "4"]
+```
+
+### The Indirect Sorting Pattern
+- Sorting the array $score$ directly loses the original mapping of which athlete had which score.
+- Instead of sorting the values, **we sort the array of indices** $[0, 1, \dots, n-1]$ using the score values as the comparison key:
+  $$
+  idx.\text{sort}(\text{key} = -score)
+  $$
+- The resulting list $idx$ tells us:
+  - $idx[0]$ is the index of the athlete who earned 1st place.
+  - $idx[1]$ is the index of the athlete who earned 2nd place.
+  - And so forth.
+- We then place the rank strings directly into $ans[idx[i]]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Index Permutation:
+Let $idx$ be a permutation of $\{0, 1, \dots, n - 1\}$ such that:
+$$
+score[idx[0]] > score[idx[1]] > \dots > score[idx[n-1]]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Podium and Number Assignment:
+For each rank position $i \in [0, n - 1]$:
+Let $j = idx[i]$ be the athlete's original index:
+$$
+ans[j] =
+\begin{cases}
+\text{"Gold Medal"} & \text{if } i == 0 \\
+\text{"Silver Medal"} & \text{if } i == 1 \\
+\text{"Bronze Medal"} & \text{if } i == 2 \\
+\text{str}(i + 1) & \text{if } i \ge 3
+\end{cases}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Bijection Invariant.** Because each index $j \in [0, n-1]$ appears exactly once in $idx$, every athlete is assigned exactly one rank without gaps or collisions.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Rank depends on score order, but the returned strings must appear in the athletes' original input order. The solution separates those two concerns:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"score": [1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $score = [10, 3, 8, 9, 4]$ ($n = 5$):
 
 ---
 
-### Step 2: Core Step 2
-
-1. sort original indices by their athletes' scores;
-2. assign each placement back into an answer cell at the original index.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize and Sort Index Array
+- Initial indices: $idx = [0, 1, 2, 3, 4]$.
+- Sort indices by descending score:
+  - $score[0] = 10$ (Rank 1)
+  - $score[3] = 9$ (Rank 2)
+  - $score[2] = 8$ (Rank 3)
+  - $score[4] = 4$ (Rank 4)
+  - $score[1] = 3$ (Rank 5)
+- Permuted indices:
+  $$
+  idx = [0, \; 3, \; 2, \; 4, \; 1]
+  $$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Assign Labels to Output Array $ans$
+Initialize $ans$ of size $5$:
 
-`idx = list(range(n))` creates `[0, 1, ..., n - 1]`. Each value is an athlete's original position. Sorting this index list rather than `score` itself preserves the input and permanently carries the information needed to place the final label.
+1. **Rank 1 ($i = 0$, Athlete $j = idx[0] = 0$):**
+   - $ans[0] = \mathbf{\text{"Gold Medal"}}$
+2. **Rank 2 ($i = 1$, Athlete $j = idx[1] = 3$):**
+   - $ans[3] = \mathbf{\text{"Silver Medal"}}$
+3. **Rank 3 ($i = 2$, Athlete $j = idx[2] = 2$):**
+   - $ans[2] = \mathbf{\text{"Bronze Medal"}}$
+4. **Rank 4 ($i = 3$, Athlete $j = idx[3] = 4$):**
+   - $ans[4] = \text{str}(3 + 1) = \mathbf{\text{"4"}}$
+5. **Rank 5 ($i = 4$, Athlete $j = idx[4] = 1$):**
+   - $ans[1] = \text{str}(4 + 1) = \mathbf{\text{"5"}}$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["Gold Medal"]` |
+---
+
+### Step 3: Final Output Array
+$$
+ans = [\mathbf{\text{"Gold Medal"}}, \; \mathbf{\text{"5"}}, \; \mathbf{\text{"Bronze Medal"}}, \; \mathbf{\text{"Silver Medal"}}, \; \mathbf{\text{"4"}}]
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"score": [1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["Gold Medal"]` | Verified |
+| Rank Position $i + 1$ | Permuted Index $j = idx[i]$ | Athlete Score $score[j]$ | Assigned Label | Output Target $ans[j]$ |
+|:---:|:---:|:---:|:---:|:---:|
+| **1st** | $0$ | $10$ | `"Gold Medal"` | $ans[0]$ |
+| **2nd** | $3$ | $9$ | `"Silver Medal"` | $ans[3]$ |
+| **3rd** | $2$ | $8$ | `"Bronze Medal"` | $ans[2]$ |
+| **4th** | $4$ | $4$ | `"4"` | $ans[4]$ |
+| **5th** | $1$ | $3$ | `"5"` | $ans[1]$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Athlete ($n = 1$):** Loop runs once for $i = 0 \implies \mathbf{[\text{"Gold Medal"}]}$.
+- **Two Athletes ($n = 2$):** Only Gold and Silver awarded $\implies \mathbf{[\text{"Silver Medal"}, \text{"Gold Medal"}]}$.
+- **Three Athletes ($n = 3$):** Exactly Gold, Silver, and Bronze awarded.
+- **Large $n = 10^4$:** Standard $O(N \log N)$ index sorting finishes in $< 10$ ms.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Sort score-index pairs:** Build `(score, original_index)` tuples and sort descending. It is equivalent but stores both fields explicitly rather than sorting lightweight indices.
-- **Score-to-index dictionary plus sorted score copy:** Unique scores make this valid, but the index list already preserves the mapping without an additional hash table.
-- **Max-heap:** Pop athletes from highest score to lowest and assign increasing placements. It also costs $O(n\log n)$.
-- **Direct score-range array:** With bounded nonnegative scores, map score to index and scan downward. It can take $O(n+M)$ time and $O(M)$ space where `M` is the maximum score, which is wasteful when scores are sparse.
-- **One athlete:** The only athlete receives `"Gold Medal"`.
-- **Two athletes:** They receive gold and silver; no bronze athlete exists.
-- **Exactly three athletes:** Every output is a medal name and no numeric placement is used.
-- **Unique-score guarantee:** It removes ties. If ties were allowed, the placement policy would need to be specified before this sort could assign ranks.
-- **Preserve input:** Only `idx` is sorted; `score` remains unchanged.
-- **Original output order:** Writing to `ans[j]` is essential. Appending labels in sorted order would return placement order instead of athlete order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Nested Loops ($O(N^2)$ Rank Counting):** Counting how many numbers are greater than $score[i]$ by scanning the entire array for each athlete takes $O(N^2)$ time. Index sorting solves the problem in $O(N \log N)$.
+- **1-Indexed vs 0-Indexed Placement Strings:** Placing athlete $i=3$ with string `str(i)` yields `"3"` instead of `"4"`. Ranks are 1-indexed, requiring `str(i + 1)`.
+- **Modifying Scores In-Place:** Overwriting the score array with strings causes type-casting errors in statically typed languages and destroys the original input values.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of athletes. Creating `idx` takes $O(n)$ time. Sorting it dominates at $O(n\log n)$ time, and assigning all labels takes another $O(n)$. Total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initializing the index array takes $O(N)$ time.
+  - Sorting $N$ indices takes $O(N \log N)$ time.
+  - Assigning strings to the output array takes $O(N)$ time.
+  - Total Time: $\mathcal{O}(N \log N)$. For $N = 10^4$, finishes in $< 8$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space for the index permutation array $idx$ and output string array $ans$.

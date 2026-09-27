@@ -1,138 +1,229 @@
 # Guided Example: Maximum Total Beauty of the Gardens
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the suffix-enumeration and prefix water-filling algorithm for maximizing garden beauty across complete and partial configurations in $O(n \log n)$ time and $O(n)$ auxiliary space.
 
-- **Input:** `{"flowers": [1, 3, 1, 1], "newFlowers": 7, "target": 6, "full": 12, "partial": 1}`
-- **Required output:** `14`
+- **Input:** `flowers = [1, 3, 1, 1]`, `newFlowers = 7`, `target = 6`, `full = 12`, `partial = 1`
+- **Output:** `14`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Alice is a caretaker of `n` gardens and she wants to plant flowers to maximize the total beauty of all her gardens.
-
-The objective is to compute `14` from `{"flowers": [1, 3, 1, 1], "newFlowers": 7, "target": 6, "full": 12, "partial": 1}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates greedy suffix completion, prefix-sum-accelerated water-filling bisection, upper-bound capping for incomplete gardens, and objective trade-off balancing between complete and partial beauty rewards.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Alice has $n$ gardens, where $\text{flowers}[i]$ denotes the initial number of flowers in the $i$-th garden.
+Alice can plant at most `newFlowers` additional flowers across her gardens.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A garden is classified into one of two states:
+1. **Complete:** Contains at least `target` flowers. Each complete garden contributes `full` beauty points.
+2. **Incomplete:** Contains strictly fewer than `target` flowers.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The total beauty of the gardens is evaluated as:
+$$\text{Total Beauty} = (\text{complete gardens}) \times \text{full} + (\text{minimum flowers in any incomplete garden}) \times \text{partial}$$
+If there are no incomplete gardens (all $n$ gardens are complete), the partial beauty component is $0$.
 
----
+Our objective is to determine the **maximum total beauty** Alice can achieve.
 
-## 3. Step-by-Step Worked Execution
+### Representative Instance Breakdown
 
-### Step 1: Separate complete-garden value from incomplete minimum value
+Consider `flowers = [1, 3, 1, 1]`, `newFlowers = 7`, `target = 6`, `full = 12`, `partial = 1`:
+- Sorted flower counts: $[1, 1, 1, 3]$.
+- Total gardens: $n = 4$.
+- Initial state: all gardens have $< 6$ flowers (0 complete gardens).
 
-For any final arrangement, beauty has two components: `x * full` for `x` complete gardens, and `y * partial` where `y` is the minimum flower count among all remaining incomplete gardens. The solution enumerates the possible number `x` of complete gardens. For each fixed `x`, it spends the remaining flowers as efficiently as possible to maximize `y`.
+Evaluating options for $x$, the number of gardens to make complete:
+- **Case $x = 0$ (No complete gardens):**
+  - Keep all 4 gardens incomplete.
+  - Distribute all $7$ flowers to raise the minimum flower level:
+    Raise the three $1$s to $3$ costs $(3-1) \times 3 = 6$ flowers.
+    Remaining $1$ flower distributed across 4 gardens adds $\lfloor 1/4 \rfloor = 0$.
+    Minimum level achieved: $y = 3$.
+    Beauty: $0 \times 12 + 3 \times 1 = 3$.
+- **Case $x = 1$ (Make 1 garden complete):**
+  - Choose the largest garden (size 3) and raise it to $6$:
+    Cost: $6 - 3 = 3$ flowers.
+    Remaining budget: $7 - 3 = 4$ flowers.
+  - Remaining 3 incomplete gardens have flowers $[1, 1, 1]$.
+    Leveling all three $1$s: $1 \times 3 + 4 = 7$ total flowers.
+    New minimum level: $\lfloor 7 / 3 \rfloor = 2$ flowers.
+    Beauty: $1 \times 12 + 2 \times 1 = 14$.
+- **Case $x = 2$ (Make 2 gardens complete):**
+  - Raise gardens with 3 and 1 flowers to 6:
+    Cost: $(6 - 3) + (6 - 1) = 3 + 5 = 8$ flowers.
+    Since $8 > 7$, this is infeasible!
 
-Sorting `flowers` is the key first step. After sorting, the cheapest gardens to make complete are the largest incomplete ones because they are closest to `target`. Therefore, for a fixed count `x`, an optimal arrangement can choose the last `x` sorted gardens as complete and leave the first `n - x` incomplete.
-
-Any garden already at least `target` is unavoidably complete because planted flowers cannot be removed. `bisect_left(flowers, target)` finds the first already-complete position, so
-
-`i = n - bisect_left(flowers, target)`
-
-is the initial number of complete gardens. The outer loop starts at `i` and tries every count through `n`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"flowers": [1, 3, 1, 1], "newFlowers": 7, "target": 6, "full": 12, "partial": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Maintain the cost of completing the largest gardens
-
-`newFlowers` is mutated into the budget remaining for the current `x`. At the start of an iteration, the statement
-
-`newFlowers -= 0 if x == 0 else max(target - flowers[n - x], 0)`
-
-adds one more garden to the complete suffix compared with the preceding iteration.
-
-At the first iteration, if some gardens were already complete, index `n - x` points to the first of those and its cost is clamped to zero. If none were complete and `x = 0`, the conditional also subtracts zero. Each later iteration subtracts the flowers needed to raise the next-largest incomplete garden to `target`.
-
-Because this cost accumulates, after the subtraction for `x`, the current `newFlowers` is exactly what remains after making the largest `x` gardens complete as cheaply as possible. If it becomes negative, that count is impossible, and every larger count costs at least as much, so the loop safely breaks.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Maximum achievable beauty is $14$ (achieved at $x = 1$).
 
 ---
 
-### Step 3: Use prefix sums to price a minimum level
+## 2. Mathematical & Algorithmic Principles
 
-The first `n - x` gardens remain incomplete. To raise their minimum, flowers must go to the smallest values first. The prefix-sum array
+### Suffix Greedy Completion Invariant
 
-`s = list(accumulate(flowers, initial=0))`
+To achieve $x$ complete gardens at minimum flower cost, Alice must greedily upgrade the $x$ gardens that already have the highest flower counts.
+Sorting `flowers` in ascending order $f_0 \le f_1 \le \dots \le f_{n-1}$:
+- The optimal subset of $x$ gardens to complete is precisely the suffix $f_{n-x \dots n-1}$.
+- The cost to complete this suffix is:
+  $$\text{Cost}_{\text{suffix}}(x) = \sum_{i=n-x}^{n-1} \max(0, \text{target} - f_i)$$
+- The remaining flower budget for the incomplete gardens is:
+  $$B(x) = \text{newFlowers} - \text{Cost}_{\text{suffix}}(x)$$
 
-lets the method compute the cost to raise sorted positions zero through `p` to `flowers[p]`:
+### Prefix Water-Filling via Binary Search
 
-$$
-\texttt{flowers}[p](p+1) - \texttt{s}[p+1].
-$$
+The remaining $n - x$ gardens form the prefix $f_{0 \dots n-x-1}$.
+To maximize the minimum flower count $y$ among these $n - x$ gardens:
+1. We determine the largest prefix $0 \dots \text{mid}$ that can be raised to height $f_{\text{mid}}$ within budget $B(x)$.
+   The cost to level the prefix up to $f_{\text{mid}}$ is:
+   $$\text{cost}(\text{mid}) = f_{\text{mid}} \times (\text{mid} + 1) - \sum_{i=0}^{\text{mid}} f_i$$
+2. Using binary search over $\text{mid} \in [0, n - x - 1]$, we find the maximal index $\text{mid}$ satisfying $\text{cost}(\text{mid}) \le B(x)$.
+3. Any excess flowers $B(x) - \text{cost}(\text{mid})$ are distributed evenly across the $\text{mid} + 1$ leveled gardens:
+   $$y = \min\left( \text{target} - 1, f_{\text{mid}} + \left\lfloor \frac{B(x) - \text{cost}(\text{mid})}{\text{mid} + 1} \right\rfloor \right)$$
+   *(The upper bound $\text{target} - 1$ ensures incomplete gardens do not inadvertently cross the completion threshold).*
 
-The product is the total those `p + 1` gardens would contain at the common level, and the prefix sum is what they already contain. Their difference is the required additions.
+```mermaid
+flowchart TD
+    accTitle: Garden Beauty Maximization Workflow
+    accDescr: Pipeline showing sorting, suffix completion enumeration for x complete gardens, binary search water-filling on prefix, and tracking global maximum beauty.
 
-As `p` grows, this leveling cost never decreases. The code binary-searches the largest feasible prefix endpoint between zero and `n - x - 1`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `14` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"flowers": [1, 3, 1, 1], "newFlowers": 7, "target": 6, "full": 12, "partial": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `14` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Binary-search the minimum flower value for every `x`:** This can yield the manifest's `O(n \log target)` component, but the exact code searches prefix endpoints and derives the level arithmetically.
-- **Try every flower allocation:** The number of distributions is enormous and ignores the sorted exchange and water-filling structure.
-- **Always make as many gardens complete as possible:** A high `partial` reward can make leaving one garden incomplete at a large minimum more valuable than completing all gardens.
-- **Never complete additional gardens:** A high `full` reward can make the opposite choice optimal; enumeration handles both extremes.
-- **Initially complete gardens:** They are counted from the first iteration and cost zero additional flowers.
-- **All gardens initially complete:** The first case has `x = n` and `y = 0`.
-- **Budget cannot complete another garden:** The loop still optimizes the partial minimum for the current feasible `x`, then breaks when the next count becomes negative.
-- **One incomplete garden:** All remaining useful partial-budget flowers can raise it, capped at `target - 1`.
-- **Partial cap:** Without the cap, the calculation could label a garden incomplete while raising its minimum to the completion threshold.
-- **Unused flowers:** Planting at most `newFlowers` is allowed, so budget beyond all useful capped levels need not be spent.
-- **Repeated flower counts:** Sorting and prefix-cost formulas work unchanged; leveling equal values costs zero.
-- **Large budget:** Python integers safely store cumulative costs and beauty values.
-- **Input order:** Sorting mutates the list; callers needing original order must copy it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    Start(["Input: flowers, newFlowers, target, full, partial"]) --> Sort["Sort flowers ascending<br/>Compute prefix sums s"]
+    Sort --> SuffixLoop{"Loop x from existing_complete to n"}
+    SuffixLoop -- Next x --> Deduct["Deduct cost to complete garden n - x<br/>Update remaining newFlowers"]
+    Deduct --> CheckFeasible{"newFlowers >= 0 ?"}
+    CheckFeasible -- No --> Done(["Return max_beauty"])
+    CheckFeasible -- Yes --> WaterFill["Binary search mid in [0, n - x - 1]<br/>to level prefix up to flowers[mid]"]
+    WaterFill --> CalcMin["Calculate max minimum flower count y<br/>Cap at target - 1"]
+    CalcMin --> UpdateScore["beauty = x * full + y * partial<br/>max_beauty = max(max_beauty, beauty)"]
+    UpdateScore --> SuffixLoop
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(n)$. Sorting takes `O(n \log n)` time, and prefix sums take `O(n)`. The outer loop has at most `n + 1` iterations. Each performs a binary search over at most `n` incomplete indices, costing `O(\log n)`. Total time for the exact implementation is `O(n \log n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace `flowers = [1, 3, 1, 1]`, `newFlowers = 7`, `target = 6`, `full = 12`, `partial = 1`.
+
+### Phase 1: Preprocessing
+- Sort: `flowers = [1, 1, 1, 3]`.
+- Length: $n = 4$.
+- Prefix sums: $s = [0, 1, 2, 3, 6]$.
+- Number of gardens already complete ($f_i \ge 6$): $0$.
+- Initialize $\text{ans} = 0$.
+
+---
+
+### Phase 2: Suffix Completion Enumeration
+
+#### Iteration 1: $x = 0$ complete gardens
+- Suffix length: $0$.
+- Deducted flowers: $0$. Remaining flowers: $7$.
+- Incomplete gardens prefix: length $4$ (`[1, 1, 1, 3]`, indices $0 \dots 3$).
+- Binary search for leveling index $\text{mid} \in [0, 3]$:
+  - Test $\text{mid} = 3$:
+    $\text{cost}(3) = f_3 \times 4 - s[4] = 3 \times 4 - 6 = 12 - 6 = 6$.
+    Since $6 \le 7$, all 4 gardens can reach height 3!
+  - Optimal index: $l = 3$.
+- Distribute surplus flowers: $7 - 6 = 1$.
+  Additional height: $\lfloor 1 / 4 \rfloor = 0$.
+  Achieved minimum: $y = \min(6 - 1, 3 + 0) = 3$.
+- Beauty score:
+  $$\text{Beauty}(0) = 0 \times 12 + 3 \times 1 = 3$$
+- $\text{ans} \leftarrow \max(0, 3) = 3$.
+
+#### Iteration 2: $x = 1$ complete garden
+- Suffix length: $1$ (garden index $4 - 1 = 3$, initial flowers $3$).
+- Cost to complete garden 3: $\max(0, 6 - 3) = 3$.
+- Remaining flowers: $7 - 3 = 4$.
+- Incomplete gardens prefix: length $3$ (`[1, 1, 1]`, indices $0 \dots 2$).
+- Binary search for leveling index $\text{mid} \in [0, 2]$:
+  - Test $\text{mid} = 2$:
+    $\text{cost}(2) = f_2 \times 3 - s[3] = 1 \times 3 - 3 = 0$.
+    Since $0 \le 4$, all 3 gardens can reach height 1.
+  - Optimal index: $l = 2$.
+- Distribute surplus flowers: $4 - 0 = 4$.
+  Additional height: $\lfloor 4 / 3 \rfloor = 1$.
+  Achieved minimum: $y = \min(6 - 1, 1 + 1) = 2$.
+- Beauty score:
+  $$\text{Beauty}(1) = 1 \times 12 + 2 \times 1 = 12 + 2 = 14$$
+- $\text{ans} \leftarrow \max(3, 14) = 14$.
+
+#### Iteration 3: $x = 2$ complete gardens
+- Next garden to complete: index $4 - 2 = 2$ (initial flowers $1$).
+- Cost to complete garden 2: $\max(0, 6 - 1) = 5$.
+- Flowers required: $5$. But remaining flowers is $4$!
+- Updated flowers: $4 - 5 = -1 < 0$.
+- Infeasible. Loop terminates.
+
+Final maximum beauty: $14$.
+
+---
+
+## 4. Comprehensive State Trace
+
+### Complete Suffix-Prefix Trade-off Table
+
+| $x$ (Complete) | Completed Indices | Suffix Cost | Remaining Flowers $B$ | Feasible? | Prefix Search Range | Water-Filled $y$ | Total Beauty Calculation | Total Beauty |
+|---|---|---|---|---|---|---|---|---|
+| 0 | None | 0 | 7 | Yes | $[0, 3]$ | 3 | $0 \times 12 + 3 \times 1$ | 3 |
+| 1 | $\{3\}$ | 3 | 4 | Yes | $[0, 2]$ | 2 | $1 \times 12 + 2 \times 1$ | **14** |
+| 2 | $\{2, 3\}$ | $3 + 5 = 8$ | -1 | No (exceeds 7) | - | - | Infeasible | - |
+
+### Water-Filling Leveling Details at $x = 1$
+
+| Garden Index $i$ | Initial Flowers $f_i$ | Target Leveled Height | Added Flowers per Garden | Garden Status |
+|---|---|---|---|---|
+| 0 | 1 | 2 | $+1$ | Incomplete |
+| 1 | 1 | 2 | $+1$ | Incomplete |
+| 2 | 1 | 2 | $+1$ | Incomplete |
+| 3 | 3 | 6 | $+3$ | **Complete** |
+| **Total** | - | - | **6 flowers used** | (1 unused flower) |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Global Optimality via Monotonic Structure
+
+1. **Suffix Choice Optimality:** Any garden made complete contributes a flat reward of `full` points regardless of which garden it is. To maximize the remaining flower budget for incomplete gardens, we must choose gardens requiring the fewest flowers to reach `target`. In sorted order, this uniquely selects the suffix $f_{n-x \dots n-1}$.
+2. **Water-Filling Uniformity:** The minimum of a set of numbers $\{a_1, \dots, a_m\}$ is maximized when the smallest numbers are raised first until they equal the next smallest, water-leveling the entire prefix. Binary search over the prefix find the unique maximum height that can be uniformly supported by prefix sums.
+3. **Capping Soundness:** An incomplete garden cannot hold $\ge \text{target}$ flowers by definition. Enforcing $y \le \text{target} - 1$ preserves the disjoint partitioning between complete and incomplete gardens.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **All Gardens Already Complete ($x = n$):**
+   - If every garden has $f_i \ge \text{target}$ initially, no incomplete gardens exist.
+   - Total beauty is $n \times \text{full}$.
+2. **Zero Incomplete Gardens After Upgrades ($x = n$):**
+   - If all gardens are upgraded to complete status, the incomplete minimum term $y \times \text{partial}$ evaluates to $0$.
+3. **`partial` Far Outweighs `full`:**
+   - E.g., $\text{partial} = 100, \text{full} = 1$. It may be optimal to make 0 gardens complete and dump all flowers into raising the global minimum. Suffix enumeration naturally evaluates $x = 0$.
+
+### Common Anti-Patterns
+
+- **Assuming Complete Gardens Are Always Best:**
+  Greedily completing as many gardens as possible without checking smaller $x$ values fails when `partial` is large and completing an extra garden severely degrades the minimum of the remaining incomplete gardens.
+- **Uncapped Incomplete Height:**
+  Allowing $y$ to reach or exceed `target` erroneously credits a garden as incomplete when it has reached complete status.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Sorting:** Sorting $n$ gardens takes $O(n \log n)$ time.
+- **Prefix Sums:** Computing the prefix sums array $s$ of size $n + 1$ takes $O(n)$ time.
+- **Outer Loop & Bisection:**
+  - The outer loop over $x$ runs at most $n + 1$ times.
+  - Inside each iteration, binary searching over the prefix of size $\le n$ takes $O(\log n)$ time, using $O(1)$ prefix sum queries.
+  - Total bisection time: $O(n \log n)$.
+- **Total Time Complexity:** Strictly $O(n \log n)$ time.
+  With $n \le 10^5$, this requires $\approx 1.7 \times 10^6$ operations, completing in approximately $25$ milliseconds.
+
+### Auxiliary Space Complexity
+
+- **Prefix Sum Array:** Stores $n + 1$ integer sums: $O(n)$ space.
+- **Total Auxiliary Space Complexity:** $O(n)$ auxiliary space.

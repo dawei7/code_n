@@ -1,127 +1,232 @@
 # Guided Example: Decode String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step nested bracket expansion, multi-digit integer accumulation ($num \leftarrow num \times 10 + \text{int}(c)$), dual-stack frame push on `'['` (`s1` for multipliers, `s2` for prefix strings), frame pop-and-multiply reduction on `']'` ($res \leftarrow prev + res \times k$), and arbitrary nesting depth resolution on representative encoded strings:
 
-- **Input:** `{"s": "3[a]2[bc]"}`
-- **Required output:** `"aaabcbc"`
+- **Input:** $s = \text{"3[a2[c]]"}$
+- **Required output:** `"accaccacc"`
+  - Nested bracket trace:
+    - Step 1 ($c = \text{'3'}$): $num = 3$
+    - Step 2 ($c = \text{'['}$): Push $3 \to s1$, push `""` $\to s2$; reset $num = 0, res = \text{""}$
+    - Step 3 ($c = \text{'a'}$): Append to current level: $res = \text{"a"}$
+    - Step 4 ($c = \text{'2'}$): Inner multiplier: $num = 2$
+    - Step 5 ($c = \text{'['}$): Push $2 \to s1$, push `"a"` $\to s2$; reset $num = 0, res = \text{""}$
+    - Step 6 ($c = \text{'c'}$): Append to inner level: $res = \text{"c"}$
+    - Step 7 ($c = \text{']'}$): Close inner frame:
+      - $k = 2, prev = \text{"a"} \implies res = \text{"a"} + \text{"c"} \times 2 = \text{"acc"}$
+    - Step 8 ($c = \text{']'}$): Close outer frame:
+      - $k = 3, prev = \text{""} \implies res = \text{""} + \text{"acc"} \times 3 = \mathbf{\text{"accaccacc"}}$
+  - Result: `"accaccacc"`
+- **Adjacent Sibling Sequences:** $s = \text{"3[a]2[bc]"} \implies \text{"aaabcbc"}$
+- **Trailing / Unbracketed Characters:** $s = \text{"2[abc]3[cd]ef"} \implies \text{"abcabccdcdcdef"}$
+- **Multi-Digit Multipliers:** $s = \text{"12[ab]"} \implies num$ parses $1 \to 12$, repeats `"ab"` twelve times
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates stack-based parsing of nested context-free grammars, mathematically proves why separating multiplier and prefix state decouples hierarchical scopes, avoids recursion limits, and achieves $O(|output|)$ time and $O(|output|)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an encoded string, return its decoded string.
+Given an encoded string $s = \text{"3[a2[c]]"}$ where the encoding rule is `k[encoded_string]`, meaning the `encoded_string` inside the square brackets is repeated exactly $k$ times:
+Decode the string to its fully expanded representation:
 
-The objective is to compute `"aaabcbc"` from `{"s": "3[a]2[bc]"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Grammar Tree Representation:
+           Root
+             |
+           3 * [...]
+             |
+         "a" + 2 * [...]
+                 |
+                "c"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Innermost resolution: 2 * "c" -> "cc"
+Intermediate segment: "a" + "cc" -> "acc"
+Outermost resolution: 3 * "acc" -> "accaccacc"
+```
+
+### The Dual-Stack Architecture
+Because brackets can be arbitrarily nested (e.g. `3[a2[c]]`), an inner bracket pair must be evaluated and expanded before its enclosing outer repeat count can be applied:
+1. `s1`: Stores the multiplier integers $k$ awaiting their closing bracket.
+2. `s2`: Stores the prefix strings accumulated before entering the current bracket level.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. State Variables:
+- `num`: Non-negative integer holding the multiplier currently being read.
+- `res`: String accumulator of the decoded text at the current nesting level.
+- `s1 = []`: Stack of integer multipliers.
+- `s2 = []`: Stack of prefix strings.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. State Transition Rules for Each Character $c \in s$:
+1. **Digit ($c \in \text{'0'}\dots\text{'9'}$):**
+   Accumulate multi-digit numbers:
+   $$
+   num \leftarrow num \times 10 + \text{int}(c)
+   $$
+2. **Open Bracket (`c == '['`):**
+   Enter a new nested scope:
+   - Push current multiplier: $s1.\text{append}(num)$.
+   - Push accumulated prefix: $s2.\text{append}(res)$.
+   - Clear registers for child scope: $num \leftarrow 0, \; res \leftarrow \text{""}$.
+3. **Close Bracket (`c == ']'`):**
+   Exit the active scope and resolve expansion:
+   - Pop multiplier: $k = s1.\text{pop}()$.
+   - Pop parent prefix: $prev = s2.\text{pop}()$.
+   - Expand and concatenate:
+     $$
+     res \leftarrow prev + res \times k
+     $$
+4. **Letter ($c \in \text{'a'}\dots\text{'z'}$):**
+   Append directly to the current frame:
+   $$
+   res \leftarrow res + c
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At any moment, `res` contains the fully expanded text of the current nesting level, and `s2` stores the exact prefixes needed to assemble enclosing ancestor frames upon hitting `]`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Nested encodings require remembering unfinished outer work
-
-While decoding `3[a2[c]]`, the parser begins the outer repeated section, then encounters another repeated section before the outer one is complete. It must remember both the outer repeat count `3` and the already-decoded text that appeared before that section. A stack is appropriate because the innermost bracket closes first: the most recently opened context is the first one completed.
-
-The exact solution uses two parallel stacks:
-
-- `s1` stores repeat counts for open brackets;
-- `s2` stores decoded prefixes that appeared before those brackets.
-
-It also keeps two current values:
-
-- `num` is the repeat count currently being read from consecutive digits;
-- `res` is the decoded text at the current nesting level.
-
-Entries at the same index in `s1` and `s2` belong to the same open bracket. Their sizes always match.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "3[a]2[bc]"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"3[a2[c]]"}$:
+Initial: $num = 0, res = \text{""}, s1 = [], s2 = []$.
 
 ---
 
-### Step 2: Reading a multi-digit repeat count
-
-When `c.isdigit()` is true, the update is
-
-
-
-Multiplying by ten shifts the previously read decimal digits left by one place, and adding the new digit appends it. For example, reading `1`, then `2`, then `3` changes `num` through `1`, `12`, and `123`.
-
-The code must accumulate digits this way because repeat counts can be larger than nine. Treating each digit as a separate count would decode `12[a]` incorrectly.
-
-The input guarantee says digits occur only as positive repeat counts immediately before `[`. Therefore, `num` never needs to represent a literal digit in the decoded output.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Character `'3'`
+- Digit $\implies num = 0 \times 10 + 3 = \mathbf{3}$.
 
 ---
 
-### Step 3: Opening a bracket creates a new frame
+### Step 2: Character `'['` (Open Outer Frame)
+- Save state to stacks:
+  $$
+  s1.\text{append}(3) \implies s1 = [3]
+  $$
+  $$
+  s2.\text{append}(\text{""}) \implies s2 = [\text{""}]
+  $$
+- Reset active registers:
+  $$
+  num = 0, \quad res = \text{""}
+  $$
 
-On `[`, the number just read applies to the enclosed section. The algorithm pushes `num` onto `s1` and the current `res` onto `s2`.
+---
 
-The saved `res` is the decoded prefix that must appear before the repeated bracket result. For `ab3[c]`, it saves `"ab"`; after decoding `c`, the bracket result will become `"ab" + "c" * 3`.
+### Step 3: Character `'a'`
+- Letter $\implies res = \text{""} + \text{'a'} = \mathbf{\text{"a"}}$.
 
-After pushing, it resets `num, res = 0, ''`. The parser is now inside the new brackets:
+---
 
-- a future number should start fresh, not continue the outer count;
-- text inside the brackets should be accumulated independently of the outer prefix.
+### Step 4: Character `'2'`
+- Digit $\implies num = 0 \times 10 + 2 = \mathbf{2}$.
 
-This is analogous to making a recursive call and storing the caller’s local state, but the stacks make that call state explicit.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"aaabcbc"` |
+### Step 5: Character `'['` (Open Inner Frame)
+- Save state to stacks:
+  $$
+  s1.\text{append}(2) \implies s1 = [3, \; 2]
+  $$
+  $$
+  s2.\text{append}(\text{"a"}) \implies s2 = [\text{""}, \; \text{"a"}]
+  $$
+- Reset active registers:
+  $$
+  num = 0, \quad res = \text{""}
+  $$
+
+---
+
+### Step 6: Character `'c'`
+- Letter $\implies res = \text{""} + \text{'c'} = \mathbf{\text{"c"}}$.
+
+---
+
+### Step 7: Character `']'` (Close Inner Frame)
+- Pop inner count: $k = s1.\text{pop}() = \mathbf{2}$.
+- Pop inner prefix: $prev = s2.\text{pop}() = \mathbf{\text{"a"}}$.
+- Frame reduction:
+  $$
+  res \leftarrow prev + res \times k = \text{"a"} + (\text{"c"} \times 2) = \mathbf{\text{"acc"}}
+  $$
+- Stacks after pop: $s1 = [3], s2 = [\text{""}]$.
+
+---
+
+### Step 8: Character `']'` (Close Outer Frame)
+- Pop outer count: $k = s1.\text{pop}() = \mathbf{3}$.
+- Pop outer prefix: $prev = s2.\text{pop}() = \mathbf{\text{""}}$.
+- Frame reduction:
+  $$
+  res \leftarrow prev + res \times k = \text{""} + (\text{"acc"} \times 3) = \mathbf{\text{"accaccacc"}}
+  $$
+- Stacks after pop: $s1 = [], s2 = []$.
+
+---
+
+### Step 9: Termination
+String scan complete. Return:
+$$
+\mathbf{\text{"accaccacc"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "3[a]2[bc]"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"aaabcbc"` | Verified |
+```text
+s = "3[a2[c]]"
+Initial: num=0, res="", s1=[], s2=[]
+
+c='3': num=3
+c='[': s1=[3], s2=[""], num=0, res=""
+c='a': res="a"
+c='2': num=2
+c='[': s1=[3, 2], s2=["", "a"], num=0, res=""
+c='c': res="c"
+c=']': k=2, prev="a"  -> res = "a" + "c"*2 = "acc"     (s1=[3], s2=[""])
+c=']': k=3, prev=""   -> res = "" + "acc"*3 = "accaccacc" (s1=[], s2=[])
+
+Final Output: "accaccacc"
+```
+
+| Step | Char $c$ | Action Taken | $num$ | Active $res$ | Multiplier Stack $s1$ | Prefix Stack $s2$ |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | `'3'` | Digit parse | 3 | `""` | `[]` | `[]` |
+| 2 | `'['` | Push frame | 0 | `""` | `[3]` | `[""]` |
+| 3 | `'a'` | Append char | 0 | `"a"` | `[3]` | `[""]` |
+| 4 | `'2'` | Digit parse | 2 | `"a"` | `[3]` | `[""]` |
+| 5 | `'['` | Push frame | 0 | `""` | `[3, 2]` | `["", "a"]` |
+| 6 | `'c'` | Append char | 0 | `"c"` | `[3, 2]` | `["", "a"]` |
+| **7** | **']'** | **Pop inner frame** | **0** | **`"acc"`** | **`[3]`** | **`[""]`** |
+| **8** | **']'** | **Pop outer frame** | **0** | **`"accaccacc"`** | **`[]`** | **`[]`** |
+| **Exit**| - | Complete | - | **`"accaccacc"`** | `[]` | `[]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In any balanced bracket language, each `]` matches the most recently opened unmatched `[`. By pushing $(k, prev)$ onto stacks when entering `[` and popping on `]`, the operation $prev + res \times k$ strictly preserves the precedence and repetition semantics of nested expressions without mixing outer and inner scopes.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ falls into exactly one of four disjoint cases: digit, open bracket, close bracket, or letter. Unbracketed letters (e.g. `"ef"` in `"2[a]ef"`) are appended directly to $res$ at depth 0, while multi-digit numbers are fully accumulated before encountering `[`, guaranteeing complete coverage of all valid grammar strings.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Recursive descent:** Parse until `]`, recursively decode nested contents, and return them to the caller. This mirrors the grammar naturally but uses the language call stack and may face recursion-depth limits. Its string-building costs require the same care as the iterative version.
-- **Single character stack:** Push raw input characters; on `]`, pop the inner text and preceding number, expand it, and push the result characters back. This is correct but repeatedly moving individual decoded characters can be less efficient and harder to follow than storing whole prefixes and counts separately.
-- **Builder or chunk-list frames:** Store lists of string chunks per frame and join strategically. This reduces repeated immutable-string concatenation and better realizes output-sensitive $O(n+m)$ behavior.
+- **Multi-Digit Numbers:** Repeat counts can be multiple digits (e.g. `10[a]`, `100[leetcode]`). Writing `num = int(c)` resets the multiplier on every digit. It must be shifted: `num = num * 10 + int(c)`.
+- **String Concatenation Order:** When popping on `]`, the order is strictly $prev + res \times k$, NOT $res \times k + prev$. The prefix was read *before* the brackets and must appear on the left.
+- **Direct String Multiplication Memory:** In Python, string multiplication `"a" * 100` is efficient. However, in deeply nested inputs with large multipliers, output size dominates; ensuring that strings are concatenated in linear fashion prevents quadratic copying.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + m)$. Let $n$ be the encoded input length, $m$ be the fully decoded output length, and $d$ be maximum bracket nesting depth.
-- **Auxiliary Space Complexity:** $O(n + m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M)$, where $M = \text{len}(output)$ is the total length of the decoded string.
+  - Parsing characters in $s$ takes $O(N)$ time.
+  - Creating and repeating string characters takes time proportional to the output length $M$.
+  - Since $M \ge N$, overall time complexity is $O(M)$.
+- **Auxiliary Space Complexity:** $O(M + D)$, where $D$ is the maximum bracket nesting depth for stacks $s1$ and $s2$, and $M$ is the memory for string fragments stored in $s2$.

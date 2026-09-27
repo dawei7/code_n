@@ -1,107 +1,203 @@
 # Guided Example: Max Consecutive Ones
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass contiguous run counter ($cnt \leftarrow cnt + 1$), zero-triggered reset ($cnt \leftarrow 0$), and running maximum peak tracking ($ans = \max(ans, cnt)$) on representative binary arrays:
 
-- **Input:** `{"nums": [1, 1, 0, 1, 1, 1]}`
+- **Input:** $nums = [1, 1, 0, 1, 1, 1]$
 - **Required output:** `3`
+  - Array length: $N = 6$
+  - Objective: Maximum length of contiguous subarray consisting exclusively of $1$s.
+- **Single-pass execution trace:**
+  - Initial state: $ans = 0, \; cnt = 0$
+  - **Index 0 ($x = 1$):**
+    - Encountered $1 \implies cnt \leftarrow 0 + 1 = \mathbf{1}$
+    - Update peak: $ans \leftarrow \max(0, 1) = \mathbf{1}$
+  - **Index 1 ($x = 1$):**
+    - Encountered $1 \implies cnt \leftarrow 1 + 1 = \mathbf{2}$
+    - Update peak: $ans \leftarrow \max(1, 2) = \mathbf{2}$
+  - **Index 2 ($x = 0$):**
+    - Encountered $0 \implies$ Contiguous streak broken!
+    - Reset current counter: $cnt \leftarrow \mathbf{0}$
+    - Peak remains: $ans = 2$
+  - **Index 3 ($x = 1$):**
+    - Encountered $1 \implies cnt \leftarrow 0 + 1 = \mathbf{1}$
+    - Peak remains: $ans = \max(2, 1) = 2$
+  - **Index 4 ($x = 1$):**
+    - Encountered $1 \implies cnt \leftarrow 1 + 1 = \mathbf{2}$
+    - Peak: $ans = \max(2, 2) = 2$
+  - **Index 5 ($x = 1$):**
+    - Encountered $1 \implies cnt \leftarrow 2 + 1 = \mathbf{3}$
+    - Update peak: $ans \leftarrow \max(2, 3) = \mathbf{3}$
+  - End of array reached.
+  - Final maximum consecutive ones: **`3`**
+- **Alternating Ones and Zeroes:** $nums = [1, 0, 1, 1, 0, 1] \implies$ Streaks are of lengths $1, 2, 1 \implies \mathbf{2}$
+- **All Zeroes:** $nums = [0, 0, 0] \implies cnt$ never increments $\implies \mathbf{0}$
+- **All Ones:** $nums = [1, 1, 1, 1] \implies cnt$ reaches $4 \implies \mathbf{4}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates linear state accumulation and reset invariants, mathematically proves why updating the maximum upon each increment avoids missing trailing streaks, and derives $O(N)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s in the array*.
+Given a binary array $nums = [1, 1, 0, 1, 1, 1]$:
+Find the **maximum number of consecutive `1`s** in the array.
 
-The objective is to compute `3` from `{"nums": [1, 1, 0, 1, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array:        [ 1,  1,  0,  1,  1,  1 ]
+Run Lengths:  |-- 2 --|     |--- 3 ---|
+                             ^
+                         Global Max = 3
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Accumulator and Reset State Machine
+The problem models a two-state finite state machine:
+1. **Accumulation State ($x == 1$):**
+   Extend the current streak of ones:
+   $$
+   cnt \leftarrow cnt + 1
+   $$
+   Record the new maximum:
+   $$
+   ans \leftarrow \max(ans, cnt)
+   $$
+2. **Reset State ($x == 0$):**
+   The streak of ones terminates:
+   $$
+   cnt \leftarrow 0
+   $$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Invariant of the Current Streak:
+At any step $i$:
+$$
+cnt = \text{length of the contiguous block of 1s ending at index } i
+$$
+If $nums[i] == 0$, no block of 1s ends at $i$, so $cnt = 0$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Invariant of the Global Maximum:
+At any step $i$:
+$$
+ans = \max_{0 \le j \le i} (\text{length of any contiguous block of 1s in } nums[0 \dots j])
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Immediate Peak Update.** Updating $ans = \max(ans, cnt)$ whenever $cnt$ increments ensures that if the array ends with a sequence of 1s (no terminating zero), the trailing streak is already captured without requiring post-loop checks.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-“Consecutive” is the key word. The task does not ask for the total number of ones; it asks for the length of the longest uninterrupted run. A zero separates two runs, so ones on opposite sides of a zero must never be added together. The solution tracks the length of the run ending at the current position and separately remembers the largest run seen anywhere.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 1, 0, 1, 1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 1, 0, 1, 1, 1]$:
 
 ---
 
-### Step 2: Core Step 2
-
-The two variables have distinct meanings:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Element at Index 0 ($x = 1$)
+- $x = 1$:
+  $$
+  cnt \leftarrow 0 + 1 = 1
+  $$
+  $$
+  ans \leftarrow \max(0, 1) = 1
+  $$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Element at Index 1 ($x = 1$)
+- $x = 1$:
+  $$
+  cnt \leftarrow 1 + 1 = 2
+  $$
+  $$
+  ans \leftarrow \max(1, 2) = 2
+  $$
 
-- `cnt` is the number of consecutive ones at the end of the already-processed prefix.
-- `ans` is the maximum run length anywhere in that processed prefix.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Element at Index 2 ($x = 0$)
+- $x = 0$:
+  $$
+  cnt \leftarrow 0
+  $$
+- $ans$ unchanged ($2$).
+
+---
+
+### Step 4: Element at Index 3 ($x = 1$)
+- $x = 1$:
+  $$
+  cnt \leftarrow 0 + 1 = 1
+  $$
+  $$
+  ans \leftarrow \max(2, 1) = 2
+  $$
+
+---
+
+### Step 5: Element at Index 4 ($x = 1$)
+- $x = 1$:
+  $$
+  cnt \leftarrow 1 + 1 = 2
+  $$
+  $$
+  ans \leftarrow \max(2, 2) = 2
+  $$
+
+---
+
+### Step 6: Element at Index 5 ($x = 1$)
+- $x = 1$:
+  $$
+  cnt \leftarrow 2 + 1 = 3
+  $$
+  $$
+  ans \leftarrow \max(2, 3) = \mathbf{3}
+  $$
+
+---
+
+### Termination:
+Loop completes. Output: **`3`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 1, 0, 1, 1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Index $i$ | Current Value $nums[i]$ | State Transition | Streak Counter $cnt$ | Global Peak $ans$ | Note |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| **$0$** | $1$ | Increment | $1$ | $1$ | First 1 |
+| **$1$** | $1$ | Increment | $2$ | $2$ | Streak of two |
+| **$2$** | $0$ | Reset | $0$ | $2$ | Zero encountered |
+| **$3$** | $1$ | Increment | $1$ | $2$ | New streak begins |
+| **$4$** | $1$ | Increment | $2$ | $2$ | Streak of two |
+| **$5$** | $1$ | Increment | $3$ | **$3$** | New peak recorded |
+| **Final** | — | — | — | **$3$** | **Result: $3$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Element Zero ($nums = [0]$):** Loop runs once with reset $\implies \mathbf{0}$.
+- **Single Element One ($nums = [1]$):** Loop runs once with increment $\implies \mathbf{1}$.
+- **All Ones ($nums = [1, 1, 1]$):** Never resets $\implies cnt = N \implies \mathbf{N}$.
+- **All Zeroes ($nums = [0, 0, 0]$):** Resets every step $\implies cnt = 0 \implies \mathbf{0}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Split a converted string on zero:** Converting all values to text, splitting, and taking the longest segment can be concise, but it allocates several linear-size objects and obscures the simple streaming invariant.
-- **Store every run length:** Appending completed counts to a list and taking their maximum later works, but retains $O(n)$ unnecessary data. Only the best previous run and current run matter.
-- **Two nested loops:** One loop could locate a one and another could consume its entire run. With careful index movement this can still be linear, but the single loop is easier to verify and has fewer boundary conditions.
-- **Update only at zeros:** This requires a final `max(ans, cnt)` so that an all-one suffix is not missed. Updating when a one arrives removes that special ending case.
-- **All zeros:** The answer is zero because no one-run ever begins; initializing both counters to zero handles it naturally.
-- **All ones:** No separator appears, so `cnt` reaches the full array length and `ans` follows it.
-- **Alternating values:** Every run has length one, and resets prevent separate ones from being combined.
-- **Single element:** The general loop returns `1` for `[1]` and `0` for `[0]` without branching on the array length.
-- **Binary-input guarantee:** `if x` is correct only because values are guaranteed to be zero or one. For a more general array, the explicit condition `x == 1` would be required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Updating Peak Only on Zero:** Updating $ans = \max(ans, cnt)$ only inside the `else` branch forgets to record the peak if the longest streak reaches the very end of the array ($[1, 1, 1]$ would return $0$). Updating on every increment handles arbitrary endings cleanly.
+- **String Splitting (`"".join(map(str, nums)).split('0')`):** Converting a $10^5$-element array to string and splitting creates unnecessary heap allocations and string parsing overhead. A simple integer accumulator is orders of magnitude faster.
+- **Off-by-One Reset Values:** Setting $cnt = 1$ on zero incorrectly carries a non-zero count into the next element. The streak of ones after a zero must strictly reset to 0.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of elements in `nums`. The loop reads each element exactly once and performs constant-time comparisons, assignments, addition, and `max` work. The running time is $O(n)$. This matches the lower bound for an arbitrary input array because any skipped element could affect the maximum run.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The loop performs a single linear pass over $N$ elements.
+  - Each element requires $O(1)$ scalar comparisons and increments.
+  - Total Time: $\mathcal{O}(N)$. For $N = 10^5$, executes in $< 5$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ extra space using two integer variables ($cnt$ and $ans$).

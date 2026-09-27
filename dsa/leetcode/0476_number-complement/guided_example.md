@@ -1,135 +1,173 @@
 # Guided Example: Number Complement
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bit-length determination ($L = \lfloor \log_2(num) \rfloor + 1$), full-ones bitmask generation ($mask = (1 \ll L) - 1$), bitwise XOR inversion ($num \oplus mask$), and bitwise arithmetic cancellation on representative integers:
 
-- **Input:** `{"num": 10}`
-- **Required output:** `5`
+- **Input:** $num = 5$
+- **Required output:** `2`
+  - Binary representation:
+    $$
+    5 = 101_2
+    $$
+  - Significant bit length: $L = 3$ bits (from bit 0 to bit 2)
+  - Generate a full mask of 1s of length $L$:
+    $$
+    mask = (1 \ll 3) - 1 = 8 - 1 = 7 = 111_2
+    $$
+  - Bitwise XOR inversion:
+    $$
+    \begin{aligned}
+    num  &= 101_2 \\
+    mask &= 111_2 \\
+    \hline
+    num \oplus mask &= 010_2 = 2
+    \end{aligned}
+    $$
+  - The inverted value is $\mathbf{2}$.
+- **Single-Bit Instance:** $num = 1$ ($1_2$)
+  - $L = 1$, $mask = (1 \ll 1) - 1 = 1_2$
+  - Inversion: $1 \oplus 1 = \mathbf{0}$
+- **Four-Bit Alternating Pattern:** $num = 10$ ($1010_2$)
+  - $L = 4$, $mask = (1 \ll 4) - 1 = 15 = 1111_2$
+  - Inversion: $1010_2 \oplus 1111_2 = 0101_2 = \mathbf{5}$
+- **All Ones Input:** $num = 7$ ($111_2$)
+  - $L = 3$, $mask = 7$
+  - Inversion: $7 \oplus 7 = \mathbf{0}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bitwise mask synthesis, mathematically proves why XOR with an all-ones mask flips significant bits without introducing leading ones from two's complement sign extension, and derives $O(1)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **complement** of an integer is the integer you get when you flip all the `0`'s to `1`'s and all the `1`'s to `0`'s in its binary representation.
+Given a positive integer $num = 5$:
+The **complement** of an integer is the integer you get when you flip all the `0`s to `1`s and all the `1`s to `0`s in its binary representation (ignoring leading zeros).
+Find the complement number.
 
-The objective is to compute `5` from `{"num": 10}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: num = 5
+Binary representation:      1  0  1
+Flip every bit:             0  1  0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Decimal value of "010": 2
+```
+
+### The Two's Complement Hazard
+In standard 32-bit two's complement computing:
+- The bitwise NOT operator `~num` flips **all 32 bits**, including the 29 leading zeroes!
+- For $num = 5$, `~5` becomes `...11111111111111111111111111111010` (which is $-6$).
+- To flip *only* the significant bits without polluting the high-order bits with 1s:
+  We must construct a **mask of 1s having the exact same bit-length** as $num$ and compute $num \oplus mask$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Significant Bit Length:
+Let $L$ be the number of bits in the binary representation of $num$:
+$$
+L = \text{bit\_length}(num) = \lfloor \log_2(num) \rfloor + 1
+$$
+For $num = 5$, $L = 3$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. All-Ones Mask Construction:
+Shifting $1$ to the left by $L$ places produces $2^L$ (a single 1 followed by $L$ zeroes).
+Subtracting 1 yields exactly $L$ consecutive ones:
+$$
+mask = (1 \ll L) - 1 = \underbrace{11\dots 1}_{L \text{ bits}}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Bitwise XOR Inversion:
+XORing any bit with $1$ flips it:
+- $0 \oplus 1 = 1$
+- $1 \oplus 1 = 0$
+Therefore:
+$$
+\text{Complement} = num \oplus mask
+$$
+Equivalently, since $num + \text{Complement} = mask$:
+$$
+\text{Complement} = mask - num
+$$
+
+> **Masking Invariant.** The mask $(1 \ll L) - 1$ isolates precisely the $L$ active bits of $num$, ensuring all bits in $[0, L - 1]$ invert while all bits $\ge L$ remain strictly zero.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Find the meaningful width
-
-`num.bit_length()` returns the number of bits required to represent positive `num` without leading zeros. For example:
-
-- `1` is binary `1`, so its bit length is one.
-- `5` is binary `101`, so its bit length is three.
-- `8` is binary `1000`, so its bit length is four.
-
-Let this width be `b`. The highest meaningful position is `b - 1`, and positions at `b` or above are implicit leading zeros that must remain outside the operation.
-
-The contract guarantees `num >= 1`, so `b` is always positive. Python defines `0.bit_length()` as zero, but the exact source does not need a separate zero policy for this problem.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $num = 5$:
 
 ---
 
-### Step 2: Construct `b` one-bits
-
-The expression `1 << b` shifts a single one left by `b` positions, creating the binary pattern `1` followed by `b` zeros. Subtracting one borrows through those zeros and produces exactly `b` trailing ones:
-
-$$
-(1\ll b)-1=\underbrace{11\ldots1}_{b\text{ bits}}.
-$$
-
-For `b = 3`, `1 << 3` is binary `1000`, and subtracting one gives `111`.
-
-This is the exact width mask needed for `num`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Calculate Bit Length $L$
+- $num = 5$.
+- Binary: $101_2$.
+- Length:
+  $$
+  L = 3 \text{ bits}
+  $$
 
 ---
 
-### Step 3: Why XOR performs the complement
+### Step 2: Build the Bitmask
+- Shift 1 by $L = 3$:
+  $$
+  1 \ll 3 = 1000_2 = 8
+  $$
+- Subtract 1:
+  $$
+  mask = 8 - 1 = 7 = 111_2
+  $$
 
-For one bit `x`, XOR has these relevant identities:
+---
 
-$$
-x\oplus1=1-x,
-\qquad
-x\oplus0=x.
-$$
-
-Every meaningful bit is aligned with a mask bit of one, so it flips. Every higher position is aligned with mask zero, so it stays zero and creates no unwanted leading ones.
-
-The returned expression is therefore
-
-`num ^ ((1 << num.bit_length()) - 1)`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Step 3: Compute Complement
+- Perform bitwise XOR between $num$ and $mask$:
+  $$
+  5 \oplus 7 = 101_2 \oplus 111_2 = 010_2 = \mathbf{2}
+  $$
+- Or via subtraction:
+  $$
+  mask - num = 7 - 5 = \mathbf{2}
+  $$
+Output value: **`2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Decimal $num$ | Binary $num$ | Bit Length $L$ | Full-Ones Mask $(1 \ll L) - 1$ | Binary Inversion | Output Decimal |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$1$** | $1_2$ | $1$ | $1_2 = 1$ | $1 \oplus 1 = 0_2$ | **$0$** |
+| **$2$** | $10_2$ | $2$ | $11_2 = 3$ | $10_2 \oplus 11_2 = 01_2$ | **$1$** |
+| **$5$** | $101_2$ | $3$ | $111_2 = 7$ | $101_2 \oplus 111_2 = 010_2$ | **$2$** |
+| **$7$** | $111_2$ | $3$ | $111_2 = 7$ | $111_2 \oplus 111_2 = 000_2$ | **$0$** |
+| **$10$** | $1010_2$ | $4$ | $1111_2 = 15$ | $1010_2 \oplus 1111_2 = 0101_2$ | **$5$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Minimum Input ($num = 1$):** $L = 1 \implies mask = 1 \implies 1 \oplus 1 = \mathbf{0}$.
+- **Powers of Two ($num = 8 = 1000_2$):** $L = 4 \implies mask = 15 = 1111_2 \implies 8 \oplus 15 = 7 = 0111_2$.
+- **All Set Bits ($num = 2^{31} - 1$):** $L = 31 \implies mask = 2^{31} - 1 \implies \mathbf{0}$.
+- **Large 32-Bit Overflow Avoidance:** Using unsigned 64-bit shifts or built-in arbitrary precision integers avoids 32-bit signed shift overflow when $L = 31$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Flip one bit at a time:** Walk through `num`'s bits with a shifting one-bit mask. It is correct but uses a loop instead of one same-width XOR.
-- **Propagate the highest bit downward:** Repeated OR-with-shift operations turn every lower position into one, then XOR. This avoids `bit_length` but is more verbose.
-- **Use `~num` directly:** Incorrect in Python because it flips unbounded leading sign bits and returns a negative value.
-- **Subtract from the mask:** `(1 << b) - 1 - num` is algebraically equivalent to XOR for this all-ones width.
-- **`num = 1`:** The one meaningful bit flips to zero.
-- **Power of two:** The leading one becomes zero and every lower zero becomes one, yielding one less than the original number.
-- **All bits already one:** A value such as `7 = 111` complements to zero.
-- **Leading zeros:** They are intentionally excluded by `bit_length`; complementing a fixed 32-bit width would solve a different problem.
-- **Zero outside the contract:** A separate definition would be needed because its ordinary representation policy varies by problem; this source guarantees positive input.
-- **Why XOR stays within the intended width:** The mask contains zeros above the highest meaningful bit, so XOR leaves every higher position zero while toggling precisely the represented binary digits.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Direct Bitwise NOT (`~num`):** Evaluating `~5` produces negative two's-complement numbers ($-6$) because all upper zero bits are flipped to 1. Masking with significant bits is mandatory.
+- **String Conversion Roundtrips:** Converting to binary string via `bin(num)`, replacing `'1'` with `'0'` and `'0'` with `'1'`, and calling `int(..., 2)` works, but incurs heavy string heap allocation. CPU bitwise shifts execute in a single clock cycle.
+- **Shift by 32 in 32-Bit Types:** In C/C++, shifting a 32-bit integer by 32 positions (`1 << 32`) is undefined behavior. Using `(1ULL << L) - 1` or handling the boundary safely prevents compiler UB.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $b=\lfloor\log_2(\texttt{num})\rfloor+1$ be the bit length. At the arbitrary-precision bit-operation level, determining bit length, constructing the mask, and applying XOR require $O(b)=O(\log\texttt{num})$ bit work. This matches the manifest.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Bit length calculation takes $O(1)$ time (via CPU instruction `clz` / `BSR`).
+  - Bitwise shift and XOR take $O(1)$ time.
+  - Total Time: $\mathcal{O}(1)$ machine operations.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ space using scalar CPU registers.

@@ -35,8 +35,33 @@ mermaid.initialize({
   securityLevel: 'strict',
   suppressErrorRendering: true,
 });
+import { stat } from 'node:fs/promises';
 
-const markdownFiles = await findMarkdownFiles(corpusRoot);
+const args = process.argv.slice(2);
+let markdownFiles = [];
+if (args.length > 0) {
+  for (const arg of args) {
+    const resolved = path.isAbsolute(arg) ? arg : path.resolve(process.cwd(), arg);
+    try {
+      const s = await stat(resolved);
+      if (s.isDirectory()) {
+        markdownFiles.push(...await findMarkdownFiles(resolved));
+      } else if (s.isFile() && resolved.endsWith('.md')) {
+        markdownFiles.push(resolved);
+      }
+    } catch {
+      const fallback = path.resolve(corpusRoot, arg);
+      const s2 = await stat(fallback);
+      if (s2.isDirectory()) {
+        markdownFiles.push(...await findMarkdownFiles(fallback));
+      } else if (s2.isFile() && fallback.endsWith('.md')) {
+        markdownFiles.push(fallback);
+      }
+    }
+  }
+} else {
+  markdownFiles = await findMarkdownFiles(corpusRoot);
+}
 let diagramCount = 0;
 for (const markdownPath of markdownFiles) {
   const markdown = await readFile(markdownPath, 'utf8');

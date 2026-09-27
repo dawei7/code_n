@@ -1,134 +1,186 @@
 # Guided Example: Rotate String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step cyclic string shift kinematics ($s \to s[1:] + s[0]$), string doubling universe invariant ($s + s$), cyclic substring containment theorem ($goal \in s + s$), length equality gate ($|s| == |goal|$), and rotation isomorphism verification on representative character strings:
 
-- **Input:** `{"s": "abcde", "goal": "cdeab"}`
+- **Input:**
+  $$
+  s = \text{"abcde"}, \quad goal = \text{"cdeab"}
+  $$
 - **Required output:** `true`
+  - Cyclic shift mechanics:
+    - A single shift on string $s$ removes the leftmost character and appends it to the rightmost end:
+      $$
+      s = s_0 s_1 s_2 \dots s_{n-1} \implies \text{shift}(s) = s_1 s_2 \dots s_{n-1} s_0
+      $$
+    - Objective: Determine if there exists some non-negative integer $k$ such that applying $k$ shifts to $s$ produces $goal$.
+    - For $s = \text{"abcde"}$ and $goal = \text{"cdeab"}$:
+      - Shift 0: `"abcde"`
+      - Shift 1: `"bcdea"`
+      - Shift 2: `"cdeab"`
+      - After 2 shifts, the string matches $goal$ exactly!
+      - Result is **`true`**.
+- **String Doubling & Cyclic Substring Invariant:**
+  - **The All-Rotations Generator ($s + s$):**
+    - Notice what happens when we concatenate $s$ with itself:
+      $$
+      s + s = s_0 s_1 \dots s_{n-1} \; s_0 s_1 \dots s_{n-1}
+      $$
+    - Consider any contiguous window of length $n = |s|$ starting at index $k \in [0, n - 1]$:
+      - Window at index 0: $s_0 s_1 \dots s_{n-1}$ (Shift 0)
+      - Window at index 1: $s_1 s_2 \dots s_{n-1} s_0$ (Shift 1)
+      - Window at index $k$: $s_k s_{k+1} \dots s_{n-1} s_0 \dots s_{k-1}$ (Shift $k$)
+    - The doubled string $s + s$ contains **all $n$ possible cyclic rotations of $s$** as contiguous substrings of length $n$!
+  - **Necessary and Sufficient Equivalence:**
+    - A string $goal$ is a cyclic shift of $s$ if and only if:
+      1. $|s| == |goal|$ (their lengths are identical).
+      2. $goal$ is a substring of $s + s$.
+    - This converts cyclic shift testing into standard string substring search in $\mathcal{O}(N)$ time!
+- **Step-by-Step Worked Execution Trace on $s = \text{"abcde"}, goal = \text{"cdeab"}$:**
+  - Length check:
+    $$
+    |s| = 5, \quad |goal| = 5 \implies 5 == 5 \quad \mathbf{(Length\ Gate\ Passed)}
+    $$
+  - **Step 1: Construct Doubled String $s + s$:**
+    $$
+    s + s = \text{"abcde"} + \text{"abcde"} = \mathbf{\text{"abcdeabcde"}}
+    $$
+  - **Step 2: Substring Search for $goal$:**
+    - Test window 0 (index $0 \dots 4$): `"abcde"` $\ne$ `"cdeab"`
+    - Test window 1 (index $1 \dots 5$): `"bcdea"` $\ne$ `"cdeab"`
+    - Test window 2 (index $2 \dots 6$):
+      $$
+      (s + s)[2 \dots 6] = \mathbf{\text{"cdeab"}} == goal
+      $$
+    - Match found at offset $k = 2$!
+  - **Step 3: Verification:**
+    - Offset $k = 2$ corresponds to exactly 2 cyclic shifts:
+      $$
+      \text{"abcde"} \xrightarrow{\text{shift 1}} \text{"bcdea"} \xrightarrow{\text{shift 2}} \text{"cdeab"}
+      $$
+    - Return:
+      $$
+      ans = \mathbf{true}
+      $$
+- **Permutation Order Mismatch Trace ($s = \text{"abcde"}, goal = \text{"abced"}$):**
+  - $|s| = |goal| = 5$.
+  - Doubled string: `"abcdeabcde"`.
+  - Looking for `"abced"`:
+    - Letters `'e'` and `'d'` are reversed relative to the original cyclic order.
+    - `"abced"` does not appear anywhere in `"abcdeabcde"`.
+    - Returns **`false`**.
+- **Length Mismatch Gate Trace ($s = \text{"a"}, goal = \text{"aa"}$):**
+  - $|s| = 1 \ne |goal| = 2$.
+  - Even though `"a" + "a" = "aa"` contains $goal$, lengths differ!
+  - Pre-condition $|s| == |goal|$ immediately rejects this $\implies$ **`false`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates cyclic group actions on free monoids and Cayley string embedding, mathematically proves why the set of conjugate words corresponds bijectively to length-$n$ subsegments of the periodic word $s^2$, and derives $O(N)$ execution time and $O(N)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `goal`, return `true` *if and only if* `s` *can become* `goal` *after some number of **shifts** on* `s`.
+Given strings $s$ and $goal$:
+Can $s$ become $goal$ after some number of cyclic shifts?
 
-The objective is to compute `true` from `{"s": "abcde", "goal": "cdeab"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+s    = "abcde"
+goal = "cdeab"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Concatenate s with itself:
+  s + s = "abcdeabcde"
+
+Windows of length 5 in s + s:
+  Offset 0: "abcde"
+  Offset 1: "bcdea"
+  Offset 2: "cdeab" -> Matches goal!
+
+Result: true
+```
+
+### The Invariant of the Doubled String Universe
+- $s + s$ contains **all cyclic shifts of $s$** as contiguous substrings of length $|s|$.
+- A string $goal$ is a cyclic shift of $s \iff |s| == |goal|$ and $goal \in s + s$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Length Identity Gate:
+$$
+|s| = |goal|
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Conjugacy Criterion:
+$$
+\text{canRotate}(s, goal) \iff (|s| == |goal|) \;\land\; (goal \subseteq s \cdot s)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Free Monoid Conjugacy Invariant.** Two words $u, v \in \Sigma^*$ are conjugate (cyclically equivalent) if and only if there exist words $x, y$ such that $u = xy$ and $v = yx$. Conjugacy in the free monoid is decidable by testing whether $v$ is a factor of $u^2$ of equal length $|u| = |v|$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Describe a rotation as choosing a cut
-
-After some number of left shifts, a prefix of `s` moves to the end while the remaining suffix moves to the front.
-
-If:
-
-$$
-s = P + Q,
-$$
-
-where `P` is the shifted prefix and `Q` is the remaining suffix, the resulting rotation is:
-
-$$
-Q + P.
-$$
-
-Trying every cut and constructing every `Q + P` would work, but it repeats much of the same string data. Concatenating `s` with itself exposes every cut result inside one doubled string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abcde", "goal": "cdeab"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"abcde"}, goal = \text{"cdeab"}$:
 
 ---
 
-### Step 2: Why doubling contains every rotation
-
-Write the doubled string as:
-
-$$
-s+s=P+Q+P+Q.
-$$
-
-The length-`n` substring beginning immediately after prefix `P` is `Q + P`, exactly the rotation produced by moving `P` to the end.
-
-As the cut moves from before index zero through before index `n - 1`, the corresponding length-`n` windows in `s + s` are all possible rotations.
-
-For example, if `s = "abcde"`, then:
-
-`s + s = "abcdeabcde"`.
-
-The rotation `"cdeab"` begins at index two of the doubled string.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Check Lengths
+- $|s| = 5 == |goal| = 5 \implies$ Passed.
 
 ---
 
-### Step 3: Why every relevant doubled substring is a rotation
+### Step 2: Form $s + s$
+- $s + s = \text{"abcdeabcde"}$.
 
-The implication also works in reverse. Let a length-`n` match begin at index `r` within `s+s`, where `0 <= r < n`. Its characters are:
+---
 
-`s[r:] + s[:r]`,
+### Step 3: Check Substring
+- `"cdeab"` is at indices $2 \dots 6$ of `"abcdeabcde"`.
 
-which is the result of `r` left shifts.
+---
 
-A length-`n` pattern can also begin at index `n`, but that window is simply the second copy of `s`, identical to the zero-shift rotation. There is no other possible starting index because a length-`n` match must fit inside the length-`2n` doubled text.
-
-Thus, among equal-length strings, substring membership in `s+s` is equivalent to being a rotation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Output
+$$
+\mathbf{true}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abcde", "goal": "cdeab"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Cyclic Shift Count $k$ | Shifted String $s^{(k)}$ | Substring Range in $s+s$ | Matches $goal = \text{"cdeab"}$? |
+|:---:|:---:|:---:|:---:|
+| $0$ | `"abcde"` | $[0 \dots 4]$ | No |
+| $1$ | `"bcdea"` | $[1 \dots 5]$ | No |
+| **$2$** | **`"cdeab"`** | **$[2 \dots 6]$** | **Yes (Match Found!)** |
+| **Final** | — | — | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Character ($s = \text{"a"}, goal = \text{"a"}$):** 0 shifts $\implies$ returns `true`.
+- **Length Mismatch ($s = \text{"a"}, goal = \text{"aa"}$):** Substring check alone would falsely say `"aa" in "aa"`, but length gate $|s| == |goal|$ correctly rejects it (`false`).
+- **Empty Strings:** Returns `true` if both empty.
+- **Goal Contains Characters Not in $s$:** Rejection guaranteed $\implies$ `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Explicit KMP search:** Search `goal` in `s+s` with a longest-prefix-suffix table, guaranteeing $O(n)$ time and using $O(n)$ table space without relying on library search behavior.
-- **Two-Way string matching:** It can provide linear worst-case search with constant auxiliary matching state, though implementation is more involved.
-- **Simulate every shift:** Construct and compare up to `n` rotations, costing $O(n^2)$ time for immutable strings.
+- **Simulating All Shifts Explicitly ($O(N^2)$):** Slicing $s[1:] + s[0]$ in a loop creates $N$ intermediate strings. Checking `goal in s + s` uses optimized KMP/Boyer-Moore substring search in linear $O(N)$ time.
+- **Forgetting the Length Check:** If $s = \text{"ab"}$ and $goal = \text{"a"}$, then $goal$ is in $s + s = \text{"abab"}$, but $goal$ is not a valid cyclic rotation of $s$. The length check `len(s) == len(goal)` is mandatory!
+- **Quadratic Memory Allocations:** Concatenating $s + s$ uses $2N$ memory, which is negligible for $N \le 100$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common length after the initial check. Creating `s+s` writes $2n$ characters, taking $O(n)$ time and $O(n)$ temporary space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Length check: $\mathcal{O}(1)$.
+  - Creating $s + s$: $\mathcal{O}(N)$.
+  - Substring search in length $2N$: $\mathcal{O}(N)$ using standard string search.
+  - Total Time: strictly linear $\mathcal{O}(N)$ where $N \le 100$. Completes in $< 0.01$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ memory for doubled string $s + s$.

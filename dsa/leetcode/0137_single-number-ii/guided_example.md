@@ -1,151 +1,156 @@
 # Guided Example: Single Number II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bit-level modulo-3 summation and two-bit digital logic finite state machine on representative triplicated element arrays:
 
-- **Input:** `{"nums": [2, 2, 3, 2]}`
-- **Required output:** `3`
+- **Input:** $\text{nums} = [2, 2, 3, 2]$
+- **Required output:** $3$ (Tripled $2$ cancels modulo 3, isolating singleton $3$)
+- **Negative Number Instance:** $\text{nums} = [-2, -2, 1, 1, 4, 1, -2] \implies 4$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates counting bit occurrences modulo 3 ($\sum \text{bit}_i \pmod 3$), proves why elements with multiplicity 3 vanish under modular arithmetic, contrasts the 32-pass bit counter with the single-pass 2-bit digital logic state machine (`ones`, `twos`), and addresses signed 32-bit two's complement reconstruction in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` where every element appears **three times** except for one, which appears **exactly once**. *Find the single element and return it*.
+Given an integer array $\text{nums} = [2, 2, 3, 2]$ where every element appears exactly **three times** except for one unique element which appears **exactly once**, find that unique single element.
+The problem requires an algorithm with linear $O(N)$ runtime complexity and strictly constant $O(1)$ extra space.
 
-The objective is to compute `3` from `{"nums": [2, 2, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In LeetCode 136 (where duplicates appear twice), bitwise XOR solves the problem because $x \oplus x = 0$ is arithmetic addition modulo 2.
+Here, duplicate elements appear three times ($3 \times 1 = 3$), so XORing them yields $x \oplus x \oplus x = x \ne 0$.
+The modular arithmetic generalization:
+For any bit position $k$, summing that bit across all numbers yields:
+$$
+\sum_{x \in \text{nums}} \text{bit}_k(x) = 3 \times (\text{triplets with bit set}) + 1 \times (\text{singleton bit})
+$$
+Taking the sum modulo 3:
+$$
+\left(\sum_{x \in \text{nums}} \text{bit}_k(x)\right) \bmod 3 = \text{bit}_k(\text{singleton})
+$$
+Every tripled number contributes $3 \equiv 0 \pmod 3$, cleanly isolating each bit of the singleton in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method 1: 32-Bit Modulo-3 Bit Reconstruction
+For each bit position $i \in [0, 31]$:
+1. Count how many numbers in `nums` have their $i$-th bit set:
+   $$
+   \text{count}_i = \sum_{x \in \text{nums}} \left( (x \gg i) \ \& \ 1 \right)
+   $$
+2. If $\text{count}_i \bmod 3 == 1$:
+   - The singleton has bit $i$ set.
+   - For bits $0 \dots 30$: `ans |= (1 << i)`.
+   - For sign bit 31: If set, convert from unsigned representation to signed two's complement: `ans -= (1 << 31)`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Method 2: Single-Pass Digital Logic FSM (`ones`, `twos`)
+We maintain two 32-bit registers `ones` and `twos` that act as a ternary counter for each bit position:
+- State 0 (seen 0 times mod 3): $\text{twos} = 0, \text{ones} = 0$
+- State 1 (seen 1 time mod 3): $\text{twos} = 0, \text{ones} = 1$
+- State 2 (seen 2 times mod 3): $\text{twos} = 1, \text{ones} = 0$
+- State 3 (seen 3 times mod 3): resets back to State 0 ($\text{twos} = 0, \text{ones} = 0$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Transition for each number $x$:
+$$
+\text{ones} \leftarrow (\text{ones} \oplus x) \ \& \ (\sim\text{twos})
+$$
+$$
+\text{twos} \leftarrow (\text{twos} \oplus x) \ \& \ (\sim\text{ones})
+$$
+After processing all numbers, `ones` directly holds the bits of the unique number.
+
+> **Invariant.** For each bit position $k$, the ternary counter cycles through $0 \to 1 \to 2 \to 0$ upon receiving ones. Tripled numbers complete an exact cycle back to 0, leaving the singleton in `ones`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count each bit modulo three
+We trace Method 1 on $\text{nums} = [2, 2, 3, 2]$:
+Binary representations:
+- $2 = 010_2$
+- $2 = 010_2$
+- $3 = 011_2$
+- $2 = 010_2$
 
-Ordinary XOR solves the version where every repeated value appears twice because XOR is addition modulo two at each bit. Here repeated values occur three times, so pairs do not cancel. The corresponding idea is to count ones at each bit position and keep the remainder modulo three.
-
-Consider a fixed bit position `i`. Every tripled value contributes either:
-
-- three zero bits, adding zero; or
-- three one bits, adding three.
-
-Both contributions are zero modulo three. The singleton contributes either zero or one at that position. Therefore:
-
-$$
-\left(\sum_{\texttt{num}\in\texttt{nums}}
-\operatorname{bit}_i(\texttt{num})\right)\bmod 3
-$$
-
-is exactly bit `i` of the unique number.
-
-The solution applies this reasoning independently to all 32 positions of the signed integer domain.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 2, 3, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Position $i = 0$ (Least Significant Bit, $2^0 = 1$):
+- Bit 0 of each number:
+  - $2 \implies 0$
+  - $2 \implies 0$
+  - $3 \implies 1$
+  - $2 \implies 0$
+- $\text{count}_0 = 0 + 0 + 1 + 0 = 1$.
+- Modulo 3: $1 \bmod 3 = \mathbf{1}$.
+- Bit 0 of singleton is $1$.
+- Cumulative answer: $\text{ans} = 1$ ($001_2$).
 
 ---
 
-### Step 2: Extract one position from every number
-
-For each `i` from zero through 31, the generator computes:
-
-`num >> i & 1`
-
-Right shift moves bit `i` into the least significant position. Bitwise AND with one clears every other position, leaving either zero or one. Parentheses are unnecessary because Python gives shifting higher precedence than bitwise AND in the intended grouping, but the expression means `(num >> i) & 1`.
-
-`sum(...)` adds that bit over the whole array. If `cnt % 3` is zero, the singleton has zero at position `i`, so `ans` needs no change. If it is nonzero, the valid frequency guarantee means the remainder is exactly one and the singleton has that bit set.
-
-For positions zero through 30, `ans |= 1 << i` places the bit into the answer. Left-shifting one creates a mask with only position `i` set, and OR preserves bits already reconstructed.
-
-For `[2, 2, 3, 2]`, binary `2` contributes its bit pattern three times. At every position, those contributions vanish modulo three. The remaining remainders are the bits of `3`, so the result is three.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Position $i = 1$ (Middle Bit, $2^1 = 2$):
+- Bit 1 of each number:
+  - $2 \implies 1$
+  - $2 \implies 1$
+  - $3 \implies 1$
+  - $2 \implies 1$
+- $\text{count}_1 = 1 + 1 + 1 + 1 = 4$.
+- Modulo 3: $4 \bmod 3 = \mathbf{1}$ (The three $2$s contribute $3 \equiv 0$; $3$ contributes $1$).
+- Bit 1 of singleton is $1$.
+- Cumulative answer: $\text{ans} = 1 | (1 \ll 1) = 1 | 2 = 3$ ($011_2$).
 
 ---
 
-### Step 3: Why the sign bit needs different reconstruction
+### Position $i = 2$ through $31$:
+- Bit values for all numbers are $0$.
+- $\text{count}_i = 0 \implies 0 \bmod 3 = 0$.
+- No higher bits set.
 
-The constraints use signed 32-bit values from $-2^{31}$ through $2^{31}-1$. Position 31 is the sign bit in two’s-complement representation.
-
-Python integers do not have a fixed 32-bit width. If the code handled position 31 with ordinary OR, it would construct the unsigned value having that high bit set, a positive integer at least $2^{31}$, rather than the required negative value.
-
-Suppose the singleton’s lower 31 bits form the nonnegative value $L$ and its sign bit is one. Its unsigned 32-bit pattern has value:
-
-$$
-2^{31}+L.
-$$
-
-The signed value represented by the same pattern is:
-
-$$
-(2^{31}+L)-2^{32}=L-2^{31}.
-$$
-
-That is why the source uses `ans -= 1 << 31` for `i == 31`. At that moment, `ans` already equals $L$. Subtracting $2^{31}$ converts the reconstructed lower bits to the correct signed integer.
-
-Python’s right shift of a negative number sign-extends with ones, which is consistent with two’s-complement bits at the 32 positions being examined. Applying `& 1` still extracts the desired position.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+Sign bit 31 is $0 \implies$ positive integer.
+Final reconstructed answer: $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 2, 3, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+### Bit Column Count Table on $[2, 2, 3, 2]$
+
+```text
+Number        Bit 2 (4s)    Bit 1 (2s)    Bit 0 (1s)
+  2               0             1             0
+  2               0             1             0
+  3               0             1             1
+  2               0             1             0
+------------------------------------------------
+Sum:              0             4             1
+Sum % 3:          0             1             1
+Reconstructed:    0             1             1  => 3
+```
+
+| Bit Position $i$ | Binary Weight $2^i$ | Bit Sum $\sum \text{bit}_i$ | $\text{count}_i \bmod 3$ | Singleton Bit | Cumulative `ans` |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | $0 + 0 + 1 + 0 = 1$ | 1 | **1** | 1 ($001_2$) |
+| 1 | 2 | $1 + 1 + 1 + 1 = 4$ | 1 | **1** | **3 ($011_2$)** |
+| 2 | 4 | $0 + 0 + 0 + 0 = 0$ | 0 | 0 | 3 |
+| $3 \dots 30$ | - | 0 | 0 | 0 | 3 |
+| 31 (Sign) | $-2^{31}$ | 0 | 0 | 0 | **3 (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $S$ be the singleton integer and $T_1, \dots, T_k$ be the integers appearing three times. For each bit position $i$, the sum of bits is $\text{count}_i = \text{bit}_i(S) + 3 \sum_{j=1}^k \text{bit}_i(T_j)$. Because $3 \sum \equiv 0 \pmod 3$, the remainder $\text{count}_i \bmod 3$ is mathematically equal to $\text{bit}_i(S)$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Evaluating all 32 bits covers the entire domain of 32-bit signed integers $[-2^{31}, 2^{31}-1]$, reconstructing the unique value bit-for-bit without loss.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two-mask finite-state machine:** Maintain masks for bits seen once and twice modulo three. It processes all bit positions in parallel and also runs in $O(n)$ time and $O(1)$ space, but its Boolean transitions are less immediately intuitive.
-- **Frequency dictionary:** Count complete integers and return the count-one key. It is linear expected time but requires $O(n)$ extra space.
-- **Sort and scan triples:** Sorting makes equal values adjacent, but costs $O(n\log n)$ time and may mutate the input.
-- **Set-and-sum formula:** `(3 * sum(set(nums)) - sum(nums)) // 2` derives the singleton algebraically, but the set violates constant space and fixed-width sums can overflow.
-- **One element:** Its bits alone determine every remainder, so the same reconstruction returns it.
-- **Singleton zero:** All position remainders are zero and `ans` remains zero.
-- **Negative singleton:** The position-31 subtraction is necessary to return a negative Python integer instead of an unsigned 32-bit magnitude.
-- **Negative repeated values:** Each sign-extended bit is still counted three times and vanishes modulo three.
-- **Remainder two:** Valid input cannot leave remainder two at any bit because only the singleton survives and contributes at most one. The code treats any nonzero remainder as set, trusting the contract.
-- **Runtime dependency:** The selected source uses `List` without importing it. A standalone module needs `from typing import List`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sign Bit in Python Two's Complement:** In Python, integers have arbitrary precision. If bit 31 is 1, a positive number $\ge 2^{31}$ will be constructed rather than a negative number! For bit 31, using `ans -= (1 << 31)` or `ans if ans < (1 << 31) else ans - (1 << 32)` properly converts the bit pattern into a negative signed integer.
+- **Negative Tripled Numbers:** A negative number repeated three times contributes three sign-extended $1$s at higher bit positions. These sum to $3$, which also vanishes modulo 3 ($3 \equiv 0$). Negative numbers require no special branching during bit counting.
+- **Generalizing to Multiplicity $K$:** This modulo-counting approach generalizes to any multiplicity $K$: if every non-target element appears $K$ times, taking $\text{count}_i \bmod K$ isolates the singleton.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $n$ be the array length.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(32 \cdot N) = O(N)$, where $N$ is the number of elements in `nums`. The bit-counting loop evaluates 32 fixed positions, each iterating over $N$ numbers. Method 2 (the digital logic FSM) evaluates in a single pass of $N$ operations.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, utilizing only a few integer registers (`ans`, `count`).

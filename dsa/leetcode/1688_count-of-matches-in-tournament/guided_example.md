@@ -1,122 +1,192 @@
 # Guided Example: Count of Matches in Tournament
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the elimination arithmetic and round-by-round tournament simulation, formulate the Single-Elimination Invariant Theorem and the Inductive Parity Conservation Proof, and analyze tournament structures across representative instances:
 
-- **Input:** `{"n": 7}`
-- **Required output:** `6`
+- **Representative Instance 1 (Odd-Count Tournament with Bye):**
+  - Input: $n = 7$ teams
+  - Round Progression:
+    - Round 1: $7$ is odd $\implies (7 - 1) / 2 = \mathbf{3}$ matches played.
+      - Advancing teams: $3$ match winners $+ 1$ bye $= 4$ teams.
+    - Round 2: $4$ is even $\implies 4 / 2 = \mathbf{2}$ matches played.
+      - Advancing teams: $2$ match winners.
+    - Round 3: $2$ is even $\implies 2 / 2 = \mathbf{1}$ match played.
+      - Advancing teams: $1$ champion crowned!
+  - Total Matches: $3 + 2 + 1 = \mathbf{6}$ ($7 - 1 = 6$).
+  - **Required Output:** `6`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Multi-Round Even-Odd Interleaving):**
+  - Input: $n = 14$ teams
+  - Round Progression:
+    - Round 1 ($14$ teams): $7$ matches $\implies 7$ teams advance.
+    - Round 2 ($7$ teams): $3$ matches $\implies 4$ teams advance.
+    - Round 3 ($4$ teams): $2$ matches $\implies 2$ teams advance.
+    - Round 4 ($2$ teams): $1$ match $\implies 1$ champion.
+  - Total Matches: $7 + 3 + 2 + 1 = \mathbf{13}$ ($14 - 1 = 13$).
+  - **Required Output:** `13`.
+
+- **Representative Instance 3 (Single-Team Trivial Base Case):**
+  - Input: $n = 1$ team
+  - Tournament begins with the champion already decided. Zero matches needed.
+  - Total Matches: $1 - 1 = \mathbf{0}$.
+  - **Required Output:** `0`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `n`, the number of teams in a tournament that has strange rules:
+In a single-elimination tournament of $n$ teams:
+- If current team count $k$ is **even**, $k / 2$ matches are held and $k / 2$ winners advance.
+- If current team count $k$ is **odd**, $(k - 1) / 2$ matches are held, one random team receives a bye, and $(k - 1) / 2 + 1$ teams advance.
+The tournament continues until exactly $1$ champion remains. Determine the total matches played.
 
-The objective is to compute `6` from `{"n": 7}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Simulation Approach vs. The Elimination Invariant:
+  Simulating the rounds step-by-step:
+    Loop while n > 1:
+      If n is even: add n / 2, set n = n / 2
+      If n is odd:  add (n - 1) / 2, set n = (n - 1) / 2 + 1
+    Takes O(log n) time.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  The Single-Elimination Invariant Theorem:
+    Look at the tournament not from the perspective of WINNERS,
+    but from the perspective of LOSERS!
+      1. Every single match played has EXACTLY ONE WINNER and EXACTLY ONE LOSER.
+      2. Single elimination means: a team that loses is PERMANENTLY ELIMINATED!
+      3. The tournament starts with n teams and terminates with EXACTLY 1 CHAMPION.
+      4. Therefore, exactly n - 1 teams MUST BE ELIMINATED!
+      5. Since each match eliminates exactly ONE team, the number of matches
+         must be EXACTLY EQUAL to the number of eliminated teams:
+           Total Matches = n - 1
+```
+
+The pedagogical goal is the **Single-Elimination Invariant Theorem**:
+1. Prove equivalence between match count and eliminated competitors.
+2. Demonstrate how conservation invariants collapse iterative algorithms into $\mathcal{O}(1)$ closed forms.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Elimination Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Single Elimination Invariant Pipeline
+    accDescr: Diagram illustrating the conservation law where every match eliminates exactly one team until one champion remains.
+    Start["Given n teams in single-elimination tournament"] --> Conserve{"Conservation Law:\n1 Match = 1 Team Eliminated"}
+    Conserve --> CountLosers["Total teams to eliminate:\nn - 1 teams (leaving 1 champion)"]
+    CountLosers --> DirectFormula["Total Matches = n - 1\n(Strict O(1) Evaluation)"]
+    DirectFormula --> Emit["Emit n - 1"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Single-Elimination Invariant Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $T_0$ denote the initial set of teams with $|T_0| = n \ge 1$.
+
+1. **Local Elimination Conservation:**
+   In any round with $k$ teams:
+   - If $k$ is even: $m = k / 2$ matches are played. Exactly $m$ teams lose and are eliminated. The remaining teams count is $k - m = k / 2$.
+   - If $k$ is odd: $m = (k - 1) / 2$ matches are played. Exactly $m$ teams lose and are eliminated. The remaining teams count is $k - m = k - (k - 1) / 2 = (k + 1) / 2$.
+   In both cases, each match played reduces the total population of active competitors by exactly $1$:
+   $$
+   k_{\text{next}} = k_{\text{current}} - m_{\text{played}}
+   $$
+
+2. **Global Telescope Sum:**
+   Let the tournament proceed through $R$ rounds.
+   Summing the reductions across all rounds $r = 1, \dots, R$:
+   $$
+   \sum_{r=1}^R m_r = \sum_{r=1}^R (k_{r-1} - k_r) = k_0 - k_R
+   $$
+   The tournament halts when exactly one team remains: $k_R = 1$.
+   The initial population is $k_0 = n$.
+   Substituting into the telescoping sum:
+   $$
+   M_{\text{total}} = \sum_{r=1}^R m_r = n - 1
+   $$
+
+3. **Universality of the Invariant:**
+   The result $M_{\text{total}} = n - 1$ is invariant to bracket topology, odd/even parity, bye allocations, or team seedings.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count eliminations instead of simulating rounds
+### Trace on Representative Instance 1 ($n = 7$)
 
-The round rules look different for even and odd team counts, but every actual match has one invariant outcome: exactly one team loses and is eliminated. The winning team remains in the tournament.
+#### Round 1 ($k_0 = 7$):
+- Parity: $7$ is odd.
+- Matches scheduled:
+  $$
+  m_1 = \frac{7 - 1}{2} = \mathbf{3}
+  $$
+- Eliminated teams: $3$.
+- Advancing teams:
+  $$
+  k_1 = \frac{7 - 1}{2} + 1 = 3 + 1 = \mathbf{4}
+  $$
 
-The tournament starts with `n` teams and ends when exactly one champion remains. Therefore exactly `n - 1` teams must be eliminated.
+#### Round 2 ($k_1 = 4$):
+- Parity: $4$ is even.
+- Matches scheduled:
+  $$
+  m_2 = \frac{4}{2} = \mathbf{2}
+  $$
+- Eliminated teams: $2$.
+- Advancing teams:
+  $$
+  k_2 = \frac{4}{2} = \mathbf{2}
+  $$
 
-Since every match eliminates exactly one team, the number of matches is also exactly `n - 1`. The source returns that expression directly.
+#### Round 3 ($k_2 = 2$):
+- Parity: $2$ is even.
+- Matches scheduled:
+  $$
+  m_3 = \frac{2}{2} = \mathbf{1}
+  $$
+- Eliminated teams: $1$.
+- Advancing teams: $k_3 = 1$ (Champion decided!).
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 7}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why a bye does not affect the count
-
-In an odd-sized round, one team advances without playing. That bye eliminates no team and counts as no match. The other `n - 1` teams form pairs, and each match eliminates one of them.
-
-The bye changes when eliminations occur, not how many eliminations are ultimately necessary. All nonchampion teams must still lose one match at some later or current round.
-
-For seven teams, three first-round matches eliminate three teams and one team receives a bye, leaving four. Two more matches leave two teams, and one final match selects the champion. The distribution is `3 + 2 + 1`, but the total is simply six, or `7 - 1`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: A one-to-one correspondence
-
-Every match can be paired with the unique team that loses that match. No team loses twice because its first loss removes it permanently. The champion never loses.
-
-Thus the set of matches is in one-to-one correspondence with the set of nonchampion teams:
-
-- each match contributes one distinct eliminated team;
-- each of the `n - 1` nonchampions must be eliminated by some match.
-
-This is stronger than merely observing examples. It proves that no legal arrangement of pairings or byes can change the total.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+#### Total Aggregation:
+- Total matches: $m_1 + m_2 + m_3 = 3 + 2 + 1 = \mathbf{6}$.
+- Closed-form check: $n - 1 = 7 - 1 = \mathbf{6}$. Exact match!
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 7}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+### Elimination Ledger Table for $n = 14$
+
+| Round | Starting Teams $k$ | Parity | Bye Assigned? | Matches Played $m$ | Teams Eliminated | Remaining Active Teams | Cumulative Matches |
+|---|---|---|---|---|---|---|---|
+| $1$ | $14$ | Even | No | $14 / 2 = 7$ | $7$ | $7$ | $7$ |
+| $2$ | $7$ | Odd | Yes ($1$ bye) | $(7 - 1) / 2 = 3$ | $3$ | $4$ | $10$ |
+| $3$ | $4$ | Even | No | $4 / 2 = 2$ | $2$ | $2$ | $12$ |
+| $4$ | $2$ | Even | No | $2 / 2 = 1$ | $1$ | $1$ (Champion) | **`13`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The closed form $n - 1$ follows directly from the conservation law of single-elimination graphs. Since matches cannot end in ties and losers cannot re-enter, every match accounts for exactly one unique eliminated participant.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The tournament definition guarantees that exactly $n - 1$ eliminations are necessary to leave $1$ winner. The algebraic formulation covers all integers $n \ge 1$ without exceptions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Round simulation:** Repeatedly add `floor(n/2)` matches and replace `n` with `ceil(n/2)`. It is correct but takes $O(\log n)$ time and obscures the elimination invariant.
-- **Recursive simulation:** It mirrors the tournament tree but adds unnecessary call-stack overhead.
-- **One team:** No match is needed, and `n - 1` correctly returns zero.
-- **Two teams:** One match eliminates one team and selects the winner; the formula returns one.
-- **Odd team count:** A bye eliminates nobody and therefore adds nothing beyond the matches that actually occur.
-- **Even team count:** Every team is paired, but only one member of each pair is eliminated, matching one elimination per match.
-- **Random bye selection:** Which team advances freely can affect identities and bracket shape, never the total number of nonchampions.
-- **Different winners:** Any possible champion leaves exactly the other `n - 1` teams to be eliminated.
-- **No draws assumed:** The rules state that half of each matched pair advances, so every match has exactly one loser; the proof relies on this.
-- **Closed-form insight:** The answer depends only on initial and final active counts, not the number of rounds.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overcomplicating with Simulation Loops:** Implementing while-loops with parity conditionals is unnecessary and introduces potential off-by-one errors in integer division.
+- **Ignoring the Bye Rule in Simulation:** In odd rounds, failing to add $+1$ for the bye team when computing the next round's participants corrupts the simulated tournament bracket.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The implementation performs one subtraction and one return, independent of `n`. Its time complexity is $O(1)$ and its auxiliary space complexity is $O(1)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The closed form $n - 1$ executes in $\mathcal{O}(1)$ time.
+  - (Simulation executes in $\mathcal{O}(\log n)$ iterations).
+  - Total Time Complexity: strictly $\mathcal{O}(1)$ constant time.
+- **Auxiliary Space Complexity:**
+  - Zero memory allocated beyond scalar return.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(1)$ constant space.

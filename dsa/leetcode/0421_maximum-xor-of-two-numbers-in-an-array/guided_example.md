@@ -1,119 +1,196 @@
 # Guided Example: Maximum XOR of Two Numbers in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise binary trie construction, most-significant-bit (MSB) greedy opposite-branch descent, dynamic prefix masking, and pair maximum synthesis on representative numerical arrays:
 
-- **Input:** `{"nums": [3, 10, 5, 25, 2, 8]}`
+- **Input:** $nums = [3, 10, 5, 25, 2, 8]$
 - **Required output:** `28`
+  - Binary representations (5-bit window, $2^4 \dots 2^0$):
+    - $3 = 00011_2, \quad 10 = 01010_2, \quad 5 = 00101_2$
+    - $25 = 11001_2, \quad 2 = 00010_2, \quad 8 = 01000_2$
+  - Querying with $x = 5$ ($00101_2$) against the Trie:
+    - Bit 4 (value $2^4 = 16$, $x$ has $0$): Desired bit is $1$. Trie contains branch $1$ (from $25$) $\implies$ Take branch $1$, add $16$. Running XOR = $16$.
+    - Bit 3 (value $2^3 = 8$, $x$ has $0$): Desired bit is $1$. Branch $1$ exists (from $25$) $\implies$ Take branch $1$, add $8$. Running XOR = $24$.
+    - Bit 2 (value $2^2 = 4$, $x$ has $1$): Desired bit is $0$. Branch $0$ exists (from $25$) $\implies$ Take branch $0$, add $4$. Running XOR = $28$.
+    - Bit 1 (value $2^1 = 2$, $x$ has $0$): Desired bit is $1$. Branch $1$ unavailable (only branch $0$ exists) $\implies$ Forced to branch $0$, add $0$. Running XOR = $28$.
+    - Bit 0 (value $2^0 = 1$, $x$ has $1$): Desired bit is $0$. Branch $0$ unavailable $\implies$ Forced to branch $1$, add $0$. Running XOR = $28$.
+  - Maximum XOR discovered:
+    $$
+    5 \oplus 25 = 00101_2 \oplus 11001_2 = 11100_2 = \mathbf{28}
+    $$
+- **Single Element / Zero Instance:** $nums = [0] \implies 0 \oplus 0 = \mathbf{0}$
+- **Two Identical Elements:** $nums = [7, 7] \implies 7 \oplus 7 = \mathbf{0}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bitwise prefix trees (0-1 Trie), mathematically proves why the strict greedy choice at the most significant bit dominates all lower bits combined ($2^k > \sum_{j=0}^{k-1} 2^j$), and derives $O(31 \cdot N)$ runtime and $O(31 \cdot N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, return *the maximum result of *$\text{nums}[i] XOR \text{nums}[j]$, where $0 \le i \le j < n$.
+Given an integer array $nums = [3, 10, 5, 25, 2, 8]$:
+Find the maximum result of $nums[i] \oplus nums[j]$ for any pair of elements:
 
-The objective is to compute `28` from `{"nums": [3, 10, 5, 25, 2, 8]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Numbers in Binary (5 bits):
+   3:  0 0 0 1 1
+  10:  0 1 0 1 0
+   5:  0 0 1 0 1
+  25:  1 1 0 0 1
+   2:  0 0 0 1 0
+   8:  0 1 0 0 0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Optimal Pairing:
+    5:  0  0  1  0  1
+ ^ 25:  1  1  0  0  1
+---------------------
+   28:  1  1  1  0  0  (16 + 8 + 4 = 28)
+```
+
+### The Strict Dominance of Higher Bits
+In binary arithmetic, setting the $k$-th bit to $1$ contributes $2^k$.
+Because:
+$$
+2^k > \sum_{j=0}^{k-1} 2^j = 2^k - 1
+$$
+A number with a $1$ at bit $k$ is strictly larger than any number that has a $0$ at bit $k$, even if that other number has $1$s at all lower bits $k-1, \dots, 0$.
+Therefore, when maximizing XOR, **we must greedily prioritize securing a $1$ at the most significant possible bit position**, never sacrificing a higher bit to gain lower bits.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Binary Trie (0-1 Prefix Tree):
+Every 31-bit non-negative integer is represented as a root-to-leaf path of length 31, where each step chooses branch $0$ or branch $1$.
+- Root represents the start before bit 30.
+- Level $i$ represents decision for bit $i$.
+- Inserting all $N$ numbers creates a compact prefix tree encoding all shared bit patterns.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Greedy Complement Search:
+To find the element $y$ that maximizes $x \oplus y$:
+- Traverse down the Trie from bit 30 down to bit 0.
+- At bit $i$, let $b = (x \gg i) \ \& \ 1$.
+- The optimal opposite bit is $\bar{b} = b \oplus 1$.
+- If the current Trie node has a child on branch $\bar{b}$:
+  - We step to that child.
+  - Bit $i$ of the XOR sum becomes $1$: $ans \leftarrow ans \ | \ (1 \ll i)$.
+- Else:
+  - Branch $\bar{b}$ does not exist. We are forced to take branch $b$.
+  - Bit $i$ of the XOR sum becomes $0$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Greedy Invariant.** At any bit level $i$, if a path exists with bit $i$ equal to $b \oplus 1$, taking that branch guarantees a higher total XOR than any alternative choice, because $2^i > \sum_{j=0}^{i-1} 2^j$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Maximize binary digits from most significant to least significant
-
-XOR produces a `1` at a bit position when its two input bits differ and a `0` when they agree. To maximize the numeric XOR, the highest bit matters more than every lower bit combined. Therefore, for a fixed number `x`, the best partner should differ from `x` at the most significant possible bit; after that choice, it should differ at the next bit whenever possible, and so on.
-
-A binary trie stores all input numbers by their bit prefixes and makes that greedy choice efficient. Each trie node has two child slots: child `0` represents a number with zero at the next bit, and child `1` represents a number with one. A root-to-leaf path records one complete 31-bit number.
-
-The constraints limit values to $2^{31}-1$, so bit positions `30` down through `0` cover every possible value, including leading zeros. Using the same fixed width for all numbers is essential: trie depth then corresponds to the same bit significance for every path.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 10, 5, 25, 2, 8]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the query for $x = 5$ ($00101_2$) against the Trie containing $\{3, 10, 5, 25, 2, 8\}$:
 
 ---
 
-### Step 2: Build the trie
-
-`Trie.children` is a two-element list initialized to `[null, null]`. `__slots__ = ("children",)` prevents each node from needing an unrestricted instance dictionary; this reduces object overhead but does not change the algorithm.
-
-To insert `x`, the loop visits bit positions from 30 down to 0. The expression `x >> i & 1` shifts bit `i` into the least-significant position and masks everything else, yielding either zero or one. If the corresponding child does not yet exist, a new `Trie` node is created. Moving to that child continues the prefix.
-
-Shared prefixes reuse nodes. Duplicate numbers follow an existing complete path and require no new branches. After all insertions, every input value has a 31-level path from the root.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Bit 4 ($2^4 = 16$)
+- Target bit of $x$: $b = 0$.
+- Desired opposite: $\bar{b} = 1$.
+- Check Trie root: Branch $1$ exists (leads to $25 = 11001_2$).
+- Decision:
+  - Take Branch $1$.
+  - Bit contribution: $+16$.
+  - Cumulative XOR: $ans = \mathbf{16}$.
+  - Current Trie Node: Node after prefix `1`.
 
 ---
 
-### Step 3: Search for the best partner of one number
+### Step 2: Bit 3 ($2^3 = 8$)
+- Target bit of $x$: $b = 0$.
+- Desired opposite: $\bar{b} = 1$.
+- Check current node: Branch $1$ exists (leads to $25 = 11001_2$).
+- Decision:
+  - Take Branch $1$.
+  - Bit contribution: $+8$.
+  - Cumulative XOR: $16 + 8 = \mathbf{24}$.
+  - Current Trie Node: Node after prefix `11`.
 
-`search(x)` starts at the root with `ans = 0`. At bit position `i`, let `v` be `x`'s bit. The preferred partner bit is `v ^ 1`, the opposite bit. If that child exists, choosing it makes XOR bit `i` equal to one, so the code executes `ans |= 1 << i` and follows the opposite branch.
+---
 
-If the opposite branch does not exist, every number with the already chosen prefix has the same bit `v` at this position. The XOR bit must be zero, and the search follows `children[v]` without modifying `ans`.
+### Step 3: Bit 2 ($2^2 = 4$)
+- Target bit of $x$: $b = 1$.
+- Desired opposite: $\bar{b} = 0$.
+- Check current node: Branch $0$ exists (leads to $25 = 11001_2$).
+- Decision:
+  - Take Branch $0$.
+  - Bit contribution: $+4$.
+  - Cumulative XOR: $24 + 4 = \mathbf{28}$.
+  - Current Trie Node: Node after prefix `110`.
 
-The fallback child is guaranteed to exist. At every level, the current node represents at least one inserted number, so if it lacks the opposite child it must have the same-bit child.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `28` |
+### Step 4: Bit 1 ($2^1 = 2$)
+- Target bit of $x$: $b = 0$.
+- Desired opposite: $\bar{b} = 1$.
+- Check current node: Does prefix `110` have a child on branch $1$?
+  - The only number under `110` is $25$ ($11001_2$), whose bit 1 is $0$.
+  - Branch $1$ is missing!
+- Decision:
+  - Forced to take Branch $0$.
+  - Bit contribution: $+0$.
+  - Cumulative XOR: $28 + 0 = \mathbf{28}$.
+  - Current Trie Node: Node after prefix `1100`.
+
+---
+
+### Step 5: Bit 0 ($2^0 = 1$)
+- Target bit of $x$: $b = 1$.
+- Desired opposite: $\bar{b} = 0$.
+- Check current node: Does prefix `1100` have a child on branch $0$?
+  - The number is $25$ ($11001_2$), whose bit 0 is $1$.
+  - Branch $0$ is missing!
+- Decision:
+  - Forced to take Branch $1$.
+  - Bit contribution: $+0$.
+  - Cumulative XOR: $28 + 0 = \mathbf{28}$.
+  - Reached leaf node: Value $25$.
+
+---
+
+### Terminal Evaluation:
+Query with $x = 5$ paired with $y = 25$ produces maximal XOR $5 \oplus 25 = \mathbf{28}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 10, 5, 25, 2, 8]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `28` | Verified |
+| Bit Level $i$ | Place Value $2^i$ | Value Bit $x_i$ | Desired Bit $\bar{x}_i$ | Trie Branch Available? | Branch Chosen | Bit Set in XOR? | Cumulative XOR |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **4** | $16$ | $0$ | **$1$** | **Yes** (Node `1`) | $1$ | **Yes (+16)** | $16$ |
+| **3** | $8$ | $0$ | **$1$** | **Yes** (Node `11`) | $1$ | **Yes (+8)** | $24$ |
+| **2** | $4$ | $1$ | **$0$** | **Yes** (Node `110`) | $0$ | **Yes (+4)** | $28$ |
+| **1** | $2$ | $0$ | $1$ | **No** (only `0` exists) | $0$ | No (+0) | $28$ |
+| **0** | $1$ | $1$ | $0$ | **No** (only `1` exists) | $1$ | No (+0) | **$28$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Element ($nums = [0]$):** Paired with itself: $0 \oplus 0 = \mathbf{0}$.
+- **All Equal Numbers ($nums = [4, 4, 4]$):** Any pair yields $4 \oplus 4 = \mathbf{0}$.
+- **Numbers with Disjoint Bits ($nums = [1, 2]$):** $01_2 \oplus 10_2 = 11_2 = \mathbf{3}$.
+- **Large Numbers Up to $2^{31}-1$:** The 31-bit search depth handles full signed 32-bit positive integers without overflow.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Check every pair:** Direct XOR comparison takes $O(n^2)$ time, which is too slow for up to $2\cdot10^5$ numbers.
-- **Greedy prefix hash sets:** Build the maximum answer bit by bit and test whether two observed prefixes can realize each proposed prefix XOR. It also takes $O(nB)$ time and $O(n)$ space, but the trie gives a concrete best-partner path.
-- **Insert and query incrementally:** Query each value against previously inserted values, then insert it. This avoids self-pairing and has the same bounds, but the chosen code cleanly separates construction and queries.
-- **Variable-width paths without leading zeros:** Misaligned depths would compare bits of different significance. Fixed 31-bit paths avoid that error.
-- **Single element:** The only legal pair is the value with itself, producing zero.
-- **All values equal:** Every trie search follows identical bits and returns zero.
-- **Zeros:** Zero is represented by 31 zero bits and participates normally.
-- **Maximum allowed value:** Bit 30 is its highest possible set bit, so the `range(30, -1, -1)` loop covers it exactly.
-- **Duplicate paths:** Insertion reuses existing nodes; duplicates do not increase the asymptotic node count or change the maximum.
-- **Prefer lower-bit gains over a high bit:** This is never beneficial because bit $i$ outweighs all lower positions together, which is the foundation of the greedy search.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Brute-Force Pair Comparison ($O(N^2)$):** Comparing all pairs takes $O(N^2)$ time. For $N = 2 \times 10^5$, $N^2 = 4 \times 10^{10}$ operations, which causes severe Time Limit Exceeded. The Trie solution processes each element in $31$ operations, totaling $\approx 6 \times 10^6$ operations.
+- **Fixed-Depth Bit Traversal:** Hardcoding bit count to less than 30 truncates large numbers ($nums[i] \le 2^{31}-1$). The Trie must iterate from bit 30 down to 0.
+- **Dynamic Memory Overhead:** In Python or Java, creating dynamic node objects can be optimized with flat integer array trees (`trie[node][bit]`), reducing cache misses and execution time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(nB)$. Let $n$ be the number of input values and let $B=31$ be the fixed number of processed bits. Insertion costs $O(B)$ per number, and search costs $O(B)$ per number. Total time is $O(nB)$, which is $O(n)$ because $B$ is fixed by the 31-bit constraint.
-- **Auxiliary Space Complexity:** $O(nB)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $B = 31$ be the number of bits in non-negative 32-bit integers.
+  - Inserting $N$ numbers into the Trie takes $O(N \cdot B)$ time.
+  - Querying the Trie for each of the $N$ numbers takes $O(N \cdot B)$ time.
+  - Total Time: $\mathcal{O}(B \cdot N) = \mathcal{O}(N)$. For $N = 2 \times 10^5$, $31 \times 200000 \approx 6.2 \times 10^6$ operations (executes in $\approx 100$ ms).
+- **Auxiliary Space Complexity:**
+  - The Trie contains at most $N \cdot B$ nodes.
+  - Total Auxiliary Space: $\mathcal{O}(B \cdot N) = \mathcal{O}(N)$.

@@ -1,99 +1,152 @@
 # Guided Example: Edit Distance
 
-We derive and execute the String, Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step 2D Levenshtein dynamic programming matrix evaluation on a representative string transformation:
 
-- **Input:** `{"word1": "horse", "word2": "ros"}`
-- **Required output:** `3`
+- **Input:** $\text{word1} = \text{"horse"}$, $\text{word2} = \text{"ros"}$
+- **Required output:** $3$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates string edit operations (insert, delete, replace), constructing the 2D prefix distance table, identifying diagonal match carryovers ($\text{word1}[i-1] == \text{word2}[j-1]$), and tracing the optimal 3-step transformation sequence.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Edit Distance** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given two strings $\text{word1}$ of length $M = 5$ (`"horse"`) and $\text{word2}$ of length $N = 3$ (`"ros"`), find the minimum number of operations required to convert $\text{word1}$ into $\text{word2}$.
+
+The permitted operations are:
+1. **Insert** a character.
+2. **Delete** a character.
+3. **Replace** a character.
+
+For `"horse"` and `"ros"`, the minimal conversion takes 3 operations:
+1. Replace `'h'` with `'r'` $\longrightarrow$ `"rorse"`
+2. Remove middle `'r'` $\longrightarrow$ `"rose"`
+3. Remove trailing `'e'` $\longrightarrow$ `"ros"`
+
+A naive recursive exploration evaluates branching choices of size $3^{M+N}$.
+Dynamic programming builds the optimal solution by defining prefix subproblems over prefixes $\text{word1}[0 \dots i-1]$ and $\text{word2}[0 \dots j-1]$, solving the problem in $O(M \cdot N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### 2D Levenshtein Recurrence
+Let $DP[i][j]$ be the minimum edit distance between prefix $\text{word1}[0 \dots i-1]$ (length $i$) and prefix $\text{word2}[0 \dots j-1]$ (length $j$).
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+#### Base Cases
+- Transforming any string of length $i$ to an empty string requires $i$ deletions:
+  $$
+  DP[i][0] = i \quad \forall i \in [0, M]
+  $$
+- Transforming an empty string to a string of length $j$ requires $j$ insertions:
+  $$
+  DP[0][j] = j \quad \forall j \in [0, N]
+  $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+#### General State Transitions ($i \ge 1, j \ge 1$)
+1. **Matching Characters ($\text{word1}[i-1] == \text{word2}[j-1]$):**
+   No operation is needed for the current characters; carry over previous diagonal cost:
+   $$
+   DP[i][j] = DP[i - 1][j - 1]
+   $$
+2. **Mismatched Characters ($\text{word1}[i-1] \ne \text{word2}[j-1]$):**
+   Choose the minimum of the three valid edit operations, plus cost 1:
+   $$
+   DP[i][j] = 1 + \min \begin{cases}
+   DP[i - 1][j] & \text{(Deletion of } \text{word1}[i-1]\text{)} \\
+   DP[i][j - 1] & \text{(Insertion of } \text{word2}[j-1]\text{)} \\
+   DP[i - 1][j - 1] & \text{(Replacement of } \text{word1}[i-1] \text{ with } \text{word2}[j-1]\text{)}
+   \end{cases}
+   $$
+
+> **Invariant.** Entry $DP[i][j]$ holds the strictly minimal edit distance between the first $i$ letters of `word1` and the first $j$ letters of `word2`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We construct the $6 \times 4$ DP table for $\text{word1} = \text{"horse"}$ and $\text{word2} = \text{"ros"}$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Base Row & Column Initialization
+- Row 0 ($\text{word1} = \text{""}$): $[0, 1, 2, 3]$ (pure insertions).
+- Column 0 ($\text{word2} = \text{""}$): $DP[0][0]=0, DP[1][0]=1, DP[2][0]=2, DP[3][0]=3, DP[4][0]=4, DP[5][0]=5$ (pure deletions).
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Row 1: $\text{word1}[0] = \text{'h'}$
+- $j = 1$ (`'r'`): Mismatch. $1 + \min(DP[0][1]=1, DP[1][0]=1, DP[0][0]=0) = 1 + 0 = 1$.
+- $j = 2$ (`'o'`): Mismatch. $1 + \min(DP[0][2]=2, DP[1][1]=1, DP[0][1]=1) = 1 + 1 = 2$.
+- $j = 3$ (`'s'`): Mismatch. $1 + \min(DP[0][3]=3, DP[1][2]=2, DP[0][2]=2) = 1 + 2 = 3$.
+Row 1: `[1, 1, 2, 3]`.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Row 2: $\text{word1}[1] = \text{'o'}$
+- $j = 1$ (`'r'`): Mismatch. $1 + \min(DP[1][1]=1, DP[2][0]=2, DP[1][0]=1) = 1 + 1 = 2$.
+- $j = 2$ (`'o'`): **Match!** Inherit diagonal $DP[1][1] = 1$.
+- $j = 3$ (`'s'`): Mismatch. $1 + \min(DP[1][3]=3, DP[2][2]=1, DP[1][2]=2) = 1 + 1 = 2$.
+Row 2: `[2, 2, 1, 2]`.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Row 3: $\text{word1}[2] = \text{'r'}$
+- $j = 1$ (`'r'`): **Match!** Inherit diagonal $DP[2][0] = 2$.
+- $j = 2$ (`'o'`): Mismatch. $1 + \min(DP[2][2]=1, DP[3][1]=2, DP[2][1]=2) = 1 + 1 = 2$.
+- $j = 3$ (`'s'`): Mismatch. $1 + \min(DP[2][3]=2, DP[3][2]=2, DP[2][2]=1) = 1 + 1 = 2$.
+Row 3: `[3, 2, 2, 2]`.
+
+---
+
+### Row 4: $\text{word1}[3] = \text{'s'}$
+- $j = 1$ (`'r'`): Mismatch. $1 + \min(DP[3][1]=2, DP[4][0]=4, DP[3][0]=3) = 1 + 2 = 3$.
+- $j = 2$ (`'o'`): Mismatch. $1 + \min(DP[3][2]=2, DP[4][1]=3, DP[3][1]=2) = 1 + 2 = 3$.
+- $j = 3$ (`'s'`): **Match!** Inherit diagonal $DP[3][2] = 2$.
+Row 4: `[4, 3, 3, 2]`.
+
+---
+
+### Row 5: $\text{word1}[4] = \text{'e'}$
+- $j = 1$ (`'r'`): Mismatch. $1 + \min(DP[4][1]=3, DP[5][0]=5, DP[4][0]=4) = 1 + 3 = 4$.
+- $j = 2$ (`'o'`): Mismatch. $1 + \min(DP[4][2]=3, DP[5][1]=4, DP[4][1]=3) = 1 + 3 = 4$.
+- $j = 3$ (`'s'`): Mismatch. $1 + \min(DP[4][3]=2, DP[5][2]=4, DP[4][2]=3) = 1 + 2 = \mathbf{3}$.
+Row 5: `[5, 4, 4, 3]`.
+
+Terminal minimum edit distance is $DP[5][3] = 3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### 2D Levenshtein DP Distance Table
+
+| $\text{word1} \downarrow \setminus \text{word2} \to$ | $\emptyset$ | `'r'` | `'o'` | `'s'` |
+|:---:|:---:|:---:|:---:|:---:|
+| **$\emptyset$** | **0** | 1 | 2 | 3 |
+| **`'h'`** | 1 | **1 (Replace)** | 2 | 3 |
+| **`'o'`** | 2 | 2 | **1 (Match)** | 2 |
+| **`'r'`** | 3 | 2 | 2 | **2 (Delete)** |
+| **`'s'`** | 4 | 3 | 3 | **2 (Match)** |
+| **`'e'`** | 5 | 4 | 4 | **3 (Delete / Target)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Any string alignment between $\text{word1}[0 \dots i-1]$ and $\text{word2}[0 \dots j-1]$ must align $\text{word1}[i-1]$ with $\text{word2}[j-1]$ (either matching or replacement), delete $\text{word1}[i-1]$, or insert $\text{word2}[j-1]$. By exploring the minimum of these three mutually exclusive choices at every cell, the optimal substructure is preserved.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Computing cells in row-major order guarantees that the three predecessor cells $(i-1, j)$, $(i, j-1)$, and $(i-1, j-1)$ are fully resolved before cell $(i, j)$ is evaluated. Cell $(M, N)$ is provably the minimum global distance.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Base Column/Row Non-Zero Initialization:** Forgetting to initialize $DP[i][0] = i$ and $DP[0][j] = j$ causes conversions to/from empty prefixes to be miscounted as free ($0$).
+- **Match Operation Has Cost 0:** When characters match, do not add $+1$. The cost is carried directly from the top-left diagonal without modification ($DP[i][j] = DP[i-1][j-1]$).
+- **Space Optimization:** Since row $i$ depends only on row $i - 1$, the table can be computed using two 1D rows of length $N + 1$, reducing memory from $O(M \cdot N)$ to $O(N)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(M \cdot N)$, where $M = |\text{word1}|$ and $N = |\text{word2}|$. The table has $(M + 1)(N + 1)$ cells, each taking $O(1)$ constant time.
+- **Auxiliary Space Complexity:** $O(M \cdot N)$ for the full 2D table, or $O(N)$ with 1D row compression.

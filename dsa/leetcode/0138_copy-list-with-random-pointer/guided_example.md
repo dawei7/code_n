@@ -1,104 +1,149 @@
 # Guided Example: Copy List with Random Pointer
 
-We execute the single-pass Hash Table, Linked List pointer manipulation on a representative linked list instance.
+We trace the step-by-step three-pass in-place node interweaving and random pointer synchronization on a representative linked list with arbitrary random references:
 
-- **Input:** `{"nodes": [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]}`
-- **Required output:** `[[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]`
+- **Input:** $\text{head} = [[7, \text{null}], [13, 0], [11, 4], [10, 2], [1, 0]]$
+- **Required output:** Deep cloned list with identical values, next links, and random target links
+- **Null Base Case:** $\text{head} = \text{null} \implies \text{null}$
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates in-place node cloning without auxiliary hash maps, interweaving copied nodes ($A \to A' \to B \to B'$), synchronizing random pointers in $O(1)$ extra space via $\text{curr.next.random} = \text{curr.random.next}$, and cleanly decoupling the interwoven chains back into two independent lists.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Copy List with Random Pointer** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+A linked list of length $n = 5$ has nodes where each node contains an integer `val`, a `next` pointer, and an additional `random` pointer that can point to any node in the list or `null`:
+- Node 0: $\text{val} = 7, \quad \text{random} = \text{null}$
+- Node 1: $\text{val} = 13, \quad \text{random} = \text{Node}(0)$
+- Node 2: $\text{val} = 11, \quad \text{random} = \text{Node}(4)$
+- Node 3: $\text{val} = 10, \quad \text{random} = \text{Node}(2)$
+- Node 4: $\text{val} = 1, \quad \text{random} = \text{Node}(0)$
+
+Construct a complete deep copy of the list. None of the pointers in the new list should point to nodes in the original list.
+
+A hash map approach maps $\text{original} \to \text{clone}$, but consumes $O(N)$ extra space to store $N$ pointer pairs.
+The optimal in-place algorithm temporarily weaves cloned nodes directly into the original list next to their source counterparts ($u \to u'$). This geometric relationship allows any clone to find its corresponding random clone in $O(1)$ operations via $u'.\text{random} = u.\text{random}.\text{next}$, achieving strictly $O(1)$ auxiliary memory.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### The 3-Pass In-Place Interweaving Architecture
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+#### Pass 1: Duplicate and Interweave
+Traverse the original list. For each node $u$:
+- Create a clone $u' = \text{Node}(u.\text{val})$.
+- Splice $u'$ immediately after $u$:
+  $$
+  u'.\text{next} = u.\text{next}, \quad u.\text{next} = u'
+  $$
+- Resulting chain: $A \to A' \to B \to B' \to C \to C' \to \dots$
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+#### Pass 2: Connect Cloned Random Pointers
+For each original node $u$ (stepping two nodes at a time via $u = u.\text{next}.\text{next}$):
+- If $u.\text{random}$ is not null:
+  The clone of $u$ is $u.\text{next}$. The clone of $u.\text{random}$ is $u.\text{random}.\text{next}$.
+  $$
+  u.\text{next}.\text{random} \leftarrow u.\text{random}.\text{next}
+  $$
+
+#### Pass 3: Decouple Interwoven Lists
+Restore the original list's `next` pointers while extracting the cloned chain:
+- Separate $A \to A' \to B \to B'$ into original $A \to B \to C$ and clone $A' \to B' \to C'$.
+
+> **Invariant.** During Pass 2, for every original node $u$, $u.\text{next}$ is its exact duplicate $u'$, and for any targeted node $v = u.\text{random}$, $v.\text{next}$ is its duplicate $v'$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We trace the 5-node list:
+Original nodes: $N_0(7), N_1(13), N_2(11), N_3(10), N_4(1)$.
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
+### Pass 1: Duplicate and Interweave
+- Clone $N_0(7) \to C_0(7)$: $N_0.\text{next} = C_0, \, C_0.\text{next} = N_1$.
+- Clone $N_1(13) \to C_1(13)$: $N_1.\text{next} = C_1, \, C_1.\text{next} = N_2$.
+- Clone $N_2(11) \to C_2(11)$: $N_2.\text{next} = C_2, \, C_2.\text{next} = N_3$.
+- Clone $N_3(10) \to C_3(10)$: $N_3.\text{next} = C_3, \, C_3.\text{next} = N_4$.
+- Clone $N_4(1) \to C_4(1)$: $N_4.\text{next} = C_4, \, C_4.\text{next} = \text{null}$.
 
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
-
----
-
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+Interwoven List:
+$$
+N_0 \to C_0 \to N_1 \to C_1 \to N_2 \to C_2 \to N_3 \to C_3 \to N_4 \to C_4 \to \text{null}
+$$
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Pass 2: Assign Cloned Random Pointers
+Traverse original nodes $N_0 \dots N_4$:
+- **Node $N_0$:** $N_0.\text{random} = \text{null} \implies C_0.\text{random} = \text{null}$.
+- **Node $N_1$:** $N_1.\text{random} = N_0$.
+  - Clone $C_1 = N_1.\text{next}$.
+  - Target clone: $N_0.\text{next} = C_0$.
+  - Assign: $C_1.\text{random} \leftarrow C_0$.
+- **Node $N_2$:** $N_2.\text{random} = N_4$.
+  - Assign: $C_2.\text{random} \leftarrow N_4.\text{next} = C_4$.
+- **Node $N_3$:** $N_3.\text{random} = N_2$.
+  - Assign: $C_3.\text{random} \leftarrow N_2.\text{next} = C_2$.
+- **Node $N_4$:** $N_4.\text{random} = N_0$.
+  - Assign: $C_4.\text{random} \leftarrow N_0.\text{next} = C_0$.
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+All cloned random pointers are correctly linked to cloned nodes!
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+---
+
+### Pass 3: Decouple Interwoven Lists
+Restore original links and extract clone head $C_0$:
+- $N_0.\text{next} = N_1, \quad C_0.\text{next} = C_1$.
+- $N_1.\text{next} = N_2, \quad C_1.\text{next} = C_2$.
+- $N_2.\text{next} = N_3, \quad C_2.\text{next} = C_3$.
+- $N_3.\text{next} = N_4, \quad C_3.\text{next} = C_4$.
+- $N_4.\text{next} = \text{null}, \quad C_4.\text{next} = \text{null}$.
+
+Outputs:
+Original list restored to $N_0 \to N_1 \to N_2 \to N_3 \to N_4 \to \text{null}$.
+Cloned list returned: $C_0 \to C_1 \to C_2 \to C_3 \to C_4 \to \text{null}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+### Pointer State Transitions Across Passes
+
+```text
+Original:      N0(7) -----------> N1(13) ----------> N2(11) ...
+Pass 1:        N0 -> [C0] ------> N1 -> [C1] ------> N2 -> [C2] ...
+Pass 2:        C1.random = N1.random.next = N0.next = C0
+Pass 3:        Restore N0 -> N1 -> N2;  Emit C0 -> C1 -> C2
+```
+
+| Node Index | Original Node $N_i$ | Cloned Node $C_i$ | Original Random Link | Formula Applied | Cloned Random Assignment |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | $N_0(7)$ | $C_0(7)$ | $\text{null}$ | $N_0.\text{random} == \text{null}$ | $\text{null}$ |
+| 1 | $N_1(13)$ | $C_1(13)$ | $N_0(7)$ | $C_1.\text{random} = N_0.\text{next}$ | **$C_0(7)$** |
+| 2 | $N_2(11)$ | $C_2(11)$ | $N_4(1)$ | $C_2.\text{random} = N_4.\text{next}$ | **$C_4(1)$** |
+| 3 | $N_3(10)$ | $C_3(10)$ | $N_2(11)$ | $C_3.\text{random} = N_2.\text{next}$ | **$C_2(11)$** |
+| 4 | $N_4(1)$ | $C_4(1)$ | $N_0(7)$ | $C_4.\text{random} = N_0.\text{next}$ | **$C_0(7)$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** In Pass 1, inserting $u'$ as $u.\text{next}$ establishes a deterministic mapping where $u.\text{next}$ uniquely denotes the clone of $u$. In Pass 2, for any random edge $(u, v)$, $v.\text{next}$ is the clone of $v$, ensuring that $u'.\text{random} = v'$. In Pass 3, separating the links restores the original list to its exact initial state while producing an independent clone list.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** Every node in the list is duplicated in Pass 1. Every random pointer is resolved in Pass 2. Every `next` pointer is unlinked and reconstructed in Pass 3. No nodes or edges are omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Null Pointer Dereference on Random:** If $u.\text{random}$ is `null`, attempting to access $u.\text{random}.\text{next}$ triggers an AttributeError / NullPointerException! The check `if curr.random:` must precede the assignment.
+- **Failing to Restore the Original List:** LeetCode's judge tests whether the original list was modified or corrupted after the copy. Failing to restore $u.\text{next} = u'.\text{next}$ in Pass 3 causes judge failure.
+- **Null Input:** If $\text{head} == \text{null}$, return `null` immediately without entering any pass.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the linked list. The algorithm makes three sequential passes over the list, each performing $O(1)$ pointer reassignments per node.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Nodes are allocated solely for the returned cloned list; no hash map, stack, or recursion buffer is used.

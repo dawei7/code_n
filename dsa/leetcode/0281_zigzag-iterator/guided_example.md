@@ -1,130 +1,214 @@
 # Guided Example: Zigzag Iterator
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step round-robin vector turn alternation, circular index advancement, exhausted list skip rotation, and full-cycle termination on representative 1D integer vectors:
 
-- **Input:** `{"v1": [1, 2], "v2": [3, 4, 5, 6]}`
-- **Required output:** `[1, 3, 2, 4, 5, 6]`
+- **Input:** $v_1 = [1, 2], \quad v_2 = [3, 4, 5, 6]$
+- **Required output:** $[1, 3, 2, 4, 5, 6]$ (Alternates between $v_1$ and $v_2$; once $v_1$ is exhausted, streams the remaining suffix of $v_2$)
+- **Unequal Length Exhaustion:** $v_1$ runs out of elements after index 1; subsequent queries cleanly skip $v_1$ and draw exclusively from $v_2$
+- **Empty Vector Boundary:** $v_1 = [1], \quad v_2 = [] \implies [1]$ ($v_2$ is skipped immediately on its turn)
+- **Both Empty Base Case:** $v_1 = [], \quad v_2 = [] \implies \text{hasNext() returns False}$
+- **$K$-Vector Generalization:** Extends seamlessly to $k$ streams using round-robin cyclic rotation $(cur + 1) \bmod k$ or a FIFO queue of active vectors
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates stateful streaming iterator design, explains why interleaving vectors requires independent index tracking rather than pre-materializing all elements in memory, details the circular turn normalization inside `hasNext()`, and guarantees $O(1)$ amortized time per `next()` and `hasNext()` call with $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two vectors of integers `v1` and `v2`, implement an iterator to return their elements alternately.
+Given two 1D vectors $v_1 = [1, 2]$ and $v_2 = [3, 4, 5, 6]$:
+Implement an iterator that returns elements alternating between $v_1$ and $v_2$:
+```text
+Stream progression:
+Turn 1: v1[0] = 1
+Turn 2: v2[0] = 3
+Turn 3: v1[1] = 2  (v1 is now exhausted!)
+Turn 4: v2[1] = 4
+Turn 5: v2[2] = 5
+Turn 6: v2[3] = 6  (v2 is now exhausted!)
+Result: [1, 3, 2, 4, 5, 6]
+```
 
-The objective is to compute `[1, 3, 2, 4, 5, 6]` from `{"v1": [1, 2], "v2": [3, 4, 5, 6]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Why Pre-Merging is Suboptimal
+Merging all elements upfront into a flat list takes $O(N_1 + N_2)$ auxiliary memory and does all the work upfront even if the caller only reads the first few elements.
+A true iterator should:
+1. Store only pointers/indices into the original vectors ($O(1)$ auxiliary space).
+2. Fetch the next alternating element on demand in strictly $O(1)$ time per call.
+3. Automatically skip vectors that have already been fully consumed without breaking alternating order.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Iterator Internal State
+The iterator maintains three scalar variables:
+- `vectors = [v1, v2]`: References to the input vectors.
+- `indexes = [0, 0]`: Next unread element index for each vector (`indexes[0]` for $v_1$, `indexes[1]` for $v_2$).
+- `cur = 0`: The vector index whose turn it is to emit the next element ($0$ or $1$).
+- `size = 2`: Total number of vectors.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Operation Protocols
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### `hasNext() -> bool`
+Ensures `cur` points to a vector that still has unread elements:
+1. Save `start = cur`.
+2. While `indexes[cur] == len(vectors[cur])` (current vector is exhausted):
+   - Rotate turn: $\text{cur} \leftarrow (\text{cur} + 1) \bmod \text{size}$.
+   - If $\text{cur} == \text{start}$: A complete loop over all vectors found no unread elements. Return `False`.
+3. Return `True` (`cur` now points to a valid, non-exhausted vector).
+
+#### `next() -> int`
+Called only when `hasNext()` is True:
+1. Retrieve element: $\text{res} = \text{vectors}[\text{cur}][\text{indexes}[\text{cur}]]$.
+2. Advance index: $\text{indexes}[\text{cur}] \leftarrow \text{indexes}[\text{cur}] + 1$.
+3. Rotate turn to the next vector: $\text{cur} \leftarrow (\text{cur} + 1) \bmod \text{size}$.
+4. Return `res`.
+
+> **Invariant.** Before any `next()` call, `hasNext()` guarantees that `indexes[cur] < len(vectors[cur])`. Every vector maintains its original relative internal order.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Represent iteration with one cursor per vector
-
-The exact source stores references to the two input vectors in `vectors` and stores their next unread indices in `indexes`. Initially both indices are zero. It also keeps `cur`, the vector that should be considered next, and `size = 2`.
-
-The iterator does not merge or copy the vector contents. Its complete logical position is described by three small pieces of state:
-
-- `indexes[0]`: the next unread position in `v1`;
-- `indexes[1]`: the next unread position in `v2`; and
-- `cur`: which vector currently has the turn.
-
-This differs from the manifest's deque-of-active-vectors summary. The protected implementation uses cyclic indices and lets `hasNext()` skip exhausted vectors.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"v1": [1, 2], "v2": [3, 4, 5, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the iterator on $v_1 = [1, 2]$ and $v_2 = [3, 4, 5, 6]$:
+Initial state: $\text{indexes} = [0, 0], \quad \text{cur} = 0$.
 
 ---
 
-### Step 2: Let `next()` consume exactly one current element
-
-When called in the intended protocol, `next()` assumes `cur` points to a vector with an unread element. It retrieves that vector and its saved index, reads the element, increments only that vector's index, and advances `cur` cyclically:
-
-$$
-\texttt{cur}=(\texttt{cur}+1)\bmod 2.
-$$
-
-Advancing after every returned element creates alternation while both vectors still contain values. Consuming from `v1` gives `v2` the next turn; consuming from `v2` wraps back to `v1`.
-
-The saved indices advance independently. Returning an element from one vector does not change the unread position of the other, so every original vector preserves its internal order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Emit First Element
+- `hasNext()`:
+  - At $\text{cur} = 0$: $\text{indexes}[0] = 0 < \text{len}(v_1) = 2$.
+  - Returns `True`.
+- `next()`:
+  - $\text{res} = v_1[0] = \mathbf{1}$.
+  - Update: $\text{indexes}[0] \leftarrow 0 + 1 = 1$.
+  - Advance turn: $\text{cur} \leftarrow (0 + 1) \bmod 2 = \mathbf{1}$.
+  - Emitted: $1$.
 
 ---
 
-### Step 3: Make `hasNext()` both a query and a positioning step
+### Step 2: Emit Second Element
+- `hasNext()`:
+  - At $\text{cur} = 1$: $\text{indexes}[1] = 0 < \text{len}(v_2) = 4$.
+  - Returns `True`.
+- `next()`:
+  - $\text{res} = v_2[0] = \mathbf{3}$.
+  - Update: $\text{indexes}[1] \leftarrow 0 + 1 = 1$.
+  - Advance turn: $\text{cur} \leftarrow (1 + 1) \bmod 2 = \mathbf{0}$.
+  - Emitted: $3$.
 
-After one vector is exhausted, blindly alternating to it would make `next()` index past its end. The exact design handles this in `hasNext()`.
+---
 
-Starting from the current turn, `hasNext()` checks whether `indexes[cur] == len(vectors[cur])`. Equality means every element of that vector has been returned. If so, it rotates `cur` to the next vector and checks again.
+### Step 3: Emit Third Element
+- `hasNext()`:
+  - At $\text{cur} = 0$: $\text{indexes}[0] = 1 < 2$.
+  - Returns `True`.
+- `next()`:
+  - $\text{res} = v_1[1] = \mathbf{2}$.
+  - Update: $\text{indexes}[0] \leftarrow 1 + 1 = \mathbf{2}$ ($v_1$ **exhausted!**).
+  - Advance turn: $\text{cur} \leftarrow (0 + 1) \bmod 2 = \mathbf{1}$.
+  - Emitted: $2$.
 
-When it encounters a vector whose saved index is smaller than its length, the loop ends and `hasNext()` returns true. At that moment it has also positioned `cur` so the following `next()` call is safe and returns the correct next available vector's element.
+---
 
-This state-changing behavior is intentional. `hasNext()` is not a purely observational method in this implementation; it normalizes `cur` past exhausted vectors.
+### Step 4: Emit Fourth Element
+- `hasNext()`:
+  - At $\text{cur} = 1$: $\text{indexes}[1] = 1 < 4$.
+  - Returns `True`.
+- `next()`:
+  - $\text{res} = v_2[1] = \mathbf{4}$.
+  - Update: $\text{indexes}[1] \leftarrow 1 + 1 = 2$.
+  - Advance turn: $\text{cur} \leftarrow (1 + 1) \bmod 2 = \mathbf{0}$.
+  - Emitted: $4$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 3, 2, 4, 5, 6]` |
+---
+
+### Step 5: Emit Fifth Element (Exhausted Vector Skipped)
+- `hasNext()`:
+  - At $\text{cur} = 0$: $\text{indexes}[0] = 2 == \text{len}(v_1) = 2$ ($v_1$ is empty!).
+  - Rotate turn: $\text{cur} \leftarrow (0 + 1) \bmod 2 = \mathbf{1}$.
+  - At $\text{cur} = 1$: $\text{indexes}[1] = 2 < 4$. Not exhausted!
+  - Loop terminates with $\text{cur} = 1$. Returns `True`.
+- `next()`:
+  - $\text{res} = v_2[2] = \mathbf{5}$.
+  - Update: $\text{indexes}[1] \leftarrow 2 + 1 = 3$.
+  - Advance turn: $\text{cur} \leftarrow (1 + 1) \bmod 2 = \mathbf{0}$.
+  - Emitted: $5$.
+
+---
+
+### Step 6: Emit Sixth Element (Exhausted Vector Skipped)
+- `hasNext()`:
+  - At $\text{cur} = 0$: $\text{indexes}[0] == 2$. Rotates $\text{cur} \leftarrow 1$.
+  - At $\text{cur} = 1$: $\text{indexes}[1] = 3 < 4$. Returns `True`.
+- `next()`:
+  - $\text{res} = v_2[3] = \mathbf{6}$.
+  - Update: $\text{indexes}[1] \leftarrow 3 + 1 = \mathbf{4}$ ($v_2$ **exhausted!**).
+  - Advance turn: $\text{cur} \leftarrow 0$.
+  - Emitted: $6$.
+
+---
+
+### Step 7: Stream Exhaustion
+- `hasNext()`:
+  - At $\text{cur} = 0$: $\text{indexes}[0] == 2$ (empty). Rotates to $\text{cur} = 1$.
+  - At $\text{cur} = 1$: $\text{indexes}[1] == 4$ (empty). Rotates to $\text{cur} = 0$.
+  - $\text{cur} == \text{start}$ ($0 == 0$) $\implies$ Full cycle without unread elements.
+  - Returns **`False`**.
+
+Iteration complete. Emitted list:
+$$
+\mathbf{[1, 3, 2, 4, 5, 6]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"v1": [1, 2], "v2": [3, 4, 5, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 3, 2, 4, 5, 6]` | Verified |
+```text
+v1 = [1, 2], v2 = [3, 4, 5, 6]
+
+Call 1: hasNext() -> cur=0 -> next() -> v1[0]=1 -> indexes=[1, 0], cur=1
+Call 2: hasNext() -> cur=1 -> next() -> v2[0]=3 -> indexes=[1, 1], cur=0
+Call 3: hasNext() -> cur=0 -> next() -> v1[1]=2 -> indexes=[2, 1], cur=1  (v1 done)
+Call 4: hasNext() -> cur=1 -> next() -> v2[1]=4 -> indexes=[2, 2], cur=0
+Call 5: hasNext() -> cur=0 exhausted -> skip to 1 -> next() -> v2[2]=5 -> indexes=[2, 3], cur=0
+Call 6: hasNext() -> cur=0 exhausted -> skip to 1 -> next() -> v2[3]=6 -> indexes=[2, 4], cur=0  (v2 done)
+Call 7: hasNext() -> all exhausted -> False
+
+Result: [1, 3, 2, 4, 5, 6]
+```
+
+| Step | Method Called | `cur` Before Call | Vector Evaluated | Element Emitted | Updated `indexes` | `cur` After Call |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | `next()` | 0 | $v_1$ (Index 0) | **1** | `[1, 0]` | 1 |
+| 2 | `next()` | 1 | $v_2$ (Index 0) | **3** | `[1, 1]` | 0 |
+| 3 | `next()` | 0 | $v_1$ (Index 1) | **2** | `[2, 1]` | 1 |
+| 4 | `next()` | 1 | $v_2$ (Index 1) | **4** | `[2, 2]` | 0 |
+| 5 | `next()` | 1 (skipped 0) | $v_2$ (Index 2) | **5** | `[2, 3]` | 0 |
+| 6 | `next()` | 1 (skipped 0) | $v_2$ (Index 3) | **6** | `[2, 4]` | 0 |
+| **7** | `hasNext()` | 0 | All empty | - | `[2, 4]` | **`False`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `hasNext()` actively rotates `cur` past exhausted vectors until finding an unread position or cycling back to `start`. This guarantees that `next()` never accesses an out-of-bounds index and always draws from the next valid alternating vector.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every element in $v_1$ and $v_2$ is visited exactly once in non-decreasing index order. The cycle condition in `hasNext()` terminates only when every vector has its index equal to its length, ensuring no element is missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Deque of active positions:** Enqueue each nonempty vector's `(vector index, element index)`, pop one for `next()`, and re-enqueue its advanced position only if elements remain. This avoids repeatedly scanning exhausted vectors and extends cleanly to $K$ vectors, but it is not the exact source.
-- **Precompute the merged result:** Building the complete zigzag list makes later calls simple but costs $O(N)$ additional storage and performs work even if the caller stops early.
-- **One vector empty initially:** `hasNext()` rotates to the nonempty vector before `next()`, so all of its values are returned in order.
-- **One vector exhausts early:** The exhausted vector is skipped on later turns, and the longer vector supplies its remaining suffix without loss.
-- **Equal-length vectors:** Turns alternate until both become exhausted together, after which the full-cycle check returns false.
-- **Both empty outside the total-length constraint:** The constructor still works; the first `hasNext()` completes a cycle and returns false.
-- **Repeated `hasNext()` calls:** They do not advance past an available vector and therefore do not consume data.
-- **Calling `next()` without a successful check:** The exact implementation offers no guard and may index an empty vector. Clients must follow the documented iterator loop.
-- **Values and duplicates:** Element magnitude, sign, and equality do not affect scheduling. The iterator preserves all values and each vector's internal order.
-- **Generalized cyclic order:** With $K$ vectors, advancing modulo $K$ yields round-robin order, while exhausted vectors must be skipped. The same structure works functionally, though a deque improves worst-case per-call efficiency.
-- **Input mutation by callers:** The iterator keeps references rather than snapshots. Changing vector lengths or contents during iteration can invalidate saved indices or alter returned values; such concurrent mutation is outside the intended contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Calling `next()` Without `hasNext()`:** If a caller invokes `next()` when `cur` points to an exhausted vector, it causes an `IndexError`. The official iterator contract expects callers to loop using `while i.hasNext(): v.append(i.next())`.
+- **Unequal Vector Lengths:** If $v_1$ has 2 elements and $v_2$ has 100 elements, alternating blindly would fail after 2 steps. The rotation loop in `hasNext()` handles unequal lengths and finishes streaming the remainder of $v_2$.
+- **$k$-Vector Scalability:** For $k$ vectors, repeated linear scanning of exhausted vectors in `hasNext()` can take $O(k)$ time. A `collections.deque` storing `(vector, index)` pairs achieves strictly $O(1)$ time for $k$ vectors by removing exhausted vectors from the queue entirely.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. For exactly two vectors, `next()` performs a constant number of reads, writes, and arithmetic operations, so it takes $O(1)$ time. `hasNext()` examines at most two vectors before either finding an element or completing a cycle, so it also takes $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `next()`: $O(1)$ constant time.
+  - `hasNext()`: $O(1)$ amortized time. For 2 vectors, `hasNext()` checks at most 2 entries. Across the entire iteration, each vector is found exhausted at most once.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory. Only scalar pointers and an index list of size 2 are maintained.

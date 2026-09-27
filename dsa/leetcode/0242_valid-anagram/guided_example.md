@@ -1,128 +1,167 @@
 # Guided Example: Valid Anagram
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step length disparity rejection, character inventory tracking, and zero-sum frequency conservation on representative string anagram instances:
 
-- **Input:** `{"s": "anagram", "t": "nagaram"}`
-- **Required output:** `true`
+- **Input:** $s = \text{"anagram"}, \quad t = \text{"nagaram"}$
+- **Required output:** `true` (Both strings contain identical multiset frequencies: 3 `'a'`, 1 `'n'`, 1 `'g'`, 1 `'r'`, 1 `'m'`)
+- **Character Mismatch Instance:** $s = \text{"rat"}, \quad t = \text{"car"} \implies \text{false}$ (Character `'c'` not in inventory; count becomes $-1 < 0$)
+- **Unequal Length Instance:** $s = \text{"a"}, \quad t = \text{"ab"} \implies \text{false}$ (Length $1 \ne 2$; rejected immediately)
+- **Same Letter Set But Different Counts:** $s = \text{"aacc"}, \quad t = \text{"ccac"} \implies \text{false}$ (Count of `'a'` is 2 in $s$ vs 1 in $t$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset character frequency conservation, mathematically proves why pre-verifying $\text{len}(s) == \text{len}(t)$ combined with an early negative-inventory check guarantees an exact match without a final array scan, details fixed-size 26-element array allocation for $O(|\Sigma|)$ space, and operates in $O(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
+Given two lowercase English strings:
+$$
+s = \text{"anagram"}, \quad t = \text{"nagaram"}
+$$
+Determine whether $t$ is an anagram of $s$ (meaning $t$ is formed by rearranging all original letters of $s$ exactly once).
 
-The objective is to compute `true` from `{"s": "anagram", "t": "nagaram"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- Sorting both strings and comparing equality takes $O(N \log N)$ time and $O(N)$ extra space.
+- A hash map or fixed 26-element frequency vector provides a **character inventory**:
+  - Positive counts represent characters available from $s$.
+  - Consuming characters in $t$ decrements their inventory.
+  - If any count ever becomes negative, $t$ has overused a letter (or used an absent letter), and the algorithm terminates immediately in $O(N)$ time with $O(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Length Equality Invariant
+An anagram is a permutation. A permutation must preserve total length:
+$$
+\text{len}(s) == \text{len}(t)
+$$
+If $\text{len}(s) \ne \text{len}(t)$, return `false` immediately.
+This initial guard is mathematically essential: if lengths were unequal, $t$ could be a proper substring of $s$ without any counter going negative (e.g. $s = \text{"abc"}, t = \text{"ab"}$). Enforcing equal length ensures total counts sum to zero.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Single-Pass Inventory Protocol:
+1. **Length Check:**
+   If $\text{len}(s) \ne \text{len}(t)$, return `false`.
+2. **Build Inventory:**
+   Count character frequencies of $s$ in array `count` of size $26$:
+   $$
+   \text{for } c \in s: \quad \text{count}[\text{ord}(c) - \text{ord('a')}] \mathrel{+}= 1
+   $$
+3. **Consume Inventory:**
+   For each character $c \in t$:
+   $$
+   \text{idx} = \text{ord}(c) - \text{ord('a')}
+   $$
+   $$
+   \text{count}[\text{idx}] \mathrel{-}= 1
+   $$
+   If $\text{count}[\text{idx}] < 0$:
+   Return `false`! (Target string $t$ has exhausted the available inventory for character $c$).
+4. Return `true`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Because $\sum \text{count} = 0$ at termination, if no individual bucket $\text{count}[c] < 0$, then every bucket $\text{count}[c] == 0$ must hold, proving exact multiset equality without a trailing verification pass.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reject unequal lengths first
+We trace the algorithm on $s = \text{"anagram"}$ and $t = \text{"nagaram"}$ ($N = 7$):
 
-An anagram is a rearrangement, and rearranging cannot change the number of characters. If `len(s) != len(t)`, the answer is immediately `false`. This check is both a quick rejection and an important part of the later proof: after equal numbers of increments and decrements, a “no count went negative” result is enough to conclude that every count ended at zero.
-
-Without equal lengths, merely checking for negative counts while consuming `t` would handle the case where `t` is longer, but it could wrongly accept a shorter `t`. For example, with `s = "abc"` and `t = "ab"`, no counter becomes negative, yet one unused `c` remains. The initial length comparison rules out that situation.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "anagram", "t": "nagaram"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Length Validation
+- $\text{len}(s) = 7, \quad \text{len}(t) = 7$.
+- $7 == 7 \implies$ Pass.
 
 ---
 
-### Step 2: Treat the counter as an inventory
-
-After `cnt = Counter(s)`, `cnt[c]` is the inventory of character `c` supplied by `s`. For every character `c` in `t`, the algorithm performs `cnt[c] -= 1`, meaning one occurrence in `t` has been matched against one occurrence in `s`.
-
-Python's `Counter` returns a zero count for a missing key. Thus, if `t` contains a character absent from `s`, its first decrement changes that implicit zero to `-1`, and the algorithm rejects immediately. No separate “does this key exist?” condition is needed.
-
-More generally, after the first `r` characters of `t` have been processed,
-
-$$
-\text{cnt}[c]
-=
-\operatorname{freq}_s(c)
--
-\operatorname{freq}_{t[0:r]}(c).
-$$
-
-A negative value means the processed prefix of `t` already contains more copies of `c` than the whole of `s`. Later characters cannot repair that shortage: the loop only subtracts counts and never adds them. Returning `false` at the first negative value is therefore safe.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Build Inventory from $s = \text{"anagram"}$
+Record counts:
+- `'a'` appears 3 times $\implies \text{count}[\text{'a'}] = 3$
+- `'n'` appears 1 time $\implies \text{count}[\text{'n'}] = 1$
+- `'g'` appears 1 time $\implies \text{count}[\text{'g'}] = 1$
+- `'r'` appears 1 time $\implies \text{count}[\text{'r'}] = 1$
+- `'m'` appears 1 time $\implies \text{count}[\text{'m'}] = 1$
+All other 21 characters have count 0.
 
 ---
 
-### Step 3: Why no final counter scan is necessary
+### Step 3: Consume Inventory with $t = \text{"nagaram"}$
+- **Char 1 ($'n'$):**
+  - $\text{count}[\text{'n'}] \leftarrow 1 - 1 = 0 \ge 0$ (Valid).
+- **Char 2 ($'a'$):**
+  - $\text{count}[\text{'a'}] \leftarrow 3 - 1 = 2 \ge 0$ (Valid).
+- **Char 3 ($'g'$):**
+  - $\text{count}[\text{'g'}] \leftarrow 1 - 1 = 0 \ge 0$ (Valid).
+- **Char 4 ($'a'$):**
+  - $\text{count}[\text{'a'}] \leftarrow 2 - 1 = 1 \ge 0$ (Valid).
+- **Char 5 ($'r'$):**
+  - $\text{count}[\text{'r'}] \leftarrow 1 - 1 = 0 \ge 0$ (Valid).
+- **Char 6 ($'a'$):**
+  - $\text{count}[\text{'a'}] \leftarrow 1 - 1 = 0 \ge 0$ (Valid).
+- **Char 7 ($'m'$):**
+  - $\text{count}[\text{'m'}] \leftarrow 1 - 1 = 0 \ge 0$ (Valid).
 
-At first, it may seem that the function should verify that all counts are zero after scanning `t`. Equal lengths make that extra scan unnecessary.
-
-Initially, the sum of all counts is `len(s)`. Each of the `len(t)` loop iterations subtracts exactly one from one entry. Since the lengths are equal, the final sum of all counts is zero. The early-exit rule also guarantees that every final count is nonnegative. A collection of nonnegative integers can sum to zero only when every integer is zero. Therefore, if the loop finishes without finding a negative count, every occurrence from `s` was matched exactly once and the function may return `true`.
-
-The same fact can be viewed through contradiction. Suppose a positive count remained for some character from `s`. Because both strings have the same total length, some other character would have to be overused by `t` to compensate. That other counter would become negative, and the loop would already have returned `false`. Hence a leftover positive count cannot coexist with equal lengths and no negative count.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+All 7 characters matched and consumed their exact allocations.
+**Return `true`!**
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "anagram", "t": "nagaram"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+s = "anagram", t = "nagaram"
+len(s) == len(t) == 7 -> Continue
+
+Inventory from s: {a: 3, n: 1, g: 1, r: 1, m: 1}
+
+Consuming t:
+t[0] = 'n' -> count['n'] becomes 0 >= 0 (OK)
+t[1] = 'a' -> count['a'] becomes 2 >= 0 (OK)
+t[2] = 'g' -> count['g'] becomes 0 >= 0 (OK)
+t[3] = 'a' -> count['a'] becomes 1 >= 0 (OK)
+t[4] = 'r' -> count['r'] becomes 0 >= 0 (OK)
+t[5] = 'a' -> count['a'] becomes 0 >= 0 (OK)
+t[6] = 'm' -> count['m'] becomes 0 >= 0 (OK)
+
+All counts valid -> Return True
+```
+
+| Step in $t$ | Character $c$ | Available Inventory Before | Inventory After Decrement | Negative Check ($< 0$)? | Running Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | `'n'` | 1 | 0 | No | Valid |
+| 2 | `'a'` | 3 | 2 | No | Valid |
+| 3 | `'g'` | 1 | 0 | No | Valid |
+| 4 | `'a'` | 2 | 1 | No | Valid |
+| 5 | `'r'` | 1 | 0 | No | Valid |
+| 6 | `'a'` | 1 | 0 | No | Valid |
+| 7 | `'m'` | 1 | 0 | No | Valid |
+| **Finish** | - | - | - | - | **`true`** |
+
+### Contrast: Negative Inventory Early Exit ($s = \text{"rat"}, t = \text{"car"}$)
+- Inventory from $s$: `{'r': 1, 'a': 1, 't': 1}` (All others 0).
+- First character of $t$ is `'c'`:
+  - $\text{count}[\text{'c'}] = 0$.
+  - Decrement: $\text{count}[\text{'c'}] \leftarrow 0 - 1 = -1$.
+  - Check: $-1 < 0 \implies$ **Immediate exit: `false`!**
+  - Remaining characters are never scanned.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $\vec{u}$ and $\vec{v}$ be the character frequency vectors of $s$ and $t$ over alphabet $\Sigma$. Because $\sum_{c \in \Sigma} u_c = \text{len}(s) = \text{len}(t) = \sum_{c \in \Sigma} v_c$, we have $\sum_{c \in \Sigma} (u_c - v_c) = 0$. If $u_c - v_c \ge 0$ for all $c \in \Sigma$, then the only way a set of non-negative integers can sum to zero is if $u_c - v_c = 0$ for all $c$. Thus, $\vec{u} = \vec{v}$, which is the exact definition of an anagram.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ and $t$ is evaluated. If any discrepancy in frequency exists, at least one character in $t$ will exceed the count provided by $s$, triggering the negative check and returning `false`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Fixed 26-entry frequency array:** Map each lowercase letter to an index from `0` through `25`, increment for `s`, and decrement for `t`. It avoids hashing and makes the fixed-alphabet $O(1)$ space explicit. This is the manifest's described representation, but not the exact Python source.
-- **Sort both strings:** Equal anagrams become identical after sorting, giving a short solution. Sorting costs $O(n\log n)$ time and typically allocates string or character-array storage, so counting is asymptotically faster.
-- **Two counters compared for equality:** `Counter(s) == Counter(t)` is conceptually direct and still $O(n)$ expected time. The implemented inventory method needs only one initial counter and can reject as soon as `t` overuses a character.
-- **Unequal lengths:** Return `false` before constructing the counter. A longer or shorter string cannot be a rearrangement of the other.
-- **A character absent from `s`:** `Counter` treats its prior count as zero; decrementing makes it negative and triggers immediate rejection.
-- **Too many copies of an existing character:** The count becomes negative at the first unmatched extra occurrence, so later input need not be inspected.
-- **Repeated letters:** Multiplicity is the central reason a Boolean set is insufficient. For example, `aab` and `abb` have the same set of letters but are not anagrams.
-- **Identical strings:** Every count is consumed back to zero, so the method correctly returns `true`; no special identity check is needed.
-- **Single-character strings:** Equal characters consume one available count and succeed; different characters make a missing key negative and fail.
-- **Unicode follow-up:** A hash map or Python `Counter` avoids allocating an enormous fixed table and can count arbitrary code points. If “character” is intended to mean a user-perceived grapheme cluster rather than a Unicode code point, the text would first need appropriate Unicode normalization and grapheme segmentation; that is outside the lowercase-English contract.
-- **Case sensitivity:** The allowed input is lowercase. In a broader setting, `A` and `a` are different keys unless the contract explicitly requests case folding.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Length Check:** If length checking is omitted, comparing $s = \text{"abc"}$ and $t = \text{"ab"}$ decrements `'a'` and `'b'` to zero without any counter going negative. It would falsely return `true` unless a trailing check is performed.
+- **Sorting Overhead:** In Python, `sorted(s) == sorted(t)` takes $O(N \log N)$ time and allocates two new lists. Frequency counting takes $O(N)$ time with fixed $O(1)$ space.
+- **Unicode Follow-up:** If input contains arbitrary Unicode code points (Chinese, emojis, accented characters), a fixed 26-element array is insufficient. A dynamic hash map (`collections.defaultdict(int)`) naturally scales to arbitrary Unicode alphabets in $O(N)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common string length after the early check. Computing the two lengths is constant time in Python. Constructing `Counter(s)` visits all $n$ characters, and consuming `t` visits at most all $n$ characters. Counter lookup and update are expected $O(1)$ hash-table operations, so total expected running time is $O(n)$. Early rejection may stop the second scan sooner, but the worst case still processes both strings completely.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = \text{len}(s) = \text{len}(t)$. One forward pass populates the frequency counts, and one forward pass decrements counts. Each character access is an $O(1)$ direct array index lookup.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. The frequency table has fixed size $|\Sigma| = 26$ elements for lowercase English letters.

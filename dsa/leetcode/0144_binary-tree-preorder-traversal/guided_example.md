@@ -1,89 +1,181 @@
 # Guided Example: Binary Tree Preorder Traversal
 
-We trace the hierarchical Stack, Tree, Depth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step Root-Left-Right preorder tree traversal using both explicit LIFO stack simulation and $O(1)$ auxiliary space Morris threading on representative binary tree instances:
 
-- **Input:** `{"root": [1, null, 2, 3]}`
-- **Required output:** `[1, 2, 3]`
+- **Input:** $\text{root} = [1, \text{null}, 2, 3]$
+- **Required output:** $[1, 2, 3]$
+- **Full Hierarchy Instance:** $\text{root} = [1, 2, 3, 4, 5] \implies [1, 2, 4, 5, 3]$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates the Root $\to$ Left $\to$ Right visiting invariant, explains why child push order onto an explicit LIFO stack must be reversed (push Right before Left), contrasts stack simulation with Morris threading via temporary in-order predecessor links in $O(1)$ auxiliary space, and guarantees linear $O(N)$ runtime.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Binary Tree Preorder Traversal** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given the root of a binary tree:
+$$
+\begin{gathered}
+1 \\
+\quad \searrow \\
+\qquad 2 \\
+\qquad \swarrow \\
+\quad 3
+\end{gathered}
+$$
+Return the **preorder traversal** of its nodes' values.
+
+In a preorder traversal, every subtree is visited in the strict recursive order:
+$$
+\mathbf{\text{Root}} \longrightarrow \mathbf{\text{Left Subtree}} \longrightarrow \mathbf{\text{Right Subtree}}
+$$
+For $\text{root} = [1, \text{null}, 2, 3]$:
+1. Visit root: $1$.
+2. Left child is null.
+3. Visit right subtree rooted at $2$:
+   - Visit root: $2$.
+   - Visit left child: $3$.
+   - Right child is null.
+Emitted order: $[1, 2, 3]$.
+
+While recursive traversal is straightforward, system stack frames consume $O(H)$ memory.
+An explicit stack models the recursion iteratively: because a stack is Last-In-First-Out (LIFO), pushing the **right** child before the **left** child guarantees that the left child is popped and processed first.
+Alternatively, Morris traversal uses temporary threaded pointers to achieve $O(1)$ auxiliary space without any stack or recursion.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Method 1: Explicit LIFO Stack Protocol
+Initialize `stack = [root]` and `result = []`.
+If `root` is null: return `[]`.
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+While `stack` is non-empty:
+1. **Pop and Visit:**
+   $$
+   \text{curr} = \text{stack.pop()}
+   $$
+   $$
+   \text{result.append}(\text{curr.val})
+   $$
+2. **Push Right Child First:**
+   If $\text{curr.right}$ exists:
+   $$
+   \text{stack.append}(\text{curr.right})
+   $$
+   *(Pushing right first ensures it waits beneath the left subtree)*.
+3. **Push Left Child Second:**
+   If $\text{curr.left}$ exists:
+   $$
+   \text{stack.append}(\text{curr.left})
+   $$
+   *(Left child sits at the top of the stack, ready to pop next)*.
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+### Method 2: Morris Preorder Threading ($O(1)$ Space)
+When at `curr`:
+- If `curr.left` is null:
+  - Visit `curr.val`.
+  - Advance `curr = curr.right`.
+- Else:
+  - Find in-order predecessor `pred` (rightmost node in left subtree).
+  - If `pred.right` is null:
+    - **Visit `curr.val` immediately (Preorder property)!**
+    - Create temporary thread: `pred.right = curr`.
+    - Advance `curr = curr.left`.
+  - Else (`pred.right == curr`):
+    - Sever thread: `pred.right = null`.
+    - Advance `curr = curr.right`.
+
+> **Invariant.** Under explicit stack traversal, the top of the stack always contains the next node scheduled for visitation in the preorder sequence.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace the explicit stack method on $\text{root} = [1, \text{null}, 2, 3]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 0: Initialization
+- `stack = [Node(1)]`
+- `result = []`
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 1: Pop Node 1
+- Pop `curr = Node(1)`.
+- Visit: `result.append(1)`.
+- Children of Node 1:
+  - Right child: `Node(2)` exists $\implies$ Push `Node(2)`.
+  - Left child: `None` $\implies$ No push.
+- Stack: `[Node(2)]`.
+- Current result: `[1]`.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 2: Pop Node 2
+- Pop `curr = Node(2)`.
+- Visit: `result.append(2)`.
+- Children of Node 2:
+  - Right child: `None` $\implies$ No push.
+  - Left child: `Node(3)` exists $\implies$ Push `Node(3)`.
+- Stack: `[Node(3)]`.
+- Current result: `[1, 2]`.
+
+---
+
+### Step 3: Pop Node 3
+- Pop `curr = Node(3)`.
+- Visit: `result.append(3)`.
+- Children of Node 3:
+  - Leaf node (no children).
+- Stack: `[]` (empty!).
+- Current result: `[1, 2, 3]`.
+
+Stack is empty. Traversal completes!
+Output: $[1, 2, 3]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+### Stack State Evolution Table
+
+```text
+Tree:        [1]
+               \
+               [2]
+               /
+             [3]
+
+Order:       Pop 1 (push 2) -> Pop 2 (push 3) -> Pop 3 -> Done
+Result:      [1, 2, 3]
+```
+
+| Iteration | Stack Before Pop | Popped Node `curr` | Visited Value Appended | Children Evaluated | Stack After Push |
+|:---:|:---|:---:|:---:|:---|:---|
+| 0 (Init) | - | - | - | - | `[Node(1)]` |
+| 1 | `[Node(1)]` | $\text{Node}(1)$ | **1** | Right: $\text{Node}(2)$, Left: $\emptyset$ | `[Node(2)]` |
+| 2 | `[Node(2)]` | $\text{Node}(2)$ | **2** | Right: $\emptyset$, Left: $\text{Node}(3)$ | `[Node(3)]` |
+| 3 | `[Node(3)]` | $\text{Node}(3)$ | **3** | Right: $\emptyset$, Left: $\emptyset$ | `[]` |
+| Final | `[]` | - | - | Loop terminates | **`[1, 2, 3]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** Preorder traversal requires processing the root before its subtrees, and the left subtree before the right subtree. Because the root is appended to `result` immediately upon popping, and its left child is pushed onto the stack after the right child, the left child is popped first. By mathematical induction, every subtree obeys the Root $\to$ Left $\to$ Right discipline.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Every node in the tree is pushed onto the stack exactly once (when its parent is popped) and popped exactly once. No nodes are omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Reversed Push Order Bug:** Pushing left before right onto a LIFO stack causes the right child to sit on top of the left child, reversing the traversal into Root $\to$ Right $\to$ Left! Pushing right before left is required.
+- **Empty Tree Handling:** If $\text{root} == \emptyset$, `stack` is initialized empty or early-returned, correctly producing `[]`.
+- **Morris Traversal Visit Timing:** In Morris Inorder traversal, a node is visited when the thread is removed (`pred.right == curr`). In Morris Preorder traversal, the node must be visited when the thread is *first created* (`pred.right is None`), ensuring the parent is recorded before descending into its left subtree.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is pushed onto the stack once and popped once, performing $O(1)$ operations.
+- **Auxiliary Space Complexity:** $O(H)$ for explicit stack simulation, where $H$ is the tree height ($O(\log N)$ balanced, $O(N)$ skewed). Morris traversal achieves $O(1)$ auxiliary space.

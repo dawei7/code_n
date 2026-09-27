@@ -1,157 +1,164 @@
 # Guided Example: Container With Most Water
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal two-pointer shrinkage method on a representative instance:
 
-- **Input:** `{"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}`
-- **Required output:** `49`
+- **Input:** $\text{height} = [1, 8, 6, 2, 5, 4, 8, 3, 7]$
+- **Required output:** $49$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how starting from the maximum possible width and systematically shrinking inward using height dominance eliminates suboptimal configurations without evaluating all $O(N^2)$ candidate pairs.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the $i^{\text{th}}$ line are `(i, 0)` and $(i, \text{height}[i])$.
+Given an integer array $\text{height}$ of length $N = 9$, each index represents a vertical line of height $\text{height}[i]$ at coordinate $(i, 0)$.
 
-The objective is to compute `49` from `{"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}` while avoiding redundant calculations and unnecessary overhead.
+A container formed by two lines at indices $l$ and $r$ with $l < r$ has:
+- **Width:** $r - l$
+- **Effective Height:** $\min(\text{height}[l], \text{height}[r])$
+- **Water Capacity (Area):**
+  $$
+  A(l, r) = (r - l) \cdot \min(\text{height}[l], \text{height}[r])
+  $$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The objective is to find the pair $(l, r)$ that maximizes $A(l, r)$.
+
+For $\text{height} = [1, 8, 6, 2, 5, 4, 8, 3, 7]$, the optimal container is bounded by index $l = 1$ ($\text{height}[1] = 8$) and index $r = 8$ ($\text{height}[8] = 7$):
+$$
+\text{Area} = (8 - 1) \cdot \min(8, 7) = 7 \cdot 7 = 49
+$$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Monotone Elimination Argument
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Evaluating all $\frac{N(N-1)}{2}$ pairs takes $O(N^2)$ time. To achieve $O(N)$, we exploit a key geometric property:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Suppose we currently consider the interval $[l, r]$ with $\text{height}[l] < \text{height}[r]$.
+The area is $(r - l) \cdot \text{height}[l]$.
+
+Now consider pairing index $l$ with any other inner index $k$ such that $l < k < r$:
+1. The width is strictly smaller: $k - l < r - l$.
+2. The height is at most $\text{height}[l]$:
+   $$
+   \min(\text{height}[l], \text{height}[k]) \le \text{height}[l]
+   $$
+3. Therefore, the area for any pair $(l, k)$ is strictly bounded:
+   $$
+   A(l, k) = (k - l) \cdot \min(\text{height}[l], \text{height}[k]) < (r - l) \cdot \text{height}[l] = A(l, r)
+   $$
+
+**Crucial Deduction:** Index $l$ can *never* form a larger container with any remaining candidate inside $(l, r)$ than it already does with $r$. Thus, index $l$ can be permanently discarded!
+
+Symmetrically, if $\text{height}[r] < \text{height}[l]$, all pairs $(k, r)$ with $l < k < r$ are strictly inferior to $(l, r)$, so index $r$ can be permanently discarded.
+
+> **Invariant.** At every step, the optimal container either has been evaluated or lies entirely within the active subarray $[l, r]$. Discarding the pointer pointing to the shorter vertical line never eliminates the global optimum.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate two chosen lines into an area formula
+We initialize pointers at the extreme ends: $l = 0$ and $r = 8$, maintaining $\text{max\_area} = 0$.
 
-For indices `l < r`, the container width is the horizontal distance
+### Step 1: Evaluate $l=0, r=8$
+- Left height: $\text{height}[0] = 1$.
+- Right height: $\text{height}[8] = 7$.
+- Width: $8 - 0 = 8$.
+- Area: $8 \cdot \min(1, 7) = 8 \cdot 1 = 8$.
+- Update $\text{max\_area} = \max(0, 8) = 8$.
+- **Decision:** Since $\text{height}[0] = 1 < \text{height}[8] = 7$, discard index $0$. Advance left pointer: $l \leftarrow 1$.
 
-$$
-r-l.
-$$
+### Step 2: Evaluate $l=1, r=8$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[8] = 7$.
+- Width: $8 - 1 = 7$.
+- Area: $7 \cdot \min(8, 7) = 7 \cdot 7 = 49$.
+- Update $\text{max\_area} = \max(8, 49) = 49$.
+- **Decision:** Since $\text{height}[8] = 7 < \text{height}[1] = 8$, discard index $8$. Decrement right pointer: $r \leftarrow 7$.
 
-Water must remain level, and the container may not be slanted. The shorter vertical line determines the highest water level before water spills over that side. Therefore the area is
+### Step 3: Evaluate $l=1, r=7$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[7] = 3$.
+- Width: $7 - 1 = 6$.
+- Area: $6 \cdot \min(8, 3) = 6 \cdot 3 = 18$.
+- Max area remains $49$.
+- **Decision:** Since $\text{height}[7] = 3 < \text{height}[1] = 8$, discard index $7$. Decrement right pointer: $r \leftarrow 6$.
 
-$$
-A(l,r) = (r-l)\min(\texttt{height[l]},\texttt{height[r]}).
-$$
+### Step 4: Evaluate $l=1, r=6$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[6] = 8$.
+- Width: $6 - 1 = 5$.
+- Area: $5 \cdot \min(8, 8) = 5 \cdot 8 = 40$.
+- Max area remains $49$.
+- **Decision:** $\text{height}[1] = \text{height}[6] = 8$. Either pointer may be moved without losing optimality; decrement right pointer: $r \leftarrow 5$.
 
-The taller line contributes no extra height above the shorter one. This “minimum height times distance” fact is what makes it possible to eliminate pairs without trying all of them.
+### Step 5: Evaluate $l=1, r=5$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[5] = 4$.
+- Width: $5 - 1 = 4$.
+- Area: $4 \cdot \min(8, 4) = 4 \cdot 4 = 16$.
+- **Decision:** Discard index $5$. Decrement: $r \leftarrow 4$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 6: Evaluate $l=1, r=4$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[4] = 5$.
+- Width: $4 - 1 = 3$.
+- Area: $3 \cdot \min(8, 5) = 3 \cdot 5 = 15$.
+- **Decision:** Discard index $4$. Decrement: $r \leftarrow 3$.
 
----
+### Step 7: Evaluate $l=1, r=3$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[3] = 2$.
+- Width: $3 - 1 = 2$.
+- Area: $2 \cdot \min(8, 2) = 2 \cdot 2 = 4$.
+- **Decision:** Discard index $3$. Decrement: $r \leftarrow 2$.
 
-### Step 2: Start with the greatest possible width
+### Step 8: Evaluate $l=1, r=2$
+- Left height: $\text{height}[1] = 8$.
+- Right height: $\text{height}[2] = 6$.
+- Width: $2 - 1 = 1$.
+- Area: $1 \cdot \min(8, 6) = 1 \cdot 6 = 6$.
+- **Decision:** Discard index $2$. Decrement: $r \leftarrow 1$.
 
-The method places
-
-
-
-at the two outermost lines. No pair has a larger width. The widest pair is not necessarily optimal—a shorter inner width may be compensated by much taller lines—but it gives a useful comparison point and leaves every other pair inside the interval.
-
-At each iteration, the code evaluates the current pair before moving a pointer:
-
-
-
-Recording the current area first is essential because the elimination argument uses that already-measured pair as an upper bound for many unmeasured pairs.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why moving the taller side cannot help while the shorter side stays
-
-Assume `height[l] < height[r]`. The current area is
-
-$$
-(r-l)\texttt{height[l]}.
-$$
-
-Consider pairing the same left line with any inner right index `k`, where $l < k < r$. Its width is smaller:
-
-$$
-k-l < r-l.
-$$
-
-Its usable height is at most the fixed left height:
-
-$$
-\min(\texttt{height[l]},\texttt{height[k]}) \le \texttt{height[l]}.
-$$
-
-Combining the two inequalities gives
-
-$$
-A(l,k) \le (k-l)\texttt{height[l]} < (r-l)\texttt{height[l]} = A(l,r).
-$$
-
-Every remaining pair that keeps `l` is strictly worse than the current pair, which has already been considered. The left line can never participate in a better unseen answer, so discarding it with `l += 1` is safe.
-
-Moving `r` instead would reduce the width while keeping `height[l]` as the limiting height. Even an infinitely tall new right line could not recover the lost width. The only possibility for improvement is to replace the shorter line and hope for a higher limiting height.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `49` |
+### Termination
+Pointers meet at $l = r = 1$. The search terminates with $\text{max\_area} = 49$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `49` | Verified |
+| Step | Left $l$ | Right $r$ | $\text{height}[l]$ | $\text{height}[r]$ | Width $(r-l)$ | Effective Height | Area Computed | Max Area So Far | Pointer Shift | Mathematical Justification |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 8 | 1 | 7 | 8 | 1 | $8 \cdot 1 = 8$ | 8 | $l \leftarrow 1$ | $\text{height}[0] < \text{height}[8]$; any pair $(0, k)$ has area $< 8$ |
+| 2 | 1 | 8 | 8 | 7 | 7 | 7 | $7 \cdot 7 = 49$ | **49** | $r \leftarrow 7$ | $\text{height}[8] < \text{height}[1]$; any pair $(k, 8)$ has area $< 49$ |
+| 3 | 1 | 7 | 8 | 3 | 6 | 3 | $6 \cdot 3 = 18$ | 49 | $r \leftarrow 6$ | $\text{height}[7] < \text{height}[1]$; any pair $(k, 7)$ has area $< 18$ |
+| 4 | 1 | 6 | 8 | 8 | 5 | 8 | $5 \cdot 8 = 40$ | 49 | $r \leftarrow 5$ | Equal heights; neither side can pair with a wider inner line |
+| 5 | 1 | 5 | 8 | 4 | 4 | 4 | $4 \cdot 4 = 16$ | 49 | $r \leftarrow 4$ | $\text{height}[5] < \text{height}[1]$; any pair $(k, 5)$ has area $< 16$ |
+| 6 | 1 | 4 | 8 | 5 | 3 | 5 | $3 \cdot 5 = 15$ | 49 | $r \leftarrow 3$ | $\text{height}[4] < \text{height}[1]$; any pair $(k, 4)$ has area $< 15$ |
+| 7 | 1 | 3 | 8 | 2 | 2 | 2 | $2 \cdot 2 = 4$ | 49 | $r \leftarrow 2$ | $\text{height}[3] < \text{height}[1]$; any pair $(k, 3)$ has area $< 4$ |
+| 8 | 1 | 2 | 8 | 6 | 1 | 6 | $1 \cdot 6 = 6$ | 49 | $r \leftarrow 1$ | $\text{height}[2] < \text{height}[1]$; any pair $(k, 2)$ has area $< 6$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every computed area corresponds to a valid pair of indices $(l, r)$ evaluating the exact physical capacity formula $(r-l) \cdot \min(\text{height}[l], \text{height}[r])$. Thus, the returned maximum is achievable by a real pair of lines.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** At each iteration where $\text{height}[l] < \text{height}[r]$, we prove that all uninspected pairs $(l, k)$ for $l < k < r$ have capacity strictly smaller than $(l, r)$. Symmetrically, when $\text{height}[r] < \text{height}[l]$, all pairs $(k, r)$ have capacity strictly smaller than $(l, r)$. Because the discarded lines cannot participate in any pair strictly better than the current maximum, the global maximum is never discarded.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Brute-force all pairs:** Evaluate the exact area for every $l < r$. This uses constant auxiliary space but $O(n^2)$ time, which is too slow for up to $10^5$ lines.
-- **Sort lines by height:** Height alone is insufficient because width is equally important. Sorting also destroys direct positional relationships unless indices are carried and does not simplify the maximum-product tradeoff as cleanly as two pointers.
-- **Move the taller pointer:** With the shorter height unchanged and width reduced, no immediate or future pair retaining the shorter endpoint can improve. This move lacks the safe-elimination proof.
-- **Move both pointers on unequal heights:** This can skip a tall line that should pair with the retained taller endpoint. Only the known limiting side is safe to discard.
-- **Equal endpoint heights:** Either pointer may move after recording the area; the implementation moves `r`.
-- **Exactly two lines:** The loop evaluates the only possible pair once and returns its area.
-- **Zero-height lines:** They create area zero. When one endpoint is zero, discarding that limiting endpoint is safe; if both are zero, the tie branch removes the right one.
-- **All heights equal:** The widest outer pair is optimal. Later widths shrink with the same limiting height, so `ans` never changes.
-- **Strictly increasing heights:** The left endpoint is repeatedly discarded until width/height tradeoffs have all been represented by evaluated pairs.
-- **Strictly decreasing heights:** The right endpoint is symmetrically discarded.
-- **No slanting:** The formula intentionally uses the shorter vertical height; averaging heights or using the taller height would describe a different, invalid geometry.
-- **Input preservation:** Only indices move. The height array is never sorted or modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Moving the Taller Line:** A common pitfall is greedily moving the taller line in hopes of finding an even taller line inward. Because width decreases monotonically with every step, moving the taller line can only reduce or preserve the limiting height, guaranteeing a smaller area. Only moving the shorter line offers any chance of an increased minimum height that compensates for the lost width.
+- **Equal Heights Case:** When $\text{height}[l] = \text{height}[r]$, moving either pointer (or both) is sound, because any inner container formed with one of these lines would have strictly smaller width and a height bounded by that line's height.
+- **Premature Termination:** One cannot stop when the area decreases; area fluctuations are non-monotonic because tall lines may exist deeper inside the array.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of lines.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in $\text{height}$. Initially $r - l = N - 1$. Each iteration advances $l$ or decrements $r$ by exactly $1$, terminating in exactly $N - 1$ steps.
+- **Auxiliary Space Complexity:** $O(1)$. Pointers $l$, $r$, and scalar accumulator $\text{max\_area}$ require constant memory without dynamic allocations.

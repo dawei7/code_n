@@ -1,109 +1,226 @@
 # Guided Example: Task Scheduler
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step CPU task frequency histogram aggregation ($cnt$), bottleneck frequency identification ($x = \max(cnt)$), co-leader tie count tracking ($s = \sum [v == x]$), slotted time-frame matrix packing ($(x - 1) \cdot (n + 1) + s$), idle cooling slot calculation, and total execution time minimization on representative processor workloads:
 
-- **Input:** `{"tasks": ["A", "A", "A", "B", "B", "B"], "n": 2}`
+- **Input:** $tasks = [\text{"A"}, \text{"A"}, \text{"A"}, \text{"B"}, \text{"B"}, \text{"B"}], \quad n = 2$
 - **Required output:** `8`
+  - Cooldown rule: Between any two executions of the **same task**, there must be at least $n$ units of cooldown time (filled by other tasks or idle CPU cycles).
+  - Objective: Find the minimum total CPU intervals to complete all tasks.
+- **Frame-Packing Mathematical Formulation:**
+  - Let $x$ be the maximum frequency among all task types:
+    $$
+    x = \max_{t} cnt[t]
+    $$
+  - Let $s$ be the number of distinct task types that appear with this maximal frequency $x$.
+  - **The Grid / Frame Concept:**
+    - The most frequent task must appear $x$ times.
+    - Each of the first $x - 1$ instances of this task must be followed by at least $n$ cooling slots.
+    - This partitions the timeline into **$x - 1$ complete frames**, each of length $n + 1$:
+      $$
+      \text{Frame Size} = n + 1
+      $$
+    - The final $x$-th instance of the maximal tasks requires only their single execution without subsequent cooldown trailing slots.
+    - If there are $s$ tasks tied for the maximal frequency, each complete frame holds 1 of each, and the final tail frame holds all $s$ of them:
+      $$
+      \text{Lower Bound} = (x - 1) \cdot (n + 1) + s
+      $$
+  - **No-Idle Lower Bound:**
+    - The CPU cannot take less time than the total number of tasks:
+      $$
+      \text{Time} \ge |tasks|
+      $$
+    - If there are enough other diverse tasks to fill all idle slots across frames, the total time simply equals $|tasks|$.
+  - **Closed-Form Minimum Duration:**
+    $$
+    \text{Ans} = \max(|tasks|, \; (x - 1) \cdot (n + 1) + s)
+    $$
+- **Step-by-Step Worked Execution Trace:**
+  - Input: $tasks = [\text{"A"}, \text{"A"}, \text{"A"}, \text{"B"}, \text{"B"}, \text{"B"}], \quad n = 2$.
+  - **Step 1: Compute Frequency Map:**
+    - `'A'`: $3$ occurrences
+    - `'B'`: $3$ occurrences
+    - Frequency map: $\{'A': 3, \; 'B': 3\}$.
+    - Total task count: $|tasks| = 6$.
+  - **Step 2: Identify Maximal Frequency $x$ and Ties $s$:**
+    - Maximum frequency:
+      $$
+      x = \max(3, 3) = \mathbf{3}
+      $$
+    - Number of tasks with frequency $x = 3$:
+      - Both `'A'` and `'B'` have frequency 3:
+      $$
+      s = \mathbf{2}
+      $$
+  - **Step 3: Compute Frame Structure:**
+    - Number of complete frames:
+      $$
+      x - 1 = 3 - 1 = \mathbf{2}
+      $$
+    - Frame length:
+      $$
+      n + 1 = 2 + 1 = \mathbf{3}
+      $$
+    - Complete frame slots:
+      $$
+      (x - 1) \times (n + 1) = 2 \times 3 = \mathbf{6}
+      $$
+    - Final tail row size:
+      $$
+      s = \mathbf{2}
+      $$
+    - Frame capacity required:
+      $$
+      \text{Capacity} = 6 + 2 = \mathbf{8}
+      $$
+  - **Step 4: Visualize the CPU Schedule:**
+    ```text
+    Frame 1:  [ A ]  [ B ]  [ idle ]   (Length 3)
+    Frame 2:  [ A ]  [ B ]  [ idle ]   (Length 3)
+    Tail:     [ A ]  [ B ]             (Length 2)
+    ```
+    - Complete sequential execution order:
+      $$
+      A \to B \to \text{idle} \to A \to B \to \text{idle} \to A \to B
+      $$
+    - Between the 1st A (pos 0) and 2nd A (pos 3): exactly 2 slots ($B$, idle) $\implies$ satisfies $n = 2$.
+    - Between the 2nd A (pos 3) and 3rd A (pos 6): exactly 2 slots ($B$, idle) $\implies$ satisfies $n = 2$.
+    - Total intervals elapsed:
+      $$
+      3 + 3 + 2 = \mathbf{8}
+      $$
+  - **Step 5: Apply Capacity Bound:**
+    $$
+    ans = \max(|tasks|, \; \text{Capacity}) = \max(6, 8) = \mathbf{8}
+    $$
+- **Zero Cooldown Instance ($n = 0$):**
+  - No idle slots needed at all:
+    $$
+    (3 - 1) \cdot (0 + 1) + 2 = 4
+    $$
+    $$
+    \max(6, 4) = \mathbf{6} \quad (\text{Runs continuously without idle: } A B A B A B)
+    $$
+- **Abundant Low-Frequency Tasks (No Idles):**
+  - Suppose $tasks = [A, A, A, B, C, D, E, F, G], n = 2$.
+  - $x = 3, s = 1 \implies (3 - 1) \cdot 3 + 1 = 7$.
+  - Total tasks $|tasks| = 9$.
+  - $ans = \max(9, 7) = \mathbf{9}$. (The 6 other letters easily fill and overflow the idle slots).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates periodic scheduling bounds on cooldown-constrained task systems, mathematically proves why max-frequency tasks define the frame lower bound, and derives $O(T)$ runtime and $O(|\Sigma|)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of CPU `tasks`, each labeled with a letter from A to Z, and a number `n`. Each CPU interval can be idle or allow the completion of one task. Tasks can be completed in any order, but there's a constraint: there has to be a gap of **at least** `n` intervals between two tasks with the same label.
+Given a list of CPU tasks and a cooldown period $n$:
+Find the **minimum units of time** needed to execute all tasks such that identical tasks are separated by at least $n$ units.
 
-The objective is to compute `8` from `{"tasks": ["A", "A", "A", "B", "B", "B"], "n": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Tasks: A, A, A, B, B, B. Cooldown n = 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Schedule Grid (width n + 1 = 3):
+  Row 1:  A   B   idle
+  Row 2:  A   B   idle
+  Row 3:  A   B
+
+Total time = 8 units
+```
+
+### The Invariant of the Max-Frequency Skeleton
+- The most frequent task dictates the minimum structural framework of the timeline.
+- If task $A$ appears 3 times with $n = 2$, it requires at least:
+  `A _ _ A _ _ A` (7 slots).
+- If multiple tasks tie for the maximum count, each adds 1 to the final row.
+- All other less-frequent tasks can be slotted into the idle vacancies between the main tasks.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Mathematical Formula:
+$$
+\text{Ans} = \max(|tasks|, \; (x - 1) \cdot (n + 1) + s)
+$$
+where:
+- $x = \max_{k} cnt[k]$ is the highest task count.
+- $s = \sum_{k} \mathbf{1}[cnt[k] == x]$ is the number of tasks having count $x$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Why $\max(|tasks|, \dots)$?
+- If the number of distinct low-frequency tasks is larger than the number of available idle slots, no idling is required.
+- The schedule expands horizontally without ever violating cooldown constraints, taking exactly $|tasks|$ units.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Frame Packing Invariant.** Packing tasks in descending order of frequency into $x - 1$ columns of width $n + 1$ guarantees that no task with count $\le x$ is placed in the same column twice, satisfying the separation distance $n$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Reduce the schedule to the labels that create the tightest spacing requirement.** Every task takes exactly one interval. If cooldowns never force an idle interval, the answer is simply the number of tasks. Idles are needed only when repeated copies of a frequent label cannot be separated by enough other work.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tasks": ["A", "A", "A", "B", "B", "B"], "n": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $tasks = [A, A, A, B, B, B], n = 2$:
 
 ---
 
-### Step 2: Core Step 2
-
-The exact solution first builds `Counter(tasks)`. Let:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Count Tasks
+- $A: 3$
+- $B: 3$
+- $|tasks| = 6$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Compute $x$ and $s$
+- $x = 3$.
+- $s = 2$ (both $A$ and $B$).
 
-- $T$ be the total number of tasks;
-- $x$ be the largest frequency of any label;
-- $s$ be the number of labels whose frequency equals $x$.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `8` |
+### Step 3: Evaluate Formula
+$$
+(x - 1) \cdot (n + 1) + s = (3 - 1) \cdot (2 + 1) + 2 = 2 \cdot 3 + 2 = 8
+$$
+$$
+\max(6, 8) = \mathbf{8}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tasks": ["A", "A", "A", "B", "B", "B"], "n": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `8` | Verified |
+| Time Slot | Scheduled Task / State | Active Cooldown Status |
+|:---:|:---:|:---:|
+| $0$ | **`A`** | $A$ enters cooldown until slot $3$ |
+| $1$ | **`B`** | $B$ enters cooldown until slot $4$ |
+| $2$ | **`idle`** | Waiting for $A$ cooldown |
+| $3$ | **`A`** | $A$ enters cooldown until slot $6$ |
+| $4$ | **`B`** | $B$ enters cooldown until slot $7$ |
+| $5$ | **`idle`** | Waiting for $A$ cooldown |
+| $6$ | **`A`** | All $A$s completed |
+| $7$ | **`B`** | All $B$s completed |
+| **Total Units** | — | **`8`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 0$ (No Cooldown):** Returns $|tasks|$ directly.
+- **All Tasks Unique ($[A, B, C, D]$):** $x = 1, s = 4 \implies (0)(n+1) + 4 = 4 = |tasks|$.
+- **One Dominant Task ($[A, A, A, A], n = 3$):** $(4 - 1) \cdot 4 + 1 = 13$ units ($A \dots A \dots A \dots A$).
+- **Empty Task List:** Returns $0$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Max-heap simulation:** Repeatedly choose the most frequent available labels in cycles of length $n+1$. This can construct the timing explicitly and generalizes well, but it is more machinery than the closed formula needs.
-- **Sort 26 frequencies and count idle slots:** Use one maximum label to create gaps, then fill them with other frequencies. This is also constant-alphabet linear time but has more bookkeeping around tied maxima.
-- **Cooldown queue simulation:** Track time, a max heap of available labels, and a queue of cooling labels. It is useful when an actual schedule is needed, but unnecessary for returning only the length.
-- **`n = 0`:** The skeleton cannot force a gap, and the maximum returns exactly $T$.
-- **Every task label is unique:** Then $x=1$ and $s=T$; the skeleton equals $T$, so no idle is introduced.
-- **Only one distinct label:** Here $s=1$; the answer is $(x-1)(n+1)+1$, representing one task followed by $n$ idles between repetitions.
-- **Several maximum-frequency labels:** The final `+ s` term is essential. Omitting it undercounts the last round.
-- **Enough filler tasks:** When $T$ exceeds the skeleton, the result is $T$ because useful work fills all cooldown gaps.
-- **Nonempty input guarantee:** It makes `max(cnt.values())` safe. An empty task array would require a separate return of 0.
-- **Fixed alphabet assumption:** Constant space depends on A through Z. With arbitrary labels, describe counter storage as $O(U)$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Simulating with a Priority Queue Step-by-Step ($O(T \log 26)$):** While a max-heap simulation works, it is unnecessary and far slower than computing the exact closed-form formula in $O(T)$ time.
+- **Forgetting $s$ (Ties for Max Count):** Assuming only one task has the max count omits extra tasks in the final row, undercounting the total by $s - 1$.
+- **Forgetting $\max(|tasks|, \dots)$:** When many different tasks exist, the frame formula can evaluate to less than $|tasks|$. Neglecting $\max$ gives an impossible answer smaller than total task count.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(T)$. Counting all tasks takes $O(T)$ time. Scanning the frequency values to find $x$ and then count $s$ takes $O(U)$ time, where $U$ is the number of distinct labels. Because labels are restricted to the 26 uppercase English letters, $U\le26$ is a fixed constant. Total time is therefore $O(T)$.
-- **Auxiliary Space Complexity:** $O(26)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Counting task frequencies: $\mathcal{O}(T)$ where $T = |tasks|$.
+  - Finding max and ties over alphabet size $|\Sigma| = 26$: $\mathcal{O}(|\Sigma|)$ operations.
+  - Closed-form formula: $\mathcal{O}(1)$.
+  - Total Time: strictly linear $\mathcal{O}(T)$. For $T = 10^4$, completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$ auxiliary space for the 26-letter frequency counter.

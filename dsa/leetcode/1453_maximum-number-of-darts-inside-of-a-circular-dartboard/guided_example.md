@@ -1,114 +1,186 @@
 # Guided Example: Maximum Number of Darts Inside of a Circular Dartboard
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-point boundary circle anchoring and geometric containment testing on a representative planar instance:
 
-- **Input:** `{"darts": [[-2, 0], [2, 0], [0, 2], [0, -2]], "r": 2}`
-- **Required output:** `4`
+- **Input:** $darts = [[-2, 0], [2, 0], [0, 2], [0, -2]]$, $r = 2$
+- **Required Output:** $4$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features four points symmetrically distributed along the circumference of a circle of radius $2$, demonstrating how pairs of points determine candidate disk centers that enclose maximal subsets.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $i^{\text{th}}$ dart that Alice threw on the wall.
+We are given $n$ distinct points $darts[i] = [x_i, y_i]$ on a 2D plane and a radius $r$. We must position a closed circular disk of radius $r$ anywhere on the plane to maximize the number of points contained within or on its boundary.
 
-The objective is to compute `4` from `{"darts": [[-2, 0], [2, 0], [0, 2], [0, -2]], "r": 2}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Four points: $A = (-2, 0)$, $B = (2, 0)$, $C = (0, 2)$, $D = (0, -2)$.
+- Radius $r = 2$.
+- The distance from origin $(0, 0)$ to each point is:
+  $$\|A - (0,0)\| = \sqrt{(-2)^2 + 0^2} = 2 \le r$$
+  $$\|B - (0,0)\| = \sqrt{2^2 + 0^2} = 2 \le r$$
+  $$\|C - (0,0)\| = \sqrt{0^2 + 2^2} = 2 \le r$$
+  $$\|D - (0,0)\| = \sqrt{0^2 + (-2)^2} = 2 \le r$$
+- All $4$ points lie on or inside the circle centered at $(0, 0)$.
+- Maximum contained darts: $4$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to apply the geometric boundary theorem: if an optimal disk contains two or more points, it can be continuously shifted and rotated until at least two points lie exactly on its perimeter without decreasing the number of enclosed points. Thus, testing circles defined by pairs of points $(P_i, P_j)$ guarantees finding the global maximum.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $P_1 = (x_1, y_1)$ and $P_2 = (x_2, y_2)$ be two distinct points with Euclidean distance:
 
-| State Parameter | Role & Purpose | Initial State |
+$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+
+If $d > 2r$, no circle of radius $r$ can touch both points simultaneously. If $d \le 2r$, there exist up to two circles of radius $r$ passing through both $P_1$ and $P_2$:
+
+1. **Midpoint of Chord:**
+   $$M = \left( \frac{x_1 + x_2}{2}, \, \frac{y_1 + y_2}{2} \right)$$
+2. **Sagitta (Distance from $M$ to Center):**
+   $$h = \sqrt{r^2 - \left(\frac{d}{2}\right)^2}$$
+3. **Unit Perpendicular Vector:**
+   $$\vec{u} = \left( -\frac{y_2 - y_1}{d}, \, \frac{x_2 - x_1}{d} \right)$$
+4. **Candidate Centers:**
+   $$C_1 = M + h\vec{u}, \quad C_2 = M - h\vec{u}$$
+
+For each candidate center $C$, we count points $P_k \in darts$ satisfying:
+$$\|P_k - C\|^2 \le r^2 + 10^{-7}$$
+
+```
+Geometric Center Construction:
+        P1 (-2, 0) o
+                    \
+                     \ d/2 = 2
+                      \
+       C (0, 0) o------M (0, 0)   (h = sqrt(r^2 - (d/2)^2) = 0)
+                      /
+                     / d/2 = 2
+                    /
+        P2 (2, 0)  o
+
+Distance between P1 and P2 is d = 4 = 2r.
+Midpoint M is (0, 0), sagitta h = 0.
+Candidate Center is exactly (0, 0).
+Disk with center (0, 0) encloses {-2,0}, {2,0}, {0,2}, {0,-2}.
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Point Pair $(P_i, P_j)$ | Point indices $0 \le i < j < n$ | Pair determining chord of candidate circle |
+| Chord Distance ($d$) | Real number $> 0$ | Euclidean distance between $P_i$ and $P_j$ |
+| Candidate Center ($C$) | 2D coordinate $(x_c, y_c)$ | Potential center of radius-$r$ disk |
+| Contained Count | Integer $1 \le \text{count} \le n$ | Number of points within distance $r$ from $C$ |
+| Global Maximum | Integer $1 \le \text{max} \le n$ | Best containment count found across all pairs |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any configuration containing at least two points, there exists a disk of radius $r$ passing through at least two input points whose containment count equals the global optimal count.
+
+```mermaid
+flowchart TD
+    accTitle: Two-Point Circular Dartboard Sweep
+    accDescr: Iterates over all point pairs, computes candidate centers of radius r circles passing through both, counts contained points, and tracks the maximum.
+    A["Initialize max_darts = 1"] --> B["Loop pair (i, j) with 0 <= i < j < n"]
+    B --> C["Compute distance d = dist(darts[i], darts[j])"]
+    C --> D{"d <= 2 * r?"}
+    D -- No --> E{"More pairs?"}
+    D -- Yes --> F["Compute candidate centers C1 and C2"]
+    F --> G["For each center C, count points with dist(P, C) <= r"]
+    G --> H["max_darts = max(max_darts, count)"] --> E
+    E -- Yes --> B
+    E -- No --> I["Return max_darts"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance $darts = [[-2, 0], [2, 0], [0, 2], [0, -2]]$ with $r = 2$.
 
-**Use pairs of boundary darts to generate candidate circles.** The dartboard radius is fixed. If two darts are farther than `2r` apart, no radius-`r` circle can contain both because the diameter is the greatest possible distance between two points in such a circle. If their distance is at most `2r`, there are one or two circle centers whose boundary passes through both points.
+### Evaluation of Pair $P_0 = (-2, 0)$ and $P_1 = (2, 0)$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"darts": [[-2, 0], [2, 0], [0, 2], [0, -2]], "r": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+1. **Distance Computation:**
+   $$d = \sqrt{(2 - (-2))^2 + (0 - 0)^2} = \sqrt{16} = 4$$
+   Check diameter feasibility: $d = 4 \le 2r = 4$. Valid chord.
 
----
+2. **Center Derivation:**
+   - Midpoint: $M = \left(\frac{-2 + 2}{2}, \frac{0 + 0}{2}\right) = (0, 0)$.
+   - Offset: $h = \sqrt{2^2 - (4/2)^2} = \sqrt{4 - 4} = 0$.
+   - Since $h = 0$, both candidate centers coincide: $C_1 = C_2 = (0, 0)$.
 
-### Step 2: Core Step 2
+3. **Containment Count from Center $(0, 0)$:**
+   - Distance to $P_0 (-2, 0)$: $\sqrt{(-2)^2 + 0^2} = 2 \le 2$. (Contained)
+   - Distance to $P_1 (2, 0)$: $\sqrt{2^2 + 0^2} = 2 \le 2$. (Contained)
+   - Distance to $P_2 (0, 2)$: $\sqrt{0^2 + 2^2} = 2 \le 2$. (Contained)
+   - Distance to $P_3 (0, -2)$: $\sqrt{0^2 + (-2)^2} = 2 \le 2$. (Contained)
+   - Total contained darts: $4$.
+   - Update $max\_darts = \max(1, 4) = 4$.
 
-The helper `possibleCenters(x1, y1, x2, y2)` computes those centers. Let the vector from the first dart to the second be `(dx, dy)` and its length be `d`. The center of any circle through both points must be equally distant from them, so it lies on their perpendicular bisector.
+### Verification of Other Pairs
+- Pair $(P_0, P_2)$: $(-2, 0)$ and $(0, 2)$.
+  - $d = \sqrt{2^2 + 2^2} = \sqrt{8} \approx 2.828 \le 4$.
+  - Midpoint: $(-1, 1)$, $h = \sqrt{4 - 2} = \sqrt{2} \approx 1.414$.
+  - Candidate center $C_1 = (0, 0)$ encloses all $4$ points.
+- No configuration can exceed $n = 4$ points.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-The midpoint `(mid_x, mid_y)` is the base point on that bisector. Drawing a segment from a candidate center to either dart forms a right triangle. Its hypotenuse is `r`, one leg from the midpoint to a dart has length `d / 2`, and the other leg from the midpoint to the center has length
-`sqrt(r*r - (d/2)*(d/2))`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+| Evaluated Pair | Chord Length $d$ | Feasible ($d \le 4$)? | Sagitta $h$ | Center Candidate | Contained Points Set | Contained Count |
+|---|---|---|---|---|---|---|
+| $(P_0, P_1)$ | 4.000 | Yes | 0.000 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
+| $(P_0, P_2)$ | 2.828 | Yes | 1.414 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
+| $(P_0, P_3)$ | 2.828 | Yes | 1.414 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
+| $(P_1, P_2)$ | 2.828 | Yes | 1.414 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
+| $(P_1, P_3)$ | 2.828 | Yes | 1.414 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
+| $(P_2, P_3)$ | 4.000 | Yes | 0.000 | $(0.0, 0.0)$ | $\{P_0, P_1, P_2, P_3\}$ | **4** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"darts": [[-2, 0], [2, 0], [0, 2], [0, -2]], "r": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```
+Final Maximum Verification:
+Total Points: 4
+Radius: 2
+Optimal Circle Center: (0.0, 0.0)
+Point Distances from (0, 0):
+  P0 (-2, 0): dist = 2.0 <= 2 (Boundary)
+  P1 ( 2, 0): dist = 2.0 <= 2 (Boundary)
+  P2 ( 0, 2): dist = 2.0 <= 2 (Boundary)
+  P3 ( 0,-2): dist = 2.0 <= 2 (Boundary)
+Total Enclosed Darts: 4
+```
+
+| Dart Identifier | Coordinates | Vector from Center $(0, 0)$ | Euclidean Distance | Within Radius $r = 2$? |
+|---|---|---|---|---|
+| $P_0$ | $(-2, 0)$ | $(-2, 0)$ | $2.000$ | Yes (Boundary) |
+| $P_1$ | $(2, 0)$ | $(2, 0)$ | $2.000$ | Yes (Boundary) |
+| $P_2$ | $(0, 2)$ | $(0, 2)$ | $2.000$ | Yes (Boundary) |
+| $P_3$ | $(0, -2)$ | $(0, -2)$ | $2.000$ | Yes (Boundary) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any candidate center $C$ constructed from a valid chord, every point whose Euclidean distance to $C$ is $\le r$ geometrically lies within the closed disk. Counting these points precisely reflects the number of darts captured.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose the optimal placement contains $k$ points. If $k = 1$, returning $1$ is trivial. If $k \ge 2$, by continuously shifting the disk until it touches one point, and then pivoting until it touches a second point, we obtain a disk of radius $r$ passing through at least two points that encloses all original $k$ points. Testing all pairs $(P_i, P_j)$ and their associated candidate circles exhaustively visits this canonical orientation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Angular sweep around each anchor:** For each dart, compute the angular interval of centers at distance `r` that would also contain every other reachable dart, sort interval events, and find maximum overlap. This achieves the manifest's `O(n^2 log n)` time and `O(n)` space but requires careful wraparound and event ordering.
-- **Pair centers with squared-distance counting:** Compare squared distances with `r*r` to avoid a square root for every counted dart. Center coordinates are still floating-point, but this improves constants without changing the cubic bound.
-- **Try centers at dart positions only:** This is incorrect. An optimal circle's center need not coincide with any dart.
-- **Generate only one center per pair:** This can miss a better placement on the other side of the chord. Both perpendicular signs matter.
-- **Single dart:** No pair loop runs, and the initialized answer one is correct.
-- **Pair farther than the diameter:** No fixed-radius circle contains both, so it generates no centers.
-- **Pair exactly one diameter apart:** The two formulas coincide at the midpoint. Duplicate evaluation does not change the maximum.
-- **Very close distinct darts:** The division by `d` is valid because points are unique, though floating-point care is important when `d` is small.
-- **Dart on the boundary:** It counts as inside. The small epsilon protects this inclusive rule from rounding error.
-- **All darts fit one circle:** Some pair-derived extremal center reaches all of them, and counting returns `n`.
-- **Collinear darts:** The same chord geometry applies. Feasible pair centers lie on perpendicular lines, and the maximum is still found.
-- **Negative coordinates:** Distances use coordinate differences and squares, so signs require no special handling.
-- **Duplicate darts outside the contract:** `d = 0` would cause division by zero in `possibleCenters`. The uniqueness guarantee is essential to this exact implementation.
-- **Floating comparison at d versus 2r:** The early rejection has no epsilon. Integer-coordinate distance calculations are usually stable here, but a defensive geometric implementation may compare squared distances with a tolerance.
-- **Tolerance too large:** A generous epsilon could count points truly outside the board. The selected `1e-7` is intended only for floating rounding.
-- **Complexity reporting:** Report `O(n^3)` time and `O(1)` auxiliary space for this exact source. Reserve `O(n^2 log n)` and `O(n)` for an implemented angular sweep.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Floating-Point Precision Loss:** Due to precision limits in square roots, comparing $\|P - C\|^2 \le r^2$ strictly can drop boundary points due to tiny inaccuracies (e.g. $4.000000000000001 \le 4$). Incorporating a small tolerance $\epsilon \approx 10^{-7}$ ensures boundary points are accurately counted.
+- **Missing Single-Point Fallback:** If all pairs of points have separation $d > 2r$, no two points can fit in the disk simultaneously. The algorithm must default to $max\_darts = 1$.
+- **Ignoring Both Circle Orientations:** For any chord with $d < 2r$, there are two distinct centers on opposite sides of the chord ($C_1 = M + h\vec{u}$ and $C_2 = M - h\vec{u}$). Testing only one center misses valid configurations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the number of darts. There are `n(n - 1) / 2` unordered pairs. Each pair produces at most two centers using constant-time arithmetic. For each center, `countDarts` scans all `n` points. The exact implementation therefore takes `O(n^3)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^3)$, where $n$ is the number of dart points ($n \le 100$).
+  - There are $\frac{n(n - 1)}{2} = \mathcal{O}(n^2)$ point pairs $(P_i, P_j)$.
+  - Each pair generates at most $2$ candidate centers.
+  - Testing each candidate center against all $n$ points takes $\mathcal{O}(n)$ distance evaluations.
+  - Total operations: $2 \times \binom{100}{2} \times 100 \approx 10^6$, executing smoothly well under $0.1$ seconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond storing the input coordinates, as only scalar coordinate vectors and counters are maintained.

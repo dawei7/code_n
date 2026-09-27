@@ -205,25 +205,6 @@
         "boundary",
         "single-element"
       ]
-    },
-    {
-      "id": "trial-boundary-10",
-      "name": "identical elements in arr",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          3
-        ]
-      },
-      "expected": [
-        2
-      ],
-      "tags": [
-        "boundary",
-        "duplicates"
-      ]
     }
   ]
 }

@@ -1,126 +1,161 @@
 # Guided Example: Tenth Line
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step stream filtering, numeric line addressing, and early termination on representative text files:
 
-- **Input:** `{"stdin": "", "files": {"file.txt": "1\n2\n3\n4\n5\n6\n7\n8\n9\nten\n"}}`
-- **Required output:** `"ten"`
+- **Input File `file.txt`:**
+  ```text
+  Line 1
+  Line 2
+  Line 3
+  Line 4
+  Line 5
+  Line 6
+  Line 7
+  Line 8
+  Line 9
+  Line 10
+  Line 11
+  ```
+- **Required output:**
+  ```text
+  Line 10
+  ```
+- **Fewer Than 10 Lines Instance:** `file.txt` contains 7 lines $\implies$ Empty output (prints nothing)
+- **Exactly 10 Lines Instance:** `file.txt` contains 10 lines $\implies$ Prints Line 10
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance explores line-addressed stream processing, analyzes the three foundational Unix tools (`sed`, `awk`, `tail | head`), explains why suppression flags (`-n`) and record counting (`NR == 10`) avoid output pollution, and achieves $O(\min(N, 10))$ time with early termination.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a text file `file.txt`, print just the 10th line of the file.
+Given a text file `file.txt`, print **just the 10th line** of the file to standard output. If the file contains fewer than 10 lines, output nothing.
 
-The objective is to compute `"ten"` from `{"stdin": "", "files": {"file.txt": "1\n2\n3\n4\n5\n6\n7\n8\n9\nten\n"}}` while avoiding redundant calculations and unnecessary overhead.
+Evaluating `file.txt`:
+- Lines 1 through 9: Read and discarded.
+- Line 10: Selected and printed to stdout.
+- Lines 11 and beyond: Discarded (or skipped via early termination `q` / `exit`).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive script might echo lines without checking total line count, erroneously printing blank lines when the file has fewer than 10 records.
+Standard Unix tools solve this with precise record targeting and zero temporary file creation.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Stream Editor `sed` with Line Addressing (Recommended)
+```bash
+sed -n '10p' file.txt
+```
+Or with early termination to optimize for large files:
+```bash
+sed -n '10{p;q}' file.txt
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Mechanics of `sed -n '10p'`:
+1. **`-n` (Quiet Mode):**
+   By default, `sed` prints every line in the pattern space after executing commands. The `-n` flag disables automatic echoing, ensuring that lines are printed only when explicitly requested.
+2. **`10` (Address Selector):**
+   Matches only the 10th input line. For lines $1 \dots 9$ and $11 \dots \infty$, the address condition is false.
+3. **`p` (Print Action):**
+   Prints the current line buffer.
+4. **`q` (Quit):**
+   Immediately terminates execution after line 10, preventing unnecessary I/O on large files.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Pattern Scanning with `awk`
+```bash
+awk 'NR == 10 {print; exit}' file.txt
+```
+- `NR` is `awk`'s built-in record number (1-based line counter).
+- When `NR == 10`, it executes `{print; exit}`.
+- If $NR < 10$ at EOF, the block never executes, naturally producing an empty output.
+
+### Method C: Pipeline with `tail` and `head`
+```bash
+tail -n +10 file.txt | head -n 1
+```
+- `tail -n +10`: Begins output at line 10 (1-indexed) and streams to the end of the file. If the file has fewer than 10 lines, it outputs nothing.
+- `head -n 1`: Takes only the first line of that incoming stream (line 10).
+
+> **Invariant.** An output line is emitted if and only if the current 1-based record index equals 10.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Address one record and suppress everything else
+We trace the streaming evaluation line by line across `file.txt`:
 
-`sed` processes a text file as a sequence of records, normally one line per
-record. The script gives it the fixed input path `file.txt`, so no arguments or
-standard-input data are required from the caller.
-
-The command combines two features: `-n` turns off automatic printing, and
-`10p` says to print the record with line address 10. Together they make line ten
-the only possible output.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"stdin": "", "files": {"file.txt": "1\n2\n3\n4\n5\n6\n7\n8\n9\nten\n"}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Records 1 to 9:
+- `NR = 1` (`"Line 1"`): Address $10$ matches? `False`. Quiet mode suppresses output.
+- `NR = 2` (`"Line 2"`): Address $10$ matches? `False`. Quiet mode suppresses output.
+- `NR = 3 \dots 9`: Address $10$ matches? `False`. Discarded.
 
 ---
 
-### Step 2: Understand sed's default behavior first
-
-Without `-n`, sed normally prints every input line after applying commands. A
-bare `sed '10p' file.txt` would therefore print all lines once and line ten a
-second time. That is not a filter for the tenth line.
-
-The `-n` option suppresses this automatic output globally. Once suppression is
-active, a line appears only if an explicit command prints it. This option is
-therefore not a cosmetic flag; it is essential to the correctness of `10p`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Record 10 (`"Line 10"`):
+- `NR = 10`: Address $10$ matches? **`True!`**
+- Execute `p`:
+  Emits `"Line 10"` to standard output.
+- If early exit `q` is specified:
+  Stream closes immediately without reading line 11!
 
 ---
 
-### Step 3: Use a numeric address
+### Records 11+ (Without `q`):
+- `NR = 11`: Address $10$ matches? `False`. Discarded.
+- Stream finishes at EOF.
 
-In sed syntax, the number before a command is an address selecting an input
-record. Address `10` matches exactly the tenth record encountered. Command `p`
-prints the current pattern space, which initially contains that entire original
-line.
-
-For records 1 through 9, the address does not match, so `p` is not executed and
-automatic printing is already disabled. At record 10, `p` executes once. For
-records 11 and later, the address again does not match and nothing is printed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"ten"` |
+Final output:
+```text
+Line 10
+```
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"stdin": "", "files": {"file.txt": "1\n2\n3\n4\n5\n6\n7\n8\n9\nten\n"}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"ten"` | Verified |
+```text
+file.txt Stream:
+Line 1  -> NR = 1  != 10 -> Suppressed
+Line 2  -> NR = 2  != 10 -> Suppressed
+...
+Line 9  -> NR = 9  != 10 -> Suppressed
+Line 10 -> NR = 10 == 10 -> PRINT ("Line 10") -> QUIT
+Line 11 -> (Skipped if early quit used)
+
+Output: Line 10
+```
+
+| Line Counter `NR` | Line Content | Address Match (`NR == 10`) | `sed -n` Action | Emitted to Stdout |
+|:---:|:---|:---:|:---:|:---|
+| 1 | `Line 1` | `False` | Suppress | - |
+| 2 | `Line 2` | `False` | Suppress | - |
+| ... | ... | `False` | Suppress | - |
+| 9 | `Line 9` | `False` | Suppress | - |
+| **10** | **`Line 10`** | **`True`** | **Print (`p`)** | **`Line 10`** |
+| 11 | `Line 11` | `False` | Suppress / Quit | - |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In `sed -n '10p'`, `-n` guarantees that non-matching lines produce zero output. The command `p` is invoked exclusively when the record counter reaches 10, ensuring that only line 10 is emitted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If the file contains $\ge 10$ lines, line 10 is guaranteed to be matched and printed. If the file contains $< 10$ lines, EOF is reached before line 10, leaving the output empty as required.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Early-quit sed:** `sed -n '10{p;q;}'` stops immediately after printing, reducing long-file I/O.
-- **Awk address:** `awk 'NR == 10' file.txt` uses the default print action for the tenth record.
-- **Explicit awk action:** `awk 'NR == 10 { print $0 }'` states the output directly.
-- **Tail and head:** Start output at line ten and take one line; readable but uses two processes and may rely on option dialect.
-- **Fewer than ten lines:** Print nothing.
-- **Exactly ten lines:** Print the final line once.
-- **More than ten lines:** Print line ten only; the exact command still scans the rest.
-- **Empty tenth line:** It is still printed as an output newline.
-- **Long line:** Streaming memory depends on that line's size even though it is constant in the line-count model.
-- **Missing file:** Produces a tool error rather than an empty valid result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Forgetting `-n` in `sed`:** Running `sed '10p' file.txt` without `-n` prints *every* line once and line 10 *twice*! The `-n` flag is mandatory.
+- **Off-by-One in `tail`:** Writing `tail -n 10` prints the *last 10 lines* of the file. The syntax to start from line 10 forward is `tail -n +10`.
+- **Fewer Than 10 Lines:** If the file has 5 lines, `head -n 10 file.txt | tail -n 1` would erroneously print line 5! `sed -n '10p'` and `tail -n +10 | head -n 1` both correctly print nothing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(c)$. Let $n$ be the number of lines and $c$ the number of characters. The exact sed
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - With early termination (`sed -n '10{p;q}'` or `awk 'NR==10{print;exit}'`): $O(\min(C, C_{10}))$ where $C_{10}$ is the character count up to line 10.
+  - Standard pass: $O(C)$ where $C$ is total file character count.
+- **Auxiliary Space Complexity:** $O(L)$ where $L$ is the character length of line 10 (constant buffer space).

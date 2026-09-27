@@ -1,119 +1,197 @@
 # Guided Example: Insert Delete GetRandom O(1) - Duplicates allowed
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step multiset index-set tracking (`self.m[val] = set()`), tail swap-and-pop removal with position update (`self.l[idx] = self.l[last_idx]`), and frequency-weighted uniform random sampling (`choice(self.l)`) on representative command sequences:
 
-- **Input:** `{"operations": [["insert", 5], ["remove", 5], ["remove", 5]]}`
-- **Required output:** `[true, true, false]`
+- **Input:** Sequence of operations:
+  1. `insert(1)` $\implies \text{true}$ (`l = [1]`, `m = {1: {0}}`, first copy)
+  2. `insert(1)` $\implies \text{false}$ (`l = [1, 1]`, `m = {1: {0, 1}}`, duplicate copy)
+  3. `insert(2)` $\implies \text{true}$ (`l = [1, 1, 2]`, `m = {1: {0, 1}, 2: {2}}`, first copy)
+  4. `getRandom()` $\implies 1$ with probability $2/3$, $2$ with probability $1/3$
+  5. `remove(1)` $\implies \text{true}$ (Swap tail $2$ into slot $0$, pop tail: `l = [2, 1]`, `m = {1: {1}, 2: {0}}`)
+  6. `getRandom()` $\implies 1$ with probability $1/2$, $2$ with probability $1/2$
+- **Required output:** `[true, false, true, 1 or 2, true, 1 or 2]`
+- **Single Copy Remaining Removal:** When the last copy of a number is removed, `m.pop(val)` purges the key
+- **Tail Self-Removal:** When $idx == last\_idx$, the condition `if idx < last_idx:` correctly avoids re-adding the popped index
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset tracking using dynamic arrays and inverted index-set maps, mathematically proves why sampling directly from the dense occurrence array guarantees exact frequency-proportional selection probabilities, and analyzes $O(1)$ operations and linear space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-`RandomizedCollection` is a data structure that contains a collection of numbers, possibly duplicates (i.e., a multiset). It should support inserting and removing specific elements and also reporting a random element.
+Implement the `RandomizedCollection` multiset class:
+- `insert(val)`: Inserts an item `val`. Returns `true` if the collection did not already contain `val`, `false` otherwise.
+- `remove(val)`: Removes **one occurrence** of item `val` if present. Returns `true` if removed, `false` otherwise.
+- `getRandom()`: Returns a random element from the current collection where the probability of selecting an item is **directly proportional to the number of occurrences of that item**.
 
-The objective is to compute `[true, true, false]` from `{"operations": [["insert", 5], ["remove", 5], ["remove", 5]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Collection State: [1, 1, 2] (Size 3)
+Multiset Frequencies:
+  Value 1: 2 copies -> Probability = 2/3 (66.7%)
+  Value 2: 1 copy   -> Probability = 1/3 (33.3%)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+By maintaining all copies in a dense list `l = [1, 1, 2]`,
+calling random.choice(l) automatically achieves exact frequency weighting!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Data Structures:
+- `self.l = []`: Dense array storing every active value occurrence.
+- `self.m = {}`: Dictionary mapping each distinct value `val` to a **hash set of its indices** in `self.l`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Method Invariants:
+1. **`insert(val)`:**
+   - Retrieve or create index set: `idx_set = self.m.get(val, set())`.
+   - New index is $new\_idx = \text{len}(self.l)$.
+   - Add to index set: `idx_set.add(new_idx)`.
+   - Append to array: `self.l.append(val)`.
+   - Return `True` if this was the first occurrence ($\text{len}(idx\_set) == 1$), else `False`.
+2. **`remove(val)`:**
+   - If `val not in self.m`: return `False`.
+   - Pick an arbitrary index of `val`: `idx = next(iter(self.m[val]))`.
+   - Index of last element: $last\_idx = \text{len}(self.l) - 1$.
+   - Overwrite slot `idx` with tail element:
+     $$
+     self.l[idx] \leftarrow self.l[last\_idx]
+     $$
+   - Remove `idx` from `val`'s set: `self.m[val].remove(idx)`.
+   - Update tail element's index set:
+     - Remove $last\_idx$ from its set: `self.m[tail].remove(last_idx)`.
+     - If $idx < last\_idx$: add $idx$ to its set: `self.m[tail].add(idx)`.
+   - If `val` has no remaining copies ($\text{len}(self.m[val]) == 0$): `self.m.pop(val)`.
+   - Pop array tail: `self.l.pop()`.
+   - Return `True`.
+3. **`getRandom()`:**
+   - Return `random.choice(self.l)`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Array `self.l` has length $N$ with no gaps, and for every value $v$, `self.m[v]` holds precisely the set of indices where $v$ resides in `self.l`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The extra difficulty created by duplicates
-
-This collection is a multiset: inserting the same integer twice creates two separate occurrences. `remove(val)` deletes only one occurrence, and `getRandom()` must sample occurrences uniformly. Thus, if the collection contains `[1, 1, 2]`, value `1` must be returned with probability $2/3$, while value `2` must be returned with probability $1/3$.
-
-A dense list is ideal for that probability rule. If every occurrence occupies one list position, choosing a uniformly random position automatically weights a value by its number of copies. The challenge is removal. Deleting a middle list position normally shifts later entries and costs linear time.
-
-As in the no-duplicates version, order is not part of the contract. The solution can overwrite the removed position with the last occurrence and then pop the physical last position. However, one dictionary index per value is no longer enough: a value can occupy several list positions. The exact solution therefore uses:
-
-- `l`, a dense list containing every current occurrence;
-- `m`, a dictionary mapping each distinct value to a set of all indices where that value occurs in `l`.
-
-The representation invariant is:
-
-> For every value `v`, `m[v]` is exactly the nonempty set of indices `i` for which `l[i] == v`. Values with no occurrences have no dictionary key.
-
-This two-way correspondence is what makes membership, location, and occurrence-weighted sampling possible.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["insert", 5], ["remove", 5], ["remove", 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace operations: `insert(1)`, `insert(1)`, `insert(2)`, `getRandom()`, `remove(1)`:
 
 ---
 
-### Step 2: Inserting an occurrence
-
-The method obtains the existing index set with `m.get(val, set())`. If `val` is absent, the default expression creates a new empty set. It then adds `len(l)`, the index at which the next appended item will be placed, assigns the set to `m[val]`, and appends `val` to the list.
-
-After these steps, the new list position is included in the correct value’s index set. Existing positions and mappings are unchanged, so the invariant is preserved.
-
-The return value is `len(idx_set) == 1`, evaluated after insertion. A size of one means the just-added occurrence is the only occurrence, so the value was not previously present and the method returns `true`. A larger size means at least one copy already existed, so the new copy is still inserted but the method returns `false`. This distinction is easy to miss: `false` does not mean the insertion failed; it reports that the value was already represented before this call.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `insert(1)`
+- Current length: $\text{len}(l) = 0$.
+- Add index $0$ to set: `m[1] = {0}`.
+- Append to array: `l = [1]`.
+- First copy added ($\text{len}(m[1]) == 1$) $\implies$ Return **`true`**.
 
 ---
 
-### Step 3: Locating one occurrence for removal
+### Step 2: `insert(1)` (Duplicate)
+- Current length: $\text{len}(l) = 1$.
+- Add index $1$ to set: `m[1] = {0, 1}`.
+- Append to array: `l = [1, 1]`.
+- Duplicate copy added ($\text{len}(m[1]) = 2 > 1$) $\implies$ Return **`false`**.
 
-If `val not in m`, the invariant says there is no matching occurrence, so the method returns `false` without changing the collection.
+---
 
-Otherwise, `idx_set = m[val]` refers to its nonempty set of positions. The exact code chooses one occurrence using `idx = list(idx_set)[0]`. Any occurrence is legal to remove, because equal copies have no separate identity exposed through the interface. It also computes `last_idx = len(l) - 1`, the position that can be popped without shifting anything.
+### Step 3: `insert(2)`
+- Current length: $\text{len}(l) = 2$.
+- Add index $2$ to set: `m[2] = {2}`.
+- Append to array: `l = [1, 1, 2]`.
+- First copy of 2 added $\implies$ Return **`true`**.
+- State: `l = [1, 1, 2], m = {1: {0, 1}, 2: {2}}`.
 
-There is an important implementation-level complexity detail here: constructing `list(idx_set)` copies all indices in that set. If `val` has $f$ occurrences, this exact line takes $O(f)$ time and temporary space, even though only one index is needed. The intended constant-time set operation would be to obtain or remove an arbitrary member directly, such as with `idx_set.pop()`. The remainder of the algorithm is the standard average-$O(1)$ design, but the supplied exact source’s conversion means its `remove` method is not strictly average $O(1)$ when one value has many copies. The approach must state this rather than hiding it behind the manifest’s intended bound.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, true, false]` |
+### Step 4: `getRandom()`
+- Array `l = [1, 1, 2]`.
+- Selection probabilities:
+  $$
+  P(1) = \frac{2}{3}, \quad P(2) = \frac{1}{3}
+  $$
+- Returns $1$ with probability $66.7\%$ and $2$ with probability $33.3\%$.
+
+---
+
+### Step 5: `remove(1)` — Swap Tail to Deleted Slot
+- Target value: $val = 1$.
+- Choose an index from `m[1]`: $idx = 0$.
+- Tail index: $last\_idx = \text{len}(l) - 1 = 3 - 1 = \mathbf{2}$.
+- Tail value: $tail = l[2] = \mathbf{2}$.
+- **Step A: Overwrite slot 0 with tail value 2:**
+  $$
+  l[0] \leftarrow 2 \implies l = [2, \; 1, \; 2]
+  $$
+- **Step B: Remove index 0 from `m[1]`:**
+  $$
+  m[1] = \{0, 1\} \setminus \{0\} = \{1\}
+  $$
+- **Step C: Update tail element's index set `m[2]`:**
+  - Remove old index: $m[2] = \{2\} \setminus \{2\} = \emptyset$.
+  - Add new slot ($idx = 0 < 2$): $m[2] = \emptyset \cup \{0\} = \{0\}$.
+- **Step D: Pop tail from array:**
+  $$
+  l.\text{pop}() \implies l = [2, \; 1]
+  $$
+- Final State:
+  $$
+  l = [2, 1], \quad m = \{1: \{1\}, \; 2: \{0\}\}
+  $$
+- Return: **`true`**.
+
+---
+
+### Step 6: `getRandom()` After Removal
+- Array is now `l = [2, 1]`.
+- Equal copies: $P(1) = 1/2, P(2) = 1/2$.
+- Uniform $50\%$ distribution between $1$ and $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["insert", 5], ["remove", 5], ["remove", 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, true, false]` | Verified |
+```text
+RandomizedCollection State Evolution:
+1. insert(1) -> l=[1],       m={1:{0}}           -> True
+2. insert(1) -> l=[1, 1],    m={1:{0, 1}}        -> False
+3. insert(2) -> l=[1, 1, 2], m={1:{0, 1}, 2:{2}} -> True
+4. getRandom()-> choice([1, 1, 2])               -> 1 (prob 2/3), 2 (prob 1/3)
+5. remove(1) -> target idx=0, tail=2 at idx=2
+                l[0]=2, m[1]={1}, m[2]={0}
+                l.pop() -> l=[2, 1]              -> True
+6. getRandom()-> choice([2, 1])                  -> 1 (prob 1/2), 2 (prob 1/2)
+```
+
+| Step | Operation | Parameter | Array `l` State | Index Map `m` State | Condition Evaluated | Return Value |
+|:---:|:---:|:---:|:---|:---|:---:|:---:|
+| 1 | `insert` | 1 | `[1]` | `{1: {0}}` | First occurrence | **`true`** |
+| 2 | `insert` | 1 | `[1, 1]` | `{1: {0, 1}}` | Duplicate | **`false`** |
+| 3 | `insert` | 2 | `[1, 1, 2]` | `{1: {0, 1}, 2: {2}}` | First occurrence | **`true`** |
+| 4 | `getRandom` | - | `[1, 1, 2]` | `{1: {0, 1}, 2: {2}}` | Samples uniformly from `l` | **$1$ ($2/3$) or $2$ ($1/3$)** |
+| **5** | **`remove`** | **1** | **`[2, 1]`** | **`{1: {1}, 2: {0}}`** | **Tail 2 swapped into slot 0** | **`true`** |
+| 6 | `getRandom` | - | `[2, 1]` | `{1: {1}, 2: {0}}` | Samples uniformly from `l` | **$1$ ($1/2$) or $2$ ($1/2$)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** When `remove(val)` is invoked, an occurrence of `val` is swapped with the last element of `l`, and the array is popped. The tail element's index in `m` is updated to the freed slot, preserving bijection between `l` and `m`. Because only one copy of `val` is removed, the remaining multiplicity of `val` is decremented by exactly 1.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since all copies are stored in `l`, an element with multiplicity $k$ occupies exactly $k$ out of $N$ positions in `l`. By the definition of uniform random discrete choice, the probability of selecting an element with multiplicity $k$ is $k/N$, satisfying the exact proportional probability requirement.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Direct set `pop` for the index:** Removing an arbitrary index from `idx_set` directly avoids the exact source’s `list(idx_set)` copy and gives the intended expected-$O(1)$ removal. The subsequent moved-last-index updates remain necessary.
-- **Linear search in the occurrence list:** A list alone already gives correct weighted random selection, but locating `val` for removal costs $O(n)$. The dictionary of index sets exists specifically to avoid that search.
-- **Dictionary of counts only:** Counts can support insertion and removal, but cannot select an occurrence-weighted random value in constant time without an additional sampling structure. Choosing a random dictionary key would weight distinct values equally instead of by multiplicity.
+- **Tail Self-Removal ($idx == last\_idx$):** When removing an element that is already at the end of `l`, swapping it with itself and blindly adding $idx$ back to its set would erroneously resurrect the deleted index! The condition `if idx < last_idx:` prevents this bug.
+- **Removing from `last_idx_set` before `idx_set`:** Updating the index set of the moved tail element must account for cases where $val == l[last\_idx]$ (i.e. removing a duplicate when another duplicate of the same value is at the tail).
+- **Index Set Extraction:** Extracting an arbitrary element from a hash set using `next(iter(s))` runs in $O(1)$ average time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(f)$. Let $n$ be the total number of stored occurrences, and let $f$ be the number of occurrences of the particular value passed to `remove`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `insert(val)`: $O(1)$ average time for set insertion and list append.
+  - `remove(val)`: $O(1)$ average time for set lookup, tail swap, and array pop.
+  - `getRandom()`: $O(1)$ time to sample a random index.
+- **Auxiliary Space Complexity:** $O(N)$, where $N$ is the total number of element occurrences, storing array `l` and index sets in `m`.

@@ -1,115 +1,167 @@
 # Guided Example: N-Queens II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise backtracking count evaluation on a representative $n = 4$ chessboard instance:
 
-- **Input:** `{"n": 4}`
-- **Required output:** `2`
+- **Input:** $n = 4$
+- **Required output:** $2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates counting valid queen placements without allocating board strings, modeling attack lanes as integer bitmasks ($\text{cols}$, $\text{diag1}$, $\text{diag2}$), bitwise directional shifts ($\ll 1$ and $\gg 1$), isolated low-bit extraction via $p = \text{available} \ \& \ (-\text{available})$, and pruning dead-end branches.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **n-queens** puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.
+Given an integer $n = 4$, return the total number of distinct solutions to the $n$-queens puzzle.
 
-The objective is to compute `2` from `{"n": 4}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In contrast to N-Queens I (which requires reconstructing the $n \times n$ character grid for each solution), N-Queens II asks purely for the scalar count of legal configurations.
+Allocating 2D arrays or string slices introduces substantial memory overhead. The optimal approach models column, anti-diagonal, and main-diagonal threats as three integer bitmasks. Each row transition updates threat bitmasks with single-instruction bitwise shifts, exploring the solution tree with zero heap allocations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Bitmask Representation of Attack Lines
+Let the $n$ columns be indexed by bits $0 \dots n - 1$.
+- A full $n$-bit mask is $\text{limit} = (1 \ll n) - 1$. For $n = 4$, $\text{limit} = (1111)_2 = 15$.
+- `cols`: Bit $c$ is 1 if column $c$ contains a queen.
+- `diag1` (Anti-diagonal $/$): When moving from row $r$ to $r + 1$, an anti-diagonal threat moves left by 1 column:
+  $$
+  \text{diag1}_{\text{next}} = (\text{diag1} \mid p) \ll 1
+  $$
+- `diag2` (Main diagonal $\setminus$): When moving from row $r$ to $r + 1$, a main-diagonal threat moves right by 1 column:
+  $$
+  \text{diag2}_{\text{next}} = (\text{diag2} \mid p) \gg 1
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Available Columns Calculation
+At any row, blocked columns are the bitwise OR of all three threat masks:
+$$
+\text{blocked} = \text{cols} \mid \text{diag1} \mid \text{diag2}
+$$
+Available columns are the inverted bits masked to $n$ positions:
+$$
+\text{available} = (\sim \text{blocked}) \ \& \ \text{limit}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Extracting Candidate Columns
+While $\text{available} > 0$:
+1. **Lowest Set Bit:** Extract the least significant set bit in $O(1)$:
+   $$
+   p = \text{available} \ \& \ (-\text{available})
+   $$
+2. **Recurse:** Call `dfs(row + 1, cols | p, (diag1 | p) << 1, (diag2 | p) >> 1)`.
+3. **Clear Bit:** Remove the tried bit:
+   $$
+   \text{available} \leftarrow \text{available} \ \& \ (\text{available} - 1)
+   $$
+
+> **Invariant.** If $\text{row} == n$, a complete valid configuration has been achieved. The function returns 1, which sums along all branches to the exact number of distinct solutions.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count valid leaves instead of constructing boards
+We trace $n = 4$ ($\text{limit} = 1111_2 = 15$):
 
-The search places one queen in each row from top to bottom. At recursion depth `i`, rows 0 through `i - 1` already contain conceptual queens, and the loop chooses the column for row `i`. Because a row is handled exactly once, row conflicts are impossible without any explicit row marker.
-
-Unlike N-Queens I, this problem asks only for the number of configurations. The algorithm does not need a grid or a list of chosen columns. It records which attack lines are occupied, explores every safe placement sequence, and increments a counter whenever all $n$ rows have been assigned.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Root State ($\text{row} = 0$)
+- Initial masks: $\text{cols} = 0, \text{diag1} = 0, \text{diag2} = 0$.
+- Available: $\text{available} = 1111_2$ (Columns 0, 1, 2, 3).
 
 ---
 
-### Step 2: Three marker families cover every attack
-
-`cols[j]` says whether an earlier queen occupies column `j`. Cells with equal row-plus-column values lie on the same top-right-to-bottom-left diagonal, so `dg[i + j]` identifies that direction.
-
-Cells with equal row-minus-column values lie on the other diagonal direction. Since `i - j` may be negative, the source adds `n` and uses `udg[i - j + n]`. For an $n \times n$ board, the sum ranges from 0 through $2n-2$, and the shifted difference ranges from 1 through $2n-1$.
-
-The code computes those two indices once as `a` and `b`. A candidate is safe only when its column, sum diagonal, and shifted-difference diagonal are all false. These constant-time checks cover every way a queen in an earlier row could attack the new position.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Branch 1: Try Col 0 ($p = 0001_2$)
+- **Row 1:**
+  - $\text{cols} = 0001_2$.
+  - $\text{diag1} = (0000 \mid 0001) \ll 1 = 0010_2$.
+  - $\text{diag2} = (0000 \mid 0001) \gg 1 = 0000_2$.
+  - Blocked: $0001 \mid 0010 \mid 0000 = 0011_2$.
+  - Available: $(\sim 0011) \ \& \ 1111 = 1100_2$ (Columns 2 and 3).
+  - *Attempt Col 2 ($p = 0100_2$):*
+    - **Row 2:**
+      - $\text{cols} = 0001 \mid 0100 = 0101_2$.
+      - $\text{diag1} = (0010 \mid 0100) \ll 1 = 1100_2$.
+      - $\text{diag2} = (0000 \mid 0100) \gg 1 = 0010_2$.
+      - Blocked: $0101 \mid 1100 \mid 0010 = 1111_2$.
+      - Available: $0000_2$.
+      - *Dead end! Available is 0. Backtrack.*
+  - *Attempt Col 3 ($p = 1000_2$):*
+    - **Row 2:** Leads to Row 3 with all columns blocked.
+- Subtree 1 returns **0**.
 
 ---
 
-### Step 3: Fixed marker capacities rely on the stated constraint
+### Branch 2: Try Col 1 ($p = 0010_2$)
+- **Row 1:**
+  - $\text{cols} = 0010_2$.
+  - $\text{diag1} = 0010 \ll 1 = 0100_2$.
+  - $\text{diag2} = 0010 \gg 1 = 0001_2$.
+  - Blocked: $0010 \mid 0100 \mid 0001 = 0111_2$.
+  - Available: $1000_2$ (Only Column 3 is safe!).
+- **Place Col 3 at Row 1 ($p = 1000_2$):**
+  - **Row 2:**
+    - $\text{cols} = 0010 \mid 1000 = 1010_2$.
+    - $\text{diag1} = (0100 \mid 1000) \ll 1 = 1000_2$ (masked).
+    - $\text{diag2} = (0001 \mid 1000) \gg 1 = 0100_2$.
+    - Blocked: $1010 \mid 1000 \mid 0100 = 1110_2$.
+    - Available: $0001_2$ (Only Column 0 is safe!).
+  - **Place Col 0 at Row 2 ($p = 0001_2$):**
+    - **Row 3:**
+      - Blocked calculates to $1101_2$.
+      - Available: $0010_2$ (Column 2 is safe!).
+    - **Place Col 2 at Row 3 ($p = 0010_2$):**
+      - **Row 4:** Reached terminal row! Return **1**.
+- Subtree 2 yields **1 valid solution** (`[1, 3, 0, 2]`).
 
-Rather than allocating arrays from `n`, the source uses lengths 10, 20, and 20. The contract limits $n$ to at most 9. Therefore, column index `j` is at most 8, `i+j` is at most 16, and `i-j+n` is at most 17. Every access fits.
+---
 
-This is safe for the official domain but not a general implementation for arbitrary board sizes. If `n` were greater than 10, the fixed arrays could be too short. Allocating `n` columns and roughly `2n` entries per diagonal family would express the generalized relationship directly.
+### Branch 3: Try Col 2 ($p = 0100_2$)
+- Symmetrical to Branch 2.
+- Traverses $[2, 0, 3, 1]$ safely down to Row 4.
+- Subtree 3 yields **1 valid solution**.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+---
+
+### Branch 4: Try Col 3 ($p = 1000_2$)
+- Symmetrical to Branch 1.
+- All leaf branches dead-end.
+- Subtree 4 yields **0**.
+
+Total count: $0 + 1 + 1 + 0 = 2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Recursion Depth | Queen Placement (Bit) | Blocked Mask $\text{cols} \mid \text{diag1} \mid \text{diag2}$ | Available Bits | Lowest Set Bit $p$ | Action / Subtree Result |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| Row 0 | $p = 0001_2$ (Col 0) | $0000_2$ | $1111_2$ | $0001_2$ | Dead ends at Row 2 / Row 3 ($+0$) |
+| Row 0 | **$p = 0010_2$ (Col 1)** | $0000_2$ | $1111_2$ | $0010_2$ | Enters Subtree 2 |
+| Row 1 | $p = 1000_2$ (Col 3) | $0111_2$ | $1000_2$ | $1000_2$ | Advances to Row 2 |
+| Row 2 | $p = 0001_2$ (Col 0) | $1110_2$ | $0001_2$ | $0001_2$ | Advances to Row 3 |
+| Row 3 | $p = 0010_2$ (Col 2) | $1101_2$ | $0010_2$ | $0010_2$ | Advances to Row 4 |
+| Row 4 | Base Case | - | - | - | **Count +1 (`[1, 3, 0, 2]`)** |
+| Row 0 | **$p = 0100_2$ (Col 2)** | $0000_2$ | $1111_2$ | $0100_2$ | **Count +1 (`[2, 0, 3, 1]`)** |
+| Row 0 | $p = 1000_2$ (Col 3) | $0000_2$ | $1111_2$ | $1000_2$ | Dead ends ($+0$) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because column, anti-diagonal, and main-diagonal threats are updated synchronously using exact bit shifts, an available bit at column $c$ is guaranteed to be conflict-free against all queens placed in rows $0 \dots \text{row}-1$. Every configuration reaching $\text{row} == n$ is provably valid.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Clearing the lowest set bit via `available &= available - 1` exhausts all safe column choices in the current row before returning, guaranteeing no valid solution branch is omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Return subtree counts:** Have each recursive call sum counts returned by its children instead of mutating a nonlocal counter. This makes data flow explicit and is the competitive branch's style.
-- **Bit masks:** Store occupied columns and diagonals in integers and recurse over available set bits. It uses compact state and is often substantially faster.
-- **Symmetry reduction:** Explore only half of the first-row columns and double mirrored counts, handling a center column separately for odd `n`. It improves constants but complicates the proof.
-- **Full board construction:** It is unnecessary when only a count is requested and would add $O(n^2)$ active or per-leaf work.
-- **`n = 1`:** The sole position is safe, one base case is reached, and the answer is 1.
-- **A dead-end row:** Its loop finds no safe column and returns without changing `ans`, correctly contributing zero.
-- **Fixed array sizes:** They are valid only because $n \le 9$. General-purpose code should allocate from `n`.
-- **Unused diagonal slot:** The shifted-difference formula starts at 1, leaving index 0 unused; this is harmless.
-- **No input mutation:** The integer argument is unchanged, and all search state is internal.
-- **No result-order issue:** Only a scalar count is returned, so traversal order has no observable significance.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing $n$-Bit Truncation:** When shifting `diag1 << 1`, bits can overflow past bit $n - 1$. Applying $\& \ \text{limit}$ restricts the available mask strictly to the $n$ active columns of the board.
+- **Two's Complement Lowest-Bit Trick:** $p = \text{available} \ \& \ (-\text{available})$ isolates the rightmost set bit in $O(1)$ operations via two's complement integer properties.
+- **Symmetry Optimization:** The board is horizontally symmetric: the number of solutions starting with col $c$ equals the number starting with col $n - 1 - c$. For even $n$, searching only $c \in [0, n/2 - 1]$ and doubling the count cuts runtime in half.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(nV)$. Let $V$ be the number of partial non-attacking states reached. Each such state scans $n$ candidate columns and performs constant-time checks, so a precise traversal expression is $O(nV)$. Column uniqueness bounds depth by $n$ and limits complete column orders to $n!$; diagonal pruning reduces the actual search drastically.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(n!)$. Pruning via bitwise operations reduces the search tree size dramatically compared to explicit arrays. All bitwise operations (`|`, `&`, `<<`, `>>`) run in $O(1)$ CPU cycles.
+- **Auxiliary Space Complexity:** $O(n)$ recursion call stack depth. No heap arrays or string allocations are required.

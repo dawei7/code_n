@@ -1,140 +1,205 @@
 # Guided Example: Capital Gain/Loss
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the signed cash-flow transformation and relational aggregation strategy on a representative database instance:
 
-- **Input:** `{"tables": {"Stocks": [{"stock_name": "Leetcode", "operation": "Buy", "operation_day": 1, "price": 1000}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 5, "price": 9000}, {"stock_name": "Leetcode", "operation": "Buy", "operation_day": 8, "price": 1230}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 10, "price": 1900}]}}`
-- **Required output:** `{"columns": ["stock_name", "capital_gain_loss"], "rows": [["Leetcode", 8670]]}`
+- **Input Table:** `Stocks`
+  - `("Leetcode", "Buy", 1, 1000)`
+  - `("Corona Masks", "Buy", 2, 10)`
+  - `("Leetcode", "Sell", 5, 9000)`
+  - `("Handbags", "Buy", 17, 30000)`
+  - `("Corona Masks", "Sell", 3, 1010)`
+  - `("Corona Masks", "Buy", 4, 1000)`
+  - `("Corona Masks", "Sell", 5, 500)`
+  - `("Corona Masks", "Buy", 6, 1000)`
+  - `("Handbags", "Sell", 29, 7000)`
+  - `("Corona Masks", "Sell", 10, 10000)`
+- **Required Output:**
+  - `("Corona Masks", 9500)`
+  - `("Leetcode", 8000)`
+  - `("Handbags", -23000)`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates multiple buy-sell rounds for a single asset ("Corona Masks"), single transaction pairs yielding positive profit ("Leetcode"), and transactions resulting in a net negative capital loss ("Handbags").
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Stocks`
+We are given a relational entity `Stocks` with columns:
+- `stock_name`: Identifier of the stock ticker.
+- `operation`: Categorical enum with values `'Buy'` or `'Sell'`.
+- `operation_day`: Integer transaction day.
+- `price`: Transaction price per share.
+Composite primary key: `(stock_name, operation_day)`.
 
-The objective is to compute `{"columns": ["stock_name", "capital_gain_loss"], "rows": [["Leetcode", 8670]]}` from `{"tables": {"Stocks": [{"stock_name": "Leetcode", "operation": "Buy", "operation_day": 1, "price": 1000}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 5, "price": 9000}, {"stock_name": "Leetcode", "operation": "Buy", "operation_day": 8, "price": 1230}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 10, "price": 1900}]}}` while avoiding redundant calculations and unnecessary overhead.
+It is guaranteed that every `'Sell'` operation for a stock has a corresponding `'Buy'` operation on an earlier day, and every `'Buy'` operation is eventually liquidated by a corresponding `'Sell'` on a subsequent day.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our objective is to compute the net **Capital Gain or Loss** for each stock:
+$$
+\text{Capital Gain/Loss} = \sum \text{Sell Prices} - \sum \text{Buy Prices}
+$$
+
+For each asset:
+- **Leetcode:** Bought on day $1$ for $1000$, sold on day $5$ for $9000 \implies 9000 - 1000 = 8000$.
+- **Handbags:** Bought on day $17$ for $30000$, sold on day $29$ for $7000 \implies 7000 - 30000 = -23000$.
+- **Corona Masks:** Bought for $10, 1000, 1000$ (total buy $= 2010$); sold for $1010, 500, 10000$ (total sell $= 11510$) $\implies 11510 - 2010 = 9500$.
+
+The primary teaching goal is to model trading returns as signed cash flows: because addition is commutative and associative, transactions do not require stateful matching or chronological simulation. Each buy contributes $-\text{price}$ and each sell contributes $+\text{price}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In financial accounting, net cash flow is computed by treating outflows as negative quantities and inflows as positive quantities.
+Define a projection mapping each transaction tuple $t$ to a signed cash contribution:
+$$
+\text{flow}(t) = 
+\begin{cases}
+-t[\text{price}] & \text{if } t[\text{operation}] = \text{'Buy'} \\
++t[\text{price}] & \text{if } t[\text{operation}] = \text{'Sell'}
+\end{cases}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+Because subtraction distributes over summation:
+$$
+\sum (\text{Sell Prices}) - \sum (\text{Buy Prices}) = \sum \text{flow}(t)
+$$
+
+```
+Signed Cash Flow Mapping:
+Transaction                  Operation   Sign   Price   Signed Flow
+-------------------------------------------------------------------
+("Leetcode", Day 1)          Buy         (-)    1000    -1000
+("Leetcode", Day 5)          Sell        (+)    9000    +9000  --> Net: +8000
+("Handbags", Day 17)         Buy         (-)    30000   -30000
+("Handbags", Day 29)         Sell        (+)    7000    +7000  --> Net: -23000
+```
+
+In relational algebra, this transformation and grouping is formalized as:
+$$
+\mathcal{R} = \gamma_{\text{stock\_name}, \sum \text{flow} \to \text{capital\_gain\_loss}} (\text{Stocks})
+$$
+
+We define relational state tracking parameters:
+
+| Parameter | Relational Representation | Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Input Relation ($\text{Stocks}$) | Raw transaction tuples | Evaluated per row |
+| Transformed Relation ($\text{Stocks}'$) | Tuples augmented with signed cash flow | Projects $\langle \text{stock\_name}, \text{flow} \rangle$ |
+| Partition Groups | Subsets partitioned by `stock_name` | One bucket per distinct ticker |
+| Group Aggregator ($\gamma$) | Sum of signed flows per partition | Emits $\langle \text{stock\_name}, \text{capital\_gain\_loss} \rangle$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The net capital gain/loss for any stock is strictly equal to the sum of all signed flows belonging to its partition, independent of the order in which transactions are evaluated.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat every transaction as signed cash flow
+### Step 1: Mapping Operations to Signed Flows
 
-Buying a stock sends money out, so a buy price contributes a negative amount. Selling brings money in, so a sell price contributes a positive amount. Once each row has the correct sign, a stock's total capital gain or loss is simply the sum of all its signed transactions.
+We evaluate each tuple in `Stocks` and assign its signed cash flow:
 
-The exact expression
-
-`IF(operation = 'Buy', -price, price)`
-
-returns negative `price` for a buy and positive `price` otherwise. The table's enum guarantees the only other operation is `'Sell'`, so the else branch represents sales exactly.
-
-This avoids pairing each buy row with a particular later sell row. Pairing is unnecessary for total net result because addition is associative:
-
-$$
-\sum(\text{sell prices}-\text{buy prices})
-=
-\sum\text{sell prices}-\sum\text{buy prices}.
-$$
-
-The guarantees about earlier buys and later sells ensure the data describes valid trading sequences, but chronological order does not affect the final net cash flow.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Stocks": [{"stock_name": "Leetcode", "operation": "Buy", "operation_day": 1, "price": 1000}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 5, "price": 9000}, {"stock_name": "Leetcode", "operation": "Buy", "operation_day": 8, "price": 1230}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 10, "price": 1900}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Day | Stock Name | Operation | Price | Signed Cash Flow ($\text{flow}$) |
+|---|---|---|---|---|
+| $1$ | Leetcode | Buy | $1000$ | $-1000$ |
+| $2$ | Corona Masks | Buy | $10$ | $-10$ |
+| $3$ | Corona Masks | Sell | $1010$ | $+1010$ |
+| $4$ | Corona Masks | Buy | $1000$ | $-1000$ |
+| $5$ | Leetcode | Sell | $9000$ | $+9000$ |
+| $5$ | Corona Masks | Sell | $500$ | $+500$ |
+| $6$ | Corona Masks | Buy | $1000$ | $-1000$ |
+| $10$ | Corona Masks | Sell | $10000$ | $+10000$ |
+| $17$ | Handbags | Buy | $30000$ | $-30000$ |
+| $29$ | Handbags | Sell | $7000$ | $+7000$ |
 
 ---
 
-### Step 2: Group independently by stock
+### Step 2: Partitioning and Aggregation by Stock
 
-`GROUP BY 1` groups by the first expression in the `SELECT` list, which is `stock_name`. Each stock receives its own aggregation group, so transactions belonging to different names never mix.
+We accumulate signed flows for each distinct `stock_name`:
 
-Within one group, `SUM(...)` adds all signed prices and names the result `capital_gain_loss`. A positive value is a net gain, a negative value a net loss, and zero means buys and sells balance exactly.
+1. **Partition: `"Leetcode"`**
+   - Transactions: Day $1$ ($-1000$), Day $5$ ($+9000$).
+   - Sum: $(-1000) + 9000 = 8000$.
+   - Emitted tuple: $\langle \text{"Leetcode"}, 8000 \rangle$.
 
-Using the column position is legal MySQL syntax, although `GROUP BY stock_name` would be more explicit and less fragile if the select-list order later changed.
+2. **Partition: `"Handbags"`**
+   - Transactions: Day $17$ ($-30000$), Day $29$ ($+7000$).
+   - Sum: $(-30000) + 7000 = -23000$.
+   - Emitted tuple: $\langle \text{"Handbags"}, -23000 \rangle$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Following the sample
-
-Leetcode has a buy at 1000 and a sell at 9000. Their signed contributions are $-1000$ and $+9000$, totaling 8000.
-
-Handbags contributes $-30000+7000=-23000$, so the negative output correctly represents a capital loss.
-
-Corona Masks contributes
-
-$$
--10+1010-1000+500-1000+10000=9500.
-$$
-
-This equals the sum of the three separately described trade gains, but the query never needs to discover or materialize those pairs.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["stock_name", "capital_gain_loss"], "rows": [["Leetcode", 8670]]}` |
+3. **Partition: `"Corona Masks"`**
+   - Transactions:
+     - Day $2$: $-10$
+     - Day $3$: $+1010$
+     - Day $4$: $-1000$
+     - Day $5$: $+500$
+     - Day $6$: $-1000$
+     - Day $10$: $+10000$
+   - Sum: $(-10) + 1010 + (-1000) + 500 + (-1000) + 10000 = 9500$.
+   - Emitted tuple: $\langle \text{"Corona Masks"}, 9500 \rangle$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Stocks": [{"stock_name": "Leetcode", "operation": "Buy", "operation_day": 1, "price": 1000}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 5, "price": 9000}, {"stock_name": "Leetcode", "operation": "Buy", "operation_day": 8, "price": 1230}, {"stock_name": "Leetcode", "operation": "Sell", "operation_day": 10, "price": 1900}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["stock_name", "capital_gain_loss"], "rows": [["Leetcode", 8670]]}` | Verified |
+| Stock Name | Buy Transactions (Negative Flow) | Sell Transactions (Positive Flow) | Net Signed Sum | Output Tuple |
+|---|---|---|---|---|
+| Leetcode | $-1000$ | $+9000$ | $+8000$ | `("Leetcode", 8000)` |
+| Corona Masks | $-10 - 1000 - 1000 = -2010$ | $+1010 + 500 + 10000 = +11510$ | $+9500$ | `("Corona Masks", 9500)` |
+| Handbags | $-30000$ | $+7000$ | $-23000$ | `("Handbags", -23000)` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Linearity of Summation Proof
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $B_s$ be the set of buy transaction prices for stock $s$, and $S_s$ be the set of sell transaction prices for stock $s$.
+By definition:
+$$
+\text{Gain}(s) = \sum_{p \in S_s} p - \sum_{q \in B_s} q
+$$
+By defining $f(op, price) = price$ when $op = \text{'Sell'}$ and $-price$ when $op = \text{'Buy'}$:
+$$
+\sum_{t \in \text{Transactions}(s)} f(t.op, t.price) = \sum_{t.op = \text{'Sell'}} t.price + \sum_{t.op = \text{'Buy'}} (-t.price) = \sum_{p \in S_s} p - \sum_{q \in B_s} q
+$$
+Because this algebraic identity holds identically for any arbitrary permutation of transactions, sequential FIFO matching is completely unnecessary. The result is globally exact.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **`CASE` expression:** Use `CASE WHEN operation = 'Buy' THEN -price ELSE price END`. It is standard and often more portable than MySQL `IF`.
-- **Separate buy and sell aggregates:** Sum buys and sells in separate expressions and subtract. It is correct but repeats conditions and is longer.
-- **Pair transactions with window functions:** This is unnecessary for net gain and adds assumptions about matching individual trades.
-- **Self-join buys to sells:** It risks multiplicative matches when a stock trades several times and is much harder to make correct.
-- **One buy-sell pair:** The aggregate reduces directly to sell price minus buy price.
-- **Several trading cycles:** All signed flows combine correctly regardless of conceptual pairing.
-- **Net loss:** A negative sum is returned as-is; no absolute value should be applied.
-- **Zero net result:** Equal total buys and sells produce zero.
-- **Operation domain:** The else branch assumes every non-buy row is `Sell`, guaranteed by the enum. Unexpected values would be incorrectly treated as sales.
-- **Transaction order:** `operation_day` is unnecessary for the total, though it establishes valid chronological semantics.
-- **Positional grouping:** `GROUP BY 1` means the first selected expression, `stock_name`; explicit naming is more maintainable.
-- **Any result order:** The lack of `ORDER BY` is intentional.
-- **Null prices outside the contract:** `SUM` would ignore null contributions, so valid data must provide the stated integer price.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(N \log K)$ or $\mathcal{O}(N)$ where $N$ is the number of rows in `Stocks` and $K$ is the number of distinct stock names. Hashing or sorting by `stock_name` groups rows into partitions in linear or near-linear time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ to maintain aggregate accumulation registers for the $K$ distinct stocks.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(N)$. Let $N$ be the number of transaction rows and $K$ the number of distinct stock names. A hash-aggregation plan reads each row once, computes one signed value, and updates one group total, giving expected $O(N)$ time. The hash table stores one accumulator per stock, using $O(K)$ space. These bounds match the manifest.
-- **Auxiliary Space Complexity:** $O(K)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Negative Gain Representation:** Losses must be represented as negative integers (e.g., $-23000$), not absolute values or zero-clamped values.
+- **Interleaved Transactions:** Multiple rounds of buying and selling for the same stock can occur on different days. Signed summation naturally handles arbitrary interleaved rounds without tracking inventory.
+- **Day Ordering Irrelevance:** While transactions have `operation_day`, the final capital gain is commutative; sorting by date is not required to compute the net balance.
+- **Zero Gain:** If buy prices exactly equal sell prices, the net gain evaluates to $0$.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Capital Gain Loss Aggregation Flowchart
+    accDescr: Pipeline mapping each transaction to a signed value and grouping by stock name to compute capital gain or loss.
+
+    Start(["Start"]) --> Stream["Scan each row in Stocks"]
+    Stream --> MapSign{"operation == 'Buy' ?"}
+    
+    MapSign -- "Yes" --> NegFlow["flow = -price"]
+    MapSign -- "No (Sell)" --> PosFlow["flow = +price"]
+    
+    NegFlow --> Group["Accumulate into bucket for stock_name"]
+    PosFlow --> Group
+    
+    Group --> More{"More rows in Stocks?"}
+    More -- "Yes" --> Stream
+    More -- "No" --> Project["For each stock_name:<br>Emit (stock_name, sum of flows)"]
+    
+    Project --> Done(["Return Result Relation"])
+```

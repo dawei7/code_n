@@ -1,139 +1,186 @@
 # Guided Example: Best Position for a Service Centre
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"positions": [[0, 1], [1, 0], [1, 2], [2, 1]]}`
-- **Required output:** `4.0`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-A delivery company wants to build a new service center in a new city. The company knows the positions of all the customers in this city on a 2D-Map and wants to build the new center in a position such that **the sum of the euclidean distances to all customers is minimum**.
+We are given the 2D spatial coordinates of $n = 4$ customer locations across a grid:
+$$\text{positions} = [[0, 1], [1, 0], [1, 2], [2, 1]]$$
 
-The objective is to compute `4.0` from `{"positions": [[0, 1], [1, 0], [1, 2], [2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+Our teaching goal is to select an optimal service center location $(x_c, y_c) \in \mathbb{R}^2$ that minimizes the cumulative Euclidean distance to all $n$ customers:
+$$f(x, y) = \sum_{i=1}^{n} \sqrt{(x - x_i)^2 + (y - y_i)^2}$$
+This is the classical **geometric median** (or Fermat-Weber) problem. We analyze the strict convexity of the objective function, evaluate the gradient vector fields, demonstrate the convergence of gradient descent with learning rate decay, and contrast it with adaptive directional step reduction.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $P_i = (x_i, y_i)$ denote the position of the $i$-th customer.
+1. **Convexity of the Objective**:
+   The Euclidean norm $\|\mathbf{x} - P_i\|_2$ is a strictly convex function of $(x, y)$ except along collinear degeneracies.
+   Because the sum of convex functions is strictly convex:
+   $$f(x, y) = \sum_{i=1}^{n} \| (x, y) - (x_i, y_i) \|_2$$
+   is strictly convex over $\mathbb{R}^2$.
+   **Consequence**: There are no suboptimal local minima; any stationary point $\nabla f(x, y) = \mathbf{0}$ is the unique global minimum.
+2. **First-Order Gradient Derivation**:
+   For any point $(x, y) \ne P_i$:
+   $$\frac{\partial f}{\partial x} = \sum_{i=1}^{n} \frac{x - x_i}{\sqrt{(x - x_i)^2 + (y - y_i)^2}}, \quad \frac{\partial f}{\partial y} = \sum_{i=1}^{n} \frac{y - y_i}{\sqrt{(x - x_i)^2 + (y - y_i)^2}}$$
+   Each customer exerts a unit pull vector directed toward itself:
+   $$\nabla f(x, y) = \sum_{i=1}^{n} \frac{(x, y) - P_i}{\| (x, y) - P_i \|_2}$$
+   At the optimal center, the sum of unit vectors pointing from the center to each customer sums to $\mathbf{0}$.
+3. **Iterative Optimization**:
+   Starting from the centroid $(\bar{x}, \bar{y}) = \left(\frac{1}{n} \sum x_i, \frac{1}{n} \sum y_i\right)$, we iteratively update coordinates along the negative gradient:
+   $$(x, y) \leftarrow (x, y) - \alpha \nabla f(x, y)$$
+   with exponential step decay $\alpha \leftarrow \alpha \cdot \gamma$ until step adjustments drop below numerical tolerance $\epsilon = 10^{-6}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
++-------------------------------------------------------------------------------+
+|                      GEOMETRIC MEDIAN FORCE EQUILIBRIUM                       |
+|                                                                               |
+|                             (1, 2)                                            |
+|                               ^                                               |
+|                               | (Unit pull up)                                |
+|        (0, 1) <--- Center (1, 1) ---> (2, 1)                                  |
+|   (Unit pull left)            |       (Unit pull right)                       |
+|                               v                                               |
+|                             (1, 0)                                            |
+|                        (Unit pull down)                                       |
+|                                                                               |
+|  Forces at (1, 1):                                                            |
+|    X-forces: (-1, 0) + (1, 0) = (0, 0)                                        |
+|    Y-forces: (0, 1) + (0, -1) = (0, 0)                                        |
+|  Net gradient = (0, 0) -> Exact stationary global minimum!                    |
++-------------------------------------------------------------------------------+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The algorithm maintains the following numerical state variables:
 
----
+| State Variable | Domain | Initial Value | Transition / Role |
+|---|---|---|---|
+| `center_x, center_y` | Real numbers $\in [0, 100]$ | Centroid $(\bar{x}, \bar{y})$ | Current estimate of optimal facility coordinates. |
+| `step_size` | Float $> 0$ | $0.5$ (or initial search radius) | Step scaling factor $\alpha$, decayed after each iteration. |
+| `grad_x, grad_y` | Real numbers | $\mathbf{0}$ | Accumulated partial derivatives of distance sum. |
+| `curr_dist_sum` | Float $\ge 0$ | Distance at centroid | Cumulative Euclidean distance from current center to all $n$ points. |
+
+> [!IMPORTANT]
+> **Strict Convexity Invariant**: Any non-zero gradient points strictly uphill. Stepping in the direction of the negative gradient $-\nabla f(x, y)$ is guaranteed to decrease the total distance for sufficiently small step sizes $\alpha$.
+
+```mermaid
+flowchart TD
+    accTitle: Geometric Median Gradient Descent Flow
+    accDescr: Pipeline initializing at the center of mass and iteratively descending along the negative gradient with step decay.
+    A["Input Points positions"] --> B["Compute Centroid (x0, y0)"]
+    B --> C["Compute Gradient (grad_x, grad_y) and Distance Sum"]
+    C --> D{"abs(step * grad) <= 1e-6 ?"}
+    D -->|Yes| FIN["Converged: Return Distance Sum"]
+    D -->|No| E["x -= alpha * grad_x, y -= alpha * grad_y"]
+    E --> F["Decay learning rate: alpha *= decay"]
+    F --> C
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The objective is the geometric median
+We trace the representative instance with $4$ points:
+$$P_1 = (0, 1), \quad P_2 = (1, 0), \quad P_3 = (1, 2), \quad P_4 = (2, 1)$$
 
-For candidate center `(x, y)`, the objective is
+### Phase 1: Centroid Initialization
 
-$$
-F(x,y)
-=
-\sum_i \sqrt{(x-x_i)^2+(y-y_i)^2}.
-$$
+We compute the arithmetic mean (center of mass):
+$$\bar{x} = \frac{0 + 1 + 1 + 2}{4} = \frac{4}{4} = 1.0$$
+$$\bar{y} = \frac{1 + 0 + 2 + 1}{4} = \frac{4}{4} = 1.0$$
+Initial candidate location: $(x_0, y_0) = (1.0, 1.0)$.
 
-This is a convex function. Unlike squared distance, ordinary Euclidean distance is not minimized simply by taking coordinate averages. The minimizing point is called a geometric median.
+### Phase 2: Evaluating Distance and Gradient at $(1.0, 1.0)$
 
-The stored solution uses iterative gradient descent with a decaying step size. It begins at the arithmetic mean of all customer x-coordinates and y-coordinates. The centroid is not always the geometric median, but it is a reasonable central starting point.
+We compute the Euclidean distance and directional unit vectors from $(1.0, 1.0)$ to each point:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"positions": [[0, 1], [1, 0], [1, 2], [2, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+1. **Point $P_1 = (0, 1)$**:
+   - $\Delta x = 1.0 - 0.0 = 1.0$, $\Delta y = 1.0 - 1.0 = 0.0$.
+   - Distance: $d_1 = \sqrt{1.0^2 + 0.0^2} = 1.0$.
+   - Gradient pull: $\frac{\Delta x}{d_1} = \frac{1.0}{1.0} = 1.0$, $\frac{\Delta y}{d_1} = \frac{0.0}{1.0} = 0.0$.
+2. **Point $P_2 = (1, 0)$**:
+   - $\Delta x = 1.0 - 1.0 = 0.0$, $\Delta y = 1.0 - 0.0 = 1.0$.
+   - Distance: $d_2 = \sqrt{0.0^2 + 1.0^2} = 1.0$.
+   - Gradient pull: $\frac{\Delta x}{d_2} = \frac{0.0}{1.0} = 0.0$, $\frac{\Delta y}{d_2} = \frac{1.0}{1.0} = 1.0$.
+3. **Point $P_3 = (1, 2)$**:
+   - $\Delta x = 1.0 - 1.0 = 0.0$, $\Delta y = 1.0 - 2.0 = -1.0$.
+   - Distance: $d_3 = \sqrt{0.0^2 + (-1.0)^2} = 1.0$.
+   - Gradient pull: $\frac{\Delta x}{d_3} = \frac{0.0}{1.0} = 0.0$, $\frac{\Delta y}{d_3} = \frac{-1.0}{1.0} = -1.0$.
+4. **Point $P_4 = (2, 1)$**:
+   - $\Delta x = 1.0 - 2.0 = -1.0$, $\Delta y = 1.0 - 1.0 = 0.0$.
+   - Distance: $d_4 = \sqrt{(-1.0)^2 + 0.0^2} = 1.0$.
+   - Gradient pull: $\frac{\Delta x}{d_4} = \frac{-1.0}{1.0} = -1.0$, $\frac{\Delta y}{d_4} = \frac{0.0}{1.0} = 0.0$.
 
----
+### Phase 3: Summation and Equilibrium Verification
 
-### Step 2: Computing the gradient direction
+- **Total Distance**:
+  $$f(1.0, 1.0) = d_1 + d_2 + d_3 + d_4 = 1.0 + 1.0 + 1.0 + 1.0 = 4.0$$
+- **Net Gradient in $x$**:
+  $$\frac{\partial f}{\partial x} = 1.0 + 0.0 + 0.0 + (-1.0) = 0.0$$
+- **Net Gradient in $y$**:
+  $$\frac{\partial f}{\partial y} = 0.0 + 1.0 + (-1.0) + 0.0 = 0.0$$
 
-For a center not exactly equal to customer `i`, that customer's distance contributes gradient
-
-$$
-\left(
-\frac{x-x_i}{d_i},
-\frac{y-y_i}{d_i}
-\right),
-$$
-
-where $d_i$ is the Euclidean distance.
-
-The source loops over all positions, computes `a = x - x1`, `b = y - y1`, and `c = sqrt(a * a + b * b)`. It adds `a / (c + 1e-8)` and `b / (c + 1e-8)` to the gradient components. It also accumulates `dist += c` as the current objective value.
-
-The small denominator addition regularizes the undefined gradient when the candidate exactly matches a customer. At zero distance, both numerators are zero, so that customer's contribution becomes zero rather than causing division by zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Taking and shrinking steps
-
-The initial learning rate `alpha` is 0.5. The proposed movement is
-
-`dx = grad_x * alpha` and `dy = grad_y * alpha`.
-
-The source subtracts these quantities from the current coordinates, moving opposite the gradient toward lower objective values.
-
-After every iteration, `alpha *= 0.999`. This exponential decay gradually reduces movement size. The loop returns when both coordinate changes have absolute value at most `1e-6`.
-
-The returned `dist` was computed at the position before that final tiny update. Since the final movement is small, it is intended as an approximation at essentially the converged location.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4.0` |
-
----
+The gradient vector is identically $\nabla f(1.0, 1.0) = (0.0, 0.0)$.
+Step adjustment: $\Delta x = 0.0 \times \alpha = 0.0 \le 10^{-6}$, $\Delta y = 0.0 \times \alpha = 0.0 \le 10^{-6}$.
+The initial point satisfies the optimality condition immediately.
+The algorithm converges and returns $4.00000$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"positions": [[0, 1], [1, 0], [1, 2], [2, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4.0` | Verified |
+We tabulate the force contributions and distance metrics for each customer relative to $(1.0, 1.0)$.
 
----
+| Customer Index $i$ | Customer Coordinates $P_i$ | Vector Displacement $(x - x_i, y - y_i)$ | Euclidean Distance $d_i$ | Unit Force in $x$ | Unit Force in $y$ | Status at Centroid |
+|---|---|---|---|---|---|---|
+| $1$ | $(0, 1)$ | $(+1.0, 0.0)$ | $1.00000$ | $+1.0$ | $0.0$ | Opposes customer 4 |
+| $2$ | $(1, 0)$ | $(0.0, +1.0)$ | $1.00000$ | $0.0$ | $+1.0$ | Opposes customer 3 |
+| $3$ | $(1, 2)$ | $(0.0, -1.0)$ | $1.00000$ | $0.0$ | $-1.0$ | Opposes customer 2 |
+| $4$ | $(2, 1)$ | $(-1.0, 0.0)$ | $1.00000$ | $-1.0$ | $0.0$ | Opposes customer 1 |
+| **Summation** | — | — | **$4.00000$** | **$0.0$** | **$0.0$** | **Equilibrium ($\nabla f = \mathbf{0}$)** |
+
+### Non-Symmetric Asymmetric Instance Contrast: $[(1, 1), (3, 3)]$
+
+Consider two points on the diagonal:
+- Centroid: $(\frac{1+3}{2}, \frac{1+3}{2}) = (2.0, 2.0)$.
+- Distance to $(1, 1)$: $\sqrt{(2-1)^2 + (2-1)^2} = \sqrt{2} \approx 1.41421$.
+- Distance to $(3, 3)$: $\sqrt{(2-3)^2 + (2-3)^2} = \sqrt{2} \approx 1.41421$.
+- Total distance: $2\sqrt{2} \approx 2.82843$.
+- Gradient at $(2, 2)$:
+  $$\nabla f = \left(\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}}\right) = (0, 0)$$
+- Exact minimum distance: $2.82843$.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The objective function $f(x, y) = \sum_{i=1}^{n} \| \mathbf{x} - P_i \|_2$ is the sum of $n$ convex functions.
+The Hessian matrix of each term $\| \mathbf{x} - P_i \|_2$ is positive semi-definite everywhere it exists:
+$$\mathbf{H}_i = \frac{1}{d_i^3} \begin{pmatrix} (y - y_i)^2 & -(x - x_i)(y - y_i) \\ -(x - x_i)(y - y_i) & (x - x_i)^2 \end{pmatrix}$$
+Because all points are not collinear, the sum of Hessians $\sum \mathbf{H}_i$ is strictly positive definite, making $f(x, y)$ strictly convex.
+In a strictly convex domain, a point with $\nabla f = \mathbf{0}$ is unique and is the global minimizer.
+Gradient descent with decaying step sizes is guaranteed to converge to the unique global minimizer within any specified tolerance $\epsilon$.
 
----
+### Completeness
+
+Starting from the bounding box of points $[0, 100] \times [0, 100]$, the minimum must lie within the convex hull of the points.
+The centroid initialization places the search within the convex hull.
+Because $f$ is coercive ($\lim_{\|\mathbf{x}\| \to \infty} f(\mathbf{x}) = \infty$), the trajectory remains bounded and monotonic under step reduction, ensuring convergence.
 
 ## 6. Traps This Instance Exposes
 
-- **Weiszfeld's algorithm:** A specialized geometric-median iteration often converges faster, but it needs careful handling when the iterate lands on a customer point.
-- **Nested ternary search:** Convexity can support searches over coordinates with inner and outer iterations, which may explain an $I^2$ style bound but is not the stored method.
-- **Hill climbing over directions:** Repeatedly test neighboring positions while shrinking a spatial step. It is intuitive but also approximate.
-- **One customer:** The exact minimum sum is zero at that customer's location.
-- **Two customers:** Every point on their connecting segment is optimal.
-- **Duplicate positions:** The regularizing denominator avoids division by zero and naturally gives that location extra weight through repeated entries.
-- **Symmetric positions:** Vector contributions cancel at the center.
-- **Centroid is not generally optimal:** It is only the initial guess for ordinary-distance minimization.
-- **Tiny alpha:** It guarantees eventual small updates but not independently certified objective accuracy.
-- **Returned iteration value:** `dist` corresponds to the pre-update point of the terminating iteration.
-- **Required import:** `sqrt` must be available from `math`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Median-of-Coordinates Fallacy**: Assuming that the geometric median $(x_c, y_c)$ can be obtained by computing the 1D median of $x$-coordinates and 1D median of $y$-coordinates independently. Independent 1D medians minimize the Manhattan ($L_1$) distance $\sum |x - x_i| + |y - y_i|$, which does not minimize Euclidean ($L_2$) distance.
+- **Division by Zero at Exact Point Overlap**: When the candidate center $(x, y)$ coincides exactly with one of the customer points $P_i$, distance $d_i = 0$, causing a division-by-zero runtime error when computing $(x - x_i) / d_i$. Adding a tiny smoothing regularizer $\epsilon \approx 10^{-8}$ ($d_i + \epsilon$) prevents numerical exceptions.
+- **Fixed Non-Decaying Step Size**: Using a fixed learning rate $\alpha$. In convex optimization with gradient descent, a constant step size causes persistent oscillations around the minimum. An exponentially decaying learning rate ($\alpha \leftarrow \alpha \times 0.999$) ensures asymptotic convergence into the acceptance threshold $10^{-5}$.
+- **Grid Search Inefficiency**: Testing a discrete grid with resolution $10^{-5}$ requires $(100 / 10^{-5})^2 = 10^{14}$ points, which is computationally intractable. Continuous gradient descent reaches precision in a few thousand iterations.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(NT)$. Let $N$ be the number of customer positions and $T$ the number of iterations until the step-size condition is met. Each iteration scans all $N$ points and uses constant extra state, so exact time is $O(NT)$ and auxiliary space is $O(1)$ beyond the input.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- Let $n = |\text{positions}| \le 50$.
+- In each iteration:
+  - We calculate the Euclidean distance and gradient vector across all $n$ points, taking $\mathcal{O}(n)$ operations.
+- With decay rate $\gamma = 0.999$ and initial step $\alpha = 0.5$, reaching tolerance $\epsilon = 10^{-6}$ requires at most $K \approx 5,000$ iterations.
+- Total time complexity is:
+  $$\mathcal{O}(K \cdot n)$$
+- With $n \le 50$ and $K \le 5000$, total operations are $\le 2.5 \times 10^5$, executing in under $10$ milliseconds.
+
+### Auxiliary Space Complexity
+
+- The algorithm only maintains scalar floats (`x`, `y`, `grad_x`, `grad_y`, `alpha`, `dist`).
+- Auxiliary space complexity is strictly $\mathcal{O}(1)$.

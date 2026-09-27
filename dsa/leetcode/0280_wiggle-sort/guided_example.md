@@ -1,140 +1,174 @@
 # Guided Example: Wiggle Sort
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass greedy adjacent swap protocol, alternating parity inequality verification, and inductive preservation proof on representative integer arrays:
 
-- **Input:** `{"nums": [3, 5, 2, 1, 6, 4]}`
-- **Required output:** `[3, 5, 1, 6, 2, 4]`
+- **Input:** $\text{nums} = [3, 5, 2, 1, 6, 4]$
+- **Required output:** $[3, 5, 1, 6, 2, 4]$ (Satisfies $3 \le 5 \ge 1 \le 6 \ge 2 \le 4$)
+- **Already Wiggled Array:** $\text{nums} = [1, 5, 2, 6] \implies [1, 5, 2, 6]$ (Zero swaps executed)
+- **Identical Elements Instance:** $\text{nums} = [6, 6, 6, 6] \implies [6, 6, 6, 6]$ (Non-strict $\le$ and $\ge$ trivially satisfied)
+- **Two Elements Minimal Pair:** $\text{nums} = [5, 2] \implies [2, 5]$ (Swapped to satisfy $\text{nums}[0] \le \text{nums}[1]$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates linear-time in-place greedy rearrangement, mathematically proves why swapping adjacent elements at index $i$ preserves the previously satisfied inequality at $i - 1$, avoids unnecessary $O(N \log N)$ sorting, and operates in strictly $O(N)$ time and $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, reorder it such that $\text{nums}[0] \le \text{nums}[1] \ge \text{nums}[2] \le \text{nums}[3]...$.
+Given an integer array $\text{nums} = [3, 5, 2, 1, 6, 4]$, reorder it in-place such that:
+$$
+\text{nums}[0] \le \text{nums}[1] \ge \text{nums}[2] \le \text{nums}[3] \ge \text{nums}[4] \le \dots
+$$
+Alternating peaks (high points at odd indices) and valleys (low points at even indices).
 
-The objective is to compute `[3, 5, 1, 6, 2, 4]` from `{"nums": [3, 5, 2, 1, 6, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Wiggle condition:
+Index:     0    1    2    3    4    5
+Relation:  nums[0] <= nums[1] >= nums[2] <= nums[3] >= nums[4] <= nums[5]
+Values:       3    <=    5    >=    1    <=    6    >=    2    <=    4
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The In-Place Greedy Principle
+Sorting the array takes $O(N \log N)$ time and sorting followed by pairing odd/even indices works, but is suboptimal.
+We can satisfy the condition in a single $O(N)$ linear pass:
+At each index $i$, if the required relationship between $\text{nums}[i]$ and $\text{nums}[i + 1]$ is violated, simply **swap them**.
+Crucially, swapping $\text{nums}[i]$ and $\text{nums}[i + 1]$ **never invalidates** the previous relation between $\text{nums}[i - 1]$ and $\text{nums}[i]$!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Alternating Parity Rules
+For index $i \in [0, N - 2]$:
+1. **If $i$ is even ($0, 2, 4, \dots$):**
+   Requirement: $\text{nums}[i] \le \text{nums}[i + 1]$.
+   If $\text{nums}[i] > \text{nums}[i + 1]$:
+   Swap $\text{nums}[i]$ and $\text{nums}[i + 1]$.
+2. **If $i$ is odd ($1, 3, 5, \dots$):**
+   Requirement: $\text{nums}[i] \ge \text{nums}[i + 1]$.
+   If $\text{nums}[i] < \text{nums}[i + 1]$:
+   Swap $\text{nums}[i]$ and $\text{nums}[i + 1]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Proof of Inductive Preservation
+Suppose we are at an odd index $i$, and we already know $\text{nums}[i - 1] \le \text{nums}[i]$ from the previous step.
+Now, suppose a violation occurs at index $i$:
+$$
+\text{nums}[i] < \text{nums}[i + 1]
+$$
+We swap $\text{nums}[i]$ and $\text{nums}[i + 1]$.
+- After the swap, the new value at index $i$ is $\text{nums}_{\text{new}}[i] = \text{nums}_{\text{old}}[i + 1]$.
+- Since $\text{nums}_{\text{old}}[i + 1] > \text{nums}_{\text{old}}[i] \ge \text{nums}[i - 1]$, we have:
+  $$
+  \text{nums}_{\text{new}}[i] > \text{nums}[i - 1]
+  $$
+The previous inequality $\text{nums}[i - 1] \le \text{nums}[i]$ **remains strictly preserved**!
+Symmetrically, if $i$ is even, swapping preserves the preceding inequality. Thus, no backtracking is ever needed.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After processing index $i$, the entire prefix $\text{nums}[0 \dots i + 1]$ forms a valid wiggle sequence.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Repair one adjacent inequality at a time
-
-The required pattern is
-
-$$
-\texttt{nums}[0]
-\le \texttt{nums}[1]
-\ge \texttt{nums}[2]
-\le \texttt{nums}[3]
-\ge \cdots.
-$$
-
-Odd indices are peaks: an odd-indexed value must be at least the value immediately before it. Even positive indices are valleys: an even-indexed value must be at most the value immediately before it.
-
-The exact solution scans from left to right. At index `i`, it inspects only `nums[i - 1]` and `nums[i]`. If their required inequality is reversed, it swaps those two adjacent values. The central insight is that this local repair also preserves every inequality already established to the left, so no sorting or backward repair is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 5, 2, 1, 6, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{nums} = [3, 5, 2, 1, 6, 4]$ ($N = 6$):
 
 ---
 
-### Step 2: State the parity rule exactly
-
-When `i` is odd, the pair occupies an even index followed by an odd index, so it must satisfy
-
-$$
-\texttt{nums}[i-1]\le\texttt{nums}[i].
-$$
-
-The source swaps precisely when `nums[i] < nums[i - 1]`.
-
-When `i` is even, the pair occupies an odd index followed by an even index, so it must satisfy
-
-$$
-\texttt{nums}[i-1]\ge\texttt{nums}[i].
-$$
-
-The source swaps precisely when `nums[i] > nums[i - 1]`.
-
-These two violations are joined by `or` in the condition. If the pair already satisfies the required non-strict inequality, it is left unchanged. Equal adjacent values are valid in either orientation because the pattern uses `<=` and `>=`, not strict comparisons.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1 ($i = 0$, Even Index $\implies$ Requires $\le$)
+- Pair evaluated: $\text{nums}[0] = 3, \quad \text{nums}[1] = 5$.
+- Condition: $3 \le 5$ (**True**).
+- Action: No swap needed.
+- Array state: `[3, 5, 2, 1, 6, 4]`.
 
 ---
 
-### Step 3: Why swapping fixes the current pair
+### Step 2 ($i = 1$, Odd Index $\implies$ Requires $\ge$)
+- Pair evaluated: $\text{nums}[1] = 5, \quad \text{nums}[2] = 2$.
+- Condition: $5 \ge 2$ (**True**).
+- Action: No swap needed.
+- Array state: `[3, 5, 2, 1, 6, 4]`.
 
-For odd `i`, a swap occurs only when the left value is larger than the right value. Exchanging them puts the smaller value on the even-indexed left side and the larger value on the odd-indexed right side, establishing `nums[i - 1] <= nums[i]`.
+---
 
-For even `i`, a swap occurs only when the new right value is larger than the left value. Exchanging them places the larger value at the odd-indexed left position and the smaller value at the even-indexed right position, establishing `nums[i - 1] >= nums[i]`.
+### Step 3 ($i = 2$, Even Index $\implies$ Requires $\le$)
+- Pair evaluated: $\text{nums}[2] = 2, \quad \text{nums}[3] = 1$.
+- Condition: $2 \le 1$ (**False; Violation!** $2 > 1$).
+- Action: **Swap $\text{nums}[2]$ and $\text{nums}[3]$**.
+- Array state: `[3, 5, 1, 2, 6, 4]`.
+- Check preservation: $5 \ge 1$ still holds at index $1$!
 
-Thus one adjacent swap is always sufficient to repair the newly considered inequality.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 5, 1, 6, 2, 4]` |
+### Step 4 ($i = 3$, Odd Index $\implies$ Requires $\ge$)
+- Pair evaluated: $\text{nums}[3] = 2, \quad \text{nums}[4] = 6$.
+- Condition: $2 \ge 6$ (**False; Violation!** $2 < 6$).
+- Action: **Swap $\text{nums}[3]$ and $\text{nums}[4]$**.
+- Array state: `[3, 5, 1, 6, 2, 4]`.
+- Check preservation: $1 \le 6$ still holds at index $2$!
+
+---
+
+### Step 5 ($i = 4$, Even Index $\implies$ Requires $\le$)
+- Pair evaluated: $\text{nums}[4] = 2, \quad \text{nums}[5] = 4$.
+- Condition: $2 \le 4$ (**True**).
+- Action: No swap needed.
+- Array state: `[3, 5, 1, 6, 2, 4]`.
+
+---
+
+### Final Validation
+All pairs satisfy:
+$$
+3 \le 5 \ge 1 \le 6 \ge 2 \le 4
+$$
+Final array:
+$$
+\mathbf{[3, 5, 1, 6, 2, 4]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 5, 2, 1, 6, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 5, 1, 6, 2, 4]` | Verified |
+```text
+nums = [3, 5, 2, 1, 6, 4]
+
+i = 0 (even): 3 <= 5 -> OK
+i = 1 (odd):  5 >= 2 -> OK
+i = 2 (even): 2 <= 1 -> Violation! Swap(2, 1) -> [3, 5, 1, 2, 6, 4]
+i = 3 (odd):  2 >= 6 -> Violation! Swap(2, 6) -> [3, 5, 1, 6, 2, 4]
+i = 4 (even): 2 <= 4 -> OK
+
+Result: [3, 5, 1, 6, 2, 4]
+```
+
+| Step $i$ | Parity | Required Relation | Elements Compared | Status | Action Taken | Array State After Step |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | Even | $\text{nums}[0] \le \text{nums}[1]$ | $3 \le 5$ | Satisfied | None | `[3, 5, 2, 1, 6, 4]` |
+| 1 | Odd | $\text{nums}[1] \ge \text{nums}[2]$ | $5 \ge 2$ | Satisfied | None | `[3, 5, 2, 1, 6, 4]` |
+| **2** | **Even** | $\text{nums}[2] \le \text{nums}[3]$ | **$2 \le 1$** | **Violated** | **Swap(2, 1)** | `[3, 5, 1, 2, 6, 4]` |
+| **3** | **Odd** | $\text{nums}[3] \ge \text{nums}[4]$ | **$2 \ge 6$** | **Violated** | **Swap(2, 6)** | `[3, 5, 1, 6, 2, 4]` |
+| 4 | Even | $\text{nums}[4] \le \text{nums}[5]$ | $2 \le 4$ | Satisfied | None | `[3, 5, 1, 6, 2, 4]` |
+| **End** | - | - | - | - | - | **`[3, 5, 1, 6, 2, 4]` (Wiggled)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every adjacent pair $(i, i + 1)$ is explicitly inspected. If the required parity relation is violated, the two elements are swapped, placing the appropriate relative magnitudes at both indices.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By the inductive preservation proof, swapping $\text{nums}[i]$ and $\text{nums}[i + 1]$ cannot violate the previously settled inequality between $\text{nums}[i - 1]$ and $\text{nums}[i]$. Therefore, once the loop advances past index $i$, all earlier inequalities remain valid, guaranteeing the whole array is properly wiggled upon completion.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort then swap neighboring positions:** Sorting first and exchanging selected adjacent values can create the wiggle pattern, but costs $O(n\log n)$ time and is unnecessary for non-strict inequalities.
-- **Build a separate result:** Selecting alternating low and high values into another list is possible but uses $O(n)$ extra space and often still requires sorting.
-- **Check only odd peaks:** Ensuring each odd index dominates both neighbors is equivalent, but the one-pass adjacent formulation repairs the right relationship as it arrives and proves preservation locally.
-- **Length one:** The loop is empty, and the one-element array vacuously satisfies every adjacent inequality.
-- **Length two:** One comparison and at most one swap establish `nums[0] <= nums[1]`.
-- **All values equal:** Every non-strict inequality holds, so no swaps occur and the array is valid.
-- **Already wiggled input:** Every violation test is false; the method preserves the existing order.
-- **Strict wiggle variant:** This solution targets `<=` and `>=`. A requirement for strict `<` and `>` with duplicates is a different problem and may need median partitioning; the local equality-friendly proof would not suffice.
-- **Negative values outside the stated range:** The logic uses only comparisons, so it would still work unchanged even though legal values are non-negative.
-- **Input mutation:** Swapping changes the caller's list. That is required by the function contract; callers needing the original order must copy it before calling.
-- **Existence guarantee:** For this non-strict version, the greedy proof itself constructs a valid arrangement for any array. The stated guarantee is therefore consistent but not additionally needed by the implementation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sorting Overhead ($O(N \log N)$):** Sorting the entire array and then interweaving elements takes $O(N \log N)$ time. The single-pass greedy swap method runs in strictly $O(N)$ time.
+- **Strict Inequalities vs Non-Strict:** Wiggle Sort I uses $\le$ and $\ge$, which makes the greedy local swap algorithm complete and universally applicable. In contrast, Wiggle Sort II (LeetCode 324) requires strict inequalities ($<$ and $>$) and permits duplicates, necessitating virtual index mapping around the median.
+- **Off-by-One Loop Boundary:** The loop must iterate up to index $N - 2$ (so the comparison `nums[i + 1]` stays within bounds).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. The loop visits each index from 1 through $n-1$ once. Each visit performs constant-time parity checks, comparisons, and at most one swap, giving $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of `nums`. A single loop from $0$ to $N - 2$ performs at most one comparison and one swap per index ($O(1)$ operations per step).
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory. Reordering is performed entirely in-place.

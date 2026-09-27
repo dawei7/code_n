@@ -1,124 +1,214 @@
 # Guided Example: Shortest Distance from All Buildings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step multi-source building breadth-first search (BFS), reachability count tracking (`cnt[x][y] == total`), cumulative shortest distance accumulation (`dist[x][y] += d`), obstacle avoidance, and global minimum distance extraction on representative grid instances:
 
-- **Input:** `{"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}`
-- **Required output:** `7`
+- **Input:**
+  $$
+  \text{grid} = \begin{bmatrix}
+  1 & 0 & 2 & 0 & 1 \\
+  0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0
+  \end{bmatrix}
+  $$
+- **Required output:** $7$
+  - Three buildings located at $(0, 0)$, $(0, 4)$, and $(2, 2)$ ($\text{total} = 3$)
+  - One obstacle located at $(0, 2)$
+  - Optimal house location on empty land: cell $(1, 2)$
+    - Distance from Building $(0, 0) \to (1, 2)$ is $3$
+    - Distance from Building $(0, 4) \to (1, 2)$ is $3$
+    - Distance from Building $(2, 2) \to (1, 2)$ is $1$
+    - Cumulative distance sum $= 3 + 3 + 1 = \mathbf{7}$
+- **Disconnected Land / Obstacle Enclosure:** If any building is completely walled off, no empty cell reaches $\text{cnt} == \text{total}$, correctly returning $-1$
+- **No Empty Land Available:** If the grid contains only buildings and obstacles with zero empty cells, returns $-1$
+- **Single Building Instance:** With only one building, any adjacent empty cell achieves minimum distance $1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates reversing shortest path search directions by launching BFS from $B$ buildings rather than all $O(M N)$ empty cells, formalizes the distinction between reachability counting and distance accumulation, proves why obstacles require true BFS pathfinding rather than Manhattan approximations, and operates in $O(B \cdot M N)$ time and $O(M N)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` grid `grid` of values `0`, `1`, or `2`, where:
+Given an $M \times N = 3 \times 5$ grid where $0 = \text{empty land}$, $1 = \text{building}$, and $2 = \text{obstacle}$:
+Find an empty land cell $(r, c)$ to build a house that minimizes the total travel distance to **all** buildings:
+$$
+\text{Total Distance}(r, c) = \sum_{b \in \text{Buildings}} \text{dist}((r, c), b)
+$$
+Movement is restricted to 4 cardinal directions (up, down, left, right) through empty land ($0$). Neither buildings ($1$) nor obstacles ($2$) can be traversed.
 
-The objective is to compute `7` from `{"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Grid Layout:
+[ B1,  .,  X,  ., B2 ]
+[  .,  .,  H,  .,  . ]
+[  .,  ., B3,  .,  . ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+B1 = (0, 0), B2 = (0, 4), B3 = (2, 2)
+X  = (0, 2) (Obstacle)
+H  = (1, 2) (Chosen House)
+
+Path from B1 to H: (0,0) -> (1,0) -> (1,1) -> (1,2) [Length 3]
+Path from B2 to H: (0,4) -> (1,4) -> (1,3) -> (1,2) [Length 3]
+Path from B3 to H: (2,2) -> (1,2)                   [Length 1]
+Total Distance: 3 + 3 + 1 = 7
+```
+
+### Why Launch BFS from Buildings Instead of Empty Cells?
+- In a grid with many empty cells and few buildings ($B \ll M N$), launching BFS from each empty cell takes $O((MN)^2)$.
+- Instead, launch BFS **from each of the $B$ buildings**!
+  - Because movement is undirected, $\text{dist}(\text{building}, \text{land}) = \text{dist}(\text{land}, \text{building})$.
+  - Each building propagates its exact shortest distance to all reachable empty cells in a single $O(M N)$ BFS.
+  - Total time drops to $O(B \cdot M N)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Matrices
+1. `cnt[r][c]`: Count of distinct buildings that can reach empty cell $(r, c)$.
+2. `dist[r][c]`: Cumulative sum of shortest distances from all buildings that reached $(r, c)$.
+3. `total`: Total number of buildings in the grid.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Single Building BFS Protocol:
+When a building at $(i, j)$ is detected:
+1. Increment `total += 1`.
+2. Initialize BFS queue $q = \text{deque}([(i, j)])$, distance level $d = 0$, and local visited set $vis = \text{set}()$.
+3. Level-by-level BFS:
+   - Increment $d \mathrel{+}= 1$.
+   - For all cells in current level:
+     - For each of 4 cardinal neighbors $(x, y)$:
+       - If $(x, y)$ is within bounds, $\text{grid}[x][y] == 0$, and $(x, y) \notin vis$:
+         - `cnt[x][y] += 1`
+         - `dist[x][y] += d`
+         - Enqueue $(x, y)$ and add to $vis$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Final Optimal Extraction:
+Scan all empty cells $(i, j)$ where $\text{grid}[i][j] == 0$:
+- If `cnt[i][j] == total`:
+  $$
+  \text{ans} = \min(\text{ans}, \; \text{dist}[i][j])
+  $$
+If $\text{ans} == \infty$, return $-1$.
+
+> **Invariant.** An empty cell $(r, c)$ is a valid candidate if and only if $\text{cnt}[r][c] == \text{total}$. For valid candidates, $\text{dist}[r][c]$ equals the exact sum of shortest path distances from all buildings.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why searching from buildings is equivalent
-
-Legal movement between empty cells is undirected. If an empty cell can reach a building along a path of passable empty cells ending beside that building, the same path can be followed in reverse from the building to the empty cell.
-
-Therefore, instead of starting one search from every candidate land cell, the algorithm can start from each building and distribute that building's distance to all reachable candidates. Summing those contributions later gives the same total distance for each land cell.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on the $3 \times 5$ grid:
+Buildings: $B_1(0, 0), B_2(0, 4), B_3(2, 2) \implies \text{total} = 3$.
+Obstacle at $(0, 2)$.
 
 ---
 
-### Step 2: The two accumulation matrices
-
-`cnt[r][c]` is the number of processed building searches that reached empty cell `(r, c)`.
-
-`dist[r][c]` is the sum of the shortest distances from those buildings to that cell.
-
-These meanings must be kept separate. A small distance sum is irrelevant if only some buildings can reach the cell. The count matrix proves universal reachability; the distance matrix provides the objective value once reachability is established.
-
-Both matrices start at zero. Buildings and obstacles never need meaningful entries because the final house candidate must have original grid value zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: BFS from Building $B_1$ at $(0, 0)$
+- Level $d = 1$: Neighbors of $(0, 0)$ are $(0, 1)$ and $(1, 0)$.
+  - $(0, 1): \text{dist} = 1, \text{cnt} = 1$.
+  - $(1, 0): \text{dist} = 1, \text{cnt} = 1$.
+- Level $d = 2$:
+  - From $(0, 1)$: neighbor $(0, 2)$ is an obstacle (blocked!).
+  - From $(1, 0)$: neighbor $(1, 1)$ has $\text{dist} = 2, \text{cnt} = 1$.
+  - Neighbor $(2, 0)$ has $\text{dist} = 2, \text{cnt} = 1$.
+- Level $d = 3$:
+  - From $(1, 1)$: neighbor $(1, 2)$ has $\text{dist} = 3, \text{cnt} = 1$.
+  - Neighbor $(2, 1)$ has $\text{dist} = 3, \text{cnt} = 1$.
+- At candidate cell $(1, 2)$:
+  $$
+  \text{dist}[1][2] = 3, \quad \text{cnt}[1][2] = 1
+  $$
 
 ---
 
-### Step 3: Starting one building BFS
+### Step 2: BFS from Building $B_2$ at $(0, 4)$
+- Level $d = 1$:
+  - Neighbors $(0, 3)$ and $(1, 4)$ reached with $d = 1$.
+- Level $d = 2$:
+  - From $(0, 3)$: neighbor $(0, 2)$ is an obstacle (blocked!).
+  - Neighbors $(1, 3)$ and $(2, 4)$ reached with $d = 2$.
+- Level $d = 3$:
+  - From $(1, 3)$: neighbor $(1, 2)$ reached!
+  - Neighbor $(2, 3)$ reached.
+- Update candidate cell $(1, 2)$:
+  $$
+  \text{dist}[1][2] \leftarrow 3 + 3 = 6, \quad \text{cnt}[1][2] \leftarrow 1 + 1 = 2
+  $$
 
-When the outer grid scan finds `grid[i][j] == 1`, it increments `total`, places `(i, j)` in the queue, resets level distance `d = 0`, and creates a fresh visited set `vis`.
+---
 
-The visited set is local to one building. An empty cell should be counted once for each different building, so visitation information must not carry across searches. Within one search, however, a cell may be reachable by several paths and must be accumulated only once at its shortest distance.
+### Step 3: BFS from Building $B_3$ at $(2, 2)$
+- Level $d = 1$:
+  - Neighbors of $(2, 2)$ are $(1, 2)$, $(2, 1)$, and $(2, 3)$.
+  - Candidate cell $(1, 2)$ is directly adjacent!
+  - Distance: $d = 1$.
+- Update candidate cell $(1, 2)$:
+  $$
+  \text{dist}[1][2] \leftarrow 6 + 1 = \mathbf{7}, \quad \text{cnt}[1][2] \leftarrow 2 + 1 = \mathbf{3}
+  $$
 
-The queue object is created before the outer scan but is empty after every completed BFS. Each building appends its start only after the previous search has drained the queue, so searches remain independent.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
+### Step 4: Candidate Inspection & Global Minimum
+All 3 building BFS passes complete ($\text{total} = 3$).
+Inspect valid empty cells with $\text{cnt} == 3$:
+- Cell $(1, 2)$: $\text{cnt} = 3, \; \text{dist} = 3 + 3 + 1 = \mathbf{7}$.
+- Cell $(1, 1)$: $\text{cnt} = 3, \; \text{dist} = 2 + 4 + 2 = 8$.
+- Cell $(1, 3)$: $\text{cnt} = 3, \; \text{dist} = 4 + 2 + 2 = 8$.
+- Cell $(0, 1)$: $\text{cnt} = 3, \; \text{dist} = 1 + 5 + 3 = 9$ (detours around obstacle).
+
+Minimum distance among all valid cells:
+$$
+\text{ans} = \mathbf{7}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
+```text
+Grid (3x5):
+[ 1, 0, 2, 0, 1 ]
+[ 0, 0, 0, 0, 0 ]
+[ 0, 0, 1, 0, 0 ]
+
+Buildings: (0, 0), (0, 4), (2, 2) -> total = 3
+
+Building (0, 0) BFS: dist to (1, 2) = 3, cnt[1][2] = 1
+Building (0, 4) BFS: dist to (1, 2) = 3, cnt[1][2] = 2
+Building (2, 2) BFS: dist to (1, 2) = 1, cnt[1][2] = 3
+
+Cell (1, 2) reached by all 3 buildings!
+Total Distance = 3 + 3 + 1 = 7
+
+Global Minimum = 7
+```
+
+| Candidate Cell $(r, c)$ | Dist from $B_1(0, 0)$ | Dist from $B_2(0, 4)$ | Dist from $B_3(2, 2)$ | Total Buildings Reached (`cnt`) | Cumulative Distance (`dist`) | Valid House Candidate? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$(1, 2)$** | **3** | **3** | **1** | **3 (All)** | **7** | **Yes (Optimal)** |
+| $(1, 1)$ | 2 | 4 | 2 | 3 (All) | 8 | Yes |
+| $(1, 3)$ | 4 | 2 | 2 | 3 (All) | 8 | Yes |
+| $(0, 1)$ | 1 | 5 (detour) | 3 | 3 (All) | 9 | Yes |
+| $(0, 3)$ | 5 (detour) | 1 | 3 | 3 (All) | 9 | Yes |
+| $(2, 0)$ | 2 | 6 | 3 | 3 (All) | 11 | Yes |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** BFS on an unweighted grid discovers cells in order of strictly increasing shortest path distances. Because paths between empty cells are reversible, the distance from building $B$ to empty cell $E$ exactly equals the distance from $E$ to $B$. Accumulating $d$ across all building runs guarantees that `dist[r][c]` equals the exact total travel distance to all reached buildings.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** A house is viable if and only if it can reach every single building. Requiring $\text{cnt}[r][c] == \text{total}$ strictly rejects any cell isolated by obstacles or buildings from one or more structures. Testing all cells with $\text{cnt} == \text{total}$ guarantees finding the global minimum without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Grid-marker pruning between building searches:** After each BFS, mutate reachable zeros to the next marker and let the next building traverse only cells reached by all prior buildings. This can prune impossible regions and avoid a fresh visited matrix, but the exact source uses independent sets.
-- **BFS from every empty land:** Sum distances to buildings from each candidate. It is correct but can be much slower when empty cells greatly outnumber buildings.
-- **Manhattan distance:** It ignores obstacles and impassable buildings, so it can underestimate or claim a route where none exists.
-- **Multi-source BFS from all buildings at once:** It finds distance to the nearest building, not the sum of separate shortest distances to every building.
-- **DFS:** It can discover reachability but does not naturally guarantee shortest paths in an unweighted graph without additional distance relaxation.
-- **Reuse one visited set across buildings:** This would prevent later buildings from contributing to cells already visited by earlier searches.
-- **Mark at dequeue time:** The same cell may enter the queue multiple times from one level, corrupting counts and sums.
-- **Allow traversal through a building:** The rules make buildings impassable, so another building cannot serve as a corridor.
-- **One building and adjacent land:** That land receives count one and distance one, yielding answer one if no closer legal cell exists.
-- **Only a building:** There is no empty candidate; infinity remains and the answer is `-1`.
-- **Unreachable region:** Its cells have reach count below `total` and are excluded regardless of their partial distance sum.
-- **Several equal optima:** The problem asks only for the minimum distance, so no coordinate tie handling is needed.
-- **Obstacles enclosing a building:** If that prevents every empty cell from reaching all buildings, no count reaches `total` and the method returns `-1`.
-- **Boundary cells:** Explicit range tests prevent grid wrapping and out-of-bounds access.
-- **At least one building:** `total` is positive, so a never-reached empty cell with count zero cannot accidentally qualify.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Manhattan Distance vs True Pathfinding:** Manhattan distance assumes an unobstructed grid. Obstacles (like cell $(0, 2)$) force paths to detour around them (e.g. from $(0, 1)$ to $(0, 4)$ costs 5 steps, not $|0-0| + |1-4| = 3$). BFS is mandatory.
+- **Universal Reachability Invariant:** An empty cell might have a small distance sum from 2 buildings but be completely unreachable from a 3rd building. Checking $\text{cnt}[r][c] == \text{total}$ prevents selecting disconnected cells.
+- **Reusing Visited Across Buildings:** The `vis` set must be freshly instantiated for each building BFS. Reusing a global visited set would prevent subsequent buildings from traversing cells already visited by earlier searches.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(bmn)$. Let $m$ be the row count, $n$ the column count, and $b$ the number of buildings.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(B \cdot M N)$, where $B$ is the number of buildings and $M, N$ are grid dimensions. In the worst case $B \le M N$, but typically $B \ll M N$. Each building BFS visits each cell at most once.
+- **Auxiliary Space Complexity:** $O(M N)$ auxiliary memory to store `cnt`, `dist`, the BFS queue, and the visited set `vis`.

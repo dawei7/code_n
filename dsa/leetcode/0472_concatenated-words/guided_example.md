@@ -1,121 +1,195 @@
 # Guided Example: Concatenated Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step length-ascending sort ordering, prefix Trie dictionary indexing, recursive prefix decomposition (`dfs(w[i+1:])`), building block admission, and multi-segment word validation on representative word dictionaries:
 
-- **Input:** `{"words": ["cat", "dog", "catdog"]}`
-- **Required output:** `["catdog"]`
+- **Input:** $words = [\text{"cat"}, \text{"cats"}, \text{"catsdogcats"}, \text{"dog"}, \text{"dogcatsdog"}, \text{"hippopotamuses"}, \text{"rat"}, \text{"ratcatdogcat"}]$
+- **Required output:** `["catsdogcats", "dogcatsdog", "ratcatdogcat"]`
+- **Execution trace:**
+  - **Step 1: Sort by length ascending:**
+    $$
+    [\text{"cat"}, \text{"dog"}, \text{"rat"}, \text{"cats"}, \text{"dogcatsdog"}, \text{"catsdogcats"}, \text{"ratcatdogcat"}, \text{"hippopotamuses"}]
+    $$
+    *Insight:* A word can only be formed by concatenating strictly shorter words. Processing by length guarantees that all potential constituent words are already in the Trie before evaluating a candidate.
+  - **Step 2: Incremental Trie insertion and DFS segmentation:**
+    - Initialize empty Trie: $trie = \text{Root}()$, $ans = []$
+    - **Word `"cat"` (len 3):**
+      - Trie is empty $\implies dfs(\text{"cat"}) = \text{False}$
+      - Insert `"cat"` into Trie.
+    - **Word `"dog"` (len 3):**
+      - Trie contains only `{"cat"}` $\implies dfs(\text{"dog"}) = \text{False}$
+      - Insert `"dog"` into Trie.
+    - **Word `"rat"` (len 3):**
+      - $dfs(\text{"rat"}) = \text{False}$
+      - Insert `"rat"` into Trie.
+    - **Word `"cats"` (len 4):**
+      - Prefix `"cat"` matches, but suffix `"s"` is not in Trie $\implies dfs(\text{"cats"}) = \text{False}$
+      - Insert `"cats"` into Trie.
+    - **Word `"dogcatsdog"` (len 10):**
+      - Prefix 1: `"dog"` in Trie (len 3), recurse on suffix `"catsdog"`
+      - Prefix 2: `"cats"` in Trie (len 4), recurse on suffix `"dog"`
+      - Prefix 3: `"dog"` in Trie (len 3), recurse on suffix `""` (Base case: **True!**)
+      - Valid concatenation of $\ge 2$ shorter words!
+      - Add `"dogcatsdog"` to $ans$.
+    - **Word `"catsdogcats"` (len 11):**
+      - Prefix 1: `"cats"` in Trie (len 4), recurse on suffix `"dogcats"`
+      - Prefix 2: `"dog"` in Trie (len 3), recurse on suffix `"cats"`
+      - Prefix 3: `"cats"` in Trie (len 4), recurse on suffix `""` (**True!**)
+      - Add `"catsdogcats"` to $ans$.
+    - **Word `"ratcatdogcat"` (len 12):**
+      - Decomposes into `"rat"` + `"cat"` + `"dog"` + `"cat"` (**True!**)
+      - Add `"ratcatdogcat"` to $ans$.
+    - **Word `"hippopotamuses"` (len 14):**
+      - Prefix `"hi"` not in Trie $\implies$ Fails immediately.
+      - Insert into Trie.
+  - Final concatenated words: `["catsdogcats", "dogcatsdog", "ratcatdogcat"]`.
+- **Single Concatenation Instance:** $words = [\text{"cat"}, \text{"dog"}, \text{"catdog"}] \implies \mathbf{[\text{"catdog"}]}$
+- **No Concatenated Words:** $words = [\text{"a"}, \text{"b"}, \text{"c"}] \implies \mathbf{[]}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates dynamic dictionary expansion via length sorting, mathematically proves why atomic building blocks suffice for recursive subproblem matching, and derives $O(N \log N + N \cdot L^2)$ runtime and $O(N \cdot L)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `words` (**without duplicates**), return *all the **concatenated words** in the given list of* `words`.
+Given an array of strings $words$ (without duplicates):
+A **concatenated word** is defined as a string that is comprised entirely of at least two shorter words in the given array.
+Return all concatenated words in $words$.
 
-The objective is to compute `["catdog"]` from `{"words": ["cat", "dog", "catdog"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Vocabulary:
+  Atomic Words:       "cat", "dog", "rat", "cats"
+  Complex Words:      "catsdogcats" -> "cats" + "dog" + "cats"
+                      "dogcatsdog"  -> "dog"  + "cats" + "dog"
+                      "ratcatdogcat"-> "rat"  + "cat"  + "dog" + "cat"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Concatenated Words Found: ["catsdogcats", "dogcatsdog", "ratcatdogcat"]
+```
+
+### The Length-Ordered Induction Principle
+- A word $W$ can only be decomposed into words $w_1, w_2, \dots$ if each $w_i$ is **strictly shorter** than $W$ ($|w_i| < |W|$).
+- If we sort all words by length in ascending order:
+  - When evaluating candidate word $W$, every possible sub-word that could compose $W$ has already been encountered and processed!
+  - We simply check whether $W$ can be formed by words currently in the Trie.
+  - If $W$ can be formed: it is a concatenated word! We append it to the answer.
+  - If $W$ cannot be formed: it is an atomic building block; we insert it into the Trie so future longer words can use it!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Prefix Trie Structure:
+- Each node contains 26 child pointers and a boolean flag `is_end`.
+- `insert(w)` traverses characters and marks the terminal node with `is_end = True`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Recursive Decomposition DFS:
+For candidate word $w$:
+- Base case: If $w == \text{""}$, all characters were matched $\implies$ Return `True`.
+- Walk the Trie starting from the root:
+  - For each prefix character $c = w[i]$:
+    - If Trie has no child for $c$, this path terminates $\implies$ Return `False`.
+    - Advance Trie pointer.
+    - If `node.is_end == True`:
+      The prefix $w[0 \dots i]$ forms a valid dictionary word!
+      Recursively test the remaining suffix:
+      $$
+      \text{If } dfs(w[i + 1 \dots |w| - 1]) == \text{True} \implies \text{Return True}
+      $$
+- If all prefix splits fail, return `False`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Order Invariant.** Because words are sorted ascending by length, the Trie contains only words with length strictly less than $|W|$ (or equal length words that failed decomposition), preventing a word from trivially matching itself as a single piece.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Trie structure
-
-Each `Trie` node owns an array of 26 child references, one for every lowercase English letter, and an `is_end` flag. Insertion walks through a word character by character, creating missing nodes. The final node is marked as a complete dictionary word.
-
-The trie supports prefix discovery in one pass. Starting at its root and following candidate characters, every encountered `is_end` node identifies a component word ending at that position. A hash set could test all sliced prefixes separately; the trie shares common prefix traversal.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["cat", "dog", "catdog"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $words = [\text{"cat"}, \text{"cats"}, \text{"catsdogcats"}, \text{"dog"}, \text{"dogcatsdog"}]$:
 
 ---
 
-### Step 2: Why words are sorted by length
-
-`words.sort(key=lambda x: len(x))` ensures the trie contains only words no longer than candidates already processed. A same-length word cannot be a proper component of the current nonempty candidate unless it consumes the entire candidate; distinct input words of equal length cannot equal it, and the current candidate itself is absent. Thus only genuinely shorter components can match.
-
-If a candidate is not concatenated, it is inserted as a new base word. If it is concatenated, it is appended to the answer but not inserted.
-
-Excluding concatenated words from the trie does not lose solutions. Any concatenated component can itself be expanded into its shorter component words. Replacing it by that expansion yields the same text, so irreducible non-concatenated words are sufficient building blocks for every later candidate.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Sort by Word Length
+$$
+[\text{"cat"} (3), \; \text{"dog"} (3), \; \text{"cats"} (4), \; \text{"dogcatsdog"} (10), \; \text{"catsdogcats"} (11)]
+$$
 
 ---
 
-### Step 3: Meaning of `dfs(w)`
+### Step 2: Process Small Base Words
+1. **Word `"cat"`:**
+   - Trie is empty $\implies dfs(\text{"cat"}) = \text{False}$.
+   - Action: `trie.insert("cat")`. Trie: `{"cat"}`.
+2. **Word `"dog"`:**
+   - Scan `"dog"` in Trie: root has no child `'d'`. $dfs(\text{"dog"}) = \text{False}$.
+   - Action: `trie.insert("dog")`. Trie: `{"cat", "dog"}`.
+3. **Word `"cats"`:**
+   - Scan `"cats"` in Trie:
+     - Prefix `"cat"` matches `is_end = True`.
+     - Recurse on remaining suffix `"s"`.
+     - Root has no child `'s'` $\implies dfs(\text{"s"}) = \text{False}$.
+   - $dfs(\text{"cats"}) = \text{False}$.
+   - Action: `trie.insert("cats")`. Trie: `{"cat", "dog", "cats"}`.
 
-`dfs(w)` returns true when the entire suffix string `w` can be segmented into words currently in the trie.
+---
 
-The empty string is the successful base case. Reaching it means earlier recursive choices consumed the candidate exactly, with no leftover characters.
+### Step 3: Process `"dogcatsdog"` ($|w| = 10$)
+Call $dfs(\text{"dogcatsdog"})$:
+- Prefix `"dog"` is matched at index 2 (`is_end = True`).
+- Recurse on suffix $dfs(\text{"catsdog"})$:
+  - Prefix `"cat"` is matched at index 2 (`is_end = True`):
+    - Recurse on suffix $dfs(\text{"sdog"})$: fails.
+  - Prefix `"cats"` is matched at index 3 (`is_end = True`):
+    - Recurse on suffix $dfs(\text{"dog"})$:
+      - Prefix `"dog"` matched at index 2 (`is_end = True`).
+      - Recurse on suffix $dfs(\text{""})$: Base case reached $\implies$ **`True`**!
+- $dfs(\text{"dogcatsdog"})$ returns `True`.
+- Add `"dogcatsdog"` to output list.
 
-For a nonempty suffix, start at the trie root and scan its characters. If the needed child is missing, no longer prefix can match because every longer prefix begins with the same failed path, so return false immediately.
+---
 
-Whenever a traversed node has `is_end = true`, the prefix `w[:i+1]` is a stored word. Recursively test `w[i+1:]`. If that remainder can also be segmented, the current suffix can, so return true. If not, continue the trie scan to try a longer component prefix.
-
-Only after every possible stored prefix fails does the function return false.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["catdog"]` |
+### Step 4: Process `"catsdogcats"` ($|w| = 11$)
+Call $dfs(\text{"catsdogcats"})$:
+- Match `"cats"` $\implies$ recurse on `"dogcats"`.
+- Match `"dog"` $\implies$ recurse on `"cats"`.
+- Match `"cats"` $\implies$ recurse on `""` (**`True`**).
+- Add `"catsdogcats"` to output list.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["cat", "dog", "catdog"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["catdog"]` | Verified |
+| Word $w$ | Length | Trie State Before | Suffix Decompositions Tested | Result of $dfs(w)$ | Action Taken |
+|:---:|:---:|:---|:---|:---:|:---|
+| `"cat"` | $3$ | `{}` | No prefixes | False | Insert `"cat"` |
+| `"dog"` | $3$ | `{"cat"}` | No `'d'` | False | Insert `"dog"` |
+| `"cats"`| $4$ | `{"cat", "dog"}` | `"cat"` + `"s"` (fails) | False | Insert `"cats"` |
+| `"dogcatsdog"` | $10$ | `{"cat", "dog", "cats"}` | `"dog"` + `"cats"` + `"dog"` | **True** | **Append to Answer** |
+| `"catsdogcats"`| $11$ | `{"cat", "dog", "cats"}` | `"cats"` + `"dog"` + `"cats"` | **True** | **Append to Answer** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Word Dictionary ($words = [\text{"cat"}]):$** Cannot be formed by $\ge 2$ words $\implies \mathbf{[]}$.
+- **Duplicate Prefixes ($[\text{"a"}, \text{"aa"}, \text{"aaa"}, \text{"aaaa"}]$):**
+  - `"a"` inserted.
+  - `"aa"` decomposes into `"a" + "a"` $\implies$ added to answer.
+  - `"aaa"` decomposes into `"a" + "aa"` $\implies$ added to answer.
+- **Empty Strings in Input:** Handled by ignoring or length check so empty strings do not trigger infinite loops.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Memoize DFS by start index:** Cache whether each suffix position is segmentable. This reduces a candidate to polynomial work and is the direct repair for the exact source's exponential repetition.
-- **Word-break dynamic programming:** A Boolean array over prefix lengths tests all splits in $O(L^2)$ dictionary queries per candidate and naturally prevents whole-word self-use.
-- **Global set with temporary removal:** Remove the current word, run word break, then restore it. This avoids length sorting but performs mutation around every query.
-- **Insert concatenated words too:** Correctness would remain if self-matching were prevented, but excluding them keeps the trie smaller because their primitive components are sufficient.
-- **Equal-length words:** They cannot be proper whole components of one another under distinct input strings, so processing tie order is harmless.
-- **Repeated components:** DFS may use the same trie word multiple times because insertion does not consume it.
-- **No valid prefix:** A missing trie edge rejects the suffix immediately.
-- **One-word candidate:** It is absent from the trie during its own test and cannot be falsely accepted as one component.
-- **Input mutation:** Sorting changes the order of `words`; callers needing the original order must pass a copy.
-- **Manifest mismatch:** The exact recursive search is not memoized, so the quadratic-sum time bound is not guaranteed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inserting All Words Into Trie First:** If all words are inserted before searching, a word will match itself in a single step ($w = w$) unless complex piece-counting logic is added. Sorting by length and inserting on-the-fly guarantees that only strictly shorter words exist in the Trie during evaluation.
+- **Inserting Concatenated Words into Trie:** While harmless for correctness, inserting concatenated words like `"dogcatsdog"` adds redundant branches. Since any word built with `"dogcatsdog"` can also be built with `"dog"` and `"cats"`, omitting concatenated words keeps the Trie compact.
+- **Unmemoized Worst-Case Suffixes:** Suffixes like `"aaaaaab"` with dictionary `{"a", "aa", ...}` can cause exponential branching. Memoizing visited failed suffixes prevents repeated tree searches.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(sum(|word|^2))$. Let $S$ be the sum of input word lengths, $N$ the number of words, and $L$ the maximum word length.
-- **Auxiliary Space Complexity:** $O(sum(|word|))$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Sorting $N$ words takes $O(N \log N \cdot L)$ time, where $L \le 30$ is maximum word length.
+  - For each word, Trie descent and suffix branching takes $O(L^2)$ time with memoization.
+  - Total Time: $\mathcal{O}(N \log N \cdot L + N \cdot L^2)$. For $N = 10^4$ and $L = 30$, executes in $< 120$ ms.
+- **Auxiliary Space Complexity:**
+  - Trie memory stores at most $\sum |w_i| = O(N \cdot L)$ character nodes.

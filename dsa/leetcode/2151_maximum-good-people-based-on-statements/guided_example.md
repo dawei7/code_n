@@ -1,126 +1,199 @@
 # Guided Example: Maximum Good People Based on Statements
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the exhaustive bitmask consistency validation algorithm on a representative problem instance, demonstrating how treating truth-telling as a one-way implication model enables complete state space pruning.
 
-- **Input:** `{"statements": [[2, 1, 2], [1, 2, 2], [2, 0, 2]]}`
-- **Required output:** `2`
+- **Input:** `statements = [[2, 1, 2], [1, 2, 2], [2, 0, 2]]`
+- **Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There are two types of persons:
-
-The objective is to compute `2` from `{"statements": [[2, 1, 2], [1, 2, 2], [2, 0, 2]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates binary state encoding, truth-teller assertion verification, contradiction short-circuiting, and popcount maximization.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A group of $n$ people contains two types of individuals:
+- **Good people:** Always tell the truth. Every statement made by a good person must be factually accurate under the chosen classification.
+- **Bad people:** May tell the truth or lie. Their statements are completely unconstrained and carry no predictive validity.
 
-| State Parameter | Role & Purpose | Initial State |
+We are given an $n \times n$ matrix `statements`, where `statements[i][j]` records person $i$'s assertion regarding person $j$:
+- `0`: Person $i$ claims person $j$ is bad.
+- `1`: Person $i$ claims person $j$ is good.
+- `2`: Person $i$ makes no statement about person $j$.
+
+No person makes statements about themselves (`statements[i][i] = 2`).
+
+The goal is to find the maximum possible number of people who can be classified as good in a consistent assignment, where no good person's statement is contradicted.
+
+In our representative instance:
+- Group size: $n = 3$.
+- `statements = [[2, 1, 2], [1, 2, 2], [2, 0, 2]]`.
+  - Person 0 states: Person 1 is good (`statements[0][1] = 1`).
+  - Person 1 states: Person 0 is good (`statements[1][0] = 1`).
+  - Person 2 states: Person 1 is bad (`statements[2][1] = 0`).
+
+We must determine the largest subset of individuals who can simultaneously be good without logical conflict.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Unilateral Implication Model
+
+Let $T_i \in \{0, 1\}$ denote the assigned type of person $i$:
+$$T_i = \begin{cases} 1 & \text{person } i \text{ is good} \\ 0 & \text{person } i \text{ is bad} \end{cases}$$
+
+The problem semantics follow standard propositional implication:
+$$T_i = 1 \implies \Big(\forall j: \text{statements}[i][j] \ne 2 \implies T_j = \text{statements}[i][j]\Big)$$
+
+Notice the asymmetry:
+- If $T_i = 1$, any mismatch ($T_j \ne \text{statements}[i][j]$) renders the configuration **invalid**.
+- If $T_i = 0$, the implication $0 \implies \dots$ is vacuously true. The assertions made by bad individuals are ignored.
+
+### Bitmask Space Enumeration
+
+Because $n \le 15$, the entire universe of possible assignments contains:
+$$2^n \le 2^{15} = 32768 \text{ states}$$
+
+Each configuration can be represented as an integer bitmask $M \in [0, 2^n - 1]$, where bit $i$ of $M$ represents $T_i$:
+$$T_i = (M \gg i) \ \& \ 1$$
+
+For each mask $M$:
+1. Check whether all active good persons ($T_i = 1$) make statements consistent with $M$.
+2. If consistent, calculate the number of good people via Hamming weight (population count):
+$$\text{count}(M) = \sum_{i=0}^{n-1} T_i$$
+3. Maintain the global maximum over all consistent masks:
+$$\text{MaxGood} = \max_{M \text{ is valid}} \text{popcount}(M)$$
+
+| Concept / Variable | Formal Encoding | Role in Algorithmic Execution |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Encode an assignment as a mask
-
-For a mask `mask`, bit `i` is one when person `i` is assumed good and zero when assumed bad. The expression `mask >> i & 1` extracts that bit.
-
-The outer generator tests masks from `1` through `(1 << n) - 1`. These are all non-empty candidate good sets. The all-bad mask is omitted, but its good-person count would be zero. Every invalid mask also returns zero from `check`, so omitting the all-bad assignment cannot increase or decrease the maximum numeric answer.
-
-Since $n \ge 2$, the range of non-empty masks itself is not empty.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"statements": [[2, 1, 2], [1, 2, 2], [2, 0, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Assignment Mask $M$ | Integer in $[0, 2^n - 1]$ | Encodes candidate binary partition of good/bad individuals |
+| Type Extraction $T_i$ | $(M \gg i) \ \& \ 1$ | Tests if person $i$ is hypothesized to be good |
+| Statement Compatibility | $\text{statements}[i][j] == T_j$ | Required for all good persons $i$ whenever statement is not $2$ |
+| Contradiction Condition | $T_i = 1 \land \text{statements}[i][j] \ne 2 \land \text{statements}[i][j] \ne T_j$ | Immediately disqualifies mask $M$ |
+| Objective Function | $\max \text{popcount}(M)$ | Identifies largest valid truth-telling coalition |
 
 ---
 
-### Step 2: Ignore statements from assumed bad people
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The helper loops through people `i` and their statement row. It enters the inner validation loop only when `mask >> i & 1` is one.
+We trace candidate bitmasks for $n = 3$, evaluating from highest population count downward.
 
-This is not an optimization that weakens the rules. It exactly reflects the definition: a bad person might make either a true or false statement, so no observation from that row can contradict an assignment. Requiring bad people to lie would be incorrect.
+```
+People: {0, 1, 2}
+statements:
+[0]: calls 1 good
+[1]: calls 0 good
+[2]: calls 1 bad
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Mask 111 (count 3): Person 2 is good, says 1 is bad. But 1 is good => CONTRADICTION
+Mask 110 (count 2): People 0, 1 good; 2 bad.
+  - 0 says 1 is good => True
+  - 1 says 0 is good => True
+  - 2's statement ignored
+  => VALID!
+```
 
----
+### Step 1: Evaluate Mask $M = 7$ (`111` in binary)
+- Candidate assignment: $T_0 = 1, T_1 = 1, T_2 = 1$.
+- Popcount: $3$.
+- Verify assertions of good individuals:
+  - Person 0 ($T_0 = 1$): `statements[0][1] = 1`, matches $T_1 = 1$. (Valid)
+  - Person 1 ($T_1 = 1$): `statements[1][0] = 1`, matches $T_0 = 1$. (Valid)
+  - Person 2 ($T_2 = 1$): `statements[2][1] = 0`, but $T_1 = 1$! (Contradiction!)
+- Conclusion: Person 2 claims Person 1 is bad, but Person 1 is good. Mask `111` is invalid.
 
-### Step 3: Validate every informative statement from a good person
+### Step 2: Evaluate Mask $M = 6$ (`110` in binary)
+- Bit mapping: bit 0 is $0$, bit 1 is $1$, bit 2 is $1$ (People 1 and 2 good; 0 bad).
+- Candidate assignment: $T_0 = 0, T_1 = 1, T_2 = 1$.
+- Popcount: $2$.
+- Verify assertions:
+  - Person 1 ($T_1 = 1$): `statements[1][0] = 1`, but $T_0 = 0$! (Contradiction!)
+- Conclusion: Person 1 claims Person 0 is good, but Person 0 is bad. Mask `110` is invalid.
 
-For each entry `x = statements[i][j]`:
+### Step 3: Evaluate Mask $M = 5$ (`101` in binary)
+- Candidate assignment: $T_0 = 1, T_1 = 0, T_2 = 1$ (People 0 and 2 good; 1 bad).
+- Popcount: $2$.
+- Verify assertions:
+  - Person 0 ($T_0 = 1$): `statements[0][1] = 1`, but $T_1 = 0$! (Contradiction!)
+- Conclusion: Person 0 claims Person 1 is good, but Person 1 is bad. Mask `101` is invalid.
 
-- `x == 0` says person `j` is bad;
-- `x == 1` says person `j` is good;
-- `x == 2` gives no information.
+### Step 4: Evaluate Mask $M = 3$ (`011` in binary)
+- Note: Bit 0 is $1$, bit 1 is $1$, bit 2 is $0$.
+- Candidate assignment: $T_0 = 1, T_1 = 1, T_2 = 0$ (People 0 and 1 good; Person 2 bad).
+- Popcount: $2$.
+- Verify assertions:
+  - Person 0 ($T_0 = 1$):
+    - `statements[0][1] = 1`: matches $T_1 = 1$. (Valid)
+    - `statements[0][2] = 2`: no statement. (Valid)
+  - Person 1 ($T_1 = 1$):
+    - `statements[1][0] = 1`: matches $T_0 = 1$. (Valid)
+    - `statements[1][2] = 2`: no statement. (Valid)
+  - Person 2 ($T_2 = 0$): Person 2 is bad. Statements ignored!
+- Conclusion: No statement made by any good person is contradicted. Mask `011` is **valid**.
+- Active maximum: $\max(0, 2) = 2$.
 
-The condition `x < 2` selects only actual claims. For such a claim, `mask >> j & 1` is the assumed status of person `j`. If it differs from `x`, a person assumed good has made a false statement, so the entire mask is impossible and `check` returns zero immediately.
-
-Statements with value two are skipped. The diagonal is always two, but the same logic safely handles every no-statement entry.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"statements": [[2, 1, 2], [1, 2, 2], [2, 0, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Backtracking with propagation:** Assign people one by one and propagate statements from those declared good. Contradiction pruning can reduce practical work but requires more mutable state.
-- **Precompute row masks:** Encode each person’s good and bad claims into bitsets, then validate a candidate with bitwise operations. This can improve constants while keeping exponential subset enumeration.
-- **Assume bad people always lie:** This is wrong; bad people may tell the truth or lie, so their rows must be ignored rather than inverted.
-- **All-good mask:** It is valid only if every explicit statement made by every person labels everyone consistently with good status.
-- **All-bad assignment:** It is always logically possible because no truth constraints remain. The code omits mask zero, but invalid non-empty checks return zero, so the maximum still correctly can be zero.
-- **One assumed-good person:** Only that person’s row constrains the assignment; every assumed-bad row is irrelevant.
-- **No-statement value two:** It must never be compared with a status bit. The `x < 2` guard excludes it.
-- **Self entries:** They are guaranteed to be two, so no person constrains their own status directly.
-- **Mutually supportive people:** If two assumed-good people call each other good, those claims are consistent when both bits are one.
-- **Contradictory good rows:** If two assumed-good people give opposite statuses for the same person, at least one comparison fails and rejects the mask.
-- **Bad truthful statement:** It has no effect, exactly as allowed by “might tell the truth.”
-- **Bad false statement:** It likewise has no effect.
-- **Early return value zero:** Zero serves both invalid-mask signaling and the size of the omitted all-bad assignment; only the maximum count is needed, so this ambiguity is harmless.
-- **Generator memory:** `max(check(i) for i in ...)` streams results rather than allocating an exponential list.
-- **Input preservation:** Validation reads the statement matrix and never changes it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 5: Remaining Subsets
+- Any remaining mask has $\text{popcount} \le 1$.
+- Since an assignment with $2$ good people is already proven consistent, no smaller subset can exceed $2$.
+- Maximum good people achievable: $2$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(2^n n^2)$. There are $2^n-1$ tested masks. In the worst case, `check` inspects all $n$ rows and all $n$ entries in each good row, so one mask costs $O(n^2)$. Total worst-case time is $O(2^n n^2)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The table below catalogs all $8$ potential assignments for the group:
+
+| Mask $M$ | Binary $[T_2, T_1, T_0]$ | Good Subset | Popcount | Evaluated Statements | First Contradiction Detected | Validity Status |
+|---|---|---|---|---|---|---|
+| $7$ | `111` | $\{0, 1, 2\}$ | $3$ | Person 2: $1$ is bad | Conflict with $T_1 = 1$ | Invalid |
+| $6$ | `110` | $\{1, 2\}$ | $2$ | Person 1: $0$ is good | Conflict with $T_0 = 0$ | Invalid |
+| $5$ | `101` | $\{0, 2\}$ | $2$ | Person 0: $1$ is good | Conflict with $T_1 = 0$ | Invalid |
+| $4$ | `100` | $\{2\}$ | $1$ | Person 2: $1$ is bad | Matches $T_1 = 0$ | **Valid** |
+| $3$ | `011` | $\{0, 1\}$ | $2$ | Person 0: $1$ good<br>Person 1: $0$ good | None (Matches $T_1=1, T_0=1$) | **Valid (Optimum)** |
+| $2$ | `010` | $\{1\}$ | $1$ | Person 1: $0$ is good | Conflict with $T_0 = 0$ | Invalid |
+| $1$ | `001` | $\{0\}$ | $1$ | Person 0: $1$ is good | Conflict with $T_1 = 0$ | Invalid |
+| $0$ | `000` | $\emptyset$ | $0$ | None (no good people) | None | **Valid** |
+
+Global maximum count of good people: $2$ (achieved by subset $\{0, 1\}$).
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness
+A mask $M$ is declared valid only if every pair $(i, j)$ where $T_i = 1$ and $\text{statements}[i][j] \ne 2$ satisfies $\text{statements}[i][j] == T_j$. This guarantees that under this assignment, no truth-telling person has uttered a false claim.
+
+### Completeness
+The loop over $M \in [0, 2^n - 1]$ iterates over every possible subset of $\{0, 1, \dots, n - 1\}$. Because every conceivable truth-value assignment is explicitly tested, the global maximum over valid configurations cannot miss any valid state.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Mutual Accusation:** `statements = [[2, 0], [0, 2]]`. Two people each call the other bad. Mask `11` fails because good person 0 says 1 is bad, contradicting $T_1 = 1$. Masks `10` and `01` both succeed with count $1$.
+2. **All Neutral Statements:** If all non-diagonal entries are `2`, no person makes any statements. The mask $M = 2^n - 1$ (everyone good) has zero constraints to violate, returning $n$.
+3. **No Good People Possible:** If every individual makes statements that force global circular contradictions, the empty mask $M = 0$ (all bad) remains valid, returning $0$.
+4. **Disjoint Components:** If individuals form disconnected statement clusters, each cluster resolves independently; bitmask search naturally finds the optimal product of choices across components.
+
+### Common Anti-Patterns
+- **Evaluating Statements from Bad People:** Checking if a bad person's statement is false is incorrect. Bad people *may* tell the truth or lie. Imposing constraints on bad individuals falsely prunes valid assignments.
+- **2-SAT Misapplication:** 2-SAT requires symmetric implications ($A \implies B \iff \neg B \implies \neg A$). Here, if person $i$ is bad, person $i$'s statements provide no implication about other people, making the logical relation asymmetric and NP-complete on general graphs.
+- **Greedy Selection:** Picking people with the fewest accusations fails because cascading mutual endorsements can validate large clusters that initially look conflicting.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- There are $2^n$ candidate bitmasks.
+- For each mask:
+  - Checking consistency requires testing all pairs $(i, j)$ where $T_i = 1$.
+  - There are at most $n$ good people, each making up to $n$ statement checks, taking $O(n^2)$ operations in the worst case (or $O(n)$ using bitwise word operations).
+- Total time complexity is $O(2^n \cdot n^2)$.
+- For $n \le 15$, $2^{15} \times 15^2 = 32768 \times 225 \approx 7.3 \times 10^6$ basic operations, which executes in under $30$ milliseconds.
+
+### Auxiliary Space Complexity
+- Bitmask enumeration requires only scalar integer loop variables.
+- No dynamic memory allocation or recursive call frames are needed.
+- Total auxiliary space complexity is $O(1)$.

@@ -1,118 +1,154 @@
 # Guided Example: Word Search
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D grid DFS backtracking and in-place state rollback on a representative grid:
 
-- **Input:** `{"board": [["Z"]], "word": "Z"}`
-- **Required output:** `true`
+- **Input:**
+  $$\text{board} = \begin{pmatrix} \text{'A'} & \text{'B'} & \text{'C'} & \text{'E'} \\ \text{'S'} & \text{'F'} & \text{'C'} & \text{'S'} \\ \text{'A'} & \text{'D'} & \text{'E'} & \text{'E'} \end{pmatrix}, \quad \text{word} = \text{"ABCCED"}$$
+- **Required output:** $\text{True}$
+- **Cell Reuse Disqualification:** $\text{word} = \text{"ABCB"} \implies \text{False}$ (cell $(0, 1)$ cannot be reused).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates four-directional recursive exploration, in-place visited marking without extra memory (`board[r][c] = '#'`), state rollback upon backtracking, and search pruning via character frequency checks.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` grid of characters `board` and a string `word`, return `true` *if* `word` *exists in the grid*.
+Given an $M \times N$ board of characters ($M = 3, N = 4$) and a string $\text{word} = \text{"ABCCED"}$, return `True` if the word exists in the grid.
+The word can be constructed from letters of sequentially adjacent cells (horizontally or vertically neighboring). The same letter cell may not be used more than once in a path.
 
-The objective is to compute `true` from `{"board": [["Z"]], "word": "Z"}` while avoiding redundant calculations and unnecessary overhead.
+On the board:
+$$
+\begin{pmatrix}
+\mathbf{A} & \mathbf{B} & \mathbf{C} & \text{E} \\
+\text{S} & \text{F} & \mathbf{C} & \text{S} \\
+\text{A} & \mathbf{D} & \mathbf{E} & \text{E}
+\end{pmatrix}
+$$
+The search discovers the path:
+$$
+(0, 0)\text{['A']} \longrightarrow (0, 1)\text{['B']} \longrightarrow (0, 2)\text{['C']} \longrightarrow (1, 2)\text{['C']} \longrightarrow (2, 2)\text{['E']} \longrightarrow (2, 1)\text{['D']}
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive search that copies a visited boolean matrix at each step wastes $O(M \cdot N)$ memory per recursive frame.
+By mutating `board[r][c] = '#'` upon entry and restoring its original character upon exit, DFS backtracking runs in strictly $O(1)$ auxiliary space beyond the recursion stack.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### DFS Backtracking Protocol
+We define $\text{dfs}(r, c, k)$ where $(r, c)$ is the current cell and $k$ is the index of the letter being matched in $\text{word}$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Boundary & Mismatch Check:**
+   If $r < 0$ or $r \ge M$ or $c < 0$ or $c \ge N$ or $\text{board}[r][c] \ne \text{word}[k]$:
+   - Return $\text{False}$.
+2. **Success Base Case:**
+   If $k == |\text{word}| - 1$:
+   - Return $\text{True}$ (final character matched).
+3. **Visited Marking (In-Place):**
+   Save original character: `temp = board[r][c]`.
+   Mark cell as occupied: `board[r][c] = '#'`.
+4. **4-Directional Search:**
+   Explore neighbors $(r+1, c), (r-1, c), (r, c+1), (r, c-1)$:
+   $$
+   \text{found} = \text{dfs}(r+1, c, k+1) \lor \text{dfs}(r-1, c, k+1) \lor \text{dfs}(r, c+1, k+1) \lor \text{dfs}(r, c-1, k+1)
+   $$
+5. **Backtracking State Rollback:**
+   Restore cell: `board[r][c] = temp`.
+   Return $\text{found}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At depth $k$, exactly $k$ board cells are temporarily marked as `'#'`, representing the active non-reusable prefix path matching $\text{word}[0 \dots k-1]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Try every cell as the beginning of the path
+We trace the matching of $\text{"ABCCED"}$:
 
-The first character of `word` can occur anywhere on the board. The final expression calls `dfs(i, j, 0)` for cells in row-major order and lets `any` stop at the first successful start. A failed start does not rule out another occurrence of the same first character, because its surrounding letters may be different.
-
-Inside `dfs(i, j, k)`, the current cell is intended to match `word[k]`. If it does not, the path fails immediately. If it does, the search must choose a horizontally or vertically adjacent unused cell for the next character.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["Z"]], "word": "Z"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Start Cell Discovery
+- Scan cells until finding $\text{word}[0] = \text{'A'}$.
+- Cell $(0, 0)$ is `'A'`. Initiate $\text{dfs}(0, 0, k=0)$.
 
 ---
 
-### Step 2: Handle the final character before marking or moving
+### Recursive Path Walk
+- **Depth $k = 0$, Cell $(0, 0)$ (`'A'`):**
+  - Matches $\text{word}[0] = \text{'A'}$.
+  - Mark `board[0][0] = '#'`.
+  - Probe neighbors:
+    - Down $(1, 0)$ is `'S'` $\ne \text{'B'}$ (Mismatch).
+    - Right $(0, 1)$ is `'B'`. Matches $\text{word}[1]$! Recurse.
+- **Depth $k = 1$, Cell $(0, 1)$ (`'B'`):**
+  - Matches $\text{word}[1] = \text{'B'}$.
+  - Mark `board[0][1] = '#'`.
+  - Probe neighbors:
+    - Left $(0, 0)$ is `'#'` (Already visited).
+    - Down $(1, 1)$ is `'F'` $\ne \text{'C'}$.
+    - Right $(0, 2)$ is `'C'`. Matches $\text{word}[2]$! Recurse.
+- **Depth $k = 2$, Cell $(0, 2)$ (`'C'`):**
+  - Matches $\text{word}[2] = \text{'C'}$.
+  - Mark `board[0][2] = '#'`.
+  - Probe neighbors:
+    - Left $(0, 1)$ is `'#'`.
+    - Right $(0, 3)$ is `'E'` $\ne \text{'C'}$.
+    - Down $(1, 2)$ is `'C'`. Matches $\text{word}[3]$! Recurse.
+- **Depth $k = 3$, Cell $(1, 2)$ (`'C'`):**
+  - Matches $\text{word}[3] = \text{'C'}$.
+  - Mark `board[1][2] = '#'`.
+  - Probe neighbors:
+    - Up $(0, 2)$ is `'#'`.
+    - Left $(1, 1)$ is `'F'` $\ne \text{'E'}$.
+    - Right $(1, 3)$ is `'S'` $\ne \text{'E'}$.
+    - Down $(2, 2)$ is `'E'`. Matches $\text{word}[4]$! Recurse.
+- **Depth $k = 4$, Cell $(2, 2)$ (`'E'`):**
+  - Matches $\text{word}[4] = \text{'E'}$.
+  - Mark `board[2][2] = '#'`.
+  - Probe neighbors:
+    - Up $(1, 2)$ is `'#'`.
+    - Right $(2, 3)$ is `'E'` $\ne \text{'D'}$.
+    - Left $(2, 1)$ is `'D'`. Matches $\text{word}[5]$! Recurse.
+- **Depth $k = 5$, Cell $(2, 1)$ (`'D'`):**
+  - Matches $\text{word}[5] = \text{'D'}$.
+  - Base check: $k = 5 == |\text{word}| - 1$.
+  - **Terminal Success!** Return $\text{True}$.
 
-When `k == len(word) - 1`, every earlier character has already been matched along a legal path. The current call needs only to compare `board[i][j]` with the last required character. A successful equality completes the word; there is no reason to mark the final cell or make another recursive move.
-
-This base case appears before the general mismatch check but performs its own equality. Since `word` is nonempty, index `len(word) - 1` is valid. It also makes a one-character word a direct collection of board-cell comparisons.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Use the board itself as the visited set
-
-After a nonfinal character matches, the source saves it in `c` and writes the sentinel string `"0"` into that board cell. The input contract allows only uppercase and lowercase English letters, so `"0"` cannot be a legitimate board value. A later neighbor check requiring `board[x][y] != "0"` therefore prevents the current path from using that cell again.
-
-This is path-local marking rather than permanent global visitation. A cell that is inappropriate for one attempted path may be needed in another path. After every unsuccessful exploration from the cell, the source restores `board[i][j] = c`, giving sibling branches and later starting cells the original board.
-
-The saved character is also the exact value needed for restoration; it is not inferred from `word`, even though they match at that moment.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+The success propagates up through the call stack, restoring marked cells and returning $\text{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["Z"]], "word": "Z"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Recursion Depth $k$ | Target Letter $\text{word}[k]$ | Candidate Cell $(r, c)$ | Cell Value | Action Taken | Board In-Place Mark |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | `'A'` | $(0, 0)$ | `'A'` | Match. Branch right to $(0, 1)$ | `board[0][0] = '#'` |
+| 1 | `'B'` | $(0, 1)$ | `'B'` | Match. Branch right to $(0, 2)$ | `board[0][1] = '#'` |
+| 2 | `'C'` | $(0, 2)$ | `'C'` | Match. Branch down to $(1, 2)$ | `board[0][2] = '#'` |
+| 3 | `'C'` | $(1, 2)$ | `'C'` | Match. Branch down to $(2, 2)$ | `board[1][2] = '#'` |
+| 4 | `'E'` | $(2, 2)$ | `'E'` | Match. Branch left to $(2, 1)$ | `board[2][2] = '#'` |
+| 5 | `'D'` | $(2, 1)$ | `'D'` | **Match. Final Letter!** | **Return True** |
+
+### Rejected Instance: $\text{word} = \text{"ABCB"}$
+From $(0, 2)$ (`'C'`), searching for second `'B'` finds $(0, 1)$ containing `'#'` (already on active path). All other neighbors fail $\implies$ returns $\text{False}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Marking the current cell with `'#'` prevents any descendant call from revisiting the same cell in the active path, strictly enforcing the rule that each grid cell can be used at most once per path. Restoring the character upon backtrack ensures uncommitted paths leave the board unmodified for future exploration.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Testing all cells as potential starts and exploring all four cardinal directions from matching prefixes guarantees that if any valid sequence of adjacent cells spells out $\text{word}$, DFS will encounter it.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Restore before returning success:** Save a Boolean from child exploration, restore `board[i][j]`, then return it. This preserves the board on every path.
-- **Explicit visited set or matrix:** Avoid mutating the board, at the cost of up to $O(mn)$ additional storage.
-- **Import requirement:** Add `from itertools import pairwise`, or replace it with a literal four-direction tuple.
-- **Character-frequency precheck:** If `word` requires more copies of a letter than the board contains, return false before backtracking.
-- **Reverse the word:** Starting from its rarer endpoint can reduce branching while preserving existence.
-- **One-character word:** Direct base-case comparisons find it without marking or direction generation.
-- **Word longer than the number of cells:** No non-reusing path can exist; the source discovers this through search rather than an explicit precheck.
-- **Repeated board letters:** They may cause the exponential worst case because character comparisons prune less.
-- **Marker safety:** `"0"` is outside the promised alphabet and cannot collide with a valid cell.
-- **Orthogonal-only movement:** The four offsets deliberately exclude diagonals.
-- **No cell reuse:** All earlier cells on the current path carry the sentinel.
-- **Failed search:** Every mark is restored, so the board remains unchanged when all branches fail.
-- **Successful search:** The exact source leaves nonfinal successful-path cells marked, an important observable caveat.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Cell Re-use Prevention:** Failing to mark visited cells allows loops (e.g. bouncing back and forth between `'A'` and `'B'` to match `"ABABAB"` on a board with only one `'A'` and one `'B'`).
+- **Pruning by Character Frequency:** If the frequency of any character in `word` exceeds its total occurrences on `board`, return `False` immediately without running any DFS.
+- **Start Search from Rarer End:** If `word[0]` occurs 50 times on the board but `word[-1]` occurs only once, reversing `word` before searching dramatically reduces the branching factor.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn\cdot3^L)$. Let $m$ and $n$ be board dimensions and $L$ the word length. There are $mn$ potential starts. The first matched cell has at most four moves and later levels at most three forward choices, giving intended worst-case time $O(mn\cdot3^L)$ after absorbing constants. This matches the manifest.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N \cdot 3^L)$, where $M \times N$ is the grid size and $L = |\text{word}|$. From each cell, we explore at most 3 directions (since the parent cell is blocked by `'#'`).
+- **Auxiliary Space Complexity:** $O(L)$ to store the recursion call stack up to depth $L$. No extra 2D arrays are created.

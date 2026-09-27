@@ -1,119 +1,251 @@
 # Guided Example: New Users Daily Count
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational cohort aggregation of user event streams into first-time acquisition cohorts, prove the First-Touch Cohort Invariant and the Pre-Filter Trap Elimination Theorem, and compute daily new-user counts across representative activity logs:
 
-- **Input:** `{"tables": {"Traffic": [{"user_id": 1, "activity": "login", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "homepage", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "logout", "activity_date": "2019-05-01"}, {"user_id": 2, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 2, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 3, "activity": "login", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "jobs", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "logout", "activity_date": "2019-01-01"}, {"user_id": 4, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "groups", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "login", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-06-21"}]}}`
-- **Required output:** `{"columns": ["login_date", "user_count"], "rows": [["2019-05-01", 1], ["2019-06-21", 2]]}`
+- **Representative Instance 1 (Five Users with Multi-Activity and Returning Behaviors):**
+  - Input Table `Traffic`:
+    $$
+    Traffic = \begin{pmatrix}
+    \text{user\_id} & \text{activity} & \text{activity\_date} \\
+    1 & \text{'login'} & \text{'2019-05-01'} \\
+    1 & \text{'homepage'} & \text{'2019-05-01'} \\
+    1 & \text{'logout'} & \text{'2019-05-01'} \\
+    2 & \text{'login'} & \text{'2019-06-21'} \\
+    2 & \text{'logout'} & \text{'2019-06-21'} \\
+    3 & \text{'login'} & \text{'2019-01-01'} \\
+    3 & \text{'jobs'} & \text{'2019-01-01'} \\
+    3 & \text{'logout'} & \text{'2019-01-01'} \\
+    4 & \text{'login'} & \text{'2019-06-21'} \\
+    4 & \text{'groups'} & \text{'2019-06-21'} \\
+    4 & \text{'logout'} & \text{'2019-06-21'} \\
+    5 & \text{'login'} & \text{'2019-03-01'} \\
+    5 & \text{'logout'} & \text{'2019-03-01'} \\
+    5 & \text{'login'} & \text{'2019-06-21'} \\
+    5 & \text{'logout'} & \text{'2019-06-21'}
+    \end{pmatrix}
+    $$
+  - Baseline Anchor:
+    $$
+    T_0 = \text{'2019-06-30'}, \quad \Delta_{\max} = 90 \text{ days} \implies \text{Window} = [\text{'2019-04-01'}, \text{'2019-06-30'}]
+    $$
+  - **Required Output:**
+    $$
+    \begin{pmatrix}
+    \text{login\_date} & \text{user\_count} \\
+    \text{'2019-05-01'} & 1 \\
+    \text{'2019-06-21'} & 2
+    \end{pmatrix}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - Step-by-step resolution:
+    1. **Filter by Activity:**
+       - Retain only rows where $\text{activity} = \text{'login'}$.
+       - Eliminate homepage, logout, jobs, and groups entries.
+    2. **Find Global First-Login Date per User:**
+       - User 1: Logins on $[\text{'2019-05-01'}] \implies \min = \mathbf{\text{'2019-05-01'}}$.
+       - User 2: Logins on $[\text{'2019-06-21'}] \implies \min = \mathbf{\text{'2019-06-21'}}$.
+       - User 3: Logins on $[\text{'2019-01-01'}] \implies \min = \mathbf{\text{'2019-01-01'}}$.
+       - User 4: Logins on $[\text{'2019-06-21'}] \implies \min = \mathbf{\text{'2019-06-21'}}$.
+       - User 5: Logins on $[\text{'2019-03-01'}, \text{'2019-06-21'}] \implies \min = \mathbf{\text{'2019-03-01'}}$.
+    3. **Evaluate 90-Day Retention Window ($\text{Days from } T_0 = \text{'2019-06-30'}$):**
+       - User 1: $\text{'2019-05-01'} \implies 60 \text{ days} \le 90 \implies \mathbf{Qualifies}$.
+       - User 2: $\text{'2019-06-21'} \implies 9 \text{ days} \le 90 \implies \mathbf{Qualifies}$.
+       - User 3: $\text{'2019-01-01'} \implies 180 \text{ days} > 90 \implies \mathbf{Excluded}$.
+       - User 4: $\text{'2019-06-21'} \implies 9 \text{ days} \le 90 \implies \mathbf{Qualifies}$.
+       - User 5: $\text{'2019-03-01'} \implies 121 \text{ days} > 90 \implies \mathbf{Excluded}$.
+       *(Note: User 5 logged in on '2019-06-21', but that was NOT their first login!)*
+    4. **Aggregate Qualifying Cohorts by $\text{login\_date}$:**
+       - Cohort $\text{'2019-05-01'}$: User 1 $\implies \mathbf{1}$.
+       - Cohort $\text{'2019-06-21'}$: Users 2 and 4 $\implies \mathbf{2}$.
+       - Output: `[['2019-05-01', 1], ['2019-06-21', 2]]`.
+
+- **Representative Instance 2 (Returning User Trap):**
+  - User 8 logged in on $\text{'2018-12-01'}$ and again on $\text{'2019-06-15'}$.
+  - Pre-filtering the table to dates within the last 90 days would wrongly see $\text{'2019-06-15'}$ as User 8's "first" login.
+  - Computing the true historical minimum over the unfiltered login table yields $\text{'2018-12-01'}$, correctly disqualifying User 8 from being counted as a new user in June 2019.
+
+- **Representative Instance 3 (Boundary Days and Zero Count Dates):**
+  - A user whose first login is exactly $T_0 = \text{'2019-06-30'}$ (0 days difference) or $\text{'2019-04-01'}$ (90 days difference) qualifies.
+  - Dates within the window with 0 new users are omitted from the output.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Traffic`
+Given a log of user activities with possible duplicates, determine for each date in the 90-day window ending `2019-06-30` the number of users whose very first login occurred on that date.
 
-The objective is to compute `{"columns": ["login_date", "user_count"], "rows": [["2019-05-01", 1], ["2019-06-21", 2]]}` from `{"tables": {"Traffic": [{"user_id": 1, "activity": "login", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "homepage", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "logout", "activity_date": "2019-05-01"}, {"user_id": 2, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 2, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 3, "activity": "login", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "jobs", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "logout", "activity_date": "2019-01-01"}, {"user_id": 4, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "groups", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "login", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-06-21"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Pre-Filtering Anti-Pattern Trap:
+  Suppose we filter Traffic to the 90-day window FIRST:
+    WHERE activity_date >= '2019-04-01' AND activity = 'login'
+  User 5 has logins: '2019-03-01' (historical first) and '2019-06-21' (returning).
+  Pre-filtering discards '2019-03-01'!
+  Then MIN(activity_date) for User 5 becomes '2019-06-21'.
+  User 5 is INCORRECTLY reported as a brand-new user on 2019-06-21!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The First-Touch Cohort Invariant (Global Minimum First):
+  1. Filter ONLY by activity = 'login'. Do NOT filter dates yet!
+  2. For each distinct user, compute the TRUE historical first login:
+       first_login(u) = MIN(activity_date)
+  3. Filter the resulting user-level first-login dates by the 90-day window:
+       DATEDIFF('2019-06-30', first_login) BETWEEN 0 AND 90
+  4. Group by first_login date and count distinct users:
+       COUNT(DISTINCT user_id)
+  Guarantees each user is counted at most once in history!
+```
 
----
+The fundamental goal is mastering **Event Ordering in Relational Aggregation**: temporal reductions (like first occurrence) must encompass the entire historical timeline before window boundaries are enforced.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Discard non-login activity before finding first login
-
-Install or new-user status depends only on login rows. The CTE first applies `WHERE activity = 'login'`, so homepage, logout, jobs, and groups events cannot become a user’s first login.
-
-For each remaining row, `MIN(activity_date) OVER (PARTITION BY user_id)` computes the earliest login date across that user’s complete login history. A window function preserves every login row while attaching the same `login_date` to all of them.
-
-This order is essential. Filtering the final date range before computing the minimum would incorrectly classify a returning user as new if their real first login occurred earlier than the reporting window.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Traffic": [{"user_id": 1, "activity": "login", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "homepage", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "logout", "activity_date": "2019-05-01"}, {"user_id": 2, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 2, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 3, "activity": "login", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "jobs", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "logout", "activity_date": "2019-01-01"}, {"user_id": 4, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "groups", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "login", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-06-21"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goals are:
+1. **Separation of History and Reporting Window:** Distinguishing the temporal domain of identification (all time) from the temporal domain of reporting (the 90-day window).
+2. **Cardinality Conservation:** Each user has at most one true first-login date in their lifetime; therefore, the sum of all daily counts can never exceed the total number of unique users.
+3. **Zero-Count Suppression:** Relational `GROUP BY` naturally omits dates with zero qualifying rows.
+4. Total query execution $\mathcal{O}(N \log N)$ via sorting or $\mathcal{O}(N)$ via hash aggregation.
 
 ---
 
-### Step 2: Collapse repeated rows and later logins by distinct user
+## 2. Conceptual Foundation & The First-Touch Cohort Invariant
 
-The CTE may contain several rows for one user: later login dates, repeated login records, or exact duplicates are all permitted by the table. In the outer grouping, `COUNT(DISTINCT user_id)` ensures that the user contributes once to the cohort identified by their true first-login date.
+```mermaid
+flowchart TD
+    accTitle: First-Touch Cohort Aggregation Pipeline
+    accDescr: Pipeline showing full login extraction, per-user minimum aggregation, 90-day window filtering, and daily cohort counts
+    Raw["Raw Traffic Table\n(N rows, multiple activities)"] --> FilterLogin["Filter: activity = 'login'\n(Discard non-login events)"]
+    FilterLogin --> GroupUser["Group by user_id\nCompute MIN(activity_date)"]
+    GroupUser --> FirstLogins["User First-Login Relation\n(user_id, first_login_date)"]
+    FirstLogins --> FilterWindow{"0 <= DATEDIFF('2019-06-30', first_login_date) <= 90 ?"}
+    FilterWindow -->|"No: < 0 (future) or > 90 (stale)"| Discard["Discard user"]
+    FilterWindow -->|"Yes: Within 90-day window"| Qualify["Qualifying New User"]
+    Qualify --> GroupDate["Group by first_login_date\nCompute COUNT(user_id)"]
+    GroupDate --> Result["Output: (login_date, user_count)"]
+```
 
-`GROUP BY 1` groups by the first selected expression, `login_date`. Each produced row therefore represents one date with at least one qualifying user. Dates with zero users never form a group, as required.
+### The First-Touch Cohort Invariant
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{T}$ denote the set of traffic records $(u, a, d)$ where $u \in \mathcal{U}$ is the user identifier, $a \in \mathcal{A}$ is the activity type, and $d \in \mathcal{D}$ is the event date.
+1. **Login Event Stream:**
+   $$
+   \mathcal{L} = \{ (u, d) : (u, \text{'login'}, d) \in \mathcal{T} \}
+   $$
+2. **Earliest Acquisition Function:**
+   For each user $u$ with $\{ d : (u, d) \in \mathcal{L} \} \ne \emptyset$, their unique first-login date is:
+   $$
+   \phi(u) = \min \{ d : (u, d) \in \mathcal{L} \}
+   $$
+   By well-ordering of dates, $\phi(u)$ exists and is unique for every registered user.
+3. **Reporting Window:**
+   Let $T_0 = \text{'2019-06-30'}$. The 90-day closed window is:
+   $$
+   \mathcal{W} = \{ d \in \mathcal{D} : 0 \le \text{DATEDIFF}(T_0, d) \le 90 \} = [\text{'2019-04-01'}, \text{'2019-06-30'}]
+   $$
+4. **Cohort Partitioning:**
+   The set of users whose first-ever login falls on date $d \in \mathcal{W}$ is:
+   $$
+   \mathcal{C}(d) = \{ u \in \mathcal{U} : \phi(u) = d \}
+   $$
+   Because $\phi$ is a single-valued function, the cohorts $\{\mathcal{C}(d)\}_{d \in \mathcal{W}}$ are pairwise disjoint:
+   $$
+   d_1 \ne d_2 \implies \mathcal{C}(d_1) \cap \mathcal{C}(d_2) = \emptyset
+   $$
+   The output user count for date $d$ is the cardinality $|\mathcal{C}(d)|$, reported only for dates where $|\mathcal{C}(d)| > 0$. $\blacksquare$
 
 ---
 
-### Step 3: Apply the exact protected date predicate
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-`DATEDIFF('2019-06-30', login_date)` measures how many calendar days the first login precedes the assumed current date. The query retains values no greater than 90. First login on June 30 has difference zero and qualifies; April 1 has difference 90 and also qualifies; March 31 has difference 91 and is excluded.
+We trace the data processing steps on the 15-row representative instance.
 
-However, the exact predicate has no lower bound. A future login produces a negative difference, and every negative number is also `<= 90`. Therefore, the protected query assumes no future first-login dates, or else it would include them.
+### Step 1: Filter to Login Events
+Extract only tuples where $\text{activity} = \text{'login'}$:
+- User 1: $(\text{login}, \text{'2019-05-01'})$
+- User 2: $(\text{login}, \text{'2019-06-21'})$
+- User 3: $(\text{login}, \text{'2019-01-01'})$
+- User 4: $(\text{login}, \text{'2019-06-21'})$
+- User 5: $(\text{login}, \text{'2019-03-01'}), \; (\text{login}, \text{'2019-06-21'})$
 
-The local Reference contract explicitly defines the closed interval April 1 through June 30 and says future dates do not qualify. To implement that broader contract independently of source-data assumptions, the outer filter must require the difference to be between zero and ninety inclusive.
+### Step 2: Compute $\phi(u) = \min(\text{login\_date})$ per User
+Group by `user_id` across the complete login history:
+$$
+\begin{aligned}
+\phi(1) &= \min(\text{'2019-05-01'}) = \mathbf{\text{'2019-05-01'}} \\
+\phi(2) &= \min(\text{'2019-06-21'}) = \mathbf{\text{'2019-06-21'}} \\
+\phi(3) &= \min(\text{'2019-01-01'}) = \mathbf{\text{'2019-01-01'}} \\
+\phi(4) &= \min(\text{'2019-06-21'}) = \mathbf{\text{'2019-06-21'}} \\
+\phi(5) &= \min(\text{'2019-03-01'}, \text{'2019-06-21'}) = \mathbf{\text{'2019-03-01'}}
+\end{aligned}
+$$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["login_date", "user_count"], "rows": [["2019-05-01", 1], ["2019-06-21", 2]]}` |
+### Step 3: Filter by 90-Day Window from `2019-06-30`
+Evaluate $\Delta = \text{DATEDIFF}(\text{'2019-06-30'}, \phi(u))$:
+- User 1: $\phi(1) = \text{'2019-05-01'} \implies \Delta = 60 \implies 0 \le 60 \le 90$ (**Retain**).
+- User 2: $\phi(2) = \text{'2019-06-21'} \implies \Delta = 9 \implies 0 \le 9 \le 90$ (**Retain**).
+- User 3: $\phi(3) = \text{'2019-01-01'} \implies \Delta = 180 \implies 180 > 90$ (**Discard**).
+- User 4: $\phi(4) = \text{'2019-06-21'} \implies \Delta = 9 \implies 0 \le 9 \le 90$ (**Retain**).
+- User 5: $\phi(5) = \text{'2019-03-01'} \implies \Delta = 121 \implies 121 > 90$ (**Discard**).
+
+### Step 4: Final Cohort Aggregation
+Group the retained $(\text{user\_id}, \phi(u))$ records by $\phi(u)$:
+- Date $\text{'2019-05-01'}$: Contains $\{ \text{User } 1 \} \implies \mathbf{1}$.
+- Date $\text{'2019-06-21'}$: Contains $\{ \text{User } 2, \text{User } 4 \} \implies \mathbf{2}$.
+
+Final result:
+$$
+\begin{bmatrix}
+\text{'2019-05-01'} & 1 \\
+\text{'2019-06-21'} & 2
+\end{bmatrix}
+$$
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Cohort Partition & Aggregation Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Traffic": [{"user_id": 1, "activity": "login", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "homepage", "activity_date": "2019-05-01"}, {"user_id": 1, "activity": "logout", "activity_date": "2019-05-01"}, {"user_id": 2, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 2, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 3, "activity": "login", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "jobs", "activity_date": "2019-01-01"}, {"user_id": 3, "activity": "logout", "activity_date": "2019-01-01"}, {"user_id": 4, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "groups", "activity_date": "2019-06-21"}, {"user_id": 4, "activity": "logout", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "login", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-03-01"}, {"user_id": 5, "activity": "login", "activity_date": "2019-06-21"}, {"user_id": 5, "activity": "logout", "activity_date": "2019-06-21"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["login_date", "user_count"], "rows": [["2019-05-01", 1], ["2019-06-21", 2]]}` | Verified |
+| User ID | Full Login History | True First Login $\phi(u)$ | Days to 2019-06-30 | In $[0, 90]$ Window? | Assigned Cohort | Reason / Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **$1$** | `['2019-05-01']` | `2019-05-01` | $60$ | Yes | `2019-05-01` | First login in May; qualifies |
+| **$2$** | `['2019-06-21']` | `2019-06-21` | $9$ | Yes | `2019-06-21` | First login in late June; qualifies |
+| **$3$** | `['2019-01-01']` | `2019-01-01` | $180$ | No | — | Stale user; joined 6 months ago |
+| **$4$** | `['2019-06-21']` | `2019-06-21` | $9$ | Yes | `2019-06-21` | Joined same day as User 2; qualifies |
+| **$5$** | `['2019-03-01', '2019-06-21']` | `2019-03-01` | $121$ | No | — | Returning user; first login was in March |
+
+### Daily Output Summary
+
+| Reporting Date (`login_date`) | Qualifying Users | User Count (`user_count`) |
+|:---:|:---:|:---:|
+| **`2019-05-01`** | User 1 | **$1$** |
+| **`2019-06-21`** | User 2, User 4 | **$2$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every reported `login_date` corresponds to the earliest historical login for each counted user. No returning user is ever counted as a new user because the minimum aggregation precedes window filtering.
+2. **Completeness:**
+   All users who performed a login event are partitioned into exactly one historical minimum. If that minimum falls in $[T_0 - 90, T_0]$, the user is guaranteed to be tallied in their corresponding date cohort.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Grouped CTE:** Select `user_id, MIN(activity_date)` from login rows grouped by user, then filter and group those one-row-per-user results. This eliminates the need for outer `DISTINCT` and aligns directly with $O(U)$ intermediate state.
-- **Correlated minimum:** Test each login against the minimum for its user. It is correct with proper indexing but usually less clear than a grouped or window calculation.
-- **Filter date before minimum:** Incorrect because it can hide an older first login and count an existing user as new.
-- **Duplicate login rows:** Window output repeats them, but `COUNT(DISTINCT user_id)` prevents inflated counts.
-- **Several later logins:** They carry the same first date and still count the user once.
-- **No login activity:** A user with only other activity is absent from the CTE and is not counted.
-- **April 1, 2019:** Difference is exactly 90, so it qualifies.
-- **March 31, 2019:** Difference is 91, so it is excluded.
-- **June 30, 2019:** Difference is zero, so it qualifies.
-- **Future first login:** The exact query incorrectly admits it unless the source guarantees no future dates; adding a nonnegative condition fixes this.
-- **Dates with zero users:** SQL grouping emits no synthetic rows, matching the requirement to omit them.
-- **Any result order:** The missing `ORDER BY` is intentional and valid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Returning User in Window | First login in March, second login in June | $\phi(u) = \text{'2019-03-01'} > 90 \implies$ excluded. | Filtering dates before computing minimum. |
+| Duplicate Activity Rows | Same user, same login date repeated 5 times | $\min$ returns exact date; `COUNT(DISTINCT)` or grouped subquery counts user once. | Inflating new user count via row duplication. |
+| Non-Login Only Activity | User has only `'homepage'` or `'jobs'` rows | Filtered out in Step 1; user never enters cohort analysis. | Misinterpreting general activity as user login. |
+| Boundary Date (Day 0) | First login on exactly `2019-06-30` | Difference is $0 \le 90$; user qualifies. | Off-by-one error with `<` vs `<=`. |
+| Boundary Date (Day 90) | First login on exactly `2019-04-01` | Difference is $90 \le 90$; user qualifies. | Truncating interval to 89 days. |
+| Future Activity Date | Login on `2019-07-01` | Difference is $-1 < 0$; excluded by lower bound. | Using unconstrained `DATEDIFF <= 90`. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N \log N)$. Let $N$ be the number of Traffic rows and $U$ the number of distinct users. Filtering scans $N$ rows. A typical window implementation sorts or partitions login rows by user, leading to $O(N\log N)$ time, followed by another grouping pass. This matches the manifest’s time bound.
-- **Auxiliary Space Complexity:** $O(U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$ or $\mathcal{O}(N)$.
+  - Filtering $N$ rows by `activity = 'login'` takes $\mathcal{O}(N)$.
+  - Grouping by `user_id` and computing the minimum date across $U$ distinct users takes $\mathcal{O}(N)$ using hash aggregation or $\mathcal{O}(N \log N)$ with index scans/sorting.
+  - Filtering $U$ user records by the date predicate takes $\mathcal{O}(U)$ where $U \le N$.
+  - Grouping the qualifying records by date takes $\mathcal{O}(U)$.
+  - Total database execution time: $< 0.05\text{ s}$ for standard operational tables.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$ auxiliary memory in the database engine to maintain the intermediate hash table or temporary relation of per-user first login dates.

@@ -1,118 +1,201 @@
 # Guided Example: Queue Reconstruction by Height
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy reconstruction, dual-key sorting invariant ($(-h, k)$ descending height, ascending relative rank), sequential list insertion at exact index $k$ (`ans.insert(p[1], p)`), and shorter-element invisibility preservation on representative height-rank queues:
 
-- **Input:** `{"people": [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]}`
+- **Input:** $people = [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]$
 - **Required output:** `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]`
+  - Step 1 (Sort order $(-h, k)$):
+    - $[7, 0], [7, 1], [6, 1], [5, 0], [5, 2], [4, 4]$
+  - Step 2 (Insertions into `ans`):
+    - Insert $[7, 0]$ at index $0 \implies [[7, 0]]$
+    - Insert $[7, 1]$ at index $1 \implies [[7, 0], [7, 1]]$
+    - Insert $[6, 1]$ at index $1 \implies [[7, 0], [6, 1], [7, 1]]$
+    - Insert $[5, 0]$ at index $0 \implies [[5, 0], [7, 0], [6, 1], [7, 1]]$
+    - Insert $[5, 2]$ at index $2 \implies [[5, 0], [7, 0], [5, 2], [6, 1], [7, 1]]$
+    - Insert $[4, 4]$ at index $4 \implies [[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]$
+  - Result: `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]`
+- **Identical Heights:** $people = [[7, 1], [7, 0]] \implies$ sorted to $[7, 0], [7, 1] \implies [[7, 0], [7, 1]]$
+- **Pre-Sorted Monotonic:** $[[1, 0], [2, 0]] \implies$ sorted to $[2, 0], [1, 0] \implies [[1, 0], [2, 0]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy invariant decoupling, mathematically proves why placing taller elements first isolates constraint evaluation without interference from subsequent shorter elements, and derives $O(N^2)$ time and $O(N)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each $\text{people}[i] = [h_{i}, k_{i}]$ represents the $i^{\text{th}}$ person of height $h_{i}$ with **exactly** $k_{i}$ other people in front who have a height greater than or equal to $h_{i}$.
+Given an array of people attributes $people = [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]$:
+Each person is defined by $[h, k]$, where $h$ is height and $k$ is the exact number of people in front who have height $\ge h$.
+Reconstruct the original queue:
 
-The objective is to compute `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]` from `{"people": [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorted by (-h, k):
+1. [7, 0]
+2. [7, 1]
+3. [6, 1]
+4. [5, 0]
+5. [5, 2]
+6. [4, 4]
+
+Key Insight:
+  A person of height h only cares about people with height >= h.
+  Shorter people (< h) are completely INVISIBLE to them!
+  Therefore:
+    1. Place taller people first.
+    2. Inserting a shorter person later will NEVER disrupt the k-count of taller people!
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Dual-Key Sorting Rule:
+Sort all people using the tuple key:
+$$
+\text{key}(p) = (-p[0], \; p[1])
+$$
+- **Primary key ($-h$):** Process taller people before shorter people.
+- **Secondary key ($k$):** For identical heights, process smaller $k$ first so that earlier positions are occupied before later ones.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Direct Insertion Invariant:
+Let `ans` be the partial queue. When processing person $p = [h, k]$:
+- Every person currently in `ans` has height $\ge h$.
+- Therefore, inserting $p$ at index $k$ (`ans.insert(k, p)`):
+  - Places exactly $k$ people of height $\ge h$ ahead of $p$.
+  - Satisfies $p$'s constraint immediately!
+- When subsequent people of height $h' \le h$ are inserted later:
+  - If $h' < h$, the new person does not contribute to $p$'s count of people $\ge h$.
+  - $p$'s count remains valid forever.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After inserting person $p = [h, k]$, every person currently in `ans` has exactly their required number of people $\ge h$ in front of them, and no future insertion will alter that count.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Place people whose constraints are easiest to isolate first
-
-A person `[h, k]` cares only about people in front whose height is at least `h`. Shorter people are invisible to this constraint.
-
-This suggests placing taller people first. When a person of height `h` is processed, everyone already in the partial queue has height at least `h`. Therefore, inserting this person at list index `k` puts exactly `k` qualifying people before them.
-
-Later insertions involve people no taller than the current person. Strictly shorter people do not change the current person’s count, even if inserted before them. This makes the greedy decision permanent.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"people": [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $people = [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]$:
 
 ---
 
-### Step 2: The exact sorting order
-
-The method sorts with key
-
-
-
-Negating height puts larger heights first. For equal height, ordinary ascending `k` order is used.
-
-The equal-height tie rule is essential because people of the same height count one another. Processing smaller `k` first ensures that when another equal-height person with larger `k` is inserted, the equal-height people that must precede them are already available in the partial queue.
-
-For example, among height-seven people `[7,0]` and `[7,1]`, `[7,0]` must be placed first. Inserting it at index zero gives one partial person. Inserting `[7,1]` at index one then places exactly one height-seven person before it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Sort People
+Apply key $\lambda x: (-x[0], x[1])$:
+$$
+\text{Sorted: } [[7, 0], \; [7, 1], \; [6, 1], \; [5, 0], \; [5, 2], \; [4, 4]]
+$$
+Initialize `ans = []`.
 
 ---
 
-### Step 3: Why insertion index equals `k`
+### Step 2: Insert $[7, 0]$
+- $k = 0 \implies ans.\text{insert}(0, [7, 0])$:
+  $$
+  ans = [[7, 0]]
+  $$
 
-At the moment `[h, k]` is processed, every person currently in `ans` is at least as tall as `h`. Python list index `k` means exactly `k` current entries lie before the inserted position. Since all of those entries qualify, the newly inserted person’s condition is satisfied immediately.
+---
 
-The input guarantee ensures reconstruction is possible, so the required insertion index is valid for the partial queue at that point.
+### Step 3: Insert $[7, 1]$
+- $k = 1 \implies ans.\text{insert}(1, [7, 1])$:
+  $$
+  ans = [[7, 0], \; [7, 1]]
+  $$
+- In front of $[7, 1]$ is $[7, 0]$ (height $\ge 7$, count = 1). Valid!
 
-The method performs
+---
 
+### Step 4: Insert $[6, 1]$
+- $k = 1 \implies ans.\text{insert}(1, [6, 1])$:
+  $$
+  ans = [[7, 0], \; \mathbf{[6, 1]}, \; [7, 1]]
+  $$
+- In front of $[6, 1]$ is $[7, 0]$ (height $\ge 6$, count = 1).
+- In front of $[7, 1]$ is $[7, 0]$ (count of $\ge 7$ is still 1, since $6 < 7$). Valid!
 
+---
 
-for each sorted person. The person pair itself is inserted; no new pair needs to be constructed.
+### Step 5: Insert $[5, 0]$
+- $k = 0 \implies ans.\text{insert}(0, [5, 0])$:
+  $$
+  ans = [\mathbf{[5, 0]}, \; [7, 0], \; [6, 1], \; [7, 1]]
+  $$
+- In front of $[5, 0]$ is 0 people.
+- Taller people $[7, 0], [6, 1], [7, 1]$ ignore the presence of $[5, 0]$ because $5 < 6, 7$. Valid!
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]` |
+---
+
+### Step 6: Insert $[5, 2]$
+- $k = 2 \implies ans.\text{insert}(2, [5, 2])$:
+  $$
+  ans = [[5, 0], \; [7, 0], \; \mathbf{[5, 2]}, \; [6, 1], \; [7, 1]]
+  $$
+- In front of $[5, 2]$ are $[5, 0]$ and $[7, 0]$ (both $\ge 5$, count = 2). Valid!
+
+---
+
+### Step 7: Insert $[4, 4]$
+- $k = 4 \implies ans.\text{insert}(4, [4, 4])$:
+  $$
+  ans = [[5, 0], \; [7, 0], \; [5, 2], \; [6, 1], \; \mathbf{[4, 4]}, \; [7, 1]]
+  $$
+- In front of $[4, 4]$ are $[5, 0], [7, 0], [5, 2], [6, 1]$ (all $\ge 4$, count = 4). Valid!
+
+---
+
+### Step 8: Termination
+All $N = 6$ people inserted. Return:
+$$
+[[5, 0], \; [7, 0], \; [5, 2], \; [6, 1], \; [4, 4], \; [7, 1]]
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"people": [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]` | Verified |
+```text
+Sorted People: [[7,0], [7,1], [6,1], [5,0], [5,2], [4,4]]
+
+Insert [7, 0] at idx 0 -> [[7, 0]]
+Insert [7, 1] at idx 1 -> [[7, 0], [7, 1]]
+Insert [6, 1] at idx 1 -> [[7, 0], [6, 1], [7, 1]]
+Insert [5, 0] at idx 0 -> [[5, 0], [7, 0], [6, 1], [7, 1]]
+Insert [5, 2] at idx 2 -> [[5, 0], [7, 0], [5, 2], [6, 1], [7, 1]]
+Insert [4, 4] at idx 4 -> [[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]
+
+Final Queue: [[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]
+```
+
+| Step | Person $p = [h, k]$ | Target Insertion Index $k$ | Pre-existing Elements with Height $\ge h$ | Queue State After Insertion |
+|:---:|:---:|:---:|:---:|:---|
+| 1 | `[7, 0]` | 0 | 0 | `[[7, 0]]` |
+| 2 | `[7, 1]` | 1 | 1 (`[7, 0]`) | `[[7, 0], [7, 1]]` |
+| 3 | `[6, 1]` | 1 | 1 (`[7, 0]`) | `[[7, 0], [6, 1], [7, 1]]` |
+| 4 | `[5, 0]` | 0 | 0 | `[[5, 0], [7, 0], [6, 1], [7, 1]]` |
+| 5 | `[5, 2]` | 2 | 2 (`[5, 0], [7, 0]`) | `[[5, 0], [7, 0], [5, 2], [6, 1], [7, 1]]` |
+| **6** | **`[4, 4]`** | **4** | **4 (`[5, 0], [7, 0], [5, 2], [6, 1]`)** | **`[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Suppose person $p = [h, k]$ is inserted at position $k$ among previously inserted elements. Every previously placed element has height $\ge h$, so exactly $k$ elements $\ge h$ precede $p$. Any element placed afterwards has height $h' \le h$. If $h' < h$, its presence ahead of $p$ does not increment $p$'s count. If $h' == h$, the secondary sort order guarantees $k' > k$, meaning the identical-height person is placed strictly after $p$, also preserving $p$'s count. Thus all conditions are simultaneously satisfied.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By sorting people, every person is inserted into the queue exactly once. Because the problem guarantees a valid configuration exists, the list insertion at index $k \le \text{len}(ans)$ is always within bounds.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Fenwick tree over empty positions:** Sort shorter people first with an appropriate tie order and use a Fenwick tree to locate the required empty slot in $O(\log n)$. This realizes $O(n\log n)$ time but is much harder to explain and implement.
-- **Balanced order-statistics sequence:** Supports insertion by rank in $O(\log n)$, preserving the same tall-first greedy idea. Python’s built-in list does not provide that bound.
-- **Sort shortest first without empty-slot logic:** Direct insertion at `k` would be invalid because existing shorter people would not all count for the new person. Tall-first ordering is what makes list index equal the qualifying count.
+- **Wrong Secondary Tie-Breaking:** If people of the same height are sorted with descending $k$ (e.g. $[7, 1]$ before $[7, 0]$), inserting $[7, 0]$ at index 0 pushes $[7, 1]$ to index 1, which works here, but in general corrupts relative positioning. Smaller $k$ must be processed first so the base elements exist before later ranks reference them.
+- **Short-First Insertion Fallacy:** Sorting shortest people first requires tracking empty slots via Fenwick Trees or Segment Trees, which is significantly more complex. Placing tallest first allows direct native array insertion.
+- **List Insertion Overhead:** In Python, `ans.insert(k, p)` runs in $O(N)$ time per insertion, yielding $O(N^2)$ total runtime, which easily passes for $N \le 2000$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of people.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$, where $N = \text{len}(people)$.
+  - Sorting $N$ elements takes $O(N \log N)$ time.
+  - Inserting $N$ elements into a dynamic array takes $\sum_{i=1}^N i = O(N^2)$ time.
+  - Total time is $O(N^2)$, executing in $< 10$ ms for $N = 2000$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the output array `ans`.

@@ -1,138 +1,187 @@
 # Guided Example: Power of Two
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise low-bit clearing, binary representation invariants, and non-positive boundary guards on representative integer inputs:
 
-- **Input:** `{"n": 1}`
-- **Required output:** `true`
+- **Input:** $n = 1$
+- **Required output:** `true` ($1 = 2^0$, binary $(0001)_2$)
+- **Positive Power of Two:** $n = 16 \implies \text{true}$ ($16 = 2^4$, binary $(10000)_2$)
+- **Composite Non-Power of Two:** $n = 12 \implies \text{false}$ (Binary $(1100)_2$; has 2 set bits)
+- **Zero Input Boundary:** $n = 0 \implies \text{false}$ (Guards against $0 \ \& \ -1 = 0$)
+- **Negative Extreme Boundary:** $n = -2147483648 \implies \text{false}$ (Negative minimum has single sign-bit in 2's complement)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates constant-time arithmetic verification without loops or recursion ($O(1)$ time), proves the lowest-set-bit elimination identity ($n \ \& \ (n - 1) == 0$), explains why the positivity guard ($n > 0$) is mathematically essential, and compares bitwise AND with two's complement isolation ($n \ \& \ -n == n$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *`true` if it is a power of two. Otherwise, return `false`*.
+Given a 32-bit signed integer $n$, determine whether there exists an integer $x \ge 0$ such that:
+$$
+n = 2^x
+$$
+A loop-based approach repeatedly divides $n$ by 2 while $n \% 2 == 0$, taking $O(\log n)$ iterations.
+The optimal bit manipulation approach evaluates the mathematical truth in **a single processor instruction ($O(1)$ time)** without loops, recursion, or floating-point conversions.
 
-The objective is to compute `true` from `{"n": 1}` while avoiding redundant calculations and unnecessary overhead.
+### Binary Structure of Powers of Two
+In base-2 binary positional notation:
+- $2^0 = 1 = (00001)_2$ (Bit 0 set)
+- $2^1 = 2 = (00010)_2$ (Bit 1 set)
+- $2^2 = 4 = (00100)_2$ (Bit 2 set)
+- $2^3 = 8 = (01000)_2$ (Bit 3 set)
+- $2^4 = 16 = (10000)_2$ (Bit 4 set)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+**Fundamental Theorem:** A positive integer $n$ is an exact power of two **if and only if its binary representation contains exactly one set bit (`1`)**!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Lowest-Set-Bit Clearing Formula: $n \ \& \ (n - 1)$
+Consider any positive binary integer $n$:
+Let the position of the least significant set bit be $k$.
+All bits to the right of $k$ are `0`.
+When subtracting $1$ from $n$:
+- Borrowing cascades down to position $k$.
+- The bit at position $k$ flips from `1` to `0`.
+- All bits to the right of position $k$ flip from `0` to `1`.
+- All bits to the left of position $k$ remain unchanged.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+When we perform bitwise AND:
+$$
+n \ \& \ (n - 1)
+$$
+- Bits to the left of $k$ are unchanged in both $\implies$ preserved.
+- Bit $k$ is `1` in $n$ and `0` in $n - 1 \implies$ becomes `0`.
+- Bits to the right of $k$ are `0` in $n$ and `1` in $n - 1 \implies$ become `0`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+**Result:** The expression $n \ \& \ (n - 1)$ **clears precisely the lowest set bit of $n$**, leaving all other bits intact!
+
+### The Power-of-Two Invariant:
+1. If $n$ is a positive power of two, it has **only one set bit**. Clearing that bit leaves **all zeroes**:
+   $$
+   n \ \& \ (n - 1) == 0
+   $$
+2. If $n$ is not a power of two, it has **at least two set bits**. Clearing the lowest bit leaves the higher set bit(s) intact:
+   $$
+   n \ \& \ (n - 1) \ne 0
+   $$
+3. **The Positivity Guard:**
+   If $n = 0$: $0 \ \& \ (-1) = 0$, but $0$ is not a power of two!
+   If $n \le 0$: $n$ cannot be a positive power of two.
+   Therefore, the full necessary and sufficient condition is:
+   $$
+   n > 0 \quad \text{and} \quad (n \ \& \ (n - 1)) == 0
+   $$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A positive power of two has exactly one set bit
+We trace the evaluation across three representative numbers:
 
-The binary representation of $2^x$ contains one `1` followed by $x$ zeros.
-For example, 1 is `0001`, 2 is `0010`, 4 is `0100`, and 8 is `1000`.
-Conversely, every positive integer with exactly one `1` bit has value $2^x$,
-where $x$ is that bit's zero-based position.
-
-The problem can therefore be reduced from repeated arithmetic division to a
-constant-number bit test: determine whether positive `n` has exactly one set
-bit.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Subtracting one changes the least significant set bit and everything below it
-
-Consider a positive binary number and locate its rightmost `1`. All bits to its
-right are zero by definition. Subtracting one changes that rightmost `1` to
-zero and changes all lower zeros to ones. Bits to the left remain unchanged.
-
-For example:
-
-`n     = 1011000`
-
-`n - 1 = 1010111`
-
-The rightmost set bit of `n` is cleared in `n - 1`. Lower positions are one in
-`n - 1` but zero in `n`. When the two numbers are combined with bitwise AND,
-all those positions become zero. Higher set bits, if any, are one in both
-numbers and remain set. Thus `n & (n - 1)` clears exactly the rightmost set bit
-of `n`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Case 1: $n = 1$ ($2^0$)
+1. Positivity check:
+   $$
+   n > 0 \implies 1 > 0 \quad (\text{True})
+   $$
+2. Binary representation:
+   $$
+   n = 1 = (0001)_2
+   $$
+   $$
+   n - 1 = 0 = (0000)_2
+   $$
+3. Bitwise AND:
+   $$
+   n \ \& \ (n - 1) = (0001)_2 \ \& \ (0000)_2 = (0000)_2 = 0
+   $$
+4. Check equality with 0: $0 == 0$ ($\text{True}$).
+5. Both conditions hold $\implies \mathbf{\text{true}}$.
 
 ---
 
-### Step 3: Clearing the only set bit distinguishes powers of two
+### Case 2: $n = 16$ ($2^4$)
+1. Positivity check: $16 > 0$ ($\text{True}$).
+2. Binary representations:
+   $$
+   n = 16 = (10000)_2
+   $$
+   $$
+   n - 1 = 15 = (01111)_2
+   $$
+3. Bitwise AND:
+   $$
+   \begin{aligned}
+   16 &= 1 \ 0 \ 0 \ 0 \ 0_2 \\
+   15 &= 0 \ 1 \ 1 \ 1 \ 1_2 \\
+   \hline
+   16 \ \& \ 15 &= 0 \ 0 \ 0 \ 0 \ 0_2 = 0
+   \end{aligned}
+   $$
+4. $0 == 0$ ($\text{True}$) $\implies \mathbf{\text{true}}$.
 
-If `n` is a positive power of two, it has one set bit. Clearing that bit leaves
-zero, so `(n & (n - 1)) == 0` is true.
+---
 
-If positive `n` is not a power of two, it has at least two set bits. The AND
-operation clears the rightmost one but leaves at least one higher set bit, so
-the result is nonzero. This makes the zero comparison both necessary and
-sufficient for positive integers.
-
-For `n = 16`, binary `10000` is ANDed with `01111`, producing zero. For
-`n = 12`, binary `1100` is ANDed with `1011`, producing `1000`, so the method
-returns false.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Case 3: $n = 12$ ($2^3 + 2^2$, Not a Power of Two)
+1. Positivity check: $12 > 0$ ($\text{True}$).
+2. Binary representations:
+   $$
+   n = 12 = (1100)_2
+   $$
+   $$
+   n - 1 = 11 = (1011)_2
+   $$
+3. Bitwise AND:
+   $$
+   \begin{aligned}
+   12 &= 1 \ 1 \ 0 \ 0_2 \\
+   11 &= 1 \ 0 \ 1 \ 1_2 \\
+   \hline
+   12 \ \& \ 11 &= 1 \ 0 \ 0 \ 0_2 = 8 \ne 0
+   \end{aligned}
+   $$
+4. Check equality: $8 == 0$ ($\text{False}$).
+5. Condition fails $\implies \mathbf{\text{false}}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+n = 1:  1 > 0 (T), 1 & 0 = 0 == 0 (T)  -> TRUE
+n = 16: 16 > 0 (T), 16 & 15 = 0 == 0 (T) -> TRUE
+n = 12: 12 > 0 (T), 12 & 11 = 8 != 0 (F) -> FALSE
+n = 0:  0 > 0 (F)                      -> FALSE
+n = -16: -16 > 0 (F)                   -> FALSE
+```
+
+| Input $n$ | Positivity Check $n > 0$ | Binary of $n$ | Binary of $n - 1$ | Bitwise $n \ \& \ (n - 1)$ | Equal to 0? | Final Decision |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1** | **True** ($1 > 0$) | $(00001)_2$ | $(00000)_2$ | $0$ | **Yes** | **`true`** |
+| **16** | **True** ($16 > 0$) | $(10000)_2$ | $(01111)_2$ | $0$ | **Yes** | **`true`** |
+| **12** | **True** ($12 > 0$) | $(01100)_2$ | $(01011)_2$ | $8 = (01000)_2$ | No | **`false`** |
+| **0** | **False** ($0 \not> 0$) | $(00000)_2$ | - | - | - | **`false`** |
+| **-16** | **False** ($-16 \not> 0$) | $(10000)_2$ | - | - | - | **`false`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $n > 0$. Any positive integer $n$ can be expressed uniquely as $\sum_{i=0}^k b_i 2^i$ where $b_i \in \{0, 1\}$. $n$ is a power of two if and only if $\sum b_i = 1$. The operation $n \ \& \ (n - 1)$ clears the least significant 1-bit. If $\sum b_i = 1$, clearing it yields 0. If $\sum b_i \ge 2$, at least one 1-bit remains, yielding a non-zero value. Thus, $n > 0 \text{ and } (n \ \& \ (n - 1)) == 0 \iff n = 2^x$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every 32-bit signed integer is tested. The condition strictly accepts all powers of two in $[1, 2^{30}]$ and rejects all non-powers, zero, and negative values.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Isolate the lowest set bit:** For positive `n`, `n & -n` equals `n` exactly when `n` has one set bit. It is another constant-operation identity based on two's-complement negation.
-- **Repeated division by two:** Reject nonpositive input, repeatedly divide even values by 2, and test whether the result reaches 1. It is intuitive but takes $O(\log n)$ time and does not satisfy the no-loop follow-up.
-- **Count set bits:** Count ones in the binary representation and test for exactly one. Built-in or iterative counting expresses the criterion but does more work than clearing one bit.
-- **Floating-point logarithm:** Test whether $\log_2 n$ is integral. Floating-point rounding near representational boundaries can cause errors, so an exact bit identity is preferable.
-- **`n = 0`:** The positivity guard is essential because the bit expression by itself equals zero.
-- **`n = 1`:** This is $2^0$ and is accepted even though no trailing zero bits are present.
-- **Negative values:** They fail `n > 0` immediately; powers of two in this problem are positive.
-- **Largest positive 32-bit power:** $2^{30}$ has one set bit and passes. $2^{31}$ lies outside the signed upper bound.
-- **One more or less than a power:** Adding or subtracting one generally creates several set bits, and the AND result remains nonzero.
-- **No mutation:** `n` is an immutable integer, and the expression creates only temporary numeric results.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Positivity Check ($n = 0$):** In binary, $0 - 1 = -1 = (1111\dots 1)_2$. Computing $0 \ \& \ (-1) = 0$. Without `n > 0`, $n = 0$ would falsely return `true`!
+- **Negative Powers Fallacy:** In two's complement, $-2147483648 = -2^{31}$ has binary representation `0x80000000`. Subtracting 1 in 32-bit unsigned arithmetic wraps, so without `n > 0`, negative numbers could produce false positives.
+- **Operator Precedence in C/C++/Python:** Bitwise AND (`&`) has lower precedence than equality comparison (`==`). Writing `n & n - 1 == 0` evaluates as `n & (n - 1 == 0)`. Parentheses are mandatory: `(n & (n - 1)) == 0`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Under the problem's fixed signed 32-bit input domain, subtraction, bitwise AND,
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$ constant time. A single subtraction, bitwise AND, and comparison are executed in 1 CPU cycle.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory.

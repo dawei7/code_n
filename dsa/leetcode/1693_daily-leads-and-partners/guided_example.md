@@ -1,115 +1,185 @@
 # Guided Example: Daily Leads and Partners
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze multi-attribute relational grouping, prove the Distinct Set Cardinality Projection Theorem and Partitioned Deduplication Invariant, and trace multi-set aggregation over representative sales records:
 
-- **Input:** `{"tables": {"DailySales": [{"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 0}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 2, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 2, "partner_id": 1}]}}`
-- **Required output:** `{"columns": ["date_id", "make_name", "unique_leads", "unique_partners"], "rows": [["2020-12-08", "toyota", 2, 3], ["2020-12-07", "toyota", 1, 2], ["2020-12-08", "honda", 2, 2], ["2020-12-07", "honda", 3, 2]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance (Composite Grouping with Duplicate Records):**
+  - Input Table `DailySales`:
+    | `date_id` | `make_name` | `lead_id` | `partner_id` |
+    |---|---|---|---|
+    | `2020-12-8` | `toyota` | `0` | `1` |
+    | `2020-12-8` | `toyota` | `1` | `0` |
+    | `2020-12-8` | `toyota` | `1` | `2` |
+    | `2020-12-7` | `toyota` | `0` | `2` |
+    | `2020-12-7` | `toyota` | `0` | `1` |
+    | `2020-12-8` | `honda` | `1` | `2` |
+    | `2020-12-8` | `honda` | `2` | `1` |
+    | `2020-12-7` | `honda` | `0` | `1` |
+    | `2020-12-7` | `honda` | `1` | `2` |
+    | `2020-12-7` | `honda` | `2` | `1` |
+  - Unique Groups `(date_id, make_name)`:
+    - Group A (`2020-12-8`, `toyota`):
+      - Leads seen: $\{0, 1, 1\} \implies \text{Unique Leads} = \{0, 1\} \implies \mathbf{2}$.
+      - Partners seen: $\{1, 0, 2\} \implies \text{Unique Partners} = \{0, 1, 2\} \implies \mathbf{3}$.
+    - Group B (`2020-12-7`, `toyota`):
+      - Leads seen: $\{0, 0\} \implies \text{Unique Leads} = \{0\} \implies \mathbf{1}$.
+      - Partners seen: $\{2, 1\} \implies \text{Unique Partners} = \{1, 2\} \implies \mathbf{2}$.
+    - Group C (`2020-12-8`, `honda`):
+      - Leads seen: $\{1, 2\} \implies \text{Unique Leads} = \{1, 2\} \implies \mathbf{2}$.
+      - Partners seen: $\{2, 1\} \implies \text{Unique Partners} = \{1, 2\} \implies \mathbf{2}$.
+    - Group D (`2020-12-7`, `honda`):
+      - Leads seen: $\{0, 1, 2\} \implies \text{Unique Leads} = \{0, 1, 2\} \implies \mathbf{3}$.
+      - Partners seen: $\{1, 2, 1\} \implies \text{Unique Partners} = \{1, 2\} \implies \mathbf{2}$.
+  - **Required Output Table:**
+    | `date_id` | `make_name` | `unique_leads` | `unique_partners` |
+    |---|---|---|---|
+    | `2020-12-8` | `toyota` | `2` | `3` |
+    | `2020-12-7` | `toyota` | `1` | `2` |
+    | `2020-12-8` | `honda` | `2` | `2` |
+    | `2020-12-7` | `honda` | `3` | `2` |
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `DailySales`
+Given a multi-set of sales events with attributes `(date_id, make_name, lead_id, partner_id)`, we must partition the dataset into disjoint groups defined by the composite key `(date_id, make_name)` and compute the cardinality of the distinct values of `lead_id` and `partner_id` within each group.
 
-The objective is to compute `{"columns": ["date_id", "make_name", "unique_leads", "unique_partners"], "rows": [["2020-12-08", "toyota", 2, 3], ["2020-12-07", "toyota", 1, 2], ["2020-12-08", "honda", 2, 2], ["2020-12-07", "honda", 3, 2]]}` from `{"tables": {"DailySales": [{"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 0}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 2, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 2, "partner_id": 1}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Relational Aggregation Model:
+  Raw Multi-Set: T = { (date, make, lead, partner) }
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Step 1: Partitioning
+    Partition T into equivalence classes under equivalence relation:
+      (d1, m1, l1, p1) ~ (d2, m2, l2, p2)  <=>  d1 = d2 and m1 = m2
+
+  Step 2: Projection & Deduplication
+    For each partition class G_(d, m):
+      UniqueLeads(d, m)    = | { l : exists p, (d, m, l, p) in G_(d, m) } |
+      UniquePartners(d, m) = | { p : exists l, (d, m, l, p) in G_(d, m) } |
+
+  Step 3: Relational Projection
+    Emit tuple (d, m, UniqueLeads(d, m), UniquePartners(d, m))
+```
+
+The pedagogical objectives are:
+1. Explain composite relational equivalence partitioning.
+2. Differentiate between total record count and set-cardinality aggregation.
+3. Formulate hash-based versus sort-based execution strategies for deduplicating projected attributes.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Mathematical Formulation
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Relational Deduplicating Aggregation Pipeline
+    accDescr: Pipeline showing record ingestion, composite hash partitioning by date and make, set deduplication, and final cardinality projection.
+    RawTable["Input Records: DailySales"] --> GroupKey["Extract Composite Key:\nk = (date_id, make_name)"]
+    GroupKey --> HashBuckets["Hash Partitioning:\nRoute each record to bucket for key k"]
+    
+    HashBuckets --> Accumulate["Within Bucket for k:\nInsert lead_id into Set L_k\nInsert partner_id into Set P_k"]
+    
+    Accumulate --> Finalize["For each unique key k = (d, m):\nCompute |L_k| = count of distinct leads\nCompute |P_k| = count of distinct partners"]
+    
+    Finalize --> Emit["Construct Result Row:\n(date_id, make_name, |L_k|, |P_k|)"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Distinct Set Cardinality Projection Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let the input relation be a multiset $\mathcal{R} \subseteq \mathcal{D} \times \mathcal{M} \times \mathcal{L} \times \mathcal{P}$.
+Define the equivalence relation $\sim_{\mathcal{D}\mathcal{M}}$ on $\mathcal{R}$ such that:
+$$
+t_1 \sim_{\mathcal{D}\mathcal{M}} t_2 \iff t_1[\text{date\_id}] = t_2[\text{date\_id}] \;\land\; t_1[\text{make\_name}] = t_2[\text{make\_name}]
+$$
+This equivalence relation partitions $\mathcal{R}$ into disjoint quotient classes $\{ [t] \mid t \in \mathcal{R} \}$.
+
+> **Theorem (Orthogonal Set Projection Invariant).**
+> For each partition $[t]$, the cardinality of distinct values along attribute $\mathcal{L}$ is strictly independent of attribute $\mathcal{P}$:
+> $$
+> \text{unique\_leads}([t]) = \left| \pi_{\mathcal{L}}([t]) \right|
+> $$
+> $$
+> \text{unique\_partners}([t]) = \left| \pi_{\mathcal{P}}([t]) \right|
+> $$
+> Duplicate occurrences of any pair $(l, p)$ or shared values across different $(d, m)$ groups have no effect on the local set cardinality of $[t]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Define one group by both requested dimensions
+### Trace on the Representative Instance
 
-The result needs a separate row for each unique combination of `date_id` and `make_name`. Grouping by only the date would mix different product makes, while grouping only by make would mix different days.
+We iterate through each tuple of the table and route it into the accumulator corresponding to its group key `(date_id, make_name)`.
 
-The query uses `GROUP BY 1, 2`. In MySQL, these ordinals refer to the first and second select-list expressions: `date_id` and `make_name`. Thus it is equivalent to `GROUP BY date_id, make_name`.
+#### Row 1: `(2020-12-8, toyota, 0, 1)`
+- Group: `(2020-12-8, toyota)`
+- Lead set: $\emptyset \cup \{0\} = \{0\}$
+- Partner set: $\emptyset \cup \{1\} = \{1\}$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"DailySales": [{"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 0}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 2, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 2, "partner_id": 1}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Row 2: `(2020-12-8, toyota, 1, 0)`
+- Group: `(2020-12-8, toyota)`
+- Lead set: $\{0\} \cup \{1\} = \{0, 1\}$
+- Partner set: $\{1\} \cup \{0\} = \{0, 1\}$
 
----
+#### Row 3: `(2020-12-8, toyota, 1, 2)`
+- Group: `(2020-12-8, toyota)`
+- Lead set: $\{0, 1\} \cup \{1\} = \{0, 1\}$ (Duplicate `1` absorbed)
+- Partner set: $\{0, 1\} \cup \{2\} = \{0, 1, 2\}$
 
-### Step 2: Count unique leads inside each group
+#### Row 4: `(2020-12-7, toyota, 0, 2)`
+- Group: `(2020-12-7, toyota)`
+- Lead set: $\{0\}$
+- Partner set: $\{2\}$
 
-`COUNT(DISTINCT lead_id)` forms the set of distinct lead IDs occurring among rows with that date and make, then returns its cardinality.
+#### Row 5: `(2020-12-7, toyota, 0, 1)`
+- Group: `(2020-12-7, toyota)`
+- Lead set: $\{0\} \cup \{0\} = \{0\}$ (Duplicate `0` absorbed)
+- Partner set: $\{2\} \cup \{1\} = \{1, 2\}$
 
-Plain `COUNT(lead_id)` would count duplicate occurrences and would be wrong because the source table has no primary key and may contain repeated rows. `DISTINCT` is essential.
-
-The alias `unique_leads` gives the aggregate its required output name.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Count partners independently
-
-`COUNT(DISTINCT partner_id)` performs a separate distinct count in the same group. It does not count distinct lead-partner pairs and does not require one-to-one relationships.
-
-For example, one lead can appear with three partners. It contributes one to `unique_leads` while those partner values may contribute three to `unique_partners`. The two requested metrics describe independent sets.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["date_id", "make_name", "unique_leads", "unique_partners"], "rows": [["2020-12-08", "toyota", 2, 3], ["2020-12-07", "toyota", 1, 2], ["2020-12-08", "honda", 2, 2], ["2020-12-07", "honda", 3, 2]]}` |
+#### Rows 6–10: Processing `honda` records
+- `(2020-12-8, honda)`:
+  - Row 6: lead `1`, partner `2` $\implies$ Leads: $\{1\}$, Partners: $\{2\}$
+  - Row 7: lead `2`, partner `1` $\implies$ Leads: $\{1, 2\}$, Partners: $\{1, 2\}$
+- `(2020-12-7, honda)`:
+  - Row 8: lead `0`, partner `1` $\implies$ Leads: $\{0\}$, Partners: $\{1\}$
+  - Row 9: lead `1`, partner `2` $\implies$ Leads: $\{0, 1\}$, Partners: $\{1, 2\}$
+  - Row 10: lead `2`, partner `1` $\implies$ Leads: $\{0, 1, 2\}$, Partners: $\{1, 2\}$ (Duplicate partner `1` absorbed)
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"DailySales": [{"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 0}, {"date_id": "2020-12-08", "make_name": "toyota", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "toyota", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-08", "make_name": "honda", "lead_id": 2, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 0, "partner_id": 1}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 1, "partner_id": 2}, {"date_id": "2020-12-07", "make_name": "honda", "lead_id": 2, "partner_id": 1}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["date_id", "make_name", "unique_leads", "unique_partners"], "rows": [["2020-12-08", "toyota", 2, 3], ["2020-12-07", "toyota", 1, 2], ["2020-12-08", "honda", 2, 2], ["2020-12-07", "honda", 3, 2]]}` | Verified |
+| Composite Group `(date_id, make_name)` | Raw Lead Multiset | Distinct Lead Set | `unique_leads` ($|L|$) | Raw Partner Multiset | Distinct Partner Set | `unique_partners` ($|P|$) |
+|---|---|---|---|---|---|---|
+| `(2020-12-8, toyota)` | $\{0, 1, 1\}$ | $\{0, 1\}$ | **`2`** | $\{1, 0, 2\}$ | $\{0, 1, 2\}$ | **`3`** |
+| `(2020-12-7, toyota)` | $\{0, 0\}$ | $\{0\}$ | **`1`** | $\{2, 1\}$ | $\{1, 2\}$ | **`2`** |
+| `(2020-12-8, honda)` | $\{1, 2\}$ | $\{1, 2\}$ | **`2`** | $\{2, 1\}$ | $\{1, 2\}$ | **`2`** |
+| `(2020-12-7, honda)` | $\{0, 1, 2\}$ | $\{0, 1, 2\}$ | **`3`** | $\{1, 2, 1\}$ | $\{1, 2\}$ | **`2`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The composite group key uniquely identifies each `(date_id, make_name)` pair. By using set insertion semantics (or hash sets per group), duplicate IDs are absorbed according to the idempotent property of set union: $S \cup \{x\} = S$ for $x \in S$. The final count corresponds exactly to the set cardinality.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every row in `DailySales` is evaluated. No record is skipped, and no partition key is merged across different dates or makes.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`SELECT DISTINCT` before grouping:** Deduplicating whole rows first is unnecessary because distinct lead and partner counts are independent; whole-row duplicates already have no effect.
-- **Count distinct pairs:** `COUNT(DISTINCT lead_id, partner_id)` answers how many unique relationships exist, not either requested metric.
-- **Two separate subqueries:** They can compute leads and partners then join by date and make, but one grouped scan is clearer.
-- **Duplicate rows:** Both distinct counts remain unchanged.
-- **Same lead with multiple partners:** The lead counts once while each unique partner counts independently.
-- **Same partner with multiple leads:** The partner counts once while unique leads are counted independently.
-- **One row in a group:** Both counts are one for non-null IDs.
-- **Null IDs outside the stated model:** `COUNT(DISTINCT column)` ignores null, which should be confirmed against any generalized business rule.
-- **Ordinal grouping:** `GROUP BY 1, 2` is concise but sensitive to select-list reordering; explicit column names are more maintainable.
-- **Any-order result:** No ordering clause is needed, and consumers must not assume a stable implicit order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Total Count vs. Distinct Count:** Using simple record count instead of distinct count counts duplicate leads/partners (e.g. `(2020-12-8, toyota)` has $3$ total rows, but only $2$ unique leads).
+- **Group Key Cardinality:** Grouping by `date_id` alone or `make_name` alone aggregates across different manufacturers or days, conflating independent sales metrics. Both attributes must form the composite grouping key.
+- **Ordering Independence:** The problem specification allows rows to be returned in any order, so no specific sorting is required unless desired by the query engine.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let `R` be the number of rows, `G` the number of date-make groups, and `D` the total number of distinct ID entries maintained across group aggregates. A hash-based execution can scan rows in expected $O(R)$ time while maintaining per-group distinct sets.
-- **Auxiliary Space Complexity:** $O(G+D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N$ be the total number of rows in `DailySales`.
+  - **Hash-Based Aggregation:** Inserting each row into a hash table indexed by `(date_id, make_name)` and adding IDs into hash sets takes $\mathcal{O}(1)$ average time per row. Total Time: $\mathcal{O}(N)$ average.
+  - **Sort-Based Aggregation:** Sorting the table on `(date_id, make_name, lead_id, partner_id)` requires $\mathcal{O}(N \log N)$ time, followed by an $\mathcal{O}(N)$ linear scan.
+- **Auxiliary Space Complexity:**
+  - Storing the groups and distinct ID sets requires $\mathcal{O}(N)$ memory in the worst case (when all rows have distinct composite keys and IDs).

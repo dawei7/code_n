@@ -1,127 +1,148 @@
 # Guided Example: First Letter to Appear Twice
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "abccbaacz"}`
-- **Required output:** `"c"`
+We are given a string `s` consisting of lowercase English letters. We are tasked with finding the first letter to appear twice. The problem specifies that a letter $x$ appears twice before another letter $y$ if the second occurrence of $x$ occurs at a strictly smaller index than the second occurrence of $y$. The problem guarantees that `s` contains at least one repeated character.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Consider the representative instance:
+- `s = "abccbaacz"`
+- String length: $n = 9$
 
----
+Let us identify all occurrences of each character:
+- Character `'a'` appears at indices $0, 5, 6$: its second occurrence is at index $5$.
+- Character `'b'` appears at indices $1, 4$: its second occurrence is at index $4$.
+- Character `'c'` appears at indices $2, 3, 7$: its second occurrence is at index $3$.
+- Character `'z'` appears once at index $8$.
 
-## 1. Instance & Teaching Goal
+Comparing the indices of the second occurrences:
+- Second occurrence of `'c'`: index $3$.
+- Second occurrence of `'b'`: index $4$.
+- Second occurrence of `'a'`: index $5$.
 
-Given a string `s` consisting of lowercase English letters, return *the first letter to appear **twice***.
+Because index $3 < 4 < 5$, the character whose second occurrence appears earliest is `'c'`. The algorithm must return `'c'`.
 
-The objective is to compute `"c"` from `{"s": "abccbaacz"}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Online Membership Verification and Earliest Duplicate Detection
+    accDescr: Sequential character scanning with a membership set to trigger immediate termination on the first repeated character.
+    Input["Input String: 'abccbaacz'"] --> Scan["Linear Left-to-Right Scan"]
+    Scan --> C0["Idx 0: 'a' -> Seen = {'a'}"]
+    C0 --> C1["Idx 1: 'b' -> Seen = {'a', 'b'}"]
+    C1 --> C2["Idx 2: 'c' -> Seen = {'a', 'b', 'c'}"]
+    C2 --> C3["Idx 3: 'c' -> 'c' already in Seen!"]
+    C3 --> Terminate["Early Exit: First duplicate found"]
+    Terminate --> Out["Result: 'c'"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let string $s$ be an indexed sequence of symbols $(s_0, s_1, \dots, s_{n-1})$ drawn from an alphabet $\Sigma = \{'a', \dots, 'z'\}$ with $|\Sigma| = 26$.
+For each character $c \in \Sigma$, let its occurrence indices be denoted by the ordered set:
 
-## 2. Conceptual Foundation & Invariants
+$$\text{Occ}(c) = \{i \in \{0, \dots, n-1\} \mid s_i = c\}$$
 
-We maintain the core conceptual parameters and state variables:
+If $|\text{Occ}(c)| \ge 2$, let $\tau(c)$ denote the index of its second occurrence:
 
-| State Parameter | Role & Purpose | Initial State |
+$$\tau(c) = \min \{j \in \text{Occ}(c) \mid j > \min \text{Occ}(c)\}$$
+
+Our goal is to find the symbol $c^*$ that minimizes the second occurrence timestamp:
+
+$$c^* = \arg\min_{c \in \Sigma, |\text{Occ}(c)| \ge 2} \tau(c)$$
+
+### Equivalence to First Invariant Violation
+Consider maintaining the prefix set of distinct characters observed up to index $t$:
+
+$$P_t = \{s_0, s_1, \dots, s_t\}$$
+
+At each index $t$:
+- If $s_t \notin P_{t-1}$, then $s_t$ has appeared exactly once so far. The cardinality increases: $|P_t| = |P_{t-1}| + 1$.
+- If $s_t \in P_{t-1}$, then $s_t$ has appeared at least once prior to $t$. Because this is the first index where $s_t \in P_{t-1}$ occurs, index $t$ is precisely the second occurrence of $s_t$.
+
+By definition, the minimal index $t^*$ where $s_{t^*} \in P_{t^*-1}$ corresponds to:
+
+$$t^* = \min \{t \in \{1, \dots, n-1\} \mid s_t \in P_{t-1}\} = \min_{c} \tau(c) = \tau(c^*)$$
+
+Therefore, a single left-to-right scan that terminates upon the very first set membership collision is guaranteed to return $c^*$.
+
+### The Pigeonhole Bounding Principle
+Because $|\Sigma| = 26$, any prefix of length $27$ must contain at least two identical characters by Dirichlet's Pigeonhole Principle:
+
+$$t^* \le |\Sigma| = 26$$
+
+The search is mathematically guaranteed to terminate within at most $27$ character inspections (indices $0$ to $26$), irrespective of how long the input string $s$ is.
+
+| State Component | Implementation Mechanism | Mathematical Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Prefix Membership Set | 26-bit Integer Bitmask / Boolean Array | Tracks distinct characters seen in the current prefix |
+| Collision Predicate | Bitwise AND / Set containment query | Detects whether the current character already appeared |
+| Search Cursor | Index $t \in [0, 26]$ | Advances linearly until the first collision |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+Let us trace `s = "abccbaacz"`.
+Initialize an empty set of seen characters: $S = \emptyset$.
 
-## 3. Step-by-Step Worked Execution
+### Step 0: Index 0, Character `'a'`
+- Query membership: `'a' \in S \implies` False.
+- Insert `'a'` into $S$: $S \leftarrow \{'a'\}$.
+- State: $S = \{'a'\}$.
 
-### Step 1: The answer is determined at a second occurrence
+### Step 1: Index 1, Character `'b'`
+- Query membership: `'b' \in S \implies` False.
+- Insert `'b'` into $S$: $S \leftarrow \{'a', 'b'\}$.
+- State: $S = \{'a', 'b'\}$.
 
-A letter “appears twice” at the position where its running frequency first reaches two. The requested letter is the one whose second occurrence has the smallest index.
+### Step 2: Index 2, Character `'c'`
+- Query membership: `'c' \in S \implies` False.
+- Insert `'c'` into $S$: $S \leftarrow \{'a', 'b', 'c'\}$.
+- State: $S = \{'a', 'b', 'c'\}$.
 
-Scanning `s` from left to right encounters positions in exactly that priority order. The first character whose count becomes two must therefore be the answer.
+### Step 3: Index 3, Character `'c'`
+- Query membership: `'c' \in S \implies` **True**.
+- Collision detected: character `'c'` has already appeared at index $2$.
+- Index $3$ is the second occurrence of `'c'`.
+- Terminate scan immediately. Return `'c'`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abccbaacz"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Subsequent indices ($4$ through $8$) are never evaluated, preventing redundant comparisons.
 
----
+## 4. Comprehensive State Trace
 
-### Step 2: Maintain running frequencies
+The evaluation of each character up to the termination point is recorded in the table below.
 
-`cnt = Counter()` begins as an empty frequency mapping. For each character `c`, the method increments `cnt[c]`.
+| Step Index $t$ | Character $s_t$ | Alphabet Index ($0-25$) | Membership Query $s_t \in S_{t-1}$ | Collision? | Action Taken | Resulting Set $S_t$ |
+|---|---|---|---|---|---|---|
+| $0$ | `'a'` | $0$ | False | No | Insert `'a'` | $\{'a'\}$ |
+| $1$ | `'b'` | $1$ | False | No | Insert `'b'` | $\{'a', 'b'\}$ |
+| $2$ | `'c'` | $2$ | False | No | Insert `'c'` | $\{'a', 'b', 'c'\}$ |
+| $3$ | `'c'` | $2$ | **True** | **Yes** | **Early Exit (Return `'c'`)** | Terminated |
 
-Immediately after the increment:
+## 5. Algorithmic Correctness & Soundness
 
-- count one means this is the first occurrence;
-- count two means this is the second occurrence;
-- a larger count would mean the second occurrence happened earlier.
+1. **Minimality of Second Occurrence Index:**
+   Suppose there exists some character $y \ne c^*$ with $\tau(y) < \tau(c^*)$. As the linear scan advances index-by-index, it would reach index $\tau(y)$ before index $\tau(c^*)$. At index $\tau(y)$, $y$ is already in the seen set (from its first occurrence), causing the algorithm to terminate and return $y$. This contradicts the assumption that $c^*$ was the first collision returned. Thus, the returned character strictly minimizes the second occurrence index.
 
-The method returns as soon as `cnt[c] == 2`.
+2. **Independence from First Occurrence Order:**
+   A common fallacy assumes the first letter in the string must be the first to repeat. In `s = "bacab"`, `'b'` appears first at index $0$, but repeats at index $4$. Meanwhile `'a'` appears at index $1$ and repeats at index $3$. Because $3 < 4$, `'a'` repeats before `'b'`. The membership collision correctly flags `'a'` at index $3$.
 
-Because it returns at the earliest second occurrence in the scan, no character can later qualify earlier.
+3. **Guaranteed Termination:**
+   The problem guarantees that at least one character repeats. By the Pigeonhole Principle, the loop is guaranteed to find a collision within the first $27$ indices.
 
-The Counter represents information about the processed prefix, not about the complete string. That distinction is what makes it useful for ordering. At index `i`, `cnt[c]` answers how many copies of `c` have actually appeared no later than `i`. A final frequency table built after the scan could say that both `a` and `c` repeat, but it would not by itself reveal whether `a`'s second copy or `c`'s second copy occurred first. Updating and testing immediately preserves that temporal fact.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Immediate Consecutive Duplicate (`s = "aa"`):**
+  - Index 0: seen = `{'a'}`.
+  - Index 1: `'a'` repeats immediately at index 1. Returns `'a'`.
+- **First Character Repeats Last (`s = "bacab"`):**
+  - Index 0: 'b'
+  - Index 1: 'a'
+  - Index 2: 'c'
+  - Index 3: 'a' repeats! Returns `'a'`.
+- **Latest Possible Duplicate (27th character):**
+  - 26 unique characters followed by a repetition of the first. The loop terminates on step 26 without error.
+- **Anti-Pattern (Counting Full Frequencies First):**
+  - Performing a complete pass over the entire string of length $n$ to compute total frequencies, and then finding the first character with count $\ge 2$, is incorrect. A character might appear 10 times at the end of the string while another character appears twice at the beginning. The second occurrence index dictates the answer, not total frequency.
 
----
+## 7. Complexity Analysis
 
-### Step 3: Why the first appearance does not decide anything
-
-The order of first occurrences is irrelevant. A letter seen early may not repeat until much later, while another letter first seen later can receive its second occurrence sooner.
-
-For `"abccbaacz"`, `a` is first at index zero, but its second occurrence is index five. `c` first appears at index two and repeats at index three, so the scan returns `c` when that second copy is processed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"c"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abccbaacz"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"c"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **26-bit seen mask:** Test the bit for each character; if already set, return it, otherwise set it. This matches the manifest summary and uses one integer.
-- **Boolean array of length 26:** It expresses first-seen state without full counts and remains constant-space.
-- **Set of seen letters:** If `c in seen`, return it; otherwise insert it. This is simpler than a Counter for the exact need.
-- **Compute all frequencies first:** Final counts do not reveal which second occurrence came earliest; scan order must be retained.
-- **Return the first character with final count at least two:** Iterating unique characters by first appearance can give the wrong answer because second-occurrence order differs.
-- **Immediate pair such as `"aa"`:** The second character raises the count to two and is returned.
-- **Only one repeated letter:** Its second occurrence is necessarily the answer.
-- **Several repeated letters:** The left-to-right early return selects the smallest second-occurrence index.
-- **A letter appearing many times:** It triggers on its second copy; later copies are never reached after return.
-- **First repeated letter may not be first distinct letter:** Only second-occurrence position matters.
-- **Guaranteed repetition:** The function has no fallback return because valid input always triggers the condition.
-- **Lowercase alphabet:** At most 26 Counter keys exist.
-- **Input preservation:** Counting does not modify `s`.
-- **Counter availability:** The exact source relies on `Counter`, conventionally from `collections`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the string length. The scan may return early, but in the worst case the first second occurrence is near the end, so time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$ bounded time (or $\mathcal{O}(\min(n, |\Sigma|))$). Due to the Pigeonhole Principle on an alphabet of size $|\Sigma| = 26$, the loop executes at most $27$ iterations before returning. Each hash lookup or bitwise shift operation takes $\mathcal{O}(1)$ time. Thus, the running time is strictly bounded by a constant.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. The seen characters are stored in a single 32-bit integer bitmask (or a boolean array of length $26$), requiring constant space.

@@ -1,106 +1,173 @@
 # Guided Example: Largest Magic Square
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace descending size enumeration, 2D prefix sum querying, and full row-column-diagonal congruence testing on a representative grid instance:
 
-- **Input:** `{"grid": [[7, 1, 4, 5, 6], [2, 5, 1, 6, 4], [1, 5, 4, 3, 2], [1, 2, 7, 3, 4]]}`
-- **Required output:** `3`
+- **Input:**
+  $$\text{grid} = \begin{pmatrix}
+  7 & 1 & 4 & 5 & 6 \\
+  2 & 5 & 1 & 6 & 4 \\
+  1 & 5 & 4 & 3 & 2 \\
+  1 & 2 & 7 & 3 & 4
+  \end{pmatrix}$$
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates searching subgrid side lengths $k$ in strictly descending order from $\min(m, n)$ down to $1$, testing candidate top-left coordinates $(r, c)$, using prefix sums to verify that all $k$ rows, all $k$ columns, and both diagonals share an identical target sum, and returning the first valid size found.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A `k x k` **magic square** is a `k x k` grid filled with integers such that every row sum, every column sum, and both diagonal sums are **all equal**. The integers in the magic square **do not have to be distinct**. Every `1 x 1` grid is trivially a **magic square**.
+We are given an $m \times n$ integer grid ($m = 4, n = 5$). A $k \times k$ subgrid is a **magic square** if:
+1. Every row sum is equal.
+2. Every column sum is equal.
+3. The main diagonal sum and anti-diagonal sum are equal.
+4. All of these sums share the same common value $S$.
 
-The objective is to compute `3` from `{"grid": [[7, 1, 4, 5, 6], [2, 5, 1, 6, 4], [1, 5, 4, 3, 2], [1, 2, 7, 3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+We seek the largest integer $k \ge 1$ admitting a $k \times k$ magic square.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For the given $4 \times 5$ matrix:
+- Maximum possible side length is $\min(4, 5) = 4$.
+- Candidate $k = 4$: Neither of the two possible $4 \times 4$ subgrids is magic (row sums differ).
+- Candidate $k = 3$:
+  - Consider the subgrid at top-left corner $(r = 1, c = 1)$ spanning rows $1 \dots 3$ and columns $1 \dots 3$:
+    $$\begin{pmatrix} 5 & 1 & 6 \\ 5 & 4 & 3 \\ 2 & 7 & 3 \end{pmatrix}$$
+  - Row sums:
+    - Row 1: $5 + 1 + 6 = 12$
+    - Row 2: $5 + 4 + 3 = 12$
+    - Row 3: $2 + 7 + 3 = 12$
+  - Column sums:
+    - Column 1: $5 + 5 + 2 = 12$
+    - Column 2: $1 + 4 + 7 = 12$
+    - Column 3: $6 + 3 + 3 = 12$
+  - Diagonal sums:
+    - Main diagonal: $5 + 4 + 3 = 12$
+    - Anti-diagonal: $6 + 4 + 2 = 12$
+  - All $3 + 3 + 2 = 8$ line sums equal $12$!
+- Because $k$ is evaluated descending, the first valid size $k = 3$ is guaranteed to be maximal.
+
+The teaching goal is to understand **2D spatial prefix aggregation and early-exit descending search**:
+1. Why iterating $k$ from $\min(m, n)$ downward allows immediate termination upon the first valid square.
+2. How 1D row prefix sums and column prefix sums evaluate any row or column segment in $\mathcal{O}(1)$ time.
+3. How to structure the $2k + 2$ congruence checks to prune invalid subgrids as early as the first mismatched line.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Subgrid Prefix Aggregation & Magic Congruence Verification Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Subgrid Prefix Aggregation & Magic Congruence Verification Theorem.**
+> 1. *Magic Square Line Invariance:* A $k \times k$ subgrid with top-left corner $(r, c)$ is magic if and only if there exists an integer $S$ such that:
+>    $$\sum_{j=0}^{k-1} M[r + i][c + j] = S \quad (\forall i \in [0, k-1])$$
+>    $$\sum_{i=0}^{k-1} M[r + i][c + j] = S \quad (\forall j \in [0, k-1])$$
+>    $$\sum_{d=0}^{k-1} M[r + d][c + d] = S \quad \text{and} \quad \sum_{d=0}^{k-1} M[r + d][c + k - 1 - d] = S$$
+> 2. *Prefix Sum Constant-Time Queries:* Precompute row prefix sums $R[i][j] = \sum_{t=0}^{j-1} M[i][t]$ and column prefix sums $C[i][j] = \sum_{t=0}^{i-1} M[t][j]$. Any row segment sum is $R[i][c + k] - R[i][c]$ and any column segment sum is $C[r + k][j] - C[r][j]$ in $\mathcal{O}(1)$ time.
+> 3. *Monotonic Size Search:* Checking $k \in [\min(m, n), \dots, 1]$ descending ensures that the first discovered magic square has maximal side length $k^*$, eliminating the need to explore smaller values of $k$.
+> 4. *Complexity:* Precomputing prefix sums takes $\mathcal{O}(m \cdot n)$ time. For each size $k$, there are $(m - k + 1)(n - k + 1)$ candidate corners, each requiring $\mathcal{O}(k)$ checks. Total time is at most $\mathcal{O}(\min(m, n) \cdot m \cdot n)$ and auxiliary space is $\mathcal{O}(m \cdot n)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Largest Magic Square Verification Pipeline
+    accDescr: Pipeline showing descending size search from min(m, n) down to 1, candidate placement, and row/column/diagonal validation.
+    A["Grid (4 x 5): Test k from 4 down to 1"] --> B["Test k = 4: Check corners (0,0) and (0,1)"]
+    B -->|"All fail row/col checks"| C["Test k = 3: Candidate corner (1, 1)"]
+    C --> D["Target sum S = Row 1 sum = 5 + 1 + 6 = 12"]
+    D --> E["Verify Remaining Rows: Row 2 = 12, Row 3 = 12 (Pass)"]
+    E --> F["Verify Columns: Col 1 = 12, Col 2 = 12, Col 3 = 12 (Pass)"]
+    F --> G["Verify Diagonals: Main = 12, Anti = 12 (Pass)"]
+    G --> H["Magic square confirmed! Terminate and return k = 3"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Search sizes from largest to smallest.** A candidate square is determined by its side length and top-left corner. The outer loop tries `k = min(m, n)` down through two. As soon as any square of a size passes, that size is returned; no smaller size can improve the answer. If none passes, the method returns one because every single cell is trivially a magic square.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[7, 1, 4, 5, 6], [2, 5, 1, 6, 4], [1, 5, 4, 3, 2], [1, 2, 7, 3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the validation of candidate subgrids for the $4 \times 5$ matrix:
 
 ---
 
-### Step 2: Core Step 2
-
-**Precompute row and column prefix sums.** `rowsum[i][j]` uses one-based storage and equals the sum of grid row `i - 1` across the first `j` columns. Its recurrence extends leftward prefix `rowsum[i][j - 1]`. Similarly, `colsum[i][j]` equals the sum of grid column `j - 1` across the first `i` rows and extends `colsum[i - 1][j]`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Precompute Prefix Arrays
+- Row prefix sums $R[i][j]$ for each row $i \in [0, 3]$.
+- Column prefix sums $C[i][j]$ for each column $j \in [0, 4]$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Test Size $k = 4$
+- Possible top-left corners: $(0, 0)$ and $(0, 1)$.
+- Corner $(0, 0)$:
+  - Row 0 sum: $7 + 1 + 4 + 5 = 17$.
+  - Row 1 sum: $2 + 5 + 1 + 6 = 14 \neq 17$ (Mismatch $\implies$ Not magic).
+- Corner $(0, 1)$:
+  - Row 0 sum: $1 + 4 + 5 + 6 = 16$.
+  - Row 1 sum: $5 + 1 + 6 + 4 = 16$.
+  - Row 2 sum: $5 + 4 + 3 + 2 = 14 \neq 16$ (Mismatch $\implies$ Not magic).
+- No magic square of size $4$ exists.
 
-Both arrays have `(m + 1)` rows and `(n + 1)` columns filled initially with zero. Padding lets a segment beginning at grid index zero subtract a valid zero prefix rather than requiring a boundary branch.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Test Size $k = 3$ at Corner $(r = 1, c = 1)$
+Extract subgrid across rows $1 \dots 3$ and columns $1 \dots 3$:
+$$\begin{pmatrix} 5 & 1 & 6 \\ 5 & 4 & 3 \\ 2 & 7 & 3 \end{pmatrix}$$
+
+#### Check 1: Target Sum from First Row
+- Row 1: $\text{grid}[1][1] + \text{grid}[1][2] + \text{grid}[1][3] = 5 + 1 + 6 = 12$.
+- Benchmark target sum: $S = 12$.
+
+#### Check 2: Remaining Rows
+- Row 2: $\text{grid}[2][1] + \text{grid}[2][2] + \text{grid}[2][3] = 5 + 4 + 3 = 12 == S$ (**Pass**).
+- Row 3: $\text{grid}[3][1] + \text{grid}[3][2] + \text{grid}[3][3] = 2 + 7 + 3 = 12 == S$ (**Pass**).
+
+#### Check 3: All Columns
+- Col 1: $\text{grid}[1][1] + \text{grid}[2][1] + \text{grid}[3][1] = 5 + 5 + 2 = 12 == S$ (**Pass**).
+- Col 2: $\text{grid}[1][2] + \text{grid}[2][2] + \text{grid}[3][2] = 1 + 4 + 7 = 12 == S$ (**Pass**).
+- Col 3: $\text{grid}[1][3] + \text{grid}[2][3] + \text{grid}[3][3] = 6 + 3 + 3 = 12 == S$ (**Pass**).
+
+#### Check 4: Both Diagonals
+- Main diagonal (top-left to bottom-right):
+  $$\text{grid}[1][1] + \text{grid}[2][2] + \text{grid}[3][3] = 5 + 4 + 3 = 12 == S \quad (\textbf{Pass})$$
+- Anti-diagonal (top-right to bottom-left):
+  $$\text{grid}[1][3] + \text{grid}[2][2] + \text{grid}[3][1] = 6 + 4 + 2 = 12 == S \quad (\textbf{Pass})$$
+
+All $2 \times 3 + 2 = 8$ line sums match $12$.
+A magic square of size $3$ is confirmed!
+
+---
+
+### Step 4: Early Termination
+- Because we searched $k$ in descending order starting from the geometric upper bound $\min(4, 5) = 4$, finding a valid square at $k = 3$ guarantees that $3$ is the global maximum.
+- Terminate immediately and return `3`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[7, 1, 4, 5, 6], [2, 5, 1, 6, 4], [1, 5, 4, 3, 2], [1, 2, 7, 3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Size $k$ | Corner $(r, c)$ | Target Sum $S$ | Rows Verified? | Columns Verified? | Diagonals Verified? | Magic Square Found? | Next Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 4 | $(0, 0)$ | 17 | No (Row 1 is 14) | - | - | No | Try $(0, 1)$ |
+| 4 | $(0, 1)$ | 16 | No (Row 2 is 14) | - | - | No | Try $k = 3$ |
+| 3 | $(0, 0)$ | 12 | No (Row 1 is 8) | - | - | No | Try next corner |
+| $\dots$ | $\dots$ | $\dots$ | $\dots$ | $\dots$ | $\dots$ | No | Continue search |
+| 3 | $(1, 1)$ | **12** | **Yes** (12, 12, 12) | **Yes** (12, 12, 12) | **Yes** (12, 12) | **Yes** | **Return 3** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A subgrid is accepted only after explicitly verifying all $k$ horizontal rows, all $k$ vertical columns, the main diagonal, and the anti-diagonal against the exact same benchmark target sum $S$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Iterating over all valid top-left coordinates $(r, c)$ for each candidate size ensures no potential magic square is skipped. Searching $k$ descending guarantees that the first detected magic square is the largest.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Diagonal prefix sums:** Two additional diagonal-prefix tables can make each diagonal sum $O(1)$, but checking all $k$ rows and columns still costs $O(k)$ per candidate, so the overall asymptotic bound remains unchanged.
-- **Brute-force all cells per candidate:** Recomputing each line from scratch costs $O(k^2)$ per square and raises the total bound substantially.
-- **Check only total row and column sums:** Equal totals across the whole square do not prove each individual row and column is equal. Every line must be tested.
-- **Single row or column grid:** No side length above one is enumerated, and the method returns one.
-- **One-by-one squares:** They are not passed to `check` because they are always magic; the final return handles them.
-- **Repeated values:** Allowed by the definition. The algorithm compares sums only and never imposes uniqueness.
-- **Rectangular grid:** Candidate side is bounded by `min(m, n)`, and placement loops independently respect both dimensions.
-- **Early mismatch:** The helper returns as soon as a row, column, or diagonal differs. This is safe because one failed required equality disproves the candidate.
-- **Prefix off-by-one:** Stored coordinates are shifted by one, while helper corners are zero-based and inclusive. The `+1` endpoints and unshifted subtraction boundaries are essential.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Base Case $k = 1$:** Any individual cell is trivially a magic square (its sole row, column, and diagonal sums are all equal to the cell value). If no larger square exists, the algorithm must safely return $1$.
+- **Early Exit During Verification:** Checking all rows, columns, and diagonals when the second row already fails is wasteful. Pruning candidate corners on the first mismatched line accelerates execution dramatically.
+- **Diagonal Indexing Offsets:** The anti-diagonal coordinates at step $d \in [0, k-1]$ are $(r + d, c + k - 1 - d)$. Inverting or misaligning the column index $c + k - 1 - d$ distorts diagonal summation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(MNS^2)$. Let $S=\min(m,n)$. Prefix construction costs $O(mn)$ time and space. For side length $k$, there are at most $O(mn)$ placements, and checking one placement takes $O(k)$ time in the worst case for rows, columns, and diagonals. Summing over all sizes gives
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\min(m, n) \cdot m \cdot n)$, where the grid is $m \times n$. Precomputing 2D prefix sums takes $\mathcal{O}(m \cdot n)$ time. For each size $k \le \min(m, n)$, testing each of the $\mathcal{O}(m \cdot n)$ positions takes $\mathcal{O}(k)$ time. For $m, n \le 50$, total operations are well within $50^4 / 4 \approx 1.5 \times 10^6$, executing in milliseconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m \cdot n)$ to store the 2D row and column prefix sum tables.

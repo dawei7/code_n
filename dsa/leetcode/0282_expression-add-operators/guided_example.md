@@ -1,128 +1,210 @@
 # Guided Example: Expression Add Operators
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step operand partitioning, multiplication precedence rollback via previous term tracking (`prev_term`), leading-zero operand pruning, and target matching on representative digit strings:
 
-- **Input:** `{"num": "123", "target": 6}`
-- **Required output:** `["1+2+3", "1*2*3"]`
+- **Input:** $\text{num} = \text{"123"}, \quad \text{target} = 6$
+- **Required output:** `["1+2+3", "1*2*3"]` (Both evaluate to $6$; no leading zeros exist)
+- **Multiplication Precedence Instance:** $\text{num} = \text{"232"}, \quad \text{target} = 8 \implies \text{["2*3+2", "2+3*2"]}$ ($2 + 3 \times 2 = 2 + 6 = 8$)
+- **Leading-Zero Suppression:** $\text{num} = \text{"105"}, \quad \text{target} = 5 \implies \text{["1*0+5", "10-5"]}$ (Expression `"1+05"` is strictly rejected)
+- **No Solution Instance:** $\text{num} = \text{"3456237490"}, \quad \text{target} = 9191 \implies []$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates algebraic operator insertion via backtracking, explains why multiplication requires tracking the previous additive term to reverse lower-precedence addition ($\text{curr} - \text{prev} + \text{prev} \times \text{val}$), details the single-digit limit on leading zeros, and analyzes the $O(4^N)$ combinatorial search space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `num` that contains only digits and an integer `target`, return ***all possibilities** to insert the binary operators *`'+'`*, *`'-'`*, and/or *`'*'`* between the digits of *`num`* so that the resultant expression evaluates to the *`target`* value*.
+Given a digit string $\text{num} = \text{"123"}$ and $\text{target} = 6$:
+Insert binary operators `+`, `-`, and `*` between digits such that the resulting expression evaluates to $6$.
+Valid expressions:
+1. $\text{"1+2+3"} \implies 1 + 2 + 3 = 6$
+2. $\text{"1*2*3"} \implies 1 \times 2 \times 3 = 6$
+Output: `["1+2+3", "1*2*3"]`.
 
-The objective is to compute `["1+2+3", "1*2*3"]` from `{"num": "123", "target": 6}` while avoiding redundant calculations and unnecessary overhead.
+### The Core Challenge: Multiplication Precedence
+Operators `+` and `-` evaluate sequentially from left to right.
+However, `*` has higher operator precedence than `+` and `-`:
+Consider evaluating `2 + 3 * 2`:
+- If evaluated strictly left-to-right: $(2 + 3) \times 2 = 5 \times 2 = 10$ (**Incorrect!**).
+- Standard arithmetic: $2 + (3 \times 2) = 2 + 6 = 8$ (**Correct!**).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+To maintain $O(1)$ incremental evaluation without reparsing the string or using an expensive expression parser:
+The backtracking state must track **the value of the last additive term** ($\text{prev\_term}$).
+When encountering `*`:
+$$
+\text{new\_val} = (\text{curr\_val} - \text{prev\_term}) + (\text{prev\_term} \times \text{val})
+$$
+The previous term is subtracted out, multiplied by the new factor, and added back!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Backtracking DFS State `dfs(index, prev_term, curr_val, path)`
+- `index`: Next digit index to consume in `num`.
+- `prev_term`: Signed value of the most recent term added to `curr_val`.
+- `curr_val`: Cumulative arithmetic value of the expression so far.
+- `path`: String or list of characters representing the current expression.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Candidate Operand Generation
+From current `index`, slice substrings $\text{num}[\text{index} : j + 1]$ for $j \in [\text{index}, N - 1]$:
+Let $\text{val} = \text{int}(\text{num}[\text{index} : j + 1])$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+1. **Leading-Zero Invariant:**
+   If $\text{num}[\text{index}] == \text{'0'}$, the only allowable operand is single digit `"0"`.
+   Multi-digit operands like `"05"` or `"00"` are invalid.
+   We process $j = \text{index}$ (value $0$) and immediately **break** the loop.
+
+2. **First Operand Initialization ($\text{index} == 0$):**
+   The first operand has no leading binary operator:
+   $$
+   \text{dfs}(j + 1, \; \text{val}, \; \text{val}, \; \text{str}(\text{val}))
+   $$
+
+3. **Subsequent Operands ($\text{index} > 0$):**
+   Branch across all three operators:
+   - **Addition (`+`):**
+     $$
+     \text{dfs}(j + 1, \; +\text{val}, \; \text{curr\_val} + \text{val}, \; \text{path} + \text{"+"} + \text{str}(\text{val}))
+     $$
+   - **Subtraction (`-`):**
+     $$
+     \text{dfs}(j + 1, \; -\text{val}, \; \text{curr\_val} - \text{val}, \; \text{path} + \text{"-"} + \text{str}(\text{val}))
+     $$
+   - **Multiplication (`*`):**
+     $$
+     \text{dfs}(j + 1, \; \text{prev\_term} \times \text{val}, \; (\text{curr\_val} - \text{prev\_term}) + (\text{prev\_term} \times \text{val}), \; \text{path} + \text{"*"} + \text{str}(\text{val}))
+     $$
+
+> **Invariant.** At every recursive step, `curr_val` is the exact mathematical evaluation of `path` according to standard arithmetic precedence, with `prev_term` preserving the trailing multiplicative factor.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Every expression requires two kinds of choices
-
-The digits must stay in their original order, but the algorithm must decide both where operands end and which operator separates consecutive operands. For `num = "123"`, possible operand partitions include `1 | 2 | 3`, `1 | 23`, `12 | 3`, and `123`. For a partition with more than one operand, every boundary can receive `+`, `-`, or `*`.
-
-No greedy rule can know which boundary or operator will eventually reach `target`, and the problem asks for all valid expressions. The exact solution therefore uses depth-first backtracking to enumerate every legal combination while evaluating each partial expression incrementally.
-
-At a recursive position `u`, the loop chooses every substring `num[u : i + 1]` as the next operand. Moving `i` farther right is the “do not insert an operator at this digit gap” choice; making the recursive call commits the resulting operand and places one operator before the next operand.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "123", "target": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the backtracking search for $\text{num} = \text{"123"}, \quad \text{target} = 6$:
 
 ---
 
-### Step 2: Understand the four recursive state values
-
-The helper `dfs(u, prev, curr, path)` carries exactly the information needed to continue:
-
-- `u` is the index of the next unused digit. Digits before `u` have all been placed in `path`.
-- `path` is the expression text built from those consumed digits.
-- `curr` is the correctly evaluated value of `path`, respecting multiplication precedence.
-- `prev` is the signed value of the final additive term currently included in `curr`.
-
-The first three meanings are direct. The role of `prev` is the important part: it lets a later multiplication revise the most recent term without reparsing the whole expression.
-
-For example, after building `1+2`, `curr = 3` and `prev = 2`. After building `5-2`, `curr = 3` and `prev = -2`; the sign is stored with the term because the expression is effectively `5 + (-2)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: First Operand Choices ($\text{index} = 0$)
+- **Choice 1: Operand `"1"` ($j = 0$):**
+  Initial call: $\text{dfs}(\text{index} = 1, \; \text{prev} = 1, \; \text{curr} = 1, \; \text{path} = \text{"1"})$.
+- **Choice 2: Operand `"12"` ($j = 1$):**
+  $\text{dfs}(\text{index} = 2, \; \text{prev} = 12, \; \text{curr} = 12, \; \text{path} = \text{"12"})$.
+- **Choice 3: Operand `"123"` ($j = 2$):**
+  $\text{val} = 123 \ne 6 \implies$ Fails target check.
 
 ---
 
-### Step 3: Choose every legal next operand
+### Step 2: Exploring Branch `"1"` ($\text{index} = 1$)
+Next digit: `"2"` (operand `"2"` at $j = 1$):
 
-For each endpoint `i` from `u` through the final digit, the source converts `num[u : i + 1]` to integer `next`. This enumerates all operand lengths beginning at `u`.
+#### Sub-branch 1A: Addition (`+ 2`)
+- $\text{curr} = 1 + 2 = 3, \quad \text{prev} = 2, \quad \text{path} = \text{"1+2"}$.
+- Next digit: `"3"` ($j = 2$):
+  - **`+ 3`:** $\text{curr} = 3 + 3 = \mathbf{6}$. Length $3 == N$.
+    $\text{curr} == \text{target} \implies$ **Record `"1+2+3"`!**
+  - **`- 3`:** $\text{curr} = 3 - 3 = 0 \ne 6$.
+  - **`* 3`:**
+    $$
+    \text{curr} = (3 - 2) + (2 \times 3) = 1 + 6 = 7 \ne 6
+    $$
 
-If `u == 0`, this is the expression's first operand. A binary operator cannot appear before it, so the solution makes only one recursive call with `prev = next`, `curr = next`, and `path` containing the operand. Handling the first operand separately avoids malformed expressions such as `+1+2` and prevents subtraction from being confused with a unary sign.
+#### Sub-branch 1B: Subtraction (`- 2`)
+- $\text{curr} = 1 - 2 = -1, \quad \text{prev} = -2, \quad \text{path} = \text{"1-2"}$.
+- Next digit: `"3"` ($j = 2$):
+  - `+ 3`: $\text{curr} = -1 + 3 = 2 \ne 6$.
+  - `- 3`: $\text{curr} = -1 - 3 = -4 \ne 6$.
+  - `* 3`: $\text{curr} = (-1 - (-2)) + (-2 \times 3) = 1 - 6 = -5 \ne 6$.
 
-For every later operand, the source explores three disjoint branches: addition, subtraction, and multiplication. After each call returns, the loop can extend the operand farther or try another operator, which is the backtracking behavior.
+#### Sub-branch 1C: Multiplication (`* 2`)
+- Precedence rollback:
+  $$
+  \text{curr} = (1 - 1) + (1 \times 2) = \mathbf{2}, \quad \text{prev} = 1 \times 2 = \mathbf{2}, \quad \text{path} = \text{"1*2"}
+  $$
+- Next digit: `"3"` ($j = 2$):
+  - `+ 3`: $\text{curr} = 2 + 3 = 5 \ne 6$.
+  - `- 3`: $\text{curr} = 2 - 3 = -1 \ne 6$.
+  - **`* 3`:**
+    $$
+    \text{curr} = (2 - 2) + (2 \times 3) = 0 + 6 = \mathbf{6}
+    $$
+    Length $3 == N, \quad \text{curr} == \text{target} \implies$ **Record `"1*2*3"`!**
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["1+2+3", "1*2*3"]` |
+---
+
+### Step 3: Exploring Branch `"12"` ($\text{index} = 2$)
+Next digit: `"3"`:
+- `+ 3`: $\text{curr} = 12 + 3 = 15 \ne 6$.
+- `- 3`: $\text{curr} = 12 - 3 = 9 \ne 6$.
+- `* 3`: $\text{curr} = 12 \times 3 = 36 \ne 6$.
+
+Search exhausted.
+Collected solutions:
+$$
+\mathbf{[\text{"1+2+3"}, \text{"1*2*3"}]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "123", "target": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["1+2+3", "1*2*3"]` | Verified |
+```text
+num = "123", target = 6
+
+Start:
+  Pick "1":
+    + "2": curr = 3, prev = 2
+      + "3": curr = 3 + 3 = 6 == target -> Found "1+2+3"
+      - "3": curr = 3 - 3 = 0 != target
+      * "3": curr = (3 - 2) + (2 * 3) = 7 != target
+    - "2": curr = -1, prev = -2
+      + "3": curr = 2 != target
+      - "3": curr = -4 != target
+      * "3": curr = -5 != target
+    * "2": curr = (1 - 1) + (1 * 2) = 2, prev = 2
+      + "3": curr = 5 != target
+      - "3": curr = -1 != target
+      * "3": curr = (2 - 2) + (2 * 3) = 6 == target -> Found "1*2*3"
+  Pick "12":
+    + "3": 15 != 6;  - "3": 9 != 6;  * "3": 36 != 6
+  Pick "123":
+    123 != 6
+
+Result: ["1+2+3", "1*2*3"]
+```
+
+| Traversal Path | Operand Added | Operator | `prev_term` | Evaluated `curr_val` | Target Reached? |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| `"1"` | 1 | (First) | 1 | 1 | No |
+| `"1+2"` | 2 | `+` | 2 | $1 + 2 = 3$ | No |
+| **`"1+2+3"`** | 3 | `+` | 3 | $3 + 3 = \mathbf{6}$ | **Yes (Match!)** |
+| `"1+2-3"` | 3 | `-` | -3 | $3 - 3 = 0$ | No |
+| `"1+2*3"` | 3 | `*` | $2 \times 3 = 6$ | $(3 - 2) + 6 = 7$ | No |
+| `"1*2"` | 2 | `*` | $1 \times 2 = 2$ | $(1 - 1) + 2 = 2$ | No |
+| **`"1*2*3"`** | 3 | `*` | $2 \times 3 = 6$ | $(2 - 2) + 6 = \mathbf{6}$ | **Yes (Match!)** |
+| `"12"` | 12 | (First) | 12 | 12 | No |
+| `"123"` | 123 | (First) | 123 | 123 | No |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every output string is formed by inserting binary operators between adjacent digits of `num` with no leading-zero operands. The incremental evaluation maintains exact mathematical equivalence at each branch, correctly prioritizing multiplication over addition and subtraction via the `curr - prev + prev * val` term rollback.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Backtracking exhaustively enumerates all valid partitions of the string into operands, and for each partition boundary, evaluates all three allowable operators (`+`, `-`, `*`). No legal expression can be overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Build every expression, then evaluate it:** This separates generation from evaluation but reparses every leaf and may rely on forbidden or unsafe `eval`-style functionality. Carrying `curr` and `prev` evaluates each branch incrementally.
-- **Mutable expression buffer:** Append operand and operator fragments, recurse, then pop them. This avoids retaining a chain of immutable prefix strings and brings active path storage closer to the manifest's $O(n)$ auxiliary bound.
-- **Dynamic programming by index and total:** The same index and current total can have different final multiplicative terms, so memoizing only those two values is incorrect. Including all required arithmetic state still does not naturally preserve every distinct expression string that must be returned.
-- **No multiplication:** With only `+` and `-`, `curr` alone would suffice because both operators have equal precedence. `prev` exists specifically to revise the final term for `*`.
-- **First operand:** It receives no leading operator. Treating it through the ordinary subtraction branch would generate unary-minus expressions that the insertion contract does not request.
-- **Single digit:** The only complete expression is the digit itself. It is returned exactly when its value equals `target`.
-- **Operand zero:** A single `0` is valid and participates normally in all three operator branches.
-- **Leading-zero run:** When the next digit is zero, only that one digit may form the operand. Longer endpoints are pruned with `break`.
-- **Negative intermediate totals:** They are valid. Subtraction can make `curr` negative, and later operations can still reach the target, so they must not be pruned.
-- **Large intermediate products:** The target is 32-bit, but intermediate expression values are not promised to stay in that range. Python integers handle them without overflow; fixed-width implementations should use a sufficiently wide integer type.
-- **Operator precedence:** The source supports the standard precedence of multiplication over addition and subtraction, with no parentheses. The signed-last-term update is valid precisely for this operator set.
-- **All digits must be used:** Reaching the target before `u` reaches the end is not a solution; every digit must appear exactly once and in order.
-- **Answer order:** DFS traversal determines the returned ordering. The contract asks for all possibilities and does not require a particular order.
-- **No valid expression:** Exhaustive search leaves the result list empty, as in the third example.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading Zeros in Operands:** An operand like `"05"` is invalid in standard mathematical notation. The condition `if j > index and num[index] == '0': break` ensures `"0"` is only evaluated as a single-digit operand.
+- **Operator Precedence in Linear Scans:** Evaluating `2 + 3 * 2` as $(2 + 3) \times 2 = 10$ is an arithmetic fallacy. Tracking `prev_term` allows constant-time local rollback without an explicit operand stack.
+- **64-Bit Integer Overflow:** Although `target` fits in a 32-bit integer, intermediate products (e.g. $999999999 \times 999999999$) can exceed $2^{31} - 1$. Python handles arbitrary precision automatically; in C++ and Java, 64-bit `long long` / `long` is mandatory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(4^n)$. Let $n$ be the number of digits. Each of the $n-1$ gaps has four conceptual choices: join the neighboring digits into one operand, or place `+`, `-`, or `*`. This gives at most $4^{n-1}$ complete expression structures before leading-zero pruning, conventionally written as $O(4^n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(4^N)$, where $N$ is the number of digits in `num`. At each of the $N - 1$ gaps between digits, there are 4 choices: insert nothing (extend operand), `+`, `-`, or `*`. There are at most $4^{N-1}$ generated expressions. Slicing and copying strings at each leaf adds an $O(N)$ factor, yielding $O(N \cdot 4^N)$ worst-case time.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the recursion call stack and active string buffers.

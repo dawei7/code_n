@@ -1,137 +1,184 @@
 # Guided Example: Car Fleet II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the backward monotonic stack approach with collision time filtering on a representative problem instance:
 
-- **Input:** `{"cars": [[1, 2], [2, 1], [4, 3], [7, 2]]}`
-- **Required output:** `[1.0, -1.0, 3.0, -1.0]`
+- **Input:** `cars = [[1, 2], [2, 1], [4, 3], [7, 2]]`
+- **Required Output:** `[1.0, -1.0, 3.0, -1.0]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features two independent pairs of cars where trailing faster cars collide with leading slower cars without interfering with each other, demonstrating the mechanics of right-to-left monotonic stack filtering and fleet collision calculation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` cars traveling at different speeds in the same direction along a one-lane road. You are given an array `cars` of length `n`, where $\text{cars}[i] = [\text{position}_{i}, \text{speed}_{i}]$ represents:
+We are given $n$ cars traveling along a one-lane highway, where $\text{cars}[i] = [\text{position}_i, \text{speed}_i]$. The road positions are strictly increasing ($\text{position}_i < \text{position}_{i+1}$).
+- Cars travel forward at constant speeds.
+- No car can pass another car.
+- When a faster car catches up to a slower car, they form a fleet, traveling together at the speed of the slower car.
+- For each car $i$, we must determine the exact time in seconds when it collides with the next car or fleet ahead of it, or return $-1.0$ if it never collides.
 
-The objective is to compute `[1.0, -1.0, 3.0, -1.0]` from `{"cars": [[1, 2], [2, 1], [4, 3], [7, 2]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Direction of Causality
+A car can only ever collide with cars positioned **ahead** of it (larger indices). Furthermore, whether a leading car collides and changes speed affects all trailing cars behind it.
+Therefore, processing from **right to left** (from the frontmost car $n - 1$ back to car $0$) allows us to know the exact collision fate of every car ahead before evaluating the trailing car.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Active Car Index $i$ | Trailing car being evaluated | Decrements from $n - 1$ down to $0$ |
+| Candidate Fleet Index $j$ | $\text{stk}[-1]$ (top of stack) | Nearest potential obstacle car ahead |
+| Relative Catch Time $t$ | $\frac{\text{pos}[j] - \text{pos}[i]}{\text{speed}[i] - \text{speed}[j]}$ | Time for car $i$ to overtake car $j$ assuming constant speeds |
+| Car $j$ Collision Lifetime $\text{ans}[j]$ | Precomputed collision time for car $j$ | Time after which car $j$ merges into a forward fleet |
+| Monotonic Stack $\text{stk}$ | Indices of active potential collision targets | Maintained in increasing order of speed |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Monotonic Obstacle Elimination Theorem.**
+> When car $i$ evaluates a candidate obstacle car $j$ ahead:
+> 1. **Speed Inadmissibility:** If $\text{speed}[i] \le \text{speed}[j]$, car $i$ can never catch car $j$ while car $j$ maintains speed. Even if car $j$ later slows down by merging into another car, car $i$ will collide with that future fleet, not car $j$. Thus, car $j$ is never car $i$'s primary collision target and can be popped from the stack.
+> 2. **Temporal Shadowing:** If $\text{speed}[i] > \text{speed}[j]$, calculate the hypothetical overtake time:
+>    $$t = \frac{\text{pos}[j] - \text{pos}[i]}{\text{speed}[i] - \text{speed}[j]}$$
+>    If $\text{ans}[j] \ne -1$ and $t > \text{ans}[j]$, then car $j$ merges into a forward fleet at time $\text{ans}[j] < t$. Car $j$ ceases to exist as an independent entity before car $i$ can catch it; hence car $j$ is shadowed and can be popped.
+> 3. **Valid Collision:** If $t \le \text{ans}[j]$ (or $\text{ans}[j] = -1$), car $i$ reaches car $j$ while car $j$ is still independently traveling. Thus car $i$ collides with car $j$ at time $\text{ans}[i] = t$.
+
+```mermaid
+flowchart TD
+    accTitle: Car Fleet II Monotonic Stack
+    accDescr: Pipeline scanning cars from right to left, checking candidate collisions against the stack, popping invalid candidates, and recording collision times.
+    A["Input Cars: pos and speed, sorted ascending by pos"] --> B["Initialize ans = [-1]*n, stk = []"]
+    B --> C["Loop i from n-1 down to 0"]
+    C --> D{"Is stk empty?"}
+    D -- Yes --> E["ans[i] = -1.0 (No car to collide with)"]
+    D -- No --> F["Candidate j = stk.top()"]
+    F --> G{"Is speed[i] > speed[j]?"}
+    G -- No (Slower/Equal) --> H["Pop j from stk"]
+    H --> D
+    G -- Yes --> I["Compute t = (pos[j] - pos[i]) / (speed[i] - speed[j])"]
+    I --> J{"Is ans[j] != -1 AND t > ans[j]?"}
+    J -- Yes (j merged before i catches it) --> H
+    J -- No (Valid Collision) --> K["ans[i] = t; break out of while"]
+    K --> L["Push i onto stk"]
+    E --> L
+    L --> M{"Finished all cars?"}
+    M -- No --> C
+    M -- Yes --> N["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Process cars from front to back in reverse index order
-
-Positions are strictly increasing, so larger indices are farther along the road. A car can collide only with a car or fleet ahead of it.
-
-The exact solution scans from right to left. When processing car `i`, collision behavior for every relevant car ahead has already been computed in `ans`.
-
-`stk` holds candidate indices ahead that may be the next fleet car `i` reaches. Candidates that cannot be car `i`'s first collision are popped.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"cars": [[1, 2], [2, 1], [4, 3], [7, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `cars = [[1, 2], [2, 1], [4, 3], [7, 2]]` of length $n = 4$.
+Initial state: $\text{ans} = [-1.0, -1.0, -1.0, -1.0]$, $\text{stk} = []$.
 
 ---
 
-### Step 2: Compute catch time only when i is faster
-
-For candidate car `j` ahead, car `i` can catch it while both keep their current speeds only if:
-
-`cars[i][1] > cars[j][1]`.
-
-The initial distance is `position[j] - position[i]`, and the relative closing speed is `speed[i] - speed[j]`. Their hypothetical collision time is:
-
-$$
-t=
-\frac{\text{position}_j-\text{position}_i}
-{\text{speed}_i-\text{speed}_j}.
-$$
-
-The source computes this with true division, producing a floating-point answer.
-
-If `i` is no faster than `j`, it cannot catch `j` before `j` changes into some fleet. Candidate `j` is popped so the algorithm can consider the slower fleet or car structure farther ahead that `j` may eventually join.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Car $3$ ($\text{pos} = 7, \text{speed} = 2$)
+- Candidate stack is empty ($\text{stk} = []$).
+- No cars exist ahead of car $3$.
+- Decision: $\text{ans}[3] = -1.0$.
+- Stack update: Push $3$ onto stack:
+  $$\text{stk} = [3]$$
 
 ---
 
-### Step 3: Check whether j still exists at time t
+### Step 2: Process Car $2$ ($\text{pos} = 4, \text{speed} = 3$)
+- Candidate from stack: $j = 3$ ($\text{pos} = 7, \text{speed} = 2$).
+- Speed comparison:
+  $$\text{speed}[2] = 3 > \text{speed}[3] = 2 \implies \text{Faster!}$$
+- Calculate catch time $t$:
+  $$t = \frac{\text{pos}[3] - \text{pos}[2]}{\text{speed}[2] - \text{speed}[3]} = \frac{7 - 4}{3 - 2} = \frac{3}{1} = 3.0\text{ s}$$
+- Lifetime check:
+  $\text{ans}[3] = -1.0$ (Car $3$ never collides).
+  Since $\text{ans}[3] = -1.0$, car $3$ remains at speed $2$ indefinitely.
+- Outcome: Car $2$ collides with car $3$ at $t = 3.0\text{ s}$.
+- Record: $\text{ans}[2] = 3.0$.
+- Stack update: Push $2$ onto stack:
+  $$\text{stk} = [3, 2]$$
 
-Even when `i` is faster than `j`, the calculated `t` is valid only if `j` has not already collided with its own next car before that time.
+---
 
-`ans[j] == -1` means `j` never collides ahead, so it continues at its initial speed indefinitely and is a valid target.
+### Step 3: Process Car $1$ ($\text{pos} = 2, \text{speed} = 1$)
+- Candidate $j = 2$ ($\text{speed} = 3$):
+  - Speed comparison: $\text{speed}[1] = 1 \le \text{speed}[2] = 3$.
+  - Car $1$ is slower than car $2$; it can never catch car $2$.
+  - Action: Pop $2$ from stack.
+- Candidate $j = 3$ ($\text{speed} = 2$):
+  - Speed comparison: $\text{speed}[1] = 1 \le \text{speed}[3] = 2$.
+  - Car $1$ is slower than car $3$; it can never catch car $3$.
+  - Action: Pop $3$ from stack.
+- Stack is now empty.
+- Decision: Car $1$ never collides with any car ahead: $\text{ans}[1] = -1.0$.
+- Stack update: Push $1$ onto stack:
+  $$\text{stk} = [1]$$
 
-Otherwise `ans[j]` is the time when `j` joins another fleet. If `t <= ans[j]`, car `i` catches `j` no later than that event. The collision time is valid, so the source stores `ans[i] = t` and stops popping.
+---
 
-If `t > ans[j]`, candidate `j` changes speed and position behavior before `i` would reach it as an independent car. The hypothetical time is obsolete. The algorithm pops `j` and considers the next candidate representing the fleet ahead.
+### Step 4: Process Car $0$ ($\text{pos} = 1, \text{speed} = 2$)
+- Candidate $j = 1$ ($\text{pos} = 2, \text{speed} = 1$):
+  - Speed comparison: $\text{speed}[0] = 2 > \text{speed}[1] = 1 \implies \text{Faster!}$
+  - Calculate catch time $t$:
+    $$t = \frac{\text{pos}[1] - \text{pos}[0]}{\text{speed}[0] - \text{speed}[1]} = \frac{2 - 1}{2 - 1} = \frac{1}{1} = 1.0\text{ s}$$
+  - Lifetime check:
+    $\text{ans}[1] = -1.0$ (Car $1$ never collides).
+  - Outcome: Car $0$ collides with car $1$ at $t = 1.0\text{ s}$.
+- Record: $\text{ans}[0] = 1.0$.
+- Stack update: Push $0$ onto stack:
+  $$\text{stk} = [1, 0]$$
 
-Equality is accepted: if `i` reaches `j` at the exact moment `j` hits its next fleet, all meet simultaneously and `t` is still car `i`'s first collision time.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1.0, -1.0, 3.0, -1.0]` |
+### Step 5: Termination
+All $4$ cars evaluated. Final collision times:
+$$\text{ans} = [1.0, -1.0, 3.0, -1.0]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"cars": [[1, 2], [2, 1], [4, 3], [7, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1.0, -1.0, 3.0, -1.0]` | Verified |
+| Car Index $i$ | $[\text{pos}, \text{speed}]$ | Top Candidate $j$ | $[\text{pos}_j, \text{speed}_j]$ | Speed Check | Calculated Catch Time $t$ | $\text{ans}[j]$ Check | Stack Action | Assigned $\text{ans}[i]$ | Stack After Step |
+|---|---|---|---|---|---|---|---|---|---|
+| $3$ | $[7, 2]$ | None | — | — | — | — | Empty stack | **$-1.0$** | $[3]$ |
+| $2$ | $[4, 3]$ | $3$ | $[7, 2]$ | $3 > 2$ | $(7 - 4)/(3 - 2) = 3.0$ | $\text{ans}[3] = -1.0$ | Valid match | **$3.0$** | $[3, 2]$ |
+| $1$ | $[2, 1]$ | $2$ | $[4, 3]$ | $1 \le 3$ | — | — | Pop $2$ | — | $[3]$ |
+| $1$ | $[2, 1]$ | $3$ | $[7, 2]$ | $1 \le 2$ | — | — | Pop $3$ | **$-1.0$** | $[1]$ |
+| $0$ | $[1, 2]$ | $1$ | $[2, 1]$ | $2 > 1$ | $(2 - 1)/(2 - 1) = 1.0$ | $\text{ans}[1] = -1.0$ | Valid match | **$1.0$** | $[1, 0]$ |
+
+Final Result:
+$$\text{ans} = [1.0, -1.0, 3.0, -1.0]$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Safety of Shadowing Elimination:**
+   If car $j$ merges with an obstacle ahead at time $\text{ans}[j]$, its velocity drops to that of the obstacle at that exact moment. Any car $i$ that would have overtaken car $j$ at time $t > \text{ans}[j]$ actually encounters the combined fleet ahead. Popping $j$ allows car $i$ to be tested directly against the fleet car $j$ merged with, ensuring exact physical accuracy.
+2. **Monotonic Speed Structure:**
+   Because all candidates with speed $\ge \text{speed}[i]$ are popped, the speeds of the remaining candidates strictly decrease down the stack, forming an ordered chain of increasingly slower barriers.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **Simulate continuous motion events:** A priority queue can process fleet collisions but requires complex invalidation and is slower than the monotonic stack.
-- **Check every car ahead:** It can take $O(n^2)$ time.
-- **Equal speeds:** The rear car cannot close the distance, so the candidate is popped.
-- **Rear car slower:** It cannot catch the candidate before that candidate changes fleet state.
-- **Front candidate never collides:** Any positive catch time from a faster rear car is valid.
-- **Candidate collides earlier:** A hypothetical later catch is discarded by `t > ans[j]`.
-- **Simultaneous fleet collision:** `t == ans[j]` is accepted.
-- **Rightmost car:** It has no target and always remains minus one.
-- **Several cascading fleets:** Repeated pops skip cars that disappear before they could be reached.
-- **Strict position ordering:** It guarantees positive distances for indices ahead.
-- **Slowest fleet speed:** Considering farther surviving candidates models the speed inherited after intermediate collisions.
-- **One car:** The stack starts empty for it and answer is `[-1]`.
-- **Answer initialization:** Minus one distinguishes never colliding from every nonnegative time.
-- **Input preservation:** Cars are read in place and never reordered or modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Configuration | Expected Output | Strategic Handling |
+|---|---|---|---|
+| All Cars Same Speed | `[[1, 2], [3, 2], [5, 2]]` | `[-1.0, -1.0, -1.0]` | Relative speeds equal $0$; each car pops candidates and returns $-1.0$. |
+| Strictly Increasing Speeds Ahead | `[[1, 1], [3, 2], [5, 3]]` | `[-1.0, -1.0, -1.0]` | Each car is slower than all cars ahead; no collisions occur. |
+| Cascading Domino Collisions | Fast car behind slow car behind slower car | Correct chained times | Backward processing resolves lead collisions before trailing collisions. |
+| Single Car | `[[10, 5]]` | `[-1.0]` | Stack empty; returns $-1.0$ directly. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of cars. Each index is pushed once and popped at most once. All arithmetic and answer checks per push or pop are constant time, so total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the number of cars.
+  - Each car index $i \in [0, n - 1]$ is pushed onto the monotonic stack exactly once.
+  - Each car is popped from the stack at most once across the entire algorithm.
+  - The inner loop body executes in $\mathcal{O}(1)$ time.
+  - Total stack push and pop operations are bounded by $2n = \mathcal{O}(n)$.
+  - For $n \le 10^5$, execution completes in under $0.05\text{ s}$.
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space to store the monotonic stack and output array.

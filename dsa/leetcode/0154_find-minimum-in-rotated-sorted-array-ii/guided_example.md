@@ -1,96 +1,171 @@
 # Guided Example: Find Minimum in Rotated Sorted Array II
 
-We trace the logarithmic Array, Binary Search search on a representative problem instance.
+We trace the step-by-step ternary decision bisection and duplicate boundary shrinking ($R \leftarrow R - 1$) on representative rotated sorted arrays with duplicate elements:
 
-- **Input:** `{"nums": [1, 3, 5]}`
-- **Required output:** `1`
+- **Input:** $\text{nums} = [2, 2, 2, 0, 1]$
+- **Required output:** $0$ (Inflection drop located at index $3$)
+- **Duplicate Ambiguity Instance:** $\text{nums} = [3, 3, 1, 3] \implies 1$ (Where $\text{nums}[M] == \text{nums}[R]$ triggers safe boundary contraction)
+- **All-Identical Plateau Instance:** $\text{nums} = [2, 2, 2, 2] \implies 2$
 
-This instance demonstrates search space bound maintenance, integer midpoint calculation, and monotonic predicate halving.
+This instance demonstrates addressing binary search breakdown under duplicates ($\text{nums}[M] == \text{nums}[R]$), proves why decrementing the right pointer $R \leftarrow R - 1$ preserves the global minimum, and analyzes the complexity spectrum from $O(\log N)$ average time to $O(N)$ worst-case time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Find Minimum in Rotated Sorted Array II** is to pinpoint the target value or optimal threshold in logarithmic $O(\log N)$ time.
-Linear scanning through all candidates takes $O(N)$ time. By exploiting monotonicity in the search domain, each comparison halves the remaining candidate space.
+Suppose a sorted array containing **duplicate elements** is rotated:
+$$
+\text{nums} = [2, 2, 2, \mathbf{0}, 1]
+$$
+Find the minimum element of the array.
+
+In LeetCode 153 (all unique elements), comparing midpoint $\text{nums}[M]$ against right endpoint $\text{nums}[R]$ yields a strict dichotomy:
+- $\text{nums}[M] > \text{nums}[R] \implies$ right half.
+- $\text{nums}[M] < \text{nums}[R] \implies$ left half.
+
+When duplicates exist, a third case arises:
+$$
+\text{nums}[M] == \text{nums}[R]
+$$
+Consider two opposing arrays where $M = 2$:
+1. $[1, 0, 1, 1, 1]$: $\text{nums}[M] = 1, \text{nums}[R] = 1$. The minimum ($0$) is in the **left** half.
+2. $[1, 1, 1, 0, 1]$: $\text{nums}[M] = 1, \text{nums}[R] = 1$. The minimum ($0$) is in the **right** half.
+Because $\text{nums}[M] == \text{nums}[R]$, halving the search space is mathematically impossible without risking discarding the minimum.
+The optimal strategy decrements $R \leftarrow R - 1$, safely chipping away redundant boundary duplicates until strict inequality is restored.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define an active search interval $[L, R]$. At each iteration, we evaluate the midpoint $M = L + \lfloor (R - L) / 2 \rfloor$.
+### Ternary Bisection Protocol with Boundary Contraction
+Maintain active interval $[L, R]$ with `while L < R`.
+Compute midpoint:
+$$
+M = L + \left\lfloor \frac{R - L}{2} \right\rfloor
+$$
 
-| Interval Variable | Role in Bisection |
-|---|---|
-| Lower Bound $L$ | Lowest possible index/value in active range |
-| Upper Bound $R$ | Highest possible index/value in active range |
-| Midpoint $M$ | Probe point dividing interval into equal halves |
+1. **Strictly Greater ($\text{nums}[M] > \text{nums}[R]$):**
+   The right half contains the inflection drop. The minimum lies strictly in $[M + 1, R]$:
+   $$
+   L \leftarrow M + 1
+   $$
+2. **Strictly Lesser ($\text{nums}[M] < \text{nums}[R]$):**
+   The segment $[M \dots R]$ is sorted. The minimum lies in $[L \dots M]$:
+   $$
+   R \leftarrow M
+   $$
+3. **Equality Ambiguity ($\text{nums}[M] == \text{nums}[R]$):**
+   Because the value at index $R$ is also present at index $M$, discarding index $R$ cannot permanently remove the minimum value from the candidate set:
+   - If $\text{nums}[R]$ was not the minimum, discarding it is obviously safe.
+   - If $\text{nums}[R]$ was the minimum, its duplicate at $M$ remains inside the interval $[L, R - 1]$.
+   $$
+   R \leftarrow R - 1
+   $$
 
-> **Invariant.** If a valid solution exists, it is guaranteed to lie within the inclusive search range $[L, R]$.
+> **Invariant.** Throughout all pointer adjustments ($L \leftarrow M+1, R \leftarrow M, R \leftarrow R-1$), the minimum value in `nums` is guaranteed to exist at at least one index within the remaining interval $[L, R]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Initial Bounds Setup
+We trace the algorithm on $\text{nums} = [3, 3, 1, 3]$ ($N = 4$):
 
-- Set $L = 0$ and $R = N - 1$ (or corresponding domain bounds).
-- Compute initial midpoint $M$.
-
-| Parameter | State |
-|---|---|
-| Search Interval | $[L, R]$ |
-| Midpoint Probe $M$ | $L + \lfloor (R - L) / 2 \rfloor$ |
-| Evaluated Value | Probe result compared against target |
+### Initialization
+- $L = 0, \quad R = 3$.
+- Active interval: $[0, 3]$.
 
 ---
 
-### Step 2: Interval Halving via Monotonicity
-
-- If the probe value satisfies the predicate or is smaller than the target, eliminate the left half ($L = M + 1$).
-- Otherwise, eliminate the right half ($R = M - 1$ or $R = M$).
-
-| Parameter | State |
-|---|---|
-| Discarded Region | Non-viable half eliminated |
-| New Interval | Narrowed $[L, R]$ |
+### Iteration 1: Ambiguity Resolution
+- Midpoint:
+  $$
+  M = 0 + \left\lfloor \frac{3 - 0}{2} \right\rfloor = 1
+  $$
+- Evaluate values:
+  - $\text{nums}[M] = \text{nums}[1] = 3$.
+  - $\text{nums}[R] = \text{nums}[3] = 3$.
+- Compare:
+  $$
+  \text{nums}[M] == \text{nums}[R] \quad (3 == 3)
+  $$
+- Ambiguity encountered! Safely decrement upper boundary:
+  $$
+  R \leftarrow R - 1 = 3 - 1 = \mathbf{2}
+  $$
+- New active interval: $[0, 2]$.
 
 ---
 
-### Step 3: Convergence & Target Extraction
+### Iteration 2: Definite Bisection
+- Midpoint:
+  $$
+  M = 0 + \left\lfloor \frac{2 - 0}{2} \right\rfloor = 1
+  $$
+- Evaluate values:
+  - $\text{nums}[M] = \text{nums}[1] = 3$.
+  - $\text{nums}[R] = \text{nums}[2] = 1$.
+- Compare:
+  $$
+  \text{nums}[M] > \text{nums}[R] \quad (3 > 1)
+  $$
+- Strict inequality restored! The drop lies strictly to the right:
+  $$
+  L \leftarrow M + 1 = 1 + 1 = \mathbf{2}
+  $$
+- New active interval: $[2, 2]$.
 
-- Iteration halts when $L > R$ (or $L == R$).
-- Return confirmed target index or boundary answer.
+---
+
+### Termination
+- $L == R == 2$. Loop terminates.
+- Extract minimum:
+  $$
+  \text{nums}[L] = \text{nums}[2] = \mathbf{1}
+  $$
+
+Minimum element is $\mathbf{1}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Iteration | Lower $L$ | Upper $R$ | Midpoint $M$ | Evaluated Value | Decision / Predicate | Halved Interval |
-|---|---|---|---|---|---|---|
-| 1 (Start) | $0$ | $N-1$ | Midpoint | Probe result | Branch selection | Remaining half |
-| 2 (Narrow) | Updated $L$ | Updated $R$ | New Midpoint | Probe result | Further contraction | Narrowed half |
-| Final | Converged | Converged | Target | Match / Boundary | Target confirmed | Result emitted |
+```text
+Instance 1: nums = [3, 3, 1, 3]
+Iter 1: [L=0, M=1, R=3] -> nums[1]=3 == nums[3]=3 -> Ambiguity! R = R - 1 = 2
+Iter 2: [L=0, M=1, R=2] -> nums[1]=3  > nums[2]=1 -> L = M + 1 = 2
+Result: [L=2, R=2]     -> Minimum is nums[2] = 1
+
+Instance 2: nums = [2, 2, 2, 0, 1]
+Iter 1: [L=0, M=2, R=4] -> nums[2]=2  > nums[4]=1 -> L = M + 1 = 3
+Iter 2: [L=3, M=3, R=4] -> nums[3]=0  < nums[4]=1 -> R = M = 3
+Result: [L=3, R=3]     -> Minimum is nums[3] = 0
+```
+
+| Iteration | Interval $[L, R]$ | Midpoint $M$ | $\text{nums}[M]$ | $\text{nums}[R]$ | Decision Case | Action Applied | New Bounds |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | $[0, 3]$ | 1 | 3 | 3 | $\text{nums}[M] == \text{nums}[R]$ | $R \leftarrow R - 1$ | $[0, 2]$ |
+| **2** | **$[0, 2]$** | **1** | **3** | **1** | **$\text{nums}[M] > \text{nums}[R]$** | **$L \leftarrow M + 1$** | **$[2, 2]$** |
+| **End** | **$[2, 2]$** | - | - | - | **$L == R$** | **Return $\text{nums}[2]$** | **1 (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because the underlying search space is monotonic, any region discarded by the comparison is mathematically proven not to contain the target.
+**Soundness.** When $\text{nums}[M] > \text{nums}[R]$, the minimum must be in $[M+1, R]$. When $\text{nums}[M] < \text{nums}[R]$, the minimum must be in $[L, M]$. When $\text{nums}[M] == \text{nums}[R]$, removing index $R$ retains index $M$ which holds the exact same value. In all three cases, at least one instance of the global minimum remains inside $[L, R]$.
 
-**Completeness.** The interval size strictly decreases by $\lfloor (R - L + 1) / 2 \rfloor$ on every step, guaranteeing termination and discovery of the target.
+**Completeness.** In every step, either $(R - L)$ is halved or $R$ decreases by $1$. The length $R - L$ is a strictly decreasing non-negative integer, guaranteeing convergence to $L == R$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Integer Overflow in Midpoint:** Using $(L + R) / 2$ in fixed-width languages can overflow. The form $L + \lfloor(R - L) / 2\rfloor$ is safe.
-- **Infinite Loops on $L == R - 1$:** Misaligned boundary updates ($L = M$ without upper-rounding midpoint) causes infinite loops when two elements remain.
-- **Left vs. Right Insertion Index:** Distinguishing exact match from lower-bound insertion points prevents off-by-one errors.
+- **Attempting $O(\log N)$ Worst-Case Guarantee:** When all elements are identical except one (e.g. $[1, 1, 1, 0, 1, 1]$), binary search cannot eliminate half the array in one comparison. Any algorithm must examine $O(N)$ elements in the worst case to distinguish between $[1, 1, \dots, 0]$ and $[0, 1, \dots, 1]$.
+- **Using $L = L + 1$ instead of $R = R - 1$:** When comparing against $\text{nums}[R]$, the duplicate value is confirmed between $M$ and $R$. Chipping away from the left ($L \leftarrow L + 1$) without verifying $\text{nums}[L] == \text{nums}[M]$ can inadvertently delete an inflection point!
+- **Single Element Input:** If $N = 1$, $L == R == 0$ immediately terminates and returns $\text{nums}[0]$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log N)$ because the candidate interval is bisected in each step.
-- **Auxiliary Space Complexity:** $O(1)$ constant extra space using iterative pointers.
+- **Time Complexity:** $O(\log N)$ average time on general rotated arrays where bisection halves the search space. $O(N)$ worst-case time on degenerate inputs with massive duplicate plateaus (e.g. all elements identical except one), where $R \leftarrow R - 1$ runs $N$ times.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only index variables $L, R, M$.

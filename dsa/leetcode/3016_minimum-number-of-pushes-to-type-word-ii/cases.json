@@ -29,6 +29,19 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aabbccddeeffgghhiiiiii"
+      },
+      "expected": 24,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "single-letter",
       "name": "boundary: one repeated character",
       "kind": "trial",

@@ -23,19 +23,19 @@ Return the unique pair of 1-based indices `[index1, index2]`, with `index1 < ind
 
 #### Example 1
 
-- **Input:** $numbers = [<u>2</u>,<u>7</u>,11,15], target = 9$
+- **Input:** $numbers = [2,7,11,15], target = 9$
 - **Output:** `[1,2]`
 - **Explanation:** The sum of 2 and 7 is 9. Therefore, index_1 = 1, index_2 = 2. We return [1, 2].
 
 #### Example 2
 
-- **Input:** $numbers = [<u>2</u>,3,<u>4</u>], target = 6$
+- **Input:** $numbers = [2,3,4], target = 6$
 - **Output:** `[1,3]`
 - **Explanation:** The sum of 2 and 4 is 6. Therefore index_1 = 1, index_2 = 3. We return [1, 3].
 
 #### Example 3
 
-- **Input:** $numbers = [<u>-1</u>,<u>0</u>], target = -1$
+- **Input:** $numbers = [-1,0], target = -1$
 - **Output:** `[1,2]`
 - **Explanation:** The sum of -1 and 0 is -1. Therefore index_1 = 1, index_2 = 2. We return [1, 2].
 

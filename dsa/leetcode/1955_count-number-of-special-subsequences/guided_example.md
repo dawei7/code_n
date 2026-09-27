@@ -1,99 +1,187 @@
 # Guided Example: Count Number of Special Subsequences
 
-We derive and execute the Array, Dynamic Programming recurrence on a representative problem instance.
+We formulate and trace the 3-state finite automaton dynamic programming recurrence on representative arrays to count index-distinct special subsequences modulo $10^9+7$.
 
-- **Input:** `{"nums": [0, 1, 2, 2]}`
-- **Required output:** `3`
-
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
-
----
-
-## 1. Instance & Teaching Goal
-
-The objective for **Count Number of Special Subsequences** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+- **Primary Instance:** `nums = [0, 1, 2, 0, 1, 2]` ($N = 6$)
+  - Expected Output: `7`
+- **Secondary Instance:** `nums = [0, 1, 2, 2]` ($N = 4$)
+  - Expected Output: `3`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+A subsequence is termed *special* if and only if it strictly matches the regular language pattern:
+$$\mathcal{L} = 0^+ 1^+ 2^+$$
+That is, the subsequence contains one or more `0`s, followed by one or more `1`s, followed by one or more `2`s, with no other values or out-of-order transitions.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+Subsequences are distinguished by their **source index sets**. For example, in `nums = [0, 1, 2, 2]`:
+- Selecting indices `(0, 1, 2)` produces `[0, 1, 2]`.
+- Selecting indices `(0, 1, 3)` produces `[0, 1, 2]`.
+- Selecting indices `(0, 1, 2, 3)` produces `[0, 1, 2, 2]`.
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+All three are valid and distinct.
 
----
+A naive combinatorial enumeration generates $2^N$ subsequences, which is impossible for $N = 10^5$. However, the pattern consists of three distinct linear phases:
+1. **Phase 0:** Prefix matching $0^+$.
+2. **Phase 1:** Prefix matching $0^+ 1^+$.
+3. **Phase 2:** Completed special subsequence matching $0^+ 1^+ 2^+$.
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Base Case Initialization
-
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+When inspecting the current number $x$, each existing prefix in phase $k$ can either incorporate $x$ or omit $x$. The linear automaton structure allows rolling prefix counts in $\mathcal{O}(1)$ space and $\mathcal{O}(N)$ time.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
+## 2. Mathematical Formalism & State Transitions
 
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
+Let $dp_0, dp_1, dp_2$ denote the number of valid subsequences formed so far in Phase 0, Phase 1, and Phase 2, respectively.
+All calculations are performed in the quotient ring $\mathbb{Z} / (10^9 + 7)\mathbb{Z}$.
 
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Initial Conditions
+
+Before processing any elements:
+$$dp_0 = 0, \quad dp_1 = 0, \quad dp_2 = 0$$
+
+### State Update Rules on Reading Element $x$
+
+1. **When $x = 0$:**
+   - Omit the current 0: retain existing $dp_0$ configurations.
+   - Append to an existing $0^+$ prefix: $dp_0$ new configurations.
+   - Start a brand new sequence of just this 0: $1$ new configuration.
+   $$dp_0 \leftarrow (2 \cdot dp_0 + 1) \pmod{10^9+7}$$
+   Phases 1 and 2 remain unchanged because a 0 cannot follow a 1 or 2.
+
+2. **When $x = 1$:**
+   - Omit the current 1: retain existing $dp_1$ configurations.
+   - Append to an existing $0^+ 1^+$ prefix: $dp_1$ new configurations.
+   - Transition from a $0^+$ prefix by appending this 1: $dp_0$ new configurations.
+   $$dp_1 \leftarrow (2 \cdot dp_1 + dp_0) \pmod{10^9+7}$$
+   Phases 0 and 2 remain unchanged.
+
+3. **When $x = 2$:**
+   - Omit the current 2: retain existing $dp_2$ configurations.
+   - Append to an existing $0^+ 1^+ 2^+$ sequence: $dp_2$ new configurations.
+   - Transition from a $0^+ 1^+$ prefix by appending this 2: $dp_1$ new configurations.
+   $$dp_2 \leftarrow (2 \cdot dp_2 + dp_1) \pmod{10^9+7}$$
+   Phases 0 and 1 remain unchanged.
+
+```mermaid
+flowchart LR
+    accTitle: Special Subsequence State Automaton
+    accDescr: Finite state transition diagram showing self-loops and forward transitions for states 0-plus, 0-plus 1-plus, and complete 0-plus 1-plus 2-plus.
+
+    START((Start)) -->|Read 0: +1| S0["State 0: 0+"]
+    S0 -->|Read 0: x2| S0
+    
+    S0 -->|Read 1: +dp0| S1["State 1: 0+ 1+"]
+    S1 -->|Read 1: x2| S1
+    
+    S1 -->|Read 2: +dp1| S2["State 2: 0+ 1+ 2+"]
+    S2 -->|Read 2: x2| S2
+```
 
 ---
 
-### Step 3: Terminal State Resolution
+## 3. Step-by-Step State Evolution
 
-- Extract the final value from the designated terminal state $DP[N]$.
+We trace the primary instance `nums = [0, 1, 2, 0, 1, 2]`:
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+- **Initial:** $[dp_0, dp_1, dp_2] = [0, 0, 0]$.
+
+- **Step 1 ($i = 0, nums[0] = 0$):**
+  - $dp_0 \leftarrow 2(0) + 1 = 1$. Subsequence: `{(0)}`.
+  - State: $[1, 0, 0]$.
+
+- **Step 2 ($i = 1, nums[1] = 1$):**
+  - $dp_1 \leftarrow 2(0) + dp_0 = 0 + 1 = 1$. Subsequence: `{(0, 1)}`.
+  - State: $[1, 1, 0]$.
+
+- **Step 3 ($i = 2, nums[2] = 2$):**
+  - $dp_2 \leftarrow 2(0) + dp_1 = 0 + 1 = 1$. Subsequence: `{(0, 1, 2)}`.
+  - State: $[1, 1, 1]$.
+
+- **Step 4 ($i = 3, nums[3] = 0$):**
+  - $dp_0 \leftarrow 2(1) + 1 = 3$. Subsequences: `{(0), (3), (0, 3)}`.
+  - State: $[3, 1, 1]$.
+
+- **Step 5 ($i = 4, nums[4] = 1$):**
+  - $dp_1 \leftarrow 2(1) + dp_0 = 2 + 3 = 5$.
+  - Prior $dp_1$ sequences duplicated: `{(0, 1)}`, `{(0, 1, 4)}`.
+  - Transitions from $dp_0$: `{(0, 4)}`, `{(3, 4)}`, `{(0, 3, 4)}`. Total $= 2 + 3 = 5$.
+  - State: $[3, 5, 1]$.
+
+- **Step 6 ($i = 5, nums[5] = 2$):**
+  - $dp_2 \leftarrow 2(1) + dp_1 = 2 + 5 = 7$.
+  - Prior $dp_2$ sequences duplicated: `{(0, 1, 2)}`, `{(0, 1, 2, 5)}`.
+  - Transitions from $dp_1$ appending index 5:
+    - From `(0, 1)`: `{(0, 1, 5)}`
+    - From `(0, 1, 4)`: `{(0, 1, 4, 5)}`
+    - From `(0, 4)`: `{(0, 4, 5)}`
+    - From `(3, 4)`: `{(3, 4, 5)}`
+    - From `(0, 3, 4)`: `{(0, 3, 4, 5)}`
+  - Total $dp_2 = 2 + 5 = 7$.
+  - State: $[3, 5, 7]$.
+
+Final answer emitted: $dp_2 = 7$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Execution Trace Table
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### Primary Trace: `[0, 1, 2, 0, 1, 2]`
+
+| Step $i$ | Value $nums[i]$ | Active Transition Recurrence | $dp_0$ ($0^+$) | $dp_1$ ($0^+ 1^+$) | $dp_2$ ($0^+ 1^+ 2^+$) | Incremental Meaning |
+|---|---|---|---|---|---|---|
+| Initial | None | Boundary condition | 0 | 0 | 0 | Empty set |
+| 0 | 0 | $dp_0 \leftarrow 2(0) + 1$ | 1 | 0 | 0 | First `0` at index 0 |
+| 1 | 1 | $dp_1 \leftarrow 2(0) + 1$ | 1 | 1 | 0 | Extends to `(0, 1)` |
+| 2 | 2 | $dp_2 \leftarrow 2(0) + 1$ | 1 | 1 | 1 | First valid special `(0, 1, 2)` |
+| 3 | 0 | $dp_0 \leftarrow 2(1) + 1$ | 3 | 1 | 1 | Index 3 adds standalone and combined 0s |
+| 4 | 1 | $dp_1 \leftarrow 2(1) + 3$ | 3 | 5 | 1 | Index 4 merges with all 3 preceding 0-prefixes |
+| 5 | 2 | $dp_2 \leftarrow 2(1) + 5$ | 3 | 5 | 7 | Index 5 completes 5 new special subsequences |
+
+### Secondary Trace: `[0, 1, 2, 2]`
+
+| Step $i$ | Value $nums[i]$ | Active Transition Recurrence | $dp_0$ | $dp_1$ | $dp_2$ | Subsequence Index Sets Recorded |
+|---|---|---|---|---|---|---|
+| Initial | None | Base initialization | 0 | 0 | 0 | None |
+| 0 | 0 | $dp_0 \leftarrow 2(0) + 1 = 1$ | 1 | 0 | 0 | `{(0)}` |
+| 1 | 1 | $dp_1 \leftarrow 2(0) + 1 = 1$ | 1 | 1 | 0 | `{(0, 1)}` |
+| 2 | 2 | $dp_2 \leftarrow 2(0) + 1 = 1$ | 1 | 1 | 1 | `{(0, 1, 2)}` |
+| 3 | 2 | $dp_2 \leftarrow 2(1) + 1 = 3$ | 1 | 1 | 3 | `{(0, 1, 2)}`, `{(0, 1, 3)}`, `{(0, 1, 2, 3)}` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** We prove by induction on the prefix length that after processing $nums[0 \dots k]$:
+- $dp_0$ is the exact number of index subsequences matching $0^+$.
+- $dp_1$ is the exact number of index subsequences matching $0^+ 1^+$.
+- $dp_2$ is the exact number of index subsequences matching $0^+ 1^+ 2^+$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+*Inductive Step:* Consider element $nums[k] = 1$. Any valid $0^+ 1^+$ subsequence either includes index $k$ or does not.
+1. If it does not include index $k$, it must have been formed solely from $nums[0 \dots k-1]$, which gives $dp_1$ options.
+2. If it includes index $k$, the preceding element must be either a $0$ or a $1$. If the predecessor was a $1$, the prefix up to index $k-1$ was already in phase $1$ ($dp_1$ options). If the predecessor was a $0$, the prefix was in phase $0$ ($dp_0$ options).
+Summing these mutually exclusive and exhaustive cases gives $dp_1 + dp_1 + dp_0 = 2 \cdot dp_1 + dp_0$.
+The same partition holds identically for $x = 0$ (with $+1$ for starting a new sequence) and $x = 2$. Modulo operations preserve equivalence in the integer ring.
+
+**Completeness.** Every special subsequence ends with a $2$, preceded by some $1$, preceded by some $0$. Since all possible subset inclusion/exclusion branches are accounted for without dropping any transitions, every valid index set is counted exactly once.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Edge Cases & Traps
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Missing Phases:** If the array contains no zeros (e.g., `[1, 2, 2]`), $dp_0$ remains 0, so $dp_1$ and $dp_2$ will never increment, correctly returning 0.
+- **Out of Order Elements:** An array like `[2, 2, 0, 0]` reads twos first (where $dp_1 = 0$, so $dp_2$ stays 0), and later zeros (which cannot transition to higher phases without subsequent ones and twos). The final answer is correctly 0.
+- **Arithmetic Overflow Before Modulo:** The computation $2 \cdot dp_k + dp_{k-1}$ can reach $3 \times (10^9 + 7) \approx 3 \times 10^9$, exceeding 32-bit signed integer capacity. Modulo arithmetic or 64-bit integer types must be employed at every addition step.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:**
+  - A single pass of length $N$ scans each number.
+  - At each step, a single switch-case executes one modular addition/multiplication in $\mathcal{O}(1)$ time.
+  - Total time complexity is strictly $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - The DP state requires only three scalar integer variables ($dp_0, dp_1, dp_2$).
+  - Total auxiliary space is $\mathcal{O}(1)$.

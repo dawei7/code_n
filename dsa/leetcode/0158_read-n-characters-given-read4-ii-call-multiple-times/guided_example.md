@@ -1,151 +1,177 @@
 # Guided Example: Read N Characters Given read4 II - Call Multiple Times
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step persistent internal buffer queueing and multi-call state preservation across successive read requests:
 
-- **Input:** `{"content": "abc", "requests": [1, 2, 1]}`
-- **Required output:** `["a", "bc", ""]`
+- **Input:** $\text{file} = \text{"abc"}$, successive calls $\text{read}(1), \, \text{read}(2), \, \text{read}(1)$
+- **Required outputs:** $[1, 2, 0]$ (Emitting buffers `['a']`, `['b', 'c']`, `[]`)
+- **Multi-Chunk Refill Instance:** $\text{file} = \text{"abcdefghijkl"}$, calls $\text{read}(5), \, \text{read}(5) \implies [5, 5]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates designing a persistent object-level circular/linear queue (`buf4`, `head`, `tail`) to prevent data loss when `read4` reads ahead past the caller's immediate request $n$, synchronizes multiple sequential consumer calls, and achieves $O(N)$ amortized time with $O(1)$ auxiliary storage.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a `file` and assume that you can only read the file using a given method `read4`, implement a method `read` to read `n` characters. Your method `read` may be **called multiple times**.
+Given a file with content `"abc"`, an external caller executes three sequential calls on the same reader instance:
+1. `read(buf, 1)`: asks for 1 character.
+2. `read(buf, 2)`: asks for 2 characters.
+3. `read(buf, 1)`: asks for 1 character.
 
-The objective is to compute `["a", "bc", ""]` from `{"content": "abc", "requests": [1, 2, 1]}` while avoiding redundant calculations and unnecessary overhead.
+Because the underlying OS/file primitive only supports `read4`:
+- Calling `read4` during call 1 reads all 3 available characters `['a', 'b', 'c']`.
+- Call 1 only needs 1 character (`'a'`).
+- If characters `'b'` and `'c'` are discarded, call 2 will call `read4` again and encounter EOF, permanently losing `'b'` and `'c'`!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+To support multiple sequential invocations, the reader class must maintain persistent internal state:
+- An internal 4-slot buffer `buf4`.
+- A read pointer `head` and boundary pointer `tail`.
+Unconsumed characters remain queued in `buf4[head : tail]` between method calls, ensuring zero character loss across independent `read` requests.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Persistent Buffer Queue Architecture
+Define persistent instance variables in `__init__`:
+- `self.buf4 = [''] * 4`: internal hardware staging array.
+- `self.head = 0`: index of next unconsumed character in `self.buf4`.
+- `self.tail = 0`: count of valid characters currently in `self.buf4`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Multi-Call Read Protocol (`read(buf, n)`)
+Initialize local consumer counter `copied = 0`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+While `copied < n`:
+1. **Check Persistent Buffer Depletion:**
+   If `self.head == self.tail`:
+   - All previously fetched characters have been consumed.
+   - Refill from stream:
+     $$
+     \text{self.tail} = \text{read4}(\text{self.buf4})
+     $$
+     $$
+     \text{self.head} = 0
+     $$
+   - If `self.tail == 0`:
+     End-Of-File reached. Break out of loop.
+2. **Drain Persistent Buffer to Destination:**
+   While `copied < n` and `self.head < self.tail`:
+   $$
+   \text{buf}[\text{copied}] = \text{self.buf4}[\text{self.head}]
+   $$
+   $$
+   \text{copied} \leftarrow \text{copied} + 1
+   $$
+   $$
+   \text{self.head} \leftarrow \text{self.head} + 1
+   $$
+
+Return `copied`.
+
+> **Invariant.** Between successive calls to `read`, the interval $\text{buf4}[\text{head} : \text{tail}]$ contains all characters read from the file stream that have not yet been delivered to the caller, in exact stream order.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Preserve characters fetched for a later call
-
-`read4` may advance the file pointer by more characters than the current
-`read` call requests. If the file begins `"abcd"` and the caller asks for one
-character, `read4` still fetches four. Returning `"a"` while discarding
-`"bcd"` would make the next call start at the wrong logical position.
-
-The solution therefore keeps a four-slot staging buffer as object state:
-
-- `buf4` stores the most recently fetched block;
-- `size` is the number of valid characters in that block;
-- `i` is the index of the next valid character that has not yet been
-  returned to a caller.
-
-The unread portion is `buf4[i:size]`. These fields are created
-in `__init__`, so they survive between calls to `read` on the same solution
-object. At construction both counts are zero, meaning no buffered character is
-available.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"content": "abc", "requests": [1, 2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace three calls on $\text{file} = \text{"abc"}$:
+Initial state: `head = 0, tail = 0`.
 
 ---
 
-### Step 2: Consume buffered data before touching the file
-
-Each `read(buf, n)` uses a local counter `j`, the number of characters written
-for this particular call. The outer loop continues while `j < n`.
-
-At its start, the method checks `i == size`. Equality means every
-valid character from the previous block has been consumed. Only then does it
-call `read4(buf4)`, save the returned count in `size`, and reset
-`i` to zero.
-
-This order is essential. Calling `read4` while `i < size` would
-overwrite unread characters in the staging buffer. Since the file pointer has
-already moved past them, those characters could never be recovered.
-
-If a refill returns zero, the file is exhausted. The method breaks and returns
-however many characters it supplied during this call. A return of one through
-four creates a new valid interval `[0, size)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Call 1: `read(buf, n = 1)`
+- `copied = 0, n = 1`.
+- `head == tail == 0` (internal buffer empty).
+- **Refill:** Call `read4(self.buf4)`.
+  - Reads `['a', 'b', 'c']`.
+  - Updates: `self.tail = 3, self.head = 0`.
+- **Drain 1 Character:**
+  - `buf[0] = self.buf4[0] = 'a'`.
+  - `copied = 1`.
+  - `self.head = 1`.
+- Loop condition: $\text{copied} == n == 1$.
+- Call 1 terminates!
+- **Persistent State Retained:**
+  - `self.buf4 = ['a', 'b', 'c', '']`
+  - `self.head = 1, self.tail = 3` (chars `'b'` and `'c'` preserved!)
+- Return: $\mathbf{1}$ (with `buf = ['a']`).
 
 ---
 
-### Step 3: Copy until either side reaches its limit
+### Call 2: `read(buf, n = 2)`
+- `copied = 0, n = 2`.
+- `head = 1 < tail = 3` (internal buffer has 2 pending characters!).
+- **Drain Directly from Persistent Buffer (No `read4` call!):**
+  - Iteration 1:
+    - `buf[0] = self.buf4[1] = 'b'`.
+    - `copied = 1, self.head = 2`.
+  - Iteration 2:
+    - `buf[1] = self.buf4[2] = 'c'`.
+    - `copied = 2, self.head = 3`.
+- Loop condition: $\text{copied} == n == 2$.
+- Call 2 terminates!
+- **Persistent State Retained:**
+  - `self.head = 3, self.tail = 3` (buffer now empty).
+- Return: $\mathbf{2}$ (with `buf = ['b', 'c']`).
 
-The inner loop has two conditions: `j < n` and `i < size`.
-For each iteration, it copies the next staged character into `buf[j]`, then
-increments both indices.
+---
 
-The loop can stop for two distinct reasons:
-
-- `j == n`: the caller has received its requested number. Any staged
-  characters from `i` through `size - 1` remain untouched for the
-  next call.
-- `i == size`: the current staging block is exhausted. If the caller
-  still needs more, control returns to the outer loop, which refills it.
-
-Separating the requested count from the staging-buffer count prevents mixing
-positions from different coordinate systems. `j` always starts at zero for a
-new destination request, whereas `i` deliberately retains its old value
-across requests.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["a", "bc", ""]` |
+### Call 3: `read(buf, n = 1)`
+- `copied = 0, n = 1`.
+- `head == tail == 3` (internal buffer empty).
+- **Refill:** Call `read4(self.buf4)`.
+  - Stream is at EOF.
+  - Return: $\text{self.tail} = 0, \, \text{self.head} = 0$.
+- Check: $\text{self.tail} == 0 \implies$ EOF!
+- Loop breaks with $\text{copied} = 0$.
+- Return: $\mathbf{0}$ (with `buf = []`).
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"content": "abc", "requests": [1, 2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["a", "bc", ""]` | Verified |
+```text
+Stream Content: "abc"
+Initial:        head=0, tail=0
+
+Call 1: read(buf, 1)
+  -> Refill: read4 -> tail=3, head=0 (['a', 'b', 'c'])
+  -> Drain 1 char: buf[0]='a', head=1
+  -> Return 1. Leftovers: head=1, tail=3 ('b', 'c')
+
+Call 2: read(buf, 2)
+  -> Drain 2 chars: buf[0]='b', buf[1]='c', head=3
+  -> Return 2. Leftovers: head=3, tail=3 (empty)
+
+Call 3: read(buf, 1)
+  -> Refill: read4 -> tail=0 (EOF)
+  -> Return 0
+```
+
+| Invoc. | Request $n$ | Initial Buffer State | Action Taken | Chars Transferred | New `(head, tail)` | Return Value |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|
+| **Call 1** | 1 | `head=0, tail=0` | Refill via `read4` (`['a','b','c']`) | `buf[0] = 'a'` | `head=1, tail=3` | **1** |
+| **Call 2** | 2 | `head=1, tail=3` | Drain existing buffer (no I/O) | `buf[0]='b', buf[1]='c'` | `head=3, tail=3` | **2** |
+| **Call 3** | 1 | `head=3, tail=3` | Refill via `read4` (returns 0) | None (EOF) | `head=0, tail=0` | **0** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Characters are delivered to the destination buffer strictly in the order they were produced by `read4`. Because unused characters remain in `self.buf4` indexed by `self.head` between function calls, no data is dropped or duplicated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the underlying file is consumed exactly once. When `self.head == self.tail`, the buffer is replenished from the source stream until the stream reports `0` (EOF), ensuring all available characters are delivered.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Queue of leftovers:** A deque can express pending characters naturally, but its size never exceeds three here, so an indexed four-slot array is simpler and has the same $O(1)$ bound.
-- **Single-call strategy:** Discarding the unused part of a fetched block works for ID 157 but is incorrect when this method may be called again.
-- **Read one character per loop:** The competitive variant does this with the same persistent state; chunking through an inner loop reduces repeated branch checks.
-- **Request smaller than remaining buffer:** No API call occurs, and the unused suffix remains for the next request.
-- **Request spans several blocks:** The inner loop exhausts a block, and the outer loop refills until the request or file ends.
-- **Short final block:** Its valid count prevents stale positions from being copied; leftovers can still survive to the next call.
-- **Repeated calls after EOF:** They return zero; an optional persistent EOF flag could avoid repeated zero-result API calls.
-- **Same destination object:** Each call writes from `buf[0]` as specified; persistent reader state is independent of the destination's earlier contents.
-- **New test case:** Construct a new solution instance so old buffer indices do not persist across files.
-- **Platform contract:** `read4` owns the file pointer and is supplied by the harness; only its returned prefix is valid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Calling `read4` Before Draining:** If a new `read` call immediately calls `read4` without checking whether `self.head < self.tail`, unconsumed characters from the previous read are permanently overwritten and lost!
+- **Persistent State Scope:** In LeetCode 157, `read` is called once, so local variables suffice. In LeetCode 158, buffer pointers must be stored as object attributes (`self.head`, `self.tail`) to survive between calls.
+- **Multiple Refills in a Single Call:** If a caller asks for $n = 10$, a single call must be able to drain the remaining 2 characters, refill 4 characters, drain them, and refill again. The outer `while copied < n` handles multi-chunk requests naturally.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. For one call requesting `n` characters, let $k \le n$ be the number returned.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ amortized time, where $N$ is the total number of characters read across all calls. Each character is fetched by `read4` once and copied into `buf` once ($O(1)$ operations per character).
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory, using a single 4-element array `buf4` and two pointer integers `head` and `tail`.

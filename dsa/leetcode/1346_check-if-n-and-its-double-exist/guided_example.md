@@ -1,122 +1,158 @@
 # Guided Example: Check If N and Its Double Exist
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal hash-lookup algorithm on a representative problem instance:
 
-- **Input:** `{"arr": [10, 2, 5, 3]}`
+- **Input:** `arr = [10, 2, 5, 3]`
 - **Required output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because the doubled value appears before its base half ($10$ appears at index $0$, while $5$ appears at index $2$), demonstrating that the membership test must dynamically inspect both prospective multipliers ($2x$) and prospective divisors ($x / 2$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `arr` of integers, check if there exist two indices `i` and `j` such that :
+Given an integer array `arr`, we must determine whether there exist two distinct indices $i \ne j$ such that $arr[i] = 2 \times arr[j]$.
 
-The objective is to compute `true` from `{"arr": [10, 2, 5, 3]}` while avoiding redundant calculations and unnecessary overhead.
+For `arr = [10, 2, 5, 3]`:
+- At index $0$, value is $10$. Seen set is empty.
+- At index $1$, value is $2$. Neither $4$ nor $1$ is in seen set.
+- At index $2$, value is $5$. Its double $2 \times 5 = 10$ is present in the seen set.
+- The pair $(10, 5)$ satisfies the condition with distinct indices $i = 0$ and $j = 2$. Output is `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to structure a single-pass hash-table search that tests bidirectional relationships ($2x$ and $x/2$ when even), avoiding quadratic pairwise iteration and properly isolating duplicate zero hazards.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+A naive approach examines all pairs $(i, j)$ with $i \ne j$, requiring $\frac{N(N-1)}{2}$ comparisons ($\mathcal{O}(N^2)$ time).
 
-| State Parameter | Role & Purpose | Initial State |
+To achieve linear time $\mathcal{O}(N)$, we maintain a hash set $S$ containing all values visited so far. For each current element $x$:
+1. If $2x \in S$, then an earlier element equals the double of $x$.
+2. If $x \pmod 2 = 0$ and $x / 2 \in S$, then an earlier element is the half of $x$ (meaning $x$ is the double of that earlier element).
+3. If neither condition holds, insert $x$ into $S$ and continue.
+
+```
+Index 0: val = 10 -> check 20 and 5   -> not in S -> insert 10 -> S = {10}
+Index 1: val = 2  -> check 4 and 1    -> not in S -> insert 2  -> S = {10, 2}
+Index 2: val = 5  -> check 10 and 5/2 -> 10 in S! -> RETURN TRUE
+```
+
+We track state with the following operational variables:
+
+| State Parameter | Description | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Scan Index ($k$) | Current element index in the array | $0$ |
+| Target Value ($x$) | Numeric value located at $arr[k]$ | $arr[0] = 10$ |
+| Visited Set ($S$) | Hash set storing previously inspected values | $\emptyset$ |
+| Query Targets | Pair $\{2x, x/2 \text{ if even}\}$ checked against $S$ | $\{20, 5\}$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Before processing index $k$, the set $S$ contains precisely the prefix elements $\{arr[0], \dots, arr[k-1]\}$. If any prefix pair satisfies the doubling relation, the algorithm terminates immediately. Otherwise, checking $2x \in S$ and $(x \pmod 2 = 0 \land x/2 \in S)$ guarantees detection of any valid pair involving $arr[k]$ and some earlier element.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the parity guard is necessary
+### Step 1: Processing Index $0$ ($x = 10$)
 
-If `x` is odd, it cannot be exactly twice an integer. Using floor division without checking parity would be wrong. For example, `3 // 2` is one, but three is not twice one. The test `x % 2 == 0` ensures the half lookup is performed only when an exact integer half exists.
+- Current element: $x = 10$.
+- Check doubling target: $2 \times 10 = 20$. Is $20 \in S$? No ($S = \emptyset$).
+- Check half target: $10 \pmod 2 = 0$, target $10 / 2 = 5$. Is $5 \in S$? No.
+- Decision: No match found. Insert $10$ into $S$.
+- Updated state: $S = \{10\}$.
 
-The double lookup needs no corresponding guard because multiplying any integer by two remains an integer. Negative values also work. If the pair is negative five and negative ten, encountering either value second triggers one of the two checks.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Parameter | Before Step | Evaluation | After Step |
 |---|---|---|---|
-| Input Slice | `{"arr": [10, 2, 5, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Current Element | $10$ | Index $0$ | Processed |
+| Set Query | Is $20 \in S$ or $5 \in S$? | False (set empty) | Negative |
+| Visited Set ($S$) | $\emptyset$ | Add element $10$ | $\{10\}$ |
 
 ---
 
-### Step 2: Why one pass covers every input order
+### Step 2: Processing Index $1$ ($x = 2$)
 
-Suppose a valid pair has values `a` and `2a`. Whichever occurrence appears later becomes the current `x`:
+- Current element: $x = 2$.
+- Check doubling target: $2 \times 2 = 4$. Is $4 \in S$? No ($S = \{10\}$).
+- Check half target: $2 \pmod 2 = 0$, target $2 / 2 = 1$. Is $1 \in S$? No.
+- Decision: No match found. Insert $2$ into $S$.
+- Updated state: $S = \{10, 2\}$.
 
-- If `a` appears later, `x * 2` finds the earlier `2a`.
-- If `2a` appears later, `x // 2` finds the earlier `a` because `2a` is even.
-
-Thus no sorting or second pass is needed. The set contains exactly the distinct values at earlier indices, so the two possible arrival orders are both covered.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Parameter | Before Step | Evaluation | After Step |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Current Element | $2$ | Index $1$ | Processed |
+| Set Query | Is $4 \in S$ or $1 \in S$? | False ($S = \{10\}$) | Negative |
+| Visited Set ($S$) | $\{10\}$ | Add element $2$ | $\{10, 2\}$ |
 
 ---
 
-### Step 3: Distinct indices and the special role of zero
+### Step 3: Processing Index $2$ ($x = 5$)
 
-The current value is added with `s.add(x)` only after the pair checks. Therefore, an element can never match itself during its own iteration. Any match found in `s` came from an earlier, distinct index.
+- Current element: $x = 5$.
+- Check doubling target: $2 \times 5 = 10$. Is $10 \in S$?
+- Set membership: $10 \in \{10, 2\}$ evaluates to **True**!
+- Decision: Valid pair found where $arr[0] = 10$ and $arr[2] = 5$, satisfying $10 = 2 \times 5$ with $i \ne j$.
+- Action: Return `true` immediately without processing remaining indices.
 
-This also handles zero correctly. Numerically, zero is twice zero. On the first zero, the set does not yet contain zero, so neither lookup succeeds; the value is then added. On the second zero, `x * 2` is zero and is already in the set, so the method returns true. Exactly one zero does not produce a false match.
-
-If the loop finishes, every element has been checked against all earlier distinct values in both orientations. Any valid pair would have been detected when its later endpoint was processed. Therefore, returning false after the loop proves that no required pair exists.
-
-The input array is not modified. Duplicate nonzero values alone do not automatically form a pair because `x` generally differs from `2x`; zero is the only value equal to its own double.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Parameter | Before Step | Evaluation | After Step |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+| Current Element | $5$ | Index $2$ | Match Found |
+| Set Query | Is $10 \in S$? | **True** ($10 \in \{10, 2\}$) | Target matched |
+| Termination | In progress | Trigger early return | **Output `true`** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [10, 2, 5, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Step Index ($k$) | Element ($arr[k]$) | Doubled ($2x$) | Halved ($x/2$) | Match in $S$? | Set Before Step ($S$) | Action Taken |
+|---|---|---|---|---|---|---|
+| $0$ | $10$ | $20$ | $5$ | None | $\emptyset$ | Insert $10$ into $S$ |
+| $1$ | $2$ | $4$ | $1$ | None | $\{10\}$ | Insert $2$ into $S$ |
+| $2$ | $5$ | $10$ | Not integer | **$10 \in S$** | $\{10, 2\}$ | **Return `true`** |
+| $3$ | $3$ | — | — | — | — | Unreached (pruned) |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Correctness and Distinct-Index Guarantee
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Any valid solution requires two distinct indices $i \ne j$ with $arr[i] = 2 \times arr[j]$. Without loss of generality, let $j$ appear after $i$ in the array ($i < j$).
+- Case A: $arr[j] = 2 \times arr[i]$. When the algorithm reaches index $j$, $arr[i]$ is already present in $S$. The test $x / 2 = arr[j] / 2 = arr[i] \in S$ succeeds.
+- Case B: $arr[i] = 2 \times arr[j]$. When the algorithm reaches index $j$, $arr[i]$ is already present in $S$. The test $2x = 2 \times arr[j] = arr[i] \in S$ succeeds.
 
----
+In either case, because $x$ is checked against $S$ *before* $x$ is inserted into $S$, an element can never match itself. This strictly enforces the requirement $i \ne j$.
 
-## 6. Traps This Instance Exposes
+### Asymptotic Complexity
 
-- **Frequency map:** Count all values first, then check whether each double exists. It is also $O(n)$ expected time and naturally handles zero by requiring its frequency to be at least two.
-- **Sorting and binary search:** Sort the array and search for each doubled value. It takes $O(n\log n)$ time and needs careful index handling for zero and duplicates.
-- **Brute-force pairs:** Check every pair of distinct indices directly. This uses $O(1)$ extra space but $O(n^2)$ time.
-- **Only checking the double:** A one-pass method that checks only `2 * x` misses the order where the smaller value appeared earlier and its double appears later. Both orientations are required.
-- **Floor division without parity:** This creates false matches for odd values, such as treating one as half of three.
-- **Single zero:** It must not satisfy the condition because two distinct indices are required. Insertion after lookup prevents self-matching.
-- **Two zeros:** The second zero finds the first and correctly returns true.
-- **Negative pair:** Values such as negative four and negative eight satisfy the same doubling relationship and are handled without a special case.
-- **Duplicate nonzero values:** Two copies of five do not form a valid pair with each other because five is not twice five.
-- **Values at either order:** The double and exact-half checks make the algorithm independent of which member appears first.
-- **Input preservation:** The solution builds a separate set and leaves the original array unchanged.
-- **Early return:** Once a matching earlier value is found, no later element can invalidate the pair. Returning immediately is safe and can avoid scanning the rest of the array while preserving the $O(n)$ worst-case bound.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(N)$. In the worst case where no pair exists, the array is scanned once. At each of the $N$ steps, hash-table lookups and insertions take $\mathcal{O}(1)$ average time, resulting in total time $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$. The hash set stores at most $N$ distinct integers.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Self-Matching on Zero ($x = 0$):** Since $2 \times 0 = 0$, an algorithm that inserts $x$ into the set *before* checking queries would find $2 \times 0 = 0$ in the set and falsely report `true` for an array with a single zero like `[0]`. Querying before insertion guarantees that $0$ only matches if a second, distinct zero has already been recorded.
+- **Odd Numbers Halving:** When checking half values, integer division truncation must not convert an odd number to a false half. For example, $5 // 2 = 2$ in integer division, but $5 \ne 2 \times 2$. Hence, the half check must only trigger if $x \pmod 2 = 0$.
+- **Negative Numbers:** The rule holds identically for negative values: for example, $-4 = 2 \times (-2)$. At $x = -2$, $2x = -4$; at $x = -4$, $x / 2 = -2$. The algebraic relationship is invariant under sign.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Check N and Its Double Exist Flowchart
+    accDescr: Step-by-step decision flow for checking if an element or its double exists in a visited hash set.
+
+    Start(["Start with arr, empty set S"]) --> Loop{"More elements in arr?"}
+    Loop -- No --> ReturnFalse(["Return false"])
+    Loop -- Yes --> GetElem["Read next element x"]
+    
+    GetElem --> CheckDouble{"2 * x in S ?"}
+    CheckDouble -- Yes --> ReturnTrue(["Return true"])
+    CheckDouble -- No --> CheckHalf{"x is even AND (x / 2) in S ?"}
+    
+    CheckHalf -- Yes --> ReturnTrue
+    CheckHalf -- No --> AddSet["Add x to S"]
+    AddSet --> Loop
+```

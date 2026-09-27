@@ -1,126 +1,201 @@
 # Guided Example: How Many Numbers Are Smaller Than the Current Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal sorting and rank-mapping algorithm on a representative problem instance:
 
-- **Input:** `{"nums": [8, 1, 2, 2, 3]}`
+- **Input:** `nums = [8, 1, 2, 2, 3]`
 - **Required output:** `[4, 0, 1, 1, 3]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it features duplicate values (`2, 2`), out-of-order elements, and an extreme maximum value (`8`), illustrating how first-occurrence indexing correctly excludes equal elements from strict inequality counts.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the array `nums`, for each $\text{nums}[i]$ find out how many numbers in the array are smaller than it. That is, for each $\text{nums}[i]$ you have to count the number of valid `j's` such that $j \neq i$ **and** $\text{nums}[j] < \text{nums}[i]$.
+Given an integer array `nums`, we must determine, for each element $nums[i]$, the number of elements $nums[j]$ ($j \ne i$) that are strictly smaller than $nums[i]$ ($nums[j] < nums[i]$).
 
-The objective is to compute `[4, 0, 1, 1, 3]` from `{"nums": [8, 1, 2, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [8, 1, 2, 2, 3]`:
+- For $8$: Numbers smaller than $8$ are $\{1, 2, 2, 3\}$ ($4$ numbers).
+- For $1$: No numbers are smaller than $1$ ($0$ numbers).
+- For $2$: Only $1$ is smaller than $2$ ($1$ number). Note that the other $2$ is equal, not smaller.
+- For the second $2$: Again, only $1$ is smaller ($1$ number).
+- For $3$: Numbers smaller than $3$ are $\{1, 2, 2\}$ ($3$ numbers).
+- Output: `[4, 0, 1, 1, 3]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to reduce quadratic pairwise counting ($\mathcal{O}(N^2)$) to $\mathcal{O}(N \log N)$ by sorting, observing that in a sorted array, the index of the **first occurrence** of any value equals the exact count of elements strictly smaller than it.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S$ be the sorted permutation of `nums` in non-decreasing order.
+Because $S$ is sorted:
+$$
+S[0] \le S[1] \le \dots \le S[N-1]
+$$
+If a value $x$ first appears at index $k$ in $S$ ($S[k] = x$ and $S[k-1] < x$ for $k > 0$):
+- All elements at indices $0, 1, \dots, k-1$ are strictly less than $x$.
+- All elements at indices $k, k+1, \dots$ are greater than or equal to $x$.
 
-| State Parameter | Role & Purpose | Initial State |
+Therefore, the count of elements strictly smaller than $x$ is precisely $k$:
+$$
+\text{smaller\_count}(x) = \min \{ k \mid S[k] = x \}
+$$
+
+```
+Original nums:   [ 8,  1,  2,  2,  3 ]
+Sorted array S:  [ 1,  2,  2,  3,  8 ]
+Sorted index:      0   1   2   3   4
+
+First occurrences:
+  Value 1 -> first at index 0 -> count = 0
+  Value 2 -> first at index 1 -> count = 1 (index 2 is duplicate, ignored)
+  Value 3 -> first at index 3 -> count = 3
+  Value 8 -> first at index 4 -> count = 4
+
+Mapped output:   [ 4,  0,  1,  1,  3 ]
+```
+
+We track state using the following parameters:
+
+| State Parameter | Description | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Sorted Array ($S$) | Monotonically non-decreasing copy of `nums` | `[1, 2, 2, 3, 8]` |
+| First-Index Map ($M$) | Hash map storing the lowest index for each distinct value | $\emptyset$ |
+| Result Array | Output list matching original ordering | Initialized to length $N$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any distinct value $v$, $M[v]$ records the smallest index at which $v$ appears in sorted array $S$. Because indices in $S$ are zero-based, $M[v]$ is strictly equal to the number of elements in $S$ that are strictly smaller than $v$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn a counting question into a position question
+### Step 1: Sorting the Input Array
 
-For every original value `x`, the task asks how many array elements are strictly smaller than `x`. Comparing `x` with every other element would answer the question directly, but it repeats much of the same work. The exact solution instead creates `arr = sorted(nums)`. In this sorted copy, every value smaller than `x` must appear before the first occurrence of `x`.
-
-That observation gives a direct equivalence:
-
+Create a sorted copy $S$ of `nums = [8, 1, 2, 2, 3]`:
 $$
-\text{number of elements smaller than }x
-=
-\text{index of the first }x\text{ in sorted order}.
+S = [1, 2, 2, 3, 8]
 $$
 
-For example, sorting `[8, 1, 2, 2, 3]` produces `[1, 2, 2, 3, 8]`. The first `1` is at index zero, so nothing is smaller than one. The first `2` is at index one, so exactly one element is smaller. The first `3` is at index three, so three elements are smaller. The first `8` is at index four, so four elements are smaller.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [8, 1, 2, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Sorted Index ($k$) | Value ($S[k]$) | Comparison with Previous |
+|---|---|---|
+| $0$ | $1$ | Initial minimum |
+| $1$ | $2$ | Strictly greater ($2 > 1$) |
+| $2$ | $2$ | Equal (Duplicate) |
+| $3$ | $3$ | Strictly greater ($3 > 2$) |
+| $4$ | $8$ | Strictly greater ($8 > 3$) |
 
 ---
 
-### Step 2: Why it must be the first occurrence
+### Step 2: Building the First-Occurrence Map $M$
 
-Duplicates are the reason an ordinary successful search is not enough. Both copies of `2` in the example need the answer one. If a search returned the second copy's index, it would incorrectly count the first `2` as smaller even though equal values do not satisfy the strict relation.
+Iterate through $S$ from left to right. Insert a key-value pair $(S[k], k)$ into $M$ only if $S[k]$ has not been recorded previously:
+1. $k = 0, S[0] = 1$: $1 \notin M \implies M[1] = 0$.
+2. $k = 1, S[1] = 2$: $2 \notin M \implies M[2] = 1$.
+3. $k = 2, S[2] = 2$: $2 \in M$ (already mapped to $1$). **Skip duplicate**.
+4. $k = 3, S[3] = 3$: $3 \notin M \implies M[3] = 3$.
+5. $k = 4, S[4] = 8$: $8 \notin M \implies M[8] = 4$.
 
-`bisect_left(arr, x)` finds the leftmost insertion position for `x`: the first index at which `x` could be inserted while keeping `arr` sorted. Every element before that position is strictly less than `x`. Every element from that position onward is greater than or equal to `x`. Thus its return value is exactly the desired count, including when `x` occurs many times.
+Completed map: $M = \{1: 0, 2: 1, 3: 3, 8: 4\}$.
 
-It may help to separate an index from an element count. Python uses zero-based indices. If the first `x` is stored at index $k$, there are exactly $k$ slots before it, numbered from zero through $k-1$. Therefore the index itself is already the count; there is no need to add or subtract one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Index ($k$) | Element ($S[k]$) | Presence in $M$? | Action Taken | Map State ($M$) |
+|---|---|---|---|---|
+| $0$ | $1$ | Absent | Insert $M[1] = 0$ | $\{1: 0\}$ |
+| $1$ | $2$ | Absent | Insert $M[2] = 1$ | $\{1: 0, 2: 1\}$ |
+| $2$ | $2$ | **Present** | Ignore (Preserve first index) | $\{1: 0, 2: 1\}$ |
+| $3$ | $3$ | Absent | Insert $M[3] = 3$ | $\{1: 0, 2: 1, 3: 3\}$ |
+| $4$ | $8$ | Absent | Insert $M[8] = 4$ | $\{1: 0, 2: 1, 3: 3, 8: 4\}$ |
 
 ---
 
-### Step 3: Preserving the original order
+### Step 3: Projecting Results in Original Input Order
 
-Sorting rearranges values, but the result must align with the original `nums` positions. The solution therefore keeps `arr` only as a search structure and iterates through `nums` in its original order:
+Iterate through the original array `nums = [8, 1, 2, 2, 3]` and replace each value with $M[nums[i]]$:
+- $i = 0$: $nums[0] = 8 \implies M[8] = 4$
+- $i = 1$: $nums[1] = 1 \implies M[1] = 0$
+- $i = 2$: $nums[2] = 2 \implies M[2] = 1$
+- $i = 3$: $nums[3] = 2 \implies M[2] = 1$
+- $i = 4$: $nums[4] = 3 \implies M[3] = 3$
 
-`[bisect_left(arr, x) for x in nums]`.
+Output array: `[4, 0, 1, 1, 3]`.
 
-For each original `x`, it searches the same sorted copy and appends the count. This is why the answer for the sample is `[4, 0, 1, 1, 3]` rather than the counts in sorted-value order. Because `sorted(nums)` returns a new list, the caller's input list is not modified.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Original Index ($i$) | Input Value ($nums[i]$) | Lookup $M[nums[i]]$ | Output Element |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 0, 1, 1, 3]` |
+| $0$ | $8$ | $M[8]$ | $4$ |
+| $1$ | $1$ | $M[1]$ | $0$ |
+| $2$ | $2$ | $M[2]$ | $1$ |
+| $3$ | $2$ | $M[2]$ | $1$ |
+| $4$ | $3$ | $M[3]$ | $3$ |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [8, 1, 2, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 0, 1, 1, 3]` | Verified |
+Summary of the transformation for all elements:
+
+| Index ($i$) | Element ($nums[i]$) | Elements Strictly Smaller | Exact Count | Lookup Key | Output Value |
+|---|---|---|---|---|---|
+| $0$ | $8$ | $\{1, 2, 2, 3\}$ | $4$ | $M[8]$ | **$4$** |
+| $1$ | $1$ | $\emptyset$ | $0$ | $M[1]$ | **$0$** |
+| $2$ | $2$ | $\{1\}$ | $1$ | $M[2]$ | **$1$** |
+| $3$ | $2$ | $\{1\}$ | $1$ | $M[2]$ | **$1$** |
+| $4$ | $3$ | $\{1, 2, 2\}$ | $3$ | $M[3]$ | **$3$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Strict Inequality and Duplicate Correctness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $S$ be sorted. The set of elements strictly smaller than $x$ is:
+$$
+A_{< x} = \{ S[j] \mid S[j] < x \}
+$$
+Since $S$ is non-decreasing, all elements smaller than $x$ must appear contiguously from index $0$ up to $k - 1$, where $k$ is the first index such that $S[k] = x$. The cardinality of this set is $|A_{< x}| = k$.
+By only recording the first occurrence of each value in $M$, subsequent identical values never overwrite $k$. This guarantees that duplicate values receive identical and strictly correct counts without self-counting.
+
+### Asymptotic Complexity
+
+- **Comparison Sort Method:**
+  - Sorting $N$ elements takes $\mathcal{O}(N \log N)$ time.
+  - Scanning $S$ to build $M$ takes $\mathcal{O}(N)$ time.
+  - Mapping original elements through $M$ takes $\mathcal{O}(N)$ time.
+  - Total Time: $\mathcal{O}(N \log N)$.
+- **Counting Sort / Prefix Sum Method:**
+  - Since $0 \le nums[i] \le 100$, an array of size $101$ can count frequencies in $\mathcal{O}(N)$ time.
+  - Running prefix sums take $\mathcal{O}(101) = \mathcal{O}(1)$ time.
+  - Total Time: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the sorted array and hash map.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Edge Cases
 
-- **Frequency array and prefix counts:** Because every value lies between zero and one hundred, count each value and convert frequencies into counts of smaller values. This achieves the manifest's $O(n+U)$ time and $O(U)$ space, but it is tied to a small known universe.
-- **Brute-force comparisons:** For every position, scan the whole array and count smaller values. It is easy to derive but costs $O(n^2)$ time.
-- **First-rank dictionary:** Sort once and record the index only when a value is first encountered, then look up each original value. This has the same $O(n\log n)$ sorting cost and can avoid $n$ binary searches, at the price of a dictionary.
-- **Duplicate values:** Every equal value receives the same answer because `bisect_left` always returns the shared first position, never an arbitrary duplicate position.
-- **All values equal:** The first position of that value is zero, so every output entry is zero.
-- **Smallest value:** Its left boundary is zero even if it appears several times, correctly showing that no value is strictly smaller.
-- **Largest value:** Its first sorted index counts every smaller element but excludes all copies equal to it.
-- **Original order:** Searching values from `nums` rather than iterating through `arr` is essential; otherwise the counts would be returned in sorted order.
-- **Input mutation:** `sorted` creates a copy, so the method leaves `nums` unchanged. Using `nums.sort()` without retaining the original order would make constructing the correctly ordered result harder.
-- **Import expectation:** The code calls `bisect_left` directly, so the execution environment must make that name available, commonly through `from bisect import bisect_left`.
-- **Values outside the stated range:** The sort-and-binary-search method still works for arbitrary mutually comparable numbers; unlike the frequency-array alternative, it does not depend on the zero-to-one-hundred constraint.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overwriting First Occurrence:** If the map assignment is executed unconditionally as $M[S[k]] = k$, the second $2$ (at index $2$) would overwrite $M[2] = 2$, falsely counting the first $2$ as smaller than the second. The check `if S[k] not in M` is critical.
+- **All Elements Equal:** For `nums = [7, 7, 7, 7]`, $S = [7, 7, 7, 7]$. Only $M[7] = 0$ is recorded. Output is correctly `[0, 0, 0, 0]`.
+- **Already Sorted Array:** The algorithm functions identically on sorted or reverse-sorted inputs without degeneration.
+- **Minimum Value:** The minimum element in the array always receives count $0$ because no elements precede it in $S$.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Accessible Mermaid Diagram
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the length of `nums`. Creating `arr` with comparison sorting takes $O(n\log n)$ time. Each call to `bisect_left` takes $O(\log n)$ time, and the comprehension makes $n$ calls, adding another $O(n\log n)$. The exact implementation therefore takes $O(n\log n)$ time overall.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+```mermaid
+flowchart TD
+    accTitle: Smaller Numbers Counting Flowchart
+    accDescr: Step-by-step logic for sorting the array, building a first-occurrence index map, and projecting results.
+
+    Start(["Input: nums array"]) --> SortCopy["Sort copy of nums:<br/>S = sorted(nums)"]
+    SortCopy --> InitMap["Initialize empty map M"]
+    InitMap --> ScanLoop{"For each index k, val in enumerate(S):"}
+    
+    ScanLoop --> CheckSeen{"val in M ?"}
+    CheckSeen -- "No (First Occurrence)" --> Record["M[val] = k"]
+    CheckSeen -- "Yes (Duplicate)" --> Skip["Skip (Keep first index)"]
+    
+    Record --> NextElem{"More elements in S?"}
+    Skip --> NextElem
+    NextElem -- Yes --> ScanLoop
+    NextElem -- No --> Project["For each x in original nums:<br/>ans.append(M[x])"]
+    
+    Project --> Done(["Return ans array"])
+```

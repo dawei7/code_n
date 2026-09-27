@@ -1,130 +1,150 @@
 # Guided Example: Jump Game III
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the breadth-first graph traversal searching for a zero-valued cell on a representative array instance:
 
-- **Input:** `{"arr": [4, 2, 3, 0, 3, 1, 2], "start": 5}`
-- **Required output:** `true`
+- **Input:** `arr = [4, 2, 3, 0, 3, 1, 2]`, `start = 5`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling array jumps as a directed graph, managing a FIFO exploration frontier, pruning out-of-bounds branches, and preventing infinite cycles using a visited set.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of non-negative integers `arr`, you are initially positioned at `start` index of the array. When you are at index `i`, you can jump to $i + \text{arr}[i]$ or $i - \text{arr}[i]$, check if you can reach **any** index with value 0.
+We are given an array of $N = 7$ non-negative integers. From any current index $i$, two moves are possible:
+1. Forward jump to $i + \text{arr}[i]$ (valid if $i + \text{arr}[i] < N$).
+2. Backward jump to $i - \text{arr}[i]$ (valid if $i - \text{arr}[i] \ge 0$).
 
-The objective is to compute `true` from `{"arr": [4, 2, 3, 0, 3, 1, 2], "start": 5}` while avoiding redundant calculations and unnecessary overhead.
+The goal is to determine whether any index $t$ with $\text{arr}[t] = 0$ is reachable starting from $i = 5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Index:       0    1    2    3    4    5    6
+Value:      [4]  [2]  [3]  [0]  [3]  [1]  [2]
+                                      ^
+                                    start
+
+Target: Find a path from index 5 to index 3 (where value is 0).
+
+Forward/Backward Transition Graph:
+  From 5 (val 1): -> 5 + 1 = 6,  5 - 1 = 4
+  From 4 (val 3): -> 4 + 3 = 7 (invalid), 4 - 3 = 1
+  From 6 (val 2): -> 6 + 2 = 8 (invalid), 6 - 2 = 4 (visited)
+  From 1 (val 2): -> 1 + 2 = 3 (target 0!), 1 - 2 = -1 (invalid)
+```
+
+Because each index has at most two outgoing edges, the problem is an unweighted reachability query on a directed graph $G = (V, E)$ with $|V| = N$ and $|E| \le 2N$. Uninformed recursion without cycle detection can loop infinitely between mutually referencing indices (such as between indices $4$ and $6$). Breadth-first search guarantees linear $\mathcal{O}(N)$ termination.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $V = \{0, 1, \dots, N-1\}$. For each index $u \in V$, the set of directed outgoing edges is:
+$$
+\text{Adj}(u) = \{v \in \{u + \text{arr}[u], \; u - \text{arr}[u]\} \mid 0 \le v < N\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+We maintain:
+- A FIFO queue $Q$ holding discovered but unexpanded indices.
+- A visited set $S \subseteq V$ tracking all indices placed into $Q$.
+
+| Component | Invariant Definition | Role in Search |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Queue Frontier $Q$ | Set of reached, pending candidate nodes | Expands in non-decreasing jump distance order |
+| Visited Registry $S$ | $\{v \in V \mid v \text{ has entered } Q\}$ | Prevents cycle re-entry and duplicate queueing |
+| Boundary Filter | $0 \le v < N$ | Discards transitions leaving the array |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Frontier Soundness Invariant.** Every index in $Q$ is reachable from `start` via a finite sequence of legal forward and backward jumps within array bounds. No index is enqueued more than once.
+
+```mermaid
+flowchart TD
+    accTitle: Jump Game Graph Traversal
+    accDescr: BFS expansion from start index 5 reaching zero target at index 3.
+    N5["Index 5 (val 1)"] --> N4["Index 4 (val 3)"]
+    N5 --> N6["Index 6 (val 2)"]
+    N4 --> N1["Index 1 (val 2)"]
+    N4 -.->|"4 + 3 = 7"| OUT1["Out of Bounds"]
+    N6 -.->|"6 + 2 = 8"| OUT2["Out of Bounds"]
+    N6 -.->|"6 - 2 = 4"| CYC["Already Visited (4)"]
+    N1 --> N3["Index 3 (val 0) - SUCCESS"]
+    N1 -.->|"1 - 2 = -1"| OUT3["Out of Bounds"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normal processing of a first-time index
+We trace `arr = [4, 2, 3, 0, 3, 1, 2]` starting at index $5$. Initial state: $Q = [5]$, $S = \{5\}$.
 
-The queue starts with `start`. On a pop, the code first checks `arr[i] == 0`. If true, a legal sequence of earlier jumps reached this index, so returning `true` is correct.
+### Step 1: Expand Start Node $i = 5$
+- Dequeue $i = 5$.
+- Check value: $\text{arr}[5] = 1 \ne 0$.
+- Candidate neighbors:
+  - Forward: $5 + 1 = 6$. Check: $0 \le 6 < 7$ (valid), $6 \notin S$. Add to $Q$ and $S$.
+  - Backward: $5 - 1 = 4$. Check: $0 \le 4 < 7$ (valid), $4 \notin S$. Add to $Q$ and $S$.
+- Updated state: $Q = [6, 4]$, $S = \{5, 6, 4\}$.
 
-For a positive unvisited value, `x = arr[i]` saves the jump distance. The line `arr[i] = -1` then uses an impossible input value as the visited sentinel because all original elements are nonnegative.
+### Step 2: Expand Node $i = 6$
+- Dequeue $i = 6$.
+- Check value: $\text{arr}[6] = 2 \ne 0$.
+- Candidate neighbors:
+  - Forward: $6 + 2 = 8$. Check: $8 \ge 7$ (discard, out of bounds).
+  - Backward: $6 - 2 = 4$. Check: $4 \in S$ (discard, already visited).
+- Updated state: $Q = [4]$, $S = \{5, 6, 4\}$.
 
-The loop tries `i + x` and `i - x`. It enqueues a destination only if it lies in `[0, len(arr))` and currently has a nonnegative value. The bounds check enforces the rule against leaving the array. The sign check is meant to exclude already visited destinations.
+### Step 3: Expand Node $i = 4$
+- Dequeue $i = 4$.
+- Check value: $\text{arr}[4] = 3 \ne 0$.
+- Candidate neighbors:
+  - Forward: $4 + 3 = 7$. Check: $7 \ge 7$ (discard, out of bounds).
+  - Backward: $4 - 3 = 1$. Check: $0 \le 1 < 7$ (valid), $1 \notin S$. Add to $Q$ and $S$.
+- Updated state: $Q = [1]$, $S = \{5, 6, 4, 1\}$.
 
-If every index were enqueued at most once, this would be a standard BFS or worklist traversal. Every reached index would be tested for zero, marked, and expanded through its two legal jumps.
+### Step 4: Expand Node $i = 1$
+- Dequeue $i = 1$.
+- Check value: $\text{arr}[1] = 2 \ne 0$.
+- Candidate neighbors:
+  - Forward: $1 + 2 = 3$. Check: $0 \le 3 < 7$ (valid), $3 \notin S$. Add to $Q$ and $S$.
+  - Backward: $1 - 2 = -1$. Check: $-1 < 0$ (discard, out of bounds).
+- Updated state: $Q = [3]$, $S = \{5, 6, 4, 1, 3\}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [4, 2, 3, 0, 3, 1, 2], "start": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why a visited state is required
-
-The graph can contain cycles. For example, one index can jump to a second and the second can jump back. Without a visited marker, the queue could alternate forever.
-
-In-place marking avoids allocating a separate Boolean array. It also mutates the caller's input, which is an important behavioral consequence.
-
-For a correct mark-on-pop design, the pop logic must begin by skipping an already marked index. The editorial version does that with an `arr[node] < 0` guard. Alternatively, a mark-on-enqueue design can guarantee that no duplicate is ever placed in the queue.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The duplicate-enqueue defect in the exact source
-
-The exact code checks whether a destination is unvisited before enqueueing it, but it does not mark that destination at enqueue time. Two already-popped parents can therefore both enqueue the same still-nonnegative child before the child is first popped.
-
-When the first copy is popped, it is processed normally and its array entry becomes $-1$. When the duplicate copy is later popped, the code does not skip it. The zero test fails because the entry is now $-1$, then `x = arr[i]` assigns `x = -1`. The loop consequently explores `i - 1` and `i + 1` as though they were legal jumps. Those edges did not come from the original array value.
-
-This is not just redundant work; it can reach a zero through an illegal adjacent move and return a false positive. Therefore, the exact source as written does not support a complete correctness proof for all valid inputs.
-
-The smallest conceptual repair is either:
-
-- mark a destination visited at the moment it is first enqueued while preserving its jump value elsewhere or using a separate visited set, or
-- after popping, add a guard that immediately continues when `arr[i] < 0` before reading `x`.
-
-The second form matches the local editorial's BFS structure. One must still save the positive jump value before replacing it with a negative sentinel.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 5: Target Evaluation at Node $i = 3$
+- Dequeue $i = 3$.
+- Check value: $\text{arr}[3] = 0$.
+- Target condition $\text{arr}[i] == 0$ is satisfied.
+- Terminate search and return `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [4, 2, 3, 0, 3, 1, 2], "start": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Iteration | Current Node $u$ | Value $\text{arr}[u]$ | Forward Neighbor | Backward Neighbor | Action Taken | Queue After Step |
+|---|---|---|---|---|---|---|
+| Init | - | - | - | - | Enqueue `start = 5` | `[5]` |
+| 1 | $5$ | $1$ | $6$ (valid) | $4$ (valid) | Enqueue $6, 4$ | `[6, 4]` |
+| 2 | $6$ | $2$ | $8$ (out of bounds) | $4$ (visited) | No enqueue | `[4]` |
+| 3 | $4$ | $3$ | $7$ (out of bounds) | $1$ (valid) | Enqueue $1$ | `[1]` |
+| 4 | $1$ | $2$ | $3$ (valid) | $-1$ (out of bounds) | Enqueue $3$ | `[3]` |
+| 5 | $3$ | $0$ | - | - | **Match: Value is 0** | Return `true` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every index placed into queue $Q$ is reached through a valid sequence of edge transitions from `start`. When an index $t$ with $\text{arr}[t] = 0$ is dequeued, a verified directed path exists from `start` to $t$, making the return value `true` sound.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since every state is visited at most once and the graph has a finite number of vertices ($N \le 5 \times 10^4$), the traversal exhausts the entire reachable connected component in finite steps. If the queue becomes empty without finding any node with value $0$, no valid path exists, correctly returning `false`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Visited set with BFS:** Store indices in a set when enqueuing them and never mutate `arr`. This cleanly prevents duplicate queue entries and preserves the input, at $O(n)$ extra space.
-- **Guard marked pops:** Keeping the exact mark-on-pop style is valid only if `arr[i] < 0` causes an immediate skip before `x` is read. This is the minimal logical repair shown by the editorial.
-- **Iterative DFS:** A stack can replace the queue because only reachability matters. It has the same $O(n)$ time and space bounds with correct visited handling.
-- **Recursive DFS:** It is concise but can recurse through $O(n)$ indices and exceed Python's recursion limit near the maximum input size.
-- **Start already at zero:** The first pop returns true before any mutation.
-- **Jump outside the array:** The bounds condition rejects that destination without enqueuing it.
-- **Two jumps to the same destination:** When `arr[i] = 0`, the goal returns before expansion. For positive values, `i + x` and `i - x` differ, but different parent indices can still target the same child, causing the exact duplicate bug.
-- **Cycles:** Correct visited marking ensures a cycle does not cause infinite traversal.
-- **Unreachable zero:** After all genuinely reachable indices are processed, a corrected queue empties and returns false.
-- **In-place sentinel:** $-1$ is safe only because the contract guarantees every original value is at least zero.
-- **Input mutation visible to callers:** Visited positive entries become $-1$. A caller needing the original data must copy it or use separate visited storage.
-- **Exact-source limitation:** The approach artifact should not claim the submitted code is correct for all valid inputs until duplicate pops are skipped or duplicate enqueues are prevented.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Infinite cycles from mutual jumps:** Indices like $4$ and $6$ can jump back and forth ($4 + 2 = 6, 6 - 2 = 4$). Without a visited set, recursion would overflow the call stack.
+- **Array bounds violation:** Jumps can easily evaluate to negative indices or indices $\ge N$. Boundaries must be validated before attempting to access array memory.
+- **Start node already zero:** If $\text{arr}[\text{start}] = 0$, the algorithm must immediately succeed in $0$ transitions without needing an expansion step.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. For the intended corrected traversal, let $n$ be the array length. Each index is processed at most once, and each processing checks two possible edges. Time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$. There are $N$ total indices. Each index is enqueued and expanded at most once, and each index generates at most $2$ candidate edges, resulting in $\mathcal{O}(N)$ total edge evaluations.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the visited set and the FIFO queue frontier across the exploration.

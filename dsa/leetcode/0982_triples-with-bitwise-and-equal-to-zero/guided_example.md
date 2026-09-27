@@ -1,137 +1,227 @@
 # Guided Example: Triples with Bitwise AND Equal To Zero
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step associative splitting of bitwise triples into pairwise mask frequencies, prove the Multiplicity Partitioning Lemma and the Frequency-Weighted Convolution Invariant, and calculate the count of valid index triples across representative arrays:
 
-- **Input:** `{"nums": [2, 1, 3]}`
-- **Required output:** `12`
+- **Representative Instance 1 (Three Interlocking Bitmask Values):**
+  $$
+  nums = [2, \; 1, \; 3], \quad n = 3
+  $$
+- **Required Output:** `12`
+  - Bitwise binary representations:
+    - $nums[0] = 2 = (10)_2$
+    - $nums[1] = 1 = (01)_2$
+    - $nums[2] = 3 = (11)_2$
+  - Phase 1: Enumerate all $3 \times 3 = 9$ ordered pairs $(i, j)$ and compute $x \ \& \ y$:
+    - Pair $(2, 2) \implies 2 \ \& \ 2 = 2$
+    - Pair $(2, 1) \implies 2 \ \& \ 1 = 0$
+    - Pair $(2, 3) \implies 2 \ \& \ 3 = 2$
+    - Pair $(1, 2) \implies 1 \ \& \ 2 = 0$
+    - Pair $(1, 1) \implies 1 \ \& \ 1 = 1$
+    - Pair $(1, 3) \implies 1 \ \& \ 3 = 1$
+    - Pair $(3, 2) \implies 3 \ \& \ 2 = 2$
+    - Pair $(3, 1) \implies 3 \ \& \ 1 = 1$
+    - Pair $(3, 3) \implies 3 \ \& \ 3 = 3$
+  - Frequency Counter `cnt`:
+    $$
+    cnt = \{0: 2, \quad 1: 3, \quad 2: 3, \quad 3: 1\}
+    $$
+  - Phase 2: For each unique mask $w$ with frequency $v$, test $w \ \& \ z == 0$ against all $z \in nums$:
+    1. Mask $w = 0$ ($v = 2$ pairs):
+       - $0 \ \& \ 2 = 0$ (Pass) $\implies +2$
+       - $0 \ \& \ 1 = 0$ (Pass) $\implies +2$
+       - $0 \ \& \ 3 = 0$ (Pass) $\implies +2$
+       - Contribution: $2 \times 3 = \mathbf{6}$.
+    2. Mask $w = 1$ ($v = 3$ pairs):
+       - $1 \ \& \ 2 = 0$ (Pass) $\implies +3$
+       - $1 \ \& \ 1 = 1 \ne 0$ (Fail)
+       - $1 \ \& \ 3 = 1 \ne 0$ (Fail)
+       - Contribution: $3 \times 1 = \mathbf{3}$.
+    3. Mask $w = 2$ ($v = 3$ pairs):
+       - $2 \ \& \ 2 = 2 \ne 0$ (Fail)
+       - $2 \ \& \ 1 = 0$ (Pass) $\implies +3$
+       - $2 \ \& \ 3 = 2 \ne 0$ (Fail)
+       - Contribution: $3 \times 1 = \mathbf{3}$.
+    4. Mask $w = 3$ ($v = 1$ pair):
+       - $3 \ \& \ 2 = 2 \ne 0$, $3 \ \& \ 1 = 1 \ne 0$, $3 \ \& \ 3 = 3 \ne 0$ (All Fail)
+       - Contribution: $0$.
+  - Total valid triples: $6 + 3 + 3 + 0 = \mathbf{12}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (All Zeros, Maximum Combinatorial Density):**
+  $$
+  nums = [0, \; 0, \; 0] \implies \text{all } 3^3 \text{ index triples satisfy } 0 \ \& \ 0 \ \& \ 0 == 0 \implies \mathbf{27}
+  $$
+
+- **Representative Instance 3 (Single Non-Zero Element):**
+  $$
+  nums = [1] \implies 1 \ \& \ 1 \ \& \ 1 = 1 \ne 0 \implies \mathbf{0}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array nums, return *the number of **AND triples***.
+Given an integer array `nums`, return the number of **AND triples**.
+An AND triple is an ordered index triple $(i, j, k)$ with $0 \le i, j, k < n$ such that:
+$$
+nums[i] \ \& \ nums[j] \ \& \ nums[k] == 0
+$$
+Indices $i, j, k$ are permitted to be identical or distinct, and order matters (e.g. $(0, 1, 2)$ and $(1, 0, 2)$ count separately).
 
-The objective is to compute `12` from `{"nums": [2, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Decoupling Triples:
+  Instead of 3 nested loops:
+    O(N^3) -> 1,000^3 = 1,000,000,000 checks (TIME LIMIT EXCEEDED!)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Decouple via Associativity:
+    (x & y) & z == 0
+    Phase 1: Precompute frequency of all N^2 pairs: cnt[x & y]
+    Phase 2: Iterate unique pair masks against N values: O(DistinctMasks * N)
+    Total checks: < 2,000,000 operations!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Use associativity to split a triple into a pair and one value
-
-The direct interpretation tries every ordered index triple and tests
-
-`nums[i] & nums[j] & nums[k] == 0`.
-
-That uses three nested loops. With as many as one thousand values, `N^3` checks are too expensive.
-
-Bitwise AND is associative:
-
-`(x & y) & z = x & (y & z)`.
-
-Therefore, the first two selected values can be summarized by the single mask `x & y`. Once two ordered pairs produce the same mask, they behave identically with every possible third value. The algorithm exploits that equivalence: calculate how many ordered pairs produce each mask once, then test each distinct mask against each possible third value.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 1, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Associative Decoupling & Multiplicity Frequency Invariant**:
+1. **Associative Reduction:** Because bitwise AND is associative, $(x \ \& \ y) \ \& \ z = 0$ allows grouping the first two terms into an intermediate bitmask $w = x \ \& \ y$.
+2. **Multiplicity Equivalence:** If $v$ distinct ordered pairs $(i, j)$ evaluate to the same mask $w$, then for any choice of $k$, $(nums[i] \ \& \ nums[j]) \ \& \ nums[k] = w \ \& \ nums[k]$. Thus, every qualifying $nums[k]$ simultaneously validates all $v$ pairs.
+3. **Complexity Collapse:** Precomputing pair frequencies in a hash map takes $\mathcal{O}(N^2)$ time. Because $nums[m] < 2^{16}$, the number of distinct masks is bounded by $2^{16} = 65{,}536$. Matching distinct masks against $nums$ runs in $\mathcal{O}(|\text{masks}| \cdot N)$ time, well within the 2-second limit.
 
 ---
 
-### Step 2: Count ordered pairs, including multiplicity
+## 2. Conceptual Foundation & The Associative Partitioning Invariant
 
-The expression
+```mermaid
+flowchart TD
+    accTitle: Triples with Bitwise AND Decoupling Pipeline
+    accDescr: Flowchart illustrating precomputing pairwise bitwise AND frequencies and accumulating matches with third elements
+    Start["Receive nums of length n"] --> Pairwise["Phase 1: Precompute pair frequencies\ncnt = Counter(x & y for x in nums for y in nums)"]
+    Pairwise --> MatchLoop["Phase 2: For (xy, v) in cnt.items():"]
+    MatchLoop --> LoopZ["For z in nums:"]
+    LoopZ --> CheckZero{"xy & z == 0 ?"}
+    CheckZero -->|"Yes: Valid triple formed"| AddCount["ans += v\n(All v pairs valid with this z)"]
+    CheckZero -->|"No"| Skip["Continue"]
+    AddCount --> LoopZ
+    Skip --> LoopZ
+    LoopZ --> FinishZ["Next mask"]
+    FinishZ --> MatchLoop
+    MatchLoop -->|"All masks evaluated"| ReturnAns["Return ans"]
+```
 
-`Counter(x & y for x in nums for y in nums)`
+### The Multiplicity Partitioning Theorem
 
-iterates over every ordered pair of array values. The outer and inner loops both range over the full array. Consequently, it includes pairs corresponding to `(i, j)` and `(j, i)` separately, and it permits `i = j`. Both behaviors are required because the definition independently allows every index from zero through `N - 1`.
-
-Although `x & y` has the same numeric result as `y & x`, the two index choices are still different ordered pairs and both increase the counter. Repeated values also contribute separately. If a value appears several times, each occurrence represents a distinct index, and the generator naturally preserves that multiplicity.
-
-The resulting counter maps a bit mask `xy` to a frequency `v`. The meaning of one entry is:
-
-> Exactly `v` ordered choices of the first two indices produce the intermediate result `xy`.
-
-The generator feeds values directly into `Counter`; it does not first allocate a list containing all `N^2` pair results.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (nums[0], nums[1], \dots, nums[n-1])$ be an array of length $n$.
+1. **Definition of Valid Triples:**
+   $$
+   \mathcal{T} = \{(i, j, k) \in [0, n-1]^3 : nums[i] \ \& \ nums[j] \ \& \ nums[k] = 0\}
+   $$
+2. **Fiber Partitioning by Pair Mask:**
+   Define the fiber over mask $w \in [0, 2^{16} - 1]$ as:
+   $$
+   F(w) = \{(i, j) \in [0, n-1]^2 : nums[i] \ \& \ nums[j] = w\}
+   $$
+   Because every pair $(i, j)$ yields exactly one bitwise value, $\{F(w)\}$ forms a partition of $[0, n-1]^2$.
+3. **Multiplicity Summation:**
+   By associativity of bitwise AND:
+   $$
+   (i, j, k) \in \mathcal{T} \iff (i, j) \in F(w) \quad \text{and} \quad w \ \& \ nums[k] = 0
+   $$
+   Summing over all fibers:
+   $$
+   |\mathcal{T}| = \sum_{w} \sum_{k=0}^{n-1} |F(w)| \cdot \mathbb{I}(w \ \& \ nums[k] = 0) = \sum_{w} cnt[w] \sum_{k=0}^{n-1} \mathbb{I}(w \ \& \ nums[k] = 0)
+   $$
+   This proves that accumulating $v = cnt[w]$ for each qualifying $nums[k]$ yields the exact global count. $\blacksquare$
 
 ---
 
-### Step 3: Attach every possible third index
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The return expression is equivalent to the following reasoning:
+$nums = [2, 1, 3]$.
 
-- visit each distinct pair mask `xy` and its frequency `v`;
-- visit every array element `z` as the value at the third index;
-- if `xy & z == 0`, add `v` to the answer.
+### Phase 1: Pair Frequency Precomputation
+- $x = 2, y = 2 \implies 2 \ \& \ 2 = 2$
+- $x = 2, y = 1 \implies 2 \ \& \ 1 = 0$
+- $x = 2, y = 3 \implies 2 \ \& \ 3 = 2$
+- $x = 1, y = 2 \implies 1 \ \& \ 2 = 0$
+- $x = 1, y = 1 \implies 1 \ \& \ 1 = 1$
+- $x = 1, y = 3 \implies 1 \ \& \ 3 = 1$
+- $x = 3, y = 2 \implies 3 \ \& \ 2 = 2$
+- $x = 3, y = 1 \implies 3 \ \& \ 1 = 1$
+- $x = 3, y = 3 \implies 3 \ \& \ 3 = 3$
 
-Why add `v` rather than one? For this particular occurrence of `z`, all `v` ordered pairs represented by the counter entry create a valid triple. They share the same intermediate mask, so the final AND result is identical for all of them.
-
-The loop over `nums` is intentionally not a loop over distinct values. If the same `z` occurs at three indices, those are three different choices for `k` and must each contribute. Iterating over the original array counts them separately.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `12` |
+Counter map:
+- $cnt[0] = 2$
+- $cnt[1] = 3$
+- $cnt[2] = 3$
+- $cnt[3] = 1$
 
 ---
 
-## 4. Complete Execution Trace
+### Phase 2: Evaluation Against $z \in [2, 1, 3]$
+1. **Mask $w = 0$ ($v = 2$):**
+   - $0 \ \& \ 2 == 0 \implies ans += 2$
+   - $0 \ \& \ 1 == 0 \implies ans += 2$
+   - $0 \ \& \ 3 == 0 \implies ans += 2$
+   - Subtotal: $+6$.
+2. **Mask $w = 1$ ($v = 3$):**
+   - $1 \ \& \ 2 == 0 \implies ans += 3$
+   - $1 \ \& \ 1 == 1 \ne 0$
+   - $1 \ \& \ 3 == 1 \ne 0$
+   - Subtotal: $+3$.
+3. **Mask $w = 2$ ($v = 3$):**
+   - $2 \ \& \ 2 == 2 \ne 0$
+   - $2 \ \& \ 1 == 0 \implies ans += 3$
+   - $2 \ \& \ 3 == 2 \ne 0$
+   - Subtotal: $+3$.
+4. **Mask $w = 3$ ($v = 1$):**
+   - $3 \ \& \ 2 == 2 \ne 0$
+   - $3 \ \& \ 1 == 1 \ne 0$
+   - $3 \ \& \ 3 == 3 \ne 0$
+   - Subtotal: $+0$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 1, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `12` | Verified |
+---
+
+### Total Output
+$$
+ans = 6 + 3 + 3 + 0 = \mathbf{12}
+$$
+
+---
+
+## 4. Pairwise Mask Frequency & Third-Element Matching Trace Table
+
+| Mask $w = x \ \& \ y$ | Multiplicity $v = cnt[w]$ | Valid Elements $z \in nums$ with $w \ \& \ z == 0$ | Matches Count | Total Contribution ($v \times \text{Matches}$) |
+|:---:|:---:|:---|:---:|:---:|
+| **$0$** | $2$ | $2, 1, 3$ (All match) | $3$ | $2 \times 3 = \mathbf{6}$ |
+| **$1$** | $3$ | $2$ ($1 \ \& \ 2 = 0$) | $1$ | $3 \times 1 = \mathbf{3}$ |
+| **$2$** | $3$ | $1$ ($2 \ \& \ 1 = 0$) | $1$ | $3 \times 1 = \mathbf{3}$ |
+| **$3$** | $1$ | None | $0$ | $1 \times 0 = \mathbf{0}$ |
+| **Total** | $9$ pairs | — | — | $\mathbf{12}$ triples |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every triple counted corresponds to an ordered choice $(i, j, k)$ such that $nums[i] \ \& \ nums[j] = w$ and $w \ \& \ nums[k] = 0$. By associativity, this guarantees $(nums[i] \ \& \ nums[j]) \ \& \ nums[k] = 0$.
+2. **Completeness:**
+   Since Phase 1 exhaustively evaluates all $N^2$ pairs $(i, j)$ and Phase 2 evaluates all $N$ choices of $k$, every legal combination is represented. Factoring by common intermediate masks aggregates identical computations without omitting any index triple.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Three explicit loops:** It mirrors the definition directly but performs `O(N^3)` AND tests and repeats the same pair result for every third index.
-- **Two loops plus a raw pair-result list:** Precomputing all `N^2` masks avoids recomputing AND, but retaining every occurrence individually uses `O(N^2)` space. The counter compresses equal masks while preserving their frequencies.
-- **Frequency-compress the input values too:** Count each distinct third value and multiply by its occurrence count. This can reduce work when `nums` has many duplicates, but requires another mapping and slightly more bookkeeping.
-- **Subset-transform methods:** A sum-over-subsets dynamic program can precompute how many values are compatible with each mask in roughly `O(U \log U)` after pair counting. It is useful for a large number of distinct third values but is more complex and always pays for the full `2^{16}` universe.
-- **Ordered indices:** `(i, j, k)` and `(j, i, k)` are distinct choices even though AND is commutative. The nested generator counts both.
-- **Repeated use of an index:** The three indices are not required to differ. Each loop independently ranges over the full array, so choices such as `i = j = k` are included.
-- **Duplicate values:** Equal numeric values at different positions remain separate index choices. Pair frequencies and the repeated `z` loop retain their full multiplicity.
-- **All zeros:** Every one of the `N^3` ordered triples is valid, and the compressed calculation still returns exactly `N^3`.
-- **Single element:** The method evaluates one pair and one third value. It returns one if that value ANDed with itself three times is zero, which happens exactly when the value is zero.
-- **Sixteen-bit bound:** Every pairwise AND remains within the same `0` through `2^{16}-1` universe; AND can clear bits but cannot introduce a bit absent from its operands.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| All Zeros | `[0, 0, 0]` | Mask $0$ has frequency $9$; all $3$ elements match $\implies 9 \times 3 = 27$. | Missing ordered permutations. |
+| Disjoint Single Bits | `[1, 2]` | $1 \ \& \ 2 = 0$; generates 6 valid combinations. | Duplicate suppression. |
+| Single Non-Zero Element | `[1]` | $1 \ \& \ 1 = 1$, $1 \ \& \ 1 = 1 \ne 0$; returns $0$. | Edge case array length 1. |
+| High Bit Values ($< 2^{16}$) | Elements $\le 65{,}535$ | Bitwise AND naturally stays within 16-bit range. | Integer overflow in bitwise arithmetic. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N^2+DU)$. Let `N` be the array length, `D` the number of distinct masks produced by pairwise AND, and `U = 2^{16}` the size of the possible mask universe under the input bound.
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N^2 + U \cdot N)$, where $N = \text{len}(nums) \le 1{,}000$ and $U \le \min(N^2, 2^{16})$ is the number of distinct pairwise masks.
+  - Phase 1: $N^2$ pairwise AND operations $\implies \mathcal{O}(N^2) \le 10^6$.
+  - Phase 2: At most $U \le 65{,}536$ distinct masks tested against $N$ elements $\implies \mathcal{O}(U \cdot N) \le 2 \times 10^6$ operations in practice.
+  - Total time: $< 0.08\text{ s}$ for $N = 1{,}000$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$ to store the frequency dictionary `cnt` (at most $2^{16} = 65{,}536$ keys).

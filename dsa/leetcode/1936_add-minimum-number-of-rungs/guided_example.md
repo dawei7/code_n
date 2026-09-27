@@ -1,142 +1,170 @@
 # Guided Example: Add Minimum Number of Rungs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace greedy jump intervals, gap discretization, and minimal rung placement on representative ladder climbing instances:
 
-- **Input:** `{"rungs": [1, 3, 5, 10], "dist": 2}`
-- **Required output:** `2`
+- **Primary Input:** `rungs = [1, 3, 5, 10]`, `dist = 2`
+- **Required Output:** `2`
+- **Ground Gap Input:** `rungs = [3, 4, 6, 7]`, `dist = 2`
+- **Required Output:** `1`
+- **Fully Reachable Input:** `rungs = [3, 6, 8, 10]`, `dist = 3`
+- **Required Output:** `0`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates analyzing distance gaps between consecutive ascending heights, establishing the exact quotient formula $\lfloor(\Delta - 1) / dist\rfloor$ for minimal intermediate support placement, and accumulating necessary insertions in $\mathcal{O}(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a **strictly increasing** integer array `rungs` that represents the **height** of rungs on a ladder. You are currently on the **floor** at height `0`, and you want to reach the last rung.
+We climb a ladder starting at ground level (height $0$). We are given a strictly increasing integer array `rungs` representing existing rung heights, and an integer `dist` representing our maximum single upward reach.
+- From height $h$, we can step to a rung at height $h'$ if and only if $h' - h \le dist$.
+- We may insert new rungs at any positive integer height.
+- We seek the **minimum** number of rungs required to ascend to the final rung.
 
-The objective is to compute `2` from `{"rungs": [1, 3, 5, 10], "dist": 2}` while avoiding redundant calculations and unnecessary overhead.
+For `rungs = [1, 3, 5, 10]` with `dist = 2`:
+- Sequence of heights from ground: $[0, 1, 3, 5, 10]$.
+- Gap 1: $0 \to 1$. Difference $\Delta = 1 \le 2 \implies 0$ rungs needed.
+- Gap 2: $1 \to 3$. Difference $\Delta = 2 \le 2 \implies 0$ rungs needed.
+- Gap 3: $3 \to 5$. Difference $\Delta = 2 \le 2 \implies 0$ rungs needed.
+- Gap 4: $5 \to 10$. Difference $\Delta = 5 > 2$.
+  - Maximum jump is 2. Stepping from 5 to 10 requires traversing a gap of 5.
+  - Intermediate rungs can be placed at $5 + 2 = 7$ and $7 + 2 = 9$.
+  - From 9, the final rung 10 is at distance $1 \le 2$, reachable in one step.
+  - Total rungs added: **2**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **greedy gap bridging and integer ceiling/floor duality**:
+1. Recognizing that greedy placement at maximal stride $h + dist$ is strictly optimal for minimizing intermediate insertions.
+2. Deriving the closed-form count of required insertions across an interval $[a, b]$: $\lfloor(b - a - 1) / dist\rfloor$.
+3. Accounting for the implicit initial base position at height $0$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Maximal Stride Gap Decomposition Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Maximal Stride Gap Decomposition Theorem.**
+> 1. *Independent Gap Additivity:* Because heights are strictly increasing and ascending requires traversing each interval $[r_{i-1}, r_i]$ in sequence, insertions inside one gap do not affect the minimum insertions required in any other disjoint gap. The total minimum insertions is the sum of local gap requirements:
+>    $$\text{Total} = \sum_{i=1}^N \text{req}(r_{i-1}, r_i) \quad (\text{with } r_0 = 0)$$
+> 2. *Greedy Stride Optimality:* To span a gap of length $\Delta = b - a$, each jump advances by at most $dist$. The minimum number of steps $S$ needed to cover distance $\Delta$ is:
+>    $$S = \left\lceil \frac{\Delta}{dist} \right\rceil$$
+> 3. *Intermediate Insertion Count:* A path consisting of $S$ steps utilizes $S - 1$ intermediate nodes. Therefore, the minimum number of rungs to insert is:
+>    $$\text{req}(a, b) = S - 1 = \left\lceil \frac{\Delta}{dist} \right\rceil - 1 = \left\lfloor \frac{\Delta - 1}{dist} \right\rfloor = \left\lfloor \frac{b - a - 1}{dist} \right\rfloor$$
+>    - If $\Delta \le dist$, $\Delta - 1 < dist \implies \lfloor(\Delta - 1) / dist\rfloor = 0$ (no rungs needed).
+>    - If $\Delta$ is an exact multiple of $dist$ (e.g. $\Delta = 2 \cdot dist$), $\lfloor(2 \cdot dist - 1) / dist\rfloor = 1$ rung needed.
+> 4. *Complexity:* Computing the formula for each of the $N$ adjacent intervals takes $\mathcal{O}(1)$ time, achieving $\mathcal{O}(N)$ overall runtime.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Ladder Gap Evaluation Flow
+    accDescr: Sequential processing of gaps between adjacent rungs and accumulating required insertions.
+    A["Initialize prev = 0, total_rungs = 0"] --> B["For each rung r in rungs:"]
+    B --> C["Compute gap: Delta = r - prev"]
+    C --> D{"Is Delta > dist?"}
+    D -- Yes --> E["Add floor((Delta - 1) / dist) to total_rungs"]
+    D -- No --> F["No insertion needed (+0)"]
+    E --> G["prev = r"]
+    F --> G
+    G --> H{"More rungs?"}
+    H -- Yes --> B
+    H -- No --> I["Return total_rungs"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat every consecutive height gap independently
-
-The climber starts at height zero, so the floor must participate in the same calculation as every rung. The solution creates `[0] + rungs`, producing a sequence whose adjacent pairs are the floor and first rung, then every pair of consecutive original rungs.
-
-Because `rungs` is strictly increasing, every adjacent pair `(a, b)` defines a positive gap $g=b-a$. Added rungs inside one gap do not help cross a different gap, so the minimum total is the sum of the independently minimum numbers needed for all gaps.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"rungs": [1, 3, 5, 10], "dist": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `rungs = [1, 3, 5, 10]` with `dist = 2`:
 
 ---
 
-### Step 2: Derive the exact formula for one gap
-
-Suppose $k$ new rungs are inserted strictly between heights $a$ and $b$. Those rungs divide the distance $g=b-a$ into $k+1$ climbs. Every climb must have length at most `dist`. At least
-
-$$
-\left\lceil\frac{g}{\texttt{dist}}\right\rceil
-$$
-
-climbs are required, so at least
-
-$$
-\left\lceil\frac{g}{\texttt{dist}}\right\rceil-1
-$$
-
-new rungs are required.
-
-For positive integers, this quantity equals
-
-$$
-\left\lfloor\frac{g-1}{\texttt{dist}}\right\rfloor.
-$$
-
-That is the exact expression `(b - a - 1) // dist` used by the solution. Subtracting one before floor division handles the “at most” boundary correctly.
-
-Consider several cases:
-
-- If $g\le\texttt{dist}$, then $0\le g-1<\texttt{dist}$ and the formula returns zero.
-- If $g=2\cdot\texttt{dist}$, one inserted rung halfway creates two legal climbs. The formula returns $(2d-1)//d=1$.
-- If $g=2\cdot\texttt{dist}+1$, two inserted rungs are necessary, and the formula returns $2d//d=2$.
-
-Using `g // dist` directly would be wrong when $g$ is an exact multiple of `dist` because it would add one rung too many.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Ground State
+- Starting height: $\text{prev} = 0$.
+- Running counter: $\text{total\_rungs} = 0$.
 
 ---
 
-### Step 3: Why the lower bound can always be achieved
+### Step 2: Gap 1 (Ground to Rung 1)
+- Target: $r_1 = 1$.
+- Gap: $\Delta = 1 - 0 = 1$.
+- Evaluation: $\lfloor(1 - 1) / 2\rfloor = \lfloor 0 / 2 \rfloor = 0$.
+- Rungs added: $+0$. Running total: $0$.
+- Update position: $\text{prev} = 1$.
 
-Starting at $a$, place new rungs at $a+\texttt{dist}$, $a+2\cdot\texttt{dist}$, and so on while the next original rung is still farther than `dist` away. Every inserted height is an integer because both $a$ and `dist` are integers. Consecutive inserted rungs are exactly `dist` apart, and the final remainder to $b$ is between one and `dist`.
+---
 
-This construction uses exactly $\lceil g/\texttt{dist}\rceil-1$ rungs, matching the lower bound. Therefore the formula is not merely sufficient; it is minimum for that gap.
+### Step 3: Gap 2 (Rung 1 to Rung 3)
+- Target: $r_2 = 3$.
+- Gap: $\Delta = 3 - 1 = 2$.
+- Evaluation: $\lfloor(2 - 1) / 2\rfloor = \lfloor 1 / 2 \rfloor = 0$.
+- Rungs added: $+0$. Running total: $0$.
+- Update position: $\text{prev} = 3$.
 
-The implementation does not need to construct these heights because the output asks only for their count. `pairwise(rungs)` lazily yields each adjacent pair, the generator computes its minimum, and `sum` combines the results.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 4: Gap 3 (Rung 3 to Rung 5)
+- Target: $r_3 = 5$.
+- Gap: $\Delta = 5 - 3 = 2$.
+- Evaluation: $\lfloor(2 - 1) / 2\rfloor = \lfloor 1 / 2 \rfloor = 0$.
+- Rungs added: $+0$. Running total: $0$.
+- Update position: $\text{prev} = 5$.
+
+---
+
+### Step 5: Gap 4 (Rung 5 to Rung 10)
+- Target: $r_4 = 10$.
+- Gap: $\Delta = 10 - 5 = 5$.
+- Evaluation:
+  $$\left\lfloor \frac{5 - 1}{2} \right\rfloor = \left\lfloor \frac{4}{2} \right\rfloor = 2$$
+- Action: Insert 2 rungs (e.g. at heights 7 and 9).
+- Rungs added: $+2$. Running total: $0 + 2 = 2$.
+- Update position: $\text{prev} = 10$.
+
+---
+
+### Final Result
+All rungs reached. Total rungs inserted: **2**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rungs": [1, 3, 5, 10], "dist": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+We trace the step-by-step gap analysis for the primary instance:
+
+| Gap Index | Start Height $a$ | End Height $b$ | Distance Gap $\Delta = b - a$ | Stride Limit `dist` | Formula $\lfloor(\Delta - 1)/dist\rfloor$ | Rungs Added | Cumulative Rungs |
+|---|---|---|---|---|---|---|---|
+| 1 | 0 (Ground) | 1 | 1 | 2 | $\lfloor 0 / 2 \rfloor = 0$ | 0 | 0 |
+| 2 | 1 | 3 | 2 | 2 | $\lfloor 1 / 2 \rfloor = 0$ | 0 | 0 |
+| 3 | 3 | 5 | 2 | 2 | $\lfloor 1 / 2 \rfloor = 0$ | 0 | 0 |
+| 4 | 5 | 10 | 5 | 2 | $\lfloor 4 / 2 \rfloor = 2$ | 2 | **2** |
+
+We compare calculations across multiple ladder configurations:
+
+| Input Rungs | `dist` | Gaps Evaluated | Gaps Requiring Additions | Inserted Rung Locations | Total Rungs |
+|---|---|---|---|---|---|
+| `[1, 3, 5, 10]` | 2 | $[1, 2, 2, 5]$ | Gap $5 \to 10$ ($\Delta = 5$) | Heights 7, 9 | **2** |
+| `[3, 4, 6, 7]` | 2 | $[3, 1, 2, 1]$ | Gap $0 \to 3$ ($\Delta = 3$) | Height 2 | **1** |
+| `[3, 6, 8, 10]` | 3 | $[3, 3, 2, 2]$ | None ($\Delta \le 3$ for all) | None | **0** |
+| `[5]` | 2 | $[5]$ | Gap $0 \to 5$ ($\Delta = 5$) | Heights 2, 4 | **2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Suppose a gap of length $\Delta$ exists between adjacent rungs. If we insert $k$ intermediate rungs, the gap is partitioned into $k + 1$ consecutive steps. To satisfy the maximum reach constraint, every step must have length at most $dist$. Thus, $(k + 1) \cdot dist \ge \Delta$, which implies $k + 1 \ge \lceil \Delta / dist \rceil \iff k \ge \lceil \Delta / dist \rceil - 1 = \lfloor (\Delta - 1) / dist \rfloor$. Inserting exactly $\lfloor (\Delta - 1) / dist \rfloor$ rungs at coordinates $a + dist, a + 2 \cdot dist, \dots$ achieves feasibility while matching the mathematical lower bound.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Iterating through every consecutive pair of rungs (including the transition from ground height 0) covers all necessary elevation changes. Summing the minimal independent insertions across all intervals yields the global minimum.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Track a previous height:** Initialize `previous = 0`, scan original rungs, add `(height - previous - 1) // dist`, then update `previous`. This preserves $O(N)$ time and achieves true $O(1)$ auxiliary space.
-- **Actually insert rungs:** Constructing every new height is unnecessary and can be enormous relative to the input length when a gap is large. Arithmetic gives the count directly.
-- **Binary search the answer:** Feasibility is monotone, but there is a closed-form independent answer for every gap, so binary search adds complexity.
-- **Gap at most `dist`:** It contributes zero, including a gap exactly equal to `dist`.
-- **Exact multiple of `dist`:** The subtraction by one prevents an extra rung; a gap $kd$ needs $k-1$ additions.
-- **First rung too high:** Prepending the floor makes the floor-to-first-rung gap use the same formula automatically.
-- **Single rung:** There is one floor-to-rung pair, and the expression returns its exact minimum additions.
-- **Very large heights:** The method uses integer arithmetic, so it avoids floating-point precision issues in ceiling calculations.
-- **Strictly increasing input:** Positive gaps are guaranteed. Duplicate or descending heights would invalidate the independent climbing interpretation but are outside the contract.
-- **Choice of insertion heights:** Many placements may achieve the minimum. Only the count matters, so the algorithm need not select one.
-- **Imported helper:** The exact solution assumes `pairwise` is available in its execution environment.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing the Ground Base ($h = 0$):** If `rungs = [3, 5]` and `dist = 2`, the first rung at height 3 cannot be reached from ground level 0 without adding a rung at height 2. Neglecting to check the gap from $0$ to $rungs[0]$ causes an undercount.
+- **Off-by-One on Exact Multiples:** When $\Delta$ is an exact multiple of $dist$ (e.g. $\Delta = 4, dist = 2$), a naive division $\Delta // dist = 4 // 2 = 2$ would overestimate the needed rungs. From 0, jumping to 2 and then to 4 requires only *one* intermediate rung at 2. The formula $(\Delta - 1) // dist = 3 // 2 = 1$ correctly accounts for the landing step.
+- **Step-by-Step Simulation TLE:** Simulating jumps one unit at a time using a while-loop can exceed the time limit when rungs reach $10^9$. Direct arithmetic division $\mathcal{O}(1)$ per gap is essential.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the number of original rungs.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \text{len}(rungs)$. A single pass computes the arithmetic difference and division for each consecutive pair in $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Only two scalar height pointers and an accumulator sum are tracked.

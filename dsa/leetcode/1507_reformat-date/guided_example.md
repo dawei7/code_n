@@ -1,134 +1,182 @@
 # Guided Example: Reformat Date
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"date": "20th Oct 2052"}`
-- **Required output:** `"2052-10-20"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-Given a `date` string in the form `Day Month Year`, where:
+We are given a natural language date string adhering to the format `Day Month Year`:
+$$\text{date} = \text{"6th Jun 1933"}$$
 
-The objective is to compute `"2052-10-20"` from `{"date": "20th Oct 2052"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+Our teaching goal is to normalize this representation into the ISO-8601 standard calendar date string `YYYY-MM-DD`. We walk through token segmentation, ordinal suffix removal, categorical month lookup, two-digit zero-padding, and hyphen-delimited formatting.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+The input string represents three distinct chronological components separated by single whitespace characters:
+$$\text{date} = d_{\text{raw}} \mathbin{\sqcup} m_{\text{raw}} \mathbin{\sqcup} y_{\text{raw}}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Year Component ($y_{\text{raw}}$)**:
+   - Guaranteed to be a four-digit integer in $[1900, 2100]$.
+   - Directly maps to `YYYY` without modification.
+2. **Month Component ($m_{\text{raw}}$)**:
+   - A three-letter abbreviation drawn from the ordered calendar sequence:
+     $$\mathcal{M} = (\text{Jan}, \text{Feb}, \text{Mar}, \text{Apr}, \text{May}, \text{Jun}, \text{Jul}, \text{Aug}, \text{Sep}, \text{Oct}, \text{Nov}, \text{Dec})$$
+   - Its 1-based position in $\mathcal{M}$ defines month number $M \in \{1, 2, \dots, 12\}$.
+   - Padded with a leading zero if $M < 10$, yielding a two-digit string `MM`.
+3. **Day Component ($d_{\text{raw}}$)**:
+   - Composed of one or two digits followed by a two-letter English ordinal suffix (`"st"`, `"nd"`, `"rd"`, or `"th"`).
+   - Stripping the final two characters extracts the numerical day $D \in \{1, \dots, 31\}$.
+   - Padded with a leading zero if $D < 10$, yielding a two-digit string `DD`.
+4. **Final Assembly**:
+   Concatenated with hyphens:
+   $$\text{Result} = \text{YYYY} \mathbin{\Vert} \text{"-"} \mathbin{\Vert} \text{MM} \mathbin{\Vert} \text{"-"} \mathbin{\Vert} \text{DD}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```text
++-------------------------------------------------------------------------------+
+|                       DATE STRING NORMALIZATION PIPELINE                      |
+|                                                                               |
+|  Input String: "6th Jun 1933"                                                 |
+|                                                                               |
+|  1. Tokenize by space -> [ "6th",  "Jun",  "1933" ]                           |
+|                            |         |       |                                |
+|  2. Year:                  |         |       +---> "1933"                     |
+|  3. Month lookup:          |         +---> Index 6 -> pad -> "06"             |
+|  4. Day strip suffix:      +---> "6" ----> pad -----------> "06"             |
+|                                                                               |
+|  5. Assemble ISO Format: "1933-06-06"                                         |
++-------------------------------------------------------------------------------+
+```
 
----
+The algorithm maintains the following string processing state attributes:
+
+| Processing Stage | Source Fragment | Target Attribute | Transformation Rule |
+|---|---|---|---|
+| Whitespace Splitting | Entire string | `tokens` triplet | Segment string by whitespace into exactly three tokens. |
+| Year Normalization | `tokens[2]` | `year_str` | Verbatim 4-character string representation. |
+| Month Conversion | `tokens[1]` | `month_str` | 1-based index in month dictionary, zero-padded to width 2. |
+| Day Suffix Trimming | `tokens[0]` | `day_str` | Strip final two suffix characters, zero-padded to width 2. |
+| Composite Assembly | Normalised components | `formatted_date` | Concatenate `year_str`, `month_str`, `day_str` with hyphen separators. |
+
+> [!IMPORTANT]
+> **Width Padding Invariant**: Both month and day fields in the ISO-8601 specification must be exactly two characters wide. Single-digit values $1 \dots 9$ must always receive a single leading zero prefix (`"01"` through `"09"`).
+
+```mermaid
+flowchart TD
+    accTitle: Date Normalization Process Flow
+    accDescr: Flowchart showing token splitting into year, month, and day, formatting each, and assembling the final string.
+    A["Input String: '6th Jun 1933'"] --> B["Split by Space: [ '6th', 'Jun', '1933' ]"]
+    B --> Y["Year: '1933' (No change)"]
+    B --> M["Month: 'Jun' -> Index 6 -> '06'"]
+    B --> D["Day: '6th' -> Strip suffix -> '6' -> '06'"]
+    Y --> J["Join with '-' Separators"]
+    M --> J
+    D --> J
+    J --> RES["Result: '1933-06-06'"]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separating the three input fields
+We walk through the execution on $\text{date} = \text{"6th Jun 1933"}$.
 
-The valid input always contains a day token, a three-letter month token, and a four-digit year token separated by spaces. `date.split()` produces a list in the order
+### Step 1: Whitespace Tokenization
 
-`[day, month, year]`.
+The input string contains two space characters. Splitting produces a list of three string tokens:
+- $\text{token}[0] = \text{"6th"}$
+- $\text{token}[1] = \text{"Jun"}$
+- $\text{token}[2] = \text{"1933"}$
 
-The target format begins with the year, so `s.reverse()` changes that list in place to
+### Step 2: Year Extraction
 
-`[year, month, day]`.
+- The year token is $\text{token}[2] = \text{"1933"}$.
+- It is already a 4-digit number.
+- $\text{year\_str} = \text{"1933"}$.
 
-The remaining work is to convert the month name to two digits, remove the day suffix, and pad single-digit values.
+### Step 3: Month Decoding and Padding
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"date": "20th Oct 2052"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We consult the calendar month registry:
+- $\text{Jan} \to 1$
+- $\text{Feb} \to 2$
+- $\text{Mar} \to 3$
+- $\text{Apr} \to 4$
+- $\text{May} \to 5$
+- $\text{Jun} \to 6$
+- $\text{Jul} \to 7$
+- $\text{Aug} \to 8$
+- $\text{Sep} \to 9$
+- $\text{Oct} \to 10$
+- $\text{Nov} \to 11$
+- $\text{Dec} \to 12$
 
----
+The input month is `"Jun"`, corresponding to month index $6$.
+- Because $6 < 10$, we prepend a leading zero:
+  $$\text{month\_str} = \text{"06"}$$
 
-### Step 2: How the month lookup string works
+### Step 4: Day Suffix Stripping and Padding
 
-The source stores all month abbreviations in one string:
+The day token is $\text{token}[0] = \text{"6th"}$.
+- The length of the string is $3$.
+- Suffix removal: We strip the last two characters (`"th"`), leaving the numerical prefix `"6"`.
+- Because the numerical length is $1$ ($< 2$), we prepend a leading zero:
+  $$\text{day\_str} = \text{"06"}$$
 
-`" JanFebMarAprMayJunJulAugSepOctNovDec"`.
+### Step 5: String Concatentation
 
-The leading space is intentional. Every month occupies exactly three characters after that one-character offset. January begins at index one, February at index four, March at index seven, and so on.
-
-`months.index(s[1])` finds the starting index of the valid month abbreviation. Integer division by three, followed by adding one, converts those positions to month numbers:
-
-- January starts at one, and `1 // 3 + 1` is one.
-- February starts at four, and `4 // 3 + 1` is two.
-- December starts at thirty-four, and `34 // 3 + 1` is twelve.
-
-The numeric month is converted back to text and `zfill(2)` adds a leading zero when necessary. Months ten through twelve already have two characters and remain unchanged.
-
-Using one concatenated string is compact. A dictionary mapping abbreviations to numbers would make the relationship more explicit but is not required for the valid fixed vocabulary.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Cleaning and padding the day
-
-After reversal, `s[2]` is the original day token, such as `20th` or `6th`. Every permitted ordinal suffix has exactly two letters: `st`, `nd`, `rd`, or `th`.
-
-The slice `s[2][:-2]` removes those final two characters without needing to decide which suffix it was. This leaves the decimal day digits. `zfill(2)` changes one-digit days such as `6` to `06` and leaves two-digit days such as `20` unchanged.
-
-The validity guarantee means the code does not need to verify that suffixes agree grammatically with the day or that a date exists in the calendar.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"2052-10-20"` |
-
----
+We join the three standardized tokens with hyphen delimiters:
+$$\text{formatted\_date} = \text{"1933"} + \text{"-"} + \text{"06"} + \text{"-"} + \text{"06"} = \text{"1933-06-06"}$$
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"date": "20th Oct 2052"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"2052-10-20"` | Verified |
+The normalization process across all three tokens is summarized in the table below.
 
----
+| Processing Stage | Extracted Token | Intermediate Value | Length Before / After | Applied Rule | Output Segment |
+|---|---|---|---|---|---|
+| Split Component 0 | `"6th"` | Numeric day `"6"` | $3 \to 1$ | Strip suffix `[:-2]` | `"6"` |
+| Format Day | `"6"` | Pad leading zero | $1 \to 2$ | Width normalization | `"06"` |
+| Split Component 1 | `"Jun"` | Calendar rank $6$ | $3 \to 1$ | Dictionary map $\mathcal{M}$ | `"6"` |
+| Format Month | `"6"` | Pad leading zero | $1 \to 2$ | Width normalization | `"06"` |
+| Split Component 2 | `"1933"` | Calendar year $1933$ | $4 \to 4$ | Verbatim preservation | `"1933"` |
+| Final Reassembly | `["1933", "06", "06"]` | Hyphen-delimited join | $10$ characters | ISO-8601 formatting | **`"1933-06-06"`** |
+
+### Additional Contrast Case: Two-Digit Day and Month
+
+Consider $\text{date} = \text{"20th Oct 2052"}$:
+- Day: `"20th"` $\to$ strip `"th"` $\to$ `"20"` (length 2, no padding needed) $\implies \text{"20"}$.
+- Month: `"Oct"` $\to$ index $10$ (length 2, no padding needed) $\implies \text{"10"}$.
+- Year: `"2052"` $\implies \text{"2052"}$.
+- Result: `"2052-10-20"`.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The input contract guarantees that all input strings strictly conform to the grammar:
+$$\text{Day} \in \{1\text{st}, \dots, 31\text{st}\}, \quad \text{Month} \in \{\text{Jan}, \dots, \text{Dec}\}, \quad \text{Year} \in [1900, 2100]$$
+- Every day token ends with an English ordinal suffix of exactly two letters (`st`, `nd`, `rd`, `th`). Slicing off the last two characters leaves solely the numeric digits of the day.
+- Every month is one of the 12 valid calendar abbreviations, each uniquely mapping to an integer $1 \dots 12$.
+- Zero-padding guarantees that both month and day fields have length exactly $2$.
+- Joining with hyphens in the order $(\text{Year}, \text{Month}, \text{Day})$ produces a valid string of length exactly $4 + 1 + 2 + 1 + 2 = 10$, strictly satisfying the ISO-8601 standard.
 
----
+### Completeness
+
+Every valid input string contains exactly two whitespace characters separating the three semantic fields. The splitting operation partitions the input without dropping characters, ensuring no date information is lost. Every branch of the mapping is deterministic and covers all $12$ calendar months and all $31$ days of the month.
 
 ## 6. Traps This Instance Exposes
 
-- **Month dictionary:** Map each abbreviation directly to its two-digit string. This is more explicit and avoids relying on string offsets, with the same bounded complexity.
-- **Date parsing library:** It can parse and format dates robustly but is unnecessary for the constrained English grammar and may introduce locale behavior.
-- **Regular expression:** Capture day digits, month, and year. It is flexible but more machinery than a three-token split needs.
-- **Single-digit day:** Removing the suffix leaves one character, and `zfill(2)` supplies the leading zero.
-- **Double-digit day:** Padding leaves its two digits unchanged.
-- **Months January through September:** Their numeric strings receive a leading zero.
-- **Months October through December:** They already have two digits.
-- **Ordinal suffix variants:** Removing exactly the last two characters handles `st`, `nd`, `rd`, and `th` uniformly.
-- **Leading-zero year concerns:** The contract always provides a valid four-digit year, and the source preserves it as text.
-- **Invalid date:** Validation is intentionally absent because inputs are guaranteed valid.
-- **Extra whitespace:** `split()` collapses it even though the formal representation uses single spaces.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Variable-Length Day Token**: Forgetting that days $1 \dots 9$ produce tokens of length 3 (e.g. `"1st"`), while days $10 \dots 31$ produce tokens of length 4 (e.g. `"21st"`). Hardcoding an absolute character slice like `token[0][:2]` incorrectly includes the letter `'s'` for `"1st"`, yielding `"1s"`. Slicing relative to the end `[:-2]` reliably removes the suffix regardless of whether the numeric prefix has 1 or 2 digits.
+- **Single-Digit Month Omission of Leading Zero**: Mapping `"Jun"` to `"6"` and outputting `"1933-6-6"` violates the ISO-8601 requirement where months and days must be two digits (`"06"`).
+- **1-Based vs 0-Based Month Indexing**: Using 0-based programming array indices without adding $1$ maps `"Jan"` to `0` and `"Dec"` to `11`, producing invalid calendar dates like `"1933-00-06"`.
+- **Locale-Dependent Parsing**: Relying on system-specific runtime date parsing utilities whose behavior varies based on operating system locale rather than deterministic manual string manipulation.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Under the fixed contract, the date has bounded length: four year digits, at most two day digits plus suffix, one three-letter month, and separators. Every split, reverse, search, slice, padding, and join therefore operates on a constant-size amount of text. Time and auxiliary space are $O(1)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Splitting**: Scanning the input string of length $\le 13$ characters takes $\mathcal{O}(1)$ time.
+- **Month Lookup**: Probing a hash map or fixed array of 12 elements takes $\mathcal{O}(1)$ time.
+- **Day Slicing**: Slicing the 3 or 4 character day string takes $\mathcal{O}(1)$ time.
+- **String Formatting**: Concatenating a fixed 10-character string takes $\mathcal{O}(1)$ time.
+- Overall time complexity is strictly $\mathcal{O}(1)$.
+
+### Auxiliary Space Complexity
+
+- The intermediate token list contains 3 short strings.
+- The month lookup table contains 12 static string mappings.
+- The formatted output string contains exactly 10 characters.
+- Auxiliary space complexity is strictly $\mathcal{O}(1)$.

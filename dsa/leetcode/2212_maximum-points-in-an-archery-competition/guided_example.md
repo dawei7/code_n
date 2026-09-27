@@ -1,122 +1,242 @@
 # Guided Example: Maximum Points in an Archery Competition
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the bitmask subset-enumeration knapsack algorithm for maximizing points in an archery duel under arrow capacity constraints, establishing $O(2^m \cdot m)$ time complexity and $O(m)$ auxiliary space where $m = 12$ denotes the fixed number of scoring target rings.
 
-- **Input:** `{"numArrows": 9, "aliceArrows": [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]}`
-- **Required output:** `47`
+- **Input:** `numArrows = 9`, `aliceArrows = [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]`
+- **Output:** `[0, 0, 0, 0, 1, 1, 0, 0, 1, 2, 3, 1]` (achieving score `38` or higher)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Alice and Bob are opponents in an archery competition. The competition has set the following rules:
-
-The objective is to compute `47` from `{"numArrows": 9, "aliceArrows": [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates discrete 0-1 knapsack reduction on a small candidate space ($2^{12} = 4096$), threshold expenditure rules ($A_k + 1$ arrows to win target $k$), optimal bitmask tracking, and surplus arrow absorption.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Alice and Bob compete in an archery contest with $12$ scoring sections indexed from $0$ to $11$.
+Each section $k \in \{0, 1, \dots, 11\}$ is worth $k$ points.
+Both competitors shoot exactly `numArrows` arrows in total.
+We are given an array `aliceArrows` of length $12$, where $\text{aliceArrows}[k]$ indicates the number of arrows Alice shot into section $k$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Rules for winning section $k$:
+1. If Bob shoots **strictly more** arrows than Alice into section $k$, Bob wins section $k$ and receives $k$ points.
+2. Specifically, Bob must shoot at least $\text{aliceArrows}[k] + 1$ arrows into section $k$ to win it.
+3. If Bob shoots fewer than or equal to $\text{aliceArrows}[k]$ arrows, Bob earns $0$ points for section $k$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Our goal is to construct an allocation array `bobArrows` of length $12$ that sums to `numArrows` and maximizes Bob's total score. Any surplus arrows not required to secure wins may be assigned to section $0$ (which yields $0$ points).
 
----
+### Representative Instance Breakdown
 
-## 3. Step-by-Step Worked Execution
+Consider `numArrows = 9` with Alice's distribution across the 12 sections:
+$$\text{aliceArrows} = [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]$$
 
-### Step 1: Turn each scoring section into one yes-or-no choice
+Arrow requirement to win each section $k$:
+$$\text{cost}(k) = \text{aliceArrows}[k] + 1$$
 
-Bob does not receive more points for placing more arrows into a section after he has already beaten Alice there. For section `i`, Alice has `aliceArrows[i]` arrows. Bob loses or ties that section when he uses at most that many arrows, and he wins it only when he uses at least one more. Therefore, if Bob decides to win section `i`, the cheapest useful allocation is exactly `aliceArrows[i] + 1` arrows. That decision costs that many arrows and earns exactly `i` points.
+Target costs and profits:
+- Section 0: cost $2$, profit $0$
+- Section 1: cost $2$, profit $1$
+- Section 2: cost $1$, profit $2$
+- Section 3: cost $2$, profit $3$
+- Section 4: cost $1$, profit $4$
+- Section 5: cost $1$, profit $5$
+- Section 6: cost $3$, profit $6$
+- Section 7: cost $2$, profit $7$
+- Section 8: cost $1$, profit $8$
+- Section 9: cost $2$, profit $9$
+- Section 10: cost $3$, profit $10$
+- Section 11: cost $1$, profit $11$
 
-This observation removes an enormous number of meaningless allocations. Instead of asking how many arrows to place in every section, the solution first asks only which sections Bob should win. Every section has two relevant states:
-
-- do not deliberately win it, spending no arrows on it during the search and gaining no points from it; or
-- win it with the minimum required number of arrows, spending `aliceArrows[i] + 1` and gaining `i` points.
-
-There are `s = len(aliceArrows)` sections. A bitmask from `0` through `2^s - 1` can represent every possible subset of sections. Bit `i` is `1` precisely when the subset proposes winning section `i`. Enumerating masks is practical because this problem always has only twelve scoring sections, even though the explanation keeps `s` as a useful general symbol.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numArrows": 9, "aliceArrows": [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Evaluate one mask
-
-For every nonempty `mask`, the inner loop visits all entries of `aliceArrows`. When `mask >> i & 1` is true, section `i` belongs to the proposed winning set. The solution then adds `i` to `s`, the score of this proposal, and adds `x + 1` to `cnt`, where `x` is `aliceArrows[i]`. Thus, `cnt` is not an arbitrary allocation: it is the smallest total number of arrows that can win exactly all selected sections.
-
-The mask is feasible when `cnt <= numArrows`. If its score `s` is strictly larger than the best score `mx` found so far, the code remembers both the score and the mask by assigning `mx = s` and `st = mask`. The strict comparison is intentional. The problem permits any maximum-scoring allocation, so there is no need to replace an earlier best subset with a later subset that has the same score.
-
-The code uses the name `s` both conceptually for the number of sections in the complexity discussion and locally for the score accumulated for one mask. In the Python function, `m = len(aliceArrows)` is the actual section count, while the local `s` is reset to zero for each mask. Keeping those roles separate makes the loops easier to understand.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why minimum winning costs are sufficient
-
-Suppose an allocation wins section `i` using more than `aliceArrows[i] + 1` arrows. Removing the excess arrows does not change whether Bob wins the section and does not change its point value. Those arrows can therefore be left unused until the final construction step. Consequently, every optimal score has at least one representation among the masks using the minimum winning cost for each selected section.
-
-Conversely, every mask with `cnt <= numArrows` can be turned into a legal allocation. Give each selected section its recorded minimum winning amount. This wins every selected section and consumes `cnt` arrows. The remaining `numArrows - cnt` arrows can be placed somewhere without undoing any victory. This establishes a direct connection between feasible masks and achievable scores: no achievable optimal score is omitted, and every score considered feasible can actually be produced.
-
-Since the loop examines all subsets, it eventually examines a mask corresponding to an optimal set of scoring sections. The stored value `mx` can never exceed the true optimum because it comes only from a feasible allocation. It also cannot finish below the optimum because the optimal subset is among the enumerated masks and would update `mx` unless an equally good subset was already stored. Therefore, `st` identifies a maximum-scoring choice of sections.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `47` |
+Strategic evaluation:
+- High-value sections with low costs:
+  - Section 11: Alice shot $0 \implies$ Bob needs $0 + 1 = 1$ arrow for $11$ points.
+  - Section 8: Alice shot $0 \implies$ Bob needs $1$ arrow for $8$ points.
+  - Section 5: Alice shot $0 \implies$ Bob needs $1$ arrow for $5$ points.
+  - Section 4: Alice shot $0 \implies$ Bob needs $1$ arrow for $4$ points.
+  - Section 9: Alice shot $1 \implies$ Bob needs $2$ arrows for $9$ points.
+  - Section 10: Alice shot $2 \implies$ Bob needs $3$ arrows for $10$ points.
+- If Bob selects target subset $\{4, 5, 8, 9, 10, 11\}$:
+  - Arrow cost: $1 + 1 + 1 + 2 + 3 + 1 = 9$ arrows.
+  - Total score: $4 + 5 + 8 + 9 + 10 + 11 = 47$ points!
+  - Every arrow is utilized to maximize winning high-score targets.
 
 ---
 
-## 4. Complete Execution Trace
+## 2. Mathematical & Algorithmic Principles
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numArrows": 9, "aliceArrows": [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `47` | Verified |
+### 0-1 Knapsack Equivalence
+
+For each target ring $k \in \{0, 1, \dots, 11\}$, Bob faces a binary choice:
+- **Win target $k$:** Spend exactly $w_k = \text{aliceArrows}[k] + 1$ arrows to gain value $v_k = k$.
+- **Concede target $k$:** Spend $0$ arrows to gain $0$ points.
+Spending any intermediate number of arrows ($1 \le a \le \text{aliceArrows}[k]$) wastes arrows without securing the section.
+
+Thus, the problem is a 0-1 Knapsack problem:
+$$\max \sum_{k=0}^{11} k \cdot x_k \quad \text{subject to} \quad \sum_{k=0}^{11} (\text{aliceArrows}[k] + 1) \cdot x_k \le \text{numArrows}, \quad x_k \in \{0, 1\}$$
+
+### Exhaustive Bitmask Enumeration
+
+Because the number of targets is fixed at $m = 12$, the total number of candidate subsets is:
+$$2^{12} = 4096$$
+An exhaustive search across all $4096$ bitmasks evaluates the optimal solution in less than a few milliseconds.
+- For each integer $\text{mask} \in [0, 2^{12} - 1]$:
+  - Determine total required arrows:
+    $$\text{cost}(\text{mask}) = \sum_{k=0}^{11} (\text{aliceArrows}[k] + 1) \cdot (\text{mask} \gg k \ \& \ 1)$$
+  - Determine total points:
+    $$\text{score}(\text{mask}) = \sum_{k=0}^{11} k \cdot (\text{mask} \gg k \ \& \ 1)$$
+  - If $\text{cost}(\text{mask}) \le \text{numArrows}$ and $\text{score}(\text{mask}) > \text{max\_score}$, record $\text{mask}^* = \text{mask}$.
+
+### Surplus Arrow Placement
+
+Once the winning subset $\text{mask}^*$ is identified:
+- Assign $\text{bobArrows}[k] = \text{aliceArrows}[k] + 1$ for all bits $k$ present in $\text{mask}^*$.
+- Any remaining unused arrows $\text{numArrows} - \sum \text{bobArrows}[k]$ are placed in $\text{bobArrows}[0]$ because section $0$ awards $0$ points and cannot disrupt the score.
+
+```mermaid
+flowchart TD
+    accTitle: Bitmask Knapsack for Archery Target Selection
+    accDescr: Flowchart illustrating iteration over 4096 bitmasks, evaluating arrow cost and score, recording optimal mask, and allocating arrows with surplus in section 0.
+
+    Start(["Input: numArrows, aliceArrows (length 12)"]) --> Init["max_score = 0, best_mask = 0"]
+    Init --> LoopMask["For mask from 1 to 2^12 - 1"]
+
+    LoopMask --> EvalMask["Compute arrow_cost and score for mask"]
+    EvalMask --> Feasibility{"arrow_cost <= numArrows and score > max_score?"}
+
+    Feasibility -- Yes --> UpdateBest["max_score = score<br/>best_mask = mask"]
+    Feasibility -- No --> NextMask{"mask < 4095?"}
+
+    UpdateBest --> NextMask
+    NextMask -- Yes --> LoopMask
+    NextMask -- No --> Reconstruct["Build bobArrows array from best_mask<br/>Add remaining arrows to bobArrows[0]"]
+
+    Reconstruct --> ReturnResult(["Return bobArrows"])
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `numArrows = 9` and Alice's array `[1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Cost-Profit Table per Section
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Backtracking over win-or-skip choices:** A depth-first search can make the same two decisions for each section and track arrows and score along the recursion. It has the same exponential worst-case work, and pruning unaffordable branches can reduce practical work, but the bitmask version is shorter and makes exhaustive coverage especially explicit.
-- **Zero-one knapsack by arrow budget:** Treat each section as an item with weight `aliceArrows[i] + 1` and value `i`. A budget-indexed dynamic program can find the maximum score, but its cost depends on `numArrows` and reconstruction needs additional state. With only twelve sections, enumerating `2^12` subsets is simpler and independent of a potentially larger arrow budget.
-- **Greedily choosing the best score-to-arrow ratio:** Ranking sections by `i / (aliceArrows[i] + 1)` is not reliable for a zero-one choice problem. A locally attractive ratio can consume arrows that would enable a better combination of other sections, so only a method that considers combinations can guarantee the optimum.
-- **Spending extra arrows while evaluating a subset:** Excess arrows never increase a section's points. Using the minimum winning cost during comparison is essential because it gives every proposed subset its fairest feasibility test; leftovers are handled only after the best subset is known.
-- **No affordable positive-scoring section:** The initialized empty choice remains optimal. The result places all arrows in section `0` and returns a valid allocation whose score is zero.
-- **Armor-like “at most” reasoning does not apply here:** Bob must allocate exactly all `numArrows`, not merely at most that number. The reconstruction's final addition to `ans[0]` is what turns the minimum-cost winning plan into an exact-total allocation.
-- **Ties do not score:** Bob needs strictly more arrows than Alice in a section. This is why the cost is `aliceArrows[i] + 1`, not `aliceArrows[i]`.
-- **Several optimal answers:** The strict `s > mx` update preserves the first maximum-scoring mask encountered. The problem explicitly accepts any maximum-scoring allocation, so no tie-breaking rule is required.
-- **All arrows left after reconstruction:** Assigning them to index `0` may change the outcome of the zero-point section, but it cannot change the numeric score and cannot invalidate any selected victory.
-- **Fixed twelve-section domain:** The exponential algorithm is appropriate because the number of sections is tiny and fixed. It would not scale to an input with hundreds of independently selectable sections; a different constraint structure would then demand dynamic programming, meet-in-the-middle search, or another optimization method.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Section $k$ | Alice's Arrows | Bob's Winning Cost $w_k$ | Section Points $v_k$ | Efficiency Ratio $v_k / w_k$ |
+|---|---|---|---|---|
+| $0$ | $1$ | $2$ | $0$ | $0.0$ |
+| $1$ | $1$ | $2$ | $1$ | $0.5$ |
+| $2$ | $0$ | $1$ | $2$ | $2.0$ |
+| $3$ | $1$ | $2$ | $3$ | $1.5$ |
+| $4$ | $0$ | $1$ | $4$ | $4.0$ |
+| $5$ | $0$ | $1$ | $5$ | $5.0$ |
+| $6$ | $2$ | $3$ | $6$ | $2.0$ |
+| $7$ | $1$ | $2$ | $7$ | $3.5$ |
+| $8$ | $0$ | $1$ | $8$ | $8.0$ |
+| $9$ | $1$ | $2$ | $9$ | $4.5$ |
+| $10$ | $2$ | $3$ | $10$ | $3.33$ |
+| $11$ | $0$ | $1$ | $11$ | $11.0$ |
 
 ---
 
-## 7. Complexity Derivation
+### Key Bitmask Evaluations During Search
 
-- **Time Complexity:** $O(2^s s)$. Let `s` be the number of scoring sections. There are `2^s` possible masks. The code skips the empty mask but still examines `2^s - 1` masks, which has the same asymptotic size. For each mask, it scans all `s` sections to compute the required arrows and score. The search therefore takes `O(2^s \cdot s)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+#### Mask Candidate 1: Greedily Top Sections $\{11, 10, 9\}$
+- Sections chosen: $11$ (cost $1$), $10$ (cost $3$), $9$ (cost $2$).
+- Arrow cost: $1 + 3 + 2 = 6 \le 9$.
+- Score: $11 + 10 + 9 = 30$.
+
+#### Mask Candidate 2: Adding Section 8 and 7 $\{11, 10, 9, 8, 7\}$
+- Sections chosen: $11, 10, 9, 8, 7$.
+- Arrow cost: $1 + 3 + 2 + 1 + 2 = 9 \le 9$.
+- Score: $11 + 10 + 9 + 8 + 7 = 45$.
+
+#### Mask Candidate 3: Substituted Optimal Subset $\{11, 10, 9, 8, 5, 4\}$
+- Sections chosen: $11$ (cost 1), $10$ (cost 3), $9$ (cost 2), $8$ (cost 1), $5$ (cost 1), $4$ (cost 1).
+- Arrow cost: $1 + 3 + 2 + 1 + 1 + 1 = 9 \le 9$.
+- Score: $11 + 10 + 9 + 8 + 5 + 4 = 47$.
+- Cost is exactly $9$. Score $= 47$ beats $45$.
+
+---
+
+### Step 4: Reconstructing Bob's Arrow Allocation
+- Winning sections from optimal mask: $\{4, 5, 8, 9, 10, 11\}$.
+- Allocations:
+  - $\text{bob}[4] = 1$
+  - $\text{bob}[5] = 1$
+  - $\text{bob}[8] = 1$
+  - $\text{bob}[9] = 2$
+  - $\text{bob}[10] = 3$
+  - $\text{bob}[11] = 1$
+- Total arrows spent: $1 + 1 + 1 + 2 + 3 + 1 = 9$.
+- Surplus arrows: $9 - 9 = 0$.
+- Resulting vector: `[0, 0, 0, 0, 1, 1, 0, 0, 1, 2, 3, 1]`.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes candidate subset masks and their knapsack feasibility.
+
+| Bitmask Binary Representation | Target Sections Won | Total Arrows Needed | Total Score Achieved | Feasible ($\le 9$)? | Superior to Previous Best? |
+|---|---|---|---|---|---|
+| `100000000000_2` | $\{11\}$ | $1$ | $11$ | Yes | Yes (Best = 11) |
+| `110000000000_2` | $\{10, 11\}$ | $1 + 3 = 4$ | $21$ | Yes | Yes (Best = 21) |
+| `111000000000_2` | $\{9, 10, 11\}$ | $4 + 2 = 6$ | $30$ | Yes | Yes (Best = 30) |
+| `111100000000_2` | $\{8, 9, 10, 11\}$ | $6 + 1 = 7$ | $38$ | Yes | Yes (Best = 38) |
+| `111110000000_2` | $\{7, 8, 9, 10, 11\}$ | $7 + 2 = 9$ | $45$ | Yes | Yes (Best = 45) |
+| `111100110000_2` | $\{4, 5, 8, 9, 10, 11\}$ | $1+1+1+2+3+1 = 9$ | $47$ | **Yes** | **Optimal (Best = 47)** |
+| `111111000000_2` | $\{6, 7, 8, 9, 10, 11\}$ | $9 + 3 = 12$ | $51$ | **No** ($12 > 9$) | Infeasible |
+
+### Section-by-Section Showdown
+
+| Section $k$ | Alice's Arrows | Bob's Arrows | Winner | Points Awarded to Bob |
+|---|---|---|---|---|
+| $0 \dots 3$ | $[1, 1, 0, 1]$ | $[0, 0, 0, 0]$ | Alice | $0$ |
+| $4$ | $0$ | $1$ | **Bob** | $4$ |
+| $5$ | $0$ | $1$ | **Bob** | $5$ |
+| $6, 7$ | $[2, 1]$ | $[0, 0]$ | Alice | $0$ |
+| $8$ | $0$ | $1$ | **Bob** | $8$ |
+| $9$ | $1$ | $2$ | **Bob** | $9$ |
+| $10$ | $2$ | $3$ | **Bob** | $10$ |
+| $11$ | $0$ | $1$ | **Bob** | $11$ |
+| **Total** | **9 Arrows** | **9 Arrows** | — | **47 Points** |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness of Exact Investment
+Shooting more than $\text{aliceArrows}[k] + 1$ arrows into any winning section yields zero extra points and wastes arrows.
+Shooting any positive number of arrows strictly less than $\text{aliceArrows}[k] + 1$ yields $0$ points.
+Hence, the only non-wasting choices for each section are $0$ arrows (concede) or exactly $\text{aliceArrows}[k] + 1$ arrows (win).
+This reduces the decision space for each section to a pure binary state $x_k \in \{0, 1\}$.
+
+### Exhaustive Space Guarantee
+Since there are only $12$ sections, the search space consists of exactly $2^{12} = 4096$ possible configurations.
+Evaluating all $4096$ bitmasks checks every possible feasible subset of winning targets, guaranteeing that the global maximum score is found without heuristic approximation.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **Alice Shoots All Arrows into One Target:** The remaining $11$ targets have cost $1$, allowing Bob to capture almost all other targets easily.
+- **`numArrows` Exceeds Total Required to Win All Targets:** Bob wins all sections $0 \dots 11$, and dumps leftover arrows into section $0$.
+- **`numArrows` Insufficient to Win Any Non-Zero Target:** Bob scores $0$ points, shooting all arrows into section $0$.
+
+### Anti-Patterns to Avoid
+- **Greedy Ratio Sorting ($v_k / w_k$):** Fractional knapsack greedy ordering does not solve discrete 0-1 knapsack optimally and can miss superior combinations.
+- **Ignoring Leftover Arrows:** The problem requires that `sum(bobArrows) == numArrows`. Failing to place surplus arrows into section $0$ produces an invalid submission.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- There are $2^{12} = 4096$ bitmasks.
+- For each mask, looping over $12$ bit positions takes $O(12)$ operations.
+- Total loop operations: $4096 \times 12 = 49152$ operations.
+- Reconstruction takes $O(12)$ operations.
+- Total Time Complexity: $\mathcal{O}(2^m \cdot m) = \mathcal{O}(1)$, executing in under $3$ milliseconds.
+
+### Space Complexity
+- Output array of fixed size $12$.
+- Auxiliary Space Complexity: $\mathcal{O}(m) = \mathcal{O}(1)$ working memory.

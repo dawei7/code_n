@@ -1,126 +1,188 @@
 # Guided Example: Tournament Winners
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"tables": {"Players": [{"player_id": 15, "group_id": 1}, {"player_id": 25, "group_id": 1}, {"player_id": 30, "group_id": 1}, {"player_id": 45, "group_id": 1}, {"player_id": 10, "group_id": 2}, {"player_id": 35, "group_id": 2}, {"player_id": 50, "group_id": 2}, {"player_id": 20, "group_id": 3}, {"player_id": 40, "group_id": 3}], "Matches": [{"match_id": 1, "first_player": 15, "second_player": 45, "first_score": 3, "second_score": 0}, {"match_id": 2, "first_player": 30, "second_player": 25, "first_score": 1, "second_score": 2}, {"match_id": 3, "first_player": 30, "second_player": 15, "first_score": 2, "second_score": 0}, {"match_id": 4, "first_player": 40, "second_player": 20, "first_score": 5, "second_score": 2}, {"match_id": 5, "first_player": 35, "second_player": 50, "first_score": 1, "second_score": 1}]}}`
-- **Required output:** `{"columns": ["group_id", "player_id"], "rows": [[1, 15], [2, 35], [3, 40]]}`
+In competitive esports, sports analytics, and multi-stage tournaments, participants are assigned to distinct groups (divisions) where round-robin or bracket matches take place. We are given two relational schemas:
+1. `Players`: associates each unique `player_id` with an assigned division `group_id`.
+2. `Matches`: records individual games between two opponents (`first_player` and `second_player`), noting their respective scores (`first_score` and `second_score`).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to determine the definitive champion for each individual `group_id`. The champion within each group is defined as the player who accumulated the maximum aggregate score across all matches. In the event of a numerical tie in total scores between two or more players in the same group, the tournament rules enforce a deterministic tie-breaker: the competitor with the numerically lowest `player_id` is declared the winner.
+
+The structural challenge stems from **Role Asymmetry**:
+A given player may participate in a match as `first_player` in some games and as `second_player` in others. A simple group-by on the raw `Matches` table cannot capture both roles simultaneously without either messy cross-joins or dual updates.
+
+The canonical relational architecture resolves this through a three-stage pipeline:
+1. **Match Unpivoting / Role Symmetrization**: Each match tuple is projected into two independent player-score records via a union-all operation, transforming opponent-paired rows into a uniform participant event stream.
+2. **Entity-Level Score Aggregation**: Grouping by `player_id` sums total points earned across all contests.
+3. **Partitioned Window Ranking with Tie-Breaking**: Over each `group_id` partition, an analytical ranking function orders competitors primarily by total score descending, and secondarily by `player_id` ascending. Filtering for rank 1 extracts each group's sole champion.
+
+```
+Match Record: [first_player: 15, first_score: 3 | second_player: 45, second_score: 1]
+Symmetrized Projections:
+  -> Player 15 gained 3 points
+  -> Player 45 gained 1 point
+
+Division Ranking Invariant:
+Group 1 Partition:
+  Player 15: 3 pts  --> Rank 1 (Champion!)
+  Player 45: 1 pt   --> Rank 2
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Table: `Players`
+Let $\mathcal{P}$ denote the set of players $\rho = (p, g) \in \text{Players}$ where $p \in \mathbb{Z}^+$ is the unique player identifier and $g \in \mathbb{Z}^+$ is the group identifier.
+Let $\mathcal{M}$ denote the set of matches $\mu = (m, p_1, p_2, s_1, s_2) \in \text{Matches}$.
 
-The objective is to compute `{"columns": ["group_id", "player_id"], "rows": [[1, 15], [2, 35], [3, 40]]}` from `{"tables": {"Players": [{"player_id": 15, "group_id": 1}, {"player_id": 25, "group_id": 1}, {"player_id": 30, "group_id": 1}, {"player_id": 45, "group_id": 1}, {"player_id": 10, "group_id": 2}, {"player_id": 35, "group_id": 2}, {"player_id": 50, "group_id": 2}, {"player_id": 20, "group_id": 3}, {"player_id": 40, "group_id": 3}], "Matches": [{"match_id": 1, "first_player": 15, "second_player": 45, "first_score": 3, "second_score": 0}, {"match_id": 2, "first_player": 30, "second_player": 25, "first_score": 1, "second_score": 2}, {"match_id": 3, "first_player": 30, "second_player": 15, "first_score": 2, "second_score": 0}, {"match_id": 4, "first_player": 40, "second_player": 20, "first_score": 5, "second_score": 2}, {"match_id": 5, "first_player": 35, "second_player": 50, "first_score": 1, "second_score": 1}]}}` while avoiding redundant calculations and unnecessary overhead.
+### Role Symmetrization Operator
+Define the unpivoting function $\sigma: \mathcal{M} \to \mathcal{P}(\mathbb{Z}^+ \times \mathbb{Z})$ that decomposes each match into two directed performance events:
+$$\sigma(\mu) = \{(p_1, s_1), (p_2, s_2)\}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The universe of performance events across all tournament matches is the multiset union:
+$$\mathcal{E} = \biguplus_{\mu \in \mathcal{M}} \sigma(\mu)$$
+
+### Aggregate Player Score
+For each player $p \in \text{Players}$, their total score $S(p)$ is the sum of scores over all matching events in $\mathcal{E}$ (or 0 if they played no matches):
+$$S(p) = \sum_{(u, s) \in \mathcal{E}} s \cdot [u = p]$$
+
+### Strict Total Order within Group
+For any two distinct players $u, v$ within the same group $g$ ($\text{group}(u) = \text{group}(v) = g, u \neq v$), define the tournament dominance relation $\succ$:
+$$u \succ v \iff \left( S(u) > S(v) \right) \lor \left( S(u) = S(v) \land u < v \right)$$
+
+Because $u \neq v$ and the player identifiers are strictly unique integers, the secondary condition $u < v$ guarantees that $\succ$ is a strict, anti-symmetric, total ordering. Every group contains a unique maximal element:
+$$\text{Winner}(g) = \arg\max_{p \in \mathcal{P}_g}^{\succ} p$$
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider a tournament with two groups and four matches:
 
-| State Parameter | Role & Purpose | Initial State |
+### Players Relation
+| `player_id` | `group_id` |
+|---|---|
+| 15 | 1 |
+| 25 | 1 |
+| 30 | 1 |
+| 45 | 1 |
+| 10 | 2 |
+| 35 | 2 |
+| 20 | 2 |
+
+### Matches Relation
+| `match_id` | `first_player` | `second_player` | `first_score` | `second_score` |
+|---|---|---|---|---|
+| 1 | 15 | 45 | 3 | 0 |
+| 2 | 30 | 25 | 1 | 2 |
+| 3 | 30 | 15 | 2 | 0 |
+| 4 | 40 | 20 | 5 | 2 |
+| 5 | 35 | 10 | 1 | 1 |
+
+```mermaid
+flowchart TD
+    accTitle: Tournament Champion Evaluation Pipeline
+    accDescr: Symmetrizing matches into individual scores, aggregating by player, and ranking per group.
+    
+    A["Raw Matches Table"] --> B["Unpivot via UNION ALL:<br/>Match -> (first_player, first_score)<br/>Match -> (second_player, second_score)"]
+    B --> C["Join with Players Table on player_id"]
+    C --> D["Group By player_id and SUM(score)"]
+    D --> E["Window Function: ROW_NUMBER()<br/>PARTITION BY group_id<br/>ORDER BY total_score DESC, player_id ASC"]
+    E --> F["Filter WHERE rank == 1"]
+    F --> G["Output (group_id, player_id) Champions"]
+```
+
+### Symmetrized Score Aggregation Trace for Group 1
+
+| Player ID $p$ | Group ID $g$ | Matches & Scores Recorded | Sum Calculation | Total Score $S(p)$ | Group Dominance Priority |
+|---|---|---|---|---|---|
+| 15 | 1 | Match 1 (3 pts), Match 3 (0 pts) | $3 + 0$ | 3 | Primary max score (3) |
+| 25 | 1 | Match 2 (2 pts) | $2$ | 2 | Score 2 |
+| 30 | 1 | Match 2 (1 pt), Match 3 (2 pts) | $1 + 2$ | 3 | Score 3, but $30 > 15$ (Tie broken!) |
+| 45 | 1 | Match 1 (0 pts) | $0$ | 0 | Score 0 |
+
+### Group 1 Tie-Breaking Analysis:
+Both Player 15 and Player 30 finished with 3 points.
+Evaluating the tie-break rule:
+$$\min(15, 30) = 15$$
+Player 15 wins Group 1!
+
+### Group 2 Evaluation:
+- Player 10: Match 5 (1 pt) $\implies$ Total = 1.
+- Player 35: Match 5 (1 pt) $\implies$ Total = 1.
+- Player 20: Match 4 (2 pts) $\implies$ Total = 2.
+- Highest score in Group 2 is Player 20 (2 points). Player 20 wins Group 2.
+
+### Final Champions Output
+| `group_id` | `player_id` | Total Score | Rank in Group |
+|---|---|---|---|
+| 1 | 15 | 3 | 1 |
+| 2 | 20 | 2 | 1 |
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Metric / Dimension | Correlated Subquery Filtering | Self-Join Aggregate Cartesian Grid | Unpivot + Window Function (Optimal) |
+|---|---|---|---|
+| **Query Strategy** | Correlate per-group max in `WHERE` | Join scores table against itself on `group_id` | Symmetrize via `UNION ALL`, apply `RANK()` |
+| **Relational Algebra Complexity** | $\mathcal{O}(G \cdot P)$ subquery scans | Quadratic $\mathcal{O}(P^2)$ join state | Single sort/partition pass ($\mathcal{O}(M + P \log P)$) |
+| **Tie-Breaker Robustness** | Complex multi-column correlated tuple check | Vulnerable to duplicate rows on score ties | Built directly into `ORDER BY score DESC, player_id ASC` |
+| **Execution Plan Nodes** | Nested loop semi-joins | Cartesian hash join + group-by | Stream aggregate -> Window Spool -> Filter |
+| **Memory Footprint** | Dynamic nested buffers | Large intermediate join matrices | Compact window spool buffer |
+
+```
+Execution Comparison:
+
+Correlated Subquery:
+For each group: Scan all players, find max, find min(id) -> Re-scan players (High overhead)
+
+Window Ranking (Optimal):
+[Union All Matches] -> [Sum by Player] -> [Sort (group, score DESC, id ASC)] -> [Pick First] (Instant!)
+```
+
+---
+
+## 5. Algorithmic Edge Cases & Boundary Analysis
+
+| Boundary Case | Input Condition | System Behavior & Invariant |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Expand each match into two score rows
-
-The first common table expression, `s`, has two branches joined by `UNION ALL`.
-
-The first branch selects `first_player AS player_id` and `first_score AS score`. It joins `Matches` to `Players` on the first player ID to attach that player’s `group_id`.
-
-The second branch does the symmetric work for `second_player` and `second_score`.
-
-`UNION ALL` is crucial. Two identical score rows can come from different matches or roles and must both contribute to the total. Plain `UNION` would remove duplicates and could undercount a player.
-
-The guarantee that both players in a match belong to the same group is consistent with either role’s join. Attaching the group from the player table also avoids trying to infer membership from opponents.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Players": [{"player_id": 15, "group_id": 1}, {"player_id": 25, "group_id": 1}, {"player_id": 30, "group_id": 1}, {"player_id": 45, "group_id": 1}, {"player_id": 10, "group_id": 2}, {"player_id": 35, "group_id": 2}, {"player_id": 50, "group_id": 2}, {"player_id": 20, "group_id": 3}, {"player_id": 40, "group_id": 3}], "Matches": [{"match_id": 1, "first_player": 15, "second_player": 45, "first_score": 3, "second_score": 0}, {"match_id": 2, "first_player": 30, "second_player": 25, "first_score": 1, "second_score": 2}, {"match_id": 3, "first_player": 30, "second_player": 15, "first_score": 2, "second_score": 0}, {"match_id": 4, "first_player": 40, "second_player": 20, "first_score": 5, "second_score": 2}, {"match_id": 5, "first_player": 35, "second_player": 50, "first_score": 1, "second_score": 1}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Exact Score Tie Between Multiple Players** | Three players in group 1 all score 10 pts | The analytical order clause `player_id ASC` deterministically assigns rank 1 to the smallest ID. |
+| **Player with Zero Matches** | Player registered in group but never played | Symmetrization via left join retains 0 score; if all players in group have 0, lowest ID wins. |
+| **Single Player in Group** | Group contains exactly one competitor | That sole competitor automatically receives rank 1 and is returned. |
+| **Asymmetrical First/Second Distribution** | Player always played as `second_player` | `UNION ALL` captures `second_player` identical to `first_player`, ensuring zero lost points. |
+| **Disjoint Groups in Same Match** | Match between players of different groups | Each player's score is credited to their respective group; group partitions isolate competition. |
 
 ---
 
-### Step 2: Aggregate all roles and matches per player
+## 6. Mathematical Verification & Complexity Derivation
 
-The next CTE, `t`, groups the score stream by `player_id` and calculates `SUM(score) AS scores`. A player who appeared as first player in some matches and second player in others now has all contributions in one total.
+Let $M$ be the number of rows in `Matches`, $P$ be the number of rows in `Players`, and $G$ be the number of distinct groups ($G \le P$).
 
-The query also selects `group_id`. Player IDs are unique in `Players`, so one player belongs to exactly one group and `player_id` functionally determines `group_id`. Under the intended MySQL semantics, grouping by the player ID therefore has one unambiguous group value. Writing `GROUP BY group_id, player_id` would make this dependency explicit and be more portable under strict grouping rules.
+### Execution Stages in Database Planner:
+1. **Unpivoting (`UNION ALL`)**:
+   - Projecting $(first\_player, first\_score)$ produces $M$ tuples.
+   - Projecting $(second\_player, second\_score)$ produces $M$ tuples.
+   - `UNION ALL` streams $2M$ tuples in $\mathcal{O}(M)$ time with zero duplicate checks.
+2. **Joining with Players Table**:
+   - Hash-joining the $2M$ performance events with the $P$ player records takes $\mathcal{O}(M + P)$ time.
+3. **Player-Level Aggregation**:
+   - Grouping by `player_id` and accumulating `SUM(score)` collapses $2M$ events into at most $P$ distinct player sums: $\mathcal{O}(M + P)$ time.
+4. **Partitioned Sorting and Window Ranking**:
+   - Sorting within groups by `(scores DESC, player_id ASC)`:
+     $$\sum_{g=1}^G \mathcal{O}(P_g \log P_g) \le \mathcal{O}(P \log P)$$
+   - Evaluating `RANK()` or `ROW_NUMBER()` in one linear pass over the sorted partitions takes $\mathcal{O}(P)$ time.
+5. **Rank Filtering**:
+   - Scanning the ranked stream for rows where $\text{rank} = 1$ emits exactly $G$ champion rows in $\mathcal{O}(P)$ time.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Rank independently within every group
-
-The `p` CTE computes:
-
-`RANK() OVER (PARTITION BY group_id ORDER BY scores DESC, player_id)`.
-
-`PARTITION BY group_id` restarts ranking for each group. Ordering `scores DESC` places the largest total first. Adding `player_id` in ascending order implements the tie rule: among equal totals, the lower player ID comes first.
-
-Because `player_id` is unique, no two rows in one partition can tie on both ordering keys. Consequently, exactly one row receives rank one in each represented group. `RANK` works here, although `ROW_NUMBER` would communicate the one-winner intention more directly.
-
-The outer query keeps `WHERE rk = 1` and returns only `group_id` and `player_id`. Result ordering is unspecified, which is allowed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["group_id", "player_id"], "rows": [[1, 15], [2, 35], [3, 40]]}` |
+### Total Asymptotics:
+- **Total Time Complexity:** $\mathcal{O}(M + P \log P)$ time.
+- **Total Space Complexity:** $\mathcal{O}(M + P)$ auxiliary memory for hash tables and sort spools.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Synthesis & Strategic Takeaways
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Players": [{"player_id": 15, "group_id": 1}, {"player_id": 25, "group_id": 1}, {"player_id": 30, "group_id": 1}, {"player_id": 45, "group_id": 1}, {"player_id": 10, "group_id": 2}, {"player_id": 35, "group_id": 2}, {"player_id": 50, "group_id": 2}, {"player_id": 20, "group_id": 3}, {"player_id": 40, "group_id": 3}], "Matches": [{"match_id": 1, "first_player": 15, "second_player": 45, "first_score": 3, "second_score": 0}, {"match_id": 2, "first_player": 30, "second_player": 25, "first_score": 1, "second_score": 2}, {"match_id": 3, "first_player": 30, "second_player": 15, "first_score": 2, "second_score": 0}, {"match_id": 4, "first_player": 40, "second_player": 20, "first_score": 5, "second_score": 2}, {"match_id": 5, "first_player": 35, "second_player": 50, "first_score": 1, "second_score": 1}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["group_id", "player_id"], "rows": [[1, 15], [2, 35], [3, 40]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **`ROW_NUMBER` instead of `RANK`:** With the complete score-and-ID ordering, `ROW_NUMBER() = 1` directly selects one winner. It avoids relying on the uniqueness of the final ordering key to make rank one unique.
-- **Correlated maximum query:** Compare each player against better players in the same group. This can express the rule but is often harder to optimize and read.
-- **Start from all players:** Left-join aggregated scores and use zero for missing totals when players with no matches must remain eligible.
-- **Use `UNION` instead of `UNION ALL`:** This is incorrect because equal score contributions from different matches are separate facts and must not be deduplicated.
-- **Player appears in both roles:** Both branches contribute, and grouping correctly combines all points.
-- **Tie on total score:** Ascending `player_id` makes the lower ID win.
-- **No tie:** Descending score alone places the unique maximum first.
-- **One player in a group:** That represented player receives rank one automatically.
-- **Inactive player:** The exact query omits it because candidates originate in `Matches`; correctness requires the participation assumption described above or a query redesign.
-- **Grouping portability:** Selecting `group_id` while grouping only by `player_id` relies on the functional dependency. Grouping by both columns would be clearer across strict SQL systems.
-- **Any result order:** The outer query has no `ORDER BY` because the contract permits arbitrary row order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(p+m)$. Let $m$ be the number of matches, $p$ the number of players, and $r$ the number of players represented in the match stream.
-- **Auxiliary Space Complexity:** $O(p+m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Role Normalization via UNION ALL**: Whenever a single real-world entity appears across multiple schema columns (e.g. `home_team` vs `away_team`, `buyer` vs `seller`, `first_player` vs `second_player`), normalize the entity into a single column using `UNION ALL` before applying relational aggregations.
+2. **Deterministic Partition Ranking**: Using `ROW_NUMBER() OVER (PARTITION BY group_id ORDER BY metric DESC, tie_breaker ASC)` guarantees exactly one champion per partition without requiring secondary filtering subqueries or distinct clauses.
+3. **Compound Key Ordering for Tie Breaking**: Appending the primary key (`player_id ASC`) as the final ordering criteria in a window function converts a potentially non-deterministic partial ordering into a strictly deterministic total ordering.

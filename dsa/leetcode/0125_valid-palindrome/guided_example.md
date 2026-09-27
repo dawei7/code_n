@@ -1,11 +1,12 @@
 # Guided Example: Valid Palindrome
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer inward scanning and alphanumeric filtering on representative palindrome and mismatch instances:
 
-- **Input:** `{"s": "A man, a plan, a canal: Panama"}`
-- **Required output:** `true`
+- **Valid Palindrome Instance:** $s = \text{"A man, a plan, a canal: Panama"} \implies \text{True}$
+- **Mismatch Counterexample:** $s = \text{"race a car"} \implies \text{False}$ (Normalized `"raceacar"`, $'e' \ne 'a'$)
+- **Empty / Punctuation-Only Base:** $s = \text{"   , : "} \implies \text{True}$ (Empty normalized string reads symmetrically)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place two-pointer convergence without allocating an auxiliary normalized string, advancing pointers over non-alphanumeric noise, case-insensitive comparison, and early-exit mismatch detection in $O(N)$ time and $O(1)$ space.
 
 ---
 
@@ -13,115 +14,155 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 A phrase is a **palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
-The objective is to compute `true` from `{"s": "A man, a plan, a canal: Panama"}` while avoiding redundant calculations and unnecessary overhead.
+Given the string $s = \text{"A man, a plan, a canal: Panama"}$ (length $30$):
+- Filtered normalized string:
+  $$
+  \text{"a"} \, \text{"m"} \, \text{"a"} \, \text{"n"} \, \text{"a"} \, \text{"p"} \, \text{"l"} \, \text{"a"} \, \text{"n"} \, \text{"a"} \, \text{"c"} \, \text{"a"} \, \text{"n"} \, \text{"a"} \, \text{"l"} \, \text{"p"} \, \text{"a"} \, \text{"n"} \, \text{"a"} \, \text{"m"} \, \text{"a"}
+  $$
+  which is $\text{"amanaplanacanalpanama"}$ of length $21$.
+- Symmetrically reversed, it reads identically: $\text{"amanaplanacanalpanama"}$.
+- Return value is $\text{True}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach extracts all alphanumeric characters into a new string or list and checks `filtered == filtered[::-1]`. While correct, this allocates $O(N)$ auxiliary memory.
+Using two pointers ($L$ initialized to the start and $R$ to the end) that move inward while skipping punctuation and spaces verifies symmetry in-place with strictly $O(1)$ extra space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Inward Two-Pointer Convergence Protocol
+Initialize $L = 0$ and $R = |s| - 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+While $L < R$:
+1. **Advance Left Pointer Past Non-Alphanumerics:**
+   $$
+   \text{while } L < R \text{ and not } s[L].\text{isalnum}(): \quad L \leftarrow L + 1
+   $$
+2. **Decrement Right Pointer Past Non-Alphanumerics:**
+   $$
+   \text{while } L < R \text{ and not } s[R].\text{isalnum}(): \quad R \leftarrow R - 1
+   $$
+3. **Compare Symmetrical Characters:**
+   Convert both characters to lowercase:
+   $$
+   \text{if } s[L].\text{lower}() \ne s[R].\text{lower}(): \quad \text{return False}
+   $$
+4. **Step Inward:**
+   $$
+   L \leftarrow L + 1, \quad R \leftarrow R - 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+If the loop completes without detecting a mismatch, return $\text{True}$.
+
+> **Invariant.** Before each iteration, all alphanumeric characters strictly outside the interval $[L, R]$ have already been paired and confirmed equal under lowercase normalization.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What must match in a palindrome
+We trace the two pointers on $s = \text{"A man, a plan, a canal: Panama"}$ ($|s| = 30$):
 
-Imagine the filtered lowercase sequence as $c_0,c_1,\ldots,c_{m-1}$. It is a palindrome exactly when:
+```text
+Indices:  012345678901234567890123456789
+String:   A man, a plan, a canal: Panama
+          ^                            ^
+          L=0                         R=29
+```
 
-$$
-c_k=c_{m-1-k}
-$$
-
-for every position in the first half.
-
-The two pointers discover those pairs without storing the sequence. The left pointer finds the next unused normalized character from the front, and the right pointer finds the next unused normalized character from the back.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "A man, a plan, a canal: Panama"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Iteration 1:
+- $L = 0$ ($s[0] = \text{'A'}$): alphanumeric. Lowercase: `'a'`.
+- $R = 29$ ($s[29] = \text{'a'}$): alphanumeric. Lowercase: `'a'`.
+- Compare: `'a' == 'a'`. Match!
+- Inward step: $L = 1$, $R = 28$.
 
 ---
 
-### Step 2: The outer-loop invariant
-
-Before each iteration, all meaningful characters strictly outside `[i, j]` have already been paired successfully. Any characters skipped there were non-alphanumeric and do not belong to the normalized phrase.
-
-Therefore the remaining palindrome question is entirely inside the current interval. If the pointers meet or cross, every required pair has matched and the method can return true.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Iteration 2:
+- $L = 1$ is space `' '` $\implies L$ advances to $2$ ($s[2] = \text{'m'}$).
+- $R = 28$ ($s[28] = \text{'m'}$): alphanumeric.
+- Compare: `'m' == 'm'`. Match!
+- Inward step: $L = 3$, $R = 27$.
 
 ---
 
-### Step 3: How the `if/elif` chain filters endpoints
+### Iteration 3:
+- $L = 3$ ($s[3] = \text{'a'}$), $R = 27$ ($s[27] = \text{'a'}$).
+- Compare: `'a' == 'a'`. Match!
+- Inward step: $L = 4$, $R = 26$.
 
-If `s[i]` is not alphanumeric, it cannot affect the normalized text, so the source increments `i`.
+---
 
-Only when the left endpoint is meaningful does the `elif` test the right endpoint. If `s[j]` is non-alphanumeric, `j` is decremented.
+### Iteration 4:
+- $L = 4$ ($s[4] = \text{'n'}$), $R = 26$ ($s[26] = \text{'n'}$).
+- Compare: `'n' == 'n'`. Match!
+- Inward step: $L = 5$, $R = 25$.
 
-The chain skips at most one endpoint per outer iteration. That is still efficient: each skip permanently removes one input position from consideration, and neither pointer ever moves outward.
+---
 
-When both endpoints are non-alphanumeric, the left one is skipped first and the right one on a later iteration. The order changes only the number of loop iterations by a constant factor, not correctness.
+### Iteration 5:
+- $L = 5$ is `','` $\implies L$ advances to $7$ ($s[7] = \text{'a'}$).
+- $R = 25$ ($s[25] = \text{'a'}$).
+- Compare: `'a' == 'a'`. Match!
+- Inward step: $L = 8$, $R = 24$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Iterations 6 through 11 (Remaining Center Pairs):
+- Matches continue: `('p', 'p')`, `('l', 'l')`, `('a', 'a')`, `('n', 'n')`, `('a', 'a')`.
+- At the exact center: $L$ reaches index $17$ ($s[17] = \text{'c'}$), and $R$ reaches index $17$.
+- Pointers meet ($L = R = 17$).
+- Loop terminates with $L \not< R$.
+
+Result: All alphanumeric characters matched symmetrically. Returns $\mathbf{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "A man, a plan, a canal: Panama"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+### Pointer Position & Character Matching Table
+
+| Iteration | Left Index $L$ | Raw Char $s[L]$ | Normalized $s[L]$ | Right Index $R$ | Raw Char $s[R]$ | Normalized $s[R]$ | Equal? | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | `'A'` | `'a'` | 29 | `'a'` | `'a'` | Yes | $L \leftarrow 1, R \leftarrow 28$ |
+| 2 | 2 | `'m'` | `'m'` | 28 | `'m'` | `'m'` | Yes | Skip space at $1$; $L \leftarrow 3, R \leftarrow 27$ |
+| 3 | 3 | `'a'` | `'a'` | 27 | `'a'` | `'a'` | Yes | $L \leftarrow 4, R \leftarrow 26$ |
+| 4 | 4 | `'n'` | `'n'` | 26 | `'n'` | `'n'` | Yes | $L \leftarrow 5, R \leftarrow 25$ |
+| 5 | 7 | `'a'` | `'a'` | 25 | `'a'` | `'a'` | Yes | Skip `", "` at $5, 6$; $L \leftarrow 8, R \leftarrow 24$ |
+| 6 | 9 | `'p'` | `'p'` | 23 | `'P'` | `'p'` | Yes | Skip spaces; match `'p'`; $L \leftarrow 10, R \leftarrow 22$ |
+| 7 | 10 | `'l'` | `'l'` | 21 | `'l'` | `'l'` | Yes | Skip punctuation; $L \leftarrow 11, R \leftarrow 20$ |
+| 8 | 11 | `'a'` | `'a'` | 19 | `'a'` | `'a'` | Yes | $L \leftarrow 12, R \leftarrow 18$ |
+| 9 | 12 | `'n'` | `'n'` | 18 | `'n'` | `'n'` | Yes | $L \leftarrow 13, R \leftarrow 17$ |
+| 10 | 15 | `'a'` | `'a'` | 16 | `'a'` | `'a'` | Yes | Skip spaces; $L \leftarrow 16, R \leftarrow 15$ |
+| Term | 17 | `'c'` | `'c'` | 17 | `'c'` | `'c'` | - | $L = R \implies$ Loop Ends. **True** |
+
+### Counterexample: `"race a car"`
+- Normalized sequence: `"raceacar"`.
+- $L = 0$ (`'r'`) vs $R = 7$ (`'r'`): Match.
+- $L = 1$ (`'a'`) vs $R = 6$ (`'a'`): Match.
+- $L = 2$ (`'c'`) vs $R = 5$ (`'c'`): Match.
+- $L = 3$ (`'e'`) vs $R = 4$ (`'a'`):
+  - **Mismatch:** `'e' != 'a'`!
+  - Early-exit returns **`False`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A string is a palindrome if and only if the $k$-th alphanumeric character from the beginning equals the $k$-th alphanumeric character from the end for all $k$. The inner while-loops skip non-alphanumeric characters, ensuring that $s[L]$ and $s[R]$ correspond to the exact $k$-th characters from each boundary. If any pair differs, the string cannot be a palindrome, justifying early `False`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $L$ increases and $R$ decreases, the pointers strictly converge toward the center, inspecting every alphanumeric character at most once. If no mismatch is detected before $L \ge R$, every required pair has matched, proving `True`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Normalize and reverse:** Filter alphanumerics, lowercase them, and compare the result with its reverse. It is concise but uses $O(n)$ additional space.
-- **Competitive run-skipping loops:** Skip all ignored characters at each side before one comparison. It has the same asymptotic bounds and may use fewer outer iterations.
-- **Regular-expression filtering:** Can remove non-alphanumerics, but character-class details and extra string allocation make it less direct.
-- **Recursive outer comparison:** Mirrors the definition but can use $O(n)$ call-stack space.
-- **One character:** The loop never runs and returns true.
-- **Only punctuation or spaces:** Normalizes to empty and returns true.
-- **Mixed case:** Lowercase conversion makes `A` match `a`.
-- **Digits:** Digits are meaningful and must match exactly.
-- **Letter versus digit:** They are both alphanumeric but unequal.
-- **Ignored endpoints on both sides:** The `if/elif` chain removes them over separate iterations without losing a meaningful character.
-- **Odd normalized length:** The center character needs no comparison.
-- **Even normalized length:** Pointers cross after the final pair.
-- **First mismatch:** Immediate false is safe because normalized outer order is fixed.
-- **Printable ASCII domain:** Python's broader Unicode classification is irrelevant to the stated inputs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inner Loop Pointer Guard ($L < R$):** In a string containing only spaces or punctuation (e.g. `"   , :  "`), advancing $L$ without checking $L < R$ will cause $L$ to step past $R$ or out of array bounds. Always include $L < R$ in the inner skip loops.
+- **Digits in Alphanumeric Strings:** `isalnum()` includes numeric digits `'0' \dots '9'`. Digits are case-insensitive (`'0'.lower() == '0'`) and must match identical digit characters (`'0'` does not match `'a'`).
+- **Creating Filtered String Copies:** Allocating a new string with `[c.lower() for c in s if c.isalnum()]` takes $O(N)$ extra heap memory. In-place two-pointer comparison maintains $O(1)$ space.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the original string length. Pointer `i` increases at most $n$ times and `j` decreases at most $n$ times. Although one ignored character may consume one outer iteration, total work is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = |s|$. Pointer $L$ only advances and pointer $R$ only decreases. Each character is visited at most twice (once during skipping and once during comparison), guaranteeing strictly linear runtime.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only two index variables ($L$ and $R$) without string allocations.

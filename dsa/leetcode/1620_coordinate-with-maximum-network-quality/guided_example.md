@@ -1,135 +1,230 @@
 # Guided Example: Coordinate With Maximum Network Quality
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step exhaustive discrete grid evaluation of inverse-distance signal attenuation, prove the Bounded Discrete Grid Metric Invariant and the Lexicographical Tie-Breaking Theorem, and pinpoint the optimal transceiver coordinates across representative tower deployments:
 
-- **Input:** `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "radius": 2}`
-- **Required output:** `[2, 1]`
+- **Representative Instance 1 (Overlapping Signal Confluence at Central Tower):**
+  - Tower Deployment ($N = 3$ towers with $[x_i, y_i, q_i]$):
+    $$
+    towers = \begin{bmatrix}
+    [1, 2, 5] \\
+    [2, 1, 7] \\
+    [3, 1, 9]
+    \end{bmatrix}, \quad radius = 2
+    $$
+  - Search Domain: All integer coordinates $(x, y) \in [0, 50] \times [0, 50]$.
+  - Signal Metric Formula:
+    For any grid point $(x, y)$ and tower $(x_i, y_i, q_i)$:
+    $$
+    d = \sqrt{(x - x_i)^2 + (y - y_i)^2}
+    $$
+    $$
+    \text{signal}(x, y, i) = \begin{cases} \left\lfloor \dfrac{q_i}{1 + d} \right\rfloor & \text{if } d \le radius \\ 0 & \text{if } d > radius \end{cases}
+    $$
+  - **Required Output:** `[2, 1]`
+  - Step-by-step resolution at peak candidate coordinate $(x = 2, y = 1)$:
+    1. **Signal from Tower 1 at $(1, 2, q=5)$:**
+       - Euclidean distance:
+         $$
+         d_1 = \sqrt{(2 - 1)^2 + (1 - 2)^2} = \sqrt{1 + 1} = \sqrt{2} \approx 1.4142
+         $$
+       - Range check: $d_1 \approx 1.4142 \le radius = 2$ (**In Range**).
+       - Quality contribution:
+         $$
+         Q_1 = \left\lfloor \frac{5}{1 + \sqrt{2}} \right\rfloor = \left\lfloor \frac{5}{2.4142} \right\rfloor = \lfloor 2.071 \rfloor = \mathbf{2}
+         $$
+    2. **Signal from Tower 2 at $(2, 1, q=7)$:**
+       - Co-located tower: $d_2 = 0 \le 2$ (**In Range**).
+       - Quality contribution:
+         $$
+         Q_2 = \left\lfloor \frac{7}{1 + 0} \right\rfloor = \mathbf{7}
+         $$
+    3. **Signal from Tower 3 at $(3, 1, q=9)$:**
+       - Euclidean distance:
+         $$
+         d_3 = \sqrt{(2 - 3)^2 + (1 - 1)^2} = \sqrt{1 + 0} = 1.0 \le 2 \text{ (**In Range**)}
+         $$
+       - Quality contribution:
+         $$
+         Q_3 = \left\lfloor \frac{9}{1 + 1.0} \right\rfloor = \lfloor 4.5 \rfloor = \mathbf{4}
+         $$
+    4. **Aggregate Network Quality at $(2, 1)$:**
+       $$
+       Q_{\text{total}}(2, 1) = Q_1 + Q_2 + Q_3 = 2 + 7 + 4 = \mathbf{13}
+       $$
+  - Comparison with Alternative Candidates:
+    - At $(1, 2)$: $Q_1 = 5, Q_2 = \lfloor 7 / (1 + \sqrt{2}) \rfloor = 2, Q_3 = \lfloor 9 / (1 + \sqrt{5}) \rfloor = 0$ ($d_3 = \sqrt{5} > 2$) $\implies Q = 7$.
+    - At $(3, 1)$: $Q_1 = 0$ ($d_1 = \sqrt{5} > 2$), $Q_2 = \lfloor 7 / 2 \rfloor = 3, Q_3 = 9 \implies Q = 12$.
+    - Global maximum across all $2601$ coordinates is $13$, attained at $\mathbf{[2, 1]}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Single Isolated Tower):**
+  - $towers = [[23, 11, 21]], \; radius = 9$.
+  - Maximum signal is at the tower itself: $(23, 11)$ with quality $21$. Output: `[23, 11]`.
+
+- **Representative Instance 3 (All Disconnected or Zero Quality):**
+  - If no tower can reach any coordinate, maximum quality is $0$.
+  - Lexicographical tie-break returns `[0, 0]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $i^{\text{th}}$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
+Given an array of network towers and a reachability radius, find the integer coordinate $(x, y) \in [0, 50] \times [0, 50]$ with the maximum network quality. In case of ties, return the lexicographically smallest coordinate.
 
-The objective is to compute `[2, 1]` from `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "radius": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Continuous Convex Optimization Fallacy:
+  Attempting gradient descent or convex relaxation to find the optimal point:
+    The floor function floor(q / (1 + d)) and the hard threshold d <= radius
+    introduce severe non-convexity, discontinuities, and plateau artifacts!
+    Gradient-based solvers get trapped in local zero-gradient flatlands.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Bounded Discrete Grid Invariant (Strict O(G^2 * N)):
+  1. The search domain is strictly bounded by integer coordinates:
+       x in [0 .. 50],  y in [0 .. 50].
+     Total search space has exactly 51 * 51 = 2,601 discrete lattice points!
+  2. For N <= 50 towers, testing EVERY grid point requires only:
+       2,601 * 50 = 130,050 distance calculations.
+  3. Traverse grid points in lexicographical order:
+       outer loop x from 0 to 50, inner loop y from 0 to 50.
+  4. Maintain peak quality mx and best coordinate ans = [0, 0].
+     Only update ans when current quality t is STRICTLY greater than mx:
+       if t > mx: mx = t; ans = [x, y]
+     Guarantees the first (lexicographically smallest) coordinate is preserved during ties!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Turn the geometric question into a finite search
-
-The result must be an integral, non-negative coordinate. Every tower coordinate is also between 0 and 50. The implementation therefore checks every coordinate `(i, j)` in the fixed square from `(0, 0)` through `(50, 50)`. This is only $51 \times 51 = 2601$ candidate positions, so trying all of them is both simple and comfortably small.
-
-Why is it safe not to examine a non-negative coordinate beyond 50? Every tower has both coordinates at most 50. Suppose a candidate has $x > 50$. Moving its $x$-coordinate left to 50 cannot increase its distance from any tower, because every tower lies at $x \le 50$. Consequently, no tower contribution decreases. The same reasoning applies to $y > 50$. Thus, a maximizer exists inside the searched square. Negative coordinates are not eligible for the requested tie-breaking result, so they do not need to be searched.
-
-The outer loop assigns `i` from 0 through 50, and the inner loop assigns `j` from 0 through 50. For each candidate, `t` starts at zero and accumulates that coordinate's total network quality.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "radius": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Bounded Discrete Grid Metric Invariant & Lexicographical Tie-Breaking Theorem**:
+1. **Lattice Exhaustion:** The finite problem domain ($51 \times 51$) allows global brute-force verification without approximation or continuous convergence errors.
+2. **Lexicographical Natural Ordering:** Scanning row-by-row with strict greater-than inequality naturally preserves the minimum coordinate under tie conditions without secondary sorting.
+3. **Threshold Boundary Filtering:** Distances strictly exceeding the radius contribute zero to avoid negative or distorted interference.
+4. Total time $\mathcal{O}(G^2 \cdot N)$ and auxiliary space $\mathcal{O}(1)$.
 
 ---
 
-### Step 2: Score one candidate exactly as the statement defines
+## 2. Conceptual Foundation & The Grid Scanner Pipeline
 
-For a tower `[x, y, q]`, the code computes
+```mermaid
+flowchart TD
+    accTitle: Network Quality Grid Scanner
+    accDescr: Diagram illustrating lexicographical iteration over 51x51 grid coordinates, distance calculation from all towers, and peak quality tracking
+    Start["Given towers list and radius\nInit mx = 0, ans = [0, 0]"] --> LoopX["For x from 0 to 50:"]
+    LoopX --> LoopY["For y from 0 to 50:"]
+    LoopY --> InitTotal["total_quality = 0"]
+    InitTotal --> LoopTowers["For each [tx, ty, q] in towers:"]
+    LoopTowers --> CalcDist["d = sqrt((tx - x)^2 + (ty - y)^2)"]
+    CalcDist --> CheckRadius{"d <= radius ?"}
+    CheckRadius -->|"Yes"| AddSignal["total_quality += floor(q / (1 + d))"]
+    CheckRadius -->|"No"| SkipTower["Ignore tower"]
+    AddSignal --> NextTower{"More towers ?"}
+    SkipTower --> NextTower
+    NextTower -->|"Yes"| LoopTowers
+    NextTower -->|"No: Evaluated all towers"| CheckMax{"total_quality > mx ?"}
+    CheckMax -->|"Yes: Strict new peak"| UpdateMax["mx = total_quality\nans = [x, y]"]
+    CheckMax -->|"No: Tied or lower"| KeepMax["Preserve existing ans"]
+    UpdateMax --> NextY{"y < 50 ?"}
+    KeepMax --> NextY
+    NextY -->|"Yes"| LoopY
+    NextY -->|"No: Row complete"| NextX{"x < 50 ?"}
+    NextX -->|"Yes"| LoopX
+    NextX -->|"No: Grid scan exhausted"| ReturnAns["Return ans"]
+```
 
-$$
-d = \sqrt{(x-i)^2 + (y-j)^2}.
-$$
+### The Lexicographical Tie-Breaking Theorem
 
-This is the Euclidean distance from the tower at $(x,y)$ to the candidate at $(i,j)$. The exponent `0.5` performs the square root after the two squared coordinate differences have been added.
-
-The condition `d <= radius` is important. A tower exactly on the boundary is reachable because the contract says “less than or equal to,” not merely “less than.” If the condition is false, that tower contributes nothing. If it is true, the implementation adds
-
-$$
-\left\lfloor\frac{q}{1+d}\right\rfloor
-$$
-
-to `t`. The added 1 makes the denominator nonzero at the tower's own location. In that case $d=0$, so the tower contributes its entire integer quality $q$. As distance grows, the denominator grows and the contribution can only fall. Calling `floor` is necessary because ordinary division can produce a fractional value, while the required signal contribution is the greatest integer no larger than that value.
-
-The contribution is calculated independently for every tower and then summed. This matters because flooring the individual contributions and flooring the final sum are not equivalent. For example, two separate contributions of 2.7 count as $2+2=4$, not $\lfloor 5.4\rfloor=5$. The source follows the required per-tower rule by applying `floor` inside the tower loop.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{G} = \{ (x, y) \in \mathbb{Z}^2 : 0 \le x \le 50, \; 0 \le y \le 50 \}$ be the discrete integer grid.
+1. **Lexicographical Total Ordering:**
+   Define relation $\prec$ on $\mathcal{G}$ by:
+   $$
+   (x_a, y_a) \prec (x_b, y_b) \iff (x_a < x_b) \lor (x_a = x_b \land y_a < y_b)
+   $$
+   Because $\prec$ is a well-founded total order, every non-empty subset of $\mathcal{G}$ has a unique minimum.
+2. **Sequential Traversal Ordering:**
+   Nested iteration (outer index $x$ increasing from $0$ to $50$, inner index $y$ increasing from $0$ to $50$) enumerates coordinates in strictly increasing $\prec$ order:
+   $$
+   p_1 \prec p_2 \prec \dots \prec p_{|\mathcal{G}|}
+   $$
+3. **Strict Update Invariant:**
+   Let $Q(p) = \sum_{k=1}^N \mathbb{I}(d(p, \text{tower}_k) \le R) \left\lfloor \frac{q_k}{1 + d(p, \text{tower}_k)} \right\rfloor$.
+   Starting with $mx = 0, \; ans = p_1 = (0, 0)$:
+   - When visiting $p_j$: update $ans \leftarrow p_j$ if and only if $Q(p_j) > mx$.
+   - If $Q(p_j) = mx$, $ans$ is not updated.
+   Since any later coordinate $p_k$ with $k > j$ satisfies $p_j \prec p_k$, the coordinate retained in $ans$ is guaranteed to be:
+   $$
+   ans = \min_{\prec} \Big\{ p \in \mathcal{G} : Q(p) = \max_{p' \in \mathcal{G}} Q(p') \Big\}
+   $$
+   This certifies lexicographical optimality in a single pass. $\blacksquare$
 
 ---
 
-### Step 3: Keep the best score and obtain the lexicographic tie break for free
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The variables `mx` and `ans` hold the greatest score seen so far and its coordinate. Both begin at zero, with `ans = [0, 0]`. Once `t` has been fully computed, the candidate replaces the answer only when `t > mx`. An equal score deliberately does not replace it.
+$towers = [[1, 2, 5], [2, 1, 7], [3, 1, 9]], \quad radius = 2$.
 
-That strict comparison works together with the traversal order. The loops visit coordinates in this sequence:
+### Evaluation of Focal Coordinates
 
-`(0,0), (0,1), ..., (0,50), (1,0), ..., (50,50)`.
+#### Coordinate $(2, 1)$:
+- Tower 1 $(1, 2, 5)$: $d = \sqrt{(1-2)^2 + (2-1)^2} = \sqrt{2} \approx 1.4142 \le 2$.
+  Contribution: $\lfloor 5 / (1 + 1.4142) \rfloor = \lfloor 2.071 \rfloor = 2$.
+- Tower 2 $(2, 1, 7)$: $d = 0 \le 2$.
+  Contribution: $\lfloor 7 / (1 + 0) \rfloor = 7$.
+- Tower 3 $(3, 1, 9)$: $d = \sqrt{(3-2)^2 + 0} = 1 \le 2$.
+  Contribution: $\lfloor 9 / (1 + 1) \rfloor = \lfloor 4.5 \rfloor = 4$.
+- Total Quality: $2 + 7 + 4 = \mathbf{13}$.
+- State: $13 > 0 \implies mx \leftarrow 13, \; ans \leftarrow [2, 1]$.
 
-This is precisely increasing lexicographic order: a smaller first coordinate comes first, and among equal first coordinates, a smaller second coordinate comes first. Therefore, the first coordinate encountered with a particular maximum score is the lexicographically smallest one. Later ties must be ignored, which is exactly what the strict `>` comparison does.
+#### Coordinate $(3, 1)$:
+- Tower 1 $(1, 2, 5)$: $d = \sqrt{(1-3)^2 + (2-1)^2} = \sqrt{5} \approx 2.236 > 2 \implies 0$.
+- Tower 2 $(2, 1, 7)$: $d = 1 \le 2 \implies \lfloor 7 / 2 \rfloor = 3$.
+- Tower 3 $(3, 1, 9)$: $d = 0 \le 2 \implies \lfloor 9 / 1 \rfloor = 9$.
+- Total Quality: $0 + 3 + 9 = \mathbf{12}$.
+- State: $12 \le 13 \implies$ No update.
 
-The zero initialization also handles the case where every candidate has quality zero. Since no score is greater than zero, `ans` stays `[0, 0]`. That is correct: every non-negative coordinate ties at quality zero, and `[0, 0]` is lexicographically smallest. More commonly, at least one tower has positive quality and its own location obtains at least that quality, causing an update.
+#### Coordinate $(1, 2)$:
+- Tower 1 $(1, 2, 5)$: $d = 0 \implies 5$.
+- Tower 2 $(2, 1, 7)$: $d = \sqrt{2} \implies \lfloor 7 / 2.4142 \rfloor = 2$.
+- Tower 3 $(3, 1, 9)$: $d = \sqrt{5} > 2 \implies 0$.
+- Total Quality: $5 + 2 + 0 = \mathbf{7} \le 13 \implies$ No update.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 1]` |
+Final result across all $2601$ points: $\mathbf{[2, 1]}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Signal Metric & Grid Coordinate Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "radius": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 1]` | Verified |
+| Coordinate $(x, y)$ | Tower 1 $(1, 2, 5)$ | Tower 2 $(2, 1, 7)$ | Tower 3 $(3, 1, 9)$ | Total Quality $Q$ | Peak Recorded $mx$ | Active Best $ans$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(0, 0)$ | $d = \sqrt{5} > 2 \implies 0$ | $d = \sqrt{5} > 2 \implies 0$ | $d = \sqrt{10} > 2 \implies 0$ | $0$ | $0$ | $[0, 0]$ |
+| $(1, 1)$ | $d = 1 \implies 2$ | $d = 1 \implies 3$ | $d = 2 \implies 3$ | $8$ | $8$ | $[1, 1]$ |
+| $(1, 2)$ | $d = 0 \implies 5$ | $d = \sqrt{2} \implies 2$ | $d = \sqrt{5} > 2 \implies 0$ | $7$ | $8$ | $[1, 1]$ |
+| **$(2, 1)$** | **$d = \sqrt{2} \implies 2$** | **$d = 0 \implies 7$** | **$d = 1 \implies 4$** | **$13$** | **$13$** | **$[2, 1]$** |
+| $(2, 2)$ | $d = 1 \implies 2$ | $d = 1 \implies 3$ | $d = \sqrt{2} \implies 3$ | $8$ | $13$ | $[2, 1]$ |
+| $(3, 1)$ | $d = \sqrt{5} > 2 \implies 0$ | $d = 1 \implies 3$ | $d = 0 \implies 9$ | $12$ | $13$ | $[2, 1]$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+Every tower within distance $d \le radius$ contributes the exact mathematical value $\lfloor q_i / (1 + d) \rfloor$. Since the problem asks for the maximum over integer grid coordinates within $[0, 50] \times [0, 50]$, visiting all $2,601$ integer coordinates evaluates the exact domain specified by the problem.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+The search space covers every integer coordinate in $[0, 50] \times [0, 50]$. Because the grid is scanned in lexicographical order and the peak is updated only on strict inequality ($t > mx$), the first occurrence of any maximum is preserved, satisfying the tie-break rule.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Search only tower-centered bounding limits:** One can compute the maximum input $x$ and $y$ and search `0..max_x` by `0..max_y`. That may reduce constant work, but the fixed `0..50` search is simpler and remains tiny under the stated constraints.
-- **Search the union of reachable disks:** Points outside every radius have score zero, so candidates could be generated only near towers. Managing integer disk bounds and still preserving tie behavior adds complexity without improving the asymptotic result for a 51-by-51 domain.
-- **Precompute a quality grid:** Each tower could add its signal to all reachable grid cells, producing the same $O(C^2T)$ upper bound while using $O(C^2)$ memory. The source instead computes one scalar score at a time and needs constant auxiliary space.
-- **Squared-distance reachability only:** Comparing `(x-i)**2 + (y-j)**2 <= radius**2` avoids a square root for the reachability test, but the square root is still required to calculate `q / (1 + d)`. It can be a minor numerical refinement, not a different algorithm.
-- **Several coordinates have the same best quality:** The row-major traversal is lexicographic, and the strict update condition preserves the first best coordinate. Replacing `>` with `>=` would incorrectly retain the last tied coordinate.
-- **A tower lies exactly `radius` away:** The `<=` check includes it, as required. Using `<` would lose a valid boundary contribution.
-- **The candidate equals a tower location:** The distance is zero and the denominator is one, so that tower contributes exactly `q`.
-- **A tower's floored contribution is zero:** The tower may be reachable yet add zero when its quality is too small relative to its distance. Adding zero is harmless and accurately follows the formula.
-- **All qualities are zero:** No candidate improves `mx = 0`, so the method returns `[0, 0]`, the lexicographically smallest non-negative coordinate.
-- **Flooring at the wrong time:** Each tower's quotient must be floored before summation. Flooring only the combined real-valued sum can produce a different and invalid score.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| All Points Quality Zero | Out-of-range towers | $t = 0$ never exceeds $mx = 0$; retains default `[0, 0]`. | Returning null, out-of-bounds coordinate, or error. |
+| Co-located Tower | $(x, y) = (x_i, y_i)$ | $d = 0 \implies 1 + d = 1 \implies$ full quality $q_i$ received. | Division by zero if $1 + d$ is incorrectly written as $d$. |
+| Exact Radius Boundary | $d = radius$ | Condition $d \le radius$ is inclusive; signal is counted. | Using strict inequality $d < radius$. |
+| Equal Quality Tie | Multiple points have quality $10$ | First scanned point in lexicographical order is preserved. | Overwriting earlier coordinate with `>=`. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C^2T)$. Let $T$ be the number of towers, and let $C=51$ be the number of allowed coordinate values examined on each axis by this implementation.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(G^2 \cdot N)$, where $G = 51$ is the grid side length and $N \le 50$ is the number of towers.
+  - Grid points evaluated: $51 \times 51 = 2,601$ coordinates.
+  - For each point, computing distance and floor division across $N$ towers takes $\mathcal{O}(N)$ operations.
+  - Total operations: $2,601 \times 50 \approx 130,050$ arithmetic operations ($< 0.01\text{ s}$).
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond a 2-element integer output coordinate `ans`.

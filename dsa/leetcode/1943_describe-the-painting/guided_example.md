@@ -1,125 +1,170 @@
 # Guided Example: Describe the Painting
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace 1D difference arrays, coordinate discretization, and prefix sum painting segmentation on representative color segment inputs:
 
-- **Input:** `{"segments": [[1, 4, 5], [4, 7, 7], [1, 7, 9]]}`
-- **Required output:** `[[1, 4, 14], [4, 7, 16]]`
+- **Primary Input:** `segments = [[1, 4, 5], [4, 7, 7], [1, 7, 9]]`
+- **Required Output:** `[[1, 4, 14], [4, 7, 16]]`
+- **Multi-Overlap Input:** `segments = [[1, 7, 9], [6, 8, 15], [8, 10, 7]]`
+- **Required Output:** `[[1, 6, 9], [6, 7, 24], [7, 8, 15], [8, 10, 7]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling overlapping intervals as discrete boundary delta events ($+c$ at starts, $-c$ at ends), maintaining cumulative color mix values via prefix sums, and outputting non-empty homogeneous half-open intervals $[s_i, s_{i+1})$ in $\mathcal{O}(N \log N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a long and thin painting that can be represented by a number line. The painting was painted with multiple overlapping segments where each segment was painted with a **unique** color. You are given a 2D integer array `segments`, where $\text{segments}[i] = [\text{start}_{i}, \text{end}_{i}, \text{color}_{i}]$ represents the **half-closed segment** $[\text{start}_{i}, \text{end}_{i})$ with $\text{color}_{i}$ as the color.
+We paint a 1D line using half-open segments $[start, end)$ with color values $c$. Where multiple segments overlap, their color values add together. We must describe the painted line as a sorted list of disjoint segments $[left, right, mix]$ covering all painted sections.
+- Adjacent segments that share the same color sum must remain distinct if they were formed by different original segment combinations.
+- Any unpainted region ($mix = 0$) is omitted from the output.
 
-The objective is to compute `[[1, 4, 14], [4, 7, 16]]` from `{"segments": [[1, 4, 5], [4, 7, 7], [1, 7, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+For `segments = [[1, 4, 5], [4, 7, 7], [1, 7, 9]]`:
+- Segment 1: $[1, 4)$ with color 5
+- Segment 2: $[4, 7)$ with color 7
+- Segment 3: $[1, 7)$ with color 9
+- Interval $[1, 4)$: Covered by Segment 1 (color 5) and Segment 3 (color 9).
+  - Mix sum: $5 + 9 = 14$. Segment: $[1, 4, 14]$.
+- Interval $[4, 7)$: Covered by Segment 2 (color 7) and Segment 3 (color 9).
+  - Mix sum: $7 + 9 = 16$. Segment: $[4, 7, 16]$.
+- The point $x = 4$ is a boundary where the constituent colors change from $\{5, 9\}$ to $\{7, 9\}$.
+- Final output: `[[1, 4, 14], [4, 7, 16]]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **sparse difference arrays and line sweep segmentation**:
+1. Mapping intervals $[l, r)$ to differential boundary events: $+c$ at $l$ and $-c$ at $r$.
+2. Merging boundary deltas at shared coordinates using a hash table.
+3. Sorting unique boundary points and computing the running cumulative sum.
+4. Constructing elementary segments between consecutive sorted coordinates where the running color sum is strictly positive.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Discrete Difference Array Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Discrete Difference Array Invariant Theorem.**
+> 1. *Interval Characteristic Function:* A segment $[l_k, r_k)$ with color $c_k$ defines a piecewise constant function:
+>    $$\chi_k(x) = \begin{cases} c_k & \text{if } l_k \le x < r_k \\ 0 & \text{otherwise} \end{cases}$$
+>    Its derivative in the sense of distributions is a pair of Dirac deltas: $\chi'_k = c_k \cdot \delta(x - l_k) - c_k \cdot \delta(x - r_k)$.
+> 2. *Superposition of Color Mix:* The total color value at point $x$ is:
+>    $$\mathcal{M}(x) = \sum_{k} \chi_k(x)$$
+>    The value $\mathcal{M}(x)$ is constant on any open interval between consecutive distinct boundary coordinates in the sorted set of all endpoints $\mathcal{B} = \bigcup_k \{l_k, r_k\}$.
+> 3. *Prefix Sum Reconstruction:* For sorted boundary coordinates $x_0 < x_1 < \dots < x_{m-1}$ with net deltas $\Delta(x_i) = \sum_{l_k = x_i} c_k - \sum_{r_k = x_i} c_k$:
+>    $$\mathcal{M}(x) = \sum_{j \le i} \Delta(x_j) \quad \text{for all } x \in [x_i, x_{i+1})$$
+> 4. *Output Filtering:* If $\mathcal{M}(x) > 0$ on $[x_i, x_{i+1})$, the tuple $[x_i, x_{i+1}, \mathcal{M}(x_i)]$ is emitted. If $\mathcal{M}(x) = 0$, the interval is unpainted and skipped.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Difference Array Line Sweep Pipeline
+    accDescr: Process endpoints into a difference map, sort unique boundaries, and accumulate prefix sums into output intervals.
+    A["Input segments [l, r, c]"] --> B["Record boundary deltas: delta[l] += c, delta[r] -= c"]
+    B --> C["Sort distinct boundary coordinates: x_0 < x_1 < ... < x_{m-1}"]
+    C --> D["Compute running sum: S = S + delta[x_i]"]
+    D --> E{"Is running sum S > 0?"}
+    E -- Yes --> F["Emit interval: [x_i, x_{i+1}, S]"]
+    E -- No --> G["Skip unpainted interval"]
+    F --> H{"More boundary intervals?"}
+    G --> H
+    H -- Yes --> D
+    H -- No --> I["Return segmented painting description"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Record only where the active color set changes
-
-Between two consecutive segment endpoints, no segment begins or ends. The set of active colors, and therefore its sum, is constant throughout that interval. This makes a sweep over endpoints sufficient; inspecting every coordinate is unnecessary.
-
-For each half-open segment `[l, r)` with color `c`, the solution records `d[l] += c` and `d[r] -= c`. Adding at `l` includes the color from that coordinate onward. Subtracting at `r` removes it before the interval beginning at `r`, exactly matching half-open semantics.
-
-Several events may share a coordinate. `defaultdict(int)` combines their signed changes, so all starts and ends at that location take effect together.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"segments": [[1, 4, 5], [4, 7, 7], [1, 7, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `segments = [[1, 4, 5], [4, 7, 7], [1, 7, 9]]`:
 
 ---
 
-### Step 2: Sort events and form prefix sums
+### Step 1: Accumulate Boundary Deltas
+- Segment $[1, 4, 5]$:
+  - Coordinate 1: $+5$
+  - Coordinate 4: $-5$
+- Segment $[4, 7, 7]$:
+  - Coordinate 4: $+7$
+  - Coordinate 7: $-7$
+- Segment $[1, 7, 9]$:
+  - Coordinate 1: $+9$
+  - Coordinate 7: $-9$
 
-The dictionary is converted to pairs `[coordinate, delta]` and sorted by coordinate. The loop changes each delta into a cumulative active-color sum:
-
-`s[i][1] += s[i - 1][1]`.
-
-After this prefix computation, `s[i][1]` is the sum of all colors active on the interval from `s[i][0]` up to, but not including, the next event coordinate `s[i + 1][0]`.
-
-The result comprehension emits exactly that interval and sum when the sum is nonzero. A zero sum denotes an unpainted gap because all color values are positive, so excluding it correctly removes unpainted regions.
-
-For segments `[1, 4, 5]` and `[1, 7, 7]`, the event deltas are $+12$ at one, $-5$ at four, and $-7$ at seven. Prefix sums give 12 on `[1, 4)` and 7 on `[4, 7)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Consolidated deltas at each coordinate:
+- Coordinate 1: $+5 + 9 = \mathbf{+14}$
+- Coordinate 4: $-5 + 7 = \mathbf{+2}$
+- Coordinate 7: $-7 - 9 = \mathbf{-16}$
 
 ---
 
-### Step 3: Why endpoint boundaries must be preserved even when sums match
+### Step 2: Sort Boundary Coordinates
+Sorted coordinate list with consolidated deltas:
 
-The mixed color is conceptually a set, but only its sum is output. Different color sets can have the same sum. If one set ends and another equal-sum set begins at the same coordinate, combining the adjacent pieces would be incorrect even though their numeric `mix` values match.
+$$S = [(1, +14), (4, +2), (7, -16)]$$
 
-The exact solution does not merge adjacent output intervals merely because their sums are equal. Every distinct input endpoint remains in `s`, even if its net numeric delta is zero. Therefore a change from colors `{5,7}` to `{1,11}` retains the boundary although both sums are 12.
+---
 
-This works with the unique-color guarantee. Every start or end changes the active set, and recording all endpoint coordinates preserves those changes. The prefix value supplies the requested sum without pretending that the sum uniquely identifies the set.
+### Step 3: Prefix Sum Sweep Across Intervals
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 4, 14], [4, 7, 16]]` |
+#### Interval 1: Between $x_0 = 1$ and $x_1 = 4$
+- Running sum at $x_0 = 1$:
+  $$\text{sum} = 0 + 14 = 14$$
+- Check $> 0$: $14 > 0$ (True).
+- Emit interval: $[1, 4, 14]$.
+
+#### Interval 2: Between $x_1 = 4$ and $x_2 = 7$
+- Running sum at $x_1 = 4$:
+  $$\text{sum} = 14 + 2 = 16$$
+- Check $> 0$: $16 > 0$ (True).
+- Emit interval: $[4, 7, 16]$.
+
+#### Terminal Boundary $x_2 = 7$
+- Running sum at $x_2 = 7$:
+  $$\text{sum} = 16 + (-16) = 0$$
+- All painting operations conclude.
+
+---
+
+### Final Output Assembly
+$$\text{Output} = [[1, 4, 14], [4, 7, 16]]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"segments": [[1, 4, 5], [4, 7, 7], [1, 7, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 4, 14], [4, 7, 16]]` | Verified |
+We record coordinate boundary deltas and interval prefix sums for both test instances:
+
+| Coordinate $x$ | Contributing Events | Net Delta $\Delta(x)$ | Running Color Mix Sum | Interval $[x_i, x_{i+1})$ | Emitted Output Segment |
+|---|---|---|---|---|---|
+| 1 | $+5 (\text{seg } 1), +9 (\text{seg } 3)$ | $+14$ | 14 | $[1, 4)$ | `[1, 4, 14]` |
+| 4 | $-5 (\text{seg } 1), +7 (\text{seg } 2)$ | $+2$ | 16 | $[4, 7)$ | `[4, 7, 16]` |
+| 7 | $-7 (\text{seg } 2), -9 (\text{seg } 3)$ | $-16$ | 0 | Terminal | — |
+
+We trace the multi-overlap instance `segments = [[1, 7, 9], [6, 8, 15], [8, 10, 7]]`:
+
+| Boundary $x$ | Delta $\Delta(x)$ | Running Mix | Next Boundary | Interval $[x_i, x_{i+1})$ | Segment Emitted |
+|---|---|---|---|---|---|
+| 1 | $+9$ | 9 | 6 | $[1, 6)$ | `[1, 6, 9]` |
+| 6 | $+15$ | $9 + 15 = 24$ | 7 | $[6, 7)$ | `[6, 7, 24]` |
+| 7 | $-9$ | $24 - 9 = 15$ | 8 | $[7, 8)$ | `[7, 8, 15]` |
+| 8 | $-15 + 7 = -8$ | $15 - 8 = 7$ | 10 | $[8, 10)$ | `[8, 10, 7]` |
+| 10 | $-7$ | $7 - 7 = 0$ | Terminal | $[10, \infty)$ | — |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because intervals are half-open $[l, r)$, adding $+c$ at $l$ introduces color $c$ starting at coordinate $l$, and adding $-c$ at $r$ removes color $c$ exactly at $r$. Since no segments start or end strictly inside any open interval $(x_i, x_{i+1})$, the set of active colors—and therefore their sum—is invariant on $[x_i, x_{i+1})$. The emitted tuples accurately record the exact sum of colors present.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every interval endpoint in the input is represented in the sorted coordinate list $\mathcal{B}$. Because all potential transition points are visited and all intervals with non-zero sum are captured, the full length of the painting is described without gaps.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Coordinate-array difference sweep:** Since endpoints are bounded by $10^5$, a fixed array can replace the dictionary and sorting. It scans the whole coordinate range and trades domain-dependent memory for simpler indexing.
-- **Explicit active-color set:** Sweep start and end events while maintaining actual colors. This can distinguish sets directly but is unnecessary for sums when all endpoint boundaries are retained.
-- **Merge adjacent equal sums:** This is incorrect because different unique-color sets may have the same sum, as the statement's example demonstrates.
-- **Touching segments:** At a shared endpoint, the ending color is removed and the starting color added before the next half-open interval begins.
-- **Overlapping segments:** Their signed contributions accumulate in the prefix sum.
-- **Unpainted gap:** The active sum becomes zero and the result comprehension omits that interval.
-- **Net-zero delta at an endpoint:** The numeric sum remains equal, but the coordinate stays in the sorted event list, preserving a possible set change.
-- **Several starts or ends together:** Dictionary accumulation applies all changes at the same coordinate atomically.
-- **Single segment:** Its two events produce one output interval with its color value.
-- **Positive unique colors:** A zero prefix unambiguously means no active segment; cancellation between positive active colors cannot create zero.
-- **Any output order:** The method naturally returns increasing coordinate order, which is valid even though order is unrestricted.
-- **Imported dictionary type:** The exact source assumes `defaultdict` is available.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Do Not Merge Adjacent Segments with Same Color:** A common trap is merging adjacent intervals when their color sums are equal. The problem specification explicitly states: *"Adjacent segments that have the same color mix cannot be merged if their sets of colors are different"*. Using the boundary points directly naturally preserves necessary boundaries.
+- **Sparse vs. Dense Coordinates:** Coordinates can reach $10^5$, but the number of segments is at most $10^5$. Using a fixed array of size $10^5$ is feasible, but using a hash map and sorting active keys handles arbitrary coordinate ranges up to $10^9$ without memory overhead.
+- **Half-Open Interval Boundary:** A segment ending at $x = 4$ ceases its color contribution at $x = 4$. If another segment starts at $x = 4$, both $+c_{\text{new}}$ and $-c_{\text{old}}$ are incorporated into delta at coordinate 4 before computing the mix for $[4, \dots)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N+E\log E)$. Let $N$ be the number of input segments and $E$ the number of distinct endpoint coordinates, with $E\le2N$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N$ is the number of segments. Populating the boundary map takes $\mathcal{O}(N)$ time. Sorting the at most $2N$ unique boundary coordinates takes $\mathcal{O}(N \log N)$ time. The single prefix sweep takes $\mathcal{O}(N)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the boundary delta table and the emitted interval list.

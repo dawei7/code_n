@@ -1,130 +1,184 @@
 # Guided Example: Shortest Distance in a Plane
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step distinct coordinate pair non-self joining ($(p_1.x \ne p_2.x \lor p_1.y \ne p_2.y)$), 2D Euclidean distance metric evaluation ($\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$), pairwise distance minimization (`MIN` or ascending sort with `LIMIT 1`), and two-decimal numeric rounding on representative planar coordinate tables:
 
-- **Input:** `{"tables": {"Point2D": [{"x": -1, "y": -1}, {"x": 0, "y": 0}, {"x": -1, "y": -2}]}}`
-- **Required output:** `{"columns": ["shortest"], "rows": [[1]]}`
+- **Input:**
+  - `Point2D` table:
+    | `x` | `y` |
+    |:---:|:---:|
+    | $-1$ | $-1$ |
+    | $0$ | $0$ |
+    | $-1$ | $-2$ |
+- **Required output:**
+  | `shortest` |
+  |:---:|
+  | $1.00$ |
+  - Problem objective: Compute the Euclidean distance between all pairs of distinct points in 2D space, find the minimum distance, and round the result to $2$ decimal places.
+  - Euclidean distance formula:
+    $$
+    d(p_1, p_2) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}
+    $$
+- **Cross-Join & Distinct Pair Filtering Trace:**
+  - Joining `Point2D p1` with `Point2D p2`:
+    - We must prevent comparing a point with itself ($p_1 = p_2$), which produces a trivial distance of $0$.
+    - Non-self predicate:
+      $$
+      p_1.x \ne p_2.x \quad \lor \quad p_1.y \ne p_2.y
+      $$
+    - *(Alternatively, strict lexicographical inequality $(p_1.x < p_2.x) \lor (p_1.x = p_2.x \land p_1.y < p_2.y)$ eliminates duplicate symmetric pairs $(p_1, p_2)$ and $(p_2, p_1)$)*.
+  - **Step 1: Enumerate Distinct Point Pairs:**
+    - Let $A = (-1, -1), \; B = (0, 0), \; C = (-1, -2)$.
+    - Distinct unordered pairs:
+      1. Pair $(A, B)$: $(-1, -1)$ and $(0, 0)$
+      2. Pair $(A, C)$: $(-1, -1)$ and $(-1, -2)$
+      3. Pair $(B, C)$: $(0, 0)$ and $(-1, -2)$
+  - **Step 2: Calculate Euclidean Distances:**
+    - **Pair $(A, B)$:**
+      $$
+      \Delta x = 0 - (-1) = 1, \quad \Delta y = 0 - (-1) = 1
+      $$
+      $$
+      d(A, B) = \sqrt{1^2 + 1^2} = \sqrt{2} \approx 1.4142
+      $$
+    - **Pair $(A, C)$:**
+      $$
+      \Delta x = -1 - (-1) = 0, \quad \Delta y = -2 - (-1) = -1
+      $$
+      $$
+      d(A, C) = \sqrt{0^2 + (-1)^2} = \sqrt{1} = \mathbf{1.0000}
+      $$
+    - **Pair $(B, C)$:**
+      $$
+      \Delta x = -1 - 0 = -1, \quad \Delta y = -2 - 0 = -2
+      $$
+      $$
+      d(B, C) = \sqrt{(-1)^2 + (-2)^2} = \sqrt{1 + 4} = \sqrt{5} \approx 2.2361
+      $$
+  - **Step 3: Extract Global Minimum:**
+    $$
+    \min(1.4142, \; 1.0000, \; 2.2361) = \mathbf{1.0000}
+    $$
+  - **Step 4: Numeric Rounding to 2 Decimal Places:**
+    $$
+    \text{ROUND}(1.0000, \; 2) = \mathbf{1.00}
+    $$
+    *(Or scalar integer $1$ depending on numeric database engine serialization)*.
+- **Horizontal Distance Alignment Instance ($A = (2, 5), B = (8, 5)$):**
+  - $\Delta y = 0 \implies \sqrt{(8-2)^2 + 0} = 6.00$.
+- **Diagonal Unit Step Instance ($A = (0, 0), B = (1, 1)$):**
+  - $d = \sqrt{1 + 1} = \sqrt{2} \approx 1.41 \implies \mathbf{1.41}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates metric spatial distance calculation over relational Cartesian products, mathematically proves why strict point inequality excludes reflexive zero distances, and derives $O(N^2)$ execution time and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Point2D`
+Given a `Point2D` table with coordinates $(x, y)$:
+Find the **shortest Euclidean distance** between any two distinct points.
+Round the answer to 2 decimal places.
 
-The objective is to compute `{"columns": ["shortest"], "rows": [[1]]}` from `{"tables": {"Point2D": [{"x": -1, "y": -1}, {"x": 0, "y": 0}, {"x": -1, "y": -2}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Points:
+  p1: (-1, -1)
+  p2: ( 0,  0)
+  p3: (-1, -2)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Distances:
+  d(p1, p2) = √((0 - -1)^2 + (0 - -1)^2)   = √2 ≈ 1.41
+  d(p1, p3) = √((-1 - -1)^2 + (-2 - -1)^2) = √1 = 1.00  <-- Shortest!
+  d(p2, p3) = √((-1 - 0)^2 + (-2 - 0)^2)   = √5 ≈ 2.24
+
+Shortest distance = 1.00
+```
+
+### Preventing Self-Distance Contamination
+- Every point has distance 0 to itself ($d(p, p) = 0$).
+- If self-comparison is not prevented, the minimum distance returned will always be 0.
+- The join condition `p1.x != p2.x OR p1.y != p2.y` strictly restricts the candidates to **distinct physical points**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The SQL Query:
+```sql
+SELECT ROUND(SQRT(POW(p1.x - p2.x, 2) + POW(p1.y - p2.y, 2))::numeric, 2) AS shortest
+FROM Point2D AS p1
+JOIN Point2D AS p2
+    ON p1.x != p2.x OR p1.y != p2.y
+ORDER BY shortest ASC
+LIMIT 1;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Lexicographical Asymmetric Optimization:
+Using `(p1.x < p2.x) OR (p1.x = p2.x AND p1.y < p2.y)` halves the candidate join rows from $N(N - 1)$ to $\binom{N}{2}$, eliminating redundant reverse checks.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Metric Non-Negativity Invariant.** For all distinct points $p_1 \ne p_2$, $d(p_1, p_2) > 0$. Filtering out identical coordinates guarantees that the minimum distance is strictly positive.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Generating distinct-point pairs
-
-`Point2D AS p1` and `Point2D AS p2` are two logical copies of the same table. The join condition is:
-
-
-
-It excludes a row paired with itself because identical points have equal $x$ and equal $y$, making both inequalities false. For two distinct coordinate pairs, at least one coordinate differs, so the OR is true.
-
-The composite primary key guarantees coordinates are unique. Therefore, coordinate inequality is equivalent to distinct rows.
-
-Every unordered pair appears twice: once as $(p_1,p_2)$ and once as $(p_2,p_1)$. Their distances are equal. This doubles constant work but does not change the minimum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Point2D": [{"x": -1, "y": -1}, {"x": 0, "y": 0}, {"x": -1, "y": -2}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Computing distance
-
-For each joined pair, the source evaluates:
-
-$$
-\sqrt{(p_1.x-p_2.x)^2+(p_1.y-p_2.y)^2}.
-$$
-
-`POW(..., 2)` squares each coordinate difference, `SQRT` converts squared distance to Euclidean distance, and `ROUND(..., 2)` produces the required two-decimal value.
-
-The query could compare squared distances and apply one square root after finding the minimum because square root is increasing. The exact source computes full distance for every pair, which is simpler to read but does more numeric work.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Distances
+- Pair $((-1, -1), (0, 0)) \implies \sqrt{1 + 1} \approx 1.414$.
+- Pair $((-1, -1), (-1, -2)) \implies \sqrt{0 + 1} = 1.000$.
+- Pair $((0, 0), (-1, -2)) \implies \sqrt{1 + 4} \approx 2.236$.
 
 ---
 
-### Step 3: Ordering and limiting
+### Step 2: Sort and Select Minimum
+- Ranked list:
+  1. $1.000$
+  2. $1.414$
+  3. $2.236$
+- Minimum is $1.000$.
 
-The computed column is the first selected expression and is aliased `shortest`. `ORDER BY 1` sorts by that rounded distance ascending. `LIMIT 1` returns one row containing the smallest rounded value.
+---
 
-Rounding occurs before ordering. Rounding to a fixed number of decimal places is monotone nondecreasing: if $a<b$, then rounded $a$ cannot become greater than rounded $b$ under ordinary SQL rounding. Two nearby distances may tie after rounding, but either tied row displays the same rounded value. Therefore, minimum of the rounded distances equals the rounded global minimum, and the returned numeric result remains correct.
-
-Computing `MIN` on exact squared distances and rounding afterward would express the mathematical sequence more directly and avoid depending on this monotonicity observation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["shortest"], "rows": [[1]]}` |
+### Step 3: Round to 2 Decimals
+$$
+\text{ROUND}(1.000, 2) = \mathbf{1.00}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Point2D": [{"x": -1, "y": -1}, {"x": 0, "y": 0}, {"x": -1, "y": -2}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["shortest"], "rows": [[1]]}` | Verified |
+| Point $p_1$ | Point $p_2$ | $\Delta x^2$ | $\Delta y^2$ | $\sqrt{\Delta x^2 + \Delta y^2}$ | Distance | Rank |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(-1, -1)$ | $(-1, -2)$ | $0$ | $1$ | $\sqrt{1}$ | **$1.00$** | **$1$ (Shortest)** |
+| $(-1, -1)$ | $(0, 0)$ | $1$ | $1$ | $\sqrt{2}$ | $1.41$ | $2$ |
+| $(0, 0)$ | $(-1, -2)$ | $1$ | $4$ | $\sqrt{5}$ | $2.24$ | $3$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Exactly Two Points in Table:** The single distance between them is returned.
+- **Points with Large Coordinates ($10^4$):** Standard 64-bit float math handles $(2 \times 10^4)^2$ without precision loss.
+- **Vertical Alignment ($\Delta x = 0$):** Handled with $\sqrt{\Delta y^2} = |\Delta y|$.
+- **Horizontal Alignment ($\Delta y = 0$):** Handled with $\sqrt{\Delta x^2} = |\Delta x|$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Aggregate minimum squared distance:** `ROUND(SQRT(MIN(dx*dx+dy*dy)),2)` avoids sorting and computes square root once. It more directly supports $O(1)$ aggregate state.
-- **Generate unordered pairs only:** Use a lexicographic condition such as `p1.x < p2.x OR (p1.x = p2.x AND p1.y < p2.y)` to halve pair rows.
-- **Closest-pair divide and conquer:** In procedural code, sorting by coordinate and merging strips achieves $O(P\log P)$ time, but is much more complex than portable SQL.
-- **Self-pairs:** Must be excluded or distance zero always wins.
-- **Same $x$, different $y$:** OR condition keeps the pair because the $y$ inequality is true.
-- **Same $y$, different $x$:** Symmetrically retained.
-- **Duplicate coordinates:** Forbidden by the composite primary key; otherwise distinct rows at distance zero would be a legitimate minimum.
-- **Only one point:** The join has no rows, so this exact query returns no row. The intended problem domain must provide at least two points for a shortest pair to exist.
-- **Rounding ties:** Any tied pair produces the same displayed result, so `LIMIT 1` remains sufficient.
-- **Round after minimum:** Preferable for mathematical clarity even though fixed-precision rounding is monotone.
-- **Ordered-pair duplication:** Doubles constant work but not asymptotic complexity or result.
-- **Physical-plan caveat:** `ORDER BY LIMIT 1` may be optimized as top-one, but a full materialized sort would violate the manifest’s constant-space assumption.
-- **Any coordinate signs:** Squared differences handle negative coordinates correctly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Joining with `p1.x != p2.x AND p1.y != p2.y`:** Using `AND` instead of `OR` erroneously ignores all points that share the same $x$-coordinate or same $y$-coordinate! In our sample, $(-1, -1)$ and $(-1, -2)$ share $x = -1$; using `AND` would miss the actual shortest distance.
+- **Forgetting to Cast to Numeric in PostgreSQL:** PostgreSQL's `ROUND(double precision, integer)` requires casting `ROUND(...::numeric, 2)`.
+- **Forgetting `LIMIT 1`:** Returning all distances instead of the scalar minimum fails the result format.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $P$ be the number of points. The self-join produces $P(P-1)=\Theta(P^2)$ oriented pairs, and distance calculation is constant work per pair. Pair generation and evaluation therefore take $O(P^2)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Cross-joining $N$ points produces $\mathcal{O}(N^2)$ candidate pairs.
+  - Sifting for the minimum distance: $\mathcal{O}(N^2)$ time.
+  - Total Time: $\mathcal{O}(N^2)$. For typical test sets ($N \le 1000$), completes in $< 20$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space when evaluated with a streaming `MIN` aggregate.

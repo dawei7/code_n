@@ -1,123 +1,138 @@
 # Guided Example: Merge Sorted Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step backward three-pointer in-place array merge on a representative instance:
 
-- **Input:** `{"nums1": [1, 2, 3, 0, 0, 0], "m": 3, "nums2": [2, 5, 6], "n": 3}`
-- **Required output:** `[1, 2, 2, 3, 5, 6]`
+- **Input:** $\text{nums1} = [1, 2, 3, 0, 0, 0], m = 3$, $\text{nums2} = [2, 5, 6], n = 3$
+- **Required output:** $[1, 2, 2, 3, 5, 6]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates merging two sorted arrays from right to left, exploiting trailing buffer capacity to prevent overwriting unread values, comparing tails ($p_1$ vs $p_2$), and terminating early when $\text{nums2}$ is exhausted.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.
+You are given two integer arrays $\text{nums1}$ and $\text{nums2}$, sorted in non-decreasing order, and two integers $m = 3$ and $n = 3$:
+- $\text{nums1}$ has length $m + n = 6$, where the first $m = 3$ elements denote the sorted content, and the last $n = 3$ elements are set to $0$ as placeholder capacity.
+- $\text{nums2}$ has length $n = 3$.
 
-The objective is to compute `[1, 2, 2, 3, 5, 6]` from `{"nums1": [1, 2, 3, 0, 0, 0], "m": 3, "nums2": [2, 5, 6], "n": 3}` while avoiding redundant calculations and unnecessary overhead.
+Merge $\text{nums2}$ into $\text{nums1}$ as one sorted array **in place**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+If we merge from left to right starting at index 0, placing a smaller element from $\text{nums2}$ would overwrite an unread element in $\text{nums1}$, requiring an auxiliary array of size $m$.
+Because the empty slots are located at the back of $\text{nums1}$ (indices $m \dots m+n-1$), merging backwards from the largest elements guarantees that the write pointer $p$ never overtakes the read pointer $p_1$. This achieves strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Backward Three-Pointer Protocol
+We initialize three pointers:
+- $p_1 = m - 1$ (Points to the largest unplaced element in $\text{nums1}$).
+- $p_2 = n - 1$ (Points to the largest unplaced element in $\text{nums2}$).
+- $p = m + n - 1$ (Points to the next unfilled write slot at the tail of $\text{nums1}$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Comparison Loop (While $p_2 \ge 0$)
+At each step:
+- **If $p_1 \ge 0$ and $\text{nums1}[p_1] > \text{nums2}[p_2]$:**
+  $\text{nums1}[p_1]$ is the globally largest remaining value:
+  $$
+  \text{nums1}[p] \leftarrow \text{nums1}[p_1], \quad p_1 \leftarrow p_1 - 1
+  $$
+- **Else:**
+  $\text{nums2}[p_2]$ is the larger (or equal) value, or $\text{nums1}$ has been exhausted ($p_1 < 0$):
+  $$
+  \text{nums1}[p] \leftarrow \text{nums2}[p_2], \quad p_2 \leftarrow p_2 - 1
+  $$
+- Decrement write slot: $p \leftarrow p - 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+*(Note: Once $p_2 < 0$, any remaining elements in $\text{nums1}$ are already in their correct sorted positions, so the algorithm halts immediately).*
+
+> **Invariant.** Throughout the merge, $p \ge p_1$ always holds, so writing to $\text{nums1}[p]$ can never overwrite an unread element at $p_1$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the empty capacity from right to left
+We trace $\text{nums1} = [1, 2, 3, 0, 0, 0]$ ($m = 3$) and $\text{nums2} = [2, 5, 6]$ ($n = 3$):
 
-The first `m` positions of `nums1` contain meaningful sorted values, while its final `n` positions are capacity for the result. Writing the merged sequence from left to right would risk overwriting a meaningful `nums1` value before it had been compared. Writing from the right solves that problem because the destination begins in unused capacity.
-
-`i = m - 1` points to the largest unread meaningful value in `nums1`. `j = n - 1` points to the largest unread value in `nums2`. `k = m + n - 1` points to the final unfilled result position in `nums1`.
-
-At each step, the larger of the two readable values must be the largest value not yet placed, so it belongs at `nums1[k]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [1, 2, 3, 0, 0, 0], "m": 3, "nums2": [2, 5, 6], "n": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $p_1 = 3 - 1 = 2$ ($\text{nums1}[2] = 3$).
+- $p_2 = 3 - 1 = 2$ ($\text{nums2}[2] = 6$).
+- $p = 6 - 1 = 5$ (Tail write position).
 
 ---
 
-### Step 2: Compare only when `nums1` still has a candidate
-
-The condition `i >= 0 and nums1[i] > nums2[j]` first checks that an unread first-array value exists. Short-circuit evaluation prevents `nums1[-1]` from being treated as a legitimate candidate after the meaningful prefix is exhausted.
-
-If that condition is true, `nums1[i]` is strictly larger and is copied to `nums1[k]`; `i` then moves left. Otherwise, `nums2[j]` is selected and `j` moves left. The otherwise case covers both a smaller-or-equal second-array value and exhaustion of the first array.
-
-On equal values, the source chooses from `nums2`. The contract requires sorted values but does not attach identities that require stable ordering between the two input arrays, so either equal copy could be placed first from the right.
-
-After either choice, `k` decreases because exactly one final position has been filled.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Fill Index $p = 5$
+- Compare $\text{nums1}[2] = 3$ vs $\text{nums2}[2] = 6$.
+- $6 > 3 \implies$ Pick from $\text{nums2}$.
+- Write: $\text{nums1}[5] \leftarrow 6$.
+- Decrement: $p_2 \to 1, p \to 4$.
+- Array: $[1, 2, 3, 0, 0, \mathbf{6}]$.
 
 ---
 
-### Step 3: Why overwriting `nums1[k]` is safe
+### Step 2: Fill Index $p = 4$
+- Compare $\text{nums1}[2] = 3$ vs $\text{nums2}[1] = 5$.
+- $5 > 3 \implies$ Pick from $\text{nums2}$.
+- Write: $\text{nums1}[4] \leftarrow 5$.
+- Decrement: $p_2 \to 0, p \to 3$.
+- Array: $[1, 2, 3, 0, \mathbf{5}, 6]$.
 
-Initially `k - i = n`, so the write pointer is separated from the unread first-array pointer by the entire extra capacity. Every iteration decrements `k` and decrements either `i` or `j`.
+---
 
-When `i` decreases, the gap between `k` and `i` stays unchanged. When `j` decreases, the gap shrinks, but this can happen only `n` times because `nums2` has `n` values. The write pointer cannot move ahead of an unread `nums1` value while any second-array value still needs placement.
+### Step 3: Fill Index $p = 3$
+- Compare $\text{nums1}[2] = 3$ vs $\text{nums2}[0] = 2$.
+- $3 > 2 \implies$ Pick from $\text{nums1}$.
+- Write: $\text{nums1}[3] \leftarrow 3$.
+- Decrement: $p_1 \to 1, p \to 2$.
+- Array: $[1, 2, 3, \mathbf{3}, 5, 6]$.
 
-Another way to see it is by counting: before writing a position, there are exactly `k + 1` total unread values across both arrays. There is enough space through index `k` for all of them, and the largest belongs at the boundary. A meaningful first-array cell is overwritten only after its original value has already been moved or when the same position is its final position.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 2, 3, 5, 6]` |
+### Step 4: Fill Index $p = 2$
+- Compare $\text{nums1}[1] = 2$ vs $\text{nums2}[0] = 2$.
+- $2 \ngtr 2 \implies$ Pick from $\text{nums2}$.
+- Write: $\text{nums1}[2] \leftarrow 2$.
+- Decrement: $p_2 \to -1, p \to 1$.
+- Array: $[1, 2, \mathbf{2}, 3, 5, 6]$.
+
+---
+
+### Termination
+- $p_2 = -1 < 0$. All elements of $\text{nums2}$ are placed.
+- Remaining elements at $\text{nums1}[0 \dots 1]$ are $[1, 2]$, which are already in their final sorted spots.
+- Final $\text{nums1}$: $[1, 2, 2, 3, 5, 6]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [1, 2, 3, 0, 0, 0], "m": 3, "nums2": [2, 5, 6], "n": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 2, 3, 5, 6]` | Verified |
+| Step | Write Index $p$ | $p_1$ Val ($\text{nums1}$) | $p_2$ Val ($\text{nums2}$) | Comparison Condition | Chosen Source | Value Written | Resulting $\text{nums1}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 5 | $\text{nums1}[2] = 3$ | $\text{nums2}[2] = 6$ | $6 > 3$ | $\text{nums2}$ | 6 | `[1, 2, 3, 0, 0, 6]` |
+| 2 | 4 | $\text{nums1}[2] = 3$ | $\text{nums2}[1] = 5$ | $5 > 3$ | $\text{nums2}$ | 5 | `[1, 2, 3, 0, 5, 6]` |
+| 3 | 3 | $\text{nums1}[2] = 3$ | $\text{nums2}[0] = 2$ | $3 > 2$ | $\text{nums1}$ | 3 | `[1, 2, 3, 3, 5, 6]` |
+| 4 | 2 | $\text{nums1}[1] = 2$ | $\text{nums2}[0] = 2$ | $2 \ngtr 2$ | $\text{nums2}$ | 2 | `[1, 2, 2, 3, 5, 6]` |
+| Exit | 1 | - | $p_2 = -1$ | Halts | - | - | **`[1, 2, 2, 3, 5, 6]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Both arrays are sorted non-decreasingly. The maximum element among all unplaced numbers must be either $\text{nums1}[p_1]$ or $\text{nums2}[p_2]$. Placing the larger of the two into slot $p$ and decrementing that pointer ensures that elements are written to $\text{nums1}$ in strictly descending order from index $m + n - 1$ down to 0.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The loop runs until $p_2 < 0$. If $\text{nums1}$ empties first ($p_1 < 0$), the remaining elements of $\text{nums2}$ are simply copied into the front of $\text{nums1}$. If $\text{nums2}$ empties first, the front of $\text{nums1}$ is already sorted and requires no copying.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Forward merge with a copy:** Copy the first `m` values, then merge from the beginning. It is linear time but uses $O(m)$ extra space.
-- **Append and sort:** Copy `nums2` into the placeholders and sort all values. It ignores existing order and costs $O((m+n)\log(m+n))$ time.
-- **Repeated insertion:** Insert second-array values into the meaningful prefix. Array shifting can make this quadratic.
-- **`n == 0`:** `j` starts negative, the loop is skipped, and `nums1` remains unchanged.
-- **`m == 0`:** `i` starts negative, so every iteration copies from `nums2` into `nums1`.
-- **All first-array values larger:** They move to the far-right positions before second-array values fill the front.
-- **All second-array values larger:** They fill the trailing capacity, and the first prefix remains in place.
-- **Equal values:** The source chooses `nums2` on ties, which preserves sortedness.
-- **Placeholder zeroes:** They are capacity only and may not be treated as meaningful values when `m` is smaller than the physical length.
-- **Negative input values:** Backward maximum comparison works regardless of sign.
-- **No return value:** Correctness is observed through the mutated `nums1` list.
-- **Input preservation:** `nums2` is read only; `nums1` is intentionally overwritten.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overwriting Unread Data:** Forward merging writes to index 0, corrupting $\text{nums1}[0]$ before it can be compared. Backward merging completely avoids memory collision because empty capacity is consumed first.
+- **Empty Second Array ($n = 0$):** If $n = 0$, $p_2 = -1$ initially; the loop executes zero times and $\text{nums1}$ remains unchanged.
+- **Empty First Array ($m = 0$):** If $m = 0$, $p_1 = -1$ initially; the loop copies all $n$ elements from $\text{nums2}$ directly into $\text{nums1}$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m+n)$. Each iteration places one value from `nums2` or moves one meaningful value from `nums1`. No value is processed more than once, so time is $O(m+n)$ in the worst case, matching the manifest. It may stop earlier when `nums2` is exhausted, but the upper bound remains linear in both inputs.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(m + n)$. In each step, exactly one element is placed at position $p$, requiring at most $m + n$ iterations.
+- **Auxiliary Space Complexity:** $O(1)$. Elements are written directly into the pre-allocated trailing space of `nums1`.

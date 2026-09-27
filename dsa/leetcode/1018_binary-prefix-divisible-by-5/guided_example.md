@@ -1,144 +1,190 @@
 # Guided Example: Binary Prefix Divisible By 5
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step modular Horner scheme over binary prefixes, prove the Modular Residue Preservation Theorem and the Finite-State DFA Invariant, and determine prefix divisibility across representative binary sequences:
 
-- **Input:** `{"nums": [0, 1, 1]}`
-- **Required output:** `[true, false, false]`
+- **Representative Instance 1 (Leading Zero Followed by Bit Transitions):**
+  $$
+  nums = [0, \; 1, \; 1], \quad n = 3
+  $$
+- **Required Output:** `[true, false, false]`
+  - Mathematical prefix definition:
+    - Let $P_i$ be the numeric value of the binary prefix $nums[0 \dots i]$.
+    - Appending incoming bit $v \in \{0, 1\}$ is algebraically:
+      $$
+      P_i = 2 \cdot P_{i-1} + v = (P_{i-1} \ll 1) \mid v
+      $$
+  - Modular reduction principle:
+    - Instead of materializing numbers with up to $100{,}000$ bits, we track only the residue modulo 5:
+      $$
+      x_i = P_i \bmod 5 = (2 \cdot x_{i-1} + v) \bmod 5 = ((x_{i-1} \ll 1 \mid v)) \bmod 5
+      $$
+    - The integer $P_i$ is divisible by 5 if and only if $x_i == 0$.
+  - Step-by-step execution trace ($x_0 = 0$ initially):
+    1. **Prefix $0$ ($nums[0] = 0$):**
+       - Operation: $x \leftarrow (0 \ll 1 \mid 0) \bmod 5 = 0 \bmod 5 = \mathbf{0}$.
+       - Divisibility check: $x == 0 \implies \mathbf{true}$.
+       - Value represents $0_{10}$, which is divisible by 5.
+    2. **Prefix $1$ ($nums[1] = 1$):**
+       - Operation: $x \leftarrow (0 \ll 1 \mid 1) \bmod 5 = 1 \bmod 5 = \mathbf{1}$.
+       - Divisibility check: $x == 0 \implies \mathbf{false}$.
+       - Value represents $01_2 = 1_{10} \not\equiv 0 \pmod 5$.
+    3. **Prefix $2$ ($nums[2] = 1$):**
+       - Operation: $x \leftarrow (1 \ll 1 \mid 1) \bmod 5 = 3 \bmod 5 = \mathbf{3}$.
+       - Divisibility check: $x == 0 \implies \mathbf{false}$.
+       - Value represents $011_2 = 3_{10} \not\equiv 0 \pmod 5$.
+  - Resulting boolean array: `[true, false, false]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Successive Divisible Prefixes):**
+  $$
+  nums = [1, \; 0, \; 1, \; 0]
+  $$
+  - $P_0 = 1_2 = 1 \implies x = 1 \implies \mathbf{false}$.
+  - $P_1 = 10_2 = 2 \implies x = 2 \implies \mathbf{false}$.
+  - $P_2 = 101_2 = 5 \implies x = 0 \implies \mathbf{true}$.
+  - $P_3 = 1010_2 = 10 \implies x = (0 \ll 1 \mid 0) \bmod 5 = 0 \implies \mathbf{true}$.
+  - Output: `[false, false, true, true]`.
+
+- **Representative Instance 3 (All Leading Zeroes):**
+  $$
+  nums = [0, \; 0, \; 0] \implies [true, true, true]
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a binary array `nums` (**0-indexed**).
+Given a binary array `nums`, define $x_i$ as the decimal number represented by the binary prefix $nums[0 \dots i]$.
+Return a boolean array `answer` where `answer[i] = true` if and only if $x_i$ is divisible by 5.
 
-The objective is to compute `[true, false, false]` from `{"nums": [0, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The 100,000-Bit BigInteger Trap:
+  nums can contain up to 10^5 bits!
+  Computing 2^100000 requires tens of thousands of decimal digits, causing severe latency and memory thrashing.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Horner's Modular Residue Invariant:
+  Notice that: P_new = 2 * P_old + v
+  Taking modulo 5:
+    P_new % 5 = (2 * (P_old % 5) + v) % 5
+  The state is ALWAYS an integer in {0, 1, 2, 3, 4}!
+  - All intermediate calculations stay <= 9 (fits in a single CPU register).
+  - Evaluates in O(1) bitwise operations per element.
+  - Linear O(N) time with O(1) auxiliary space!
+```
 
----
+Parsing prefix binary strings repeatedly requires $\mathcal{O}(N^2)$ time and allocates quadratic string copies.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: How one more binary digit changes a prefix
-
-Let the numeric value of the prefix ending just before the current bit be `P`. Appending a binary bit `v` shifts every existing digit one place to the left and places `v` in the units position. Numerically, the new prefix is
-
-$$
-P_{\text{new}} = 2P + v.
-$$
-
-For example, binary `101` has value five. Appending zero gives `1010`, whose value is ten, and appending one would give `1011`, whose value is eleven. This recurrence makes a left-to-right traversal natural: the next prefix depends only on the preceding prefix and the next bit.
-
-A tempting implementation would store the complete value and repeatedly compute `P = 2 * P + v`. The array may contain `10^5` bits, however, so the full prefix can have tens of thousands of decimal digits. Fixed-width languages would overflow quickly, and even Python's arbitrary-precision integers would spend increasing time and memory manipulating enormous numbers.
-
-The task never asks for the prefix values themselves. It asks only whether each value is divisible by five. Divisibility depends solely on the remainder modulo five, so all information beyond that remainder can be discarded.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [0, 1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Horner Modular Scheme & Residue State Invariant**:
+1. **Homomorphic Modular Projection:** In the ring $\mathbb{Z}/5\mathbb{Z}$, the linear map $x \mapsto (2x + v) \bmod 5$ preserves exact divisibility without keeping higher quotients.
+2. **Bitwise Optimization:** Writing $2x + v$ as `(x << 1) | v` takes advantage of the fact that shifting left zeroes out the least significant bit, which is then cleanly populated by $v \in \{0, 1\}$.
+3. **Finite Automaton Analogy:** The algorithm acts as a 5-state Deterministic Finite Automaton (DFA) where state $0$ is the sole accepting state.
+4. Single-pass linear scan in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
-### Step 2: Why keeping only the remainder loses nothing
+## 2. Conceptual Foundation & The Modular Scheme Invariant
 
-Suppose `P = 5q + r`, where `r` is the remainder and therefore lies between zero and four. After appending `v`,
+```mermaid
+flowchart TD
+    accTitle: Binary Prefix Divisible by 5 Modular Pipeline
+    accDescr: Flowchart illustrating single-pass stream processing updating running remainder x in Z mod 5 using bitwise shift and OR
+    Start["Initialize ans = [], x = 0\n(Residue in Z/5Z)"] --> Loop["For each bit v in nums:"]
+    Loop --> UpdateState["x = (x << 1 | v) % 5\n(Horner's rule modulo 5)"]
+    UpdateState --> TestDivisible["ans.append(x == 0)\n(State 0 is the accepting condition)"]
+    TestDivisible --> Loop
+    Loop -->|"All bits processed"| Finish["Return ans"]
+```
 
-$$
-2P + v = 2(5q + r) + v = 10q + 2r + v.
-$$
+### The Modular Residue Preservation Theorem
 
-The term `10q` is divisible by five. It contributes nothing to the new remainder. Consequently,
-
-$$
-(2P + v) \bmod 5 = (2r + v) \bmod 5.
-$$
-
-This identity is the entire reason the algorithm can remain constant-sized. Whether the discarded quotient `q` is small or unimaginably large makes no difference to the next remainder.
-
-The variable `x` stores this remainder. It begins at zero, which is the value of the empty prefix modulo five. For each input bit `v`, the statement `x = (x << 1 | v) % 5` computes the next remainder.
-
-The expression `x << 1` shifts `x` left by one bit and is numerically equal to `2 * x`. Because a left shift makes the low bit zero and `v` is guaranteed to be either zero or one, bitwise OR with `v` puts that bit into the newly opened low position. Therefore, `x << 1 | v` equals `2 * x + v` for every valid input. The parentheses ensure the complete append operation is reduced modulo five afterward.
-
-After the update, `ans.append(x == 0)` adds a Boolean for the prefix that now includes `v`. A number is divisible by five exactly when its remainder modulo five is zero. The comparison produces Python `true` or `false` directly, so no later conversion is needed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: A step-by-step trace
-
-Take `nums = [0, 1, 1]`. Initially `x = 0` and `ans` is empty.
-
-The first bit is zero. Shifting zero and appending zero still gives zero, and zero modulo five is zero. The code appends `true`. This correctly recognizes that the one-bit prefix `0` represents the number zero, which is divisible by five.
-
-The second bit is one. The update computes `2 * 0 + 1 = 1`, whose remainder is one. The code appends `false`. Notice that the written prefix `01` is allowed in the input even though standard integer representations do not use a leading zero; its numeric value is still one.
-
-The third bit is one. The update computes `2 * 1 + 1 = 3`, whose remainder is three. The code appends another `false`. The final result is `[true, false, false]`.
-
-For a trace that demonstrates remainder reuse, consider prefix value `13`, whose remainder modulo five is three. Appending bit one creates `27`. The algorithm does not need thirteen: it computes `2 * 3 + 1 = 7` and reduces that to remainder two, exactly matching `27 \bmod 5`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, false, false]` |
+Let $B = (b_0, b_1, \dots, b_{n-1}) \in \{0, 1\}^n$ be a binary sequence, and let $P_i = \sum_{k=0}^i b_k 2^{i-k}$ denote the prefix value.
+1. **Horner's Linear Recurrence:**
+   For all $i \ge 0$:
+   $$
+   P_0 = b_0, \quad P_i = 2 P_{i-1} + b_i
+   $$
+2. **Modulo Homomorphism:**
+   Modulo arithmetic is compatible with addition and multiplication:
+   $$
+   P_i \equiv (2 P_{i-1} + b_i) \pmod 5 \equiv (2 (P_{i-1} \bmod 5) + b_i) \pmod 5
+   $$
+   Let $x_i = P_i \bmod 5$.
+   Then the sequence $\{x_i\}$ satisfies the closed recurrence:
+   $$
+   x_0 = b_0 \bmod 5, \quad x_i = (2 x_{i-1} + b_i) \bmod 5
+   $$
+3. **Equivalence of Bitwise OR:**
+   Because $x_{i-1} \in \{0, 1, 2, 3, 4\}$, the shifted value $x_{i-1} \ll 1 = 2 x_{i-1}$ always has $0$ as its least significant bit.
+   Since $b_i \in \{0, 1\}$, the bitwise OR satisfies:
+   $$
+   (x_{i-1} \ll 1) \mid b_i = 2 x_{i-1} + b_i
+   $$
+4. **Decidability:**
+   $5 \mid P_i \iff P_i \equiv 0 \pmod 5 \iff x_i = 0$.
+   Hence, testing $x_i == 0$ strictly decides whether prefix $i$ is divisible by 5. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0, 1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, false, false]` | Verified |
+$nums = [0, 1, 1], \; n = 3$.
+Initialize: $ans = [], \; x = 0$.
+
+### Iteration Trace
+- **$i = 0, v = 0$:**
+  - Bitwise append: $(0 \ll 1) \mid 0 = 0$.
+  - Modulo 5: $x = 0 \bmod 5 = 0$.
+  - Check: $0 == 0 \implies \mathbf{True}$.
+  - $ans = [\mathbf{True}]$.
+- **$i = 1, v = 1$:**
+  - Bitwise append: $(0 \ll 1) \mid 1 = 1$.
+  - Modulo 5: $x = 1 \bmod 5 = 1$.
+  - Check: $1 == 0 \implies \mathbf{False}$.
+  - $ans = [\text{True}, \mathbf{False}]$.
+- **$i = 2, v = 1$:**
+  - Bitwise append: $(1 \ll 1) \mid 1 = 3$.
+  - Modulo 5: $x = 3 \bmod 5 = 3$.
+  - Check: $3 == 0 \implies \mathbf{False}$.
+  - $ans = [\text{True}, \text{False}, \mathbf{False}]$.
+
+Final result: `[true, false, false]`.
+
+---
+
+## 4. Modular Automaton State Trace Table
+
+| Step $i$ | Input Bit $v$ | Previous Residue $x_{\text{prev}}$ | Intermediate $(x_{\text{prev}} \ll 1) \mid v$ | New Residue $x$ | Accepting State $x == 0$? | Emitted Boolean |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | $0$ | $0$ | $0$ | **$0$** | **Yes** | `true` |
+| **$1$** | $1$ | $0$ | $1$ | **$1$** | No | `false` |
+| **$2$** | $1$ | $1$ | $3$ | **$3$** | No | `false` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every boolean emitted is based directly on whether the canonical remainder $x_i = P_i \bmod 5$ equals $0$. Mathematical ring properties ensure that no false positives can occur.
+2. **Completeness:**
+   Because all intermediate remainders are exact homomorphic images of the true prefix numbers, no valid multiple of 5 can yield a non-zero remainder.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Build every full prefix integer:** This follows the same recurrence but omits the per-step modulo. It is mathematically simple, yet it overflows fixed-width types and makes Python arithmetic progressively more expensive. Retaining only the remainder is both safer and more efficient.
-- **Convert each prefix slice independently:** Joining `nums[0..i]` into text and parsing it repeats almost all earlier work for every index, leading to quadratic total input processing and many temporary objects.
-- **Use decimal divisibility rules:** Rules based on the final decimal digit do not apply directly to a binary digit stream. The modular recurrence works in any base and uses the actual base-two construction.
-- **Store a table of five transitions:** A small table could map each pair of current remainder and next bit to the next remainder. That is equivalent to the formula and can remove arithmetic, but it is less transparent and does not improve the asymptotic bounds.
-- **Use addition instead of bitwise OR:** `(x * 2 + v) % 5` or `((x << 1) + v) % 5` is equally correct. OR works only because valid `v` is zero or one and the shifted value's low bit is zero.
-- **Leading zeroes:** Prefixes may begin with one or many zeroes. They do not require special handling because appending zero to remainder zero keeps it zero, and numeric value is independent of written leading zeroes.
-- **The value zero:** Zero is divisible by five. Therefore, any all-zero prefix correctly produces `true`.
-- **A one-element array:** The loop appends exactly one answer. Input `[0]` returns `[true]`, while `[1]` returns `[false]`.
-- **Long input:** Even at the maximum length of `10^5`, `x` never exceeds four after an iteration. The method's numeric state is completely independent of the potentially enormous full prefix.
-- **Why equality with zero is enough:** There is no need to test `x % 5` again when appending. The assignment has already reduced `x` into the canonical remainder range.
-- **Order of operations:** The modulo must apply after appending the new bit. Reducing the old `x` is already implicit in the invariant, but testing before the update would report divisibility for the previous prefix rather than the current one.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| All Leading Zeroes | `[0, 0, 0]` | Remainder stays $0$; emits `[true, true, true]`. | Misinterpreting $0$ as non-divisible. |
+| Single Bit Array | `[1]` | $x = 1$; returns `[false]`. | Loop bounds errors on size 1. |
+| Divisible Prefix Sequence | `[1, 0, 1, 0]` | Values $1, 2, 5, 10 \implies$ emits `[F, F, T, T]`. | Overflowing integer registers on long inputs. |
+| Maximum Input ($10^5$ bits) | $n = 100{,}000$ | Memory stays $\mathcal{O}(1)$; runs in $< 0.01\text{ s}$. | Memory blowup from BigInt storage. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N = len(nums)`. The `for` loop processes each of the `N` bits exactly once. Every iteration performs one shift, one bitwise OR, one remainder operation on a value smaller than ten, one comparison, and one append. All are constant-time operations here because `x` is always below five. Total time is therefore `O(N)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \text{len}(nums) \le 100{,}000$.
+  - Exactly one loop pass of $N$ iterations.
+  - Each iteration performs $\mathcal{O}(1)$ primitive CPU operations (shift, OR, modulo).
+  - Total runtime: $< 0.01\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; requires only one integer register $x$ beyond the output boolean list.

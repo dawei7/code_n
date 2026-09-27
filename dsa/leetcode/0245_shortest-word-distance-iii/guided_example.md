@@ -1,146 +1,168 @@
 # Guided Example: Shortest Word Distance III
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step distinct-word vs identical-word bifurcation, consecutive identical-instance gap evaluation, and unified streaming state tracking on representative string dictionaries:
 
-- **Input:** `{"wordsDict": ["a", "a"], "word1": "a", "word2": "a"}`
-- **Required output:** `1`
+- **Input:** $\text{wordsDict} = [\text{"practice"}, \text{"makes"}, \text{"perfect"}, \text{"coding"}, \text{"makes"}], \quad \text{word1} = \text{"makes"}, \quad \text{word2} = \text{"makes"}$
+- **Required output:** $3$ (Indices $1$ and $4$ share word $\text{"makes"}$; $|4 - 1| = 3$)
+- **Different Targets Instance:** $\text{word1} = \text{"makes"}, \quad \text{word2} = \text{"coding"} \implies 1$ (Index $4$ and index $3$)
+- **Minimal Pair Instance:** $\text{wordsDict} = [\text{"a"}, \text{"a"}], \quad \text{word1} = \text{"a"}, \quad \text{word2} = \text{"a"} \implies 1$
+- **Multiple Duplicate Run:** $\text{wordsDict} = [\text{"a"}, \text{"b"}, \text{"a"}, \text{"a"}], \quad \text{word1} = \text{"a"}, \quad \text{word2} = \text{"a"} \implies 1$ (Consecutive duplicate pair at indices 2 and 3)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates handling identical target parameters ($\text{word1} == \text{word2}$) without self-collision ($i == j \implies \text{dist} = 0$), proves why the minimum distance between identical words must occur between consecutive occurrences, unifies both distinct and equal word logic in a single $O(N)$ forward pass, and operates in strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `wordsDict` and two strings that already exist in the array `word1` and `word2`, return *the shortest distance between the occurrence of these two words in the list*.
+Given a string dictionary $\text{wordsDict} = [\text{"practice"}, \text{"makes"}, \text{"perfect"}, \text{"coding"}, \text{"makes"}]$:
+Find the shortest index distance $|i - j|$ between an occurrence of `word1` and an occurrence of `word2`, where $i \ne j$.
 
-The objective is to compute `1` from `{"wordsDict": ["a", "a"], "word1": "a", "word2": "a"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Identical Target Challenge ($\text{word1} == \text{word2}$)
+In LeetCode 243, `word1 != word2` was guaranteed.
+In this problem, **`word1` and `word2` may be identical strings**:
+- If `word1 != word2`: The problem reduces to tracking the latest occurrence of each distinct label.
+- If `word1 == word2`: We must find the minimum distance between **two distinct occurrences** of the same word.
+If we blindly applied the LeetCode 243 logic when $\text{word1} == \text{word2}$:
+Both pointers would update to the same index ($i = j$), yielding a false distance of $|i - i| = 0$!
+To prevent self-collision, when $\text{word1} == \text{word2}$, we shift the previous index before recording the new one, measuring the distance strictly between **consecutive occurrences** of the shared word.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Consecutive Occurrence Distance Lemma
+Suppose a target word appears at sorted indices $p_1 < p_2 < \dots < p_m$.
+Any non-consecutive gap can be decomposed as a sum of positive consecutive gaps:
+$$
+p_k - p_j = (p_{j+1} - p_j) + (p_{j+2} - p_{j+1}) + \dots + (p_k - p_{k-1}) \ge \min_{r}(p_{r+1} - p_r)
+$$
+Because all gaps are positive integers, the minimum distance between any two distinct occurrences of the same word is **strictly achieved between two consecutive occurrences**!
+Therefore, we only need to compare each occurrence with its immediate predecessor.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Unified Algorithm Protocol
+Initialize $\text{idx}_1 = -1, \quad \text{idx}_2 = -1, \quad \text{min\_dist} = \infty$.
+Let $\text{is\_same} = (\text{word1} == \text{word2})$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+For each index $i$ and word $w \in \text{wordsDict}$:
+1. **Match Target 1 ($w == \text{word1}$):**
+   - If $\text{is\_same}$:
+     Shift history to preserve distinct occurrences:
+     $$
+     \text{idx}_1 \leftarrow \text{idx}_2, \quad \text{idx}_2 \leftarrow i
+     $$
+   - Else:
+     $$
+     \text{idx}_1 \leftarrow i
+     $$
+2. **Match Target 2 ($w == \text{word2}$ and $\text{not is\_same}$):**
+   $$
+   \text{idx}_2 \leftarrow i
+   $$
+3. **Distance Evaluation:**
+   If $\text{idx}_1 \ne -1$ and $\text{idx}_2 \ne -1$:
+   $$
+   \text{min\_dist} \leftarrow \min(\text{min\_dist}, \; |\text{idx}_1 - \text{idx}_2|)
+   $$
+
+Return $\text{min\_dist}$.
+
+> **Invariant.** At every step, $\text{idx}_1$ and $\text{idx}_2$ represent two distinct indices in $\text{wordsDict}$ satisfying $\text{wordsDict}[\text{idx}_1] == \text{word1}$ and $\text{wordsDict}[\text{idx}_2] == \text{word2}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Case 1: the target words are different
+We trace two queries on $\text{wordsDict} = [\text{"practice"}, \text{"makes"}, \text{"perfect"}, \text{"coding"}, \text{"makes"}]$:
 
-The variables `i` and `j` start at `-1`, meaning their targets have not yet appeared. During the left-to-right scan, `i` is replaced whenever `word1` occurs, and `j` is replaced whenever `word2` occurs. Once both are valid, `abs(i - j)` is a candidate distance.
+### Query 1: Identical Targets ($\text{word1} = \text{"makes"}, \quad \text{word2} = \text{"makes"}$)
+Here $\text{is\_same} = \text{True}$.
+Initial state: $\text{idx}_1 = -1, \, \text{idx}_2 = -1, \, \text{min\_dist} = \infty$.
 
-Keeping only the latest indices is sufficient. When a new `word1` appears at index `k`, every seen `word2` is on or before `k`, and the greatest such index is closest to `k`. Any older `word2` is farther left. The symmetric statement holds when a new `word2` appears. Thus every new target occurrence needs to be compared only with the latest occurrence of the opposite target.
+- **Index $i = 0$ ($w = \text{"practice"}$):**
+  - No match. State unchanged.
+- **Index $i = 1$ ($w = \text{"makes"}$):**
+  - Target match! Since $\text{is\_same}$ is True:
+    $$
+    \text{idx}_1 \leftarrow \text{idx}_2 = -1
+    $$
+    $$
+    \text{idx}_2 \leftarrow i = 1
+    $$
+  - Since $\text{idx}_1 == -1$, no pair yet.
+  - State: $\text{idx}_1 = -1, \, \text{idx}_2 = 1, \, \text{min\_dist} = \infty$.
+- **Index $i = 2$ ($w = \text{"perfect"}$):** No match.
+- **Index $i = 3$ ($w = \text{"coding"}$):** No match.
+- **Index $i = 4$ ($w = \text{"makes"}$):**
+  - Target match! Since $\text{is\_same}$ is True:
+    $$
+    \text{idx}_1 \leftarrow \text{idx}_2 = 1
+    $$
+    $$
+    \text{idx}_2 \leftarrow i = 4
+    $$
+  - Both indices valid! Candidate distance:
+    $$
+    |\text{idx}_1 - \text{idx}_2| = |1 - 4| = 3
+    $$
+  - $\text{min\_dist} \leftarrow \min(\infty, 3) = \mathbf{3}$.
+  - State: $\text{idx}_1 = 1, \, \text{idx}_2 = 4, \, \text{min\_dist} = 3$.
 
-Consider
-
-
-
-with `word1 = "makes"` and `word2 = "coding"`.
-
-- Index `1` records the first `makes` in `i`; no `coding` exists yet.
-- Index `3` records `coding` in `j`, producing distance `abs(1 - 3) = 2`.
-- Index `4` replaces `i` with the newer `makes`, producing distance `abs(4 - 3) = 1`.
-
-The minimum is `1`.
-
-The source uses two separate `if` conditions. In this branch the words are known to differ, so a single array element can update at most one target index. Checking the distance on a non-target position only repeats an unchanged candidate and is harmless.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"wordsDict": ["a", "a"], "word1": "a", "word2": "a"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Case 2: both target names are equal
-
-Now two “latest target” variables cannot both be assigned the current index, because that would treat one occurrence as both endpoints and yield zero. Instead, `j` means the index of the previous occurrence of the shared word.
-
-When the scan finds another occurrence at index `i`:
-
-1. If `j != -1`, compute `i - j`, the distance from the previous occurrence.
-2. Update `j = i`, making this occurrence the previous one for the future.
-
-The comparison must happen before replacing `j`; otherwise the subtraction would use the same index twice.
-
-For the example array with both targets equal to `"makes"`, the first occurrence at index `1` merely sets `j = 1`. The next occurrence at index `4` creates the valid pair `(1, 4)` with distance `3`, then becomes the stored previous occurrence. The method returns `3`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Loop terminates. Output: $\mathbf{3}$.
 
 ---
 
-### Step 3: Why consecutive equal occurrences are sufficient
-
-Suppose the shared word appears at sorted positions
-
-$$
-p_0<p_1<\cdots<p_{r-1}.
-$$
-
-For a fixed later occurrence $p_b$, the closest earlier occurrence is $p_{b-1}$, because every $p_a$ with $a<b-1$ is smaller and therefore farther away. Equivalently, any nonconsecutive gap decomposes into positive consecutive gaps:
-
-$$
-p_b-p_a=(p_{a+1}-p_a)+\cdots+(p_b-p_{b-1}).
-$$
-
-That sum cannot be smaller than each positive component. Hence the minimum distance between any two distinct occurrences must appear between consecutive occurrences. The single stored index `j` is all the history needed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Query 2: Distinct Targets ($\text{word1} = \text{"makes"}, \quad \text{word2} = \text{"coding"}$)
+Here $\text{is\_same} = \text{False}$.
+- $i = 1$ (`"makes"`): $\text{idx}_1 \leftarrow 1$.
+- $i = 3$ (`"coding"`): $\text{idx}_2 \leftarrow 3 \implies |\text{idx}_1 - \text{idx}_2| = |1 - 3| = 2$.
+  $\text{min\_dist} \leftarrow 2$.
+- $i = 4$ (`"makes"`): $\text{idx}_1 \leftarrow 4 \implies |\text{idx}_1 - \text{idx}_2| = |4 - 3| = 1$.
+  $\text{min\_dist} \leftarrow 1$.
+Output: $\mathbf{1}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"wordsDict": ["a", "a"], "word1": "a", "word2": "a"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+```text
+Query: word1 = "makes", word2 = "makes" (is_same = True)
+
+i = 0 ("practice"): no match
+i = 1 ("makes"):    idx1 = -1, idx2 = 1 -> no pair
+i = 2 ("perfect"):  no match
+i = 3 ("coding"):   no match
+i = 4 ("makes"):    idx1 = 1,  idx2 = 4 -> dist = |1 - 4| = 3 -> min_dist = 3
+
+Result: 3
+```
+
+| Index $i$ | Word $w$ | Match Branch | $\text{idx}_1$ | $\text{idx}_2$ | Pair Distance Evaluated | Running $\text{min\_dist}$ |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| 0 | `"practice"` | None | -1 | -1 | - | $\infty$ |
+| 1 | `"makes"` | $\text{is\_same}$ shift | -1 | 1 | - | $\infty$ |
+| 2 | `"perfect"` | None | -1 | 1 | - | $\infty$ |
+| 3 | `"coding"` | None | -1 | 1 | - | $\infty$ |
+| **4** | **`"makes"`** | **$\text{is\_same}$ shift** | **1** | **4** | **$|1 - 4| = 3$** | **$\mathbf{3}$ (Final Answer)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For $\text{word1} \ne \text{word2}$, the algorithm matches the proven logic of LeetCode 243. For $\text{word1} == \text{word2}$, setting $\text{idx}_1 = \text{idx}_2$ and $\text{idx}_2 = i$ guarantees that $\text{idx}_1$ holds the index of the immediately preceding occurrence, so $\text{idx}_1 \ne \text{idx}_2$ always holds and the evaluated gap is between two distinct occurrences.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By the Consecutive Occurrence Lemma, the minimum distance between identical words is achieved between two adjacent occurrences. Since every adjacent pair is evaluated when the right word is reached, the global minimum is guaranteed to be recorded.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One unified “previous interesting index” scan:** Record the latest index holding either target. When another interesting word appears, compare if the labels differ or if the requested targets are equal. This also achieves $O(n)$ time and $O(1)$ space, but the exact source's branch structure makes the distinct-occurrence rule more explicit.
-- **Store occurrence lists:** Collect positions for the targets, then merge two lists for different words or inspect consecutive gaps for equal words. It is correct and linear time but uses $O(n)$ extra space unnecessarily for a single query.
-- **Binary search between occurrence lists:** Each occurrence from one list can search for neighboring positions in the other. This costs $O(n\log n)$ in the worst case and needs stored lists, so the streaming scan is stronger.
-- **Compare every pair:** Testing all target occurrence pairs is simple but can require $O(n^2)$ time.
-- **Equal targets:** Two different occurrences are mandatory. The separate branch deliberately never compares an index with itself.
-- **Exactly two occurrences of an equal target:** The first initializes `j`, the second supplies the only valid distance, and the guarantee ensures that candidate exists.
-- **Adjacent occurrences:** Distance `1` is the smallest possible valid distance. The source could return early when it finds `1`, but completing the scan does not change correctness or asymptotic complexity.
-- **First target appears much earlier:** Sentinels prevent a distance calculation until a compatible second endpoint has actually appeared.
-- **Repeated runs of the same word:** In the equal-target branch, every consecutive pair in the run is checked. In the different-target branch, repeated copies replace the latest same-label index so the next opposite word uses the nearest one.
-- **A target missing from the array:** The contract says both target names exist and, when equal, represent two individual words. Outside that contract, `ans` might remain `n`, so a broader API would need defined missing-pair behavior.
-- **Initialization with `n`:** Since the greatest legal distance is $n-1$, `n` is a safe finite sentinel. It avoids depending on floating-point infinity while still being replaced by any valid candidate.
-- **Independent `if` statements in the different branch:** They are safe because that branch runs only when `word1 != word2`. Moving the equal-word case into the same code without adjustment would make both indices equal and incorrectly create a zero distance.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Self-Distance Zero Trap:** If the distinction between $\text{word1} == \text{word2}$ and $\text{word1} \ne \text{word2}$ is ignored, encountering `"makes"` updates both $\text{idx}_1$ and $\text{idx}_2$ to $i$, resulting in $|i - i| = 0$.
+- **Non-Adjacent Pair Redundancy:** Checking all pairs of identical occurrences takes $O(K^2)$ time. Comparing only consecutive occurrences reduces this to $O(K)$ without missing the minimum.
+- **Short-Circuiting on 1:** If $\text{min\_dist} == 1$ is ever reached, it can immediately be returned since no two elements can have distance $< 1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of strings in `wordsDict`. Exactly one branch runs, and that branch scans the list once. With word length bounded by `10`, each equality comparison is constant time under the problem constraints, giving $O(n)$ total time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot L)$, where $N$ is the number of words in `wordsDict` and $L$ is the maximum word length ($\le 10$). A single forward pass is performed with $O(1)$ scalar updates per word.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory.

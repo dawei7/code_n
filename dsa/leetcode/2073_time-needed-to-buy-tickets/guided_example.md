@@ -1,146 +1,150 @@
 # Guided Example: Time Needed to Buy Tickets
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the queue round decomposition, position-dependent truncation, and single-pass closed-form summation on a representative problem instance:
 
-- **Input:** `{"tickets": [2, 3, 2], "k": 2}`
-- **Required output:** `6`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There are `n` people in a line queuing to buy tickets, where the $0^th$ person is at the **front** of the line and the $(n - 1)^th$ person is at the **back** of the line.
-
-The objective is to compute `6` from `{"tickets": [2, 3, 2], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Tickets Array:** `[5, 1, 1, 1]`
+- **Target Index $k$:** `0`
+- **Target Demand $tickets[k]$:** `5`
+- **Expected Output:** `8`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+There are $n$ people standing in a queue waiting to buy tickets, indexed from $0$ to $n - 1$. Each person $i$ wishes to purchase $tickets[i]$ tickets. The transaction follows a strict round-robin procedure:
+- The person at the front buys exactly $1$ ticket, which consumes $1$ second.
+- If they still need more tickets, they re-enter the line at the very back.
+- If they have purchased all their required tickets, they exit the queue immediately.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We are asked to find the total time required for the person at index $k$ to finish purchasing all $tickets[k]$ tickets.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Naive Queue Simulation vs. Closed-Form Contribution
+- Simulating the queue round by round with an active collection takes $\mathcal{O}(n \cdot \max(tickets))$ time. When ticket demands reach $100$ and $n = 100$, this performs thousands of deque operations.
+- By analyzing the lifecycle of person $k$, we notice that person $k$ must complete exactly $T = tickets[k]$ purchase turns.
+- Every other person $i$ contributes a bounded number of transactions before person $k$ completes their final turn:
+  - If $i \le k$ (ahead of or at person $k$), person $i$ participates in at most $T$ rounds.
+  - If $i > k$ (behind person $k$), person $i$ participates in at most $T - 1$ rounds because person $k$ exits the queue during the $T$-th round before person $i$ can purchase again.
+
+```mermaid
+flowchart TD
+    accTitle: Ticket Queue Round Contribution Partition
+    accDescr: Visual partitioning of queue elements into indices at or before target index k vs indices after k, showing round limits T and T minus 1.
+    subgraph Queue["Round-Robin Queue: Target Index k with Demand T"]
+        direction LR
+        Left["Ahead / At Target: i in [0, k]<br>Max Turns: min(tickets[i], T)"]
+        Target["Target k: Exactly T Turns"]
+        Right["Behind Target: i in [k+1, n-1]<br>Max Turns: min(tickets[i], T - 1)"]
+    end
+    Left --> Sum["Cumulative Time: Sum of Individual Contributions"]
+    Target --> Sum
+    Right --> Sum
+
+    classDef grp fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class Left,Target,Right,Sum grp;
+```
+
+---
+
+## 2. Theoretical Invariants & Closed-Form Round Decomposition
+
+### Invariant 1: Fixed Turn Horizon for Target $k$
+Person $k$ must undergo exactly $T = tickets[k]$ distinct service turns. The simulation halts the exact millisecond person $k$ completes their $T$-th purchase.
+
+### Invariant 2: Positional Ceiling Inequality
+Let $C(i)$ denote the total number of tickets bought by person $i$ prior to the completion of person $k$:
+1. **For $i \le k$:** Person $i$ is served before or at the same position as $k$ in each pass. During the $T$ passes that person $k$ experiences, person $i$ gets up to $T$ opportunities to buy a ticket. Thus:
+   $$C(i) = \min(tickets[i], tickets[k])$$
+2. **For $i > k$:** Person $i$ is situated strictly behind person $k$. In the final ($T$-th) pass, person $k$ receives their last ticket and the process terminates instantly. Person $i$ never receives an opportunity in that final round. Thus, person $i$ participates in at most $T - 1$ passes:
+   $$C(i) = \min(tickets[i], tickets[k] - 1)$$
+
+Summing across all individuals yields the exact total time:
+$$\text{Total Time} = \sum_{i = 0}^{n - 1} C(i) = \sum_{i = 0}^{k} \min(tickets[i], tickets[k]) + \sum_{i = k + 1}^{n - 1} \min(tickets[i], tickets[k] - 1)$$
+
+| Queue Segment | Relation to Index $k$ | Maximum Rounds Participated | Individual Contribution Formula $C(i)$ |
+|---|---|---|---|
+| Prefix & Target | $i \le k$ | Up to $tickets[k]$ | $\min(tickets[i], tickets[k])$ |
+| Suffix | $i > k$ | Up to $tickets[k] - 1$ | $\min(tickets[i], tickets[k] - 1)$ |
+| Target Element | $i = k$ | Exactly $tickets[k]$ | $\min(tickets[k], tickets[k]) = tickets[k]$ |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Focus on the exact moment person `k` finishes
+We trace the representative instance: `tickets = [5, 1, 1, 1]`, $k = 0$, $tickets[k] = 5$.
+Here, $T = 5$, and $T - 1 = 4$.
 
-A direct simulation would repeatedly move through the queue, subtract one ticket from the person at the front, and move that person to the back if more tickets remain. That matches the story, but it performs one operation for every ticket bought. The total number of tickets can be much larger than the number of people.
+### Individual Contribution Calculations
+1. **Index $i = 0$ (Target $k = 0$):**
+   - Condition: $i \le k$ ($0 \le 0$).
+   - Ceiling: $\min(tickets[0], T) = \min(5, 5) = 5$.
+   - Contribution: $5$ seconds.
+2. **Index $i = 1$:**
+   - Condition: $i > k$ ($1 > 0$).
+   - Ceiling: $\min(tickets[1], T - 1) = \min(1, 4) = 1$.
+   - Contribution: $1$ second.
+3. **Index $i = 2$:**
+   - Condition: $i > k$ ($2 > 0$).
+   - Ceiling: $\min(tickets[2], T - 1) = \min(1, 4) = 1$.
+   - Contribution: $1$ second.
+4. **Index $i = 3$:**
+   - Condition: $i > k$ ($3 > 0$).
+   - Ceiling: $\min(tickets[3], T - 1) = \min(1, 4) = 1$.
+   - Contribution: $1$ second.
 
-The optimal solution instead asks a sharper question: by the moment person `k` buys their final ticket, how many tickets can each person possibly have bought?
-
-Let
-
-$$
-T=\texttt{tickets[k]}.
-$$
-
-Person `k` needs exactly $T$ turns. The queue proceeds from lower indices to higher indices in each pass. This ordering splits everyone into two groups:
-
-- a person at index `i <= k` is reached before or at `k` during the final pass, so that person can receive as many as $T$ buying opportunities;
-- a person at index `i > k` would be reached only after `k` during that final pass, but the process stops immediately when `k` finishes, so that person can receive at most $T-1$ opportunities.
-
-This single distinction lets the code compute the complete elapsed time in one traversal.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tickets": [2, 3, 2], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Cap opportunities by the tickets a person actually needs
-
-Being offered $T$ turns does not mean a person necessarily uses all $T$. If someone needs only two tickets, they leave after their second purchase. Their contribution to the elapsed time is two seconds, even if the queue could otherwise have reached their position many more times.
-
-For a person at or before `k`, the contribution is therefore
-
-$$
-\min(\texttt{tickets[i]},T).
-$$
-
-For a person after `k`, it is
-
-$$
-\min(\texttt{tickets[i]},T-1).
-$$
-
-The implementation encodes both formulas in one expression:
-
-`min(x, tickets[k] if i <= k else tickets[k] - 1)`,
-
-where `x` is `tickets[i]`. Each actual ticket purchase consumes exactly one second, so adding these per-person contributions gives the required total time.
-
-Consider `tickets = [2, 3, 2]` and `k = 2`. Here $T=2$, and every index is at or before `k`. The contributions are $\min(2,2)=2$, $\min(3,2)=2$, and $\min(2,2)=2$, for a total of 6. The middle person still needs one more ticket after that, but that future purchase never occurs because person `k` has already finished.
-
-Now consider `tickets = [5, 1, 1, 1]` and `k = 1`. Here $T=1$. Indices 0 and 1 can be served once, giving contributions 1 and 1. Indices 2 and 3 come after `k` and can be served at most $T-1=0$ times before the stopping moment, so each contributes 0. The answer is 2 seconds.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Total calculated time:
+$$\text{Total Time} = 5 + 1 + 1 + 1 = 8$$
 
 ---
 
-### Step 3: Why the position boundary includes `k`
+## 4. Complete Execution Trace & Simulation Reconciliation
 
-The condition is `i <= k`, not merely `i < k`. Person `k` must contribute all $T$ of their own purchases, including the final purchase that ends the process. Using the later-position formula for `k` would cap their contribution at $T-1$ and make the answer one second too small.
+Below is the verification table demonstrating that the mathematical formula matches the physical queue round-robin progression step-by-step:
 
-For an earlier person, the $T$th opportunity occurs earlier in the same pass as `k`'s $T$th opportunity. For a later person, that opportunity would occur afterward and is never reached. This is why array position affects the cap by exactly one.
+| Round Number | Queue State at Round Start | Actions Taken During Round | Round Elapsed Time | Cumulative Time | Remaining Demand for $k=0$ |
+|---|---|---|---|---|---|
+| Round 1 | $[(0:5), (1:1), (2:1), (3:1)]$ | Person $0$ buys ($4$ left), Persons $1, 2, 3$ buy ($0$ left, all exit) | $4$ seconds | $4$ | $4$ |
+| Round 2 | $[(0:4)]$ | Person $0$ buys alone ($3$ left) | $1$ second | $5$ | $3$ |
+| Round 3 | $[(0:3)]$ | Person $0$ buys alone ($2$ left) | $1$ second | $6$ | $2$ |
+| Round 4 | $[(0:2)]$ | Person $0$ buys alone ($1$ left) | $1$ second | $7$ | $1$ |
+| Round 5 (Final) | $[(0:1)]$ | Person $0$ buys final ticket ($0$ left, exits) | $1$ second | **$8$** | $0$ |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+Now contrast this with an instance where $k$ is at the end: `tickets = [2, 3, 2]`, $k = 2$ ($T = 2$):
 
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tickets": [2, 3, 2], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Person Index $i$ | Demand $tickets[i]$ | Positional Rule | Effective Bound | Evaluated Contribution $C(i)$ | Running Sum |
+|---|---|---|---|---|---|
+| $0$ | $2$ | $i \le k \implies \min(x, 2)$ | $\min(2, 2)$ | $2$ | $2$ |
+| $1$ | $3$ | $i \le k \implies \min(x, 2)$ | $\min(3, 2)$ | $2$ | $4$ |
+| $2$ | $2$ | $i \le k \implies \min(x, 2)$ | $\min(2, 2)$ | $2$ | **$6$** |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Literal queue simulation:** Repeatedly decrementing the front person's tickets is easy to visualize and can be correct, but it takes one step per elapsed second. The contribution formula compresses all full and partial queue passes into $O(n)$ work.
-- **Using a queue data structure:** A queue models the rotations but stores indices or remaining counts and still processes every purchase. It adds space without improving the purchase-proportional running time.
-- **Counting full rounds globally:** It is possible to reason about complete rounds and then a partial round, but people leave at different times, which complicates the bookkeeping. The per-person minimum expresses the same effect locally and directly.
-- **Person `k` at index zero:** No one appears before `k`. Later people receive at most $T-1$ turns, and when $T=1$ they contribute zero because the process stops after the very first purchase.
-- **Person `k` at the last index:** Every person satisfies `i <= k`, so everyone may participate in the final pass before `k` finishes. Their contributions are all capped by $T$.
-- **Target needs one ticket:** With $T=1$, people through index `k` contribute at most one purchase, while every later person contributes zero. The positivity guarantee makes this case safe and meaningful.
-- **Another person needs fewer tickets than the cap:** The `min` is essential. Once that person buys all needed tickets, they leave and cannot contribute on later passes.
-- **Another person needs many more tickets:** Their contribution is limited by the number of times their position is reached before `k` finishes. Tickets they would buy afterward do not belong in the answer.
-- **The `i <= k` boundary:** Changing it to `i < k` undercounts person `k` by one. Changing it to apply $T$ to every index overcounts later people who are not reached in the final partial pass.
-- **Input preservation:** The exact solution never decrements `tickets`. This is useful when the caller expects the input array to remain unchanged and reinforces that the computation is analytical rather than simulated.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Independence of Additive Contributions:**
+   Because each ticket purchased takes exactly $1$ second, the total time equals the total count of tickets purchased across all persons up to the instant $k$ finishes. Because no person can skip turns or buy out of order, the number of turns each individual receives is determined strictly by their demand and their relative position to $k$.
+2. **Exhaustive Positional Partition:**
+   - Any person $i \le k$ is served before $k$ in round $r \in \{1, \dots, T\}$. If $tickets[i] \ge T$, they purchase in all $T$ rounds. If $tickets[i] < T$, they exit after $tickets[i]$ rounds. Hence they purchase exactly $\min(tickets[i], T)$ tickets.
+   - Any person $i > k$ is served after $k$ in round $r$. In round $T$, $k$ finishes and the process halts immediately. Thus, person $i$ only participates in rounds $1, \dots, T - 1$. Hence they purchase exactly $\min(tickets[i], T - 1)$ tickets.
+   The sum of these exact individual quantities is mathematically identical to the simulation duration.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases, Pitfalls & Structural Traps
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of people, which is the length of `tickets`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Target Requires 1 Ticket ($tickets[k] = 1$):**
+  If $tickets[k] = 1$, then $T - 1 = 0$. For any $i > k$, $\min(tickets[i], 0) = 0$. Persons behind $k$ never buy a single ticket, correctly yielding a contribution of $0$.
+- **Person Ahead with Surplus Tickets:**
+  If a person ahead of $k$ requires $100$ tickets but $tickets[k] = 2$, they only buy $2$ tickets before $k$ leaves. The $\min$ operator correctly bounds their contribution to $2$.
+- **Queue Simulation Memory Overhead:**
+  A physical queue simulation with nodes or array manipulation requires continuous popping and appending, incurring overhead and potential timeout when numbers are large. The closed-form approach executes in a single linear pass with $\mathcal{O}(1)$ space.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - We perform a single pass over the array of size $n$, computing a constant-time $\min$ comparison at each index.
+  - Total time complexity: $\mathcal{O}(n)$, strictly optimal.
+- **Auxiliary Space Complexity:**
+  - Only a single scalar accumulator is maintained.
+  - Total auxiliary space: $\mathcal{O}(1)$ memory.

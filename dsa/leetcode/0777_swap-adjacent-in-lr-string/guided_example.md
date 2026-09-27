@@ -1,116 +1,231 @@
 # Guided Example: Swap Adjacent in LR String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step non-passable particle kinematics (`'L'` and `'R'`), directional displacement constraints (`'L'` moves left $i \ge j$, `'R'` moves right $i \le j$), non-`'X'` invariant token projection ($s \setminus \{X\} == e \setminus \{X\}$), dual-pointer index synchronization ($i, j$), invalid movement rejection, and transformation reachability verification on representative string pairs:
 
-- **Input:** `{"start": "RXXLRXRXL", "end": "XRLXXRRLX"}`
+- **Input:**
+  $$
+  start = \text{"RXXLRXRXL"}
+  $$
+  $$
+  end = \text{"XRLXXRRLX"}
+  $$
 - **Required output:** `true`
+  - Permissible transformation rules:
+    - You can replace `"XL"` with `"LX"`.
+      - **Physical meaning:** Character `'L'` can slide to the **left** into adjacent spaces (`'X'`).
+      - An `'L'` can never move right. If an `'L'` in $start$ at index $i$ corresponds to an `'L'` in $end$ at index $j$, it must satisfy:
+        $$
+        i \ge j
+        $$
+    - You can replace `"RX"` with `"XR"`.
+      - **Physical meaning:** Character `'R'` can slide to the **right** into adjacent spaces (`'X'`).
+      - An `'R'` can never move left. If an `'R'` in $start$ at index $i$ corresponds to an `'R'` in $end$ at index $j$, it must satisfy:
+        $$
+        i \le j
+        $$
+    - **Particle Collision Rule:**
+      - `'L'` and `'R'` can **never cross over each other** (neither `"LR"` nor `"RL"` can swap).
+      - Consequently, the sequence of non-`'X'` characters must be **identically equal** in both strings!
+    - For $\text{"RXXLRXRXL"}$ and $\text{"XRLXXRRLX"}$:
+      - Non-`'X'` sequence in $start$: `['R', 'L', 'R', 'R', 'L']`.
+      - Non-`'X'` sequence in $end$: `['R', 'L', 'R', 'R', 'L']`.
+      - Order matches.
+      - Indices comparison:
+        - 1st `'R'`: from index 0 to index 1 ($0 \le 1$, valid rightward slide).
+        - 1st `'L'`: from index 3 to index 2 ($3 \ge 2$, valid leftward slide).
+        - 2nd `'R'`: from index 4 to index 5 ($4 \le 5$, valid rightward slide).
+        - 3rd `'R'`: from index 6 to index 6 ($6 \le 6$, stationary).
+        - 2nd `'L'`: from index 8 to index 8 ($8 \ge 8$, stationary).
+      - All movements are physically valid $\implies$ return **`true`**.
+- **Two-Pointer Particle Tracking Invariant:**
+  - **The Relative Order Invariant:**
+    - Because particles cannot jump over one another, the $k$-th non-`'X'` particle in $start$ must be matched with the $k$-th non-`'X'` particle in $end$.
+  - **Dual Pointers ($i, j$):**
+    - Skip all `'X'` characters in $start$ using pointer $i$.
+    - Skip all `'X'` characters in $end$ using pointer $j$.
+    - **Verification Conditions at Each Step:**
+      1. If both $i$ and $j$ reach the end of their strings ($i \ge n \land j \ge n$): valid transformation completed $\implies$ return `true`.
+      2. If one pointer reaches the end before the other ($i \ge n \lor j \ge n$): particle counts mismatch $\implies$ return `false`.
+      3. If $start[i] \ne end[j]$: particle identities mismatch (e.g. `'L'` vs `'R'`) $\implies$ return `false`.
+      4. If $start[i] == \text{'L'}$ and $i < j$: `'L'` attempted to move right $\implies$ return `false`.
+      5. If $start[i] == \text{'R'}$ and $i > j$: `'R'` attempted to move left $\implies$ return `false`.
+    - If all checks pass, advance $i \leftarrow i + 1, j \leftarrow j + 1$.
+- **Step-by-Step Worked Execution Trace on the Sample Strings:**
+  - Length $n = 9$.
+  - **Pair 1 (1st Particle):**
+    - Advance $i$ to first non-`'X'` in $start$: $i = 0$ ($start[0] = \text{'R'}$).
+    - Advance $j$ to first non-`'X'` in $end$: $end[0] = \text{'X'}$, so $j = 1$ ($end[1] = \text{'R'}$).
+    - Compare tokens: $start[0] == end[1] == \text{'R'} \implies \mathbf{Match.}$
+    - Directional check: Particle `'R'` moves from $i = 0$ to $j = 1$.
+      $$
+      i \le j \iff 0 \le 1 \implies \mathbf{Valid\ Rightward\ Shift!}
+      $$
+    - Advance: $i = 1, j = 2$.
+  - **Pair 2 (2nd Particle):**
+    - Advance $i$ past `'X'`s in $start$: $start[1]=\text{'X'}, start[2]=\text{'X'}, start[3]=\text{'L'} \implies i = 3$.
+    - Advance $j$ past `'X'`s in $end$: $end[2] = \text{'L'} \implies j = 2$.
+    - Compare tokens: $start[3] == end[2] == \text{'L'} \implies \mathbf{Match.}$
+    - Directional check: Particle `'L'` moves from $i = 3$ to $j = 2$.
+      $$
+      i \ge j \iff 3 \ge 2 \implies \mathbf{Valid\ Leftward\ Shift!}
+      $$
+    - Advance: $i = 4, j = 3$.
+  - **Pair 3 (3rd Particle):**
+    - Advance $i$: $start[4] = \text{'R'} \implies i = 4$.
+    - Advance $j$: $end[3]=\text{'X'}, end[4]=\text{'X'}, end[5]=\text{'R'} \implies j = 5$.
+    - Compare tokens: $start[4] == end[5] == \text{'R'} \implies \mathbf{Match.}$
+    - Directional check: Particle `'R'` moves from $i = 4$ to $j = 5$.
+      $$
+      i \le j \iff 4 \le 5 \implies \mathbf{Valid\ Rightward\ Shift!}
+      $$
+    - Advance: $i = 5, j = 6$.
+  - **Pair 4 (4th Particle):**
+    - Advance $i$: $start[5]=\text{'X'}, start[6]=\text{'R'} \implies i = 6$.
+    - Advance $j$: $end[6] = \text{'R'} \implies j = 6$.
+    - Compare tokens: $start[6] == end[6] == \text{'R'} \implies \mathbf{Match.}$
+    - Directional check: $i \le j \iff 6 \le 6 \implies \mathbf{Valid.}$
+    - Advance: $i = 7, j = 7$.
+  - **Pair 5 (5th Particle):**
+    - Advance $i$: $start[7]=\text{'X'}, start[8]=\text{'L'} \implies i = 8$.
+    - Advance $j$: $end[7]=\text{'X'}, end[8]=\text{'L'} \implies j = 8$.
+    - Compare tokens: $start[8] == end[8] == \text{'L'} \implies \mathbf{Match.}$
+    - Directional check: $i \ge j \iff 8 \ge 8 \implies \mathbf{Valid.}$
+    - Advance: $i = 9, j = 9$.
+  - **Termination:**
+    - Both $i \ge 9$ and $j \ge 9$.
+    - Output:
+      $$
+      ans = \mathbf{true}
+      $$
+- **Particle Direction Violation Trace ($start = \text{"LLR"}, end = \text{"RRL"}$):**
+  - First particle in $start$ is `'L'`, but first particle in $end$ is `'R'`.
+  - $start[i] \ne end[j]$ $\implies$ returns **`false`**.
+- **Illegal Forward Slide Trace ($start = \text{"LXX"}, end = \text{"XXL"}$):**
+  - Particle `'L'` at $i = 0$ needs to reach $j = 2$.
+  - Since $start[i] == \text{'L'}$ and $i < j$ ($0 < 2$), `'L'` cannot slide right!
+  - Returns **`false`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates 1D unidirectional particle kinetics and monotonic coordinate projection, mathematically proves why conservation of non-empty symbol order coupled with partial order inequalities forms the necessary and sufficient reachability condition, and derives $O(N)$ execution time and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-In a string composed of `'L'`, `'R'`, and `'X'` characters, like `"RXXLRXRXL"`, a move consists of either replacing one occurrence of `"XL"` with `"LX"`, or replacing one occurrence of `"RX"` with `"XR"`. Given the starting string `start` and the ending string `result`, return `true` if and only if there exists a sequence of moves to transform `start` to `result`.
+Given two strings $start$ and $end$ of `'L'`, `'R'`, and `'X'`:
+Can $start$ transform into $end$ by moving `'L'` left into `'X'` (`"XL" -> "LX"`) and `'R'` right into `'X'` (`"RX" -> "XR"`)?
 
-The objective is to compute `true` from `{"start": "RXXLRXRXL", "end": "XRLXXRRLX"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+start = "RXXLRXRXL"
+end   = "XRLXXRRLX"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Non-'X' sequence in start: [ 'R', 'L', 'R', 'R', 'L' ]
+Non-'X' sequence in end:   [ 'R', 'L', 'R', 'R', 'L' ] (Identical!)
+
+Movement checks:
+  'R' moves from 0 to 1: 0 <= 1 -> OK (moves right)
+  'L' moves from 3 to 2: 3 >= 2 -> OK (moves left)
+  'R' moves from 4 to 5: 4 <= 5 -> OK (moves right)
+  'R' moves from 6 to 6: 6 <= 6 -> OK (stationary)
+  'L' moves from 8 to 8: 8 >= 8 -> OK (stationary)
+
+Result: true
+```
+
+### The Invariant of Non-Crossing Particles
+1. `'L'` and `'R'` cannot cross $\implies$ sequence of non-`'X'` characters must be identical.
+2. `'L'` can only move **left** $\implies$ start index $i \ge$ end index $j$.
+3. `'R'` can only move **right** $\implies$ start index $i \le$ end index $j$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Particle Sequence Congruence:
+$$
+\text{filter}(start, \ne \text{'X'}) = \text{filter}(end, \ne \text{'X'})
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Kinematic Direction Inequalities:
+For the $k$-th particle at index $i$ in $start$ and index $j$ in $end$:
+$$
+\text{if } token == \text{'L'} \implies i \ge j
+$$
+$$
+\text{if } token == \text{'R'} \implies i \le j
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Poset Path Reachability Invariant.** The string rewrite rules induce a distributive lattice of configurations where particles preserve their total ordering. Reachability is characterized by component-wise dominance relations on the coordinates $(x_1, \dots, x_k) \le (y_1, \dots, y_k)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the replacement rules into movement rules
-
-The character `X` represents an empty position. Replacing `XL` with `LX` moves an `L` one position to the left across an empty position. Replacing `RX` with `XR` moves an `R` one position to the right across an empty position.
-
-Those directions can never be reversed:
-
-- An `L` may move left, but it can never move right.
-- An `R` may move right, but it can never move left.
-- Two non-`X` characters can never pass through one another, because every move swaps a letter only with `X`.
-
-These facts are more useful than trying to simulate an unknown sequence of swaps. A simulation would have to decide which legal move to make at every step, even though many different move sequences can lead to the same result.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"start": "RXXLRXRXL", "end": "XRLXXRRLX"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $start = \text{"RXXLRXRXL"}, end = \text{"XRLXXRRLX"}$:
 
 ---
 
-### Step 2: Ignore empty positions to expose the fixed letter order
-
-Because `L` and `R` never cross, deleting every `X` from both strings must leave exactly the same sequence of letters. For example, `"RXXLR"` becomes `"RLR"`. If the other string becomes `"RRL"`, the transformation is impossible regardless of where its empty positions occur.
-
-The implementation checks this condition without building filtered strings. Pointer `i` scans `start` and pointer `j` scans `end`. Each inner loop skips consecutive `X` characters. The next positions, if they exist, are therefore the next nonempty pieces in their respective strings.
-
-If only one pointer reaches the end, one string still has an unmatched letter. If both point to letters but those letters differ, the non-`X` order differs. Either situation must return `false`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Particle 1 `'R'`
+- $start$ at 0, $end$ at 1 $\implies 0 \le 1$ (Valid right move).
 
 ---
 
-### Step 3: Match each physical piece with its destination
+### Step 2: Particle 2 `'L'`
+- $start$ at 3, $end$ at 2 $\implies 3 \ge 2$ (Valid left move).
 
-When `start[i] == end[j]`, the two pointers refer to the same piece in the preserved left-to-right letter order. Its original index is `i` and its requested final index is `j`.
+---
 
-For an `L`, legal moves can only decrease its index. Therefore its destination must satisfy $j \le i$. The code detects the forbidden case `i < j`, which would require that `L` to move right.
+### Step 3: Particle 3 `'R'`
+- $start$ at 4, $end$ at 5 $\implies 4 \le 5$ (Valid right move).
 
-For an `R`, legal moves can only increase its index. Its destination must satisfy $j \ge i$. The code detects the forbidden case `i > j`, which would require that `R` to move left.
+---
 
-After a matching letter passes its direction test, both pointers advance once. The following iteration skips any new run of `X` characters and examines the next preserved piece.
+### Step 4: Particles 4 and 5
+- `'R'` at 6 to 6 $\implies 6 \le 6$ (Valid).
+- `'L'` at 8 to 8 $\implies 8 \ge 8$ (Valid).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 5: Output
+$$
+\mathbf{true}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"start": "RXXLRXRXL", "end": "XRLXXRRLX"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Particle # | Token Type | Start Index $i$ | End Index $j$ | Direction Inequality | Physically Valid? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `'R'` | $0$ | $1$ | $i \le j$ ($0 \le 1$) | Yes |
+| $2$ | `'L'` | $3$ | $2$ | $i \ge j$ ($3 \ge 2$) | Yes |
+| $3$ | `'R'` | $4$ | $5$ | $i \le j$ ($4 \le 5$) | Yes |
+| $4$ | `'R'` | $6$ | $6$ | $i \le j$ ($6 \le 6$) | Yes |
+| **$5$** | **`'L'`** | **$8$** | **$8$** | **$i \ge j$ ($8 \ge 8$)** | **Yes** |
+| **Final** | — | — | — | — | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Token Type Mismatch ($start = \text{"X"}, end = \text{"L"}$):** One string has more particles than the other $\implies$ returns `false`.
+- **Wrong Order ($start = \text{"LR"}, end = \text{"RL"}$):** Particles cannot cross $\implies$ returns `false`.
+- **All Spaces ($start = \text{"XXX"}, end = \text{"XXX"}$):** Both pointers reach end with 0 particles $\implies$ returns `true`.
+- **Backward Shift of `'R'` ($start = \text{"XR"}, end = \text{"RX"}$):** $i = 1 > j = 0 \implies$ `'R'` cannot slide left, returns `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Build filtered strings plus position lists:** Comparing the non-`X` sequences and then comparing corresponding indices expresses the same proof clearly, but the new lists require $O(n)$ auxiliary space.
-- **Breadth-first search over strings:** It could discover a move sequence for tiny inputs, but the number of configurations is enormous at length $10^4$ and the sequence itself is not requested.
-- **Greedy swap simulation:** Choosing currently available moves can perform unnecessary work and needs careful scheduling; the invariant-based scan decides reachability directly.
+- **Simulating Swaps Explicitly ($O(N^2)$ or BFS):** Simulating string replacements is exponential or quadratic. The invariant formulation allows determining reachability in a single linear scan!
+- **Filtering Strings into Separate Lists:** Creating `[c for c in start if c != 'X']` uses extra memory and still requires index tracking. Two pointers $i, j$ iterate directly in $O(1)$ memory.
+- **Forgetting End Bounds on Both Pointers:** When checking if one string ran out of particles early, ensure both pointers are tested for reaching length $N$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common string length. Each pointer moves only from left to right and advances at most $n$ times. Although the scans contain nested `while` loops, no position is revisited, so the total time is $O(n)$ rather than $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Both pointers $i$ and $j$ only advance forward from 0 to $N$: $\mathcal{O}(N)$.
+  - Total Time: strictly linear $\mathcal{O}(N)$ where $N \le 10^4$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (only index pointers $i, j$).

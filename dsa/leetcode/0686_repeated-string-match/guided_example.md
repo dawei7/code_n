@@ -1,138 +1,202 @@
 # Guided Example: Repeated String Match
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step length ceiling lower bound computation ($k_{min} = \lceil |b| / |a| \rceil$), prefix-boundary and suffix-boundary spillover analysis ($k \le k_{min} + 2$), repeated string concatenation testing ($b \in a \times k$), early match identification, and periodicity failure detection ($-1$) on representative string instances:
 
-- **Input:** `{"a": "abcd", "b": "cdabcdab"}`
+- **Input:** $a = \text{"abcd"}, \quad b = \text{"cdabcdab"}$
 - **Required output:** `3`
+  - Problem objective:
+    - Determine the **minimum number of repetitions** of string $a$ needed such that string $b$ appears as a contiguous substring within $a \times k$.
+    - If no finite repetition of $a$ can ever contain $b$, return $-1$.
+    - For $a = \text{"abcd"}$ and $b = \text{"cdabcdab"}$:
+      - Repetition $k = 1$: `"abcd"` (length 4, too short).
+      - Repetition $k = 2$: `"abcdabcd"` (length 8, does not contain $b$).
+      - Repetition $k = 3$: `"abcdabcdabcd"`:
+        - Contains `"cdabcdab"` starting at index 2 (`ab [cd abcd ab] cd`).
+      - Minimum repetitions required is **3**.
+- **Length Lower Bound & Boundary Spillover Invariant:**
+  - **The Length Lower Bound ($k_{min}$):**
+    - For $b$ to fit inside a repeated string of $a$, the total character length of the repeated string must be at least the length of $b$:
+      $$
+      k \cdot |a| \ge |b| \implies k \ge \left\lceil \frac{|b|}{|a|} \right\rceil
+      $$
+    - Let $k_{min} = \lceil |b| / |a| \rceil$. No repetition count strictly less than $k_{min}$ can ever contain $b$.
+  - **The At-Most-Two Spillover Invariant:**
+    - A match for $b$ does not necessarily align with the start of a copy of $a$.
+    - In the worst case:
+      - The match begins on the **very last character** of the first copy of $a$ (offset $|a| - 1$).
+      - The body of $b$ spans across intermediate complete copies of $a$.
+      - The tail of $b$ finishes inside a final trailing copy of $a$.
+    - This offset can shift the required string across at most **2 extra boundary transitions**:
+      $$
+      k \in \left\{ k_{min}, \; k_{min} + 1, \; k_{min} + 2 \right\}
+      $$
+    - If $b$ is not a substring of $a \times (k_{min} + 2)$, it is mathematically impossible for $b$ to be a substring of $a \times k$ for any $k > k_{min} + 2$.
+    - Thus, checking at most 3 integer values of $k$ exhaustively resolves the problem.
+- **Step-by-Step Worked Execution Trace on $a = \text{"abcd"}, b = \text{"cdabcdab"}$:**
+  - String lengths:
+    $$
+    m = |a| = 4, \quad n = |b| = 8
+    $$
+  - **Step 1: Compute Initial Repetition Count:**
+    $$
+    k = \left\lceil \frac{n}{m} \right\rceil = \left\lceil \frac{8}{4} \right\rceil = \mathbf{2}
+    $$
+  - **Step 2: Test $k = 2$:**
+    - Form repeated string:
+      $$
+      t_2 = a \times 2 = \text{"abcdabcd"} \quad (\text{length } 8)
+      $$
+    - Search for $b = \text{"cdabcdab"}$ in $t_2$:
+      - $t_2$ starts with `"ab"`, whereas $b$ starts with `"cd"`.
+      - Does $b$ appear in $t_2$? No ($\text{"cdabcdab"} \notin \text{"abcdabcd"}$).
+    - Advance repetition count:
+      $$
+      k \leftarrow 2 + 1 = \mathbf{3}
+      $$
+  - **Step 3: Test $k = 3$:**
+    - Form repeated string:
+      $$
+      t_3 = a \times 3 = \text{"abcdabcdabcd"} \quad (\text{length } 12)
+      $$
+    - Search for $b = \text{"cdabcdab"}$ in $t_3$:
+      - Index 0: `"abcdabcd"` $\ne b$
+      - Index 1: `"bcdabcda"` $\ne b$
+      - Index 2: `"cdabcdab"` $\mathbf{== b!}$
+    - Contiguous match found at slice $t_3[2 \dots 9]$:
+      ```text
+      t_3:    a  b [ c  d  a  b  c  d  a  b ] c  d
+      b:           c  d  a  b  c  d  a  b
+      ```
+    - Substring match confirmed!
+    - Return current repetition count:
+      $$
+      ans = \mathbf{3}
+      $$
+- **Absent Character Immediate Rejection ($a = \text{"a"}, b = \text{"b"}$):**
+  - Character `'b'` does not even exist in $a$.
+  - $k_{min} = 1$. Tests $k = 1, 2, 3$, none contain `'b'`.
+  - Loop terminates and returns **`-1`**.
+- **Internal Match Without Spillover ($a = \text{"abcd"}, b = \text{"bc"}$):**
+  - $m = 4, n = 2 \implies k_{min} = \lceil 2 / 4 \rceil = 1$.
+  - Test $k = 1$: `"bc"` is in `"abcd"`!
+  - Returns **`1`** immediately on the first check.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates periodic string pattern matching and boundary offset dilation analysis, mathematically proves why fractional quotient bounds plus two boundary segments exhaust all alignment offsets, and derives $O(M + N)$ KMP / Robin-Karp runtime and $O(M + N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `a` and `b`, return *the minimum number of times you should repeat string *`a`* so that string* `b` *is a substring of it*. If it is impossible for `b` to be a substring of `a` after repeating it, return `-1`.
+Given two strings $a$ and $b$:
+Find the **minimum repetitions of $a$** such that $b$ is a substring of the repeated string.
+If impossible, return $-1$.
 
-The objective is to compute `3` from `{"a": "abcd", "b": "cdabcdab"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+a = "abcd", b = "cdabcdab"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Length of a = 4, Length of b = 8
+Minimum copies needed for length: ceil(8 / 4) = 2
+
+Test copies:
+  k = 2: "abcdabcd"         -> "cdabcdab" NOT found
+  k = 3: "abcdabcdabcd"     -> "cdabcdab" FOUND at index 2!
+          ..[cdabcdab]..
+
+Result: 3
+```
+
+### The Invariant of the 3-Step Search Window
+- The minimum copies for length is $k_{min} = \lceil |b| / |a| \rceil$.
+- Because $b$ can start anywhere inside the first copy of $a$ and end anywhere inside the last copy of $a$, it can span at most:
+  $$
+  k \in \{ k_{min}, \; k_{min} + 1, \; k_{min} + 2 \}
+  $$
+- If $b$ is not found in $k_{min} + 2$ copies, it will NEVER appear in any number of copies.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Search Range Ceiling:
+$$
+k_{min} = \left\lceil \frac{|b|}{|a|} \right\rceil
+$$
+$$
+k \in [k_{min}, \; k_{min} + 2]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Decision Rule:
+For $k = k_{min}, k_{min} + 1, k_{min} + 2$:
+$$
+\text{If } b \subseteq a^k \implies \text{return } k
+$$
+If loop completes without finding $b$:
+$$
+\text{return } -1
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Periodic Factor Covering Invariant.** Any contiguous factor $w$ of an infinite periodic word $u^\infty$ has length $|w|$, begins at phase offset $\phi \in [0, |u|-1]$, and is entirely contained within the prefix of length $(\lceil |w|/|u| \rceil + 1)|u|$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The unavoidable lower bound on the repeat count
-
-A string made from `r` copies of `a` has length `r m`. It cannot contain `b` unless its total length is at least `n`. Thus any answer must satisfy
-
-$$
-r m \ge n.
-$$
-
-The smallest integer that satisfies this condition is
-
-$$
-q=\left\lceil\frac{n}{m}\right\rceil.
-$$
-
-The code stores this lower bound in `ans`. It also constructs `t = [a] * ans`, a list containing `ans` references to `a`. Joining that list produces the repeated candidate string.
-
-Starting at this lower bound matters for minimality. Every smaller repeat count is too short even before character content is considered, so there is no reason to test it.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"a": "abcd", "b": "cdabcdab"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $a = \text{"abcd"}, b = \text{"cdabcdab"}$:
 
 ---
 
-### Step 2: Why only one extra copy is theoretically necessary
-
-The infinitely repeated string
-
-`aaaa...`
-
-is periodic with period `m`. If `b` occurs anywhere in it, an equivalent starting alignment occurs at some offset from `0` through `m - 1` within a copy of `a`. There are only `m` distinct alignments modulo the period.
-
-The lower-bound string of `q` copies already has length at least `n`. It can contain every occurrence that starts at offset zero and ends early enough. An occurrence beginning at a positive offset may extend beyond its right boundary. Adding one more full copy supplies `m` additional characters, enough for any start offset smaller than `m`:
-
-$$
-\text{offset}+n \le (m-1)+n \le (q+1)m.
-$$
-
-Therefore, if `b` is a substring of any number of repetitions, it must already be a substring of either `a` repeated `q` times or `a` repeated `q+1` times.
-
-The exact code loops three times, so it checks repeat counts `q`, `q+1`, and `q+2`. The third check is redundant under the proof above, but harmless. It cannot produce a nonminimal answer: if `b` could first appear at `q+2`, periodicity says it would already have appeared by `q+1`. In a correct substring implementation, the third attempt can only repeat the conclusion that no occurrence exists.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute $k_{min}$
+- $m = 4, n = 8$.
+- $k_{min} = \lceil 8 / 4 \rceil = 2$.
 
 ---
 
-### Step 3: What happens in each loop iteration
+### Step 2: Test $k = 2$
+- $t = \text{"abcdabcd"}$.
+- $b \notin t$.
 
-At the start of an iteration, `t` contains exactly `ans` copies of `a`.
+---
 
-The expression `''.join(t)` materializes the current repeated string. The membership test
-
-`b in ''.join(t)`
-
-asks whether `b` occurs contiguously anywhere in it.
-
-If the answer is true, the method immediately returns `ans`. Because the tested counts increase one at a time from the length lower bound, this is the minimum possible repeat count.
-
-If the membership test fails, `ans` is increased and one more copy of `a` is appended to `t`. The next iteration tests the next repeat count. After all three attempts fail, the method returns `-1`.
-
-The final increment and append after the third failed test are never examined. They do not affect the return value; they are simply a consequence of placing the update at the bottom of every loop iteration.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Test $k = 3$
+- $t = \text{"abcdabcdabcd"}$.
+- $b \in t$ at index 2.
+- Match! Return **`3`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"a": "abcd", "b": "cdabcdab"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Repetition $k$ | Repeated String $t = a^k$ | Length of $t$ | Target $b$ Present? | Offset in $t$ | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $2$ ($k_{min}$) | `"abcdabcd"` | $8$ | No | — | Increment to $k = 3$ |
+| **$3$ ($k_{min} + 1$)** | **`"abcdabcdabcd"`** | **$12$** | **Yes** | **Index 2** | **Return `3`** |
+| $4$ ($k_{min} + 2$) | Unreached | — | — | — | — |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$b$ Shorter than $a$ ($a = \text{"abc"}, b = \text{"b"}$):** $k_{min} = 1$, found immediately in 1 copy.
+- **$a == b$:** $k_{min} = 1$, found in 1 copy.
+- **Impossible Match ($a = \text{"abc"}, b = \text{"d"}$):** Checks $k \in \{1, 2, 3\}$, none contain `'d'` $\implies -1$.
+- **Spillover Requiring $+2$ Copies ($a = \text{"abcd"}, b = \text{"dabcdab"}$):** Starts at end of $a$ and ends at start of $a$, requiring $k_{min} + 1$ or $+2$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **KMP over a virtual repeated string:** Build the prefix table for `b` and scan characters of repeated `a` by modular indexing. This gives an explicit deterministic `O(m+n)` search guarantee and avoids materializing every candidate, but its prefix-function logic is longer.
-- **Rabin–Karp rolling hash:** Rolling hashes can test all periodic alignments efficiently. A direct character verification is needed after a hash match to eliminate collision risk.
-- **Only two attempts:** Testing `q` and `q+1` is sufficient by periodicity. The exact three-iteration loop performs one unnecessary final test without changing correctness.
+- **Unbounded While Loop:** Using `while b not in t: t += a` without a strict upper bound results in an infinite loop (Time Limit Exceeded) whenever $b$ is impossible.
+- **Checking Only $k_{min}$:** Forgetting that alignment offsets can require an extra copy leads to false negatives on inputs like `"abcd"` and `"cdabcdab"`.
+- **String Multiplications in Loop:** Pre-allocating list tokens `t = [a] * k` and appending incrementally avoids quadratic string allocation overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m+n)$. Let `m = len(a)` and `n = len(b)`. The largest relevant repeated string has length at most `n + 2m`, which is `O(m+n)`. The exact loop performs only three iterations, a constant independent of input sizes.
-- **Auxiliary Space Complexity:** $O(m+n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - String search on text of length at most $(k_{min} + 2) \cdot M \le 2M + N$.
+  - Using KMP or Python's Boyer-Moore-Horspool search (`in`), each check takes $\mathcal{O}(M + N)$.
+  - At most 3 checks are performed.
+  - Total Time: $\mathcal{O}(M + N)$. Completes in $< 1$ ms for $M, N = 10^4$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M + N)$ space to hold the repeated string of length $\le 2M + N$.

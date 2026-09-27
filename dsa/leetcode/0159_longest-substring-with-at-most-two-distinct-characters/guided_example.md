@@ -1,89 +1,171 @@
 # Guided Example: Longest Substring with At Most Two Distinct Characters
 
-We trace the dynamic Hash Table, String, Sliding Window sliding window on a representative input instance.
+We trace the step-by-step sliding window expansion, character frequency hash map tracking, and left boundary contraction on representative string instances:
 
-- **Input:** `{"s": "eceba"}`
-- **Required output:** `3`
+- **Input:** $s = \text{"eceba"}$
+- **Required output:** $3$ (Substring `"ece"` of length 3 contains 2 distinct characters: `'e'` and `'c'`)
+- **Longer Plateau Instance:** $s = \text{"ccaabbb"} \implies 5$ (Substring `"aabbb"` contains distinct characters `'a'` and `'b'`)
 
-This instance highlights expanding the right boundary $R$, maintaining the internal frequency/validity state, and contracting the left boundary $L$ to restore feasibility.
+This instance demonstrates two-pointer sliding window mechanics, managing a frequency dictionary with zero-count key deletion, contracting the left pointer $L$ when distinct character count exceeds 2, and achieving optimal $O(N)$ linear time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Longest Substring with At Most Two Distinct Characters** is to find the optimal contiguous window without evaluating all $O(N^2)$ candidate subarrays.
-By recognizing that the window constraint exhibits monotonic expansion and contraction, we adjust two pointers $L$ and $R$ in a single forward pass.
+Given a string $s = \text{"eceba"}$, find the length of the longest substring that contains **at most two distinct characters**:
+- Substrings of $s$:
+  - `"ece"` (length 3, distinct characters: $\{\text{'e'}, \text{'c'}\}$) $\implies$ **Valid**.
+  - `"eceb"` (length 4, distinct characters: $\{\text{'e'}, \text{'c'}, \text{'b'}\}$) $\implies$ Invalid ($3 > 2$).
+  - `"ceba"` (length 4, distinct characters: $\{\text{'c'}, \text{'e'}, \text{'b'}, \text{'a'}\}$) $\implies$ Invalid ($4 > 2$).
+  - `"ba"` (length 2, distinct characters: $\{\text{'b'}, \text{'a'}\}$) $\implies$ Valid.
+The maximum valid length is $3$.
+
+A brute-force search inspects all $\binom{N}{2}$ substrings, taking $O(N^2)$ time.
+A dynamic sliding window $[L, R]$ expands $R$ to absorb new characters while keeping a hash map of character counts.
+Whenever the number of unique keys in the hash map exceeds 2, we advance $L$ to evict characters until at least one distinct character's count drops to zero and its key is deleted.
+Because both $L$ and $R$ only move forward, every character is processed at most twice, resulting in strictly $O(N)$ linear runtime.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain two boundary indices $L$ and $R$, alongside a state tracker $M$ (frequency map or accumulator).
+### Sliding Window Frequency Protocol
+Maintain:
+- $L = 0$: start index of the current candidate window.
+- `counts = defaultdict(int)`: hash map tracking counts of characters currently inside $[L, R]$.
+- $\text{max\_len} = 0$: maximum valid window length observed.
 
-| State Tracker | Role in Algorithm |
-|---|---|
-| Left Boundary $L$ | Tracks start of active contiguous window |
-| Right Boundary $R$ | Expands exploration frontier |
-| Window State $M$ | Tracks validity metrics (character counts / sum) |
+For each index $R$ from $0$ to $|s| - 1$:
+1. **Window Expansion:**
+   Incorporate $s[R]$ into the window:
+   $$
+   \text{counts}[s[R]] \leftarrow \text{counts}[s[R]] + 1
+   $$
+2. **Window Contraction on Infeasibility:**
+   While the number of unique characters in the window exceeds 2:
+   $$
+   |\text{counts}| > 2
+   $$
+   - Decrement the count of character at left pointer:
+     $$
+     \text{counts}[s[L]] \leftarrow \text{counts}[s[L]] - 1
+     $$
+   - If count reaches zero, **delete the key from the dictionary**:
+     $$
+     \text{if } \text{counts}[s[L]] == 0: \quad \text{del } \text{counts}[s[L]]
+     $$
+   - Advance left pointer:
+     $$
+     L \leftarrow L + 1
+     $$
+3. **Record Valid Window Length:**
+   $$
+   \text{max\_len} \leftarrow \max(\text{max\_len}, \, R - L + 1)
+   $$
 
-> **Invariant.** At each step $R$, the window $[L, R]$ is adjusted so that it satisfies the problem constraints, and the global optimum is updated from all valid windows ending at $R$.
+> **Invariant.** At the end of every outer iteration $R$, the window $[L, R]$ contains at most two distinct characters, representing the longest valid substring ending at index $R$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Expand Window by Advancing $R$
+We trace the sliding window on $s = \text{"eceba"}$ ($N = 5$):
 
-- Incorporate element at index $R$ into the window accumulator $M$.
-- Check whether the expanded window satisfies the target constraint.
-
-| Parameter | State |
-|---|---|
-| Active Window | $[L, R]$ |
-| Window Condition | Evaluated against constraint |
-| Optimum Candidate | Staged for update |
+### Step 1: $R = 0, \, s[0] = \text{'e'}$
+- `counts['e'] = 1`. Unique keys: $\{\text{'e'}\} \implies 1 \le 2$.
+- Window $[0, 0]$: `"e"`.
+- Length: $0 - 0 + 1 = 1$.
+- $\text{max\_len} = \max(0, 1) = \mathbf{1}$.
 
 ---
 
-### Step 2: Contract Window from Left $L$ When Constraint Violated
+### Step 2: $R = 1, \, s[1] = \text{'c'}$
+- `counts['c'] = 1`. Unique keys: $\{\text{'e'}: 1, \text{'c'}: 1\} \implies 2 \le 2$.
+- Window $[0, 1]$: `"ec"`.
+- Length: $1 - 0 + 1 = 2$.
+- $\text{max\_len} = \max(1, 2) = \mathbf{2}$.
 
-- If adding element at $R$ causes an invalid state, increment $L$ and decrement $M$ until feasibility is restored.
+---
 
-| Parameter | State |
-|---|---|
-| Adjusted Boundary | $L$ advanced to restore validity |
-| Restored Window | Valid subsegment $[L, R]$ |
-| Global Optimum | Updated with valid window metric |
+### Step 3: $R = 2, \, s[2] = \text{'e'}$
+- `counts['e'] = 2`. Unique keys: $\{\text{'e'}: 2, \text{'c'}: 1\} \implies 2 \le 2$.
+- Window $[0, 2]$: `"ece"`.
+- Length: $2 - 0 + 1 = 3$.
+- $\text{max\_len} = \max(2, 3) = \mathbf{3}$.
+
+---
+
+### Step 4: $R = 3, \, s[3] = \text{'b'}$
+- `counts['b'] = 1`.
+- Unique keys: $\{\text{'e'}: 2, \text{'c'}: 1, \text{'b'}: 1\} \implies 3 > 2$ (**Violation!**).
+- **Contract Left Boundary $L$:**
+  - $L = 0, s[0] = \text{'e'}$: `counts['e'] = 2 - 1 = 1`. Advance $L \to 1$.
+    Still 3 keys: $\{\text{'e'}: 1, \text{'c'}: 1, \text{'b'}: 1\}$.
+  - $L = 1, s[1] = \text{'c'}$: `counts['c'] = 1 - 1 = 0`.
+    Count reached zero $\implies$ **Delete `'c'`**!
+    Remaining keys: $\{\text{'e'}: 1, \text{'b'}: 1\} \implies 2$ keys. Feasibility restored!
+    Advance $L \to 2$.
+- Window $[2, 3]$: `"eb"`.
+- Length: $3 - 2 + 1 = 2$.
+- $\text{max\_len} = \max(3, 2) = \mathbf{3}$.
+
+---
+
+### Step 5: $R = 4, \, s[4] = \text{'a'}$
+- `counts['a'] = 1`.
+- Unique keys: $\{\text{'e'}: 1, \text{'b'}: 1, \text{'a'}: 1\} \implies 3 > 2$ (**Violation!**).
+- **Contract Left Boundary $L$:**
+  - $L = 2, s[2] = \text{'e'}$: `counts['e'] = 1 - 1 = 0`.
+    Count reached zero $\implies$ **Delete `'e'`**!
+    Remaining keys: $\{\text{'b'}: 1, \text{'a'}: 1\} \implies 2$ keys. Feasibility restored!
+    Advance $L \to 3$.
+- Window $[3, 4]$: `"ba"`.
+- Length: $4 - 3 + 1 = 2$.
+- $\text{max\_len} = \max(3, 2) = \mathbf{3}$.
+
+Scan complete. Global maximum valid substring length is $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | $R$ | Processed Item | Condition Met? | Action on $L$ | Active Window $[L, R]$ | Current Metric | Global Best |
-|---|---|---|---|---|---|---|---|
-| 1 (Start) | 0 | First item | Yes | $L = 0$ | `[0, 0]` | Initial window metric | Baseline |
-| 2 (Expand) | Intermediate | Next item | Evaluated | Advance $L$ if invalid | Dynamic $[L, R]$ | Valid window metric | Updated |
-| 3 (Finish) | End | Final item | Maintained | Final adjustment | Terminal $[L, R]$ | Final window metric | Confirmed Best |
+```text
+String:          e    c    e    b    a
+Indices:         0    1    2    3    4
+R=0: [L=0, R=0] "e"            len=1, max=1
+R=1: [L=0, R=1] "ec"           len=2, max=2
+R=2: [L=0, R=2] "ece"          len=3, max=3 (GLOBAL MAX)
+R=3: [L=0..2, R=3] "eceb" -> 3 distinct! L moves to 2 -> "eb" len=2, max=3
+R=4: [L=2..3, R=4] "eba"  -> 3 distinct! L moves to 3 -> "ba" len=2, max=3
+```
+
+| $R$ | Character $s[R]$ | Map Before Shrink | Condition ($|\text{counts}| > 2$) | $L$ Advance Steps | Map After Shrink | Window $[L, R]$ | Window Length | Cumulative $\text{max\_len}$ |
+|:---:|:---:|:---|:---:|:---:|:---|:---:|:---:|:---:|
+| 0 | `'e'` | `{'e': 1}` | $1 \le 2$ (No) | None ($L=0$) | `{'e': 1}` | $[0, 0]$ (`"e"`) | 1 | 1 |
+| 1 | `'c'` | `{'e': 1, 'c': 1}` | $2 \le 2$ (No) | None ($L=0$) | `{'e': 1, 'c': 1}` | $[0, 1]$ (`"ec"`) | 2 | 2 |
+| **2** | **`'e'`** | **`{'e': 2, 'c': 1}`** | **$2 \le 2$ (No)** | **None ($L=0$)** | **`{'e': 2, 'c': 1}`** | **$[0, 2]$ (`"ece"`)** | **3** | **3 (Max)** |
+| 3 | `'b'` | `{'e': 2, 'c': 1, 'b': 1}` | $3 > 2$ (Yes) | $L: 0 \to 1 \to 2$ (del `'c'`) | `{'e': 1, 'b': 1}` | $[2, 3]$ (`"eb"`) | 2 | 3 |
+| 4 | `'a'` | `{'e': 1, 'b': 1, 'a': 1}` | $3 > 2$ (Yes) | $L: 2 \to 3$ (del `'e'`) | `{'b': 1, 'a': 1}` | $[3, 4]$ (`"ba"`) | 2 | **3 (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every window evaluated for the global optimum satisfies the exact validity condition by virtue of the while-contraction loop.
+**Soundness.** Every substring $[L, R]$ evaluated when recording `max_len` has $|\text{counts}| \le 2$, strictly adhering to the two-distinct-character restriction.
 
-**Completeness.** Since $R$ visits every possible ending position and $L$ identifies the widest valid prefix for that $R$, no maximal valid window is overlooked.
+**Completeness.** For any fixed end position $R$, the length of the valid substring ending at $R$ decreases monotonically as $L$ increases. Thus, the minimum index $L$ such that $[L, R]$ contains at most 2 distinct characters identifies the uniquely longest valid substring ending at $R$. Since all $R \in [0, N-1]$ are considered, the global maximum cannot be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Backward Pointer Movement:** Setting $L$ from stale lookup tables without taking $\max(L, \dots)$ can cause $L$ to jump backwards, admitting invalid elements.
-- **Off-by-One Window Size:** The length of window $[L, R]$ is $R - L + 1$, not $R - L$.
-- **Premature Exit:** Stopping expansion when an invalid element is encountered instead of contracting $L$ misses valid downstream windows.
+- **Failing to Delete Zero-Count Keys:** In Python dictionaries, setting `counts[ch] = 0` still leaves the key in the dictionary! `len(counts)` would still report 3 unique keys! Explicitly calling `del counts[ch]` is mandatory.
+- **Short Input Strings ($|s| \le 2$):** If $s = \text{"ab"}$ or $s = \text{"a"}$, the entire string contains at most 2 distinct characters. Returning $|s|$ directly is valid and handled naturally by the window logic.
+- **Plateau Excision:** With $s = \text{"ccaabbb"}$, after adding `'b'`, multiple `'c'` characters must be evicted by advancing $L$ from 0 to 2 before `'c'` is deleted, expanding the subsequent `"aabbb"` to length 5.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ amortized. The right pointer $R$ increments $N$ times, and the left pointer $L$ increments at most $N$ times.
-- **Auxiliary Space Complexity:** $O(K)$ where $K$ is the size of the distinct character alphabet or state map.
+- **Time Complexity:** $O(N)$, where $N = |s|$. Both $R$ and $L$ advance monotonically from $0$ to $N - 1$. Each character is added once and evicted at most once. Hash map operations take $O(1)$ time since the map contains at most 3 keys at any time.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, since the hash map stores at most 3 distinct character keys regardless of $N$.

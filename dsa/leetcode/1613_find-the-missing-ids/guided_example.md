@@ -1,128 +1,160 @@
 # Guided Example: Find the Missing IDs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates integer sequence synthesis and relational set difference (anti-semijoin) to detect non-contiguous missing identifier gaps within a bounded primary key domain.
 
-- **Input:** `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Customer1"}]}}`
-- **Required output:** `{"columns": ["ids"], "rows": []}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Customer Relation:** `Customers(customer_id, customer_name)`
+- **Sample Key Sequence:** `customer_id` $\in \{1, 4, 5\}$
+- **Maximum Bound:** $M = \max(\text{customer\_id}) = 5$
+- **Target Output:** Table containing missing identifier values $\{2, 3\}$ sorted in ascending order.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customers`
+Given a database table `Customers`, we must locate all integers in the closed range $[1, \max(\text{customer\_id})]$ that are absent from the `customer_id` column.
 
-The objective is to compute `{"columns": ["ids"], "rows": []}` from `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Customer1"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Consider the following concrete instance:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+`Customers`:
+| `customer_id` | `customer_name` |
+|---|---|
+| $1$ | Alice |
+| $4$ | Bob |
+| $5$ | Charlie |
+
+Here, the maximum observed identifier is $M = 5$. The full dense sequence from $1$ to $5$ is:
+$$\{1, 2, 3, 4, 5\}$$
+
+Existing keys in `Customers` are $\{1, 4, 5\}$. The missing identifiers are therefore $\{2, 3\}$.
+
+```
+Complete Range [1 .. 5]:   1     2     3     4     5
+Customers Present:         1     -     -     4     5
+                                 ^     ^
+Missing Gap IDs:                 2     3
+```
+
+Our teaching goal is to model candidate domain synthesis and relational difference ($\rhd$) in $\mathcal{O}(M + C)$ relational processing time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  BOUNDED DOMAIN ANTI-SEMIJOIN PIPELINE                  |
+|                                                                         |
+|  Step 1: Compute Domain Ceiling                                         |
+|    M = gamma_{MAX(customer_id) -> max_id}(Customers)                    |
+|                                                                         |
+|  Step 2: Generate Dense Candidate Sequence                              |
+|    Domain = {n in Z | 1 <= n <= M}                                      |
+|                                                                         |
+|  Step 3: Extract Existing Keys                                          |
+|    Existing = Pi_{customer_id}(Customers)                               |
+|                                                                         |
+|  Step 4: Relational Difference / Anti-Semijoin                          |
+|    Missing = Domain |> Existing = Domain \ Existing                     |
+|                                                                         |
+|  Step 5: Projection & Ordering                                          |
+|    Result = tau_{ids ASC}(rho_{n -> ids}(Missing))                      |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Relational Expression | Algebraic Meaning | Cardinality |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $\text{Domain}(n)$ | Dense integer sequence $[1, M]$ | $M$ |
+| $\Pi_{\text{customer\_id}}(\text{Customers})$ | Projection of recorded primary keys | $C$ |
+| $\text{Domain} \rhd \text{Customers}$ | Set subtraction of recorded keys from candidate domain | $M - C$ |
+| $\tau_{\text{ids} \uparrow}(\dots)$ | Ascending sort of missing integer identifiers | $M - C$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Bounded Domain Completeness Invariant.** For any customer identifier table with maximum key $M$, an integer $x$ belongs to the true missing set if and only if $1 \le x \le M$ and $x \notin \Pi_{\text{customer\_id}}(\text{Customers})$. Since the maximum key $M$ itself is always present in `Customers`, evaluating candidates strictly over $1 \le n < M$ produces the exact same result set while avoiding redundant membership tests against $M$.
+
+```mermaid
+flowchart TD
+    accTitle: Missing ID Discovery Pipeline
+    accDescr: Flowchart generating dense candidate numbers from 1 to max ID and subtracting existing customer IDs.
+    Cust["Customers Table"] --> MaxID["Calculate max_id = MAX(customer_id)"]
+    MaxID --> Gen["Generate Domain sequence: n in [1 .. max_id]"]
+    Gen --> Anti["Anti-Join: Domain NOT IN Customers.customer_id"]
+    Cust --> Anti
+    Anti --> Res["Missing IDs: {2, 3}"]
+    Res --> Sort["Sort ids ASC"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Generate the bounded candidate domain
-
-The largest customer ID is guaranteed not to exceed 100. The recursive common table expression `t` generates integers from one through 100:
-
-- the anchor row is `SELECT 1 AS n`;
-- the recursive member selects `n + 1` while `n < 100`.
-
-When `n = 99`, it generates 100. When `n = 100`, the condition fails and recursion stops. The CTE therefore provides a complete fixed candidate domain without requiring a permanent numbers table.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Customer1"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Determine Upper Bound $M$
+Evaluate aggregate:
+$$M = \max(\Pi_{\text{customer\_id}}(\text{Customers})) = \max(1, 4, 5) = 5$$
 
 ---
 
-### Step 2: Keep only values below the current maximum
-
-The first outer predicate is:
-
-`n < (SELECT MAX(customer_id) FROM Customers)`.
-
-The requested range includes the maximum itself, but that maximum is necessarily present in `Customers` by definition. It can never be a missing ID. Excluding it with strict `<` rather than generating it for a later membership rejection does not change the missing-ID set.
-
-Values greater than the maximum are excluded because they lie outside the requested interval.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Synthesize Dense Integer Sequence
+Generate candidates $n \in [1, M]$:
+$$\text{Domain} = \{1, 2, 3, 4, 5\}$$
 
 ---
 
-### Step 3: Remove identifiers that exist
+### Step 3: Anti-Join Against Existing Primary Keys
+Compare each candidate $n \in \text{Domain}$ against $E = \{1, 4, 5\}$:
+- $n = 1$: $1 \in E \implies$ Present (Excluded)
+- $n = 2$: $2 \notin E \implies$ **Missing (Retained)**
+- $n = 3$: $3 \notin E \implies$ **Missing (Retained)**
+- $n = 4$: $4 \in E \implies$ Present (Excluded)
+- $n = 5$: $5 \in E \implies$ Present (Excluded)
 
-The second predicate is:
+Retained missing subset:
+$$\text{Missing} = \{2, 3\}$$
 
-`n NOT IN (SELECT customer_id FROM Customers)`.
+---
 
-For every generated candidate below the maximum, this keeps it only when no customer row has that identifier. Since `customer_id` is the table’s unique identifier and is treated as a concrete key, each present ID is removed regardless of customer name.
-
-The query selects `n AS ids` to give the single output column its required name.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["ids"], "rows": []}` |
+### Step 4: Attribute Rename and Ascending Sort
+Rename attribute $n \to \text{ids}$ and order ascending:
+$$\tau_{\text{ids} \uparrow}(\{2, 3\}) = [2, 3]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Customer1"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["ids"], "rows": []}` | Verified |
+| Candidate $n$ | Domain Range ($1 \le n \le 5$) | In `Customers` Table? | Retained by Anti-Semijoin? | Output Identifier `ids` |
+|---|---|---|---|---|
+| $1$ | Valid | Yes (Alice) | Discarded | — |
+| $2$ | Valid | **No** | **Retained** | $2$ |
+| $3$ | Valid | **No** | **Retained** | $3$ |
+| $4$ | Valid | Yes (Bob) | Discarded | — |
+| $5$ | Valid | Yes (Charlie) | Discarded | — |
+
+Result Relation:
+| `ids` |
+|---|
+| $2$ |
+| $3$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every emitted integer $k$ originates from the synthesized integer generator satisfying $1 \le k \le M$, where $M$ is the maximum existing primary key. The anti-semijoin condition strictly filters out any integer that exists in `Customers.customer_id`. Therefore, every returned integer is guaranteed to be a genuine gap within the specified domain.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose an integer $g$ is missing from `Customers` such that $1 \le g \le M$. Because the sequence generation unconditionally produces all integers up to $100$ (and $M \le 100$ per contract), $g$ is generated as a candidate. Since $g \notin \text{Customers}$, it survives the anti-join filter. Hence, no missing identifier is skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Recursive CTE stopping at the actual maximum:** Seed one and recurse while `n < MAX(customer_id)` through a prepared bound, avoiding generation beyond the needed range.
-- **Permanent numbers table:** It is efficient and reusable in production schemas but adds an external dependency.
-- **`NOT EXISTS`:** A correlated anti-join avoids `NOT IN` null hazards and expresses absence directly.
-- **Left anti-join:** Left-join candidates to customers and keep rows with a null matched key.
-- **Window-gap expansion:** Use `LEAD` to identify gaps and a number generator to expand them; this is more complex for a maximum of only 100.
-- **Maximum ID equals one:** The strict `n < max` predicate keeps no candidates, correctly returning an empty set.
-- **No gaps:** Every candidate below the maximum is removed by membership, producing no rows.
-- **Gap immediately before maximum:** It is below the maximum and absent, so it is returned.
-- **ID 100 as maximum:** The CTE includes 100, though the strict predicate tests only one through 99; 100 is known present.
-- **Maximum itself:** It never needs to be returned because being the maximum proves it exists.
-- **Nullable IDs:** `NOT IN` would be unsafe; the key contract is required.
-- **Empty customer table:** `MAX` would be null and no candidate would pass. The task’s notion of a present maximum implicitly assumes data exists.
-- **Missing explicit ordering:** Add `ORDER BY ids ASC` for guaranteed compliance; generation order alone is not a SQL ordering contract.
-- **Hard-coded domain bound:** It is valid only because the reference guarantees a maximum no larger than 100.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Lower Bound Assumption:** Assuming customer IDs begin at the minimum existing ID (e.g. starting at $\min(\text{customer\_id})$) fails if ID $1$ itself is missing. The sequence must always begin strictly at $1$.
+- **Subquery Null Pitfall in Set Exclusion:** When using `NOT IN (SELECT customer_id ...)`, if any row contains `NULL` in the key column, the SQL predicate evaluates to `UNKNOWN` for all rows, returning an empty set. Ensuring primary key non-nullability or using anti-joins (`LEFT JOIN ... WHERE customer_id IS NULL`) avoids this trap.
+- **Unbounded Number Generation:** Failing to cap the number generation at $\max(\text{customer\_id})$ would produce infinite or arbitrarily large missing identifiers extending beyond the customer dataset.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((m+c)\log(c+1))$. Let $C$ be the number of customer rows and $M=\max(\texttt{customer\_id})$, with $M\le100$.
-- **Auxiliary Space Complexity:** $O(m+c)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M + C \log C)$, where $M = \max(\text{customer\_id}) \le 100$ and $C$ is the number of rows in `Customers`.
+  - Computing the maximum key takes $\mathcal{O}(C)$ time (or $\mathcal{O}(1)$ with an index on `customer_id`).
+  - Generating candidate sequence up to $M$ requires $\mathcal{O}(M)$ steps.
+  - Set difference via hash lookup takes $\mathcal{O}(M)$ time, followed by sorting at most $M$ values in $\mathcal{O}(M \log M)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(M + C)$ auxiliary space to store intermediate candidate tuples and index keys.

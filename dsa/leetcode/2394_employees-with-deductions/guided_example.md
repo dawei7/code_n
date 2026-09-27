@@ -1,131 +1,159 @@
 # Guided Example: Employees With Deductions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Employees": [{"employee_id": 1, "needed_hours": 20}, {"employee_id": 2, "needed_hours": 12}, {"employee_id": 3, "needed_hours": 2}], "Logs": [{"employee_id": 1, "in_time": "2022-10-01 09:00:00", "out_time": "2022-10-01 17:00:00"}, {"employee_id": 1, "in_time": "2022-10-06 09:05:04", "out_time": "2022-10-06 17:09:03"}, {"employee_id": 1, "in_time": "2022-10-12 23:00:00", "out_time": "2022-10-13 03:00:01"}, {"employee_id": 2, "in_time": "2022-10-29 12:00:00", "out_time": "2022-10-29 23:58:58"}]}}`
-- **Required output:** `{"columns": ["employee_id"], "rows": [[2], [3]]}`
+We are given two relational database tables:
+- $\text{Employees}(\text{employee\_id}, \text{needed\_hours})$: Contains each employee's unique identifier and their mandatory monthly work requirement in whole hours ($\text{needed\_hours} > 0$).
+- $\text{Logs}(\text{employee\_id}, \text{in\_time}, \text{out\_time})$: Records zero or more distinct work sessions for each employee during October 2022. A work session begins at $\text{in\_time}$ and concludes at $\text{out\_time}$ ($\text{out\_time} > \text{in\_time}$). Sessions that start before midnight may conclude on the following calendar day.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Work session durations are measured in minutes. However, the company applies a strict **per-session upward rounding policy**: each individual session's duration is computed in seconds and rounded up to the nearest whole minute if any remaining seconds exist:
+$$\text{credited\_minutes} = \left\lceil \frac{\text{duration in seconds}}{60} \right\rceil$$
 
----
+An employee incurs a deduction if their total credited work duration across the month is strictly less than their required monthly commitment:
+$$\sum \text{credited\_minutes} < \text{needed\_hours} \times 60$$
 
-## 1. Instance & Teaching Goal
+Employees who logged zero sessions across the entire month have a total credited work time of $0$ minutes and must also be flagged for deductions. Our objective is to identify and return all such $\text{employee\_id}$ values.
 
-Table: `Employees`
+Consider the representative instance:
 
-The objective is to compute `{"columns": ["employee_id"], "rows": [[2], [3]]}` from `{"tables": {"Employees": [{"employee_id": 1, "needed_hours": 20}, {"employee_id": 2, "needed_hours": 12}, {"employee_id": 3, "needed_hours": 2}], "Logs": [{"employee_id": 1, "in_time": "2022-10-01 09:00:00", "out_time": "2022-10-01 17:00:00"}, {"employee_id": 1, "in_time": "2022-10-06 09:05:04", "out_time": "2022-10-06 17:09:03"}, {"employee_id": 1, "in_time": "2022-10-12 23:00:00", "out_time": "2022-10-13 03:00:01"}, {"employee_id": 2, "in_time": "2022-10-29 12:00:00", "out_time": "2022-10-29 23:58:58"}]}}` while avoiding redundant calculations and unnecessary overhead.
+$\text{Employees}$:
+$$\begin{array}{|c|c|}
+\hline
+\text{employee\_id} & \text{needed\_hours} \\
+\hline
+1 & 20 \\
+2 & 12 \\
+3 & 5 \\
+\hline
+\end{array}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+$\text{Logs}$:
+$$\begin{array}{|c|c|c|}
+\hline
+\text{employee\_id} & \text{in\_time} & \text{out\_time} \\
+\hline
+1 & \text{2022-10-01 09:00:00} & \text{2022-10-01 17:00:00} \\
+1 & \text{2022-10-02 08:30:00} & \text{2022-10-02 16:33:05} \\
+1 & \text{2022-10-03 13:00:00} & \text{2022-10-03 17:00:15} \\
+2 & \text{2022-10-05 08:00:00} & \text{2022-10-05 19:58:30} \\
+\hline
+\end{array}$$
 
----
+```mermaid
+flowchart TD
+    accTitle: Relational Pipeline for Work Session Rounding and Deduction Filtering
+    accDescr: Step-by-step transformation from raw timestamp diffs, per-session ceiling rounding, outer join aggregation, to deduction threshold comparison.
+    RawLogs["Logs Table: Raw Timestamps (in_time, out_time)"] --> Diff["Second Difference via TIMESTAMPDIFF"]
+    Diff --> Ceil["Per-Session Ceiling: CEIL(seconds / 60)"]
+    Ceil --> LogAgg["Grouped Log Totals by employee_id"]
+    Emp["Employees Table (needed_hours)"] --> OuterJoin["LEFT OUTER JOIN (Preserve 0-session employees)"]
+    LogAgg --> OuterJoin
+    OuterJoin --> Coalesce["COALESCE(SUM(credited), 0) vs needed_hours * 60"]
+    Coalesce --> Filter{"Total < needed_hours * 60?"}
+    Filter -->|True| Deduct["Flagged for Deduction (employee_id)"]
+    Filter -->|False| Met["Requirement Satisfied"]
+    classDef step fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class RawLogs,Diff,Ceil,LogAgg,Emp,OuterJoin,Coalesce,Deduct,Met step;
+```
 
-## 2. Conceptual Foundation & Invariants
+## 2. Mathematical & Algorithmic Principles
 
-We maintain the core conceptual parameters and state variables:
+1. **Non-Linearity of Per-Session Ceiling Rounding:**
+   The rounding rule operates **independently per session**, rather than once on the aggregate monthly total. By the mathematical properties of the ceiling function:
+   $$\lceil x + y \rceil \le \lceil x \rceil + \lceil y \rceil$$
+   Summing raw seconds and taking the ceiling at the end would understate the credited minutes whenever individual sessions have non-zero second remainders. The correct credited duration for session $j$ of employee $i$ is:
+   $$c_{i,j} = \left\lceil \frac{\text{TIMESTAMPDIFF}(\text{SECOND}, \text{in\_time}, \text{out\_time})}{60} \right\rceil$$
+2. **Relational Outer Join for Universal Employee Coverage:**
+   An inner join between $\text{Employees}$ and $\text{Logs}$ would discard employees who logged zero sessions. Because an employee with zero sessions has worked $0$ minutes, they naturally fall short of any positive requirement ($\text{needed\_hours} \times 60 > 0$). A $\text{LEFT OUTER JOIN}$ from $\text{Employees}$ to $\text{Logs}$ preserves all employees, replacing missing session sums with $0$ using $\text{COALESCE}$:
+   $$\text{Total Credited}(i) = \text{COALESCE}\left( \sum_{j} c_{i,j}, 0 \right)$$
+3. **Threshold Comparison & Deduction Predicate:**
+   The filter condition is:
+   $$\text{Total Credited}(i) < \text{needed\_hours}_i \times 60$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We process the representative dataset:
 
----
+- **Phase 1: Evaluating Each Session in $\text{Logs}$:**
+  - **Employee 1, Session 1:**
+    - From `09:00:00` to `17:00:00` $= 8\text{ hours } 0\text{ min } 0\text{ sec} = 28{,}800\text{ seconds}$.
+    - Fraction: $28{,}800 / 60 = 480.0\text{ minutes}$.
+    - Credited: $\lceil 480.0 \rceil = 480\text{ minutes}$.
+  - **Employee 1, Session 2:**
+    - From `08:30:00` to `16:33:05` $= 8\text{ hours } 3\text{ min } 5\text{ sec} = 29{,}000 - 15 = 28{,}985\text{ seconds}$.
+    - Fraction: $28{,}985 / 60 = 483.0833\dots\text{ minutes}$.
+    - Credited: $\lceil 483.0833\dots \rceil = 484\text{ minutes}$ (rounded up by $5$ seconds remainder).
+  - **Employee 1, Session 3:**
+    - From `13:00:00` to `17:00:15` $= 4\text{ hours } 0\text{ min } 15\text{ sec} = 14{,}415\text{ seconds}$.
+    - Fraction: $14{,}415 / 60 = 240.25\text{ minutes}$.
+    - Credited: $\lceil 240.25 \rceil = 241\text{ minutes}$ (rounded up by $15$ seconds remainder).
+  - **Employee 2, Session 1:**
+    - From `08:00:00` to `19:58:30` $= 11\text{ hours } 58\text{ min } 30\text{ sec} = 43{,}110\text{ seconds}$.
+    - Fraction: $43{,}110 / 60 = 718.5\text{ minutes}$.
+    - Credited: $\lceil 718.5 \rceil = 719\text{ minutes}$ (rounded up by $30$ seconds remainder).
 
-## 3. Step-by-Step Worked Execution
+- **Phase 2: Aggregating Credited Minutes per Employee:**
+  - **Employee 1:**
+    - Total credited minutes $= 480 + 484 + 241 = 1{,}205\text{ minutes}$.
+    - Requirement: $20\text{ hours} \times 60 = 1{,}200\text{ minutes}$.
+    - Deficit test: $1{,}205 < 1{,}200 \implies \text{False}$. Requirement met.
+  - **Employee 2:**
+    - Total credited minutes $= 719\text{ minutes}$.
+    - Requirement: $12\text{ hours} \times 60 = 720\text{ minutes}$.
+    - Deficit test: $719 < 720 \implies \text{True}$. Deficit of $1$ minute $\implies$ **Deduction**.
+  - **Employee 3:**
+    - No sessions in $\text{Logs}$. $\text{COALESCE}(\text{NULL}, 0) = 0\text{ minutes}$.
+    - Requirement: $5\text{ hours} \times 60 = 300\text{ minutes}$.
+    - Deficit test: $0 < 300 \implies \text{True}$. Deficit of $300$ minutes $\implies$ **Deduction**.
 
-### Step 1: Round each work session before summing
+- **Phase 3: Result Set Assembly:**
+  The employees subject to deductions are `employee_id` $2$ and $3$.
 
-The company counts session duration in whole minutes, rounding each individual session upward. This order matters:
+## 4. Comprehensive State Trace
 
-$$
-\sum \left\lceil\frac{\text{session seconds}}{60}\right\rceil
-$$
+The granular breakdown of each work session in $\text{Logs}$ is detailed below:
 
-is not always equal to rounding the total seconds once. Two sessions of one minute and one second each count as two minutes each, for four total, whereas their combined two minutes and two seconds would round to three.
+| Employee ID | Session Interval (`in_time` $\to$ `out_time`) | Raw Duration (seconds) | Exact Fractional Minutes | Applied Ceiling Rule | Credited Minutes |
+|---|---|---|---|---|---|
+| 1 | `10-01 09:00:00` $\to$ `10-01 17:00:00` | 28,800 | 480.000 | $\lceil 480.000 \rceil$ | 480 |
+| 1 | `10-02 08:30:00` $\to$ `10-02 16:33:05` | 28,985 | 483.083 | $\lceil 483.083 \rceil$ | 484 |
+| 1 | `10-03 13:00:00` $\to$ `10-03 17:00:15` | 14,415 | 240.250 | $\lceil 240.250 \rceil$ | 241 |
+| 2 | `10-05 08:00:00` $\to$ `10-05 19:58:30` | 43,110 | 718.500 | $\lceil 718.500 \rceil$ | 719 |
 
-The CTE `T` performs the required per-session ceiling inside `SUM`.
+The monthly reconciliation and deduction audit per employee is summarized below:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"employee_id": 1, "needed_hours": 20}, {"employee_id": 2, "needed_hours": 12}, {"employee_id": 3, "needed_hours": 2}], "Logs": [{"employee_id": 1, "in_time": "2022-10-01 09:00:00", "out_time": "2022-10-01 17:00:00"}, {"employee_id": 1, "in_time": "2022-10-06 09:05:04", "out_time": "2022-10-06 17:09:03"}, {"employee_id": 1, "in_time": "2022-10-12 23:00:00", "out_time": "2022-10-13 03:00:01"}, {"employee_id": 2, "in_time": "2022-10-29 12:00:00", "out_time": "2022-10-29 23:58:58"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Employee ID | Monthly Requirement (`needed_hours`) | Required Target (minutes) | Total Credited Sessions | Total Credited Minutes | Deficit Condition ($< \text{Target}$) | Deduction Flagged |
+|---|---|---|---|---|---|---|
+| 1 | 20 | 1,200 | 3 | 1,205 | $1{,}205 < 1{,}200$ (False) | No |
+| 2 | 12 | 720 | 1 | 719 | $719 < 720$ (True) | **Yes** |
+| 3 | 5 | 300 | 0 | 0 | $0 < 300$ (True) | **Yes** |
 
----
+Employees 2 and 3 are correctly emitted.
 
-### Step 2: Compute one session's rounded minutes
+## 5. Algorithmic Correctness & Soundness
 
-`TIMESTAMPDIFF(second, in_time, out_time)` returns the elapsed whole seconds between the two datetimes. It naturally handles a session crossing midnight because both values contain dates, not only clock times.
+1. **Preservation of Zero-Activity Entities:**
+   In relational algebra, an inner join filters out any tuple in the left table that has no matching foreign key in the right table. Using a left outer join ensures every employee in $\text{Employees}$ participates in the aggregation. Substituting NULL aggregates with $0$ ensures that employees with no logged activity are evaluated against their positive required hours and correctly flagged.
+2. **Strict Compliance with Independent Rounding:**
+   By applying $\lceil \Delta t / 60 \rceil$ inside the aggregation expression ($\sum \lceil \cdot \rceil$), each session receives its full discrete upward rounding before summation. Applying the ceiling after summation would violate the explicit problem contract and result in incorrect deductions for borderline workers.
 
-Dividing by `60` converts seconds to minutes, possibly fractional. `CEILING(...)` raises any partial minute to the next integer. A duration exactly divisible by sixty remains unchanged.
+## 6. Edge Cases & Anti-Patterns
 
-The expression inside the CTE is:
+- **Zero Logged Sessions:** An employee with zero log rows must not be omitted from the query. A $\text{LEFT JOIN}$ combined with `COALESCE(SUM(...), 0)` correctly computes $0$ minutes, triggering the deduction.
+- **Cross-Midnight Work Sessions:** A shift beginning at `23:30:00` on Day 1 and ending at `07:30:00` on Day 2 spans across midnight. Using `TIMESTAMPDIFF(SECOND, in_time, out_time)` correctly computes the full $8$-hour span ($28{,}800$ seconds) across calendar date boundaries.
+- **Exact Second Boundaries:** If a session lasts exactly $60$ seconds, $60 / 60 = 1.0 \implies \lceil 1.0 \rceil = 1$ minute. If it lasts $61$ seconds, $61 / 60 = 1.0167 \implies \lceil 1.0167 \rceil = 2$ minutes.
+- **Anti-Pattern: Summing Seconds Before Ceiling:** Calculating $\lceil \sum \text{seconds} / 60 \rceil$ aggregates fractional remainders together, potentially erasing upward-rounded minutes earned by multiple individual sessions.
+- **Anti-Pattern: Inner Join:** Using `INNER JOIN` silently eliminates inactive employees, failing to report workers who did not work at all.
 
+## 7. Complexity Analysis
 
-
-Grouping by `employee_id` adds all independently rounded session minutes for that employee.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Convert total minutes to hours
-
-The CTE divides the summed minutes by `60` and names the result `tot`. This yields total worked hours, possibly fractional, so it can be compared directly with integer `needed_hours`.
-
-Equivalently, the query could keep total minutes and compare against `needed_hours * 60`. The current units are consistent because both sides of:
-
-
-
-are hours.
-
-The comparison is strict. An employee who works exactly the required number of hours should not be deducted; only a smaller total qualifies.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["employee_id"], "rows": [[2], [3]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"employee_id": 1, "needed_hours": 20}, {"employee_id": 2, "needed_hours": 12}, {"employee_id": 3, "needed_hours": 2}], "Logs": [{"employee_id": 1, "in_time": "2022-10-01 09:00:00", "out_time": "2022-10-01 17:00:00"}, {"employee_id": 1, "in_time": "2022-10-06 09:05:04", "out_time": "2022-10-06 17:09:03"}, {"employee_id": 1, "in_time": "2022-10-12 23:00:00", "out_time": "2022-10-13 03:00:01"}, {"employee_id": 2, "in_time": "2022-10-29 12:00:00", "out_time": "2022-10-29 23:58:58"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["employee_id"], "rows": [[2], [3]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Round after summing seconds:** This is incorrect because the specification rounds every session independently.
-- **Compare in minutes:** Keep the summed rounded minutes and test against `needed_hours * 60`. It is equivalent and avoids fractional-hour representation.
-- **Inner join:** It loses employees with no sessions, who must be treated as working zero hours.
-- **Exact-minute session:** `CEILING` leaves its integer minute count unchanged.
-- **Any positive leftover seconds:** The session receives one additional credited minute.
-- **Session crossing midnight:** Full datetime difference handles it correctly.
-- **Exactly enough total time:** The strict `<` comparison does not report that employee.
-- **No logs:** `COALESCE` supplies zero and the employee is deducted because required hours are positive.
-- **Multiple sessions:** Each ceiling occurs before `SUM`, preserving the rule.
-- **Any output order:** No sorting is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(E+L)$. Let $E$ be the number of employees and $L$ the number of log rows. The manifest gives $O((E+L)\log(E+L))$ time and $O(E+L)$ space for a general sort/group/join execution.
-- **Auxiliary Space Complexity:** $O(E + L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Scanning the $\text{Logs}$ table of $L$ rows and evaluating timestamp differences takes $\mathcal{O}(L)$ time.
+  - Grouping logs by $\text{employee\_id}$ using hash aggregation or index scanning takes $\mathcal{O}(L)$ time.
+  - Joining the grouped logs with the $\text{Employees}$ table of $E$ rows takes $\mathcal{O}(E + L)$ time.
+  - Evaluating the `HAVING` or `WHERE` predicate takes $\mathcal{O}(E)$ time.
+  - Total database execution time is strictly $\mathcal{O}(E + L)$.
+- **Space Complexity:**
+  - Hash tables or temporary spool spaces for grouped aggregation require $\mathcal{O}(E)$ memory.
+  - Output table stores at most $E$ employee IDs.
+  - Total auxiliary space complexity is $\mathcal{O}(E)$.

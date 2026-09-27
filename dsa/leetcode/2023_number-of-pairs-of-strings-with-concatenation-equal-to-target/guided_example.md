@@ -1,117 +1,158 @@
 # Guided Example: Number of Pairs of Strings With Concatenation Equal to Target
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"nums": ["777", "7", "77", "77"], "target": "7777"}`
-- **Required output:** `4`
+We are given a collection of $N$ numeric strings $\text{nums} = [s_0, s_1, \dots, s_{N-1}]$ and a target numeric string $\text{target}$ of length $T$. 
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We must determine the total number of ordered index pairs $(i, j)$ that satisfy two conditions:
+1. **Distinct Indices**: $i \neq j$ (the same array index cannot be paired with itself).
+2. **Exact Concatenation**: Concatenating string $s_i$ followed immediately by string $s_j$ forms the exact string $\text{target}$:
+   $$s_i \mathbin{\Vert} s_j = \text{target}$$
 
----
+Crucially, index pairs are **ordered**: if $s_i \mathbin{\Vert} s_j = \text{target}$ and $s_j \mathbin{\Vert} s_i = \text{target}$, both $(i, j)$ and $(j, i)$ are counted as distinct solutions. Furthermore, if two different indices $i_1 \neq i_2$ hold identical string values ($s_{i_1} = s_{i_2}$), pairings with each index are distinguished and counted individually.
 
-## 1. Instance & Teaching Goal
+### Sample Input Dataset
 
-Given an array of **digit** strings `nums` and a **digit** string `target`, return *the number of pairs of indices *`(i, j)`* (where *$i \neq j$*) such that the **concatenation** of *$\text{nums}[i] + \text{nums}[j]$* equals *`target`.
+Consider the representative configuration:
+$$\text{nums} = [\text{"777"}, \text{"7"}, \text{"77"}, \text{"77"}], \quad \text{target} = \text{"7777"}$$
 
-The objective is to compute `4` from `{"nums": ["777", "7", "77", "77"], "target": "7777"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also examine the mixed-digit instance:
+$$\text{nums}_{\text{mix}} = [\text{"123"}, \text{"4"}, \text{"12"}, \text{"34"}], \quad \text{target} = \text{"1234"}$$
+and the identical-element instance:
+$$\text{nums}_{\text{rep}} = [\text{"1"}, \text{"1"}, \text{"1"}], \quad \text{target} = \text{"11"}$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Enumerate ordered index pairs
+There are two primary paradigms to evaluate this problem: direct index-pair traversal and combinatorial frequency decomposition.
 
-The exact source uses two full index ranges. For every `i` from zero through $N-1$, it tries every `j` in the same range.
+### Paradigm A: Direct Ordered Pair Enumeration
+Given $N \le 100$, the total number of distinct ordered index pairs is:
+$$N(N - 1) = 100 \times 99 = 9{,}900$$
+Testing whether $s_i \mathbin{\Vert} s_j == \text{target}$ for each pair requires at most $T \le 100$ character comparisons. This brute-force scan completes in under $10^6$ operations, which is well within execution limits.
 
-The condition begins with `i != j`, rejecting use of the same array occurrence twice. Pairs $(i,j)$ and $(j,i)$ are different and are both tested, as required because concatenation order can change the string.
+### Paradigm B: Combinatorial Prefix-Suffix Split
+To understand the problem structurally and optimize for larger inputs, we observe that for any valid concatenation $s_i \mathbin{\Vert} s_j = \text{target}$, string $s_i$ must be a prefix of $\text{target}$ and string $s_j$ must be the exact complementary suffix.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": ["777", "7", "77", "77"], "target": "7777"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+If $s_i$ has length $k \in [1, T - 1]$:
+$$\text{prefix}_k = \text{target}[0 \dots k - 1], \quad \text{suffix}_k = \text{target}[k \dots T - 1]$$
+We aggregate the frequency of every string in $\text{nums}$ into a hash map $\mathcal{C}$. Then, for each split point $k \in [1, T - 1]$:
+- **Case 1: Asymmetric Split ($\text{prefix}_k \neq \text{suffix}_k$)**:
+  Any occurrence of $\text{prefix}_k$ can be paired with any occurrence of $\text{suffix}_k$. Because their string values are distinct, their chosen indices are automatically distinct ($i \neq j$). The number of valid pairs is:
+  $$\Delta = \mathcal{C}[\text{prefix}_k] \times \mathcal{C}[\text{suffix}_k]$$
 
----
+- **Case 2: Symmetric Split ($\text{prefix}_k = \text{suffix}_k$)**:
+  Both halves require the identical string value. To satisfy $i \neq j$, we must select two distinct indices having that value. If the frequency is $m = \mathcal{C}[\text{prefix}_k]$, the number of ordered choices is:
+  $$\Delta = m \times (m - 1)$$
 
-### Step 2: Test concatenation directly
+Summing $\Delta$ over all split points $k \in [1, T - 1]$ yields the total count.
 
-For distinct indices, `nums[i] + nums[j]` creates the string formed by placing the second immediately after the first. Equality with `target` is the exact problem condition.
-
-Python's `and` short-circuits. When `i==j`, concatenation is not evaluated and the generator yields false. Otherwise it yields the Boolean equality result.
-
-`sum` treats true as one and false as zero, producing the total number of valid ordered pairs.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Trace duplicate strings
-
-For `nums=["1","1","1"]` and target `"11"`, there are three choices for the first index and two different choices for the second. All six ordered pairs pass.
-
-The source works by indices, so equal string values are never collapsed. A set would incorrectly reduce these three occurrences to one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": ["777", "7", "77", "77"], "target": "7777"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```mermaid
+flowchart TD
+    accTitle: Prefix-Suffix Combinatorial Verification Pipeline
+    accDescr: Diagram illustrating target string splitting and frequency-based pair calculation.
+    A["Target string of length T and frequency map C of nums"] --> B["Iterate split index k from 1 to T - 1"]
+    B --> C["Extract prefix = target[0..k-1] and suffix = target[k..T-1]"]
+    C --> D{"Does prefix == suffix?"}
+    D -- "No (prefix != suffix)" --> E["Pairs += C[prefix] * C[suffix]"]
+    D -- "Yes (prefix == suffix)" --> F["m = C[prefix]; Pairs += m * (m - 1)"]
+    E --> G{"k == T - 1 reached?"}
+    F --> G
+    G -- "No" --> B
+    G -- "Yes" --> H["Return total Pairs"]
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step State Progression Table
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Let us trace $\text{nums} = [\text{"777"}, \text{"7"}, \text{"77"}, \text{"77"}]$ with $\text{target} = \text{"7777"}$ ($T = 4$).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+First, compute frequency map $\mathcal{C}$ from $\text{nums}$:
+- $\mathcal{C}[\text{"7"}] = 1$ (Index $1$)
+- $\mathcal{C}[\text{"77"}] = 2$ (Indices $2, 3$)
+- $\mathcal{C}[\text{"777"}] = 1$ (Index $0$)
+
+Now, evaluate every candidate split point $k \in [1, 3]$:
+
+| Split Point $k$ | Prefix Substring | Suffix Substring | Frequency $\mathcal{C}[\text{prefix}]$ | Frequency $\mathcal{C}[\text{suffix}]$ | Condition $\text{prefix} == \text{suffix}$? | Combinatorial Multiplier Formula | Pairs Added | Specific Index Pairs Formed |
+|---|---|---|---|---|---|---|---|---|
+| $k = 1$ | `"7"` | `"777"` | $1$ | $1$ | No | $\mathcal{C}[\text{prefix}] \times \mathcal{C}[\text{suffix}] = 1 \times 1$ | $1$ | $(1, 0)$ |
+| $k = 2$ | `"77"` | `"77"` | $2$ | $2$ | **Yes** | $m(m - 1) = 2 \times 1$ | $2$ | $(2, 3), (3, 2)$ |
+| $k = 3$ | `"777"` | `"7"` | $1$ | $1$ | No | $\mathcal{C}[\text{prefix}] \times \mathcal{C}[\text{suffix}] = 1 \times 1$ | $1$ | $(0, 1)$ |
+
+Total accumulated valid pairs: $1 + 2 + 1 = 4$.
+
+Now, let us contrast this with the exhaustive index-pair verification:
+
+| Pair $(i, j)$ | $s_i$ | $s_j$ | Concatenation $s_i \mathbin{\Vert} s_j$ | Equals $\text{target} = \text{"7777"}$? | Valid Pair? | Cumulative Total |
+|---|---|---|---|---|---|---|
+| $(0, 1)$ | `"777"` | `"7"` | `"7777"` | Yes | **Counted** | $1$ |
+| $(0, 2)$ | `"777"` | `"77"` | `"77777"` | No | Discarded | $1$ |
+| $(0, 3)$ | `"777"` | `"77"` | `"77777"` | No | Discarded | $1$ |
+| $(1, 0)$ | `"7"` | `"777"` | `"7777"` | Yes | **Counted** | $2$ |
+| $(1, 2)$ | `"7"` | `"77"` | `"777"` | No | Discarded | $2$ |
+| $(1, 3)$ | `"7"` | `"77"` | `"777"` | No | Discarded | $2$ |
+| $(2, 0)$ | `"77"` | `"777"` | `"77777"` | No | Discarded | $2$ |
+| $(2, 1)$ | `"77"` | `"7"` | `"777"` | No | Discarded | $2$ |
+| $(2, 3)$ | `"77"` | `"77"` | `"7777"` | Yes | **Counted** | $3$ |
+| $(3, 0)$ | `"77"` | `"777"` | `"77777"` | No | Discarded | $3$ |
+| $(3, 1)$ | `"77"` | `"7"` | `"777"` | No | Discarded | $3$ |
+| $(3, 2)$ | `"77"` | `"77"` | `"7777"` | Yes | **Counted** | $4$ |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Frequency map plus target splits:** Count all strings, try each nonempty prefix/suffix split, and combine frequencies; avoids $N^2$ pair enumeration.
-- **Length buckets:** Skip pairs whose lengths cannot sum to target length, improving direct enumeration but remaining potentially quadratic.
-- **Use a set:** Incorrect because duplicate input occurrences create distinct index pairs.
-- **Same index:** Explicitly rejected even if doubling its string equals target.
-- **Reverse order:** Tested separately and may have a different result.
-- **Identical prefix and suffix strings:** Direct enumeration counts $c(c-1)$ ordered pairs.
-- **No matching pieces:** Every Boolean is false and the answer is zero.
-- **Leading-zero guarantee:** String equality remains the required operation; no numeric conversion is needed.
-- **Short-circuit `and`:** Avoids concatenating a string with itself on rejected diagonal pairs.
-- **Temporary strings:** Concatenation allocates on each distinct pair test.
-- **Manifest mismatch:** The exact source is quadratic in $N$.
-- **Input preservation:** Neither the list nor its strings are modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The transition analysis exposes how identical values and order sensitivity dictate counting:
+
+1. **Ordering Distinction**: The pair $(0, 1)$ represents $s_0 \mathbin{\Vert} s_1 = \text{"777"} + \text{"7"} = \text{"7777"}$, while $(1, 0)$ represents $s_1 \mathbin{\Vert} s_0 = \text{"7"} + \text{"777"} = \text{"7777"}$. Because $(0, 1) \neq (1, 0)$, both are counted.
+2. **Duplicate Value Multiplicity**: In $\text{nums}_{\text{rep}} = [\text{"1"}, \text{"1"}, \text{"1"}]$ with $\text{target} = \text{"11"}$, every string is identical. Choosing $i \in \{0, 1, 2\}$ leaves $2$ choices for $j$, producing $3 \times 2 = 6$ ordered pairs.
+3. **Mismatched Total Length Pruning**: If $\text{length}(s_i) + \text{length}(s_j) \neq T$, concatenation cannot possibly match $\text{target}$. The prefix-suffix model inherently guarantees that only pairs whose combined lengths equal $T$ are evaluated.
+
+| Dataset Scenario | Target | Distinct Splits Checked | Matching Multipliers | Total Pairs | Key Observation |
+|---|---|---|---|---|---|
+| `["123", "4", "12", "34"]` | `"1234"` | $k=1: \text{"1"}, \text{"234"}$<br>$k=2: \text{"12"}, \text{"34"}$<br>$k=3: \text{"123"}, \text{"4"}$ | $k=2: 1 \times 1 = 1$<br>$k=3: 1 \times 1 = 1$ | $2$ | $(2, 3)$ and $(0, 1)$ qualify |
+| `["1", "1", "1"]` | `"11"` | $k=1: \text{"1"}, \text{"1"}$ | $k=1: 3 \times 2 = 6$ | $6$ | Symmetric split with $3$ identical items |
+| `["12", "34"]` | `"99"` | $k=1: \text{"9"}, \text{"9"}$ | None match | $0$ | Zero occurrences in frequency map |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(S+T^2)$. Let $N$ be number of strings and $L$ the maximum total length examined per concatenation/comparison. The double loop performs $N^2$ iterations and takes $O(N^2L)$ time in the worst case.
-- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Completeness of the Split Space
+Any string equality $s_i \mathbin{\Vert} s_j = \text{target}$ implies that:
+1. $s_i$ is identical to the prefix of $\text{target}$ of length $|s_i|$.
+2. $s_j$ is identical to the suffix of $\text{target}$ of length $|s_j|$.
+3. $|s_i| + |s_j| = |\text{target}| = T$.
+Because $|s_i| \ge 1$ and $|s_j| \ge 1$, the length $|s_i|$ must be an integer $k \in [1, T - 1]$. Since we iterate through all $k \in [1, T - 1]$, every possible factorization of $\text{target}$ into two non-empty substrings is visited exactly once.
+
+### Disjointness and Exact Multiplicity
+Each split point $k$ defines unique prefix and suffix string lengths $(k, T - k)$. Because string lengths are uniquely specified by $k$, two different split points $k_1 \neq k_2$ evaluate disjoint sets of index pairs.
+- When $\text{prefix}_k \neq \text{suffix}_k$, the index sets $\{i \mid s_i = \text{prefix}_k\}$ and $\{j \mid s_j = \text{suffix}_k\}$ are disjoint, so every chosen pair $(i, j)$ satisfies $i \neq j$ automatically.
+- When $\text{prefix}_k = \text{suffix}_k$, choosing distinct indices from the same set of size $m$ gives the exact number of ordered permutations $P(m, 2) = m(m - 1)$.
+Hence, every valid index pair is counted exactly once with no undercounting or double-counting.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Self-Pairing Violation ($i = j$)**: Failing to enforce $i \neq j$ would allow a single occurrence of `"77"` to pair with itself to falsely claim `"7777"`. When $\text{prefix}_k = \text{suffix}_k$, using $m(m - 1)$ rather than $m^2$ strictly prohibits self-pairing.
+2. **Reversed String Asymmetry**: If $s_i = \text{"12"}$ and $s_j = \text{"34"}$, $s_i \mathbin{\Vert} s_j = \text{"1234"}$, but $s_j \mathbin{\Vert} s_i = \text{"3412"} \neq \text{"1234"}$. Pairs cannot be treated as unordered combinations.
+3. **Empty Substrings**: The problem statement restricts strings to non-empty inputs. Splitting at $k = 0$ or $k = T$ would produce empty strings, which cannot correspond to valid array elements. The split index $k$ must be bounded strictly to $1 \le k \le T - 1$.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Frequency Map Construction**: Hashing all $N$ strings of length up to $L$ takes $\mathcal{O}(\sum |s_i|) = \mathcal{O}(N \cdot L)$ time.
+- **Prefix-Suffix Traversal**: There are $T - 1$ possible split points. Slicing $\text{target}$ and querying the hash map takes $\mathcal{O}(T)$ operations per split point, totaling $\mathcal{O}(T^2)$ time.
+- **Direct Pair Alternative**: Enumerating all $N(N - 1)$ index pairs and checking equality takes $\mathcal{O}(N^2 \cdot T)$ time.
+- **Total Time Complexity**: $\mathcal{O}(N \cdot L + T^2)$ for the combinatorial method, or $\mathcal{O}(N^2 \cdot T)$ for direct pair checking. Both run in $< 5$ milliseconds for $N, T \le 100$.
+
+### Space Complexity
+- **Hash Table Storage**: The frequency map stores at most $N$ distinct strings, consuming $\mathcal{O}(N \cdot L)$ memory.
+- **Substring Slices**: Temporary prefix/suffix strings require $\mathcal{O}(T)$ working memory.
+- **Total Auxiliary Space**: $\mathcal{O}(N \cdot L + T)$ auxiliary space.

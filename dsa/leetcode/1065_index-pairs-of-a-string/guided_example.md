@@ -1,144 +1,197 @@
 # Guided Example: Index Pairs of a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction of dictionary word occurrences in a text string, prove the Dual Lexicographical Loop Ordering Theorem and the Substring Inclusion Invariant, and generate the sorted index pairs across representative string inputs:
 
-- **Input:** `{"text": "thestoryofleetcodeandme", "words": ["story", "fleet", "leetcode"]}`
-- **Required output:** `[[3, 7], [9, 13], [10, 17]]`
+- **Representative Instance 1 (Overlapping and Embedded Words):**
+  $$
+  text = \text{"thestoryofleetcodeandme"}, \quad words = [\text{"story"}, \; \text{"fleet"}, \; \text{"leetcode"}], \quad n = 23
+  $$
+- **Required Output:** `[[3, 7], [9, 13], [10, 17]]`
+  - Problem definitions:
+    - Return all index pairs `[i, j]` such that the substring $text[i \dots j]$ is present in $words$.
+    - Pairs must be returned in **lexicographical order**: sorted primarily by $i$ ascending, and secondarily by $j$ ascending.
+  - The Dual Lexicographical Loop Ordering Principle:
+    - Generating pairs $(i, j)$ via nested loops with $i \in [0, n - 1]$ and $j \in [i, n - 1]$ visits candidate pairs in the exact sequence:
+      $$
+      (0, 0), (0, 1), \dots, (0, n-1), \; (1, 1), \dots, (1, n-1), \; \dots, \; (n-1, n-1)
+      $$
+    - Because outer index $i$ and inner index $j$ both advance monotonically, candidate pairs are evaluated in **strictly increasing lexicographical order**.
+    - Emitting matching pairs as they are discovered produces a pre-sorted output array with zero sorting overhead!
+  - Membership Testing Trace ($\mathcal{D} = \{\text{"story"}, \text{"fleet"}, \text{"leetcode"}\}$):
+    1. At $i = 3$:
+       - Substrings: $text[3:4] = \text{"s"}, \dots, text[3:8] = \text{"story"}$.
+       - "story" $\in \mathcal{D}$ at $j = 7 \implies$ Emit `[3, 7]`.
+    2. At $i = 9$:
+       - Substring $text[9:14] = \text{"fleet"}$ (from the letters `'f'` in `"of"` and `"leet"` in `"leetcode"`).
+       - "fleet" $\in \mathcal{D}$ at $j = 13 \implies$ Emit `[9, 13]`.
+    3. At $i = 10$:
+       - Substring $text[10:18] = \text{"leetcode"}$.
+       - "leetcode" $\in \mathcal{D}$ at $j = 17 \implies$ Emit `[10, 17]`.
+    4. All other $i \in [0, 22]$ yield no dictionary matches.
+  - Final Sorted Result:
+    $$
+    [[\mathbf{3, 7}], \; [\mathbf{9, 13}], \; [\mathbf{10, 17}]]
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Overlapping Nested Matches at Multiple Starts):**
+  $$
+  text = \text{"ababa"}, \quad words = [\text{"aba"}, \; \text{"ab"}], \quad n = 5
+  $$
+  - $i = 0$:
+    - $j = 1: text[0:2] = \text{"ab"} \in words \implies \mathbf{[0, 1]}$
+    - $j = 2: text[0:3] = \text{"aba"} \in words \implies \mathbf{[0, 2]}$
+  - $i = 2$:
+    - $j = 3: text[2:4] = \text{"ab"} \in words \implies \mathbf{[2, 3]}$
+    - $j = 4: text[2:5] = \text{"aba"} \in words \implies \mathbf{[2, 4]}$
+  - Output: `[[0, 1], [0, 2], [2, 3], [2, 4]]`.
+
+- **Representative Instance 3 (No Matching Substrings):**
+  $$
+  text = \text{"abc"}, \quad words = [\text{"d"}] \implies \text{No matches} \implies \mathbf{[]}
+  $$
+
+- **Representative Instance 4 (Single Character Boundary):**
+  $$
+  text = \text{"a"}, \quad words = [\text{"a"}] \implies \text{Matches at } i = 0, j = 0 \implies \mathbf{[[0, 0]]}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `text` and an array of strings `words`, return *an array of all index pairs *`[i, j]`* so that the substring *`text[i...j]`* is in `words`*.
+Given a string `text` and a dictionary `words`, find all index pairs `[i, j]` such that `text[i...j]` is in `words`, formatted in ascending lexicographical order.
 
-The objective is to compute `[[3, 7], [9, 13], [10, 17]]` from `{"text": "thestoryofleetcodeandme", "words": ["story", "fleet", "leetcode"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Search / Post-Sorting Overhead Fallacy:
+  Searching for each word in text using string.find() or KMP:
+    Requires sorting and deduplicating matches afterwards.
+    Overlaps and multiple identical hits complicate index tracking.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Dual Lexicographical Loop Invariant (O(N^2 * L) Time, O(W) Space):
+  Key observation:
+    Nested iteration over all pairs 0 <= i <= j < n:
+      for i in range(n):
+        for j in range(i, n):
+          if text[i : j + 1] in words_set: emit [i, j]
+    Naturally visits pairs in ascending order:
+      (i1, j1) is visited before (i2, j2) iff i1 < i2 or (i1 == i2 and j1 < j2)!
+  - Every match is appended in guaranteed lexicographical order.
+  - Zero post-sorting required!
+  - Constant lookup per slice using hash set.
+  Solves the problem directly and deterministically in under 2ms!
+```
 
----
+Recognizing that nested index loops naturally match the problem's sorting criteria eliminates post-hoc sorting and simplifies the matching pipeline.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Examine every substring boundary pair
-
-An answer pair `[i, j]` represents the inclusive substring beginning at index `i` and ending at index `j`. The exact solution directly enumerates every legal pair:
-
-
-
-For each fixed start `i`, `j` begins at `i`, so one-character substrings are included. It continues through `n - 1`, so every nonempty substring starting at `i` is considered.
-
-Across all starts, every pair satisfying `0 <= i <= j < n` appears exactly once. This complete enumeration guarantees that no occurrence is missed, including overlapping occurrences.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"text": "thestoryofleetcodeandme", "words": ["story", "fleet", "leetcode"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Dual Lexicographical Loop Ordering Theorem & Substring Inclusion Invariant**:
+1. **Pre-Sorted Invariant:** The canonical nested loop structure over $(i, j)$ induces the exact strict weak ordering required by the problem contract without calling `sort()`.
+2. **Exhaustive Substring Coverage:** Checking all $0 \le i \le j < n$ ensures that overlapping, nested, and adjacent words are discovered without omission.
+3. **Hash Set Acceleration:** Converting `words` to a hash set enables expected $\mathcal{O}(L)$ membership validation per candidate substring.
+4. Total time $\mathcal{O}(n^2 \cdot L)$ and auxiliary space $\mathcal{O}(\sum |w|)$.
 
 ---
 
-### Step 2: Convert the word list into a membership set
+## 2. Conceptual Foundation & The Lexicographical Extraction Pipeline
 
-The first operation is:
+```mermaid
+flowchart TD
+    accTitle: Index Pairs of a String Pipeline
+    accDescr: Flowchart illustrating hash set conversion, nested loop enumeration, and direct pre-sorted pair collection
+    Start["text of length n, words list\nwords_set = set(words)"] --> LoopI["For start index i from 0 to n - 1:"]
+    LoopI --> LoopJ["For end index j from i to n - 1:"]
+    LoopJ --> CheckWord{"text[i : j + 1] in words_set ?"}
+    CheckWord -->|"Yes: Dictionary match found"| AppendPair["Append [i, j] to results\n(Naturally pre-sorted)"]
+    CheckWord -->|"No: Not in dictionary"| NextJ["Next j"]
+    AppendPair --> NextJ
+    NextJ --> CheckJDone{"j < n - 1 ?"}
+    CheckJDone -->|"Yes"| LoopJ
+    CheckJDone -->|"No"| NextI["Next i"]
+    NextI --> CheckIDone{"i < n - 1 ?"}
+    CheckIDone -->|"Yes"| LoopI
+    CheckIDone -->|"No: All substrings scanned"| Finish["Return results list"]
+```
 
+### The Dual Lexicographical Loop Ordering Theorem
 
-
-The local name `words` now refers to a hash set rather than the input list. Hash-set membership is expected constant time after a candidate string's hash has been computed, while membership in a list could require comparing against many dictionary words.
-
-The statement says input words are distinct, so removing duplicates is not necessary for correctness. The set is used for faster lookup, not deduplication.
-
-Each complete word is a key. Prefixes that are not themselves words are not present. For example, if `"story"` is a word, `"stor"` does not match unless it also appears explicitly in the input list.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Use Python's half-open slice for inclusive boundaries
-
-The membership test is:
-
-
-
-Python slices include the start index and exclude the stop index. Passing `j + 1` therefore extracts characters at indices `i` through `j` inclusive, exactly matching the problem's pair definition.
-
-If the extracted substring equals any complete word, the list comprehension emits:
-
-
-
-Otherwise, that pair contributes nothing.
-
-Substrings are compared by their character content, not by where they occur. The same word can match at multiple starts, and every occurrence receives its own boundary pair.
-
-For `text = "ababa"` and `words = ["aba", "ab"]`:
-
-- At `i = 0`, endings one and two produce `"ab"` and `"aba"`.
-- At `i = 2`, endings three and four produce the same two word contents.
-
-All four boundary pairs are returned. The occurrences of `"aba"` overlap at index two, which is valid because the problem imposes no non-overlap restriction.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[3, 7], [9, 13], [10, 17]]` |
+Let $T = (t_0, t_1, \dots, t_{n-1})$ be a string of length $n$, and let $\mathcal{W} \subset \Sigma^*$ be a finite dictionary.
+1. **Definition of Index Pairs:**
+   An index pair $[i, j]$ is valid if and only if $0 \le i \le j < n$ and the contiguous slice $T[i \dots j] \in \mathcal{W}$.
+2. **Lexicographical Specification:**
+   The output must be sorted under the relation $\le_{\text{lex}}$:
+   $$
+   [i_1, j_1] \le_{\text{lex}} [i_2, j_2] \iff (i_1 < i_2) \lor (i_1 = i_2 \land j_1 \le j_2)
+   $$
+3. **Loop Ordering Preservation:**
+   Consider the product traversal $\mathcal{P} = \{(i, j) : 0 \le i < n, \; i \le j < n\}$ generated by:
+   ```python
+   for i in range(n):
+       for j in range(i, n):
+           ...
+   ```
+   Let $(i_1, j_1)$ and $(i_2, j_2)$ be two pairs generated during this iteration such that $(i_1, j_1)$ is visited before $(i_2, j_2)$.
+   - If $i_1 < i_2$: The outer loop iterates on $i_1$ strictly before $i_2$, so $i_1 < i_2$.
+   - If $i_1 = i_2$: The inner loop iterates on $j_1$ strictly before $j_2$, so $j_1 < j_2$.
+   In both cases, $[i_1, j_1] <_{\text{lex}} [i_2, j_2]$.
+   Therefore, the discovery sequence in $\mathcal{P}$ is strictly monotonic with respect to $\le_{\text{lex}}$.
+   Any filtered sub-sequence of $\mathcal{P}$ (the valid matches) inherits this strict monotonicity without sorting. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"text": "thestoryofleetcodeandme", "words": ["story", "fleet", "leetcode"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[3, 7], [9, 13], [10, 17]]` | Verified |
+$text = \text{"thestoryofleetcodeandme"}, \; n = 23$.
+$words = \{\text{"story"}, \text{"fleet"}, \text{"leetcode"}\}$.
+
+### Substring Scan Highlights
+- $i \in [0, 2]$: Substrings like `"t"`, `"th"`, `"the"` $\notin words$.
+- $i = 3$:
+  - $j = 7 \implies text[3:8] = \text{"story"} \in words \implies$ Append `[3, 7]`.
+- $i \in [4, 8]$: No dictionary matches.
+- $i = 9$:
+  - $j = 13 \implies text[9:14] = \text{"fleet"} \in words \implies$ Append `[9, 13]`.
+- $i = 10$:
+  - $j = 17 \implies text[10:18] = \text{"leetcode"} \in words \implies$ Append `[10, 17]`.
+- $i \in [11, 22]$: No dictionary matches.
+
+Output list: `[[3, 7], [9, 13], [10, 17]]`.
+
+---
+
+## 4. Match Discovery and Lexicographical Order Trace Table
+
+| Start Index $i$ | End Index $j$ | Slice $text[i : j + 1]$ | In Dictionary? | Output Action | Current Emitted Sequence |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $3$ | $7$ | `"story"` | **Yes** | **Emit `[3, 7]`** | `[[3, 7]]` |
+| $9$ | $13$ | `"fleet"` | **Yes** | **Emit `[9, 13]`** | `[[3, 7], [9, 13]]` |
+| $10$ | $17$ | `"leetcode"` | **Yes** | **Emit `[10, 17]`** | `[[3, 7], [9, 13], [10, 17]]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every returned pair $[i, j]$ is directly validated via `text[i : j + 1] in words`.
+2. **Completeness:**
+   Every valid pair $(i, j)$ with $0 \le i \le j < n$ is evaluated by the nested loops. No candidate substring is omitted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Trie for the manifest target:** Store all word prefixes as shared paths, scan at most `L` characters from every text start, and stop on the first missing edge. This achieves `O(S + NL)` time and `O(S)` auxiliary space.
-- **Aho–Corasick automaton:** Build failure links over the trie and find all dictionary matches in `O(S + N + R)` time, where `R` is output size. It is stronger for large dictionaries but more complex than needed here.
-- **Length-grouped hash sets:** Group words by length and test only those lengths at each start. This avoids impossible lengths but Python slicing still copies candidate strings.
-- **Cap the inner loop at L:** Even with the current hash-set approach, no candidate longer than `L` can match. Limiting `j` reduces wasted candidates, though slicing can still add another length factor.
-- **One-character text:** The only candidate pair is `[0, 0]`, returned exactly when that character is a word.
-- **Word longer than text:** It can never match. The exact code simply never creates a candidate that long.
-- **Word equal to the full text:** The pair `[0, N - 1]` is considered and returned.
-- **Overlapping matches:** Starts are processed independently, so overlaps are retained exactly as required.
-- **Nested words:** If both a prefix and a longer word match at one start, increasing `j` emits the shorter endpoint before the longer endpoint.
-- **No matches:** Every filter test is false and the list comprehension returns an empty list.
-- **All words distinct:** Set conversion retains every input word and does not alter match semantics.
-- **Required ordering:** The nested loop order already sorts by start and then end. A separate sort would be redundant.
-- **Inclusive output versus exclusive slicing:** Adding one to `j` is essential. Using `text[i:j]` would omit the character at the reported end.
-- **Local name replacement:** Assigning `words = set(words)` does not mutate the caller's input list; it only rebinds the local variable.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Empty Dictionary Match | `text = "abc", words = ["d"]` | No matches; returns `[]`. | Returning null instead of empty list. |
+| Overlapping Words | `text = "ababa", words = ["aba", "ab"]` | All four occurrences captured in sorted order. | Missing overlapping matches. |
+| Nested Substrings | `text = "cartooncar", words = ["car", "cart", "cartoon"]` | Emits $[0, 2], [0, 3], [0, 6]$ in increasing $j$ order. | Suppressing prefixes of longer matches. |
+| Word Longer Than Text | `text = "hi", words = ["high", "hi"]` | Loop bounds prevent checking beyond $n$; returns `[[0, 1]]`. | Out-of-bounds slicing. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S)$. Let `N` be the length of `text`, let `L` be the maximum word length, and let:
-- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2 \cdot L)$, where $n = \text{len}(text) \le 100$ and $L$ is maximum word length ($\le 50$).
+  - Number of substring pairs is $\frac{n(n + 1)}{2} \le 5050$.
+  - Slicing and hashing takes $\mathcal{O}(L)$ time.
+  - Total operations $\approx 5050 \times 50 \approx 2.5 \times 10^5 \implies < 0.002\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\sum |w|)$ auxiliary memory to store the hash set `words_set`.

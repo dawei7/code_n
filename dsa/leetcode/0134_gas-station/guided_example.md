@@ -1,138 +1,187 @@
 # Guided Example: Gas Station
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-pass greedy deficit reset and global feasibility summation on representative circular route instances:
 
-- **Input:** `{"gas": [1, 2, 3, 4, 5], "cost": [3, 4, 5, 1, 2]}`
-- **Required output:** `3`
+- **Input:** $\text{gas} = [1, 2, 3, 4, 5]$, $\text{cost} = [3, 4, 5, 1, 2]$
+- **Required output:** $3$ (Station 3 is the unique valid starting index)
+- **Infeasible Base:** $\text{gas} = [2, 3, 4]$, $\text{cost} = [3, 4, 3] \implies -1$ ($\sum \text{gas} < \sum \text{cost}$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates net fuel gain transformation ($\Delta_i = \text{gas}[i] - \text{cost}[i]$), proves why a deficit at station $K$ invalidates all starting points between current start and $K$, explains the global invariant ($\sum \Delta \ge 0 \iff$ a valid circular start exists), and executes in $O(N)$ linear time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` gas stations along a circular route, where the amount of gas at the $i^{\text{th}}$ station is $\text{gas}[i]$.
+There are $n = 5$ gas stations along a circular route. At station $i$, you receive $\text{gas}[i]$ and expend $\text{cost}[i]$ to travel to station $i + 1$:
+$$
+\text{gas} = [1, 2, 3, 4, 5], \quad \text{cost} = [3, 4, 5, 1, 2]
+$$
+Calculate the net fuel balance delta $\Delta_i = \text{gas}[i] - \text{cost}[i]$ for each station:
+- Station 0: $1 - 3 = -2$
+- Station 1: $2 - 4 = -2$
+- Station 2: $3 - 5 = -2$
+- Station 3: $4 - 1 = +3$
+- Station 4: $5 - 2 = +3$
 
-The objective is to compute `3` from `{"gas": [1, 2, 3, 4, 5], "cost": [3, 4, 5, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+Total net fuel:
+$$
+\sum_{i=0}^4 \Delta_i = (-2) + (-2) + (-2) + 3 + 3 = 0 \ge 0
+$$
+Because the total fuel is non-negative, a complete circular circuit is guaranteed to exist.
+Simulating from Station 3:
+- Leave 3: Tank $= +3$. Reach 4.
+- At 4: Tank $= 3 + 3 = 6$. Reach 0.
+- At 0: Tank $= 6 - 2 = 4$. Reach 1.
+- At 1: Tank $= 4 - 2 = 2$. Reach 2.
+- At 2: Tank $= 2 - 2 = 0$. Reach 3.
+Complete circuit achieved! Returns $3$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive simulation tests all $N$ starting points for up to $N$ steps, taking $O(N^2)$ time.
+The greedy reset theorem proves that whenever a tank dips below zero at station $K$, no station between the current start and $K$ can possibly complete the circuit, allowing the start pointer to jump directly to $K + 1$ in $O(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Deficit Jump Theorem
+Suppose we start at station $A$ and reach station $K$ ($K \ge A$), but the tank runs dry at leg $K$ ($\text{curr\_tank} < 0$).
+Could any intermediate station $B$ ($A \le B \le K$) be a valid starting point?
+**Proof by contradiction:**
+Because we reached $B$ starting from $A$ with an empty tank, the fuel remaining at $B$ was non-negative ($\text{fuel}_B \ge 0$).
+If starting at $A$ with surplus fuel at $B$ failed to traverse past $K$, then starting at $B$ with strictly **zero** initial fuel will run dry even sooner (at or before $K$).
+Therefore, **every station from $A$ to $K$ is disqualified simultaneously**.
+The next candidate start must be at least $K + 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Greedy Single-Pass Protocol
+Maintain:
+- $\text{total\_tank} = 0$: Tracks $\sum_{i=0}^{N-1} (\text{gas}[i] - \text{cost}[i])$.
+- $\text{curr\_tank} = 0$: Running fuel balance since candidate `start`.
+- $\text{start} = 0$: Candidate starting station index.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+For $i$ from $0$ to $N - 1$:
+1. Let $\Delta = \text{gas}[i] - \text{cost}[i]$.
+2. $\text{total\_tank} \leftarrow \text{total\_tank} + \Delta$.
+3. $\text{curr\_tank} \leftarrow \text{curr\_tank} + \Delta$.
+4. If $\text{curr\_tank} < 0$:
+   - Deficit encountered! Disqualify all stations $\text{start} \dots i$.
+   - $\text{start} \leftarrow i + 1$
+   - $\text{curr\_tank} \leftarrow 0$
+
+**Final Decision:**
+If $\text{total\_tank} < 0$: return $-1$ (insufficient total fuel).
+Else: return $\text{start}$.
+
+> **Invariant.** If $\text{total\_tank} \ge 0$, the candidate index `start` reached at the end of the loop is mathematically guaranteed to complete the entire circular tour without ever dropping below zero.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Replace gas and cost by one net change
+We trace the single-pass greedy scan on $\text{gas} = [1, 2, 3, 4, 5]$ and $\text{cost} = [3, 4, 5, 1, 2]$:
 
-At station `k`, the tank changes by:
-
-$$
-d_k=\texttt{gas[k]}-\texttt{cost[k]}.
-$$
-
-A chosen start is feasible exactly when every running sum along the clockwise circuit is nonnegative. The tank begins at zero, so a negative running sum means the car cannot pay for that outgoing leg.
-
-The selected solution builds one contiguous circular block of stations and tries to make that block traversable from its left endpoint. It begins with station `n - 1`. The variable meanings are:
-
-- `i`: the current proposed starting station, or left endpoint;
-- `j`: the next station to append at the clockwise right endpoint;
-- `cnt`: how many distinct stations have entered the block;
-- `s`: the total net gas across the current block.
-
-Initially the block is empty, with both endpoints positioned at `n - 1`. Every station is added exactly once, either by advancing `j` clockwise or by moving `i` backward.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"gas": [1, 2, 3, 4, 5], "cost": [3, 4, 5, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $\text{total\_tank} = 0$
+- $\text{curr\_tank} = 0$
+- $\text{start} = 0$
 
 ---
 
-### Step 2: Grow clockwise while the route remains possible
-
-The outer loop appends station `j` by adding its net change to `s`. It increments `cnt` and advances `j` with modulo `n`, so after station `n - 1` the forward endpoint wraps to station `0`.
-
-Suppose the existing block was traversable from `i` and had nonnegative total fuel. Appending one station at its end does not change any earlier running balance. Only the new final balance can become negative.
-
-If `s` stays nonnegative, the enlarged block remains traversable from the same `i`. The algorithm can safely continue appending clockwise stations.
-
-If `s` becomes negative, starting at `i` cannot finish the enlarged block. The inner loop then moves `i` one station backward and adds that station’s net gas. It keeps prepending stations until the total becomes nonnegative or all $n$ stations have been included.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Station $i = 0$ ($1 - 3 = -2$)
+- $\Delta = -2$.
+- $\text{total\_tank} = 0 - 2 = -2$.
+- $\text{curr\_tank} = 0 - 2 = -2$.
+- $\text{curr\_tank} < 0 \implies$ Deficit at station 0!
+  - Disqualify Station 0.
+  - Reset: $\text{start} \leftarrow 0 + 1 = \mathbf{1}$.
+  - Reset: $\text{curr\_tank} \leftarrow 0$.
 
 ---
 
-### Step 3: Why prepending until nonnegative repairs every prefix
+### Step 2: Station $i = 1$ ($2 - 4 = -2$)
+- $\Delta = -2$.
+- $\text{total\_tank} = -2 - 2 = -4$.
+- $\text{curr\_tank} = 0 - 2 = -2$.
+- $\text{curr\_tank} < 0 \implies$ Deficit at station 1!
+  - Disqualify Station 1.
+  - Reset: $\text{start} \leftarrow 1 + 1 = \mathbf{2}$.
+  - Reset: $\text{curr\_tank} \leftarrow 0$.
 
-It is not generally true that a segment with nonnegative total is traversable from its first position; an early deficit could still occur. The particular order used here supplies the stronger guarantee.
+---
 
-Before the failed forward append, the old block was traversable. Therefore all of its old prefixes were nonnegative. Adding the new rightmost station makes only the complete enlarged block negative.
+### Step 3: Station $i = 2$ ($3 - 5 = -2$)
+- $\Delta = -2$.
+- $\text{total\_tank} = -4 - 2 = -6$.
+- $\text{curr\_tank} = 0 - 2 = -2$.
+- $\text{curr\_tank} < 0 \implies$ Deficit at station 2!
+  - Disqualify Station 2.
+  - Reset: $\text{start} \leftarrow 2 + 1 = \mathbf{3}$.
+  - Reset: $\text{curr\_tank} \leftarrow 0$.
 
-Call that negative sum $S_0$. As the algorithm prepends stations in reverse order, let $S_1,S_2,\ldots$ be the successive whole-block sums. The inner loop continues while each of those sums is negative and stops at the first $S_k \ge 0$.
+---
 
-In forward travel order, the newly prepended stations appear in the reverse of the order in which they were added. The fuel after traversing the first newly prepended station is $S_k-S_{k-1}$, which is nonnegative because $S_k \ge 0$ and $S_{k-1}<0$. After the next one, it is $S_k-S_{k-2}$, also nonnegative. The same reasoning covers every prefix of the prepended portion.
+### Step 4: Station $i = 3$ ($4 - 1 = +3$)
+- $\Delta = +3$.
+- $\text{total\_tank} = -6 + 3 = -3$.
+- $\text{curr\_tank} = 0 + 3 = 3$.
+- $\text{curr\_tank} \ge 0 \implies$ Station 3 remains candidate start.
 
-When the car reaches the old block, it carries the total contribution of the prepended portion. Every prefix of the old block except its newly appended last station was already feasible. At the final station, the balance is exactly $S_k$, which is nonnegative. Thus the whole enlarged block is traversable from the new `i`.
+---
 
-This proves the maintained fact: whenever an iteration finishes with `s >= 0`, every running balance from `i` across the current circular block is nonnegative.
+### Step 5: Station $i = 4$ ($5 - 2 = +3$)
+- $\Delta = +3$.
+- $\text{total\_tank} = -3 + 3 = \mathbf{0}$.
+- $\text{curr\_tank} = 3 + 3 = 6$.
+- $\text{curr\_tank} \ge 0 \implies$ Station 3 remains candidate start.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+---
+
+### Circuit Validation
+Loop completes:
+- Total fuel balance: $\text{total\_tank} = 0 \ge 0$.
+- Candidate starting station is $\text{start} = \mathbf{3}$.
+
+Result: Station $3$ successfully completes the circuit.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"gas": [1, 2, 3, 4, 5], "cost": [3, 4, 5, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+Stations:       0      1      2      3      4
+Gas - Cost:    -2     -2     -2     +3     +3
+curr_tank:     -2     -2     -2     +3     +6
+Action:       RESET  RESET  RESET   KEEP   KEEP
+start ptr:      1      2      3      3      3  => START = 3
+total_tank:     0 (>= 0 -> Feasible)
+```
+
+| Station $i$ | $\text{gas}[i]$ | $\text{cost}[i]$ | Net $\Delta_i$ | $\text{curr\_tank}$ Before Reset | Deficit Occurs? | Updated $\text{start}$ | Cumulative $\text{total\_tank}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | 3 | $-2$ | $-2$ | **Yes** | 1 | $-2$ |
+| 1 | 2 | 4 | $-2$ | $-2$ | **Yes** | 2 | $-4$ |
+| 2 | 3 | 5 | $-2$ | $-2$ | **Yes** | 3 | $-6$ |
+| 3 | 4 | 1 | $+3$ | $+3$ | No | 3 | $-3$ |
+| 4 | 5 | 2 | $+3$ | $+6$ | No | **3** | **0 (Feasible)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If the sum of all net gains is non-negative ($\sum \Delta \ge 0$), then the sum of losses is compensated by the sum of surpluses. Because $\text{curr\_tank} \ge 0$ across the entire suffix $[\text{start} \dots N-1]$, and the accumulated deficit across prefix $[0 \dots \text{start}-1]$ is at most the total surplus, the car has sufficient remaining fuel upon wrapping around from $N-1$ to $0$ to traverse the prefix back to `start`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every time `curr_tank` falls below zero at step $i$, the Deficit Jump Theorem proves that no index in the range $[\text{old\_start} \dots i]$ can be valid. Hence, candidate discarding is strictly sound and complete.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Standard forward greedy reset:** Accumulate a candidate’s tank from left to right. When it becomes negative at `k`, eliminate every start in the current segment and restart at `k + 1`. A separate total sum decides whether any start exists.
-- **Brute force every station:** Simulate up to $n$ legs from each of $n$ starts. It is easy to understand but takes $O(n^2)$ time.
-- **Prefix-sum minimum:** A valid circular start can be chosen immediately after a minimum prefix sum when total net gas is nonnegative. This gives another $O(n)$ proof and implementation.
-- **One station:** Return zero exactly when `gas[0] >= cost[0]`; otherwise return `-1`.
-- **Total gas equals total cost:** Feasibility is still possible because the final tank may be exactly zero. The code correctly rejects only `s < 0`, not `s <= 0`.
-- **Temporary negative segment:** The inner loop is required even if a later station would eventually compensate. A car cannot borrow gas from a future station it cannot yet reach.
-- **Large values:** Python integers do not overflow. In fixed-width languages, the total can be as large as roughly $10^9$ under the given limits and should use a safe integer type.
-- **Unique-answer guarantee:** The source returns the `i` constructed by its deterministic growth order. The Reference guarantees uniqueness when a feasible answer exists, so no tie policy is needed.
-- **Nonempty arrays:** The contract has $n \ge 1$. With empty arrays, modulo by `n` would be invalid.
-- **Runtime dependency:** The selected source uses `List` in type annotations without importing it. A standalone module needs `from typing import List` unless the harness supplies that name.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Simulating the Wraparound Twice ($O(N^2)$ Trap):** There is no need to run a second circular simulation once the loop finishes! If $\text{total\_tank} \ge 0$, mathematical induction proves that `start` is guaranteed to succeed.
+- **Total Gas Insufficiency:** If $\sum \text{gas} < \sum \text{cost}$, no starting station anywhere on the circle can succeed because the net energy of the closed loop is strictly negative. Checking `if total_tank < 0: return -1` immediately catches this.
+- **Zero Balance Transitions:** Running with `curr_tank == 0` is allowed; fuel is empty, but the car does not stall. The deficit reset is triggered strictly on `curr_tank < 0`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common length of `gas` and `cost`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of gas stations. The array is traversed once in a single forward pass, performing $O(1)$ scalar updates per station.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, utilizing only three scalar counters (`total_tank`, `curr_tank`, `start`).

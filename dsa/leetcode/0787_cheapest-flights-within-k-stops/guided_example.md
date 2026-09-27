@@ -1,114 +1,224 @@
 # Guided Example: Cheapest Flights Within K Stops
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step hop-constrained shortest path formulation ($k \text{ stops} \iff k + 1 \text{ flights}$), Bellman-Ford dynamic programming edge relaxation, synchronous state snapshotting ($backup = dist.copy()$) preventing intra-iteration chaining, distance relaxation updates ($dist[v] = \min(dist[v], backup[u] + cost)$), and unreachable node detection ($-1$) on representative flight network graphs:
 
-- **Input:** `{"n": 3, "flights": [[0, 1, 100], [1, 2, 100], [0, 2, 500]], "src": 0, "dst": 2, "k": 1}`
+- **Input:**
+  - City count: $n = 3$
+  - Flight routes: $flights = [[0, 1, 100], \; [1, 2, 100], \; [0, 2, 500]]$
+  - Source: $src = 0$
+  - Destination: $dst = 2$
+  - Maximum stops: $k = 1$
 - **Required output:** `200`
+  - Flight network constraints & mechanics:
+    - Each flight $[u, v, p]$ connects city $u$ to city $v$ with ticket cost $p$.
+    - A stop is an intermediate city between $src$ and $dst$.
+    - Taking at most $k$ stops means using at most:
+      $$
+      \text{max\_edges} = k + 1 \text{ flight segments}
+      $$
+    - For $src = 0, dst = 2, k = 1$:
+      - Max flights allowed: $1 + 1 = 2$.
+      - Path 1 (Direct, 0 stops): $0 \to 2$ with cost $500$ (1 flight).
+      - Path 2 (1 stop at city 1): $0 \to 1 \to 2$ with cost $100 + 100 = 200$ (2 flights).
+      - Path 2 uses exactly 1 stop ($1 \le k$) and has lower cost ($200 < 500$).
+      - Cheapest valid price is **200**.
+- **Bounded-Hop Bellman-Ford & Snapshot Invariant:**
+  - **The Step-Limited Distance Vector:**
+    - Standard Dijkstra's algorithm finds unconstrained shortest paths, which might use $> k + 1$ edges.
+    - Instead, Bellman-Ford with exactly $k + 1$ rounds computes the exact minimum cost using $\le m$ edges after round $m$.
+  - **The Anti-Chaining Snapshot Invariant ($backup$):**
+    - In round $m$, an edge $u \to v$ must only extend paths that used at most $m - 1$ edges:
+      $$
+      dist^{(m)}[v] = \min\Big(dist^{(m - 1)}[v], \;\; \min_{(u, v) \in E} (dist^{(m - 1)}[u] + cost(u, v))\Big)
+      $$
+    - To prevent a single relaxation round from updating $u$ and then immediately using the new value of $u$ to update $v$ (which would simulate 2 hops in a single round!), we take an immutable snapshot:
+      $$
+      backup = dist.copy()
+      $$
+    - All relaxations in that round read exclusively from $backup[u]$:
+      $$
+      dist[v] \leftarrow \min(dist[v], \; backup[u] + p)
+      $$
+- **Step-by-Step Worked Execution Trace on the 3-City Network ($k = 1$):**
+  - Cities: $0, 1, 2$. Source: $src = 0$, Destination: $dst = 2$.
+  - Maximum allowed flight rounds: $k + 1 = 1 + 1 = \mathbf{2} \text{ rounds}$.
+  - Initialize distance array:
+    $$
+    dist = [0, \; \infty, \; \infty]
+    $$
+  - **Round 1 (At most 1 flight segment):**
+    - Create snapshot:
+      $$
+      backup = [0, \; \infty, \; \infty]
+      $$
+    - **Flight 1: $0 \to 1$ (Cost 100):**
+      - $backup[0] = 0 \ne \infty$.
+      - $dist[1] \leftarrow \min(\infty, 0 + 100) = \mathbf{100}$.
+    - **Flight 2: $1 \to 2$ (Cost 100):**
+      - Read from snapshot: $backup[1] = \infty$.
+      - City 1 was unreachable in zero hops $\implies$ no update to $dist[2]$.
+    - **Flight 3: $0 \to 2$ (Cost 500):**
+      - $backup[0] = 0 \ne \infty$.
+      - $dist[2] \leftarrow \min(\infty, 0 + 500) = \mathbf{500}$.
+    - State at end of Round 1:
+      $$
+      dist = [0, \; 100, \; 500]
+      $$
+      *(Direct flights from source evaluated; city 2 reachable for 500)*.
+  - **Round 2 (At most 2 flight segments):**
+    - Create snapshot:
+      $$
+      backup = [0, \; 100, \; 500]
+      $$
+    - **Flight 1: $0 \to 1$ (Cost 100):**
+      - $dist[1] \leftarrow \min(100, 0 + 100) = 100$.
+    - **Flight 2: $1 \to 2$ (Cost 100):**
+      - Read from snapshot: $backup[1] = 100 \ne \infty$.
+      - Path candidate: $backup[1] + 100 = 100 + 100 = 200$.
+      - Relax distance to city 2:
+        $$
+        dist[2] \leftarrow \min(500, 200) = \mathbf{200}
+        $$
+    - **Flight 3: $0 \to 2$ (Cost 500):**
+      - $dist[2] \leftarrow \min(200, 0 + 500) = 200$.
+    - State at end of Round 2:
+      $$
+      dist = [0, \; 100, \; 200]
+      $$
+  - **Output Result:**
+    - Destination distance:
+      $$
+      ans = dist[dst] = dist[2] = \mathbf{200}
+      $$
+- **Strict Stop Limit Rejection Trace ($k = 0$ on same graph):**
+  - Only $k + 1 = 1$ round executes.
+  - Path $0 \to 1 \to 2$ cannot be evaluated because city 1 was not reachable before the round.
+  - Only direct flight $0 \to 2$ is considered.
+  - Returns **`500`**.
+- **Completely Unreachable Destination Trace:**
+  - If no path exists from $src$ to $dst$ within $k + 1$ hops:
+  - $dist[dst]$ remains $\infty$ (`0x3F3F3F3F`).
+  - Returns **`-1`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates dynamic programming over path-length filtrations and synchronous Jacobi relaxation on weighted directed graphs, mathematically proves why $k+1$ iterations of Bellman-Ford compute the exact minimum over the restricted walk space $\mathcal{W}_{\le k+1}(src, dst)$, and derives $O(K \cdot |E|)$ runtime and $O(V)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` cities connected by some number of flights. You are given an array `flights` where $\text{flights}[i] = [\text{from}_{i}, \text{to}_{i}, \text{price}_{i}]$ indicates that there is a flight from city $\text{from}_{i}$ to city $\text{to}_{i}$ with cost $\text{price}_{i}$.
+Given flight routes, source $src$, destination $dst$, and maximum stops $k$:
+Find the **cheapest price** to reach $dst$ using **at most $k$ stops** ($k + 1$ flights).
+Return `-1` if unreachable.
 
-The objective is to compute `200` from `{"n": 3, "flights": [[0, 1, 100], [1, 2, 100], [0, 2, 500]], "src": 0, "dst": 2, "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Flights:
+  0 -> 1 (cost 100)
+  1 -> 2 (cost 100)
+  0 -> 2 (cost 500)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+src = 0, dst = 2, k = 1 stop (max 2 flights)
+
+Round 1 (max 1 flight):
+  dist[1] = 100
+  dist[2] = 500
+
+Round 2 (max 2 flights):
+  dist[2] = min(500, dist[1] + 100) = 100 + 100 = 200
+
+Result: 200
+```
+
+### The Invariant of the Synchronous Snapshot
+- Exactly $k + 1$ rounds of edge relaxations must be run.
+- Taking `backup = dist.copy()` before each round guarantees that each flight uses prices from $\le m - 1$ hops, preventing chaining multiple flights in a single iteration.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Bounded Edge Recurrence:
+$$
+dist^{(m)}[v] = \min\left( dist^{(m - 1)}[v], \; \min_{(u, v) \in E} (dist^{(m - 1)}[u] + cost(u, v)) \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Termination & Unreachability:
+$$
+\text{Total Rounds} = k + 1
+$$
+$$
+ans = \begin{cases} dist[dst] & dist[dst] < \infty \\ -1 & dist[dst] = \infty \end{cases}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Tropical Matrix Power Invariant.** In the min-plus semiring $(\mathbb{R} \cup \{\infty\}, \min, +)$, the $m$-hop distance vector is given by the matrix-vector product $dist^{(m)} = dist^{(0)} \otimes A^m$, where exactly $k+1$ powers of the adjacency matrix $A$ bound the walk length without cycle distortion.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Convert the stop limit into an edge limit
-
-A route with zero intermediate stops is one direct flight, so it uses one edge. In general, a route with at most `k` stops uses at most `k + 1` flight edges.
-
-The task is therefore to find the cheapest source-to-destination path using no more than `k + 1` edges. Ordinary single-distance shortest-path reasoning is not enough by itself because reaching a city cheaply with many edges may leave no edge budget, while a slightly more expensive arrival with fewer edges may still lead to the best legal destination route.
-
-The solution uses the edge-bounded form of Bellman–Ford dynamic programming.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3, "flights": [[0, 1, 100], [1, 2, 100], [0, 2, 500]], "src": 0, "dst": 2, "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Define what the distance array means after each round
-
-Before any relaxation round, `dist[src] = 0` and every other entry is a large sentinel `INF`. This represents cheapest costs using at most zero edges: only the source is reachable.
-
-After one complete round, `dist[v]` should mean the cheapest cost from `src` to `v` using at most one edge. After two rounds it should mean at most two edges, and so on.
-
-Running exactly `k + 1` rounds therefore produces the cheapest costs among all routes allowed by the stop constraint.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize
+- $dist = [0, \infty, \infty]$.
 
 ---
 
-### Step 3: Freeze the previous round with a snapshot
+### Step 2: Round 1 (1 Flight)
+- $0 \to 1 \implies dist[1] = 100$.
+- $0 \to 2 \implies dist[2] = 500$.
+- $1 \to 2$ cannot be used because $backup[1] = \infty$.
+- $dist = [0, 100, 500]$.
 
-At the beginning of each round, the method creates `backup = dist.copy()`. Every flight relaxation reads its starting-city cost from `backup`:
+---
 
-`dist[t] = min(dist[t], backup[f] + p)`.
+### Step 3: Round 2 (2 Flights)
+- $backup[1] = 100$.
+- $1 \to 2 \implies dist[2] = \min(500, 100 + 100) = 200$.
+- $dist = [0, 100, 200]$.
 
-This separation is essential. `backup[f]` represents a path using at most the previous round's edge count. Adding flight `f -> t` creates a candidate using at most one more edge.
+---
 
-The destination update is written to `dist`, but no later flight in the same round is allowed to use that fresh update because all reads still come from `backup`. Thus one round can add at most one flight edge, regardless of the order in which flights appear.
-
-Without the copy, a chain of several flights could propagate through `dist` during one scan. That would silently exceed the intended edge budget and make results depend on input edge order.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `200` |
+### Step 4: Output
+$$
+\mathbf{200}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "flights": [[0, 1, 100], [1, 2, 100], [0, 2, 500]], "src": 0, "dst": 2, "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `200` | Verified |
+| Round $m$ | Max Flights | Snapshot $backup$ | Edge Relaxed | Updated $dist$ |
+|:---:|:---:|:---:|:---:|:---:|
+| Initial | $0$ | — | — | `[0, inf, inf]` |
+| $1$ | $1$ | `[0, inf, inf]` | $0 \to 1 (100), 0 \to 2 (500)$ | `[0, 100, 500]` |
+| **$2$** | **$2$** | **`[0, 100, 500]`** | **$1 \to 2 (100+100=200)$** | **`[0, 100, 200]`** |
+| **Final** | — | — | **$dist[2] = 200$** | **`200`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Direct Flight Only ($k = 0$):** Executes only 1 round $\implies$ only direct flights are eligible.
+- **Unreachable ($dist[dst] == \infty$):** No valid route within $k$ stops $\implies$ returns -1.
+- **Cycles in Graph:** Bounded rounds naturally prevent infinite negative or positive cycling.
+- **Source Equals Destination:** $dist[src] = 0$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Two-row dynamic programming:** Explicitly compute costs for each exact or bounded edge count. It expresses the same recurrence and also uses $O(V)$ rolling space.
-- **State-expanded Dijkstra:** Treat `(city, edges_used)` as a state and use a heap. It can return early but requires more elaborate dominance handling.
-- **Ordinary Dijkstra with one distance per city:** It can discard a more expensive but lower-edge state that is necessary under the stop constraint.
+- **Relaxing In-Place without a Backup Array:** If you update `dist[t]` in-place without `backup = dist.copy()`, an edge relaxed earlier in the loop can be used immediately by another edge later in the *same* round. This effectively allows $\ge 2$ flights in a single round, violating the $k$-stops limit!
+- **Using Standard Dijkstra Without Hop Tracking:** Standard Dijkstra terminates early based on price, potentially picking a cheaper path that uses too many stops, and abandoning valid paths with fewer stops.
+- **Off-By-One on Stop Count:** $k$ stops means at most **$k + 1$ flights** (outer loop must run $k + 1$ times).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(E)$. Let $V$ be the number of cities and $E$ the number of flights. There are `k + 1` rounds. Each round copies a $V$-entry distance array in $O(V)$ time and scans all $E$ flights in $O(E)$ time.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Outer loop runs $k + 1$ times ($k \le N$).
+  - Inner loop iterates over all $E$ flights: $\mathcal{O}(E)$.
+  - Total Time: strictly $\mathcal{O}(K \cdot E)$ where $K \le 100, E \le 10^4$. Completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ memory for $dist$ and $backup$ arrays.

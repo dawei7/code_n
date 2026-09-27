@@ -1,155 +1,227 @@
 # Guided Example: Range Sum Query 2D - Mutable
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step row-wise Binary Indexed Tree (Fenwick tree) decomposition, isolated point update delta computation ($\Delta = val - \text{prev}$), row-by-row horizontal prefix interval querying, and subgrid aggregation on representative 2D mutable matrix instances:
 
-- **Input:** `{"matrix": [[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]], "operations": [["sum", 2, 1, 4, 3], ["update", 3, 2, 2], ["sum", 2, 1, 4, 3]]}`
-- **Required output:** `[8, 10]`
+- **Input:**
+  $$
+  \text{matrix} = \begin{bmatrix}
+  3 & 0 & 1 & 4 & 2 \\
+  5 & 6 & 3 & 2 & 1 \\
+  1 & 2 & 0 & 1 & 5 \\
+  4 & 1 & 0 & 1 & 7 \\
+  1 & 0 & 3 & 0 & 5
+  \end{bmatrix}
+  $$
+  $$
+  \text{operations} = [\text{sumRegion}(2, 1, 4, 3), \; \text{update}(3, 2, 2), \; \text{sumRegion}(2, 1, 4, 3)]
+  $$
+- **Required outputs:** $[8, 10]$
+  - Initial $\text{sumRegion}(2, 1, 4, 3) = (2 + 0 + 1) + (1 + 0 + 1) + (0 + 3 + 0) = 3 + 2 + 3 = 8$
+  - $\text{update}(3, 2, 2)$ sets cell $(3, 2)$ from $0$ to $2$ ($\Delta = +2$)
+  - Subsequent $\text{sumRegion}(2, 1, 4, 3) = 3 + (1 + 2 + 1) + 3 = 3 + 4 + 3 = 10$
+- **Single Cell Region Query:** $\text{sumRegion}(r, c, r, c)$ isolates exactly $\text{matrix}[r][c]$ via row Fenwick tree
+- **Zero Delta Update:** Re-assigning an identical value yields $\Delta = 0$, leaving all prefix sums unchanged
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates row-partitioned Fenwick tree data structures, explains why each row maintains an independent 1D Binary Indexed Tree to achieve $O(\log N)$ point updates without complex 2D tree rebalancing, details row-by-row prefix accumulation across $[row_1, row_2]$, and analyzes time complexity ($O(H \log N)$ query time, $O(M N)$ space).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a 2D matrix `matrix`, handle multiple queries of the following types:
+Given a 2D integer matrix of size $M \times N$ ($5 \times 5$):
+We need to support two dynamic operations:
+1. `update(row, col, val)`: Update the cell at $(row, col)$ to $val$.
+2. `sumRegion(row1, col1, row2, col2)`: Calculate the sum of elements inside the subgrid $[row_1, row_2] \times [col_1, col_2]$.
 
-The objective is to compute `[8, 10]` from `{"matrix": [[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]], "operations": [["sum", 2, 1, 4, 3], ["update", 3, 2, 2], ["sum", 2, 1, 4, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Query Subgrid: Rows 2 to 4, Columns 1 to 3
+Row 2: [., 2, 0, 1, .] -> Sum = 3
+Row 3: [., 1, 0, 1, .] -> Sum = 2
+Row 4: [., 0, 3, 0, .] -> Sum = 3
+Initial Total = 3 + 2 + 3 = 8
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Update(row=3, col=2, val=2): Modifies cell (3, 2) from 0 to 2
+Row 3 becomes: [., 1, 2, 1, .] -> Sum = 4
+New Total = 3 + 4 + 3 = 10
+```
+
+### The Design Tradeoff
+- A 2D static prefix table achieves $O(1)$ query, but point updates cost $O(M N)$ to propagate across all lower-right cells.
+- A naive 2D matrix gives $O(1)$ updates, but queries cost $O(H \cdot W)$.
+- The **Row-Wise Fenwick Tree** architecture:
+  Each of the $M$ rows contains an independent 1D Binary Indexed Tree of length $N$:
+  - `update` touches only row $r$, taking strictly **$O(\log N)$ time**.
+  - `sumRegion` queries $(row_2 - row_1 + 1)$ row trees, taking **$O(H \log N)$ time**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1D Row Fenwick Tree Inside Each Row
+For each row $i \in [0, M - 1]$:
+Maintain $\text{tree}[i] = \text{BinaryIndexedTree}(N)$ where array $c$ of size $N + 1$ stores column prefix chunks:
+$$
+\operatorname{lowbit}(x) = x \ \& \ (-x)
+$$
+- `query(x)` returns the sum of columns $0$ to $x - 1$ in row $i$ in $O(\log N)$ time.
+- `update(x, delta)` adds $\Delta$ to 1-based column $x$ and its ancestors in $O(\log N)$ time.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Operations Protocol:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### 1. Point Update `update(row, col, val)`:
+1. Isolate the existing value at $(row, col)$ using two 1-based column queries on row `row`:
+   $$
+   \text{prev} = \text{tree}[row].\text{query}(col + 1) - \text{tree}[row].\text{query}(col)
+   $$
+2. Compute the delta:
+   $$
+   \Delta = val - \text{prev}
+   $$
+3. Update the 1D tree for row `row`:
+   $$
+   \text{tree}[row].\text{update}(col + 1, \; \Delta)
+   $$
+
+#### 2. Region Query `sumRegion(row1, col1, row2, col2)`:
+Iterate across all rows $r \in [row_1, row_2]$:
+In each row, the horizontal slice $[col_1, col_2]$ is computed via prefix subtraction:
+$$
+\text{row\_sum}(r) = \text{tree}[r].\text{query}(col_2 + 1) - \text{tree}[r].\text{query}(col_1)
+$$
+Sum all row results:
+$$
+\text{sumRegion} = \sum_{r=row_1}^{row_2} \left( \text{tree}[r].\text{query}(col_2 + 1) - \text{tree}[r].\text{query}(col_1) \right)
+$$
+
+> **Invariant.** For each row $r$, `tree[r]` correctly reflects all point updates made to row $r$. The summation across rows $r \in [row_1, row_2]$ equals the exact subgrid area sum.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The one-dimensional Fenwick tree inside each row
-
-Each `BinaryIndexedTree` uses one-based positions. Original column 0 maps to tree position 1, and original column `j` maps to position `j + 1`.
-
-For a positive tree position $x$, the source computes
-
-$$
-\operatorname{lowbit}(x)=x\mathbin{\&}(-x).
-$$
-
-This isolates the least significant set bit. Entry `c[x]` stores the sum of the one-based interval
-
-$$
-[x-\operatorname{lowbit}(x)+1,\ x].
-$$
-
-For example, `c[6]` covers positions 5 and 6 because `lowbit(6) = 2`, while `c[8]` covers positions 1 through 8 because `lowbit(8) = 8`.
-
-These aligned partial sums support two operations:
-
-- add a delta to one column in logarithmic time;
-- calculate the sum of a row prefix in logarithmic time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]], "operations": [["sum", 2, 1, 4, 3], ["update", 3, 2, 2], ["sum", 2, 1, 4, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the operations on the $5 \times 5$ matrix:
 
 ---
 
-### Step 2: Updating a row tree by a delta
+### Step 1: Initial State & Query 1 — $\text{sumRegion}(2, 1, 4, 3)$
+Target rows: $r \in [2, 4]$. Target columns: $col \in [1, 3]$.
+Queried column boundaries: $\text{query}(3 + 1 = 4) - \text{query}(1)$.
 
-`tree.update(x, delta)` adds `delta` to logical one-based position `x`. It updates `c[x]` and then repeatedly advances with
+1. **Row $r = 2$:**
+   Row 2 values: $[1, 2, 0, 1, 5]$.
+   - $\text{query}(4) = 1 + 2 + 0 + 1 = 4$.
+   - $\text{query}(1) = 1$.
+   - Horizontal slice sum: $4 - 1 = \mathbf{3}$ (Cells: $2 + 0 + 1$).
+2. **Row $r = 3$:**
+   Row 3 values: $[4, 1, 0, 1, 7]$.
+   - $\text{query}(4) = 4 + 1 + 0 + 1 = 6$.
+   - $\text{query}(1) = 4$.
+   - Horizontal slice sum: $6 - 4 = \mathbf{2}$ (Cells: $1 + 0 + 1$).
+3. **Row $r = 4$:**
+   Row 4 values: $[1, 0, 3, 0, 5]$.
+   - $\text{query}(4) = 1 + 0 + 3 + 0 = 4$.
+   - $\text{query}(1) = 1$.
+   - Horizontal slice sum: $4 - 1 = \mathbf{3}$ (Cells: $0 + 3 + 0$).
 
-`x += lowbit(x)`.
-
-Each destination is the next larger stored interval containing the original position. The loop stops after passing the number of columns. Consequently, every partial sum affected by the point change receives the delta, and no unrelated interval changes.
-
-The tree operation is additive. It does not mean “replace this value with `delta`.” The public matrix operation is an assignment, so the source must first translate an assignment into the correct difference.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Total sum:
+$$
+\text{Sum} = 3 + 2 + 3 = \mathbf{8}
+$$
 
 ---
 
-### Step 3: Reading one row prefix
+### Step 2: Execute $\text{update}(3, 2, 2)$
+Modify cell at $(row=3, col=2)$ from $0$ to $2$:
+- Target row: `tree[3]`.
+- 1-based column position: $col + 1 = 3$.
+- Find current value:
+  $$
+  \text{prev} = \text{tree}[3].\text{query}(3) - \text{tree}[3].\text{query}(2) = (4 + 1 + 0) - (4 + 1) = 5 - 5 = \mathbf{0}
+  $$
+- Compute delta:
+  $$
+  \Delta = val - \text{prev} = 2 - 0 = \mathbf{+2}
+  $$
+- Call $\text{tree}[3].\text{update}(3, +2)$:
+  - Position 3 updated by $+2$.
+  - Position $3 + \operatorname{lowbit}(3) = 3 + 1 = 4$ updated by $+2$.
+- Row 3 logically becomes: $[4, 1, \mathbf{2}, 1, 7]$.
 
-`tree.query(x)` returns the sum of the first `x` values in that row, corresponding to original columns 0 through `x - 1`.
+---
 
-It adds `c[x]` to an accumulator and repeatedly retreats with
+### Step 3: Evaluate Query 2 — $\text{sumRegion}(2, 1, 4, 3)$ After Update
+Re-evaluate the same region $[2, 4] \times [1, 3]$:
+1. **Row $r = 2$:** Slice sum $= \mathbf{3}$ (Unchanged).
+2. **Row $r = 3$:**
+   - $\text{query}(4) = 4 + 1 + 2 + 1 = 8$.
+   - $\text{query}(1) = 4$.
+   - Horizontal slice sum: $8 - 4 = \mathbf{4}$ (Cells: $1 + 2 + 1$).
+3. **Row $r = 4$:** Slice sum $= \mathbf{3}$ (Unchanged).
 
-`x -= lowbit(x)`.
-
-The current entry supplies the last still-unaccounted block of the prefix. Subtracting its block length moves immediately before it. The visited blocks are disjoint and together cover one-based positions 1 through the original `x`.
-
-For a row interval with inclusive original columns `[col1, col2]`, the source subtracts two prefixes:
-
+New total sum:
 $$
-\operatorname{rowSum}(col1,col2)
-=
-\operatorname{query}(col2+1)-\operatorname{query}(col1).
+\text{Sum} = 3 + 4 + 3 = \mathbf{10}
 $$
-
-The first prefix includes original column `col2`; the second removes every column before `col1`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[8, 10]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]], "operations": [["sum", 2, 1, 4, 3], ["update", 3, 2, 2], ["sum", 2, 1, 4, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[8, 10]` | Verified |
+```text
+Matrix (5x5)
+
+Query 1: sumRegion(2, 1, 4, 3):
+  Row 2: query(4) - query(1) = 4 - 1 = 3
+  Row 3: query(4) - query(1) = 6 - 4 = 2
+  Row 4: query(4) - query(1) = 4 - 1 = 3
+  Total = 3 + 2 + 3 = 8
+
+Update: update(row=3, col=2, val=2):
+  prev = tree[3].query(3) - tree[3].query(2) = 0
+  delta = 2 - 0 = +2
+  tree[3].update(col=3, delta=+2)
+
+Query 2: sumRegion(2, 1, 4, 3):
+  Row 2: slice sum = 3
+  Row 3: query(4) - query(1) = 8 - 4 = 4
+  Row 4: slice sum = 3
+  Total = 3 + 4 + 3 = 10
+
+Results: [8, 10]
+```
+
+| Operation | Target / Coordinates | Row Evaluated | Prefix Difference Formula | Slice Sum | Total Output |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Query 1** | Rows $2..4$, Cols $1..3$ | Row 2 | $\text{query}(4) - \text{query}(1) = 4 - 1$ | 3 | - |
+| | | Row 3 | $\text{query}(4) - \text{query}(1) = 6 - 4$ | 2 | - |
+| | | Row 4 | $\text{query}(4) - \text{query}(1) = 4 - 1$ | 3 | **8** |
+| **Update** | $(3, 2) \leftarrow 2$ | Row 3 | $\Delta = 2 - 0 = +2$; update col 3 | - | - |
+| **Query 2** | Rows $2..4$, Cols $1..3$ | Row 2 | $\text{query}(4) - \text{query}(1) = 4 - 1$ | 3 | - |
+| | | Row 3 | $\text{query}(4) - \text{query}(1) = 8 - 4$ | 4 | - |
+| | | Row 4 | $\text{query}(4) - \text{query}(1) = 4 - 1$ | 3 | **10** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Each row tree operates independently on column indices. In row $r$, $\text{query}(col_2 + 1) - \text{query}(col_1)$ cancels all column values outside $[col_1, col_2]$, returning the exact sum of elements in that row segment. Summing across all rows from $row_1$ to $row_2$ aggregates all disjoint horizontal slices, producing the exact 2D subgrid sum.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every cell update in row $r$ modifies only `tree[r]` in $O(\log N)$ steps. Because each row tree is independent, no cross-row side effects occur. The query sums all rows in $[row_1, row_2]$ without skipping, guaranteeing the result is complete and up-to-date.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **true two-dimensional Fenwick tree:** Store partial sums across both row and column lowbit ranges. Point updates and prefix rectangles then cost $O(\log m\log n)$, and inclusion-exclusion answers a rectangle with four prefix queries. This matches the manifest, but it is not the exact source.
-- **Avoid the row slice:** Iterate row indices or use `itertools.islice` so a query does not allocate $O(h)$ temporary references. Time remains proportional to the number of included rows.
-- **Keep a matrix of current values:** Reading `prev` becomes $O(1)$ during assignment, at the cost of another $O(mn)$ structure. The exact source instead isolates the cell with two prefix queries.
-- **One segment tree per row:** It gives the same broad tradeoff: logarithmic column updates and row intervals, but linear dependence on query height.
-- **Static two-dimensional prefix matrix:** Rectangle queries are $O(1)$ but a point update invalidates many prefixes and may cost $O(mn)$ to repair.
-- **Direct matrix storage:** Updates are $O(1)$ while a rectangle query costs its full area $O(hw)$. Row Fenwick trees reduce width dependence to logarithmic.
-- **Passing `val` as the Fenwick delta:** This would add the new value to the old one. Assignment requires `val - prev`.
-- **Zero-based tree position:** Fenwick position zero cannot advance because `lowbit(0) = 0`. Column indices must be shifted by one.
-- **Inclusive `row2`:** Python slicing excludes its ending index, so the exact slice must end at `row2 + 1`.
-- **Inclusive `col2`:** The ending prefix must be `query(col2 + 1)` to include the final column.
-- **Single-cell rectangle:** One row is selected and neighboring prefixes isolate exactly one current cell.
-- **Single-row rectangle:** Only one tree contributes, so the query costs $O(\log n)$ plus constant iteration overhead.
-- **All rows with a narrow column interval:** The query still visits every row because no structure aggregates row sums, even when the width is one.
-- **One-column matrix:** Each tree operation is constant in practice, but a rectangle query still sums $h$ row results.
-- **Negative cell values:** Fenwick trees require only additive inverses, so negative values and negative update deltas are handled exactly.
-- **Assigning the existing value:** The delta is zero; all rectangle sums remain unchanged.
-- **Rectangular guarantee:** Every row has the same `n`, so each row tree uses a consistent column coordinate system.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overwriting Instead of Delta:** Fenwick tree `update` performs an addition. An assignment operation must calculate $\Delta = val - \text{prev}$.
+- **Full 2D Static Prefix Sums:** Rebuilding a 2D static prefix table after each point update takes $O(M N)$, causing Time Limit Exceeded when updates are frequent. Row-wise Fenwick trees restrict update time to $O(\log N)$.
+- **1-Based Slicing:** When querying columns $col_1$ to $col_2$, the 1-based bounds are $col_2 + 1$ and $col_1$. Using $col_2$ omits the rightmost column.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn\log n)$. Let $m$ be the number of rows, $n$ the number of columns, $q$ the number of public operations, and $h=row2-row1+1$ the height of one queried rectangle.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization: $O(M N \log N)$ to insert all cells into the $M$ row trees.
+  - `update(row, col, val)`: $O(\log N)$ logarithmic time, updating only the tree corresponding to `row`.
+  - `sumRegion(row1, col1, row2, col2)`: $O(H \log N)$, where $H = row_2 - row_1 + 1$ is the query height. In the worst case $H = M$, costing $O(M \log N)$.
+- **Auxiliary Space Complexity:** $O(M N)$ auxiliary memory to store $M$ Fenwick trees, each of size $N + 1$.

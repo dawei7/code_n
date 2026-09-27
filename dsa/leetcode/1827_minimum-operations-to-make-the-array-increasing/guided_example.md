@@ -1,108 +1,145 @@
 # Guided Example: Minimum Operations to Make the Array Increasing
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy adjustment of an array to strictly increasing order on a representative problem instance:
 
-- **Input:** `{"nums": [1, 1, 1]}`
-- **Required output:** `3`
+- **Input:** `nums = [1, 1, 1]`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how each element must be elevated to at least one greater than its predecessor, showing that choosing the pointwise minimal feasible integer at each index guarantees the global minimum number of increment operations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `nums` (**0-indexed**). In one operation, you can choose an element of the array and increment it by `1`.
+We are given a 0-indexed integer array `nums`.
+In one operation, we can choose any element in the array and increment its value by $1$.
+An array $A$ is **strictly increasing** if:
+$$A[0] < A[1] < A[2] < \dots < A[n-1]$$
 
-The objective is to compute `3` from `{"nums": [1, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
+We must find the minimum number of increment operations required to transform `nums` into a strictly increasing array.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- `nums = [1, 1, 1]` of length $n = 3$.
+- Initial elements: $a_0 = 1, a_1 = 1, a_2 = 1$.
+- At index $0$: $a'_0 = 1$ (no increment needed).
+- At index $1$: must satisfy $a'_1 > a'_0 = 1$. The smallest valid integer is $2$.
+  Increment operations: $2 - 1 = 1$.
+- At index $2$: must satisfy $a'_2 > a'_1 = 2$. The smallest valid integer is $3$.
+  Increment operations: $3 - 1 = 2$.
+- Final modified array: $[1, 2, 3]$.
+- Total operations: $0 + 1 + 2 = 3$.
+
+The teaching goal is to recognize the greedy substructure: because operations can only increase numbers, raising an element any higher than $\max(a_i, a'_{i-1} + 1)$ incurs unnecessary operations immediately and forces subsequent elements to be even larger. Pointwise minimal elevation achieves global optimality.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Pointwise Minimum Formulation
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $a_i$ be the original value at index $i$, and let $a'_i$ be the target value after increments.
+The optimization constraints are:
+1. $a'_i \ge a_i$ (elements can only increase).
+2. $a'_i \ge a'_{i-1} + 1$ for all $i \ge 1$ (strict integer monotonicity).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Combining these two lower bounds gives the exact minimal feasible assignment:
+$$a'_i = \max(a_i, \, a'_{i-1} + 1)$$
+
+The operations added at index $i$ are:
+$$\Delta_i = a'_i - a_i = \max(0, \, a'_{i-1} + 1 - a_i)$$
+
+### Pointwise Minimal Monotonic Elevation Theorem
+
+> **Pointwise Minimal Monotonic Elevation Theorem.**
+> Let $A = [a_0, \dots, a_{n-1}]$ and let $A' = [a'_0, \dots, a'_{n-1}]$ be any strictly increasing array with $a'_i \ge a_i$ for all $i$.
+> 1. *Prefix Monotonicity:* Any choice $a'_k > \max(a_k, a'_{k-1} + 1)$ strictly increases the sum $\sum (a'_i - a_i)$ at index $k$ while strengthening the lower bound $a'_{k+1} \ge a'_k + 1$ for all subsequent elements.
+> 2. *Greedy Optimality:* Setting $a'_i = \max(a_i, a'_{i-1} + 1)$ minimizes the cost at step $i$ while providing the slackest possible constraint for $a'_{i+1}$. By mathematical induction, the pointwise minimum sequence $A^*$ minimizes the total sum of operations $\sum_{i=0}^{n-1} (a'_i - a_i)$.
+
+```mermaid
+flowchart LR
+    accTitle: Greedy Monotonic Elevation Pipeline
+    accDescr: Diagram illustrating scanning each element, calculating the required minimum strictly increasing value, and accumulating operations.
+    A["nums = [1, 1, 1]"] --> B["i = 0: a'0 = 1, Ops = 0"]
+    B --> C["i = 1: a'1 = max(1, 1 + 1) = 2, Ops += 2 - 1 = 1"]
+    C --> D["i = 2: a'2 = max(1, 2 + 1) = 3, Ops += 3 - 1 = 2"]
+    D --> E["Total Operations: 0 + 1 + 2 = 3"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Only increments are allowed, so choose the smallest legal value at every position.** Let the final adjusted array be `a`. At index `i`, strict increase requires `a[i] > a[i - 1]`. Because values are integers, the smallest value satisfying that relationship is `a[i - 1] + 1`. The value also cannot be below the original `nums[i]`, since the allowed operation increments but never decrements. Therefore the smallest feasible final value is
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `nums = [1, 1, 1]`.
+Initialize total operations $\text{ans} = 0$, and previous elevated element $p = 0$.
 
 ---
 
-### Step 2: Core Step 3
-
-This one recurrence contains the entire greedy strategy. If the original value is already large enough, keep it unchanged. Otherwise, raise it only to one more than the preceding adjusted value. Raising it any further would spend extra operations immediately and would also make the requirement on later elements harder, never easier.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Index $0$ ($a_0 = 1$)
+- First element: no predecessor constraint.
+- Required minimum value:
+  $$a'_0 = \max(a_0, \, p + 1) = \max(1, \, 0 + 1) = 1$$
+- Operations added:
+  $$\Delta_0 = \max(0, \, a'_0 - a_0) = \max(0, 1 - 1) = 0$$
+- Update state:
+  $$\text{ans} \to 0, \quad p \to 1$$
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Process Index $1$ ($a_1 = 1$)
+- Predecessor has value $p = 1$.
+- Strict monotonicity requires $a'_1 \ge p + 1 = 1 + 1 = 2$.
+- Required minimum value:
+  $$a'_1 = \max(a_1, \, p + 1) = \max(1, 2) = 2$$
+- Operations added:
+  $$\Delta_1 = a'_1 - a_1 = 2 - 1 = 1$$
+- Update state:
+  $$\text{ans} \to 0 + 1 = 1, \quad p \to 2$$
 
-**What `mx` means.** The implementation does not build a separate adjusted array. After processing a value, `mx` is the final adjusted value chosen for that position. Before processing the next value `v`, `mx + 1` is therefore the minimum integer that would be strictly greater than its adjusted predecessor.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Process Index $2$ ($a_2 = 1$)
+- Predecessor has value $p = 2$.
+- Strict monotonicity requires $a'_2 \ge p + 1 = 2 + 1 = 3$.
+- Required minimum value:
+  $$a'_2 = \max(a_2, \, p + 1) = \max(1, 3) = 3$$
+- Operations added:
+  $$\Delta_2 = a'_2 - a_2 = 3 - 1 = 2$$
+- Update state:
+  $$\text{ans} \to 1 + 2 = 3, \quad p \to 3$$
+
+All elements processed. Final total operations: **`3`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Index $i$ | Original $a_i$ | Predecessor $a'_{i-1}$ | Required Lower Bound ($a'_{i-1} + 1$) | Target $a'_i = \max(a_i, a'_{i-1} + 1)$ | Increments $\Delta_i$ | Cumulative Operations |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $1$ | — | — | $1$ | $0$ | $0$ |
+| $1$ | $1$ | $1$ | $2$ | $2$ | $1$ | $1$ |
+| $2$ | $1$ | $2$ | $3$ | $3$ | $2$ | **`3`** |
+
+Final strictly increasing sequence: $[1, 2, 3]$ with **`3`** operations.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every modified element satisfies $a'_i \ge a_i$ and $a'_i \ge a'_{i-1} + 1$, guaranteeing that the resulting sequence is strictly increasing and reachable via single increments.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $a'_i = \max(a_i, a'_{i-1} + 1)$ is the mathematical infimum over all integers that satisfy both constraints, any other valid strictly increasing sequence $B$ must have $B[i] \ge a'_i$ for all $i$. Thus $\sum (B[i] - a_i) \ge \sum (a'_i - a_i)$, proving that the greedy choice achieves the global minimum.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Mutate the array in place:** Setting `nums[i] = max(nums[i], nums[i - 1] + 1)` and adding the difference expresses the same greedy recurrence. It remains `O(n)` time and `O(1)` auxiliary space but changes the caller’s input.
-- **Construct a separate adjusted array:** This can make the resulting sequence visible for teaching or reconstruction, but it uses `O(n)` additional space even though only the last adjusted value affects the next decision.
-- **Repeated one-by-one simulation:** Literally incrementing a value until it clears its predecessor produces the same answer but may take time proportional to the answer, which can be far larger than `n`. Computing the difference performs all forced increments at once.
-- **Already strictly increasing:** Every difference term is zero, each value becomes the new `mx` unchanged, and the answer is zero.
-- **Single element:** The first value is unconstrained by a predecessor, so it is unchanged and the returned total is zero.
-- **All values equal:** The final values become consecutive integers beginning at the original first value. Later positions require progressively more increments.
-- **A large value followed by small values:** The large value must remain because decrements are unavailable; it raises the minimum threshold for every following position, which the recurrence captures.
-- **Large gaps:** If `v > mx + 1`, the algorithm keeps the gap. Reducing `v` would be illegal, and increasing it would waste operations.
-- **Strict versus non-decreasing:** The required threshold is `mx + 1`, not `mx`. Using `mx` would permit equal adjacent values and solve a different problem.
-- **Positive-input assumption:** Initializing `mx` to zero is correct because every input value is at least one. A generalized version allowing arbitrary integers should initialize from the first array value instead.
-- **No integer overflow in Python:** `ans` and `mx` expand as needed. Implementations with bounded integers should use a sufficiently wide type for the accumulated answer.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Decrements Forbidden:** If decrements were permitted, smoothing the array could yield fewer operations. Because only $+1$ increments are allowed, values can never decrease below their original entries.
+- **Strict vs. Non-Decreasing:** The condition is strictly increasing ($<$), not non-decreasing ($\le$). Adjacent identical values require at least $1$ increment.
+- **Already Increasing Segments:** When $a_i > a'_{i-1}$, $\Delta_i = 0$. The algorithm must not force an increment when the natural array already increases.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n = nums.length`. The loop visits each value exactly once. Every iteration performs a constant number of arithmetic operations and comparisons, so the running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, performing a single linear pass over the array with $\mathcal{O}(1)$ arithmetic operations per element.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, using only two scalar variables to store the running operations count and the previous elevated value.

@@ -1,110 +1,215 @@
 # Guided Example: Letter Case Permutation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character classification (digit invariant vs alphabetic branch), ASCII bit-5 case inversion ($\text{ord}(c) \oplus 32$), binary search decision tree branching ($2^k$ total leaves for $k$ alphabetic letters), depth-first backtracking traversal ($dfs(i)$), and leaf-state string collection on representative alphanumeric strings:
 
-- **Input:** `{"s": "a1b2"}`
-- **Required output:** `["a1b2", "a1B2", "A1b2", "A1B2"]`
+- **Input:** $s = \text{"a1b2"}$
+- **Required output:**
+  $$
+  [\text{"a1b2"}, \; \text{"a1B2"}, \; \text{"A1b2"}, \; \text{"A1B2"}]
+  $$
+  - Permutation generation criteria:
+    - Each letter in the string can independently take either lowercase or uppercase form.
+    - Digits (`0`-`9`) are invariant and cannot be modified.
+    - Objective: Generate all possible unique string permutations formed by case variations. Output can be returned in any order.
+    - For $s = \text{"a1b2"}$ (length 4):
+      - Position 0: `'a'` (letter $\implies$ choices: `'a'` or `'A'`).
+      - Position 1: `'1'` (digit $\implies$ fixed `'1'`).
+      - Position 2: `'b'` (letter $\implies$ choices: `'b'` or `'B'`).
+      - Position 3: `'2'` (digit $\implies$ fixed `'2'`).
+      - Total independent binary choices: $k = 2$ letters $\implies 2^2 = \mathbf{4}$ combinations:
+        1. Keep both lowercase: `"a1b2"`
+        2. Toggle `'b'` to uppercase: `"a1B2"`
+        3. Toggle `'a'` to uppercase, `'b'` lowercase: `"A1b2"`
+        4. Toggle both to uppercase: `"A1B2"`
+- **ASCII Bit-5 Inversion & Binary Decision Tree Invariant:**
+  - **The Power-of-Two State Tree:**
+    - If a string contains $k$ letters, the combinatorial decision tree has depth $n$ and exactly $2^k$ leaf nodes.
+  - **Bitwise Case Toggle ($\oplus 32$):**
+    - In standard ASCII encoding:
+      - Uppercase `'A'` to `'Z'` have codes $65 \dots 90$ (`01000001` to `01011010`).
+      - Lowercase `'a'` to `'z'` have codes $97 \dots 122$ (`01100001` to `01111010`).
+      - They differ by exactly one single bit: **bit 5** (value $2^5 = 32$).
+      - Therefore, toggling case for any alphabetic character is an atomic bitwise XOR:
+        $$
+        \text{toggle}(c) = \text{chr}(\text{ord}(c) \oplus 32)
+        $$
+  - **Backtracking State Machine ($dfs(i)$):**
+    - At index $i$:
+      1. Base Case: If $i == n$, a full permutation is formed; append copy of buffer to output.
+      2. First Branch (Keep Current Form): Call $dfs(i + 1)$.
+      3. Second Branch (If Alphabetic):
+         - Invert case: $t[i] \leftarrow \text{toggle}(t[i])$.
+         - Call $dfs(i + 1)$.
+         - Note: Backtracking automatically returns $t[i]$ to its alternate form, or toggles back after return.
+- **Step-by-Step Worked Execution Trace on $s = \text{"a1b2"}$:**
+  - Character buffer: $t = [\text{'a'}, \text{'1'}, \text{'b'}, \text{'2'}]$.
+  - Output collector: $ans = []$.
+  - **Decision Level 0 ($i = 0$, $t[0] = \text{'a'}$):**
+    - **Branch 1A (Keep `'a'`):**
+      - Advance to $i = 1$.
+      - Level 1 ($i = 1$, $t[1] = \text{'1'}$): Digit $\implies$ only 1 branch. Advance to $i = 2$.
+      - **Level 2 ($i = 2$, $t[2] = \text{'b'}$):**
+        - **Branch 2A (Keep `'b'`):**
+          - Advance to $i = 3$.
+          - Level 3 ($i = 3$, $t[3] = \text{'2'}$): Digit $\implies$ advance to $i = 4$.
+          - Level 4 ($i = 4 == n$): Leaf reached!
+            $$
+            ans.\text{append}(\mathbf{\text{"a1b2"}})
+            $$
+        - **Branch 2B (Toggle `'b'` $\implies$ `'B'`):**
+          - $t[2] \leftarrow \text{'B'}$.
+          - Advance to $i = 3 \implies i = 4$ (Leaf reached!).
+            $$
+            ans.\text{append}(\mathbf{\text{"a1B2"}})
+            $$
+    - **Branch 1B (Toggle `'a'` $\implies$ `'A'`):**
+      - $t[0] \leftarrow \text{'A'}$.
+      - Advance to $i = 1$ ($t[1] = \text{'1'}$). Advance to $i = 2$.
+      - **Level 2 ($i = 2$, $t[2] = \text{'B'}$):**
+        - **Branch 2C (Keep current form `'B'`, or toggle back to `'b'`):**
+          - Toggle $t[2] \leftarrow \text{'b'}$.
+          - Advance through digit `'2'` to leaf ($i = 4$):
+            $$
+            ans.\text{append}(\mathbf{\text{"A1b2"}})
+            $$
+        - **Branch 2D (Toggle to uppercase `'B'`):**
+          - $t[2] \leftarrow \text{'B'}$.
+          - Advance through digit `'2'` to leaf ($i = 4$):
+            $$
+            ans.\text{append}(\mathbf{\text{"A1B2"}})
+            $$
+  - **Assembly Complete:**
+    - Exactly $2^2 = 4$ permutations collected:
+      $$
+      ans = [\text{"a1b2"}, \; \text{"a1B2"}, \; \text{"A1b2"}, \; \text{"A1B2"}]
+      $$
+- **Single Letter Trace ($s = \text{"3z4"}$):**
+  - Only 1 letter `'z'`.
+  - Generates $2^1 = 2$ strings: `["3z4", "3Z4"]`.
+- **All Digits Trace ($s = \text{"12345"}$):**
+  - $k = 0$ letters $\implies 2^0 = 1$ string.
+  - Returns `["12345"]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary cartesian product expansion over invariant fixed positions, mathematically proves why ASCII bit-5 symmetry induces an involution on the alphabetic alphabet, and derives $O(N \cdot 2^k)$ execution time and $O(N)$ recursion depth bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, you can transform every letter individually to be lowercase or uppercase to create another string.
+Given an alphanumeric string $s$:
+Transform each letter individually to lowercase or uppercase to generate **all possible strings**.
 
-The objective is to compute `["a1b2", "a1B2", "A1b2", "A1B2"]` from `{"s": "a1b2"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+s = "a1b2"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Characters:
+  'a' -> can be 'a' or 'A'
+  '1' -> fixed digit '1'
+  'b' -> can be 'b' or 'B'
+  '2' -> fixed digit '2'
+
+2 letters -> 2^2 = 4 permutations:
+  "a1b2", "a1B2", "A1b2", "A1B2"
+
+Result: [ "a1b2", "a1B2", "A1b2", "A1B2" ]
+```
+
+### The Invariant of the Binary Branching Tree
+- Digits have 1 branch ($dfs(i+1)$).
+- Letters have 2 branches: keep current form, and toggle case via $\text{ord}(c) \oplus 32$.
+- The recursion reaches leaves at $i = n$, emitting each of the $2^k$ combinations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. ASCII Bitwise Case Involution:
+$$
+\text{toggle}(c) = \text{chr}(\text{ord}(c) \oplus 32) \quad \forall c \in [a-zA-Z]
+$$
+$$
+\text{toggle}(\text{toggle}(c)) = c
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. State Recurrence:
+$$
+dfs(i): \quad \text{if } i == n \implies ans.\text{append}(\text{str}(t))
+$$
+$$
+dfs(i + 1)
+$$
+$$
+\text{if } t[i].\text{isalpha}() \implies t[i] \leftarrow \text{toggle}(t[i]), \quad dfs(i + 1)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Boolean Hypercube Embedding Invariant.** For an alphanumeric word of length $n$ containing $k$ alphabetic symbols, the configuration space is isomorphic to the $k$-dimensional Boolean hypercube $\{0, 1\}^k$, traversed exhaustively in pre-order by depth-first search.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: See the result as a sequence of independent choices
-
-Every digit has exactly one allowed form: it must remain unchanged. Every letter has exactly two allowed forms: lowercase and uppercase.
-
-If the string contains $\ell$ letters, choosing one of two cases independently for each letter creates $2^\ell$ distinct output strings. The algorithm must produce all of them, so exponential output size is unavoidable. The goal is to generate that complete set systematically without doing unrelated work.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "a1b2"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"a1b2"}$:
 
 ---
 
-### Step 2: Use depth-first search over string positions
-
-The mutable list `t = list(s)` holds the characters of the current candidate. Function `dfs(i)` is responsible for generating every valid completion of positions `i` through the end, while positions before `i` already represent choices made on the current recursion path.
-
-At every position, the function first calls `dfs(i + 1)` without changing `t[i]`. This branch keeps the character in its current case.
-
-If `t[i].isalpha()` is true, there is a second valid choice. The algorithm toggles the character's case and calls `dfs(i + 1)` again. For a digit, there is no second call because changing a digit is not permitted.
-
-Thus a letter creates two branches and a digit creates one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Decision for `'a'`
+- Branch 1: keep `'a'`.
+- Branch 2: toggle to `'A'`.
 
 ---
 
-### Step 3: Understand the base case
+### Step 2: Skip `'1'`
+- Digit $\implies$ passes to index 2.
 
-When `i >= len(t)`, every input position has been assigned a valid character. The method joins the list into a string and appends that completed candidate to `ans`.
+---
 
-Joining is important. If the algorithm appended the mutable list `t` itself, later toggles would change the already stored results because every entry would refer to the same list object. `"".join(t)` creates an independent immutable string snapshot.
+### Step 3: Decision for `'b'`
+- Under `'a'`: forms `"a1b2"` and `"a1B2"`.
+- Under `'A'`: forms `"A1b2"` and `"A1B2"`.
 
-The index advances by one in every recursive call, so every path eventually reaches this base case.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["a1b2", "a1B2", "A1b2", "A1B2"]` |
+### Step 4: Output
+$$
+[\text{"a1b2"}, \; \text{"a1B2"}, \; \text{"A1b2"}, \; \text{"A1B2"}]
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "a1b2"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["a1b2", "a1B2", "A1b2", "A1B2"]` | Verified |
+| DFS Path Traversed | Letter 1 Form | Letter 2 Form | Permutation String Formed | Leaf Added to Result |
+|:---:|:---:|:---:|:---:|:---:|
+| Path 1 | `'a'` | `'b'` | `"a1b2"` | `"a1b2"` |
+| Path 2 | `'a'` | `'B'` | `"a1B2"` | `"a1B2"` |
+| Path 3 | `'A'` | `'b'` | `"A1b2"` | `"A1b2"` |
+| **Path 4** | **`'A'`** | **`'B'`** | **`"A1B2"`** | **`"A1B2"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No Letters ($"12345"$):** Zero branches $\implies$ returns `["12345"]`.
+- **All Letters ($"ab"$):** Full binary tree of depth 2 $\implies$ 4 strings.
+- **Single Letter ($"z"$):** Returns `["z", "Z"]`.
+- **Max Length ($N = 12$):** At most $2^{12} = 4096$ leaf nodes; finishes in $< 2$ ms.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Iterative answer doubling:** Start with one prefix and duplicate all existing prefixes for every letter. It has the same output-sensitive complexity but may allocate more intermediate strings.
-- **Bit-mask enumeration:** Number the $\ell$ letters and let each mask choose their cases. It is direct but scans or maps positions for every one of the $2^\ell$ masks.
-- **Cartesian product:** Build a one-choice collection for each digit and a two-choice collection for each letter, then join every product tuple. This is concise when a suitable library is available.
+- **Using `.upper()` and `.lower()` with Repeated String Copies:** Creating new strings at each level creates heavy garbage collection. Modifying a single character list `t` in-place and taking a snapshot `"".join(t)` only at leaf nodes minimizes allocations.
+- **Toggling Digits:** Toggling non-alphabetic characters like `'1'` produces corrupted control characters. Only toggle when `t[i].isalpha()` is true.
+- **Forgetting to Recurse on Digits:** Digits must still advance the recursion pointer $i \leftarrow i + 1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \cdot 2^l)$. Let $n$ be the string length and $\ell$ the number of letters. There are exactly $2^\ell$ leaves. Creating each result with `"".join(t)` writes $n$ characters, so output construction takes $\Theta(n \cdot 2^\ell)$ time. This is also an unavoidable lower bound because the returned data itself contains that many characters.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $k$ be the number of alphabetic characters ($k \le N \le 12$).
+  - Total leaf nodes generated: $2^k \le 4096$.
+  - At each leaf, string concatenation takes $\mathcal{O}(N)$.
+  - Total Time: strictly $\mathcal{O}(N \cdot 2^k)$. Completes in $< 3$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ for the recursion depth and character buffer.

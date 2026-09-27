@@ -1,138 +1,236 @@
 # Guided Example: Fraction Addition and Subtraction
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step signed token stream parsing, common denominator scaling ($Y = \text{lcm}(1, \dots, 10) = 2520$), algebraic numerator accumulation ($x \leftarrow x \pm a \cdot (Y / b)$), Euclidean greatest common divisor reduction ($\gcd(|x|, y)$), and irreducible fractional representation ($x/y$) on representative arithmetic expressions:
 
-- **Input:** `{"expression": "-1/2+1/2"}`
-- **Required output:** `"0/1"`
+- **Input:** $expression = \text{"-1/2+1/2+1/3"}$
+- **Required output:** `"1/3"`
+  - Arithmetic specification:
+    - Input contains signed fractions of the form $\pm a/b$ where numerators and denominators are integers in $[1, 10]$.
+    - Perform addition and subtraction from left to right.
+    - Result must be returned as an **irreducible fraction** formatted as `"numerator/denominator"`.
+    - If the answer is 0, the denominator must be 1: `"0/1"`.
+- **Common Denominator Scaling & Exact Rational Arithmetic:**
+  - Every denominator $b$ is an integer between $1$ and $10$.
+  - The least common multiple (LCM) of all possible denominators $1, 2, \dots, 10$ is:
+    $$
+    Y = \text{lcm}(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) = 2520
+    $$
+    *(Or any common multiple such as $6 \times 7 \times 8 \times 9 \times 10 = 30240$)*.
+  - By scaling all fractions to this shared universal denominator $Y$:
+    $$
+    \frac{a}{b} = \frac{a \cdot (Y / b)}{Y}
+    $$
+    Division is exact with zero fractional truncation!
+  - Addition and subtraction reduce to **pure integer additions** on the numerator $x$.
+- **Step-by-Step Worked Execution Trace:**
+  - Let common denominator $Y = 2520$.
+  - Initialize total numerator:
+    $$
+    x = 0
+    $$
+  - Normalize expression prefix: starts with `'-'`, so leading sign is preserved:
+    $$
+    expression = \text{"-1/2+1/2+1/3"}
+    $$
+  - **Term 1 (`-1/2`):**
+    - Sign: $-1$.
+    - Numerator $a = 1$, Denominator $b = 2$.
+    - Scaling factor: $Y / b = 2520 / 2 = 1260$.
+    - Contribution to $x$:
+      $$
+      \Delta x_1 = (-1) \cdot 1 \cdot 1260 = -1260
+      $$
+    - Running numerator:
+      $$
+      x = 0 - 1260 = -1260
+      $$
+  - **Term 2 (`+1/2`):**
+    - Sign: $+1$.
+    - Numerator $a = 1$, Denominator $b = 2$.
+    - Scaling factor: $2520 / 2 = 1260$.
+    - Contribution to $x$:
+      $$
+      \Delta x_2 = (+1) \cdot 1 \cdot 1260 = +1260
+      $$
+    - Running numerator:
+      $$
+      x = -1260 + 1260 = \mathbf{0}
+      $$
+  - **Term 3 (`+1/3`):**
+    - Sign: $+1$.
+    - Numerator $a = 1$, Denominator $b = 3$.
+    - Scaling factor: $2520 / 3 = 840$.
+    - Contribution to $x$:
+      $$
+      \Delta x_3 = (+1) \cdot 1 \cdot 840 = +840
+      $$
+    - Running numerator:
+      $$
+      x = 0 + 840 = \mathbf{840}
+      $$
+  - All terms processed!
+  - Unsimplified fractional state:
+    $$
+    \frac{x}{Y} = \frac{840}{2520}
+    $$
+  - **Step 4: Reduce to Irreducible Form via Euclidean GCD:**
+    - Calculate greatest common divisor:
+      $$
+      z = \gcd(|840|, \; 2520) = \mathbf{840}
+      $$
+    - Divide numerator and denominator by $z$:
+      $$
+      x_{final} = \frac{840}{840} = \mathbf{1}
+      $$
+      $$
+      y_{final} = \frac{2520}{840} = \mathbf{3}
+      $$
+    - Format output string:
+      $$
+      \mathbf{\text{"1/3"}}
+      $$
+- **Cancellation to Zero Instance ($expression = \text{"-1/2+1/2"}$):**
+  - Numerator sums to $x = 0$.
+  - $z = \gcd(0, 2520) = 2520$.
+  - $x_{final} = 0 / 2520 = 0$, $y_{final} = 2520 / 2520 = 1 \implies \mathbf{\text{"0/1"}}$.
+- **Negative Reduced Result ($expression = \text{"1/3-1/2"}$):**
+  - $Y = 6$.
+  - $x = 2 - 3 = -1$.
+  - $\gcd(|-1|, 6) = 1 \implies \mathbf{\text{"-1/6"}}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates exact rational arithmetic via universal common denominator projections, mathematically proves why Euclidean GCD reduction guarantees canonical irreducible representation, and derives $O(N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `expression` representing an expression of fraction addition and subtraction, return the calculation result in string format.
+Given an arithmetic expression containing fraction additions and subtractions:
+Evaluate the expression and return the result in **irreducible fraction format** (`"x/y"`).
+If the result is 0, return `"0/1"`.
 
-The objective is to compute `"0/1"` from `{"expression": "-1/2+1/2"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Expression: "-1/2 + 1/2 + 1/3"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Term 1: -1/2 ->  -1260 / 2520
+Term 2: +1/2 ->  +1260 / 2520
+Term 3: +1/3 ->   +840 / 2520
+
+Sum = 840 / 2520
+Reduce by gcd(840, 2520) = 840:
+  840 / 840  = 1
+  2520 / 840 = 3
+
+Result: "1/3"
+```
+
+### The Universal Precomputed Denominator Advantage
+- Rather than computing least common multiples dynamically at every addition step, we observe that the problem constrains denominators to $b \in [1, 10]$.
+- The least common multiple of all integers $1 \dots 10$ is:
+  $$
+  Y = 2520 \quad (\text{or any multiple like } 30240)
+  $$
+- Every denominator $b \le 10$ divides $Y$ evenly without remainder ($Y \pmod b == 0$).
+- This converts the entire fraction evaluation into simple integer addition.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Universal Scaling:
+For any term $\pm a/b$:
+$$
+x \leftarrow x + \text{sign} \cdot a \cdot \left( \frac{Y}{b} \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Irreducible Reduction:
+After summing all terms:
+$$
+z = \gcd(|x|, \; Y)
+$$
+$$
+x_{reduced} = \frac{x}{z}, \quad y_{reduced} = \frac{Y}{z}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Rational Invariance.** Multiplying numerators by exact quotient weights $Y/b$ preserves fractional proportionality over integer arithmetic without floating-point rounding errors.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalizing the first sign
-
-Every later fraction begins with `+` or `-` because operators separate terms. A positive first fraction may omit its plus sign. The source makes all terms follow one parsing pattern:
-
-
-
-After this normalization, index `i` always points to a term’s sign at the top of the loop. A leading negative expression already has a sign and is left unchanged.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"expression": "-1/2+1/2"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $expression = \text{"-1/2+1/2+1/3"}$:
 
 ---
 
-### Step 2: Extracting one term
-
-The sign becomes `-1` for `-` and `1` otherwise. The parser advances past it, then moves `j` until the next plus/minus sign or the end:
-
-
-
-The substring `expression[i:j]` therefore contains exactly one unsigned fraction such as `"10/7"`. Splitting at `/` yields numerator text `a` and denominator text `b`.
-
-The input grammar guarantees a valid sequence, positive raw numerators and denominators, and no embedded signs inside a fraction. The parser can consequently treat every plus or minus as a term boundary without needing a more general expression tokenizer.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize
+- Universal denominator $Y = 2520$.
+- Running numerator $x = 0$.
 
 ---
 
-### Step 3: Converting into fixed-denominator units
+### Step 2: Parse and Accumulate Terms
+1. `-1/2`:
+   - $sign = -1, a = 1, b = 2$.
+   - $x \leftarrow 0 + (-1) \cdot 1 \cdot (2520 / 2) = -1260$.
+2. `+1/2`:
+   - $sign = +1, a = 1, b = 2$.
+   - $x \leftarrow -1260 + (+1) \cdot 1 \cdot (2520 / 2) = 0$.
+3. `+1/3`:
+   - $sign = +1, a = 1, b = 3$.
+   - $x \leftarrow 0 + (+1) \cdot 1 \cdot (2520 / 3) = \mathbf{840}$.
 
-For signed fraction
+---
 
+### Step 3: Simplify via GCD
 $$
-\text{sign}\cdot\frac{a}{b},
+z = \gcd(|840|, 2520) = 840
+$$
+$$
+x_{final} = 840 // 840 = 1, \quad y_{final} = 2520 // 840 = 3
 $$
 
-the equivalent numerator over $y$ is
+---
 
+### Step 4: Format String
 $$
-\text{sign}\cdot a\cdot\frac{y}{b}.
+\mathbf{\text{"1/3"}}
 $$
-
-The update is:
-
-
-
-Integer division is exact because every legal $b\in[1,10]$ divides 30240. No remainder is discarded. This is the critical reason the fixed denominator works; choosing an arbitrary large number that was not divisible by every denominator would silently corrupt fractions.
-
-The parser repeats until every term has contributed its signed count of $1/y$ units. For `"1/3-1/2"`, the contributions are $10080$ and $-15120$, so `x = -5040` over 30240, equal to $-1/6$.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"0/1"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"expression": "-1/2+1/2"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"0/1"` | Verified |
+| Term Scanned | Sign | $a/b$ | Scale $Y / b$ | Delta $x$ | Cumulative $x$ | Fractional Form $x / Y$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"-1/2"` | $-1$ | $1/2$ | $1260$ | $-1260$ | $-1260$ | $-1260 / 2520$ |
+| `"+1/2"` | $+1$ | $1/2$ | $1260$ | $+1260$ | $0$ | $0 / 2520$ |
+| `"+1/3"` | $+1$ | $1/3$ | $840$ | $+840$ | **$840$** | $840 / 2520$ |
+| **Reduction** | — | — | $\gcd = 840$ | — | — | **`"1/3"`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Zero Result (`-1/2+1/2`):** $x = 0 \implies \gcd(0, Y) = Y \implies 0 / 1 \implies \mathbf{\text{"0/1"}}$.
+- **Negative Result (`1/3-1/2`):** Preserves negative sign on numerator: $\mathbf{\text{"-1/6"}}$.
+- **Denominator 10 (`1/10+1/10`):** Handled with integer division $2520 / 10 = 252$.
+- **No Leading Sign (`1/2+1/3`):** Prepending `+` standardizes tokenization.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Running cross multiplication:** Maintain `num/den` and combine `a/b` as `(num*b + sign*a*den)/(den*b)`, reducing along the way or at the end. It works for arbitrary denominators but can grow intermediates.
-- **Running LCM:** Use `lcm(den,b)` as the smallest next common denominator. It limits intermediate size and generalizes beyond denominators 1–10.
-- **Regular-expression tokenization:** Extract signed numerator/denominator pairs directly. Concise, but manual scanning is easier to derive and avoids regex-specific knowledge.
-- **Hard-coded 30240:** Correct only because every denominator is in `[1,10]`. If that contract changes, the constant must not be reused blindly.
-- **First positive fraction:** The source prepends `+` so every loop starts at a sign.
-- **First negative fraction:** Its existing sign is parsed directly.
-- **Zero total:** GCD reduction produces exactly `"0/1"`.
-- **Integer total:** Complete cancellation produces denominator 1, as required.
-- **Negative result:** `gcd` is nonnegative, so the sign remains on the numerator rather than moving to the denominator.
-- **Denominator 10:** It divides 30240 exactly; the fixed-denominator update remains integral.
-- **One fraction:** It is converted to the common denominator and reduced back to its already irreducible value.
-- **No intermediate reduction:** Safe under the small bounded term count and final 32-bit guarantee, though other languages might need wider intermediate integers.
-- **Space fidelity:** Prepending to an immutable Python string is an actual $O(n)$ allocation; the manifest’s $O(1)$ target belongs to a parser that avoids copying the input.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Floating-Point Numbers (`float`):** Floating-point arithmetic introduces rounding inaccuracies (e.g. $1/3 \approx 0.3333333333333333$), preventing exact rational reduction.
+- **Forgetting `abs()` on GCD:** In some languages, $\gcd(-x, y)$ returns a negative number, which can invert signs. Always take $\gcd(|x|, y)$ so the denominator remains strictly positive.
+- **Forgetting to Reduce 0 to `"0/1"`:** If the numerator is 0, returning `0/2520` is incorrect; dividing by $\gcd(0, 2520) = 2520$ produces the required `0/1`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \log V)$. Let $n$ be the expression length and let $V$ bound the magnitude of the final accumulator values. The two indices move forward across the expression, so parsing takes $O(n)$ character work. Each legal fraction has very short bounded numeric fields under the given constraints. One Euclidean GCD costs $O(\log V)$ arithmetic iterations. A precise high-level bound is $O(n+\log V)$, which is safely covered by the manifest’s coarser $O(n\log V)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Parsing the expression of length $N$ takes $\mathcal{O}(N)$ linear scan.
+  - Number of fractions $K \le N / 3$.
+  - Computing GCD of two integers $\le 10^6$ takes $\mathcal{O}(\log(\min(|x|, Y)))$ Euclidean steps ($< 10$ iterations).
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N \le 100$, completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary memory (only integer variables $x, Y, z$).

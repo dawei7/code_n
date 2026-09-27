@@ -1,126 +1,196 @@
 # Guided Example: Customers Who Bought Products A and B but Not C
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of relational set intersection and complement exclusion on a representative database instance:
 
-- **Input:** `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Daniel"}, {"customer_id": 2, "customer_name": "Diana"}, {"customer_id": 3, "customer_name": "Elizabeth"}, {"customer_id": 4, "customer_name": "Jhon"}], "Orders": [{"order_id": 10, "customer_id": 1, "product_name": "A"}, {"order_id": 20, "customer_id": 1, "product_name": "B"}, {"order_id": 30, "customer_id": 1, "product_name": "D"}, {"order_id": 40, "customer_id": 1, "product_name": "C"}, {"order_id": 50, "customer_id": 2, "product_name": "A"}, {"order_id": 60, "customer_id": 3, "product_name": "A"}, {"order_id": 70, "customer_id": 3, "product_name": "B"}, {"order_id": 80, "customer_id": 3, "product_name": "D"}, {"order_id": 90, "customer_id": 4, "product_name": "C"}]}}`
-- **Required output:** `{"columns": ["customer_id", "customer_name"], "rows": [[3, "Elizabeth"]]}`
+- **Input Tables:**
+  - `Customers`:
+    - `(1, "Daniel")`
+    - `(2, "Diana")`
+    - `(3, "Elizabeth")`
+    - `(4, "Jhon")`
+  - `Orders`:
+    - `(10, 1, "A")`, `(20, 1, "B")`, `(30, 1, "D")`, `(40, 1, "C")`
+    - `(50, 2, "A")`
+    - `(60, 3, "A")`, `(70, 3, "B")`, `(80, 3, "D")`
+    - `(90, 4, "C")`
+- **Required Output:**
+  - `(3, "Elizabeth")`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because each customer demonstrates a distinct set relationship with the required product triad $\{A, B, C\}$: Customer 1 bought all three (disqualified by $C$), Customer 2 bought only $A$ (disqualified by missing $B$), Customer 4 bought only $C$ (disqualified by both criteria), and Customer 3 bought $A$ and $B$ without ever purchasing $C$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customers`
+We are given two relational entities:
+1. `Customers` with columns `customer_id` (primary key) and `customer_name`.
+2. `Orders` with columns `order_id` (primary key), `customer_id`, and `product_name`.
 
-The objective is to compute `{"columns": ["customer_id", "customer_name"], "rows": [[3, "Elizabeth"]]}` from `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Daniel"}, {"customer_id": 2, "customer_name": "Diana"}, {"customer_id": 3, "customer_name": "Elizabeth"}, {"customer_id": 4, "customer_name": "Jhon"}], "Orders": [{"order_id": 10, "customer_id": 1, "product_name": "A"}, {"order_id": 20, "customer_id": 1, "product_name": "B"}, {"order_id": 30, "customer_id": 1, "product_name": "D"}, {"order_id": 40, "customer_id": 1, "product_name": "C"}, {"order_id": 50, "customer_id": 2, "product_name": "A"}, {"order_id": 60, "customer_id": 3, "product_name": "A"}, {"order_id": 70, "customer_id": 3, "product_name": "B"}, {"order_id": 80, "customer_id": 3, "product_name": "D"}, {"order_id": 90, "customer_id": 4, "product_name": "C"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our objective is to report the `customer_id` and `customer_name` of customers who bought products `"A"` and `"B"`, but did **not** buy product `"C"`. The result table must be ordered by `customer_id` ascending.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Across the four customers:
+- Customer 1 (Daniel): Purchased $\{A, B, C, D\}$. Bought $A$ and $B$, but violation occurred due to purchasing $C$.
+- Customer 2 (Diana): Purchased $\{A\}$. Lacks required purchase of $B$.
+- Customer 3 (Elizabeth): Purchased $\{A, B, D\}$. Bought $A$, bought $B$, and never bought $C$. **Qualified!**
+- Customer 4 (Jhon): Purchased $\{C\}$. Bought $C$ and missing both $A$ and $B$.
+- Output: `(3, "Elizabeth")`.
+
+The primary teaching goal is to model complex customer segmentation through relational set algebra: expressing the required profile as the intersection of buyers of $A$ and $B$ minus buyers of $C$, $(S_A \cap S_B) \setminus S_C$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S_P$ denote the set of customer IDs who have placed at least one order for product $P$:
+$$
+S_P = \Pi_{\text{customer\_id}} \left( \sigma_{\text{product\_name} = P}(\text{Orders}) \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
+The target customer cohort $S^*$ satisfies three simultaneous conditions:
+1. Belonging to $S_A$ (bought product $A$).
+2. Belonging to $S_B$ (bought product $B$).
+3. Not belonging to $S_C$ (never bought product $C$).
+
+$$
+S^* = (S_A \cap S_B) \setminus S_C
+$$
+The final result relation projects the customer details:
+$$
+\mathcal{R} = \Pi_{\text{customer\_id}, \text{customer\_name}} \left( \text{Customers} \bowtie S^* \right)
+$$
+
+```
+Relational Set Logic:
+Customers buying A (S_A): { 1, 2, 3 }
+Customers buying B (S_B): { 1, 3 }
+Intersection S_A ∩ S_B:   { 1, 3 }
+
+Customers buying C (S_C): { 1, 4 }
+Difference (S_A ∩ S_B) \ S_C: { 3 }  --> Maps to (3, "Elizabeth")
+```
+
+Equivalently, using group aggregation over $\text{Orders}$ grouped by `customer_id`:
+- Condition 1: $\sum [\text{product\_name} = \text{'A'}] > 0$
+- Condition 2: $\sum [\text{product\_name} = \text{'B'}] > 0$
+- Condition 3: $\sum [\text{product\_name} = \text{'C'}] = 0$
+
+We define state tracking parameters:
+
+| Parameter | Relational Representation | Value on Instance |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Buyers of A ($S_A$) | $\Pi_{\text{id}}(\sigma_{P=\text{'A'}}(\text{Orders}))$ | $\{1, 2, 3\}$ |
+| Buyers of B ($S_B$) | $\Pi_{\text{id}}(\sigma_{P=\text{'B'}}(\text{Orders}))$ | $\{1, 3\}$ |
+| Buyers of C ($S_C$) | $\Pi_{\text{id}}(\sigma_{P=\text{'C'}}(\text{Orders}))$ | $\{1, 4\}$ |
+| Qualified IDs ($S^*$) | $(S_A \cap S_B) \setminus S_C$ | $\{3\}$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** A customer ID is retained in $S^*$ if and only if their complete transaction history includes at least one entry for $A$, at least one entry for $B$, and zero entries for $C$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Create one group per customer
+### Step 1: Product Set Construction
 
-The output needs customer identity and name, while qualification depends on all orders belonging to that customer. The query starts from `Customers` and left-joins `Orders` by their shared `customer_id`. This expands each customer into zero or more joined order rows.
+Scan the `Orders` relation and partition customer orders into product sets:
+- **Product A:** Orders $10$ (cust 1), $50$ (cust 2), $60$ (cust 3) $\implies S_A = \{1, 2, 3\}$.
+- **Product B:** Orders $20$ (cust 1), $70$ (cust 3) $\implies S_B = \{1, 3\}$.
+- **Product C:** Orders $40$ (cust 1), $90$ (cust 4) $\implies S_C = \{1, 4\}$.
 
-`GROUP BY 1` groups by the first selected expression, `customer_id`. Since customer ID is unique in `Customers`, `customer_name` is functionally determined by the group and can be selected alongside it.
-
-The group is the right unit of reasoning: the query must answer whether products A, B, and C occur anywhere in the complete purchase history, not whether one individual order row qualifies.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Order ID | Customer ID | Product Name | Product Set Membership |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Daniel"}, {"customer_id": 2, "customer_name": "Diana"}, {"customer_id": 3, "customer_name": "Elizabeth"}, {"customer_id": 4, "customer_name": "Jhon"}], "Orders": [{"order_id": 10, "customer_id": 1, "product_name": "A"}, {"order_id": 20, "customer_id": 1, "product_name": "B"}, {"order_id": 30, "customer_id": 1, "product_name": "D"}, {"order_id": 40, "customer_id": 1, "product_name": "C"}, {"order_id": 50, "customer_id": 2, "product_name": "A"}, {"order_id": 60, "customer_id": 3, "product_name": "A"}, {"order_id": 70, "customer_id": 3, "product_name": "B"}, {"order_id": 80, "customer_id": 3, "product_name": "D"}, {"order_id": 90, "customer_id": 4, "product_name": "C"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $10$ | $1$ | A | $1 \in S_A$ |
+| $20$ | $1$ | B | $1 \in S_B$ |
+| $30$ | $1$ | D | Ignored |
+| $40$ | $1$ | C | $1 \in S_C$ |
+| $50$ | $2$ | A | $2 \in S_A$ |
+| $60$ | $3$ | A | $3 \in S_A$ |
+| $70$ | $3$ | B | $3 \in S_B$ |
+| $80$ | $3$ | D | Ignored |
+| $90$ | $4$ | C | $4 \in S_C$ |
 
 ---
 
-### Step 2: Turn Boolean conditions into counts
+### Step 2: Evaluating Intersection and Exclusion
 
-In MySQL, a comparison such as `product_name = 'A'` evaluates to one when true and zero when false. Summing it across a customer group therefore counts that customer's orders for A.
+We compute the intersection $S_A \cap S_B$:
+$$
+S_A \cap S_B = \{1, 2, 3\} \cap \{1, 3\} = \{1, 3\}
+$$
+Next, exclude customers present in $S_C$:
+$$
+S^* = \{1, 3\} \setminus \{1, 4\} = \{3\}
+$$
 
-The three `HAVING` conditions express the contract directly:
-
-- `SUM(product_name = 'A') > 0` means at least one A purchase exists.
-- `SUM(product_name = 'B') > 0` means at least one B purchase exists.
-- `SUM(product_name = 'C') = 0` means no C purchase exists.
-
-Repeated A or B orders merely make a positive sum larger; the greater-than-zero test still represents presence. Other products contribute zero to all three sums and do not affect eligibility.
-
-Using `COUNT(product_name = 'A')` would be wrong. `COUNT` counts non-null expression results, and both true and false Boolean results are non-null. It would count almost every order rather than only A orders.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- Customer 1: In $\{1, 3\}$, but $1 \in S_C \implies$ Excluded.
+- Customer 2: Not in $S_B \implies$ Excluded.
+- Customer 3: In $\{1, 3\}$, and $3 \notin S_C \implies$ Retained!
+- Customer 4: Not in $S_A$ or $S_B$, and in $S_C \implies$ Excluded.
 
 ---
 
-### Step 3: Why filtering belongs in `HAVING`
+### Step 3: Join with Customer Directory
 
-`WHERE` filters individual rows before grouping. If C rows were removed there, a customer who did buy C could appear to have no C purchase and qualify incorrectly. `HAVING` runs after aggregation and can inspect the complete group's three conditional counts.
-
-Similarly, requiring A and B in a row-level `WHERE` cannot work because one order row has only one `product_name`. The conditions describe the set of rows together.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["customer_id", "customer_name"], "rows": [[3, "Elizabeth"]]}` |
+Join the qualified identifier set $S^* = \{3\}$ with `Customers`:
+- Match `customer_id = 3` in `Customers`: `(3, "Elizabeth")`.
+- Project `(customer_id, customer_name)`.
+- Order by `customer_id` ascending: `[(3, "Elizabeth")]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customers": [{"customer_id": 1, "customer_name": "Daniel"}, {"customer_id": 2, "customer_name": "Diana"}, {"customer_id": 3, "customer_name": "Elizabeth"}, {"customer_id": 4, "customer_name": "Jhon"}], "Orders": [{"order_id": 10, "customer_id": 1, "product_name": "A"}, {"order_id": 20, "customer_id": 1, "product_name": "B"}, {"order_id": 30, "customer_id": 1, "product_name": "D"}, {"order_id": 40, "customer_id": 1, "product_name": "C"}, {"order_id": 50, "customer_id": 2, "product_name": "A"}, {"order_id": 60, "customer_id": 3, "product_name": "A"}, {"order_id": 70, "customer_id": 3, "product_name": "B"}, {"order_id": 80, "customer_id": 3, "product_name": "D"}, {"order_id": 90, "customer_id": 4, "product_name": "C"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["customer_id", "customer_name"], "rows": [[3, "Elizabeth"]]}` | Verified |
+| Customer ID | Customer Name | Bought A? | Bought B? | Bought C? | Decision | Result Tuple |
+|---|---|---|---|---|---|---|
+| $1$ | Daniel | Yes | Yes | **Yes** | Disqualified by C | - |
+| $2$ | Diana | Yes | **No** | No | Disqualified by missing B | - |
+| $3$ | Elizabeth | **Yes** | **Yes** | **No** | **Qualified** | `(3, "Elizabeth")` |
+| $4$ | Jhon | **No** | **No** | **Yes** | Disqualified | - |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Set Theoretic Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The criteria require the logical conjunction:
+$$
+\text{Condition}(c) = (\text{has Bought}(c, A)) \land (\text{has Bought}(c, B)) \land \neg(\text{has Bought}(c, C))
+$$
+- The set difference $S^* = (S_A \cap S_B) \setminus S_C$ directly implements this Boolean predicate.
+- Every customer whose order history satisfies all three conditions is guaranteed to belong to $S^*$.
+- Any customer violating any of the three conditions is absent from $S^*$.
+- Projecting over `Customers` ensures valid naming and filtering.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Three `EXISTS` predicates:** Require an A order, require a B order, and reject an existing C order. With indexes this is clear and can short-circuit, though it repeats correlated lookups.
-- **Set intersection and difference:** Build customer-ID sets for A, B, and C, then compute $A\cap B\setminus C$. It expresses the set logic directly but needs joins to recover names.
-- **Inner join:** It is sufficient for the final answer because qualification requires orders, but the left join makes customer preservation explicit.
-- **Filter C in `WHERE`:** This is incorrect because it erases evidence that should disqualify a customer.
-- **Repeated A or B purchases:** Positive-sum conditions remain true and output still has one grouped row.
-- **Repeated C purchases:** Any positive C count disqualifies the customer.
-- **Other products:** Their comparisons are all false and they do not change the three conditions.
-- **No orders:** Null aggregate comparisons do not pass, so the customer is excluded.
-- **Only A or only B:** One required positive sum fails.
-- **A, B, and C:** The C-zero condition fails even though both required products exist.
-- **Unique customer ID:** It makes the selected name functionally dependent on `GROUP BY customer_id`.
-- **Positional clauses:** `GROUP BY 1` and `ORDER BY 1` refer to `customer_id`; explicit column names are safer during future edits.
-- **Required order:** The final sort is necessary because grouping alone does not promise customer-ID order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(|\text{Orders}| + |\text{Customers}| \log |\text{Customers}|)$. Building the product sets $S_A, S_B, S_C$ through hash sets or hash aggregation takes linear time $\mathcal{O}(|\text{Orders}|)$. Performing set intersections and differences takes time bounded by $\mathcal{O}(|\text{Customers}|)$. Sorting the qualifying rows takes $\mathcal{O}(K \log K)$ where $K \le |\text{Customers}|$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\text{Orders}| + |\text{Customers}|)$ to store the order index and customer set tables.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(C + O + R)$. Let $C$ be the customer count, $O$ the order count, and $R$ the result size. Under a standard hash-join and hash-aggregation plan, scanning both inputs and updating customer aggregates takes expected $O(C+O)$ time. Producing results costs $O(R)$. This matches the manifest's $O(C+O+R)$ logical work.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Multiple Purchases of Same Product:** Customers may order product $A$ multiple times. Set projection naturally deduplicates multiple purchases.
+- **Irrelevant Products ($D, E, \dots$):** Purchases of products other than $A, B, C$ (such as product $D$) have zero impact on qualification.
+- **Customers with Zero Orders:** Customers with no order records in `Orders` do not appear in $S_A$ or $S_B$, correctly preventing false positives.
+- **Empty Result:** If all customers buying $A$ and $B$ also purchased $C$, the set difference evaluates to $\emptyset$, safely returning an empty result relation.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Customers Buying A and B but Not C Flowchart
+    accDescr: Set intersection and difference pipeline filtering customer order history to identify qualifying accounts.
+
+    Start(["Start"]) --> ReadOrders["Scan Orders relation"]
+    ReadOrders --> BuildSets["Build customer sets:<br>S_A = customers who bought A<br>S_B = customers who bought B<br>S_C = customers who bought C"]
+    
+    BuildSets --> Intersect["Compute Both_AB = S_A ∩ S_B"]
+    Intersect --> Exclude["Compute S_final = Both_AB \\ S_C"]
+    
+    Exclude --> JoinCust["Join S_final with Customers on customer_id"]
+    JoinCust --> SortRes["Sort by customer_id ASC"]
+    SortRes --> Done(["Emit Result Relation"])
+```

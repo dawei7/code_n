@@ -1,130 +1,169 @@
 # Guided Example: Number of Unique Subjects Taught by Each Teacher
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Teacher": [{"teacher_id": 1, "subject_id": 2, "dept_id": 3}, {"teacher_id": 1, "subject_id": 2, "dept_id": 4}, {"teacher_id": 1, "subject_id": 3, "dept_id": 3}, {"teacher_id": 2, "subject_id": 1, "dept_id": 1}, {"teacher_id": 2, "subject_id": 2, "dept_id": 1}, {"teacher_id": 2, "subject_id": 3, "dept_id": 1}, {"teacher_id": 2, "subject_id": 4, "dept_id": 1}]}}`
-- **Required output:** `{"columns": ["teacher_id", "cnt"], "rows": [[1, 2], [2, 4]]}`
+We are given a relational database table named `Teacher` containing teaching assignments with columns `teacher_id`, `subject_id`, and `dept_id`. Each row records that a specific instructor teaches a given subject within a specific university department. A teacher may teach the same subject across multiple distinct departments.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to compute the number of distinct (unique) subjects each teacher teaches across the entire university. The resulting relation must contain `teacher_id` and `cnt`, representing the unique subject headcount for that teacher.
 
----
+Consider the representative instance:
+- `Teacher` table records:
+  - Row 1: Teacher $1$, Subject $2$, Department $3$
+  - Row 2: Teacher $1$, Subject $2$, Department $4$
+  - Row 3: Teacher $1$, Subject $3$, Department $3$
+  - Row 4: Teacher $2$, Subject $1$, Department $1$
+  - Row 5: Teacher $2$, Subject $2$, Department $1$
+  - Row 6: Teacher $2$, Subject $3$, Department $1$
+  - Row 7: Teacher $2$, Subject $4$, Department $1$
 
-## 1. Instance & Teaching Goal
+Let us analyze each instructor:
+- **Teacher 1:**
+  - Associated records have subject values: $[2, 2, 3]$.
+  - The distinct set of subjects is $\{2, 3\}$.
+  - Even though Subject $2$ is taught across two separate departments ($3$ and $4$), it represents only a single unique academic subject.
+  - Unique subject count: $2$.
+- **Teacher 2:**
+  - Associated records have subject values: $[1, 2, 3, 4]$.
+  - The distinct set of subjects is $\{1, 2, 3, 4\}$.
+  - Unique subject count: $4$.
 
-Table: `Teacher`
+The final result table maps Teacher $1 \mapsto 2$ and Teacher $2 \mapsto 4$.
 
-The objective is to compute `{"columns": ["teacher_id", "cnt"], "rows": [[1, 2], [2, 4]]}` from `{"tables": {"Teacher": [{"teacher_id": 1, "subject_id": 2, "dept_id": 3}, {"teacher_id": 1, "subject_id": 2, "dept_id": 4}, {"teacher_id": 1, "subject_id": 3, "dept_id": 3}, {"teacher_id": 2, "subject_id": 1, "dept_id": 1}, {"teacher_id": 2, "subject_id": 2, "dept_id": 1}, {"teacher_id": 2, "subject_id": 3, "dept_id": 1}, {"teacher_id": 2, "subject_id": 4, "dept_id": 1}]}}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Relational Grouping and Distinct Set Cardinality Aggregation
+    accDescr: Partitioning teaching assignment tuples by teacher identifier and collapsing duplicate subjects across departments to compute unique counts.
+    Input["Teacher Table Records<br/>(teacher_id, subject_id, dept_id)"] --> Group["GROUP BY teacher_id"]
+    Group --> G1["Group Teacher 1:<br/>(2, dept 3), (2, dept 4), (3, dept 3)"]
+    Group --> G2["Group Teacher 2:<br/>(1, dept 1), (2, dept 1), (3, dept 1), (4, dept 1)"]
+    G1 --> Dedup1["Project Subject Set: {2, 3}<br/>Collapse duplicate subject 2"]
+    G2 --> Dedup2["Project Subject Set: {1, 2, 3, 4}"]
+    Dedup1 --> Agg1["COUNT(DISTINCT): 2"]
+    Dedup2 --> Agg2["COUNT(DISTINCT): 4"]
+    Agg1 --> Out["Result Rows:<br/>(1, 2)<br/>(2, 4)"]
+    Agg2 --> Out
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+In relational algebra, let the relation `Teacher` be denoted by:
 
-## 2. Conceptual Foundation & Invariants
+$$T \subseteq \mathbb{Z}^+ \times \mathbb{Z}^+ \times \mathbb{Z}^+$$
 
-We maintain the core conceptual parameters and state variables:
+where each tuple is $(t, s, d)$ denoting teacher, subject, and department.
 
-| State Parameter | Role & Purpose | Initial State |
+The query specifies an aggregation partitioned by teacher:
+
+$$\gamma_{\text{teacher\_id}, \; \text{count\_distinct}(\text{subject\_id}) \to \text{cnt}}(T)$$
+
+For each unique teacher $t \in \pi_{\text{teacher\_id}}(T)$, we construct the set of subjects taught by $t$ by projecting the subject column:
+
+$$S(t) = \{s \in \mathbb{Z}^+ \mid \exists d \text{ such that } (t, s, d) \in T\}$$
+
+The desired aggregate metric `cnt` is the cardinality of this projected set:
+
+$$\text{cnt}(t) = |S(t)|$$
+
+### Set Semantics vs. Multiset Semantics
+In relational query engines, a standard `COUNT(subject_id)` counts all tuples in the partitioned group, reflecting multiset cardinality:
+
+$$|T_t| = |\{(t, s, d) \in T\}|$$
+
+If Teacher $1$ teaches Subject $2$ in five departments, standard `COUNT` would evaluate to $5$. However, the `DISTINCT` modifier eliminates duplicate values from the multiset before counting, reducing the evaluation to pure set cardinality $|S(t)|$.
+
+### Algorithmic Evaluation Strategies
+1. **Hash-Based Grouping:**
+   Maintain a primary hash map from `teacher_id` to a secondary hash set of `subject_id`s.
+   As each row $(t, s, d)$ is read, insert $s$ into the hash set associated with key $t$.
+   After scanning the table, output the size of each secondary hash set: $|S(t)|$.
+2. **Sort-Based Aggregation:**
+   Sort the table by `(teacher_id, subject_id)`.
+   Scan the sorted stream linearly. Within each contiguous block of identical `teacher_id`, count transitions where `subject_id` changes value.
+
+| Algebraic Operator | Multiset Expression | Mathematical Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Group Partitioning | $\{r \in T \mid r.\text{teacher\_id} = t\}$ | Isolates records belonging to a single instructor |
+| Distinct Projection | $\pi_{\text{subject\_id}}(\text{Group}_t)$ | Eliminates departmental duplicates of the same course |
+| Cardinality Count | $|S(t)|$ | Produces the scalar metric `cnt` |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+Let us trace the representative table through hash-based set aggregation.
 
-## 3. Step-by-Step Worked Execution
+### Phase 1: Partition and Set Insertion
+Initialize an empty associative mapping $M$:
+- **Row 1: $(1, 2, 3)$**
+  - Teacher $1$. Insert Subject $2$ into $M[1]$.
+  - Set for Teacher 1: $\{2\}$.
+- **Row 2: $(1, 2, 4)$**
+  - Teacher $1$. Insert Subject $2$ into $M[1]$.
+  - Element $2$ is already present. Set remains $\{2\}$.
+- **Row 3: $(1, 3, 3)$**
+  - Teacher $1$. Insert Subject $3$ into $M[1]$.
+  - Set for Teacher 1 becomes $\{2, 3\}$.
+- **Row 4: $(2, 1, 1)$**
+  - Teacher $2$. Insert Subject $1$ into $M[2]$.
+  - Set for Teacher 2: $\{1\}$.
+- **Row 5: $(2, 2, 1)$**
+  - Teacher $2$. Insert Subject $2$ into $M[2]$.
+  - Set for Teacher 2: $\{1, 2\}$.
+- **Row 6: $(2, 3, 1)$**
+  - Teacher $2$. Insert Subject $3$ into $M[2]$.
+  - Set for Teacher 2: $\{1, 2, 3\}$.
+- **Row 7: $(2, 4, 1)$**
+  - Teacher $2$. Insert Subject $4$ into $M[2]$.
+  - Set for Teacher 2: $\{1, 2, 3, 4\}$.
 
-### Step 1: What must be counted
+### Phase 2: Cardinality Extraction
+Iterate over the grouped keys in $M$:
+- For `teacher_id = 1`: Set is $\{2, 3\} \implies |M[1]| = 2$.
+- For `teacher_id = 2`: Set is $\{1, 2, 3, 4\} \implies |M[2]| = 4$.
 
-Every input row is a teaching assignment containing a `teacher_id`, a `subject_id`, and a `dept_id`. The requested output has one row per teacher and reports how many different subjects that teacher teaches. The important word is *different*: two assignments can have the same teacher and subject but different departments. Those rows describe the same subject for this question and must contribute only one to the teacher's count.
+Output rows formed:
+- `(1, 2)`
+- `(2, 4)`
 
-For example, suppose a teacher has the following subject values across four rows:
+## 4. Comprehensive State Trace
 
+The row-by-row state updates and intermediate distinct subject sets are detailed below.
 
+| Row Number | Tuple $(t, s, d)$ | Target Group $t$ | Subject Inserted $s$ | Active Distinct Set $S(t)$ | Running Set Size $|S(t)|$ |
+|---|---|---|---|---|---|
+| $1$ | $(1, 2, 3)$ | Teacher 1 | $2$ | $\{2\}$ | $1$ |
+| $2$ | $(1, 2, 4)$ | Teacher 1 | $2$ (Duplicate) | $\{2\}$ | $1$ |
+| $3$ | $(1, 3, 3)$ | Teacher 1 | $3$ | $\{2, 3\}$ | $2$ |
+| $4$ | $(2, 1, 1)$ | Teacher 2 | $1$ | $\{1\}$ | $1$ |
+| $5$ | $(2, 2, 1)$ | Teacher 2 | $2$ | $\{1, 2\}$ | $2$ |
+| $6$ | $(2, 3, 1)$ | Teacher 2 | $3$ | $\{1, 2, 3\}$ | $3$ |
+| $7$ | $(2, 4, 1)$ | Teacher 2 | $4$ | $\{1, 2, 3, 4\}$ | $4$ |
 
-There are four assignments, but only the two distinct subject identifiers `2` and `3`. The answer for that teacher is therefore `2`. The department is useful in the source table's primary key, but it is deliberately absent from the quantity being counted.
+Final grouped output:
+- Teacher $1 \implies 2$
+- Teacher $2 \implies 4$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Teacher": [{"teacher_id": 1, "subject_id": 2, "dept_id": 3}, {"teacher_id": 1, "subject_id": 2, "dept_id": 4}, {"teacher_id": 1, "subject_id": 3, "dept_id": 3}, {"teacher_id": 2, "subject_id": 1, "dept_id": 1}, {"teacher_id": 2, "subject_id": 2, "dept_id": 1}, {"teacher_id": 2, "subject_id": 3, "dept_id": 1}, {"teacher_id": 2, "subject_id": 4, "dept_id": 1}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 5. Algorithmic Correctness & Soundness
 
----
+1. **Department Dimension Irrelevance:**
+   The requirement asks for the unique subjects taught by each teacher across the entire university, without departmental subdivision. Department identifiers act solely as relational context; projecting them out before counting guarantees that course offerings across multiple faculties do not artificially inflate the teacher's subject count.
 
-### Step 2: Partitioning rows with `GROUP BY`
+2. **Idempotence of Set Membership:**
+   Because set insertion is idempotent ($S \cup \{x\} = S$ if $x \in S$), any subject taught $m$ times by teacher $t$ contributes exactly $1$ to the set cardinality.
 
-SQL aggregate functions turn several input rows into a summarized output row. Before counting anything, the query must specify which input rows belong to the same summary. The clause
+3. **Exhaustive Partitioning:**
+   Grouping strictly by `teacher_id` ensures that every assigned subject is mapped to its responsible instructor and that no subjects are conflated across different teachers.
 
+## 6. Edge Cases & Anti-Patterns
 
+- **Single Assignment per Teacher:**
+  - If an instructor teaches only one subject in one department, the set is a singleton, returning `cnt = 1`.
+- **Teacher Offering the Same Subject in Many Departments:**
+  - An instructor teaching subject $101$ in ten departments has ten rows, but `COUNT(DISTINCT)` collapses them to $1$.
+- **Anti-Pattern (Omitting the `DISTINCT` Keyword):**
+  - Using `COUNT(subject_id)` counts the number of classes/sections rather than unique subjects. If an instructor teaches the same subject in two departments, omitting `DISTINCT` erroneously returns $2$ instead of $1$.
 
-does that partitioning. In MySQL, `1` in this context is a positional reference to the first expression in the `SELECT` list. The first selected expression is `teacher_id`, so `GROUP BY 1` is a compact spelling of `GROUP BY teacher_id`.
+## 7. Complexity Analysis
 
-After grouping, all rows with the same `teacher_id` are processed together, and different teachers cannot affect one another. SQL produces exactly one aggregate result row for each teacher identifier present in `Teacher`. No separate join, subquery, or temporary result is needed because all necessary information already appears in this one table.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Counting subjects rather than assignments
-
-Within each teacher's group, the expression
-
-
-
-first collapses repeated `subject_id` values and then counts the remaining values. Plain `COUNT(subject_id)` would count assignment rows, so it would incorrectly count the same subject more than once when that teacher teaches it in multiple departments. Including `dept_id` in the distinct expression would also answer a different question: it would count distinct subject-department assignments instead of distinct subjects.
-
-The table contract makes `subject_id` an integer and uses `(subject_id, dept_id)` as its primary key. In a normal SQL table, primary-key columns cannot be `NULL`. Consequently, the usual detail that `COUNT` ignores `NULL` values does not change this problem's result. Every assignment contributes a real subject identifier to its teacher's distinct-value set.
-
-The aggregate is named with
-
-
-
-because the output contract requires the count column to be called `cnt`. An alias changes only the result column's label; it does not affect grouping or counting.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["teacher_id", "cnt"], "rows": [[1, 2], [2, 4]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Teacher": [{"teacher_id": 1, "subject_id": 2, "dept_id": 3}, {"teacher_id": 1, "subject_id": 2, "dept_id": 4}, {"teacher_id": 1, "subject_id": 3, "dept_id": 3}, {"teacher_id": 2, "subject_id": 1, "dept_id": 1}, {"teacher_id": 2, "subject_id": 2, "dept_id": 1}, {"teacher_id": 2, "subject_id": 3, "dept_id": 1}, {"teacher_id": 2, "subject_id": 4, "dept_id": 1}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["teacher_id", "cnt"], "rows": [[1, 2], [2, 4]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Plain `COUNT(subject_id)`:** This counts rows rather than unique subjects and fails whenever the same teacher teaches one subject in more than one department.
-- **Distinct teacher-subject subquery:** One can first select distinct `(teacher_id, subject_id)` pairs and then count rows per teacher. It is logically correct but adds an unnecessary query layer because `COUNT(DISTINCT subject_id)` expresses the operation directly.
-- **Grouping by `teacher_id, subject_id`:** This produces one row per teacher-subject pair rather than the required one row per teacher unless another aggregation stage is added.
-- **Including `dept_id` in the count:** Departments do not define uniqueness in the requested answer. Counting subject-department pairs would overcount subjects taught across multiple departments.
-- **`GROUP BY 1` versus an explicit name:** `GROUP BY teacher_id` is more self-documenting and equivalent here. The exact solution uses `GROUP BY 1`, whose `1` refers to the first selected expression, not to the literal number one as a group key.
-- **A teacher with one assignment:** Its group contains one subject, so the distinct count is `1`.
-- **Repeated subject across departments:** All occurrences share a `subject_id` and collapse to one value before counting, which is the central edge case.
-- **Different teachers teaching the same subject:** Grouping separates their rows first, so each teacher independently receives credit for that subject.
-- **Output order:** Without `ORDER BY`, database row order is unspecified, but the statement explicitly accepts any order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(R)$. Let $R$ be the number of rows in `Teacher`. The manifest states $O(R \log R)$ time and $O(R)$ space. A standard way for a database engine to execute grouped distinct aggregation is to sort or otherwise organize the rows by the grouping key and distinct value. Sorting $R$ records takes $O(R \log R)$ time, after which a scan can identify changes in teacher and subject. Internal temporary structures or the sorted working set may occupy $O(R)$ space.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$ under sort-based aggregation, or $\mathcal{O}(R)$ under hash-based aggregation, where $R$ is the total number of rows in the `Teacher` table.
+  - In a relational query engine, hashing or sorting the $R$ records requires at most linear or linearithmic time.
+  - Calculating set cardinality across the partitioned groups takes $\mathcal{O}(R)$ total operations.
+- **Space Complexity:** $\mathcal{O}(R)$ auxiliary working memory to store the hash tables or temporary sorting buffers for the grouped partitions.

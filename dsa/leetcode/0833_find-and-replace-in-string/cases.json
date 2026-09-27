@@ -280,21 +280,21 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "s": "0123456789",
+        "s": "abcdefghij",
         "indices": [
           1,
           7
         ],
         "sources": [
-          "12",
-          "78"
+          "bc",
+          "hi"
         ],
         "targets": [
-          "a",
-          "bcdef"
+          "k",
+          "lmnop"
         ]
       },
-      "expected": "0a3456bcdef9",
+      "expected": "akdefglmnopj",
       "tags": [
         "gaps"
       ]

@@ -1,118 +1,161 @@
 # Guided Example: Remove Duplicates from Sorted Array II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer compaction with lookback gating on a representative sorted array:
 
-- **Input:** `{"nums": [1, 1, 1, 2, 2, 3]}`
-- **Required output:** `{"return_value": 5, "prefix": [1, 1, 2, 2, 3]}`
+- **Input:** $\text{nums} = [1, 1, 1, 2, 2, 3]$
+- **Required output:** Length $k = 5$, modified prefix $[1, 1, 2, 2, 3]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place two-pointer filtering, the two-element lookback invariant ($\text{nums}[r] \ne \text{nums}[w - 2]$), skipping excess duplicates without extra memory, and generalizing the rule to arbitrary multiplicity limits.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` sorted in **non-decreasing order**, remove some duplicates <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">**in-place**</a> such that each unique element appears **at most twice**. The **relative order** of the elements should be kept the **same**.
+Given an integer array $\text{nums}$ sorted in non-decreasing order:
+$$
+[1, 1, 1, 2, 2, 3]
+$$
+remove duplicates in-place such that each unique element appears **at most twice**. The relative order of the elements must be kept the same, returning the number of retained elements $k$.
 
-The objective is to compute `{"return_value": 5, "prefix": [1, 1, 2, 2, 3]}` from `{"nums": [1, 1, 1, 2, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+In $[1, 1, 1, 2, 2, 3]$:
+- The number $1$ appears 3 times $\implies$ drop the 3rd occurrence.
+- The number $2$ appears 2 times $\implies$ keep both.
+- The number $3$ appears 1 time $\implies$ keep it.
+The retained prefix is $[1, 1, 2, 2, 3]$ of length $k = 5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive algorithm using frequency dictionaries or array deletions shifts elements on each drop, causing $O(N^2)$ time.
+By exploiting the sorted invariant, we can compare the incoming candidate against the element written two positions earlier ($\text{nums}[w - 2]$), filtering in a single $O(N)$ pass with $O(1)$ extra space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 2-Lookback Pointer Gating
+Maintain a write pointer $w$ (initially $w = 0$).
+Iterate a read pointer $r$ through all elements $x = \text{nums}[r]$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Acceptance Condition:**
+   - If $w < 2$: The first two elements are always accepted.
+   - If $w \ge 2$ and $x \ne \text{nums}[w - 2]$:
+     Because the array is sorted, if $x == \text{nums}[w - 2]$, then $\text{nums}[w - 1]$ must also equal $\text{nums}[w - 2]$. Writing $x$ would create a 3rd duplicate.
+     If $x > \text{nums}[w - 2]$, at most one duplicate of $x$ currently exists in the output. Thus, $x$ is valid!
+2. **Write Action:**
+   If accepted:
+   $$
+   \text{nums}[w] \leftarrow x, \quad w \leftarrow w + 1
+   $$
+   If rejected:
+   - $w$ does not advance; candidate $x$ is skipped.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At every step, the slice $\text{nums}[0 \dots w-1]$ is non-decreasing and contains at most two occurrences of any unique integer.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the front of the array as the output buffer
+We trace $\text{nums} = [1, 1, 1, 2, 2, 3]$ ($N = 6$):
 
-`k` is both the number of values retained so far and the index where the next retained value should be written. At every point, `nums[:k]` is the correct compacted result for the original values already scanned. Positions at or after `k` are irrelevant to the final contract until they are used as unread input or overwritten with later retained values.
-
-The loop variable `x` visits the input values in their original non-decreasing order. When a value is accepted, the source writes it to `nums[k]` and increments `k`. When it is rejected as an excessive duplicate, `k` stays fixed, so a later acceptable value overwrites that unused output slot.
-
-The physical list length never changes. This matches the custom judge: only the returned length and the prefix before it matter; stale values after that prefix are unspecified.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 1, 1, 2, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- Write pointer $w = 0$.
 
 ---
 
-### Step 2: Why mutating during `for x in nums` is safe here
-
-Python's list iterator visits indices from left to right. Overwriting a list during iteration can be dangerous if writes alter unread positions. Here, after `p` original positions have been processed, at most `p` values have been retained, so `k <= p`. The next write is therefore at or behind the current scan position, never ahead of it.
-
-If no value has been skipped, `k` equals the current index and the write is a harmless self-assignment. After skips, `k` is smaller and the write changes a position the iterator has already passed. Future original input values remain intact until they are read. The algorithm does not insert, delete, or change the list length, so iteration indices remain stable.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1 ($r = 0, \text{val} = 1$)
+- Condition: $w = 0 < 2$. Accepted!
+- Write: $\text{nums}[0] \leftarrow 1$.
+- Advance: $w \leftarrow 1$.
+- Prefix: `[1]`.
 
 ---
 
-### Step 3: Keep the first two retained values unconditionally
+### Step 2 ($r = 1, \text{val} = 1$)
+- Condition: $w = 1 < 2$. Accepted!
+- Write: $\text{nums}[1] \leftarrow 1$.
+- Advance: $w \leftarrow 2$.
+- Prefix: `[1, 1]`.
 
-When `k < 2`, fewer than two total values have been retained. No value can yet be a forbidden third occurrence, so the condition accepts it. This also avoids reading `nums[k - 2]` with a negative logical output position.
+---
 
-The array is nonempty by contract, but the same logic would naturally return zero for an empty input because the loop would not run.
+### Step 3 ($r = 2, \text{val} = 1$)
+- Condition: $w = 2 \ge 2$.
+- Lookback check: Compare candidate $\text{val} = 1$ with $\text{nums}[w - 2] = \text{nums}[0] = 1$.
+  $$
+  1 == 1 \implies \textbf{Excess Duplicate! Reject.}
+$$
+- Action: Skip element. $w$ remains $2$.
+- Prefix: `[1, 1]`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"return_value": 5, "prefix": [1, 1, 2, 2, 3]}` |
+---
+
+### Step 4 ($r = 3, \text{val} = 2$)
+- Condition: $w = 2 \ge 2$.
+- Lookback check: Compare $\text{val} = 2$ with $\text{nums}[w - 2] = \text{nums}[0] = 1$.
+  $$
+  2 \ne 1 \implies \textbf{Valid! Accept.}
+$$
+- Write: $\text{nums}[2] \leftarrow 2$.
+- Advance: $w \leftarrow 3$.
+- Prefix: `[1, 1, 2]`.
+
+---
+
+### Step 5 ($r = 4, \text{val} = 2$)
+- Condition: $w = 3 \ge 2$.
+- Lookback check: Compare $\text{val} = 2$ with $\text{nums}[w - 2] = \text{nums}[1] = 1$.
+  $$
+  2 \ne 1 \implies \textbf{Valid! Accept.}
+$$
+- Write: $\text{nums}[3] \leftarrow 2$.
+- Advance: $w \leftarrow 4$.
+- Prefix: `[1, 1, 2, 2]`.
+
+---
+
+### Step 6 ($r = 5, \text{val} = 3$)
+- Condition: $w = 4 \ge 2$.
+- Lookback check: Compare $\text{val} = 3$ with $\text{nums}[w - 2] = \text{nums}[2] = 2$.
+  $$
+  3 \ne 2 \implies \textbf{Valid! Accept.}
+$$
+- Write: $\text{nums}[4] \leftarrow 3$.
+- Advance: $w \leftarrow 5$.
+- Prefix: `[1, 1, 2, 2, 3]`.
+
+Termination. Return $k = w = 5$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 1, 1, 2, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"return_value": 5, "prefix": [1, 1, 2, 2, 3]}` | Verified |
+| Read Index $r$ | Value $\text{nums}[r]$ | Write Pointer $w$ | Gate Condition ($w < 2 \lor x \ne \text{nums}[w-2]$) | Decision | Action on Array | Active Prefix $\text{nums}[0 \dots w-1]$ |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | 1 | 0 | $0 < 2$ (True) | Accept | $\text{nums}[0] = 1$ | `[1]` |
+| 1 | 1 | 1 | $1 < 2$ (True) | Accept | $\text{nums}[1] = 1$ | `[1, 1]` |
+| 2 | 1 | 2 | $1 \ne \text{nums}[0]$ ($1 \ne 1$ False) | **Reject** | Skip | `[1, 1]` |
+| 3 | 2 | 2 | $2 \ne \text{nums}[0]$ ($2 \ne 1$ True) | Accept | $\text{nums}[2] = 2$ | `[1, 1, 2]` |
+| 4 | 2 | 3 | $2 \ne \text{nums}[1]$ ($2 \ne 1$ True) | Accept | $\text{nums}[3] = 2$ | `[1, 1, 2, 2]` |
+| 5 | 3 | 4 | $3 \ne \text{nums}[2]$ ($3 \ne 2$ True) | Accept | $\text{nums}[4] = 3$ | `[1, 1, 2, 2, 3]` |
+| Final | - | **5** | - | - | **Return $k = 5$** | **`[1, 1, 2, 2, 3]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because the input is sorted in non-decreasing order, identical elements occur contiguously. If $\text{nums}[w - 2] == x$, then $\text{nums}[w - 1]$ must also equal $x$. Appending $x$ would create a third duplicate. If $\text{nums}[w - 2] < x$, at most one $x$ has been written so far, guaranteeing that $x$ can appear at most twice.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $w \le r$ at all times, writes never overwrite unread input elements. The read pointer scans strictly from $0$ to $N - 1$, considering every original number.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit run counter:** Track the current value's occurrence count and copy only counts one and two. It is equally linear and constant-space but uses more state.
-- **Two-pointer plus previous comparisons:** Scan from index two and compare against the output at `write - 2`; this is the indexed form of the selected method.
-- **Delete excessive values:** Removing list elements while scanning can shift a linear suffix for every deletion, producing quadratic time in Python.
-- **Frequency dictionary:** It works without sorted input but uses extra space and ignores the key simplifying guarantee.
-- **One element:** `k < 2` accepts it and returns one.
-- **Exactly two equal elements:** Both are accepted.
-- **Three or more equal elements:** Only the first two reach the output prefix.
-- **All values distinct:** Every comparison differs and `k` becomes the original length.
-- **All values equal:** The returned length is two when the input has at least two entries.
-- **Negative values:** Only equality and sorted position matter, so sign is irrelevant.
-- **Unspecified suffix:** The algorithm intentionally does not erase values after `k`.
-- **No resizing:** Stable list length makes mutation during iteration safe together with the never-write-ahead invariant.
-- **Sorted-order dependency:** Without grouping equal values, comparison with `k - 2` would not reliably count occurrences.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Generalization to $K$ Duplicates:** This exact template generalizes to allowing at most $K$ duplicates by checking `w < K or x != nums[w - K]`. For $K = 1$ (LeetCode 26), compare against `w - 1`. For $K = 2$ (this problem), compare against `w - 2`.
+- **Comparing Against $r - 2$ instead of $w - 2$:** Comparing $\text{nums}[r]$ against $\text{nums}[r - 2]$ fails when duplicates have already been skipped, because the input indices no longer match the compacted output layout. The lookback must check the **write** index $\text{nums}[w - 2]$.
+- **Short Arrays ($N \le 2$):** If $N \le 2$, the condition $w < 2$ accepts all elements, immediately returning $N$ without any index out-of-bounds error.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the original array length. Every original element is read once, and each iteration performs a constant number of comparisons and at most one assignment. Time is $O(n)$, matching the manifest. No costly element deletion or shifting occurs.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. The loop executes $N$ times, doing $O(1)$ operations per element.
+- **Auxiliary Space Complexity:** $O(1)$. Array elements are rearranged in place using scalar pointers $r$ and $w$.

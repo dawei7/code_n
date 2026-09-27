@@ -1,137 +1,164 @@
 # Guided Example: Reverse String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer inward symmetric swapping ($s[i], s[j] = s[j], s[i]$), boundary convergence ($i < j$), in-place mutation, and array element inversion on representative character list instances:
 
-- **Input:** `{"s": ["h", "e", "l", "l", "o"]}`
-- **Required output:** `["o", "l", "l", "e", "h"]`
+- **Input:** $s = [\text{"h"}, \text{"e"}, \text{"l"}, \text{"l"}, \text{"o"}]$
+- **Required output:** $[\text{"o"}, \text{"l"}, \text{"l"}, \text{"e"}, \text{"h"}]$
+  - $i = 0, j = 4$: Swap `'h'` and `'o'` $\implies [\text{"o"}, \text{"e"}, \text{"l"}, \text{"l"}, \text{"h"}]$
+  - $i = 1, j = 3$: Swap `'e'` and `'l'` $\implies [\text{"o"}, \text{"l"}, \text{"l"}, \text{"e"}, \text{"h"}]$
+  - $i = 2, j = 2$: $i = j$, middle element `'l'` remains stationary
+  - Final array: $[\text{"o"}, \text{"l"}, \text{"l"}, \text{"e"}, \text{"h"}]$
+- **Even Length String:** $s = [\text{"H"}, \text{"a"}, \text{"n"}, \text{"n"}, \text{"a"}, \text{"h"}] \implies [\text{"h"}, \text{"a"}, \text{"n"}, \text{"n"}, \text{"a"}, \text{"H"}]$
+- **Single Character Base Case:** $s = [\text{"A"}] \implies [\text{"A"}]$ ($i = 0, j = 0 \implies 0$ swaps)
+- **Two Elements:** $s = [\text{"a"}, \text{"b"}] \implies [\text{"b"}, \text{"a"}]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place two-pointer array manipulation, mathematically proves why $\lfloor N / 2 \rfloor$ pairwise swaps reverse any array without auxiliary memory buffers, and operates in $O(N)$ linear time and strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Write a function that reverses a string. The input string is given as an array of characters `s`.
+Given an array of characters:
+$$
+s = [\text{"h"}, \; \text{"e"}, \; \text{"l"}, \; \text{"l"}, \; \text{"o"}] \quad (N = 5)
+$$
+Reverse the order of characters **in-place** with $O(1)$ extra memory:
 
-The objective is to compute `["o", "l", "l", "e", "h"]` from `{"s": ["h", "e", "l", "l", "o"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Original:  ['h', 'e', 'l', 'l', 'o']
+Indices:     0    1    2    3    4
+Pointers:    i                   j
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Swap 1:    ['o', 'e', 'l', 'l', 'h'] (swap index 0 and 4)
+                  i         j
+
+Swap 2:    ['o', 'l', 'l', 'e', 'h'] (swap index 1 and 3)
+                       i=j
+
+Stop:      ['o', 'l', 'l', 'e', 'h'] (i == j == 2)
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Symmetric Reflection Principle
+In an array of length $N$, the character at index $p$ must move to index $N - 1 - p$.
+Because reflection is an involution (symmetric mapping):
+$$
+(N - 1 - (N - 1 - p)) = p
+$$
+Swapping the values at indices $i$ and $j = N - 1 - i$ simultaneously places both characters into their correct final positions!
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Two-Pointer Invariant:
+Initialize: $i = 0, \quad j = N - 1$.
+While $i < j$:
+1. Swap elements:
+   $$
+   s[i], \; s[j] = s[j], \; s[i]
+   $$
+2. Advance pointers inward:
+   $$
+   i \leftarrow i + 1, \quad j \leftarrow j - 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of each iteration, all elements at indices $< i$ and all elements at indices $> j$ are in their final reversed positions. The remaining unreversed subsegment is $s[i \dots j]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reversal pairs each position with one mirrored position.
-
-For an array of length $n$, the character originally at index $p$ belongs at index
-
-$$
-n-1-p
-$$
-
-in the reversed array. This mapping is symmetric: the character at `n - 1 - p` belongs at `p`. Therefore reversal can be performed by swapping mirrored pairs rather than creating a second array.
-
-The exact source keeps two indices:
-
-- `i = 0`, initially pointing at the first character;
-- `j = len(s) - 1`, initially pointing at the last character.
-
-At every iteration, `i` and `j` identify a mirrored pair that has not yet been placed. Swapping `s[i]` and `s[j]` sends both characters directly to their final reversed positions. The pointers then move inward with `i + 1` and `j - 1`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": ["h", "e", "l", "l", "o"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = [\text{"h"}, \text{"e"}, \text{"l"}, \text{"l"}, \text{"o"}]$ ($N = 5$):
+Pointers: $i = 0, j = 4$.
 
 ---
 
-### Step 2: Why the swap is safe in Python.
-
-The assignment
-
-`s[i], s[j] = s[j], s[i]`
-
-evaluates the right-hand values before writing the left-hand positions. Conceptually, it remembers both old characters and then places them in opposite slots. The first write cannot destroy the value needed by the second write.
-
-In a language without tuple assignment, the same operation would use one temporary character:
-
-1. save the left character;
-2. copy the right character into the left position;
-3. copy the saved character into the right position.
-
-That temporary is constant-sized, so either form remains an in-place, $O(1)$-auxiliary-space algorithm.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Iteration 1 ($i = 0, j = 4$)
+- Check condition: $i < j \iff 0 < 4$ (**True**).
+- Elements to swap: $s[0] = \text{'h'}$ and $s[4] = \text{'o'}$.
+- Perform swap:
+  $$
+  s[0], s[4] \leftarrow \text{'o'}, \text{'h'}
+  $$
+- Array state:
+  $$
+  [\mathbf{\text{"o"}}, \; \text{"e"}, \; \text{"l"}, \; \text{"l"}, \; \mathbf{\text{"h"}}]
+  $$
+- Advance pointers:
+  $$
+  i \leftarrow 0 + 1 = 1, \quad j \leftarrow 4 - 1 = 3
+  $$
 
 ---
 
-### Step 3: The key loop invariant.
+### Step 2: Iteration 2 ($i = 1, j = 3$)
+- Check condition: $i < j \iff 1 < 3$ (**True**).
+- Elements to swap: $s[1] = \text{'e'}$ and $s[3] = \text{'l'}$.
+- Perform swap:
+  $$
+  s[1], s[3] \leftarrow \text{'l'}, \text{'e'}
+  $$
+- Array state:
+  $$
+  [\text{"o"}, \; \mathbf{\text{"l"}}, \; \text{"l"}, \; \mathbf{\text{"e"}}, \; \text{"h"}]
+  $$
+- Advance pointers:
+  $$
+  i \leftarrow 1 + 1 = 2, \quad j \leftarrow 3 - 1 = 2
+  $$
 
-Before each loop-condition check:
+---
 
-- every position strictly before `i` already contains its final reversed character;
-- every position strictly after `j` already contains its final reversed character;
-- positions from `i` through `j` are the only part still needing work.
-
-Initially, there are no positions before zero and no positions after `n - 1`, so the invariant is true.
-
-During an iteration, index `i` is mirrored with `j`. At the first iteration, these are `0` and `n - 1`. After both pointers have moved the same number of steps inward, they remain mirrored because
-
-$$
-j=n-1-i.
-$$
-
-The swap puts both boundary characters of the unresolved interval into their final positions. Incrementing `i` and decrementing `j` then moves those positions into the already-correct outer regions, preserving the invariant.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["o", "l", "l", "e", "h"]` |
+### Step 3: Loop Termination ($i = 2, j = 2$)
+- Check condition: $i < j \iff 2 < 2$ (**False**).
+- Both pointers meet at middle element $s[2] = \text{'l'}$.
+- A single middle element in an odd-length array remains in place.
+- In-place reversal completed:
+  $$
+  \mathbf{[\text{"o"}, \text{"l"}, \text{"l"}, \text{"e"}, \text{"h"}]}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": ["h", "e", "l", "l", "o"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["o", "l", "l", "e", "h"]` | Verified |
+```text
+s = ['h', 'e', 'l', 'l', 'o']
+i = 0, j = 4
+
+Iter 1: i=0, j=4 -> swap 'h' and 'o' -> ['o', 'e', 'l', 'l', 'h'], i=1, j=3
+Iter 2: i=1, j=3 -> swap 'e' and 'l' -> ['o', 'l', 'l', 'e', 'h'], i=2, j=2
+Iter 3: i=2, j=2 -> 2 < 2 is False   -> Terminate
+
+Final Array: ['o', 'l', 'l', 'e', 'h']
+```
+
+| Iteration | Left Index $i$ | Right Index $j$ | Condition $i < j$ | Left Char $s[i]$ | Right Char $s[j]$ | Action Taken | Array State After Swap |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| Init | 0 | 4 | - | `'h'` | `'o'` | Setup | `['h', 'e', 'l', 'l', 'o']` |
+| 1 | 0 | 4 | True ($0 < 4$) | `'h'` | `'o'` | Swap $s[0] \leftrightarrow s[4]$ | `['o', 'e', 'l', 'l', 'h']` |
+| 2 | 1 | 3 | True ($1 < 3$) | `'e'` | `'l'` | Swap $s[1] \leftrightarrow s[3]$ | `['o', 'l', 'l', 'e', 'h']` |
+| **Exit** | **2** | **2** | **False ($2 < 2$)** | `'l'` | `'l'` | **Terminate** | **`['o', 'l', 'l', 'e', 'h']`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Reversing an array requires mapping each index $k$ to $N - 1 - k$. The algorithm performs simultaneous assignments $s[i], s[j] = s[j], s[i]$ with $j = N - 1 - i$, ensuring that each swapped pair directly satisfies the reversal definition without overwriting unread elements.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Pointers $i$ and $j$ advance inward by 1 at each step, halving the remaining distance. The loop terminates when $i \ge j$. Every element at an index $< \lfloor N/2 \rfloor$ is swapped with its symmetric counterpart, ensuring all elements are accurately inverted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Create a reversed copy:** Slicing with `s[::-1]` or building a new list is concise, but a standalone copy uses $O(n)$ extra memory. Assigning a slice back may also allocate temporary storage and therefore misses the strict $O(1)$ requirement.
-- **Built-in in-place reverse:** A library method such as `s.reverse()` typically performs the same mirrored swaps and can satisfy the contract, but the explicit source makes the two-pointer reasoning visible.
-- **Recursive mirrored swaps:** Swap the ends and recurse inward. It mutates the list in place but consumes $O(n)$ call-stack space, violating the constant-extra-memory requirement.
+- **Allocating Slices:** Doing `s = s[::-1]` or creating a new list violates the in-place constraint. The problem requires mutating the input array $s$ directly with zero allocations.
+- **Odd vs Even Parity:** When $N$ is odd, the pointers meet at the exact center ($i = j$). Using $i \le j$ would redundantly swap the center element with itself, whereas $i < j$ cleanly stops without unnecessary operations.
+- **Python Tuple Unpacking Safety:** In Python, `s[i], s[j] = s[j], s[i]` evaluates the right-hand tuple before assigning to the left-hand targets, ensuring values are not overwritten before being read.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be `len(s)`. Each iteration finalizes two positions, so the loop performs $\lfloor n/2\rfloor$ swaps. Each swap and pointer update is constant time. Total time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = \text{len}(s)$. The while loop executes exactly $\lfloor N / 2 \rfloor$ iterations, performing $O(1)$ operations per swap.
+- **Auxiliary Space Complexity:** $O(1)$ strictly constant memory, using only two pointer integers ($i, j$).

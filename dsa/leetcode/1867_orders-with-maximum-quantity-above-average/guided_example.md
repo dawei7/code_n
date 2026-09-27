@@ -1,110 +1,195 @@
 # Guided Example: Orders With Maximum Quantity Above Average
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step group aggregation, order-level average calculation, global average supremum extraction, and strict maximum quantity filtering:
 
-- **Input:** `{"tables": {"OrdersDetails": [{"order_id": 7, "product_id": 99, "quantity": 100}]}}`
-- **Required output:** `{"columns": ["order_id"], "rows": []}`
+- **Input:**
+  - `OrdersDetails` table:
+    - Order 1: Product 1 (qty 12), Product 2 (qty 10), Product 3 (qty 15)
+    - Order 2: Product 1 (qty 8), Product 4 (qty 4), Product 5 (qty 6), Product 9 (qty 4)
+    - Order 3: Product 3 (qty 5), Product 4 (qty 18), Product 9 (qty 20)
+    - Order 4: Product 5 (qty 2), Product 6 (qty 8)
+    - Order 5: Product 7 (qty 9), Product 8 (qty 9)
+- **Required Output:**
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| order_id |
+|:---:|
+| 1 |
+| 3 |
+
+This instance demonstrates calculating order-level summary statistics (`AVG` and `MAX` quantity), determining the maximum among all order averages across the entire dataset ($14.33$), and selecting orders whose individual peak quantity strictly exceeds this global benchmark.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `OrdersDetails`
+For each customer order in `OrdersDetails`, we consider:
+1. Its **average product quantity**: $\text{avg}(O) = \frac{\sum q}{|O|}$.
+2. Its **maximum product quantity**: $\text{max}(O) = \max_{q \in O} q$.
 
-The objective is to compute `{"columns": ["order_id"], "rows": []}` from `{"tables": {"OrdersDetails": [{"order_id": 7, "product_id": 99, "quantity": 100}]}}` while avoiding redundant calculations and unnecessary overhead.
+An order $O_i$ is reported if and only if its maximum quantity is strictly greater than the average quantity of **every** order in the table:
+$$\text{max}(O_i) > \text{avg}(O_j) \quad \text{for all } j$$
+Equivalently, $\text{max}(O_i) > \max_{j} \text{avg}(O_j)$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- **Order 1:** Quantities $[12, 10, 15]$. Sum $= 37$, count $= 3$.
+  - $\text{avg}(O_1) = 37 / 3 \approx 12.33$
+  - $\text{max}(O_1) = 15$
+- **Order 2:** Quantities $[8, 4, 6, 4]$. Sum $= 22$, count $= 4$.
+  - $\text{avg}(O_2) = 22 / 4 = 5.50$
+  - $\text{max}(O_2) = 8$
+- **Order 3:** Quantities $[5, 18, 20]$. Sum $= 43$, count $= 3$.
+  - $\text{avg}(O_3) = 43 / 3 \approx 14.33$
+  - $\text{max}(O_3) = 20$
+- **Order 4:** Quantities $[2, 8]$. Sum $= 10$, count $= 2$.
+  - $\text{avg}(O_4) = 10 / 2 = 5.00$
+  - $\text{max}(O_4) = 8$
+- **Order 5:** Quantities $[9, 9]$. Sum $= 18$, count $= 2$.
+  - $\text{avg}(O_5) = 18 / 2 = 9.00$
+  - $\text{max}(O_5) = 9$
+- Per-order averages: $[12.33, 5.50, 14.33, 5.00, 9.00]$.
+- Global maximum average: $\max_j \text{avg}(O_j) = 14.33$ (from Order 3).
+- Checking $\text{max}(O_i) > 14.33$:
+  - Order 1: $15 > 14.33$ (Qualifies!)
+  - Order 2: $8 \le 14.33$ (Fails)
+  - Order 3: $20 > 14.33$ (Qualifies!)
+  - Order 4: $8 \le 14.33$ (Fails)
+  - Order 5: $9 \le 14.33$ (Fails)
+- Qualifying order IDs: `1` and `3`.
+
+The teaching goal is to structure two-stage relational aggregation: grouping by `order_id` to obtain local metrics, extracting the scalar maximum of averages, and filtering groups whose `MAX(quantity)` strictly surpasses that scalar.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Global Average Supremum Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Order-Level Aggregation & Global Average Supremum Filter Theorem.**
+> 1. *Universal Quantification Equivalence:* The condition $\forall j, \text{max}(O_i) > \text{avg}(O_j)$ is mathematically equivalent to:
+>    $$\text{max}(O_i) > \sup_{j} \text{avg}(O_j)$$
+> 2. *Strict Inequality Requirement:* The threshold comparison must be strictly greater ($>$). Equality $\text{max}(O_i) = \sup_j \text{avg}(O_j)$ fails the condition.
+> 3. *Two-Stage Aggregation Pipeline:*
+>    - Stage 1: Group by `order_id`, computing $\text{MAX}(quantity)$ and $\text{AVG}(quantity)$ for each order.
+>    - Stage 2: Filter orders satisfying $\text{MAX}(quantity) > (\text{SELECT MAX}(avg\_qty) \text{ FROM Stage 1})$.
+> 4. *Complexity:* Grouping $R$ rows takes $\mathcal{O}(R \log R)$ or $\mathcal{O}(R)$ via hash aggregation. Extracting the scalar maximum and filtering $G$ distinct orders takes $\mathcal{O}(G)$ time.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Orders With Maximum Quantity Above Average Flow
+    accDescr: Pipeline showing grouping orders to compute max and average, identifying global max average, and filtering qualifying orders.
+    A["Raw OrdersDetails Table (R rows)"] --> B["Group by order_id"]
+    B --> C["Compute for each order: max_qty and avg_qty"]
+    C --> D["Extract Global Benchmark: M_avg = MAX(avg_qty) = 14.33"]
+    C --> E{"For each order: max_qty > M_avg?"}
+    D -.-> E
+    E -- Order 1: 15 > 14.33 --> F["Include Order 1"]
+    E -- Order 2: 8 <= 14.33 --> G["Exclude Order 2"]
+    E -- Order 3: 20 > 14.33 --> H["Include Order 3"]
+    E -- Order 4: 8 <= 14.33 --> I["Exclude Order 4"]
+    E -- Order 5: 9 <= 14.33 --> J["Exclude Order 5"]
+    F & H --> K["Output: order_id in [1, 3]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Reduce every order to its maximum and average quantity.** One order spans several product rows. The common table expression `t` groups by `order_id` and calculates the two statistics needed by the definition:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"OrdersDetails": [{"order_id": 7, "product_id": 99, "quantity": 100}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the dataset through each relational step:
 
 ---
 
-### Step 2: Core Step 2
+### Step 1: Group Aggregation by `order_id`
+Compute summary statistics for each distinct order:
 
-- `MAX(quantity) AS max_quantity` is the largest single-product quantity in that order.
-- `SUM(quantity) / COUNT(1) AS avg_quantity` is total quantity divided by its number of product rows.
+1. **Order 1:**
+   - Quantities: $\{12, 10, 15\}$.
+   - Count $= 3$, Sum $= 12 + 10 + 15 = 37$.
+   - Average: $\text{avg}_1 = 37 / 3 \approx 12.333$.
+   - Maximum: $\text{max}_1 = 15$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+2. **Order 2:**
+   - Quantities: $\{8, 4, 6, 4\}$.
+   - Count $= 4$, Sum $= 8 + 4 + 6 + 4 = 22$.
+   - Average: $\text{avg}_2 = 22 / 4 = 5.5$.
+   - Maximum: $\text{max}_2 = 8$.
+
+3. **Order 3:**
+   - Quantities: $\{5, 18, 20\}$.
+   - Count $= 3$, Sum $= 5 + 18 + 20 = 43$.
+   - Average: $\text{avg}_3 = 43 / 3 \approx 14.333$.
+   - Maximum: $\text{max}_3 = 20$.
+
+4. **Order 4:**
+   - Quantities: $\{2, 8\}$.
+   - Count $= 2$, Sum $= 2 + 8 = 10$.
+   - Average: $\text{avg}_4 = 10 / 2 = 5.0$.
+   - Maximum: $\text{max}_4 = 8$.
+
+5. **Order 5:**
+   - Quantities: $\{9, 9\}$.
+   - Count $= 2$, Sum $= 9 + 9 = 18$.
+   - Average: $\text{avg}_5 = 18 / 2 = 9.0$.
+   - Maximum: $\text{max}_5 = 9$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Extract Global Benchmark
+Evaluate the highest average among all 5 orders:
+$$M_{\text{avg}} = \max(\{12.333, 5.5, 14.333, 5.0, 9.0\}) = 14.333$$
+(Achieved by Order 3).
 
-The composite primary key guarantees one row per different product within an order, so `COUNT(1)` is exactly the number of different products required by the average definition.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["order_id"], "rows": []}` |
+### Step 3: Apply Selection Predicate $\text{max}_i > M_{\text{avg}}$
+Compare each order's maximum against $M_{\text{avg}} \approx 14.333$:
+
+- **Order 1:** $\text{max}_1 = 15$. Check: $15 > 14.333 \implies$ **True**. (Order 1 qualifies).
+- **Order 2:** $\text{max}_2 = 8$. Check: $8 > 14.333 \implies$ False.
+- **Order 3:** $\text{max}_3 = 20$. Check: $20 > 14.333 \implies$ **True**. (Order 3 qualifies).
+- **Order 4:** $\text{max}_4 = 8$. Check: $8 > 14.333 \implies$ False.
+- **Order 5:** $\text{max}_5 = 9$. Check: $9 > 14.333 \implies$ False.
+
+---
+
+### Step 4: Final Projection
+The selected `order_id` values are:
+
+| order_id |
+|:---:|
+| 1 |
+| 3 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"OrdersDetails": [{"order_id": 7, "product_id": 99, "quantity": 100}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["order_id"], "rows": []}` | Verified |
+| `order_id` | Product Quantities | Total Sum | Item Count | Order Average ($\text{avg}$) | Order Peak ($\text{max}$) | Compared to Global Benchmark ($14.333$) | Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $12, 10, 15$ | 37 | 3 | $12.333$ | 15 | $15 > 14.333$ | **Selected** |
+| 2 | $8, 4, 6, 4$ | 22 | 4 | $5.500$ | 8 | $8 \le 14.333$ | Rejected |
+| 3 | $5, 18, 20$ | 43 | 3 | $14.333$ (Peak Avg) | 20 | $20 > 14.333$ | **Selected** |
+| 4 | $2, 8$ | 10 | 2 | $5.000$ | 8 | $8 \le 14.333$ | Rejected |
+| 5 | $9, 9$ | 18 | 2 | $9.000$ | 9 | $9 \le 14.333$ | Rejected |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any order emitted has its `max(quantity)` strictly exceeding the maximum of all order averages. By transitivity, its maximum strictly exceeds every individual order's average quantity, satisfying the problem specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every order in `OrdersDetails` is aggregated into the candidate set. Because the global supremum of averages is exact, testing every order's maximum against this scalar bound guarantees zero false negatives and zero false positives.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Compare with `ALL`:** SQL can express `max_quantity > ALL (subquery of averages)`, but the maximum threshold is usually clearer.
-- **Window maximum:** Compute per-order statistics and a global maximum average with a window function, then filter in an outer query.
-- **Strict equality:** An order whose maximum equals the largest average must be excluded.
-- **Fractional average:** Ordinary division preserves the exact decimal comparison; integer truncation would be wrong.
-- **One order only:** It qualifies only if its maximum is strictly greater than its own average, which requires at least two unequal product quantities.
-- **One product in an order:** Maximum equals average, so that order cannot exceed its own average.
-- **Several orders share maximum average:** The scalar threshold remains that shared value, and candidates must exceed it.
-- **Several products with equal maximum:** `MAX` needs only the value, not how many rows attain it.
-- **Composite primary key:** It makes row count equal the number of different products within each order.
-- **Any-order result:** Omitting `ORDER BY` is intentional.
-- **Nonempty table assumption:** Each CTE order has at least one row, so `COUNT(1)` is positive.
-- **No duplicate output:** One grouped summary row produces at most one selected identifier.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Comparing to Own Average vs Global Maximum Average:** An order's maximum is almost always greater than its *own* average. The question requires exceeding the average of *every* order, meaning it must exceed the largest among all order averages.
+- **Global Table Average Confusion:** Computing the average quantity over all rows in `OrdersDetails` ($\sum q / R$) is different from the average of each order ($\sum_{q \in O} q / |O|$). An order must exceed the *maximum of order averages*, not the flat table average.
+- **Floating-Point Division:** In SQL engines where integer division truncates (e.g. $37 / 3 = 12$), dividing integers directly causes truncation errors; using `AVG()` or casting to decimal ensures precise comparisons.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R + G)$. Let `R` be the number of product rows and `G` the number of orders. Grouping scans `R` rows and maintains `G` aggregates. The maximum subquery and outer filter scan the `G` summaries. With hash aggregation, logical time is `O(R + G) = O(R)`; engine choices may instead sort groups.
-- **Auxiliary Space Complexity:** $O(G)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log G)$, where $R$ is the total number of rows in `OrdersDetails` and $G$ is the number of distinct orders. Grouping and aggregating takes $\mathcal{O}(R)$ time, finding the maximum of $G$ averages takes $\mathcal{O}(G)$, and filtering takes $\mathcal{O}(G)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(G)$ to store the grouped summary metrics for each order.

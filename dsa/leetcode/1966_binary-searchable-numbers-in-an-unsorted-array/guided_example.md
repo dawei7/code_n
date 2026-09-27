@@ -1,130 +1,167 @@
 # Guided Example: Binary Searchable Numbers in an Unsorted Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and analyze the bidirectional prefix-maximum and suffix-minimum filtering theorem on representative unsorted arrays to count all elements guaranteed to be located under adversarial pivot sequences.
 
-- **Input:** `{"nums": [7]}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Consider a function that implements an algorithm **similar** to <a href="https://leetcode.com/explore/learn/card/binary-search/" target="_blank">Binary Search</a>. The function has two input parameters: `sequence` is a sequence of integers, and `target` is an integer value. The purpose of the function is to find if the `target` exists in the `sequence`.
-
-The objective is to compute `1` from `{"nums": [7]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `nums = [1, 3, 2, 4]` ($N = 4$)
+  - Expected Output: `2` (elements `1` and `4` are guaranteed to be found)
+- **Secondary Instance:** `nums = [-1, 5, 2]` ($N = 3$)
+  - Expected Output: `1` (element `-1` is guaranteed to be found)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+In a generalized binary search on an unsorted array, an algorithm picks any arbitrary element as a pivot:
+- If $\text{pivot} == \text{target}$, the search succeeds immediately.
+- If $\text{pivot} < \text{target}$, the algorithm assumes the target lies to the right, discarding the pivot and all elements to its left.
+- If $\text{pivot} > \text{target}$, the algorithm assumes the target lies to the left, discarding the pivot and all elements to its right.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Because the array is not necessarily sorted, an erroneous discard can occur. We seek elements that are **guaranteed to be found regardless of which pivot sequence is chosen** (even against an adversarial selection strategy).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Consider a target element $x = nums[i]$:
+1. Suppose there exists some element to the left of $i$ (index $j < i$) with $nums[j] > nums[i]$. If an adversary selects $nums[j]$ as the pivot, then $\text{pivot} > \text{target}$, which discards the pivot and **everything to its right**, erroneously eliminating the target $nums[i]$. Thus, every element to the left must be strictly smaller than $nums[i]$.
+2. Suppose there exists some element to the right of $i$ (index $k > i$) with $nums[k] < nums[i]$. If an adversary selects $nums[k]$ as the pivot, then $\text{pivot} < \text{target}$, which discards the pivot and **everything to its left**, erroneously eliminating the target $nums[i]$. Thus, every element to the right must be strictly greater than $nums[i]$.
 
----
+Conversely, if both conditions hold:
+- Any pivot chosen to the left is smaller than $nums[i]$, discarding only elements to its left and preserving $nums[i]$.
+- Any pivot chosen to the right is larger than $nums[i]$, discarding only elements to its right and preserving $nums[i]$.
+- Choosing $nums[i]$ itself succeeds.
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Characterize when no pivot can discard the target
-
-Fix target `nums[i] = x`. A pivot chosen to the left of $i$ remains in the same current contiguous sequence as $x$ until one of them is discarded. If that left pivot is greater than $x$, the algorithm takes the “pivot greater than target” branch and removes the pivot and everything to its right—including $x$. Therefore every value left of $i$ must be less than $x$.
-
-Symmetrically, if any value to the right is less than $x$, choosing it as pivot takes the “pivot less than target” branch and removes that pivot and everything to its left, including $x$. Therefore every value right of $i$ must be greater than $x$.
-
-These two conditions are also sufficient. Any left pivot is smaller, so it removes only itself and earlier positions while preserving the target. Any right pivot is larger, so it removes itself and later positions while preserving the target. Repeating arbitrary safe removals eventually selects $x$. Thus $x$ is guaranteed searchable exactly when:
-
-$$
-\max(\text{left values}) < x < \min(\text{right values}).
-$$
-
-Empty sides impose no restriction.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Therefore, an element $nums[i]$ is binary searchable if and only if it is simultaneously strictly greater than all elements to its left and strictly less than all elements to its right.
 
 ---
 
-### Step 2: Mark the left condition with a running maximum
+## 2. Mathematical Formalism & Invariant Characterization
 
-`ok` begins with one for every index. The forward scan maintains `mx`, the greatest value seen earlier.
+Let $nums$ be an array of $N$ unique integers.
 
-If current `x < mx`, some earlier value is greater and can destroy the target, so `ok[i]` becomes zero. Otherwise `x` becomes the new running maximum.
+### Left and Right Extrema Arrays
 
-Values are unique. Therefore equality with `mx` cannot occur at a later position; the source's strict comparison is sufficient.
+For each index $i \in \{0, \dots, N-1\}$:
+- **Strict Prefix Maximum:**
+  $$L[i] = \max_{0 \le j < i} nums[j] \quad (\text{with } L[0] = -\infty)$$
+- **Strict Suffix Minimum:**
+  $$R[i] = \min_{i < k < N} nums[k] \quad (\text{with } R[N-1] = +\infty)$$
 
-The sentinel `-1000000` lies below the allowed minimum, so the first element always passes its empty-left condition.
+### Characterization Theorem
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+An element at index $i$ is binary searchable if and only if:
+$$L[i] < nums[i] < R[i]$$
 
----
+This property is identical to identifying "partition pivots" in quicksort: elements that would remain in their exact same position if the array were sorted.
 
-### Step 3: Mark the right condition with a running minimum
+```mermaid
+flowchart TD
+    accTitle: Binary Searchable Verification Filter
+    accDescr: Pipeline showing prefix max sweep from left, suffix min sweep from right, and intersection check L[i] < nums[i] < R[i].
 
-The backward scan maintains `mi`, the smallest value seen to the right. If `nums[i] > mi`, a smaller right pivot exists and can discard the target, so the index is invalidated. Otherwise the current value becomes the new suffix minimum.
-
-Sentinel `1000000` lies above every allowed value, so the final array element passes its empty-right condition.
-
-An index stays one only when it is a prefix maximum and a suffix minimum in the strict unique-value sense. `sum(ok)` counts those guaranteed targets.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+    INPUT["Input Array nums of length N"] --> PMAX["Left-to-Right Pass:<br/>Compute prefix maximums L[i]"]
+    INPUT --> SMIN["Right-to-Left Pass:<br/>Compute suffix minimums R[i]"]
+    
+    PMAX --> CHK["For each index i in 0 ... N-1:<br/>Check L[i] < nums[i] AND nums[i] < R[i]"]
+    SMIN --> CHK
+    
+    CHK -->|Condition Holds| INC["Increment Searchable Counter"]
+    CHK -->|Condition Fails| SKIP["Element vulnerable to discard"]
+    
+    INC --> OUT["Return Total Searchable Count"]
+    SKIP --> OUT
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Prefix Max and Suffix Min Sweeps
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `nums = [1, 3, 2, 4]` ($N = 4$):
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 1: Forward Sweep for Prefix Maximums ($L$)
+
+- $i = 0$: $L[0] = -\infty$. Running max becomes $nums[0] = 1$.
+- $i = 1$: $L[1] = 1$. Running max becomes $\max(1, 3) = 3$.
+- $i = 2$: $L[2] = 3$. Running max becomes $\max(3, 2) = 3$.
+- $i = 3$: $L[3] = 3$. Running max becomes $\max(3, 4) = 4$.
+- Prefix maximum array: $L = [-\infty, 1, 3, 3]$.
+
+### Step 2: Backward Sweep for Suffix Minimums ($R$)
+
+- $i = 3$: $R[3] = +\infty$. Running min becomes $nums[3] = 4$.
+- $i = 2$: $R[2] = 4$. Running min becomes $\min(4, 2) = 2$.
+- $i = 1$: $R[1] = \min(4, 2) = 2$. Running min becomes $\min(2, 3) = 2$.
+- $i = 0$: $R[0] = 2$. Running min becomes $\min(2, 1) = 1$.
+- Suffix minimum array: $R = [2, 2, 4, +\infty]$.
+
+### Step 3: Simultaneous Verification
+
+1. **Index 0 ($nums[0] = 1$):**
+   - $L[0] = -\infty < 1$ (Pass)
+   - $R[0] = 2 > 1$ (Pass)
+   - **Status: Guaranteed Searchable.**
+2. **Index 1 ($nums[1] = 3$):**
+   - $L[1] = 1 < 3$ (Pass)
+   - $R[1] = 2$. Check $3 < 2$ (**Fails!** Pivot 2 to the right would discard index 1)
+   - **Status: Vulnerable.**
+3. **Index 2 ($nums[2] = 2$):**
+   - $L[2] = 3$. Check $3 < 2$ (**Fails!** Pivot 3 to the left would discard index 2)
+   - $R[2] = 4 > 2$ (Pass)
+   - **Status: Vulnerable.**
+4. **Index 3 ($nums[3] = 4$):**
+   - $L[3] = 3 < 4$ (Pass)
+   - $R[3] = +\infty > 4$ (Pass)
+   - **Status: Guaranteed Searchable.**
+
+Total guaranteed searchable elements: $1 + 0 + 0 + 1 = 2$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Execution Trace Table
 
-- **Prefix and suffix arrays:** Explicitly store the maximum to each left and minimum to each right, then test every index. It is equivalent but uses two $O(N)$ arrays instead of one flag array.
-- **Sort and compare positions:** With unique values, a searchable number occupies the same relative position under certain partition properties, but sorting costs $O(N\log N)$.
-- **Simulate pivot choices:** The number of possible pivot sequences is exponential and unnecessary once the extrema criterion is derived.
-- **Single element:** Both sides are empty, so it is guaranteed and the answer is one.
-- **Strictly increasing array:** Every left value is smaller and every right value larger for every index, so all numbers count.
-- **Strictly decreasing array:** Only when $N=1$ can an index satisfy both conditions; for longer arrays none count.
-- **Negative values:** Sentinels are outside the stated range, so extrema initialization remains safe.
-- **Unique-value dependency:** With duplicates, equality and pivot-removal behavior require carefully changing strict conditions, as the follow-up suggests.
-- **Both extrema required:** A prefix record can still fail because of the suffix, and a suffix record can still fail because of the prefix.
-- **Permanent invalidation:** Once either pass writes zero, the other pass cannot restore the guarantee.
-- **Dangerous pivot first:** A single violating value proves failure because it may be selected before any helpful removal.
-- **Finite progress:** Every non-target pivot removes itself, so a target that is never discarded must eventually be chosen.
-- **Sum of flags:** Flags are integers zero or one, so summation directly returns the count.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Primary Trace: `nums = [1, 3, 2, 4]`
+
+| Index $i$ | Value $nums[i]$ | Left Max $L[i]$ | $L[i] < nums[i]$? | Right Min $R[i]$ | $nums[i] < R[i]$? | Adversary Counter-Pivot | Searchable? |
+|---|---|---|---|---|---|---|---|
+| 0 | 1 | $-\infty$ | True ($-\infty < 1$) | 2 | True ($1 < 2$) | None | **Yes** |
+| 1 | 3 | 1 | True ($1 < 3$) | 2 | **False ($3 \not< 2$)** | Pivot 2 at index 2 ($2 < 3 \implies$ discards left) | No |
+| 2 | 2 | 3 | **False ($3 \not< 2$)** | 4 | True ($2 < 4$) | Pivot 3 at index 1 ($3 > 2 \implies$ discards right) | No |
+| 3 | 4 | 3 | True ($3 < 4$) | $+\infty$ | True ($4 < \infty$) | None | **Yes** |
+
+### Secondary Trace: `nums = [-1, 5, 2]`
+
+| Index $i$ | Value $nums[i]$ | Left Max $L[i]$ | Right Min $R[i]$ | Verification $L[i] < nums[i] < R[i]$ | Result |
+|---|---|---|---|---|---|
+| 0 | -1 | $-\infty$ | $\min(5, 2) = 2$ | $-\infty < -1 < 2$ (Pass) | **Searchable** |
+| 1 | 5 | -1 | 2 | $-1 < 5 \not< 2$ (Fails on right) | Discardable |
+| 2 | 2 | 5 | $+\infty$ | $5 \not< 2 < \infty$ (Fails on left) | Discardable |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(N)$. Let $N$ be the array length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Suppose $L[i] < nums[i] < R[i]$. We prove by induction on search iterations that $nums[i]$ is never discarded. At any step, let the active interval of surviving indices be $[low, high]$ containing $i$ ($low \le i \le high$). Suppose pivot $p = nums[m]$ is chosen:
+1. If $m = i$, the search terminates successfully.
+2. If $m < i$, then $m$ is to the left of $i$. Since $nums[m] \le L[i] < nums[i]$, the pivot is strictly smaller than the target. The search discards $[low, m]$ and recurses on $[m+1, high]$. Because $m < i$, $i \in [m+1, high]$, so index $i$ survives.
+3. If $m > i$, then $m$ is to the right of $i$. Since $nums[m] \ge R[i] > nums[i]$, the pivot is strictly greater than the target. The search discards $[m, high]$ and recurses on $[low, m-1]$. Because $m > i$, $i \in [low, m-1]$, so index $i$ survives.
+Since the search space shrinks by at least one element per iteration while preserving index $i$, the algorithm must eventually pick pivot $m = i$ and succeed.
+
+**Completeness.** If $L[i] \ge nums[i]$, let $j < i$ satisfy $nums[j] \ge nums[i]$. (Because array elements are unique, $nums[j] > nums[i]$). If the adversary selects $nums[j]$ on the first step, $\text{pivot} = nums[j] > nums[i]$, so all elements at indices $\ge j$ (including $i$) are discarded, causing search failure. An analogous elimination occurs if $R[i] \le nums[i]$. Thus, condition $L[i] < nums[i] < R[i]$ is strictly necessary.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Single Element ($N = 1$):** `nums = [7]`. $L[0] = -\infty, R[0] = +\infty$. The single element is always trivially found on the first pivot, producing count 1.
+- **Strictly Increasing Array:** In a sorted array, $L[i] < nums[i] < R[i]$ holds for every element. All $N$ elements are searchable, producing count $N$.
+- **Strictly Decreasing Array:** In a reversed array (e.g. `[3, 2, 1]`), for every element $i > 0$, $L[i] > nums[i]$; and for $i < N-1$, $R[i] < nums[i]$. No element satisfies both conditions, so the count is 0.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Prefix maximum pass: $\mathcal{O}(N)$ sequential scan.
+  - Suffix minimum pass: $\mathcal{O}(N)$ reverse scan.
+  - Verification loop: $N$ checks evaluating two inequalities in $\mathcal{O}(1)$.
+  - Total time complexity is strictly $\mathcal{O}(N)$, optimal for reading the input.
+- **Auxiliary Space Complexity:**
+  - The suffix minimum array requires $N$ integers: $\mathcal{O}(N)$.
+  - The prefix maximum can be tracked with a single scalar variable during the verification loop.
+  - Total auxiliary space is $\mathcal{O}(N)$.

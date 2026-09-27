@@ -1,109 +1,194 @@
 # Guided Example: Minimum Factorization
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step greedy prime-factor aggregation into maximal single decimal digits ($9 \to 2$), positional place-value assembly ($ans = mul \cdot d + ans$), prime factor impossibility verification ($num > 1 \implies 0$), 32-bit signed integer overflow bound checks ($ans \le 2^{31} - 1$), and minimal digit sequence construction on representative integer inputs:
 
-- **Input:** `{"a": 387420489}`
-- **Required output:** `999999999`
+- **Input:** $a = 48$
+- **Required output:** `68`
+  - Problem objective: Find the **smallest positive integer** whose digits multiply together to produce $a$:
+    $$
+    \prod_{k} \text{digit}_k = a
+    $$
+  - If no such integer exists, or if the integer exceeds the 32-bit signed integer limit ($2^{31} - 1 = 2{,}147{,}483{,}647$), return `0`.
+- **Greedy Maximization & Positional Weight Invariants:**
+  - To make an integer as small as possible:
+    1. **Minimize the number of digits:** A 2-digit number is always smaller than a 3-digit number (e.g. $68 < 246$). To minimize total digits, we must combine smaller prime factors ($2$ and $3$) into the **largest possible single-digit factors** ($9, 8, 7, 6, \dots$).
+    2. **Ascending digit order:** Place smaller digits in the most significant positions (e.g. $68 < 86$).
+  - **Greedy Division Order ($9 \to 2$):**
+    - Greedily test divisibility by digits $d$ starting from $9$ down to $2$.
+    - The first (largest) factor extracted will become the **least significant digit** (units place).
+    - Successive factors occupy tens, hundreds, thousands, etc., ensuring digits are assembled in **ascending order from left to right**!
+  - **Impossibility & Overflow Conditions:**
+    - If after testing all single-digit factors $9 \dots 2$, the remaining value of $num > 1$, then $a$ contains a prime factor $\ge 11$ (such as $11, 13, 17$). Since prime numbers $\ge 11$ cannot be represented as a single decimal digit, factorization is **impossible** $\implies$ return `0`.
+    - If the resulting number $ans > 2^{31} - 1$, return `0`.
+- **Step-by-Step Worked Execution Trace on $a = 48$:**
+  - Initial state:
+    $$
+    num = 48, \quad ans = 0, \quad mul = 1
+    $$
+  - **Test $d = 9$:** $48 \pmod 9 = 3 \ne 0 \implies$ Skip.
+  - **Test $d = 8$:**
+    - $48 \pmod 8 == 0 \implies \mathbf{Divisible!}$
+    - Divide:
+      $$
+      num \leftarrow \frac{48}{8} = \mathbf{6}
+      $$
+    - Place digit $8$ at active multiplier $mul = 1$:
+      $$
+      ans \leftarrow (1 \times 8) + 0 = \mathbf{8}
+      $$
+      $$
+      mul \leftarrow 1 \times 10 = \mathbf{10}
+      $$
+    - Check remaining $num = 6$: $6 \pmod 8 \ne 0$. Move to next digit.
+  - **Test $d = 7$:** $6 \pmod 7 \ne 0 \implies$ Skip.
+  - **Test $d = 6$:**
+    - $6 \pmod 6 == 0 \implies \mathbf{Divisible!}$
+    - Divide:
+      $$
+      num \leftarrow \frac{6}{6} = \mathbf{1}
+      $$
+    - Place digit $6$ at active multiplier $mul = 10$:
+      $$
+      ans \leftarrow (10 \times 6) + 8 = \mathbf{68}
+      $$
+      $$
+      mul \leftarrow 10 \times 10 = \mathbf{100}
+      $$
+    - Remaining $num = 1$. Loop finishes since $num < 2$.
+  - **Step 4: Post-Loop Validation:**
+    - Check remaining quotient:
+      $$
+      num = 1 \le 1 \implies \mathbf{Complete\ factorization!}
+      $$
+    - Check 32-bit integer bound:
+      $$
+      ans = 68 \le 2^{31} - 1 = 2147483647 \implies \mathbf{Valid!}
+      $$
+    - Return **`68`**.
+    - Verification: Digits $6 \times 8 = 48$. No smaller number exists ($48$ has factors $2 \times 2 \times 2 \times 2 \times 3$; any other digit combinations like $246$ or $344$ are $\ge 3$ digits or larger).
+- **Impossible Prime Factor Instance ($a = 22$):**
+  - Prime factorization: $22 = 2 \times 11$.
+  - Extract $2 \implies num = 11$.
+  - No digits $2 \dots 9$ divide $11$.
+  - Loop terminates with $num = 11 > 1 \implies$ Returns **`0`**.
+- **32-Bit Integer Overflow Instance:**
+  - $a = 18000000$: digits require $> 10$ places, producing a number $> 2^{31} - 1 \implies$ Returns **`0`**.
+- **Trivial Inputs ($a = 1$):**
+  - Digits multiply to $1 \implies$ Returns **`1`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy base-10 radix compression over prime factor multisets, mathematically proves why maximal digit extraction minimizes positional string length, and derives $O(\log a)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a positive integer num, return *the smallest positive integer *`x`* whose multiplication of each digit equals *`num`. If there is no answer or the answer is not fit in **32-bit** signed integer, return `0`.
+Given an integer $a$:
+Find the **smallest positive integer** $b$ whose digits multiply to $a$.
+Return 0 if impossible or if $b$ exceeds the 32-bit signed integer limit.
 
-The objective is to compute `999999999` from `{"a": 387420489}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Target product a = 48
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Candidate combinations of digits multiplying to 48:
+  2 * 4 * 6 = 48  ->  246 (3 digits)
+  3 * 4 * 4 = 48  ->  344 (3 digits)
+  6 * 8     = 48  ->   68 (2 digits)  <-- SMALLEST!
+
+Result: 68
+```
+
+### The Invariant of Greedy Digits
+- To minimize the final integer:
+  1. It must have the **fewest digits possible** (2 digits is always smaller than 3 digits).
+  2. The smaller digits must appear in the **higher place-values** (leftmost).
+- Both goals are simultaneously achieved by greedily extracting the **largest available single-digit factors** ($9, 8, \dots, 2$) from right to left!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Greedy Factoring Loop:
+- From $d = 9$ down to $2$:
+  - While $num \pmod d == 0$:
+    - $num \leftarrow num / d$
+    - $ans \leftarrow mul \cdot d + ans$
+    - $mul \leftarrow mul \cdot 10$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Verification Gate:
+Return $ans$ if and only if:
+$$
+num == 1 \quad \text{AND} \quad ans \le 2^{31} - 1
+$$
+Otherwise return $0$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Greedy Minimality Invariant.** Dividing by the largest available factor $d \in [2, 9]$ minimizes the total number of prime factors that must be partitioned into separate digits, strictly minimizing the decimal length of the integer.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Turn the decimal-digit requirement into factorization.** If an answer has digits $d_1,d_2,\ldots,d_k$, the condition is
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"a": 387420489}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $a = 48$:
 
 ---
 
-### Step 2: Core Step 3
-
-Every useful digit must therefore be a factor between 2 and 9. Digit 0 would make the product zero, which cannot equal the positive target. Digit 1 does not change the product, but adding a 1 creates an extra decimal position and makes a positive integer larger, so it never helps when `num > 1`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize
+- $num = 48, ans = 0, mul = 1$.
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Try Digits 9 down to 2
+- $d = 8$: $48 / 8 = 6$
+  - $ans = 1 \cdot 8 + 0 = 8$.
+  - $mul = 10$.
+  - $num = 6$.
+- $d = 6$: $6 / 6 = 1$
+  - $ans = 10 \cdot 6 + 8 = 68$.
+  - $mul = 100$.
+  - $num = 1$.
 
-The special target `num = 1` is different. The one-digit integer 1 has digit product 1 and is the smallest positive answer, so the source immediately returns 1 through `if num < 2`. The constraint says `num` is positive, so 0 does not enter this branch.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `999999999` |
+### Step 3: Validate
+- $num = 1 \le 1$.
+- $ans = 68 \le 2^{31} - 1$.
+- Return **`68`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"a": 387420489}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `999999999` | Verified |
+| Tested Digit $d$ | Divisible? | Quotient $num$ After | Digit Position | Contribution $mul \cdot d$ | Value of $ans$ After |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $9$ | No ($48 \% 9 \ne 0$) | $48$ | — | — | $0$ |
+| **$8$** | **Yes** | **$6$** | Units ($mul = 1$) | $8$ | **$8$** |
+| $7$ | No | $6$ | — | — | $8$ |
+| **$6$** | **Yes** | **$1$** | Tens ($mul = 10$) | $60$ | **`68`** |
+| **End** | $num = 1$ | — | — | — | **`68`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$a < 2$ (0 or 1):** Returns $a$ directly.
+- **Prime Factors $\ge 11$ ($a = 22, 26, 33$):** Cannot be factored into single digits $\implies num > 1 \implies$ returns $0$.
+- **Integer Overflow ($> 2^{31} - 1$):** Returns $0$.
+- **Prime Target ($a = 7$):** Factors into single digit $7 \implies 7$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Collect factors in a list:** Append digits found from 9 down to 2, reverse them, and parse the resulting string. This is often easier to visualize but uses $O(\log a)$ digit storage.
-- **Brute-force candidate integers:** Test digit products from 1 upward. This guarantees the first hit is smallest but explores an enormous 32-bit search space.
-- **Backtracking over digit multisets:** It can find valid factorizations but repeats choices that the descending greedy rule resolves directly.
-- **`num = 1`:** Return 1; adding more digits equal to 1 only creates larger answers.
-- **Prime target greater than 9:** No decimal digit can supply that prime factor, so the remainder survives and the answer is 0.
-- **Target already between 2 and 9:** That one digit is extracted and returned.
-- **Repeated factor:** The inner `while` records every copy needed, such as repeated 8s for powers of 2.
-- **Digit ordering:** The same factor multiset can form many integers; ascending digit order is the smallest.
-- **Residual value:** Success is determined by the remaining target becoming exactly 1, expressed in the source as `num < 2` under the positive-input guarantee.
-- **32-bit overflow:** Construction is safe in Python, but the final mathematical answer must not exceed $2^{31}-1$.
-- **Zero digit:** It cannot appear because the target is positive; including it would force the product to zero.
-- **One digit inside a larger answer:** It never helps for targets above 1 because it preserves the product while increasing the integer's length.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Extracting Factors From Small to Large ($2 \to 9$):** Extracting small factors first produces fragmented representations (e.g. $48 \to 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 \implies 22223$), which is vastly larger than $68$.
+- **Forgetting the Remaining $num > 1$ Check:** If $a$ has a prime factor like 13, the loop finishes without dividing it. If you don't check $num == 1$, an invalid answer is returned.
+- **32-Bit Signed Limit:** In Python, integers have arbitrary precision and do not automatically overflow. You must explicitly test $ans \le 2^{31} - 1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log a)$. Let the original target be $a$. The outer loop always executes exactly eight iterations. Every successful inner-loop division reduces the positive remaining value by a factor of at least 2. There can therefore be at most $O(\log a)$ successful divisions. Modulo tests and integer updates are constant-time under the challenge's fixed 32-bit input model, giving total time $O(\log a)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Digits $9 \dots 2$ are checked in a fixed outer loop of at most 8 iterations.
+  - The inner `while` divides $num$ by at least 2 at each step, running at most $\log_2 a \le 31$ times.
+  - Total Time: $\mathcal{O}(\log a)$ operations. Completes in $< 0.1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space (a few 64-bit integer variables).

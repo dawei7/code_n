@@ -38,6 +38,23 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-single",
       "name": "single circular house",
       "kind": "trial",

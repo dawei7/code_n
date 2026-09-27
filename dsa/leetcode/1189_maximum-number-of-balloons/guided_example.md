@@ -1,133 +1,162 @@
 # Guided Example: Maximum Number of Balloons
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"text": "nlaebolko"}`
-- **Required output:** `1`
+Given a string $\text{text}$ of lowercase English letters, we wish to determine the maximum number of instances of the word `"balloon"` that can be simultaneously formed using the characters available in $\text{text}$. Each character in the input string may be assigned to at most one formed word.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This problem is an exact computational analog of **Stoichiometric Limiting Reagents** in chemistry:
+To synthesize one molecule of the target compound `"balloon"`, a precise multiset ratio of elementary components is consumed:
+- 1 unit of `'b'`
+- 1 unit of `'a'`
+- 2 units of `'l'`
+- 2 units of `'o'`
+- 1 unit of `'n'`
+
+All other lowercase English characters present in $\text{text}$ (such as `'c'`, `'d'`, `'z'`) are inert spectators that contribute nothing toward the synthesis. The maximum number of complete `"balloon"` words that can be assembled is strictly dictated by the most scarce constituent relative to its required stoichiometric coefficient:
+
+$$\text{MaxInstances} = \min\left( \text{count}('b'), \text{count}('a'), \lfloor \frac{\text{count}('l')}{2} \rfloor, \lfloor \frac{\text{count}('o')}{2} \rfloor, \text{count}('n') \right)$$
+
+No dynamic programming, graph matching, or backtracking is necessary; computing the empirical frequency distribution of the five active characters yields the optimal answer instantly.
+
+```
+Available Inventory in text:
+'b': 3  --> can form 3 / 1 = 3
+'a': 4  --> can form 4 / 1 = 4
+'l': 5  --> can form 5 / 2 = 2  <-- Bottleneck / Limiting Reagent!
+'o': 6  --> can form 6 / 2 = 3
+'n': 2  --> can form 2 / 1 = 2
+
+Limiting factor is 'l' (or 'n'): at most 2 instances can be created!
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Given a string `text`, you want to use the characters of `text` to form as many instances of the word **"balloon"** as possible.
+Let $\Sigma = \{a, b, \dots, z\}$. Let $W = \text{"balloon"}$ be the target string of length $|W| = 7$.
+The multiset demand vector $\mathbf{d} \in \mathbb{Z}_{\ge 0}^5$ over the active alphabet $\Omega = (b, a, l, o, n)$ is:
+$$\mathbf{d} = (d_b, d_a, d_l, d_o, d_n) = (1, 1, 2, 2, 1)$$
 
-The objective is to compute `1` from `{"text": "nlaebolko"}` while avoiding redundant calculations and unnecessary overhead.
+### Input Frequency Vector
+Given input string $T$, define the empirical count function $f: \Omega \to \mathbb{Z}_{\ge 0}$:
+$$f(c) = \sum_{i=0}^{|T|-1} [T[i] = c]$$
+Let the supply vector be $\mathbf{s} = (f(b), f(a), f(l), f(o), f(n))$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Optimization Problem Formulation
+We wish to maximize the integer scalar $k \ge 0$ such that:
+$$k \cdot \mathbf{d} \le \mathbf{s}$$
+where $\le$ denotes component-wise inequality across all 5 dimensions:
+$$\forall c \in \Omega, \quad k \cdot d_c \le f(c)$$
+
+### Closed-Form Solution
+Because each constraint $k \le \lfloor \frac{f(c)}{d_c} \rfloor$ is independent, the supremum is the component-wise minimum:
+$$k^* = \min_{c \in \Omega} \lfloor \frac{f(c)}{d_c} \rfloor = \min\left( f(b), f(a), \lfloor \frac{f(l)}{2} \rfloor, \lfloor \frac{f(o)}{2} \rfloor, f(n) \right)$$
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the input string $T = \text{"nlaebolko"}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Frequency Accumulation Trace
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Index $i$ | Character $T[i]$ | Is Active in $\Omega$? | Updated Count $f(b)$ | Updated Count $f(a)$ | Updated Count $f(l)$ | Updated Count $f(o)$ | Updated Count $f(n)$ |
+|---|---|---|---|---|---|---|---|
+| Initial | - | - | 0 | 0 | 0 | 0 | 0 |
+| 0 | `'n'` | Yes | 0 | 0 | 0 | 0 | 1 |
+| 1 | `'l'` | Yes | 0 | 0 | 1 | 0 | 1 |
+| 2 | `'a'` | Yes | 0 | 1 | 1 | 0 | 1 |
+| 3 | `'e'` | No (inert) | 0 | 1 | 1 | 0 | 1 |
+| 4 | `'b'` | Yes | 1 | 1 | 1 | 0 | 1 |
+| 5 | `'o'` | Yes | 1 | 1 | 1 | 1 | 1 |
+| 6 | `'l'` | Yes | 1 | 1 | 2 | 1 | 1 |
+| 7 | `'k'` | No (inert) | 1 | 1 | 2 | 1 | 1 |
+| 8 | `'o'` | Yes | 1 | 1 | 2 | 2 | 1 |
+
+```mermaid
+flowchart TD
+    accTitle: Stoichiometric Limiting Factor Pipeline
+    accDescr: Character tallying followed by integer division against demand coefficients.
+    
+    A["Input: 'nlaebolko'"] --> B["Count Active Characters"]
+    B --> C["b: 1, a: 1, l: 2, o: 2, n: 1"]
+    C --> D["Divide by Demand Vector [1, 1, 2, 2, 1]"]
+    D --> E["Yields: b -> 1/1 = 1<br/>a -> 1/1 = 1<br/>l -> 2/2 = 1<br/>o -> 2/2 = 1<br/>n -> 1/1 = 1"]
+    E --> F["Compute Minimum: min(1, 1, 1, 1, 1) = 1"]
+    F --> G["Final Output: 1 balloon formed"]
+```
+
+### Component-Wise Yield Calculation
+
+| Character $c$ | Available Supply $f(c)$ | Demand Coefficient $d_c$ | Component Yield $\lfloor f(c) / d_c \rfloor$ | Is Bottleneck? |
+|---|---|---|---|---|
+| `'b'` | 1 | 1 | $1 / 1 = 1$ | Yes (tied) |
+| `'a'` | 1 | 1 | $1 / 1 = 1$ | Yes (tied) |
+| `'l'` | 2 | 2 | $2 / 2 = 1$ | Yes (tied) |
+| `'o'` | 2 | 2 | $2 / 2 = 1$ | Yes (tied) |
+| `'n'` | 1 | 1 | $1 / 1 = 1$ | Yes (tied) |
+| Global Minimum | - | - | **1** | All components balanced |
+
+Result: Exactly **1** instance of `"balloon"` can be created.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Count the available characters once
-
-The solution builds `cnt = Counter(text)`. A `Counter` maps each character to its frequency in the entire input. This scan is sufficient because the problem permits rearranging which occurrences form each word; original positions do not matter.
-
-Characters outside `"balloon"` remain in the counter but never participate in the final minimum. They cannot substitute for a required letter, so ignoring them after counting is correct.
-
-Python’s `Counter` has a useful missing-key behavior: looking up a character that never appeared returns zero rather than raising an error. Consequently, the same code naturally handles a missing required letter. Its zero capacity will make the answer zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Metric / Dimension | Simulated Greedy Consumption | Full Alphabet Frequency Map (26) | Direct 5-Bucket Counter (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"text": "nlaebolko"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Strategy** | Repeatedly search and subtract `"balloon"` chars | Tally all 26 letters, inspect 5 | Tally only $\{b, a, l, o, n\}$ |
+| **Time Complexity** | $\mathcal{O}(K \cdot N)$ where $K$ is word count | $\mathcal{O}(N + 26)$ | $\mathcal{O}(N)$ strictly single pass |
+| **Space Complexity** | Mutates original string / auxiliary flags | $\mathcal{O}(26)$ integer table | $\mathcal{O}(1)$ five scalar registers |
+| **Arithmetic Overhead** | String deletion / index searching | Array lookups for all letters | 5 filter checks + 2 bitwise right-shifts |
+| **Scalability** | Degrades as $K$ increases | Constant extra work | Constant optimal work |
+
+```
+Execution Pipeline Comparison:
+
+Simulation: [Find 'b'] -> [Find 'a'] -> [Find 'l'] -> ... (Repeats K times, highly inefficient)
+
+Stoichiometric Reduction:
+[Single Scan of Text] ---> [Five Counters] ---> [min(b, a, l>>1, o>>1, n)] (Instant!)
+```
 
 ---
 
-### Step 2: Convert raw counts into word capacities
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The letters `"b"`, `"a"`, and `"n"` appear once per target word. If the text contains $x$ copies of one of them, that letter can support $x$ balloons.
-
-The letters `"l"` and `"o"` each appear twice. If there are $x$ available copies, only $\lfloor x/2\rfloor$ complete pairs can be supplied. An unpaired extra letter is unusable.
-
-The exact code transforms those two counter entries in place:
-
-`cnt['o'] >>= 1`
-
-and
-
-`cnt['l'] >>= 1`.
-
-For nonnegative integers, shifting right by one bit is integer division by two. Thus the stored `"o"` and `"l"` values become their whole-word capacities rather than their raw frequencies. This bit operation is compact, but `//= 2` would express the same arithmetic more directly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Case | Input Text | Expected Result | Algorithmic Rationale |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Missing Single Critical Letter** | `"balloo"` (no `'n'`) | 0 | $f(n) = 0 \implies \min(\dots, 0) = 0$. Missing one required character precludes forming any complete word. |
+| **Odd Count of Double Letters** | `'l'` count = 3, `'o'` count = 3 | 1 | $\lfloor 3 / 2 \rfloor = 1$. The third `'l'` and `'o'` cannot form a word without another companion pair. |
+| **Zero Active Characters** | `"xyzqwerty"` | 0 | All active counts are 0; minimum evaluates cleanly to 0. |
+| **Exact Multiple Balance** | `"balloonballoon"` | 2 | Counts are $(2, 2, 4, 4, 2)$; yields $(2, 2, 2, 2, 2) \implies \min = 2$. |
+| **Short Text** | `"bal"` (length $< 7$) | 0 | Since $|T| < 7$, cannot satisfy $\sum d_c = 7$; evaluated directly to 0. |
 
 ---
 
-### Step 3: Take the bottleneck over unique required letters
+## 6. Mathematical Verification & Complexity Derivation
 
-After the adjustments, the code evaluates
+Let $N = |\text{text}|$ be the length of the input string.
 
-`min(cnt[c] for c in 'balon')`.
+### Processing Phases:
+1. **Frequency Tallying**:
+   - We scan through the characters of $\text{text}$ from index $0$ to $N-1$.
+   - For each character, we either increment one of 5 dedicated counters (or index into a fixed 26-element array): exactly 1 operation per character.
+   - Total tallying operations: $\mathcal{O}(N)$.
+2. **Division and Minimum Extraction**:
+   - Compute $f(l) // 2$ (executed via a single machine instruction: bitwise right-shift $f(l) \gg 1$).
+   - Compute $f(o) // 2$ ($f(o) \gg 1$).
+   - Compute the minimum across 5 scalar values: 4 binary comparison operations.
+   - Total evaluation operations: $\mathcal{O}(1)$.
 
-The string `"balon"` intentionally contains each distinct letter of `"balloon"` once. The doubled requirements for `"l"` and `"o"` have already been incorporated by halving their counts, so repeating them in the minimum is unnecessary.
-
-Suppose the capacities are three for `"b"`, five for `"a"`, two for paired `"l"`, four for paired `"o"`, and three for `"n"`. At most two balloons can be built because a third would require six `"l"` characters but only enough pairs for two exist. Every other letter can support at least two, so two complete copies are also achievable. The minimum is both an upper bound and a construction count.
-
-For `text = "nlaebolko"`, every single-use letter exists at least once, and both `"l"` and `"o"` exist at least twice. Each normalized capacity is at least one, while some are exactly one, so the answer is one.
-
-For `"leetcode"`, required letters such as `"b"` and `"a"` are absent. Their counter values are zero, so the minimum is zero without any special case.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"text": "nlaebolko"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+### Complexity Summary:
+- **Total Time Complexity:** $\mathcal{O}(N)$ linear time.
+- **Total Space Complexity:** $\mathcal{O}(1)$ auxiliary memory (using only 5 integer counters or a fixed 26-element array).
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Five explicit integer counters:** Increment only `b`, `a`, `l`, `o`, and `n` while scanning. This also gives $O(n)$ time and $O(1)$ space and avoids storing irrelevant letters.
-- **General target-frequency division:** Count both the input and an arbitrary target, then minimize `available[c] // required[c]` over target characters. This generalizes the reasoning beyond the fixed word `"balloon"`.
-- **Repeatedly remove target letters:** Simulating one constructed word at a time is more cumbersome and can repeat work that the frequency division performs immediately.
-- **Missing required letter:** `Counter` returns zero, and the final minimum correctly returns zero.
-- **Odd number of `l` or `o` characters:** The extra unpaired occurrence is discarded by floor division through the right shift.
-- **Many irrelevant letters:** They increase scan time only linearly and do not influence the bottleneck minimum.
-- **Empty construction is allowed:** When no complete target can be made, returning zero is valid; the method never forces a partial word.
-- **Why `"balon"` has one `l` and one `o`:** Their multiplicities were already normalized. Taking the same capacity twice would not change the minimum but would obscure the intent.
-- **Right shift safety:** Character counts are nonnegative, so `x >> 1` equals $\lfloor x/2\rfloor$. This equivalence would require more care for negative values, which cannot occur here.
-- **Each occurrence used once:** Frequency subtraction is implicit in the capacity calculation. Forming $r$ words consumes exactly the required multiples and never exceeds any available count.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `text`. Constructing `Counter(text)` visits every character once and takes $O(n)$ time. The two shifts and the minimum over five distinct target letters take $O(1)$ time. Overall time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(26)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Multiset Quotient Mapping**: When measuring how many times a fixed pattern $P$ can be formed from an unordered multiset of tokens $T$, the global answer is always the bottleneck ratio: $\min_{c \in P} \lfloor \frac{\text{count}_T(c)}{\text{count}_P(c)} \rfloor$.
+2. **Bitwise Halving for Powers of Two**: For demand coefficients that are powers of 2 (such as 2 for `'l'` and `'o'`), floor integer division $\lfloor x / 2 \rfloor$ simplifies to the bitwise shift operator `x >> 1`, executing in a single clock cycle without division latency.
+3. **Irrelevant Symbol Invariance**: In frequency-constrained problems, characters not appearing in the target specification have a demand coefficient of zero. Filtering them out or ignoring them preserves the global solution without maintaining extraneous state.

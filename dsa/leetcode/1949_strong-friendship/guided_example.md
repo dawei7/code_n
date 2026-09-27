@@ -1,119 +1,185 @@
 # Guided Example: Strong Friendship
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We examine and execute the relational triangle-counting and neighborhood intersection method on a representative social graph to identify all pairs of friends who share at least three common friends.
 
-- **Input:** `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 1, "user2_id": 5}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 1, "user2_id": 7}, {"user1_id": 3, "user2_id": 7}, {"user1_id": 1, "user2_id": 6}, {"user1_id": 3, "user2_id": 6}, {"user1_id": 2, "user2_id": 6}]}}`
-- **Required output:** `{"columns": ["user1_id", "user2_id", "common_friend"], "rows": [[1, 2, 4], [1, 3, 3]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Friendship`
-
-The objective is to compute `{"columns": ["user1_id", "user2_id", "common_friend"], "rows": [[1, 2, 4], [1, 3, 3]]}` from `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 1, "user2_id": 5}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 1, "user2_id": 7}, {"user1_id": 3, "user2_id": 7}, {"user1_id": 1, "user2_id": 6}, {"user1_id": 3, "user2_id": 6}, {"user1_id": 2, "user2_id": 6}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Friendship Table ($E = 12$ edges):**
+  - `(1, 2)`, `(1, 3)`, `(2, 3)`, `(1, 4)`, `(2, 4)`, `(1, 5)`, `(2, 5)`, `(1, 6)`, `(2, 6)`, `(3, 6)`, `(1, 7)`, `(3, 7)`
+- **Expected Output:**
+  - `(1, 2, 4)`
+  - `(1, 3, 3)`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+In social network analysis, a friendship between two users $u$ and $v$ is classified as "strong" if they have a substantial shared peer group—specifically, at least three mutual friends.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A mutual friend $w$ forms a triangle $(u, v, w)$ in the undirected graph:
+1. $u$ is connected to $v$ (the baseline edge $(u, v) \in E$).
+2. $u$ is connected to $w$ (edge $(u, w) \in E$).
+3. $v$ is connected to $w$ (edge $(v, w) \in E$).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The challenge arises from the database schema: friendships are stored undirected but represented canonically with $user1\_id < user2\_id$. If we only search for $u < w < v$ or $w > v$, we risk missing common friends whose IDs are ordered differently (for instance, $w < u < v$ or $u < v < w$).
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Make the undirected graph explicit
-
-Each `Friendship` row stores one undirected edge only in the canonical order `user1_id < user2_id`. To find neighbors uniformly from either endpoint, CTE `t` creates two directed rows per friendship: the original direction and the reversed direction through `UNION ALL`.
-
-Because the primary key prevents duplicate original edges and the endpoints have strict order, these directed rows are distinct. In `t`, a row `(x, y)` can be read as “$y$ is a friend of $x$.”
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 1, "user2_id": 5}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 1, "user2_id": 7}, {"user1_id": 3, "user2_id": 7}, {"user1_id": 1, "user2_id": 6}, {"user1_id": 3, "user2_id": 6}, {"user1_id": 2, "user2_id": 6}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+To evaluate every mutual friend correctly without asymmetric case branching, we first project the canonically ordered table into a symmetric bidirectional edge set, then perform an equijoin to intersect open neighborhoods of each existing friendship edge.
 
 ---
 
-### Step 2: Start from an existing friendship
+## 2. Mathematical Formalism & State Space
 
-Alias `t1` is the friendship being evaluated. This matters because the output asks which existing friendships are strong, not every arbitrary user pair with common neighbors.
+Let the input table be $E_{canon} = \{(u, v) \mid u < v \text{ and } \{u, v\} \in E\}$.
 
-Although `t` contains both orientations, the predicate `t1.user1_id < t1.user2_id` retains only the canonical orientation. The result therefore cannot contain both $(x,y)$ and $(y,x)$.
+### 1. Symmetric Edge Closure
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+We construct the full bidirectional edge relation $E_{sym}$:
+$$E_{sym} = E_{canon} \cup \{(v, u) \mid (u, v) \in E_{canon}\}$$
 
----
+For any user $x$, its open neighborhood is:
+$$N(x) = \{y \mid (x, y) \in E_{sym}\}$$
 
-### Step 3: Join both endpoints to the same neighbor
+### 2. Common Friends Formulation
 
-`t2` is joined with `t1.user2_id = t2.user1_id`. For candidate pair $(x,y)$, each matching `t2` row exposes one friend `t2.user2_id` of $y$.
+For any existing friendship $(u, v) \in E_{canon}$, a user $w$ is a common friend if:
+$$w \in N(u) \cap N(v)$$
 
-`t3` is joined with `t1.user1_id = t3.user1_id`, exposing friends `t3.user2_id` of $x$.
+Notice that $w \neq u$ and $w \neq v$ because the graph contains no self-loops ($(x, x) \notin E_{sym}$).
 
-The WHERE equality `t3.user2_id = t2.user2_id` requires those exposed neighbor IDs to be the same. Each surviving joined row therefore represents one user $z$ who is a friend of both $x$ and $y$.
+The common friend count for the edge is:
+$$c(u, v) = |N(u) \cap N(v)| = \sum_{w} \mathbb{I}\Big((u, w) \in E_{sym} \wedge (v, w) \in E_{sym}\Big)$$
 
-Grouping by the candidate endpoints and computing `COUNT(1)` gives the number of common friends. `HAVING COUNT(1) >= 3` retains exactly strong friendships and exposes the count under alias `common_friend`.
+### 3. Filter Criterion
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user1_id", "user2_id", "common_friend"], "rows": [[1, 2, 4], [1, 3, 3]]}` |
+We select and return all tuples $(u, v, c(u, v))$ satisfying:
+$$(u, v) \in E_{canon} \quad \text{and} \quad c(u, v) \ge 3$$
 
----
+```mermaid
+flowchart TD
+    accTitle: Relational Triangle Intersection Pipeline
+    accDescr: Pipeline showing expansion of canonical edges into symmetric edges, joining candidate edges with neighborhood edges, and filtering by group count.
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 1, "user2_id": 3}, {"user1_id": 2, "user2_id": 3}, {"user1_id": 1, "user2_id": 4}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 1, "user2_id": 5}, {"user1_id": 2, "user2_id": 5}, {"user1_id": 1, "user2_id": 7}, {"user1_id": 3, "user2_id": 7}, {"user1_id": 1, "user2_id": 6}, {"user1_id": 3, "user2_id": 6}, {"user1_id": 2, "user2_id": 6}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user1_id", "user2_id", "common_friend"], "rows": [[1, 2, 4], [1, 3, 3]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Normalize with a separate adjacency table:** Materialize both directions once and index by user. This can simplify repeated graph queries but is unnecessary for a single statement.
-- **Correlated common-neighbor count:** Count intersection per friendship with subqueries. It is readable but may repeat neighbor scans.
-- **Omit symmetrization:** Then friendships stored with a user in the second column would be missed when looking up that user's neighbors.
-- **Use `UNION` instead of `UNION ALL`:** Duplicate elimination is unnecessary because the schema and endpoint order already make the two directed sets disjoint.
-- **Exactly three common friends:** The inclusive `>= 3` threshold accepts the friendship.
-- **Two common friends:** The group exists but fails HAVING.
-- **No common friend:** No witness row reaches grouping, so the friendship is absent.
-- **High-degree users:** They can create many join combinations; join-output size is the important workload measure.
-- **Canonical endpoint order:** The final inequality removes the reversed copy and satisfies `user1_id < user2_id`.
-- **Only actual friendships:** Driving the query from `t1` prevents reporting nonfriends who happen to share neighbors.
-- **Candidate endpoints:** Neither endpoint is counted as a common friend because the directed adjacency CTE contains no self-edges.
-- **Any output order:** No `ORDER BY` is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    CANON["Canonical Table E_canon<br/>(u, v) with u < v"]
+    SYM["Symmetric Table E_sym<br/>(u, w) and (w, u)"]
+    
+    CANON -->|Join on u| J1["Join on u: (u, v) with (u, w) in E_sym"]
+    SYM -->|Neighbor w of u| J1
+    
+    J1 -->|Join on v and w| J2["Verify (v, w) in E_sym<br/>Triangle Confirmed: {u, v, w}"]
+    SYM -->|Neighbor w of v| J2
+    
+    J2 -->|Group by u, v| G["Group By (u, v)<br/>Aggregate COUNT(w)"]
+    G -->|Filter HAVING COUNT >= 3| OUT["Result: Strong Friendships<br/>(1, 2, 4) and (1, 3, 3)"]
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step State Evolution
 
-- **Time Complexity:** $O(W)$. Let $E$ be the number of original friendships and let $W$ be the number of joined common-neighbor witness rows generated before grouping.
-- **Auxiliary Space Complexity:** $O(E+W)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Step 1: Symmetric Edge Construction ($E_{sym}$)
+
+We duplicate each pair in reverse order so every undirected edge appears in both directions:
+
+| Canonical Edge $(u, v)$ | Reverse Edge $(v, u)$ |
+|---|---|
+| $(1, 2)$ | $(2, 1)$ |
+| $(1, 3)$ | $(3, 1)$ |
+| $(2, 3)$ | $(3, 2)$ |
+| $(1, 4)$ | $(4, 1)$ |
+| $(2, 4)$ | $(4, 2)$ |
+| $(1, 5)$ | $(5, 1)$ |
+| $(2, 5)$ | $(5, 2)$ |
+| $(1, 6)$ | $(6, 1)$ |
+| $(2, 6)$ | $(6, 2)$ |
+| $(3, 6)$ | $(6, 3)$ |
+| $(1, 7)$ | $(7, 1)$ |
+| $(3, 7)$ | $(7, 3)$ |
+
+Total rows in $E_{sym} = 2 \times 12 = 24$.
+
+### Step 2: Neighborhood Extraction
+
+We compute the neighbor set $N(x)$ for each relevant node:
+- $N(1) = \{2, 3, 4, 5, 6, 7\}$
+- $N(2) = \{1, 3, 4, 5, 6\}$
+- $N(3) = \{1, 2, 6, 7\}$
+- $N(4) = \{1, 2\}$
+- $N(5) = \{1, 2\}$
+- $N(6) = \{1, 2, 3\}$
+- $N(7) = \{1, 3\}$
+
+### Step 3: Candidate Edge Intersection
+
+We evaluate each canonical edge $(u, v) \in E_{canon}$:
+
+1. **Edge $(1, 2)$:**
+   $$N(1) \cap N(2) = \{2, 3, 4, 5, 6, 7\} \cap \{1, 3, 4, 5, 6\} = \{3, 4, 5, 6\}$$
+   Count: $4 \ge 3 \implies$ **Qualifies as Strong Friendship!**
+
+2. **Edge $(1, 3)$:**
+   $$N(1) \cap N(3) = \{2, 3, 4, 5, 6, 7\} \cap \{1, 2, 6, 7\} = \{2, 6, 7\}$$
+   Count: $3 \ge 3 \implies$ **Qualifies as Strong Friendship!**
+
+3. **Edge $(2, 3)$:**
+   $$N(2) \cap N(3) = \{1, 3, 4, 5, 6\} \cap \{1, 2, 6, 7\} = \{1, 6\}$$
+   Count: $2 < 3 \implies$ Disqualified.
+
+4. **Edges with Node 4, 5, or 7:**
+   - For $(1, 4)$: $N(1) \cap N(4) = \{2\}$, count $= 1 < 3$.
+   - For $(2, 4)$: $N(2) \cap N(4) = \{1\}$, count $= 1 < 3$.
+   - For $(1, 5)$: $N(1) \cap N(5) = \{2\}$, count $= 1 < 3$.
+   - For $(2, 5)$: $N(2) \cap N(5) = \{1\}$, count $= 1 < 3$.
+   - For $(1, 7)$: $N(1) \cap N(7) = \{3\}$, count $= 1 < 3$.
+   - For $(3, 7)$: $N(3) \cap N(7) = \{1\}$, count $= 1 < 3$.
+
+5. **Edges with Node 6:**
+   - For $(1, 6)$: $N(1) \cap N(6) = \{2, 3\}$, count $= 2 < 3$.
+   - For $(2, 6)$: $N(2) \cap N(6) = \{1, 3\}$, count $= 2 < 3$.
+   - For $(3, 6)$: $N(3) \cap N(6) = \{1, 2\}$, count $= 2 < 3$.
+
+---
+
+## 4. Execution Trace Table
+
+| Edge Evaluated $(u, v)$ | $|N(u)|$ | $|N(v)|$ | Common Neighbors $N(u) \cap N(v)$ | Total Count $c(u, v)$ | Threshold Check ($c \ge 3$) | Emitted Tuple |
+|---|---|---|---|---|---|---|
+| $(1, 2)$ | 6 | 5 | $\{3, 4, 5, 6\}$ | 4 | Pass ($4 \ge 3$) | `(1, 2, 4)` |
+| $(1, 3)$ | 6 | 4 | $\{2, 6, 7\}$ | 3 | Pass ($3 \ge 3$) | `(1, 3, 3)` |
+| $(2, 3)$ | 5 | 4 | $\{1, 6\}$ | 2 | Fail ($2 < 3$) | None |
+| $(1, 4)$ | 6 | 2 | $\{2\}$ | 1 | Fail ($1 < 3$) | None |
+| $(2, 4)$ | 5 | 2 | $\{1\}$ | 1 | Fail ($1 < 3$) | None |
+| $(1, 5)$ | 6 | 2 | $\{2\}$ | 1 | Fail ($1 < 3$) | None |
+| $(2, 5)$ | 5 | 2 | $\{1\}$ | 1 | Fail ($1 < 3$) | None |
+| $(1, 6)$ | 6 | 3 | $\{2, 3\}$ | 2 | Fail ($2 < 3$) | None |
+| $(2, 6)$ | 5 | 3 | $\{1, 3\}$ | 2 | Fail ($2 < 3$) | None |
+| $(3, 6)$ | 4 | 3 | $\{1, 2\}$ | 2 | Fail ($2 < 3$) | None |
+| $(1, 7)$ | 6 | 2 | $\{3\}$ | 1 | Fail ($1 < 3$) | None |
+| $(3, 7)$ | 4 | 2 | $\{1\}$ | 1 | Fail ($1 < 3$) | None |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+**Soundness.** A pair $(u, v)$ is reported if and only if it originates from $E_{canon}$ (guaranteeing $u < v$ and $(u, v) \in E$) and joins with distinct common nodes $w$ such that $(u, w) \in E_{sym}$ and $(v, w) \in E_{sym}$. Since $E_{sym}$ is the faithful bidirectional reflection of $E$, $(u, w) \in E_{sym} \iff \{u, w\} \in E$ and $(v, w) \in E_{sym} \iff \{v, w\} \in E$. Thus every counted node $w$ is a genuine mutual friend. Filtering with $COUNT \ge 3$ ensures no edge with fewer than three mutual peers is admitted.
+
+**Completeness.** By building $E_{sym}$, any relative ordering between $u, v,$ and $w$ (whether $w < u < v$, $u < w < v$, or $u < v < w$) is captured uniformly without missing edges. Grouping by each canonical edge $(u, v)$ aggregates the complete intersection $N(u) \cap N(v)$. Hence no strong friendship is overlooked.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Non-Existent Base Friendships:** Two users $x$ and $y$ might share 5 common friends without being friends with each other. If one groups pairs from $(x, w)$ and $(y, w)$ without asserting $(x, y) \in E_{canon}$, one would incorrectly report strangers as strong friends. The outer table must be restricted to $E_{canon}$.
+- **Double Counting from Bidirectionality:** If grouping occurs on an arbitrary pair from $E_{sym} \times E_{sym}$, the pair $(1, 2)$ and its mirror $(2, 1)$ would both appear. Grounding the group key in $E_{canon}$ where $user1\_id < user2\_id$ guarantees each undirected edge appears exactly once.
+- **Degenerate Common Neighbors:** Could a user be counted as their own common friend? In simple graphs with no self-loops, $(u, u) \notin E_{sym}$, so $w = u$ or $w = v$ can never satisfy $(u, w) \in E_{sym}$ and $(v, w) \in E_{sym}$ simultaneously.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Generating $E_{sym}$ takes $\mathcal{O}(E)$ time.
+  - For each vertex $u$, intersecting neighbor lists takes time proportional to $\sum_{(u, v) \in E} \min(\deg(u), \deg(v))$.
+  - In graph theory, triangle enumeration on a graph with $E$ edges takes $\mathcal{O}(E^{3/2})$ time in the worst case.
+  - Aggregation and filtering via hash group-by takes $\mathcal{O}(E)$ time.
+  - Overall time complexity is $\mathcal{O}(E^{3/2})$.
+- **Auxiliary Space Complexity:**
+  - $E_{sym}$ stores $2E$ rows.
+  - Intermediate hash index for edge lookup or join processing requires $\mathcal{O}(E)$ auxiliary memory.

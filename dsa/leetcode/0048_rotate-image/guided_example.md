@@ -1,127 +1,145 @@
 # Guided Example: Rotate Image
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of in-place 2D matrix clockwise rotation on a representative grid instance:
 
-- **Input:** `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
-- **Required output:** `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]`
+- **Input:** $\text{matrix} = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$
+- **Required output:** $\begin{pmatrix} 7 & 4 & 1 \\ 8 & 5 & 2 \\ 9 & 6 & 3 \end{pmatrix}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place $O(1)$-space coordinate rotation, factoring 90-degree clockwise rotation into matrix transposition followed by horizontal row reversal, and the equivalent 4-element concentric ring cycle permutation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `n x n` 2D `matrix` representing an image, rotate the image by **90** degrees (clockwise).
+Given an $N \times N$ 2D matrix representing an image where $N = 3$, rotate the image by 90 degrees clockwise in place. The modification must be performed directly on the input array without allocating a second matrix.
 
-The objective is to compute `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` from `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+In an $N \times N$ matrix, a $90^\circ$ clockwise rotation maps coordinate $(r, c)$ to:
+$$
+(r, c) \longmapsto (c, N - 1 - r)
+$$
+Directly assigning $\text{matrix}[c][N - 1 - r] = \text{matrix}[r][c]$ would overwrite elements before their original values can be moved. The optimal in-place method decomposes the rotation into two elementary geometric reflections:
+1. **Transpose:** Reflect across the main diagonal: $(r, c) \mapsto (c, r)$.
+2. **Reflect Horizontally:** Reverse each row from left to right: $(c, r) \mapsto (c, N - 1 - r)$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Both steps operate strictly in place using scalar element swaps.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Mathematical Decomposition
+Let $T$ be matrix transposition and $R$ be horizontal reflection:
+$$
+\text{Rotation}_{90^\circ} = R \circ T
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Step 1: Transposition ($A \mapsto A^T$):**
+   For all $r \in [0, N-1]$ and $c \in [r + 1, N-1]$:
+   $$
+   \text{Swap}(\text{matrix}[r][c], \, \text{matrix}[c][r])
+   $$
+   *(Only elements strictly above the main diagonal are swapped with their symmetrical counterparts below to avoid swapping back).*
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Step 2: Horizontal Row Inversion:**
+   For each row $r \in [0, N-1]$ and column $c \in [0, \lfloor N/2 \rfloor - 1]$:
+   $$
+   \text{Swap}(\text{matrix}[r][c], \, \text{matrix}[r][N - 1 - c])
+   $$
+
+### Alternative: 4-Way Concentric Ring Permutation
+Each coordinate belongs to a 4-cycle of elements rotating into each other:
+$$
+(r, c) \to (c, N - 1 - r) \to (N - 1 - r, N - 1 - c) \to (N - 1 - c, r) \to (r, c)
+$$
+Saving one temporary variable allows rotating all 4 corners simultaneously.
+
+> **Invariant.** After transposition, rows and columns are swapped. After row reversal, columns appear in reverse order, achieving an exact $90^\circ$ clockwise orientation.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Start from the coordinate rule for a clockwise rotation
-
-In an $n \times n$ matrix, an element originally at row $r$ and column $c$ must end at row $c$ and column $n - 1 - r$ after a $90^\circ$ clockwise rotation:
-
+We rotate the $3 \times 3$ matrix:
 $$
-(r,c) \longmapsto (c,n-1-r).
+\text{Initial} = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}
 $$
 
-Moving every element directly to its destination would overwrite values that have not yet moved unless four-cell cycles are handled carefully. The selected solution instead decomposes the coordinate rule into two familiar in-place reflections: reverse the order of the rows, then transpose across the main diagonal.
+### Phase 1: Transposition (Swap Across Main Diagonal)
+Elements on the diagonal ($\text{matrix}[0][0]=1, \text{matrix}[1][1]=5, \text{matrix}[2][2]=9$) remain invariant.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Cell $(0, 1) \leftrightarrow (1, 0)$:** Swap value $2$ with value $4$.
+  - Matrix becomes:
+    $$
+    \begin{pmatrix} 1 & \mathbf{4} & 3 \\ \mathbf{2} & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}
+    $$
+- **Cell $(0, 2) \leftrightarrow (2, 0)$:** Swap value $3$ with value $7$.
+  - Matrix becomes:
+    $$
+    \begin{pmatrix} 1 & 4 & \mathbf{7} \\ 2 & 5 & 6 \\ \mathbf{3} & 8 & 9 \end{pmatrix}
+    $$
+- **Cell $(1, 2) \leftrightarrow (2, 1)$:** Swap value $6$ with value $8$.
+  - Matrix becomes:
+    $$
+    A^T = \begin{pmatrix} 1 & 4 & 7 \\ 2 & 5 & 8 \\ 3 & 6 & 9 \end{pmatrix}
+    $$
+
+Transposition complete. Notice that original rows $[1, 2, 3], [4, 5, 6], [7, 8, 9]$ are now columns!
 
 ---
 
-### Step 2: First transformation: flip top and bottom
+### Phase 2: Horizontal Row Reversal
+Reverse each of the 3 rows ($c$ from $0$ to $\lfloor 3/2 \rfloor - 1 = 0$):
 
-The first nested loop swaps row `i` with row `n - i - 1`, one column at a time. Only `n >> 1`, which equals integer floor division by two for nonnegative `n`, top rows are processed. This prevents swapping each pair twice.
+- **Row 0 ($[1, 4, 7]$):** Swap $\text{matrix}[0][0]=1$ with $\text{matrix}[0][2]=7$.
+  - Row 0 becomes: $[7, 4, 1]$.
+- **Row 1 ($[2, 5, 8]$):** Swap $\text{matrix}[1][0]=2$ with $\text{matrix}[1][2]=8$.
+  - Row 1 becomes: $[8, 5, 2]$.
+- **Row 2 ($[3, 6, 9]$):** Swap $\text{matrix}[2][0]=3$ with $\text{matrix}[2][2]=9$.
+  - Row 2 becomes: $[9, 6, 3]$.
 
-After this vertical or horizontal-axis mirror, an original coordinate `(r, c)` has moved to `(n - 1 - r, c)`. For a three-by-three matrix,
+Final matrix:
+$$
+\begin{pmatrix} 7 & 4 & 1 \\ 8 & 5 & 2 \\ 9 & 6 & 3 \end{pmatrix}
+$$
 
-`[[1,2,3],[4,5,6],[7,8,9]]`
-
-becomes
-
-`[[7,8,9],[4,5,6],[1,2,3]]`.
-
-When $n$ is odd, the middle row is not swapped, which is correct because it mirrors to itself. Every element in paired rows is exchanged using Python's simultaneous assignment, so neither value is lost.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Second transformation: transpose the main diagonal
-
-Transposition maps coordinate `(a, b)` to `(b, a)`. The source loops over each row `i` and only columns `j < i`, which is the strict lower triangle. It swaps `matrix[i][j]` with `matrix[j][i]`, the corresponding position in the strict upper triangle.
-
-The main diagonal is omitted because `(i, i)` maps to itself. Processing only one triangle is essential: if both `(i, j)` and `(j, i)` were visited as starting cells, the second swap would undo the first.
-
-Applied to the row-reversed example, transposition produces `[[7,4,1],[8,5,2],[9,6,3]]`, the required clockwise rotation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` |
+Rotation complete in place.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` | Verified |
+| Phase | Operation | Coordinates Swapped | Values Exchanged | Resulting Matrix State |
+|:---:|:---|:---:|:---:|:---|
+| Start | Initial State | - | - | `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` |
+| Transpose | Upper/Lower Swap | $(0, 1) \leftrightarrow (1, 0)$ | $2 \leftrightarrow 4$ | `[[1, 4, 3], [2, 5, 6], [7, 8, 9]]` |
+| Transpose | Upper/Lower Swap | $(0, 2) \leftrightarrow (2, 0)$ | $3 \leftrightarrow 7$ | `[[1, 4, 7], [2, 5, 6], [3, 8, 9]]` |
+| Transpose | Upper/Lower Swap | $(1, 2) \leftrightarrow (2, 1)$ | $6 \leftrightarrow 8$ | `[[1, 4, 7], [2, 5, 8], [3, 6, 9]]` ($A^T$) |
+| Reversal | Row 0 Reverse | $(0, 0) \leftrightarrow (0, 2)$ | $1 \leftrightarrow 7$ | Row 0: `[7, 4, 1]` |
+| Reversal | Row 1 Reverse | $(1, 0) \leftrightarrow (1, 2)$ | $2 \leftrightarrow 8$ | Row 1: `[8, 5, 2]` |
+| Reversal | Row 2 Reverse | $(2, 0) \leftrightarrow (2, 2)$ | $3 \leftrightarrow 9$ | **Final: `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let an arbitrary entry have initial position $(r, c)$.
+1. Transpose maps $(r, c) \mapsto (c, r)$.
+2. Row reversal on the transposed matrix maps row $c$, column $r$ to row $c$, column $N - 1 - r$.
+The composition yields $(r, c) \mapsto (c, N - 1 - r)$, which is the exact mathematical definition of a $90^\circ$ clockwise rotation.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Swapping $r < c$ ensures every off-diagonal element is transposed exactly once without undoing earlier swaps. Reversing $c < \lfloor N/2 \rfloor$ ensures each row is inverted without double-reversal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Transpose first, then reverse each row:** Main-diagonal transposition followed by a left-to-right reversal also maps `(r,c)` to `(c,n-1-r)`. It is the most common equivalent decomposition.
-- **Four-cell cyclic swaps:** Process one quadrant and rotate top, left, bottom, and right values in groups of four. It performs one direct rotation pass but has more intricate index formulas.
-- **Allocate a new matrix:** Write each original value directly to `out[c][n-1-r]`. This is very easy to verify but violates the in-place requirement and uses $O(n^2)$ extra space.
-- **Anti-diagonal reflection plus top/bottom flip:** This is another valid composition. Its reflection coordinates differ, so mixing formulas between decompositions would rotate or reflect incorrectly.
-- **One-by-one matrix:** Both loops perform no swaps, leaving the sole value unchanged, which is the correct rotation.
-- **Odd dimension:** The middle row is unchanged by the first flip, and diagonal cells are unchanged by transposition; off-axis cells still move normally.
-- **Even dimension:** Every row participates in exactly one first-phase pair, with no special center.
-- **Negative or repeated values:** Rotation depends only on positions, so value magnitude and equality have no effect.
-- **Calling the method twice:** Two clockwise rotations produce a $180^\circ$ rotation; each call is an independent in-place coordinate transformation.
-- **Return behavior:** The absence of `return` is intentional. Callers inspect the same matrix object after the method completes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Double Transposition:** Looping over all $r \in [0, N-1]$ and all $c \in [0, N-1]$ swaps elements twice, restoring the original matrix. The inner loop must restrict $c \ge r + 1$.
+- **Clockwise vs Counter-Clockwise:** Transposing then reversing rows yields $90^\circ$ **clockwise**. Reversing rows first then transposing yields $90^\circ$ **counter-clockwise**.
+- **Extra Memory Allocation:** Creating a new matrix `rotated[c][N - 1 - r] = matrix[r][c]` violates the problem's strict in-place modification requirement.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. The row-reversal phase swaps approximately $n^2/2$ element pairs: `floor(n/2)` row pairs times $n$ columns. The transpose phase swaps $n(n-1)/2$ off-diagonal pairs. Their sum is proportional to $n^2$, so time is $O(n^2)$. This is optimal up to constants because a rotation must place all $n^2$ matrix entries.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$, where $N$ is the matrix dimension. Transposition performs $N(N - 1) / 2$ swaps. Row reversal performs $N \times \lfloor N / 2 \rfloor$ swaps. Total operations $\approx N^2 = O(N^2)$, visiting each element a constant number of times.
+- **Auxiliary Space Complexity:** $O(1)$. All swaps occur strictly in place using scalar temporary variables.

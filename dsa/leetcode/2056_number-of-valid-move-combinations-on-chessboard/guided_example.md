@@ -1,126 +1,140 @@
 # Guided Example: Number of Valid Move Combinations On Chessboard
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step trajectory generation, simultaneous integer-second simulation, and pairwise collision checking on representative chessboard instances:
 
-- **Input:** `{"pieces": ["rook"], "positions": [[1, 1]]}`
-- **Required output:** `15`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $i^{\text{th}}$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $i^{\text{th}}$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
-
-The objective is to compute `15` from `{"pieces": ["rook"], "positions": [[1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Input:** $\text{pieces} = [\text{"rook"}]$, $\text{positions} = [[1, 1]]$
+- **Expected Output:** $15$
+- **Multi-Piece Interaction:** $\text{pieces} = [\text{"rook"}, \text{"rook"}]$, $\text{positions} = [[1, 1], [1, 2]]$ (Yields $196$ valid combinations)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+On an $8 \times 8$ chessboard with coordinates spanning rows and columns from $1$ through $8$, up to $4$ pieces (rooks, bishops, or queens) are placed at distinct starting squares.
+- Each piece selects a single movement direction and an integer destination distance $T \ge 0$ along that straight path.
+- Choosing $T = 0$ means the piece remains stationary on its starting square for the entire duration.
+- At second $t = 0$, all pieces are at their starting squares.
+- Between second $t$ and $t + 1$, each piece that has not yet reached its destination advances exactly one square in its chosen direction.
+- Upon reaching its destination at second $T$, the piece permanently stops and occupies that square for all subsequent seconds $t \ge T$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A combination of destination choices across all pieces is **valid** if and only if **no two pieces occupy the same square at any integer second** $t \ge 0$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Single Rook Destination Ray Decomposition
+    accDescr: Chessboard ray decomposition from corner square (1, 1) into stationary option and horizontal/vertical rays.
+    Corner["Rook at (1, 1)"] --> Stay["Stationary Option: (1, 1) [1 choice]"]
+    Corner --> East["Horizontal Ray (1, 2) through (1, 8) [7 choices]"]
+    Corner --> South["Vertical Ray (2, 1) through (8, 1) [7 choices]"]
+    Stay --> Total(["Total Destinations: 1 + 7 + 7 = 15"])
+    East --> Total
+    South --> Total
 
----
+    classDef source fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    classDef opt fill:#f1f5f9,stroke:#475569,stroke-width:1px;
+    classDef total fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    class Corner source;
+    class Stay,East,South opt;
+    class Total total;
+```
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Enumerate one destination for every piece
-
-A move is completely determined by two choices: a legal direction for that piece and a distance along that direction. Choosing distance zero means the piece stays on its starting square.
-
-The source assigns moves recursively. `dfs(i)` chooses the destination of piece `i` after pieces zero through `i-1` already have fixed moves. When `i == n`, every piece has a compatible move, so one valid combination is counted.
-
-This exhaustive search is practical because the board is fixed at eight by eight and there are at most four pieces.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"pieces": ["rook"], "positions": [[1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Generate only movement allowed by the piece type
-
-The four rook directions are horizontal and vertical. The four bishop directions are diagonal. A queen receives their concatenation, named `queue_dirs` in the source even though it functions as the queen-direction list.
-
-`get_dirs` examines the first letter of the piece name: `r` selects rook directions, `b` selects bishop directions, and the remaining possible type is queen.
-
-For each direction, the source advances one square at a time until it leaves coordinates one through eight or encounters an unavoidable collision. Every square reached before then is considered as a possible destination.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+In the primary instance with a single rook at $(1, 1)$:
+- Staying at $(1, 1)$ contributes $1$ valid choice.
+- Moving east along row $1$ provides $7$ distinct destinations: $(1, 2), (1, 3), \dots, (1, 8)$.
+- Moving south along column $1$ provides $7$ distinct destinations: $(2, 1), (3, 1), \dots, (8, 1)$.
+- Total valid combinations = $1 + 7 + 7 = 15$.
 
 ---
 
-### Step 3: Record a complete time-indexed route
+## 2. Theoretical Invariants & Trajectory Collision Dynamics
 
-`dist[i][x][y]` records the integer second at which piece `i` visits square `(x,y)` while traveling to its currently selected destination. A value of negative one means that square is not on the route.
+Let piece $i$ start at square $(r_i, c_i)$, choose direction unit vector $(dr_i, dc_i)$, and travel for $T_i \ge 0$ seconds to stop at destination $(r_i + T_i \cdot dr_i, c_i + T_i \cdot dc_i)$.
 
-The starting square is marked with time zero. Each following square in the chosen direction receives time one, two, and so on. `end[i]` stores the destination coordinates and arrival time.
+### Piece Position Function
+The square occupied by piece $i$ at integer second $t \ge 0$ is governed by:
+$$\text{pos}_i(t) = \begin{cases} (r_i + t \cdot dr_i, c_i + t \cdot dc_i) & \text{for } 0 \le t \le T_i \\ (r_i + T_i \cdot dr_i, c_i + T_i \cdot dc_i) & \text{for } t > T_i \end{cases}$$
 
-The route table and endpoint together distinguish two phases:
+### Mutual Non-Collision Invariant
+A joint move choice for pieces $1, \dots, n$ is valid if and only if:
+$$\forall i \ne j, \quad \forall t \ge 0, \quad \text{pos}_i(t) \ne \text{pos}_j(t)$$
 
-- before arrival, the piece visits one route square at each integer second;
-- from its endpoint time onward, it remains on the endpoint forever.
+This invariant decomposes into three concrete operational checks:
+1. **Initial Separation:** All pieces begin at distinct starting squares ($\text{pos}_i(0) \ne \text{pos}_j(0)$).
+2. **Moving Collision:** While both pieces are moving ($t \le \min(T_i, T_j)$), they must not occupy the same square at second $t$.
+3. **Stationary Blocking:** If piece $j$ finishes moving at second $T_j$, piece $i$ cannot enter or land on piece $j$'s final square at any second $t \ge T_j$.
 
-Both phases matter when checking another piece.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `15` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"pieces": ["rook"], "positions": [[1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `15` | Verified |
+### The Adjacent Square Swap Rule
+If piece $A$ moves from $(1, 1)$ to $(1, 2)$ and piece $B$ moves from $(1, 2)$ to $(1, 1)$ at second $t = 1$:
+- At second $t = 0$: $\text{pos}_A(0) = (1, 1)$, $\text{pos}_B(0) = (1, 2)$ (Distinct).
+- At second $t = 1$: $\text{pos}_A(1) = (1, 2)$, $\text{pos}_B(1) = (1, 1)$ (Distinct).
+Because pieces are only evaluated at discrete integer seconds, they do not occupy the same square at any integer second. The problem definition explicitly permits adjacent swaps!
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Trajectory Enumeration Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Single Piece Ray Expansion
+We list all destination choices available to a rook starting at $(1, 1)$:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Choice Type | Direction Vector $(dr, dc)$ | Duration $T$ | Trajectory Sequence $t = 0, 1, \dots$ | Destination $(r, c)$ | Valid on $8 \times 8$? |
+|---|---|---|---|---|---|
+| Stationary | $(0, 0)$ | $0$ | $t=0: (1, 1); \ t \ge 1: (1, 1)$ | $(1, 1)$ | Valid |
+| East Ray | $(0, 1)$ | $1$ | $t=0: (1, 1); \ t \ge 1: (1, 2)$ | $(1, 2)$ | Valid |
+| East Ray | $(0, 1)$ | $2$ | $t=0: (1, 1); \ t=1: (1, 2); \ t \ge 2: (1, 3)$ | $(1, 3)$ | Valid |
+| East Ray | $(0, 1)$ | $3 \dots 7$ | Step-by-step advance across row $1$ | $(1, 4) \dots (1, 8)$ | All 5 Valid |
+| South Ray | $(1, 0)$ | $1$ | $t=0: (1, 1); \ t \ge 1: (2, 1)$ | $(2, 1)$ | Valid |
+| South Ray | $(1, 0)$ | $2$ | $t=0: (1, 1); \ t=1: (2, 1); \ t \ge 2: (3, 1)$ | $(3, 1)$ | Valid |
+| South Ray | $(1, 0)$ | $3 \dots 7$ | Step-by-step advance down column $1$ | $(4, 1) \dots (8, 1)$ | All 5 Valid |
+| West Ray | $(0, -1)$ | — | $(1, 0)$ immediately leaves board | Out of bounds | Rejected |
+| North Ray | $(-1, 0)$ | — | $(0, 1)$ immediately leaves board | Out of bounds | Rejected |
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Enumerate all destinations, then simulate:** Simpler conceptually, but it delays collision pruning until complete combinations are built.
-- **Pairwise trajectory formulas:** Compare two selected moves algebraically without route grids; less storage but easier to get stopping times wrong.
-- **Stationary piece:** Occupies its starting square forever, so no other route may visit it at any time.
-- **Two moving pieces meet:** Equal square and equal time is rejected.
-- **Earlier piece already stopped:** `check_pass` rejects entering its endpoint at or after its arrival.
-- **Earlier piece arrives later:** `check_stop` rejects choosing a destination that will be occupied in the future.
-- **Earlier piece passed before stopping time:** Safe when its route time is strictly smaller and it did not end there.
-- **Adjacent swap:** Allowed because pieces never share a square at an integer second.
-- **Board boundary:** Direction extension stops before row or column zero or nine.
-- **Queen direction variable:** `queue_dirs` is only a naming typo; it contains all eight queen directions.
-- **At most one queen:** Further limits the already fixed search space.
-- **Distinct starts:** Prevents a collision at time zero before moves begin.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Summing valid choices: $1 \text{ (stay)} + 7 \text{ (east)} + 7 \text{ (south)} = 15$ combinations.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Multi-Piece Collision Pruning Trace
 
-- **Time Complexity:** $O(1)$. Let $C_i$ be the number of legal destination choices generated for piece `i` before collision pruning. A queen has at most 28 destinations including staying, and rooks or bishops have fewer on an eight-by-eight board. The search examines at most the product of these choice counts, with pairwise collision work bounded by four pieces and eight travel steps.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+To illustrate multi-piece interaction, consider two rooks at positions $R_1 = (1, 1)$ and $R_2 = (1, 2)$:
+- Each rook individually has $15$ destination choices. Unconstrained product space: $15 \times 15 = 225$ combinations.
+- We evaluate sample trajectory pairs against the collision rules:
+
+| Trajectory $R_1$ | Trajectory $R_2$ | State at $t = 0$ | State at $t = 1$ | State at $t \ge 2$ | Collision Evaluation | Status |
+|---|---|---|---|---|---|---|
+| Stay at $(1, 1)$ | Stay at $(1, 2)$ | $(1, 1) \ne (1, 2)$ | $(1, 1) \ne (1, 2)$ | $(1, 1) \ne (1, 2)$ | No shared squares at any second | **Valid** |
+| South to $(2, 1)$ | South to $(2, 2)$ | $(1, 1) \ne (1, 2)$ | $(2, 1) \ne (2, 2)$ | $(2, 1) \ne (2, 2)$ | Parallel columns, no conflict | **Valid** |
+| East to $(1, 2)$ | Stay at $(1, 2)$ | $(1, 1) \ne (1, 2)$ | **$(1, 2) = (1, 2)$** | — | $R_1$ lands on stationary $R_2$ at $t = 1$ | **Collision (Invalid)** |
+| East to $(1, 3)$ | Stay at $(1, 2)$ | $(1, 1) \ne (1, 2)$ | **$(1, 2) = (1, 2)$** | — | $R_1$ passes through $R_2$ at $t = 1$ | **Collision (Invalid)** |
+| East to $(1, 2)$ | West to $(1, 1)$ | $(1, 1) \ne (1, 2)$ | $(1, 2) \ne (1, 1)$ | $(1, 2) \ne (1, 1)$ | Discrete square swap at $t = 1$ | **Valid** |
+| East to $(1, 3)$ | West to $(1, 1)$ | $(1, 1) \ne (1, 2)$ | $(1, 2) \ne (1, 1)$ | **$(1, 3)$ vs $(1, 1)$** | At $t=1$, swapped; at $t=2$, $R_1$ at $(1, 3)$ | **Valid** |
+
+Across all $225$ pairs, exactly $29$ combinations produce collisions, leaving $225 - 29 = 196$ valid combinations.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **Finite Board & Bounded Search Space:**
+   On an $8 \times 8$ board, the maximum distance a piece can travel in any direction is at most $7$ steps. A rook has at most $1 + 4 \times 7 = 29$ choices, a bishop at most $1 + 4 \times 7 = 29$ choices, and a queen at most $1 + 8 \times 7 = 57$ choices. For $n \le 4$ pieces, the maximum theoretical search space before pruning is $57 \times 29^3 \approx 1.4 \times 10^6$, which is easily enumerable via depth-first backtracking.
+2. **Deterministic Time-Indexed Verification:**
+   Because all movements conclude within at most $7$ seconds, pairwise independence can be tested across integer seconds $t \in [0, 8]$. Testing exact coordinate matches at every second guarantees zero false positives and zero false negatives.
+3. **Soundness of Incremental Pruning:**
+   By fixing piece moves one by one, any partial assignment that collides with an earlier piece's chosen trajectory is pruned immediately, avoiding exploration of entire invalid subtrees.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Stationary Pieces Act as Permanent Obstacles:**
+  When a piece finishes its move at second $T$, it does not disappear from the board. Any other piece reaching that square at second $t \ge T$ causes an invalid collision.
+- **Continuous vs Discrete Crossing:**
+  Do not reject moves because their continuous trajectories cross in the middle of a square edge (such as two pieces swapping squares at $t = 1$). Only integer-second coordinate collisions count.
+- **Corner Pieces:**
+  Pieces at the corners or edges have fewer available directions due to the $1 \le r, c \le 8$ boundary. Direction vectors moving out of bounds must terminate immediately.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(P^n \cdot n^2 \cdot M)$ where $n \le 4$ is the number of pieces, $P \le 29$ is the maximum number of legal moves per piece, and $M \le 8$ is the maximum movement duration in seconds.
+  Backtracking explores valid move assignments with aggressive pruning, evaluating at most a few thousand feasible states in Practice. Total runtime is well under 100 milliseconds.
+- **Space Complexity:** $\mathcal{O}(n \cdot M)$ auxiliary memory to store the time-indexed trajectory coordinates for each piece along the recursion stack.

@@ -1,133 +1,165 @@
 # Guided Example: Candy
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bidirectional slope constraint propagation and peak height harmonization on representative child rating arrays:
 
-- **Input:** `{"ratings": [1, 0, 2]}`
-- **Required output:** `5`
+- **Input:** $\text{ratings} = [1, 0, 2]$
+- **Required output:** $5$ (Optimal distribution: $[2, 1, 2]$, total $2 + 1 + 2 = 5$)
+- **Asymmetric Peak & Plateau Instance:** $\text{ratings} = [1, 2, 87, 87, 87, 2, 1] \implies 13$ ($[1, 2, 3, 1, 3, 2, 1]$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates decomposing bidirectional neighbor constraints into independent left-to-right and right-to-left monotonic passes, resolving peak conflicts via $\max(\text{left}[i], \text{right}[i])$, handling equal-rating plateaus (which do not require strict inequality), and executing in $O(N)$ time with a single allocation pass.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` children standing in a line. Each child is assigned a rating value given in the integer array `ratings`.
+There are $n$ children standing in a line with rating values $\text{ratings} = [1, 0, 2]$.
+You must distribute candies according to two rules:
+1. Every child must receive at least $1$ candy.
+2. Any child with a higher rating than an immediate neighbor must receive strictly more candies than that neighbor.
+Find the **minimum total candies** required.
 
-The objective is to compute `5` from `{"ratings": [1, 0, 2]}` while avoiding redundant calculations and unnecessary overhead.
+Evaluating constraints for $\text{ratings} = [1, 0, 2]$:
+- Child 0 has rating $1$, higher than Child 1 ($0$). Child 0 must have more candies than Child 1: $C_0 > C_1$.
+- Child 1 has rating $0$, lower than both neighbors. Child 1 receives the baseline minimum: $C_1 = 1$.
+- Child 2 has rating $2$, higher than Child 1 ($0$). Child 2 must have more candies than Child 1: $C_2 > C_1 \implies C_2 \ge 2$.
+Combining requirements yields distribution $[2, 1, 2]$, totaling $2 + 1 + 2 = 5$ candies.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A single greedy pass cannot satisfy both neighbors simultaneously because a long descent to the right can force an earlier peak to climb higher than the left pass predicted.
+Separating the requirements into two passes—a forward pass ensuring left-neighbor correctness and a backward pass ensuring right-neighbor correctness—harmonizes both constraints via $C[i] = \max(\text{left}[i], \text{right}[i])$ in $O(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Two-Pass Bidirectional Propagation Protocol
+Initialize an array `candies` of length $N$ with all $1$s:
+$$
+C = [1, 1, \dots, 1]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Pass 1: Forward Sweep (Left-Neighbor Condition)
+Ensure $R[i] > R[i - 1] \implies C[i] > C[i - 1]$:
+For $i$ from $1$ to $N - 1$:
+$$
+\text{if } \text{ratings}[i] > \text{ratings}[i - 1]: \quad C[i] \leftarrow C[i - 1] + 1
+$$
+*(If $\text{ratings}[i] \le \text{ratings}[i - 1]$, $C[i]$ remains at $1$, since no obligation to exceed the left neighbor exists)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### Pass 2: Backward Sweep (Right-Neighbor Condition)
+Ensure $R[i] > R[i + 1] \implies C[i] > C[i + 1]$:
+For $i$ from $N - 2$ down to $0$:
+$$
+\text{if } \text{ratings}[i] > \text{ratings}[i + 1]: \quad C[i] \leftarrow \max(C[i], \, C[i + 1] + 1)
+$$
+*(Using $\max(C[i], C[i+1] + 1)$ guarantees that satisfying the right neighbor does not violate the previously established left-neighbor constraint)*.
+
+Total candies needed:
+$$
+\text{Total} = \sum_{i=0}^{N-1} C[i]
+$$
+
+> **Invariant.** After Pass 1, $C[i]$ satisfies all left-neighbor relations. After Pass 2, $C[i]$ satisfies both left- and right-neighbor constraints simultaneously while remaining strictly minimal.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the rule into two independent directions
+We trace the two passes on $\text{ratings} = [1, 0, 2]$ ($N = 3$):
 
-Each child needs at least one candy. In addition:
-
-- if `ratings[i] > ratings[i - 1]`, child `i` must receive more than the left neighbor;
-- if `ratings[i] > ratings[i + 1]`, child `i` must receive more than the right neighbor.
-
-Equal ratings impose no ordering requirement. Two equally rated neighbors may receive equal or different counts; minimizing the total normally lets both remain as low as their other constraints permit.
-
-Trying to satisfy both directions in one left-to-right pass is difficult because a future decreasing run can force earlier children upward. The solution separates the two directions into `left` and `right` arrays, computes the minimum requirement from each side, and combines them.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"ratings": [1, 0, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- Start with baseline candy allocation:
+  $$
+  C = [1, \, 1, \, 1]
+  $$
 
 ---
 
-### Step 2: What the left array guarantees
+### Pass 1: Forward Sweep ($i = 1 \dots 2$)
 
-Every entry begins at one, satisfying the universal minimum.
+- **Index $i = 1$ ($R[1] = 0$ vs $R[0] = 1$):**
+  - $0 \not> 1$.
+  - No left-neighbor constraint. $C[1]$ stays $1$.
+  - $C = [1, 1, 1]$.
 
-The forward loop starts at index one. When the current rating is greater than the previous rating, it sets:
+- **Index $i = 2$ ($R[2] = 2$ vs $R[1] = 0$):**
+  - $2 > 0$ (Strictly greater!).
+  - Update: $C[2] \leftarrow C[1] + 1 = 1 + 1 = 2$.
+  - $C = [1, 1, 2]$.
 
-`left[i] = left[i - 1] + 1`
-
-Otherwise, `left[i]` remains one.
-
-After this pass, `left[i]` is the smallest candy count that satisfies all comparisons with left neighbors within the prefix ending at `i`.
-
-For an increasing run such as ratings `[1, 3, 5, 8]`, the required counts become `[1, 2, 3, 4]`. Each step must exceed the previous one by at least one, and using exactly one more is minimal. When the rating stops increasing, the current child has no obligation to exceed the left neighbor, so restarting at one is the cheapest possible choice under the left-only rules.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+After Pass 1: $C = [1, 1, 2]$. Left constraints satisfied.
 
 ---
 
-### Step 3: What the right array guarantees
+### Pass 2: Backward Sweep ($i = 1 \dots 0$)
 
-The backward pass is the mirror image. It starts at index `n - 2` and moves left. When `ratings[i] > ratings[i + 1]`, it sets:
+- **Index $i = 1$ ($R[1] = 0$ vs $R[2] = 2$):**
+  - $0 \not> 2$.
+  - No right-neighbor constraint. $C[1]$ stays $1$.
+  - $C = [1, 1, 2]$.
 
-`right[i] = right[i + 1] + 1`
+- **Index $i = 0$ ($R[0] = 1$ vs $R[1] = 0$):**
+  - $1 > 0$ (Strictly greater!).
+  - Right requirement: $C[1] + 1 = 1 + 1 = 2$.
+  - Take maximum: $C[0] \leftarrow \max(C[0], 2) = \max(1, 2) = \mathbf{2}$.
+  - $C = [2, 1, 2]$.
 
-Otherwise, the entry stays one.
+---
 
-Thus `right[i]` is the smallest number satisfying every comparison with right neighbors in the suffix beginning at `i`.
-
-For a decreasing rating run `[8, 5, 3, 1]`, the right requirements become `[4, 3, 2, 1]`. The high-rated child at the left end must stand above the whole descending chain.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Summation
+$$
+\text{Total} = C[0] + C[1] + C[2] = 2 + 1 + 2 = \mathbf{5}
+$$
+Final answer: $\mathbf{5}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"ratings": [1, 0, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+### State Evolution Table for $[1, 0, 2]$
+
+```text
+Ratings:          1       0       2
+Initial:         [1]     [1]     [1]
+Pass 1 (Left->): [1]     [1]     [2]   (2 > 0 -> 1+1=2)
+Pass 2 (<-Right):[2]     [1]     [2]   (1 > 0 -> max(1, 1+1)=2)
+Total:            2   +   1   +   2   = 5
+```
+
+| Child Index $i$ | Rating $R[i]$ | Initial $C[i]$ | Pass 1 Condition ($R[i] > R[i-1]$) | Pass 1 Value | Pass 2 Condition ($R[i] > R[i+1]$) | Pass 2 Final $C[i]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | 1 | Boundary (no left) | 1 | **Yes ($1 > 0$)** $\implies \max(1, 1+1)$ | **2** |
+| 1 | 0 | 1 | No ($0 \le 1$) | 1 | No ($0 \le 2$) | **1** |
+| 2 | 2 | 1 | **Yes ($2 > 0$)** $\implies 1 + 1$ | 2 | Boundary (no right) | **2** |
+| **Sum** | - | - | - | - | - | **5 (Result)** |
+
+### Complex Case: Peak Harmonization on $[1, 2, 87, 87, 87, 2, 1]$
+- Pass 1 (Left $\to$ Right): $[1, 2, 3, 1, 1, 1, 1]$ (Plateau resets $87 \to 87$ to $1$).
+- Pass 2 (Right $\to$ Left): $[1, 2, 3, 1, 3, 2, 1]$ (Right slope $87 > 2 > 1$ elevates 4th index to $3$).
+- Sum $= 1 + 2 + 3 + 1 + 3 + 2 + 1 = \mathbf{13}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A distribution is valid if and only if for every $i$:
+1. $C[i] \ge 1$
+2. $R[i] > R[i-1] \implies C[i] \ge C[i-1] + 1$
+3. $R[i] > R[i+1] \implies C[i] \ge C[i+1] + 1$
+Because Pass 1 enforces condition 2, and Pass 2 enforces condition 3 via $\max(C[i], C[i+1]+1)$ without ever decreasing $C[i]$, both conditions are simultaneously satisfied upon completion.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $C[i]$ only increases when forced by a strictly larger neighbor, no child receives more candies than strictly necessary, proving that the sum $\sum C[i]$ is minimal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One candy array and two passes:** Build left requirements in one array, then scan right-to-left and raise an entry with `max(current, right-neighbor + 1)` when needed. It uses $O(n)$ space with one array.
-- **Slope counting:** Track lengths of increasing and decreasing rating runs and add triangular-number contributions. It achieves $O(1)$ auxiliary space but peak and plateau accounting is easier to get wrong.
-- **Repeated relaxation:** Start everyone at one and repeatedly repair violated neighbor constraints until stable. It is intuitive but can require $O(n^2)$ time.
-- **Priority queue by rating:** Process children from lower to higher ratings so lower-rated neighbor counts are known first. It works but adds $O(n\log n)$ sorting or heap cost.
-- **One child:** Both arrays are `[1]`, so the result is one.
-- **All ratings equal:** No strict comparison fires; everyone receives one and the result is $n$.
-- **Strictly increasing ratings:** The minimum distribution is `1, 2, ..., n`.
-- **Strictly decreasing ratings:** The right pass creates `n, ..., 2, 1`.
-- **Valleys:** A local low point may remain at one even when both neighbors require larger counts.
-- **Uneven peaks:** Taking the maximum, rather than adding directional counts, prevents double-counting the peak.
-- **Runtime dependency:** The selected source uses `List` in its annotation without importing it. A standalone module needs `from typing import List`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Equal Ratings (Plateaus Do Not Require Inequality):** If two adjacent children have identical ratings ($R[i] == R[i-1]$), neither is required to have more candies than the other! Setting $C[i] = C[i-1]$ would waste candies; the rules permit a child on an equal plateau to receive $1$ candy if its other neighbor allows.
+- **Overwriting Instead of Max in Pass 2:** Setting $C[i] = C[i+1] + 1$ directly during Pass 2 can destroy a larger value established during Pass 1! Using $\max(C[i], C[i+1] + 1)$ is essential to preserve the taller slope.
+- **Single Child:** If $N = 1$, neither loop runs, returning $1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of children.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of children. The algorithm performs two linear scans across the array, each step taking $O(1)$ operations.
+- **Auxiliary Space Complexity:** $O(N)$ to store the single candy allocation array $C$ of length $N$.

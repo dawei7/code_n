@@ -1,132 +1,157 @@
 # Guided Example: The Number of Rich Customers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace relational selection filtering, customer identifier projection, and distinct aggregate cardinality calculation on a representative transactional store database:
 
-- **Input:** `{"tables": {"Store": [{"bill_id": 6, "customer_id": 1, "amount": 549}, {"bill_id": 8, "customer_id": 1, "amount": 834}, {"bill_id": 4, "customer_id": 2, "amount": 394}, {"bill_id": 11, "customer_id": 3, "amount": 657}, {"bill_id": 13, "customer_id": 3, "amount": 257}]}}`
-- **Required output:** `{"columns": ["rich_count"], "rows": [[2]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Store`
-
-The objective is to compute `{"columns": ["rich_count"], "rows": [[2]]}` from `{"tables": {"Store": [{"bill_id": 6, "customer_id": 1, "amount": 549}, {"bill_id": 8, "customer_id": 1, "amount": 834}, {"bill_id": 4, "customer_id": 2, "amount": 394}, {"bill_id": 11, "customer_id": 3, "amount": 657}, {"bill_id": 13, "customer_id": 3, "amount": 257}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Store Table Input:**
+  - `(bill_id: 6, customer_id: 1, amount: 549)`
+  - `(bill_id: 8, customer_id: 1, amount: 834)`
+  - `(bill_id: 4, customer_id: 2, amount: 394)`
+  - `(bill_id: 11, customer_id: 3, amount: 657)`
+  - `(bill_id: 13, customer_id: 3, amount: 257)`
+- **Expected Output:**
+  - `rich_count: 2`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a database relation `Store` recording customer transactions with schema:
+$$\text{Store}(\text{bill\_id}, \text{customer\_id}, \text{amount})$$
+where `bill_id` is the primary key. A customer is designated as a **rich customer** if they have at least one bill with an `amount` strictly greater than $500$ ($amount > 500$).
 
-| State Parameter | Role & Purpose | Initial State |
+Our goal is to report the number of rich customers under the column name `rich_count`.
+
+### Distinctness and Threshold Nuances
+- A single rich customer may generate multiple transactions exceeding $500$ (e.g. customer $1$ has bills of $549$ and $834$). Such a customer must be counted exactly once.
+- The qualification threshold is strictly greater than ($> 500$); an amount of exactly $500$ does not qualify.
+- If no transaction exceeds $500$, the query must return $0$.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Filtering and Deduplication Pipeline
+    accDescr: Three-stage relational algebra pipeline: filter rows with amount greater than 500, project customer_id into a distinct set, and count set cardinality.
+    A["Raw Table: Store(bill_id, customer_id, amount)"] -->|Filter: amount > 500| B["Filtered Relational Stream"]
+    B -->|Project & Deduplicate: DISTINCT customer_id| C["Unique Rich Customer IDs: {1, 3}"]
+    C -->|"Aggregate: COUNT(DISTINCT customer_id)"| D["Scalar Result: rich_count = 2"]
+
+    classDef stage fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class A,B,C,D stage;
+```
+
+---
+
+## 2. Theoretical Invariants & Relational Algebra Formulations
+
+### Invariant 1: Relational Selection and Set Cardinality
+In relational algebra, the operation corresponds to:
+$$\text{rich\_count} = \left| \pi_{\text{customer\_id}} \left( \sigma_{\text{amount} > 500}(\text{Store}) \right) \right|$$
+1. **Selection ($\sigma$):** Isolates all tuples satisfying the strict predicate $\text{amount} > 500$.
+2. **Projection ($\pi$):** Extracts the `customer_id` attribute, eliminating duplicate IDs through set semantics.
+3. **Cardinality ($|\cdot|$):** Measures the size of the resulting set of unique customer identifiers.
+
+### Invariant 2: Aggregation Over Empty Match Sets
+In SQL, applying `COUNT(DISTINCT column)` over an empty set returns the integer scalar $0$, not `NULL`. This guarantees that queries with no qualifying customers emit a single row containing `rich_count = 0` without needing `COALESCE` or default value handlers.
+
+| Relational Component | Algebraic Operation | State Representation |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Filter qualifying bills before counting customers
-
-A customer is considered rich if at least one of their bills has an amount strictly greater than 500. The result must count customers, not bills. A customer with several qualifying bills still contributes only one to the answer.
-
-The SQL query handles these two ideas in the natural order:
-
-1. `WHERE amount > 500` keeps only bills that satisfy the strict threshold.
-2. `COUNT(DISTINCT customer_id)` counts the different customers represented by those remaining bills.
-
-The filter is applied logically before the aggregation. Bills of amount 500 do not qualify because “strictly greater” requires `>` rather than `>=`. Bills below the threshold are also removed. Once a row is filtered out, its customer does not influence the distinct count through that row.
-
-For the example, the qualifying bills belong to customer 1 twice and customer 3 once. The sequence of qualifying customer identifiers is conceptually `[1, 1, 3]`. Applying `DISTINCT` reduces those identifiers to `[1, 3]`, and `COUNT` returns 2.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Store": [{"bill_id": 6, "customer_id": 1, "amount": 549}, {"bill_id": 8, "customer_id": 1, "amount": 834}, {"bill_id": 4, "customer_id": 2, "amount": 394}, {"bill_id": 11, "customer_id": 3, "amount": 657}, {"bill_id": 13, "customer_id": 3, "amount": 257}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Input Relation | Base table $\text{Store}$ | $5$ raw transaction tuples |
+| Filter Condition | $\sigma_{\text{amount} > 500}$ | Retains tuples with strictly positive excess over $500$ |
+| Distinct Projection | $\pi_{\text{customer\_id}}$ | Set deduplication of active customer IDs |
+| Aggregated Output | $\text{COUNT}(\text{DISTINCT } \dots)$ | Single-row scalar metric `rich_count` |
 
 ---
 
-### Step 2: Why `DISTINCT` is essential
+## 3. Step-by-Step State Execution Trace
 
-The table's primary key is `bill_id`, which means every bill row is unique. It does not mean `customer_id` is unique. The same customer can have many different bills, each with its own `bill_id`.
+We trace the relational pipeline row by row on the sample `Store` data:
 
-A plain `COUNT(customer_id)` after the filter would count qualifying bills. In the example, it would return 3 because customer 1 has two qualifying rows. That is not the requested number of customers.
+### Phase 1: Row Evaluation Against Strict Threshold ($\text{amount} > 500$)
 
-`COUNT(DISTINCT customer_id)` first treats repeated occurrences of the same customer identifier as one distinct value, then counts those values. It precisely expresses “had at least one” because after the first qualifying bill establishes a customer's membership, further qualifying bills do not increase the count.
-
-There is no need to group by customer and return one row per customer. The required result is a single total, and the distinct aggregate calculates it directly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Produce the required one-row schema
-
-The expression is aliased with
-
-`AS rich_count`.
-
-This alias is part of the result contract. It names the sole output column `rich_count` rather than exposing a database-generated aggregate label.
-
-Because the query contains an aggregate and no `GROUP BY`, it returns one summary row for the entire filtered table. If there are no bills above 500, the distinct count is 0, and the result is still one row containing zero. This is preferable to a grouped query that might return no rows when nobody qualifies.
-
-No `ORDER BY` is needed because the result contains only one row.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["rich_count"], "rows": [[2]]}` |
+1. **Tuple 1: `(bill_id: 6, customer_id: 1, amount: 549)`**
+   - Check: $549 > 500 \implies$ **True**.
+   - Action: Pass to candidate set. Candidate: `customer_id = 1`.
+2. **Tuple 2: `(bill_id: 8, customer_id: 1, amount: 834)`**
+   - Check: $834 > 500 \implies$ **True**.
+   - Action: Pass to candidate set. Candidate: `customer_id = 1`.
+3. **Tuple 3: `(bill_id: 4, customer_id: 2, amount: 394)`**
+   - Check: $394 > 500 \implies$ False.
+   - Action: Discarded.
+4. **Tuple 4: `(bill_id: 11, customer_id: 3, amount: 657)`**
+   - Check: $657 > 500 \implies$ **True**.
+   - Action: Pass to candidate set. Candidate: `customer_id = 3`.
+5. **Tuple 5: `(bill_id: 13, customer_id: 3, amount: 257)`**
+   - Check: $257 > 500 \implies$ False.
+   - Action: Discarded.
 
 ---
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Store": [{"bill_id": 6, "customer_id": 1, "amount": 549}, {"bill_id": 8, "customer_id": 1, "amount": 834}, {"bill_id": 4, "customer_id": 2, "amount": 394}, {"bill_id": 11, "customer_id": 3, "amount": 657}, {"bill_id": 13, "customer_id": 3, "amount": 257}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["rich_count"], "rows": [[2]]}` | Verified |
+### Phase 2: Set Deduplication of Candidate Customer IDs
+The qualifying multiset of customer IDs from Phase 1 is:
+$$M = \{1, 1, 3\}$$
+Applying set projection eliminates duplicate occurrences:
+$$S = \text{DISTINCT}(M) = \{1, 3\}$$
 
 ---
 
-## 5. Algorithmic Correctness
+### Phase 3: Aggregation and Formatting
+Counting the elements in set $S$:
+$$\text{rich\_count} = |\{1, 3\}| = 2$$
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Result table emitted:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Plain `COUNT(customer_id)`:** This counts qualifying bill rows, so customers with multiple bills are overcounted. `DISTINCT` is necessary.
-- **`GROUP BY customer_id` alone:** This yields one row per rich customer rather than the required single total. An outer count could repair it, but the direct distinct aggregate is simpler.
-- **Nested grouped subquery:** Selecting qualifying customer IDs with `GROUP BY` and then counting those rows is correct, but it introduces an unnecessary query layer compared with `COUNT(DISTINCT ...)`.
-- **`EXISTS` against a customer table:** If a separate complete customer table existed, an existence test could mark qualifying customers. No such table is needed here because qualifying identifiers can be obtained directly from `Store`.
-- **Threshold exactly 500:** Such a bill does not qualify. Replacing `> 500` with `>= 500` changes the problem's strict boundary.
-- **Several qualifying bills for one customer:** They contribute one distinct identifier and therefore one to the result.
-- **Qualifying and nonqualifying bills for one customer:** The qualifying row is sufficient. Filtering individual bills before deduplication retains that customer once.
-- **Only nonqualifying bills:** The filtered input is empty, but the aggregate still returns one row with `rich_count = 0`.
-- **Empty table:** The same ungrouped aggregate behavior returns zero rather than no rows.
-- **Unique bill identifiers:** `bill_id` prevents duplicate bill records by key, but customers may repeat. Counting bill IDs would answer a different question.
-- **Null customer identifiers:** Standard `COUNT(DISTINCT ...)` ignores null. The intended data identifies customers, so no special null substitute is required.
-- **Exact output alias:** The aggregate must be named `rich_count` to match the expected result schema.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| rich_count |
+|---|
+| 2 |
 
 ---
 
-## 7. Complexity Derivation
+## 4. Complete Execution Trace & Boundary Scenarios
 
-- **Time Complexity:** $O(B\log B)$. Let $B$ be the number of bill rows in `Store`, and let $C$ be the number of distinct customers among bills whose amount exceeds 500.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Below is the verification trace across diverse transactional distributions:
+
+| Case Description | Table Transactions $(bill\_id, customer\_id, amount)$ | Filtered Tuples ($amount > 500$) | Distinct Customer Set | Emitted `rich_count` |
+|---|---|---|---|---|
+| Sample 1 (Multiple bills, duplicates) | $(6, 1, 549), (8, 1, 834), (4, 2, 394), (11, 3, 657), (13, 3, 257)$ | $(6, 1, 549), (8, 1, 834), (11, 3, 657)$ | $\{1, 3\}$ | **$2$** |
+| Strict Boundary (Amount = 500) | $(1, 7, 500), (2, 8, 501)$ | $(2, 8, 501)$ | $\{8\}$ | **$1$** |
+| Zero Qualifying Customers | $(10, 1, 500), (11, 2, 1), (12, 1, 499)$ | $\emptyset$ | $\emptyset$ | **$0$** |
+| Many Qualifying Bills for One Person | $(20, 9, 501), (21, 9, 700), (22, 9, 1000), (23, 10, 500)$ | $(20, 9, 501), (21, 9, 700), (22, 9, 1000)$ | $\{9\}$ | **$1$** |
+
+### Critical Observation on the Strict Boundary ($amount = 500$)
+Notice in the second row:
+- Customer $7$ has a bill of exactly $500$.
+- Because the condition is strictly greater than ($> 500$), customer $7$ is disqualified.
+- Only customer $8$ with $501$ qualifies, correctly yielding `rich_count = 1`.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **Predicate Exactness:**
+   The predicate `amount > 500` conforms directly to the definition that a rich customer has at least one bill with amount strictly greater than 500.
+2. **Deduplication Soundness:**
+   A customer who has $k \ge 1$ qualifying bills would be counted $k$ times if standard `COUNT(customer_id)` were used. The `DISTINCT` modifier collapses duplicate keys, guaranteeing each qualifying customer contributes exactly $1$ to the final count regardless of transaction volume.
+3. **Single-Row Output Invariant:**
+   An aggregate function executed without a `GROUP BY` clause over the entire table (or filtered table) is defined by the SQL standard to always produce exactly one tuple. Even if the filtered set is empty, `COUNT` emits $0$, preventing empty result sets.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Non-Strict Inequality ($\ge 500$):**
+  Using $\ge 500$ erroneously counts customers whose largest transaction is exactly $500$. The problem specification explicitly mandates strictly greater than $500$.
+- **Omitting `DISTINCT`:**
+  Omitting `DISTINCT` in `COUNT(customer_id)` counts the number of qualifying *bills* rather than the number of qualifying *customers*, leading to inflated counts.
+- **Grouping Without Re-aggregation:**
+  Using `GROUP BY customer_id` without an outer count produces a list of individual customer IDs rather than the requested scalar total.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Scanning the table of $N$ rows and applying the filter `amount > 500` takes $\mathcal{O}(N)$ time.
+  - Inserting qualifying customer IDs into a hash set for deduplication takes $\mathcal{O}(1)$ average time per row.
+  - Total time complexity: $\mathcal{O}(N)$ linear time.
+- **Auxiliary Space Complexity:**
+  - The distinct set retains at most $\min(N, U)$ entries, where $U$ is the number of unique customers.
+  - Total auxiliary space: $\mathcal{O}(U)$ working memory.

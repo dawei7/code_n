@@ -1,129 +1,201 @@
 # Guided Example: Count Prefixes of a Given String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"words": ["a", "b", "c", "ab", "bc", "abc"], "s": "abc"}`
-- **Required output:** `3`
+Given an array of strings $\text{words}$ and a target string $s$, the objective is to count the total number of strings in $\text{words}$ that are a **prefix** of $s$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A string $w$ is defined as a prefix of $s$ if $w$ matches the initial segment of $s$ starting from index $0$. That is:
+- The length of $w$ must not exceed the length of $s$: $|w| \le |s|$.
+- Every character of $w$ must match the corresponding character of $s$ at the same position:
+  $$w[k] = s[k] \quad \text{for all } 0 \le k < |w|$$
 
----
+If identical words appear multiple times in the $\text{words}$ array, each occurrence that satisfies the prefix property must be counted individually toward the total.
 
-## 1. Instance & Teaching Goal
+### Representative Instance
 
-You are given a string array `words` and a string `s`, where $\text{words}[i]$ and `s` comprise only of **lowercase English letters**.
+Consider the input parameters:
+- Word collection: $\text{words} = [\text{"a"}, \text{"b"}, \text{"c"}, \text{"ab"}, \text{"bc"}, \text{"abc"}]$
+- Target string: $s = \text{"abc"}$
 
-The objective is to compute `3` from `{"words": ["a", "b", "c", "ab", "bc", "abc"], "s": "abc"}` while avoiding redundant calculations and unnecessary overhead.
+The candidate strings have varying lengths and initial characters:
+- $\text{"a"}$ matches the first character of $\text{"abc"}$ (Valid prefix).
+- $\text{"b"}$ and $\text{"c"}$ do not start with $\text{'a'}$ (Invalid).
+- $\text{"ab"}$ matches the first two characters of $\text{"abc"}$ (Valid prefix).
+- $\text{"bc"}$ occurs in $\text{"abc"}$, but begins at index $1$ rather than index $0$ (Invalid).
+- $\text{"abc"}$ matches the entirety of $s$ (Valid prefix).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The total count of valid prefixes is $3$.
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Test the definition directly
-
-A word `w` is a prefix of `s` when the first `len(w)` characters of `s` equal `w`. Python's `s.startswith(w)` performs exactly this test.
-
-The solution evaluates that predicate for every occurrence in `words`:
-
-`sum(s.startswith(w) for w in words)`.
-
-The generator produces one Boolean per list position. Python treats `true` as one and `false` as zero when summing, so the result is the number of matching word occurrences.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["a", "b", "c", "ab", "bc", "abc"], "s": "abc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+flowchart TD
+    accTitle: Prefix Verification Pipeline
+    accDescr: Evaluation of candidate strings against the target string to determine if they form valid prefixes starting at index 0.
+    Target["Target String: s = 'abc' (Length: 3)"] --> Ingest["Ingest words = ['a', 'b', 'c', 'ab', 'bc', 'abc']"]
+    Ingest --> CheckW["For each word w in words"]
+    CheckW --> LengthCheck{"|w| <= |s| ?"}
+    LengthCheck -- "No" --> Reject["Discard: Too long"]
+    LengthCheck -- "Yes" --> SliceCheck{"s[0 : |w|] == w ?"}
+    SliceCheck -- "Yes" --> Accept["Valid Prefix: Increment count"]
+    SliceCheck -- "No" --> Reject2["Discard: Character mismatch"]
+```
 
 ---
 
-### Step 2: Why duplicates are counted separately
+## 2. Mathematical & Algorithmic Principles
 
-The method iterates the list, not a set. If `"a"` appears twice and is a prefix, `startswith` returns true twice and the sum gains two.
+### Formal Prefix Indicator Formulation
 
-This matches the problem's explicit requirement that repeated equal strings count each time. Deduplicating `words` would be incorrect.
+Let $\Sigma$ be a finite alphabet, and let $s \in \Sigma^*$ be a string of length $n = |s|$.
+The prefix operator $\text{pref}_k(s)$ returns the substring consisting of the first $k$ symbols:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$\text{pref}_k(s) = s[0 \dots k - 1], \quad 0 \le k \le n$$
 
----
+For any candidate string $w \in \text{words}$ of length $m = |w|$, the indicator function evaluates whether $w$ is a prefix of $s$:
 
-### Step 3: What `startswith` checks
+$$\mathbf{1}_{\text{prefix}}(w, s) = \begin{cases} 1 & \text{if } m \le n \land s[0 \dots m - 1] = w \\ 0 & \text{otherwise} \end{cases}$$
 
-For a word of length `k`, the predicate conceptually compares:
+The global count of prefixes in a multiset of words is:
 
-`s[0:k] == w`.
+$$\text{Total} = \sum_{w \in \text{words}} \mathbf{1}_{\text{prefix}}(w, s)$$
 
-It does not search later positions. A word occurring inside `s` but not at index zero returns false.
+### Prefix vs Substring Distinction
 
-If `w` is longer than `s`, it cannot be a prefix and `startswith` returns false. No explicit length condition is needed.
+A crucial property of prefixes is their strict anchor at position $0$:
+- A general substring may occur at any starting index $j \in [0, n - m]$:
+  $$\text{substring: } \exists j \ge 0 \text{ such that } s[j \dots j + m - 1] = w$$
+- A prefix restricts the anchor strictly to $j = 0$:
+  $$\text{prefix: } j = 0 \text{ strictly}$$
+For example, in $s = \text{"abc"}$, the substring $\text{"bc"}$ occurs at $j = 1$. Although it is a substring of $s$, it is not a prefix because $j \ne 0$.
 
-If `w == s`, every character matches and it is a valid prefix. A prefix is allowed to be the whole target string.
+### Short-Circuit Character Comparison
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["a", "b", "c", "ab", "bc", "abc"], "s": "abc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+Testing whether $s$ starts with $w$ takes at most $O(|w|)$ time:
+1. First, check length: if $|w| > |s|$, the condition fails immediately in $O(1)$.
+2. If $|w| \le |s|$, compare characters sequentially from $k = 0$ to $|w| - 1$.
+3. The comparison halts at the very first index $k$ where $w[k] \ne s[k]$, short-circuiting unnecessary character checks.
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We evaluate each candidate word in $\text{words} = [\text{"a"}, \text{"b"}, \text{"c"}, \text{"ab"}, \text{"bc"}, \text{"abc"}]$ against $s = \text{"abc"}$.
+Initialize accumulator: $\text{count} = 0$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 1: Evaluate $w = \text{"a"}$
+- Length check: $|w| = 1 \le |s| = 3$.
+- Compare prefix slice: $s[0 : 1] = \text{"a"}$.
+- Condition: $\text{"a"} == \text{"a"}$ (True).
+- Action: $\text{count} \leftarrow 0 + 1 = 1$.
+
+### Step 2: Evaluate $w = \text{"b"}$
+- Length check: $|w| = 1 \le 3$.
+- Compare prefix slice: $s[0 : 1] = \text{"a"}$.
+- Condition: $\text{"a"} == \text{"b"}$ (False, mismatch at index $0$).
+- Action: $\text{count}$ remains $1$.
+
+### Step 3: Evaluate $w = \text{"c"}$
+- Length check: $|w| = 1 \le 3$.
+- Compare prefix slice: $s[0 : 1] = \text{"a"}$.
+- Condition: $\text{"a"} == \text{"c"}$ (False).
+- Action: $\text{count}$ remains $1$.
+
+### Step 4: Evaluate $w = \text{"ab"}$
+- Length check: $|w| = 2 \le 3$.
+- Compare prefix slice: $s[0 : 2] = \text{"ab"}$.
+- Condition: $\text{"ab"} == \text{"ab"}$ (True).
+- Action: $\text{count} \leftarrow 1 + 1 = 2$.
+
+### Step 5: Evaluate $w = \text{"bc"}$
+- Length check: $|w| = 2 \le 3$.
+- Compare prefix slice: $s[0 : 2] = \text{"ab"}$.
+- Condition: $\text{"ab"} == \text{"bc"}$ (False, mismatch at index $0$).
+- Action: $\text{count}$ remains $2$.
+
+### Step 6: Evaluate $w = \text{"abc"}$
+- Length check: $|w| = 3 \le 3$.
+- Compare prefix slice: $s[0 : 3] = \text{"abc"}$.
+- Condition: $\text{"abc"} == \text{"abc"}$ (True).
+- Action: $\text{count} \leftarrow 2 + 1 = 3$.
+
+All candidates processed. Final output: $3$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Slice the target manually:** `s[:len(w)] == w` is correct, but may allocate a substring; `startswith` expresses the intent directly.
-- **Build a trie from words:** It adds nodes and setup for a single short target and is unnecessary here.
-- **Convert words to a set:** It would lose duplicate occurrences that must be counted separately.
-- **Use substring membership:** `w in s` accepts occurrences away from the beginning and is incorrect.
-- **Use `s.endswith(w)`:** That tests the opposite boundary.
-- **Word equals `s`:** It is a valid prefix and counts.
-- **Word longer than `s`:** It returns false.
-- **Repeated qualifying word:** Every occurrence contributes one.
-- **Repeated non-prefix word:** Every occurrence contributes zero.
-- **Mismatch at first character:** Comparison stops immediately and returns false.
-- **Mismatch later:** A partially matching beginning is still not a prefix unless the entire word matches.
-- **Single-character target:** Only matching one-character words can qualify because input words are nonempty.
-- **Input ordering:** It does not affect the numeric count.
-- **Lowercase guarantee:** No case folding or locale behavior is needed.
-- **Many words sharing a long prefix:** Each is still checked independently because every list occurrence contributes separately.
-- **Empty words:** The constraints exclude them, so the special convention that an empty string is a prefix never enters the method's inputs.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Per-Candidate Evaluation Matrix
+
+The table below catalogs the detailed verification of each candidate string in the representative instance:
+
+| Candidate Index | Word $w$ | Length $|w|$ | Target Prefix $s[0 : |w|]$ | String Match Comparison | Prefix Criterion Met? | Running Prefix Count |
+|---|---|---|---|---|---|---|
+| **0** | $\text{"a"}$ | $1$ | $\text{"a"}$ | $\text{"a"} == \text{"a"}$ | **Yes** | $1$ |
+| **1** | $\text{"b"}$ | $1$ | $\text{"a"}$ | $\text{"a"} \ne \text{"b"}$ | No | $1$ |
+| **2** | $\text{"c"}$ | $1$ | $\text{"a"}$ | $\text{"a"} \ne \text{"c"}$ | No | $1$ |
+| **3** | $\text{"ab"}$ | $2$ | $\text{"ab"}$ | $\text{"ab"} == \text{"ab"}$ | **Yes** | $2$ |
+| **4** | $\text{"bc"}$ | $2$ | $\text{"ab"}$ | $\text{"ab"} \ne \text{"bc"}$ | No | $2$ |
+| **5** | $\text{"abc"}$ | $3$ | $\text{"abc"}$ | $\text{"abc"} == \text{"abc"}$ | **Yes** | $3$ |
+
+### Structural Behavior Across Canonical Edge Scenarios
+
+| Test Scenario | Word List $\text{words}$ | Target $s$ | Prefix Validations | Output Count | Key Takeaway |
+|---|---|---|---|---|---|
+| **Duplicate Words** | $[\text{"a"}, \text{"a"}]$ | $\text{"aa"}$ | Both copies match $s[0:1]$ | $2$ | Duplicates are counted independently |
+| **Word Longer Than Target** | $[\text{"abcd"}, \text{"ab"}]$ | $\text{"abc"}$ | $\text{"abcd"}$ fails length; $\text{"ab"}$ passes | $1$ | $|w| > |s|$ automatically invalidates |
+| **Complete Match** | $[\text{"target"}]$ | $\text{"target"}$ | Full string is its own prefix | $1$ | Identical string is a valid prefix |
+| **Interior Substring Only** | $[\text{"bcd"}]$ | $\text{"abcde"}$ | Occurs at index $1$, not $0$ | $0$ | Non-zero starting offsets are rejected |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(S)$. Let
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Mathematical Invariant
+
+The verification procedure computes:
+
+$$\sum_{w \in \text{words}} \mathbf{1}_{s[0 : |w|] = w \land |w| \le |s|}$$
+
+1. **Soundness:** If a candidate string $w$ increments the counter, it has $|w| \le |s|$ and $s[0 \dots |w| - 1] = w$. By definition, $w$ is an exact prefix of $s$. No invalid word can contribute to the count.
+2. **Completeness:** The loop iterates over every element of the input array $\text{words}$. Every element is checked against $s$ under the exact mathematical definition of string prefix. No valid prefix can be skipped.
+3. **Multiset Preservation:** Because the iteration operates over the ordered collection rather than a deduplicated set, duplicate words are evaluated and tallied independently without loss of frequency.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Word Equal to Target ($w = s$):**
+   A string is always a prefix of itself ($|w| = |s|$ and $s[0 : |s|] = s$). This correctly increments the count.
+2. **Word Longer than Target ($|w| > |s|$):**
+   E.g., $w = \text{"abcd"}$ with $s = \text{"abc"}$. Slicing or length comparison prevents out-of-bounds index access and evaluates to false.
+3. **Duplicate Words in List:**
+   If $\text{words} = [\text{"a"}, \text{"a"}]$ and $s = \text{"aa"}$, both words are valid prefixes, yielding $2$.
+4. **Disjoint Character Sets:**
+   If no word starts with the first character of $s$, all comparisons fail on the first character check, correctly returning $0$.
+
+### Anti-Patterns to Avoid
+- **Using General Substring / Search (`in` or `find`):**
+  Checking `w in s` or `s.find(w) != -1`. This checks whether $w$ appears anywhere in $s$. For $w = \text{"bc"}$ and $s = \text{"abc"}$, `w in s` is true, but $\text{"bc"}$ is not a prefix. Prefixes must strictly start at index $0$.
+- **Deduplicating the Input Array:**
+  Converting $\text{words}$ to a `set` before checking prefixes loses duplicate counts, producing an undercount when duplicate valid prefixes exist.
+- **Trie Overhead for Small Constraints:**
+  Building a prefix tree (Trie) over $s$ or $\text{words}$ adds unnecessary object allocation overhead for modest input constraints ($|\text{words}| \le 1000, |s| \le 100$). Direct linear comparison is faster, simpler, and cache-friendly.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Let $M$ be the number of strings in $\text{words}$.
+- Let $L_{\max}$ be the maximum length of a string in $\text{words}$.
+- Let $|s|$ be the length of target string $s$.
+- For each word $w \in \text{words}$, checking whether $s$ starts with $w$ requires comparing at most $\min(|w|, |s|)$ characters.
+- Across all $M$ words:
+  $$\text{Total Time} = \sum_{w \in \text{words}} O(|w|) = O\left(\sum_{w \in \text{words}} |w|\right)$$
+  In the worst case where every word has length $L_{\max}$: $O(M \cdot L_{\max})$.
+  Given $M \le 1000$ and $L_{\max} \le 100$, the maximum number of character comparisons is $10^5$, executing in under $1 \text{ ms}$.
+
+### Space Complexity
+- **Auxiliary Storage:**
+  Direct character comparisons and length checks operate in-place using constant scalar variables without allocating auxiliary strings or tables.
+- **Total Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond input storage.

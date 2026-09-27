@@ -1,135 +1,170 @@
 # Guided Example: Distinct Echo Substrings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the polynomial rolling hash algorithm identifying all distinct repeated concatenation substrings on a representative string instance:
 
-- **Input:** `{"text": "abcabcabc"}`
-- **Required output:** `3`
+- **Input:** `text = "abcabcabc"`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates identifying square (echo) substrings $S = T + T$, using prefix polynomial rolling hashes for constant-time equality comparisons, and deduplicating identical echoed patterns across different starting positions.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Return the number of **distinct** non-empty substrings of `text` that can be written as the concatenation of some string with itself (i.e. it can be written as $a + a$ where `a` is some string).
+An echo substring is defined as any non-empty substring that can be written as the exact concatenation of some string with itself:
+$$
+S = T + T \quad \text{where } |S| = 2L \text{ and } T = S[0..L-1] = S[L..2L-1]
+$$
+We must determine the number of distinct echo substrings in `text = "abcabcabc"` of length $N = 9$.
 
-The objective is to compute `3` from `{"text": "abcabcabc"}` while avoiding redundant calculations and unnecessary overhead.
+```
+Text:   a   b   c   a   b   c   a   b   c
+Index:  0   1   2   3   4   5   6   7   8
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Candidate Substrings of Even Length 2L:
+  L = 3 (Length 6):
+    - text[0..5] = "abcabc" = "abc" + "abc"  --> Valid Echo
+    - text[1..6] = "bcabca" = "bca" + "bca"  --> Valid Echo
+    - text[2..7] = "cabcab" = "cab" + "cab"  --> Valid Echo
+    - text[3..8] = "abcabc" = "abc" + "abc"  --> Duplicate of text[0..5]
+
+Distinct Echo Substrings Found: {"abcabc", "bcabca", "cabcab"}
+Total Distinct Echoes: 3
+```
+
+Extracting and comparing every substring of length $2L$ via string equality takes $\mathcal{O}(L)$ per pair, leading to $\mathcal{O}(N^3)$ total time. Precomputing prefix rolling hashes allows testing equality between the left half $S[0..L-1]$ and right half $S[L..2L-1]$ in $\mathcal{O}(1)$ time, reducing overall complexity to $\mathcal{O}(N^2)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $B = 131$ be the polynomial hash base and $M = 10^9 + 7$ be the prime modulus.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Prefix Polynomial Rolling Hash
+For string $text$ of length $N$, define prefix hash array $H$ and power array $P$:
+$$
+P[0] = 1, \quad P[k] = (P[k-1] \cdot B) \pmod M
+$$
+$$
+H[0] = 0, \quad H[k] = (H[k-1] \cdot B + \text{val}(text[k-1])) \pmod M
+$$
+where $\text{val}(c) = \text{ord}(c) - \text{ord}('a') + 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### $\mathcal{O}(1)$ Substring Hash Extraction
+The polynomial hash of any 0-indexed substring $text[l..r]$ is:
+$$
+\text{hash}(l, r) = \big(H[r + 1] - H[l] \cdot P[r - l + 1]\big) \pmod M
+$$
+
+### Echo Validation Condition
+For a candidate interval $[i, j]$ of even length $2L$ ($j = i + 2L - 1$):
+- Left half midpoint: $m = i + L - 1$.
+- Left half hash: $h_{\text{left}} = \text{hash}(i, m)$.
+- Right half hash: $h_{\text{right}} = \text{hash}(m + 1, j)$.
+- Echo criterion: $h_{\text{left}} == h_{\text{right}}$.
+If satisfied, the composite hash $\text{hash}(i, j)$ is inserted into a hash set $V$ to eliminate duplicates.
+
+| Substring Segment | Coordinate Range | Hash Formulation | Length |
+|---|---|---|---|
+| Left Half $T_1$ | $[i, \; i + L - 1]$ | $\text{hash}(i, i + L - 1)$ | $L$ |
+| Right Half $T_2$ | $[i + L, \; i + 2L - 1]$ | $\text{hash}(i + L, i + 2L - 1)$ | $L$ |
+| Composite Echo $S$ | $[i, \; i + 2L - 1]$ | $\text{hash}(i, i + 2L - 1)$ | $2L$ |
+
+> **Echo Substring Invariant.** A substring $text[i..j]$ of even length $2L$ satisfies $text[i..i+L-1] = text[i+L..j]$ if and only if $h_{\text{left}} == h_{\text{right}}$ (modulo negligible collision probability). Recording composite hashes in set $V$ ensures each distinct echo string is counted exactly once.
+
+```mermaid
+flowchart TD
+    accTitle: Echo Substring Verification via Rolling Hash
+    accDescr: Pipeline iterating through candidate start positions and lengths, comparing left and right halves using rolling hash.
+    START["Input text: 'abcabcabc' (N = 9)"] --> PRE["Precompute prefix hashes H and powers P"]
+    PRE --> LOOP["Iterate start i from 0 to N-2, length 2L from 2 to N-i"]
+    LOOP --> SPLIT["Split into left [i..i+L-1] and right [i+L..i+2L-1]"]
+    SPLIT --> CMP{"Does hash(left) == hash(right)?"}
+    CMP -- Yes --> DEDUP["Insert hash(i, i+2L-1) into distinct set V"]
+    CMP -- No --> NEXT["Advance to next candidate"]
+    DEDUP --> NEXT
+    NEXT --> CHECK{"More candidates?"}
+    CHECK -- Yes --> LOOP
+    CHECK -- No --> OUT["Return |V| = 3"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Building powers and prefix hashes
+We trace `text = "abcabcabc"` of length $N = 9$.
+We examine candidate half-lengths $L \in \{1, 2, 3, 4\}$.
 
-Each lowercase character is converted to an integer from one through 26. With base 131, a string behaves like a number whose digits are those character values.
+### Candidate Half-Length $L = 1$ (Length $2L = 2$)
+- Pairs evaluated: `"ab"`, `"bc"`, `"ca"`, `"ab"`, `"bc"`, `"ca"`, `"ab"`, `"bc"`.
+- In every case, adjacent characters mismatch ($'a' \ne 'b'$, $'b' \ne 'c'$, $'c' \ne 'a'$).
+- No echo substrings found for $L = 1$.
 
-`h[i + 1]` is the polynomial hash of the prefix ending at original index `i`. `p[i + 1]` stores $131^{i+1}$ modulo `mod`.
+### Candidate Half-Length $L = 2$ (Length $2L = 4$)
+- Substrings evaluated: `"abca"`, `"bcab"`, `"cabc"`, `"abca"`, `"bcab"`, `"cabc"`.
+- Testing `"abca"`: left `"ab"` $\ne$ right `"ca"`.
+- Testing `"bcab"`: left `"bc"` $\ne$ right `"ab"`.
+- Testing `"cabc"`: left `"ca"` $\ne$ right `"bc"`.
+- No echo substrings found for $L = 2$.
 
-The update
+### Candidate Half-Length $L = 3$ (Length $2L = 6$)
+- **Candidate 1 ($i = 0$, interval $[0, 5]$): Substring `"abcabc"`**
+  - Left half $[0, 2]$: `"abc"`.
+  - Right half $[3, 5]$: `"abc"`.
+  - Hash comparison: $\text{hash}(0, 2) == \text{hash}(3, 5)$. Equal!
+  - Add `"abcabc"` to distinct set $V$. Current $|V| = 1$.
+- **Candidate 2 ($i = 1$, interval $[1, 6]$): Substring `"bcabca"`**
+  - Left half $[1, 3]$: `"bca"`.
+  - Right half $[4, 6]$: `"bca"`.
+  - Hash comparison: $\text{hash}(1, 3) == \text{hash}(4, 6)$. Equal!
+  - Add `"bcabca"` to distinct set $V$. Current $|V| = 2$.
+- **Candidate 3 ($i = 2$, interval $[2, 7]$): Substring `"cabcab"`**
+  - Left half $[2, 4]$: `"cab"`.
+  - Right half $[5, 7]$: `"cab"`.
+  - Hash comparison: $\text{hash}(2, 4) == \text{hash}(5, 7)$. Equal!
+  - Add `"cabcab"` to distinct set $V$. Current $|V| = 3$.
+- **Candidate 4 ($i = 3$, interval $[3, 8]$): Substring `"abcabc"`**
+  - Left half $[3, 5]$: `"abc"`.
+  - Right half $[6, 8]$: `"abc"`.
+  - Hash comparison: $\text{hash}(3, 5) == \text{hash}(6, 8)$. Equal!
+  - Pattern `"abcabc"` is already present in $V$ (duplicate); $|V|$ remains $3$.
 
-`h[i + 1] = (h[i] * base) % mod + t`
-
-shifts the previous polynomial by one base position and adds the new character. The final addition is not reduced immediately, so `h` can temporarily be slightly larger than `mod`, but it remains congruent to the intended modular hash. The later arithmetic and next multiplication apply modulo, so hash comparisons still use the same residue class.
-
-Arrays have `n + 10` slots, more than the needed `n + 1`. The extra constant padding is harmless.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"text": "abcabcabc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Extracting any substring hash
-
-`get(l, r)` uses one-based inclusive positions. The prefix `h[r]` contains everything through `r`. Multiplying `h[l - 1]` by `p[r - l + 1]` aligns the earlier prefix with that same polynomial degree. Subtracting cancels all characters before `l`:
-
-`(h[r] - h[l - 1] * p[r - l + 1]) % mod`.
-
-Python's modulo returns a nonnegative residue, so equal substrings receive equal returned hashes even when the raw subtraction is negative.
-
-After preprocessing, `get` performs constant-time array access and arithmetic instead of comparing every character in a candidate half.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Enumerating only even lengths
-
-`i` is the original zero-based start. The end `j` begins at `i + 1` and advances by two:
-
-`range(i + 1, n, 2)`.
-
-Therefore, `j - i` is odd, and the inclusive substring length `j - i + 1` is even. No odd-length substring is examined because it cannot be split into two equal-length halves.
-
-The midpoint `k = (i + j) >> 1` is the last original index of the first half. The halves are:
-
-- original indices `i` through `k`, hashed by `get(i + 1, k + 1)`; and
-- original indices `k + 1` through `j`, hashed by `get(k + 2, j + 1)`.
-
-Both one-based conversions add one to each original endpoint. The second half begins one original position after `k`, hence `k + 2` in the hash coordinate system.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Candidate Half-Length $L = 4$ (Length $2L = 8$)
+- Substring $[0, 7] = \text{"abcabcab"}$: left `"abca"` $\ne$ right `"bcab"`.
+- Substring $[1, 8] = \text{"bcabcabc"}$: left `"bcab"` $\ne$ right `"cabc"`.
+- No echo substrings found for $L = 4$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"text": "abcabcabc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Start $i$ | Half-Len $L$ | Substring S | Left Half $T_1$ | Right Half $T_2$ | $T_1 == T_2$? | Action on Set $V$ |
+|---|---|---|---|---|---|---|
+| $0$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Insert `"abcabc"` ($|V|=1$) |
+| $1$ | $3$ | `"bcabca"` | `"bca"` | `"bca"` | **Match** | Insert `"bcabca"` ($|V|=2$) |
+| $2$ | $3$ | `"cabcab"` | `"cab"` | `"cab"` | **Match** | Insert `"cabcab"` ($|V|=3$) |
+| $3$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Duplicate (ignored, $|V|=3$) |
+| All other | $1, 2, 4$ | Various | - | - | Mismatch | Skip |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A string $S$ is an echo substring if and only if its first half equals its second half. The polynomial rolling hash allows evaluating this equality in $\mathcal{O}(1)$ time. With a large prime modulus $M = 10^9 + 7$ and base $B = 131$, the probability of an unintended hash collision across $\mathcal{O}(N^2)$ candidate pairs is negligible ($< 10^{-4}$).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The nested loop enumerates all possible start positions $i \in [0, N-2]$ and all valid even lengths $2L \le N - i$. Every candidate echo substring in the input text is evaluated, ensuring no valid echo is overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Direct half comparison:** Compare slices or characters for every candidate. It is deterministic but can take $O(n^3)$ time because each of $O(n^2)$ candidates may compare $O(n)$ characters.
-- **Double rolling hash:** Two independent moduli make collisions vastly less likely while retaining $O(n^2)$ expected time, but do not provide absolute collision freedom.
-- **Suffix array or suffix LCP structure:** Deterministic longest-common-prefix queries can compare halves efficiently after heavier preprocessing.
-- **Store actual echo substrings:** It avoids hash-based distinctness collisions but slicing and hashing full strings can increase total time and memory.
-- **Length one text:** No even nonempty candidate exists, both loops add nothing, and the answer is zero.
-- **Length two text:** The only candidate compares its two characters and counts one only when they match.
-- **Overlapping occurrences:** Each interval is tested, and equal text across overlapping positions is deduplicated by the set.
-- **Same half at different lengths is impossible:** A string's content determines its length, so identical half text also has identical length and defines the same echo.
-- **One-based hash coordinates:** Every original endpoint must be shifted by one; the second half's start uses `k + 2`.
-- **Modulo subtraction:** Applying `% mod` normalizes negative raw differences.
-- **Hash collision:** The exact source has a probabilistic correctness caveat that should not be omitted from an expert explanation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate identical echoes at different offsets:** As seen at index $0$ and index $3$, the identical string `"abcabc"` appears twice. Simply counting valid match events yields $4$, which is incorrect. A set must deduplicate matching substrings.
+- **Odd-length substrings:** An echo substring must have an even length $2L$. Attempting to partition odd-length substrings into halves is mathematically impossible.
+- **Modular negative differences:** When computing $H[r + 1] - H[l] \cdot P[r - l + 1]$, the difference can be negative. In languages where modulo preserves negative signs, adding $+ M$ before applying $\pmod M$ prevents negative hash keys.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the text length. Prefix preprocessing takes $O(n)$ time and space.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N^2)$, where $N$ is the length of `text`. Precomputing the rolling hash arrays takes $\mathcal{O}(N)$ time. The nested loops explore $\mathcal{O}(N^2)$ candidate pairs, performing an $\mathcal{O}(1)$ hash equality check and set insertion per pair.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N^2)$ in the worst case to store the hashes of distinct echo substrings in set $V$, plus $\mathcal{O}(N)$ for prefix hash and power tables.

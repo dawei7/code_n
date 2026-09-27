@@ -1,127 +1,189 @@
 # Guided Example: Replace Employee ID With The Unique Identifier
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the relational left outer join strategy on a representative database instance:
 
-- **Input:** `{"tables": {"Employees": [{"id": 1, "name": "Alice"}, {"id": 7, "name": "Bob"}, {"id": 11, "name": "Meir"}, {"id": 90, "name": "Winston"}, {"id": 3, "name": "Jonathan"}], "EmployeeUNI": [{"id": 3, "unique_id": 1}, {"id": 11, "unique_id": 2}, {"id": 90, "unique_id": 3}]}}`
-- **Required output:** `{"columns": ["unique_id", "name"], "rows": [[null, "Alice"], [1, "Jonathan"], [null, "Bob"], [2, "Meir"], [3, "Winston"]]}`
+- **Input Tables:**
+  - `Employees`:
+    - `(1, "Alice")`
+    - `(7, "Bob")`
+    - `(11, "Meir")`
+    - `(90, "Winston")`
+    - `(3, "Jonathan")`
+  - `EmployeeUNI`:
+    - `(3, 1)`
+    - `(11, 2)`
+    - `(90, 3)`
+- **Required Output:**
+  - `(null, "Alice")`
+  - `(1, "Jonathan")`
+  - `(null, "Bob")`
+  - `(2, "Meir")`
+  - `(3, "Winston")`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it features employees with active unique identifiers alongside employees without registered identifiers, illustrating the preservation mechanics of relational left outer joins.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employees`
+We are given two relational entities:
+1. `Employees` with columns `id` (primary key) and `name`.
+2. `EmployeeUNI` with columns `id` and `unique_id` (composite primary key `(id, unique_id)`).
 
-The objective is to compute `{"columns": ["unique_id", "name"], "rows": [[null, "Alice"], [1, "Jonathan"], [null, "Bob"], [2, "Meir"], [3, "Winston"]]}` from `{"tables": {"Employees": [{"id": 1, "name": "Alice"}, {"id": 7, "name": "Bob"}, {"id": 11, "name": "Meir"}, {"id": 90, "name": "Winston"}, {"id": 3, "name": "Jonathan"}], "EmployeeUNI": [{"id": 3, "unique_id": 1}, {"id": 11, "unique_id": 2}, {"id": 90, "unique_id": 3}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our objective is to display each employee's `unique_id` and corresponding `name`. If an employee lacks an entry in `EmployeeUNI`, the corresponding `unique_id` must be emitted as `null`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Among the $5$ employee records:
+- Alice ($1$) and Bob ($7$) have no matching identifier records in `EmployeeUNI`.
+- Meir ($11$), Winston ($90$), and Jonathan ($3$) map to unique identifiers $2, 3$, and $1$ respectively.
+- The output relation must preserve all $5$ employee names, pairing them with their matched unique identifier or a null placeholder.
+
+The primary teaching goal is to model optional attribute attribution as a relational left outer join ($\bowtie_{\text{left}}$), contrasting its tuple preservation guarantees with inner joins that drop unmatched entities.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In relational algebra, combining two relations while strictly preserving all tuples from the primary relation regardless of whether a join match exists is formalized by the left outer join operator:
 
-| State Parameter | Role & Purpose | Initial State |
+$$
+\mathcal{R} = \Pi_{\text{unique\_id}, \text{name}} \left( \text{Employees} \bowtie_{\text{left}, \text{Employees.id} = \text{EmployeeUNI.id}} \text{EmployeeUNI} \right)
+$$
+
+For each tuple $e \in \text{Employees}$:
+1. If there exists $u \in \text{EmployeeUNI}$ such that $e[\text{id}] = u[\text{id}]$, emit tuple $\langle u[\text{unique\_id}], e[\text{name}] \rangle$.
+2. If no such tuple exists in `EmployeeUNI`, emit tuple $\langle \text{null}, e[\text{name}] \rangle$.
+
+```
+Employees (Primary)         EmployeeUNI (Lookup)       Output Tuple
+--------------------        --------------------       -------------------
+(1,  "Alice")     ---+----> [No Match in UNI]     -->  (null, "Alice")
+(7,  "Bob")       ---+----> [No Match in UNI]     -->  (null, "Bob")
+(11, "Meir")      ---+----> Matches id 11: (11, 2) --> (2,    "Meir")
+(90, "Winston")   ---+----> Matches id 90: (90, 3) --> (3,    "Winston")
+(3,  "Jonathan")  ---+----> Matches id 3:  (3, 1)  --> (1,    "Jonathan")
+```
+
+We define relational tracking parameters for the join resolution:
+
+| Parameter | Relational Representation | Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Left Entity ($e$) | Tuple in $\text{Employees}$ | Base record whose name must be preserved |
+| Key Probe ($e[\text{id}]$) | Primary key scalar | Looked up in index of $\text{EmployeeUNI}$ |
+| Lookup Match | Tuple in $\text{EmployeeUNI}$ or $\emptyset$ | Supplies `unique_id` if present |
+| Projected Result ($\mathcal{R}$) | Output relation | Accumulated tuples $\langle \text{unique\_id}, \text{name} \rangle$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every tuple in $\text{Employees}$, exactly one output tuple is generated containing its `name`, augmented with the associated `unique_id` if found in `EmployeeUNI` and `null` otherwise.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Choose the table that defines which rows must appear
+### Step 1: Build Hash Lookup on Right Relation
 
-The required output asks for every employee's name, along with that employee's unique identifier when one exists. Therefore `Employees` is the table whose rows must all survive. `EmployeeUNI` is optional lookup information: it can add `unique_id`, but the absence of a matching lookup row must not remove an employee.
+An in-memory hash table is constructed over the lookup table `EmployeeUNI`, mapping each lookup `id` to its `unique_id`:
 
-That requirement determines the join direction:
+$$
+\mathcal{M}_{\text{UNI}} = \{ 3 \mapsto 1, 11 \mapsto 2, 90 \mapsto 3 \}
+$$
 
-`Employees LEFT JOIN EmployeeUNI USING (id)`.
-
-A left join keeps every row from the table on its left. For each employee ID, it searches the right table for matching rows. If a match exists, the joined row contains the matching `unique_id`. If none exists, SQL still emits the employee row and fills columns contributed by `EmployeeUNI` with `NULL`.
-
-An inner join would be wrong because it would keep only employees that already have unique identifiers. Alice and Bob in the example would disappear instead of appearing with null values.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"id": 1, "name": "Alice"}, {"id": 7, "name": "Bob"}, {"id": 11, "name": "Meir"}, {"id": 90, "name": "Winston"}, {"id": 3, "name": "Jonathan"}], "EmployeeUNI": [{"id": 3, "unique_id": 1}, {"id": 11, "unique_id": 2}, {"id": 90, "unique_id": 3}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Lookup Key (`id`) | Associated `unique_id` | Hash Entry Status |
+|---|---|---|
+| $3$ | $1$ | Stored in index |
+| $11$ | $2$ | Stored in index |
+| $90$ | $3$ | Stored in index |
 
 ---
 
-### Step 2: What `USING (id)` means
+### Step 2: Sequential Probe of Preserved Employees
 
-Both tables contain a column named `id`. The `USING (id)` syntax is a concise equality join: it matches rows for which `Employees.id = EmployeeUNI.id`. It also presents the shared join column as one combined column in a full joined projection, avoiding two separately named `id` columns.
+We scan each employee tuple from $\text{Employees}$ and query the hash map $\mathcal{M}_{\text{UNI}}$:
 
-The exact query does not need to return `id`, so its final projection is only:
+1. **Employee (1, "Alice"):**
+   - Probe key $1$ in $\mathcal{M}_{\text{UNI}}$: Absent.
+   - Assign null for `unique_id`.
+   - Emitted tuple: $\langle \text{null}, \text{"Alice"} \rangle$.
 
-`SELECT unique_id, name`.
+2. **Employee (7, "Bob"):**
+   - Probe key $7$ in $\mathcal{M}_{\text{UNI}}$: Absent.
+   - Assign null for `unique_id`.
+   - Emitted tuple: $\langle \text{null}, \text{"Bob"} \rangle$.
 
-`name` comes from the preserved `Employees` row. `unique_id` comes from the optional matching `EmployeeUNI` row and is automatically null when the match is absent. No `CASE`, `COALESCE`, or literal replacement is necessary: the null-extension behavior of the left join already implements the requirement.
+3. **Employee (11, "Meir"):**
+   - Probe key $11$ in $\mathcal{M}_{\text{UNI}}$: Found with value $2$.
+   - Emitted tuple: $\langle 2, \text{"Meir"} \rangle$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+4. **Employee (90, "Winston"):**
+   - Probe key $90$ in $\mathcal{M}_{\text{UNI}}$: Found with value $3$.
+   - Emitted tuple: $\langle 3, \text{"Winston"} \rangle$.
 
----
+5. **Employee (3, "Jonathan"):**
+   - Probe key $3$ in $\mathcal{M}_{\text{UNI}}$: Found with value $1$.
+   - Emitted tuple: $\langle 1, \text{"Jonathan"} \rangle$.
 
-### Step 3: Following the sample row by row
-
-Employee ID 11 finds a matching lookup row `(11, 2)`, so the projection yields unique identifier 2 and name Meir. ID 90 similarly yields 3 and Winston, while ID 3 yields 1 and Jonathan.
-
-Employee IDs 1 and 7 have no right-side match. The left join nevertheless produces one joined row for each, with `EmployeeUNI.unique_id` equal to `NULL`. Projecting the requested columns yields null with Alice and null with Bob.
-
-Rows in `EmployeeUNI` whose ID does not occur in `Employees` would not appear. The query is not being asked to list identifier assignments independently; it is being asked to annotate the employee list.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["unique_id", "name"], "rows": [[null, "Alice"], [1, "Jonathan"], [null, "Bob"], [2, "Meir"], [3, "Winston"]]}` |
+| Employee ID | Name | Lookup in $\mathcal{M}_{\text{UNI}}$ | Output `unique_id` | Projected Tuple |
+|---|---|---|---|---|
+| $1$ | Alice | Not found | `null` | `(null, "Alice")` |
+| $7$ | Bob | Not found | `null` | `(null, "Bob")` |
+| $11$ | Meir | Found ($2$) | $2$ | `(2, "Meir")` |
+| $90$ | Winston | Found ($3$) | $3$ | `(3, "Winston")` |
+| $3$ | Jonathan | Found ($1$) | $1$ | `(1, "Jonathan")` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"id": 1, "name": "Alice"}, {"id": 7, "name": "Bob"}, {"id": 11, "name": "Meir"}, {"id": 90, "name": "Winston"}, {"id": 3, "name": "Jonathan"}], "EmployeeUNI": [{"id": 3, "unique_id": 1}, {"id": 11, "unique_id": 2}, {"id": 90, "unique_id": 3}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["unique_id", "name"], "rows": [[null, "Alice"], [1, "Jonathan"], [null, "Bob"], [2, "Meir"], [3, "Winston"]]}` | Verified |
+| Processing Order | Source Record | Join Key Match | Resolution Type | Emitted Tuple |
+|---|---|---|---|---|
+| Row 1 | `(1, "Alice")` | No match | Outer null extension | `(null, "Alice")` |
+| Row 2 | `(7, "Bob")` | No match | Outer null extension | `(null, "Bob")` |
+| Row 3 | `(11, "Meir")` | Matched $11 \mapsto 2$ | Attribute augmentation | `(2, "Meir")` |
+| Row 4 | `(90, "Winston")` | Matched $90 \mapsto 3$ | Attribute augmentation | `(3, "Winston")` |
+| Row 5 | `(3, "Jonathan")` | Matched $3 \mapsto 1$ | Attribute augmentation | `(1, "Jonathan")` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Relational Equivalence
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The problem specification requires all employees to be retained while enriching records with optional external attributes.
+- An inner equi-join $\text{Employees} \bowtie \text{EmployeeUNI}$ drops tuples from $\text{Employees}$ that lack a matching key, incorrectly omitting Alice and Bob.
+- A right outer join $\text{Employees} \bowtie_{\text{right}} \text{EmployeeUNI}$ would preserve identifiers that may not correspond to any valid employee.
+- The left outer join $\text{Employees} \bowtie_{\text{left}} \text{EmployeeUNI}$ strictly preserves every tuple of the base employee table and substitutes null for missing right-side values, matching the exact requirement.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Explicit `ON` clause:** Write `ON Employees.id = EmployeeUNI.id`. It is equivalent and can be clearer when join columns have different names or when qualified names are desired.
-- **Inner join:** This incorrectly removes employees without a unique identifier and therefore fails the central null requirement.
-- **Correlated scalar subquery:** Select the matching unique ID separately for every employee. It can work with a unique indexed lookup but is often less direct than one left join.
-- **Right join with reversed tables:** It can preserve `Employees` if table order is reversed, but left join expresses the output ownership more naturally.
-- **Employee without a mapping:** The row remains and `unique_id` is `NULL` automatically.
-- **Employee with a mapping:** Equality on `id` attaches the identifier while keeping the employee name.
-- **Unused mapping row:** A right-side ID absent from `Employees` is omitted, which is correct because the output is employee-driven.
-- **Several mappings for one ID:** The exact join duplicates the employee. Correct one-row behavior requires an actual uniqueness guarantee or an explicit selection rule.
-- **Duplicate employee IDs:** `Employees.id` is a primary key, so this case is excluded and each employee source row is unique.
-- **Null display:** SQL returns a database `NULL`, not the text string `"null"`.
-- **Result order:** No `ORDER BY` is necessary because any order is accepted.
-- **Column projection:** Selecting only `unique_id` and `name` prevents the shared internal `id` from leaking into the requested output.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(|\text{Employees}| + |\text{EmployeeUNI}|)$. Building the hash table of the lookup relation requires a single pass of size $|\text{EmployeeUNI}|$. Probing the table takes $\mathcal{O}(1)$ average time per employee record across $|\text{Employees}|$ rows.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\text{EmployeeUNI}|)$. Storing the hash lookup directory requires memory proportional to the number of distinct unique identifier mappings.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(E)$. Let $E$ be the number of `Employees` rows and $U$ the number of `EmployeeUNI` rows. Under a standard hash-join plan, the database builds a lookup structure for the right table in $O(U)$ time, scans the $E$ employee rows in $O(E)$ time, and performs expected constant-time lookups. Total time is $O(E+U)$ and working space is $O(U)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Inner Join Fallacy:** Using an inner join discards employees without unique identifiers, violating the core specification.
+- **Null Value Distinctions:** Unmatched values must resolve to relational null representations rather than string literals like `"None"` or empty values.
+- **Unreferenced Identifiers:** If `EmployeeUNI` contains keys not present in `Employees`, they must not be projected because the employee entity is the preserving relation.
+- **Arbitrary Ordering:** Unless an explicit order clause is specified by the relational engine, result tuples may be emitted in any valid order.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Relational Left Outer Join Flowchart
+    accDescr: Hash join algorithm building a lookup map for EmployeeUNI and probing each Employee record to emit unique_id and name.
+
+    Start(["Start"]) --> BuildIndex["Build Hash Index on EmployeeUNI: id -> unique_id"]
+    BuildIndex --> Loop{"For each row in Employees:"}
+    
+    Loop -- "Done" --> EndNode(["Return Projected Result Relation"])
+    Loop -- "Next Row" --> Check{"Is employee.id in Hash Index?"}
+    
+    Check -- "Yes" --> Match["Assign unique_id = index[id]"]
+    Check -- "No" --> NoMatch["Assign unique_id = null"]
+    
+    Match --> Emit["Emit (unique_id, name)"]
+    NoMatch --> Emit
+    Emit --> Loop
+```

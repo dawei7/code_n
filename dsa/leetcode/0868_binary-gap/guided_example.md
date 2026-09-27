@@ -1,107 +1,184 @@
 # Guided Example: Binary Gap
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step binary bit shifting, least significant bit inspection, previous set-bit index tracking, consecutive set-bit distance calculation, and maximum gap derivation on representative integers:
 
-- **Input:** `{"n": 1000000000}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:**
+  $$
+  n = 22
+  $$
+- **Required output:** `2`
+  - Binary gap definition:
+    - Given a positive integer $n$, convert $n$ to its binary representation.
+    - Find the **longest distance between two consecutive set bits** (bits with value $1$) in its binary representation.
+    - Two set bits at indices $i$ and $j$ ($i < j$) are consecutive if there are no other $1$s strictly between indices $i$ and $j$.
+    - The distance between them is $j - i$.
+    - If there are fewer than two set bits in $n$, there are no consecutive set bits $\implies$ return $0$.
+    - For $n = 22$:
+      - Binary decomposition:
+        $$
+        22 = 16 + 4 + 2 = 2^4 + 2^2 + 2^1 = 10110_2
+        $$
+      - 0-indexed bit positions from the right (LSB at index 0):
+        - Bit at index $1$ is $1$.
+        - Bit at index $2$ is $1$.
+        - Bit at index $4$ is $1$.
+      - Consecutive pairs:
+        - Pair 1: Between index $1$ and index $2$: distance $2 - 1 = 1$.
+        - Pair 2: Between index $2$ and index $4$: distance $4 - 2 = 2$.
+      - Maximum distance: $\max(1, 2) = \mathbf{2}$.
+- **Right-Shift & Anchor Tracking Invariant:**
+  - **Single-Pass Bit Extraction:**
+    - Rather than converting $n$ into a formatted string or allocating an array of bit positions, we stream through bits from right to left using bitwise operations:
+      $$
+      \text{Current Bit} = n \ \& \ 1, \quad n \leftarrow n \gg 1
+      $$
+  - **Previous Set-Bit Memory ($pre$):**
+    - Maintain the 0-indexed position of the most recently seen set bit, initialized to $\infty$ (unseen).
+    - Maintain the current bit position index $cur$, initialized to $0$.
+    - Whenever $n \ \& \ 1 == 1$:
+      - If $pre$ is not $\infty$, a previous consecutive $1$ exists:
+        $$
+        ans \leftarrow \max(ans, cur - pre)
+        $$
+      - Update anchor: $pre \leftarrow cur$.
+    - Increment bit position: $cur \leftarrow cur + 1$.
+    - Repeat until $n = 0$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a positive integer `n`, find and return *the **longest distance** between any two **adjacent** *`1`*'s in the binary representation of *`n`*. If there are no two adjacent *`1`*'s, return *`0`*.*
+Given $n = 22$ ($10110_2$), find the maximum gap between adjacent $1$s.
 
-The objective is to compute `3` from `{"n": 1000000000}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Binary:   1   0   1   1   0
+Index:    4   3   2   1   0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Bit 0: 0 -> no set bit
+Bit 1: 1 -> first 1 encountered (anchor pre = 1)
+Bit 2: 1 -> gap from pre(1) is 2 - 1 = 1. Update pre = 2.
+Bit 3: 0 -> no set bit
+Bit 4: 1 -> gap from pre(2) is 4 - 2 = 2. Update pre = 4.
+
+Maximum gap = max(1, 2) = 2
+```
+
+The teaching goal is to show how consecutive neighborhood relations can be evaluated during an online bitwise scan without materializing the binary string.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 1. Mathematical Bit Position Set:
+Let $S = \{k \in \mathbb{N}_0 \mid \lfloor n / 2^k \rfloor \equiv 1 \pmod 2\} = \{p_1, p_2, \dots, p_m\}$ with $p_1 < p_2 < \dots < p_m$.
+The objective is:
+$$
+ans = \begin{cases}
+0 & \text{if } |S| < 2 \\
+\max_{1 \le i < m} (p_{i+1} - p_i) & \text{if } |S| \ge 2
+\end{cases}
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-The binary gap concerns consecutive set bits, not every possible pair of set bits. A set bit is a binary digit equal to `1`. Two such bits are adjacent for this problem when no other `1` lies between them, even though any number of `0` digits may lie between them. Therefore, while scanning the binary representation, the only history needed for a newly encountered `1` is the position of the previous `1`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1000000000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 22$:
+Initialize: $ans = 0, cur = 0, pre = \infty$.
 
 ---
 
-### Step 2: Core Step 2
-
-The solution reads bits from right to left, beginning with the least significant bit. The variable `cur` is the position of the bit currently being examined: position zero for the rightmost bit, position one for the next bit, and so on. The test `n & 1` is nonzero exactly when the current least significant bit is `1`. After processing that bit, `n >>= 1` discards it and shifts the next bit into the least significant position. Incrementing `cur` keeps the position synchronized with that shift.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Bit Position $cur = 0$
+- Bit value: $n \ \& \ 1 = 22 \ \& \ 1 = 0$.
+- Bit is $0$, no set bit.
+- Advance: $n \leftarrow 22 \gg 1 = 11, cur \leftarrow 0 + 1 = 1$.
+- State: $ans = 0, pre = \infty$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Bit Position $cur = 1$
+- Bit value: $n \ \& \ 1 = 11 \ \& \ 1 = 1$.
+- **Set Bit Detected!**
+- Check previous anchor: $pre = \infty$ (first set bit seen).
+- Update anchor: $pre \leftarrow 1$.
+- Advance: $n \leftarrow 11 \gg 1 = 5, cur \leftarrow 1 + 1 = 2$.
+- State: $ans = 0, pre = 1$.
 
-**The two pieces of state.** The variable `pre` stores the original position of the most recently encountered `1`. The variable `ans` stores the largest distance between consecutive `1` bits found so far. When the current bit is `1`, the distance from the preceding set bit is `cur - pre`. The update
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 3: Bit Position $cur = 2$
+- Bit value: $n \ \& \ 1 = 5 \ \& \ 1 = 1$.
+- **Set Bit Detected!**
+- Check previous anchor: $pre = 1 \ne \infty$.
+- Distance: $cur - pre = 2 - 1 = 1$.
+- Update answer: $ans = \max(0, 1) = \mathbf{1}$.
+- Update anchor: $pre \leftarrow 2$.
+- Advance: $n \leftarrow 5 \gg 1 = 2, cur \leftarrow 2 + 1 = 3$.
+- State: $ans = 1, pre = 2$.
+
+---
+
+### Step 4: Bit Position $cur = 3$
+- Bit value: $n \ \& \ 1 = 2 \ \& \ 1 = 0$.
+- Bit is $0$, no set bit.
+- Advance: $n \leftarrow 2 \gg 1 = 1, cur \leftarrow 3 + 1 = 4$.
+- State: $ans = 1, pre = 2$.
+
+---
+
+### Step 5: Bit Position $cur = 4$
+- Bit value: $n \ \& \ 1 = 1 \ \& \ 1 = 1$.
+- **Set Bit Detected!**
+- Check previous anchor: $pre = 2 \ne \infty$.
+- Distance: $cur - pre = 4 - 2 = 2$.
+- Update answer: $ans = \max(1, 2) = \mathbf{2}$.
+- Update anchor: $pre \leftarrow 4$.
+- Advance: $n \leftarrow 1 \gg 1 = 0, cur \leftarrow 4 + 1 = 5$.
+- State: $ans = 2, pre = 4$.
+
+---
+
+### Termination:
+$n = 0$, loop ends.
+- **Return: `2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1000000000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Current $n$ | Current Index $cur$ | Current Bit ($n \ \& \ 1$) | Action Taken | Previous Anchor $pre$ | Calculated Gap ($cur - pre$) | Running Max $ans$ |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|
+| $22$ | $0$ | $0$ | Skip zero | $\infty$ | — | $0$ |
+| $11$ | $1$ | **$1$** | Record first $1$ | $1$ | — | $0$ |
+| $5$ | $2$ | **$1$** | Gap check & update $pre$ | $2$ | $2 - 1 = 1$ | $1$ |
+| $2$ | $3$ | $0$ | Skip zero | $2$ | — | $1$ |
+| **$1$** | **$4$** | **$1$** | **Gap check & update $pre$** | **$4$** | **$4 - 2 = 2$** | **`2`** |
+| $0$ | $5$ | Terminated | Output result | $4$ | — | **`2`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Powers of Two (e.g. $n = 8 = 1000_2$):** Only one set bit exists. $pre$ is updated once, but $cur - pre$ is never evaluated $\implies$ returns $0$.
+- **Alternating Bits (e.g. $n = 5 = 101_2$):** Set bits at index 0 and 2. Gap is $2 - 0 = 2$.
+- **Adjacent Bits (e.g. $n = 3 = 11_2$):** Gap is $1 - 0 = 1$.
+- **Max Input $n = 10^9 < 2^{30}$:** Loops at most 30 times.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Store all set-bit positions:** First collect every position containing `1`, then compare neighboring positions in the list. This is correct and still takes $O(\log n)$ time, but it uses $O(\log n)$ space that the one-pass state makes unnecessary.
-- **Convert to a binary string:** Scanning `bin(n)` can be visually intuitive. It also takes $O(\log n)$ time, but creates an $O(\log n)$ string and requires careful treatment of indices or counts between ones.
-- **Count zeros between ones:** One can reset a counter whenever a `1` appears and translate a run of zeros into a distance by adding one. This is equivalent, but tracking absolute bit positions makes the definition of distance more direct.
-- **Compare every pair of ones:** This does extra work and, more importantly, includes pairs that are not adjacent because another `1` may separate them. Only consecutive set bits are valid candidates.
-- **Exactly one set bit:** Powers of two such as `8 = 1000` contain no pair. The infinity sentinel ensures the answer remains zero.
-- **Adjacent literal ones:** A suffix such as `11` gives a distance of one. No separating zero is required for two set bits to be adjacent under the definition.
-- **Long zero run:** For `100001`, the two ones are still adjacent because there is no intervening one, and their positional difference is five.
-- **Three or more ones:** Only neighboring ones in positional order are compared. For `10101`, the outer ones are not a valid pair because the middle one separates them.
-- **Least significant bit set:** If the rightmost bit is `1`, it is simply recorded at position zero; no special indexing adjustment is needed.
-- **Maximum allowed value:** The constraint $n \le 10^9$ means at most 30 relevant bits, but the loop is written generically and naturally stops after the actual most significant set bit.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Measuring from Non-Adjacent $1$s:** Measuring distance across intervening $1$s violates the "consecutive set bits" requirement. Resetting $pre \leftarrow cur$ on every set bit guarantees strictly adjacent comparisons.
+- **Converting to Python String `bin(n)`:** While valid, string manipulation allocates heap memory and runs string scans; bit-shifting operates in $\mathcal{O}(1)$ space on hardware CPU registers.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(b)$. Let $b = \lfloor\log_2 n\rfloor+1$ be the number of bits in the positive integer `n`. Each loop iteration examines one bit, performs constant-time arithmetic and bit operations, and shifts the number once.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Number of bits in $n$ is $\lfloor \log_2 n \rfloor + 1$.
+  - For $n \le 10^9$, at most $30$ iterations.
+  - Each iteration performs $\mathcal{O}(1)$ bitwise operations.
+  - Total Time: $\mathcal{O}(\log n)$, executing in $< 0.1$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space using three scalar integer registers ($ans, pre, cur$).

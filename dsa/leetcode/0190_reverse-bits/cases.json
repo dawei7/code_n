@@ -16,6 +16,19 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2147483644
+      },
+      "expected": 1073741822,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-zero",
       "name": "all bits are zero",
       "kind": "trial",

@@ -1,108 +1,163 @@
 # Guided Example: Faulty Sensor
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step identification of a defective sensor via prefix agreement and asymmetric shift alignment on a representative problem instance:
 
-- **Input:** `{"sensor1": [2, 3, 4, 5], "sensor2": [2, 1, 3, 4]}`
-- **Required output:** `1`
+- **Input:** `sensor1 = [2, 3, 4, 5]`, `sensor2 = [2, 1, 3, 4]`
+- **Required Output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how a single dropped observation shifts subsequent readings by one position, enabling hypothesis testing between candidate defect alignments to pinpoint the faulty sensor in linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $i^{\text{th}}$ data points collected by the two sensors.
+Two sensors collect data in an experiment, recording arrays `sensor1` and `sensor2` of identical length $n$.
+Under normal operation, both sensors produce identical data streams.
+However, exactly **one** sensor is faulty:
+- The faulty sensor dropped exactly one data point during collection.
+- All subsequent data points in that sensor were shifted to the left by one position.
+- The faulty sensor appended an arbitrary value at its last index ($n - 1$).
 
-The objective is to compute `1` from `{"sensor1": [2, 3, 4, 5], "sensor2": [2, 1, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
+We must determine which sensor is faulty:
+- Return `1` if `sensor1` is definitely the faulty sensor.
+- Return `2` if `sensor2` is definitely the faulty sensor.
+- Return `-1` if it is impossible to determine (both hypotheses are plausible, or the dropped value occurred at the very last index).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- `sensor1 = [2, 3, 4, 5]` ($n = 4$)
+- `sensor2 = [2, 1, 3, 4]` ($n = 4$)
+- Index $0$: $\text{sensor1}[0] = 2 = \text{sensor2}[0]$. Both agree.
+- Index $1$: $\text{sensor1}[1] = 3 \neq \text{sensor2}[1] = 1$. First disagreement at $p = 1$.
+- If Sensor 1 is faulty, it dropped the true value $1$ that Sensor 2 recorded at index $1$. Then Sensor 1's subsequent elements should match Sensor 2 shifted by $1$:
+  - $\text{sensor1}[1] \stackrel{?}{=} \text{sensor2}[2] \implies 3 == 3$ (True).
+  - $\text{sensor1}[2] \stackrel{?}{=} \text{sensor2}[3] \implies 4 == 4$ (True).
+  Sensor 1 satisfies the defect condition.
+- If Sensor 2 were faulty, it would have dropped the value $3$ recorded by Sensor 1. Then Sensor 2's subsequent elements should match Sensor 1 shifted by $1$:
+  - $\text{sensor2}[1] \stackrel{?}{=} \text{sensor1}[2] \implies 1 == 4$ (False).
+  Sensor 2 cannot be the faulty sensor.
+- Therefore, Sensor 1 is unambiguously faulty.
+
+The teaching goal is to recognize that scanning to the first mismatch isolates the dropout candidate index, after which testing the two parallel shift alignments determines the faulty sensor.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Common Prefix and Dropout Invariant
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $A = \text{sensor1}$ and $B = \text{sensor2}$.
+1. Prior to the dropout, both sensors observe the same data. The common prefix satisfies:
+   $$A[i] = B[i], \quad \forall 0 \le i < p$$
+   where $p$ is the index of the first mismatch.
+2. At index $p$, one sensor recorded the true observation, while the other sensor dropped it and recorded the next available observation instead.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Single Element Dropout & Asymmetric Shift Invariant Theorem
+
+> **Single Element Dropout & Asymmetric Shift Invariant Theorem.**
+> Let $p$ be the minimal index where $A[p] \neq B[p]$.
+> - **Hypothesis 1 ($A$ is faulty):** Sensor $B$ represents the true sequence. Sensor $A$ skipped $B[p]$, shifting its subsequent values left:
+>   $$A[i] = B[i + 1], \quad \forall p \le i < n - 1$$
+> - **Hypothesis 2 ($B$ is faulty):** Sensor $A$ represents the true sequence. Sensor $B$ skipped $A[p]$, shifting its subsequent values left:
+>   $$B[i] = A[i + 1], \quad \forall p \le i < n - 1$$
+>
+> Testing each hypothesis over $i \in [p, n - 2]$ yields:
+> 1. If $A[i + 1] \neq B[i]$ for some $i$, then $B$ cannot be shifted relative to $A$, refuting Hypothesis 2; if Hypothesis 1 holds, return `1`.
+> 2. If $A[i] \neq B[i + 1]$ for some $i$, then $A$ cannot be shifted relative to $B$, refuting Hypothesis 1; if Hypothesis 2 holds, return `2`.
+> 3. If neither hypothesis is refuted (or $p = n - 1$), both sensors could plausibly be the faulty sensor; return `-1`.
+
+```mermaid
+flowchart TD
+    accTitle: Faulty Sensor Shift Verification
+    accDescr: Diagram illustrating scanning for first mismatch, followed by checking shifted alignments A[i+1] == B[i] and A[i] == B[i+1].
+    A["Scan arrays until A[p] != B[p]"] --> B["First mismatch found at p = 1: A[1] = 3, B[1] = 1"]
+    B --> C{"Check Hypothesis 1: A[i] == B[i+1]?"}
+    B --> D{"Check Hypothesis 2: B[i] == A[i+1]?"}
+    C -- "i=1: 3 == 3 (Valid); i=2: 4 == 4 (Valid)" --> E["Hypothesis 1 Holds (Sensor 1 Faulty)"]
+    D -- "i=1: 1 == 4 (Mismatch!)" --> F["Hypothesis 2 Refuted"]
+    E & F --> G["Unambiguous Result: Return 1"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**A dropped value creates one of two shifts.** Before any defect becomes visible, both sensor arrays have the same values at the same indices. If sensor 1 is defective, then after its missing data point, its values are shifted one place left relative to the correct sensor 2. From the first visible disagreement onward, the relationship should therefore be
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sensor1": [2, 3, 4, 5], "sensor2": [2, 1, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `sensor1 = [2, 3, 4, 5]` and `sensor2 = [2, 1, 3, 4]` ($n = 4$).
 
 ---
 
-### Step 2: Core Step 3
+### Step 1: Find the First Disagreement Index $p$
 
-for every position `t` before the final random slot. Conversely, if sensor 2 is defective, the required shifted relationship is
+Initialize pointer $i = 0$. Compare $A[i]$ with $B[i]$:
+- $i = 0$:
+  $$A[0] = 2, \quad B[0] = 2 \implies \text{Match. Increment } i \to 1$$
+- $i = 1$:
+  $$A[1] = 3, \quad B[1] = 1 \implies 3 \neq 1 \implies \text{Mismatch!}$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Stop prefix scan at $p = 1$.
 
 ---
 
-### Step 3: Optimality Decision
+### Step 2: Test Shift Alignments from Index $p = 1$ to $n - 2 = 2$
 
-Synthesize the final answer directly from validated sub-states.
+We evaluate the two shift relationships across the remaining interior indices:
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+#### Position $i = 1$:
+- Test Hypothesis 2: Does $B[1] == A[2]$?
+  $$B[1] = 1, \quad A[2] = 4 \implies 1 \neq 4$$
+  Hypothesis 2 fails! Sensor 2 is **not** the faulty sensor.
+- Test Hypothesis 1: Does $A[1] == B[2]$?
+  $$A[1] = 3, \quad B[2] = 3 \implies 3 == 3$$
+  Hypothesis 1 remains valid.
+
+#### Position $i = 2$:
+- Test Hypothesis 1: Does $A[2] == B[3]$?
+  $$A[2] = 4, \quad B[3] = 4 \implies 4 == 4$$
+  Hypothesis 1 remains valid.
+
+All interior positions verified.
+
+---
+
+### Step 3: Conclude Faulty Sensor
+
+- Hypothesis 1 is fully satisfied across all remaining indices.
+- Hypothesis 2 was refuted at index $1$.
+- Conclusion: Sensor 1 is definitely the faulty sensor.
+
+Emitted result: **`1`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sensor1": [2, 3, 4, 5], "sensor2": [2, 1, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Index $i$ | $A[i]$ (`sensor1`) | $B[i]$ (`sensor2`) | Equality Check | Hypothesis 1 ($A[i] \stackrel{?}{=} B[i+1]$) | Hypothesis 2 ($B[i] \stackrel{?}{=} A[i+1]$) | Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| $0$ | $2$ | $2$ | $2 == 2$ | — | — | Common prefix agreement |
+| $1$ | $3$ | $1$ | $3 \neq 1$ | $A[1] == B[2] \implies 3 == 3$ (True) | $B[1] == A[2] \implies 1 == 4$ (False) | First mismatch; Hyp 2 refuted |
+| $2$ | $4$ | $3$ | — | $A[2] == B[3] \implies 4 == 4$ (True) | — | Hyp 1 confirmed |
+| $3$ | $5$ | $4$ | — | Tail element (ignored) | Tail element (ignored) | Arbitrary value in faulty sensor |
+
+Final result: **`1`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If Sensor 2 had dropped an element at index $p$, its suffix $B[p \dots n-2]$ would be an exact copy of $A[p+1 \dots n-1]$. Observing $B[1] \neq A[2]$ mathematically disproves that Sensor 2 was the faulty sensor. Meanwhile, $A[1 \dots 2] == B[2 \dots 3]$ proves that Sensor 1 matches the exact pattern of dropping element $B[1]$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** There are only two possible faulty sensors. By checking both shifted relationships simultaneously across all affected indices, the algorithm eliminates any invalid hypothesis and returns $-1$ if and only if both hypotheses remain plausible.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Build both reconstructed candidates:** One could delete a candidate position from each presumed correct array and compare resulting sequences, but trying positions directly can take `O(n^2)` time and allocates unnecessary arrays.
-- **Run two separate full hypothesis checks:** Independently validating “sensor 1 faulty” and “sensor 2 faulty” is still `O(n)` and can be clear, but the paired loop shares the common scan and returns as soon as one direction fails.
-- **Mismatch only at the last index:** The replacement value is unconstrained except that it differs from the dropped value, so the defective sensor cannot be identified and the answer is `-1`.
-- **Completely equal arrays:** There may be no defect, or duplicate readings may hide a possible drop; there is no unique defective sensor, so the answer is `-1`.
-- **Array length one:** There is no nonfinal position at which a shift can be tested. Both loops skip their bodies and return `-1`.
-- **Repeated values around the drop:** They may delay the first visible mismatch. Starting the shifted comparisons at that mismatch still tests every informative position.
-- **Both shifted alignments remain valid:** This is genuine ambiguity, not a reason to choose the first sensor. The final `-1` handles it.
-- **One alignment fails late:** A hypothesis must hold at every informative suffix position, so even a failure near the end conclusively eliminates it.
-- **Random final value:** The algorithm intentionally never compares it as though it had to continue the shift; doing so would reject valid defective readings.
-- **Return-number interpretation:** Failure of `sensor1[i + 1] == sensor2[i]` disproves sensor 2 and returns one; failure of `sensor1[i] == sensor2[i + 1]` disproves sensor 1 and returns two.
-- **Model guarantee:** The early-return order relies on the stated setting that at most one sensor is defective. Arbitrary unrelated arrays could violate both hypotheses, but such data is outside the promised experiment model.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inspecting the Tail Element ($n - 1$):** The faulty sensor appends a completely arbitrary value at index $n - 1$. Comparing the last element directly can trigger false rejections; only indices up to $n - 2$ can be compared against the shifted counterpart.
+- **Ambiguous Defect at Tail:** If the first disagreement occurs at $p = n - 1$, either sensor could have dropped its final value and replaced it with a random tail, so the answer must be $-1$.
+- **Identical Shifted Sequences:** For arrays like `sensor1 = [1, 1, 1, 1]` and `sensor2 = [1, 1, 1, 2]`, shifting by $1$ leaves all ones unchanged, making both hypotheses valid. The algorithm must return `-1` in such symmetric cases.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the common array length. The first loop scans a matching prefix, and the second loop scans the remaining suffix. They are sequential rather than nested: an index passed by the first loop is not revisited by the second except for the boundary mismatch. Thus the total number of comparisons is linear, giving `O(n)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of the sensor arrays. The two pointers traverse the arrays in a single forward pass, examining each index at most twice.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, using only scalar pointer variables.

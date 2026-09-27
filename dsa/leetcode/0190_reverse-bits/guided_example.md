@@ -1,135 +1,173 @@
 # Guided Example: Reverse Bits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 32-bit fixed-width bitwise extraction, left-accumulator shifting, and divide-and-conquer parallel mask swaps on representative binary integers:
 
-- **Input:** `{"n": 43261596}`
-- **Required output:** `964176192`
+- **Input:** $n = 43261596$ (`00000010100101000001111010011100` in 32-bit binary)
+- **Required output:** $964176192$ (`00111001011110000010100101000000` in 32-bit binary)
+- **All-Ones Instance:** $n = 4294967295$ (`111...111` in binary) $\implies 4294967295$
+- **Unit Bit Instance:** $n = 1$ (`...0001` in binary) $\implies 2147483648$ ($2^{31}$, bit 0 shifts to bit 31)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates fixed-width 32-bit register manipulation, explains why leading zeroes must be preserved as trailing zeroes, constructs the single-pass shift-and-accumulate loop ($(\text{ans} \ll 1) \mid (n \ \& \ 1)$), and derives the $O(1)$ divide-and-conquer mask optimization for high-throughput calls.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Reverse bits of a given 32 bits signed integer.
+Given a 32-bit unsigned integer $n = 43261596$:
+Represented in binary with leading zeroes:
+$$
+n = \mathbf{00000010100101000001111010011100}_2
+$$
+Reverse the order of all 32 bits from left to right:
+$$
+\text{reversed} = \mathbf{00111001011110000010100101000000}_2 = \mathbf{964176192}_{10}
+$$
 
-The objective is to compute `964176192` from `{"n": 43261596}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A critical requirement is that the reversal is defined strictly over **all 32 bit positions**, including leading zeroes:
+- The 6 leading zeroes of $n$ must become the 6 trailing zeroes of the result.
+- Stopping early when $n$ reaches $0$ fails because missing bits are not shifted into higher significance.
+The loop must execute exactly 32 times.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Shift-and-Accumulate Protocol (32 Iterations)
+Initialize $\text{ans} = 0$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Repeat exactly 32 times:
+1. **Shift Accumulator Left:**
+   Make room at the least significant position:
+   $$
+   \text{ans} \leftarrow \text{ans} \ll 1
+   $$
+2. **Inject Extracted Bit:**
+   Extract bit 0 of $n$ and bitwise-OR it into $\text{ans}$:
+   $$
+   \text{ans} \leftarrow \text{ans} \mid (n \ \& \ 1)
+   $$
+3. **Shift Input Right:**
+   Drop the processed bit from $n$:
+   $$
+   n \leftarrow n \gg 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Return $\text{ans}$.
+
+### Method B: Divide-and-Conquer Parallel Mask Swaps ($O(1)$, 5 Operations)
+When called millions of times, bit-by-bit loops can be replaced by parallel bit swaps using precomputed bitmasks:
+1. Swap 16-bit halves:
+   $$
+   n = (n \gg 16) \mid (n \ll 16)
+   $$
+2. Swap 8-bit bytes:
+   $$
+   n = ((n \ \& \ \text{0xFF00FF00}) \gg 8) \mid ((n \ \& \ \text{0x00FF00FF}) \ll 8)
+   $$
+3. Swap 4-bit nibbles:
+   $$
+   n = ((n \ \& \ \text{0xF0F0F0F0}) \gg 4) \mid ((n \ \& \ \text{0x0F0F0F0F}) \ll 4)
+   $$
+4. Swap 2-bit pairs:
+   $$
+   n = ((n \ \& \ \text{0xCCCCCCCC}) \gg 2) \mid ((n \ \& \ \text{0x33333333}) \ll 2)
+   $$
+5. Swap adjacent bits:
+   $$
+   n = ((n \ \& \ \text{0xAAAAAAAA}) \gg 1) \mid ((n \ \& \ \text{0x55555555}) \ll 1)
+   $$
+
+> **Invariant.** After $k$ iterations of Method A, the first $k$ least significant bits of the original $n$ occupy the $k$ lowest positions of $\text{ans}$ in reversed order. After 32 iterations, all bits reach their exact mirrored positions.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the integer as exactly 32 positions
+We trace the shift accumulation for $n = 43261596$:
+Binary suffix of $n$: $\dots \mathbf{11100}_2$.
 
-The operation reverses a fixed-width bit pattern, not merely the visible binary
-digits of the integer. Leading zero positions are part of the 32-bit input and
-become trailing zero positions in the answer. This is why the loop always runs
-32 times, even if `n` becomes zero much earlier.
+### Iterations 0 to 4 (Trailing bits of $n$):
+- **Iter 0 ($i = 0$):**
+  - Bit 0 of $n$: $n \ \& \ 1 = 0$.
+  - $\text{ans} = (0 \ll 1) \mid 0 = \mathbf{0}$.
+  - $n \leftarrow n \gg 1$.
+- **Iter 1 ($i = 1$):**
+  - Bit 0 of $n$: $n \ \& \ 1 = 0$.
+  - $\text{ans} = (0 \ll 1) \mid 0 = \mathbf{0}$.
+  - $n \leftarrow n \gg 1$.
+- **Iter 2 ($i = 2$):**
+  - Bit 0 of $n$: $n \ \& \ 1 = 1$.
+  - $\text{ans} = (0 \ll 1) \mid 1 = \mathbf{1}_2 = 1$.
+  - $n \leftarrow n \gg 1$.
+- **Iter 3 ($i = 3$):**
+  - Bit 0 of $n$: $n \ \& \ 1 = 1$.
+  - $\text{ans} = (1 \ll 1) \mid 1 = \mathbf{11}_2 = 3$.
+  - $n \leftarrow n \gg 1$.
+- **Iter 4 ($i = 4$):**
+  - Bit 0 of $n$: $n \ \& \ 1 = 1$.
+  - $\text{ans} = (11_2 \ll 1) \mid 1 = \mathbf{111}_2 = 7$.
+  - $n \leftarrow n \gg 1$.
 
-Number bit positions from 0 at the least significant end through 31 at the most
-significant end. Reversal maps original position $i$ to destination position
-$31-i$. The implementation processes original positions in increasing order
-and builds that mapping explicitly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 43261596}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Extract the current least significant bit
-
-`n & 1` isolates bit zero. Bitwise AND with binary `...0001` clears every other
-position, leaving integer zero when the current bit is 0 and integer one when
-it is 1.
-
-After processing that bit, `n >>= 1` shifts the remaining input right. The bit
-that was originally at position 1 becomes the new position 0, then original
-position 2 does so on the next iteration. Thus loop index `i` corresponds to
-the original bit position being examined.
-
-The Reference restricts `n` to a nonnegative value, so Python's right shift
-inserts zeros on the left. Negative Python integers use an unbounded two's
-complement model and arithmetic right shift, which would require an explicit
-32-bit mask; those values are outside this local contract.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+*(Notice: The trailing bits `...11100` of $n$ are emerging as the leading bits `00111...` of $\text{ans}$!)*
 
 ---
 
-### Step 3: Move the extracted bit to its mirrored destination
+### Continuing Through Iteration 31:
+- As iterations continue, each bit is shifted left by 1.
+- At iteration 31, the original bit 0 (which was $0$) has been shifted left 31 times to bit position 31.
+- The 6 leading zeroes of $n$ are processed in the final 6 iterations ($i = 26 \dots 31$), shifting zeroes into $\text{ans}$ and positioning all bits precisely.
 
-On iteration `i`, the expression `(n & 1) << (31 - i)` places the isolated bit
-at output position $31-i$. If the input bit is zero, shifting zero changes
-nothing. If it is one, the expression creates exactly one set bit at the
-mirrored position.
-
-The solution combines that bit with `ans` using bitwise OR. Each iteration
-targets a different destination position, so no two contributions overlap and
-OR is equivalent to adding the powers of two. OR states the bit-setting intent
-more clearly and cannot carry into adjacent positions.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `964176192` |
+Final value of $\text{ans}$:
+$$
+\mathbf{00111001011110000010100101000000}_2 = \mathbf{964176192}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 43261596}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `964176192` | Verified |
+```text
+Original n:  00000010100101000001111010011100 (43261596)
+
+Bit Traversal:
+  Bits  0- 4: 0, 0, 1, 1, 1 -> ans prefix starts with 00111...
+  Bits  5- 9: 0, 1, 0, 0, 1
+  Bits 10-14: 1, 1, 1, 1, 0
+  ...
+  Bits 26-31: 0, 0, 0, 0, 0, 0 -> shifts 6 zeros into ans suffix
+
+Reversed:    00111001011110000010100101000000 (964176192)
+```
+
+| Iteration Window | Extracted Bit from $n$ | $\text{ans} \ll 1$ | Injected Bit | Cumulative $\text{ans}$ (Binary Prefix) |
+|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | `0` | 0 | `0` |
+| 1 | 0 | `00` | 0 | `00` |
+| 2 | 1 | `000` | 1 | `001` |
+| 3 | 1 | `0010` | 1 | `0011` |
+| 4 | 1 | `00110` | 1 | `00111` |
+| ... | ... | ... | ... | ... |
+| **31** | **0** | - | - | **`00111001011110000010100101000000` (964176192)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In bitwise positional arithmetic, each left-shift $(\text{ans} \ll 1)$ multiplies the current accumulated integer by 2. Over 32 iterations, a bit extracted at iteration $i$ is shifted left exactly $31 - i$ times. Thus, the original bit at position $i$ is mapped to destination bit $31 - i$, creating the exact mirror reversal.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Fixed iteration bounds of exactly 32 ensure that all 32 bit slots are explicitly transferred, properly accounting for leading and trailing zeroes.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Mask-and-shift network:** Swap 16-bit halves, then bytes, nibbles, pairs, and adjacent bits; five fixed stages give $O(1)$ time.
-- **Byte lookup table:** Reverse four bytes using a 256-entry cache and reorder them, useful when the function is called repeatedly.
-- **Binary string:** Pad to exactly 32 characters before reversing; readable but allocates extra representation storage.
-- **Input zero:** Every extracted bit is zero, so the answer remains zero.
-- **Leading zeros:** They must be included conceptually even though integer formatting normally hides them.
-- **Even input:** Maps a zero low bit to a zero high bit but requires no special branch.
-- **Maximum permitted input:** Still uses the same 32 iterations and bounded shifts.
-- **Negative integers:** Outside the Reference; mask with `0xffffffff` first if supporting signed Python inputs as raw 32-bit patterns.
-- **Repeated calls:** A byte or nibble reversal table can trade a small fixed cache for fewer operations.
-- **Variable width:** Replace constants 32 and 31 with the chosen explicit bit width.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Terminating When $n == 0$:** If a while loop terminates when $n$ reaches 0 (`while n > 0:`), leading zeroes are omitted, resulting in an incomplete shift and a wrong answer. The loop must iterate exactly 32 times.
+- **Signed Integer Sign Extension:** In languages with signed 32-bit integers (e.g. Java), bit 31 set to 1 makes the integer negative. Using logical unsigned right shift (`>>>`) in Java or treating values as 64-bit unsigned integers avoids arithmetic sign preservation bugs.
+- **Repeated Optimization:** Calling the function millions of times benefits from the divide-and-conquer parallel mask swap or a 256-entry byte lookup table.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The loop executes exactly 32 iterations. Under the problem's fixed 32-bit word
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$. The loop runs for exactly 32 steps, performing $O(1)$ bitwise operations per step. The parallel mask method runs in 5 bitwise operations.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, storing only the scalar integer `ans`.

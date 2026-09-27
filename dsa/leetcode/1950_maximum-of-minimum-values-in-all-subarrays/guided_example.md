@@ -1,117 +1,171 @@
 # Guided Example: Maximum of Minimum Values in All Subarrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace and analyze the monotonic stack and prefix-suffix window propagation algorithm on a representative array to determine the maximum of minimums for every window size in linear time.
 
-- **Input:** `{"nums": [0, 1, 2, 4]}`
-- **Required output:** `[4, 2, 1, 0]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** `nums = [10, 20, 50, 10]` ($N = 4$)
+- **Expected Output:** `[50, 20, 10, 10]`
 
 ---
 
-## 1. Instance & Teaching Goal
+## 1. Instance & Intuition
 
-You are given an integer array `nums` of size `n`. You are asked to solve `n` queries for each integer `i` in the range $0 \le i < n$.
+Given an array of $N$ numbers, we wish to compute, for every possible window length $L \in \{1, \dots, N\}$, the maximum value among all subarray minima of size $L$.
 
-The objective is to compute `[4, 2, 1, 0]` from `{"nums": [0, 1, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+A brute-force strategy would inspect all $\mathcal{O}(N^2)$ subarrays and compute their minima in $\mathcal{O}(N^3)$ or $\mathcal{O}(N^2)$ time with a deque, which is prohibitive for $N = 10^5$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Instead of asking *"for a fixed length $L$, what is the maximum minimum?"*, we invert the question:
+> **"For each element $nums[i]$, what is the largest window in which $nums[i]$ remains the minimum?"**
 
----
+If $nums[i]$ is the minimum of a maximal contiguous range of length $k$, then $nums[i]$ is a valid candidate minimum for any window of length $L \le k$ contained within that range. Specifically, $nums[i]$ establishes a lower bound on the maximum minimum for window length $k$:
+$$\text{ans}[k] \ge nums[i]$$
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Furthermore, the function $g(L) = \max_{\text{all windows } W \text{ of size } L} \min(W)$ is monotonically non-increasing with respect to $L$:
+$$g(L) \ge g(L+1) \quad \text{for all } 1 \le L < N$$
+This holds because any window of length $L+1$ contains a sub-window of length $L$. The minimum over the larger set cannot exceed the minimum over its subset. Thus, a backward suffix sweep fills all intermediate window sizes in linear time.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical Formalism & Invariants
 
-### Step 1: Ask how wide each value can remain the minimum
+For each index $i \in \{0, \dots, N-1\}$:
+- Let $L[i]$ be the index of the **previous smaller element** strictly less than $nums[i]$:
+  $$L[i] = \max(\{j < i \mid nums[j] < nums[i]\} \cup \{-1\})$$
+- Let $R[i]$ be the index of the **next smaller or equal element**:
+  $$R[i] = \min(\{j > i \mid nums[j] \le nums[i]\} \cup \{N\})$$
 
-Instead of evaluating every window length separately, the solution considers each element `nums[i]` and finds the largest contiguous interval in which that element can serve as a minimum. If that interval has length $m$, then `nums[i]` is an achievable window minimum for length $m$ and for smaller contained windows that include it.
+The open interval $(L[i], R[i])$ defines the maximal span where $nums[i]$ is the unique minimum (breaking ties consistently via strict inequality on the left and weak inequality on the right).
 
-The interval stops immediately before the nearest strictly smaller value on each side. Values equal to `nums[i]` do not stop it because `nums[i]` is still a minimum when equals are present.
+The span length is:
+$$\text{len}(i) = R[i] - L[i] - 1$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [0, 1, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Monotonic Stack Invariant
 
----
+We maintain a stack of indices storing elements in strictly increasing order of values:
+$$\text{Stack} = [s_0, s_1, \dots, s_m] \implies nums[s_0] < nums[s_1] < \dots < nums[s_m]$$
 
-### Step 2: Find nearest strictly smaller boundaries with monotonic stacks
+When encountering an element $nums[i] \le nums[\text{top}]$, popping the top index $t$ establishes that:
+1. The right boundary of $t$ is $R[t] = i$.
+2. The left boundary of $t$ is the new top of the stack $L[t] = \text{Stack}[\text{top}-1]$ (or $-1$ if the stack becomes empty).
 
-The left scan maintains indices whose values are strictly increasing on the stack. Before assigning `left[i]`, it pops while the top value is greater than or equal to the current value. After those pops, the remaining top, if any, is the nearest index to the left with a strictly smaller value. If none exists, the sentinel remains `-1`.
+```mermaid
+flowchart TD
+    accTitle: Inverted Window Size and Monotonic Stack Flow
+    accDescr: Pipeline showing boundary detection via monotonic stack, span length mapping, and backward suffix maximum propagation.
 
-The right-to-left scan applies the same rule and stores the nearest strictly smaller index to the right, or sentinel `n`.
-
-For index $i$, every value between these boundaries is at least `nums[i]`, while crossing either boundary would include a smaller value. Therefore the maximum interval length for this minimum is
-
-`m = right[i] - left[i] - 1`.
-
-The code records `nums[i]` as a candidate for answer index `m - 1`, because result index $m-1$ corresponds to window size $m$. Multiple elements may have the same span length, so `max` keeps the best minimum value.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why equal values are handled
-
-Both scans pop equal values. This may let several equal elements claim overlapping wide intervals, but it cannot inflate the answer because they contribute the same value. More importantly, at least one representative of a plateau can claim every window span where that plateau value is the minimum. Strictly smaller values, not equals, are the true limiting boundaries.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 2, 1, 0]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0, 1, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 2, 1, 0]` | Verified |
+    INPUT["Array: [10, 20, 50, 10]"]
+    
+    STACK["Monotonic Stack Sweep<br/>Compute (L[i], R[i]) for each index"]
+    INPUT --> STACK
+    
+    SPAN["Span Length Calculation<br/>len = R[i] - L[i] - 1<br/>Seed ans[len] = max(ans[len], nums[i])"]
+    STACK --> SPAN
+    
+    SWEEP["Backward Suffix-Max Sweep<br/>ans[k] = max(ans[k], ans[k+1])<br/>for k = N-1 down to 1"]
+    SPAN --> SWEEP
+    
+    OUTPUT["Result Array: [50, 20, 10, 10]"]
+    SWEEP --> OUTPUT
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step State Evolution
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We execute the monotonic stack on `nums = [10, 20, 50, 10]`:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Phase 1: Boundary Computation via Monotonic Stack
+
+1. **$i = 0$ ($nums[0] = 10$):**
+   - Stack is empty. Push $0$.
+   - Stack: `[0]`.
+
+2. **$i = 1$ ($nums[1] = 20$):**
+   - $nums[1] = 20 > nums[0] = 10$. Push $1$.
+   - Stack: `[0, 1]`.
+
+3. **$i = 2$ ($nums[2] = 50$):**
+   - $nums[2] = 50 > nums[1] = 20$. Push $2$.
+   - Stack: `[0, 1, 2]`.
+
+4. **$i = 3$ ($nums[3] = 10$):**
+   - Compare with top index $2$ ($nums[2] = 50$): $10 \le 50$. Pop $2$!
+     - Popped index $t = 2$ ($nums[2] = 50$).
+     - Right boundary $R[2] = 3$.
+     - Left boundary $L[2] = \text{top} = 1$.
+     - Span length: $\text{len}(2) = R[2] - L[2] - 1 = 3 - 1 - 1 = 1$.
+   - Compare with top index $1$ ($nums[1] = 20$): $10 \le 20$. Pop $1$!
+     - Popped index $t = 1$ ($nums[1] = 20$).
+     - Right boundary $R[1] = 3$.
+     - Left boundary $L[1] = \text{top} = 0$.
+     - Span length: $\text{len}(1) = R[1] - L[1] - 1 = 3 - 0 - 1 = 2$.
+   - Compare with top index $0$ ($nums[0] = 10$): $10 \le 10$. Pop $0$!
+     - Popped index $t = 0$ ($nums[0] = 10$).
+     - Right boundary $R[0] = 3$.
+     - Left boundary $L[0] = -1$ (stack now empty).
+     - Span length: $\text{len}(0) = R[0] - L[0] - 1 = 3 - (-1) - 1 = 3$.
+   - Stack is now empty. Push $3$.
+   - Stack: `[3]`.
+
+5. **End of Array (Flush remaining elements with virtual boundary $i = 4$):**
+   - Pop index $3$ ($nums[3] = 10$):
+     - Right boundary $R[3] = 4$.
+     - Left boundary $L[3] = -1$.
+     - Span length: $\text{len}(3) = 4 - (-1) - 1 = 4$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Execution Trace Table
 
-- **Enumerate every subarray:** Maintaining minima for all $O(N^2)$ windows is too slow.
-- **Sliding minimum for each length:** A deque can solve one fixed length in $O(N)$, but repeating it for all $N$ lengths is quadratic.
-- **Use one strict and one non-strict boundary:** This is a common way to assign duplicate spans uniquely. The exact source uses non-strict popping on both sides; overlapping equal claims remain harmless for maximum values.
-- **Single element:** Both sentinels bound a span of one, and the result is that element.
-- **All equal values:** Every answer should equal that value. Wide spans are recorded and backward propagation fills all lengths.
-- **Strictly increasing array:** Each value's right reach extends to the end until a left smaller boundary; the formula derives the expected decreasing answers.
-- **Strictly decreasing array:** Symmetric boundary behavior handles minima extending leftward.
-- **Zeros:** Zero is a valid minimum and also the initialization value; propagation still works because no true answer is negative.
-- **Missing direct length:** The backward monotonicity pass supplies it from a longer achievable span.
-- **Nearest strictly smaller:** Equal values must not terminate the region where the current value remains a minimum.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Boundary and Span Summary
+
+| Index $i$ | $nums[i]$ | Left Boundary $L[i]$ | Right Boundary $R[i]$ | Valid Span $(L[i], R[i])$ | Maximal Length $\text{len}(i)$ | Seed Assignment $\text{ans}[\text{len}]$ |
+|---|---|---|---|---|---|---|
+| 0 | 10 | -1 | 3 | $(-1, 3)$ | $3 - (-1) - 1 = 3$ | $\text{ans}[3] = \max(0, 10) = 10$ |
+| 1 | 20 | 0 | 3 | $(0, 3)$ | $3 - 0 - 1 = 2$ | $\text{ans}[2] = \max(0, 20) = 20$ |
+| 2 | 50 | 1 | 3 | $(1, 3)$ | $3 - 1 - 1 = 1$ | $\text{ans}[1] = \max(0, 50) = 50$ |
+| 3 | 10 | -1 | 4 | $(-1, 4)$ | $4 - (-1) - 1 = 4$ | $\text{ans}[4] = \max(0, 10) = 10$ |
+
+### Backward Suffix Maximum Propagation
+
+We initialize $\text{ans} = [0, 50, 20, 10, 10]$ (1-indexed for lengths $1 \dots 4$).
+
+| Step | Length $k$ | Direct Candidate $\text{ans}[k]$ | Suffix Candidate $\text{ans}[k+1]$ | Final Propagated $\text{ans}[k]$ | Justification |
+|---|---|---|---|---|---|
+| 1 | 4 | 10 | Boundary base | 10 | Maximal span for full array |
+| 2 | 3 | 10 | $\text{ans}[4] = 10$ | $\max(10, 10) = 10$ | Windows of size 4 imply size 3 |
+| 3 | 2 | 20 | $\text{ans}[3] = 10$ | $\max(20, 10) = 20$ | Peak window `[20, 50]` has minimum 20 |
+| 4 | 1 | 50 | $\text{ans}[2] = 20$ | $\max(50, 20) = 50$ | Single element `[50]` has minimum 50 |
+
+Converting to 0-indexed output yields `[50, 20, 10, 10]`.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Soundness & Proof Sketch
 
-- **Time Complexity:** $O(N)$. Let $N$ be the array length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** Let $M(L)$ be the true maximum minimum among all subarrays of length $L$.
+1. For any element $nums[i]$ with maximal span length $\text{len}(i)$, the subarray $nums[L[i]+1 \dots R[i]-1]$ contains $nums[i]$ and has length $\text{len}(i)$. Every element in this subarray is $\ge nums[i]$, so its minimum is exactly $nums[i]$. Thus $M(\text{len}(i)) \ge nums[i]$. Seeding $\text{ans}[\text{len}(i)] \leftarrow \max(\text{ans}[\text{len}(i)], nums[i])$ is therefore sound.
+2. For any window of length $L+1$ with minimum $v$, any subsegment of length $L$ inside it has minimum $\ge v$. Thus $M(L) \ge M(L+1)$. Propagating $\text{ans}[L] \leftarrow \max(\text{ans}[L], \text{ans}[L+1])$ maintains mathematical validity.
+
+**Completeness.** Suppose an optimal subarray $S^*$ of length $L$ achieves the true maximum minimum $v = \min(S^*)$. The minimum element $nums[j] = v$ within $S^*$ has some maximal span of length $\text{len}(j)$. Since $S^*$ is contained within this maximal span, $L \le \text{len}(j)$. During seeding, $\text{ans}[\text{len}(j)]$ receives $nums[j] = v$. During suffix propagation, this value $v$ flows down to all $L \le \text{len}(j)$, guaranteeing that $\text{ans}[L] \ge v$. Hence no optimal value is underestimated.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **Equal Elements and Tie-Breaking:** When elements are identical (such as two $10$s in `[10, 20, 50, 10]`), using strict inequality for both left and right would cause overlapping intervals and duplicate counting. Using strict inequality on the left ($nums[j] < nums[i]$) and non-strict on the right ($nums[j] \le nums[i]$) partitions intervals consistently without double counting.
+- **Unassigned Intermediate Lengths:** Some window lengths might not be the exact maximal span of any single element (e.g., in `[1, 100, 1]`, lengths 1 and 3 are seeded, but length 2 is not). The backward suffix pass $\text{ans}[k] = \max(\text{ans}[k], \text{ans}[k+1])$ is mandatory to propagate the valid upper bound to unseeded lengths.
+- **Monotonicity Violation Fallacy:** Attempting forward propagation ($\text{ans}[k] = \max(\text{ans}[k], \text{ans}[k-1])$) is completely false: expanding a window can never increase its minimum; it can only maintain or decrease it. Propagation must proceed strictly from $N-1$ down to 1.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Every index $i \in \{0, \dots, N-1\}$ is pushed onto the stack exactly once and popped at most once.
+  - Determining $L[i]$ and $R[i]$ takes $\mathcal{O}(N)$ amortized time.
+  - Suffix propagation sweeps $N$ elements in reverse order, taking $\mathcal{O}(N)$ time.
+  - Overall time complexity is $\mathcal{O}(N)$, optimal for reading the input.
+- **Auxiliary Space Complexity:**
+  - The monotonic stack stores at most $N$ integers: $\mathcal{O}(N)$.
+  - The answer array of size $N+1$ requires $\mathcal{O}(N)$ space.
+  - Total auxiliary space is $\mathcal{O}(N)$.

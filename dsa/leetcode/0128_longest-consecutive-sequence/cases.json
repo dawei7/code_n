@@ -48,6 +48,24 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-empty",
       "name": "empty list",
       "kind": "trial",

@@ -1,121 +1,166 @@
 # Guided Example: N-Queens
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step recursive depth-first backtracking search on the canonical 4-Queens chessboard instance:
 
-- **Input:** `{"n": 4}`
+- **Input:** $n = 4$
 - **Required output:** `[[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates row-by-row queen placement, constant-time threat detection using column and diagonal index formulas ($c$, $r + c$, $r - c$), pruning blocked subtrees, and board reconstruction upon reaching depth $n$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **n-queens** puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.
+On an $n \times n$ chessboard with $n = 4$, place $4$ queens such that no two queens attack each other. A queen attacks any cell in the same row, column, or diagonal.
 
-The objective is to compute `[[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]` from `{"n": 4}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A brute-force search over all $\binom{16}{4} = 1820$ cell configurations is slow and examines mostly invalid boards.
+By observing that each row must contain **exactly one** queen, we formulate the problem as assigning a unique column $c \in [0, 3]$ to each row $r \in [0, 3]$. This reduces the search space to at most $4! = 24$ permutations. Backtracking with diagonal constraint tracking prunes invalid branches early, discovering both valid solutions in only a few recursive steps.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Coordinate Threat Formulas
+For a queen placed at row $r$ and column $c$:
+1. **Vertical Column Threat:** All cells sharing the same column $c$. Tracked via set or bitmask $\text{cols}$.
+2. **Anti-Diagonal Threat ($/$):** All cells along top-right to bottom-left diagonals share constant $r + c \in [0, 2n - 2]$. Tracked via set $\text{diag1}$.
+3. **Main Diagonal Threat ($\setminus$):** All cells along top-left to bottom-right diagonals share constant $r - c \in [-(n - 1), n - 1]$. Tracked via set $\text{diag2}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
+Anti-diagonals (r + c):       Main diagonals (r - c):
+   0   1   2   3                 0  -1  -2  -3
+   1   2   3   4                 1   0  -1  -2
+   2   3   4   5                 2   1   0  -1
+   3   4   5   6                 3   2   1   0
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Backtracking Transitions
+Function `place_queen(row)`:
+- If $\text{row} == n$: All $n$ queens are placed safely! Convert the placement history into a string board representation and record it.
+- For each column $c \in [0, n - 1]$:
+  - If $c \notin \text{cols}$ and $(r + c) \notin \text{diag1}$ and $(r - c) \notin \text{diag2}$:
+    - Mark $c, r + c, r - c$ as occupied.
+    - Record column: $\text{queens}[r] = c$.
+    - Recurse: `place_queen(row + 1)`.
+    - Unmark $c, r + c, r - c$ (Rollback).
+
+> **Invariant.** At recursion depth $r$, exactly $r$ queens have been safely placed in rows $0 \dots r - 1$ without any mutual row, column, or diagonal conflicts.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Place exactly one queen in each row
+We trace the search tree for $n = 4$:
 
-A queen attacks along its row, column, and both diagonal directions. The recursion assigns rows in increasing order, and each call `dfs(i)` chooses the queen's column for row `i`. Because the algorithm makes exactly one choice before recursing to the next row, two queens can never share a row. No row-occupancy structure is needed.
-
-The remaining work is to reject a column if an earlier queen attacks it vertically or diagonally. Once one queen has been placed in every row without those conflicts, the board is a complete solution.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: How diagonal coordinates become array indices
-
-Cells on a diagonal running from top-right to bottom-left have the same row-plus-column value. Thus `i + j` identifies that diagonal. Its range is 0 through $2n-2$, so `dg[i + j]` can record whether it already contains a queen.
-
-Cells on a diagonal running from top-left to bottom-right have the same column-minus-row value `j - i`. That value may be negative, so the code adds `n` and indexes `udg[n - i + j]`. The possible indices range from 1 through $2n-1$. The arrays have length `2 * n`; every used index is valid, although index 0 of `udg` is unused.
-
-`col[j]` records vertical occupancy. Each entry in all three arrays is either zero or one. The expression
-
-`col[j] + dg[i + j] + udg[n - i + j] == 0`
-
-is true precisely when all three relevant lines are unoccupied. If any one contains a queen, the sum is positive and the candidate is skipped.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Subtree 1: Anchor at $(0, 0)$ (Row 0, Col 0)
+- Place Queen at $(0, 0)$: $\text{cols}=\{0\}, \text{diag1}=\{0\}, \text{diag2}=\{0\}$.
+- **Row 1:**
+  - $c = 0$: Conflict with col 0.
+  - $c = 1$: Conflict on diag2 ($1 - 1 = 0$).
+  - $c = 2$: Safe! Place at $(1, 2)$.
+    - $\text{cols}=\{0, 2\}, \text{diag1}=\{0, 3\}, \text{diag2}=\{0, -1\}$.
+    - **Row 2:**
+      - $c = 0$: Col 0 conflict.
+      - $c = 1$: Diag1 conflict ($2 + 1 = 3$).
+      - $c = 2$: Col 2 conflict.
+      - $c = 3$: Diag2 conflict ($2 - 3 = -1$).
+      - *All columns blocked! Dead end at Row 2. Backtrack.*
+  - $c = 3$: Safe! Place at $(1, 3)$.
+    - $\text{cols}=\{0, 3\}, \text{diag1}=\{0, 4\}, \text{diag2}=\{0, -2\}$.
+    - **Row 2:**
+      - $c = 1$: Safe! Place at $(2, 1)$.
+        - $\text{cols}=\{0, 3, 1\}, \text{diag1}=\{0, 4, 3\}, \text{diag2}=\{0, -2, 1\}$.
+        - **Row 3:**
+          - $c = 0, 1, 3$: Col conflicts.
+          - $c = 2$: Diag2 conflict ($3 - 2 = 1$).
+          - *All columns blocked! Backtrack.*
+- Conclude: No solutions exist starting with Queen at $(0, 0)$.
 
 ---
 
-### Step 3: The recursive state invariant
+### Subtree 2: Anchor at $(0, 1)$ (Row 0, Col 1)
+- Place Queen at $(0, 1)$: $\text{cols}=\{1\}, \text{diag1}=\{1\}, \text{diag2}=\{-1\}$.
+- **Row 1:**
+  - $c = 0, 1, 2$: Blocked by threats.
+  - $c = 3$: Safe! Place at $(1, 3)$.
+    - Occupied: $\text{cols}=\{1, 3\}, \text{diag1}=\{1, 4\}, \text{diag2}=\{-1, -2\}$.
+- **Row 2:**
+  - $c = 0$: Safe! Place at $(2, 0)$.
+    - Occupied: $\text{cols}=\{1, 3, 0\}, \text{diag1}=\{1, 4, 2\}, \text{diag2}=\{-1, -2, 2\}$.
+- **Row 3:**
+  - $c = 0, 1$: Blocked.
+  - $c = 2$: Safe! ($2 \notin \text{cols}, 3+2=5 \notin \text{diag1}, 3-2=1 \notin \text{diag2}$).
+    - Place at $(3, 2)$!
+- **Depth Reached ($r = 4$):**
+  - All 4 queens placed: Columns are $[1, 3, 0, 2]$.
+  - **Record Solution 1:**
+    ```text
+    . Q . .
+    . . . Q
+    Q . . .
+    . . Q .
+    ```
 
-At entry to `dfs(i)`, rows 0 through `i - 1` contain exactly one queen each, rows `i` through `n - 1` contain only dots, and the three occupancy arrays describe exactly the queens in the filled prefix. Those queens do not attack one another.
+---
 
-The initial call `dfs(0)` satisfies the invariant: the grid is all dots and every occupancy entry is zero. For a safe column `j`, the algorithm writes `"Q"` into `g[i][j]` and marks the corresponding column and two diagonals. These updates happen before recursion so deeper rows see the new queen as an obstacle.
+### Subtree 3: Anchor at $(0, 2)$ (Row 0, Col 2)
+By horizontal symmetry with Subtree 2:
+- Row 0: Col 2 $\to (0, 2)$.
+- Row 1: Col 0 $\to (1, 0)$.
+- Row 2: Col 3 $\to (2, 3)$.
+- Row 3: Col 1 $\to (3, 1)$.
+- All 4 queens placed: Columns are $[2, 0, 3, 1]$.
+- **Record Solution 2:**
+  ```text
+  . . Q .
+  Q . . .
+  . . . Q
+  . Q . .
+  ```
 
-Since the safety test ruled out every attack with an earlier queen, the child state remains non-attacking. The child also moves to `i + 1`, so its filled prefix is one row longer and the invariant is preserved.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]` |
+### Subtree 4: Anchor at $(0, 3)$ (Row 0, Col 3)
+Symmetrical to Subtree 1: Dead ends on all branches.
+
+Search finishes. Exactly 2 valid configurations found.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]` | Verified |
+| DFS State ($r$) | Queen Placed at $(r, c)$ | Columns In Use | Anti-Diags ($r+c$) | Main Diags ($r-c$) | Subtree Outcome |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| Row 0 | $(0, 0)$ | $\{0\}$ | $\{0\}$ | $\{0\}$ | Dead end at Row 2 / Row 3 |
+| Row 0 | **$(0, 1)$** | $\{1\}$ | $\{1\}$ | $\{-1\}$ | Continues |
+| Row 1 | $(1, 3)$ | $\{1, 3\}$ | $\{1, 4\}$ | $\{-1, -2\}$ | Continues |
+| Row 2 | $(2, 0)$ | $\{1, 3, 0\}$ | $\{1, 4, 2\}$ | $\{-1, -2, 2\}$ | Continues |
+| Row 3 | $(3, 2)$ | $\{1, 3, 0, 2\}$ | $\{1, 4, 2, 5\}$ | $\{-1, -2, 2, 1\}$ | **Emits Solution 1 (`[1, 3, 0, 2]`)** |
+| Row 0 | **$(0, 2)$** | $\{2\}$ | $\{2\}$ | $\{-2\}$ | Continues |
+| Row 1 | $(1, 0)$ | $\{2, 0\}$ | $\{2, 1\}$ | $\{-2, 1\}$ | Continues |
+| Row 2 | $(2, 3)$ | $\{2, 0, 3\}$ | $\{2, 1, 5\}$ | $\{-2, 1, -1\}$ | Continues |
+| Row 3 | $(3, 1)$ | $\{2, 0, 3, 1\}$ | $\{2, 1, 5, 4\}$ | $\{-2, 1, -1, 2\}$ | **Emits Solution 2 (`[2, 0, 3, 1]`)** |
+| Row 0 | $(0, 3)$ | $\{3\}$ | $\{3\}$ | $\{-3\}$ | Dead end (Symmetric to $(0, 0)$) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A cell $(r, c)$ is occupied only when no prior queen shares its row (enforced by placing one queen per recursive step), column ($c \notin \text{cols}$), or either diagonal ($r+c \notin \text{diag1}$, $r-c \notin \text{diag2}$). Reaching row $n$ guarantees that all $n$ queens are mutually non-attacking.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Backtracking tests every available column for row $r$. Rollback guarantees that unwinding a failed branch leaves no lingering constraints, ensuring the entire legal solution space is explored.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Column path plus sets:** Store one column per row and three occupied sets. This reduces the active board representation, but Python sets still need linear state and board strings must be created at each solution.
-- **Boolean arrays with no full grid:** Keep the same conflict checks but store only `curr[row] = column`. It achieves $O(n)$ auxiliary search space and constructs the board only at leaves.
-- **Bit-mask backtracking:** Represent columns and diagonals as integers, derive all available positions with bit operations, and recurse on set bits. It is compact and fast but less beginner-friendly.
-- **Check the grid by scanning:** Testing an entire column and two diagonals for every tentative queen avoids marker arrays but increases each safety check to $O(n)$.
-- **`n = 1`:** The only cell is safe, the leaf serializes `["Q"]`, and one solution is returned.
-- **Rows with no safe column:** The empty remainder of the loop is the dead-end signal; ordinary return triggers rollback in the parent.
-- **Odd and even dimensions:** No special geometric case is needed. Diagonal formulas cover every square uniformly.
-- **Negative diagonal differences:** The `n` offset prevents negative indexing from being used as a different Python list position.
-- **Input mutation:** The only input is integer `n`; all board state is internal.
-- **Answer order:** Depth-first increasing-column order determines presentation, but the contract accepts any order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **String Board Reconstruction:** Creating the list of strings `["." * c + "Q" + "." * (n - 1 - c)]` only upon reaching depth $n$ is far faster than maintaining a 2D char array across all backtracking steps.
+- **Negative Diagonal Indices:** $r - c$ ranges from $-(n - 1)$ to $n - 1$. While Python sets naturally handle negative keys, fixed arrays require adding an offset $n$ (`diag[r - c + n]`).
+- **Bitmask Acceleration:** For $n \le 16$, the three conflict sets can be represented as integer bitmasks, with threat testing and bit flipping performed via fast bitwise operations (`cols | (1 << c)`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n!)$. Column uniqueness alone reduces full placement orders to at most $n!$, and diagonal checks prune many of them. Let $S$ be the number of valid solutions and let $V$ be the number of partial states visited. Each state scans up to $n$ columns, so search work is $O(nV)$, with $V=O(n!)$ as a conventional coarse bound.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(n!)$. Row 0 has $n$ choices, Row 1 has at most $n-1$, Row 2 has at most $n-2$. Diagonal constraints prune the tree much faster than $n!$. For $n=4$, only 8 leaf states are examined.
+- **Auxiliary Space Complexity:** $O(n)$ to store the recursion stack and conflict sets of size $O(n)$.

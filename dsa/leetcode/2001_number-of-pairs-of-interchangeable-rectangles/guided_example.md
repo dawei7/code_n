@@ -1,126 +1,186 @@
 # Guided Example: Number of Pairs of Interchangeable Rectangles
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and trace the exact Euclidean GCD fraction normalization and combinatorial frequency grouping algorithm on representative geometric rectangles to count interchangeable aspect ratio pairs without floating-point inaccuracies.
 
-- **Input:** `{"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]}`
-- **Required output:** `6`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given `n` rectangles represented by a **0-indexed** 2D integer array `rectangles`, where $\text{rectangles}[i] = [\text{width}_{i}, \text{height}_{i}]$ denotes the width and height of the $i^{\text{th}}$ rectangle.
-
-The objective is to compute `6` from `{"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `rectangles = [[4, 8], [3, 6], [10, 20], [15, 30]]` ($N = 4$)
+  - Expected Output: `6` (all 4 rectangles reduce to the canonical aspect ratio $1:2$, yielding $\binom{4}{2} = 6$ interchangeable pairs)
+- **Secondary Instance:** `rectangles = [[1, 2], [2, 4], [3, 5], [6, 10]]` ($N = 4$)
+  - Expected Output: `2` (two rectangles with ratio $1:2$ form 1 pair; two rectangles with ratio $3:5$ form 1 pair; total = $1 + 1 = 2$)
+- **Disjoint Instance:** `rectangles = [[4, 5], [7, 8]]` ($N = 2$)
+  - Expected Output: `0` (ratios $4:5$ and $7:8$ are coprime and distinct)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+Two rectangles $i$ and $j$ ($i < j$) with dimensions $[w_i, h_i]$ and $[w_j, h_j]$ are **interchangeable** if and only if they share the exact same width-to-height ratio:
+$$\frac{w_i}{h_i} = \frac{w_j}{h_j}$$
+We wish to determine the total number of index pairs $(i, j)$ satisfying this relationship.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Pitfall of Floating-Point Division
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Using IEEE-754 floating-point division ($w / h$) is fraught with precision issues. For large integers, binary floating-point representations can suffer from rounding errors, causing mathematically identical fractions to produce slightly different floating-point bit patterns (e.g., $1/3$ represented in binary vs decimal).
 
----
+### Exact Fraction Normalization via Greatest Common Divisor
 
-## 3. Step-by-Step Worked Execution
+To represent every ratio unambiguously using exact integer arithmetic:
+1. For each rectangle $[w, h]$, compute $g = \gcd(w, h)$ using the Euclidean algorithm.
+2. Reduce the fraction to lowest terms:
+   $$w' = \frac{w}{g}, \quad h' = \frac{h}{g}$$
+3. The reduced integer pair $(w', h')$ is a unique canonical identifier for the aspect ratio.
 
-### Step 1: Represent a ratio exactly
+### Combinatorial Aggregation
 
-Two rectangles are interchangeable when their fractions $w/h$ are equal. Using floating-point division as a dictionary key risks rounding concerns and is unnecessary.
+If an aspect ratio $(w', h')$ appears with frequency $c$ across the entire dataset:
+- Every selection of 2 rectangles from this group forms an interchangeable pair.
+- The number of distinct pairs contributed by this group is given by the binomial coefficient:
+  $$\binom{c}{2} = \frac{c(c - 1)}{2}$$
+- Summing $\binom{c}{2}$ over all distinct canonical ratios yields the global total.
 
-The source reduces each fraction to lowest terms. It computes `g = gcd(w, h)` and replaces the dimensions with
-
-`(w // g, h // g)`.
-
-This pair is a canonical exact representation of the ratio.
-
-For example, `(4,8)`, `(3,6)`, and `(10,20)` all reduce to `(1,2)`. Rectangles with unequal ratios reduce to different coprime pairs.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Alternatively, in a single forward pass, as each rectangle is processed:
+- If its canonical ratio has been observed $k$ times previously, it forms $k$ new pairs with those existing rectangles.
+- We add $k$ to the running total and increment the frequency.
 
 ---
 
-### Step 2: Why gcd reduction is canonical
+## 2. Invariant Architecture & Normalization Pipeline
 
-Let $g=\gcd(w,h)$. Dividing both values by $g$ removes every common factor, so the resulting numerator and denominator are coprime.
+```mermaid
+flowchart TD
+    accTitle: Exact Fraction Normalization Pipeline
+    accDescr: Pipeline taking dimensions w and h, dividing by gcd to form irreducible pair, and accumulating combinatorial pair counts.
 
-If two positive fractions are equal, cross multiplication gives $w_1h_2=w_2h_1$. Their reduced coprime representations must have the same numerator and denominator. Conversely, identical reduced pairs clearly represent equal fractions.
+    INPUT["Input Rectangle [w, h]"] --> GCD["Compute g = gcd(w, h) via Euclidean Algorithm"]
+    
+    GCD --> REDUCE["Form Canonical Pair:<br/>(w', h') = (w / g, h / g)"]
 
-Thus tuple equality is necessary and sufficient for ratio equality.
+    REDUCE --> LOOKUP["Look up current count k = freq.get((w', h'), 0)"]
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+    LOOKUP --> ACC["Accumulate Pairs:<br/>total_pairs += k<br/>freq[(w', h')] = k + 1"]
+
+    ACC --> NEXT{"More rectangles?"}
+    NEXT -- Yes --> INPUT
+    NEXT -- No --> RET["Return total_pairs"]
+```
 
 ---
 
-### Step 3: Count pairs as each rectangle arrives
+## 3. Step-by-Step State Evolution
 
-`cnt[ratio]` stores how many earlier rectangles have the same reduced ratio. When the current rectangle belongs to a class with count $c$, it forms one new pair with each of those $c$ earlier occurrences.
+We trace the Primary Instance: `rectangles = [[4, 8], [3, 6], [10, 20], [15, 30]]` ($N = 4$).
 
-The source adds `cnt[(w,h)]` to `ans` and then increments the count. Updating after the addition prevents pairing a rectangle with itself.
+Initialize:
+- Frequency map: $\text{freq} = \{\}$
+- Running pairs counter: $\text{total\_pairs} = 0$
 
-This online counting automatically enforces index order: every pair is counted when its later index is processed, so the earlier member is already in the counter.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+### Step 1: Process Rectangle 0 (`[4, 8]`)
+- Compute divisor: $\gcd(4, 8) = 4$.
+- Canonical ratio:
+  $$w' = \frac{4}{4} = 1, \quad h' = \frac{8}{4} = 2 \implies (1, 2)$$
+- Lookup $\text{freq}[(1, 2)]$: not found (count $k = 0$).
+- Pairs added: $\text{total\_pairs} \leftarrow 0 + 0 = 0$.
+- Update map: $\text{freq}[(1, 2)] \leftarrow 1$.
+
+---
+
+### Step 2: Process Rectangle 1 (`[3, 6]`)
+- Compute divisor: $\gcd(3, 6) = 3$.
+- Canonical ratio:
+  $$w' = \frac{3}{3} = 1, \quad h' = \frac{6}{3} = 2 \implies (1, 2)$$
+- Lookup $\text{freq}[(1, 2)]$: currently $1$.
+- Rectangle 1 pairs with Rectangle 0: $+1$ pair.
+- Update pairs: $\text{total\_pairs} \leftarrow 0 + 1 = 1$.
+- Update map: $\text{freq}[(1, 2)] \leftarrow 1 + 1 = 2$.
+
+---
+
+### Step 3: Process Rectangle 2 (`[10, 20]`)
+- Compute divisor: $\gcd(10, 20) = 10$.
+- Canonical ratio:
+  $$w' = \frac{10}{10} = 1, \quad h' = \frac{20}{10} = 2 \implies (1, 2)$$
+- Lookup $\text{freq}[(1, 2)]$: currently $2$.
+- Rectangle 2 pairs with Rectangles 0 and 1: $+2$ pairs.
+- Update pairs: $\text{total\_pairs} \leftarrow 1 + 2 = 3$.
+- Update map: $\text{freq}[(1, 2)] \leftarrow 2 + 1 = 3$.
+
+---
+
+### Step 4: Process Rectangle 3 (`[15, 30]`)
+- Compute divisor: $\gcd(15, 30) = 15$.
+- Canonical ratio:
+  $$w' = \frac{15}{15} = 1, \quad h' = \frac{30}{15} = 2 \implies (1, 2)$$
+- Lookup $\text{freq}[(1, 2)]$: currently $3$.
+- Rectangle 3 pairs with Rectangles 0, 1, and 2: $+3$ pairs.
+- Update pairs: $\text{total\_pairs} \leftarrow 3 + 3 = 6$.
+- Update map: $\text{freq}[(1, 2)] \leftarrow 3 + 1 = 4$.
+
+---
+
+### Termination
+All $N = 4$ rectangles processed.
+Total interchangeable pairs: **6**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+### Primary Instance Trace Table
+
+| Index $i$ | Dimensions $[w_i, h_i]$ | Divisor $\gcd(w_i, h_i)$ | Canonical Key $(w'_i, h'_i)$ | Prior Frequency $k$ | Pairs Added | New Frequency | Running Total Pairs |
+|---|---|---|---|---|---|---|---|
+| 0 | `[4, 8]` | 4 | `(1, 2)` | 0 | 0 | 1 | 0 |
+| 1 | `[3, 6]` | 3 | `(1, 2)` | 1 | 1 | 2 | 1 |
+| 2 | `[10, 20]` | 10 | `(1, 2)` | 2 | 2 | 3 | 3 |
+| 3 | `[15, 30]` | 15 | `(1, 2)` | 3 | 3 | 4 | 6 |
+
+Final Result: **6**.
+
+### Secondary Instance Trace Table
+
+`rectangles = [[1, 2], [2, 4], [3, 5], [6, 10]]`
+
+| Index $i$ | Dimensions | $\gcd$ | Canonical Key | Prior Frequency | Pairs Added | Running Total |
+|---|---|---|---|---|---|---|
+| 0 | `[1, 2]` | 1 | `(1, 2)` | 0 | 0 | 0 |
+| 1 | `[2, 4]` | 2 | `(1, 2)` | 1 | 1 | 1 |
+| 2 | `[3, 5]` | 1 | `(3, 5)` | 0 | 0 | 1 |
+| 3 | `[6, 10]` | 2 | `(3, 5)` | 1 | 1 | 2 |
+
+Final Result: **2**.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+1. **Uniqueness of Irreducible Form:**
+   By the Fundamental Theorem of Arithmetic, for any pair of positive integers $w, h$, dividing by their greatest common divisor $g = \gcd(w, h)$ yields coprime integers $w', h'$ such that $\gcd(w', h') = 1$. Two fractions $w_1 / h_1$ and $w_2 / h_2$ represent the same rational number if and only if their irreducible representations $(w_1', h_1')$ and $(w_2', h_2')$ are identical.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+2. **Equivalence Partitioning and Pair Summation:**
+   The relation $R(i, j) \iff w_i / h_i = w_j / h_j$ is an equivalence relation. By the handshake lemma, a partition of size $c$ contains exactly $\binom{c}{2} = \frac{c(c-1)}{2}$ mutually compatible pairs. Accumulating $k$ at the $k^{\text{th}}$ occurrence of each key computes:
+   $$\sum_{k=0}^{c-1} k = \frac{(c-1)c}{2} = \binom{c}{2}$$
+   correctly yielding the exact pair count without overcounting or omitting pairs.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Floating-point ratio key:** Often works under small values but relies on representation details and is less exact than reduced integers.
-- **Cross-multiply every rectangle pair:** Avoids floating point but takes $O(N^2)$ time.
-- **Group then use combinations:** First count every reduced ratio, then sum $c(c-1)/2$; equivalent to the online method.
-- **Identical rectangles:** Counted as interchangeable distinct occurrences.
-- **Proportional but different sizes:** Gcd reduction maps them to one key.
-- **Only one rectangle:** Its prior count is zero and the answer is zero.
-- **All ratios distinct:** Every counter lookup contributes zero.
-- **All ratios equal:** The result is $N(N-1)/2$.
-- **Positive dimensions:** Guarantee a nonzero denominator and positive gcd.
-- **Large pair count:** Python integers hold values beyond 32-bit range.
-- **Update order:** Add the prior count before incrementing the current rectangle.
-- **Input preservation:** Local `w` and `h` are reassigned, but rectangle rows are not modified.
-- **Environment imports:** The exact source assumes `Counter` and `gcd` are available.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Floating-Point Imprecision:** Using float division `w / h` as a dictionary key or set element can map identical ratios to different hash buckets due to binary floating-point representation limits. Integer tuple reduction via GCD is exact.
+- **32-bit Integer Overflow:** When $N = 10^5$ and all rectangles share the same aspect ratio, the total number of pairs is:
+  $$\binom{10^5}{2} = \frac{10^5 \times (10^5 - 1)}{2} = 4,999,950,000 \approx 5 \times 10^9$$
+  This exceeds the maximum value of a signed 32-bit integer ($2^{31} - 1 \approx 2.14 \times 10^9$). The accumulator must use a 64-bit integer type (`long long` in C++, `int64` in Go).
+- **Pairwise Comparison $\mathcal{O}(N^2)$ TLE:** Comparing all pairs directly times out on $N = 10^5$. Hash map aggregation reduces the problem to linear time.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(N\log M)$. Let $N$ be the number of rectangles and $M$ the largest dimension. Euclid's algorithm computes each gcd in $O(\log M)$ time. Counter access is expected $O(1)$, so total expected time is $O(N\log M)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **GCD Computation:** For each rectangle, computing $\gcd(w, h)$ via the Euclidean algorithm takes $\mathcal{O}(\log(\min(w, h)))$ steps. With $w, h \le 10^5$, $\log(10^5) \le 17$ divisions.
+  - **Hash Map Operations:** Hashing and inserting integer tuples of length 2 takes $\mathcal{O}(1)$ average time.
+  - **Total Time:** $\mathcal{O}(N \log(\min(W, H)))$, which for $N = 10^5$ takes less than 25 milliseconds.
+
+- **Auxiliary Space Complexity:**
+  - The frequency hash map stores at most $N$ distinct canonical ratio pairs.
+  - **Total Auxiliary Space:** $\mathcal{O}(N)$ memory to maintain the frequency map.

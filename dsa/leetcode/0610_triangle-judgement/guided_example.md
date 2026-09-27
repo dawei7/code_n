@@ -1,120 +1,180 @@
 # Guided Example: Triangle Judgement
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Euclidean metric triangle inequality validation ($x + y > z \land x + z > y \land y + z > x$), degeneracy edge condition checks ($a + b = c$), conditional column projection (`CASE WHEN ... THEN 'Yes' ELSE 'No' END`), and geometric classification on representative line segment dimension tables:
 
-- **Input:** `{"tables": {"Triangle": [{"x": 13, "y": 15, "z": 30}, {"x": 10, "y": 20, "z": 15}]}}`
-- **Required output:** `{"columns": ["x", "y", "z", "triangle"], "rows": [[13, 15, 30, "No"], [10, 20, 15, "Yes"]]}`
+- **Input:**
+  - `Triangle` table:
+    | `x` | `y` | `z` |
+    |:---:|:---:|:---:|
+    | $13$ | $15$ | $30$ |
+    | $10$ | $20$ | $15$ |
+- **Required output:**
+  | `x` | `y` | `z` | `triangle` |
+  |:---:|:---:|:---:|:---:|
+  | $13$ | $15$ | $30$ | `No` |
+  | $10$ | $20$ | $15$ | `Yes` |
+  - Problem specification: For each row of segment lengths $(x, y, z)$, determine whether they can form a valid non-degenerate triangle. Add a fourth column `triangle` containing `'Yes'` or `'No'`.
+- **Triangle Inequality Theorem:**
+  - In Euclidean geometry, three positive segment lengths $x, y, z$ construct a non-degenerate triangle if and only if the sum of lengths of any two segments is **strictly greater** than the length of the remaining segment:
+    1. $x + y > z$
+    2. $x + z > y$
+    3. $y + z > x$
+  - If even one of these inequalities fails, the segments either cannot connect or collapse into a flat collinear line segment (degenerate triangle with zero area).
+- **Step-by-Step Row Evaluation Trace:**
+  - **Row 1 ($x = 13, \; y = 15, \; z = 30$):**
+    - Inequality 1 ($x + y > z$):
+      $$
+      13 + 15 = 28
+      $$
+      $$
+      28 > 30 \implies \mathbf{False!}
+      $$
+    - The two shorter segments cannot bridge the distance of $30$.
+    - The triangle cannot close!
+    - Classification:
+      $$
+      \mathbf{\text{"No"}}
+      $$
+  - **Row 2 ($x = 10, \; y = 20, \; z = 15$):**
+    - Inequality 1 ($x + y > z$):
+      $$
+      10 + 20 = 30 > 15 \implies \mathbf{True}
+      $$
+    - Inequality 2 ($x + z > y$):
+      $$
+      10 + 15 = 25 > 20 \implies \mathbf{True}
+      $$
+    - Inequality 3 ($y + z > x$):
+      $$
+      20 + 15 = 35 > 10 \implies \mathbf{True}
+      $$
+    - All three inequalities hold simultaneously!
+    - Classification:
+      $$
+      \mathbf{\text{"Yes"}}
+      $$
+- **Collinear Degeneracy Instance ($x = 3, y = 4, z = 7$):**
+  - $3 + 4 = 7 \ngtr 7$ (sum equals third side $\implies$ flat line segment).
+  - Strict inequality fails $\implies \mathbf{\text{"No"}}$.
+- **Equilateral Triangle Instance ($x = 5, y = 5, z = 5$):**
+  - $5 + 5 = 10 > 5$ in all directions $\implies \mathbf{\text{"Yes"}}$.
+- **Isosceles Triangle Instance ($x = 5, y = 5, z = 9$):**
+  - $5 + 5 = 10 > 9 \implies \mathbf{\text{"Yes"}}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates geometric predicate validation via relational conditional projection, mathematically proves why strict triangle inequality conjunction is necessary and sufficient for planar closure, and derives $O(N)$ execution time and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Triangle`
+Given a `Triangle` table with three segment lengths $x, y, z$:
+Determine for every row whether the segments form a triangle:
+Append a column `triangle` containing `'Yes'` or `'No'`.
 
-The objective is to compute `{"columns": ["x", "y", "z", "triangle"], "rows": [[13, 15, 30, "No"], [10, 20, 15, "Yes"]]}` from `{"tables": {"Triangle": [{"x": 13, "y": 15, "z": 30}, {"x": 10, "y": 20, "z": 15}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Row 1: (13, 15, 30)
+  13 + 15 = 28 <= 30 (Too short to close!) -> "No"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Row 2: (10, 20, 15)
+  10 + 15 = 25 > 20 (Valid)
+  10 + 20 = 30 > 15 (Valid)
+  15 + 20 = 35 > 10 (Valid)
+  All 3 pass! -> "Yes"
+```
+
+### The Triangle Inequality Theorem
+- Three positive numbers form a triangle if and only if each side is strictly smaller than the sum of the other two.
+- Equivalently, the **longest side** must be strictly smaller than the sum of the two shorter sides:
+  $$
+  \max(x, y, z) < \text{sum}(x, y, z) - \max(x, y, z)
+  $$
+- In SQL, writing all three pairwise inequalities explicitly avoids computing the maximum:
+  $$
+  x + y > z \quad \text{AND} \quad x + z > y \quad \text{AND} \quad y + z > x
+  $$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The SQL Query:
+```sql
+SELECT
+    x,
+    y,
+    z,
+    CASE
+        WHEN x + y > z AND x + z > y AND y + z > x THEN 'Yes'
+        ELSE 'No'
+    END AS triangle
+FROM Triangle;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Strict Inequality:
+- The inequality must be **strictly greater than** (`>`).
+- If $a + b = c$, the three segments lie flat along a straight line, forming a degenerate segment of zero area, which does not constitute a valid triangle.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Metric Convexity Invariant.** In any metric space, the shortest distance between two points is a straight line; a triangle has non-zero area if and only if no side realizes this geodesic bound.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why all three inequalities are needed
-
-Suppose $z$ is the longest segment. If $x+y\le z$, the two shorter segments cannot meet to close a triangle. When equality holds, the segments lie along one straight line and form a degenerate shape with zero area, not a triangle. This explains the strict `>` comparison.
-
-Without first identifying which side is longest, the query checks all three symmetric possibilities. If $x$ happens to be longest, `y + z > x` is the decisive condition; if $y$ is longest, `x + z > y` is. Testing every pair avoids sorting the three columns.
-
-For ordinary positive side lengths, checking only “the two smallest sum above the largest” would be equivalent, but finding those values in SQL adds functions or conditional logic. Three direct comparisons are constant work and mirror the theorem clearly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Triangle": [{"x": 13, "y": 15, "z": 30}, {"x": 10, "y": 20, "z": 15}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Combining conditions with `AND`
-
-All inequalities must hold, so logical `AND` is required. `OR` would accept nearly any row because one easy inequality could hide failure of the decisive longest-side condition.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Row 1 $(13, 15, 30)$
+- $13 + 15 = 28 \le 30 \implies$ Condition fails.
+- Emit:
+  $$
+  (13, 15, 30, \mathbf{\text{"No"}})
+  $$
 
 ---
 
-### Step 3: Choosing the output label
-
-MySQL `IF(condition, true_value, false_value)` returns `'Yes'` when the complete conjunction is true and `'No'` otherwise:
-
-
-
-The alias names the added result column `triangle`.
-
-`SELECT *` returns the source columns `x`, `y`, and `z` in table order, followed by the computed classification. Because the table has exactly those three source columns, this matches the expected four-column schema. Explicitly selecting `x, y, z` would be more robust if the table schema later gained columns.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["x", "y", "z", "triangle"], "rows": [[13, 15, 30, "No"], [10, 20, 15, "Yes"]]}` |
+### Step 2: Evaluate Row 2 $(10, 20, 15)$
+- $10 + 20 = 30 > 15 \implies \text{True}$.
+- $10 + 15 = 25 > 20 \implies \text{True}$.
+- $20 + 15 = 35 > 10 \implies \text{True}$.
+- All 3 pass $\implies$ Emit:
+  $$
+  (10, 20, 15, \mathbf{\text{"Yes"}})
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Triangle": [{"x": 13, "y": 15, "z": 30}, {"x": 10, "y": 20, "z": 15}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["x", "y", "z", "triangle"], "rows": [[13, 15, 30, "No"], [10, 20, 15, "Yes"]]}` | Verified |
+| Segment $x$ | Segment $y$ | Segment $z$ | $x + y > z$ | $x + z > y$ | $y + z > x$ | Triangle Formed? | Output Column `triangle` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $13$ | $15$ | $30$ | $28 > 30$ (**False**) | $43 > 15$ (True) | $45 > 13$ (True) | No | **`No`** |
+| $10$ | $20$ | $15$ | $30 > 15$ (True) | $25 > 20$ (True) | $35 > 10$ (True) | **Yes** | **`Yes`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Degenerate Line Segment ($1, 2, 3$):** $1 + 2 = 3 \ngtr 3 \implies$ `'No'`.
+- **Equilateral ($1, 1, 1$):** $1 + 1 = 2 > 1 \implies$ `'Yes'`.
+- **Very Large Sides ($10^9$):** Evaluated with 64-bit integer arithmetic without overflow.
+- **Empty Table:** Returns empty result table with columns `x, y, z, triangle`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Find the maximum side:** Check whether total sum minus the maximum exceeds the maximum. Compact, but requires expressing maximum across columns and assumes positive sides.
-- **Sort each triple conceptually:** After ordering $a\le b\le c$, only $a+b>c$ is necessary. Sorting three scalar columns is unnecessary overhead here.
-- **Use `CASE WHEN`:** Semantically identical to `IF` and more portable across SQL dialects.
-- **Use `OR`:** Incorrect because every inequality must hold.
-- **Use `>=`:** Incorrect because equality describes a flat, zero-area degenerate triangle.
-- **Exactly equal pair sum:** Returns No.
-- **Equilateral triangle:** All comparisons clearly pass.
-- **Very unequal longest side:** Its opposite inequality fails.
-- **Column permutation:** The symmetric conjunction gives the same result regardless of which length is stored in which column.
-- **Null length:** Comparisons become unknown and the current query yields No; a nullable-domain policy should be explicit if relevant.
-- **Nonpositive lengths:** Segment semantics normally exclude them. Add positivity checks if the schema does not guarantee real lengths.
-- **Any result order:** No `ORDER BY` is needed.
-- **`SELECT *` maintenance:** Correct for the current three-column table, but explicit projection is safer against schema expansion.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using $\ge$ Instead of $>$:** Allowing $a + b \ge c$ permits flat collinear segments (zero area), which are not triangles.
+- **Checking Only One Pair:** If side lengths are unordered, you cannot just check $x + y > z$; you must check all three pairs or first sort the sides.
+- **Incorrect Output String Case:** Returning `'YES'` or `'true'` instead of the exact case `'Yes'` and `'No'` fails automated grading.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let $R$ be the number of rows. The database evaluates a fixed number of additions, comparisons, and Boolean operations per row. A full scan therefore takes $O(R)$ time, matching the manifest.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - A single sequential scan through the $N$ rows of `Triangle`.
+  - Exactly 3 additions and 3 comparisons per row: $\mathcal{O}(1)$ operations.
+  - Total Time: strictly linear $\mathcal{O}(N)$. Completes in $< 5$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space (streaming output pipeline).

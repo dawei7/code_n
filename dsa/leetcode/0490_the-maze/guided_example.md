@@ -1,105 +1,197 @@
 # Guided Example: The Maze
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step ray-marching rolling ball simulation (continuous motion until wall collision), stopping-cell graph abstraction (nodes are resting points, not passing cells), 4-directional raycasting ($Up, Down, Left, Right$), visited state tracking ($vis[x][y]$), and destination halting verification on representative grid mazes:
 
-- **Input:** `{"maze": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "start": [0, 0], "destination": [1, 1]}`
-- **Required output:** `false`
+- **Input:**
+  - $maze = \begin{bmatrix} 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}$
+  - Starting position: $start = [0, 4]$
+  - Destination position: $destination = [4, 4]$
+- **Required output:** `true`
+  - Critical Rule: The ball **cannot stop voluntarily** in an open corridor. It rolls continuously in a chosen direction until it hits a wall ($1$) or the grid boundary. The ball must **come to a complete stop** at the destination to succeed. Passing through the destination without a wall to halt it does not count.
+- **Ray-marching DFS execution trace:**
+  - Initial resting point: $start = [0, 4]$, mark $vis[0][4] = \text{True}$.
+  - **From $(0, 4)$, shoot rays in all 4 directions:**
+    - **Direction Left $(0, -1)$:**
+      - Rolls through $(0, 3) \to$ hits wall at $(0, 2)$ ($maze[0][2] = 1$).
+      - Halts at resting cell: $\mathbf{(0, 3)}$.
+      - Recurse from $(0, 3)$:
+        - From $(0, 3)$, rolling Down $(1, 0)$ rolls through $(1, 3), (2, 3) \to$ wall at $(3, 3)$.
+        - Halts at resting cell: $\mathbf{(2, 3)}$.
+        - From $(2, 3)$, rolling Down hits wall at $(3, 3)$. Rolling Left $(0, -1)$ passes $(2, 2), (2, 1), (2, 0)$ to boundary wall $\to$ halts at $\mathbf{(2, 0)}$.
+    - **Direction Down $(1, 0)$ from $(0, 4)$:**
+      - Rolls through $(1, 4), (2, 4) \to$ hits wall at $(3, 4)$ ($maze[3][4] = 1$).
+      - Halts at resting cell: $\mathbf{(2, 4)}$.
+      - Recurse from $(2, 4)$:
+        - Rolling Left $(0, -1)$ hits wall at $(2, 3)$.
+        - Rolling Up $( -1, 0)$ returns to $(0, 4)$ (already visited).
+        - Rolling Down $(1, 0)$ is blocked by $(3, 4)$.
+    - **From resting cell $(2, 0)$:**
+      - Rolling Down $(1, 0)$ is blocked by $(3, 0)$ ($maze[3][0] = 1$).
+      - Rolling Up $(-1, 0)$ halts at $(0, 0)$.
+    - **From resting cell $(3, 2)$ via downward roll:**
+      - Rolls Down through open cell $(4, 2)$ to bottom boundary.
+      - Halts at $\mathbf{(4, 2)}$.
+    - **From resting cell $(4, 2)$:**
+      - Roll Right $(0, 1)$:
+        - Rolls through $(4, 3) \to$ rolls through $(4, 4) \to$ hits right boundary wall ($y = 5$).
+        - Ball hits the boundary wall and comes to a complete rest at cell $\mathbf{(4, 4)}$!
+  - Ball comes to a complete halt at destination $[4, 4]$.
+  - Return **`true`**.
+- **Passing Through Without Stopping Instance:**
+  - If destination is at $(1, 4)$, the ball rolling from $(0, 4)$ to $(2, 4)$ passes through $(1, 4)$ but cannot stop there because there is no wall. If no other path allows halting at $(1, 4)$, the result is $\mathbf{false}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates state-space graph abstraction over physical momentum constraints, mathematically proves why visited sets must index halting states rather than traversal paths, and derives $O(M \cdot N \cdot \max(M, N))$ runtime and $O(M \cdot N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+Given an $m \times n$ grid representing a maze:
+- Empty spaces are `0`, walls are `1`.
+- A ball starts at `start` and wants to reach `destination`.
+- The ball can roll **Up, Down, Left, or Right**, but it **will not stop rolling until it hits a wall**.
+- When the ball stops, it can choose its next direction.
+Return `true` if the ball can **stop at the destination**, or `false` otherwise.
 
-The objective is to compute `false` from `{"maze": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "start": [0, 0], "destination": [1, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Maze Physics (Momentum Rule):
+  Start (0, 4)  .  .  [Wall at (0, 2)]
+  Ball rolls LEFT -> Cannot stop at (0, 3) voluntarily!
+  It hits the wall at (0, 2) and STOPS at (0, 3).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Graph Nodes:
+  Nodes in our search graph are NOT every grid cell.
+  Nodes are ONLY cells where the ball can come to a COMPLETE REST!
+```
+
+### The "Passing Through" Trap
+A cell is only reached if the ball can **stop** on it.
+If the destination lies in the middle of a long empty hallway, the ball may fly directly over it without stopping. Only paths that cause the ball to hit a wall directly adjacent to the destination count as a valid arrival.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Ray-Marching Collision Transition:
+From a current resting cell $(i, j)$, for each direction $(a, b) \in \{(0, -1), (0, 1), (1, 0), (-1, 0)\}$:
+- Advance $(x, y)$ while the front cell is inside the grid and is open ($maze[x + a][y + b] == 0$):
+  $$
+  \text{while } 0 \le x + a < m \text{ and } 0 \le y + b < n \text{ and } maze[x + a][y + b] == 0:
+  $$
+  $$
+  x \leftarrow x + a, \quad y \leftarrow y + b
+  $$
+- The terminal coordinate $(x, y)$ is the **new resting state**.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Visited Halting States:
+We maintain a 2D boolean array $vis[m][n]$:
+- $vis[x][y] = \text{True}$ means we have already explored branching from resting position $(x, y)$.
+- Marking resting positions prevents infinite ping-pong cycles between opposing walls.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Resting State Invariant.** Graph edges connect resting position $u$ to resting position $v$ via collision raycasts. The destination is reachable if and only if $destination$ is in the connected component of $start$ in the resting-state graph.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-This maze is not an ordinary “move one cell at a time” reachability problem. After choosing a direction, the ball passes through every open cell in that direction and stops only immediately before a wall or boundary. It cannot turn at an intermediate cell, even if that cell is the destination. Therefore the graph nodes that matter are stopping positions, and a graph edge represents one complete roll.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"maze": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "start": [0, 0], "destination": [1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $start = [0, 4]$ and $destination = [4, 4]$:
 
 ---
 
-### Step 2: Core Step 2
-
-The solution discovers that graph implicitly with depth-first search. `dfs(i, j)` means that the ball can stop at cell `(i, j)` and that the algorithm is now exploring every complete roll available from that stop.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initial Resting Point $(0, 4)$
+- Mark $vis[0][4] = \text{True}$.
+- Check destination: $(0, 4) \ne (4, 4)$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Raycast in 4 Directions from $(0, 4)$
+1. **Left $(0, -1)$:**
+   - Moves to $(0, 3)$. Next cell $(0, 2)$ is a wall.
+   - Halts at $(0, 3)$. Recurse on $(0, 3)$.
+2. **Down $(1, 0)$:**
+   - Moves to $(1, 4)$, then $(2, 4)$. Next cell $(3, 4)$ is a wall.
+   - Halts at $(2, 4)$. Recurse on $(2, 4)$.
+3. **Right $(0, 1)$:**
+   - Boundary wall $\implies$ stays at $(0, 4)$ (already visited).
+4. **Up $(-1, 0)$:**
+   - Boundary wall $\implies$ stays at $(0, 4)$.
 
-**Visited means reachable as a stopping point.** At the beginning of `dfs`, `vis[i][j]` is checked. If it is already true, this stopping position has already had all four outgoing rolls explored, so repeating the work cannot discover anything new. Otherwise the cell is marked visited.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+### Step 3: Branching from $(0, 3)$
+From resting position $(0, 3)$:
+- Down $(1, 0)$:
+  - Moves through $(1, 3) \to (2, 3)$. Next cell $(3, 3)$ is a wall.
+  - Halts at $(2, 3)$. Recurse on $(2, 3)$.
+
+---
+
+### Step 4: Branching from $(2, 3)$
+From resting position $(2, 3)$:
+- Left $(0, -1)$:
+  - Moves through $(2, 2) \to (2, 1) \to (2, 0)$. Hits left boundary wall.
+  - Halts at $(2, 0)$. Recurse on $(2, 0)$.
+
+---
+
+### Step 5: Path to Lower Corridor
+- From $(2, 0)$, roll Down $(1, 0) \to$ hits wall at $(3, 0)$.
+- From $(2, 1)$, roll Down through $(3, 2)$ which is open!
+  - Rolls through $(3, 2) \to (4, 2)$.
+  - Hits bottom boundary wall ($x = 5$).
+  - Halts at resting cell $\mathbf{(4, 2)}$.
+
+---
+
+### Step 6: Arrival at Destination from $(4, 2)$
+From resting position $(4, 2)$:
+- Shoot ray Right $(0, 1)$:
+  - $(4, 2) \to (4, 3) \to \mathbf{(4, 4)}$.
+  - Next cell $(4, 5)$ is the right boundary wall!
+  - Ball collides with the boundary wall and stops at:
+    $$
+    (x, y) = \mathbf{(4, 4)} == destination
+    $$
+- Mark $vis[4][4] = \text{True}$.
+- Goal reached as a valid stopping position!
+- Return **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"maze": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "start": [0, 0], "destination": [1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+| Step | Current Resting Cell | Roll Direction | Path Traversed | Obstacle Hit | New Resting Cell | Visited Before? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | $(0, 4)$ (Start) | Left $(0, -1)$ | $(0, 3)$ | Wall at $(0, 2)$ | $(0, 3)$ | No |
+| **$1$** | $(0, 3)$ | Down $(1, 0)$ | $(1, 3) \to (2, 3)$ | Wall at $(3, 3)$ | $(2, 3)$ | No |
+| **$2$** | $(2, 3)$ | Left $(0, -1)$ | $(2, 2) \to (2, 1) \to (2, 0)$ | Left Wall ($y = -1$) | $(2, 0)$ | No |
+| **$3$** | $(2, 1)$ | Down $(1, 0)$ | $(3, 2) \to (4, 2)$ | Bottom Wall ($x = 5$) | $(4, 2)$ | No |
+| **$4$** | **$(4, 2)$** | **Right $(0, 1)$** | **$(4, 3) \to (4, 4)$** | **Right Wall ($y = 5$)** | **$(4, 4)$** | **Destination Reached!** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Start Equals Destination ($start == destination$):** The ball is already at rest at destination $\implies \mathbf{true}$.
+- **Completely Enclosed Start:** Ball cannot roll in any direction $\implies \mathbf{false}$.
+- **Endless Corridors:** Ball bounces back and forth between two walls. Visited check $vis[x][y]$ halts the cycle immediately.
+- **Fly-Over Destination:** Destination is an open cell with no adjacent wall in the direction of travel $\implies$ ball rolls through without stopping, correctly recognized as non-stopping.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Precompute stopping endpoints:** Sweep rows and columns to record where a roll from every open cell ends in each direction. This uses $O(RC)$ extra data and makes the graph traversal itself $O(RC)$, matching the manifest summary.
-- **Breadth-first search:** A queue explores the same stopping-position graph and gives the same Boolean reachability result. Shortest roll count is not requested, so BFS offers no correctness advantage over DFS.
-- **Ordinary cell-by-cell DFS:** Marking every crossed cell as a decision node is wrong because the ball cannot turn there. Only wall-stopped endpoints are graph nodes.
-- **Destination crossed but not stopped on:** The code correctly leaves it unvisited unless a roll ends there.
-- **Direction blocked immediately:** The roll endpoint equals the current stop; the visited guard turns the resulting recursive call into constant work.
-- **Cycles among stops:** The ball can roll between the same endpoints repeatedly. `vis` ensures every stop's outgoing directions are expanded once.
-- **Start and destination distinction:** The contract says they differ, but the code would still return true if they were equal because the initial DFS marks the start.
-- **Recursion depth:** A maze with many sequential stopping positions can create a deep Python call stack. An explicit stack preserves the same search if runtime recursion limits matter.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Marking Every Traversed Cell as Visited:** If you mark cells that the ball *rolls through* as visited, you block other valid rolling paths from crossing that hallway later in a perpendicular direction. Only mark cells where the ball comes to a complete **STOP**!
+- **Stopping One Step Too Late:** Advancing $(x, y)$ inside the while loop without checking `maze[x+a][y+b] == 0` steps inside the wall. The standard `while ...: x += a; y += b` loop stops at the last open cell before the obstacle.
+- **Checking Destination During Traversal:** Checking `if [x, y] == destination` inside the rolling loop falsely accepts cases where the ball merely flies past the destination without stopping. The check must be performed strictly on resting cells.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(RC)$. Let $R$ be the row count and $C$ the column count. The visited matrix costs $O(RC)$ initialization and storage. At most $RC$ cells can become DFS states, and each state explores four directions.
-- **Auxiliary Space Complexity:** $O(RC)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - There are at most $M \times N$ distinct resting cells in the grid.
+  - From each resting cell, raycasting in 4 directions traverses at most $\max(M, N)$ cells.
+  - Total Time: $\mathcal{O}(M \cdot N \cdot \max(M, N))$. For a $100 \times 100$ maze, operations are bounded by $10^4 \times 100 = 10^6$, running in $< 20$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M \cdot N)$ memory for the $vis$ matrix and recursion call stack depth.

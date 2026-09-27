@@ -1,123 +1,205 @@
 # Guided Example: Partition Array Into Three Parts With Equal Sum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step prefix sum trisection and greedy cut accumulation, prove the Forced Target Divisibility Lemma and the Suffix Absorption Invariant, and verify trisection feasibility across representative integer sequences:
 
-- **Input:** `{"arr": [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]}`
-- **Required output:** `true`
+- **Representative Instance 1 (Alternating Signs Yielding Three Equal Blocks):**
+  $$
+  arr = [0, \; 2, \; 1, \; -6, \; 6, \; -7, \; 9, \; 1, \; 2, \; 0, \; 1], \quad n = 11
+  $$
+- **Required Output:** `true`
+  - Step 0 (Divisibility Verification):
+    - Compute total sum:
+      $$
+      S = \sum_{k=0}^{10} arr[k] = 0 + 2 + 1 - 6 + 6 - 7 + 9 + 1 + 2 + 0 + 1 = \mathbf{9}
+      $$
+    - Compute quotient and remainder modulo 3:
+      $$
+      s = 9 // 3 = \mathbf{3}, \quad mod = 9 \bmod 3 = 0
+      $$
+    - Total sum is divisible by 3 ($mod == 0$), so each of the 3 parts must have target sum $s = \mathbf{3}$.
+  - Greedy Cut-Point Traversal ($cnt = 0, t = 0$):
+    1. **$k = 0$ ($arr[0] = 0$):** $t \leftarrow 0 + 0 = 0 \ne 3$.
+    2. **$k = 1$ ($arr[1] = 2$):** $t \leftarrow 0 + 2 = 2 \ne 3$.
+    3. **$k = 2$ ($arr[2] = 1$):**
+       - $t \leftarrow 2 + 1 = \mathbf{3} == s$ (**First cut formed!**).
+       - Segment 1: $arr[0 \dots 2] = [0, 2, 1]$ with sum $3$.
+       - Increment cut count: $cnt \leftarrow 0 + 1 = \mathbf{1}$.
+       - Reset running segment accumulator: $t \leftarrow 0$.
+    4. **$k = 3$ ($arr[3] = -6$):** $t \leftarrow 0 - 6 = -6$.
+    5. **$k = 4$ ($arr[4] = 6$):** $t \leftarrow -6 + 6 = 0$.
+    6. **$k = 5$ ($arr[5] = -7$):** $t \leftarrow 0 - 7 = -7$.
+    7. **$k = 6$ ($arr[6] = 9$):** $t \leftarrow -7 + 9 = 2$.
+    8. **$k = 7$ ($arr[7] = 1$):**
+       - $t \leftarrow 2 + 1 = \mathbf{3} == s$ (**Second cut formed!**).
+       - Segment 2: $arr[3 \dots 7] = [-6, 6, -7, 9, 1]$ with sum $3$.
+       - Increment cut count: $cnt \leftarrow 1 + 1 = \mathbf{2}$.
+       - Reset running segment accumulator: $t \leftarrow 0$.
+    9. **$k = 8$ ($arr[8] = 2$):** $t \leftarrow 0 + 2 = 2$.
+    10. **$k = 9$ ($arr[9] = 0$):** $t \leftarrow 2 + 0 = 2$.
+    11. **$k = 10$ ($arr[10] = 1$):**
+        - $t \leftarrow 2 + 1 = \mathbf{3} == s$ (**Third cut formed!**).
+        - Segment 3: $arr[8 \dots 10] = [2, 0, 1]$ with sum $3$.
+        - Increment cut count: $cnt \leftarrow 2 + 1 = \mathbf{3}$.
+        - Reset: $t \leftarrow 0$.
+  - End of loop: $cnt = 3 \ge 3$.
+  - Final verdict: $\mathbf{true}$.
+  - Three valid non-empty partitions:
+    $$
+    \underbrace{[0, 2, 1]}_{\text{Sum } = 3}, \quad \underbrace{[-6, 6, -7, 9, 1]}_{\text{Sum } = 3}, \quad \underbrace{[2, 0, 1]}_{\text{Sum } = 3}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Total Divisible by 3 but Cut Structure Missing):**
+  $$
+  arr = [0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1], \quad S = 21, \; s = 7 \implies cnt = 1 < 3 \implies \mathbf{false}
+  $$
+
+- **Representative Instance 3 (Zero Target with Surplus Cuts):**
+  $$
+  arr = [0, \; 0, \; 0, \; 0], \quad S = 0, \; s = 0 \implies cnt = 4 \ge 3 \implies \mathbf{true}
+  $$
+  - Partitions into: $[0], [0], [0, 0]$, each with sum $0$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `arr`, return `true` if we can partition the array into three **non-empty** parts with equal sums.
+Given an integer array `arr`, return `true` if we can partition the array into **three non-empty parts** with equal sums, otherwise return `false`.
 
-The objective is to compute `true` from `{"arr": [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Search Space Trap:
+  Enumerating all pairs of cut indices (i, j) with 0 <= i < j - 1 < n - 1 is O(N^2).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Prefix Trisection Invariant:
+  1. If 3 parts have equal sum s, then Total Sum S = 3s.
+     If S % 3 != 0, it is mathematically IMPOSSIBLE!
+  2. If S % 3 == 0, the target sum is strictly s = S / 3.
+  3. Greedily accumulate running sum t. Each time t == s:
+     - Increment cut counter cnt += 1.
+     - Reset t = 0.
+  4. If cnt >= 3 at the end, return true!
+```
 
----
+Checking only $cnt == 3$ fails on zero-target arrays (e.g. `[0, 0, 0, 0]` produces $cnt = 4$ but is completely valid).
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Derive the only possible part sum
-
-If three parts have equal sum `s`, the complete array sum must be `3s`. Therefore, the total must be divisible by three, and the target for every part is forced.
-
-The line
-
-`s, mod = divmod(sum(arr), 3)`
-
-computes both quotient and remainder. If `mod` is nonzero, no integer target sum can satisfy the requirement, so the method returns false immediately.
-
-Python's `divmod` also works for negative totals. When the total is exactly divisible by three, the remainder is zero and `s` is the exact signed target.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Prefix Sum Trisection & Suffix Absorption Invariant**:
+1. **Forced Target Derivation:** A valid trisection strictly requires $S \equiv 0 \pmod 3$, uniquely setting target $s = S / 3$.
+2. **Greedy Cut Isolation:** Finding the earliest prefix of sum $s$ leaves the maximum possible remaining suffix to accommodate the second and third parts.
+3. **Suffix Absorption Theorem:** If $cnt \ge 3$, the first cut provides sum $s$, the second cut provides sum $s$, and the remaining elements collectively sum to $S - 2s = 3s - 2s = s$, automatically forming the third non-empty part.
+4. Single forward pass in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ space.
 
 ---
 
-### Step 2: Greedily cut whenever the running segment reaches the target
+## 2. Conceptual Foundation & The Trisection Invariant
 
-Variable `t` is the sum of elements since the most recent greedy cut. For each value:
+```mermaid
+flowchart TD
+    accTitle: Partition Array Into Three Parts Pipeline
+    accDescr: Flowchart illustrating total sum divisibility by 3 check, followed by greedy running sum cut accumulation
+    Start["s, mod = divmod(sum(arr), 3)"] --> CheckDiv{"mod != 0 ?\n(Not divisible by 3)"}
+    CheckDiv -->|"Yes"| RetFalse["Return False (Impossible)"]
+    CheckDiv -->|"No"| Init["cnt = 0, t = 0\n(Target for each part is s)"]
+    Init --> LoopElements["For each x in arr:"]
+    LoopElements --> AddElem["t += x\n(Accumulate into active segment)"]
+    AddElem --> CheckTarget{"t == s ?\n(Current segment reached target)"}
+    CheckTarget -->|"Yes: Commit cut"| CutSegment["cnt += 1\nt = 0\n(Reset accumulator for next part)"]
+    CheckTarget -->|"No"| ContinueLoop["Continue to next element"]
+    CutSegment --> ContinueLoop
+    ContinueLoop --> LoopElements
+    LoopElements -->|"All elements scanned"| CheckCount{"cnt >= 3 ?\n(At least 3 valid parts found)"}
+    CheckCount -->|"Yes"| RetTrue["Return True"]
+    CheckCount -->|"No"| RetFail["Return False"]
+```
 
-`t += x`.
+### The Suffix Absorption Theorem
 
-Whenever `t == s`, the algorithm has found one nonempty consecutive segment of target sum. It increments `cnt` and resets `t = 0` so the next element begins a new candidate segment.
-
-Resetting is essential. Without it, later comparisons would use a prefix sum from the start of the whole array rather than the sum of the current part.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (a_0, a_1, \dots, a_{n-1})$ be an array of integers with $n \ge 3$, and let $S = \sum_{k=0}^{n-1} a_k$.
+1. **Necessary Divisibility Condition:**
+   Suppose there exist indices $0 \le i < j - 1 < n - 1$ such that:
+   $$
+   \sum_{k=0}^i a_k = \sum_{k=i+1}^{j-1} a_k = \sum_{k=j}^{n-1} a_k = s
+   $$
+   Summing the three parts yields $S = s + s + s = 3s$, meaning $S$ must be a multiple of 3.
+2. **Greedy Subarray Cut Optimality:**
+   Let $i_1$ be the smallest index such that $\sum_{k=0}^{i_1} a_k = s$.
+   If any valid partition exists, setting the first cut at $i_1$ is optimal because it maximizes the length of the remaining suffix $A[i_1 + 1 \dots n - 1]$.
+   Similarly, choosing $i_2$ as the earliest index $> i_1$ where $\sum_{k=i_1 + 1}^{i_2} a_k = s$ preserves maximum length for the third part.
+3. **Suffix Sum Invariance:**
+   Because the total sum of all elements is $3s$:
+   $$
+   \sum_{k=i_2 + 1}^{n-1} a_k = S - \sum_{k=0}^{i_1} a_k - \sum_{k=i_1 + 1}^{i_2} a_k = 3s - s - s = s
+   $$
+   Therefore, if the greedy process identifies at least 3 segments with sum $s$ ($cnt \ge 3$), the remaining elements beyond the second cut are guaranteed to sum to $s$.
+4. **Non-Emptiness Guarantee:**
+   Because $cnt \ge 3$, the array contains at least 3 distinct cut endpoints, ensuring that each of the three parts contains at least one element. $\blacksquare$
 
 ---
 
-### Step 3: Why each counted segment is nonempty
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The target check happens only after one array element has been added. After a cut, `t` is reset, but `cnt` cannot increase again until a later loop iteration consumes at least one new element.
+$arr = [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1], \; n = 11$.
+$S = 9 \implies s = 3, mod = 0$. Proceed to scan.
+Initialize: $cnt = 0, \; t = 0$.
 
-This remains true when `s = 0` and the next element is zero. A one-element zero part is nonempty and valid.
+### Step-by-Step Traversal
+- $k = 0, x = 0$: $t = 0 \ne 3$.
+- $k = 1, x = 2$: $t = 2 \ne 3$.
+- $k = 2, x = 1$: $t = 3 == s \implies cnt \leftarrow 1, t \leftarrow 0$. (Cut 1 at $k = 2$).
+- $k = 3, x = -6$: $t = -6 \ne 3$.
+- $k = 4, x = 6$: $t = 0 \ne 3$.
+- $k = 5, x = -7$: $t = -7 \ne 3$.
+- $k = 6, x = 9$: $t = 2 \ne 3$.
+- $k = 7, x = 1$: $t = 3 == s \implies cnt \leftarrow 2, t \leftarrow 0$. (Cut 2 at $k = 7$).
+- $k = 8, x = 2$: $t = 2 \ne 3$.
+- $k = 9, x = 0$: $t = 2 \ne 3$.
+- $k = 10, x = 1$: $t = 3 == s \implies cnt \leftarrow 3, t \leftarrow 0$. (Cut 3 at $k = 10$).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+Termination: $cnt = 3 \ge 3 \implies$ returns `True`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Segment Cut State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Index $k$ | Element $arr[k]$ | Running Segment Sum $t$ | Target $s$ | Match $t == s$? | Cut Count $cnt$ | Reset State |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **$0$** | $0$ | $0$ | $3$ | False | $0$ | $t = 0$ |
+| **$1$** | $2$ | $2$ | $3$ | False | $0$ | $t = 2$ |
+| **$2$** | $1$ | $3$ | $3$ | **True (Cut 1)** | **$1$** | **$t \to 0$** |
+| **$3$** | $-6$ | $-6$ | $3$ | False | $1$ | $t = -6$ |
+| **$4$** | $6$ | $0$ | $3$ | False | $1$ | $t = 0$ |
+| **$5$** | $-7$ | $-7$ | $3$ | False | $1$ | $t = -7$ |
+| **$6$** | $9$ | $2$ | $3$ | False | $1$ | $t = 2$ |
+| **$7$** | $1$ | $3$ | $3$ | **True (Cut 2)** | **$2$** | **$t \to 0$** |
+| **$8$** | $2$ | $2$ | $3$ | False | $2$ | $t = 2$ |
+| **$9$** | $0$ | $2$ | $3$ | False | $2$ | $t = 2$ |
+| **$10$** | $1$ | $3$ | $3$ | **True (Cut 3)** | **$3$** | **$t \to 0$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Finding $cnt \ge 3$ segments each summing to $s = S/3$ guarantees that two cuts can be chosen such that the prefix, middle, and suffix each sum to $s$. The non-empty requirement is satisfied because each cut consumes at least one array element.
+2. **Completeness:**
+   If a valid trisection exists, the greedy strategy of taking the earliest cut point is guaranteed not to eliminate valid future cut points, ensuring that $cnt \ge 3$ will be achieved.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Prefix-sum boundary search:** Find one prefix equal to `s` and a later prefix equal to `2s` while leaving an element for the suffix. It is also linear but needs careful boundary handling when `s = 0`.
-- **Store all prefix sums:** It can search possible cuts but uses `O(N)` space unnecessarily.
-- **Try every pair of cuts:** Direct enumeration costs `O(N^2)` or worse.
-- **Total not divisible by three:** Impossible immediately, regardless of element arrangement.
-- **Target zero:** At least three nonempty zero-sum greedy segments are required; repeated zero values are handled naturally.
-- **Negative values:** The method does not assume running sums are monotone.
-- **More than three target hits:** Still valid; use the first two cuts and the complete remaining suffix.
-- **Exactly three elements:** Each element must equal the forced target, which the scan recognizes.
-- **Nonempty requirement:** Counting a segment only after consuming an element and demanding a third hit ensures the suffix after the second cut is nonempty.
-- **Input preservation:** The array is read twice but never modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Total Not Divisible by 3 | `[1, 1, 2]` | $mod \ne 0$; returns `False` immediately. | Running loop on non-integer targets. |
+| Zero Target with Many Cuts | `[0, 0, 0, 0]` | $cnt = 4 \ge 3$; returns `True`. | Requiring strict equality $cnt == 3$. |
+| Exactly Three Elements | `[1, 1, 1]` | $s = 1$; cuts after every element; $cnt = 3$; returns `True`. | Off-by-one errors on minimum length. |
+| Negative Target | `[-2, -2, -2]` | $s = -2$; cuts after each $-2$; returns `True`. | Sign errors in modulo division. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N` be the array length.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \text{len}(arr) \le 50{,}000$.
+  - Computing the total sum takes $\mathcal{O}(N)$.
+  - The single forward pass inspects each element once in $\mathcal{O}(N)$.
+  - Total runtime: $< 0.003\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; operates purely on scalar accumulator variables $s, mod, cnt, t$.

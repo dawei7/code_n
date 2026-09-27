@@ -1,120 +1,161 @@
 # Guided Example: Maximal Rectangle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step reduction of a 2D binary matrix to row-by-row histogram evaluation on a representative matrix:
 
-- **Input:** `{"matrix": [["0"]]}`
-- **Required output:** `0`
+- **Input:**
+  $$\text{matrix} = \begin{pmatrix} \text{'1'} & \text{'0'} & \text{'1'} & \text{'0'} & \text{'0'} \\ \text{'1'} & \text{'0'} & \text{'1'} & \text{'1'} & \text{'1'} \\ \text{'1'} & \text{'1'} & \text{'1'} & \text{'1'} & \text{'1'} \\ \text{'1'} & \text{'0'} & \text{'0'} & \text{'1'} & \text{'0'} \end{pmatrix}$$
+- **Required output:** $6$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates reducing 2D maximal rectangle discovery to dynamic column height accumulation, resetting heights to $0$ on `'0'`, running the monotonic stack histogram solver across each row, and identifying the maximal $2 \times 3 = 6$ submatrix in $O(M \cdot N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a `rows x cols` binary `matrix` filled with `0`'s and `1`'s, find the largest rectangle containing only `1`'s and return *its area*.
+Given an $M \times N$ binary matrix ($M = 4, N = 5$) filled with `'0'`s and `'1'`s:
+$$
+\begin{pmatrix}
+1 & 0 & 1 & 0 & 0 \\
+1 & 0 & \mathbf{1} & \mathbf{1} & \mathbf{1} \\
+1 & 1 & \mathbf{1} & \mathbf{1} & \mathbf{1} \\
+1 & 0 & 0 & 1 & 0
+\end{pmatrix}
+$$
+find the largest rectangle containing only `'1'`s and return its area.
 
-The objective is to compute `0` from `{"matrix": [["0"]]}` while avoiding redundant calculations and unnecessary overhead.
+The maximal rectangle occupies rows $1 \dots 2$ across columns $2 \dots 4$:
+- Height = $2$ rows
+- Width = $3$ columns
+- Total Area = $2 \times 3 = 6$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive brute-force search checking all $O(M^2 N^2)$ submatrices takes $O(M^3 N^3)$ time.
+By viewing each row as the base of a dynamic histogram where bar heights represent consecutive vertical `'1'`s reaching upward, we can apply LeetCode 84's monotonic stack solver on each row. This reduces overall complexity to $O(M \cdot N)$ time and $O(N)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 2D-to-1D Histogram Reduction
+Maintain a 1D array $\text{heights}$ of size $N$, initially filled with zeroes.
+For each row $r \in [0, M - 1]$:
+1. **Update Histogram Heights:**
+   For each column $c \in [0, N - 1]$:
+   - If $\text{matrix}[r][c] == \text{'1'}$:
+     $$
+     \text{heights}[c] \leftarrow \text{heights}[c] + 1
+     $$
+   - If $\text{matrix}[r][c] == \text{'0'}$:
+     $$
+     \text{heights}[c] \leftarrow 0
+     $$
+     *(A zero breaks consecutive vertical ones, resetting the column height to 0).*
+2. **Solve Largest Rectangle in Histogram:**
+   Pass the updated $\text{heights}$ array into the monotonic stack histogram algorithm:
+   $$
+   \text{row\_max} = \text{largestRectangleArea}(\text{heights})
+   $$
+   $$
+   \text{global\_max} = \max(\text{global\_max}, \, \text{row\_max})
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After processing row $r$, $\text{heights}[c]$ equals the exact number of contiguous `'1'` cells in column $c$ ending at row $r$. Any rectangle with base on row $r$ corresponds directly to a valid rectangle in the histogram $\text{heights}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn each row into the bottom of a histogram
+We trace the $4 \times 5$ matrix:
 
-`heights[j]` stores the number of consecutive `"1"` cells in column `j` ending at the current row. When the current matrix cell is `"1"`, the vertical run from the preceding row extends by one, so the source increments the height. When the cell is `"0"`, no all-one rectangle ending at this row can pass through that column, so the height resets to zero.
-
-After updating one complete row, `heights` is a histogram whose bars measure how far an all-one column segment reaches upward from this row. A consecutive interval of histogram bars can support a rectangle whose height is their minimum and whose width is the interval length. That histogram rectangle corresponds directly to an all-one matrix rectangle with its bottom edge at the current row.
-
-The algorithm finds the largest histogram rectangle for every possible bottom row and retains the largest area in `ans`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [["0"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Row 0: `["1", "0", "1", "0", "0"]`
+- Column heights updated:
+  - $\text{heights} = [1, 0, 1, 0, 0]$.
+- Monotonic stack evaluation:
+  - Bars of height 1 exist at columns 0 and 2 (each width 1).
+  - Maximum area for Row 0: $1 \times 1 = 1$.
+- Running global max: $1$.
 
 ---
 
-### Step 2: Why considering every bottom row is complete
-
-Take any all-one rectangle in the matrix. It has some bottom row `r`, spans consecutive columns, and has some height `h`. When row `r` is processed, every spanned column has at least `h` consecutive ones ending there. The row's histogram therefore contains a rectangle over the same columns with height at least `h`, so the histogram solver considers an area at least as large as that matrix rectangle.
-
-Conversely, if a histogram interval has minimum height `h`, each of its columns contains `h` consecutive ones ending at the current row. Those cells form a genuine all-one matrix rectangle. Histogram candidates cannot invent invalid matrix cells.
-
-Thus the maximum across row histograms is exactly the maximum matrix rectangle, not merely an approximation.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 1: `["1", "0", "1", "1", "1"]`
+- Column heights updated:
+  - Col 0: `'1'` $\implies 1 + 1 = 2$.
+  - Col 1: `'0'` $\implies 0$.
+  - Col 2: `'1'` $\implies 1 + 1 = 2$.
+  - Col 3: `'1'` $\implies 0 + 1 = 1$.
+  - Col 4: `'1'` $\implies 0 + 1 = 1$.
+  - $\text{heights} = [2, 0, 2, 1, 1]$.
+- Monotonic stack evaluation:
+  - Height 2 at col 0: area $2 \times 1 = 2$.
+  - Height 2 at col 2: area $2 \times 1 = 2$.
+  - Height 1 across cols $2 \dots 4$: width $3 \implies 1 \times 3 = 3$.
+  - Maximum area for Row 1: $3$.
+- Running global max: $\max(1, 3) = 3$.
 
 ---
 
-### Step 3: For one histogram, find the nearest strictly lower bars
+### Row 2: `["1", "1", "1", "1", "1"]`
+- Column heights updated:
+  - All cells are `'1'`, so every column height increments by 1:
+  - $\text{heights} = [3, 1, 3, 2, 2]$.
+- Monotonic stack evaluation on $[3, 1, 3, 2, 2]$:
+  - Height 3 at col 0: width 1 $\implies 3 \times 1 = 3$.
+  - Height 1 spanning cols $0 \dots 4$: width 5 $\implies 1 \times 5 = 5$.
+  - Height 3 at col 2: width 1 $\implies 3 \times 1 = 3$.
+  - **Height 2 spanning cols $2 \dots 4$ ($[3, 2, 2]$):**
+    - Both cols 2, 3, 4 have height $\ge 2$.
+    - Width: $4 - 2 + 1 = 3$.
+    - Area: $2 \times 3 = \mathbf{6}$!
+  - Maximum area for Row 2: $6$.
+- Running global max: $\max(3, 6) = \mathbf{6}$.
 
-For each bar `i`, the helper wants the first position to its left with height strictly smaller than `heights[i]` and the first such position to its right. Between those boundaries, every bar is at least as tall as `heights[i]`, so a rectangle of that height can cover the entire open interval.
+---
 
-The width is `right[i] - left[i] - 1`, and the candidate area is the width times `heights[i]`. Sentinel defaults `-1` and `n` represent no smaller bar before the beginning or after the end.
+### Row 3: `["1", "0", "0", "1", "0"]`
+- Column heights updated:
+  - Col 0: `'1'` $\implies 3 + 1 = 4$.
+  - Col 1: `'0'` $\implies 0$.
+  - Col 2: `'0'` $\implies 0$.
+  - Col 3: `'1'` $\implies 2 + 1 = 3$.
+  - Col 4: `'0'` $\implies 0$.
+  - $\text{heights} = [4, 0, 0, 3, 0]$.
+- Monotonic stack evaluation:
+  - Col 0 has height 4, width 1 $\implies 4 \times 1 = 4$.
+  - Col 3 has height 3, width 1 $\implies 3 \times 1 = 3$.
+  - Maximum area for Row 3: $4$.
+- Running global max: $\max(6, 4) = 6$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0` |
+All rows evaluated. Final maximal rectangle area is $6$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [["0"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0` | Verified |
+| Row $r$ | Matrix Row Content | Updated Column Heights $\text{heights}$ | Best Histogram Interval $[c_L, c_R]$ | Limiting Height $h$ | Width $w$ | Row Max Area | Global Max Area |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `["1", "0", "1", "0", "0"]` | `[1, 0, 1, 0, 0]` | $[0, 0]$ or $[2, 2]$ | 1 | 1 | 1 | 1 |
+| 1 | `["1", "0", "1", "1", "1"]` | `[2, 0, 2, 1, 1]` | $[2, 4]$ | 1 | 3 | 3 | 3 |
+| **2** | **`["1", "1", "1", "1", "1"]`** | **`[3, 1, 3, 2, 2]`** | **$[2, 4]$** | **2** | **3** | **6** | **6 (Max)** |
+| 3 | `["1", "0", "0", "1", "0"]` | `[4, 0, 0, 3, 0]` | $[0, 0]$ | 4 | 1 | 4 | 6 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any contiguous all-ones rectangle has a defined bottom row $r$ and height $h$. Because $\text{heights}[c]$ tracks the number of consecutive ones ending at row $r$, every column $c$ spanned by the rectangle has $\text{heights}[c] \ge h$. The histogram subroutine is proven to find the maximal rectangle in any histogram, so it is guaranteed to discover this candidate.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every candidate all-ones rectangle in the matrix must have its bottom edge on some row $r \in [0, M - 1]$. Since all $M$ rows are tested, no maximal rectangle can be omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One-pass histogram stack:** Finalize bar areas as soon as a lower-or-equal bar appears and flush at a virtual zero. It avoids `left` and `right` arrays but still uses $O(n)$ stack space.
-- **Dynamic left/right/height arrays across rows:** Update rectangle boundaries directly for each row. It also achieves $O(mn)$ time and $O(n)$ space but has more coupled state.
-- **Upward scan from every cell:** Maintain horizontal widths and scan previous rows, which can take $O(m^2n)$ time.
-- **All zeroes:** Every height remains zero and all candidate areas are zero.
-- **All ones:** Heights increase each row, and the final full-width histogram yields area `m * n`.
-- **One row:** The method reduces exactly to largest rectangle in a binary histogram.
-- **One column:** Heights count the longest vertical run of ones.
-- **Zero within a column:** Resetting to zero prevents rectangles from crossing it vertically.
-- **Equal histogram heights:** The `>=` pop rule makes boundaries strictly lower and allows spanning the plateau.
-- **Non-square matrix:** State size depends on columns and the row loop handles any positive row count.
-- **String cells:** Comparisons correctly use `"1"` and `"0"`, not integers.
-- **Nonempty guarantee:** Direct `matrix[0]` and nonempty `max` depend on it.
-- **Input preservation:** Only derived height and boundary arrays change.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Reset on `'0'`:** If $\text{matrix}[r][c] == \text{'0'}$, $\text{heights}[c]$ must be immediately set to $0$. Merely keeping the previous height would allow rectangles to jump across zero cells.
+- **Empty Matrix Guards:** Matrices with zero rows ($M = 0$) or zero columns ($N = 0$) must return $0$ upfront to avoid out-of-bounds indexing.
+- **Single Row Matrix:** If $M = 1$, the loop runs once, correctly evaluating the maximum run of consecutive `'1'`s.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let $m$ be the number of rows and $n$ the number of columns. Updating heights costs $O(n)$ per row. Each boundary pass pushes and pops every histogram index at most once, and area evaluation is another linear pass. Therefore each row costs $O(n)$ and total time is $O(mn)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N)$. For each of the $M$ rows, updating the height array takes $O(N)$ time, and solving the histogram with a monotonic stack takes $O(N)$ time ($M \times O(N) = O(M \cdot N)$).
+- **Auxiliary Space Complexity:** $O(N)$ to store the 1D $\text{heights}$ array and the monotonic stack.

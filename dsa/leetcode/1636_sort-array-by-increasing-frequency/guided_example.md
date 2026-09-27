@@ -1,124 +1,134 @@
 # Guided Example: Sort Array by Increasing Frequency
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates stable multi-criteria frequency sorting: grouping identical items, determining global frequencies, and sorting elements in increasing order of their frequency, with ties broken by decreasing order of element value.
 
-- **Input:** `{"nums": [1, 1, 2, 2, 2, 3]}`
-- **Required output:** `[3, 1, 1, 2, 2, 2]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** `nums = [1, 1, 2, 2, 2, 3]`
+- **Required Output:** `[3, 1, 1, 2, 2, 2]`
+- **Domain Constraints:** $1 \le \text{len}(nums) \le 100$, $-100 \le nums[i] \le 100$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `nums`, sort the array in **increasing** order based on the frequency of the values. If multiple values have the same frequency, sort them in **decreasing** order.
+Given an integer array `nums`, our goal is to reorganize the elements such that values with lower frequencies appear before values with higher frequencies. When two distinct numbers occur with identical frequencies, the numerically larger number must precede the smaller one.
 
-The objective is to compute `[3, 1, 1, 2, 2, 2]` from `{"nums": [1, 1, 2, 2, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+In `nums = [1, 1, 2, 2, 2, 3]`:
+- Value $3$ appears $1$ time.
+- Value $1$ appears $2$ times.
+- Value $2$ appears $3$ times.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Since frequencies are $1 < 2 < 3$, value $3$ comes first, followed by both copies of $1$, followed by all three copies of $2$. This instance illustrates the composite key ordering transformation and contiguous block stabilization without relying on arbitrary comparator side effects.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-----------------------------------------------------------------------------+
+|                TWO-TIER COMPOSITE KEY PROJECTION PIPELINE                   |
+|                                                                             |
+|  Input Array: [1, 1, 2, 2, 2, 3]                                            |
+|                                                                             |
+|  Phase 1: Frequency Table Computation                                       |
+|    freq(1) = 2, freq(2) = 3, freq(3) = 1                                    |
+|                                                                             |
+|  Phase 2: Composite Key Mapping: key(x) = (freq(x), -x)                     |
+|    x = 3 --> (1, -3)                                                        |
+|    x = 1 --> (2, -1)                                                        |
+|    x = 2 --> (3, -2)                                                        |
+|                                                                             |
+|  Phase 3: Lexicographical Tuple Sort                                        |
+|    (1, -3) < (2, -1) < (3, -2)  ==> Output: [3, 1, 1, 2, 2, 2]              |
++-----------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| State Parameter | Data Structure | Purpose in Algorithm | Instance Initial Value |
+|---|---|---|---|
+| Frequency Map $F$ | Hash map $\mathbb{Z} \to \mathbb{Z}^+$ | Tracks total occurrences of each integer | $\{1: 2, 2: 3, 3: 1\}$ |
+| Sort Key Map | Function $x \mapsto (F[x], -x)$ | Maps element to two-criteria tuple | Dynamic mapping |
+| Ordered Multiset | Array of size $N$ | Final sequence ordered by composite key | `[3, 1, 1, 2, 2, 2]` |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Lexicographical Dual-Order Invariant.** For any two elements $a$ and $b$, $a$ strictly precedes $b$ if and only if $F[a] < F[b]$, or $F[a] = F[b]$ and $a > b$. Mapping each element to $(F[x], -x)$ and sorting under standard ascending lexicographical comparison strictly satisfies this ordering because $-a < -b \iff a > b$.
+
+```mermaid
+flowchart TD
+    accTitle: Increasing Frequency Sorting Flow
+    accDescr: Pipeline mapping elements to frequency map, generating composite tuples, and sorting.
+    A["Input nums: [1, 1, 2, 2, 2, 3]"] --> B["Build Frequency Map F"]
+    B --> C["F = {1: 2, 2: 3, 3: 1}"]
+    C --> D["Transform each element to key: (F[x], -x)"]
+    D --> E["3 -> (1, -3)<br/>1 -> (2, -1)<br/>2 -> (3, -2)"]
+    E --> F["Sort by key ascending"]
+    F --> G["Sorted elements: [3, 1, 1, 2, 2, 2]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn the two sorting rules into one key
-
-Every element is ranked by two criteria:
-
-1. a smaller frequency comes first;
-2. when frequencies tie, a larger numeric value comes first.
-
-Python's sorting key can represent both criteria as a tuple. Tuples are compared from left to right, so the source uses
-
-`(cnt[x], -x)`.
-
-The first component is the frequency and is naturally sorted upward. The second is the negated value. If $x_1>x_2$, then $-x_1<-x_2$, so ordinary ascending order on the negatives places the larger original value first.
-
-Combining the rules into one tuple avoids writing a custom pairwise comparator and makes the priority order explicit.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 1, 2, 2, 2, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Count Element Frequencies
+- Scan `nums = [1, 1, 2, 2, 2, 3]`:
+  - $1$ appears at indices $0, 1 \implies F[1] = 2$.
+  - $2$ appears at indices $2, 3, 4 \implies F[2] = 3$.
+  - $3$ appears at index $5 \implies F[3] = 1$.
+- Total distinct keys: $3$.
 
 ---
 
-### Step 2: Count before sorting
-
-`Counter(nums)` traverses the input and creates `cnt`, a mapping from each distinct value to its number of occurrences. Every later key computation can then retrieve `cnt[x]` in expected constant time.
-
-Counting first is essential. Frequency is a property of the complete input, not of the part of the list already visited by the sorting algorithm. Trying to update counts while sorting would make keys unstable and invalidate comparison consistency.
-
-The source then calls `sorted(nums, key=...)`. `sorted` returns a new list and leaves `nums` unchanged. The key function is evaluated for the input elements, and the resulting keys determine their order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Derive Composite Sorting Keys
+- For every integer $x$ in the array, assign the key $\text{key}(x) = (F[x], -x)$:
+  - For $x = 1$: key is $(2, -1)$.
+  - For $x = 2$: key is $(3, -2)$.
+  - For $x = 3$: key is $(1, -3)$.
+- Observe that minimizing $-x$ is mathematically identical to maximizing $x$.
 
 ---
 
-### Step 3: Why repeated values remain together
-
-Every occurrence of the same integer `x` receives the identical tuple `(cnt[x], -x)`. Therefore no different key can be ordered between two occurrences of `x` once the full sort is complete. Repeated values form one contiguous block.
-
-Within that block, occurrence order does not matter because the values are identical. Across blocks, the first tuple component orders frequencies, and the second orders values descending among equal frequencies.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 1, 1, 2, 2, 2]` |
+### Step 3: Compare and Sort
+- Compare keys lexicographically:
+  - $(1, -3)$ vs $(2, -1)$: First component $1 < 2 \implies 3$ precedes $1$.
+  - $(2, -1)$ vs $(3, -2)$: First component $2 < 3 \implies 1$ precedes $2$.
+- The total sorted order of unique keys is $(1, -3) < (2, -1) < (3, -2)$.
+- Expanding each key by its frequency yields:
+  - Key $(1, -3)$ (value $3$, count $1$): `[3]`
+  - Key $(2, -1)$ (value $1$, count $2$): `[1, 1]`
+  - Key $(3, -2)$ (value $2$, count $3$): `[2, 2, 2]`
+- Concatenating these groups produces `[3, 1, 1, 2, 2, 2]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 1, 2, 2, 2, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 1, 1, 2, 2, 2]` | Verified |
+| Pass / Stage | Element $x$ | $F[x]$ | Negated Value $-x$ | Composite Key $(F[x], -x)$ | Rank / Action |
+|---|---|---|---|---|---|
+| Scan | $1$ | $2$ | $-1$ | $(2, -1)$ | Key computed |
+| Scan | $1$ | $2$ | $-1$ | $(2, -1)$ | Identical key; groups together |
+| Scan | $2$ | $3$ | $-2$ | $(3, -2)$ | Key computed |
+| Scan | $2$ | $3$ | $-2$ | $(3, -2)$ | Identical key; groups together |
+| Scan | $2$ | $3$ | $-2$ | $(3, -2)$ | Identical key; groups together |
+| Scan | $3$ | $1$ | $-3$ | $(1, -3)$ | Lowest frequency; rank 1 |
+| Sort Phase | - | - | - | $(1, -3) < (2, -1) < (3, -2)$ | Output: `[3, 1, 1, 2, 2, 2]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Lexicographical tuple comparison evaluates the first element first. If $F[a] \ne F[b]$, the condition $F[a] < F[b]$ dictates relative order, ensuring increasing frequency. If $F[a] = F[b]$, the tie-breaker evaluates $-a < -b$, which holds if and only if $a > b$, ensuring values with identical frequencies are sorted in strictly decreasing order.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the frequency table is constructed from a full single-pass traversal over all $N$ elements, every occurrence is accounted for. Sorting the $N$-element sequence (or unique values with expansion) maintains multiset equality with the original input, guaranteeing no element is lost or duplicated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Count distinct values, sort the keys, then expand blocks:** Sort the $k$ unique values by `(frequency, -value)` and append each value its frequency times. This costs $O(n+k\log k)$ and can reduce comparison work when many values repeat.
-- **Bucket by frequency:** Frequencies range from 1 through $n$. Values in each bucket can be sorted descending, then expanded. This can be useful with a tightly bounded value domain but requires more bookkeeping.
-- **Custom comparator:** Compare counts first and values second. It is equivalent, but a tuple key is shorter and avoids repeatedly looking up comparison operands during sorting.
-- **All values distinct:** Every frequency is one, so the entire output is the input values sorted in decreasing numeric order.
-- **All values equal:** All occurrences have the same key and the returned list is unchanged in value.
-- **Two values share a frequency:** The numerically larger one must come first; negation converts that descending rule into ascending-key order.
-- **Negative integers:** Negation still reverses numeric order correctly. “Larger” means, for example, $-1>-6$.
-- **Zero:** Its secondary key is also zero and participates normally between positive and negative values.
-- **Input preservation:** `sorted` returns a new list. Using `nums.sort` would mutate the caller's array, which the exact source does not do.
-- **Stable sorting is not relied upon:** Equal values have identical keys, and their relative occurrence order is unobservable. Different values are fully distinguished by the secondary component when counts tie.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing the Tie-Breaker Direction:** A common error is sorting by $(F[x], x)$ rather than $(F[x], -x)$, which would incorrectly place smaller values before larger values when frequencies match (e.g. producing `[1, 2]` instead of `[2, 1]` when both occur once).
+- **In-Place Mutation During Frequency Counting:** Modifying the array before the full frequency map is established invalidates counts of unvisited elements.
+- **Negative Value Negation Overflow / Logic:** In languages with fixed-width integers, negating the minimum signed value requires attention; here values are bounded in $[-100, 100]$, so $-x \in [-100, 100]$ safely without overflow.
+- **Unstable Key Separation:** Ensuring all identical numbers remain grouped together requires identical composite keys; since $F[x]$ and $-x$ are deterministic functions of value $x$, identical elements naturally form contiguous blocks.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(k)$. Let $n$ be the number of input elements and $k$ the number of distinct values. Building the Counter takes $O(n)$ expected time and $O(k)$ space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$ using comparison sort on the $N$-element array with composite keys. Frequency map construction takes $\mathcal{O}(N)$ time over $N$ items. If sorting distinct keys $U \le N$, time is $\mathcal{O}(N + U \log U) \le \mathcal{O}(N \log N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$ space to store the frequency map of unique values, where $U \le \min(N, 201)$.

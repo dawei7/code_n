@@ -43,6 +43,20 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "3456237490",
+        "target": 9191
+      },
+      "expected": [],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-zero",
       "name": "leading zero operands are forbidden",
       "kind": "trial",

@@ -1,119 +1,193 @@
 # Guided Example: Create Target Array in the Given Order
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of sequential position-indexed array insertion on a representative problem instance:
 
-- **Input:** `{"nums": [0, 1, 2, 3, 4], "index": [0, 1, 2, 2, 1]}`
+- **Input:** `nums = [0, 1, 2, 3, 4]`, `index = [0, 1, 2, 2, 1]`
 - **Required output:** `[0, 4, 1, 3, 2]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because the first three operations append elements monotonically, while the final two operations insert into internal indices, displacing previously positioned elements to the right.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two arrays of integers `nums` and `index`. Your task is to create *target* array under the following rules:
+Given two integer arrays `nums` and `index` of equal length $n$, we start with an empty target array $\mathcal{T} = []$. At each step $i \in \{0, \dots, n-1\}$, we read the pair $(nums[i], index[i])$ and insert $nums[i]$ at position $index[i]$ within $\mathcal{T}$. Existing elements at indices $\ge index[i]$ shift to the right by one position.
 
-The objective is to compute `[0, 4, 1, 3, 2]` from `{"nums": [0, 1, 2, 3, 4], "index": [0, 1, 2, 2, 1]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [0, 1, 2, 3, 4]` and `index = [0, 1, 2, 2, 1]`:
+- Step 0: Insert $0$ at index $0 \implies \mathcal{T} = [0]$
+- Step 1: Insert $1$ at index $1 \implies \mathcal{T} = [0, 1]$
+- Step 2: Insert $2$ at index $2 \implies \mathcal{T} = [0, 1, 2]$
+- Step 3: Insert $3$ at index $2 \implies \mathcal{T} = [0, 1, 3, 2]$ (element $2$ shifts right)
+- Step 4: Insert $4$ at index $1 \implies \mathcal{T} = [0, 4, 1, 3, 2]$ (elements $1, 3, 2$ shift right)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model sequential list displacement: understanding that inserting at index $k$ splits the current array into prefix $\mathcal{T}[0 \dots k-1]$ and suffix $\mathcal{T}[k \dots |\mathcal{T}|-1]$, sandwiching the incoming value between them.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $\mathcal{T}_i$ be the target array after $i$ operations ($|\mathcal{T}_i| = i$).
+At step $i$, we insert value $v = nums[i]$ at index $p = index[i]$, where $0 \le p \le i$:
+$$
+\mathcal{T}_{i+1} = \mathcal{T}_i[0 \dots p-1] \mathbin{\Vert} [v] \mathbin{\Vert} \mathcal{T}_i[p \dots i-1]
+$$
+where $\mathbin{\Vert}$ denotes array concatenation.
 
-| State Parameter | Role & Purpose | Initial State |
+```
+Array Insertion and Right-Shift Mechanics:
+Step 2 state:    [ 0,   1,   2 ]
+Insert (3 at 2):   |    |    \---> shifts right to index 3
+                 [ 0,   1,   3,   2 ]
+                             ^
+Step 3 state:    [ 0,   1,   3,   2 ]
+Insert (4 at 1):   |    \----+----+----> shift right to indices 2, 3, 4
+                 [ 0,   4,   1,   3,   2 ]
+                        ^
+```
+
+We define state tracking parameters:
+
+| Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Step Counter ($i$) | Number of processed insertion operations | $0$ |
+| Value to Insert ($v$) | Element $nums[i]$ | $nums[0] = 0$ |
+| Target Index ($p$) | Index $index[i]$ within range $[0, i]$ | $index[0] = 0$ |
+| Target Array ($\mathcal{T}$) | Accumulator list of inserted elements | $[]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After processing step $i$, $|\mathcal{T}| = i + 1$, and for every $k < index[i]$, $\mathcal{T}[k]$ retains its relative position, while all elements originally at indices $\ge index[i]$ have their indices increased by exactly $1$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Simulate the specification directly
+### Step 0: Insert $nums[0] = 0$ at $index[0] = 0$
 
-The problem defines a sequence of insertion operations. At step $i$, value `nums[i]` must be inserted at position `index[i]` in the current target list. Python's `list.insert(position, value)` has exactly those semantics: existing elements at that position and to its right shift one place, and the new value occupies the requested index.
+- Target array before step: $\mathcal{T} = []$.
+- Insert value $0$ at index $0$.
+- Resulting array: $\mathcal{T} = [0]$.
+- Displaced elements: None.
 
-The solution begins with `target = []`. `zip(nums, index)` pairs corresponding entries as `(x, i)` from left to right. For every pair, `target.insert(i, x)` performs the required operation. Returning `target` after the loop therefore mirrors the statement without needing any transformed representation.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [0, 1, 2, 3, 4], "index": [0, 1, 2, 2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: What insertion means at each boundary
-
-If `i == 0`, the new value becomes the first element and all current values shift right.
-
-If `i == len(target)`, the value is appended at the end and no existing value shifts.
-
-For an index strictly inside the list, the prefix before `i` remains unchanged, the new value occupies `i`, and the old suffix begins at `i+1`.
-
-The guarantee `0 <= index[i] <= i` makes every operation valid. Before step $i$ under zero-based indexing, exactly $i$ values have already been inserted, so the current target length is $i$. The allowed range is precisely zero through the current length.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Operation Index | Incoming Value | Target Position | Displaced Suffix | Array After Operation |
+|---|---|---|---|---|
+| $0$ | $0$ | $0$ | None | $[0]$ |
 
 ---
 
-### Step 3: Following the first example
+### Step 1: Insert $nums[1] = 1$ at $index[1] = 1$
 
-The first three pairs insert 0 at zero, 1 at one, and 2 at two, producing `[0,1,2]`. The fourth pair inserts 3 at index two. The old value 2 shifts right, producing `[0,1,3,2]`. The final pair inserts 4 at index one. Values 1, 3, and 2 shift, yielding `[0,4,1,3,2]`.
+- Target array before step: $\mathcal{T} = [0]$.
+- Target index $1 = |\mathcal{T}|$ (append operation).
+- Resulting array: $\mathcal{T} = [0, 1]$.
+- Displaced elements: None.
 
-No value is overwritten. Insertion increases list length by one, unlike assignment such as `target[i] = x`, which would replace an existing value and fail when the list is initially empty.
+| Operation Index | Incoming Value | Target Position | Displaced Suffix | Array After Operation |
+|---|---|---|---|---|
+| $1$ | $1$ | $1$ | None | $[0, 1]$ |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 4, 1, 3, 2]` |
+---
+
+### Step 2: Insert $nums[2] = 2$ at $index[2] = 2$
+
+- Target array before step: $\mathcal{T} = [0, 1]$.
+- Target index $2 = |\mathcal{T}|$ (append operation).
+- Resulting array: $\mathcal{T} = [0, 1, 2]$.
+- Displaced elements: None.
+
+| Operation Index | Incoming Value | Target Position | Displaced Suffix | Array After Operation |
+|---|---|---|---|---|
+| $2$ | $2$ | $2$ | None | $[0, 1, 2]$ |
+
+---
+
+### Step 3: Insert $nums[3] = 3$ at $index[3] = 2$ (Internal Shift)
+
+- Target array before step: $\mathcal{T} = [0, 1, 2]$.
+- Target position is $2 < |\mathcal{T}| = 3$.
+- Suffix starting at index $2$ is $[2]$.
+- Shift $[2]$ right to occupy index $3$.
+- Place incoming value $3$ at index $2$.
+- Resulting array: $\mathcal{T} = [0, 1, 3, 2]$.
+
+| Operation Index | Incoming Value | Target Position | Displaced Suffix | Array After Operation |
+|---|---|---|---|---|
+| $3$ | $3$ | $2$ | $[2] \to$ shifted to index $3$ | $[0, 1, 3, 2]$ |
+
+---
+
+### Step 4: Insert $nums[4] = 4$ at $index[4] = 1$ (Multi-Element Shift)
+
+- Target array before step: $\mathcal{T} = [0, 1, 3, 2]$.
+- Target position is $1 < |\mathcal{T}| = 4$.
+- Prefix before index $1$: $[0]$.
+- Suffix starting at index $1$: $[1, 3, 2]$.
+- Shift elements at indices $1, 2, 3$ rightward to indices $2, 3, 4$:
+  - Old $\mathcal{T}[1] = 1 \to \text{New } \mathcal{T}[2] = 1$
+  - Old $\mathcal{T}[2] = 3 \to \text{New } \mathcal{T}[3] = 3$
+  - Old $\mathcal{T}[3] = 2 \to \text{New } \mathcal{T}[4] = 2$
+- Place incoming value $4$ at index $1$.
+- Resulting array: $\mathcal{T} = [0, 4, 1, 3, 2]$.
+
+Final target array: `[0, 4, 1, 3, 2]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0, 1, 2, 3, 4], "index": [0, 1, 2, 2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 4, 1, 3, 2]` | Verified |
+| Step ($i$) | $nums[i]$ | $index[i]$ | Array Pre-State | Elements Shifted Right | Array Post-State |
+|---|---|---|---|---|---|
+| $0$ | $0$ | $0$ | $[]$ | None | $[0]$ |
+| $1$ | $1$ | $1$ | $[0]$ | None | $[0, 1]$ |
+| $2$ | $2$ | $2$ | $[0, 1]$ | None | $[0, 1, 2]$ |
+| $3$ | $3$ | $2$ | $[0, 1, 2]$ | Value $2$ (index $2 \to 3$) | $[0, 1, 3, 2]$ |
+| $4$ | $4$ | $1$ | $[0, 1, 3, 2]$ | Values $1, 3, 2$ (indices $1..3 \to 2..4$) | **$[0, 4, 1, 3, 2]$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Correctness of Displacement Mechanics
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The specification requires:
+1. Each element $nums[i]$ must reside at position $index[i]$ immediately after operation $i$.
+2. Any element inserted earlier at or to the right of $index[i]$ remains in the list, preserving its relative order with respect to all other displaced elements.
+- By shifting the suffix $\mathcal{T}[index[i] \dots i-1]$ one position to the right into slots $index[i]+1 \dots i$, the relative order within the suffix is strictly invariant: for all $a < b$, their new indices satisfy $a+1 < b+1$.
+- The new slot at $index[i]$ is vacated and immediately occupied by $nums[i]$.
+- Prefix $\mathcal{T}[0 \dots index[i]-1]$ is untouched.
+- Hence, the post-state fulfills both requirements by construction.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Linked list:** Finding the requested index costs $O(i)$ even if insertion itself is constant after locating it, so total time remains quadratic and Python implementation becomes more complex.
-- **Balanced indexed tree:** An order-statistics tree can support insertions in $O(\log n)$, but it is excessive for $n\le100$ and not built into Python's standard list.
-- **Reverse placement with free slots:** Process operations backward and locate the appropriate empty position using a Fenwick tree. This can reach $O(n\log n)$ but requires a nontrivial inversion argument.
-- **Assignment instead of insertion:** It overwrites rather than shifts and cannot build the specified sequence.
-- **Index zero:** Every current element shifts right and the new value becomes first.
-- **Index equal to current length:** `insert` behaves like append.
-- **Repeated values:** Values need not be unique; positions and operation order distinguish occurrences.
-- **Single pair:** The guaranteed index is zero, producing the one-element result.
-- **All indices increasing:** Every operation appends, giving linear practical behavior.
-- **All indices zero:** Every operation shifts the full current list, realizing the quadratic worst case and reversing arrival order.
-- **Equal input lengths:** The contract guarantees `zip` does not silently drop an unmatched tail.
-- **Input mutation:** Neither `nums` nor `index` is changed; only the new `target` list is modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(n^2)$. At step $i$, shifting up to $i$ elements requires $\mathcal{O}(i)$ time. Summing over $n$ steps: $\sum_{i=0}^{n-1} i = \frac{n(n-1)}{2} = \mathcal{O}(n^2)$. For $n \le 100$, this performs at most $\approx 5000$ operations, completing in less than a millisecond. (Advanced balanced search trees or Fenwick trees can achieve $\mathcal{O}(n \log n)$ by backward positioning).
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the target array of $n$ elements.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of pairs. Python lists are contiguous arrays. Inserting near the front of a current length-$i$ list can shift $i$ elements, costing $O(i)$. Across all steps, the worst-case total is
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Index Guarantee:** The problem guarantees $0 \le index[i] \le i$. Attempting to insert at an index strictly greater than the current length would produce undefined behavior or an index error.
+- **In-Place Shift Order:** When shifting elements in a fixed array buffer, shifting must proceed from right to left (highest index to lowest). Shifting left to right would overwrite values before they are displaced.
+- **Append vs Insert:** When $index[i] = |\mathcal{T}|$, no elements are shifted, representing a pure constant-time append.
+- **Head Insertions:** When $index[i] = 0$, every existing element is displaced.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Target Array Insertion Flowchart
+    accDescr: Step-by-step logic inserting elements at specified indices and shifting rightward elements.
+
+    Start(["Start"]) --> Init["Init: target = []"]
+    Init --> Loop{"For i from 0 to n - 1:"}
+    
+    Loop -- "Done" --> ReturnTarget(["Return target"])
+    Loop -- "Next i" --> Read["Read val = nums[i], pos = index[i]"]
+    
+    Read --> CheckPos{"pos == len(target) ?"}
+    CheckPos -- "Yes (Append)" --> AppendVal["target.append(val)"]
+    CheckPos -- "No (Shift)" --> ShiftInsert["Shift target[pos..] right by 1<br>target[pos] = val"]
+    
+    AppendVal --> Loop
+    ShiftInsert --> Loop
+```

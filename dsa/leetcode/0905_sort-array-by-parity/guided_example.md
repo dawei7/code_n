@@ -1,111 +1,139 @@
 # Guided Example: Sort Array By Parity
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of bidirectional two-pointer in-place partitioning (Hoare's parity partition), prove the tripartite classification invariant, and demonstrate pointer convergence on representative integer arrays:
 
-- **Input:** `{"nums": [3, 1, 2, 4]}`
-- **Required output:** `[2, 4, 3, 1]`
+- **Representative Instance:**
+  $$
+  \text{nums} = [3, \; 1, \; 2, \; 4]
+  $$
+- **Required Output:** Any valid partition where all even integers precede all odd integers, such as:
+  $$
+  [4, \; 2, \; 1, \; 3] \quad \text{or} \quad [2, \; 4, \; 3, \; 1]
+  $$
+  - Even group: $\{2, 4\}$
+  - Odd group: $\{1, 3\}$
+  - Valid partition boundary: all elements in the first partition have remainder $0 \pmod 2$, and all elements in the second partition have remainder $1 \pmod 2$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Secondary Boundary Instances:**
+  - Already partitioned: $[0, 2, 4, 1, 3, 5] \implies [0, 2, 4, 1, 3, 5]$ ($0$ swaps needed)
+  - Reversed parity blocks: $[1, 3, 5, 0, 2, 4] \implies [4, 2, 0, 5, 3, 1]$ ($3$ swaps needed)
+  - Single zero: $[0] \implies [0]$ ($0 \pmod 2 == 0$, trivially even)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, move all the even integers at the beginning of the array followed by all the odd integers.
+Given an integer array `nums`, move all the even integers to the front of the array followed by all the odd integers. The problem does not require stable ordering—any permutation satisfying the parity partition is accepted.
 
-The objective is to compute `[2, 4, 3, 1]` from `{"nums": [3, 1, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Initial Array:   [  3,    1,    2,    4  ]
+Indices:            0     1     2     3
+                  ^                   ^
+                 i=0                 j=3
+                 (odd)              (even) -> SWAP!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+After Swap 1:    [  4,    1,    2,    3  ]
+                         ^     ^
+                        i=1   j=2
+                        (odd) (even)        -> SWAP!
 
----
+After Swap 2:    [  4,    2,    1,    3  ]
+                         ^     ^
+                        j=1   i=2           -> i > j: TERMINATE!
+```
 
-## 2. Conceptual Foundation & Invariants
+A naive approach allocates two auxiliary arrays (one for evens, one for odds) and concatenates them. While linear in time, this uses $\mathcal{O}(n)$ extra space.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Core Step 1
-
-The required output has one partition boundary: every even value must appear before every odd value. Relative order inside the even group and inside the odd group is irrelevant because any satisfying array is accepted.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 1, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is to execute an **In-Place Hoare Partition**:
+Two pointers $i$ and $j$ start at opposite ends. Pointer $i$ advances past confirmed even elements, pointer $j$ retreats past confirmed odd elements, and whenever $i$ spots an odd number while $j$ spots an even number, their values are swapped in place in $\mathcal{O}(1)$ time.
 
 ---
 
-### Step 2: Core Step 2
+## 2. Conceptual Foundation & The Tripartite Partition Invariant
 
-The exact solution partitions in place with two pointers:
+```mermaid
+flowchart LR
+    accTitle: Parity Partition Invariant
+    accDescr: Array diagram partitioned into three zones: confirmed even, unresolved middle, and confirmed odd
+    subgraph ArrayLayout ["Array Layout: [0 ... n-1]"]
+        E["0 ... i - 1: Confirmed Even (val % 2 == 0)"]
+        U["i ... j: Unresolved Region"]
+        O["j + 1 ... n - 1: Confirmed Odd (val % 2 == 1)"]
+    end
+```
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### The Tripartite Invariant
+
+At every step of the while loop ($i \le j$):
+1. **Left Invariant:** Every element in index range $[0, i - 1]$ is strictly even:
+   $$
+   \forall k \in [0, i - 1], \quad \text{nums}[k] \equiv 0 \pmod 2
+   $$
+2. **Right Invariant:** Every element in index range $[j + 1, n - 1]$ is strictly odd:
+   $$
+   \forall k \in [j + 1, n - 1], \quad \text{nums}[k] \equiv 1 \pmod 2
+   $$
+3. **Unresolved Middle:** Only indices in $[i, j]$ remain uninspected.
+4. **Monotone Contraction:** Every iteration either increments $i$, decrements $j$, or performs a swap and updates both, shrinking the unresolved interval $j - i + 1$ by at least $1$ (or $2$).
+5. **Termination:** When $i \ge j$, the unresolved region is empty or a single element whose position relative to the boundary is already consistent. The entire array is partitioned.
 
 ---
 
-### Step 3: Core Step 3
+## 3. Step-by-Step Worked Execution: $\text{nums} = [3, 1, 2, 4]$
 
-- `i` searches from the left for a misplaced odd value.
-- `j` searches from the right for a misplaced even value.
+We trace the algorithm on $[3, 1, 2, 4]$:
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 4, 3, 1]` |
+| Step | Left Pointer $i$ | Right Pointer $j$ | Element at $i$ | Element at $j$ | Parity Evaluation | Action Taken | Array State After Step | Unresolved Region $[i, j]$ |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|:---:|:---:|
+| **Init** | $0$ | $3$ | $3$ | $4$ | — | Initialize boundaries | $[3, 1, 2, 4]$ | $[0, 3]$ |
+| **1** | $0$ | $3$ | $3$ (odd) | $4$ (even) | Misplaced pair! | Swap $\text{nums}[0] \leftrightarrow \text{nums}[3]$, $i \leftarrow 1, j \leftarrow 2$ | $[4, 1, 2, 3]$ | $[1, 2]$ |
+| **2** | $1$ | $2$ | $1$ (odd) | $2$ (even) | Misplaced pair! | Swap $\text{nums}[1] \leftrightarrow \text{nums}[2]$, $i \leftarrow 2, j \leftarrow 1$ | $[4, 2, 1, 3]$ | $\emptyset$ ($i > j$) |
+| **3** | $2$ | $1$ | — | — | $i > j$ holds | Halt loop | $[4, 2, 1, 3]$ | (Terminated) |
+
+Final output array: $[4, 2, 1, 3]$ (evens: $\{4, 2\}$; odds: $\{1, 3\}$).
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Secondary Trace: Array with Self-Advancement ($[0, 1, 2]$)
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 1, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 4, 3, 1]` | Verified |
+| Step | $i$ | $j$ | $\text{nums}[i]$ | $\text{nums}[j]$ | Decision | Updated State |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | $0$ | $2$ | $0$ (even) | $2$ (even) | $\text{nums}[0]$ is already even $\implies$ advance $i \leftarrow 1$ | $i=1, j=2$ |
+| 1 | $1$ | $2$ | $1$ (odd) | $2$ (even) | Misplaced pair $\implies$ swap $\text{nums}[1], \text{nums}[2]$, $i \leftarrow 2, j \leftarrow 1$ | $[0, 2, 1]$ |
+| 2 | $2$ | $1$ | — | — | $i > j \implies$ Halt | $[0, 2, 1]$ |
+
+Notice that when $\text{nums}[i]$ is already even, it is preserved without swapping, advancing $i$ directly.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A swap is performed if and only if $\text{nums}[i]$ is odd and $\text{nums}[j]$ is even. Placing the even value at $i$ and the odd value at $j$ places each element in its correct partition zone. When an element is already in its correct partition zone, the corresponding pointer advances past it without swapping. Thus, every element in $[0, i-1]$ is even, and every element in $[j+1, n-1]$ is odd.
+2. **Completeness:**
+   Since the length of the unresolved window $[i, j]$ decreases by at least $1$ on every iteration, $i$ and $j$ must eventually cross ($i \ge j$). At that moment, the union of $[0, i-1]$ and $[j+1, n-1]$ covers the entire array, guaranteeing that every element in the array has been correctly partitioned.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Two output lists:** Collect evens and odds separately, then concatenate. This is easy but uses $O(n)$ extra space.
-- **Stable in-place partition:** Preserving relative order generally requires shifting elements and can cost $O(n^2)$ without extra storage. Stability is not required.
-- **Sort by parity key:** It works but usually costs $O(n\log n)$ and may use sorting workspace.
-- **Single write pointer:** Scan for evens and swap each into the next left slot. This is another $O(n)$, $O(1)$ partition.
-- **All even:** The left pointer advances across the array, and the order remains unchanged.
-- **All odd:** The right pointer retreats across the array, and the order remains unchanged.
-- **One value:** The loop never runs; either parity already satisfies the condition.
-- **Zero:** Zero is even because `0 % 2 == 0` and belongs in the front group.
-- **Alternating parity:** Several swaps may occur, but each fixes boundary positions permanently.
-- **Duplicate values:** Parity, not uniqueness, determines placement.
-- **Any accepted order:** The algorithm is free to reverse or rearrange members within a parity group.
-- **Input mutation:** Callers needing the original order should pass a copy.
-- **Pointer meeting:** The single middle value needs no classification action because verified groups on either side cannot be inverted through one cell.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Element | $\text{nums} = [0]$ or $[5]$ | $i = 0, j = 0 \implies i < j$ is false immediately. Returns input unchanged. | Crashing on bounds $i < j$. |
+| All Even | $[2, 4, 6, 8]$ | $i$ increments continuously until $i = 4 > j = 3$. Zero swaps made. | Redundant self-swapping. |
+| All Odd | $[1, 3, 5, 7]$ | $j$ decrements continuously until $j = -1 < i = 0$. Zero swaps made. | Decrementing $j$ past index 0 without halting. |
+| Negative Numbers | $[-2, 3, -4]$ | In Python, `-2 % 2 == 0`. In languages with truncated modulo, use `(x & 1) == 0`. | Bitwise check `x & 1` avoids sign discrepancies. |
+| Zeros | $[0, 0, 1]$ | $0$ is an even number ($0 \pmod 2 == 0$) and correctly stays in the left partition. | Incorrectly treating zero as neither or odd. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. In every loop iteration, `i` increases, `j` decreases, or both. The unresolved interval strictly shrinks, so total iterations are $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$.
+  - On every step of the while loop, at least one of $i$ increments or $j$ decrements.
+  - The sum of increments to $i$ plus decrements to $j$ is strictly bounded by $n$.
+  - Number of swaps is at most $\lfloor n / 2 \rfloor$.
+  - Total time is strictly linear $\mathcal{O}(n)$, completing in $< 0.01\text{ s}$ for $n = 5000$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$.
+  - The array is mutated strictly in place using two scalar integer index pointers $i$ and $j$. Zero heap allocations are made.

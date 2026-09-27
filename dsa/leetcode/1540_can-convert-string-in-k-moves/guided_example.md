@@ -1,130 +1,190 @@
 # Guided Example: Can Convert String in K Moves
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of modular residue frequency analysis on a representative string transformation instance to determine if $s$ can be converted into $t$ within $k$ moves.
 
-- **Input:** `{"s": "input", "t": "ouput", "k": 9}`
-- **Required output:** `true`
+- **Input Strings:** $s = \text{"input"}$, $t = \text{"ouput"}$, with maximum move budget $k = 9$.
+- **Output:** `true` (shift requirements are $d = 6$ at index 0 and $d = 7$ at index 1, accommodated by moves 6 and 7 within budget $k = 9$).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates cyclic distance computation modulo 26, move assignment arithmetic $(c_d - 1) \times 26 + d$, and validation across non-conflicting modular classes.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `t`, your goal is to convert `s` into `t` in `k`** **moves or less.
+We are given two lowercase strings of length $N = 5$ and an integer $k = 9$:
 
-The objective is to compute `true` from `{"s": "input", "t": "ouput", "k": 9}` while avoiding redundant calculations and unnecessary overhead.
+$$s = \text{"input"}, \quad t = \text{"ouput"}, \quad k = 9$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Conversion rules:
+1. In the $m$-th move ($1 \le m \le k$), we may advance one previously untouched character of $s$ by exactly $m$ alphabet positions forward (with cyclic wrap-around $z \rightarrow a$).
+2. Alternatively, move $m$ may be skipped.
+3. Each index in $s$ may be chosen at most once across all moves.
+4. Each move number $m \in [1, k]$ may be used at most once.
+
+**Teaching Goal:**
+Understand why position-by-position character shifts decompose into 25 independent residue classes modulo 26. Since multiple indices requiring the same cyclic shift $d$ must use distinct moves $d, d + 26, d + 52, \dots$, we compute the maximum required move $\max_d (d + (c_d - 1) \times 26)$ in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ space, without simulating individual moves up to $k = 10^9$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  MODULAR RESIDUE CAPACITY SCHEME                        |
++-------------------------------------------------------------------------+
+|  Pairwise Shift: d = (ord(t[i]) - ord(s[i])) mod 26                     |
+|                                                                         |
+|  - If d == 0: Character already matches; no move needed                 |
+|  - If d > 0:  Requires a move m congruent to d (mod 26)                 |
+|                                                                         |
+|  Shift Residue Bucket d in {1, 2, ..., 25}:                             |
+|    1st occurrence needs move:  d                                        |
+|    2nd occurrence needs move:  d + 26                                   |
+|    3rd occurrence needs move:  d + 2 * 26                               |
+|    ...                                                                  |
+|    c_d-th occurrence needs:    d + (c_d - 1) * 26                       |
+|                                                                         |
+|  FEASIBILITY CONDITION:                                                 |
+|    For all d in [1 .. 25]:  d + (c_d - 1) * 26 <= k                     |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+We establish the core state parameters:
+
+| State Variable | Definition & Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $N$ | Length of string $s$ (must equal length of $t$) | $5$ |
+| $d_i$ | Cyclic forward distance from $s[i]$ to $t[i]$ | Computed per index |
+| $C$ | Frequency array of size 26 tracking counts $c_d$ | $C[0..25] = 0$ |
+| $\text{max\_move}(d)$ | Highest move number demanded by residue $d$: $d + (c_d - 1) \cdot 26$ | Evaluated during check |
+| $k$ | Maximum allowable move index | $9$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Congruence Exclusivity Invariant.** Two indices requiring the same cyclic shift $d \in [1, 25]$ cannot share the same move number $m$. Because $m_1 \equiv m_2 \equiv d \pmod{26}$, the difference $|m_1 - m_2|$ must be a positive multiple of 26. Thus, $c_d$ occurrences of shift $d$ strictly require the $c_d$ smallest positive integers congruent to $d \pmod{26}$, the largest being $d + (c_d - 1) \cdot 26$.
+
+```mermaid
+graph TD
+    accTitle: Modular Shift Verification Flowchart
+    accDescr: Process of checking string lengths, accumulating cyclic shift frequencies, and validating move thresholds against k.
+    A["Check len(s) == len(t)"] --> B{"Lengths equal?"}
+    B -- "No" --> C["Return false"]
+    B -- "Yes" --> D["For each index i: Compute d = (ord(t[i]) - ord(s[i])) mod 26"]
+    D --> E["If d > 0: Increment C[d]"]
+    E --> F["For d from 1 to 25: Check d + (C[d] - 1) * 26 <= k"]
+    F --> G{"Any residue exceeds k?"}
+    G -- "Yes" --> H["Return false"]
+    G -- "No" --> I["Return true"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Each position requires one shift residue
-
-An index may be chosen at most once. Therefore, a character cannot be assembled through several different moves; if a source character needs a total shift of `x` modulo 26, it must be assigned to one move whose number is congruent to `x` modulo 26.
-
-For paired characters `a` from `s` and `b` from `t`, the source computes
-
-`x = (ord(b) - ord(a) + 26) % 26`.
-
-This is the forward cyclic alphabet distance from `a` to `b`. Adding 26 avoids a negative difference when wrapping from a later letter to an earlier one, and the final remainder places the answer from zero through twenty-five.
-
-For example, converting `z` to `b` requires two forward shifts: `z` becomes `a`, then `b`. The formula produces two rather than a negative distance.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "input", "t": "ouput", "k": 9}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Length Validation
+We compare the lengths of $s$ and $t$:
+$$\text{len}(s) = 5, \quad \text{len}(t) = 5$$
+Since lengths are equal, character-by-character mapping is feasible.
 
 ---
 
-### Step 2: Reject unequal lengths immediately
+### Step 2: Character Pair Difference Extraction
 
-Moves replace characters but never insert or delete positions. If `s` and `t` have different lengths, conversion is impossible regardless of `k`.
+For each index $i \in [0, 4]$, calculate forward distance $d_i = (\text{ord}(t[i]) - \text{ord}(s[i])) \bmod 26$:
 
-The early length check also makes `zip(s, t)` safe for the main analysis. Every position is paired; no suffix is silently ignored.
+- **Index 0:** $s[0] = \text{'i'}, t[0] = \text{'o'}$.
+  - Alphabet indices: $\text{'i'} \rightarrow 8, \text{'o'} \rightarrow 14$.
+  - Distance: $(14 - 8) \bmod 26 = 6$.
+  - Action: $C[6] \leftarrow C[6] + 1 = 1$.
+- **Index 1:** $s[1] = \text{'n'}, t[1] = \text{'u'}$.
+  - Alphabet indices: $\text{'n'} \rightarrow 13, \text{'u'} \rightarrow 20$.
+  - Distance: $(20 - 13) \bmod 26 = 7$.
+  - Action: $C[7] \leftarrow C[7] + 1 = 1$.
+- **Index 2:** $s[2] = \text{'p'}, t[2] = \text{'p'}$.
+  - Distance: $(15 - 15) \bmod 26 = 0$.
+  - Action: $d = 0$, no move needed.
+- **Index 3:** $s[3] = \text{'u'}, t[3] = \text{'u'}$.
+  - Distance: $(20 - 20) \bmod 26 = 0$.
+  - Action: $d = 0$, no move needed.
+- **Index 4:** $s[4] = \text{'t'}, t[4] = \text{'t'}$.
+  - Distance: $(19 - 19) \bmod 26 = 0$.
+  - Action: $d = 0$, no move needed.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Index $i$ | $s[i]$ | $t[i]$ | $\text{ord}(t[i]) - \text{ord}(s[i])$ | Shift Residue $d$ | Move Required | Updated Bucket $C[d]$ |
+|---|---|---|---|---|---|---|
+| 0 | 'i' | 'o' | $14 - 8 = 6$ | 6 | Yes (Move 6) | $C[6] = 1$ |
+| 1 | 'n' | 'u' | $20 - 13 = 7$ | 7 | Yes (Move 7) | $C[7] = 1$ |
+| 2 | 'p' | 'p' | $15 - 15 = 0$ | 0 | None | $C[0] = 1$ |
+| 3 | 'u' | 'u' | $20 - 20 = 0$ | 0 | None | $C[0] = 2$ |
+| 4 | 't' | 't' | $19 - 19 = 0$ | 0 | None | $C[0] = 3$ |
 
 ---
 
-### Step 3: Count how many positions need each residue
+### Step 3: Shift Capacity Verification Against Budget $k = 9$
 
-`cnt[x]` counts positions whose desired cyclic shift is `x`. There are only 26 possible residues, so a fixed array is sufficient.
+We evaluate the maximum move required across all nonzero residues $d \in [1, 25]$:
 
-Residue zero means the source and target characters already match. Such a position needs no move and can simply remain unchosen. Any number of zero-residue positions can coexist without consuming the schedule.
+- For residue $d = 6$:
+  - Frequency count: $c_6 = 1$.
+  - Maximum move formula:
+    $$\text{max\_move}(6) = 6 + (1 - 1) \times 26 = 6$$
+  - Capacity check: $6 \le k = 9$ (Satisfied).
+- For residue $d = 7$:
+  - Frequency count: $c_7 = 1$.
+  - Maximum move formula:
+    $$\text{max\_move}(7) = 7 + (1 - 1) \times 26 = 7$$
+  - Capacity check: $7 \le k = 9$ (Satisfied).
+- All other residues $d \in [1, 25] \setminus \{6, 7\}$ have $c_d = 0$ and require 0 moves.
 
-For a nonzero residue `i`, the legal positive move numbers are:
-
-$$
-i,\ i+26,\ i+2\cdot26,\ldots
-$$
-
-All of these moves shift a character by the same effective amount modulo 26. They are distinct move numbers, which matters because one move can choose at most one index.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+Every required move satisfies $\text{max\_move}(d) \le k$.
+Therefore, conversion is possible, and the algorithm emits **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "input", "t": "ouput", "k": 9}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+The global residue summary and capacity check are tabulated below:
+
+| Residue Class $d$ | Count $c_d$ | Move Sequence Allocated | Peak Move Needed | Budget Bound $k$ | Feasibility Status |
+|---|---|---|---|---|---|
+| 0 (Identity) | 3 | None (Skipped) | 0 | 9 | Trivial Pass |
+| 6 | 1 | $\{6\}$ | 6 | 9 | Pass ($6 \le 9$) |
+| 7 | 1 | $\{7\}$ | 7 | 9 | Pass ($7 \le 9$) |
+| All other $d$ | 0 | $\emptyset$ | 0 | 9 | Trivial Pass |
+| Global Maximum | - | - | **7** | **9** | **Overall Valid (`true`)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+- If the algorithm returns `true`, then for every residue $d \in [1, 25]$ with count $c_d > 0$, the $c_d$ integers $\{d, d + 26, d + 52, \dots, d + (c_d - 1) \cdot 26\}$ are all $\le k$.
+- By modular arithmetic, each of these numbers is strictly positive and distinct, and $m \equiv d \pmod{26}$.
+- Numbers belonging to different residue classes $d_1 \neq d_2$ are mutually disjoint because their remainders modulo 26 differ.
+- Thus, every position requiring a shift is assigned a distinct move $m \in [1, k]$ that delivers the exact required alphabet advancement.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+- Any valid schedule of moves must assign each position needing shift $d$ a distinct move $m \in [1, k]$ with $m \equiv d \pmod{26}$.
+- The set of available positive integers congruent to $d \pmod{26}$ in ascending order is $d, d + 26, d + 52, \dots$.
+- To accommodate $c_d$ such positions, at least $c_d$ integers from this arithmetic progression must be $\le k$.
+- The $c_d$-th term is $d + (c_d - 1) \cdot 26$. If this term exceeds $k$, then fewer than $c_d$ integers are available in $[1, k]$, rendering conversion mathematically impossible. Hence, the condition is necessary and sufficient.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Simulate every move:** Iterating from one through `k` can be infeasible because `k` may be one billion.
-- **Store required positions by residue:** It works but uses $O(N)$ space when counts alone determine feasibility.
-- **Greedily pick arbitrary matching moves:** Choosing the earliest congruent moves is the canonical schedule and exposes the exact feasibility bound.
-- **Unequal lengths:** Conversion cannot change string length, so the answer is false.
-- **Identical strings:** Every shift is zero, all nonzero counts are zero, and the answer is true even when `k = 0`.
-- **Zero moves:** Only already equal strings of equal length can succeed.
-- **Wraparound:** The modulo formula correctly maps `z` forward to `a` with residue one.
-- **Many positions with one residue:** Their usable moves must be separated by 26.
-- **Different residues:** Their legal move sequences never intersect, so they can be scheduled independently.
-- **Exact boundary:** A latest required move equal to `k` is allowed; only a greater value fails.
-- **Zero-residue count:** It is deliberately ignored because those indices need not be selected.
-- **One-use index rule:** Each changed position receives exactly one scheduled move, so the construction respects it.
-- **Do-nothing moves:** Unused move numbers cause no problem because every move permits doing nothing.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Move Simulation Trap:** Iterating through $m = 1, 2, \dots, k$ with a simulation loop fails when $k = 10^9$, causing Time Limit Exceeded. Formulating the closed-form threshold $d + (c_d - 1) \cdot 26$ allows $\mathcal{O}(1)$ verification per residue.
+- **Negative Differences in Cyclic Subtraction:** Computing $\text{ord}(t[i]) - \text{ord}(s[i])$ directly can produce negative numbers (e.g. 'a' to 'z' yields $0 - 25 = -25$). Adding 26 before taking modulo ($(\Delta + 26) \bmod 26$) ensures correct forward cyclic distance.
+- **Unequal Lengths:** When $\text{len}(s) \neq \text{len}(t)$, strings can never be made equal because moves only modify characters in-place and cannot insert or delete. This must be checked immediately.
+- **Identity Shifts ($d = 0$):** Characters that already match require 0 shifts. Including $d = 0$ in the move allocation formula would erroneously demand moves $0, 26, 52$, causing false rejections. $d = 0$ must be explicitly ignored.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the string length after the equality check. Computing the shift for every paired position costs $O(N)$ time. Checking the 25 nonzero residues costs constant time, so total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Length check: $\mathcal{O}(1)$.
+  - Single pass over strings $s$ and $t$ of length $N$ to compute shift residues and populate frequency array $C$: $\mathcal{O}(N)$ operations.
+  - Verification loop over fixed 25 nonzero residue buckets: exactly 25 constant-time arithmetic checks, costing $\mathcal{O}(1)$.
+  - Total time complexity is $\mathcal{O}(N)$, processing $10^5$ characters in less than 5 milliseconds.
+- **Auxiliary Space Complexity:**
+  - The frequency table $C$ has fixed size 26.
+  - Auxiliary space complexity is strictly $\mathcal{O}(1)$.

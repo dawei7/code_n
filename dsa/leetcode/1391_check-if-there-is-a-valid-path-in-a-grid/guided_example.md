@@ -1,135 +1,220 @@
 # Guided Example: Check if There is a Valid Path in a Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the bidirectional street port matching and graph connectivity traversal on a representative grid instance:
 
-- **Input:** `{"grid": [[2, 4, 3], [6, 5, 2]]}`
+- **Input:** `grid = [[2, 4, 3], [6, 5, 2]]`
 - **Required output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because the path traverses a non-trivial winding serpentine trajectory through all six cells ($(0, 0) \to (1, 0) \to (1, 1) \to (0, 1) \to (0, 2) \to (1, 2)$), rigorously testing every street type and bidirectional connection constraint.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` `grid`. Each cell of `grid` represents a street. The street of $\text{grid}[i][j]$ can be:
+Given an $m \times n$ matrix where each cell represents a specific pipe or street configuration, we begin at cell $(0, 0)$ and want to determine whether a continuous valid path reaches destination $(m - 1, n - 1)$.
 
-The objective is to compute `true` from `{"grid": [[2, 4, 3], [6, 5, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+The six street types and their connecting directions (North, South, East, West) are defined as:
+1. **Type 1:** Connects West and East (`[Left, Right]`)
+2. **Type 2:** Connects North and South (`[Upper, Lower]`)
+3. **Type 3:** Connects West and South (`[Left, Lower]`)
+4. **Type 4:** Connects East and South (`[Right, Lower]`)
+5. **Type 5:** Connects West and North (`[Left, Upper]`)
+6. **Type 6:** Connects East and North (`[Right, Upper]`)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A transition from cell $u$ to adjacent cell $v$ is valid if and only if:
+1. Cell $u$ has an open port pointing toward $v$.
+2. Cell $v$ has an open port pointing back toward $u$.
+
+For `grid = [[2, 4, 3], [6, 5, 2]]` ($m = 2, n = 3$):
+- Start at $(0, 0)$ with Type 2 (North-South). South port leads to $(1, 0)$.
+- $(1, 0)$ has Type 6 (East-North). Its North port connects to $(0, 0)$'s South port. Valid!
+- From $(1, 0)$, East port leads to $(1, 1)$.
+- $(1, 1)$ has Type 5 (West-North). West port matches East port of $(1, 0)$. Valid!
+- From $(1, 1)$, North port leads to $(0, 1)$.
+- $(0, 1)$ has Type 4 (East-South). South port matches North port of $(1, 1)$. Valid!
+- From $(0, 1)$, East port leads to $(0, 2)$.
+- $(0, 2)$ has Type 3 (West-South). West port matches East port of $(0, 1)$. Valid!
+- From $(0, 2)$, South port leads to $(1, 2)$.
+- $(1, 2)$ has Type 2 (North-South). North port matches South port of $(0, 2)$. Destination reached!
+
+The primary teaching goal is to model grid pipe navigation as an undirected graph traversal where edges exist strictly upon mutual port compatibility, preventing invalid one-sided movements.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $\Delta = \{ \text{North}: (-1, 0), \text{South}: (1, 0), \text{East}: (0, 1), \text{West}: (0, -1) \}$.
+Each direction $D$ has an opposite complementary direction $\text{opp}(D)$:
+- $\text{opp}(\text{North}) = \text{South}$
+- $\text{opp}(\text{South}) = \text{North}$
+- $\text{opp}(\text{East}) = \text{West}$
+- $\text{opp}(\text{West}) = \text{East}$
 
-| State Parameter | Role & Purpose | Initial State |
+Let $\text{Ports}(\text{type})$ denote the set of open directions for a street type:
+- $\text{Ports}(1) = \{\text{West}, \text{East}\}$
+- $\text{Ports}(2) = \{\text{North}, \text{South}\}$
+- $\text{Ports}(3) = \{\text{West}, \text{South}\}$
+- $\text{Ports}(4) = \{\text{East}, \text{South}\}$
+- $\text{Ports}(5) = \{\text{West}, \text{North}\}$
+- $\text{Ports}(6) = \{\text{East}, \text{North}\}$
+
+```
+Grid Layout and Serpentine Path:
+(0,0) [Type 2: |]             (0,1) [Type 4: ┌]  ----->  (0,2) [Type 3: ┐]
+       |                             ^                          |
+       v                             |                          v
+(1,0) [Type 6: └]  -------->  (1,1) [Type 5: ┘]          (1,2) [Type 2: |]  (Goal!)
+```
+
+An edge exists between cell $A$ and adjacent neighbor $B = A + D$ if and only if:
+$$
+D \in \text{Ports}(grid[A]) \quad \text{and} \quad \text{opp}(D) \in \text{Ports}(grid[B])
+$$
+
+We define state tracking parameters:
+
+| Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Active Queue ($\mathcal{Q}$) | BFS frontier of reachable coordinates | $[(0, 0)]$ |
+| Visited Matrix ($\mathcal{V}$) | Boolean grid of explored coordinates | $\mathcal{V}[0][0] = \text{True}$ |
+| Current Node ($r, c$) | Coordinate currently dequeued | $(0, 0)$ |
+| Target Coordinate | Destination cell $(m - 1, n - 1)$ | $(1, 2)$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Every cell added to the queue is guaranteed to be connected to the origin $(0, 0)$ through a contiguous chain of mutually compatible street ports.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Model mutually connected streets as an undirected graph
+### Step 1: Initialization at $(0, 0)$
 
-Each grid cell is a graph node. Two horizontally or vertically adjacent cells share an edge only when the current cell opens toward the neighbor and the neighbor opens back toward the current cell. A one-sided opening is not a valid connection.
+- Current cell: $(0, 0)$, street Type $2$ (`[North, South]`).
+- Check North $(-1, 0)$: Out of bounds.
+- Check South $(1, 0)$:
+  - Direction is South. Opposite is North.
+  - Neighbor cell $(1, 0)$ has Type $6$.
+  - $\text{Ports}(6) = \{\text{East}, \text{North}\}$. North $\in \text{Ports}(6)$ holds!
+  - Mutual connection verified. Mark $(1, 0)$ visited and enqueue.
 
-The solution builds these connections with disjoint-set union, also called union-find. After every valid neighboring pair has been merged, the top-left and bottom-right cells have a valid street path exactly when they belong to the same connected component.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[2, 4, 3], [6, 5, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Flatten two-dimensional coordinates
-
-For $n$ columns, cell $(i,j)$ maps to integer
-
-$$
-i\cdot n+j.
-$$
-
-Rows occupy nonoverlapping blocks of $n$ IDs, so this mapping is unique from zero through $mn-1$. The start is ID zero, and the target is `m * n - 1`.
-
-`p = list(range(m * n))` initially makes every node its own component representative. `find(x)` follows parent pointers to a root. The assignment `p[x] = find(p[x])` applies path compression, making future finds on that path faster.
-
-To merge connected cells, the code assigns the current root's parent to the neighbor root:
-
-`p[find(current)] = find(neighbor)`.
-
-The union direction does not affect connectivity correctness.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step | Active Cell | Street Type | Tested Direction | Neighbor Cell | Neighbor Ports | Valid Connection? |
+|---|---|---|---|---|---|---|
+| $1$ | $(0, 0)$ | $2$ (N, S) | South | $(1, 0)$ | Type $6$ (E, N) | Yes (S $\leftrightarrow$ N) |
 
 ---
 
-### Step 3: Decode each street's two openings
+### Step 2: Transition from $(1, 0)$ to $(1, 1)$
 
-Each street type triggers exactly the two direction helpers corresponding to its shape:
+- Current cell: $(1, 0)$, street Type $6$ (`[East, North]`).
+- Direction North leads back to $(0, 0)$ (already visited).
+- Check East $(1, 1)$:
+  - Direction is East. Opposite is West.
+  - Neighbor cell $(1, 1)$ has Type $5$.
+  - $\text{Ports}(5) = \{\text{West}, \text{Upper}\}$. West $\in \text{Ports}(5)$ holds!
+  - Mutual connection verified. Enqueue $(1, 1)$.
 
-- Type 1 opens left and right.
-- Type 2 opens up and down.
-- Type 3 opens left and down.
-- Type 4 opens right and down.
-- Type 5 opens left and up.
-- Type 6 opens right and up.
+---
 
-The outer loops visit every cell, inspect its type, and call those two helpers.
+### Step 3: Transition from $(1, 1)$ to $(0, 1)$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+- Current cell: $(1, 1)$, street Type $5$ (`[West, North]`).
+- Direction West leads back to $(1, 0)$ (already visited).
+- Check North $(0, 1)$:
+  - Direction is North. Opposite is South.
+  - Neighbor cell $(0, 1)$ has Type $4$.
+  - $\text{Ports}(4) = \{\text{East}, \text{South}\}$. South $\in \text{Ports}(4)$ holds!
+  - Mutual connection verified. Enqueue $(0, 1)$.
+
+---
+
+### Step 4: Transition from $(0, 1)$ to $(0, 2)$
+
+- Current cell: $(0, 1)$, street Type $4$ (`[East, South]`).
+- Direction South leads back to $(1, 1)$ (already visited).
+- Check East $(0, 2)$:
+  - Direction is East. Opposite is West.
+  - Neighbor cell $(0, 2)$ has Type $3$.
+  - $\text{Ports}(3) = \{\text{West}, \text{South}\}$. West $\in \text{Ports}(3)$ holds!
+  - Mutual connection verified. Enqueue $(0, 2)$.
+
+---
+
+### Step 5: Transition from $(0, 2)$ to $(1, 2)$ (Target Reached)
+
+- Current cell: $(0, 2)$, street Type $3$ (`[West, South]`).
+- Direction West leads back to $(0, 1)$ (already visited).
+- Check South $(1, 2)$:
+  - Direction is South. Opposite is North.
+  - Neighbor cell $(1, 2)$ has Type $2$.
+  - $\text{Ports}(2) = \{\text{North}, \text{South}\}$. North $\in \text{Ports}(2)$ holds!
+  - Target cell $(1, 2) = (m - 1, n - 1)$ reached.
+- Return `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[2, 4, 3], [6, 5, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Step | Dequeued Cell | Type | Outgoing Port | Target Cell | Target Type | Compatible? | Enqueued? |
+|---|---|---|---|---|---|---|---|
+| $0$ | $(0, 0)$ | $2$ | South | $(1, 0)$ | $6$ | Yes (South $\leftrightarrow$ North) | Enqueued |
+| $1$ | $(1, 0)$ | $6$ | East | $(1, 1)$ | $5$ | Yes (East $\leftrightarrow$ West) | Enqueued |
+| $2$ | $(1, 1)$ | $5$ | North | $(0, 1)$ | $4$ | Yes (North $\leftrightarrow$ South) | Enqueued |
+| $3$ | $(0, 1)$ | $4$ | East | $(0, 2)$ | $3$ | Yes (East $\leftrightarrow$ West) | Enqueued |
+| $4$ | $(0, 2)$ | $3$ | South | $(1, 2)$ | $2$ | Yes (South $\leftrightarrow$ North) | **Target Reached!** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Bidirectional Graph Equivalence
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+A path through the grid is physically traversable if and only if each step moves through open street openings without hitting walls or dead ends.
+- The condition $D \in \text{Ports}(grid[u]) \land \text{opp}(D) \in \text{Ports}(grid[v])$ enforces that an undirected edge $\{u, v\}$ exists in the physical connectivity graph.
+- Standard BFS or DFS explores the reachable component containing $(0, 0)$.
+- Because the graph is unweighted and degrees are bounded by $2$ (each street type has exactly $2$ ports), the connected components are simple paths or cycles.
+- Visited set tracking prevents infinite loops and guarantees termination.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Breadth-first search:** Traverse from the start and enqueue only reciprocally connected neighbors. It gives direct $O(mn)$ time and space and can stop when the target is reached.
-- **Depth-first search:** The same reciprocal-direction test works recursively or with an explicit stack. Recursive depth can reach all cells.
-- **Direction bitmasks:** Encode the two openings of each type and verify that a neighbor has the opposite bit. This removes four specialized helper membership lists but requires careful bit mapping.
-- **Union by rank or size:** Adding it to path compression gives the standard strongest amortized union-find guarantee and prevents unnecessarily tall parent trees.
-- **One-cell grid:** Start and target are the same node, so the method returns true; a zero-move path is valid.
-- **Street points outside the grid:** The boundary guard rejects that opening without changing the street.
-- **One-sided adjacency:** If the neighbor lacks the opposite opening, no union occurs.
-- **Duplicate union attempt:** Merging an already connected pair is harmless.
-- **Cycles:** Union-find naturally represents them without traversal loops or a visited set.
-- **Street type 3 versus 4:** Type 3 is left-down, while type 4 is right-down; swapping them changes connectivity and is a common mapping error.
-- **Start or target with unusable exits:** They remain disconnected unless another reciprocal opening joins them.
-- **No grid mutation:** The method reads street types and changes only the separate parent array.
-- **Recursive `find` depth:** Without union by rank, an adversarial parent chain can deepen recursion before compression; an iterative find or rank heuristic improves robustness.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(m \cdot n)$. Each of the $m \cdot n$ cells has at most $2$ outgoing port directions. Each cell is enqueued and processed at most once. Hence, the total number of evaluated edges is at most $2 \cdot m \cdot n = \mathcal{O}(m \cdot n)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m \cdot n)$ to maintain the queue and the visited set.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(\alpha(V)$. Let $V=mn$ be the number of cells. Each cell performs two constant-time neighbor checks and at most two union operations. Path compression makes repeated `find` operations very close to constant amortized time, commonly written $O(\alpha(V))$ when paired with the standard union-find analysis. Total time is $O(V\alpha(V))$, treated as $O(mn)$ in the manifest because the inverse Ackermann factor is effectively constant.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **One-Sided Port Fallacy:** If cell $A$ has a South port pointing to cell $B$, but cell $B$ does not have a North port, no movement is allowed. Both sides must align.
+- **Single Cell Grid ($1 \times 1$):** When $m = 1$ and $n = 1$, the start cell $(0, 0)$ is identical to the target $(m - 1, n - 1)$. The function must immediately return `true` regardless of street type.
+- **Disconnected Start Cell:** If cell $(0, 0)$ has ports pointing out of the grid or into incompatible neighbors, the traversal halts with empty queue and returns `false`.
+- **Closed Loops:** Street configurations can form closed cycles (e.g., $4 \leftrightarrow 3 \leftrightarrow 5 \leftrightarrow 6$). The visited set prevents revisiting nodes in cycles.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Grid Street Path Verification Flowchart
+    accDescr: BFS traversal from top-left to bottom-right cell verifying bidirectional port matching.
+
+    Start(["Start at (0, 0)"]) --> CheckSingle{"m == 1 AND n == 1 ?"}
+    CheckSingle -- "Yes" --> ReturnTrue(["Return true"])
+    CheckSingle -- "No" --> InitBFS["queue = [(0, 0)], visited = {(0, 0)}"]
+    
+    InitBFS --> QLoop{"queue is not empty ?"}
+    QLoop -- "Empty (No path)" --> ReturnFalse(["Return false"])
+    QLoop -- "Pop (r, c)" --> TargetCheck{"(r, c) == (m - 1, n - 1) ?"}
+    
+    TargetCheck -- "Yes" --> ReturnTrue
+    TargetCheck -- "No" --> PortLoop{"For each direction D in Ports(grid[r][c]):"}
+    
+    PortLoop -- "Next D" --> CalcNeighbor["nr = r + dr, nc = c + dc"]
+    CalcNeighbor --> BoundCheck{"(nr, nc) in bounds AND not visited ?"}
+    
+    BoundCheck -- "Yes" --> CheckOpp{"opp(D) in Ports(grid[nr][nc]) ?"}
+    CheckOpp -- "Yes (Compatible)" --> Enqueue["visited.add((nr, nc))<br>queue.append((nr, nc))"]
+    CheckOpp -- "No" --> PortLoop
+    BoundCheck -- "No" --> PortLoop
+    
+    Enqueue --> PortLoop
+    PortLoop -- "Done all ports" --> QLoop
+```

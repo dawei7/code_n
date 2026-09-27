@@ -1,140 +1,155 @@
 # Guided Example: One Edit Distance
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step first-mismatch identification and suffix alignment validation on representative string comparison instances:
 
-- **Input:** `{"s": "ab", "t": "acb"}`
-- **Required output:** `true`
+- **Input:** $s = \text{"ab"}, \quad t = \text{"acb"}$
+- **Required output:** `true` (Inserting `'c'` into $s$ yields $t$)
+- **Identical Strings Trap:** $s = \text{"ab"}, \quad t = \text{"ab"} \implies \text{false}$ (Zero edits is invalid; exactly one edit required)
+- **Character Replacement Instance:** $s = \text{"1203"}, \quad t = \text{"1213"} \implies \text{true}$ (Replacing `'0'` with `'1'`)
+- **Length Disparity Failure:** $s = \text{"a"}, \quad t = \text{"abc"} \implies \text{false}$ ($|m - n| = 2 > 1$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates early length difference pruning ($|m - n| \le 1$), locating the first differing character, branching on equal lengths (replacement: $s[i+1:] == t[i+1:]$) versus differing lengths (insertion/deletion: $s[i:] == t[i+1:]$), and achieving $O(N)$ linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.
+Given two strings $s$ and $t$, determine if they are **exactly one edit distance apart**.
+An edit operation consists of:
+1. **Insert** exactly one character into $s$ to get $t$.
+2. **Delete** exactly one character from $s$ to get $t$.
+3. **Replace** exactly one character of $s$ with a different character to get $t$.
 
-The objective is to compute `true` from `{"s": "ab", "t": "acb"}` while avoiding redundant calculations and unnecessary overhead.
+For $s = \text{"ab"}$ and $t = \text{"acb"}$:
+- $|s| = 2, \, |t| = 3$. Length difference is $3 - 2 = 1$.
+- Inserting character `'c'` at index 1 transforms `"ab"` into `"acb"`.
+- The strings are exactly one edit distance apart: return `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A general Levenshtein distance dynamic programming matrix computes the minimum edit distance in $O(|s| \cdot |t|)$ time.
+Because we only care whether the distance is **strictly 1**:
+- Any length difference $|m - n| > 1$ can be rejected in $O(1)$ time.
+- By scanning from left to right, the **first mismatch index** $i$ completely determines the required edit.
+- After fixing that mismatch, the remaining suffixes must match **identically**. A single linear pass in $O(N)$ time suffices.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The First-Mismatch Suffix Invariant
+Let $m = |s|$ and $n = |t|$.
+Without loss of generality, assume $m \le n$ (if $m > n$, swap $s$ and $t$, since edit distance is symmetric).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Phase 1: Global Length Pruning
+If $n - m > 1$:
+$$
+\text{return False}
+$$
+(No single edit can bridge a length difference of 2 or more).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+#### Phase 2: Locate First Discrepancy
+Iterate index $i$ from $0$ to $m - 1$:
+If $s[i] \ne t[i]$:
+- **Case A: Equal Length ($m == n$) $\implies$ Replacement:**
+  The character $s[i]$ must be replaced by $t[i]$. All characters after index $i$ must already match:
+  $$
+  \text{return } s[i+1 :] == t[i+1 :]
+  $$
+- **Case B: Unequal Length ($m < n$) $\implies$ Deletion from $t$ / Insertion into $s$:**
+  Character $t[i]$ must be inserted into $s$ (or removed from $t$). The remainder of $s$ starting at $i$ must match the remainder of $t$ starting at $i + 1$:
+  $$
+  \text{return } s[i :] == t[i+1 :]
+  $$
+
+#### Phase 3: Exhausted Prefix Match
+If all $m$ characters match ($s[i] == t[i]$ for all $0 \le i < m$):
+The strings are 1 edit apart if and only if $t$ has exactly 1 extra character at the end:
+$$
+\text{return } m + 1 == n
+$$
+*(If $m == n$, the strings are identical, which means 0 edits $\implies$ returns False)*.
+
+> **Invariant.** Before index $i$, prefixes $s[0 \dots i-1]$ and $t[0 \dots i-1]$ are identical. A single edit can resolve the discrepancy at $i$ if and only if the specified suffix equality holds.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Exactly one edit is different from at most one
+We trace $s = \text{"ab"}$ and $t = \text{"acb"}$:
+$m = |s| = 2, \, n = |t| = 3$. Length gap: $3 - 2 = 1 \le 1$.
 
-The method must reject both strings that need two or more changes and strings
-that are already equal. An edit is one insertion, one deletion, or one
-replacement with a different character. Performing zero edits does not satisfy
-the contract.
-
-String lengths immediately restrict the possibilities. A replacement preserves
-length. An insertion or deletion changes length by exactly one. Therefore, if
-the lengths differ by more than one, the answer is false without examining any
-characters.
-
-The selected solution first ensures that `s` is the longer string, or that both
-have equal length. If `len(s) < len(t)`, it calls the same method with the
-arguments reversed. This is safe because “one edit apart” is symmetric:
-inserting into one direction is deleting in the other, and replacement works
-both ways. At most one such swap occurs.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "ab", "t": "acb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Index $i = 0$
+- $s[0] = \text{'a'}$
+- $t[0] = \text{'a'}$
+- $s[0] == t[0] \implies$ Characters match. Continue scan.
 
 ---
 
-### Step 2: Find the first position where the strings disagree
+### Step 2: Index $i = 1$ (First Mismatch Detected!)
+- $s[1] = \text{'b'}$
+- $t[1] = \text{'c'}$
+- $s[1] \ne t[1]$ ('b' $\ne$ 'c')!
+- Length condition check:
+  $$
+  m < n \quad (2 < 3)
+  $$
+- This requires **character insertion** into $s$ (or deletion from $t$):
+  - Slice $s[1:] = \text{"b"}$.
+  - Slice $t[1 + 1:] = t[2:] = \text{"b"}$.
+- Test suffix equality:
+  $$
+  s[1:] == t[2:] \iff \text{"b"} == \text{"b"} \implies \mathbf{True}
+  $$
 
-After normalization, let `m = len(s)` and `n = len(t)`, with $m \ge n$ and
-$m-n \le 1$. The loop enumerates every character of the shorter string `t` and
-compares it with `s` at the same index.
-
-Before the first mismatch at index `i`, the prefixes `s[:i]` and `t[:i]` are
-identical. Any single permitted edit must therefore explain the mismatch and
-leave everything afterward aligned. There is no benefit to editing an earlier
-matching position, because that would introduce a difference rather than fix
-one.
-
-Once the first mismatch is found, the length relationship uniquely determines
-which operation remains possible.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Equal lengths require one replacement
-
-If $m=n$, insertion and deletion would make the final lengths unequal. The only
-possible edit is replacing `s[i]` with `t[i]`. Because the characters differ,
-that replacement is a real edit rather than replacing a character by itself.
-
-After spending the one allowed edit at `i`, every later character must already
-match in the same position. The source tests
-`s[i + 1:] == t[i + 1:]`. If the suffixes are equal, exactly one replacement
-converts the strings. If they differ anywhere, at least a second edit would be
-needed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+The suffixes are identical.
+Exactly 1 edit operation transforms $s$ into $t$.
+Return $\mathbf{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "ab", "t": "acb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+Strings:
+s = " a   b "  (len = 2)
+t = " a   c   b "  (len = 3)
+      ^   ^
+      |   First mismatch at i=1: s[1]='b' != t[1]='c'
+      Matched
+Check: len(s) < len(t) -> test s[1:] ("b") == t[2:] ("b") -> MATCH!
+Result: True
+```
+
+| Iteration $i$ | $s[i]$ | $t[i]$ | Status | Condition Branch Evaluated | Suffix Equality Test | Outcome |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 0 | `'a'` | `'a'` | Match | Advance $i$ | - | Continue |
+| **1** | **`'b'`** | **`'c'`** | **Mismatch** | **$m < n$ (Insert/Delete)** | **$s[1:] == t[2:] \implies \text{"b"} == \text{"b"}$** | **True (Return)** |
+
+### Contrast: Replacement on $s = \text{"1203"}, t = \text{"1213"}$
+- $i=0$: `'1' == '1'`
+- $i=1$: `'2' == '2'`
+- $i=2$: `'0' \ne '1'` (Mismatch, $m == n == 4$).
+- Test replacement: $s[3:] == t[3:] \iff \text{"3"} == \text{"3"}$.
+- Return **True**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If $|m - n| > 1$, no single operation can match the lengths. When the first mismatch occurs at index $i$, any hypothetical edit before index $i$ would break the prefix match. Thus, the edit must occur at index $i$. If lengths are equal, the only valid operation is replacing $s[i]$ with $t[i]$, which requires $s[i+1:] == t[i+1:]$. If lengths differ by 1, the only valid operation is inserting $t[i]$ into $s$, which requires $s[i:] == t[i+1:]$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** All edit operations (insert, delete, replace) are covered. If no mismatch is found up to index $m - 1$, the only remaining possibility is an extra character at the end of $t$, verified by $m + 1 == n$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two-index scan without slicing:** Advance through the common prefix, skip one position according to the length gap, and compare the remainder. It preserves $O(m+n)$ time and achieves $O(1)$ space.
-- **Full edit-distance dynamic programming:** Solves a much more general problem in $O(mn)$ time and space, which is unnecessary when only distance exactly one matters.
-- **Count mismatches only:** Works for equal-length replacement, but fails for insertion/deletion because later positions are shifted.
-- **Equal strings:** Must return false because the requirement is exactly one edit.
-- **Length difference above one:** No single allowed operation can bridge it.
-- **Mismatch at index zero:** The same suffix rules work without a special case.
-- **Extra character at the end:** No mismatch occurs in the shorter prefix; the length check returns true.
-- **Both strings empty:** They are zero edits apart and correctly return false.
-- **Argument swap:** It occurs at most once and converts insertion reasoning into deletion reasoning.
-- **Python slices:** They are a material space cost even though they make the suffix condition concise.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Identical Strings ($s == t$):** If $s = \text{"abc"}$ and $t = \text{"abc"}$, edit distance is 0. The problem requires **exactly one** edit distance. Returning `m + 1 == n` correctly yields `False` when $m == n$.
+- **Empty String Inputs:** If $s = \text{""}$ and $t = \text{""}$, loop does not run, $m + 1 == n \implies 0 + 1 == 0 \implies \text{False}$. If $s = \text{""}$ and $t = \text{"a"}$, $0 + 1 == 1 \implies \text{True}$.
+- **Full Dynamic Programming Overhead:** Running 2D Levenshtein DP takes $O(N^2)$ time and space, which is unnecessary and risks time limit exceeded on large strings ($N = 10^5$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m+n)$. Let $m$ and $n$ be the input lengths. The common-prefix scan and at most one
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = \min(|s|, |t|)$. Finding the first mismatch takes at most $N$ character comparisons. Comparing the remaining suffixes takes at most $N$ character comparisons.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory when comparing suffix indices directly with pointers (or $O(N)$ if string slicing is used).

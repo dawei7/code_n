@@ -1,121 +1,169 @@
 # Guided Example: Number of Students Unable to Eat Lunch
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze circular queue rotation, prove the Queue Order-Invariance Demotion Theorem and Deadlock Halting Condition Invariant, and trace cafeteria distribution across representative student instances:
 
-- **Input:** `{"students": [1, 1, 0, 0], "sandwiches": [0, 1, 0, 1]}`
-- **Required output:** `0`
+- **Representative Instance 1 (Full Clearance via Interleaved Consumption):**
+  - Input: `students = [1, 1, 0, 0]`, `sandwiches = [0, 1, 0, 1]`
+  - Preference Counts: `type 0` $= 2$, `type 1` $= 2$.
+  - Stack Traversal (top to bottom):
+    - Sandwich 0 (`type 0`): `count[0] = 2 > 0` $\implies$ consumed. `count[0]` becomes $1$.
+    - Sandwich 1 (`type 1`): `count[1] = 2 > 0` $\implies$ consumed. `count[1]` becomes $1$.
+    - Sandwich 2 (`type 0`): `count[0] = 1 > 0` $\implies$ consumed. `count[0]` becomes $0$.
+    - Sandwich 3 (`type 1`): `count[1] = 1 > 0` $\implies$ consumed. `count[1]` becomes $0$.
+  - All sandwiches consumed; $0$ students remain.
+  - **Required Output:** `0`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Early Deadlock on Exhausted Preference):**
+  - Input: `students = [1, 1, 1, 0, 0, 1]`, `sandwiches = [1, 0, 0, 0, 1, 1]`
+  - Initial Counts: `type 0` $= 2$, `type 1` $= 4$. Total $= 6$.
+  - Stack Traversal:
+    - Sandwich 0 (`type 1`): `count[1] = 4 > 0` $\implies$ consumed. Remaining: `count[0] = 2`, `count[1] = 3`.
+    - Sandwich 1 (`type 0`): `count[0] = 2 > 0` $\implies$ consumed. Remaining: `count[0] = 1`, `count[1] = 3`.
+    - Sandwich 2 (`type 0`): `count[0] = 1 > 0` $\implies$ consumed. Remaining: `count[0] = 0`, `count[1] = 3`.
+    - Sandwich 3 (`type 0`): `count[0] == 0`! No remaining student wants `type 0`.
+  - Halting condition reached: all remaining $3$ students want `type 1`, but the top sandwich is `type 0`.
+  - Unable to eat: $\mathbf{3}$.
+  - **Required Output:** `3`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The school cafeteria offers circular and square sandwiches at lunch break, referred to by numbers `0` and `1` respectively. All students stand in a queue. Each student either prefers square or circular sandwiches.
+In a cafeteria, $n$ students wait in a first-in first-out queue with binary preferences ($0$ for circular, $1$ for square). Sandwiches sit in a rigid stack, accessible only from the top. At each step:
+1. If the front student wants the top sandwich, they take it and exit.
+2. If they do not, they rotate to the back of the line.
+3. The process terminates when no student remaining in the queue will take the top sandwich.
 
-The objective is to compute `0` from `{"students": [1, 1, 0, 0], "sandwiches": [0, 1, 0, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Sandwich Stack Bottleneck:
+  Stack of Sandwiches:    [ Top: Type 0,  Type 0,  Type 1 ]
+  Queue of Students:      ( Front: 1, 1, 1 : Back )
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Student at front wants Type 1, but top sandwich is Type 0.
+  Student rotates to back: ( 1, 1, 1 ) -> ( 1, 1, 1 ) -> ( 1, 1, 1 ) ...
+  Every student rejects the top sandwich!
+  Deadlock occurs: the sandwich cannot be removed, and no other sandwich is accessible.
+```
+
+The fundamental pedagogical insights are:
+1. **Queue Order Irrelevance:** Because students cycle to the back of the queue indefinitely without penalty, queue order does not prevent any interested student from reaching the front.
+2. **Rigid Stack Order:** Unlike students, sandwiches cannot rotate. Sandwich $i$ must be consumed before sandwich $i + 1$ can ever be accessed.
+3. **Deadlock Invariant:** The simulation halts if and only if the count of students desiring the current top sandwich type drops to zero.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Mathematical Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Lunch Distribution Deadlock Detection Pipeline
+    accDescr: Pipeline showing frequency counting of student preferences, sequential traversal of the rigid sandwich stack, and immediate deadlock termination.
+    Input["Input: students and sandwiches arrays"] --> CountPreferences["Count Initial Student Preferences:\ncount[0] = students wanting circular\ncount[1] = students wanting square"]
+    CountPreferences --> TraverseStack["Iterate sandwich stack from top (i = 0 to n - 1):"]
+    
+    TraverseStack --> CheckAvailable{"Is count[sandwiches[i]] > 0?"}
+    CheckAvailable -->|"Yes"| Consume["Student eventually reaches front and eats:\ncount[sandwiches[i]] = count[sandwiches[i]] - 1"]
+    Consume --> NextSandwich{"i == n - 1?"}
+    NextSandwich -->|"No"| TraverseStack
+    NextSandwich -->|"Yes"| AllFed["All sandwiches consumed!\nReturn 0"]
+    
+    CheckAvailable -->|"No"| Deadlock["DEADLOCK OCCURRED!\nNo remaining student wants this top sandwich.\nQueue can never make progress."]
+    Deadlock --> EmitRemaining["Return total remaining students:\ncount[sandwiches[i] XOR 1]"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Queue Order-Invariance Demotion Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $S$ be the multiset of remaining student preferences, and let $T = sandwiches[i]$ be the current top sandwich.
+
+> **Theorem (Deadlock Equivalence Invariant).**
+> Progress can occur at sandwich $i$ if and only if $T \in S$ (that is, $\text{count}[T] > 0$).
+> When $\text{count}[T] = 0$, a deadlock occurs, and no further sandwiches can ever be consumed.
+
+*Proof.*
+1. **Sufficiency ($\text{count}[T] > 0 \implies$ Progress):**
+   Suppose at least one student in the queue has preference $T$. If this student is currently at position $k$ in the queue, then at most $k$ rotations will bring this student to the front. Upon reaching the front, the student matches the top sandwich $T$, takes it, and exits. The stack advances to $i + 1$.
+2. **Necessity ($\text{count}[T] = 0 \implies$ Deadlock):**
+   Suppose $\text{count}[T] = 0$. Every student currently in the queue has preference $1 - T \ne T$. Every student who reaches the front will reject $T$ and rotate to the back. After a full cycle of $|S|$ rejections, the queue returns to its exact previous state with $T$ still on top. By induction, the configuration is invariant under further steps, and the simulation halts.
+3. **Terminal Count:**
+   When deadlock occurs, none of the remaining $|S|$ students can eat. Since all remaining students have preference $1 - T$, the number of unable students is simply $\text{count}[1 - T]$. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Replace queue rotations with preference counts
+### Trace on Representative Instance 2 (`students = [1, 1, 1, 0, 0, 1]`, `sandwiches = [1, 0, 0, 0, 1, 1]`)
 
-The literal process appears to require a queue: if the front student dislikes the current sandwich, move that student to the back and try again. However, the question only asks how many students remain, not their final order. Before the process becomes stuck, queue rotations do not change how many students prefer each type.
+- **Initial Frequency Map:**
+  - `count[0] = 2` (students wanting circular sandwich)
+  - `count[1] = 4` (students wanting square sandwich)
+  - Total students $= 6$.
 
-For a fixed top sandwich of type `v`, there are only two possibilities:
+#### Sandwich $i = 0$ (`type 1`)
+- Is `count[1] > 0`? Yes ($4 > 0$).
+- A student wanting `type 1` takes it and leaves.
+- `count[1]` updates: $4 - 1 = 3$.
+- Remaining: `count[0] = 2`, `count[1] = 3`.
 
-- At least one remaining student prefers `v`. Repeatedly rotating the queue will eventually bring such a student to the front. That student takes the sandwich, so one `v`-preferring student and that sandwich leave.
-- No remaining student prefers `v`. Every student can rotate past the front, but no one will take the sandwich. Since the sandwich stack cannot skip its top item, the process stops permanently and every remaining student is unable to eat.
+#### Sandwich $i = 1$ (`type 0`)
+- Is `count[0] > 0`? Yes ($2 > 0$).
+- A student wanting `type 0` takes it and leaves.
+- `count[0]` updates: $2 - 1 = 1$.
+- Remaining: `count[0] = 1`, `count[1] = 3`.
 
-This observation makes the students' exact queue positions irrelevant. The source records only the counts of preferences with `cnt = Counter(students)`.
+#### Sandwich $i = 2$ (`type 0`)
+- Is `count[0] > 0`? Yes ($1 > 0$).
+- A student wanting `type 0` takes it and leaves.
+- `count[0]` updates: $1 - 1 = 0$.
+- Remaining: `count[0] = 0`, `count[1] = 3`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"students": [1, 1, 0, 0], "sandwiches": [0, 1, 0, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Sandwich $i = 3$ (`type 0`)
+- Top of stack requires `type 0`.
+- Check available students: `count[0] = 0`!
+- Deadlock triggered! No student in the queue will ever accept `type 0`.
+- Stack cannot advance, and all remaining students are locked out.
+- Remaining students count $= count[1] = \mathbf{3}$.
 
----
-
-### Step 2: Why the sandwich array can be scanned from left to right
-
-The description says index zero is the top of the sandwich stack. Sandwiches can only be removed from that top, so their serving order is exactly `sandwiches[0]`, then `sandwiches[1]`, and so on. A normal left-to-right loop therefore represents popping the stack in the required order; no Python stack object is needed.
-
-For each sandwich value `v`, `cnt[v]` is the number of still-waiting students who want that type. Python's `Counter` returns zero for a missing key, which makes the same check work even if the original student list contained only one preference.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Serve when the required preference still exists
-
-If `cnt[v] > 0`, some remaining student wants the current sandwich. That student may not presently be at the queue's front, but all students ahead can rotate to the back. Because the queue is finite, the matching student eventually reaches the front without changing the sandwich.
-
-The statement `cnt[v] -= 1` represents that eventual service. It removes exactly one student of the matching type. There is no need to count how many rotations occurred because rotations are not included in the requested answer and do not affect future preference counts.
-
-This abstraction preserves everything that matters: which sandwich is next, and how many students of each type remain.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0` |
+#### Final Answer:
+- Number of students unable to eat: $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"students": [1, 1, 0, 0], "sandwiches": [0, 1, 0, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0` | Verified |
+| Stack Step $i$ | Sandwich Type Examined | Available Students `count[0]` | Available Students `count[1]` | Can Current Sandwich Be Consumed? | State Update / Event |
+|---|---|---|---|---|---|
+| Initial | — | $2$ | $4$ | — | Preference histogram constructed |
+| $0$ | `1` | $2$ | $4$ | Yes (`count[1] > 0`) | `count[1]` decremented to $3$ |
+| $1$ | `0` | $2$ | $3$ | Yes (`count[0] > 0`) | `count[0]` decremented to $1$ |
+| $2$ | `0` | $1$ | $3$ | Yes (`count[0] > 0`) | `count[0]` decremented to $0$ |
+| $3$ | `0` | $0$ | $3$ | **No (`count[0] == 0`)** | **Deadlock Triggered! Terminate.** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The reduction relies on the fact that student queue rotation is non-destructive: rotation only permutes the queue order without changing student preferences or sandwich order. Because the sandwich stack is strictly LIFO and immovable, the first unsatisfied sandwich halts all further progress.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The algorithm inspects sandwiches from top to bottom. If all sandwiches are consumed without triggering deadlock, the final count of unable students is $0$. If deadlock triggers at sandwich $i$, exactly the remaining students in the preference counter are returned.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Literal deque simulation:** Rotate mismatching students and track how many consecutive failures have occurred. It mirrors the story but can perform $O(n^2)$ rotations in a direct implementation.
-- **Two scalar counters:** Because there are only two types, count zeros and derive or separately count ones. This achieves the same $O(n)$ time and $O(1)$ space without `Counter`.
-- **Sorting preferences:** It loses the useful simplicity of direct counting and does not remove the need to respect sandwich order.
-- **One student:** Equal array lengths do not guarantee matching types. If the only preference differs from the top sandwich, the check immediately returns one; if they match, the loop ends and returns zero.
-- **All students share one preference:** The first opposite-type top sandwich immediately blocks everyone who remains.
-- **All sandwiches are served:** Each iteration decrements an available preference, and the final return is zero.
-- **Block occurs late:** Counts already decremented represent students who ate; only the unserved opposite count is returned.
-- **Duplicate preferences:** They are intentionally aggregated because students with the same preference are interchangeable for deciding whether the top sandwich can be taken.
-- **Top-of-stack convention:** The scan is correct specifically because index zero is defined as the top; reversing `sandwiches` would model a different process.
-- **Binary-type assumption:** The expression `v ^ 1` is valid only because every type is exactly zero or one.
-- **Counter missing key:** It evaluates to zero, so an absent preference type triggers the stopping rule without a key error.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Simulating Full Queue Rotations:** Simulating every single rotation using a concrete queue data structure takes $\mathcal{O}(n^2)$ time in the worst case (e.g. rotating $n$ times between each consumption). Counting frequencies reduces time to strictly $\mathcal{O}(n)$.
+- **Sandwich Rotations vs. Student Rotations:** Students can rotate to the back, but sandwiches cannot. Sandwiches must be consumed in their exact original stack order.
+- **Deadlock Termination Condition:** Deadlock occurs when `count[sandwiches[i]] == 0`, NOT when the queue has rotated a specific number of times. Checking the zero-frequency condition halts immediately.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of students; the sandwich array has the same length. Building the `Counter` scans all students in $O(n)$ time. The loop examines at most all $n$ sandwiches, doing constant work for each, so total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Counting student preferences: $\mathcal{O}(n)$ time over $n$ students.
+  - Iterating through sandwiches: at most $n$ comparisons, each requiring $\mathcal{O}(1)$ operations.
+  - Total Time: strictly $\mathcal{O}(n)$ operations, executing in $< 1$ ms for $n \le 100$.
+- **Auxiliary Space Complexity:**
+  - Frequency storage for binary preferences ($0$ and $1$) takes $\mathcal{O}(1)$ space.
+  - Total Auxiliary Space: $\mathcal{O}(1)$ memory.

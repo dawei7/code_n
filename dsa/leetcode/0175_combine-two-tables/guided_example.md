@@ -1,152 +1,175 @@
 # Guided Example: Combine Two Tables
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational evaluation of a SQL Left Outer Join preserving all records from the primary relation on representative relational tables:
 
-- **Input:** `{"tables": {"Person": [{"personId": 1, "lastName": "Wang", "firstName": "Allen"}, {"personId": 2, "lastName": "Alice", "firstName": "Bob"}], "Address": [{"addressId": 1, "personId": 2, "city": "New York City", "state": "New York"}, {"addressId": 2, "personId": 3, "city": "Leetcode", "state": "California"}]}}`
-- **Required output:** `{"columns": ["firstName", "lastName", "city", "state"], "rows": [["Allen", "Wang", null, null], ["Bob", "Alice", "New York City", "New York"]]}`
+- **Input Tables:**
+  - `Person`: `[(1, "Wang", "Allen"), (2, "Alice", "Bob")]`
+  - `Address`: `[(1, 2, "New York City", "New York"), (2, 3, "Leetcode", "California")]`
+- **Required output:**
+  - `[["Allen", "Wang", null, null], ["Bob", "Alice", "New York City", "New York"]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates relational algebra outer joins, explains why an `INNER JOIN` fails by silently discarding persons without registered addresses, models the tuple matching and `NULL` generation for unmatched left rows, and executes in $O(P + A)$ linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Person`
+Given two relational tables:
+1. `Person` table with primary key `personId`:
+   $$
+   \begin{array}{|c|c|c|}
+   \hline
+   \textbf{personId} & \textbf{lastName} & \textbf{firstName} \\
+   \hline
+   1 & \text{Wang} & \text{Allen} \\
+   2 & \text{Alice} & \text{Bob} \\
+   \hline
+   \end{array}
+   $$
+2. `Address` table with foreign key `personId`:
+   $$
+   \begin{array}{|c|c|c|c|}
+   \hline
+   \textbf{addressId} & \textbf{personId} & \textbf{city} & \textbf{state} \\
+   \hline
+   1 & 2 & \text{New York City} & \text{New York} \\
+   2 & 3 & \text{Leetcode} & \text{California} \\
+   \hline
+   \end{array}
+   $$
+Report the `firstName`, `lastName`, `city`, and `state` for **each person** in the `Person` table. If the address of a person is not present, report `null` for `city` and `state`.
 
-The objective is to compute `{"columns": ["firstName", "lastName", "city", "state"], "rows": [["Allen", "Wang", null, null], ["Bob", "Alice", "New York City", "New York"]]}` from `{"tables": {"Person": [{"personId": 1, "lastName": "Wang", "firstName": "Allen"}, {"personId": 2, "lastName": "Alice", "firstName": "Bob"}], "Address": [{"addressId": 1, "personId": 2, "city": "New York City", "state": "New York"}, {"addressId": 2, "personId": 3, "city": "Leetcode", "state": "California"}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Why an Inner Join Fails
+An `INNER JOIN` evaluates the conjunction $P.\text{personId} = A.\text{personId}$.
+Because person $1$ (`"Allen Wang"`) does not appear in `Address`, the join predicate evaluates to false, completely dropping Allen from the result set!
+A `LEFT JOIN` (Left Outer Join) preserves **all** rows from the left table (`Person`), regardless of whether a matching record exists in the right table (`Address`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Relational Left Outer Join Semantics
+The relational algebra expression:
+$$
+\text{Result} = \pi_{\text{firstName}, \text{lastName}, \text{city}, \text{state}} \left( \text{Person} \mathbin{\text{LEFT JOIN}}_{P.\text{personId} = A.\text{personId}} \text{Address} \right)
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For every tuple $p \in \text{Person}$:
+1. Search for matching tuples in $\text{Address}$ where $A.\text{personId} = p.\text{personId}$.
+2. **Case A: Match Found ($p.\text{personId} \in \text{Address}$):**
+   Emit joined tuple:
+   $$
+   (p.\text{firstName}, \, p.\text{lastName}, \, a.\text{city}, \, a.\text{state})
+   $$
+3. **Case B: No Match ($p.\text{personId} \notin \text{Address}$):**
+   Emit tuple padded with `NULL`s for all columns from $\text{Address}$:
+   $$
+   (p.\text{firstName}, \, p.\text{lastName}, \, \text{NULL}, \, \text{NULL})
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### SQL Query Specification
+```sql
+SELECT 
+    p.firstName, 
+    p.lastName, 
+    a.city, 
+    a.state
+FROM Person p
+LEFT JOIN Address a 
+    ON p.personId = a.personId;
+```
+
+> **Invariant.** The number of rows emitted in the result set is at least equal to $|\text{Person}|$. Every person in `Person` appears in the output with their exact name, regardless of address presence.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Choose `Person` as the preserved relation
+We trace the join evaluation row by row across `Person`:
 
-The requested output must contain every row from `Person`, even when no
-matching address exists. That requirement determines the join type and its
-direction:
-
-`Person LEFT JOIN Address`.
-
-A left outer join preserves all rows from the table written on the left. For
-each person, it searches for `Address` rows with the same `personId`. A match
-combines the columns from both rows. If no match exists, the database still
-emits the person's row and supplies SQL `NULL` for columns belonging to
-`Address`.
-
-An inner join would discard unmatched people and therefore fail the central
-contract.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Person": [{"personId": 1, "lastName": "Wang", "firstName": "Allen"}, {"personId": 2, "lastName": "Alice", "firstName": "Bob"}], "Address": [{"addressId": 1, "personId": 2, "city": "New York City", "state": "New York"}, {"addressId": 2, "personId": 3, "city": "Leetcode", "state": "California"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Row 1: Person $p_1 = (1, \text{"Wang"}, \text{"Allen"})$
+- Scan `Address` table looking for $A.\text{personId} == 1$:
+  - Row 1 ($A_1$): $\text{personId} = 2 \ne 1$.
+  - Row 2 ($A_2$): $\text{personId} = 3 \ne 1$.
+- No matching address exists in `Address`!
+- **Left Outer Join Rule:** Preserve person row, pad address columns with SQL `NULL`:
+  - `firstName` = `"Allen"`
+  - `lastName` = `"Wang"`
+  - `city` = `NULL`
+  - `state` = `NULL`
+- Emit row: `["Allen", "Wang", null, null]`.
 
 ---
 
-### Step 2: Use the shared key explicitly through `USING`
-
-The optimal query writes:
-
-`LEFT JOIN Address USING (personId)`.
-
-`USING (personId)` is join syntax available when both input tables have a
-column with that exact name. It means the equality condition:
-
-`Person.personId = Address.personId`.
-
-It also presents the shared join key as one coalesced column in the joined
-relation rather than two separately named copies. The query does not project
-that key, so the visible difference is minor here.
-
-`Person.personId` is a primary key, ensuring at most one person row for a given
-identifier. `Address.addressId` is its primary key. The local schema does not
-explicitly declare `Address.personId` unique, so relationally, multiple address
-rows with the same person ID would produce multiple joined output rows for that
-person. The query correctly follows ordinary join semantics rather than
-silently choosing one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 2: Person $p_2 = (2, \text{"Alice"}, \text{"Bob"})$
+- Scan `Address` table looking for $A.\text{personId} == 2$:
+  - Row 1 ($A_1$): $\text{personId} = 2 == 2$. Match found!
+- Extract matching address columns:
+  - `city` = `"New York City"`
+  - `state` = `"New York"`
+- Combine attributes:
+  - `firstName` = `"Bob"`
+  - `lastName` = `"Alice"`
+  - `city` = `"New York City"`
+  - `state` = `"New York"`
+- Emit row: `["Bob", "Alice", "New York City", "New York"]`.
 
 ---
 
-### Step 3: Project only the required columns
+### Orphan Check: Address $A_2 = (2, 3, \text{"Leetcode"}, \text{"California"})$
+- In `Address`, person ID $3$ exists, but person $3$ is **not in the `Person` table**.
+- Because the join is a `LEFT JOIN` on `Person`, unmatched rows in `Address` are **ignored** and discarded.
 
-After joining, the intermediate relation includes identifiers and name and
-address fields. The `SELECT` list narrows it to:
-
-- `firstName`;
-- `lastName`;
-- `city`;
-- `state`.
-
-Their order exactly matches the requested result schema. Avoiding `SELECT *`
-prevents extra `personId` and `addressId` columns from leaking into the result.
-
-The columns named `city` and `state` come only from `Address`; `firstName` and
-`lastName` come only from `Person`, so they are unambiguous without table
-qualifiers. Qualifiers could still improve readability, but they are not
-required for this schema.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["firstName", "lastName", "city", "state"], "rows": [["Allen", "Wang", null, null], ["Bob", "Alice", "New York City", "New York"]]}` |
+Result set complete!
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Person": [{"personId": 1, "lastName": "Wang", "firstName": "Allen"}, {"personId": 2, "lastName": "Alice", "firstName": "Bob"}], "Address": [{"addressId": 1, "personId": 2, "city": "New York City", "state": "New York"}, {"addressId": 2, "personId": 3, "city": "Leetcode", "state": "California"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["firstName", "lastName", "city", "state"], "rows": [["Allen", "Wang", null, null], ["Bob", "Alice", "New York City", "New York"]]}` | Verified |
+```text
+Person Table:                  Address Table:
+(1, "Wang", "Allen")           (1, 2, "New York City", "New York")
+(2, "Alice", "Bob")            (2, 3, "Leetcode", "California")
+
+Left Join on personId:
+Person 1: No match in Address  -> ["Allen", "Wang", NULL, NULL]
+Person 2: Matches Address 1    -> ["Bob", "Alice", "New York City", "New York"]
+Address 2 (personId=3): Ignored (orphan address)
+
+Output Table:
++-----------+----------+---------------+----------+
+| firstName | lastName | city          | state    |
++-----------+----------+---------------+----------+
+| Allen     | Wang     | null          | null     |
+| Bob       | Alice    | New York City | New York |
++-----------+----------+---------------+----------+
+```
+
+| Source `Person` Row | `personId` | Address Match Condition | Address Row Matched | Result Columns (`firstName, lastName, city, state`) |
+|:---|:---:|:---:|:---:|:---|
+| `(1, "Wang", "Allen")` | 1 | No match in `Address` | None | `["Allen", "Wang", null, null]` |
+| `(2, "Alice", "Bob")` | 2 | $A.\text{personId} == 2$ | `(1, 2, "New York City", "New York")` | `["Bob", "Alice", "New York City", "New York"]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A left outer join on $P.\text{personId} = A.\text{personId}$ guarantees that every tuple from the left relation appears in the output. Projecting explicitly (`p.firstName`, `p.lastName`, `a.city`, `a.state`) discards the surrogate primary keys `personId` and `addressId`, strictly matching the required schema.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the left table `Person` defines the universe of individuals to report, every person is represented once. The `ON` condition matches all existing addresses and defaults to `NULL` whenever an address record is missing.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit `ON` condition:** `LEFT JOIN Address ON Person.personId = Address.personId` is equivalent and works even when key names differ.
-- **Right join with reversed tables:** Can preserve `Person`, but is less direct and less portable in style.
-- **Inner join:** Incorrect because it drops people without addresses.
-- **Correlated subqueries:** Could fetch each address column separately, but duplicate work and multirow semantics are awkward.
-- **No matching address:** Produces SQL `NULL` for both location fields.
-- **Orphan address:** Produces no row because `Address` is not the preserved side.
-- **Multiple matches:** Emits one joined row per address match unless uniqueness is separately guaranteed.
-- **Column projection:** Omitting identifiers is required by the output schema.
-- **Any order:** No `ORDER BY` is necessary.
-- **Physical complexity:** Actual runtime depends on indexes, statistics, optimizer choices, and output cardinality.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `INNER JOIN` Instead of `LEFT JOIN`:** An inner join discards `"Allen Wang"` because he has no address record, returning only 1 row instead of 2.
+- **Using `RIGHT JOIN` with Table Order Swapped:** `Address RIGHT JOIN Person` works logically but is discouraged in SQL style guides because reading left-to-right is clearer and standard across database engines.
+- **`WHERE` Clause Null Filtering:** Adding a `WHERE a.city IS NOT NULL` would unintentionally convert the outer join back into an inner join, filtering out valid `NULL` address records.
+- **Ambiguous Column Selection (`SELECT *`):** Writing `SELECT *` leaks `personId` and `addressId` into the result set and fails schema validation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P+A)$. Let $P$ and $A$ be the row counts in `Person` and `Address`. With a hash join,
-- **Auxiliary Space Complexity:** $O(P + A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(P + A)$, where $P$ is the number of rows in `Person` and $A$ is the number of rows in `Address`. The database query engine builds a hash table on `Address` (or probes an index on `Address.personId`) in $O(1)$ lookup time per person row.
+- **Auxiliary Space Complexity:** $O(P + A)$ working memory to execute the hash join and buffer the returned result set.

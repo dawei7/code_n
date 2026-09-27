@@ -1,109 +1,133 @@
 # Guided Example: Online Stock Span
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state of an online monotonic decreasing stack, prove the amortized $\mathcal{O}(1)$ time bound via token accounting, and demonstrate how span compression merges dominated historical price intervals on representative market quote streams:
 
-- **Input:** `{"operations": [["next", 7], ["next", 2], ["next", 1], ["next", 2]]}`
-- **Required output:** `[1, 1, 1, 3]`
+- **Representative Stream 1 (Official Multi-Peak Series):**
+  $$
+  \text{quotes} = [100, \; 80, \; 60, \; 70, \; 60, \; 75, \; 85]
+  $$
+- **Required Output:**
+  $$
+  [1, \; 1, \; 1, \; 2, \; 1, \; 4, \; 6]
+  $$
+  - Daily spans:
+    - Day 1: $100 \implies [100] \implies \mathbf{1}$
+    - Day 2: $80 \le 100 \implies [80] \implies \mathbf{1}$
+    - Day 3: $60 \le 80 \implies [60] \implies \mathbf{1}$
+    - Day 4: $70 \ge 60 \implies [70, 60] \implies \mathbf{2}$
+    - Day 5: $60 \le 70 \implies [60] \implies \mathbf{1}$
+    - Day 6: $75 \ge 60, 70, 60 \implies [75, 60, 70, 60] \implies \mathbf{4}$
+    - Day 7: $85 \ge 75, 60, 70, 60, 80 \implies [85, 75, 60, 70, 60, 80] \implies \mathbf{6}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Secondary Instance (Immediate Valley Absorption):**
+  $$
+  \text{quotes} = [7, 2, 1, 2] \implies [1, 1, 1, 3]
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design an algorithm that collects daily price quotes for some stock and returns **the span** of that stock's price for the current day.
+Given a stream of daily stock prices, for each new price $p$, determine its **span**: the maximum number of consecutive preceding days (including today) for which the stock price was less than or equal to $p$.
 
-The objective is to compute `[1, 1, 1, 3]` from `{"operations": [["next", 7], ["next", 2], ["next", 1], ["next", 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Day index:   0    1    2    3    4    5    6
+Price:     100   80   60   70   60   75   85
+Span:        1    1    1    2    1    4    6
+                        ^              ^
+                    70 absorbs 60     75 absorbs (60, 70, 60)
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach scans backward from today through all historical prices until encountering a price strictly greater than $p$. On monotonically increasing sequences (e.g., $1, 2, 3, \dots, n$), this requires $\sum_{i=1}^n i = \Theta(n^2)$ comparisons, resulting in quadratic time and TLE for $10^5$ queries.
+
+The decisive pedagogical goal is to maintain a **Monotonic Decreasing Stack of Compressed Intervals** $\langle \text{price}, \text{span} \rangle$. By storing the cumulative span directly with each price, any dominated price is popped and subsumed in constant amortized time.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & The Monotonic Decreasing Invariant
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Monotonic Stack Span Accumulation
+    accDescr: Flowchart demonstrating how incoming price pops and absorbs smaller or equal historical prices
+    New["Incoming Price: p; Initialize span = 1"] --> Check{"Stack non-empty AND top.price <= p ?"}
+    Check -->|"Yes: Absorb dominated block"| Pop["span += top.span; pop()"]
+    Pop --> Check
+    Check -->|"No: Strict Decreasing Maintained"| Push["Push (p, span) onto stack"]
+    Push --> Ret["Return span"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Monotonic Decreasing Invariant
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+1. **Strict Ordering:** At every step, the stack elements are strictly decreasing in price from bottom to top:
+   $$
+   \text{stk}[0].\text{price} > \text{stk}[1].\text{price} > \dots > \text{stk}[k].\text{price}
+   $$
+2. **Span Invariance:** Each entry $\langle p_j, w_j \rangle$ on the stack asserts:
+   - There are exactly $w_j$ consecutive historical days ending at $p_j$'s arrival whose prices were all $\le p_j$.
+3. **Domination Principle:** If an incoming price $p$ satisfies $p \ge \text{top}.\text{price}$, then any future price that could be blocked by $\text{top}.\text{price}$ will also be blocked by $p$. Thus, $\text{top}$ can be permanently subsumed into $p$'s span without losing historical boundaries.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We trace the arrival of each price across the official sample sequence:
 
-Today's span extends backward through consecutive prices less than or equal to today's price and stops immediately before the first greater price. A monotonic stack can skip whole already-summarized blocks instead of comparing today with every prior day individually.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["next", 7], ["next", 2], ["next", 1], ["next", 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Core Step 2
-
-Each stack entry is a pair `(price, span)`. Its span tells how many consecutive days ending at that stored day were less than or equal to that stored price and have already been compressed into the entry.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Day | Quote $p$ | Top Before Inspection | Pop Decisions ($p \ge \text{top}.\text{price}$) | Accumulated Span $cnt$ | Resulting Stack State (Bottom $\to$ Top) | Returned Span |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| **Init** | — | — | — | — | `[]` | — |
+| **0** | $100$ | (empty) | None | $1$ | `[(100, 1)]` | **1** |
+| **1** | $80$ | $(100, 1)$ | $80 < 100 \implies$ No pop | $1$ | `[(100, 1), (80, 1)]` | **1** |
+| **2** | $60$ | $(80, 1)$ | $60 < 80 \implies$ No pop | $1$ | `[(100, 1), (80, 1), (60, 1)]` | **1** |
+| **3** | $70$ | $(60, 1)$ | $70 \ge 60 \implies$ pop $(60, 1)$, $cnt = 1 + 1 = 2$ | $2$ | `[(100, 1), (80, 1), (70, 2)]` | **2** |
+| **4** | $60$ | $(70, 2)$ | $60 < 70 \implies$ No pop | $1$ | `[(100, 1), (80, 1), (70, 2), (60, 1)]` | **1** |
+| **5** | $75$ | $(60, 1)$ | $75 \ge 60 \implies$ pop $(60, 1)$, $cnt = 1 + 1 = 2$<br>$75 \ge 70 \implies$ pop $(70, 2)$, $cnt = 2 + 2 = 4$ | $4$ | `[(100, 1), (80, 1), (75, 4)]` | **4** |
+| **6** | $85$ | $(75, 4)$ | $85 \ge 75 \implies$ pop $(75, 4)$, $cnt = 1 + 4 = 5$<br>$85 \ge 80 \implies$ pop $(80, 1)$, $cnt = 5 + 1 = 6$ | $6$ | `[(100, 1), (85, 6)]` | **6** |
 
 ---
 
-### Step 3: Core Step 3
+## 4. Secondary Trace: Rapid Absorption in $quotes = [7, 2, 1, 2]$
 
-The stack's prices are strictly decreasing from bottom to top. When a new price arrives:
+| Step | Price | Action | Stack State After Step | Span |
+|:---:|:---:|:---|:---|:---:|
+| 1 | $7$ | Push $(7, 1)$ | `[(7, 1)]` | **1** |
+| 2 | $2$ | Push $(2, 1)$ | `[(7, 1), (2, 1)]` | **1** |
+| 3 | $1$ | Push $(1, 1)$ | `[(7, 1), (2, 1), (1, 1)]` | **1** |
+| 4 | $2$ | Pop $(1, 1) \implies cnt = 1 + 1 = 2$<br>Pop $(2, 1) \implies cnt = 2 + 1 = 3$<br>Top is now $7 > 2$ (barrier reached!). Push $(2, 3)$ | `[(7, 1), (2, 3)]` | **3** |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 1, 1, 3]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["next", 7], ["next", 2], ["next", 1], ["next", 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 1, 1, 3]` | Verified |
+Notice that the final price $2$ subsumed both $1$ and the previous $2$ to produce span $3$, while stopping cleanly before the barrier $7$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every popped element $\langle p', w' \rangle$ satisfies $p' \le p$. By induction, each $w'$ accounts for an unbroken contiguous sequence of past days with prices $\le p' \le p$. Summing these weights into $cnt$ yields a strictly contiguous interval of preceding days bounded below by the current day.
+2. **Completeness:**
+   Popping halts as soon as the stack becomes empty or $\text{top}.\text{price} > p$. Because the stack maintains all un-dominated historical peaks, the element remaining at the top is the most recent past price strictly greater than $p$. Thus, the span cannot extend any further, proving that the calculated span is maximal.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Scan stored prices backward per call:** This is simple but can cost $O(q^2)$ total on increasing sequences.
-- **Store all prices with a previous-greater index:** It can also answer spans, but the monotonic stack is the direct compressed representation.
-- **Segment tree:** Supports more general historical queries but is unnecessary for this one-sided online span and has logarithmic operation cost.
-- **First price:** No stack entry exists, so its span is one.
-- **Strictly increasing prices:** Each new call pops all remaining entries, and spans grow by one each day. Total work remains linear because popped entries never return.
-- **Strictly decreasing prices:** Nothing is popped, every span is one, and stack space grows to $q$.
-- **Equal prices:** They are popped and combined because equality is allowed in the span.
-- **One very large price:** It may absorb many compressed blocks in one call.
-- **Greater blocker:** Once encountered, it stops the consecutive span even if still earlier prices are small.
-- **No explicit day indices:** The stored block sizes contain exactly the distance information needed for the result.
-- **Positive price bounds:** Comparisons are ordinary integer comparisons; magnitude does not change the method.
-- **Amortized versus worst case:** Claiming every call literally executes constant work is inaccurate; constant time is an amortized guarantee.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Strictly Decreasing | $[9, 8, 7, 6]$ | No elements are ever popped; every span is $1$. | Stack overflow or linear scans per step. |
+| Strictly Increasing | $[1, 2, 3, 4]$ | Each incoming element pops the entire stack. Spans grow $1, 2, 3, 4$. | Inefficient rescanning of previous elements. |
+| Duplicate Prices | $[5, 5, 5]$ | Equality ($p \ge \text{top}.\text{price}$) triggers pop $\implies$ spans are $1, 2, 3$. | Using strict inequality ($>$) instead of non-strict ($\ge$). |
+| Single Large Spike | $[10, 1, 2, 3, 10]$ | Final $10$ pops $3, 2, 1$ and equal $10$, reaching span $5$. | Stopping prematurely at equal-priced boundary. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(q)$. Let $q$ be the number of `next` calls. A single call can pop $O(q)$ entries in the worst case, such as a large price after a long decreasing sequence. However, every entry is pushed once and popped at most once over the full operation history.
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Amortized $\mathcal{O}(1)$ time per `next` operation across any sequence of $Q$ calls.
+  - Potential / Token Accounting Proof:
+    - Each price is pushed onto the stack exactly once ($+1$ token deposited).
+    - Each stack element is popped at most once over the entire object lifetime (consuming its $1$ token).
+    - Across $Q$ calls, total pushes $= Q$, total pops $\le Q$. Total loop operations $\le 2Q \implies \mathcal{O}(Q)$ total time.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(Q)$ in the worst case (e.g. strictly decreasing quotes where no elements are popped).
+  - Memory stores at most $Q$ tuples of two integers $\langle \text{price}, \text{span} \rangle$.

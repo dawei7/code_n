@@ -1,133 +1,197 @@
 # Guided Example: Longest Palindrome
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step multiset frequency aggregation (`Counter(s)`), maximal symmetric pair harvesting ($v \mathbin{//} 2 \times 2$), center pivot allocation ($ans < |s| \implies +1$), and case-sensitive parity algebra on representative string instances:
 
-- **Input:** `{"s": "abccccdd"}`
+- **Input:** $s = \text{"abccccdd"}$
 - **Required output:** `7`
+  - Total string length: $|s| = 8$
+  - Step 1 (Count character frequencies):
+    - `'a'`: $1$
+    - `'b'`: $1$
+    - `'c'`: $4$
+    - `'d'`: $2$
+  - Step 2 (Harvest paired contributions $v \mathbin{//} 2 \times 2$):
+    - `'a'`: $\lfloor 1 / 2 \rfloor \times 2 = 0$
+    - `'b'`: $\lfloor 1 / 2 \rfloor \times 2 = 0$
+    - `'c'`: $\lfloor 4 / 2 \rfloor \times 2 = 4$
+    - `'d'`: $\lfloor 2 / 2 \rfloor \times 2 = 2$
+    - Paired sum: $ans = 0 + 0 + 4 + 2 = \mathbf{6}$
+  - Step 3 (Center odd pivot check):
+    - Total characters used in pairs: $6$
+    - Total available characters: $|s| = 8$
+    - Since $ans < |s|$ ($6 < 8$), at least one unused character exists (either `'a'` or `'b'`)
+    - One character can sit at the exact center of the palindrome
+    - Center bonus: $ans \leftarrow 6 + 1 = \mathbf{7}$
+  - Longest palindrome length: $\mathbf{7}$ (e.g. `"dccaccd"`)
+- **All Characters Paired:** $s = \text{"aabb"} \implies ans = 4, |s| = 4 \implies$ no center $\implies \mathbf{4}$
+- **Single Character:** $s = \text{"a"} \implies ans = 0, |s| = 1 \implies 0 + 1 = \mathbf{1}$
+- **Case Sensitivity:** $s = \text{"Aa"} \implies \text{counts } A:1, a:1 \implies$ paired $= 0$, center $= 1 \implies \mathbf{1}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multiset parity optimization, mathematically proves why all even components can be mirrored bilaterally around at most one central odd element, and derives $O(N)$ runtime and $O(|\Sigma|)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` which consists of lowercase or uppercase letters, return the length of the **longest palindrome** that can be built with those letters.
+Given a string $s = \text{"abccccdd"}$ containing lowercase and uppercase English letters:
+Find the length of the **longest palindrome** that can be constructed by rearranging its characters:
 
-The objective is to compute `7` from `{"s": "abccccdd"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Available Characters:
+  'a': 1   'b': 1   'c': 4   'd': 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Symmetric Assembly:
+  Left Wing:   d  c  c
+  Center:         a        (or 'b')
+  Right Wing:  c  c  d
+
+Full Palindrome: "dccaccd" (Length 7)
+```
+
+### The Palindrome Symmetry Invariant
+A string is a palindrome if and only if it reads identically forwards and backwards.
+- Every position $i$ must match position $L - 1 - i$.
+- For any character not at the exact center, each occurrence on the left side must be matched by a corresponding identical occurrence on the right side. Thus, characters must be consumed in **pairs** of two.
+- If the palindrome has odd length, exactly **one single character** can occupy the center without a matching partner.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Paired Capacity Formula:
+For any character with frequency $v$:
+- The number of complete pairs is $\lfloor v / 2 \rfloor$.
+- The number of characters that can be placed symmetrically is:
+  $$
+  \text{paired}(v) = \lfloor v / 2 \rfloor \times 2 = v - (v \bmod 2)
+  $$
+- Summing over all distinct characters in the alphabet gives the maximum even-length palindrome:
+  $$
+  ans = \sum_{c \in \Sigma} \left( \lfloor \text{count}(c) / 2 \rfloor \times 2 \right)
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Center Pivot Rule:
+- If $ans < |s|$, at least one character had an odd frequency and was left over ($v \bmod 2 = 1$).
+- Any single leftover character can be placed at the center of the palindrome:
+  $$
+  ans \leftarrow ans + 1
+  $$
+- If $ans == |s|$, every single character in the input string was already matched into pairs. No leftover character exists to serve as an additional center.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The length of the longest palindrome equals the sum of all maximal even sub-frequencies, augmented by 1 if and only if at least one character has an odd frequency.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What a palindrome requires
-
-A palindrome reads the same from left to right and from right to left. That symmetry forces almost every character used in it to have a partner. If a character is placed three positions from the left end, the same character must be placed three positions from the right end. Consequently, all characters outside the center are consumed in pairs.
-
-An odd-length palindrome has one exceptional position: its single center. That position mirrors itself, so it does not need a matching copy. An even-length palindrome has no such position. This gives the complete frequency rule:
-
-- from every character frequency, use as many complete pairs as possible; and
-- after all pairs have been chosen, use at most one leftover character as the center.
-
-Case sensitivity matters here. The characters `A` and `a` have separate frequencies and cannot form a pair with one another.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abccccdd"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"abccccdd"}$:
+Total length: $|s| = 8$.
 
 ---
 
-### Step 2: Count the available copies
-
-The solution begins with `cnt = Counter(s)`. The counter maps each distinct character to the number of times it occurs. The order of the original string is irrelevant because the problem permits rearranging its letters. Only the multiset of available characters determines what can be built.
-
-For a character whose frequency is `v`, the expression `v // 2` counts its complete pairs. Multiplying by two converts that pair count back into the number of usable character copies:
-
-`v // 2 * 2`
-
-For example, a frequency of `6` contributes all `6` copies. A frequency of `5` contains two pairs and contributes `4` copies. A frequency of `1` contributes no paired copies. This expression is also the largest even integer no greater than `v`.
-
-The generator inside
-
-`sum(v // 2 * 2 for v in cnt.values())`
-
-computes this contribution for every distinct character. Call the sum `ans`. At this moment, `ans` is the length of the longest even-length palindrome that can be assembled. A concrete arrangement need not be built: for each selected pair, one copy can go on the left and its mate on the matching position on the right.
-
-Consider `s = "abccccdd"`. Its frequencies are `a:1`, `b:1`, `c:4`, and `d:2`. The paired contribution is therefore `0 + 0 + 4 + 2 = 6`. Those six characters can form symmetric halves such as `dcc` and `ccd`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Count Frequencies
+Construct frequency histogram:
+$$
+cnt = \{\text{'a'}: 1, \; \text{'b'}: 1, \; \text{'c'}: 4, \; \text{'d'}: 2\}
+$$
 
 ---
 
-### Step 3: Detect whether a center is available
+### Step 2: Sum Even Paired Contributions
+Evaluate each character's contribution $\lfloor v / 2 \rfloor \times 2$:
+- Character `'a'` ($v = 1$):
+  $$
+  1 \mathbin{//} 2 \times 2 = 0 \times 2 = \mathbf{0}
+  $$
+- Character `'b'` ($v = 1$):
+  $$
+  1 \mathbin{//} 2 \times 2 = 0 \times 2 = \mathbf{0}
+  $$
+- Character `'c'` ($v = 4$):
+  $$
+  4 \mathbin{//} 2 \times 2 = 2 \times 2 = \mathbf{4}
+  $$
+- Character `'d'` ($v = 2$):
+  $$
+  2 \mathbin{//} 2 \times 2 = 1 \times 2 = \mathbf{2}
+  $$
+Aggregate even baseline:
+$$
+ans = 0 + 0 + 4 + 2 = \mathbf{6}
+$$
 
-The line `ans += int(ans < len(s))` deserves careful attention. In Python, the comparison `ans < len(s)` is a Boolean. Converting it with `int(...)` produces `1` when true and `0` when false.
+---
 
-Why does comparing these two lengths detect a valid center? `ans` contains every copy belonging to every available pair. If `ans` is smaller than the total number of input characters, at least one occurrence was not paired. Such an occurrence exists exactly when at least one character has odd frequency. Any one of those leftovers can occupy the center, so the answer increases by one. It does not matter if several characters have odd frequencies: a palindrome has only one center, and every other unpaired occurrence must remain unused.
+### Step 3: Evaluate Center Availability
+Compare $ans$ with total string length $|s|$:
+$$
+ans < \text{len}(s) \iff 6 < 8 \quad (\mathbf{True})
+$$
+- Converting Boolean `True` to integer yields `1`.
+- Add central pivot:
+  $$
+  ans \leftarrow 6 + 1 = \mathbf{7}
+  $$
 
-If `ans == len(s)`, every occurrence was already consumed in pairs. There is no unused character to place in a center, and adding one would invent a character that the input does not contain. The Boolean conversion therefore adds exactly the permitted amount.
+---
 
-For the running example, `ans` is `6` while `len(s)` is `8`, so one leftover becomes the center and the result is `7`. For `s = "aabb"`, the paired sum is already `4`; the comparison is false and the answer remains `4`. For `s = "a"`, the paired sum is `0`, one center is available, and the result is `1`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
+### Step 4: Termination
+Return:
+$$
+\mathbf{7}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abccccdd"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
+```text
+s = "abccccdd", len(s) = 8
+
+Frequencies: {'a': 1, 'b': 1, 'c': 4, 'd': 2}
+
+'a': 1 // 2 * 2 = 0
+'b': 1 // 2 * 2 = 0
+'c': 4 // 2 * 2 = 4
+'d': 2 // 2 * 2 = 2
+
+Even Sum ans = 0 + 0 + 4 + 2 = 6
+Condition ans < len(s): 6 < 8 (True -> 1)
+ans = 6 + 1 = 7
+
+Output: 7
+```
+
+| Character | Frequency $v$ | Full Pairs $\lfloor v/2 \rfloor$ | Paired Letters Added ($v \mathbin{//} 2 \times 2$) | Leftover Odd Letter? | Running Paired Sum |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `'a'` | 1 | 0 | 0 | Yes (1 leftover) | 0 |
+| `'b'` | 1 | 0 | 0 | Yes (1 leftover) | 0 |
+| `'c'` | 4 | 2 | 4 | No | 4 |
+| `'d'` | 2 | 1 | 2 | No | 6 |
+| **Pivot** | - | - | **$+1$ (Center)** | - | **$\mathbf{7}$ (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every character paired by $\lfloor v / 2 \rfloor \times 2$ can be placed symmetrically on opposite sides of the string. A palindrome can contain at most one character with odd multiplicity (the center). Thus, taking all available pairs plus at most one single central character achieves the theoretical upper bound on palindrome length.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in $s$ is processed. The condition $ans < |s|$ holds if and only if $\sum (v \bmod 2) > 0$. If any odd character exists, choosing any one of them as the center is valid, guaranteeing that the maximum possible length is achieved.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Set of currently unmatched characters:** Scan `s`; add a character when it is unmatched, and remove it while adding two to the answer when its mate appears. One remaining set member may become the center. This is also $O(n)$ time and constant space for this alphabet, but the frequency formula in the chosen solution states the pair count more directly.
-- **Odd-frequency counter maintained during counting:** Track how many frequencies are currently odd, then compute `len(s) - odd_count + 1` when at least one odd frequency exists. It has the same bounds, although updating parity after every occurrence is somewhat less immediate than summing complete pairs after counting.
-- **Sort all characters:** Equal characters become adjacent after sorting, making pairs easy to count. Sorting costs $O(n \log n)$ time and is unnecessary when the alphabet can be counted directly.
-- **Try to build candidate palindromes:** Generating arrangements solves a much harder problem than requested and can create an enormous search space. The answer depends only on frequencies, not on which valid arrangement is selected.
-- **Several odd frequencies:** Only one leftover can be the center. The solution deliberately adds one, rather than one per odd-frequency character.
-- **All frequencies even:** `ans == len(s)`, so no center is added and every input character is used.
-- **A one-character string:** There are no pairs, but the sole character becomes the center, producing length `1`.
-- **Case-sensitive letters:** `Counter` naturally keeps `A` and `a` as different keys, exactly matching the contract.
-- **Repeated use of a high-frequency character:** A frequency such as `7` contributes `6` paired copies and may also provide the center. The integer-division expression handles this without a special branch.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Case Sensitivity:** `'A'` and `'a'` are distinct characters. Treating them as identical would falsely combine them into a pair. Using Python's `Counter(s)` preserves exact ASCII character keys.
+- **Multiple Odd Characters:** If multiple characters have odd counts (e.g. `'a': 1, 'b': 1`), only **ONE** of them can be used in the center. The remaining odd characters can only contribute their even parts ($\lfloor v / 2 \rfloor \times 2$).
+- **Permutation vs Substring:** The problem allows reordering characters arbitrarily (subsequence multiset), NOT finding a contiguous substring. Generating permutations or searching substrings would cause severe time-limit errors.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`, and let $u$ be the number of distinct characters in it. Constructing `Counter(s)` examines all $n$ characters, so it takes $O(n)$ time. Summing over `cnt.values()` visits $u$ frequencies, which takes $O(u)$ time. Because $u \le n$, the total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = \text{len}(s)$.
+  - Counting characters in $s$ takes $O(N)$ time.
+  - Summing over the hash table values takes $O(|\Sigma|)$ time, where $|\Sigma| \le 52$ (26 lowercase + 26 uppercase English letters).
+  - Total time is strictly $O(N + |\Sigma|) = O(N)$, finishing in $< 0.1$ ms.
+- **Auxiliary Space Complexity:** $O(|\Sigma|) = O(1)$ constant memory, storing at most 52 frequency entries in `Counter(s)`.

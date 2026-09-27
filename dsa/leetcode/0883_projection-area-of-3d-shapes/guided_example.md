@@ -1,111 +1,175 @@
 # Guided Example: Projection Area of 3D Shapes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step orthogonal projection decomposition across three coordinate planes ($xy, yz, zx$), non-zero footprint counting, row-wise maximum silhouette aggregation, column-wise maximum silhouette aggregation, and total surface projection area summation on representative 3D voxel grids:
 
-- **Input:** `{"grid": [[1, 2], [3, 4]]}`
+- **Input:**
+  $$
+  grid = \begin{bmatrix}
+  1 & 2 \\
+  3 & 4
+  \end{bmatrix}
+  $$
 - **Required output:** `17`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - 3D voxel geometry & projections:
+    - On an $n \times n$ grid, each cell $(i, j)$ contains a vertical tower of $1 \times 1 \times 1$ unit cubes with height $v = grid[i][j]$.
+    - We project the shape orthogonally onto three perpendicular planes:
+      1. **$xy$-plane (Top View / Footprint):** Looking down from $+z$.
+      2. **$yz$-plane (Side View / Row Silhouettes):** Looking along the $x$-axis.
+      3. **$zx$-plane (Front View / Column Silhouettes):** Looking along the $y$-axis.
+    - Objective: Return the total area of all three projections combined.
+    - For $grid = [[1, 2], [3, 4]]$:
+      - Top ($xy$): All 4 grid cells have height $> 0 \implies \text{Area}_{xy} = 4$.
+      - Side ($yz$): Row 0 max is $2$, Row 1 max is $4 \implies \text{Area}_{yz} = 2 + 4 = 6$.
+      - Front ($zx$): Column 0 max is $3$, Column 1 max is $4 \implies \text{Area}_{zx} = 3 + 4 = 7$.
+      - Total projection area: $4 + 6 + 7 = \mathbf{17}$.
+- **The Orthogonal Projection Invariant:**
+  - **$xy$-Plane (Ground Footprint):**
+    - The vertical height does not matter as long as at least one cube is present.
+    - Each cell $(i, j)$ with $grid[i][j] > 0$ contributes exactly $1$ square unit to the ground shadow:
+      $$
+      \text{Area}_{xy} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \mathbb{I}[grid[i][j] > 0]
+      $$
+  - **$yz$-Plane (Row Silhouettes):**
+    - When viewed from the side along row $i$, cubes at different columns $j$ overlap.
+    - The shadow height cast by row $i$ is determined entirely by the **tallest tower in row $i$**:
+      $$
+      \text{Area}_{yz} = \sum_{i=0}^{n-1} \max_{0 \le j < n} (grid[i][j])
+      $$
+  - **$zx$-Plane (Column Silhouettes):**
+    - When viewed from the front along column $j$, cubes at different rows $i$ overlap.
+    - The shadow height cast by column $j$ is determined entirely by the **tallest tower in column $j$**:
+      $$
+      \text{Area}_{zx} = \sum_{j=0}^{n-1} \max_{0 \le i < n} (grid[i][j])
+      $$
+  - Total projection area is the direct algebraic sum of these three independent plane projections.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `n x n` `grid` where we place some `1 x 1 x 1` cubes that are axis-aligned with the `x`, `y`, and `z` axes.
+Given the $2 \times 2$ height map:
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+$$
+Derive each of the three orthogonal projection shadows.
 
-The objective is to compute `17` from `{"grid": [[1, 2], [3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Top View (xy-plane):
+  [1] [2]   -> 4 non-zero cells
+  [3] [4]   Area = 4
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Side View (yz-plane, along rows):
+  Row 0: max(1, 2) = 2
+  Row 1: max(3, 4) = 4
+  Area = 2 + 4 = 6
+
+Front View (zx-plane, along columns):
+  Col 0: max(1, 3) = 3
+  Col 1: max(2, 4) = 4
+  Area = 3 + 4 = 7
+
+Total Projection Area = 4 + 6 + 7 = 17
+```
+
+The teaching goal is to demonstrate how multi-view architectural drawing projections reduce to independent 1D reductions over rows and columns.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 1. Mathematical Area Formula:
+$$
+\text{Total Area} = \underbrace{\sum_{i=0}^{n-1} \sum_{j=0}^{n-1} [grid[i][j] > 0]}_{\text{Top (xy)}} + \underbrace{\sum_{i=0}^{n-1} \max_j (grid[i][j])}_{\text{Side (yz)}} + \underbrace{\sum_{j=0}^{n-1} \max_i (grid[i][j])}_{\text{Front (zx)}}
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Each grid cell $(i,j)$ holds a vertical tower of `grid[i][j]` unit cubes. A projection collapses one spatial axis, so overlapping cubes hide one another. The three viewing directions therefore require three different summaries:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 2], [3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $grid = [[1, 2], [3, 4]]$:
 
 ---
 
-### Step 2: Core Step 2
-
-- From above onto the $xy$ plane, only whether a tower exists matters.
-- From one side onto the $yz$ plane, only the tallest tower in each row matters.
-- From the perpendicular side onto the $zx$ plane, only the tallest tower in each column matters.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Top View Area ($xy$-plane)
+- Cell $(0, 0) = 1 > 0 \implies +1$
+- Cell $(0, 1) = 2 > 0 \implies +1$
+- Cell $(1, 0) = 3 > 0 \implies +1$
+- Cell $(1, 1) = 4 > 0 \implies +1$
+$$
+\text{Area}_{xy} = 1 + 1 + 1 + 1 = \mathbf{4}
+$$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Compute Side View Area ($yz$-plane)
+- Row $0$: heights $[1, 2]$. Maximum height: $\max(1, 2) = 2$.
+- Row $1$: heights $[3, 4]$. Maximum height: $\max(3, 4) = 4$.
+$$
+\text{Area}_{yz} = 2 + 4 = \mathbf{6}
+$$
 
-The solution calculates these three areas independently and adds them.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `17` |
+### Step 3: Compute Front View Area ($zx$-plane)
+- Column $0$: heights $[1, 3]$. Maximum height: $\max(1, 3) = 3$.
+- Column $1$: heights $[2, 4]$. Maximum height: $\max(2, 4) = 4$.
+$$
+\text{Area}_{zx} = 3 + 4 = \mathbf{7}
+$$
+
+---
+
+### Step 4: Sum All Three Projections
+$$
+\text{Total Area} = \text{Area}_{xy} + \text{Area}_{yz} + \text{Area}_{zx} = 4 + 6 + 7 = \mathbf{17}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 2], [3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `17` | Verified |
+| Coordinate Plane | View Direction | Entity Evaluated | Heights Considered | Projected Area Contribution |
+|:---:|:---:|:---:|:---:|:---:|
+| $xy$ (Top) | Along $-z$ | All 4 cells | $[1, 2, 3, 4]$ (all $> 0$) | $4$ |
+| $yz$ (Side) | Along $+x$ | Row $0$ | $[1, 2]$ | $\max(1, 2) = 2$ |
+| $yz$ (Side) | Along $+x$ | Row $1$ | $[3, 4]$ | $\max(3, 4) = 4$ |
+| $zx$ (Front) | Along $+y$ | Column $0$ | $[1, 3]$ | $\max(1, 3) = 3$ |
+| $zx$ (Front) | Along $+y$ | Column $1$ | $[2, 4]$ | $\max(2, 4) = 4$ |
+| **Combined** | **All 3 Planes** | **Full Grid** | **Sum of all projections** | **`4 + 6 + 7 = 17`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Cells with Height $0$:** A cell with $0$ cubes contributes $0$ to the $xy$ footprint. If an entire row has height $0$, row max is $0$.
+- **$1 \times 1$ Grid (`[[2]]`):**
+  - $xy$: $1$ (since $2 > 0$).
+  - $yz$: $2$ (row max).
+  - $zx$: $2$ (column max).
+  - Total: $1 + 2 + 2 = 5$.
+- **Flat Surface (All heights equal $1$ on $n \times n$):**
+  - $xy$: $n^2$.
+  - $yz$: $n \times 1 = n$.
+  - $zx$: $n \times 1 = n$.
+  - Total: $n^2 + 2n$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **One explicit nested loop:** Track positive cells, row maxima, and column maxima manually. This has the same time bound and uses an $O(n)$ column-maximum array.
-- **Build a transposed matrix:** Then take row maxima of both orientations. It works but allocates $O(n^2)$ data unnecessarily.
-- **Model every unit cube:** Expanding towers takes time proportional to the sum of all heights, even though only occupancy and maxima matter.
-- **Sum tower heights for side views:** This double-counts overlapping shadow levels along the viewing direction.
-- **All zeros:** Every positive test is false and every row and column maximum is zero, so total projection area is zero.
-- **One cell of height `v`:** Top area is 1 when $v>0$, and each side area is $v$, giving $1+2v$. For `v=2`, the result is 5.
-- **Sparse diagonal towers:** Each positive cell contributes separately to the top, while row and column maxima capture the separated side positions.
-- **Several towers in one row:** Only the tallest affects that row's side projection.
-- **Several towers in one column:** Only the tallest affects that column's perpendicular projection.
-- **Equal maxima:** Equal-height towers aligned in one viewing line still create one shadow of that height, not multiple copies.
-- **Square-grid guarantee:** Every row is nonempty and has equal length, so `max(row)` and `zip(*grid)` are safe.
-- **Value magnitude:** Heights affect maxima but not the number of grid positions traversed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Counting Cube Faces (Exposed Surface Area):** This problem asks for the **shadow projection area**, not the full 3D surface area. Internal faces or hidden steps do not increase shadow size.
+- **Transposing Manually with Nested Arrays:** Running column maximums during the row scan or using `zip(*grid)` computes column maximums cleanly without memory duplication.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the side length of the square grid. Each of the three calculations examines all $n^2$ values once overall up to a constant factor.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Single pass over all $n \times n$ cells: $\mathcal{O}(n^2)$.
+  - Tallying non-zeros, row maxes, and column maxes takes $\mathcal{O}(1)$ per cell.
+  - Total Time: strictly $\mathcal{O}(n^2)$, completing in $< 1$ ms for $n \le 50$.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ additional memory if streaming column maximums in-place (or $\mathcal{O}(n)$ to store column maximums).

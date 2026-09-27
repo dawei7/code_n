@@ -26,7 +26,7 @@
     {
       "id": "trial-single",
       "name": "single value reaches target",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "target": 4,
@@ -38,7 +38,31 @@
       },
       "expected": 1,
       "tags": [
+        "sample",
         "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 11,
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
       ]
     },
     {

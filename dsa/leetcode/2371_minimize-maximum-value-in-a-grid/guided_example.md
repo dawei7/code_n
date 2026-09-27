@@ -1,125 +1,139 @@
 # Guided Example: Minimize Maximum Value in a Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"grid": [[3, 1], [2, 5]]}`
-- **Required output:** `[[2, 1], [1, 2]]`
+Given an $m \times n$ matrix $\text{grid}$ consisting entirely of distinct positive integers, we must assign a positive replacement integer to every cell. The replacements must preserve all strict relative orderings within each individual row and within each individual column:
+- If $\text{grid}[r][c_1] > \text{grid}[r][c_2]$, then $\text{ans}[r][c_1] > \text{ans}[r][c_2]$.
+- If $\text{grid}[r_1][c] > \text{grid}[r_2][c]$, then $\text{ans}[r_1][c] > \text{ans}[r_2][c]$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Cells that do not share a row or column impose no mutual ordering constraints and may receive equal replacement values. Every replacement must be a positive integer ($\ge 1$). The goal is to minimize the maximum integer present in the replacement matrix.
 
----
+Consider the representative configuration:
+$$\text{grid} = \begin{bmatrix} 3 & 1 \\ 2 & 5 \end{bmatrix}$$
 
-## 1. Instance & Teaching Goal
+All four entries are distinct. In row $0$, cell $(0, 0)$ must exceed cell $(0, 1)$. In column $0$, cell $(0, 0)$ must exceed cell $(1, 0)$. In column $1$, cell $(1, 1)$ must exceed cell $(0, 1)$. In row $1$, cell $(1, 1)$ must exceed cell $(1, 0)$. We seek the smallest positive values that satisfy these simultaneous orthogonal chains.
 
-You are given an `m x n` integer matrix `grid` containing **distinct** positive integers.
+```mermaid
+graph TD
+    accTitle: Grid Value Poset Topological Order
+    accDescr: Directed dependency graph showing cell assignments ordered by ascending original values.
+    C1["(0,1): val 1 -> assign 1"] --> C3["(0,0): val 3 -> assign 2"]
+    C2["(1,0): val 2 -> assign 1"] --> C3
+    C1 --> C4["(1,1): val 5 -> assign 2"]
+    C2 --> C4
+    classDef base fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    classDef top fill:#bbf7d0,stroke:#16a34a,stroke-width:2px;
+    class C1,C2 base;
+    class C3,C4 top;
+```
 
-The objective is to compute `[[2, 1], [1, 2]]` from `{"grid": [[3, 1], [2, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because every number in $\text{grid}$ is distinct, every pairwise comparison between two cells in the same row or column is a strict inequality ($>$ or $<$). This defines a Directed Acyclic Graph (DAG) of constraints where directed edges point from smaller elements to larger elements.
 
----
+Sorting all $N = m \cdot n$ cells in ascending order of their original values provides a valid topological ordering of this DAG:
+1. When evaluating cell $(r, c)$, any constraint requiring $\text{ans}[r][c] > \text{ans}[r'][c']$ involves an element with $\text{grid}[r'][c'] < \text{grid}[r][c]$.
+2. Because cells are processed in strictly ascending order of $\text{grid}$, all predecessors of $(r, c)$ in row $r$ and column $c$ have already received their final replacement values.
+3. To minimize the replacement value at $(r, c)$, it should be set to the smallest positive integer that strictly exceeds all existing values in row $r$ and column $c$:
+   $$\text{ans}[r][c] = \max\bigl(\text{row\_max}[r],\, \text{col\_max}[c]\bigr) + 1$$
+   where $\text{row\_max}[r]$ is the maximum value currently assigned to any cell in row $r$ (initialized to $0$), and $\text{col\_max}[c]$ is the maximum value currently assigned to any cell in column $c$ (initialized to $0$).
+4. After computing $\text{ans}[r][c]$, the maximum trackers are updated:
+   $$\text{row\_max}[r] = \text{ans}[r][c], \quad \text{col\_max}[c] = \text{ans}[r][c]$$
 
-## 2. Conceptual Foundation & Invariants
+By induction, assigning the absolute minimum feasible positive integer to each cell in topological order guarantees that every individual cell is minimized, which in turn minimizes the global maximum of the matrix.
 
-We maintain the core conceptual parameters and state variables:
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We trace the representative grid:
+$$\text{grid} = \begin{bmatrix} 3 & 1 \\ 2 & 5 \end{bmatrix}, \quad m = 2, \, n = 2$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Phase 1: Flatten & Sort Coordinates:**
+  Gather all tuples $(\text{value}, r, c)$ and sort by value:
+  $$[(1, 0, 1),\, (2, 1, 0),\, (3, 0, 0),\, (5, 1, 1)]$$
 
----
+- **Phase 2: Initialize State Trackers:**
+  - $\text{row\_max} = [0, 0]$
+  - $\text{col\_max} = [0, 0]$
+  - $\text{ans}$ initialized to a $2 \times 2$ matrix.
 
-## 3. Step-by-Step Worked Execution
+- **Step 1: Cell $(0, 1)$ with Value 1:**
+  - Look up current bounds: $\text{row\_max}[0] = 0$, $\text{col\_max}[1] = 0$.
+  - Compute replacement:
+    $$\text{val} = \max(0, 0) + 1 = 1$$
+  - Assign $\text{ans}[0][1] = 1$.
+  - Update bounds: $\text{row\_max}[0] = 1$, $\text{col\_max}[1] = 1$.
 
-### Step 1: Turn relative order into predecessor constraints
+- **Step 2: Cell $(1, 0)$ with Value 2:**
+  - Look up current bounds: $\text{row\_max}[1] = 0$, $\text{col\_max}[0] = 0$.
+  - Compute replacement:
+    $$\text{val} = \max(0, 0) + 1 = 1$$
+  - Assign $\text{ans}[1][0] = 1$.
+  - Update bounds: $\text{row\_max}[1] = 1$, $\text{col\_max}[0] = 1$.
 
-For a cell, every smaller original value in the same row or column must receive a smaller replacement. Because all original grid values are distinct, there are no equality groups to coordinate. If cells are processed globally from smallest original value to largest, every ordering predecessor of the current cell has already received its final score.
+- **Step 3: Cell $(0, 0)$ with Value 3:**
+  - Look up current bounds: $\text{row\_max}[0] = 1$, $\text{col\_max}[0] = 1$.
+  - Compute replacement:
+    $$\text{val} = \max(1, 1) + 1 = 2$$
+  - Assign $\text{ans}[0][0] = 2$.
+  - Update bounds: $\text{row\_max}[0] = 2$, $\text{col\_max}[0] = 2$.
 
-The smallest legal positive score for the current cell is therefore one more than the greatest score already used in its row or column. Assigning exactly that value preserves all required inequalities while keeping the current score as small as possible.
+- **Step 4: Cell $(1, 1)$ with Value 5:**
+  - Look up current bounds: $\text{row\_max}[1] = 1$, $\text{col\_max}[1] = 1$.
+  - Compute replacement:
+    $$\text{val} = \max(1, 1) + 1 = 2$$
+  - Assign $\text{ans}[1][1] = 2$.
+  - Update bounds: $\text{row\_max}[1] = 2$, $\text{col\_max}[1] = 2$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[3, 1], [2, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Termination:**
+  All cells assigned. The final replacement matrix is:
+  $$\text{ans} = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$$
+  The maximum value across the matrix is $2$.
 
----
+## 4. Comprehensive State Trace
 
-### Step 2: Sort cells without losing their coordinates
+The execution ledger across all sequential assignments is documented below:
 
-The list comprehension creates tuples `(v, i, j)` for all cells. Sorting these tuples orders primarily by `v`. Values are distinct, so coordinate tie-breaks never affect processing order.
+| Processing Step | Original Value | Coordinates $(r, c)$ | Incoming $\text{row\_max}[r]$ | Incoming $\text{col\_max}[c]$ | Assigned Value $\text{val}$ | Updated $\text{row\_max}[r]$ | Updated $\text{col\_max}[c]$ |
+|---|---|---|---|---|---|---|---|
+| 1 | 1 | $(0, 1)$ | 0 | 0 | 1 | $\text{row\_max}[0] = 1$ | $\text{col\_max}[1] = 1$ |
+| 2 | 2 | $(1, 0)$ | 0 | 0 | 1 | $\text{row\_max}[1] = 1$ | $\text{col\_max}[0] = 1$ |
+| 3 | 3 | $(0, 0)$ | 1 | 1 | 2 | $\text{row\_max}[0] = 2$ | $\text{col\_max}[0] = 2$ |
+| 4 | 5 | $(1, 1)$ | 1 | 1 | 2 | $\text{row\_max}[1] = 2$ | $\text{col\_max}[1] = 2$ |
 
-Let $N=mn$ be the number of cells. The sorted list provides a topological-like order: when processing `(i, j)`, every cell with a smaller original value—particularly every smaller one in row `i` or column `j`—has already been handled. Larger original values have not yet influenced the score.
+We verify all row and column constraints against the resulting assignments:
 
-The solution builds a separate zero-filled matrix `ans`. It does not overwrite `grid`, so original values remain available conceptually throughout processing.
+| Constraint Scope | Cell Pair Evaluated | Original Values | Replacement Values | Strict Comparison Preserved? |
+|---|---|---|---|---|
+| Row 0 | $(0, 0)$ vs $(0, 1)$ | $3 > 1$ | $2 > 1$ | Satisfied |
+| Row 1 | $(1, 0)$ vs $(1, 1)$ | $2 < 5$ | $1 < 2$ | Satisfied |
+| Column 0 | $(0, 0)$ vs $(1, 0)$ | $3 > 2$ | $2 > 1$ | Satisfied |
+| Column 1 | $(0, 1)$ vs $(1, 1)$ | $1 < 5$ | $1 < 2$ | Satisfied |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+All four directional conditions hold strictly, and no replacement value exceeds $2$.
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 3: Summarize processed constraints by row and column
+The correctness of this greedy formulation follows from properties of partially ordered sets:
+1. **Valid Topological Order:** Since elements in the matrix are pairwise distinct, the relation defined by row and column precedence contains no cycles. Any total order consistent with numerical magnitude is a topological sort of the constraint DAG.
+2. **Component-Wise Minimal Feasible Values:** For any node $u$ in a DAG where edge $(v, u)$ requires $\text{ans}[u] \ge \text{ans}[v] + 1$, the optimal value is $\text{ans}[u] = 1 + \max_{(v, u) \in E} \text{ans}[v]$. Because edges only exist between cells in the same row or column, the maximum over all predecessors of cell $(r, c)$ is precisely $\max(\text{row\_max}[r], \text{col\_max}[c])$.
+3. **Pointwise Minimality:** The assignment produces values that are pointwise minimal: no cell could receive a strictly smaller positive integer without violating either a row constraint or a column constraint with one of its predecessors. Pointwise minimality trivially implies minimality of the supremum $\max_{(r, c)} \text{ans}[r][c]$.
 
-`row_max[i]` stores the greatest replacement score assigned so far to a processed cell in row `i`. Similarly, `col_max[j]` stores the greatest processed score in column `j`. Both arrays start at zero. Since replacement values must be positive, an empty row or column history then yields a first allowable score of one.
+## 6. Edge Cases & Anti-Patterns
 
-For current cell `(i, j)`, the exact assignment is:
+- **Single Cell ($1 \times 1$ Matrix):** For $\text{grid} = [[10]]$, sorting yields one element, $\max(0, 0) + 1 = 1$, correctly outputting $[[1]]$.
+- **Single Row ($1 \times n$):** All entries share row $0$ but distinct columns. The sorted order sequentially increments $\text{row\_max}[0]$ from $1$ to $n$, assigning ranks $1, 2, \dots, n$ in order of value.
+- **Single Column ($m \times 1$):** Dual to the single row case, entries are assigned ranks $1, 2, \dots, m$ along column $0$.
+- **Anti-Pattern: Full Disjoint Set Union (DSU) Overhead:** In problems where duplicate values exist across rows and columns, identical numbers must be unified with DSU. However, because the input here guarantees all entries are strictly distinct, DSU is unnecessary. Directly sorting the cell list eliminates redundant graph constructions.
 
+## 7. Complexity Analysis
 
-
-The score must exceed `row_max[i]` to be greater than all smaller original cells in its row. It must also exceed `col_max[j]` for its column. Exceeding their maximum satisfies both requirements, and adding exactly one is the smallest positive integer that does so.
-
-The code then updates both summaries:
-
-
-
-Because cells are processed in increasing original value and assigned a score above the previous maxima, this new score is indeed the new maximum for both its row and column.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[2, 1], [1, 2]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[3, 1], [2, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[2, 1], [1, 2]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Min-heap:** Push all value-coordinate tuples and pop them in increasing order. It has the same $O(N\log N)$ time and $O(N)$ space but sorting once is simpler.
-- **Explicit dependency graph:** Add ordering edges between relevant cells and compute longest-path ranks in topological order. It is more complex, and global value sorting already supplies a valid order.
-- **Equal original values:** The contract forbids them. If allowed, equal-value cells would need batch processing so same-value updates do not constrain each other.
-- **Single cell:** Both maxima are zero, so the only cell receives the optimal positive score one.
-- **Single row:** Scores become `1, 2, ...` in original-value order within that row, preserving every pairwise comparison.
-- **Single column:** The same rank progression occurs down the column according to original values.
-- **Unrelated cells:** Cells sharing neither row nor column may receive equal scores; no constraint relates them.
-- **Very large original values:** Only their ordering matters. Replacement scores depend on row and column chains, not numeric gaps.
-- **Input preservation:** The exact implementation returns a separate `ans` matrix and does not mutate `grid`.
-- **Distinctness and tuple sorting:** Because values are unique, the coordinate fields never determine the processing order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N\log N)$. Let $m$ and $n$ be the matrix dimensions and $N=mn$ the number of cells. Creating `nums` takes $O(N)$ time and space. Sorting its $N$ tuples takes $O(N\log N)$ time. The assignment loop takes $O(N)$ time, so sorting dominates and total time is $O(N\log N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Gathering the $m \cdot n$ cell coordinates takes $\mathcal{O}(mn)$ time.
+  - Sorting the array of $mn$ tuples by value takes $\mathcal{O}(mn \log(mn))$ time.
+  - Iterating through the sorted cells and performing constant-time lookups and updates in $\text{row\_max}$ and $\text{col\_max}$ takes $\mathcal{O}(mn)$ time.
+  - Overall time complexity is dominated by sorting: $\mathcal{O}(mn \log(mn))$.
+- **Space Complexity:**
+  - Storing the list of cell tuples requires $\mathcal{O}(mn)$ memory.
+  - Auxiliary tracking arrays $\text{row\_max}$ and $\text{col\_max}$ require $\mathcal{O}(m + n)$ space.
+  - The result matrix requires $\mathcal{O}(mn)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(mn)$.

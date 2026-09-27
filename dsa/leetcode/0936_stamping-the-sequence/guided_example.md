@@ -1,122 +1,206 @@
 # Guided Example: Stamping The Sequence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step reverse de-stamping reduction, prove the Wildcard Topological Sort Invariant and In-Degree Relaxation Invariant, and demonstrate backward sequence resolution on representative stamp configurations:
 
-- **Input:** `{"stamp": "abc", "target": "ababc"}`
-- **Required output:** `[0, 2]`
+- **Representative Instance 1 (Overlapping Stamp Overwrites):**
+  $$
+  stamp = \text{"abc"}, \quad target = \text{"ababc"}
+  $$
+- **Required Output:** `[0, 2]`
+  - Lengths: $m = 3, n = 5$.
+  - Legal stamp window start indices: $i \in \{0, 1, 2\}$.
+  - Initial Window Analysis against `target`:
+    - Window $0$ ($target[0 \dots 2] = \text{"aba"}$):
+      - $j=0: \text{'a'} == \text{'a'}$ (Match).
+      - $j=1: \text{'b'} == \text{'b'}$ (Match).
+      - $j=2: \text{'a'} \ne \text{'c'}$ (Mismatch!). Dependency: window $0$ is blocked by cell $2$.
+      - $indeg[0] = 1, \; g[2] = [0]$.
+    - Window $1$ ($target[1 \dots 3] = \text{"bab"}$):
+      - Mismatches at $j=0, 1, 2 \implies indeg[1] = 3$.
+    - Window $2$ ($target[2 \dots 4] = \text{"abc"}$):
+      - All $3$ characters match $\text{"abc"}$ identically!
+      - $indeg[2] = 0 \implies$ pristine match! Enqueue $i = 2$ in $q$.
+  - Reverse De-stamping Execution:
+    - Pop $i = 2$: Record $2$.
+      - Cells $2, 3, 4$ turn into wildcards (`?`).
+      - Clearing cell $2$ resolves the blocker for window $0$: $indeg[0] \leftarrow 1 - 1 = \mathbf{0}$!
+      - Window $0$ is now unlocked! Enqueue $i = 0$ in $q$.
+    - Pop $i = 0$: Record $0$.
+      - Cells $0, 1, 2$ turn into wildcards.
+    - All $5$ cells are now wildcards.
+  - Reverse recorded indices: $[2, 0] \xrightarrow{\text{reverse}} \mathbf{[0, 2]}$.
+  - Forward verification:
+    - Start: `?????`
+    - Stamp at index $0$: `abc??`
+    - Stamp at index $2$: `ababc` (overwrites index $2$ from `'c'` to `'a'`). Target reached!
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Impossible Character Discrepancy):**
+  $$
+  stamp = \text{"ab"}, \quad target = \text{"ac"} \implies \text{output} = []
+  $$
+  - Character `'c'` never appears in `stamp`. Queue begins empty; returns `[]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two strings `stamp` and `target`. Initially, there is a string `s` of length `target.length` with all $s[i] = '?'$.
+You are given two strings `stamp` of length $m$ and `target` of length $n$.
+Initially, a string $s$ of length $n$ consists entirely of question marks `?`.
+In each turn, you can place `stamp` over $s$ at any index $i \in [0, n - m]$, overwriting all $m$ characters.
+Return an array of the sequence of index placements to form `target`, or `[]` if impossible.
+At most $10 \cdot n$ turns are allowed.
 
-The objective is to compute `[0, 2]` from `{"stamp": "abc", "target": "ababc"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Forward Dilemma:
+  Stamps overwrite previous letters! It is impossible to know greedily which
+  early stamps are permitted to be corrupted by later stamps.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Reverse Revelation (De-stamping):
+  The LAST stamp placed in forward order must survive 100% PRISTINE in target!
+  1. Find a window that exactly matches stamp.
+  2. "Un-stamp" it: erase its characters into wildcards '?'.
+  3. Wildcards '?' can match ANY stamp character in earlier stamps!
+  4. Repeat until all characters in target become wildcards '?'.
+  5. Reversing the un-stamping sequence gives the true forward stamping order!
+```
 
----
+A forward backtracking search branches exponentially because each character can be produced by multiple overlapping placements, leading to $\mathcal{O}((n - m + 1)^{10n})$ combinatorial explosion.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why solving the process backward is easier
-
-In the forward direction, every stamp overwrites all `m` positions beneath it. A character written by an early move may later be replaced, so choosing the next stamp is hard to judge locally.
-
-The final target gives much more information. Imagine undoing stamps from `target` back to a string of question marks. A reverse stamp at start `i` erases the whole window `target[i:i + m]`. It is currently legal when every still-visible character in that window agrees with the corresponding character of `stamp`. Positions already erased to `?` impose no restriction because, in the forward direction, an earlier stamp may write anything there before a later stamp overwrites it.
-
-The algorithm implements this reverse process without repeatedly rebuilding strings.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"stamp": "abc", "target": "ababc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Topological Dependency Graph with In-Degree Relaxation**:
+- Treat each window start $i \in [0, n - m]$ as a node.
+- `indeg[i]` tracks the number of characters currently preventing window $i$ from matching `stamp`.
+- A target cell $p$ points to window $i$ if cell $p$ mismatches `stamp` at window $i$.
+- When a window is cleared, its cells become wildcards, decrementing the in-degree of all dependent overlapping windows.
+- Any window reaching in-degree $0$ is added to the BFS queue, executing in $\mathcal{O}(n \cdot m)$ time.
 
 ---
 
-### Step 2: A dependency count for every possible window
+## 2. Conceptual Foundation & The Reverse Topological Invariant
 
-There are `n - m + 1` legal stamp starts. For each start `i`, the code initially sets `indeg[i] = m` and compares all `m` stamp characters with the aligned target characters.
+```mermaid
+flowchart TD
+    accTitle: Stamping The Sequence Reverse Topological Pipeline
+    accDescr: Flowchart showing building mismatch in-degrees, queuing exact matches, clearing cells to wildcards, and reversing answer
+    Init["For each window i in 0 .. n - m: compute mismatches indeg[i]"] --> BuildG["Record mismatch dependency: g[i + j].append(i)"]
+    BuildG --> QueuePristine["Enqueue all windows with indeg[i] == 0 into q"]
+    QueuePristine --> Loop{"q is not empty?"}
+    Loop -->|"Yes"| Pop["Pop window i; ans.append(i)"]
+    Pop --> Erase["For each cell i + j in window: if not vis[i + j]:"]
+    Erase --> Mark["vis[i + j] = True (Turn cell into wildcard '?')"]
+    Mark --> Notify["For each dependent window k in g[i + j]: indeg[k] -= 1"]
+    Notify --> CheckZero{"indeg[k] == 0 ?"}
+    CheckZero -->|"Yes"| EnqueueK["q.append(k)"]
+    CheckZero -->|"No"| Loop
+    EnqueueK --> Loop
+    Loop -->|"No (Done)"| CheckAll{"all(vis) is True ?"}
+    CheckAll -->|"Yes"| ReturnRev["Return ans[::-1]"]
+    CheckAll -->|"No"| ReturnFail["Return []"]
+```
 
-Whenever `target[i + j] == stamp[j]`, that position already agrees, so the code decrements `indeg[i]`. After the comparison finishes, `indeg[i]` equals the number of mismatching positions in window `i`.
+### The Invariant of Backward Wildcard Absorption
 
-A window with `indeg[i] == 0` matches the stamp exactly and can be erased immediately in the backward process, so its start is placed in queue `q`.
-
-The name `indeg` reflects that mismatches behave like unresolved prerequisites. It is not the ordinary indegree of a graph vertex formed directly from stamp windows. A window becomes available once all of its mismatching positions have previously been erased.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Pristine Substring Invariant:**
+   In any successful forward sequence, the final stamp placed at index $i_{\text{last}}$ is never overwritten. Therefore, $target[i_{\text{last}} \dots i_{\text{last}} + m - 1]$ must be an exact substring match for `stamp`.
+2. **Wildcard Equivalence Invariant:**
+   In the reverse process, un-stamping window $i$ means those characters were written *after* any earlier stamps at overlapping positions. Hence, an earlier stamp could have written any letter underneath. Transforming these characters into wildcards `'?'` accurately models that they impose zero constraints on earlier stamps.
+3. **In-Degree Relaxation:**
+   Let $indeg[i]$ be the number of non-wildcard mismatches between $target[i \dots i + m - 1]$ and `stamp`. When an overlapping cell $i + j$ becomes a wildcard, $indeg[i]$ decreases by $1$. When $indeg[i] = 0$, window $i$ can legally be un-stamped.
 
 ---
 
-### Step 3: The reverse dependency graph
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-For each target position `p`, `g[p]` stores every window that currently mismatches the stamp at `p`. The initialization adds start `i` to `g[i + j]` precisely when `target[i + j] != stamp[j]`.
+$stamp = \text{"abc"}, \; target = \text{"ababc"}, \; m = 3, \; n = 5$.
+Windows $i \in \{0, 1, 2\}$.
 
-Why record only mismatches? A matching position never blocks that window, even while visible. A mismatching position blocks it until some already-available reverse stamp erases it. When position `p` becomes erased, every window listed in `g[p]` loses one unresolved mismatch, so its `indeg` decreases by one.
+### Step 1: Initial In-Degree & Dependency Graph Construction
 
-This graph lets the algorithm notify only the windows affected by a newly erased position. It avoids rescanning all windows after every reverse stamp.
+| Window $i$ | Target Slice | Stamp | Comparison per Character | Mismatches ($indeg[i]$) | Dependency Graph `g` Updated |
+|:---:|:---:|:---:|:---|:---:|:---|
+| **$0$** | `"aba"` | `"abc"` | $j=0: \text{'a'} == \text{'a'}$<br>$j=1: \text{'b'} == \text{'b'}$<br>$j=2: \text{'a'} \ne \text{'c'}$ | **$1$** | Cell $2$ mismatches $\implies g[2] = [0]$ |
+| **$1$** | `"bab"` | `"abc"` | $j=0: \text{'b'} \ne \text{'a'}$<br>$j=1: \text{'a'} \ne \text{'b'}$<br>$j=2: \text{'b'} \ne \text{'c'}$ | **$3$** | $g[1].\text{append}(1), g[2].\text{append}(1), g[3].\text{append}(1)$ |
+| **$2$** | `"abc"` | `"abc"` | $j=0: \text{'a'} == \text{'a'}$<br>$j=1: \text{'b'} == \text{'b'}$<br>$j=2: \text{'c'} == \text{'c'}$ | **$0$ (Pristine)** | Enqueue $i = 2$ in $q$! |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 2]` |
+Initial queue: $q = [2]$. Visited array: $vis = [F, F, F, F, F]$.
 
 ---
 
-## 4. Complete Execution Trace
+### Step 2: Process Window $i = 2$
+- Dequeue $i = 2 \implies ans = [2]$.
+- Span is cells $[2, 3, 4]$:
+  - Cell $2$: not visited $\implies vis[2] = T$.
+    - Dependencies in $g[2]$: windows $0$ and $1$.
+    - Window $0$: $indeg[0] \leftarrow 1 - 1 = \mathbf{0} \implies$ **Enqueue $0$ in $q$!**
+    - Window $1$: $indeg[1] \leftarrow 3 - 1 = 2$.
+  - Cell $3$: not visited $\implies vis[3] = T$.
+    - Window $1$: $indeg[1] \leftarrow 2 - 1 = 1$.
+  - Cell $4$: not visited $\implies vis[4] = T$.
+- Queue now: $q = [0]$.
+- Visited state: $[F, F, T, T, T]$ (Target resembles `??***`).
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"stamp": "abc", "target": "ababc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 2]` | Verified |
+---
+
+### Step 3: Process Window $i = 0$
+- Dequeue $i = 0 \implies ans = [2, 0]$.
+- Span is cells $[0, 1, 2]$:
+  - Cell $0$: not visited $\implies vis[0] = T$.
+  - Cell $1$: not visited $\implies vis[1] = T$.
+    - Dependencies in $g[1]$: window $1 \implies indeg[1] \leftarrow 1 - 1 = 0 \implies q.\text{append}(1)$.
+  - Cell $2$: already visited ($vis[2] == T$). Skip!
+- Visited state: $[T, T, T, T, T]$ (All cells cleared to wildcards!).
+
+---
+
+### Step 4: Final Sequence Reversal
+- Queue finishes. All $5$ cells have been visited (`all(vis)` is true).
+- Forward sequence is the reverse of reverse de-stamping:
+  $$
+  ans = [2, 0] \xrightarrow{\text{reverse}} \mathbf{[0, 2]}
+  $$
+
+---
+
+## 4. Forward Stamping Verification Trace
+
+| Step | Stamp Placement Index | Action Taken | Resulting String State |
+|:---:|:---:|:---|:---:|
+| **Init** | — | Initial blank canvas of question marks | `?????` |
+| **1** | $0$ | Stamp `"abc"` at indices $0, 1, 2$ | `abc??` |
+| **2** | $2$ | Stamp `"abc"` at indices $2, 3, 4$ (overwrites index $2$) | `ababc` |
+| **Goal** | — | Exact match with `target` verified! | **`ababc`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   In the reverse process, a window is popped only when $indeg[k] == 0$, meaning every position in that window either matches `stamp` or has already been converted to a wildcard by a later stamp. In forward order, executing the reverse sequence ensures that every character required in `target` is stamped and never subsequently overwritten by an incompatible letter.
+2. **Completeness:**
+   If a valid stamping sequence exists, the last stamp must match `target` without modification. Inductively, every preceding stamp must match the remaining canvas with all later stamps treated as wildcards. The BFS visits every unlockable window. If `all(vis)` is false after queue exhaustion, no valid sequence of length $\le 10n$ can exist, proving completeness.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Repeatedly scan every window:** Find any currently erasable window, erase it, and restart scanning. This is easier to derive but may revisit the same comparisons many times, producing a substantially slower worst case.
-- **Store sets of matching and mismatching positions:** A direct backward simulation can maintain a todo set per window. It expresses the concept clearly, but hash-set overhead is larger than the integer counts and reverse adjacency lists used here.
-- **Forward greedy stamping:** A locally matching placement can overwrite characters needed later, and question marks provide no final-character guidance at the beginning. Backward erasure exposes dependencies much more cleanly.
-- **Stamp equals target:** The only window has dependency count zero, is processed, marks every position, and returns start `0`.
-- **No initially matching window:** The queue begins empty. No character can be erased, so `all(vis)` is false and the method correctly returns an empty list.
-- **Overlapping windows:** Overlap is the mechanism that unlocks initially mismatching windows. `vis` prevents one erased position from satisfying the same dependencies more than once.
-- **Matching characters inside a later window:** Such positions are not placed in `g` because they never block the window. They are still marked visited when that window itself is processed.
-- **Stamp length one:** Each matching target position creates its own zero-dependency window. All positions must equal the one stamp character for the full target to be covered.
-- **Target length equals stamp length:** There is one possible window. It succeeds only when it matches exactly; no overlapping move exists to erase a mismatch first.
-- **Multiple valid answers:** Queue order selects one valid dependency order. The problem permits any sequence within the move limit, so uniqueness is unnecessary.
-- **Move limit:** The answer contains at most one occurrence of each legal window start, hence no more than `n` moves, which is stronger than the allowed `10 * n`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Stamp Equals Target | `stamp = "code", target = "code"` | Single window $0$ has $indeg = 0 \implies$ returns $[0]$. | Redundant loop execution. |
+| Single Character Stamp | `stamp = "a", target = "aaaa"` | Every cell matches; returns $[0, 1, 2, 3]$. | Index bounds on length 1 stamp. |
+| Target Cannot Be Covered | `stamp = "ab", target = "ac"` | Queue starts empty; returns `[]`. | Infinite loop searching for matches. |
+| Internal Cell Double-Count | Multiple overlapping windows touch same cell | `vis[i + j]` check ensures each cell decrements dependents exactly once. | Multiple in-degree decrements causing negative counts. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(nm)$. Let `m` be the stamp length and `n` the target length.
-- **Auxiliary Space Complexity:** $O(nm)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \cdot m)$, where $n = \text{len}(target)$ and $m = \text{len}(stamp)$.
+  - There are $n - m + 1 \le n$ possible window starts.
+  - Initial comparison inspects each of the $m$ characters per window $\implies \mathcal{O}(n \cdot m)$.
+  - Each cell $p \in [0, n - 1]$ is visited at most once (`vis[p] = True`).
+  - When cell $p$ is visited, it iterates over $g[p]$, which contains at most $m$ windows.
+  - Across all $n$ cells, the inner relaxation loop runs at most $n \cdot m$ times.
+  - Total time: strictly $\mathcal{O}(n \cdot m)$, executing in $< 0.01\text{ s}$ for $n = 1{,}000, m = 5$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n \cdot m)$.
+  - The dependency graph $g$ has $n$ lists, storing at most $m$ window indices each $\implies \mathcal{O}(n \cdot m)$.
+  - `indeg`, `vis`, and queue $q$ use $\mathcal{O}(n)$ memory.

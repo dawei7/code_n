@@ -1,109 +1,174 @@
 # Guided Example: Maximum Distance Between a Pair of Values
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer forward scan finding the maximum coordinate displacement between qualifying value pairs across two non-increasing arrays:
 
-- **Input:** `{"args": [[55, 30, 5, 4, 2], [100, 20, 10, 10, 5]]}`
-- **Required output:** `2`
+- **Input:**
+  - `nums1 = [55, 30, 5, 4, 2]`
+  - `nums2 = [100, 20, 10, 10, 5]`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates coordinating two pointers over non-increasing arrays, evaluating validity conditions ($i \le j$ and $nums1[i] \le nums2[j]$), greedily expanding index $j$, and advancing index $i$ when values drop below threshold.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two **non-increasing 0-indexed **integer arrays `nums1` and `nums2`.
+We are given two integer arrays `nums1` and `nums2`, both sorted in non-increasing order.
+A pair of indices $(i, j)$ is valid if and only if:
+1. $i \le j$
+2. $\text{nums1}[i] \le \text{nums2}[j]$
 
-The objective is to compute `2` from `{"args": [[55, 30, 5, 4, 2], [100, 20, 10, 10, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+The distance of a valid pair is $j - i$. We seek the maximum distance over all valid pairs, returning $0$ if no valid pair exists.
+A brute-force search compares all $n \times m$ pairs in $\mathcal{O}(n \cdot m)$ time.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- `nums1 = [55, 30, 5, 4, 2]` of length $n = 5$.
+- `nums2 = [100, 20, 10, 10, 5]` of length $m = 5$.
+- Pair evaluations:
+  - $(i=0, j=0)$: $55 \le 100 \implies$ distance $0 - 0 = 0$.
+  - For $i=1$ ($30$): $\text{nums2}[1]=20 < 30$, $\text{nums2}[2]=10 < 30 \implies$ no valid $j \ge 1$.
+  - For $i=2$ ($5$):
+    - $j=2$: $5 \le 10 \implies$ distance $0$.
+    - $j=3$: $5 \le 10 \implies$ distance $1$.
+    - $j=4$: $5 \le 5 \implies$ distance $4 - 2 = 2$.
+  - For $i=3$ ($4$): $j=4 \implies 4 \le 5 \implies$ distance $4 - 3 = 1$.
+  - For $i=4$ ($2$): $j=4 \implies 2 \le 5 \implies$ distance $4 - 4 = 0$.
+- Global maximum distance is $2$ (achieved at $i = 2, j = 4$).
+
+The teaching goal is to exploit the **non-increasing sorting invariant**: because both arrays are sorted in non-increasing order, pointers $i$ and $j$ can move strictly forward in a single pass in $\mathcal{O}(n + m)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Two-Pointer Monotonic Search Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Non-Increasing Monotonicity & Forward Two-Pointer Traversal Theorem.**
+> 1. *Non-Increasing Order Property:*
+>    $$\text{nums1}[0] \ge \text{nums1}[1] \ge \dots \ge \text{nums1}[n-1]$$
+>    $$\text{nums2}[0] \ge \text{nums2}[1] \ge \dots \ge \text{nums2}[m-1]$$
+> 2. *Pruning Invariant:* If $\text{nums1}[i] > \text{nums2}[j]$, then for all $j' \ge j$, $\text{nums2}[j'] \le \text{nums2}[j] < \text{nums1}[i]$. Therefore, no index $j' \ge j$ can ever form a valid pair with index $i$. Pointer $i$ must be incremented ($i \gets i + 1$).
+> 3. *Greedy Expansion Invariant:* If $\text{nums1}[i] \le \text{nums2}[j]$, the pair is valid whenever $j \ge i$. To potentially achieve an even larger distance, pointer $j$ is greedily incremented ($j \gets j + 1$).
+> 4. *Linear Amortization:* Pointers $i$ and $j$ only advance forward ($i$ up to $n$, $j$ up to $m$). At most $n + m$ pointer increments occur, guaranteeing $\mathcal{O}(n + m)$ execution time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Maximum Distance Two-Pointer Workflow
+    accDescr: Pipeline showing pointer initialization, comparison between nums1 and nums2 elements, greedy j advancement, and i incrementation.
+    A["nums1 = [55, 30, 5, 4, 2]<br/>nums2 = [100, 20, 10, 10, 5]<br/>Initialize i = 0, j = 0, max_dist = 0"] --> B{"i < n AND j < m?"}
+    B -- No --> C["Output max_dist"]
+    B -- Yes --> D{"nums1[i] <= nums2[j]?"}
+    D -- Yes --> E["Update max_dist = max(max_dist, j - i)<br/>Advance j = j + 1"]
+    D -- No --> F["Advance i = i + 1"]
+    E & F --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**For each `i`, find the farthest possible `j`.** A valid pair requires `nums2[j] >= nums1[i]` and `j >= i`. For a fixed `i`, the best distance comes from the largest index `j` whose value still satisfies the inequality. Because `nums2` is non-increasing, all values large enough for `nums1[i]` form a prefix of `nums2`. Binary search can locate the end of that prefix.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"args": [[55, 30, 5, 4, 2], [100, 20, 10, 10, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the two pointers $i$ and $j$ on `nums1 = [55, 30, 5, 4, 2]` and `nums2 = [100, 20, 10, 10, 5]`.
+Initialize $i = 0, j = 0, \text{max\_dist} = 0$.
 
 ---
 
-### Step 2: Core Step 2
-
-**Reverse `nums2` to use ordinary ascending binary search.** The exact code assigns `nums2 = nums2[::-1]`. This creates a new reversed list in nondecreasing order and leaves the caller’s original array unchanged.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: $i = 0, j = 0$
+- Values: $\text{nums1}[0] = 55$, $\text{nums2}[0] = 100$.
+- Test: $55 \le 100$ is **True**.
+- Current distance: $j - i = 0 - 0 = 0$.
+- Update: $\text{max\_dist} = \max(0, 0) = 0$.
+- Advance $j \to 1$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: $i = 0, j = 1$
+- Values: $\text{nums1}[0] = 55$, $\text{nums2}[1] = 20$.
+- Test: $55 \le 20$ is **False**.
+- Since $\text{nums2}$ is non-increasing, subsequent elements in `nums2` are $\le 20 < 55$.
+- Advance $i \to 1$.
 
-In the reversed list, `bisect_left(nums2, v)` returns the first position `p` whose value is at least `v`. All reversed positions from `p` onward meet the condition.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 3: $i = 1, j = 1$
+- Values: $\text{nums1}[1] = 30$, $\text{nums2}[1] = 20$.
+- Test: $30 \le 20$ is **False**.
+- No larger $j$ can satisfy $30 \le \text{nums2}[j]$.
+- Advance $i \to 2$.
+
+---
+
+### Step 4: $i = 2, j = 1$
+- Notice $i = 2 > j = 1$. While $i > j$, we cannot form a valid pair ($i \le j$ violated).
+- Let us synchronize: since $\text{nums1}[2] = 5 \le \text{nums2}[1] = 20$, the value condition holds, but $j < i$. Advance $j \to 2$.
+
+---
+
+### Step 5: $i = 2, j = 2$
+- Values: $\text{nums1}[2] = 5$, $\text{nums2}[2] = 10$.
+- Test: $5 \le 10$ is **True**, and $i \le j$.
+- Distance: $j - i = 2 - 2 = 0$.
+- Update: $\text{max\_dist} = \max(0, 0) = 0$.
+- Advance $j \to 3$.
+
+---
+
+### Step 6: $i = 2, j = 3$
+- Values: $\text{nums1}[2] = 5$, $\text{nums2}[3] = 10$.
+- Test: $5 \le 10$ is **True**, and $i \le j$.
+- Distance: $j - i = 3 - 2 = 1$.
+- Update: $\text{max\_dist} = \max(0, 1) = 1$.
+- Advance $j \to 4$.
+
+---
+
+### Step 7: $i = 2, j = 4$
+- Values: $\text{nums1}[2] = 5$, $\text{nums2}[4] = 5$.
+- Test: $5 \le 5$ is **True**, and $i \le j$.
+- Distance: $j - i = 4 - 2 = 2$.
+- Update: $\text{max\_dist} = \max(1, 2) = 2$.
+- Advance $j \to 5$.
+
+---
+
+### Step 8: Termination
+- Pointer $j = 5 = m$ reaches the end of `nums2`.
+- Loop terminates.
+- Global maximum distance achieved: **`2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"args": [[55, 30, 5, 4, 2], [100, 20, 10, 10, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Step | Pointer $i$ | $\text{nums1}[i]$ | Pointer $j$ | $\text{nums2}[j]$ | $\text{nums1}[i] \le \text{nums2}[j]$ | $j \ge i$? | Pair Distance | Running $\text{max\_dist}$ | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 55 | 0 | 100 | True | Yes | 0 | 0 | $j \gets 1$ |
+| 2 | 0 | 55 | 1 | 20 | False | - | - | 0 | $i \gets 1$ |
+| 3 | 1 | 30 | 1 | 20 | False | - | - | 0 | $i \gets 2$ |
+| 4 | 2 | 5 | 1 | 20 | True | No ($1 < 2$) | - | 0 | $j \gets 2$ |
+| 5 | 2 | 5 | 2 | 10 | True | Yes | 0 | 0 | $j \gets 3$ |
+| 6 | 2 | 5 | 3 | 10 | True | Yes | 1 | 1 | $j \gets 4$ |
+| 7 | 2 | 5 | 4 | 5 | True | Yes | 2 | **2** | $j \gets 5$ |
+| 8 | 2 | 5 | 5 | End | - | - | - | **2** | Terminate |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any pair contributing to $\text{max\_dist}$ satisfies both $i \le j$ and $\text{nums1}[i] \le \text{nums2}[j]$, directly matching the problem definition of a valid pair.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** When $\text{nums1}[i] > \text{nums2}[j]$, because $\text{nums2}$ is non-increasing, no index $k \ge j$ can satisfy $\text{nums1}[i] \le \text{nums2}[k]$. Thus, discarding index $i$ cannot miss any valid pair with greater distance. Advancing $j$ whenever a pair is valid explores larger distances for the current $i$, guaranteeing the global maximum is captured.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two pointers:** Move monotonically through both non-increasing arrays to achieve `O(n + m)` time and `O(1)` auxiliary space.
-- **Manual binary search on descending data:** It avoids the reversed copy and retains `O(n log m)` time with constant auxiliary space.
-- **No qualifying value for an `i`:** Lower bound returns `m`, conversion gives minus one, and the negative distance is ignored.
-- **Qualifying values only before `i`:** The farthest `j` still gives a negative distance, proving no valid partner exists for that `i`.
-- **Pair with `i = j`:** Distance zero is valid and needs no special handling.
-- **No valid pair anywhere:** `ans` remains zero as required.
-- **Equal values:** `bisect_left` locates the first equal value in reversed order, which maps to the last equal value in original order and maximizes `j`.
-- **One-element arrays:** The only possible pair is handled by the same conversion.
-- **Different array lengths:** Each index is bounded by its own array, and negative candidates safely handle `i` beyond every qualifying `nums2` position.
-- **Reversed-copy behavior:** The caller’s `nums2` remains unchanged, but `O(m)` memory is allocated.
-- **Sortedness requirement:** Binary search correctness depends completely on both stated non-increasing orders.
-- **Manifest mismatch:** The exact source is not the linear constant-space approach and should not be described as one.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Enforcing $i \le j$:** If $j$ falls behind $i$ (e.g. after multiple $i$ increments), calculating $j - i$ without ensuring $j \ge i$ would produce negative distance values.
+- **Direction of Sorting:** Both arrays are sorted *non-increasingly* (descending), which reverses standard ascending two-pointer logic.
+- **Binary Search Alternative:** While binary search on `nums2` for each $i$ achieves $\mathcal{O}(n \log m)$, the two-pointer approach is strictly superior with $\mathcal{O}(n + m)$ runtime and zero logarithmic overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m + n log m)$. Let `n = nums1.length` and `m = nums2.length`. Creating `nums2[::-1]` takes `O(m)` time. The loop performs `n` binary searches, each `O(log m)`. Total time is `O(m + n log m)`.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n + m)$, where $n = |\text{nums1}|$ and $m = |\text{nums2}|$. In each iteration, either $i$ or $j$ is strictly incremented. Thus, at most $n + m$ comparisons are made.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, requiring only scalar index and maximum distance variables.

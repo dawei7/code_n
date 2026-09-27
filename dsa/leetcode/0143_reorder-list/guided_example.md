@@ -1,104 +1,172 @@
 # Guided Example: Reorder List
 
-We execute the single-pass Linked List, Two Pointers, Stack, Recursion pointer manipulation on a representative linked list instance.
+We trace the step-by-step three-phase in-place list restructuring (midpoint bisection, suffix reversal, and alternating node interweaving) on representative linked list instances:
 
-- **Input:** `{"head": [1, 2, 3, 4]}`
-- **Required output:** `[1, 4, 2, 3]`
+- **Input:** $\text{head} = [1, 2, 3, 4, 5]$
+- **Required output:** $[1, 5, 2, 4, 3]$ (Interwoven sequence $L_0 \to L_4 \to L_1 \to L_3 \to L_2$)
+- **Even-Length Instance:** $\text{head} = [1, 2, 3, 4] \implies [1, 4, 2, 3]$
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates finding the list midpoint using slow/fast pointers, severing the list into two disjoint halves, reversing the second half in-place via three-pointer iterative reversal, and alternatingly splicing nodes without modifying node values in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Reorder List** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+Given a singly linked list $L_0 \to L_1 \to \dots \to L_{n-1} \to L_n$:
+$$
+1 \longrightarrow 2 \longrightarrow 3 \longrightarrow 4 \longrightarrow 5
+$$
+Reorder the nodes into alternating front-and-back order:
+$$
+L_0 \longrightarrow L_n \longrightarrow L_1 \longrightarrow L_{n-1} \longrightarrow L_2 \longrightarrow \dots
+$$
+For $\text{head} = [1, 2, 3, 4, 5]$, the resulting order is:
+$$
+1 \longrightarrow 5 \longrightarrow 2 \longrightarrow 4 \longrightarrow 3
+$$
+Node values cannot be modified; only pointer links may be updated.
+
+Copying all nodes into an array allows trivial two-pointer indexing, but consumes $O(N)$ auxiliary memory.
+The optimal in-place algorithm decomposes into three linear phases:
+1. **Phase 1 (Find Midpoint & Bisect):** Use slow/fast pointers to find the median node and sever `slow.next = None`.
+2. **Phase 2 (Reverse Second Half):** Reverse the second half in-place ($4 \to 5 \implies 5 \to 4$).
+3. **Phase 3 (Merge & Interweave):** Zip the two halves together by alternating next pointers.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### The 3-Phase In-Place Pipeline
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+#### Phase 1: Median Split
+Initialize `slow = head`, `fast = head`.
+Advance `slow` by 1 and `fast` by 2 until `fast.next` or `fast.next.next` is null:
+- Split the list at `slow`:
+  $$
+  \text{second} = \text{slow.next}
+  $$
+  $$
+  \text{slow.next} = \text{null}
+  $$
+- First half: $L_0 \to \dots \to L_{\lceil n/2 \rceil}$.
+- Second half: $L_{\lceil n/2 \rceil + 1} \to \dots \to L_n$.
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+#### Phase 2: In-Place Reversal of Second Half
+Reverse `second` using standard three-pointer sliding:
+$$
+\text{prev} = \text{null}, \quad \text{curr} = \text{second}
+$$
+While `curr`:
+- $\text{nxt} = \text{curr.next}$
+- $\text{curr.next} = \text{prev}$
+- $\text{prev} = \text{curr}$
+- $\text{curr} = \text{nxt}$
+The head of the reversed second half is `prev`.
+
+#### Phase 3: Alternating Zipper Merge
+Let `first = head` and `second = prev`.
+While `second`:
+- Save forward links: $t_1 = \text{first.next}, \, t_2 = \text{second.next}$.
+- Splice: $\text{first.next} = \text{second}, \, \text{second.next} = t_1$.
+- Advance: $\text{first} = t_1, \, \text{second} = t_2$.
+
+> **Invariant.** At each zipper step, the prefix of length $2k$ strictly alternates between elements from the original front and original reversed back, with no dangling circular references.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We trace the 5-node list $\text{head} = [1, 2, 3, 4, 5]$:
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
-
----
-
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Phase 1: Find Midpoint & Bisect
+- Start: `slow = Node(1)`, `fast = Node(1)`.
+- Step 1: `slow = Node(2)`, `fast = Node(3)`.
+- Step 2: `slow = Node(3)`, `fast = Node(5)` (`fast.next == None`).
+- Median node is `Node(3)`.
+- Sever list:
+  - $\text{second} = \text{Node}(4)$.
+  - $\text{slow.next} = \text{null}$ ($\text{Node}(3).\text{next} = \text{null}$).
+- List 1: $1 \to 2 \to 3 \to \text{null}$.
+- List 2: $4 \to 5 \to \text{null}$.
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Phase 2: Reverse Second Half ($4 \to 5$)
+- Initial: `prev = null`, `curr = Node(4)`.
+- **Iteration 1 ($curr = 4$):**
+  - $\text{nxt} = \text{Node}(5)$.
+  - $\text{Node}(4).\text{next} = \text{null}$.
+  - $\text{prev} = \text{Node}(4)$, $\text{curr} = \text{Node}(5)$.
+- **Iteration 2 ($curr = 5$):**
+  - $\text{nxt} = \text{null}$.
+  - $\text{Node}(5).\text{next} = \text{Node}(4)$.
+  - $\text{prev} = \text{Node}(5)$, $\text{curr} = \text{null}$.
+- Second half reversed: $5 \to 4 \to \text{null}$. Head is `prev = Node(5)`.
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+---
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+### Phase 3: Zipper Merge
+`first = Node(1)`, `second = Node(5)`.
+
+- **Merge Step 1:**
+  - Cache: $t_1 = \text{Node}(2), \, t_2 = \text{Node}(4)$.
+  - Wire: $\text{Node}(1).\text{next} = \text{Node}(5)$.
+  - Wire: $\text{Node}(5).\text{next} = \text{Node}(2)$.
+  - Interwoven: $1 \to 5 \to 2 \dots$
+  - Advance: `first = Node(2)`, `second = Node(4)`.
+
+- **Merge Step 2:**
+  - Cache: $t_1 = \text{Node}(3), \, t_2 = \text{null}$.
+  - Wire: $\text{Node}(2).\text{next} = \text{Node}(4)$.
+  - Wire: $\text{Node}(4).\text{next} = \text{Node}(3)$.
+  - Interwoven: $1 \to 5 \to 2 \to 4 \to 3 \dots$
+  - Advance: `first = Node(3)`, `second = null`.
+
+- `second` is null. Merge terminates!
+
+Final list: $1 \to 5 \to 2 \to 4 \to 3 \to \text{null}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+```text
+Initial:        1 -> 2 -> 3 -> 4 -> 5
+Phase 1 Split:  L1: 1 -> 2 -> 3 -> null
+                L2: 4 -> 5 -> null
+
+Phase 2 Rev:    L2_rev: 5 -> 4 -> null
+
+Phase 3 Merge:  1 -> 5 -> 2 -> 4 -> 3 -> null
+```
+
+| Phase | Operation | Active Nodes | Action Taken | Resulting Structure |
+|:---:|:---:|:---:|:---|:---|
+| 1 | Midpoint Search | `slow=3`, `fast=5` | Split at `slow` | $L_1 = [1, 2, 3], \, L_2 = [4, 5]$ |
+| 2 | Reverse $L_2$ | $4 \to 5$ | In-place link reversal | $L_2^{\text{rev}} = 5 \to 4 \to \text{null}$ |
+| 3.1 | Interweave | $L_1(1), L_2(5)$ | Connect $1 \to 5 \to 2$ | $1 \to 5 \to 2 \dots$ |
+| 3.2 | Interweave | $L_1(2), L_2(4)$ | Connect $2 \to 4 \to 3$ | $1 \to 5 \to 2 \to 4 \to 3 \to \text{null}$ |
+| **Final** | Termination | `second=null` | List complete | **$[1, 5, 2, 4, 3]$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** Phase 1 partitions the list into lengths $\lceil N/2 \rceil$ and $\lfloor N/2 \rfloor$. Phase 2 reverses the second half, so nodes are visited from tail inward ($L_n, L_{n-1}, \dots$). Phase 3 alternates links between the forward list and reversed backward list. Since the first half is always equal to or exactly 1 node longer than the second half, the zipper completes with the median node at the tail without cycles.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** Every node belongs to either the first half or the second half. No nodes are dropped or overwritten during the pointer rewiring.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Failing to Sever `slow.next = None`:** Omitting `slow.next = None` leaves the first half connected to the second half, producing a circular cycle ($3 \to 4$ and $4 \to 3$) during the merge!
+- **Even vs Odd Length Parity:** On even-length lists like $[1, 2, 3, 4]$, `slow` stops at $2$. $L_1 = [1, 2]$ and $L_2 = [3, 4] \implies [4, 3]$. Merging gives $1 \to 4 \to 2 \to 3 \to \text{null}$, matching exact parity.
+- **Short Lists ($N \le 2$):** If `not head or not head.next or not head.next.next: return`, the list is already reordered.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes. Phase 1 takes $N/2$ steps, Phase 2 takes $N/2$ steps, and Phase 3 takes $N/2$ steps. Total operations $= \frac{3}{2}N = O(N)$.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory, performing all mutations in place using pointer variables.

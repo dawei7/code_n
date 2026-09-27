@@ -1,125 +1,182 @@
 # Guided Example: Largest Perimeter Triangle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of the triangle inequality on sorted segments, prove the Adjacent Predecessor Dominance Lemma and the Descending Suffix Optimality Invariant, and calculate the maximal triangle perimeter across representative arrays:
 
-- **Input:** `{"nums": [2, 1, 2]}`
-- **Required output:** `5`
+- **Representative Instance 1 (Valid Isosceles Triangle):**
+  $$
+  nums = [2, \; 1, \; 2]
+  $$
+- **Required Output:** `5`
+  - Step 1: Sort array in ascending order:
+    $$
+    nums = [1, \; 2, \; 2], \quad n = 3
+    $$
+  - Step 2: Test the largest available triple at $i = 2$:
+    - Side lengths: $a = nums[0] = 1, \; b = nums[1] = 2, \; c = nums[2] = 2$.
+    - Triangle inequality test:
+      $$
+      a + b > c \iff 1 + 2 > 2 \iff 3 > 2 \quad (\mathbf{True}!)
+      $$
+    - Perimeter:
+      $$
+      P = a + b + c = 1 + 2 + 2 = \mathbf{5}
+      $$
+  - Since $i = 2$ is the highest possible index, $P = 5$ is globally optimal! Return `5`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (No Valid Triangle Possible):**
+  $$
+  nums = [1, \; 2, \; 1, \; 10] \implies \text{sorted: } [1, \; 1, \; 2, \; 10]
+  $$
+  - Test $i = 3$: $a = 1, b = 2, c = 10 \implies 1 + 2 = 3 \not> 10$ (Fails).
+  - Test $i = 2$: $a = 1, b = 1, c = 2 \implies 1 + 1 = 2 \not> 2$ (Degenerate, flat line, zero area).
+  - No valid triangle exists $\implies \mathbf{0}$.
+
+- **Representative Instance 3 (Equilateral Triple):**
+  $$
+  nums = [3, \; 3, \; 3] \implies 3 + 3 > 3 \implies 3 + 3 + 3 = \mathbf{9}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, return *the largest perimeter of a triangle with a non-zero area, formed from three of these lengths*. If it is impossible to form any triangle of a non-zero area, return `0`.
+Given an integer array `nums`, return the **largest perimeter** of a triangle with a non-zero area formed from any three distinct elements of the array.
+If no three elements can form a non-degenerate triangle, return `0`.
 
-The objective is to compute `5` from `{"nums": [2, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Triangle Inequality Condition:
+  For side lengths a <= b <= c:
+  Area > 0  <===>  a + b > c
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Degenerate Cases:
+  a + b < c:  Sides cannot meet (gap).
+  a + b = c:  Sides collapse into a flat line segment (Area = 0).
+  a + b > c:  Forms a valid non-degenerate triangle!
+```
 
----
+A brute-force search inspects all $\binom{N}{3} = \mathcal{O}(N^3)$ triples, which is infeasible for $N = 10{,}000$.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Sort lengths so the best candidate is local
-
-For positive side lengths `a <= b <= c`, a non-degenerate triangle exists exactly when:
-
-`a + b > c`.
-
-The other triangle inequalities hold automatically because positive `c` is at least each smaller side. Equality would form a flat, zero-area shape, so the comparison must be strict.
-
-After sorting `nums` in ascending order, the solution scans possible largest sides from right to left and tests the two immediately preceding lengths.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Adjacent Predecessor Dominance & Greedy Suffix Invariant**:
+1. **Sorted Ordering:** After sorting $nums[0] \le nums[1] \le \dots \le nums[n-1]$, fix the largest side $c = nums[i]$.
+2. **Maximal Pair Dominance:** The two other sides that maximize $a + b$ are the two immediate predecessors $b = nums[i-1]$ and $a = nums[i-2]$.
+   - If $nums[i-2] + nums[i-1] \le nums[i]$, then for any other pair $j < k < i$:
+     $$
+     nums[j] + nums[k] \le nums[i-2] + nums[i-1] \le nums[i]
+     $$
+     meaning no valid triangle can ever use $nums[i]$ as its longest side!
+3. **Descending Suffix Search:** Scanning $i$ from $n - 1$ down to $2$, the **very first** triple satisfying $nums[i-2] + nums[i-1] > nums[i]$ is guaranteed to achieve the globally maximal perimeter.
 
 ---
 
-### Step 2: Why use the two largest smaller sides
+## 2. Conceptual Foundation & The Predecessor Dominance Invariant
 
-Fix largest candidate `c = nums[i]`.
+```mermaid
+flowchart TD
+    accTitle: Largest Perimeter Triangle Greedy Pipeline
+    accDescr: Flowchart illustrating sorting array ascending, scanning adjacent triples from right to left, and returning first valid perimeter
+    Start["Sort nums ascending: nums[0] <= nums[1] <= ... <= nums[n-1]"] --> Loop["For i from n - 1 down to 2:"]
+    Loop --> CheckIneq{"nums[i-2] + nums[i-1] > nums[i] ?"}
+    CheckIneq -->|"Yes: First valid triple found!"| ReturnMax["Return nums[i-2] + nums[i-1] + nums[i]"]
+    CheckIneq -->|"No: nums[i] cannot be longest side"| NextI["Decrement i"]
+    NextI --> Loop
+    Loop -->|"No triple satisfied condition"| ReturnZero["Return 0"]
+```
 
-Among every pair selected from indices below `i`, the largest possible sum is `nums[i - 1] + nums[i - 2]`. If even this pair does not exceed `c`, no smaller pair can satisfy the triangle inequality.
+### The Adjacent Predecessor Dominance Theorem
 
-Therefore, for a fixed largest side, checking only its two immediate predecessors is sufficient.
-
-If they do satisfy the inequality, they also give the largest possible perimeter among triangles whose largest side is `c`, because replacing either with a smaller length can only reduce the sum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $A = (nums[0], nums[1], \dots, nums[n-1])$ be a sorted array of positive integers with $nums[0] \le nums[1] \le \dots \le nums[n-1]$.
+1. **Sufficiency of Single Inequality:**
+   For any three side lengths with $a \le b \le c$:
+   - $a + c > b$ is trivial because $c \ge b$ and $a > 0$.
+   - $b + c > a$ is trivial because $c \ge a$ and $b > 0$.
+   Therefore, non-degeneracy ($\text{Area} > 0$) holds if and only if:
+   $$
+   a + b > c
+   $$
+2. **Dominance of Immediate Predecessors:**
+   Suppose $c = nums[i]$ is chosen as the longest side of a triangle.
+   Any valid pair of other sides must have indices $j < k < i$.
+   Because $A$ is sorted:
+   $$
+   nums[j] \le nums[i-2] \quad \text{and} \quad nums[k] \le nums[i-1]
+   $$
+   Summing these yields:
+   $$
+   nums[j] + nums[k] \le nums[i-2] + nums[i-1]
+   $$
+   - If $nums[i-2] + nums[i-1] \le nums[i]$, then $nums[j] + nums[k] \le nums[i]$ for all $j < k < i$. Hence, no valid triangle can have $nums[i]$ as its longest side.
+   - If $nums[i-2] + nums[i-1] > nums[i]$, this adjacent triple maximizes the perimeter among all triangles with longest side $nums[i]$.
+3. **Descending Optimality:**
+   Because we test $i$ from $n - 1$ downward, any valid triangle discovered at index $i$ has perimeter:
+   $$
+   P = nums[i-2] + nums[i-1] + nums[i]
+   $$
+   Any triangle whose longest side is at an index $< i$ has longest side at most $nums[i-1]$, so its total perimeter cannot exceed $nums[i-3] + nums[i-2] + nums[i-1] < P$.
+   Thus, the first valid triple encountered is globally maximal. $\blacksquare$
 
 ---
 
-### Step 3: Why the first valid triple is globally best
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The scan starts with the largest array value and moves left.
+$nums = [2, 1, 2]$.
 
-The first valid triple uses consecutive sorted values `nums[i - 2], nums[i - 1], nums[i]`. Any candidate considered later has largest side at most `nums[i - 1]` and its other sides no larger than the corresponding already-considered high values.
-
-More directly, any triple whose largest index is below `i` uses three values drawn from a smaller sorted prefix. Its perimeter cannot exceed the sum of the three consecutive values at the first successful index.
-
-Thus the method can return immediately rather than collecting every valid triangle.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Step 1: Sorting
+- Sorted: $nums = [1, 2, 2], \; n = 3$.
 
 ---
 
-## 4. Complete Execution Trace
+### Step 2: Testing Triples from Right to Left
+- Start at $i = n - 1 = 2$:
+  - Longest side candidate: $c = nums[2] = 2$.
+  - Immediate predecessors: $b = nums[1] = 2, \; a = nums[0] = 1$.
+  - Sum of shorter sides:
+    $$
+    nums[i-2] + nums[i-1] = 1 + 2 = 3
+    $$
+  - Inequality check:
+    $$
+    3 > 2 \iff \mathbf{True}!
+    $$
+- Immediate early termination:
+  $$
+  \text{Perimeter} = 1 + 2 + 2 = \mathbf{5}
+  $$
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+---
+
+## 4. Triple Evaluation Trace Table
+
+| Candidate Index $i$ | Side $a = nums[i-2]$ | Side $b = nums[i-1]$ | Longest Side $c = nums[i]$ | Inequality $a + b > c$ | Status | Resulting Perimeter |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$2$** | $1$ | $2$ | $2$ | $1 + 2 = 3 > 2$ | **Valid! (Optimal)** | **$5$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every returned perimeter is formed by three positive elements from `nums` that strictly satisfy $a + b > c$. By the triangle inequality, this guarantees a non-zero area.
+2. **Completeness:**
+   By the Adjacent Predecessor Dominance Lemma, if the two largest available elements below $nums[i]$ cannot form a triangle with $nums[i]$, no other pair can. Scanning from the largest elements downward ensures the first valid triangle found has the maximum possible perimeter.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Check every triple:** `O(N^3)` and ignores sorted dominance.
-- **Check every pair for each largest side:** `O(N^2)`; the two largest smaller values are always best.
-- **Equality case:** `a + b = c` is degenerate and must fail.
-- **Exactly three lengths:** Perform one triangle test.
-- **Duplicate lengths:** They are separate usable sides and sorting handles them.
-- **Very large side:** If the next two largest cannot exceed it, no pair for that side can.
-- **No valid triangle:** Return zero.
-- **First valid early return:** Safe because the scan is in descending perimeter opportunity.
-- **Positive-length guarantee:** Avoids separate checks for zero or negative sides.
-- **Input mutation:** `nums.sort()` changes original order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Flat / Degenerate Triple | `[1, 2, 3]` | $1 + 2 = 3 \not> 3$; returns $0$. | Accepting $a + b = c$ (zero area). |
+| Array of Size $< 3$ | `[2, 2]` | Loop from $1$ down to $2$ is empty; returns $0$. | Index error when $N < 3$. |
+| Large Disparity Gaps | `[100, 50, 25, 12, 7, 6]` | Scans down to $[12, 7, 6] \implies 7 + 6 > 12$; returns $25$. | Terminating prematurely on gaps. |
+| Duplicate Values | `[2, 2, 2, 2]` | All sides equal; returns $2 + 2 + 2 = 6$. | Mishandling identical sides. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N log N)$. Let `N` be length count.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N = \text{len}(nums) \le 10^4$.
+  - Sorting `nums` takes $\mathcal{O}(N \log N)$.
+  - The linear reverse scan checks at most $N - 2$ adjacent triples with $\mathcal{O}(1)$ operations per check.
+  - Total time: $< 0.002\text{ s}$ for $N = 10^4$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ for sorting overhead, $\mathcal{O}(1)$ additional variables.

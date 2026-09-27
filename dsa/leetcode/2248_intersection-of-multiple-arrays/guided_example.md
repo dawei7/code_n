@@ -1,129 +1,202 @@
 # Guided Example: Intersection of Multiple Arrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}`
-- **Required output:** `[3, 4]`
+Given a 2D integer array $\text{nums}$ where each inner array $\text{nums}[i]$ is a non-empty list of distinct positive integers, the objective is to find all integers that appear in **every** sub-array of $\text{nums}$. The resulting integers must be returned as a list sorted in strictly ascending order.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+In set-theoretic terms, given a collection of sets $S_0, S_1, \dots, S_{M-1}$, the problem asks for the elements of their intersection:
 
----
+$$\mathcal{I} = \bigcap_{i=0}^{M-1} S_i$$
 
-## 1. Instance & Teaching Goal
+### Representative Instance
 
-Given a 2D integer array `nums` where $\text{nums}[i]$ is a non-empty array of **distinct** positive integers, return *the list of integers that are present in **each array** of* `nums`* sorted in **ascending order***.
+Consider $M = 3$ arrays with positive integers:
+- $\text{nums}[0] = [3, 1, 2, 4, 5]$
+- $\text{nums}[1] = [1, 2, 3, 4]$
+- $\text{nums}[2] = [3, 4, 5, 6]$
 
-The objective is to compute `[3, 4]` from `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Set Intersection Across Multiple Arrays
+    accDescr: Venn-like structural breakdown showing which numbers appear in all three arrays versus partial subsets.
+    subgraph Arrays["Input Arrays"]
+        A0["Array 0: {1, 2, 3, 4, 5}"]
+        A1["Array 1: {1, 2, 3, 4}"]
+        A2["Array 2: {3, 4, 5, 6}"]
+    end
+    A0 --> Filter{"Occurs in all 3 arrays?"}
+    A1 --> Filter
+    A2 --> Filter
+    Filter -- "Count = 3" --> Intersect["Common Elements: [3, 4]"]
+    Filter -- "Count < 3" --> Discard["Omitted: 1 (count 2), 2 (count 2), 5 (count 2), 6 (count 1)"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count in how many rows each value appears
-
-An integer belongs to the intersection exactly when it appears in every row of `nums`. The constraints provide a crucial guarantee: values inside each individual row are distinct.
-
-Because of that guarantee, every occurrence of value `x` comes from a different row. If its total occurrence count equals `len(nums)`, then it appeared once in every row. If the count is smaller, at least one row omitted it.
-
-The solution uses `cnt = [0] * 1001` because every value lies from one through one thousand. Array index `x` directly stores the number of rows containing `x`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The values present in all $3$ rows are $3$ and $4$. Sorting them yields $[3, 4]$.
 
 ---
 
-### Step 2: Process every input value once
+## 2. Mathematical & Algorithmic Principles
 
-The nested loops visit every row and every integer in that row:
+### Set Intersection via Incidence Counting
 
-`cnt[x] += 1`.
+An element $x$ belongs to the intersection of $M$ sets if and only if it is a member of every set:
 
-No per-row set is needed because duplicates within a row are forbidden. That condition prevents one row from contributing two or more to the same value's count.
+$$x \in \bigcap_{i=0}^{M-1} S_i \iff \forall i \in \{0, \dots, M-1\}, \; x \in S_i$$
 
-Let `q = len(nums)`. After all rows:
+Because each individual array $\text{nums}[i]$ contains pairwise distinct integers, an integer $x$ can appear at most once in any given row:
 
-- if `cnt[x] == q`, `x` occurs in all `q` rows;
-- if `cnt[x] < q`, it is absent from at least one;
-- `cnt[x] > q` cannot occur under the distinct-within-row guarantee.
+$$\sum_{x' \in \text{nums}[i]} \mathbf{1}_{x' = x} \in \{0, 1\}$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Therefore, the global frequency of $x$ summed across all elements of all rows equals the exact number of rows containing $x$:
 
----
+$$\text{freq}(x) = \sum_{i=0}^{M-1} \sum_{v \in \text{nums}[i]} \mathbf{1}_{v = x}$$
 
-### Step 3: Build sorted output without a separate sort
+This establishes a fundamental identity:
 
-The return comprehension enumerates `cnt` from index zero through one thousand:
+$$x \in \bigcap_{i=0}^{M-1} S_i \iff \text{freq}(x) = M$$
 
-`[x for x, v in enumerate(cnt) if v == len(nums)]`.
+### Direct-Address Frequency Array and Implicit Sorting
 
-Enumeration visits numeric indices in increasing order, so selected values are automatically ascending. No output sort is required.
-
-Index zero is outside the allowed input value range. Its count stays zero, and since `nums` has at least one row, it cannot satisfy the equality. Keeping slot zero simplifies direct indexing without affecting output.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 4]` |
+The problem constraints specify that each integer value satisfies $1 \le x \le 1000$.
+Instead of allocating generic hash sets and performing repeated pairwise intersections, we allocate a fixed direct-address lookup table $\text{cnt}$ of size $1001$:
+1. A single linear pass over all elements of all rows increments $\text{cnt}[x]$ for each observed value $x$.
+2. Scanning the indices $x$ from $1$ to $1000$ sequentially and filtering for those where $\text{cnt}[x] = M$:
+   - Verifies the membership condition in $O(1)$ per candidate value.
+   - Collects the surviving elements in **strictly increasing numerical order** naturally, eliminating the need for an explicit post-processing sorting step.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 4]` | Verified |
+We execute the frequency scan on our representative instance ($M = 3$).
+
+### Step 1: Initial State
+Allocate a frequency array $\text{cnt}$ of size $1001$ with all entries initialized to $0$.
+Target threshold: $M = 3$.
+
+### Step 2: Ingestion of Array 0
+$\text{nums}[0] = [3, 1, 2, 4, 5]$
+Update entries:
+- $\text{cnt}[1] \leftarrow 1$
+- $\text{cnt}[2] \leftarrow 1$
+- $\text{cnt}[3] \leftarrow 1$
+- $\text{cnt}[4] \leftarrow 1$
+- $\text{cnt}[5] \leftarrow 1$
+
+### Step 3: Ingestion of Array 1
+$\text{nums}[1] = [1, 2, 3, 4]$
+Update entries:
+- $\text{cnt}[1] \leftarrow 1 + 1 = 2$
+- $\text{cnt}[2] \leftarrow 1 + 1 = 2$
+- $\text{cnt}[3] \leftarrow 1 + 1 = 2$
+- $\text{cnt}[4] \leftarrow 1 + 1 = 2$
+
+### Step 4: Ingestion of Array 2
+$\text{nums}[2] = [3, 4, 5, 6]$
+Update entries:
+- $\text{cnt}[3] \leftarrow 2 + 1 = 3$
+- $\text{cnt}[4] \leftarrow 2 + 1 = 3$
+- $\text{cnt}[5] \leftarrow 1 + 1 = 2$
+- $\text{cnt}[6] \leftarrow 0 + 1 = 1$
+
+### Step 5: Sequential Filtering Scan
+Scan indices $x \in [1, 1000]$:
+- $x = 1: \text{cnt}[1] = 2 \ne 3 \implies \text{Skip}$
+- $x = 2: \text{cnt}[2] = 2 \ne 3 \implies \text{Skip}$
+- $x = 3: \text{cnt}[3] = 3 == 3 \implies \text{Collect } 3$
+- $x = 4: \text{cnt}[4] = 3 == 3 \implies \text{Collect } 4$
+- $x = 5: \text{cnt}[5] = 2 \ne 3 \implies \text{Skip}$
+- $x = 6: \text{cnt}[6] = 1 \ne 3 \implies \text{Skip}$
+- For all other $x \in [7, 1000]$, $\text{cnt}[x] = 0 \ne 3 \implies \text{Skip}$
+
+Final Result: $[3, 4]$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Element Presence Matrix Across Sub-Arrays
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The table below catalogs every unique integer observed in the representative input, tracking row-by-row presence and total occurrences:
+
+| Candidate Value $x$ | In Row 0? | In Row 1? | In Row 2? | Total Frequency $\text{cnt}[x]$ | Required Quorum $M$ | In All Rows? | Filter Result |
+|---|---|---|---|---|---|---|---|
+| **$1$** | Yes | Yes | No | $2$ | $3$ | False | Excluded |
+| **$2$** | Yes | Yes | No | $2$ | $3$ | False | Excluded |
+| **$3$** | Yes | Yes | Yes | $3$ | $3$ | True | **Included (3)** |
+| **$4$** | Yes | Yes | Yes | $3$ | $3$ | True | **Included (4)** |
+| **$5$** | Yes | No | Yes | $2$ | $3$ | False | Excluded |
+| **$6$** | No | No | Yes | $1$ | $3$ | False | Excluded |
+
+### Behavior Across Canonical Input Configurations
+
+| Input Scenario | Input Sub-Arrays | Multiplicity Target $M$ | Matching Values | Ascending Ordered Output |
+|---|---|---|---|---|
+| **Disjoint Rows** | $[[1, 2], [3, 4]]$ | $2$ | None ($\text{max freq} = 1$) | `[]` |
+| **Single Row** | $[[5, 1, 3]]$ | $1$ | All values in row | `[1, 3, 5]` |
+| **Single Common Element** | $[[9, 1], [2, 9], [9, 8]]$ | $3$ | Value $9$ | `[9]` |
+| **Identical Rows** | $[[2, 4, 6], [2, 4, 6]]$ | $2$ | Values $2, 4, 6$ | `[2, 4, 6]` |
+| **Extremes Included** | $[[1, 1000], [1000, 1]]$ | $2$ | Values $1, 1000$ | `[1, 1000]` |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 5. Algorithmic Correctness & Soundness
 
-- **Repeated set intersection:** Convert rows to sets and intersect them. It is general and matches the manifest summary but uses hash structures instead of the bounded domain.
-- **Sort every row and use pointers:** This avoids hashing but costs sorting time and requires more complicated multi-row coordination.
-- **Count raw occurrences when duplicates are allowed:** That would be incorrect without first deduplicating each row; this solution relies on the stated uniqueness guarantee.
-- **Single row:** All its values are returned in ascending order.
-- **No common value:** No count reaches the row total, producing `[]`.
-- **All rows identical:** Every row value reaches the required count.
-- **Value one or one thousand:** Both map to valid counter endpoints.
-- **Unused index zero:** It remains unselected because row count is positive.
-- **Input rows unsorted:** Counting ignores their order; final index enumeration supplies sorting.
-- **Different row lengths:** Only presence in every row matters, not row size.
-- **Output distinctness:** Each numeric index is considered once, so no duplicate can appear.
-- **Input preservation:** No row is sorted or mutated.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Soundness (No False Positives)
+
+Suppose an integer $x$ is included in the output list.
+- An element is appended if and only if $\text{cnt}[x] = M$.
+- Since each row contains at most one copy of $x$, $\text{cnt}[x] = \sum_{i=0}^{M-1} \mathbf{1}_{x \in \text{nums}[i]} \le M$.
+- Equality $\text{cnt}[x] = M$ holds if and only if every indicator $\mathbf{1}_{x \in \text{nums}[i]}$ equals $1$.
+- Thus, $x \in \text{nums}[i]$ for every row $i \in \{0, \dots, M-1\}$.
+- Therefore, $x \in \bigcap_{i=0}^{M-1} \text{nums}[i]$. No false positive can occur.
+
+### Completeness (No False Negatives)
+
+Suppose $x^* \in \bigcap_{i=0}^{M-1} \text{nums}[i]$.
+- By definition of set intersection, $x^* \in \text{nums}[i]$ for every $i \in \{0, \dots, M-1\}$.
+- Since the loops iterate over every element of every inner array, $\text{cnt}[x^*]$ is incremented exactly $M$ times.
+- The subsequent scan traverses all valid domain values $x \in [1, 1000]$.
+- Because $x^*$ falls within the domain and has $\text{cnt}[x^*] = M$, it will be observed and included.
+
+### Monotonic Ordering Preservation
+
+The final output is gathered by iterating index $x$ through the integer range $1 \le x \le 1000$ in strictly increasing order. Because elements are appended sequentially as they satisfy the condition, the output list is sorted in strictly ascending order without requiring an explicit comparison sort.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases & Anti-Patterns
 
-- **Time Complexity:** $O(U)$. Let
-- **Auxiliary Space Complexity:** $O(T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Edge Cases
+1. **Empty Intersection:**
+   When rows have disjoint contents (e.g. $[[1, 2], [3, 4]]$), no index has $\text{cnt}[x] = M$. The output is an empty list `[]`.
+2. **Single Row ($M = 1$):**
+   When $M = 1$, all numbers in that row have count $1 = M$. The algorithm returns all elements of the row sorted in ascending order.
+3. **Boundary Values:**
+   Minimum value $1$ and maximum value $1000$ are accommodated directly by sizing the count table to $1001$ entries ($0$ through $1000$).
+4. **Rows of Differing Lengths:**
+   Some rows may contain $1$ element while others contain $100$ elements. The counting principle holds independently of row sizes.
+
+### Anti-Patterns to Avoid
+- **Repeated Pairwise Set Intersections:**
+  Constructing dynamic hash sets and computing `s = s & set(row)` across each row creates substantial object allocation overhead and requires a separate sorting step `sorted(list(s))` taking $O(K \log K)$ time.
+- **Assuming Input Rows Are Sorted:**
+  Input rows are not guaranteed to be in ascending order (e.g. $[5, 1, 3]$). Attempting a multi-pointer merge algorithm without sorting each input row first produces incorrect results.
+- **Counting Duplicates in Non-Distinct Arrays:**
+  If an array were allowed to have duplicate entries (e.g. $[2, 2]$), incrementing count would overestimate row presence. In this problem, inner arrays are guaranteed to contain distinct values, making frequency counting sound.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Frequency Accumulation:** Let $N = \sum_{i=0}^{M-1} |\text{nums}[i]|$ be the total number of elements across all sub-arrays. Processing each integer takes $O(1)$ time:
+  $$\text{Time}_{\text{accumulation}} = O(N)$$
+- **Index Filtering:** Scanning the fixed direct-address table of size $U = 1001$:
+  $$\text{Time}_{\text{scan}} = O(U)$$
+- **Total Time Complexity:** $\mathcal{O}(N + U)$, which is strictly linear in the total input size and optimal.
+
+### Space Complexity
+- **Lookup Table:** A fixed-size array of $1001$ integers consumes negligible constant memory ($O(U) = O(1)$ space).
+- **Result Output:** The list of common elements stores at most $\min_i |\text{nums}[i]| \le 1000$ integers.
+- **Total Space Complexity:** $\mathcal{O}(U)$ auxiliary space.

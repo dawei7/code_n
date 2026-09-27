@@ -1,123 +1,174 @@
 # Guided Example: Minimum Moves to Move a Box to Their Target Location
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state exploration of a Sokoban-style grid puzzle on a representative problem instance:
 
-- **Input:** `{"grid": [["#", "#", "#", "#", "#", "#"], ["#", "T", "#", "#", "#", "#"], ["#", ".", ".", "B", ".", "#"], ["#", ".", "#", "#", ".", "#"], ["#", ".", ".", ".", "S", "#"], ["#", "#", "#", "#", "#", "#"]]}`
-- **Required output:** `3`
+- **Input:**
+  ```text
+  grid = [
+    ["#","#","#","#","#","#"],
+    ["#","T","#","#","#","#"],
+    ["#",".",".","B",".","#"],
+    ["#",".","#","#",".","#"],
+    ["#",".",".",".","S","#"],
+    ["#","#","#","#","#","#"]
+  ]
+  ```
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates the dual-entity state representation (player position and box position), the distinction between zero-cost player walking and unit-cost box pushing, and the optimality of 0-1 Breadth-First Search (or nested BFS) on the composite state space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A storekeeper is a game in which the player pushes boxes around in a warehouse trying to get them to target locations.
+The board contains four distinct entities:
+- `S`: Starting location of the player (storekeeper) at $(4, 4)$.
+- `B`: Initial location of the box at $(2, 3)$.
+- `T`: Target destination for the box at $(1, 1)$.
+- `#`: Impassable wall obstacles.
+- `.`: Free traversable floor tiles.
 
-The objective is to compute `3` from `{"grid": [["#", "#", "#", "#", "#", "#"], ["#", "T", "#", "#", "#", "#"], ["#", ".", ".", "B", ".", "#"], ["#", ".", "#", "#", ".", "#"], ["#", ".", ".", ".", "S", "#"], ["#", "#", "#", "#", "#", "#"]]}` while avoiding redundant calculations and unnecessary overhead.
+```
+       0   1   2   3   4   5
+   0 [ #   #   #   #   #   # ]
+   1 [ #   T   #   #   #   # ]      T = Target (1, 1)
+   2 [ #   .   .   B   .   # ]      B = Box    (2, 3)
+   3 [ #   .   #   #   .   # ]
+   4 [ #   .   .   .   S   # ]      S = Player (4, 4)
+   5 [ #   #   #   #   #   # ]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The objective is to minimize the number of **pushes** applied to the box. Free movements of the player do not increment the push counter. Crucially, the player cannot walk through the box or through walls, meaning the box itself acts as an obstacle during player repositioning.
+
+A simple shortest-path search on the box alone fails because the box cannot move unless the player can physically reach the adjacent cell directly behind it. The optimal approach models the problem as a shortest path on a directed state graph where each state is the pair $(\text{Player}, \text{Box})$, with player step transitions having weight $0$ and box push transitions having weight $1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $(S, B)$ denote the composite state where $S = (s_r, s_c)$ is the player coordinate and $B = (b_r, b_c)$ is the box coordinate.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Transition Rules
+From any state $(S, B)$, the player attempts to move to an adjacent orthogonal neighbor $S' = (s_r + \Delta r, s_c + \Delta c)$:
+1. **Player Repositioning (Weight 0):**
+   If $S' \ne B$ and $S'$ is not a wall, the player walks freely to $S'$.
+   $$
+   (S, B) \xrightarrow{\text{cost } 0} (S', B)
+   $$
+2. **Box Push (Weight 1):**
+   If $S' = B$, the player steps into the box's cell, pushing it to $B' = (b_r + \Delta r, b_c + \Delta c)$. This push is valid if and only if $B'$ is inside grid boundaries and not a wall.
+   $$
+   (S, B) \xrightarrow{\text{cost } 1} (B, B')
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because edge weights are strictly in $\{0, 1\}$, a double-ended queue (0-1 BFS) guarantees that states are expanded in non-decreasing order of push cost:
+- Cost-0 transitions (player walking) are pushed to the **front** of the deque.
+- Cost-1 transitions (box pushes) are pushed to the **back** of the deque.
+
+| State Dimension | Representation | Size Bound | Role |
+|---|---|---|---|
+| Player Position $S$ | Coordinate $(s_r, s_c)$ | $M \times N \le 400$ | Determines pushing leverage and walkability |
+| Box Position $B$ | Coordinate $(b_r, b_c)$ | $M \times N \le 400$ | Physical obstacle and target tracking |
+| Composite State $(S, B)$ | Pair of cells | $(M \times N)^2 \le 160{,}000$ | Disjoint state vertices in the 0-1 BFS graph |
+
+> **0-1 BFS Monotonicity Invariant.** The push distance $d$ of states extracted from the double-ended queue is non-decreasing. When a state $(S, B)$ with $B = T$ is popped, the associated push count $d$ is mathematically guaranteed to be minimal.
+
+```mermaid
+flowchart TD
+    accTitle: Sokoban 0-1 BFS Decision Diagram
+    accDescr: Diagram illustrating decision branches between cost-0 player walk and cost-1 box push.
+    Cur["Current State: (Player S, Box B, Pushes d)"] --> Next["Neighbor S' = S + dir"]
+    Next --> Wall{"Is S' a wall or out of bounds?"}
+    Wall -- Yes --> Discard["Prune branch"]
+    Wall -- No --> IsBox{"Is S' == B?"}
+    IsBox -- No --> Walk["Player walks: (S', B, d) -> Push Front (cost 0)"]
+    IsBox -- Yes --> CanPush{"Can box move to B' = B + dir?"}
+    CanPush -- Yes --> Push["Box pushed: (B, B', d + 1) -> Push Back (cost 1)"]
+    CanPush -- No --> Discard
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the box position alone is not a complete state
+We trace the critical path from start state $(S_0, B_0) = ((4, 4), (2, 3))$ to target $T = (1, 1)$.
 
-The objective counts pushes, not ordinary player steps. Even so, the player's location cannot be discarded. To push the box in a direction, the player must stand immediately behind it, and walls or the box itself may prevent the player from reaching that side. Two situations with the box in the same cell but the player in different regions can permit different next pushes.
+### Phase 1: Repositioning for Push 1 (Pushes = 0)
+To push the box left toward column $1$, the player must be located at $(2, 4)$ (immediately right of the box at $(2, 3)$).
+- Player path with cost $0$: $(4, 4) \to (3, 4) \to (2, 4)$.
+- All intermediate cells are open floor `.` and do not collide with the box at $(2, 3)$.
+- Arriving state: Player at $(2, 4)$, Box at $(2, 3)$, Pushes $= 0$.
 
-The exact solution therefore represents a state as the ordered pair of the player's cell and the box's cell. Function `f(i, j) = i * n + j` flattens a coordinate into one integer, so a queue entry `(s, b, d)` contains the flattened player position, flattened box position, and the number of pushes used to reach that state.
+### Phase 2: Push 1 — Leftward Push (Pushes = 1)
+- Player attempts to move left into the box cell $(2, 3)$.
+- The box is displaced one unit left into $(2, 2)$, which is an open floor tile.
+- Resulting state: Player at $(2, 3)$, Box at $(2, 2)$, Pushes $= 1$.
 
-The dimensions `m` and `n` are assigned before `f` is first called. Python closures resolve `n` when the helper executes, not when it is defined, so this ordering works. The initial scan records `S` and `B`; the target need not be stored separately because the code later checks the grid character under the box.
+| Step Component | Coordinate Before | Action | Coordinate After | Push Cost |
+|---|---|---|---|---|
+| Box State | $(2, 3)$ | Pushed left | $(2, 2)$ | $+1$ |
+| Player State | $(2, 4)$ | Takes previous box cell | $(2, 3)$ | $0$ |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [["#", "#", "#", "#", "#", "#"], ["#", "T", "#", "#", "#", "#"], ["#", ".", ".", "B", ".", "#"], ["#", ".", "#", "#", ".", "#"], ["#", ".", ".", ".", "S", "#"], ["#", "#", "#", "#", "#", "#"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 3: Push 2 — Immediate Follow-up Push Left (Pushes = 2)
+- The player is already at $(2, 3)$, positioned directly behind the box at $(2, 2)$.
+- Zero walk steps needed.
+- Player pushes left into $(2, 2)$.
+- The box is displaced one unit left into $(2, 1)$, which is an open floor tile.
+- Resulting state: Player at $(2, 2)$, Box at $(2, 1)$, Pushes $= 2$.
 
----
+### Phase 4: Repositioning around Obstacle Wall (Pushes = 2)
+The box is now at $(2, 1)$, and target $T$ is at $(1, 1)$ (one unit above the box).
+To push the box up into $(1, 1)$, the player must stand at $(3, 1)$ (directly below the box).
+- Direct walk from $(2, 2)$ down to $(3, 2)$ is blocked by a wall `#`.
+- The player cannot walk left through the box at $(2, 1)$.
+- The player walks around the central wall barrier via the open lower corridor:
+  $$
+  (2, 2) \to (2, 3) \to (2, 4) \to (3, 4) \to (4, 4) \to (4, 3) \to (4, 2) \to (4, 1) \to (3, 1)
+  $$
+- Every step is along open floor without crossing the box.
+- All these moves have weight $0$, so the push counter remains $2$.
+- Arriving state: Player at $(3, 1)$, Box at $(2, 1)$, Pushes $= 2$.
 
-### Step 2: Modeling moves with costs zero and one
-
-From a state, the player may try the four cardinal directions. The tuple `dirs = (-1, 0, 1, 0, -1)` combined with `pairwise(dirs)` yields `(-1, 0)`, `(0, 1)`, `(1, 0)`, and `(0, -1)`. Helper `check` accepts a coordinate exactly when it is inside the grid and is not a wall.
-
-If the player's candidate cell `(sx, sy)` is not the box, the move is ordinary walking. The box stays at `(bi, bj)`, the push count remains `d`, and the resulting state is inserted at the front of the deque with `appendleft`.
-
-If the candidate cell is the box, walking into it is possible only by pushing. The box's candidate destination `(bx, by)` lies one more step in the same direction. If that cell is outside the grid or a wall, the move is rejected. Otherwise the player's new cell is the box's old cell `(sx, sy)`, the box moves to `(bx, by)`, the push count becomes `d + 1`, and the state is inserted at the back with `append`.
-
-These edge costs are zero for walking and one for pushing. Processing zero-cost edges from the front and one-cost edges from the back is zero-one breadth-first search. It gives walking freedom without charging it toward the answer while still exploring states in nondecreasing push count.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Preventing impossible movement and repeated work
-
-The player never occupies the same cell as the box. When `(sx, sy)` equals the box, the code enters only the push branch; a blocked push is skipped rather than treated as a walk. For a successful push, `check` ensures the box destination is valid. The player's destination is the old box cell, already known to be a non-wall in bounds.
-
-The matrix `vis[player][box]` marks every discovered ordered state. It is initialized at the pair containing the original `S` and `B`. Ordinary motion changes only the first index, while a push changes both. This distinction allows the search to revisit the same box position with a strategically different player position but prevents it from cycling forever through identical configurations.
-
-The grid itself is not modified. Characters `S` and `B` are treated as walkable because `check` rejects only `"#"`. After positions have been captured, those letters merely denote floor cells for movement purposes. The target is also walkable.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Phase 5: Push 3 — Upward Push into Target (Pushes = 3)
+- Player at $(3, 1)$ moves up into $(2, 1)$.
+- Box is pushed up from $(2, 1)$ into $(1, 1)$.
+- Destination cell $(1, 1)$ is the target $T$.
+- Target reached with push count $3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [["#", "#", "#", "#", "#", "#"], ["#", "T", "#", "#", "#", "#"], ["#", ".", ".", "B", ".", "#"], ["#", ".", "#", "#", ".", "#"], ["#", ".", ".", ".", "S", "#"], ["#", "#", "#", "#", "#", "#"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Phase | Player Position $S$ | Box Position $B$ | Action Taken | Push Count $d$ | Deque Operation |
+|---|---|---|---|---|---|
+| Start | $(4, 4)$ | $(2, 3)$ | Initial setup | $0$ | Root popped |
+| Walk | $(3, 4) \to (2, 4)$ | $(2, 3)$ | Player navigates behind box | $0$ | Front operations |
+| Push 1 | $(2, 3)$ | $(2, 2)$ | Box pushed left | $1$ | Pushed to back |
+| Push 2 | $(2, 2)$ | $(2, 1)$ | Box pushed left | $2$ | Pushed to back |
+| Walk | $(2, 2) \to (3, 1)$ | $(2, 1)$ | Player circles around lower wall | $2$ | Front operations |
+| Push 3 | $(2, 1)$ | $(1, 1)$ | Box pushed up into Target $T$ | $3$ | Target Match: Return 3 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every state transition corresponds to a physically valid movement on the grid. Player movements never pass through walls or the box. Box pushes occur only when the player occupies the adjacent cell in the exact pushing direction and the destination cell is an unblocked floor tile.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The state graph contains at most $(M \cdot N)^2$ discrete configurations. The 0-1 BFS visits every reachable configuration in order of non-decreasing push cost. Because all edge weights are non-negative ($0$ or $1$), Dijkstra's condition holds, ensuring that the first time any state $(S, T)$ is popped from the queue, its recorded push count is the global minimum. If the queue empties without reaching $T$, the target is provably unreachable.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Dijkstra's algorithm:** The same player-box graph can be searched with a priority queue using edge weights zero and one. It is correct but adds a logarithmic queue factor that zero-one BFS avoids.
-- **Push-level BFS with reachability checks:** Store the box cell and the side occupied by the player, then run a flood fill to decide which pushing sides are reachable. This can reduce persistent states toward $O(V)$ but repeats or caches walking reachability logic and differs from the exact source.
-- **Sparse visited set:** Storing only reached `(player, box)` pairs avoids eagerly allocating invalid wall combinations. Worst-case asymptotic space remains $O(V^2)$, though practical memory may improve.
-- **Ordinary BFS that counts every move:** Treating walking and pushing equally minimizes total player steps, not pushes, and can return the wrong answer.
-- **Box begins on target:** The first dequeued state passes the target check and returns zero, although the standard grid uses distinct marker characters and normally provides separate starting cells.
-- **Blocked push:** If the player reaches the box but the cell beyond is a wall or outside the grid, that direction produces no successor.
-- **Player cannot pass through the box:** Entering the box cell always invokes the push rule; it never becomes a zero-cost walking state.
-- **Dead corners:** A box pushed into a non-target corner naturally creates no useful future pushes. The search needs no special deadlock rule for correctness, though such pruning could improve speed.
-- **Unreachable target:** Exhausting the deque returns `-1` after all legal configurations have been ruled out.
-- **Same box, different player:** These must remain separate states because only some player positions may reach the side needed for the next push.
-- **Target and lettered cells are traversable:** `check` excludes only walls, so `S`, `B`, `T`, and `.` cells are all treated as floor after their semantic positions are known.
-- **Missing markers are outside the contract:** The exact scan assumes one `S` and one `B` exist; without them, the saved coordinates would be undefined.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Box occlusion during player walk:** When the player paths around to get behind the box, the box's current cell cannot be traversed. Treating the box as free floor during player walk search would allow impossible "ghost" player moves through the box.
+- **Dead ends and corners:** If a box is pushed into a non-target corner formed by two walls (e.g. top and left walls), it can never be pushed in any direction again. The BFS explores other branches, naturally abandoning dead-end states.
+- **Player distance vs box pushes:** Minimizing player steps does not minimize box pushes. A path where the player walks $10$ steps to push the box once is superior to a path where the player walks $1$ step to push the box twice in suboptimal directions. Edge weight $0$ for walking correctly models this preference.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(4V^2)$. Let $V=m\cdot n$ be the total number of grid cells. The exact state representation permits up to $V$ player positions for each of $V$ box positions, or $O(V^2)$ ordered pairs. Each discovered state is processed once, and processing tries four directions, so the worst-case time is $O(4V^2)=O(V^2)$.
-- **Auxiliary Space Complexity:** $O(V^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}((M \cdot N)^2)$.
+  The state graph consists of $V \le (M \cdot N)^2$ vertices. From each state $(S, B)$, the player has $4$ possible directional moves, giving out-degree at most $4$ and $E \le 4 (M \cdot N)^2$ directed edges. Since 0-1 BFS processes each edge at most once with constant-time deque operations, the total time is $\mathcal{O}(V + E) = \mathcal{O}((M \cdot N)^2)$.
+  For $M, N \le 20$, $M \cdot N \le 400$, so $V \le 160{,}000$, executing comfortably within $0.1$ seconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}((M \cdot N)^2)$ to maintain the 2D visited boolean matrix and the BFS double-ended queue.

@@ -54,13 +54,14 @@
     {
       "id": "trial-empty",
       "name": "empty list",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "head": []
       },
       "expected": [],
       "tags": [
+        "sample",
         "boundary"
       ]
     },

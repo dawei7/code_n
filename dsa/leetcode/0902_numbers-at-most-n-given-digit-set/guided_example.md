@@ -1,96 +1,180 @@
 # Guided Example: Numbers At Most N Given Digit Set
 
-We trace the logarithmic Array, Math, String, Binary Search, Dynamic Programming search on a representative problem instance.
+We trace the step-by-step combinatorial digit construction, prove the separation between length-bounded geometric series and prefix-constrained positional counting, and evaluate tight boundary matching across representative instances:
 
-- **Input:** `{"digits": ["1", "3", "5", "7"], "n": 100}`
-- **Required output:** `20`
+- **Representative Instance 1 (Boundary Exceeds Digits):**
+  $$
+  \text{digits} = [\text{"1"}, \text{"3"}, \text{"5"}, \text{"7"}], \quad n = 100
+  $$
+- **Required Output:** `20`
+  - $n = 100$ has $K = 3$ decimal digits. Available digit pool size $D = 4$.
+  - Numbers with length $< 3$:
+    - Length $1$: $4^1 = 4$ numbers ($\{1, 3, 5, 7\}$)
+    - Length $2$: $4^2 = 16$ numbers ($\{11, 13, \dots, 77\}$)
+  - Numbers with length $3$:
+    - Smallest constructible 3-digit number is $111 > 100$. Exactly $0$ valid numbers.
+  - Total valid numbers:
+    $$
+    4 + 16 + 0 = \mathbf{20}
+    $$
 
-This instance demonstrates search space bound maintenance, integer midpoint calculation, and monotonic predicate halving.
+- **Representative Instance 2 (Prefix-Constrained Traversal):**
+  $$
+  \text{digits} = [\text{"1"}, \text{"3"}, \text{"5"}, \text{"7"}], \quad n = 531
+  $$
+  - Length $< 3$: $4^1 + 4^2 = 20$.
+  - Length $3$ ($d_1 = 5, d_2 = 3, d_3 = 1$):
+    - Position 1 ($d_1 = 5$):
+      - Digits $< 5$: $\{1, 3\}$ ($2$ choices) $\implies 2 \times 4^2 = 32$ numbers.
+      - Digit $= 5$: $5 \in \text{digits} \implies$ proceed to position 2.
+    - Position 2 ($d_2 = 3$):
+      - Digits $< 3$: $\{1\}$ ($1$ choice) $\implies 1 \times 4^1 = 4$ numbers.
+      - Digit $= 3$: $3 \in \text{digits} \implies$ proceed to position 3.
+    - Position 3 ($d_3 = 1$):
+      - Digits $< 1$: $\emptyset$ ($0$ choices).
+      - Digit $= 1$: $1 \in \text{digits} \implies$ exact match $+1$.
+  - Total: $20 + 32 + 4 + 0 + 1 = \mathbf{57}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Numbers At Most N Given Digit Set** is to pinpoint the target value or optimal threshold in logarithmic $O(\log N)$ time.
-Linear scanning through all candidates takes $O(N)$ time. By exploiting monotonicity in the search domain, each comparison halves the remaining candidate space.
+Given a sorted array of unique non-zero digits `digits` and a positive integer $n$:
+
+Count how many positive integers $\le n$ can be written using only characters from `digits` (allowing repeated use of digits).
+
+```text
+Digits: {1, 3, 5, 7}  (D = 4)
+Target: n = 100        (K = 3 digits: "1", "0", "0")
+
+Category A: Length < 3 (strictly fewer digits than n)
+  Length 1: _        -> 4 choices               = 4
+  Length 2: _ _      -> 4 * 4 choices           = 16
+                                                 ---
+                                    Subtotal A  = 20
+
+Category B: Length == 3 (same number of digits as n)
+  First digit can only be 1, 3, 5, 7.
+  Any choice >= 1 makes number >= 111 > 100.
+                                    Subtotal B  = 0
+                                                 ===
+                                    Total       = 20
+```
+
+A brute-force loop testing all integers $1, 2, \dots, n$ requires $\mathcal{O}(n \log n)$ checks. For $n = 10^9$, this requires over $10^9$ operations and immediately exceeds time limits.
+
+The decisive pedagogical goal is to partition the problem into two orthogonal counting spaces:
+1. **Unconstrained Shorter Lengths ($L < K$):** Because every number with $L < K$ digits is strictly smaller than any $K$-digit number, every combination of $L$ digits from $D$ is automatically valid, giving a geometric sum $\sum_{L=1}^{K-1} D^L$.
+2. **Prefix-Constrained Equal Length ($L = K$):** Digits are evaluated from left to right. At position $i$, any digit strictly smaller than $n$'s $i$-th digit frees all subsequent positions to take any of the $D$ digits.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Positional Invariants
 
-We define an active search interval $[L, R]$. At each iteration, we evaluate the midpoint $M = L + \lfloor (R - L) / 2 \rfloor$.
+```mermaid
+flowchart TD
+    accTitle: Positional Digit DP Partitioning
+    accDescr: High-level architectural flowchart showing separation into shorter length powers and equal length prefix tree traversal
+    Input["Input: digits, target n (length K)"] --> Shorter["1. Shorter Lengths L < K"]
+    Input --> Equal["2. Equal Length L == K"]
+    Shorter --> Geom["Sum of Powers: sum(D^L for L in 1..K-1)"]
+    Equal --> Traverse["Traverse digits of n from left to right"]
+    Traverse --> Branch{"Compare digit c with target digit d_i"}
+    Branch -->|"c < d_i"| FreeCount["Add D^(K - 1 - i) valid combinations"]
+    Branch -->|"c == d_i"| Match["Prefix matches: advance to index i + 1"]
+    Branch -->|"c > d_i or d_i not in digits"| Stop["No further exact prefixes: terminate"]
+    Geom --> Total["Sum Category 1 + Category 2"]
+    FreeCount --> Total
+    Match --> Total
+```
 
-| Interval Variable | Role in Bisection |
-|---|---|
-| Lower Bound $L$ | Lowest possible index/value in active range |
-| Upper Bound $R$ | Highest possible index/value in active range |
-| Midpoint $M$ | Probe point dividing interval into equal halves |
+### Invariants of Positional Counting
 
-> **Invariant.** If a valid solution exists, it is guaranteed to lie within the inclusive search range $[L, R]$.
+Let $S = \text{str}(n)$ with length $K$, and let $D = |\text{digits}|$.
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Initial Bounds Setup
-
-- Set $L = 0$ and $R = N - 1$ (or corresponding domain bounds).
-- Compute initial midpoint $M$.
-
-| Parameter | State |
-|---|---|
-| Search Interval | $[L, R]$ |
-| Midpoint Probe $M$ | $L + \lfloor (R - L) / 2 \rfloor$ |
-| Evaluated Value | Probe result compared against target |
-
----
-
-### Step 2: Interval Halving via Monotonicity
-
-- If the probe value satisfies the predicate or is smaller than the target, eliminate the left half ($L = M + 1$).
-- Otherwise, eliminate the right half ($R = M - 1$ or $R = M$).
-
-| Parameter | State |
-|---|---|
-| Discarded Region | Non-viable half eliminated |
-| New Interval | Narrowed $[L, R]$ |
-
----
-
-### Step 3: Convergence & Target Extraction
-
-- Iteration halts when $L > R$ (or $L == R$).
-- Return confirmed target index or boundary answer.
+1. **Length Dominance:**
+   $$
+   \forall x \in \mathbb{N}, \quad \text{len}(\text{str}(x)) < K \implies x < 10^{K-1} \le n
+   $$
+   Therefore, every number of length $1, 2, \dots, K-1$ formed from `digits` is strictly less than $n$. The count is:
+   $$
+   N_{\text{shorter}} = \sum_{L=1}^{K-1} D^L
+   $$
+2. **Prefix Tightness:**
+   For length $K$, we process index $i \in [0, K-1]$:
+   - For each $c \in \text{digits}$:
+     - If $c < S[i]$, any suffix of length $K - 1 - i$ forms a valid number $< n$. This adds $D^{K - 1 - i}$ solutions.
+     - If $c == S[i]$, the prefix continues to match $S[0 \dots i]$ tightly.
+   - If $S[i] \notin \text{digits}$, no number can match prefix $S[0 \dots i]$, so the equal-length traversal terminates immediately.
+   - If all $K$ digits find exact matches in `digits`, the number $n$ itself is constructible, contributing $+1$.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: $n = 100, \text{digits} = [1, 3, 5, 7]$
 
-| Iteration | Lower $L$ | Upper $R$ | Midpoint $M$ | Evaluated Value | Decision / Predicate | Halved Interval |
-|---|---|---|---|---|---|---|
-| 1 (Start) | $0$ | $N-1$ | Midpoint | Probe result | Branch selection | Remaining half |
-| 2 (Narrow) | Updated $L$ | Updated $R$ | New Midpoint | Probe result | Further contraction | Narrowed half |
-| Final | Converged | Converged | Target | Match / Boundary | Target confirmed | Result emitted |
+We trace $n = 100$ ($K = 3$, $S = \text{"100"}$) with $D = 4$:
+
+### Phase 1: Shorter Lengths ($L < 3$)
+- Length $L = 1$: $4^1 = 4$
+- Length $L = 2$: $4^2 = 16$
+- Accumulated from shorter lengths: $4 + 16 = 20$.
+
+### Phase 2: Equal Length ($L = 3$, target prefix $S = \text{"100"}$)
+
+| Index $i$ | Target Char $S[i]$ | Digits in Set $c < S[i]$ | Count Added ($|\{c < S[i]\}| \times D^{K-1-i}$) | Exact Match $S[i] \in \text{digits}$? | Action / State Transition |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| **0** | `'1'` | None ($c < 1$ is empty) | $0 \times 4^2 = 0$ | Yes (`'1'` is in set) | Prefix matches `'1'`. Advance to index $1$. |
+| **1** | `'0'` | None ($c < 0$ is empty) | $0 \times 4^1 = 0$ | **No** (`'0'` not in digits!) | Prefix broken. **Halt Phase 2.** |
+
+Phase 2 contributes $0$. Total count $= 20 + 0 = \mathbf{20}$.
+
+---
+
+## 4. Secondary Worked Execution: $n = 531, \text{digits} = [1, 3, 5, 7]$
+
+Here $K = 3$, $S = \text{"531"}$, $D = 4$:
+
+- **Phase 1 (Shorter):** $4^1 + 4^2 = 20$.
+- **Phase 2 (Length 3):**
+
+| Position $i$ | Target $S[i]$ | Suffix Length $K - 1 - i$ | Digits $c < S[i]$ | Subtotal Added | Match? | Transition |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `'5'` | 2 | $\{'1', '3'\}$ ($2$ choices) | $2 \times 4^2 = 32$ | Yes (`'5'`) | Advance to $i = 1$ |
+| 1 | `'3'` | 1 | $\{'1'\}$ ($1$ choice) | $1 \times 4^1 = 4$ | Yes (`'3'`) | Advance to $i = 2$ |
+| 2 | `'1'` | 0 | $\emptyset$ ($0$ choices) | $0 \times 4^0 = 0$ | Yes (`'1'`) | All $K$ matched! Add $+1$ for $531$ |
+
+Total valid count:
+$$
+20 + 32 + 4 + 0 + 1 = \mathbf{57}
+$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because the underlying search space is monotonic, any region discarded by the comparison is mathematically proven not to contain the target.
-
-**Completeness.** The interval size strictly decreases by $\lfloor (R - L + 1) / 2 \rfloor$ on every step, guaranteeing termination and discovery of the target.
+### Soundness & Completeness
+1. **Soundness:**
+   Every counted integer is composed exclusively of characters in `digits`. Shorter numbers are strictly $< 10^{K-1} \le n$. Equal-length numbers either strictly diverge at the first differing index $i$ where $c < S[i]$ (guaranteeing the value is $< n$), or match $S$ at all $K$ positions (meaning the value equals $n \le n$).
+2. **Completeness:**
+   Every integer $\le n$ formed from `digits` has length $L \le K$. If $L < K$, it is counted in Phase 1. If $L = K$, it either shares a prefix with $n$ up to some index $i$ and has a smaller digit at $i$, or equals $n$. Every such configuration is uniquely accounted for with zero double-counting.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Integer Overflow in Midpoint:** Using $(L + R) / 2$ in fixed-width languages can overflow. The form $L + \lfloor(R - L) / 2\rfloor$ is safe.
-- **Infinite Loops on $L == R - 1$:** Misaligned boundary updates ($L = M$ without upper-rounding midpoint) causes infinite loops when two elements remain.
-- **Left vs. Right Insertion Index:** Distinguishing exact match from lower-bound insertion points prevents off-by-one errors.
+| Scenario | Input | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Digit $n$ | $\text{digits} = [7], n = 8$ | Phase 1 empty ($K=1$). Phase 2: $7 < 8 \implies 1$. Returns $1$. | Off-by-one in shorter length loop bounds. |
+| Upper Boundary ($10^9$) | $\text{digits} = [1, 4, 9], n = 10^9$ | $K = 10$. Phase 1 sums $3^1 + \dots + 3^9 = 29523$. Phase 2 halts at $S[1] = '0'$. | 32-bit integer overflow during power calculations. |
+| Zero in Target $n$ | $n = 100$ | `'0'` never exists in `digits` (allowed digits are $1 \dots 9$), causing immediate halt in Phase 2. | Assuming '0' can be matched or infinite loop. |
+| All Digits Match $n$ | $\text{digits} = [1], n = 1$ | Phase 1 empty. Phase 2 matches '1' at end $\implies$ returns $1$. | Forgetting the $+1$ exact match bonus. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log N)$ because the candidate interval is bisected in each step.
-- **Auxiliary Space Complexity:** $O(1)$ constant extra space using iterative pointers.
+- **Time Complexity:** $\mathcal{O}(K \cdot D)$, where $K = \log_{10}(n) \le 10$ and $D = |\text{digits}| \le 9$.
+  - Shorter lengths calculation takes $\mathcal{O}(K)$ iterations.
+  - Phase 2 evaluates at most $K$ positions, each checking at most $D$ candidate digits.
+  - Total operations: at most $10 \times 9 = 90$ operations, executing in $< 0.01\text{ ms}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ auxiliary space to store the string representation of $n$, or $\mathcal{O}(1)$ if traversing digits via arithmetic division.

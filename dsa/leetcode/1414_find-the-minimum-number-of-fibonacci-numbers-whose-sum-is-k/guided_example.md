@@ -1,137 +1,198 @@
 # Guided Example: Find the Minimum Number of Fibonacci Numbers Whose Sum Is K
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of Zeckendorf's greedy decomposition on a representative problem instance:
 
-- **Input:** `{"k": 832040}`
-- **Required output:** `1`
+- **Input:** $k = 19$
+- **Required Output:** $3$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple decomposition steps, skips across non-adjacent Fibonacci terms ($13$, $5$, $1$), and illustrates why greedily subtracting the largest available Fibonacci number guarantees the global minimum count of summands.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `k`, *return the minimum number of Fibonacci numbers whose sum is equal to *`k`. The same Fibonacci number can be used multiple times.
+We are given an integer $k \ge 1$. We must find the minimum count of Fibonacci numbers that sum to exactly $k$, where the same Fibonacci number may be used multiple times if needed. Fibonacci numbers are defined by:
+$$
+F_1 = 1, \quad F_2 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad (n \ge 3)
+$$
+The sequence begins: $1, 2, 3, 5, 8, 13, 21, 34, 55, \dots$
 
-The objective is to compute `1` from `{"k": 832040}` while avoiding redundant calculations and unnecessary overhead.
+For $k = 19$:
+- The largest Fibonacci number not exceeding $19$ is $13$.
+- Subtracting $13$ leaves a remainder of $19 - 13 = 6$.
+- The largest Fibonacci number not exceeding $6$ is $5$.
+- Subtracting $5$ leaves a remainder of $6 - 5 = 1$.
+- The largest Fibonacci number not exceeding $1$ is $1$.
+- Subtracting $1$ leaves $0$, using a total of $3$ Fibonacci numbers: $13 + 5 + 1 = 19$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to understand Zeckendorf's theorem: any integer has a unique representation as a sum of non-consecutive Fibonacci numbers. Because the sum of all smaller non-consecutive Fibonacci numbers cannot reach $F_m$, choosing the largest Fibonacci number $\le k$ at every step is strictly necessary and optimal, enabling a greedy solution in logarithmic time instead of intractable exponential search or dynamic programming over $k \le 10^9$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $F_m$ be the largest Fibonacci number such that $F_m \le k$.
+Consider the maximum sum achievable using only non-consecutive Fibonacci numbers strictly smaller than $F_m$:
+$$
+F_{m-1} + F_{m-3} + F_{m-5} + \dots = F_m - 1
+$$
+Because the sum of all smaller non-consecutive terms is strictly less than $F_m$:
+$$
+\sum_{i} F_{c_i} \le F_m - 1 < F_m \le k
+$$
+any representation of $k$ that avoids using $F_m$ must either:
+1. Use consecutive terms, which can always be collapsed ($F_{j} + F_{j-1} = F_{j+1}$) to reduce term count.
+2. Use duplicate terms, which can similarly be rewritten ($2F_j = F_{j+1} + F_{j-2}$ for $j \ge 3$) without increasing the total count.
 
-| State Parameter | Role & Purpose | Initial State |
+Consequently, selecting $F_m$ never sacrifices optimality. We precompute all Fibonacci numbers up to $k$, then greedily subtract the largest available number until the remainder becomes $0$.
+
+```
+k = 19
+Fibonacci candidates: [1, 2, 3, 5, 8, 13]  (21 > 19)
+
+Step 1: Pick 13
+        Remaining k: 19 - 13 = 6
+        Count: 1
+
+Step 2: Pick 5
+        Remaining k: 6 - 5 = 1
+        Count: 2
+
+Step 3: Pick 1
+        Remaining k: 1 - 1 = 0
+        Count: 3 (Target reached!)
+```
+
+We define tracking variables for the greedy reduction:
+
+| Parameter | Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Remainder ($k$) | $[0, 10^9]$ | Value remaining to be decomposed |
+| Candidate List | $\{F_i \mid F_i \le k\}$ | Precomputed sorted list of Fibonacci numbers |
+| Search Pointer ($idx$) | Top-down index | Cursor tracking the largest Fibonacci candidate $\le k$ |
+| Summand Count | $[0, \log_\phi k]$ | Number of Fibonacci numbers selected |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At each step, the selected Fibonacci number $F$ is the maximal Fibonacci number satisfying $F \le k$. The minimal number of Fibonacci summands required to form the original target equals the current summand count plus the minimal number of summands required to form the updated remainder $k$.
+
+```mermaid
+flowchart TD
+    accTitle: Greedy Fibonacci Decomposition Workflow
+    accDescr: Precomputes Fibonacci sequence up to k, then greedily subtracts the largest Fibonacci number less than or equal to k until k equals 0.
+    A["Generate Fibonacci numbers up to k<br/>F = [1, 2, 3, 5, 8, 13]"] --> B["Initialize remainder k = 19, count = 0"]
+    B --> C["Locate largest F_i <= k: F_i = 13"]
+    C --> D["Subtract: k = 19 - 13 = 6<br/>count = count + 1 = 1"]
+    D --> E{"Is k == 0?"}
+    E -- No --> F["Locate largest F_i <= k: F_i = 5"]
+    F --> G["Subtract: k = 6 - 5 = 1<br/>count = count + 1 = 2"]
+    G --> H{"Is k == 0?"}
+    H -- No --> I["Locate largest F_i <= k: F_i = 1"]
+    I --> J["Subtract: k = 1 - 1 = 0<br/>count = count + 1 = 3"]
+    J --> K{"Is k == 0?"}
+    K -- Yes --> L["Return count = 3"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Take the largest Fibonacci number that fits
+### Step 1: Precomputing Fibonacci Numbers up to $k = 19$
 
-The optimal strategy repeatedly subtracts the largest Fibonacci number not exceeding the remaining target. This is the Fibonacci version of a greedy decomposition. The special structure of consecutive Fibonacci numbers makes the strategy optimal even though a largest-coin rule does not work for every arbitrary coin system.
+We generate distinct Fibonacci numbers starting from $1, 2$:
+- $F_1 = 1$
+- $F_2 = 2$
+- $F_3 = 1 + 2 = 3$
+- $F_4 = 2 + 3 = 5$
+- $F_5 = 3 + 5 = 8$
+- $F_6 = 5 + 8 = 13$
+- Next would be $8 + 13 = 21 > 19$ (stop generation).
 
-The implementation does not build a list of Fibonacci numbers. It first generates one consecutive pair just beyond the target, then reverses the recurrence to walk downward.
+Candidate sequence: $[1, 2, 3, 5, 8, 13]$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Term Index ($i$) | Term Expression | Value | Relationship to $k = 19$ |
 |---|---|---|---|
-| Input Slice | `{"k": 832040}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $1$ | $F_1$ | $1$ | $< 19$ |
+| $2$ | $F_2$ | $2$ | $< 19$ |
+| $3$ | $F_3$ | $3$ | $< 19$ |
+| $4$ | $F_4$ | $5$ | $< 19$ |
+| $5$ | $F_5$ | $8$ | $< 19$ |
+| $6$ | $F_6$ | $13$ | $\le 19$ (Largest candidate) |
 
 ---
 
-### Step 2: Generate the first Fibonacci number larger than the original target
+### Step 2: First Greedy Subtraction ($F = 13$)
 
-The variables start as:
+- Target remainder: $k = 19$.
+- Largest candidate $\le 19$ is $13$.
+- New remainder: $k \leftarrow 19 - 13 = 6$.
+- Increment count: $count \leftarrow 0 + 1 = 1$.
 
-
-
-At every iteration of the first loop:
-
-
-
-the pair advances from two consecutive Fibonacci numbers to the next consecutive pair. Python evaluates both right-hand expressions from the old values before assigning either new value, so the recurrence is not corrupted.
-
-The loop continues while `b <= k`. When it stops, `b` is the first generated Fibonacci number strictly greater than the original target and `a` is the preceding Fibonacci number. Starting one value too high is convenient because the descending loop can use one uniform check for every candidate.
-
-For `k = 7`, the pair advances through `(1, 2)`, `(2, 3)`, `(3, 5)`, and `(5, 8)`. It stops with `a = 5` and `b = 8`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step Number | Current $k$ | Selected Fibonacci Term | Calculation | Updated Remainder $k$ | Total Count |
+|---|---|---|---|---|---|
+| $1$ | $19$ | $13$ | $19 - 13$ | $6$ | $1$ |
 
 ---
 
-### Step 3: Reverse the recurrence without a stored sequence
+### Step 3: Second Greedy Subtraction ($F = 5$)
 
-If `a` and `b` are consecutive Fibonacci values, the forward relation is:
+- Target remainder: $k = 6$.
+- Largest candidate $\le 6$ is $5$ (since $8 > 6$).
+- New remainder: $k \leftarrow 6 - 5 = 1$.
+- Increment count: $count \leftarrow 1 + 1 = 2$.
 
-$$
-b = a + \text{previous}.
-$$
+| Step Number | Current $k$ | Selected Fibonacci Term | Calculation | Updated Remainder $k$ | Total Count |
+|---|---|---|---|---|---|
+| $2$ | $6$ | $5$ | $6 - 5$ | $1$ | $2$ |
 
-Therefore, the previous value is $b-a$. The assignment
+---
 
+### Step 4: Third Greedy Subtraction ($F = 1$)
 
+- Target remainder: $k = 1$.
+- Largest candidate $\le 1$ is $1$ (since $2 > 1$).
+- New remainder: $k \leftarrow 1 - 1 = 0$.
+- Increment count: $count \leftarrow 2 + 1 = 3$.
+- Remainder reaches $0$. Decomposition terminates.
 
-moves the pair backward. From `(5, 8)` it produces `(3, 5)`, then `(2, 3)`, then `(1, 2)`.
+| Step Number | Current $k$ | Selected Fibonacci Term | Calculation | Updated Remainder $k$ | Total Count |
+|---|---|---|---|---|---|
+| $3$ | $1$ | $1$ | $1 - 1$ | $0$ | $3$ |
 
-In the descending loop, `b` is the candidate currently being considered. If it fits:
-
-
-
-the algorithm uses that Fibonacci number once and reduces the remaining target. Regardless of whether it fits, the reverse assignment then proceeds to the next smaller Fibonacci value.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+Final minimal number of Fibonacci numbers used: $3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"k": 832040}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Iteration | Initial Remainder ($k$) | Candidate Tested | Decision | New Remainder | Running Summand Count |
+|---|---|---|---|---|---|
+| Setup | $19$ | Generate $\le 19$ | Precompute $[1, 2, 3, 5, 8, 13]$ | $19$ | $0$ |
+| $1$ | $19$ | $13$ | $13 \le 19 \implies$ Select | $6$ | $1$ |
+| $2$ | $6$ | $8$ | $8 > 6 \implies$ Skip | $6$ | $1$ |
+| $2$ | $6$ | $5$ | $5 \le 6 \implies$ Select | $1$ | $2$ |
+| $3$ | $1$ | $3, 2$ | $> 1 \implies$ Skip | $1$ | $2$ |
+| $3$ | $1$ | $1$ | $1 \le 1 \implies$ Select | $0$ | $3$ |
+| Terminate | $0$ | None | $k = 0 \implies$ Emit count | $0$ | $3$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every chosen term is an authentic Fibonacci number from the generated sequence. The sum of the chosen numbers equals $13 + 5 + 1 = 19 = k$. Because $k$ is reduced to $0$ strictly via subtractions of positive values, termination is guaranteed.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By Zeckendorf's theorem, every positive integer has a unique representation as a sum of non-consecutive Fibonacci numbers. Since the sum of any combination of non-consecutive Fibonacci numbers strictly smaller than $F_m$ is bounded above by $F_m - 1 < k$, any valid representation of $k$ without $F_m$ would require multiple smaller terms whose sum could be regrouped into $F_m$ plus other terms. Hence, greedy choice preserves the global minimum number of summands.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Store all Fibonacci numbers:** Generate a list through $k$, then traverse it backward greedily. It has the same $O(\log k)$ time but uses $O(\log k)$ space and is simpler to visualize.
-- **Repeated binary search:** After each subtraction, binary-search a stored Fibonacci list for the next largest fitting value. It works but adds machinery when a single descending pass already visits candidates in order.
-- **Dynamic programming over all totals:** A coin-change DP can find a minimum count, but $k$ can be $10^9$, making $O(k)$ time and space impractical.
-- **Breadth-first search of sums:** Exploring every reachable sum by number of terms also grows with $k$ and ignores the Fibonacci structure.
-- **Arbitrary coin-system intuition:** Greedy is not universally optimal for coin change. Its correctness here depends on Fibonacci normalization and should not be generalized without proof.
-- **`k = 1`:** Generation moves just beyond one, the descending scan selects one, and the answer is one.
-- **`k` is Fibonacci:** All larger values are skipped, that value is subtracted once, and the result is one.
-- **Remainder skips an adjacent Fibonacci:** After selecting $F_i$, the remainder is below $F_{i-1}$, so the next candidate cannot be selected.
-- **Duplicate Fibonacci one:** Although the mathematical sequence begins with two ones, they represent the same usable value. The greedy sum never requires taking both copies.
-- **Large target:** Only logarithmically many Fibonacci values are generated for `k <= 10^9`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Dynamic Programming on Value $k$:** Creating an array of size $k$ ($DP[i] = \min DP[i - F] + 1$) will cause memory exhaustion or timeout because $k \le 10^9$.
+- **Ascending Greedy Choice:** Selecting the smallest Fibonacci number ($1 + 1 + \dots$) gives an arbitrarily large number of summands ($19$ ones instead of $3$ terms).
+- **Duplicate Initial Ones:** Including both $F_1 = 1$ and $F_2 = 1$ in the candidate search list can cause redundant evaluations; deduplicating to $[1, 2, 3, 5, \dots]$ keeps the sequence strictly increasing.
+- **Unbounded Search:** Searching beyond $k$ in the Fibonacci sequence is unnecessary; the generator can halt immediately once the next term exceeds $k$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log k)$. Fibonacci numbers grow exponentially with their index. The number of Fibonacci values not exceeding $k$ is therefore $O(\log k)$. The first loop advances through that many values, and the second loop walks back through at most the same number. Each iteration performs constant-time arithmetic, so total time is $O(\log k)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\log_\phi k)$. The $n$-th Fibonacci number satisfies $F_n \approx \frac{\phi^n}{\sqrt{5}}$ where $\phi \approx 1.618$. For $k \le 10^9$, $F_{45} \approx 1.13 \times 10^9 > 10^9$, meaning the list contains at most $45$ numbers. Precomputation takes $45$ operations, and the reverse linear scan takes at most $45$ steps, executing in under $100$ operations total.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\log_\phi k)$. The precomputed list requires storage for at most $45$ integers.

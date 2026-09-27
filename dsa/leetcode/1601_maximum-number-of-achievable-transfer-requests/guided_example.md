@@ -1,134 +1,163 @@
 # Guided Example: Maximum Number of Achievable Transfer Requests
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates bitmask subset enumeration and graph flow divergence checking to determine the maximum subset of employee building transfer requests that preserves exact occupancy balance.
 
-- **Input:** `{"n": 5, "requests": [[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]}`
-- **Required output:** `5`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Number of Buildings:** $n = 5$ (Indices $0$ to $4$)
+- **Transfer Requests:** `[[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]` ($M = 6$ requests)
+- **Target Value:** `5` achievable requests (Selecting indices $\{0, 1, 2, 3, 4\}$)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-We have `n` buildings numbered from `0` to $n - 1$. Each building has a number of employees. It's transfer season, and some employees want to change the building they reside in.
+Each transfer request $[u, v]$ moves an employee from building $u$ to building $v$. The total number of employees in each building after all accepted transfers must remain identical to the initial occupancy. Mathematically, for every building $b \in \{0, \dots, n-1\}$, the net divergence must be zero:
+$$\Delta(b) = \text{deg}_{\text{in}}(b) - \text{deg}_{\text{out}}(b) = 0$$
 
-The objective is to compute `5` from `{"n": 5, "requests": [[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+In graph-theoretic terms, accepted requests form a set of directed edges where every connected component is Eulerian (in-degree equals out-degree at every vertex), decomposing into directed cycles.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Cycle A (Requests 0 & 1):
+  [0] <=======> [1]     (Net delta: 0 for both)
+
+Cycle B (Requests 2, 3, & 4):
+  [0] -------> [1]
+   ^            |
+   |            v
+   +---------- [2]      (Net delta: 0 for all three)
+
+Unbalanced Edge (Request 5):
+  [3] -------> [4]      (Delta: -1 for [3], +1 for [4] -> Rejected)
+```
+
+Combining Cycle A and Cycle B accepts $2 + 3 = 5$ requests while maintaining perfect net balance across all buildings.
+
+Our teaching goal is to trace bitmask subset exploration, size pruning, and net-flow verification across $2^M$ subsets.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  BITMASK EULERIAN FLOW CONSERVATION                     |
+|                                                                         |
+|  Subset Mask: Integer mask in [0, 2^M - 1]                              |
+|    Bit i = 1: Request i is accepted                                     |
+|    Bit i = 0: Request i is rejected                                     |
+|                                                                         |
+|  Pruning Guard:                                                         |
+|    If bit_count(mask) <= current_best_answer:                           |
+|        Skip flow verification (cannot strictly improve answer)          |
+|                                                                         |
+|  Balance Evaluation (check):                                            |
+|    Initialize delta[0..n-1] = 0                                         |
+|    For each accepted request i with edge (u, v):                        |
+|        delta[u] -= 1  (Employee departs u)                              |
+|        delta[v] += 1  (Employee enters v)                               |
+|    Feasible <=> for all b in [0..n-1], delta[b] == 0                    |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role in Feasibility Analysis |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Request Pool | $\mathcal{R} = \{e_0, \dots, e_{M-1}\}$ | Candidate directed edges $u \to v$ |
+| Candidate Mask | $S \subseteq \mathcal{R}$ | Subgraph of selected transfer requests |
+| Divergence Vector $\Delta$ | $\Delta[b] = |\{e \in S : \text{to}(e) = b\}| - |\{e \in S : \text{from}(e) = b\}|$ | Net employee change per building |
+| Zero-Net Constraint | $\Delta[b] = 0 \quad \forall b \in \{0, \dots, n-1\}$ | Mandatory condition for request achievability |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Zero-Divergence Conservation Invariant.** A request subset $S$ is achievable if and only if $\sum_{e \in S} (\mathbf{e}_{\text{to}(e)} - \mathbf{e}_{\text{from}(e)}) = \mathbf{0}$, where $\mathbf{e}_b$ is the standard basis vector for building $b$. Summing divergences across all buildings is always identically zero ($\sum \Delta[b] = 0$), but feasibility strictly requires that every individual coordinate satisfies $\Delta[b] = 0$.
+
+```mermaid
+flowchart TD
+    accTitle: Transfer Request Feasibility Check
+    accDescr: Flowchart demonstrating subset bit count pruning, divergence vector accumulation, and zero-balance validation.
+    Mask["Candidate Subset Mask"] --> Count["Evaluate bit_count(mask)"]
+    Count --> Prune{"bit_count > best_ans?"}
+    Prune -->|No| Skip["Skip Mask (Pruned)"]
+    Prune -->|Yes| Tally["Compute delta[b] = in(b) - out(b)"]
+    Tally --> Zero{"All delta[b] == 0?"}
+    Zero -->|Yes| Update["best_ans = bit_count(mask)"]
+    Zero -->|No| Next["Reject Subset"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Every request is an accept-or-reject choice
+### Inspecting Candidate Subsets
 
-There are at most 16 requests. That small bound allows enumeration of every subset. A bitmask with $M$ bits represents one choice:
-
-- bit `i` equals one if request `i` is accepted;
-- bit `i` equals zero if it is rejected.
-
-Integers from zero through `(1 << M) - 1` cover all $2^M$ subsets exactly once.
-
-The method tests whether each chosen subset leaves every building’s net employee change at zero and records the largest number of accepted requests among valid subsets.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 5, "requests": [[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+With $M = 6$ requests, there are $2^6 = 64$ possible bitmasks.
 
 ---
 
-### Step 2: Computing a subset’s balance
-
-The helper `check(mask)` creates `cnt = [0] * n`. For an accepted transfer from building `f` to building `t`, it performs:
-
-`cnt[f] -= 1`
-
-`cnt[t] += 1`.
-
-Thus `cnt[b]` equals employees entering building `b` minus employees leaving it across the selected requests. The sign convention could be reversed without changing the zero test, but the source consistently uses incoming as positive.
-
-After scanning all requests, `all(v == 0 for v in cnt)` returns true exactly when every building has equal incoming and outgoing counts. That is the achievability condition.
-
-A request from a building to itself subtracts and adds at the same index, for net zero. Such a request never harms feasibility and may increase the selected count.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Candidate 1: Full Set (Mask `111111`$_2 = 63$, Size 6)
+- Includes all requests $\{0, 1, 2, 3, 4, 5\}$.
+- Size: $6 > 0$.
+- Evaluate divergence vector $\Delta$:
+  - Req 0: $0 \to 1 \implies \Delta[0] = -1, \Delta[1] = +1$.
+  - Req 1: $1 \to 0 \implies \Delta[0] = 0, \Delta[1] = 0$.
+  - Req 2: $0 \to 1 \implies \Delta[0] = -1, \Delta[1] = +1$.
+  - Req 3: $1 \to 2 \implies \Delta[1] = 0, \Delta[2] = +1$.
+  - Req 4: $2 \to 0 \implies \Delta[2] = 0, \Delta[0] = 0$.
+  - Req 5: $3 \to 4 \implies \Delta[3] = -1, \Delta[4] = +1$.
+- Resulting vector: $\Delta = [0, 0, 0, -1, 1]$.
+- Buildings $3$ and $4$ are unbalanced ($\Delta[3] \ne 0, \Delta[4] \ne 0$).
+- Mask $63$ fails. Current best remains $ans = 0$.
 
 ---
 
-### Step 3: Counting selected requests
+### Candidate 2: Optimal Subset (Mask `011111`$_2 = 31$, Size 5)
+- Includes requests $\{0, 1, 2, 3, 4\}$ (omits request 5).
+- Size: $5 > 0$.
+- Evaluate divergence vector $\Delta$:
+  - Request 0 ($0 \to 1$): $\Delta[0] \leftarrow -1, \Delta[1] \leftarrow +1$
+  - Request 1 ($1 \to 0$): $\Delta[1] \leftarrow 0, \Delta[0] \leftarrow 0$
+  - Request 2 ($0 \to 1$): $\Delta[0] \leftarrow -1, \Delta[1] \leftarrow +1$
+  - Request 3 ($1 \to 2$): $\Delta[1] \leftarrow 0, \Delta[2] \leftarrow +1$
+  - Request 4 ($2 \to 0$): $\Delta[2] \leftarrow 0, \Delta[0] \leftarrow 0$
+- Final vector:
+  $$\Delta = [0, 0, 0, 0, 0]$$
+- Every building satisfies $\Delta[b] = 0$.
+- Feasible! Update best answer: $ans = \max(0, 5) = 5$.
 
-For each mask, `mask.bit_count()` returns the number of one bits, which is exactly the number of accepted requests in that subset.
+---
 
-The source calls `check(mask)` only when `ans < cnt`. If the subset selects no more requests than the best valid subset already found, it cannot improve the maximum, so validating its building balances would be wasted work.
-
-The strict inequality is sufficient because only the maximum count is requested. Equal-size valid subsets do not change `ans`.
-
-If a larger subset is balanced, `ans = cnt` records its size. Starting `ans` at zero is valid because the empty subset always has zero net change.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Pruning Subsets with Size $\le 5$
+Any subsequent mask with $\text{bit\_count} \le 5$ is automatically skipped by the size guard `ans < cnt`, avoiding redundant flow verification for remaining sub-optimal masks. Since no 6-element subset is balanced, $ans = 5$ is certified maximal.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 5, "requests": [[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Subset Mask (Binary) | Bit Count | Prune Guard ($\text{count} > ans$) | Included Requests | Divergence Vector $\Delta[0..4]$ | Feasibility Decision | Best Answer $ans$ |
+|---|---|---|---|---|---|---|
+| `000000` ($0$) | $0$ | $0 > 0$ (False) | $\emptyset$ | $[0, 0, 0, 0, 0]$ | Base state | $0$ |
+| `000011` ($3$) | $2$ | $2 > 0$ (True) | $\{0, 1\}$ | $[0, 0, 0, 0, 0]$ | Balanced (2-cycle) | $2$ |
+| `011100` ($28$) | $3$ | $3 > 2$ (True) | $\{2, 3, 4\}$ | $[0, 0, 0, 0, 0]$ | Balanced (3-cycle) | $3$ |
+| `100000` ($32$) | $1$ | $1 > 3$ (False) | $\{5\}$ | $[0, 0, 0, -1, 1]$ | Skipped by size | $3$ |
+| `011111` ($31$) | $5$ | $5 > 3$ (True) | $\{0, 1, 2, 3, 4\}$ | $[0, 0, 0, 0, 0]$ | **Balanced (Optimal)** | $5$ |
+| `111111` ($63$) | $6$ | $6 > 5$ (True) | All $6$ requests | $[0, 0, 0, -1, 1]$ | Unbalanced ($\Delta[3]\ne 0$) | $5$ |
+| All other masks | $\le 5$ | $\text{count} \le 5$ | Various subsets | — | Pruned by size | $5$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A subset of requests is accepted only if the divergence vector satisfies $\Delta[b] = 0$ for all $b \in \{0, \dots, n-1\}$. By definition, $\Delta[b]$ computes the exact difference between employees entering and leaving building $b$. When $\Delta[b] = 0$ everywhere, the net occupancy change of every building is zero, which satisfies the problem contract.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $M \le 16$, the algorithm iterates through all $2^M$ binary combinations. The pruning condition tests $\text{bit\_count} > ans$; because any subset with fewer or equal requests cannot yield a strictly greater answer, skipping its divergence calculation cannot overlook a superior solution. The maximum valid size found is globally optimal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Recursive backtracking:** Accept or reject each request while mutating one shared balance array, then undo accepted changes. It has the same exponential search and uses $O(N+M)$ space including recursion.
-- **Meet in the middle:** Splitting requests into halves can combine balance vectors and may help for larger $M$, but the bound of 16 makes direct enumeration simpler.
-- **Greedy acceptance:** Individual transfers do not reveal whether they participate in a balanced cycle, so local choices cannot ensure a maximum subset.
-- **Check masks in descending bit count:** This can return after the first balanced size is found, though ordering or grouping masks adds complexity. The source uses a simple ascending numeric scan with size pruning.
-- **Empty subset:** It is always balanced and justifies initializing `ans = 0`.
-- **All requests achievable:** The all-ones mask passes and updates `ans` to $M$.
-- **Self-transfer:** Its decrement and increment cancel, so it never changes feasibility and contributes one accepted request.
-- **Duplicate requests:** Each is a distinct employee request and has its own bit. Multiplicity is handled correctly.
-- **Disconnected cycles:** Each balanced component contributes zero net change independently, so their union passes.
-- **One unmatched edge:** It creates two nonzero building balances and fails.
-- **Buildings absent from every request:** Their counters remain zero and do not affect validity.
-- **Subset-size pruning:** A mask with count equal to `ans` is skipped because it cannot improve the numerical answer.
-- **Generator short-circuit:** `all` may stop at the first nonzero building, improving typical work without changing the worst-case bound.
-- **Exact source space:** No recursion is used; only the current balance list grows with $N$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Global Net Zero vs. Local Net Zero:** The sum of all elements in $\Delta$ is always zero ($\sum \Delta[b] = 0$) because every transfer has exactly one origin and one destination. Checking only the sum would erroneously validate unbalanced pairs (such as request 5 alone). Every building must be checked independently ($\Delta[b] = 0$).
+- **Self-Loop Requests:** A request where $u = v$ decrements and increments the same building ($\Delta[u] \mathrel{-}= 1, \Delta[u] \mathrel{+}= 1$), net zero change. Self-transfers are always achievable and should always be counted toward the maximum.
+- **Premature Halting:** Finding an Eulerian component of size $k$ does not imply that all larger subsets are invalid; multiple disjoint or overlapping cycles can combine to form a larger feasible configuration.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n2^m)$. Let $N$ be the number of buildings and $M$ the number of requests.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(2^M \cdot (M + N))$, where $M \le 16$ is the number of transfer requests and $N \le 20$ is the number of buildings. There are $2^M$ subsets. For each subset examined, computing the net divergence requires $\mathcal{O}(M)$ operations and verifying zero divergence takes $\mathcal{O}(N)$ operations. For $M = 16$, $2^{16} \cdot 36 \approx 2.3 \times 10^6$ operations, executing within tenths of a second.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary space for the divergence array tracking building net changes.

@@ -1,119 +1,170 @@
 # Guided Example: Remove All Adjacent Duplicates in String II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"s": "abcd", "k": 2}`
-- **Required output:** `"abcd"`
+Given a string $s$ and a positive integer $k \ge 2$, a $k$-duplicate removal consists of locating $k$ adjacent, identical characters in $s$ and eliminating them. When these characters are excised, the remaining left and right substrings snap together, which can cause previously separated identical characters to become adjacent and potentially form a new run of $k$ identical characters. This process repeats recursively until no run of $k$ adjacent, identical characters remains.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Consider the string $s = \text{"deeedbbcccbdaa"}$ with $k = 3$:
+1. Erasing `"eee"` leaves `"ddbbcccbdaa"`.
+2. Erasing `"ccc"` leaves `"ddbbbdaa"`.
+3. Erasing `"bbb"` brings the adjacent `'d'`s together, forming `"dddaa"`.
+4. Erasing `"ddd"` brings the remaining `'a'`s together, leaving `"aa"`.
+5. No further runs of 3 exist, yielding the final irreducible string `"aa"`.
+
+A naive simulation scans the string, searches for runs of length $k$, deletes them, and restarts the scan from the beginning. In the worst case (such as nested cancellations $\sigma_1^k \sigma_2^k \dots$), this repeated string compaction requires $\mathcal{O}(N^2 / k)$ time, which is unacceptably slow for $N = 10^5$.
+
+The optimal paradigm is an **Explicit Stack with Run-Length Encoding**:
+Instead of storing individual characters on a stack and repeatedly popping $k$ items backward, the stack maintains condensed tuples:
+$$(\text{character}, \text{consecutive\_count})$$
+When a new character $c$ arrives:
+- If the stack is non-empty and the top tuple matches character $c$, we increment its consecutive count. If the count reaches $k$, the run is complete and we immediately pop the tuple off the stack.
+- If the stack is empty or the top character differs from $c$, we push a new tuple $(c, 1)$ onto the stack.
+This processes each character in strictly $\mathcal{O}(1)$ time, achieving a globally linear $\mathcal{O}(N)$ runtime with zero redundant re-evaluations.
+
+```
+Input: "deeedbbcccbdaa", k = 3
+
+Stack Evolution:
+Push 'd' -> [(d, 1)]
+Push 'e' -> [(d, 1), (e, 1)]
+Push 'e' -> [(d, 1), (e, 2)]
+Push 'e' -> [(d, 1), (e, 3)] ==> Count reached k=3! POP! -> [(d, 1)]
+Push 'e' was cancelled! 'd' is now exposed at top!
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-You are given a string `s` and an integer `k`, a `k` **duplicate removal** consists of choosing `k` adjacent and equal letters from `s` and removing them, causing the left and the right side of the deleted substring to concatenate together.
+Let $S = [s_0, s_1, \dots, s_{n-1}]$ be the input character sequence of length $n$, and let $k \ge 2$.
+Define the stack $\mathcal{K}$ as an ordered sequence of pairs:
+$$\mathcal{K} = \big[ (c_1, v_1), (c_2, v_2), \dots, (c_m, v_m) \big] \in (\Sigma \times \{1, 2, \dots, k-1\})^*$$
 
-The objective is to compute `"abcd"` from `{"s": "abcd", "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+### Stack Invariants
+At every discrete step $i \in [0, n]$:
+1. **Adjacent Character Alternation**:
+   No two adjacent records on the stack share the same character:
+   $$\forall j \in \{1, \dots, m-1\}, \quad c_j \neq c_{j+1}$$
+2. **Strict Count Bound**:
+   Every active count is strictly strictly less than $k$:
+   $$\forall j \in \{1, \dots, m\}, \quad 1 \le v_j \le k - 1$$
+3. **Prefix Irreducibility**:
+   The string materialized by expanding the stack $\bigoplus_{j=1}^m c_j^{v_j}$ contains zero contiguous runs of length $k$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Transition Function
+For incoming character $s_i \in \Sigma$:
+- **Case 1: Stack Empty**:
+  Push $(s_i, 1)$.
+- **Case 2: Match Top Character ($s_i = c_m$)**:
+  - If $v_m + 1 = k$: Pop top entry $(c_m, v_m)$ from stack.
+  - If $v_m + 1 < k$: Update top entry to $(c_m, v_m + 1)$.
+- **Case 3: Distinct from Top Character ($s_i \neq c_m$)**:
+  Push $(s_i, 1)$.
+
+Each transition preserves all three invariants unconditionally.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the sequence $s = \text{"deeedbbcccbdaa"}$ with $k = 3$.
+Length $n = 14$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Detailed Stack Simulation Trace
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Step $i$ | Incoming Char $s_i$ | Stack Before Action | Matching Top? | New Top Count | Action Taken | Stack After Action |
+|---|---|---|---|---|---|---|
+| 0 | `'d'` | `[]` | No (empty) | 1 | Push `('d', 1)` | `[('d', 1)]` |
+| 1 | `'e'` | `[('d', 1)]` | No (`'e' != 'd'`) | 1 | Push `('e', 1)` | `[('d', 1), ('e', 1)]` |
+| 2 | `'e'` | `[('d', 1), ('e', 1)]` | Yes (`'e' == 'e'`) | 2 | Increment to 2 | `[('d', 1), ('e', 2)]` |
+| 3 | `'e'` | `[('d', 1), ('e', 2)]` | Yes (`'e' == 'e'`) | 3 | $3 = k \implies$ **Pop!** | `[('d', 1)]` |
+| 4 | `'d'` | `[('d', 1)]` | Yes (`'d' == 'd'`) | 2 | Increment to 2 | `[('d', 2)]` |
+| 5 | `'b'` | `[('d', 2)]` | No (`'b' != 'd'`) | 1 | Push `('b', 1)` | `[('d', 2), ('b', 1)]` |
+| 6 | `'b'` | `[('d', 2), ('b', 1)]` | Yes (`'b' == 'b'`) | 2 | Increment to 2 | `[('d', 2), ('b', 2)]` |
+| 7 | `'c'` | `[('d', 2), ('b', 2)]` | No (`'c' != 'b'`) | 1 | Push `('c', 1)` | `[('d', 2), ('b', 2), ('c', 1)]` |
+| 8 | `'c'` | `[..., ('c', 1)]` | Yes (`'c' == 'c'`) | 2 | Increment to 2 | `[('d', 2), ('b', 2), ('c', 2)]` |
+| 9 | `'c'` | `[..., ('c', 2)]` | Yes (`'c' == 'c'`) | 3 | $3 = k \implies$ **Pop!** | `[('d', 2), ('b', 2)]` |
+| 10 | `'b'` | `[('d', 2), ('b', 2)]` | Yes (`'b' == 'b'`) | 3 | $3 = k \implies$ **Pop!** | `[('d', 2)]` |
+| 11 | `'d'` | `[('d', 2)]` | Yes (`'d' == 'd'`) | 3 | $3 = k \implies$ **Pop!** | `[]` |
+| 12 | `'a'` | `[]` | No (empty) | 1 | Push `('a', 1)` | `[('a', 1)]` |
+| 13 | `'a'` | `[('a', 1)]` | Yes (`'a' == 'a'`) | 2 | Increment to 2 | `[('a', 2)]` |
+
+```mermaid
+flowchart TD
+    accTitle: Stack-Based Run-Length Reduction Workflow
+    accDescr: Character ingestion with run-length counter triggering instant cancellation upon reaching threshold k.
+    
+    A["Incoming Character s[i]"] --> B{"Is Stack Non-Empty<br/>AND top.char == s[i]?"}
+    B -- Yes --> C["Increment top.count = top.count + 1"]
+    C --> D{"Does top.count == k?"}
+    D -- Yes --> E["Pop top element (k duplicates eliminated)"]
+    D -- No --> F["Retain updated count on stack"]
+    
+    B -- No --> G["Push new tuple (s[i], 1) onto stack"]
+    
+    E & F & G --> H["Advance to next character"]
+```
+
+### Materialization of Final String:
+Final stack contents: `[('a', 2)]`.
+Expanding records: `'a' * 2 = \text{"aa"}`.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Process one maximal original run at a time
-
-Pointers `i` and `j` find the maximal run beginning at `i`. When the inner loop ends, `cnt = j - i` is its length.
-
-`cnt %= k` removes every complete group of `k` identical letters inside that run. Only the remainder can affect later characters. If the remainder is zero, that original run vanishes entirely.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Metric / Dimension | Repeated String Rescanning | Raw Character Stack | Run-Length Encoded Stack (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"s": "abcd", "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Data Structure** | Mutable string / Array buffer | Standard stack of characters | Stack of `(character, count)` pairs |
+| **Worst-Case Time** | $\mathcal{O}(N^2 / k)$ | $\mathcal{O}(N \cdot k)$ (popping $k$ elements) | $\mathcal{O}(N)$ strictly linear |
+| **Memory Footprint** | $\mathcal{O}(N)$ string allocations | $\mathcal{O}(N)$ characters | $\mathcal{O}(N)$ compressed pairs |
+| **Cancellation Cost**| $\mathcal{O}(N)$ string slice copies | $k$ sequential pop operations | Exactly $1$ pop operation ($\mathcal{O}(1)$) |
+| **Implementation Complexity**| String index slicing | Backtracking pop loop | Clean scalar count increment |
+
+```
+Cancellation Cost Comparison for k = 1000:
+- Raw Stack: Must pop 1,000 times to delete one run.
+- RLE Stack: Increments counter to 1,000, then executes 1 pop! (1000x fewer memory writes)
+```
 
 ---
 
-### Step 2: Merge with the reduced prefix
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-If the stack is nonempty and its final character equals `s[i]`, all original material between that stored run and the current run has already vanished. They are now adjacent and must combine.
-
-The code replaces the top count by `(old + cnt) % k`. Modulo removes any newly formed groups of `k`. If the new count is zero, it pops the run completely. That pop may expose an earlier character, which can merge with a future run processed later.
-
-If the top character differs and `cnt` is nonzero, the current remainder becomes a new stack run. A zero remainder adds nothing.
-
-For `"deeedbbcccbdaa"` with `k = 3`, the `eee` and `ccc` runs reduce to zero. Their disappearance lets surrounding runs eventually combine: the three `b` characters vanish, then separated `d` portions merge to three and vanish, leaving `aa`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Scenario | Input Condition | Expected Result | System Invariant |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Complete String Annihilation** | `s = "aaabbb", k = 3` | `""` (empty string) | Both runs cancel out completely; stack terminates empty. |
+| **Zero Reductions Possible** | `s = "abcdef", k = 2` | `"abcdef"` | Every character distinct; all pushed as count 1; full string returned. |
+| **Cascading Domino Deletion** | Nested wrappers e.g. `s = "abbba", k = 3` | `""` | Inner `'b'`s pop, exposing `'a'`s which merge and pop. |
+| **$k$ Greater Than String Length**| $|s| < k$ | Returns $s$ unchanged | No run can ever reach length $k$; all characters retained. |
+| **Single Character String** | `s = "a", k = 2` | `"a"` | Count 1 never reaches $k=2$; returned unchanged. |
 
 ---
 
-### Step 3: Why one pass captures repeated removals
+## 6. Mathematical Verification & Complexity Derivation
 
-After each original run is processed, the stack represents exactly the fully reduced form of the input prefix. It contains no count reaching `k` and no adjacent equal run entries.
+Let $N = |s|$ be the total number of characters in the input string.
 
-For the next run, internal groups are removed by modulo. If its character differs from the stack top, appending preserves reduction. If it matches, combining is the only new interaction created at the boundary; modulo and a possible pop fully resolve it. This maintains the invariant by induction.
+### Processing Analysis:
+1. **Per-Character Ingestion**:
+   - Each character $s_i$ is examined exactly once in the main loop ($N$ iterations).
+   - In each iteration, inspecting the stack top takes $\mathcal{O}(1)$ time.
+   - Performing a count increment, tuple push, or tuple pop takes $\mathcal{O}(1)$ time.
+   - Every character is pushed at most once and popped at most once.
+   - Total loop time: $\mathcal{O}(N)$.
+2. **String Reconstruction**:
+   - The final stack contains at most $N$ compressed pairs.
+   - Expanding each pair $(c_j, v_j)$ into $v_j$ characters creates a string of total length $L \le N$.
+   - Reconstruction runs in $\mathcal{O}(N)$ time.
 
-Because the final reduced string is unique, the stack’s deterministic left-to-right reductions produce the required result regardless of another possible removal order.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"abcd"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abcd", "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"abcd"` | Verified |
+### Total Asymptotics:
+- **Total Time Complexity:** $\mathcal{O}(N)$ strictly optimal linear time, completely independent of the magnitude of $k$.
+- **Total Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary memory to store the run-length stack.
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Character-by-character run stack:** Push or increment one character at a time and pop at count `k`. It has the same $O(n)$ bounds and may be simpler to recognize.
-- **Repeated immutable-string deletion:** Rescanning and slicing after every removal can take quadratic time.
-- **No removable group:** Every residual run remains and reconstruction returns the original string.
-- **Whole run length is a multiple of `k`:** Its remainder is zero and it contributes nothing.
-- **Run longer than `k`:** Modulo correctly removes several complete groups at once.
-- **Cascade across deleted text:** Matching the current character against the stack top detects newly adjacent equal runs.
-- **Combined count exactly `k`:** Modulo makes it zero and the stack entry is popped.
-- **`k = 2`:** Counts are only one after reduction, and matching adjacent runs cancel in pairs.
-- **Unique final answer:** The invariant computes the canonical reduced prefix, so no removal-order branching is needed.
-- **Output may be empty:** An empty stack reconstructs to `""` through `join`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. The run pointers advance only forward, so all original characters are examined $O(n)$ times in total. Each run causes constant stack work, and every stack entry is pushed and popped at most once. Reconstruction writes exactly the output characters, at most $n$. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Run-Length Compression on Stacks**: Instead of pushing individual duplicate elements onto a stack, condensing identical consecutive tokens into a count accumulator turns $\mathcal{O}(k)$ batch deletions into instantaneous $\mathcal{O}(1)$ pop operations.
+2. **The Snapping Boundary Pattern**: Whenever deleting an interior contiguous segment causes surrounding elements to touch, a stack naturally models the interaction: popping an interior entry immediately exposes its former predecessor at the top of the stack.
+3. **Invariance of Irreducible Prefixes**: At all times, the stack represents the fully reduced, canonical form of the prefix processed so far. Incoming characters only interact with the active tail, preserving global reduction without backtracking.

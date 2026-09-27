@@ -1,123 +1,175 @@
 # Guided Example: Strobogrammatic Number II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step center-outward recursive expansion, valid rotational pair wrapping, and leading-zero boundary suppression on representative integer length requests:
 
-- **Input:** `{"n": 2}`
-- **Required output:** `["11", "69", "88", "96"]`
+- **Input:** $n = 2$
+- **Required output:** `["11", "69", "88", "96"]` (All four 2-digit strobogrammatic numbers; `"00"` is suppressed to prevent leading zero)
+- **Odd Length Instance:** $n = 1 \implies \text{["0", "1", "8"]}$ (All three self-symmetric single digits)
+- **Three-Digit Instance:** $n = 3 \implies 12$ numbers (Wraps centers `["0", "1", "8"]` with 4 outer pairs $\implies 4 \times 3 = 12$)
+- **Four-Digit Instance:** $n = 4 \implies 20$ numbers (Outer layer has 4 choices; inner layer has 5 choices including `"00"` $\implies 4 \times 5 = 20$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates recursive divide-and-conquer string synthesis, explains why generating strings inside-out ($m - 2 \to m$) cleanly separates inner zeroes from forbidden leading zeroes, derives the exact combinatorial cardinality ($4 \times 5^{\lfloor n/2 \rfloor - 1}$), and operates in $O(N \cdot 5^{N/2})$ optimal time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return all the **strobogrammatic numbers** that are of length `n`. You may return the answer in **any order**.
+Given an integer $n = 2$, construct and return **all strobogrammatic numbers of length $n$**.
+A strobogrammatic number looks identical when rotated 180 degrees upside down.
+For $n = 2$:
+- Valid pairs: `"11"`, `"69"`, `"88"`, `"96"`.
+- What about `"00"`? Rotating `"00"` produces `"00"`, but standard multi-digit decimal numbers cannot have leading zeroes (`"00"` is not a valid 2-digit number!).
+Therefore, `"00"` is forbidden on the outermost layer.
+Output: `["11", "69", "88", "96"]`.
 
-The objective is to compute `["11", "69", "88", "96"]` from `{"n": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Inside-Out vs Outside-In Construction
+If we try to construct candidate numbers digit-by-digit from left to right, we must maintain mirroring constraints with the right half.
+Instead, **expanding from the center outward** ($m - 2 \to m$) naturally mirrors the string symmetrically:
+- Base center for even $n$: empty string `""` (length 0).
+- Base centers for odd $n$: single digits `["0", "1", "8"]` (length 1).
+- Each recursive step wraps the existing inner string $s$ with the 5 valid rotational pairs:
+  $$
+  (\text{"1"}, \text{"1"}), \quad (\text{"6"}, \text{"9"}), \quad (\text{"8"}, \text{"8"}), \quad (\text{"9"}, \text{"6"}), \quad (\text{"0"}, \text{"0"})
+  $$
+- The pair $(\text{"0"}, \text{"0"})$ is permitted at all internal layers, but suppressed at the outermost layer ($m == n$)!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Recursive Expansion Contract `helper(m, n)`
+`helper(m, n)` returns all valid strobogrammatic sub-strings of length $m$ intended for a final number of length $n$:
+1. **Base Cases:**
+   - If $m == 0$: return `[""]`.
+   - If $m == 1$: return `["0", "1", "8"]`.
+2. **Recursive Step ($m > 1$):**
+   Obtain smaller centered sub-strings:
+   $$
+   \text{inner\_list} = \text{helper}(m - 2, n)
+   $$
+   Initialize $\text{results} = []$.
+   For each inner string $s \in \text{inner\_list}$:
+   - Always append non-zero rotational wrappers:
+     $$
+     \text{"1"} + s + \text{"1"}
+     $$
+     $$
+     \text{"6"} + s + \text{"9"}
+     $$
+     $$
+     \text{"8"} + s + \text{"8"}
+     $$
+     $$
+     \text{"9"} + s + \text{"6"}
+     $$
+   - **Leading Zero Guard:**
+     Append $(\text{"0"}, \text{"0"})$ **only if $m \ne n$**:
+     $$
+     \text{if } m \ne n: \quad \text{results}.\text{append}(\text{"0"} + s + \text{"0"})
+     $$
+3. Return `results`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Combinatorial Cardinality Formula
+Let $h = \lfloor n / 2 \rfloor$:
+- If $n$ is even ($n = 2h, h \ge 1$):
+  $$
+  \text{Count} = 4 \times 5^{h - 1}
+  $$
+- If $n$ is odd ($n = 2h + 1, h \ge 1$):
+  $$
+  \text{Count} = 4 \times 5^{h - 1} \times 3
+  $$
+*(For $n = 1$, count is 3)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Every string generated at level $m$ is symmetrically strobogrammatic. At the terminal level $m = n$, no generated string begins with `'0'`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The helper's precise promise
+We trace the execution for $n = 2$:
+Target length $n = 2$.
+Top-level call: `helper(m = 2, n = 2)`.
 
-`dfs(u)` returns all strobogrammatic strings of length `u` that may be used as the current inner portion of the final length-`n` number. Inner portions are allowed to begin with `0`; only the outermost digit of the final number is forbidden from being zero.
-
-That distinction explains why the helper needs access to the original `n` through its closure. At an internal level, `u != n`, so wrapping with `"0" + v + "0"` is allowed. At the outermost level, `u == n`, so `00` is skipped to prevent a leading zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Recurse to Base Case
+- Top-level needs `helper(2 - 2, 2) = helper(0, 2)`.
+- $m = 0 \implies$ Base case triggered!
+- Returns `inner_list = [""]`.
 
 ---
 
-### Step 2: Why construction begins at the center
-
-Every recursive call decreases the remaining length by two, corresponding to reserving one position at each end. The parity never changes, so there are two base cases.
-
-- For `u == 0`, return `['']`. The empty string acts as the neutral center of an even-length number. Wrapping it with `11`, for example, produces `11`.
-- For `u == 1`, return `['0', '1', '8']`. An odd-length number has one center position that maps to itself, and only these three digits do so.
-
-The empty-string base case is especially important. If the recursion instead began with only the valid two-digit numbers, it would omit `00` as an inner block and could never generate valid values such as `1001` or `6009`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Wrap Base Center at $m = 2$
+Inner string to wrap: $s = \text{""}$.
+Available rotational pairs:
+1. Wrap with $(1, 1)$: $\text{"1"} + \text{""} + \text{"1"} = \mathbf{\text{"11"}}$.
+2. Wrap with $(6, 9)$: $\text{"6"} + \text{""} + \text{"9"} = \mathbf{\text{"69"}}$.
+3. Wrap with $(8, 8)$: $\text{"8"} + \text{""} + \text{"8"} = \mathbf{\text{"88"}}$.
+4. Wrap with $(9, 6)$: $\text{"9"} + \text{""} + \text{"6"} = \mathbf{\text{"96"}}$.
+5. Wrap with $(0, 0)$?
+   - Check condition: $m \ne n \implies 2 \ne 2$ (**False**).
+   - Because $m == n$, this is the outermost boundary!
+   - Wrapper $(\text{"0"}, \text{"0"})$ is **suppressed** to avoid leading zero `"00"`.
 
 ---
 
-### Step 3: How each recursive level expands the inner results
-
-For every inner string `v`, the loop always creates four wrappers:
-
-
-
-It deliberately leaves `00` out of that tuple and appends it separately only when `u != n`. This layout makes it impossible to accidentally generate a final number with a leading zero while still permitting zeros at internal mirrored positions.
-
-For `n = 2`, `dfs(0)` produces `['']`. The outer `dfs(2)` wraps the empty center with the four nonzero pairs, yielding `['11', '88', '69', '96']`. The `00` pair is skipped because `u == n`.
-
-For `n = 4`, recursion first computes `dfs(2)` as an **inner** level. Here `u = 2` differs from the final `n = 4`, so it includes `['11', '88', '69', '96', '00']`. The outer level wraps each of those five centers with four nonzero pairs. This includes values such as `1001`, whose inner `00` is necessary even though an outer leading zero would be invalid.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["11", "69", "88", "96"]` |
+### Step 3: Emit Final Collection
+Aggregated results for $n = 2$:
+$$
+\text{["11", "69", "88", "96"]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["11", "69", "88", "96"]` | Verified |
+```text
+n = 2:
+helper(2, 2):
+  helper(0, 2) -> [""]
+  Wrap "" with non-zero pairs:
+    "1" + "" + "1" -> "11"
+    "6" + "" + "9" -> "69"
+    "8" + "" + "8" -> "88"
+    "9" + "" + "6" -> "96"
+  (Pair "0" + "" + "0" skipped because m == n)
+Result: ["11", "69", "88", "96"]
+```
+
+| Recursion Depth | Layer Length $m$ | Target Length $n$ | Base / Inner Sub-strings | Active Wrappers Applied | Generated Strings |
+|:---:|:---:|:---:|:---:|:---|:---|
+| **Base** | 0 | 2 | None | Base identity | `[""]` |
+| **Outermost** | 2 | 2 | `[""]` | `(1,1), (6,9), (8,8), (9,6)` (`00` skipped) | **`["11", "69", "88", "96"]`** |
+
+### Contrast: Odd Length Execution ($n = 3$)
+- `helper(1, 3)` returns `["0", "1", "8"]` (Base case $m = 1$).
+- `helper(3, 3)` wraps each center with the 4 outer pairs ($m == 3 == n \implies 00$ skipped):
+  - Around `"0"`: `"101", "609", "808", "906"`
+  - Around `"1"`: `"111", "619", "818", "916"`
+  - Around `"8"`: `"181", "689", "888", "986"`
+- Total: $4 \times 3 = 12$ valid numbers.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** By mathematical induction:
+1. Base cases $m = 0$ (empty) and $m = 1$ (`0, 1, 8`) are palindromic under 180-degree rotation.
+2. If string $s$ is strobogrammatic, prepending $a$ and appending $b$ where $\rho(a) = b$ produces a new string $a s b$ that is also strobogrammatic.
+3. Suppressing $(0, 0)$ when $m == n$ guarantees the first character is non-zero, satisfying decimal integer formatting rules.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any strobogrammatic string of length $n$ must end in a valid pair $(a, b)$ with $\rho(a) = b$ and contain a valid strobogrammatic string of length $n - 2$ in its interior. The algorithm systematically recurses through all combinations without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Backtracking into a fixed character array:** Fill mirrored positions from the outside inward and emit a copy at the center. It generates the same search space and can avoid repeatedly concatenating intermediate strings, though each completed answer still needs an $O(n)$ copy.
-- **Iterative center expansion:** Start with `['']` for even `n` or `['0', '1', '8']` for odd `n`, then wrap level by level. It mirrors this recursion exactly and removes call-stack usage.
-- **Generate all digit strings and filter:** Trying $10^n$ strings ignores the strong pair constraints and is exponentially much larger than generating only valid candidates.
-- **`n = 1`:** Return `0`, `1`, and `8`. These are the only digits unchanged by rotation and `0` is a valid one-digit number.
-- **`n = 2`:** The inner empty string is wrapped by the four nonzero pairs. `00` is excluded because it is not a two-digit number.
-- **Zeros inside longer numbers:** Internal `00` pairs are necessary. Values such as `1001` are valid even though `0000` is not a valid four-digit result.
-- **Leading zero:** The condition `u != n` is what distinguishes an internal layer from the final outer layer. Removing it would generate strings whose written length is `n` but whose numeric representation has fewer digits.
-- **Odd center `6` or `9`:** These digits rotate into each other rather than themselves, so neither can occupy the fixed center position.
-- **Pair orientation:** `69` and `96` are both valid and distinct. Pairs `66` and `99` are invalid because each digit rotates into the other digit, not itself.
-- **Output ordering:** The exact code emits wrappers in the order `11`, `88`, `69`, `96`, followed by internal `00`. Sorting is unnecessary and would add work because any return order is accepted.
-- **Duplicate generation:** Each result has one unique sequence of outer pairs and optional center, so different construction paths cannot produce the same string.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Prematurely Banning Zeroes:** Internal zeroes are completely valid (e.g. `"1001"` for $n = 4$ or `"101"` for $n = 3$). The check must be `if m != n:`, allowing `"0" + s + "0"` at internal depths and only banning it at the outer perimeter.
+- **Center Digits in Odd Numbers:** Only `'0'`, `'1'`, and `'8'` can serve as single-character centers. Digits `'6'` and `'9'` rotate into each other, not themselves, so they can never be placed in the center.
+- **Stack Overflow on Large $n$:** The recursion depth is $\lfloor n/2 \rfloor$. For LeetCode constraints ($n \le 14$), recursion depth is at most 7, well within call-stack safety.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n \cdot 5^{n/2})$. Let $h=\lfloor n/2\rfloor$, the number of mirrored position pairs. For even $n=2h$ with $h\ge1$, the outer pair has four choices and each of the remaining $h-1$ inner pairs has five choices, so the exact result count is
-- **Auxiliary Space Complexity:** $O(n \cdot 5^{n/2})$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot 5^{N/2})$, where $N = n$. The algorithm generates exactly $4 \times 5^{\lfloor N/2 \rfloor - 1}$ strings for even $N$ (and $12 \times 5^{\lfloor N/2 \rfloor - 1}$ for odd $N$). Each string has length $N$, requiring $O(N)$ string concatenation time. The runtime is asymptotically optimal since it is proportional to the size of the output.
+- **Auxiliary Space Complexity:** $O(N \cdot 5^{N/2})$ to store all generated strings in memory (call stack depth is only $O(N)$).

@@ -1,124 +1,218 @@
 # Guided Example: Strong Password Checker
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step three-tier length classification ($N < 6$, $6 \le N \le 20$, $N > 20$), character type deficiency counting, modular triplet reduction, and greedy deletion exchange arguments on representative password strings:
 
-- **Input:** `{"password": "a"}`
-- **Required output:** `5`
+- **Input:** $password = \text{"aaaaaaaaaaaaaaaaaaaaaa"}$ (22 lowercase `'a'`s)
+- **Required output:** `8`
+  - Total length: $N = 22$ (Exceeds maximum length $20 \implies N > 20$)
+  - Mandatory deletions required: $D = N - 20 = 22 - 20 = \mathbf{2}$
+  - Character types present: lowercase only $\implies types = 1$
+  - Missing types: $M = 3 - 1 = \mathbf{2}$ (Needs uppercase letter and digit)
+  - Triplet run analysis:
+    - Single run of 22 `'a'`s: length $L = 22$
+    - Initial replacement requirement: $\lfloor 22 / 3 \rfloor = 7$
+    - Modular class: $22 \equiv 1 \pmod 3$
+  - Greedy deletion application:
+    - Applying $2$ deletions to a run with $L \equiv 1 \pmod 3$ reduces length from $22 \to 20$.
+    - New replacement requirement: $\lfloor 20 / 3 \rfloor = 6$ (Saves 1 replacement!)
+    - Remaining replacements: $R' = 7 - 1 = \mathbf{6}$
+  - Overlap with missing types:
+    - The $6$ replacements can be chosen to supply the $2$ missing types (uppercase and digit): $\max(R', M) = \max(6, 2) = 6$.
+  - Total minimum operations:
+    $$
+    D + \max(R', M) = 2 + 6 = \mathbf{8}
+    $$
+- **Short Password ($N < 6$):** $password = \text{"aA1"} \implies N = 3, M = 0 \implies \max(6 - 3, 0) = \mathbf{3}$ insertions
+- **Valid Length ($6 \le N \le 20$):** $password = \text{"1337C0d3"} \implies N = 8, M = 0, R = 0 \implies \mathbf{0}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates case-based optimization under three distinct structural regimes, mathematically proves the greedy deletion exchange hierarchy ($L \equiv 0$, then $1$, then $2$), and derives $O(N)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A password is considered strong if the below conditions are all met:
+Given a password string $password$:
+A password is **strong** if and only if it satisfies all three conditions:
+1. **Length:** At least 6 and at most 20 characters ($6 \le |password| \le 20$).
+2. **Character Classes:** Contains at least one lowercase letter, one uppercase letter, and one digit ($types \ge 3$).
+3. **No Triplets:** Does not contain three repeating characters in a row ($s[i] == s[i+1] == s[i+2]$ is forbidden).
 
-The objective is to compute `5` from `{"password": "a"}` while avoiding redundant calculations and unnecessary overhead.
+Find the **minimum number of operations** (insert, delete, or replace a character) needed to make the password strong.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Input: "aaaaaaaaaaaaaaaaaaaaaa" (Length 22)
+
+Deficiencies Identified:
+  1. Length: 22 > 20 (Excess of 2 characters -> 2 deletions mandatory)
+  2. Classes: Only lowercase (Missing 2 classes: uppercase and digit)
+  3. Triplets: A contiguous run of 22 identical characters
+
+Optimal Strategy:
+  - Delete 2 characters: length becomes 20 (saves 1 replacement)
+  - Perform 6 replacements: breaks all triplets AND inserts missing classes
+  Total Operations: 2 + 6 = 8
+```
+
+### The Three Operational Regimes
+The problem naturally partitions into three disjoint length regimes based on whether insertions, deletions, or pure replacements dominate:
+- **Case 1 ($N < 6$):** Insertions dominate.
+- **Case 2 ($6 \le N \le 20$):** Replacements dominate.
+- **Case 3 ($N > 20$):** Deletions interact greedily with replacements.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Regime 1: Too Short ($N < 6$)
+- We must perform at least $6 - N$ insertions to reach length 6.
+- Any character inserted can simultaneously be chosen as a missing character type (uppercase, lowercase, digit).
+- Insertions can also be placed between repeated characters to break triplets (e.g. `"aaaaa"` with $N = 5$: inserting 1 character at index 2 produces `"aaXaa"`, breaking all triplets).
+- Therefore, insertions completely subsume both missing types and triplet breaking:
+  $$
+  \text{Operations} = \max(6 - N, \; 3 - types)
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Regime 2: Valid Length ($6 \le N \le 20$)
+- No insertions or deletions are needed. Length is already optimal.
+- A contiguous repeating run of length $L \ge 3$ requires $\lfloor L / 3 \rfloor$ replacements to break all triplets (e.g. `"aaa"` $\to$ `"aXa"` requires 1 replacement).
+- Each replacement can be chosen to supply a missing character type.
+- Total replacements needed for triplets: $R = \sum \lfloor L_k / 3 \rfloor$.
+- Missing types needed: $M = 3 - types$.
+- Because replacements can simultaneously fulfill missing types:
+  $$
+  \text{Operations} = \max(R, \; M)
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Regime 3: Too Long ($N > 20$)
+- We must delete at least $D = N - 20$ characters to satisfy the length cap.
+- Can deletions help reduce the number of replacements needed to break triplets?
+  - In a run of length $L$, if we delete characters, how many deletions does it take to reduce the required replacements by 1?
+  - **Class 0 ($L \equiv 0 \pmod 3$, e.g. $L = 3$ `"aaa"`):**
+    Deleting **1** character reduces length to $2$ (`"aa"`), reducing replacements from $1 \to 0$. **Efficiency: 1 deletion saves 1 replacement.**
+  - **Class 1 ($L \equiv 1 \pmod 3$, e.g. $L = 4$ `"aaaa"`):**
+    Deleting **2** characters reduces length to $2$ (`"aa"`), reducing replacements from $1 \to 0$. **Efficiency: 2 deletions save 1 replacement.**
+  - **Class 2 ($L \equiv 2 \pmod 3$, e.g. $L = 5$ `"aaaaa"`):**
+    Deleting **3** characters reduces length to $2$, reducing replacements from $1 \to 0$. **Efficiency: 3 deletions save 1 replacement.**
+
+> **Greedy Deletion Priority Invariant.** To minimize total operations, mandatory deletions must be spent first on runs with $L \equiv 0 \pmod 3$ (cost 1), then on runs with $L \equiv 1 \pmod 3$ (cost 2), and finally on any runs (cost 3).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Three independent requirements can often share one edit
-
-A strong password must satisfy a length interval, contain all three required character types, and avoid runs of three equal characters. The challenge is not merely to count violations and add them: one insertion or replacement can repair several violations simultaneously. For example, replacing one character inside `"aaa"` with an uppercase letter can both break the repetition and add a missing uppercase type.
-
-The solution first counts how many required types already appear. `countTypes` scans every character and sets one flag for lowercase letters, one for uppercase letters, and one for digits. The returned `types` is between zero and three, so `3 - types` is the number of missing categories. The `elif` chain is appropriate because one character belongs to at most one of these three categories; punctuation such as `'.'` and `'!'` sets none of them.
-
-The optimal strategy then separates passwords into three length regimes. Insertions are forced when the string is shorter than six, replacements are sufficient when the length is already from six through twenty, and deletions are forced when it exceeds twenty. The relationship between edits and repeated runs differs in each regime.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"password": "a"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $password = \text{"aaaaaaaaaaaaaaaaaaaaaa"}$ ($N = 22$):
 
 ---
 
-### Step 2: Case 1: fewer than six characters
-
-If `n < 6`, at least `6 - n` insertions are unavoidable because replacement and deletion cannot increase length. At least `3 - types` edits are also unavoidable because one edit can introduce at most one missing character category. This gives the lower bound
-
-`max(6 - n, 3 - types)`.
-
-The same number is sufficient. Mandatory insertions can be chosen from missing categories and placed inside repeated runs to break them. If more categories are missing than insertions are required, the remaining edits can be replacements that both add a category and break a repetition when needed. Because the original length is at most five, these strategically placed edits are enough to prevent any triple while reaching length six.
-
-For `"a"`, the length deficit is five and two types are missing, so five insertions dominate. For `"aA1"`, the three types already exist but three characters must be inserted, so the answer is three. For `"aaaaa"`, one insertion is needed for length and two types are missing; two edits suffice, for example one insertion and one replacement placed to split the run.
-
-This is why the short case does not separately scan repeated runs. Their repairs can be absorbed into the edits already counted by the larger of the two fundamental deficits.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Count Character Types and Deficiencies
+- Check character sets:
+  - Lowercase: `'a'` present $\implies 1$
+  - Uppercase: None $\implies 0$
+  - Digit: None $\implies 0$
+- Types present: $types = 1$.
+- Missing types:
+  $$
+  M = 3 - 1 = \mathbf{2}
+  $$
 
 ---
 
-### Step 3: Count replacements required by a repeated run
+### Step 2: Identify Repeating Runs
+- The password has one contiguous run of `'a'` with length $L = 22$.
+- Initial replacements required:
+  $$
+  R = \lfloor 22 / 3 \rfloor = \mathbf{7}
+  $$
+- Modular category:
+  $$
+  22 \bmod 3 = \mathbf{1} \quad (\text{Class 1 run})
+  $$
 
-For passwords of valid or excessive length, the code scans maximal runs of identical characters. The sentinel `prev = '~'` is safe because the input alphabet does not contain `~`; the first real character therefore starts a new run with `cnt = 1`.
+---
 
-A run of length $L$ needs `L // 3` replacements if no deletions are applied. One replacement can be placed in every third position, splitting the run so that no segment retains three equal consecutive characters. Fewer replacements cannot work because the disjoint groups of positions `0..2`, `3..5`, and so on each need at least one changed character.
+### Step 3: Apply Mandatory Deletions
+- Mandatory deletions needed to reach length 20:
+  $$
+  D = 22 - 20 = \mathbf{2}
+  $$
+- Evaluate greedy deletion options:
+  - Are there any Class 0 runs ($L \equiv 0$)? None.
+  - Are there any Class 1 runs ($L \equiv 1$)? Yes, the single run of length 22!
+  - We have $D = 2$ available deletions.
+  - Spending $2$ deletions on this run reduces its length:
+    $$
+    L' = 22 - 2 = 20
+    $$
+  - New replacements needed for this run:
+    $$
+    R' = \lfloor 20 / 3 \rfloor = \mathbf{6}
+    $$
+  - Deletions remaining: $2 - 2 = 0$.
+  - Net effect: $2$ deletions saved $1$ replacement ($7 \to 6$).
 
-When a new character begins, `cnt // 3` for the completed run is added to `replace`, and `cnt` resets to one for the new run. The final run is added after the loop because no later character arrives to flush it.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Step 4: Combine Remaining Replacements and Missing Types
+- Remaining replacements to break all triplets: $R' = 6$.
+- Missing types: $M = 2$.
+- Each replacement can replace an `'a'` with an uppercase letter or digit:
+  $$
+  \max(R', M) = \max(6, 2) = \mathbf{6}
+  $$
+- Example modification:
+  - Delete 2 `'a'`s $\implies 20$ `'a'`s remain.
+  - At index 2, replace `'a'` with `'A'` (supplies uppercase).
+  - At index 5, replace `'a'` with `'1'` (supplies digit).
+  - At indices 8, 11, 14, 17, replace `'a'` with `'b'` (breaks remaining triplets).
+  - Final string: `"aaAaa1aabaabaabaabaa"` (length 20, 3 types, no triplets).
+
+---
+
+### Step 5: Final Operation Sum
+$$
+\text{Total Operations} = D + \max(R', M) = 2 + 6 = \mathbf{8}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"password": "a"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Phase | Parameter / State | Value | Rationale |
+|:---:|:---|:---:|:---|
+| **Length Check** | Initial Length $N$ | $22$ | Exceeds maximum 20; requires $D = 22 - 20 = 2$ deletions |
+| **Type Check** | Types Present | $\{ \text{lowercase} \}$ | $types = 1 \implies M = 3 - 1 = 2$ missing types |
+| **Run Analysis** | Contiguous Runs | $[22]$ | Single run of 22 `'a'`s ($22 \equiv 1 \pmod 3$, initial $R = 7$) |
+| **Greedy Deletion 1** | Class 0 ($L \equiv 0$) | 0 available | No runs with $L \equiv 0 \pmod 3$ |
+| **Greedy Deletion 2** | Class 1 ($L \equiv 1$) | Run of 22 | Use $2$ deletions $\implies$ reduces length to 20, saves 1 replacement |
+| **Post-Deletion State** | Remaining Deletions | $0$ | Exactly reaches target length 20 |
+| **Post-Deletion State** | Remaining Replacements $R'$ | $6$ | $\lfloor 20 / 3 \rfloor = 6$ |
+| **Type Substitution** | $\max(R', M)$ | $\max(6, 2) = 6$ | 6 replacements absorb 2 missing character types |
+| **Final Answer** | Total Operations | $2 + 6 = \mathbf{8}$ | Minimal operations to achieve strong password |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Extremely Short ($N = 1$, e.g. `"a"`):** $N = 1, types = 1 \implies M = 2$. Formula gives $\max(6 - 1, 2) = \mathbf{5}$ insertions (e.g. `"aA1bcd"`).
+- **Short with Repeats ($N = 5$, `"aaaaa"`):** $N = 5, types = 1 \implies M = 2$. Required insertions: $6 - 5 = 1$. Inserting 1 character breaks the run into two runs of 2 (e.g. `"aaAaa"`), but still needs a digit $\implies \max(1, 2) = \mathbf{2}$ insertions (e.g. `"aaAaa1"`).
+- **Already Strong ($N = 8$, `"1337C0d3"`):** $6 \le N \le 20$, all 3 types present, no triplets $\implies \mathbf{0}$ operations.
+- **Many Small Runs ($N = 24$, `"aaa...aaa"` with 8 triplets):** Deletions prioritizing $L \equiv 0$ remove 1 char from each of the first 4 triplets, saving 4 replacements directly.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Breadth-first search over edited strings:** It could find a minimum in principle, but the branching factor over insertions, deletions, positions, and characters makes the state space enormous.
-- **Add all violation counts:** Summing length deficit, missing types, and repetition replacements overcounts because one replacement or insertion can repair a repetition and a missing category together.
-- **Replace every third repeated character before deleting:** For strings longer than twenty, this wastes mandatory deletions. Deleting from carefully chosen runs can eliminate some replacements for free beyond the deletion cost.
-- **Delete from longest runs only:** Length alone does not determine immediate efficiency. A length-six run needs one deletion to save a replacement, while a length-five run needs three; modulo three controls the priority.
-- **Already strong password:** Length is valid, `replace` and missing types are both zero, so the method returns zero.
-- **Only punctuation:** `types` remains zero. Punctuation still contributes to length and repeated runs, but it satisfies no category.
-- **Repeated punctuation:** The equality scan treats `'.'` or `'!'` exactly like repeated letters, correctly enforcing the no-three-identical rule.
-- **Run ending at the last character:** The explicit post-loop flush is necessary; otherwise its replacements and deletion opportunities would be omitted.
-- **Exactly length six or twenty:** These belong to the middle regime; no length edit is required.
-- **Exactly length twenty-one:** One deletion is mandatory and is preferentially assigned to a remainder-zero run if one exists.
-- **Several missing types inside repeated runs:** Replacement characters can be chosen from different missing categories, allowing repair costs to overlap.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Suboptimal Deletion Allocation:** Deleting characters arbitrarily instead of prioritizing $L \equiv 0 \pmod 3$ wastefully uses deletions without reducing the required replacement count.
+- **Double-Counting Replacements and Types:** Treating missing types as additive to replacements ($\text{replacements} + \text{missing}$) rather than taking the maximum $\max(R, M)$ creates unnecessary extra operations.
+- **Miscalculating Short Passwords:** Trying to delete characters when $N < 6$ is always suboptimal. Any deletion decreases length, increasing the number of insertions required.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the password length. `countTypes` scans the string once. The applicable run-counting branch scans it once more, performing constant work per character. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Scanning the password to count character classes and identify contiguous run lengths takes a single pass of $O(N)$ time.
+  - The greedy deletion adjustments operate on the identified run counts in $O(1)$ time.
+  - Total Time: $\mathcal{O}(N)$. For $N \le 50$, this executes in under a microsecond.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$. Memory is restricted to counters for character types, deletion quotas, and run lengths.

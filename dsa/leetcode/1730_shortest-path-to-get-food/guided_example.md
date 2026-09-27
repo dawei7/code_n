@@ -2,123 +2,163 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"grid": [["*", "#"]]}`
-- **Required output:** `1`
+- **Input:**
+  $$\text{grid} = \begin{bmatrix} \text{X} & \text{X} & \text{X} & \text{X} & \text{X} & \text{X} \\ \text{X} & \text{*} & \text{O} & \text{O} & \text{O} & \text{X} \\ \text{X} & \text{O} & \text{O} & \text{\#} & \text{O} & \text{X} \\ \text{X} & \text{X} & \text{X} & \text{X} & \text{X} & \text{X} \end{bmatrix}$$
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features obstacles, multiple paths to food, and open intermediate spaces, demonstrating how level-by-level Breadth-First Search (BFS) guarantees the minimal step count in an unweighted grid graph.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are starving and you want to eat food as quickly as possible. You want to find the shortest path to arrive at any food cell.
+We are given an $m \times n$ character grid with the following cell symbols:
+- `'*'`: Starting location (exactly one)
+- `'#'`: Destination food cell (one or more)
+- `'O'`: Empty traversable space
+- `'X'`: Impassable obstacle/wall
 
-The objective is to compute `1` from `{"grid": [["*", "#"]]}` while avoiding redundant calculations and unnecessary overhead.
+From any cell, valid moves consist of jumping to an orthogonally adjacent cell (North, South, East, West) within grid bounds that is not an obstacle `'X'`. We seek the minimum number of steps to reach any cell containing `'#'`. If no food cell is reachable, the output must be `-1`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because every step has uniform cost $1$, Dijkstra's algorithm simplifies to standard queue-based Breadth-First Search. Exploring the grid level-by-level ensures that the very first time any `'#'` cell is encountered, the path discovered to it is mathematically guaranteed to be shortest.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Definition | Initial State |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| BFS Queue $Q$ | FIFO queue holding active frontier coordinates $(r, c)$ | Enqueue starting coordinate $(r_*, c_*)$ |
+| Visited Marking | In-place overwrite of visited open cells `'O'` to `'X'` | Mark starting cell as visited |
+| Distance Counter $d$ | Current exploration radius (path length) | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Unit-Cost Monotonic Wavefront Expansion Theorem.**
+> In a graph where all edges have weight $1$, Breadth-First Search processes vertices in monotonically non-decreasing order of their geodesic distance from the source $s$:
+> $$\text{dist}(s, u) \le \text{dist}(s, v) \quad \text{for all } u \text{ popped before } v$$
+> Consequently, the first vertex popped or discovered that satisfies the target predicate (being a food cell `'#'`) possesses the global minimum distance $\min_{f \in \mathcal{F}} \text{dist}(s, f)$.
+
+> **In-Place Deduplication Invariant.**
+> To prevent revisiting cells or expanding infinite cycles, every cell admitted into the frontier queue is immediately transformed from `'O'` to an obstacle `'X'`. This ensures each vertex enters the queue at most once.
+
+```mermaid
+flowchart TD
+    accTitle: BFS Wavefront Level Expansion
+    accDescr: Flowchart showing BFS level exploration from the start cell until a food cell is reached.
+    A["Find Starting Cell '*' at (1, 1)"] --> B["Initialize Queue Q = [(1, 1)], Steps = 0"]
+    B --> C{"Is Queue Q Empty?"}
+    C -- Yes --> D["No Food Reachable: Return -1"]
+    C -- No --> E["Increment Steps by 1"]
+    E --> F["Pop all nodes in current distance level"]
+    F --> G["Inspect 4 Cardinal Neighbors (r + dr, c + dc)"]
+    G --> H{"Is neighbor cell '#'?"}
+    H -- Yes --> I["Food Reached! Return Steps"]
+    H -- No --> J{"Is neighbor cell 'O' within bounds?"}
+    J -- Yes --> K["Mark cell as 'X' (Visited) and Enqueue"]
+    J -- No --> L["Skip cell (Wall, Visited, or Out-of-Bounds)"]
+    K --> F
+    L --> F
+    F --> C
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use breadth-first search because every move costs one
+For the given grid of dimensions $m = 4, n = 6$:
+- Starting position `'*'` is at row $1$, column $1$: $(1, 1)$.
+- Destination `'#'` is located at $(2, 3)$.
 
-Each legal move goes to one orthogonally adjacent cell and contributes one step. This is an unweighted graph shortest-path problem: cells are vertices and legal adjacencies are edges of equal cost.
+### Initialization
 
-Breadth-first search explores all cells at distance one before distance two, all distance two before distance three, and so on. Therefore the first food cell it discovers is guaranteed to have minimum path length among every reachable food cell.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [["*", "#"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Find the unique starting position
-
-The source uses
-
-`next((i, j) for i in range(m) for j in range(n) if grid[i][j] == '*')`.
-
-The generator scans rows and columns until it finds `'*'`. The contract guarantees exactly one, so `next` always succeeds and returns its coordinates.
-
-This initial scan costs at most one full grid traversal.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- Start cell identified at $(1, 1)$.
+- Mark $(1, 1)$ as visited.
+- Initialize FIFO queue: $Q = [(1, 1)]$.
+- Cumulative step counter: $\text{steps} = 0$.
 
 ---
 
-### Step 3: Represent the BFS frontier with a queue
+### Level 1 Expansion ($\text{steps} = 1$)
 
-`q = deque([(i, j)])` begins with the start cell. The queue contains positions discovered but not yet expanded.
+Queue size at start of level: $1$. We pop $(1, 1)$:
 
-`dirs = (-1, 0, 1, 0, -1)` works with `pairwise` to produce the four direction pairs:
+- North $(0, 1)$: Cell contains `'X'` (Wall) $\to$ Skipped.
+- South $(2, 1)$: Cell contains `'O'` $\to$ Valid! Mark as `'X'`, enqueue $(2, 1)$.
+- West $(1, 0)$: Cell contains `'X'` (Wall) $\to$ Skipped.
+- East $(1, 2)$: Cell contains `'O'` $\to$ Valid! Mark as `'X'`, enqueue $(1, 2)$.
 
-`(-1,0)`, `(0,1)`, `(1,0)`, and `(0,-1)`.
+Frontier after Level 1: $Q = [(2, 1), (1, 2)]$.
 
-These are up, right, down, and left. No diagonal movement is generated.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Level 2 Expansion ($\text{steps} = 2$)
+
+Queue size at start of level: $2$.
+
+1. **Pop $(2, 1)$:**
+   - North $(1, 1)$: Visited `'X'` $\to$ Skipped.
+   - South $(3, 1)$: Cell contains `'X'` $\to$ Skipped.
+   - West $(2, 0)$: Cell contains `'X'` $\to$ Skipped.
+   - East $(2, 2)$: Cell contains `'O'` $\to$ Valid! Mark as `'X'`, enqueue $(2, 2)$.
+
+2. **Pop $(1, 2)$:**
+   - North $(0, 2)$: Cell contains `'X'` $\to$ Skipped.
+   - South $(2, 2)$: Already marked visited $\to$ Skipped.
+   - West $(1, 1)$: Already visited $\to$ Skipped.
+   - East $(1, 3)$: Cell contains `'O'` $\to$ Valid! Mark as `'X'`, enqueue $(1, 3)$.
+
+Frontier after Level 2: $Q = [(2, 2), (1, 3)]$.
+
+---
+
+### Level 3 Expansion ($\text{steps} = 3$)
+
+Queue size at start of level: $2$.
+
+1. **Pop $(2, 2)$:**
+   - North $(1, 2)$: Visited `'X'` $\to$ Skipped.
+   - South $(3, 2)$: Cell contains `'X'` $\to$ Skipped.
+   - West $(2, 1)$: Visited `'X'` $\to$ Skipped.
+   - East $(2, 3)$: **Cell contains `'#'`! Food cell discovered!**
+
+The search halts immediately. The current step counter is $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Level | Popped Cell | Examined Neighbors | Action / Queue Modification | Next Level Queue |
+|---|---|---|---|---|
+| $0$ | Initialization | Locate `'*'` at $(1, 1)$ | Enqueue $(1, 1)$, mark visited | $[(1, 1)]$ |
+| $1$ | $(1, 1)$ | $(0,1): \text{X}$, $(2,1): \text{O}$, $(1,0): \text{X}$, $(1,2): \text{O}$ | Enqueue $(2, 1), (1, 2)$ | $[(2, 1), (1, 2)]$ |
+| $2$ | $(2, 1)$ | $(2,2): \text{O}$ | Enqueue $(2, 2)$ | $[(1, 2), (2, 2)]$ |
+| $2$ | $(1, 2)$ | $(1,3): \text{O}$ | Enqueue $(1, 3)$ | $[(2, 2), (1, 3)]$ |
+| $3$ | $(2, 2)$ | $(2,3): \mathbf{\#}$ | **Target reached! Return 3** | Search terminates |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Configuration | Result | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"grid": [["*", "#"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Immediate Adjacency | Food adjacent to start: `[["*", "#"]]` | `1` | Discovered on Level 1 expansion; halts after 1 step. |
+| Completely Blocked Food | Food surrounded by `'X'` on all sides | `-1` | Queue exhausts without encountering `'#'`; returns `-1`. |
+| Start Enclosed | Start surrounded by `'X'` | `-1` | Level 1 finds zero valid neighbors; queue becomes empty, returns `-1`. |
+| Multiple Food Destinations | Food at distance 3 and distance 5 | Shortest distance ($3$) | BFS expansion naturally visits the closer food cell first, returning its distance. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Why Early Halting is Correct:**
+   Because edge weights are uniformly $1$, all nodes at distance $d$ are expanded before any node at distance $d + 1$. Thus, checking for `'#'` upon neighbor inspection guarantees that the first food cell discovered has minimal distance.
+2. **Cycle Prevention:**
+   Rewriting open cells `'O'` to `'X'` immediately upon pushing to the queue ensures that no cell is ever enqueued multiple times, bounding total operations strictly by grid area.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Depth-first search:** It can test reachability but does not discover shortest paths in distance order without extra distance tracking and repeated relaxation.
-- **A* search:** A Manhattan-distance heuristic can prioritize promising cells, but multiple foods and heuristic computation add complexity; BFS already gives linear worst-case time.
-- **Separate visited set:** It preserves the input at the cost of another $O(mn)$ structure.
-- **Food adjacent to start:** The first layer returns one.
-- **Multiple foods:** The first one found by BFS has globally minimum distance.
-- **No reachable food:** The queue empties and returns `-1`.
-- **Narrow one-cell corridor:** BFS follows it without special handling.
-- **Original obstacle:** It is never enqueued.
-- **Visited open cell:** Rewriting it to `'X'` prevents duplicate queue entries.
-- **Start revisitation:** The `'*'` marker is not accepted by the open-cell branch.
-- **Grid mutation:** Callers must not expect original open-cell markers after execution.
-- **Layer size capture:** Using the queue length before the loop is essential to keep newly added cells in the next distance layer.
-- **Direction encoding:** `pairwise(dirs)` produces exactly four orthogonal moves.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(mn)$. Let $m$ and $n$ be the grid dimensions. Finding the start costs $O(mn)$ in the worst case. Each open cell is enqueued at most once, and expansion checks four neighbors, so BFS also costs $O(mn)$. Total time is $O(mn)$.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot n)$ where $m$ and $n$ are grid dimensions. Each grid cell is visited and enqueued at most once, and each cell has $4$ cardinal neighbors.
+- **Space Complexity:** $\mathcal{O}(m \cdot n)$ in the worst case for the BFS queue frontier (e.g. diagonal expansion across an open grid).

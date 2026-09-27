@@ -1,129 +1,202 @@
 # Guided Example: Minimum Number of Operations to Convert Time
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the greedy canonical coin-change algorithm that converts a start time to a target time using the minimum number of minute increment operations in $O(1)$ time and $O(1)$ auxiliary space.
 
-- **Input:** `{"current": "02:30", "correct": "04:35"}`
-- **Required output:** `3`
+- **Input:** `current = "02:30"`, `correct = "04:35"`
+- **Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given two strings `current` and `correct` representing two **24-hour times**.
-
-The objective is to compute `3` from `{"current": "02:30", "correct": "04:35"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance illustrates 24-hour time parsing, linear minute mapping, the canonical divisible property of greedy coin systems, and remainder propagation.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given two strings `current` and `correct` representing two times on a 24-hour clock in the format `"HH:MM"`.
+We are guaranteed that `current <= correct` on the same calendar day.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+In one operation, we can advance `current` forward by any of four fixed minute increments:
+$$\Delta t \in \{60, 15, 5, 1\}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Our goal is to find the **minimum number of operations** required to make `current` equal to `correct`.
 
----
+### Representative Instance Breakdown
 
-## 3. Step-by-Step Worked Execution
+Consider `current = "02:30"` and `correct = "04:35"`:
+1. **Convert to absolute minutes from midnight:**
+   - $\text{minutes}(\text{"02:30"}) = 2 \times 60 + 30 = 120 + 30 = 150$ minutes.
+   - $\text{minutes}(\text{"04:35"}) = 4 \times 60 + 35 = 240 + 35 = 275$ minutes.
+2. **Compute total minute deficit:**
+   - $\Delta = 275 - 150 = 125$ minutes.
+3. **Decompose into available increments $\{60, 15, 5, 1\}$:**
+   - Two $60$-minute increments: $2 \times 60 = 120$ minutes. (Remainder: $125 - 120 = 5$).
+   - Zero $15$-minute increments: $0 \times 15 = 0$ minutes. (Remainder: $5$).
+   - One $5$-minute increment: $1 \times 5 = 5$ minutes. (Remainder: $5 - 5 = 0$).
+   - Zero $1$-minute increments.
 
-### Step 1: Convert clock text into one numeric difference
-
-The allowed operations add minutes, so doing arithmetic directly on hours and minutes would create avoidable carry handling. The solution converts each `"HH:MM"` string into the number of minutes since midnight.
-
-For `current`, `int(current[:2])` reads the two hour digits and `int(current[3:])` reads the two minute digits after the colon. Multiplying the hour by sixty and adding the minutes gives `a`. The same calculation gives `b` for `correct`.
-
-For example, `"02:30"` becomes `2 * 60 + 30 = 150`, and `"04:35"` becomes `4 * 60 + 35 = 275`. The entire task is now to build the nonnegative difference `d = b - a` using the fewest additions chosen from `60`, `15`, `5`, and `1`.
-
-The constraint `current <= correct` means both times belong to the same ordered day and no midnight wraparound is needed. A difference of zero is valid when the two times are already equal.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"current": "02:30", "correct": "04:35"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Total operations: $2 + 0 + 1 + 0 = 3$.
 
 ---
 
-### Step 2: Always use as many largest increments as possible
+## 2. Mathematical & Algorithmic Principles
 
-The loop visits `[60, 15, 5, 1]` in descending order. For an increment `i`, the quotient `d // i` tells how many complete operations of size `i` fit in the remaining difference. The code adds that quotient to `ans` and replaces `d` with `d % i`, the part still uncovered.
+### The Canonical Divisibility Condition
 
-After processing sixty, fewer than sixty minutes remain. After processing fifteen, fewer than fifteen remain. The same pattern continues through five and one. Since one divides every integer difference, the final remainder becomes zero.
+In general coin-change problems, the greedy strategy of choosing the largest possible coin first does not always yield the minimum number of coins. For example, with denominations $\{1, 3, 4\}$, making change for $6$ via greedy yields $4 + 1 + 1$ ($3$ coins), whereas the optimum is $3 + 3$ ($2$ coins).
 
-For the difference `125` in the first example, two sixty-minute operations leave five minutes. No fifteen-minute operation fits, one five-minute operation finishes the conversion, and the answer is three.
+However, the set of increments $\mathcal{C} = \{60, 15, 5, 1\}$ forms a **canonical coin system** because each denomination is an exact integer multiple of the next smaller denomination:
+- $60 = 4 \times 15$
+- $15 = 3 \times 5$
+- $5 = 5 \times 1$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Greedy Choice Property Proof
 
----
+Because each larger denomination $c_k$ is a multiple of $c_{k+1}$:
+- Any collection of $4$ fifteen-minute operations ($4 \times 15 = 60$) can be replaced by $1$ sixty-minute operation, saving $3$ operations.
+- Any collection of $3$ five-minute operations ($3 \times 5 = 15$) can be replaced by $1$ fifteen-minute operation, saving $2$ operations.
+- Any collection of $5$ one-minute operations ($5 \times 1 = 5$) can be replaced by $1$ five-minute operation, saving $4$ operations.
 
-### Step 3: Why the greedy choice is optimal
+Therefore, an optimal solution can never contain $\ge 4$ operations of size 15, $\ge 3$ operations of size 5, or $\ge 5$ operations of size 1. Consequently, taking the maximal possible count of the largest available denomination at each step is unconditionally optimal:
+$$\text{count}_i = \lfloor \Delta / c_i \rfloor, \quad \Delta \leftarrow \Delta \pmod{c_i}$$
 
-Greedy use of the largest value is not correct for every arbitrary collection of increments. It is correct here because each increment is an exact multiple of the next smaller one:
+```mermaid
+flowchart TD
+    accTitle: Time Conversion Greedy Coin Change Workflow
+    accDescr: Flowchart illustrating parsing time strings to minutes, computing difference, and greedily dividing by 60, 15, 5, and 1.
 
-- one sixty-minute operation replaces four fifteen-minute operations;
-- one fifteen-minute operation replaces three five-minute operations;
-- one five-minute operation replaces five one-minute operations.
-
-Suppose a solution leaves room for one sixty-minute increment but tries to cover those sixty minutes using smaller operations. Even the best smaller choice requires at least four operations of fifteen minutes. Replacing them with one sixty-minute operation reaches the same time with fewer operations. Therefore, some optimal solution uses the maximum possible number of sixties, exactly `d // 60`.
-
-After removing those sixties, the remainder is below sixty and can no longer use that operation. The same exchange argument shows that any fifteen-minute portion should use one fifteen rather than at least three fives, and any five-minute portion should use one five rather than five ones. Applying this argument at every denomination proves the descending quotient choices are jointly optimal.
-
-Another way to view the result is mixed-radix decomposition. The quotient at each step is forced in a minimum-operation representation because replacing one large unit with its smaller components always increases the operation count.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"current": "02:30", "correct": "04:35"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+    Parse["Parse current and correct into minutes<br/>d = correct_mins - current_mins"] --> Init["ans = 0<br/>denominations = [60, 15, 5, 1]"]
+    Init --> Loop{"For each denom c in [60, 15, 5, 1]"}
+    Loop -- Next denom --> DivMod["ans += d // c<br/>d = d % c"]
+    DivMod --> Loop
+    Loop -- Complete --> Done(["Return ans"])
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace the algorithm on `current = "02:30"` and `correct = "04:35"`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Phase 1: Timestamp Serialization
+- Parse `current`:
+  - Hours: $H_1 = \text{int}(\text{"02"}) = 2$
+  - Minutes: $M_1 = \text{int}(\text{"30"}) = 30$
+  - Total minutes $a = 2 \times 60 + 30 = 150$
+- Parse `correct`:
+  - Hours: $H_2 = \text{int}(\text{"04"}) = 4$
+  - Minutes: $M_2 = \text{int}(\text{"35"}) = 35$
+  - Total minutes $b = 4 \times 60 + 35 = 275$
+- Compute deficit:
+  $$d = b - a = 275 - 150 = 125$$
+- Initialize $\text{ans} = 0$.
+
+### Phase 2: Greedy Denomination Reduction
+
+1. **Step 1: Denomination $c = 60$**
+   - Number of 60-minute blocks: $\lfloor 125 / 60 \rfloor = 2$.
+   - Increment accumulator: $\text{ans} \leftarrow 0 + 2 = 2$.
+   - Update deficit: $d \leftarrow 125 \pmod{60} = 5$.
+   - State: $d = 5$, $\text{ans} = 2$.
+
+2. **Step 2: Denomination $c = 15$**
+   - Number of 15-minute blocks: $\lfloor 5 / 15 \rfloor = 0$.
+   - Increment accumulator: $\text{ans} \leftarrow 2 + 0 = 2$.
+   - Update deficit: $d \leftarrow 5 \pmod{15} = 5$.
+   - State: $d = 5$, $\text{ans} = 2$.
+
+3. **Step 3: Denomination $c = 5$**
+   - Number of 5-minute blocks: $\lfloor 5 / 5 \rfloor = 1$.
+   - Increment accumulator: $\text{ans} \leftarrow 2 + 1 = 3$.
+   - Update deficit: $d \leftarrow 5 \pmod{5} = 0$.
+   - State: $d = 0$, $\text{ans} = 3$.
+
+4. **Step 4: Denomination $c = 1$**
+   - Number of 1-minute blocks: $\lfloor 0 / 1 \rfloor = 0$.
+   - Increment accumulator: $\text{ans} \leftarrow 3 + 0 = 3$.
+   - Update deficit: $d \leftarrow 0 \pmod{1} = 0$.
+   - State: $d = 0$, $\text{ans} = 3$.
+
+Final minimum operations: $3$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Increment minute by minute:** Repeatedly add one until reaching the target. It is correct but can perform up to 1439 iterations and does not minimize operations when larger increments are available.
-- **Breadth-first search over times:** Treat every minute as a state and every allowed addition as an edge. BFS would find a shortest path but introduces a queue and visited set for a problem solved directly by divisible denominations.
-- **Dynamic programming over the difference:** A coin-change table can find the minimum number of increments, but uses extra time and space and ignores the special divisibility structure that makes greedy exact.
-- **Greedy with arbitrary increments:** The proof depends on `60`, `15`, `5`, and `1` forming a divisible chain. The same strategy should not be copied blindly to denominations where a large choice can block a better combination.
-- **Equal times:** The difference is zero and no operation is needed.
-- **Difference below five minutes:** Sixty, fifteen, and five contribute zero operations; the one-minute quotient gives the exact answer.
-- **Difference exactly one denomination:** The matching quotient is one and all later remainders are zero.
-- **Several hours plus minutes:** Sixty-minute operations handle the full-hour portion, while smaller increments decompose the remaining minutes.
-- **Leading zeros:** Fixed slices and `int` correctly parse times such as `"00:05"`.
-- **No midnight wrap:** The contract guarantees `current <= correct`. If overnight conversion were allowed, the difference would need an added 1440-minute adjustment.
-- **No overshoot:** Quotient division takes only increments that fit in the remaining difference, so every intermediate time stays at or before `correct`.
-- **Input formatting:** The solution relies on the guaranteed `"HH:MM"` layout; malformed or variable-width strings are outside the contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Denomination Reduction Trace for $\Delta = 125$
+
+| Step | Denomination $c_i$ | Deficit Before $d$ | Quotient $\lfloor d / c_i \rfloor$ | Remainder $d \pmod{c_i}$ | Operations Added | Total Operations $\text{ans}$ |
+|---|---|---|---|---|---|---|
+| Initial | - | 125 | - | - | - | 0 |
+| 1 | 60 | 125 | 2 | 5 | +2 | 2 |
+| 2 | 15 | 5 | 0 | 5 | +0 | 2 |
+| 3 | 5 | 5 | 1 | 0 | +1 | 3 |
+| 4 | 1 | 0 | 0 | 0 | +0 | 3 |
+
+### Multi-Instance Operational Breakdown
+
+| `current` | `correct` | $t_{\text{current}}$ | $t_{\text{correct}}$ | Difference $\Delta$ | Count 60 | Count 15 | Count 5 | Count 1 | Optimal Moves |
+|---|---|---|---|---|---|---|---|---|---|
+| `"02:30"` | `"04:35"` | 150 | 275 | 125 | 2 | 0 | 1 | 0 | 3 |
+| `"11:00"` | `"11:01"` | 660 | 661 | 1 | 0 | 0 | 0 | 1 | 1 |
+| `"00:00"` | `"23:59"` | 0 | 1439 | 1439 | 23 | 2 | 1 | 4 | 30 |
+| `"09:41"` | `"09:41"` | 581 | 581 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `"00:00"` | `"01:15"` | 0 | 75 | 75 | 1 | 1 | 0 | 0 | 2 |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(1)$. Both time strings have a fixed five-character format. Parsing four fixed-length slices and performing arithmetic takes constant time. The loop always executes exactly four iterations, independent of the time difference. Therefore, time complexity is `O(1)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Global Optimality via Subproblem Replacement
+
+Let $S = (k_{60}, k_{15}, k_{5}, k_{1})$ be any valid sequence of operations summing to $d$:
+$$60 k_{60} + 15 k_{15} + 5 k_{5} + 1 k_{1} = d$$
+The total cost of $S$ is $|S| = k_{60} + k_{15} + k_{5} + k_{1}$.
+
+1. **Minimizing 1-minute increments:**
+   If $k_1 \ge 5$, replacing $5$ one-minute increments with $1$ five-minute increment preserves the sum while decreasing $|S|$ by $4$. Therefore, in any minimal solution, $k_1 \le 4$.
+2. **Minimizing 5-minute increments:**
+   If $k_5 \ge 3$, replacing $3$ five-minute increments with $1$ fifteen-minute increment preserves the sum while decreasing $|S|$ by $2$. Therefore, in any minimal solution, $k_5 \le 2$.
+3. **Minimizing 15-minute increments:**
+   If $k_{15} \ge 4$, replacing $4$ fifteen-minute increments with $1$ sixty-minute increment preserves the sum while decreasing $|S|$ by $3$. Therefore, in any minimal solution, $k_{15} \le 3$.
+
+Under these necessary conditions for optimality, the maximum value that can be represented by the three smaller denominations combined is:
+$$15 \times 3 + 5 \times 2 + 1 \times 4 = 45 + 10 + 4 = 59 < 60$$
+
+Because the smaller denominations can represent at most $59$ minutes, the remaining $d$ must satisfy $d - (15 k_{15} + 5 k_{5} + k_1) = 60 k_{60}$. Since the subtracted term is strictly less than $60$, $k_{60}$ must be precisely $\lfloor d / 60 \rfloor$.
+Applying the same argument inductively to $15$ and $5$ proves that the greedy selection is the unique optimal solution.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Zero Difference (`current == correct`):**
+   - $\Delta = 0$. All quotients are $0$, returns $0$ operations immediately.
+2. **Pure Hour Shift (e.g. `"01:00"` to `"05:00"`):**
+   - $\Delta = 240$. $240 / 60 = 4$, remainder $0$. Exactly $4$ sixty-minute operations.
+3. **Single Minute Shift (e.g. `"11:00"` to `"11:01"`):**
+   - $\Delta = 1$. Yields $0$ for 60, 15, and 5; exactly $1$ one-minute operation.
+4. **Maximum Span (`"00:00"` to `"23:59"`):**
+   - $\Delta = 1439$. Requires $23 \times 60 + 2 \times 15 + 1 \times 5 + 4 \times 1$, total $30$ operations.
+
+### Common Anti-Patterns
+
+- **Dynamic Programming Table ($O(\Delta)$ space):** Allocating a 1D DP table of size up to $1440$ to solve unbounded knapsack. While functionally correct, it is unnecessary overhead for a canonical coin system that is provably solvable in $O(1)$.
+- **BFS State Space Search:** Exploring a shortest path graph where each node is a minute timestamp $[0 \dots 1440]$ adds vertex queue overhead for a closed-form arithmetic solution.
+- **Handling Hours and Minutes Separately:** Attempting to adjust minutes first and then hours leads to complicated borrowing and conditional branches when minute increments exceed $60$. Flattening both timestamps into total minutes since midnight completely eliminates carry logic.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Time Parsing:** Slicing two strings of fixed length $5$ and converting two two-digit substrings to integers takes $O(1)$ operations.
+- **Greedy Loop:** Exactly $4$ iterations (for $60, 15, 5, 1$). Each iteration executes one integer division and one modulo operation.
+- **Total Time Complexity:** Strictly $O(1)$ constant time.
+
+### Auxiliary Space Complexity
+
+- The algorithm uses a handful of primitive integer variables (`a`, `b`, `d`, `ans`, `i`).
+- No heap memory, lists, or tables are allocated.
+- **Total Auxiliary Space Complexity:** Strictly $O(1)$ auxiliary memory.

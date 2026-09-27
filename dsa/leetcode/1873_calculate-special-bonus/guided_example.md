@@ -1,106 +1,168 @@
 # Guided Example: Calculate Special Bonus
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step row-level conditional evaluation of employee bonus eligibility based on integer identifier parity and initial letter prefix matching:
 
-- **Input:** `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3800}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7700}]}}`
-- **Required output:** `{"columns": ["employee_id", "bonus"], "rows": [[2, 0], [3, 0], [7, 7400], [8, 0], [9, 7700]]}`
+- **Input:**
+  - `Employees` table:
+    - ID 2: `"Meir"`, salary 3000
+    - ID 3: `"Michael"`, salary 3800
+    - ID 7: `"Addilyn"`, salary 7400
+    - ID 8: `"Juan"`, salary 6100
+    - ID 9: `"Kannon"`, salary 7700
+- **Required Output:**
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| employee_id | bonus |
+|:---:|:---:|
+| 2 | 0 |
+| 3 | 0 |
+| 7 | 7400 |
+| 8 | 0 |
+| 9 | 7700 |
+
+This instance demonstrates combining an arithmetic parity predicate (`employee_id % 2 == 1`) with a string prefix negation (`name NOT LIKE 'M%'`), computing conditional bonus values (`CASE WHEN`), and ordering the final relation by employee ID.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employees`
+Each employee record contains `employee_id`, `name`, and `salary`.
+An employee receives a bonus equal to $100\%$ of their salary if and only if:
+1. Their `employee_id` is an odd integer: $\text{employee\_id} \bmod 2 = 1$.
+2. Their `name` does **not** start with the character `'M'`: $\text{name}[0] \neq \text{'M'}$.
 
-The objective is to compute `{"columns": ["employee_id", "bonus"], "rows": [[2, 0], [3, 0], [7, 7400], [8, 0], [9, 7700]]}` from `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3800}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7700}]}}` while avoiding redundant calculations and unnecessary overhead.
+If either condition fails, the bonus is $0$.
+The result table must project `employee_id` and `bonus`, sorted in ascending order of `employee_id`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In our instance:
+- **Employee 2 (`"Meir"`, 3000):** Even ID ($2 \bmod 2 = 0$). Fails condition 1 $\implies$ bonus is $0$.
+- **Employee 3 (`"Michael"`, 3800):** Odd ID ($3 \bmod 2 = 1$), but name begins with `'M'`. Fails condition 2 $\implies$ bonus is $0$.
+- **Employee 7 (`"Addilyn"`, 7400):** Odd ID ($7 \bmod 2 = 1$) and name begins with `'A'` ($\neq \text{'M'}$). Both conditions satisfied $\implies$ bonus is $7400$.
+- **Employee 8 (`"Juan"`, 6100):** Even ID ($8 \bmod 2 = 0$). Fails condition 1 $\implies$ bonus is $0$.
+- **Employee 9 (`"Kannon"`, 7700):** Odd ID ($9 \bmod 2 = 1$) and name begins with `'K'` ($\neq \text{'M'}$). Both conditions satisfied $\implies$ bonus is $7700$.
+- Sorted by `employee_id`: $[2, 3, 7, 8, 9]$.
+
+The teaching goal is to evaluate **row-local conditional projection using boolean logic expressions**:
+$$\text{bonus} = \begin{cases} \text{salary} & \text{if } \text{id} \bmod 2 = 1 \land \text{name} \not\sim \text{'M\%'} \\ 0 & \text{otherwise} \end{cases}$$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Conjunctive Conditional Projection Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Conjunctive Conditional Projection & Parity-Prefix Invariant Theorem.**
+> 1. *Conjunctive Eligibility Rule:* Let $E = (\text{id}, \text{name}, \text{salary})$ be an employee tuple. The bonus eligibility indicator function is:
+>    $$\mathcal{B}(E) = [\text{id} \bmod 2 \equiv 1] \land [\text{name}[0] \neq \text{'M'}]$$
+> 2. *Deterministic Value Assignment:*
+>    $$\text{bonus}(E) = \begin{cases} \text{salary} & \text{if } \mathcal{B}(E) = 1 \\ 0 & \text{if } \mathcal{B}(E) = 0 \end{cases}$$
+> 3. *Cardinality & Order Invariant:* Every employee in `Employees` produces exactly one output row ($|\text{Output}| = |\text{Employees}|$). Ordering by $\text{id}$ ascending guarantees a unique canonical relation.
+> 4. *Complexity:* Checking each row takes $\mathcal{O}(1)$ time. Sorting $R$ rows takes $\mathcal{O}(R \log R)$ time.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Special Bonus Evaluation Pipeline
+    accDescr: Diagram showing row inspection, checking odd ID and name prefix, assigning bonus, and sorting by employee_id.
+    A["Input Employee Row"] --> B{"Is employee_id Odd?"}
+    B -- No (Even ID) --> C["Bonus = 0"]
+    B -- Yes (Odd ID) --> D{"Does name start with 'M'?"}
+    D -- Yes ('M...') --> C
+    D -- No (Other letter) --> E["Bonus = salary"]
+    C & E --> F["Order results by employee_id ASC"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Translate the rule into a row-by-row condition.** Every input employee must appear in the output exactly once, and only the computed `bonus` changes from row to row. An employee earns their full `salary` only when both positive requirements hold: `employee_id` is odd and `name` does not begin with uppercase `M`. The SQL source writes the logically equivalent negative form: assign zero when the ID is even **or** the first character is `M`; otherwise assign the salary. This use of De Morgan's law is worth making explicit:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3800}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7700}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace each employee row in ascending order of `employee_id`:
 
 ---
 
-### Step 2: Core Step 2
-
-$$
-\neg(\text{odd and not-M}) = \text{even or M}.
-$$
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Employee ID 2 (`"Meir"`, Salary $3000$)
+- Parity check: $2 \bmod 2 = 0$ (Even).
+- Condition 1 fails immediately.
+- Assigned bonus: $0$.
+- Record: `[2, 0]`.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Employee ID 3 (`"Michael"`, Salary $3800$)
+- Parity check: $3 \bmod 2 = 1$ (Odd $\implies$ Condition 1 passes).
+- Name prefix check: first character of `"Michael"` is `'M'`.
+- Condition 2 fails (name must NOT start with `'M'`).
+- Assigned bonus: $0$.
+- Record: `[3, 0]`.
 
-Because integer parity has only two possibilities, “not odd” is “even.” Because the relevant name test is specifically whether the first character is uppercase `M`, “not not-M” is that the first character is `M`. The query's condition therefore covers exactly the rows that are disqualified from a bonus.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["employee_id", "bonus"], "rows": [[2, 0], [3, 0], [7, 7400], [8, 0], [9, 7700]]}` |
+### Step 3: Employee ID 7 (`"Addilyn"`, Salary $7400$)
+- Parity check: $7 \bmod 2 = 1$ (Odd $\implies$ Condition 1 passes).
+- Name prefix check: first character of `"Addilyn"` is `'A'` ($\neq \text{'M'} \implies$ Condition 2 passes).
+- Both conditions hold!
+- Assigned bonus: $\text{salary} = 7400$.
+- Record: `[7, 7400]`.
+
+---
+
+### Step 4: Employee ID 8 (`"Juan"`, Salary $6100$)
+- Parity check: $8 \bmod 2 = 0$ (Even).
+- Condition 1 fails.
+- Assigned bonus: $0$.
+- Record: `[8, 0]`.
+
+---
+
+### Step 5: Employee ID 9 (`"Kannon"`, Salary $7700$)
+- Parity check: $9 \bmod 2 = 1$ (Odd $\implies$ Condition 1 passes).
+- Name prefix check: first character of `"Kannon"` is `'K'` ($\neq \text{'M'} \implies$ Condition 2 passes).
+- Both conditions hold!
+- Assigned bonus: $\text{salary} = 7700$.
+- Record: `[9, 7700]`.
+
+---
+
+### Step 6: Output Assembly
+Rows sorted by `employee_id` in ascending order:
+
+| employee_id | bonus |
+|:---:|:---:|
+| 2 | 0 |
+| 3 | 0 |
+| 7 | 7400 |
+| 8 | 0 |
+| 9 | 7700 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employees": [{"employee_id": 2, "name": "Meir", "salary": 3000}, {"employee_id": 3, "name": "Michael", "salary": 3800}, {"employee_id": 7, "name": "Addilyn", "salary": 7400}, {"employee_id": 8, "name": "Juan", "salary": 6100}, {"employee_id": 9, "name": "Kannon", "salary": 7700}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["employee_id", "bonus"], "rows": [[2, 0], [3, 0], [7, 7400], [8, 0], [9, 7700]]}` | Verified |
+| `employee_id` | Name | Salary | Is ID Odd? | Starts With `'M'`? | Eligibility $\mathcal{B}(E)$ | Calculated Bonus |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 2 | `"Meir"` | 3000 | No ($2 \bmod 2 = 0$) | Yes | Disqualified | **0** |
+| 3 | `"Michael"` | 3800 | **Yes** ($3 \bmod 2 = 1$) | **Yes** | Disqualified | **0** |
+| 7 | `"Addilyn"` | 7400 | **Yes** ($7 \bmod 2 = 1$) | **No** (`'A'`) | **Eligible** | **7400** |
+| 8 | `"Juan"` | 6100 | No ($8 \bmod 2 = 0$) | No | Disqualified | **0** |
+| 9 | `"Kannon"` | 7700 | **Yes** ($9 \bmod 2 = 1$) | **No** (`'K'`) | **Eligible** | **7700** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every employee receiving a non-zero bonus strictly satisfies both requirements: an odd identifier and an initial character distinct from `'M'`. Employees failing either clause are assigned 0.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every row in `Employees` is evaluated without exception, preserving all employee identifiers. Ordering by `employee_id` conforms precisely to the required sort order.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Positive-form `IF`:** `IF(employee_id % 2 = 1 AND LEFT(name, 1) <> 'M', salary, 0)` mirrors the statement directly. It is equivalent for the stated non-null data, while the source's disqualifier form makes the zero cases especially visible.
-- **`CASE WHEN`:** A standard `CASE WHEN ... THEN 0 ELSE salary END` expression can replace MySQL-specific `IF` and is often more portable across database systems; it does not improve asymptotic complexity.
-- **Regular-expression name test:** `name REGEXP '^M'` can detect the initial, but a regular-expression engine is unnecessary for a fixed one-character prefix. `LEFT(name, 1) = 'M'` states the exact operation simply.
-- **Uppercase versus lowercase:** The rule names uppercase `'M'`. Whether a lowercase `m` compares equal can depend on the column collation in MySQL. The exact query follows the database's collation semantics rather than forcing binary case sensitivity.
-- **Names with one character:** `LEFT(name, 1)` returns that character, so a name equal to `M` is correctly disqualified. No special length branch is necessary.
-- **Null values:** The supplied table contract normally treats the relevant fields as populated. If `name` were `NULL`, SQL three-valued logic could make the condition `NULL` for an odd ID and MySQL `IF` would take its false branch, granting salary. A nullable extension would need an explicit policy and perhaps `COALESCE`; inventing one would change the stated contract.
-- **Output ordering:** Omitting `ORDER BY` is incorrect even if a sample run happens to appear sorted, because relational tables have no guaranteed default row order. `ORDER BY 1` is valid here only because `employee_id` is the first selected expression.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Disjunctive (OR) Instead of Conjunctive (AND):** Using `OR` instead of `AND` would grant Employee 3 a bonus because their ID is odd, despite their name starting with `'M'`.
+- **Case Sensitivity:** The constraint targets names beginning with uppercase `'M'`. In SQL, patterns like `NOT LIKE 'M%'` or `LEFT(name, 1) != 'M'` handle this cleanly.
+- **Forgetting `ORDER BY`:** Omitting `ORDER BY employee_id` produces an unordered relation, failing table comparison validators that require ordered output.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R\log R)$. Let $R$ be the number of rows in `Employees`. Evaluating remainder, `LEFT` for one character, the comparison, and `IF` takes constant work per row under the usual bounded-field model, so producing the unsorted projection costs $O(R)$. The required `ORDER BY` can sort all $R$ result rows, giving $O(R\log R)$ total time in the general case. If the database can read through a suitable index on `employee_id` in ascending order, the optimizer may avoid an explicit sort, but the query does not require such an index beyond the logical uniqueness guarantee.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$, where $R$ is the number of rows in `Employees`. Parity and string prefix checks take $\mathcal{O}(1)$ time per row, and sorting by `employee_id` takes $\mathcal{O}(R \log R)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R)$ to buffer and project the resulting records.

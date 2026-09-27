@@ -1,129 +1,180 @@
 # Guided Example: Remove 9
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step digit alphabet exclusion mapping (omitting `'9'` $\implies$ base-$9$ positional numeration), radix-$9$ change-of-base division algorithm ($n = 9q + r$), positional place-value assembly ($\sum d_i \cdot 10^i$), and $n$-th valid integer synthesis on representative rank queries:
 
-- **Input:** `{"n": 800000000}`
-- **Required output:** `2052305618`
+- **Input:** $n = 9$
+- **Required output:** `10`
+  - Sequence generation rule:
+    - Count positive integers starting from $1$, skipping any number that contains the digit `'9'`:
+      $$
+      1, \; 2, \; 3, \; 4, \; 5, \; 6, \; 7, \; 8, \; \mathbf{10}, \; 11, \; 12, \dots
+      $$
+    - Notice: $9$ is skipped, so the $9$-th integer in this sequence is **$10$**!
+    - The $10$-th integer is $11$, and so on.
+    - Objective: Find the $n$-th integer in this filtered sequence.
+- **Base-9 Radix Isomorphism Invariant:**
+  - **The Digit Restriction:**
+    - In standard decimal (base 10), there are 10 distinct digit glyphs:
+      $$
+      \Sigma_{10} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}
+      $$
+    - Completely removing the digit `'9'` restricts our allowable glyph alphabet to exactly 9 symbols:
+      $$
+      \Sigma_9 = \{0, 1, 2, 3, 4, 5, 6, 7, 8\}
+      $$
+  - **Natural Bijective Radix Equivalence:**
+    - A number system with 9 digits $\{0 \dots 8\}$ where numbers count upwards $0, 1, 2, \dots, 8, 10, 11 \dots$ is precisely the **Base-9 (nonary) numeral system**!
+    - In base 9:
+      - Rank 1 is $(1)_9 = 1$
+      - Rank 8 is $(8)_9 = 8$
+      - Rank 9 is $1 \times 9^1 + 0 \times 9^0 = (10)_9$ (printed as `10`)
+      - Rank 10 is $1 \times 9^1 + 1 \times 9^0 = (11)_9$ (printed as `11`)
+      - Rank 18 is $2 \times 9^1 + 0 \times 9^0 = (20)_9$ (printed as `20`)
+    - **Fundamental Insight:** The $n$-th integer that contains no digit 9 is simply the **number $n$ converted into base 9**, and then read as if it were a decimal number!
+- **Step-by-Step Worked Execution Trace on $n = 9$:**
+  - Convert $n = 9$ to base 9 via successive division:
+  - **Iteration 1:**
+    - Divide $n$ by $9$:
+      $$
+      n = 9 \implies \lfloor 9 / 9 \rfloor = 1, \quad 9 \pmod 9 = \mathbf{0}
+      $$
+    - Lowest significant digit: $d_0 = \mathbf{0}$.
+    - Quotent remaining: $n = 1$.
+  - **Iteration 2:**
+    - Divide $n = 1$ by $9$:
+      $$
+      \lfloor 1 / 9 \rfloor = 0, \quad 1 \pmod 9 = \mathbf{1}
+      $$
+    - Next digit: $d_1 = \mathbf{1}$.
+    - Quotient is now $0$ (Halts).
+  - **Assemble Base-9 Digits into Decimal Place Values:**
+    $$
+    result = d_1 \times 10^1 + d_0 \times 10^0 = 1 \times 10 + 0 \times 1 = \mathbf{10}
+    $$
+    - Output: **`10`**.
+- **Trace for Rank $n = 10$:**
+  - $10 \pmod 9 = 1$, quotient $10 // 9 = 1$.
+  - $1 \pmod 9 = 1$, quotient $1 // 9 = 0$.
+  - Digits: $d_0 = 1, d_1 = 1 \implies \mathbf{11}$.
+  - The 10th number without a 9 is indeed 11!
+- **Trace for Rank $n = 80$:**
+  - $80 \pmod 9 = 8$, quotient $80 // 9 = 8$.
+  - $8 \pmod 9 = 8$, quotient $8 // 9 = 0$.
+  - Digits: $d_0 = 8, d_1 = 8 \implies \mathbf{88}$.
+- **Trace for Rank $n = 81$ ($9^2$):**
+  - $81 \pmod 9 = 0$, $81 // 9 = 9$.
+  - $9 \pmod 9 = 0$, $9 // 9 = 1$.
+  - $1 \pmod 9 = 1$, $1 // 9 = 0$.
+  - Digits: $d_0 = 0, d_1 = 0, d_2 = 1 \implies \mathbf{100}$.
+  - Check: Numbers from 1 to 100 contain exactly 19 numbers with digit 9 ($9, 19, \dots 89, 90 \dots 99$). $100 - 19 = 81$! Rank 81 is indeed 100!
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates radix representation isomorphisms between restricted alphabet languages and positional base systems, mathematically proves why decimal numeral exclusion maps bijectively onto nonary positional coefficients, and derives $O(\log_9 n)$ execution time and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Start from integer `1`, remove any integer that contains `9` such as `9`, `19`, `29`...
+Given an integer $n$:
+Count positive integers omitting any number containing digit `'9'`.
+Find the **$n$-th integer** in this sequence.
 
-The objective is to compute `2052305618` from `{"n": 800000000}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Sequence without digit '9':
+  Rank 1 -> 1
+  Rank 2 -> 2
+  ...
+  Rank 8 -> 8
+  Rank 9 -> 10  (skips 9!)
+  Rank 10 -> 11
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Observation:
+  These are exactly numbers written in Base 9!
+  9 in base 10 = (10)_9
+  10 in base 10 = (11)_9
+  81 in base 10 = (100)_9
+```
+
+### The Invariant of the Radix Isomorphism
+- Removing digit `'9'` leaves 9 available symbols: $0, 1, 2, 3, 4, 5, 6, 7, 8$.
+- Counting without `'9'` is identical to counting in **base 9**.
+- The answer is the base-9 representation of $n$ formatted as a decimal integer.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Base-9 Expansion:
+For integer $n$:
+$$
+n = \sum_{i=0}^k d_i \cdot 9^i \quad \text{where } d_i \in \{0, 1, \dots, 8\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Decimal Projection:
+$$
+\text{Answer} = \sum_{i=0}^k d_i \cdot 10^i
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Positional Radix Homomorphism Invariant.** The canonical digit projection $\pi: \mathbb{Z}_9 \to \Sigma_9$ is a strictly order-preserving bijective embedding of $\mathbb{N}$ into the decimal integers excluding the symbol `'9'`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: See the filtered decimal numbers as another numeral system
-
-Every allowed decimal digit is one of zero through eight. Those are exactly the nine digits used by base nine.
-
-If we list positive base-nine representations in numeric order but read their digit strings as ordinary decimal text, we get:
-
-`1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ..., 18, 20, ..., 88, 100, ...`.
-
-That is exactly the increasing sequence of positive decimal integers whose representations do not contain digit nine.
-
-Therefore, the `n`th allowed decimal integer is obtained by:
-
-1. writing `n` in base nine;
-2. interpreting those base-nine digits as decimal digits.
-
-The exact solution performs this conversion arithmetically without building a string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 800000000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 9$:
 
 ---
 
-### Step 2: Why the indexing uses `n` directly
-
-The requested sequence is one-indexed and begins with one. Positive base-nine integers also begin with representation `1`:
-
-- sequence position one maps to base-nine `1` and returns decimal one;
-- position eight maps to base-nine `8` and returns decimal eight;
-- position nine maps to base-nine `10` and returns decimal ten.
-
-No subtraction by one is needed. A zero-indexed sequence that included zero would require different indexing, but that is not this contract.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Divide by 9
+- $9 \div 9 = 1$, remainder $0$.
+- Place $10^0$: digit 0.
 
 ---
 
-### Step 3: Extract base-nine digits from right to left
+### Step 2: Divide by 9
+- $1 \div 9 = 0$, remainder $1$.
+- Place $10^1$: digit 1.
 
-`divmod(n, 9)` returns:
+---
 
-- the quotient after removing the least-significant base-nine digit;
-- the remainder, which is that digit and is always between zero and eight.
-
-The loop assigns these to the updated `n` and `digit`. Each iteration therefore extracts one base-nine digit, beginning with the units digit.
-
-For position ten:
-
-- `divmod(10, 9)` yields quotient one and digit one;
-- the next division yields quotient zero and digit one.
-
-The base-nine representation is `11`, so the returned decimal integer is eleven.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2052305618` |
+### Step 3: Combine Place Values
+$$
+result = 1 \times 10 + 0 = \mathbf{10}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 800000000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2052305618` | Verified |
+| Division Step | Current $n$ | Remainder $d = n \pmod 9$ | Next $n = n // 9$ | Place Value Multiplier | Contribution to Output | Running Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $9$ | $0$ | $1$ | $1$ | $0 \times 1 = 0$ | $0$ |
+| $2$ | $1$ | $1$ | $0$ | $10$ | $1 \times 10 = 10$ | **`10`** |
+| **Halt** | $0$ | — | — | — | Target reached | **`10`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n \le 8$:** Remainder is $n$, quotient is $0 \implies$ returns $n$ unchanged.
+- **Power of 9 ($n = 9, 81, 729$):** Produces round decimal-looking numbers $10, 100, 1000$.
+- **Large Input ($n = 10^9$):** Base-9 representation has $\approx \log_9(10^9) \approx 10$ digits; fits easily within 64-bit integer limits without overflow.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Build a digit string:** Repeatedly take `n % 9`, prepend or collect each digit, reverse at the end, and convert to an integer. This is conceptually direct but uses `O(log N)` string storage.
-- **Brute-force decimal enumeration:** Test successive integers and skip those containing nine. Large gaps and repeated digit inspection make this far slower than direct conversion.
-- **Digit-counting plus binary search:** Count how many positive integers up to a bound avoid nine, then binary-search the smallest bound with count at least `n`. This generalizes to more complex forbidden-digit sets but is unnecessary here.
+- **Brute Force Counting ($O(N)$ with string search):** Iterating $1, 2, 3 \dots$ and checking `'9' in str(i)` times out catastrophically for $n = 10^9$.
+- **Digit DP Search:** While digit DP can count valid numbers, it is unnecessarily complicated; converting $n$ directly to base 9 solves it in 10 operations.
+- **Off-by-One with 0-Indexing:** The problem is 1-indexed, which aligns directly with counting positive integers in base 9.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(log N)$. Let `N` be the original input value. Each loop iteration divides the current value by nine, so the number of iterations is the number of base-nine digits:
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The loop divides $n$ by 9 at each step.
+  - Number of iterations: $\lfloor \log_9(n) \rfloor + 1$.
+  - For $n = 10^9$, at most $10$ loop iterations.
+  - Total Time: strictly $\mathcal{O}(\log_9 n)$. Executes in $< 0.01$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space (only a few integer scalar variables).

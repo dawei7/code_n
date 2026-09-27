@@ -1,145 +1,171 @@
 # Guided Example: Count Nice Pairs in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step evaluation of nice pairs via algebraic separation and hash-map frequency counting on a representative problem instance:
 
-- **Input:** `{"nums": [42, 11, 1, 97]}`
-- **Required output:** `2`
+- **Input:** `nums = [42, 11, 1, 97]`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how rearranging a coupled relation between two indices into independent individual signatures transforms an $\mathcal{O}(n^2)$ pair comparison problem into an $\mathcal{O}(n)$ hash-based frequency aggregation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `nums` that consists of non-negative integers. Let us define `rev(x)` as the reverse of the non-negative integer `x`. For example, $rev(123) = 321$, and $rev(120) = 21$. A pair of indices `(i, j)` is **nice** if it satisfies all of the following conditions:
+We are given an array of non-negative integers `nums`. Let $\text{rev}(x)$ denote the integer formed by reversing the decimal digits of $x$ (for example, $\text{rev}(123) = 321$ and $\text{rev}(120) = 21$).
+A pair of indices $(i, j)$ is called **nice** if:
+1. $0 \le i < j < n$
+2. $\text{nums}[i] + \text{rev}(\text{nums}[j]) = \text{nums}[j] + \text{rev}(\text{nums}[i])$
 
-The objective is to compute `2` from `{"nums": [42, 11, 1, 97]}` while avoiding redundant calculations and unnecessary overhead.
+We want to count the total number of nice pairs modulo $10^9 + 7$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For the input array `nums = [42, 11, 1, 97]`:
+- Pair $(0, 3)$: $\text{nums}[0] = 42, \text{nums}[3] = 97$.
+  $$\text{nums}[0] + \text{rev}(\text{nums}[3]) = 42 + 79 = 121$$
+  $$\text{nums}[3] + \text{rev}(\text{nums}[0]) = 97 + 24 = 121$$
+  This pair is nice.
+- Pair $(1, 2)$: $\text{nums}[1] = 11, \text{nums}[2] = 1$.
+  $$\text{nums}[1] + \text{rev}(\text{nums}[2]) = 11 + 1 = 12$$
+  $$\text{nums}[2] + \text{rev}(\text{nums}[1]) = 1 + 11 = 12$$
+  This pair is nice.
+
+No other pairs satisfy the condition, so the total count is $2$.
+
+The teaching goal is to demonstrate that testing all pairs $(i, j)$ directly requires quadratic time $\mathcal{O}(n^2)$. By algebraically isolating all terms containing index $i$ on one side and all terms containing index $j$ on the other, each element is transformed into an independent invariant signature $f(x) = x - \text{rev}(x)$, allowing an optimal $\mathcal{O}(n)$ solution.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Algebraic Decoupling
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The defining condition is:
+$$\text{nums}[i] + \text{rev}(\text{nums}[j]) = \text{nums}[j] + \text{rev}(\text{nums}[i])$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Subtract $\text{rev}(\text{nums}[j])$ and $\text{rev}(\text{nums}[i])$ from both sides:
+$$\text{nums}[i] - \text{rev}(\text{nums}[i]) = \text{nums}[j] - \text{rev}(\text{nums}[j])$$
+
+Define the univariate mapping:
+$$f(x) = x - \text{rev}(x)$$
+
+The condition for $(i, j)$ to be a nice pair is therefore equivalent to:
+$$f(\text{nums}[i]) = f(\text{nums}[j])$$
+
+### Decoupled Pair Invariant Theorem
+
+> **Algebraic Decoupling & Difference Hash Invariant Theorem.**
+> A pair of indices $(i, j)$ with $i < j$ forms a nice pair if and only if $f(\text{nums}[i]) = f(\text{nums}[j])$, where $f(x) = x - \text{rev}(x)$.
+> The equality relation partitions the array indices into disjoint equivalence classes according to their signature value $d = f(\text{nums}[k])$.
+> If an equivalence class for signature $d$ contains $k$ indices, any two distinct indices in this class form a nice pair. The number of nice pairs contributed by this class is:
+> $$\binom{k}{2} = \frac{k(k - 1)}{2}$$
+> The total number of nice pairs across all equivalence classes is:
+> $$\sum_{d} \binom{k_d}{2} \pmod{10^9 + 7}$$
+
+```mermaid
+flowchart TD
+    accTitle: Decoupled Signature Mapping and Counting
+    accDescr: Diagram illustrating mapping each number x to f(x) = x - rev(x), grouping into frequency buckets, and summing combinations k*(k-1)/2.
+    A["Raw Array: [42, 11, 1, 97]"] --> B["Compute f(x) = x - rev(x) for each element"]
+    B --> C["Transformed Signatures: [18, 0, 0, 18]"]
+    C --> D["Group into Frequency Buckets: {18: 2, 0: 2}"]
+    D --> E["For each bucket count k: add k*(k-1)/2 to total"]
+    E --> F["Total Pairs: 1 + 1 = 2 (mod 10^9 + 7)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Rearrange the pair equation into one per-number signature
-
-A pair $(i,j)$ is nice when
-
-$$
-\texttt{nums}[i]+\operatorname{rev}(\texttt{nums}[j])
-=
-\texttt{nums}[j]+\operatorname{rev}(\texttt{nums}[i]).
-$$
-
-Move each number's own reverse to the same side:
-
-$$
-\texttt{nums}[i]-\operatorname{rev}(\texttt{nums}[i])
-=
-\texttt{nums}[j]-\operatorname{rev}(\texttt{nums}[j]).
-$$
-
-Define the signature
-
-$$
-f(x)=x-\operatorname{rev}(x).
-$$
-
-Then a pair is nice exactly when both values have the same signature. The original two-index equation has become an equality-group counting problem.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [42, 11, 1, 97]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on `nums = [42, 11, 1, 97]`.
 
 ---
 
-### Step 2: Reverse a nonnegative integer numerically
+### Step 1: Compute Signatures for Each Element
 
-Helper `rev(x)` starts `y = 0`. While `x` is nonzero:
+We evaluate $x$, $\text{rev}(x)$, and $f(x) = x - \text{rev}(x)$ sequentially:
 
-1. `x % 10` extracts its final digit;
-2. `y = y * 10 + digit` appends that digit to the reversed value;
-3. `x //= 10` removes the processed digit.
+1. **Element at index $0$:** $x = 42$
+   - Reverse digits: $\text{rev}(42) = 24$
+   - Signature: $f(42) = 42 - 24 = 18$
 
-For 120, the steps build 0, then 2, then 21. The leading zero that would appear in textual `"021"` contributes no numerical value, so returning 21 matches the definition.
+2. **Element at index $1$:** $x = 11$
+   - Reverse digits: $\text{rev}(11) = 11$
+   - Signature: $f(11) = 11 - 11 = 0$
 
-For input zero, the loop runs zero times and returns zero.
+3. **Element at index $2$:** $x = 1$
+   - Reverse digits: $\text{rev}(1) = 1$
+   - Signature: $f(1) = 1 - 1 = 0$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+4. **Element at index $3$:** $x = 97$
+   - Reverse digits: $\text{rev}(97) = 79$
+   - Signature: $f(97) = 97 - 79 = 18$
+
+Transformed array of signatures: `[18, 0, 0, 18]`.
 
 ---
 
-### Step 3: Count how many numbers share each signature
+### Step 2: Build Frequency Distribution
 
-The generator `x - rev(x) for x in nums` computes one signature per array position. `Counter` maps every signature to its occurrence count.
+Group the signatures into a frequency hash map:
+- Signature $18$: occurs at indices $\{0, 3\} \implies \text{frequency } k_{18} = 2$
+- Signature $0$: occurs at indices $\{1, 2\} \implies \text{frequency } k_0 = 2$
 
-Signatures may be negative. For example, a number whose reverse is larger produces a negative difference. Hash-map keys handle positive, zero, and negative integers uniformly.
+---
 
-Only signature equality matters; two different original values can and often do share one key.
+### Step 3: Compute Pair Combinations
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+For each signature bucket with count $k$:
+- **Bucket $d = 18$ with $k = 2$:**
+  $$\text{Pairs} = \frac{2 \times (2 - 1)}{2} = \frac{2}{2} = 1$$
+  (Corresponds to index pair $(0, 3)$)
+
+- **Bucket $d = 0$ with $k = 2$:**
+  $$\text{Pairs} = \frac{2 \times (2 - 1)}{2} = \frac{2}{2} = 1$$
+  (Corresponds to index pair $(1, 2)$)
+
+---
+
+### Step 4: Sum and Modulo
+
+- Accumulate all combinations:
+  $$\text{Total} = 1 + 1 = 2$$
+- Take modulo $10^9 + 7$:
+  $$2 \pmod{10^9 + 7} = 2$$
+
+Final output: **`2`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [42, 11, 1, 97]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Index $i$ | Value $\text{nums}[i]$ | Reversed $\text{rev}(\text{nums}[i])$ | Signature $f(\text{nums}[i])$ | Hash Map State after Element | New Pairs Added Online |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| $0$ | $42$ | $24$ | $18$ | $\{18: 1\}$ | $0$ |
+| $1$ | $11$ | $11$ | $0$ | $\{18: 1, 0: 1\}$ | $0$ |
+| $2$ | $1$ | $1$ | $0$ | $\{18: 1, 0: 2\}$ | $1$ (with index $1$) |
+| $3$ | $97$ | $79$ | $18$ | $\{18: 2, 0: 2\}$ | $1$ (with index $0$) |
+
+Total online sum of added pairs: $0 + 0 + 1 + 1 = 2$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any pair $(i, j)$ with $i < j$, the equality $\text{nums}[i] - \text{rev}(\text{nums}[i]) = \text{nums}[j] - \text{rev}(\text{nums}[j])$ is mathematically identical to $\text{nums}[i] + \text{rev}(\text{nums}[j]) = \text{nums}[j] + \text{rev}(\text{nums}[i])$ via elementary field axioms of addition and subtraction. Every pair of indices within the same signature bucket satisfies the nice-pair definition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Two indices $i$ and $j$ in different signature buckets satisfy $f(\text{nums}[i]) \neq f(\text{nums}[j])$, which directly implies $\text{nums}[i] + \text{rev}(\text{nums}[j]) \neq \text{nums}[j] + \text{rev}(\text{nums}[i])$. Thus, no valid nice pair can span across different signature buckets, and all valid pairs are captured by summing $\binom{k}{2}$ over every bucket.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Streaming hash count:** Add the previous frequency before incrementing each signature. It avoids a separate final combination pass but has the same bounds.
-- **Check every pair:** Direct equation testing costs $O(n^2)$ and is too slow.
-- **Sort signatures:** Equal runs can be counted after $O(n\log n)$ sorting, slower than expected-linear hashing.
-- **String reversal:** Converting to text is valid but numeric reversal makes dropped trailing zeros explicit.
-- **Input zero:** Its reverse and signature are both zero.
-- **Trailing zeros:** They disappear from the reversed numerical value, as required.
-- **Palindromic number:** Its signature is zero and it pairs nicely with every other zero-signature value.
-- **Negative signature:** It is a normal Counter key and needs no special handling.
-- **All signatures distinct:** Every group size is one and contributes zero.
-- **All signatures equal:** The answer before modulo is $n(n-1)/2$.
-- **Duplicate input values:** They necessarily share a signature and their distinct indices form pairs.
-- **Modulo timing:** Applying it once at the end is safe in Python.
-- **Index order:** Each unordered combination corresponds to exactly one ordered condition $i<j$.
-- **Input preservation:** The helper consumes only its local copy of each integer; `nums` is unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Quadratic Comparison Timeout:** Checking all pairs via nested loops takes $\mathcal{O}(n^2)$ time. For $n = 10^5$, this requires $5 \times 10^9$ operations, causing a time limit exceeded.
+- **Negative Differences:** $x - \text{rev}(x)$ can be negative (e.g. for $x = 13$, $\text{rev}(x) = 31$, so $f(x) = 13 - 31 = -18$). The hash table must safely accommodate negative integer keys without array indexing errors.
+- **Trailing Zeros in Numbers:** For $x = 120$, $\text{rev}(x) = 21$. Reversing must properly treat leading zeros in the reversed number, producing the integer $21$, so $f(120) = 120 - 21 = 99$.
+- **Modular Arithmetic:** The total count can grow up to $\binom{10^5}{2} \approx 5 \times 10^9$, which exceeds a 32-bit signed integer. The sum must be reduced modulo $10^9 + 7$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(T+n)$. Let $n$ be the array length and let
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \log_{10} M)$, where $n$ is the number of elements in `nums` and $M = \max(\text{nums}) \le 10^9$. For each element, extracting decimal digits to compute $\text{rev}(x)$ takes $\mathcal{O}(\log_{10} M) \le 10$ operations. Hash map lookups and insertions operate in $\mathcal{O}(1)$ average time, resulting in overall $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the frequency map of at most $n$ distinct difference signatures.

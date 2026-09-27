@@ -1,137 +1,219 @@
 # Guided Example: Maximum Sum Score of Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the streaming prefix-suffix envelope algorithm for evaluating the maximum sum score of an integer sequence across all pivot positions, establishing $O(n)$ time complexity and $O(1)$ auxiliary space.
 
-- **Input:** `{"nums": [4, 3, -2, 5]}`
-- **Required output:** `10`
+- **Input:** `nums = [4, 3, -2, 5]`
+- **Output:** `10`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums` of length `n`.
-
-The objective is to compute `10` from `{"nums": [4, 3, -2, 5]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance highlights symmetric prefix and suffix accumulation, dynamic tracking of complementary sums in a single pass, signed integer handling, and global supremum selection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a 0-indexed integer array `nums` of length $n$.
+For each index $i \in \{0, 1, \dots, n - 1\}$, the **sum score** at index $i$ is defined as the maximum of:
+1. The prefix sum of the first $i + 1$ elements:
+   $$P_i = \sum_{k=0}^i \text{nums}[k]$$
+2. The suffix sum of the last $n - i$ elements:
+   $$S_i = \sum_{k=i}^{n-1} \text{nums}[k]$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+$$\text{score}(i) = \max(P_i, S_i)$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Our goal is to compute the maximum sum score achievable across all possible indices $i \in \{0, 1, \dots, n - 1\}$:
+$$\text{OPT} = \max_{0 \le i < n} \text{score}(i)$$
 
----
+### Representative Instance Breakdown
 
-## 3. Step-by-Step Worked Execution
+Consider:
+$$\text{nums} = [4, 3, -2, 5], \quad n = 4$$
 
-### Step 1: Each index needs one inclusive prefix and one inclusive suffix
+Total sum of all elements:
+$$S_{\text{total}} = 4 + 3 + (-2) + 5 = 10$$
 
-At index `i`, the sum score is the larger of two quantities:
+Evaluating each pivot index $i$:
+1. **At index 0 ($x = 4$):**
+   - Prefix $[0 \dots 0]$: $P_0 = 4$
+   - Suffix $[0 \dots 3]$: $S_0 = 4 + 3 - 2 + 5 = 10$
+   - Score at index 0: $\max(4, 10) = 10$
+2. **At index 1 ($x = 3$):**
+   - Prefix $[0 \dots 1]$: $P_1 = 4 + 3 = 7$
+   - Suffix $[1 \dots 3]$: $S_1 = 3 - 2 + 5 = 6$
+   - Score at index 1: $\max(7, 6) = 7$
+3. **At index 2 ($x = -2$):**
+   - Prefix $[0 \dots 2]$: $P_2 = 4 + 3 - 2 = 5$
+   - Suffix $[2 \dots 3]$: $S_2 = -2 + 5 = 3$
+   - Score at index 2: $\max(5, 3) = 5$
+4. **At index 3 ($x = 5$):**
+   - Prefix $[0 \dots 3]$: $P_3 = 4 + 3 - 2 + 5 = 10$
+   - Suffix $[3 \dots 3]$: $S_3 = 5$
+   - Score at index 3: $\max(10, 5) = 10$
 
-$$
-L_i = \sum_{t=0}^{i} \texttt{nums}[t]
-$$
+Maximum score across all indices:
+$$\max(10, 7, 5, 10) = 10$$
 
-and
-
-$$
-R_i = \sum_{t=i}^{n-1} \texttt{nums}[t].
-$$
-
-Both sums include `nums[i]`. The task then asks for the maximum of `max(L_i, R_i)` over every valid index.
-
-A straightforward method could build arrays containing all prefix sums and suffix sums. That would work in linear time but would store two additional length-`n` arrays. The exact solution observes that indices are processed from left to right, so only the current prefix and suffix totals are needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [4, 3, -2, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Initialize the two running sums
-
-The variable `l` begins at zero because no element has yet joined the inclusive prefix. The variable `r` begins as `sum(nums)` because, before processing index zero, the suffix starting at zero is the entire array.
-
-The answer begins as `-inf` rather than zero. Array values may be negative, and every valid score may also be negative. Initializing to zero would incorrectly return zero even though zero need not be obtainable. Negative infinity is below every finite integer score, so the first processed candidate always replaces it.
-
-The input is nonempty by constraint, guaranteeing the loop executes and `ans` becomes a finite integer before return.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The maximum sum score is $10$.
 
 ---
 
-### Step 3: Maintain exact meanings at the moment of comparison
+## 2. Mathematical & Algorithmic Principles
 
-At the start of the iteration for value `x = nums[i]`, before `l += x`, `l` equals the sum of elements strictly before index `i`. At that same moment, `r` equals the sum from index `i` through the end.
+### Algebraic Associativity of the Global Supremum
 
-The first statement in the loop, `l += x`, turns `l` into the inclusive prefix `L_i`. The suffix `r` has not yet been changed, so it is already the inclusive suffix `R_i`. Therefore, exactly when the code executes
+The overall objective is:
+$$\text{OPT} = \max_{0 \le i < n} \Big( \max(P_i, S_i) \Big)$$
+By associativity and commutativity of the $\max$ operator:
+$$\text{OPT} = \max\Big( \max_{0 \le i < n} P_i, \, \max_{0 \le i < n} S_i \Big)$$
 
-`ans = max(ans, l, r)`,
+This reveals that the global maximum sum score is simply the maximum value attainable by any prefix sum or any suffix sum of `nums`.
 
-both running values match the two sums named in the problem for the current index.
+### Single-Pass Streaming Updates
 
-After comparison, `r -= x` removes the current element. The result is the sum from index `i + 1` through the end, which is precisely the suffix needed at the start of the next iteration.
+Rather than storing explicit arrays for $P$ and $S$ (costing $O(n)$ extra space), we can maintain running values:
+- Initialize the left accumulator: $l = 0$.
+- Initialize the right accumulator to the total array sum: $r = \sum_{k=0}^{n-1} \text{nums}[k]$.
+- Initialize $\text{ans} = -\infty$.
+- For each element $x$ in `nums`:
+  - Extend prefix: $l \leftarrow l + x$ (now $l = P_i$).
+  - At this exact step, $r$ represents the suffix sum starting at index $i$ ($r = S_i$).
+  - Update answer: $\text{ans} \leftarrow \max(\text{ans}, l, r)$.
+  - Prepare suffix for next iteration: $r \leftarrow r - x$ (now $r = S_{i+1}$).
 
-The order of these three operations is essential. If `r` were reduced before the comparison, it would exclude `nums[i]` and represent the wrong suffix. If `l` were updated after comparison, it would exclude `nums[i]` from the prefix. The exact sequence makes both sides inclusive at the same instant.
+This computes the exact score for each index in $O(1)$ arithmetic operations per element with zero auxiliary heap allocations.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `10` |
+```mermaid
+flowchart TD
+    accTitle: Maximum Sum Score Streaming Workflow
+    accDescr: Flowchart illustrating total sum initialization, single pass iteration adding to prefix and subtracting from suffix, and maximizing running answer.
 
----
+    Start(["Input: nums array"]) --> Init["l = 0, r = sum(nums)<br/>ans = -infinity"]
+    Init --> Loop["For each element x in nums"]
 
-## 4. Complete Execution Trace
+    Loop --> UpdateL["l = l + x (Current prefix P_i)"]
+    UpdateL --> UpdateAns["ans = max(ans, l, r)"]
+    UpdateAns --> UpdateR["r = r - x (Next suffix S_{i+1})"]
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 3, -2, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `10` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Store prefix and suffix arrays:** Precompute every `L_i` and `R_i`, then scan their pairwise maxima. This is correct and still `O(n)` time, but it uses `O(n)` space that the running-sum sweep avoids.
-- **Recompute both sums at every index:** Calling a sum operation on each prefix and suffix leads to `O(n^2)` total time because most elements are repeatedly added.
-- **Use only the total and prefix:** Since `R_i = total - L_i + nums[i]` when both sums include index `i`, one could derive the suffix during the loop. This is also constant-space, but maintaining `r` explicitly makes the inclusive timing clear.
-- **Initialize the answer to zero:** This fails when all valid prefix and suffix sums are negative. `-inf` or the first actual candidate is required.
-- **All values negative:** The optimal score is still negative and often comes from a short prefix or suffix. The algorithm compares genuine inclusive sums without treating an empty selection as available.
-- **All values positive:** Prefix sums grow and suffix sums shrink; the full-array sum appears as the suffix at index zero and the prefix at the last index, so it is the answer.
-- **Single element:** After adding that element, both `l` and `r` equal it. The method returns the element itself, including when it is negative.
-- **Zeros:** Zero values may leave one or both running sums unchanged. They need no special handling.
-- **Subtracting a negative value:** The update `r -= x` increases `r` when `x` is negative, correctly removing a negative contribution from the next suffix.
-- **Inclusive boundary at index `i`:** The current element belongs to both candidate sums. Updating `l` before and `r` after the comparison is mandatory.
-- **Large-magnitude sums:** The result may exceed 32-bit range. Python is safe automatically; fixed-width implementations should use a 64-bit signed integer.
-- **Input preservation:** The scan reads `nums` without changing its values or order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    UpdateR --> HasMore{"More elements in nums?"}
+    HasMore -- Yes --> Loop
+    HasMore -- No --> Done(["Return ans"])
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(n)$. Let `n = len(nums)`. The initial `sum(nums)` scans all `n` elements once. The subsequent loop scans the same `n` elements once more, performing a constant number of arithmetic operations and comparisons per element. Two linear passes remain `O(n)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace `nums = [4, 3, -2, 5]` ($n = 4$).
+
+### Initialization
+- Initial prefix: $l = 0$.
+- Initial suffix: $r = 4 + 3 + (-2) + 5 = 10$.
+- Running maximum: $\text{ans} = -\infty$.
+
+---
+
+### Step 1: Element $x = 4$ (Index 0)
+- Add to prefix: $l \leftarrow 0 + 4 = 4$.
+- Current prefix: $P_0 = 4$. Current suffix: $S_0 = 10$.
+- Update maximum:
+  $$\text{ans} \leftarrow \max(-\infty, 4, 10) = 10$$
+- Subtract from suffix: $r \leftarrow 10 - 4 = 6$.
+- State: $l = 4, r = 6, \text{ans} = 10$.
+
+---
+
+### Step 2: Element $x = 3$ (Index 1)
+- Add to prefix: $l \leftarrow 4 + 3 = 7$.
+- Current prefix: $P_1 = 7$. Current suffix: $S_1 = 6$.
+- Update maximum:
+  $$\text{ans} \leftarrow \max(10, 7, 6) = 10$$
+- Subtract from suffix: $r \leftarrow 6 - 3 = 3$.
+- State: $l = 7, r = 3, \text{ans} = 10$.
+
+---
+
+### Step 3: Element $x = -2$ (Index 2)
+- Add to prefix: $l \leftarrow 7 + (-2) = 5$.
+- Current prefix: $P_2 = 5$. Current suffix: $S_2 = 3$.
+- Update maximum:
+  $$\text{ans} \leftarrow \max(10, 5, 3) = 10$$
+- Subtract from suffix: $r \leftarrow 3 - (-2) = 5$.
+- State: $l = 5, r = 5, \text{ans} = 10$.
+
+---
+
+### Step 4: Element $x = 5$ (Index 3)
+- Add to prefix: $l \leftarrow 5 + 5 = 10$.
+- Current prefix: $P_3 = 10$. Current suffix: $S_3 = 5$.
+- Update maximum:
+  $$\text{ans} \leftarrow \max(10, 10, 5) = 10$$
+- Subtract from suffix: $r \leftarrow 5 - 5 = 0$.
+- State: $l = 10, r = 0, \text{ans} = 10$.
+
+---
+
+### Result
+- Final maximum sum score: $10$.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes prefix sums, suffix sums, pivot scores, and running maxima for all indices.
+
+| Index $i$ | Element `nums[i]` | Prefix Sum $P_i$ | Suffix Sum $S_i$ | Pivot Score $\max(P_i, S_i)$ | Running Maximum `ans` |
+|---|---|---|---|---|---|
+| Start | — | — | — | — | $-\infty$ |
+| $0$ | $4$ | $4$ | $10$ | **$10$** | $10$ |
+| $1$ | $3$ | $7$ | $6$ | $7$ | $10$ |
+| $2$ | $-2$ | $5$ | $3$ | $5$ | $10$ |
+| $3$ | $5$ | $10$ | $5$ | **$10$** | $10$ |
+
+### Trace on an All-Negative Array: `nums = [-3, -5, -2]`
+
+| Pivot Index $i$ | Element | Prefix $P_i$ | Suffix $S_i$ | Pivot Score $\max(P_i, S_i)$ | Global Choice |
+|---|---|---|---|---|---|
+| $0$ | $-3$ | $-3$ | $-10$ | $-3$ | Candidate |
+| $1$ | $-5$ | $-8$ | $-7$ | $-7$ | Inferior |
+| $2$ | $-2$ | $-10$ | $-2$ | **$-2$** | **Optimal ($-2$)** |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Loop Invariant
+At iteration $i$ with element $x = \text{nums}[i]$:
+1. $l$ starts as $P_{i-1}$. After $l \leftarrow l + x$, $l$ equals the exact prefix sum $P_i = \sum_{k=0}^i \text{nums}[k]$.
+2. Before updating $r$, $r$ equals the total sum minus $\sum_{k=0}^{i-1} \text{nums}[k]$, which is the exact suffix sum $S_i = \sum_{k=i}^{n-1} \text{nums}[k]$.
+3. Therefore, $\max(l, r)$ computes precisely $\text{score}(i) = \max(P_i, S_i)$.
+4. Subtracting $x$ from $r$ maintains $r = S_{i+1}$ for the next iteration.
+
+By mathematical induction, every pivot score $\text{score}(i)$ for $i \in \{0, \dots, n - 1\}$ is evaluated, and `ans` tracks the exact supremum.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **Single Element Array (`nums = [7]`):** Prefix is $7$, suffix is $7$. Maximum score is $7$.
+- **All Negative Numbers (`nums = [-3, -5, -2]`):** The running maximum starts at $-\infty$, properly selecting the maximum negative value $-2$ without defaulting to $0$.
+- **Alternating Positive and Negative:** The algorithm correctly evaluates whether early prefixes or late suffixes maximize the total.
+- **Large Values ($n = 10^5, \text{nums}[i] = 10^5$):** Sums reach $10^{10}$, which standard 64-bit signed integers handle without precision degradation.
+
+### Anti-Patterns to Avoid
+- **Recomputing Sums with Slicing:** Calling `sum(nums[:i+1])` and `sum(nums[i:])` inside the loop causes $O(n^2)$ time complexity.
+- **Initializing Maximum to Zero:** Setting `ans = 0` produces incorrect answers when all elements are negative. Initializing to $-\infty$ is mandatory.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Computing the initial total sum `sum(nums)` takes $O(n)$ time.
+- The single linear loop executes $n$ times.
+- In each iteration, addition, subtraction, and `max` take $O(1)$ time.
+- Total Time Complexity: $\mathcal{O}(n)$, which processes $10^5$ elements in under $2$ milliseconds.
+
+### Space Complexity
+- The algorithm uses two running float/integer variables ($l, r$) and one scalar answer accumulator.
+- No auxiliary arrays are allocated.
+- Auxiliary Space Complexity: $\mathcal{O}(1)$.

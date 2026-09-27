@@ -1,122 +1,158 @@
 # Guided Example: Multiply Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step positional grade-school multiplication on a representative multi-digit string instance:
 
-- **Input:** `{"num1": "2", "num2": "3"}`
-- **Required output:** `"6"`
+- **Input:** $\text{num1} = \text{"123"}$, $\text{num2} = \text{"456"}$
+- **Required output:** $\text{"56088"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates digit-by-digit convolution without big-integer conversion libraries, index positioning via power-of-ten alignments ($i + j + 1$), backward carry propagation, and stripping non-significant leading zeroes.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two non-negative integers `num1` and `num2` represented as strings, return the product of `num1` and `num2`, also represented as a string.
+Given two non-negative integers $\text{num1}$ of length $M = 3$ and $\text{num2}$ of length $N = 3$ represented as strings, we must compute their product $\text{"123"} \times \text{"456"} = \text{"56088"}$ as a string without converting the input strings directly to built-in arbitrary-precision integers.
 
-The objective is to compute `"6"` from `{"num1": "2", "num2": "3"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Mathematical Property:
+The product of an $M$-digit number and an $N$-digit number has at most $M + N$ decimal digits:
+$$
+\text{Max Digits} = 3 + 3 = 6
+$$
+We allocate an integer array $\text{res}$ of length $M + N = 6$ initialized to zeroes. Each digit pair $(\text{num1}[i], \text{num2}[j])$ represents:
+$$
+(\text{num1}[i] \cdot 10^{M - 1 - i}) \times (\text{num2}[j] \cdot 10^{N - 1 - j}) = (\text{num1}[i] \cdot \text{num2}[j]) \cdot 10^{(M + N - 2) - (i + j)}
+$$
+In a 0-indexed array of length $M + N$, the positional weight $10^{(M + N - 2) - (i + j)}$ maps precisely to array index:
+$$
+\text{pos} = i + j + 1
+$$
+and its carry overflows into index $i + j$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Two-Phase Multiplication Pipeline
+1. **Convolution Phase (Accumulate Products):**
+   For every pair $i \in [0, M-1]$ and $j \in [0, N-1]$:
+   $$
+   \text{res}[i + j + 1] \leftarrow \text{res}[i + j + 1] + (\text{num1}[i] - \text{'0'}) \times (\text{num2}[j] - \text{'0'})
+   $$
+   *(Products are summed into decimal power buckets without carrying immediately).*
+2. **Carry Normalization Phase:**
+   Iterate backwards from the least significant index $k = M + N - 1$ down to $1$:
+   $$
+   \text{carry} = \lfloor \text{res}[k] / 10 \rfloor
+   $$
+   $$
+   \text{res}[k] \leftarrow \text{res}[k] \pmod{10}
+   $$
+   $$
+   \text{res}[k - 1] \leftarrow \text{res}[k - 1] + \text{carry}
+   $$
+3. **Format & Strip Zeroes:**
+   Convert $\text{res}$ to a string, skipping leading zeroes. If the result is entirely zeroes, return $\text{"0"}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After normalizing carry up to index $k$, every position from $k$ to $M + N - 1$ contains a single valid decimal digit in $[0, 9]$, and the numerical value of the array remains invariant.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Recreate multiplication without converting the whole inputs
+We multiply $\text{num1} = \text{"123"}$ and $\text{num2} = \text{"456"}$ using array $\text{res}$ of length 6:
 
-The restriction forbids turning `num1` and `num2` into built-in integers and multiplying them directly. It does not forbid converting one digit character at a time. The solution therefore reproduces grade-school multiplication: multiply every digit of the first number by every digit of the second, place each partial product according to decimal position, and propagate carries.
+### Phase 1: Bucket Accumulation
 
-Let $m$ and $n$ be the input lengths. The product of an $m$-digit number and an $n$-digit number has at most $m + n$ digits. It can have $m + n - 1$ digits, but allocating `m + n` slots covers both possibilities and leaves room for a leading carry.
+- **Position 5 ($i + j + 1 = 5 \implies i = 2, j = 2$):**
+  - $\text{num1}[2] \times \text{num2}[2] = 3 \times 6 = 18$.
+  - $\text{res}[5] = 18$.
+- **Position 4 ($i + j + 1 = 4$):**
+  - $i = 2, j = 1: 3 \times 5 = 15$
+  - $i = 1, j = 2: 2 \times 6 = 12$
+  - $\text{res}[4] = 15 + 12 = 27$.
+- **Position 3 ($i + j + 1 = 3$):**
+  - $i = 2, j = 0: 3 \times 4 = 12$
+  - $i = 1, j = 1: 2 \times 5 = 10$
+  - $i = 0, j = 2: 1 \times 6 = 6$
+  - $\text{res}[3] = 12 + 10 + 6 = 28$.
+- **Position 2 ($i + j + 1 = 2$):**
+  - $i = 1, j = 0: 2 \times 4 = 8$
+  - $i = 0, j = 1: 1 \times 5 = 5$
+  - $\text{res}[2] = 8 + 5 = 13$.
+- **Position 1 ($i + j + 1 = 1$):**
+  - $i = 0, j = 0: 1 \times 4 = 4$.
+  - $\text{res}[1] = 4$.
+- **Position 0:**
+  - $\text{res}[0] = 0$.
 
-`arr` stores digits in normal most-significant-to-least-significant order. During the first phase its entries are not yet restricted to 0 through 9; they are buckets accumulating all raw products that belong at the same decimal position.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num1": "2", "num2": "3"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why a pair contributes to `i + j + 1`
-
-Digit `num1[i]` is $m - 1 - i$ positions from the right, while `num2[j]` is $n - 1 - j$ positions from the right. Their product belongs
-
-$$
-(m - 1 - i) + (n - 1 - j)
-$$
-
-positions from the right of the answer. In a length-$(m+n)$ array, that decimal position corresponds to array index `i + j + 1`. The slot immediately to its left, `i + j`, is where a carry from that position will eventually go.
-
-This explains the otherwise mysterious extra `+ 1`. For `123 * 456`, the product of the rightmost digits `3 * 6` goes to the final slot because `i = 2`, `j = 2`, and `i + j + 1 = 5` in a six-slot array. The product `1 * 4` goes to index 1, leaving index 0 available if carry makes the final answer six digits.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Raw unnormalized array: $\text{res} = [0, 4, 13, 28, 27, 18]$.
 
 ---
 
-### Step 3: Accumulate before carrying
+### Phase 2: Right-to-Left Carry Propagation
 
-The nested loops run from right to left, although accumulation correctness would also hold in another order because addition is commutative. For each pair, the source converts the two characters separately and adds `a * b` to `arr[i + j + 1]`.
+- **Index 5 (Value 18):**
+  - Digit: $18 \pmod{10} = 8$.
+  - Carry: $\lfloor 18 / 10 \rfloor = 1$.
+  - Update: $\text{res}[5] = 8$, $\text{res}[4] \leftarrow 27 + 1 = 28$.
+- **Index 4 (Value 28):**
+  - Digit: $28 \pmod{10} = 8$.
+  - Carry: $\lfloor 28 / 10 \rfloor = 2$.
+  - Update: $\text{res}[4] = 8$, $\text{res}[3] \leftarrow 28 + 2 = 30$.
+- **Index 3 (Value 30):**
+  - Digit: $30 \pmod{10} = 0$.
+  - Carry: $\lfloor 30 / 10 \rfloor = 3$.
+  - Update: $\text{res}[3] = 0$, $\text{res}[2] \leftarrow 13 + 3 = 16$.
+- **Index 2 (Value 16):**
+  - Digit: $16 \pmod{10} = 6$.
+  - Carry: $\lfloor 16 / 10 \rfloor = 1$.
+  - Update: $\text{res}[2] = 6$, $\text{res}[1] \leftarrow 4 + 1 = 5$.
+- **Index 1 (Value 5):**
+  - Digit: $5 \pmod{10} = 5$.
+  - Carry: $0$.
+  - Update: $\text{res}[1] = 5$, $\text{res}[0] \leftarrow 0 + 0 = 0$.
 
-No carry is performed inside these loops. Several products may make a bucket much larger than 9, and that is intentional. Separating multiplication from carry propagation keeps each phase simple: first place every pairwise contribution at its correct power of ten, then normalize the entire representation.
+Normalized array: $[0, 5, 6, 0, 8, 8]$.
 
-For example, the tens-position bucket may receive contributions from the units digit of one input times the tens digit of the other and vice versa. Adding both before carrying is exactly what written multiplication does when its shifted partial rows are summed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"6"` |
+### Phase 3: Format Output
+- Skip leading zero at index 0.
+- Remaining digits: $[5, 6, 0, 8, 8]$.
+- Emitted string: $\text{"56088"}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num1": "2", "num2": "3"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"6"` | Verified |
+| Array Slot $k$ | Positional Weight | Contributing Digit Products $(i, j)$ | Raw Sum in Bucket | Incoming Carry | Resulting Digit ($k \pmod{10}$) | Outgoing Carry to $k-1$ |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 5 | $10^0$ | $3 \times 6 = 18$ | 18 | 0 | **8** | 1 |
+| 4 | $10^1$ | $(3 \times 5) + (2 \times 6) = 27$ | 27 | 1 | **8** | 2 |
+| 3 | $10^2$ | $(3 \times 4) + (2 \times 5) + (1 \times 6) = 28$ | 28 | 2 | **0** | 3 |
+| 2 | $10^3$ | $(2 \times 4) + (1 \times 5) = 13$ | 13 | 3 | **6** | 1 |
+| 1 | $10^4$ | $1 \times 4 = 4$ | 4 | 1 | **5** | 0 |
+| 0 | $10^5$ | Leading overflow slot | 0 | 0 | **0** (Dropped) | 0 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Multiplication of two polynomials $A(x) = \sum a_i x^i$ and $B(x) = \sum b_j x^j$ at base $x = 10$ evaluates the product as the discrete convolution of their coefficients. Accumulating digit products into index $i + j + 1$ followed by carry propagation exactly reproduces multi-precision positional decimal arithmetic.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every pair of digits $(a, b)$ is multiplied and accumulated into its mathematically corresponding power-of-ten slot. Carry propagation moves strictly right to left, terminating at the most significant digit without dropping any value.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Carry after every digit multiplication:** A destination slot can be normalized immediately and its carry added leftward. This uses the same array and bounds but intertwines accumulation with normalization, making ordering harder to reason about.
-- **Reverse both input strings:** Reversed digits let index `i + j` directly represent the power of ten. The result must then be normalized and reversed back, which is equally valid but adds reversal steps.
-- **Build shifted partial strings:** This mirrors paper multiplication visually, but storing and summing all partial rows uses more intermediate space and more complicated string addition.
-- **Convert whole strings with `int`:** It is concise in Python but explicitly violates the problem's restriction and hides the intended arbitrary-precision arithmetic.
-- **Either operand is `"0"`:** The early return supplies one canonical zero rather than an empty string or many leading zeros.
-- **Single-digit operands:** The same bucket and carry logic works; for `9 * 9`, the two slots normalize to `"81"`.
-- **Maximum carry chains:** Right-to-left normalization propagates carries through as many positions as necessary because each left bucket is processed only after all rightward carries have reached it.
-- **No leading zeros in inputs:** This guarantee justifies removing at most one unused result slot after excluding zero operands.
-- **Inputs remain unchanged:** Strings are immutable and the algorithm only reads their characters.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Multiplying by Zero:** If either input is $\text{"0"}$ (e.g. $\text{"0"} \times \text{"456"}$), all array buckets remain $0$. Failing to handle the all-zero case would emit an empty string `""` instead of $\text{"0"}$.
+- **Leading Zeros in Buffer:** A product of length $M + N$ may have $M + N - 1$ digits (e.g. $10 \times 10 = 100$, occupying 3 digits in a 4-slot array). Stripping leading zeros before joining prevents outputs like $\text{"056088"}$.
+- **Index Arithmetic Confusion:** Placing products directly at $i + j$ without allocating $M + N$ slots causes index out-of-bounds or misaligned place values. Slot $i + j + 1$ correctly reserves slot 0 for the final carry.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn + m + n)$. The nested loops execute once for every pair of input digits, for $mn$ single-digit multiplications and additions. The carry pass and final string construction each process at most $m+n$ slots. Total time is therefore $O(mn + m + n)$, customarily simplified to $O(mn)$ for positive lengths.
-- **Auxiliary Space Complexity:** $O(m+n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N)$, where $M = |\text{num1}|$ and $N = |\text{num2}|$. The nested loops perform $M \times N$ digit multiplications. The carry propagation pass takes $O(M + N)$ time.
+- **Auxiliary Space Complexity:** $O(M + N)$ to store the intermediate integer array of length $M + N$.

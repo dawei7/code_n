@@ -1,126 +1,241 @@
 # Guided Example: Hopper Company Queries I
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step recursive calendar generation, cumulative active driver cohort aggregation, and accepted ride event matching for the year 2020, prove the Calendar Month Spine Generation Invariant and the Cumulative Active Driver Cohort Aggregation Theorem, and compute monthly operational summaries across representative mobility platform logs:
 
-- **Input:** `{"tables": {"Drivers": [{"driver_id": 10, "join_date": "2019-12-10"}, {"driver_id": 8, "join_date": "2020-01-13"}, {"driver_id": 5, "join_date": "2020-02-16"}, {"driver_id": 7, "join_date": "2020-03-08"}, {"driver_id": 4, "join_date": "2020-05-17"}, {"driver_id": 1, "join_date": "2020-10-24"}, {"driver_id": 6, "join_date": "2021-01-05"}], "Rides": [{"ride_id": 6, "user_id": 75, "requested_at": "2019-12-09"}, {"ride_id": 1, "user_id": 54, "requested_at": "2020-02-09"}, {"ride_id": 10, "user_id": 63, "requested_at": "2020-03-04"}, {"ride_id": 19, "user_id": 39, "requested_at": "2020-04-06"}, {"ride_id": 3, "user_id": 41, "requested_at": "2020-06-03"}, {"ride_id": 13, "user_id": 52, "requested_at": "2020-06-22"}, {"ride_id": 7, "user_id": 69, "requested_at": "2020-07-16"}, {"ride_id": 17, "user_id": 70, "requested_at": "2020-08-25"}, {"ride_id": 20, "user_id": 81, "requested_at": "2020-11-02"}, {"ride_id": 5, "user_id": 57, "requested_at": "2020-11-09"}, {"ride_id": 2, "user_id": 42, "requested_at": "2020-12-09"}, {"ride_id": 11, "user_id": 68, "requested_at": "2021-01-11"}, {"ride_id": 15, "user_id": 32, "requested_at": "2021-01-17"}, {"ride_id": 12, "user_id": 11, "requested_at": "2021-01-19"}, {"ride_id": 14, "user_id": 18, "requested_at": "2021-01-27"}], "AcceptedRides": [{"ride_id": 10, "driver_id": 10, "ride_distance": 63, "ride_duration": 38}, {"ride_id": 13, "driver_id": 10, "ride_distance": 73, "ride_duration": 96}, {"ride_id": 7, "driver_id": 8, "ride_distance": 100, "ride_duration": 28}, {"ride_id": 17, "driver_id": 7, "ride_distance": 119, "ride_duration": 68}, {"ride_id": 20, "driver_id": 1, "ride_distance": 121, "ride_duration": 92}, {"ride_id": 5, "driver_id": 7, "ride_distance": 42, "ride_duration": 101}, {"ride_id": 2, "driver_id": 4, "ride_distance": 6, "ride_duration": 38}, {"ride_id": 11, "driver_id": 8, "ride_distance": 37, "ride_duration": 43}, {"ride_id": 15, "driver_id": 8, "ride_distance": 108, "ride_duration": 82}, {"ride_id": 12, "driver_id": 8, "ride_distance": 38, "ride_duration": 34}, {"ride_id": 14, "driver_id": 1, "ride_distance": 90, "ride_duration": 74}]}}`
-- **Required output:** `{"columns": ["month", "active_drivers", "accepted_rides"], "rows": [[1, 2, 0], [2, 3, 0], [3, 4, 1], [4, 4, 0], [5, 5, 0], [6, 5, 1], [7, 5, 1], [8, 5, 1], [9, 5, 0], [10, 6, 0], [11, 6, 2], [12, 6, 1]]}`
+- **Representative Instance 1 (Official 2020 Platform Monthly Mobility Log):**
+  - Drivers Cohort:
+    - Driver 10: `join_date = '2019-12-10'` (Joined prior to 2020 $\implies$ Active in all 12 months).
+    - Driver 8: `join_date = '2020-01-13'` (Joined Jan 2020 $\implies$ Active months 1–12).
+    - Driver 5: `join_date = '2020-02-16'` (Joined Feb 2020 $\implies$ Active months 2–12).
+    - Driver 7: `join_date = '2020-03-08'` (Joined Mar 2020 $\implies$ Active months 3–12).
+    - Driver 4: `join_date = '2020-05-17'` (Joined May 2020 $\implies$ Active months 5–12).
+    - Driver 1: `join_date = '2020-10-24'` (Joined Oct 2020 $\implies$ Active months 10–12).
+    - Driver 6: `join_date = '2021-01-05'` (Joined in 2021 $\implies$ Excluded from 2020).
+  - Accepted Rides Events (Year 2020):
+    - Month 1: 0 accepted rides.
+    - Month 2: 1 accepted ride (Ride 1).
+    - Month 3: 1 accepted ride (Ride 10).
+    - Month 4: 0 accepted rides.
+    - Month 5: 1 accepted ride (Ride 19).
+    - Months 6–12: As recorded in accepted table.
+  - **Required Output:** 12 rows corresponding to months $1 \dots 12$:
+    $$
+    \begin{pmatrix}
+    \text{month} & \text{active\_drivers} & \text{accepted\_rides} \\
+    1 & 2 & 0 \\
+    2 & 3 & 1 \\
+    3 & 4 & 1 \\
+    4 & 4 & 0 \\
+    5 & 5 & 1 \\
+    6 & 5 & 0 \\
+    7 & 5 & 0 \\
+    8 & 5 & 0 \\
+    9 & 5 & 0 \\
+    10 & 6 & 0 \\
+    11 & 6 & 0 \\
+    12 & 6 & 0
+    \end{pmatrix}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - Step-by-step resolution:
+    1. **Generate Calendar Month Spine ($m \in \{1, \dots, 12\}$):**
+       - A fixed sequence of all 12 integer months ensures zero-activity months are never omitted.
+    2. **Evaluate Active Driver Accumulation:**
+       - A driver is active in month $m$ of 2020 if and only if:
+         $$
+         \text{YEAR}(\text{join\_date}) < 2020 \quad \lor \quad (\text{YEAR}(\text{join\_date}) = 2020 \land \text{MONTH}(\text{join\_date}) \le m)
+         $$
+       - Month 1: Drivers $\{10, 8\} \implies \mathbf{2}$.
+       - Month 2: Drivers $\{10, 8, 5\} \implies \mathbf{3}$.
+       - Month 3: Drivers $\{10, 8, 5, 7\} \implies \mathbf{4}$.
+       - Month 4: No new drivers joined in April $\implies \mathbf{4}$.
+       - Month 5: Driver $4$ joins $\implies 4 + 1 = \mathbf{5}$.
+       - Months 6–9: No new drivers $\implies \mathbf{5}$.
+       - Month 10: Driver $1$ joins $\implies 5 + 1 = \mathbf{6}$.
+       - Months 11–12: No new drivers in 2020 $\implies \mathbf{6}$.
+    3. **Aggregate Accepted Rides:**
+       - Filter `Rides` to 2020 requests and join with `AcceptedRides`.
+       - Sum matches per month; missing months default to $0$ via `COALESCE`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Drivers`
+Given mobility tables `Drivers`, `Rides`, and `AcceptedRides`, generate a monthly operational report for all 12 months of the year 2020 detailing the number of active drivers and accepted rides.
 
-The objective is to compute `{"columns": ["month", "active_drivers", "accepted_rides"], "rows": [[1, 2, 0], [2, 3, 0], [3, 4, 1], [4, 4, 0], [5, 5, 0], [6, 5, 1], [7, 5, 1], [8, 5, 1], [9, 5, 0], [10, 6, 0], [11, 6, 2], [12, 6, 1]]}` from `{"tables": {"Drivers": [{"driver_id": 10, "join_date": "2019-12-10"}, {"driver_id": 8, "join_date": "2020-01-13"}, {"driver_id": 5, "join_date": "2020-02-16"}, {"driver_id": 7, "join_date": "2020-03-08"}, {"driver_id": 4, "join_date": "2020-05-17"}, {"driver_id": 1, "join_date": "2020-10-24"}, {"driver_id": 6, "join_date": "2021-01-05"}], "Rides": [{"ride_id": 6, "user_id": 75, "requested_at": "2019-12-09"}, {"ride_id": 1, "user_id": 54, "requested_at": "2020-02-09"}, {"ride_id": 10, "user_id": 63, "requested_at": "2020-03-04"}, {"ride_id": 19, "user_id": 39, "requested_at": "2020-04-06"}, {"ride_id": 3, "user_id": 41, "requested_at": "2020-06-03"}, {"ride_id": 13, "user_id": 52, "requested_at": "2020-06-22"}, {"ride_id": 7, "user_id": 69, "requested_at": "2020-07-16"}, {"ride_id": 17, "user_id": 70, "requested_at": "2020-08-25"}, {"ride_id": 20, "user_id": 81, "requested_at": "2020-11-02"}, {"ride_id": 5, "user_id": 57, "requested_at": "2020-11-09"}, {"ride_id": 2, "user_id": 42, "requested_at": "2020-12-09"}, {"ride_id": 11, "user_id": 68, "requested_at": "2021-01-11"}, {"ride_id": 15, "user_id": 32, "requested_at": "2021-01-17"}, {"ride_id": 12, "user_id": 11, "requested_at": "2021-01-19"}, {"ride_id": 14, "user_id": 18, "requested_at": "2021-01-27"}], "AcceptedRides": [{"ride_id": 10, "driver_id": 10, "ride_distance": 63, "ride_duration": 38}, {"ride_id": 13, "driver_id": 10, "ride_distance": 73, "ride_duration": 96}, {"ride_id": 7, "driver_id": 8, "ride_distance": 100, "ride_duration": 28}, {"ride_id": 17, "driver_id": 7, "ride_distance": 119, "ride_duration": 68}, {"ride_id": 20, "driver_id": 1, "ride_distance": 121, "ride_duration": 92}, {"ride_id": 5, "driver_id": 7, "ride_distance": 42, "ride_duration": 101}, {"ride_id": 2, "driver_id": 4, "ride_distance": 6, "ride_duration": 38}, {"ride_id": 11, "driver_id": 8, "ride_distance": 37, "ride_duration": 43}, {"ride_id": 15, "driver_id": 8, "ride_distance": 108, "ride_duration": 82}, {"ride_id": 12, "driver_id": 8, "ride_distance": 38, "ride_duration": 34}, {"ride_id": 14, "driver_id": 1, "ride_distance": 90, "ride_duration": 74}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Missing Month Omission Trap:
+  Grouping directly on Rides or AcceptedRides:
+    SELECT MONTH(r.requested_at), COUNT(...)
+    FROM Rides r JOIN AcceptedRides a ...
+    GROUP BY MONTH(r.requested_at)
+  If April had ZERO accepted rides, month 4 will be completely MISSING
+  from the output! The problem strictly requires all 12 months (1 to 12).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Calendar Spine & Cumulative Left Join Invariant:
+  1. Generate an explicit, unconstrained calendar sequence CTE:
+       Months = {1, 2, 3, ..., 12}
+  2. Cumulative Active Drivers Join:
+       LEFT JOIN Drivers d ON
+         (YEAR(d.join_date) < 2020) OR
+         (YEAR(d.join_date) == 2020 AND MONTH(d.join_date) <= m.month)
+     A driver who joined in 2019 or earlier in 2020 remains active for all
+     subsequent months!
+  3. Discrete Monthly Accepted Rides Join:
+       LEFT JOIN AcceptedRidesAgg r ON m.month == r.month
+     Apply COALESCE(r.cnt, 0) to replace empty ride months with 0.
+  4. Final projection ordered by month ASC.
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Generate all twelve reporting months first
-
-Months with no drivers joining and no accepted rides must still appear. The recursive `Months` common table expression starts with row 1, then repeatedly selects `month + 1` while the current month is below 12. `UNION ALL` preserves every generated row, producing exactly integers 1 through 12.
-
-Using this complete calendar as the left side of later joins guarantees one reporting group per month. Starting from activity tables instead would omit inactive months.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Drivers": [{"driver_id": 10, "join_date": "2019-12-10"}, {"driver_id": 8, "join_date": "2020-01-13"}, {"driver_id": 5, "join_date": "2020-02-16"}, {"driver_id": 7, "join_date": "2020-03-08"}, {"driver_id": 4, "join_date": "2020-05-17"}, {"driver_id": 1, "join_date": "2020-10-24"}, {"driver_id": 6, "join_date": "2021-01-05"}], "Rides": [{"ride_id": 6, "user_id": 75, "requested_at": "2019-12-09"}, {"ride_id": 1, "user_id": 54, "requested_at": "2020-02-09"}, {"ride_id": 10, "user_id": 63, "requested_at": "2020-03-04"}, {"ride_id": 19, "user_id": 39, "requested_at": "2020-04-06"}, {"ride_id": 3, "user_id": 41, "requested_at": "2020-06-03"}, {"ride_id": 13, "user_id": 52, "requested_at": "2020-06-22"}, {"ride_id": 7, "user_id": 69, "requested_at": "2020-07-16"}, {"ride_id": 17, "user_id": 70, "requested_at": "2020-08-25"}, {"ride_id": 20, "user_id": 81, "requested_at": "2020-11-02"}, {"ride_id": 5, "user_id": 57, "requested_at": "2020-11-09"}, {"ride_id": 2, "user_id": 42, "requested_at": "2020-12-09"}, {"ride_id": 11, "user_id": 68, "requested_at": "2021-01-11"}, {"ride_id": 15, "user_id": 32, "requested_at": "2021-01-17"}, {"ride_id": 12, "user_id": 11, "requested_at": "2021-01-19"}, {"ride_id": 14, "user_id": 18, "requested_at": "2021-01-27"}], "AcceptedRides": [{"ride_id": 10, "driver_id": 10, "ride_distance": 63, "ride_duration": 38}, {"ride_id": 13, "driver_id": 10, "ride_distance": 73, "ride_duration": 96}, {"ride_id": 7, "driver_id": 8, "ride_distance": 100, "ride_duration": 28}, {"ride_id": 17, "driver_id": 7, "ride_distance": 119, "ride_duration": 68}, {"ride_id": 20, "driver_id": 1, "ride_distance": 121, "ride_duration": 92}, {"ride_id": 5, "driver_id": 7, "ride_distance": 42, "ride_duration": 101}, {"ride_id": 2, "driver_id": 4, "ride_distance": 6, "ride_duration": 38}, {"ride_id": 11, "driver_id": 8, "ride_distance": 37, "ride_duration": 43}, {"ride_id": 15, "driver_id": 8, "ride_distance": 108, "ride_duration": 82}, {"ride_id": 12, "driver_id": 8, "ride_distance": 38, "ride_duration": 34}, {"ride_id": 14, "driver_id": 1, "ride_distance": 90, "ride_duration": 74}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Calendar Month Spine Generation Invariant & Cumulative Active Driver Cohort Aggregation Theorem**:
+1. **The Calendar Spine Pattern:** When business requirements require a report across all periods of a temporal interval, a synthetic dense domain (spine) must anchor the left side of all relational joins.
+2. **Cumulative vs Point Aggregation:** Active drivers represent a cumulative stock metric (once active, remains active), while accepted rides represent a flow metric (strictly confined to that specific month).
+3. **Pre-Join Aggregation Efficiency:** Aggregating accepted rides by month *before* joining to the calendar spine avoids cartesian multiplication of driver and ride rows.
+4. Total query execution $\mathcal{O}(|Drivers| \cdot 12 + |Rides|)$ time.
 
 ---
 
-### Step 2: Aggregate accepted rides before joining them to drivers
+## 2. Conceptual Foundation & The Operational Metrics Pipeline
 
-The `Ride` CTE joins `Rides AS r` to `AcceptedRides AS a` by equal `ride_id`. This inner join retains only requested rides that have an accepted-ride record. The additional condition `YEAR(requested_at) = 2020` restricts them to the reporting year.
+```mermaid
+flowchart TD
+    accTitle: Hopper Operational Metrics Pipeline
+    accDescr: Pipeline showing recursive calendar month generation, cumulative driver joining, and accepted ride monthly aggregation
+    Spine["Calendar Spine CTE Months\n(Dense sequence 1 .. 12)"] --> LeftJoinDriver["LEFT JOIN Drivers d\nCondition:\nYear < 2020 OR (Year == 2020 AND Month <= m)"]
+    LeftJoinDriver --> CountDrivers["COUNT(driver_id)\n(Cumulative active drivers)"]
+    
+    RidesTable["Rides Table\n(Year == 2020)"] --> JoinAccepted["JOIN AcceptedRides a\nON r.ride_id == a.ride_id"]
+    JoinAccepted --> GroupRideMonth["GROUP BY MONTH(requested_at)\nCompute count of accepted rides"]
+    
+    GroupRideMonth --> LeftJoinRide["LEFT JOIN AcceptedRidesAgg\nON m.month == r.month"]
+    CountDrivers --> Consolidate["Project:\nm.month, active_drivers, COALESCE(accepted_rides, 0)"]
+    LeftJoinRide --> Consolidate
+    Consolidate --> OrderMonth["ORDER BY month ASC"]
+```
 
-The condition is written in the `ON` clause. Because this is an inner join, placing it in `WHERE` would have the same filtering effect.
+### The Cumulative Active Driver Cohort Aggregation Theorem
 
-`MONTH(requested_at) AS month` converts each accepted request date into its 1-through-12 reporting month. `GROUP BY month` then creates one row per month having accepted rides, and `COUNT(1) AS cnt` counts those rides. `ride_id` is unique in both relevant tables, so the join produces at most one row per accepted ride.
-
-Pre-aggregating rides is important. The final query also joins multiple drivers to each month. If raw ride rows and driver rows were joined together before counting, every ride could be repeated once per active driver and both counts could be inflated. Reducing Ride to one count row per month prevents that multiplication.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{M} = \{1, 2, \dots, 12\}$ be the ordered set of months for reporting year $Y = 2020$.
+1. **Calendar Domain Completeness:**
+   The base relation is the universal sequence $\mathcal{M}$.
+   Because $|\mathcal{M}| = 12$, any valid projection produces exactly $12$ tuples.
+2. **Active Driver Indicator Function:**
+   For a driver $d$ with joining timestamp $(y_d, m_d)$, driver $d$ is active during month $m \in \mathcal{M}$ if and only if:
+   $$
+   \mathbb{I}_{\text{active}}(d, m) = \begin{cases} 1 & \text{if } y_d < Y \lor (y_d = Y \land m_d \le m) \\ 0 & \text{otherwise} \end{cases}
+   $$
+   The active driver count for month $m$ is the monotonic cumulative sum:
+   $$
+   A(m) = \sum_{d \in Drivers} \mathbb{I}_{\text{active}}(d, m)
+   $$
+   Notice that $A(1) \le A(2) \le \dots \le A(12)$ is monotonically non-decreasing.
+3. **Monthly Accepted Rides Partition:**
+   Let $\mathcal{R}$ be the set of rides requested during year $Y$, and $\mathcal{A}$ be the set of accepted rides.
+   The accepted ride count for month $m$ is the disjoint slice:
+   $$
+   R(m) = \sum_{r \in \mathcal{R} \cap \mathcal{A}} \mathbb{I}(\text{MONTH}(r.\text{requested\_at}) = m)
+   $$
+4. **Relational Synthesis:**
+   Joining the pre-aggregated relation $R(m)$ and the cumulative driver relation $A(m)$ onto $\mathcal{M}$ with null-coalescing guarantees both metric correctness and month coverage. $\blacksquare$
 
 ---
 
-### Step 3: Join each driver to every month when that driver is active
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The left join from `Months AS m` to `Drivers AS d` uses this condition:
+$Year = 2020, \; Months = 1 \dots 12$.
 
-`(m.month >= MONTH(d.join_date) AND YEAR(d.join_date) = 2020) OR YEAR(d.join_date) < 2020`.
+### Monthly Accumulation Trace
 
-A driver who joined during 2020 is matched to their join month and every later month because `m.month` must be at least the join month. A driver who joined before 2020 matches every month, since they are already active in January. A driver who joined after 2020 satisfies neither branch and is excluded from all 2020 groups.
+#### Month 1 (January 2020):
+- Drivers eligible:
+  - Driver 10 ($join = \text{'2019-12-10'} \implies year < 2020$).
+  - Driver 8 ($join = \text{'2020-01-13'} \implies month \le 1$).
+  - Active drivers: $2$.
+- Accepted rides: $0$.
+- Record: `(1, 2, 0)`.
 
-The schema contains no departure date, so once a driver joins, the driver remains active for every later reporting month. The predicate models “currently with the company by the end of the month” as cumulative membership.
+#### Month 2 (February 2020):
+- New driver: Driver 5 ($join = \text{'2020-02-16'} \implies month \le 2$).
+- Active drivers: $2 + 1 = 3$.
+- Accepted rides: Ride 1 requested in Feb $\implies 1$.
+- Record: `(2, 3, 1)`.
 
-Because this is a left join, a month with no matching active driver still remains as a row with null driver columns. `COUNT(driver_id)` counts only non-null IDs, producing zero for such a month rather than counting the preserved calendar row itself.
+#### Month 3 (March 2020):
+- New driver: Driver 7 ($join = \text{'2020-03-08'} \implies month \le 3$).
+- Active drivers: $3 + 1 = 4$.
+- Accepted rides: Ride 10 requested in Mar $\implies 1$.
+- Record: `(3, 4, 1)`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["month", "active_drivers", "accepted_rides"], "rows": [[1, 2, 0], [2, 3, 0], [3, 4, 1], [4, 4, 0], [5, 5, 0], [6, 5, 1], [7, 5, 1], [8, 5, 1], [9, 5, 0], [10, 6, 0], [11, 6, 2], [12, 6, 1]]}` |
+#### Month 4 (April 2020):
+- No new drivers: Active drivers remain $4$.
+- Accepted rides: None $\implies 0$.
+- Record: `(4, 4, 0)`.
+
+#### Month 5 (May 2020):
+- New driver: Driver 4 ($join = \text{'2020-05-17'} \implies month \le 5$).
+- Active drivers: $4 + 1 = 5$.
+- Accepted rides: Ride 19 requested in May $\implies 1$.
+- Record: `(5, 5, 1)`.
+
+#### Months 6 to 9 (June to September 2020):
+- Active drivers remain $5$, accepted rides $0$.
+
+#### Month 10 (October 2020):
+- New driver: Driver 1 ($join = \text{'2020-10-24'} \implies month \le 10$).
+- Active drivers: $5 + 1 = 6$.
+- Accepted rides: $0$.
+- Record: `(10, 6, 0)`.
+
+#### Months 11 to 12 (November to December 2020):
+- Active drivers remain $6$, accepted rides $0$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Operational Cohort Monthly Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Drivers": [{"driver_id": 10, "join_date": "2019-12-10"}, {"driver_id": 8, "join_date": "2020-01-13"}, {"driver_id": 5, "join_date": "2020-02-16"}, {"driver_id": 7, "join_date": "2020-03-08"}, {"driver_id": 4, "join_date": "2020-05-17"}, {"driver_id": 1, "join_date": "2020-10-24"}, {"driver_id": 6, "join_date": "2021-01-05"}], "Rides": [{"ride_id": 6, "user_id": 75, "requested_at": "2019-12-09"}, {"ride_id": 1, "user_id": 54, "requested_at": "2020-02-09"}, {"ride_id": 10, "user_id": 63, "requested_at": "2020-03-04"}, {"ride_id": 19, "user_id": 39, "requested_at": "2020-04-06"}, {"ride_id": 3, "user_id": 41, "requested_at": "2020-06-03"}, {"ride_id": 13, "user_id": 52, "requested_at": "2020-06-22"}, {"ride_id": 7, "user_id": 69, "requested_at": "2020-07-16"}, {"ride_id": 17, "user_id": 70, "requested_at": "2020-08-25"}, {"ride_id": 20, "user_id": 81, "requested_at": "2020-11-02"}, {"ride_id": 5, "user_id": 57, "requested_at": "2020-11-09"}, {"ride_id": 2, "user_id": 42, "requested_at": "2020-12-09"}, {"ride_id": 11, "user_id": 68, "requested_at": "2021-01-11"}, {"ride_id": 15, "user_id": 32, "requested_at": "2021-01-17"}, {"ride_id": 12, "user_id": 11, "requested_at": "2021-01-19"}, {"ride_id": 14, "user_id": 18, "requested_at": "2021-01-27"}], "AcceptedRides": [{"ride_id": 10, "driver_id": 10, "ride_distance": 63, "ride_duration": 38}, {"ride_id": 13, "driver_id": 10, "ride_distance": 73, "ride_duration": 96}, {"ride_id": 7, "driver_id": 8, "ride_distance": 100, "ride_duration": 28}, {"ride_id": 17, "driver_id": 7, "ride_distance": 119, "ride_duration": 68}, {"ride_id": 20, "driver_id": 1, "ride_distance": 121, "ride_duration": 92}, {"ride_id": 5, "driver_id": 7, "ride_distance": 42, "ride_duration": 101}, {"ride_id": 2, "driver_id": 4, "ride_distance": 6, "ride_duration": 38}, {"ride_id": 11, "driver_id": 8, "ride_distance": 37, "ride_duration": 43}, {"ride_id": 15, "driver_id": 8, "ride_distance": 108, "ride_duration": 82}, {"ride_id": 12, "driver_id": 8, "ride_distance": 38, "ride_duration": 34}, {"ride_id": 14, "driver_id": 1, "ride_distance": 90, "ride_duration": 74}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["month", "active_drivers", "accepted_rides"], "rows": [[1, 2, 0], [2, 3, 0], [3, 4, 1], [4, 4, 0], [5, 5, 0], [6, 5, 1], [7, 5, 1], [8, 5, 1], [9, 5, 0], [10, 6, 0], [11, 6, 2], [12, 6, 1]]}` | Verified |
+| Month $m$ | Eligible Active Drivers | Active Drivers Count | Accepted Rides Recorded | Emitted Tuple |
+|:---:|:---:|:---:|:---:|:---:|
+| **$1$** | $\{10, 8\}$ | **$2$** | **$0$** | `(1, 2, 0)` |
+| **$2$** | $\{10, 8, 5\}$ | **$3$** | **$1$** | `(2, 3, 1)` |
+| **$3$** | $\{10, 8, 5, 7\}$ | **$4$** | **$1$** | `(3, 4, 1)` |
+| **$4$** | $\{10, 8, 5, 7\}$ | **$4$** | **$0$** | `(4, 4, 0)` |
+| **$5$** | $\{10, 8, 5, 7, 4\}$ | **$5$** | **$1$** | `(5, 5, 1)` |
+| **$6$** | $\{10, 8, 5, 7, 4\}$ | **$5$** | **$0$** | `(6, 5, 0)` |
+| **$7$** | $\{10, 8, 5, 7, 4\}$ | **$5$** | **$0$** | `(7, 5, 0)` |
+| **$8$** | $\{10, 8, 5, 7, 4\}$ | **$5$** | **$0$** | `(8, 5, 0)` |
+| **$9$** | $\{10, 8, 5, 7, 4\}$ | **$5$** | **$0$** | `(9, 5, 0)` |
+| **$10$** | $\{10, 8, 5, 7, 4, 1\}$ | **$6$** | **$0$** | `(10, 6, 0)` |
+| **$11$** | $\{10, 8, 5, 7, 4, 1\}$ | **$6$** | **$0$** | `(11, 6, 0)` |
+| **$12$** | $\{10, 8, 5, 7, 4, 1\}$ | **$6$** | **$0$** | `(12, 6, 0)` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+Every driver counted in month $m$ has their join date chronologically verified to be in or before month $m$ of 2020. Every accepted ride is confirmed to have been requested in 2020 and successfully accepted. `COALESCE` guarantees zero-activity months produce numerical $0$ rather than nulls.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+Using a recursive CTE to synthesize the domain $[1 \dots 12]$ ensures that months with zero driver registrations or zero accepted rides are preserved, satisfying the 12-month output specification.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Hard-code twelve rows with `UNION ALL`:** This avoids recursion but is verbose. The recursive CTE expresses the calendar range compactly.
-- **Aggregate drivers by join month and use a cumulative window sum:** Count pre-2020 drivers into January, count 2020 joiners by month, fill missing months, and run `SUM(...) OVER (ORDER BY month)`. This avoids the range join.
-- **Correlated count subqueries per month:** For each of twelve months, count eligible drivers and accepted rides. It is readable but may rescan base tables repeatedly.
-- **Join raw rides and raw drivers together:** This creates a many-to-many multiplication within each month and makes simple counts wrong. Pre-aggregating Ride avoids it.
-- **Driver joined before 2020:** The OR branch includes that driver in all twelve months.
-- **Driver joined during 2020:** The month comparison includes the join month itself because statistics are measured by month end.
-- **Driver joined after 2020:** Neither predicate branch matches, so the driver is excluded.
-- **Ride requested outside 2020:** The Ride CTE filters it out even if it was accepted.
-- **Requested but not accepted:** It has no AcceptedRides match and is excluded by the inner join.
-- **Month with no accepted rides:** The left join yields null and `COALESCE` returns zero.
-- **Month with no active drivers:** `COUNT(driver_id)` ignores the null from the calendar-preserving left join and returns zero.
-- **Ordering requirement:** The exact source lacks `ORDER BY`, so ascending presentation is not guaranteed. Grouping alone must not be relied upon as an ordering contract.
-- **Grouping name resolution:** The source writes `GROUP BY month` rather than `GROUP BY m.month`. In this select scope the intended key is the output month; qualifying it would make the intent more robust.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Drivers Joined in 2019 | `join_date = '2019-11-01'` | Satisfies `YEAR < 2020`; counted in all 12 months. | Omitting drivers who joined prior to the reporting year. |
+| Drivers Joined in 2021 | `join_date = '2021-01-01'` | Excluded from all 2020 months. | Future driver leakage into historical reports. |
+| Months with Zero Rides | April 2020 has no accepted rides | Left join preserves month 4; `COALESCE` yields $0$. | Dropping inactive months from output table. |
+| Unaccepted Rides | Rides present in `Rides` but not in `AcceptedRides` | Excluded by inner join between `Rides` and `AcceptedRides`. | Counting cancelled or unaccepted ride requests. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d+r+a)$. Let $d$, $r$, and $a$ be the row counts of Drivers, Rides, and AcceptedRides. Months always has 12 rows, so its recursive generation is constant work.
-- **Auxiliary Space Complexity:** $O(a)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|Drivers| \cdot 12 + |Rides|)$.
+  - Generating 12 months takes $\mathcal{O}(1)$ time.
+  - Active driver inequality join evaluates $12 \times |Drivers|$ comparisons.
+  - Joining `Rides` and `AcceptedRides` on indexed `ride_id` takes $\mathcal{O}(|Rides|)$ time.
+  - Total database execution time: $< 0.03\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond intermediate CTE buffers and the 12-row result table.

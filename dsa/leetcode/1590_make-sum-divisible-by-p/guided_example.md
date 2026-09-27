@@ -1,161 +1,167 @@
 # Guided Example: Make Sum Divisible by P
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide traces the modular arithmetic and prefix hash map technique used to locate the shortest contiguous subarray whose removal makes the remaining sum divisible by a modulus $p$.
 
-- **Input:** `{"nums": [3, 1, 4, 2], "p": 6}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Array:** `nums = [3, 1, 4, 2]`
+- **Modulus:** $p = 6$
+- **Target Value:** `1` (removing single element subarray `[4]`)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of positive integers `nums`, remove the **smallest** subarray (possibly **empty**) such that the **sum** of the remaining elements is divisible by `p`. It is **not** allowed to remove the whole array.
+Given an array of positive integers and a divisor $p$, we aim to remove the shortest contiguous subarray such that the sum of the remaining elements is divisible by $p$. Removing the entire array is explicitly forbidden.
 
-The objective is to compute `1` from `{"nums": [3, 1, 4, 2], "p": 6}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [3, 1, 4, 2]`, the total sum is $S = 3 + 1 + 4 + 2 = 10$.
+Evaluating the remainder modulo $p = 6$:
+$$k = S \bmod p = 10 \bmod 6 = 4$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+To leave a remaining sum congruent to $0 \pmod p$, the removed subarray sum $X$ must satisfy:
+$$(S - X) \equiv 0 \pmod p \iff X \equiv S \equiv 4 \pmod 6$$
+
+Our teaching goal is to trace how prefix sum remainders and a hash table of latest occurrence indices identify the optimal subarray in $\mathcal{O}(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  PREFIX MODULO DIFFERENCE RELATION                      |
+|                                                                         |
+|  Let P[i] = (nums[0] + ... + nums[i]) mod p                             |
+|  The sum of subarray nums[j+1 .. i] is:                                 |
+|      X = (P[i] - P[j]) mod p                                            |
+|                                                                         |
+|  We require X = k:                                                      |
+|      (P[i] - P[j]) mod p = k                                            |
+|      P[j] = (P[i] - k + p) mod p                                        |
+|                                                                         |
+|  To minimize removed length (i - j), we must maximize j.                |
+|  Strategy: Store the LATEST index seen for each remainder in a map.     |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Parameter | Mathematical Expression | Function in Search |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Total Remainder ($k$) | $(\sum \text{nums}) \bmod p$ | Deficit remainder that must be evacuated |
+| Current Remainder ($P[i]$) | $(\sum_{m=0}^i \text{nums}[m]) \bmod p$ | Cumulative remainder through index $i$ |
+| Target Prior Remainder | $(P[i] - k + p) \bmod p$ | Remainder needed at prefix boundary $j$ |
+| Candidate Length | $i - j$ | Size of contiguous window to remove |
+| Sentinel Key | `map[0] = -1` | Enables valid prefix removals starting at index $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Greedy Recency Invariant.** Storing only the most recent index for each prefix remainder preserves the shortest candidate interval ending at any subsequent index $i$. For any fixed ending point $i$, a larger prefix boundary $j$ strictly minimizes the window length $i - j$.
+
+```mermaid
+flowchart LR
+    accTitle: Modular Prefix Difference Lookup
+    accDescr: Diagram illustrating lookup of prior prefix remainder to satisfy target remainder difference.
+    P0["Prefix j with Remainder: (P[i] - k) mod p"] -->|"Subarray (j, i] has sum mod p = k"| Pi["Prefix i with Remainder P[i]"]
+    Pi --> Eval["Evaluate Length: i - j"]
+    Eval --> Min["Update Minimum Length"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the remaining-sum condition
-
-Let the total array sum be $S$, and let:
-
-$$
-k=S\bmod p.
-$$
-
-If $k=0$, the total is already divisible by `p`. Removing the empty subarray is allowed, so the solution immediately returns zero.
-
-Otherwise, suppose a subarray with sum $X$ is removed. The remaining sum is divisible by `p` exactly when:
-
-$$
-(S-X)\bmod p=0.
-$$
-
-Since $S\bmod p=k$, this is equivalent to:
-
-$$
-X\bmod p=k.
-$$
-
-The task is therefore to find the shortest proper subarray whose sum has remainder `k` modulo `p`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 1, 4, 2], "p": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- Total sum $S = 10 \implies k = 10 \bmod 6 = 4 \ne 0$.
+- Prefix hash table initialized with sentinel: `last = {0: -1}`.
+- Running remainder `cur = 0`, best length `ans = infinity`.
 
 ---
 
-### Step 2: Express a subarray through prefix remainders
+### Step 1: Process Index $0$ ($\text{nums}[0] = 3$)
+- Update running remainder:
+  $$\text{cur} = (0 + 3) \bmod 6 = 3$$
+- Calculate target prior remainder:
+  $$\text{target} = (3 - 4 + 6) \bmod 6 = 5$$
+- Lookup in `last`: $5 \notin \text{last}$. No valid window ending at $0$.
+- Record index: `last[3] = 0`.
 
-Let the prefix remainder through index `i` be:
-
-$$
-P_i=(\texttt{nums}[0]+\cdots+\texttt{nums}[i])\bmod p.
-$$
-
-For a subarray from `j + 1` through `i`, its sum modulo `p` is:
-
-$$
-(P_i-P_j)\bmod p.
-$$
-
-We want that value to equal `k`. Rearranging gives:
-
-$$
-P_j\equiv P_i-k\pmod p.
-$$
-
-When the current prefix remainder is `cur`, the source computes the required earlier remainder as:
-
-`target = (cur - k + p) % p`.
-
-Adding `p` before taking the modulus prevents a negative intermediate representation. Python’s modulus would already produce a nonnegative result for positive `p`, but the formula is portable and explicit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Variable | State |
+|---|---|
+| Current Index $i$ | $0$ ($\text{val} = 3$) |
+| Running Remainder $\text{cur}$ | $3$ |
+| Target Remainder | $5$ |
+| Match Found | None |
+| Map State | `{-1: 0, 3: 0}` |
 
 ---
 
-### Step 3: What the dictionary stores
+### Step 2: Process Index $1$ ($\text{nums}[1] = 1$)
+- Update running remainder:
+  $$\text{cur} = (3 + 1) \bmod 6 = 4$$
+- Calculate target prior remainder:
+  $$\text{target} = (4 - 4 + 6) \bmod 6 = 0$$
+- Lookup in `last`: $0 \in \text{last}$ with index $j = -1$.
+- Candidate window length:
+  $$i - j = 1 - (-1) = 2$$
+  Subarray: $\text{nums}[0..1] = [3, 1]$, sum $= 4 \equiv 4 \pmod 6$.
+- Update minimum: $\text{ans} = \min(\infty, 2) = 2$.
+- Record index: `last[4] = 1`.
 
-`last` maps a prefix remainder to the latest index where that remainder occurred. It starts as `{0: -1}`. Index negative one represents the empty prefix before the array, whose sum is zero. This sentinel allows a removable subarray beginning at index zero: if the needed prior remainder is zero, its length is `i - (-1) = i + 1`.
+---
 
-During the scan, `cur` is updated with:
+### Step 3: Process Index $2$ ($\text{nums}[2] = 4$)
+- Update running remainder:
+  $$\text{cur} = (4 + 4) \bmod 6 = 8 \bmod 6 = 2$$
+- Calculate target prior remainder:
+  $$\text{target} = (2 - 4 + 6) \bmod 6 = 4$$
+- Lookup in `last`: $4 \in \text{last}$ with index $j = 1$.
+- Candidate window length:
+  $$i - j = 2 - 1 = 1$$
+  Subarray: $\text{nums}[2..2] = [4]$, sum $= 4 \equiv 4 \pmod 6$.
+- Update minimum: $\text{ans} = \min(2, 1) = 1$.
+- Record index: `last[2] = 2`.
 
-`cur = (cur + x) % p`.
+---
 
-If `target` exists in `last` at index `j`, then the subarray `j + 1` through `i` has the required remainder `k`. Its length is `i - j`, and `ans` keeps the minimum.
-
-After checking, the assignment `last[cur] = i` records the current prefix as the most recent occurrence of its remainder.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 4: Process Index $3$ ($\text{nums}[3] = 2$)
+- Update running remainder:
+  $$\text{cur} = (2 + 2) \bmod 6 = 4$$
+- Calculate target prior remainder:
+  $$\text{target} = (4 - 4 + 6) \bmod 6 = 0$$
+- Lookup in `last`: $0 \in \text{last}$ with index $j = -1$.
+- Candidate window length:
+  $$i - j = 3 - (-1) = 4$$
+- Retain minimum: $\text{ans} = \min(1, 4) = 1$.
+- Record index: `last[4] = 3`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 1, 4, 2], "p": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Index $i$ | Value $\text{nums}[i]$ | Running Remainder $\text{cur}$ | Target $(	ext{cur} - k) \bmod p$ | Prior Index $j$ | Candidate Span $i - j$ | Active Minimum $\text{ans}$ |
+|---|---|---|---|---|---|---|
+| Init | — | $0$ | — | — | — | $\infty$ |
+| $0$ | $3$ | $3$ | $5$ | Not found | — | $\infty$ |
+| $1$ | $1$ | $4$ | $0$ | $-1$ | $1 - (-1) = 2$ | $2$ |
+| $2$ | $4$ | $2$ | $4$ | $1$ | $2 - 1 = 1$ | $1$ |
+| $3$ | $2$ | $4$ | $0$ | $-1$ | $3 - (-1) = 4$ | $1$ |
+
+At conclusion, $\text{ans} = 1$. Because $1 < N = 4$, removing the subarray of length $1$ (namely $[4]$) leaves $[3, 1, 2]$ with sum $6$, which is divisible by $6$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $P[m] = (\sum_{t=0}^m \text{nums}[t]) \bmod p$. A subarray covering indices $[j+1, i]$ has sum $X = \sum_{t=j+1}^i \text{nums}[t] \equiv (P[i] - P[j]) \pmod p$. If $P[j] \equiv (P[i] - k) \pmod p$, then $X \equiv P[i] - (P[i] - k) = k \pmod p$. Removing this subarray yields a remaining sum $S - X \equiv k - k = 0 \pmod p$. The remaining array is thus strictly divisible by $p$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any valid contiguous subarray $[j+1, i]$ satisfying the removal criterion must fulfill $P[j] \equiv (P[i] - k) \pmod p$. Since the map maintains the latest occurrence of every remainder seen up to index $i - 1$, the retrieved boundary $j$ provides the shortest possible valid window ending at $i$. Checking every index $i \in [0, N-1]$ guarantees that no candidate right endpoint is skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Enumerate every subarray:** Rolling sums reduce each candidate check to constant time but still produce $O(N^2)$ candidates, which is too slow at the maximum length.
-- **Store every index per remainder:** This is unnecessary for the shortest answer. Only the latest prior index can minimize length for a future endpoint.
-- **Store the earliest index:** That strategy is useful for longest-subarray problems, but here it produces longer removals and can miss the minimum.
-- **Sliding window:** Ordinary window movement relies on monotonic sums. The target is a modular remainder, which can wrap around, so prefix remainders are the appropriate tool even though values are positive.
-- **Total already divisible:** `k == 0` returns zero immediately, representing removal of the allowed empty subarray.
-- **Only whole array works:** The best length stays $N$, and the final check returns `-1` because removing everything is forbidden.
-- **One-element array:** If its sum is divisible, return zero; otherwise, the only nonempty candidate is the whole array, so return `-1`.
-- **Subarray beginning at zero:** The sentinel remainder zero at index negative one yields the correct length `i + 1`.
-- **Subarray ending at the last index:** It is considered normally during the final loop iteration; only a full-length result is rejected.
-- **Repeated prefix remainder:** The dictionary overwrites the old index because the later one gives shorter future subarrays.
-- **`p = 1`:** Every integer sum is divisible by one, so `k` is zero and the result is zero.
-- **Large values:** Only their remainders affect the scan. Python handles the initial sum without overflow; fixed-width languages should reduce while summing or use a wide type.
-- **Positive-number contract:** The prefix-modulo proof does not depend on positivity, though the input guarantees it.
-- **Expected hash performance:** The linear bound assumes expected constant-time dictionary operations; the stored-key count remains bounded by $\min(N,p)$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Disallowing Full-Array Deletion:** If the only qualifying subarray is the entire array ($i - j = N$), the problem statement forbids deleting all elements. The algorithm must verify $\text{ans} < N$; otherwise, it must return $-1$.
+- **Negative Modulo Offset:** In modular arithmetic across languages, computing $(\text{cur} - k)$ can produce negative values (e.g. $3 - 4 = -1$). Adding $p$ before applying modulo guarantees a non-negative residue in $[0, p-1]$.
+- **Sentinel Initialization Omission:** Failing to initialize `last[0] = -1` prevents detecting valid prefix subarrays starting at the very beginning of the array ($j = -1$).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the length of `nums`.
-- **Auxiliary Space Complexity:** $O(\min(N,p)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the length of `nums`. Computing the initial sum requires $\mathcal{O}(N)$ time. The single scan visits each element once, performing $\mathcal{O}(1)$ expected time hash table lookups and inserts.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\min(N, p))$ auxiliary space to store up to $\min(N, p)$ unique prefix remainders in the hash table.

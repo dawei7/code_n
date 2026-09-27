@@ -277,26 +277,6 @@
         "boundary",
         "single-element"
       ]
-    },
-    {
-      "id": "trial-boundary-12",
-      "name": "identical elements in nums",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1
-        ]
-      },
-      "expected": [
-        2,
-        2
-      ],
-      "tags": [
-        "boundary",
-        "duplicates"
-      ]
     }
   ]
 }

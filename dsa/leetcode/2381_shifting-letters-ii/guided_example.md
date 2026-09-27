@@ -1,123 +1,149 @@
 # Guided Example: Shifting Letters II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "abc", "shifts": [[0, 1, 0], [1, 2, 1], [0, 2, 1]]}`
-- **Required output:** `"ace"`
+We are given a lowercase English string $s$ of length $n$ and an array $\text{shifts}$ containing $m$ range operations. Each operation is specified as a triple $[\text{start}, \text{end}, \text{direction}]$:
+- $\text{start}$ and $\text{end}$ ($0 \le \text{start} \le \text{end} < n$) define an inclusive character index interval $[\text{start}, \text{end}]$.
+- $\text{direction} = 1$ denotes a forward cyclic shift by $1$ position (mapping `'a' \to 'b'`, `'b' \to 'c'`, $\dots$, `'z' \to 'a'`).
+- $\text{direction} = 0$ denotes a backward cyclic shift by $1$ position (mapping `'b' \to 'a'`, `'c' \to 'b'`, $\dots$, `'a' \to 'z'`).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Shifts overlap arbitrarily and accumulate algebraically modulo $26$. The objective is to compute the final string after all $m$ operations have been applied.
 
----
+Consider the representative instance:
+- String: $s = \text{"abc"}$, length $n = 3$
+- Operations:
+  1. $[0, 1, 0]$ (shift backward on range $[0, 1]$)
+  2. $[1, 2, 1]$ (shift forward on range $[1, 2]$)
+  3. $[0, 2, 1]$ (shift forward on range $[0, 2]$)
 
-## 1. Instance & Teaching Goal
+Because both $n$ and $m$ can reach $5 \cdot 10^4$, repeatedly updating characters across each interval individually requires $\mathcal{O}(n \cdot m) \approx 2.5 \cdot 10^9$ operations, which exceeds standard time limits. We must decouple query collection from string generation using a difference array.
 
-You are given a string `s` of lowercase English letters and a 2D integer array `shifts` where $\text{shifts}[i] = [\text{start}_{i}, \text{end}_{i}, \text{direction}_{i}]$. For every `i`, **shift** the characters in `s` from the index $\text{start}_{i}$ to the index $\text{end}_{i}$ (**inclusive**) forward if $\text{direction}_{i} = 1$, or shift the characters backward if $\text{direction}_{i} = 0$.
+```mermaid
+flowchart TD
+    accTitle: 1D Difference Array Prefix Sum Pipeline
+    accDescr: Pipeline recording interval boundary deltas and integrating running prefix sums to determine final character shifts.
+    S["Shifts Collection (m operations)"] -->|"O(1) Boundary Marking"| D["Difference Array diff of size n+1"]
+    D -->|Cumulative Prefix Sum Sweep| P["Net Displacement shift_i for each index i"]
+    P -->|"Modular Character Mapping (ord - 'a' + shift) mod 26"| Out["Final String: 'ace'"]
+    classDef stage fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class S,D,P,Out stage;
+```
 
-The objective is to compute `"ace"` from `{"s": "abc", "shifts": [[0, 1, 0], [1, 2, 1], [0, 2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Alphabet rotation on characters forms a cyclic group $\mathbb{Z}_{26}$. A net shift $\delta \in \mathbb{Z}$ applied to character $c \in \{\text{'a'}, \dots, \text{'z'}\}$ transforms it to:
+$$c' = \text{chr}\Bigl(\bigl((\text{ord}(c) - \text{ord}(\text{'a'}) + \delta) \bmod 26 + 26\bigr) \bmod 26 + \text{ord}(\text{'a'})\Bigr)$$
 
----
+Because addition in $\mathbb{Z}_{26}$ is linear and associative, independent interval updates can be integrated via a **1D Difference Array**:
+1. **Interval Delta Marking:**
+   Initialize an array $\text{diff}$ of length $n + 1$ with zeros. For each query $[\text{start}, \text{end}, \text{dir}]$:
+   - Determine value: $v = +1$ if $\text{dir} = 1$ else $-1$.
+   - Apply boundary deltas:
+     $$\text{diff}[\text{start}] \leftarrow \text{diff}[\text{start}] + v$$
+     $$\text{diff}[\text{end} + 1] \leftarrow \text{diff}[\text{end} + 1] - v$$
+2. **Prefix Sum Integration:**
+   The net displacement experienced by character $i$ is the prefix sum of all preceding boundary deltas:
+   $$\text{shift}[i] = \sum_{j=0}^{i} \text{diff}[j] = \text{shift}[i - 1] + \text{diff}[i]$$
+   - When entering index $\text{start}$, $\text{diff}[\text{start}]$ adds $v$ to all subsequent elements.
+   - When passing beyond $\text{end}$, $\text{diff}[\text{end} + 1]$ subtracts $v$, canceling the effect for indices $> \text{end}$.
+3. **Pointwise Transformation:**
+   After accumulating $\text{shift}[i]$, each character is updated in $\mathcal{O}(1)$ time using modulo $26$ arithmetic.
 
-## 2. Conceptual Foundation & Invariants
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-We maintain the core conceptual parameters and state variables:
+We trace the representative instance: $s = \text{"abc"}$ ($n = 3$), $\text{shifts} = [[0, 1, 0], [1, 2, 1], [0, 2, 1]]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- **Phase 1: Difference Array Initialization:**
+  Create $\text{diff}$ of size $n + 1 = 4$:
+  $$\text{diff} = [0, 0, 0, 0]$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Phase 2: Recording Shifts in $\mathcal{O}(1)$ per Query:**
+  - **Query 1: $[0, 1, 0]$ ($v = -1$ on $[0, 1]$):**
+    - $\text{diff}[0] \leftarrow 0 + (-1) = -1$
+    - $\text{diff}[1 + 1] = \text{diff}[2] \leftarrow 0 - (-1) = +1$
+    - State: $\text{diff} = [-1, 0, 1, 0]$
+  - **Query 2: $[1, 2, 1]$ ($v = +1$ on $[1, 2]$):**
+    - $\text{diff}[1] \leftarrow 0 + 1 = 1$
+    - $\text{diff}[2 + 1] = \text{diff}[3] \leftarrow 0 - 1 = -1$
+    - State: $\text{diff} = [-1, 1, 1, -1]$
+  - **Query 3: $[0, 2, 1]$ ($v = +1$ on $[0, 2]$):**
+    - $\text{diff}[0] \leftarrow -1 + 1 = 0$
+    - $\text{diff}[2 + 1] = \text{diff}[3] \leftarrow -1 - 1 = -2$
+    - State: $\text{diff} = [0, 1, 1, -2]$
 
----
+- **Phase 3: Prefix Sweep and String Transformation:**
+  Maintain running accumulator $\text{shift} = 0$.
 
-## 3. Step-by-Step Worked Execution
+  - **Index $i = 0$ (Character `'a'`, original offset $0$):**
+    - $\text{shift} \leftarrow 0 + \text{diff}[0] = 0 + 0 = 0$.
+    - Net rotation: $0 \pmod{26} = 0$.
+    - New character: $(0 + 0) \pmod{26} = 0 \implies \text{'a'}$.
 
-### Step 1: Accumulate net shifts instead of editing every range
+  - **Index $i = 1$ (Character `'b'`, original offset $1$):**
+    - $\text{shift} \leftarrow 0 + \text{diff}[1] = 0 + 1 = 1$.
+    - Net rotation: $1 \pmod{26} = 1$.
+    - New character: $(1 + 1) \pmod{26} = 2 \implies \text{'c'}$.
 
-Applying one shift directly to every character in its interval can touch $O(n)$ positions. With up to $5\cdot10^4$ operations, repeated direct edits can become quadratic.
+  - **Index $i = 2$ (Character `'c'`, original offset $2$):**
+    - $\text{shift} \leftarrow 1 + \text{diff}[2] = 1 + 1 = 2$.
+    - Net rotation: $2 \pmod{26} = 2$.
+    - New character: $(2 + 2) \pmod{26} = 4 \implies \text{'e'}$.
 
-Character shifts add together. A position shifted forward three times and backward once has the same final result as one net forward shift of two, regardless of operation order. The algorithm therefore computes one net integer shift for every index and transforms the string once.
+- **Resulting String:**
+  $$\text{"ace"}$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abc", "shifts": [[0, 1, 0], [1, 2, 1], [0, 2, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Comprehensive State Trace
 
----
+The difference array updates across all three operations are detailed in the ledger below:
 
-### Step 2: Encode an inclusive range by two boundaries
+| Operation Step | Target Interval | Shift Direction | Delta Value $v$ | $\text{diff}[\text{start}]$ Update | $\text{diff}[\text{end}+1]$ Update | Resulting Array State |
+|---|---|---|---|---|---|---|
+| Initial | — | — | — | — | — | $[0, 0, 0, 0]$ |
+| Shift 1 | $[0, 1]$ | Backward (0) | $-1$ | $\text{diff}[0] += -1$ | $\text{diff}[2] -= -1$ | $[-1, 0, 1, 0]$ |
+| Shift 2 | $[1, 2]$ | Forward (1) | $+1$ | $\text{diff}[1] += 1$ | $\text{diff}[3] -= 1$ | $[-1, 1, 1, -1]$ |
+| Shift 3 | $[0, 2]$ | Forward (1) | $+1$ | $\text{diff}[0] += 1$ | $\text{diff}[3] -= 1$ | $[0, 1, 1, -2]$ |
 
-The difference array `d` has length `n + 1`. For an operation on inclusive interval `[i, j]` with signed amount `v`, it performs:
+The prefix integration and modular character reconstruction are tabulated below:
 
+| Index $i$ | Source Char | Base Ordinal (0–25) | $\text{diff}[i]$ | Running Net Shift | Effective Modulo 26 Shift | Transformed Ordinal | Output Char |
+|---|---|---|---|---|---|---|---|
+| 0 | `'a'` | 0 | 0 | 0 | 0 | 0 | `'a'` |
+| 1 | `'b'` | 1 | 1 | $0 + 1 = 1$ | 1 | $1 + 1 = 2$ | `'c'` |
+| 2 | `'c'` | 2 | 1 | $1 + 1 = 2$ | 2 | $2 + 2 = 4$ | `'e'` |
 
+The final output is verified to be `"ace"`.
 
-The first update says that beginning at `i`, the running shift changes by `v`. The second says that immediately after `j`, the change ends.
+## 5. Algorithmic Correctness & Soundness
 
-The extra cell at index `n` is a sentinel. When an interval ends at the last string position `n - 1`, `j + 1` equals `n` and remains a valid difference-array index, avoiding a boundary branch.
+The correctness of difference array prefix accumulation is established by telescoping cancellation:
+1. **Exact Interval Coverage:**
+   For any index $k$, the net shift accumulated via prefix summation is:
+   $$\text{shift}[k] = \sum_{j=0}^{k} \text{diff}[j] = \sum_{j=0}^{k} \sum_{q} \left( v_q \cdot \mathbf{1}_{[\text{start}_q = j]} - v_q \cdot \mathbf{1}_{[\text{end}_q + 1 = j]} \right)$$
+   Swapping sums yields:
+   $$\text{shift}[k] = \sum_{q} v_q \left( \sum_{j=0}^{k} \mathbf{1}_{[\text{start}_q = j]} - \sum_{j=0}^{k} \mathbf{1}_{[\text{end}_q + 1 = j]} \right)$$
+   - If $k < \text{start}_q$: both indicator sums evaluate to $0$, contribution is $0$.
+   - If $\text{start}_q \le k \le \text{end}_q$: the first sum is $1$ and the second is $0$, contribution is $v_q$.
+   - If $k > \text{end}_q$: both indicator sums are $1$, canceling to $1 - 1 = 0$.
+   Hence, every query $q$ contributes its exact value $v_q$ if and only if $k \in [\text{start}_q, \text{end}_q]$.
+2. **Algebraic Consistency over $\mathbb{Z}_{26}$:**
+   Because cyclic shifts satisfy $(a + b) \bmod 26$, summing net shifts before applying the single modular transformation is identical to applying each shift sequentially.
 
-Input direction `1` already means forward `+1`. Direction `0` means backward, so the code converts it to `-1` before recording the boundaries.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Zero Net Shift (Self-Canceling Operations):** If a range is shifted forward and then shifted backward by the same amount, $\text{diff}$ values sum to $0$, and the characters remain unchanged.
+- **Negative Running Shift:** If cumulative shifts are negative (e.g. $-1$ on `'a'`), Python handles negative modulo naturally ($-1 \pmod{26} = 25 \implies \text{'z'}$). In languages like C++ or Java where `%` is remainder, adding $26$ before taking modulo (`(val % 26 + 26) % 26`) prevents negative indices.
+- **Single Character String ($n = 1$):** All intervals are $[0, 0]$. Updates affect $\text{diff}[0]$ and $\text{diff}[1]$ correctly.
+- **Anti-Pattern: Eager In-Place Simulation:** Modifying characters inside each interval in an inner loop requires $\mathcal{O}(m \cdot n)$ time. The difference array defers evaluation to a single pass, dropping execution time from seconds to milliseconds.
 
----
+## 7. Complexity Analysis
 
-### Step 3: Recover every position's net shift
-
-After all operations are encoded, `d` contains changes rather than final per-position values. The prefix loop:
-
-
-
-turns those changes into running sums. Afterward, `d[i]` for a string position is the sum of every signed operation whose interval covers `i`.
-
-To see why, a range contributes `+v` at its start to all following prefix sums, then contributes `-v` after its end, canceling itself for later positions. It is therefore present exactly over its inclusive interval.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"ace"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abc", "shifts": [[0, 1, 0], [1, 2, 1], [0, 2, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"ace"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Apply each range directly:** It is straightforward but can take $O(nm)$ time when intervals are long.
-- **Fenwick tree:** Range updates with point queries can solve the problem in $O((n+m)\log n)$, but an offline difference array is simpler and faster.
-- **All-string interval:** The end cancellation lands safely at sentinel index `n`.
-- **Single-character interval:** Updates at `i` and `i+1` affect exactly one prefix position.
-- **Overlapping shifts:** Their signed contributions add in the running prefix sum.
-- **Forward and backward cancellation:** Equal opposite coverage produces net zero and leaves the original letter.
-- **Large shift magnitude:** Modulo 26 reduces any accumulated total to the equivalent alphabet rotation.
-- **Wrap from `z` to `a`:** Numeric value 25 plus one becomes zero modulo 26.
-- **Wrap from `a` to `z`:** Python's negative modulo maps negative one to 25.
-- **Sentinel entry:** `d[n]` is accumulated but never used to transform a character; it only terminates ranges cleanly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n+m)$. Let $n$ be the string length and $m$ the number of shift operations. Recording two boundaries for every operation takes $O(m)$ time. Prefix accumulation and character construction each take $O(n)$ time. Total time is $O(n+m)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initializing the difference array of size $n + 1$ takes $\mathcal{O}(n)$ time.
+  - Processing $m$ range queries by modifying two array endpoints takes $\mathcal{O}(m)$ time.
+  - The prefix sum sweep and character generation takes $\mathcal{O}(n)$ time.
+  - Total time complexity is strictly linear: $\mathcal{O}(n + m)$.
+  - For $n, m \le 5 \cdot 10^4$, this executes in $\approx 10^5$ operations.
+- **Space Complexity:**
+  - The auxiliary difference array $\text{diff}$ requires $n + 1$ integers: $\mathcal{O}(n)$ space.
+  - The output character array requires $\mathcal{O}(n)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(n)$.

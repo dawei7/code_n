@@ -1,131 +1,197 @@
 # Guided Example: Team Scores in Football Tournament
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"tables": {"Teams": [{"team_id": 10, "team_name": "Leetcode FC"}, {"team_id": 20, "team_name": "NewYork FC"}, {"team_id": 30, "team_name": "Atlanta FC"}, {"team_id": 40, "team_name": "Chicago FC"}, {"team_id": 50, "team_name": "Toronto FC"}], "Matches": [{"match_id": 1, "host_team": 10, "guest_team": 20, "host_goals": 3, "guest_goals": 0}, {"match_id": 2, "host_team": 30, "guest_team": 10, "host_goals": 2, "guest_goals": 2}, {"match_id": 3, "host_team": 10, "guest_team": 50, "host_goals": 5, "guest_goals": 1}, {"match_id": 4, "host_team": 20, "guest_team": 30, "host_goals": 1, "guest_goals": 0}, {"match_id": 5, "host_team": 50, "guest_team": 30, "host_goals": 1, "guest_goals": 0}]}}`
-- **Required output:** `{"columns": ["team_id", "team_name", "num_points"], "rows": [[10, "Leetcode FC", 7], [20, "NewYork FC", 3], [50, "Toronto FC", 3], [30, "Atlanta FC", 1], [40, "Chicago FC", 0]]}`
+In competitive sports league management, tournament standings are determined by awarding points based on individual match outcomes. We are provided with two relational schemas:
+1. `Teams`: contains the definitive registry of participating clubs, specified by `team_id` and `team_name`.
+2. `Matches`: records completed fixtures between pairs of clubs, specifying `match_id`, `host_team`, `guest_team`, `host_goals`, and `guest_goals`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Tournament points are awarded under the standard association football scoring system:
+- **Win (3 Points)**: Awarded to the team that scores strictly more goals than its opponent.
+- **Draw / Tie (1 Point)**: Awarded to both teams if the match ends with equal goals scored.
+- **Loss (0 Points)**: Awarded to the team that scores strictly fewer goals.
+
+Our objective is to compute the total tournament points (`num_points`) accumulated by every registered team. The output must be sorted in descending order of total points, with ties broken by `team_id` ascending. Crucially, teams that have participated in zero matches (or lost all their games) must still appear in the final table with a score of $0$ points.
+
+The core challenge involves two structural requirements:
+1. **Asymmetric Participant Roles**: In any given fixture, a club acts either as the host or as the guest. Points must be credited to the correct team based on which side scored more goals.
+2. **Total Entity Preservation (Left Outer Join)**: If we perform an inner join between `Teams` and `Matches`, any registered club that played zero matches will be discarded from the output relation. A left outer join (or zero-score baseline union) is mandatory to preserve the entire universe of clubs.
+
+```
+Match: Host 10 vs Guest 20 (Score: 3 - 0)
+- Host 10 wins: gets 3 points
+- Guest 20 loses: gets 0 points
+
+Match: Host 30 vs Guest 50 (Score: 2 - 2)
+- Both draw: Host 30 gets 1 point, Guest 50 gets 1 point
+
+Team 40 (Never played a match):
+- Must still appear in output with 0 points!
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Table: `Teams`
+Let $\mathcal{T}$ be the set of registered teams:
+$$\mathcal{T} = \{(t, \text{name}) \in \mathbb{Z}^+ \times \Sigma^*\}$$
+Let $\mathcal{M}$ be the set of played matches:
+$$\mathcal{M} = \{(m, h, g, s_h, s_g) \in \mathbb{Z}^+ \times \mathbb{Z}^+ \times \mathbb{Z}^+ \times \mathbb{Z}_{\ge 0} \times \mathbb{Z}_{\ge 0}\}$$
 
-The objective is to compute `{"columns": ["team_id", "team_name", "num_points"], "rows": [[10, "Leetcode FC", 7], [20, "NewYork FC", 3], [50, "Toronto FC", 3], [30, "Atlanta FC", 1], [40, "Chicago FC", 0]]}` from `{"tables": {"Teams": [{"team_id": 10, "team_name": "Leetcode FC"}, {"team_id": 20, "team_name": "NewYork FC"}, {"team_id": 30, "team_name": "Atlanta FC"}, {"team_id": 40, "team_name": "Chicago FC"}, {"team_id": 50, "team_name": "Toronto FC"}], "Matches": [{"match_id": 1, "host_team": 10, "guest_team": 20, "host_goals": 3, "guest_goals": 0}, {"match_id": 2, "host_team": 30, "guest_team": 10, "host_goals": 2, "guest_goals": 2}, {"match_id": 3, "host_team": 10, "guest_team": 50, "host_goals": 5, "guest_goals": 1}, {"match_id": 4, "host_team": 20, "guest_team": 30, "host_goals": 1, "guest_goals": 0}, {"match_id": 5, "host_team": 50, "guest_team": 30, "host_goals": 1, "guest_goals": 0}]}}` while avoiding redundant calculations and unnecessary overhead.
+### Point Allocation Function
+For each match $\mu = (m, h, g, s_h, s_g)$, define the points awarded to the host and guest teams:
+$$P_h(\mu) = \begin{cases} 3 & \text{if } s_h > s_g \\ 1 & \text{if } s_h = s_g \\ 0 & \text{if } s_h < s_g \end{cases} \qquad P_g(\mu) = \begin{cases} 3 & \text{if } s_g > s_h \\ 1 & \text{if } s_h = s_g \\ 0 & \text{if } s_g < s_h \end{cases}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Match Symmetrization Mapping
+Decompose each match into two directed point events:
+$$\sigma(\mu) = \{(h, P_h(\mu)), (g, P_g(\mu))\}$$
+Let the multiset of all awarded point events be:
+$$\mathcal{E} = \biguplus_{\mu \in \mathcal{M}} \sigma(\mu)$$
+
+### Total Team Score Invariant
+For every registered team $(t, \text{name}) \in \mathcal{T}$, its total points are the sum over all matching events:
+$$S(t) = \sum_{(u, p) \in \mathcal{E}} p \cdot [u = t]$$
+If team $t$ appears in zero matches, the sum over an empty set evaluates strictly to $0$.
+
+### Sorting Total Order
+The result relation is ordered under the strict total order $\succ$:
+$$t_1 \succ t_2 \iff (S(t_1) > S(t_2)) \lor (S(t_1) = S(t_2) \land t_1 < t_2)$$
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the tournament configuration:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Teams Table
+| `team_id` | `team_name` |
+|---|---|
+| 10 | `"FC Barcelona"` |
+| 20 | `"Real Madrid"` |
+| 30 | `"Liverpool"` |
+| 40 | `"Arsenal"` |
+| 50 | `"Juventus"` |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Matches Table
+| `match_id` | `host_team` | `guest_team` | `host_goals` | `guest_goals` |
+|---|---|---|---|---|
+| 1 | 10 | 20 | 3 | 0 |
+| 2 | 30 | 10 | 2 | 2 |
+| 3 | 10 | 50 | 5 | 1 |
+| 4 | 20 | 30 | 1 | 0 |
+| 5 | 50 | 30 | 0 | 3 |
+
+*Notice that Team 40 (`"Arsenal"`) has zero matches in the schedule.*
+
+```mermaid
+flowchart TD
+    accTitle: Tournament Scoring and Standings Pipeline
+    accDescr: Matches decomposed into host and guest point allocations, aggregated per team with left join preservation.
+    
+    M["Matches Table (5 matches)"] --> S["Decompose into Point Events:<br/>Host Points and Guest Points"]
+    S --> E["Symmetrized Event Multiset (10 events)"]
+    
+    T["Teams Table (5 teams)"] --> J["LEFT JOIN with Point Events on team_id"]
+    E --> J
+    
+    J --> G["GROUP BY team_id, team_name"]
+    G --> A["Aggregate SUM(points) with COALESCE(..., 0)"]
+    A --> O["ORDER BY num_points DESC, team_id ASC"]
+    O --> Out["Emit Final Tournament Standings"]
+```
+
+### Match Outcome Decomposition Trace
+
+| `match_id` | Host vs Guest | Score | Host Points Awarded | Guest Points Awarded |
+|---|---|---|---|---|
+| 1 | 10 vs 20 | $3 - 0$ | Team 10: **3 pts** (Win) | Team 20: **0 pts** (Loss) |
+| 2 | 30 vs 10 | $2 - 2$ | Team 30: **1 pt** (Draw) | Team 10: **1 pt** (Draw) |
+| 3 | 10 vs 50 | $5 - 1$ | Team 10: **3 pts** (Win) | Team 50: **0 pts** (Loss) |
+| 4 | 20 vs 30 | $1 - 0$ | Team 20: **3 pts** (Win) | Team 30: **0 pts** (Loss) |
+| 5 | 50 vs 30 | $0 - 3$ | Team 50: **0 pts** (Loss) | Team 30: **3 pts** (Win) |
+
+### Team Standings Aggregation Trace
+
+| `team_id` | `team_name` | Individual Point Events Earned | Sum of Points | Final `num_points` | Standings Rank |
+|---|---|---|---|---|---|
+| 10 | `"FC Barcelona"` | Match 1 (3), Match 2 (1), Match 3 (3) | $3 + 1 + 3 = 7$ | **7** | 1 |
+| 20 | `"Real Madrid"` | Match 1 (0), Match 4 (3) | $0 + 3 = 3$ | **3** | 3 (Tied with 30, $20 < 30$) |
+| 30 | `"Liverpool"` | Match 2 (1), Match 4 (0), Match 5 (3) | $1 + 0 + 3 = 4$ | **4** | 2 |
+| 50 | `"Juventus"` | Match 3 (0), Match 5 (0) | $0 + 0 = 0$ | **0** | 4 (Tied with 40, $40 < 50$) |
+| 40 | `"Arsenal"` | No matches played | (Null) $\to 0$ | **0** | 4 ($40 < 50$, takes precedence!) |
+
+### Final Ordered Output
+1. Team 10 (`"FC Barcelona"`): 7 points
+2. Team 30 (`"Liverpool"`): 4 points
+3. Team 20 (`"Real Madrid"`): 3 points
+4. Team 40 (`"Arsenal"`): 0 points
+5. Team 50 (`"Juventus"`): 0 points
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Start from teams so zero-point teams survive
-
-The query uses:
-
-`Teams LEFT JOIN Matches ON team_id = host_team OR team_id = guest_team`.
-
-For a team that participated in a match, the join produces one row for that team-match relationship. Because the host and guest are different, one match cannot match both sides of the `OR` for the same team.
-
-For a team with no matches, `LEFT JOIN` still produces one result row. All columns from `Matches` are `NULL` on that row. This preserved row is what lets the later aggregation return the team with zero points instead of omitting it.
-
-An inner join would be wrong because it would remove every team that never appeared as host or guest, even though the contract asks for exactly one row per team.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Metric / Dimension | Correlated Subquery per Team | Cartesian Left Join with Disjunctive ON | Unpivot UNION ALL + Outer Join (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Teams": [{"team_id": 10, "team_name": "Leetcode FC"}, {"team_id": 20, "team_name": "NewYork FC"}, {"team_id": 30, "team_name": "Atlanta FC"}, {"team_id": 40, "team_name": "Chicago FC"}, {"team_id": 50, "team_name": "Toronto FC"}], "Matches": [{"match_id": 1, "host_team": 10, "guest_team": 20, "host_goals": 3, "guest_goals": 0}, {"match_id": 2, "host_team": 30, "guest_team": 10, "host_goals": 2, "guest_goals": 2}, {"match_id": 3, "host_team": 10, "guest_team": 50, "host_goals": 5, "guest_goals": 1}, {"match_id": 4, "host_team": 20, "guest_team": 30, "host_goals": 1, "guest_goals": 0}, {"match_id": 5, "host_team": 50, "guest_team": 30, "host_goals": 1, "guest_goals": 0}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Query Strategy** | Subquery for host pts + subquery for guest pts | `LEFT JOIN Matches ON t.id = m.host OR t.id = m.guest` | Symmetrize matches via `UNION ALL`, then join `Teams` |
+| **Join Condition Type**| Correlated index probes | Disjunctive (`OR`) join predicate | Pure equi-join on `team_id` |
+| **Join Efficiency** | $\mathcal{O}(T \cdot M)$ scans | Optimizer cannot use hash join effectively | Fast hash join ($\mathcal{O}(T + M)$) |
+| **Zero-Match Safety** | Handled via `COALESCE` | Left join preserves zero-match rows | Left join preserves zero-match rows |
+| **Query Execution Plan**| Nested loop over subqueries | Table scan with filter expressions | Stream aggregate -> Hash join -> Sort |
+
+```
+Execution Comparison:
+
+Disjunctive Join (ON host OR guest):
+[Teams Table] ===(OR Join Predicate)===> [Matches Table] (Prevents Hash Join; slow nested loop!)
+
+Unpivot + Equi-Join (Optimal):
+[Host Events] \
+                ===> [UNION ALL] ===> [Hash Left Join on team_id] ===> [Sort Standings]
+[Guest Events]/                        (High-speed linear execution!)
+```
 
 ---
 
-### Step 2: Translate one match appearance into points
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The `CASE` expression is evaluated from the perspective of the current `Teams` row.
-
-The first branch checks that the team is the host and that `host_goals > guest_goals`. A successful host win contributes three.
-
-The second branch checks that the team is the guest and that `guest_goals > host_goals`. A successful guest win also contributes three.
-
-If neither win branch applies but `host_goals = guest_goals`, the match was a draw. Both joined team rows—the host’s row and the guest’s row—receive one point.
-
-Every remaining case contributes zero. This includes a loss and the unmatched synthetic row produced for a team with no matches. In the latter case, comparisons involving `NULL` are not true, so execution reaches `ELSE 0`.
-
-The branch order is safe. A match cannot simultaneously be a win and a draw, and the host and guest IDs are distinct. The explicit team-role checks on the win branches ensure that a host win awards points only to the host and a guest win awards points only to the guest.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Scenario | Condition State | Expected Behavior | System Invariant |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Zero-Match Team** | Team 40 registered but never scheduled | Output contains Team 40 with `num_points = 0` | Outer join produces null match fields; null points coalesce to 0. |
+| **Team Loses Every Match** | Team 50 played 2 matches, lost both | Output contains Team 50 with `num_points = 0` | Point sum evaluates to $0 + 0 = 0$. |
+| **Score Tie-Breaker** | Team 40 and Team 50 both have 0 points | Team 40 listed before Team 50 | Secondary ordering `team_id ASC` places $40$ before $50$. |
+| **Score Draw Match** | `host_goals == guest_goals` | Both teams receive exactly 1 point | Case condition `WHEN host_goals = guest_goals THEN 1` credits both. |
+| **High Goal Scorers** | Matches with double-digit scores (e.g. 10 - 2) | Winner still receives 3 points | Points depend on sign of goal difference, not goal volume. |
 
 ---
 
-### Step 3: Sum all contributions for one team
+## 6. Mathematical Verification & Complexity Derivation
 
-`GROUP BY 1` groups by the first selected expression, `team_id`. The aggregate `SUM(CASE ... END)` adds the points from every match appearance and is aliased as `num_points`.
+Let $T = |\text{Teams}|$ and $M = |\text{Matches}|$.
 
-`team_id` is unique in `Teams`, so it functionally determines `team_name`. The selected name is therefore unambiguous within each group. Writing both columns in the `GROUP BY` would be more explicit for SQL dialects or modes that do not infer that dependency.
+### Execution Steps in Database Query Planner:
+1. **Match Unpivoting (`UNION ALL`)**:
+   - Projecting host events: $M$ tuples in $\mathcal{O}(M)$ time.
+   - Projecting guest events: $M$ tuples in $\mathcal{O}(M)$ time.
+   - Total symmetrized events: $2M$ tuples in $\mathcal{O}(M)$ time.
+2. **Left Outer Join with Teams**:
+   - Performing a hash outer join between $T$ teams and $2M$ events takes:
+     $$\mathcal{O}(T + M) \text{ time}$$
+3. **Aggregation**:
+   - Grouping by `(team_id, team_name)` and evaluating `SUM(points)` collapses records into $T$ distinct team rows.
+   - Time: $\mathcal{O}(T + M)$.
+4. **Sorting Standings**:
+   - Sorting $T$ rows by `num_points DESC, team_id ASC`:
+     $$\mathcal{O}(T \log T) \text{ comparisons}$$
 
-For Leetcode FC in the example, the joined rows contribute three for defeating NewYork, one for drawing Atlanta, and three for defeating Toronto. Their sum is seven.
-
-Chicago has no match row. Its preserved left-join row contributes zero, so Chicago still appears with `num_points = 0`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["team_id", "team_name", "num_points"], "rows": [[10, "Leetcode FC", 7], [20, "NewYork FC", 3], [50, "Toronto FC", 3], [30, "Atlanta FC", 1], [40, "Chicago FC", 0]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Teams": [{"team_id": 10, "team_name": "Leetcode FC"}, {"team_id": 20, "team_name": "NewYork FC"}, {"team_id": 30, "team_name": "Atlanta FC"}, {"team_id": 40, "team_name": "Chicago FC"}, {"team_id": 50, "team_name": "Toronto FC"}], "Matches": [{"match_id": 1, "host_team": 10, "guest_team": 20, "host_goals": 3, "guest_goals": 0}, {"match_id": 2, "host_team": 30, "guest_team": 10, "host_goals": 2, "guest_goals": 2}, {"match_id": 3, "host_team": 10, "guest_team": 50, "host_goals": 5, "guest_goals": 1}, {"match_id": 4, "host_team": 20, "guest_team": 30, "host_goals": 1, "guest_goals": 0}, {"match_id": 5, "host_team": 50, "guest_team": 30, "host_goals": 1, "guest_goals": 0}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["team_id", "team_name", "num_points"], "rows": [[10, "Leetcode FC", 7], [20, "NewYork FC", 3], [50, "Toronto FC", 3], [30, "Atlanta FC", 1], [40, "Chicago FC", 0]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Asymptotic Summary:
+- **Total Time Complexity:** $\mathcal{O}(M + T \log T)$ optimal relational processing time.
+- **Total Space Complexity:** $\mathcal{O}(T + M)$ auxiliary memory for hash tables and sort buffers.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 7. Synthesis & Strategic Takeaways
 
-- **Expand match scores with `UNION ALL`:** Produce one point row for the host and one for the guest, aggregate them, then left-join totals to `Teams`. This avoids an `OR` join and often gives the optimizer simpler inputs.
-- **Correlated score subqueries:** Compute host and guest points separately per team. This can be readable but may rescan `Matches` repeatedly.
-- **Team with no matches:** `LEFT JOIN` preserves it, and `ELSE 0` makes the sum zero.
-- **Draw:** Both participant rows reach the equality branch and receive one point each.
-- **Host win:** Only the host-role branch succeeds; the guest row falls to zero.
-- **Guest win:** Only the guest-role branch succeeds; the host row falls to zero.
-- **Equal point totals:** The secondary ascending team-ID key supplies deterministic tie ordering.
-- **Unique team ID:** It makes `team_name` functionally dependent on the grouping key.
-- **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 3 DESC, 1` depend on select-list positions; explicit names are more resilient to column reordering.
-- **Null match columns:** They occur only for an unmatched left-join row and safely reach `ELSE 0`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(t+m)$. Let $t$ be the number of teams and $m$ the number of matches.
-- **Auxiliary Space Complexity:** $O(t)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Role Symmetrization Pattern**: In paired competitive schemas (host vs guest, white vs black, home vs away), unpivoting matches into two uniform event records simplifies complex multi-column checks into a single straightforward aggregation.
+2. **Avoid Disjunctive Joins**: Joins using `ON a.id = b.col1 OR a.id = b.col2` prevent query optimizers from utilizing equi-join hash tables, falling back to slow nested-loop scans. Symmetrizing the right-hand table via `UNION ALL` restores standard equi-join performance.
+3. **Entity Preservation Invariant**: When reporting on a master catalog (such as `Teams`), always use a `LEFT JOIN` rooted on the catalog. Teams that had zero recorded activity must never be silently dropped from final standings.

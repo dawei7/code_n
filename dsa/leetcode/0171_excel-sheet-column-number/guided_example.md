@@ -1,138 +1,147 @@
 # Guided Example: Excel Sheet Column Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step left-to-right Horner's polynomial accumulation converting bijective base-26 titles to integers on representative string instances:
 
-- **Input:** `{"columnTitle": "A"}`
-- **Required output:** `1`
+- **Input:** $\text{columnTitle} = \text{"ZY"}$
+- **Required output:** $701$ ($26 \times 26 + 25 = 676 + 25 = 701$)
+- **Two-Digit Example:** $\text{columnTitle} = \text{"AB"} \implies 28$ ($1 \times 26 + 2 = 28$)
+- **Base Single Letter Instance:** $\text{columnTitle} = \text{"A"} \implies 1$
+- **Full 32-Bit Max Column Instance:** $\text{columnTitle} = \text{"FXSHRXW"} \implies 2147483647$ ($2^{31} - 1$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates left-to-right positional digit accumulation using Horner's polynomial evaluation ($\text{ans} \times 26 + \text{digit}$), maps uppercase ASCII characters onto 1-indexed values $[1, 26]$, and executes in $O(L)$ time with strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `columnTitle` that represents the column title as appears in an Excel sheet, return *its corresponding column number*.
+Given a string representing an Excel sheet column title:
+$$
+\text{columnTitle} = \text{"ZY"}
+$$
+Compute its corresponding 1-indexed integer column number:
+$$
+\text{"ZY"} \implies \mathbf{701}
+$$
 
-The objective is to compute `1` from `{"columnTitle": "A"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In standard positional decimal representation, string `"35"` evaluates as $3 \times 10^1 + 5 \times 10^0 = 35$.
+In Excel column notation:
+- The base is $26$.
+- The digit alphabet consists of $\{ \text{'A'} \dots \text{'Z'} \}$, mapped to $\{ 1 \dots 26 \}$ (there is no zero symbol).
+- For a string of length $L$ with digit values $d_0, d_1, \dots, d_{L-1}$:
+  $$
+  \text{Value} = \sum_{i=0}^{L-1} d_i \cdot 26^{L - 1 - i}
+  $$
+Rather than computing powers of 26 from right to left, **Horner's Rule** accumulates the polynomial from left to right in a single pass: each incoming character shifts the current prefix by $\times 26$ and adds the new 1-indexed digit value.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Horner's Rule Protocol for Bijective Base-26
+Initialize scalar accumulator:
+$$
+\text{ans} = 0
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each character $c \in \text{columnTitle}$:
+1. **Convert Character to 1-Indexed Digit:**
+   $$
+   d = \text{ord}(c) - \text{ord}(\text{'A'}) + 1 \in [1, 26]
+   $$
+2. **Shift and Accumulate:**
+   Multiply existing prefix by base 26 and add digit $d$:
+   $$
+   \text{ans} \leftarrow \text{ans} \times 26 + d
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Return `ans`.
+
+> **Invariant.** After processing the prefix of length $k$, `ans` stores the exact column number corresponding to the substring $\text{columnTitle}[0 \dots k-1]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Read the title as bijective base 26
+We trace the polynomial evaluation on $\text{columnTitle} = \text{"ZY"}$:
 
-Excel letters act like base-26 digits, except their values are one through 26:
-`A = 1`, `B = 2`, and `Z = 26`. There is no zero-valued letter.
-
-For a title with digit values $d_1,d_2,\ldots,d_k$, its column number is:
-
-$$
-d_1 26^{k-1}+d_2 26^{k-2}+\cdots+d_k.
-$$
-
-The source evaluates this expression from left to right without calculating
-powers explicitly. This is Horner's rule: each new letter shifts the existing
-prefix one base-26 position left, then fills the new last position.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"columnTitle": "A"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $\text{ans} = 0$.
 
 ---
 
-### Step 2: Convert character codes to values one through 26
-
-`map(ord, columnTitle)` yields the integer character code for each uppercase
-letter. Uppercase English letters are consecutive in the character encoding
-used by Python, so:
-
-`c - ord("A")`
-
-produces offsets zero through 25. Adding one changes them to Excel digit values
-one through 26.
-
-The validity guarantee ensures no lowercase letter, dot, digit, or other symbol
-needs validation. Every mapped code corresponds to a legal Excel digit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Character `'Z'` (Index 0)
+- Compute 1-indexed digit value:
+  $$
+  d = \text{ord}(\text{'Z'}) - \text{ord}(\text{'A'}) + 1 = 90 - 65 + 1 = \mathbf{26}
+  $$
+- Shift and accumulate:
+  $$
+  \text{ans} \leftarrow 0 \times 26 + 26 = \mathbf{26}
+  $$
+- Current prefix `"Z"` represents column $26$.
 
 ---
 
-### Step 3: Accumulate one prefix at a time
+### Step 2: Character `'Y'` (Index 1)
+- Compute 1-indexed digit value:
+  $$
+  d = \text{ord}(\text{'Y'}) - \text{ord}(\text{'A'}) + 1 = 89 - 65 + 1 = \mathbf{25}
+  $$
+- Shift and accumulate:
+  $$
+  \text{ans} \leftarrow 26 \times 26 + 25 = 676 + 25 = \mathbf{701}
+  $$
+- Current prefix `"ZY"` represents column $701$.
 
-`ans` begins at zero. For each character code `c`, the update is:
+---
 
-`ans = ans * 26 + c - ord("A") + 1`.
-
-Suppose `ans` currently represents the title prefix already processed.
-Multiplying by 26 appends a conceptual zero-valued base position. Adding the
-current letter value replaces that position with the real Excel digit.
-
-Although bijective base 26 has no actual zero symbol, zero is useful as the
-temporary empty slot created by multiplication. The added digit is always at
-least one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Termination
+- End of string reached.
+- Return $\text{ans} = \mathbf{701}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"columnTitle": "A"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+```text
+Input: "ZY"
+Initial: ans = 0
+
+Char 'Z': digit = 90 - 65 + 1 = 26.  ans = 0 * 26 + 26 = 26
+Char 'Y': digit = 89 - 65 + 1 = 25.  ans = 26 * 26 + 25 = 676 + 25 = 701
+
+Final Result: 701
+```
+
+| Step | Processed Prefix | Active Character | ASCII Difference $\text{ord}(c) - \text{ord}(\text{'A'})$ | Digit Value $d (+1)$ | Horner Calculation $\text{ans} \times 26 + d$ | Updated $\text{ans}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Start | `""` | - | - | - | - | 0 |
+| 1 | `"Z"` | `'Z'` | $90 - 65 = 25$ | 26 | $0 \times 26 + 26$ | 26 |
+| **2** | **`"ZY"`** | **`'Y'`** | **$89 - 65 = 24$** | **25** | **$26 \times 26 + 25 = 676 + 25$** | **701 (Final)** |
+
+### Contrast: Title `"AB"`
+- Char 1 (`'A'`): $d = 1 \implies \text{ans} = 0 \times 26 + 1 = 1$.
+- Char 2 (`'B'`): $d = 2 \implies \text{ans} = 1 \times 26 + 2 = \mathbf{28}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Horner's rule evaluates polynomials of degree $L - 1$ iteratively without explicit exponentiation. By multiplying the running sum by 26 at each step, a digit processed at index $i$ is multiplied by $26$ exactly $(L - 1 - i)$ times by the end of the loop, matching the mathematical definition $\sum_{i=0}^{L-1} d_i \cdot 26^{L - 1 - i}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the input string is visited in order from left to right. No powers or positions are skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Index the string directly:** Iterate positions and call `ord(columnTitle[i])`; it implements the same recurrence.
-- **Right-to-left powers:** Sum each digit times an increasing power of 26. It is correct but needs more bookkeeping.
-- **Alphabet dictionary:** Map each letter to one through 26; the table is constant-sized but unnecessary because codes are consecutive.
-- **Single `A`:** Produces one.
-- **Single `Z`:** Produces 26, verifying the one-based digit range.
-- **Repeated `A`:** Each occurrence contributes one; `"AA"` is 27, not 26.
-- **Maximum seven-letter title:** The loop remains linear and the result fits the stated range.
-- **No zero digit:** Omitting `+ 1` would make `A` contribute zero and break every title.
-- **Uppercase guarantee:** Character-code subtraction relies on the specified alphabet.
-- **Empty string outside the contract:** The method would return zero, but no empty Excel title is valid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Add 1 for 1-Indexed Digits:** Calculating `ord(c) - ord('A')` yields $0$ for `'A'`, which is standard base-26 but incorrect for Excel! `'A'` must map to $1$, `'B'` to $2$, and `'Z'` to $26$.
+- **Right-to-Left Exponentiation Overhead:** Calculating powers $26^0, 26^1, \dots$ from the right requires keeping track of an exponent or calling power functions, which introduces unnecessary arithmetic overhead compared to Horner's left-to-right multiplication.
+- **32-Bit Overflow Considerations:** The maximum input `"FXSHRXW"` corresponds to $2^{31} - 1 = 2147483647$, fitting cleanly inside a 32-bit signed integer.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of title characters. The loop processes each character
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(L)$, where $L$ is the length of `columnTitle`. For 32-bit valid inputs, $L \le 7$. The loop runs at most 7 times, performing $O(1)$ arithmetic operations per step.
+- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra space, utilizing only scalar integer accumulator `ans`.

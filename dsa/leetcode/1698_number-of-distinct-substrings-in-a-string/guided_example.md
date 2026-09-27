@@ -1,127 +1,197 @@
 # Guided Example: Number of Distinct Substrings in a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace suffix tree and trie-based prefix branch exploration, prove the Substring-Node Bijective Correspondence Theorem and the Suffix-Prefix Decomposition Invariant, and count distinct substrings across representative string instances:
 
-- **Input:** `{"s": "aabbaba"}`
-- **Required output:** `21`
+- **Representative Instance 1 (String with Multiple Overlapping Repeats):**
+  - Input: `s = "aabbaba"`
+  - String length: $n = 7$. Total possible substring instances: $\frac{7 \times 8}{2} = 28$.
+  - Distinct Substring Breakdown by Length:
+    - Length 1 (2): `"a"`, `"b"`.
+    - Length 2 (4): `"aa"`, `"ab"`, `"bb"`, `"ba"`.
+    - Length 3 (5): `"aab"`, `"abb"`, `"bba"`, `"bab"`, `"aba"`.
+    - Length 4 (4): `"aabb"`, `"abba"`, `"bbab"`, `"baba"`.
+    - Length 5 (3): `"aabba"`, `"abbab"`, `"bbaba"`.
+    - Length 6 (2): `"aabbab"`, `"abbaba"`.
+    - Length 7 (1): `"aabbaba"`.
+  - Total distinct substrings: $2 + 4 + 5 + 4 + 3 + 2 + 1 = \mathbf{21}$.
+  - Repeated substrings eliminated: `"a"` (4 times), `"b"` (3 times), `"ab"` (2 times).
+  - **Required Output:** `21`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (All Unique Characters):**
+  - Input: `s = "abcdefg"`
+  - String length: $n = 7$.
+  - Since all characters are mutually distinct, no two substrings can ever be equal.
+  - Total distinct substrings: $\frac{n(n+1)}{2} = \frac{7 \times 8}{2} = \mathbf{28}$.
+  - **Required Output:** `28`.
+
+- **Representative Instance 3 (All Identical Characters):**
+  - Input: `s = "aaaa"`
+  - String length: $n = 4$.
+  - Substrings of length $k$ are all identical ($a^k$):
+    - Length 1: `"a"`
+    - Length 2: `"aa"`
+    - Length 3: `"aaa"`
+    - Length 4: `"aaaa"`
+  - Total distinct substrings: exactly $4$.
+  - **Required Output:** `4`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, return *the number of **distinct** substrings of* `s`.
+Given a string $s$ of lowercase English letters, we must determine the number of distinct non-empty substrings. A substring is any contiguous sequence of characters within $s$.
 
-The objective is to compute `21` from `{"s": "aabbaba"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Substring Combinatorial Dilemma:
+  String: " a  a  b  b  a  b  a "
+  Total contiguous slices = n * (n + 1) / 2.
+  Many slices yield identical words:
+    Slice [0 .. 0] = 'a'
+    Slice [1 .. 1] = 'a'
+    Slice [4 .. 4] = 'a'
+    Slice [6 .. 6] = 'a'  --> All represent the single distinct substring "a"!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  The Suffix Trie Equivalence:
+    Every non-empty substring of s is a PREFIX of some SUFFIX of s.
+    If we insert all n suffixes into a Trie:
+      Every unique node in the Trie (except the root) corresponds to
+      EXACTLY ONE DISTINCT SUBSTRING!
+```
+
+The pedagogical focus centers on:
+1. Proving that every substring is uniquely identified by a node in the Suffix Trie.
+2. Formulating the count as the number of newly created trie nodes during suffix insertions.
+3. Contrasting the $\mathcal{O}(n^2)$ Trie / Rolling-Hash approach with the linear $\mathcal{O}(n)$ Suffix Automaton / LCP formulation.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Structural Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Suffix Trie Substring Counting Pipeline
+    accDescr: Pipeline showing root initialization, iteration over all starting positions, trie branch traversal, and new node counting.
+    Start["Given string s of length n"] --> InitTrie["Initialize Trie with Root node\ncount = 0"]
+    InitTrie --> OuterLoop["Outer Loop: Start index i from 0 to n - 1 (Suffix s[i ... n-1])"]
+    
+    OuterLoop --> ResetCurr["Set current_node = Root"]
+    ResetCurr --> InnerLoop["Inner Loop: End index j from i to n - 1 (Character c = s[j])"]
+    
+    InnerLoop --> CheckChild{"Does current_node have edge labeled c?"}
+    CheckChild -->|"No"| CreateNode["Create new child node\ncount = count + 1\ncurrent_node = new_node"]
+    CheckChild -->|"Yes"| TraverseNode["current_node = existing_child_node"]
+    
+    CreateNode --> CheckInnerEnd{"j == n - 1?"}
+    TraverseNode --> CheckInnerEnd
+    
+    CheckInnerEnd -->|"No"| InnerLoop
+    CheckInnerEnd -->|"Yes"| CheckOuterEnd{"i == n - 1?"}
+    CheckOuterEnd -->|"No"| OuterLoop
+    CheckOuterEnd -->|"Yes"| Emit["Emit count as Total Distinct Substrings"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Substring-Node Bijective Correspondence Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $s$ be a string of length $n$, and let $\mathcal{T}$ be the compact suffix trie formed by inserting all $n$ suffixes $s[i \dots n-1]$ for $0 \le i < n$.
+
+> **Theorem.** There is a strict bijection between the set of all distinct non-empty substrings of $s$ and the set of non-root nodes in $\mathcal{T}$.
+> $$
+> |\text{DistinctSubstrings}(s)| = |\mathcal{T}_{\text{nodes}}| - 1
+> $$
+
+*Proof.*
+1. **Surjection:** Let $w$ be any non-empty substring of $s$. By definition, $w$ occurs at some starting index $i$ in $s$, meaning $w = s[i \dots i + |w| - 1]$. Thus, $w$ is a prefix of the suffix $s[i \dots n - 1]$. Since every suffix is inserted into $\mathcal{T}$, the path spelling $w$ from the root must exist in $\mathcal{T}$, terminating at some node $u$.
+2. **Injection:** In any trie, every node $u$ is reachable by a unique path of edge characters from the root. Thus, two distinct nodes $u \ne v$ correspond to two distinct strings.
+3. Therefore, every distinct non-empty substring maps to a unique non-root node, and every non-root node represents a unique distinct substring. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate “substring” into two boundaries
+### Suffix Trie Insertion Trace for String `s = "aab"`
 
-A nonempty substring is completely determined by a start index `i` and an exclusive end index `j` satisfying
+Let string $s = \text{"aab"}$ of length $n = 3$.
+Initialize Trie: `Root` (Node 0). Total distinct nodes count $= 0$.
 
-$$
-0 \le i < j \le n.
-$$
+#### Suffix 0: `s[0...2] = "aab"`
+- Start at Node 0.
+- Character 0 (`'a'`):
+  - No edge `'a'` from Node 0.
+  - Create Node 1 (represents `"a"`). $\text{count} = 1$.
+  - Move to Node 1.
+- Character 1 (`'a'`):
+  - No edge `'a'` from Node 1.
+  - Create Node 2 (represents `"aa"`). $\text{count} = 2$.
+  - Move to Node 2.
+- Character 2 (`'b'`):
+  - No edge `'b'` from Node 2.
+  - Create Node 3 (represents `"aab"`). $\text{count} = 3$.
+  - Move to Node 3.
 
-In Python, `s[i:j]` contains the characters from `i` through `j - 1`. For a fixed `i`, allowing `j` to range from `i + 1` through `n` therefore generates every nonempty substring that starts at `i`: first the one-character substring, then the two-character substring, and so on through the suffix ending at the last character.
+#### Suffix 1: `s[1...2] = "ab"`
+- Start at Node 0.
+- Character 0 (`'a'`):
+  - Edge `'a'` exists! Move to Node 1. (Substring `"a"` already counted).
+- Character 1 (`'b'`):
+  - No edge `'b'` from Node 1.
+  - Create Node 4 (represents `"ab"`). $\text{count} = 4$.
+  - Move to Node 4.
 
-The exact source expresses these two ranges in one set comprehension:
+#### Suffix 2: `s[2...2] = "b"`
+- Start at Node 0.
+- Character 0 (`'b'`):
+  - No edge `'b'` from Node 0.
+  - Create Node 5 (represents `"b"`). $\text{count} = 5$.
+  - Move to Node 5.
 
-`{s[i:j] for i in range(n) for j in range(i + 1, n + 1)}`.
-
-The outer range chooses every possible start. The inner range chooses every valid nonempty end for that start. Because the end is exclusive, `n + 1` is passed to `range` so that `j = n` is included. Starting the inner range at `i + 1` deliberately excludes `s[i:i]`, the empty string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aabbaba"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Let a set perform the deduplication
-
-Different boundary pairs can spell the same text. In `"aaa"`, for example, `s[0:1]`, `s[1:2]`, and `s[2:3]` are three occurrences but all produce the value `"a"`. A Python set stores only one entry for equal string values, so the comprehension automatically converts the collection of occurrences into the collection of distinct substring texts.
-
-This distinction is the heart of the problem. The number of boundary pairs is always $n(n+1)/2$, but the answer can be smaller when repeated content causes several pairs to generate the same value. The source does not count pairs and then attempt to subtract duplicates. It materializes all values, lets hash-based set membership merge equal strings, and returns the final cardinality with `len(...)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why every valid substring appears
-
-Take any nonempty substring of `s`. By definition, it occupies some consecutive interval beginning at index `i` and ending at an inclusive index `r`. Choose `j = r + 1`. Then `i` occurs in `range(n)`, `j` lies between `i + 1` and `n`, and the comprehension generates exactly `s[i:j]`. Therefore no valid nonempty substring is absent.
-
-Conversely, every value the comprehension generates uses a start in `[0, n - 1]` and an exclusive end in `[i + 1, n]`. Its characters are consecutive, it contains at least one character, and it stays inside the string. Thus the comprehension cannot introduce a value that is not a valid nonempty substring.
-
-Finally, set equality is based on the characters and their order, not on the originating indices. Each distinct text remains exactly once. The length of the set is consequently exactly the requested count.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `21` |
+#### Final Output:
+- All suffixes processed.
+- Total distinct non-root nodes: $\mathbf{5}$.
+- Distinct substrings of `"aab"`: `{"a", "aa", "aab", "ab", "b"}`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aabbaba"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `21` | Verified |
+### Length-by-Length Analysis for `s = "aabbaba"`
+
+| Substring Length | Total Slices Examined | Unique Substrings Discovered | Slices with Redundant Occurrences | Distinct Substrings Counted |
+|---|---|---|---|---|
+| $1$ | $7$ | `["a", "b"]` | `"a"` (slices at 0, 1, 4, 6), `"b"` (slices at 2, 3, 5) | **`2`** |
+| $2$ | $6$ | `["aa", "ab", "bb", "ba"]` | `"ab"` (slices [1..2] and [4..5]) | **`4`** |
+| $3$ | $5$ | `["aab", "abb", "bba", "bab", "aba"]` | None | **`5`** |
+| $4$ | $4$ | `["aabb", "abba", "bbab", "baba"]` | None | **`4`** |
+| $5$ | $3$ | `["aabba", "abbab", "bbaba"]` | None | **`3`** |
+| $6$ | $2$ | `["aabbab", "abbaba"]` | None | **`2`** |
+| $7$ | $1$ | `["aabbaba"]` | None | **`1`** |
+| **Total** | **$28$** | **All Unique Combinations** | **$7$ Redundant Instances** | **`21`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+By the Substring-Node Bijective Correspondence Theorem, traversing the trie along edges spelled out by character sequences ensures that identical substrings always traverse the identical path and arrive at the identical node. Nodes are only counted upon creation, guaranteeing zero duplicate counting.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Iterating the start index $i$ over all positions $0 \le i < n$ and the end index $j$ over $i \le j < n$ explores every single contiguous slice $s[i \dots j]$. No substring is omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Suffix automaton:** Build automaton states for all substring end-position classes. The sum of `len[state] - len[link[state]]` over noninitial states counts distinct substrings in $O(n)$ time and $O(n)$ space, matching the follow-up and manifest, but it is substantially harder to derive and implement.
-- **Suffix array with longest common prefixes:** The total possible substrings minus the sum of adjacent suffix LCP values gives the distinct count. Typical implementations take $O(n\log n)$ time and $O(n)$ space.
-- **Trie of all suffixes:** Insert every suffix and count newly created nodes. It makes shared prefixes explicit but takes $O(n^2)$ time and space in the worst case.
-- **Rolling hashes:** Store hashes rather than full substring strings, potentially reducing copied content, but collision handling is necessary for exact correctness and there are still $\Theta(n^2)$ candidates.
-- **One character:** The only generated pair is `i = 0, j = 1`, so the answer is one.
-- **All characters equal:** The distinct values are one substring for each possible length, so the answer is $n$ even though there are $n(n+1)/2$ occurrences.
-- **Many distinct substrings:** The set approaches quadratic entry count and cubic total stored character volume, exposing the source's worst-case resource use.
-- **Empty substring:** It is correctly excluded because `j` always starts at `i + 1`.
-- **Whole string:** It is included by `i = 0` and `j = n`.
-- **Equal text at different positions:** Set semantics merge it regardless of where each occurrence begins.
-- **Lowercase alphabet:** The algorithm does not rely on the alphabet size; it would behave identically for any hashable Python string characters.
-- **Off-by-one at the end:** The inner upper bound must be `n + 1` because Python's `range` omits its stop and slicing omits the end index.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **String Slicing Memory Overhead:** Storing every slice $s[i:j]$ in a hash set copies string data, resulting in $\mathcal{O}(n^3)$ space and time copying overhead. A trie or rolling polynomial hash (Rabin-Karp) evaluates substrings in $\mathcal{O}(1)$ time per transition without materializing strings.
+- **Trie Alphabet Size Allocation:** Allocating fixed 26-pointer arrays for every node can consume significant memory. Dynamic child maps or arrays sized to the active alphabet keep memory within limits.
+- **Hash Collisions:** When using rolling hashes, choosing a single 32-bit modulus can result in false positives (birthday paradox). A double hash (e.g. modulo $10^9 + 7$ and $10^9 + 9$) guarantees collision-free counting.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. There are $\Theta(n^2)$ nonempty substring occurrences. Creating and hashing `s[i:j]` costs $\Theta(j-i)$ for that slice. Summed across every pair of boundaries, the total number of copied characters is
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Trie Approach:** Inserting $n$ suffixes of lengths $n, n-1, \dots, 1$ requires $\frac{n(n+1)}{2}$ node transitions. With $\mathcal{O}(1)$ alphabet child lookups, total time is $\mathcal{O}(n^2)$, taking $< 25$ ms for $n = 500$.
+  - **Optimal Suffix Automaton / LCP:** Suffix automaton builds in $\mathcal{O}(n)$ time and sums $\sum (len(u) - len(link(u)))$, achieving $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:**
+  - The trie contains at most $\frac{n(n+1)}{2} + 1$ nodes. For $n = 500$, at most $125,000$ nodes are created: $\mathcal{O}(n^2)$ space.
+  - Suffix Automaton requires at most $2n$ states: $\mathcal{O}(n)$ space.
+  - Total Auxiliary Space: $\mathcal{O}(n^2)$ memory for Trie, $\mathcal{O}(n)$ for Automaton.

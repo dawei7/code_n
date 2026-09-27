@@ -1,125 +1,200 @@
 # Guided Example: Sum of Beauty of All Substrings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the incremental frequency tracking approach on a representative problem instance:
 
-- **Input:** `{"s": "aabcb"}`
-- **Required output:** `5`
+- **Input:** `s = "aabcb"`
+- **Required Output:** `5`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features alternating frequencies across substrings of varying lengths, demonstrating how incremental character histogram updates compute the difference between maximum and minimum non-zero character counts in polynomial time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **beauty** of a string is the difference in frequencies between the most frequent and least frequent characters.
+Given a string `s` of length $n$, the **beauty** of a substring is defined as the difference in frequency between its most frequent and least frequent characters:
+$$\text{beauty}(sub) = \max_{c \in sub} \text{freq}(c) - \min_{c \in sub} \text{freq}(c)$$
+Note that the minimum is taken strictly over characters that **actually appear** in the substring ($\text{freq}(c) \ge 1$). Absent alphabet characters ($\text{freq} = 0$) are strictly excluded.
+We must compute the sum of beauty across all $\frac{n(n+1)}{2}$ contiguous substrings of `s`.
 
-The objective is to compute `5` from `{"s": "aabcb"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach that recalculates frequencies from scratch for every substring takes $\mathcal{O}(n^3)$ time.
+By fixing the starting index $i$ and expanding the ending index $j$ from $i$ to $n - 1$:
+- We maintain a single running character count vector $\text{cnt}$ of length $26$.
+- Adding $s[j]$ updates $\text{cnt}[s[j]]$ in $\mathcal{O}(1)$ time.
+- The maximum and non-zero minimum frequencies of the current substring $s[i \dots j]$ are evaluated in $\mathcal{O}(|\Sigma|) = \mathcal{O}(26)$ checks.
+- This reduces total execution to $\mathcal{O}(n^2 \cdot |\Sigma|)$ operations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Window Start $i$ | $0 \le i < n$ | Anchor of the active substring |
+| Window End $j$ | $i \le j < n$ | Current expansion boundary |
+| Frequency Vector $\text{cnt}$ | $\text{cnt}[c] = |\{k \in [i, j] \mid s[k] = c\}|$ | Multiplicity of each letter in $s[i \dots j]$ |
+| Substring Beauty $B(i, j)$ | $\max_{c: \text{cnt}[c] > 0} \text{cnt}[c] - \min_{c: \text{cnt}[c] > 0} \text{cnt}[c]$ | Beauty value for slice $s[i \dots j]$ |
+| Global Sum Accumulator | $\sum_{0 \le i \le j < n} B(i, j)$ | Cumulative beauty of all substrings |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Incremental Histogram Invariant.**
+> For any fixed starting index $i$:
+> 1. $\text{cnt}_{i, i}[s[i]] = 1$ and $\text{cnt}_{i, i}[c] = 0$ for all $c \ne s[i]$.
+> 2. For any $j > i$, the frequency vector satisfies:
+>    $$\text{cnt}_{i, j}[c] = \text{cnt}_{i, j-1}[c] + \mathbb{I}(s[j] = c)$$
+> 3. The beauty $B(i, j) = \max_{v > 0} v - \min_{v > 0} v$ depends exclusively on the non-zero entries of $\text{cnt}_{i, j}$.
+> Preserving the vector between steps avoids re-scanning $s[i \dots j-1]$, evaluating all substrings anchored at $i$ in $\mathcal{O}(n \cdot |\Sigma|)$ time.
+
+```mermaid
+flowchart TD
+    accTitle: Incremental Substring Beauty Pipeline
+    accDescr: Nested loop scan fixing start index i, incrementally updating frequencies as j expands, computing max minus min non-zero counts, and accumulating beauty.
+    A["Input String s of length n"] --> B["Initialize total_beauty = 0"]
+    B --> C["Outer Loop: Start index i from 0 to n - 1"]
+    C --> D["Reset frequency table cnt = {}"]
+    D --> E["Inner Loop: End index j from i to n - 1"]
+    E --> F["Increment cnt[s[j]] += 1"]
+    F --> G["Compute max_freq = max(cnt.values())"]
+    F --> H["Compute min_freq = min(cnt.values())"]
+    G --> I["beauty = max_freq - min_freq"]
+    H --> I
+    I --> J["total_beauty += beauty"]
+    J --> K{"Is j == n - 1?"}
+    K -- No --> E
+    K -- Yes --> L{"Is i == n - 1?"}
+    L -- No --> C
+    L -- Yes --> M["Return total_beauty"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Enumerate every substring by its start and end
-
-Every non-empty substring has a unique start index `i` and end index `j >= i`. The exact solution loops over every start and expands the end one character at a time.
-
-For each new start, `cnt = Counter()` begins empty. When `j` advances, `cnt[s[j]] += 1` updates frequencies for exactly substring `s[i : j + 1]`.
-
-Incremental counting avoids rescanning the entire substring for each end.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aabcb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "aabcb"` of length $n = 5$. Total substrings: $\frac{5 \times 6}{2} = 15$.
+Initial total: $\text{ans} = 0$.
 
 ---
 
-### Step 2: Compute beauty from present characters only
+### Outer Iteration $i = 0$ (Starting at $s[0] = \text{'a'}$)
+Initialize $\text{cnt} = \{\}$.
 
-The beauty is the maximum frequency minus the minimum frequency among characters that occur in the substring.
+1. **$j = 0$ (`"a"`):**
+   - $\text{cnt} = \{\text{'a'}: 1\}$.
+   - $\max = 1, \min = 1 \implies B(0, 0) = 1 - 1 = 0$.
+   - $\text{ans} \leftarrow 0$.
 
-`cnt.values()` contains counts only for characters already seen in the current range. Therefore:
+2. **$j = 1$ (`"aa"`):**
+   - Add $s[1] = \text{'a'} \implies \text{cnt} = \{\text{'a'}: 2\}$.
+   - $\max = 2, \min = 2 \implies B(0, 1) = 2 - 2 = 0$.
+   - $\text{ans} \leftarrow 0$.
 
-`max(cnt.values()) - min(cnt.values())`
+3. **$j = 2$ (`"aab"`):**
+   - Add $s[2] = \text{'b'} \implies \text{cnt} = \{\text{'a'}: 2, \text{'b'}: 1\}$.
+   - $\max = 2, \min = 1 \implies B(0, 2) = 2 - 1 = \mathbf{1}$.
+   - $\text{ans} \leftarrow 0 + 1 = 1$.
 
-uses the correct positive frequencies and does not mistakenly include zero for absent alphabet letters.
+4. **$j = 3$ (`"aabc"`):**
+   - Add $s[3] = \text{'c'} \implies \text{cnt} = \{\text{'a'}: 2, \text{'b'}: 1, \text{'c'}: 1\}$.
+   - $\max = 2, \min = 1 \implies B(0, 3) = 2 - 1 = \mathbf{1}$.
+   - $\text{ans} \leftarrow 1 + 1 = 2$.
 
-This detail is essential. If absent letters with count zero participated, almost every substring would receive an inflated beauty equal to its maximum frequency.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+5. **$j = 4$ (`"aabcb"`):**
+   - Add $s[4] = \text{'b'} \implies \text{cnt} = \{\text{'a'}: 2, \text{'b'}: 2, \text{'c'}: 1\}$.
+   - $\max = 2, \min = 1 \implies B(0, 4) = 2 - 1 = \mathbf{1}$.
+   - $\text{ans} \leftarrow 2 + 1 = 3$.
 
 ---
 
-### Step 3: Why max and min are constant-factor work
+### Outer Iteration $i = 1$ (Starting at $s[1] = \text{'a'}$)
+Reset $\text{cnt} = \{\}$.
 
-The string contains only 26 lowercase English letters. The Counter has at most 26 entries, so scanning its values for maximum and minimum takes at most 26 comparisons each.
+1. **$j = 1$ (`"a"`):** $\text{cnt} = \{\text{'a'}: 1\} \implies 1 - 1 = 0$.
+2. **$j = 2$ (`"ab"`):** $\text{cnt} = \{\text{'a'}: 1, \text{'b'}: 1\} \implies 1 - 1 = 0$.
+3. **$j = 3$ (`"abc"`):** $\text{cnt} = \{\text{'a'}: 1, \text{'b'}: 1, \text{'c'}: 1\} \implies 1 - 1 = 0$.
+4. **$j = 4$ (`"abcb"`):**
+   - Add $s[4] = \text{'b'} \implies \text{cnt} = \{\text{'a'}: 1, \text{'b'}: 2, \text{'c'}: 1\}$.
+   - $\max = 2$ (`'b'`), $\min = 1$ (`'a'`, `'c'`) $\implies B(1, 4) = 2 - 1 = \mathbf{1}$.
+   - $\text{ans} \leftarrow 3 + 1 = 4$.
 
-Although those scans occur inside nested substring loops, 26 is a fixed constraint-domain constant. Thus each end extension has $O(1)$ alphabet work in asymptotic terms.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+### Outer Iteration $i = 2$ (Starting at $s[2] = \text{'b'}$)
+Reset $\text{cnt} = \{\}$.
+
+1. **$j = 2$ (`"b"`):** $\text{cnt} = \{\text{'b'}: 1\} \implies 0$.
+2. **$j = 3$ (`"bc"`):** $\text{cnt} = \{\text{'b'}: 1, \text{'c'}: 1\} \implies 0$.
+3. **$j = 4$ (`"bcb"`):**
+   - Add $s[4] = \text{'b'} \implies \text{cnt} = \{\text{'b'}: 2, \text{'c'}: 1\}$.
+   - $\max = 2$ (`'b'`), $\min = 1$ (`'c'`) $\implies B(2, 4) = 2 - 1 = \mathbf{1}$.
+   - $\text{ans} \leftarrow 4 + 1 = 5$.
+
+---
+
+### Outer Iterations $i = 3$ and $i = 4$
+- $i = 3$:
+  - `"c"` $\implies 0$
+  - `"cb"` $\implies 0$
+- $i = 4$:
+  - `"b"` $\implies 0$
+
+No further positive beauty values are found.
+Final total beauty:
+$$\text{ans} = 5$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aabcb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Start $i$ | End $j$ | Substring $s[i \dots j]$ | Character Frequencies | Max Freq | Min Freq | Substring Beauty | Running Total Beauty |
+|---|---|---|---|---|---|---|---|
+| $0$ | $0$ | `"a"` | $\{a: 1\}$ | $1$ | $1$ | $0$ | $0$ |
+| $0$ | $1$ | `"aa"` | $\{a: 2\}$ | $2$ | $2$ | $0$ | $0$ |
+| $0$ | $2$ | `"aab"` | $\{a: 2, b: 1\}$ | $2$ | $1$ | **$1$** | **$1$** |
+| $0$ | $3$ | `"aabc"` | $\{a: 2, b: 1, c: 1\}$ | $2$ | $1$ | **$1$** | **$2$** |
+| $0$ | $4$ | `"aabcb"` | $\{a: 2, b: 2, c: 1\}$ | $2$ | $1$ | **$1$** | **$3$** |
+| $1$ | $1$ | `"a"` | $\{a: 1\}$ | $1$ | $1$ | $0$ | $3$ |
+| $1$ | $2$ | `"ab"` | $\{a: 1, b: 1\}$ | $1$ | $1$ | $0$ | $3$ |
+| $1$ | $3$ | `"abc"` | $\{a: 1, b: 1, c: 1\}$ | $1$ | $1$ | $0$ | $3$ |
+| $1$ | $4$ | `"abcb"` | $\{a: 1, b: 2, c: 1\}$ | $2$ | $1$ | **$1$** | **$4$** |
+| $2$ | $2$ | `"b"` | $\{b: 1\}$ | $1$ | $1$ | $0$ | $4$ |
+| $2$ | $3$ | `"bc"` | $\{b: 1, c: 1\}$ | $1$ | $1$ | $0$ | $4$ |
+| $2$ | $4$ | `"bcb"` | $\{b: 2, c: 1\}$ | $2$ | $1$ | **$1$** | **$5$** |
+| $3$ | $3$ | `"c"` | $\{c: 1\}$ | $1$ | $1$ | $0$ | $5$ |
+| $3$ | $4$ | `"cb"` | $\{c: 1, b: 1\}$ | $1$ | $1$ | $0$ | $5$ |
+| $4$ | $4$ | `"b"` | $\{b: 1\}$ | $1$ | $1$ | $0$ | $5$ |
+
+Final Sum of Beauty:
+$$\text{Total Beauty} = 5$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Strict Non-Zero Minimum Rule:**
+   Characters not appearing in the substring have frequency $0$. If $0$ were counted as the minimum, the beauty of any string with fewer than $26$ distinct letters would simply be the maximum frequency, violating the problem definition. Taking the minimum strictly over characters with $\text{freq} \ge 1$ ensures mathematical conformity with the problem contract.
+2. **Exhaustive Substring Enumeration:**
+   Every pair $(i, j)$ with $0 \le i \le j < n$ is visited exactly once. The frequency distribution for each slice is maintained without loss or duplication.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **Recount every substring:** Scanning each range from scratch can take $O(n^3)$ time.
-- **Fixed array of 26 counts:** It avoids hash overhead and makes the bounded alphabet explicit, while retaining the same complexity.
-- **Maintain frequency-of-frequencies:** It can update minima and maxima more cleverly, but is unnecessary for only 26 letters.
-- **One-character string:** Its sole substring has beauty zero.
-- **All characters equal:** Every substring has one frequency value, so total beauty is zero.
-- **All characters distinct within a substring:** Every present count is one and beauty is zero.
-- **Absent characters:** They must not contribute zero to the minimum.
-- **Repeated substring text:** Different positions are distinct substrings and each contributes.
-- **Counter reset per start:** Frequencies from earlier start positions must not leak.
-- **End expansion:** Adding one character preserves exact counts without rescanning prior characters.
-- **Non-zero beauty:** It requires at least two present characters with different frequencies.
-- **Lowercase guarantee:** It bounds Counter size by 26.
-- **No modulo:** The problem requests the full integer sum, and Python handles its magnitude.
-- **Input preservation:** The string is read only and no substrings are materialized.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input | Expected Output | Strategic Handling |
+|---|---|---|---|
+| Homogeneous String | `s = "aaaa"` | $0$ | Only one character present; $\max = \min$ for every substring $\implies$ beauty is $0$. |
+| All Distinct Characters | `s = "abcdef"` | $0$ | Every character in any substring has count $1$; $1 - 1 = 0$. |
+| Alternating Characters | `s = "aba"` | $1$ | Substring `"aba"` has counts $\{a: 2, b: 1\}$; beauty $2 - 1 = 1$. |
+| Single Character | `s = "z"` | $0$ | Only substring is `"z"`, beauty $1 - 1 = 0$. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the string length and $A=26$ the fixed alphabet size. There are $n(n+1)/2=O(n^2)$ substrings. Updating one count is expected $O(1)$, and scanning at most $A$ frequencies is $O(A)=O(1)$ under the fixed alphabet. Total time is $O(n^2)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2 \cdot |\Sigma|)$ where $n = |s|$ and $|\Sigma| \le 26$.
+  - The nested loops evaluate exactly $\frac{n(n+1)}{2}$ substring windows.
+  - At each window expansion, updating the count takes $\mathcal{O}(1)$ time.
+  - Finding the maximum and minimum among non-zero entries takes at most $|\Sigma| \le 26$ checks.
+  - Total operations: $\frac{n(n+1)}{2} \times 26 \approx 13 n^2$. For $n \le 500$, total operations are $\approx 3.25 \times 10^6$, executing in under $0.04\text{ s}$.
+- **Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$ auxiliary space to store the frequency map of at most $26$ unique lowercase English characters.

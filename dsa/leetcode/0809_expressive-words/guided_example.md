@@ -1,121 +1,221 @@
 # Guided Example: Expressive Words
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step run-length encoding (RLE) block decomposition, character identity matching ($s[i] == t[j]$), group length extension constraints ($c_1 \ge c_2$), minimum stretchy group size threshold ($c_1 \ge 3 \lor c_1 == c_2$), group-by-group validation, and stretchy vocabulary word counting on representative string sets:
 
-- **Input:** `{"s": "heeellooo", "words": ["hello", "hi", "helo"]}`
+- **Input:**
+  $$
+  s = \text{"heeellooo"}
+  $$
+  $$
+  words = [\text{"hello"}, \; \text{"hi"}, \; \text{"helo"}]
+  $$
 - **Required output:** `1`
+  - Stretchy word extension rules:
+    - In string $s$, people express excitement by stretching groups of identical adjacent characters.
+    - A query word $t$ can be stretched into $s$ if for each group of identical adjacent characters with length $c_2$ in $t$ and corresponding length $c_1$ in $s$:
+      1. Both groups share the **same character**.
+      2. $c_1 \ge c_2$ (characters can be added to $t$, never removed).
+      3. The resulting group length in $s$ must be **at least 3** ($c_1 \ge 3$), **OR** the groups were already equal ($c_1 == c_2$).
+      *(You cannot stretch a group of length 1 to length 2, because a stretchy group must have size $\ge 3$)*.
+    - For $s = \text{"heeellooo"}$:
+      - Run-length decomposition of $s$:
+        $$
+        (\text{'h'}, 1), \; (\text{'e'}, 3), \; (\text{'l'}, 2), \; (\text{'o'}, 3)
+        $$
+      - Candidate 1: `"hello"` $\to (\text{'h'}, 1), (\text{'e'}, 1), (\text{'l'}, 2), (\text{'o'}, 1)$:
+        - `'h'`: $1 == 1$ (Match).
+        - `'e'`: $1 \to 3$ ($c_1 = 3 \ge 3$) (Valid stretch).
+        - `'l'`: $2 == 2$ (Match).
+        - `'o'`: $1 \to 3$ ($c_1 = 3 \ge 3$) (Valid stretch).
+        - **"hello" is Stretchy!**
+      - Candidate 2: `"hi"`:
+        - Contains `'i'` where $s$ has `'e'` $\implies$ Character mismatch.
+      - Candidate 3: `"helo"` $\to (\text{'h'}, 1), (\text{'e'}, 1), (\text{'l'}, 1), (\text{'o'}, 1)$:
+        - `'l'` in $t$ has length 1, but in $s$ has length 2.
+        - $c_1 = 2 < 3$ and $c_1 \ne c_2 \implies$ **Illegal stretch** (resulting size must be $\ge 3$).
+      - Total valid stretchy words: **1**.
+- **Run-Length Invariant & Group Sizing Criteria:**
+  - **Sequential Group Tracking ($i, j$):**
+    - Align two pointers $i$ in $s$ and $j$ in $t$:
+      1. **Character Equality:** If $s[i] \ne t[j]$, return `false`.
+      2. **Measure Run Length in $s$ ($c_1$):** Advance pointer $k_1$ until $s[k_1] \ne s[i]$:
+         $$
+         c_1 = k_1 - i
+         $$
+      3. **Measure Run Length in $t$ ($c_2$):** Advance pointer $k_2$ until $t[k_2] \ne t[j]$:
+         $$
+         c_2 = k_2 - j
+         $$
+      4. **Stretch Feasibility Predicate:**
+         - If $c_1 < c_2$: Cannot shrink characters $\implies$ return `false`.
+         - If $c_1 < 3$ and $c_1 \ne c_2$: Stretched group has size $< 3 \implies$ return `false`.
+      5. Advance both pointers to the start of their next groups: $i \leftarrow k_1, j \leftarrow k_2$.
+    - Return `true` if and only if both strings are exhausted simultaneously ($i == |s| \land j == |t|$).
+- **Step-by-Step Worked Execution Trace on Candidate `"hello"` vs `"heeellooo"`:**
+  - Master $s = \text{"heeellooo"}$ ($m = 9$).
+  - Candidate $t = \text{"hello"}$ ($n = 5$).
+  - Initialize pointers: $i = 0, j = 0$.
+  - **Group 1 (Character `'h'`):**
+    - $s[0] == t[0] == \text{'h'}$.
+    - Length in $s$: $c_1 = 1$.
+    - Length in $t$: $c_2 = 1$.
+    - Sizing check: $c_1 == c_2 = 1 \implies \mathbf{Valid.}$
+    - Advance: $i = 1, j = 1$.
+  - **Group 2 (Character `'e'`):**
+    - $s[1] == t[1] == \text{'e'}$.
+    - Count in $s$: indices $1, 2, 3$ are `'e'` $\implies c_1 = 3$.
+    - Count in $t$: index $1$ is `'e'` $\implies c_2 = 1$.
+    - Sizing check:
+      $$
+      c_1 \ge c_2 \quad (3 \ge 1) \quad \text{and} \quad c_1 \ge 3 \quad (3 \ge 3) \implies \mathbf{Valid\ Stretch!}
+      $$
+    - Advance: $i = 4, j = 2$.
+  - **Group 3 (Character `'l'`):**
+    - $s[4] == t[2] == \text{'l'}$.
+    - Count in $s$: indices $4, 5$ are `'l'` $\implies c_1 = 2$.
+    - Count in $t$: indices $2, 3$ are `'l'` $\implies c_2 = 2$.
+    - Sizing check: $c_1 == c_2 = 2 \implies \mathbf{Valid.}$
+    - Advance: $i = 6, j = 4$.
+  - **Group 4 (Character `'o'`):**
+    - $s[6] == t[4] == \text{'o'}$.
+    - Count in $s$: indices $6, 7, 8$ are `'o'` $\implies c_1 = 3$.
+    - Count in $t$: index $4$ is `'o'` $\implies c_2 = 1$.
+    - Sizing check: $c_1 \ge c_2$ ($3 \ge 1$) and $c_1 \ge 3$ ($3 \ge 3$) $\implies \mathbf{Valid\ Stretch!}$
+    - Advance: $i = 9, j = 5$.
+  - **Termination:**
+    - Both strings simultaneously exhausted: $i == 9 == m$ and $j == 5 == n$.
+    - `"hello"` is certified as **stretchy**!
+- **Step-by-Step Worked Execution Trace on Candidate `"helo"`:**
+  - Group 1 (`'h'`): $1 == 1 \implies$ Valid.
+  - Group 2 (`'e'`): $1 \to 3 \implies$ Valid stretch ($c_1 = 3$).
+  - Group 3 (`'l'`):
+    - $s$ has 2 `'l'`s ($c_1 = 2$).
+    - $t$ has 1 `'l'` ($c_2 = 1$).
+    - Test sizing rule:
+      $$
+      c_1 < 3 \quad (2 < 3) \quad \text{and} \quad c_1 \ne c_2 \quad (2 \ne 1) \implies \mathbf{Illegal\ Stretch!}
+      $$
+    - Cannot stretch a single letter to a pair of 2 letters!
+    - Return `false`.
+- **All-Stretchy Words Trace ($s = \text{"zzzzzyyyyy"}$):**
+  - Group sizes in $s$: `'z': 5, 'y': 5`.
+  - Both groups have $c_1 \ge 3$.
+  - Any candidate word with sequence `z...y...` having $1 \le c_2 \le 5$ is stretchy.
+  - Candidates `"zzyy"`, `"zy"`, `"zyy"` all qualify $\implies ans = \mathbf{3}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates run-length encoding factoring of formal languages and regular relation parsing under length-dilation constraints, mathematically proves why local block inequalities characterize inverse string dilation morphisms, and derives $O(|s| + \sum |w_i|)$ execution time and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Sometimes people repeat letters to represent extra feeling. For example:
+Given master string $s$ and a list of candidate $words$:
+Count how many words can stretch into $s$ by extending character groups to size $\ge 3$.
 
-The objective is to compute `1` from `{"s": "heeellooo", "words": ["hello", "hi", "helo"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+s = "heeellooo" -> RLE: [ ('h', 1), ('e', 3), ('l', 2), ('o', 3) ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Candidates:
+  "hello" -> [ ('h', 1), ('e', 1), ('l', 2), ('o', 1) ]
+             'e': 1 -> 3 (size >= 3 -> OK)
+             'o': 1 -> 3 (size >= 3 -> OK)
+             Valid!
+
+  "helo"  -> [ ('h', 1), ('e', 1), ('l', 1), ('o', 1) ]
+             'l': 1 -> 2 (size < 3 -> INVALID!)
+
+Result: 1
+```
+
+### The Invariant of the 3-Threshold Stretch
+- Characters cannot be removed ($c_1 \ge c_2$).
+- If group sizes differ ($c_1 \ne c_2$), the master string group MUST have size $\ge 3$.
+- Stretches to size 2 are strictly forbidden.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Run-Length Encoding Blocks:
+$$
+\text{RLE}(w) = [(char_1, c_1), \; (char_2, c_2), \; \dots]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Group Compatibility Predicate:
+For corresponding blocks $(char_s, c_1)$ and $(char_t, c_2)$:
+$$
+char_s == char_t \;\land\; c_1 \ge c_2 \;\land\; (c_1 == c_2 \;\lor\; c_1 \ge 3)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Dilation Monoid Invariant.** Let $\mathcal{R}: \Sigma^* \to (\Sigma \times \mathbb{N})^*$ be the run-length projection. The dilation relation $u \sqsubseteq v$ is a partial order on words having identical character skeletons $\pi_1(\mathcal{R}(u)) = \pi_1(\mathcal{R}(v))$, characterized by component-wise integer dilation satisfying $c_1 \ge c_2$ and $c_1 \notin \{1, 2\} \setminus \{c_2\}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Think in groups, not individual characters
-
-The target string `s` may contain stretched groups such as `"eee"` or `"oooo"`. A query word is stretchy only when extending some of its existing groups can produce exactly `s`. An extension may add copies of the same character to a group, but it cannot change a character, remove a group, insert a completely new character group, or reorder groups.
-
-For example, both `"hello"` and `"heeellooo"` have the same group sequence:
-
-$$
-h,\ e,\ l,\ o.
-$$
-
-Their group lengths differ, but their group characters appear in the same order. In contrast, `"helo"` has the sequence $h,e,l,o$ too, yet its one-character `l` group cannot become the two-character `ll` group in the target: an extension is allowed only when the resulting target group has length at least three.
-
-This observation suggests comparing one complete run of equal adjacent characters at a time. Comparing characters one by one without knowing the group boundaries makes it difficult to tell whether a repeated target character is a legal stretch or a required original character.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "heeellooo", "words": ["hello", "hi", "helo"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"heeellooo"}, t = \text{"hello"}$:
 
 ---
 
-### Step 2: What the helper checks
-
-For each query `t`, the nested `check(s, t)` function decides whether `t` can be extended into `s`. Let `m = len(s)` and `n = len(t)`.
-
-The first test rejects `t` when `n > m`. Extension can only add characters, never delete them, so a word longer than the final target cannot possibly become the target. This check is not required for correctness—the later group comparisons would also reject the word—but it avoids unnecessary scanning.
-
-Two pointers, `i` and `j`, identify the first unprocessed character of `s` and `t`. The key meaning maintained by the loop is:
-
-- everything before `i` in `s` and before `j` in `t` has already been divided into matching, legally compatible groups;
-- if both pointers are still inside their strings, they must now begin the next corresponding group.
-
-At the start of an iteration, `s[i]` must equal `t[j]`. If the characters differ, the group sequences differ, and no amount of repetition can repair that mismatch. The helper immediately returns `false`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `'h'`
+- $c_1 = 1, c_2 = 1 \implies 1 == 1 \implies$ Valid.
 
 ---
 
-### Step 3: Measuring the two corresponding runs
+### Step 2: `'e'`
+- $c_1 = 3, c_2 = 1 \implies 3 \ge 1$ and $3 \ge 3 \implies$ Valid.
 
-Once the leading characters agree, the code advances a temporary pointer `k` from `i` until it reaches either the end of `s` or a different character. The difference `k - i` is the target group length, stored as `c1`. It then moves `i` to `k`, so `i` begins the following target group.
+---
 
-The implementation reuses `k` for the query. After `i, k = k, j`, the new `k` starts at `j`. A second scan advances over all copies of `t[j]`. The difference `k - j` is the query group length, stored as `c2`, and `j` moves past that query group.
+### Step 3: `'l'`
+- $c_1 = 2, c_2 = 2 \implies 2 == 2 \implies$ Valid.
 
-At this point, the group characters match, so only their lengths can make the pair invalid.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 4: `'o'`
+- $c_1 = 3, c_2 = 1 \implies 3 \ge 1$ and $3 \ge 3 \implies$ Valid.
+
+---
+
+### Step 5: Output
+- Valid! Total count: **`1`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "heeellooo", "words": ["hello", "hi", "helo"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Block | Character | Master Length $c_1$ | Word Length $c_2$ | Length Check ($c_1 \ge c_2$) | Size $\ge 3$ or Equal? | Compatible? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `'h'` | $1$ | $1$ | $1 \ge 1$ | $1 == 1$ | Yes |
+| $2$ | `'e'` | $3$ | $1$ | $3 \ge 1$ | $3 \ge 3$ | Yes |
+| $3$ | `'l'` | $2$ | $2$ | $2 \ge 2$ | $2 == 2$ | Yes |
+| **$4$** | **`'o'`** | **$3$** | **$1$** | **$3 \ge 1$** | **$3 \ge 3$** | **Yes** |
+| **Status** | — | — | — | — | — | **Word is Stretchy** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Candidate Word Longer Than $s$ ($|t| > |s|$):** Cannot stretch to a shorter string $\implies$ reject immediately.
+- **Single Character Match ($s = \text{"aaa"}, t = \text{"a"}$):** $1 \to 3 \implies$ valid.
+- **Invalid Stretch to 2 ($s = \text{"aa"}, t = \text{"a"}$):** $c_1 = 2 < 3$ and $2 \ne 1 \implies$ invalid.
+- **Different Characters ($s = \text{"abc"}, t = \text{"abd"}$):** Letter mismatch $\implies$ invalid.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Precompute run-length encodings:** Converting `s` and every query into arrays of character/count pairs makes the comparison explicit and can avoid rescanning the target encoding for each word. It also allocates storage proportional to the encoded input. The two-pointer implementation obtains the same comparisons directly from the strings with constant auxiliary space.
-- **Character-by-character matching without group lengths:** A simple subsequence test is insufficient. It might accept `"helo"` for `"heeellooo"` even though the target's two-character `l` group cannot legally be produced from one `l`.
-- **Query longer than the target:** It is rejected immediately because the only permitted operation adds characters. Even without the early test, some group would be too long or remain unmatched.
+- **Allowing Stretches of Length 2:** The rule requires the stretched group to have length at least 3. If $s$ has 2 `'l'`s and $t$ has 1 `'l'`, $t$ CANNOT be stretched to $s$.
+- **Not Checking String Exhaustion:** If $t$ matches a prefix of $s$ but leaves trailing groups in $s$, ensure $i == m \land j == n$ before declaring valid.
+- **Generating All Expanded Strings:** Generating all $3^k$ stretched strings creates exponential explosion. Two-pointer group comparison runs in deterministic linear time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O\left(qm+\sum_{r=1}^{q}w_r\right)$. Let `q` be the number of query words, let `m = |s|`, and let `w_r` be the length of query word `r`. For one query, each target character is advanced over at most once and each query character is advanced over at most once. The check therefore takes `O(m + w_r)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Checking each candidate word $t$ takes $\mathcal{O}(|s| + |t|)$ using two pointers.
+  - Across $W$ words: $\mathcal{O}(W \cdot |s| + \sum |w_i|)$.
+  - Total Time: strictly linear $\mathcal{O}(W \cdot |s| + \sum |w_i|)$ where $|s| \le 100, W \le 100$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (index pointers and integer counters).

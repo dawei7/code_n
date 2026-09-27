@@ -1,109 +1,181 @@
 # Guided Example: Seat Reservation Manager
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step state evolution of a priority-driven seat reservation system maintaining dynamic availability through sequential reservations and unreservations:
 
-- **Input:** `{"operations": ["SeatManager", "reserve", "reserve", "unreserve", "reserve", "reserve", "reserve", "reserve", "unreserve"], "arguments": [[5], [], [], [2], [], [], [], [], [5]]}`
-- **Required output:** `[null, 1, 2, null, 2, 3, 4, 5, null]`
+- **Input:**
+  - Operations: `["SeatManager", "reserve", "reserve", "unreserve", "reserve", "reserve", "reserve", "reserve", "unreserve"]`
+  - Arguments: `[[5], [], [], [2], [], [], [], [], [5]]`
+- **Required Output:** `[null, 1, 2, null, 2, 3, 4, 5, null]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how releasing a smaller seat number out of sequence causes subsequent reservations to reuse the freed smaller seat prior to advancing to larger numbers.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a system that manages the reservation state of `n` seats that are numbered from `1` to `n`.
+We are tasked with designing an efficient seat management service for $n$ numbered seats from $1$ through $n$.
+All seats begin unreserved.
+The system supports two dynamic operations:
+1. `reserve()`: Allocates and returns the smallest currently available seat number.
+2. `unreserve(seatNumber)`: Releases the specified seat, returning it to the available pool.
 
-The objective is to compute `[null, 1, 2, null, 2, 3, 4, 5, null]` from `{"operations": ["SeatManager", "reserve", "reserve", "unreserve", "reserve", "reserve", "reserve", "reserve", "unreserve"], "arguments": [[5], [], [], [2], [], [], [], [], [5]]}` while avoiding redundant calculations and unnecessary overhead.
+In our instance with $n = 5$:
+- Initially, all seats $\{1, 2, 3, 4, 5\}$ are available.
+- `reserve()` chooses the minimal available seat: `1`.
+- `reserve()` chooses the next minimal available seat: `2`.
+- `unreserve(2)` returns seat `2` to the pool. The available set becomes $\{2, 3, 4, 5\}$.
+- `reserve()` must now choose `2` again (since $2 < 3$).
+- Subsequent calls to `reserve()` sequentially consume `3`, `4`, and `5`.
+- Finally, `unreserve(5)` makes seat `5` available again.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to model available resources using a min-heap priority queue to guarantee that finding the minimum available element and restoring a released element both execute in logarithmic time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Priority-Queue Allocation Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Min-Heap Priority Order & Dynamic Reallocation Invariant Theorem.**
+> 1. *Total Order Availability:* At any point in time, the set of unreserved seats $\mathcal{A} \subseteq \{1, 2, \dots, n\}$ is a non-empty subset of positive integers.
+> 2. *Minimal Allocation Guarantee:* The `reserve()` operation deterministically extracts:
+>    $$s^* = \min(\mathcal{A})$$
+>    and updates $\mathcal{A} \gets \mathcal{A} \setminus \{s^*\}$.
+> 3. *Restoration Invariance:* For any valid `unreserve(s)`, $s \notin \mathcal{A}$. The operation updates $\mathcal{A} \gets \mathcal{A} \cup \{s\}$.
+> 4. *Heap Invariant:* When $\mathcal{A}$ is structured as a binary min-heap, the root always stores $\min(\mathcal{A})$. Extracting the minimum and inserting a newly released seat each take $\mathcal{O}(\log |\mathcal{A}|)$ time.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Seat Reservation State Machine
+    accDescr: Diagram showing state transitions of the min-heap across reservations, releases, and reallocations.
+    A["Initial State: Available Heap = [1, 2, 3, 4, 5]"] --> B["reserve() -> Extract min: 1<br/>Heap: [2, 3, 4, 5]"]
+    B --> C["reserve() -> Extract min: 2<br/>Heap: [3, 4, 5]"]
+    C --> D["unreserve(2) -> Insert 2 into Heap<br/>Heap: [2, 3, 4, 5]"]
+    D --> E["reserve() -> Extract min: 2 (Reused!)<br/>Heap: [3, 4, 5]"]
+    E --> F["reserve() -> Extract min: 3<br/>Heap: [4, 5]"]
+    F --> G["reserve() -> Extract min: 4<br/>Heap: [5]"]
+    G --> H["reserve() -> Extract min: 5<br/>Heap: []"]
+    H --> I["unreserve(5) -> Insert 5 into Heap<br/>Heap: [5]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Maintain all currently available seats in a min-heap.** The required reservation is always the smallest-numbered unreserved seat. A min-heap is designed to expose the smallest stored value while supporting removals and later insertions efficiently.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["SeatManager", "reserve", "reserve", "unreserve", "reserve", "reserve", "reserve", "reserve", "unreserve"], "arguments": [[5], [], [], [2], [], [], [], [], [5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the min-heap representing the set of available seats.
 
 ---
 
-### Step 2: Core Step 2
-
-The single field `q` represents exactly the set of available seat numbers. Reserved seats are absent. Because the operation guarantees prevent unreserving an already available seat, no seat number appears twice.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: `SeatManager(5)`
+Initialize the available pool with seats $1$ through $5$:
+$$\text{Heap} = [1, 2, 3, 4, 5]$$
+Result: `null`.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: `reserve()`
+- Query heap top: minimum is $1$.
+- Pop minimum element $1$.
+- Updated heap: $[2, 3, 4, 5]$ (or heap-reorganized equivalent $[2, 3, 5, 4]$).
+- Result: **`1`**.
 
-**Initialization is already a valid heap.** The constructor assigns
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, 1, 2, null, 2, 3, 4, 5, null]` |
+### Step 3: `reserve()`
+- Query heap top: minimum is $2$.
+- Pop minimum element $2$.
+- Updated heap: $[3, 4, 5]$.
+- Result: **`2`**.
+
+---
+
+### Step 4: `unreserve(2)`
+- Seat $2$ is returned to the pool.
+- Push $2$ into the min-heap.
+- Heap property restores with $2$ at the root:
+  $$\text{Heap} = [2, 4, 5, 3]$$
+  (Root is $2$, children are $4$ and $5$).
+- Result: `null`.
+
+---
+
+### Step 5: `reserve()`
+- Query heap top: minimum is $2$.
+- Notice that seat $2$ is returned ahead of seats $3, 4, 5$ because $2 < 3$.
+- Pop minimum element $2$.
+- Updated heap: $[3, 4, 5]$.
+- Result: **`2`**.
+
+---
+
+### Step 6: `reserve()`
+- Query heap top: minimum is $3$.
+- Pop minimum element $3$.
+- Updated heap: $[4, 5]$.
+- Result: **`3`**.
+
+---
+
+### Step 7: `reserve()`
+- Query heap top: minimum is $4$.
+- Pop minimum element $4$.
+- Updated heap: $[5]$.
+- Result: **`4`**.
+
+---
+
+### Step 8: `reserve()`
+- Query heap top: minimum is $5$.
+- Pop minimum element $5$.
+- Updated heap: $\emptyset$ (empty).
+- Result: **`5`**.
+
+---
+
+### Step 9: `unreserve(5)`
+- Seat $5$ is returned to the pool.
+- Push $5$ into the min-heap.
+- Updated heap: $[5]$.
+- Result: `null`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["SeatManager", "reserve", "reserve", "unreserve", "reserve", "reserve", "reserve", "reserve", "unreserve"], "arguments": [[5], [], [], [2], [], [], [], [], [5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, 1, 2, null, 2, 3, 4, 5, null]` | Verified |
+| Op # | Operation Invoked | Argument | Min-Heap Before Op | Action / Transition | Return Value | Min-Heap After Op |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | `SeatManager` | `5` | Uninitialized | Build min-heap for $[1 \dots 5]$ | `null` | $\{1, 2, 3, 4, 5\}$ |
+| 2 | `reserve` | - | $\{1, 2, 3, 4, 5\}$ | Extract root $1$ | **`1`** | $\{2, 3, 4, 5\}$ |
+| 3 | `reserve` | - | $\{2, 3, 4, 5\}$ | Extract root $2$ | **`2`** | $\{3, 4, 5\}$ |
+| 4 | `unreserve` | `2` | $\{3, 4, 5\}$ | Insert $2$ into heap | `null` | $\{2, 3, 4, 5\}$ |
+| 5 | `reserve` | - | $\{2, 3, 4, 5\}$ | Extract root $2$ | **`2`** | $\{3, 4, 5\}$ |
+| 6 | `reserve` | - | $\{3, 4, 5\}$ | Extract root $3$ | **`3`** | $\{4, 5\}$ |
+| 7 | `reserve` | - | $\{4, 5\}$ | Extract root $4$ | **`4`** | $\{5\}$ |
+| 8 | `reserve` | - | $\{5\}$ | Extract root $5$ | **`5`** | $\emptyset$ |
+| 9 | `unreserve` | `5` | $\emptyset$ | Insert $5$ into heap | `null` | $\{5\}$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The min-heap ordering invariant guarantees that the root of the heap always holds the smallest unreserved integer. Calling `reserve()` removes and returns this unique minimal element, directly meeting the specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since `unreserve` pushes the freed seat directly back into the min-heap, any previously reserved seat becomes immediately candidate for future reservations. No available seat is ever lost or skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Counter plus returned-seat heap:** Track the smallest never-reserved number and heap only unreserved seats. This avoids storing all seats initially and often uses less memory.
-- **Balanced ordered set:** It also supports minimum removal and reinsertion in logarithmic time, but Python’s standard library has no built-in tree set.
-- **Boolean array plus linear scan:** Availability flags are simple, but finding the next smallest seat can degrade to `O(n)` after arbitrary unreservations.
-- **Simple increasing counter alone:** It fails when a previously reserved smaller seat is unreserved and must be chosen before new larger seats.
-- **One seat:** The heap alternates between one entry and empty under the guaranteed valid reserve and unreserve sequence.
-- **Unreserve the smallest number:** Heap push moves it toward the root, making it the next reservation.
-- **Unreserve a large number:** It remains in the appropriate heap position until all smaller available seats are used.
-- **Reserve when none available:** The source does not guard this because the contract guarantees it never occurs.
-- **Duplicate unreserve:** The source does not prevent duplicate heap entries because the contract guarantees only reserved seats are unreserved.
-- **Seat bounds:** The constructor and valid calls ensure every stored number remains from one through `n`.
-- **Already-heapified initialization:** The increasing list needs no `heapify` call; adding one would be correct but redundant.
-- **No stored `n`:** The heap fully captures runtime availability, so the constructor parameter need not remain as a field.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Linear Unordered Scanning:** Maintaining a simple boolean array of size $n$ and scanning from index $1$ on each `reserve()` takes $\mathcal{O}(n)$ per call, leading to $\mathcal{O}(q \cdot n)$ total time and Time Limit Exceeded when $n, q = 10^5$.
+- **LIFO / FIFO Misconception:** Using a stack or simple queue for unreserved seats fails because an unreserved seat must be chosen based on its numeric value, not the order in which it was released.
+- **Unreserve Precondition:** Only currently reserved seats may be unreserved. Double unreserving without verification would introduce duplicate entries into the heap.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Constructing `range` and its list takes `O(n)` time and `O(n)` space. No separate heap-building pass is required because the increasing list already satisfies heap order.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Initialization Time Complexity:** $\mathcal{O}(n)$ to heapify integers $1$ through $n$ at construction time (or $\mathcal{O}(1)$ if using a lazy marker with a heap for recycled seats).
+- **Per-Operation Time Complexity:**
+  - `reserve()`: $\mathcal{O}(\log k)$ where $k \le n$ is the current number of available seats, due to the heap extraction.
+  - `unreserve(seatNumber)`: $\mathcal{O}(\log k)$ to insert the released seat into the min-heap.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store up to $n$ available seats in the heap structure.

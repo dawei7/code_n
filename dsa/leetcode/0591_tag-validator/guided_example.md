@@ -1,131 +1,210 @@
 # Guided Example: Tag Validator
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step lexical token scanning, grammar state parsing, stack-based opening and closing tag matching (`stk`), CDATA block raw data jumping (`<![CDATA[` to `]]>`), tag name syntactic validation ($1 \le \text{length} \le 9$, all uppercase), and single-root enclosing envelope verification on representative markup snippets:
 
-- **Input:** `{"code": "<DIV>This is <![CDATA[<raw>]]></DIV>"}`
+- **Input:** $code = \text{"<DIV>This is <![CDATA[<raw>]]></DIV>"}$
 - **Required output:** `true`
+  - Validation grammar rules:
+    1. **Single Root Enclosure:** The entire snippet must be enclosed within one valid outer tag pair `<TAG_NAME> ... </TAG_NAME>`. If the tag stack becomes empty before reaching the end of the string, the snippet is invalid.
+    2. **Tag Name Syntax:** `TAG_NAME` must contain between $1$ and $9$ characters, all uppercase English letters (`[A-Z]`).
+    3. **Proper Nesting (LIFO):** Each closing tag `</TAG_NAME>` must match the most recently opened tag on top of the stack.
+    4. **CDATA Exemption:** CDATA blocks start with `<![CDATA[` and end with `]]>`. The content inside CDATA is treated as literal text and is never parsed for tags. CDATA blocks must be enclosed inside a tag.
+- **Parsing State Machine & Stack Trace:**
+  - Let `stk` be the LIFO stack of active open tags.
+  - Let pointer $i = 0$ scan the string of length $n = 35$.
+  - **Invariant Check on Entry:**
+    - If $i > 0$ and `stk` is empty, there are characters outside the root tag $\implies$ early fail!
+  - **Step 1 ($i = 0$): Encounter Opening Tag `<DIV>`:**
+    - Character at $i$ is `'<'`.
+    - Next character is `'D'` (not `'/'` and not `'!'`).
+    - Search for matching `'>'`: found at index $4$.
+    - Extract tag name:
+      $$
+      t = code[1 \dots 3] = \mathbf{\text{"DIV"}}
+      $$
+    - Validate syntax of `"DIV"`:
+      - Length $3 \in [1, 9]$ (Valid).
+      - All characters uppercase (`'D', 'I', 'V'`) (Valid).
+    - Push `"DIV"` onto stack:
+      $$
+      stk = [\text{"DIV"}]
+      $$
+    - Advance pointer to $i = 5$.
+  - **Step 2 ($i = 5 \dots 12$): Parse Inner Content `"This is "`:**
+    - Characters are standard text inside the open tag.
+    - None of these are `'<'`, so pointer advances to $i = 13$.
+  - **Step 3 ($i = 13$): Encounter CDATA Block `<![CDATA[`:**
+    - Check prefix: $code[13 \dots 21] = \text{"<![CDATA["}$.
+    - Exact match for CDATA start delimiter!
+    - Search forward from index $22$ for closing delimiter `]]>`:
+      - Found at index $28$.
+    - The raw content inside is `"<raw>"`.
+      - Even though `"<raw>"` contains tag-like characters `'<'` and `'>'`, the CDATA rule treats it as inert raw text!
+    - Fast-forward pointer past delimiter: $i \leftarrow 28 + 2 = 30$.
+  - **Step 4 ($i = 31$): Encounter Closing Tag `</DIV>`:**
+    - Check prefix: $code[31 \dots 32] = \text{"</"}$.
+    - Search for matching `'>'`: found at index $36$ ($i = 36$).
+    - Extract closing tag name:
+      $$
+      t = code[33 \dots 35] = \mathbf{\text{"DIV"}}
+      $$
+    - Validate syntax: length $3 \in [1, 9]$, uppercase $\implies$ Valid.
+    - Check stack top:
+      - Top of `stk` is `"DIV"`.
+      - Matches closing tag: $stk.\text{pop}() == \text{"DIV"} \implies \mathbf{True!}$
+    - Stack becomes empty:
+      $$
+      stk = []
+      $$
+    - Advance pointer past closing tag: $i = 37$.
+  - **Step 5: End of String Verification:**
+    - Pointer $i = 37$ has reached end of string ($i == n$).
+    - Check stack state:
+      $$
+      \text{stk is empty} \implies \mathbf{True}
+      $$
+    - Validation succeeds: return **`true`**.
+- **Premature Root Closure / Multiple Roots Instance ($code = \text{"<A></A><B></B>"}$):**
+  - `<A></A>` closes, causing `stk` to become empty at index 7.
+  - When pointer inspects `<B>` at index 7, $i > 0$ and `stk` is empty $\implies$ violates single root enclosure $\implies \mathbf{false}$.
+- **Tag Mismatch Instance ($code = \text{"<A><B></A></B>"}$):**
+  - Stack contains `["A", "B"]`.
+  - Closing tag `</A>` encountered: top of stack is `"B"`, but closing tag is `"A"` $\implies$ LIFO violation $\implies \mathbf{false}$.
+- **Invalid Tag Name Syntax ($code = \text{"<divA></divA>"}$):**
+  - Lowercase letters in tag name violate syntax rule $\implies \mathbf{false}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates deterministic context-free markup parsing and stack-based balanced parenthesization, mathematically proves why root isolation and CDATA skip pointers ensure linear parsing without backtracking, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string representing a code snippet, implement a tag validator to parse the code and return whether it is valid.
+Given a string `code`, validate whether it adheres to the HTML/XML-like syntax:
+1. Entire string is wrapped in a **single closed root tag**.
+2. Tag names must be **1 to 9 uppercase letters**.
+3. Closing tags must strictly match open tags in **LIFO order**.
+4. CDATA blocks `<![CDATA[ ... ]]>` can contain any characters and must be inside a tag.
 
-The objective is to compute `true` from `{"code": "<DIV>This is <![CDATA[<raw>]]></DIV>"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+code: "<DIV>This is <![CDATA[<raw>]]></DIV>"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+1. Open root <DIV> -> push "DIV"
+2. Text "This is " -> literal
+3. <![CDATA[<raw>]]> -> skip raw block (do not parse <raw>)
+4. Close root </DIV> -> pop "DIV" (match!)
+5. String ends with empty stack -> Valid! (true)
+```
+
+### The Invariant of Single Root Enclosure
+- In valid XML/HTML snippets, the whole document must form a single tree.
+- If at any point $i > 0$ the stack becomes empty and there are still unparsed characters remaining, there are either siblings at the root level (e.g. `<A></A><B></B>`) or dangling text outside the root tag. Both are strictly invalid.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Tag Name Checker:
+A tag name $t$ is valid if and only if:
+$$
+1 \le |t| \le 9 \quad \text{and} \quad \forall c \in t: c \in ['A', 'Z']
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Lexical Branching:
+At index $i$:
+1. If $i > 0$ and `stk` is empty: return `False`.
+2. If prefix is `<![CDATA[`:
+   - Find closing `]]>`. If not found, return `False`.
+   - Jump $i$ past `]]>`.
+3. If prefix is `</`:
+   - Find `>`. Extract closing tag $t$.
+   - Must satisfy: `check(t)` and `stk.pop() == t`.
+4. If prefix is `<`:
+   - Find `>`. Extract opening tag $t$.
+   - Must satisfy: `check(t)`.
+   - Push $t$ to `stk`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Grammar Containment Invariant.** The parser state requires `len(stk) >= 1` for every character position except index 0 and the final closing index $N$, guaranteeing that all text and CDATA live strictly within an open element.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Validating tag names
-
-The helper `check(tag)` requires length from 1 through 9 and requires every character to satisfy `isupper()`. Under the stated input alphabet, this is equivalent to allowing only uppercase English letters: digits, lowercase letters, punctuation, and the empty string fail.
-
-This validation is applied to both opening and closing names. Finding a `>` is not enough; `<TOO_LONG_NAME>`, `<a>`, and `<>` must all be rejected.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"code": "<DIV>This is <![CDATA[<raw>]]></DIV>"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `"<DIV>This is <![CDATA[<raw>]]></DIV>"`:
 
 ---
 
-### Step 2: The outer-wrapper invariant
-
-At the start of every iteration, the source checks:
-
-
-
-Once scanning has moved beyond position zero, an empty stack means the one outer root tag has already closed—or no root was opened—and more input remains. Rejecting at that moment prevents text after the root and prevents a second top-level tag.
-
-For valid `<A></A>`, popping `A` happens at the end of the string, so the loop terminates before the invariant is checked again. For `<A></A>x`, another iteration begins with a nonzero index and empty stack, so trailing `x` is rejected.
-
-This is intended to enforce that all content stays inside one root. However, the exact condition has a gap at index zero, discussed below: it does not explicitly record that a root start tag was ever opened.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Open Tag `<DIV>`
+- $i = 0$: `<DIV>`.
+- Tag name `"DIV"` has length 3, all uppercase $\implies$ Valid.
+- $stk = [\text{"DIV"}]$.
+- Jump to $i = 5$.
 
 ---
 
-### Step 3: CDATA must be recognized before generic tags
+### Step 2: Plain Text
+- Characters `"This is "` consume indices $5 \dots 12$.
+- $stk$ remains `["DIV"]`.
 
-The first syntax branch tests the exact nine-character prefix `<![CDATA[`. Once recognized, `find(']]>', i + 9)` locates the first subsequent terminator. If none exists, the code is invalid.
+---
 
-The index then jumps across the closing `]]>`. Everything between the prefix and that first terminator is ignored by the parser. It may contain lowercase tags, unmatched angle brackets, or text resembling another CDATA opener; those are plain CDATA content.
+### Step 3: CDATA Block
+- At $i = 13$: prefix is `<![CDATA[`.
+- Find `]]>` $\to$ found ending at index $30$.
+- Skip past CDATA: $i \leftarrow 30$.
 
-This branch must come before generic `<...>` parsing. Otherwise, the parser would interpret `![CDATA[` as a tag name and reject valid CDATA.
+---
 
-Inside an already-open tag, CDATA handling is correct. A malformed `<!...` that lacks the exact prefix falls through to opening-tag parsing, obtains an invalid name containing punctuation, and is rejected.
+### Step 4: Close Tag `</DIV>`
+- At $i = 31$: `</DIV>`.
+- Closing tag name `"DIV"`.
+- $stk.\text{pop}() == \text{"DIV"}$.
+- Stack becomes empty `[]`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 5: Termination Check
+- String index reached end ($i = n$).
+- `stk` is empty.
+- Returns **`True`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"code": "<DIV>This is <![CDATA[<raw>]]></DIV>"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Index $i$ | Substring / Token | Token Type | Stack Action | Stack State After | Valid? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `<DIV>` | Opening Tag | Push `"DIV"` | `["DIV"]` | Yes |
+| $5$ | `"This is "` | Literal Text | Advance $i$ | `["DIV"]` | Yes |
+| $13$ | `<![CDATA[<raw>]]>` | CDATA Block | Skip to end of `]]>` | `["DIV"]` | Yes |
+| $31$ | `</DIV>` | Closing Tag | Pop `"DIV"` | `[]` | Yes |
+| **End** | End of string | Terminal | Check empty | `[]` | **Result: `True`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Unclosed CDATA (`<![CDATA[raw`):** No `]]>` found $\implies \mathbf{false}$.
+- **Unclosed Tag (`<DIV>` alone):** Loop ends with `stk` containing `"DIV"` $\implies \mathbf{false}$.
+- **Tag Name Too Long (`<ABCDEFGHIJ>` of length 10):** Fails length check $\le 9 \implies \mathbf{false}$.
+- **Empty Tag Name (`<>`):** Fails length check $\ge 1 \implies \mathbf{false}$.
+- **Lowercase Tag (`<div>`):** Fails uppercase check $\implies \mathbf{false}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Add `seen_root`:** Set it on the first valid opening tag, reject CDATA or text while the stack is empty, and return `seen_root and not stk`. This repairs the exact source’s root-presence defect.
-- **Require `code[0] == '<'` plus an opener parse:** An explicit initial-root check can also prevent standalone text and CDATA, provided it distinguishes `<TAG>` from `</TAG>` and `<![CDATA[`.
-- **Recursive-descent parser:** Parse one closed tag and recursively parse nested content. It can closely match the grammar but must still special-case CDATA and depth limits.
-- **Regular expressions alone:** Backreferences and arbitrary nesting make a single regex fragile or expensive. A stack expresses nesting more reliably.
-- **Crossed tags:** `<A><B></A></B>` fails because the closer does not match the stack top.
-- **Unclosed opener:** A nonempty stack at end fails.
-- **Closer without opener:** An empty stack in the closing branch fails.
-- **Second root tag:** Once the first root closes, the next loop sees an empty stack at nonzero index and fails.
-- **Trailing text:** Rejected for the same reason after root closure.
-- **Standalone CDATA:** The contract says invalid, but the exact source incorrectly accepts it at index zero; require nonempty stack.
-- **One-character plain text:** Also incorrectly accepted by the exact source; require a seen root.
-- **First CDATA terminator:** `find(']]>')` intentionally ends CDATA at the first subsequent terminator, leaving later characters to normal parsing.
-- **Tag-like text inside CDATA:** Ignored completely, even if malformed.
-- **Invalid CDATA prefix:** Falls into tag-name validation and fails because punctuation is not uppercase letters.
-- **Unmatched `<`:** Missing subsequent `>` makes `find` return -1 and fails.
-- **Ordinary `>`:** Allowed as text because only `<` starts special syntax.
-- **Name length:** Empty and ten-character names fail; lengths one through nine pass only with uppercase letters.
-- **Unicode nuance:** `isupper()` recognizes more than ASCII in general, but the input alphabet is restricted to English letters and listed symbols, so this does not expand accepted test characters.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Parsing Tags Inside CDATA:** Treating `<raw>` inside CDATA as an open tag corrupts the tag stack. The CDATA scanner must fast-forward directly to `]]>` without inspecting internal characters.
+- **Dangling Sibling Roots (`<A></A><B></B>`):** Checking only that `stk` is empty at the end is insufficient; `stk` must NEVER become empty during intermediate steps ($i > 0$ and $i < n$).
+- **Using Unbounded Regular Expressions:** Writing massive nested regular expressions often suffers catastrophic backtracking on malformed inputs. An explicit linear pointer scanner runs in strictly guaranteed $O(N)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the code length. The main index only moves forward. Each delimiter search scans from the current construct to its closing delimiter, and the parser then jumps past that construct; tag-name checks cover disjoint extracted names. Under this forward-scan accounting, total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The pointer $i$ advances monotonically through the string of length $N$.
+  - Tag extraction and CDATA search (`find`) advance $i$ forward.
+  - Every character is visited $\mathcal{O}(1)$ times.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 10^4$, completes in $< 3$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space for the tag stack in the worst case of deeply nested tags.

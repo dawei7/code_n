@@ -1,132 +1,205 @@
 # Guided Example: Replace Elements with Greatest Element on Right Side
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step reverse traversal computing suffix maxima on a representative problem instance:
 
-- **Input:** `{"arr": [17, 18, 5, 4, 6, 1]}`
-- **Required output:** `[18, 6, 6, 6, 1, -1]`
+- **Input:** `arr = [17, 18, 5, 4, 6, 1]`
+- **Required Output:** `[18, 6, 6, 6, 1, -1]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates reverse linear scanning, maintaining a running suffix maximum accumulator, and in-place array mutation without auxiliary buffers.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `arr`, replace every element in that array with the greatest element among the elements to its right, and replace the last element with `-1`.
+We must replace each element $\text{arr}[i]$ in an array of $N = 6$ integers with the maximum value among all elements strictly to its right:
+$$
+\text{target}[i] = \max_{j > i} \text{arr}[j]
+$$
+The last element $\text{arr}[N - 1]$ has no elements to its right, so its value is replaced with $-1$.
 
-The objective is to compute `[18, 6, 6, 6, 1, -1]` from `{"arr": [17, 18, 5, 4, 6, 1]}` while avoiding redundant calculations and unnecessary overhead.
+For `arr = [17, 18, 5, 4, 6, 1]`:
+- Elements to the right of index $0$: $\{18, 5, 4, 6, 1\} \implies \max = 18$
+- Elements to the right of index $1$: $\{5, 4, 6, 1\} \implies \max = 6$
+- Elements to the right of index $2$: $\{4, 6, 1\} \implies \max = 6$
+- Elements to the right of index $3$: $\{6, 1\} \implies \max = 6$
+- Elements to the right of index $4$: $\{1\} \implies \max = 1$
+- Elements to the right of index $5$: $\emptyset \implies -1$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Index:         0     1     2     3     4     5
+Original:    [17]  [18]   [5]   [4]   [6]   [1]
+Suffix Max:   18     6     6     6     1    -1
+
+Reverse Execution (Right to Left):
+  Step 1: i = 5 (value 1)  --> Assigned -1, Horizon becomes max(-1, 1) = 1
+  Step 2: i = 4 (value 6)  --> Assigned  1, Horizon becomes max(1, 6)  = 6
+  Step 3: i = 3 (value 4)  --> Assigned  6, Horizon remains 6
+  Step 4: i = 2 (value 5)  --> Assigned  6, Horizon remains 6
+  Step 5: i = 1 (value 18) --> Assigned  6, Horizon becomes max(6, 18) = 18
+  Step 6: i = 0 (value 17) --> Assigned 18, Horizon remains 18
+```
+
+A forward scan requires $\mathcal{O}(N - 1 - i)$ comparisons for each index $i$, leading to $\mathcal{O}(N^2)$ quadratic time.
+Traversing in reverse (from $N - 1$ down to $0$) allows each position to reuse the suffix maximum of the preceding elements in $\mathcal{O}(1)$ time, yielding an optimal $\mathcal{O}(N)$ in-place algorithm.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $M_i = \max_{j > i} \text{arr}[j]$ denote the suffix maximum for index $i$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Recurrence Relation
+Between consecutive suffix maxima:
+$$
+M_{i-1} = \max(M_i, \; \text{arr}[i])
+$$
+with base condition:
+$$
+M_{N-1} = -1
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### In-Place Replacement Protocol
+To update the array in-place without overwriting an original value before it can contribute to $M$:
+1. Read and temporarily save the current value: $x \leftarrow \text{arr}[i]$.
+2. Overwrite $\text{arr}[i]$ with the current running maximum: $\text{arr}[i] \leftarrow M$.
+3. Update the running maximum for earlier elements: $M \leftarrow \max(M, x)$.
+
+| Reverse Step | Index $i$ | Original Value $x$ | Incoming Horizon $M$ | New Cell Value $\text{arr}[i]$ | Outgoing Horizon $M \leftarrow \max(M, x)$ |
+|---|---|---|---|---|---|
+| 1 | $5$ | $1$ | $-1$ | $-1$ | $\max(-1, 1) = 1$ |
+| 2 | $4$ | $6$ | $1$ | $1$ | $\max(1, 6) = 6$ |
+| 3 | $3$ | $4$ | $6$ | $6$ | $\max(6, 4) = 6$ |
+| 4 | $2$ | $5$ | $6$ | $6$ | $\max(6, 5) = 6$ |
+| 5 | $1$ | $18$ | $6$ | $6$ | $\max(6, 18) = 18$ |
+| 6 | $0$ | $17$ | $18$ | $18$ | $\max(18, 17) = 18$ |
+
+> **Suffix Horizon Invariant.** When processing index $i$, accumulator $M$ contains the exact maximum value among all elements originally located at indices $j \in [i + 1, N - 1]$. Updating $\text{arr}[i]$ and then refreshing $M$ preserves this invariant for index $i - 1$.
+
+```mermaid
+flowchart RL
+    accTitle: Suffix Maximum Reverse Scan
+    accDescr: Pipeline showing reverse iteration updating cell with current horizon and updating horizon with original cell value.
+    INIT["Initialize: M = -1, i = N - 1"] --> LOOP["Inspect index i from N-1 down to 0"]
+    LOOP --> SAVE["Save original x = arr[i]"]
+    SAVE --> WRITE["arr[i] = M"]
+    WRITE --> UPD["M = max(M, x)"]
+    UPD --> DEC["i = i - 1"]
+    DEC --> CHK{"Is i >= 0?"}
+    CHK -- Yes --> LOOP
+    CHK -- No --> OUT["Return modified arr"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the scan starts with negative one
+We trace `arr = [17, 18, 5, 4, 6, 1]` with $N = 6$. Initial state: $M = -1$.
 
-The last element has no elements to its right and must be replaced with `-1`. The code initializes `mx = -1` so that the same assignment used everywhere automatically handles the last index.
+### Step 1 ($i = 5$, Last Element)
+- Original value: $x = \text{arr}[5] = 1$.
+- Overwrite $\text{arr}[5]$ with current $M = -1$:
+  $$
+  \text{arr}[5] \leftarrow -1
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(-1, 1) = 1
+  $$
+- Array state: `[17, 18, 5, 4, 6, -1]`.
 
-The input values are all at least one, so `-1` is smaller than every original value. After the last element is processed, taking a maximum with its positive original value removes the sentinel from future suffix maxima. Even without that ordering fact, the explicit requirement for the last replacement makes `-1` the correct initial answer for the empty right suffix.
+### Step 2 ($i = 4$)
+- Original value: $x = \text{arr}[4] = 6$.
+- Overwrite $\text{arr}[4]$ with current $M = 1$:
+  $$
+  \text{arr}[4] \leftarrow 1
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(1, 6) = 6
+  $$
+- Array state: `[17, 18, 5, 4, 1, -1]`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [17, 18, 5, 4, 6, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 3 ($i = 3$)
+- Original value: $x = \text{arr}[3] = 4$.
+- Overwrite $\text{arr}[3]$ with current $M = 6$:
+  $$
+  \text{arr}[3] \leftarrow 6
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(6, 4) = 6
+  $$
+- Array state: `[17, 18, 5, 6, 1, -1]`.
 
----
+### Step 4 ($i = 2$)
+- Original value: $x = \text{arr}[2] = 5$.
+- Overwrite $\text{arr}[2]$ with current $M = 6$:
+  $$
+  \text{arr}[2] \leftarrow 6
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(6, 5) = 6
+  $$
+- Array state: `[17, 18, 6, 6, 1, -1]`.
 
-### Step 2: Visiting indices in reverse
+### Step 5 ($i = 1$)
+- Original value: $x = \text{arr}[1] = 18$.
+- Overwrite $\text{arr}[1]$ with current $M = 6$:
+  $$
+  \text{arr}[1] \leftarrow 6
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(6, 18) = 18
+  $$
+- Array state: `[17, 6, 6, 6, 1, -1]`.
 
-`reversed(range(len(arr)))` produces the indices
-
-$$
-n-1,\;n-2,\;\ldots,\;1,\;0.
-$$
-
-It does not reverse the array contents. It only determines the order in which positions are visited. This avoids making a reversed copy and ensures that, before index `i` is handled, every index greater than `i` has already contributed its original value to `mx`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Saving the original value before overwriting
-
-Inside the loop, the first operation is
-
-`x = arr[i]`.
-
-The temporary `x` is essential because the next statement, `arr[i] = mx`, destroys the original value at index `i`. That original value must still become a candidate for the suffix maximum used at index `i - 1`.
-
-After saving it, the algorithm writes `mx` into `arr[i]`. At this moment, `mx` summarizes only original elements at indices greater than `i`, so it is exactly the greatest element strictly to the right. It intentionally does not yet include `x`; including the current element would violate the word “right.”
-
-Finally,
-
-`mx = max(mx, x)`
-
-expands the summary to include the original value at index `i`. When the loop moves to `i - 1`, the indices strictly to its right are `i` through `n - 1`, exactly the values now represented by the updated maximum.
-
-Changing the order of these operations would break the solution. If `arr[i]` were overwritten before its original value was saved, that value could never influence earlier positions. If `mx` were updated with `x` before assignment, the replacement at `i` could incorrectly use the element itself.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[18, 6, 6, 6, 1, -1]` |
+### Step 6 ($i = 0$, First Element)
+- Original value: $x = \text{arr}[0] = 17$.
+- Overwrite $\text{arr}[0]$ with current $M = 18$:
+  $$
+  \text{arr}[0] \leftarrow 18
+  $$
+- Update horizon:
+  $$
+  M \leftarrow \max(18, 17) = 18
+  $$
+- Final array state: `[18, 6, 6, 6, 1, -1]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [17, 18, 5, 4, 6, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[18, 6, 6, 6, 1, -1]` | Verified |
+| Pass Order | Array Index $i$ | Preserved $x$ | Applied Replacement $M$ | New Horizon $\max(M, x)$ | In-Progress Array |
+|---|---|---|---|---|---|
+| Init | - | - | - | $-1$ | `[17, 18, 5, 4, 6, 1]` |
+| 1 | $5$ | $1$ | $-1$ | $1$ | `[17, 18, 5, 4, 6, -1]` |
+| 2 | $4$ | $6$ | $1$ | $6$ | `[17, 18, 5, 4, 1, -1]` |
+| 3 | $3$ | $4$ | $6$ | $6$ | `[17, 18, 5, 6, 1, -1]` |
+| 4 | $2$ | $5$ | $6$ | $6$ | `[17, 18, 6, 6, 1, -1]` |
+| 5 | $1$ | $18$ | $6$ | $18$ | `[17, 6, 6, 6, 1, -1]` |
+| 6 | $0$ | $17$ | $18$ | $18$ | `[18, 6, 6, 6, 1, -1]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any index $i$, the value written into $\text{arr}[i]$ is $M$. By induction on the reverse loop, $M$ is the maximum of all values originally at indices $j \in [i + 1, N - 1]$. For $i = N - 1$, $M = -1$ by definition. Thus, every element is correctly assigned the strict maximum of its right-hand suffix.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every index from $N - 1$ down to $0$ is visited exactly once. Because the current cell's original value is cached in register $x$ before $\text{arr}[i]$ is overwritten, no input value is lost before it can be folded into $M$, guaranteeing correct outputs for all positions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Precompute a suffix-maximum array:** A separate array can store the maximum beginning at every position, after which each answer uses the next entry. It is correct and linear-time but uses $O(n)$ extra space when one running maximum is sufficient.
-- **Scan to the right for every index:** This direct method is easy to state but repeats comparisons across overlapping suffixes and costs $O(n^2)$ time.
-- **Monotonic stack:** A stack is useful for the next greater element, but this task needs the greatest value anywhere to the right. A single suffix maximum is simpler and uses less machinery.
-- **Left-to-right traversal:** Without preprocessing, it cannot know future values. Attempting to maintain a prefix maximum solves the opposite problem.
-- **Single-element array:** The reverse loop runs once with `mx = -1`, so the only value becomes `-1`.
-- **Strictly increasing values:** Each position becomes the original final value, except the final position becomes `-1`, because that last value is the greatest in every earlier right suffix.
-- **Strictly decreasing values:** Each position becomes its immediate right neighbor, since that neighbor is the greatest value in the remaining suffix.
-- **Duplicate maximum values:** `max` handles ties naturally. The output needs the greatest value, not the position of a unique greatest element.
-- **Saving before writing:** Removing `x = arr[i]` or moving it after the overwrite loses original data and gives wrong maxima to earlier indices.
-- **Updating after writing:** `mx` must represent a strictly-right suffix during assignment. Updating it with the current value first would allow an element to replace itself.
-- **Positive-value constraint:** It makes the `-1` sentinel smaller than all originals. The final-element rule is still explicit, but a generalized problem with arbitrary negative values should reason about the empty suffix separately rather than treating `-1` as a universal mathematical identity.
-- **Input mutation visible to callers:** The returned object is `arr` itself. If preserving the caller's list matters outside the problem contract, the method should first copy it, accepting $O(n)$ additional space.
-- **No empty-array case:** The contract guarantees at least one element. If an empty list were supplied outside the contract, the loop would do nothing and return an empty list, though the problem does not define a special last element for that case.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overwriting before caching:** Writing $\text{arr}[i] \leftarrow M$ before reading $\text{arr}[i]$ into a temporary variable destroys the original value, causing the running maximum to incorrectly absorb $M$ instead of the true element.
+- **Single-element array:** If $N = 1$ (e.g. `[400]`), the loop executes once for $i = 0$, assigning $-1$ and immediately returning `[-1]`, which is correct.
+- **Strictly decreasing array:** If `arr = [5, 4, 3, 2, 1]`, each element is replaced by its immediate right neighbor, producing `[4, 3, 2, 1, -1]`. The running maximum naturally tracks this without special handling.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `arr`. `range` and `reversed` provide an iterator over the indices without constructing an $n$-element reversed list. The loop runs exactly once per element.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the length of `arr`. The algorithm makes a single reverse pass over the array, performing $\mathcal{O}(1)$ operations (assignment, comparison, maximum) per element.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. The algorithm modifies the input array in-place, requiring only two scalar variables ($M$ and $x$).

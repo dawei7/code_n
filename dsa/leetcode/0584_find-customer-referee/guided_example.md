@@ -1,135 +1,167 @@
 # Guided Example: Find Customer Referee
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step three-valued logic inequality predicate ($referee\_id \ne 2$), nullability evaluation under SQL boolean semantics ($NULL \ne 2 \implies \text{UNKNOWN}$), null-safe default coalescing (`COALESCE(referee_id, 0)`), customer identity preservation, and attribute projection on representative customer relation instances:
 
-- **Input:** `{"tables": {"Customer": [{"id": 1, "name": "Alice", "referee_id": 1}, {"id": 2, "name": "Bob", "referee_id": 2}, {"id": 3, "name": "Cara", "referee_id": null}]}}`
-- **Required output:** `{"columns": ["name"], "rows": [["Alice"], ["Cara"]]}`
+- **Input:**
+  - `Customer` table:
+    | `id` | `name` | `referee_id` |
+    |:---:|:---:|:---:|
+    | $1$ | `Alice` | $1$ |
+    | $2$ | `Bob` | $2$ |
+    | $3$ | `Cara` | `null` |
+- **Required output:**
+  | `name` |
+  |:---:|
+  | `Alice` |
+  | `Cara` |
+  - Business query contract: Report the `name` of every customer who was **not referred by customer $2$** (i.e. whose `referee_id` is different from $2$, or who has **no referee**).
+- **Relational Predicate & Three-Valued Logic Trace:**
+  - In relational database theory, comparisons against SQL `NULL` evaluate to `UNKNOWN` under three-valued logic (`TRUE`, `FALSE`, `UNKNOWN`).
+  - An SQL `WHERE` clause accepts a record if and only if the predicate evaluates to **`TRUE`**.
+  - **Evaluation with Naive Predicate (`WHERE referee_id != 2`):**
+    - **Alice (`referee_id = 1`):**
+      $$
+      1 \ne 2 \implies \mathbf{TRUE} \quad (\text{Accepted})
+      $$
+    - **Bob (`referee_id = 2`):**
+      $$
+      2 \ne 2 \implies \mathbf{FALSE} \quad (\text{Rejected})
+      $$
+    - **Cara (`referee_id = NULL`):**
+      $$
+      NULL \ne 2 \implies \mathbf{UNKNOWN} \quad (\text{Fails WHERE clause!})
+      $$
+    - Notice that Cara had no referee (which is valid and not 2), yet a naive inequality rejects Cara!
+  - **Resolution via Null Coalescing (`COALESCE(referee_id, 0) != 2`):**
+    - The `COALESCE` function substitutes a sentinel value (e.g. $0$) whenever `referee_id` is `NULL`.
+    - Sentinel selection: Since customer IDs are positive integers ($\ge 1$), choosing $0$ is guaranteed to never collide with an actual customer ID.
+    - Re-evaluating with `COALESCE`:
+      - **Alice:** $\text{COALESCE}(1, 0) = 1 \ne 2 \implies \mathbf{TRUE}$ (Included)
+      - **Bob:** $\text{COALESCE}(2, 0) = 2 \ne 2 \implies \mathbf{FALSE}$ (Excluded)
+      - **Cara:** $\text{COALESCE}(NULL, 0) = 0 \ne 2 \implies \mathbf{TRUE}$ (Included!)
+  - **Alternative Canonical Predicate (`referee_id != 2 OR referee_id IS NULL`):**
+    - Directly asserts disjunction with the explicit SQL `IS NULL` test:
+      - Cara: $(NULL \ne 2) \lor (NULL \text{ IS NULL}) \implies UNKNOWN \lor TRUE = \mathbf{TRUE}$!
+  - **Step-by-Step Selection Output:**
+    - Qualified records: Alice, Cara.
+    - Project column `name`:
+      - `"Alice"`
+      - `"Cara"`
+- **All Customers Referred by 2:**
+  - If all rows have `referee_id = 2`, none qualify $\implies$ empty table.
+- **No Customers Referred by Anyone (`referee_id` is null for all):**
+  - All customers qualify $\implies$ all names returned.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates negation filtering over nullable foreign keys, mathematically proves why relational three-valued logic requires explicit null guards, and derives $O(N)$ execution time and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customer`
+Given a `Customer` table with columns `id`, `name`, and `referee_id`:
+Find the names of all customers who are **not referred by customer 2**.
+Return the result in any order.
 
-The objective is to compute `{"columns": ["name"], "rows": [["Alice"], ["Cara"]]}` from `{"tables": {"Customer": [{"id": 1, "name": "Alice", "referee_id": 1}, {"id": 2, "name": "Bob", "referee_id": 2}, {"id": 3, "name": "Cara", "referee_id": null}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Customers:
+  Alice (referee 1) -> Referee != 2 -> Keep!
+  Bob   (referee 2) -> Referee == 2 -> Drop!
+  Cara  (referee NULL) -> Not referred by 2 -> Keep!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Output:
+  Alice
+  Cara
+```
+
+### The Pitfall of Nullable Negation in SQL
+- In standard mathematics, if $x \ne 2$, then either $x$ is some other number or $x$ is undefined.
+- In SQL, `NULL != 2` does **not** evaluate to `TRUE`; it evaluates to `UNKNOWN`!
+- The SQL `WHERE` clause drops any row that does not evaluate to strictly `TRUE`.
+- Therefore, a simple query `WHERE referee_id != 2` silently drops all customers who were not referred by anyone.
+- Using `COALESCE(referee_id, 0) != 2` or `referee_id != 2 OR referee_id IS NULL` is required.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Three-Valued Logic Truth Table:
+| Expression | Result | Passes `WHERE`? |
+|:---:|:---:|:---:|
+| $1 \ne 2$ | `TRUE` | **Yes** |
+| $2 \ne 2$ | `FALSE` | No |
+| $\text{NULL} \ne 2$ | `UNKNOWN` | No |
+| $\text{COALESCE}(\text{NULL}, 0) \ne 2$ | `TRUE` | **Yes** |
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Filter Query:
+```sql
+SELECT name
+FROM Customer
+WHERE COALESCE(referee_id, 0) != 2;
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Null Guard Invariant.** Coalescing nullable attributes with out-of-domain sentinels maps indeterminate SQL states into binary Boolean evaluations without table duplication.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why `NULL != 2` is not true
-
-SQL uses three-valued logic. A comparison can evaluate to true, false, or unknown. `NULL` represents an absent or unknown value, so comparing it with an ordinary value does not produce true or false:
-
-
-
-evaluates to unknown. A `WHERE` clause retains only rows whose condition is true; it discards both false and unknown results. Therefore, a plain inequality would accidentally remove customers with no referee even though the problem explicitly wants them.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Customer": [{"id": 1, "name": "Alice", "referee_id": 1}, {"id": 2, "name": "Bob", "referee_id": 2}, {"id": 3, "name": "Cara", "referee_id": null}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: How `COALESCE` combines the two cases
-
-The exact query uses:
-
-
-
-`COALESCE` returns its first non-`NULL` argument.
-
-- If `referee_id` is present, `COALESCE(referee_id, 0)` returns the actual ID. The row passes exactly when that ID is not 2.
-- If `referee_id` is `NULL`, `COALESCE` returns 0. Since 0 is not 2, the row passes.
-
-Zero is used only as a comparison substitute. It is not selected, written back to the table, or presented as the customer’s actual referee. Even if zero were itself an allowed stored ID, a real zero should qualify because it is not 2, so the substitution has the same truth outcome required for this particular predicate.
-
-The more literal equivalent is:
-
-
-
-That form explicitly names both categories. The `COALESCE` form compresses them into one two-valued comparison.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan Table Rows
+- Row 1: `(1, "Alice", 1)`
+- Row 2: `(2, "Bob", 2)`
+- Row 3: `(3, "Cara", NULL)`
 
 ---
 
-### Step 3: Why the query needs no join
+### Step 2: Apply Predicate `COALESCE(referee_id, 0) != 2`
+- Alice: $\text{COALESCE}(1, 0) = 1 \ne 2 \implies \mathbf{True}$.
+- Bob: $\text{COALESCE}(2, 0) = 2 \ne 2 \implies \mathbf{False}$.
+- Cara: $\text{COALESCE}(NULL, 0) = 0 \ne 2 \implies \mathbf{True}$.
 
-The problem does not ask for the referee’s name or any other referee details. It asks only whether the stored referee ID equals 2. Every required value—customer name and referee ID—is already in the `Customer` row. A self-join would add work without supplying information needed by the condition.
+---
 
-The query projects only `name` because that is the requested output column:
-
-
-
-Result order is unrestricted, so `ORDER BY` is intentionally absent.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["name"], "rows": [["Alice"], ["Cara"]]}` |
+### Step 3: Project `name`
+- Output rows:
+  - `"Alice"`
+  - `"Cara"`
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customer": [{"id": 1, "name": "Alice", "referee_id": 1}, {"id": 2, "name": "Bob", "referee_id": 2}, {"id": 3, "name": "Cara", "referee_id": null}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["name"], "rows": [["Alice"], ["Cara"]]}` | Verified |
+| `id` | `name` | `referee_id` | `COALESCE(referee_id, 0)` | Equal to $2$? | Included in Output? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `Alice` | $1$ | $1$ | No | **Yes** (`"Alice"`) |
+| $2$ | `Bob` | $2$ | $2$ | **Yes** | No |
+| $3$ | `Cara` | `NULL` | $0$ | No | **Yes** (`"Cara"`) |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **All Customers Have `referee_id = 2`:** All rejected $\implies$ empty result table.
+- **No Customers Have `referee_id = 2`:** All accepted $\implies$ full table of names.
+- **Negative or Large Referee IDs:** Any integer other than 2 passes.
+- **Empty `Customer` Table:** Returns empty result with column header `name`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Explicit disjunction:** `referee_id <> 2 OR referee_id IS NULL` most directly mirrors the two requirements and avoids choosing a sentinel.
-- **Null-safe comparison:** In MySQL, `NOT (referee_id <=> 2)` uses the null-safe equality operator and negates it. It is compact but less portable and less familiar.
-- **Plain inequality:** `referee_id != 2` is incorrect because rows with `NULL` evaluate to unknown and are filtered out.
-- **Equality to `NULL`:** `referee_id = NULL` is also unknown, never the proper null test. Use `IS NULL`.
-- **`NOT IN (2)`:** This has the same null problem as ordinary inequality; `NULL NOT IN (2)` is unknown.
-- **Self-join to referees:** Unnecessary because only the numeric referee ID is tested, not any referring customer attribute.
-- **Customer whose own ID is 2:** The customer still qualifies unless their `referee_id` is 2. The two columns have different meanings.
-- **No referee:** A `NULL` value must be included and remains unmodified in the table; zero is only a temporary predicate value.
-- **Referee ID exactly 2:** The row is the only category excluded.
-- **Any other referee ID:** Negative, zero, positive, or large values all satisfy “not 2” if the schema permits them.
-- **Duplicate customer names:** The output can contain repeated names from distinct customer rows. Adding `DISTINCT` would change the row semantics without a requirement.
-- **Any result order:** No `ORDER BY` is needed, avoiding unnecessary sorting.
-- **Sentinel caution:** `COALESCE(referee_id, 0)` is valid because both missing and actual zero should pass `!= 2`. A sentinel must be reconsidered whenever the comparison changes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Writing `WHERE referee_id != 2` Alone:** Drops all customers with `NULL` referee IDs, failing the test suite immediately.
+- **Writing `WHERE referee_id NOT IN (2)`:** In SQL, `NOT IN` with nulls returns empty if any compared value is null. Always ensure nulls are explicitly protected.
+- **Using a Subquery or Self-Join:** A simple linear scan with `COALESCE` runs in $O(N)$ time, whereas self-joins add unnecessary indexing and memory overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of rows in `Customer`. Without a selective usable index for this predicate, the database scans all rows, evaluates one constant-time expression per row, and takes $O(n)$ time. It can stream qualifying names, requiring $O(1)$ auxiliary working memory outside the output.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N$ be the number of rows in `Customer`.
+  - Evaluating `COALESCE` and inequality comparison on each row takes $\mathcal{O}(1)$ time.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 10^5$, completes in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary memory (streaming filter).

@@ -1,109 +1,134 @@
 # Guided Example: Sum of Digits in Base K
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step radix extraction and digit summation via Euclidean division on a representative problem instance:
 
-- **Input:** `{"n": 34, "k": 6}`
-- **Required output:** `9`
+- **Input:** `n = 34, k = 6`
+- **Required Output:** `9`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates the repeated division-remainder algorithm for base conversion, showing how the digits of $n$ in base $k$ are extracted from least to most significant and accumulated in $\mathcal{O}(\log_k n)$ steps.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n` (in base `10`) and a base `k`, return *the **sum** of the digits of *`n`* **after** converting *`n`* from base *`10`* to base *`k`.
+We are given an integer $n$ (in decimal base $10$) and a target base $k \ge 2$.
+We must convert $n$ into base $k$ and return the arithmetic sum of its digits in that base.
 
-The objective is to compute `9` from `{"n": 34, "k": 6}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- $n = 34$, base $k = 6$.
+- Expressing $34$ as powers of $6$:
+  $$34 = 5 \times 6^1 + 4 \times 6^0 = 30 + 4 = 34$$
+- The base-$6$ representation is $(54)_6$.
+- Digits: $5$ and $4$.
+- Sum of digits: $5 + 4 = 9$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to observe that we do not need to construct the full string representation of $(54)_6$. Using successive integer division ($n \gets \lfloor n / k \rfloor$) and modulo arithmetic ($d \gets n \bmod k$), each base-$k$ digit is extracted directly and added to a running sum.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Radix Representation
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+By the Division Algorithm, any positive integer $n$ has a unique representation in radix $k$:
+$$n = \sum_{j=0}^{m} d_j k^j = d_m k^m + d_{m-1} k^{m-1} + \dots + d_1 k^1 + d_0 k^0$$
+where each digit $d_j \in \{0, 1, \dots, k - 1\}$ and $d_m \neq 0$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Taking modulo $k$:
+$$n \bmod k = d_0$$
+Dividing by $k$:
+$$\lfloor n / k \rfloor = \sum_{j=1}^{m} d_j k^{j-1}$$
+
+Repeated application extracts $d_0, d_1, \dots, d_m$ in sequence until the quotient reaches $0$.
+
+### Radix Decomposition & Remainder Accumulation Theorem
+
+> **Radix Decomposition & Remainder Accumulation Theorem.**
+> Let $n \in \mathbb{Z}^+$ and integer radix $k \ge 2$.
+> 1. *Digit Extraction Invariant:* At each iteration with state $n$, the remainder $r = n \bmod k$ is precisely the lowest remaining base-$k$ digit.
+> 2. *Quotient Reduction:* Replacing $n \gets \lfloor n / k \rfloor$ strictly contracts the value of $n$ by at least a factor of $k \ge 2$.
+> 3. *Summation Conservation:* The running accumulator $S$ satisfies:
+>    $$S_{\text{final}} = \sum_{j=0}^m (n_j \bmod k) = \sum_{j=0}^m d_j$$
+> The process terminates in exactly $\lfloor \log_k n \rfloor + 1$ iterations, using $\mathcal{O}(\log_k n)$ time and $\mathcal{O}(1)$ auxiliary space.
+
+```mermaid
+flowchart TD
+    accTitle: Base K Digit Extraction Loop
+    accDescr: Flowchart showing extracting remainder n % k, adding to sum, and dividing n by k until n equals zero.
+    A["Initialize ans = 0, n = 34, k = 6"] --> B{"Is n > 0?"}
+    B -- "Yes" --> C["Digit d = n % k"]
+    C --> D["Accumulate: ans += d"]
+    D --> E["Update: n = n // k"]
+    E --> B
+    B -- "No" --> F["Return final sum ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Extract base-`k` digits from right to left.** Any positive integer `n` can be written uniquely as
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 34, "k": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 34$ and $k = 6$.
+Initialize sum accumulator $\text{ans} = 0$.
 
 ---
 
-### Step 2: Core Step 3
-
-where `q = n // k` and `r = n % k`, with `0 <= r < k`. In the base-`k` representation, `r` is exactly the least-significant digit and `q` is the number represented by all remaining higher digits.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Iteration $1$ ($n = 34$)
+- Compute remainder (least significant digit):
+  $$d_0 = 34 \bmod 6 = 4$$
+- Add to sum:
+  $$\text{ans} \to 0 + 4 = 4$$
+- Update quotient:
+  $$n \to \lfloor 34 / 6 \rfloor = 5$$
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Iteration $2$ ($n = 5$)
+- Compute remainder:
+  $$d_1 = 5 \bmod 6 = 5$$
+- Add to sum:
+  $$\text{ans} \to 4 + 5 = 9$$
+- Update quotient:
+  $$n \to \lfloor 5 / 6 \rfloor = 0$$
 
-The solution repeatedly uses this quotient-remainder fact. `ans` begins at zero. On each iteration:
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `9` |
+### Step 3: Termination
+- Quotient $n = 0$.
+- Loop terminates.
+- Emitted result: **`9`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 34, "k": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `9` | Verified |
+| Iteration | Current $n$ | Remainder $d = n \bmod 6$ | Quotient $n' = \lfloor n / 6 \rfloor$ | Running Sum $\text{ans}$ | Digit Position in $(54)_6$ |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| Init | $34$ | — | — | $0$ | — |
+| $1$ | $34$ | $4$ | $5$ | $4$ | $6^0$ position (units) |
+| $2$ | $5$ | $5$ | $0$ | **`9`** | $6^1$ position (sixes) |
+| End | $0$ | — | — | **`9`** | Complete representation: $(54)_6$ |
+
+Final digit sum: **`9`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** By the uniqueness of radix-$k$ positional notation, every integer $n$ maps to a single sequence of coefficients $d_j \in [0, k - 1]$. The modulo operator $n \bmod k$ mathematically identifies the lowest digit, and integer division shifts the radix polynomial right by one power of $k$. Summing these remainders yields the exact sum of digits.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since $k \ge 2$, the quotient $\lfloor n / k \rfloor$ strictly decreases at each step, reaching $0$ in finite time. Every base-$k$ digit is visited and accumulated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Build a digit list:** Appending every remainder and then summing works, but stores `O(log_k n)` digits that can instead be added immediately.
-- **Construct a base-`k` string:** Conversion followed by character parsing is more complicated and introduces representation issues without improving the result.
-- **Recursive extraction:** Recursing on `n // k` mirrors the numeral structure, but adds one stack frame per digit and is unnecessary for a sum.
-- **Base ten:** The same modulo and division steps simply extract ordinary decimal digits.
-- **Base two:** Each remainder is zero or one, so the result is the number of set bits in `n`.
-- **`n < k`:** There is only one base-`k` digit. One iteration adds `n` and then terminates.
-- **Zero digits inside the representation:** A zero remainder contributes nothing but division still removes that digit position correctly.
-- **Input `n = 1`:** For every allowed base, the single digit is one and the method returns one.
-- **Hypothetical `n = 0`:** Although excluded, the loop would skip and return zero, which is the natural digit sum of zero.
-- **Minimum base two:** Division still strictly decreases positive `n` and guarantees termination.
-- **Maximum base ten:** Every remainder remains a decimal digit from zero through nine.
-- **No caller mutation:** Reassigning local `n` does not modify the integer argument outside the method.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Constructing String Representation:** Converting to a string and then converting each character back to an integer introduces unnecessary string allocations and conversions. Direct arithmetic accumulation operates in $\mathcal{O}(1)$ extra space.
+- **Floating-Point Division:** Using standard division `/` instead of integer floor division `//` introduces float rounding errors for large integers.
+- **Zero Input Handling:** For $n = 0$, the sum of digits is $0$; while the problem specifies $n \ge 1$, the `while n:` loop naturally produces $0$ without error.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(log_k n)$. Each loop iteration removes one base-`k` digit. A positive integer `n` has `floor(log_k n) + 1` digits, so the running time is `O(log_k n)`. Under the small bound `n <= 100` this is tiny, but the logarithmic relationship describes the algorithm generally.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\log_k n)$. The loop executes $\lfloor \log_k n \rfloor + 1$ times. For $n \le 100$ and $k \ge 2$, at most $7$ divisions occur.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$, using only scalar accumulator variables.

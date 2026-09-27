@@ -1,131 +1,229 @@
 # Guided Example: User Activity for the Past 30 Days II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational multi-level aggregation pipeline for computing the sample mean of distinct user session engagements over a 30-day reporting window, establishing the User-Session Two-Level Aggregate Invariant:
 
-- **Input:** `{"tables": {"Activity": [{"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "scroll_down"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "end_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "scroll_down"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "open_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "end_session"}]}}`
-- **Required output:** `{"columns": ["average_sessions_per_user"], "rows": [[1.33]]}`
+- **Representative Instance 1 (Multi-Session Users with Multi-Action Logs):**
+  $$
+  \text{Activity} = \begin{pmatrix}
+  (1, 1, \text{'2019-07-20'}, \text{'open\_session'}), & (1, 1, \text{'2019-07-20'}, \text{'scroll\_down'}), \\
+  (1, 1, \text{'2019-07-20'}, \text{'end\_session'}), & (2, 4, \text{'2019-07-20'}, \text{'open\_session'}), \\
+  (2, 4, \text{'2019-07-21'}, \text{'send\_message'}), & (2, 4, \text{'2019-07-21'}, \text{'end\_session'}), \\
+  (3, 2, \text{'2019-07-21'}, \text{'open\_session'}), & (3, 2, \text{'2019-07-21'}, \text{'send\_message'}), \\
+  (3, 2, \text{'2019-07-21'}, \text{'end\_session'}), & (3, 5, \text{'2019-07-21'}, \text{'open\_session'}), \\
+  (3, 5, \text{'2019-07-21'}, \text{'scroll\_down'}), & (3, 5, \text{'2019-07-21'}, \text{'end\_session'}), \\
+  (4, 3, \text{'2019-06-25'}, \text{'open\_session'}), & (4, 3, \text{'2019-06-25'}, \text{'end\_session'})
+  \end{pmatrix}
+  $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|}
+  \hline
+  \text{average\_sessions\_per\_user} \\
+  \hline
+  1.33 \\
+  \hline
+  \end{array}
+  $$
+  - Window Evaluation ($30$ days ending $\text{'2019-07-27'}$ inclusively $\implies [\text{'2019-06-28'}, \text{'2019-07-27'}]$):
+    - User $4$ (session $3$ on $\text{'2019-06-25'}$): Outside window $\implies$ Discarded.
+    - All other rows occur on $\text{'2019-07-20'}$ and $\text{'2019-07-21'}$ $\implies$ Retained.
+  - Per-User Distinct Session Extraction:
+    - User $1$: Active session $\{1\} \implies \text{Sessions} = 1$
+    - User $2$: Active session $\{4\} \implies \text{Sessions} = 1$
+    - User $3$: Active sessions $\{2, 5\} \implies \text{Sessions} = 2$
+  - Global Average Computation:
+    - Active users count: $3$ (Users $1, 2, 3$).
+    - Total distinct sessions: $1 + 1 + 2 = 4$.
+    - Mean sessions per active user:
+      $$
+      \frac{1 + 1 + 2}{3} = \frac{4}{3} \approx 1.3333\dots
+      $$
+    - Rounded to $2$ decimal places: $\mathbf{1.33}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Zero Activity Default Boundary):**
+  - If no users recorded activity in the 30-day window, the user set is empty.
+  - The expected return value is the zero-fallback constant: $\mathbf{0.00}$ (or $0$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Activity`
+Given a social media activity table, calculate the average number of distinct sessions per active user across the 30-day period ending on 2019-07-27 inclusively, rounded to two decimal places. An active user is defined as any user who initiated at least one action within the period. If there are no active users, return 0.
 
-The objective is to compute `{"columns": ["average_sessions_per_user"], "rows": [[1.33]]}` from `{"tables": {"Activity": [{"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "scroll_down"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "end_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "scroll_down"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "open_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "end_session"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Raw Event Grain Fallacy:
+  A single session contains multiple action records (e.g. open, scroll, end).
+  Counting rows per user instead of distinct session_id:
+    User 1 has 3 events in session 1.
+    User 2 has 3 events in session 4.
+    User 3 has 6 events across sessions 2 and 5.
+    Raw Event Average = (3 + 3 + 6) / 3 = 12 / 3 = 4.00  <-- WRONG!
+  The question measures distinct SESSIONS per user, requiring COUNT(DISTINCT session_id).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Global Ratio Identity:
+  Since each session belongs to exactly ONE user (given by problem invariant):
+    Total Distinct Sessions across all users = SUM(distinct sessions per user)
+    Average = (Total Distinct Sessions) / (Total Distinct Active Users)
+            = 4 / 3 ≈ 1.33.
 
----
+The User-Session Two-Level Aggregate Invariant:
+  1. Filter records within date window: '2019-06-28' <= activity_date <= '2019-07-27'.
+  2. First-level aggregation: GROUP BY user_id to compute sessions = COUNT(DISTINCT session_id).
+  3. Second-level aggregation: Compute COALESCE(ROUND(AVG(sessions), 2), 0).
+```
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Separate the calculation into per-user counts and one overall average
-
-The requested average is not the number of activity rows divided by the number of users. Each participating user first needs an individual count of distinct sessions with at least one activity in the reporting window. Only then are those per-user session counts averaged.
-
-The common table expression `T` performs the first level. It groups filtered activity rows by `user_id` and produces one column:
-
-`COUNT(DISTINCT session_id) AS sessions`.
-
-The outer query performs the second level by applying `AVG(sessions)` to the rows of `T`. This two-stage structure matches the mathematical definition of an average across users. Trying to place `AVG(COUNT(...))` in one ordinary grouping level is not valid SQL aggregation and would blur the two different populations.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Activity": [{"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "scroll_down"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "end_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "scroll_down"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "open_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "end_session"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The fundamental pedagogical insights are:
+1. **Hierarchical Deduplication:** Distinct counting must occur at the child grain (`session_id`) within each parent entity (`user_id`).
+2. **Degenerate Group Null-Safety:** An empty set of qualifying active users produces an empty inner relation, requiring a `COALESCE(..., 0)` guard to avoid returning `NULL`.
 
 ---
 
-### Step 2: Filter to exactly 30 inclusive dates
+## 2. Conceptual Foundation & The User-Session Two-Level Aggregate Invariant
 
-The target period ends on `2019-07-27` and includes that date. Its earliest date is `2019-06-28`. The CTE uses
+```mermaid
+flowchart TD
+    accTitle: User Activity II Two-Level Aggregation Pipeline
+    accDescr: Pipeline showing date window filter, user-grain distinct session grouping, global average calculation, and null fallback
+    Raw["Raw Activity Table\n(user_id, session_id, activity_date, activity_type)"] --> FilterWindow["Filter Date Range:\n'2019-06-28' <= activity_date <= '2019-07-27'"]
+    FilterWindow --> GroupUser["GROUP BY user_id"]
+    GroupUser --> UserSessions["Compute distinct sessions per user:\nsessions = COUNT(DISTINCT session_id)"]
+    UserSessions --> CheckEmpty{"Any active users ?"}
+    CheckEmpty -->|"Yes: users >= 1"| ComputeAvg["Compute AVG(sessions)\nROUND to 2 decimal places"]
+    CheckEmpty -->|"No: users == 0"| DefaultZero["Return 0"]
+    ComputeAvg --> Output["Emit average_sessions_per_user"]
+    DefaultZero --> Output
+```
 
-`activity_date <= '2019-07-27'`
+### Partitioned Session Multiplicity & Expectation Theorem
 
-together with
+Let $\mathcal{A}_{\text{window}}$ be the subset of activity events where $\text{activity\_date} \in [\text{'2019-06-28'}, \text{'2019-07-27'}]$.
 
-`DATEDIFF('2019-07-27', activity_date) < 30`.
-
-For dates from `2019-06-28` through `2019-07-27`, the difference ranges from 29 down to zero, so the rows are retained. `2019-06-27` has difference 30 and is excluded.
-
-The upper bound is not redundant. A future date would create a negative date difference, and that value would satisfy `< 30`. Requiring the activity date to be no later than the reporting date prevents future rows from entering the window.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **User Active Partition:**
+   The set of active users $\mathcal{U}$ is the projection:
+   $$
+   \mathcal{U} = \Pi_{\text{user\_id}}(\mathcal{A}_{\text{window}})
+   $$
+2. **User Session Mapping:**
+   Because each session belongs to exactly one user, the set of sessions active in the window partitions cleanly across users:
+   $$
+   \mathcal{S}_u = \big\{ \text{session\_id}_r : r \in \mathcal{A}_{\text{window}} \land \text{user\_id}_r = u \big\}
+   $$
+   The distinct session count for user $u \in \mathcal{U}$ is $K_u = |\mathcal{S}_u| \ge 1$.
+3. **Sample Mean of Session Intensity:**
+   If $|\mathcal{U}| > 0$, the expected sessions per active user is:
+   $$
+   \mu_{\mathcal{S}} = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} K_u = \frac{\sum_{u \in \mathcal{U}} |\mathcal{S}_u|}{|\mathcal{U}|} = \frac{|\bigcup_{u \in \mathcal{U}} \mathcal{S}_u|}{|\mathcal{U}|}
+   $$
+   If $|\mathcal{U}| = 0$, $\mu_{\mathcal{S}} = 0$.
+   Rounding $\mu_{\mathcal{S}}$ to two decimal places produces the exact solution. $\blacksquare$
 
 ---
 
-### Step 3: Count a session once for its user
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-A session qualifies when it has at least one activity in the period. It may have several qualifying rows because the user can open it, scroll, send messages, and end it, possibly with duplicate rows in the table. `COUNT(DISTINCT session_id)` collapses all of those rows to one session inside the user's group.
+We trace execution on the provided dataset.
 
-The grouping is by `user_id` because the final population consists of users. The contract guarantees that each session belongs to exactly one user, so the same session identifier cannot legitimately contribute to multiple owners. Even so, the distinct count occurs within each user group, making the intended ownership boundary explicit.
+### Step 1: Temporal Date Window Filtering
+Active interval: `2019-06-28` to `2019-07-27`.
+- Rows with date `'2019-06-25'` (User 4, Session 3):
+  - `'2019-07-27' - '2019-06-25' = 32` days $\implies$ Excluded.
+- All other 11 rows have dates `'2019-07-20'` and `'2019-07-21'`:
+  - Elapsed days are $7$ and $6 \le 29 \implies$ Included.
 
-There is no `activity_type` condition because every activity type listed by the schema is valid evidence that a session was active. There is also no need for a session to start or end within the period. One qualifying activity of any type is enough for that session to count.
+### Step 2: User-Level Grouping & Session Deduplication
+- **User 1:**
+  - Events logged: 3 rows with `session_id = 1`.
+  - Distinct sessions: $\{1\}$.
+  - $K_1 = 1$.
+- **User 2:**
+  - Events logged: 3 rows with `session_id = 4`.
+  - Distinct sessions: $\{4\}$.
+  - $K_2 = 1$.
+- **User 3:**
+  - Events logged: 3 rows with `session_id = 2`, 3 rows with `session_id = 5`.
+  - Distinct sessions: $\{2, 5\}$.
+  - $K_3 = 2$.
 
-Only users with at least one qualifying activity produce a group in `T`. This is exactly the population described by the problem: the average is across users whose sessions have activity in the window. Users with no qualifying row are absent rather than treated as having zero sessions. Including inactive users with zeros would require another user table and would change the requested denominator.
+Intermediate User-Grain Relation:
+$$
+\begin{array}{|c|c|}
+\hline
+\text{user\_id} & \text{sessions} \\
+\hline
+1 & 1 \\
+2 & 1 \\
+3 & 2 \\
+\hline
+\end{array}
+$$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["average_sessions_per_user"], "rows": [[1.33]]}` |
+### Step 3: Global Expectation & Rounding
+- Active user count: $|\mathcal{U}| = 3$.
+- Total sessions: $1 + 1 + 2 = 4$.
+- Unrounded mean: $\frac{4}{3} = 1.33333\dots$
+- Rounded to 2 decimal places: **`1.33`**.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. State Transition Trace Tables
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Activity": [{"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "scroll_down"}, {"user_id": 1, "session_id": 1, "activity_date": "2019-07-20", "activity_type": "end_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-20", "activity_type": "open_session"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 2, "session_id": 4, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "send_message"}, {"user_id": 3, "session_id": 2, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "open_session"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "scroll_down"}, {"user_id": 3, "session_id": 5, "activity_date": "2019-07-21", "activity_type": "end_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "open_session"}, {"user_id": 4, "session_id": 3, "activity_date": "2019-06-25", "activity_type": "end_session"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["average_sessions_per_user"], "rows": [[1.33]]}` | Verified |
+### Table 1: Filtered Activity Records by User and Session
+
+| Row | User ID | Session ID | Date | Action Type | Window Membership | Session Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| $1$ | $1$ | $1$ | `'2019-07-20'` | `open_session` | In Window | Session $1$ active |
+| $2$ | $1$ | $1$ | `'2019-07-20'` | `scroll_down` | In Window | Session $1$ (duplicate event) |
+| $3$ | $1$ | $1$ | `'2019-07-20'` | `end_session` | In Window | Session $1$ (duplicate event) |
+| $4$ | $2$ | $4$ | `'2019-07-20'` | `open_session` | In Window | Session $4$ active |
+| $5$ | $2$ | $4$ | `'2019-07-21'` | `send_message` | In Window | Session $4$ (duplicate event) |
+| $6$ | $2$ | $4$ | `'2019-07-21'` | `end_session` | In Window | Session $4$ (duplicate event) |
+| $7$ | $3$ | $2$ | `'2019-07-21'` | `open_session` | In Window | Session $2$ active |
+| $8$ | $3$ | $2$ | `'2019-07-21'` | `send_message` | In Window | Session $2$ (duplicate event) |
+| $9$ | $3$ | $2$ | `'2019-07-21'` | `end_session` | In Window | Session $2$ (duplicate event) |
+| $10$ | $3$ | $5$ | `'2019-07-21'` | `open_session` | In Window | Session $5$ active |
+| $11$ | $3$ | $5$ | `'2019-07-21'` | `scroll_down` | In Window | Session $5$ (duplicate event) |
+| $12$ | $3$ | $5$ | `'2019-07-21'` | `end_session` | In Window | Session $5$ (duplicate event) |
+| $13$ | $4$ | $3$ | `'2019-06-25'` | `open_session` | Out of Window | Discarded |
+| $14$ | $4$ | $3$ | `'2019-06-25'` | `end_session` | Out of Window | Discarded |
+
+### Table 2: User Aggregation and Global Average Calculation
+
+| User ID | Set of Distinct Sessions $\mathcal{S}_u$ | Distinct Sessions Count $K_u$ | Global User Weight | Contribution to Global Sum |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\{1\}$ | $1$ | $1/3$ | $1$ |
+| $2$ | $\{4\}$ | $1$ | $1/3$ | $1$ |
+| $3$ | $\{2, 5\}$ | $2$ | $1/3$ | $2$ |
+| **Total** | **$3$ active users** | **$4$ total sessions** | **Sum $= 1.0$** | **Average: $\frac{4}{3} = \mathbf{1.33}$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Non-Ambiguity
+1. **User Ownership Consistency:** The problem contract specifies that each session belongs to exactly one user. Therefore, $\mathcal{S}_u \cap \mathcal{S}_v = \emptyset$ for all $u \ne v$, guaranteeing that total distinct sessions across users equals the sum of per-user distinct sessions.
+2. **Denominator Grounding:** The denominator of the average is the number of active users (users with $\ge 1$ qualifying activity). Inactive users (like User 4) do not enter the inner grouped relation and do not deflate the denominator.
+3. **Degenerate Table Defense:** If the input table contains zero qualifying rows, the inner query is empty and `AVG(...)` returns `NULL`. Applying `COALESCE(..., 0)` guarantees returning `0` as required.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Average raw activity counts:** This overweights sessions that generate many events and does not compute sessions per user.
-- **Count sessions without `DISTINCT`:** A session with several activity rows would be counted repeatedly. Distinct session identifiers implement the phrase “at least one activity.”
-- **Average globally distinct sessions divided by users:** Because sessions belong to one user, that quotient can match some datasets, but the grouped CTE directly preserves the required per-user definition and safely exposes each user's count.
-- **Include inactive users as zeros:** The input contains activity rows rather than a complete user roster, and the requested average concerns users with qualifying activity. Adding zero-session users would change the denominator.
-- **Filter by `activity_type`:** Every listed activity type qualifies, so any restriction to openings, endings, scrolling, or messages would omit valid sessions.
-- **Only a `DATEDIFF < 30` condition:** Future activity dates produce negative differences and would be incorrectly accepted. The upper bound closes that hole.
-- **A session spans the window boundary:** It counts if at least one of its activity rows lies inside the period, regardless of when it began or ended.
-- **Duplicate rows:** `COUNT(DISTINCT session_id)` prevents them from inflating a user's session total.
-- **No qualifying rows:** The CTE is empty, `AVG` is null, and `COALESCE` returns the required zero.
-- **Exactly one active user:** The average equals that user's distinct-session count, rounded to two decimals by the same expression.
-- **Boundary dates:** `2019-06-28` and `2019-07-27` are accepted; the immediately adjacent outside dates are rejected.
-- **Rounding:** The query rounds the final average rather than truncating it, preserving standard MySQL rounding behavior to two decimal places.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Boundary Scenario | Input Condition | Expected Output | Failure Mode / Trapped Risk |
+|---|---|---|---|
+| Empty Activity Log | Table is empty | `0` | Returning `NULL` instead of 0 |
+| All Activity Expired | All dates prior to `'2019-06-28'` | `0` | Division by zero or NULL result |
+| High Session Intensity | 1 user with 50 sessions | `50.00` | Miscalculating single-user denominator |
+| Multi-Day Session | Session starts June 27 and ends June 29 | Counted as 1 session (active on June 29) | Double-counting cross-midnight sessions |
+| Fractional Precision | Ratio yields $1.3333\dots$ | `1.33` | Truncation instead of rounding |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R\log R)$. Let `R` be the number of rows in `Activity`. Filtering examines candidate activity rows. Grouping by user and deduplicating session identifiers can be implemented through sorting, giving the repository's conservative `O(R log R)` time bound. The final average visits at most one CTE row per participating user and is no larger than the grouping work.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$ where $R$ is the number of rows in `Activity`.
+  - Filtering $R$ rows takes linear time $\mathcal{O}(R)$.
+  - Grouping by `user_id` and computing `COUNT(DISTINCT session_id)` takes $\mathcal{O}(R)$ via hash aggregation or $\mathcal{O}(R \log R)$ via sorting.
+  - Computing the scalar average over $U \le R$ active users takes $\mathcal{O}(U)$ time.
+  - Overall time complexity is dominated by the initial grouping: $\mathcal{O}(R \log R)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R)$ auxiliary space.
+  - Hash tables storing unique `(user_id, session_id)` pairs and intermediate user summaries consume at most $\mathcal{O}(R)$ memory.

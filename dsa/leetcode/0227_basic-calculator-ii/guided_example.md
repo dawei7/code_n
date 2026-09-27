@@ -1,150 +1,190 @@
 # Guided Example: Basic Calculator II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step operator precedence decoupling, immediate multiplication/division reduction, and signed-term stack accumulation on representative arithmetic expressions:
 
-- **Input:** `{"s": "3+2*2"}`
-- **Required output:** `7`
+- **Input:** $s = \text{"3+2*2"}$
+- **Required output:** $7$ (High-precedence multiplication $2 \times 2 = 4$ evaluated before addition $3 + 4 = 7$)
+- **Division Truncation Instance:** $s = \text{" 3/2 "} \implies 1$ (Truncation toward zero: $\lfloor 3 / 2 \rfloor = 1$)
+- **Mixed Precedence with Spaces:** $s = \text{" 3+5 / 2 "} \implies 5$ (Evaluates $5 / 2 = 2$, then $3 + 2 = 5$)
+- **Negative Division Truncation:** $s = \text{"14-3/2"} \implies 13$ ($-3 / 2 = -1$ truncated toward zero; $14 + (-1) = 13$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates linear-time multi-precedence arithmetic evaluation without parentheses, proves why delaying addition/subtraction onto a stack while immediately collapsing multiplication/division enforces standard order of operations, clarifies truncation toward zero for signed dividends, and operates in $O(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` which represents an expression, *evaluate this expression and return its value*.
+Given an expression string containing non-negative integers, addition, subtraction, multiplication, division, and spaces:
+$$
+s = \text{"3+2*2"}
+$$
+Compute its exact numerical value respecting standard operator precedence without using built-in evaluation tools (`eval`).
 
-The objective is to compute `7` from `{"s": "3+2*2"}` while avoiding redundant calculations and unnecessary overhead.
+### The Precedence Hierarchy
+In elementary arithmetic:
+1. **Multiplication and Division (`*`, `/`)** have **higher precedence**: they must bind directly to their adjacent operands before addition or subtraction can occur.
+2. **Addition and Subtraction (`+`, `-`)** have **lower precedence**: they partition the expression into independent additive terms.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In $s = \text{"3+2*2"}$:
+- Evaluating left-to-right naively yields $(3 + 2) \times 2 = 5 \times 2 = 10$, which is **incorrect**.
+- Proper precedence isolates term $1$ as $3$ and term $2$ as $2 \times 2 = 4$.
+- The sum of terms is $3 + 4 = \mathbf{7}$.
+
+By maintaining a **pending operator** (`pre_op`) and delaying addition/subtraction onto a stack while immediately resolving multiplication and division against the top of the stack, the entire expression evaluates in a single forward pass.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Stack Evaluation Protocol
+Maintain:
+- `stack = []`: accumulates terms ready to be summed at the end.
+- `num = 0`: accumulates decimal digits of the active number.
+- `pre_op = '+'`: the operator that immediately preceded the active number (initialized to `'+'` to handle the leading positive number).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Iterate through character $c$ at index $i$ from $0$ to $N - 1$:
+1. **Digit Accumulation:**
+   If $c$ is a digit:
+   $$
+   \text{num} \leftarrow \text{num} \cdot 10 + \text{int}(c)
+   $$
+2. **Operator or Terminal Boundary ($c \in \{+, -, *, /\}$ or $i == N - 1$):**
+   *(Skip whitespace unless it is the terminal index)*.
+   Apply the **preceding operator** `pre_op` to `num`:
+   - **Case `'+'`:** Push positive term:
+     $$
+     \text{stack}.\text{append}(\text{num})
+     $$
+   - **Case `'-'`:** Push negative term:
+     $$
+     \text{stack}.\text{append}(-\text{num})
+     $$
+   - **Case `'*'`:** Pop top term, multiply, and push result:
+     $$
+     \text{stack}.\text{append}(\text{stack}.\text{pop}() \cdot \text{num})
+     $$
+   - **Case `'/'`:** Pop top term, perform integer division truncated toward zero, and push result:
+     $$
+     \text{stack}.\text{append}(\text{int}(\text{stack}.\text{pop}() / \text{num}))
+     $$
+   - Reset number: $\text{num} \leftarrow 0$.
+   - Update pending operator: $\text{pre\_op} \leftarrow c$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+3. **Final Result:**
+   $$
+   \text{return } \sum \text{stack}
+   $$
+
+> **Invariant.** At any point, every element in `stack` is a fully reduced multiplicative/divisive term ready to be combined by linear addition.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the stack to separate low-precedence terms
-
-Addition and subtraction divide the expression into terms. Multiplication and
-division belong inside the current term because they have higher precedence.
-The exact solution stores each completed additive term in `stk`:
-
-- a term preceded by `+` is stored as a positive value;
-- a term preceded by `-` is stored as a negative value;
-- `*` and `/` immediately combine the next number with the most recent stack
-  term instead of creating another term.
-
-After every multiplication and division chain has been collapsed, summing the
-stack is equivalent to evaluating all remaining additions. This avoids a full
-operator-precedence parser because the grammar has only two precedence levels
-and no parentheses.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "3+2*2"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the single-pass evaluation on $s = \text{"3+2*2"}$ ($N = 5$):
+- Initial state: $\text{stack} = [], \, \text{num} = 0, \, \text{pre\_op} = \text{'+'}$.
 
 ---
 
-### Step 2: `sign` describes the operator before the number being built
-
-The parser starts with `sign = '+'`. This imaginary leading plus makes the
-first number follow the same processing rule as later positive terms.
-Variable `v` accumulates the current number. For every digit `c`, the update
-`v = v * 10 + int(c)` shifts existing decimal digits left and appends the new
-digit. Thus `"205"` builds 2, then 20, then 205.
-
-When the scan reaches an operator, that operator comes after the number in
-`v`. The number must be processed using the previous `sign`, not using the
-newly encountered operator. Only afterward does `sign = c` save the current
-operator for the number to its right.
-
-For `3+2*2`, the first `+` causes 3 to be processed under the initial plus and
-placed on the stack. That encountered plus becomes the pending sign. At `*`,
-the value 2 is appended under plus; then `*` becomes pending. At the final 2,
-the pending multiplication pops the previous 2, multiplies it by the current
-2, and pushes 4. The final stack is `[3, 4]`, whose sum is 7.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Index 0: $c = \text{'3'}$
+- Digit detected: $\text{num} = 0 \times 10 + 3 = 3$.
+- Not an operator, not terminal index ($0 \ne 4$). Advance.
 
 ---
 
-### Step 3: Process a number when an operator or the physical end is reached
+### Index 1: $c = \text{'+'}$ (Boundary Reached)
+- Operator detected! Process $\text{num} = 3$ under $\text{pre\_op} = \text{'+'}$:
+  $$
+  \text{stack}.\text{append}(+3) \implies \text{stack} = [3]
+  $$
+- Reset $\text{num} = 0$.
+- Update pending operator: $\text{pre\_op} \leftarrow \text{'+'}$.
 
-The condition `i == n - 1 or c in '+-*/'` is the parser's token boundary. An
-operator always ends the preceding number. The last character must also force
-the final number to be applied because no later operator exists to trigger it.
+---
 
-This handles both a final digit and trailing spaces. If the last character is
-a digit, the first `if` adds it to `v` before the boundary condition processes
-the full number. If the expression ends in spaces, intermediate spaces leave
-`v` untouched and the final space triggers processing of the number already
-built. Ordinary spaces elsewhere match neither branch and are simply ignored.
+### Index 2: $c = \text{'2'}$
+- Digit detected: $\text{num} = 0 \times 10 + 2 = 2$.
+- Advance.
 
-After processing a boundary, the method assigns `v = 0` so digits of the next
-number start fresh. It also assigns `sign = c`. At a true operator boundary,
-that saves a valid operator. At the final digit or space, the stored value is
-not an operator, but the loop ends immediately, so that last assignment is
-never observed and is harmless under valid input.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
+### Index 3: $c = \text{'*'}$ (Boundary Reached)
+- Operator detected! Process $\text{num} = 2$ under $\text{pre\_op} = \text{'+'}$:
+  $$
+  \text{stack}.\text{append}(+2) \implies \text{stack} = [3, 2]
+  $$
+- Reset $\text{num} = 0$.
+- Update pending operator: $\text{pre\_op} \leftarrow \text{'*'}$.
+
+---
+
+### Index 4: $c = \text{'2'}$ (Terminal Index $i = 4 == N - 1$)
+- Digit detected: $\text{num} = 0 \times 10 + 2 = 2$.
+- Terminal boundary condition $i == N - 1$ triggered!
+- Process $\text{num} = 2$ under pending operator $\text{pre\_op} = \text{'*' Tanto high precedence!}$:
+  - Pop top of stack: $\text{top} = \text{stack}.\text{pop}() = 2$.
+  - Evaluate product: $2 \times 2 = \mathbf{4}$.
+  - Push product back:
+    $$
+    \text{stack}.\text{append}(4) \implies \text{stack} = [3, 4]
+    $$
+- Reset $\text{num} = 0$.
+
+---
+
+### Step 5: Final Summation
+Loop terminates. All multiplications and divisions are resolved.
+Sum the stack elements:
+$$
+\text{Total} = \sum [3, 4] = 3 + 4 = \mathbf{7}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "3+2*2"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
+```text
+Expression: "3+2*2"
+
+i = 0: '3' -> num = 3
+i = 1: '+' -> pre_op is '+' -> stack.append(3)   -> stack = [3],    pre_op = '+'
+i = 2: '2' -> num = 2
+i = 3: '*' -> pre_op is '+' -> stack.append(2)   -> stack = [3, 2], pre_op = '*'
+i = 4: '2' -> num = 2 (terminal!)
+           -> pre_op is '*' -> stack.pop() * 2 = 2 * 2 = 4
+           -> stack.append(4)                    -> stack = [3, 4]
+
+sum(stack) = 3 + 4 = 7
+```
+
+| Index $i$ | Character $c$ | Current `num` | Pending `pre_op` | Action Taken | Stack State After Step |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | `'3'` | 3 | `'+'` | Accumulate digit | `[]` |
+| **1** | **`'+'`** | 0 | **`'+'`** | **`stack.append(3)`** | `[3]` |
+| 2 | `'2'` | 2 | `'+'` | Accumulate digit | `[3]` |
+| **3** | **`'*'`** | 0 | **`'*'`** | **`stack.append(2)`** | `[3, 2]` |
+| **4** | **`'2'`** | 2 | **`'*'`** | **Pop 2, multiply $2 \times 2 = 4$, push 4** | **`[3, 4]` (Terminal)** |
+| **End** | - | - | - | $\sum [3, 4] = 3 + 4$ | **$\mathbf{7}$ (Final Answer)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since multiplication and division have higher precedence than addition and subtraction and associate left-to-right, evaluating each `*` and `/` immediately against the preceding operand strictly obeys the algebraic grammar $E \to T \pm T \pm \dots$, where each term $T$ is a chain of factors $F \times F \dots / F$. By storing terms as signed integers in `stack`, the final sum matches the standard mathematical value.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character is processed. The terminal condition $i == N - 1$ ensures that the trailing number is applied to the stack under its governing operator, leaving no uncommitted operands.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Finalized sum plus current term:** Add the previous term to a running result only when a new `+` or `-` starts, while folding `*` and `/` into one `last` value. It achieves the same $O(n)$ time with $O(1)$ space and matches the manifest summary.
-- **Two-stack precedence parser:** Maintain separate number and operator stacks and reduce according to precedence. It generalizes more easily to parentheses and more operators but adds unnecessary machinery here.
-- **Recursive descent:** Parse additive and multiplicative grammar levels with functions. It is clear and extensible, but this no-parentheses grammar can be handled more compactly by one pass.
-- **Trailing spaces:** Only the final physical character triggers completion. The accumulated `v` survives all preceding spaces, so the last number is still applied exactly once.
-- **Leading spaces:** They perform no action; the initial plus remains pending for the first number.
-- **Multi-digit zero-containing numbers:** Decimal accumulation correctly distinguishes values such as 0, 10, and 105.
-- **Division truncation for a negative term:** `int(stk.pop() / v)` truncates toward zero, unlike floor division. This matters because subtraction can make the stored term negative even though lexical numbers are nonnegative.
-- **Division by zero:** A valid expression under the intended arithmetic contract does not require evaluating division by zero; the source has no special guard.
-- **Long multiplication/division chain:** Each operator immediately replaces the last term, preserving left-to-right evaluation without growing the stack for every factor.
-- **Only one number:** The end condition appends it under the imaginary leading plus, and `sum` returns it.
-- **No parentheses:** Parentheses are outside this problem's input alphabet. Supporting them would require saved contexts or a fuller parser.
-- **Intermediate range:** The reference guarantees signed 32-bit intermediate results, which also keeps the source's float-assisted division exact for these values.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Integer Division Truncation Toward Zero:** In Python, standard floor division `//` rounds toward $-\infty$ (e.g. `-3 // 2 = -2`), but C/C++ integer division truncates toward zero (e.g. `int(-3 / 2) = -1`). LeetCode 227 requires truncation toward zero, so `int(a / b)` or `math.trunc(a / b)` must be used instead of `a // b`.
+- **Operator Processing Lag:** The operator encountered at index $i$ governs the *next* number, not the current one. Applying the current operator immediately causes incorrect evaluations (e.g. interpreting `3 + 2` as `+3`).
+- **Whitespace Traps:** Spaces can appear anywhere (e.g. `" 3 / 2 "`). The algorithm must ignore spaces during digit accumulation and only trigger evaluation if a space happens to be at the terminal index $N - 1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `s`. The `for` loop visits each
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of string $s$. The string is scanned in a single forward pass, performing $O(1)$ stack operations per token.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for `stack`, storing at most $N/2$ terms in expressions consisting solely of additions/subtractions. (Can be optimized to $O(1)$ auxiliary space using two scalar running variables `last_term` and `total_sum`).

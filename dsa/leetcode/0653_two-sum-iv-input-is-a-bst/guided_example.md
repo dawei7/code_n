@@ -1,112 +1,232 @@
 # Guided Example: Two Sum IV - Input is a BST
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step complement set lookup ($k - root.val \in vis$), tree traversal node exploration (DFS / in-order), visited membership tracking ($vis.\text{add}(val)$), early pair match termination ($u + v == k$), and dual two-pointer in-order search equivalence on representative binary search trees:
 
-- **Input:** `{"root": [5, 3, 6, 2, 4, null, 7], "k": 9}`
+- **Input:**
+  - $root = [5, 3, 6, 2, 4, \text{null}, 7]$
+  - Target sum: $k = 9$
+  - Tree topology:
+    ```text
+            5
+          /   \
+         3     6
+        / \     \
+       2   4     7
+    ```
 - **Required output:** `true`
+  - Problem objective: Determine whether there exist **two distinct nodes** in the binary search tree whose values sum to $k$:
+    $$
+    u.val + v.val = k \quad (u \ne v)
+    $$
+  - Notice that you cannot use the same node twice (e.g. if $k = 10$, you cannot pair Node 5 with itself).
+- **Complement Lookup & Traversal Invariant:**
+  - **The Complement Principle:**
+    - For any active node with value $x$, its unique required pairing partner is:
+      $$
+      \text{target\_partner} = k - x
+      $$
+    - If $\text{target\_partner}$ has already been visited in earlier traversal steps, we have confirmed the existence of a valid pair $\{x, \; k - x\}$ and can terminate immediately with **`true`**!
+    - Otherwise, add $x$ to the visited set $vis$ and continue searching.
+  - **In-Order Monotonicity Alternative:**
+    - Because the tree is a Binary Search Tree (BST), an in-order traversal ($\text{left} \to \text{root} \to \text{right}$) visits all node values in **strictly ascending sorted order**:
+      $$
+      [2, \; 3, \; 4, \; 5, \; 6, \; 7]
+      $$
+    - On this sorted array, standard bilateral two pointers ($left = 0, right = n - 1$) converge toward $k$ in linear time without extra hash structures.
+- **Step-by-Step Worked Execution Trace on $[5, 3, 6, 2, 4, \text{null}, 7], k = 9$:**
+  - Initialize empty visited set:
+    $$
+    vis = \emptyset
+    $$
+  - **Visit Node 5 (Root):**
+    - Value $x = 5$.
+    - Required complement:
+      $$
+      k - x = 9 - 5 = \mathbf{4}
+      $$
+    - Is $4 \in vis$? $vis = \emptyset \implies \mathbf{False}$.
+    - Record node 5:
+      $$
+      vis \leftarrow \{5\}
+      $$
+    - Branch to left child (Node 3).
+  - **Visit Node 3:**
+    - Value $x = 3$.
+    - Required complement:
+      $$
+      k - x = 9 - 3 = \mathbf{6}
+      $$
+    - Is $6 \in vis$? $\{5\} \implies \mathbf{False}$.
+    - Record node 3:
+      $$
+      vis \leftarrow \{3, \; 5\}
+      $$
+    - Branch to left child (Node 2).
+  - **Visit Node 2:**
+    - Value $x = 2$.
+    - Required complement:
+      $$
+      k - x = 9 - 2 = \mathbf{7}
+      $$
+    - Is $7 \in vis$? $\{3, 5\} \implies \mathbf{False}$.
+    - Record node 2:
+      $$
+      vis \leftarrow \{2, \; 3, \; 5\}
+      $$
+    - Leaf reached; backtrack to Node 3 and branch to right child (Node 4).
+  - **Visit Node 4:**
+    - Value $x = 4$.
+    - Required complement:
+      $$
+      k - x = 9 - 4 = \mathbf{5}
+      $$
+    - Check membership:
+      $$
+      5 \in vis \iff 5 \in \{2, \; 3, \; 5\} \implies \mathbf{True!}
+      $$
+    - Node 4 has found its previously recorded partner Node 5!
+    - Sum check:
+      $$
+      4 + 5 = 9 == k
+      $$
+    - Pair confirmed: $\{4, 5\}$.
+    - Immediate early exit: return **`true`**.
+- **In-Order Two-Pointer Verification:**
+  - In-order sorted list: $A = [2, 3, 4, 5, 6, 7]$.
+  - $l = 0$ ($A[0] = 2$), $r = 5$ ($A[5] = 7$).
+  - Sum $2 + 7 = 9 == k \implies$ Valid pair found on step 1!
+- **Target Too Large ($k = 28$):**
+  - Max possible sum of two nodes is $6 + 7 = 13 < 28$.
+  - Entire tree visited $\implies vis = \{2, 3, 4, 5, 6, 7\}$.
+  - 0 complements match $\implies$ Returns **`false`**.
+- **Duplicate Element Prevention ($k = 6$, Tree contains single 3):**
+  - At Node 3: complement is $6 - 3 = 3$.
+  - Since $3 \notin vis$ prior to inserting Node 3, the node is not paired with itself.
+  - Node 3 is added to $vis$. Unless a second distinct node with value 3 exists, self-matching is safely avoided.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates complement set intersection over tree-structured key-value domains, mathematically proves why pre-insertion queries prevent self-referential collision errors, and derives $O(N)$ execution time and $O(N)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the `root` of a binary search tree and an integer `k`, return `true` *if there exist two elements in the BST such that their sum is equal to* `k`, *or* `false` *otherwise*.
+Given a Binary Search Tree and target $k$:
+Determine if there exist **two distinct nodes** whose values sum to $k$.
 
-The objective is to compute `true` from `{"root": [5, 3, 6, 2, 4, null, 7], "k": 9}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Tree:
+        5
+      /   \
+     3     6
+    / \     \
+   2   4     7
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Target k = 9:
+  Visit 5: need 4 -> not seen yet -> vis = {5}
+  Visit 3: need 6 -> not seen yet -> vis = {3, 5}
+  Visit 2: need 7 -> not seen yet -> vis = {2, 3, 5}
+  Visit 4: need 5 -> 5 IS IN VISITED SET! -> MATCH!
+
+Pair (4, 5) sums to 9. Return true.
+```
+
+### The Invariant of Pre-Insert Complement Checking
+- Testing `k - root.val in vis` **before** adding `root.val` to `vis` guarantees that a single node cannot pair with itself when $k = 2 \cdot root.val$.
+- Early return halts traversal the moment the first valid pair is discovered.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Complement Test:
+For node $u$:
+$$
+k - u.val \in vis \implies \text{return true}
+$$
+$$
+vis \leftarrow vis \cup \{u.val\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Dual Two-Pointer Alternative:
+In-order traversal produces sorted list $L$.
+Initialize $l = 0, r = |L| - 1$.
+While $l < r$:
+- $s = L[l] + L[r]$
+- If $s == k \implies \text{return true}$
+- If $s < k \implies l \leftarrow l + 1$
+- If $s > k \implies r \leftarrow r - 1$
+Return `false`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Orthogonal Complement Invariant.** The algebraic involution $\tau(x) = k - x$ maps any target sum representation into a point reflection across $k/2$, enabling constant-time hash set collision detection.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn pair search into complement lookup
-
-For a current node value `v`, a pair sums to `k` exactly when some other node has value `k - v`. Instead of comparing `v` with every node seen before, the algorithm stores visited values in a hash set. Membership lookup then answers the complement question directly.
-
-The traversal order is not important for this reasoning. The exact solution uses depth-first search, visiting a node before recursively visiting its left and right subtrees.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"root": [5, 3, 6, 2, 4, null, 7], "k": 9}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Meaning of the visited set
-
-At the moment `dfs(root)` examines a non-null node, `vis` contains the values of all nodes that have already been processed earlier in the traversal. It does not yet contain the current node's value.
-
-The order of operations is:
-
-1. Compute the needed complement `k - root.val`.
-2. Check whether that complement is in `vis`.
-3. If it is, return `true`.
-4. Otherwise, add the current value to `vis`.
-5. Search the left and right subtrees.
-
-Checking before inserting is essential because the problem requires two nodes. If `k` equals twice the current value, inserting first would allow one node to match itself. With the actual order, that pair is found only if an earlier distinct node with the same value was already visited.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Visit 5
+- Need $9 - 5 = 4$. $4 \notin vis$.
+- $vis = \{5\}$.
 
 ---
 
-### Step 3: Why the BST ordering is not required by this implementation
+### Step 2: Visit 3
+- Need $9 - 3 = 6$. $6 \notin vis$.
+- $vis = \{3, 5\}$.
 
-The input is guaranteed to be a binary search tree, but the hash-set method treats it as an ordinary binary tree. It does not compare values to decide which branch to enter. Both subtrees may contain a useful complement depending on which current value is being considered, so it traverses them as needed.
+---
 
-Ignoring the ordering is not incorrect. The set provides constant-time expected complement lookup, and visiting every node is still linear. A different solution could exploit inorder sorting and two pointers, but the exact source chooses the simpler traversal-plus-memory tradeoff.
+### Step 3: Visit 2
+- Need $9 - 2 = 7$. $7 \notin vis$.
+- $vis = \{2, 3, 5\}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+---
+
+### Step 4: Visit 4
+- Need $9 - 4 = 5$.
+- $5 \in vis$ is **True**!
+- Pair $(4, 5)$ satisfies $4 + 5 = 9$.
+- Return **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"root": [5, 3, 6, 2, 4, null, 7], "k": 9}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Traversed Node | Value $x$ | Complement $k - x$ | In Visited Set? | Action | Visited Set After |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Node 5 | $5$ | $4$ | No | Insert 5 | $\{5\}$ |
+| Node 3 | $3$ | $6$ | No | Insert 3 | $\{3, 5\}$ |
+| Node 2 | $2$ | $7$ | No | Insert 2 | $\{2, 3, 5\}$ |
+| **Node 4** | **$4$** | **$5$** | **Yes** | **Match Found** | Terminated |
+| **Result** | — | — | — | — | **`true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Node Tree ($root = [1], k = 2$):** $2 - 1 = 1$, but 1 not in set $\implies$ returns `false` (cannot reuse same node).
+- **Target Not Reachable:** Traverses all nodes, returns `false`.
+- **Negative Values ($[-2, -1, 3], k = 1$):** $-2 + 3 = 1 \implies$ returns `true`.
+- **Large BST ($10^4$ nodes):** Set lookups execute in $O(1)$ amortized time.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Inorder list plus two pointers:** Inorder traversal of a BST produces sorted values. Two pointers can then find a target sum in `O(N)` time and `O(N)` list space. It uses the BST property explicitly but still stores all values.
-- **Two BST iterators:** One ascending and one descending iterator can imitate two pointers with `O(H)` space, but carefully ensuring the iterators refer to distinct nodes makes the implementation more complex.
-- **Search the BST for each node's complement:** Searching from the root for every node takes `O(NH)` time, which becomes `O(N^2)` in a skewed tree.
+- **Adding Node to Set Before Complement Check:** Writing `vis.add(root.val)` before `if k - root.val in vis` causes a node with value $3$ to falsely match itself when $k = 6$. Check complement first!
+- **Searching the BST for Every Node ($O(N \log N)$):** Searching the BST for $k - x$ for each node takes $O(N \log N)$ (or $O(N^2)$ for unbalanced trees). A hash set or sorted two-pointer pass runs in strictly linear $O(N)$ time.
+- **Tree Modification:** Modifying node pointers is unnecessary and destroys tree structure.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N` be the number of nodes and `H` the tree height.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Traversal visits each node at most once: $\mathcal{O}(N)$.
+  - Hash set membership test and insertion: $\mathcal{O}(1)$ average time.
+  - Total Time: strictly linear $\mathcal{O}(N)$. For $N = 10^4$, completes in $< 2$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space for the hash set $vis$ and recursion call stack.

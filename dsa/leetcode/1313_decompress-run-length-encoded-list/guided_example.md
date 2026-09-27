@@ -1,135 +1,139 @@
 # Guided Example: Decompress Run-Length Encoded List
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the pairwise run-length expansion algorithm on a representative compressed array instance:
 
-- **Input:** `{"nums": [1, 2, 3, 4]}`
-- **Required output:** `[2, 4, 4, 4]`
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Required Output:** `[2, 4, 4, 4]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates unpacking adjacent `[frequency, value]` pairs, pre-allocating or incrementally expanding output buffers, and preserving sequence order across variable-length runs.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-We are given a list `nums` of integers representing a list compressed with run-length encoding.
+We are given an even-length array `nums` of size $2k = 4$, where adjacent pairs represent run-length encoded data:
+$$
+\text{Pair } i = [\text{freq}_i, \; \text{val}_i] = [\text{nums}[2i], \; \text{nums}[2i + 1]] \quad (0 \le i < k)
+$$
+Each pair instructs us to generate exactly $\text{freq}_i$ copies of the integer $\text{val}_i$.
 
-The objective is to compute `[2, 4, 4, 4]` from `{"nums": [1, 2, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [1, 2, 3, 4]`:
+- Pair $0$ ($i = 0$): $\text{freq}_0 = 1$, $\text{val}_0 = 2 \implies$ emit one copy of $2$: `[2]`.
+- Pair $1$ ($i = 1$): $\text{freq}_1 = 3$, $\text{val}_1 = 4 \implies$ emit three copies of $4$: `[4, 4, 4]`.
+- Concatenated result: `[2, 4, 4, 4]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Index:         0      1      2      3
+Input:        [1]    [2]    [3]    [4]
+              ---    ---    ---    ---
+Meaning:     freq0  val0   freq1  val1
+
+Unpacking:
+  Pair 0: freq = 1, val = 2  -->  [ 2 ]
+  Pair 1: freq = 3, val = 4  -->  [ 4, 4, 4 ]
+
+Assembled Array: [ 2, 4, 4, 4 ]
+Total Elements Produced: 1 + 3 = 4
+```
+
+Because the array is already cleanly structured into consecutive pairs, decompression requires no complex grammar parsing. A single linear sweep through pair boundaries reconstructs the uncompressed array in optimal linear time proportional to the output length.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $N = \text{len}(\text{nums})$. Because $N$ is guaranteed to be even, there are exactly $k = N / 2$ pairs.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Mathematical Definition of Decompression
+The decompressed sequence $A$ is the ordered concatenation:
+$$
+A = \bigoplus_{i=0}^{k-1} \underbrace{[\text{val}_i, \; \text{val}_i, \; \dots, \; \text{val}_i]}_{\text{freq}_i \text{ times}}
+$$
+where $\text{val}_i = \text{nums}[2i + 1]$ and $\text{freq}_i = \text{nums}[2i]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The total length $M$ of the decompressed sequence is:
+$$
+M = \sum_{i=0}^{k-1} \text{freq}_i = \sum_{i=0}^{k-1} \text{nums}[2i]
+$$
+
+| Pair Index $i$ | Frequency Location ($2i$) | Value Location ($2i+1$) | Emitted Run | Cumulative Size |
+|---|---|---|---|---|
+| $0$ | $\text{nums}[0] = 1$ | $\text{nums}[1] = 2$ | `[2]` | $1$ |
+| $1$ | $\text{nums}[2] = 3$ | $\text{nums}[3] = 4$ | `[4, 4, 4]` | $1 + 3 = 4$ |
+
+> **Sequential Reconstruction Invariant.** After processing pair $i$, the prefix $A[0..\sum_{j=0}^i \text{freq}_j - 1]$ contains the exact sequence corresponding to all compressed runs up to index $i$, strictly preserving run boundaries and original sequence order.
+
+```mermaid
+flowchart LR
+    accTitle: Run-Length Expansion Pipeline
+    accDescr: Stepping across pairs in steps of two and appending frequency repetitions of value to the output list.
+    START["Input nums: [1, 2, 3, 4]"] --> P0["Pair 0: freq = 1, val = 2"]
+    P0 --> EXT0["Append 1 copy of 2 -> [2]"]
+    EXT0 --> P1["Pair 1: freq = 3, val = 4"]
+    P1 --> EXT1["Append 3 copies of 4 -> [2, 4, 4, 4]"]
+    EXT1 --> DONE["Return Decompressed Array"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Stepping through pair starts
+We trace `nums = [1, 2, 3, 4]` with $N = 4$ and $k = 2$:
 
-`range(0, len(nums), 2)` produces indices
+### Step 1: Initialize Accumulator
+- Initialize empty output sequence: $A = []$.
 
-$$
-0,2,4,\ldots,\texttt{len(nums)}-2.
-$$
+### Step 2: Process Pair $0$ (Index $2i = 0$)
+- Read frequency: $\text{freq}_0 = \text{nums}[0] = 1$.
+- Read value: $\text{val}_0 = \text{nums}[1] = 2$.
+- Expansion loop:
+  - Repetition $1$ of $1$: append $2$.
+- Intermediate array state: $A = [2]$.
+- Length of $A$: $1$.
 
-The length is guaranteed even, so every produced `i` is a frequency position and `i + 1` is a valid value position. No incomplete final pair exists.
+### Step 3: Process Pair $1$ (Index $2i = 2$)
+- Read frequency: $\text{freq}_1 = \text{nums}[2] = 3$.
+- Read value: $\text{val}_1 = \text{nums}[3] = 4$.
+- Expansion loop:
+  - Repetition $1$ of $3$: append $4$. Array becomes `[2, 4]`.
+  - Repetition $2$ of $3$: append $4$. Array becomes `[2, 4, 4]`.
+  - Repetition $3$ of $3$: append $4$. Array becomes `[2, 4, 4, 4]`.
+- Intermediate array state: $A = [2, 4, 4, 4]$.
+- Length of $A$: $4$.
 
-At pair start `i`:
-
-- `nums[i]` is the frequency, and
-- `nums[i + 1]` is the value.
-
-Advancing by two preserves the pair boundaries. Advancing by one would mistakenly interpret a value as the next frequency.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Repeating one value
-
-For a fixed `i`, `range(nums[i])` has exactly `nums[i]` iterations. The variable name `_` signals that the particular repetition number is irrelevant. Only the number of iterations matters.
-
-On each of those iterations, the expression `nums[i + 1]` is evaluated and appended to the new result list. Consequently, that value appears exactly its requested number of times.
-
-The inner repetition completes before the outer loop advances to the next pair. This is the same order as:
-
-`for i in pair starts`, then `for each repetition`, then `append the pair's value`.
-
-It therefore concatenates runs rather than interleaving them.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Tracing the first example
-
-For `nums = [1,2,3,4]`, the outer index first equals zero. The frequency is one and the value is two, so the inner loop emits one `2`.
-
-The next outer index is two. The frequency is three and the value is four, so the inner loop emits `4` three times.
-
-Because the first run finishes before the second starts, the final list is `[2,4,4,4]`.
-
-For `[1,1,2,3]`, pair zero emits one `1` and pair one emits two `3` values, producing `[1,3,3]`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 4, 4, 4]` |
+### Step 4: Termination
+- Index $2i = 4 \ge N$; all pairs have been exhausted.
+- Return final decompressed array: `[2, 4, 4, 4]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 4, 4, 4]` | Verified |
+| Pass | Pointer Index | Raw Tuple | Extracted $(\text{freq}, \text{val})$ | Generated Segment | Output State After Step |
+|---|---|---|---|---|---|
+| Init | - | - | - | - | `[]` |
+| 1 | $0$ | $(\text{nums}[0], \text{nums}[1])$ | $(1, 2)$ | `[2]` | `[2]` |
+| 2 | $2$ | $(\text{nums}[2], \text{nums}[3])$ | $(3, 4)$ | `[4, 4, 4]` | `[2, 4, 4, 4]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Each pair $[\text{nums}[2i], \text{nums}[2i+1]]$ uniquely specifies that $\text{val}_i$ appeared $\text{freq}_i$ times contiguously in the original uncompressed sequence. Emitting $\text{freq}_i$ copies of $\text{val}_i$ directly reverses the run-length compression transform.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Stepping through even offsets $0, 2, \dots, N-2$ covers all elements of the input array without overlap or omission. The total count of generated elements matches $\sum \text{nums}[2i]$ exactly.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit nested loops:** Initialize `ans`, iterate pair starts, and append in an inner loop. It has identical behavior and complexity and may be easier to debug for beginners.
-- **List multiplication and extension:** `ans.extend([value] * frequency)` handles one run compactly. It creates a temporary list for each pair in addition to the final output.
-- **Iterator repetition utilities:** Functions such as `repeat` and `chain` can express runs lazily, but returning a list still requires materializing all $S$ entries.
-- **Single pair:** The outer range contains only index zero, and the output is that value repeated by its frequency.
-- **Frequency one:** The inner range has one iteration, so the value appears once.
-- **Repeated values in adjacent pairs:** Their runs become adjacent identical values in the output. They need not be merged because the returned decompression is the same either way.
-- **Even-length guarantee:** It ensures `nums[i + 1]` is always valid. Malformed odd-length input would need validation.
-- **Positive-frequency guarantee:** Every run contributes at least one value; the code would also naturally skip a zero-frequency run outside the contract.
-- **Output can exceed input:** Space and time must be measured using $S$, not only the compressed length $n$.
-- **Order of comprehension clauses:** Swapping them would not preserve independent pair-specific repetition and would either be invalid or emit a different order.
-- **Underscore variable:** `_` is an ordinary loop variable by language rules, but convention indicates its value is intentionally unused.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inverting frequency and value:** Swapping the roles (e.g. treating `nums[0]` as value and `nums[1]` as frequency) yields `[1, 1, 3, 3, 3, 3]`, which produces incorrect values and wrong array dimensions. The problem contract strictly defines `[freq, val]`.
+- **Zero frequency edge cases:** The problem constraints guarantee $\text{freq}_i \ge 1$. If a frequency were $0$, the repetition loop would execute $0$ times, correctly emitting no elements for that pair without error.
+- **Buffer reallocation overhead:** Repeated dynamic resizing can lead to repeated memory reallocations. In performance-critical environments, precomputing the sum of frequencies $M = \sum \text{nums}[2i]$ allows pre-allocating the output array in a single operation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+S)$. Let $n$ be the compressed list length and define
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N + M)$, where $N$ is the length of `nums` and $M = \sum \text{freq}_i$ is the total number of elements in the decompressed array. The algorithm reads all $N$ elements and writes each of the $M$ output elements once.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond the memory required to store the decompressed result array.

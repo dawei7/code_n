@@ -1,111 +1,185 @@
 # Guided Example: Calculate Salaries
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step company-level maximum salary aggregation, tax rate classification, and individual salary rounding on a representative database instance:
 
-- **Input:** `{"tables": {"Salaries": [{"company_id": 1, "employee_id": 1, "employee_name": "Tony", "salary": 2000}, {"company_id": 1, "employee_id": 2, "employee_name": "Pronub", "salary": 21300}, {"company_id": 1, "employee_id": 3, "employee_name": "Tyrrox", "salary": 10800}, {"company_id": 2, "employee_id": 1, "employee_name": "Pam", "salary": 300}, {"company_id": 2, "employee_id": 7, "employee_name": "Bassem", "salary": 450}, {"company_id": 2, "employee_id": 9, "employee_name": "Hermione", "salary": 700}, {"company_id": 3, "employee_id": 7, "employee_name": "Bocaben", "salary": 100}, {"company_id": 3, "employee_id": 2, "employee_name": "Ognjen", "salary": 2200}, {"company_id": 3, "employee_id": 13, "employee_name": "Nyancat", "salary": 3300}, {"company_id": 3, "employee_id": 15, "employee_name": "Morninngcat", "salary": 7777}]}}`
-- **Required output:** `{"columns": ["company_id", "employee_id", "employee_name", "salary"], "rows": [[1, 1, "Tony", 1020], [1, 2, "Pronub", 10863], [1, 3, "Tyrrox", 5508], [2, 1, "Pam", 300], [2, 7, "Bassem", 450], [2, 9, "Hermione", 700], [3, 7, "Bocaben", 76], [3, 2, "Ognjen", 1672], [3, 13, "Nyancat", 2508], [3, 15, "Morninngcat", 5911]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** Relation $Salaries$ spanning three companies ($id \in \{1, 2, 3\}$) with diverse employee compensation figures.
+- **Required Output:** Relation with columns $(company\_id, employee\_id, employee\_name, salary)$ reporting post-tax rounded salaries.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table `Salaries`:
+We are given an employee salary relation $Salaries(company\_id, employee\_id, employee\_name, salary)$. The tax rate applied to each employee depends exclusively on the **maximum salary** across all employees within their respective company:
+- $0\%$ tax if the company maximum salary is strictly less than $\$1000$.
+- $24\%$ tax if the company maximum salary is in the range $[\$1000, \$10000]$ inclusive.
+- $49\%$ tax if the company maximum salary strictly exceeds $\$10000$.
 
-The objective is to compute `{"columns": ["company_id", "employee_id", "employee_name", "salary"], "rows": [[1, 1, "Tony", 1020], [1, 2, "Pronub", 10863], [1, 3, "Tyrrox", 5508], [2, 1, "Pam", 300], [2, 7, "Bassem", 450], [2, 9, "Hermione", 700], [3, 7, "Bocaben", 76], [3, 2, "Ognjen", 1672], [3, 13, "Nyancat", 2508], [3, 15, "Morninngcat", 5911]]}` from `{"tables": {"Salaries": [{"company_id": 1, "employee_id": 1, "employee_name": "Tony", "salary": 2000}, {"company_id": 1, "employee_id": 2, "employee_name": "Pronub", "salary": 21300}, {"company_id": 1, "employee_id": 3, "employee_name": "Tyrrox", "salary": 10800}, {"company_id": 2, "employee_id": 1, "employee_name": "Pam", "salary": 300}, {"company_id": 2, "employee_id": 7, "employee_name": "Bassem", "salary": 450}, {"company_id": 2, "employee_id": 9, "employee_name": "Hermione", "salary": 700}, {"company_id": 3, "employee_id": 7, "employee_name": "Bocaben", "salary": 100}, {"company_id": 3, "employee_id": 2, "employee_name": "Ognjen", "salary": 2200}, {"company_id": 3, "employee_id": 13, "employee_name": "Nyancat", "salary": 3300}, {"company_id": 3, "employee_id": 15, "employee_name": "Morninngcat", "salary": 7777}]}}` while avoiding redundant calculations and unnecessary overhead.
+The post-tax salary for each employee is calculated as:
+$$\text{salary}_{\text{after}} = \text{round}(\text{salary} \times (1 - \text{tax\_rate}))$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In the provided instance:
+- **Company 1:** Salaries are $\{2000, 21300, 10800\}$.
+  - Company maximum: $21300 > 10000 \implies 49\%$ tax rate (multiplier $0.51$).
+  - Tony ($2000$): $\text{round}(2000 \times 0.51) = 1020$.
+  - Pronub ($21300$): $\text{round}(21300 \times 0.51) = 10863$.
+  - Tyrrox ($10800$): $\text{round}(10800 \times 0.51) = 5508$.
+- **Company 2:** Salaries are $\{300, 450, 700\}$.
+  - Company maximum: $700 < 1000 \implies 0\%$ tax rate (multiplier $1.00$).
+  - Salaries remain unchanged: $300, 450, 700$.
+- **Company 3:** Salaries are $\{100, 2200, 3300, 7777\}$.
+  - Company maximum: $7777 \in [1000, 10000] \implies 24\%$ tax rate (multiplier $0.76$).
+  - Bocaben ($100$): $\text{round}(100 \times 0.76) = 76$.
+  - Ognjen ($2200$): $\text{round}(2200 \times 0.76) = 1672$.
+  - Nyancat ($3300$): $\text{round}(3300 \times 0.76) = 2508$.
+  - Morninngcat ($7777$): $\text{round}(7777 \times 0.76) = \text{round}(5910.52) = 5911$.
+
+The primary teaching goal is to model partitioned aggregation in relational algebra: first computing company-level maximums $\gamma_{company\_id, \max(salary)}$, joining this aggregated metric back to the base employee records, and mapping tax rates via piecewise linear scalar transformations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S$ denote the $Salaries$ relation. We group by $company\_id$ to determine the maximum salary per company:
 
-| State Parameter | Role & Purpose | Initial State |
+$$M = \gamma_{company\_id, \, \max(salary) \to max\_sal}(S)$$
+
+We define the tax retention function $\rho(m)$:
+
+$$\rho(m) = \begin{cases} 1.00 & \text{if } m < 1000 \\ 0.76 & \text{if } 1000 \le m \le 10000 \\ 0.51 & \text{if } m > 10000 \end{cases}$$
+
+Joining $S$ with $M$ on $company\_id$ equips each employee row with their company's retention factor:
+
+$$J = S \bowtie_{S.company\_id = M.company\_id} M$$
+
+The final relation $R$ projects the transformed salary rounded to the nearest integer:
+
+$$R = \Pi_{company\_id, \, employee\_id, \, employee\_name, \, \text{round}(salary \cdot \rho(max\_sal)) \to salary}(J)$$
+
+```
+Relational Join and Calculation Pipeline:
+Salaries (S) ------------------------+
+  |                                  |
+  v [Group by company_id]            |
+Company Maxima (M):                  |
+  Company 1 -> Max = 21300 (Tax 49%) |
+  Company 2 -> Max = 700   (Tax 0%)  |
+  Company 3 -> Max = 7777  (Tax 24%) |
+  |                                  |
+  +----------> Inner Join <----------+
+                     |
+                     v
+Post-Tax Rounded Projection:
+  salary_after = round(salary * (1 - tax_rate))
+```
+
+We establish tracking parameters across the relational pipeline:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Company Key ($company\_id$) | Integer | Grouping anchor for tax bracket determination |
+| Employee Salary ($salary$) | Integer $\ge 0$ | Original pre-tax compensation |
+| Company Maximum ($max\_sal$) | Integer $\ge 0$ | Benchmark value setting company-wide tax bracket |
+| Retention Multiplier | Decimal $\{1.00, 0.76, 0.51\}$ | $1 - \text{tax\_rate}$ applied to original salary |
+| Final Salary | Integer $\ge 0$ | Rounded after-tax amount emitted |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** All employees belonging to the same company share an identical tax retention multiplier determined solely by the maximum salary within that company.
+
+```mermaid
+flowchart TD
+    accTitle: Company Tax Calculation Pipeline
+    accDescr: Computes max salary per company, maps max salary to tax retention factor, joins back with employees, and calculates rounded after-tax salaries.
+    A["Salaries Table S"] --> B["Compute company maximums:<br/>M = group by company_id, MAX(salary)"]
+    B --> C["Map max_sal to retention factor:<br/>m < 1000 -> 1.00<br/>1000 <= m <= 10000 -> 0.76<br/>m > 10000 -> 0.51"]
+    C --> D["Join S with M on S.company_id = M.company_id"]
+    D --> E["Calculate post_tax = round(salary * retention_factor)"]
+    E --> F["Project (company_id, employee_id, employee_name, post_tax as salary)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance covering all 3 distinct tax tiers.
 
-**Determine one tax bracket per company.** The tax rate is not based on an individual employee's salary. It is based on the maximum salary anywhere in that employee's company. The query therefore begins by calculating one summary row per `company_id`.
+### Step 1: Compute Company Salary Maxima
+- **Company 1:** Max across $\{2000, 21300, 10800\}$ is $21300$.
+- **Company 2:** Max across $\{300, 450, 700\}$ is $700$.
+- **Company 3:** Max across $\{100, 2200, 3300, 7777\}$ is $7777$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Salaries": [{"company_id": 1, "employee_id": 1, "employee_name": "Tony", "salary": 2000}, {"company_id": 1, "employee_id": 2, "employee_name": "Pronub", "salary": 21300}, {"company_id": 1, "employee_id": 3, "employee_name": "Tyrrox", "salary": 10800}, {"company_id": 2, "employee_id": 1, "employee_name": "Pam", "salary": 300}, {"company_id": 2, "employee_id": 7, "employee_name": "Bassem", "salary": 450}, {"company_id": 2, "employee_id": 9, "employee_name": "Hermione", "salary": 700}, {"company_id": 3, "employee_id": 7, "employee_name": "Bocaben", "salary": 100}, {"company_id": 3, "employee_id": 2, "employee_name": "Ognjen", "salary": 2200}, {"company_id": 3, "employee_id": 13, "employee_name": "Nyancat", "salary": 3300}, {"company_id": 3, "employee_id": 15, "employee_name": "Morninngcat", "salary": 7777}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Bracket Classification
+- Company 1: $21300 > 10000 \implies$ Tier 3: Tax $49\%$, retention $0.51$.
+- Company 2: $700 < 1000 \implies$ Tier 1: Tax $0\%$, retention $1.00$.
+- Company 3: $7777 \in [1000, 10000] \implies$ Tier 2: Tax $24\%$, retention $0.76$.
 
----
+### Step 3: Apply Multipliers and Rounding
 
-### Step 2: Core Step 2
-
-The derived table `t` groups `Salaries` by company and computes `MAX(salary) AS top`. If a company has many employees, `top` retains only its highest original salary. The primary key guarantees unique employee rows but is not needed for the maximum itself.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-**Attach the company maximum back to every employee.** The outer table alias `s` still contains one row per employee. Joining `s.company_id = t.company_id` gives each employee the `top` value for their own company.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["company_id", "employee_id", "employee_name", "salary"], "rows": [[1, 1, "Tony", 1020], [1, 2, "Pronub", 10863], [1, 3, "Tyrrox", 5508], [2, 1, "Pam", 300], [2, 7, "Bassem", 450], [2, 9, "Hermione", 700], [3, 7, "Bocaben", 76], [3, 2, "Ognjen", 1672], [3, 13, "Nyancat", 2508], [3, 15, "Morninngcat", 5911]]}` |
+| Company | Employee Name | Original Salary | Company Max | Bracket & Retention | Exact After-Tax Product | Rounded Salary |
+|---|---|---|---|---|---|---|
+| 1 | Tony | 2000 | 21300 | Tier 3 ($0.51$) | $2000 \times 0.51 = 1020.00$ | 1020 |
+| 1 | Pronub | 21300 | 21300 | Tier 3 ($0.51$) | $21300 \times 0.51 = 10863.00$ | 10863 |
+| 1 | Tyrrox | 10800 | 21300 | Tier 3 ($0.51$) | $10800 \times 0.51 = 5508.00$ | 5508 |
+| 2 | Pam | 300 | 700 | Tier 1 ($1.00$) | $300 \times 1.00 = 300.00$ | 300 |
+| 2 | Bassem | 450 | 700 | Tier 1 ($1.00$) | $450 \times 1.00 = 450.00$ | 450 |
+| 2 | Hermione | 700 | 700 | Tier 1 ($1.00$) | $700 \times 1.00 = 700.00$ | 700 |
+| 3 | Bocaben | 100 | 7777 | Tier 2 ($0.76$) | $100 \times 0.76 = 76.00$ | 76 |
+| 3 | Ognjen | 2200 | 7777 | Tier 2 ($0.76$) | $2200 \times 0.76 = 1672.00$ | 1672 |
+| 3 | Nyancat | 3300 | 7777 | Tier 2 ($0.76$) | $3300 \times 0.76 = 2508.00$ | 2508 |
+| 3 | Morninngcat | 7777 | 7777 | Tier 2 ($0.76$) | $7777 \times 0.76 = 5910.52$ | **5911** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Salaries": [{"company_id": 1, "employee_id": 1, "employee_name": "Tony", "salary": 2000}, {"company_id": 1, "employee_id": 2, "employee_name": "Pronub", "salary": 21300}, {"company_id": 1, "employee_id": 3, "employee_name": "Tyrrox", "salary": 10800}, {"company_id": 2, "employee_id": 1, "employee_name": "Pam", "salary": 300}, {"company_id": 2, "employee_id": 7, "employee_name": "Bassem", "salary": 450}, {"company_id": 2, "employee_id": 9, "employee_name": "Hermione", "salary": 700}, {"company_id": 3, "employee_id": 7, "employee_name": "Bocaben", "salary": 100}, {"company_id": 3, "employee_id": 2, "employee_name": "Ognjen", "salary": 2200}, {"company_id": 3, "employee_id": 13, "employee_name": "Nyancat", "salary": 3300}, {"company_id": 3, "employee_id": 15, "employee_name": "Morninngcat", "salary": 7777}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["company_id", "employee_id", "employee_name", "salary"], "rows": [[1, 1, "Tony", 1020], [1, 2, "Pronub", 10863], [1, 3, "Tyrrox", 5508], [2, 1, "Pam", 300], [2, 7, "Bassem", 450], [2, 9, "Hermione", 700], [3, 7, "Bocaben", 76], [3, 2, "Ognjen", 1672], [3, 13, "Nyancat", 2508], [3, 15, "Morninngcat", 5911]]}` | Verified |
+```
+Final Emitted Employee Salary Roster:
++------------+-------------+---------------+--------+
+| company_id | employee_id | employee_name | salary |
++------------+-------------+---------------+--------+
+| 1          | 1           | Tony          | 1020   |
+| 1          | 2           | Pronub        | 10863  |
+| 1          | 3           | Tyrrox        | 5508   |
+| 2          | 1           | Pam           | 300    |
+| 2          | 7           | Bassem        | 450    |
+| 2          | 9           | Hermione      | 700    |
+| 3          | 7           | Bocaben       | 76     |
+| 3          | 2           | Ognjen        | 1672   |
+| 3          | 13          | Nyancat       | 2508   |
+| 3          | 15          | Morninngcat   | 5911   |
++------------+-------------+---------------+--------+
+```
+
+| Company ID | Employee ID | Name | Pre-Tax Salary | Tax Rate Applied | Net Emitted Record |
+|---|---|---|---|---|---|
+| 1 | 1 | Tony | 2000 | 49% | $(1, 1, \text{"Tony"}, 1020)$ |
+| 1 | 2 | Pronub | 21300 | 49% | $(1, 2, \text{"Pronub"}, 10863)$ |
+| 1 | 3 | Tyrrox | 10800 | 49% | $(1, 3, \text{"Tyrrox"}, 5508)$ |
+| 2 | 1 | Pam | 300 | 0% | $(2, 1, \text{"Pam"}, 300)$ |
+| 2 | 7 | Bassem | 450 | 0% | $(2, 7, \text{"Bassem"}, 450)$ |
+| 2 | 9 | Hermione | 700 | 0% | $(2, 9, \text{"Hermione"}, 700)$ |
+| 3 | 7 | Bocaben | 100 | 24% | $(3, 7, \text{"Bocaben"}, 76)$ |
+| 3 | 2 | Ognjen | 2200 | 24% | $(3, 2, \text{"Ognjen"}, 1672)$ |
+| 3 | 13 | Nyancat | 3300 | 24% | $(3, 13, \text{"Nyancat"}, 2508)$ |
+| 3 | 15 | Morninngcat | 7777 | 24% | $(3, 15, \text{"Morninngcat"}, 5911)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Grouping $Salaries$ by $company\_id$ correctly determines the true company-wide maximum salary. Evaluating the bracket thresholds against this company maximum guarantees that every employee is taxed according to the official criteria. Standard integer rounding ($\text{round}(x)$) resolves fractional cents accurately.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Joining the company summary relation back to $Salaries$ preserves every employee record without omissions or additions. The schema preserves all original metadata ($company\_id, employee\_id, employee\_name$).
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Window-function maximum:** `MAX(salary) OVER (PARTITION BY company_id)` can attach the company maximum without an explicit derived-table join. It expresses the same logic compactly where supported.
-- **Correlated subquery:** Compute the maximum separately for each employee row. It is readable but may repeat work unless the optimizer decorrelates it.
-- **Tax each employee independently:** This is incorrect because the company's highest salary determines the rate for every employee.
-- **Maximum below 1000:** Salaries remain unchanged before rounding.
-- **Maximum exactly 1000:** The inclusive middle bracket applies, producing a twenty-four-percent tax.
-- **Maximum exactly 10000:** It also remains in the middle bracket.
-- **Maximum above 10000:** The fifty-one-percent retained factor applies company-wide.
-- **One-employee company:** That employee's own salary is also the company maximum, and the normal logic works.
-- **Several employees share the maximum:** `MAX` still returns one scalar summary and the join returns each employee once.
-- **Fractional retained salary:** `ROUND` is applied after multiplication to produce the nearest integer.
-- **Any-order output:** Omitting `ORDER BY` is correct.
-- **Output alias:** `AS salary` gives the calculated value the same required column name as the original.
-- **Decimal arithmetic:** The decimal literals `0.76` and `0.51` express retained percentages directly; database numeric rules determine intermediate precision before rounding.
-- **Empty table:** The derived table and final result are both empty, with no invented employees.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Taxing Based on Individual Salary:** Computing tax brackets using each employee's individual salary rather than the company maximum. In Company 1, Tony earns $\$2000$. An individual assessment would place Tony in the $24\%$ bracket ($2000 \in [1000, 10000]$), but because someone in Company 1 earns $\$21300$, all employees in Company 1 are taxed at $49\%$.
+- **Boundary Inclusion:** The $24\%$ bracket spans $[1000, 10000]$ inclusive. Boundary values $\$1000$ and $\$10000$ must fall into the $24\%$ tier, not $0\%$ or $49\%$.
+- **Rounding Strategy:** Truncating or flooring fractional results (e.g. $5910$ instead of $5911$ for Morninngcat) violates the requirement to round to the nearest integer.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let `E` be the number of employee rows and `C` the number of distinct companies. A conventional hash aggregation scans `E` rows and stores one maximum per company, taking expected `O(E)` time and `O(C)` space.
-- **Auxiliary Space Complexity:** $O(C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(E + C)$, where $E$ is the number of employee rows in $Salaries$ and $C$ is the number of distinct companies ($C \le E$). Aggregating maximums by company takes linear time $\mathcal{O}(E)$. Joining back and computing rounded salaries takes $\mathcal{O}(E)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(C)$ to store the company-level maximum salary table.

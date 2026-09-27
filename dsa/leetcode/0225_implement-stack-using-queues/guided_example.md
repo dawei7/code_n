@@ -1,139 +1,190 @@
 # Guided Example: Implement Stack using Queues
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step FIFO-to-LIFO order inversion, single-queue rotational reorganization, and dual-queue buffer swapping on representative stack operations:
 
-- **Input:** `{"operations": [["push", 1], ["push", 2], ["top"], ["pop"], ["empty"]]}`
-- **Required output:** `[2, 2, false]`
+- **Sequential Operations:**
+  1. `MyStack()` (Initialize queue)
+  2. `push(1)` ($q = [1]$)
+  3. `push(2)` (Enqueues 2, then rotates 1 to back $\implies q = [2, 1]$)
+  4. `top()` $\implies \mathbf{2}$ (Inspects front of queue)
+  5. `pop()` $\implies \mathbf{2}$ (Dequeues front; remaining $q = [1]$)
+  6. `empty()` $\implies \mathbf{false}$ ($q$ contains 1)
+- **Empty State After Drain:** `pop()` returns $1 \implies \text{empty}()$ returns `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates implementing Last-In-First-Out (LIFO) semantics strictly through First-In-First-Out (FIFO) queue primitives (push-to-back, pop-from-front, size, and is-empty), details the elegant single-queue rotation pattern ($N - 1$ steps), and achieves $O(1)$ pop and top with $O(N)$ push.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (`push`, `top`, `pop`, and `empty`).
+We trace the operational lifecycle of `MyStack`:
+```text
+MyStack myStack = new MyStack();
+myStack.push(1);
+myStack.push(2);
+myStack.top();   // return 2
+myStack.pop();   // return 2
+myStack.empty(); // return False
+```
 
-The objective is to compute `[2, 2, false]` from `{"operations": [["push", 1], ["push", 2], ["top"], ["pop"], ["empty"]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Inversion Challenge: FIFO vs LIFO
+- A **Queue** operates on FIFO (First-In, First-Out): elements leave in the exact order they entered.
+- A **Stack** operates on LIFO (Last-In, First-Out): the most recently inserted element must leave first.
+To make a queue behave like a stack, either `push` or `pop` must reverse the element ordering.
+Making `push` reorder the queue so that the **newest element always sits at the front** guarantees that:
+- `pop()` is simply a standard queue dequeue (`popleft()`) in $O(1)$ time.
+- `top()` is simply a queue front inspection in $O(1)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Single-Queue Rotation (Optimal Follow-Up)
+Maintain a single FIFO queue $Q$:
+- **`push(x)` Protocol:**
+  1. Enqueue $x$ to the back of $Q$:
+     $$
+     Q.\text{append}(x)
+     $$
+  2. Let $N$ be the size of $Q$ after adding $x$.
+  3. Rotate the preceding $N - 1$ elements by popping from the front and appending to the back:
+     $$
+     \text{for } i = 1 \dots N - 1: \quad Q.\text{append}(Q.\text{popleft}())
+     $$
+  Now $x$ is at the front of $Q$, and all older elements are queued behind it in strict reverse-arrival order.
+- **`pop()`:**
+  $$
+  \text{return } Q.\text{popleft}()
+  $$
+- **`top()`:**
+  $$
+  \text{return } Q[0]
+  $$
+- **`empty()`:**
+  $$
+  \text{return } (\text{len}(Q) == 0)
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Method B: Dual-Queue Swapping (`q1`, `q2`)
+1. Enqueue $x$ into empty helper queue `q2`.
+2. Move all elements from `q1` to `q2` one by one.
+3. Swap reference identities: $\text{q1}, \text{q2} = \text{q2}, \text{q1}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start and end of every public operation, the queue's front element is strictly identical to the top element of the logical LIFO stack.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Make the queue front behave like the stack top
+We trace the single-queue rotation across the operation sequence:
 
-A stack removes the most recently pushed element, while a queue removes the
-earliest enqueued element. The exact solution reconciles these opposite orders
-by doing the reordering during `push`. Between public operations, queue `q1`
-stores every stack element from logical top to logical bottom, in front-to-back
-queue order. Queue `q2` is empty and serves as temporary storage for the next
-push.
-
-For a logical stack whose top-to-bottom order is `[c, b, a]`, `q1` has front
-`c`, followed by `b`, then `a`. With that representation, both `pop` and `top`
-can use the queue's front directly in constant time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["push", 1], ["push", 2], ["top"], ["pop"], ["empty"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Operation 1: `MyStack()`
+- Initialize $Q = []$.
 
 ---
 
-### Step 2: Push the new value before all older values
-
-Suppose `q1` already contains the existing stack in top-to-bottom order. A new
-value `x` must become the new top, so the desired new queue order is `x`
-followed by all of `q1`'s old contents.
-
-`push` first appends `x` to the back of the empty `q2`. Because it is currently
-the only element, it is also at `q2`'s front. The method then repeatedly removes
-the front of `q1` with `popleft()` and appends that value to the back of `q2`.
-The old elements leave `q1` in their existing top-to-bottom order, so appending
-them preserves that relative order behind `x`.
-
-After the transfer, `q2` has exactly the desired sequence and `q1` is empty.
-The simultaneous assignment `q1, q2 = q2, q1` swaps the
-deque objects. The newly ordered deque becomes the permanent `q1`, and the
-emptied old deque becomes scratch `q2` for the next call. Swapping references
-avoids copying elements back a second time.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Operation 2: `push(1)`
+1. Enqueue $1$: $Q = [1]$.
+2. Elements to rotate: $N - 1 = 1 - 1 = 0$.
+3. Queue state: $Q = [1]$ (Front is $1$).
 
 ---
 
-### Step 3: Trace several pushes
+### Operation 3: `push(2)`
+1. Enqueue $2$ to back:
+   $$
+   Q = [1, 2] \quad (\text{Size } N = 2)
+   $$
+2. Rotate $N - 1 = 1$ element:
+   - Pop front element $1$: $Q.\text{popleft}() \to 1$.
+   - Append $1$ to back: $Q.\text{append}(1)$.
+3. Queue state after rotation:
+   $$
+   Q = [2, 1] \quad (\text{Front is } \mathbf{2})
+   $$
+   The newest element $2$ is now at the queue front!
 
-Initially both queues are empty. Pushing 1 appends it to `q2`; there is nothing
-to transfer, and the swap leaves `q1 = [1]` and `q2 = []`.
+---
 
-Pushing 2 starts with `q2 = [2]`. Moving the one old element appends 1, giving
-`q2 = [2, 1]`. After the swap, the front of `q1` is 2, which is the correct
-stack top.
+### Operation 4: `top()`
+- Peek at front of $Q$:
+  $$
+  Q[0] = \mathbf{2}
+  $$
+- Return $2$. Queue unchanged: $Q = [2, 1]$.
 
-Pushing 3 starts with `q2 = [3]` and transfers 2 followed by 1. The resulting
-`q1 = [3, 2, 1]` directly represents last-in-first-out order. A pop removes 3,
-the next top is 2, and no further reorganization is necessary.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 2, false]` |
+### Operation 5: `pop()`
+- Remove and return front of $Q$:
+  $$
+  \text{result} = Q.\text{popleft}() = \mathbf{2}
+  $$
+- Remaining queue state: $Q = [1]$.
+
+---
+
+### Operation 6: `empty()`
+- Check size of $Q$:
+  $$
+  \text{len}(Q) = 1 \ne 0 \implies \mathbf{false}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["push", 1], ["push", 2], ["top"], ["pop"], ["empty"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 2, false]` | Verified |
+```text
+1. push(1):
+   Q: [] -> append 1 -> [1] -> rotate 0 -> Q: [1]
+
+2. push(2):
+   Q: [1] -> append 2 -> [1, 2]
+   Rotate 1 element: pop 1, append 1 -> Q: [2, 1] (Front = 2)
+
+3. top():
+   Peek front of [2, 1] -> 2
+
+4. pop():
+   Dequeue front of [2, 1] -> 2
+   Q becomes [1]
+
+5. empty():
+   len(Q) == 1 -> false
+```
+
+| Step | Operation Invoked | Argument | Queue State (Front $\to$ Back) | Rotation Steps | Returned Value |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | `MyStack` | - | `[]` | - | `null` |
+| 2 | `push` | 1 | `[1]` | 0 | `null` |
+| **3** | **`push`** | **2** | **`[2, 1]`** | **1 ($1 \to \text{back}$)** | **`null`** |
+| **4** | **`top`** | - | `[2, 1]` | 0 | **`2`** |
+| **5** | **`pop`** | - | `[1]` | 0 | **`2`** |
+| **6** | **`empty`** | - | `[1]` | 0 | **`false`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In a queue containing elements in LIFO order $[e_k, e_{k-1}, \dots, e_1]$, appending a new element $x$ yields $[e_k, e_{k-1}, \dots, e_1, x]$. Dequeuing and re-enqueuing all $k$ older elements moves $x$ to the front while preserving the exact relative order of the older elements: $[x, e_k, e_{k-1}, \dots, e_1]$. Thus, the front element is always the most recently pushed element.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** `pop` removes the front element, leaving the second most recently pushed element at the new front. All LIFO axioms are strictly satisfied.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One-queue rotation:** Append `x` to the only queue, then move each older front element to the back so `x` rotates to the front. It satisfies the follow-up, has the same $O(n)$ push and $O(1)$ pop behavior, and matches the manifest summary rather than the exact source.
-- **Cheap push, expensive pop with two queues:** Always append to the main queue in $O(1)$; for pop, transfer all but its last element to the second queue. It shifts the linear cost to removals and may be preferable when pushes greatly outnumber pops.
-- **Ordinary list as a stack:** Python could append and pop at the same end in amortized $O(1)$ time, but that would evade the requirement to implement the behavior using queue operations.
-- **First push:** With no old values to transfer, the new element becomes the front after a constant-time swap.
-- **Pop down to empty:** Removing the sole element leaves `q1` empty and `q2` already empty, so `empty()` returns true.
-- **Alternating push and pop:** Every push reorders only the current stack contents; every pop immediately removes the new front. The representation does not depend on batching operations.
-- **Repeated values:** Position determines stack order. Equal integers remain separate deque entries and are popped once per push.
-- **Maximum operation count:** At most 100 calls are made, but the complexity reasoning remains valid for larger sequences.
-- **Invalid empty access:** The reference guarantees it does not occur. A reusable production class might raise a documented exception or return a sentinel, but adding that behavior is outside this contract.
-- **Queue-operation restriction:** The implementation uses append-to-back, remove-from-front, front peek, size, and emptiness only. The reference swap exchanges queue identities and does not violate FIFO access.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Non-Queue Primitives:** In Python, calling `pop()` on a `deque` removes from the *back*, which acts as an ordinary stack and defeats the purpose of the exercise! The queue constraint requires that removals happen strictly from the *front* (`popleft()`).
+- **Expensive Pop Alternative:** An alternative implementation performs $O(1)$ push and $O(N)$ pop by transferring elements on every pop. The $O(N)$ push with $O(1)$ pop approach is generally superior when reads (`top`/`pop`) predominate.
+- **Rotation Count Off-by-One:** The loop must rotate exactly $N - 1$ elements, not $N$. Rotating $N$ times cycles the queue back to its original order with $x$ at the tail.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of elements already in the stack before an operation.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `push(x)`: $O(N)$, where $N$ is the number of elements in the stack. Exactly $N - 1$ pop-and-push queue rotations are executed.
+  - `pop()`: $O(1)$ constant time (single queue dequeue).
+  - `top()`: $O(1)$ constant time (front queue inspection).
+  - `empty()`: $O(1)$ constant time.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store elements in the queue. Only $O(1)$ extra space beyond the queue itself.

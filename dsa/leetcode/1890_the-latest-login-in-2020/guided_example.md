@@ -1,106 +1,170 @@
 # Guided Example: The Latest Login in 2020
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational temporal filtering, cohort grouping, and maximum timestamp projection on a representative table of user login events:
 
-- **Input:** `{"tables": {"Logins": [{"user_id": 6, "time_stamp": "2020-06-30 15:06:07"}, {"user_id": 6, "time_stamp": "2021-04-21 14:06:06"}, {"user_id": 6, "time_stamp": "2019-03-07 00:18:15"}, {"user_id": 8, "time_stamp": "2020-02-01 05:10:53"}, {"user_id": 8, "time_stamp": "2020-12-30 00:46:50"}, {"user_id": 2, "time_stamp": "2020-01-16 02:49:50"}, {"user_id": 2, "time_stamp": "2019-08-25 07:59:08"}, {"user_id": 14, "time_stamp": "2019-07-14 09:00:00"}, {"user_id": 14, "time_stamp": "2021-01-06 11:59:59"}]}}`
-- **Required output:** `{"columns": ["user_id", "last_stamp"], "rows": [[6, "2020-06-30 15:06:07"], [8, "2020-12-30 00:46:50"], [2, "2020-01-16 02:49:50"]]}`
+- **Input:**
+  $$\text{Logins} = \begin{array}{|c|c|}
+  \hline
+  \textbf{user\_id} & \textbf{time\_stamp} \\
+  \hline
+  6 & \text{2020-06-30 15:06:07} \\
+  6 & \text{2021-04-21 14:06:06} \\
+  6 & \text{2019-03-07 00:18:15} \\
+  8 & \text{2020-02-01 05:10:53} \\
+  8 & \text{2020-12-30 00:46:50} \\
+  2 & \text{2020-01-16 02:49:50} \\
+  2 & \text{2019-08-25 07:59:08} \\
+  14 & \text{2019-07-14 09:00:00} \\
+  14 & \text{2021-01-06 11:59:59} \\
+  \hline
+  \end{array}$$
+- **Required Output:**
+  $$\begin{array}{|c|c|}
+  \hline
+  \textbf{user\_id} & \textbf{last\_stamp} \\
+  \hline
+  6 & \text{2020-06-30 15:06:07} \\
+  8 & \text{2020-12-30 00:46:50} \\
+  2 & \text{2020-01-16 02:49:50} \\
+  \hline
+  \end{array}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates restricting login records to the calendar year 2020, partitioning remaining rows by `user_id`, aggregating timestamps with the supremum operator (`MAX`), and naturally omitting users who logged in during other years but had no active session in 2020.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Logins`
+We are given a relational table `Logins` containing `user_id` and `time_stamp`. We must find the latest login timestamp in the year 2020 for every user who logged in during 2020, omitting any user without a 2020 login.
 
-The objective is to compute `{"columns": ["user_id", "last_stamp"], "rows": [[6, "2020-06-30 15:06:07"], [8, "2020-12-30 00:46:50"], [2, "2020-01-16 02:49:50"]]}` from `{"tables": {"Logins": [{"user_id": 6, "time_stamp": "2020-06-30 15:06:07"}, {"user_id": 6, "time_stamp": "2021-04-21 14:06:06"}, {"user_id": 6, "time_stamp": "2019-03-07 00:18:15"}, {"user_id": 8, "time_stamp": "2020-02-01 05:10:53"}, {"user_id": 8, "time_stamp": "2020-12-30 00:46:50"}, {"user_id": 2, "time_stamp": "2020-01-16 02:49:50"}, {"user_id": 2, "time_stamp": "2019-08-25 07:59:08"}, {"user_id": 14, "time_stamp": "2019-07-14 09:00:00"}, {"user_id": 14, "time_stamp": "2021-01-06 11:59:59"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Examining our dataset:
+- User 6: Logins in 2019, 2020, and 2021.
+  - In 2020: `2020-06-30 15:06:07`. Latest 2020 login: `2020-06-30 15:06:07`.
+- User 8: Logins in February 2020 and December 2020.
+  - Both fall in 2020. Latest is `2020-12-30 00:46:50`.
+- User 2: Logins in 2019 and 2020.
+  - In 2020: `2020-01-16 02:49:50`. Latest 2020 login: `2020-01-16 02:49:50`.
+- User 14: Logins in 2019 and 2021.
+  - No records fall within 2020. User 14 must be completely omitted from the result.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **relational aggregation with temporal domain restrictions**:
+1. Applying a row-level `WHERE` filter before aggregation to isolate the 2020 temporal window.
+2. Grouping the filtered rows by `user_id` to form disjoint user equivalence classes.
+3. Extracting the maximum timestamp (`MAX(time_stamp)`) per group as `last_stamp`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Temporal Interval Filtering & Group-Level Supremum Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Temporal Interval Filtering & Group-Level Supremum Theorem.**
+> 1. *Temporal Domain Restriction:* Let $\mathcal{T}_{2020} = [\text{2020-01-01 00:00:00}, \; \text{2020-12-31 23:59:59}]$ denote the closed calendar interval for the year 2020. The selection predicate filters the raw relation:
+>    $$\mathcal{R}_{2020} = \sigma_{t \in \mathcal{T}_{2020}}(\text{Logins}) = \{ (u, t) \in \text{Logins} \mid \text{YEAR}(t) = 2020 \}$$
+> 2. *Equivalence Class Partitioning:* For each distinct user $u$, define their 2020 login cohort:
+>    $$[u]_{2020} = \{ t \mid (u, t) \in \mathcal{R}_{2020} \}$$
+> 3. *Supremum Aggregation:* For every non-empty cohort $[u]_{2020} \neq \emptyset$, the latest login timestamp is:
+>    $$\text{last\_stamp}(u) = \max([u]_{2020})$$
+> 4. *Null Cohort Elimination:* Any user $v$ whose entire activity lies outside 2020 yields $[v]_{2020} = \emptyset$. Relational `GROUP BY` operates strictly over rows in $\mathcal{R}_{2020}$, naturally excluding empty cohorts without requiring an extra `HAVING` clause.
+> 5. *Complexity:* Filtering and grouping take $\mathcal{O}(N)$ time with hash-based aggregation, or $\mathcal{O}(N \log N)$ with index-based sorting, where $N$ is the number of rows in `Logins`. Auxiliary space is $\mathcal{O}(U)$, where $U$ is the number of distinct qualifying users.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Relational Filtering and Maximum Aggregation Pipeline
+    accDescr: Pipeline showing raw table selection on year 2020, cohort grouping by user_id, and maximum timestamp projection.
+    A["Raw Logins Table: 9 rows (Users 2, 6, 8, 14)"] --> B["Filter Predicate: YEAR(time_stamp) == 2020"]
+    B --> C["Filtered Rows: 4 rows (User 14 eliminated)"]
+    C --> D["Group By user_id"]
+    D --> E1["Group user_id = 6: ['2020-06-30 15:06:07'] -> MAX: '2020-06-30 15:06:07'"]
+    D --> E2["Group user_id = 8: ['2020-02-01 05:10:53', '2020-12-30 00:46:50'] -> MAX: '2020-12-30 00:46:50'"]
+    D --> E3["Group user_id = 2: ['2020-01-16 02:49:50'] -> MAX: '2020-01-16 02:49:50'"]
+    E1 & E2 & E3 --> F["Output Table: 3 rows with columns (user_id, last_stamp)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Filter the correct year before aggregating.** The result must ignore every login outside 2020, even for a user who also has a qualifying login. `WHERE YEAR(time_stamp) = 2020` extracts the calendar year from each timestamp and retains only rows in that year. Performing this filter before grouping ensures an out-of-year timestamp can neither make a user appear nor become that user's maximum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Logins": [{"user_id": 6, "time_stamp": "2020-06-30 15:06:07"}, {"user_id": 6, "time_stamp": "2021-04-21 14:06:06"}, {"user_id": 6, "time_stamp": "2019-03-07 00:18:15"}, {"user_id": 8, "time_stamp": "2020-02-01 05:10:53"}, {"user_id": 8, "time_stamp": "2020-12-30 00:46:50"}, {"user_id": 2, "time_stamp": "2020-01-16 02:49:50"}, {"user_id": 2, "time_stamp": "2019-08-25 07:59:08"}, {"user_id": 14, "time_stamp": "2019-07-14 09:00:00"}, {"user_id": 14, "time_stamp": "2021-01-06 11:59:59"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the relational algebra pipeline across the 9 source records:
 
 ---
 
-### Step 2: Core Step 2
+### Step 1: Evaluate Selection Predicate on Each Row
+Filter rows by testing whether `time_stamp` falls within calendar year 2020:
+- Row 1: `(6, 2020-06-30 15:06:07)` $\implies$ Year is $2020$ (**Retained**)
+- Row 2: `(6, 2021-04-21 14:06:06)` $\implies$ Year is $2021$ (*Discarded*)
+- Row 3: `(6, 2019-03-07 00:18:15)` $\implies$ Year is $2019$ (*Discarded*)
+- Row 4: `(8, 2020-02-01 05:10:53)` $\implies$ Year is $2020$ (**Retained**)
+- Row 5: `(8, 2020-12-30 00:46:50)` $\implies$ Year is $2020$ (**Retained**)
+- Row 6: `(2, 2020-01-16 02:49:50)` $\implies$ Year is $2020$ (**Retained**)
+- Row 7: `(2, 2019-08-25 07:59:08)` $\implies$ Year is $2019$ (*Discarded*)
+- Row 8: `(14, 2019-07-14 09:00:00)` $\implies$ Year is $2019$ (*Discarded*)
+- Row 9: `(14, 2021-01-06 11:59:59)` $\implies$ Year is $2021$ (*Discarded*)
 
-**Group the retained rows by user.** `GROUP BY 1` groups by the first expression in the `SELECT` list, which is `user_id`. Every qualifying login for one user enters the same group. A user with no retained row has no group at all and is therefore absent automatically, exactly matching the exclusion rule. The primary key allows a user to have many timestamps but prevents the same `(user_id, time_stamp)` pair from being duplicated.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Filtered intermediate dataset $\mathcal{R}_{2020}$ contains 4 records:
+- `(6, 2020-06-30 15:06:07)`
+- `(8, 2020-02-01 05:10:53)`
+- `(8, 2020-12-30 00:46:50)`
+- `(2, 2020-01-16 02:49:50)`
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Partition by `user_id` and Compute Maximum
+For each cohort $[u]_{2020}$:
+- **Cohort `user_id = 6`:**
+  - Timestamps: `['2020-06-30 15:06:07']`
+  - $\max = \text{'2020-06-30 15:06:07'}$
+- **Cohort `user_id = 8`:**
+  - Timestamps: `['2020-02-01 05:10:53', '2020-12-30 00:46:50']`
+  - Comparing: `'2020-12-30 00:46:50' > '2020-02-01 05:10:53'`
+  - $\max = \text{'2020-12-30 00:46:50'}$
+- **Cohort `user_id = 2`:**
+  - Timestamps: `['2020-01-16 02:49:50']`
+  - $\max = \text{'2020-01-16 02:49:50'}$
+- **User 14:**
+  - No rows in $\mathcal{R}_{2020} \implies$ omitted.
 
-**Use maximum timestamp as latest timestamp.** Within one user's 2020 group, `MAX(time_stamp)` selects the greatest datetime. Datetime ordering is chronological, so the greatest value is the latest login. The alias `AS last_stamp` gives this aggregate the output column name required by the result schema.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id", "last_stamp"], "rows": [[6, "2020-06-30 15:06:07"], [8, "2020-12-30 00:46:50"], [2, "2020-01-16 02:49:50"]]}` |
+### Step 3: Project Final Relation
+Construct output columns `user_id` and `last_stamp`:
+$$\begin{pmatrix} 6 & \text{'2020-06-30 15:06:07'} \\ 8 & \text{'2020-12-30 00:46:50'} \\ 2 & \text{'2020-01-16 02:49:50'} \end{pmatrix}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Logins": [{"user_id": 6, "time_stamp": "2020-06-30 15:06:07"}, {"user_id": 6, "time_stamp": "2021-04-21 14:06:06"}, {"user_id": 6, "time_stamp": "2019-03-07 00:18:15"}, {"user_id": 8, "time_stamp": "2020-02-01 05:10:53"}, {"user_id": 8, "time_stamp": "2020-12-30 00:46:50"}, {"user_id": 2, "time_stamp": "2020-01-16 02:49:50"}, {"user_id": 2, "time_stamp": "2019-08-25 07:59:08"}, {"user_id": 14, "time_stamp": "2019-07-14 09:00:00"}, {"user_id": 14, "time_stamp": "2021-01-06 11:59:59"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id", "last_stamp"], "rows": [[6, "2020-06-30 15:06:07"], [8, "2020-12-30 00:46:50"], [2, "2020-01-16 02:49:50"]]}` | Verified |
+| `user_id` | Timestamp Tested | Year | Included in $\mathcal{R}_{2020}$? | User 2020 Timestamps | Group Maximum (`last_stamp`) | Final Inclusion |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 6 | 2020-06-30 15:06:07 | 2020 | **Yes** | `['2020-06-30 15:06:07']` | `2020-06-30 15:06:07` | **Included** |
+| 6 | 2021-04-21 14:06:06 | 2021 | No | - | - | - |
+| 6 | 2019-03-07 00:18:15 | 2019 | No | - | - | - |
+| 8 | 2020-02-01 05:10:53 | 2020 | **Yes** | `['2020-02-01 ...',` | - | - |
+| 8 | 2020-12-30 00:46:50 | 2020 | **Yes** | `'2020-12-30 ...']` | `2020-12-30 00:46:50` | **Included** |
+| 2 | 2020-01-16 02:49:50 | 2020 | **Yes** | `['2020-01-16 02:49:50']` | `2020-01-16 02:49:50` | **Included** |
+| 2 | 2019-08-25 07:59:08 | 2019 | No | - | - | - |
+| 14 | 2019-07-14 09:00:00 | 2019 | No | Empty $\emptyset$ | None | **Excluded** |
+| 14 | 2021-01-06 11:59:59 | 2021 | No | Empty $\emptyset$ | None | **Excluded** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Applying the filter predicate `YEAR(time_stamp) = 2020` guarantees that no timestamp from 2019, 2021, or any other year can enter the aggregation. Computing `MAX` across each partition strictly extracts the chronologically latest timestamp in that partition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Grouping by `user_id` processes every user who has at least one valid row in $\mathcal{R}_{2020}$. Users without a 2020 login have zero qualifying rows and are naturally omitted from the group relation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Half-open datetime range:** `time_stamp >= '2020-01-01' AND time_stamp < '2021-01-01'` expresses the same year and can be sargable with an index on `time_stamp`. It also avoids concerns about end-of-year fractional seconds.
-- **Window function:** Rank retained logins per user by timestamp descending and keep rank one. This is more machinery than a simple `MAX` when only the timestamp is requested.
-- **Correlated subquery:** Selecting rows equal to each user's latest 2020 timestamp can work but may repeat scans and is unnecessary for the two-column aggregate result.
-- **User with one 2020 login:** That row is both the group's minimum and maximum and is returned unchanged.
-- **User with logins in several years:** Only 2020 rows enter the group. Later logins in 2021 cannot displace the required value.
-- **No 2020 logins at all:** The filter leaves no rows, grouping creates no groups, and the result is empty.
-- **Boundary timestamps:** Midnight on `2020-01-01` and the end of `2020-12-31` both have year 2020 and qualify; `2021-01-01 00:00:00` does not.
-- **No ordering guarantee:** The absence of `ORDER BY` is intentional because any order is accepted. Application code should not rely on the sample's row sequence.
-- **Positional `GROUP BY`:** `GROUP BY 1` means `user_id` only because it is selected first. Naming the column explicitly would be more maintainable but returns the same result here.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Grouping Before Filtering (`HAVING` vs `WHERE`):** Computing `MAX(time_stamp)` for all users first and then filtering by `YEAR(max_stamp) = 2020` fails if a user logged in during 2020 and also in 2021 (such as User 6). User 6's overall maximum timestamp would be in 2021 (`2021-04-21`), causing User 6 to be erroneously excluded even though they had a valid 2020 login! The filter on year 2020 must precede the aggregation.
+- **Timestamp Formatting:** ISO 8601 string formatting `YYYY-MM-DD HH:MM:SS` satisfies lexicographical sorting equivalence: $t_a > t_b \iff \text{lex}(t_a) > \text{lex}(t_b)$.
+- **Column Alias Naming:** The problem requires the output column to be named `last_stamp`, not `time_stamp` or `max_time`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let $R$ be the number of rows in `Logins` and $U$ the number of users with at least one 2020 login. Evaluating `YEAR` and the predicate across a general scan costs $O(R)$. With hash aggregation, maintaining one maximum per retained user also costs expected $O(R)$ time, giving the manifest's overall $O(R)$ bound.
-- **Auxiliary Space Complexity:** $O(U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$ where $N$ is the number of rows in `Logins`. Scanning and filtering takes $\mathcal{O}(N)$, and hash-based grouping aggregates maximums in $\mathcal{O}(N)$ expected time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$ where $U$ is the number of unique qualifying users, required to store the grouped output.

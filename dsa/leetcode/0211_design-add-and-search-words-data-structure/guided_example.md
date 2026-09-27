@@ -1,140 +1,191 @@
 # Guided Example: Design Add and Search Words Data Structure
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Trie construction, literal prefix matching, and recursive wildcard branching on representative dictionary operations:
 
-- **Input:** `{"operations": [["search", "."], ["search", "a"]]}`
-- **Required output:** `[false, false]`
+- **Sequential Operations:**
+  1. `WordDictionary()` (Initialize root)
+  2. `addWord("bad")` (Insert path `b -> a -> d*`)
+  3. `addWord("dad")` (Insert path `d -> a -> d*`)
+  4. `addWord("mad")` (Insert path `m -> a -> d*`)
+  5. `search("pad")` $\implies \mathbf{false}$ (No child `'p'` at root)
+  6. `search("bad")` $\implies \mathbf{true}$ (Exact literal match)
+  7. `search(".ad")` $\implies \mathbf{true}$ (Wildcard `.` branches to `'b'`, `'d'`, `'m'`; matches `"bad"`)
+  8. `search("b..")` $\implies \mathbf{true}$ (Wildcard `.` matches `'a'`, second `.` matches `'d'`)
+- **Prefix Length Mismatch Instance:** $\text{search("ba")} \implies \text{false}$ (Prefix exists, but `is_end == false` at `'a'`)
+- **Exhausted Dot Instance:** $\text{search("....")} \implies \text{false}$ (All inserted words have length 3)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Trie prefix trees augmented with wildcard search, proves why DFS backtracking is required for the dot (`.`) metacharacter, analyzes branching factor bounds ($26^d$), and runs in $O(L)$ for exact searches and $O(26^d \cdot L)$ for wildcard queries.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a data structure that supports adding new words and finding if a string matches any previously added string.
+We trace the behavior of `WordDictionary`:
+```text
+WordDictionary wd = new WordDictionary();
+wd.addWord("bad");
+wd.addWord("dad");
+wd.addWord("mad");
+wd.search("pad"); // -> false
+wd.search("bad"); // -> true
+wd.search(".ad"); // -> true (matches "bad", "dad", "mad")
+wd.search("b.."); // -> true (matches "bad")
+```
 
-The objective is to compute `[false, false]` from `{"operations": [["search", "."], ["search", "a"]]}` while avoiding redundant calculations and unnecessary overhead.
+### Why a Hash Set Is Inadequate for Wildcards
+A standard hash table provides $O(L)$ exact lookups, but when given a pattern with wildcards such as `".ad"`:
+- The `.` can represent any of the 26 lowercase English letters (`"aad"`, `"bad"`, $\dots$, `"zad"`).
+- With 2 wildcards (e.g. `"b.."`), there are $26^2 = 676$ possible strings.
+- Generating all replacements and probing a hash set causes redundant work.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A **Trie** structure naturally accommodates wildcard searches:
+- For a literal letter (e.g. `'b'`), the search descends the single corresponding child edge.
+- For a wildcard `.` (match any letter), the search branches across **all existing children** at the current node via depth-first search (DFS).
+- If any branch successfully matches the remaining suffix, the search returns `true`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Trie Node Specification
+Each node maintains:
+- `children`: an array of 26 pointers, where index $\text{ord}(c) - \text{ord}('a')$ maps to the child node for character $c$.
+- `is_end`: boolean flag marking the termination of a complete word.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### DFS Search Algorithm with Wildcards
+Define `dfs(node, i)` where `node` is the current Trie node and `i` is the index of the character in `word`:
+1. **Base Case:**
+   If $i == \text{len}(\text{word})$, return `node.is_end`.
+2. **Branch 1: Literal Character ($word[i] \ne \text{'.'}`):**
+   Let $k = \text{ord}(\text{word}[i]) - \text{ord}('a')$.
+   If `node.children[k]` is null, return `false`.
+   Return `dfs(node.children[k], i + 1)`.
+3. **Branch 2: Wildcard Dot ($word[i] == \text{'.'}`):**
+   Iterate through all 26 possible children of `node`:
+   If `child` is not null and `dfs(child, i + 1)` is `true`:
+     Return `true`.
+   Return `false` (no child matches the remaining pattern).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** `dfs(node, i)` returns `true` if and only if there exists at least one path starting at `node` that matches the suffix `word[i:]` and terminates at a node with `is_end == true`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why ordinary membership storage is not enough
+We trace the dictionary operations:
 
-`addWord` stores literal lowercase words, but `search` accepts patterns in
-which `.` can stand for any one lowercase letter. A hash set can answer an
-ordinary exact lookup efficiently, yet a pattern such as `.ad` represents up
-to 26 concrete strings. Generating all replacements and looking each one up
-would repeat prefix work and scale poorly as the number of wildcards grows.
+### Insert Phase: `addWord("bad")`, `addWord("dad")`, `addWord("mad")`
+1. `addWord("bad")`: Root creates child `'b'` $\to$ child `'a'` $\to$ child `'d'` (`is_end = true`).
+2. `addWord("dad")`: Root creates child `'d'` $\to$ child `'a'` $\to$ child `'d'` (`is_end = true`).
+3. `addWord("mad")`: Root creates child `'m'` $\to$ child `'a'` $\to$ child `'d'` (`is_end = true`).
 
-A trie stores words by their prefixes. Each edge consumes one character, so a
-literal query follows one edge while a dot can branch to every existing edge
-at that same depth. Crucially, it explores only prefixes that were actually
-inserted rather than blindly constructing every theoretical replacement.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": [["search", "."], ["search", "a"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: What one trie node records
-
-The exact solution defines a small `Trie` node class. Every node contains a
-26-element `children` list and an `is_end` boolean. Child position 0 represents
-`a`, position 1 represents `b`, and position 25 represents `z`; `null` means
-that no stored word continues through that letter. `is_end` distinguishes a
-complete inserted word from a path that exists only as a prefix of a longer
-word.
-
-`WordDictionary` owns one root node in `trie`. The root represents the
-empty prefix. If `bad`, `bake`, and `dad` have been inserted, the first two
-words share the root's `b` child and the next `a` child, then diverge. The word
-beginning with `d` uses another root child. Prefix sharing is the reason the
-trie can avoid repeatedly storing and checking the same beginning.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Trie graph:
+```text
+         (root)
+        /  |  \
+      'b' 'd' 'm'
+       |   |   |
+      'a' 'a' 'a'
+       |   |   |
+      'd'*'d'*'d'*  (* marks is_end = true)
+```
 
 ---
 
-### Step 3: Adding a word preserves all previously stored words
+### Query 1: `search("pad")`
+- At `root`, check literal character `'p'`.
+- Index $k = \text{ord}('p') - \text{ord}('a') = 15$.
+- `root.children[15]` is null!
+- Return $\mathbf{false}$.
 
-`addWord` begins at the root. For every character `c`, it computes
-`ord(c) - ord('a')`, which is an index from 0 through 25 under the lowercase
-input guarantee. If the corresponding child is absent, the method creates a
-new `Trie` node there. It then moves into that child whether it was new or
-already present.
+---
 
-After consuming the whole word, it sets `node.is_end = true`. The flag is set
-only at the final node. If `bad` is inserted, the nodes for `b` and `ba` exist,
-but neither becomes a stored word accidentally. Inserting `ba` later reuses
-those nodes and marks the `ba` node without damaging the longer `bad` route.
-Inserting an already stored word is idempotent: its path is reused and its
-already-true endpoint flag remains true.
+### Query 2: `search("bad")`
+- At `root`, character `'b'` exists $\implies$ descend to Node(b).
+- At Node(b), character `'a'` exists $\implies$ descend to Node(a).
+- At Node(a), character `'d'` exists $\implies$ descend to Node(d).
+- Path ends. Check `Node(d).is_end`:
+  $$
+  \text{is\_end} == \mathbf{true}
+  $$
+- Return $\mathbf{true}$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[false, false]` |
+---
+
+### Query 3: `search(".ad")` (Wildcard First Character)
+- At `root`, character is `'.'`.
+- Explore all non-null children of `root`:
+  1. **Branch 'b':** Call `dfs(Node(b), 1)`.
+     - Next char `'a'`: exists in Node(b) $\implies$ descend to Node(a).
+     - Next char `'d'`: exists in Node(a) $\implies$ descend to Node(d).
+     - At end: `Node(d).is_end == true` $\implies \mathbf{true!}$
+- Since Branch `'b'` succeeded, short-circuit and return $\mathbf{true}$ immediately!
+
+---
+
+### Query 4: `search("b..")` (Consecutive Wildcards)
+- At `root`, character `'b'` exists $\implies$ descend to Node(b).
+- At Node(b), character is `'.'`:
+  - Explore non-null children of Node(b): only `'a'` exists.
+  - Call `dfs(Node(a), 2)`.
+- At Node(a), character is `'.'`:
+  - Explore non-null children of Node(a): only `'d'` exists.
+  - Call `dfs(Node(d), 3)`.
+- Index reaches length 3. Check `Node(d).is_end`:
+  $$
+  \text{is\_end} == \mathbf{true}
+  $$
+- Return $\mathbf{true}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": [["search", "."], ["search", "a"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[false, false]` | Verified |
+```text
+Trie: stores "bad", "dad", "mad"
+
+1. search("pad"):
+   root -> 'p' (null) -> FALSE
+
+2. search("bad"):
+   root -> 'b' -> 'a' -> 'd'* (is_end=True) -> TRUE
+
+3. search(".ad"):
+   root -> '.' branches:
+     Branch 'b': 'b' -> 'a' -> 'd'* -> TRUE! (Short-circuit)
+
+4. search("b.."):
+   root -> 'b' -> '.' (Node 'a') -> '.' (Node 'd'*) -> TRUE!
+```
+
+| Operation | Query String | Traversal Path / Active Branch | Node Evaluated | Terminal Check | Result |
+|:---:|:---:|:---|:---:|:---:|:---:|
+| `search` | `"pad"` | Literal `'p'` from root | `root.children['p'] == null` | - | **`false`** |
+| `search` | `"bad"` | `root -> b -> a -> d` | Node(d) | `is_end == true` | **`true`** |
+| `search` | `".ad"` | Dot at root $\implies$ Branch `'b'` | `Node(b) -> a -> d` | `is_end == true` | **`true`** |
+| `search` | `"b.."` | `root -> b -> . -> .` | `Node(b) -> a -> d` | `is_end == true` | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For literal characters, the algorithm follows the unique deterministic edge. For `.` wildcards, it branches across all existing children. A match is returned if and only if there exists a valid sequence of character transitions of length $|\text{word}|$ that terminates at a node with `is_end == true`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** DFS branching exhausts all available edges matching the wildcard. If any word in the dictionary matches the wildcard pattern, at least one recursive search branch will find it and return `true`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Iterative frontier of nodes:** Keep every node that can match the current pattern prefix, replacing the frontier with matching literal children or all children for a dot. It avoids recursion and substring slices but can hold a broad set of nodes at once; it is the method described by the manifest summary, not by the exact source file.
-- **Nested dictionaries with an end sentinel:** A map stores only present character edges and naturally supports sparse alphabets. It may save empty child slots but adds hashing and per-entry overhead; the fixed array exploits the lowercase-only contract.
-- **Words grouped by length in hash sets:** Search only words of the pattern's length and compare characters with dot matching. It is simple, but a query can scan every stored word of that length, giving $O(NL)$ time for $N$ candidates.
-- **No dots:** Search follows exactly one route and never recurses, so a missing character fails immediately and a complete route still requires `is_end` at its endpoint.
-- **A dot at the first character:** The root's existing children are the complete set of possible first letters. Empty slots are skipped, so the search never explores letters absent from all stored words.
-- **Consecutive dots:** Each recursive level consumes exactly one dot and one edge. A pattern such as `b..` therefore matches only three-letter words beginning with `b`, not shorter or longer words.
-- **A prefix but not a word:** If the pattern is exhausted at an unmarked internal node, the helper returns false even if that node has children. Matching must consume an entire added word of the same length.
-- **An added word that prefixes another:** Both can be represented by marking the shorter endpoint while retaining its children. Searches for either length consult the appropriate endpoint flag.
-- **Duplicate additions:** Reusing a path and assigning `true` again does not create duplicate logical entries. The required structure records membership, not frequency.
-- **Maximum input sizes:** Words have length at most 25 and queries contain at most two dots, keeping recursion shallow. Up to $10^4$ operations can still build many nodes, so sharing prefixes remains valuable.
-- **Lowercase and dot preconditions:** `addWord` accepts only lowercase letters, and only search patterns may contain dots. The fixed-index calculation and wildcard branch assume those guarantees; other characters are outside the contract.
-- **Input preservation:** The implementation reads each supplied string and creates slices during wildcard recursion, but strings are immutable and the caller's values are never changed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Check `is_end`:** For pattern `"ba"`, all characters exist in the path `b -> a`, but `Node(a).is_end` is `false`. The search must verify that a complete word terminates at the end of the query.
+- **Length Mismatch with Dots:** A pattern `"...."` has 4 dots. If words have length 3, the fourth dot reaches `null` children, correctly returning `false`.
+- **Branching Factor:** While a wildcard theoretically branches up to 26 times, problem constraints specify at most 2 dots per query ($26^2 = 676$), ensuring that DFS recursion remains extremely fast.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L B^d)$. Let $L$ be the length of the added word or search pattern, let $d$ be the
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `addWord(word)`: $O(L)$, where $L$ is the length of `word`.
+  - `search(word)`: $O(L)$ for queries without dots; $O(26^d \cdot L)$ in the worst case for queries containing $d$ dots.
+- **Auxiliary Space Complexity:** $O(L)$ auxiliary call stack memory for recursion depth, where $L \le 25$.

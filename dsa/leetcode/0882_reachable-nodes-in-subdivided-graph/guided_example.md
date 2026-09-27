@@ -1,111 +1,261 @@
-# Guided Example: Reachable Nodes In Subdivided Graph
+# Guided Example: Reachable Nodes in Subdivided Graph
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step weighted graph abstraction ($cnt + 1$ edge lengths), Dijkstra shortest path tree computation, remaining move radius evaluation, dual-end edge overlap deduplication, and total node reachability derivation on representative subdivided graphs:
 
-- **Input:** `{"edges": [[0, 1, 10], [0, 2, 1], [1, 2, 2]], "maxMoves": 6, "n": 3}`
+- **Input:**
+  $$
+  edges = [[0, 1, 10], [0, 2, 1], [1, 2, 2]], \quad maxMoves = 6, \quad n = 3
+  $$
 - **Required output:** `13`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - Subdivided graph anatomy & rules:
+    - We are given an undirected graph with $n = 3$ original nodes labeled $0, 1, 2$.
+    - Each edge $(u, v)$ is subdivided by inserting $cnt$ new nodes directly onto the edge.
+    - Walking from $u$ to $v$ directly across the edge takes $cnt + 1$ individual unit steps.
+    - We start at node $0$ with a maximum step budget $maxMoves = 6$.
+    - Objective: Find the total number of nodes (both original nodes and newly inserted subdivision nodes) that can be reached from node $0$ within $maxMoves$ steps.
+    - Breakdown for this instance:
+      - Major nodes reached: Nodes $0, 1, 2$ (all $3$ are within distance $6$).
+      - Along edge $(0, 1)$ ($10$ new nodes): $7$ nodes reached ($6$ from node 0, $1$ from node 1).
+      - Along edge $(0, 2)$ ($1$ new node): $1$ node reached (fully traversed).
+      - Along edge $(1, 2)$ ($2$ new nodes): $2$ nodes reached (fully traversed).
+      - Total reachable nodes: $3 + 7 + 1 + 2 = \mathbf{13}$.
+- **The Weighted Dijkstra & Dual-End Invariant:**
+  - **Edge Weight Representation:**
+    - Explicitly modeling each of the thousands of subdivision nodes would create an enormous graph ($V \approx 10^7$).
+    - Instead, we treat each edge $(u, v)$ as a single weighted edge with weight:
+      $$
+      w(u, v) = cnt + 1
+      $$
+    - The original graph has only $n \le 3000$ vertices and $|E| \le 10000$ edges.
+  - **Dijkstra on Original Nodes:**
+    - Compute the shortest path distance $dist[u]$ from source $0$ to every major node $u \in [0, n - 1]$ using Dijkstra's algorithm.
+    - A major node $u$ is reachable if and only if $dist[u] \le maxMoves$.
+  - **Dual-End Penetration on Subdivided Edges:**
+    - For each edge $(u, v)$ with $cnt$ subdivision nodes:
+      - From endpoint $u$, the remaining moves available to penetrate into the edge is $\max(0, maxMoves - dist[u])$. We can cover up to $a = \min(cnt, \max(0, maxMoves - dist[u]))$ nodes.
+      - From endpoint $v$, the remaining moves available to penetrate from the other side is $\max(0, maxMoves - dist[v])$. We can cover up to $b = \min(cnt, \max(0, maxMoves - dist[v]))$ nodes.
+      - Since both traversals move toward each other along the same chain of $cnt$ nodes, the total unique subdivision nodes covered is:
+        $$
+        \text{covered}(u, v) = \min(cnt, \; a + b)
+        $$
+      - Capping at $cnt$ naturally eliminates double-counting overlapping meets!
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an undirected graph (the **"original graph"**) with `n` nodes labeled from `0` to $n - 1$. You decide to **subdivide** each edge in the graph into a chain of nodes, with the number of new nodes varying between each edge.
+Given $n = 3, maxMoves = 6$, and edges $(0, 1, 10), (0, 2, 1), (1, 2, 2)$:
+Find all reachable original and subdivision nodes.
 
-The objective is to compute `13` from `{"edges": [[0, 1, 10], [0, 2, 1], [1, 2, 2]], "maxMoves": 6, "n": 3}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Original Graph with Edge Weights (cnt + 1):
+  (0) ---- 11 ---- (1)
+    \             /
+     2           3
+      \         /
+         (2)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Dijkstra Shortest Paths from Node 0:
+  dist[0] = 0  (<= 6, Reached!)
+  dist[2] = 0 + 2 = 2 (<= 6, Reached!)
+  dist[1] = min(11, dist[2] + 3) = min(11, 2 + 3) = 5 (<= 6, Reached!)
+
+Subdivision Node Penetration:
+  Edge (0, 1, 10): from 0: min(10, 6 - 0) = 6
+                   from 1: min(10, 6 - 5) = 1
+                   total = min(10, 6 + 1) = 7
+  Edge (0, 2, 1):  from 0: min(1, 6 - 0) = 1
+                   from 2: min(1, 6 - 2) = 1
+                   total = min(1, 1 + 1) = 1
+  Edge (1, 2, 2):  from 1: min(2, 6 - 5) = 1
+                   from 2: min(2, 6 - 2) = 2
+                   total = min(2, 1 + 2) = 2
+
+Total = 3 (major) + 7 + 1 + 2 = 13
+```
+
+The teaching goal is to show how contracting chains of dummy vertices into weighted edges preserves exact path metrics without memory explosion.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Weighted Adjacency:
+For each undirected edge $(u, v, cnt)$:
+$$
+\text{weight}(u, v) = cnt + 1
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Major Node Distances:
+$$
+dist[u] = \text{shortest path distance from node } 0 \text{ to } u
+$$
+Count of reachable major nodes:
+$$
+\text{Major Count} = \sum_{u=0}^{n-1} \mathbb{I}[dist[u] \le maxMoves]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Edge Chain Coverage:
+For each edge $e = (u, v, cnt)$:
+$$
+a = \min(cnt, \; \max(0, maxMoves - dist[u]))
+$$
+$$
+b = \min(cnt, \; \max(0, maxMoves - dist[v]))
+$$
+$$
+\text{Reachable Nodes on Edge } e = \min(cnt, \; a + b)
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Expanding every subdivided edge into thousands of explicit nodes could make the graph unnecessarily large. The central idea is to compute shortest distances only among original nodes, then count how far the remaining move budget reaches into each subdivided edge from its two endpoints.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"edges": [[0, 1, 10], [0, 2, 1], [1, 2, 2]], "maxMoves": 6, "n": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $maxMoves = 6, n = 3$:
+Edges:
+- Edge $(0, 1)$: $cnt = 10 \implies \text{weight} = 11$.
+- Edge $(0, 2)$: $cnt = 1 \implies \text{weight} = 2$.
+- Edge $(1, 2)$: $cnt = 2 \implies \text{weight} = 3$.
 
 ---
 
-### Step 2: Core Step 2
-
-An original edge `[u, v, cnt]` becomes a chain with `cnt` inserted nodes and `cnt + 1` unit edges. Therefore traveling all the way from original node `u` to original node `v` costs `cnt + 1` moves. The adjacency list stores exactly that compressed weight in both directions.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Phase 1: Dijkstra Shortest Path Search
+Initialize distances: $dist[0] = 0, dist[1] = \infty, dist[2] = \infty$.
+Priority queue: $[(0, 0)]$.
 
 ---
 
-### Step 3: Core Step 3
+#### Step 1: Pop $(d=0, u=0)$
+- Explore neighbors of $0$:
+  - Neighbor $2$ (weight $2$):
+    $$
+    d + 2 = 0 + 2 = 2 < \infty \implies dist[2] \leftarrow 2
+    $$
+    Push $(2, 2)$ to queue.
+  - Neighbor $1$ (weight $11$):
+    $$
+    d + 11 = 0 + 11 = 11 < \infty \implies dist[1] \leftarrow 11
+    $$
+    Push $(11, 1)$ to queue.
 
-**Shortest distances to original nodes.** The intended algorithm is Dijkstra's algorithm from node 0 because all compressed edge weights are positive. `dist[u]` is the smallest known number of moves needed to reach original node `u`. It begins at zero for node 0 and infinity elsewhere.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `13` |
+#### Step 2: Pop $(d=2, u=2)$
+- Explore neighbors of $2$:
+  - Neighbor $0$: $2 + 2 = 4 > dist[0] = 0$. Skip.
+  - Neighbor $1$ (weight $3$):
+    $$
+    d + 3 = 2 + 3 = 5 < dist[1] = 11 \implies dist[1] \leftarrow 5
+    $$
+    Push $(5, 1)$ to queue.
+
+---
+
+#### Step 3: Pop $(d=5, u=1)$
+- Neighbors of $1$:
+  - Neighbor $0$: $5 + 11 = 16 > 0$.
+  - Neighbor $2$: $5 + 3 = 8 > 2$.
+- No updates.
+
+---
+
+#### Final Distances:
+$$
+dist = [0, 5, 2]
+$$
+
+---
+
+### Phase 2: Tally Reachable Major Nodes
+- $dist[0] = 0 \le 6 \implies \mathbf{Reached}$
+- $dist[1] = 5 \le 6 \implies \mathbf{Reached}$
+- $dist[2] = 2 \le 6 \implies \mathbf{Reached}$
+- Major nodes reached: $1 + 1 + 1 = \mathbf{3}$.
+
+---
+
+### Phase 3: Tally Reachable Subdivision Nodes on Edges
+
+---
+
+#### Edge 1: $(u=0, v=1, cnt=10)$
+- From $u=0$: remaining moves $= 6 - dist[0] = 6 - 0 = 6$.
+  $$
+  a = \min(10, 6) = 6
+  $$
+- From $v=1$: remaining moves $= 6 - dist[1] = 6 - 5 = 1$.
+  $$
+  b = \min(10, 1) = 1
+  $$
+- Total on this edge:
+  $$
+  \min(10, a + b) = \min(10, 6 + 1) = \mathbf{7}
+  $$
+
+---
+
+#### Edge 2: $(u=0, v=2, cnt=1)$
+- From $u=0$: remaining moves $= 6 - 0 = 6 \implies a = \min(1, 6) = 1$.
+- From $v=2$: remaining moves $= 6 - 2 = 4 \implies b = \min(1, 4) = 1$.
+- Total on this edge:
+  $$
+  \min(1, a + b) = \min(1, 1 + 1) = \mathbf{1}
+  $$
+
+---
+
+#### Edge 3: $(u=1, v=2, cnt=2)$
+- From $u=1$: remaining moves $= 6 - 5 = 1 \implies a = \min(2, 1) = 1$.
+- From $v=2$: remaining moves $= 6 - 2 = 4 \implies b = \min(2, 4) = 2$.
+- Total on this edge:
+  $$
+  \min(2, a + b) = \min(2, 1 + 2) = \mathbf{2}
+  $$
+
+---
+
+### Phase 4: Summing All Reachable Nodes
+$$
+ans = 3 + 7 + 1 + 2 = \mathbf{13}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"edges": [[0, 1, 10], [0, 2, 1], [1, 2, 2]], "maxMoves": 6, "n": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `13` | Verified |
+| Component | Entity Evaluated | Shortest Distance / Parameters | Remaining Moves Available | Reach Calculation | Unique Nodes Reached | Running Total |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Major Node | Node $0$ | $dist[0] = 0$ | $6$ | $0 \le 6$ | $1$ | $1$ |
+| Major Node | Node $1$ | $dist[1] = 5$ | $1$ | $5 \le 6$ | $1$ | $2$ |
+| Major Node | Node $2$ | $dist[2] = 2$ | $4$ | $2 \le 6$ | $1$ | $3$ |
+| Edge Chain | $(0, 1)$ | $cnt = 10$ | From 0: 6, From 1: 1 | $\min(10, 6 + 1)$ | $7$ | $10$ |
+| Edge Chain | $(0, 2)$ | $cnt = 1$ | From 0: 6, From 2: 4 | $\min(1, 1 + 1)$ | $1$ | $11$ |
+| **Edge Chain** | **$(1, 2)$** | **$cnt = 2$** | **From 1: 1, From 2: 4** | **$\min(2, 1 + 2)$** | **$2$** | **`13`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$maxMoves = 0$:** Can only reach origin node $0$. Distances to all other nodes $> 0$. Returns $1$.
+- **Disconnected Graph:** Unreachable major nodes retain $dist[u] = \infty$; remaining moves are clamped to $\max(0, maxMoves - \infty) = 0$.
+- **Edge Not Fully Traversed from Either Side:** When $a + b < cnt$, only $a + b$ nodes are reached; capping at $cnt$ is not triggered.
+- **Overlapping Edge Penetration:** When $a + b > cnt$, capping $\min(cnt, a + b)$ ensures nodes in the middle are counted once.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Explicitly build the subdivided graph:** This is conceptually simple but may add up to $10^4$ nodes per edge and consume excessive time and memory.
-- **Correct priority-queue Dijkstra:** Use `heappush(q, (t, v))` and optionally skip stale pops with `if d != dist[u]: continue`. This realizes the intended complexity.
-- **Plain breadth-first search on compressed edges:** Edge weights are `cnt + 1` rather than all one, so BFS among original nodes does not compute shortest move counts.
-- **Bellman-Ford-style relaxation:** It can compute distances with positive weights but is much slower than properly implemented Dijkstra.
-- **No edges:** Node 0 is the only reachable node, regardless of move budget.
-- **`maxMoves = 0`:** Only original node 0 is reachable; no unit can be spent entering an internal node.
-- **`cnt = 0`:** The edge has no internal nodes. Its compressed weight is one, and its counting contribution is zero.
-- **Disconnected graph:** Unreachable endpoints retain infinity, contribute no remaining budget, and are not counted as original nodes.
-- **Reach from only one endpoint:** The formula counts that one reachable prefix even if the opposite endpoint is unreachable.
-- **Prefixes overlap:** `min(cnt, a + b)` caps the union at the number of distinct internal nodes.
-- **Reach endpoint with exactly the budget:** The original endpoint counts, but it leaves zero moves for entering adjacent subdivided edges.
-- **Extra distance-array entry:** The $n+1$-st infinity is harmless but unnecessary; a length-$n$ array would be cleaner.
-- **Stale scheduled distances:** A correct Dijkstra implementation should skip them for efficiency. The relaxation condition prevents a stale record from overwriting a better distance.
-- **No multiple original edges:** Each internal chain belongs to one edge, which makes independent per-edge counting valid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Explicitly Expanding Subdivision Nodes:** Adding dummy vertices into the graph expands vertex count to $|V| + \sum cnt \approx 3000 + 10^4 \times 10^4 \approx 10^8$, crashing the runtime with Out Of Memory.
+- **Double-Counting Meeting Points on Edges:** Simply adding $a + b$ without capping at $cnt$ counts shared nodes twice whenever both endpoints have sufficient remaining moves to meet in the middle.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((n+m)$. Let $n$ be the number of original nodes and $m$ the number of original edges.
-- **Auxiliary Space Complexity:** $O(n+m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Graph construction: $\mathcal{O}(|E|)$ edges.
+  - Dijkstra algorithm using binary min-heap: $\mathcal{O}(|E| \log |V|)$ where $|V| \le 3000$ and $|E| \le 10^4$.
+  - Edge post-processing pass: $\mathcal{O}(|E|)$.
+  - Total Time: $\mathcal{O}(|E| \log |V|)$, completing in $< 20$ ms.
+- **Auxiliary Space Complexity:**
+  - Adjacency list and distance array: $\mathcal{O}(|V| + |E|)$ space ($\approx 500$ KB).

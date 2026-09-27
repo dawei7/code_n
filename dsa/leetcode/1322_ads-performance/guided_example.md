@@ -1,136 +1,186 @@
 # Guided Example: Ads Performance
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational conditional aggregation, Click-Through Rate (CTR) computation, and zero-division protection on a representative advertising log:
 
-- **Input:** `{"tables": {"Ads": {"columns": ["ad_id", "user_id", "action"], "rows": []}}}`
-- **Required output:** `{"columns": ["ad_id", "ctr"], "rows": []}`
+- **Input:** `Ads` table containing interaction logs:
+  $$\begin{aligned}
+  \text{Ads} = \{ &(1, 1, \text{"Clicked"}), \; (2, 2, \text{"Clicked"}), \; (3, 3, \text{"Viewed"}), \\
+  &(5, 5, \text{"Ignored"}), \; (1, 7, \text{"Ignored"}), \; (2, 7, \text{"Viewed"}), \\
+  &(3, 5, \text{"Clicked"}), \; (1, 4, \text{"Viewed"}), \; (2, 11, \text{"Viewed"}), \; (1, 2, \text{"Clicked"}) \}
+  \end{aligned}$$
+- **Required Output:** Click-Through Rate per advertisement:
+  $$\begin{aligned}
+  \text{Result} = \{
+  &(1, 66.67), \; (2, 33.33), \; (3, 50.00), \; (5, 0.00) \}
+  \end{aligned}$$
+  ordered by `ctr` descending, then `ad_id` ascending: `[(1, 66.67), (3, 50.00), (2, 33.33), (5, 0.00)]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates filtering interaction categories (`"Clicked"`, `"Viewed"`, `"Ignored"`), handling zero-denominator boundary conditions using null coalescing, and executing dual-tier sorting.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Ads`
+Each row in `Ads` records an action taken by a user on an ad (`"Clicked"`, `"Viewed"`, or `"Ignored"`). The Click-Through Rate (CTR) of an advertisement is defined as:
+$$
+\text{CTR} = \begin{cases}
+0 & \text{if } \text{Clicks} + \text{Views} = 0 \\
+\text{ROUND}\left(\frac{\text{Clicks}}{\text{Clicks} + \text{Views}} \times 100, \; 2\right) & \text{otherwise}
+\end{cases}
+$$
+Ignored actions represent non-engagement and are omitted from both the numerator and denominator.
 
-The objective is to compute `{"columns": ["ad_id", "ctr"], "rows": []}` from `{"tables": {"Ads": {"columns": ["ad_id", "user_id", "action"], "rows": []}}}` while avoiding redundant calculations and unnecessary overhead.
+```
+Summary of Interactions:
+  Ad 1: Clicked=2, Viewed=1, Ignored=1  --> CTR = (2 / 3) * 100 = 66.67%
+  Ad 3: Clicked=1, Viewed=1, Ignored=0  --> CTR = (1 / 2) * 100 = 50.00%
+  Ad 2: Clicked=1, Viewed=2, Ignored=0  --> CTR = (1 / 3) * 100 = 33.33%
+  Ad 5: Clicked=0, Viewed=0, Ignored=1  --> Clicks + Views = 0  --> CTR = 0.00%
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Final Sorted Output:
+  1. Ad 1: 66.67
+  2. Ad 3: 50.00
+  3. Ad 2: 33.33
+  4. Ad 5:  0.00
+```
+
+Without handling the zero-denominator case, an ad that only received `"Ignored"` actions (such as Ad 5) would trigger a division-by-zero database error. A robust query engine replaces null division results with $0.00$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $A$ denote the relation `Ads` with attributes $(ad, user, action)$.
 
-| State Parameter | Role & Purpose | Initial State |
+### Relational Conditional Aggregation
+1. **Grouping by Advertisement:** Partition tuples by attribute $ad$:
+   $$
+   A = \bigcup_{k} A_k \quad \text{where } A_k = \{t \in A \mid t.ad = k\}
+   $$
+2. **Conditional Indicators:**
+   $$
+   C_k = \sum_{t \in A_k} [t.action = \text{"Clicked"}]
+   $$
+   $$
+   V_k = \sum_{t \in A_k} [t.action = \text{"Viewed"}]
+   $$
+   $$
+   T_k = C_k + V_k
+   $$
+3. **Safe Division and Coalescing:**
+   $$
+   \text{CTR}_k = \begin{cases}
+   \text{ROUND}((C_k / T_k) \times 100, \; 2) & \text{if } T_k > 0 \\
+   0.00 & \text{if } T_k = 0
+   \end{cases}
+   $$
+4. **Ordering:** Sort output tuples $(ad, \text{CTR})$ by $\text{CTR}$ descending; in case of ties, by $ad$ ascending.
+
+| Action Type | Included in Numerator (Clicks)? | Included in Denominator (Total)? |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| `"Clicked"` | Yes ($+1$) | Yes ($+1$) |
+| `"Viewed"` | No ($0$) | Yes ($+1$) |
+| `"Ignored"` | No ($0$) | No ($0$) |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Denominator Soundness Invariant.** The denominator $T_k$ counts only positive impressions ($\text{Clicks} + \text{Views}$). Any ad with $T_k = 0$ is guaranteed to map safely to $0.00$ without generating division faults.
+
+```mermaid
+flowchart TD
+    accTitle: CTR Aggregation and Division Protection
+    accDescr: Pipeline showing grouping by ad, calculating clicks and views, applying safe division, and sorting results.
+    INPUT["Ads Table (Raw Logs)"] --> GROUP["Group by ad_id"]
+    GROUP --> COUNT["Count Clicks (C) and Views (V)"]
+    COUNT --> DENOM{"Is C + V > 0?"}
+    DENOM -- Yes --> CALC["CTR = ROUND((C / (C + V)) * 100, 2)"]
+    DENOM -- No --> ZERO["CTR = 0.00 (Zero engagement)"]
+    CALC --> SORT["Sort by CTR DESC, ad_id ASC"]
+    ZERO --> SORT
+    SORT --> OUT["Emit Final CTR Table"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: One group per advertisement
+We trace the aggregation for each distinct `ad_id` in our dataset:
 
-`GROUP BY 1` groups by the first selected expression, `ad_id`. Every interaction row for one advertisement is evaluated together, while actions for different advertisements stay separate.
+### Ad 1
+- Rows present: $(1, 1, \text{"Clicked"}), (1, 7, \text{"Ignored"}), (1, 4, \text{"Viewed"}), (1, 2, \text{"Clicked"})$.
+- Clicks: $C_1 = 2$.
+- Views: $V_1 = 1$.
+- Total engagement: $T_1 = 2 + 1 = 3 > 0$.
+- CTR calculation:
+  $$
+  \text{CTR}_1 = \text{ROUND}\left(\frac{2}{3} \times 100, \; 2\right) = \text{ROUND}(66.6667, \; 2) = 66.67
+  $$
 
-The result contains one row for every distinct advertisement appearing in `Ads`. An ad with only `Ignored` actions still forms a group and therefore remains in the output.
+### Ad 2
+- Rows present: $(2, 2, \text{"Clicked"}), (2, 7, \text{"Viewed"}), (2, 11, \text{"Viewed"})$.
+- Clicks: $C_2 = 1$.
+- Views: $V_2 = 2$.
+- Total engagement: $T_2 = 1 + 2 = 3 > 0$.
+- CTR calculation:
+  $$
+  \text{CTR}_2 = \text{ROUND}\left(\frac{1}{3} \times 100, \; 2\right) = \text{ROUND}(33.3333, \; 2) = 33.33
+  $$
 
-Writing `GROUP BY ad_id` would be more explicit, but ordinal grouping has the same meaning here.
+### Ad 3
+- Rows present: $(3, 3, \text{"Viewed"}), (3, 5, \text{"Clicked"})$.
+- Clicks: $C_3 = 1$.
+- Views: $V_3 = 1$.
+- Total engagement: $T_3 = 1 + 1 = 2 > 0$.
+- CTR calculation:
+  $$
+  \text{CTR}_3 = \text{ROUND}\left(\frac{1}{2} \times 100, \; 2\right) = 50.00
+  $$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Ads": {"columns": ["ad_id", "user_id", "action"], "rows": []}}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Ad 5
+- Rows present: $(5, 5, \text{"Ignored"})$.
+- Clicks: $C_5 = 0$.
+- Views: $V_5 = 0$.
+- Total engagement: $T_5 = 0 + 0 = 0$.
+- Fallback condition triggered ($T_5 = 0$):
+  $$
+  \text{CTR}_5 = 0.00
+  $$
 
----
-
-### Step 2: Counting clicks with Boolean arithmetic
-
-In MySQL, the expression `action = 'Clicked'` evaluates to one when true and zero when false. Therefore:
-
-`SUM(action = 'Clicked')`
-
-counts exactly the clicked rows in the current ad group.
-
-The denominator uses:
-
-`SUM(action IN ('Clicked', 'Viewed'))`.
-
-`IN` is true for either a click or a view, so this sum counts both relevant action types. An ignored row contributes zero to both aggregates.
-
-This denominator is equivalent to:
-
-`SUM(action = 'Clicked') + SUM(action = 'Viewed')`,
-
-but the `IN` form expresses the combined relevant-action count directly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Computing a percentage
-
-The click count is divided by the relevant-action count and multiplied by 100. MySQL performs numeric division here, producing a fractional rate rather than truncating to an integer.
-
-For ad 1 in the reference example, there are two clicked rows, one viewed row, and one ignored row. The ignored action is excluded, so:
-
-$$
-\frac{2}{2+1}\times100=66.666\ldots.
-$$
-
-`ROUND(..., 2)` produces `66.67`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["ad_id", "ctr"], "rows": []}` |
+### Sorting the Aggregate Set
+Ranking tuples by $\text{CTR}$ DESC, then `ad_id` ASC:
+1. Ad 1: $66.67$
+2. Ad 3: $50.00$
+3. Ad 2: $33.33$
+4. Ad 5: $0.00$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Ads": {"columns": ["ad_id", "user_id", "action"], "rows": []}}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["ad_id", "ctr"], "rows": []}` | Verified |
+| `ad_id` | Click Count $C$ | View Count $V$ | Total Active $C + V$ | Raw Ratio $(C / \text{Total}) \times 100$ | Computed `ctr` | Final Rank |
+|---|---|---|---|---|---|---|
+| $1$ | $2$ | $1$ | $3$ | $66.6667\%$ | $66.67$ | 1 |
+| $3$ | $1$ | $1$ | $2$ | $50.0000\%$ | $50.00$ | 2 |
+| $2$ | $1$ | $2$ | $3$ | $33.3333\%$ | $33.33$ | 3 |
+| $5$ | $0$ | $0$ | $0$ | Undefined ($0/0$) | $0.00$ | 4 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Conditional summation precisely classifies actions into click, view, and ignore counts. The safe division guard ensures mathematical soundness when no active user clicks or views occur. Rounding to two decimal places fulfills the display precision requirement.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Grouping covers all distinct `ad_id` values appearing in the input relation. The sorting order strictly arranges rows by descending CTR, resolving ties deterministically using the unique `ad_id`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Conditional `CASE` aggregation:** `SUM(CASE WHEN action = 'Clicked' THEN 1 ELSE 0 END)` is portable across more SQL engines.
-- **Separate click and view subqueries:** Joining independent counts can work but is longer and must preserve ads missing one action type.
-- **Only ignored actions:** The denominator is zero, division yields null, and `COALESCE` returns zero.
-- **Clicks but no views:** Numerator equals denominator, so CTR is 100.
-- **Views but no clicks:** Numerator is zero with a positive denominator, so CTR is zero without needing `COALESCE`.
-- **Ignored rows mixed with relevant actions:** They do not change either count or the rate.
-- **Rounding ties:** Ordering uses the selected rounded CTR because `ORDER BY 2` references the projected column.
-- **Tie-breaking:** Ascending `ad_id` is mandatory after equal CTR values.
-- **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 2 DESC, 1` are concise but fragile if the select list changes.
-- **Every ad remains represented:** Grouping starts from all `Ads` rows, so an ignored-only ad is not lost.
-- **MySQL Boolean sums:** A different SQL dialect may require explicit `CASE` expressions.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Counting "Ignored" in the denominator:** Including `"Ignored"` actions in the denominator distorts CTR by penalizing ads for non-actions rather than measuring click conversions per active view.
+- **Integer division truncation:** In many SQL dialects, dividing integer counts directly truncates to an integer (e.g. $1 / 3 = 0$). Casts to floating-point or multiplying by $100.0$ before division are required.
+- **Null return on zero total:** If an ad has only `"Ignored"` rows, $C + V = 0$. Without `COALESCE` or a conditional check, the result is `NULL` instead of $0.00$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(a)$. Let $r$ be the number of action rows and $a$ the number of distinct advertisements.
-- **Auxiliary Space Complexity:** $O(a)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log K)$, where $N$ is the total number of action logs and $K$ is the number of distinct advertisements. Grouping and conditional counting take $\mathcal{O}(N)$ time, and sorting $K$ advertisement summaries takes $\mathcal{O}(K \log K)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ to maintain aggregate buckets and intermediate statistics for the $K$ distinct ads.

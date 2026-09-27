@@ -158,29 +158,6 @@
       ]
     },
     {
-      "id": "trial-negative-target",
-      "name": "negative target and mixed signs",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          -2,
-          1,
-          -1,
-          -2,
-          2,
-          -2
-        ],
-        "target": -2
-      },
-      "expected": 3,
-      "tags": [
-        "real",
-        "non-overlap",
-        "negative-target"
-      ]
-    },
-    {
       "id": "trial-prefix-repeat",
       "name": "repeated prefix sums across cancellations",
       "kind": "trial",

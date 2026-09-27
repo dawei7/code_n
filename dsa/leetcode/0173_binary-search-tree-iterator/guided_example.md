@@ -1,89 +1,222 @@
 # Guided Example: Binary Search Tree Iterator
 
-We trace the hierarchical Stack, Tree, Design, Binary Search Tree, Binary Tree, Iterator traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step controlled left-spine stack simulation achieving $O(h)$ memory and $O(1)$ amortized next operations on representative binary search trees:
 
-- **Input:** `{"root": [7, 3, 15, null, null, 9, 20], "operations": ["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext", "next", "hasNext"]}`
-- **Required output:** `[null, 3, 7, true, 9, true, 15, true, 20, false]`
+- **Input BST:** $\text{root} = [7, 3, 15, \text{null}, \text{null}, 9, 20]$
+- **Operations:** `["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext", "next", "hasNext"]`
+- **Required outputs:** `[null, 3, 7, true, 9, true, 15, true, 20, false]` (In-order sorted sequence: $3 \to 7 \to 9 \to 15 \to 20$)
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates lazy in-order generator simulation with an explicit LIFO call stack, proves why memory is strictly bounded by the tree height $O(h)$ rather than total nodes $O(N)$, derives the $O(1)$ amortized time complexity via aggregate push/pop accounting, and enforces non-destructive traversal without modifying tree nodes.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Binary Search Tree Iterator** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given a Binary Search Tree (BST):
+$$
+\begin{gathered}
+7 \\
+\swarrow \quad \searrow \\
+3 \qquad\quad 15 \\
+\qquad\quad \swarrow \;\; \searrow \\
+\qquad\quad 9 \quad\;\; 20
+\end{gathered}
+$$
+Design an iterator that outputs nodes in strictly non-decreasing in-order traversal ($3 \to 7 \to 9 \to 15 \to 20$) with:
+- $O(1)$ average time per operation.
+- $O(h)$ memory, where $h$ is the tree height.
+
+A naive approach pre-computes the entire in-order traversal into an array during initialization:
+- While `next()` is $O(1)$, initialization takes $O(N)$ time and stores all $N$ nodes simultaneously, violating the $O(h)$ space requirement.
+
+Controlled iterative in-order traversal simulates recursion lazily:
+- Maintain an explicit stack that stores only the active ancestors along the current left spine.
+- At initialization, push all nodes along the left spine starting from the root down to the leftmost leaf ($7 \to 3$).
+- On `next()`, pop the top node (the current minimum). If that node has a right subtree, push the left spine of that right subtree onto the stack.
+- Stack depth never exceeds tree height $h$, and each node is pushed and popped exactly once, yielding $O(1)$ amortized time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Controlled In-Order Stack Protocol
+Maintain an explicit stack: `self.stack = []`.
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+#### Helper Routine: `push_left_spine(node)`
+While `node` is not null:
+$$
+\text{self.stack.append}(\text{node})
+$$
+$$
+\text{node} \leftarrow \text{node.left}
+$$
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+#### 1. Constructor `BSTIterator(root)`:
+Initialize the left spine from root:
+$$
+\text{push\_left\_spine}(\text{root})
+$$
+
+#### 2. Method `hasNext()` ($O(1)$ Worst-Case):
+Check whether any unvisited nodes remain:
+$$
+\text{return len}(\text{self.stack}) > 0
+$$
+
+#### 3. Method `next()` ($O(1)$ Amortized):
+Pop the smallest unvisited node:
+$$
+\text{curr} = \text{self.stack.pop()}
+$$
+If `curr` has a right child, traverse into it and push its entire left spine:
+$$
+\text{if curr.right}: \quad \text{push\_left\_spine}(\text{curr.right})
+$$
+Return `curr.val`.
+
+> **Invariant.** The node on top of `self.stack` is always the global in-order successor among all remaining unvisited nodes. The maximum number of nodes in `self.stack` at any point never exceeds $h + 1$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace the operations on BST $[7, 3, 15, \text{null}, \text{null}, 9, 20]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: `BSTIterator(root = Node(7))`
+- `push_left_spine(Node(7))`:
+  - Push `Node(7)`. Move left to `Node(3)`.
+  - Push `Node(3)`. Move left to `null`.
+- Stack state: `[Node(7), Node(3)]`.
+- Output: `null`.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: `next()`
+- Pop top of stack: $\text{curr} = \text{Node}(3)$.
+- Right child check: `Node(3).right is None`.
+- Stack remains: `[Node(7)]`.
+- Return $\text{curr.val} = \mathbf{3}$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 3: `next()`
+- Pop top of stack: $\text{curr} = \text{Node}(7)$.
+- Right child check: `Node(7).right` is `Node(15)`.
+- Push left spine of `Node(15)`:
+  - Push `Node(15)`. Move left to `Node(9)`.
+  - Push `Node(9)`. Move left to `null`.
+- Stack state: `[Node(15), Node(9)]`.
+- Return $\text{curr.val} = \mathbf{7}$.
+
+---
+
+### Step 4: `hasNext()`
+- `len(self.stack) = 2 > 0`.
+- Return $\mathbf{True}$.
+
+---
+
+### Step 5: `next()`
+- Pop top of stack: $\text{curr} = \text{Node}(9)$.
+- Right child check: `Node(9).right is None`.
+- Stack remains: `[Node(15)]`.
+- Return $\text{curr.val} = \mathbf{9}$.
+
+---
+
+### Step 6: `hasNext()`
+- `len(self.stack) = 1 > 0`.
+- Return $\mathbf{True}$.
+
+---
+
+### Step 7: `next()`
+- Pop top of stack: $\text{curr} = \text{Node}(15)$.
+- Right child check: `Node(15).right` is `Node(20)`.
+- Push left spine of `Node(20)`:
+  - Push `Node(20)`. Move left to `null`.
+- Stack state: `[Node(20)]`.
+- Return $\text{curr.val} = \mathbf{15}$.
+
+---
+
+### Step 8: `hasNext()`
+- `len(self.stack) = 1 > 0`.
+- Return $\mathbf{True}$.
+
+---
+
+### Step 9: `next()`
+- Pop top of stack: $\text{curr} = \text{Node}(20)$.
+- Right child check: `Node(20).right is None`.
+- Stack remains: `[]` (Empty!).
+- Return $\text{curr.val} = \mathbf{20}$.
+
+---
+
+### Step 10: `hasNext()`
+- `len(self.stack) == 0`.
+- Return $\mathbf{False}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+```text
+BST:
+      7
+     / \
+    3   15
+       /  \
+      9    20
+
+Operation     Stack State Before Pop     Node Popped     Pushed to Stack      Return Value
+init:         -                          -               7, 3                 null
+next():       [7, 3]                     3               None                 3
+next():       [7]                        7               15, 9                7
+hasNext():    [15, 9]                    -               -                    true
+next():       [15, 9]                    9               None                 9
+hasNext():    [15]                       -               -                    true
+next():       [15]                       15              20                   15
+hasNext():    [20]                       -               -                    true
+next():       [20]                       20              None                 20
+hasNext():    []                         -               -                    false
+```
+
+| Step | Invoc. | Initial Stack State | Popped Node | Subtree Spines Pushed | Resulting Stack | Emitted Output |
+|:---:|:---:|:---|:---:|:---:|:---|:---:|
+| 1 | `init` | `[]` | - | `7, 3` | `[7, 3]` | `null` |
+| 2 | `next` | `[7, 3]` | `Node(3)` | None | `[7]` | **3** |
+| 3 | `next` | `[7]` | `Node(7)` | `15, 9` | `[15, 9]` | **7** |
+| 4 | `hasNext` | `[15, 9]` | - | - | `[15, 9]` | **`true`** |
+| 5 | `next` | `[15, 9]` | `Node(9)` | None | `[15]` | **9** |
+| 6 | `hasNext` | `[15]` | - | - | `[15]` | **`true`** |
+| 7 | `next` | `[15]` | `Node(15)` | `20` | `[20]` | **15** |
+| 8 | `hasNext` | `[20]` | - | - | `[20]` | **`true`** |
+| 9 | `next` | `[20]` | `Node(20)` | None | `[]` | **20** |
+| 10 | `hasNext` | `[]` | - | - | `[]` | **`false`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** In a BST, the in-order successor of a node $u$ is either: (1) the leftmost node in $u$'s right subtree, or (2) the lowest ancestor of $u$ whose left child is also an ancestor of $u$. The stack tracks unvisited ancestors. Popping $u$ and pushing the left spine of $u.\text{right}$ preserves this exact ordering.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Every node in the BST is pushed onto the stack exactly once when its left ancestor or right sibling root is visited, and popped once when its turn in the in-order traversal arrives.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **$O(N)$ Space Precomputation:** Flattening the entire tree to an array or list during `__init__` violates the $O(h)$ space requirement. On a balanced tree of $10^5$ nodes, $h \approx 17$, where $O(h)$ uses only 17 references while $O(N)$ uses $100,000$.
+- **Worst-Case vs Amortized Complexity:** A single call to `next()` can take $O(h)$ time when descending a long left spine (e.g. step 3 above where 15 and 9 are pushed). However, across all $N$ elements, exactly $N$ total pushes occur, yielding strictly $O(1)$ amortized time.
+- **Tree Mutation:** Flattening the tree by re-pointing node references modifies the underlying BST, which breaks caller expectations if the tree is concurrently read elsewhere. The stack simulation is completely read-only.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:**
+  - `hasNext()`: $O(1)$ strictly worst-case time (inspecting stack length).
+  - `next()`: $O(1)$ amortized time. Across a full traversal of all $N$ nodes, every node is pushed onto the stack exactly once and popped exactly once, totaling $2N$ operations over $N$ queries ($2N / N = O(1)$).
+- **Auxiliary Space Complexity:** $O(h)$, where $h$ is the height of the binary search tree. The stack stores at most one simple path from the root to a leaf node ($h \le N$, with $h = O(\log N)$ on balanced trees).

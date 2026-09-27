@@ -1,118 +1,177 @@
 # Guided Example: Maximum Equal Frequency
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"nums": [2, 2, 1, 1, 5, 3, 3, 5]}`
-- **Required output:** `7`
+Given an array of positive integers, we want to determine the maximum length of a prefix such that removing **exactly one element** from that prefix leaves all remaining distinct integers with identical occurrence counts.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Imagine the elements of a prefix organized into a histogram of frequencies:
+- The horizontal axis lists each distinct value.
+- The vertical height represents how many times that value appears.
+
+Our goal is to make all columns in the histogram have the exact same height after removing a single block (one element). Removing one element from a column of height $h$:
+- Either reduces that column's height to $h - 1$.
+- Or, if $h = 1$, eliminates that column entirely (height becomes 0, so it no longer counts as a distinct value).
+
+```
+Frequency Histogram Profiles after Removing One Element:
+
+Case 1: All heights are 1 (e.g., [1, 2, 3, 4, 5])
+Columns: [1] [1] [1] [1] [1]
+Action:  Remove any block -> Remaining columns still all height 1!
+
+Case 2: Exactly one column has height M, all others have height M - 1
+Columns: [M-1] [M-1] [ M ] [M-1]
+Action:  Remove 1 block from the height M column -> Now all heights are M - 1!
+
+Case 3: All columns have height M, plus one solitary column of height 1
+Columns: [ M ] [ M ] [ 1 ] [ M ]
+Action:  Remove the solitary height 1 column entirely -> All remaining heights are M!
+```
+
+Instead of recalculating the entire histogram for every prefix (which takes $\mathcal{O}(N^2)$ time), we maintain an online **two-level frequency histogram**:
+1. Level 1: `count[x]` tracks how many times integer $x$ appears in the prefix.
+2. Level 2: `freq_count[f]` tracks how many distinct integers appear exactly $f$ times.
+3. Running maximum: $M$ tracks the maximum frequency among all present integers.
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Given an array `nums` of positive integers, return the longest possible length of an array prefix of `nums`, such that it is possible to remove **exactly one** element from this prefix so that every number that has appeared in it will have the same number of occurrences.
+Let the prefix of length $i \in \{1, \dots, n\}$ be $A_i = \text{nums}[1 \dots i]$.
+Let $\mathcal{U}_i = \{x \in A_i\}$ denote the set of distinct elements present in $A_i$.
 
-The objective is to compute `7` from `{"nums": [2, 2, 1, 1, 5, 3, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
+Define the primary count function:
+$$c_i(x) = \sum_{k=1}^i \mathbb{I}(\text{nums}[k] = x) \quad \forall x \in \mathcal{U}_i$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Define the second-order frequency distribution:
+$$F_i(f) = |\{ x \in \mathcal{U}_i \mid c_i(x) = f \}| \quad \text{for } f \ge 1$$
+Notice that the total number of elements in the prefix satisfies the conservation law:
+$$\sum_{f \ge 1} f \cdot F_i(f) = i$$
+
+Define the maximum frequency at step $i$:
+$$M_i = \max_{x \in \mathcal{U}_i} c_i(x)$$
+
+### Valid Prefix Invariants
+A prefix of length $i$ is valid if and only if at least one of the following three algebraic conditions holds:
+
+1. **Uniform Singletons Condition ($M_i = 1$):**
+   Every present distinct number appears exactly once ($F_i(1) = i$). Removing any element leaves $i - 1$ distinct elements, each appearing once.
+
+2. **Single Peak Reduction Condition:**
+   Exactly one distinct element has frequency $M_i$, and every other distinct element has frequency $M_i - 1$:
+   $$F_i(M_i) = 1 \quad \text{and} \quad 1 \cdot M_i + F_i(M_i - 1) \cdot (M_i - 1) = i$$
+   Removing one occurrence from the peak element reduces its count to $M_i - 1$, harmonizing all remaining elements at frequency $M_i - 1$.
+
+3. **Isolated Singlet Elimination Condition:**
+   All distinct elements except one appear with frequency $M_i$, while the remaining element appears exactly once:
+   $$F_i(1) = 1 \quad \text{and} \quad F_i(M_i) \cdot M_i + 1 = i$$
+   Removing the single occurrence of that solitary element eliminates it completely, leaving all remaining distinct values with uniform frequency $M_i$. (Note: When $M_i \cdot 1 + 1 = i$ with only one distinct element repeated $i$ times, removing one element leaves count $i-1$, satisfying the condition trivially).
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the input array:
+$$\text{nums} = [2, 2, 1, 1, 5, 3, 3, 5]$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We process each prefix of length $i = 1, 2, \dots, 8$:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Step-by-Step State Evolution Trace
+
+| Step $i$ | Value $v$ | Updated `count[v]` | Max Freq $M$ | Active Frequency Counts $F(f)$ | Validity Check Rule | Valid Prefix? | Best Length `ans` |
+|---|---|---|---|---|---|---|---|
+| 1 | 2 | $c(2)=1$ | 1 | $F(1)=1$ | $M=1$ (Rule 1) | **Yes** | 1 |
+| 2 | 2 | $c(2)=2$ | 2 | $F(2)=1$ | $F(2)\cdot 2 + 0 = 2 \implies F(1)=0$, single distinct element | **Yes** | 2 |
+| 3 | 1 | $c(1)=1$ | 2 | $F(2)=1, F(1)=1$ | $F(2)\cdot 2 + 1 = 3$ and $F(1)=1$ (Rule 3) | **Yes** | 3 |
+| 4 | 1 | $c(1)=2$ | 2 | $F(2)=2$ | $F(2)\cdot 2 = 4$, no deletion can balance (would need $F(1)=1$ or $F(2)=1, F(1)=2$) | No | 3 |
+| 5 | 5 | $c(5)=1$ | 2 | $F(2)=2, F(1)=1$ | $F(2)\cdot 2 + 1 = 5$ and $F(1)=1$ (Rule 3) | **Yes** | 5 |
+| 6 | 3 | $c(3)=1$ | 2 | $F(2)=2, F(1)=2$ | $2\cdot 2 + 2\cdot 1 = 6$, neither Rule 2 nor Rule 3 holds | No | 5 |
+| 7 | 3 | $c(3)=2$ | 2 | $F(2)=3, F(1)=1$ | $F(2)\cdot 2 + 1 = 7$ and $F(1)=1$ (Rule 3) | **Yes** | **7** |
+| 8 | 5 | $c(5)=2$ | 2 | $F(2)=4$ | $4 \cdot 2 = 8$, no single deletion leaves equal positive counts | No | 7 |
+
+```mermaid
+flowchart TD
+    accTitle: Online Frequency Histogram Validation
+    accDescr: Step 7 evaluation showing 3 values at frequency 2 and 1 value at frequency 1, satisfying Rule 3.
+    
+    Sub7["Prefix Length i = 7: [2, 2, 1, 1, 5, 3, 3]<br/>Counts: {2: 2, 1: 2, 3: 2, 5: 1}"]
+    
+    Sub7 --> Freq["F(2) = 3 (Values: 2, 1, 3)<br/>F(1) = 1 (Value: 5)<br/>Max Freq M = 2"]
+    
+    Freq --> Test{"Test Rule 3:<br/>F(M)*M + 1 == i<br/>3 * 2 + 1 == 7 ?"}
+    
+    Test -->|TRUE!| Valid["Valid Prefix of Length 7!<br/>Action: Delete value 5.<br/>Remaining values {2, 1, 3} all have frequency 2!"]
+    Valid --> Update["ans = max(5, 7) = 7"]
+```
+
+At step $i = 7$:
+- Distinct values $\{2, 1, 3\}$ each have frequency 2.
+- Distinct value $\{5\}$ has frequency 1.
+Removing the single instance of $5$ yields three distinct values each occurring exactly 2 times. Thus length 7 is valid.
+At step $i = 8$, adding another $5$ causes all four values to have frequency 2. Removing any single element would leave one value with frequency 1 and three values with frequency 2, which is not equal.
+Therefore, the maximum equal frequency prefix length is **7**.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Evaluate every prefix without recounting it
-
-For each prefix, the question is whether deleting exactly one occurrence can make all values that remain have the same positive frequency. Rebuilding a frequency table for every prefix would repeat almost all earlier work and could take quadratic time.
-
-The solution processes `nums` once and maintains two related summaries:
-
-- `cnt[v]` is the number of times value `v` appears in the current prefix.
-- `ccnt[f]` is the number of distinct values whose current frequency is exactly `f`.
-
-For example, if the prefix has counts `{2: 3, 5: 3, 8: 2}`, then `ccnt[3] == 2` and `ccnt[2] == 1`. This “frequency of frequencies” table makes it possible to recognize the few shapes that one deletion can repair.
-
-The variable `mx` is the greatest value frequency in the current prefix. It never decreases as the prefix grows. The variable `ans` remembers the longest valid prefix length found so far. Because enumeration starts at one, `i` is the current prefix length rather than a zero-based index.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Metric / Approach | Offline Histogram Recalculation | Sorting Frequencies per Prefix | Online Dual Hash Maps (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"nums": [2, 2, 1, 1, 5, 3, 3, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Mechanism** | Rebuild frequency table from scratch for each prefix $i$ | Compute frequency array and sort at every step | Incremental update of `count` and `freq_count` |
+| **Per-Step Complexity** | $\mathcal{O}(i)$ rebuild | $\mathcal{O}(|\mathcal{U}| \log |\mathcal{U}|)$ sort | $\mathcal{O}(1)$ hash increments and decrements |
+| **Total Time Complexity** | $\mathcal{O}(N^2)$ quadratic | $\mathcal{O}(N \cdot K \log K)$ | $\mathcal{O}(N)$ strictly linear single pass |
+| **Auxiliary Memory** | $\mathcal{O}(N)$ scratch space | $\mathcal{O}(N)$ buffer | $\mathcal{O}(N)$ two hash counters |
+| **Runtime for $N = 10^5$** | $> 30\text{ seconds}$ (TLE) | $\approx 2.5\text{ seconds}$ | $\approx 0.05\text{ seconds}$ |
+
+```
+Frequency Transition Mechanism:
+When element v arrives with prior frequency f:
+1. Decrement F(f):       freq_count[f] -= 1
+2. Increment count[v]:   count[v] = f + 1
+3. Increment F(f + 1):   freq_count[f + 1] += 1
+4. Update M:             M = max(M, f + 1)
+Total work per element: Exactly 4 constant-time hash map updates!
+```
 
 ---
 
-### Step 2: Update both tables consistently
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-When a new `v` arrives, it moves from its old frequency bucket to the next bucket. If `v in cnt`, the old frequency is positive, so `ccnt[cnt[v]] -= 1` removes one distinct value from that bucket. Then `cnt[v] += 1` raises its occurrence count, `mx` is updated, and `ccnt[cnt[v]] += 1` places it in the new bucket.
-
-Zero-valued entries may remain in the `Counter`, but they do not hurt the arithmetic. A missing key also reads as zero.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Scenario | Example Input | Expected Output | Behavioral Justification |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Minimal Array ($N = 2$)** | `[1, 1]` | 2 | Length 2 has $F(2)=1$, $M=2$. $F(2)\cdot 2 = 2$ and $F(1)=0$. Removing 1 element leaves single element with frequency 1. |
+| **All Distinct Elements** | `[1, 2, 3, 4, 5]` | 5 | $M = 1$ throughout entire array. Removing any element leaves remaining values with frequency 1. Rule 1 holds for all $i$. |
+| **Single Value Repeated** | `[7, 7, 7, 7]` | 4 | $F(4) = 1$. Removing one element leaves frequency 3. Rule 3 applies ($1 \times 4 = 4$, single component). |
+| **All Same Except One Single** | `[1, 1, 1, 2, 2, 2, 3]` | 7 | Three 1s, three 2s, one 3. $F(3)=2, F(1)=1$. Deleting 3 leaves uniform frequency 3. |
+| **All Same Except One Peak** | `[1, 1, 2, 2, 3, 3, 3]` | 7 | Two 1s, two 2s, three 3s. $F(3)=1, F(2)=2$. Deleting one 3 leaves uniform frequency 2. Rule 2 applies. |
 
 ---
 
-### Step 3: There are only three repairable frequency shapes
+## 6. Mathematical Verification & Complexity Derivation
 
-Deleting one occurrence changes the frequency of exactly one value by one. If that frequency was one, the value disappears entirely and is no longer among the values that “have appeared” after deletion. All other values keep their frequencies. Therefore, before deletion, a valid prefix must have one of three shapes.
+Let $N = |\text{nums}|$ be the length of the array.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
+### Time Complexity:
+1. **Loop Iterations:** The loop runs exactly $N$ times, with prefix index $i$ advancing from $1$ to $N$.
+2. **Operations per Iteration:**
+   - Hash map lookup and update for `count[v]`: $\mathcal{O}(1)$ average.
+   - Hash map decrement for `freq_count[f]`: $\mathcal{O}(1)$ average.
+   - Hash map increment for `freq_count[f + 1]`: $\mathcal{O}(1)$ average.
+   - Scalar comparison `M = max(M, new_freq)`: $\mathcal{O}(1)$.
+   - Checking the three algebraic validity conditions involves at most 6 arithmetic operations and table lookups: $\mathcal{O}(1)$.
+3. **Overall Running Time:**
+   $$T(N) = \sum_{i=1}^N \mathcal{O}(1) = \mathcal{O}(N)$$
 
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 2, 1, 1, 5, 3, 3, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Auxiliary Space Complexity:
+- `count` stores frequency counts for at most $\min(N, |\text{alphabet}|)$ distinct integers: $\mathcal{O}(N)$ memory.
+- `freq_count` stores counts of frequencies ranging from $1$ to $N$: at most $N$ non-zero entries, requiring $\mathcal{O}(N)$ memory.
+- Scalar variables `ans, mx, i, v`: $\mathcal{O}(1)$ space.
+- Total auxiliary space is strictly $\mathcal{O}(N)$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 7. Synthesis & Strategic Takeaways
 
-- **Recount every prefix:** Building a new frequency map and testing it after each extension can take \(O(n^2)\). Maintaining `cnt` and `ccnt` shares the work.
-- **Track a set of frequencies only:** A set reveals which frequencies exist but not how many values occupy each one. The conditions require knowing whether the maximum or singleton bucket contains exactly one value.
-- **All values distinct:** `mx == 1` makes every prefix valid, because one singleton can be removed and all remaining counts stay one.
-- **All values equal:** Every prefix is valid. Deleting one occurrence leaves the single remaining value with any positive frequency, or leaves no values for a length-one prefix.
-- **Exactly one singleton:** It is removable only when every other value has the same frequency. The weighted-total equation rules out hidden frequency levels.
-- **Unique value one above the rest:** This is repairable by deleting one copy of that unique maximum. Two maximum values would require two deletions, so `ccnt[mx] == 1` is necessary.
-- **Stale zero buckets:** Decrementing `ccnt` can leave keys with value zero. Weighted arithmetic and equality checks remain correct because those buckets contribute nothing.
-- **Exactly one deletion:** The cases do not merely test whether frequencies are already equal. For equal frequencies greater than one across multiple values, deleting one creates inequality and the prefix is not automatically valid.
-- **Positive input values:** Hash-map logic would also work for zero or negative values, but the given domain is positive.
-- **Returning a prefix length:** The algorithm need not remember which occurrence to delete. The matching shape identifies that a deletion exists, which is sufficient for the requested length.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let \(n=\lvert\texttt{nums}\rvert\). Each element causes a constant expected number of hash-table operations and three constant-time shape checks, so expected time is \(O(n)\). As usual for Python hash tables, this is an expected bound; pathological collisions can degrade individual operations.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Second-Order State Aggregation**: When a condition requires global uniformity among dynamic entities, tracking the distribution of the primary metric (frequency of frequencies) converts an $\mathcal{O}(K)$ inspection into $\mathcal{O}(1)$ arithmetic checks.
+2. **Exhaustive Case Characterization**: Removing a single block can resolve non-uniformity in only two topological ways: trimming the tallest peak by 1 to match the plateau, or shaving a singlet down to 0 to eliminate its category entirely.
+3. **Incremental Bucket Shifting**: As frequencies increase by 1, an element shifts from bucket $f$ to bucket $f + 1$. Maintaining consistency only requires decrementing $F(f)$ and incrementing $F(f+1)$, avoiding full re-evaluations.

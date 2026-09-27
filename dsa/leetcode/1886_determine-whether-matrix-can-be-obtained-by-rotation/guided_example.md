@@ -1,106 +1,141 @@
 # Guided Example: Determine Whether Matrix Can Be Obtained By Rotation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the cyclic orthogonal group rotations of an $n \times n$ binary matrix to determine whether it can match a target matrix:
 
-- **Input:** `{"mat": [[0, 1], [1, 0]], "target": [[1, 0], [0, 1]]}`
-- **Required output:** `true`
+- **Input:**
+  $$\text{mat} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \text{target} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates generating successive $90^\circ$ clockwise matrix rotations through coordinate mapping, evaluating cell-by-cell matrix equality at each of the 4 cyclic orientations ($0^\circ, 90^\circ, 180^\circ, 270^\circ$), and terminating with `true` upon finding a match.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two `n x n` binary matrices `mat` and `target`, return `true`* if it is possible to make *`mat`* equal to *`target`* by **rotating** *`mat`* in **90-degree increments**, or *`false`* otherwise.*
+We are given two $n \times n$ binary matrices `mat` and `target`. We must determine if `mat` can be rotated in $90^\circ$ increments to become identical to `target`.
 
-The objective is to compute `true` from `{"mat": [[0, 1], [1, 0]], "target": [[1, 0], [0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{mat} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ and $\text{target} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ ($n = 2$):
+1. **$0^\circ$ Rotation (Original Matrix):**
+   $$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \neq \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \quad (\text{Mismatch at } (0, 0))$$
+2. **$90^\circ$ Clockwise Rotation:**
+   - Cell $(0, 0) = 0 \to (0, 1)$
+   - Cell $(0, 1) = 1 \to (1, 1)$
+   - Cell $(1, 0) = 1 \to (0, 0)$
+   - Cell $(1, 1) = 0 \to (1, 0)$
+   - Resulting matrix:
+     $$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} == \text{target} \quad (\text{Exact Match!})$$
+- A valid match is identified at $90^\circ$, returning `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **discrete coordinate transformations in the cyclic group $\mathbb{Z}_4$**:
+1. Deriving the 2D coordinate transformation $(r, c) \mapsto (c, n - 1 - r)$ for a $90^\circ$ clockwise rotation.
+2. Understanding that 4 rotations form a complete closed orbit ($360^\circ \equiv 0^\circ$).
+3. Tracking 4 orientation equality flags simultaneously or rotating iteratively up to 3 times.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Cyclic Orthogonal Rotation Group Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Cyclic Orthogonal Rotation Group Theorem.**
+> 1. *Coordinate Mapping Invariant:* Rotating an $n \times n$ matrix $M$ clockwise by $90^\circ$ maps the cell at coordinates $(r, c)$ to:
+>    $$\rho(r, c) = (c, \; n - 1 - r)$$
+> 2. *Cyclic Orbit Closure:* The rotation operation $\rho$ generates the cyclic group $\mathbb{Z}_4$:
+>    - $\rho^0(r, c) = (r, c)$ ($0^\circ$)
+>    - $\rho^1(r, c) = (c, n - 1 - r)$ ($90^\circ$)
+>    - $\rho^2(r, c) = (n - 1 - r, n - 1 - c)$ ($180^\circ$)
+>    - $\rho^3(r, c) = (n - 1 - c, r)$ ($270^\circ$)
+>    - $\rho^4(r, c) = (r, c)$ ($360^\circ \equiv 0^\circ$)
+> 3. *Equivalence Predicate:* The matrix `mat` can produce `target` if and only if there exists $k \in \{0, 1, 2, 3\}$ such that:
+>    $$\forall r, c \in \{0, \dots, n-1\}, \quad \text{mat}[\rho^{-k}(r, c)] == \text{target}[r][c]$$
+> 4. *Complexity:* Testing equality for a fixed orientation requires comparing $n^2$ cells. Evaluating all 4 rotations takes at most $4n^2 = \mathcal{O}(n^2)$ time and $\mathcal{O}(1)$ auxiliary space if checking in-place.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Matrix Rotation Orbit Pipeline
+    accDescr: Pipeline showing evaluation of matrix equality across 4 cyclic rotations: 0, 90, 180, and 270 degrees.
+    A["Initial mat (0 deg)"] --> B{"Equals target?"}
+    B -->|"Yes"| Match["Return true"]
+    B -->|"No"| R1["Rotate 90 deg clockwise: (r, c) -> (c, n - 1 - r)"]
+    R1 --> C{"Equals target?"}
+    C -->|"Yes"| Match
+    C -->|"No"| R2["Rotate another 90 deg (180 deg total)"]
+    R2 --> D{"Equals target?"}
+    D -->|"Yes"| Match
+    D -->|"No"| R3["Rotate another 90 deg (270 deg total)"]
+    R3 --> E{"Equals target?"}
+    E -->|"Yes"| Match
+    E -->|"No"| NoMatch["All 4 rotations failed: Return false"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**There are only four possible orientations.** Rotating a square matrix by 90 degrees four times returns to the original arrangement. Therefore, every allowed result is one of the 0-degree, 90-degree, 180-degree, or 270-degree orientations. The source checks all four possibilities simultaneously while scanning the target rather than physically rotating `mat` four times.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"mat": [[0, 1], [1, 0]], "target": [[1, 0], [0, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the comparison between `mat` and `target` for $n = 2$:
 
 ---
 
-### Step 2: Core Step 2
-
-**Store surviving orientations as bits.** Variable `ok` starts as binary `0b1111`. Each of its four low bits means that one orientation is still compatible with every cell examined so far. When a comparison for an orientation fails, the code clears only that orientation's bit with `ok &= ~bit`. A cleared bit can never become viable later because one mismatching cell is enough to disprove whole-matrix equality.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate $0^\circ$ Orientation
+- Source matrix:
+  $$\text{mat} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+- Target matrix:
+  $$\text{target} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
+- Compare cells:
+  - $(0, 0)$: $\text{mat}[0][0] = 0 \neq \text{target}[0][0] = 1$ (Mismatch).
+- The $0^\circ$ orientation is invalid.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Apply $90^\circ$ Clockwise Rotation
+Compute the transformed matrix $M^{(1)}$ using $(r', c') = (c, n - 1 - r)$ where $n = 2$:
+- $(r=0, c=0) \implies (0, 2 - 1 - 0) = (0, 1)$: $M^{(1)}[0][1] = \text{mat}[0][0] = 0$.
+- $(r=0, c=1) \implies (1, 2 - 1 - 0) = (1, 1)$: $M^{(1)}[1][1] = \text{mat}[0][1] = 1$.
+- $(r=1, c=0) \implies (0, 2 - 1 - 1) = (0, 0)$: $M^{(1)}[0][0] = \text{mat}[1][0] = 1$.
+- $(r=1, c=1) \implies (1, 2 - 1 - 1) = (1, 0)$: $M^{(1)}[1][0] = \text{mat}[1][1] = 0$.
+- Transformed matrix:
+  $$M^{(1)} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
 
-Although Python's `~` produces a negative integer with conceptually unbounded leading one bits, AND with the current four-bit `ok` clears the intended low bit and leaves the other candidate bits unchanged. For example, `ok &= ~0b0010` removes the second orientation but preserves the first, third, and fourth.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Compare $90^\circ$ Matrix with Target
+- Cell $(0, 0)$: $M^{(1)}[0][0] = 1 == \text{target}[0][0] = 1$ (Match).
+- Cell $(0, 1)$: $M^{(1)}[0][1] = 0 == \text{target}[0][1] = 0$ (Match).
+- Cell $(1, 0)$: $M^{(1)}[1][0] = 0 == \text{target}[1][0] = 0$ (Match).
+- Cell $(1, 1)$: $M^{(1)}[1][1] = 1 == \text{target}[1][1] = 1$ (Match).
+- All 4 cells match identically!
+- Conclusion: Target reached in 1 rotation ($90^\circ$). Output is `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"mat": [[0, 1], [1, 0]], "target": [[1, 0], [0, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Orientation | Angle | Matrix Form | Comparison with Target | Match Found? | Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $k = 0$ | $0^\circ$ | $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ | $(0, 0): 0 \neq 1$ | No | Rotate $90^\circ$ |
+| $k = 1$ | $90^\circ$ | $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ | All 4 cells identical | **Yes** | **Return `true`** |
+| $k = 2$ | $180^\circ$ | Unneeded | - | - | Pruned |
+| $k = 3$ | $270^\circ$ | Unneeded | - | - | Pruned |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Rotating a 2D matrix by applying $(r, c) \mapsto (c, n - 1 - r)$ implements an exact Euclidean $90^\circ$ clockwise rotation. When an orientation matches `target` at every coordinate, the matrices are identical.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since four $90^\circ$ rotations cover all elements of the cyclic rotation group $\mathbb{Z}_4$, testing all 4 orientations evaluates the entire reachable orbit. If none of the 4 matches, no sequence of valid rotations can yield `target`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Rotate in place up to four times:** Compare after each rotation and mutate layers of `mat`. This also uses $O(1)$ extra space and $O(n^2)$ time, but changes the input and has more error-prone swap logic.
-- **Build a new rotated matrix:** A comprehension such as transposed reversed rows makes each orientation easy to see, but allocates $O(n^2)$ additional space for every rotation.
-- **Compare only counts of zeros and ones:** Equal counts are necessary but not sufficient because rotation must preserve exact relative positions. Coordinate comparisons are required.
-- **One-by-one matrix:** All four coordinate formulas refer to the sole cell. The result is simply whether the two cells are equal.
-- **Rotational symmetry:** More than one bit may survive when `mat` is symmetric. The result only needs existence, so retaining multiple candidates is harmless.
-- **Target equal without rotation:** The identity bit remains set and true is returned even if all rotated orientations fail.
-- **No orientation works:** Bits may fail at different cells. Early false occurs as soon as the last remaining orientation receives its first mismatch.
-- **Direction terminology:** The source checks both quarter-turn directions plus 180 degrees and identity. Since repeated 90-degree rotations generate all four, the result does not depend on naming one direction as the primary rotation.
-- **Bitwise complement in Python:** `~bit` is negative, but AND with the nonnegative four-bit candidate mask has the intended low-bit clearing behavior. Using `ok ^= bit` would be unsafe because it could turn an already-cleared candidate back on.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Reflections vs Rotations:** Transposing a matrix or reversing rows alone represents a reflection (mirroring), not a pure rotation. A rotation requires both transposing and reversing rows ($M \mapsto M^T$ followed by reversing each row).
+- **Coordinate Transformation Offsets:** The destination row is $c$ and destination column is $n - 1 - r$. Swapping these or omitting the $-1$ creates indexing errors.
+- **Early Termination:** As soon as any rotation matches all $n^2$ cells, the algorithm can terminate immediately with `true` without completing all 4 cycles.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. The nested loops visit all $n^2$ cells in the worst case. At each cell, four comparisons, four possible bit clears, and one mask test take constant time. Four is a fixed number of orientations, so total time is $O(n^2)$. Early exit can reduce work on incompatible matrices but does not change the worst-case bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$, where $n$ is the dimension of the matrix. We perform at most 4 rotation checks, each taking $\mathcal{O}(n^2)$ cell comparisons.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ if comparing directly via coordinate index formulas, or $\mathcal{O}(n^2)$ if storing the rotated matrix buffer.

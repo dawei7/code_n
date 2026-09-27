@@ -1,104 +1,130 @@
 # Guided Example: Swap Nodes in Pairs
 
-We execute the single-pass Linked List, Recursion pointer manipulation on a representative linked list instance.
+We trace the step-by-step in-place pointer rewiring for pairwise linked list node swapping on a representative instance:
 
-- **Input:** `{"head": [1, 2, 3, 4]}`
-- **Required output:** `[2, 1, 4, 3]`
+- **Input:** $\text{head} = [1, 2, 3, 4]$
+- **Required output:** $[2, 1, 4, 3]$
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates sentinel node anchoring, isolating adjacent two-node pairs, executing a 3-link pointer permutation without allocating new nodes or altering node values, and advancing the anchor across consecutive pairs.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Swap Nodes in Pairs** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+Given the head of a linked list with $N = 4$ nodes:
+$$
+[1] \to [2] \to [3] \to [4] \to \text{None}
+$$
+
+We must swap every two adjacent nodes in place without modifying the integer values inside the nodes (only node references may be altered):
+$$
+[2] \to [1] \to [4] \to [3] \to \text{None}
+$$
+
+A naive approach overwrites `node.val`, which violates interview and production constraints where node objects carry external identity or state. The optimal approach uses a sentinel $\text{dummy}$ node and rewires exactly three pointer references per pair in $O(N)$ time and $O(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### The 3-Link Rewiring Permutation
+To swap adjacent nodes $A$ and $B$ that follow an anchor node $\text{prev}$:
+```text
+Initial state:
+prev -> [A] -> [B] -> [next_pair]
+```
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+We must transform the connections into:
+```text
+Final state:
+prev -> [B] -> [A] -> [next_pair]
+```
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+This requires three sequential pointer reassignments:
+1. $\text{prev.next} \leftarrow B$ (link anchor to $B$)
+2. $B.\text{next} \leftarrow A$ (invert direction between $B$ and $A$)
+3. $A.\text{next} \leftarrow \text{next\_pair}$ (connect $A$ to the unswapped remainder)
+
+After rewiring, $A$ occupies the second position of the pair. We advance $\text{prev} \leftarrow A$ to anchor the subsequent pair.
+
+> **Invariant.** Before processing each pair, all preceding pairs have been inverted into their final sorted positions, and $\text{prev}$ points to the tail of the last completed pair. If fewer than two nodes remain after $\text{prev}$, the algorithm terminates.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We process list $[1, 2, 3, 4]$:
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
+### Initialization
+- Prepend sentinel: $\text{dummy.next} \leftarrow \text{Node}(1)$.
+- Anchor pointer: $\text{prev} = \text{dummy}$.
+- State: $\text{dummy} \to 1 \to 2 \to 3 \to 4 \to \text{None}$.
 
 ---
 
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Pair 1: Nodes $1$ and $2$
+- Identify pair nodes:
+  - $A = \text{prev.next} = \text{Node}(1)$
+  - $B = A.\text{next} = \text{Node}(2)$
+  - Suffix node $\text{nxt} = B.\text{next} = \text{Node}(3)$
+- Execute 3-link rewiring:
+  1. $\text{prev.next} \leftarrow B$: $\text{dummy} \to \text{Node}(2)$
+  2. $B.\text{next} \leftarrow A$: $\text{Node}(2) \to \text{Node}(1)$
+  3. $A.\text{next} \leftarrow \text{nxt}$: $\text{Node}(1) \to \text{Node}(3)$
+- Resulting chain: $\text{dummy} \to 2 \to 1 \to 3 \to 4$.
+- Advance anchor: $\text{prev} \leftarrow A$ ($\text{Node}(1)$).
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Pair 2: Nodes $3$ and $4$
+- Identify pair nodes:
+  - $A = \text{prev.next} = \text{Node}(3)$
+  - $B = A.\text{next} = \text{Node}(4)$
+  - Suffix node $\text{nxt} = B.\text{next} = \text{None}$
+- Execute 3-link rewiring:
+  1. $\text{prev.next} \leftarrow B$: $\text{Node}(1) \to \text{Node}(4)$
+  2. $B.\text{next} \leftarrow A$: $\text{Node}(4) \to \text{Node}(3)$
+  3. $A.\text{next} \leftarrow \text{nxt}$: $\text{Node}(3) \to \text{None}$
+- Resulting chain: $\text{dummy} \to 2 \to 1 \to 4 \to 3 \to \text{None}$.
+- Advance anchor: $\text{prev} \leftarrow A$ ($\text{Node}(3)$).
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+---
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+### Termination
+- Check remaining nodes: $\text{prev.next} = \text{None}$ (fewer than 2 nodes remain).
+- The while loop `while prev.next and prev.next.next:` halts.
+- Return $\text{dummy.next} = \text{Node}(2)$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+| Step | Anchor $\text{prev}$ Node | First Node $A$ | Second Node $B$ | Remainder $\text{nxt}$ | Swapped Subsegment | Full Chain State After Rewiring |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 (Init) | $\text{dummy}$ | - | - | - | - | $\text{dummy} \to 1 \to 2 \to 3 \to 4 \to \text{None}$ |
+| 1 | $\text{dummy}$ | $\text{Node}(1)$ | $\text{Node}(2)$ | $\text{Node}(3)$ | $[2 \to 1]$ | $\text{dummy} \to 2 \to 1 \to 3 \to 4 \to \text{None}$ |
+| 2 | $\text{Node}(1)$ | $\text{Node}(3)$ | $\text{Node}(4)$ | $\text{None}$ | $[4 \to 3]$ | $\text{dummy} \to 2 \to 1 \to 4 \to 3 \to \text{None}$ |
+| Final | $\text{Node}(3)$ | $\text{None}$ | - | - | - | Emitted Head: $\text{dummy.next} = \text{Node}(2)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** Swapping modifies only the forward `.next` pointers among existing node instances. Since the link $A.\text{next} \leftarrow \text{nxt}$ connects the swapped pair to the remainder of the list before advancing $\text{prev}$, no nodes are orphaned or lost from the chain.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** Each iteration consumes exactly two nodes from the input list. The loop condition `while prev.next and prev.next.next:` runs as long as an intact pair exists. If the list length is odd, the trailing singleton node remains unswapped as required by the problem specification.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Modifying Node Values:** Swapping `node.val` rather than pointer references violates problem rules requiring structural node manipulation.
+- **Lost References During Rewire:** If $B.\text{next}$ is updated to $A$ before storing $B.\text{next}$ into $\text{nxt}$, the remaining list $[3 \to 4]$ becomes unreferenced and permanently lost.
+- **Odd Length List Handling:** For a 3-node list $[1, 2, 3]$, after swapping $1$ and $2$, $\text{prev}$ is at $1$. Then $\text{prev.next} = \text{Node}(3)$, but $\text{prev.next.next} = \text{None}$. The condition fails cleanly, leaving node $3$ untouched and producing $[2, 1, 3]$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the linked list. The pointer moves through the list in steps of $2$, visiting each node once.
+- **Auxiliary Space Complexity:** $O(1)$. Swapping modifies existing pointers strictly in place, requiring only fixed scalar pointer handles ($\text{dummy}$, $\text{prev}$, $A$, $B$).

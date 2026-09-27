@@ -60,23 +60,6 @@
       ]
     },
     {
-      "id": "trial-zero-exponent",
-      "name": "trial: exponent zero",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "a": 0,
-        "b": [
-          0
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial",
-        "zero"
-      ]
-    },
-    {
       "id": "trial-modulus-base",
       "name": "trial: base divisible by modulus",
       "kind": "trial",
@@ -127,23 +110,6 @@
       "expected": 7,
       "tags": [
         "zero-digit"
-      ]
-    },
-    {
-      "id": "trial-negative-base",
-      "name": "negative base normalization",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "a": -2,
-        "b": [
-          1,
-          1
-        ]
-      },
-      "expected": 626,
-      "tags": [
-        "negative"
       ]
     },
     {

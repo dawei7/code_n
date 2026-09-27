@@ -1,130 +1,178 @@
 # Guided Example: Reverse Words in a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step whitespace-normalized word extraction and two-pointer character array reversal on representative string instances:
 
-- **Input:** `{"s": "the sky is blue"}`
-- **Required output:** `"blue is sky the"`
+- **Input:** $s = \text{"  hello world  "}$
+- **Required output:** $\text{"world hello"}$
+- **Multiple Spaces Instance:** $s = \text{"a good   example"} \implies \text{"example good a"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates stripping irregular leading, trailing, and repeated inter-word spaces, contrasting token-deque accumulation with the classical in-place three-step reversal algorithm (reverse entire string, then reverse each individual word), and achieving $O(N)$ linear runtime.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an input string `s`, reverse the order of the **words**.
+Given a string with irregular spacing:
+$$
+s = \text{"  hello world  "}
+$$
+Reverse the order of words and format the output so that words are separated by exactly one space, with no leading or trailing whitespace:
+$$
+\text{Output} = \text{"world hello"}
+$$
 
-The objective is to compute `"blue is sky the"` from `{"s": "the sky is blue"}` while avoiding redundant calculations and unnecessary overhead.
+The challenge contains two distinct requirements:
+1. **Word Order Inversion:** The sequence of words $[\text{"hello"}, \text{"world"}]$ must be inverted to $[\text{"world"}, \text{"hello"}]$.
+2. **Whitespace Normalization:** Redundant leading, trailing, and multiple consecutive inter-word spaces must be collapsed into a single space separator.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+While higher-level split methods (`" ".join(reversed(s.split()))`) solve this concisely in $O(N)$ space, understanding low-level pointer manipulation reveals the classic $O(1)$ space follow-up:
+1. Trim multiple spaces into single spaces.
+2. Reverse the entire character buffer: $\text{"world hello"}^R = \text{"olleh dlrow"}$.
+3. Reverse each individual word in-place: $\text{"hello"}$ and $\text{"world"}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method 1: Two-Pointer Word Scanning Protocol
+Let $N = |s|$.
+Maintain pointer $i = 0$ and a list of words `words = []`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+While $i < N$:
+1. **Skip Whitespace:**
+   Advance $i$ while $i < N$ and $s[i] == \text{' '}$.
+   If $i == N$: break.
+2. **Identify Word Boundary:**
+   Set $j = i$.
+   Advance $j$ while $j < N$ and $s[j] \ne \text{' '}$.
+3. **Extract Word:**
+   Append token $s[i : j]$ to `words`.
+   Set $i = j$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Assemble final string:
+$$
+\text{result} = \text{" "}.\text{join}(\text{reversed}(\text{words}))
+$$
+
+### Method 2: The In-Place 3-Step Reversal Theorem
+For languages with mutable character buffers (e.g. C++ or Java `char[]`):
+1. **Space Normalization:** Two pointers compact characters, collapsing runs of spaces into single delimiters.
+2. **Global Buffer Reversal:**
+   $$
+   \text{reverse}(A, \, 0, \, |A|-1)
+   $$
+   This puts words into reversed relative order, but inverts the spelling of each individual word.
+3. **Local Word Reversal:**
+   For each word delimited by space:
+   $$
+   \text{reverse}(A, \, \text{word\_start}, \, \text{word\_end})
+   $$
+   Restores each word to correct forward spelling.
+
+> **Invariant.** After token extraction, `words` contains only non-empty strings of alphanumeric characters in their original left-to-right order, with all arbitrary space runs discarded.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Separate word discovery from order reversal
+We trace the two-pointer scan on $s = \text{"  hello world  "}$ ($N = 15$):
 
-The output needs two transformations at once:
-
-- words must appear in reverse order;
-- all spacing must be normalized to one separator, with no leading or trailing spaces.
-
-The selected solution first extracts only actual words into `words`. Because it never stores input spaces, formatting the final output with one explicit separator automatically satisfies the spacing rules.
-
-`i` is the current scan position and `n` is the string length.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "the sky is blue"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Skip Leading Spaces
+- $i = 0$: $s[0] == \text{' '}$. Advance $i \to 1$.
+- $i = 1$: $s[1] == \text{' '}$. Advance $i \to 2$.
+- $i = 2$: $s[2] == \text{'h'} \ne \text{' '}$. Word 1 starts!
 
 ---
 
-### Step 2: Skip every run of spaces
-
-At the top of each outer iteration, the first inner loop advances `i` while `s[i] == " "`.
-
-This one rule handles:
-
-- leading spaces before the first word;
-- several spaces between words;
-- trailing spaces after the final word.
-
-After skipping, either `i == n`, meaning no characters remain, or `i` points to the first character of a word.
-
-The condition order checks `i < n` before indexing `s[i]`, preventing an out-of-range access when the scan reaches the end.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Extract First Word (`"hello"`)
+- Set $j = i = 2$.
+- Advance $j$ through letters $\text{'h'}, \text{'e'}, \text{'l'}, \text{'l'}, \text{'o'}$:
+  - $j$ advances from $2 \to 7$.
+  - At $j = 7$: $s[7] == \text{' '}$. Word boundary reached!
+- Extract slice: $s[2:7] = \mathbf{\text{"hello"}}$.
+- Append: `words = ["hello"]`.
+- Update: $i = j = 7$.
 
 ---
 
-### Step 3: Capture one maximal word
+### Step 3: Skip Inter-Word Space
+- $i = 7$: $s[7] == \text{' '}$. Advance $i \to 8$.
+- $i = 8$: $s[8] == \text{'w'} \ne \text{' '}$. Word 2 starts!
 
-When a word begins, `j` starts at `i` and moves until it reaches a space or the end. The interval `s[i:j]` is therefore a maximal consecutive sequence of non-space characters, exactly matching the Reference’s definition of a word.
+---
 
-That slice is appended to `words`, and `i = j` positions the next iteration at the separator after the word or at the end.
+### Step 4: Extract Second Word (`"world"`)
+- Set $j = i = 8$.
+- Advance $j$ through letters $\text{'w'}, \text{'o'}, \text{'r'}, \text{'l'}, \text{'d'}$:
+  - $j$ advances from $8 \to 13$.
+  - At $j = 13$: $s[13] == \text{' '}$. Word boundary reached!
+- Extract slice: $s[8:13] = \mathbf{\text{"world"}}$.
+- Append: `words = ["hello", "world"]`.
+- Update: $i = j = 13$.
 
-For input `"  hello world  "`, the scan stores only `["hello", "world"]`. No empty strings are produced for the leading, repeated, or trailing separators.
+---
 
-For `"a good   example"`, it stores `["a", "good", "example"]` even though the middle separator contains three spaces.
+### Step 5: Skip Trailing Spaces
+- $i = 13$: $s[13] == \text{' '}$. Advance $i \to 14$.
+- $i = 14$: $s[14] == \text{' '}$. Advance $i \to 15$.
+- $i = 15 == N$. End of string reached!
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"blue is sky the"` |
+---
+
+### Step 6: Invert Word Order and Join
+- Extracted words: `["hello", "world"]`.
+- Reverse word list: `["world", "hello"]`.
+- Join with single delimiter `" "`:
+  $$
+  \text{Output} = \mathbf{\text{"world hello"}}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "the sky is blue"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"blue is sky the"` | Verified |
+```text
+Input:       "  hello world  "
+Pointers:     ^^-----^-----^^
+Skipped:      [0..1] leading spaces
+Word 1:       [2..6]  "hello"
+Skipped:      [7]     inter-word space
+Word 2:       [8..12] "world"
+Skipped:      [13..14] trailing spaces
+
+Extracted:    ["hello", "world"]
+Reversed:     ["world", "hello"]
+Formatted:    "world hello"
+```
+
+| Scan Phase | Pointer Interval $[i, j)$ | Characters Evaluated | Action Taken | Current `words` Array |
+|:---:|:---:|:---|:---|:---|
+| Leading Trim | $[0, 2)$ | `' '`, `' '` | Skip whitespace | `[]` |
+| **Word 1** | **$[2, 7)$** | **`"hello"`** | **Capture word** | **`["hello"]`** |
+| Inter-Word | $[7, 8)$ | `' '` | Skip whitespace | `["hello"]` |
+| **Word 2** | **$[8, 13)$** | **`"world"`** | **Capture word** | **`["hello", "world"]`** |
+| Trailing Trim | $[13, 15)$ | `' '`, `' '` | Skip whitespace | `["hello", "world"]` |
+| **Final Join** | - | Invert & Join | `reversed(words)` | **`"world hello"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A word is captured only when non-space characters are bounded by whitespace or string edges. Reversing the array of words changes their sequence from $[W_0, W_1, \dots, W_{k-1}]$ to $[W_{k-1}, \dots, W_0]$ without modifying individual character spelling within any word. Joining with single spaces guarantees exactly one space delimiter between adjacent words.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every index from $0$ to $N-1$ is visited by $i$ or $j$. No word characters can be skipped, and all non-space segments are extracted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Built-in split and reversed:** `" ".join(reversed(s.split()))` performs the same task concisely in Python and has the same asymptotic bounds.
-- **Deque with front insertion:** Parse each word and add it to the deque’s front, then join. It avoids a reversed list copy but still uses $O(n)$ storage.
-- **Reverse a mutable character array:** Trim/collapse spaces, reverse the whole buffer, then reverse each word. In a language with mutable strings, this can meet the $O(1)$ auxiliary follow-up.
-- **One word:** It is extracted and joined unchanged, while surrounding spaces disappear.
-- **Many consecutive spaces:** The skip loop consumes the entire run without creating empty words.
-- **Leading and trailing spaces:** They never enter `words`, so they cannot appear in the result.
-- **Uppercase letters and digits:** They are non-space characters and remain part of their word unchanged.
-- **At least one word:** The contract guarantees `words` is nonempty; `join` would still return an empty string for unsupported all-space input.
-- **Whitespace definition:** The source treats only literal ASCII space as a separator, exactly matching the stated input alphabet.
-- **Immutable-string limitation:** The function cannot truly reorder the supplied Python string object in place; it must return a new string.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading / Trailing Whitespace Leakage:** Naively splitting by `" "` (e.g. `s.split(' ')`) creates empty strings `""` for consecutive spaces! Using regex, `s.split()` (without arguments in Python), or explicit character testing filters out all empty tokens.
+- **Index Out of Bounds at String End:** In inner while loops, the condition `j < N` must always precede `s[j] != ' '` to prevent IndexError when the final word touches the end of the string.
+- **Single Word String:** For $s = \text{"  hello  "}$, only `["hello"]` is extracted, returning `"hello"` with zero delimiter spaces.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of input characters and $w$ the number of words.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = |s|$. Both pointers $i$ and $j$ advance strictly forward, visiting each character at most twice. Joining the extracted words takes $O(N)$ time.
+- **Auxiliary Space Complexity:** $O(N)$ to store the parsed words and the newly allocated output string.

@@ -24,7 +24,7 @@
     {
       "id": "trial-cycle",
       "name": "two-course cycle",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "numCourses": 2,
@@ -41,6 +41,7 @@
       },
       "expected": false,
       "tags": [
+        "sample",
         "cycle"
       ]
     },

@@ -1,115 +1,205 @@
 # Guided Example: Reaching Points
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D lattice vector transition operations ($(x, y) \to (x+y, y)$ or $(x, x+y)$), reverse deterministic Euclidean ancestor reduction ($(tx, ty) \to (tx \bmod ty, ty)$), branching tree asymmetry, boundary alignment condition ($tx == sx$ or $ty == sy$), modular congruence residual check ($(ty - sy) \bmod tx == 0$), and reachability decidability on representative coordinate pairs:
 
-- **Input:** `{"sx": 1, "sy": 1, "tx": 3, "ty": 5}`
+- **Input:**
+  - Starting point: $(sx, sy) = (1, 1)$
+  - Target point: $(tx, ty) = (3, 5)$
 - **Required output:** `true`
+  - Forward transition mechanics:
+    - From any point $(x, y)$, exactly two moves are permissible:
+      1. Move 1: $(x, y) \implies (x + y, \; y)$
+      2. Move 2: $(x, y) \implies (x, \; x + y)$
+    - All coordinates remain strictly positive integers.
+    - Objective: Determine if there exists a valid sequence of moves transforming $(sx, sy)$ into $(tx, ty)$.
+    - For $(1, 1)$ and $(3, 5)$:
+      - Step 0: $(1, 1)$
+      - Step 1: $(1, 1 + 1) = (1, 2)$
+      - Step 2: $(1 + 2, 2) = (3, 2)$
+      - Step 3: $(3, 2 + 3) = (3, 5)$
+      - Target reached in 3 moves $\implies$ return **`true`**.
+- **Reverse Determinism & Euclidean Modulo Invariant:**
+  - **The Curse of Forward Branching:**
+    - Moving forward from $(sx, sy)$ produces an exponential binary tree of depth up to $10^9$ with $2^{10^9}$ states, rendering forward search impossible.
+  - **The Deterministic Reverse Predecessor:**
+    - Examine the target point $(tx, ty)$:
+      - If $tx > ty$, the last operation **must have been** $(tx - ty, ty) \to (tx, ty)$ because adding positive coordinates to $y$ could never produce a larger $x$.
+      - If $ty > tx$, the last operation **must have been** $(tx, ty - tx) \to (tx, ty)$.
+      - If $tx == ty$, no valid previous positive integer state exists.
+    - Thus, moving backward from $(tx, ty)$ has a branching factor of **strictly 1**!
+  - **Euclidean Modulo Acceleration:**
+    - If $tx \gg ty$, repeatedly subtracting $ty$ from $tx$ takes $\lfloor tx / ty \rfloor$ steps.
+    - We can execute all of these subtractions in a single $\mathcal{O}(1)$ modulo step:
+      $$
+      tx \leftarrow tx \pmod{ty}
+      $$
+    - This is identical to the classic Euclidean Greatest Common Divisor (GCD) algorithm!
+  - **Boundary Alignment Invariant:**
+    - Once one coordinate reaches the start level (e.g. $tx == sx$):
+      - We can no longer subtract $tx$ indiscriminately without undershooting $sx$.
+      - The remaining coordinate $ty$ must reduce to $sy$ purely by subtracting multiples of $tx$.
+      - This is possible if and only if:
+        $$
+        ty \ge sy \quad \text{and} \quad (ty - sy) \pmod{tx} == 0
+        $$
+- **Step-by-Step Worked Execution Trace on $(sx, sy) = (1, 1), (tx, ty) = (3, 5)$:**
+  - Initial target state: $(tx, ty) = (3, 5)$. Source: $(sx, sy) = (1, 1)$.
+  - **Round 1:**
+    - Compare coordinates: $tx = 3, ty = 5$.
+    - $ty > tx \iff 5 > 3 \implies$ last move added $x$ to $y$.
+    - Reduce $ty$ modulo $tx$:
+      $$
+      ty \leftarrow 5 \pmod 3 = \mathbf{2}
+      $$
+    - New target state: $(tx, ty) = (\mathbf{3}, \; \mathbf{2})$.
+    - Verify against source: $tx > sx$ ($3 > 1$) and $ty > sy$ ($2 > 1$). Continue loop.
+  - **Round 2:**
+    - Compare coordinates: $tx = 3, ty = 2$.
+    - $tx > ty \iff 3 > 2 \implies$ last move added $y$ to $x$.
+    - Reduce $tx$ modulo $ty$:
+      $$
+      tx \leftarrow 3 \pmod 2 = \mathbf{1}
+      $$
+    - New target state: $(tx, ty) = (\mathbf{1}, \; \mathbf{2})$.
+    - Verify against source: $tx == sx = 1$.
+    - Loop terminates because $tx$ is no longer strictly greater than $sx$.
+  - **Round 3: Boundary Alignment Evaluation:**
+    - We have $tx == sx = 1$, and $ty = 2$ while $sy = 1$.
+    - Can $ty = 2$ reach $sy = 1$ by subtracting $tx = 1$?
+      1. Condition 1: $ty \ge sy \iff 2 \ge 1 \implies \mathbf{True.}$
+      2. Condition 2: Modular alignment:
+         $$
+         (ty - sy) \pmod{tx} = (2 - 1) \pmod 1 = 1 \pmod 1 = \mathbf{0}
+         $$
+      - Exactly $(2 - 1) / 1 = 1$ step of subtracting $tx = 1$ converts $(1, 2)$ to $(1, 1)$!
+  - **Final Output:**
+    $$
+    ans = \mathbf{true}
+    $$
+- **Unreachable Equal Target Trace ($(sx, sy) = (1, 1), (tx, ty) = (2, 2)$):**
+  - $tx == ty = 2$.
+  - Neither coordinate can be strictly greater than the other; no prior positive state exists.
+  - $tx \ne sx$ ($2 \ne 1$) and $ty \ne sy$ ($2 \ne 1$).
+  - Returns **`false`**.
+- **Large Coordinate Leap Trace ($(1, 1) \to (1, 10^9)$):**
+  - $tx == sx = 1$.
+  - $(10^9 - 1) \pmod 1 = 0 \implies$ True in $\mathcal{O}(1)$ time!
+  - Naive subtraction would take $10^9$ loops; modulo handles it instantly.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates backward induction on monoid action orbits and Euclidean division ring contraction, mathematically proves why determinism of the inverse linear transition $T^{-1}$ collapses search tree branching from $2^d$ to 1, and derives $O(\log(\max(tx, ty)))$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given four integers `sx`, `sy`, `tx`, and `ty`, return `true`* if it is possible to convert the point *`(sx, sy)`* to the point *`(tx, ty)` *through some operations**, or *`false`* otherwise*.
+Given start point $(sx, sy)$ and target point $(tx, ty)$:
+You can move $(x, y) \to (x + y, y)$ or $(x, x + y)$.
+Determine if $(sx, sy)$ can reach $(tx, ty)$.
 
-The objective is to compute `true` from `{"sx": 1, "sy": 1, "tx": 3, "ty": 5}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Start: (1, 1), Target: (3, 5)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Work BACKWARDS from (3, 5):
+  Since 5 > 3, previous must be (3, 5 - 3) = (3, 2).
+  Since 3 > 2, previous must be (3 - 2, 2) = (1, 2).
+  At (1, 2), x matches start x (1 == 1).
+  Remaining difference: (2 - 1) is a multiple of 1 -> REACHABLE!
+
+Result: true
+```
+
+### The Invariant of the Deterministic Reverse Step
+- Moving forward branches into 2 choices at every step ($2^d$ explosion).
+- Moving **backward** is completely deterministic:
+  - If $tx > ty$, the only possible predecessor is $(tx - ty, ty)$.
+  - If $ty > tx$, the only possible predecessor is $(tx, ty - tx)$.
+- Replacing repeated subtraction with modulo ($tx \pmod{ty}$) runs in logarithmic Euclidean time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Reverse Euclidean Reduction:
+$$
+\text{while } tx > sx \ \land \ ty > sy \ \land \ tx \ne ty:
+$$
+$$
+\quad \text{if } tx > ty \implies tx \leftarrow tx \bmod ty \quad \text{else } ty \leftarrow ty \bmod tx
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Single-Axis Residual Alignment:
+$$
+\text{if } tx == sx \implies \text{return } (ty \ge sy \ \land \ (ty - sy) \bmod tx == 0)
+$$
+$$
+\text{if } ty == sy \implies \text{return } (tx \ge sx \ \land \ (tx - sx) \bmod ty == 0)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Free Monoid Orbit Invariant.** The forward transitions generate the orbit of the action of $SL_2(\mathbb{N})$ on $\mathbb{N}^2$. By the uniqueness of the continued fraction decomposition (Euclidean algorithm), each element has a unique ancestor under the inverse transformation $T^{-1}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Forward search branches, but backward search is almost forced
-
-From `(x, y)`, one move produces either `(x, x + y)` or `(x + y, y)`. A forward search has two choices at every point, and coordinates can grow toward $10^9$, so enumerating descendants is impractical.
-
-Work backward from `(tx, ty)` instead. All coordinates are positive. If `tx > ty`, the last forward move could only have added `ty` to the first coordinate, so the preceding point must be `(tx - ty, ty)`. The other operation would have made the second coordinate larger, contrary to `tx > ty`.
-
-Similarly, if `ty > tx`, the unique possible parent is `(tx, ty - tx)`. This turns a branching forward process into a deterministic reverse process.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sx": 1, "sy": 1, "tx": 3, "ty": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $(1, 1) \to (3, 5)$:
 
 ---
 
-### Step 2: Bundle repeated subtractions with modulo
-
-Repeatedly subtracting the smaller coordinate is correct but can be too slow. If `tx` is much larger than `ty`, several reverse steps will keep `ty` fixed:
-
-`tx, tx - ty, tx - 2 * ty, ...`.
-
-Modulo performs all those subtractions at once. Therefore:
-
-- When `tx > ty`, replace `tx` with `tx % ty`.
-- When `ty > tx`, replace `ty` with `ty % tx`.
-
-This is the same acceleration used by the Euclidean algorithm.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: $(3, 5)$
+- $ty > tx \iff 5 > 3 \implies ty = 5 \bmod 3 = 2 \implies (3, 2)$.
 
 ---
 
-### Step 3: Why the main loop keeps both coordinates strictly above the start
+### Step 2: $(3, 2)$
+- $tx > ty \iff 3 > 2 \implies tx = 3 \bmod 2 = 1 \implies (1, 2)$.
 
-The loop continues only while `tx > sx` and `ty > sy` and the target coordinates differ. While both are still above their respective starting values, bundling all possible same-direction reverse steps cannot skip the only remaining form of a solution that must be checked separately.
+---
 
-Once one target coordinate equals its starting coordinate, that coordinate must remain fixed for the rest of the forward journey. Applying modulo again could jump below the boundary or to zero and lose the information needed to test how many repeated additions remain.
+### Step 3: Check Boundary $tx == sx$
+- $tx = 1 == sx = 1$.
+- Check $ty$: $2 \ge 1$ and $(2 - 1) \bmod 1 = 0 \implies$ Valid!
 
-The loop also stops if `tx == ty`. For equal positive coordinates, subtracting one from the other would make a coordinate zero. Positive starting coordinates cannot reach such a parent. Equality is useful only if the complete target already equals the start, which is tested afterward.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Output
+$$
+\mathbf{true}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sx": 1, "sy": 1, "tx": 3, "ty": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| State $(tx, ty)$ | Comparison | Reduction Applied | New State | Loop Termination Condition? |
+|:---:|:---:|:---:|:---:|:---:|
+| $(3, 5)$ | $ty > tx$ ($5 > 3$) | $ty \leftarrow 5 \bmod 3$ | $(3, 2)$ | No |
+| $(3, 2)$ | $tx > ty$ ($3 > 2$) | $tx \leftarrow 3 \bmod 2$ | $(1, 2)$ | Yes ($tx == sx = 1$) |
+| **Residual** | **$tx == sx$** | **$(ty - sy) \bmod tx$** | **$(2 - 1) \bmod 1 = 0$** | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Start Equals Target ($sx == tx, sy == ty$):** Returns `true` immediately.
+- **Target Below Start ($tx < sx$ or $ty < sy$):** Coordinates can only increase $\implies$ returns `false`.
+- **Target Coordinates Equal ($tx == ty$ with $tx > sx$):** No positive integer step can produce equal coordinates $\implies$ returns `false`.
+- **Large Step Gap ($(1, 1) \to (1, 10^9)$):** Modulo handles $10^9$ subtraction steps in a single operation without TLE.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Repeated reverse subtraction:** It follows the same unique-parent proof, but cases such as a huge `tx` with small `ty` can require nearly $10^9$ iterations.
-- **Forward breadth-first or depth-first search:** Each point has two children and the reachable tree grows too quickly for the coordinate limits.
-- **Memoized forward search:** Avoiding duplicate states does not solve the enormous two-dimensional search-space problem.
+- **Searching Forward (BFS / DFS / Recursion):** Forward search branches exponentially and TLEs immediately on coordinates up to $10^9$. Reverse search is deterministic with 0 branching.
+- **Using Subtraction Instead of Modulo (`tx -= ty`):** If $tx = 10^9$ and $ty = 1$, subtracting $ty$ takes $10^9$ iterations, causing TLE. Modulo `tx %= ty` computes all subtractions in $O(1)$.
+- **Modulo Over-Shooting $sx$:** You cannot blindly do `tx %= ty` when $ty == sy$, because it could reduce $tx$ below $sx$. That is why the loop stops when $tx \le sx$ or $ty \le sy$, switching to the residual check `(tx - sx) % ty == 0`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log(\max(tx, ty)))$. Each loop iteration performs the larger coordinate modulo the smaller coordinate, matching Euclid's algorithm. The coordinate scale decreases geometrically over successive iterations in the standard amortized analysis, giving $O(\log(\max(tx, ty)))$ time under constant-time integer arithmetic.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - At each step, either $tx$ or $ty$ is reduced modulo the other.
+  - By Euclidean algorithm properties, the larger coordinate is reduced by at least a factor of 2 every two steps: $\mathcal{O}(\log(\max(tx, ty)))$.
+  - Total Time: strictly logarithmic $\mathcal{O}(\log(\max(tx, ty)))$ where coordinates $\le 10^9 \implies \le 30$ operations. Completes in $< 0.01$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (only scalar coordinate updates).

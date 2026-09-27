@@ -18,13 +18,14 @@
     {
       "id": "trial-unhappy",
       "name": "sequence enters non-one cycle",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "n": 2
       },
       "expected": false,
       "tags": [
+        "sample",
         "cycle"
       ]
     },

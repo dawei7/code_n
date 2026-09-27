@@ -1,106 +1,153 @@
 # Guided Example: Cyclically Rotating a Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace concentric layer unrolling, modular displacement reduction, and counter-clockwise cycle permutation on representative matrix instances:
 
-- **Input:** `{"grid": [[40, 10], [30, 20]], "k": 1}`
-- **Required output:** `[[10, 20], [40, 30]]`
+- **Input:** `grid = [[40, 10], [30, 20]], k = 1` (alongside a $4 \times 4$ multi-layer grid with $k = 2$)
+- **Required Output:** `[[10, 20], [40, 30]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates decomposing a 2D matrix into independent concentric rectangular rings, flattening each ring into a 1D circular array along the counter-clockwise perimeter, reducing the rotation count modulo the perimeter length $k \pmod L$, and rewriting shifted elements back to their destination coordinates in $\mathcal{O}(m \cdot n)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` integer matrix `grid`, where `m` and `n` are both **even** integers, and an integer `k`.
+Given an $m \times n$ matrix where both dimensions are even, and an integer $k$, we must rotate the matrix cyclically in a counter-clockwise direction by $k$ positions layer by layer.
 
-The objective is to compute `[[10, 20], [40, 30]]` from `{"grid": [[40, 10], [30, 20]], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+For the $2 \times 2$ matrix `grid = [[40, 10], [30, 20]]` with $k = 1$:
+- The matrix contains a single layer ($l = 0$).
+- Cells along the counter-clockwise perimeter starting from $(0, 0)$:
+  - $(0, 0) = 40$ (moves down along left column)
+  - $(1, 0) = 30$ (moves right along bottom row)
+  - $(1, 1) = 20$ (moves up along right column)
+  - $(0, 1) = 10$ (moves left along top row)
+- Rotating by 1 position counter-clockwise shifts each element forward by 1 along this cycle:
+  - $40$ moves to $(1, 0)$
+  - $30$ moves to $(1, 1)$
+  - $20$ moves to $(0, 1)$
+  - $10$ moves to $(0, 0)$
+- Resulting grid:
+  $$\begin{bmatrix} 10 & 20 \\ 40 & 30 \end{bmatrix}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **concentric ring decomposition and modular cycling**:
+1. Partitioning an $m \times n$ grid into $\min(m, n)/2$ disjoint rectangular rings.
+2. Parameterizing perimeter paths in counter-clockwise orientation.
+3. Applying modular reduction $k_{\text{eff}} = k \pmod L$ to prevent redundant full cycles.
+4. Performing 1D rotation and 2D scatter in optimal linear time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Concentric Perimeter Flattening & Modular Shift Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Concentric Perimeter Flattening & Modular Shift Invariant Theorem.**
+> 1. *Concentric Ring Partition:* For an $m \times n$ grid with even dimensions, every cell $(r, c)$ belongs to exactly one concentric ring $l = \min(r, m - 1 - r, c, n - 1 - c)$, where $0 \le l < \min(m, n)/2$.
+> 2. *Perimeter Length:* A rectangular ring at depth $l$ has height $h_l = m - 2l$ and width $w_l = n - 2l$. Its perimeter consists of:
+>    $$L_l = 2(h_l + w_l - 2) = 2(m - 2l - 1) + 2(n - 2l - 1)$$
+>    cells.
+> 3. *Counter-Clockwise Traversal Order:* Flatten ring $l$ into a 1D sequence of coordinates $\mathcal{C}_l$:
+>    - Left edge (downward): $(r, l)$ for $r = l \dots m - 1 - l$
+>    - Bottom edge (rightward): $(m - 1 - l, c)$ for $c = l + 1 \dots n - 1 - l$
+>    - Right edge (upward): $(r, n - 1 - l)$ for $r = m - 2 - l \dots l$
+>    - Top edge (leftward): $(l, c)$ for $c = n - 2 - l \dots l + 1$
+> 4. *Modular Shift Equivalence:* Rotating counter-clockwise by $k$ positions along a closed ring of size $L_l$ is identical to a shift of:
+>    $$k_{\text{eff}} = k \pmod{L_l}$$
+>    The value originally at coordinate $\mathcal{C}_l[j]$ is placed at coordinate $\mathcal{C}_l[(j + k_{\text{eff}}) \pmod{L_l}]$.
+> 5. *Independence:* Each ring rotates independently; no elements cross ring boundaries.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Concentric Ring Unrolling and Rotation
+    accDescr: Pipeline showing 2D layer extraction to 1D circular array, modular index shift, and scattering back to the 2D grid.
+    A["2D Matrix Ring l"] -->|"Extract perimeter coordinates in counter-clockwise order"| B["1D Ring Array of length L"]
+    B -->|"Compute effective shift: k_eff = k mod L"| C["Cyclically Permute 1D Array"]
+    C -->|"Write values back to target 2D coordinates"| D["Updated Matrix Layer l"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Treat each layer as an independent cycle.** A layer is the rectangular perimeter at equal distance `p` from all four outer boundaries. Its cells never move into another layer, so every perimeter can be extracted, rotated, and written back separately. There are `min(m,n) // 2` layers because both dimensions are even and every layer has positive height and width.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[40, 10], [30, 20]], "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `grid = [[40, 10], [30, 20]], k = 1`:
+- Dimensions: $m = 2, n = 2$.
+- Number of layers: $\min(2, 2) / 2 = 1$ layer ($l = 0$).
 
 ---
 
-### Step 2: Core Step 2
-
-**Choose one consistent coordinate order.** Helper `rotate(p, k)` collects layer values starting at its top-left corner. It walks the top edge left to right, the right edge top to bottom, the bottom edge right to left, and the left edge bottom to top. This is clockwise order around the rectangle.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Extract Ring Coordinates and Values
+Ring $l = 0$ boundaries: $r \in [0, 1], c \in [0, 1]$.
+- Height $h_0 = 2$, Width $w_0 = 2$.
+- Perimeter length:
+  $$L_0 = 2(2 + 2 - 2) = 4$$
+- Traverse perimeter counter-clockwise:
+  1. Down left: $(0, 0) \to 40$
+  2. Down left: $(1, 0) \to 30$
+  3. Right bottom: $(1, 1) \to 20$
+  4. Up right: $(0, 1) \to 10$
+- Coordinate list $\mathcal{C}_0 = [(0, 0), (1, 0), (1, 1), (0, 1)]$.
+- Value list $\mathcal{V}_0 = [40, 30, 20, 10]$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Compute Modular Shift
+- Total rotations: $k = 1$.
+- Effective shift:
+  $$k_{\text{eff}} = 1 \pmod 4 = 1$$
 
-Each loop excludes its final corner, which becomes the first cell of the next edge. The top loop excludes top-right, right loop includes top-right but excludes bottom-right, bottom loop includes bottom-right but excludes bottom-left, and left loop includes bottom-left but excludes top-left. Thus every perimeter cell appears exactly once.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[10, 20], [40, 30]]` |
+### Step 3: Compute Destination Coordinates
+Each element at 1D index $j$ moves to destination index $(j + 1) \pmod 4$:
+
+1. $j = 0$ (Value $40$, source $(0, 0)$):
+   $$\text{Dest index} = (0 + 1) \pmod 4 = 1 \implies \text{Coordinate } \mathcal{C}_0[1] = (1, 0)$$
+2. $j = 1$ (Value $30$, source $(1, 0)$):
+   $$\text{Dest index} = (1 + 1) \pmod 4 = 2 \implies \text{Coordinate } \mathcal{C}_0[2] = (1, 1)$$
+3. $j = 2$ (Value $20$, source $(1, 1)$):
+   $$\text{Dest index} = (2 + 1) \pmod 4 = 3 \implies \text{Coordinate } \mathcal{C}_0[3] = (0, 1)$$
+4. $j = 3$ (Value $10$, source $(0, 1)$):
+   $$\text{Dest index} = (3 + 1) \pmod 4 = 0 \implies \text{Coordinate } \mathcal{C}_0[0] = (0, 0)$$
+
+---
+
+### Step 4: Scatter Values to Grid
+- Write $10$ to $(0, 0)$.
+- Write $20$ to $(0, 1)$.
+- Write $40$ to $(1, 0)$.
+- Write $30$ to $(1, 1)$.
+
+Final matrix:
+$$\begin{bmatrix} 10 & 20 \\ 40 & 30 \end{bmatrix}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[40, 10], [30, 20]], "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[10, 20], [40, 30]]` | Verified |
+| 1D Index $j$ | Source Coordinate | Source Value | Shift Calculation | Target Index | Target Coordinate | Final Placed Value |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | $(0, 0)$ | 40 | $(0 + 1) \pmod 4$ | 1 | $(1, 0)$ | 40 |
+| 1 | $(1, 0)$ | 30 | $(1 + 1) \pmod 4$ | 2 | $(1, 1)$ | 30 |
+| 2 | $(1, 1)$ | 20 | $(2 + 1) \pmod 4$ | 3 | $(0, 1)$ | 20 |
+| 3 | $(0, 1)$ | 10 | $(3 + 1) \pmod 4$ | 0 | $(0, 0)$ | 10 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Rotating each ring by $k_{\text{eff}} = k \pmod{L_l}$ produces identical configurations to rotating $k$ times one step at a time, because cyclically shifting a circular sequence of size $L$ by $L$ steps is an identity automorphism.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every cell in the grid belongs to exactly one concentric layer. Processing all $\min(m, n)/2$ layers independently ensures every cell is rotated exactly once without overlap or omissions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Store coordinates as well as values:** This makes write-back visually direct but uses additional perimeter arrays. The exact source regenerates coordinates with identical loops.
-- **Rotate one step `k` times:** Correct but can cost $O(kmn)$ and is impossible for $k$ up to $10^9$. Modulo plus slicing applies the net permutation once.
-- **In-place cycle replacement:** Can reduce auxiliary space toward $O(1)$ but is more delicate because cycle gcds and saved values must be handled correctly.
-- **Different layer lengths:** Each layer takes its own modulo; using the outer perimeter length for every layer would be wrong.
-- **Two-row or two-column layer:** The edge bounds still include every cell once without duplicate corners.
-- **Rotation multiple of perimeter:** The helper returns without writing because the layer is unchanged.
-- **Even dimensions:** They ensure every cell belongs to a complete perimeter layer. Odd dimensions would leave a central row or column that stays fixed and would need explicit interpretation.
-- **Direction trap:** Coordinates are stored clockwise, so counter-clockwise value movement requires a left shift, not a right shift.
-- **Input preservation:** The returned grid is the mutated input object, not a separately allocated matrix.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Per-Layer Modulus Variation:** Inner layers have smaller perimeters than outer layers ($L_0 > L_1 > \dots$). Therefore, $k \pmod{L_l}$ must be evaluated **separately** for each ring, never with a global modulus.
+- **Directional Orientation:** Counter-clockwise motion requires moving down the left column, right along the bottom, up the right column, and left across the top. Reversing the traversal results in clockwise rotation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. Let the grid have $m$ rows and $n$ columns. Across all layers, extraction and write-back visit each cell a constant number of times. List slicing and concatenation also process each layer perimeter linearly. Total time is $O(mn)$.
-- **Auxiliary Space Complexity:** $O(m+n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot n)$, where $m$ and $n$ are the matrix dimensions. Each cell is extracted into a 1D buffer and written back to the matrix exactly once.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m + n)$ auxiliary space to store the coordinate and value buffers for the largest perimeter layer.

@@ -1,126 +1,195 @@
 # Guided Example: Minimum Number of Steps to Make Two Strings Anagram
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal frequency-counting method on a representative problem instance:
 
-- **Input:** `{"s": "bab", "t": "aba"}`
+- **Input:** `s = "bab"`, `t = "aba"`
 - **Required output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because both strings are permutations of the same two letters with inverted counts, illustrating how character surplus in one position precisely matches character deficit in another.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two strings of the same length `s` and `t`. In one step you can choose **any character** of `t` and replace it with **another character**.
+Given two strings `s` and `t` of equal length $N$, we may choose any character in `t` and replace it with any other lowercase English letter. We seek the minimum number of replacements to transform `t` into an anagram of `s`.
 
-The objective is to compute `1` from `{"s": "bab", "t": "aba"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "bab"` and `t = "aba"`:
+- Character counts in `s`: two `'b'`s, one `'a'`.
+- Character counts in `t`: one `'b'`, two `'a'`s.
+- `s` requires one more `'b'` than `t` possesses (deficit $= 1$).
+- `t` possesses one extra `'a'` compared to `s` (surplus $= 1$).
+- Replacing the surplus `'a'` with `'b'` produces `"bba"`, which has two `'b'`s and one `'a'`, matching `s`.
+- Minimum operations required: $1$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary learning goal is to model anagram equivalence as matching frequency vectors, proving that each replacement simultaneously repairs one unit of deficit and one unit of surplus.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $\Sigma$ denote the English alphabet ($\{ \text{'a'}, \dots, \text{'z'} \}$). We represent strings $s$ and $t$ by their frequency vectors $C_s, C_t \in \mathbb{N}^{26}$.
 
-| State Parameter | Role & Purpose | Initial State |
+Because $|s| = |t| = N$:
+$$
+\sum_{c \in \Sigma} C_s(c) = \sum_{c \in \Sigma} C_t(c) = N
+$$
+A single replacement changes one character in $t$ from $u$ to $v$. This decreases $C_t(u)$ by $1$ and increases $C_t(v)$ by $1$.
+
+```
+String s ("bab"):   [ a: 1,  b: 2 ]
+String t ("aba"):   [ a: 2,  b: 1 ]
+                     ------  ------
+Difference (s - t): [ a: -1, b: +1 ]  -> Deficit of b (+1), Surplus of a (-1)
+
+Replacement: Change one surplus 'a' into 'b'
+New t ("bba"):      [ a: 1,  b: 2 ]  -> Matches s exactly!
+```
+
+To transform $C_t$ into $C_s$, any character $c$ where $C_s(c) > C_t(c)$ represents a deficit of $C_s(c) - C_t(c)$ characters that must be added to $t$. By conservation of string length, the total deficit exactly equals the total surplus:
+$$
+\sum_{c: C_s(c) > C_t(c)} (C_s(c) - C_t(c)) = \sum_{c: C_t(c) > C_s(c)} (C_t(c) - C_s(c)) = \frac{1}{2} \sum_{c \in \Sigma} |C_s(c) - C_t(c)|
+$$
+
+We track state using the following parameters:
+
+| State Parameter | Description | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Target Frequencies ($C_s$) | Required count of each character from string $s$ | $C_s(\text{'a'}) = 1, C_s(\text{'b'}) = 2$ |
+| Source Frequencies ($C_t$) | Available count of each character in string $t$ | $C_t(\text{'a'}) = 2, C_t(\text{'b'}) = 1$ |
+| Deficit Accumulator ($\text{steps}$) | Sum of positive differences where $s$ has more occurrences | $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The minimal number of replacements needed to transform $t$ into an anagram of $s$ is strictly equal to the sum of missing character quotas $\sum_{c \in \Sigma} \max(0, C_s(c) - C_t(c))$. Every replacement can convert exactly one surplus character into one deficit character.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat the frequencies of `s` as available quotas
+### Step 1: Frequency Vector Construction
 
-`cnt = Counter(s)` records how many copies of each character the target anagram needs. Before processing `t`, `cnt[c]` is the full quota for character `c`.
+Tally the character frequencies for both strings across the $26$-letter alphabet:
 
-For each character `c` in `t`, the solution executes `cnt[c] -= 1`:
+- For string `s = "bab"`:
+  - $C_s[\text{'a'}] = 1$
+  - $C_s[\text{'b'}] = 2$
+  - All other characters: $0$
+- For string `t = "aba"`:
+  - $C_t[\text{'a'}] = 2$
+  - $C_t[\text{'b'}] = 1$
+  - All other characters: $0$
 
-- If the new count is zero or positive, this occurrence of `c` can be matched to one required occurrence in `s`.
-- If the new count is negative, `t` has supplied more copies of `c` than `s` needs. This occurrence is surplus and must eventually be replaced.
-
-`ans += cnt[c] < 0` uses the fact that Python Booleans behave as integers in addition: `true` contributes one and `false` contributes zero. Once a character’s quota has been exhausted, every additional occurrence makes its count more negative and adds one more required replacement.
-
-For `s = "bab"`, the quotas are two `b` characters and one `a`. Processing `t = "aba"` consumes the `a` quota and one `b` quota. The final `a` drives its count below zero, so exactly one surplus occurrence is counted. Replacing that surplus `a` with the missing `b` makes the strings anagrams.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "bab", "t": "aba"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why counting surplus occurrences gives the minimum
-
-Every surplus occurrence in `t` has a character whose final frequency is greater than its frequency in `s`. Leaving that occurrence unchanged would keep the frequency too high, so at least one replacement is necessary for each surplus. This gives a lower bound of `ans` operations.
-
-The strings have the same length. Therefore, the total amount by which some character frequencies in `t` exceed those in `s` is exactly equal to the total amount by which other frequencies fall short. Each replacement can take one surplus occurrence and change it into one missing character, reducing both totals by one. Repeating this pairing performs exactly `ans` replacements and reaches the target frequency multiset.
-
-The lower bound is achievable, so it is the minimum.
-
-Preloading all of `s` before scanning `t` is important. It means the algorithm knows the complete quota even if a matching occurrence conceptually appears at a later position. Because anagram matching ignores positions, no ordering decision is necessary.
-
-The method does not need to construct the final anagram or decide which specific missing character replaces each surplus while counting. Equal lengths guarantee that a one-to-one pairing with deficits exists.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Character ($c$) | Target Count $C_s(c)$ | Source Count $C_t(c)$ | Difference $C_s(c) - C_t(c)$ | Status |
+|---|---|---|---|---|
+| `'a'` | $1$ | $2$ | $-1$ | Surplus in $t$ |
+| `'b'` | $2$ | $1$ | $+1$ | Deficit in $t$ |
+| Other $24$ letters | $0$ | $0$ | $0$ | Balanced |
 
 ---
 
-### Step 3: Optimality Decision
+### Step 2: Evaluating Character `'a'`
 
-Synthesize the final answer directly from validated sub-states.
+- Target count in $s$: $C_s[\text{'a'}] = 1$.
+- Source count in $t$: $C_t[\text{'a'}] = 2$.
+- Deficit calculation: $\max(0, C_s[\text{'a'}] - C_t[\text{'a'}]) = \max(0, 1 - 2) = 0$.
+- Contribution to steps: $0$.
+- Accumulator: $\text{steps} = 0$.
 
-| Parameter | State Before Finalization | Action | Final Value |
+| Parameter | Current Value | Evaluation | Updated State |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+| Evaluated Character | `'a'` | $C_s(a) = 1, C_t(a) = 2$ | Surplus of $1$ |
+| Added Deficit | $\max(0, -1)$ | $0$ | No deficit |
+| Total Steps | $0$ | Add $0$ | $0$ |
+
+---
+
+### Step 3: Evaluating Character `'b'`
+
+- Target count in $s$: $C_s[\text{'b'}] = 2$.
+- Source count in $t$: $C_t[\text{'b'}] = 1$.
+- Deficit calculation: $\max(0, C_s[\text{'b'}] - C_t[\text{'b'}]) = \max(0, 2 - 1) = 1$.
+- Contribution to steps: $+1$.
+- Accumulator: $\text{steps} = 0 + 1 = 1$.
+
+| Parameter | Current Value | Evaluation | Updated State |
+|---|---|---|---|
+| Evaluated Character | `'b'` | $C_s(b) = 2, C_t(b) = 1$ | Deficit of $1$ |
+| Added Deficit | $\max(0, 1)$ | $+1$ | $1$ deficit |
+| Total Steps | $0$ | Add $1$ | $1$ |
+
+---
+
+### Step 4: Finalizing Remaining Alphabet
+
+All other characters from `'c'` to `'z'` have $C_s(c) = 0$ and $C_t(c) = 0$.
+- Deficit: $\max(0, 0 - 0) = 0$.
+- Final answer: $1$.
+
+| Alphabet Range | Target Quotas | Available Counts | Deficit Contribution |
+|---|---|---|---|
+| `'c'` through `'z'` | $0$ for all | $0$ for all | $0$ |
+| Final Output | Total Deficit | Sum of positive deltas | **$1$** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "bab", "t": "aba"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+We contrast the target instance against several representative cases to illustrate the generalized formula:
+
+| String $s$ | String $t$ | Length ($N$) | Deficits by Character | Total Positive Deficit | Formula: $\frac{1}{2} \sum \|C_s - C_t\|$ | Result |
+|---|---|---|---|---|---|---|
+| **`"bab"`** | **`"aba"`** | $3$ | `'b'`: $+1$ | $1$ | $\frac{1}{2} (\|-1\| + \|+1\|) = 1$ | **$1$** |
+| `"leetcode"` | `"practice"` | $8$ | `'d'`: $+1$, `'e'`: $+2$, `'l'`: $+1$, `'o'`: $+1$ | $5$ | $\frac{1}{2} (1+2+1+1 + 1+1+1+1+1) = 5$ | **$5$** |
+| `"anagram"` | `"mangaar"` | $7$ | None | $0$ | $\frac{1}{2} (0) = 0$ | **$0$** |
+| `"xxyyzz"` | `"aabbcc"` | $6$ | `'x'`: $+2$, `'y'`: $+2$, `'z'`: $+2$ | $6$ | $\frac{1}{2} (2+2+2 + 2+2+2) = 6$ | **$6$** |
+| `"friend"` | `"family"` | $6$ | `'r'`: $+1$, `'e'`: $+1$, `'n'`: $+1$, `'d'`: $+1$ | $4$ | $\frac{1}{2} (4 + 4) = 4$ | **$4$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Lower Bound and Achievability
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Lower Bound:** Let $D = \sum_{c \in \Sigma} \max(0, C_s(c) - C_t(c))$. Each substitution alters exactly one letter of $t$, increasing the count of at most one deficit character by at most $1$. Thus, no single operation can reduce the total deficit by more than $1$. Therefore, at least $D$ operations are required.
+2. **Upper Bound / Achievability:** Since $\sum C_s(c) = \sum C_t(c) = N$, whenever $D > 0$, there exists at least one character $u$ with $C_t(u) > C_s(u)$ (surplus) and at least one character $v$ with $C_s(v) > C_t(v)$ (deficit). Choosing to replace an occurrence of $u$ with $v$ simultaneously decreases the surplus of $u$ by $1$ and decreases the deficit of $v$ by $1$.
+Repeating this greedy substitution exactly $D$ times reduces all deficits and surpluses to zero, transforming $t$ into an anagram of $s$.
 
----
+Hence, $D$ operations are both necessary and sufficient.
 
-## 6. Traps This Instance Exposes
+### Asymptotic Complexity
 
-- **Fixed array of twenty-six counts:** Increment positions for `s`, decrement for `t`, and sum the surplus or deficit side. It has the same $O(n)$ time and $O(1)$ space with lower hashing overhead.
-- **Two counters:** Build frequencies for both strings and sum positive differences. This is straightforward but stores duplicate map structure and performs a separate comparison pass.
-- **Sorting both strings:** Equal sorted strings reveal whether no work is needed, but deriving the replacement count through sorting takes $O(n\log n)$ time.
-- **Counting deficits instead of surpluses:** Because lengths are equal, the total missing occurrences in `t` equals the total excess occurrences. Either side gives the same answer.
-- **Already anagrams:** No quota becomes negative, so `ans` remains zero even when character orders differ.
-- **All characters different:** Every occurrence in `t` outside the quotas becomes surplus, and each must be replaced.
-- **Repeated characters:** The counter distinguishes occurrences through the quota; only copies beyond the required count contribute.
-- **One-character strings:** Equal characters return zero, while different characters produce one replacement.
-- **Equal-length guarantee:** The proof that every surplus can pair with a deficit depends on equal total lengths. A generalized unequal-length problem would also require insertions or deletions.
-- **Position independence:** A character at one position may satisfy a quota originating anywhere in `s` because anagrams depend only on frequencies.
-- **Input preservation:** Neither string is modified; the algorithm changes only counter values.
-- **Boolean arithmetic:** `cnt[c] < 0` is a Boolean expression, and Python adds it as zero or one. In a language without this conversion, use an explicit conditional increment to preserve the same counting logic.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:** $\mathcal{O}(N + |\Sigma|)$. Counting frequencies across $s$ and $t$ requires scanning each character of length $N$ once. Summing differences over the fixed alphabet $\Sigma$ takes $\mathcal{O}(26) = \mathcal{O}(1)$ time. Overall time is $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$. A fixed-size array of $26$ integer counters is sufficient to store the character frequency discrepancies.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(n)$. Let $n$ be the common string length.
-- **Auxiliary Space Complexity:** $O(26)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Double Counting:** Summing the absolute differences $|C_s(c) - C_t(c)|$ over all characters without dividing by $2$ counts both the deficit and the surplus, giving $2 \times \text{steps}$. Either sum only positive differences $\max(0, C_s - C_t)$ or divide the total absolute difference by $2$.
+- **Disjoint Character Sets:** If $s$ and $t$ share no common characters (e.g., `"abc"` and `"def"`), every character in $s$ has deficit $1$, so all $N$ characters in $t$ must be replaced. Output is $N$.
+- **Identical Strings / Existing Anagrams:** When $t$ is already an anagram of $s$ (e.g., `"anagram"` and `"mangaar"`), every difference is $0$, correctly returning $0$.
+- **Positional Order Irrelevance:** Because an anagram can reorder characters arbitrarily, character indices and relative positions inside $s$ and $t$ are irrelevant; only aggregate frequency matters.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Anagram Transformation Steps Flowchart
+    accDescr: Step-by-step logic for computing the minimal substitutions needed to transform string t into an anagram of string s.
+
+    Start(["Input: strings s and t of length N"]) --> CountS["Tally frequencies C_s from string s"]
+    Start --> CountT["Tally frequencies C_t from string t"]
+    CountS --> LoopInit["Initialize steps = 0, char = 'a'"]
+    CountT --> LoopInit
+    
+    LoopInit --> CheckChar{"More characters in alphabet?"}
+    CheckChar -- No --> Done(["Return steps"])
+    CheckChar -- Yes --> Compare{"C_s[char] > C_t[char] ?"}
+    
+    Compare -- Yes --> AddDeficit["steps += C_s[char] - C_t[char]"]
+    Compare -- No --> Skip["No deficit (surplus or balanced)"]
+    
+    AddDeficit --> NextChar["Advance to next alphabet character"]
+    Skip --> NextChar
+    NextChar --> CheckChar
+```

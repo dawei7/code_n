@@ -18,14 +18,28 @@
     {
       "id": "trial-power-two",
       "name": "one isolated set bit",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "n": 128
       },
       "expected": 1,
       "tags": [
+        "sample",
         "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2147483645
+      },
+      "expected": 30,
+      "tags": [
+        "sample"
       ]
     },
     {

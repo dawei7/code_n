@@ -1,99 +1,143 @@
 # Guided Example: Minimum Path Sum
 
-We derive and execute the Array, Dynamic Programming, Matrix recurrence on a representative problem instance.
+We trace the step-by-step 2D dynamic programming grid cost minimization on a representative matrix instance:
 
-- **Input:** `{"grid": [[1, 3, 1], [1, 5, 1], [4, 2, 1]]}`
-- **Required output:** `7`
+- **Input:** $\text{grid} = \begin{pmatrix} 1 & 3 & 1 \\ 1 & 5 & 1 \\ 4 & 2 & 1 \end{pmatrix}$
+- **Required output:** $7$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates optimal substructure on a 2D cost grid, prefix accumulation along boundary edges, local bottleneck minimization ($\min(\text{top}, \text{left}) + \text{cost}$), and reconstructing the optimal path.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Minimum Path Sum** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given an $M \times N$ grid of non-negative integers ($M = 3, N = 3$), find a path from top-left $(0, 0)$ to bottom-right $(M - 1, N - 1)$ which minimizes the sum of all numbers along its path. You can only move either **down** or **right** at any point.
+
+In the grid:
+$$
+\begin{pmatrix}
+\mathbf{1} & \mathbf{3} & \mathbf{1} \\
+1 & 5 & \mathbf{1} \\
+4 & 2 & \mathbf{1}
+\end{pmatrix}
+$$
+The optimal route travels right along the top row to $(0, 2)$ and then straight down the rightmost column to $(2, 2)$, accumulating:
+$$
+1 + 3 + 1 + 1 + 1 = 7
+$$
+Notice that choosing the locally smaller neighbor at $(1, 0)$ with cost $1$ leads to higher downstream costs ($1 + 1 + 5 + \dots$ or $1 + 1 + 4 + \dots \ge 8$). Dynamic programming evaluates global cumulative costs, avoiding greedy traps.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Cost Recurrence
+Let $DP[r][c]$ be the minimum cumulative path sum required to reach cell $(r, c)$ from $(0, 0)$.
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+1. **Base Case:**
+   Starting point cost is simply its own value:
+   $$
+   DP[0][0] = \text{grid}[0][0]
+   $$
+2. **Top Boundary (Row 0):**
+   Can only be reached from the left:
+   $$
+   DP[0][c] = DP[0][c - 1] + \text{grid}[0][c] \quad \forall c \ge 1
+   $$
+3. **Left Boundary (Column 0):**
+   Can only be reached from above:
+   $$
+   DP[r][0] = DP[r - 1][0] + \text{grid}[r][0] \quad \forall r \ge 1
+   $$
+4. **General Interior Cells ($r \ge 1, c \ge 1$):**
+   Can be reached either from the cell above $(r - 1, c)$ or from the cell to the left $(r, c - 1)$:
+   $$
+   DP[r][c] = \text{grid}[r][c] + \min(DP[r - 1][c], \, DP[r][c - 1])
+   $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** For every processed coordinate $(r, c)$, $DP[r][c]$ stores the strictly minimal path sum among all legal paths originating at $(0, 0)$ and terminating at $(r, c)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We construct the DP cost matrix for the $3 \times 3$ grid:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Boundary Initialization
+- **Start:** $DP[0][0] = \text{grid}[0][0] = 1$.
+- **Row 0:**
+  - $c = 1: DP[0][1] = 1 + 3 = 4$.
+  - $c = 2: DP[0][2] = 4 + 1 = 5$.
+  - Row 0 costs: $[1, 4, 5]$.
+- **Column 0:**
+  - $r = 1: DP[1][0] = 1 + 1 = 2$.
+  - $r = 2: DP[2][0] = 2 + 4 = 6$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Interior Row 1 Evaluation
+- $DP[1][0] = 2$.
+- **Cell $(1, 1)$ ($\text{cost} = 5$):**
+  - Path from top: $DP[0][1] = 4$.
+  - Path from left: $DP[1][0] = 2$.
+  - Optimal choice: $\min(4, 2) = 2$.
+  - $DP[1][1] = 5 + 2 = 7$.
+- **Cell $(1, 2)$ ($\text{cost} = 1$):**
+  - Path from top: $DP[0][2] = 5$.
+  - Path from left: $DP[1][1] = 7$.
+  - Optimal choice: $\min(5, 7) = 5$.
+  - $DP[1][2] = 1 + 5 = 6$.
+- Row 1 costs: $[2, 7, 6]$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Interior Row 2 Evaluation
+- $DP[2][0] = 6$.
+- **Cell $(2, 1)$ ($\text{cost} = 2$):**
+  - Path from top: $DP[1][1] = 7$.
+  - Path from left: $DP[2][0] = 6$.
+  - Optimal choice: $\min(7, 6) = 6$.
+  - $DP[2][1] = 2 + 6 = 8$.
+- **Cell $(2, 2)$ ($\text{cost} = 1$, Goal):**
+  - Path from top: $DP[1][2] = 6$.
+  - Path from left: $DP[2][1] = 8$.
+  - Optimal choice: $\min(6, 8) = 6$.
+  - $DP[2][2] = 1 + 6 = \mathbf{7}$.
+- Row 2 costs: $[6, 8, 7]$.
+
+Target minimum path sum is $DP[2][2] = 7$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### 2D DP State Matrix ($3 \times 3$)
+
+| Row $\downarrow$ / Col $\to$ | Col 0 | Col 1 | Col 2 | Notes |
+|:---:|:---:|:---:|:---:|:---|
+| **Row 0** | **1** | **4** | **5** | Optimal path traverses $(0, 0) \to (0, 1) \to (0, 2)$ |
+| **Row 1** | 2 | 7 | **6** | Optimal path turns down to $(1, 2)$ |
+| **Row 2** | 6 | 8 | **7 (Target)** | Optimal path finishes at $(2, 2)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Any valid path into $(r, c)$ must have its penultimate step at $(r - 1, c)$ or $(r, c - 1)$. By the Principle of Optimality, the minimum sum to reach $(r, c)$ is the cell's own cost plus the minimum of the optimal sums to those two preceding positions.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Evaluating cells in row-major order ensures that both prerequisite dependencies are finalized before each cell transition is computed. The bottom-right cell is guaranteed to reflect the global minimum over all possible paths.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Greedy Choice Fallacy:** Choosing the smaller immediate adjacent number (moving down to $(1, 0)$ with value $1$ rather than right to $(0, 1)$ with value $3$) traps the path into higher cumulative costs downstream. Dynamic programming avoids myopic local decisions.
+- **In-Place Modification:** The input `grid` can be overwritten directly (`grid[r][c] += min(...)`), saving space and requiring $O(1)$ auxiliary memory.
+- **Single Row / Single Column Grid:** A $1 \times N$ or $M \times 1$ grid has only one viable path (prefix sum). The boundary formulas handle this naturally without conditional exceptions.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Each cell performs $O(1)$ arithmetic operations.
+- **Auxiliary Space Complexity:** $O(1)$ if mutating `grid` in place, or $O(N)$ if maintaining a single running row buffer.

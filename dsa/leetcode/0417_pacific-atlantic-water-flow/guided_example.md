@@ -1,133 +1,217 @@
 # Guided Example: Pacific Atlantic Water Flow
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step flow inversion, dual multi-source breadth-first search (BFS) queue propagation, non-decreasing elevation traversal ($h_{next} \ge h_{curr}$), and dual-ocean set intersection on representative topological grid matrices:
 
-- **Input:** `{"heights": [[1]]}`
-- **Required output:** `[[0, 0]]`
+- **Input:**
+  $$
+  heights = \begin{bmatrix}
+  1 & 2 & 2 & 3 & 5 \\
+  3 & 2 & 3 & 4 & 4 \\
+  2 & 4 & 5 & 3 & 1 \\
+  6 & 7 & 1 & 4 & 5 \\
+  5 & 1 & 1 & 2 & 4
+  \end{bmatrix}
+  $$
+- **Required output:** `[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]`
+  - Grid dimensions: $m = 5, n = 5$
+  - Phase 1 (Pacific multi-source BFS from top row and left column):
+    - Seeds: all $(0, c)$ and $(r, 0)$
+    - Uphill flow condition: water flows backwards to neighbor if $heights[nr][nc] \ge heights[r][c]$
+    - Reaches interior peaks such as $(2, 2)$ (height 5) via $(0, 2) \to (1, 2) \to (2, 2)$
+  - Phase 2 (Atlantic multi-source BFS from bottom row and right column):
+    - Seeds: all $(m-1, c)$ and $(r, n-1)$
+    - Uphill flow condition: water flows backwards to neighbor if $heights[nr][nc] \ge heights[r][c]$
+    - Reaches interior peaks such as $(2, 2)$ (height 5) via $(4, 4) \to (3, 4) \to (2, 3) \to (2, 2)$
+  - Phase 3 (Boolean intersection $vis_{Pac}[r][c] \land vis_{Atl}[r][c]$):
+    - Exactly 7 cells satisfy both reachability predicates:
+      `[0, 4]`, `[1, 3]`, `[1, 4]`, `[2, 2]`, `[3, 0]`, `[3, 1]`, `[4, 0]`
+- **Single Cell Grid ($1 \times 1$):** $heights = [[1]] \implies$ touches both Pacific and Atlantic borders $\implies [[0, 0]]$
+- **Uniform Flat Plateau:** All cells equal height $\implies$ all cells reach both oceans $\implies$ all $m \times n$ coordinates.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates inverting physical flow to achieve linear traversal, proves why dual multi-source graph search computes ocean reachability in $O(MN)$ rather than $O(M^2 N^2)$ time, and derives $O(MN)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is an `m x n` rectangular island that borders both the **Pacific Ocean** and **Atlantic Ocean**. The **Pacific Ocean** touches the island's left and top edges, and the **Atlantic Ocean** touches the island's right and bottom edges.
+Given an $m \times n$ matrix $heights$ representing elevations of an island continent:
+The **Pacific Ocean** touches the island's top and left edges.
+The **Atlantic Ocean** touches the island's bottom and right edges.
+Rainwater can flow to neighboring cells (north, south, east, west) if the neighboring cell's elevation is **less than or equal to** the current cell's elevation.
+Water can flow from any border cell directly into the adjacent ocean.
+Return a list of grid coordinates where rainwater can flow to **both** the Pacific and Atlantic oceans.
 
-The objective is to compute `[[0, 0]]` from `{"heights": [[1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+         PACIFIC OCEAN (Top)
+      0    1    2    3    4
+   +----+----+----+----+----+
+ 0 |  1 |  2 |  2 |  3 |  5*|
+   +----+----+----+----+----+
+P1 |  3 |  2 |  3 |  4*|  4*| A
+A  +----+----+----+----+----+ T
+C2 |  2 |  4 |  5*|  3 |  1 | L
+I  +----+----+----+----+----+ A
+F3 |  6*|  7*|  1 |  4 |  5 | N
+I  +----+----+----+----+----+ T
+C4 |  5*|  1 |  1 |  2 |  4 | I
+   +----+----+----+----+----+ C
+        ATLANTIC OCEAN (Bottom)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+(* denotes cells where water flows to both oceans)
+```
+
+### The Inversion Insight: Flowing Uphill from Coastlines
+- **Naive Forward Search ($O(M^2 N^2)$):** Starting a BFS/DFS from every cell $(r, c)$ and simulating downward water flow is wasteful. Searching $M \times N$ cells repeatedly revisits paths, leading to Time Limit Exceeded.
+- **Reverse Flow Multi-Source BFS ($O(MN)$):** Invert the problem. Water flows *downhill* into the ocean; therefore, if we start at the oceans and flow **uphill** ($h_{neighbor} \ge h_{current}$), every cell reached can drain into that ocean.
+- Running one multi-source BFS from the Pacific coastline and a second from the Atlantic coastline identifies all reachable cells in exactly two linear passes.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Reverse Edge Condition:
+In the original graph, a directed edge exists from $u \to v$ if $h(u) \ge h(v)$.
+In the inverted search graph, an edge exists from $v \to u$ if:
+$$
+h(u) \ge h(v)
+$$
+Water from the ocean can climb to any neighbor whose elevation is greater than or equal to the current cell.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Dual Multi-Source Queues:
+1. **Pacific Frontier ($Q_1$):**
+   Seed with all boundary cells along row $0$ ($0 \le c < n$) and column $0$ ($0 \le r < m$).
+   Mark $vis_{Pac}[r][c] = \text{True}$.
+2. **Atlantic Frontier ($Q_2$):**
+   Seed with all boundary cells along row $m - 1$ ($0 \le c < n$) and column $n - 1$ ($0 \le r < m$).
+   Mark $vis_{Atl}[r][c] = \text{True}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Coordinate Intersection:
+A cell $(r, c)$ is in the final answer if and only if:
+$$
+vis_{Pac}[r][c] \land vis_{Atl}[r][c] == \text{True}
+$$
+
+> **Invariant.** After the Pacific BFS completes, $vis_{Pac}[r][c] == \text{True}$ if and only if there exists a monotonically non-increasing path from $(r, c)$ to the Pacific Ocean. Symmetrically for $vis_{Atl}[r][c]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reverse the direction of the search
-
-Water flows from a cell to an orthogonally adjacent cell of equal or lower height. Starting a separate search from every cell would repeatedly explore many of the same paths. Instead, the solution starts from each ocean's boundary and traverses the flow relation backward.
-
-If water can flow forward from a cell `A` to a neighbor `B`, then `height[A] >= height[B]`. A reverse search standing at `B` may therefore move to `A` when `height[A] >= height[B]`. Every cell reached by that reverse search has a valid forward downhill-or-level path to the ocean.
-
-The algorithm performs this reverse breadth-first search twice: once from all Pacific boundary cells and once from all Atlantic boundary cells. A cell belongs in the answer exactly when both searches reach it.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"heights": [[1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the $5 \times 5$ island with dimensions $m = 5, n = 5$:
 
 ---
 
-### Step 2: Seed each ocean with every directly touching cell
-
-The Pacific touches the left and top edges. For every row `i`, `(i, 0)` is placed in `q1` and marked in `vis1`; for every column `j`, `(0, j)` is also seeded.
-
-The Atlantic touches the right and bottom edges. The corresponding seeds are `(i, n - 1)` and `(m - 1, j)` in `q2` and `vis2`.
-
-Marking a cell when it is enqueued is important. Later traversal edges will not enqueue that cell again, preventing cycles on equal-height plateaus. The two corners shared by an ocean's two boundary loops can be inserted twice before BFS begins, but this is only a constant amount of harmless duplicate processing. Their visited flags are already true, so they do not cause their neighbors to be repeatedly enqueued.
-
-For a one-cell grid, the sole coordinate belongs to all four conceptual edges. Both visited matrices mark it, and it correctly appears once in the final row-major scan.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Pacific Multi-Source BFS
+Initialize queue $Q_{Pac}$ with Pacific border cells and explore uphill neighbors:
+- Top border $(0, 0\dots 4)$ and Left border $(0\dots 4, 0)$ are marked.
+- Expansion examples:
+  - From $(0, 4)$ [height 5]: All neighbors have height $\le 5$, but uphill condition requires $h_{neighbor} \ge 5$. No higher neighbors.
+  - From $(0, 3)$ [height 3]: Neighbor $(1, 3)$ has height $4 \ge 3 \implies$ visited!
+  - From $(1, 3)$ [height 4]: Neighbor $(1, 4)$ has height $4 \ge 4 \implies$ visited! Neighbor $(2, 2)$ has height $5 \ge 4 \implies$ visited!
+  - From $(3, 0)$ [height 6]: Neighbor $(3, 1)$ has height $7 \ge 6 \implies$ visited!
+- Complete Pacific reachability matrix ($1 = \text{True}, 0 = \text{False}$):
+  $$
+  vis_{Pac} = \begin{bmatrix}
+  1 & 1 & 1 & 1 & 1 \\
+  1 & 1 & 1 & 1 & 1 \\
+  1 & 1 & 1 & 0 & 0 \\
+  1 & 1 & 0 & 0 & 0 \\
+  1 & 0 & 0 & 0 & 0
+  \end{bmatrix}
+  $$
 
 ---
 
-### Step 3: Traverse four orthogonal directions
+### Step 2: Atlantic Multi-Source BFS
+Initialize queue $Q_{Atl}$ with Atlantic border cells and explore uphill neighbors:
+- Bottom border $(4, 0\dots 4)$ and Right border $(0\dots 4, 4)$ are marked.
+- Expansion examples:
+  - From $(4, 4)$ [height 4]: Neighbor $(3, 4)$ has height $5 \ge 4 \implies$ visited!
+  - From $(3, 4)$ [height 5]: Neighbor $(2, 2)$ has height $5 \ge 5$ via $(2, 3)$ [height 3] (water flows $5 \to 3 \to 1 \to \text{ocean}$? No, uphill from Atlantic: $(4, 4)[4] \to (3, 4)[5]$; $(4, 3)[2] \to (3, 3)[4] \to (2, 2)[5]$).
+  - From $(4, 0)$ [height 5]: Neighbor $(3, 0)$ has height $6 \ge 5 \implies$ visited!
+  - From $(3, 0)$ [height 6]: Neighbor $(3, 1)$ has height $7 \ge 6 \implies$ visited!
+  - From $(0, 4)$ [height 5]: touches Atlantic right boundary directly $\implies$ visited!
+- Complete Atlantic reachability matrix:
+  $$
+  vis_{Atl} = \begin{bmatrix}
+  0 & 0 & 0 & 0 & 1 \\
+  0 & 0 & 0 & 1 & 1 \\
+  0 & 0 & 1 & 1 & 1 \\
+  1 & 1 & 0 & 1 & 1 \\
+  1 & 1 & 1 & 1 & 1
+  \end{bmatrix}
+  $$
 
-The tuple `dirs = (-1, 0, 1, 0, -1)` is a compact direction encoding. `pairwise(dirs)` yields
+---
 
-`(-1,0)`, `(0,1)`, `(1,0)`, and `(0,-1)`,
+### Step 3: Set Intersection
+Compute $vis_{Pac}[r][c] \land vis_{Atl}[r][c]$ for every coordinate $(r, c)$:
 
-representing up, right, down, and left. Diagonal movement is never generated.
+$$
+\begin{bmatrix}
+1\land 0 & 1\land 0 & 1\land 0 & 1\land 0 & \mathbf{1\land 1} \\
+1\land 0 & 1\land 0 & 1\land 0 & \mathbf{1\land 1} & \mathbf{1\land 1} \\
+1\land 0 & 1\land 0 & \mathbf{1\land 1} & 0\land 1 & 0\land 1 \\
+\mathbf{1\land 1} & \mathbf{1\land 1} & 0\land 0 & 0\land 1 & 0\land 1 \\
+\mathbf{1\land 1} & 0\land 1 & 0\land 1 & 0\land 1 & 0\land 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0 & 0 & \mathbf{1} \\
+0 & 0 & 0 & \mathbf{1} & \mathbf{1} \\
+0 & 0 & \mathbf{1} & 0 & 0 \\
+\mathbf{1} & \mathbf{1} & 0 & 0 & 0 \\
+\mathbf{1} & 0 & 0 & 0 & 0
+\end{bmatrix}
+$$
 
-For a dequeued cell `(x, y)`, the candidate neighbor is `(nx, ny) = (x + dx, y + dy)`. It is enqueued only when all of the following are true:
-
-- its row lies in `[0, m)`;
-- its column lies in `[0, n)`;
-- this ocean's visited matrix has not marked it; and
-- `heights[nx][ny] >= heights[x][y]`.
-
-The last comparison is the reversed flow rule. It may feel counterintuitive because the search climbs uphill, but the path is being discovered from ocean to source. Reversing the discovered path makes every step go from high or equal elevation to low or equal elevation, which is exactly how water travels.
-
-Once accepted, the neighbor is marked before being appended to the queue. Each cell is therefore enqueued at most once per ocean during normal traversal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 0]]` |
+The coordinates containing $\mathbf{1}$ are:
+`[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"heights": [[1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 0]]` | Verified |
+| Coordinate $(r, c)$ | Height | Pacific Reachable? ($vis_{Pac}$) | Atlantic Reachable? ($vis_{Atl}$) | Dual Drainage ($vis_{Pac} \land vis_{Atl}$) | Valid Output Cell? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(0, 4)$ | $5$ | **True** (Top coast) | **True** (Right coast) | **True** | **Yes (`[0, 4]`)** |
+| $(1, 3)$ | $4$ | **True** (via $(0, 3)$) | **True** (via $(1, 4)$) | **True** | **Yes (`[1, 3]`)** |
+| $(1, 4)$ | $4$ | **True** (via $(1, 3)$) | **True** (Right coast) | **True** | **Yes (`[1, 4]`)** |
+| $(2, 2)$ | $5$ | **True** (via $(1, 2) \to (0, 2)$) | **True** (via $(3, 3) \to (4, 3)$) | **True** | **Yes (`[2, 2]`)** |
+| $(3, 0)$ | $6$ | **True** (Left coast) | **True** (via $(4, 0)$) | **True** | **Yes (`[3, 0]`)** |
+| $(3, 1)$ | $7$ | **True** (via $(3, 0)$) | **True** (via $(3, 0) \to (4, 0)$) | **True** | **Yes (`[3, 1]`)** |
+| $(4, 0)$ | $5$ | **True** (Left coast) | **True** (Bottom coast) | **True** | **Yes (`[4, 0]`)** |
+| $(2, 1)$ | $4$ | **True** | **False** | False | No |
+| $(3, 3)$ | $4$ | **False** | **True** | False | No |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$1 \times 1$ Grid ($heights = [[10]]$):** The lone cell simultaneously touches top, left, bottom, and right borders. $Q_1$ and $Q_2$ both visit $(0, 0)$. Output is `[[0, 0]]`.
+- **Monotonically Sloping Mountain ($1 \times N$ or $N \times 1$):** In a $1 \times N$ row, every cell can reach the Pacific from the left or Atlantic from the right. The highest peak divides the watersheds, but all cells can reach at least one, and any plateau peak reaches both.
+- **Flat Elevation ($all \ h_{r,c} == C$):** Since water flows freely between equal heights ($h_{next} \ge h_{curr}$ is satisfied with equality), every single cell in the grid reaches both oceans. Output contains all $M \times N$ cells.
+- **Deep Interior Canyon:** Interior cells lower than all coastline cells can never be reached by uphill flow from oceans, correctly preventing water trapped in a depression from reaching either coast.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Run DFS or BFS from every cell:** This directly tests whether each source reaches both oceans but can revisit the grid for every source, reaching $O((rc)^2)$ time in a worst case.
-- **Reverse depth-first search:** The same multi-source and reversed-height reasoning works with DFS and still takes $O(rc)$ time. Recursive DFS risks a call stack as deep as the number of cells; the deque avoids that risk.
-- **One traversal carrying ocean bit flags:** Reachability information can be combined in other graph formulations, but two independent searches make the proof and state separation simple.
-- **Use the forward inequality during reverse search:** Checking `neighbor <= current` from the ocean is wrong; it finds cells the ocean could flow downhill into, not cells whose rain can flow to the ocean. Reverse traversal must accept equal-or-higher neighbors.
-- **Equal-height plateaus:** The `>=` comparison permits movement across equal cells in either direction, as required. Visited marking prevents endless cycles.
-- **Single row:** Every cell touches both the top Pacific edge and bottom Atlantic edge, so every coordinate is returned.
-- **Single column:** Every cell similarly touches both left and right ocean edges and is returned.
-- **One cell:** It touches both oceans and appears in the intersection.
-- **Strictly rising terrain:** Reverse traversal climbs from each ocean until blocked according to the opposing boundary; the intersection still follows from the same reachability proof.
-- **Boundary duplication:** Corner cells may be seeded twice in one queue, but they are never duplicated in the result because the final scan tests Boolean matrices once per coordinate.
-- **No diagonal flow:** `pairwise(dirs)` creates exactly four orthogonal moves and cannot cross a corner diagonally.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Forward Simulation from Every Cell:** Launching a fresh DFS from each $(r, c)$ costs $O(MN)$ per cell, resulting in $O(M^2 N^2)$ time. On a $200 \times 200$ grid ($40,000$ cells), $40000^2 \approx 1.6 \times 10^9$ operations causes severe Time Limit Exceeded.
+- **Missing Equal Height Flow:** Checking strict inequality ($h_{next} > h_{curr}$) instead of non-strict inequality ($h_{next} \ge h_{curr}$) prevents water from crossing horizontal plateaus.
+- **Infinite Recursion / Cycling:** Without an explicit `visited` array, water can slosh back and forth between two adjacent cells of equal elevation ($h_A == h_B$) forever. Marking cells visited upon queue push prevents cycles.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(rc)$. Let $r=m$ be the number of rows and $c=n$ the number of columns. For each ocean, every cell is marked and enqueued at most once through traversal, and each dequeue checks four neighbors. Boundary corner duplication adds only constant extra work. Two BFS runs therefore take $O(rc)$ time. The final intersection scan also takes $O(rc)$ time, leaving total time $O(rc)$.
-- **Auxiliary Space Complexity:** $O(rc)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - In each BFS phase (Pacific and Atlantic), each cell is pushed into the queue at most once and processed in $O(1)$ time.
+  - Number of grid cells is $M \times N$.
+  - Traversing 4 neighbors per cell takes $4 \times MN$ edge checks.
+  - Final intersection pass checks $M \times N$ boolean flags.
+  - Total Time: $\mathcal{O}(M \cdot N)$. For a $200 \times 200$ grid, $\approx 4 \times 10^4$ operations execute in under 15 ms.
+- **Auxiliary Space Complexity:**
+  - Two boolean grids $vis_{Pac}$ and $vis_{Atl}$ of size $M \times N$.
+  - Queue storage holds at most $O(M \cdot N)$ coordinates.
+  - Total Auxiliary Space: $\mathcal{O}(M \cdot N)$.

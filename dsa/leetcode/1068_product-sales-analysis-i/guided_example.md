@@ -1,146 +1,205 @@
 # Guided Example: Product Sales Analysis I
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational evaluation of projecting product names, sale years, and unit prices from sales and product catalogs, prove the Foreign Key Functional Dependency Theorem and the Multiplicity Preservation Invariant, and analyze equi-join behavior across representative database instances:
 
-- **Input:** `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}], "Product": [{"product_id": 100, "product_name": "Nokia"}, {"product_id": 200, "product_name": "Apple"}, {"product_id": 300, "product_name": "Samsung"}]}}`
-- **Required output:** `{"columns": ["product_name", "year", "price"], "rows": [["Nokia", 2008, 5000], ["Nokia", 2009, 5000], ["Apple", 2011, 9000]]}`
+- **Representative Instance 1 (Repeated Product Sales and Unused Catalog Items):**
+  - Table `Sales`:
+    $$
+    \begin{array}{|c|c|c|c|c|}
+    \hline
+    \textbf{sale\_id} & \textbf{product\_id} & \textbf{year} & \textbf{quantity} & \textbf{price} \\
+    \hline
+    1 & 100 & 2008 & 10 & 5000 \\
+    2 & 100 & 2009 & 12 & 5000 \\
+    7 & 200 & 2011 & 15 & 9000 \\
+    \hline
+    \end{array}
+    $$
+  - Table `Product`:
+    $$
+    \begin{array}{|c|c|}
+    \hline
+    \textbf{product\_id} & \textbf{product\_name} \\
+    \hline
+    100 & \text{"Nokia"} \\
+    200 & \text{"Apple"} \\
+    300 & \text{"Samsung"} \\
+    \hline
+    \end{array}
+    $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|c|c|}
+  \hline
+  \textbf{product\_name} & \textbf{year} & \textbf{price} \\
+  \hline
+  \text{"Nokia"} & 2008 & 5000 \\
+  \text{"Nokia"} & 2009 & 5000 \\
+  \text{"Apple"} & 2011 & 9000 \\
+  \hline
+  \end{array}
+  $$
+  - Relational Schema Contracts:
+    - In `Sales`, `(sale_id, year)` forms the primary key. Column `product_id` is a foreign key referencing `Product`.
+    - In `Product`, `product_id` is the primary key.
+    - Each record in `Sales` represents a distinct sale event. `price` is given per unit.
+  - Equi-Join Execution Step:
+    - Match tuples from `Sales` and `Product` where `Sales.product_id = Product.product_id`.
+    1. **Sale Record 1** (`sale_id = 1, product_id = 100, year = 2008, price = 5000`):
+       - Look up `product_id = 100` in `Product` $\implies$ matches `product_name = "Nokia"`.
+       - Emitted row: `["Nokia", 2008, 5000]`.
+    2. **Sale Record 2** (`sale_id = 2, product_id = 100, year = 2009, price = 5000`):
+       - Look up `product_id = 100` in `Product` $\implies$ matches `product_name = "Nokia"`.
+       - Emitted row: `["Nokia", 2009, 5000]`.
+    3. **Sale Record 3** (`sale_id = 7, product_id = 200, year = 2011, price = 9000`):
+       - Look up `product_id = 200` in `Product` $\implies$ matches `product_name = "Apple"`.
+       - Emitted row: `["Apple", 2011, 9000]`.
+    4. **Unused Product 300 ("Samsung")**:
+       - No record in `Sales` references `product_id = 300`.
+       - Inner join eliminates unreferenced catalog entries.
+  - Column Projection:
+    - Select exactly the attributes `product_name`, `year`, `price`.
+    - Attributes `sale_id`, `product_id`, and `quantity` are omitted from the projection list.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Products Without Sales Omitted):**
+  - `Product` has items `1: "Unused"`, `2: "Used"`, `3: "Idle"`.
+  - `Sales` contains only one sale for `product_id = 2`.
+  - Result contains only `"Used"`, filtering out `"Unused"` and `"Idle"`.
+
+- **Representative Instance 3 (Quantity Irrelevant to Price):**
+  - A sale of quantity $100$ at unit price $7$ outputs `price = 7`, not $700$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Sales`
+Given relational tables `Sales` and `Product`, report `product_name`, `year`, and `price` for every sale record.
 
-The objective is to compute `{"columns": ["product_name", "year", "price"], "rows": [["Nokia", 2008, 5000], ["Nokia", 2009, 5000], ["Apple", 2011, 9000]]}` from `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}], "Product": [{"product_id": 100, "product_name": "Nokia"}, {"product_id": 200, "product_name": "Apple"}, {"product_id": 300, "product_name": "Samsung"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Cardinality Distortion Fallacy:
+  Applying DISTINCT to the output:
+    If two distinct sales transactions happen to share the same (product_name, year, price),
+    DISTINCT would collapse them into a single row, violating the problem contract
+    "for each sale_id in the Sales table"!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Foreign Key Multiplicity Preservation Invariant:
+  Because product_id is the PRIMARY KEY of Product:
+    Every product_id matches AT MOST one row in Product.
+  Because product_id in Sales is a FOREIGN KEY:
+    Every sale_id matches AT LEAST one row in Product.
+  Therefore:
+    The inner join is a strict 1-to-1 functional attribute lookup:
+      |Sales JOIN Product| == |Sales|
+  Every sale record receives its descriptive product_name without row multiplication or omission!
+```
 
----
+Recognizing that primary-to-foreign key joins are bijection-preserving attribute enrichments guarantees correct result cardinality without row loss or duplicates.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Identify which table owns each requested column
-
-The output needs `product_name`, `year`, and `price` for every row in `Sales`.
-
-`year` and `price` are already stored in `Sales`. The readable `product_name` is stored in `Product`. Both tables share `product_id`:
-
-- `Sales.product_id` is a foreign key referencing `Product.product_id`.
-- `Product.product_id` is a primary key, so at most one product row matches any product identifier.
-
-This is a direct relational join problem. Each sale row must be paired with its one referenced product row so the result can combine sales facts with the product name.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}], "Product": [{"product_id": 100, "product_name": "Nokia"}, {"product_id": 200, "product_name": "Apple"}, {"product_id": 300, "product_name": "Samsung"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Foreign Key Functional Dependency Theorem & Multiplicity Preservation Invariant**:
+1. **Relational Equi-Join:** $\mathcal{R}_{\text{Result}} = \pi_{\text{product\_name}, \text{year}, \text{price}} (\mathcal{R}_{\text{Sales}} \bowtie_{\text{product\_id}} \mathcal{R}_{\text{Product}})$.
+2. **Cardinality Identity:** Because `product_id` is unique in `Product` and non-null in `Sales`, $|\mathcal{R}_{\text{Result}}| = |\mathcal{R}_{\text{Sales}}|$.
+3. **No Redundant Aggregation:** Attribute `price` is already per-unit; quantity is preserved implicitly by transaction grain.
+4. Total time $\mathcal{O}(|\text{Sales}| + |\text{Product}|)$ via hash join and space $\mathcal{O}(|\text{Product}|)$.
 
 ---
 
-### Step 2: Use an inner join on the common key
+## 2. Conceptual Foundation & Relational Join Pipeline
 
-The query's source is:
+```mermaid
+flowchart TD
+    accTitle: Product Sales Analysis I Join Pipeline
+    accDescr: Flowchart illustrating hash join of Sales with Product on product_id and projection of requested columns
+    Start["Table Sales (N rows)\nTable Product (M rows)"] --> BuildHash["Build Hash Index on Product.product_id\nMapping product_id -> product_name"]
+    BuildHash --> ScanSales["Scan each tuple in Sales:\n(sale_id, product_id, year, quantity, price)"]
+    ScanSales --> ProbeProduct{"Lookup product_id in Product hash table"}
+    ProbeProduct -->|"Match found"| ProjectTuple["Construct joined tuple:\n(product_name, year, price)"]
+    ProjectTuple --> Collect["Append to output relation"]
+    Collect --> CheckDone{"More Sales rows ?"}
+    CheckDone -->|"Yes"| ScanSales
+    CheckDone -->|"No: All sales processed"| Finish["Return output table"]
+```
 
+### The Foreign Key Functional Dependency Theorem
 
-
-In MySQL, bare `JOIN` means `INNER JOIN`. Only row pairs whose `product_id` values are equal survive.
-
-`USING (product_id)` is concise syntax for an equality join when both tables use the same column name. It corresponds to:
-
-
-
-and exposes the join key as one merged output column rather than two separately named copies.
-
-The foreign-key contract guarantees that every `Sales` row references an existing product. Therefore, no sale is lost through the inner join.
-
-The primary-key contract on `Product.product_id` guarantees exactly one matching product row for a referenced identifier. Therefore, the join does not multiply one sale into several result rows.
-
-Together, those constraints establish a one-to-one relationship from each sale row to its joined result row, even though one product can appear in many different sales.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Project only the required attributes
-
-The select list is:
-
-
-
-`product_name` exists only in `Product`, while `year` and `price` exist only in `Sales`, so these unqualified names are unambiguous.
-
-Other columns are intentionally omitted:
-
-- `sale_id` identifies the source sale but is not requested.
-- `product_id` performs the join but is not requested in the output.
-- `quantity` does not affect the requested per-unit price and year.
-
-Projection does not merge equal rows. If two distinct sales happen to have the same product name, year, and price, SQL returns two identical-looking result rows because there is no `DISTINCT`. That is correct: the requirement asks for one result for each `sale_id`, even though `sale_id` itself is not displayed.
-
-Adding `DISTINCT` would be a semantic bug because it could collapse separate sales into one row.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["product_name", "year", "price"], "rows": [["Nokia", 2008, 5000], ["Nokia", 2009, 5000], ["Apple", 2011, 9000]]}` |
+Let $\mathcal{S}$ denote the `Sales` relation and $\mathcal{P}$ denote the `Product` relation.
+1. **Primary Key Uniqueness:**
+   In relation $\mathcal{P}$, attribute `product_id` is the primary key.
+   Thus, the functional dependency holds:
+   $$
+   \text{product\_id} \to \text{product\_name}
+   $$
+   For every key $k$, $|\sigma_{\text{product\_id} = k}(\mathcal{P})| \le 1$.
+2. **Foreign Key Integrity:**
+   Attribute `product_id` in $\mathcal{S}$ is a foreign key referencing $\mathcal{P}$.
+   For every tuple $s \in \mathcal{S}$, there exists $p \in \mathcal{P}$ such that $s[\text{product\_id}] = p[\text{product\_id}]$.
+3. **Join Cardinality Invariant:**
+   Consider the natural inner equi-join:
+   $$
+   \mathcal{J} = \mathcal{S} \bowtie_{\mathcal{S}.\text{product\_id} = \mathcal{P}.\text{product\_id}} \mathcal{P}
+   $$
+   For each tuple $s \in \mathcal{S}$, exactly one matching tuple $p \in \mathcal{P}$ exists.
+   Hence:
+   $$
+   |\mathcal{J}| = |\mathcal{S}|
+   $$
+   The join neither creates orphan sales nor duplicates sales records.
+4. **Projection Fidelity:**
+   The projection $\pi_{\text{product\_name}, \text{year}, \text{price}}(\mathcal{J})$ produces one output row per `sale_id`, satisfying the specification. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}], "Product": [{"product_id": 100, "product_name": "Nokia"}, {"product_id": 200, "product_name": "Apple"}, {"product_id": 300, "product_name": "Samsung"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["product_name", "year", "price"], "rows": [["Nokia", 2008, 5000], ["Nokia", 2009, 5000], ["Apple", 2011, 9000]]}` | Verified |
+### Join Matching Table
+- **Tuple 1 ($sale\_id = 1$):**
+  - $product\_id = 100 \implies Product.product\_name = \text{"Nokia"}$.
+  - Projected: `["Nokia", 2008, 5000]`.
+- **Tuple 2 ($sale\_id = 2$):**
+  - $product\_id = 100 \implies Product.product\_name = \text{"Nokia"}$.
+  - Projected: `["Nokia", 2009, 5000]`.
+- **Tuple 3 ($sale\_id = 7$):**
+  - $product\_id = 200 \implies Product.product\_name = \text{"Apple"}$.
+  - Projected: `["Apple", 2011, 9000]`.
+
+All 3 sales are preserved. Catalog item $300$ ("Samsung") has no matching sales and is omitted.
+
+---
+
+## 4. Join and Projection Trace Table
+
+| `sale_id` | `Sales.product_id` | `year` | `price` | Matched `Product.product_name` | Emitted Row in Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $100$ | $2008$ | $5000$ | `"Nokia"` | `["Nokia", 2008, 5000]` |
+| $2$ | $100$ | $2009$ | $5000$ | `"Nokia"` | `["Nokia", 2009, 5000]` |
+| $7$ | $200$ | $2011$ | $9000$ | `"Apple"` | `["Apple", 2011, 9000]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every returned row contains the authentic `product_name` associated with the sale's `product_id` and the recorded `year` and `price`.
+2. **Completeness:**
+   Every sale record in `Sales` is joined and projected; no sales transaction is omitted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Explicit ON syntax:** `JOIN Product ON Sales.product_id = Product.product_id` is semantically equivalent and can be clearer when key names differ or table aliases are used.
-- **Correlated scalar subquery:** Looking up the product name separately for each sale can produce the same result, but it is less direct and may lead to repeated index probes.
-- **Left join:** It is unnecessary because every sale has a valid product foreign key. Starting from products with a left join could also introduce catalog rows with no sale.
-- **DISTINCT:** Do not add it. Separate sale rows may project to identical visible values and must remain separate.
-- **Product with many sales:** The product name appears once for each matching sale, preserving the required per-sale grain.
-- **Product with no sales:** It contributes no row because the output is driven by `Sales`.
-- **Same product and year across sales:** Each sale remains a separate joined row, even when all selected values are identical.
-- **Composite Sales primary key:** Uniqueness of `(sale_id, year)` identifies sale records but is not needed as a join key; `product_id` is the relational link to `Product`.
-- **Per-unit price:** The query selects `price` directly and does not multiply it by `quantity`.
-- **Any result order:** Omitting `ORDER BY` is correct and avoids implying an unsupported ordering contract.
-- **USING column behavior:** `USING (product_id)` requires the same key name in both tables and merges that key in the joined namespace.
-- **Null key concerns:** The foreign-key description supplies referenced product identifiers. Under the stated schema, every sale has its corresponding product.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Unused Products in Catalog | Product with zero sales | Omitted by inner join; only sales are reported. | Including catalog items with null sales data. |
+| Duplicate Rows in Projection | Two sales with identical product, year, price | Both rows returned; no distinct filtering. | Using `DISTINCT` and collapsing distinct transactions. |
+| Quantity Multiplication | Quantity $> 1$ | `price` projected directly; not multiplied. | Computing total revenue (`quantity * price`). |
+| Empty Sales Table | No sales | Returns empty table with 3 column headers. | Null pointer errors. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(P)$. Let `R` be the number of rows in `Sales` and `P` the number of rows in `Product`.
-- **Auxiliary Space Complexity:** $O(P+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|\mathcal{S}| + |\mathcal{P}|)$, where $|\mathcal{S}|$ is the number of rows in `Sales` and $|\mathcal{P}|$ is the number of rows in `Product`.
+  - Building a hash table over `Product` takes $\mathcal{O}(|\mathcal{P}|)$ time.
+  - Probing the hash table for each row in `Sales` takes $\mathcal{O}(|\mathcal{S}|)$ time.
+  - Total query execution time is strictly linear in input size.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\mathcal{P}|)$ auxiliary memory for the join index or hash table built over the smaller `Product` table.

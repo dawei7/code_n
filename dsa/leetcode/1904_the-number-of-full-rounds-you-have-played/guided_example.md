@@ -1,107 +1,143 @@
 # Guided Example: The Number of Full Rounds You Have Played
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace minute-level time conversion, midnight interval unwrapping, and 15-minute epoch quantization on representative gaming session intervals:
 
-- **Input:** `{"loginTime": "09:31", "logoutTime": "10:14"}`
-- **Required output:** `1`
+- **Input:** `loginTime = "09:31"`, `logoutTime = "10:14"` (alongside `loginTime = "21:30"`, `logoutTime = "03:00"`)
+- **Required Output:** `1` (and `22` for the overnight session)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates converting formatted time strings into linear minutes from midnight, handling overnight sessions crossing midnight by adding 1440 minutes, rounding arrival up to the next 15-minute mark and departure down to the previous 15-minute mark, and computing the count of complete 15-minute game rounds in $\mathcal{O}(1)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are participating in an online chess tournament. There is a chess round that starts every `15` minutes. The first round of the day starts at `00:00`, and after every `15` minutes, a new round starts.
+A game starts a new round every 15 minutes at minutes 00, 15, 30, and 45 of each hour. A round takes 15 minutes. We are given `loginTime` and `logoutTime` in 24-hour format `"HH:MM"`. A round is counted if and only if the player was present for the entire 15-minute duration. If `logoutTime < loginTime`, the player logged out on the following day.
 
-The objective is to compute `1` from `{"loginTime": "09:31", "logoutTime": "10:14"}` while avoiding redundant calculations and unnecessary overhead.
+For `loginTime = "09:31"`, `logoutTime = "10:14"`:
+- `loginTime` is 9 hours and 31 minutes $\implies 9 \times 60 + 31 = 571$ minutes.
+- `logoutTime` is 10 hours and 14 minutes $\implies 10 \times 60 + 14 = 614$ minutes.
+- The 15-minute round intervals during this period:
+  - $[09:30, 09:45]$ ($[570, 585]$): Player arrived at 09:31, missing the first minute $\implies$ **Partial (excluded)**.
+  - $[09:45, 10:00]$ ($[585, 600]$): Player present from 09:45 to 10:00 $\implies$ **Full Round 1**.
+  - $[10:00, 10:15]$ ($[600, 615]$): Player logged out at 10:14, missing the final minute $\implies$ **Partial (excluded)**.
+- Exactly 1 complete round played.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For `loginTime = "21:30"`, `logoutTime = "03:00"`:
+- $t_{\text{in}} = 21 \times 60 + 30 = 1290$.
+- $t_{\text{out}} = 3 \times 60 + 0 = 180$.
+- Since $t_{\text{out}} < t_{\text{in}}$, the session crossed midnight. We unwrap the departure time: $t_{\text{out}} = 180 + 1440 = 1620$.
+- Total full rounds $= \frac{1620 - 1290}{15} = \frac{330}{15} = 22$.
+
+The teaching goal is to understand **discrete temporal epoch quantization**:
+1. Mapping cyclic 24-hour time to a monotonically increasing linear minute scale.
+2. Formulating arrival rounding as ceiling division and departure rounding as floor division.
+3. Handling sub-round durations gracefully by non-negativity clamping.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Discrete 15-Minute Epoch Projection & Modulo-24 Temporal Unwrapping Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Discrete 15-Minute Epoch Projection & Modulo-24 Temporal Unwrapping Theorem.**
+> 1. *Linear Minute Projection:* A time string `"HH:MM"` maps to absolute minutes from midnight:
+>    $$t = 60 \cdot H + M \in [0, 1439]$$
+> 2. *Midnight Crossing Unwrapping:* If $t_{\text{out}} < t_{\text{in}}$, the session spans two calendar dates. Because sessions never exceed 24 hours, the true timeline interval is:
+>    $$[t_{\text{in}}, \; t_{\text{out}} + 1440]$$
+> 3. *Epoch Quantization:* A round $k$ corresponds to the continuous time interval $[15k, 15(k+1)]$. A round is fully contained in $[t_{\text{in}}, t_{\text{out}}]$ if and only if:
+>    $$15k \ge t_{\text{in}} \iff k \ge \left\lceil \frac{t_{\text{in}}}{15} \right\rceil = \left\lfloor \frac{t_{\text{in}} + 14}{15} \right\rfloor$$
+>    $$15(k+1) \le t_{\text{out}} \iff k+1 \le \left\lfloor \frac{t_{\text{out}}}{15} \right\rfloor$$
+> 4. *Round Count Closed Form:* Let $r_{\text{start}} = \lceil t_{\text{in}} / 15 \rceil$ and $r_{\text{end}} = \lfloor t_{\text{out}} / 15 \rfloor$. The total count of fully enclosed rounds is:
+>    $$\text{Rounds} = \max(0, \; r_{\text{end}} - r_{\text{start}})$$
+> 5. *Complexity:* The calculation requires fixed arithmetic evaluations, running in $\mathcal{O}(1)$ time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart LR
+    accTitle: Temporal Quantization Pipeline
+    accDescr: Pipeline showing parsing, midnight check, ceiling/floor boundary rounding, and subtraction.
+    A["Parse '09:31' -> t_in = 571\nParse '10:14' -> t_out = 614"] --> B{"t_out < t_in?"}
+    B -->|"No"| C["Keep t_out = 614"]
+    B -->|"Yes"| D["t_out += 1440"]
+    C --> E["Round start: ceil(571 / 15) = 39 (09:45)"]
+    E --> F["Round end: floor(614 / 15) = 40 (10:00)"]
+    F --> G["Compute difference: max(0, 40 - 39) = 1"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Convert clock text into one numeric timeline.** Helper `f` parses the two hour characters and two minute characters, returning `hours * 60 + minutes`. A time of day becomes an integer from zero through 1439. Minute arithmetic is easier and less error-prone than separately adjusting hours and minute fields.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"loginTime": "09:31", "logoutTime": "10:14"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `loginTime = "09:31"`, `logoutTime = "10:14"`:
 
 ---
 
-### Step 2: Core Step 2
-
-**Unwrap an overnight session.** Let `a` be login minutes and `b` logout minutes. If `a > b`, logout occurs on the following day, so `b += 1440`. This places both endpoints on one increasing timeline: login remains within day zero, and logout moves into day one. If `a < b`, the session stays within the same day and no change is needed. Equal inputs are excluded by the contract.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Parse Inputs to Absolute Minutes
+- `loginTime = "09:31"`:
+  $$H_{\text{in}} = 9, \quad M_{\text{in}} = 31$$
+  $$t_{\text{in}} = 9 \times 60 + 31 = 540 + 31 = 571$$
+- `logoutTime = "10:14"`:
+  $$H_{\text{out}} = 10, \quad M_{\text{out}} = 14$$
+  $$t_{\text{out}} = 10 \times 60 + 14 = 600 + 14 = 614$$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Midnight Check
+- Compare arrival and departure:
+  $$t_{\text{out}} \ge t_{\text{in}} \quad (614 \ge 571)$$
+- The session does not cross midnight; $t_{\text{out}}$ remains $614$.
 
-For example, `21:30` becomes 1290 and `03:00` becomes 180. Since login is later as a time of day, logout becomes `180 + 1440 = 1620`, representing 03:00 next day.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 3: Quantize Round Boundaries
+- **First Full Round Start:**
+  The player can only start a full round at or after arrival:
+  $$r_{\text{start}} = \left\lceil \frac{571}{15} \right\rceil = \left\lfloor \frac{571 + 14}{15} \right\rfloor = \left\lfloor \frac{585}{15} \right\rfloor = 39$$
+  Corresponding minute: $39 \times 15 = 585$ (09:45).
+- **Last Full Round End:**
+  The player must finish a full round at or before departure:
+  $$r_{\text{end}} = \left\lfloor \frac{614}{15} \right\rfloor = 40$$
+  Corresponding minute: $40 \times 15 = 600$ (10:00).
+
+---
+
+### Step 4: Compute Completed Rounds
+- Subtract indices and clamp to non-negative:
+  $$\text{Rounds} = \max(0, \; r_{\text{end}} - r_{\text{start}}) = \max(0, \; 40 - 39) = 1$$
+- Output: `1`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"loginTime": "09:31", "logoutTime": "10:14"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Parameter / Step | Session 1 (`"09:31"` to `"10:14"`) | Session 2 (`"21:30"` to `"03:00"`) |
+|:---:|:---:|:---:|
+| $t_{\text{in}}$ (minutes) | $9 \times 60 + 31 = \mathbf{571}$ | $21 \times 60 + 30 = \mathbf{1290}$ |
+| $t_{\text{out}}$ (minutes) | $10 \times 60 + 14 = \mathbf{614}$ | $3 \times 60 + 0 = 180 \to \mathbf{1620}$ ($+1440$) |
+| Midnight Crossing? | No ($614 \ge 571$) | **Yes** ($180 < 1290$) |
+| Earliest Round Start $r_{\text{start}}$ | $\lceil 571 / 15 \rceil = \mathbf{39}$ (09:45) | $\lceil 1290 / 15 \rceil = \mathbf{86}$ (21:30) |
+| Latest Round End $r_{\text{end}}$ | $\lfloor 614 / 15 \rfloor = \mathbf{40}$ (10:00) | $\lfloor 1620 / 15 \rfloor = \mathbf{108}$ (03:00) |
+| Formula: $\max(0, r_{\text{end}} - r_{\text{start}})$ | $\max(0, 40 - 39) = \mathbf{1}$ | $\max(0, 108 - 86) = \mathbf{22}$ |
+| **Output** | **1** | **22** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A round index $k$ corresponds to the half-open interval $[15k, 15(k+1)]$. The round is fully played if and only if $15k \ge t_{\text{in}}$ (which forces $k \ge r_{\text{start}}$) and $15(k+1) \le t_{\text{out}}$ (which forces $k+1 \le r_{\text{end}}$). The number of such integer indices is exactly $\max(0, r_{\text{end}} - r_{\text{start}})$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Adding $1440$ when $t_{\text{out}} < t_{\text{in}}$ correctly handles the modular boundary at midnight without altering the relative time differences.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Simulate quarter-hour starts:** Checking all at most 96 daily rounds is bounded and correct, but arithmetic directly counts them without iteration.
-- **Adjust minute fields manually:** Separate hour/minute carry logic invites boundary errors. Total minutes makes ceiling, floor, and midnight addition uniform.
-- **Login exactly on a boundary:** Ceiling retains that boundary, so the immediately starting round can count.
-- **Logout exactly on a boundary:** Floor retains it as a completed ending boundary, so the round ending then counts.
-- **Session shorter than one full aligned round:** Rounded login may meet or exceed rounded logout; `max(0, ...)` returns zero.
-- **Crossing midnight:** Adding 1440 only when logout time-of-day is earlier creates a continuous next-day endpoint.
-- **Times not equal:** The contract removes ambiguity between a zero-length session and a full 24-hour session.
-- **Partial first and last rounds:** Upward login rounding and downward logout rounding exclude them independently.
-- **Integer ceiling:** `(a + 14) // 15` is valid because minutes are nonnegative. Using ordinary floor division for login would incorrectly count a round already in progress.
-- **Longest possible session:** An overnight interval can approach but not exceed 24 hours because equal clock times are disallowed; the boundary difference remains within one day's 96 scheduled rounds.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sub-15 Minute Intra-Epoch Session:** If a player logs in at `"00:01"` and logs out at `"00:14"`, $r_{\text{start}} = \lceil 1 / 15 \rceil = 1$ and $r_{\text{end}} = \lfloor 14 / 15 \rfloor = 0$. The difference is $0 - 1 = -1$. Clamping via $\max(0, -1)$ correctly produces $0$.
+- **Exact Boundary Arrivals:** If $t_{\text{in}} = 09:30$ ($570$), $\lceil 570 / 15 \rceil = 38$, so the player correctly receives credit for the full round $[09:30, 09:45]$.
+- **Midnight Representation:** `"00:00"` is minute 0. When logging out at `"00:00"` having arrived earlier (e.g. `"23:00"`), $0 < 1380$ triggers the $+1440$ adjustment to minute 1440.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Input strings have fixed five-character format. Parsing two substrings, performing arithmetic, and comparing endpoints all take constant time. Time complexity is $O(1)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$. String parsing, arithmetic multiplications, divisions, and boundary clamping execute in constant time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space.

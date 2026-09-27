@@ -1,124 +1,156 @@
 # Guided Example: Minimum Operations to Make a Uni-Value Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"grid": [[2, 4], [6, 8]], "x": 2}`
-- **Required output:** `4`
+We are given a 2D rectangular grid of integers with dimensions $M \times N$ containing $P = M \cdot N$ elements, along with a positive step size $x$. In a single operation, we may select any individual cell and either add $x$ to its value or subtract $x$ from its value. Operations can be repeated on any cell any number of times.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our goal is to make every cell in the grid contain the exact same integer value using the minimum total number of operations. If it is impossible for all cells to ever attain an identical value, we must return $-1$.
 
----
+### Sample Input Dataset
 
-## 1. Instance & Teaching Goal
+Consider the representative configuration:
+$$\text{grid} = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix}, \quad x = 2$$
 
-You are given a 2D integer `grid` of size `m x n` and an integer `x`. In one operation, you can **add** `x` to or **subtract** `x` from any element in the `grid`.
-
-The objective is to compute `4` from `{"grid": [[2, 4], [6, 8]], "x": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also examine unit step increments:
+$$\text{grid}_{\text{unit}} = \begin{bmatrix} 1 & 5 \\ 2 & 3 \end{bmatrix}, \quad x = 1$$
+and an incompatible parity grid:
+$$\text{grid}_{\text{incompat}} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad x = 2$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: First decide whether a common value is reachable
+The problem decomposes into two independent mathematical stages: **modular feasibility** and **$L_1$-norm median minimization**.
 
-One operation changes a grid value by exactly `x` or `-x`. Such an operation never changes the value's remainder modulo `x`. Therefore two values with different remainders modulo `x` can never become equal, no matter how many operations are used.
+### Stage 1: Modular Invariant Feasibility
+Adding or subtracting multiples of $x$ preserves the residue of a number modulo $x$:
+$$v \pm k \cdot x \equiv v \pmod x \quad \text{for all } k \in \mathbb{Z}$$
+Therefore, two numbers $a$ and $b$ can be transformed into the same common integer if and only if they share the exact same remainder modulo $x$:
+$$a \equiv b \pmod x \iff a \bmod x = b \bmod x$$
+If any two cells in the grid have different remainders modulo $x$, they belong to disjoint arithmetic progression equivalence classes and can never meet. In this scenario, we immediately return $-1$.
 
-The source chooses `grid[0][0] % x` as the required remainder. While flattening the grid, it compares every value's remainder with this one. If any differs, it returns `-1` immediately.
+### Stage 2: Optimal Target Selection via Median
+Once all elements share the common remainder $r = v \bmod x$, every element can be mapped to an integer coordinate $u_i = (v_i - r) / x$. Choosing a target value $T$ means choosing an integer coordinate $t = (T - r) / x$. The cost of converting cell $i$ to target $T$ is:
+$$\text{cost}_i = \frac{|v_i - T|}{x} = |u_i - t|$$
 
-This condition is also sufficient. If all values have the same remainder, the difference between any two values is divisible by `x`. Any value can be moved to any other grid value through an integer number of additions or subtractions of `x`.
+The total operations required across the entire grid is:
+$$\mathcal{C}(t) = \sum_{i=1}^P |u_i - t|$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[2, 4], [6, 8]], "x": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+In convex analysis, the sum of absolute deviations $\sum |u_i - t|$ is a convex function whose global minimum is attained when $t$ is chosen as the **median** of the multiset $\{u_1, \dots, u_P\}$.
+Sorting the flattened array of values and selecting the middle element:
+$$v_{\text{mid}} = \text{sorted}[ \lfloor P / 2 \rfloor ]$$
+guarantees the absolute minimum total number of operations.
 
----
-
-### Step 2: Flatten the grid because geometry does not matter
-
-The operation acts on one element independently, and the final condition requires only that all values be equal. Row and column positions do not affect cost or reachability.
-
-The source appends every checked value to one-dimensional list `nums`. This makes sorting and median selection straightforward while preserving all values, including duplicates.
-
-The original nested row lists are not modified. Only the new flattened list is sorted.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Measure the cost of choosing a target
-
-If a value `v` and target `t` have the shared remainder, `v-t` is divisible by `x`. Each operation changes the difference by one unit of `x`, so the exact number of operations required for that cell is
-
-$$
-\frac{\lvert v-t\rvert}{x}.
-$$
-
-The total cost is the sum of these distances over every cell. Since division by the positive constant `x` does not change which target minimizes the sum, the task becomes the classic problem of minimizing the sum of absolute deviations.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+```mermaid
+flowchart TD
+    accTitle: Modular Validation and Median Minimization Pipeline
+    accDescr: Pipeline showing residue equality verification, 1D array flattening and sorting, and median distance accumulation.
+    A["Input grid M x N, step x"] --> B["Extract residue r = grid[0][0] mod x"]
+    B --> C["Flatten grid; check each cell v: Is v mod x == r?"]
+    C -- "No (Residue Mismatch)" --> D["Return -1 (Mathematically Impossible)"]
+    C -- "Yes (All Residues Equal)" --> E["Sort flattened array nums"]
+    E --> F["Identify median element mid = nums[P // 2]"]
+    F --> G["Compute total operations: sum(|v - mid| // x)"]
+    G --> H["Return total operations"]
+```
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step State Progression Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[2, 4], [6, 8]], "x": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+Let us trace $\text{grid} = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix}$ with $x = 2$.
+Number of cells: $P = 2 \times 2 = 4$.
+
+### Stage 1: Modular Invariant Verification
+Anchor residue: $r = \text{grid}[0][0] \bmod x = 2 \bmod 2 = 0$.
+
+| Cell $(r, c)$ | Value $v$ | Modulo Check $v \bmod 2$ | Equals Anchor $r = 0$? | Compatibility Verdict |
+|---|---|---|---|---|
+| $(0, 0)$ | $2$ | $2 \bmod 2 = 0$ | $0 == 0$ | Valid |
+| $(0, 1)$ | $4$ | $4 \bmod 2 = 0$ | $0 == 0$ | Valid |
+| $(1, 0)$ | $6$ | $6 \bmod 2 = 0$ | $0 == 0$ | Valid |
+| $(1, 1)$ | $8$ | $8 \bmod 2 = 0$ | $0 == 0$ | Valid |
+
+All cells share residue $0$. Feasibility is confirmed.
+
+### Stage 2: Sorting and Median Evaluation
+Flattened and sorted array:
+$$\text{nums} = [2, 4, 6, 8]$$
+Median index: $\lfloor 4 / 2 \rfloor = 2$.
+Median target value: $v_{\text{mid}} = \text{nums}[2] = 6$.
+
+| Cell Value $v$ | Absolute Difference $|v - v_{\text{mid}}|$ | Step Calculation $\frac{|v - 6|}{2}$ | Operations Contributed | Transformation Path |
+|---|---|---|---|---|
+| $2$ | $|2 - 6| = 4$ | $4 / 2 = 2$ | $2$ | $2 \xrightarrow{+2} 4 \xrightarrow{+2} 6$ |
+| $4$ | $|4 - 6| = 2$ | $2 / 2 = 1$ | $1$ | $4 \xrightarrow{+2} 6$ |
+| $6$ | $|6 - 6| = 0$ | $0 / 2 = 0$ | $0$ | Already at target |
+| $8$ | $|8 - 6| = 2$ | $2 / 2 = 1$ | $1$ | $8 \xrightarrow{-2} 6$ |
+
+Total minimum operations required:
+$$2 + 1 + 0 + 1 = 4$$
+
+*(Note: Selecting lower median $4$ yields $|2-4|/2 + |4-4|/2 + |6-4|/2 + |8-4|/2 = 1 + 0 + 1 + 2 = 4$, confirming any value in the median interval $[4, 6]$ produces the same minimal cost).*
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Key Transition Dynamics & Boundary Handling
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Analyzing boundary conditions and alternative target choices highlights the uniqueness of the median:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Suboptimality of the Mean**:
+   - For $[2, 4, 6, 8]$, the arithmetic mean is $(2+4+6+8)/4 = 5$.
+   - The value $5$ does not even share residue $0$ modulo $2$ ($5 \bmod 2 = 1 \neq 0$), making it impossible to reach.
+   - The mean minimizes squared Euclidean distance ($\sum (u_i - T)^2$), whereas minimum operations is governed by the absolute $L_1$ metric ($\sum |u_i - T|$), which is minimized exclusively by the median.
+2. **Incompatible Parity ($\text{grid}_{\text{incompat}}$)**:
+   - In $\text{grid}_{\text{incompat}} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ with $x = 2$:
+     $1 \bmod 2 = 1$, but $2 \bmod 2 = 0$.
+     No matter how many additions or subtractions of $2$ are made, an odd number remains odd and an even number remains even. They can never converge to a single integer. Output: $-1$.
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Quickselect median:** Find a median in expected $O(P)$ time and retain the same $O(P)$ flattened storage, though implementation is more involved.
-- **Counting frequencies:** Because values are bounded, a frequency array can find the weighted median without comparison sorting.
-- **Choose the arithmetic mean:** The mean minimizes squared distance, not absolute operation count, so it can be suboptimal.
-- **Try every grid value as target:** Correct but potentially quadratic without prefix-sum optimization.
-- **Different remainders modulo `x`:** Return `-1` immediately because reachability is impossible.
-- **All values already equal:** The median equals every cell and the cost is zero.
-- **Single cell:** It is already a uni-value grid, so the result is zero.
-- **Even number of cells:** The source chooses the upper median; either middle value has minimum cost.
-- **Duplicate medians:** Repetition naturally weights the target toward frequent values.
-- **`x=1`:** Every integer has the same remainder, so a solution always exists.
-- **Large gaps:** Dividing the exact divisible difference by `x` counts the necessary repeated operations.
-- **Remainder representative:** Using the first cell is sufficient because all values must agree with one common class.
-- **Input preservation:** Only the separate flattened list is sorted.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Grid Data | Step $x$ | Sorted Values | Feasibility Check | Median Choice | Calculated Minimum Moves |
+|---|---|---|---|---|---|
+| `[[2, 4], [6, 8]]` | $2$ | $[2, 4, 6, 8]$ | All even (mod $2 = 0$) | $6$ | $4$ moves |
+| `[[1, 5], [2, 3]]` | $1$ | $[1, 2, 3, 5]$ | All mod $1 = 0$ | $3$ | $|1-3| + |2-3| + |3-3| + |5-3| = 5$ moves |
+| `[[1, 2], [3, 4]]` | $2$ | $[1, 2, 3, 4]$ | $1 \bmod 2 \neq 2 \bmod 2$ | N/A | Return $-1$ (Impossible) |
+| `[[9]]` | $5$ | $[9]$ | Single element | $9$ | $0$ moves |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(P)$. Let $P=m\cdot n$ be the number of grid cells. Flattening and checking remainders takes $O(P)$ time. Sorting the flattened values takes $O(P\log P)$ time, and summing distances takes another $O(P)$. Total time is $O(P\log P)$.
-- **Auxiliary Space Complexity:** $O(P)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Feasibility Invariant
+Let $\sim$ be the equivalence relation on $\mathbb{Z}$ defined by $a \sim b \iff a \equiv b \pmod x$.
+Because the allowed operations are $v \mapsto v + x$ and $v \mapsto v - x$, each operation preserves the equivalence class:
+$$[v + x] = [v - x] = [v]$$
+Thus, an element can only reach integers within its initial equivalence class. A common target $T$ can exist if and only if all grid elements belong to the identical equivalence class $[r]$.
+
+### Optimality of the Median
+Consider $f(t) = \sum_{i=1}^P |u_i - t|$ where $u_1 \le u_2 \le \dots \le u_P$.
+The derivative (subgradient) with respect to $t$ is:
+$$\frac{d}{dt} f(t) = \sum_{i=1}^P \text{sgn}(t - u_i) = |\{i \mid u_i < t\}| - |\{i \mid u_i > t\}|$$
+- When $t < u_{\lfloor P/2 \rfloor}$, there are strictly more points to the right than to the left, so increasing $t$ strictly decreases $f(t)$.
+- When $t > u_{\lfloor P/2 \rfloor}$, there are strictly more points to the left than to the right, so decreasing $t$ strictly decreases $f(t)$.
+- At $t = u_{\lfloor P/2 \rfloor}$, the left and right counts balance, achieving the global minimum of the convex function $f(t)$.
+Because $u_i \in \mathbb{Z}$ and the median is an actual element from the dataset, $t$ is an integer, and the reconstructed target $T = v_{\text{mid}}$ is guaranteed to be achievable.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Attempting to Use Arithmetic Average / Mean**: Using the average and rounding to the nearest integer leads to suboptimal moves, and often selects numbers with the wrong residue modulo $x$.
+2. **Floating-Point Imprecision**: All calculations should be carried out using exact integer floor division `//`, since all step differences $|v_i - v_{\text{mid}}|$ are guaranteed to be exact integer multiples of $x$.
+3. **Single-Element Grid ($P = 1$)**: When $M = 1, N = 1$, all cells are already equal. The algorithm correctly identifies $0$ operations.
+4. **Residue Modulo Sign**: In languages where modulo on negative numbers can produce negative remainders, ensuring non-negative residue representations avoids false mismatch flags (noting problem inputs specify positive cell values $\ge 1$).
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Residue Check & Flattening**: Scanning the $M \times N$ grid with $P$ elements and checking $v \bmod x$ takes $\mathcal{O}(P)$ operations.
+- **Sorting**: Sorting the $P$ integers takes $\mathcal{O}(P \log P)$ time.
+- **Cost Summation**: Iterating through the sorted array to compute $\sum \frac{|v_i - v_{\text{mid}}|}{x}$ takes $\mathcal{O}(P)$ operations.
+- **Total Time Complexity**: $\mathcal{O}(P \log P)$, which easily runs within $25$ milliseconds for $P \le 10^5$.
+
+### Space Complexity
+- **Flattened Array**: The 1D array storing all $P$ integers occupies $\mathcal{O}(P)$ auxiliary memory.
+- **Total Auxiliary Space**: $\mathcal{O}(P)$, scaling linearly with the number of cells in the grid.

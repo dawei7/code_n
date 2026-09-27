@@ -1,137 +1,167 @@
 # Guided Example: Successful Pairs of Spells and Potions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"spells": [5, 1, 3], "potions": [1, 2, 3, 4, 5], "success": 7}`
-- **Required output:** `[4, 0, 3]`
+We are given two arrays of positive integers: $spells$ of length $n$ and $potions$ of length $m$. In addition, we are given a 64-bit integer $success$. A spell $i$ and a potion $j$ form a **successful pair** if the product of their respective strengths is at least $success$:
+$$spells[i] \times potions[j] \ge success$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our goal is to compute an integer array $pairs$ of length $n$, where each entry $pairs[i]$ is the total count of potions that can form a successful pair with the $i^{\text{th}}$ spell.
+
+Consider the representative problem instance:
+$$spells = [5, 1, 3], \quad potions = [1, 2, 3, 4, 5], \quad success = 7$$
+
+Let us sort the potion array in ascending order:
+$$potions = [1, 2, 3, 4, 5], \quad m = 5$$
+
+Evaluating each spell individually:
+- **Spell $0$ ($v = 5$):**
+  - Minimum potion strength required: $p \ge \lceil 7 / 5 \rceil = 2$.
+  - Potions satisfying $p \ge 2$ are $\{2, 3, 4, 5\}$, located at indices $1, 2, 3, 4$.
+  - Total successful potions: $5 - 1 = 4$.
+- **Spell $1$ ($v = 1$):**
+  - Minimum potion strength required: $p \ge \lceil 7 / 1 \rceil = 7$.
+  - The maximum potion in the inventory is $5 < 7$. No potions qualify.
+  - Total successful potions: $5 - 5 = 0$.
+- **Spell $2$ ($v = 3$):**
+  - Minimum potion strength required: $p \ge \lceil 7 / 3 \rceil = 3$.
+  - Potions satisfying $p \ge 3$ are $\{3, 4, 5\}$, located at indices $2, 3, 4$.
+  - Total successful potions: $5 - 2 = 3$.
+
+The resulting array of counts is $[4, 0, 3]$.
+
+```mermaid
+flowchart TD
+    accTitle: Binary Search Suffix Counting Pipeline
+    accDescr: Pipeline sorting potions once and executing binary search for each spell to determine the size of the qualifying suffix interval.
+    A["Sort potions in ascending order: O(m log m)"] --> B["For each spell strength v in spells"]
+    B --> C["Compute required minimum potion threshold: ceil(success / v)"]
+    C --> D["Binary search (bisect_left) in sorted potions: find first index idx"]
+    D --> E["Calculate count of successful potions: m - idx"]
+    E --> F["Append to output pairs array"]
+    F --> G["Return final pairs array: [4, 0, 3]"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $i^{\text{th}}$ spell and $\text{potions}[j]$ represents the strength of the $j^{\text{th}}$ potion.
+### Monotonic Suffix Property Under Sorting
 
-The objective is to compute `[4, 0, 3]` from `{"spells": [5, 1, 3], "potions": [1, 2, 3, 4, 5], "success": 7}` while avoiding redundant calculations and unnecessary overhead.
+For any fixed positive spell strength $v = spells[i] > 0$, the function:
+$$f(p) = v \cdot p$$
+is strictly monotonically increasing in potion strength $p$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+When the $potions$ array is sorted such that $potions[0] \le potions[1] \le \dots \le potions[m - 1]$:
+$$v \cdot potions[0] \le v \cdot potions[1] \le \dots \le v \cdot potions[m - 1]$$
 
----
+Therefore, the set of indices $j$ satisfying $v \cdot potions[j] \ge success$ forms a contiguous suffix $[idx, m - 1]$ of the array:
+$$idx = \min \{ j \in [0, m - 1] : potions[j] \ge \lceil success / v \rceil \}$$
+If no potion satisfies the threshold, $idx = m$.
 
-## 2. Conceptual Foundation & Invariants
+The number of successful potions is given by:
+$$\text{count} = m - idx$$
 
-We maintain the core conceptual parameters and state variables:
+### Exact Threshold Arithmetic Without Precision Loss
 
-| State Parameter | Role & Purpose | Initial State |
+The inequality $v \cdot p \ge success$ can be solved for integer $p$:
+$$p \ge \left\lceil \frac{success}{v} \right\rceil = \left\lfloor \frac{success + v - 1}{v} \right\rfloor$$
+Using pure integer division $\lfloor (success + v - 1) / v \rfloor$ eliminates any potential floating-point rounding errors when $success$ reaches $10^{10}$. Alternatively, in languages with 64-bit floating point, $success / v$ can be queried directly via `bisect_left`.
+
+| Parameter | Mathematical Definition | Role in Binary Search |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Sort potions to create a successful suffix
-
-For a fixed positive spell strength `v`, the product `v\cdot potion` increases as potion strength increases. Therefore, after sorting `potions`, unsuccessful values form a prefix and successful values form a suffix.
-
-The algorithm only needs the first index of that suffix. If it is `p` and there are `m` potions, the successful count is `m-p`.
-
-`potions.sort()` orders the list in place, so the caller's potion order is changed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"spells": [5, 1, 3], "potions": [1, 2, 3, 4, 5], "success": 7}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Potion Inventory | Sorted vector of length $m$ | Monotonic search domain for bisection |
+| Target Threshold | $\lceil success / v \rceil$ | Probe comparison target |
+| Suffix Boundary $idx$ | $\text{bisect\_left}(potions, \lceil success / v \rceil)$ | Minimal index where product threshold holds |
+| Qualifying Count | $m - idx$ | Size of the satisfying rightward interval |
 
 ---
 
-### Step 2: Derive the minimum required strength
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-A potion is successful when
+Let us trace the binary search operations on sorted $potions = [1, 2, 3, 4, 5]$ with $success = 7$.
 
-$$
-v\cdot potion \ge success.
-$$
+### Step 1: Sorting Phase
+The input potions array is sorted in non-decreasing order:
+$$potions = [1, 2, 3, 4, 5], \quad m = 5$$
 
-Because `v` is positive, dividing preserves the inequality:
+### Step 2: Query for Spell $0$ ($v = 5$)
+- Target threshold:
+  $$\text{target} = \left\lceil \frac{7}{5} \right\rceil = 2$$
+- Binary search for $2$ in $[1, 2, 3, 4, 5]$:
+  - Probe middle index $2$: $potions[2] = 3 \ge 2$ (search left half).
+  - Probe index $1$: $potions[1] = 2 \ge 2$ (search left half).
+  - Probe index $0$: $potions[0] = 1 < 2$ (target is strictly to the right).
+  - Insertion index converges to $idx = 1$.
+- Suffix count: $m - idx = 5 - 1 = 4$.
 
-$$
-potion \ge \frac{success}{v}.
-$$
+### Step 3: Query for Spell $1$ ($v = 1$)
+- Target threshold:
+  $$\text{target} = \left\lceil \frac{7}{1} \right\rceil = 7$$
+- Binary search for $7$ in $[1, 2, 3, 4, 5]$:
+  - Every element in $potions$ is strictly smaller than $7$.
+  - Insertion index converges past the end of the array: $idx = 5$.
+- Suffix count: $m - idx = 5 - 5 = 0$.
 
-The exact source calculates the right side as Python floating point with `success / v` and passes that threshold directly to `bisect_left`.
+### Step 4: Query for Spell $2$ ($v = 3$)
+- Target threshold:
+  $$\text{target} = \left\lceil \frac{7}{3} \right\rceil = 3$$
+- Binary search for $3$ in $[1, 2, 3, 4, 5]$:
+  - Probe middle index $2$: $potions[2] = 3 \ge 3$.
+  - Probe index $1$: $potions[1] = 2 < 3$.
+  - Insertion index converges to $idx = 2$.
+- Suffix count: $m - idx = 5 - 2 = 3$.
 
-`bisect_left` returns the first sorted position whose integer potion value is greater than or equal to the threshold. This is equivalent to searching for the integer ceiling of the rational requirement.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the floating threshold is safe under these bounds
-
-An integer potion is compared against the floating approximation. Under the stated limits, relevant thresholds near the potion range are at most about `10^5`, where binary floating-point spacing is vastly smaller than the smallest nonzero fractional gap `1/v` with `v\le10^5`. Exact integral quotients within these magnitudes are representable.
-
-Thus, the float comparison locates the same integer boundary for the source constraints. Integer ceiling arithmetic would nevertheless make the reasoning independent of floating representation and is a useful alternative.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 0, 3]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"spells": [5, 1, 3], "potions": [1, 2, 3, 4, 5], "success": 7}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 0, 3]` | Verified |
+### Step 5: Assembly
+Aggregating individual spell counts produces $[4, 0, 3]$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Integer ceiling threshold:** Search `(success+v-1)//v` to avoid floating arithmetic while producing the same boundary.
-- **Sort spells with indices and use two pointers:** It can reduce post-sort searching to linear time but needs index restoration.
-- **Test every pair:** It takes `O(nm)` time and ignores monotonicity.
-- **Largest potion still fails:** Binary search returns `m` and the count is zero.
-- **Smallest potion succeeds:** Boundary zero makes every potion count.
-- **Product exactly equals success:** The at-least condition includes it, and `bisect_left` uses a greater-than-or-equal boundary.
-- **Duplicate potions:** Every duplicate position contributes separately.
-- **Duplicate spells:** Their independent searches return identical counts.
-- **Positive strengths:** Division and monotonicity rely on the guaranteed positivity.
-- **Large success:** Threshold may exceed every potion without overflow in Python.
-- **Output ordering:** Counts remain aligned with original `spells`.
-- **Input mutation:** `potions` is sorted permanently; `spells` is unchanged.
-- **Potion values are integers:** `bisect_left` compares each integer directly with the rational-looking float threshold; it does not multiply during the search.
-- **Threshold below one:** Since potion strengths are at least one, boundary zero correctly counts every potion.
-- **Threshold beyond the numeric domain:** No special branch is needed because insertion position `m` gives zero.
-- **Sorting once:** The same ordered potion list is reused for every spell rather than sorting or scanning anew.
-- **Independent spell queries:** A weak spell's result does not alter the search range or answer for a stronger spell.
-- **Wide product avoidance:** Searching a divided threshold avoids computing every spell-potion product, although Python could represent those products safely.
-- **Return allocation:** The list comprehension necessarily creates the requested length-`n` result.
-- **Binary-search equality:** A potion exactly at the threshold belongs on the successful side because the search is left-biased.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Spell Index $i$ | Spell Strength $v$ | Integer Ceiling $\lceil success / v \rceil$ | Binary Search Probe Sequence | Converged Index $idx$ | Qualifying Suffix Span | Count $m - idx$ |
+|---|---|---|---|---|---|---|
+| $0$ | $5$ | $2$ | $potions[2]=3 \to potions[1]=2 \to potions[0]=1$ | $1$ | $[1 \dots 4] \implies \{2, 3, 4, 5\}$ | $4$ |
+| $1$ | $1$ | $7$ | $potions[2]=3 \to potions[4]=5 < 7$ | $5$ | $\emptyset$ | $0$ |
+| $2$ | $3$ | $3$ | $potions[2]=3 \to potions[1]=2 < 3$ | $2$ | $[2 \dots 4] \implies \{3, 4, 5\}$ | $3$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(m\log m+n\log m)$. Let `n` be the number of spells and `m` the number of potions. Sorting costs `O(m\log m)`. Each of `n` binary searches costs `O(\log m)`, giving total time `O(m\log m+n\log m)`.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Soundness of the Monotonic Partition
+Because all potion strengths are strictly positive and sorted in ascending order:
+$$\forall j \ge idx, \quad potions[j] \ge potions[idx] \ge \frac{success}{v} \implies v \cdot potions[j] \ge success$$
+Conversely:
+$$\forall j < idx, \quad potions[j] < potions[idx] \le \frac{success}{v} \implies v \cdot potions[j] < success$$
+Hence, the index $idx$ partitions the potion array into an unsuccessful prefix $[0, idx - 1]$ and a successful suffix $[idx, m - 1]$. The count $m - idx$ is mathematically exact.
+
+### Overflow Prevention
+Directly computing the product $spells[i] \cdot potions[j]$ can reach $10^5 \times 10^5 = 10^{10}$, which exceeds standard 32-bit signed integer limits ($2^{31} - 1 \approx 2.14 \times 10^9$). By dividing $success$ by $v$ before searching or by using 64-bit integer arithmetic, integer overflow is avoided.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Quadratic Nested Pair Inspection
+Running nested loops `for s in spells: for p in potions:` performs $n \cdot m$ comparisons. With $n, m = 10^5$, this requires $10^{10}$ operations and results in Time Limit Exceeded. Sorting once and binary searching cuts this to $O((n + m) \log m)$.
+
+### Edge Case: Universal Failure ($idx = m$)
+When a spell is too weak to reach $success$ even with the strongest potion, $idx = m$. The subtraction $m - m = 0$ handles this without special branching.
+
+### Edge Case: Universal Success ($idx = 0$)
+When a spell is strong enough that even the weakest potion achieves $success$ ($v \cdot potions[0] \ge success$), $idx = 0$. The subtraction $m - 0 = m$ correctly includes all potions.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Sorting Potions:** Sorting an array of $m$ elements takes $O(m \log m)$ time.
+- **Binary Search Per Spell:** For each of the $n$ spells, `bisect_left` runs in $O(\log m)$ time.
+- Across $n$ queries, binary search takes $O(n \log m)$ time.
+- **Total Time Complexity:** $O((n + m) \log m)$, which comfortably executes well within 200 milliseconds for $n, m = 10^5$.
+
+### Space Complexity
+- Sorting $potions$ in place requires $O(1)$ to $O(\log m)$ space.
+- The output array requires $O(n)$ space to store results for all spells.
+- **Auxiliary Space Complexity:** $O(n)$ space (or $O(1)$ excluding output array).

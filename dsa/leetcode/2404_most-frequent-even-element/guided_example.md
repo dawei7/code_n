@@ -1,123 +1,135 @@
 # Guided Example: Most Frequent Even Element
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [0, 1, 2, 2, 4, 4, 1]}`
-- **Required output:** `2`
+We are given an integer array $nums$. Our goal is to determine the most frequent even element in the array:
+1. An integer $x$ is eligible if and only if $x \pmod 2 = 0$. Note that $0$ is considered even.
+2. If multiple even elements achieve the same maximum frequency, we break the tie by choosing the numerically smallest even element.
+3. If no even elements exist in $nums$, we must return $-1$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+### Representative Instance
+Consider the input array:
+$$nums = [0, 1, 2, 2, 4, 4, 1]$$
 
----
+- Even elements present: $0$ (occurs 1 time), $2$ (occurs 2 times), and $4$ (occurs 2 times).
+- Odd elements ignored: $1$ (occurs 2 times).
+- Both $2$ and $4$ share the maximum frequency of $2$.
+- Tie-breaking: $\min(2, 4) = 2$.
 
-## 1. Instance & Teaching Goal
-
-Given an integer array `nums`, return *the most frequent even element*.
-
-The objective is to compute `2` from `{"nums": [0, 1, 2, 2, 4, 4, 1]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Expected output: `2`.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: Filter and count only eligible values
+### Dual-Key Maximization
+Let $\mathcal{E} = \{ x \in nums \mid x \pmod 2 = 0 \}$ be the multiset of all even elements, and let $\text{freq}(x)$ denote the number of times $x$ appears in $\mathcal{E}$.
+We seek the element $x^* \in \mathcal{E}$ satisfying:
+$$x^* = \arg\max_{x \in \text{distinct}(\mathcal{E})} \left( \text{freq}(x), -x \right)$$
+where the tuple $(\text{freq}(x), -x)$ is ordered lexicographically. The first key maximizes occurrence count, while the second key minimizes element value.
 
-Odd values can never be returned, so the Counter is built from a generator that yields only values satisfying `x % 2 == 0`. This includes zero, because zero is divisible by two.
+```mermaid
+flowchart TD
+    accTitle: Online Frequency Filtering and Lexicographical Tracking
+    accDescr: Step-by-step logic filtering even numbers into a hash table and selecting the maximum-frequency, minimum-value candidate.
+    A["Scan Array nums"] --> B{"Is x % 2 == 0?"}
+    B -- No --> C["Discard Odd Value"]
+    B -- Yes --> D["Increment freq[x] in Hash Table"]
+    D --> E["Scan Hash Table Key-Value Pairs (x, count)"]
+    E --> F{"count > max_freq OR (count == max_freq AND x < best_val)?"}
+    F -- Yes --> G["Update best_val = x, max_freq = count"]
+    F -- No --> H["Retain Current Best"]
+    G --> I["All Keys Evaluated: Return best_val"]
+    H --> I
+```
 
-The result `cnt` maps each distinct even value to its frequency in `nums`. Ignoring odds during construction saves unnecessary map entries and makes every later candidate valid by definition.
+### Sentinel State
+We initialize tracking variables:
+- $\text{ans} = -1$ (the sentinel indicating no even element found)
+- $\text{mx} = 0$ (the baseline maximum frequency)
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Because any existing even element will have $\text{freq}(x) \ge 1 > 0$, the very first evaluated even element will strictly satisfy $\text{freq}(x) > \text{mx}$ and overwrite the sentinel $-1$. If the array contains zero even numbers, the iteration never executes and the algorithm correctly returns the initial sentinel $-1$.
+
+---
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+### Phase 1: Frequency Aggregation
+We filter the input array $nums = [0, 1, 2, 2, 4, 4, 1]$ for even elements:
+- $nums[0] = 0$: $0 \pmod 2 = 0 \implies \text{freq}[0] = 1$
+- $nums[1] = 1$: $1 \pmod 2 = 1 \implies$ skip odd
+- $nums[2] = 2$: $2 \pmod 2 = 0 \implies \text{freq}[2] = 1$
+- $nums[3] = 2$: $2 \pmod 2 = 0 \implies \text{freq}[2] = 2$
+- $nums[4] = 4$: $4 \pmod 2 = 0 \implies \text{freq}[4] = 1$
+- $nums[5] = 4$: $4 \pmod 2 = 0 \implies \text{freq}[4] = 2$
+- $nums[6] = 1$: $1 \pmod 2 = 1 \implies$ skip odd
+
+Resulting hash table of even elements:
+$$\text{cnt} = \{ 0: 1, \, 2: 2, \, 4: 2 \}$$
+
+### Phase 2: Lexicographical Candidate Selection
+Initial state: $\text{ans} = -1, \text{mx} = 0$.
+
+1. **Candidate $(x = 0, v = 1)$:**
+   - Condition check: $v > \text{mx} \implies 1 > 0$ (True).
+   - Action: Overwrite sentinel.
+   - New state: $\text{ans} = 0, \text{mx} = 1$.
+
+2. **Candidate $(x = 2, v = 2)$:**
+   - Condition check: $v > \text{mx} \implies 2 > 1$ (True).
+   - Action: Strictly higher frequency observed.
+   - New state: $\text{ans} = 2, \text{mx} = 2$.
+
+3. **Candidate $(x = 4, v = 2)$:**
+   - Condition check 1: $v > \text{mx} \implies 2 > 2$ (False).
+   - Condition check 2 (Tie-break): $v = \text{mx}$ ($2 = 2$) and $\text{ans} > x$ ($2 > 4$) (False, since $2 < 4$).
+   - Action: Candidate $4$ does not beat candidate $2$ numerically. Retain current state.
+   - State remains: $\text{ans} = 2, \text{mx} = 2$.
+
+Final answer: `2`.
+
+---
+
+## 4. Comprehensive State Trace
+
+| Step | Candidate Key $x$ | Frequency $v$ | Current Best $(\text{ans}, \text{mx})$ | Condition Evaluated | Decision / Action | Resulting $(\text{ans}, \text{mx})$ |
+|---|---|---|---|---|---|---|
+| Initial | - | - | $(-1, 0)$ | Baseline sentinel | Ready | $(-1, 0)$ |
+| 1 | 0 | 1 | $(-1, 0)$ | $1 > 0$ | Overwrite sentinel with first even element | $(0, 1)$ |
+| 2 | 2 | 2 | $(0, 1)$ | $2 > 1$ | New strictly higher frequency found | $(2, 2)$ |
+| 3 | 4 | 2 | $(2, 2)$ | $2 == 2$ but $2 < 4$ | Tie in frequency, but $x=4$ is greater than existing $\text{ans}=2$ | $(2, 2)$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness of Tie-Breaking Condition
+The predicate for updating the current best is:
+$$\text{update} \iff (v > \text{mx}) \lor (v = \text{mx} \land x < \text{ans})$$
+- If $v > \text{mx}$, the candidate appears strictly more times than any previously evaluated number, regardless of numeric value.
+- If $v = \text{mx}$, the frequency matches the current highest; the sub-clause $x < \text{ans}$ enforces strict minimization on value, ensuring that smaller numbers displace larger numbers.
+Because the relation forms a strict total order over pairs $(v, -x)$, every comparison is unambiguous and transitive.
+
+### Completeness
+Every element in $nums$ is examined during table construction. Every distinct even element is visited during the candidate scan. Because the operation finds the global supremum of a finite set under a total order, the optimal element is guaranteed to be found.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+| Scenario | Input Example | Vulnerability / Anti-Pattern | Correct Handling |
 |---|---|---|---|
-| Input Slice | `{"nums": [0, 1, 2, 2, 4, 4, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| No Even Numbers | $nums = [1, 3, 5, 7, 9]$ | Index error or throwing exception when hash table is empty | Loop over empty table does not run; returns initialized sentinel $-1$. |
+| Zero as Element | $nums = [0, 1, 3, 0]$ | Forgetting that $0 \pmod 2 = 0$ or confusing $0$ with falsy / missing | $0$ is an even number; correctly enters table with count 2 and returns $0$. |
+| Sorting Overhead | $nums$ of size $10^5$ | Sorting all elements costs $\mathcal{O}(N \log N)$ | Hash table aggregation and linear scan runs in $\mathcal{O}(N)$ average time. |
+| Negative Sentinel in Min-Check | $nums = [-2, 4]$ | If negative numbers were permitted, initial $\text{ans} = -1$ could corrupt $x < \text{ans}$ | Problem constraints specify $nums[i] \ge 0$. First element always triggers $v > 0$, replacing $-1$ before any tie check occurs. |
 
 ---
 
-### Step 2: Track both ranking criteria
+## 7. Complexity Analysis
 
-The desired ranking has two levels:
-
-1. greater frequency is better;
-2. among equal frequencies, smaller numeric value is better.
-
-The source keeps `mx` as the best frequency seen and `ans` as the corresponding value. It updates when:
-
-
-
-The first condition handles a new strictly more frequent even value. The second handles a frequency tie and chooses the smaller value.
-
-This explicit comparison is necessary because Counter iteration order reflects first insertion order, not the problem's numeric tie-break.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the initialization encodes the no-even answer
-
-`ans` begins at `-1` and `mx` at zero. Every real Counter frequency is positive, so the first even candidate always satisfies `v > mx` and replaces the sentinel.
-
-If `cnt` is empty, the loop never runs and `ans` remains `-1`, exactly the required result when no even element exists.
-
-The tie clause `ans > x` is not used before a real answer exists because every first candidate wins through frequency. Thus, using negative one as the sentinel does not interfere with smaller-value comparisons among valid nonnegative inputs.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0, 1, 2, 2, 4, 4, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Sort even values:** Sorting groups equal values but costs $O(n\log n)$ time; hashing counts in expected linear time.
-- **Frequency array:** Values are bounded by `10^5`, so a fixed count array is possible. It uses domain-sized space and can scan even indices in ascending order.
-- **Counter all values then filter:** Correct but stores irrelevant odd keys.
-- **No even values:** The empty loop leaves the answer at `-1`.
-- **Only one even value:** It wins regardless of how many odd values appear.
-- **Frequency tie:** The explicit numeric comparison selects the smaller even value.
-- **Zero:** It is even and can be returned.
-- **Separated occurrences:** Counter combines them globally.
-- **Arbitrary Counter iteration order:** Correctness does not depend on it because both ranking criteria are checked explicitly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the array length and $u$ the number of distinct even values. The generator inspects every input once, and expected Counter updates take $O(1)$ each. Building counts costs expected $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the number of elements in $nums$.
+  - Traversing $nums$ to build the frequency map of even elements takes $\mathcal{O}(N)$ operations on average.
+  - Iterating over the distinct even keys in the map takes $\mathcal{O}(U)$ where $U \le N$ is the number of unique even values.
+  - Overall runtime is linear in the array size.
+- **Auxiliary Space Complexity:** $\mathcal{O}(U)$, where $U \le \min(N, 10^5)$ is the number of distinct even numbers stored in the hash map.

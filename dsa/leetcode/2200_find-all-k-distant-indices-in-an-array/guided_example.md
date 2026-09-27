@@ -1,123 +1,224 @@
 # Guided Example: Find All K-Distant Indices in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the interval union and frontier cursor algorithm for identifying all indices positioned within Chebyshev metric radius $k$ of designated key occurrences, establishing $O(n)$ time complexity and $O(1)$ auxiliary working space.
 
-- **Input:** `{"nums": [3, 4, 9, 1, 3, 9, 5], "key": 9, "k": 1}`
-- **Required output:** `[1, 2, 3, 4, 5, 6]`
+- **Input:** `nums = [3, 4, 9, 9, 3, 5]`, `key = 9`, `k = 1`
+- **Output:** `[1, 2, 3, 4]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums` and two integers `key` and `k`. A **k-distant index** is an index `i` of `nums` for which there exists at least one index `j` such that $|i - j| \le k$ and $\text{nums}[j] = key$.
-
-The objective is to compute `[1, 2, 3, 4, 5, 6]` from `{"nums": [3, 4, 9, 1, 3, 9, 5], "key": 9, "k": 1}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates metric neighborhood dilation around target keys, continuous interval overlap resolution, non-redundant cursor advancement, and sorted monotonic output collection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a 0-indexed integer array `nums` of length $n$, along with two integers `key` and $k$.
+An index $i$ ($0 \le i < n$) is designated as a **k-distant index** if there exists at least one index $j$ such that:
+$$|i - j| \le k \quad \text{and} \quad \text{nums}[j] = \text{key}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Our goal is to return a list of all k-distant indices sorted in strictly ascending order without duplicate entries.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
 
----
+Consider:
+$$\text{nums} = [3, 4, 9, 9, 3, 5], \quad \text{key} = 9, \quad k = 1$$
 
-## 3. Step-by-Step Worked Execution
+Array properties:
+- Length $n = 6$.
+- Key value $9$ appears at two positions: index $j_1 = 2$ and index $j_2 = 3$.
 
-### Step 1: Choose each candidate output index
+Evaluating the $k$-neighborhood for each key occurrence:
+1. For $j_1 = 2$ with radius $k = 1$:
+   $$[\max(0, 2 - 1), \min(5, 2 + 1)] = [1, 3]$$
+   Covered indices: $\{1, 2, 3\}$.
+2. For $j_2 = 3$ with radius $k = 1$:
+   $$[\max(0, 3 - 1), \min(5, 3 + 1)] = [2, 4]$$
+   Covered indices: $\{2, 3, 4\}$.
 
-The outer loop visits `i` from zero through `n - 1`. Each index is considered once as a possible k-distant index.
+Taking the union of covered sets:
+$$\{1, 2, 3\} \cup \{2, 3, 4\} = \{1, 2, 3, 4\}$$
 
-The decision for one `i` is an existence question: does at least one valid `j` exist? The method does not need to count how many key positions are nearby.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 4, 9, 1, 3, 9, 5], "key": 9, "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Search all possible witness positions lazily
-
-The generator iterates `j` over the complete array. For each position it evaluates
-
-`abs(i - j) <= k and nums[j] == key`.
-
-The absolute difference handles witnesses on either side of `i`. Equality at distance exactly `k` is accepted because the contract uses `<=`.
-
-The expression checks distance first. If it is too large, Python short-circuits `and` and does not read the value comparison for logical purposes, though index generation still continues.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Notice that indices $2$ and $3$ belong to both neighborhoods. Merging and deduplicating yields the strictly sorted list:
+$$[1, 2, 3, 4]$$
 
 ---
 
-### Step 3: Use `any` to stop at the first witness
+## 2. Mathematical & Algorithmic Principles
 
-`any(...)` returns true as soon as one generated predicate is true. It does not examine later `j` values after a witness has been found.
+### Neighborhoods as Discrete Closed Intervals
 
-If every position fails, it consumes the entire generator and returns false.
+For each index $j$ where $\text{nums}[j] = \text{key}$, the condition $|i - j| \le k$ is algebraically equivalent to the bounded integer interval:
+$$j - k \le i \le j + k$$
 
-This matches the existential definition exactly. One witness is sufficient, and several witnesses must still cause only one output occurrence.
+Clamping against the physical array boundary $[0, n - 1]$:
+$$I_j = [\max(0, j - k), \min(n - 1, j + k)]$$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 3, 4, 5, 6]` |
+The complete set of valid indices is the union of all such intervals:
+$$\mathcal{K} = \bigcup_{j \in \{0, \dots, n - 1\}, \, \text{nums}[j] = \text{key}} I_j$$
 
----
+### Linear Interval Merging via Frontier Cursor
 
-## 4. Complete Execution Trace
+A naive check tests every index $i$ against all indices $j$, taking $O(n^2)$ time.
+Instead, we process key positions $j$ in natural left-to-right order ($j = 0, 1, \dots, n - 1$):
+- Maintain a frontier variable $c_{\text{max}}$ (initially $0$), which represents the smallest index that has **not yet** been appended to the output.
+- When an index $j$ satisfies $\text{nums}[j] = \text{key}$:
+  - Determine the interval $[L_j, R_j] = [\max(0, j - k), \min(n - 1, j + k)]$.
+  - To prevent duplicates and redundant iterations, the starting point for adding new indices is:
+    $$\text{start} = \max(c_{\text{max}}, L_j)$$
+  - Append all integer indices $i \in [\text{start}, R_j]$ to the result.
+  - Advance the frontier cursor to $c_{\text{max}} \leftarrow \max(c_{\text{max}}, R_j + 1)$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 4, 9, 1, 3, 9, 5], "key": 9, "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 3, 4, 5, 6]` | Verified |
+Because $c_{\text{max}}$ only advances rightward, each index $i \in \{0, \dots, n - 1\}$ is inspected and emitted at most once, yielding strictly sorted output in $O(n)$ total time.
 
----
+```mermaid
+flowchart TD
+    accTitle: Linear Interval Merging for K-Distant Indices
+    accDescr: Flowchart illustrating sequential scan of nums, detection of key occurrences, interval clamping, overlap suppression with cursor c_max, and monotonic result emission.
 
-## 5. Algorithmic Correctness
+    Start(["Initialize ans = [], c_max = 0"]) --> Loop["For j = 0, 1, ..., n - 1"]
+    Loop --> CheckKey{"nums[j] == key?"}
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+    CheckKey -- No --> NextJ["j = j + 1"]
+    CheckKey -- Yes --> ComputeRange["L = max(0, j - k)<br/>R = min(n - 1, j + k)"]
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+    ComputeRange --> ClampStart["start = max(c_max, L)"]
+    ClampStart --> AppendLoop["For idx from start to R:<br/>ans.append(idx)"]
 
----
+    AppendLoop --> UpdateCursor["c_max = max(c_max, R + 1)"]
+    UpdateCursor --> NextJ
 
-## 6. Traps This Instance Exposes
-
-- **Emit uncovered interval suffixes:** Scan key positions left to right and append only indices beyond the last emitted endpoint. This achieves the manifest's $O(n)$ time.
-- **Boolean difference array:** Mark the start and end of every key neighborhood, prefix-sum coverage, and emit covered indices in $O(n)$ time and space.
-- **Precollect key positions:** Binary search the nearest key for each `i` in $O(n\log q)$ time, where $q$ is the number of key occurrences.
-- **Candidate equals key position:** Distance zero is within every positive `k`, so all key positions qualify.
-- **Overlapping neighborhoods:** `any` and one outer append prevent duplicates.
-- **Key guaranteed present:** At least one neighborhood exists.
-- **`k >= n - 1`:** Every index is within range of every key position, so all indices are returned.
-- **Key at an endpoint:** Absolute distance and complete `j` enumeration handle one-sided neighborhoods.
-- **Exact boundary distance:** `<= k` includes it.
-- **First witness:** `any` short-circuits and avoids unnecessary later checks for that candidate.
-- **No witness:** The complete inner range is consumed and `i` is skipped.
-- **Sorted output:** Increasing outer iteration supplies the order directly.
-- **Input preservation:** The array, key, and distance are only read.
-- **Manifest discrepancy:** The stored code is quadratic enumeration rather than linear interval merging.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    NextJ --> CheckEnd{"j < n?"}
+    CheckEnd -- Yes --> Loop
+    CheckEnd -- No --> Done(["Return ans"])
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(n^2)$. There are $n$ outer candidates. In the worst case, `any` examines $O(n)$ positions for each one—for example, when the only key lies near the end and no early witness is found for many candidates. Worst-case time is $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace the execution on `nums = [3, 4, 9, 9, 3, 5]`, `key = 9`, `k = 1`.
+
+### Initialization
+- Array length: $n = 6$.
+- Radius: $k = 1$.
+- Frontier cursor: $c_{\text{max}} = 0$.
+- Result list: `ans = []`.
+
+---
+
+### Step 1: Scan Indices $j = 0$ and $j = 1$
+- At $j = 0$: $\text{nums}[0] = 3 \ne 9$. Skip.
+- At $j = 1$: $\text{nums}[1] = 4 \ne 9$. Skip.
+- State: $c_{\text{max}} = 0$, `ans = []`.
+
+---
+
+### Step 2: Key Match at $j = 2$
+- Element $\text{nums}[2] = 9 = \text{key}$.
+- Compute window bounds:
+  $$L_2 = \max(0, 2 - 1) = 1$$
+  $$R_2 = \min(5, 2 + 1) = 3$$
+- Determine non-overlapping start:
+  $$\text{start} = \max(c_{\text{max}}, L_2) = \max(0, 1) = 1$$
+- Emit indices from $1$ through $3$:
+  - Append $1 \implies \text{ans} = [1]$
+  - Append $2 \implies \text{ans} = [1, 2]$
+  - Append $3 \implies \text{ans} = [1, 2, 3]$
+- Advance frontier cursor:
+  $$c_{\text{max}} \leftarrow \max(0, 3 + 1) = 4$$
+
+---
+
+### Step 3: Key Match at $j = 3$
+- Element $\text{nums}[3] = 9 = \text{key}$.
+- Compute window bounds:
+  $$L_3 = \max(0, 3 - 1) = 2$$
+  $$R_3 = \min(5, 3 + 1) = 4$$
+- Determine non-overlapping start:
+  $$\text{start} = \max(c_{\text{max}}, L_3) = \max(4, 2) = 4$$
+  *(Notice that indices $2$ and $3$ are suppressed because $c_{\text{max}} = 4$)*
+- Emit indices from $4$ through $4$:
+  - Append $4 \implies \text{ans} = [1, 2, 3, 4]$
+- Advance frontier cursor:
+  $$c_{\text{max}} \leftarrow \max(4, 4 + 1) = 5$$
+
+---
+
+### Step 4: Scan Indices $j = 4$ and $j = 5$
+- At $j = 4$: $\text{nums}[4] = 3 \ne 9$. Skip.
+- At $j = 5$: $\text{nums}[5] = 5 \ne 9$. Skip.
+- Array traversal finishes.
+
+---
+
+### Step 5: Final Result
+- Emitted list: `[1, 2, 3, 4]`.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes the window calculations, overlap suppression, and cumulative results across all index iterations.
+
+| Index $j$ | Element $\text{nums}[j]$ | Is Key? | Theoretical Window $[L_j, R_j]$ | Prior Cursor $c_{\text{max}}$ | Effective Range $[\text{start}, R_j]$ | Newly Emitted Indices | Updated `ans` | Updated Cursor $c_{\text{max}}$ |
+|---|---|---|---|---|---|---|---|---|
+| $0$ | $3$ | No | — | $0$ | — | None | `[]` | $0$ |
+| $1$ | $4$ | No | — | $0$ | — | None | `[]` | $0$ |
+| $2$ | $9$ | **Yes** | $[1, 3]$ | $0$ | $[1, 3]$ | $1, 2, 3$ | `[1, 2, 3]` | $4$ |
+| $3$ | $9$ | **Yes** | $[2, 4]$ | $4$ | $[4, 4]$ | $4$ | `[1, 2, 3, 4]` | $5$ |
+| $4$ | $3$ | No | — | $5$ | — | None | `[1, 2, 3, 4]` | $5$ |
+| $5$ | $5$ | No | — | $5$ | — | None | `[1, 2, 3, 4]` | $5$ |
+
+### Index Proximity Verification Table
+
+| Candidate Index $i$ | Closest Key Position $j$ | Distance $|i - j|$ | Radius Constraint $\le 1$? | In Final Output? |
+|---|---|---|---|---|
+| $0$ | $j = 2$ | $|0 - 2| = 2$ | No ($2 > 1$) | Excluded |
+| $1$ | $j = 2$ | $|1 - 2| = 1$ | Yes ($1 \le 1$) | Included |
+| $2$ | $j = 2$ | $|2 - 2| = 0$ | Yes ($0 \le 1$) | Included |
+| $3$ | $j = 3$ | $|3 - 3| = 0$ | Yes ($0 \le 1$) | Included |
+| $4$ | $j = 3$ | $|4 - 3| = 1$ | Yes ($1 \le 1$) | Included |
+| $5$ | $j = 3$ | $|5 - 3| = 2$ | No ($2 > 1$) | Excluded |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Completeness
+Let $i \in \{0, \dots, n - 1\}$ be an index satisfying $|i - j| \le k$ for some $j$ with $\text{nums}[j] = \text{key}$.
+Then $i \in [L_j, R_j]$. When key occurrence $j$ is processed, all indices in $[L_j, R_j]$ that were not emitted during previous key occurrences (i.e. those $\ge c_{\text{max}}$) are appended to `ans`.
+If $i < c_{\text{max}}$, it was already appended during an earlier key occurrence $j' < j$.
+Hence, every valid $k$-distant index is present in `ans`.
+
+### Uniqueness and Strict Ascending Order
+The frontier variable $c_{\text{max}}$ strictly increases: at each step, new indices are drawn exclusively from $\text{start} \ge c_{\text{max}}$.
+Because each appended index is strictly greater than the previous tail of `ans`, duplicate indices can never be inserted, and the elements of `ans` are guaranteed to be in strictly ascending order without requiring a separate sorting pass.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **No Key Present:** If `key` does not occur in `nums`, no window is triggered, returning `[]`.
+- **Large Radius ($k \ge n$):** A single key occurrence expands to $[0, n - 1]$, outputting all indices $[0, 1, \dots, n - 1]$.
+- **All Elements Equal to Key:** Consecutive key matches trigger adjacent windows with full overlap. The cursor ensures that each index is output exactly once without redundant additions.
+- **Key at Index $0$ or $n - 1$:** Boundary clamping $\max(0, \dots)$ and $\min(n - 1, \dots)$ prevents out-of-bounds indexing.
+
+### Anti-Patterns to Avoid
+- **Quadratic Nested Scanning:** Checking `any(abs(i - j) <= k and nums[j] == key for j in range(n))` performs $O(n^2)$ iterations. While acceptable for $n \le 1000$, linear interval sweeping is vastly superior and optimal.
+- **Unchecked Appending Followed by Set Deduplication:** Appending all window indices without cursor filtering and calling `list(set(ans))` incurs unnecessary memory allocations and requires an extra $O(n \log n)$ sorting pass.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- The outer loop scans through $n$ elements, performing $O(1)$ equality tests per element.
+- When a key is encountered, the inner loop iterates from $\text{start} = \max(c_{\text{max}}, L_j)$ to $R_j$.
+- Because $c_{\text{max}}$ strictly advances to $R_j + 1$, each index $i \in \{0, \dots, n - 1\}$ is emitted at most once.
+- Across the entire scan, the total number of inner loop steps cannot exceed $n$.
+- Total Time Complexity: $\mathcal{O}(n)$, which runs in less than $1$ millisecond.
+
+### Space Complexity
+- The algorithm uses a constant number of scalar variables ($n, k, c_{\text{max}}, L_j, R_j, \text{start}$).
+- The output array holds at most $n$ integers.
+- Auxiliary Space Complexity: $\mathcal{O}(1)$ (excluding output storage).

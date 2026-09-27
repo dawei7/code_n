@@ -1,142 +1,220 @@
 # Guided Example: Project Employees I
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational evaluation of joining project assignments with employee records to compute the rounded average experience per project, prove the Equi-Join Uniqueness Theorem and the Grouped Mean Invariant, and analyze query calculations across representative database instances:
 
-- **Input:** `{"tables": {"Project": [{"project_id": 1, "employee_id": 1}, {"project_id": 1, "employee_id": 2}, {"project_id": 1, "employee_id": 3}, {"project_id": 2, "employee_id": 1}, {"project_id": 2, "employee_id": 4}], "Employee": [{"employee_id": 1, "name": "Khaled", "experience_years": 3}, {"employee_id": 2, "name": "Ali", "experience_years": 2}, {"employee_id": 3, "name": "John", "experience_years": 1}, {"employee_id": 4, "name": "Doe", "experience_years": 2}]}}`
-- **Required output:** `{"columns": ["project_id", "average_years"], "rows": [[1, 2.0], [2, 2.5]]}`
+- **Representative Instance 1 (Two Projects with Shared Personnel):**
+  - Table `Project`:
+    $$
+    \begin{array}{|c|c|}
+    \hline
+    \textbf{project\_id} & \textbf{employee\_id} \\
+    \hline
+    1 & 1 \\
+    1 & 2 \\
+    1 & 3 \\
+    2 & 1 \\
+    2 & 4 \\
+    \hline
+    \end{array}
+    $$
+  - Table `Employee`:
+    $$
+    \begin{array}{|c|c|c|}
+    \hline
+    \textbf{employee\_id} & \textbf{name} & \textbf{experience\_years} \\
+    \hline
+    1 & \text{"Khaled"} & 3 \\
+    2 & \text{"Ali"} & 2 \\
+    3 & \text{"John"} & 1 \\
+    4 & \text{"Doe"} & 2 \\
+    \hline
+    \end{array}
+    $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|c|}
+  \hline
+  \textbf{project\_id} & \textbf{average\_years} \\
+  \hline
+  1 & 2.0 \\
+  2 & 2.5 \\
+  \hline
+  \end{array}
+  $$
+  - Relational Schema Contracts:
+    - In `Project`, `(project_id, employee_id)` is the primary key. `employee_id` is a foreign key referencing `Employee`.
+    - In `Employee`, `employee_id` is the primary key, and `experience_years` is guaranteed non-null.
+    - An employee may be assigned to multiple projects, but can appear at most once per project.
+  - Natural Equi-Join Step ($\text{Project} \bowtie_{\text{employee\_id}} \text{Employee}$):
+    1. $(project\_id = 1, employee\_id = 1) \to experience = \mathbf{3}$
+    2. $(project\_id = 1, employee\_id = 2) \to experience = \mathbf{2}$
+    3. $(project\_id = 1, employee\_id = 3) \to experience = \mathbf{1}$
+    4. $(project\_id = 2, employee\_id = 1) \to experience = \mathbf{3}$
+    5. $(project\_id = 2, employee\_id = 4) \to experience = \mathbf{2}$
+  - Group-By Aggregation Step:
+    - **Project 1:**
+      - Experience values: $\{3, 2, 1\}$.
+      - Mean: $\mu(1) = \frac{3 + 2 + 1}{3} = \frac{6}{3} = 2.0$.
+      - Rounded to 2 digits: $\mathbf{2.0}$.
+    - **Project 2:**
+      - Experience values: $\{3, 2\}$.
+      - Mean: $\mu(2) = \frac{3 + 2}{2} = \frac{5}{2} = 2.5$.
+      - Rounded to 2 digits: $\mathbf{2.5}$.
+  - Final Output Table:
+    $$
+    [[\mathbf{1, 2.0}], \; [\mathbf{2, 2.5}]]
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Non-Terminating Fraction Rounding):**
+  - Project 2 with employees having experience $\{1, 2, 2\}$:
+    $$\mu = \frac{1 + 2 + 2}{3} = \frac{5}{3} \approx 1.6666... \implies \text{round}(5/3, 2) = \mathbf{1.67}$$
+
+- **Representative Instance 3 (Single Employee Project):**
+  - Project 8 with one employee of 7 years experience:
+    $$\mu = \frac{7}{1} = \mathbf{7.0}$$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Project`
+Given tables `Project` and `Employee`, report the average experience years of all employees for each project, rounded to 2 decimal places.
 
-The objective is to compute `{"columns": ["project_id", "average_years"], "rows": [[1, 2.0], [2, 2.5]]}` from `{"tables": {"Project": [{"project_id": 1, "employee_id": 1}, {"project_id": 1, "employee_id": 2}, {"project_id": 1, "employee_id": 3}, {"project_id": 2, "employee_id": 1}, {"project_id": 2, "employee_id": 4}], "Employee": [{"employee_id": 1, "name": "Khaled", "experience_years": 3}, {"employee_id": 2, "name": "Ali", "experience_years": 2}, {"employee_id": 3, "name": "John", "experience_years": 1}, {"employee_id": 4, "name": "Doe", "experience_years": 2}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Double-Counting / Null Exclusion Fallacy:
+  Fallacy 1: Assuming employees working on multiple projects skew project counts.
+    Since (project_id, employee_id) is the primary key of Project, each employee
+    has at most one row per project, guaranteeing unit weight (weight = 1).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Fallacy 2: Overlooking rounding specification.
+    AVG() returns high-precision floats (e.g. 1.6666667).
+    Explicit ROUND(AVG(experience_years), 2) is mandatory.
 
----
+Equi-Join & Grouped Mean Invariant:
+  1. Inner join Project and Employee on employee_id:
+       Attaches experience_years to each valid project assignment.
+  2. Group by project_id:
+       Partitions the joined tuples into distinct project cohorts.
+  3. Aggregate via ROUND(AVG(experience_years), 2):
+       Evaluates arithmetic mean over each cohort in O(|Project| + |Employee|) time!
+```
 
-## 2. Conceptual Foundation & Invariants
+Joining assignments with employee profiles on their shared primary-foreign key relationship provides a direct foundation for grouped arithmetic aggregation.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Join assignments with employee experience
-
-`Project` tells us which employees work on each project, but it does not store their experience. `Employee` stores `experience_years`, but it does not identify project membership.
-
-The shared `employee_id` connects these facts. The query joins:
-
-
-
-Bare `JOIN` is an inner join. `USING (employee_id)` matches rows whose employee identifiers are equal.
-
-`Project.employee_id` is a foreign key, so each assignment references an existing employee. `Employee.employee_id` is a primary key, so each assignment matches exactly one employee row. The join therefore enriches every project assignment with one experience value without losing or multiplying assignments.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Project": [{"project_id": 1, "employee_id": 1}, {"project_id": 1, "employee_id": 2}, {"project_id": 1, "employee_id": 3}, {"project_id": 2, "employee_id": 1}, {"project_id": 2, "employee_id": 4}], "Employee": [{"employee_id": 1, "name": "Khaled", "experience_years": 3}, {"employee_id": 2, "name": "Ali", "experience_years": 2}, {"employee_id": 3, "name": "John", "experience_years": 1}, {"employee_id": 4, "name": "Doe", "experience_years": 2}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Equi-Join Uniqueness Theorem & Grouped Mean Invariant**:
+1. **Assignment Integrity:** Because `(project_id, employee_id)` is unique in `Project` and `employee_id` is unique in `Employee`, each joined row represents a unique team member.
+2. **Relational Aggregation:** $\mathcal{R}_{\text{Out}} = \gamma_{\text{project\_id}, \; \text{ROUND}(\text{AVG}(\text{experience\_years}), 2) \to \text{average\_years}}(\mathcal{R}_{\text{Project}} \bowtie \mathcal{R}_{\text{Employee}})$.
+3. **Deterministic Rounding:** Non-terminating rational numbers are rounded half-up to two decimal digits.
+4. Total time $\mathcal{O}(|\text{Project}| + |\text{Employee}|)$ and auxiliary space $\mathcal{O}(|\text{Employee}|)$.
 
 ---
 
-### Step 2: Group the enriched rows by project
+## 2. Conceptual Foundation & The Join-Aggregate Pipeline
 
-The query selects:
+```mermaid
+flowchart TD
+    accTitle: Project Employees I Pipeline
+    accDescr: Flowchart illustrating hash join of Project with Employee on employee_id, grouping by project_id, and computing rounded average
+    Start["Table Project (N rows)\nTable Employee (M rows)"] --> BuildHash["Build Hash Table on Employee.employee_id\nMapping employee_id -> experience_years"]
+    BuildHash --> ScanProj["Scan each tuple in Project:\n(project_id, employee_id)"]
+    ScanProj --> LookupExp["Lookup employee_id in Employee hash table\nRetrieve experience_years"]
+    LookupExp --> GroupProj["Aggregate into Project Group:\ngroup_sum[project_id] += experience_years\ngroup_count[project_id] += 1"]
+    GroupProj --> CheckDone{"More Project rows ?"}
+    CheckDone -->|"Yes"| ScanProj
+    CheckDone -->|"No: All assignments processed"| ComputeAvg["For each project_id:\naverage = round(group_sum / group_count, 2)"]
+    ComputeAvg --> Finish["Emit (project_id, average_years) rows"]
+```
 
+### The Equi-Join Uniqueness Theorem
 
-
-and ends with:
-
-
-
-In MySQL, `GROUP BY 1` refers to the first select-list expression, `project_id`. It is equivalent to `GROUP BY project_id`.
-
-Every joined assignment for the same project enters one group. Assignments for different projects remain separate.
-
-The composite primary key `(project_id, employee_id)` guarantees that one employee is not listed twice within the same project. Thus each employee contributes once to that project's average. The same employee may legitimately work on several projects and contributes once to each corresponding group.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{P}$ denote `Project` and $\mathcal{E}$ denote `Employee`.
+1. **Uniqueness and Multiplicity:**
+   - In $\mathcal{P}$, the primary key is $(\text{project\_id}, \text{employee\_id})$.
+   - In $\mathcal{E}$, the primary key is $\text{employee\_id}$.
+   Consider the equi-join:
+   $$
+   \mathcal{J} = \mathcal{P} \bowtie_{\mathcal{P}.\text{employee\_id} = \mathcal{E}.\text{employee\_id}} \mathcal{E}
+   $$
+   For each tuple $p \in \mathcal{P}$, there exists exactly one tuple $e \in \mathcal{E}$ with $p[\text{employee\_id}] = e[\text{employee\_id}]$.
+   Therefore:
+   $$
+   |\mathcal{J}| = |\mathcal{P}|
+   $$
+   The join preserves the exact number of project assignments without row duplication.
+2. **Cohort Arithmetic Mean:**
+   Partition $\mathcal{J}$ by $\text{project\_id}$. For a given project $k$, let:
+   $$
+   \mathcal{J}_k = \{ t \in \mathcal{J} : t[\text{project\_id}] = k \}
+   $$
+   Since each employee appears at most once in $\mathcal{J}_k$, the average experience is:
+   $$
+   \mu(k) = \frac{1}{|\mathcal{J}_k|} \sum_{t \in \mathcal{J}_k} t[\text{experience\_years}]
+   $$
+   This is the exact, unweighted arithmetic mean of the team members' experience.
+3. **Precision Rounding:**
+   The output attribute $\text{average\_years} = \text{round}(\mu(k), 2)$ rounds the mean to two fractional decimal places. $\blacksquare$
 
 ---
 
-### Step 3: Calculate the arithmetic mean
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-Inside each project group:
+### Joined Tuples Trace
+- $(p=1, e=1) \implies \text{exp} = 3$
+- $(p=1, e=2) \implies \text{exp} = 2$
+- $(p=1, e=3) \implies \text{exp} = 1$
+- $(p=2, e=1) \implies \text{exp} = 3$
+- $(p=2, e=4) \implies \text{exp} = 2$
 
+### Aggregations
+- **Project 1:**
+  - Sum $= 3 + 2 + 1 = 6$.
+  - Count $= 3$.
+  - $\text{Avg} = 6 / 3 = 2.0$.
+  - $\text{Round}(2.0, 2) = \mathbf{2.0}$.
+- **Project 2:**
+  - Sum $= 3 + 2 = 5$.
+  - Count $= 2$.
+  - $\text{Avg} = 5 / 2 = 2.5$.
+  - $\text{Round}(2.5, 2) = \mathbf{2.5}$.
 
-
-computes the sum of all member employees' experience years divided by the number of those employees.
-
-The schema guarantees `experience_years` is not null. Therefore every joined project member contributes to both the numerator and denominator. There is no difference between employee count and non-null experience count.
-
-For experience values three, two, and one, `AVG` computes:
-
-
-
-The result is per employee, not weighted by any other property. The `Project` table has one assignment row per employee-project pair, so ordinary `AVG` has exactly the desired weighting.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["project_id", "average_years"], "rows": [[1, 2.0], [2, 2.5]]}` |
+Result: `[[1, 2.0], [2, 2.5]]`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Group Aggregation Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Project": [{"project_id": 1, "employee_id": 1}, {"project_id": 1, "employee_id": 2}, {"project_id": 1, "employee_id": 3}, {"project_id": 2, "employee_id": 1}, {"project_id": 2, "employee_id": 4}], "Employee": [{"employee_id": 1, "name": "Khaled", "experience_years": 3}, {"employee_id": 2, "name": "Ali", "experience_years": 2}, {"employee_id": 3, "name": "John", "experience_years": 1}, {"employee_id": 4, "name": "Doe", "experience_years": 2}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["project_id", "average_years"], "rows": [[1, 2.0], [2, 2.5]]}` | Verified |
+| `project_id` | Assigned Employees | Individual Experience Values | Sum of Experience | Member Count | Raw Average | Rounded Output (`average_years`) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\{1, 2, 3\}$ | $\{3, 2, 1\}$ | $6$ | $3$ | $2.0000$ | **$2.0$** |
+| $2$ | $\{1, 4\}$ | $\{3, 2\}$ | $5$ | $2$ | $2.5000$ | **$2.5$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every project group calculates the exact arithmetic mean of its assigned employees' experience years and rounds to two decimal places.
+2. **Completeness:**
+   Every project present in `Project` is grouped and reported; no project assignment is omitted.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Explicit ON syntax:** `JOIN Employee ON Project.employee_id = Employee.employee_id` is equivalent and useful when table aliases make ownership clearer.
-- **GROUP BY project_id:** Naming the grouping column is equivalent to `GROUP BY 1` and is more robust if select-list order changes.
-- **Correlated subquery:** Computing an average separately for every project can repeat work and is less direct than one join and grouping.
-- **Pre-aggregate assignments:** There is nothing useful to aggregate before joining because experience values live in `Employee`.
-- **One employee on a project:** The average equals that employee's experience, rounded to two digits.
-- **Employee on multiple projects:** The join creates one assignment row in each project group, which is correct.
-- **Duplicate assignment prevention:** The composite primary key prevents one employee from being counted twice within the same project.
-- **Equal experience values:** Every employee still contributes individually; the mean remains that common value.
-- **Non-null guarantee:** `AVG` ignores nulls in SQL, but the schema guarantee ensures no project member is silently excluded.
-- **Project with no assignment row:** It is absent because `Project` is the assignment relation and drives the query.
-- **Rounding:** `ROUND(..., 2)` applies after averaging and gives the requested precision.
-- **Any output order:** Omitting `ORDER BY` matches the contract.
-- **Positional grouping:** In this MySQL query, one refers to the first selected expression rather than a constant grouping key.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Non-Terminating Decimal Fraction | $5 / 3 = 1.6666...$ | `ROUND(..., 2)` rounds half-up to $1.67$. | Truncation or floating point precision loss. |
+| Single Employee Project | Team size 1 | Average equals individual experience; e.g. $7.0$. | Division by zero. |
+| Shared Employees Across Projects | Employee 1 works on projects 1 and 2 | Employee contributes independently to both projects. | Deduplicating across projects. |
+| Unassigned Employees in Catalog | Employee with no project | Omitted by inner join; does not create phantom project. | Emitting null projects. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let `R` be the number of rows in `Project` and `E` the number of rows in `Employee`.
-- **Auxiliary Space Complexity:** $O(E+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|\mathcal{P}| + |\mathcal{E}|)$, where $|\mathcal{P}|$ is the number of rows in `Project` and $|\mathcal{E}|$ is the number of rows in `Employee`.
+  - Building the hash index over `Employee` takes $\mathcal{O}(|\mathcal{E}|)$ time.
+  - Probing the hash index and accumulating group sums takes $\mathcal{O}(|\mathcal{P}|)$ time.
+  - Final averaging over distinct projects takes $\mathcal{O}(|\text{Projects}|)$ time.
+  - Total time: strictly linear in database input size.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\mathcal{E}| + |\text{Projects}|)$ auxiliary memory for the employee lookup table and project group accumulators.

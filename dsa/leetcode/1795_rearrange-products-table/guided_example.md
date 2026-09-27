@@ -1,128 +1,164 @@
 # Guided Example: Rearrange Products Table
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational transformation from wide attribute columns to a normalized long entity-attribute-value format on a representative database instance:
 
-- **Input:** `{"tables": {"Products": [{"product_id": 0, "store1": 95, "store2": 100, "store3": 105}, {"product_id": 1, "store1": 70, "store2": null, "store3": 80}]}}`
-- **Required output:** `{"columns": ["product_id", "store", "price"], "rows": [[0, "store1", 95], [1, "store1", 70], [0, "store2", 100], [0, "store3", 105], [1, "store3", 80]]}`
+- **Input:**
+  Table `Products`:
+  ```text
+  +------------+--------+--------+--------+
+  | product_id | store1 | store2 | store3 |
+  +------------+--------+--------+--------+
+  | 0          | 95     | 100    | 105    |
+  | 1          | 70     | null   | 80     |
+  +------------+--------+--------+--------+
+  ```
+- **Required Output:**
+  ```text
+  +------------+--------+-------+
+  | product_id | store  | price |
+  +------------+--------+-------+
+  | 0          | store1 | 95    |
+  | 1          | store1 | 70    |
+  | 0          | store2 | 100   |
+  | 0          | store3 | 105   |
+  | 1          | store3 | 80    |
+  +------------+--------+-------+
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features a fully stocked product (product $0$ available across all three stores) and a sparsely stocked product (product $1$ with a null entry for `store2`), demonstrating how null-filtering and projection restructure wide schema rows into key-value pairs.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Products`
+In database design, tables are frequently formatted in a wide layout (with multiple measurement columns like `store1`, `store2`, `store3`) for tabular entry, but analytical pipelines and downstream reporting require a normalized vertical layout `(product_id, store, price)`. Furthermore, products not carried by a store are represented by `null` values and must be completely omitted from the output.
 
-The objective is to compute `{"columns": ["product_id", "store", "price"], "rows": [[0, "store1", 95], [1, "store1", 70], [0, "store2", 100], [0, "store3", 105], [1, "store3", 80]]}` from `{"tables": {"Products": [{"product_id": 0, "store1": 95, "store2": 100, "store3": 105}, {"product_id": 1, "store1": 70, "store2": null, "store3": 80}]}}` while avoiding redundant calculations and unnecessary overhead.
+Our goal is to rearrange the wide table into a long table while dropping any `null` price records.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive query might attempt horizontal case statements or cross-joins with auxiliary tables. The optimal approach models wide-to-long restructuring as a union of independent projections, filtering for non-null attributes in each branch.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Relational Projection and Horizontal Unpivoting
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let relation $P$ have schema $(K, S_1, S_2, \dots, S_m)$, where $K = \text{product\_id}$ is the primary key and each $S_j$ represents the price in store $j$.
+To unpivot $P$ into a normalized relation with schema $(K, \text{store}, \text{price})$:
+For each store column $S_j \in \{S_1, S_2, S_3\}$:
+1. Filter out unavailable products: $\sigma_{S_j \text{ IS NOT NULL}}(P)$
+2. Project the key $K$, the store name as a string literal $'S_j'$, and the price value $S_j$:
+   $$B_j = \pi_{K, 'S_j', S_j}(\sigma_{S_j \text{ IS NOT NULL}}(P))$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Relational Unpivoting & Attribute Projection Theorem.**
+> Let $B_1, B_2, \dots, B_m$ be the relations produced by projecting each store column with its corresponding literal identifier.
+> Because each branch $B_j$ tags its tuples with the distinct constant $'S_j'$, the sets of tuples are pairwise disjoint:
+> $$B_j \cap B_k = \emptyset \quad \text{for all } j \ne k$$
+> Therefore, the relational union $\bigcup_{j=1}^m B_j$ reconstructs the exact set of valid $(product\_id, store, price)$ triples without duplicate tuples and without omitting any available product-store price.
+
+```mermaid
+flowchart TD
+    accTitle: Unpivot Relational Branches
+    accDescr: Diagram illustrating decomposition of wide Products table into three independent store projections unified via SQL UNION.
+    A["Table: Products (product_id, store1, store2, store3)"] --> B["Branch 1: WHERE store1 IS NOT NULL"]
+    A --> C["Branch 2: WHERE store2 IS NOT NULL"]
+    A --> D["Branch 3: WHERE store3 IS NOT NULL"]
+    B --> E["Project (product_id, 'store1', store1)"]
+    C --> F["Project (product_id, 'store2', store2)"]
+    D --> G["Project (product_id, 'store3', store3)"]
+    E --> H["UNION"]
+    F --> H
+    G --> H
+    H --> I["Result: 5 rows normalized"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Convert a wide row into several narrow rows
-
-The input uses a wide representation: one product row has separate `store1`, `store2`, and `store3` price columns. The requested output uses a long representation: every available product-store combination gets its own row with columns `product_id`, `store`, and `price`.
-
-Each source row can therefore generate zero to three output rows:
-
-- `(product_id, 'store1', store1)` when `store1` is not null;
-- `(product_id, 'store2', store2)` when `store2` is not null;
-- `(product_id, 'store3', store3)` when `store3` is not null.
-
-The protected SQL expresses these three fixed transformations as three `SELECT` branches.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Products": [{"product_id": 0, "store1": 95, "store2": 100, "store3": 105}, {"product_id": 1, "store1": 70, "store2": null, "store3": 80}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the input table with products $0$ and $1$.
 
 ---
 
-### Step 2: One branch per store column
+### Step 1: Evaluate Branch 1 (`store1`)
 
-The first branch selects the source `product_id`, the string literal `'store1'` under alias `store`, and the value of column `store1` under alias `price`. Its `WHERE store1 IS NOT NULL` filter removes products unavailable in that store.
+Scan `Products` and retain rows where `store1 IS NOT NULL`:
+- Product $0$: $\text{store1} = 95$ (non-null) $\implies$ Retain $(0, \text{'store1'}, 95)$
+- Product $1$: $\text{store1} = 70$ (non-null) $\implies$ Retain $(1, \text{'store1'}, 70)$
 
-The second and third branches repeat the same structure for `store2` and `store3`. The literal store label is essential: after the three price columns are stacked into one `price` column, that label records which original column supplied the value.
-
-All branches return the same number of columns in the same semantic order. SQL set operators combine columns by position, so this structural agreement is required.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Result of Branch 1:
+$$B_1 = \{ (0, \text{'store1'}, 95), \ (1, \text{'store1'}, 70) \}$$
 
 ---
 
-### Step 3: Why null checks belong in each branch
+### Step 2: Evaluate Branch 2 (`store2`)
 
-A null price means the product is unavailable at that store and must not produce an output row. Filtering independently lets one product appear for its available stores while disappearing only from the unavailable branch.
+Scan `Products` and retain rows where `store2 IS NOT NULL`:
+- Product $0$: $\text{store2} = 100$ (non-null) $\implies$ Retain $(0, \text{'store2'}, 100)$
+- Product $1$: $\text{store2} = \text{null}$ $\implies$ Filtered out!
 
-For product 1 in the example, `store1 = 70` passes the first filter, `store2 = null` fails the second, and `store3 = 80` passes the third. The output consequently includes `(1, 'store1', 70)` and `(1, 'store3', 80)` but no store2 row.
+Result of Branch 2:
+$$B_2 = \{ (0, \text{'store2'}, 100) \}$$
 
-The predicate must use `IS NOT NULL`. SQL null represents unknown or missing information and does not compare normally; expressions such as `store1 != NULL` evaluate to unknown rather than true and would not implement the intended test.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["product_id", "store", "price"], "rows": [[0, "store1", 95], [1, "store1", 70], [0, "store2", 100], [0, "store3", 105], [1, "store3", 80]]}` |
+### Step 3: Evaluate Branch 3 (`store3`)
+
+Scan `Products` and retain rows where `store3 IS NOT NULL`:
+- Product $0$: $\text{store3} = 105$ (non-null) $\implies$ Retain $(0, \text{'store3'}, 105)$
+- Product $1$: $\text{store3} = 80$ (non-null) $\implies$ Retain $(1, \text{'store3'}, 80)$
+
+Result of Branch 3:
+$$B_3 = \{ (0, \text{'store3'}, 105), \ (1, \text{'store3'}, 80) \}$$
+
+---
+
+### Step 4: Union of Projections
+
+Combine the tuples from all three branches:
+$$B_{\text{final}} = B_1 \cup B_2 \cup B_3$$
+
+The resulting relation contains exactly the $5$ non-null pricing observations:
+1. $(0, \text{'store1'}, 95)$
+2. $(1, \text{'store1'}, 70)$
+3. $(0, \text{'store2'}, 100)$
+4. $(0, \text{'store3'}, 105)$
+5. $(1, \text{'store3'}, 80)$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Products": [{"product_id": 0, "store1": 95, "store2": 100, "store3": 105}, {"product_id": 1, "store1": 70, "store2": null, "store3": 80}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["product_id", "store", "price"], "rows": [[0, "store1", 95], [1, "store1", 70], [0, "store2", 100], [0, "store3", 105], [1, "store3", 80]]}` | Verified |
+| Product ID | Store Column Evaluated | Stored Value | Filter Condition (`IS NOT NULL`) | Emitted Tuple `(product_id, store, price)` |
+|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `store1` | $95$ | Pass | `(0, 'store1', 95)` |
+| $0$ | `store2` | $100$ | Pass | `(0, 'store2', 100)` |
+| $0$ | `store3` | $105$ | Pass | `(0, 'store3', 105)` |
+| $1$ | `store1` | $70$ | Pass | `(1, 'store1', 70)` |
+| $1$ | `store2` | `null` | **Fail (Dropped)** | — |
+| $1$ | `store3` | $80$ | Pass | `(1, 'store3', 80)` |
+
+Total emitted rows: **$5$**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Each branch strictly checks `storeX IS NOT NULL`, ensuring no unavailable product prices appear in the output. The literal store tag `'store1'`, `'store2'`, or `'store3'` precisely corresponds to the source attribute from which the price was extracted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the schema has three known store columns, evaluating all three branches covers the entire space of possible store-product associations. Because the store labels are mutually distinct, no valid pricing record can be overwritten or discarded during set union.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`UNION ALL`:** The source primary key and distinct store literals guarantee no duplicate triples, so this avoids unnecessary distinct elimination while returning the same rows.
-- **Native `UNPIVOT`:** Engines that support it can express wide-to-long conversion directly, but MySQL compatibility and null behavior must be checked.
-- **JSON or dynamic SQL unpivoting:** Useful for a dynamic number of store columns, but unnecessary for the fixed three-column schema.
-- **Application-side transformation:** It moves simple relational work out of the database and transfers a wider result than needed.
-- **Omit null filters:** This would emit forbidden rows for stores where a product is unavailable.
-- **Compare with `NULL` using equality:** `= NULL` and `!= NULL` do not behave as ordinary Boolean comparisons; `IS NOT NULL` is required.
-- **Same price in multiple stores:** Both rows must remain because their `store` labels differ.
-- **All three prices present:** One source row expands into exactly three output rows.
-- **Only one price present:** Only that store's branch emits a row for the product.
-- **All prices null:** The product emits no rows, exactly as the availability rule requires.
-- **Unique product IDs:** The primary key prevents duplicate source rows for one product.
-- **Any result order:** Without `ORDER BY`, row order is intentionally unspecified and accepted.
-- **Fixed store schema:** The three explicit branches must be updated if the table later gains another store column.
-- **Output-sensitive storage:** Distinct processing can retain up to $K$ triples even though the source scans are linear.
-- **Source table unchanged:** The query only projects and filters data; it performs no updates.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Null Comparison with Equality (`store != NULL`):** In SQL, comparing `null` with equality operators (`= NULL` or `!= NULL`) evaluates to `UNKNOWN` in three-valued logic, which drops all rows in a `WHERE` clause. One must explicitly use `IS NOT NULL`.
+- **Emitting Null Prices:** Omitting the `WHERE storeX IS NOT NULL` condition would generate rows such as `(1, 'store2', null)`, which directly violates the requirement that products unavailable in a store must not be included.
+- **`UNION` vs `UNION ALL`:** Because the second column (`store`) has a distinct literal constant in each branch (`'store1'`, `'store2'`, `'store3'`), rows across different branches can never conflict or duplicate each other. `UNION ALL` can be used to bypass an unnecessary sort-based deduplication step in relational engines.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(K)$. Let $R$ be the number of product rows and $K$ the number of non-null store-price cells in the output, where $0\leq K\leq3R$. The query has three full-table branches. Because three is a fixed constant, their total scan work is $O(R)$.
-- **Auxiliary Space Complexity:** $O(K)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R)$ where $R$ is the number of rows in the `Products` table. The query executes three linear scans over $R$ rows (one for each store column). Because the number of stores is fixed ($3$), total work is $3 \times \mathcal{O}(R) = \mathcal{O}(R)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ where $K \le 3R$ is the number of non-null cells emitted to the result buffer.

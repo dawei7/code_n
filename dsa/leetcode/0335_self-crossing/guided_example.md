@@ -1,137 +1,176 @@
 # Guided Example: Self Crossing
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step geometric spiral analysis, classification of the three canonical self-intersection topologies (4-segment crossing, 5-segment touch, 6-segment spiral transition), direction offset vector tracking, and in-place boundary inequality evaluation on representative path distance arrays:
 
-- **Input:** `{"distance": [2, 1, 1, 2]}`
+- **Input:** $\text{distance} = [2, 1, 1, 2]$
 - **Required output:** `true`
+  - Moves from $(0, 0)$:
+    - Move 0 (North): $(0, 0) \to (0, 2)$
+    - Move 1 (West):  $(0, 2) \to (-1, 2)$
+    - Move 2 (South): $(-1, 2) \to (-1, 1)$
+    - Move 3 (East):  $(-1, 1) \to (1, 1)$
+  - Segment 3 traverses horizontal interval $[-1, 1]$ at $y = 1$
+  - Segment 0 traverses vertical line $x = 0$ from $y = 0$ to $y = 2$
+  - Intersection occurs at point $(0, 1) \implies \text{true}$
+- **Expanding Non-Crossing Spiral:** $\text{distance} = [1, 2, 3, 4] \implies \text{false}$
+- **Five-Segment Overlap Touch:** $\text{distance} = [1, 2, 3, 2, 2] \implies \text{true}$ ($d[4] + d[0] \ge d[2]$)
+- **Short Path Base Cases:** Any path of length $< 4$ cannot self-intersect ($N \le 3 \implies \text{false}$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates geometric invariant classification on orthogonal counter-clockwise movements, proves why the first self-crossing in an orthogonal spiral can only occur across 4, 5, or 6 moves, contrasts $O(N)$ inequality evaluation against $O(N^2)$ pairwise segment intersection, and operates in strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of integers `distance`.
+Given move distances $\text{distance} = [2, 1, 1, 2]$ ($N = 4$):
+Starting at $(0, 0)$, move counter-clockwise:
+1. North by $\text{distance}[0] = 2$
+2. West by $\text{distance}[1] = 1$
+3. South by $\text{distance}[2] = 1$
+4. East by $\text{distance}[3] = 2$
+Determine whether the resulting polyline intersects itself at any point:
 
-The objective is to compute `true` from `{"distance": [2, 1, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Coordinates Tracked:
+           (-1, 2) ------ (0, 2)
+              |              |
+              |   (0, 1)     |
+           (-1, 1) --X-------+---> (1, 1)
+                             |
+                           (0, 0)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Segment 0: (0, 0) -> (0, 2) [Vertical at x = 0]
+Segment 1: (0, 2) -> (-1, 2) [Horizontal at y = 2]
+Segment 2: (-1, 2) -> (-1, 1) [Vertical at x = -1]
+Segment 3: (-1, 1) -> (1, 1)  [Horizontal at y = 1]
+
+Self-Crossing at point (0, 1)!
+Output: True
+```
+
+### The Geometry of 90-Degree Counter-Clockwise Spirals
+- Turns occur in strict cyclic order: North $\to$ West $\to$ South $\to$ East $\to$ North $\dots$
+- Adjacent segments share endpoints by definition.
+- Parallel segments separated by one turn cannot intersect without an intervening reversal.
+- **The Tripartite Crossing Theorem:**
+  The *first* self-crossing in such a spiral can occur in exactly three geometric configurations:
+  1. **Case 1 (4 Segments):** Segment $i$ crosses segment $i - 3$.
+  2. **Case 2 (5 Segments):** Segment $i$ touches or overlaps segment $i - 4$.
+  3. **Case 3 (6 Segments):** Segment $i$ crosses segment $i - 5$ as an outward expanding spiral transitions to an inward contracting spiral.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $d[i] = \text{distance}[i]$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Case 1: Crosses Segment $i - 3$ ($i \ge 3$)
+Occurs when the current segment is at least as long as the parallel segment two steps prior, and the preceding orthogonal segment was trapped inside the segment three steps prior:
+$$
+d[i] \ge d[i - 2] \quad \text{and} \quad d[i - 1] \le d[i - 3]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Case 2: Overlaps Segment $i - 4$ ($i \ge 4$)
+Occurs when the path folds back onto the collinear line of segment $i - 4$:
+$$
+d[i - 1] == d[i - 3] \quad \text{and} \quad d[i] + d[i - 4] \ge d[i - 2]
+$$
+
+### Case 3: Crosses Segment $i - 5$ ($i \ge 5$)
+Occurs when transitioning from an expanding spiral ($d[i-2] \ge d[i-4]$) to a contracting spiral:
+$$
+d[i - 2] \ge d[i - 4], \quad d[i - 1] \le d[i - 3], \quad d[i] \ge d[i - 2] - d[i - 4], \quad \text{and} \quad d[i - 1] + d[i - 5] \ge d[i - 3]
+$$
+
+> **Invariant.** For any index $i \ge 3$, if the prefix path $0 \dots i-1$ is non-self-crossing, the path at step $i$ crosses itself if and only if one of Case 1, Case 2, or Case 3 is satisfied.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the geometry forced by ninety-degree turns.
-
-Every segment is horizontal or vertical, and directions repeat north, west, south, east. Segment `i` is perpendicular to segments `i - 1`, `i - 3`, and `i - 5`, while it is parallel to segments `i - 2` and `i - 4`. The path's rigid turning pattern severely limits how the first self-intersection can occur.
-
-Adjacent segments always share their ordinary endpoint; that required connection is not the self-crossing being tested. Segment `i - 2` is parallel to the current segment and separated by the positive-length intervening move, so it cannot be the first new intersection. For the first self-crossing, only three local configurations remain:
-
-1. the current segment crosses or touches segment `i - 3`;
-2. the current segment overlaps or touches segment `i - 4` after the path folds exactly onto the same line;
-3. the current segment crosses or touches segment `i - 5` during the transition from an outward spiral to an inward spiral.
-
-The source checks exactly these three cases for every `i` starting at `3`. No crossing is possible with fewer than four segments.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"distance": [2, 1, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{distance} = [2, 1, 1, 2]$:
+Array length $N = 4$. Indices to evaluate: $i = 3$.
 
 ---
 
-### Step 2: Normalize the current direction.
-
-The inequalities are easier to understand if the picture is rotated so that the current segment `i` points north. Rotation does not change whether segments intersect. In that orientation, the recent directions are:
-
-- segment `i`: north;
-- segment `i - 1`: east;
-- segment `i - 2`: south;
-- segment `i - 3`: west;
-- segment `i - 4`: north;
-- segment `i - 5`: east.
-
-Write $d_t=\text{distance}[t]$. All lengths are positive, so the orientation and relative placement are unambiguous.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate $i = 3$ ($d[3] = 2$)
+We examine segment 3 against previous segment lengths:
+- $d[i] = d[3] = 2$ (Eastward move)
+- $d[i - 1] = d[2] = 1$ (Southward move)
+- $d[i - 2] = d[1] = 1$ (Westward move)
+- $d[i - 3] = d[0] = 2$ (Northward move)
 
 ---
 
-### Step 3: Case one: cross the segment three moves back.
+### Step 2: Test Case 1 Condition ($i \ge 3$)
+1. **Parallel Length Comparison:**
+   $$
+   d[i] \ge d[i - 2] \iff d[3] \ge d[1] \iff 2 \ge 1 \quad (\mathbf{True!})
+   $$
+   *(The current eastward move of length 2 is long enough to cross the vertical line at $x = 0$ established by the westward shift of length 1).*
 
-Place the start of segment `i - 3` at coordinate $(0,0)$. After moving west by $d_{i-3}$, south by $d_{i-2}$, and east by $d_{i-1}$, the current northward segment begins at
+2. **Orthogonal Enclosure Comparison:**
+   $$
+   d[i - 1] \le d[i - 3] \iff d[2] \le d[0] \iff 1 \le 2 \quad (\mathbf{True!})
+   $$
+   *(The southward move of length 1 did not overshoot the original northward move of length 2, meaning segment 3 is at height $y = 1$, which lies within the vertical span $[0, 2]$ of segment 0).*
 
+---
+
+### Step 3: Intersection Confirmation
+Both sub-conditions of Case 1 hold simultaneously:
 $$
-(-d_{i-3}+d_{i-1},-d_{i-2}).
+(2 \ge 1) \land (1 \le 2) = \mathbf{\text{True}}
 $$
-
-Segment `i - 3` lies horizontally at height zero from $x=-d_{i-3}$ through $x=0$. The current vertical segment's $x$ coordinate lies on that horizontal range exactly when
-
+Segment 3 crosses segment 0 at point $(0, 1)$!
+Immediately return:
 $$
-d_{i-1}\le d_{i-3}.
+\mathbf{\text{True}}
 $$
-
-The current segment begins $d_{i-2}$ below the horizontal line, so it reaches that line exactly when
-
-$$
-d_i\ge d_{i-2}.
-$$
-
-These are the source's first two-part condition:
-
-`d[i] >= d[i - 2] and d[i - 1] <= d[i - 3]`.
-
-Equality is intentional. It includes touching at an endpoint, which counts as the path crossing itself. For `[2,1,1,2]` at `i = 3`, `2 >= 1` and `1 <= 2`, so the eastward fourth segment reaches the first northward segment.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"distance": [2, 1, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+distance = [2, 1, 1, 2]
+
+i = 3:
+  d[3] = 2, d[2] = 1, d[1] = 1, d[0] = 2
+  Case 1 Check:
+    d[3] >= d[1] (2 >= 1) -> TRUE
+    d[2] <= d[0] (1 <= 2) -> TRUE
+  Case 1 Satisfied!
+
+Intersection Detected -> return True
+```
+
+| Step $i$ | Direction | Move $d[i]$ | Parallel $d[i-2]$ | Prior Orthogonal $d[i-1]$ | Base Orthogonal $d[i-3]$ | Case 1 Condition: $d[i] \ge d[i-2] \land d[i-1] \le d[i-3]$ | Crossing Detected? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | North | 2 | - | - | - | - | No |
+| 1 | West | 1 | - | - | - | - | No |
+| 2 | South | 1 | - | - | - | - | No |
+| **3** | **East** | **2** | **1** | **1** | **2** | **$2 \ge 1 \land 1 \le 2 \implies \text{True}$** | **Yes (Crosses Seg 0)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because each turn is fixed at 90 degrees counter-clockwise, the relative positions of segments $i, i-1, \dots, i-5$ can be represented as closed-form linear intervals along the $X$ and $Y$ axes. The three cases cover all possible relative positions where a horizontal and vertical line segment can touch or cross. If an equality or inequality holds, the corresponding segments mathematically share at least one point in $\mathbb{R}^2$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** A path cannot self-intersect earlier than step 3. Furthermore, an expanding spiral that never satisfies any of the three conditions continues outward forever without intersecting. Once a spiral contracts, it must either remain strictly inside the previous turns or trigger one of the three boundary crossing conditions. Since every move $i \ge 3$ is tested, no intersection can be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Construct every segment and compare with all earlier segments:** General axis-aligned intersection checks are straightforward, but comparing each new segment against the whole prefix takes $O(n^2)$ time. The turning pattern makes only three local configurations necessary.
-- **Store every visited lattice point:** Distances can be as large as `100000`, so expanding moves into unit steps can require enormous time and memory. Crossings can also occur along segment interiors, which geometric inequalities handle directly.
-- **Track full coordinates with a sweep-line structure:** This solves a more general segment-intersection problem in roughly $O(n\log n)$ time, but is unnecessary for the fixed counter-clockwise direction cycle.
+- **Endpoint Touch Counts as Crossing:** The problem specifies that touching at an endpoint or overlapping along a segment counts as crossing. Using strict inequalities ($>$ instead of $\ge$) fails on touching loops like $[1, 1, 1, 1]$ or $[1, 2, 3, 2, 2]$.
+- **$O(N^2)$ Pairwise Segment Comparison:** Testing all pairs of segments $(i, j)$ takes $O(N^2)$ time, which TLEs for $N = 10^5$. Local checking over windows of size 6 runs in $O(N)$ time.
+- **Spiral Transition (Case 3):** Case 3 requires checking 4 simultaneous inequalities. Missing the condition $d[i] \ge d[i-2] - d[i-4]$ creates false positives when the inward spiral turns before reaching segment $i - 5$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of distances. The loop visits indices `3` through `n - 1` once. Each iteration performs a fixed number of arithmetic comparisons involving at most the previous five lengths. Total time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `distance`. The loop iterates from index $3$ to $N - 1$, performing at most 3 constant-time arithmetic checks per move.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory using zero additional data structures.

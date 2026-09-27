@@ -1,121 +1,174 @@
 # Guided Example: Nearest Exit from Entrance in Maze
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace level-order Breadth-First Search (BFS) for unweighted shortest paths and boundary exit detection on representative grid instances:
 
-- **Input:** `{"maze": [["+", "+", "+"], [".", ".", "."], ["+", "+", "+"]], "entrance": [1, 0]}`
-- **Required output:** `2`
+- **Primary Input:** `maze = [["+","+",".","+"],[".",".",".","+"],["+","+","+","."]]`, `entrance = [1, 2]`
+- **Required Output:** `1`
+- **Boundary Entrance Input:** `maze = [["+","+","+"],[".",".","."],["+","+","+"]]`, `entrance = [1, 0]`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates level-by-level frontier expansion in grid graphs, enforcing that the starting entrance cell cannot serve as its own exit, and terminating immediately upon reaching the first valid boundary coordinate.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` matrix `maze` (**0-indexed**) with empty cells (represented as `'.'`) and walls (represented as `'+'`). You are also given the `entrance` of the maze, where $entrance = [\text{entrance}_{row}, \text{entrance}_{col}]$ denotes the row and column of the cell you are initially standing at.
+We are given an $m \times n$ grid `maze` containing empty spaces `'.'` and impassable walls `'+'`, and a starting coordinate `entrance = [r, c]`.
+- An **exit** is defined as an empty cell located on the outer border of the grid ($r = 0$, $r = m - 1$, $c = 0$, or $c = n - 1$) that is **not** the entrance itself.
+- Movement proceeds in 4 cardinal directions (up, down, left, right) between adjacent empty cells.
 
-The objective is to compute `2` from `{"maze": [["+", "+", "+"], [".", ".", "."], ["+", "+", "+"]], "entrance": [1, 0]}` while avoiding redundant calculations and unnecessary overhead.
+For `maze = [["+","+",".","+"],[".",".",".","+"],["+","+","+","."]]` with `entrance = [1, 2]`:
+- Dimensions: $m = 3, n = 4$.
+- Entrance: $(1, 2)$, which is in the interior ($1 \neq 0, 2$ and $2 \neq 0, 3$).
+- From $(1, 2)$, adjacent cardinal neighbors are:
+  - Up: $(0, 2)$ is `'.'`. Since $r = 0$, this cell is on the top border. Because $(0, 2) \neq (1, 2)$, it is a valid exit reachable in exactly 1 step.
+  - Left: $(1, 1)$ is `'.'`.
+  - Right: $(1, 3)$ is `'+'` (wall).
+  - Down: $(2, 2)$ is `'+'` (wall).
+- The nearest exit is at $(0, 2)$, requiring **1** step.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **unweighted shortest path search with multiple boundary targets**:
+1. Utilizing Breadth-First Search (BFS) to explore cells in non-decreasing order of distance.
+2. In-place marking or visited tracking to guarantee that each cell is queued at most once.
+3. Distinguishing the entrance from valid exit conditions, specifically when the entrance itself is located on a border cell.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Shortest Path BFS Level-Order Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Shortest Path BFS Level-Order Invariant Theorem.**
+> 1. *Unit-Cost Graph Metric:* The maze forms an unweighted undirected graph $G = (V, E)$ where vertices are empty cells and edges connect cardinally adjacent open spaces. All edge weights equal $1$.
+> 2. *Monotonic Distance Frontiers:* BFS maintains a queue of frontiers $\mathcal{F}_0, \mathcal{F}_1, \mathcal{F}_2, \dots$ where frontier $\mathcal{F}_d$ contains all vertices at shortest path distance $d$ from the entrance:
+>    $$v \in \mathcal{F}_d \iff \text{dist}(\text{entrance}, v) = d$$
+>    The queue maintains the non-decreasing distance invariant: if $u$ is dequeued before $v$, then $\text{dist}(u) \le \text{dist}(v)$.
+> 3. *First-Hit Optimality:* The first vertex $v$ discovered that satisfies the exit predicate:
+>    $$\text{is\_exit}(r, c) \equiv (r \in \{0, m-1\} \lor c \in \{0, n-1\}) \land (r, c) \neq \text{entrance}$$
+>    is guaranteed to have the minimal distance among all reachable exits.
+> 4. *Acyclicity via Visited Marking:* Marking cells as visited (`'+'`) at the moment they are placed into the queue prevents redundant queueing, guaranteeing $\mathcal{O}(m \cdot n)$ total operations.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Grid BFS Frontier Expansion
+    accDescr: Level-order traversal expanding cardinal neighbors, checking boundary exit criteria, and terminating on first exit found.
+    A["Initialize Queue: [(entrance_r, entrance_c)], Mark Entrance as Visited"] --> B{"Is Queue Empty?"}
+    B -- Yes --> C["No Exit Reachable: Return -1"]
+    B -- No --> D["Advance Distance: d = d + 1"]
+    D --> E["For each node (r, c) in current frontier:"]
+    E --> F["Inspect 4 Cardinal Neighbors (nr, nc)"]
+    F --> G{"Is (nr, nc) valid open cell '.'?"}
+    G -- Yes --> H{"Is (nr, nc) on Border?"}
+    H -- Yes --> I["Nearest Exit Found! Return d"]
+    H -- No --> J["Mark (nr, nc) visited, append to Queue"]
+    G -- No --> K["Skip Wall or Visited Cell"]
+    J --> E
+    K --> E
+    E -- Frontier Exhausted --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Model the maze as an unweighted graph
+---
 
-Each empty cell is a graph vertex. Two empty cells share an edge when they are adjacent vertically or horizontally, because one legal move connects them. Every edge costs exactly one step. The task is therefore to find the shortest graph distance from the entrance to any border cell other than the entrance.
+### Execution Trace 1: Primary Instance (`entrance = [1, 2]`)
 
-Breadth-first search is the natural shortest-path method for an unweighted graph. It visits all cells at distance $0$, then all cells at distance $1$, then distance $2$, and so on. Consequently, the first newly reached exit has the smallest possible distance.
+Grid representation with row/column indices:
+- Row 0: `['+', '+', '.', '+']`
+- Row 1: `['.', '.', '.', '+']`  $\leftarrow$ Entrance at column 2
+- Row 2: `['+', '+', '+', '.']`
 
-The exact solution initializes `q = deque([(i, j)])` with the entrance and immediately changes `maze[i][j]` to `"+"`. Reusing the wall marker means “not available for another visit.” This serves two purposes: the entrance can never be enqueued again through a cycle, and an entrance already on the border is never mistaken for an exit.
+#### Step 1: Initialization ($d = 0$)
+- Queue: `[(1, 2)]`.
+- Mark entrance as visited: `maze[1][2] = '+'`.
+- Distance counter: $\text{ans} = 0$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"maze": [["+", "+", "+"], [".", ".", "."], ["+", "+", "+"]], "entrance": [1, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Step 2: Expand Frontier at Distance 1 ($\text{ans} = 1$)
+Pop $(1, 2)$ from queue. Test 4 cardinal neighbors:
+1. **Up $(-1, 0)$:** $(1 - 1, 2) = (0, 2)$.
+   - Within bounds ($0 \le 0 < 3, 0 \le 2 < 4$).
+   - Cell status: `maze[0][2] == '.'` (Open path).
+   - Exit check: Row index is $0$ (Top border of grid).
+   - Coordinate check: $(0, 2) \neq (1, 2)$ (Not entrance).
+   - Condition satisfied: $(0, 2)$ is a valid boundary exit.
+   - Immediate Return: **1**.
 
 ---
 
-### Step 2: Process one distance layer at a time
+### Execution Trace 2: Boundary Entrance (`entrance = [1, 0]`)
 
-The variable `ans` starts at zero. At the start of each while-loop iteration, the queue contains exactly the cells at one common distance from the entrance. The code increments `ans`, records the current queue length, and removes exactly that many cells. Their unvisited neighbors are one step farther away, so those neighbors all have distance `ans`.
+Grid representation:
+- Row 0: `['+', '+', '+']`
+- Row 1: `['.', '.', '.']`  $\leftarrow$ Entrance at column 0 (Border cell!)
+- Row 2: `['+', '+', '+']`
 
-This ordering explains why the code returns `ans` when it discovers a border neighbor rather than storing a distance beside every queue entry. On the first loop iteration, it expands the distance-zero entrance after changing `ans` to one, so its neighbors are correctly labeled distance one. New cells appended during the loop are not processed in the same layer because `range(len(q))` evaluates the old queue size once. They wait for the next while iteration.
+#### Step 1: Initialization ($d = 0$)
+- Queue: `[(1, 0)]`.
+- Mark visited: `maze[1][0] = '+'`.
 
-For each popped cell, the four direction pairs `[0, -1]`, `[0, 1]`, `[-1, 0]`, and `[1, 0]` produce left, right, up, and down neighbors. A neighbor is usable only if its row and column remain within the grid and `maze[x][y] == "."`. Walls and already visited cells both contain `"+"` and are skipped.
+#### Step 2: Expand Frontier at Distance 1 ($\text{ans} = 1$)
+Pop $(1, 0)$. Test 4 neighbors:
+- Up: $(0, 0)$ is `'+'` (Wall).
+- Down: $(2, 0)$ is `'+'` (Wall).
+- Left: $(1, -1)$ (Out of bounds).
+- Right: $(1, 1)$ is `'.'`.
+  - Is $(1, 1)$ on border? Row 1 $\notin \{0, 2\}$, Col 1 $\notin \{0, 2\}$ (Interior cell, not exit).
+  - Mark visited `maze[1][1] = '+'`, enqueue `(1, 1)`.
+- Frontier 1 complete: Queue contains `[(1, 1)]`.
 
-If a usable neighbor lies on row $0$, row $m-1$, column $0$, or column $n-1$, it is an exit. The method returns the current layer distance immediately. Otherwise it enqueues the neighbor and marks it as `"+"`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why marking happens when a cell is enqueued
-
-A cell can be adjacent to several cells in the current BFS layer. If it remained `"."` until it was later removed from the queue, several parents could enqueue it, wasting work and breaking the simple one-visit bound. Marking immediately reserves the cell for the first path that reaches it. Because BFS reaches cells in nondecreasing distance, the first such path is already a shortest path, so ignoring later routes cannot lose a better answer.
-
-The method modifies the supplied `maze` rather than allocating a separate visited matrix. After it returns, every cell discovered by BFS, including the entrance, has become `"+"`. That side effect is part of the exact implementation and should be understood by callers.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+#### Step 3: Expand Frontier at Distance 2 ($\text{ans} = 2$)
+Pop $(1, 1)$. Test 4 neighbors:
+- Up: $(0, 1)$ is `'+'`.
+- Down: $(2, 1)$ is `'+'`.
+- Left: $(1, 0)$ is `'+'` (Already visited).
+- Right: $(1, 2)$ is `'.'`.
+  - Border check: Column index $2 = n - 1$ (Right border of grid!).
+  - Exit check: $(1, 2) \neq (1, 0)$ (Not entrance).
+  - Condition satisfied: $(1, 2)$ is a valid boundary exit.
+  - Return: **2**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"maze": [["+", "+", "+"], [".", ".", "."], ["+", "+", "+"]], "entrance": [1, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+We trace the step-by-step state transitions for the primary maze:
+
+| Step $d$ | Dequeued Cell | Neighbor Evaluated | Cell Type | On Border? | Not Entrance? | Action Taken |
+|---|---|---|---|---|---|---|
+| 0 | Setup | $(1, 2)$ | `'.'` | Interior | — | Seed queue, mark visited |
+| 1 | $(1, 2)$ | $(0, 2)$ (Up) | `'.'` | **Yes** ($r = 0$) | **Yes** | **Exit Discovered! Return 1** |
+| 1 | $(1, 2)$ | $(1, 1)$ (Left) | `'.'` | No | Yes | Skipped due to early return |
+| 1 | $(1, 2)$ | $(1, 3)$ (Right) | `'+'` | Yes | Yes | Wall ignored |
+| 1 | $(1, 2)$ | $(2, 2)$ (Down) | `'+'` | Yes | Yes | Wall ignored |
+
+We compare BFS frontier properties between the two test instances:
+
+| Test Case | Entrance $(r, c)$ | Entrance on Border? | Shortest Distance to Valid Exit | Discovered Exit $(r, c)$ | Traversed Path |
+|---|---|---|---|---|---|
+| Primary | $(1, 2)$ | No | **1** | $(0, 2)$ | $(1, 2) \to (0, 2)$ |
+| Boundary | $(1, 0)$ | **Yes** (Left border) | **2** | $(1, 2)$ | $(1, 0) \to (1, 1) \to (1, 2)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** BFS explores nodes in non-decreasing order of path length. The first cell encountered that satisfies the exit predicate has minimal distance from the entrance. Checking that the discovered cell is on the border and distinct from the entrance strictly enforces the problem's definition of an exit.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since all four cardinal transitions are evaluated for each reachable open cell and cycle prevention is ensured by marking cells immediately upon queue insertion, BFS explores all reachable components. If the queue empties without encountering an exit, no valid exit exists, and returning `-1` is complete.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Depth-first search:** DFS can determine reachability, but the first exit it encounters need not be the closest. Finding a shortest path would require exploring more routes and maintaining best distances.
-- **Dijkstra's algorithm:** Dijkstra also finds shortest paths, but every move has unit cost, so its priority queue is unnecessary overhead. BFS is the specialized optimal method.
-- **Separate visited set or matrix:** This avoids changing `maze` and still gives $O(RC)$ time and space. The exact solution chooses in-place marking to save that additional structure.
-- **Entrance on the border:** It is explicitly not an exit. Marking it before the search and testing only newly discovered neighbors enforces this rule naturally.
-- **Exit one move away:** The first layer increments `ans` to one and returns one as soon as it sees the adjacent border cell.
-- **One-row or one-column maze:** Every cell is on a border, but the entrance is excluded. Any different reachable empty neighbor is an exit at its BFS distance; if none exists, the method returns `-1`.
-- **Maze containing only the entrance:** The queue expands once, finds no valid neighbor, empties, and returns `-1`.
-- **Several equally near exits:** BFS may return upon finding any one of them. Only the distance is requested, so direction order does not affect correctness.
-- **Unreachable border cells:** A border opening behind walls is never enqueued and correctly does not influence the result.
-- **Cycles in open corridors:** Immediate marking ensures each cell is visited once, preventing endless movement around a cycle.
-- **Input mutation:** The exact method replaces visited `"."` cells with `"+"`. If the caller needs the original maze later, it must pass a copy or use a separate visited structure.
-- **No exit:** Exhausting the deque proves that no reachable non-entrance border opening exists, so `-1` is the required sentinel.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Entrance Boundary Trap:** When the entrance begins on a border cell (e.g. `entrance = [1, 0]`), evaluating whether the entrance is on the boundary must not prematurely terminate with answer 0. The entrance itself is explicitly disqualified from being its own exit.
+- **Late Visited Marking:** Marking cells as visited when they are *dequeued* instead of when *enqueued* allows multiple paths to enqueue the same vertex repeatedly, causing exponential queue explosion and Time Limit Exceeded on open grids.
+- **Missing Negative Return:** If all boundary exits are walled off or disconnected, the queue exhausts naturally. The algorithm must return `-1` to signal unreachable exits.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(RC)$. Let $R$ be the number of rows and $C$ the number of columns.
-- **Auxiliary Space Complexity:** $O(RC)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot n)$, where $m$ and $n$ are grid row and column counts. Each cell is enqueued and dequeued at most once, and each cell explores at most 4 cardinal neighbors.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m \cdot n)$ in the worst case to store the BFS queue frontier.

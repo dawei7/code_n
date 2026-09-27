@@ -1,121 +1,160 @@
 # Guided Example: Element Appearing More Than 25% In Sorted Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step detection of a dominant frequency element in a sorted sequence on a representative problem instance:
 
-- **Input:** `{"arr": [1, 2, 2, 6, 6, 6, 6, 7, 10]}`
-- **Required output:** `6`
+- **Input:** `arr = [1, 2, 2, 6, 6, 6, 6, 7, 10]`
+- **Required Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates contiguous run clustering in sorted arrays, windowed stride sampling, and the Pigeonhole Principle on quartiles.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array **sorted** in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
+We are given an array of $N = 9$ integers sorted in non-decreasing order. Exactly one integer occurs strictly more than $25\%$ of the time:
+$$
+\text{Threshold} = \frac{N}{4} = \frac{9}{4} = 2.25 \implies \text{Count} \ge 3
+$$
 
-The objective is to compute `6` from `{"arr": [1, 2, 2, 6, 6, 6, 6, 7, 10]}` while avoiding redundant calculations and unnecessary overhead.
+Frequency distribution of values:
+- Value $1$: $1$ occurrence
+- Value $2$: $2$ occurrences
+- Value $6$: $4$ occurrences ($4 > 2.25$, valid)
+- Value $7$: $1$ occurrence
+- Value $10$: $1$ occurrence
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Index:    0    1    2    3    4    5    6    7    8
+Value:  [ 1 ][ 2 ][ 2 ][ 6 ][ 6 ][ 6 ][ 6 ][ 7 ][ 10 ]
+                        └───────────────┘
+                        Span of 4 entries (>= 3)
+
+Stride Test with offset m = floor(9 / 4) = 2:
+  i = 0: arr[0] = 1, arr[2] = 2  -->  1 != 2
+  i = 1: arr[1] = 2, arr[3] = 6  -->  2 != 6
+  i = 2: arr[2] = 2, arr[4] = 6  -->  2 != 6
+  i = 3: arr[3] = 6, arr[5] = 6  -->  6 == 6  ==> Match Found!
+```
+
+A generic hash map counting frequencies requires $\mathcal{O}(N)$ additional heap memory and does not exploit the sorted property.
+The optimal method exploits the fact that sorted duplicates form a contiguous block: if an element spans more than $N / 4$ elements, its endpoints at offset $m = \lfloor N / 4 \rfloor$ must match.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the array length be $N$. Define the offset stride:
+$$
+m = \lfloor N / 4 \rfloor
+$$
+Any element appearing strictly more than $N / 4$ times occurs at least $m + 1$ times.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Contiguous Cluster Span Invariant
+Because the array is sorted, all occurrences of any value $x$ are clustered contiguously into an index range $[L, R]$ of length:
+$$
+\text{length} = R - L + 1 \ge m + 1
+$$
+This implies that $R - L \ge m$.
+Therefore, for the starting index $L$ of the run:
+$$
+\text{arr}[L] = \text{arr}[L + m] = x
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Conversely, if $\text{arr}[i] = \text{arr}[i + m]$ for any index $i$, then by sorted monotonicity:
+$$
+\text{arr}[i] \le \text{arr}[i+1] \le \dots \le \text{arr}[i+m] = \text{arr}[i]
+$$
+Every element in between must be identical to $\text{arr}[i]$, proving that the value appears at least $m + 1 > N / 4$ times.
+
+| Index $i$ | Stride Index $i + m$ ($m = 2$) | Value $\text{arr}[i]$ | Value $\text{arr}[i + m]$ | Equality Check: $\text{arr}[i] == \text{arr}[i + m]$ |
+|---|---|---|---|---|
+| $0$ | $2$ | $1$ | $2$ | False |
+| $1$ | $3$ | $2$ | $6$ | False |
+| $2$ | $4$ | $2$ | $6$ | False |
+| $3$ | $5$ | $6$ | $6$ | True $\implies$ Dominant element identified |
+
+> **Window Stride Invariant.** In a non-decreasing array, checking whether the element at index $i$ equals the element at index $i + \lfloor N / 4 \rfloor$ guarantees that at least $\lfloor N / 4 \rfloor + 1$ identical values occupy that window, proving the $> 25\%$ dominance condition immediately.
+
+```mermaid
+flowchart TD
+    accTitle: Windowed Stride Dominant Element Detection
+    accDescr: Diagram showing stride window of length m moving across array until matching endpoints confirm dominance.
+    INIT["Calculate offset: m = floor(N / 4)"] --> LOOP["For each index i from 0 to N - m - 1"]
+    LOOP --> CHK{"Does arr[i] == arr[i + m]?"}
+    CHK -- Yes --> FOUND["Return arr[i] as dominant element"]
+    CHK -- No --> ADV["Advance index i by 1"]
+    ADV --> LOOP
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sorted equal values form contiguous blocks
+For `arr = [1, 2, 2, 6, 6, 6, 6, 7, 10]` with $N = 9$:
+$$
+m = \lfloor 9 / 4 \rfloor = 2
+$$
+We slide a window of span $m = 2$ starting from $i = 0$.
 
-Let $n$ be the array length and $q=\lfloor n/4\rfloor$. An element appearing more than 25 percent of the time has an integer frequency greater than $n/4$, which means at least $q+1$ occurrences.
+### Iteration 1 ($i = 0$)
+- Compare $\text{arr}[0]$ and $\text{arr}[0 + 2] = \text{arr}[2]$:
+  - $\text{arr}[0] = 1$
+  - $\text{arr}[2] = 2$
+  - $1 \ne 2 \implies$ Not dominant.
 
-Because the array is sorted, all copies of one value occupy one contiguous block. If a block begins at index $s$ and has at least $q+1$ elements, both `arr[s]` and `arr[s + q]` lie inside it and are equal.
+### Iteration 2 ($i = 1$)
+- Compare $\text{arr}[1]$ and $\text{arr}[1 + 2] = \text{arr}[3]$:
+  - $\text{arr}[1] = 2$
+  - $\text{arr}[3] = 6$
+  - $2 \ne 6 \implies$ Not dominant.
 
-The exact source scans starting positions `i` and checks `arr[i] == arr[i + q]`, where `n >> 2` computes floor division by four for nonnegative $n$.
+### Iteration 3 ($i = 2$)
+- Compare $\text{arr}[2]$ and $\text{arr}[2 + 2] = \text{arr}[4]$:
+  - $\text{arr}[2] = 2$
+  - $\text{arr}[4] = 6$
+  - $2 \ne 6 \implies$ Not dominant.
 
-Right-shifting a nonnegative integer by two bits is equivalent to integer division by $2^2=4$. The shift is therefore only a compact spelling of `n // 4`; it does not change the mathematical threshold or inspect array values as bits.
+### Iteration 4 ($i = 3$)
+- Compare $\text{arr}[3]$ and $\text{arr}[3 + 2] = \text{arr}[5]$:
+  - $\text{arr}[3] = 6$
+  - $\text{arr}[5] = 6$
+  - $6 = 6 \implies$ Match confirmed!
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [1, 2, 2, 6, 6, 6, 6, 7, 10]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why equality proves the frequency threshold
-
-If the values at positions $i$ and $i+q$ are equal, sorted order forces every element between them to be equal as well. That block contains at least $q+1$ elements.
-
-Since $q=\lfloor n/4\rfloor$, $q+1>n/4$. Therefore the value occupies more than 25 percent of the array and must be the guaranteed special element.
-
-This implication also prevents returning an ordinary shorter block. Any equality at that spacing is sufficient proof of the required frequency.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the loop returns before its index could go out of range
-
-The source uses `enumerate(arr)` rather than explicitly stopping at `n - q`. For late indices, `i + q` could exceed the array bounds. Nevertheless, the problem guarantee ensures the function returns first.
-
-Let $s$ be the first index of the guaranteed special block. Its frequency is at least $q+1$, so `s + q <= n - 1`. When the loop reaches `i = s`, the indexed comparison is valid and equal, and the function returns. It never proceeds to a dangerous later index.
-
-Without the guaranteed qualifying element, this exact loop would need a bounded range and a fallback return to be robust.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+Since $\text{arr}[3] = \text{arr}[5] = 6$, sorted ordering guarantees $\text{arr}[4] = 6$. The window $[3 \dots 5]$ contains $3$ identical elements, satisfying $3 > 9 / 4 = 2.25$.
+Evaluation terminates immediately, returning $6$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [1, 2, 2, 6, 6, 6, 6, 7, 10]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+| Inspection Step | Window Range $[i \dots i + m]$ | Left Value $\text{arr}[i]$ | Right Value $\text{arr}[i + m]$ | Window Equality | Action Taken |
+|---|---|---|---|---|---|
+| 1 | $[0 \dots 2]$ | $1$ | $2$ | False | Advance $i$ |
+| 2 | $[1 \dots 3]$ | $2$ | $6$ | False | Advance $i$ |
+| 3 | $[2 \dots 4]$ | $2$ | $6$ | False | Advance $i$ |
+| 4 | $[3 \dots 5]$ | $6$ | $6$ | True | Terminate: Return $6$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $i$ be an index where $\text{arr}[i] = \text{arr}[i + m]$. Because `arr` is non-decreasing, for all $j$ with $i \le j \le i + m$, $\text{arr}[i] \le \text{arr}[j] \le \text{arr}[i + m] = \text{arr}[i]$, forcing $\text{arr}[j] = \text{arr}[i]$. The number of identical elements in this sub-array is $(i + m) - i + 1 = m + 1 = \lfloor N / 4 \rfloor + 1 > N / 4$. Thus, the value occurs strictly more than $25\%$ of the time.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By problem guarantee, there exists a unique value $x$ whose total occurrences $C$ satisfy $C \ge \lfloor N / 4 \rfloor + 1 = m + 1$. Because all occurrences of $x$ appear as a contiguous block $[L, R]$ with $R - L + 1 \ge m + 1$, setting $i = L$ gives $i + m = L + m \le R$, which guarantees $\text{arr}[i] = \text{arr}[i + m] = x$. The scan will inevitably encounter index $L$ and terminate.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Quartile candidates plus binary search:** The special block must cover at least one of the quarter positions. Binary-searching each candidate's first and last occurrence achieves $O(\log n)$ time and $O(1)$ space.
-- **Frequency hash map:** Counting all values takes $O(n)$ time and $O(n)$ space but ignores sorted order.
-- **Run-length scan:** Count each contiguous block and return the one longer than $n/4$. It is robust and linear but maintains more explicit state.
-- **Bound the exact loop:** Iterating only through `range(n - q)` avoids relying on guaranteed early return and is safer general code.
-- **Small arrays with `q = 0`:** The first self-comparison succeeds; the uniqueness guarantee determines that this is valid.
-- **Special block at the beginning:** The first comparison may return immediately.
-- **Special block at the end:** The loop reaches its valid block start and returns before any out-of-range access.
-- **Strictly more than 25 percent:** Requiring $q+1$ occurrences correctly handles lengths not divisible by four.
-- **Sorted-order requirement:** Without sorting, equal endpoints would not prove that the elements between them match.
-- **Missing valid element:** Outside the contract, the exact source could run out of bounds and has no fallback return.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Floating-point rounding errors:** Testing $C > 0.25 \times N$ with floating-point arithmetic can introduce rounding precision problems. Using integer arithmetic $\lfloor N / 4 \rfloor$ guarantees exact boundary testing.
+- **Array bounds on stride:** The inspection loop must terminate at $i \le N - 1 - m$ to avoid out-of-bounds indexing.
+- **Short arrays:** For small arrays like $N = 2$, $m = \lfloor 2 / 4 \rfloor = 0$. The check $\text{arr}[0] == \text{arr}[0]$ triggers immediately, correctly handling minimal arrays.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. In the worst case, the special block may begin late enough that the loop examines $O(n)$ indices before finding it. Each comparison is constant time, so the exact shipped source takes $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$ in the worst-case linear stride scan.
+  Because the dominant element occupies more than $25\%$ of the array, the search terminates after at most $\lfloor 3N / 4 \rfloor$ comparisons.
+  *(Note: An alternative binary search on the three quartile candidates $N/4, N/2, 3N/4$ achieves $\mathcal{O}(\log N)$ time).*
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Memory is limited to a constant number of integer registers holding $N, m$, and loop cursor $i$.

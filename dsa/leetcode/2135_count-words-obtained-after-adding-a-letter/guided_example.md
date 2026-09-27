@@ -1,123 +1,143 @@
 # Guided Example: Count Words Obtained After Adding a Letter
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the bitmask character set encoding and reverse single-letter deletion approach on a representative problem instance:
 
-- **Input:** `{"startWords": ["ant", "act", "tack"], "targetWords": ["tack", "act", "acti"]}`
-- **Required output:** `2`
+- **Start Words (`startWords`):** `["ant", "act", "tack"]`
+- **Target Words (`targetWords`):** `["tack", "act", "acti"]`
+- **Expected Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given two **0-indexed** arrays of strings `startWords` and `targetWords`. Each string consists of **lowercase English letters** only.
-
-The objective is to compute `2` from `{"startWords": ["ant", "act", "tack"], "targetWords": ["tack", "act", "acti"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates how anagram permutation invariance reduces strings to 26-bit binary masks, demonstrating why testing backward single-bit deletions from each target word against a precomputed set of start masks evaluates reachability in linear time.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given two string arrays: `startWords` and `targetWords`. Each string consists exclusively of distinct lowercase English letters. In one operation, we can choose any word from `startWords`, append any lowercase letter not already present in the word, and rearrange its letters in any arbitrary order.
 
-| State Parameter | Role & Purpose | Initial State |
+We must count how many strings in `targetWords` can be formed using this operation from some string in `startWords`. Each start word may be reused indefinitely.
+
+In our representative instance:
+- `startWords`: `"ant"` ($\{a, n, t\}$), `"act"` ($\{a, c, t\}$), `"tack"` ($\{a, c, k, t\}$)
+- `targetWords`:
+  1. `"tack"` ($\{a, c, k, t\}$): Removing `'k'` leaves $\{a, c, t\}$, which matches start word `"act"`. Appending `'k'` to `"act"` and rearranging produces `"tack"`. (Valid)
+  2. `"act"` ($\{a, c, t\}$): A start word must have length $3 - 1 = 2$. No 2-letter word exists in `startWords`. (Invalid)
+  3. `"acti"` ($\{a, c, t, i\}$): Removing `'i'` leaves $\{a, c, t\}$, matching `"act"`. Appending `'i'` and rearranging produces `"acti"`. (Valid)
+Total valid target words: $2$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Anagram Invariance via 26-Bit Bitmasks
+Because the problem permits arbitrary letter rearrangement and every word contains distinct characters, any word $w$ is completely determined by its set of constituent characters. We map each word to a 26-bit integer:
+
+$$\text{mask}(w) = \sum_{c \in w} 2^{\text{ord}(c) - \text{ord}('a')}$$
+
+Bit $k$ is $1$ if the $k$-th letter of the alphabet is present in $w$, and $0$ otherwise. Anagrams have identical bitmasks.
+
+### Backward Deletion Duality
+A start word $s$ can form target word $t$ if and only if:
+1. $|t| = |s| + 1$
+2. $\text{mask}(s) \subset \text{mask}(t)$ with exactly one bit difference.
+
+Instead of generating up to $26$ expanded masks for every start word, we invert the perspective:
+1. Store all start word masks in a hash set $\mathcal{S}$.
+2. For each target word $t$, compute its bitmask $M = \text{mask}(t)$.
+3. For each character $c \in t$, evaluate the candidate predecessor mask obtained by deleting bit $c$:
+
+$$M' = M \oplus 2^{\text{ord}(c) - \text{ord}('a')}$$
+
+4. If $M' \in \mathcal{S}$, target $t$ can be produced. Increment the valid target count and immediately break to prevent duplicate counts for the same target word.
+
+| Metric | Role in Evaluation | Representation |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Encode a letter set as a 26-bit integer
-
-Assign bit $0$ to `'a'`, bit $1$ to `'b'`, and so on through bit $25$ for `'z'`. For a character `c`, the expression `1 << (ord(c) - 97)` creates an integer with only that character’s bit set. The code builds a word’s mask with `sum(1 << (ord(c) - 97) for c in w)`.
-
-Usually bit masks are combined with bitwise OR. Summation is equally correct here because the constraints guarantee no letter repeats within a word. Every added power of two occupies a different bit, so no carries occur. For example, `"act"` maps to the bits for `a`, `c`, and `t` regardless of the letters’ order.
-
-Two words containing exactly the same letters produce the same mask. That is desirable because arbitrary rearrangement makes them interchangeable for this problem.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"startWords": ["ant", "act", "tack"], "targetWords": ["tack", "act", "acti"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Start Mask Set $\mathcal{S}$ | Hash set of valid base word bit patterns | Hash set of 26-bit integers |
+| Target Mask $M$ | Complete bit pattern of candidate target word | 26-bit integer |
+| Single-Bit Deletion $M'$ | Sub-pattern with one letter removed | $M \oplus (1 \ll \text{shift})$ |
+| Verification Criterion | Membership in $\mathcal{S}$ | $M' \in \mathcal{S} \implies \text{obtainable}$ |
 
 ---
 
-### Step 2: Store all possible predecessor masks
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The set comprehension converts every string in `startWords` and stores its mask in `s`. A set provides expected $O(1)$ membership testing. If multiple start words have the same letter set in different orders, they collapse to one mask, but multiplicity is irrelevant: a target only asks whether any qualifying start word exists, and start words are not consumed or changed.
+### Phase 1: Precomputing Start Word Mask Set $\mathcal{S}$
+Convert each start word into its bitmask representation:
+- `"ant"`: letters $\{a, n, t\} \implies \text{bits } \{0, 13, 19\} \implies M_1$.
+- `"act"`: letters $\{a, c, t\} \implies \text{bits } \{0, 2, 19\} \implies M_2$.
+- `"tack"`: letters $\{a, c, k, t\} \implies \text{bits } \{0, 2, 10, 19\} \implies M_3$.
+Hash set $\mathcal{S} = \{M_1, M_2, M_3\}$.
+Running valid target counter: $\text{count} = 0$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Phase 2: Evaluating Target Word 1: `"tack"`
+- Character set: $\{a, c, k, t\}$ (Length $4$).
+- Mask $M_{\text{tack}}$ has bits $\{0, 2, 10, 19\}$.
+- Test single-character deletions:
+  - Delete `'a'`: mask with $\{c, k, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'c'`: mask with $\{a, k, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'k'`: mask with $\{a, c, t\}$. This equals $M_2$ (corresponding to `"act"`)!
+- Match found! Target `"tack"` is obtainable from `"act"`.
+- Update: $\text{count} \leftarrow 0 + 1 = 1$. Break to next target.
 
----
+### Phase 3: Evaluating Target Word 2: `"act"`
+- Character set: $\{a, c, t\}$ (Length $3$).
+- Mask $M_{\text{act}}$ has bits $\{0, 2, 19\}$.
+- Test single-character deletions:
+  - Delete `'a'`: mask with $\{c, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'c'`: mask with $\{a, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'t'`: mask with $\{a, c\}$. Check $\mathcal{S} \implies$ Not found.
+- All deletions exhausted without finding a matching predecessor in $\mathcal{S}$.
+- Target `"act"` is unobtainable. Count remains $1$.
 
-### Step 3: Reverse the mandatory addition
+### Phase 4: Evaluating Target Word 3: `"acti"`
+- Character set: $\{a, c, t, i\}$ (Length $4$).
+- Mask $M_{\text{acti}}$ has bits $\{0, 2, 8, 19\}$.
+- Test single-character deletions:
+  - Delete `'a'`: mask with $\{c, i, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'c'`: mask with $\{a, i, t\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'t'`: mask with $\{a, c, i\}$. Check $\mathcal{S} \implies$ Not found.
+  - Delete `'i'`: mask with $\{a, c, t\}$. This equals $M_2$ (corresponding to `"act"`)!
+- Match found! Target `"acti"` is obtainable from `"act"`.
+- Update: $\text{count} \leftarrow 1 + 1 = 2$. Break.
 
-For each target word `w`, the solution first computes its complete mask `x`. It then tries every character `c` in that target and evaluates `x ^ (1 << (ord(c) - 97))`.
-
-The target contains `c` exactly once, so its bit is currently set in `x`. XOR with the same one-bit mask turns that bit off and leaves every other bit unchanged. The result is exactly the letter set obtained by deleting `c` from the target.
-
-If that reduced mask occurs in `s`, there is a start word containing all the target’s other letters and not containing `c`. Appending `c` is legal because it was absent from the start word. The resulting letter set equals the target’s, and arbitrary rearrangement can place those letters in the target’s order. The target is therefore obtainable.
-
-The solution increments `ans` and immediately executes `break`. A target must be counted once even if several different deletions match start words. Breaking prevents multiple successful predecessor choices from counting the same target repeatedly.
-
-If none of the target’s deletions produces a stored start mask, no conversion can form it. Any legal conversion adds one of the target’s letters; reversing that addition would have appeared among the tested deletions. The target contributes nothing.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"startWords": ["ant", "act", "tack"], "targetWords": ["tack", "act", "acti"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Total valid target words: $2$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Sort every word:** Sorting converts each word to an order-independent canonical string, after which every one-letter deletion can be tested. This is simpler conceptually but costs $O(\ell\log\ell)$ per word instead of linear mask construction.
-- **Store sorted start words by length:** This can narrow candidates but still requires building deletion strings or sorting target variants. Bit removal is constant time after the target mask is built.
-- **Try adding letters to every start word:** Each start has up to 26 possible additions, and generated results could be stored. This can work, but reversing the operation from each target tests only its own at most 26 letters and directly enforces the one-letter difference.
-- **Bitwise OR instead of sum:** OR is the conventional mask construction and would produce the same result. Summation is safe only because no word contains a repeated letter.
-- **Repeated letter outside the contract:** With duplicates, summing the same bit twice could carry into another bit and XOR deletion would no longer represent removing one occurrence. The uniqueness guarantee is essential to the exact encoding.
-- **One-letter target:** Removing its only letter yields mask zero. It can match only an empty start word, but start words have minimum length one, so such a target is never obtainable.
-- **Target length 26:** Every lowercase letter is already present. It can be formed from a 25-letter start word by adding its unique missing letter, and the deletion loop checks all 26 possibilities.
-- **Same word in both arrays:** Equality alone does not qualify because one new letter must be appended. The deletion-based test correctly demands a predecessor with one fewer letter.
-- **Anagram start words:** They map to the same mask. Collapsing them in `s` loses no useful information because only existence matters.
-- **Duplicate target words:** Each array entry is checked independently. If a target value appears multiple times and is obtainable, each occurrence increments `ans` once.
-- **Several matching predecessors:** The `break` ensures one target contributes exactly one to the count even if deleting different letters finds different start masks.
-- **Missing predecessor:** Exhausting all target letters proves failure because every legal conversion has exactly one added letter that could be reversed.
-- **Start words remain reusable:** The algorithm never removes masks from `s`. This matches the note that checking one target does not consume or modify a start word.
-- **Letter order:** Masks deliberately erase order because the conversion permits arbitrary rearrangement after appending.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The evaluation metrics across all target words are tabulated below:
+
+| Target Word | Letters Present | Target Length | Deleted Letter Tested | Remaining Character Set | Predecessor in $\mathcal{S}$? | Target Obtainable? | Cumulative Count |
+|---|---|---|---|---|---|---|---|
+| `"tack"` | $\{a, c, k, t\}$ | $4$ | `'a'` | $\{c, k, t\}$ | No | — | $0$ |
+| `"tack"` | $\{a, c, k, t\}$ | $4$ | `'c'` | $\{a, k, t\}$ | No | — | $0$ |
+| `"tack"` | $\{a, c, k, t\}$ | $4$ | `'k'` | $\{a, c, t\}$ | Yes (`"act"`) | Yes | $1$ |
+| `"act"` | $\{a, c, t\}$ | $3$ | `'a'`, `'c'`, `'t'` | $\{c, t\}$, $\{a, t\}$, $\{a, c\}$ | No for all | No | $1$ |
+| `"acti"` | $\{a, c, t, i\}$ | $4$ | `'a'`, `'c'`, `'t'` | $\{c, i, t\}$, etc. | No | — | $1$ |
+| `"acti"` | $\{a, c, t, i\}$ | $4$ | `'i'` | $\{a, c, t\}$ | Yes (`"act"`) | Yes | $2$ |
+
+Total count of obtainable target words: $2$.
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(1)$. Define $L$ as the sum of the lengths of every word in `startWords` and `targetWords`. Building all start masks processes each start character once. For a target of length $\ell$, building `x` costs $O(\ell)$ and trying every possible deleted character costs another $O(\ell)$ expected time because each set lookup is expected $O(1)$. Summed across all words, total expected time is $O(L)$.
-- **Auxiliary Space Complexity:** $O(s)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Soundness.** If a single-character deletion $M \oplus 2^{\text{shift}}$ exists in $\mathcal{S}$, there exists some start word $s$ whose character set is identical to $t \setminus \{c\}$. Appending character $c$ (which was absent from $s$) produces a multiset of letters identical to $t$. Because any permutation of characters is permitted by the operation, $s$ can be transformed into $t$.
+
+**Completeness.** Any valid transformation consists of taking some start word $s$ and appending exactly one missing character $c^*$ to form $t$. Therefore, the character set of $s$ must be $t \setminus \{c^*\}$. Because the algorithm tests removing every character $c \in t$, the exact added character $c^*$ is guaranteed to be tested. Its corresponding predecessor mask will be found in $\mathcal{S}$, ensuring no obtainable target word is missed.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+- **Identical Word in Both Arrays:** A word present in both `startWords` and `targetWords` (like `"act"`) cannot be obtained from itself without adding a letter; the predecessor must have length $|t| - 1$.
+- **Multiple Valid Predecessors:** If deleting either of two different letters matches different start words, the early `break` ensures the target word is counted only once.
+- **Duplicate Words in Targets:** If identical target words appear multiple times in `targetWords`, each instance is counted toward the total independently.
+- **Anti-Pattern — Expanding All Start Words:** Generating all 26 expansions for every start word and inserting them into a set takes $\mathcal{O}(26 \cdot |S|)$ memory and time. Backward deletion from targets requires only $\mathcal{O}(|S|)$ storage for start words and performs at most $26$ lookups per target.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(L_{\text{start}} + L_{\text{target}})$, where $L_{\text{start}}$ is the total character length of all words in `startWords` and $L_{\text{target}}$ is the total character length of all words in `targetWords`. Building the start set takes $\mathcal{O}(L_{\text{start}})$. For each target word of length $m \le 26$, testing all $m$ deletions takes $\mathcal{O}(m)$ operations with expected $\mathcal{O}(1)$ hash lookups.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|S|)$, where $|S|$ is the number of words in `startWords`, to store the 26-bit integer masks in hash set $\mathcal{S}$.

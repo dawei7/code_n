@@ -1,99 +1,125 @@
 # Guided Example: Climbing Stairs
 
-We derive and execute the Math, Dynamic Programming, Memoization recurrence on a representative problem instance.
+We trace the step-by-step state transition and Fibonacci recurrence evaluation on a representative staircase instance:
 
-- **Input:** `{"n": 2}`
-- **Required output:** `2`
+- **Input:** $n = 5$
+- **Required output:** $8$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates decomposing choices into mutually exclusive previous steps ($i - 1$ and $i - 2$), mapping step climbing to the Fibonacci recurrence ($DP[i] = DP[i-1] + DP[i-2]$), space optimization to two scalar variables, and matrix exponentiation / closed-form connections.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Climbing Stairs** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+You are climbing a staircase that has $n = 5$ steps. Each time you can climb either $1$ step or $2$ steps. In how many distinct ways can you climb to the top?
+
+For $n = 5$, there are 8 distinct valid step combinations:
+1. $1 + 1 + 1 + 1 + 1$
+2. $1 + 1 + 1 + 2$
+3. $1 + 1 + 2 + 1$
+4. $1 + 2 + 1 + 1$
+5. $2 + 1 + 1 + 1$
+6. $1 + 2 + 2$
+7. $2 + 1 + 2$
+8. $2 + 2 + 1$
+
+A naive recursive implementation recalculates overlapping subproblems, exhibiting exponential $O(2^n)$ time.
+Dynamic programming observes that the very last hop to reach step $i$ must be either:
+- A $1$-step hop from step $i - 1$, OR
+- A $2$-step hop from step $i - 2$.
+Since these two scenarios are mutually exclusive and collectively exhaustive, the number of ways to reach step $i$ is strictly $DP[i-1] + DP[i-2]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### The Fibonacci Recurrence
+Let $DP[i]$ be the number of distinct ways to reach step $i$.
+1. **Base Cases:**
+   - Step 1: Exactly 1 way ($[1]$):
+     $$
+     DP[1] = 1
+     $$
+   - Step 2: Exactly 2 ways ($[1+1]$ or $[2]$):
+     $$
+     DP[2] = 2
+     $$
+2. **Inductive Step ($i \ge 3$):**
+   $$
+   DP[i] = DP[i - 1] + DP[i - 2]
+   $$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Space Optimization ($O(1)$ Memory)
+Because computing $DP[i]$ requires only the previous two terms, we discard the full array and maintain two variables:
+$$
+\text{prev2} = DP[1] = 1, \quad \text{prev1} = DP[2] = 2
+$$
+In each iteration:
+$$
+\text{current} \leftarrow \text{prev1} + \text{prev2}
+$$
+$$
+\text{prev2} \leftarrow \text{prev1}, \quad \text{prev1} \leftarrow \text{current}
+$$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** At the start of step $i$, `prev1` equals $DP[i-1]$ and `prev2` equals $DP[i-2]$. After updating, `prev1` holds $DP[i]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace the calculation from $i = 1$ to $n = 5$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+- **Step 1 ($i = 1$):**
+  - Base case: $DP[1] = 1$.
+- **Step 2 ($i = 2$):**
+  - Base case: $DP[2] = 2$.
+- **Step 3 ($i = 3$):**
+  - Incoming from Step 2: $DP[2] = 2$ (via $+1$ step).
+  - Incoming from Step 1: $DP[1] = 1$ (via $+2$ steps).
+  - $DP[3] = 2 + 1 = 3$.
+- **Step 4 ($i = 4$):**
+  - Incoming from Step 3: $DP[3] = 3$.
+  - Incoming from Step 2: $DP[2] = 2$.
+  - $DP[4] = 3 + 2 = 5$.
+- **Step 5 ($i = 5$):**
+  - Incoming from Step 4: $DP[4] = 5$.
+  - Incoming from Step 3: $DP[3] = 3$.
+  - $DP[5] = 5 + 3 = \mathbf{8}$.
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
-
----
-
-### Step 3: Terminal State Resolution
-
-- Extract the final value from the designated terminal state $DP[N]$.
-
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+Goal reached for $n = 5$: $8$ unique paths.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| Step $i$ | Predecessor 1 ($DP[i-1]$) | Predecessor 2 ($DP[i-2]$) | Evaluated Recurrence ($DP[i-1] + DP[i-2]$) | Computed $DP[i]$ | Unique Paths Discovered |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | - | - | Base condition | **1** | `[1]` |
+| 2 | - | - | Base condition | **2** | `[1+1]`, `[2]` |
+| 3 | 2 | 1 | $2 + 1$ | **3** | `[1+1+1]`, `[1+2]`, `[2+1]` |
+| 4 | 3 | 2 | $3 + 2$ | **5** | 5 combinations |
+| 5 | 5 | 3 | $5 + 3$ | **8** | **8 combinations (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Every valid sequence of steps ending at step $i$ must end with either a 1-step or a 2-step hop. A sequence ending in 1 corresponds uniquely to a valid path to $i - 1$. A sequence ending in 2 corresponds uniquely to a valid path to $i - 2$. Because the final hop size is distinct, these two sets of paths have empty intersection. Therefore, $|DP[i]| = |DP[i-1]| + |DP[i-2]|$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Starting with true base cases $DP[1] = 1$ and $DP[2] = 2$, mathematical induction guarantees that every integer step up to $n$ is evaluated and accounts for all paths.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Base Cases for Small $n$:** If $n = 1$, the algorithm must return $1$ without attempting to index $DP[2]$ or execute iterations that assume $n \ge 2$.
+- **Linear Space Overhead:** Allocating a full list of length $n + 1$ takes $O(n)$ space. Storing only `prev1` and `prev2` reduces memory to $O(1)$ scalar variables.
+- **Logarithmic Acceleration:** For massive $n$ ($n \approx 10^9$), the transition matrix $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ raised to the power $n-1$ via binary exponentiation calculates $DP[n]$ in $O(\log n)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(n)$. The loop executes $n - 2$ times, performing one scalar addition per step.
+- **Auxiliary Space Complexity:** $O(1)$. Requires only two scalar variables (`prev1`, `prev2`) to track the prior terms.

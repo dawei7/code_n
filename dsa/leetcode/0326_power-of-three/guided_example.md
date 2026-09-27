@@ -1,138 +1,170 @@
 # Guided Example: Power of Three
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step iterative division by 3, remainder verification (`if n % 3: return False`), boundary condition handling ($n \le 2$), and terminal equality check ($n == 1$) on representative integer instances:
 
-- **Input:** `{"n": 1162261467}`
+- **Input:** $n = 27$
 - **Required output:** `true`
+  - Successive division steps: $27 \to 9 \to 3 \to 1$
+  - Each division has remainder $0$
+  - Loop terminates at $n = 1$, matching $1 == 1 \implies \text{true}$ ($27 = 3^3$)
+- **Composite Non-Power Instance:** $n = 45$:
+  - $45 // 3 = 15$ ($45 \pmod 3 = 0$)
+  - $15 // 3 = 5$ ($15 \pmod 3 = 0$)
+  - At $n = 5$: $5 \pmod 3 = 2 \ne 0 \implies$ immediately returns `false` ($45 = 3^2 \times 5$, not a pure power)
+- **Zero Base Case:** $n = 0 \implies 0 > 2$ is false, returns $0 == 1 \implies \text{false}$
+- **Negative Integer Base Case:** $n = -3 \implies -3 > 2$ is false, returns $-3 == 1 \implies \text{false}$
+- **Unit Power Base Case:** $n = 1 \implies 1 > 2$ is false, returns $1 == 1 \implies \text{true}$ ($3^0 = 1$)
+- **Maximum 32-Bit Power of Three:** $n = 3^{19} = 1162261467 \implies \text{true}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates prime factorization verification, explains why loop condition `n > 2` cleanly handles negative values, zero, and one without dedicated branch ladders, proves why floor division preserves exactness once divisibility is verified, and analyzes $O(\log_3 N)$ logarithmic time and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *`true` if it is a power of three. Otherwise, return `false`*.
+Given an integer $n = 27$:
+Determine if there exists an integer exponent $x$ such that $n = 3^x$.
 
-The objective is to compute `true` from `{"n": 1162261467}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Powers of 3 progression:
+3^0 = 1
+3^1 = 3
+3^2 = 9
+3^3 = 27
+3^4 = 81
+...
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Testing n = 27:
+27 / 3 = 9 (rem 0)
+ 9 / 3 = 3 (rem 0)
+ 3 / 3 = 1 (rem 0)
+Reached 1! -> Valid Power of 3 (True)
+```
+
+### Mathematical Invariants of Powers of Three
+1. **Uniqueness of Prime Factorization:** Any positive integer $n$ is a power of three if and only if its only prime factor is $3$ ($n = 3^k$ for integer $k \ge 0$).
+2. **Peeling Factors:** If $n > 1$ is a power of three, $n \pmod 3$ must be $0$, and $n / 3$ must also be a power of three.
+3. **Termination Target:** Continually dividing by $3$ must terminate at exactly $1$ ($3^0$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The `while n > 2` State Invariant
+Why loop while `n > 2` instead of `n > 0`?
+- For $n \le 2$:
+  - If $n = 1$: $3^0 = 1$, which is a valid power of three.
+  - If $n = 2$: $2$ is not divisible by $3$, so it is false.
+  - If $n = 0$: $0$ is not a power of three.
+  - If $n < 0$: Negative numbers cannot be formed from positive base $3$.
+By terminating the loop when $n \le 2$, we can simply check `return n == 1` at the end!
+This simultaneously validates $n = 1$ and rejects $n \in \{2, 0, -1, -2, \dots\}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Iteration Protocol:
+While $n > 2$:
+1. If $n \pmod 3 \ne 0$:
+   Return `False` (Contains prime factors other than 3).
+2. $n \leftarrow n // 3$.
+Return $n == 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of each iteration, all factors of 3 removed so far were exact. If $n$ was a power of 3, the current $n$ remains a power of 3.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A power of three can be peeled apart one factor at a time.
-
-For an integer input, the values that qualify are
-
-$$
-3^0=1,
-\quad 3^1=3,
-\quad 3^2=9,
-\quad 3^3=27,
-\quad \ldots
-$$
-
-Every positive power above `1` is divisible by `3`, and dividing $3^x$ by `3` produces the smaller power $3^{x-1}$. Repeating exact division must eventually reach $3^0=1$.
-
-Conversely, if at any stage a positive value greater than `2` is not divisible by `3`, it contains some factor other than the required threes. It cannot be a pure power of three. This gives the exact iterative test used by the source: while the current value is above `2`, require divisibility by `3`, divide, and continue. After the loop, accept only `1`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1162261467}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $n = 27$:
 
 ---
 
-### Step 2: Why the loop condition is `n > 2`.
-
-The values at or below `2` can be classified immediately:
-
-- `1` is $3^0$, so it is a power of three;
-- `2` is not a power of three;
-- `0` is not a power of three;
-- negative integers are not powers of positive base `3`.
-
-The loop therefore only needs to process values at least `3`. This condition also safely excludes zero. A loop written only as “while divisible by three” needs a separate positive check because zero remains zero after division and is divisible by three forever. The exact source avoids that trap because `0 > 2` is false.
-
-Once the loop ends, `return n == 1` distinguishes the one valid terminal value from `2`, zero, and negative values without additional branches.
-
-Although the definition says there exists an integer exponent $x$, a negative exponent gives a fraction such as $3^{-1}=1/3$, not a signed integer input. Thus the only relevant exponents here are nonnegative, and `1` must be included.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initial Evaluation
+- Current $n = 27$.
+- Check loop condition: $27 > 2$ (**True**).
+- Divisibility check: $27 \pmod 3 = 0$.
+  - Divisible! No foreign prime factors detected.
+- Integer division:
+  $$
+  n \leftarrow 27 // 3 = \mathbf{9}
+  $$
 
 ---
 
-### Step 3: Understand the remainder test.
+### Step 2: Second Iteration
+- Current $n = 9$.
+- Check loop condition: $9 > 2$ (**True**).
+- Divisibility check: $9 \pmod 3 = 0$.
+  - Divisible!
+- Integer division:
+  $$
+  n \leftarrow 9 // 3 = \mathbf{3}
+  $$
 
-Inside the loop, the source evaluates `if n % 3`. In Python, the remainder `0` is false, while a nonzero remainder is true. Therefore:
+---
 
-- if `n % 3 == 0`, the `if` body is skipped and exact integer division is allowed;
-- if `n % 3 != 0`, the method immediately returns `false`.
+### Step 3: Third Iteration
+- Current $n = 3$.
+- Check loop condition: $3 > 2$ (**True**).
+- Divisibility check: $3 \pmod 3 = 0$.
+  - Divisible!
+- Integer division:
+  $$
+  n \leftarrow 3 // 3 = \mathbf{1}
+  $$
 
-The following `n //= 3` is reached only after divisibility has been confirmed. As a result, floor division loses no fractional information: the mathematical quotient is already an integer.
+---
 
-For `n = 27`, the successive current values are
-
-$$
-27 \longrightarrow 9 \longrightarrow 3 \longrightarrow 1.
-$$
-
-Every remainder is zero. The loop stops at `1`, and the method returns `true`.
-
-For `n = 45`, division first gives `15`, then gives `5`. The value `5` is still greater than `2`, but `5 % 3` is nonzero, so the method returns `false`. This correctly detects the extra factor `5` in $45=3^2\cdot5$.
-
-For `n = 6`, one exact division produces `2`. The loop then stops, but the final comparison rejects `2`. This illustrates why reaching a small value is not by itself enough; the chain must end at exactly `1`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Terminal Check
+- Current $n = 1$.
+- Check loop condition: $1 > 2$ (**False**).
+- Loop terminates.
+- Evaluate return condition:
+  $$
+  n == 1 \iff 1 == 1 \implies \mathbf{\text{True}}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1162261467}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+n = 27
+Iter 1: 27 > 2 -> 27 % 3 == 0 -> n = 27 // 3 = 9
+Iter 2:  9 > 2 ->  9 % 3 == 0 -> n =  9 // 3 = 3
+Iter 3:  3 > 2 ->  3 % 3 == 0 -> n =  3 // 3 = 1
+End loop: n = 1 -> return 1 == 1 -> True
+
+n = 45
+Iter 1: 45 > 2 -> 45 % 3 == 0 -> n = 45 // 3 = 15
+Iter 2: 15 > 2 -> 15 % 3 == 0 -> n = 15 // 3 = 5
+Iter 3:  5 > 2 ->  5 % 3 == 2 != 0 -> return False!
+```
+
+| Iteration | Current $n$ | Condition $n > 2$ | Modulo Test $n \pmod 3$ | Remainder Zero? | Division Update $n //= 3$ | New $n$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 27 | True ($27 > 2$) | $27 \pmod 3 = 0$ | Yes | $27 // 3$ | 9 |
+| 2 | 9 | True ($9 > 2$) | $9 \pmod 3 = 0$ | Yes | $9 // 3$ | 3 |
+| 3 | 3 | True ($3 > 2$) | $3 \pmod 3 = 0$ | Yes | $3 // 3$ | 1 |
+| **Exit** | **1** | **False ($1 \le 2$)** | - | - | - | **$1 == 1 \implies \text{True}$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If $n$ is a power of three ($n = 3^k$), each division yields $3^{k-1}$ with zero remainder until $k = 0$, reaching $n = 1$. If $n$ contains any prime factor $p \ne 3$ (e.g. $n = 45 = 3^2 \cdot 5$), dividing out threes eventually produces a quotient not divisible by 3 (such as $5$), causing $n \pmod 3 \ne 0$ to return `False`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Nonpositive numbers ($n \le 0$) and $n = 2$ bypass the loop entirely because $n \le 2$. The final check $n == 1$ evaluates to `False` for all of them. The unique case $n = 1 = 3^0$ also bypasses the loop and returns `1 == 1` (`True`). All integers are correctly classified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Largest-power divisibility:** The greatest power of three within signed 32-bit range is $3^{19}=1162261467$. Because its only positive divisors are powers of three, `n > 0 and 1162261467 % n == 0` gives a constant-work test under this exact numeric bound. This matches the manifest summary but is not the source implementation.
-- **Repeated multiplication:** Start at `1` and multiply by `3` until reaching or passing `n`. This also takes $O(\log n)$ time and $O(1)$ space, but fixed-width languages must guard against overflow on the final multiplication.
-- **Logarithms:** Compute $\log_3 n$ and test whether it is an integer. Floating-point rounding near integral results can cause false classifications, so exact divisibility is safer.
+- **Floating-Point Logarithm Errors:** Checking `log(n, 3).is_integer()` fails due to floating-point roundoff (e.g. $\log_3(243) = 4.999999999999999$ or $\log_3(45)$ rounding issues). Exact integer arithmetic is mandatory.
+- **Infinite Loop with Zero:** Checking `while n % 3 == 0: n //= 3` creates an infinite loop when $n = 0$ because $0 \pmod 3 = 0$ and $0 // 3 = 0$. The condition `n > 2` avoids this trap.
+- **Negative Exponents:** Although $3^{-1} = 1/3$ is mathematically a power of three, the input is restricted to integer type, where only nonnegative integer powers are represented.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log_3 n)$. For a positive input $n$, each successful iteration divides it by `3`. There are at most $\lfloor\log_3 n\rfloor$ such iterations, with possibly one final failed divisibility check. The worst-case time complexity of the exact implementation is therefore $O(\log_3 n)$, commonly written $O(\log n)$. Nonpositive values and the small values `1` and `2` return in $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(\log_3 N)$. For positive $n$, each iteration reduces $n$ by a factor of 3. The loop runs at most $\lfloor \log_3 N \rfloor$ times (at most 20 iterations for 32-bit signed integers). For $n \le 2$, runtime is $O(1)$.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory using zero additional variables.

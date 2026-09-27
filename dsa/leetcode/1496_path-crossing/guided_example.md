@@ -1,130 +1,234 @@
 # Guided Example: Path Crossing
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the coordinate tracking and hash-set membership algorithm on a representative problem instance:
 
-- **Input:** `{"path": "NES"}`
-- **Required output:** `false`
+- **Input:** `path = "NESW"`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates the fundamental geometry of 2D lattice walks: starting at the origin, navigating unit directional steps, maintaining a cumulative history of visited positions, and detecting a closed loop cycle upon returning to the origin.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `path`, where $\text{path}[i] = 'N'$, `'S'`, `'E'` or `'W'`, each representing moving one unit north, south, east, or west, respectively. You start at the origin `(0, 0)` on a 2D plane and walk on the path specified by `path`.
+You start at the origin $(0, 0)$ on a 2D Cartesian plane. You are given a sequence of moves specified by the string `path`, where each character represents a unit step in one of four cardinal directions:
+- `'N'`: Move North (increment $y$, or decrement row $i$)
+- `'S'`: Move South (decrement $y$, or increment row $i$)
+- `'E'`: Move East (increment $x$, or increment col $j$)
+- `'W'`: Move West (decrement $x$, or decrement col $j$)
 
-The objective is to compute `false` from `{"path": "NES"}` while avoiding redundant calculations and unnecessary overhead.
+We must return `true` if the path crosses itself at any point—meaning you reach a coordinate you have previously visited at any earlier time—or `false` if every visited position is unique.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For `path = "NESW"`:
+- Initial position: $(0, 0)$
+- Move 1 (`'N'`): $(0, 0) \to (0, 1)$
+- Move 2 (`'E'`): $(0, 1) \to (1, 1)$
+- Move 3 (`'S'`): $(1, 1) \to (1, 0)$
+- Move 4 (`'W'`): $(1, 0) \to (0, 0)$ $\implies$ returns to the origin!
+
+A naive quadratic check compares the new coordinate against an unindexed history list in $\mathcal{O}(n^2)$ time.
+
+The optimal approach stores visited $(x, y)$ coordinate pairs in a hash set. Starting with $\{(0, 0)\}$, each step computes the next position, performs an $\mathcal{O}(1)$ average-time lookup in the set, and halts immediately with `true` upon finding a collision.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Each character maps to a 2D integer displacement vector:
+$$\Delta('N') = (0, 1), \quad \Delta('S') = (0, -1), \quad \Delta('E') = (1, 0), \quad \Delta('W') = (-1, 0)$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```
+2D Cartesian Grid Walk:
+  y ^
+    |       (0, 1) -------- [E] -------- (1, 1)
+    |         ^                            |
+    |        [N]                          [S]
+    |         |                            v
+  0 +-----> (0, 0) <------- [W] -------- (1, 0)
+    +----------------------------------------> x
+            0                            1
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Collision occurs at (0, 0) after move 4 ('W')!
+```
+
+We establish the core parameters:
+
+| Parameter | Mathematical Domain | Operational Purpose | Initial State |
+|---|---|---|---|
+| Step Index $k$ | Integer $\in [0, n-1]$ | Current character index in `path` | $0$ |
+| Direction Character $c$ | Char $\in \{'N', 'S', 'E', 'W'\}$ | Direction of active unit step | `path[0]` |
+| Coordinate Pair $(x, y)$ | $\mathbb{Z} \times \mathbb{Z}$ | Active location on 2D lattice | $(0, 0)$ |
+| Visited Registry | Hash Set of $(x, y)$ pairs | Set of all points visited from inception | $\{(0, 0)\}$ |
+| Self-Crossing Detected | Boolean | True if $(x, y) \in \text{Visited}$ | False |
+
+> **Visited Coordinate Set Invariant.** The set `vis` contains all unique coordinates visited from the start $(0, 0)$ up to the current move. A path self-intersection occurs if and only if a newly computed point $(x, y)$ is already an element of `vis`. Checking membership before insertion in $\mathcal{O}(1)$ average time guarantees immediate detection of the first cycle.
+
+```mermaid
+flowchart TD
+    accTitle: Path Crossing Detection Workflow
+    accDescr: Flowchart illustrating coordinate updates, hash set lookups, and collision detection.
+    Start([Start at origin 0, 0]) --> InitSet[Initialize visited set = 0, 0]
+    InitSet --> Loop[Read next character c from path]
+    Loop --> UpdateCoord[Update x, y according to c]
+    UpdateCoord --> CheckSet{Is x, y in visited set?}
+    CheckSet -- Yes --> ReturnTrue([Return true: Path crosses itself!])
+    CheckSet -- No --> AddSet[Add x, y to visited set]
+    AddSet --> CheckMore{More characters in path?}
+    CheckMore -- Yes --> Loop
+    CheckMore -- No --> ReturnFalse([Return false: No crossing detected])
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Representing the walk with coordinates
+### Step 0: Inception at Origin $(0, 0)$
+- Start at coordinates $(x = 0, y = 0)$.
+- Insert origin into visited registry:
+  $$\text{vis} = \{(0, 0)\}$$
 
-The walk begins at the origin. The stored solution uses two integers, `i` and `j`, to represent the current grid location. Here `i` acts like a row coordinate and `j` like a column coordinate:
-
-- North decreases `i` by one.
-- South increases `i` by one.
-- East increases `j` by one.
-- West decreases `j` by one.
-
-Using north as negative rather than positive does not change the geometry. It merely chooses screen-style row coordinates instead of a conventional upward-positive Cartesian y-axis. Opposite directions still cancel each other, every instruction moves exactly one unit, and equal coordinate pairs still mean equal physical locations.
-
-The code uses Python structural pattern matching to translate each path character into one coordinate update. The input contract guarantees that every character is one of the four listed directions, so no default case is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"path": "NES"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Parameter | State at Inception |
+|---|---|
+| Active Coordinates | $(0, 0)$ |
+| Visited Hash Set | $\{(0, 0)\}$ |
+| Self-Crossing Detected | False |
 
 ---
 
-### Step 2: Why a set detects crossing
+### Step 1: Move 1 — Direction `'N'`
+- Read character `path[0] = 'N'`.
+- Apply North displacement $\Delta(0, 1)$:
+  $$(x, y) = (0, 0 + 1) = (0, 1)$$
+- Check membership: Is $(0, 1) \in \text{vis}$?
+  - $\text{vis} = \{(0, 0)\}$.
+  - $(0, 1)$ is not in $\text{vis}$.
+- Add $(0, 1)$ to $\text{vis}$:
+  $$\text{vis} = \{(0, 0), (0, 1)\}$$
 
-The set `vis` contains every coordinate occupied so far. It is initialized as `{(0, 0)}` before any instruction is processed because the starting location counts as visited. This detail is essential: a path that leaves the origin and later returns to it crosses itself even if no post-move location was repeated before that return.
-
-After applying one movement, the code checks `if (i, j) in vis`. If the pair is present, the walk has arrived at a location occupied at an earlier time, which is exactly the definition of crossing in this problem. It returns true immediately because later instructions cannot undo the fact that a crossing already occurred.
-
-If the new coordinate has not appeared, `vis.add((i, j))` records it before the next move. When the loop completes without a repeated pair, the method returns false.
-
-Python tuples are immutable and hashable, so a coordinate tuple can be stored directly in a set. The set compares both components, distinguishing positions that share only one coordinate.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Parameter | State Before Move | Displacement Applied | State After Move |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Position $(x, y)$ | $(0, 0)$ | Move North: $+1$ to $y$ | $(0, 1)$ |
+| Set Membership Test | $\text{vis} = \{(0, 0)\}$ | $(0, 1) \in \text{vis} \implies$ False | Point novel |
+| Visited Registry | $1$ element | Add $(0, 1)$ | $2$ elements |
 
 ---
 
-### Step 3: The invariant after every instruction
+### Step 2: Move 2 — Direction `'E'`
+- Read character `path[1] = 'E'`.
+- Apply East displacement $\Delta(1, 0)$:
+  $$(x, y) = (0 + 1, 1) = (1, 1)$$
+- Check membership: Is $(1, 1) \in \text{vis}$?
+  - $\text{vis} = \{(0, 0), (0, 1)\}$.
+  - $(1, 1)$ is not in $\text{vis}$.
+- Add $(1, 1)$ to $\text{vis}$:
+  $$\text{vis} = \{(0, 0), (0, 1), (1, 1)\}$$
 
-After processing any prefix of the path without returning, two facts hold:
-
-1. `(i, j)` is the location reached by executing exactly that prefix.
-2. `vis` contains precisely the origin and every location reached after each move in that prefix, with no duplicates.
-
-Both facts are true before the loop: the empty prefix ends at the origin and the set contains only the origin. For the next character, the matching case applies the correct unit displacement, so the coordinate becomes the endpoint of the extended prefix.
-
-If that endpoint is already in `vis`, the algorithm correctly reports a crossing. Otherwise, inserting it preserves the exact visited-location set and its uniqueness. This induction covers the entire path.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Parameter | State Before Move | Displacement Applied | State After Move |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+| Position $(x, y)$ | $(0, 1)$ | Move East: $+1$ to $x$ | $(1, 1)$ |
+| Set Membership Test | $2$ elements in set | $(1, 1) \in \text{vis} \implies$ False | Point novel |
+| Visited Registry | $2$ elements | Add $(1, 1)$ | $3$ elements |
+
+---
+
+### Step 3: Move 3 — Direction `'S'`
+- Read character `path[2] = 'S'`.
+- Apply South displacement $\Delta(0, -1)$:
+  $$(x, y) = (1, 1 - 1) = (1, 0)$$
+- Check membership: Is $(1, 0) \in \text{vis}$?
+  - $\text{vis} = \{(0, 0), (0, 1), (1, 1)\}$.
+  - $(1, 0)$ is not in $\text{vis}$.
+- Add $(1, 0)$ to $\text{vis}$:
+  $$\text{vis} = \{(0, 0), (0, 1), (1, 1), (1, 0)\}$$
+
+| Parameter | State Before Move | Displacement Applied | State After Move |
+|---|---|---|---|
+| Position $(x, y)$ | $(1, 1)$ | Move South: $-1$ to $y$ | $(1, 0)$ |
+| Set Membership Test | $3$ elements in set | $(1, 0) \in \text{vis} \implies$ False | Point novel |
+| Visited Registry | $3$ elements | Add $(1, 0)$ | $4$ elements |
+
+---
+
+### Step 4: Move 4 — Direction `'W'` (Collision Detected!)
+- Read character `path[3] = 'W'`.
+- Apply West displacement $\Delta(-1, 0)$:
+  $$(x, y) = (1 - 1, 0) = (0, 0)$$
+- Check membership: Is $(0, 0) \in \text{vis}$?
+  - $\text{vis} = \{(0, 0), (0, 1), (1, 1), (1, 0)\}$.
+  - Coordinate $(0, 0)$ is already present in $\text{vis}$!
+- Collision confirmed: the path has crossed itself by returning to the starting point.
+- The algorithm halts immediately and returns `true`.
+
+| Parameter | State Before Move | Displacement Applied | State After Move |
+|---|---|---|---|
+| Position $(x, y)$ | $(1, 0)$ | Move West: $-1$ to $x$ | $(0, 0)$ |
+| Set Membership Test | $4$ elements in set | $(0, 0) \in \text{vis} \implies$ **True** | **Collision detected!** |
+| Execution State | Active | Early exit triggered | Return `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"path": "NES"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+The table below summarizes all moves and state transitions:
+
+| Step $k$ | Move Char | Prior $(x, y)$ | Displacement $(\Delta x, \Delta y)$ | New $(x, y)$ | In Visited Set? | Visited Set Size After Move | Action / Result |
+|---|---|---|---|---|---|---|---|
+| Initial | - | - | - | $(0, 0)$ | N/A (Start) | $1$ | Seed origin |
+| 1 | `'N'` | $(0, 0)$ | $(0, +1)$ | $(0, 1)$ | No | $2$ | Added $(0, 1)$ |
+| 2 | `'E'` | $(0, 1)$ | $(+1, 0)$ | $(1, 1)$ | No | $3$ | Added $(1, 1)$ |
+| 3 | `'S'` | $(1, 1)$ | $(0, -1)$ | $(1, 0)$ | No | $4$ | Added $(1, 0)$ |
+| 4 | `'W'` | $(1, 0)$ | $(-1, 0)$ | $(0, 0)$ | **Yes** | $4$ | **Collision! Return `true`** |
+
+Final algorithm decision:
+$$\text{isPathCrossing} = \text{true}$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. By mathematical definition of a walk on $\mathbb{Z}^2$, a path crosses itself if and only if there exist distinct indices $i < j$ such that the coordinate at step $i$ equals the coordinate at step $j$.
+2. The hash set stores every coordinate visited at steps $0, 1, \dots, j-1$.
+3. When step $j$ evaluates $(x, y) \in \text{vis}$, a match proves the existence of a prior step $i < j$ with the exact same coordinate.
+4. Hence, returning `true` upon membership detection is sound.
+
+### Completeness
+
+The algorithm updates coordinates deterministically for every character in `path`. If no coordinate is repeated throughout the entire string, the loop finishes without collision and returns `false`. All possible intersections are evaluated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **List of visited coordinates:** It is correct but membership is linear, causing $O(N^2)$ worst-case time.
-- **Boolean grid:** An offset grid can give direct lookup, but a square covering all possible coordinates consumes $O(N^2)$ space even though the path visits only $O(N)$ locations.
-- **Complex-number coordinates:** Directions can be mapped to complex displacements and positions stored in a set. It is concise but may be less beginner-friendly than integer pairs.
-- **Return to origin:** This is detected only because the origin is inserted before processing the first move.
-- **Immediate reversal:** Paths such as `NS` revisit the origin on the second step and return true.
-- **Repeated edge:** Traversing an old edge in reverse necessarily revisits its endpoint, so the set detects it.
-- **Straight path:** Every coordinate is new, and the method returns false after the loop.
-- **North sign convention:** Decreasing the first coordinate is arbitrary but consistent; crossing detection depends on equality, not orientation.
-- **Single instruction:** It reaches one new neighboring point and cannot cross under the valid-direction contract.
-- **Invalid direction character:** The match would make no movement and could cause a false repeat, but such characters are explicitly excluded.
-- **Python version:** The `match` statement requires Python 3.10 or newer.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Trap 1: Omitting the Initial Origin $(0, 0)$
+If the visited set is initially empty $\emptyset$ instead of containing $\{(0, 0)\}$, returning to the origin on move 4 would not trigger a collision, erroneously returning `false` for `"NESW"`. The origin must be inserted before processing the first move.
+
+### Trap 2: Inverted Directional Axes
+Confusing row-column matrix indexing with Cartesian coordinate axes is a frequent pitfall. In matrix terms, North is row $-1$ and South is row $+1$, whereas in Cartesian coordinates North is $y + 1$ and South is $y - 1$. As long as directions are orthogonal and signs are mutually inverse, the lattice topology is preserved, but mixing conventions produces incorrect coordinates.
+
+### Trap 3: Linear Membership Overhead
+Using an array or list to store history takes $\mathcal{O}(k)$ time to search at step $k$. Across a path of length $n = 10^4$, this requires $\approx 5 \times 10^7$ comparisons. A hash set executes lookups in $\mathcal{O}(1)$ average time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the path length. Each character is processed once. Direction matching, integer updates, tuple construction, expected set membership, and expected set insertion take constant time, giving expected $O(N)$ total time.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- At each of the $n$ moves, the algorithm performs:
+  - Coordinate addition/subtraction: $\mathcal{O}(1)$.
+  - Hash set membership query: $\mathcal{O}(1)$ average.
+  - Hash set insertion: $\mathcal{O}(1)$ average.
+- The path has length $n$.
+- Total time complexity:
+$$\mathcal{O}(n)$$
+For $n = 10^4$, this executes in under $5\text{ ms}$.
+
+### Auxiliary Space Complexity
+
+- The hash set stores at most $n + 1$ unique coordinate tuples $(x, y)$.
+- Each coordinate tuple occupies $\mathcal{O}(1)$ scalar storage.
+- Total auxiliary space complexity:
+$$\mathcal{O}(n)$$
+For $n = 10^4$, the set consumes less than $1\text{ MB}$ of memory.

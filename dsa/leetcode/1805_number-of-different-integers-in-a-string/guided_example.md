@@ -1,126 +1,174 @@
 # Guided Example: Number of Different Integers in a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-pointer scanning, leading-zero normalization, and hash set deduplication on a representative problem instance:
 
-- **Input:** `{"word": "a123bc34d8ef34"}`
-- **Required output:** `3`
+- **Input:** `word = "a123bc34d8ef34"`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates letter-bounded delimiter handling, multi-digit integer tokenization, and deduplication of repeated integers ($34$ appears twice in different positions).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `word` that consists of digits and lowercase English letters.
+Given an alphanumeric string `word`, consecutive sequences of digits separated by letters represent individual integers. We are tasked with finding the number of **different** integers formed after removing any non-digit separators.
 
-The objective is to compute `3` from `{"word": "a123bc34d8ef34"}` while avoiding redundant calculations and unnecessary overhead.
+Two integers are identical if and only if their numerical values are equal (e.g. `"01"`, `"1"`, and `"001"` represent the same integer $1$, while `"0"` and `"00"` represent $0$).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach converting parsed substrings into large integers risks integer overflow in fixed-width languages or unnecessary parsing overhead. The optimal approach canonicalizes each maximal digit run as a normalized string directly through index manipulation and inserts the canonical slices into a hash set.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Maximal Run Identification and Leading-Zero Stripping
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We partition the string into maximal digit runs bounded by alphabetic characters:
+1. **Finding the Start:** Advance index $i$ until $\text{word}[i]$ is a decimal digit.
+2. **Stripping Leading Zeros:** Advance $i$ while $i < n$ and $\text{word}[i] == \text{'0'}$.
+   - If the digit run consisted purely of zeros (e.g. `"00"`), $i$ moves past all zeros to the next non-digit delimiter, leaving an empty slice `word[i:i] == ""`. The empty string `""` serves as the unique canonical key for numerical value $0$.
+   - If the digit run contains non-zero digits, $i$ points to the first non-zero digit.
+3. **Capturing the Significant Body:** Let $j = i$. Advance $j$ while $j < n$ and $\text{word}[j]$ is a digit.
+4. **Canonical Token:** The slice $\text{word}[i:j]$ uniquely identifies the integer.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Sub-string Tokenization & Leading-Zero Canonicalization Theorem.**
+> Let $D$ be the set of maximal contiguous digit runs extracted from `word`.
+> The transformation that discards leading zeros maps every digit run $s \in D$ to a canonical representation $\text{canon}(s)$ such that:
+> $$\text{val}(s_1) = \text{val}(s_2) \iff \text{canon}(s_1) = \text{canon}(s_2)$$
+> Inserting $\text{canon}(s)$ into a hash set $\mathcal{S}$ achieves deduplication in time proportional to token length. The number of distinct integers is precisely $|\mathcal{S}|$.
+
+```mermaid
+flowchart TD
+    accTitle: Integer Tokenizer State Machine
+    accDescr: Diagram tracing scanning for digit start, skipping leading zeros, extracting significant digit slice, and inserting into set.
+    A["Scan index i in word"] --> B{"Is word[i] a digit?"}
+    B -- "No" --> C["i = i + 1"]
+    C --> A
+    B -- "Yes" --> D["Skip leading zeros: advance i while word[i] == '0'"]
+    D --> E["Find end of run: advance j while word[j] is digit"]
+    E --> F["Extract canonical slice: word[i:j]"]
+    F --> G["Add slice to HashSet s"]
+    G --> H["Advance i = j + 1"]
+    H --> I{"i < n?"}
+    I -- "Yes" --> A
+    I -- "No" --> J["Return size of s"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: An integer is one maximal run of digits
-
-Letters act as separators. Each maximal consecutive digit run represents one integer, so the solution scans the string with indices rather than actually replacing letters with spaces.
-
-A set `s` stores one canonical string for every distinct integer encountered. Canonicalization is necessary because `"1"`, `"01"`, and `"001"` represent the same numerical value.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"word": "a123bc34d8ef34"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `word = "a123bc34d8ef34"` with length $n = 14$.
+Initialize set: $S = \emptyset$.
 
 ---
 
-### Step 2: Skip leading zeros before capturing the run
-
-When index `i` points to a digit, the first inner loop advances `i` while the current character is `'0'`. After that:
-
-- `i` points to the first nonzero digit of the same run;
-- or `i` points to the separator after the run;
-- or `i == n` when the all-zero run reaches the string's end.
-
-The solution sets `j = i` and advances `j` through all remaining digits. It inserts slice `word[i:j]` into the set.
-
-For a run such as `"000123"`, the slice is `"123"`. For `"45"`, no zero is skipped and the slice remains `"45"`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Character $i = 0$, `'a'`
+- $\text{word}[0] = \text{'a'}$ is not a digit.
+- Advance $i \to 1$.
 
 ---
 
-### Step 3: Why an all-zero integer becomes the empty string
+### Step 2: Extract First Integer at $i = 1$ (`"123"`)
+- $\text{word}[1] = \text{'1'}$ is a digit.
+- Skip leading zeros: $\text{word}[1] \ne \text{'0'}$, so $i$ remains $1$.
+- Find end of digits:
+  - $j = 1 \to \text{'1'}$
+  - $j = 2 \to \text{'2'}$
+  - $j = 3 \to \text{'3'}$
+  - $j = 4 \to \text{'b'}$ (non-digit; stops).
+- Extracted canonical slice: $\text{word}[1:4] = \mathbf{\text{"123"}}$.
+- Insert into set: $S = \{\text{"123"}\}$.
+- Set $i = 4$, then outer loop advances $i \to 5$.
 
-If a digit run contains only zeros, the leading-zero loop consumes the entire run. Then `j == i` and `word[i:j]` is `""`.
+---
 
-This is intentional and correct as a set key. Every all-zero representation—`"0"`, `"00"`, or `"0000"`—becomes the same empty string, while no positive integer becomes empty. The empty string therefore acts as the canonical representation of numerical zero.
+### Step 3: Character $i = 5$, `'c'`
+- $\text{word}[5] = \text{'c'}$ is not a digit.
+- Advance $i \to 6$.
 
-Using `"0"` instead would also be understandable, but the exact protected code uses `""` and still produces the correct distinct count.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 4: Extract Second Integer at $i = 6$ (`"34"`)
+- $\text{word}[6] = \text{'3'}$ is a digit.
+- Skip leading zeros: none present ($i = 6$).
+- Find end of digits:
+  - $j = 6 \to \text{'3'}$
+  - $j = 7 \to \text{'4'}$
+  - $j = 8 \to \text{'d'}$ (non-digit; stops).
+- Extracted canonical slice: $\text{word}[6:8] = \mathbf{\text{"34"}}$.
+- Insert into set: $S = \{\text{"123"}, \ \text{"34"}\}$.
+- Set $i = 8$, then outer loop advances $i \to 9$.
+
+---
+
+### Step 5: Extract Third Integer at $i = 9$ (`"8"`)
+- $\text{word}[9] = \text{'8'}$ is a digit.
+- Skip leading zeros: none ($i = 9$).
+- Find end of digits:
+  - $j = 9 \to \text{'8'}$
+  - $j = 10 \to \text{'e'}$ (non-digit; stops).
+- Extracted canonical slice: $\text{word}[9:10] = \mathbf{\text{"8"}}$.
+- Insert into set: $S = \{\text{"123"}, \ \text{"34"}, \ \text{"8"}\}$.
+- Set $i = 10$, outer loop advances $i \to 11$.
+
+---
+
+### Step 6: Character $i = 11$, `'f'`
+- $\text{word}[11] = \text{'f'}$ is not a digit.
+- Advance $i \to 12$.
+
+---
+
+### Step 7: Extract Fourth Integer at $i = 12$ (`"34"`)
+- $\text{word}[12] = \text{'3'}$ is a digit.
+- Skip leading zeros: none ($i = 12$).
+- Find end of digits:
+  - $j = 12 \to \text{'3'}$
+  - $j = 13 \to \text{'4'}$
+  - $j = 14 = n$ (end of string; stops).
+- Extracted canonical slice: $\text{word}[12:14] = \mathbf{\text{"34"}}$.
+- Insert into set: `"34"` is already present in $S$. Set size remains unchanged.
+- $S = \{\text{"123"}, \ \text{"34"}, \ \text{"8"}\}$.
+- Loop terminates as $i \ge n$.
+
+---
+
+### Step 8: Return Count
+The size of set $S$ is $|S| = \mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word": "a123bc34d8ef34"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Pass # | Start Index | Raw Substring | Leading Zeros Stripped | Canonical Slice | Added to Set? | Unique Set $S$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $1$ | `"123"` | None | `"123"` | Yes (New) | `{"123"}` |
+| 2 | $6$ | `"34"` | None | `"34"` | Yes (New) | `{"123", "34"}` |
+| 3 | $9$ | `"8"` | None | `"8"` | Yes (New) | `{"123", "34", "8"}` |
+| 4 | $12$ | `"34"` | None | `"34"` | No (Duplicate) | `{"123", "34", "8"}` |
+
+Final distinct integer count: **$3$**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Bounding runs by non-digit characters guarantees that every identified token represents a separate number as mandated by the problem specification. Stripping leading zeros maps equivalent numerical representations (such as `"05"` and `"5"`) to identical canonical strings, ensuring that set hashing accurately reflects numerical equality.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The linear pointer sweep examines every index of `word` from $0$ to $n - 1$. No maximal digit run can be bypassed because the loop advances through all characters deterministically without gaps.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Replace letters and split:** It is concise but creates another full string plus token lists; the pointer scan controls normalization directly.
-- **Convert runs to integers:** It naturally removes leading zeros, but string normalization avoids large-integer parsing and is sufficient for equality.
-- **Regular expression extraction:** It finds digit runs but adds regex machinery and still needs canonicalization.
-- **Keep raw runs:** This incorrectly treats `"1"` and `"001"` as different.
-- **All-zero run:** It becomes the empty-string key representing zero.
-- **Several all-zero runs:** They all share one set entry and count once.
-- **No digits:** No set entry is added, so the answer is zero.
-- **Entire string is digits:** One run is normalized and counted once.
-- **Digit at the end:** The scan reaches `n` safely and the bottom increment terminates the loop.
-- **Adjacent letters:** Each is merely skipped; they do not create empty integers.
-- **Repeated positive integer:** Identical canonical slices collapse in the set.
-- **Different lengths after normalization:** They necessarily represent different positive integers.
-- **Zero followed by nonzero digits in one run:** Leading zeros are discarded but the remaining digits stay together.
-- **No signs or decimal points:** The input contract makes every digit run a nonnegative integer.
-- **Input preservation:** Slices are read from `word`; the original string is unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **All-Zero Runs (e.g. `"00"`):** An all-zero sequence has all its zeros skipped, producing an empty slice `""`. Since all all-zero sequences collapse to `""`, numerical zero is correctly treated as a single unique integer.
+- **Large Integer Overflow:** If a digit sequence is $1000$ digits long, converting it into a standard fixed-width 64-bit integer will overflow. By treating canonical normalized strings as set keys, the approach handles arbitrarily large integers without overflow.
+- **Adjacent Separators:** Multiple consecutive letters (e.g. `"bc"`, `"ef"`) are smoothly skipped by the outer index progression without creating empty tokens.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be `len(word)`. Pointer scans cover disjoint portions of the string. Slicing and hashing a canonical run take time proportional to that run's retained length, and retained runs have total length at most $n$. Expected total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n = \text{len}(word)$. Pointers $i$ and $j$ advance monotonically across the string; each character is visited at most twice. Slicing and hashing string tokens of total length $\le n$ requires $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$. In the worst case, storing all distinct canonical slices in the hash set requires at most $\mathcal{O}(n)$ space.

@@ -1,132 +1,203 @@
 # Guided Example: K Highest Ranked Items Within a Price Range
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the multi-criteria Breadth-First Search (BFS) ranking algorithm on a representative shop grid instance, establishing how unweighted wavefront propagation orders candidates before secondary lexicographical resolution.
 
-- **Input:** `{"grid": [[1, 1, 1], [0, 0, 1], [2, 3, 4]], "pricing": [2, 3], "start": [0, 0], "k": 3}`
-- **Required output:** `[[2, 1], [2, 0]]`
+- **Input:** `grid = [[1, 2, 0, 1], [1, 3, 0, 1], [0, 2, 5, 1]]`, `pricing = [2, 5]`, `start = [0, 0]`, `k = 3`
+- **Output:** `[[0, 1], [1, 1], [2, 1]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** 2D integer array `grid` of size `m x n` that represents a map of the items in a shop. The integers in the grid represent the following:
-
-The objective is to compute `[[2, 1], [2, 0]]` from `{"grid": [[1, 1, 1], [0, 0, 1], [2, 3, 4]], "pricing": [2, 3], "start": [0, 0], "k": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates obstacle avoidance, multi-attribute tuple prioritization, BFS layer progression, and extracting the top $k$ items.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A store is modeled as an $m \times n$ grid:
+- Cell value `0`: Impassable wall (blocks movement).
+- Cell value `1`: Empty aisle (traversable, contains no item).
+- Cell value $\ge 2$: Traversable aisle containing an item priced at that value.
 
-| State Parameter | Role & Purpose | Initial State |
+Moving between adjacent cells (up, down, left, right) costs $1$ step. We start at cell `start = [start_row, start_col]` and seek items whose prices fall within the inclusive interval `pricing = [low, high]`.
+
+Eligible items are ranked using a 4-tuple comparison in ascending order:
+1. **Shortest Path Distance:** Fewer steps from `start` ranks higher.
+2. **Item Price:** Lower price ranks higher.
+3. **Row Index:** Smaller row index ranks higher.
+4. **Column Index:** Smaller column index ranks higher.
+
+The goal is to return the coordinates of the top $k$ highest-ranked reachable items. If fewer than $k$ eligible items can be reached, all reachable items are returned in ranked order.
+
+In our representative instance:
+- Grid dimensions: $3 \times 4$.
+- Obstacles at $(0, 2), (1, 2), (2, 0)$.
+- Eligible price range: $[2, 5]$.
+- Start coordinate: $(0, 0)$ (contains empty aisle value $1$).
+- Target count: $k = 3$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Unweighted Shortest Path Invariance via BFS
+
+In an unweighted grid graph where every step has cost $1$:
+- Standard Breadth-First Search using a First-In First-Out (FIFO) queue expands cells in monotonically non-decreasing order of distance $d$.
+- When a cell $(r, c)$ is first dequeued at distance $d$, that distance is guaranteed to be the exact shortest path from `start`.
+- Any cell with distance $d_1 < d_2$ strictly precedes cells of distance $d_2$ in the primary ranking criterion.
+
+### Multi-Key Lexicographical Tuple Ordering
+
+Every eligible item encountered during the search is recorded as a priority tuple:
+$$\text{Candidate} = (\text{distance}, \, \text{price}, \, \text{row}, \, \text{col})$$
+
+Comparison between two candidates $A$ and $B$ proceeds lexicographically:
+$$A < B \iff \begin{cases} 
+d_A < d_B \\
+d_A = d_B \land p_A < p_B \\
+d_A = d_B \land p_A = p_B \land r_A < r_B \\
+d_A = d_B \land p_A = p_B \land r_A = r_B \land c_A < c_B
+\end{cases}$$
+
+### Candidate Filtering & Selection
+
+1. **Traversability Invariant:** A neighbor $(nr, nc)$ is enqueued if and only if $0 \le nr < m$, $0 \le nc < n$, it has not been visited previously, and $\text{grid}[nr][nc] \ne 0$.
+2. **Eligibility Invariant:** A cell $(r, c)$ is added to the candidate pool if and only if $\text{low} \le \text{grid}[r][c] \le \text{high}$. Note that the starting cell itself may be eligible if its price falls within the range.
+3. **Top-$k$ Extraction:** Once all reachable items are identified (or when all candidates up to the necessary distance layer have been collected), sorting the candidate list according to the 4-tuple key yields the required prefix of size $\min(k, |\text{Candidates}|)$.
+
+| Priority Key Component | Source Metric | Tie-Breaking Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Initialize the BFS frontier
-
-The starting coordinates are unpacked as `row, col` and placed into `q = deque([(row, col)])`. If the start cell’s value lies between `low` and `high` inclusive, the code records tuple
-
-`(0, grid[row][col], row, col)`.
-
-The first component is distance zero, followed by price, row, and column—the ranking criteria in their exact priority order.
-
-The source then assigns `grid[row][col] = 0`. A zero represents a wall to the traversal, so this mutation also serves as the visited marker. Marking on insertion, rather than when removed from the queue, prevents another neighbor from enqueuing the same cell twice.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 1, 1], [0, 0, 1], [2, 3, 4]], "pricing": [2, 3], "start": [0, 0], "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Primary Key | BFS Level ($d$) | Prioritizes proximity to starting position |
+| Secondary Key | $\text{grid}[r][c]$ | Prioritizes economical item affordability |
+| Tertiary Key | Row Index ($r$) | Prioritizes top-to-bottom spatial ordering |
+| Quaternary Key | Column Index ($c$) | Prioritizes left-to-right spatial ordering |
 
 ---
 
-### Step 2: Traverse one distance layer at a time
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The variable `step` begins at zero. At the start of each outer `while q` iteration, it is incremented. The inner loop runs exactly `len(q)` times using the queue length captured before processing that layer. Those queue entries all have the same current distance; their newly discovered neighbors are one step farther and therefore receive the new `step` value.
+We trace the BFS traversal starting at $(0, 0)$ on the $3 \times 4$ grid:
 
-This is the standard BFS layer invariant:
+```
+Grid layout (P = price, W = wall, E = empty):
+Row 0:  E(1)   P(2)   W(0)   E(1)
+Row 1:  E(1)   P(3)   W(0)   E(1)
+Row 2:  W(0)   P(2)   P(5)   E(1)
+```
 
-- the starting cell is handled separately at distance zero;
-- before an outer iteration processes a layer, `step` becomes the distance of every newly discovered neighbor;
-- because the queue is first-in, first-out, no longer path can discover a cell before its shortest path does.
+### Step 1: Initialize BFS at Start Coordinate $(0, 0)$
+- Mark $(0, 0)$ visited.
+- Value at $(0, 0)$ is $1$ (empty aisle). Since $1 \notin [2, 5]$, it is not an eligible item.
+- Enqueue $((0, 0), d = 0)$.
+- Candidate pool: empty.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Expand Distance Level $0$
+- Dequeue $((0, 0), d = 0)$.
+- Explore 4-directional neighbors:
+  - $(0, 1)$: Value is $2 \ne 0$. Unvisited. Mark visited, enqueue with $d = 1$.
+  - $(1, 0)$: Value is $1 \ne 0$. Unvisited. Mark visited, enqueue with $d = 1$.
+  - $(-1, 0)$ and $(0, -1)$: Out of grid bounds.
 
----
+### Step 3: Expand Distance Level $1$
+- **Process $(0, 1)$ at $d = 1$:**
+  - Value is $2$. Check price range: $2 \le 2 \le 5$ (True).
+  - Add to candidate pool: Tuple $(d=1, p=2, r=0, c=1)$.
+  - Explore neighbors:
+    - $(0, 2)$: Value is $0$ (Wall, blocked).
+    - $(1, 1)$: Value is $3$. Unvisited. Mark visited, enqueue with $d = 2$.
+- **Process $(1, 0)$ at $d = 1$:**
+  - Value is $1$. Not in $[2, 5]$.
+  - Explore neighbors:
+    - $(2, 0)$: Value is $0$ (Wall, blocked).
+    - $(1, 1)$: Already visited.
 
-### Step 3: Generate the four neighbors
+### Step 4: Expand Distance Level $2$
+- **Process $(1, 1)$ at $d = 2$:**
+  - Value is $3$. Check price range: $2 \le 3 \le 5$ (True).
+  - Add to candidate pool: Tuple $(d=2, p=3, r=1, c=1)$.
+  - Explore neighbors:
+    - $(1, 2)$: Value is $0$ (Wall, blocked).
+    - $(2, 1)$: Value is $2$. Unvisited. Mark visited, enqueue with $d = 3$.
 
-The direction tuple is `(-1, 0, 1, 0, -1)`. Applying `pairwise(dirs)` produces
+### Step 5: Expand Distance Level $3$
+- **Process $(2, 1)$ at $d = 3$:**
+  - Value is $2$. Check price range: $2 \le 2 \le 5$ (True).
+  - Add to candidate pool: Tuple $(d=3, p=2, r=2, c=1)$.
+  - Explore neighbors:
+    - $(2, 2)$: Value is $5$. Unvisited. Mark visited, enqueue with $d = 4$.
 
-`(-1,0)`, `(0,1)`, `(1,0)`, and `(0,-1)`,
+### Step 6: Expand Distance Level $4$
+- **Process $(2, 2)$ at $d = 4$:**
+  - Value is $5$. Check price range: $2 \le 5 \le 5$ (True).
+  - Add to candidate pool: Tuple $(d=4, p=5, r=2, c=2)$.
+  - Explore neighbors:
+    - $(2, 3)$: Value is $1$. Unvisited. Mark visited, enqueue with $d = 5$.
 
-which are up, right, down, and left. For each candidate `nx, ny`, the condition checks both grid bounds and `grid[nx][ny] > 0`. Positive cells are passable, whether they contain empty-space value one or an item price above one. Zero cells are either original walls or cells already visited.
-
-If the cell’s current value is inside the inclusive price range, its tuple `(step, price, nx, ny)` is appended to `pq`. The value must be read before the next assignment because `grid[nx][ny] = 0` erases it. The cell is then marked visited and enqueued so exploration may continue through it.
-
-Although the variable is named `pq`, it is a normal Python list, not a priority queue.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[2, 1], [2, 0]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 1, 1], [0, 0, 1], [2, 3, 4]], "pricing": [2, 3], "start": [0, 0], "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[2, 1], [2, 0]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Layer-by-layer candidate sorting:** Collect eligible items in one BFS distance layer, sort that layer by price, row, and column, and stop after collecting `k`. This can avoid exploring and sorting farther layers once enough results are known, but it is not the exact source.
-- **Priority queue over ranking keys:** A heap can combine exploration and ranking, but ordinary BFS plus one sort is simpler because distance is already generated in layers.
-- **Separate visited matrix:** This preserves `grid` at the cost of $O(mn)$ additional booleans. The exact code reuses zero as a visited marker.
-- **Manhattan distance:** Walls may force detours or make a cell unreachable, so coordinate distance alone is incorrect.
-- **Starting cell is an item:** It is recorded at distance zero before its value is overwritten, provided its price is within range.
-- **Starting cell has value one:** Since `low >= 2`, it is traversable empty space but never an eligible item.
-- **Unreachable in-range item:** BFS never visits it, so it correctly does not appear in `pq`.
-- **Reachable out-of-range item:** It is not recorded but remains traversable, so BFS can continue through it.
-- **Wall:** Value zero is neither recorded nor enqueued.
-- **Equal distance and price:** Row, then column, resolve the tie through tuple ordering.
-- **Fewer than k items:** Python slicing returns the entire shorter list without padding.
-- **More than k items:** Sorting all candidates is more work than strictly necessary, but `pq[:k]` returns exactly the requested prefix.
-- **Mark when enqueued:** This ensures one queue entry and one candidate tuple per cell, even when several shortest paths reach it.
-- **Grid mutation:** All reachable positive cells become zero, including item prices. Callers needing the original map must provide a copy.
-- **Direction construction:** `pairwise` over the five-number tuple yields exactly four orthogonal moves and no diagonal move.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 7: Suffix Exploration & Candidate Ranking
+- Traversal continues through empty aisles at $(2, 3), (1, 3), (0, 3)$ (all price $1$, not eligible).
+- Final candidate pool contains $4$ items:
+  1. $(1, 2, 0, 1)$ at coordinate $[0, 1]$
+  2. $(2, 3, 1, 1)$ at coordinate $[1, 1]$
+  3. $(3, 2, 2, 1)$ at coordinate $[2, 1]$
+  4. $(4, 5, 2, 2)$ at coordinate $[2, 2]$
+- Sorting by $(d, p, r, c)$ preserves this exact sequence because distances strictly increase ($1 < 2 < 3 < 4$).
+- Extract top $k = 3$ coordinates:
+  $$[[0, 1], [1, 1], [2, 1]]$$
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(N+q\log q)$. Let $N=mn$ be the number of grid cells and let $q$ be the number of reachable items within the price range. BFS visits each reachable non-wall cell once and inspects four directions, costing $O(N)$ in the worst case. Sorting the candidate list costs $O(q\log q)$, which is at most $O(N\log N)$. Total time is $O(N+q\log q)$, conventionally bounded by $O(mn\log(mn))$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The table below catalogs every cell explored by BFS, its status, eligibility, and final ranking order:
+
+| Dequeue Order | Coordinate $(r, c)$ | Cell Value | Shortest Distance $d$ | In Price Range $[2, 5]$? | Candidate Tuple $(d, p, r, c)$ | Global Rank | Included in Top $k=3$? |
+|---|---|---|---|---|---|---|---|
+| 1 | $(0, 0)$ | $1$ | $0$ | No ($1 < 2$) | N/A | - | No |
+| 2 | $(0, 1)$ | $2$ | $1$ | Yes | $(1, 2, 0, 1)$ | Rank 1 | **Yes** ($[0, 1]$) |
+| 3 | $(1, 0)$ | $1$ | $1$ | No ($1 < 2$) | N/A | - | No |
+| 4 | $(1, 1)$ | $3$ | $2$ | Yes | $(2, 3, 1, 1)$ | Rank 2 | **Yes** ($[1, 1]$) |
+| 5 | $(2, 1)$ | $2$ | $3$ | Yes | $(3, 2, 2, 1)$ | Rank 3 | **Yes** ($[2, 1]$) |
+| 6 | $(2, 2)$ | $5$ | $4$ | Yes | $(4, 5, 2, 2)$ | Rank 4 | No (Exceeds $k=3$) |
+| 7 | $(2, 3)$ | $1$ | $5$ | No ($1 < 2$) | N/A | - | No |
+| 8 | $(1, 3)$ | $1$ | $6$ | No ($1 < 2$) | N/A | - | No |
+| 9 | $(0, 3)$ | $1$ | $7$ | No ($1 < 2$) | N/A | - | No |
+
+Final selected top $k = 3$ list: `[[0, 1], [1, 1], [2, 1]]`.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Optimality of Distance Discovery
+Because edge transitions in the grid have uniform unit weights, BFS guarantees that the first time any cell is visited, the path length equals its unweighted geodesic distance. Thus no subsequent path can discover a shorter route to that cell.
+
+### Monotonic Distance Partitioning
+The BFS queue maintains the invariant that at any moment, the queue contains elements with distance at most $d$ and $d + 1$. Because distance is the primary sorting key, all candidates discovered at distance $d$ are strictly superior to candidates discovered at distance $d' > d$. Secondary sorting within distance buckets (by price, row, column) resolves ties without compromising the distance hierarchy.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Starting Cell Contains an Eligible Item:** If $\text{low} \le \text{grid}[\text{start}_r][\text{start}_c] \le \text{high}$, the start cell has distance $0$ and must be added to the candidate pool immediately.
+2. **Fewer Than $k$ Reachable Items:** If only $j < k$ eligible items are reachable (or completely walled off), the algorithm safely returns all $j$ items without padding or throwing index errors.
+3. **No Eligible Items Reachable:** If all reachable cells have price $1$ or are out of the pricing range, an empty list `[]` is returned.
+4. **Ties Across All Criteria:** Since each coordinate $(r, c)$ in the grid is unique, no two cells can share the exact same $(r, c)$. The 4-tuple comparison is guaranteed to be a strict total order with zero unresolved ties.
+
+### Common Anti-Patterns
+- **Dijkstra's Algorithm on Unit Grid:** Using a priority queue with Dijkstra incurs an unnecessary $O(mn \log(mn))$ factor. Standard queue BFS achieves unit distance exploration in linear $O(mn)$ time.
+- **Treating Items as Obstacles:** Only cells with value $0$ are impassable. Cells with item prices $\ge 2$ can be traversed freely to reach downstream cells.
+- **Prematurely Stopping at $k$ Candidates:** One cannot stop BFS as soon as $k$ eligible candidates are found, because other cells at the same or equal distance could have lower prices or smaller row indices that rank higher. One can only prune after completing the current distance wavefront.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Grid Traversal:** Each cell in the $m \times n$ matrix is visited at most once, and each of its $4$ edges is checked once. The BFS phase takes $O(m \cdot n)$ time.
+- **Candidate Ranking:** Let $C$ be the number of eligible items discovered, where $C \le m \cdot n$. Sorting the candidate list of size $C$ takes $O(C \log C)$ time (or $O(C \log k)$ using a fixed-size max-heap).
+- Total time complexity is $O(m \cdot n + C \log C)$, well within execution limits for $m \cdot n \le 10^5$.
+
+### Auxiliary Space Complexity
+- A 2D visited boolean array or in-place bitmask takes $O(m \cdot n)$ space.
+- The BFS queue holds at most $O(m \cdot n)$ coordinates at any time.
+- The candidate pool stores at most $C \le m \cdot n$ tuples.
+- Total auxiliary space complexity is $O(m \cdot n)$.

@@ -1,134 +1,183 @@
 # Guided Example: Paths in Maze That Lead to Same Room
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace graph adjacency representation, topological triangular cycle ($K_3$) detection, and canonical symmetric triple deduplication on a representative maze instance:
 
-- **Input:** `{"n": 5, "corridors": [[1, 2], [5, 2], [4, 1], [2, 4], [3, 1], [3, 4]]}`
-- **Required output:** `2`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A maze consists of `n` rooms numbered from `1` to `n`, and some rooms are connected by corridors. You are given a 2D integer array `corridors` where $\text{corridors}[i] = [\text{room1}_{i}, \text{room2}_{i}]$ indicates that there is a corridor connecting $\text{room1}_{i}$ and $\text{room2}_{i}$, allowing a person in the maze to go from $\text{room1}_{i}$ to $\text{room2}_{i}$ **and vice versa**.
-
-The objective is to compute `2` from `{"n": 5, "corridors": [[1, 2], [5, 2], [4, 1], [2, 4], [3, 1], [3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Rooms Count $n$:** `5`
+- **Corridors:** `[[1, 2], [5, 2], [4, 1], [2, 4], [3, 1], [3, 4]]`
+- **Expected Output:** `2`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A maze consists of $n$ rooms numbered from $1$ to $n$. A 2D array `corridors` describes bidirectional passages connecting pairs of rooms. We seek the number of different paths of length $3$ that start and end in the same room without traversing any corridor more than once.
+Such a path corresponds to a simple cycle of length $3$, commonly known as a **graph triangle** ($K_3$). Two cycles are considered identical if they visit the exact same set of three rooms $\{u, v, w\}$ regardless of starting point or traversal orientation.
 
-| State Parameter | Role & Purpose | Initial State |
+For our instance:
+- Edges: $(1, 2)$, $(5, 2)$, $(4, 1)$, $(2, 4)$, $(3, 1)$, $(3, 4)$.
+- Room $5$ has degree $1$ (connected only to room $2$).
+- Triangles:
+  1. $\{1, 2, 4\}$ via edges $(1, 2), (2, 4), (4, 1)$.
+  2. $\{1, 3, 4\}$ via edges $(1, 3), (3, 4), (4, 1)$.
+- Total count of valid triangular cycles: $2$.
+
+```mermaid
+flowchart TD
+    accTitle: Maze Graph and Shared Edge Triangles
+    accDescr: Undirected graph on 5 vertices showing triangles 1-2-4 and 1-3-4 sharing edge 1-4, with pendant node 5 connected to node 2.
+    R1((Room 1)) --- R2((Room 2))
+    R2 --- R4((Room 4))
+    R4 --- R1
+    R1 --- R3((Room 3))
+    R3 --- R4
+    R2 --- R5((Room 5))
+
+    classDef shared fill:#fef3c7,stroke:#d97706,stroke-width:2px;
+    classDef leaf fill:#f1f5f9,stroke:#64748b,stroke-width:1px;
+    classDef node fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class R1,R4 shared;
+    class R2,R3 node;
+    class R5 leaf;
+```
+
+---
+
+## 2. Theoretical Invariants & Triangle Enumeration
+
+### Invariant 1: Definition of a 3-Cycle Subgraph ($K_3$)
+A subset of three distinct vertices $\{u, v, w\} \subseteq V$ forms a cycle of length 3 if and only if all three pairwise undirected edges exist:
+$$(u, v) \in E \land (v, w) \in E \land (w, u) \in E$$
+
+### Invariant 2: Deduplication via Vertex Ordering vs. 3-Fold Division
+- **Approach A (Vertex-Centered Neighbor Pairing):**
+  For each vertex $u$, iterate over all unordered pairs of its neighbors $\{v, w\} \subseteq N(u)$. If $(v, w) \in E$, increment an accumulator. Because every triangle $\{u, v, w\}$ contains three distinct vertices, it will be discovered once centered at $u$, once at $v$, and once at $w$. The true triangle count is:
+  $$T = \frac{\text{Total Detected Instances}}{3}$$
+- **Approach B (Canonical Directed Ordering $u < v < w$):**
+  We orient every undirected edge $(x, y)$ from smaller index to larger index ($x \to y$ where $x < y$). A triangle then forms a directed DAG configuration $u \to v$, $u \to w$, and $v \to w$. Each triangle has a unique minimum vertex $u$ and unique median vertex $v$, so it is counted exactly once without division.
+
+| Graph Parameter | Representation in Sample | Structural Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Vertices $V$ | $\{1, 2, 3, 4, 5\}$ | Set of rooms in the maze |
+| Undirected Edges $E$ | $6$ bidirectional corridors | Reachable passage links |
+| Neighbor Sets $N(u)$ | Hash sets of adjacent rooms | Facilitates $\mathcal{O}(1)$ edge containment tests |
+| Shared Edge $(1, 4)$ | Appears in $\{1, 2, 4\}$ and $\{1, 3, 4\}$ | Chord bounding two adjacent triangles |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate a length-three cycle into a triangle
+We trace the canonical vertex-centered enumeration on the adjacency structure:
 
-Corridors work in both directions, so the maze is an undirected graph. A cycle of length three consists of three distinct rooms where every pair is connected by a corridor. In graph terminology, the task is to count triangles.
-
-The solution builds an adjacency structure `g` whose entry `g[a]` is the set of rooms directly connected to room `a`. For each corridor `[a, b]`, it inserts `b` into `g[a]` and `a` into `g[b]`. Adding both directions is essential: later logic may choose any of the triangle's rooms as its center.
-
-Sets serve two different needs:
-
-- they store all neighbors of a room;
-- they support the expected constant-time membership test `j in g[k]`.
-
-The input guarantees no duplicate corridors, but sets also naturally prevent duplicate neighbor entries.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 5, "corridors": [[1, 2], [5, 2], [4, 1], [2, 4], [3, 1], [3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Adjacency Graph Construction
+- $N(1) = \{2, 3, 4\}$
+- $N(2) = \{1, 4, 5\}$
+- $N(3) = \{1, 4\}$
+- $N(4) = \{1, 2, 3\}$
+- $N(5) = \{2\}$
 
 ---
 
-### Step 2: Choose one room and test pairs of its neighbors
+### Vertex-by-Vertex Neighbor Pair Scan
 
-Fix a room `i`. If rooms `j` and `k` are both in `g[i]`, then corridors `i-j` and `i-k` already exist. These three rooms form a triangle if and only if the third corridor `j-k` also exists.
+#### Processing Room $u = 1$:
+- Neighbors: $N(1) = \{2, 3, 4\}$.
+- Distinct unordered neighbor pairs $\binom{|N(1)|}{2} = \binom{3}{2} = 3$ pairs:
+  1. Pair $\{2, 3\}$: Is $2 \in N(3)$? False (no corridor between 2 and 3).
+  2. Pair $\{2, 4\}$: Is $2 \in N(4)$? **True!** Edge $(2, 4)$ exists $\implies$ Triangle $\{1, 2, 4\}$ identified.
+  3. Pair $\{3, 4\}$: Is $3 \in N(4)$? **True!** Edge $(3, 4)$ exists $\implies$ Triangle $\{1, 3, 4\}$ identified.
+- Discovered at vertex 1: $2$ triangles.
 
-The call `combinations(g[i], 2)` enumerates every unordered pair of distinct neighbors of `i` exactly once. For each pair `j, k`, the condition `j in g[k]` tests for that closing corridor. If it exists, the code increments `ans`.
+#### Processing Room $u = 2$:
+- Neighbors: $N(2) = \{1, 4, 5\}$.
+- Distinct pairs from $N(2)$:
+  1. Pair $\{1, 4\}$: Is $1 \in N(4)$? **True!** Edge $(1, 4)$ exists $\implies$ Triangle $\{2, 1, 4\}$ identified.
+  2. Pair $\{1, 5\}$: Is $1 \in N(5)$? False.
+  3. Pair $\{4, 5\}$: Is $4 \in N(5)$? False.
+- Discovered at vertex 2: $1$ triangle.
 
-Using unordered combinations matters. Enumerating ordered neighbor pairs would examine both `(j, k)` and `(k, j)` around the same center and create another layer of duplicate counting.
+#### Processing Room $u = 3$:
+- Neighbors: $N(3) = \{1, 4\}$.
+- Distinct pairs from $N(3)$:
+  1. Pair $\{1, 4\}$: Is $1 \in N(4)$? **True!** Edge $(1, 4)$ exists $\implies$ Triangle $\{3, 1, 4\}$ identified.
+- Discovered at vertex 3: $1$ triangle.
 
-Consider triangle rooms 1, 3, and 4. When `i = 1`, the pair `(3, 4)` occurs among neighbors of 1 and passes the membership test. When `i = 3`, pair `(1, 4)` passes. When `i = 4`, pair `(1, 3)` passes. Other rooms do not count that triangle because they are not one of its vertices.
+#### Processing Room $u = 4$:
+- Neighbors: $N(4) = \{1, 2, 3\}$.
+- Distinct pairs from $N(4)$:
+  1. Pair $\{1, 2\}$: Is $1 \in N(2)$? **True!** Edge $(1, 2)$ exists $\implies$ Triangle $\{4, 1, 2\}$ identified.
+  2. Pair $\{1, 3\}$: Is $1 \in N(3)$? **True!** Edge $(1, 3)$ exists $\implies$ Triangle $\{4, 1, 3\}$ identified.
+  3. Pair $\{2, 3\}$: Is $2 \in N(3)$? False.
+- Discovered at vertex 4: $2$ triangles.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+#### Processing Room $u = 5$:
+- Neighbors: $N(5) = \{2\}$ (degree $1$).
+- Number of pairs: $\binom{1}{2} = 0$.
+- Discovered at vertex 5: $0$ triangles.
 
 ---
 
-### Step 3: Why divide by exactly three
-
-Every real triangle is detected once at each of its three rooms:
-
-- centered at its first room, the other two are a neighbor pair;
-- centered at its second room, the other two are a neighbor pair;
-- centered at its third room, the other two are a neighbor pair.
-
-At a fixed center, `combinations` emits the other two rooms only once, so there is no additional directional duplication. Therefore, each triangle contributes exactly 3 to `ans`. Returning `ans // 3` converts the centered detections into the number of distinct room sets.
-
-The division is exact. `ans` cannot contain an unmatched successful detection: any successful test proves all three corridors exist, so the same triangle will also be detected at the other two vertices when their turns arrive.
-
-This matches the definition that cycles are considered the same when they visit the same rooms. Different starting points and traversal directions do not create new answers.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Aggregation and Normalization
+Total identified instances:
+$$\text{Sum} = 2 + 1 + 1 + 2 + 0 = 6$$
+Accounting for 3-fold vertex symmetry:
+$$\text{Distinct Triangles} = \frac{6}{3} = 2$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 5, "corridors": [[1, 2], [5, 2], [4, 1], [2, 4], [3, 1], [3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+Below is the comprehensive pairing audit table across all vertices:
+
+| Vertex $u$ | Neighbor Set $N(u)$ | Evaluated Neighbor Pair $\{v, w\}$ | Edge $(v, w) \in E$? | Verified 3-Cycle $\{u, v, w\}$ | Running Matches |
+|---|---|---|---|---|---|
+| $1$ | $\{2, 3, 4\}$ | $\{2, 3\}$ | False | None | $0$ |
+| $1$ | $\{2, 3, 4\}$ | $\{2, 4\}$ | **True** | $\{1, 2, 4\}$ | $1$ |
+| $1$ | $\{2, 3, 4\}$ | $\{3, 4\}$ | **True** | $\{1, 3, 4\}$ | $2$ |
+| $2$ | $\{1, 4, 5\}$ | $\{1, 4\}$ | **True** | $\{2, 1, 4\}$ | $3$ |
+| $2$ | $\{1, 4, 5\}$ | $\{1, 5\}$ | False | None | $3$ |
+| $2$ | $\{1, 4, 5\}$ | $\{4, 5\}$ | False | None | $3$ |
+| $3$ | $\{1, 4\}$ | $\{1, 4\}$ | **True** | $\{3, 1, 4\}$ | $4$ |
+| $4$ | $\{1, 2, 3\}$ | $\{1, 2\}$ | **True** | $\{4, 1, 2\}$ | $5$ |
+| $4$ | $\{1, 2, 3\}$ | $\{1, 3\}$ | **True** | $\{4, 1, 3\}$ | $6$ |
+| $4$ | $\{1, 2, 3\}$ | $\{2, 3\}$ | False | None | $6$ |
+| $5$ | $\{2\}$ | — | — | None | $6$ |
+
+### Canonical Triangles Discovered:
+1. Cycle $\{1, 2, 4\}$: detected at $u = 1$, $u = 2$, and $u = 4$ ($3$ times).
+2. Cycle $\{1, 3, 4\}$: detected at $u = 1$, $u = 3$, and $u = 4$ ($3$ times).
+Final count: $6 / 3 = 2$.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Degree-oriented triangle counting:** Direct every edge from the lower-degree endpoint toward the higher-degree endpoint, breaking ties consistently, and intersect forward neighborhoods. This can achieve the advertised $O(E^{3/2})$ style bound, but it requires orientation logic absent from the exact source.
-- **Adjacency matrix:** A matrix makes the closing-edge test constant time without hashing, but it consumes $O(n^2)$ space even for a sparse maze. Sets use storage proportional to the actual corridors.
-- **Triple enumeration of rooms:** Trying every room triple costs $O(n^3)$ and wastes work on triples with few or no corridors. Neighbor-pair enumeration narrows candidates to triples already known to contain two edges.
-- **Ordered neighbor pairs:** Iterating both `j, k` and `k, j` would count every triangle six times rather than three. `combinations(..., 2)` avoids that local duplication.
-- **Forgetting the final division:** Each triangle is centered once at each of its three vertices. Returning raw `ans` would always triple the required score.
-- **Dividing by six:** Six is the duplication factor when directions and starting points are both enumerated. This source uses unordered neighbor pairs, so its factor is only three.
-- **Rooms with degree zero or one:** They have no pair of distinct neighbors, so `combinations` yields nothing and they correctly contribute zero.
-- **Disconnected maze:** Each triangle lies entirely inside one connected component. The outer loop examines every room, so disconnected components require no special handling.
-- **No triangles:** Every closing-edge test fails, `ans` stays zero, and integer division returns zero.
-- **Set iteration order:** The order of neighbors in a set is irrelevant because every unordered pair is generated and only the final count matters.
-- **No duplicate corridors:** The input guarantee and set storage ensure a physical corridor cannot create duplicate adjacency entries or duplicate detections at one center.
-- **High-degree star:** It has no triangles but triggers many failed neighbor-pair checks. This is the concrete edge shape that exposes the exact implementation's $O(E^2)$ worst case.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Equivalence of 3-Cycle and Triplet Clique:**
+   A simple closed path of length 3 in a simple undirected graph consists of three vertices $u, v, w$ and edges $(u, v), (v, w), (w, u)$. This is topologically identical to the complete graph $K_3$.
+2. **Symmetry and Exact 3-Fold Multiplicity:**
+   For every triangle $\{u, v, w\}$, $v$ and $w$ are neighbors of $u$, $u$ and $w$ are neighbors of $v$, and $u$ and $v$ are neighbors of $w$.
+   The pair $\{v, w\}$ is examined when centering at $u$; $\{u, w\}$ when centering at $v$; and $\{u, v\}$ when centering at $w$.
+   No other vertex can have $\{u, v, w\}$ in its neighborhood. Hence, every triangle contributes exactly $3$ to the cumulative sum, and integer division by $3$ produces the exact count.
+3. **No Double-Count of Edges:**
+   Because neighbor pairs $\{v, w\}$ are unordered (combinations without repetition), each pair is tested at most once per center vertex.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Edge Cases, Pitfalls & Structural Traps
 
-- **Time Complexity:** $O\left(n+E+\sum_{i=1}^{n}\binom{d_i}{2}\right)$. Let $n$ be the number of rooms, $E$ the number of corridors, and $d_i$ the degree of room $i$.
-- **Auxiliary Space Complexity:** $O(n+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Pendant Vertices ($degree < 2$):**
+  A vertex with degree $0$ or $1$ cannot anchor any triangle since $\binom{0}{2} = \binom{1}{2} = 0$. The combination generator naturally yields zero pairs, safely bypassing them without special checks.
+- **Disconnected Graph Components:**
+  If the maze has multiple disconnected rooms or clusters, triangles in separate components are evaluated independently and contribute correctly to the total.
+- **High-Degree Star Nodes:**
+  If a hub node has degree $D$, iterating over all $\binom{D}{2} \approx D^2 / 2$ pairs could be slow if $D$ is large. Forward DAG orientation ($u < v < w$ or ordering by degree) optimizes worst-case triangle enumeration to $\mathcal{O}(m \sqrt{m})$.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Building the adjacency hash sets takes $\mathcal{O}(m)$ time where $m$ is the number of corridors.
+  - For each vertex $u$, scanning pairs of neighbors takes $\sum_{u} \binom{\text{deg}(u)}{2}$ constant-time set lookups.
+  - With bounded degrees or canonical DAG orientation, triangle listing runs in $\mathcal{O}(m \sqrt{m})$ time, well within the limit for $n, m \le 1000$.
+- **Auxiliary Space Complexity:**
+  - The adjacency structure stores each edge twice across neighbor sets, requiring $\mathcal{O}(n + m)$ auxiliary memory.

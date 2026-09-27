@@ -1,121 +1,162 @@
 # Guided Example: Find Positive Integer Solution for a Given Equation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"customfunction": 1, "z": 5}`
-- **Required output:** `[[1, 4], [2, 3], [3, 2], [4, 1]]`
+Given a hidden black-box function $f(x, y)$ that operates on positive integers $x, y \in \{1, 2, \dots, 1000\}$ and returns positive integers, we are tasked with finding all integer pairs $(x, y)$ that satisfy the equation:
+$$f(x, y) = z$$
+The function guarantees **strict coordinate-wise monotonicity**:
+1. $f(x + 1, y) > f(x, y)$ (strictly increasing with respect to $x$)
+2. $f(x, y + 1) > f(x, y)$ (strictly increasing with respect to $y$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Consider the values of $f(x, y)$ arranged as an infinite 2D grid:
+- Moving **right** ($x \to x + 1$) strictly increases the value.
+- Moving **down** ($y \to y + 1$) strictly increases the value.
+
+This 2D surface is structurally identical to a **Young Tableau** or a monotonically sorted matrix. The solution set $\{(x, y) \mid f(x, y) = z\}$ forms a discrete level contour line (isocline) running diagonally across this grid.
+
+```
+2D Monotonic Level Surface (Example f(x, y) = x + y, z = 5):
+    y=1  y=2  y=3  y=4  y=5
+x=1   2    3    4  [ 5]   6   -> Solution [1, 4]
+x=2   3    4  [ 5]   6    7   -> Solution [2, 3]
+x=3   4  [ 5]   6    7    8   -> Solution [3, 2]
+x=4 [ 5]   6    7    8    9   -> Solution [4, 1]
+x=5   6    7    8    9   10
+Contour line forms a monotonic staircase from top-right to bottom-left!
+```
+
+Because $f(x, y)$ is strictly increasing and integer-valued with $f(1, 1) \ge 1$:
+- For any coordinate to satisfy $f(x, y) = z$, we must have $x \le z$ and $y \le z$.
+- For each fixed $x$, the slice $g(y) = f(x, y)$ is a strictly increasing 1D sequence. Hence, there is **at most one** integer $y$ satisfying $f(x, y) = z$.
+
+We can locate the level set using:
+- **Independent Binary Searches:** For each $x \in [1, z]$, binary search for $y \in [1, z]$ in $\mathcal{O}(z \log z)$ queries.
+- **Saddleback Search (Two Pointers):** Start at top-right $(x=1, y=z)$ and march monotonically across the grid in $\mathcal{O}(z)$ queries.
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Given a callable function `f(x, y)` **with a hidden formula** and a value `z`, reverse engineer the formula and return *all positive integer pairs *`x`* and *`y`* where *$f(x,y) = z$. You may return the pairs in any order.
+Let $\mathbb{Z}^+ = \{1, 2, 3, \dots\}$.
+The oracle $f: \mathbb{Z}^+ \times \mathbb{Z}^+ \to \mathbb{Z}^+$ satisfies:
+$$\Delta_x f(x, y) = f(x + 1, y) - f(x, y) \ge 1$$
+$$\Delta_y f(x, y) = f(x, y + 1) - f(x, y) \ge 1$$
 
-The objective is to compute `[[1, 4], [2, 3], [3, 2], [4, 1]]` from `{"customfunction": 1, "z": 5}` while avoiding redundant calculations and unnecessary overhead.
+### Search Window Bounding Theorem
+**Theorem:** Any pair $(x, y) \in (\mathbb{Z}^+)^2$ satisfying $f(x, y) = z$ must have $1 \le x \le z$ and $1 \le y \le z$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+*Proof:*
+Since $f(1, 1) \ge 1$ and every unit step increases the value by at least 1:
+$$f(x, y) \ge f(1, y) + (x - 1) \ge f(1, 1) + (y - 1) + (x - 1) \ge x + y - 1$$
+Thus:
+$$z = f(x, y) \ge x + y - 1 \implies x \le z - y + 1 \le z \quad (\text{since } y \ge 1)$$
+By symmetry, $y \le z$. $\blacksquare$
+
+### Row Uniqueness Invariant
+For any fixed $x_0$, the 1D function $h(y) = f(x_0, y)$ is strictly monotonic.
+Therefore, $h(y)$ is injective, meaning there exists at most one $y^* \in [1, z]$ such that $h(y^*) = z$.
+
+### Binary Search Predicate
+For a given row $x$, define the monotonic predicate:
+$$\Phi_x(y) \iff f(x, y) \ge z$$
+The first integer index $y$ where $\Phi_x(y)$ becomes true is found via binary search in $\lceil \log_2 z \rceil$ steps. If $f(x, y) == z$, the pair $[x, y]$ is recorded.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the representative instance:
+- Function: $f(x, y) = x + y$
+- Target: $z = 5$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Search bounds: $x \in [1, 5]$, candidate $y \in [1, 5]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Step-by-Step Row Binary Search Trace
+
+| Row $x$ | Search Range for $y$ | Midpoint $y_{\text{mid}}$ | Evaluated $f(x, y_{\text{mid}})$ | Comparison with $z = 5$ | Binary Search Outcome $y^*$ | Is $f(x, y^*) == 5$? | Solution Pair Recorded |
+|---|---|---|---|---|---|---|---|
+| $x = 1$ | $[1, 5]$ | $3 \to 4$ | $f(1, 3)=4 < 5$, $f(1, 4)=5$ | Exact match at $y = 4$ | $y^* = 4$ | **Yes** ($1 + 4 = 5$) | `[1, 4]` |
+| $x = 2$ | $[1, 5]$ | $3$ | $f(2, 3)=5$ | Exact match at $y = 3$ | $y^* = 3$ | **Yes** ($2 + 3 = 5$) | `[2, 3]` |
+| $x = 3$ | $[1, 5]$ | $3 \to 2$ | $f(3, 3)=6 > 5$, $f(3, 2)=5$ | Exact match at $y = 2$ | $y^* = 2$ | **Yes** ($3 + 2 = 5$) | `[3, 2]` |
+| $x = 4$ | $[1, 5]$ | $3 \to 1$ | $f(4, 3)=7 > 5$, $f(4, 1)=5$ | Exact match at $y = 1$ | $y^* = 1$ | **Yes** ($4 + 1 = 5$) | `[4, 1]` |
+| $x = 5$ | $[1, 5]$ | $1$ | $f(5, 1)=6 > 5$ | Exceeds target for all $y \ge 1$ | $y^* = 1$ | **No** ($6 \neq 5$) | None |
+
+```mermaid
+flowchart TD
+    accTitle: Binary Search across Monotonic Rows
+    accDescr: Sequential row-by-row binary search finding exact level-set contour pairs summing to 5.
+    
+    Start["Search Space: x in [1, 5], y in [1, 5]"] --> R1["Row x=1: Binary search y in [1, 5]<br/>f(1, 4) = 5 == z -> ADD [1, 4]"]
+    R1 --> R2["Row x=2: Binary search y in [1, 5]<br/>f(2, 3) = 5 == z -> ADD [2, 3]"]
+    R2 --> R3["Row x=3: Binary search y in [1, 5]<br/>f(3, 2) = 5 == z -> ADD [3, 2]"]
+    R3 --> R4["Row x=4: Binary search y in [1, 5]<br/>f(4, 1) = 5 == z -> ADD [4, 1]"]
+    R4 --> R5["Row x=5: Binary search y in [1, 5]<br/>f(5, 1) = 6 > z -> NO SOLUTION"]
+    R5 --> Out["Final Solution List:<br/>[[1, 4], [2, 3], [3, 2], [4, 1]]"]
+```
+
+The algorithm collects the complete solution set:
+$$[\,[1, 4],\, [2, 3],\, [3, 2],\, [4, 1]\,]$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Use strict monotonicity to search one coordinate
-
-For a fixed positive \(x\), the hidden function is strictly increasing as \(y\) increases. Therefore, among positive \(y\)-values, there can be at most one solution to \(f(x,y)=z\). Binary search can locate the first \(y\) whose function value is at least \(z\); equality then tells whether that fixed \(x\) contributes a pair.
-
-The outer loop tries every `x` from 1 through `z`. For each one, `bisect_left` searches the range of candidate `y` values from 1 through `z`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Algorithmic Strategy | Brute-Force Grid Evaluation | Row-by-Row Binary Search | Two-Pointer Saddleback Search (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"customfunction": 1, "z": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Mechanism** | Evaluate $f(x, y)$ for all $(x, y)$ pairs | Fix $x$, binary search for $y$ | March from $(1, z)$ adjusting $x$ or $y$ |
+| **Monotonicity Used** | None | 1D monotonicity along rows | 2D monotonicity simultaneously |
+| **Total Function Calls** | $Z^2$ calls ($10^6$ for $Z=1000$) | $Z \log_2 Z$ calls ($\approx 10^4$ calls) | $2Z$ calls ($\approx 2000$ calls) |
+| **Time Complexity** | $\mathcal{O}(Z^2)$ | $\mathcal{O}(Z \log Z)$ | $\mathcal{O}(Z)$ linear |
+| **Auxiliary Memory** | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| **Implementation** | Trivial double loop | Clean single `bisect_left` per row | Two pointers `x=1, y=z` |
+
+```
+Saddleback Traversal Intuition:
+Start at top-right corner (x = 1, y = z):
+  If f(x, y) == z: record [x, y], x++, y--
+  If f(x, y) > z:  y is too large! y-- (eliminates entire column x..z)
+  If f(x, y) < z:  x is too small! x++ (eliminates entire row 1..y)
+Each step eliminates one entire row or column! Total steps <= 2 * Z.
+```
 
 ---
 
-### Step 2: Why solutions cannot require a coordinate greater than \(z\)
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The function returns positive integers and is strictly increasing in each coordinate. For fixed \(x\), `f(x, 1)` is at least one. Each increment of \(y\) must increase the integer result by at least one, so
-
-\[
-f(x,y)\geq y.
-\]
-
-Similarly, \(f(x,y)\geq x\). If \(f(x,y)=z\), both \(x\leq z\) and \(y\leq z\). Thus searching only 1 through `z` is sufficient, even though the broad interface guarantee mentions coordinates up to 1000.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Scenario | Configuration Details | Expected Output | Verification Mechanism |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Target Minimum ($z = 1$)** | Minimal target value | `[[1, 1]]` if $f(1,1)=1$, else `[]` | Loops over $x \in [1, 1]$. Evaluates single point. |
+| **No Integer Solution Exists** | $f(x, y) = 2x + 2y$, $z = 5$ | `[]` | Binary search finds $y$ with $f(x, y) \in \{4, 6\}$; equality check $f(x, y) == 5$ fails on all rows. |
+| **Multiplicative Growth** | $f(x, y) = x \cdot y$, $z = 12$ | Factor pairs: `[[1, 12], [2, 6], [3, 4], [4, 3], [6, 2], [12, 1]]` | Binary search finds exact divisors; non-divisors fail equality check. |
+| **Asymmetric Functions** | $f(x, y) = x^2 + y$ | Correct non-symmetric pairs | Monotonicity holds independently along each axis regardless of differential rates of growth. |
+| **Maximum Target ($z = 1000$)** | $Z = 1000$ | Exact solution list | Function calls strictly bounded by $1000 \log_2 1000 \approx 10,000 \ll 4 \times 10^4$ limit. |
 
 ---
 
-### Step 3: How `bisect_left` is used
+## 6. Mathematical Verification & Complexity Derivation
 
-The searched object is `range(1, z + 1)`, whose elements are candidate \(y\)-values. The key function maps a candidate to `customfunction.f(x, y)`. Since the function is strictly increasing in \(y\), these key values are sorted.
+Let $Z = z$ be the target integer value ($1 \le Z \le 1000$).
 
-`bisect_left(..., z, key=...)` returns the zero-based insertion position of target `z` among those function values: the first index whose key is at least \(z\). Because range index zero represents \(y=1\), the code adds one to convert the index to the actual candidate:
+### Row Binary Search Complexity:
+1. **Outer Loop:**
+   - Iterates $x$ from $1$ to $Z$: exactly $Z$ iterations.
+2. **Inner Binary Search:**
+   - The search interval for $y$ is $[1, Z]$, containing $Z$ elements.
+   - Standard binary search evaluates $\lceil \log_2 Z \rceil$ midpoints.
+   - For $Z = 1000$, $\log_2(1000) \le 10$ evaluations per row.
+3. **Total Function Evaluations:**
+   $$N_{\text{eval}} = Z \cdot \lceil \log_2 Z \rceil \le 1000 \times 10 = 10,000 \text{ calls}$$
+   The problem statement imposes a ceiling of at most $4 \times 10^4$ function calls; $10,000$ is well within the legal budget.
+4. **Total Time Complexity:** $\mathcal{O}(Z \log Z)$ arithmetic operations.
 
-`y = 1 + insertion_index`.
-
-It then calls `customfunction.f(x, y)` once more. If the value is exactly `z`, it appends `[x, y]`. If the first value at least `z` is already greater, strict monotonicity proves no \(y\) for this \(x\) can equal the target.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 4], [2, 3], [3, 2], [4, 1]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"customfunction": 1, "z": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 4], [2, 3], [3, 2], [4, 1]]` | Verified |
+### Space Complexity:
+- Storing the output list of solution pairs: at most $Z$ pairs: $\mathcal{O}(Z)$ space.
+- Search state registers $x, y$: $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Two-pointer staircase:** Start at `x = 1, y = z`. Move \(x\) up when the value is too small, \(y\) down when too large, and move both after equality. This finds all pairs in \(O(z)\) oracle calls.
-- **Brute-force grid:** Testing every pair from 1 through \(z\) costs \(O(z^2)\) calls and wastes monotonicity.
-- **No solution for an \(x\):** Lower bound lands on a value greater than \(z\), and the equality check simply skips it.
-- **Insertion past the range:** The exact code evaluates \(y=z+1\); monotonic positive-integer output proves it cannot be a solution.
-- **Multiple solutions with the same \(x\):** Strict increase in \(y\) makes this impossible.
-- **Multiple solutions overall:** Different \(x\)-values can each yield one matching \(y\), and the outer scan records all of them.
-- **Smallest target:** For \(z=1\), only coordinates one are searched; the final equality call determines whether `[1,1]` is a solution.
-- **Unknown formula cost:** The stated complexity assumes each interface call is constant time. An expensive hidden implementation would multiply the oracle-call bound by its cost.
-- **Modern `bisect_left` requirement:** Older Python versions without a `key` parameter need a manual binary search.
-- **Positive-integer guarantee:** The coordinate bound \(x,y\leq z\) relies on positive integer outputs and strict integer increases.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(1)$. There are \(z\) outer-loop values. Each binary search inspects \(O(\log z)\) candidates and makes one final oracle call, so the exact implementation uses \(O(z\log z)\) function calls and time, assuming each oracle evaluation is \(O(1)\).
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Monotonicity Enables Sublinear Search**: Whenever an oracle satisfies coordinate-wise monotonicity, full matrix evaluation can be replaced by dimensional projection: fixing one variable converts the remaining degrees of freedom into 1D binary search.
+2. **The Saddleback Invariant**: In 2D monotonic matrices, starting at the off-diagonal corner (top-right or bottom-left) allows each comparison to eliminate either an entire row or an entire column, achieving optimal $\mathcal{O}(X + Y)$ search time.
+3. **Natural Constraint Bounding**: Using mathematical deduction ($f(x, y) \ge x + y - 1$) establishes that neither coordinate can exceed $z$, naturally bounding the search space without requiring guesswork or heuristic limits.

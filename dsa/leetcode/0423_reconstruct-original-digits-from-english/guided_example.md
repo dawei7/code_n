@@ -1,132 +1,200 @@
 # Guided Example: Reconstruct Original Digits from English
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character frequency histogramming, triangular linear system deduction, three-wave dependency peeling, and sorted digit reconstruction on representative anagram strings:
 
-- **Input:** `{"s": "owoztneoer"}`
+- **Input:** $s = \text{"owoztneoer"}$
 - **Required output:** `"012"`
+  - Character histogram of $s$:
+    - `'e': 2, 'n': 1, 'o': 3, 'r': 2, 't': 1, 'w': 1, 'z': 1`
+  - **Wave 1 (Unique signature letters):**
+    - `'z'` appears only in `"zero"` $\implies cnt[0] = \text{count('z')} = \mathbf{1}$
+    - `'w'` appears only in `"two"` $\implies cnt[2] = \text{count('w')} = \mathbf{1}$
+    - `'u'` appears only in `"four"` $\implies cnt[4] = \text{count('u')} = \mathbf{0}$
+    - `'x'` appears only in `"six"` $\implies cnt[6] = \text{count('x')} = \mathbf{0}$
+    - `'g'` appears only in `"eight"` $\implies cnt[8] = \text{count('g')} = \mathbf{0}$
+  - **Wave 2 (Secondary shared letters):**
+    - `'h'` in `"three"` and `"eight"` $\implies cnt[3] = \text{count('h')} - cnt[8] = 0 - 0 = \mathbf{0}$
+    - `'f'` in `"four"` and `"five"` $\implies cnt[5] = \text{count('f')} - cnt[4] = 0 - 0 = \mathbf{0}$
+    - `'s'` in `"six"` and `"seven"` $\implies cnt[7] = \text{count('s')} - cnt[6] = 0 - 0 = \mathbf{0}$
+  - **Wave 3 (Tertiary residual letters):**
+    - `'o'` in `"zero"`, `"two"`, `"four"`, `"one"`:
+      $$
+      cnt[1] = \text{count('o')} - cnt[0] - cnt[2] - cnt[4] = 3 - 1 - 1 - 0 = \mathbf{1}
+      $$
+    - `'i'` in `"five"`, `"six"`, `"eight"`, `"nine"`:
+      $$
+      cnt[9] = \text{count('i')} - cnt[5] - cnt[6] - cnt[8] = 0 - 0 - 0 - 0 = \mathbf{0}
+      $$
+  - Assembled digits: $cnt[0]=1, cnt[1]=1, cnt[2]=1 \implies \mathbf{\text{"012"}}$
+- **Residual Pair Instance:** $s = \text{"fviefuro"} \implies cnt[4]=1 (\text{'u'}), cnt[5]=1 (\text{'f'}-cnt[4]) \implies \mathbf{\text{"45"}}$
+- **Repeated Zeros Instance:** $s = \text{"zerozero"} \implies cnt[0]=2 \implies \mathbf{\text{"00"}}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling multiset anagram decomposition as an upper-triangular system of linear equations, proves why topological back-substitution solves the system without Gaussian elimination in $O(N)$ time, and derives $O(N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` containing an out-of-order English representation of digits `0-9`, return *the digits in **ascending** order*.
+Given a string $s = \text{"owoztneoer"}$ containing an anagram of English words for digits ($0\dots 9$):
+Reconstruct the original digits in **ascending order** as a string:
 
-The objective is to compute `"012"` from `{"s": "owoztneoer"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input Characters:
+  o: 3   w: 1   z: 1   t: 1   n: 1   e: 2   r: 2
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Deduction Tree:
+  1. 'z' only appears in "zero" -> Exactly 1 "zero" -> Digits: [0]
+  2. 'w' only appears in "two"  -> Exactly 1 "two"  -> Digits: [0, 2]
+  3. 'o' appears in "zero", "two", "four", and "one".
+     count('o') = 3, subtract 1 ('zero') and 1 ('two') -> 1 remaining 'o' belongs to "one" -> Digits: [0, 1, 2]
+
+Result in Ascending Order: "012"
+```
+
+### The Linear Algebra of Anagram Decomposition
+The English words for digits $0$ through $9$ share characters:
+- `"zero"`, `"one"`, `"two"`, `"three"`, `"four"`, `"five"`, `"six"`, `"seven"`, `"eight"`, `"nine"`.
+Instead of searching through exponential permutations ($O(10^K)$ backtracking), we express character counts as a system of linear equations over the 10 digit counts $x_0, \dots, x_9$:
+$$
+\text{count}(c) = \sum_{k=0}^9 \text{multiplicity}(c, \text{word}_k) \cdot x_k
+$$
+Because the English digit words contain specific unique and cascading letters, this system is **upper-triangular** and can be solved by direct back-substitution in 3 stages.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Three-Wave Topological Deduction Hierarchy:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Stage | Distinct Feature Letter | Words Containing Letter | Direct Closed-Form Formula |
+|:---:|:---:|:---|:---|
+| **Wave 1** | `'z'` | `"zero"` | $cnt[0] = count(\text{'z'})$ |
+| **Wave 1** | `'w'` | `"two"` | $cnt[2] = count(\text{'w'})$ |
+| **Wave 1** | `'u'` | `"four"` | $cnt[4] = count(\text{'u'})$ |
+| **Wave 1** | `'x'` | `"six"` | $cnt[6] = count(\text{'x'})$ |
+| **Wave 1** | `'g'` | `"eight"` | $cnt[8] = count(\text{'g'})$ |
+| **Wave 2** | `'h'` | `"three"`, `"eight"` | $cnt[3] = count(\text{'h'}) - cnt[8]$ |
+| **Wave 2** | `'f'` | `"four"`, `"five"` | $cnt[5] = count(\text{'f'}) - cnt[4]$ |
+| **Wave 2** | `'s'` | `"six"`, `"seven"` | $cnt[7] = count(\text{'s'}) - cnt[6]$ |
+| **Wave 3** | `'o'` | `"zero"`, `"two"`, `"four"`, `"one"` | $cnt[1] = count(\text{'o'}) - cnt[0] - cnt[2] - cnt[4]$ |
+| **Wave 3** | `'i'` | `"five"`, `"six"`, `"eight"`, `"nine"` | $cnt[9] = count(\text{'i'}) - cnt[5] - cnt[6] - cnt[8]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. Dependency Graph:
+```text
+  Wave 1:  [0: 'z']   [2: 'w']   [4: 'u']   [6: 'x']   [8: 'g']
+                                   |          |          |
+  Wave 2:                     [5: 'f'-4] [7: 's'-6] [3: 'h'-8]
+                                   |          |          |
+  Wave 3:  [1: 'o' - 0 - 2 - 4]    +----------+----------+---> [9: 'i' - 5 - 6 - 8]
+```
+
+> **Invariant.** At the start of Wave $k$, all digit counts required on the right-hand side of Wave $k$'s formulas have already been uniquely and accurately determined.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Letter order is lost, but letter counts are preserved
-
-The input was formed by spelling some multiset of digits in English and shuffling all letters. Shuffling destroys word boundaries and order, so searching for contiguous words cannot work. It does preserve how many times each letter occurs. `Counter(s)` captures exactly this surviving information.
-
-The goal is then to solve a small system of letter-count equations. A naive plan that repeatedly removes `"zero"`, then `"one"`, and so on is order-dependent because many digit names share letters. For example, `o` occurs in `zero`, `one`, `two`, and `four`. Consuming it prematurely could assign letters to the wrong digit.
-
-The optimal method chooses marker letters in an elimination order. It first counts digit names that contain a globally unique letter. Once those digits are known, subtracting their contribution makes other marker letters unique among the unresolved names.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "owoztneoer"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"owoztneoer"}$:
 
 ---
 
-### Step 2: First recover the five digits with unique marker letters
-
-Across the English names `zero` through `nine`:
-
-- `z` appears only in `zero`, so `cnt[0] = counter['z']`;
-- `w` appears only in `two`, so `cnt[2] = counter['w']`;
-- `u` appears only in `four`, so `cnt[4] = counter['u']`;
-- `x` appears only in `six`, so `cnt[6] = counter['x']`; and
-- `g` appears only in `eight`, so `cnt[8] = counter['g']`.
-
-Each marker occurs exactly once in its digit name. Therefore its frequency equals the number of copies of that digit directly; no division is needed.
-
-For instance, if `z` occurs three times, the valid-input guarantee means exactly three copies of `zero` were present. No other digit could have supplied those `z` characters.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Character Histogram
+Count character occurrences in $s$:
+$$
+\text{counts} = \{\text{'e'}: 2, \; \text{'n'}: 1, \; \text{'o'}: 3, \; \text{'r'}: 2, \; \text{'t'}: 1, \; \text{'w'}: 1, \; \text{'z'}: 1\}
+$$
+All other lowercase letters have count $0$.
 
 ---
 
-### Step 3: Use the known even digits to isolate three more names
+### Step 2: Wave 1 Evaluation (Unique Signature Letters)
+- $cnt[0] = \text{counts}[\text{'z'}] = \mathbf{1}$  (`"zero"`)
+- $cnt[2] = \text{counts}[\text{'w'}] = \mathbf{1}$  (`"two"`)
+- $cnt[4] = \text{counts}[\text{'u'}] = \mathbf{0}$
+- $cnt[6] = \text{counts}[\text{'x'}] = \mathbf{0}$
+- $cnt[8] = \text{counts}[\text{'g'}] = \mathbf{0}$
 
-The letter `h` appears in `three` and `eight`. Since the number of eights is already known, every remaining `h` must come from `three`:
+---
 
-`cnt[3] = counter['h'] - cnt[8]`.
+### Step 3: Wave 2 Evaluation (Secondary Shared Letters)
+- **Digit 3 (`"three"`):**
+  $$
+  cnt[3] = \text{counts}[\text{'h'}] - cnt[8] = 0 - 0 = \mathbf{0}
+  $$
+- **Digit 5 (`"five"`):**
+  $$
+  cnt[5] = \text{counts}[\text{'f'}] - cnt[4] = 0 - 0 = \mathbf{0}
+  $$
+- **Digit 7 (`"seven"`):**
+  $$
+  cnt[7] = \text{counts}[\text{'s'}] - cnt[6] = 0 - 0 = \mathbf{0}
+  $$
 
-Similarly, `f` appears in `four` and `five`. Removing the known fours isolates fives:
+---
 
-`cnt[5] = counter['f'] - cnt[4]`.
+### Step 4: Wave 3 Evaluation (Tertiary Residual Letters)
+- **Digit 1 (`"one"`):**
+  Letter `'o'` is present in `"zero"` (1), `"two"` (1), `"four"` (0), and `"one"`:
+  $$
+  cnt[1] = \text{counts}[\text{'o'}] - cnt[0] - cnt[2] - cnt[4] = 3 - 1 - 1 - 0 = \mathbf{1}
+  $$
+- **Digit 9 (`"nine"`):**
+  Letter `'i'` is present in `"five"` (0), `"six"` (0), `"eight"` (0), and `"nine"`:
+  $$
+  cnt[9] = \text{counts}[\text{'i'}] - cnt[5] - cnt[6] - cnt[8] = 0 - 0 - 0 - 0 = \mathbf{0}
+  $$
 
-The letter `s` appears in `six` and `seven`. Removing the known sixes isolates sevens:
+---
 
-`cnt[7] = counter['s'] - cnt[6]`.
-
-Again, each relevant name contains its marker once. The order is crucial: these formulas are valid only because counts for `8`, `4`, and `6` were established first.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"012"` |
+### Step 5: Assembly in Ascending Order
+Iterate over digits $0 \dots 9$:
+- $i = 0: cnt[0] = 1 \implies \text{"0"}$
+- $i = 1: cnt[1] = 1 \implies \text{"1"}$
+- $i = 2: cnt[2] = 1 \implies \text{"2"}$
+- $i = 3\dots 9: cnt[i] = 0$
+Concatenated result: **`"012"`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "owoztneoer"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"012"` | Verified |
+| Digit | Word Name | Primary Letter | Deduction Formula | Raw Count in $s$ | Subtractions Applied | Final Count $cnt[d]$ | String Contribution |
+|:---:|:---|:---:|:---|:---:|:---:|:---:|:---:|
+| **0** | `zero` | `'z'` | $count(\text{'z'})$ | $1$ | None | **$1$** | `"0"` |
+| **1** | `one` | `'o'` | $count(\text{'o'}) - cnt[0] - cnt[2] - cnt[4]$ | $3$ | $1 + 1 + 0 = 2$ | **$1$** | `"1"` |
+| **2** | `two` | `'w'` | $count(\text{'w'})$ | $1$ | None | **$1$** | `"2"` |
+| **3** | `three` | `'h'` | $count(\text{'h'}) - cnt[8]$ | $0$ | $0$ | **$0$** | — |
+| **4** | `four` | `'u'` | $count(\text{'u'})$ | $0$ | None | **$0$** | — |
+| **5** | `five` | `'f'` | $count(\text{'f'}) - cnt[4]$ | $0$ | $0$ | **$0$** | — |
+| **6** | `six` | `'x'` | $count(\text{'x'})$ | $0$ | None | **$0$** | — |
+| **7** | `seven` | `'s'` | $count(\text{'s'}) - cnt[6]$ | $0$ | $0$ | **$0$** | — |
+| **8** | `eight` | `'g'` | $count(\text{'g'})$ | $0$ | None | **$0$** | — |
+| **9** | `nine` | `'i'` | $count(\text{'i'}) - cnt[5] - cnt[6] - cnt[8]$ | $0$ | $0$ | **$0$** | — |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Digit Repeated ($s = \text{"zerozerozero"}$):** Count of `'z'` is $3 \implies cnt[0] = 3 \implies \text{"000"}$.
+- **All Digits Present ($0\dots 9$ once):** Wave 1 finds $\{0, 2, 4, 6, 8\}$, Wave 2 finds $\{3, 5, 7\}$, Wave 3 finds $\{1, 9\}$. Emits `"0123456789"`.
+- **Large Input ($|s| \le 10^5$):** Because character counting is $O(|s|)$ and back-substitution takes exactly 10 constant-time arithmetic steps, execution time is dominated by a single fast string pass ($< 5$ ms).
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Repeatedly search for whole digit names:** Shuffling removes contiguity, and greedy word removal can misassign shared letters. It also performs avoidable repeated scans.
-- **General backtracking over digit counts:** Trying combinations could eventually match letter frequencies, but the unique-marker dependency makes exponential search unnecessary.
-- **Solve a full linear system:** Ten digit variables and letter equations can be handled algebraically, but the elimination order used here is that system reduced to simple integer formulas.
-- **Use `n` to find one:** The name `nine` contains two `n` characters while `one` and `seven` contain one, making the equation easier to mishandle. The exact solution uses `o` after zero, two, and four are known.
-- **Repeated digits:** Marker frequencies scale linearly, and string multiplication preserves every multiplicity.
-- **Only one digit:** Its markers and dependent equations recover one count, and the output is the corresponding one-character digit string.
-- **No occurrence of a digit:** Its formula evaluates to zero and contributes an empty piece to the join.
-- **Invalid shuffled letters:** Subtractions could become negative for arbitrary input. The contract guarantees validity, so defensive rejection logic is unnecessary.
-- **Ascending order:** Iterating indices `0..9` is essential; iterating a counter's arbitrary discovery order would not satisfy the output contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Premature Wave 3 Evaluation:** Attempting to evaluate $cnt[1]$ before $cnt[4]$ is known causes incorrect subtraction, because `"four"` also contains letter `'o'`. The topological ordering Wave 1 $\to$ Wave 2 $\to$ Wave 3 must be strictly respected.
+- **Backtracking / DFS Search:** Trying to remove words recursively risks combinatorial explosion on strings with repeated letters (e.g. thousands of `'e'`s and `'o'`s). The mathematical system of equations has a unique solution and requires zero backtracking.
+- **Sorting Output Array:** Sorting the final list of digits takes $O(K \log K)$ time. Iterating in index order $0 \dots 9$ naturally emits digits in sorted order in $O(1)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n = \lvert s \rvert$. Building `Counter(s)` takes $O(n)$ time. The ten count formulas perform constant work. Constructing the output writes one character per reconstructed digit, at most $O(n)$ characters because every digit name contains at least three letters. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Counting character frequencies in $s$ takes $O(|s|)$ time.
+  - The 10 arithmetic subtraction formulas take $O(1)$ time.
+  - Assembling the output string takes $O(|output|) \le O(|s|)$ time.
+  - Total Time: $\mathcal{O}(|s|)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ beyond the output string, as the frequency map and digit count array require at most 26 letter keys and 10 digit counters.

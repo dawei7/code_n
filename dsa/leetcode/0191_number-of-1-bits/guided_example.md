@@ -1,134 +1,188 @@
 # Guided Example: Number of 1 Bits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Brian Kernighan bitwise cancellation algorithm and Hamming weight evaluation on representative binary integers:
 
-- **Input:** `{"n": 4294967295}`
-- **Required output:** `32`
+- **Input:** $n = 11$ (`00000000000000000000000000001011` in binary)
+- **Required output:** $3$ ($11 = 2^3 + 2^1 + 2^0 \implies 3$ set bits)
+- **Power of Two Instance:** $n = 128$ (`10000000` in binary) $\implies 1$ (Terminates in exactly 1 operation)
+- **Dense Bit Instance:** $n = 2147483645$ $\implies 30$ ($30$ set bits out of $32$)
+- **Zero Instance:** $n = 0 \implies 0$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Brian Kernighan's bit-clearing identity ($n \ \& \ (n - 1)$), proves why subtraction flips all trailing bits up to the lowest set bit, demonstrates skipping long runs of zeroes in $O(1)$ operations, and establishes $O(k)$ runtime where $k$ is the number of set bits.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a positive integer `n`, write a function that returns the number of set bits in its binary representation (also known as the <a href="http://en.wikipedia.org/wiki/Hamming_weight" target="_blank">Hamming weight</a>).
+Given a 32-bit positive integer $n = 11$:
+Represented in binary:
+$$
+n = 11_{10} = \mathbf{1011}_2
+$$
+Count the number of set bits (1s) in its binary representation, known as the **Hamming weight**.
+Here, the bits at positions 0, 1, and 3 are set:
+$$
+\text{Total 1-bits} = 1 + 1 + 1 = \mathbf{3}
+$$
 
-The objective is to compute `32` from `{"n": 4294967295}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach tests all 32 bit positions with a right-shift loop (`for _ in range(32)`), requiring 32 operations regardless of how sparse the integer is.
+**Brian Kernighan's Algorithm** executes in time proportional **only to the number of set bits**:
+- For each step, the bitwise expression $n \ \& \ (n - 1)$ clears the **least significant set bit** of $n$.
+- All intervening zeroes between set bits are skipped in a single operation.
+- For a power of two (such as $128 = 10000000_2$), the algorithm terminates after just 1 iteration!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Brian Kernighan Bit-Clearing Theorem
+Let $n$ be an integer whose binary representation has its lowest set bit at position $p$:
+$$
+n = \dots 1 \underbrace{00\dots0}_{p \text{ zeroes}}
+$$
+When we subtract 1 from $n$, borrow propagation flips the 1 at position $p$ to 0, and all $p$ trailing zeroes flip to 1s:
+$$
+n - 1 = \dots 0 \underbrace{11\dots1}_{p \text{ ones}}
+$$
+Now compute the bitwise AND $n \ \& \ (n - 1)$:
+1. Higher bits ($\dots$ to the left of position $p$) are identical in both operands, so they remain unchanged.
+2. At position $p$, $1 \ \& \ 0 = 0$. The set bit is cleared!
+3. Lower bits ($p$ trailing bits) have $0 \ \& \ 1 = 0$. All trailing bits become 0.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Therefore:
+$$
+n \ \& \ (n - 1)
+$$
+produces an integer identical to $n$, except that its **least significant 1-bit has been set to 0**.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Algorithm Protocol:
+Initialize $\text{count} = 0$.
+
+While $n > 0$:
+$$
+n \leftarrow n \ \& \ (n - 1)
+$$
+$$
+\text{count} \leftarrow \text{count} + 1
+$$
+
+Return $\text{count}$.
+
+> **Invariant.** After each iteration, `count` increases by 1, and the number of set bits in $n$ decreases by exactly 1. When $n = 0$, all set bits have been counted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count set bits without visiting zero positions
+We trace the algorithm on $n = 11$ ($1011_2$):
 
-The straightforward method examines every one of the 32 bit positions. The
-stored optimal method uses Brian Kernighan's observation to perform one loop
-iteration per set bit instead. It repeatedly changes the least significant
-remaining 1-bit to 0 and increments the answer.
-
-This works especially well for sparse numbers. A power of two such as 128 has
-only one set bit, so the loop executes once even though that bit may be far from
-the least significant position.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 4294967295}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $n = 11 = 1011_2$.
+- $\text{count} = 0$.
 
 ---
 
-### Step 2: Understand what subtracting one does in binary
-
-Consider a positive integer `n` and locate its least significant 1-bit. All
-positions to its right must be zeros. Subtracting one changes that chosen 1 to
-0 and changes every trailing zero on its right to 1. Bits to its left remain
-unchanged.
-
-For example:
-
-`n     = 1011000`
-
-`n - 1 = 1010111`
-
-The rightmost 1 in `n` is the fourth bit from the right. Subtraction clears it
-and fills the three lower zero positions with ones.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Iteration 1: Clear Bit at Position 0
+- Compute $n - 1$:
+  $$
+  n - 1 = 11 - 1 = 10 = 1010_2
+  $$
+- Bitwise AND:
+  $$
+  n \ \& \ (n - 1) = 1011_2 \ \& \ 1010_2 = \mathbf{1010}_2 = 10
+  $$
+  *(Bit at index 0 cleared!)*
+- Update:
+  $$
+  n \leftarrow 10, \quad \text{count} \leftarrow 0 + 1 = \mathbf{1}
+  $$
 
 ---
 
-### Step 3: Use AND to remove exactly that bit
+### Iteration 2: Clear Bit at Position 1
+- Compute $n - 1$:
+  $$
+  n - 1 = 10 - 1 = 9 = 1001_2
+  $$
+- Bitwise AND:
+  $$
+  n \ \& \ (n - 1) = 1010_2 \ \& \ 1001_2 = \mathbf{1000}_2 = 8
+  $$
+  *(Bit at index 1 cleared!)*
+- Update:
+  $$
+  n \leftarrow 8, \quad \text{count} \leftarrow 1 + 1 = \mathbf{2}
+  $$
 
-The update `n &= n - 1` compares those two patterns position by position. Bits
-to the left of the rightmost 1 are unchanged in `n - 1`, so any set bits there
-remain set after AND. At the rightmost 1 position, `n - 1` contains zero, so
-AND clears it. In every lower position, original `n` contains zero, so the new
-ones introduced by subtraction are cleared by AND.
+---
 
-Consequently, the result is the original number with exactly its least
-significant set bit removed and every other set bit preserved. One update can
-never remove two set bits and can never create a set bit.
+### Iteration 3: Clear Bit at Position 3
+- Compute $n - 1$:
+  $$
+  n - 1 = 8 - 1 = 7 = 0111_2
+  $$
+- Bitwise AND:
+  $$
+  n \ \& \ (n - 1) = 1000_2 \ \& \ 0111_2 = \mathbf{0000}_2 = 0
+  $$
+  *(Bit at index 3 cleared!)*
+- Update:
+  $$
+  n \leftarrow 0, \quad \text{count} \leftarrow 2 + 1 = \mathbf{3}
+  $$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `32` |
+---
+
+### Termination
+- $n == 0$. Loop terminates.
+- Final set bit count: $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 4294967295}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `32` | Verified |
+```text
+n = 11 (binary: 1011)
+
+Iter 1: n = 1011 & 1010 = 1010 (10).  Cleared bit 0. count = 1
+Iter 2: n = 1010 & 1001 = 1000 ( 8).  Cleared bit 1. count = 2
+Iter 3: n = 1000 & 0111 = 0000 ( 0).  Cleared bit 3. count = 3
+
+Loop ends (n == 0). Total 1-bits: 3
+```
+
+| Iteration | Binary State of $n$ | Binary of $n - 1$ | $n \ \& \ (n - 1)$ | Cleared Bit Position | Updated $\text{count}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Start | `1011` ($11$) | - | - | - | 0 |
+| 1 | `1011` ($11$) | `1010` ($10$) | `1010` ($10$) | Bit 0 | 1 |
+| 2 | `1010` ($10$) | `1001` ($9$) | `1000` ($8$) | Bit 1 | 2 |
+| **3** | **`1000` ($8$)** | **`0111` ($7$)** | **`0000` ($0$)** | **Bit 3** | **3 (Final)** |
+
+### Contrast: Power of Two ($n = 128$)
+- $n = 128 = 10000000_2$.
+- $n - 1 = 127 = 01111111_2$.
+- $128 \ \& \ 127 = 00000000_2 = 0$.
+- Count increments to **1** and loop terminates immediately!
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $n > 0$. The lowest set bit of $n$ is at position $p = \log_2(n \ \& \ (-n))$. In $n - 1$, bit $p$ is cleared and bits $0 \dots p-1$ are set to 1. Since bits $0 \dots p-1$ are 0 in $n$, bitwise AND produces 0 at all positions $\le p$, while bits $> p$ remain identical. Thus, $n \ \& \ (n - 1)$ strictly eliminates the lowest set bit without modifying higher set bits.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each step decreases the number of set bits by exactly 1. Since any 32-bit positive integer has a finite number of set bits $k \le 32$, $n$ strictly decreases and reaches $0$ in exactly $k$ iterations.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check every bit:** AND with a moving mask for 32 iterations; simpler fixed work but ignores sparsity.
-- **Parallel mask-and-add:** Sum neighboring bit counts in five fixed stages, as the competitive variant does.
-- **Byte lookup table:** Four fixed lookups per call make a useful repeated-call optimization with a 256-entry cache.
-- **Built-in population count:** `n.bit_count()` is concise and usually highly optimized, though it hides the interview technique.
-- **Binary-string count:** Correct for positive inputs but allocates a textual representation.
-- **Power of two:** Exactly one iteration because `n & (n - 1)` becomes zero immediately.
-- **All low 31 bits set:** Executes 31 iterations, still constant under the fixed-width contract.
-- **Zero:** Returns zero naturally even though the Reference says positive.
-- **Negative Python integer:** Mask to the intended width first; otherwise the finite-word reasoning does not apply.
-- **Variable-width integers:** Report complexity in the word length or popcount instead of calling it unconditional $O(1)$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Unnecessary 32-Bit Scans:** Scanning all 32 bits with `n & 1` and `n >>= 1` always takes 32 iterations, whereas Brian Kernighan takes only $k$ iterations (where $k \ll 32$ for sparse numbers).
+- **Signed Integer Underflow:** In languages with signed integers, bit 31 set to 1 can represent negative values. In Python, integers have arbitrary precision, but for 32-bit contracts, inputs are treated as unsigned integers in $[0, 2^{32} - 1]$.
+- **Built-in `bin(n).count('1')`:** While correct and $O(1)$, string conversion allocates memory and hides bitwise principles in interviews.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(p)$. Let $p$ be the number of set bits. The loop executes exactly $p$ times, so a
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(k)$, where $k$ is the number of set bits (Hamming weight) of $n$. In the worst case (all bits set), $k = 32$. On average, $k \approx 16$. For powers of two, $k = 1$.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory, using only the scalar integer `count`.

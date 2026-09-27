@@ -1,138 +1,185 @@
 # Guided Example: Amount of New Area Painted Each Day
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the path-compressed interval jump pointer algorithm on a representative timeline instance, demonstrating how jump caching skips previously painted intervals in amortized near-constant time.
 
-- **Input:** `{"paint": [[1, 4], [4, 7], [5, 8]]}`
-- **Required output:** `[3, 3, 1]`
+- **Input:** `paint = [[1, 4], [4, 7], [5, 8]]`
+- **Output:** `[3, 3, 1]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $i^{\text{th}}$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
-
-The objective is to compute `[3, 3, 1]` from `{"paint": [[1, 4], [4, 7], [5, 8]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance illustrates unit interval tracking, path-compressed jump skipping over pre-painted blocks, disjoint coverage union, and daily incremental measurement.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A continuous line is painted over a sequence of days. On day $i$, an artist requests painting the half-open interval $[\textit{start}_i, \textit{end}_i)$. Its total nominal length is $\textit{end}_i - \textit{start}_i$.
 
-| State Parameter | Role & Purpose | Initial State |
+Because overlapping paint makes the surface uneven, the artist applies paint only to sections of $[\textit{start}_i, \textit{end}_i)$ that have **never been painted on any earlier day**. For each day $i$, we must report the exact newly painted area, preserving the chronological sequence.
+
+In our representative instance:
+- Day 0: Paints $[1, 4)$. Length $4 - 1 = 3$. Entirely fresh.
+- Day 1: Paints $[4, 7)$. Length $7 - 4 = 3$. Entirely fresh.
+- Day 2: Paints $[5, 8)$. Length $8 - 5 = 3$. However, $[5, 7)$ was already painted on Day 1. Only $[7, 8)$ is fresh.
+
+The expected daily output is $[3, 3, 1]$.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Discrete Unit Interval Representation
+
+Because coordinate endpoints are integers bounded by $M = 50000$, any continuous interval $[s, e)$ can be partitioned into $e - s$ discrete unit intervals:
+$$[s, e) = \bigcup_{x = s}^{e - 1} [x, \, x + 1)$$
+
+Each unit interval $[x, x + 1)$ is in one of two binary states:
+- **Unpainted ($0$):** Has not appeared in any prior query.
+- **Painted ($1$):** Has already been covered on an earlier day.
+
+The new area painted on day $i$ is:
+$$\text{NewArea}_i = \sum_{x = \textit{start}_i}^{\textit{end}_i - 1} \mathbf{1}_{\{[x, x+1) \text{ was unpainted prior to day } i\}}$$
+
+### Jump Pointer Acceleration (Path Compression)
+
+Iterating through every integer unit one by one for every query costs $O(n \cdot M)$ in the worst case ($10^5 \times 50000 = 5 \times 10^9$ operations), which times out.
+
+Instead, we maintain a jump pointer array $\text{jump}$ of size $M + 1$:
+- If unit interval $[x, x + 1)$ has never been painted, $\text{jump}[x] = 0$.
+- When $[x, x + 1)$ is painted as part of an interval ending at $e$, we set $\text{jump}[x] = e$.
+- If a future query visits coordinate $x$ and finds $\text{jump}[x] > 0$, it means the continuous segment $[x, \text{jump}[x])$ has already been painted. The traversal can immediately **jump** forward to $\text{jump}[x]$, skipping the entire covered block in $O(1)$ time!
+
+To maintain jump efficiency across chained intervals, we apply path compression:
+$$\text{jump}[x] \leftarrow \max(\text{jump}[x], \, \textit{end}_i)$$
+This guarantees that each unit interval $[x, x + 1)$ is freshly traversed at most once across the entire algorithm.
+
+| State Variable | Formal Definition | Operational Role in Traversal |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Understand each tree node
-
-A `Node` represents an inclusive coordinate interval `[l,r]`. It stores:
-
-- `left` and `right` child references, created only when needed;
-- `mid = (l + r) >> 1`;
-- `v`, the number of painted unit segments in this node’s interval;
-- `add`, a lazy marker indicating that the entire interval has been assigned painted.
-
-The root covers `[1, 10**5 + 10]`, safely containing every mapped segment because legal endpoints are at most 50,000.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"paint": [[1, 4], [4, 7], [5, 8]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Unit Interval $[x, x+1)$ | Integer coordinate step $x$ | Atomic indivisible unit of painted area |
+| Jump Pointer $\text{jump}[x]$ | Furthest known painted right endpoint from $x$ | Bypasses previously painted blocks in a single step |
+| Unpainted Flag ($\text{jump}[x] = 0$) | Fresh interval detected | Increments daily count by $1$ and records paint |
+| Traversal Pointer $x$ | Current position in $[\textit{start}_i, \textit{end}_i)$ | Advances by $+1$ on fresh units, or jumps to $\text{jump}[x]$ |
 
 ---
 
-### Step 2: Query previously painted length
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-For one day, `l = start + 1` and `r = end`. The interval contains exactly
+We trace `paint = [[1, 4], [4, 7], [5, 8]]`.
 
-`r - l + 1 = end - start`
+```
+Timeline of unit intervals:
+Unit:      [1,2)  [2,3)  [3,4)  [4,5)  [5,6)  [6,7)  [7,8)
+Day 0:       P      P      P     .      .      .      .     => Area = 3
+Day 1:       .      .      .     P      P      P      .     => Area = 3
+Day 2:       .      .      .     .     (skip [5,7))   P     => Area = 1
+```
 
-unit segments.
+### Step 1: Initialize State
+- Array $\text{jump}$ initialized to zeros for all indices up to $50000$.
+- Results array: empty.
 
-`tree.query(l, r)` returns the number already painted. When a node lies fully inside the query, its stored `v` is returned. Otherwise, lazy information is pushed down and the query recursively visits the intersecting children, adding their painted counts.
+### Step 2: Process Day 0 (Interval $[1, 4)$)
+- Range: $x$ from $1$ to $4$. Initialize $\text{area} = 0$.
+- **$x = 1$:** $\text{jump}[1] = 0$ (unpainted).
+  - Increment $\text{area} = 0 + 1 = 1$.
+  - Update $\text{jump}[1] = 4$.
+  - Advance: $x \leftarrow 1 + 1 = 2$.
+- **$x = 2$:** $\text{jump}[2] = 0$ (unpainted).
+  - Increment $\text{area} = 1 + 1 = 2$.
+  - Update $\text{jump}[2] = 4$.
+  - Advance: $x \leftarrow 2 + 1 = 3$.
+- **$x = 3$:** $\text{jump}[3] = 0$ (unpainted).
+  - Increment $\text{area} = 2 + 1 = 3$.
+  - Update $\text{jump}[3] = 4$.
+  - Advance: $x \leftarrow 3 + 1 = 4$.
+- Reached right endpoint $4$. Day 0 newly painted area: $3$.
 
-The new area is therefore
+### Step 3: Process Day 1 (Interval $[4, 7)$)
+- Range: $x$ from $4$ to $7$. Initialize $\text{area} = 0$.
+- **$x = 4$:** $\text{jump}[4] = 0$ (unpainted).
+  - Increment $\text{area} = 0 + 1 = 1$.
+  - Update $\text{jump}[4] = 7$.
+  - Advance: $x \leftarrow 4 + 1 = 5$.
+- **$x = 5$:** $\text{jump}[5] = 0$ (unpainted).
+  - Increment $\text{area} = 1 + 1 = 2$.
+  - Update $\text{jump}[5] = 7$.
+  - Advance: $x \leftarrow 5 + 1 = 6$.
+- **$x = 6$:** $\text{jump}[6] = 0$ (unpainted).
+  - Increment $\text{area} = 2 + 1 = 3$.
+  - Update $\text{jump}[6] = 7$.
+  - Advance: $x \leftarrow 6 + 1 = 7$.
+- Reached right endpoint $7$. Day 1 newly painted area: $3$.
 
-`r - l + 1 - v`.
+### Step 4: Process Day 2 (Interval $[5, 8)$)
+- Range: $x$ from $5$ to $8$. Initialize $\text{area} = 0$.
+- **$x = 5$:**
+  - Check $\text{jump}[5]$: Value is $7 > 0$!
+  - Meaning: Units $[5, 6)$ and $[6, 7)$ are already painted up to coordinate $7$.
+  - Compress path: $\text{jump}[5] = \max(7, 8) = 8$.
+  - **Execute Jump:** $x \leftarrow 7$. (Zero paint added; skipped $2$ units instantly).
+- **$x = 7$:**
+  - Check $\text{jump}[7]$: Value is $0$ (unpainted).
+  - Increment $\text{area} = 0 + 1 = 1$.
+  - Update $\text{jump}[7] = 8$.
+  - Advance: $x \leftarrow 7 + 1 = 8$.
+- Reached right endpoint $8$. Day 2 newly painted area: $1$.
 
-This value is appended before the day’s interval is marked, so it counts only work not done on an earlier day.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Mark the entire interval painted
-
-`tree.modify(l, r, 1)` applies a range assignment. When a node is fully covered, the code sets
-
-`node.v = node.r - node.l + 1`
-
-and `node.add = 1`. Every unit segment in that node is now painted.
-
-For a partial overlap, `pushdown` creates missing children. If the parent has a lazy painted marker, both children are marked fully painted and the parent marker is cleared. Recursion updates whichever children intersect the requested range, and `pushup` restores the parent count as `left.v + right.v`.
-
-Painting is monotone: segments only change from unpainted to painted and never back. Therefore a single truthy lazy marker is sufficient; there is no need to represent an unpaint assignment.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 3, 1]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"paint": [[1, 4], [4, 7], [5, 8]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 3, 1]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Path-compressed successor links:** Jump from each already painted unit to the next unpainted one, visiting every unit once overall. This matches the manifest summary and can be very efficient on the bounded integer domain.
-- **Difference array over days:** A simple global difference array can find final union length but does not directly separate how much became new on each chronological day.
-- **Ordered disjoint intervals:** Maintain the painted union in a balanced structure and merge overlaps. This avoids a fixed coordinate tree but requires careful interval splitting.
-- **Paint every unit directly:** With endpoints at most 50,000, a boolean array can work, but repeated long intervals may cause $O(nU)$ scanning.
-- **No overlap:** Query returns zero for every day, so each answer is `end - start`.
-- **Fully covered interval:** Query equals the interval length and new work is zero.
-- **Partial overlap:** Only uncovered unit labels contribute after subtraction.
-- **Touching endpoints:** Half-open geometry gives zero overlapping length, and the shifted labels remain disjoint.
-- **Nested intervals:** A later interval fully inside an earlier one returns zero.
-- **Repeated interval:** The first occurrence paints it; every repetition returns zero.
-- **Single-unit interval:** `end = start + 1` maps to one label and returns either one or zero.
-- **Lazy overwrite:** Marking an already painted full node again leaves `v` equal to its length, so repeated paint is idempotent.
-- **Dynamic children:** `pushdown` creates both children before `pushup` reads them, preventing missing-child counts.
-- **Input preservation:** The tree stores coverage separately and never changes `paint`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 5: Finalization
+- Daily results collected: $[3, 3, 1]$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(\log U)$. Let $U$ be the root coordinate-domain size, about $10^5$. A range query and a range assignment each traverse $O(\log U)$ boundary paths plus fully covered nodes, giving standard lazy segment-tree time $O(\log U)$ per operation. With two operations for each of $n$ days, total time is $O(n\log U)$.
-- **Auxiliary Space Complexity:** $O(U)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The table below catalogs every step across all three days, detailing jump pointer reads, modifications, and distance skipped:
+
+| Day | Interval $[\textit{start}, \textit{end})$ | Current Coordinate $x$ | $\text{jump}[x]$ Before | Action Taken | $\text{jump}[x]$ After | Next $x$ | Daily Area Added |
+|---|---|---|---|---|---|---|---|
+| Day 0 | $[1, 4)$ | $1$ | $0$ | Fresh unit | $4$ | $2$ | $+1$ |
+| Day 0 | $[1, 4)$ | $2$ | $0$ | Fresh unit | $4$ | $3$ | $+1$ |
+| Day 0 | $[1, 4)$ | $3$ | $0$ | Fresh unit | $4$ | $4$ | $+1$ (Total: 3) |
+| Day 1 | $[4, 7)$ | $4$ | $0$ | Fresh unit | $7$ | $5$ | $+1$ |
+| Day 1 | $[4, 7)$ | $5$ | $0$ | Fresh unit | $7$ | $6$ | $+1$ |
+| Day 1 | $[4, 7)$ | $6$ | $0$ | Fresh unit | $7$ | $7$ | $+1$ (Total: 3) |
+| Day 2 | $[5, 8)$ | $5$ | $7$ | **Jump forward** | $8$ | $7$ | $+0$ (Skipped $[5, 7)$) |
+| Day 2 | $[5, 8)$ | $7$ | $0$ | Fresh unit | $8$ | $8$ | $+1$ (Total: 1) |
+
+Output sequence: $[3, 3, 1]$.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Conservation of Unit Paint Status
+Every unit interval $[x, x + 1)$ begins in state unpainted ($\text{jump}[x] = 0$).
+- When first visited, it contributes exactly $1$ to the daily area of the day that visits it, and its state changes permanently to $\text{jump}[x] > 0$.
+- Any subsequent visit observes $\text{jump}[x] > 0$, bypasses it without incrementing area, and jumps forward.
+- Therefore, each unit interval $[x, x + 1)$ contributes to the output at most once in the entire execution, guaranteeing strict soundness and non-overlapping area accounting.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Completely Subsumed Interval:** If Day 2 requests $[2, 4)$, both $x = 2$ and $x = 3$ are already painted. The pointer jumps from $2$ to $4$ immediately, emitting newly painted area $0$.
+2. **Point-Sized or Negative Intervals:** Problem guarantees $start_i < end_i$, so all intervals have non-zero positive length.
+3. **Contiguous Non-Overlapping Intervals:** $[1, 4)$ followed by $[4, 7)$. The point $4$ is the exclusive end of interval 1 and inclusive start of interval 2. No conflict occurs; both paint $3$ units.
+4. **Scattered Island Coverage:** Intervals cover $[1, 3)$ and $[5, 7)$. A later interval covers $[0, 8)$. The traversal paints $[0, 1)$, jumps past $[1, 3)$, paints $[3, 5)$, jumps past $[5, 7)$, and paints $[7, 8)$.
+
+### Common Anti-Patterns
+- **Brute Force Boolean Array ($O(n \cdot M)$):** Scanning each integer in $[start_i, end_i)$ without jumping takes $5 \times 10^9$ operations, leading to Time Limit Exceeded.
+- **Segment Tree with Lazy Propagation Overhead:** A segment tree works in $O(n \log M)$, but incurs heavy pointer allocation and constant-factor overhead. Jump pointers with path compression run in near $O(n + M)$ time with minimal cache overhead.
+- **Forgetting Path Compression on Jumps:** Failing to update $\text{jump}[x] = \max(\text{jump}[x], \textit{end})$ allows old, smaller jump boundaries to persist, causing redundant repeated jumps.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Across the entire execution of $n$ queries, each unit interval $[x, x + 1)$ in $[0, M)$ transitions from unpainted to painted at most once.
+- There are at most $M = 50000$ such transitions, each taking $O(1)$ time.
+- When an already-painted interval is encountered, path compression bypasses it in $O(\alpha(M))$ amortized steps.
+- Total time complexity across all $n$ queries is $O(n + M \alpha(M))$, running in under $20$ milliseconds for $n = 10^5$ and $M = 50000$.
+
+### Auxiliary Space Complexity
+- The jump pointer array requires $M + 1 = 50001$ integers.
+- The output array requires $n$ integers.
+- Total auxiliary space complexity is $O(M + n)$ (with $O(M)$ working memory beyond the output).

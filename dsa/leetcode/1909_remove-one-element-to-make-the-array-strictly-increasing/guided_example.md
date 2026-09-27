@@ -1,106 +1,158 @@
 # Guided Example: Remove One Element to Make the Array Strictly Increasing
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace local non-increasing inversion detection, dual-candidate boundary repair, and single-deletion validity on representative integer sequences:
 
-- **Input:** `{"nums": [1, 2, 10, 5, 7]}`
-- **Required output:** `true`
+- **Input:** `nums = [1, 2, 10, 5, 7]` (alongside `nums = [2, 3, 1, 2]`)
+- **Required Output:** `true` (and `false` for `[2, 3, 1, 2]`)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates identifying inversion points where $nums[i - 1] \ge nums[i]$, proving why at most one inversion can be resolved by a single element deletion, evaluating the two candidate deletions ($i - 1$ versus $i$), and deciding sequence monotonicity in $\mathcal{O}(n)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a **0-indexed** integer array `nums`, return `true` *if it can be made **strictly increasing** after removing **exactly one** element, or *`false`* otherwise. If the array is already strictly increasing, return *`true`.
+Given a 0-indexed integer array `nums`, we must determine whether the array can be made **strictly increasing** by removing **exactly one** element. An array is strictly increasing if $p[k - 1] < p[k]$ for all adjacent elements.
 
-The objective is to compute `true` from `{"nums": [1, 2, 10, 5, 7]}` while avoiding redundant calculations and unnecessary overhead.
+For `nums = [1, 2, 10, 5, 7]`:
+- Comparing adjacent elements:
+  - Index 1: $nums[0] = 1 < nums[1] = 2$ (valid).
+  - Index 2: $nums[1] = 2 < nums[2] = 10$ (valid).
+  - Index 3: $nums[2] = 10 \ge nums[3] = 5$ (**Violation!** $10 \ge 5$).
+  - Index 4: $nums[3] = 5 < nums[4] = 7$ (valid).
+- Exactly one adjacent inversion exists at index $i = 3$.
+- To restore strict monotonicity, we have exactly two candidates for deletion:
+  1. **Candidate A (Remove $nums[i - 1] = 10$):**
+     - Splicing out $10$ connects $nums[i - 2] = 2$ directly to $nums[i] = 5$.
+     - Test: is $2 < 5$? **Yes!**
+     - The resulting array $[1, 2, 5, 7]$ is strictly increasing.
+  2. **Candidate B (Remove $nums[i] = 5$):**
+     - Splicing out $5$ connects $nums[i - 1] = 10$ directly to $nums[i + 1] = 7$.
+     - Test: is $10 < 7$? **No!**
+- Because Candidate A succeeds, removing the single element $10$ yields a strictly increasing array $\implies$ return `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **local inversion repair**:
+1. Why more than one inversion immediately renders repair by single deletion impossible.
+2. The dual-candidate choice: when $nums[i - 1] \ge nums[i]$, the culprit must be either the high left neighbor ($i - 1$) or the low right neighbor ($i$).
+3. Boundary edge cases ($i = 1$ or $i = n - 1$) where one side has no neighbor.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Local Inversion Disruption & Dual Repair Candidate Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Local Inversion Disruption & Dual Repair Candidate Theorem.**
+> 1. *Inversion Set:* Let $V$ be the set of indices where the strictly increasing property fails:
+>    $$V = \{i \in \{1, 2, \dots, n - 1\} \mid nums[i - 1] \ge nums[i]\}$$
+> 2. *Cardinality Constraint:*
+>    - If $|V| > 1$: Removing any single element $nums[k]$ can repair at most one inversion condition. If there are 2 or more disjoint inversions, at least one violation must remain. Hence, if $|V| > 1$, the answer is definitively **False**.
+>    - If $|V| = 0$: The array is already strictly increasing. Removing any element (e.g. the first or last) preserves strict monotonicity. The answer is **True**.
+> 3. *Single Inversion Dual Candidates:* If $|V| = 1$ with violation at index $i$:
+>    - The single deletion must alter the pair $(nums[i - 1], nums[i])$. Therefore, the deleted index must be either $i - 1$ or $i$.
+>    - *Deleting $nums[i - 1]$:* Requires that $nums[i - 2] < nums[i]$. This is vacuously satisfied if $i - 1 = 0$ (i.e. $i = 1$).
+>    - *Deleting $nums[i]$:* Requires that $nums[i - 1] < nums[i + 1]$. This is vacuously satisfied if $i = n - 1$.
+>    - If either condition holds, the array can be repaired; otherwise, neither repair works and the answer is **False**.
+> 4. *Complexity:* Scanning the array and checking neighbor boundaries takes $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Single Inversion Monotonicity Decision Flow
+    accDescr: Decision tree identifying adjacent inversions and evaluating the validity of deleting either the left or right culprit element.
+    A["Scan array for violations: nums[i - 1] >= nums[i]"] --> B{"Count of violations |V|?"}
+    B -->|"|V| == 0"| C["Return True (already strictly increasing)"]
+    B -->|"> 1"| D["Return False (cannot fix 2+ inversions with 1 deletion)"]
+    B -->|"|V| == 1 at index i"| E{"Can we delete nums[i - 1]?\n(i == 1 OR nums[i - 2] < nums[i])"}
+    E -->|"Yes"| F["Return True (remove nums[i - 1])"]
+    E -->|"No"| G{"Can we delete nums[i]?\n(i == n - 1 OR nums[i - 1] < nums[i + 1])"}
+    G -->|"Yes"| H["Return True (remove nums[i])"]
+    G -->|"No"| I["Return False (neither candidate repairs the array)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Find the first place strict increase fails.** Variable `i` starts at zero and advances while `nums[i] < nums[i + 1]`. When the loop stops before the end, pair `(i, i + 1)` is the first violation: `nums[i] >= nums[i + 1]`. Everything before `i` is already strictly increasing.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 10, 5, 7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `nums = [1, 2, 10, 5, 7]` with length $n = 5$:
 
 ---
 
-### Step 2: Core Step 2
+### Step 1: Scan Adjacent Pairs
+- $i = 1$: $nums[0] = 1$, $nums[1] = 2$.
+  - $1 < 2 \implies$ strictly increasing.
+- $i = 2$: $nums[1] = 2$, $nums[2] = 10$.
+  - $2 < 10 \implies$ strictly increasing.
+- $i = 3$: $nums[2] = 10$, $nums[3] = 5$.
+  - $10 \ge 5 \implies$ **Inversion detected!**
+  - Record violation index $i = 3$. Increment violation count to $1$.
+- $i = 4$: $nums[3] = 5$, $nums[4] = 7$.
+  - $5 < 7 \implies$ strictly increasing.
 
-**Only two removals can repair that first violation.** If neither endpoint of a bad adjacent pair is removed, both values remain adjacent in their original order in the resulting array and still violate strict increase. Therefore every successful one-element removal must remove index `i` or index `i + 1`. This observation reduces up to $n$ candidates to exactly two.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Total violations: $1$ (at $i = 3$).
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Evaluate Repair Candidates for $i = 3$
+Since $|V| = 1$, test the two candidate deletions:
 
-Removing `i` means keeping the smaller/right value and reconnecting `nums[i - 1]`, if it exists, to `nums[i + 1]`. Removing `i + 1` keeps the left value and reconnects it to `nums[i + 2]`, if it exists. Rather than encode these boundary comparisons manually, the source validates each complete candidate with helper `check`.
+1. **Test Deleting $nums[i - 1] = nums[2] = 10$:**
+   - Predecessor index: $i - 2 = 1$.
+   - Predecessor value: $nums[1] = 2$.
+   - Successor value: $nums[3] = 5$.
+   - Check condition: $nums[1] < nums[3] \implies 2 < 5$.
+   - **Satisfied!** Removing $10$ bridges $2$ and $5$ seamlessly.
+   - Spliced sequence: $[1, 2, 5, 7]$ is strictly increasing.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+2. Since Candidate A succeeds, we need not check further.
+- Conclude: `true`.
+
+---
+
+### Step 3: Comparative Trace on Unrepairable Instance `[2, 3, 1, 2]`
+For contrast, trace `nums = [2, 3, 1, 2]` ($n = 4$):
+- $i = 1$: $nums[0]=2 < nums[1]=3$ (ok).
+- $i = 2$: $nums[1]=3 \ge nums[2]=1$ (Inversion 1 at $i = 2$).
+- $i = 3$: $nums[2]=1 < nums[3]=2$ (ok).
+- Here $|V| = 1$ at $i = 2$. Let us test both candidates:
+  - Candidate A (remove $nums[1] = 3$):
+    - Check $nums[i - 2] < nums[i] \implies nums[0] < nums[2] \implies 2 < 1$ (**False**).
+    - Resulting array: $[2, 1, 2]$ has $2 \ge 1$. Fails!
+  - Candidate B (remove $nums[2] = 1$):
+    - Check $nums[i - 1] < nums[i + 1] \implies nums[1] < nums[3] \implies 3 < 2$ (**False**).
+    - Resulting array: $[2, 3, 2]$ has $3 \ge 2$. Fails!
+- Neither candidate repairs the array $\implies$ return `false`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 10, 5, 7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Array Instance | Pairs $(nums[i-1], nums[i])$ | Inversions $V$ | Candidate A: Remove $nums[i-1]$ | Candidate B: Remove $nums[i]$ | Decision |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `[1, 2, 10, 5, 7]` | $(1, 2), (2, 10), (10, 5)^*, (5, 7)$ | $\{3\}$ | $nums[1] < nums[3] \implies 2 < 5$ (**Valid**) | $nums[2] < nums[4] \implies 10 < 7$ (Invalid) | **`true`** |
+| `[2, 3, 1, 2]` | $(2, 3), (3, 1)^*, (1, 2)$ | $\{2\}$ | $nums[0] < nums[2] \implies 2 < 1$ (Invalid) | $nums[1] < nums[3] \implies 3 < 2$ (Invalid) | **`false`** |
+| `[1, 1, 1]` | $(1, 1)^*, (1, 1)^*$ | $\{1, 2\}$ | Multiple inversions ($|V| = 2 > 1$) | Multiple inversions | **`false`** |
+| `[1, 2, 3]` | $(1, 2), (2, 3)$ | $\emptyset$ | Already strictly increasing | Already strictly increasing | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A single element removal can only alter relationships between the removed element and its adjacent neighbors. If the condition $nums[i-2] < nums[i]$ or $nums[i-1] < nums[i+1]$ holds, the new joint is strictly increasing and no other inversions exist in the array.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any valid single deletion must remove either $nums[i-1]$ or $nums[i]$. Exhaustively checking both candidate bridge conditions guarantees that if any valid removal exists, it will be detected.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Try deleting every index:** Validating all $n$ shortened candidates costs $O(n^2)$. The first bad pair proves only two candidates matter.
-- **One-pass modification counter:** A greedy scan can decide which endpoint to ignore based on neighboring values. It also achieves $O(n)$ time but is easier to get wrong at boundaries than two explicit validations.
-- **Physically delete and restore:** This mutates the input and shifts indices. Logical skipping is simpler and constant-space.
-- **Violation from equal values:** Strict increase rejects equality because discovery uses `<` and validation rejects `pre >= x`.
-- **Violation at the start:** Candidate indices zero and one are both valid; negative infinity handles whichever first kept element remains.
-- **Violation at the end:** Removing either endpoint is tested, including removing the final value.
-- **Already strictly increasing:** Discovery reaches the last index, and removing that last element produces a valid sequence, so true is returned.
-- **Two-element array:** Removing either one leaves a single-element increasing array; the method returns true.
-- **Multiple separated violations:** Removing one endpoint of the first cannot generally fix a later violation, and full `check` correctly rejects both candidates.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Deleting the Wrong Element:** In `[1, 2, 10, 5, 7]`, removing $5$ leaves $[1, 2, 10, 7]$ which still fails ($10 \ge 7$). Only testing both candidates avoids missing the valid removal.
+- **Boundary Inversions at Ends:**
+  - If $i = 1$, removing $nums[0]$ leaves $nums[1]$ at the start with no predecessor; this is always valid.
+  - If $i = n - 1$, removing $nums[n - 1]$ leaves $nums[n - 2]$ at the end with no successor; this is always valid.
+- **Multiple Duplicates:** In `[1, 1, 1]`, there are two separate inversions. Removing one element leaves $[1, 1]$, which is non-decreasing but **not** strictly increasing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. Finding the first violation takes at most $O(n)$ time. Each `check` scans at most $n$ elements, and at most two checks run. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `nums`. We perform a single linear scan over the array to locate inversions.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space as only indices and counters are tracked.

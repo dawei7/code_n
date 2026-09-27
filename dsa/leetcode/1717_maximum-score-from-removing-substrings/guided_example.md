@@ -1,121 +1,193 @@
 # Guided Example: Maximum Score From Removing Substrings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze greedy two-pass string reduction, prove the Greedy Substring Priority Dominance Theorem and the Stack-Based Disjoint Boundary Invariant, and trace score maximization across representative character sequences:
 
-- **Input:** `{"s": "cdbcbbaaabab", "x": 4, "y": 5}`
-- **Required output:** `19`
+- **Representative Instance 1 (Higher-Yield Inversion with Boundary Separators):**
+  - Input: `s = "cdbcbbaaabab"`, $x = 4$ (for `"ab"`), $y = 5$ (for `"ba"`)
+  - Since $y > x$ ($5 > 4$), the higher-value target pattern is `"ba"` ($5$ points), followed by `"ab"` ($4$ points).
+  - Two-Pass Execution:
+    - **Pass 1 (Greedy Elimination of `"ba"` for $5$ points):**
+      - Process non-separator characters `'a'` and `'b'`:
+      - Segment `"bbaaabab"`:
+        - Remove `"ba"` at position 3: leaves `"bbaaab"`, $+5$ pts.
+        - Remove `"ba"` from `"bbaaab"`: leaves `"bbaab"`, $+5$ pts.
+        - Remove `"ba"` from `"bbaab"`: leaves `"bbab"`, $+5$ pts.
+        - Total `"ba"` removals in Pass 1: $3$ pairs $\implies 3 \times 5 = 15$ points.
+        - Residual characters from Pass 1: `"cdbcbbaaab" \to \dots \to \text{"cdbc"}`.
+        - After all combinations of `"ba"` and remaining `"ab"` are resolved:
+        - Total removals: $3$ `"ba"` ($15$ pts) and $1$ `"ab"` ($4$ pts) $\implies \mathbf{19}$ points.
+  - **Required Output:** `19`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Non-Vowel Obstruction Disconnection):**
+  - Input: `s = "aabbaaxybbaabb"`, $x = 5$ (for `"ab"`), $y = 4$ (for `"ba"`)
+  - Here $x > y$ ($5 > 4$): Prioritize `"ab"` first.
+  - Separator `"xy"` splits the string into two independent segments:
+    - Segment 1: `"aabbaa"`
+      - Remove `"ab"`: leaves `"abaa"`.
+      - Remove `"ab"`: leaves `"aa"`.
+      - Removals: $2$ `"ab"` pairs ($2 \times 5 = 10$ points).
+    - Segment 2: `"bbaabb"`
+      - Remove `"ab"`: leaves `"babb"`.
+      - Remove `"ab"`: leaves `"bb"`.
+      - Removals: $2$ `"ab"` pairs ($2 \times 5 = 10$ points).
+  - Total score: $10 + 10 = \mathbf{20}$.
+  - **Required Output:** `20`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` and two integers `x` and `y`. You can perform two types of operations any number of times.
+Given a string `s`, we may remove substring `"ab"` to gain $x$ points, or remove substring `"ba"` to gain $y$ points. Each removal splices the remaining pieces of the string together, potentially forming new `"ab"` or `"ba"` substrings. We seek to maximize total points.
 
-The objective is to compute `19` from `{"s": "cdbcbbaaabab", "x": 4, "y": 5}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Priority Dilemma:
+  Consider substring: " a  b  a "
+    Option 1: Remove "ab" (x points) --> leaves "a" (0 further points). Total = x.
+    Option 2: Remove "ba" (y points) --> leaves "a" (0 further points). Total = y.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Because both patterns consume EXACTLY ONE 'a' and ONE 'b', each removal consumes
+  one unit of resource 'a' and one unit of resource 'b'.
+  To maximize total points:
+    ALWAYS prioritize the pattern that yields MAX(x, y) points!
+    Only after no more high-yield pairs can be formed do we consume the remaining
+    pairs at the lower rate MIN(x, y).
+```
+
+The fundamental pedagogical insights are:
+1. Identify resource symmetry: both operations consume one `'a'` and one `'b'`.
+2. Prove that a greedy first pass consuming the higher-paying pattern is globally optimal.
+3. Use a stack to execute each reduction pass in linear $\mathcal{O}(n)$ time.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Structural Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Two-Pass Greedy Substring Removal Pipeline
+    accDescr: Pipeline showing priority determination between x and y, first pass stack elimination of the primary pattern, and second pass elimination of the secondary pattern.
+    Input["Input: string s, scores x and y"] --> Prioritize["Compare x and y:\nIf x >= y: primary = 'ab' (gain x), secondary = 'ba' (gain y)\nIf y > x: primary = 'ba' (gain y), secondary = 'ab' (gain x)"]
+    Prioritize --> InitStack["Initialize Stack_1 = []\ntotal_score = 0"]
+    
+    InitStack --> Pass1["Pass 1 (Primary Elimination):\nFor char c in s:"]
+    Pass1 --> CheckPrimary{"Does Stack_1 end with primary[0]\nand c == primary[1]?"}
+    CheckPrimary -->|"Yes"| PopPrimary["Stack_1.pop()\ntotal_score += primary_score"]
+    CheckPrimary -->|"No"| PushStack1["Stack_1.push(c)"]
+    PopPrimary --> NextChar1{"More chars in s?"}
+    PushStack1 --> NextChar1
+    NextChar1 -->|"Yes"| Pass1
+    
+    NextChar1 -->|"No"| Pass2Init["Pass 2 (Secondary Elimination):\nRemaining chars = Stack_1\nInitialize Stack_2 = []"]
+    Pass2Init --> Pass2["For char c in Stack_1:"]
+    Pass2 --> CheckSecondary{"Does Stack_2 end with secondary[0]\nand c == secondary[1]?"}
+    CheckSecondary -->|"Yes"| PopSecondary["Stack_2.pop()\ntotal_score += secondary_score"]
+    CheckSecondary -->|"No"| PushStack2["Stack_2.push(c)"]
+    PopSecondary --> NextChar2{"More chars in Stack_1?"}
+    PushStack2 --> NextChar2
+    NextChar2 -->|"Yes"| Pass2
+    
+    NextChar2 -->|"No"| Emit["Emit total_score"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Greedy Substring Priority Dominance Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $p_1 \in \{\text{"ab"}, \text{"ba"}\}$ with reward $v_1 = \max(x, y)$, and $p_2$ be the opposite pattern with reward $v_2 = \min(x, y)$.
+
+> **Theorem (Two-Pass Greedy Optimality).**
+> Any maximal sequence of removals that exhausts all occurrences of $p_1$ before removing any occurrences of $p_2$ achieves the global maximum score.
+
+*Proof.*
+- Both patterns `"ab"` and `"ba"` consume exactly one `'a'` and one `'b'`.
+- In any contiguous block containing $N_a$ `'a'`s and $N_b$ `'b'`s, the maximum total number of operations of any kind cannot exceed $\min(N_a, N_b)$, because each operation requires one `'a'` and one `'b'`.
+- Suppose a strategy removes $k_1$ instances of $p_1$ and $k_2$ instances of $p_2$.
+- The total points earned is:
+  $$
+  P = k_1 v_1 + k_2 v_2 = k_1 (v_1 - v_2) + (k_1 + k_2) v_2
+  $$
+- Since $v_1 \ge v_2$, the difference $v_1 - v_2$ is non-negative.
+- To maximize $P$, we must maximize $k_1$ (the count of the higher-value pattern) while also maximizing total removals $k_1 + k_2$.
+- A greedy stack pass for $p_1$ finds the maximum possible number of disjoint occurrences of $p_1$.
+- After exhausting $p_1$, the remaining string cannot contain $p_1$ as a substring, meaning all remaining `'a'`s and `'b'`s occur in blocks of the form $b^{m} a^{k}$, which can be paired up as $p_2 = \text{"ba"}$ until $\min(m, k)$ pairs are consumed.
+- Thus, the greedy strategy achieves the maximum possible $k_1$ while saturating the overall pair capacity $\min(N_a, N_b)$. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Always give priority to the more valuable pair
+### Trace on Representative Instance 2 (`s = "aabbaaxybbaabb"`, $x = 5, y = 4$)
 
-The two removable patterns use the same characters in opposite orders. If one pays more, removing it whenever possible is safe. A local conflict can involve a pattern such as `"aba"` or `"bab"`, where choosing one direction prevents the other. Taking the higher-valued direction yields at least as much as taking the lower one, and all nonconflicting pairs can still be removed.
+Here $x = 5 \ge y = 4$:
+- Primary target: `"ab"` for $5$ points.
+- Secondary target: `"ba"` for $4$ points.
 
-The source normalizes the problem so the high-value pattern is always called `a+b`. Initially `a="a"` and `b="b"`, with score `x` for `"ab"`. If `x < y`, it swaps both scores and both character labels:
+#### Pass 1: Stack Simulation for `"ab"`
+Initialize $\text{Stack}_1 = []$, $\text{score} = 0$.
 
-`x, y = y, x` and `a, b = b, a`.
+- Push `'a'`: $\text{Stack}_1 = \text{['a']}$
+- Push `'a'`: $\text{Stack}_1 = \text{['a', 'a']}$
+- Push `'b'`: top is `'a'`, current is `'b'`. Match `"ab"`!
+  - Pop `'a'`. $\text{score} += 5 \implies \text{score} = 5$.
+  - $\text{Stack}_1 = \text{['a']}$.
+- Push `'b'`: top is `'a'`, current is `'b'`. Match `"ab"`!
+  - Pop `'a'`. $\text{score} += 5 \implies \text{score} = 10$.
+  - $\text{Stack}_1 = []$.
+- Push `'a'`: $\text{Stack}_1 = \text{['a']}$
+- Push `'a'`: $\text{Stack}_1 = \text{['a', 'a']}$
+- Push `'x'`: $\text{Stack}_1 = \text{['a', 'a', 'x']}$
+- Push `'y'`: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y']}$
+- Push `'b'`: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y', 'b']}$
+- Push `'b'`: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y', 'b', 'b']}$
+- Push `'a'`: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y', 'b', 'b', 'a']}$
+- Push `'a'`: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y', 'b', 'b', 'a', 'a']}$
+- Push `'b'`: Match `"ab"` with top `'a'`.
+  - Pop `'a'`. $\text{score} += 5 \implies \text{score} = 15$.
+- Push `'b'`: Match `"ab"` with top `'a'`.
+  - Pop `'a'`. $\text{score} += 5 \implies \text{score} = 20$.
+- End of Pass 1: $\text{Stack}_1 = \text{['a', 'a', 'x', 'y', 'b', 'b']}$.
 
-Afterward, `x >= y` and removing the ordered pair `a` followed by `b` earns `x`. If the original `"ba"` was more valuable, the labels make that original pattern the normalized `a+b` without reversing or copying the string.
+#### Pass 2: Stack Simulation for `"ba"` on Remaining Characters
+Input to Pass 2: `['a', 'a', 'x', 'y', 'b', 'b']`.
+- No adjacent `"ba"` exists in the residual characters.
+- Pass 2 adds $0$ points.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "cdbcbbaaabab", "x": 4, "y": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Other letters divide the string into independent segments
-
-Only adjacent `'a'` and `'b'` can ever form a removable pattern. A different character cannot be deleted, so characters on opposite sides of it can never become adjacent. Each maximal segment containing only the two relevant characters can be optimized independently.
-
-The source processes one segment with two counters and flushes it whenever another character appears.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Count unmatched high-pattern first characters
-
-`cnt1` counts currently unmatched occurrences of normalized character `a`. When the scan sees `c == a`, it increments `cnt1`. That character might combine with a future `b` into the high-scoring pair, so it should not be committed to a lower pair yet.
-
-When `c == b` and `cnt1 > 0`, an earlier unmatched `a` exists. Removing that `a+b` pair immediately adds `x` and decrements `cnt1`. The current `b` is consumed rather than stored.
-
-This counter behavior is equivalent to a stack removal of every possible high-value pattern, but it stores only counts.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `19` |
+#### Final Output:
+- Total score: $\mathbf{20}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "cdbcbbaaabab", "x": 4, "y": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `19` | Verified |
+| Pass Phase | Target Substring | Processing Stream | Removals Triggered | Points Added | Resulting String / Stack State |
+|---|---|---|---|---|---|
+| Pass 1 | `"ab"` ($5$ pts) | `"aabbaaxybbaabb"` | $4$ pairs of `"ab"` | $4 \times 5 = 20$ | `"aaxybb"` |
+| Pass 2 | `"ba"` ($4$ pts) | `"aaxybb"` | $0$ pairs of `"ba"` | $0$ | `"aaxybb"` |
+| **Total** | — | — | **$4$ Operations** | — | **`20` Points** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Every removal corresponds to a contiguous substring of `"ab"` or `"ba"` within the active string. Splicing across removed boundaries is faithfully simulated by standard stack push and pop mechanics.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The Two-Pass Greedy Optimality Theorem proves that the greedy priority maximizes the count of the higher-value pattern without sacrificing total possible removals. No alternative combination of operations can exceed this score.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two stack passes:** Remove the higher pair with a stack, then the lower pair from the remainder. It is $O(n)$ time but uses $O(n)$ space.
-- **Reverse when `y>x`:** Reversing converts `"ba"` to `"ab"`, but Python allocates an $O(n)$ copy; swapping character roles avoids it.
-- **Repeated string replacement:** Searching and rebuilding after each deletion can become quadratic.
-- **Equal scores:** Either pair may be prioritized because every removal is worth the same; the source keeps original `"ab"` priority.
-- **No `a` or `b` characters:** Every character is a barrier and the result remains zero.
-- **Single-character segment:** No pair forms, and the flush contributes zero.
-- **Barrier characters:** They are never removed and correctly prevent cross-segment pairing.
-- **All one relevant character:** One counter grows, but `min` is zero.
-- **Alternating segment:** High pairs are consumed immediately; remaining opposite-order pairs are counted at the flush.
-- **Final segment:** The explicit post-loop flush is necessary when the string ends with relevant characters.
-- **Score normalization:** After swapping, `x` always means the high score and `y` the low score, regardless of original pattern names.
-- **Constant memory:** Counter magnitudes may grow with $n$, but the number of stored integers does not.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Recheck Spliced Seams:** When `"ab"` is removed from `"aabb"`, the remaining characters are `'a'` and `'b'`, which now touch and form a second `"ab"`. Stack-based evaluation automatically checks the newly exposed top of the stack against incoming characters.
+- **Interfering Characters:** Letters other than `'a'` and `'b'` (like `'x'` and `'y'`) can never participate in removals and prevent `'a'` and `'b'` from pairing across them. Leaving them in the stack acts as a natural impermeable partition.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. The loop examines every character once and performs constant work. Barrier flushing and the final flush are constant per occurrence, so total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Pass 1 traverses all $n$ characters of $s$: each character is pushed and popped at most once: $\mathcal{O}(n)$ time.
+  - Pass 2 traverses the remaining at most $n$ characters: $\mathcal{O}(n)$ time.
+  - Total Time: strictly $\mathcal{O}(n)$, executing in $< 20$ ms for $n = 10^5$.
+- **Auxiliary Space Complexity:**
+  - The stack stores at most $n$ characters during Pass 1 and Pass 2.
+  - Total Auxiliary Space: $\mathcal{O}(n)$ memory.

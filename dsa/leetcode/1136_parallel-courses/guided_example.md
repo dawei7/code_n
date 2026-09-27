@@ -1,113 +1,216 @@
 # Guided Example: Parallel Courses
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step level-synchronized topological sort over directed prerequisite graphs, formalizing Kahn's In-Degree Elimination Invariant and the DAG Longest Path Equivalence Theorem:
 
-- **Input:** `{"n": 3, "relations": [[1, 3], [2, 3]]}`
-- **Required output:** `2`
+- **Representative Instance 1 (Parallel Convergence to a Shared Successor):**
+  $$
+  n = 3, \quad relations = [[1, 3], [2, 3]]
+  $$
+- **Required Output:** `2`
+  - In-Degree Setup:
+    - Course $1$: In-degree $= 0$ (Zero prerequisites $\implies$ Eligible immediately)
+    - Course $2$: In-degree $= 0$ (Zero prerequisites $\implies$ Eligible immediately)
+    - Course $3$: In-degree $= 2$ (Requires both course $1$ and course $2$)
+  - Semester-by-Semester Parallel Waves:
+    - **Semester 1:**
+      - Frontier: Courses $\{1, 2\}$. Both taken simultaneously in parallel.
+      - Discharge prerequisites:
+        - Completing course $1$ decrements in-degree of $3$: $2 \to 1$.
+        - Completing course $2$ decrements in-degree of $3$: $1 \to 0$.
+      - Course $3$ reaches in-degree $0$, unlocking for the subsequent semester.
+      - Courses taken so far: $2$.
+    - **Semester 2:**
+      - Frontier: Course $\{3\}$.
+      - Course $3$ taken. No outgoing edges.
+      - Courses taken so far: $2 + 1 = 3 = n$.
+  - Termination: All $3$ courses completed in $\mathbf{2}$ semesters.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Deadlock Cycle Failure):**
+  $$
+  n = 3, \quad relations = [[1, 2], [2, 3], [3, 1]]
+  $$
+  - Every course in the triangle cycle has in-degree $1$:
+    - $\text{in\_degree}[1] = 1, \; \text{in\_degree}[2] = 1, \; \text{in\_degree}[3] = 1$.
+  - Initial frontier of zero in-degree courses is empty: $Q = [\,]$.
+  - Zero courses can ever be scheduled $\implies$ Return cycle sentinel $\mathbf{-1}$.
+
+- **Representative Instance 3 (Diamond Dependency Chain):**
+  $$
+  n = 4, \quad relations = [[1, 2], [1, 3], [2, 4], [3, 4]]
+  $$
+  - Semester 1: Course $\{1\}$.
+  - Semester 2: Courses $\{2, 3\}$ in parallel.
+  - Semester 3: Course $\{4\}$.
+  - Total semesters: $\mathbf{3}$ (matches the longest directed path length $1 \to 2 \to 4$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `n`, which indicates that there are `n` courses labeled from `1` to `n`. You are also given an array `relations` where $\text{relations}[i] = [\text{prevCourse}_{i}, \text{nextCourse}_{i}]$, representing a prerequisite relationship between course $\text{prevCourse}_{i}$ and course $\text{nextCourse}_{i}$: course $\text{prevCourse}_{i}$ has to be taken before course $\text{nextCourse}_{i}$.
+Given $n$ courses and a list of direct prerequisite dependencies, determine the minimum number of academic semesters required to complete all courses, assuming an unlimited number of mutually independent eligible courses may be taken concurrently in each semester. If a dependency cycle makes graduation impossible, return -1.
 
-The objective is to compute `2` from `{"n": 3, "relations": [[1, 3], [2, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Serial Sequencing Fallacy:
+  Scheduling eligible courses one by one in arbitrary order:
+    For courses 1 and 2 with no prerequisites, scheduling them in separate semesters
+    produces 3 semesters instead of 2.
+    The problem permits UNLIMITED parallel concurrency per semester!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Level-Synchronized Kahn BFS Invariant (O(V + E) Time, O(V + E) Space):
+  1. Build adjacency list and in-degree array for all n courses.
+  2. Queue Q initially holds all vertices with in_degree == 0.
+  3. While Q is not empty:
+       Increment semester count by 1.
+       Process ALL current nodes in Q as a single semester cohort (level-order BFS).
+       For each node u in the current cohort:
+           Increment completed courses counter.
+           For each neighbor v in adj[u]:
+               Decrement in_degree[v] by 1.
+               If in_degree[v] == 0:
+                   Enqueue v for the NEXT semester cohort.
+  4. If completed courses == n: return semester count.
+     Else: return -1 (a directed cycle trapped uncompleted courses).
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Turn the prerequisite rules into a directed graph
-
-Each course is a vertex. A relation `[prev, next]` is a directed edge from `prev` to `next` because completing `prev` is a condition for taking `next`. The important value for a course is its *indegree*: the number of prerequisite edges currently pointing into it. An indegree of zero means that none of its prerequisites remain unfinished, so the course is available in the next semester.
-
-The solution stores outgoing edges in `g`. For every relation, it converts the one-based course labels to zero-based indices, appends `nxt` to `g[prev]`, and increments `indeg[nxt]`. The queue is then initialized with every course whose indegree is zero. Those courses have no prerequisites at all, so they are exactly the courses that can be taken in semester one.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3, "relations": [[1, 3], [2, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The fundamental pedagogical insights are:
+1. **Longest Path Equivalence:** The minimum number of semesters to complete a DAG is identically equal to the maximum number of vertices on any directed path in the graph.
+2. **Kahn's Topological Layering:** Processing vertices with zero in-degree layer by layer simulates the earliest possible semester in which each course's prerequisites have all been fulfilled.
 
 ---
 
-### Step 2: Why taking every available course is always optimal
+## 2. Conceptual Foundation & The Parallel Kahn BFS Invariant
 
-There is no upper bound on the number of courses taken in one semester. Therefore, postponing an available course cannot create any advantage. Taking it now does not compete for a limited seat, time slot, or course allowance. On the other hand, postponing it may postpone every course that depends on it. Consequently, an optimal schedule may take all currently available courses together.
+```mermaid
+flowchart TD
+    accTitle: Parallel Courses Kahn BFS Pipeline
+    accDescr: Pipeline illustrating in-degree calculation, level-order queue initialization, parallel semester cohort processing, and cycle verification
+    Start["Given n courses, relations\nCompute in_degree array\nInit queue Q with all u where in_degree[u] == 0\nInit semesters = 0, taken = 0"] --> CheckEmpty{"Q is empty ?"}
+    CheckEmpty -->|"No: Courses available"| NewSemester["semesters += 1\ncohort_size = len(Q)"]
+    NewSemester --> ProcessCohort["For each course u in current cohort:"]
+    ProcessCohort --> IncTaken["taken += 1"]
+    IncTaken --> DecrementNeighbors["For each v in adj[u]:\nin_degree[v] -= 1\nIf in_degree[v] == 0: enqueue v"]
+    DecrementNeighbors --> CohortDone{"Cohort exhausted ?"}
+    CohortDone -->|"No"| ProcessCohort
+    CohortDone -->|"Yes"| CheckEmpty
+    CheckEmpty -->|"Yes: No more eligible courses"| Validate{"taken == n ?"}
+    Validate -->|"Yes: All courses completed"| ReturnSemesters["Return semesters"]
+    Validate -->|"No: Dependency cycle detected"| ReturnDeadlock["Return -1"]
+```
 
-This observation turns Kahn's topological-sort algorithm into a semester simulation. One queue layer represents one semester. At the start of the `while q` iteration, every course already in `q` is eligible for the semester about to begin. The code increments `ans` once, records the layer size through `range(len(q))`, and removes exactly that many courses.
+### Topological Layering & Longest Path DAG Equivalence Theorem
 
-Capturing the queue length is essential. While a course is processed, each outgoing edge is removed conceptually by decrementing the destination's indegree. If that indegree becomes zero, the destination is appended to the queue. It cannot be taken in the current semester because one of its prerequisites was completed only during this semester, whereas the contract requires prerequisites to have been taken in a previous semester. Since the loop processes only the queue's original length, newly appended courses remain for the following `while` iteration and therefore for the following semester.
+Let $G = (V, E)$ be a directed graph with $|V| = n$ vertices representing courses and $|E| = m$ directed edges $(u, v)$ representing prerequisites ($u$ must precede $v$).
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Topological Level Recurrence:**
+   For each course $v \in V$, define its earliest completion semester $L(v)$ as:
+   $$
+   L(v) = \begin{cases}
+   1, & \text{if } \text{in-degree}(v) = 0 \\
+   1 + \max_{(u, v) \in E} L(u), & \text{otherwise}
+   \end{cases}
+   $$
+2. **Kahn's BFS Invariant:**
+   At iteration $k \ge 1$ of level-order BFS, the queue contains precisely the set of vertices $V_k = \{ v \in V : L(v) = k \}$.
+   - All prerequisites $u$ of $v$ satisfy $L(u) < k$, ensuring they were processed in strictly earlier semesters.
+   - At least one prerequisite $u^*$ of $v$ satisfies $L(u^*) = k - 1$, meaning $v$ could not have been taken any earlier than semester $k$.
+3. **Cycle Characterization:**
+   A directed graph $G$ contains a directed cycle if and only if there exists a non-empty subset of vertices $C \subseteq V$ such that every $v \in C$ has at least one incoming edge from another vertex in $C$.
+   Under Kahn's algorithm, no vertex in $C$ ever reaches in-degree $0$.
+   Hence, the algorithm terminates with $\text{taken} < n$ if and only if $G$ contains a directed cycle, correctly returning $-1$. $\blacksquare$
 
 ---
 
-### Step 3: What the mutable counter means
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The parameter `n` initially holds the total number of courses. The solution reuses it as a count of courses not yet processed. Whenever a course is removed from the queue, `n -= 1` marks that course as completed. This mutation does not affect the graph indices or any loop bound; after graph construction, the original total is no longer needed. At the end, `n == 0` means every course appeared in some valid semester. A positive value means some courses were never eligible.
+$n = 3, \quad relations = [[1, 3], [2, 3]]$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Setup & In-Degree Array
+- $in\_degree = [0, 0, 0, 2]$ (1-indexed)
+- Adjacency list:
+  - $1 \to [3]$
+  - $2 \to [3]$
+  - $3 \to []$
+- Initial Queue: Courses with in-degree $0 \implies Q = [1, 2]$.
+- State registers: $semesters = 0$, $taken = 0$.
+
+### Semester 1
+- $semesters \leftarrow 0 + 1 = 1$.
+- Cohort size $= 2$ (Nodes $1$ and $2$).
+- **Process Node 1:**
+  - $taken \leftarrow 0 + 1 = 1$.
+  - Outgoing neighbor $3$: $in\_degree[3] \leftarrow 2 - 1 = 1$. (Not yet $0$).
+- **Process Node 2:**
+  - $taken \leftarrow 1 + 1 = 2$.
+  - Outgoing neighbor $3$: $in\_degree[3] \leftarrow 1 - 1 = 0$.
+  - $in\_degree[3] == 0 \implies$ Enqueue node $3$ for next semester.
+- Queue after Semester 1: $Q = [3]$.
+
+### Semester 2
+- $semesters \leftarrow 1 + 1 = 2$.
+- Cohort size $= 1$ (Node $3$).
+- **Process Node 3:**
+  - $taken \leftarrow 2 + 1 = 3$.
+  - Outgoing neighbors: None.
+- Queue after Semester 2: $Q = [\,]$.
+
+### Final Validation
+- $Q$ is empty.
+- Total courses completed: $taken = 3 = n$.
+- All courses satisfied $\implies$ Return $semesters = \mathbf{2}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. State Transition Trace Tables
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "relations": [[1, 3], [2, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+### Table 1: Valid DAG Parallel Cohort Trace ($n = 3$)
+
+| Semester | Queue at Start | Cohort Extracted | Node Processed $u$ | Successor $v$ | In-Degree Before | In-Degree After | New Enqueued | Cumulative Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $[1, 2]$ | $\{1, 2\}$ | $1$ | $3$ | $2$ | $1$ | — | $1$ |
+| $1$ | — | — | $2$ | $3$ | $1$ | **$0$** | Enqueued $3$ | $2$ |
+| **$2$** | **$[3]$** | **$\{3\}$** | **$3$** | None | — | — | — | **$3$** |
+| End | $[\,]$ | — | — | — | — | — | — | $3 = n \implies \mathbf{2}$ Semesters |
+
+### Table 2: Cycle Deadlock Trace ($n = 3$, Triangle Cycle)
+
+| Step / Phase | Action | In-Degree Map | Queue State | Courses Taken | Status |
+|:---:|:---|:---:|:---:|:---:|:---|
+| Graph Build | Relations $[[1, 2], [2, 3], [3, 1]]$ | $\{1: 1, 2: 1, 3: 1\}$ | $[\,]$ | $0$ | Every node has in-degree $\ge 1$ |
+| Queue Init | Identify nodes with in-degree $0$ | $\{1: 1, 2: 1, 3: 1\}$ | $[\,]$ | $0$ | **Queue remains empty** |
+| Execution | While loop fails immediately | $\{1: 1, 2: 1, 3: 1\}$ | $[\,]$ | $0$ | Loop terminates with $0$ semesters |
+| Final Audit | Check condition $taken == n$ | — | — | $0 \ne 3$ | **Cycle Detected $\implies$ Return $-1$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Optimality
+1. **Strict Prerequisite Adherence:** A course $v$ enters the queue if and only if its in-degree becomes $0$, which occurs exclusively after all incoming edges $(u, v)$ have been decremented by processing all its prerequisites in strictly preceding semesters.
+2. **Minimality via Maximal Parallelism:** Every course whose prerequisites have been fulfilled is scheduled in the very next semester. Because there is no limit on courses taken per semester, no course is ever delayed arbitrarily, guaranteeing the global minimum semester count.
+3. **Deadlock Immunity:** If the graph contains a directed cycle, no topological ordering exists, and the vertices in the cycle will maintain an in-degree of at least $1$. The count of visited nodes will strictly fall short of $n$, accurately triggering the $-1$ return.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Depth-first search with three visitation states:** A DFS can detect a cycle and memoize the longest path beginning at every course, also achieving `O(n + r)` time and space. It is a valid optimal alternative, but the layered breadth-first method maps semesters directly to queue layers and avoids recursion-depth concerns for as many as 5,000 courses.
-- **Repeatedly scan all courses for newly available ones:** This can simulate semesters without a queue, but rescanning every course after each layer can require quadratic time on a long prerequisite chain. Maintaining indegrees and a queue records exactly what changed.
-- **Take only one available course per semester:** That is legal but not generally minimal. Because there is no per-semester course limit, all eligible courses should be taken together.
-- **No initial zero-indegree course:** With at least one course, this means every course has a remaining prerequisite. The graph contains a directed cycle, the loop never starts, and the result must be `-1`.
-- **A cycle in only one component:** Other components may be processed completely, but the courses in or below the cyclic component remain unprocessed. Checking the final remaining count catches this case even when the initial queue was nonempty.
-- **Several prerequisites for one course:** The course is appended only when the last incoming edge is removed. Earlier decrements leave a positive indegree, so it cannot be scheduled prematurely.
-- **Several outgoing relations from one course:** Processing that course decrements every dependent course independently. Any of them whose final prerequisite has now been completed becomes eligible for the next layer.
-- **Independent courses:** Every course begins in the queue, all are processed in the first layer, and the answer is `1`.
-- **A single long chain:** Exactly one course becomes available per layer. The algorithm returns `n`, which is unavoidable because every course after the first depends on a course from the preceding layer.
-- **Unique relations:** The input guarantee prevents duplicate edges from artificially inflating indegrees. The implementation relies on the relations representing distinct prerequisite requirements.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Boundary Scenario | Input Example | Expected Output | Failure Mode / Trapped Risk |
+|---|---|---|---|
+| No Prerequisites | $n = 5, relations = []$ | $1$ semester | Incorrectly returning 0 or failing to process unlinked nodes |
+| Linear Chain Graph | $1 \to 2 \to 3 \to 4$ | $n = 4$ semesters | Over-parallelizing sequential dependencies |
+| Multiple Disconnected Cycles | Cycle among $\{1, 2\}$, isolated node $3$ | $-1$ | Returning 1 because isolated node 3 finished |
+| Star Graph (One Hub to Many) | $1 \to 2, 1 \to 3, 1 \to 4$ | $2$ semesters | Artificially constraining batch size |
+| Self-Loop Dependency | Edge $1 \to 1$ | $-1$ | Infinite loop or missed cycle detection |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n + r)$. Let `n` denote the number of courses and let `r` denote `len(relations)`.
-- **Auxiliary Space Complexity:** $O(n + r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(V + E)$ where $V = n \le 5000$ and $E = |relations| \le 5000$.
+  - Initializing in-degree array and adjacency lists takes $\mathcal{O}(V + E)$ time.
+  - Finding initial zero in-degree vertices takes $\mathcal{O}(V)$ time.
+  - Each vertex enters and leaves the queue at most once.
+  - Each directed edge is traversed exactly once to decrement the target in-degree.
+  - Total runtime is strictly linear: $\mathcal{O}(V + E)$, completing in $< 2\text{ ms}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(V + E)$ auxiliary memory.
+  - Adjacency list stores $E$ directed edges.
+  - In-degree array and queue store at most $V$ integers.

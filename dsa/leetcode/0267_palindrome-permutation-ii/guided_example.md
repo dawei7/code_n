@@ -1,128 +1,207 @@
 # Guided Example: Palindrome Permutation II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step parity feasibility gating, center character extraction, half-string multiset permutation backtracking, and symmetric mirror reflection on representative string instances:
 
-- **Input:** `{"s": "aabb"}`
-- **Required output:** `["abba", "baab"]`
+- **Input:** $s = \text{"aabb"}$
+- **Required output:** `["abba", "baab"]` (The two unique palindromic permutations of the multiset $\{a: 2, b: 2\}$)
+- **Feasibility Rejection:** $s = \text{"abc"} \implies []$ (Three characters with odd frequency $1$; budget is at most 1)
+- **Odd Length Valid Instance:** $s = \text{"aab"} \implies \text{["aba"]}$ (Center is `'b'`, half string is `'a'`)
+- **Uniform Character Instance:** $s = \text{"aaaa"} \implies \text{["aaaa"]}$ (Single unique permutation)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates combinatorial symmetry reduction, explains why generating only the left half-string reduces search complexity from $O(N!)$ to $O((N/2)!)$, formalizes the duplicate-skipping backtracking rule on sorted elements, and mirrors the prefix around the center to construct valid palindromes without any wasteful rejection filtering.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string s, return *all the palindromic permutations (without duplicates) of it*.
+Given a string $s = \text{"aabb"}$, generate all **unique palindromic permutations**:
+```text
+All 4! = 24 permutations of "aabb" contain only 2 unique palindromes:
+"abba"
+"baab"
+Output: ["abba", "baab"]
+```
 
-The objective is to compute `["abba", "baab"]` from `{"s": "aabb"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The $N!$ vs $(N/2)!$ Dimensionality Reduction
+- Generating all $N!$ permutations and filtering palindromes afterwards tests $24$ strings for $N = 4$, and $3.6 \times 10^6$ strings for $N = 10$, nearly all of which are non-palindromic.
+- A palindrome is completely determined by its **left half** and its **center character**:
+  $$
+  \text{Palindrome} = \text{Left Half} + \text{Center} + \text{reverse}(\text{Left Half})
+  $$
+- Therefore, we only need to:
+  1. Verify whether a palindrome is possible (at most one odd frequency).
+  2. Extract the center character (if length is odd).
+  3. Form the half-multiset containing half of each character's count.
+  4. Generate all **unique permutations of the half-multiset** and mirror each one!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Parity Feasibility Check
+Count character frequencies using a map:
+- If more than 1 character has an odd count:
+  $$
+  \text{odd\_count} > 1 \implies \text{return } []
+  $$
+- If exactly 1 character $c_{\text{odd}}$ has an odd count:
+  Reserve one copy for the center: $\text{mid} = c_{\text{odd}}$.
+  Reduce its count: $\text{freq}[c_{\text{odd}}] \leftarrow \text{freq}[c_{\text{odd}}] - 1$.
+- If all counts are even: $\text{mid} = \text{""}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Half-Multiset Construction
+Populate list `half` with $\text{freq}[c] / 2$ copies of each character:
+$$
+\text{half} = \sum_{c \in \Sigma} [c] \times (\text{freq}[c] // 2)
+$$
+For $s = \text{"aabb"}$: `half = ['a', 'b']`, $\text{mid} = \text{""}$.
+For $s = \text{"aab"}$: `half = ['a']`, $\text{mid} = \text{"b"}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Backtracking Unique Permutations on `half`
+Sort `half` so identical characters are adjacent:
+Maintain `used = [False] * len(half)` and current trajectory `curr`:
+- If $\text{len}(\text{curr}) == \text{len}(\text{half})$:
+  $$
+  \text{left} = \text{"".join}(\text{curr})
+  $$
+  $$
+  \text{results}.\text{append}(\text{left} + \text{mid} + \text{reverse}(\text{left}))
+  $$
+- For index $i$ from $0$ to $\text{len}(\text{half}) - 1$:
+  - If `used[i]`: continue.
+  - **Duplicate Skip Invariant:**
+    If $i > 0$ and $\text{half}[i] == \text{half}[i - 1]$ and not $\text{used}[i - 1]$:
+    continue *(Skip duplicate choices at the same tree depth)*.
+  - `used[i] = True; curr.append(half[i])`
+  - `backtrack(curr)`
+  - `curr.pop(); used[i] = False`
+
+> **Invariant.** Every generated half-string is a unique permutation of the half-multiset. Symmetrically mirroring each unique half-string around `mid` produces an exhaustive, mutually disjoint set of valid palindromes.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Generate palindromes directly instead of filtering permutations
+We trace the algorithm on $s = \text{"aabb"}$:
 
-The obvious interpretation is to generate every permutation of `s` and keep the ones that read the same in both directions. That spends nearly all of its work on strings that could never be answers. A palindrome is much more structured: apart from a possible center character, every character must be placed as a mirrored pair. The exact solution uses that structure during generation, so every completed string it constructs is already a valid palindrome.
-
-The current order of `s` is irrelevant because permutations may rearrange it freely. What matters is the frequency of each distinct character. The solution starts with `Counter(s)`, which maps every character to its remaining number of copies.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aabb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Reject an impossible frequency pattern before searching
-
-Every position away from the center of a palindrome has a mirror position containing the same character. Those positions consume equal characters two at a time. Consequently, all character frequencies must be even, with one possible exception: an odd-length palindrome has one center position that can hold the unpaired copy of one odd-frequency character.
-
-Thus a palindromic permutation exists exactly when at most one character has an odd frequency. This condition is necessary because two odd-frequency groups would both need the single center. It is sufficient because one copy of the only odd-frequency character can be reserved for the center, after which all remaining copies have even counts and can be placed in mirrored pairs.
-
-The solution records the reserved center in `mid`, initially the empty string. It scans the counter entries and recognizes an odd count using `v & 1`. For the first odd count, it assigns that character to `mid` and subtracts one from its counter entry. Subtracting one is essential: the reserved copy is already represented by the center and must not be used again by the search. The remaining count becomes even.
-
-If another odd count appears after `mid` has been filled, the solution immediately returns an empty list. There is no point entering the recursive search because the necessary frequency condition has failed. If the original length is even, no count can be odd, `mid` remains empty, and every character is available entirely in pairs. If the length is odd and generation is possible, `mid` contains exactly one character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Frequency and Parity Analysis
+- Frequencies: `{'a': 2, 'b': 2}`.
+- Parities:
+  - `'a'`: $2 \pmod 2 = 0$ (Even).
+  - `'b'`: $2 \pmod 2 = 0$ (Even).
+- Odd count $= 0 \le 1$. Palindrome is feasible!
+- Center character: $\text{mid} = \text{""}$.
 
 ---
 
-### Step 3: Grow a palindrome from its center outward
+### Step 2: Build Half-Multiset
+- For `'a'`: $2 // 2 = 1$ copy $\implies \text{['a']}$.
+- For `'b'`: $2 // 2 = 1$ copy $\implies \text{['b']}$.
+- Sorted half array: $\text{half} = [\text{'a'}, \text{'b'}]$.
+- Length: $M = 2$.
 
-The recursive function receives a string `t` that is already a palindrome. Initially, `t` is `mid`: either the forced one-character center or the empty center between the two middle positions.
+---
 
-At one recursive step, the function considers each character `c` in the counter. If at least two copies remain, it uses them as a mirrored pair:
+### Step 3: Backtracking Permutations of `['a', 'b']`
 
-1. subtract two from `cnt[c]`;
-2. form the larger palindrome `c + t + c`;
-3. recursively place another pair around that palindrome;
-4. add the two copies back to `cnt[c]` after the recursive call returns.
+#### Depth 0 $\to$ Choose First Character:
+- **Branch A: Pick index 0 (`'a'`):**
+  - $\text{curr} = [\text{'a'}]$.
+  - Mark `used[0] = True`.
+  - **Depth 1:**
+    - Test index 0: already used.
+    - Test index 1 (`'b'`): available.
+    - Pick `'b'`: $\text{curr} = [\text{'a'}, \text{'b'}]$.
+    - Mark `used[1] = True`.
+    - **Depth 2 (Base Case Reached):**
+      $\text{len}(\text{curr}) == 2$.
+      - Form left half: `"ab"`.
+      - Construct palindrome:
+        $$
+        \text{"ab"} + \text{""} + \text{reverse}(\text{"ab"}) = \text{"ab"} + \text{""} + \text{"ba"} = \mathbf{\text{"abba"}}
+        $$
+      - Add to results: `["abba"]`.
+    - Backtrack: unmark `used[1] = False`, $\text{curr} = [\text{'a'}]$.
+  - Backtrack: unmark `used[0] = False`, $\text{curr} = []$.
 
-The decrement marks the pair as used on the current search branch. The later increment is backtracking: it restores the exact state needed to explore a different choice at the same level. Without restoration, copies consumed in one branch would incorrectly disappear from its sibling branches.
+- **Branch B: Pick index 1 (`'b'`):**
+  - $\text{curr} = [\text{'b'}]$.
+  - Mark `used[1] = True`.
+  - **Depth 1:**
+    - Test index 0 (`'a'`): available.
+    - Pick `'a'`: $\text{curr} = [\text{'b'}, \text{'a'}]$.
+    - Mark `used[0] = True`.
+    - **Depth 2 (Base Case Reached):**
+      $\text{len}(\text{curr}) == 2$.
+      - Form left half: `"ba"`.
+      - Construct palindrome:
+        $$
+        \text{"ba"} + \text{""} + \text{reverse}(\text{"ba"}) = \text{"ba"} + \text{""} + \text{"ab"} = \mathbf{\text{"baab"}}
+        $$
+      - Add to results: `["abba", "baab"]`.
+    - Backtrack: unmark `used[0] = False`, $\text{curr} = [\text{'b'}]$.
+  - Backtrack: unmark `used[1] = False`, $\text{curr} = []$.
 
-Wrapping with the same `c` on both ends preserves the palindrome property. If `t` reads identically in both directions, then `c + t + c` also does: the new first and last characters match, and the interior remains symmetric. Because the initial `mid` is itself a palindrome, induction shows that every intermediate and completed `t` is a palindrome. The search never needs a separate palindrome check.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["abba", "baab"]` |
+All branches exhausted.
+Collected output:
+$$
+\mathbf{[\text{"abba"}, \text{"baab"}]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aabb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["abba", "baab"]` | Verified |
+```text
+s = "aabb"
+Counts: {'a': 2, 'b': 2} -> 0 odd counts -> Feasible!
+mid = ""
+half = ['a', 'b']
+
+backtrack([]):
+  Pick 'a': curr = ['a']
+    Pick 'b': curr = ['a', 'b'] -> Complete half!
+      Palindrome: "ab" + "" + "ba" = "abba"
+    Backtrack
+  Backtrack
+  Pick 'b': curr = ['b']
+    Pick 'a': curr = ['b', 'a'] -> Complete half!
+      Palindrome: "ba" + "" + "ab" = "baab"
+    Backtrack
+  Backtrack
+
+Result: ["abba", "baab"]
+```
+
+| Decision Step | Chosen Element | Current `curr` | Remaining Available in `half` | Full Left Half | Symmetrically Mirrored Palindrome |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | `'a'` | `['a']` | `['b']` | - | - |
+| **2** | `'b'` | `['a', 'b']` | None | `"ab"` | **`"abba"`** |
+| 3 | Backtrack | `['a']` | `['b']` | - | - |
+| 4 | Backtrack | `[]` | `['a', 'b']` | - | - |
+| 5 | `'b'` | `['b']` | `['a']` | - | - |
+| **6** | `'a'` | `['b', 'a']` | None | `"ba"` | **`"baab"`** |
+| **End** | - | - | - | - | **`["abba", "baab"]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every emitted string has the structure $\text{left} + \text{mid} + \text{reverse}(\text{left})$, which is palindromic by construction. The multiset of characters in each output string equals $2 \times \text{half} + \text{mid} = \text{multiset}(s)$, ensuring that every output is a valid permutation of $s$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any palindromic permutation $P$ of $s$ must have the center equal to $\text{mid}$, and its prefix $P[0 \dots \lfloor N/2 \rfloor - 1]$ must be a permutation of the multiset $\text{half}$. Because backtracking with the duplicate-skip rule enumerates all unique permutations of $\text{half}$, every valid palindromic permutation is produced without omission or repetition.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Permute one half with a mutable buffer:** Build a multiset containing half of each even count, backtrack over its distinct permutations, and mirror each completed half around `mid`. This expresses the same combinatorial search and can attain the manifest's $O(n+pn)$ time with $O(n)$ auxiliary space by avoiding repeated immutable center-wrapping.
-- **Sort a half-string and skip equal choices:** A sorted list allows index-based permutation backtracking with a `used` array and the standard duplicate-skip rule. It is valid, but the counter-based search represents multiplicities more directly and never creates separate indistinguishable copies at a level.
-- **Generate all permutations of `s`:** This explores as many as $n!$ arrangements and then spends $O(n)$ checking each candidate. It ignores palindrome symmetry and remains wasteful even if a set later removes duplicate results.
-- **Use a result set to deduplicate:** Generating duplicate palindromes and inserting them into a set can make the final collection unique, but it does not recover the time already spent generating duplicates and uses additional hash storage. Count-based branching prevents those duplicates at their source.
-- **More than one odd frequency:** The answer must be empty. Returning before DFS is both mathematically required and an important pruning step; no pair ordering can repair two characters that both need the unique center.
-- **Exactly one odd frequency:** That character is forced into the center. The solution subtracts exactly one copy, not the whole frequency, because its remaining even number of copies still belongs in mirrored pairs.
-- **No odd frequency:** `mid` is empty and the recursion begins from the gap between the middle positions. This is correct for every even-length feasible input.
-- **Length one:** The only character becomes `mid`, its remaining count becomes zero, and `len(mid) == len(s)` immediately. DFS appends that one-character palindrome.
-- **All characters the same:** There is only one available character choice at every level, so exactly one palindrome is produced. Count-based branching avoids the huge number of duplicate copy permutations that an index-based naïve search would create.
-- **Empty string outside the contract:** The stated input is nonempty. If the exact implementation received `""`, `mid` would stay empty and the initial DFS call would immediately append `""`, treating the empty string as its one palindromic permutation.
-- **Answer order:** Counter iteration order influences traversal order, so the returned list need not be lexicographically sorted. The contract explicitly allows any order, and uniqueness and completeness do not depend on that order.
-- **Restoration after recursion:** The `cnt[c] += 2` step must occur after every child returns. Omitting it would make later sibling branches operate with missing copies and silently lose valid palindromes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Generating Full Permutations and Filtering:** Exploring all $N!$ permutations wastes $O(N! \cdot N)$ time. Permuting only the half-array reduces search depth by half, visiting exactly the number of palindromes that actually exist.
+- **Duplicate Suppression at the Source:** Using a hash set to filter duplicates after generation uses unnecessary heap memory. Sorting `half` and skipping equal siblings (`half[i] == half[i-1] and not used[i-1]`) guarantees that duplicate permutations are pruned before they are explored.
+- **Center Character Preservation:** In odd-length strings (e.g. `"aab"`), the odd character `'b'` must have one copy removed for $\text{mid}$ before building `half`. If the remaining count of that character is $> 0$ (e.g. for `'a': 3`, one goes to center, and two remain), the remaining two copies must be halved and placed into `half`!
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`, let $k$ be its number of distinct characters, let $m = \lfloor n/2 \rfloor$ be the number of mirrored pairs, and let $p$ be the number of returned palindromes. If the usable pair multiplicity of character $i$ is $q_i$, then, for a feasible input,
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot P)$, where $N$ is the length of $s$ and $P = \frac{(N/2)!}{k_1! k_2! \dots k_m!}$ is the number of unique palindromic permutations. Generating each permutation of length $N/2$ takes $O(N/2)$ operations, and mirroring it takes $O(N)$ time.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the recursion call stack and `used` tracking array (excluding the returned list of solutions).

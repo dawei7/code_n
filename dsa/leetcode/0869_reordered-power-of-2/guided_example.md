@@ -1,108 +1,155 @@
 # Guided Example: Reordered Power of 2
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step decimal digit multiset extraction, finite power-of-two domain bounds ($2^0 \dots 2^{29}$), leading-zero prohibition constraints, and digit frequency profile matching on representative positive integers:
 
-- **Input:** `{"n": 1000000000}`
-- **Required output:** `false`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:**
+  $$
+  n = 46
+  $$
+- **Required output:** `true`
+  - Reordering rules:
+    - Given a positive integer $n$, we may reorder its decimal digits in any permutation.
+    - The reordered number must **not have a leading zero** (e.g. reordering $10 \to 01$ is invalid).
+    - Objective: Determine if any valid permutation forms a power of two ($2^0, 2^1, 2^2, \dots$).
+    - For $n = 46$:
+      - Digits: `['4', '6']`.
+      - Permutations:
+        - $46$: not a power of two ($32 < 46 < 64$).
+        - $64$: $64 = 2^6$ (exact power of two!). No leading zero.
+      - A valid power of two can be formed!
+      - Result: **`true`**.
+- **The Digit Multiset Matching & Finite Search Space Invariant:**
+  - **The Power-of-Two Domain Bound:**
+    - The input constraint states $1 \le n \le 10^9$.
+    - Any valid reordering must produce a number with the same number of digits as $n$, and at most $10^9$.
+    - How many powers of two are $\le 10^9$?
+      $$
+      2^{29} = 536,870,912 \le 10^9 < 2^{30} = 1,073,741,824
+      $$
+    - There are **only 30 powers of two** ($2^0, 2^1, \dots, 2^{29}$) in the entire problem domain!
+  - **Multiset Invariance (Signature Matching):**
+    - Two numbers are digit permutations of each other if and only if their 10-element digit frequency vectors are identical:
+      $$
+      \text{freq}(x) = (\text{count}(0), \text{count}(1), \dots, \text{count}(9))
+      $$
+    - Instead of generating all $d!$ digit permutations of $n$ (which risks factorial time blowup), we compute the single signature $\text{freq}(n)$ and compare it against the signatures of the 30 candidate powers of two.
+    - If $\text{freq}(n) == \text{freq}(2^k)$ for any $k \in [0, 29]$, then $n$ can be reordered into $2^k$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `n`. We reorder the digits in any order (including the original order) such that the leading digit is not zero.
+Given $n = 46$, determine if its digits can be rearranged into a power of two.
 
-The objective is to compute `false` from `{"n": 1000000000}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Input: n = 46
+Digits of n: {4: 1, 6: 1}
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Search Powers of Two:
+  2^0 = 1    -> {1: 1}
+  2^1 = 2    -> {2: 1}
+  2^2 = 4    -> {4: 1}
+  2^3 = 8    -> {8: 1}
+  2^4 = 16   -> {1: 1, 6: 1}
+  2^5 = 32   -> {2: 1, 3: 1}
+  2^6 = 64   -> {4: 1, 6: 1} -> MATCH!
+
+Digits {4, 6} form 64 = 2^6!
+Output: true
+```
+
+We also contrast this with $n = 10$: digits are $\{0, 1\}$. While $2^0 = 1$ has digit $1$, $n = 10$ requires both digits $0$ and $1$, and $01$ has an illegal leading zero, so $n = 10$ returns `false`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Decimal Frequency Function:
+$$
+f(x) = [c_0, c_1, \dots, c_9] \quad \text{where } c_d = \sum_{k} \mathbb{I}\left[\lfloor x / 10^k \rfloor \pmod{10} = d\right]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. Decision Predicate:
+$$
+\text{reorderedPowerOf2}(n) = \bigvee_{k=0}^{29} \left( f(n) == f(2^k) \right)
+$$
+Because powers of two never contain a leading zero (they are positive integers), any match $f(n) == f(2^k)$ guarantees that the digits of $n$ can form $2^k$ without a leading zero.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Reordering digits changes their positions but never changes how many copies of each digit exist. That observation turns the problem from “try every possible ordering” into “compare digit multisets.” Two positive integers can be rearrangements of one another exactly when they contain the same count of `0` digits, the same count of `1` digits, and so on through `9`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1000000000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 46$:
 
 ---
 
-### Step 2: Core Step 2
-
-The helper `f(x)` builds this digit signature. It starts with a ten-element list of zeros, where index $v$ records the number of occurrences of decimal digit $v$. Each call to `divmod(x, 10)` returns both the remaining prefix and the final digit. The final digit's counter is incremented, and the process continues until no digits remain. For example, `f(1220)` records two twos, one one, and one zero. The order in which those digits were removed is irrelevant because only their counts are retained.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Target Signature for $n = 46$
+- Extract digits:
+  - $46 \pmod{10} = 6 \implies count[6] \leftarrow 1, \quad 46 // 10 = 4$
+  - $4 \pmod{10} = 4 \implies count[4] \leftarrow 1, \quad 4 // 10 = 0$
+- Target frequency vector $f(46)$:
+  $$
+  c_4 = 1, \quad c_6 = 1, \quad \text{all other } c_d = 0
+  $$
 
 ---
 
-### Step 3: Core Step 3
-
-**Why the signature fully represents every legal reordering.** If some permutation of `n` equals a candidate power of two, both numbers use exactly the same original digits, so their ten counters must match. This proves matching counters are necessary.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+### Step 2: Compare with Powers of Two
+- $2^0 = 1$: $f(1) = \{1: 1\} \ne f(46)$.
+- $2^1 = 2$: $f(2) = \{2: 1\} \ne f(46)$.
+- $2^2 = 4$: $f(4) = \{4: 1\} \ne f(46)$.
+- $2^3 = 8$: $f(8) = \{8: 1\} \ne f(46)$.
+- $2^4 = 16$: $f(16) = \{1: 1, 6: 1\} \ne f(46)$.
+- $2^5 = 32$: $f(32) = \{2: 1, 3: 1\} \ne f(46)$.
+- $2^6 = 64$:
+  - Extract digits of $64$:
+    - $64 \pmod{10} = 4 \implies count[4] \leftarrow 1$
+    - $6 \pmod{10} = 6 \implies count[6] \leftarrow 1$
+  - Vector: $c_4 = 1, c_6 = 1$, all other $0$.
+  - Comparison:
+    $$
+    f(64) == f(46) \implies \mathbf{Exact\ Match!}
+    $$
+- **Immediate Termination: `true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1000000000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+| Power $k$ | Value $2^k$ | Number of Digits | Digit Multiset $f(2^k)$ | Matches $f(46) = \{4: 1, 6: 1\}$? |
+|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $1$ | $1$ | $\{1: 1\}$ | No |
+| $1$ | $2$ | $1$ | $\{2: 1\}$ | No |
+| $2$ | $4$ | $1$ | $\{4: 1\}$ | No |
+| $3$ | $8$ | $1$ | $\{8: 1\}$ | No |
+| $4$ | $16$ | $2$ | $\{1: 1, 6: 1\}$ | No |
+| $5$ | $32$ | $2$ | $\{2: 1, 3: 1\}$ | No |
+| **$6$** | **$64$** | **$2$** | **$\{4: 1, 6: 1\}$** | **`Yes (Match Found!)`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 1$ ($2^0$):** Digits are `{1: 1}`. Matches $2^0 = 1$ immediately $\implies$ returns `true`.
+- **$n = 10$:** Digits are `{0: 1, 1: 1}`. Powers of two with 2 digits are $16, 32, 64$; none has digits $\{0, 1\}$. Reordering to $01$ has an illegal leading zero $\implies$ returns `false`.
+- **Large Input $n = 10^9$:** 10 digits (`1` followed by nine `0`s). No power of two has nine zeros $\implies$ returns `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Generate all digit permutations:** Test every ordering, reject leading zero, convert it to an integer, and test whether it is a power of two. This can require factorial time and repeats work when digits are duplicated.
-- **Sort decimal strings:** Sorting the digits of `n` and every candidate power provides another canonical signature. It is correct, but sorting costs $O(d\log d)$ per number instead of counting over the fixed ten-digit alphabet.
-- **String counter or frequency map:** A language-provided multiset counter expresses the same idea. The ten-slot list is simpler, has fixed memory, and makes equality deterministic.
-- **Precomputed signature set:** All eligible power-of-two signatures could be stored in a set and queried. That makes repeated calls convenient, but a single call needs only 30 comparisons and does not require global precomputation.
-- **Direct power-of-two test only:** Checking `n & (n - 1) == 0` answers whether `n` itself is a power of two, not whether some digit reordering is one. It misses values such as `821`.
-- **Input equal to one:** `1` is $2^0$, the first candidate, so it returns true.
-- **Repeated digits:** Counts preserve multiplicity. A number with two copies of a digit cannot match a power containing only one copy.
-- **Zeros:** Zeros are counted like every other digit. They cannot be silently discarded as leading zeros because a candidate signature must contain the same number of zeros.
-- **Different digit lengths:** Equal signatures imply equal total digit counts, so a shorter power cannot accidentally match a longer input.
-- **Upper bound:** The loop includes powers at or below $10^9$ and stops after doubling past it. The stopping rule prevents irrelevant larger candidates while retaining $2^{29}$.
-- **Helper and zero:** The helper's loop would return an all-zero signature for `x = 0`, but neither the input nor any candidate is zero under the contract, so that special representation is never used.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Generating All Permutations of $n$:** Calling permutation libraries generates up to $10! = 3,628,800$ permutations. When $n$ has duplicate digits, duplicate checking adds severe overhead. Comparing against the 30 fixed powers of two requires only 30 checks.
+- **Overlooking Leading Zeros in Permutation Generators:** If generating permutations as strings, converting `"01"` to integer produces `1 = 2^0`, falsely reporting `true` for $n = 10$. Precomputing powers of two natively eliminates leading zero bugs because $2^k$ has no leading zeros.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d)$. Let $d$ be the number of decimal digits in `n`. Building one signature takes $O(d)$ time. The input constraint fixes the candidate set to the 30 powers from $2^0$ through $2^{29}$. Each has at most ten digits, so the constant-size candidate loop performs $O(d)$ total work under this problem's bounded domain.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Target frequency count: $\mathcal{O}(\log_{10} n) \le 10$ operations.
+  - Exactly 30 powers of two evaluated.
+  - Each power has $\le 10$ digits.
+  - Total operations: $30 \times 10 \approx 300$ primitive operations.
+  - Total Time: strictly $\mathcal{O}(1)$ bounded time, executing in $< 0.05$ ms.
+- **Auxiliary Space Complexity:**
+  - 10-element integer array for digit counting: strictly $\mathcal{O}(1)$ auxiliary space.

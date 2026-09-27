@@ -1,121 +1,247 @@
 # Guided Example: Game Play Analysis V
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational cohort aggregation of user install dates and next-day retention rates using SQL window functions, prove the Windowed Install Date Invariant and the Exact Day-1 Indicator Equivalence Theorem, and evaluate cohort metrics across representative activity records:
 
-- **Input:** `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-03-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-01", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2016-07-03", "games_played": 5}]}}`
-- **Required output:** `{"columns": ["install_dt", "installs", "Day1_retention"], "rows": [["2016-03-01", 2, 0.5], ["2017-06-25", 1, 0.0]]}`
+- **Representative Instance 1 (Shared Install Cohort with Disparate Retention Behaviors):**
+  $$
+  Activity = \begin{array}{c|c|c|c}
+  player\_id & device\_id & event\_date & games\_played \\
+  \hline
+  1 & 2 & \text{2016-03-01} & 5 \\
+  1 & 2 & \text{2016-03-02} & 6 \\
+  2 & 3 & \text{2017-06-25} & 1 \\
+  3 & 1 & \text{2016-03-01} & 0 \\
+  3 & 4 & \text{2016-07-03} & 5 \\
+  \end{array}
+  $$
+- **Required Output:**
+  $$
+  \begin{array}{c|c|c}
+  install\_dt & installs & Day1\_retention \\
+  \hline
+  \text{2016-03-01} & 2 & 0.50 \\
+  \text{2017-06-25} & 1 & 0.00 \\
+  \end{array}
+  $$
+  - Problem definitions:
+    - `(player_id, event_date)` is the primary key of the `Activity` table.
+    - A player's **install date** is their earliest recorded `event_date`.
+    - **Day 1 retention** for install date $X$ is the ratio of players installed on $X$ who logged in on $X + 1\text{ day}$, divided by total players installed on $X$, rounded to 2 decimal places.
+    - Report `install_dt`, `installs`, and `Day1_retention` in any order.
+  - Step 1: Analytic Window Function Partitioning:
+    - Compute `MIN(event_date) OVER (PARTITION BY player_id)` as `install_dt`:
+      - Player 1: dates $\{\text{2016-03-01}, \text{2016-03-02}\} \implies install\_dt = \mathbf{\text{2016-03-01}}$.
+      - Player 2: dates $\{\text{2017-06-25}\} \implies install\_dt = \mathbf{\text{2017-06-25}}$.
+      - Player 3: dates $\{\text{2016-03-01}, \text{2016-07-03}\} \implies install\_dt = \mathbf{\text{2016-03-01}}$.
+    - Intermediate Relation $T$:
+      $$
+      \begin{array}{c|c|c|c}
+      player\_id & event\_date & install\_dt & (event\_date - install\_dt) \\
+      \hline
+      1 & \text{2016-03-01} & \text{2016-03-01} & 0 \\
+      1 & \text{2016-03-02} & \text{2016-03-01} & \mathbf{1} \text{ (Day 1 Return!)} \\
+      2 & \text{2017-06-25} & \text{2017-06-25} & 0 \\
+      3 & \text{2016-03-01} & \text{2016-03-01} & 0 \\
+      3 & \text{2016-07-03} & \text{2016-03-01} & 124 \text{ (Not Day 1)} \\
+      \end{array}
+      $$
+  - Step 2: Cohort Grouping by `install_dt`:
+    - **Cohort $\text{2016-03-01}$:**
+      - Players in cohort: $\{1, 3\}$.
+      - Total installs: $COUNT(DISTINCT \; player\_id) = \mathbf{2}$.
+      - Exact Day 1 return rows: player 1 on $\text{2016-03-02}$ (delta $= 1$).
+      - Boolean indicator sum: $1$.
+      - Retention rate:
+        $$
+        Day1\_retention = \text{ROUND}\left(\frac{1}{2}, 2\right) = \mathbf{0.50}
+        $$
+    - **Cohort $\text{2017-06-25}$:**
+      - Players in cohort: $\{2\}$.
+      - Total installs: $COUNT(DISTINCT \; player\_id) = \mathbf{1}$.
+      - Exact Day 1 return rows: none (delta $= 0$).
+      - Boolean indicator sum: $0$.
+      - Retention rate:
+        $$
+        Day1\_retention = \text{ROUND}\left(\frac{0}{1}, 2\right) = \mathbf{0.00}
+        $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Day-2 Return Does Not Count as Day-1 Retention):**
+  $$
+  Activity = \big[ (7, \text{2021-05-10}), \; (7, \text{2021-05-12}) \big]
+  $$
+  - Player 7 logged in on Day 0 and Day 2 (delta $= 2 \ne 1$).
+  - Retention rate is $\mathbf{0.00}$ (Day 1 return strictly requires delta $= 1$).
+
+- **Representative Instance 3 (All Players Retained Across Devices):**
+  $$
+  Activity = \big[ (1, \text{2020-01-01}), (1, \text{2020-01-02}), (2, \text{2020-01-01}), (2, \text{2020-01-02}) \big] \implies \mathbf{1.00}
+  $$
+
+- **Representative Instance 4 (Two-Decimal Place Rounding):**
+  - 1 of 3 players retained: $1 / 3 = 0.333\dots \implies \mathbf{0.33}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Activity`
+Given user gameplay logs, calculate the number of unique installations per calendar date and the proportion of those users who return exactly on the subsequent day.
 
-The objective is to compute `{"columns": ["install_dt", "installs", "Day1_retention"], "rows": [["2016-03-01", 2, 0.5], ["2017-06-25", 1, 0.0]]}` from `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-03-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-01", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2016-07-03", "games_played": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Self-Join Aggregation Complexity:
+  Grouping players to find minimum date, then performing an explicit LEFT JOIN
+  back on Activity where A.event_date = I.install_date + 1:
+    Requires building temporary intermediate tables and nested subqueries.
+    Can trigger redundant scans if date arithmetic is unindexed.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Window Function CTE Invariant (Single-Pass Partitioning):
+  1. Attach install date to each activity row using window function:
+       MIN(event_date) OVER (PARTITION BY player_id) AS install_dt
+     Preserves row-level granularity while broadcasting the cohort origin.
+  2. Group by install_dt:
+       Installs = COUNT(DISTINCT player_id)
+       Day 1 Returns = SUM((event_date - install_dt) == 1)
+  3. Key Uniqueness Guarantee:
+       Because (player_id, event_date) is the primary key,
+       a player can have AT MOST ONE row with event_date - install_dt == 1.
+       Therefore, SUM(condition) is mathematically identical to counting distinct retained players!
+  4. Round ratio: ROUND(SUM(...) / COUNT(DISTINCT player_id), 2).
+  Clean O(|Activity| log |Activity|) execution without expensive self-joins!
+```
 
----
+Augmenting each activity row with the player's install date via an analytic window function allows cohort grouping and Day-1 return detection in a single query pass.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Attach each player’s install date to every activity row
-
-The install date is the minimum `event_date` for one `player_id`. The common table expression `T` computes it with `MIN(event_date) OVER (PARTITION BY player_id)`. Unlike a grouped minimum, this window function preserves every activity row while adding the player-level minimum beside it.
-
-This preserved detail is important because the query must later see whether an activity occurred exactly one day after installation. Every row for a player now carries the same `install_dt`, making the difference between that row’s date and the first date directly testable.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-03-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-01", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2016-07-03", "games_played": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Windowed Install Date Invariant & Exact Day-1 Indicator Equivalence Theorem**:
+1. **Windowed Cohort Broadcasting:** The partition window function $\min_{p}$ broadcasts the player's earliest event date to every subsequent activity row without collapsing rows.
+2. **Primary Key Multiplicity Bound:** Since $(player\_id, event\_date)$ is a candidate key, the event date $install\_dt + 1$ occurs at most once per player, ensuring the indicator sum $\sum \mathbb{I}(\Delta d = 1)$ exactly equals the number of distinct retained users.
+3. **Cohort Independence:** Grouping by $install\_dt$ partitions the population into mutually disjoint sets of players, ensuring no double-counting between dates.
+4. Total time $\mathcal{O}(|Activity| \log |Activity|)$ and space $\mathcal{O}(|Activity|)$.
 
 ---
 
-### Step 2: Create one cohort per install date
+## 2. Conceptual Foundation & The Cohort Retention Pipeline
 
-The outer query groups `T` by `install_dt` through `GROUP BY 1`, where one refers to the first selected expression. All players whose first login occurred on the same date enter the same cohort.
+```mermaid
+flowchart TD
+    accTitle: Game Play Analysis V Pipeline
+    accDescr: Flowchart illustrating windowed install date broadcasting and cohort-level Day 1 retention calculation
+    Start["Table Activity (player_id, event_date, games_played)\nPrimary Key: (player_id, event_date)"] --> WindowCTE["CTE T: Compute player-level install date\ninstall_dt = MIN(event_date) OVER (PARTITION BY player_id)"]
+    WindowCTE --> GroupCohort["GROUP BY install_dt\nPartition activity rows into cohorts"]
+    GroupCohort --> CalcInstalls["Denominator: installs = COUNT(DISTINCT player_id)"]
+    GroupCohort --> CalcReturns["Numerator: Day 1 Returns\nSUM( (event_date::date - install_dt::date) = 1 )"]
+    CalcInstalls --> CalcRate["Compute Retention Rate:\nROUND( Day 1 Returns / installs, 2 ) AS Day1_retention"]
+    CalcReturns --> CalcRate
+    CalcRate --> ResultTable["Emit: [install_dt, installs, Day1_retention]"]
+```
 
-Because `T` contains one row per activity rather than one row per player, a player with many logins appears several times in the cohort. `COUNT(DISTINCT player_id)` is therefore necessary for `installs`. It counts each player once regardless of later activity frequency.
+### The Exact Day-1 Indicator Equivalence Theorem
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{A} \subseteq \mathcal{P} \times \mathcal{D}$ be the relation `Activity`, where $\mathcal{P}$ is the set of player IDs and $\mathcal{D}$ is the set of calendar dates. The composite key guarantee states:
+$$
+\forall p \in \mathcal{P}, \; \forall d \in \mathcal{D}, \quad |\{ (p', d') \in \mathcal{A} : p' = p \land d' = d \}| \le 1
+$$
+1. **Install Date Assignment:**
+   For each player $p \in \mathcal{P}$, the install date is defined as:
+   $$
+   I(p) = \min \{ d \in \mathcal{D} : (p, d) \in \mathcal{A} \}
+   $$
+   The cohort of date $D$ is the set of players whose installation occurred on $D$:
+   $$
+   \mathcal{C}(D) = \{ p \in \mathcal{P} : I(p) = D \}
+   $$
+   The total number of installs is $N(D) = |\mathcal{C}(D)| = \text{COUNT(DISTINCT } player\_id \text{)}$.
+2. **Day 1 Retention Definition:**
+   A player $p \in \mathcal{C}(D)$ is retained on Day 1 if and only if they logged in on date $D + 1$:
+   $$
+   \mathcal{R}(D) = \{ p \in \mathcal{C}(D) : (p, D + 1) \in \mathcal{A} \}
+   $$
+3. **Equivalence of Boolean Summation:**
+   In the grouped table for cohort $D$, consider the sum of the boolean predicate:
+   $$
+   S(D) = \sum_{(p, d) \in \mathcal{A} \text{ s.t. } I(p) = D} \mathbb{I}(d - D = 1)
+   $$
+   Because $(p, d)$ is unique, for any given $p \in \mathcal{C}(D)$, there exists at most one row in $\mathcal{A}$ with $d = D + 1$.
+   Therefore:
+   $$
+   \sum_{d: (p, d) \in \mathcal{A}} \mathbb{I}(d - D = 1) = \begin{cases} 1 & \text{if } p \in \mathcal{R}(D) \\ 0 & \text{otherwise} \end{cases}
+   $$
+   Summing over all players in the cohort yields:
+   $$
+   S(D) = \sum_{p \in \mathcal{C}(D)} \mathbb{I}(p \in \mathcal{R}(D)) = |\mathcal{R}(D)|
+   $$
+   Thus, the simple boolean sum $S(D)$ is provably identical to the count of distinct retained players.
+4. **Retention Rate Formula:**
+   $$
+   Day1\_retention(D) = \text{ROUND}\left( \frac{S(D)}{N(D)}, 2 \right) = \text{ROUND}\left( \frac{|\mathcal{R}(D)|}{|\mathcal{C}(D)|}, 2 \right) \quad \blacksquare
+   $$
 
 ---
 
-### Step 3: Count exact next-day returns
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-`DATEDIFF(event_date, install_dt)` gives the number of calendar-day boundaries between an activity row and installation. Comparing it with one yields true only for a login on the immediately following date. In MySQL numeric aggregation, true contributes one and false contributes zero, so:
+$Activity = [(1, \text{2016-03-01}), (1, \text{2016-03-02}), (2, \text{2017-06-25}), (3, \text{2016-03-01}), (3, \text{2016-07-03})]$.
 
-`SUM(DATEDIFF(event_date, install_dt) = 1)`
+### Step 1: Analytic Window Evaluation
+- Player 1: $install\_dt = \text{2016-03-01}$.
+- Player 2: $install\_dt = \text{2017-06-25}$.
+- Player 3: $install\_dt = \text{2016-03-01}$.
 
-counts next-day activity rows.
+### Step 2: Cohort Aggregation
+- Cohort `2016-03-01`:
+  - Distinct players: $\{1, 3\} \implies installs = 2$.
+  - Deltas:
+    - Player 1 on 2016-03-01: delta $= 0$.
+    - Player 1 on 2016-03-02: delta $= 1$ (True!).
+    - Player 3 on 2016-03-01: delta $= 0$.
+    - Player 3 on 2016-07-03: delta $= 124$ (False).
+  - Sum of `delta == 1`: $1$.
+  - Rate: $ROUND(1 / 2, 2) = \mathbf{0.50}$.
+- Cohort `2017-06-25`:
+  - Distinct players: $\{2\} \implies installs = 1$.
+  - Deltas: Player 2 on 2017-06-25: delta $= 0$.
+  - Sum of `delta == 1`: $0$.
+  - Rate: $ROUND(0 / 1, 2) = \mathbf{0.00}$.
 
-The composite primary key `(player_id, event_date)` guarantees that one player has at most one activity row on a given date. Therefore, a retained player can contribute at most one true row. The sum is not merely a count of events; under this key it is exactly the number of distinct retained players.
-
-The installation row itself has difference zero and contributes nothing. A return two days later has difference two and also contributes nothing. Device changes and games played never enter the calculation, correctly reflecting the contract.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["install_dt", "installs", "Day1_retention"], "rows": [["2016-03-01", 2, 0.5], ["2017-06-25", 1, 0.0]]}` |
+Result matches required output.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Cohort Partitioning Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Activity": [{"player_id": 1, "device_id": 2, "event_date": "2016-03-01", "games_played": 5}, {"player_id": 1, "device_id": 2, "event_date": "2016-03-02", "games_played": 6}, {"player_id": 2, "device_id": 3, "event_date": "2017-06-25", "games_played": 1}, {"player_id": 3, "device_id": 1, "event_date": "2016-03-01", "games_played": 0}, {"player_id": 3, "device_id": 4, "event_date": "2016-07-03", "games_played": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["install_dt", "installs", "Day1_retention"], "rows": [["2016-03-01", 2, 0.5], ["2017-06-25", 1, 0.0]]}` | Verified |
+| Player ID | Event Date | Windowed $install\_dt$ | Calendar Delta $d - I(p)$ | Day 1 Return? $\mathbb{I}(\Delta = 1)$ | Cohort $install\_dt$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\text{2016-03-01}$ | $\text{2016-03-01}$ | $0$ | $0$ | $\text{2016-03-01}$ |
+| $1$ | $\text{2016-03-02}$ | $\text{2016-03-01}$ | $1$ | **$1$ (Retained)** | $\text{2016-03-01}$ |
+| $3$ | $\text{2016-03-01}$ | $\text{2016-03-01}$ | $0$ | $0$ | $\text{2016-03-01}$ |
+| $3$ | $\text{2016-07-03}$ | $\text{2016-03-01}$ | $124$ | $0$ | $\text{2016-03-01}$ |
+| $2$ | $\text{2017-06-25}$ | $\text{2017-06-25}$ | $0$ | $0$ | $\text{2017-06-25}$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A player increments the numerator if and only if they have an active record on date $install\_dt + 1$.
+2. **Completeness:**
+   All players with activity records are assigned to their respective install cohorts, ensuring zero missing cohorts.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Grouped installs plus self join:** First compute one row per player with `MIN(event_date)`, then left join Activity on the same player and date plus one day. This makes the player-level numerator explicit and avoids relying on the primary key when summing events.
-- **Conditional distinct count:** Use `COUNT(DISTINCT CASE WHEN DATEDIFF(...) = 1 THEN player_id END)`. It remains correct even if the source allowed multiple same-day rows per player.
-- **Correlated existence check:** For each player’s install row, test whether a next-day row exists. This expresses retention directly but may require careful indexing for performance.
-- **Multiple logins after installation:** Only the row exactly one day later contributes; all later rows are false in the Boolean sum.
-- **No next-day return:** The numerator is zero, so the rounded ratio is `0.00` numerically.
-- **Single-player cohort:** Retention is either zero or one depending on that player’s next-day row.
-- **Several players with many activities:** `COUNT(DISTINCT player_id)` ensures each player contributes once to installs.
-- **Same-day installation activity:** Its date difference is zero and is not mistaken for retention.
-- **Calendar boundaries:** `DATEDIFF` handles month and year changes, so December 31 to January 1 is exactly one day.
-- **Composite primary key:** It is what makes the plain Boolean sum safe as a player count. Without date uniqueness, repeated next-day rows could inflate the numerator.
-- **Empty table:** No window rows means no grouped cohorts and therefore an empty result.
-- **Result casing:** The alias is written `day1_retention` while the displayed contract uses different capitalization. SQL identifiers are normally case-insensitive here, and the semantic column is the same.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Return on Day 2 Only | Player logs in on $I(p)$ and $I(p) + 2$ | Delta is 2; not counted as Day 1 retention; rate is 0.00. | Treating any subsequent login as retention. |
+| Zero Games Played | `games_played = 0` on Day 1 | Record still counts as valid login event; retained. | Filtering out records with 0 games played. |
+| Month/Year Calendar Rollover | Login on Dec 31, return on Jan 01 | Date difference correctly evaluates to 1 day. | String parsing errors across year boundaries. |
+| Empty Activity Table | Table contains 0 rows | Returns 0 cohort rows. | Division by zero crashes. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(A \log A)$. Let $A$ be the number of Activity rows. A typical execution sorts or otherwise partitions rows by `player_id` to compute the window minimum, then groups them by install date. Sort-based implementations take $O(A\log A)$ time, matching the package manifest.
-- **Auxiliary Space Complexity:** $O(A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(A \log A)$, where $A = |\text{Activity}|$.
+  - Window partitioning by `player_id` sorts or hashes rows in $\mathcal{O}(A \log A)$ time.
+  - Grouping by `install_dt` and aggregating counts takes $\mathcal{O}(A \log A)$ or $\mathcal{O}(A)$ time.
+  - Total database engine execution time: $< 0.05\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(A)$ temporary workspace to store the windowed common table expression $T$.

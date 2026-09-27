@@ -1,132 +1,186 @@
 # Guided Example: Delete Duplicate Emails
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step SQL destructive record deletion, relational self-join cross-comparison, and MySQL Error 1093 subquery materialization on representative user tables:
 
-- **Input:** `{"tables": {"Person": [{"id": 1, "email": "a@x.com"}, {"id": 2, "email": "b@x.com"}, {"id": 3, "email": "a@x.com"}]}}`
-- **Required output:** `{"columns": ["id", "email"], "rows": [[1, "a@x.com"], [2, "b@x.com"]]}`
+- **Input Table `Person`:**
+  ```text
+  +----+------------------+
+  | id | email            |
+  +----+------------------+
+  | 1  | john@example.com |
+  | 2  | bob@example.com  |
+  | 3  | john@example.com |
+  +----+------------------+
+  ```
+- **Required Post-Deletion Table State:**
+  ```text
+  +----+------------------+
+  | id | email            |
+  +----+------------------+
+  | 1  | john@example.com |
+  | 2  | bob@example.com  |
+  +----+------------------+
+  ```
+- **Three Duplicates Instance:** `[(1, "a@x.com"), (2, "a@x.com"), (3, "a@x.com")] \implies` Deletes rows 2 and 3, preserving row 1.
+- **No Duplicates Instance:** `[(1, "a@x.com"), (2, "b@x.com")] \implies` Deletes 0 rows.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates destructive data manipulation (`DELETE`), contrasts multi-table self-joins (`p1.id > p2.id`) with keeper subqueries (`id NOT IN (SELECT MIN(id) ...)`), explains MySQL Error 1093 target-table locking rules, and executes in $O(N)$ expected time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Person`
+Given a database table `Person`:
+$$
+\begin{array}{|c|c|}
+\hline
+\textbf{id} & \textbf{email} \\
+\hline
+1 & \text{john@example.com} \\
+2 & \text{bob@example.com} \\
+3 & \text{john@example.com} \\
+\hline
+\end{array}
+$$
+Write an in-place **`DELETE` statement** that removes all duplicate email entries, preserving strictly the single row with the **smallest `id`** for each unique email address.
 
-The objective is to compute `{"columns": ["id", "email"], "rows": [[1, "a@x.com"], [2, "b@x.com"]]}` from `{"tables": {"Person": [{"id": 1, "email": "a@x.com"}, {"id": 2, "email": "b@x.com"}, {"id": 3, "email": "a@x.com"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Analyzing the table rows:
+- `john@example.com` appears in row $1$ and row $3$. Since $\min(1, 3) = 1$, row $3$ must be deleted and row $1$ retained.
+- `bob@example.com` appears only in row $2$. Since it has no duplicates, row $2$ is retained.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The query must execute a destructive modification (`DELETE`), not a read-only projection (`SELECT`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Relational Self-Join `DELETE` (Idiomatic MySQL)
+```sql
+DELETE p1 
+FROM Person p1, Person p2
+WHERE p1.email = p2.email 
+  AND p1.id > p2.id;
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### How the Self-Join Identifies Removable Rows:
+1. Join relation `Person p1` with `Person p2` on equal email addresses: $p_1.\text{email} = p_2.\text{email}$.
+2. If there exists any other record $p_2$ sharing the same email such that $p_1.\text{id} > p_2.\text{id}$, then $p_1$ is **not** the record with the minimum ID for that email.
+3. Therefore, deleting $p_1$ removes all rows with duplicate emails except the single record with the strictly smallest `id`!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Grouped Minimum Subquery with Derived Table
+```sql
+DELETE FROM Person
+WHERE id NOT IN (
+    SELECT min_id FROM (
+        SELECT MIN(id) AS min_id
+        FROM Person
+        GROUP BY email
+    ) temp
+);
+```
+
+#### The MySQL Error 1093 Workaround:
+In standard MySQL, executing:
+```sql
+DELETE FROM Person WHERE id NOT IN (SELECT MIN(id) FROM Person GROUP BY email);
+```
+triggers `ERROR 1093 (HY000): You can't specify target table 'Person' for update in FROM clause`.
+MySQL prohibits modifying a table while simultaneously reading from it in an un-materialized subquery. Wrapping the subquery in `(SELECT MIN(id) ... ) temp` forces MySQL to materialize the results into an in-memory temporary table before executing the delete.
+
+> **Invariant.** A row $p_1$ is deleted if and only if there exists another row $p_2$ in `Person` such that $p_1.\text{email} = p_2.\text{email}$ and $p_1.\text{id} > p_2.\text{id}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Identify one permanent keeper for every email
+We trace the Self-Join `DELETE` evaluation across `Person`:
 
-The task is destructive: it must delete rows, not merely display a deduplicated
-result. Before deleting anything, the query defines which rows must survive.
-For each email group, the primary key's minimum value is the unique required
-keeper ID.
-
-Because `id` is a primary key, no two rows share that value. Even if many rows
-have the same email, `MIN(id)` therefore identifies exactly one original row in
-that group.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Person": [{"id": 1, "email": "a@x.com"}, {"id": 2, "email": "b@x.com"}, {"id": 3, "email": "a@x.com"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Form Cross Pairs on Equal Email
+Evaluate all pairs $(p_1, p_2)$ with $p_1.\text{email} = p_2.\text{email}$:
+- Pair $(1, 1)$: `email = john@example.com`, $p_1.\text{id} = 1, p_2.\text{id} = 1$.
+- Pair $(1, 3)$: `email = john@example.com`, $p_1.\text{id} = 1, p_2.\text{id} = 3$.
+- Pair $(2, 2)$: `email = bob@example.com`, $p_1.\text{id} = 2, p_2.\text{id} = 2$.
+- Pair $(3, 1)$: `email = john@example.com`, $p_1.\text{id} = 3, p_2.\text{id} = 1$.
+- Pair $(3, 3)$: `email = john@example.com`, $p_1.\text{id} = 3, p_2.\text{id} = 3$.
 
 ---
 
-### Step 2: Build the keeper-ID set with grouping
-
-The innermost `SELECT * FROM Person` reads a snapshot-like derived relation
-named `p`. The surrounding query groups those rows by `email` and computes
-`MIN(id)` once for every group. Conceptually, its result is a one-column set of
-IDs that are protected from deletion.
-
-For the sample, the `john@example.com` group contains IDs 1 and 3, so its keeper
-is 1. The `bob@example.com` group contains only ID 2, so its keeper is 2. The
-subquery thus produces IDs 1 and 2.
-
-Grouping by email text is the correct identity rule. The lowercase guarantee
-means the application does not need to normalize letter case before grouping,
-although actual SQL string comparison still follows the column's collation.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Test Condition $p_1.\text{id} > p_2.\text{id}$
+- Pair $(1, 1)$: $1 > 1 \implies \text{False}$.
+- Pair $(1, 3)$: $1 > 3 \implies \text{False}$.
+- Pair $(2, 2)$: $2 > 2 \implies \text{False}$.
+- **Pair $(3, 1)$:** $3 > 1 \implies \mathbf{\text{True}!}$
+  - Target for deletion: $p_1$ (row $3$ with ID $3$).
+- Pair $(3, 3)$: $3 > 3 \implies \text{False}$.
 
 ---
 
-### Step 3: Why there is an extra derived-table layer
+### Step 3: Execute Deletion
+- Row $3$ matches the condition ($3 > 1$).
+- Row $3$ is deleted from `Person`.
+- Rows $1$ and $2$ have no matching $p_2$ with a smaller ID; both survive intact.
 
-MySQL restricts some updates and deletes that read directly from the same target
-table in a nested subquery, producing the familiar “can't specify target table”
-error. Wrapping `SELECT * FROM Person` in another derived table gives the
-aggregate query a named intermediate source and is a conventional workaround.
-
-The layer is not part of the mathematical deduplication idea. Logically, it
-still contains the same Person rows. Its purpose is to make the read-before-
-delete structure acceptable to the target SQL engine.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["id", "email"], "rows": [[1, "a@x.com"], [2, "b@x.com"]]}` |
+Final table state:
+```text
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+```
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Person": [{"id": 1, "email": "a@x.com"}, {"id": 2, "email": "b@x.com"}, {"id": 3, "email": "a@x.com"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["id", "email"], "rows": [[1, "a@x.com"], [2, "b@x.com"]]}` | Verified |
+```text
+Person Table:
+Row 1: (id: 1, john@example.com)
+Row 2: (id: 2, bob@example.com)
+Row 3: (id: 3, john@example.com)
+
+Self-Join Comparison (p1 vs p2):
+  p1 = Row 1 (id: 1) vs p2 = Row 3 (id: 3):  1 > 3 is False -> KEEP Row 1
+  p1 = Row 2 (id: 2) vs p2 = Row 2 (id: 2):  2 > 2 is False -> KEEP Row 2
+  p1 = Row 3 (id: 3) vs p2 = Row 1 (id: 1):  3 > 1 is TRUE  -> DELETE Row 3
+
+Final Person Table:
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+```
+
+| $p_1.\text{id}$ | $p_1.\text{email}$ | Matched $p_2.\text{id}$ | Condition $p_1.\text{id} > p_2.\text{id}$ | Evaluation Result | Mutation Applied |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 1 | `john@example.com` | 1 | $1 > 1$ | `False` | Preserved |
+| 1 | `john@example.com` | 3 | $1 > 3$ | `False` | Preserved |
+| 2 | `bob@example.com` | 2 | $2 > 2$ | `False` | Preserved |
+| **3** | **`john@example.com`** | **1** | **$3 > 1$** | **`True`** | **DELETED** |
+| 3 | `john@example.com` | 3 | $3 > 3$ | `False` | Already marked |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In any set of rows sharing an email address, there is exactly one element with the minimum ID: $m = \min \{ \text{id} \}$. For this row, no row exists with the same email and a smaller ID, so $m > p_2.\text{id}$ is never true and row $m$ cannot be deleted. For every other duplicate row $d$ in the group, $d > m$ is strictly true when compared against row $m$, guaranteeing that every duplicate row is deleted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Self-joins examine all pairs of records. Every duplicate row with an ID greater than the group minimum is matched and deleted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Self-join delete:** Delete a row whenever another row has the same email and smaller ID; concise MySQL syntax but can generate many matching pairs.
-- **Window function:** Rank rows by `id` within each email and delete ranks above one through an engine-supported writable relation.
-- **Pandas grouping:** The local editorial broadcasts each email's minimum ID and drops nonminimum DataFrame rows in place.
-- **Single row per email:** Its ID is the group minimum and it remains.
-- **Many duplicates:** Exactly the smallest-ID row survives, regardless of group size.
-- **Primary-key non-nullness:** Guarantees the keeper subquery cannot poison `NOT IN` with null.
-- **Nullable email:** The query treats all null emails as one group; confirm that semantic if the domain expands.
-- **Duplicate letter case:** Input is lowercase, while database collation still defines equality.
-- **Empty table:** The keeper set and deletion target are empty, so nothing changes.
-- **Final ordering:** Not specified and not controlled by `DELETE`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Writing a `SELECT` Query:** The problem specifically mandates an in-place `DELETE` statement. Returning rows via `SELECT` fails judge validation.
+- **MySQL Error 1093:** Subqueries deleting directly with `WHERE id NOT IN (SELECT MIN(id) FROM Person ...)` crash on MySQL unless wrapped in an intermediate derived table `(SELECT ... ) temp`.
+- **Direction of Inequality:** Writing `p1.id < p2.id` deletes the row with the *smallest* ID and keeps the largest ID! The required condition is strictly `p1.id > p2.id` to delete the larger IDs.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of Person rows and $u$ the number of distinct emails. The
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ with an index on `email`, where $N$ is the number of rows in `Person`. Without an index, the self-join performs an $O(N^2)$ nested loop or an $O(N \log N)$ sort-merge join.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space for in-place self-join deletion; $O(U)$ memory if materializing a keeper table with $U$ unique emails.

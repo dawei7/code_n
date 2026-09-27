@@ -1,127 +1,207 @@
 # Guided Example: Minimum Height Trees
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step tree centroid characterization, diameter midpoint reduction, topological leaf peeling (Kahn-style degree-1 trimming), and center node extraction on representative undirected tree instances:
 
-- **Input:** `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}`
-- **Required output:** `[1]`
+- **Input:** $n = 4, \quad \text{edges} = [[1, 0], [1, 2], [1, 3]]$
+- **Required output:** $[1]$ (Star graph with central hub node $1$; rooting at $1$ yields height $1$, while rooting at any other node yields height $2$)
+- **Two Centroids Instance:** $n = 6, \; \text{edges} = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]] \implies [3, 4]$ (Even diameter path yields two adjacent centroids, both giving minimum tree height $2$)
+- **Single Node Base Case:** $n = 1, \; \text{edges} = [] \implies [0]$ (Trivially root $0$ with height $0$)
+- **Two Nodes Base Case:** $n = 2, \; \text{edges} = [[0, 1]] \implies [0, 1]$ (Both nodes have height $1$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates tree centroid identification via inward boundary peeling, mathematically proves why a tree can have at most two centroids (the midpoints of the tree's diameter), explains why peripheral leaves cannot be minimum height roots, and executes in strictly $O(N)$ linear time and auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A tree is an undirected graph in which any two vertices are connected by *exactly* one path. In other words, any connected graph without simple cycles is a tree.
+Given a tree of $n = 4$ nodes and $3$ edges:
+$$
+\text{edges} = [[1, 0], [1, 2], [1, 3]]
+$$
+Find the root(s) that minimize the resulting tree's height (the length of the longest downward path to any leaf).
 
-The objective is to compute `[1]` from `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Tree topology (Star Graph):
+       0
+       |
+  2 -- 1 -- 3
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Testing all possible roots:
+- Root 0: Path to 2 has length 2, path to 3 has length 2 -> Height = 2
+- Root 2: Path to 0 has length 2, path to 3 has length 2 -> Height = 2
+- Root 3: Path to 0 has length 2, path to 2 has length 2 -> Height = 2
+- Root 1: Paths to 0, 2, 3 all have length 1            -> Height = 1 (MINIMUM!)
+
+Optimal root: [1]
+```
+
+### Why Naive BFS from Every Node Fails
+- Running BFS from each of the $N$ nodes to measure its height takes $O(N \cdot (V + E)) = O(N^2)$ time. For $N = 2 \times 10^4$, $N^2 \approx 4 \times 10^8$ operations, causing Time Limit Exceeded.
+- **Topological Leaf Peeling ($O(N)$):**
+  - Leaves (nodes with degree 1) lie on the outer perimeter of the tree.
+  - A leaf can never be a minimum-height root in a multi-node tree: moving the root from a leaf to its neighbor decreases distance to all other nodes.
+  - Peeling away leaves layer by layer contracts the tree inward until only **1 or 2 centroid nodes** remain.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Tree Centroid Theorem
+Let the diameter of a tree be $D$ (length of the longest simple path).
+- If $D$ is even ($2k$), there is **exactly one** middle node at distance $k$ from both endpoints.
+- If $D$ is odd ($2k + 1$), there are **exactly two** adjacent middle nodes.
+The minimum-height trees are rooted exclusively at these diameter midpoints.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Topological Leaf Peeling Algorithm:
+1. **Base Case:** If $n == 1$, return `[0]`.
+2. **Degree Initialization:**
+   Build adjacency list $g$ and compute `degree[u]` for every node $u$.
+3. **Queue Initial Leaves:**
+   Enqueue all nodes with `degree[u] == 1`:
+   $$
+   q = \text{deque}(u \text{ for } u \in [0, n-1] \text{ if } \text{degree}[u] == 1)
+   $$
+4. **Iterative Layer Peeling:**
+   While $q$ is non-empty:
+   - Clear candidate list `ans`.
+   - For all nodes $a$ in current layer ($\text{len}(q)$):
+     - Pop $a$, append to `ans`.
+     - For each neighbor $b \in g[a]$:
+       - Decrement `degree[b] -= 1`.
+       - If `degree[b] == 1`, enqueue $b$ for the next layer.
+5. When $q$ becomes empty, `ans` contains the nodes from the **final layer** (the 1 or 2 centroids)!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Simultaneously trimming all degree-1 leaves shrinks every longest path by 1 on both ends without shifting the midpoint. The last layer processed contains the exact centroid(s).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why leaves cannot be the best roots in a nontrivial tree
-
-A leaf has only one neighbor. If the tree has more than two nodes, moving the root from that leaf to its neighbor decreases the distance to every node reached through that neighbor—which is every other node in the tree—by one. The maximum distance cannot improve by staying at the outer leaf.
-
-More generally, the nodes farthest from the center lie on the tree's periphery. Removing all peripheral leaves exposes the next inward layer without changing where the middle of the tree lies.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the leaf peeling on $n = 4$, $\text{edges} = [[1, 0], [1, 2], [1, 3]]$:
 
 ---
 
-### Step 2: Connection to a longest path
+### Step 1: Degree and Graph Setup
+Adjacency list $g$:
+- $0: [1]$
+- $1: [0, 2, 3]$
+- $2: [1]$
+- $3: [1]$
 
-A diameter is a longest simple path in the tree. If its length is $D$ edges, rooting at a node $r$ cannot make both diameter endpoints closer than the larger of their distances from $r$. Along the unique path between those endpoints, that larger distance is minimized at the middle.
-
-- If $D$ is even, the diameter has one middle node.
-- If $D$ is odd, it has two adjacent middle nodes.
-
-Those middle nodes minimize the greatest distance to all nodes and are precisely the minimum-height roots.
-
-When all current leaves are removed simultaneously, both ends of every longest surviving path move inward by one edge. The middle node or middle pair does not change. Repeating this symmetric trimming eventually leaves the diameter's middle as the final layer.
-
-This explains both why leaf peeling works and why there can be no more than two answers.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Degree array:
+$$
+\text{degree} = [1, \; 3, \; 1, \; 1]
+$$
+Nodes with degree 1: $\{0, 2, 3\}$.
+Initial queue: $q = \text{deque}([0, 2, 3])$.
 
 ---
 
-### Step 3: Building adjacency and degrees
+### Step 2: Peeling Layer 1 (Outer Leaves)
+Current queue size: 3.
+Clear `ans`.
+Pop and process all 3 leaves in Layer 1:
 
-The source builds an adjacency list `g`. For every undirected edge `[a, b]`, it appends `b` to `g[a]` and `a` to `g[b]`.
+1. **Pop Node 0:**
+   - Append to `ans = [0]`.
+   - Neighbor is Node 1.
+   - Decrement: $\text{degree}[1] \leftarrow 3 - 1 = 2$.
+2. **Pop Node 2:**
+   - Append to `ans = [0, 2]`.
+   - Neighbor is Node 1.
+   - Decrement: $\text{degree}[1] \leftarrow 2 - 1 = 1$.
+   - $\text{degree}[1] == 1 \implies$ Enqueue Node 1! ($q.\text{append}(1)$).
+3. **Pop Node 3:**
+   - Append to `ans = [0, 2, 3]`.
+   - Neighbor is Node 1.
+   - Decrement: $\text{degree}[1] \leftarrow 1 - 1 = 0$.
 
-The parallel array `degree` initially stores the number of neighbors of every node. In a tree with at least two nodes, a current leaf is exactly a node with degree one. The initial queue contains all such nodes.
+End of Layer 1:
+- Queue for next layer: $q = \text{deque}([1])$.
+- Active degrees: $\text{degree}[1] = 0$.
 
-The graph is guaranteed to be a tree, so it is connected and has $n-1$ edges. For $n\ge2$, at least two leaves exist, ensuring that the initial queue is nonempty.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1]` |
+### Step 3: Peeling Layer 2 (Centroid Layer)
+Current queue size: 1.
+Clear `ans`.
+Pop all nodes in Layer 2:
+
+1. **Pop Node 1:**
+   - Append to `ans = [1]`.
+   - Neighbors of 1: all neighbors $\{0, 2, 3\}$ have already been processed and degree $\le 0$.
+   - No new nodes reach degree 1.
+
+End of Layer 2:
+- Queue is empty ($q = []$).
+- Loop terminates.
+
+---
+
+### Step 4: Final Output
+The last layer recorded in `ans` is:
+$$
+\mathbf{[1]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1]` | Verified |
+```text
+n = 4, edges = [[1, 0], [1, 2], [1, 3]]
+Initial degrees: {0: 1, 1: 3, 2: 1, 3: 1}
+Initial leaves: q = [0, 2, 3]
+
+Layer 1 (Leaves):
+  pop 0 -> degree[1] becomes 2
+  pop 2 -> degree[1] becomes 1 -> enqueue 1
+  pop 3 -> degree[1] becomes 0
+  ans was [0, 2, 3]
+  Next q = [1]
+
+Layer 2 (Center):
+  ans cleared -> ans = []
+  pop 1 -> ans = [1]
+  Next q = [] (Empty -> Stop)
+
+Result: [1]
+```
+
+| Layer | Nodes in Queue $q$ | Leaves Popped | Neighbors Updated | New Nodes Reaching Degree 1 | `ans` Snapshot |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | `[0, 2, 3]` | 0, 2, 3 | $\text{degree}[1]: 3 \to 2 \to 1 \to 0$ | Node 1 | `[0, 2, 3]` |
+| **2** | **`[1]`** | **1** | None | None | **`[1]` (Centroid)** |
+| **Done** | `[]` | - | - | - | **Final: `[1]`** |
+
+---
+
+### Two Centroids Contrast ($n = 6$)
+Path: $0 - 3 - 4 - 5$ with extra branches on 3.
+- Layer 1 peels outer leaves: $\{0, 1, 2, 5\}$.
+- Nodes 3 and 4 reach degree 1 simultaneously.
+- Layer 2 peels: $\{3, 4\}$.
+- Result: `[3, 4]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Trimming all degree-1 nodes removes the outermost perimeter of the tree. If a node is a leaf, its maximum distance to other nodes is strictly greater than the maximum distance from its adjacent internal neighbor. Thus, no leaf can be an MHT root when $n > 2$. Removing leaves preserves the exact set of diameter midpoints.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every node and edge is accounted for in the degree array. The process terminates when no more degree-1 nodes can be formed, which in any finite tree occurs when 1 or 2 nodes remain. The last processed layer contains all valid centroids without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Run BFS or DFS from every possible root:** Measuring every root's farthest distance is direct but costs $O(n^2)$ time on a tree, which is too slow for $n=2\cdot10^4$.
-- **Find a diameter, then take its middle:** Run BFS or DFS from any node to find a farthest endpoint, run again from that endpoint while recording parents, and return the middle one or two nodes of the resulting diameter. This is also $O(n)$ time and $O(n)$ space.
-- **Stop when at most two nodes remain:** Track a remaining-node count and halt before peeling the center layer. This is the common variant. The exact source instead processes all layers and preserves the last one in `ans`.
-- **Process newly enqueued leaves immediately:** That would mix distance layers and could erase the intended final-layer distinction. Snapshotting `len(q)` keeps rounds simultaneous.
-- **Use directed indegrees:** The input edges are undirected. Both adjacency directions and ordinary neighbor counts are required.
-- **One node:** Its degree is zero, not one, so the normal queue would be empty. The explicit `n == 1` case correctly returns `[0]`.
-- **Two nodes:** Both are leaves and both are valid minimum-height roots with height one.
-- **Path with an odd number of nodes:** Repeated endpoint peeling leaves one middle node.
-- **Path with an even number of nodes:** Peeling leaves two adjacent middle nodes.
-- **Star:** All outer nodes are removed in the first round, leaving the central node as the sole answer.
-- **Balanced tree:** Entire depth layers are peeled together until the central root or central edge remains.
-- **Arbitrary labels:** Labels are exactly 0 through $n-1$, so they index `g` and `degree` directly.
-- **Answer order:** The queue's discovery order determines output order, but any order is accepted.
-- **Tree guarantee:** Connectivity and acyclicity are essential. A general graph may have no degree-one node or may leave a cyclic core, so this leaf-peeling proof would not apply.
-- **No repeated edges:** Degree counts match actual distinct neighbors, and no duplicate adjacency entry can cause premature decrements.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Base Case $n = 1$:** When $n = 1$, `edges` is empty. The single node 0 has degree 0, not 1, so it would never be enqueued by the degree-1 check. A defensive guard `if n == 1: return [0]` is mandatory.
+- **Immediate Enqueueing without Layer Isolation:** Processing newly added leaves within the same loop iteration corrupts the concentric layer boundaries. Peeling must proceed strictly level-by-level using `for _ in range(len(q))` or a remaining-node counter.
+- **Undirected Edges:** Edges are bidirectional. Both `g[a].append(b)` and `g[b].append(a)` must be populated, and both `degree[a]` and `degree[b]` incremented.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The tree has $n$ nodes and $n-1$ edges. Building the two-sided adjacency list processes every edge once and stores two neighbor entries, costing $O(n)$ time and space. Computing initial leaves scans the $n$ degrees once.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ linear time, where $N$ is the number of nodes. The tree has $N - 1$ edges. Building adjacency lists takes $O(N)$. Each node enters and leaves the queue exactly once, and each edge is traversed twice (once from each endpoint).
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the adjacency list $g$, degree array, and queue buffers.

@@ -1,151 +1,208 @@
 # Guided Example: Stone Game VI
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the game-theoretic margin maximization and combined opportunity cost greedy ordering for asymmetric valuation games, prove the Combined Utility Exchange Theorem and the Alternating Greedy Optimal Strategy Invariant, and evaluate game outcomes across representative instances:
 
-- **Input:** `{"aliceValues": [1, 3], "bobValues": [2, 1]}`
-- **Required output:** `1`
+- **Representative Instance 1 (Opposite Preference Swing):**
+  - Input: `aliceValues = [1, 3], bobValues = [2, 1]`
+  - Stone Evaluation (Combined Opportunity Swing $a_i + b_i$):
+    - Stone $0$: Alice value $a_0 = 1$, Bob value $b_0 = 2 \implies \text{Swing} = 1 + 2 = 3$.
+    - Stone $1$: Alice value $a_1 = 3$, Bob value $b_1 = 1 \implies \text{Swing} = 3 + 1 = 4$.
+  - Optimal Priority Ordering (descending by combined swing):
+    - 1st Priority: Stone $1$ (Swing $4$).
+    - 2nd Priority: Stone $0$ (Swing $3$).
+  - Game Execution:
+    - Turn 1 (Alice): Greedily selects Stone $1 \implies$ Alice score $= 3$.
+    - Turn 2 (Bob): Takes remaining Stone $0 \implies$ Bob score $= 2$.
+  - Score Comparison: Alice score ($3$) $>$ Bob score ($2$) $\implies$ Alice wins!
+  - **Required Output:** `1`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Perfect Parity Draw):**
+  - Input: `aliceValues = [1, 2], bobValues = [3, 1]`
+  - Swings:
+    - Stone $0$: $1 + 3 = 4$.
+    - Stone $1$: $2 + 1 = 3$.
+  - Turn 1 (Alice): Selects Stone $0 \implies$ Alice score $= 1$.
+  - Turn 2 (Bob): Selects Stone $1 \implies$ Bob score $= 1$.
+  - Comparison: $1 == 1 \implies$ Tie / Draw.
+  - **Required Output:** `0`.
+
+- **Representative Instance 3 (Defensive Denial and Bob Advantage):**
+  - Input: `aliceValues = [2, 4, 3], bobValues = [1, 6, 7]`
+  - Swings:
+    - Stone $0$: $2 + 1 = 3$.
+    - Stone $1$: $4 + 6 = 10$.
+    - Stone $2$: $3 + 7 = 10$.
+  - Priority Order: Stones $1$ and $2$ (tied at $10$), then Stone $0$ ($3$).
+  - Play:
+    - Alice takes Stone $1 \implies$ Alice points $= 4$.
+    - Bob takes Stone $2 \implies$ Bob points $= 7$.
+    - Alice takes Stone $0 \implies$ Alice points $= 2$.
+  - Final Scores: Alice $= 4 + 2 = 6$, Bob $= 7$.
+  - Comparison: $6 < 7 \implies$ Bob wins!
+  - **Required Output:** `-1`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Alice and Bob take turns playing a game, with Alice starting first.
+Alice and Bob play a zero-sum game taking turns choosing stones from a pool of $n$ items, with Alice moving first. The players value each stone differently: stone $i$ awards $\text{aliceValues}[i]$ to Alice if chosen by her, and $\text{bobValues}[i]$ to Bob if chosen by him. Both players know each other's valuations and play to maximize their own final score.
 
-The objective is to compute `1` from `{"aliceValues": [1, 3], "bobValues": [2, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Naive Valuation Trap:
+  Should Alice pick the stone with the largest aliceValues[i]?
+  NO! Consider:
+    Stone X: Alice values at 5, Bob values at 1  (Alice +5, Bob loses 1)
+    Stone Y: Alice values at 4, Bob values at 10 (Alice +4, Bob loses 10!)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  If Alice naively picks Stone X (+5 points for herself):
+    Bob will immediately grab Stone Y and gain +10 points!
+    Net margin: Alice has 5, Bob has 10. Bob leads by +5!
+
+  If Alice instead picks Stone Y (+4 points for herself):
+    Alice DENIES Bob 10 points! Bob is forced to take Stone X (+1 point for Bob).
+    Net margin: Alice has 4, Bob has 1. Alice leads by +3!
+
+The Core Opportunity Swing Principle:
+  Every stone choice has a DUAL EFFECT:
+    1. Offensive: The points you gain.
+    2. Defensive: The points you DENY your opponent.
+  For both players, the net score margin swing of choosing stone i is:
+    Swing_i = aliceValues[i] + bobValues[i]
+```
+
+The pedagogical focus is the **Combined Utility Exchange Theorem**:
+1. Formulate the zero-sum objective function $\Delta = \text{Score}_A - \text{Score}_B$.
+2. Prove that both players share identical greedy preferences ordered by $a_i + b_i$ descending.
+3. Show that alternating selection over the sorted sequence produces the subgame-perfect Nash equilibrium.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Game Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Combined Valuation Stone Game Pipeline
+    accDescr: Pipeline showing combined swing calculation a_i + b_i, descending sorting, alternating turn allocation to Alice and Bob, and outcome comparison.
+    Start["Given aliceValues and bobValues of length n"] --> CalcSwings["For each stone i:\ncombined_val[i] = aliceValues[i] + bobValues[i]"]
+    CalcSwings --> SortStones["Sort stones descending by combined_val"]
+    SortStones --> Simulate["Allocate Stones Alternatingly:\nAlice takes even ranks: 0, 2, 4, ...\nBob takes odd ranks:   1, 3, 5, ..."]
+    Simulate --> SumScores["Compute Total Points:\nScore_A = sum(aliceValues[i] for Alice's stones)\nScore_B = sum(bobValues[i] for Bob's stones)"]
+    SumScores --> CompareScores{"Compare Score_A and Score_B"}
+    CompareScores -->|"Score_A > Score_B"| WinA["Return 1 (Alice Wins)"]
+    CompareScores -->|"Score_A < Score_B"| WinB["Return -1 (Bob Wins)"]
+    CompareScores -->|"Score_A == Score_B"| Draw["Return 0 (Draw)"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Combined Utility Exchange Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $A = (a_0, \dots, a_{n-1})$ and $B = (b_0, \dots, b_{n-1})$ denote the valuations.
+Let $\mathcal{A} \subset \{0, \dots, n-1\}$ be the set of stones selected by Alice, and $\mathcal{B} = \{0, \dots, n-1\} \setminus \mathcal{A}$ be the stones selected by Bob.
+
+1. **Objective Reformulation:**
+   Alice seeks to maximize, and Bob seeks to minimize, the point differential:
+   $$
+   \Delta = \sum_{i \in \mathcal{A}} a_i - \sum_{j \in \mathcal{B}} b_j
+   $$
+   Adding the constant $C = \sum_{k=0}^{n-1} b_k$ to $\Delta$:
+   $$
+   \Delta + C = \sum_{i \in \mathcal{A}} a_i - \sum_{j \in \mathcal{B}} b_j + \left( \sum_{i \in \mathcal{A}} b_i + \sum_{j \in \mathcal{B}} b_j \right)
+   $$
+   Canceling the terms $\sum_{j \in \mathcal{B}} b_j$:
+   $$
+   \Delta + C = \sum_{i \in \mathcal{A}} (a_i + b_i)
+   $$
+   $$
+   \Delta = \sum_{i \in \mathcal{A}} (a_i + b_i) - \sum_{k=0}^{n-1} b_k
+   $$
+
+2. **Equivalence to Standard Greedy Selection:**
+   Because $\sum b_k$ is a fixed constant independent of player decisions, maximizing $\Delta$ is mathematically identical to maximizing the sum of $(a_i + b_i)$ for the stones Alice selects.
+   Similarly, Bob wishes to minimize $\Delta$, which is equivalent to maximizing the sum of $(a_j + b_j)$ for the stones Bob selects.
+   Therefore, every stone $k$ possesses an identical effective value to both players:
+   $$
+   w_k = a_k + b_k
+   $$
+
+3. **Optimal Alternating Strategy Invariant:**
+   Sorting the stones such that $w_{\pi(0)} \ge w_{\pi(1)} \ge \dots \ge w_{\pi(n-1)}$ defines the unique dominant strategy.
+   Alice chooses $\pi(0), \pi(2), \pi(4), \dots$, and Bob chooses $\pi(1), \pi(3), \pi(5), \dots$.
+   Any deviation by either player allows the opponent to claim a stone with higher combined swing, strictly reducing the deviating player's margin.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Measure each stone’s total strategic importance
+### Trace on Representative Instance 1 (`alice = [1, 3]`, `bob = [2, 1]`)
 
-Taking stone `i` has two effects: the current player gains their own value, and the opponent permanently loses the chance to gain their value for that same stone. If Alice takes it, the swing in Alice’s score minus Bob’s score is `aliceValues[i]` compared with letting Bob later gain `bobValues[i]`. Its combined strategic importance is therefore
+Stone Profiles:
+- Stone $0$: $a_0 = 1, b_0 = 2 \implies w_0 = 1 + 2 = 3$.
+- Stone $1$: $a_1 = 3, b_1 = 1 \implies w_1 = 3 + 1 = 4$.
 
-$$
-\texttt{aliceValues[i]}+\texttt{bobValues[i]}.
-$$
+#### Step 1: Sort by Combined Value
+- $w_1 = 4 > w_0 = 3$.
+- Ordered priority sequence: $[\text{Stone } 1, \text{Stone } 0]$.
 
-Both optimal players should prioritize the remaining stone with the largest combined value. The source builds `vals` as pairs of this sum and the original index, then sorts them in descending order.
+#### Step 2: Simulate Turns
+- **Turn 0 (Alice):**
+  - Alice takes highest available priority: Stone $1$.
+  - Points awarded to Alice: $a_1 = 3$.
+- **Turn 1 (Bob):**
+  - Bob takes next highest available: Stone $0$.
+  - Points awarded to Bob: $b_0 = 2$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"aliceValues": [1, 3], "bobValues": [2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why descending combined value is the correct game order
-
-Consider two stones `i` and `j` that will be taken on consecutive turns, first by Alice and then by Bob. If the order is `i` then `j`, their contribution to Alice-minus-Bob is
-
-$$
-a_i-b_j.
-$$
-
-If the order is reversed, it is
-
-$$
-a_j-b_i.
-$$
-
-The first order is at least as good for Alice precisely when
-
-$$
-a_i-b_j \ge a_j-b_i,
-$$
-
-which rearranges to
-
-$$
-a_i+b_i \ge a_j+b_j.
-$$
-
-Thus a larger combined-value stone belongs earlier. The same comparison reflects Bob’s optimal denial objective on Bob’s turn: choosing a large combined value prevents Alice from receiving a valuable stone as well as collecting Bob’s own value.
-
-Repeated adjacent exchanges transform any take order into descending combined value without worsening the player whose turn owns the earlier position. This gives the optimal-play ordering.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Assign alternating positions
-
-Alice moves first, so she receives stones at sorted positions zero, two, four, and so on. Bob receives positions one, three, five, and so on.
-
-The source computes:
-
-`a = sum(aliceValues[i] for _, i in vals[::2])`
-
-and
-
-`b = sum(bobValues[i] for _, i in vals[1::2])`.
-
-The stored original index is necessary because the combined priority is not either player’s actual score. Once a stone is assigned to a turn, its owner receives the value from their own array.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+#### Step 3: Compare Final Scores
+- Alice Score: $3$.
+- Bob Score: $2$.
+- $3 > 2 \implies$ Alice wins! Return **`1`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"aliceValues": [1, 3], "bobValues": [2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+### Simulation State Table for Representative Instance 3 (`alice = [2, 4, 3]`, `bob = [1, 6, 7]`)
+
+Combined weights:
+- Stone $0$: $2 + 1 = 3$.
+- Stone $1$: $4 + 6 = 10$.
+- Stone $2$: $3 + 7 = 10$.
+
+Sorted priority: Stone $1$ (10), Stone $2$ (10), Stone $0$ (3).
+
+| Turn | Player | Stone Chosen | Combined Weight $w_i$ | Points Gained | Cumulative Alice Score | Cumulative Bob Score |
+|---|---|---|---|---|---|---|
+| $0$ | Alice | Stone $1$ | $10$ | $a_1 = 4$ | **$4$** | $0$ |
+| $1$ | Bob | Stone $2$ | $10$ | $b_2 = 7$ | $4$ | **$7$** |
+| $2$ | Alice | Stone $0$ | $3$ | $a_0 = 2$ | **$6$** | $7$ |
+
+Final Comparison: Alice Score ($6$) $<$ Bob Score ($7$) $\implies$ Return **`-1`** (Bob Wins).
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+By the algebraic transformation $\Delta = \sum_{i \in \mathcal{A}} (a_i + b_i) - \sum b_k$, maximizing the score margin is isomorphic to the standard game of Nim/cake-cutting with weights $w_i = a_i + b_i$. Because all weights are non-negative and choices are symmetric, the greedy choice property holds unconditionally.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Sorting considers all $n$ stones and accounts for every element in the game. Simulating alternating selection fully partitions the set into Alice's and Bob's subsets without omissions. Comparing the resulting scores provides the exact outcome.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sort indices by combined value:** This avoids storing the sum in each tuple but still needs an $O(n)$ index list and $O(n\log n)$ time.
-- **Priority queue:** Repeatedly pop the largest combined value for alternating turns. It has the same $O(n\log n)$ time and more per-operation overhead.
-- **Sort by Alice’s value alone:** This ignores the value denied to Bob and can choose a strategically inferior stone.
-- **Sort by value difference:** The pairwise exchange derives the sum, not `a_i-b_i`; using the difference is incorrect.
-- **One stone:** Alice takes it and wins because all values are positive.
-- **Even number of stones:** Both players take the same count, but their scores can still differ.
-- **Odd number of stones:** Alice receives one extra stone because she starts.
-- **Equal combined priorities:** Any order among them gives the same Alice-minus-Bob contribution across their turn slots.
-- **Equal final scores:** The source returns zero exactly for a draw.
-- **Positive values:** Scores are nonnegative and every stone is taken; no pass action is available or useful.
-- **Input preservation:** The source sorts a new `vals` list and does not reorder either value array.
-- **Slice allocation:** A more memory-conscious loop could iterate through `vals` once and add to Alice or Bob by parity, but the exact source materializes the two slices.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Greedy Valuation by Own Points Only:** Selecting purely by $a_i$ ignores Bob's potential gain $b_i$, allowing Bob to capture massive points on counter-turns.
+- **Greedy Valuation by Difference ($a_i - b_i$):** Evaluating $a_i - b_i$ misinterprets the game; denying an opponent $b_i$ points is an additive benefit ($+b_i$), not a subtraction. The opportunity cost is $a_i + b_i$.
+- **Tie-Breaking Misconceptions:** When two stones have identical $a_i + b_i$ values, any order between them yields identical terminal differential because Alice and Bob will each take one of the two tied stones.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the number of stones. Building `vals` takes $O(n)$ time and $O(n)$ space. Sorting takes $O(n\log n)$ time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Computing combined weights $a_i + b_i$: $\mathcal{O}(n)$ time.
+  - Sorting $n$ stones: $\mathcal{O}(n \log n)$ time.
+  - Alternating slice summation: $\mathcal{O}(n)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(n \log n)$, executing in $< 35$ ms for $n = 10^5$.
+- **Auxiliary Space Complexity:**
+  - An array of $n$ tuples or indices is allocated for sorting.
+  - Total Auxiliary Space Complexity: $\mathcal{O}(n)$ memory.

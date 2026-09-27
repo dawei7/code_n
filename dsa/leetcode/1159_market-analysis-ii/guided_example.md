@@ -1,131 +1,212 @@
 # Guided Example: Market Analysis II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational pipeline utilizing window ranking, entity-attribute join resolution, and conditional outer-projection to determine whether each seller's second sale corresponds to their designated favorite brand.
 
-- **Input:** `{"tables": {"Users": [{"user_id": 1, "join_date": "2019-01-01", "favorite_brand": "Lenovo"}, {"user_id": 2, "join_date": "2019-02-09", "favorite_brand": "Samsung"}, {"user_id": 3, "join_date": "2019-01-19", "favorite_brand": "LG"}, {"user_id": 4, "join_date": "2019-05-21", "favorite_brand": "HP"}], "Orders": [{"order_id": 1, "order_date": "2019-08-01", "item_id": 4, "buyer_id": 1, "seller_id": 2}, {"order_id": 2, "order_date": "2019-08-02", "item_id": 2, "buyer_id": 1, "seller_id": 3}, {"order_id": 3, "order_date": "2019-08-03", "item_id": 3, "buyer_id": 2, "seller_id": 3}, {"order_id": 4, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 4, "seller_id": 2}, {"order_id": 5, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 3, "seller_id": 4}, {"order_id": 6, "order_date": "2019-08-05", "item_id": 2, "buyer_id": 2, "seller_id": 4}], "Items": [{"item_id": 1, "item_brand": "Samsung"}, {"item_id": 2, "item_brand": "Lenovo"}, {"item_id": 3, "item_brand": "LG"}, {"item_id": 4, "item_brand": "HP"}]}}`
-- **Required output:** `{"columns": ["seller_id", "2nd_item_fav_brand"], "rows": [[1, "no"], [2, "yes"], [3, "yes"], [4, "no"]]}`
+- **Input:**
+  - `Users`: 4 registered users with declared favorite brands
+  - `Orders`: 6 transactions across users in buyer and seller capacities
+  - `Items`: 4 catalog items mapped to brands
+- **Required output:**
+  - User 1: `seller_id = 1`, `2nd_item_fav_brand = 'no'` (0 items sold)
+  - User 2: `seller_id = 2`, `2nd_item_fav_brand = 'yes'` (second sale brand is Samsung, matches favorite)
+  - User 3: `seller_id = 3`, `2nd_item_fav_brand = 'yes'` (second sale brand is LG, matches favorite)
+  - User 4: `seller_id = 4`, `2nd_item_fav_brand = 'no'` (second sale brand is Lenovo, favorite is HP)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates partitioned window ordering, handling entities with sparse histories ($< 2$ sales), role differentiation between buyers and sellers, and three-valued boolean logic in conditional projection.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Users`
+The objective is to evaluate each seller's second chronological sale. If a user sold fewer than two items in total, the reported outcome must be `'no'`. If they sold two or more items, the report checks whether the brand of that second sold item matches their declared `favorite_brand`.
 
-The objective is to compute `{"columns": ["seller_id", "2nd_item_fav_brand"], "rows": [[1, "no"], [2, "yes"], [3, "yes"], [4, "no"]]}` from `{"tables": {"Users": [{"user_id": 1, "join_date": "2019-01-01", "favorite_brand": "Lenovo"}, {"user_id": 2, "join_date": "2019-02-09", "favorite_brand": "Samsung"}, {"user_id": 3, "join_date": "2019-01-19", "favorite_brand": "LG"}, {"user_id": 4, "join_date": "2019-05-21", "favorite_brand": "HP"}], "Orders": [{"order_id": 1, "order_date": "2019-08-01", "item_id": 4, "buyer_id": 1, "seller_id": 2}, {"order_id": 2, "order_date": "2019-08-02", "item_id": 2, "buyer_id": 1, "seller_id": 3}, {"order_id": 3, "order_date": "2019-08-03", "item_id": 3, "buyer_id": 2, "seller_id": 3}, {"order_id": 4, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 4, "seller_id": 2}, {"order_id": 5, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 3, "seller_id": 4}, {"order_id": 6, "order_date": "2019-08-05", "item_id": 2, "buyer_id": 2, "seller_id": 4}], "Items": [{"item_id": 1, "item_brand": "Samsung"}, {"item_id": 2, "item_brand": "Lenovo"}, {"item_id": 3, "item_brand": "LG"}, {"item_id": 4, "item_brand": "HP"}]}}` while avoiding redundant calculations and unnecessary overhead.
+A naive relational strategy relies on correlated subqueries to locate the second minimum date for each seller:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+The Correlated Subquery Overhead:
+
+For each user u in Users:
+  Subquery 1: Count total sales where seller_id = u.user_id.
+  Subquery 2: If count >= 2, select min(order_date) where order_date > min(order_date).
+  Subquery 3: Find item_id and brand corresponding to that second date.
+  Comparison: Check if brand == favorite_brand.
+
+Cost: O(U * O) repeated scans over Orders, scanning the table for every user.
+```
+
+The teaching goal is to structure this evaluation as a streamlined, single-pass relational pipeline:
+1. **Partitioned Chronological Ranking:** Use `ROW_NUMBER()` or `RANK()` partitioned by `seller_id` and ordered by `order_date ASC` to index sales sequentially in $\mathcal{O}(O \log O)$ time.
+2. **Dimension Preservation:** Left-join the base `Users` relation with the filtered subset of second sales ($rank = 2$) joined to `Items`.
+3. **Total Coverage Invariant:** Users with 0 or 1 sale yield `NULL` attributes upon outer joining, cleanly resolving to `'no'` under `CASE WHEN favorite_brand = item_brand THEN 'yes' ELSE 'no' END`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $\mathcal{U}$ denote `Users`, $\mathcal{O}$ denote `Orders`, and $\mathcal{I}$ denote `Items`.
 
-| State Parameter | Role & Purpose | Initial State |
+The pipeline executes in three stages:
+
+### Stage 1: Windowed Sale Ordering
+
+$$\mathcal{O}_{\text{ranked}} = \Pi_{seller\_id, \, item\_id, \, order\_date, \, \text{ROW\_NUMBER}() \text{ OVER (PARTITION BY } seller\_id \text{ ORDER BY } order\_date \text{ ASC}) \to rnk}(\mathcal{O})$$
+
+Because the problem guarantees that no seller sells more than one item on the same calendar day, $order\_date$ is strictly monotonically increasing within each seller's partition. Consequently, `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()` produce identical, strictly unique integer ranks $\{1, 2, \dots\}$.
+
+### Stage 2: Second-Sale Item Resolution
+
+Filter $\mathcal{O}_{\text{ranked}}$ for $rnk = 2$ and equi-join with `Items`:
+
+$$\mathcal{S}_2 = \Pi_{seller\_id, \, item\_brand} \left( \sigma_{rnk = 2}(\mathcal{O}_{\text{ranked}}) \ \bowtie_{o.item\_id = i.item\_id} \ \mathcal{I} \right)$$
+
+### Stage 3: Left Outer Join and Conditional Mapping
+
+$$\Pi_{u.user\_id \to seller\_id, \, \text{CASE WHEN } u.favorite\_brand = s_2.item\_brand \text{ THEN 'yes' ELSE 'no' END} \to 2nd\_item\_fav\_brand} \left( \mathcal{U} \ \ \text{LEFT JOIN}_{u.user\_id = s_2.seller\_id} \ \ \mathcal{S}_2 \right)$$
+
+| Relational Stage | Operation | Role in Transformation |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Window Partition | `PARTITION BY seller_id ORDER BY order_date` | Isolates each seller's chronological timeline |
+| Rank Filter | `WHERE rnk = 2` | Filters exclusively for the critical second transaction |
+| Brand Equi-Join | `JOIN Items ON item_id` | Enriches second transaction with its manufacturer brand |
+| User Outer Join | `Users LEFT JOIN ... ON user_id = seller_id` | Guarantees all users appear in output, including zero/one-sale users |
+| Conditional Projection | `CASE WHEN fav = brand THEN 'yes' ELSE 'no' END` | Maps brand matching and `NULL` states to binary outcome |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Relational Pipeline for Market Analysis II
+    accDescr: Pipeline illustrating chronological ranking of orders, filtering for rank 2, joining items, and outer joining with users.
+
+    Orders["Orders Table (6 transactions)"] --> Rank["Window Function:
+    PARTITION BY seller_id
+    ORDER BY order_date ASC"]
+    Rank --> Filter["Filter rnk = 2"]
+    Filter --> JoinItems["Equi-join Items Table
+    to retrieve item_brand"]
+    Users["Users Table (4 users)"] --> LeftJoin{"LEFT JOIN ON
+    u.user_id = s2.seller_id"}
+    JoinItems --> LeftJoin
+    LeftJoin --> Case["Conditional Projection:
+    fav_brand == item_brand ? 'yes' : 'no'"]
+    Case --> Output["Final Output:
+    User 1 -> no
+    User 2 -> yes
+    User 3 -> yes
+    User 4 -> no"]
+```
+
+> **Universal Seller Evaluation Invariant.** Every user in `Users` appears exactly once in the final result. If a seller has fewer than two sales, $item\_brand$ evaluates to `NULL`, which evaluates the equality $favorite\_brand = NULL$ to `UNKNOWN` (falsy), correctly producing `'no'`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Rank each seller's sales chronologically
+We trace the 4 users and 6 orders step by step.
 
-The second item is defined by sale order, so `Orders` must first be partitioned by `seller_id` and sorted by `order_date` inside each seller's partition.
+### Step 1: Chronological Ranking by Seller
 
-The window expression
+Group transactions by $seller\_id$ and sort by $order\_date$:
 
-`RANK() OVER (PARTITION BY seller_id ORDER BY order_date)`
-
-assigns `rk = 1` to a seller's earliest sale, `rk = 2` to the next sale, and so on.
-
-The statement guarantees that a seller never sells more than one item on the same day. Because `order_date` is therefore unique within a seller's history, no ties occur in the window ordering. Under this guarantee, `RANK` produces the same simple consecutive positions that `ROW_NUMBER` would produce.
-
-The derived table retains `order_date`, `item_id`, `seller_id`, and the rank. The outer query needs the seller and item for rank two; retaining the date is harmless even though it is not selected later.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Users": [{"user_id": 1, "join_date": "2019-01-01", "favorite_brand": "Lenovo"}, {"user_id": 2, "join_date": "2019-02-09", "favorite_brand": "Samsung"}, {"user_id": 3, "join_date": "2019-01-19", "favorite_brand": "LG"}, {"user_id": 4, "join_date": "2019-05-21", "favorite_brand": "HP"}], "Orders": [{"order_id": 1, "order_date": "2019-08-01", "item_id": 4, "buyer_id": 1, "seller_id": 2}, {"order_id": 2, "order_date": "2019-08-02", "item_id": 2, "buyer_id": 1, "seller_id": 3}, {"order_id": 3, "order_date": "2019-08-03", "item_id": 3, "buyer_id": 2, "seller_id": 3}, {"order_id": 4, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 4, "seller_id": 2}, {"order_id": 5, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 3, "seller_id": 4}, {"order_id": 6, "order_date": "2019-08-05", "item_id": 2, "buyer_id": 2, "seller_id": 4}], "Items": [{"item_id": 1, "item_brand": "Samsung"}, {"item_id": 2, "item_brand": "Lenovo"}, {"item_id": 3, "item_brand": "LG"}, {"item_id": 4, "item_brand": "HP"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Attach only the second sale while preserving every user
-
-`Users AS u` is the base relation because the report must contain every user, including users who sold nothing.
-
-The first outer join uses
-
-`u.user_id = o.seller_id AND o.rk = 2`.
-
-The seller equality attaches a user's own sale history, not purchases made as a buyer. The rank condition allows only the second chronological sale to match.
-
-Keeping `o.rk = 2` inside the `ON` clause is crucial. Users with fewer than two sales have no rank-two row. A left join preserves them with null derived-table columns. If the condition were placed in `WHERE`, those null rows would be removed and the required users would disappear.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Seller 2:**
+  - Order 1: `order_date = 2019-08-01`, `item_id = 4` $\implies \mathbf{rnk = 1}$
+  - Order 4: `order_date = 2019-08-04`, `item_id = 1` $\implies \mathbf{rnk = 2}$
+- **Seller 3:**
+  - Order 2: `order_date = 2019-08-02`, `item_id = 2` $\implies \mathbf{rnk = 1}$
+  - Order 3: `order_date = 2019-08-03`, `item_id = 3` $\implies \mathbf{rnk = 2}$
+- **Seller 4:**
+  - Order 5: `order_date = 2019-08-04`, `item_id = 1` $\implies \mathbf{rnk = 1}$
+  - Order 6: `order_date = 2019-08-05`, `item_id = 2` $\implies \mathbf{rnk = 2}$
+- **Seller 1:**
+  - Has zero sales entries in `Orders` $\implies$ no ranks produced.
 
 ---
 
-### Step 3: Look up the second item's brand
+### Step 2: Extract Second Orders and Retrieve Item Brand
 
-The next left join matches `o.item_id = i.item_id`. For a user with a second sale, the foreign-key relationship identifies exactly one `Items` row and supplies `item_brand`.
+Filter transactions where $rnk = 2$ and join with `Items`:
 
-For a user without a second sale, `o.item_id` is null and no item matches. The left join preserves the user and leaves `i.item_brand` null, which is exactly what the final decision needs.
+| Seller ID | Second Order ID | $item\_id$ | Brand Lookup in `Items` | $item\_brand$ |
+|---|---|---|---|---|
+| $2$ | $4$ | $1$ | Item 1: Samsung | **Samsung** |
+| $3$ | $3$ | $3$ | Item 3: LG | **LG** |
+| $4$ | $6$ | $2$ | Item 2: Lenovo | **Lenovo** |
 
-The query does not need `buyer_id` or `join_date`. They do not affect which item was the seller's second sale or whether its brand is the seller's favorite.
+Sellers with no second order: Seller 1 has 0 sales.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["seller_id", "2nd_item_fav_brand"], "rows": [[1, "no"], [2, "yes"], [3, "yes"], [4, "no"]]}` |
+---
+
+### Step 3: Left Join with `Users` and Evaluate Match
+
+We perform `Users LEFT JOIN SecondSale`:
+
+| User ID ($seller\_id$) | Declared $favorite\_brand$ | Joined $item\_brand$ of 2nd Sale | Equality Check ($favorite\_brand = item\_brand$) | Result |
+|---|---|---|---|---|
+| $1$ | Lenovo | `NULL` (sold 0 items) | `Lenovo = NULL` $\implies$ `UNKNOWN` | **no** |
+| $2$ | Samsung | Samsung (Order 4) | `Samsung = Samsung` $\implies$ `TRUE` | **yes** |
+| $3$ | LG | LG (Order 3) | `LG = LG` $\implies$ `TRUE` | **yes** |
+| $4$ | HP | Lenovo (Order 6) | `HP = Lenovo` $\implies$ `FALSE` | **no** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Users": [{"user_id": 1, "join_date": "2019-01-01", "favorite_brand": "Lenovo"}, {"user_id": 2, "join_date": "2019-02-09", "favorite_brand": "Samsung"}, {"user_id": 3, "join_date": "2019-01-19", "favorite_brand": "LG"}, {"user_id": 4, "join_date": "2019-05-21", "favorite_brand": "HP"}], "Orders": [{"order_id": 1, "order_date": "2019-08-01", "item_id": 4, "buyer_id": 1, "seller_id": 2}, {"order_id": 2, "order_date": "2019-08-02", "item_id": 2, "buyer_id": 1, "seller_id": 3}, {"order_id": 3, "order_date": "2019-08-03", "item_id": 3, "buyer_id": 2, "seller_id": 3}, {"order_id": 4, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 4, "seller_id": 2}, {"order_id": 5, "order_date": "2019-08-04", "item_id": 1, "buyer_id": 3, "seller_id": 4}, {"order_id": 6, "order_date": "2019-08-05", "item_id": 2, "buyer_id": 2, "seller_id": 4}], "Items": [{"item_id": 1, "item_brand": "Samsung"}, {"item_id": 2, "item_brand": "Lenovo"}, {"item_id": 3, "item_brand": "LG"}, {"item_id": 4, "item_brand": "HP"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["seller_id", "2nd_item_fav_brand"], "rows": [[1, "no"], [2, "yes"], [3, "yes"], [4, "no"]]}` | Verified |
+```text
+Seller Timeline and Evaluation Grid:
+
+User 1: [Lenovo]  -> Sales: (none)                              -> 2nd sale: NONE    -> no
+User 2: [Samsung] -> Sales: 2019-08-01 (HP), 2019-08-04 (Samsung)-> 2nd sale: Samsung -> yes
+User 3: [LG]      -> Sales: 2019-08-02 (Lenovo), 2019-08-03 (LG)-> 2nd sale: LG      -> yes
+User 4: [HP]      -> Sales: 2019-08-04 (Samsung), 2019-08-05 (Lenovo) -> 2nd sale: Lenovo -> no
+```
+
+| User ID | Favorite Brand | Total Sales Count | 1st Sale Date (Item) | 2nd Sale Date (Item) | 2nd Item Brand | Brand Matches Favorite? | Output Value |
+|---|---|---|---|---|---|---|---|
+| $1$ | Lenovo | $0$ | None | None | `NULL` | No (Insufficient sales) | `no` |
+| $2$ | Samsung | $2$ | 2019-08-01 (HP) | 2019-08-04 (Samsung) | Samsung | Yes (`Samsung == Samsung`) | `yes` |
+| $3$ | LG | $2$ | 2019-08-02 (Lenovo) | 2019-08-03 (LG) | LG | Yes (`LG == LG`) | `yes` |
+| $4$ | HP | $2$ | 2019-08-04 (Samsung) | 2019-08-05 (Lenovo) | Lenovo | No (`Lenovo != HP`) | `no` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Theorem (Uniqueness and Completeness of Second Sale Classification).**
+1. **Unambiguous Ranking:** By problem specification, no seller makes more than one sale per calendar date. The ordering key $(seller\_id, order\_date)$ defines a strict total order for each seller. Thus, for any seller with at least two sales, the tuple with rank $2$ is unique.
+2. **Exhaustive Inclusion:** Starting from `Users` as the left relation in a `LEFT OUTER JOIN` guarantees that every registered user is retained in the output relation.
+3. **Null-Safety of Three-Valued Logic:** For users with $< 2$ sales, the outer join yields `NULL` for the second item's attributes. In SQL ternary logic:
+   $$\text{CASE WHEN } favorite\_brand = NULL \text{ THEN 'yes' ELSE 'no' END}$$
+   The comparison evaluates to `UNKNOWN`, bypassing the `THEN` branch and executing the `ELSE` branch to return `'no'`. This satisfies the requirement without requiring separate conditional checks for zero or one sale.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Use `ROW_NUMBER` instead of `RANK`:** Under the no-same-day-sales guarantee, both assign the same consecutive positions. `ROW_NUMBER` would also force one arbitrary second row if ties existed.
-- **Use `DENSE_RANK`:** It also matches `RANK` under unique seller dates. With ties, it would rank distinct sale dates rather than individual items, which would require a clarified contract.
-- **Correlated subqueries with `LIMIT`:** A per-user query can sort sales and select offset one, but it may repeat sorting or index work for every user.
-- **Put `rk = 2` in `WHERE`:** This removes users without a second sale and violates the required one-row-per-user result.
-- **Use an inner join from users to ranked orders:** It has the same omission problem for users with fewer than two sales.
-- **Partition by buyer:** That identifies a user's second purchase, not the second item the user sold.
-- **No sales or one sale:** No rank-two row matches, item brand is null, and the answer is no.
-- **Exactly two sales:** The later date's item is selected.
-- **More than two sales:** Only the row ranked two matches; later sales do not affect the brand comparison.
-- **Second brand differs:** The explicit `ELSE` returns no.
-- **Unique sale dates per seller:** This guarantee prevents rank ties and makes “second item by date” unambiguous.
-- **Any output order:** No sorting clause is needed for the final relation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
+|---|---|---|---|
+| **Role Inversion Trap** | Ranking on $buyer\_id$ instead of $seller\_id$ | Conflating buyer activity with seller activity. | Partition strictly by $seller\_id$. |
+| **Inner Join Discard** | `JOIN Users` on $user\_id = seller\_id$ | Omits sellers with 0 or 1 sale from the report entirely. | Always use `Users LEFT JOIN` to preserve every user. |
+| **Tied Dates Assumption** | Using `DENSE_RANK()` without tie-breaking | If a seller could sell twice on the same day, multiple items could share rank 2. | The problem explicitly guarantees at most one sale per day per seller. |
+| **Column Renaming Omission** | Returning `user_id` as the output column name | The problem contract requires the output column to be named `seller_id`. | Alias $u.user\_id \text{ AS } seller\_id$ in the final `SELECT` projection. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(r \log r)$. Let `r` be the total number of rows across the input relations. Computing the window rank generally requires partitioning and sorting orders by seller and date, which gives a conservative `O(r log r)` time bound. Joining the ranked result to primary-key tables and projecting the result does not exceed that bound under ordinary indexed or hash joins.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+1. **Window Sorting:** Sorting $O$ order rows partitioned by $seller\_id$ takes $\mathcal{O}(O \log O)$ time.
+2. **Filtering and Item Lookup:**
+   - Filtering rows with $rnk = 2$ produces at most $\min(U, O)$ rows.
+   - Equi-join with `Items` table of size $I$ takes $\mathcal{O}(\min(U, O) + I)$ via hash join or primary key index.
+3. **User Outer Join:** Joining the $U$ user records with the filtered second-sale table takes $\mathcal{O}(U)$ time.
+4. **Overall Time Complexity:**
+
+$$\mathcal{O}(O \log O + U + I)$$
+
+For realistic database benchmarks with $O, U, I \le 10^5$, this runs in fractions of a second.
+
+### Auxiliary Space Complexity
+
+- Intermediate buffers for the window sorting and hash joins store at most $\mathcal{O}(O + U)$ records.
+- Overall Space Complexity:
+
+$$\mathcal{O}(O + U)$$

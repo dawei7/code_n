@@ -1,89 +1,145 @@
 # Guided Example: Binary Tree Zigzag Level Order Traversal
 
-We trace the hierarchical Tree, Breadth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step alternating directional BFS level order traversal on a representative binary tree:
 
-- **Input:** `{"root": [3, 9, 20, null, null, 15, 7]}`
+- **Input:** $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$
 - **Required output:** `[[3], [20, 9], [15, 7]]`
+- **Single-Node Base:** $\text{root} = [1] \implies [[1]]$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates decoupling structural tree exploration (enqueuing children consistently from left to right) from level output ordering (using a double-ended deque to alternate between `append` and `appendleft`), flipping direction flags per level, and achieving $O(N)$ linear time and space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Binary Tree Zigzag Level Order Traversal** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given the root of a binary tree:
+$$
+\begin{gathered}
+3 \\
+\swarrow \quad \searrow \\
+9 \qquad\quad 20 \\
+\qquad\quad \swarrow \quad \searrow \\
+\qquad\quad 15 \qquad\quad 7
+\end{gathered}
+$$
+return the zigzag level order traversal of its nodes' values (i.e. from left to right, then right to left for the next level and alternate between).
+
+For this instance:
+- **Level 0 (Even depth, Left $\to$ Right):** $[3]$
+- **Level 1 (Odd depth, Right $\to$ Left):** $[20, 9]$ (node $20$ precedes $9$)
+- **Level 2 (Even depth, Left $\to$ Right):** $[15, 7]$
+Result: `[[3], [20, 9], [15, 7]]`.
+
+A naive attempt that alters child enqueuing order (e.g. enqueuing right child before left child on odd levels) breaks the spatial relationships of grandchildren on subsequent tiers.
+The optimal technique keeps the tree traversal queue strictly left-to-right, while using a double-ended queue (`deque`) for the level output buffer, inserting either at the tail (`append`) or at the head (`appendleft`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Alternating Deque Insertion Protocol
+1. **FIFO Traversal Queue:**
+   Maintain `queue = deque([root])`. Children are **always** enqueued in standard geometry:
+   - First `node.left`, then `node.right`.
+2. **Direction Flag:**
+   Maintain a boolean `left_to_right = True`.
+3. **Level Processing Loop:**
+   For each level with $k = |\text{queue}|$ nodes:
+   - Initialize an empty level buffer: $\text{level} = \text{deque}()$.
+   - Repeat $k$ times:
+     - Pop node from queue: $\text{node} = \text{queue.popleft()}$.
+     - **Directional Insertion:**
+       - If $\text{left\_to\_right}$: $\text{level.append}(\text{node.val})$
+       - Else: $\text{level.appendleft}(\text{node.val})$
+     - Enqueue `node.left` (if present) and `node.right` (if present).
+   - Commit: $\text{results.append}(\text{list}(\text{level}))$.
+   - **Toggle Direction:** $\text{left\_to\_right} = \lnot \text{left\_to\_right}$.
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
-
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** The traversal queue processes nodes strictly in left-to-right order across all depths, guaranteeing child nodes are enqueued at correct geometric coordinates. The level buffer's insertion polarity solely controls the orientation of each tier.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace the queue and level buffer on $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Initialization
+- $\text{queue} = [\text{Node}(3)]$.
+- $\text{left\_to\_right} = \text{True}$.
+- $\text{results} = []$.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Level $d = 0$ ($\text{left\_to\_right} = \text{True}$):
+- Snapshot size: $k = 1$.
+- Pop $\text{Node}(3)$:
+  - $\text{left\_to\_right}$ is True $\implies$ `level.append(3)`. $\text{level} = [3]$.
+  - Enqueue children left-to-right: $\text{Node}(9)$, $\text{Node}(20)$.
+- Commit: Append `[3]` to results.
+- Toggle: $\text{left\_to\_right} \leftarrow \text{False}$.
+- Next queue state: $[\text{Node}(9), \text{Node}(20)]$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Level $d = 1$ ($\text{left\_to\_right} = \text{False}$, Right $\to$ Left):
+- Snapshot size: $k = 2$.
+- **Iteration 1 of 2:** Pop $\text{Node}(9)$:
+  - $\text{left\_to\_right}$ is False $\implies$ `level.appendleft(9)`.
+  - $\text{level} = [9]$.
+  - Node 9 has no children.
+- **Iteration 2 of 2:** Pop $\text{Node}(20)$:
+  - $\text{left\_to\_right}$ is False $\implies$ `level.appendleft(20)`.
+  - $20$ is inserted at the front! $\text{level} = [20, 9]$.
+  - Enqueue children left-to-right: $\text{Node}(15)$, $\text{Node}(7)$.
+- Commit: Append `[20, 9]` to results.
+- Toggle: $\text{left\_to\_right} \leftarrow \text{True}$.
+- Next queue state: $[\text{Node}(15), \text{Node}(7)]$.
+
+---
+
+### Level $d = 2$ ($\text{left\_to\_right} = \text{True}$, Left $\to$ Right):
+- Snapshot size: $k = 2$.
+- **Iteration 1 of 2:** Pop $\text{Node}(15)$:
+  - $\text{left\_to\_right}$ is True $\implies$ `level.append(15)`. $\text{level} = [15]$.
+- **Iteration 2 of 2:** Pop $\text{Node}(7)$:
+  - $\text{left\_to\_right}$ is True $\implies$ `level.append(7)`. $\text{level} = [15, 7]$.
+- Commit: Append `[15, 7]` to results.
+- Toggle: $\text{left\_to\_right} \leftarrow \text{False}$.
+- Next queue state: empty `[]`.
+
+Queue is empty. Traversal halts.
+Final output: `[[3], [20, 9], [15, 7]]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+| Level Depth $d$ | Polarity Flag | Initial Queue | Snapshot $k$ | Nodes Processed & Insertion Action | Emitted Sublist | Next Queue State |
+|:---:|:---:|:---|:---:|:---|:---:|:---|
+| 0 | Left $\to$ Right | `[Node(3)]` | 1 | $\text{append}(3)$ | `[3]` | `[Node(9), Node(20)]` |
+| 1 | Right $\to$ Left | `[Node(9), Node(20)]` | 2 | $\text{appendleft}(9)$, then $\text{appendleft}(20)$ | `[20, 9]` | `[Node(15), Node(7)]` |
+| 2 | Left $\to$ Right | `[Node(15), Node(7)]` | 2 | $\text{append}(15)$, then $\text{append}(7)$ | `[15, 7]` | `[]` |
+| Exit | - | `[]` | 0 | - | - | **`[[3], [20, 9], [15, 7]]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** Level boundary isolation via fixed $k = |\text{queue}|$ ensures that nodes are grouped by depth without inter-tier leakage. Because `appendleft` in a double-ended queue places each subsequent node at the head, reading from left to right within the queue produces a reversed order in $O(1)$ time per node without invoking costly array reversal algorithms.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Traversal strictly expands every node in the tree in standard FIFO order, guaranteeing that all nodes are visited and inserted into their respective level sublist.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Reversing the Main BFS Queue:** If one attempts to pop from the right of the main queue on odd levels, the order in which child nodes are enqueued will become tangled, destroying the ordering of subsequent tiers. The main BFS queue must strictly maintain standard FIFO left-to-right order.
+- **Array Slicing Reversal ($O(K)$ Overhead):** Reversing a list via `level[::-1]` at the end of every odd level works, but incurs auxiliary copying overhead. A `collections.deque` achieves $O(1)$ push-front operations.
+- **Empty Tree Root:** An empty tree $\text{root} = \emptyset$ must return `[]` immediately.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Every node is enqueued once, dequeued once, and inserted into its level deque in $O(1)$ time.
+- **Auxiliary Space Complexity:** $O(W)$, where $W$ is the maximum width of the tree ($O(N)$ worst-case for full trees), to store the BFS queue and the active level deque.

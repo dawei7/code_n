@@ -31,6 +31,20 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "f11",
+        "t": "b23"
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-bijection",
       "name": "two sources cannot share target",
       "kind": "trial",
@@ -47,7 +61,7 @@
     {
       "id": "trial-pattern",
       "name": "repeated pattern matches",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "s": "paper",
@@ -55,6 +69,7 @@
       },
       "expected": true,
       "tags": [
+        "sample",
         "pattern"
       ]
     },

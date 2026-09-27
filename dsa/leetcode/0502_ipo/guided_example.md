@@ -1,107 +1,204 @@
 # Guided Example: IPO
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step two-heap greedy priority queue architecture (min-heap capital thresholding vs max-heap profit extraction), dynamic capital unlocking ($capital \le w$), greedy profit accumulation ($w \leftarrow w + profit$), project budget decrement ($k$), and early stagnation termination on representative investment portfolios:
 
-- **Input:** `{"k": 2, "w": 0, "profits": [1, 2, 3], "capital": [0, 1, 1]}`
+- **Input:**
+  - Projects allowed: $k = 2$
+  - Initial capital: $w = 0$
+  - Project profits: $profits = [1, 2, 3]$
+  - Required capitals: $capital = [0, 1, 1]$
 - **Required output:** `4`
+  - Available projects:
+    - Project 0: capital required $0$, profit $1$
+    - Project 1: capital required $1$, profit $2$
+    - Project 2: capital required $1$, profit $3$
+  - Constraints: You can complete at most $k = 2$ distinct projects. To start a project, current capital must satisfy $w \ge capital[i]$. Completing it increases capital by $profits[i]$.
+- **Two-heap greedy execution trace:**
+  - Min-heap $h_1$ (sorted by required capital ascending):
+    $$
+    h_1 = [(0, 1), \; (1, 2), \; (1, 3)]
+    $$
+  - Max-heap $h_2$ (available affordable profits): $h_2 = []$
+  - **Round 1 ($k = 2, \; w = 0$):**
+    - Unlock all projects in $h_1$ with $capital \le w (0)$:
+      - Pop $(0, 1)$ from $h_1$: capital $0 \le 0 \implies$ push profit $1$ into $h_2$.
+      - Next in $h_1$ is $(1, 2)$: capital $1 > 0 \implies$ locked! Stop unlocking.
+    - Max-heap $h_2$ contains: $\{1\}$.
+    - Greedily pick the project with maximum profit from $h_2$:
+      - Pop maximum profit: $\mathbf{1}$
+      - Update capital:
+        $$
+        w \leftarrow 0 + 1 = \mathbf{1}
+        $$
+      - Decrement project budget: $k \leftarrow 2 - 1 = 1$.
+  - **Round 2 ($k = 1, \; w = 1$):**
+    - Unlock all newly affordable projects in $h_1$ with $capital \le w (1)$:
+      - Pop $(1, 2)$ from $h_1$: capital $1 \le 1 \implies$ push profit $2$ into $h_2$.
+      - Pop $(1, 3)$ from $h_1$: capital $1 \le 1 \implies$ push profit $3$ into $h_2$.
+      - $h_1$ is now empty.
+    - Max-heap $h_2$ contains: $\{2, 3\}$.
+    - Greedily pick the maximum profit from $h_2$:
+      - Pop maximum profit: $\mathbf{3}$ (Project 2)
+      - Update capital:
+        $$
+        w \leftarrow 1 + 3 = \mathbf{4}
+        $$
+      - Decrement project budget: $k \leftarrow 1 - 1 = 0$.
+  - Project quota $k = 0$ reached.
+  - Final maximized capital: **`4`**.
+- **Complete All Projects ($k = 3, w = 0$):**
+  - Unlocks Project 1 in Round 3 $\implies w \leftarrow 4 + 2 = \mathbf{6}$
+- **Insufficient Initial Capital ($w = 0, capital = [5, 10]$):**
+  - No project satisfies $capital \le 0 \implies h_2$ remains empty $\implies$ halts early with $w = \mathbf{0}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy choice selection under dynamic affordability constraints, mathematically proves why always executing the highest-profit available project is optimal via an exchange argument, and derives $O(N \log N + K \log N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Suppose LeetCode will start its **IPO** soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the **IPO**. Since it has limited resources, it can only finish at most `k` distinct projects before the **IPO**. Help LeetCode design the best way to maximize its total capital after finishing at most `k` distinct projects.
+Given initial capital $w$, an integer $k$ (maximum projects allowed), and arrays $profits$ and $capital$:
+To start project $i$, you must have at least $capital[i]$ capital.
+When you finish project $i$, you receive pure profit $profits[i]$, increasing your total capital to $w + profits[i]$.
+Find the **maximum capital** achievable after finishing at most $k$ distinct projects.
 
-The objective is to compute `4` from `{"k": 2, "w": 0, "profits": [1, 2, 3], "capital": [0, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Projects:
+  P0: Needs 0 capital -> Yields +1 profit
+  P1: Needs 1 capital -> Yields +2 profit
+  P2: Needs 1 capital -> Yields +3 profit
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Step 1 (w = 0):
+  Only P0 is affordable (needs 0). Complete P0 -> w becomes 0 + 1 = 1.
+
+Step 2 (w = 1):
+  Both P1 and P2 are now affordable (need 1).
+  Greedy choice: Pick P2 (+3) over P1 (+2) -> w becomes 1 + 3 = 4.
+
+Maximized Capital after 2 projects: 4
+```
+
+### The Greedy Choice Property
+At any point with current capital $w$:
+- Any project requiring capital $\le w$ is immediately eligible to be executed.
+- Once executed, capital **strictly increases** ($w \leftarrow w + profit$). Capital never decreases because required capital is only a gating threshold, not a spent cost.
+- Therefore, completing any project only **unlocks more projects**, never fewer!
+- Among all currently unlocked projects, it is always optimal to choose the one that yields the **largest profit**. This gives the greatest capital boost for future selections.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Dual-Heap Architecture:
+We split projects into two heaps:
+1. **$h_1$ (Locked Queue):** Min-heap ordered by required capital $(c, p)$. Stores projects that may or may not be affordable.
+2. **$h_2$ (Unlocked Pool):** Max-heap ordered by profit. Stores all projects whose required capital is $\le w$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Two-Stage Selection Loop:
+For each of the $k$ selections:
+1. **Unlock Phase:** While $h_1$ is non-empty and its top element has $capital \le w$:
+   Pop $(c, p)$ from $h_1$ and push $-p$ into $h_2$.
+2. **Execution Phase:**
+   - If $h_2$ is empty: No affordable projects remain. Terminate early.
+   - Pop the largest profit from $h_2$: $w \leftarrow w + \text{pop}(h_2)$.
+   - Decrement $k \leftarrow k - 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Monotonic Capital Invariant.** Capital $w$ is non-decreasing over time, guaranteeing that once a project is pushed into $h_2$, it remains permanently affordable until chosen.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-At any moment, a project is either affordable—its required capital is at most current capital `w`—or still locked. Among affordable projects, choosing the one with greatest profit is always safe because profits are nonnegative and completing a project only increases capital.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"k": 2, "w": 0, "profits": [1, 2, 3], "capital": [0, 1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $k = 2, w = 0, profits = [1, 2, 3], capital = [0, 1, 1]$:
 
 ---
 
-### Step 2: Core Step 2
-
-The solution maintains two priority queues with different purposes:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Min-Heap $h_1$
+Heapify capital-profit pairs:
+$$
+h_1 = [(0, 1), \; (1, 2), \; (1, 3)]
+$$
+Initialize max-heap $h_2 = []$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Project Choice 1 ($k = 2$)
+- Current capital: $w = 0$.
+- **Unlock from $h_1$:**
+  - Look at top of $h_1$: $(0, 1)$.
+  - $0 \le w (0) \implies$ Pop $(0, 1)$, push profit $1$ to $h_2$.
+  - Look at new top of $h_1$: $(1, 2)$.
+  - $1 > w (0) \implies$ Stop unlocking.
+- Pool of affordable profits: $h_2 = [1]$.
+- **Execute best project:**
+  - Pop maximum profit: $1$.
+  - Update capital:
+    $$
+    w \leftarrow 0 + 1 = \mathbf{1}
+    $$
+  - Budget remaining: $k = 1$.
 
-- `h1` is a min-heap of `(required_capital, profit)` pairs, so its root is the locked-or-unprocessed project with smallest capital requirement;
-- `h2` is a max-heap of profits for every project that has become affordable but has not been selected.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Step 3: Project Choice 2 ($k = 1$)
+- Current capital: $w = 1$.
+- **Unlock from $h_1$:**
+  - Look at top of $h_1$: $(1, 2)$.
+  - $1 \le w (1) \implies$ Pop $(1, 2)$, push profit $2$ to $h_2$.
+  - Look at top of $h_1$: $(1, 3)$.
+  - $1 \le w (1) \implies$ Pop $(1, 3)$, push profit $3$ to $h_2$.
+  - $h_1$ is empty.
+- Pool of affordable profits: $h_2$ has $\{2, 3\}$.
+- **Execute best project:**
+  - Pop maximum profit: $\mathbf{3}$.
+  - Update capital:
+    $$
+    w \leftarrow 1 + 3 = \mathbf{4}
+    $$
+  - Budget remaining: $k = 0$.
+
+---
+
+### Step 4: Termination
+Project quota exhausted ($k = 0$).
+Output: **`4`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"k": 2, "w": 0, "profits": [1, 2, 3], "capital": [0, 1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| Choice Round | Current Capital $w$ | Projects Unlocked from $h_1$ | Available Profits in $h_2$ | Max Profit Popped | Capital After Execution | Remaining $k$ |
+|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| **Init** | $0$ | — | `[]` | — | $0$ | $2$ |
+| **Round 1** | $0$ | $(0, 1)$ | `[1]` | **$1$** | $0 + 1 = \mathbf{1}$ | $1$ |
+| **Round 2** | $1$ | $(1, 2), (1, 3)$ | `[2, 3]` | **$3$** | $1 + 3 = \mathbf{4}$ | $0$ |
+| **Final** | $4$ | — | — | — | **Result: $4$** | $0$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Zero Projects Allowed ($k = 0$):** Loop never runs $\implies$ returns initial $w$.
+- **Stagnation / Bankruptcy:** If $w = 0$ and all projects require $capital \ge 1$, $h_2$ remains empty $\implies$ loop breaks early and returns initial $w$.
+- **All Projects Affordable Initially:** All $N$ projects immediately dump into $h_2$, which simply pops the $k$ largest profits.
+- **$k \ge N$ (Can Do All Projects):** Executes every affordable project until none remain.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Sort by capital plus one max-heap:** Sort project pairs once and advance a pointer as capital grows. It has the same asymptotic bound and is the editorial's common presentation.
-- **Scan every project each round:** Finding all affordable projects and the largest profit repeatedly costs $O(kn)$ time.
-- **One heap ordered only by profit:** It cannot efficiently distinguish unaffordable projects; the capital-ordered heap handles unlocking first.
-- **No affordable project initially or later:** An empty `h2` means capital cannot increase, so the loop must stop.
-- **`k` larger than project count:** Projects are removed when selected, and the loop eventually stops when both heaps offer nothing.
-- **Equal capital requirements:** All projects at or below `w` transfer before selection, so the largest profit among them wins.
-- **Zero-profit projects:** Choosing one cannot lower capital. It may consume a slot without benefit, but final capital is unchanged and the max-heap postpones it behind positive profits.
-- **Duplicate profits or requirements:** Heap entries represent distinct project occurrences even when numeric fields match, and each tuple is popped only once.
-- **Negated max-heap arithmetic:** `w -= negative_profit` adds the original positive profit; using `w += heappop(h2)` would incorrectly reduce capital.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Scanning All Projects Repeatedly ($O(K \cdot N)$):** Iterating through all $N$ projects on each of the $k$ rounds takes $O(K \cdot N)$ time. For $N, K = 10^5$, this requires $10^{10}$ operations (Time Limit Exceeded). The two-heap approach processes each project in $O(\log N)$ amortized time.
+- **Deducting Capital for Projects:** Required capital is a prerequisite threshold, **not a cost**. You do not subtract $capital[i]$ from $w$; you only add $profits[i]$ to $w$.
+- **Sorting Entire Array by Profit First:** Sorting by profit is invalid because high-profit projects with huge capital requirements cannot be started until smaller projects build up the necessary capital.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of projects. Building the tuple list is $O(n)$ and `heapify` is $O(n)$. Each project moves from `h1` to `h2` at most once, involving one pop and one push, each $O(\log n)$. At most `min(k,n)` projects are selected from `h2`. A direct bound is $O(n\log n + k\log n)$, as in the manifest; because no more than $n$ projects can actually be selected, it also simplifies to $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Heapifying $h_1$ with $N$ elements takes $O(N)$ time.
+  - Each of the $N$ projects is popped from $h_1$ and pushed to $h_2$ at most once: $O(N \log N)$.
+  - In each of the $K$ rounds, popping the maximum profit takes $O(\log N)$ time: $O(K \log N)$.
+  - Total Time: $\mathcal{O}(N \log N + K \log N)$. For $N, K = 10^5$, executes in $< 60$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to store projects in heaps $h_1$ and $h_2$.

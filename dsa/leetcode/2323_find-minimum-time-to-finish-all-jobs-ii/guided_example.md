@@ -1,139 +1,142 @@
 # Guided Example: Find Minimum Time to Finish All Jobs II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"jobs": [5, 2, 4], "workers": [1, 7, 5]}`
-- **Required output:** `2`
+We are given two integer arrays, `jobs` and `workers`, where $jobs[i]$ denotes the workload of the $i$-th job and $workers[j]$ represents the daily capacity of the $j$-th worker. Each worker must be assigned to execute exactly one job, and all workers operate simultaneously and independently.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The time required for a worker with capacity $w$ to complete a job with workload $j$ is given by ceiling division:
 
----
+$$\text{time}(j, w) = \left\lceil \frac{j}{w} \right\rceil = \left\lfloor \frac{j + w - 1}{w} \right\rfloor$$
 
-## 1. Instance & Teaching Goal
+Because all assignments proceed in parallel, the total completion time (the makespan) is governed by the slowest worker-job pair:
 
-You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $i^{\text{th}}$ job, and $\text{workers}[j]$ is the amount of time the $j^{\text{th}}$ worker can work each day.
+$$\text{Makespan} = \max_{i} \left\lceil \frac{jobs[\pi(i)]}{workers[i]} \right\rceil$$
 
-The objective is to compute `2` from `{"jobs": [5, 2, 4], "workers": [1, 7, 5]}` while avoiding redundant calculations and unnecessary overhead.
+where $\pi$ is a bijection assigning each worker to a unique job. The objective is to construct a matching $\pi$ that minimizes this makespan.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Consider the representative instance:
+- Workloads: `jobs = [5, 2, 4]`
+- Worker capacities: `workers = [1, 7, 5]`
 
----
+If jobs were paired naively with workers in input order:
+- Job 5 with Worker 1 $\implies \lceil 5 / 1 \rceil = 5$ days.
+- Job 2 with Worker 7 $\implies \lceil 2 / 7 \rceil = 1$ day.
+- Job 4 with Worker 5 $\implies \lceil 4 / 5 \rceil = 1$ day.
+Makespan: $\max(5, 1, 1) = 5$ days.
 
-## 2. Conceptual Foundation & Invariants
+However, an optimal assignment finishes all jobs in only $2$ days.
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart LR
+    accTitle: Sorted Workload and Capacity Matching
+    accDescr: Parallel pairing of ascending workloads with ascending worker capacities to minimize maximum bottleneck duration.
+    subgraph Jobs["Sorted Jobs"]
+        J0["Job: 2"]
+        J1["Job: 4"]
+        J2["Job: 5"]
+    end
+    subgraph Workers["Sorted Workers"]
+        W0["Worker: 1"]
+        W1["Worker: 5"]
+        W2["Worker: 7"]
+    end
+    J0 -->|"ceil(2/1) = 2 days"| W0
+    J1 -->|"ceil(4/5) = 1 day"| W1
+    J2 -->|"ceil(5/7) = 1 day"| W2
+    W0 & W1 & W2 --> MaxSpan["Makespan = max(2, 1, 1) = 2 days"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+## 2. Mathematical & Algorithmic Principles
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+To minimize the maximum ratio $\lceil j / w \rceil$, we analyze an exchange argument between any two pairs.
 
----
+### Exchange Lemma for Bottleneck Ratios
+Suppose we have two jobs with workloads $j_1 \le j_2$ and two workers with capacities $w_1 \le w_2$.
+There are two possible assignments:
+1. **Sorted Assignment (Order-Preserving):** Pair $(j_1, w_1)$ and $(j_2, w_2)$.
+   $$\text{Makespan}_{\text{sorted}} = \max\left( \left\lceil \frac{j_1}{w_1} \right\rceil, \, \left\lceil \frac{j_2}{w_2} \right\rceil \right)$$
+2. **Inverted Assignment (Crossed):** Pair $(j_1, w_2)$ and $(j_2, w_1)$.
+   $$\text{Makespan}_{\text{inverted}} = \max\left( \left\lceil \frac{j_1}{w_2} \right\rceil, \, \left\lceil \frac{j_2}{w_1} \right\rceil \right)$$
 
-## 3. Step-by-Step Worked Execution
+Because $j_1 \le j_2$ and $w_1 \le w_2$:
+- $\frac{j_1}{w_1} \le \frac{j_2}{w_1} \implies \left\lceil \frac{j_1}{w_1} \right\rceil \le \left\lceil \frac{j_2}{w_1} \right\rceil$
+- $\frac{j_2}{w_2} \le \frac{j_2}{w_1} \implies \left\lceil \frac{j_2}{w_2} \right\rceil \le \left\lceil \frac{j_2}{w_1} \right\rceil$
 
-### Step 1: Translate an assignment into a completion time
+Therefore:
+$$\max\left( \left\lceil \frac{j_1}{w_1} \right\rceil, \, \left\lceil \frac{j_2}{w_2} \right\rceil \right) \le \left\lceil \frac{j_2}{w_1} \right\rceil \le \text{Makespan}_{\text{inverted}}$$
 
-If a job has workload `a` and its worker completes `b` units per day, the number of whole days needed is
+The order-preserving matching never produces a bottleneck strictly greater than the crossed matching. By uncrossing inversions iteratively, any arbitrary matching can be transformed into the monotonically sorted matching without increasing the makespan.
 
-`ceil(a / b)`.
+### Integer Arithmetic Formulation
+Ceiling division for positive integers $a, b > 0$ can be computed using exact integer arithmetic:
 
-Integer arithmetic computes this as
+$$\left\lceil \frac{a}{b} \right\rceil = \frac{a + b - 1}{b}$$
 
-`(a + b - 1) // b`
-
-for positive `a` and `b`. Adding `b - 1` ensures any positive remainder rounds the quotient upward, while an exactly divisible workload remains unchanged.
-
-All workers operate on their assigned jobs in parallel. The entire collection is finished only when the slowest assigned pair finishes, so an assignment's objective value is the maximum of these rounded-up pair durations.
-
-The problem is therefore a bottleneck matching problem: pair each workload with one daily capacity so that the largest ratio is as small as possible.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Pairing Method | Worker Capacity Order | Job Workload Order | Bottleneck Bound |
 |---|---|---|---|
-| Input Slice | `{"jobs": [5, 2, 4], "workers": [1, 7, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Monotonic Co-Sorted | Ascending: $w_1 \le w_2 \le \dots \le w_n$ | Ascending: $j_1 \le j_2 \le \dots \le j_n$ | Globally minimal makespan |
+| Unsorted / Inverted | Arbitrary permutations | Arbitrary permutations | Suboptimal or equivalent |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Sort jobs and workers in the same order
+We execute the sorted pairing on `jobs = [5, 2, 4]` and `workers = [1, 7, 5]`.
 
-The code sorts `jobs` and `workers` independently in ascending order and pairs entries at equal indices. The smallest job goes to the slowest worker, the next-smallest job to the next-slowest worker, and the largest job to the fastest worker.
+### Step 1: Sorting Both Sequences
+- Sort workloads: $jobs_{\text{sorted}} = [2, 4, 5]$
+- Sort capacities: $workers_{\text{sorted}} = [1, 5, 7]$
 
-This may initially seem counterintuitive because one might want to give the fastest worker a small job so it finishes almost immediately. That would leave a large job for a slower worker, which can make the maximum completion time much worse. Since the objective cares only about the last completion, comparable ranks should be matched.
+### Step 2: Evaluating Co-Sorted Pairs
+- **Pair 0:** Job $j_0 = 2$, Worker $w_0 = 1$
+  - Integer calculation: $(2 + 1 - 1) // 1 = 2 // 1 = 2$.
+  - Completion time: $2$ days.
+  - Running bottleneck: $\max(0, 2) = 2$.
 
-For the second example, sorted jobs are `[3, 9, 15, 18]` and sorted capacities are `[1, 3, 5, 6]`. Their rounded times are `3, 3, 3, 3`, so every job finishes within three days.
+- **Pair 1:** Job $j_1 = 4$, Worker $w_1 = 5$
+  - Integer calculation: $(4 + 5 - 1) // 5 = 8 // 5 = 1$.
+  - Completion time: $1$ day.
+  - Running bottleneck: $\max(2, 1) = 2$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Pair 2:** Job $j_2 = 5$, Worker $w_2 = 7$
+  - Integer calculation: $(5 + 7 - 1) // 7 = 11 // 7 = 1$.
+  - Completion time: $1$ day.
+  - Running bottleneck: $\max(2, 1) = 2$.
 
----
+### Global Output:
+The overall makespan is $2$ days.
 
-### Step 3: An exchange argument removes crossed assignments
+## 4. Comprehensive State Trace
 
-Consider two jobs with `a <= A` and two workers with `b <= B`. A crossed assignment gives small job `a` to fast worker `B` and large job `A` to slow worker `b`. Its maximum includes
+The table below contrasts the naive unaligned pairing against the optimal co-sorted matching.
 
-`ceil(A / b)`.
+| Evaluation Metric | Pair 0 | Pair 1 | Pair 2 | Bottleneck Result |
+|---|---|---|---|---|
+| Input Alignment Workload | $jobs[0] = 5$ | $jobs[1] = 2$ | $jobs[2] = 4$ | - |
+| Input Alignment Capacity | $workers[0] = 1$ | $workers[1] = 7$ | $workers[2] = 5$ | - |
+| Input Alignment Days | $\lceil 5/1 \rceil = 5$ | $\lceil 2/7 \rceil = 1$ | $\lceil 4/5 \rceil = 1$ | $\max(5, 1, 1) = 5$ days |
+| Sorted Alignment Workload | $jobs_{\text{sorted}}[0] = 2$ | $jobs_{\text{sorted}}[1] = 4$ | $jobs_{\text{sorted}}[2] = 5$ | - |
+| Sorted Alignment Capacity | $workers_{\text{sorted}}[0] = 1$ | $workers_{\text{sorted}}[1] = 5$ | $workers_{\text{sorted}}[2] = 7$ | - |
+| Sorted Alignment Days | $\lceil 2/1 \rceil = 2$ | $\lceil 4/5 \rceil = 1$ | $\lceil 5/7 \rceil = 1$ | $\max(2, 1, 1) = 2$ days |
 
-If the pairs are aligned instead, the two times are `ceil(a / b)` and `ceil(A / B)`. Both are at most `ceil(A / b)`:
+## 5. Algorithmic Correctness & Soundness
 
-- `a <= A` implies `ceil(a / b) <= ceil(A / b)`;
-- `B >= b` implies `ceil(A / B) <= ceil(A / b)`.
+1. **Inversion Elimination Argument:**
+   Let $\pi$ be an arbitrary optimal matching that does not preserve sorted order. There must exist two indices $i < j$ such that $workers[i] \le workers[j]$ but $jobs[\pi(i)] > jobs[\pi(j)]$. Swapping the job assignments to pair $workers[i]$ with $jobs[\pi(j)]$ and $workers[j]$ with $jobs[\pi(i)]$ is guaranteed by the Exchange Lemma not to increase $\max(\text{time}_i, \text{time}_j)$. Because the number of inversions strictly decreases with each adjacent swap, a finite sequence of uncrossing operations transforms $\pi$ into the identity matching without degrading the makespan.
 
-Therefore aligning this pair cannot make the local maximum larger than the crossed assignment's local maximum. It also leaves all other assignments unchanged.
+2. **Precision of Integer Division:**
+   Using the formula $(a + b - 1) // b$ avoids IEEE 754 floating-point rounding errors on large numbers, guaranteeing exact day boundaries.
 
-Whenever an assignment has a faster worker paired with a smaller job while a slower worker has a larger job, this exchange can remove the inversion without increasing the global maximum. Repeating the process eventually produces the sorted-to-sorted pairing. Hence some optimal assignment has exactly the order used by the solution.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+- **Exact Divisibility ($jobs[i] = k \cdot workers[i]$):**
+  - For $jobs = [12]$, $workers = [4]$, $(12 + 4 - 1) // 4 = 15 // 4 = 3$, matching $12 / 4 = 3$.
+- **All Pairs Completed in 1 Day ($jobs[i] \le workers[i]$ everywhere):**
+  - If the largest job does not exceed the capacity of its assigned worker, all pairs require exactly 1 day.
+- **Identical Elements / Multiplicities:**
+  - Duplicate workloads or worker capacities sort stably without impacting bottleneck evaluations.
+- **Anti-Pattern (Binary Search on Answer):**
+  - While binary search over possible days $[1, \max(jobs)]$ paired with greedy checking works, sorting and direct element-wise pairing solves the problem in a single pass without extra logarithmic search overhead.
 
----
+## 7. Complexity Analysis
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"jobs": [5, 2, 4], "workers": [1, 7, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Binary search on the number of days:** For each deadline, sort once and test whether each aligned job satisfies `job <= days * worker`. This is correct but adds a logarithmic search that the direct maximum of aligned durations avoids.
-- **Priority-queue assignment:** Repeatedly choose a worker for a job based on a local ratio. This adds `O(n \log n)` machinery and requires a proof equivalent to the sorted exchange property.
-- **Pair largest job with slowest worker:** Opposite-order pairing maximizes tension and can greatly increase the bottleneck; it is the opposite of the proven alignment.
-- **Pair smallest job with fastest worker:** This creates a crossing whenever a larger job is left for a slower worker. Exchanging those two pairs cannot worsen and often improves the maximum.
-- **Minimize the sum of completion times:** That is a different objective. The current proof specifically minimizes the maximum pair duration.
-- **Use ordinary floor division `a // b`:** It undercounts whenever `a` is not divisible by `b`. Whole days require ceiling division.
-- **Floating-point ceiling:** `ceil(a / b)` works for these small bounds but introduces unnecessary floating-point conversion. The integer formula is exact.
-- **One job and one worker:** Sorting changes nothing, and the result is the ceiling of their single ratio.
-- **Equal workloads:** Their relative order is irrelevant; pairing worker capacities in ascending order still yields the same multiset of durations.
-- **Equal worker capacities:** Any order among those workers is equivalent because they take the same time for a given job.
-- **Worker faster than job size:** The ceiling duration is one, not zero, because a positive job still needs one day.
-- **Exact divisibility:** When `a` is a multiple of `b`, adding `b - 1` does not push integer division into the next quotient.
-- **All pairs finish at the same time:** The maximum equals that common duration, as in the balanced second example.
-- **Input mutation:** Both input lists are reordered in ascending order. This does not affect correctness but is observable after the call.
-- **Nonempty guarantee:** `max` receives at least one generated duration because the arrays have equal positive length.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n \log n)$. Let `n` be the number of jobs and workers. Sorting each length-`n` list costs `O(n \log n)` time. The zipped generator and maximum scan take `O(n)` additional time, so sorting dominates and total time is `O(n \log n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \log n)$ where $n$ is the length of `jobs` and `workers`. Sorting both arrays takes $\mathcal{O}(n \log n)$ comparisons. The subsequent element-wise zipped scan takes linear $\mathcal{O}(n)$ time.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond the in-place sorting memory, as the ceiling division and running maximum are evaluated with scalar counters.

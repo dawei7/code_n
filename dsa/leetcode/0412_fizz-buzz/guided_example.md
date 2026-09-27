@@ -1,133 +1,177 @@
 # Guided Example: Fizz Buzz
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step modular arithmetic partitioning, priority-ordered branch evaluation, least common multiple intersection testing ($\text{lcm}(3, 5) = 15$), and sequential token generation on representative problem instances:
 
-- **Input:** `{"n": 3}`
-- **Required output:** `["1", "2", "Fizz"]`
+- **Input:** $n = 15$
+- **Required output:** `["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"]`
+  - Step-by-step partition verification:
+    - Multiples of 15 ($i \in \{15\}$): mapped to `"FizzBuzz"`
+    - Multiples of 3 only ($i \in \{3, 6, 9, 12\}$): mapped to `"Fizz"`
+    - Multiples of 5 only ($i \in \{5, 10\}$): mapped to `"Buzz"`
+    - Neither 3 nor 5 ($i \in \{1, 2, 4, 7, 8, 11, 13, 14\}$): converted to decimal string $str(i)$
+- **Smallest Non-Trivial Instance ($n = 3$):** `["1", "2", "Fizz"]`
+- **First Buzz Instance ($n = 5$):** `["1", "2", "Fizz", "4", "Buzz"]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates disjoint partition of natural numbers modulo coprime bases, explains why evaluating the composite condition $i \bmod 15 == 0$ first prevents branch starvation, and establishes $O(N)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *a string array *`answer`* (**1-indexed**) where*:
+Given an integer $n = 15$:
+Construct a 1-indexed list of strings representing every integer $i \in [1, 15]$ according to the divisibility rules:
 
-The objective is to compute `["1", "2", "Fizz"]` from `{"n": 3}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Integers 1 to 15:
+  1  -> "1"
+  2  -> "2"
+  3  -> "Fizz"      (Divisible by 3)
+  4  -> "4"
+  5  -> "Buzz"      (Divisible by 5)
+  6  -> "Fizz"      (Divisible by 3)
+  7  -> "7"
+  8  -> "8"
+  9  -> "Fizz"      (Divisible by 3)
+ 10  -> "Buzz"      (Divisible by 5)
+ 11  -> "11"
+ 12  -> "Fizz"      (Divisible by 3)
+ 13  -> "13"
+ 14  -> "14"
+ 15  -> "FizzBuzz"  (Divisible by both 3 and 5 -> LCM 15)
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Divisibility Venn Diagram
+The set of integers divisible by 3 and the set of integers divisible by 5 are not disjoint:
+- Multiples of 3: $\{3, 6, 9, 12, 15, 18, \dots\}$
+- Multiples of 5: $\{5, 10, 15, 20, \dots\}$
+- Intersection: $\{15, 30, 45, \dots\}$
+
+Because 3 and 5 are coprime ($\gcd(3, 5) = 1$), an integer is divisible by both if and only if it is divisible by their product:
+$$
+\text{lcm}(3, 5) = 3 \times 5 = 15
+$$
+Any evaluation strategy must resolve this intersection before evaluating the independent sets.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Priority-Ordered Decision Tree:
+When using `if / elif / else` branching:
+1. **Branch 1 (Most Specific):** If $i \bmod 15 == 0 \implies$ emit `"FizzBuzz"`.
+2. **Branch 2:** Else if $i \bmod 3 == 0 \implies$ emit `"Fizz"`.
+3. **Branch 3:** Else if $i \bmod 5 == 0 \implies$ emit `"Buzz"`.
+4. **Branch 4 (Default):** Else $\implies$ emit $str(i)$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
+        [ i % 15 == 0 ? ]
+           /         \
+        YES           NO
+        /               \
+   "FizzBuzz"      [ i % 3 == 0 ? ]
+                      /         \
+                   YES           NO
+                   /               \
+                "Fizz"        [ i % 5 == 0 ? ]
+                                 /         \
+                              YES           NO
+                              /               \
+                           "Buzz"           str(i)
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. String Concatenation Alternative:
+Alternatively, one can decouple the tests by string concatenation:
+- Start with an empty string $S = \text{""}$.
+- If $i \bmod 3 == 0$, append `"Fizz"`.
+- If $i \bmod 5 == 0$, append `"Buzz"`.
+- If $S$ remains empty, set $S = str(i)$.
+This eliminates the composite check $i \bmod 15$ by allowing `"Fizz"` and `"Buzz"` to naturally concatenate into `"FizzBuzz"`.
+
+> **Invariant.** At iteration $i$, exactly one output token is appended to the result sequence, corresponding to the unique partition class of $i \pmod{15}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Produce exactly one answer for every integer
-
-The output must describe the integers from `1` through `n` in increasing order. The solution therefore loops over `range(1, n + 1)`. Python includes the starting value and excludes the stopping value, so `n + 1` is necessary to process `n`. Each iteration appends exactly one string to `ans`; after the loop, the list has exactly `n` elements, and list index `i - 1` represents integer `i`.
-
-For each integer, the required categories overlap. A multiple of `15` is also a multiple of `3` and a multiple of `5`. The order of the conditional chain is what resolves that overlap correctly.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the execution for $n = 15$ across all indices $i \in [1, 15]$:
 
 ---
 
-### Step 2: Test the most specific condition first
-
-An integer is divisible by both `3` and `5` exactly when it is divisible by their least common multiple. Because `3` and `5` are coprime, their least common multiple is `15`. Thus `i % 15 == 0` is an exact test for the combined `"FizzBuzz"` case.
-
-The first branch checks this combined condition. Only if it is false does the `elif` chain test divisibility by `3`, then divisibility by `5`. If none of those conditions is true, the integer is converted to its decimal string with `str(i)`.
-
-The ordering is essential. If `i % 3 == 0` were tested first, `i = 15` would enter that branch and append only `"Fizz"`; Python would skip the remaining `elif` branches. Testing the intersection first ensures every multiple of both divisors receives the combined label.
-
-The four actions are:
-
-- append `"FizzBuzz"` when `i % 15 == 0`;
-- otherwise append `"Fizz"` when `i % 3 == 0`;
-- otherwise append `"Buzz"` when `i % 5 == 0`; and
-- otherwise append `str(i)`.
-
-Because this is one `if`/`elif`/`elif`/`else` chain, exactly one action runs. No integer can add two separate list items, and no integer can add none.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1 to 5: First Quintile
+- **$i = 1$:** $1 \bmod 15 = 1, 1 \bmod 3 = 1, 1 \bmod 5 = 1 \implies$ Default $\implies$ `"1"`
+- **$i = 2$:** $2 \bmod 15 = 2, 2 \bmod 3 = 2, 2 \bmod 5 = 2 \implies$ Default $\implies$ `"2"`
+- **$i = 3$:** $3 \bmod 15 = 3, 3 \bmod 3 = 0 \implies$ Divisible by 3 $\implies$ `"Fizz"`
+- **$i = 4$:** $4 \bmod 15 = 4, 4 \bmod 3 = 1, 4 \bmod 5 = 4 \implies$ Default $\implies$ `"4"`
+- **$i = 5$:** $5 \bmod 15 = 5, 5 \bmod 3 = 2, 5 \bmod 5 = 0 \implies$ Divisible by 5 $\implies$ `"Buzz"`
 
 ---
 
-### Step 3: Why remainder zero means divisible
+### Step 6 to 10: Second Quintile
+- **$i = 6$:** $6 \bmod 3 = 0 \implies$ Divisible by 3 $\implies$ `"Fizz"`
+- **$i = 7$:** Neither $\implies$ Default $\implies$ `"7"`
+- **$i = 8$:** Neither $\implies$ Default $\implies$ `"8"`
+- **$i = 9$:** $9 \bmod 3 = 0 \implies$ Divisible by 3 $\implies$ `"Fizz"`
+- **$i = 10$:** $10 \bmod 5 = 0 \implies$ Divisible by 5 $\implies$ `"Buzz"`
 
-For integers $i$ and $d>0$, division gives a quotient and a remainder. The divisor $d$ divides $i$ precisely when that remainder is zero. Python's `%` operator computes the remainder, so `i % d == 0` directly expresses divisibility by `d`. The input values are positive, so there are no sign subtleties.
+---
 
-For a short trace with `n = 5`:
-
-- `1` has nonzero remainder modulo `3`, `5`, and `15`, so append `"1"`.
-- `2` also reaches the fallback, so append `"2"`.
-- `3 % 3 == 0`, so append `"Fizz"`.
-- `4` reaches the fallback, so append `"4"`.
-- `5 % 5 == 0`, so append `"Buzz"`.
-
-At `i = 15`, the first condition succeeds, so the list receives one `"FizzBuzz"` entry.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["1", "2", "Fizz"]` |
+### Step 11 to 15: Third Quintile (Reaching the LCM)
+- **$i = 11$:** Neither $\implies$ Default $\implies$ `"11"`
+- **$i = 12$:** $12 \bmod 3 = 0 \implies$ Divisible by 3 $\implies$ `"Fizz"`
+- **$i = 13$:** Neither $\implies$ Default $\implies$ `"13"`
+- **$i = 14$:** Neither $\implies$ Default $\implies$ `"14"`
+- **$i = 15$:**
+  - Test $15 \bmod 15 == 0$: **True!**
+  - Branch 1 triggers immediately.
+  - Appends `"FizzBuzz"`.
+  - Python bypasses branches for `% 3` and `% 5`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["1", "2", "Fizz"]` | Verified |
+| Number $i$ | $i \bmod 3$ | $i \bmod 5$ | $i \bmod 15$ | Active Branch Condition | Emitted Token | Cumulative Output Size |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| $1$ | $1$ | $1$ | $1$ | `else` | `"1"` | $1$ |
+| $2$ | $2$ | $2$ | $2$ | `else` | `"2"` | $2$ |
+| $3$ | **$0$** | $3$ | $3$ | `elif i % 3 == 0` | `"Fizz"` | $3$ |
+| $4$ | $1$ | $4$ | $4$ | `else` | `"4"` | $4$ |
+| $5$ | $2$ | **$0$** | $5$ | `elif i % 5 == 0` | `"Buzz"` | $5$ |
+| $6$ | **$0$** | $1$ | $6$ | `elif i % 3 == 0` | `"Fizz"` | $6$ |
+| $7$ | $1$ | $2$ | $7$ | `else` | `"7"` | $7$ |
+| $8$ | $2$ | $3$ | $8$ | `else` | `"8"` | $8$ |
+| $9$ | **$0$** | $4$ | $9$ | `elif i % 3 == 0` | `"Fizz"` | $9$ |
+| $10$ | $1$ | **$0$** | $10$ | `elif i % 5 == 0` | `"Buzz"` | $10$ |
+| $11$ | $2$ | $1$ | $11$ | `else` | `"11"` | $11$ |
+| $12$ | **$0$** | $2$ | $12$ | `elif i % 3 == 0` | `"Fizz"` | $12$ |
+| $13$ | $1$ | $3$ | $13$ | `else` | `"13"` | $13$ |
+| $14$ | $2$ | $4$ | $14$ | `else` | `"14"` | $14$ |
+| **$15$** | **$0$** | **$0$** | **$0$** | **`if i % 15 == 0`** | **`"FizzBuzz"`** | **$15$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 1$:** Single element list `["1"]`. No divisibility conditions met.
+- **$n = 3$:** `["1", "2", "Fizz"]`. First occurrence of 3-divisibility.
+- **$n = 5$:** `["1", "2", "Fizz", "4", "Buzz"]`. First occurrence of 5-divisibility.
+- **Large $n$ ($n = 10^4$):** Generates $10^4$ strings. Linear time complexity $O(N)$ ensures rapid execution in milliseconds.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Two independent divisibility checks with concatenation:** Start an empty string, append `"Fizz"` if divisible by `3`, append `"Buzz"` if divisible by `5`, and use the number if the string remains empty. This naturally builds `"FizzBuzz"` and is easy to extend, with the same asymptotic bounds. The chosen chain is equally efficient and explicit for the fixed rules.
-- **Divisor-to-label mapping:** Iterate through pairs such as `(3, "Fizz")` and `(5, "Buzz")`. This is preferable when mappings are configurable, but introduces a nested loop and requires preserving mapping order so combined labels are spelled correctly.
-- **Precompute the 15-value cycle:** Divisibility categories repeat every 15 integers, but ordinary numeric entries do not repeat because their text changes. Cycle precomputation adds complexity without improving the required $O(n)$ output time.
-- **Check `3` before `15`:** This is incorrect in an `if`/`elif` chain because multiples of 15 would stop at `"Fizz"`. The combined condition must come first.
-- **Use `i % 3 == 0 and i % 5 == 0`:** This is logically equivalent to `i % 15 == 0`. It performs two explicit checks and may be clearer when the divisors are not coprime; for `3` and `5`, the single least-common-multiple test is exact.
-- **`n == 1`:** The loop executes once and returns `["1"]`; no special case is needed.
-- **Upper endpoint:** `range(1, n + 1)` includes `n`. Using `range(1, n)` would silently omit the final required entry.
-- **Multiples such as 3 and 5:** They enter exactly one single-label branch because the earlier combined test failed.
-- **Multiples of 15:** They enter the first branch and never fall through to a shorter label.
-- **Nonmultiples:** `str(i)` is necessary because every output element must be a string, not an integer.
-- **Positive-input guarantee:** The contract starts at `n = 1`; behavior for zero or negative upper bounds is outside the problem and need not be added to the algorithm.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Branch Ordering Hazard:** Placing `if i % 3 == 0` before `if i % 15 == 0`. Since any multiple of 15 is divisible by 3, $i = 15$ enters the first branch and emits `"Fizz"` instead of `"FizzBuzz"`, starving the composite check.
+- **Off-By-One Index Range:** Iterating over `range(n)` generates indices $0 \dots n-1$. Divisibility by zero ($0 \bmod 3 == 0$) erroneously produces `"FizzBuzz"` at index 0, and the sequence ends prematurely at $n-1$. The loop must strictly run over `range(1, n + 1)`.
+- **Inefficient String Allocations:** In languages with immutable strings, repeatedly reallocating arrays instead of preallocating size $n$ adds garbage collection overhead.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the input upper bound. The loop executes exactly $n$ iterations. Each iteration performs at most three modulo comparisons, one possible integer-to-string conversion, and one list append. Under the usual fixed-width integer model for the stated constraint, each is constant work, so the total time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The loop executes exactly $N$ iterations.
+  - In each iteration, at most two integer modulo operations and one comparison are performed in $O(1)$ time.
+  - Total Time: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$ auxiliary space beyond the output array of $N$ string references.

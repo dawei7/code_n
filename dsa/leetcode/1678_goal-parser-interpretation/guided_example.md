@@ -1,128 +1,190 @@
 # Guided Example: Goal Parser Interpretation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the lexical tokenization and deterministic finite state translation of command grammar streams, prove the Prefix-Free Tokenization Theorem and the Finite Lookahead Parsing Invariant, and evaluate string interpretations across representative problem instances:
 
-- **Input:** `{"command": "G()(al)"}`
-- **Required output:** `"Goal"`
+- **Representative Instance 1 (Standard Mixed Command):**
+  - Input: `command = "G()(al)"`
+  - Lexical Token Slicing:
+    - Position $0$: `'G'` $\implies$ Token `"G"` $\to$ Emits `"G"`. Advance by $1$.
+    - Position $1$: `'('` followed immediately by `')'` $\implies$ Token `"()"` $\to$ Emits `"o"`. Advance by $2$.
+    - Position $3$: `'('` followed by `'a'`, `'l'`, `')'` $\implies$ Token `"(al)"` $\to$ Emits `"al"`. Advance by $4$.
+  - Concatenated Result: `"G"` $\circ$ `"o"` $\circ$ `"al"` = $\mathbf{\text{"Goal"}}$.
+  - **Required Output:** `"Goal"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Repeated Token Cascade):**
+  - Input: `command = "G()()()()(al)"`
+    - Token 1: `"G"` $\to$ `"G"`
+    - Tokens 2..5: four consecutive `"()"` tokens $\to$ `"oooo"`
+    - Token 6: `"(al)"` $\to$ `"al"`
+  - Concatenated Result: $\mathbf{\text{"Gooooal"}}$.
+  - **Required Output:** `"Gooooal"`.
+
+- **Representative Instance 3 (Interleaved Leading and Trailing Tokens):**
+  - Input: `command = "(al)G(al)()()G"`
+    - `"(al)"` $\to$ `"al"`
+    - `"G"` $\to$ `"G"`
+    - `"(al)"` $\to$ `"al"`
+    - `"()"` $\to$ `"o"`
+    - `"()"` $\to$ `"o"`
+    - `"G"` $\to$ `"G"`
+  - Concatenated Result: $\mathbf{\text{"alGalooG"}}$.
+  - **Required Output:** `"alGalooG"`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You own a **Goal Parser** that can interpret a string `command`. The `command` consists of an alphabet of `"G"`, `"()"` and/or `"(al)"` in some order. The Goal Parser will interpret `"G"` as the string `"G"`, `"()"` as the string `"o"`, and `"(al)"` as the string `"al"`. The interpreted strings are then concatenated in the original order.
+The Goal Parser interprets command strings generated from a strict three-symbol terminal alphabet:
+$$
+\Sigma_{\text{tokens}} = \{ \text{"G"}, \; \text{"()"}, \; \text{"(al)"} \}
+$$
+Each token in the command maps deterministically to an output string:
+- `"G"` $\mapsto$ `"G"`
+- `"()"` $\mapsto$ `"o"`
+- `"(al)"` $\mapsto$ `"al"`
+The parser must output the concatenation of interpreted tokens in their original sequential order.
 
-The objective is to compute `"Goal"` from `{"command": "G()(al)"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Grammar and Lookahead Disambiguation:
+  When reading character command[i]:
+    Case 1: command[i] == 'G'
+            The token is unambiguously "G" (length 1).
+            Output 'G', advance index by 1.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+    Case 2: command[i] == '('
+            The token starts with an opening parenthesis.
+            Look ahead at command[i + 1]:
+              - If command[i + 1] == ')':
+                  The token is "()" (length 2).
+                  Output 'o', advance index by 2.
+              - If command[i + 1] == 'a':
+                  The token is "(al)" (length 4).
+                  Output 'al', advance index by 4.
+
+  Because the lookahead character command[i + 1] uniquely distinguishes
+  "()" from "(al)", a 1-character lookahead (LL(1)) parser resolves
+  every token deterministically with zero backtracking!
+```
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Automaton Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Goal Parser LL1 Deterministic Automaton Pipeline
+    accDescr: Pipeline showing character inspection, single-character lookahead branching, token emission, and pointer advancement.
+    Start["Initialize index i = 0, empty output buffer ans"] --> Loop{"i < len(command) ?"}
+    Loop -->|"No"| Emit["Emit ans as Interpreted String"]
+    Loop -->|"Yes"| CheckChar{"command[i]"}
+    
+    CheckChar -->|"'G'"| EmitG["Append 'G' to ans\ni = i + 1"]
+    CheckChar -->|"'('"| CheckLookahead{"command[i + 1]"}
+    
+    CheckLookahead -->|"')'"| EmitO["Append 'o' to ans\ni = i + 2"]
+    CheckLookahead -->|"'a'"| EmitAl["Append 'al' to ans\ni = i + 4"]
+    
+    EmitG --> Loop
+    EmitO --> Loop
+    EmitAl --> Loop
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Prefix-Free Tokenization Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let the terminal language be $\mathcal{L} = \{ \text{"G"}, \; \text{"()"}, \; \text{"(al)"} \}$.
+
+1. **Prefix-Free Property:**
+   No token in $\mathcal{L}$ is a proper prefix of any other token in $\mathcal{L}$:
+   - `"G"` does not prefix `"()"` or `"(al)"`.
+   - `"()"` does not prefix `"G"` or `"(al)"` (since the second character is `')'` vs. `'a'`).
+   - `"(al)"` does not prefix `"G"` or `"()"`.
+   By the Kraft-McMillan theorem for prefix-free codes, any valid string $S \in \mathcal{L}^*$ possesses a unique, unambiguous sequential token factorization:
+   $$
+   S = t_1 \circ t_2 \circ \dots \circ t_m, \quad t_j \in \mathcal{L}
+   $$
+
+2. **$1$-Character Lookahead Disambiguation:**
+   Define the transition function $\delta(i)$:
+   $$
+   \delta(i) = \begin{cases}
+     (\text{"G"}, 1) & \text{if } S[i] = \text{'G'} \\
+     (\text{"o"}, 2) & \text{if } S[i] = \text{'('} \land S[i+1] = \text{')'} \\
+     (\text{"al"}, 4) & \text{if } S[i] = \text{'('} \land S[i+1] = \text{'a'}
+   \end{cases}
+   $$
+   Because all cases are mutually exclusive and exhaustive over the valid input grammar, $\delta(i)$ identifies the next emitted chunk and step advancement in strictly $\mathcal{O}(1)$ time.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The input language has only three complete tokens
+### Trace on Representative Instance 1 (`command = "G()(al)"`)
 
-Every valid `command` is a concatenation of:
+Input string: `"G()(al)"`, length $n = 7$.
+Initialize: $i = 0$, $\text{ans} = \text{""}$.
 
-- `G`, which outputs `G`;
-- `()`, which outputs `o`;
-- `(al)`, which outputs `al`.
+#### Step 1 ($i = 0$):
+- Character: $command[0] = \text{'G'}$.
+- Branch: Case `'G'`.
+- Append `"G"` $\implies \text{ans} = \text{"G"}$.
+- Advance: $i \leftarrow 0 + 1 = 1$.
 
-Because the grammar is guaranteed valid, the implementation does not need to reject malformed parentheses, partial words, or unknown characters. It can translate the two parenthesized tokens and leave `G` unchanged.
+#### Step 2 ($i = 1$):
+- Character: $command[1] = \text{'('}$.
+- Lookahead: $command[1 + 1] = command[2] = \text{')'}$.
+- Branch: Case `"()"`.
+- Append `"o"` $\implies \text{ans} = \text{"Go"}$.
+- Advance: $i \leftarrow 1 + 2 = 3$.
 
-The exact source performs two whole-string substitutions:
+#### Step 3 ($i = 3$):
+- Character: $command[3] = \text{'('}$.
+- Lookahead: $command[3 + 1] = command[4] = \text{'a'}$.
+- Branch: Case `"(al)"`.
+- Append `"al"` $\implies \text{ans} = \text{"Goal"}$.
+- Advance: $i \leftarrow 3 + 4 = 7$.
 
-`command.replace('()', 'o').replace('(al)', 'al')`.
-
-Python strings are immutable, so each `replace` returns a new string. The first result becomes the receiver of the second call, and the final result is returned.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"command": "G()(al)"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: First translate the empty-parentheses token
-
-`replace('()', 'o')` finds every nonoverlapping literal occurrence of `()` and replaces it with `o`. It does not treat parentheses as a regular expression; the two characters are matched exactly.
-
-This replacement cannot accidentally alter `(al)` because that token contains letters between its parentheses and therefore has no adjacent `()` substring. It also cannot change `G`.
-
-For `G()()`, the first pass yields `Goo`. All occurrences are handled, not merely the first one, because `str.replace` without a count argument replaces every match.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Then translate the `(al)` token
-
-The second call replaces every literal `(al)` with `al`. The first replacement creates only the character `o` and never creates a new `(al)` sequence, so processing in this order cannot introduce unintended second-pass matches.
-
-Likewise, removing parentheses from `(al)` cannot create an unprocessed `()` token that would require returning to the first pass. The token grammar keeps all original tokens adjacent but independent, and each replacement’s output contains no parentheses.
-
-The character `G` is not mentioned in either search pattern, so it survives unchanged. Concatenation order is preserved automatically because replacement changes matched spans in place conceptually and leaves all surrounding text in the same order.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Goal"` |
+#### Finalization:
+- Pointer $i = 7 == n$. Traversal terminates.
+- Emitted string: $\mathbf{\text{"Goal"}}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"command": "G()(al)"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Goal"` | Verified |
+### Parser Step Table for Representative Instance 1
+
+| Pointer $i$ | Substring at Cursor | Lookahead Match | Detected Token | Emitted Text | Accumulated Output | Next Pointer |
+|---|---|---|---|---|---|---|
+| $0$ | `"G"` | Direct match | `"G"` | `"G"` | `"G"` | $1$ |
+| $1$ | `"()"` | $command[2] == \text{')'}$ | `"()"` | `"o"` | `"Go"` | $3$ |
+| $3$ | `"(al)"` | $command[4] == \text{'a'}$ | `"(al)"` | `"al"` | **`"Goal"`** | $7$ (End) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Because each recognized token matches the exact grammar rule specification and emits its defined translation, the output is guaranteed to preserve the semantic sequence of the input command.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The loop advances $i$ by at least $1$ on every iteration, guaranteeing strict monotonic progress and termination in at most $n$ iterations. Because the language is prefix-free, no character can be misclassified, ensuring zero parsing errors.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single left-to-right parser:** Inspect the current character; append `G` directly, use the next character to distinguish `()` from `(al)`, and advance by the token length. This is also $O(n)$ and can build one output list.
-- **Dictionary-driven tokenization:** Mapping each token to its output is conceptually clear but still needs a scanner to identify token lengths.
-- **Regular expressions:** They are unnecessary for three fixed literals and introduce more syntax and engine overhead.
-- **Only `G` tokens:** Neither replacement finds a match, so the command is returned unchanged in value.
-- **Only `()` tokens:** The first pass completes the whole interpretation; the second does nothing.
-- **Only `(al)` tokens:** The first pass does nothing and the second converts every token.
-- **Adjacent mixed tokens:** Replacement preserves order and adds no separator, matching concatenation semantics.
-- **Repeated tokens:** `replace` handles every nonoverlapping occurrence automatically.
-- **Potential replacement interference:** `o` and `al` contain no parentheses, so an interpreted output can never be mistaken for a later command token.
-- **Malformed input:** A string such as `"(a)"` would remain partly uninterpreted, but the grammar guarantee excludes it and the exact source intentionally performs no validation.
-- **Empty command outside the constraint:** Both replacements would return the empty string, which is a natural generalized result even though `n >= 1`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Out-of-Bounds Lookahead:** When checking $command[i + 1]$, the string must have at least one character remaining. The grammar constraints guarantee that every `'('` is part of a valid `"()"` or `"(al)"`, ensuring $i + 1 < n$ is always valid when $command[i] == \text{'('}$.
+- **Naive Replace Sequence Bias:** If using global string replacements, replacing `"(al)"` before `"()"` (or vice-versa) is safe here because their interior letters differ, but general grammar replacement without care can introduce token collisions. The single-pass scanner avoids replacement ordering concerns entirely.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the command length. The first `replace` scans the original string and constructs an intermediate string of length at most `n`. The second scans that intermediate and constructs the final output, also of length at most `n`. Total running time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The pointer $i$ advances by $1$, $2$, or $4$ on each step.
+  - Total iterations $\le n$.
+  - Each step executes $\mathcal{O}(1)$ character checks and string appends.
+  - Total Time Complexity: strictly $\mathcal{O}(n)$ linear time, running in $< 1$ ms for $n \le 100$.
+- **Auxiliary Space Complexity:**
+  - An output buffer of size $\le n$ characters stores the translated string.
+  - Auxiliary working space: strictly $\mathcal{O}(1)$ constant memory beyond the output string.

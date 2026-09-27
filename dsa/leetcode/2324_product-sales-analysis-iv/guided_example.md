@@ -1,138 +1,144 @@
 # Guided Example: Product Sales Analysis IV
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Sales": [{"sale_id": 1, "product_id": 1, "user_id": 101, "quantity": 10}, {"sale_id": 2, "product_id": 3, "user_id": 101, "quantity": 7}, {"sale_id": 3, "product_id": 1, "user_id": 102, "quantity": 9}, {"sale_id": 4, "product_id": 2, "user_id": 102, "quantity": 6}, {"sale_id": 5, "product_id": 3, "user_id": 102, "quantity": 10}, {"sale_id": 6, "product_id": 1, "user_id": 102, "quantity": 6}], "Product": [{"product_id": 1, "price": 10}, {"product_id": 2, "price": 25}, {"product_id": 3, "price": 15}]}}`
-- **Required output:** `{"columns": ["user_id", "product_id"], "rows": [[101, 3], [102, 1], [102, 2], [102, 3]]}`
+We are given two relational database tables:
+1. `Sales`: Contains transaction records with columns `sale_id`, `product_id`, `user_id`, and `quantity`. A user may purchase the same product across multiple separate sales transactions.
+2. `Product`: Contains product catalog data with columns `product_id` and unit `price`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The objective is to identify, for every `user_id`, the product (or products) on which that user spent the most money. Total expenditure for a user on a given product is the sum of `quantity * price` across all transactions involving that specific user and product. If a user spends the exact same maximum amount on multiple distinct products (a tie), all such tied products must be returned in the result.
 
----
+Consider the representative instance:
 
-## 1. Instance & Teaching Goal
+```mermaid
+flowchart TD
+    accTitle: Sales Aggregation and Spending Ranking Pipeline
+    accDescr: Pipeline joining Sales and Product, aggregating spending per user and product, and ranking within each user partition.
+    Sales["Sales Table<br/>Transactions (user_id, product_id, quantity)"] --> Join["Inner Join on product_id"]
+    Product["Product Table<br/>Prices (product_id, price)"] --> Join
+    Join --> Group["GROUP BY user_id, product_id<br/>Calculate Total Spent = SUM(quantity * price)"]
+    Group --> Window["RANK() OVER (<br/>PARTITION BY user_id<br/>ORDER BY Total Spent DESC)"]
+    Window --> Filter{"Filter: rk = 1<br/>Preserve all tied maxima"}
+    Filter --> Output["Result Table<br/>(user_id, product_id)"]
+```
 
-Table: `Sales`
+Representative input data:
+- Catalog Prices (`Product`):
+  - Product 1: price $= 10$
+  - Product 2: price $= 25$
+  - Product 3: price $= 15$
+- Transactions (`Sales`):
+  - User 101:
+    - Sale 1: Product 1, quantity 10
+    - Sale 2: Product 3, quantity 7
+  - User 102:
+    - Sale 3: Product 1, quantity 9
+    - Sale 4: Product 2, quantity 6
+    - Sale 5: Product 3, quantity 10
+    - Sale 6: Product 1, quantity 6
 
-The objective is to compute `{"columns": ["user_id", "product_id"], "rows": [[101, 3], [102, 1], [102, 2], [102, 3]]}` from `{"tables": {"Sales": [{"sale_id": 1, "product_id": 1, "user_id": 101, "quantity": 10}, {"sale_id": 2, "product_id": 3, "user_id": 101, "quantity": 7}, {"sale_id": 3, "product_id": 1, "user_id": 102, "quantity": 9}, {"sale_id": 4, "product_id": 2, "user_id": 102, "quantity": 6}, {"sale_id": 5, "product_id": 3, "user_id": 102, "quantity": 10}, {"sale_id": 6, "product_id": 1, "user_id": 102, "quantity": 6}], "Product": [{"product_id": 1, "price": 10}, {"product_id": 2, "price": 25}, {"product_id": 3, "price": 15}]}}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For each unique pair $(u, p) \in \text{Users} \times \text{Products}$, total customer expenditure is given by the linear combination:
 
----
+$$\operatorname{Spent}(u, p) = \sum_{s \in \text{Sales} \atop s.u = u, \, s.p = p} s.\text{quantity} \times \operatorname{Price}(p)$$
 
-## 2. Conceptual Foundation & Invariants
+For each user $u$, we define their maximum expenditure:
 
-We maintain the core conceptual parameters and state variables:
+$$M(u) = \max_{p} \operatorname{Spent}(u, p)$$
 
-| State Parameter | Role & Purpose | Initial State |
+The target output set is all pairs $(u, p)$ achieving this maximum:
+
+$$\mathcal{R} = \{(u, p) \mid \operatorname{Spent}(u, p) = M(u)\}$$
+
+### Relational Strategy: `RANK()` vs `ROW_NUMBER()`
+- A query using `ROW_NUMBER()` arbitrarily selects only a single product per user, silently dropping valid tied products.
+- Using `DENSE_RANK()` or `RANK()` partitioned by `user_id` and ordered by `SUM(quantity * price) DESC` assigns rank $1$ to every product whose expenditure equals $M(u)$.
+- Filtering `WHERE rk = 1` retains all tied leaders simultaneously without requiring a separate correlated subquery.
+
+| Operation Step | Relational Operator | Purpose in Pipeline |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Join Tables | `Sales JOIN Product USING (product_id)` | Matches unit prices with transaction quantities |
+| Grouping | `GROUP BY user_id, product_id` | Collapses multiple sales into total expenditure per product |
+| Aggregation | `SUM(quantity * price)` | Computes total spending for the user-product pair |
+| Window Ranking | `RANK() OVER (PARTITION BY user_id ORDER BY ... DESC)` | Assigns rank 1 to the highest expenditure(s) per user |
+| Final Filter | `WHERE rk = 1` | Retains all products achieving the user's maximum expenditure |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We compute the joined transactions and aggregate spending for each user.
 
-## 3. Step-by-Step Worked Execution
+### Step 1: Aggregate Expenditure for User 101
+- Product 1:
+  - Sale 1: $10 \text{ units} \times 10 = 100$.
+  - Total spent on Product 1: $100$.
+- Product 3:
+  - Sale 2: $7 \text{ units} \times 15 = 105$.
+  - Total spent on Product 3: $105$.
 
-### Step 1: First total the money spent on each user-product combination
+Ranking for User 101:
+- Product 3: Spent $105 \implies \text{rk} = 1$.
+- Product 1: Spent $100 \implies \text{rk} = 2$.
+Winning product for User 101: `(101, 3)`.
 
-One row in `Sales` represents a purchase event, not necessarily a user's complete spending on that product. The same user can buy the same product in multiple rows. Therefore ranking individual sales would be incorrect; all purchases for one `(user_id, product_id)` pair must be combined first.
+### Step 2: Aggregate Expenditure for User 102
+- Product 1:
+  - Sale 3: $9 \text{ units} \times 10 = 90$.
+  - Sale 6: $6 \text{ units} \times 10 = 60$.
+  - Total spent on Product 1: $90 + 60 = 150$.
+- Product 2:
+  - Sale 4: $6 \text{ units} \times 25 = 150$.
+  - Total spent on Product 2: $150$.
+- Product 3:
+  - Sale 5: $10 \text{ units} \times 15 = 150$.
+  - Total spent on Product 3: $150$.
 
-The money represented by one sale row is
+Ranking for User 102:
+All three products tied at total expenditure of $150$:
+- Product 1: Spent $150 \implies \text{rk} = 1$.
+- Product 2: Spent $150 \implies \text{rk} = 1$.
+- Product 3: Spent $150 \implies \text{rk} = 1$.
+Winning products for User 102: `(102, 1)`, `(102, 2)`, `(102, 3)`.
 
-`quantity * price`.
+### Step 3: Global Output Construction
+Filtering all tuples with $\text{rk} = 1$ yields:
+- `(101, 3)`
+- `(102, 1)`
+- `(102, 2)`
+- `(102, 3)`
 
-`quantity` comes from `Sales`, while `price` comes from `Product`. The query joins the tables with `JOIN Product USING (product_id)` so every sale row gains the price belonging to its product.
+## 4. Comprehensive State Trace
 
-The foreign-key relationship guarantees that a sale's `product_id` refers to the product table. `Product.product_id` is unique, so one sale joins to exactly one price row rather than being duplicated by multiple matches.
+The full state of aggregated expenditures and assigned window ranks is recorded below.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Sales": [{"sale_id": 1, "product_id": 1, "user_id": 101, "quantity": 10}, {"sale_id": 2, "product_id": 3, "user_id": 101, "quantity": 7}, {"sale_id": 3, "product_id": 1, "user_id": 102, "quantity": 9}, {"sale_id": 4, "product_id": 2, "user_id": 102, "quantity": 6}, {"sale_id": 5, "product_id": 3, "user_id": 102, "quantity": 10}, {"sale_id": 6, "product_id": 1, "user_id": 102, "quantity": 6}], "Product": [{"product_id": 1, "price": 10}, {"product_id": 2, "price": 25}, {"product_id": 3, "price": 15}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| User ID | Product ID | Total Quantity Purchased | Unit Price | Total Spending Computed | Assigned Rank (`rk`) | Final Filter Inclusion |
+|---|---|---|---|---|---|---|
+| 101 | 3 | 7 | 15 | $7 \times 15 = 105$ | 1 | Included (Sole maximum) |
+| 101 | 1 | 10 | 10 | $10 \times 10 = 100$ | 2 | Excluded ($\text{rk} > 1$) |
+| 102 | 1 | $9 + 6 = 15$ | 10 | $15 \times 10 = 150$ | 1 | Included (Tied maximum) |
+| 102 | 2 | 6 | 25 | $6 \times 25 = 150$ | 1 | Included (Tied maximum) |
+| 102 | 3 | 10 | 15 | $10 \times 15 = 150$ | 1 | Included (Tied maximum) |
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 2: Group at exactly the level that will be ranked
+1. **Multi-Sale Aggregation Completeness:**
+   Grouping by `(user_id, product_id)` ensures that all distinct purchases of the same product by the same user are combined into a single aggregated total before ranking occurs.
 
-`GROUP BY 1, 2` groups by the first and second selected expressions, which are `user_id` and `product_id`. Inside each group,
+2. **Tie Preservation Invariant:**
+   The standard SQL `RANK()` function assigns identical rank numbers to rows that share the same sorting key value. Because `rk = 1` captures all rows that tie for the first rank position within their partition, every product reaching the maximal expenditure is guaranteed inclusion without arbitrary truncation.
 
-`SUM(quantity * price)`
+## 6. Edge Cases & Anti-Patterns
 
-adds all spending by that user on that product.
+- **Single Purchase per User:**
+  - When a user makes only one purchase, that product trivially has rank 1.
+- **Three-Way or Multi-Way Ties:**
+  - When all products purchased by a user yield the exact same dollar amount, all products receive rank 1 and are returned.
+- **Anti-Pattern (`ROW_NUMBER()` Truncation):**
+  - Using `ROW_NUMBER() OVER (...)` enforces a deterministic tie-breaker (often physical disk order), incorrectly suppressing legitimate tied maximums.
+- **Anti-Pattern (Correlated Subquery per Row):**
+  - Computing `WHERE (user_id, spending) IN (SELECT user_id, MAX(spending) ...)` requires evaluating repeated scans over intermediate tables. A windowed CTE calculates ranks in a single pass.
 
-For example, if user 102 buys nine units of product 1 and later six more units, and its price is 10, the grouped total is `(9 + 6) * 10 = 150`. Treating the two rows separately would produce 90 and 60 and could fail to recognize product 1 as a maximum.
+## 7. Complexity Analysis
 
-The price is constant for a product because it comes from the unique Product row. Multiplying each quantity before summing and summing quantities before multiplying by that price are equivalent, but the expression in the query works directly on joined sale rows.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Rank totals independently for every user
-
-The window function uses
-
-`RANK() OVER (PARTITION BY user_id ORDER BY SUM(quantity * price) DESC)`.
-
-`PARTITION BY user_id` restarts the ranking for each user. Spending by one user never competes with spending by another.
-
-The aggregate total is ordered descending, so the largest total receives rank one. SQL logically groups the rows before applying the window function, which is why the aggregate expression can be used as the ranking key: each row entering the window stage already represents one user-product total.
-
-`RANK` assigns the same rank to equal ordering values. If a user spends the same maximum amount on several products, every one of those grouped rows receives `rk = 1`. That exactly implements the requirement to report all maximum ties.
-
-Using `DENSE_RANK` would behave identically for the only rank the query later selects. The difference between gaps after ties is irrelevant because ranks greater than one are discarded.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id", "product_id"], "rows": [[101, 3], [102, 1], [102, 2], [102, 3]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Sales": [{"sale_id": 1, "product_id": 1, "user_id": 101, "quantity": 10}, {"sale_id": 2, "product_id": 3, "user_id": 101, "quantity": 7}, {"sale_id": 3, "product_id": 1, "user_id": 102, "quantity": 9}, {"sale_id": 4, "product_id": 2, "user_id": 102, "quantity": 6}, {"sale_id": 5, "product_id": 3, "user_id": 102, "quantity": 10}, {"sale_id": 6, "product_id": 1, "user_id": 102, "quantity": 6}], "Product": [{"product_id": 1, "price": 10}, {"product_id": 2, "price": 25}, {"product_id": 3, "price": 15}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id", "product_id"], "rows": [[101, 3], [102, 1], [102, 2], [102, 3]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Aggregate in one CTE, then use `MAX` in another:** Compute spend per user-product, compute each user's maximum, and join on equal totals. This is correct and explicit but requires an additional aggregation or join stage.
-- **`DENSE_RANK` instead of `RANK`:** Both retain every maximum tie under `rk = 1`. Their treatment of later ranks differs but is irrelevant here.
-- **`ROW_NUMBER` instead of `RANK`:** This would keep only one arbitrarily ordered product from a maximum tie and violate the requirement to return all tied products.
-- **Rank raw sale rows:** Multiple purchases of one product must be combined. Ranking before grouping can choose a large individual sale rather than the largest total spend.
-- **Group only by user:** This loses the product-level totals needed to identify which product won.
-- **Group only by product:** This combines different users and answers a global sales question rather than a per-user question.
-- **Use quantity without price:** The most units purchased need not be the product on which the most money was spent.
-- **Inner join behavior:** The foreign key guarantees every sale product exists. Without that guarantee, an inner join would silently omit unmatched sales.
-- **Several purchases of the same product:** Grouping combines them before ranking, as required.
-- **Several products tied for maximum:** `RANK` gives each rank one, and all are returned.
-- **One purchased product for a user:** It is automatically that user's maximum and receives rank one.
-- **Different users buying the same product:** Partitions are independent, so the product may win for one user and not another.
-- **No required output order:** Omitting a final sort is correct. Consumers must not infer a stable order from CTE or window processing.
-- **Ordinal `GROUP BY`:** It is valid for the current select list but less robust to column reordering than explicit names.
-- **Helper rank column:** It controls filtering inside the CTE and is intentionally absent from the final result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O((s + p) log s)$. Let `s` be the number of Sales rows, `p` the number of Product rows, and `g` the number of distinct user-product groups, with `g <= s`. The database must join the tables, aggregate sale rows into groups, and rank grouped rows within users. With general comparison-based sorting for grouping or window ordering, a conservative bound is `O((s + p) \log s)`, matching the variant manifest. Hash joins and hash aggregation or suitable indexes may reduce particular stages, but physical behavior depends on the MySQL execution plan.
-- **Auxiliary Space Complexity:** $O(s + p)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(S \log S + P)$, where $S$ is the number of rows in `Sales` and $P$ is the number of rows in `Product`. Hash-joining `Sales` and `Product` requires $\mathcal{O}(S + P)$. Grouping and sorting the user-product spending aggregates by `(user_id, spent DESC)` takes $\mathcal{O}(U \log U)$ where $U \le S$ is the count of distinct `(user_id, product_id)` pairs.
+- **Space Complexity:** $\mathcal{O}(S)$ intermediate buffer memory to hold joined records and grouped window partitions.

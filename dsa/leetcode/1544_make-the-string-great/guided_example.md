@@ -1,125 +1,205 @@
 # Guided Example: Make The String Great
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of stack-based adjacent pair annihilation on a representative mixed-case string to eliminate all adjacent opposite-case identical letters in linear time.
 
-- **Input:** `{"s": "leEeetcode"}`
-- **Required output:** `"leetcode"`
+- **Input:** String $s = \text{"leEeetcode"}$ of length $N = 10$.
+- **Output:** `"leetcode"` (the adjacent pair $\text{"eE"}$ at indices 1 and 2 annihilates, leaving an irreducible string with no opposite-case identical neighbors).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates ASCII case difference detection ($|\text{ord}(a) - \text{ord}(b)| = 32$), stack-based boundary resolution, and the preservation of adjacent identical characters in the same case.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` of lower and upper case English letters.
+We are given a string of length $N = 10$:
 
-The objective is to compute `"leetcode"` from `{"s": "leEeetcode"}` while avoiding redundant calculations and unnecessary overhead.
+$$s = \text{"leEeetcode"}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Character sequence:
+- $s[0] = \text{'l'}$
+- $s[1] = \text{'e'}$
+- $s[2] = \text{'E'}$
+- $s[3] = \text{'e'}$
+- $s[4] = \text{'e'}$
+- $s[5] = \text{'t'}$
+- $s[6] = \text{'c'}$
+- $s[7] = \text{'o'}$
+- $s[8] = \text{'d'}$
+- $s[9] = \text{'e'}$
+
+A pair of adjacent characters is **invalid** if they represent the same English letter in opposite cases:
+
+$$c_1, c_2 \text{ invalid} \iff |\text{ord}(c_1) - \text{ord}(c_2)| = 32$$
+
+When an invalid pair is removed, the remaining left and right substrings join, potentially creating new invalid adjacencies.
+
+**Teaching Goal:**
+Understand how a LIFO stack processes incoming stream characters, reducing deletions to $\mathcal{O}(1)$ localized comparisons against the stack top, avoiding quadratic $\mathcal{O}(N^2)$ string recreation or slice shifts.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  STACK PAIR ANNIHILATION SCHEME                         |
++-------------------------------------------------------------------------+
+|  Stream characters c from s[0 .. N-1]:                                  |
+|                                                                         |
+|  +--------------------+                                                 |
+|  | Incoming char c    |                                                 |
+|  +--------------------+                                                 |
+|            |                                                            |
+|     (Inspect stack top: stk[-1])                                        |
+|            |                                                            |
+|     +------+------+                                                     |
+|     |             |                                                     |
+|  [Stack empty     [|ord(stk[-1]) - ord(c)| == 32]                       |
+|   OR diff != 32]  |                                                     |
+|     |             v                                                     |
+|     v          Opposite-Case Collision!                                 |
+|  Push c onto   Pop stk[-1], discard incoming c                          |
+|  stack         (Boundary restored to clean prefix)                      |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+We establish the running state variables:
+
+| State Variable | Definition & Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $i$ | Index of incoming character in stream | $0$ |
+| $c$ | Current character $s[i]$ | $s[0] = \text{'l'}$ |
+| $\text{stk}$ | Array stack maintaining the irreducible clean prefix | `[]` |
+| $\Delta$ | Absolute ASCII distance: $|\text{ord}(\text{top}) - \text{ord}(c)|$ | Computed per step |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Irreducible Prefix Invariant.** At every step, the stack $\text{stk}$ contains an irreducible "good" string: no two adjacent characters in $\text{stk}$ represent the same letter in opposite cases. When an incoming character $c$ collides with $\text{top}$, popping $\text{top}$ and discarding $c$ preserves the irreducibility of the remaining prefix.
+
+```mermaid
+graph TD
+    accTitle: Stack Annihilation Workflow
+    accDescr: Flowchart illustrating character ingestion, comparison with the stack top, pop-annihilation on case mismatch, and pushing valid characters.
+    A["Initialize stk = []"] --> B["Inspect next character c in s"]
+    B --> C{"Is stk non-empty AND |ord(stk[-1]) - ord(c)| == 32?"}
+    C -- "Yes (Annihilation)" --> D["Pop stk[-1]; Discard c"]
+    C -- "No (Preserve)" --> E["Push c onto stk"]
+    D --> F{"More characters in s?"}
+    E --> F
+    F -- "Yes" --> B
+    F -- "No" --> G["Join stk into string: Return result"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reduce the processed prefix with a stack
+### Steps 1–2: Ingesting `"le"`
+- $i = 0, c = \text{'l'}$: Stack is empty. Push `'l'`. $\text{stk} = [\text{'l'}]$.
+- $i = 1, c = \text{'e'}$: Top is `'l'`.
+  $$\Delta = |\text{ord}(\text{'l'}) - \text{ord}(\text{'e'})| = |108 - 101| = 7 \neq 32$$
+  Different letters. Push `'e'`. $\text{stk} = [\text{'l'}, \text{'e'}]$.
 
-A bad pair consists of the same English letter in opposite cases, adjacent in either order. Removing such a pair can expose a new bad pair across the newly joined boundary.
-
-The list `stk` stores the fully reduced result of the prefix processed so far. For each new character `c`, only the current stack top can become adjacent to it. Everything deeper in the stack remains separated from `c` by that top character.
-
-If the stack is empty, there is no possible partner, so `c` is appended. If the top and `c` are not an opposite-case pair, `c` is also appended. If they are a bad pair, the top is popped and `c` is discarded, exactly simulating removal of those two adjacent characters.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "leEeetcode"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step | Index $i$ | Char $c$ | Top of Stack | Distance $\Delta$ | Action Taken | Stack After Step |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 'l' | None | - | Push 'l' | `['l']` |
+| 2 | 1 | 'e' | 'l' | 7 | Push 'e' | `['l', 'e']` |
 
 ---
 
-### Step 2: Recognize opposite case through character codes
+### Step 3: Collision on $c = \text{'E'}$
+- $i = 2, c = \text{'E'}$.
+- Top of stack is `'e'`.
+- Calculate ASCII distance:
+  $$\Delta = |\text{ord}(\text{'e'}) - \text{ord}(\text{'E'})| = |101 - 69| = 32$$
+- Collision detected! The characters `'e'` and `'E'` represent the same letter in opposite cases.
+- Action: Pop `'e'` from $\text{stk}$ and discard incoming `'E'`.
+- Stack becomes: $\text{stk} = [\text{'l'}]$.
 
-For English letters in ASCII-compatible code points, the lowercase and uppercase forms differ by 32. For example, `ord('a') - ord('A')` is 32, while the sign is reversed if their order is reversed.
-
-The source therefore tests:
-
-`abs(ord(stk[-1]) - ord(c)) == 32`.
-
-Absolute value handles both lowercase-uppercase and uppercase-lowercase order.
-
-This test is safe because the input contains only English letters. For arbitrary punctuation, a code-point difference of 32 would not necessarily mean the same letter in opposite cases. A more semantic alternative would compare lowercase forms while also requiring different original characters.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step | Index $i$ | Char $c$ | Top of Stack | Distance $\Delta$ | Action Taken | Stack After Step |
+|---|---|---|---|---|---|---|
+| 3 | 2 | 'E' | 'e' | 32 | Annihilate: Pop 'e', discard 'E' | `['l']` |
 
 ---
 
-### Step 3: Why only the stack top matters
+### Steps 4–5: Ingesting Consecutive Identical Lowercase Letters `"ee"`
+- $i = 3, c = \text{'e'}$: Top is `'l'`. $\Delta = 7 \neq 32$. Push `'e'`. $\text{stk} = [\text{'l'}, \text{'e'}]$.
+- $i = 4, c = \text{'e'}$: Top is `'e'`.
+  $$\Delta = |\text{ord}(\text{'e'}) - \text{ord}(\text{'e'})| = |101 - 101| = 0 \neq 32$$
+  Same letter and same case! Not an invalid pair. Push `'e'`.
+  Stack becomes: $\text{stk} = [\text{'l'}, \text{'e'}, \text{'e'}]$.
 
-Assume `stk` is already good before reading `c`. It has no internal adjacent bad pair. Appending one character changes only one adjacency: the old top beside `c`.
+| Step | Index $i$ | Char $c$ | Top of Stack | Distance $\Delta$ | Action Taken | Stack After Step |
+|---|---|---|---|---|---|---|
+| 4 | 3 | 'e' | 'l' | 7 | Push 'e' | `['l', 'e']` |
+| 5 | 4 | 'e' | 'e' | 0 | Push 'e' (identical case) | `['l', 'e', 'e']` |
 
-If that boundary is good, the entire extended stack is good. If it is bad, removing the pair restores the earlier stack prefix, which was already reduced.
+---
 
-The pop can expose a previous character for a future input character, but no immediate repeated loop is needed with the same `c` because `c` was removed as part of the pair. Cascading cancellations happen naturally as later characters arrive.
+### Steps 6–10: Ingesting Suffix `"tcode"`
+- $i = 5, c = \text{'t'}$: Top `'e'`, $\Delta = |116 - 101| = 15 \neq 32$. Push `'t'`.
+- $i = 6, c = \text{'c'}$: Top `'t'`, $\Delta = |99 - 116| = 17 \neq 32$. Push `'c'`.
+- $i = 7, c = \text{'o'}$: Top `'c'`, $\Delta = |111 - 99| = 12 \neq 32$. Push `'o'`.
+- $i = 8, c = \text{'d'}$: Top `'o'`, $\Delta = |100 - 111| = 11 \neq 32$. Push `'d'`.
+- $i = 9, c = \text{'e'}$: Top `'d'`, $\Delta = |101 - 100| = 1 \neq 32$. Push `'e'`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"leetcode"` |
+All input characters are processed.
+Stack contents: `['l', 'e', 'e', 't', 'c', 'o', 'd', 'e']`.
+Reconstructed string: **`"leetcode"`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "leEeetcode"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"leetcode"` | Verified |
+The complete character ingestion and transition table is summarized below:
+
+| Stream Index $i$ | Input Character $s[i]$ | Stack Top Before Step | $|\text{ord}(\text{top}) - \text{ord}(c)|$ | Operation | Stack Content After Step | Current String Form |
+|---|---|---|---|---|---|---|
+| 0 | 'l' | - | - | Push | `['l']` | `"l"` |
+| 1 | 'e' | 'l' | 7 | Push | `['l', 'e']` | `"le"` |
+| 2 | 'E' | 'e' | 32 | Pop Top | `['l']` | `"l"` |
+| 3 | 'e' | 'l' | 7 | Push | `['l', 'e']` | `"le"` |
+| 4 | 'e' | 'e' | 0 | Push | `['l', 'e', 'e']` | `"lee"` |
+| 5 | 't' | 'e' | 15 | Push | `['l', 'e', 'e', 't']` | `"leet"` |
+| 6 | 'c' | 't' | 17 | Push | `['l', 'e', 'e', 't', 'c']` | `"leetc"` |
+| 7 | 'o' | 'c' | 12 | Push | `['l', 'e', 'e', 't', 'c', 'o']` | `"leetco"` |
+| 8 | 'd' | 'o' | 11 | Push | `['l', 'e', 'e', 't', 'c', 'o', 'd']` | `"leetcod"` |
+| 9 | 'e' | 'd' | 1 | Push | `['l', 'e', 'e', 't', 'c', 'o', 'd', 'e']` | `"leetcode"` |
+| Final | - | - | - | Complete | - | **"leetcode"** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+- An adjacent pair is removed if and only if $|\text{ord}(c_1) - \text{ord}(c_2)| = 32$.
+- In the ASCII standard, lowercase letters occupy codes 97–122 ('a'–'z') and uppercase letters occupy codes 65–90 ('A'–'Z').
+- The difference $\text{ord}(c) - \text{ord}(\text{uppercase}(c)) = 32$ holds universally for all 26 English letters, and no two different English letters have distance 32.
+- Therefore, checking $\Delta = 32$ strictly and uniquely matches the bad pair condition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+- Church-Rosser (confluence) property of free group word reduction: in string rewriting where inverse adjacent pairs $x x^{-1}$ or $x^{-1} x$ are deleted, every reduction sequence leads to the unique normal form.
+- The stack simulation performs leftmost redex reduction greedily.
+- When an invalid pair is eliminated, any newly formed adjacency is tested immediately upon subsequent character arrival.
+- Since all characters are processed and no invalid pair survives on the stack, the resulting string is irreducible and unique.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Repeated deletion with slicing:** It follows the definition directly but can cost $O(N^2)$ time because Python strings are copied.
-- **Recursive deletion:** It can also become quadratic and adds recursion depth.
-- **Mutable two-pointer buffer:** In a language with mutable strings, the input buffer can simulate the stack with constant extra storage; Python strings are immutable.
-- **Empty final result:** Joining an empty stack correctly returns the empty string.
-- **Single character:** It has no adjacent partner and is returned unchanged.
-- **Same-case neighbors:** `aa` and `AA` are not removable because their code-point difference is zero.
-- **Different letters:** Case alone is insufficient; the absolute difference must be exactly 32.
-- **Reverse case order:** Absolute value handles both `aA` and `Aa`.
-- **Cascading deletion:** Popping reveals an older boundary that can interact with a later input character.
-- **Already good string:** Every character is appended and the original string is returned.
-- **English-letter restriction:** It is what makes the code-point-difference test valid.
-- **Unique answer guarantee:** Any complete legal reduction reaches the same final good string, and the stack performs one such reduction.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Same-Letter, Same-Case Trap:** In `"leEeetcode"`, indices 3 and 4 have identical characters `'e'` and `'e'`. Their ASCII difference is 0, not 32. The reduction must delete only opposite-case pairs; same-case duplicates must remain intact.
+- **Cascading Deletions Across Multiple Levels:** In strings like `"abBAcC"`, removing `"bB"` leaves `'a'`, which then collides with `'A'`, leaving an empty stack before `'c'` arrives. A stack handles cascading cancellations naturally in $\mathcal{O}(1)$ amortized steps per element.
+- **Repeated String Slicing Quadratic Overhead:** Implementing deletion via repeated string slicing ($s = s[:i] + s[i+2:]$) re-allocates and copies the entire string on each deletion, consuming $\mathcal{O}(N^2)$ time. The stack approach operates in $\mathcal{O}(N)$ time.
+- **Empty String Termination:** When all characters annihilate (e.g. `"abBA"`), the stack becomes empty. The algorithm must safely return `""` without attempting illegal top-of-stack lookups on empty containers.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be input length. Every character is visited once, appended at most once, and popped at most once. List append and pop at the end are amortized $O(1)$, so total processing time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  Each character of string $s$ is pushed onto the stack at most once.
+  Each character is popped from the stack at most once.
+  Checking the condition $|\text{ord}(\text{top}) - \text{ord}(c)| = 32$ takes $\mathcal{O}(1)$ time.
+  Across $N$ characters, total stack operations are at most $2N = \mathcal{O}(N)$.
+  For $N \le 100$, execution takes under 1 millisecond.
+- **Auxiliary Space Complexity:**
+  The stack $\text{stk}$ stores at most $N$ characters in the worst case (when no deletions occur).
+  Auxiliary space complexity is $\mathcal{O}(N)$.

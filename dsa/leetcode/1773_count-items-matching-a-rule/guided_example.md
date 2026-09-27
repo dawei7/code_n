@@ -1,136 +1,171 @@
 # Guided Example: Count Items Matching a Rule
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of column-indexed attribute projection and linear matching on a representative problem instance:
 
-- **Input:** `{"items": [["a", "b", "c"]], "ruleKey": "name", "ruleValue": "c"}`
-- **Required output:** `1`
+- **Input:**
+  - `items = [["phone", "blue", "pixel"], ["computer", "silver", "phone"], ["phone", "gold", "iphone"]]`
+  - `ruleKey = "type"`
+  - `ruleValue = "phone"`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features a confusing decoy where `"phone"` appears in the `name` column for Item $1$, demonstrating how statically projecting to the designated attribute column index prevents cross-attribute false positives while evaluating matches in linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $i^{\text{th}}$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
+We are given a list of records `items`, where each record $\text{items}[i] = [\text{type}_i, \text{color}_i, \text{name}_i]$ represents an item with three fixed attributes. We are also given a predicate specified by `ruleKey` and `ruleValue`.
+An item matches the rule if and only if:
+- `ruleKey == "type"` and $\text{type}_i == \text{ruleValue}$
+- `ruleKey == "color"` and $\text{color}_i == \text{ruleValue}$
+- `ruleKey == "name"` and $\text{name}_i == \text{ruleValue}$
 
-The objective is to compute `1` from `{"items": [["a", "b", "c"]], "ruleKey": "name", "ruleValue": "c"}` while avoiding redundant calculations and unnecessary overhead.
+We must return the total count of items that satisfy the rule.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive or ad-hoc approach might check string equality against the `ruleKey` for every single item repeatedly, or inspect all three fields per item.
+The optimal method recognizes that:
+1. Every item adheres to an identical three-column schema:
+   $$\text{schema}: \quad 0 \to \text{"type"}, \quad 1 \to \text{"color"}, \quad 2 \to \text{"name"}$$
+2. The column index $c \in \{0, 1, 2\}$ can be resolved once in $\mathcal{O}(1)$ time before examining any items.
+3. Once the column $c$ is known, we stream through all items and count how many satisfy $\text{items}[i][c] == \text{ruleValue}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Mathematical Definition | Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Attribute Index $c$ | $c \in \{0, 1, 2\}$ | Resolved column index for `ruleKey` |
+| Item Record $i$ | $\text{items}[i] = [v_0, v_1, v_2]$ | Tuple of attributes for item $i$ |
+| Match Indicator | $\mathbb{I}(\text{items}[i][c] == \text{ruleValue})$ | $1$ if attribute matches, else $0$ |
+| Cumulative Matches | $\sum_{k=0}^{i} \mathbb{I}(\text{items}[k][c] == \text{ruleValue})$ | Running tally of valid items |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Attribute Projection & Counting Theorem.**
+> Let $c: \mathcal{K} \to \{0, 1, 2\}$ be the canonical schema projection:
+> $$c(\text{"type"}) = 0, \quad c(\text{"color"}) = 1, \quad c(\text{"name"}) = 2$$
+> 1. For any item record $r \in \mathcal{K}^3$, the rule condition is logically equivalent to the single equality:
+>    $$r[c(\text{ruleKey})] = \text{ruleValue}$$
+> 2. The global match count is given by the sum:
+>    $$\text{count} = \sum_{i=0}^{N-1} \mathbb{I}(\text{items}[i][c(\text{ruleKey})] == \text{ruleValue})$$
+> Evaluating only column $c(\text{ruleKey})$ eliminates cross-attribute ambiguity and evaluates in strictly optimal $\mathcal{O}(N)$ time with $\mathcal{O}(1)$ auxiliary space.
+
+```mermaid
+flowchart TD
+    accTitle: Rule-Based Item Filtering
+    accDescr: Diagram showing ruleKey mapping to column index 0, followed by streaming through items and incrementing the count for matching records.
+    A["Rule: ruleKey = 'type', ruleValue = 'phone'"] --> B["Resolve Column Index: c = 0 (type)"]
+    B --> C["Initialize count = 0"]
+    C --> D["Inspect Item 0: ['phone', 'blue', 'pixel']"]
+    D --> E{"Item[0] == 'phone'?"}
+    E -- Yes --> F["Increment count: 1"]
+    F --> G["Inspect Item 1: ['computer', 'silver', 'phone']"]
+    G --> H{"Item[0] == 'phone'?"}
+    H -- No ('computer' != 'phone') --> I["Keep count: 1"]
+    I --> J["Inspect Item 2: ['phone', 'gold', 'iphone']"]
+    J --> K{"Item[0] == 'phone'?"}
+    K -- Yes --> L["Increment count: 2"]
+    L --> M["Return final count: 2"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Map the rule key to one fixed column
-
-Every item has exactly three fields in a fixed order:
-
-- index zero is type,
-- index one is color,
-- index two is name.
-
-Once `ruleKey` is known, the same field index applies to every item. The exact solution computes that index once, then counts items whose field equals `ruleValue`.
-
-This avoids repeating three full key comparisons for every row.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"items": [["a", "b", "c"]], "ruleKey": "name", "ruleValue": "c"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `items = [["phone", "blue", "pixel"], ["computer", "silver", "phone"], ["phone", "gold", "iphone"]]` with `ruleKey = "type"` and `ruleValue = "phone"`.
 
 ---
 
-### Step 2: Use the key's first character
-
-The source chooses:
-
-`i = 0 if ruleKey[0] == 't' else (1 if ruleKey[0] == 'c' else 2)`.
-
-The only allowed keys are `"type"`, `"color"`, and `"name"`. Their first characters `t`, `c`, and `n` are distinct, so inspecting character zero uniquely identifies the correct field.
-
-If the first character is `t`, index zero is selected. Otherwise, `c` selects index one. The final else must be `"name"` under the input contract and selects index two.
-
-This compact mapping deliberately relies on the guaranteed key set. With arbitrary keys or two allowed names sharing an initial, a complete dictionary mapping would be safer.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Pre-Scan Attribute Resolution
+- Examine `ruleKey`: `"type"`.
+- Map to column index:
+  - $\text{"type"} \implies c = 0$.
+- Target matching criterion:
+  $$\text{items}[i][0] == \text{"phone"}$$
+- Initialize match accumulator: $\text{count} = 0$.
 
 ---
 
-### Step 3: Count matching rows with Boolean arithmetic
+### Step 2: Evaluate Item $0$ (`["phone", "blue", "pixel"]`)
+- Extract target attribute at index $c = 0$:
+  $$\text{items}[0][0] = \text{"phone"}$$
+- Test equality:
+  $$\text{"phone"} == \text{"phone"} \implies \text{True}$$
+- Result: Valid match!
+- Update accumulator:
+  $$\text{count} \leftarrow 0 + 1 = 1$$
 
-The return expression is:
+---
 
-`sum(v[i] == ruleValue for v in items)`.
+### Step 3: Evaluate Item $1$ (`["computer", "silver", "phone"]`)
+- Extract target attribute at index $c = 0$:
+  $$\text{items}[1][0] = \text{"computer"}$$
+- Test equality:
+  $$\text{"computer"} == \text{"phone"} \implies \text{False}$$
+- Decoy note: Even though $\text{items}[1][2] = \text{"phone"}$ (in the `name` column), the query strictly inspects column $0$ (`type`). Cross-column matches are correctly ignored.
+- Update accumulator:
+  $$\text{count} \leftarrow 1$$
 
-For each item list `v`, `v[i]` retrieves the relevant type, color, or name field. The equality comparison is true exactly when that item matches the rule.
+---
 
-Python treats `true` as one and `false` as zero when summing. The generator therefore contributes one per matching item and zero per nonmatching item.
+### Step 4: Evaluate Item $2$ (`["phone", "gold", "iphone"]`)
+- Extract target attribute at index $c = 0$:
+  $$\text{items}[2][0] = \text{"phone"}$$
+- Test equality:
+  $$\text{"phone"} == \text{"phone"} \implies \text{True}$$
+- Result: Valid match!
+- Update accumulator:
+  $$\text{count} \leftarrow 1 + 1 = 2$$
 
-Because it is a generator expression, it does not allocate a separate list of Booleans.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 5: Termination & Final Output
+- All $N = 3$ items have been evaluated.
+- Final output:
+  $$\text{count} = 2$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"items": [["a", "b", "c"]], "ruleKey": "name", "ruleValue": "c"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Item Index $i$ | Full Record `[type, color, name]` | Checked Column $c = 0$ | Inspected Value | Expected `ruleValue` | Comparison Result | Running `count` |
+|---|---|---|---|---|---|---|
+| $0$ | `["phone", "blue", "pixel"]` | Type | `"phone"` | `"phone"` | **Match** | $1$ |
+| $1$ | `["computer", "silver", "phone"]` | Type | `"computer"` | `"phone"` | Mismatch | $1$ |
+| $2$ | `["phone", "gold", "iphone"]` | Type | `"phone"` | `"phone"` | **Match** | $2$ |
+
+Final Output:
+$$\text{Matched Items} = 2$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Key Invariants and Correctness Argument
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Schema Invariant:**
+   The problem guarantees that each row in `items` contains exactly three elements formatted as `[type, color, name]`. Because `ruleKey` is guaranteed to be one of `"type"`, `"color"`, or `"name"`, mapping `ruleKey` to index $0, 1,$ or $2$ is exhaustive and exact.
+2. **Strict Field Isolation:**
+   Filtering strictly by $\text{items}[i][c]$ prevents attribute collisions where an identical string literal exists in a different column. Every row is classified with zero false positives.
 
----
+### Boundary and Edge Cases
 
-## 6. Traps This Instance Exposes
-
-- **Dictionary mapping:** `{"type": 0, "color": 1, "name": 2}` is more explicit and remains constant time.
-- **Full conditional per item:** Test `ruleKey` inside the loop for every row. It is correct but repeats invariant work.
-- **Search all fields:** It is incorrect because a value in the wrong column does not satisfy the rule.
-- **Filter then length:** Building a list of matching items gives the same count but uses $O(n)$ extra space.
-- **Rule type:** Only index zero is examined.
-- **Rule color:** Only index one is examined.
-- **Rule name:** The final else selects index two.
-- **No matches:** Every Boolean is false and `sum` returns zero.
-- **All match:** Every item contributes one, returning `len(items)`.
-- **Same value in several fields:** Only the rule-selected occurrence matters.
-- **Repeated identical items:** Each array position is an item and contributes independently.
-- **Guaranteed item length three:** Indexing at zero, one, or two is always safe.
-- **Guaranteed rule keys:** The first-character shortcut is unambiguous only because the allowed set is fixed.
-- **Generator laziness:** Match indicators are consumed one at a time.
-- **Input preservation:** Neither the outer list nor any item row is modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Configuration | Expected Output | Strategic Handling |
+|---|---|---|---|
+| Zero Matching Items | `ruleValue` does not match any item | $0$ | Accumulator never increments; returns $0$. |
+| All Items Match | All items share the same queried attribute | $N$ | Accumulator increments on every step; returns $N$. |
+| Value Matches in Wrong Column | `ruleKey = "color"`, item has `"color"` value in `name` | Ignored | Column index $c = 1$ checks only the color column. |
+| Single Item List ($N = 1$) | `items = [["a", "b", "c"]]` | $0$ or $1$ | Single check completes in $\mathcal{O}(1)$ time. |
 
 ---
 
-## 7. Complexity Derivation
+## 6. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of items. Mapping `ruleKey` to `i` takes constant time. The generator visits each item once, performs one indexed lookup and one bounded-length string comparison, and adds one Boolean. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$ where $N$ is the number of items.
+  - Resolving the column index $c$ takes $\mathcal{O}(1)$ time.
+  - The loop performs exactly $N$ string equality checks of length $\le 10$, requiring $\mathcal{O}(1)$ time per check.
+  - Total time: $\mathcal{O}(N)$. For $N \le 10^4$, execution completes in under $0.002\text{ s}$.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. The procedure only maintains an integer index $c$ and an integer counter, requiring zero dynamic memory allocation.

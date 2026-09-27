@@ -1,132 +1,170 @@
 # Guided Example: Decrypt String from Alphabet to Integer Mapping
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the token parsing and decoding algorithm on a representative numeric string containing both delimited two-digit tokens and single-digit tokens:
 
-- **Input:** `{"s": "10#11#12"}`
-- **Required output:** `"jkab"`
+- **Input:** `s = "10#11#12"`
+- **Required Output:** `"jkab"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates lookahead parsing, disambiguating two-digit encoded characters (`'j'` through `'z'`) from single-digit encoded characters (`'a'` through `'i'`) using the delimiter `'#'`, and deterministically consuming variable-length tokens.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` formed by digits and `'#'`. We want to map `s` to English lowercase characters as follows:
+The alphabet is encoded according to the following mapping rule:
+- Digits `'1'` through `'9'` represent lowercase letters `'a'` through `'i'` ($1 \mapsto \text{'a'}, \dots, 9 \mapsto \text{'i'}$).
+- Two-digit numbers `'10#'` through `'26#'` followed by `'#'` represent lowercase letters `'j'` through `'z'` ($10\# \mapsto \text{'j'}, \dots, 26\# \mapsto \text{'z'}$).
 
-The objective is to compute `"jkab"` from `{"s": "10#11#12"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "10#11#12"` of length $N = 8$:
+- The prefix `"10#"` corresponds to value $10$, which maps to `'j'`.
+- The middle substring `"11#"` corresponds to value $11$, which maps to `'k'`.
+- The trailing substring `"12"` lacks a trailing `'#'`; hence `'1'` maps to `'a'` and `'2'` maps to `'b'`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+String:      1   0   #   1   1   #   1   2
+Index:       0   1   2   3   4   5   6   7
+
+Token 1:   [ 1   0   # ]                 --> '10#' -> Letter 10 -> 'j'
+Token 2:               [ 1   1   # ]     --> '11#' -> Letter 11 -> 'k'
+Token 3:                           [ 1 ] --> '1'   -> Letter 1  -> 'a'
+Token 4:                               [ 2 ] --> '2'   -> Letter 2  -> 'b'
+
+Decoded Stream: "jkab"
+```
+
+Without checking whether a `'#'` appears two positions ahead, the substring `"10#"` could be mistakenly parsed as `'1'` followed by `'0'`, which is invalid because there is no mapping for digit `'0'` alone. Lookahead disambiguation ensures each character sequence is parsed into its unique valid representation.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $i$ be the current read cursor in string $s$ of length $N$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Lookahead Disambiguation Rule
+At index $i$:
+1. If $i + 2 < N$ and $s[i + 2] == \text{'\#'}$:
+   - Extract the two-digit integer:
+     $$
+     v = 10 \cdot (s[i] - \text{'0'}) + (s[i+1] - \text{'0'})
+     $$
+   - Map $v \in [10, 26]$ to character $\text{chr}(v - 1 + \text{code}('a'))$.
+   - Advance cursor by $3$: $i \leftarrow i + 3$.
+2. Otherwise:
+   - Extract the single-digit integer:
+     $$
+     v = s[i] - \text{'0'}
+     $$
+   - Map $v \in [1, 9]$ to character $\text{chr}(v - 1 + \text{code}('a'))$.
+   - Advance cursor by $1$: $i \leftarrow i + 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Token Pattern | Lookahead Check | Mapped Value Range | Alphabet Output | Cursor Advance |
+|---|---|---|---|---|
+| Single Digit | $s[i+2] \ne \text{'\#'}$ or $i+2 \ge N$ | $v \in [1, 9]$ | `'a'` to `'i'` | $+1$ |
+| Delimited Double Digit | $s[i+2] == \text{'\#'}$ | $v \in [10, 26]$ | `'j'` to `'z'` | $+3$ |
+
+> **Prefix Partition Invariant.** At cursor $i$, the prefix $s[0..i-1]$ has been uniquely decoded into the valid corresponding lowercase character sequence, and the remaining suffix $s[i..N-1]$ forms a valid, self-contained encoded sequence.
+
+```mermaid
+flowchart TD
+    accTitle: Lookahead Token Parsing Flow
+    accDescr: Branching logic deciding between a 3-character token ending with hash or a single digit token.
+    START["Read index i < N"] --> CHK{"Is i + 2 < N and s[i+2] == '#'?"}
+    CHK -- Yes --> TWO_DIGIT["Extract v = s[i..i+1] (10 to 26)"]
+    TWO_DIGIT --> CHAR2["Convert: chr(v - 1 + ord('a'))"]
+    CHAR2 --> ADV3["Advance i = i + 3"]
+    CHK -- No --> ONE_DIGIT["Extract v = s[i] (1 to 9)"]
+    ONE_DIGIT --> CHAR1["Convert: chr(v - 1 + ord('a'))"]
+    CHAR1 --> ADV1["Advance i = i + 1"]
+    ADV3 --> CONT{"Is i < N?"}
+    ADV1 --> CONT
+    CONT -- Yes --> START
+    CONT -- No --> FIN["Return concatenated string"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Recognizing a three-character token
+We trace `s = "10#11#12"` with $N = 8$:
 
-The condition
+### Step 1 (Cursor $i = 0$)
+- Check lookahead: $i + 2 = 2 < 8$, and $s[2] == \text{'\#'}$.
+- Delimited token detected: substring $s[0..1] = \text{"10"}$.
+- Numeric value: $v = 10$.
+- Alphabetic conversion:
+  $$
+  10 - 1 + \text{ord}('a') = 9 + 97 = 106 \implies \text{'j'}
+  $$
+- Advance cursor: $i \leftarrow 0 + 3 = 3$.
+- Emitted output: `"j"`.
 
-`i + 2 < n and s[i + 2] == "#"`
+### Step 2 (Cursor $i = 3$)
+- Check lookahead: $i + 2 = 5 < 8$, and $s[5] == \text{'\#'}$.
+- Delimited token detected: substring $s[3..4] = \text{"11"}$.
+- Numeric value: $v = 11$.
+- Alphabetic conversion:
+  $$
+  11 - 1 + \text{ord}('a') = 10 + 97 = 107 \implies \text{'k'}
+  $$
+- Advance cursor: $i \leftarrow 3 + 3 = 6$.
+- Emitted output: `"jk"`.
 
-first checks that a position two characters ahead exists. Python's `and` short-circuits, so `s[i + 2]` is never accessed when it would be outside the string.
+### Step 3 (Cursor $i = 6$)
+- Check lookahead: $i + 2 = 8$, which is not strictly less than $N = 8$ (boundary reached).
+- Condition fails; treat as single digit: $s[6] = \text{'1'}$.
+- Numeric value: $v = 1$.
+- Alphabetic conversion:
+  $$
+  1 - 1 + \text{ord}('a') = 0 + 97 = 97 \implies \text{'a'}
+  $$
+- Advance cursor: $i \leftarrow 6 + 1 = 7$.
+- Emitted output: `"jka"`.
 
-If that position contains `#`, the next token is `s[i : i + 2]` followed by the marker. The slice includes characters `i` and `i + 1` but excludes `i + 2`, so it extracts the two decimal digits without `#`.
+### Step 4 (Cursor $i = 7$)
+- Check lookahead: $i + 2 = 9 \ge 8$.
+- Condition fails; treat as single digit: $s[7] = \text{'2'}$.
+- Numeric value: $v = 2$.
+- Alphabetic conversion:
+  $$
+  2 - 1 + \text{ord}('a') = 1 + 97 = 98 \implies \text{'b'}
+  $$
+- Advance cursor: $i \leftarrow 7 + 1 = 8$.
+- Emitted output: `"jkab"`.
 
-The contract guarantees a valid, uniquely decodable string. Therefore, a marker two places ahead means those digits form a value from 10 through 26. After decoding it, `i += 3` skips both digits and the marker.
-
-For `"10#11#12"`, the first condition sees the marker at index two, decodes `"10"`, and advances to index three. It then sees the marker after `"11"`, decodes it, and advances to the final single digits `"1"` and `"2"`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "10#11#12"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Recognizing a single-digit token
-
-If no marker lies two positions ahead, the current token is just `s[i]`. Under the valid-input promise, it is a digit from `1` through `9`. The code converts that one character and advances `i` by one.
-
-This lookahead rule resolves apparent ambiguity. When the current character is `1` or `2`, it might begin a two-digit number, but only the presence of `#` after the next digit confirms that interpretation. Otherwise, the current digit stands alone.
-
-A literal `#` is never reached as the start of a token because the three-character branch consumes it together with its two preceding digits.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Converting a number into a lowercase letter
-
-For either token shape, `int(...)` produces a number $v$ from 1 through 26. Lowercase English letters occupy consecutive Unicode code points. `ord("a")` is the numeric code for `a`, so
-
-`v + ord("a") - 1`
-
-is the code point for the $v$th lowercase letter.
-
-When $v=1$, the expression is exactly `ord("a")`. When $v=10$, it is nine positions after `a`, which is `j`. When $v=26$, it reaches `z`.
-
-`chr(...)` converts that code point back to a one-character string, which is appended to `ans`.
-
-The subtraction of one is essential because alphabet positions are one-based while code-point offsets from `a` are zero-based. Omitting it would shift every result one letter forward.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"jkab"` |
+### Termination ($i = 8 \ge N$)
+- Cursor has reached string end.
+- Emitted result string: `"jkab"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "10#11#12"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"jkab"` | Verified |
+| Step | Cursor $i$ | Remaining Suffix | Lookahead $s[i+2]$ | Token Chosen | Decoded Value | Decoded Letter | Accumulated Output |
+|---|---|---|---|---|---|---|---|
+| 1 | $0$ | `"10#11#12"` | `'#'` (valid) | `"10#"` | $10$ | `'j'` | `"j"` |
+| 2 | $3$ | `"11#12"` | `'#'` (valid) | `"11#"` | $11$ | `'k'` | `"jk"` |
+| 3 | $6$ | `"12"` | Out of bounds | `"1"` | $1$ | `'a'` | `"jka"` |
+| 4 | $7$ | `"2"` | Out of bounds | `"2"` | $2$ | `'b'` | `"jkab"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because numbers from $10$ to $26$ are always followed by the special marker `'#'`, and numbers from $1$ to $9$ are never followed by `'#'` at offset $+2$, checking $s[i+2] == \text{'\#'}$ forms an unambiguous prefix-free parsing code. Each token decodes to its unique specified letter in the English alphabet.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since every step advances the cursor by either $1$ or $3$ positions, the loop is guaranteed to make strictly positive progress and terminate at $i = N$. Every character in $s$ is consumed as part of exactly one valid token.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Right-to-left parsing:** A `#` encountered from the end can signal that the two preceding digits form one token. This works but requires reversing the collected letters or prepending inefficiently.
-- **Dictionary lookup:** Prebuild mappings for `"1"` through `"9"` and `"10#"` through `"26#"`. It is correct but unnecessary when arithmetic conversion is direct.
-- **Repeated string concatenation:** Simpler-looking code may become less efficient because strings are immutable; list append plus one join is the standard linear construction.
-- **Single-character input:** A valid one-digit code takes the single-token branch and returns one letter.
-- **Token `"10#"`:** The marker confirms the two-digit token and maps it to `j`, rather than decoding `1` and then encountering an invalid zero.
-- **Token `"26#"`:** It maps to the final lowercase letter `z`.
-- **Adjacent three-character tokens:** Advancing by three places lands exactly at the next token's first digit.
-- **A one-digit token followed by a two-digit token:** Lookahead at the first digit sees no marker two positions ahead for that token; after advancing one, the next iteration detects the later marker correctly.
-- **Bounds safety:** `i + 2 < n` must be evaluated before indexing `s[i + 2]`. Short-circuit evaluation prevents an out-of-range access near the end.
-- **Valid-input guarantee:** The code does not reject malformed zeroes, misplaced markers, or values above 26. Its simple parsing proof relies on the promised valid unique encoding.
-- **Unicode arithmetic:** Lowercase ASCII letters are consecutive Unicode code points, so `ord` and `chr` arithmetic is valid for `a` through `z`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Out-of-bounds indexing:** Evaluating $s[i+2]$ without first verifying $i + 2 < N$ causes an index error when scanning near the tail of the string (e.g. at indices $6$ and $7$).
+- **Misinterpreting leading digits of two-digit numbers:** If `"10#"` is greedily parsed one character at a time, the `'1'` becomes `'a'`, leaving an orphaned `'0#'` which has no valid mapping. Lookahead check takes precedence over single-digit consumption.
+- **Reverse parsing vs forward lookahead:** The string can also be parsed from right to left by checking if the current character is `'#'`. Both approaches yield identical tokens; however, forward parsing with lookahead avoids string reversals.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the encoded string length. Every loop iteration advances `i` by either one or three, so there are at most $n$ iterations. Each slice has length two, integer conversion covers at most two digits, and character conversion is constant-time under this fixed alphabet. Running time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the length of string $s$. The cursor traverses the string from left to right, advancing by at least $1$ index per iteration. Each step takes $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the decoded characters in the output sequence buffer.

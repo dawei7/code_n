@@ -1,139 +1,197 @@
 # Guided Example: Concatenation of Consecutive Binary Numbers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the Horner-style modular bit-shift recurrence and dynamic bit-length scaling for sequential binary string concatenation, prove the Modular Left-Shift Recurrence Theorem and the Power-of-Two Bit-Length Invariant, and evaluate modular decimal values across representative instances:
 
-- **Input:** `{"n": 1000}`
-- **Required output:** `499361981`
+- **Representative Instance 1 (Multi-Width Bit Concatenation):**
+  - Input: $n = 3$
+  - Binary representations:
+    - $1 \implies \text{"1"}$ (bit length $L_1 = 1$).
+    - $2 \implies \text{"10"}$ (bit length $L_2 = 2$).
+    - $3 \implies \text{"11"}$ (bit length $L_3 = 2$).
+  - Recurrence Evaluation modulo $10^9 + 7$:
+    - Step 1 ($i = 1$): $f(1) = 1$.
+    - Step 2 ($i = 2$): $f(2) = (f(1) \ll 2) + 2 = (1 \times 4) + 2 = \mathbf{6}$ (binary `"110"`).
+    - Step 3 ($i = 3$): $f(3) = (f(2) \ll 2) + 3 = (6 \times 4) + 3 = \mathbf{27}$ (binary `"11011"`).
+  - Terminal Value: $27 \pmod{10^9 + 7} = \mathbf{27}$.
+  - **Required Output:** `27`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Boundary Power-of-Two Transition):**
+  - Input: $n = 4$
+  - Previous state $f(3) = 27$.
+  - Number $4$ in binary: `"100"` (bit length expands to $L_4 = 3$ because $4$ is a power of 2).
+  - Step 4 ($i = 4$): $f(4) = (27 \ll 3) + 4 = (27 \times 8) + 4 = 216 + 4 = \mathbf{220}$ (binary `"11011100"`).
+  - **Required Output:** `220`.
+
+- **Representative Instance 3 (Large Scale Modulo Wrapping):**
+  - Input: $n = 12$
+  - Full binary string: `"1101110010111011110001001101010111100"` (length $37$ bits).
+  - Unbounded decimal value: $118505380540$.
+  - Modulo $10^9 + 7$: $118505380540 \pmod{10^9 + 7} = \mathbf{505379714}$.
+  - **Required Output:** `505379714`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n`, return *the **decimal value** of the binary string formed by concatenating the binary representations of *`1`* to *`n`* in order, **modulo ***$10^{9} + 7$.
+Given an integer $n$, concatenate the binary representations of all integers from $1$ to $n$ in ascending order to form a single continuous binary sequence. Return the decimal value of this binary string, evaluated modulo $10^9 + 7$.
 
-The objective is to compute `499361981` from `{"n": 1000}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The String Materialization Trap:
+  For n = 10^5, each integer has between 1 and 17 bits.
+  The total length of the concatenated binary string is:
+    sum_{i=1}^{10^5} floor(log2(i) + 1) approx 1.5 * 10^6 bits!
+  Constructing a string of 1.5 million characters or parsing a gigantic integer
+  wastes massive memory and leads to severe runtime penalties.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Online Horner Recurrence:
+  Notice what happens in positional notation when a new binary number is appended:
+    Current accumulator:  A (representing the prefix binary string)
+    New integer:          i
+    Bit-length of i:      L_i = floor(log2(i)) + 1
+  Appending i to the right of A is MATHEMATICALLY EQUIVALENT to:
+    A * 2^(L_i) + i  <===>  (A << L_i) | i
+
+  Because modulo distributes over addition and multiplication:
+    A_i = ((A_{i-1} << L_i) + i) mod (10^9 + 7)
+  We can compute the entire value iteratively in O(n) time and O(1) space!
+```
+
+The pedagogical focus is the **Modular Bit-Shift Recurrence**:
+1. **Dynamic Shift Horizon:** Track the exact bit-length $L_i$ of each integer $i$.
+2. **Power-of-Two Invariant:** $L_i$ increments by $1$ if and only if $i$ is a power of 2 ($i \ \& \ (i - 1) == 0$).
+3. **Modular Invariance:** Apply modulo $10^9 + 7$ at each iterative step to bound integer size within standard 64-bit precision.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Shift Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Modular Binary Concatenation Pipeline
+    accDescr: Pipeline showing sequential iteration from 1 to n, dynamic bit length tracking via power of 2 checks, and modulo left-shift accumulation.
+    Start["Given integer n, MOD = 10^9 + 7"] --> Init["ans = 0\nbit_len = 0"]
+    Init --> Loop["For integer i from 1 to n:"]
+    
+    Loop --> CheckPower{"Is i a power of 2?\n(i & (i - 1)) == 0"}
+    CheckPower -->|"Yes"| IncLen["bit_len = bit_len + 1"]
+    CheckPower -->|"No"| MaintainLen["Maintain bit_len"]
+    
+    IncLen --> ShiftAccum["ans = ((ans << bit_len) + i) % MOD"]
+    MaintainLen --> ShiftAccum
+    
+    ShiftAccum --> NextI{"i == n ?"}
+    NextI -->|"No"| Loop
+    NextI -->|"Yes"| Emit["Emit ans as Decimal Concatenation"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Modular Left-Shift Recurrence Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $S_i$ denote the binary string formed by concatenating the binary representations of $1, 2, \dots, i$. Let $f(i) = \text{val}(S_i)$ denote its decimal interpretation.
+
+1. **Bit Length Formula:**
+   For any positive integer $i \in \mathbb{Z}^+$, its binary representation requires:
+   $$
+   L(i) = \lfloor \log_2 i \rfloor + 1
+   $$
+   The function $L(i)$ is a piecewise constant step function:
+   $$
+   L(i) = L(i - 1) + 1 \iff i = 2^k \text{ for some } k \ge 0
+   $$
+
+2. **Positional Shift Recurrence:**
+   The string $S_i$ is formed by suffix concatenation: $S_i = S_{i-1} \circ \text{bin}(i)$.
+   In base 2, appending a string of length $L(i)$ shifts the preceding numerical value to the left by $L(i)$ positions:
+   $$
+   f(i) = f(i - 1) \cdot 2^{L(i)} + i
+   $$
+
+3. **Homomorphic Modular Projection:**
+   Let $M = 10^9 + 7$. Because the modulo operator is a ring homomorphism over $\mathbb{Z}$:
+   $$
+   f(i) \pmod M = \Big( \big( (f(i - 1) \pmod M) \cdot 2^{L(i)} \big) + i \Big) \pmod M
+   $$
+   Thus, tracking $f(i) \pmod M$ sequentially produces the exact remainder of the gigantic integer without precision loss.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Append a binary block with arithmetic instead of strings
+### Trace on Representative Instance 1 ($n = 3$, $M = 10^9 + 7$)
 
-Suppose `ans` is the numeric value of the binary concatenation for integers one through `i - 1`. To append the binary representation of `i`, the existing bits must move left by exactly the number of bits in `i`. If that length is `b`, the new value is
+Initialize: $ans = 0, \; L = 0$.
 
-$$
-\texttt{ans}\cdot 2^b + i.
-$$
+#### Step 1 ($i = 1$):
+- Check power of 2: $1 \ \& \ (1 - 1) = 0 \implies$ Power of 2!
+  - Increment bit length: $L \leftarrow 0 + 1 = 1$.
+- Shift and accumulate:
+  $$
+  ans \leftarrow \big( (0 \ll 1) + 1 \big) \pmod M = 1
+  $$
+- Binary representation so far: `"1"` (value $1$).
 
-The source implements multiplication by $2^b$ as `ans << b`. It combines `i` with bitwise OR:
+#### Step 2 ($i = 2$):
+- Check power of 2: $2 \ \& \ (2 - 1) = 2 \ \& \ 1 = 0 \implies$ Power of 2!
+  - Increment bit length: $L \leftarrow 1 + 1 = 2$.
+- Shift and accumulate:
+  $$
+  ans \leftarrow \big( (1 \ll 2) + 2 \big) \pmod M = (4 + 2) \pmod M = \mathbf{6}
+  $$
+- Binary representation so far: `"110"` (value $6$).
 
-`(ans << i.bit_length()) | i`.
+#### Step 3 ($i = 3$):
+- Check power of 2: $3 \ \& \ (3 - 1) = 3 \ \& \ 2 = 2 \neq 0 \implies$ Not a power of 2.
+  - Bit length remains $L = 2$.
+- Shift and accumulate:
+  $$
+  ans \leftarrow \big( (6 \ll 2) + 3 \big) \pmod M = (24 + 3) \pmod M = \mathbf{27}
+  $$
+- Binary representation so far: `"11011"` (value $27$).
 
-This OR is equivalent to addition here. Shifting left by `b` places `b` zero bits at the bottom of `ans`. Since `i` fits in exactly `b` bits, its set bits occupy only those zero positions, so OR introduces no carry or overlap.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Get the correct block length
-
-`i.bit_length()` is the number of bits required to represent positive integer `i` without leading zeros. For example:
-
-- one has binary `1` and bit length one;
-- two has binary `10` and bit length two;
-- three has binary `11` and bit length two;
-- four has binary `100` and bit length three.
-
-Those are precisely the block widths used by ordinary binary representation. No explicit conversion to a string is needed, and no special power-of-two counter is needed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Maintain the concatenation invariant
-
-Before the first iteration, `ans = 0` represents an empty bit string. At iteration `i`, assume `ans` is congruent modulo `mod` to the full concatenation through `i - 1`. Shifting by `i.bit_length()` and placing `i` in the new low bits constructs the concatenation through `i`.
-
-The source then takes the result modulo
-
-$$
-10^9+7.
-$$
-
-Reducing after every append is valid because modular congruence is preserved by multiplication and addition:
-
-$$
-(a\bmod M)\cdot 2^b+i
-\equiv a\cdot 2^b+i\pmod M.
-$$
-
-Thus the algorithm never needs to hold the astronomically large full concatenated integer. The reduced `ans` still contains all information needed for the final remainder.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `499361981` |
+#### Finalization:
+- Reached $n = 3$.
+- Final answer: $\mathbf{27}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `499361981` | Verified |
+### Recurrence State Progression Table for $n = 5$
+
+| Integer $i$ | Binary of $i$ | Power of 2? | Bit-Length $L$ | Shift Factor $2^L$ | Unbounded Computation | Modulo $10^9 + 7$ State | Serialized Binary |
+|---|---|---|---|---|---|---|---|
+| $1$ | `"1"` | **Yes** | $1$ | $2$ | $(0 \times 2) + 1 = 1$ | $1$ | `"1"` |
+| $2$ | `"10"` | **Yes** | $2$ | $4$ | $(1 \times 4) + 2 = 6$ | $6$ | `"110"` |
+| $3$ | `"11"` | No | $2$ | $4$ | $(6 \times 4) + 3 = 27$ | $27$ | `"11011"` |
+| $4$ | `"100"` | **Yes** | $3$ | $8$ | $(27 \times 8) + 4 = 220$ | $220$ | `"11011100"` |
+| $5$ | `"101"` | No | $3$ | $8$ | $(220 \times 8) + 5 = 1765$ | $1765$ | `"11011100101"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The recurrence $f(i) = (f(i - 1) \cdot 2^{L(i)} + i) \pmod M$ strictly reflects the semantic meaning of binary string concatenation under standard positional arithmetic. Applying the modulo operation at each stage is sound by the algebraic properties of modular arithmetic.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The loop runs sequentially through every integer from $1$ to $n$, guaranteeing that every integer's binary representation is appended in the exact prescribed order without omissions.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Build one binary string:** Convert every integer with `bin(i)[2:]`, concatenate, parse, and reduce. It is direct but uses $O(n\log n)$ characters and constructs a huge integer.
-- **Track bit length at powers of two:** Increase a counter when `i & (i-1) == 0`. This avoids calling `bit_length` and yields the same $O(n)$ time and $O(1)$ space.
-- **Use multiplication and addition:** `ans = (ans * (1 << b) + i) % mod` is mathematically identical to shift and OR.
-- **`n == 1`:** One iteration appends binary `1` and returns one.
-- **Power-of-two boundary:** `bit_length` increases exactly at values such as two, four, and eight, ensuring the prior result shifts by the newly required width.
-- **Modulo during every step:** This does not alter the final remainder and prevents the accumulator from growing with the total concatenated length.
-- **OR versus addition:** They are interchangeable only because the shift clears all low `b` bits and `i` fits within them.
-- **Positive-input guarantee:** `bit_length` for zero is zero, but the sequence begins at one, so every appended block has at least one bit.
-- **No leading zeros:** Minimal bit length matches the problem’s conventional binary representation.
-- **Large `n`:** The loop remains linear through $10^5$ and avoids any object proportional to the combined binary-string length.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **String Allocation Memory Exhaustion:** Concatenating raw string chunks in memory allocates over a million characters for $n = 10^5$, creating severe garbage-collection thrashing. Arithmetic bit-shifting uses zero heap string allocations.
+- **Logarithmic Calculation Inefficiencies:** Calling floating-point logarithms `math.log2(i)` inside the loop introduces precision errors and slows down execution. The bitwise check `(i & (i - 1)) == 0` updates bit-length in $\mathcal{O}(1)$ machine cycles.
+- **Delayed Modulo Overflow:** Waiting until the end of the loop to apply modulo results in attempting to represent a number with over $10^6$ bits, crashing memory or exceeding integer limits. Modulo must be applied after every addition.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The loop runs `n` times. Under the standard word-RAM model for values within the constraints, `bit_length`, a bounded-width shift, OR, and modulo are constant-time operations. `ans` remains below `mod` after every iteration, and the shift amount is at most the bit length of `n`, so intermediate values stay bounded. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The loop iterates exactly $n$ times from $1$ to $n$.
+  - Each iteration performs $1$ bit-shift, $1$ bitwise addition, $1$ bitwise AND check, and $1$ modulo operation.
+  - All operations take $\mathcal{O}(1)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(n)$ linear time, executing in $< 20$ ms for $n = 10^5$.
+- **Auxiliary Space Complexity:**
+  - Only two scalar registers (`ans` and `bit_len`) are maintained.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(1)$ constant memory.

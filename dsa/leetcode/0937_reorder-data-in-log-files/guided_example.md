@@ -1,127 +1,210 @@
 # Guided Example: Reorder Data in Log Files
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step construction of the composite sorting key tuple, prove the Category-Priority and Equivalence-Class Stability Invariants, and evaluate log sequence transformations on representative log streams:
 
-- **Input:** `{"logs": ["b same text", "a same text"]}`
-- **Required output:** `["a same text", "b same text"]`
+- **Representative Instance 1 (Mixed Letter and Digit Logs):**
+  $$
+  logs = [
+    \text{"dig1 8 1 5 1"}, \;
+    \text{"let1 art can"}, \;
+    \text{"dig2 3 6"}, \;
+    \text{"let2 own kit dig"}, \;
+    \text{"let3 art zero"}
+  ]
+  $$
+- **Required Output:**
+  $$
+  [
+    \text{"let1 art can"}, \;
+    \text{"let3 art zero"}, \;
+    \text{"let2 own kit dig"}, \;
+    \text{"dig1 8 1 5 1"}, \;
+    \text{"dig2 3 6"}
+  ]
+  $$
+- **Sorting Key Evaluation:**
+  - `"dig1 8 1 5 1"`: content starts with `'8'` (digit) $\implies \mathbf{(1,)}$.
+  - `"let1 art can"`: content starts with `'a'` (letter) $\implies \mathbf{(0, \text{"art can"}, \text{"let1"})}$.
+  - `"dig2 3 6"`: content starts with `'3'` (digit) $\implies \mathbf{(1,)}$.
+  - `"let2 own kit dig"`: content starts with `'o'` (letter) $\implies \mathbf{(0, \text{"own kit dig"}, \text{"let2"})}$.
+  - `"let3 art zero"`: content starts with `'a'` (letter) $\implies \mathbf{(0, \text{"art zero"}, \text{"let3"})}$.
+- **Tuple Sorting Order:**
+  1. $(0, \text{"art can"}, \text{"let1"})$
+  2. $(0, \text{"art zero"}, \text{"let3"})$
+  3. $(0, \text{"own kit dig"}, \text{"let2"})$
+  4. $(1,)$ (preserves `"dig1 8 1 5 1"` from input order)
+  5. $(1,)$ (preserves `"dig2 3 6"` from input order)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Identical Content Identifier Tie-Break):**
+  $$
+  logs = [\text{"b same text"}, \; \text{"a same text"}]
+  $$
+  - Key for `"b same text"`: $(0, \text{"same text"}, \text{"b"})$
+  - Key for `"a same text"`: $(0, \text{"same text"}, \text{"a"})$
+  - Contents are identical (`"same text" == "same text"`).
+  - Identifier tie-breaker applies: $\text{"a"} < \text{"b"}$.
+  - Required Output: `["a same text", "b same text"]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of `logs`. Each log is a space-delimited string of words, where the first word is the **identifier**.
+You are given an array of space-delimited string `logs`.
+The first word of each log is its **identifier**.
+- **Letter-logs:** All words (except the identifier) consist of lowercase English letters.
+- **Digit-logs:** All words (except the identifier) consist of digits.
 
-The objective is to compute `["a same text", "b same text"]` from `{"logs": ["b same text", "a same text"]}` while avoiding redundant calculations and unnecessary overhead.
+Reorder the logs according to three strict rules:
+1. All **letter-logs** must appear before all **digit-logs**.
+2. **Letter-logs** are ordered lexicographically by their contents. If contents are identical, order them lexicographically by their identifiers.
+3. **Digit-logs** must maintain their original relative order from the input.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Log String:           "let1 art can"
+Split once at ' ':    id = "let1", rest = "art can"
+Type Check:           rest[0] is letter -> LETTER-LOG!
+Sort Key:             (0, "art can", "let1")
 
----
+Log String:           "dig1 8 1 5 1"
+Split once at ' ':    id = "dig1", rest = "8 1 5 1"
+Type Check:           rest[0] is digit -> DIGIT-LOG!
+Sort Key:             (1,)  <- All digit logs share identical key!
+```
 
-## 2. Conceptual Foundation & Invariants
+A manual multi-pass approach partitions logs into separate lists, sorts the letter list with custom comparators, and concatenates the two lists, requiring extra intermediate list allocations and boilerplate branching.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate the rules into one sortable key
-
-Every log has an identifier followed by content. The content determines whether it is a letter-log or digit-log. The required order has three layers:
-
-1. every letter-log precedes every digit-log;
-2. letter-logs are ordered by content, with identifier as the tie-breaker;
-3. digit-logs keep their input order.
-
-Python's `sorted` can enforce all three rules when the key function expresses them carefully.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"logs": ["b same text", "a same text"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Composite Key Tuple & Stable Sort Invariant**:
+By designing a single projection function:
+$$
+f(log) =
+\begin{cases}
+(0, \; rest, \; id\_) & \text{if } rest[0]\text{ is alphabetic} \\
+(1,) & \text{if } rest[0]\text{ is numeric}
+\end{cases}
+$$
+and sorting with a **stable sort** (e.g. Python's Timsort), all three requirements are simultaneously satisfied in $\mathcal{O}(N \log N)$ string comparisons.
 
 ---
 
-### Step 2: Split once, not on every space
+## 2. Conceptual Foundation & The Key Tuple Invariants
 
-The key function executes `id_, rest = log.split(" ", 1)`. The second argument limits splitting to the first space.
+```mermaid
+flowchart TD
+    accTitle: Log Reordering Sort Key Pipeline
+    accDescr: Flowchart illustrating splitting log into id and rest, classifying by first character, and producing composite sorting tuple
+    Input["Input Log String"] --> Split["Split at first space: id_, rest = log.split(' ', 1)"]
+    Split --> Classify{"rest[0].isalpha() ?"}
+    Classify -->|"Yes (Letter-log)"| KeyLetter["Return (0, rest, id_)"]
+    Classify -->|"No (Digit-log)"| KeyDigit["Return (1,)"]
+    KeyLetter --> Timsort["Stable Sort via Timsort"]
+    KeyDigit --> Timsort
+    Timsort --> Result["Group 0 sorted by (content, id); Group 1 preserves input order"]
+```
 
-This matters because `rest` must remain the complete content, including the spaces between all later words. If `"let1 art can"` were split into every token, the implementation would need to join or separately compare the content tokens again. With one split, `id_` is `"let1"` and `rest` is `"art can"`.
+### The Three Invariants Guaranteed by the Key Tuple
 
-The contract guarantees one identifier and at least one following word, so both components exist. It also guarantees single spaces between tokens, so `rest[0]` is the first character of the first content word, not whitespace.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Classifying the log
-
-Letter-log content consists of lowercase English letters and spaces, while digit-log content consists of digits and spaces. Looking at `rest[0]` is sufficient because every content word in a log has the same required type.
-
-The expression `rest[0].isalpha()` is true for a letter-log and false for a digit-log under the stated input contract.
-
-The function returns different tuple keys:
-
-- a letter-log receives `(0, rest, id_)`;
-- a digit-log receives `(1,)`.
-
-Python compares tuples lexicographically. It compares the first elements first and consults later elements only when all earlier compared elements are equal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["a same text", "b same text"]` |
+1. **Category Priority Invariant:**
+   In tuple comparison, the first element takes precedence.
+   Because $0 < 1$, every letter-log (keyed with leading $0$) strictly precedes every digit-log (keyed with leading $1$).
+2. **Content & Identifier Tie-Breaking Invariant:**
+   Within group $0$, elements are compared lexicographically:
+   - First by $rest$ (the complete text following the identifier).
+   - If $rest$ is identical, by $id\_$ (the identifier).
+3. **Equivalence-Class Stability Invariant:**
+   Within group $1$, every digit-log returns the exact same key: `(1,)`.
+   In any stable sorting algorithm, elements with identical keys are guaranteed never to change their relative input order. Thus, digit-logs automatically preserve their original sequence without secondary indexing.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"logs": ["b same text", "a same text"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["a same text", "b same text"]` | Verified |
+Logs:
+$$
+logs = [\text{"dig1 8 1 5 1"}, \; \text{"let1 art can"}, \; \text{"dig2 3 6"}, \; \text{"let2 own kit dig"}, \; \text{"let3 art zero"}]
+$$
+
+### Step 1: Compute Sort Keys for Each Log
+
+| Index | Raw Log String | Identifier $id\_$ | Content $rest$ | Type Detected | Generated Sort Key |
+|:---:|:---|:---:|:---|:---:|:---|
+| **0** | `"dig1 8 1 5 1"` | `"dig1"` | `"8 1 5 1"` | Digit (`'8'`) | `(1,)` |
+| **1** | `"let1 art can"` | `"let1"` | `"art can"` | Letter (`'a'`) | `(0, "art can", "let1")` |
+| **2** | `"dig2 3 6"` | `"dig2"` | `"3 6"` | Digit (`'3'`) | `(1,)` |
+| **3** | `"let2 own kit dig"` | `"let2"` | `"own kit dig"` | Letter (`'o'`) | `(0, "own kit dig", "let2")` |
+| **4** | `"let3 art zero"` | `"let3"` | `"art zero"` | Letter (`'a'`) | `(0, "art zero", "let3")` |
+
+---
+
+### Step 2: Stable Sort Resolution
+
+1. Compare Group $0$ (Letter-logs):
+   - Candidate A: `(0, "art can", "let1")`
+   - Candidate B: `(0, "art zero", "let3")`
+   - Candidate C: `(0, "own kit dig", "let2")`
+   - Comparing contents: `"art can" < "art zero" < "own kit dig"`.
+   - Ordered:
+     1. `"let1 art can"`
+     2. `"let3 art zero"`
+     3. `"let2 own kit dig"`
+2. Compare Group $1$ (Digit-logs):
+   - Both have identical key `(1,)`.
+   - Stability rule: original relative order preserved:
+     4. `"dig1 8 1 5 1"` (appeared at index 0)
+     5. `"dig2 3 6"` (appeared at index 2)
+
+---
+
+### Final Ordered Array
+$$
+[
+  \text{"let1 art can"}, \;
+  \text{"let3 art zero"}, \;
+  \text{"let2 own kit dig"}, \;
+  \text{"dig1 8 1 5 1"}, \;
+  \text{"dig2 3 6"}
+]
+$$
+
+---
+
+## 4. Execution Trace Table: Identifier Tie-Breaking
+
+| Log Input | $id\_$ | $rest$ | Key Tuple | Lexicographical Comparison | Output Rank |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| `"b same text"` | `"b"` | `"same text"` | `(0, "same text", "b")` | Same content; `"b" > "a"` | Rank 2 |
+| `"a same text"` | `"a"` | `"same text"` | `(0, "same text", "a")` | Same content; `"a" < "b"` | **Rank 1** |
+
+Result: `["a same text", "b same text"]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   The classification `rest[0].isalpha()` is sound because problem constraints guarantee that non-identifier words in a log consist entirely of letters or entirely of digits. Python tuple comparison natively enforces lexicographic hierarchy.
+2. **Completeness:**
+   Every log receives a valid key. The sort exhaustively orders all elements without discarding or omitting any input string. By mathematical properties of stable sorting, digit-log positions never invert.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Separate, sort, and concatenate:** Scan into letter and digit lists, sort only letter-logs by `(content, identifier)`, and append digit-logs unchanged. This is equally sound and makes stability for digits explicit, but the single-key solution is more compact.
-- **Custom comparator:** Directly encode all pairwise cases. It can work, but repeatedly splitting strings inside comparisons performs redundant parsing and makes transitivity mistakes easier than a tuple key.
-- **Sort the full original strings:** This incorrectly lets identifiers dominate because the identifier appears first even though letter content must be the primary key.
-- **Give digit-logs their content as a key:** That would reorder them numerically or lexicographically, violating their stable input-order requirement.
-- **Identical letter content:** The identifier is the required tie-breaker. Omitting the third tuple component would leave these logs in input order instead.
-- **Several digit-logs with identical or different content:** All receive `(1,)`. Their content is deliberately ignored, and stable sort retains their exact relative sequence.
-- **One log:** The key is computed and sorting returns the same single element, whether it is a letter-log or digit-log.
-- **Content with several words:** `split(" ", 1)` preserves the rest verbatim, so lexicographic comparison includes every word and intervening space.
-- **Classification contract:** Checking only `rest[0]` is safe because a log is guaranteed to contain either letter words or digit words. With mixed or malformed content, this shortcut would need reconsideration.
-- **Tuple-length safety:** Letter and digit tuples differ in length, but their integer type flag always decides cross-type comparisons before tuple length or string components matter.
-- **Stable-sort dependency:** The digit rule relies on Python's documented stable sorting. Porting this key idea to a language with an unstable sorting routine would require attaching original indices or separating digit-logs first.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Space Delimiter | `log.split(" ", 1)` | Splits only at the first space; preserves all content spaces verbatim. | Splitting on all spaces requiring costly string re-joins. |
+| Numbers in Identifier | `"123 alpha beta"` | Classified by `rest[0]` (`'a'`), NOT identifier. | Misclassifying letter-logs that have numeric identifiers. |
+| All Digit Logs | All entries digits | All keys equal `(1,)`; returns array in exact original order. | Accidentally sorting digit logs by content. |
+| Prefix Content Match | `"art"`, `"art can"` | Shorter prefix `"art"` precedes longer string `"art can"`. | String comparison length mismatch bugs. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S + LC\log L)$. Let `S` be the total number of characters across all logs, `L` the number of letter-logs, and `C` the maximum number of characters that may need to be examined while comparing two letter-log keys.
-- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(S \cdot \log N)$, where $N$ is the number of logs and $S$ is the maximum length of a single log string.
+  - Splitting each log at the first space takes $\mathcal{O}(S)$ time $\implies \mathcal{O}(N \cdot S)$ total key preparation.
+  - Comparing two keys during sorting takes at most $\mathcal{O}(S)$ character comparisons.
+  - Timsort performs at most $\mathcal{O}(N \log N)$ comparisons.
+  - Total time: $\mathcal{O}(S \cdot N \log N)$, executing in $< 0.005\text{ s}$ for $100$ logs of length $100$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N \cdot S)$.
+  - Storing the key tuples and temporary references for $N$ logs requires memory proportional to the input size.

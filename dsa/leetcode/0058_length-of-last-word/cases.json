@@ -29,6 +29,19 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: example 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "luffy is still joyboy"
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-single",
       "name": "one-letter string",
       "kind": "trial",

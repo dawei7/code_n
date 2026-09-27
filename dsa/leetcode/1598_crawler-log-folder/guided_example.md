@@ -1,131 +1,154 @@
 # Guided Example: Crawler Log Folder
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide traces file-system depth tracking across directory navigation logs, demonstrating state-invariant clamping to calculate the minimum number of steps needed to return to the main folder.
 
-- **Input:** `{"logs": ["d1/", "d2/", "../", "d21/", "./"]}`
-- **Required output:** `2`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Logs:** `logs = ["d1/", "d2/", "../", "d21/", "./"]`
+- **Target Value:** `2`
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The Leetcode file system keeps a log each time some user performs a *change folder* operation.
+File system navigation operations move between nested folder levels:
+- `"../"`: Move to the parent folder of the current folder. If already at the main (root) folder, remain there.
+- `"./"`: Remain in the current directory (no-op).
+- `"x/"`: Move into child folder named `x`.
 
-The objective is to compute `2` from `{"logs": ["d1/", "d2/", "../", "d21/", "./"]}` while avoiding redundant calculations and unnecessary overhead.
+The minimum number of `"../"` operations required to return to the root folder corresponds directly to the terminal tree depth of the crawler relative to root level $0$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Root (Depth 0)
+└── d1/ (Depth 1)
+    └── d2/ (Depth 2)  <-- "../" moves back to d1/ (Depth 1)
+    └── d21/ (Depth 2) <-- "./" keeps crawler at d21/ (Depth 2)
+```
+
+For `logs = ["d1/", "d2/", "../", "d21/", "./"]`, the final location is depth $2$, requiring exactly $2$ parent steps to reach the main directory.
+
+Our teaching goal is to model directory depth as a bounded scalar accumulator operating in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  BOUNDED DEPTH STATE TRANSITIONS                        |
+|                                                                         |
+|  Depth state: d >= 0 (starts at d = 0 for root)                         |
+|                                                                         |
+|  Operation 1: "../"  (Parent step)                                      |
+|    d' = max(0, d - 1)  <-- Clamped at 0 (cannot ascend above root)      |
+|                                                                         |
+|  Operation 2: "./"   (Identity step)                                    |
+|    d' = d              <-- Preserves current depth                      |
+|                                                                         |
+|  Operation 3: "x/"   (Child step)                                       |
+|    d' = d + 1          <-- Enters new nested folder                     |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Log Pattern | Formal Rule | State Transition | Physical File System Meaning |
+|---|---|---|---|
+| `"../"` | Ascend to parent | $d \leftarrow \max(0, d - 1)$ | Pop current folder; stay at root if already at $0$ |
+| `"./"` | Self-reference | $d \leftarrow d$ | Idempotent touch within current working directory |
+| `"x/"` | Descend to child | $d \leftarrow d + 1$ | Push child folder onto active directory path |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Non-Negative Depth Invariant.** The depth $d$ of any valid directory path relative to the root cannot be negative ($d \ge 0$). Ascending while at the root ($d = 0$) leaves the position invariant at $d = 0$. Clamping the subtraction via $\max(0, d - 1)$ prevents phantom deficits that would distort subsequent child traversals.
+
+```mermaid
+flowchart TD
+    accTitle: Directory Depth State Machine
+    accDescr: State transitions based on log entry category with zero-floor clamping.
+    Start["Current Depth: d"] --> Check{"Log Operation Type"}
+    Check -->|"Parent '../'"| Dec["d = max(0, d - 1)"]
+    Check -->|"Current './'"| Same["d = d (No-op)"]
+    Check -->|"Child 'x/'"| Inc["d = d + 1"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Only the current depth matters
-
-The requested answer is the number of parent-folder moves needed to return to the main folder. That number depends only on how many levels below the main folder the user finishes, not on the folder names along the path.
-
-The source stores this depth in `ans`:
-
-- zero means the main folder;
-- one means one child below it;
-- in general, depth $d$ needs exactly $d$ valid `"../"` operations to return.
-
-This avoids storing a stack of folder names because the problem never asks for the actual path.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"logs": ["d1/", "d2/", "../", "d21/", "./"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- Start at main directory: $\text{depth} = 0$.
 
 ---
 
-### Step 2: Handling a parent operation
-
-When `v == "../"`, the user attempts to move up one level. The update is:
-
-`ans = max(0, ans - 1)`.
-
-At positive depth, this subtracts one. At depth zero, `ans - 1` would be negative, but the file-system rule says a parent operation at the main folder leaves the user there. Taking the maximum with zero enforces that boundary.
-
-Testing `"../"` first matters because it also starts with a dot. The later child-folder condition must not classify it as a stay operation or a child.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process `"d1/"`
+- Category: Child directory descent.
+- Depth increment:
+  $$\text{depth} \leftarrow 0 + 1 = 1$$
+- Current position: `/d1/`.
 
 ---
 
-### Step 3: Handling stay and child operations
+### Step 2: Process `"d2/"`
+- Category: Child directory descent.
+- Depth increment:
+  $$\text{depth} \leftarrow 1 + 1 = 2$$
+- Current position: `/d1/d2/`.
 
-The next condition is:
+---
 
-`elif v[0] != ".": ans += 1`.
+### Step 3: Process `"../"`
+- Category: Parent directory ascent.
+- Depth decrement with lower bound clamp:
+  $$\text{depth} \leftarrow \max(0, 2 - 1) = 1$$
+- Current position: `/d1/`.
 
-Under the valid log formats, the only operation reaching this branch that begins with a dot is `"./"`. For that operation, the condition is false and no update occurs, correctly representing staying in the same folder.
+---
 
-Every child-folder operation has the form `"x/"`, where the folder name contains lowercase letters and digits. Its first character is therefore not a dot. The condition is true and depth increases by one.
+### Step 4: Process `"d21/"`
+- Category: Child directory descent.
+- Depth increment:
+  $$\text{depth} \leftarrow 1 + 1 = 2$$
+- Current position: `/d1/d21/`.
 
-The code does not compare explicitly with `"./"`; it uses the first-character distinction supported by the input contract. If arbitrary folder names beginning with a dot were allowed, this shorthand would need revision, but such names are outside the stated format.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 5: Process `"./"`
+- Category: Self-directory reference.
+- Depth invariant:
+  $$\text{depth} \leftarrow 2$$
+- Current position remains `/d1/d21/`.
+
+Log stream exhausted. Terminal depth is $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"logs": ["d1/", "d2/", "../", "d21/", "./"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Step | Log Token | Operation Class | Action Taken | Previous Depth | Resulting Depth |
+|---|---|---|---|---|---|
+| Init | — | Start | Initialize root state | — | $0$ |
+| 1 | `"d1/"` | Child | Increment depth | $0$ | $1$ |
+| 2 | `"d2/"` | Child | Increment depth | $1$ | $2$ |
+| 3 | `"../"` | Parent | Decrement with clamp $\max(0, d-1)$ | $2$ | $1$ |
+| 4 | `"d21/"` | Child | Increment depth | $1$ | $2$ |
+| 5 | `"./"` | Stay | No change | $2$ | $2$ |
+
+At termination, the crawler sits at depth $2$. Navigating back to the main directory requires exactly $2$ successive `"../"` commands.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $P$ be the path from the root folder to the current working directory. The length of $P$ (excluding the root) corresponds to the integer depth $d$. Each step `"x/"` appends a folder to $P$, increasing length by $1$. Each step `"./"` preserves $P$. Each step `"../"` pops the deepest folder from $P$ if $P$ is non-empty, and leaves $P$ empty if already at the root. Therefore, the scalar update $d \leftarrow \max(0, d - 1)$ faithfully tracks $|P|$. Because each parent operation reduces non-zero depth by at most $1$, at least $d$ steps are necessary to reach $d = 0$, and executing `"../"` $d$ times is sufficient.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every operation in `logs` belongs to one of three mutually exclusive formats: `"../"`, `"./"`, or `"x/"`. The sequential scan processes each token without skipping, and clamping prevents any spurious underflow. Thus, the final value of $d$ is exact.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Stack of folder names:** Push child operations and pop for valid parent operations. It works and can reconstruct the path, but uses $O(N)$ space when only depth is requested.
-- **Build a normalized path string:** Repeated concatenation and removal are unnecessary and can introduce parsing or copying overhead.
-- **Count children minus parents without clamping:** This fails when a parent operation occurs at the main folder. Such an operation cannot create “negative depth” that cancels a later child move.
-- **Already at main folder:** Any number of `"../"` or `"./"` operations leaves the answer zero.
-- **Only child operations:** Depth becomes the number of logs, and that many parent moves are necessary.
-- **Immediate child then parent:** The updates add one and subtract one, returning to the previous depth.
-- **Stay operation:** `"./"` begins with a dot, reaches the second branch, and causes no depth change.
-- **Parent operation branch order:** `"../"` must be recognized before checking the first character because it also begins with a dot.
-- **Folder names with digits:** Their first character may be a digit, which is still not a dot, so they correctly count as child moves.
-- **Hidden-style names beginning with a dot:** The shorthand would misclassify them, but the contract restricts folder names to lowercase letters and digits.
-- **Minimum-operation proof:** Each parent move removes exactly one depth level, making final depth both a lower bound and an achievable count.
-- **Input preservation:** The logs are read-only, and no stack or modified path is created.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Unclamped Negative Net Depth:** Simply subtracting $1$ for `"../"` without clamping can lead to negative depth (e.g. `logs = ["../", "../", "d1/"]`). A simple sum $(-1) + (-1) + 1 = -1$ would yield an invalid depth, whereas the true depth is $\max(0, 0-1) \to 0$, $\max(0, 0-1) \to 0$, $0 + 1 = 1$.
+- **Redundant Stack Overhead:** Maintaining an explicit stack of folder names (`["d1", "d21"]`) consumes unnecessary dynamic memory ($\mathcal{O}(N)$ space) when only the numeric depth is requested.
+- **Prefix Collision in Log Classification:** Both `"../"` and `"./"` start with a dot (`'.'`). Condition checks must explicitly test for `"../"` first before using dot-prefix shortcuts to identify `"./"`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the number of log entries. The loop processes each entry once. Each operation performs a bounded string comparison or first-character check and constant arithmetic. Because every log string has length at most ten, total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the number of logs. Each log string is inspected and parsed in $\mathcal{O}(1)$ time, as string lengths are bounded by $10$ characters.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space, as only a single scalar integer accumulator `depth` is maintained in memory.

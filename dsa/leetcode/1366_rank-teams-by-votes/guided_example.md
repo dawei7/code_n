@@ -1,127 +1,207 @@
 # Guided Example: Rank Teams by Votes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal multi-dimensional positional vote tallying algorithm on a representative problem instance:
 
-- **Input:** `{"votes": ["ABC", "ACB", "ABC", "ACB", "ACB"]}`
+- **Input:** `votes = ["ABC", "ACB", "ABC", "ACB", "ACB"]`
 - **Required output:** `"ACB"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because all five voters rank team `A` in first place, creating an immediate tie for second and third places between `B` and `C` that must be resolved by inspecting the second-place vote counts.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-In a special ranking system, each voter gives a rank from highest to lowest to all teams participating in the competition.
+In an election with $M$ participating teams, each voter submits a ranked ballot listing all $M$ teams from first to last place. The winner is determined by:
+1. Most first-place votes.
+2. If tied, most second-place votes, continuing through position $M$.
+3. If tied across all positions $1 \dots M$, break the tie alphabetically by team letter in ascending order (`'A'` before `'B'`).
 
-The objective is to compute `"ACB"` from `{"votes": ["ABC", "ACB", "ABC", "ACB", "ACB"]}` while avoiding redundant calculations and unnecessary overhead.
+For $5$ voters casting ballots over teams $\{A, B, C\}$:
+- Ballot 1: `ABC` (1st: A, 2nd: B, 3rd: C)
+- Ballot 2: `ACB` (1st: A, 2nd: C, 3rd: B)
+- Ballot 3: `ABC` (1st: A, 2nd: B, 3rd: C)
+- Ballot 4: `ACB` (1st: A, 2nd: C, 3rd: B)
+- Ballot 5: `ACB` (1st: A, 2nd: C, 3rd: B)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Tallying each team's finishes:
+- Team A: Five $1^{\text{st}}$-place votes, zero $2^{\text{nd}}$, zero $3^{\text{rd}}$ $\implies [5, 0, 0]$
+- Team B: Zero $1^{\text{st}}$-place votes, two $2^{\text{nd}}$, three $3^{\text{rd}}$ $\implies [0, 2, 3]$
+- Team C: Zero $1^{\text{st}}$-place votes, three $2^{\text{nd}}$, two $3^{\text{rd}}$ $\implies [0, 3, 2]$
+
+Comparing B and C:
+- Tied on $1^{\text{st}}$ place ($0 = 0$).
+- Team C wins $2^{\text{nd}}$ place ($3 > 2$), placing C ahead of B.
+- Final ranking: `"ACB"`.
+
+The primary teaching goal is to model positional ranked voting as a multi-key lexicographic sorting problem where descending vote counts across ranks take strict precedence over ascending alphabetical characters.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $M = |votes[0]|$ be the number of teams. Each team $T$ is assigned a positional tally vector $V(T) \in \mathbb{N}^M$:
+$$
+V(T) = [c_1(T), c_2(T), \dots, c_M(T)]
+$$
+where $c_p(T)$ is the number of voters who placed team $T$ at rank $p$.
 
-| State Parameter | Role & Purpose | Initial State |
+We define a total order $\succ$ between teams $T_1$ and $T_2$:
+$$
+T_1 \succ T_2 \iff \begin{cases}
+V(T_1) >_{\text{lex}} V(T_2), & \text{or} \\
+V(T_1) = V(T_2) \land T_1 <_{\text{alpha}} T_2
+\end{cases}
+$$
+
+```
+Ballot Tallies:
+  Team A: [ 5, 0, 0 ] -> Unique maximum at position 1 (5 > 0)
+  Team B: [ 0, 2, 3 ]
+  Team C: [ 0, 3, 2 ] -> Tied with B at pos 1, beats B at pos 2 (3 > 2)
+
+Final Sorted Order: A (Rank 1) -> C (Rank 2) -> B (Rank 3) => "ACB"
+```
+
+We track state using the following parameters:
+
+| State Parameter | Description | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Participating Teams | Distinct team characters from $votes[0]$ | $\{A, B, C\}$ |
+| Tally Matrix ($V$) | Map from team character to length-$M$ integer array | Initialized to all zeros |
+| Comparison Tuple | Composite key $(-c_1, -c_2, \dots, -c_M, T)$ | Formed per team |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any two teams $T_1$ and $T_2$, team $T_1$ ranks ahead of $T_2$ if and only if $T_1$ has more votes at the earliest position where their vote tallies differ. If their vote tallies are identical across all $M$ positions, $T_1$ precedes $T_2$ if and only if $T_1$ is alphabetically smaller.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Represent every team's complete ranking evidence
+### Step 1: Initialize Tally Vectors
 
-Each vote contains every participating team exactly once, ordered from best position to worst. Looking only at how often a team is ranked first is insufficient because ties must be resolved by second-place counts, then third-place counts, and so on. The solution therefore assigns every team a vector with one counter per possible position.
+Identify $M = 3$ teams from $votes[0] = \text{"ABC"}$.
+Initialize count vectors:
+- $V(A) = [0, 0, 0]$
+- $V(B) = [0, 0, 0]$
+- $V(C) = [0, 0, 0]$
 
-Let $T$ be the number of teams, which is `len(votes[0])` in the code. The expression `defaultdict(lambda: [0] * m)` creates a fresh length-$T$ zero vector whenever a team letter is seen for the first time. For a team `c`, `cnt[c][0]` will mean its number of first-place votes, `cnt[c][1]` its number of second-place votes, and so forth.
-
-The nested loops fill these vectors. For every vote, `enumerate(vote)` produces each position `i` and the team `c` at that position. Incrementing `cnt[c][i]` records exactly one vote for that team at that rank. Because every valid vote contains all teams once, the completed dictionary has one key for every participating team and each team's vector accounts for every voter.
-
-Using the first example, team A's vector begins with five because all five voters rank A first. B and C both receive zero first-place votes, so their comparison moves to the second component. C has three second-place votes while B has two, placing C before B. No special tie-handling branch is needed; the vectors already contain the full sequence of tie breakers.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Team | Position 1 ($c_1$) | Position 2 ($c_2$) | Position 3 ($c_3$) |
 |---|---|---|---|
-| Input Slice | `{"votes": ["ABC", "ACB", "ABC", "ACB", "ACB"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| A | $0$ | $0$ | $0$ |
+| B | $0$ | $0$ | $0$ |
+| C | $0$ | $0$ | $0$ |
 
 ---
 
-### Step 2: Why lexicographic comparison matches the voting rule
+### Step 2: Accumulate Votes Across All Ballots
 
-Python compares lists lexicographically. It compares their first elements; if those tie, it compares their second elements; it continues until it finds a difference or reaches the end. This is exactly the problem's rule for position counts. A lexicographically larger count vector belongs before a smaller vector because, at the earliest rank where the teams differ, it has more votes at that rank.
+Process each ballot sequentially:
+1. Ballot 1 `"ABC"`: $A \to c_1$, $B \to c_2$, $C \to c_3$.
+2. Ballot 2 `"ACB"`: $A \to c_1$, $C \to c_2$, $B \to c_3$.
+3. Ballot 3 `"ABC"`: $A \to c_1$, $B \to c_2$, $C \to c_3$.
+4. Ballot 4 `"ACB"`: $A \to c_1$, $C \to c_2$, $B \to c_3$.
+5. Ballot 5 `"ACB"`: $A \to c_1$, $C \to c_2$, $B \to c_3$.
 
-The sort key is the tuple `(cnt[c], -ord(c))`. Python also compares tuples lexicographically, so the count vector is the primary key and the numeric letter component is consulted only if every count ties.
+Final Tallies:
+- $V(A) = [5, 0, 0]$
+- $V(B) = [0, 2, 3]$
+- $V(C) = [0, 3, 2]$
 
-The call uses `reverse=true`, meaning larger keys come first. Larger count vectors should indeed rank earlier. Alphabetical tie breaking needs a small adjustment: the character code of `"A"` is smaller than that of `"B"`, but reverse sorting would normally put the larger code first. Negating the code fixes the direction. `-ord("A")` is greater than `-ord("B")`, so A receives the larger secondary key and comes first when the vote vectors are identical.
-
-This compact key handles all decision levels:
-
-1. More first-place votes produces a larger first vector component.
-2. If first-place totals tie, more second-place votes produces the first difference.
-3. The comparison continues through all $T$ positions.
-4. If the entire vectors tie, the alphabetically smaller letter has the larger negative character code.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Ballot | 1st Place | 2nd Place | 3rd Place | Running Tallies ($V$) |
+|---|---|---|---|---|
+| Ballot 1 (`"ABC"`) | A | B | C | $A:[1,0,0], B:[0,1,0], C:[0,0,1]$ |
+| Ballot 2 (`"ACB"`) | A | C | B | $A:[2,0,0], B:[0,1,1], C:[0,1,1]$ |
+| Ballot 3 (`"ABC"`) | A | B | C | $A:[3,0,0], B:[0,2,1], C:[0,1,2]$ |
+| Ballot 4 (`"ACB"`) | A | C | B | $A:[4,0,0], B:[0,2,2], C:[0,2,2]$ |
+| Ballot 5 (`"ACB"`) | A | C | B | **$A:[5,0,0], B:[0,2,3], C:[0,3,2]$** |
 
 ---
 
-### Step 3: Why sorting `cnt` sorts the teams
+### Step 3: Comparative Ranking
 
-Iterating over a dictionary yields its keys, so `sorted(cnt, key=...)` sorts the team letters, not the counter arrays. The key function translates each letter into the evidence by which that letter should be ranked. The result of `sorted` is therefore a list of team letters in final rank order. `"".join(...)` concatenates them into the required string.
+Compare teams using composite lexicographic keys:
+- **Compare A with B and C:**
+  - Position 1: $V(A)[0] = 5$, while $V(B)[0] = 0$ and $V(C)[0] = 0$.
+  - Since $5 > 0$, Team A secures 1st place.
+- **Compare B and C:**
+  - Position 1: $V(B)[0] = 0, V(C)[0] = 0$ (Tie).
+  - Position 2: $V(C)[1] = 3$, whereas $V(B)[1] = 2$.
+  - Since $3 > 2$, Team C strictly beats Team B at Position 2.
+  - Position 3 and alphabetical tie-breakers are not consulted.
 
-The algorithm does not depend on dictionary insertion order for correctness. Insertion order only supplies the initial iterable; the explicit complete sort key resolves every possible comparison, including the final alphabetical tie.
+Ranked order: $A \succ C \succ B$.
+Output string: `"ACB"`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"ACB"` |
+| Comparison Pair | First Position ($c_1$) | Second Position ($c_2$) | Resolution | Decision |
+|---|---|---|---|---|
+| A vs C | $5 > 0$ | Not reached | Decided at $c_1$ | $A \succ C$ |
+| A vs B | $5 > 0$ | Not reached | Decided at $c_1$ | $A \succ B$ |
+| C vs B | $0 = 0$ (Tie) | $3 > 2$ | Decided at $c_2$ | **$C \succ B$** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"votes": ["ABC", "ACB", "ABC", "ACB", "ACB"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"ACB"` | Verified |
+Summary of the final standing:
+
+| Final Rank | Team | 1st Place Votes | 2nd Place Votes | 3rd Place Votes | Decisive Factor |
+|---|---|---|---|---|---|
+| **1st** | **A** | $5$ | $0$ | $0$ | Majority 1st place votes ($5$) |
+| **2nd** | **C** | $0$ | $3$ | $2$ | Won 2nd place tie-break ($3 > 2$) |
+| **3rd** | **B** | $0$ | $2$ | $3$ | Fewer 2nd place votes ($2 < 3$) |
+
+Concatenated result: `"ACB"`.
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Total Ordering Guarantee
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Lexicographic comparison over vectors $V(T) \in \mathbb{N}^M$ defines a total preorder. Appending the unique character $T$ as the final tie-breaking component converts the preorder into a strict total order:
+$$
+\text{Key}(T) = (-c_1(T), -c_2(T), \dots, -c_M(T), T)
+$$
+Because every team has a distinct character identifier, no two composite keys can ever be identical. Thus, any standard sorting algorithm sorting these keys in ascending order produces a unique, deterministic permutation of teams.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Custom comparator:** Compare two teams position by position and then by letter. This expresses the rule directly, but Python key-based sorting is simpler and avoids repeatedly writing comparator control flow.
-- **Negated count vectors with normal ascending sort:** Store negative counts and the ordinary character as the key. That also works, but the exact solution keeps intuitive positive counters and uses `reverse=true`.
-- **Repeated stable sorts:** Sort alphabetically first, then stably sort by each position from last to first. It can reproduce the same ranking, but it performs several passes and obscures the single lexicographic rule.
-- **One voter:** Every position count uniquely mirrors that vote, so sorting reconstructs the vote string exactly.
-- **Complete tie across positions:** The count vectors are identical, and `-ord(c)` makes alphabetical order decisive.
-- **Tie at early ranks only:** List comparison automatically continues to the first later component that differs; no explicit loop in the key is required.
-- **Every team must be represented:** The validity guarantee says every vote contains the same teams. Thus building `cnt` while scanning all votes cannot omit a participating team.
-- **Uppercase single-letter identifiers:** `ord(c)` is appropriate because each team is represented by one uppercase English letter. A multi-character team name would require a different alphabetical secondary key.
-- **Fresh counter arrays:** The `defaultdict` factory executes separately for each unseen team. It does not share one mutable list among all teams.
-- **Dictionary order:** The answer remains deterministic even if teams entered `cnt` in a different order because the composite key breaks every tie.
-- **Maximum 26 teams:** The quadratic counter matrix is small under the constraints, while making ranking comparisons especially clear.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- Let $N$ be the number of ballots and $M$ be the number of teams ($M \le 26$).
+- **Tally Construction:** Scanning $N$ ballots of length $M$ takes $\mathcal{O}(N \cdot M)$ time.
+- **Sorting Teams:** Sorting $M$ teams using length-$(M + 1)$ composite keys takes $\mathcal{O}(M^2 \log M)$ comparisons.
+- Since $M \le 26$, $M^2 \log M \le 26^2 \log_2(26) \approx 3{,}177$ operations, which is effectively constant.
+- **Overall Time Complexity:** $\mathcal{O}(N \cdot M + M^2 \log M)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(M^2)$ to store the vote counts for all $M$ teams across all $M$ positions.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(VT+T^2\log T)$. Let $V$ be the number of vote strings and $T$ be the number of teams. Every vote has length $T$. Filling the counter vectors visits every character once, taking $O(VT)$ time.
-- **Auxiliary Space Complexity:** $O(T^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Mixed Sort Directions:** Vote counts must sort in **descending** order (higher counts win), whereas team letters must sort in **ascending** alphabetical order (`'A'` before `'B'`). Negating the vote counts (or using custom comparators) handles this cleanly.
+- **Single Ballot ($N = 1$):** If only one voter exists, every team gets exactly $1$ vote at its position in that ballot, meaning the output must exactly mirror the single ballot string.
+- **Complete Tie Across All Positions:** For `votes = ["Z", "Y", "X"]` where each letter gets equal votes, the alphabetical tie-breaker ensures output is `"XYZ"`.
+- **All Teams Present:** The problem guarantees that every ballot contains all $M$ teams without omissions or additions.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Team Ranking Comparator Flowchart
+    accDescr: Step-by-step logic comparing two teams across positional vote counts and alphabetical tie-breaking.
+
+    Start(["Compare Team X and Team Y"]) --> InitIdx["Set position pos = 1"]
+    InitIdx --> CheckPos{"pos <= M ?"}
+    
+    CheckPos -- Yes --> CompVotes{"votes(X, pos) == votes(Y, pos) ?"}
+    CompVotes -- "No (Different counts)" --> WinVote{"votes(X, pos) > votes(Y, pos) ?"}
+    WinVote -- Yes --> XWins["Team X ranks higher"]
+    WinVote -- No --> YWins["Team Y ranks higher"]
+    
+    CompVotes -- "Yes (Tied at pos)" --> NextPos["pos = pos + 1"]
+    NextPos --> CheckPos
+    
+    CheckPos -- "No (Tied at all M positions)" --> CompAlpha{"X < Y alphabetically ?"}
+    CompAlpha -- Yes --> XWins
+    CompAlpha -- No --> YWins
+```

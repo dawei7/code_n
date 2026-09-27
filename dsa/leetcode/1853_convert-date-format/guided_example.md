@@ -1,109 +1,140 @@
 # Guided Example: Convert Date Format
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step projection and text serialization of calendar dates into formatted English strings:
 
-- **Input:** `{"tables": {"Days": [{"day": "2022-04-12"}, {"day": "2021-08-09"}, {"day": "2020-06-26"}]}}`
-- **Required output:** `{"columns": ["day"], "rows": [["Tuesday, April 12, 2022"], ["Monday, August 9, 2021"], ["Friday, June 26, 2020"]]}`
+- **Input:**
+  - `Days` table:
+    - Row 1: `day = 2022-04-12`
+    - Row 2: `day = 2021-08-09`
+    - Row 3: `day = 2020-06-26`
+- **Required Output:**
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| day |
+|:---|
+| Tuesday, April 12, 2022 |
+| Monday, August 9, 2021 |
+| Friday, June 26, 2020 |
+
+This instance demonstrates decomposing standard ISO dates (`YYYY-MM-DD`) into calendar components (day of week, full month name, unpadded day of month, four-digit year) and formatting them with exact punctuation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Days`
+We are given a database relation `Days` containing individual date records.
+We must project each date into a formatted string adhering to the pattern:
+$$\text{"day\_name, month\_name day, year"}$$
+Key formatting requirements include:
+1. Full English weekday name (e.g., `"Tuesday"`, `"Monday"`, `"Friday"`).
+2. Full English month name (e.g., `"April"`, `"August"`, `"June"`).
+3. Day of the month as an unpadded integer without leading zeros (e.g., `"9"` instead of `"09"`, `"12"`, `"26"`).
+4. Four-digit Gregorian calendar year (e.g., `"2022"`, `"2021"`, `"2020"`).
+5. Exact punctuation: a comma and space following the weekday name, a space following the month name, and a comma and space following the day of the month.
 
-The objective is to compute `{"columns": ["day"], "rows": [["Tuesday, April 12, 2022"], ["Monday, August 9, 2021"], ["Friday, June 26, 2020"]]}` from `{"tables": {"Days": [{"day": "2022-04-12"}, {"day": "2021-08-09"}, {"day": "2020-06-26"}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand temporal projection functions (`DATE_FORMAT` in MySQL or `TO_CHAR` with trimming in PostgreSQL/Oracle) and their component specifiers without altering table cardinality or row identities.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Temporal Serialization Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Temporal Component Projection & String Formatting Invariant Theorem.**
+> 1. *Bijective Calendar Mapping:* Every valid calendar date $D = (Y, M, d)$ deterministically maps to a unique 4-tuple:
+>    $$\phi(D) = (\text{WeekdayName}(D), \text{MonthName}(M), d, Y)$$
+> 2. *Zero-Padding Invariant:* The day of the month $d \in [1, 31]$ must be represented as its raw decimal integer without leading zero padding ($d$, not $0d$).
+> 3. *Cardinality Preservation:* Because date formatting is a pure unary row-level projection ($f: \text{Date} \to \text{String}$), no filtering, deduplication, or grouping is performed. The output relation retains the exact cardinality of the input table:
+>    $$|\text{Output}| = |\text{Days}|$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Date Conversion Pipeline
+    accDescr: Pipeline showing ISO date inputs decomposed into weekday, month, unpadded day, and year, assembled into formatted text.
+    A["Raw Date Input: '2021-08-09'"] --> B["Deconstruct into Temporal Components"]
+    B --> C1["Weekday: 'Monday' (%W)"]
+    B --> C2["Month Name: 'August' (%M)"]
+    B --> C3["Day without zero: '9' (%e)"]
+    B --> C4["Year: '2021' (%Y)"]
+    C1 & C2 & C3 & C4 --> D["Concatenate with delimiters: '%W, %M %e, %Y'"]
+    D --> E["Output String: 'Monday, August 9, 2021'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Let MySQL format each date directly.** The source column already has SQL type `DATE`, so MySQL understands its year, month, day of month, and weekday. The query applies `DATE_FORMAT` to every row rather than manually extracting numeric fields or maintaining lookup tables for month and weekday names.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Days": [{"day": "2022-04-12"}, {"day": "2021-08-09"}, {"day": "2020-06-26"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace each date in the sample relation:
 
 ---
 
-### Step 2: Core Step 4
-
-Each percent code contributes one required component, while commas and spaces in the format string are copied literally into the result.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Date `2022-04-12`
+- Year: $Y = 2022$.
+- Month: $M = 04 \implies$ full English month name is `"April"`.
+- Day of month: $d = 12 \implies$ integer representation without leading zeros is `"12"`.
+- Day of week calculation for April 12, 2022: `"Tuesday"`.
+- Apply punctuation template:
+  $$\text{"Tuesday"} + \text{", "} + \text{"April"} + \text{" "} + \text{"12"} + \text{", "} + \text{"2022"} = \text{"Tuesday, April 12, 2022"}$$
 
 ---
 
-### Step 3: Optimality Decision
+### Step 2: Process Date `2021-08-09`
+- Year: $Y = 2021$.
+- Month: $M = 08 \implies$ full English month name is `"August"`.
+- Day of month: $d = 09 \implies$ stripped of leading zero becomes `"9"`.
+- Day of week calculation for August 9, 2021: `"Monday"`.
+- Apply punctuation template:
+  $$\text{"Monday"} + \text{", "} + \text{"August"} + \text{" "} + \text{"9"} + \text{", "} + \text{"2021"} = \text{"Monday, August 9, 2021"}$$
 
-Synthesize the final answer directly from validated sub-states.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["day"], "rows": [["Tuesday, April 12, 2022"], ["Monday, August 9, 2021"], ["Friday, June 26, 2020"]]}` |
+### Step 3: Process Date `2020-06-26`
+- Year: $Y = 2020$.
+- Month: $M = 06 \implies$ full English month name is `"June"`.
+- Day of month: $d = 26 \implies$ unpadded integer is `"26"`.
+- Day of week calculation for June 26, 2020: `"Friday"`.
+- Apply punctuation template:
+  $$\text{"Friday"} + \text{", "} + \text{"June"} + \text{" "} + \text{"26"} + \text{", "} + \text{"2020"} = \text{"Friday, June 26, 2020"}$$
+
+---
+
+### Step 4: Relation Assembly
+The formatted rows are projected under the required output column name `day`:
+
+| day |
+|:---|
+| Tuesday, April 12, 2022 |
+| Monday, August 9, 2021 |
+| Friday, June 26, 2020 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Days": [{"day": "2022-04-12"}, {"day": "2021-08-09"}, {"day": "2020-06-26"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["day"], "rows": [["Tuesday, April 12, 2022"], ["Monday, August 9, 2021"], ["Friday, June 26, 2020"]]}` | Verified |
+| Input ISO Date | Weekday Name | Month Name | Unpadded Day | 4-Digit Year | Assembled Formatted String |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| `2022-04-12` | `Tuesday` | `April` | `12` | `2022` | `"Tuesday, April 12, 2022"` |
+| `2021-08-09` | `Monday` | `August` | `9` (no zero) | `2021` | `"Monday, August 9, 2021"` |
+| `2020-06-26` | `Friday` | `June` | `26` | `2020` | `"Friday, June 26, 2020"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Each output value strictly conforms to the exact specification: English weekday spelled in full, English month spelled in full, day without leading zeros, and four-digit year, delimited by commas and spaces as specified.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** A unary projection evaluates every row in `Days` independently, ensuring no date is dropped or modified beyond the requested formatting.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Manual `CASE` expressions:** Weekday and month names could be mapped manually, but this is verbose and more error-prone than built-in date formatting.
-- **Concatenate extracted fields:** `DAYNAME`, `MONTHNAME`, `DAY`, and `YEAR` can be combined with `CONCAT`, but `DATE_FORMAT` states the desired pattern in one place.
-- **Single-digit day:** `%e` deliberately avoids a leading zero.
-- **Double-digit day:** `%e` returns the ordinary two digits without changing them.
-- **Leap day:** MySQL derives the correct weekday and month information from the valid `DATE` value.
-- **Different years:** `%Y` always emits the full four-digit year.
-- **Case sensitivity:** Full weekday and month names have the capitalization shown in the examples under the expected English locale.
-- **Any-order output:** Omitting `ORDER BY` is intentional and permitted.
-- **Unique source dates:** Each appears once, and the query preserves that one-to-one relationship.
-- **Null dates:** The local schema does not describe nullability; if null existed, `DATE_FORMAT` would return null for that row.
-- **Session locale:** An external non-English `lc_time_names` setting would change names, so English locale is an environmental dependency.
-- **Alias:** `AS day` is needed to match the requested result column name.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading Zero in Day Format:** Using `%d` (which outputs two digits like `"09"`) instead of `%e` (which outputs unpadded `"9"`). For August 9, `%d` would produce `"Monday, August 09, 2021"`, which fails string equality against `"Monday, August 9, 2021"`.
+- **Abbreviated Month or Weekday:** Using `%a` (e.g. `"Tue"`) or `%b` (e.g. `"Apr"`) rather than the full names `%W` and `%M`.
+- **Column Alias Missing:** Omitting the column alias `AS day` causes SQL engines to name the output column after the expression (e.g. `DATE_FORMAT(...)`), failing schema validation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(r)$. Let `r` be the number of rows in `Days`. The database scans each row once and performs one bounded date-formatting operation, giving `O(r)` logical time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R)$ where $R$ is the number of rows in the `Days` table. Each date undergoes a constant-time string serialization.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond the memory required to buffer the output stream.

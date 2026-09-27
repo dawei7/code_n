@@ -1,139 +1,214 @@
 # Guided Example: Product Sales Analysis III
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step extraction of initial product sales records using composite key semi-joins, prove the Composite Minimum Year Semi-Join Theorem and the First-Year Tie-Retention Invariant, and analyze query execution across representative database instances:
 
-- **Input:** `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}]}}`
-- **Required output:** `{"columns": ["product_id", "first_year", "quantity", "price"], "rows": [[100, 2008, 10, 5000], [200, 2011, 15, 9000]]}`
+- **Representative Instance 1 (Earliest Sale Year per Product):**
+  - Table `Sales`:
+    $$
+    \begin{array}{|c|c|c|c|c|}
+    \hline
+    \textbf{sale\_id} & \textbf{product\_id} & \textbf{year} & \textbf{quantity} & \textbf{price} \\
+    \hline
+    1 & 100 & 2008 & 10 & 5000 \\
+    2 & 100 & 2009 & 12 & 5000 \\
+    7 & 200 & 2011 & 15 & 9000 \\
+    \hline
+    \end{array}
+    $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{product\_id} & \textbf{first\_year} & \textbf{quantity} & \textbf{price} \\
+  \hline
+  100 & 2008 & 10 & 5000 \\
+  200 & 2011 & 15 & 9000 \\
+  \hline
+  \end{array}
+  $$
+  - Problem definitions:
+    - Select the `product_id`, `year` (renamed as `first_year`), `quantity`, and `price` for the **first year** of every product sold.
+    - Return the resulting table in any order.
+  - The Two-Phase Semi-Join Strategy:
+    1. **Phase 1 (Discover Earliest Year per Product):**
+       - Group by `product_id` and compute the minimum year:
+         $$
+         \mathcal{K}^* = \gamma_{\text{product\_id}, \; \min(\text{year}) \to \text{year}}(\text{Sales})
+         $$
+       - For this instance:
+         $$\mathcal{K}^* = \{(100, 2008), \; (200, 2011)\}$$
+    2. **Phase 2 (Filter Original Sales via Composite Semi-Join):**
+       - Filter `Sales` tuples whose composite pair $(product\_id, year) \in \mathcal{K}^*$.
+       - Row 1: $(100, 2008) \in \mathcal{K}^* \implies$ **Retained**: `[100, 2008, 10, 5000]`.
+       - Row 2: $(100, 2009) \notin \mathcal{K}^* \implies$ Filtered out ($2009 > 2008$).
+       - Row 3: $(200, 2011) \in \mathcal{K}^* \implies$ **Retained**: `[200, 2011, 15, 9000]`.
+  - Result:
+    $$
+    [[\mathbf{100, 2008, 10, 5000}], \; [\mathbf{200, 2011, 15, 9000}]]
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (First-Year Tie Retention):**
+  - Table `Sales`:
+    $$
+    \begin{array}{|c|c|c|c|c|}
+    \hline
+    \textbf{sale\_id} & \textbf{product\_id} & \textbf{year} & \textbf{quantity} & \textbf{price} \\
+    \hline
+    1 & 5 & 2020 & 2 & 10 \\
+    2 & 5 & 2020 & 3 & 11 \\
+    3 & 5 & 2021 & 4 & 12 \\
+    \hline
+    \end{array}
+    $$
+  - Notice: Product $5$ has **two separate sales in its first year** ($2020$):
+    - Transaction $1$: $qty = 2, price = 10$
+    - Transaction $2$: $qty = 3, price = 11$
+  - The problem requires reporting all sales entries for the first year.
+  - $\mathcal{K}^* = \{(5, 2020)\}$.
+  - Both transaction $1$ and transaction $2$ match $(5, 2020)$ and are **both retained**:
+    $$
+    [[5, 2020, 2, 10], \; [5, 2020, 3, 11]]
+    $$
+  - Any ranking mechanism that artificially breaks ties (e.g. `ROW_NUMBER() = 1`) would erroneously discard transaction $2$!
+
+- **Representative Instance 3 (Single Sale per Product):**
+  - A product with exactly one sale record has its only recorded year automatically as its first year.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Sales`
+Given table `Sales`, report `product_id`, `first_year`, `quantity`, and `price` for every transaction occurring in the product's debut sale year.
 
-The objective is to compute `{"columns": ["product_id", "first_year", "quantity", "price"], "rows": [[100, 2008, 10, 5000], [200, 2011, 15, 9000]]}` from `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Single-Row Aggregation / Window Fallacy:
+  Fallacy 1: SELECT product_id, MIN(year), quantity, price FROM Sales GROUP BY product_id
+    SQL engines reject this because quantity and price are not aggregated.
+    Picking an arbitrary quantity/price distorts the transaction facts.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  Fallacy 2: ROW_NUMBER() OVER (PARTITION BY product_id ORDER BY year) = 1
+    Arbitrarily discards all but one transaction when a product has multiple sales in its first year!
 
----
+Composite Key Semi-Join Invariant (Preserves All First-Year Ties):
+  1. Discover the minimum year for each product:
+       (product_id, MIN(year))
+  2. Filter Sales rows using the composite pair:
+       WHERE (product_id, year) IN (SELECT product_id, MIN(year) FROM Sales GROUP BY product_id)
+  - Retains EVERY legitimate transaction from that debut year.
+  - Preserves exact transaction quantities and unit prices.
+  - Operates in linear O(|Sales|) time via hash semi-join!
+```
 
-## 2. Conceptual Foundation & Invariants
+Separating debut year discovery from transaction attribute retrieval preserves the exact grain of the underlying sales records while accommodating ties.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Separate finding the first year from returning its sales
-
-For each product, the query must first discover its minimum `year`. It must then return every original sale row for that product in that year.
-
-These are deliberately two steps. Aggregating to `MIN(year)` alone loses `quantity` and `price` because those values belong to individual sale rows. Joining or filtering the original table by the per-product minimum restores the full first-year rows.
-
-The phrase "all sales entries" matters. A product can have multiple sales in its earliest year. The query must retain every one rather than choose an arbitrary row or combine their quantities.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Composite Minimum Year Semi-Join Theorem & First-Year Tie-Retention Invariant**:
+1. **Per-Product Minimum Partition:** The debut year $Y^*(p) = \min \{ t[year] : t \in \mathcal{R}_{\text{Sales}}, t[product\_id] = p \}$ defines the temporal boundary for each product.
+2. **Semi-Join Filtering:** $\mathcal{R}_{\text{Out}} = \pi_{\text{product\_id}, \text{year} \to \text{first\_year}, \text{quantity}, \text{price}} (\mathcal{R}_{\text{Sales}} \ltimes_{(product\_id, year)} \mathcal{K}^*)$.
+3. **Tie Multiplicity Preservation:** All tuples sharing the debut year $(p, Y^*(p))$ are retained, preventing data loss.
+4. Total time $\mathcal{O}(|\text{Sales}|)$ via hash aggregation and probe, auxiliary space $\mathcal{O}(|\text{Products}|)$.
 
 ---
 
-### Step 2: Compute one earliest-year key per product
+## 2. Conceptual Foundation & Composite Semi-Join Pipeline
 
-The inner query is:
+```mermaid
+flowchart TD
+    accTitle: Product Sales Analysis III Semi-Join Pipeline
+    accDescr: Flowchart illustrating subquery aggregation of minimum year per product and outer table composite key filtering
+    Start["Table Sales (N rows)"] --> Subquery["Subquery:\nGROUP BY product_id\nCompute MIN(year) per product"]
+    Subquery --> HashBuild["Build Hash Table of (product_id, min_year)\nKeys: (p, Y*(p))"]
+    HashBuild --> ScanOuter["Scan each row in Sales:\n(sale_id, product_id, year, quantity, price)"]
+    ScanOuter --> CheckMatch{"(product_id, year) in Hash Table ?"}
+    CheckMatch -->|"Yes: First-year transaction"| ProjectRow["Project (product_id, year AS first_year, quantity, price)"]
+    CheckMatch -->|"No: Later-year sale"| SkipRow["Discard row"]
+    ProjectRow --> AppendOut["Append to output relation"]
+    SkipRow --> NextRow["Next Sales row"]
+    AppendOut --> NextRow
+    NextRow --> CheckDone{"More rows in Sales ?"}
+    CheckDone -->|"Yes"| ScanOuter
+    CheckDone -->|"No: All rows checked"| Finish["Return output table"]
+```
 
+### The Composite Minimum Year Semi-Join Theorem
 
-
-`GROUP BY product_id` creates one group from all sale rows for each product.
-
-Within each group, `MIN(year)` returns the smallest year value. The subquery therefore produces one pair:
-
-
-
-for every product appearing in `Sales`.
-
-The alias `AS year` makes the second column's role compatible with the outer tuple comparison. The alias is not the final output name; the outer query later renames the original sale year to `first_year`.
-
-No `quantity` or `price` appears in this grouped result. Selecting either without aggregation would not identify which source row it came from, especially when several rows share the earliest year.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $\mathcal{S}$ denote the `Sales` relation with schema $(sale\_id, product\_id, year, quantity, price)$.
+1. **Debut Year Functional Mapping:**
+   Define the debut year function $Y^*: \pi_{\text{product\_id}}(\mathcal{S}) \to \mathbb{Z}^+$ by:
+   $$
+   Y^*(p) = \min \{ t[\text{year}] : t \in \mathcal{S}, \; t[\text{product\_id}] = p \}
+   $$
+   The set of valid debut key pairs is:
+   $$
+   \mathcal{K}^* = \{ (p, Y^*(p)) : p \in \pi_{\text{product\_id}}(\mathcal{S}) \}
+   $$
+2. **Semi-Join Selection:**
+   The set of all first-year sale transactions is the semi-join:
+   $$
+   \mathcal{S}^* = \mathcal{S} \ltimes_{(\text{product\_id}, \text{year}) \in \mathcal{K}^*} \mathcal{K}^* = \{ s \in \mathcal{S} : (s[\text{product\_id}], s[\text{year}]) \in \mathcal{K}^* \}
+   $$
+3. **Soundness with Respect to First-Year Ties:**
+   Suppose product $p$ has $k \ge 1$ transactions in year $Y^*(p)$:
+   $$
+   s_1, s_2, \dots, s_k \in \mathcal{S} \quad \text{with } s_i[\text{product\_id}] = p, \; s_i[\text{year}] = Y^*(p)
+   $$
+   For every $i \in \{1, \dots, k\}$, the pair $(s_i[\text{product\_id}], s_i[\text{year}]) = (p, Y^*(p)) \in \mathcal{K}^*$.
+   Therefore, each $s_i$ is preserved in $\mathcal{S}^*$.
+   No transaction is dropped, and no non-first-year transaction ($year > Y^*(p)$) can match.
+4. **Attribute Renaming:**
+   Projecting $\pi_{\text{product\_id}, \text{year} \to \text{first\_year}, \text{quantity}, \text{price}}(\mathcal{S}^*)$ yields the target schema with authentic sale quantities and prices. $\blacksquare$
 
 ---
 
-### Step 3: Filter original rows with a composite membership test
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-The outer condition is:
+### Phase 1: Aggregate Earliest Year Table $\mathcal{K}^*$
+- Group $100$: years $\{2008, 2009\} \implies \min(year) = \mathbf{2008} \implies (100, 2008) \in \mathcal{K}^*$.
+- Group $200$: years $\{2011\} \implies \min(year) = \mathbf{2011} \implies (200, 2011) \in \mathcal{K}^*$.
 
+### Phase 2: Probe and Filter `Sales`
+- **Row 1 ($sale\_id = 1$):** $(100, 2008) \in \mathcal{K}^* \implies$ Retain `[100, 2008, 10, 5000]`.
+- **Row 2 ($sale\_id = 2$):** $(100, 2009) \notin \mathcal{K}^* \implies$ Filtered out.
+- **Row 3 ($sale\_id = 7$):** $(200, 2011) \in \mathcal{K}^* \implies$ Retain `[200, 2011, 15, 9000]`.
 
-
-`(product_id, year)` is a row-value expression. A sale row passes when its two-column pair equals one of the product-and-minimum-year pairs returned by the subquery.
-
-Matching both columns is essential:
-
-- Matching only `year` could retain a later sale for one product merely because that year is the first year of another product.
-- Matching only `product_id` would retain every year for that product.
-
-The composite pair expresses exactly the desired relation: this sale's year equals the minimum year for this same product.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["product_id", "first_year", "quantity", "price"], "rows": [[100, 2008, 10, 5000], [200, 2011, 15, 9000]]}` |
+Final Output: `[[100, 2008, 10, 5000], [200, 2011, 15, 9000]]`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Semi-Join Evaluation Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Sales": [{"sale_id": 1, "product_id": 100, "year": 2008, "quantity": 10, "price": 5000}, {"sale_id": 2, "product_id": 100, "year": 2009, "quantity": 12, "price": 5000}, {"sale_id": 7, "product_id": 200, "year": 2011, "quantity": 15, "price": 9000}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["product_id", "first_year", "quantity", "price"], "rows": [[100, 2008, 10, 5000], [200, 2011, 15, 9000]]}` | Verified |
+| `sale_id` | `product_id` | `year` | Composite Pair | In $\mathcal{K}^*$? | Filter Decision | Output Tuple |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $100$ | $2008$ | $(100, 2008)$ | **Yes** | **Retain** | `[100, 2008, 10, 5000]` |
+| $2$ | $100$ | $2009$ | $(100, 2009)$ | No | Discard | — |
+| $7$ | $200$ | $2011$ | $(200, 2011)$ | **Yes** | **Retain** | `[200, 2011, 15, 9000]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every retained tuple belongs to `Sales` and has a `year` equal to the minimum year recorded for its `product_id`.
+2. **Completeness:**
+   Every sale occurring in a product's first year satisfies $(product\_id, year) \in \mathcal{K}^*$; all ties within that year are preserved.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Join with the aggregate subquery:** Compute `(product_id, MIN(year))` and inner-join it to `Sales` on both product and year. This is semantically equivalent and often makes the two-step logic explicit.
-- **Window function:** Compute `MIN(year) OVER (PARTITION BY product_id)` for each row, then filter where `year` equals that window value. This preserves all ties but may require a derived table because window aliases are not normally available directly in `WHERE`.
-- **Correlated subquery:** Filter with `year = (SELECT MIN(year) ... WHERE product_id = outer.product_id)`. Optimizers may decorrelate it, but the grouped key set is often clearer.
-- **ROW_NUMBER:** Using `ROW_NUMBER() = 1` would keep only one row when several sales share the first year. A minimum-year filter or `DENSE_RANK() = 1` is required to preserve all ties.
-- **One sale for a product:** Its year is automatically the minimum and the row is returned.
-- **Several first-year sales:** Every row with the minimum year is returned independently.
-- **Later sale with identical quantity and price:** It is rejected because the composite key includes year.
-- **Same earliest year across products:** Matching also includes product identifier, so groups cannot interfere.
-- **No Product table:** This problem requires only `Sales`; product metadata is irrelevant.
-- **No DISTINCT:** Identical-looking projected rows may represent different sales and must not be collapsed.
-- **Alias first_year:** Only the output column name changes; filtering still uses the source `year`.
-- **Any order:** Omitting `ORDER BY` matches the contract.
-- **Composite row IN support:** MySQL supports row-value membership for the two-column comparison used by the exact query.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Multiple Sales in Debut Year | Multiple rows for $(p, \min(year))$ | All rows match and are outputted. | Using `ROW_NUMBER() = 1` and dropping ties. |
+| Single Sale Record | Only one sale for a product | Year is trivially the minimum; outputted directly. | Null comparison issues. |
+| Identical Debut Years Across Products | Products A and B both start in $2020$ | Composite pair $(p, year)$ isolates groups. | Comparing on `year` alone. |
+| Renamed Output Header | Column `year` renamed to `first_year` | Outer query aliases `year AS first_year`. | Filtering on the alias instead of source attribute. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(G)$. Let `R` be the number of rows in `Sales` and `G` the number of distinct products.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(|\mathcal{S}|)$, where $|\mathcal{S}|$ is the number of rows in `Sales`.
+  - Phase 1: Grouping over `Sales` takes $\mathcal{O}(|\mathcal{S}|)$ time to compute the hash table of minimum years.
+  - Phase 2: Scanning `Sales` and probing the hash table takes $\mathcal{O}(|\mathcal{S}|)$ time.
+  - Total time: strictly linear in table size.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\mathcal{P}_{\text{sold}}|)$, where $|\mathcal{P}_{\text{sold}}|$ is the number of distinct products sold, to store the key pairs $(product\_id, \min(year))$ in memory.

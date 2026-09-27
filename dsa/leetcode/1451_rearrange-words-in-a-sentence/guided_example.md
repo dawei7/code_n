@@ -1,114 +1,183 @@
 # Guided Example: Rearrange Words in a Sentence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step tokenization, case normalization, stable length sorting, and sentence-case reconstruction on a representative problem instance:
 
-- **Input:** `{"text": "Leetcode is cool"}`
-- **Required output:** `"Is cool leetcode"`
+- **Input:** $text = \text{"Keep calm and code on"}$
+- **Required Output:** `"On and keep calm code"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates stable sorting across multiple words of identical length (`"keep"`, `"calm"`, `"code"` all have length $4$), requiring preservation of their relative original order while promoting shorter words (`"on"` of length $2$, `"and"` of length $3$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a sentence `text` (A *sentence* is a string of space-separated words) in the following format:
+We are given a sentence $text$ where the first character is capitalized and words are delimited by single spaces. We must rearrange the words in strictly non-decreasing order of their lengths. If two words share the same length, their relative order from the original sentence must be preserved (**stable sort**). The output must follow standard sentence capitalization: the first letter of the newly rearranged sentence must be uppercase, while all other letters must be lowercase.
 
-The objective is to compute `"Is cool leetcode"` from `{"text": "Leetcode is cool"}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Tokenization yields $5$ words: `["Keep", "calm", "and", "code", "on"]`.
+- Converting all words to lowercase: `["keep", "calm", "and", "code", "on"]`.
+- Word lengths:
+  - `"keep"`: length $4$, original index $0$.
+  - `"calm"`: length $4$, original index $1$.
+  - `"and"`: length $3$, original index $2$.
+  - `"code"`: length $4$, original index $3$.
+  - `"on"`: length $2$, original index $4$.
+- Sorted order by length:
+  - Length $2$: `"on"`.
+  - Length $3$: `"and"`.
+  - Length $4$: `"keep"`, `"calm"`, `"code"` (tie broken by original indices $0 < 1 < 3$).
+- Capitalizing the new first word `"on"` $\implies$ `"On"`.
+- Emitted sentence: `"On and keep calm code"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model stable sorting via composite key ordering $(length, original\_index)$ and ensure case normalization preserves lowercase letters across intermediate words.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $W = [w_0, w_1, \dots, w_{m-1}]$ be the list of words obtained by splitting $text$ on spaces.
 
-| State Parameter | Role & Purpose | Initial State |
+1. **Case Normalization:** Because the first word $w_0$ starts with a capital letter, leaving it capitalized would improperly retain uppercase letters if $w_0$ moves to an interior position. Thus, all words are normalized to lowercase:
+   $$w_i' = \text{lowercase}(w_i) \quad \text{for } 0 \le i < m$$
+
+2. **Stable Sorting Criterion:** Each word $w_i'$ is mapped to a comparison tuple:
+   $$\text{key}(w_i') = (|w_i'|, \, i)$$
+   Sorting by this key guarantees:
+   - Shorter words strictly precede longer words ($|w_a'| < |w_b'|$).
+   - Equal-length words maintain their initial order ($|w_a'| = |w_b'| \implies a < b$).
+
+3. **Re-capitalization:** After sorting $W'$ into $S = [s_0, s_1, \dots, s_{m-1}]$:
+   - Capitalize the initial character of $s_0$: $s_0 \leftarrow \text{capitalize}(s_0)$.
+   - Concatenate all words with single space separators.
+
+```
+Transformation Pipeline:
+Original:       "Keep"     "calm"     "and"     "code"     "on"
+Original Index:    0          1         2         3         4
+Length:            4          4         3         4         2
+Lowercase:       "keep"     "calm"    "and"     "code"     "on"
+                   |          |         |         |         |
+                   +----------+---------+---------+---------+
+                                        |
+                                Stable Sort by (Length, Index)
+                                        v
+Sorted Tokens:   "on"       "and"     "keep"    "calm"     "code"
+Lengths:          (2)        (3)       (4)       (4)        (4)
+Indices:          [4]        [2]       [0]       [1]        [3]  (Preserved!)
+                   |
+Capitalize First: "On"
+Joined Output:   "On and keep calm code"
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Original Index ($i$) | Integer $0 \le i < m$ | Tie-breaking secondary key guaranteeing stability |
+| Word Token ($w_i$) | String | Textual word extracted from sentence |
+| Normalized Token ($w_i'$) | String (lowercase) | Case-standardized word representation |
+| Word Length ($|w_i'|$) | Integer $\ge 1$ | Primary sorting criterion |
+| Rearranged Sentence | String | Final joined text with sentence capitalization |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any two words $w_a'$ and $w_b'$ with equal length ($|w_a'| = |w_b'|$), $w_a'$ appears before $w_b'$ in the final sequence if and only if $a < b$.
+
+```mermaid
+flowchart TD
+    accTitle: Stable Sentence Word Length Rearranger
+    accDescr: Splits sentence into words, lowercases them, stably sorts by word length, capitalizes first word, and joins with spaces.
+    A["Input sentence text"] --> B["Split text by spaces into word tokens"]
+    B --> C["Convert all tokens to lowercase"]
+    C --> D["Stable sort tokens by length:<br/>key = length(word)"]
+    D --> E["Capitalize first character of first token"]
+    E --> F["Join tokens with single space separator"]
+    F --> G["Return rearranged sentence"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance $text = \text{"Keep calm and code on"}$.
 
-**Normalize the original capitalization before sorting.** The sentence format capitalizes only its first letter; all later letters are lowercase. Once words are rearranged, the original first word may move away from the front. If its capital letter were left unchanged, the output could contain an uppercase letter in the middle.
+### Step 1: Tokenization and Normalization
+- Splitting by space: `["Keep", "calm", "and", "code", "on"]`.
+- Converting all words to lowercase:
+  - $w_0' = \text{"keep"}$, index $0$.
+  - $w_1' = \text{"calm"}$, index $1$.
+  - $w_2' = \text{"and"}$, index $2$.
+  - $w_3' = \text{"code"}$, index $3$.
+  - $w_4' = \text{"on"}$, index $4$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"text": "Leetcode is cool"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Key Assignment and Sorting
+Each word receives a primary key (length) and secondary key (original index):
+- `"on"`: $(2, 4)$
+- `"and"`: $(3, 2)$
+- `"keep"`: $(4, 0)$
+- `"calm"`: $(4, 1)$
+- `"code"`: $(4, 3)$
 
----
+Sorted token order:
+1. `(2, 4)` $\to$ `"on"`
+2. `(3, 2)` $\to$ `"and"`
+3. `(4, 0)` $\to$ `"keep"`
+4. `(4, 1)` $\to$ `"calm"`
+5. `(4, 3)` $\to$ `"code"`
 
-### Step 2: Core Step 2
+Notice that among the three 4-letter words, `"keep"` (index 0) strictly precedes `"calm"` (index 1), which strictly precedes `"code"` (index 3).
 
-The code first splits `text` into `words`, then applies `words[0] = words[0].lower()`. Because the original format guarantees that all other words are already lowercase, this makes every word lowercase before rearrangement. Case therefore has no lingering connection to the word's old position.
+### Step 3: Capitalization and Reassembly
+- The first word is `"on"`. Capitalizing the initial letter gives `"On"`.
+- Remaining words remain lowercase: `"and"`, `"keep"`, `"calm"`, `"code"`.
+- Joining with spaces: `"On and keep calm code"`.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-`text.split()` separates the sentence into word strings. The contract uses exactly one space between words, but calling `split` without an explicit delimiter also safely handles ordinary whitespace and does not retain separator strings. The result is a mutable list, allowing the code to normalize and sort in place.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Is cool leetcode"` |
+| Rank | Sorted Token | Word Length | Original Position | Tie-break Invariant | Status |
+|---|---|---|---|---|---|
+| 1 | `"on"` $\to$ `"On"` | 2 | 4 | Unique minimum length | Initial capitalized word |
+| 2 | `"and"` | 3 | 2 | Unique middle length | Lowercase |
+| 3 | `"keep"` | 4 | 0 | Earliest of length 4 | Lowercase |
+| 4 | `"calm"` | 4 | 1 | Second of length 4 | Lowercase |
+| 5 | `"code"` | 4 | 3 | Third of length 4 | Lowercase |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+```
+State Evolution Trace:
+Raw Input:       "Keep calm and code on"
+Tokens (Lower):  ["keep", "calm", "and", "code", "on"]
+Length Map:      [  4,      4,      3,      4,     2  ]
+Sorted Array:    ["on", "and", "keep", "calm", "code"]
+Capitalized:     "On" + " and keep calm code"
+Final Result:    "On and keep calm code"
+```
+
+| Processing Phase | Token Sequence Snapshot | Lengths Vector | Action Description |
 |---|---|---|---|
-| Initialization | Initial input `{"text": "Leetcode is cool"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Is cool leetcode"` | Verified |
+| Split & Lowercase | `["keep", "calm", "and", "code", "on"]` | $[4, 4, 3, 4, 2]$ | Strip initial capital, isolate words |
+| Stable Sort | `["on", "and", "keep", "calm", "code"]` | $[2, 3, 4, 4, 4]$ | Ascending length with stable index order |
+| Sentence Case | `["On", "and", "keep", "calm", "code"]` | $[2, 3, 4, 4, 4]$ | Uppercase first character of index 0 |
+| Final Join | `"On and keep calm code"` | - | Emit space-delimited string |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every word in the original sentence is preserved exactly once. Since the sort key uses length as the primary metric, the lengths of words in the resulting sentence form a non-decreasing sequence: $|s_0| \le |s_1| \le \dots \le |s_{m-1}|$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By using a stable sorting algorithm (or explicitly including original indices as the secondary comparison key), words with equal lengths never invert their initial relative order. Formatting ensures only the very first letter of the reconstructed sentence is capitalized, satisfying all formatting constraints.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Attach original indices:** Sort pairs by length and then original index. This explicitly enforces tie order and works even with an unstable sorting algorithm, but Python's stable sort makes the indices redundant.
-- **Bucket words by length:** Append each word to a bucket keyed by its length, then concatenate buckets from shortest to longest. This preserves tie order and can run in `O(N + W + L)` where `L` is the maximum length, but it uses a more specialized structure.
-- **Sort by length and word text:** A key such as `(len(word), word)` is wrong because it alphabetizes equal-length words instead of preserving their original order.
-- **Unstable sort by length:** In a language whose sort is not stable, equal-length words could be rearranged incorrectly. Add original indices or use stable buckets in that environment.
-- **One-word sentence:** Splitting gives one word, sorting changes nothing, and the word is returned with its first letter capitalized.
-- **Original first word moves later:** Lowercasing it before sorting prevents an uppercase letter from appearing in the middle of the result.
-- **A later word becomes first:** `title` gives it the one required initial capital after sorting.
-- **Several equal-length words:** Stability retains their complete original relative order, including duplicates.
-- **Duplicate words:** They are separate list elements and are all preserved. A set or dictionary keyed only by word would incorrectly collapse them.
-- **Already increasing lengths:** Sorting retains that length order; ties also remain stable. Capitalization is still normalized for the possibly unchanged first word.
-- **All words the same length:** Stable sorting leaves the word sequence unchanged, and only sentence capitalization is normalized.
-- **Single spaces:** `join` guarantees exactly one separator in the returned sentence, matching the format.
-- **No leading or trailing spaces:** `join` adds separators only between words, so none are introduced at the ends.
-- **Lowercase word guarantee:** `title` is safe for the new first word because the input contains ordinary lowercase-letter words. More complicated punctuation or apostrophes could make title casing affect multiple segments, but such text is outside the contract.
-- **Length versus byte count:** Python `len` counts characters in the given strings. The input is constrained to the expected letter format, so this directly represents word length.
-- **Empty input outside the contract:** Accessing `words[0]` would fail. The stated sentence constraints guarantee at least one word, so no empty-case branch is needed.
-- **Very long sentence:** The sort dominates by word count while splitting and joining remain linear in characters, consistent with `O(N + W log W)`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Unstable Sorting:** Using an unstable sort (like standard quicksort without index tie-breaking) may scramble `"keep"`, `"calm"`, and `"code"` arbitrarily, producing outputs like `"On and code calm keep"` that fail the stability requirement.
+- **Retaining Mid-Sentence Capitals:** Forgetting to lowercase the original first word `"Keep"` before sorting. If `"Keep"` moves to position 3, outputting `"On and Keep calm code"` violates the sentence casing rule where only the first character is capitalized.
+- **Trailing Spaces:** Appending trailing spaces when joining words. Using standard space-join idioms avoids superfluous whitespace.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N + W log W)$. Let `N` be the total number of characters in `text` and `W` the number of words. Splitting and lowercasing copy or process `O(N)` characters. Computing length keys requires `O(W)` calls to `len`, which is constant time for Python strings.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log M)$, where $N$ is the total character length of $text$ ($N \le 10^5$) and $M$ is the number of words ($M \le N$). Splitting and lowercasing takes $\mathcal{O}(N)$ time. Stable sorting $M$ words by integer lengths takes $\mathcal{O}(M \log M)$ comparisons. Reassembling the string takes $\mathcal{O}(N)$ time. The overall runtime is bounded by $\mathcal{O}(N + M \log M) = \mathcal{O}(N \log N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store the array of word tokens and the reconstructed output string.

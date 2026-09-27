@@ -1,128 +1,192 @@
 # Guided Example: Minimum Operations to Make the Array Alternating
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and execute the decoupled parity frequency-analysis algorithm on a representative array instance, demonstrating how extracting the top two most frequent elements per parity subsystem resolves value collisions in $O(n)$ time.
 
-- **Input:** `{"nums": [3, 1, 3, 2, 4, 3]}`
-- **Required output:** `3`
+- **Input:** `nums = [3, 1, 3, 2, 4, 3]`
+- **Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** array `nums` consisting of `n` positive integers.
-
-The objective is to compute `3` from `{"nums": [3, 1, 3, 2, 4, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance captures even-odd index decoupling, separate frequency histogram compilation, majority candidate selection, and collision arbitration between conflicting parity targets.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+An array `nums` of length $n$ is defined as **alternating** if:
+1. `nums[i] == nums[i + 2]` for all valid $0 \le i \le n - 3$.
+2. `nums[i] != nums[i + 1]` for all valid $0 \le i \le n - 2$.
 
-| State Parameter | Role & Purpose | Initial State |
+In words, all even indices must share a single uniform value $e$, all odd indices must share a single uniform value $o$, and the two target values must be strictly distinct ($e \ne o$).
+
+In one operation, we may change any element to any arbitrary positive integer. To minimize the total operations required to make `nums` alternating, we must maximize the number of existing elements that remain unchanged.
+
+In our representative instance:
+- `nums = [3, 1, 3, 2, 4, 3]` of length $n = 6$.
+- Even indices $\{0, 2, 4\}$ contain elements $[3, 3, 4]$.
+- Odd indices $\{1, 3, 5\}$ contain elements $[1, 2, 3]$.
+- Preserving target $e = 3$ at evens retains $2$ elements ($nums[0]$ and $nums[2]$).
+- Preserving target $o = 1$ at odds retains $1$ element ($nums[1]$).
+- Because $3 \ne 1$, this choice is valid, preserving $2 + 1 = 3$ elements and changing the remaining $6 - 3 = 3$ elements.
+
+---
+
+## 2. Mathematical & Algorithmic Principles
+
+### Decoupling and Frequency Maximization
+
+Let $E$ denote the multiset of values at even indices, and $O$ denote the multiset of values at odd indices:
+$$|E| = \lceil n / 2 \rceil, \quad |O| = \lfloor n / 2 \rfloor$$
+
+If we choose target values $e \in E$ and $o \in O$ with $e \ne o$:
+- The number of operations required at even positions is $|E| - \text{freq}_E(e)$.
+- The number of operations required at odd positions is $|O| - \text{freq}_O(o)$.
+- Total operations:
+  $$\text{ops}(e, o) = (|E| - \text{freq}_E(e)) + (|O| - \text{freq}_O(o)) = n - (\text{freq}_E(e) + \text{freq}_O(o))$$
+
+Minimizing total operations is mathematically equivalent to maximizing the sum of preserved frequencies:
+$$\max_{\substack{e, o \\ e \ne o}} \left( \text{freq}_E(e) + \text{freq}_O(o) \right)$$
+
+### The Sufficiency of Top-2 Candidates per Parity
+
+Because the only constraint coupling $e$ and $o$ is $e \ne o$, we only need to inspect at most the two highest-frequency elements from each subsystem:
+- Let $(e_1, c_{e1})$ and $(e_2, c_{e2})$ be the most frequent and second-most frequent values in $E$.
+- Let $(o_1, c_{o1})$ and $(o_2, c_{o2})$ be the most frequent and second-most frequent values in $O$.
+
+Two mutually exclusive cases arise:
+1. **Disjoint Champions ($e_1 \ne o_1$):**
+   The global optimum is immediately achieved by picking both primary champions:
+   $$\text{Preserved}_{\max} = c_{e1} + c_{o1}$$
+2. **Conflicting Champions ($e_1 = o_1$):**
+   We cannot assign the same value to both even and odd indices. The optimal choice must compromise on either the even parity or the odd parity by falling back to its second runner-up:
+   $$\text{Preserved}_{\max} = \max\left( c_{e1} + c_{o2}, \; c_{e2} + c_{o1} \right)$$
+
+Any third-place candidate would have a frequency less than or equal to the second-place candidate, so evaluating beyond the top two candidates is provably unnecessary.
+
+| Candidate Metric | Description | Role in Decision Boundary |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Even Leader $(e_1, c_{e1})$ | Dominant element and count in even subsystem | First choice for even positions |
+| Even Runner-Up $(e_2, c_{e2})$ | Second most frequent element in even subsystem | Fallback when $e_1 = o_1$ |
+| Odd Leader $(o_1, c_{o1})$ | Dominant element and count in odd subsystem | First choice for odd positions |
+| Odd Runner-Up $(o_2, c_{o2})$ | Second most frequent element in odd subsystem | Fallback when $o_1 = e_1$ |
+| Conflict Flag | $e_1 == o_1$ | Determines if runner-up arbitration is triggered |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count values separately by index parity
-
-The helper `f(i)` receives either zero or one. The slice `nums[i::2]` selects all positions with that parity, and `Counter` records how often every value appears in that group.
-
-Even and odd positions must be counted separately. A value that is frequent overall may be concentrated in only one parity, and the choice for one parity does not preserve occurrences at the other parity unless that same value is also selected there—which is forbidden.
-
-For each counter, the helper finds the two values with the largest frequencies. It returns four items: the most frequent value, its count, the second-most-frequent value, and its count. These become tuples `a` for even indices and `b` for odd indices.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 1, 3, 2, 4, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+accTitle: Parity Decision Tree
+accDescr: Decision diagram showing top-1 comparison and fallback to runner-ups when values collide.
+flowchart TD
+    Start["Extract Top-2 from Evens: (e1, c_e1), (e2, c_e2)<br/>Extract Top-2 from Odds: (o1, c_o1), (o2, c_o2)"] --> Check{"e1 == o1?"}
+    Check -- "No (Disjoint)" --> Opt1["Preserve: c_e1 + c_o1<br/>Ops = n - (c_e1 + c_o1)"]
+    Check -- "Yes (Collision)" --> Opt2["Evaluate Candidates:<br/>Option A: e1 + o2 => c_e1 + c_o2<br/>Option B: e2 + o1 => c_e2 + c_o1"]
+    Opt2 --> Best["Preserve: max(c_e1 + c_o2, c_e2 + c_o1)<br/>Ops = n - max(...)"]
+```
 
 ---
 
-### Step 2: Maintain the two best frequencies
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The local variables `k1` and `k2` hold the current best and second-best value keys. They both start at zero. This is a safe sentinel because every actual array value is positive, and `Counter` returns zero for a missing key.
+We trace `nums = [3, 1, 3, 2, 4, 3]` ($n = 6$).
 
-When the loop sees key `k` with count `v`, it first compares `v` with `cnt[k1]`. If `v` is larger, the old best shifts into `k2` and `k` becomes the new best. Otherwise, if `v` exceeds the current second-best count, `k` becomes `k2`.
+### Step 1: Separate Index Partitions
+- **Even Subsystem ($i \in \{0, 2, 4\}$):**
+  - Values: `nums[0] = 3`, `nums[2] = 3`, `nums[4] = 4`.
+  - Total even positions $|E| = 3$.
+- **Odd Subsystem ($i \in \{1, 3, 5\}$):**
+  - Values: `nums[1] = 1`, `nums[3] = 2`, `nums[5] = 3`.
+  - Total odd positions $|O| = 3$.
 
-After processing all keys, no unseen frequency remains, so `k1` and `k2` identify two highest counts. Ties may be resolved in whichever order `Counter.items()` encounters them. That is harmless because the later calculation needs the frequency totals and distinct candidate values, not a particular tie-breaking order.
+### Step 2: Build Frequency Tables and Extract Top-2
+- **Even Frequencies:**
+  - Count of `3`: $2$.
+  - Count of `4`: $1$.
+  - Sorting by count:
+    - Primary candidate: $e_1 = 3$ with count $c_{e1} = 2$.
+    - Secondary candidate: $e_2 = 4$ with count $c_{e2} = 1$.
+- **Odd Frequencies:**
+  - Count of `1`: $1$.
+  - Count of `2`: $1$.
+  - Count of `3`: $1$.
+  - Top two candidates (order among equals is arbitrary):
+    - Primary candidate: $o_1 = 1$ with count $c_{o1} = 1$.
+    - Secondary candidate: $o_2 = 2$ with count $c_{o2} = 1$ (or $3$ with count $1$).
 
-If a parity group has only one distinct value, the second result remains sentinel zero with frequency zero. If the odd group is empty, which occurs when `n = 1`, both returned counts are zero. These states fit the same final formulas without a special case.
+### Step 3: Test Collision Condition
+- Compare primary leaders: $e_1 = 3$ and $o_1 = 1$.
+- Check: $e_1 \ne o_1$ ($3 \ne 1$).
+- Collision is absent! Both primary champions can be selected simultaneously without violating the alternating rule ($3 \ne 1$).
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Use both most frequent values when they differ
-
-Suppose `a[0] != b[0]`. The most common even value and most common odd value already satisfy the required inequality. Keeping both preserves `a[1] + b[1]` positions.
-
-No other valid choice can preserve more: replacing either group's most frequent choice cannot increase that group's preserved count. Hence the minimum operations are
-
-$$
-n-(\texttt{a[1]}+\texttt{b[1]}).
-$$
-
-Every subtracted term counts a position left unchanged. All remaining positions can be changed directly to the selected value for their parity, one operation each.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 1, 3, 2, 4, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Step 4: Compute Preserved Count & Operation Total
+- Total preserved elements:
+  $$\text{Preserved} = c_{e1} + c_{o1} = 2 + 1 = 3$$
+- Required operations:
+  $$\text{operations} = n - \text{Preserved} = 6 - 3 = 3$$
+- Modified array structure:
+  - Even positions become $3$: $[nums[0]=3, nums[2]=3, nums[4]=3]$ (1 change: $nums[4]$ from $4 \to 3$).
+  - Odd positions become $1$: $[nums[1]=1, nums[3]=1, nums[5]=1]$ (2 changes: $nums[3]$ from $2 \to 1$, $nums[5]$ from $3 \to 1$).
+  - Target alternating sequence: `[3, 1, 3, 1, 3, 1]`.
+  - Total replacements: $1 + 2 = 3$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Sort each parity group:** Sorting reveals the most frequent values but costs $O(n\log n)$ time, while counters obtain the needed frequencies in expected $O(n)$ time.
-- **Fixed frequency arrays:** Because values are at most $10^5$, two arrays can replace the counters. This preserves linear time but allocates space based on the value bound rather than only encountered keys.
-- **Try every distinct pair:** Comparing all even candidates with all odd candidates can become quadratic in the number of distinct values and is unnecessary because only the top two frequencies matter.
-- **Length one:** The odd group is empty, the sole even value can stay, and the formula returns zero operations.
-- **Length two:** Any unequal pair already needs zero changes; an equal pair needs exactly one.
-- **Top values differ:** Both first choices are simultaneously legal, so using a second choice would never improve the number preserved.
-- **Top values collide:** One side must switch, and the maximum of the two top-plus-second combinations chooses the cheaper sacrifice.
-- **Only one value in a parity:** Its second-best sentinel has count zero, correctly representing changing every position in that group to some different positive value.
-- **Sentinel safety:** Zero cannot appear in `nums`, so it never conflicts with a real candidate value.
-- **Frequency ties:** Arbitrary ordering among tied values is safe; equal counts provide equal preservation, and the chosen first and second keys are still distinct.
-- **New values are allowed:** If a group lacks a usable existing second value, choosing any positive value different from the other parity preserves zero positions, exactly what the sentinel count represents.
-- **Input remains unchanged:** `nums[i::2]` copies the parity elements, and `Counter` only reads those copies.
-- **Operation independence:** Each mismatching position can be changed directly to any positive integer, so there is no extra transition cost beyond one operation per changed index.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The full tabular trace across both parity groups and candidate selection is recorded below:
+
+| Subsystem | Indexed Values | Frequency Histogram | Best Candidate $(k_1, v_1)$ | Runner-Up $(k_2, v_2)$ |
+|---|---|---|---|---|
+| Even ($i = 0, 2, 4$) | $[3, 3, 4]$ | $\{3: 2, 4: 1\}$ | $(3, 2)$ | $(4, 1)$ |
+| Odd ($i = 1, 3, 5$) | $[1, 2, 3]$ | $\{1: 1, 2: 1, 3: 1\}$ | $(1, 1)$ | $(2, 1)$ |
+
+### Collision & Pairing Evaluation Matrix
+
+| Pair Configuration | Even Choice $e$ | Odd Choice $o$ | Validity ($e \ne o$) | Preserved Count | Total Operations ($6 - \text{Preserved}$) | Selection Status |
+|---|---|---|---|---|---|---|
+| $(e_1, o_1)$ | 3 | 1 | Valid ($3 \ne 1$) | $2 + 1 = 3$ | $6 - 3 = 3$ | **Optimal Chosen** |
+| $(e_1, o_2)$ | 3 | 2 | Valid ($3 \ne 2$) | $2 + 1 = 3$ | $6 - 3 = 3$ | Tied Optimal |
+| $(e_2, o_1)$ | 4 | 1 | Valid ($4 \ne 1$) | $1 + 1 = 2$ | $6 - 2 = 4$ | Suboptimal |
+| $(e_2, o_2)$ | 4 | 2 | Valid ($4 \ne 2$) | $1 + 1 = 2$ | $6 - 2 = 4$ | Suboptimal |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. The two parity slices together copy $n$ elements. Building their counters, iterating over their distinct keys, and evaluating the final formulas all take $O(n)$ total time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Proof of Sufficiency for Top-Two Candidates
+Suppose the optimal solution chooses value $e^*$ for even positions and $o^*$ for odd positions.
+- If $e_1 \ne o_1$, then $\text{freq}_E(e^*) \le c_{e1}$ and $\text{freq}_O(o^*) \le c_{o1}$ for all candidates, so $c_{e1} + c_{o1}$ is an upper bound on any pair. Because $e_1 \ne o_1$ is valid, $(e_1, o_1)$ achieves this bound and is globally optimal.
+- If $e_1 = o_1 = v$, then any valid pair cannot pick both $e^* = v$ and $o^* = v$.
+  - If $e^* = v$, then $o^* \ne v$, so $\text{freq}_O(o^*) \le c_{o2}$. The best achievable sum with $e^* = v$ is $c_{e1} + c_{o2}$.
+  - If $o^* = v$, then $e^* \ne v$, so $\text{freq}_E(e^*) \le c_{e2}$. The best achievable sum with $o^* = v$ is $c_{e2} + c_{o1}$.
+  - If neither equals $v$, then $\text{freq}_E(e^*) + \text{freq}_O(o^*) \le c_{e2} + c_{o2} \le \max(c_{e1} + c_{o2}, c_{e2} + c_{o1})$.
+Thus, checking only $(e_1, o_2)$ and $(e_2, o_1)$ strictly covers the entire space of valid assignments.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Single Element Array ($n = 1$):**
+   - E.g., `nums = [5]`.
+   - Even parity has $[5]$ (count 1), odd parity is empty.
+   - Operations: $1 - (1 + 0) = 0$. Already alternating.
+2. **Two Identical Elements ($n = 2, nums = [2, 2]$):**
+   - $e_1 = 2 (cnt 1)$, $o_1 = 2 (cnt 1)$. Collision occurs ($e_1 = o_1 = 2$).
+   - Runner-ups have count $0$: $c_{e2} = 0, c_{o2} = 0$.
+   - $\max(1 + 0, 0 + 1) = 1$. Total operations: $2 - 1 = 1$. Change one $2$ to any other integer (e.g. $[2, 1]$).
+3. **Monolithic Uniform Array ($nums = [1, 1, 1, 1]$):**
+   - All elements identical. Collision $e_1 = o_1 = 1$ with $c_{e1} = 2, c_{o1} = 2$.
+   - Fallbacks have count $0$.
+   - Preserved: $\max(2 + 0, 0 + 2) = 2$. Operations: $4 - 2 = 2$. Half of the array is changed.
+4. **All Elements Distinct:**
+   - Every element has count $1$. Any valid pairing with $e_1 \ne o_1$ preserves $1 + 1 = 2$ elements, requiring $n - 2$ operations.
+
+### Common Pitfalls to Avoid
+
+- **Global Mode Selection:** Finding the most frequent element across the entire array and assigning it to either parity is an anti-pattern. An element might be frequent in both parities, or only concentrated in one. Parities must be counted completely independently.
+- **Ignoring the Collision Case ($e_1 == o_1$):** Assuming $e_1$ and $o_1$ can always be combined leads to invalid alternating arrays where $nums[i] == nums[i+1]$.
+- **Over-inspecting Beyond Top-2:** Scanning all pairs of distinct values across parities takes $O(U^2)$ time where $U$ is distinct values. Keeping only top-2 per parity guarantees $O(1)$ arbitration.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $O(n)$. Splitting `nums` into even and odd indices takes $O(n)$ time. Building the frequency maps takes $O(n)$ time. Finding the top-2 elements in each map takes $O(U)$ where $U \le n$ is the number of distinct elements. Arbitrating the final candidate pairs takes $O(1)$ arithmetic comparisons. The overall runtime is strictly linear $O(n)$.
+- **Auxiliary Space Complexity:** $O(n)$. Storing the frequency hash maps requires at most $O(n)$ auxiliary space to store counts of up to $n$ distinct integer keys. No recursive call stack or secondary arrays are required.

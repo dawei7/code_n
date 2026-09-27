@@ -1,134 +1,164 @@
 # Guided Example: Count Square Sum Triples
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace exhaustive enumeration and perfect square verification for Pythagorean triples on representative bounded integer ranges:
 
-- **Input:** `{"n": 5}`
-- **Required output:** `2`
+- **Primary Input:** `n = 5`
+- **Required Output:** `2`
+- **Expanded Input:** `n = 10`
+- **Required Output:** `4`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates verifying the Pythagorean relation $a^2 + b^2 = c^2$ within integer limits $1 \le a, b, c \le n$, accounting for ordered symmetry between legs $(a, b)$ and $(b, a)$, and testing integer square roots without cubic brute force.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **square triple** `(a,b,c)` is a triple where `a`, `b`, and `c` are **integers** and $a^{2} + b^{2} = c^{2}$.
+A **square sum triple** $(a, b, c)$ is a triple of positive integers such that:
 
-The objective is to compute `2` from `{"n": 5}` while avoiding redundant calculations and unnecessary overhead.
+$$a^2 + b^2 = c^2 \quad \text{with } 1 \le a, b, c \le n$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For $n = 5$:
+- Candidates for $(a, b)$ range over $\{1, 2, 3, 4\}$.
+- $3^2 + 4^2 = 9 + 16 = 25 = 5^2 \implies (3, 4, 5)$ is valid.
+- $4^2 + 3^2 = 16 + 9 = 25 = 5^2 \implies (4, 3, 5)$ is valid.
+- Since $(a, b, c)$ is an ordered triple and $a \neq b$, both $(3, 4, 5)$ and $(4, 3, 5)$ count distinctly.
+- Total count for $n = 5$ is **2**.
+
+For $n = 10$:
+- In addition to $(3, 4, 5)$ and $(4, 3, 5)$, their scaled multiples $(6, 8, 10)$ and $(8, 6, 10)$ satisfy $6^2 + 8^2 = 36 + 64 = 100 = 10^2 \le 10^2$.
+- Total count for $n = 10$ is **4**.
+
+The teaching goal is to understand **ordered Pythagorean enumeration and quadratic search space reduction**:
+1. Eliminating the third loop over $c$ by deriving $c = \lfloor\sqrt{a^2 + b^2}\rfloor$ directly in $\mathcal{O}(1)$ time.
+2. Checking perfect square integrity: validating $c \le n$ and $c^2 = a^2 + b^2$.
+3. Distinguishing ordered pairs: recognizing that $(a, b, c)$ and $(b, a, c)$ are distinct when $a \neq b$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Bounded Pythagorean Triple Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Bounded Pythagorean Triple Invariant Theorem.**
+> 1. *Strict Hypotenuse Dominance:* For any positive integers $a, b \ge 1$:
+>    $$c = \sqrt{a^2 + b^2} > \max(a, b)$$
+>    Consequently, if $c \le n$, both $a$ and $b$ are strictly bounded by $a \le n - 1$ and $b \le n - 1$.
+> 2. *Exact Integral Root Determination:* For any fixed pair of legs $(a, b)$, let $x = a^2 + b^2$. The value $c$ is a positive integer if and only if:
+>    $$\lfloor\sqrt{x}\rfloor^2 = x$$
+>    If this condition holds and $\lfloor\sqrt{x}\rfloor \le n$, the unique valid hypotenuse is $c = \lfloor\sqrt{x}\rfloor$.
+> 3. *Order Multiplicity:* For any primitive or scaled Pythagorean triple with legs $a \neq b$, both permutations $(a, b, c)$ and $(b, a, c)$ satisfy the equation and represent distinct coordinate tuples.
+> 4. *Complexity Reduction:* Rather than iterating over all $n^3$ triples $(a, b, c)$, iterating over pairs $(a, b) \in [1, n-1]^2$ with an $\mathcal{O}(1)$ root check reduces time complexity from $\mathcal{O}(n^3)$ to $\mathcal{O}(n^2)$ with $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Pythagorean Triple Verification Flowchart
+    accDescr: Pipeline iterating through legs a and b and validating whether their square sum forms an integer hypotenuse at most n.
+    A["Iterate a from 1 to n - 1"] --> B["Iterate b from 1 to n - 1"]
+    B --> C["Compute sum of squares: x = a^2 + b^2"]
+    C --> D["Candidate hypotenuse: c = floor(sqrt(x))"]
+    D --> E{"Is c <= n and c^2 == x?"}
+    E -- Yes --> F["Increment valid triple counter ans"]
+    E -- No --> G["Reject non-square or out-of-bounds candidate"]
+    F --> H{"More (a, b) pairs?"}
+    G --> H
+    H -- Yes --> B
+    H -- No --> I["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Enumerate the two ordered legs
-
-A valid triple satisfies $a^2+b^2=c^2$, with all three values between $1$ and $n$. The exact solution chooses every ordered pair $(a,b)$ with two nested loops, computes $x=a^2+b^2$, and asks whether $x$ is the square of an allowed integer $c$.
-
-The word ordered matters. The triples $(3,4,5)$ and $(4,3,5)$ are counted separately by the examples. Iterating every value of `a` in the outer loop and every value of `b` in the inner loop naturally visits both orders. The code should not divide its result by two.
-
-Both loops use `range(1, n)` rather than `range(1, n + 1)`. At first this may look as though it omits a legal leg equal to $n$, but no valid triple is lost. If $a=n$ and $b\ge1$, then
-
-$$
-c=\sqrt{n^2+b^2}>n,
-$$
-
-which violates $c\le n$. The same reasoning applies when $b=n$. Therefore every valid leg is at most $n-1$, while the hypotenuse may equal $n$ and is retained by the later `c <= n` check.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace all leg pairs $(a, b) \in [1, 4]^2$ for $n = 5$:
 
 ---
 
-### Step 2: Test for an integer hypotenuse
-
-For each pair, the code calculates:
-
-`x = a * a + b * b`
-
-and then
-
-`c = int(sqrt(x))`.
-
-For positive `x`, converting its nonnegative square root to an integer truncates toward zero, which is the same as taking the floor. If `x` is a perfect square, that floor is its exact integer square root. If it is between two consecutive squares, the floor is the smaller candidate.
-
-The decisive test is `c * c == x`. Merely computing a square root is not enough: most sums of two squares are not perfect squares. Squaring the integer candidate again makes the perfect-square decision exact after the candidate has been selected. The additional condition `c <= n` enforces the upper bound on the hypotenuse. The lower bound needs no separate test because positive `a` and `b` imply `c > 0`.
-
-For $n=5$, the loops encounter $(a,b)=(3,4)$ and calculate $x=9+16=25$, then `c = 5`. Both conditions succeed. They also encounter $(4,3)$ and count it independently. A pair such as $(1,2)$ gives $x=5$ and `c = 2`, but $2^2\ne5$, so it is rejected.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Scan for $a = 1$
+- $b = 1: x = 1^2 + 1^2 = 2 \implies c = \lfloor\sqrt{2}\rfloor = 1$, $1^2 = 1 \neq 2$ (Invalid).
+- $b = 2: x = 1^2 + 2^2 = 5 \implies c = \lfloor\sqrt{5}\rfloor = 2$, $2^2 = 4 \neq 5$ (Invalid).
+- $b = 3: x = 1^2 + 3^2 = 10 \implies c = \lfloor\sqrt{10}\rfloor = 3$, $3^2 = 9 \neq 10$ (Invalid).
+- $b = 4: x = 1^2 + 4^2 = 17 \implies c = \lfloor\sqrt{17}\rfloor = 4$, $4^2 = 16 \neq 17$ (Invalid).
 
 ---
 
-### Step 3: Why every count is correct
+### Step 2: Scan for $a = 2$
+- $b = 1: x = 4 + 1 = 5 \implies c = 2$, $4 \neq 5$ (Invalid).
+- $b = 2: x = 4 + 4 = 8 \implies c = 2$, $4 \neq 8$ (Invalid).
+- $b = 3: x = 4 + 9 = 13 \implies c = 3$, $9 \neq 13$ (Invalid).
+- $b = 4: x = 4 + 16 = 20 \implies c = 4$, $16 \neq 20$ (Invalid).
 
-Whenever the algorithm increments `ans`, it has an integer `c` satisfying `c * c == a * a + b * b` and `c <= n`. The loops already guarantee $1\le a,b<n$, and positivity guarantees $c\ge1$. Thus every increment corresponds to a legal square triple.
+---
 
-Conversely, take any legal square triple $(a,b,c)$. Because $c\le n$ and both legs are positive, each leg is strictly smaller than $c$, so $a<n$ and $b<n$. The nested loops therefore visit that exact ordered pair. At that iteration `x=c^2`, `sqrt(x)` yields $c$ under these small constraints, the squared candidate equals `x`, and the upper-bound check succeeds. Thus every legal ordered triple is counted. Since a positive square has only one positive square root, an ordered pair cannot be counted with two different values of $c$.
+### Step 3: Scan for $a = 3$
+- $b = 1: x = 9 + 1 = 10 \implies$ (Invalid).
+- $b = 2: x = 9 + 4 = 13 \implies$ (Invalid).
+- $b = 3: x = 9 + 9 = 18 \implies$ (Invalid).
+- $b = 4: x = 3^2 + 4^2 = 9 + 16 = 25$.
+  - Candidate $c = \lfloor\sqrt{25}\rfloor = 5$.
+  - Verification: $c = 5 \le n = 5$ and $5^2 = 25 == x$ (True).
+  - Valid triple found: **$(3, 4, 5)$**. Counter: $\text{ans} = 1$.
 
-The maximum possible `x` in the loops is below $2\cdot250^2$. Such small integers and their roots are represented accurately by ordinary double-precision floating point, so the exact solution's `sqrt` candidate is safe for the stated domain. For unrestricted much larger integers, an integer square-root function would be more robust.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 4: Scan for $a = 4$
+- $b = 1: x = 16 + 1 = 17 \implies$ (Invalid).
+- $b = 2: x = 16 + 4 = 20 \implies$ (Invalid).
+- $b = 3: x = 4^2 + 3^2 = 16 + 9 = 25$.
+  - Candidate $c = \lfloor\sqrt{25}\rfloor = 5$.
+  - Verification: $c = 5 \le 5$ and $5^2 = 25 == x$ (True).
+  - Valid triple found: **$(4, 3, 5)$**. Counter: $\text{ans} = 2$.
+- $b = 4: x = 16 + 16 = 32 \implies c = 5, 25 \neq 32$ (Invalid).
+
+---
+
+### Final Result
+Total square sum triples within $n = 5$: **2**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+We record all evaluations across leg combinations for $n = 5$:
+
+| $a$ | $b$ | $x = a^2 + b^2$ | $c = \lfloor\sqrt{x}\rfloor$ | $c^2 == x$? | $c \le n = 5$? | Valid Triple Formed | Cumulative Count |
+|---|---|---|---|---|---|---|---|
+| 1 | 1..4 | 2, 5, 10, 17 | 1, 2, 3, 4 | No | Yes | None | 0 |
+| 2 | 1..4 | 5, 8, 13, 20 | 2, 2, 3, 4 | No | Yes | None | 0 |
+| 3 | 1..3 | 10, 13, 18 | 3, 3, 4 | No | Yes | None | 0 |
+| 3 | 4 | 25 | 5 | **Yes** | **Yes** | **(3, 4, 5)** | **1** |
+| 4 | 1..2 | 17, 20 | 4, 4 | No | Yes | None | 1 |
+| 4 | 3 | 25 | 5 | **Yes** | **Yes** | **(4, 3, 5)** | **2** |
+| 4 | 4 | 32 | 5 | No | Yes | None | 2 |
+
+We compare the growth of valid triples across small values of $n$:
+
+| Upper Bound $n$ | Total Pairs Evaluated $(n-1)^2$ | Valid Triples Identified | Distinct $(a, b, c)$ Triples |
 |---|---|---|---|
-| Initialization | Initial input `{"n": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| 4 | 9 | 0 | None |
+| 5 | 16 | 2 | $(3, 4, 5), (4, 3, 5)$ |
+| 9 | 64 | 2 | $(3, 4, 5), (4, 3, 5)$ |
+| 10 | 81 | 4 | Add $(6, 8, 10), (8, 6, 10)$ |
+| 13 | 144 | 6 | Add $(5, 12, 13), (12, 5, 13)$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A triple $(a, b, c)$ is incremented if and only if $a, b \in [1, n-1]$, $c = \lfloor\sqrt{a^2 + b^2}\rfloor \le n$, and $c^2 = a^2 + b^2$. These criteria are algebraic invariants directly defining a square sum triple. Because $a, b \ge 1$, we have $c = \sqrt{a^2 + b^2} > \max(a, b) \ge 1$, ensuring $c \ge 1$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any square sum triple $(a, b, c)$ with $1 \le a, b, c \le n$ must satisfy $a < c \le n$ and $b < c \le n$, which implies $a \in [1, n-1]$ and $b \in [1, n-1]$. Iterating over all pairs $(a, b) \in [1, n-1] \times [1, n-1]$ guarantees that every valid configuration is examined.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Precomputed square set:** Store `c * c` for every $1\le c\le n$, then test whether `a * a + b * b` belongs to the set. This keeps $O(n^2)$ time but uses $O(n)$ space and avoids floating-point square roots.
-- **Integer square root:** Python's `isqrt` can compute the floor square root exactly with integer arithmetic. It gives the same asymptotic bounds and is safer if constraints become much larger.
-- **Three nested loops:** Enumerating `a`, `b`, and `c` directly is easy to understand but takes $O(n^3)$ time even though $c$ is determined by the first two values.
-- **Generate primitive Pythagorean triples:** Euclid's formula plus scaling can enumerate triples more selectively, but avoiding duplicates and counting ordered legs correctly adds complexity unnecessary for $n\le250$.
-- **Do not divide by two:** The problem counts $(a,b,c)$ and $(b,a,c)$ separately when $a\ne b$. The nested loops already implement that ordered interpretation.
-- **A leg equal to $n$:** It cannot occur in a valid triple with positive other leg and hypotenuse at most $n$, so the half-open loop range is correct.
-- **Small bounds:** For $n<5$, no positive integer Pythagorean triple fits, and the counter remains zero.
-- **Hypotenuse exactly $n$:** The condition is `c <= n`, so triples such as $(6,8,10)$ are correctly included when $n=10$.
-- **Non-square sum:** Flooring the square root does not itself validate a pair. The exact equality `c * c == x` is what rejects it.
-- **Floating-point scope:** The given upper bound keeps all values tiny enough for reliable `sqrt` conversion. With huge integers, replace `sqrt` with an integer square root rather than trusting rounding.
-- **Repeated triples:** Each ordered pair appears exactly once in the nested loops, so the same ordered triple is never counted twice.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Ordered vs. Unordered Pairs:** The problem requires counting ordered triples $(a, b, c)$. A common error is enforcing $a < b$ to avoid duplicate computation and forgetting to multiply by 2 (or iterating $b$ from 1 to $n-1$).
+- **Floating-Point Imprecision with `sqrt`:** In languages with floating-point roundoff, computing $\sqrt{x}$ can yield values like $4.999999999$, which truncates to integer $4$ rather than $5$. Testing $c^2 == x$ directly protects against roundoff.
+- **Overlooking Leg-Hypotenuse Bounds:** Because $c > a$ and $c > b$, neither leg can equal $n$. Constraining loop ranges to $1 \le a < n$ and $1 \le b < n$ avoids examining impossible configurations.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The outer loop has $n-1$ iterations and the inner loop has $n-1$ iterations for each outer value. Each pair performs a constant number of multiplications, additions, comparisons, and one square-root operation. Under the standard fixed-width arithmetic model, total time is $(n-1)^2\cdot O(1)=O(n^2)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$. The nested loops over $a$ and $b$ execute $(n - 1)^2$ iterations. Within each iteration, computing $x = a^2 + b^2$, taking the integer square root, and squaring $c$ takes $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$. Only a counter and intermediate scalar integer variables are retained in memory.

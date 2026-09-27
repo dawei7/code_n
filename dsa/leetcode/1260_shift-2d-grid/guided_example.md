@@ -1,137 +1,200 @@
 # Guided Example: Shift 2D Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step cyclic rotation of a 2D matrix on a representative problem instance:
 
-- **Input:** `{"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 9]], "k": 1}`
-- **Required output:** `[[9, 1, 2], [3, 4, 5], [6, 7, 8]]`
+- **Input:**
+  - `grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+  - `k = 1`
+- **Required Output:**
+  ```text
+  [
+    [9, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+  ]
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how row-major linearization converts complex multi-branch cell transitions into modular arithmetic shifts over a 1D index space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a 2D `grid` of size `m x n` and an integer `k`. You need to shift the `grid` `k` times.
+The problem specifies three distinct movement rules for a single shift operation on an $m \times n$ matrix:
+1. `grid[i][j]` moves to `grid[i][j + 1]` (horizontal shift within the same row).
+2. `grid[i][n - 1]` moves to `grid[i + 1][0]` (wrap around to the start of the next row).
+3. `grid[m - 1][n - 1]` moves to `grid[0][0]` (wrap around from bottom-right to top-left).
 
-The objective is to compute `[[9, 1, 2], [3, 4, 5], [6, 7, 8]]` from `{"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 9]], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+Simulating these three conditional branches cell by cell across $k$ rounds incurs $\mathcal{O}(k \cdot m \cdot n)$ time, which becomes inefficient when $k$ is large ($k \le 100$). Furthermore, in-place overwriting risks destroying values before they have been propagated.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Initial 2D Matrix (3 x 3):
+[ 1,  2,  3 ]
+[ 4,  5,  6 ]
+[ 7,  8,  9 ]
+
+Row-Major Flattened 1D Array (Length 9):
+Index:  0   1   2   3   4   5   6   7   8
+Value: [1,  2,  3,  4,  5,  6,  7,  8,  9]
+
+Cyclic Shift by k = 1 (Index: (idx + 1) mod 9):
+Index:  0   1   2   3   4   5   6   7   8
+Value: [9,  1,  2,  3,  4,  5,  6,  7,  8]
+
+Reconstructed 2D Matrix:
+[ 9,  1,  2 ]
+[ 3,  4,  5 ]
+[ 6,  7,  8 ]
+```
+
+The teaching goal is to recognize that the three piecewise transition rules are collectively identical to a standard cyclic right-shift of a 1D flattened array. Mapping indices directly via modular arithmetic achieves an optimal single-pass $\mathcal{O}(m \cdot n)$ construction independent of $k$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the grid have $m$ rows and $n$ columns. The total number of elements is $N = m \cdot n$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Bijective Coordinate Transformations
+1. **Flattening (2D to 1D):**
+   A cell at coordinate $(i, j)$ with $0 \le i < m$ and $0 \le j < n$ has unique row-major 1D index:
+   $$
+   \text{idx} = i \cdot n + j
+   $$
+2. **Modular Shift:**
+   Shifting cyclically right by $k$ positions advances index $\text{idx}$ to:
+   $$
+   \text{idx}' = (\text{idx} + k) \pmod N
+   $$
+3. **Unflattening (1D to 2D):**
+   The destination 2D coordinates $(i', j')$ are obtained via Euclidean division by $n$:
+   $$
+   i' = \lfloor \text{idx}' / n \rfloor, \quad j' = \text{idx}' \pmod n
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Source Cell $(i, j)$ | Source Value | 1D Index $\text{idx} = i \cdot n + j$ | Shifted Index $\text{idx}' = (\text{idx} + 1) \bmod 9$ | Target Cell $(i', j')$ |
+|---|---|---|---|---|
+| $(0, 0)$ | $1$ | $0$ | $1$ | $(0, 1)$ |
+| $(0, 1)$ | $2$ | $1$ | $2$ | $(0, 2)$ |
+| $(0, 2)$ | $3$ | $2$ | $3$ | $(1, 0)$ |
+| $(1, 0)$ | $4$ | $3$ | $4$ | $(1, 1)$ |
+| $(1, 1)$ | $5$ | $4$ | $5$ | $(1, 2)$ |
+| $(1, 2)$ | $6$ | $5$ | $6$ | $(2, 0)$ |
+| $(2, 0)$ | $7$ | $6$ | $7$ | $(2, 1)$ |
+| $(2, 1)$ | $8$ | $7$ | $8$ | $(2, 2)$ |
+| $(2, 2)$ | $9$ | $8$ | $0$ | $(0, 0)$ |
+
+> **Cyclic Permutation Invariant.** The shift operation defines a permutation $\pi$ on the $m \cdot n$ elements consisting of cycles of length dividing $m \cdot n$. Applying the shift $k$ times is equivalent to applying the shift $k \pmod{m \cdot n}$ times. Every element moves deterministically to its target without interference.
+
+```mermaid
+flowchart TD
+    accTitle: Shift 2D Grid Coordinate Mapping Flow
+    accDescr: Diagram illustrating 2D cell flattening, modular shift addition, and unflattening to target 2D cell.
+    A["Cell (i, j)"] --> B["Flatten: idx = i * n + j"]
+    B --> C["Apply offset: idx' = (idx + k) mod (m * n)"]
+    C --> D["Row index: i' = idx' // n"]
+    C --> E["Column index: j' = idx' mod n"]
+    D --> F["Place in Target: output[i'][j'] = grid[i][j]"]
+    E --> F
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Seeing the grid as one circular sequence
+We execute the direct destination mapping on the $3 \times 3$ grid with $k = 1$, where $m = 3, n = 3, N = 9$.
 
-Although the input is two-dimensional, one shift follows exactly the order used when reading the grid row by row. An element moves one column to the right. From the last column, it continues at column zero of the next row. From the bottom-right cell, it wraps to the top-left cell. These are precisely the movements of a circular one-dimensional array containing all grid cells in row-major order.
+### Step 1: Mapping Row 0
+- Cell $(0, 0)$ with value $1$:
+  - $\text{idx} = 0 \cdot 3 + 0 = 0$.
+  - $\text{idx}' = (0 + 1) \bmod 9 = 1$.
+  - $i' = 1 // 3 = 0$, $j' = 1 \bmod 3 = 1 \implies \text{output}[0][1] = 1$.
+- Cell $(0, 1)$ with value $2$:
+  - $\text{idx} = 0 \cdot 3 + 1 = 1$.
+  - $\text{idx}' = (1 + 1) \bmod 9 = 2$.
+  - $i' = 2 // 3 = 0$, $j' = 2 \bmod 3 = 2 \implies \text{output}[0][2] = 2$.
+- Cell $(0, 2)$ with value $3$ (row end):
+  - $\text{idx} = 0 \cdot 3 + 2 = 2$.
+  - $\text{idx}' = (2 + 1) \bmod 9 = 3$.
+  - $i' = 3 // 3 = 1$, $j' = 3 \bmod 3 = 0 \implies \text{output}[1][0] = 3$.
 
-For a grid with $m$ rows and $n$ columns, cell `grid[i][j]` has flattened index
+### Step 2: Mapping Row 1
+- Cell $(1, 0)$ with value $4$:
+  - $\text{idx} = 1 \cdot 3 + 0 = 3$.
+  - $\text{idx}' = (3 + 1) \bmod 9 = 4$.
+  - $i' = 4 // 3 = 1$, $j' = 4 \bmod 3 = 1 \implies \text{output}[1][1] = 4$.
+- Cell $(1, 1)$ with value $5$:
+  - $\text{idx} = 1 \cdot 3 + 1 = 4$.
+  - $\text{idx}' = (4 + 1) \bmod 9 = 5$.
+  - $i' = 5 // 3 = 1$, $j' = 5 \bmod 3 = 2 \implies \text{output}[1][2] = 5$.
+- Cell $(1, 2)$ with value $6$ (row end):
+  - $\text{idx} = 1 \cdot 3 + 2 = 5$.
+  - $\text{idx}' = (5 + 1) \bmod 9 = 6$.
+  - $i' = 6 // 3 = 2$, $j' = 6 \bmod 3 = 0 \implies \text{output}[2][0] = 6$.
 
-$$
-t=i\cdot n+j.
-$$
+### Step 3: Mapping Row 2
+- Cell $(2, 0)$ with value $7$:
+  - $\text{idx} = 2 \cdot 3 + 0 = 6$.
+  - $\text{idx}' = (6 + 1) \bmod 9 = 7$.
+  - $i' = 7 // 3 = 2$, $j' = 7 \bmod 3 = 1 \implies \text{output}[2][1] = 7$.
+- Cell $(2, 1)$ with value $8$:
+  - $\text{idx} = 2 \cdot 3 + 1 = 7$.
+  - $\text{idx}' = (7 + 1) \bmod 9 = 8$.
+  - $i' = 8 // 3 = 2$, $j' = 8 \bmod 3 = 2 \implies \text{output}[2][2] = 8$.
+- Cell $(2, 2)$ with value $9$ (matrix end):
+  - $\text{idx} = 2 \cdot 3 + 2 = 8$.
+  - $\text{idx}' = (8 + 1) \bmod 9 = 0$.
+  - $i' = 0 // 3 = 0$, $j' = 0 \bmod 3 = 0 \implies \text{output}[0][0] = 9$.
 
-The indices range from zero through $m\cdot n-1$. One shift increases the flattened index by one, and $k$ shifts increase it by $k$. Because the sequence wraps after all $m\cdot n$ cells, the destination index is
-
-$$
-t'=(t+k)\bmod(m\cdot n).
-$$
-
-This formula handles every movement rule uniformly. It does not need separate cases for an ordinary column move, an end-of-row move, or the bottom-right wrap.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 9]], "k": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Converting the destination back to a grid cell
-
-Given a flattened destination `t'`, integer division by `n` produces its row, while the remainder modulo `n` produces its column:
-
-$$
-x=\left\lfloor\frac{t'}{n}\right\rfloor,\qquad y=t'\bmod n.
-$$
-
-Python's `divmod(t', n)` returns those two values together. That is why the exact assignment
-
-`x, y = divmod((i * n + j + k) % (m * n), n)`
-
-contains the complete coordinate transformation. The code writes the original value `v` into `ans[x][y]`.
-
-The output grid `ans` is created with the same shape as the input and initially filled with zeroes. Those zeroes are only placeholders. Every original cell maps to one destination, and the circular shift is a permutation, so every destination is filled exactly once. A genuine input value of zero is not confused with an unfilled cell because the algorithm never uses the placeholder value to make a decision.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Tracing a complete example
-
-Consider the $3$ by $3$ grid from the first example and `k = 1`. The value `1` begins at coordinate `(0, 0)`, so its flat index is zero. Its new index is one, and `divmod(1, 3)` gives `(0, 1)`. The value `3` begins at flat index two; its new index is three, which converts to `(1, 0)`. The value `9` begins at index eight; adding one and reducing modulo nine gives zero, so it wraps to `(0, 0)`. Applying the same formula to every cell produces `[[9,1,2],[3,4,5],[6,7,8]]`.
-
-For `k = 9` on that grid, every destination index is `(t + 9) % 9 = t`. Each value returns to its original location without any special full-cycle test.
-
-The formula also works when `k` exceeds the row length many times. The flattened model counts both column wraps and grid wraps automatically. Only the remainder of `k` modulo the total cell count affects the final arrangement, and the destination expression performs that reduction as part of every calculation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[9, 1, 2], [3, 4, 5], [6, 7, 8]]` |
+All 9 cells are populated without collision or omission.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 9]], "k": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[9, 1, 2], [3, 4, 5], [6, 7, 8]]` | Verified |
+| Processing Order | Source Coordinate | Source Value | Transformed 1D Index | Target Coordinate | Value Assigned |
+|---|---|---|---|---|---|
+| 1 | $(0, 0)$ | $1$ | $1$ | $(0, 1)$ | $1$ |
+| 2 | $(0, 1)$ | $2$ | $2$ | $(0, 2)$ | $2$ |
+| 3 | $(0, 2)$ | $3$ | $3$ | $(1, 0)$ | $3$ |
+| 4 | $(1, 0)$ | $4$ | $4$ | $(1, 1)$ | $4$ |
+| 5 | $(1, 1)$ | $5$ | $5$ | $(1, 2)$ | $5$ |
+| 6 | $(1, 2)$ | $6$ | $6$ | $(2, 0)$ | $6$ |
+| 7 | $(2, 0)$ | $7$ | $7$ | $(2, 1)$ | $7$ |
+| 8 | $(2, 1)$ | $8$ | $8$ | $(2, 2)$ | $8$ |
+| 9 | $(2, 2)$ | $9$ | $0$ | $(0, 0)$ | $9$ |
+
+Final reconstructed grid:
+```text
+[ [9, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8] ]
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Consider the three movement rules under row-major index mapping $\text{idx} = i \cdot n + j$:
+1. If $j < n - 1$: $\text{new\_idx} = i \cdot n + (j + 1) = \text{idx} + 1$.
+2. If $j = n - 1$ and $i < m - 1$: $\text{new\_idx} = (i + 1) \cdot n + 0 = i \cdot n + n = \text{idx} + 1$.
+3. If $i = m - 1$ and $j = n - 1$: $\text{idx} = m \cdot n - 1$, and the target is $(0, 0)$, which has $\text{new\_idx} = 0 = (\text{idx} + 1) \bmod (m \cdot n)$.
+In all cases, a single shift operation corresponds exactly to incrementing the row-major index by $1$ modulo $m \cdot n$. By induction, applying the shift $k$ times corresponds to adding $k$ modulo $m \cdot n$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The modular shift function $f(\text{idx}) = (\text{idx} + k) \bmod N$ is a bijection on the finite set $\{0, 1, \dots, N-1\}$. Thus, every target cell receives exactly one source value, preserving the multiset of matrix elements without omission or duplication.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Simulate one shift at a time:** Rebuilding the grid for each of $k$ operations follows the statement literally but costs $O(kN)$ time instead of calculating final destinations directly.
-- **Flatten, rotate, and reshape:** A one-dimensional list can be formed, rotated by `k % N`, and split back into rows. It has the same $O(N)$ time and space but creates an additional flattened representation.
-- **In-place cycle rotation:** The permutation can be executed through cycles with constant auxiliary space. It is harder to implement safely, mutates the input, and the returned grid still occupies $O(N)$ under the normal interface.
-- **Zero shifts:** When `k = 0`, each destination equals its source. The method returns an equal but newly allocated grid.
-- **Complete cycles:** If `k` is a multiple of $N$, modulo arithmetic maps every cell back to itself.
-- **Single cell:** With $m=n=1$, every shifted index is zero for every `k`, so the lone value remains unchanged.
-- **Single row:** Flattened movement is ordinary circular rotation across columns.
-- **Single column:** Every increment advances to the next row, and the bottom value wraps to the top.
-- **Negative and zero values:** Cell contents never participate in index calculations, so all allowed values move identically.
-- **Avoid using `k % n` alone:** Reducing only by the column count loses how many row boundaries were crossed. The modulus must use the total number of cells in the flattened representation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **In-place overwriting:** Writing directly into `grid[i'][j']` without a separate output buffer destroys elements before they are read. Using a newly allocated result matrix ensures clean single-pass placement.
+- **Redundant full rotations:** If $k \ge m \cdot n$, shifting element by element performs redundant cycles. Pre-reducing $k_{\text{eff}} = k \pmod{m \cdot n}$ handles cases where $k$ is arbitrarily large.
+- **Non-square grids:** Grids where $m \ne n$ must strictly divide and multiply by the column count $n$, not the row count $m$.
+- **Boundary wrap at the bottom-right:** The last cell $(m-1, n-1)$ wraps to $(0, 0)$. Modular arithmetic handles this automatically because $(m \cdot n - 1 + 1) \bmod (m \cdot n) = 0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N=m\cdot n$ be the number of cells. The nested loops visit every cell once. Flattening, modular addition, `divmod`, and one assignment are constant-time operations for the bounded integer sizes in this problem. Total time is therefore $O(N)$, equivalently $O(mn)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(m \cdot n)$. The algorithm iterates through each of the $m \times n$ cells exactly once. Each cell requires a constant number of arithmetic operations (multiplication, addition, modulo, integer division) and one assignment. The runtime is completely independent of $k$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(m \cdot n)$ to allocate the result matrix returned to the caller. No auxiliary stack, recursion, or additional data structures are required.

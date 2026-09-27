@@ -1,107 +1,158 @@
 # Guided Example: Count Salary Categories
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace disjoint interval partitioning, static domain preservation, and non-empty category aggregation on representative bank account records:
 
-- **Input:** `{"tables": {"Accounts": [{"account_id": 3, "income": 108939}, {"account_id": 2, "income": 12747}, {"account_id": 8, "income": 87709}, {"account_id": 6, "income": 91796}]}}`
-- **Required output:** `{"columns": ["category", "accounts_count"], "rows": [["Low Salary", 1], ["Average Salary", 0], ["High Salary", 3]]}`
+- **Input:**
+  $$\text{Accounts} = \begin{pmatrix}
+  \text{account\_id} & \text{income} \\
+  3 & 108939 \\
+  2 & 12747 \\
+  8 & 87709 \\
+  6 & 91796
+  \end{pmatrix}$$
+- **Required Output:**
+  $$\begin{pmatrix}
+  \text{category} & \text{accounts\_count} \\
+  \text{Low Salary} & 1 \\
+  \text{Average Salary} & 0 \\
+  \text{High Salary} & 3
+  \end{pmatrix}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates partitioning salary values into three predefined buckets, ensuring categories with zero matching accounts are explicitly preserved in the result relation, and avoiding omitted group rows in $\mathcal{O}(n)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Accounts`
+We are given an `Accounts` table containing customer `account_id` and their `income`. We must report the number of bank accounts for each of the following three salary categories:
+1. **Low Salary:** All salaries strictly less than $\$20{,}000$ ($\text{income} < 20000$).
+2. **Average Salary:** All salaries in the inclusive range $[\$20{,}000, \$50{,}000]$ ($20000 \le \text{income} \le 50000$).
+3. **High Salary:** All salaries strictly greater than $\$50{,}000$ ($\text{income} > 50000$).
 
-The objective is to compute `{"columns": ["category", "accounts_count"], "rows": [["Low Salary", 1], ["Average Salary", 0], ["High Salary", 3]]}` from `{"tables": {"Accounts": [{"account_id": 3, "income": 108939}, {"account_id": 2, "income": 12747}, {"account_id": 8, "income": 87709}, {"account_id": 6, "income": 91796}]}}` while avoiding redundant calculations and unnecessary overhead.
+The result table must include all three categories in any order. If a category contains no accounts, it must be reported with an `accounts_count` of $0$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In the provided dataset:
+- Account 2: income $12{,}747 < 20{,}000 \implies$ **Low Salary** (count: 1).
+- Accounts 3, 8, 6: incomes $108{,}939$, $87{,}709$, $91{,}796 > 50{,}000 \implies$ **High Salary** (count: 3).
+- No account has an income between $\$20{,}000$ and $\$50{,}000$.
+- Standard `GROUP BY` on a conditional expression would completely drop the `"Average Salary"` category from the result because no rows match that condition.
+- The required output must explicitly include `"Average Salary"` with count $0$.
+
+The teaching goal is to understand **domain completeness in relational aggregation**:
+1. Why dynamic grouping fails to generate rows for empty partitions.
+2. How defining a static domain relation or independent category queries ensures all categories are represented.
+3. Classifying rows into mutually exclusive, exhaustive partitions.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Static Domain Expansion & Disjoint Interval Aggregation Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Static Domain Expansion & Disjoint Interval Aggregation Theorem.**
+> 1. *Disjoint Interval Partitioning:* The non-negative real numbers $[0, \infty)$ are partitioned into three pairwise disjoint, mutually exhaustive intervals:
+>    $$I_{\text{low}} = [0, 20000), \quad I_{\text{avg}} = [20000, 50000], \quad I_{\text{high}} = (50000, \infty)$$
+>    Every account income belongs to exactly one interval.
+> 2. *Static Domain Obligation:* The output domain $\Omega$ is fixed:
+>    $$\Omega = \{\text{"Low Salary"}, \; \text{"Average Salary"}, \; \text{"High Salary"}\}$$
+>    A valid query must output $|\Omega| = 3$ rows irrespective of whether the sample data contains representatives for each category.
+> 3. *Partition Counts:* For each category $C \in \Omega$ with associated interval $I_C$:
+>    $$\text{count}(C) = \sum_{a \in \text{Accounts}} \mathbf{1}_{\{\text{income}(a) \in I_C\}}$$
+>    If no accounts satisfy the condition, the sum over an empty set evaluates to $0$.
+> 4. *Complexity:* Evaluating each account's interval membership requires a single pass over the table in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Salary Category Partitioning Pipeline
+    accDescr: Pipeline showing row-level income classification into three static salary buckets with explicit zero retention.
+    A["Accounts Table (4 rows)"] --> B["Account 2: 12,747 (< 20,000)"]
+    A --> C["Account 3: 108,939 (> 50,000)"]
+    A --> D["Account 8: 87,709 (> 50,000)"]
+    A --> E["Account 6: 91,796 (> 50,000)"]
+    B --> F["Low Salary Bucket: 1 account"]
+    C & D & E --> G["High Salary Bucket: 3 accounts"]
+    H["Static Domain: Average Salary [20000, 50000]"] --> I["Average Salary Bucket: 0 accounts"]
+    F & I & G --> J["Combine All 3 Buckets into Final Result Table"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Separate the required labels from observed data.** A normal `GROUP BY` returns only categories that occur. This problem requires all three rows even when one count is zero. CTE `S` explicitly constructs the three category labels using constant `SELECT` statements combined by `UNION`. It is the guaranteed output skeleton.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Accounts": [{"account_id": 3, "income": 108939}, {"account_id": 2, "income": 12747}, {"account_id": 8, "income": 87709}, {"account_id": 6, "income": 91796}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the classification of the four accounts:
 
 ---
 
-### Step 2: Core Step 2
-
-**Classify every account exactly once.** CTE `T` uses a `CASE` expression. Income below 20000 maps to `"Low Salary"`. Income above 50000 maps to `'High Salary'`. Every remaining income falls in the inclusive interval 20000 through 50000 and maps to `'Average Salary'`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Static Buckets
+Define the target output buckets with zero counts:
+- `Low Salary`: $0$
+- `Average Salary`: $0$
+- `High Salary`: $0$
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Classify Each Account
+- **Account 3:** $\text{income} = 108{,}939$.
+  - Test $108939 < 20000$: False.
+  - Test $20000 \le 108939 \le 50000$: False.
+  - Test $108939 > 50000$: **True** $\implies$ increment `High Salary`.
+  - Buckets: Low = $0$, Avg = $0$, High = $1$.
 
-The order of branches makes the boundaries precise. Exactly 20000 fails the low test and reaches the else branch. Exactly 50000 fails the high test and also reaches else. Values cannot belong to two categories, and every ordinary integer income belongs to one.
+- **Account 2:** $\text{income} = 12{,}747$.
+  - Test $12747 < 20000$: **True** $\implies$ increment `Low Salary`.
+  - Buckets: Low = $1$, Avg = $0$, High = $1$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["category", "accounts_count"], "rows": [["Low Salary", 1], ["Average Salary", 0], ["High Salary", 3]]}` |
+- **Account 8:** $\text{income} = 87{,}709$.
+  - Test $87709 > 50000$: **True** $\implies$ increment `High Salary`.
+  - Buckets: Low = $1$, Avg = $0$, High = $2$.
+
+- **Account 6:** $\text{income} = 91{,}796$.
+  - Test $91796 > 50000$: **True** $\implies$ increment `High Salary`.
+  - Buckets: Low = $1$, Avg = $0$, High = $3$.
+
+---
+
+### Step 3: Emit Complete Result Relation
+- Every category in $\Omega$ is reported with its final tally:
+  - `"Low Salary"`: $1$
+  - `"Average Salary"`: $0$
+  - `"High Salary"`: $3$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Accounts": [{"account_id": 3, "income": 108939}, {"account_id": 2, "income": 12747}, {"account_id": 8, "income": 87709}, {"account_id": 6, "income": 91796}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["category", "accounts_count"], "rows": [["Low Salary", 1], ["Average Salary", 0], ["High Salary", 3]]}` | Verified |
+| Account ID | Income | Interval Condition | Assigned Category | Running Low Count | Running Avg Count | Running High Count |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| - | - | *Initial State* | - | 0 | 0 | 0 |
+| 3 | 108,939 | $> 50000$ | High Salary | 0 | 0 | 1 |
+| 2 | 12,747 | $< 20000$ | Low Salary | 1 | 0 | 1 |
+| 8 | 87,709 | $> 50000$ | High Salary | 1 | 0 | 2 |
+| 6 | 91,796 | $> 50000$ | High Salary | 1 | 0 | **3** |
+| **Output Table** | - | - | - | **1** | **0** | **3** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every account is placed into exactly one bucket based on mutually exclusive mathematical intervals. No account is double-counted or omitted.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By anchoring the three categories in the outer query schema (via static domain projection or union of category queries), categories with count zero are retained rather than filtered out.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Three conditional aggregates with `UNION ALL`:** Each branch can count one category and always returns a row, but may conceptually scan `Accounts` three times. It is correct and simple for three fixed labels.
-- **Single-row conditional sums then unpivot:** Compute all three counts in columns and convert them to rows. This can ensure one scan but uses more SQL machinery.
-- **Inner join from `S` to `T`:** Incorrect when a category is empty because that required row disappears.
-- **Income exactly 20000:** It belongs to Average Salary through the `ELSE` branch.
-- **Income exactly 50000:** It also belongs to Average Salary; high is strictly greater.
-- **No accounts in a category:** Missing grouped row becomes zero through `COALESCE`.
-- **No accounts at all:** All three skeleton rows survive and each count is zero.
-- **Positional grouping:** `GROUP BY 1` refers to computed category because it is selected first. Naming it explicitly would be more maintainable but equivalent.
-- **Double-quoted low label:** MySQL normally treats `"Low Salary"` as a string unless ANSI_QUOTES mode changes quoting semantics; single quotes are more portable, but the exact source uses both styles.
-- **Count reconciliation:** Because each non-null income reaches exactly one `CASE` result, the three returned counts should add up to the number of accounts. A different total signals altered null or boundary assumptions.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **The Missing Zero Category Trap:** In standard SQL, executing `SELECT CASE ... GROUP BY` only produces rows for category groups that actually exist in the table. Because no accounts fell in the $[\$20{,}000, \$50{,}000]$ range, such an approach returns only 2 rows instead of 3, failing the specification.
+- **Boundary Inclusion:** The bounds must be strictly adhered to:
+  - Low is strictly less than 20,000 ($< 20000$).
+  - Average includes both 20,000 and 50,000 ($\ge 20000$ and $\le 50000$).
+  - High is strictly greater than 50,000 ($> 50000$).
+  An income of exactly $20{,}000$ or $50{,}000$ belongs to Average Salary.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(A)$. Let $A$ be the number of account rows. Classification and aggregation inspect each account once, giving expected $O(A)$ time with hash grouping. Sorting-based grouping may use $O(A\log A)$ physically, but only three possible group keys exist, so engines can maintain constant-sized aggregate state efficiently.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the number of rows in `Accounts`. Each row is evaluated against the partition predicates once.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond the 3-row output table.

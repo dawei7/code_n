@@ -1,117 +1,198 @@
 # Guided Example: Shuffle String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]}`
-- **Required output:** `"leetcode"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` and an integer array `indices` of the **same length**. The string `s` will be shuffled such that the character at the $i^{\text{th}}$ position moves to $\text{indices}[i]$ in the shuffled string.
+We are given a string of length $n = 8$ and a target destination permutation vector:
+$$s = \text{"codeleet"}, \quad \text{indices} = [4, 5, 6, 7, 0, 2, 1, 3]$$
 
-The objective is to compute `"leetcode"` from `{"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+The shuffling operation dictates that the character originally residing at position $i$ must be relocated to index $\text{indices}[i]$ in the restored string.
+Our teaching goal is to reconstruct the restored string `"leetcode"`. We examine the direct scatter-gather permutation mapping, prove why uniqueness of indices guarantees an bijective reconstruction, and discuss both the buffer-based reconstruction and the cyclic in-place permutation traversal.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $\pi = \text{indices}$ be a permutation of the index set $\{0, 1, \dots, n-1\}$.
+1. **Permutation Mapping Model**:
+   The problem specifies a forward mapping:
+   $$\text{Restored}[\pi[i]] = s[i] \quad \text{for all } i \in \{0, 1, \dots, n-1\}$$
+   Because all values in $\pi$ are distinct and bounded in $[0, n-1]$, $\pi$ is a bijection on $\{0, \dots, n-1\}$.
+2. **Scatter Array Construction**:
+   We initialize an auxiliary character array $\text{ans}$ of length $n$:
+   $$\text{ans} = [\text{null}, \text{null}, \dots, \text{null}]$$
+   For each source index $i$, we directly place character $s[i]$ at destination slot $\pi[i]$:
+   $$\text{ans}[\pi[i]] \leftarrow s[i]$$
+   After iterating through all $n$ characters, every slot of $\text{ans}$ is assigned exactly once.
+   Joining the characters yields the restored string:
+   $$\text{Result} = \text{join}(\text{ans})$$
+3. **Cycle Decomposition Alternative**:
+   Any finite permutation $\pi$ decomposes into disjoint directed cycles $(c_1 \to c_2 \to \dots \to c_k \to c_1)$.
+   By following each cycle and rotating characters in-place, the string can be reconstructed in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space without allocating a second string buffer.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
++-------------------------------------------------------------------------------+
+|                      DIRECT SCATTER PERMUTATION MAPPING                       |
+|                                                                               |
+|  Source:  c  o  d  e  l  e  e  t                                              |
+|  Index i: 0  1  2  3  4  5  6  7                                              |
+|           |  |  |  |  |  |  |  |                                              |
+|  pi[i]:   4  5  6  7  0  2  1  3                                              |
+|           |  |  |  |  |  |  |  |                                              |
+|           v  v  v  v  v  v  v  v                                              |
+|  Restored:                                                                    |
+|    Index: 0  1  2  3  4  5  6  7                                              |
+|    Char:  l  e  e  t  c  o  d  e  -> "leetcode"                               |
++-------------------------------------------------------------------------------+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The algorithm maintains the following state variables:
 
----
+| State Variable | Domain | Initial Value | Transition / Role |
+|---|---|---|---|
+| `source_index` | Integer $\in [0, n-1]$ | $0$ | Scanning pointer iterating across input string $s$. |
+| `dest_index` | Integer $\in [0, n-1]$ | $\text{indices}[0]$ | Target slot $\pi[i]$ where character $s[i]$ must be written. |
+| `target_char` | Character | $s[0]$ | Character being relocated. |
+| `output_buffer` | Array of characters of length $n$ | All uninitialized | Destination array populated at designated destination indices. |
+
+> [!IMPORTANT]
+> **Bijective Assignment Invariant**: Because the permutation $\text{indices}$ contains each integer from $0$ to $n - 1$ exactly once, every slot in `output_buffer` is written exactly once, eliminating write conflicts and gaps.
+
+```mermaid
+flowchart TD
+    accTitle: String Permutation Restoration Flow
+    accDescr: Diagram illustrating scanning source string and writing characters directly to target index positions.
+    A["Input s of length n, array indices"] --> B["Allocate output buffer of size n"]
+    B --> C["Loop index i from 0 to n-1"]
+    C --> D["Extract char c = s[i], target slot j = indices[i]"]
+    D --> E["Write buffer[j] = c"]
+    E --> F{"i reaches n - 1 ?"}
+    F -->|No| C
+    F -->|Yes| G["Join buffer into string"]
+    G --> RES["Return restored string"]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Read indices as destinations
+We walk through the representative instance $s = \text{"codeleet"}$, $\text{indices} = [4, 5, 6, 7, 0, 2, 1, 3]$ of length $n = 8$.
 
-The contract says the character currently at position `i` must move to position `indices[i]`. This is a destination mapping, not a list of source positions to read in result order.
-
-The stored solution allocates `ans = [null] * len(s)`, giving one output slot for every character. It then iterates with `zip(s, indices)`. Each pair contains current character `c` and that character's destination `j`, so `ans[j] = c` places it directly where it belongs.
-
-After every character has been placed, `"".join(ans)` converts the list of one-character strings into the returned string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- Allocate array $\text{ans}$ of length $8$: $[\_, \_, \_, \_, \_, \_, \_, \_]$.
 
 ---
 
-### Step 2: Why a list is necessary in Python
-
-Python strings are immutable. Assigning directly to a position of `s` is not allowed. A list provides mutable slots during reconstruction, and joining once is efficient.
-
-Initializing with `null` is safe because the permutation guarantee ensures every slot is overwritten with a string before `join`. If the indices were malformed, an unfilled `null` would cause joining to fail, which would expose the violated contract rather than silently inventing a character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: $i = 0$
+- Character: $s[0] = \text{'c'}$.
+- Destination: $\text{indices}[0] = 4$.
+- Action: $\text{ans}[4] \leftarrow \text{'c'}$.
+- Buffer: $[\_, \_, \_, \_, \text{'c'}, \_, \_, \_]$.
 
 ---
 
-### Step 3: The permutation guarantee
-
-Every `indices[i]` lies from zero through `n-1`, so no assignment is out of bounds. All index values are unique and there are exactly `n` of them. Therefore, they form a permutation of every valid output position.
-
-Uniqueness means two characters never compete for the same slot. Having `n` distinct destinations within an `n`-element range also means no output slot is omitted.
-
-This is the central reason direct placement works without collision handling.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"leetcode"` |
+### Step 2: $i = 1$
+- Character: $s[1] = \text{'o'}$.
+- Destination: $\text{indices}[1] = 5$.
+- Action: $\text{ans}[5] \leftarrow \text{'o'}$.
+- Buffer: $[\_, \_, \_, \_, \text{'c'}, \text{'o'}, \_, \_]$.
 
 ---
+
+### Step 3: $i = 2$
+- Character: $s[2] = \text{'d'}$.
+- Destination: $\text{indices}[2] = 6$.
+- Action: $\text{ans}[6] \leftarrow \text{'d'}$.
+- Buffer: $[\_, \_, \_, \_, \text{'c'}, \text{'o'}, \text{'d'}, \_]$.
+
+---
+
+### Step 4: $i = 3$
+- Character: $s[3] = \text{'e'}$.
+- Destination: $\text{indices}[3] = 7$.
+- Action: $\text{ans}[7] \leftarrow \text{'e'}$.
+- Buffer: $[\_, \_, \_, \_, \text{'c'}, \text{'o'}, \text{'d'}, \text{'e'}]$.
+
+---
+
+### Step 5: $i = 4$
+- Character: $s[4] = \text{'l'}$.
+- Destination: $\text{indices}[4] = 0$.
+- Action: $\text{ans}[0] \leftarrow \text{'l'}$.
+- Buffer: $[\text{'l'}, \_, \_, \_, \text{'c'}, \text{'o'}, \text{'d'}, \text{'e'}]$.
+
+---
+
+### Step 6: $i = 5$
+- Character: $s[5] = \text{'e'}$.
+- Destination: $\text{indices}[5] = 2$.
+- Action: $\text{ans}[2] \leftarrow \text{'e'}$.
+- Buffer: $[\text{'l'}, \_, \text{'e'}, \_, \text{'c'}, \text{'o'}, \text{'d'}, \text{'e'}]$.
+
+---
+
+### Step 7: $i = 6$
+- Character: $s[6] = \text{'e'}$.
+- Destination: $\text{indices}[6] = 1$.
+- Action: $\text{ans}[1] \leftarrow \text{'e'}$.
+- Buffer: $[\text{'l'}, \text{'e'}, \text{'e'}, \_, \text{'c'}, \text{'o'}, \text{'d'}, \text{'e'}]$.
+
+---
+
+### Step 8: $i = 7$
+- Character: $s[7] = \text{'t'}$.
+- Destination: $\text{indices}[7] = 3$.
+- Action: $\text{ans}[3] \leftarrow \text{'t'}$.
+- Buffer: $[\text{'l'}, \text{'e'}, \text{'e'}, \text{'t'}, \text{'c'}, \text{'o'}, \text{'d'}, \text{'e'}]$.
+
+Reassembly: $\text{join}(\text{ans}) = \text{"leetcode"}$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"leetcode"` | Verified |
+We collect the character assignments and destination index mappings across all steps in the trace table below.
 
----
+| Step $i$ | Source Character $s[i]$ | Target Destination $\pi[i]$ | Buffer Slot Written | Buffer State After Write | Slot Occupancy Tally |
+|---|---|---|---|---|---|
+| $0$ | `'c'` | $4$ | `ans[4]` | `[_, _, _, _, 'c', _, _, _]` | $1 / 8$ |
+| $1$ | `'o'` | $5$ | `ans[5]` | `[_, _, _, _, 'c', 'o', _, _]` | $2 / 8$ |
+| $2$ | `'d'` | $6$ | `ans[6]` | `[_, _, _, _, 'c', 'o', 'd', _]` | $3 / 8$ |
+| $3$ | `'e'` | $7$ | `ans[7]` | `[_, _, _, _, 'c', 'o', 'd', 'e']` | $4 / 8$ |
+| $4$ | `'l'` | $0$ | `ans[0]` | `['l', _, _, _, 'c', 'o', 'd', 'e']` | $5 / 8$ |
+| $5$ | `'e'` | $2$ | `ans[2]` | `['l', _, 'e', _, 'c', 'o', 'd', 'e']` | $6 / 8$ |
+| $6$ | `'e'` | $1$ | `ans[1]` | `['l', 'e', 'e', _, 'c', 'o', 'd', 'e']` | $7 / 8$ |
+| $7$ | `'t'` | $3$ | `ans[3]` | `['l', 'e', 'e', 't', 'c', 'o', 'd', 'e']` | **$8 / 8$ (Full)** |
+
+Final reconstructed string: `"leetcode"`.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The problem definition states that the character originally at position $i$ moves to index $\text{indices}[i]$ in the shuffled string.
+In our algorithm, for every index $i \in [0, n-1]$, the character $s[i]$ is written to $\text{ans}[\text{indices}[i]]$.
+Since $\text{indices}$ is a permutation of $\{0, \dots, n-1\}$, every target index $j \in [0, n-1]$ receives the unique character $s[i]$ where $\text{indices}[i] = j$.
+The final string strictly conforms to the relocation specification.
 
----
+### Completeness
+
+Every source character from index $0$ to $n-1$ is read and placed.
+Because all elements in $\text{indices}$ are unique and in range $[0, n-1]$, the pigeonhole principle guarantees that no destination index is written to twice and no destination index remains unfilled.
+Thus, the reconstructed array forms a valid, complete string of length $n$.
 
 ## 6. Traps This Instance Exposes
 
-- **Sort by destination:** Zip each character with its index, sort pairs, and join characters. It is correct but unnecessarily costs $O(N\log N)$.
-- **Build the inverse permutation:** First record which source belongs to each destination, then read the string. It adds an extra pass without improving bounds.
-- **Identity permutation:** Every assignment writes to the same position and returns the original string.
-- **Single character:** Its only valid destination is zero.
-- **Repeated letters:** Each occurrence is placed according to its own paired destination.
-- **Destination zero or n minus one:** Both endpoints are ordinary valid list indices.
-- **Malformed duplicate destination:** It would overwrite a slot and leave another unfilled, but uniqueness excludes this case.
-- **Unequal input lengths:** `zip` would truncate, but equal lengths are guaranteed.
-- **String immutability:** The list is required for indexed writes; repeated string concatenation would be less efficient.
-- **Required type import:** `List` must be available for the annotation in a standalone module.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Inverted Mapping Trap**: Writing $s[\text{indices}[i]]$ into $\text{ans}[i]$ instead of $s[i]$ into $\text{ans}[\text{indices}[i]]$. The problem states that character $i$ moves to $\text{indices}[i]$ (a scatter operation, forward mapping), not that $\text{indices}[i]$ provides the source character for position $i$ (a gather operation, inverse mapping). Confusing scatter and gather produces an inverted permutation.
+- **In-Place Mutation Race Condition**: Modifying string $s$ directly in-place without cycle sort or buffer. Writing $s[\text{indices}[i]] = s[i]$ overwrites the original character at $\text{indices}[i]$ before it can be read, corrupting subsequent relocations.
+- **String Immutability in Languages**: Attempting to mutate characters of an immutable string type directly by index. Strings must be converted to an array or list of characters, populated, and then converted back.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be string length. Creating the result list takes $O(N)$ time. The loop performs $N$ constant-time assignments, and joining copies $N$ characters into the final string. Total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Buffer Allocation**: Initializing a list of size $n$ takes $\mathcal{O}(n)$ time.
+- **Linear Scatter Loop**: The loop runs $n$ times, performing $\mathcal{O}(1)$ array indexing and assignment per step: $\mathcal{O}(n)$.
+- **String Conversion**: Joining the $n$ characters into a string takes $\mathcal{O}(n)$ time.
+- Total time complexity is strictly:
+  $$\mathcal{O}(n)$$
+- For $n \le 100$, this executes in under $1$ millisecond.
+
+### Auxiliary Space Complexity
+
+- The intermediate character array holds $n$ characters: $\mathcal{O}(n)$.
+- The output string contains $n$ characters: $\mathcal{O}(n)$.
+- Auxiliary space complexity is strictly $\mathcal{O}(n)$ (or $\mathcal{O}(1)$ working memory if cyclic in-place sorting is used on mutable byte arrays).

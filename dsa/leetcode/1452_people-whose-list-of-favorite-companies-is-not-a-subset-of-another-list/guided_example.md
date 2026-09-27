@@ -1,113 +1,202 @@
 # Guided Example: People Whose List of Favorite Companies Is Not a Subset of Another List
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step set conversion and pairwise subset verification on a representative problem instance:
 
-- **Input:** `{"favoriteCompanies": [["leetcode"], ["google"], ["facebook"], ["amazon"]]}`
-- **Required output:** `[0, 1, 2, 3]`
+- **Input:** $favoriteCompanies = [[\text{"leetcode"},\text{"google"},\text{"facebook"}], [\text{"google"},\text{"microsoft"}], [\text{"google"},\text{"facebook"}], [\text{"google"}], [\text{"amazon"}]]$
+- **Required Output:** $[0, 1, 4]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates proper subset subsumption ($2 \subset 0$ and $3 \subset 0$), partial overlap without containment ($1$ and $0$ both share `"google"`, but `"microsoft"` is disjoint), and completely disjoint singletons ($4$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the array `favoriteCompanies` where $\text{favoriteCompanies}[i]$ is the list of favorites companies for the `ith` person (**indexed from 0**).
+We are given an array $favoriteCompanies$ where $favoriteCompanies[i]$ is the list of favorite company names for person $i$ ($0 \le i < n$). We must return all indices $i$ such that person $i$'s set of favorite companies is **not** a subset of any other person's list:
 
-The objective is to compute `[0, 1, 2, 3]` from `{"favoriteCompanies": [["leetcode"], ["google"], ["facebook"], ["amazon"]]}` while avoiding redundant calculations and unnecessary overhead.
+$$\forall j \ne i, \quad favoriteCompanies[i] \not\subseteq favoriteCompanies[j]$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The output indices must be returned in increasing numerical order.
+
+In the provided instance:
+- Person $0$: $\{\text{"leetcode"}, \text{"google"}, \text{"facebook"}\}$ (cardinality $3$).
+- Person $1$: $\{\text{"google"}, \text{"microsoft"}\}$ (cardinality $2$).
+- Person $2$: $\{\text{"google"}, \text{"facebook"}\}$ (cardinality $2$).
+- Person $3$: $\{\text{"google"}\}$ (cardinality $1$).
+- Person $4$: $\{\text{"amazon"}\}$ (cardinality $1$).
+
+Evaluations:
+- Person $2$'s set is strictly contained in Person $0$'s set ($\{ \text{"google"}, \text{"facebook"} \} \subset \{ \text{"leetcode"}, \text{"google"}, \text{"facebook"} \}$). Disqualified.
+- Person $3$'s set is strictly contained in Person $0$'s set (and also in Person $1$'s set). Disqualified.
+- Person $0$ is maximal (cardinality $3$; no set is larger).
+- Person $1$ contains `"microsoft"`, which is not in Person $0$. Valid.
+- Person $4$ contains `"amazon"`, which is in no other set. Valid.
+- Retained indices: $[0, 1, 4]$.
+
+The primary teaching goal is to model subset testing using hash sets and size-based pruning: a set $S_i$ can only be a subset of $S_j$ if $|S_i| < |S_j|$. If $|S_i| \ge |S_j|$, the subset check can be skipped immediately.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $S_i = \text{Set}(favoriteCompanies[i])$ denote the hash set representation of person $i$'s favorites.
 
-| State Parameter | Role & Purpose | Initial State |
+For person $i$ to be disqualified:
+$$\exists j \ne i \quad \text{such that} \quad |S_i| < |S_j| \quad \land \quad S_i \subseteq S_j$$
+
+If any element $x \in S_i$ satisfies $x \notin S_j$, then $S_i \not\subseteq S_j$. If this condition holds for all $j \ne i$, index $i$ belongs to the solution set.
+
+```
+Set Containment Hierarchy:
+Person 0: {leetcode, google, facebook} (Size 3)
+           ^                     ^
+           | (subset)            | (subset)
+Person 2: {google, facebook}  Person 3: {google}  --> Both Disqualified!
+
+Person 1: {google, microsoft} (Size 2) --> microsoft not in Person 0 --> KEPT!
+Person 4: {amazon} (Size 1)           --> amazon not in any other set --> KEPT!
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Candidate Person ($i$) | Integer $0 \le i < n$ | Person being evaluated for non-subsumption |
+| Comparison Person ($j$) | Integer $0 \le j < n, j \ne i$ | Potential superset candidate |
+| Candidate Set ($S_i$) | Hash set of strings | Favorite companies of person $i$ |
+| Target Set ($S_j$) | Hash set of strings | Favorite companies of person $j$ |
+| Disqualification Flag | Boolean | Marked true if $S_i \subseteq S_j$ for any $j$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** An index $i$ is retained in the result if and only if there is no other person $j$ whose set contains every company present in $S_i$.
+
+```mermaid
+flowchart TD
+    accTitle: Pairwise Set Non-Subset Validator
+    accDescr: Converts lists to hash sets, then for each person i checks if any person j with larger size contains all elements of S_i.
+    A["Convert each favoriteCompanies[i] to hash set S_i"] --> B["Initialize valid_indices = []"]
+    B --> C["Loop i from 0 to n - 1"]
+    C --> D["Initialize is_subset = false"]
+    D --> E["Loop j from 0 to n - 1 (j != i)"]
+    E --> F{"len(S_i) < len(S_j)?"}
+    F -- No --> G{"More j?"}
+    F -- Yes --> H{"S_i is subset of S_j?"}
+    H -- Yes --> I["is_subset = true<br/>Break j loop"]
+    H -- No --> G
+    G -- Yes --> E
+    G -- No --> J{"is_subset == false?"}
+    I --> J
+    J -- Yes --> K["Append i to valid_indices"] --> L{"More i?"}
+    J -- No --> L
+    L -- Yes --> C
+    L -- No --> M["Return valid_indices in sorted order"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance $favoriteCompanies$ with $n = 5$.
 
-**Convert company names into compact set elements.** The problem is fundamentally about set containment, not list order. The source first assigns every distinct company string a unique integer identifier. Dictionary `d` maps a company name to its identifier, and `idx` supplies the next unused identifier.
+### Step 1: Precompute Sets and Cardinalities
+- $S_0 = \{\text{"leetcode"}, \text{"google"}, \text{"facebook"}\}$, $|S_0| = 3$.
+- $S_1 = \{\text{"google"}, \text{"microsoft"}\}$, $|S_1| = 2$.
+- $S_2 = \{\text{"google"}, \text{"facebook"}\}$, $|S_2| = 2$.
+- $S_3 = \{\text{"google"}\}$, $|S_3| = 1$.
+- $S_4 = \{\text{"amazon"}\}$, $|S_4| = 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"favoriteCompanies": [["leetcode"], ["google"], ["facebook"], ["amazon"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Evaluate Each Person $i$
 
----
+1. **Evaluate Person $i = 0$ ($|S_0| = 3$):**
+   - Candidate supersets must have size $> 3$. No such sets exist.
+   - Person $0$ cannot be a subset of anyone.
+   - **Retain $0$**.
 
-### Step 2: Core Step 2
+2. **Evaluate Person $i = 1$ ($|S_1| = 2$):**
+   - Larger candidate: Person $0$ ($|S_0| = 3$).
+   - Probe elements of $S_1$ in $S_0$:
+     - `"google"` $\in S_0$ (True).
+     - `"microsoft"` $\in S_0$ (False).
+   - $S_1 \not\subseteq S_0$. No other candidate with size $> 2$ exists.
+   - **Retain $1$**.
 
-For each person's list, the corresponding set `nums[i]` receives those identifiers. If a company has appeared before, the existing identifier is reused, so equal names across people become equal set elements. If it is new, it receives a fresh number. The exact numeric value has no meaning beyond identity; uniqueness and consistency are what matter.
+3. **Evaluate Person $i = 2$ ($|S_2| = 2$):**
+   - Larger candidate: Person $0$ ($|S_0| = 3$).
+   - Probe elements of $S_2$ in $S_0$:
+     - `"google"` $\in S_0$ (True).
+     - `"facebook"` $\in S_0$ (True).
+   - $S_2 \subseteq S_0$ confirmed!
+   - Person $2$ is disqualified.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+4. **Evaluate Person $i = 3$ ($|S_3| = 1$):**
+   - Larger candidate: Person $0$ ($|S_0| = 3$).
+   - Probe `"google"` in $S_0$: True.
+   - $S_3 \subseteq S_0$ confirmed!
+   - Person $3$ is disqualified.
 
----
+5. **Evaluate Person $i = 4$ ($|S_4| = 1$):**
+   - Larger candidates: Person $0$ ($|S_0| = 3$), Person $1$ ($|S_1| = 2$), Person $2$ ($|S_2| = 2$).
+   - Probe `"amazon"`:
+     - In $S_0$: False.
+     - In $S_1$: False.
+     - In $S_2$: False.
+   - $S_4$ is not a subset of any set.
+   - **Retain $4$**.
 
-### Step 3: Core Step 3
+Final retained indices: $[0, 1, 4]$.
 
-The input already guarantees that a person's company strings are distinct, but using a set still gives the representation needed for intersection and subset testing. It also makes the code robust to an accidental duplicate within one list because a repeated identifier would not change membership.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 1, 2, 3]` |
+| Index $i$ | Set $S_i$ | Size $|S_i|$ | Potential Supersets ($|S_j| > |S_i|$) | Containment Outcome | Status |
+|---|---|---|---|---|---|
+| 0 | `{"leetcode", "google", "facebook"}` | 3 | None | Cannot be subset | **Retained** |
+| 1 | `{"google", "microsoft"}` | 2 | $j=0$ | `"microsoft"` missing from $S_0$ | **Retained** |
+| 2 | `{"google", "facebook"}` | 2 | $j=0$ | All elements in $S_0$ ($S_2 \subset S_0$) | Disqualified |
+| 3 | `{"google"}` | 1 | $j=0, 1, 2$ | All elements in $S_0$ ($S_3 \subset S_0$) | Disqualified |
+| 4 | `{"amazon"}` | 1 | $j=0, 1, 2$ | `"amazon"` not in any superset | **Retained** |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+```
+Final Evaluation Matrix:
+Candidate 0: Subsumed? NO  ==> Output [0]
+Candidate 1: Subsumed? NO  ==> Output [0, 1]
+Candidate 2: Subsumed? YES (by 0)
+Candidate 3: Subsumed? YES (by 0, 1)
+Candidate 4: Subsumed? NO  ==> Output [0, 1, 4]
+Result: [0, 1, 4]
+```
+
+| Candidate $i$ | Test Target $j$ | Missing Element Discovered | Containment Status |
 |---|---|---|---|
-| Initialization | Initial input `{"favoriteCompanies": [["leetcode"], ["google"], ["facebook"], ["amazon"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 1, 2, 3]` | Verified |
+| 0 | - | - | Maximal |
+| 1 | 0 | `"microsoft"` | $S_1 \not\subseteq S_0$ |
+| 2 | 0 | None (all present) | $S_2 \subseteq S_0 \implies$ Subsumed |
+| 3 | 0 | None (all present) | $S_3 \subseteq S_0 \implies$ Subsumed |
+| 4 | 0 | `"amazon"` | $S_4 \not\subseteq S_0$ |
+| 4 | 1 | `"amazon"` | $S_4 \not\subseteq S_1$ |
+| 4 | 2 | `"amazon"` | $S_4 \not\subseteq S_2$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For an index $i$ to be excluded, there must exist at least one $j \ne i$ such that every company in $S_i$ is present in $S_j$. By directly testing set inclusion $S_i \subseteq S_j$, only provably subsumed lists are eliminated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every candidate $i$ is compared against all potential supersets $j$. Because a subset must have size strictly less than or equal to its superset, and all company lists are distinct, any superset must satisfy $|S_j| > |S_i|$. Pruning comparisons where $|S_j| \le |S_i|$ preserves mathematical equivalence while reducing unnecessary work.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Use string sets directly:** Convert each list with `set(ss)` and test `nums[i] <= nums[j]`. This is shorter and avoids the identifier dictionary, while retaining the same asymptotic bounds.
-- **Use issubset:** `nums[i].issubset(nums[j])` states the intention more directly and avoids explicitly materializing an intersection. It can reduce temporary allocation while performing the same membership logic.
-- **Length precheck:** If `len(nums[i]) > len(nums[j])`, containment is impossible. Skipping the set test in that case can improve constants but not the worst-case bound.
-- **Sort every company list:** A two-pointer subset test on sorted lists is possible, but sorting adds preprocessing and string comparisons. Hash sets provide direct membership.
-- **Bit masks:** After integer encoding, each list could become a bitset and containment could use bit operations. This can be fast when the total company universe fits a practical bitset, but its storage model depends on universe size.
-- **Compare only list lengths:** This is insufficient. A shorter set is not automatically a subset of a longer set.
-- **One person:** There is no other list that can contain it, so `any` is false and index zero is returned.
-- **All singleton lists with different companies:** No singleton intersects another as itself, so every index is returned.
-- **A chain of nested lists:** Every set except the largest is excluded. The largest has no containing witness and remains.
-- **Multiple containing witnesses:** The first one makes `any` stop. Exclusion does not depend on how many witnesses exist.
-- **Shared companies without full containment:** A nonempty intersection is not enough. It must equal all of `nums[i]`.
-- **Self-comparison:** `i != j` prevents the universal fact that every set contains itself from eliminating all indices.
-- **Distinct-list guarantee:** Different people cannot have identical company sets. If identical sets were allowed, the implemented non-strict subset test would cause each to disqualify the other.
-- **Input order inside a list:** Set conversion intentionally ignores it because subset membership has no ordering component.
-- **Output order:** Scanning `i` upward already satisfies the required increasing indices.
-- **Hash behavior:** Complexity assumes expected constant-time dictionary and set operations. Pathological collision behavior is outside the standard expected analysis.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Comparing Equal-Sized Sets:** All input lists are distinct. Therefore, two lists with equal size $|S_i| = |S_j|$ cannot be subsets of each other. Attempting subset checks when $|S_j| \le |S_i|$ wastes cycles.
+- **Linear List Search vs. Hash Set:** Testing element inclusion via linear search over array $favoriteCompanies[j]$ takes $\mathcal{O}(|S_i| \cdot |S_j|)$ time per pair. Hash set lookups reduce each element test to $\mathcal{O}(1)$ average time.
+- **Sorting Output Indices:** Testing candidates out of index order would require a final sort. Iterating $i$ sequentially from $0$ to $n-1$ naturally produces sorted indices.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(PC)$. Let `P` be the number of people and `C` the maximum number of companies in one person's list. Encoding visits at most `PC` list entries. Expected dictionary and set insertion take constant time per entry, so preprocessing is `O(PC)` expected time.
-- **Auxiliary Space Complexity:** $O(PC)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \cdot \sum |S_i| + n^2 \cdot \min(|S_i|, |S_j|))$.
+  - Converting all $n$ lists to hash sets takes $\mathcal{O}(\sum |S_i| \cdot L)$ time, where $L \le 20$ is maximum string length.
+  - Pairwise subset checks occur between $n$ candidates. For each candidate $i$, checking subset against $j$ checks at most $|S_i| \le 500$ elements with $\mathcal{O}(1)$ set lookups.
+  - With $n \le 100$, total pair checks are $\le 100 \times 100 / 2 = 5000$, running effortlessly within milliseconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\sum |S_i| \cdot L)$ to store the hash sets for all $n$ people.

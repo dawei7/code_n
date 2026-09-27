@@ -1,124 +1,215 @@
 # Guided Example: Minimize Deviation in Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the one-sided monotonic transformation and priority-queue upper-bound reduction, prove the Upper Saturation Invariant and the Odd-Top Termination Theorem, and analyze deviation minimization across representative numeric instances:
 
-- **Input:** `{"nums": [1, 2, 3, 4]}`
-- **Required output:** `1`
+- **Representative Instance 1 (Stepwise Contraction to Unit Deviation):**
+  - Input: `nums = [1, 2, 3, 4]`
+  - Normalization (pre-multiply odd elements by $2$ to establish maximal possible values):
+    - $1$ (odd) $\implies 1 \times 2 = 2$.
+    - $2$ (even) $\implies 2$.
+    - $3$ (odd) $\implies 3 \times 2 = 6$.
+    - $4$ (even) $\implies 4$.
+    - Normalized Multiset: $\{2, 2, 6, 4\}$.
+    - Initial running minimum: $mi = \min(2, 2, 6, 4) = 2$.
+    - Initial deviation: $\max - \min = 6 - 2 = 4$.
+  - Priority Queue Iterations:
+    - Iteration 1: Max is $6$ (even). Divide by $2 \implies 3$.
+      - Insert $3$. Running minimum: $mi = \min(2, 3) = 2$.
+      - New max is $4$. Deviation: $4 - 2 = 2$.
+    - Iteration 2: Max is $4$ (even). Divide by $2 \implies 2$.
+      - Insert $2$. Running minimum: $mi = \min(2, 2) = 2$.
+      - New max is $3$. Deviation: $3 - 2 = \mathbf{1}$.
+    - Iteration 3: Max is $3$ (**odd**).
+      - An odd maximum cannot be divided by $2$. It can never be reduced further.
+      - **Halt execution!**
+  - Global minimum deviation: **`1`**.
+  - **Required Output:** `1`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Multi-Step Division Convergence):**
+  - Input: `nums = [4, 1, 5, 20, 3]`
+  - Normalized Multiset: $\{4, 2, 10, 20, 6\}$ with $mi = 2$.
+  - Progression:
+    - Max $20 \to 10$. Deviation: $10 - 2 = 8$.
+    - Max $10 \to 5$. Deviation: $10 - 2 = 8$.
+    - Max $10 \to 5$. Deviation: $6 - 2 = 4$.
+    - Max $6 \to 3$. Deviation: $5 - 2 = \mathbf{3}$.
+    - Max is now $5$ (odd). Cannot divide. Terminate.
+  - **Required Output:** `3`.
+
+- **Representative Instance 3 (All-Even Array):**
+  - Input: `nums = [2, 10, 8]`
+  - Normalized: $\{2, 10, 8\}$, $mi = 2$.
+  - Pop $10 \to 5$. Max becomes $8$. Deviation: $8 - 2 = 6$.
+  - Pop $8 \to 4$. Max becomes $5$. Deviation: $5 - 2 = \mathbf{3}$.
+  - Max $5$ is odd. Terminate.
+  - **Required Output:** `3`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `nums` of `n` positive integers.
+Given an array `nums` of positive integers, we may perform two types of operations arbitrarily many times:
+1. If an element is **even**, divide it by $2$.
+2. If an element is **odd**, multiply it by $2$.
+The deviation is defined as $\max(nums) - \min(nums)$. We must find the minimum achievable deviation.
 
-The objective is to compute `1` from `{"nums": [1, 2, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Bidirectional Dilemma:
+  Elements can move BOTH up (multiplying odds) and down (dividing evens).
+  This two-way flexibility creates an intractable branching space if simulated naively.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Asymmetry Observation:
+  Notice the rules on odd and even numbers:
+    - An odd number x can be multiplied by 2 ONCE (since 2x is even, and evens can only be divided).
+    - An even number can be divided by 2 repeatedly until it becomes odd.
+
+The Upper Saturation Strategy:
+  What happens if we pre-multiply EVERY odd number by 2 at the very start?
+    1. Every element is now at its MAXIMUM POSSIBLE VALUE!
+    2. No element can EVER be increased beyond its current value.
+    3. The problem transforms from a two-way search into a STRICTLY ONE-WAY REDUCTION!
+       Every subsequent operation can ONLY divide the current maximum by 2!
+
+  To minimize (max - min):
+    The only way to improve the current deviation is to REDUCE THE MAXIMUM ELEMENT.
+    We greedily pick the maximum element using a Max-Heap and divide it by 2.
+    The moment the maximum element is ODD, it CANNOT be divided further.
+    Since the maximum can never be reduced again, the deviation can never decrease.
+    The search is complete!
+```
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Reduction Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: One-Sided Greedy Deviation Reduction Pipeline
+    accDescr: Pipeline showing odd pre-multiplication, max-heap initialization, iterative halving of the maximum element, and termination on odd maximum.
+    Start["Given array nums of positive integers"] --> Normalize["Normalize to Maximum Capacity:\nFor each x in nums:\nIf x is odd: x = x * 2\nInsert x into Max-Heap\nTrack running min: mi = min(mi, x)"]
+    Normalize --> InitAns["ans = heap.top - mi"]
+    InitAns --> Loop{"Is heap.top even?"}
+    
+    Loop -->|"Yes (Can reduce maximum)"| Halve["Extract max: x = heap.pop()\nHalve value: new_x = x / 2\nUpdate running min: mi = min(mi, new_x)\nInsert new_x into Max-Heap"]
+    Halve --> UpdateAns["ans = min(ans, heap.top - mi)"]
+    UpdateAns --> Loop
+    
+    Loop -->|"No (heap.top is odd!)"| Halt["Maximum cannot be reduced further!\nTerminate loop"]
+    Halt --> Emit["Emit ans as Minimum Deviation"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Upper Saturation Invariant & Odd-Top Termination Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $V(x)$ denote the finite set of values that an integer $x \in \mathbb{Z}^+$ can take under legal operations:
+$$
+V(x) = \begin{cases} \{ x, 2x \} \cup \{ 2x / 2^k : k \ge 1 \} & \text{if } x \text{ is odd} \\ \{ x / 2^k : k \ge 0 \} & \text{if } x \text{ is even} \end{cases}
+$$
+
+1. **Unique Upper Bound:**
+   Every integer $x$ has a well-defined maximal achievable value:
+   $$
+   x_{\max} = \begin{cases} 2x & \text{if } x \text{ is odd} \\ x & \text{if } x \text{ is even} \end{cases}
+   $$
+   Setting each element to $x_{\max}$ places the array at configuration $\mathbf{x}_{\max} \in \prod_{i=0}^{n-1} V(nums[i])$ where no coordinate can legally increase.
+
+2. **Monotonic Shrinking Invariant:**
+   Starting from $\mathbf{x}_{\max}$, the only permissible operation on any element $y$ is division by $2$ (provided $y$ is even). Therefore, the set of candidates for the array maximum can only decrease.
+
+3. **Greedy Step Optimality:**
+   At any state with current maximum $M$ and minimum $m$, the deviation is $M - m$.
+   - The only way to decrease $M - m$ without increasing $m$ is to decrease $M$.
+   - If $M$ is even, replacing $M$ with $M / 2$ is the unique operation that lowers the upper boundary.
+   - If $M$ is odd, $M$ cannot be divided by $2$. Since no operation allows increasing elements without re-evaluating previously considered states, $M$ can never be decreased. Any future state must have maximum $\ge M$. Hence no smaller deviation is reachable.
+
+4. **Finite Convergence:**
+   Each number $x_{\max} \le 2 \cdot 10^9$ can be divided by $2$ at most $\lfloor \log_2(2 \cdot 10^9) \rfloor \approx 31$ times.
+   The total number of heap pop-and-push cycles across all $n$ numbers is bounded by $\mathcal{O}(n \log(\max \text{nums}))$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalize every value to its largest reachable form
+### Trace on Representative Instance 1 (`nums = [1, 2, 3, 4]`)
 
-The allowed moves are asymmetric. An even value can be divided by two, while an odd value can be doubled. For one original odd value `v`, its only larger reachable value is `2v`; after doubling, it is even and may be divided back. For an original even value, the largest reachable value is the value itself. It can only move downward until becoming odd, after which doubling merely returns to the preceding even value.
+#### Step 0: Normalization to Maximum Capacity
+- $nums[0] = 1$ (odd) $\implies 1 \times 2 = 2$.
+- $nums[1] = 2$ (even) $\implies 2$.
+- $nums[2] = 3$ (odd) $\implies 3 \times 2 = 6$.
+- $nums[3] = 4$ (even) $\implies 4$.
+- Initial multiset: $\{2, 2, 6, 4\}$.
+- Max-Heap $H = [6, 4, 2, 2]$.
+- Running minimum: $mi = \min(2, 2, 6, 4) = 2$.
+- Initial deviation: $\text{ans} = \text{top}(H) - mi = 6 - 2 = \mathbf{4}$.
 
-The source therefore converts every odd input to `2v` and leaves every even input unchanged. After this normalization, every element starts at the top of its reachable descending chain. All remaining useful transitions are repeated divisions of an even current value by two.
+#### Step 1: Halve Maximum ($6 \to 3$)
+- Current top: $6$ (even).
+- Pop $6$. New value: $6 / 2 = 3$.
+- Update running minimum: $mi \leftarrow \min(mi, 3) = \min(2, 3) = 2$.
+- Push $3$ into heap: $H = [4, 3, 2, 2]$.
+- New top: $4$.
+- Current deviation: $4 - mi = 4 - 2 = 2$.
+- Update answer: $\text{ans} \leftarrow \min(4, 2) = \mathbf{2}$.
 
-This common direction is crucial. Instead of mixing increases and decreases, the algorithm starts from one valid array and explores candidates by decreasing current maxima.
+#### Step 2: Halve Maximum ($4 \to 2$)
+- Current top: $4$ (even).
+- Pop $4$. New value: $4 / 2 = 2$.
+- Update running minimum: $mi \leftarrow \min(mi, 2) = \min(2, 2) = 2$.
+- Push $2$ into heap: $H = [3, 2, 2, 2]$.
+- New top: $3$.
+- Current deviation: $3 - mi = 3 - 2 = 1$.
+- Update answer: $\text{ans} \leftarrow \min(2, 1) = \mathbf{1}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Step 3: Evaluate Termination Condition
+- Current top: $3$.
+- Parity check: $3$ is **odd**!
+- Cannot divide $3$ by $2$.
+- Loop terminates immediately.
 
----
-
-### Step 2: Use negative numbers as a max-heap
-
-Python’s `heapq` is a min-heap. The source stores `-v`, so the smallest negative number represents the largest actual value. Thus `-h[0]` is the current array maximum.
-
-While normalizing, `mi` records the smallest actual value placed in the heap. After `heapify(h)`, the heap contains exactly one current representative for each input element, and `mi` is their minimum. The initial deviation is
-
-`-h[0] - mi`.
-
-The heap gives fast access to the only element that can immediately reduce the current maximum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why only the current maximum is changed
-
-Deviation is `maximum - minimum`. Starting from every value’s largest reachable representative means no element has an unexplored larger choice. To obtain a smaller range from the current selection, the meaningful next action is to lower a current maximum if it is even.
-
-Lowering a nonmaximum cannot reduce the maximum and can only keep or decrease the minimum, so it cannot improve the current deviation at that moment. The heap simulation therefore divides only the largest current value.
-
-This does not lose configurations. Whenever an element is reduced, the algorithm records the deviation before reducing it. Its old larger value has already participated in the current candidate range. The heap process systematically walks downward through reachable values at the moments they can constrain the maximum, just like the standard smallest-range search across ordered candidate lists.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+#### Finalization:
+- Minimum deviation achieved: $\text{ans} = \mathbf{1}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+### Priority Queue State Progression Table for Representative Instance 1
+
+| Step | Heap State $H$ | Maximum Element | Parity | Running Min $mi$ | Current Deviation | Running Best $\text{ans}$ | Action Taken |
+|---|---|---|---|---|---|---|---|
+| $0$ | `[6, 4, 2, 2]` | $6$ | Even | $2$ | $6 - 2 = 4$ | $4$ | Pop $6$, push $3$ |
+| $1$ | `[4, 3, 2, 2]` | $4$ | Even | $2$ | $4 - 2 = 2$ | $2$ | Pop $4$, push $2$ |
+| $2$ | `[3, 2, 2, 2]` | $3$ | **Odd** | $2$ | $3 - 2 = \mathbf{1}$ | **`1`** | **Halt: Top is odd** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Every state evaluated corresponds to a valid array configuration reachable via legal multiply and divide operations. Tracking the running minimum and current heap maximum accurately records the true range $\max - \min$ at each candidate state.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Pre-multiplying odd numbers eliminates the possibility of needing an upward multiplication step later. From this upper boundary, any deviation-improving transition must decrease the maximum. Since the heap always targets the unique largest element, no candidate configuration with a smaller maximum is skipped. When the maximum becomes odd, it cannot be decreased, proving no further reduction in deviation is mathematically possible.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit max-heap implementation:** Languages with a native max-heap can store positive values. Python’s negation technique changes representation, not the algorithm.
-- **Generate every reachable list and solve smallest range:** This makes the candidate-list interpretation explicit but can store $O(n\log M)$ values instead of the exact heap’s $O(n)$ representatives.
-- **Normalize downward and raise minima:** One can start from minimum reachable values and advance upward with a min-heap, but candidate generation and stopping conditions are less direct.
-- **All values equal:** The initial deviation is zero, which remains the minimum even if the loop performs later halvings.
-- **All values odd:** Normalization doubles all of them, making every heap value even. This creates the option to return each to its original odd value as maxima are processed.
-- **Power of two:** It has the longest halving chain down to one and determines the logarithmic transition bound.
-- **Odd current maximum:** The loop stops immediately because it cannot be reduced under the allowed rule.
-- **New minimum after halving:** Updating `mi` is mandatory; retaining the old minimum would understate the deviation.
-- **Duplicate maxima:** Reducing one copy leaves another copy at the old maximum. The next heap iteration can reduce that copy, and both frontier states are evaluated.
-- **Negative heap parity:** Python’s modulo operation still reports zero for negative even values, so the loop condition is sound.
-- **Integer division:** The popped heap value is divided only when even, so `// 2` has no rounding ambiguity despite being negative.
-- **Input preservation:** Odd values are doubled only in the local loop variable `v`. The original `nums` list is not modified.
-- **Upper numeric bound:** Doubling an odd value up to $10^9$ produces at most $2\cdot10^9$, which remains safe in Python and within typical 32-bit signed range except near its endpoint; Python integers avoid overflow entirely.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Multiplying an Even Number:** Even numbers can only be divided by $2$; attempting to double an even number is illegal under problem constraints.
+- **Double Multiplication of Odd Numbers:** An odd number $x$ multiplied by $2$ becomes even ($2x$). Multiplying it again would violate the invariant because $2x$ is even and can only be divided.
+- **Failing to Update Running Minimum:** When halving the maximum element, the newly halved value $x / 2$ might become smaller than the previous minimum. Forgetting to update $mi = \min(mi, x / 2)$ results in computing deviation against a stale minimum.
+- **Premature Termination:** Terminating when the deviation stops decreasing in a single step is wrong because deviation can temporarily increase before dropping to a new global minimum. Termination must occur strictly when the maximum element is odd.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log M\log n)$. Let `n` be the number of elements and `M` the largest normalized value. Each element can be halved at most $O(\log M)$ times before becoming odd. Across all elements, there are at most $O(n\log M)$ heap transitions.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initial pass: Normalizing $n$ numbers takes $\mathcal{O}(n)$ time.
+  - Building max-heap: $\mathcal{O}(n)$ time.
+  - Each number $v$ can be divided by $2$ at most $\log_2(v) \le 31$ times.
+  - Total heap operations: at most $31 n$ extractions and insertions.
+  - Each heap operation takes $\mathcal{O}(\log n)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(n \log(\max \text{nums}) \log n)$, requiring $< 50$ ms for $n = 5 \times 10^4$.
+- **Auxiliary Space Complexity:**
+  - The heap stores $n$ integers.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(n)$ linear memory.

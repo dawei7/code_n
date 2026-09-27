@@ -1,108 +1,227 @@
 # Guided Example: Random Flip Matrix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step sparse virtual Fisher-Yates shuffle, dynamic tail-swap mapping ($mp[x] \leftarrow mp.get(total, total)$), 1D-to-2D coordinate projection ($[idx // n, idx \pmod n]$), uniform sampling probability preservation, and $O(1)$ state reset on representative matrix dimensions:
 
-- **Input:** `{"m": 2, "n": 2, "random_values": [0], "operations": ["flip", "flip", "reset", "flip"]}`
-- **Required output:** `[[0, 0], [1, 1], null, [0, 0]]`
+- **Input Configuration:**
+  - Matrix dimensions: $m = 2, \; n = 2$ (Total cells: $T = 2 \times 2 = 4$)
+  - Flattened cell indices:
+    - Index $0 \to (0, 0)$
+    - Index $1 \to (0, 1)$
+    - Index $2 \to (1, 0)$
+    - Index $3 \to (1, 1)$
+  - Operation sequence: `["flip", "flip", "reset", "flip"]`
+- **Sparse Virtual Fisher-Yates Shuffle execution trace:**
+  - Initialize: $total = 4$, hash map $mp = \{\}$.
+  - **Operation 1: `flip()` (Remaining available cells: 4):**
+    - Decrement active pool size: $total \leftarrow 4 - 1 = \mathbf{3}$
+    - Roll uniform random index: $x \in [0, 3]$. Suppose roll yields $x = 0$.
+    - Retrieve mapped index:
+      $$
+      idx = mp.get(0, 0) = \mathbf{0}
+      $$
+    - Swap the tail element into the vacated slot $x = 0$:
+      The tail element is at position $total = 3$.
+      $$
+      mp[0] \leftarrow mp.get(3, 3) = \mathbf{3}
+      $$
+      *(Future selections of slot 0 will now return cell 3!)*
+    - Project flattened index $idx = 0$ into 2D coordinates:
+      $$
+      \text{row} = 0 // 2 = \mathbf{0}, \quad \text{col} = 0 \pmod 2 = \mathbf{0}
+      $$
+    - Return **`[0, 0]`**.
+  - **Operation 2: `flip()` (Remaining available cells: 3):**
+    - Decrement active pool size: $total \leftarrow 3 - 1 = \mathbf{2}$
+    - Roll uniform random index: $x \in [0, 2]$. Suppose roll yields $x = 0$.
+    - Retrieve mapped index:
+      $$
+      idx = mp.get(0, 0) = \mathbf{3}
+      $$
+      *(Notice: slot 0 now points to cell 3!)*
+    - Swap the new tail element (position $total = 2$) into slot $0$:
+      $$
+      mp[0] \leftarrow mp.get(2, 2) = \mathbf{2}
+      $$
+    - Project flattened index $idx = 3$ into 2D coordinates:
+      $$
+      \text{row} = 3 // 2 = \mathbf{1}, \quad \text{col} = 3 \pmod 2 = \mathbf{1}
+      $$
+    - Return **`[1, 1]`**.
+  - **Operation 3: `reset()`:**
+    - Restore total pool size: $total \leftarrow m \times n = 2 \times 2 = \mathbf{4}$
+    - Clear hash map: $mp.clear() \implies mp = \{\}$
+    - All cells are once again available with identity mapping.
+  - **Operation 4: `flip()` (Fresh pool after reset):**
+    - Decrement: $total \leftarrow 4 - 1 = 3$
+    - Roll $x \in [0, 3]$. Suppose roll yields $x = 0$.
+    - $idx = mp.get(0, 0) = 0 \implies \mathbf{[0, 0]}$ (Cell $(0, 0)$ is available again!).
+- **Large Dimension Space Efficiency:**
+  - For $m = 10^4, n = 10^4$, total cells $T = 10^8$.
+  - Storing a physical matrix takes $100$ MB of memory.
+  - The sparse hash map only stores entries for flipped cells (at most $1000$ flips), consuming $< 100$ KB!
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place Fisher-Yates sampling over virtual arrays via hash-mapped coordinate redirection, mathematically proves why tail-swapping preserves uniform sampling without replacement, and derives $O(1)$ flip runtime and $O(\text{flips})$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is an `m x n` binary grid `matrix` with all the values set `0` initially. Design an algorithm to randomly pick an index `(i, j)` where $\text{matrix}[i][j] = 0$ and flips it to `1`. All the indices `(i, j)` where $\text{matrix}[i][j] = 0$ should be equally likely to be returned.
+Given matrix dimensions $m \times n$ where all cells initially have value $0$:
+Implement an algorithm with:
+- `flip()`: Randomly pick an index `(row, col)` with value 0 and flip it to 1. Each 0-cell must have equal probability of being chosen.
+- `reset()`: Reset all values in the matrix back to 0.
 
-The objective is to compute `[[0, 0], [1, 1], null, [0, 0]]` from `{"m": 2, "n": 2, "random_values": [0], "operations": ["flip", "flip", "reset", "flip"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+2x2 Matrix Cells:
+  (0, 0) -> 0    (0, 1) -> 1
+  (1, 0) -> 2    (1, 1) -> 3
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Pool: [0, 1, 2, 3] (size 4)
+
+Flip 1: Random pick in [0..3] -> picks 0.
+  Emit (0, 0).
+  Swap tail (3) into slot 0. Pool becomes [3, 1, 2] (size 3).
+
+Flip 2: Random pick in [0..2] -> picks 0.
+  Slot 0 points to 3 -> Emit (1, 1).
+  Swap tail (2) into slot 0. Pool becomes [2, 1] (size 2).
+```
+
+### Why We Cannot Allocate a Full Matrix
+- Constraints: $m, n \le 10^4 \implies m \times n \le 10^8$ cells!
+- Allocating an array or matrix of size $10^8$ causes immediate **Memory Limit Exceeded**.
+- However, at most $1000$ calls to `flip()` are made.
+- We simulate the **Fisher-Yates Shuffle** using a **hash map**:
+  - An untouched index $k$ implicitly maps to itself ($k \to k$).
+  - Only when an index is chosen do we record its swap with the current tail in the hash map.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Sparse Tail-Swap Mechanism:
+Maintain $total$, the number of unflipped cells remaining (initially $m \times n$):
+When `flip()` is invoked:
+1. Decrement active pool size:
+   $$
+   total \leftarrow total - 1
+   $$
+2. Pick a random integer $x \in [0, total]$.
+3. The selected cell is:
+   $$
+   idx = mp.get(x, \; x)
+   $$
+4. Overwrite slot $x$ with whatever is currently at the tail ($total$):
+   $$
+   mp[x] \leftarrow mp.get(total, \; total)
+   $$
+5. Convert flattened 1D index $idx$ to 2D coordinates:
+   $$
+   \text{row} = \lfloor idx / n \rfloor, \quad \text{col} = idx \pmod n
+   $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Reset Invariance:
+Restoring $total = m \times n$ and clearing $mp$ resets the state in $O(1)$ time.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Uniformity Invariant.** At step $k$, each of the remaining $total$ unflipped cells occupies exactly one slot in the range $[0, total - 1]$ (either explicitly in $mp$ or implicitly as its own identity), guaranteeing that random uniform selection across $[0, total - 1]$ picks every remaining cell with probability $\frac{1}{total}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Materializing an `m` by `n` matrix would be wasteful because each dimension may be as large as $10^4$, while at most 1000 operations are performed. The solution instead treats every cell as one number in a flattened range and stores only the positions whose virtual meaning has changed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"m": 2, "n": 2, "random_values": [0], "operations": ["flip", "flip", "reset", "flip"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $m = 2, n = 2$ ($T = 4$):
 
 ---
 
-### Step 2: Core Step 2
-
-For a zero-based flattened index `idx`, the corresponding coordinates are:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize
+- $total = 4$.
+- $mp = \{\}$.
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: First `flip()` Call
+- $total \leftarrow 4 - 1 = 3$.
+- Pick $x \in [0, 3]$. Suppose random generator chooses $x = 0$.
+- Retrieve actual index:
+  $$
+  idx = mp.get(0, 0) = \mathbf{0}
+  $$
+- Move tail element at position $3$ to slot $0$:
+  $$
+  mp[0] \leftarrow mp.get(3, 3) = \mathbf{3}
+  $$
+- Convert $idx = 0$:
+  $$
+  \text{row} = 0 // 2 = 0, \quad \text{col} = 0 \pmod 2 = 0 \implies \mathbf{[0, 0]}
+  $$
 
-This mapping is a bijection between integers from zero through `m * n - 1` and all matrix cells. Selecting a uniformly random available flat index is therefore equivalent to selecting a uniformly random available cell.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 0], [1, 1], null, [0, 0]]` |
+### Step 3: Second `flip()` Call
+- $total \leftarrow 3 - 1 = 2$.
+- Pick $x \in [0, 2]$. Suppose random generator chooses $x = 0$.
+- Retrieve actual index:
+  $$
+  idx = mp.get(0, 0) = \mathbf{3}
+  $$
+- Move tail element at position $2$ to slot $0$:
+  $$
+  mp[0] \leftarrow mp.get(2, 2) = \mathbf{2}
+  $$
+- Convert $idx = 3$:
+  $$
+  \text{row} = 3 // 2 = 1, \quad \text{col} = 3 \pmod 2 = 1 \implies \mathbf{[1, 1]}
+  $$
+
+---
+
+### Step 4: `reset()` Call
+- $total \leftarrow 4$.
+- $mp.clear() \implies mp = \{\}$.
+
+---
+
+### Step 5: Third `flip()` Call (Post-Reset)
+- $total \leftarrow 4 - 1 = 3$.
+- Pick $x \in [0, 3]$. Suppose $x = 0$.
+- $idx = mp.get(0, 0) = 0 \implies \mathbf{[0, 0]}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"m": 2, "n": 2, "random_values": [0], "operations": ["flip", "flip", "reset", "flip"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 0], [1, 1], null, [0, 0]]` | Verified |
+| Call | Active Range $[0, total]$ | Random $x$ Chosen | Value $idx = mp.get(x, x)$ | Tail Position $total$ | Hash Map Update $mp[x] = \text{tail}$ | Emitted Coordinate `[r, c]` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **`flip()`** | $[0, 3]$ | $0$ | **$0$** | $3$ | $mp[0] = 3$ | `[0, 0]` |
+| **`flip()`** | $[0, 2]$ | $0$ | **$3$** | $2$ | $mp[0] = 2$ | `[1, 1]` |
+| **`reset()`** | — | — | — | — | $mp.clear()$ | `null` |
+| **`flip()`** | $[0, 3]$ | $0$ | **$0$** | $3$ | $mp[0] = 3$ | `[0, 0]` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Cell Matrix ($1 \times 1$):** $total = 1 \implies$ first flip always selects index 0 $\implies \mathbf{[0, 0]}$.
+- **Picking the Tail Itself ($x == total$):** $idx = mp.get(total, total)$, and $mp[total] = mp.get(total, total)$. The assignment is an identity no-op and correctly drains the tail.
+- **Flipping Every Single Cell:** Loop runs until $total = 0$, guaranteeing all $m \times n$ cells are flipped without duplication.
+- **Immediate Reset After Initialization:** Clears an already empty map with zero overhead.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Materialized list plus Fisher–Yates:** Store all $N$ flattened indices and swap selected values with the tail. It gives the same uniform process but requires $O(N)$ initialization and memory.
-- **Rejection sampling:** Randomly choose cells until an unflipped one appears. It is simple, but calls to randomness and running time grow badly when few cells remain.
-- **Store a set of flipped cells:** This still needs rejection sampling unless an additional searchable structure is used, so it does not guarantee one random call per flip.
-- **Sparse virtual swaps:** The implemented dictionary records only positions changed by removals, giving expected constant-time flips with memory proportional to performed flips.
-- **Last free cell:** After decrement, `total` is zero and `randint(0, 0)` deterministically selects the sole active slot.
-- **Selecting the tail slot:** The returned tail value is removed directly; the self-mapping written at an inactive key cannot be sampled.
-- **One-row or one-column matrix:** Flat division and remainder still produce correct coordinates.
-- **Repeated flips without reset:** The active-prefix invariant ensures a cell cannot be returned twice.
-- **Flip after reset:** Clearing `mp` removes every stale virtual swap, so all $mn$ cells are equally eligible again.
-- **Operation guarantee:** The source promises a free cell before every `flip`, so the code never calls `randint` with an invalid empty interval.
-- **Large dimensions:** Only `m * n` and sparse mappings are stored; Python integers safely hold the product.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Allocating an $M \times N$ 2D Array or 1D List:** For $10^4 \times 10^4$, creating an array of $10^8$ items exceeds memory limits. The sparse hash map only allocates memory for cells actually flipped.
+- **Rejection Sampling (`while cell in seen: roll_again()`):** When most cells have been flipped, finding an unpicked cell by rolling random coordinates takes exponential trials, causing Time Limit Exceeded. The Fisher-Yates tail-swap runs in strictly $O(1)$ deterministic time per flip.
+- **Decrementing `total` After Selecting:** If you choose $x \in [0, total]$ before decrementing, $total$ might exceed the 0-indexed bounds. Decrementing $total \leftarrow total - 1$ first and picking $x \in [0, total]$ keeps indices within valid bounds.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $N = mn$ be the number of matrix cells and let $f$ be the number of flips since the most recent reset. Construction stores four scalar fields and an empty dictionary, so it takes $O(1)$ time and space beyond the object.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization `__init__`: $\mathcal{O}(1)$.
+  - `flip()`: A single random integer generation, two hash map lookups, and integer arithmetic: strictly $\mathcal{O}(1)$ time.
+  - `reset()`: Clearing the hash map of at most $K$ elements takes $\mathcal{O}(K)$ where $K$ is the number of flips since last reset ($\le 1000$).
+  - Total Time: $\mathcal{O}(1)$ per operation. Completes in $< 1$ microsecond per flip.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(K)$ where $K$ is the number of calls to `flip()` (at most $1000$ entries in the hash map).

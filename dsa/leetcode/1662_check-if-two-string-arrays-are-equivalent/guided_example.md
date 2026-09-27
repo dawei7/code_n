@@ -1,122 +1,200 @@
 # Guided Example: Check If Two String Arrays are Equivalent
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the sequential character stream comparison across chunked string arrays, prove the Character Stream Duality Theorem and the Two-Pointer Stream Transition Invariant, and analyze equivalence across representative problem instances:
 
-- **Input:** `{"word1": ["ab", "c"], "word2": ["a", "bc"]}`
-- **Required output:** `true`
+- **Representative Instance 1 (Equal Concatenation with Asymmetric Chunks):**
+  - Input: `word1 = ["ab", "c"], word2 = ["a", "bc"]`
+  - Concatenated streams:
+    - Array 1: `"ab"` $+$ `"c"` $\implies$ `"abc"` (length $3$).
+    - Array 2: `"a"` $+$ `"bc"` $\implies$ `"abc"` (length $3$).
+  - Character comparisons:
+    - Index $0$: `'a'` vs. `'a'` $\implies$ match.
+    - Index $1$: `'b'` vs. `'b'` $\implies$ match.
+    - Index $2$: `'c'` vs. `'c'` $\implies$ match.
+  - Both streams exhausted simultaneously at length $3$.
+  - **Required Output:** `true`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Early Character Mismatch):**
+  - Input: `word1 = ["a", "cb"], word2 = ["ab", "c"]`
+  - Concatenated streams:
+    - Array 1: `"acb"`.
+    - Array 2: `"abc"`.
+  - Character comparisons:
+    - Index $0$: `'a'` vs. `'a'` $\implies$ match.
+    - Index $1$: `'c'` vs. `'b'` $\implies$ mismatch!
+  - Early exit at character position $1$.
+  - **Required Output:** `false`.
+
+- **Representative Instance 3 (Prefix Match with Length Discrepancy):**
+  - Input: `word1 = ["abc", "d", "defg"], word2 = ["abcddef"]`
+  - Concatenated streams:
+    - Array 1: `"abcddefg"` (length $8$).
+    - Array 2: `"abcddef"` (length $7$).
+  - First $7$ characters match identically. At step $7$, `word2` is exhausted while `word1` still has character `'g'`.
+  - Asymmetric stream exhaustion.
+  - **Required Output:** `false`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two string arrays `word1` and `word2`, return* *`true`* if the two arrays **represent** the same string, and *`false`* otherwise.*
+Given two arrays of strings, `word1` and `word2`, determine whether the concatenated sequence of characters from `word1` is identical to that of `word2`.
 
-The objective is to compute `true` from `{"word1": ["ab", "c"], "word2": ["a", "bc"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Structural Chunking Representation:
+  word1: [  "ab"  ,   "c"  ]  --> Stream 1: 'a' -> 'b' -> 'c'
+  word2: [  "a"   ,  "bc"  ]  --> Stream 2: 'a' -> 'b' -> 'c'
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+While high-level runtime environments offer direct string concatenation operations (e.g., joining all elements and performing an equality check), allocating full concatenated strings incurs an unnecessary $\mathcal{O}(N)$ memory footprint and requires redundant allocation of auxiliary buffers.
+
+The pedagogical focus is the **Two-Pointer Character Stream Traversal**:
+1. **Streaming Abstraction:** Treat each array of string chunks as an infinite character iterator without materializing the joined string.
+2. **Chunk Transition Invariants:** Track a 2D coordinate $(w, c)$ for each array, representing the current word chunk index $w$ and the character offset $c$ within that word.
+3. **Simultaneous Boundary Verification:** A valid match requires that every pair of corresponding characters matches, and that both chunk streams exhaust simultaneously.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Stream Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Two-Pointer Stream Evaluation Pipeline
+    accDescr: Flowchart illustrating two-pointer traversal across chunked string arrays to verify character-by-character equivalence in O(1) auxiliary space.
+    Start["Initialize Cursors:\nw1 = 0, c1 = 0\nw2 = 0, c2 = 0"] --> Loop{"Both w1 < len(word1) and\nw2 < len(word2) ?"}
+    Loop -->|"No"| CheckBothDone{"Are both streams exhausted?\nw1 == len(word1) and w2 == len(word2)"}
+    CheckBothDone -->|"Yes"| RetTrue["Return true"]
+    CheckBothDone -->|"No"| RetFalseLen["Return false\n(Length Discrepancy)"]
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+    Loop -->|"Yes"| CompChar{"word1[w1][c1] == word2[w2][c2] ?"}
+    CompChar -->|"No"| RetFalseChar["Return false\n(Character Mismatch)"]
+    CompChar -->|"Yes"| AdvPointers["Advance character cursors:\nc1 = c1 + 1\nc2 = c2 + 1"]
+    
+    AdvPointers --> CheckW1{"c1 == len(word1[w1]) ?"}
+    CheckW1 -->|"Yes"| NextWord1["w1 = w1 + 1\nc1 = 0"]
+    CheckW1 -->|"No"| CheckW2
+    NextWord1 --> CheckW2{"c2 == len(word2[w2]) ?"}
+    CheckW2 -->|"Yes"| NextWord2["w2 = w2 + 1\nc2 = 0"]
+    CheckW2 -->|"No"| Loop
+    NextWord2 --> Loop
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### The Character Stream Duality Theorem
+
+Let $W_1 = (u_0, u_1, \dots, u_{p-1})$ and $W_2 = (v_0, v_1, \dots, v_{q-1})$ be sequences of strings over an alphabet $\Sigma$.
+Define the concatenation operator $\phi(W) = u_0 \circ u_1 \circ \dots \circ u_{p-1}$, where $\circ$ represents string concatenation.
+
+1. **Coordinate Mapping:**
+   For any stream coordinate $(w, c)$ where $0 \le w < |W|$ and $0 \le c < |W[w]|$, the global 1D character offset is given by the bijection:
+   $$
+   k(w, c) = \left( \sum_{m=0}^{w-1} |W[m]| \right) + c
+   $$
+   The character at global index $k$ in $\phi(W)$ is $W[w][c]$.
+
+2. **Equivalence Invariant:**
+   $\phi(W_1) = \phi(W_2)$ if and only if:
+   - $|\phi(W_1)| = |\phi(W_2)| = N$, and
+   - For every global position $k \in \{0, 1, \dots, N-1\}$, $W_1[w_1(k)][c_1(k)] = W_2[w_2(k)][c_2(k)]$.
+
+3. **Space Minimization Principle:**
+   Instead of computing $\phi(W_1)$ and $\phi(W_2)$ in $\mathcal{O}(N)$ memory, the 2D coordinates $(w_1, c_1)$ and $(w_2, c_2)$ advance across the discrete chunks in $\mathcal{O}(1)$ space:
+   $$
+   (w, c) \leftarrow \begin{cases} (w, c + 1) & \text{if } c + 1 < |W[w]| \\ (w + 1, 0) & \text{if } c + 1 = |W[w]| \end{cases}
+   $$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The array boundaries are not part of the represented string
+### Trace on Representative Instance 1 (`word1 = ["ab", "c"]`, `word2 = ["a", "bc"]`)
 
-Each input is an array of string pieces, but equivalence is defined after concatenating those pieces in their given order. A boundary between two array entries carries no meaning in the represented result. Thus `["ab", "c"]` and `["a", "bc"]` both represent `"abc"` even though their piece lengths differ.
+Initial State:
+- Stream 1: $w_1 = 0, c_1 = 0$ ($word1[0] = \text{"ab"}$)
+- Stream 2: $w_2 = 0, c_2 = 0$ ($word2[0] = \text{"a"}$)
 
-The exact implementation follows the definition directly:
+#### Step 1: Compare Global Offset $k = 0$
+- Current characters:
+  - $word1[w_1][c_1] = word1[0][0] = \text{'a'}$
+  - $word2[w_2][c_2] = word2[0][0] = \text{'a'}$
+- Check equality: `'a' == 'a'` $\implies$ Match!
+- Advance cursors:
+  - $c_1 \leftarrow 0 + 1 = 1$. Since $c_1 < |word1[0]| \; (1 < 2)$, maintain $w_1 = 0, c_1 = 1$.
+  - $c_2 \leftarrow 0 + 1 = 1$. Since $c_2 == |word2[0]| \; (1 == 1)$, chunk $0$ of $word2$ is exhausted:
+    $$w_2 \leftarrow 0 + 1 = 1, \quad c_2 \leftarrow 0$$
 
-`''.join(word1) == ''.join(word2)`.
+#### Step 2: Compare Global Offset $k = 1$
+- Current characters:
+  - $word1[w_1][c_1] = word1[0][1] = \text{'b'}$
+  - $word2[w_2][c_2] = word2[1][0] = \text{'b'}$
+- Check equality: `'b' == 'b'` $\implies$ Match!
+- Advance cursors:
+  - $c_1 \leftarrow 1 + 1 = 2$. Since $c_1 == |word1[0]| \; (2 == 2)$, chunk $0$ of $word1$ is exhausted:
+    $$w_1 \leftarrow 0 + 1 = 1, \quad c_1 \leftarrow 0$$
+  - $c_2 \leftarrow 0 + 1 = 1$. Since $c_2 < |word2[1]| \; (1 < 2)$, maintain $w_2 = 1, c_2 = 1$.
 
-For each array, `join` places the empty string between consecutive elements. Inserting an empty separator means the pieces are copied next to one another with no added character. Their original order is preserved. The equality operator then compares the two completed strings.
+#### Step 3: Compare Global Offset $k = 2$
+- Current characters:
+  - $word1[w_1][c_1] = word1[1][0] = \text{'c'}$
+  - $word2[w_2][c_2] = word2[1][1] = \text{'c'}$
+- Check equality: `'c' == 'c'` $\implies$ Match!
+- Advance cursors:
+  - $c_1 \leftarrow 0 + 1 = 1$. Since $c_1 == |word1[1]| \; (1 == 1)$, chunk $1$ is exhausted:
+    $$w_1 \leftarrow 1 + 1 = 2, \quad c_1 \leftarrow 0$$
+  - $c_2 \leftarrow 1 + 1 = 2$. Since $c_2 == |word2[1]| \; (2 == 2)$, chunk $1$ is exhausted:
+    $$w_2 \leftarrow 1 + 1 = 2, \quad c_2 \leftarrow 0$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"word1": ["ab", "c"], "word2": ["a", "bc"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: How `join` constructs the represented value
-
-Consider `word1 = ["abc", "d", "defg"]`. Starting with an empty result, concatenating its entries in order yields `"abc"`, then `"abcd"`, then `"abcddefg"`. There is no delimiter between the ending `d` of one piece and the beginning `d` of the next. The array `["abcddefg"]` produces exactly the same completed string, so equality returns true.
-
-Using `''.join(...)` is preferable to repeatedly executing something like `result += piece` in a loop. Python’s join operation knows all pieces up front, can determine the total required length, and builds the finished string in one coordinated operation. Repeated immutable-string concatenation may copy an ever-growing prefix on each iteration and can become quadratic.
-
-The source invokes `join` once for each side. Each call creates a new Python string containing all characters represented by that input. The comparison is performed on those two new strings, not on the original arrays piece by piece.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why ordinary string equality is sufficient
-
-Python string equality requires equal lengths and equal characters at every position. It does not care how either string was constructed. Once the array boundaries have been removed by joining, those are exactly the conditions required by the problem.
-
-If the joined lengths differ, the strings cannot represent the same character sequence, so equality is false. If their lengths match but some earliest position contains different letters, equality is also false. If every corresponding character matches, the complete represented strings are identical and equality is true.
-
-An explicit preliminary length check is unnecessary because string equality already includes it. Likewise, the source does not need to compare the number of array elements or corresponding piece lengths. Those quantities can differ freely without affecting the concatenated value.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+#### Step 4: Stream Termination Check
+- Both stream word indices have reached array limits:
+  - $w_1 = 2 == |word1|$
+  - $w_2 = 2 == |word2|$
+- Both streams completed simultaneously without any mismatch.
+- Return **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word1": ["ab", "c"], "word2": ["a", "bc"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+### Pointer State Progression Table for Representative Instance 1
+
+| Global Step $k$ | Cursor 1 $(w_1, c_1)$ | Character 1 | Cursor 2 $(w_2, c_2)$ | Character 2 | Comparison | Next Cursor 1 $(w_1, c_1)$ | Next Cursor 2 $(w_2, c_2)$ |
+|---|---|---|---|---|---|---|---|
+| $0$ | $(0, 0)$ | `'a'` | $(0, 0)$ | `'a'` | `'a' == 'a'` (Valid) | $(0, 1)$ | $(1, 0)$ [Word 0 ended] |
+| $1$ | $(0, 1)$ | `'b'` | $(1, 0)$ | `'b'` | `'b' == 'b'` (Valid) | $(1, 0)$ [Word 0 ended] | $(1, 1)$ |
+| $2$ | $(1, 0)$ | `'c'` | $(1, 1)$ | `'c'` | `'c' == 'c'` (Valid) | $(2, 0)$ [All words done] | $(2, 0)$ [All words done] |
+| **End** | $(2, 0)$ | Done | $(2, 0)$ | Done | $w_1 == 2 \land w_2 == 2$ | **Streams Equivalent** | **Output: `true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+If the algorithm terminates and returns `true`, every character at global index $k$ in $W_1$ was directly compared against the character at global index $k$ in $W_2$ and confirmed equal. Furthermore, both cursors reached the ends of their respective word lists at the exact same step, proving that $|\phi(W_1)| = |\phi(W_2)|$. By definition of string equality, $\phi(W_1) = \phi(W_2)$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+If the strings are not equivalent, there must exist either:
+1. A minimal character position $k$ where $\phi(W_1)[k] \neq \phi(W_2)[k]$, which triggers an immediate equality check failure returning `false`.
+2. A length discrepancy where one string is a strict prefix of the other. In this case, the shorter stream exhausts while the longer stream still has characters remaining, causing the boundary check $w_1 == |word1| \land w_2 == |word2|$ to evaluate to `false`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Four-pointer streaming comparison:** Keep a piece index and a character index for each array, advance across piece boundaries, and compare one character at a time. This gives $O(L_1 + L_2)$ time and $O(1)$ auxiliary space, matching the manifest, but requires more boundary logic.
-- **Character iterators with a sentinel:** Chain the pieces from each side into character iterators and compare with `zip_longest` using a unique sentinel. This avoids full joined strings conceptually, though iterator objects and library semantics should be explained carefully.
-- **Repeated `+=` concatenation:** It is easy to write but can repeatedly copy growing immutable strings, leading to $O(N^2)$ time in unfavorable implementations. `join` is the correct materializing approach.
-- **Different numbers of pieces:** This has no effect by itself. `["abc"]` and `["a", "b", "c"]` are equivalent.
-- **Different piece boundaries:** Boundaries disappear during joining, so `["ab", "c"]` and `["a", "bc"]` compare true.
-- **Different total lengths:** Python string equality detects the mismatch and returns false.
-- **Mismatch near the beginning:** The joined strings have already been built, although equality itself can stop at the first unequal character.
-- **Mismatch only at the end:** Equality may inspect the entire common prefix, which is why linear comparison time is required in the worst case.
-- **Single piece on each side:** The method still works; joining a one-element array produces that element unchanged in value.
-- **Nonempty-piece guarantee:** Every input piece has at least one character. The method would also handle empty pieces correctly because an empty separator plus an empty piece contributes no character.
-- **Original arrays remain reusable:** `join` creates new strings and never alters the list entries or their order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Unequal Word Chunk Lengths:** Word arrays can segment the same logical string into wildly different chunk lengths (e.g., `["a", "b", "c"]` vs `["abc"]`). The logic must handle chunk transitions independently for both pointers.
+- **Prefix Trap (Asymmetric Exhaustion):** If `word1` produces `"abc"` and `word2` produces `"abcd"`, all characters compared during the loop match. Failing to verify that **both** streams are exhausted simultaneously causes false positives.
+- **Memory Overhead of Concatenation:** Using string join operations allocates new strings of length $N$ on the heap. While asymptotically acceptable for small constraints, this incurs unnecessary $\mathcal{O}(N)$ memory allocations.
+- **Empty Word Elements:** If inputs contain empty strings `""`, a cursor arriving at `""` must immediately roll over to the next chunk without evaluating a character.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L_2)$. Let
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $N = \sum |word1[i]|$.
+  - In each iteration, exactly one character from each stream is compared, advancing at least one index.
+  - The loop executes at most $\min(N_1, N_2) \le N$ times.
+  - If strings mismatch early, execution halts immediately in $\mathcal{O}(1)$ to $\mathcal{O}(k)$ time.
+  - Worst-case Time Complexity: strictly $\mathcal{O}(N)$ linear time.
+- **Auxiliary Space Complexity:**
+  - **Two-Pointer Approach:** Only four integer indices ($w_1, c_1, w_2, c_2$) are maintained.
+  - Total Auxiliary Space: strictly $\mathcal{O}(1)$ constant space.
+  - **Concatenation Approach:** Requires allocating two strings of length $N$, requiring $\mathcal{O}(N)$ auxiliary heap memory.

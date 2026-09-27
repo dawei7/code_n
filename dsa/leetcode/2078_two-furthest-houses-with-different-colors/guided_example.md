@@ -1,146 +1,167 @@
 # Guided Example: Two Furthest Houses With Different Colors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the Endpoint Dominance Theorem, bidirectional anchor scanning, and linear-time extremal distance resolution on a representative street layout:
 
-- **Input:** `{"colors": [1, 1, 1, 6, 1, 1, 1]}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-There are `n` houses evenly lined up on the street, and each house is beautifully painted. You are given a **0-indexed** integer array `colors` of length `n`, where $\text{colors}[i]$ represents the color of the $i^{\text{th}}$ house.
-
-The objective is to compute `3` from `{"colors": [1, 1, 1, 6, 1, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Colors Array:** `[1, 1, 1, 6, 1, 1, 1]`
+- **Number of Houses $n$:** `7`
+- **Expected Output:** `3`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+There are $n$ houses arranged in a straight line, indexed $0$ through $n - 1$. The color of house $i$ is represented by the integer $colors[i]$. We wish to find the maximum possible distance $|i - j|$ between two houses $i$ and $j$ such that their colors are strictly different ($colors[i] \neq colors[j]$).
 
-| State Parameter | Role & Purpose | Initial State |
+### A Naive Approach vs. Extremal Anchor Scanning
+- A brute-force search compares all $\binom{n}{2} = \frac{n(n-1)}{2}$ pairs of houses, requiring $\mathcal{O}(n^2)$ time.
+- The theoretical maximum distance between any two houses on a street of length $n$ is $n - 1$ (the distance between house $0$ and house $n - 1$).
+- If $colors[0] \neq colors[n - 1]$, then the answer is immediately $n - 1$.
+- If $colors[0] == colors[n - 1]$, any pair with different colors must contain at least one house whose color differs from this common boundary color. By establishing that at least one of the optimal houses must be located at one of the boundaries ($0$ or $n - 1$), we reduce the search space to scanning only from the two ends inward.
+
+```mermaid
+flowchart TD
+    accTitle: Endpoint Dominance Search Architecture
+    accDescr: Evaluation of street endpoints: if boundary colors differ return n minus 1, otherwise test rightmost different house from left and leftmost different house from right.
+    A["Street Endpoints: colors[0] vs colors[n - 1]"] --> Check{"Are colors[0] != colors[n - 1]?"}
+    Check -->|Yes| Opt["Immediate Global Maximum: n - 1"]
+    Check -->|No| Scan["Boundary Color C = colors[0] = colors[n - 1]"]
+    Scan --> Branch1["Scan Right-to-Left: First j with colors[j] != C -> Dist = j"]
+    Scan --> Branch2["Scan Left-to-Right: First i with colors[i] != C -> Dist = (n - 1) - i"]
+    Branch1 --> Result["Max Distance: max(j, n - 1 - i)"]
+    Branch2 --> Result
+
+    classDef stage fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class A,Check,Opt,Scan,Branch1,Branch2,Result stage;
+```
+
+---
+
+## 2. Theoretical Invariants & The Endpoint Dominance Theorem
+
+### The Endpoint Dominance Theorem
+**Theorem.** *In any street array $colors$ of length $n$, there exists an optimal pair $(i^*, j^*)$ with $colors[i^*] \neq colors[j^*]$ achieving the maximum distance $|i^* - j^*|$ such that at least one endpoint is either $0$ or $n - 1$.*
+
+**Proof by Contradiction:**
+Suppose the unique maximum distance is achieved exclusively by an interior pair $(i, j)$ with $0 < i < j < n - 1$, yielding distance $j - i$.
+Because the pair has different colors, $colors[i] \neq colors[j]$.
+Consider the boundary color at the left end, $c_0 = colors[0]$:
+1. Since $colors[i] \neq colors[j]$, at most one of $\{colors[i], colors[j]\}$ can equal $c_0$.
+2. **Case 1:** $colors[j] \neq c_0$.
+   The pair $(0, j)$ has different colors ($colors[0] \neq colors[j]$), and its distance is:
+   $$\text{dist}(0, j) = j - 0 = j > j - i$$
+   This strictly exceeds $j - i$, contradicting the optimality of $(i, j)$.
+3. **Case 2:** $colors[j] == c_0$.
+   Then $colors[i] \neq c_0$. Now consider the right boundary color $c_{n-1} = colors[n - 1]$.
+   - If $colors[i] \neq c_{n-1}$, the pair $(i, n - 1)$ has different colors, and its distance is:
+     $$\text{dist}(i, n - 1) = (n - 1) - i > j - i$$
+     again strictly exceeding $j - i$.
+   - If $colors[i] == c_{n-1}$, then $c_{n-1} = colors[i] \neq colors[j] = c_0$. But if $c_0 \neq c_{n-1}$, the pair $(0, n - 1)$ has different colors and distance $n - 1 > j - i$.
+In all cases, an interior pair is strictly dominated by a pair anchored at $0$ or $n - 1$. $\blacksquare$
+
+### The Resulting Invariant Formula
+$$\text{Max Distance} = \max\left( \max_{j : colors[j] \neq colors[0]} j, \quad \max_{i : colors[i] \neq colors[n-1]} (n - 1 - i) \right)$$
+
+| Parameter | Mathematical Expression | Meaning in Search |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Left Anchor Search | $\max \{ j \mid colors[j] \neq colors[0] \}$ | Rightmost house with color different from house $0$ |
+| Right Anchor Search | $\max \{ (n - 1) - i \mid colors[i] \neq colors[n-1] \}$ | Leftmost house with color different from house $n - 1$ |
+| Global Maximum | $\max(d_{\text{left}}, d_{\text{right}})$ | Proven supremum of all valid house pairs |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Start with the largest distance that could possibly exist
-
-For an array of length `n`, no two indices can be farther apart than 0 and `n - 1`. Their distance is $n-1$. The solution therefore compares the colors at the two endpoints first.
-
-If `colors[0] != colors[-1]`, the endpoint pair is valid and already reaches the absolute maximum possible distance. No scan or further proof of a better pair is needed, so the code immediately returns `n - 1`.
-
-This early return handles every input whose outermost houses have different colors, regardless of what appears between them.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"colors": [1, 1, 1, 6, 1, 1, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `colors = [1, 1, 1, 6, 1, 1, 1]` ($n = 7$).
+House indices: $0, 1, 2, 3, 4, 5, 6$.
+Boundary colors: $colors[0] = 1$, $colors[6] = 1$.
 
 ---
 
-### Step 2: When endpoint colors match, find the first disagreement from each side
-
-The more interesting case is
-
-`colors[0] == colors[-1]`.
-
-Call this shared endpoint color $c$. A valid pair cannot use both endpoints because they have the same color. However, the problem guarantees that at least two houses have different colors, so at least one interior house has a color different from $c$.
-
-The first loop starts `i` at 1 and advances while `colors[i] == colors[0]`. When it stops, `i` is the smallest index whose color differs from $c$.
-
-Pairing this house with the right endpoint is valid:
-
-- house `i` has a color different from $c$;
-- house `n - 1` has color $c$;
-- their distance is `n - 1 - i`, written by the source as `n - i - 1`.
-
-Because `i` is the earliest disagreement, no different-colored house lies farther left. Therefore, among all valid pairs using the right endpoint, this pair has the greatest possible distance.
-
-The second loop starts `j` at `n - 2` and moves left while `colors[j] == colors[0]`. When it stops, `j` is the largest index whose color differs from $c$.
-
-Pairing this house with the left endpoint is valid, and its distance from index 0 is simply `j`. Because `j` is the latest disagreement, it is the farthest valid partner for the left endpoint.
-
-The answer is the larger of these two endpoint-based candidates:
-
-`max(n - i - 1, j)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Phase 1: Boundary Comparison
+- $colors[0] = 1$
+- $colors[6] = 1$
+- $colors[0] == colors[6]$ (both are color $1$).
+- An immediate span of $n - 1 = 6$ is not possible; proceed to anchor scans.
 
 ---
 
-### Step 3: Why an optimal pair always touches an endpoint
-
-The key greedy fact is that some maximum-distance valid pair uses index 0 or index `n - 1`.
-
-Consider any valid pair with indices $a<b$ and different colors. If `colors[a]` differs from the right endpoint's color, then `(a, n-1)` is also valid and its distance is at least $b-a$, because $n-1\ge b$.
-
-Otherwise, `colors[a]` equals the right endpoint's color. Since `colors[a] != colors[b]`, house `b` must differ from the right endpoint.
-
-- If the two endpoint colors differ, pair `(0, n-1)` is already the global maximum, which the early return handles.
-- In the remaining case, the endpoints share color $c$. Then `colors[a] = c` and `colors[b] != c`, so pair `(0, b)` is valid and has distance $b$, which is at least $b-a$.
-
-Thus an interior valid pair can always be extended to an endpoint without decreasing its distance. Searching the best valid partner for each endpoint is sufficient.
-
-The exact source makes this even simpler by separating the two endpoint-color cases. When endpoints differ, use both. When they match, every house with a non-$c$ color is a valid partner for either endpoint, so only the leftmost and rightmost such houses matter.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Phase 2: Anchor Scan from Left End ($i = 0$)
+We fix house $0$ (color $1$) and search from the rightmost house backwards ($j = 6, 5, 4, \dots$) for the first house whose color is NOT $1$:
+1. Check $j = 6$: $colors[6] = 1 == colors[0]$ (skip).
+2. Check $j = 5$: $colors[5] = 1 == colors[0]$ (skip).
+3. Check $j = 4$: $colors[4] = 1 == colors[0]$ (skip).
+4. Check $j = 3$: $colors[3] = 6 \neq colors[0]$ (**Match!**).
+- Distance to left anchor:
+  $$d_{\text{left}} = 3 - 0 = 3$$
 
 ---
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"colors": [1, 1, 1, 6, 1, 1, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Phase 3: Anchor Scan from Right End ($j = n - 1 = 6$)
+We fix house $6$ (color $1$) and search from the leftmost house forwards ($i = 0, 1, 2, \dots$) for the first house whose color is NOT $1$:
+1. Check $i = 0$: $colors[0] = 1 == colors[6]$ (skip).
+2. Check $i = 1$: $colors[1] = 1 == colors[6]$ (skip).
+3. Check $i = 2$: $colors[2] = 1 == colors[6]$ (skip).
+4. Check $i = 3$: $colors[3] = 6 \neq colors[6]$ (**Match!**).
+- Distance to right anchor:
+  $$d_{\text{right}} = 6 - 3 = 3$$
 
 ---
 
-## 6. Traps This Instance Exposes
-
-- **Enumerating every pair:** Testing all $O(n^2)$ pairs is straightforward and correct, but the endpoint lemma makes almost all of those comparisons unnecessary.
-- **One editorial-style pass:** One can scan all indices and update endpoint-based candidate distances whenever a color differs from an endpoint color. That is also $O(n)$; the exact source instead uses an early return plus two boundary searches.
-- **Tracking positions for every color:** A map from color to extreme indices can solve the problem, but the answer needs only disagreement with the endpoints, so the extra storage and bookkeeping are unnecessary.
-- **Different endpoint colors:** Return `n - 1` immediately. No interior pair can exceed the full-array span.
-- **Matching endpoint colors:** Some interior position must differ under the problem guarantee. The two scans locate the extreme such positions safely.
-- **Exactly two houses:** Their colors must differ, so the answer is 1 and the early-return branch handles it.
-- **Only one exceptional house:** Both scans stop at that same index. The algorithm compares its distance to each endpoint and chooses the farther one.
-- **Several non-endpoint colors:** Their identities relative to one another do not matter. Every color different from the common endpoint color is a valid endpoint partner, so only their extreme positions matter.
-- **Long equal-color prefix:** The left scan skips it once. The first disagreement is the best partner for the right endpoint because moving farther right can only shorten that distance.
-- **Long equal-color suffix:** The right scan skips it once. The final disagreement is the best partner for the left endpoint.
-- **Input guarantee is essential:** If every house had the same color, the unguarded scans could leave the array bounds and no valid answer would exist. The stated guarantee rules out that invalid domain.
-- **No input mutation:** Because the array is only inspected, callers retain the original color ordering after the result is computed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Phase 4: Maximum Resolution
+$$\text{Max Distance} = \max(d_{\text{left}}, d_{\text{right}}) = \max(3, 3) = 3$$
+The furthest houses with different colors are $(0, 3)$ or $(3, 6)$, each separated by distance $3$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Multi-Scenario Execution Trace
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of houses.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Below is the verification trace across diverse distribution structures:
+
+| Array Configuration | $n$ | $colors[0]$ | $colors[n-1]$ | Scan Direction | First Differing Index | Evaluated Distance | Final Output |
+|---|---|---|---|---|---|---|---|
+| `[1, 1, 1, 6, 1, 1, 1]` | $7$ | $1$ | $1$ | Left Anchor ($0 \to j$)<br>Right Anchor ($i \leftarrow 6$) | $j = 3$<br>$i = 3$ | $3 - 0 = 3$<br>$6 - 3 = 3$ | **$3$** |
+| `[1, 8, 3, 8, 3]` | $5$ | $1$ | $3$ | Boundary Direct | $0$ and $4$ differ | $4 - 0 = 4$ | **$4$** |
+| `[0, 1]` | $2$ | $0$ | $1$ | Boundary Direct | $0$ and $1$ differ | $1 - 0 = 1$ | **$1$** |
+| `[5, 9, 5, 5, 5, 5]` | $6$ | $5$ | $5$ | Right Anchor ($i \leftarrow 5$) | $i = 1$ ($colors[1] = 9$) | $5 - 1 = 4$ | **$4$** |
+| `[7, 7, 7, 7, 2, 7]` | $6$ | $7$ | $7$ | Left Anchor ($0 \to j$) | $j = 4$ ($colors[4] = 2$) | $4 - 0 = 4$ | **$4$** |
+
+### Asymmetric Outlier Observation
+Notice in `[5, 9, 5, 5, 5, 5]`:
+- Comparing house $0$ with the outlier at index $1$ gives distance $1 - 0 = 1$.
+- Comparing house $5$ with the outlier at index $1$ gives distance $5 - 1 = 4$.
+Because the search checks both the left and right boundaries, the larger distance $4$ is captured immediately.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **Sufficiency of Boundary Anchors:**
+   The Endpoint Dominance Theorem guarantees that the global supremum cannot reside strictly within the open interval $(0, n - 1)$. Any non-boundary pair $(i, j)$ is dominated by $(0, j)$ or $(i, n - 1)$. Therefore, searching exclusively for pairs anchored at $0$ or $n - 1$ is complete.
+2. **Greedy Monotonicity of Scanning:**
+   When searching from the right end backwards for an anchor at $0$, the first index $j$ encountered with $colors[j] \neq colors[0]$ has the maximum possible value of $j$. Any other differing house $j' < j$ would produce a smaller distance $j' < j$. Similarly, scanning from index $0$ upwards finds the minimum index $i$ with $colors[i] \neq colors[n - 1]$, maximizing $(n - 1) - i$.
+3. **Problem Guarantee of Solution Existence:**
+   The problem statement guarantees that there are at least two houses with different colors. Hence, at least one differing house is guaranteed to exist in both scan directions.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Endpoints Already Differ ($colors[0] \neq colors[n-1]$):**
+  If the very first and last houses have different colors, the distance is $n - 1$, which is the theoretical upper bound for the entire array. Scanning is bypassed entirely.
+- **Minimum Array Size ($n = 2$):**
+  When $n = 2$, $colors[0] \neq colors[1]$ by the guarantee of distinct colors, returning $2 - 1 = 1$.
+- **Asymmetric Outliers:**
+  Checking only from one end (e.g. only fixing house $0$) fails when the only differing house is located at index $1$ in an array of identical houses ($[5, 9, 5, 5, 5]$). Examining both endpoints avoids this asymmetry trap.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Boundary check: $\mathcal{O}(1)$.
+  - Backward scan from $n - 1$: at most $n$ iterations.
+  - Forward scan from $0$: at most $n$ iterations.
+  - Total time complexity: $\mathcal{O}(n)$ strictly linear time.
+- **Auxiliary Space Complexity:**
+  - The algorithm operates directly on indices with integer variables (`i`, `j`, `n`).
+  - Total auxiliary space: $\mathcal{O}(1)$ constant memory.

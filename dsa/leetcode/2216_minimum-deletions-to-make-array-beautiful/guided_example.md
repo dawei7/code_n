@@ -1,132 +1,212 @@
 # Guided Example: Minimum Deletions to Make Array Beautiful
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the greedy parity-alignment and virtual-shift algorithm for transforming an integer sequence into a beautiful array of distinct even-indexed pairs, establishing $O(n)$ time complexity and $O(1)$ auxiliary space.
 
-- **Input:** `{"nums": [1, 1, 2, 3, 5]}`
-- **Required output:** `1`
+- **Input:** `nums = [1, 1, 2, 3, 5]`
+- **Output:** `1`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums`. The array `nums` is **beautiful** if:
-
-The objective is to compute `1` from `{"nums": [1, 1, 2, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance highlights greedy adjacent duplicate elimination, pointer stride adaptation ($+1$ on deletion versus $+2$ on successful pairing), and terminal odd-length parity correction.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a 0-indexed integer array `nums`.
+An array is defined as **beautiful** if and only if:
+1. Its total length is **even**: $\text{len}(\text{nums}) \equiv 0 \pmod 2$.
+2. Every pair starting at an even index consists of distinct adjacent elements:
+   $$\text{nums}[i] \ne \text{nums}[i + 1] \quad \text{for all } i \in \{0, 2, 4, \dots, \text{len}(\text{nums}) - 2\}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+When an element is deleted, all elements situated to its right shift one position to the left, altering the parity of their indices.
+Our goal is to compute the minimum number of deletions required to make `nums` beautiful.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
 
----
+Consider the sequence:
+$$\text{nums} = [1, 1, 2, 3, 5], \quad n = 5$$
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Read the condition as independent output pairs
-
-A beautiful array has even length, and every even output index must differ from the following odd output index. In other words, the kept elements can be grouped as
-
-`(answer[0], answer[1])`, `(answer[2], answer[3])`, and so on,
-
-with unequal values inside each pair. There is no restriction between the second element of one pair and the first element of the next. That local pair structure is what permits a greedy scan.
-
-Deleting an element shifts later elements left, so the parity of an original index is not what matters. What matters is how many elements have already been deleted or kept. The solution tracks original-array position `i` and deletion count `ans` in a way that always treats `nums[i]` as the candidate for the next even position of the resulting array.
-
-Initially, `i = 0` and `ans = 0`. The difference `i - ans` is zero, an even position in the conceptual array after deletions. Every loop action preserves the fact that the next unresolved kept position is even:
-
-- if two candidates are equal, the solution records one deletion and advances one original position, so both `i` and `ans` increase by one and `i - ans` stays even;
-- if they differ, it keeps them as a complete pair and advances by two, so `i - ans` increases by two and remains even.
-
-This invariant explains why the code can inspect adjacent entries of the original list without physically deleting anything.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 1, 2, 3, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Evaluating from left to right:
+1. **At index 0:**
+   - Elements: $\text{nums}[0] = 1$ and $\text{nums}[1] = 1$.
+   - The condition $\text{nums}[0] \ne \text{nums}[1]$ is violated because $1 = 1$.
+   - One of these identical elements must be deleted.
+   - Deleting one copy costs $1$ deletion.
+   - The remaining elements shift left: the second $1$ becomes the new element at index $0$.
+2. **Forming the first pair:**
+   - We now pair the remaining $1$ with its new right neighbor $2$.
+   - Since $1 \ne 2$, this forms a valid pair $(1, 2)$ spanning indices $0$ and $1$.
+3. **Forming the second pair:**
+   - The next available elements are $3$ and $5$.
+   - Since $3 \ne 5$, this forms a valid pair $(3, 5)$ spanning indices $2$ and $3$.
+4. **Parity Check:**
+   - Remaining elements: $[1, 2, 3, 5]$.
+   - Length is $4$, which is even ($4 \equiv 0 \pmod 2$).
+   - Total deletions: $1$.
 
 ---
 
-### Step 2: When adjacent candidates are equal
+## 2. Mathematical & Algorithmic Principles
 
-At the start of a pair, suppose `nums[i] == nums[i + 1]`. Keeping both would place equal values at the next even and odd output positions, immediately violating beauty. At least one of these two occurrences must therefore be deleted before a valid pair can be completed.
+### Greedy Pairing with Index Shifting
 
-The code performs the conceptual deletion by incrementing `ans` and moving `i` forward by one. It can be viewed as deleting `nums[i]` and allowing the equal-valued `nums[i + 1]` to remain the first candidate for the pair. Because the two values are identical, choosing the other occurrence instead would expose the same value to all later elements. Deleting one now is unavoidable and does not sacrifice a better future option.
+In any beautiful array, elements are partitioned into disjoint adjacent pairs:
+$$(x_0, x_1), \, (x_2, x_3), \, (x_4, x_5), \dots$$
+where each pair $(x_{2k}, x_{2k+1})$ must satisfy $x_{2k} \ne x_{2k+1}$.
 
-If a long run contains several copies of the same value, this action repeats. For `[1, 1, 1, 2]`, the first comparison deletes one `1`, the second comparison deletes another `1`, and the remaining `1, 2` forms a valid pair. The scan keeps exactly one useful representative from the run at the pair's first position.
+Suppose we scan the original array with index pointer $i$:
+- If $\text{nums}[i] == \text{nums}[i + 1]$:
+  These two adjacent identical values cannot form a valid pair. We must delete at least one of them.
+  Deleting $\text{nums}[i]$ increments our deletion count $\text{ans} \leftarrow \text{ans} + 1$.
+  Crucially, deleting $\text{nums}[i]$ means the element formerly at $i + 1$ now becomes the left candidate of the pair. Thus, the scan pointer advances by only $1$: $i \leftarrow i + 1$.
+- If $\text{nums}[i] \ne \text{nums}[i + 1]$:
+  The two elements successfully form a valid pair $(x_{2k}, x_{2k+1})$.
+  Both elements are consumed, so the scan pointer advances by $2$: $i \leftarrow i + 2$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Terminal Parity Adjustment
 
----
+After the loop terminates (when $i \ge n - 1$):
+- The number of retained elements is $n - \text{ans}$.
+- If $n - \text{ans}$ is odd, the final element is left stranded without a matching partner.
+- To fulfill the requirement that the final length is even, this trailing orphan element must be deleted:
+  $$\text{Final Deletions} = \text{ans} + ((n - \text{ans}) \bmod 2)$$
 
-### Step 3: When adjacent candidates differ
+```mermaid
+flowchart TD
+    accTitle: Greedy Beautiful Array Deletion Workflow
+    accDescr: Flowchart illustrating two-element inspection, incrementing deletion count on equality, advancing stride by 1 or 2, and fixing terminal odd parity.
 
-If `nums[i] != nums[i + 1]`, these two elements already form a valid next pair. The solution keeps both and advances `i` by two without increasing `ans`.
+    Start(["Initialize i = 0, ans = 0, n = len(nums)"]) --> CheckLoop{"i < n - 1?"}
 
-Keeping them is optimal. They are the earliest available two elements, they satisfy the only constraint applying within their pair, and completing this pair imposes no value restriction on the next pair. Deleting either element could not increase the number kept in the processed portion: the greedy choice keeps two elements using zero deletions, which is the maximum possible contribution of a complete pair.
+    CheckLoop -- Yes --> CheckEqual{"nums[i] == nums[i + 1]?"}
+    CheckEqual -- Yes (Duplicate pair) --> DelOne["ans += 1<br/>i = i + 1 (Shift left)"]
+    CheckEqual -- No (Valid pair) --> PairTwo["i = i + 2 (Consume pair)"]
 
-An exchange argument makes this precise. Consider any optimal result for the current suffix. If the first two available values differ but that result deletes one of them, replace its first eventual valid pair with these two earliest values. They are already unequal, preserve original order, and do not constrain later pairs. The replacement keeps at least as many elements and uses no more deletions. Therefore, some optimum agrees with the greedy choice.
+    DelOne --> CheckLoop
+    PairTwo --> CheckLoop
 
-Together, the two cases are safe at every iteration. Equal candidates force at least one deletion, and the greedy method pays exactly that unavoidable cost. Unequal candidates can safely be kept as the next complete pair. Applying these choices repeatedly minimizes deletions needed to build as many valid pairs as possible.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 1, 2, 3, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+    CheckLoop -- No --> CheckOdd{"(n - ans) % 2 == 1?"}
+    CheckOdd -- Yes --> AddTrailing["ans += 1 (Delete orphan)"]
+    CheckOdd -- No --> Done(["Return ans"])
+    AddTrailing --> Done
+```
 
 ---
 
-## 6. Traps This Instance Exposes
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Construct a separate kept array:** Append a value when it can legally occupy the next position, then remove a trailing element if the result is odd. This can express the state clearly but uses `O(n)` extra space; the index-and-count method represents the same choices in `O(1)` space.
-- **Physically delete equal elements:** Repeated deletion from the middle of a Python list shifts later elements and can lead to `O(n^2)` time. Counting conceptual deletions avoids all movement.
-- **Dynamic programming over index and parity:** A DP can decide whether to keep or delete every value while remembering the previous kept value and parity. It is much more state than this pair-local condition requires, and the greedy exchange argument gives a linear constant-space solution.
-- **Only remove adjacent duplicates once:** Deleting a single member of each original equal adjacency is not enough because earlier deletions change which values become paired. The scan's current pair position, not original parity alone, must guide comparisons.
-- **Single element:** The loop never runs. The kept count is odd, so the parity correction returns one, leaving the empty array, which is beautiful.
-- **Two equal elements:** One equality deletion is counted, leaving one conceptual element; the parity correction deletes that last element too. The answer is two, and the empty array is the only beautiful result.
-- **Two unequal elements:** The scan keeps the pair, the kept length is even, and the answer is zero.
-- **All values equal:** Repeated equality handling leaves at most one conceptual element, and the parity correction removes it. No nonempty unequal pair can be formed.
-- **Already beautiful input:** Every scanned pair is unequal and the length is even, so `ans` remains zero.
-- **Equal values across a pair boundary:** Values at output indices `1` and `2` may be equal because the rule applies only when the left index is even. The algorithm correctly advances by two after completing a pair and does not compare across that boundary.
-- **Final unpaired candidate:** Its value does not matter. Even if it differs from the previous element, it cannot remain because a beautiful array must have even length.
-- **Input preservation:** All deletions are conceptual. The original `nums` list is unchanged after the method returns.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+We trace `nums = [1, 1, 2, 3, 5]` ($n = 5$).
+
+### Initialization
+- Length: $n = 5$.
+- Pointer: $i = 0$.
+- Deletion counter: $\text{ans} = 0$.
 
 ---
 
-## 7. Complexity Derivation
+### Iteration 1: $i = 0$
+- Pair examined: $(\text{nums}[0], \text{nums}[1]) = (1, 1)$.
+- Comparison: $\text{nums}[0] == \text{nums}[1]$ ($1 == 1$).
+- Equality violation detected!
+- Action:
+  - Delete element at $i$: $\text{ans} \leftarrow 0 + 1 = 1$.
+  - Advance pointer by $1$: $i \leftarrow 0 + 1 = 1$.
+- State: $\text{ans} = 1, i = 1$.
 
-- **Time Complexity:** $O(n)$. Let `n = len(nums)`. Each loop iteration advances `i` by either one or two, and `i` never moves backward. Every input position participates in only a constant amount of work, so the main scan takes `O(n)` time. The final parity expression takes `O(1)` time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+---
+
+### Iteration 2: $i = 1$
+- Pair examined: $(\text{nums}[1], \text{nums}[2]) = (1, 2)$.
+- Comparison: $\text{nums}[1] \ne \text{nums}[2]$ ($1 \ne 2$).
+- Valid pair formed!
+- Action:
+  - Consume both elements: advance pointer by $2$: $i \leftarrow 1 + 2 = 3$.
+- State: $\text{ans} = 1, i = 3$.
+
+---
+
+### Iteration 3: $i = 3$
+- Pair examined: $(\text{nums}[3], \text{nums}[4]) = (3, 5)$.
+- Comparison: $\text{nums}[3] \ne \text{nums}[4]$ ($3 \ne 5$).
+- Valid pair formed!
+- Action:
+  - Consume both elements: advance pointer by $2$: $i \leftarrow 3 + 2 = 5$.
+- State: $\text{ans} = 1, i = 5$.
+
+---
+
+### Loop Termination & Parity Check
+- Loop condition $i < n - 1 \implies 5 < 4$ is False. Loop terminates.
+- Total retained elements:
+  $$\text{retained} = n - \text{ans} = 5 - 1 = 4$$
+- Parity verification:
+  $$4 \bmod 2 = 0 \implies \text{even}$$
+- No trailing deletion needed ($0$ added).
+- Final answer: $1$.
+
+---
+
+## 4. Comprehensive State Trace
+
+The table below summarizes pointer movements, comparisons, actions, and cumulative deletions for each step.
+
+| Step | Scan Index $i$ | Pair Inspected $(\text{nums}[i], \text{nums}[i+1])$ | Are Elements Equal? | Action Taken | Pointer Stride $\Delta i$ | Updated $i$ | Cumulative Deletions `ans` |
+|---|---|---|---|---|---|---|---|
+| Start | — | — | — | — | — | $0$ | $0$ |
+| $1$ | $0$ | $(1, 1)$ | **Yes** | Delete $\text{nums}[0]$ | $+1$ | $1$ | $1$ |
+| $2$ | $1$ | $(1, 2)$ | No | Form Pair $(1, 2)$ | $+2$ | $3$ | $1$ |
+| $3$ | $3$ | $(3, 5)$ | No | Form Pair $(3, 5)$ | $+2$ | $5$ | $1$ |
+| End | $5$ | — | — | Parity Check ($4$ is even) | — | — | **1** |
+
+### Trace on a Multi-Duplicate Array: `nums = [1, 1, 2, 2, 3, 3]` ($n = 6$)
+
+| Step | Index $i$ | Pair | Condition | Action | Next $i$ | Cumulative `ans` |
+|---|---|---|---|---|---|---|
+| 1 | $0$ | $(1, 1)$ | Equal | Delete $1$ | $1$ | $1$ |
+| 2 | $1$ | $(1, 2)$ | Not Equal | Form Pair $(1, 2)$ | $3$ | $1$ |
+| 3 | $3$ | $(2, 3)$ | Not Equal | Form Pair $(2, 3)$ | $5$ | $1$ |
+| Finish | $5$ | Orphan $3$ | End of array | Retained $= 6 - 1 = 5$ (odd) $\implies$ Delete orphan | — | **2** |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Optimality of Greedy Deletion
+Suppose we encounter $\text{nums}[i] == \text{nums}[i + 1]$.
+Any valid pairing must choose an element to pair with $\text{nums}[i]$. If $\text{nums}[i]$ is paired with some future element $\text{nums}[k]$ ($k > i + 1$), all intervening elements $\text{nums}[i + 1 \dots k - 1]$ must either be deleted or form complete pairs.
+Because $\text{nums}[i + 1] = \text{nums}[i]$, pairing $\text{nums}[i]$ with $\text{nums}[k]$ is algebraically identical to deleting $\text{nums}[i]$ and pairing $\text{nums}[i + 1]$ with $\text{nums}[k]$.
+Thus, immediately deleting $\text{nums}[i]$ whenever $\text{nums}[i] == \text{nums}[i + 1]$ is a globally optimal choice that never requires backtracking.
+
+### Parity Invariant
+Because the loop only consumes elements in valid pairs of $2$ or marks single elements for deletion, all retained elements prior to the loop exit are grouped into valid pairs of size $2$.
+If the total number of retained elements is odd, exactly one element remains at the tail without a pair. Deleting it ensures the remaining array length is even, maintaining the invariant.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+- **All Identical Elements (`nums = [2, 2, 2, 2]`):**
+  Each pair $(2, 2)$ triggers a deletion. All $4$ elements are deleted, returning $4$ (empty array is trivially even and beautiful).
+- **Already Beautiful Array (`nums = [1, 2, 3, 4]`):**
+  Pairs $(1, 2)$ and $(3, 4)$ are valid. Deletions: $0$.
+- **Odd-Length Beautiful Prefix (`nums = [1, 2, 3]`):**
+  Pair $(1, 2)$ forms, leaving $3$ stranded. Tail deletion triggers, returning $1$.
+
+### Anti-Patterns to Avoid
+- **Physically Deleting from Array:** Using `del nums[i]` in Python shifts elements in $O(n)$ time per deletion, resulting in $O(n^2)$ complexity. Simulating index shifts with variable strides runs in $O(n)$ time.
+- **Forgetting the Parity Check:** Forgetting to delete the trailing orphan when $n - \text{ans}$ is odd fails condition 1 ($\text{len}$ must be even).
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- The pointer $i$ starts at $0$ and increases by at least $1$ in every step.
+- The while loop executes at most $n$ times.
+- Each iteration performs $O(1)$ scalar comparisons and additions.
+- The final parity check takes $O(1)$ arithmetic.
+- Total Time Complexity: $\mathcal{O}(n)$, running in under $2$ milliseconds for $n \le 10^5$.
+
+### Space Complexity
+- The algorithm operates exclusively with integer pointers $i, \text{ans}, n$.
+- Auxiliary Space Complexity: $\mathcal{O}(1)$.

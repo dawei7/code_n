@@ -1,111 +1,179 @@
 # Guided Example: Reorder Routes to Make All Paths Lead to the City Zero
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step outward tree traversal from the capital node, counting directed edges pointing away from root zero on a representative problem instance:
 
-- **Input:** `{"n": 6, "connections": [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]}`
-- **Required output:** `3`
+- **Input:** $n = 6$, $connections = [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]$
+- **Required Output:** $3$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance contains roads oriented toward the capital (such as $4 \to 0$ and $2 \to 3$), as well as roads oriented away from the capital (such as $0 \to 1$, $1 \to 3$, and $4 \to 5$), illustrating edge orientation flags during depth-first search.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` cities numbered from `0` to $n - 1$ and $n - 1$ roads such that there is only one way to travel between two different cities (this network form a tree). Last year, The ministry of transport decided to orient the roads in one direction because they are too narrow.
+We are given a tree network of $n$ cities labeled $0$ to $n - 1$ with $n - 1$ one-way roads. We must reorient the minimum number of roads so that every city can travel along directed paths to reach city $0$ (the capital).
 
-The objective is to compute `3` from `{"n": 6, "connections": [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- Original directed edges: $0 \to 1, 1 \to 3, 2 \to 3, 4 \to 0, 4 \to 5$.
+- Path to 0 from each node:
+  - Node 4: has road $4 \to 0$, points directly to 0 (reversals: $0$).
+  - Node 5: has road $4 \to 5$, points away from 4 and toward 5. Must reverse to $5 \to 4 \to 0$ (reversals: $1$).
+  - Node 1: has road $0 \to 1$, points away from 0 toward 1. Must reverse to $1 \to 0$ (reversals: $1$).
+  - Node 3: has road $1 \to 3$, points away from 1 toward 3. Must reverse to $3 \to 1$ (reversals: $1$).
+  - Node 2: has road $2 \to 3$, already points toward 3, so once $3 \to 1 \to 0$ is fixed, path $2 \to 3 \to 1 \to 0$ works (reversals: $0$).
+- Total roads reversed: $3$ (edges $0 \to 1$, $1 \to 3$, and $4 \to 5$).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to invert the perspective: traversing outward from capital $0$ to all other nodes, any edge that points in the direction of traversal ($u \to v$) is pointing **away from 0** and must be reversed (cost $1$). Any edge pointing against the traversal ($v \to u$) already points **toward 0** (cost $0$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the undirected tree be represented as an adjacency list where each undirected edge $(u, v)$ carries an orientation weight:
+$$\text{weight}(u \to v) = \begin{cases} 1 & \text{if original road is } u \to v \text{ (points away from } 0) \\ 0 & \text{if original road is } v \to u \text{ (points toward } 0) \end{cases}$$
 
-| State Parameter | Role & Purpose | Initial State |
+When running a tree traversal (BFS or DFS) rooted at $0$:
+- For each edge explored from current node $curr$ to an unvisited neighbor $neighbor$:
+  - If the original road was $curr \to neighbor$, traffic flow is pointing away from $0$; we must reverse it, incurring cost $+1$.
+  - If the original road was $neighbor \to curr$, traffic flow is already pointing toward $0$; cost is $+0$.
+- The total changes required is simply the sum of edge weights encountered during the traversal:
+
+$$\text{reversals} = \sum_{(u \to v) \in \text{DFS Tree}} \text{weight}(u \to v)$$
+
+```
+Outward Traversal from Capital 0:
+Original Directed Graph:
+  0 ----> 1 ----> 3 <---- 2
+  ^               |
+  |               v (originally 4 -> 5)
+  4 ------------> 5
+
+Outward Exploration from Node 0:
+0 -> 1: Edge is 0 -> 1 (Moving away from 0)  --> REVERSE! (+1)
+1 -> 3: Edge is 1 -> 3 (Moving away from 0)  --> REVERSE! (+1)
+3 -> 2: Edge is 2 -> 3 (Points toward 0!)    --> Keep (+0)
+0 -> 4: Edge is 4 -> 0 (Points toward 0!)    --> Keep (+0)
+4 -> 5: Edge is 4 -> 5 (Moving away from 0)  --> REVERSE! (+1)
+
+Total Reversals = 1 + 1 + 0 + 0 + 1 = 3
+```
+
+We establish tracking parameters across the traversal:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Current Node ($curr$) | Integer $0 \le curr < n$ | Active node in outward tree traversal |
+| Neighbor Node ($neighbor$) | Integer $0 \le neighbor < n$ | Unvisited adjacent city in tree |
+| Edge Direction Flag | Integer $\{0, 1\}$ | $1$ if directed $curr \to neighbor$, else $0$ |
+| Total Reversals | Integer $\ge 0$ | Accumulated count of reversed edges |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every directed road between parent $u$ and child $v$ in the tree rooted at $0$, the road enables $v \rightsquigarrow 0$ if and only if it is directed $v \to u$. If it is directed $u \to v$, it must be reversed.
+
+```mermaid
+flowchart TD
+    accTitle: Outward Tree Traversal Road Reverser
+    accDescr: Traverses tree outward from root 0. Any edge pointing in the direction of traversal must be reversed.
+    A["Build undirected graph with directed cost:<br/>(u, v, cost=1), (v, u, cost=0)"] --> B["Initialize queue with node 0, visited set = {0}, reversals = 0"]
+    B --> C{"Queue empty?"}
+    C -- Yes --> D["Return reversals"]
+    C -- No --> E["Pop curr from queue"]
+    E --> F["Loop over (neighbor, cost) of curr"]
+    F --> G{"neighbor in visited?"}
+    G -- Yes --> H{"More neighbors?"}
+    G -- No --> I["visited.add(neighbor)<br/>reversals = reversals + cost<br/>push neighbor to queue"] --> H
+    H -- Yes --> F
+    H -- No --> C
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
+We walk through the representative instance with $n = 6$ and $connections = [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]$.
 
-**Root the underlying tree at the destination.** Ignoring road directions, the network is a tree. Root it at city zero. Every non-root city has exactly one parent: the next city on its unique undirected path toward zero.
+### Step 1: Graph Representation with Direction Costs
+- Edge $0 \to 1$: $(0, 1, 1)$ and $(1, 0, 0)$
+- Edge $1 \to 3$: $(1, 3, 1)$ and $(3, 1, 0)$
+- Edge $2 \to 3$: $(2, 3, 1)$ and $(3, 2, 0)$
+- Edge $4 \to 0$: $(4, 0, 1)$ and $(0, 4, 0)$
+- Edge $4 \to 5$: $(4, 5, 1)$ and $(5, 4, 0)$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 6, "connections": [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 2: Breadth-First Outward Sweep from Root $0$
 
----
+1. **At Node $0$ (Queue: $[0]$, $reversals = 0$):**
+   - Neighbor $1$: Original edge is $0 \to 1$ (points away from 0). Cost: $+1$.
+     - Enqueue $1$. $reversals \leftarrow 0 + 1 = 1$.
+   - Neighbor $4$: Original edge is $4 \to 0$ (points toward 0). Cost: $+0$.
+     - Enqueue $4$. $reversals \leftarrow 1 + 0 = 1$.
 
-### Step 2: Core Step 2
+2. **At Node $1$ (Queue: $[4, 1]$, $reversals = 1$):**
+   - Neighbor $3$: Original edge is $1 \to 3$ (points away from 0). Cost: $+1$.
+     - Enqueue $3$. $reversals \leftarrow 1 + 1 = 2$.
 
-For every city to reach zero, each edge must point from a child toward its parent. If an edge instead points from the parent out toward the child, it must be reversed. Because a tree has only one path to the root, there is no alternative route that could compensate for a wrongly directed parent-child edge.
+3. **At Node $4$ (Queue: $[3, 4]$, $reversals = 2$):**
+   - Neighbor $5$: Original edge is $4 \to 5$ (points away from 0). Cost: $+1$.
+     - Enqueue $5$. $reversals \leftarrow 2 + 1 = 3$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+4. **At Node $3$ (Queue: $[5, 3]$, $reversals = 3$):**
+   - Neighbor $2$: Original edge is $2 \to 3$ (points toward 0). Cost: $+0$.
+     - Enqueue $2$. $reversals \leftarrow 3 + 0 = 3$.
 
----
+5. **At Nodes $5$ and $2$:**
+   - Both are leaf nodes with no unvisited neighbors.
+   - Queue empties.
 
-### Step 3: Core Step 3
+Total reversals: $3$.
 
-The problem therefore becomes: traverse the tree outward from zero and count the edges whose original direction also points outward.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+| Traversal Step | Node Visited | Adjacent Neighbor | Original Edge Orientation | Points Away from 0? | Added Cost | Cumulative Reversals |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 1 | $0 \to 1$ | Yes | +1 | 1 |
+| 1 | 0 | 4 | $4 \to 0$ | No (points toward 0) | +0 | 1 |
+| 2 | 1 | 3 | $1 \to 3$ | Yes | +1 | 2 |
+| 3 | 4 | 5 | $4 \to 5$ | Yes | +1 | **3** |
+| 4 | 3 | 2 | $2 \to 3$ | No (points toward 0) | +0 | 3 |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+```
+Outward Traversal Edge Decision Log:
+1. Explored (0 -> 1): Directed outward  ==> Must reverse to (1 -> 0)  [Count: 1]
+2. Explored (0 -> 4): Directed inward   ==> Keep as (4 -> 0)         [Count: 1]
+3. Explored (1 -> 3): Directed outward  ==> Must reverse to (3 -> 1)  [Count: 2]
+4. Explored (4 -> 5): Directed outward  ==> Must reverse to (5 -> 4)  [Count: 3]
+5. Explored (3 -> 2): Directed inward   ==> Keep as (2 -> 3)         [Count: 3]
+Final Modified Edges: {(0,1), (1,3), (4,5)}
+Total Reorientations: 3
+```
+
+| Edge Under Test | Initial Direction | Required Path Direction to Capital | Needs Inversion? |
 |---|---|---|---|
-| Initialization | Initial input `{"n": 6, "connections": [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| $(0, 1)$ | $0 \to 1$ | $1 \to 0$ | **Yes** |
+| $(4, 0)$ | $4 \to 0$ | $4 \to 0$ | No |
+| $(1, 3)$ | $1 \to 3$ | $3 \to 1$ | **Yes** |
+| $(4, 5)$ | $4 \to 5$ | $5 \to 4$ | **Yes** |
+| $(2, 3)$ | $2 \to 3$ | $2 \to 3$ | No |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In any tree, there is exactly one simple path between node $0$ and any other node $v$. For node $v$ to reach $0$, all edges along the unique path connecting $v$ to $0$ must be directed toward $0$. Reversing an edge pointing away from $0$ makes it point toward $0$. Thus, each reversal directly satisfies the directional requirement for that edge.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the network is a tree with $n - 1$ edges connecting $n$ nodes, traversing all $n - 1$ undirected edges once from root $0$ partitions the edges into an orientation tree. Every edge is checked exactly once against the outward direction, ensuring that all edges pointing away from $0$ are reversed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Iterative DFS:** Store node, parent pairs on an explicit stack and add edge costs while visiting children. It avoids Python recursion-depth failure.
-- **Breadth-first search:** A queue can traverse outward from zero with the same labeled adjacency entries and count rule.
-- **Visited array:** It is valid but unnecessary for a tree when the parent is passed. It becomes necessary if cycles are allowed.
-- **Traverse original edges only:** This can fail to reach children whose roads point toward the current node. Artificial reverse entries are required for undirected exploration.
-- **All roads already point to zero:** Every outward traversal uses cost-zero entries, and the answer is zero.
-- **All rooted edges point away from zero:** Every road contributes one, so `n - 1` reversals are necessary.
-- **Single chain:** Each road's cost is evaluated once according to whether it faces toward its parent.
-- **Star centered at zero:** Roads directed zero-to-leaf must reverse; leaf-to-zero roads do not.
-- **Input endpoint order:** `[a,b]` is directional, not an unordered pair. The two labeled adjacency entries preserve that fact.
-- **Leaf city:** Its DFS returns zero after its incoming edge cost has already been counted by the parent.
-- **Unique-path guarantee:** It proves that every outward edge is unavoidable and makes the count minimal.
-- **Parent sentinel:** `-1` cannot equal a valid city, so root processes all neighbors.
-- **Deep tree:** Prefer iterative traversal in Python if runtime recursion limits are not adjusted.
-- **No actual mutation:** The method counts required reversals; it does not need to rewrite the connection list.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Attempting Multi-Source Search from Every City:** Running BFS from each of the $n$ cities to check if they reach $0$ takes $\mathcal{O}(n^2)$ time. Inverting the view to an outward sweep from $0$ requires only a single $\mathcal{O}(n)$ pass.
+- **Directional Ambiguity:** Mislabeling the cost flag: traversing from $curr$ to $neighbor$, an edge originally $curr \to neighbor$ must cost $1$ (it flows away from $0$), while $neighbor \to curr$ must cost $0$. Inverting these costs computes the count of edges already correct rather than those needing reversal.
+- **Graph Cycles:** Trees contain no cycles, but because edges are added symmetrically to allow bidirectional traversal, an unvisited check (or passing $parent$) is necessary to prevent infinite oscillation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The tree has `n - 1` roads. Building `g` inserts two entries per road, taking `O(n)` time and `O(n)` space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n \le 5 \times 10^4$ is the number of cities. Building the adjacency list from $n - 1$ edges takes $\mathcal{O}(n)$ time. The breadth-first or depth-first traversal visits each vertex once and traverses each of the $n - 1$ undirected edges twice, taking $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the adjacency list with direction flags and the traversal queue/visited array.

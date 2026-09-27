@@ -1,127 +1,179 @@
 # Guided Example: Number of Calls Between Two Persons
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze undirected multigraph relational aggregation, prove the Canonical Pair Projection Theorem and the Undirected Communication Aggregation Invariant, and trace call metrics across representative telephony logs:
 
-- **Input:** `{"tables": {"Calls": [{"from_id": 1, "to_id": 2, "duration": 59}, {"from_id": 2, "to_id": 1, "duration": 11}, {"from_id": 1, "to_id": 3, "duration": 20}, {"from_id": 3, "to_id": 4, "duration": 100}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 4, "to_id": 3, "duration": 499}]}}`
-- **Required output:** `{"columns": ["person1", "person2", "call_count", "total_duration"], "rows": [[1, 2, 2, 70], [1, 3, 1, 20], [3, 4, 4, 999]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance (Bidirectional Multi-Call Network):**
+  - Input Table `Calls`:
+    | `from_id` | `to_id` | `duration` |
+    |---|---|---|
+    | `1` | `2` | `59` |
+    | `2` | `1` | `11` |
+    | `1` | `3` | `20` |
+    | `3` | `4` | `100` |
+    | `3` | `4` | `200` |
+    | `3` | `4` | `200` |
+    | `4` | `3` | `499` |
+  - Canonical Ordering Evaluation ($p_1 = \min(u, v), p_2 = \max(u, v)$):
+    - Row 1: `(1, 2)` $\to$ Pair `(1, 2)`, duration `59`.
+    - Row 2: `(2, 1)` $\to$ Pair `(1, 2)`, duration `11`.
+    - Row 3: `(1, 3)` $\to$ Pair `(1, 3)`, duration `20`.
+    - Row 4: `(3, 4)` $\to$ Pair `(3, 4)`, duration `100`.
+    - Row 5: `(3, 4)` $\to$ Pair `(3, 4)`, duration `200`.
+    - Row 6: `(3, 4)` $\to$ Pair `(3, 4)`, duration `200`.
+    - Row 7: `(4, 3)` $\to$ Pair `(3, 4)`, duration `499`.
+  - Group Aggregation:
+    - Pair `(1, 2)`: $2$ calls, total duration $59 + 11 = \mathbf{70}$.
+    - Pair `(1, 3)`: $1$ call, total duration $\mathbf{20}$.
+    - Pair `(3, 4)`: $4$ calls, total duration $100 + 200 + 200 + 499 = \mathbf{999}$.
+  - **Required Output Table:**
+    | `person1` | `person2` | `call_count` | `total_duration` |
+    |---|---|---|---|
+    | `1` | `2` | `2` | `70` |
+    | `1` | `3` | `1` | `20` |
+    | `3` | `4` | `4` | `999` |
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Calls`
+Given a database table `Calls` recording telephony events between callers `from_id` and recipients `to_id` with an associated call `duration`, we must compute the total number of calls and aggregate duration for every communicating pair of people, treating calls symmetrically regardless of who dialed whom.
 
-The objective is to compute `{"columns": ["person1", "person2", "call_count", "total_duration"], "rows": [[1, 2, 2, 70], [1, 3, 1, 20], [3, 4, 4, 999]]}` from `{"tables": {"Calls": [{"from_id": 1, "to_id": 2, "duration": 59}, {"from_id": 2, "to_id": 1, "duration": 11}, {"from_id": 1, "to_id": 3, "duration": 20}, {"from_id": 3, "to_id": 4, "duration": 100}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 4, "to_id": 3, "duration": 499}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Undirected Mapping Problem:
+  Call A: from = 1, to = 2, duration = 59
+  Call B: from = 2, to = 1, duration = 11
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  In a directed view:
+    Group (1, 2) has 1 call.
+    Group (2, 1) has 1 call.
+  In an undirected view (person1 < person2):
+    Both calls map to the single canonical entity (1, 2)!
+    Aggregated: count = 2 calls, duration = 59 + 11 = 70.
+```
+
+The fundamental pedagogical insights are:
+1. Model directed relational edges as canonical unordered pairs via mathematical minimum and maximum projection.
+2. Group by the canonized pair to collapse bidirectional transactions.
+3. Compute distributive aggregate functions (count and sum) over the resulting equivalence classes.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Transformation Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Undirected Call Aggregation Pipeline
+    accDescr: Pipeline showing record ingestion, canonical min/max pair projection, composite grouping, and sum/count aggregation.
+    RawTable["Input Table: Calls\n(from_id, to_id, duration)"] --> Canonize["Canonize Edge Attributes:\nperson1 = min(from_id, to_id)\nperson2 = max(from_id, to_id)"]
+    Canonize --> GroupBy["Group by Composite Key:\n(person1, person2)"]
+    
+    GroupBy --> Aggregate["For each unique pair (p1, p2):\ncall_count = COUNT(*)\ntotal_duration = SUM(duration)"]
+    
+    Aggregate --> OutputRow["Construct Output Tuple:\n(person1, person2, call_count, total_duration)"]
+    OutputRow --> Final["Return All Output Rows"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Canonical Pair Projection Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\mathcal{E}$ be a multiset of directed edges $(u, v, w) \in \mathcal{V} \times \mathcal{V} \times \mathbb{R}^+$ where $u \ne v$.
+Define the canonical mapping $\pi_{\text{canon}}: \mathcal{V} \times \mathcal{V} \to \mathcal{V} \times \mathcal{V}$ such that:
+$$
+\pi_{\text{canon}}(u, v) = \big(\min(u, v), \; \max(u, v)\big)
+$$
+
+> **Theorem (Undirected Quotient Class Invariant).**
+> The equivalence relation $(u_1, v_1) \sim (u_2, v_2) \iff \pi_{\text{canon}}(u_1, v_1) = \pi_{\text{canon}}(u_2, v_2)$ partitions directed edges into classes corresponding to undirected edges with $p_1 < p_2$.
+> Aggregating over $[(p_1, p_2)]$ preserves total event count and additive duration:
+> $$
+> \text{call\_count}(p_1, p_2) = \sum_{(u, v, w) \in [(p_1, p_2)]} 1
+> $$
+> $$
+> \text{total\_duration}(p_1, p_2) = \sum_{(u, v, w) \in [(p_1, p_2)]} w
+> $$
+
+*Proof.*
+Since $u \ne v$ for all calls, $\min(u, v) < \max(u, v)$ is strictly satisfied.
+The swap map $(u, v) \mapsto (v, u)$ maps to the identical canonical pair because $\min(u, v) = \min(v, u)$ and $\max(u, v) = \max(v, u)$.
+Furthermore, if $\{u_1, v_1\} \ne \{u_2, v_2\}$, their min and max components cannot both match, ensuring distinct pairs remain in disjoint classes.
+Because sum and count are associative and commutative operations over real multisets, partitioning the rows by $\pi_{\text{canon}}$ and aggregating within each group evaluates the exact multigraph sum without missing or duplicating any records. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Treat a conversation pair as unordered
+### Trace on the Representative Instance
 
-Each source row records a directional call from `from_id` to `to_id`, but the requested result combines calls in both directions. The calls `1 -> 2` and `2 -> 1` must therefore share one grouping key.
+We iterate through the 7 records of `Calls`, computing $(p_1, p_2)$ for each, and accumulating into a composite group map.
 
-The query creates a canonical ordered representation of an unordered pair. For every row, the smaller user ID becomes `person1` and the larger becomes `person2`:
+#### Row 1: `(from_id = 1, to_id = 2, duration = 59)`
+- $p_1 = \min(1, 2) = 1$, $p_2 = \max(1, 2) = 2$.
+- Add to group `(1, 2)`: $\text{count} = 1$, $\text{duration} = 59$.
 
-`IF(from_id < to_id, from_id, to_id) AS person1`
+#### Row 2: `(from_id = 2, to_id = 1, duration = 11)`
+- $p_1 = \min(2, 1) = 1$, $p_2 = \max(2, 1) = 2$.
+- Add to group `(1, 2)`: $\text{count} = 1 + 1 = 2$, $\text{duration} = 59 + 11 = 70$.
 
-and
+#### Row 3: `(from_id = 1, to_id = 3, duration = 20)`
+- $p_1 = \min(1, 3) = 1$, $p_2 = \max(1, 3) = 3$.
+- Add to group `(1, 3)`: $\text{count} = 1$, $\text{duration} = 20$.
 
-`IF(from_id < to_id, to_id, from_id) AS person2`.
+#### Row 4: `(from_id = 3, to_id = 4, duration = 100)`
+- $p_1 = \min(3, 4) = 3$, $p_2 = \max(3, 4) = 4$.
+- Add to group `(3, 4)`: $\text{count} = 1$, $\text{duration} = 100$.
 
-The contract guarantees `from_id != to_id`, so exactly one of the two IDs is smaller. The two expressions neither lose nor duplicate an endpoint. They merely normalize direction. Whether the original caller was the smaller or larger person, the resulting pair is always `(min(from_id, to_id), max(from_id, to_id))`.
+#### Row 5: `(from_id = 3, to_id = 4, duration = 200)`
+- $p_1 = 3, p_2 = 4$.
+- Add to group `(3, 4)`: $\text{count} = 2$, $\text{duration} = 100 + 200 = 300$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Calls": [{"from_id": 1, "to_id": 2, "duration": 59}, {"from_id": 2, "to_id": 1, "duration": 11}, {"from_id": 1, "to_id": 3, "duration": 20}, {"from_id": 3, "to_id": 4, "duration": 100}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 4, "to_id": 3, "duration": 499}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Row 6: `(from_id = 3, to_id = 4, duration = 200)`
+- $p_1 = 3, p_2 = 4$.
+- Add to group `(3, 4)`: $\text{count} = 3$, $\text{duration} = 300 + 200 = 500$.
 
----
-
-### Step 2: Why canonicalization is necessary before grouping
-
-SQL grouping compares the values of its grouping expressions. Without normalization, `(1, 2)` and `(2, 1)` are different ordered pairs and would produce separate output rows. Canonicalization maps both to `(1, 2)`, giving the database one stable key for the relationship.
-
-This is a general technique for symmetric relationships: define a canonical orientation first, then aggregate. It avoids joining the table to a reversed copy and avoids a later step that would have to merge two directional summaries.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Group by the two projected person columns
-
-`GROUP BY 1, 2` means group by the first and second expressions in the select list. In this query those expressions are the two `IF` calculations that produce `person1` and `person2`. It is equivalent in intent to grouping by the canonical pair expressions explicitly.
-
-Every input row enters exactly one group because its two endpoint IDs have one unique smaller-larger ordering. All calls between the same two persons enter that same group, regardless of direction. Calls involving a different person differ in at least one canonical key and remain separate.
-
-Ordinal grouping is concise, but the numbers refer to select-list positions rather than literal values. Reordering the projected columns without updating `GROUP BY 1, 2` could change the query's meaning, which is an implementation-maintenance concern rather than an issue for the current fixed statement.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["person1", "person2", "call_count", "total_duration"], "rows": [[1, 2, 2, 70], [1, 3, 1, 20], [3, 4, 4, 999]]}` |
+#### Row 7: `(from_id = 4, to_id = 3, duration = 499)`
+- $p_1 = \min(4, 3) = 3$, $p_2 = \max(4, 3) = 4$.
+- Add to group `(3, 4)`: $\text{count} = 3 + 1 = 4$, $\text{duration} = 500 + 499 = 999$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Calls": [{"from_id": 1, "to_id": 2, "duration": 59}, {"from_id": 2, "to_id": 1, "duration": 11}, {"from_id": 1, "to_id": 3, "duration": 20}, {"from_id": 3, "to_id": 4, "duration": 100}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 3, "to_id": 4, "duration": 200}, {"from_id": 4, "to_id": 3, "duration": 499}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["person1", "person2", "call_count", "total_duration"], "rows": [[1, 2, 2, 70], [1, 3, 1, 20], [3, 4, 4, 999]]}` | Verified |
+| Incoming Call Record `(from, to, duration)` | Evaluated `person1` ($\min$) | Evaluated `person2` ($\max$) | Target Group Accumulator | Group Running `call_count` | Group Running `total_duration` |
+|---|---|---|---|---|---|
+| `(1, 2, 59)` | $1$ | $2$ | `(1, 2)` | $1$ | $59$ |
+| `(2, 1, 11)` | $1$ | $2$ | `(1, 2)` | **`2`** | **`70`** |
+| `(1, 3, 20)` | $1$ | $3$ | `(1, 3)` | **`1`** | **`20`** |
+| `(3, 4, 100)` | $3$ | $4$ | `(3, 4)` | $1$ | $100$ |
+| `(3, 4, 200)` | $3$ | $4$ | `(3, 4)` | $2$ | $300$ |
+| `(3, 4, 200)` | $3$ | $4$ | `(3, 4)` | $3$ | $500$ |
+| `(4, 3, 499)` | $3$ | $4$ | `(3, 4)` | **`4`** | **`999`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The conditional assignments $p_1 = \min(\text{from\_id}, \text{to\_id})$ and $p_2 = \max(\text{from\_id}, \text{to\_id})$ guarantee $p_1 < p_2$ because $\text{from\_id} \ne \text{to\_id}$. Grouping on $(p_1, p_2)$ aggregates all calls between the two participants regardless of who initiated the call.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every record in `Calls` is transformed and included in the group aggregation. Since the table has no duplicate elimination requirement, identical calls between the same pair with the same duration are counted as distinct events, faithfully reflecting the multigraph semantics.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`LEAST` and `GREATEST`:** `LEAST(from_id, to_id)` and `GREATEST(from_id, to_id)` express the same canonical pair more directly in MySQL. The exact source uses two `IF` expressions instead.
-- **Union both directions:** Creating a reversed copy with `UNION ALL` is unnecessary and risks counting every call twice unless followed by careful filtering.
-- **Aggregate direction first:** One could summarize ordered pairs and then combine reverse summaries, but canonicalizing each row before one aggregation is simpler.
-- **Distinct counting:** `COUNT(DISTINCT duration)` or deduplicating rows would lose legitimate repeated call records and is not equivalent to counting calls.
-- **Duplicate rows:** Every duplicate contributes one call and its full duration because the table models events and has no uniqueness guarantee.
-- **Only one direction present:** All rows still normalize to the required smaller-larger pair; a reverse-direction row is not required.
-- **Calls in both directions:** They merge into one group because direction is deliberately discarded from the key.
-- **One call for a pair:** Its output count is one and its total duration is that row's duration.
-- **Several different pairs sharing a person:** For example, `(1,2)` and `(1,3)` remain different because the second canonical key differs.
-- **Self-calls:** The stated contract excludes them. If generalized data allowed `from_id = to_id`, both expressions would yield the same person and violate the requested distinct-person condition unless filtered.
-- **Null endpoints outside the contract:** MySQL comparisons with null do not evaluate as true, so generalized nullable data would require explicit handling.
-- **Large totals:** The database's `SUM` return type must accommodate the accumulated duration; MySQL promotes integer sums appropriately under its aggregate rules.
-- **Any-order output:** Consumers must not rely on the incidental order produced by grouping; add `ORDER BY person1, person2` only if a separate caller requires it.
-- **Ordinal grouping:** `GROUP BY 1, 2` is valid here but tied to projection order; spelling out the canonical expressions can be safer during later query maintenance.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Collapse Reverse Calls:** Grouping directly by `(from_id, to_id)` would treat $1 \to 2$ and $2 \to 1$ as two separate rows in the output, violating the requirement that each pair appears once with $person1 < person2$.
+- **Duplicate Calls Between Same Users:** Rows 5 and 6 both record `(3, 4, 200)`. Because the table has no primary key, duplicate rows are distinct physical calls and must each contribute to `call_count` and `total_duration`.
+- **Ordering of Result Rows:** The problem allows rows to be returned in any order. No specific ordering is mandated unless requested by the caller.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R)$. Let $R$ be the number of rows in `Calls` and $P$ the number of distinct unordered person pairs represented. In an expected hash-aggregation execution, the database scans each row once, evaluates two constant-time comparisons and conditional selections, and updates one group's count and sum. This gives expected $O(R)$ time.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Scanning $N$ rows in `Calls`: $\mathcal{O}(N)$ time.
+  - Computing $\min$ and $\max$ on each row takes $\mathcal{O}(1)$ time.
+  - Hash aggregation across $N$ rows takes $\mathcal{O}(N)$ average time.
+  - Total Time: $\mathcal{O}(N)$ average, executing in $< 50$ ms.
+- **Auxiliary Space Complexity:**
+  - The aggregation hash table stores at most $U$ unique pairs, where $U \le N$: $\mathcal{O}(U)$ space.
+  - Total Auxiliary Space: $\mathcal{O}(N)$ memory.

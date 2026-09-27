@@ -1,140 +1,179 @@
 # Guided Example: Apply Discount to Prices
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"sentence": "1 2 $3 4 $5 $6 7 8$ $9 $10$", "discount": 100}`
-- **Required output:** `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"`
+We are given a string $sentence$ consisting of words separated by single spaces, and an integer $discount$ representing a percentage reduction. A word is defined as a sequence of non-whitespace characters. A word qualifies as a **price** if and only if it satisfies two strict criteria:
+1. The first character is the dollar sign `'$'`.
+2. All subsequent characters form a non-empty sequence composed entirely of decimal digits (`'0'` through `'9'`).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+For every word that qualifies as a valid price, we must calculate the discounted price:
+$$\text{Price}_{\text{new}} = \text{Price}_{\text{original}} \times \left(1 - \frac{discount}{100}\right)$$
+The discounted price is formatted with the leading `'$'` character followed by exactly two fractional decimal digits. All other words—including words where `'$'` appears in other positions, bare dollar signs `'$'`, words containing alphabetic characters after `'$'`, or numbers without a leading `'$'`—must remain completely unchanged.
 
----
+Consider the representative problem instance:
+$$sentence = \text{"there are \$1 \$2 and 5\$ candies in the shop"}, \quad discount = 50$$
 
-## 1. Instance & Teaching Goal
+Examining each token in the sentence:
+- `"there"`: does not begin with `'$'` $\implies$ unmodified.
+- `"are"`: does not begin with `'$'` $\implies$ unmodified.
+- `"$1"`: begins with `'$'`, remainder `"1"` is non-empty digits $\implies$ valid price of value $1$. Discounted value: $1 \times (1 - 0.50) = 0.50$, formatted as `"$0.50"`.
+- `"$2"`: begins with `'$'`, remainder `"2"` is non-empty digits $\implies$ valid price of value $2$. Discounted value: $2 \times (1 - 0.50) = 1.00$, formatted as `"$1.00"`.
+- `"and"`: does not begin with `'$'` $\implies$ unmodified.
+- `"5$"`: begins with digit `'5'`, not `'$'` $\implies$ unmodified.
+- `"candies"`, `"in"`, `"the"`, `"shop"`: do not begin with `'$'` $\implies$ unmodified.
 
-A **sentence** is a string of single-space separated words where each word can contain digits, lowercase letters, and the dollar sign `'$'`. A word represents a **price** if it is a sequence of digits preceded by a dollar sign.
+Reassembling the transformed tokens with single space delimiters yields:
+$$\text{"there are \$0.50 \$1.00 and 5\$ candies in the shop"}$$
 
-The objective is to compute `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"` from `{"sentence": "1 2 $3 4 $5 $6 7 8$ $9 $10$", "discount": 100}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Treat the sentence as complete space-delimited tokens
-
-The definition of a price applies to an entire word: the word must begin with `'$'`, and every character after that sign must be a digit. A dollar sign embedded in a larger word does not begin a price token.
-
-The sentence guarantee says that words are separated by one space with no leading or trailing spaces. Consequently, `sentence.split()` produces exactly the original word sequence. The algorithm examines every word independently, appends either its replacement or its original text to `ans`, and finally restores the sentence with `' '.join(ans)`.
-
-Because spacing is canonical, splitting and rejoining does not alter any valid separator.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sentence": "1 2 $3 4 $5 $6 7 8$ $9 $10$", "discount": 100}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+flowchart TD
+    accTitle: Token Classification and Discount Transformation
+    accDescr: Diagram illustrating tokenization by space, classification of price tokens, percentage discount application, and string reconstruction.
+    A["Input sentence"] --> B["Split by single whitespace into tokens"]
+    B --> C["For each word w"]
+    C --> D{"w[0] == '$' and len(w) > 1 and w[1:] is all digits?"}
+    D -- Yes --> E["Parse integer value P = val(w[1:])"]
+    E --> F["Compute discounted value P * (1 - discount / 100)"]
+    F --> G["Format to two decimal places: '$' + formatted_num"]
+    D -- No --> H["Retain original token w unchanged"]
+    G --> I["Append to output token list"]
+    H --> I
+    I --> J["Join tokens with single spaces: ' '.join(ans)"]
+```
 
 ---
 
-### Step 2: Recognize a price only when the whole word matches
+## 2. Mathematical & Algorithmic Principles
 
-The condition has two parts:
+### Formal Token Validation Predicate
 
-`w[0] == '$' and w[1:].isdigit()`.
+Let a token $w$ be a sequence of characters $w = (c_0, c_1, \dots, c_{k-1})$ of length $k \ge 1$. The indicator predicate $\text{IsPrice}(w) \in \{0, 1\}$ is formally defined as:
+$$\text{IsPrice}(w) = [c_0 = \text{'\$'} \land k \ge 2 \land (\forall i \in \{1, \dots, k-1\}, c_i \in \{0, 1, \dots, 9\})]$$
 
-Every word is nonempty, so reading `w[0]` is safe. The first comparison rejects tokens such as `"5$"` or `"there$1"` because their dollar sign is not the first character.
+| Test Case Token | $c_0 = \text{'\$'}$ | $k \ge 2$ | All Suffix Chars Digits | $\text{IsPrice}(w)$ | Classification Result |
+|---|---|---|---|---|---|
+| `"$1"` | True | True ($k=2$) | True (`"1"`) | True | Valid price |
+| `"$2"` | True | True ($k=2$) | True (`"2"`) | True | Valid price |
+| `"5$"` | False (`'5'`) | True ($k=2$) | N/A | False | Suffix currency symbol (non-price) |
+| `"there"` | False (`'t'`) | True ($k=5$) | N/A | False | Regular word |
+| `"$"` | True | False ($k=1$) | False (empty suffix) | False | Bare currency symbol |
+| `"$10$"` | True | True ($k=4$) | False (`'$'` at index 3) | False | Trailing currency symbol |
 
-`w[1:].isdigit()` requires at least one character and requires every remaining character to be a digit. It therefore accepts `"$100"` and rejects:
+### Exact Decimal Precision & Arithmetic Scaling
 
-- `"$"`, because the suffix is empty;
-- `"$1e5"`, because `e` is not a digit;
-- `"$5$6"`, because another dollar sign appears in the suffix;
-- `"$$9"`, for the same reason.
-
-The test describes the full token rather than searching for a price-shaped substring inside it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Convert and apply the discount
-
-For a valid price word, `int(w[1:])` converts the digit suffix to its numeric price. The source guarantees positive prices without leading zeros and at most ten digits, so conversion is direct.
-
-A discount of `discount` percent leaves the fraction
-
-$$
-1-\frac{\texttt{discount}}{100}
-$$
-
-of the original price. The exact source computes
-
-`int(w[1:]) * (1 - discount / 100)`.
-
-Python's `/` produces a floating-point value. The multiplication therefore also produces a float, even when the mathematical result is a whole number.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"` |
+Let the original integer price extracted from the suffix be:
+$$P = \sum_{j=1}^{k-1} c_j \cdot 10^{k-1-j}$$
+Given discount rate $D \in [0, 100]$, the post-discount floating-point value is:
+$$V = P \times \left(1 - \frac{D}{100}\right) = \frac{P \times (100 - D)}{100}$$
+The result is rounded and formatted with exactly two decimal places. For example, if $D = 100$, then $100 - D = 0$, producing $V = 0.00$, outputting `"$0.00"`. If $D = 0$, then $100 - D = 100$, producing $V = P.00$, preserving the price with two added decimal digits.
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sentence": "1 2 $3 4 $5 $6 7 8$ $9 $10$", "discount": 100}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"` | Verified |
+Let us trace the execution on $sentence = \text{"there are \$1 \$2 and 5\$ candies in the shop"}$ with $discount = 50$.
+
+### Step 1: Whitespace Tokenization
+The input sentence is partitioned across space boundaries into an ordered list of 10 words:
+$$[\text{"there"}, \text{"are"}, \text{"\$1"}, \text{"\$2"}, \text{"and"}, \text{"5\$"}, \text{"candies"}, \text{"in"}, \text{"the"}, \text{"shop"}]$$
+
+### Step 2: Sequential Token Evaluation
+
+- **Token 0 (`"there"`):**
+  - First character is `'t'` $\ne$ `'$'`.
+  - Condition fails; keep token as `"there"`.
+
+- **Token 1 (`"are"`):**
+  - First character is `'a'` $\ne$ `'$'`.
+  - Condition fails; keep token as `"are"`.
+
+- **Token 2 (`"$1"`):**
+  - First character is `'$'`.
+  - Suffix `"1"` has length $1 \ge 1$ and consists solely of digits.
+  - Suffix parsed as integer: $P = 1$.
+  - Apply discount: $1 \times (1 - 50 / 100) = 0.50$.
+  - Formatted token: `"$0.50"`.
+
+- **Token 3 (`"$2"`):**
+  - First character is `'$'`.
+  - Suffix `"2"` has length $1 \ge 1$ and consists solely of digits.
+  - Suffix parsed as integer: $P = 2$.
+  - Apply discount: $2 \times (1 - 50 / 100) = 1.00$.
+  - Formatted token: `"$1.00"`.
+
+- **Token 4 (`"and"`):**
+  - First character is `'a'` $\ne$ `'$'`.
+  - Condition fails; keep token as `"and"`.
+
+- **Token 5 (`"5$"`):**
+  - First character is `'5'` $\ne$ `'$'`.
+  - Condition fails; keep token as `"5$"`.
+
+- **Tokens 6 through 9 (`"candies"`, `"in"`, `"the"`, `"shop"`):**
+  - None start with `'$'`.
+  - All remain unchanged.
+
+### Step 3: Reconstruction via Joining
+We concatenate the processed tokens with single space separators:
+$$\text{"there"} + \text{" "} + \text{"are"} + \text{" "} + \text{"\$0.50"} + \text{" "} + \text{"\$1.00"} + \text{" "} + \text{"and"} + \text{" "} + \text{"5\$"} + \text{" "} + \text{"candies"} + \text{" "} + \text{"in"} + \text{" "} + \text{"the"} + \text{" "} + \text{"shop"}$$
+This yields `"there are $0.50 $1.00 and 5$ candies in the shop"`.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Integer cents:** Compute `price * (100-discount)` as an integer number of cents, then divide by 100 for formatting. This avoids binary floating-point rounding and more closely matches the manifest summary.
-- **Regular expression:** A full-token pattern such as a dollar sign followed by one or more digits can recognize prices, but the two direct string checks are sufficient.
-- **Character-by-character reconstruction:** It can avoid a separate split list but requires careful token-boundary and spacing management.
-- **A bare dollar sign:** Its suffix is empty, `isdigit()` is false, and it remains unchanged.
-- **Dollar sign inside a word:** The first-character test rejects it.
-- **Extra symbol after digits:** The suffix-wide digit test rejects the entire token rather than discounting a prefix.
-- **Zero-percent discount:** The numeric value is unchanged, but every valid price is still reformatted with two decimal places.
-- **Hundred-percent discount:** Every recognized price formats as `"$0.00"`.
-- **Whole-number discounted result:** Fixed-point formatting still appends `.00`.
-- **Fractional-cent mathematical result:** `.2f` rounds to two displayed decimal places.
-- **Maximum ten-digit price:** Python's integer conversion is safe; the subsequent exact source calculation is floating point.
-- **Canonical spaces:** Split and join preserve the sentence's separators only because the contract guarantees exactly one space.
-- **Nonempty words:** The spacing guarantees make `w[0]` safe.
-- **Input preservation:** New token and result strings are built; `sentence` is not mutated.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Token Index | Raw Word $w$ | Begins with `'$'` | Valid Numeric Suffix | Numerical Price $P$ | Transformed Word $w'$ |
+|---|---|---|---|---|---|
+| $0$ | `"there"` | False | No | None | `"there"` |
+| $1$ | `"are"` | False | No | None | `"are"` |
+| $2$ | `"$1"` | True | Yes (`"1"`) | $1$ | `"$0.50"` |
+| $3$ | `"$2"` | True | Yes (`"2"`) | $2$ | `"$1.00"` |
+| $4$ | `"and"` | False | No | None | `"and"` |
+| $5$ | `"5$"` | False | No | None | `"5$"` |
+| $6$ | `"candies"` | False | No | None | `"candies"` |
+| $7$ | `"in"` | False | No | None | `"in"` |
+| $8$ | `"the"` | False | No | None | `"the"` |
+| $9$ | `"shop"` | False | No | None | `"shop"` |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(N)$. Let `N` be the number of characters in `sentence`. Splitting scans the sentence and creates word strings totaling `O(N)` characters. Recognition, digit conversion, and formatting across all words process `O(N)` characters in total. Joining also takes `O(N)` time. Overall time is `O(N)`.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Delimiter Invariance
+The problem specifies that words are separated by exactly one space without leading or trailing spaces. Splitting on whitespace partitions the sentence along these exact boundaries. Rejoining the modified tokens using single space characters guarantees that the spatial structure and word count of the sentence are preserved.
+
+### Completeness of Suffix Digit Validation
+A word is only transformed if $w[0] == \text{'\$'}$ and $w[1:]$ consists strictly of digits. 
+- If $w = \text{"\$"}$, the slice $w[1:]$ is the empty string `""`. Standard digit checks evaluate empty strings as false, properly rejecting solitary dollar signs.
+- If $w = \text{"\$10\$"}$, the suffix `"10$"` contains a non-digit character `'$'`, which immediately fails validation.
+- If $w = \text{"\$1a2"}$, the presence of `'a'` causes validation to fail.
+Thus, no invalid or malformed tokens can be erroneously converted or corrupted during processing.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Global Regular Expression Substitution Without Token Boundary Anchoring
+Using a naive regex search for `\$[0-9]+` across the raw sentence string without word boundary checking can corrupt tokens like `"item$100"` or `"$100a"`. Tokens must be evaluated on complete whitespace-delimited word boundaries.
+
+### Edge Case: Full Discount ($discount = 100$)
+When $discount = 100$, every valid price becomes $0.00$. The formatting string correctly outputs `"$0.00"`.
+
+### Edge Case: Zero Discount ($discount = 0$)
+When $discount = 0$, the numerical price remains unchanged, but it must now be displayed with two decimal places (for example, `"$99"` transforms to `"$99.00"`). The algorithm ensures that integer values are formatted to two decimal points.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Tokenization:** Splitting the input string $sentence$ of length $L$ requires visiting each character once, taking $O(L)$ time.
+- **Validation and Formatting:** For each token of length $l_i$, validating the characters and computing the floating-point discount takes $O(l_i)$ time. Summing across all tokens:
+  $$\sum_{i} O(l_i) = O(L)$$
+- **Reconstruction:** Joining the list of tokens back into a single string takes $O(L)$ time.
+- **Total Time Complexity:** $O(L)$, which is strictly linear in the length of the sentence.
+
+### Space Complexity
+- Storing the list of split tokens and the reconstructed result requires $O(L)$ auxiliary memory.
+- No additional large data structures are allocated.
+- **Total Auxiliary Space Complexity:** $O(L)$ space.

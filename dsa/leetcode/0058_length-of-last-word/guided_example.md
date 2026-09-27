@@ -1,120 +1,112 @@
 # Guided Example: Length of Last Word
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step backward two-phase scanning algorithm on a representative string containing multiple spaces:
 
-- **Input:** `{"s": "Hello World"}`
-- **Required output:** `5`
+- **Input:** $s = \text{"   fly me   to   the moon  "}$
+- **Required output:** $4$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates searching backwards from string end ($N - 1$), trimming trailing whitespace without string allocation, counting contiguous alphabetical characters until the preceding space delimiter, and stopping early in $O(K)$ time where $K$ is the suffix length.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` consisting of words and spaces, return *the length of the **last** word in the string.*
+Given a string $s$ consisting of words and spaces, return the length of the last word in the string. A word is a maximal substring consisting of non-space characters only.
 
-The objective is to compute `5` from `{"s": "Hello World"}` while avoiding redundant calculations and unnecessary overhead.
+For $s = \text{"   fly me   to   the moon  "}$:
+- The string contains leading spaces, multiple inter-word spaces, and trailing spaces.
+- The last word is $\text{"moon"}$, which has length $4$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive approach splits the string by whitespace (`s.split()`), allocating an array of all words and taking $O(N)$ extra space. The optimal approach starts at index $N - 1$ and scans backwards:
+1. First, skip all trailing spaces.
+2. Second, count non-space characters until encountering a space or the start of the string.
+
+This avoids parsing preceding words and requires strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Backward Two-Phase Scan
+Let $N = |s|$. We initialize pointer $i = N - 1$ and counter $\text{length} = 0$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Phase 1 (Skip Trailing Spaces):**
+   While $i \ge 0$ and $s[i] == \text{' '}$:
+   $$
+   i \leftarrow i - 1
+   $$
+   *(When this loop halts, $i$ points to the final letter of the last word).*
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Phase 2 (Measure Last Word):**
+   While $i \ge 0$ and $s[i] \ne \text{' '}$:
+   $$
+   \text{length} \leftarrow \text{length} + 1
+   $$
+   $$
+   i \leftarrow i - 1
+   $$
+   *(When this loop halts, $i$ points to the space immediately preceding the last word, or $i = -1$ if the word began the string).*
+
+> **Invariant.** Throughout Phase 2, `length` strictly counts the number of letters from the end of the last word backwards to the current pointer position.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Search from the end because only the final word matters
+We trace $s = \text{"   fly me   to   the moon  "}$ ($N = 29$, indices $0 \dots 28$):
 
-Scanning from the beginning would require remembering the most recent completed word and continuing through the entire string. Starting at the end goes directly toward the answer. The only complication is that the string may end with spaces, which are not part of any word.
-
-The source uses two backward scans. The first finds the final non-space character. The second finds the space immediately before that word, or moves past index 0 if the word begins the string.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "Hello World"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 1: Skip Trailing Whitespace
+- Start at $i = 28$.
+- $i = 28$: $s[28] == \text{' '}$. Decrement $i \to 27$.
+- $i = 27$: $s[27] == \text{' '}$. Decrement $i \to 26$.
+- $i = 26$: $s[26] == \text{'n'} \ne \text{' '}$.
+- Phase 1 terminates with $i = 26$.
 
 ---
 
-### Step 2: First pointer: remove the trailing-space region conceptually
+### Phase 2: Accumulate Length of Last Word
+- $i = 26$: $s[26] = \text{'n'}$. $\text{length} \leftarrow 0 + 1 = 1$. Decrement $i \to 25$.
+- $i = 25$: $s[25] = \text{'o'}$. $\text{length} \leftarrow 1 + 1 = 2$. Decrement $i \to 24$.
+- $i = 24$: $s[24] = \text{'o'}$. $\text{length} \leftarrow 2 + 1 = 3$. Decrement $i \to 23$.
+- $i = 23$: $s[23] = \text{'m'}$. $\text{length} \leftarrow 3 + 1 = 4$. Decrement $i \to 22$.
+- $i = 22$: $s[22] == \text{' '}$. Non-word delimiter detected!
+- Phase 2 terminates.
 
-`i` starts at `len(s) - 1`, the final character index. While `s[i]` is a space, it decreases. No string is actually trimmed or copied; the pointer simply moves over the irrelevant suffix.
-
-When this loop stops, `i` is the index of the final word's last character. The contract guarantees at least one word, so `i` cannot remain negative after all valid trailing spaces have been skipped.
-
-For `"fly me   "`, `i` moves past the three trailing spaces and stops on `e`. For `"World"`, the final character is already non-space, so the loop performs no decrement.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Second pointer: locate the word's left boundary
-
-`j` begins at `i` and moves left while characters are not spaces. Because a word is a maximal substring of non-space characters, this loop traverses exactly the last word.
-
-It stops in one of two ways:
-
-- `j` points to the separating space immediately before the word; or
-- `j == -1`, meaning the word begins at index 0.
-
-It is important that `j` stops *before* the first character of the word rather than on it. This makes one length formula handle both cases uniformly.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+Emitted output: $\text{length} = 4$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "Hello World"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Step | Pointer Index $i$ | Character $s[i]$ | Active Phase | Phase Condition Met? | Word Length Counter |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 28 | `' '` | Phase 1 (Trim spaces) | Yes ($s[i] == \text{' '}$) | 0 |
+| 2 | 27 | `' '` | Phase 1 (Trim spaces) | Yes ($s[i] == \text{' '}$) | 0 |
+| 3 | 26 | `'n'` | Phase 1 End $\to$ Phase 2 | No $\implies$ Start word count | **1** |
+| 4 | 25 | `'o'` | Phase 2 (Word counting) | Yes ($s[i] \ne \text{' '}$) | **2** |
+| 5 | 24 | `'o'` | Phase 2 (Word counting) | Yes ($s[i] \ne \text{' '}$) | **3** |
+| 6 | 23 | `'m'` | Phase 2 (Word counting) | Yes ($s[i] \ne \text{' '}$) | **4** |
+| 7 | 22 | `' '` | Phase 2 End | No ($s[i] == \text{' '}$) | **4 (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The problem guarantees that at least one word exists in $s$. Phase 1 skips only trailing non-word spaces. Phase 2 counts characters continuously until hitting the first word delimiter (space). The accumulated count is provably the exact character count of the final word.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Pointer $i$ moves strictly from right to left. It terminates either upon encountering a space after the word or upon reaching index $-1$ (if the last word spans to the beginning of the string).
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One backward loop with a counter:** Ignore spaces until a word character is found, then count until the next space. This combines the two phases but encodes the phase in the counter.
-- **Forward scan:** Reset a current length after spaces and save completed word lengths. It is linear and constant-space but necessarily inspects the whole prefix.
-- **`strip` and `split`:** `len(s.strip().split()[-1])` is concise but allocates new strings and a token list, using $O(n)$ extra memory.
-- **No trailing spaces:** The first loop does nothing; the second begins at the final word immediately.
-- **Many trailing spaces:** They are skipped without affecting the count.
-- **One word occupying the whole string:** `j` reaches `-1`, and `i-j` returns the full length.
-- **Single-letter last word:** The second loop moves left once, producing length 1.
-- **Leading spaces:** They are irrelevant once the left boundary of the last word is found.
-- **All spaces outside the contract:** The first loop would make `i = -1`, and the method would return zero; valid inputs always contain a word.
-- **Literal-space definition:** The source intentionally checks `' '` rather than all Unicode whitespace because the contract names only English letters and spaces.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Trailing Spaces Ignored:** A naive forward scan that resets `count = 0` upon seeing a space will output $0$ if the string ends with spaces. Backtracking from the end avoids this entirely.
+- **Single Word with No Spaces:** If $s = \text{"hello"}$, Phase 1 executes zero times, and Phase 2 runs until $i = -1$, correctly returning $5$.
+- **Library Split Overhead:** Calling `s.split()` scans the entire string, allocates string slices for every word, and creates a Python list, taking $O(N)$ auxiliary memory. The backward two-pointer scan uses $O(1)$ memory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. If there are $t$ trailing spaces and the final word has length $w$, the method examines $t+w$ characters. This is at most the full string length $n$, so worst-case time is $O(n)$. It may stop much earlier when the last word is near the end.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ worst case (e.g. if the string consists of one word). On average, it takes $O(K)$ where $K$ is the length of the trailing spaces plus the last word, terminating without reading earlier words.
+- **Auxiliary Space Complexity:** $O(1)$. Memory consumption is strictly constant using two integer registers (`i` and `length`).

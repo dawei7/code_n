@@ -1,104 +1,160 @@
 # Guided Example: Design Most Recently Used Queue
 
-We execute the single-pass Array, Linked List, Divide and Conquer, Design, Simulation, Doubly-Linked List pointer manipulation on a representative linked list instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch"], "arguments": [[8], [3], [5], [2], [8]]}`
-- **Required output:** `[null, 3, 6, 2, 2]`
+- **Input Operations:**
+  `["MRUQueue", "fetch", "fetch", "fetch", "fetch"]`
+  `[[8], [3], [5], [2], [8]]`
+- **Required Output:**
+  `[null, 3, 6, 2, 2]`
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance features dynamic reordering of elements within an 8-element sequence across repeated queries, demonstrating how dynamic index extraction and tail relocation maintain structural integrity.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Design Most Recently Used Queue** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+We design a specialized queue data structure initialized with $n$ elements $[1, 2, \dots, n]$:
+- `MRUQueue(n)`: Initializes an ordered sequence of $n$ elements from $1$ to $n$.
+- `fetch(k)`: Moves the $k$-th element (1-indexed) to the very end (tail) of the queue and returns its value.
+
+A fixed linked list permits $\mathcal{O}(1)$ node splicing but requires $\mathcal{O}(k)$ time to traverse to the $k$-th node. An array provides $\mathcal{O}(1)$ random access to the $k$-th element, followed by an $\mathcal{O}(n - k)$ block shift to delete and re-append at the tail. Under constraints ($n, k \le 2000$), direct array slicing operates well within millisecond limits (and square-root bucket decomposition or Fenwick/Treap structures achieve $\mathcal{O}(\sqrt{n})$ or $\mathcal{O}(\log n)$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### State Representation
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
+| Component | Definition | Length |
 |---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+| Queue Array $Q$ | 0-indexed contiguous sequence of integers $[q_0, q_1, \dots, q_{n-1}]$ | Fixed length $n$ |
+| Target Index $k$ | 1-indexed target position for retrieval | $1 \le k \le n$ |
+| Retrieved Element $v$ | Value stored at position $k - 1$: $Q[k - 1]$ | $1 \le v \le n$ |
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+### Mathematical Invariants
+
+> **Rotational Index-Extraction Theorem.**
+> Let $Q = [q_0, q_1, \dots, q_{k-1}, q_k, \dots, q_{n-1}]$ be the queue of $n$ elements.
+> The operation `fetch(k)` performs a state transition $Q \to Q'$ defined by:
+> 1. Extract the scalar $v = q_{k-1}$.
+> 2. Shift all subsequent elements $q_k \dots q_{n-1}$ one position to the left:
+>    $$q'_j = q_{j+1} \quad \text{for } k - 1 \le j < n - 1$$
+> 3. Place $v$ at the terminal tail position:
+>    $$q'_{n-1} = v$$
+> The multiset of elements in $Q$ is strictly preserved, and total length $n$ remains invariant.
+
+```mermaid
+flowchart TD
+    accTitle: MRU Queue Fetch Operation
+    accDescr: Pipeline showing element lookup at 1-indexed position k, shifting subsequent elements, appending to tail, and returning value.
+    A["Call fetch(k) on Queue of length n"] --> B["Extract Target Value: v = Q[k - 1]"]
+    B --> C["Remove element at index k - 1"]
+    C --> D["Shift elements from k to n - 1 leftwards by 1 position"]
+    D --> E["Append v to tail of Queue: Q.append(v)"]
+    E --> F["Return Value v"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
+We trace the sequence of operations on an 8-element queue ($n = 8$):
 
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
+### Initialization: `MRUQueue(8)`
+- Initial state:
+  $$Q = [1, 2, 3, 4, 5, 6, 7, 8]$$
+- Output: `null`.
 
 ---
 
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Operation 1: `fetch(3)`
+- Target index: $k = 3 \implies 0$-indexed position $k - 1 = 2$.
+- Value at index 2: $v = Q[2] = \mathbf{3}$.
+- Splicing:
+  - Elements before index 2: $[1, 2]$
+  - Elements after index 2: $[4, 5, 6, 7, 8]$
+  - Concatenation and append: $[1, 2, 4, 5, 6, 7, 8] + [3]$
+- Resulting Queue:
+  $$Q = [1, 2, 4, 5, 6, 7, 8, 3]$$
+- Return value: $\mathbf{3}$.
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Operation 2: `fetch(5)`
+- Current Queue: $Q = [1, 2, 4, 5, 6, 7, 8, 3]$.
+- Target index: $k = 5 \implies 0$-indexed position $k - 1 = 4$.
+- Value at index 4: $v = Q[4] = \mathbf{6}$.
+- Splicing:
+  - Elements before index 4: $[1, 2, 4, 5]$
+  - Elements after index 4: $[7, 8, 3]$
+  - Concatenation and append: $[1, 2, 4, 5, 7, 8, 3] + [6]$
+- Resulting Queue:
+  $$Q = [1, 2, 4, 5, 7, 8, 3, 6]$$
+- Return value: $\mathbf{6}$.
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+---
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+### Operation 3: `fetch(2)`
+- Current Queue: $Q = [1, 2, 4, 5, 7, 8, 3, 6]$.
+- Target index: $k = 2 \implies 0$-indexed position $k - 1 = 1$.
+- Value at index 1: $v = Q[1] = \mathbf{2}$.
+- Splicing:
+  - Elements before index 1: $[1]$
+  - Elements after index 1: $[4, 5, 7, 8, 3, 6]$
+  - Concatenation and append: $[1, 4, 5, 7, 8, 3, 6] + [2]$
+- Resulting Queue:
+  $$Q = [1, 4, 5, 7, 8, 3, 6, 2]$$
+- Return value: $\mathbf{2}$.
+
+---
+
+### Operation 4: `fetch(8)`
+- Current Queue: $Q = [1, 4, 5, 7, 8, 3, 6, 2]$.
+- Target index: $k = 8 \implies 0$-indexed position $k - 1 = 7$.
+- Value at index 7: $v = Q[7] = \mathbf{2}$.
+- Splicing:
+  - The target element is already at the very end of the queue.
+  - Splicing removes it and re-appends it to the tail.
+- Resulting Queue:
+  $$Q = [1, 4, 5, 7, 8, 3, 6, 2]$$
+- Return value: $\mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+| Call | Parameter $k$ | Target Index ($k-1$) | Value Extracted $v$ | Queue State After Transition | Return |
+|---|---|---|---|---|---|
+| `MRUQueue(8)` | $n = 8$ | — | — | $[1, 2, 3, 4, 5, 6, 7, 8]$ | `null` |
+| `fetch(3)` | $3$ | $2$ | $3$ | $[1, 2, 4, 5, 6, 7, 8, 3]$ | **$3$** |
+| `fetch(5)` | $5$ | $4$ | $6$ | $[1, 2, 4, 5, 7, 8, 3, 6]$ | **$6$** |
+| `fetch(2)` | $2$ | $1$ | $2$ | $[1, 4, 5, 7, 8, 3, 6, 2]$ | **$2$** |
+| `fetch(8)` | $8$ | $7$ | $2$ | $[1, 4, 5, 7, 8, 3, 6, 2]$ | **$2$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Mastery & Edge Surfacing
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+### Boundary and Edge Cases
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+| Scenario | Input Parameter | Expected Behavior | Strategic Handling |
+|---|---|---|---|
+| Fetch Head ($k = 1$) | $k = 1$ | Moves front element to back | Prefix is empty; remaining elements shift left by 1. |
+| Fetch Tail ($k = n$) | $k = n$ | Element re-appends to tail | Queue array remains unchanged in ordering. |
+| Single-Element Queue ($n = 1$) | $n = 1, k = 1$ | Constant return of $1$ | No other elements can shift. |
+| Repeated Fetch of Same Element | Successive calls with $k = n$ | Unchanged value returned | Confirms tail idempotency. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 6. Traps This Instance Exposes
+1. **Permutation Conservation:**
+   Every `fetch` operation removes exactly one element and appends exactly that same element to the end. The total count and multiset of elements remain identical to the original set $\{1, \dots, n\}$.
+2. **Relative Ordering Preservation:**
+   All elements before index $k - 1$ remain in their exact relative order. All elements after index $k - 1$ shift forward by 1 position while maintaining their internal relative order.
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+### Complexity Analysis
 
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:**
+  - `MRUQueue(n)`: $\mathcal{O}(n)$ time to initialize the contiguous array.
+  - `fetch(k)`: $\mathcal{O}(n - k)$ time for array deletion and append. Across $Q$ calls, total time is bounded by $\mathcal{O}(Q \cdot n)$. For $n, Q \le 2000$, $Q \cdot n \le 4 \times 10^6$ operations, executing in $< 0.05$s. (A B-Tree or $\sqrt{n}$-bucket layout reduces this to $\mathcal{O}(\sqrt{n})$ per fetch).
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space to store the $n$-element queue.

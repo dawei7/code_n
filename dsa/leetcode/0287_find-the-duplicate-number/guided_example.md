@@ -1,131 +1,191 @@
 # Guided Example: Find the Duplicate Number
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step value-range binary search bisection, cumulative pigeonhole counting predicate ($C(x) = \sum [v \le x] > x$), and cycle-detection duality on representative input arrays without array mutation:
 
-- **Input:** `{"nums": [1, 3, 4, 2, 2]}`
-- **Required output:** `2`
+- **Input:** $\text{nums} = [1, 3, 4, 2, 2]$
+- **Required output:** $2$ ($2$ appears twice; all other values appear once in range $[1, 4]$)
+- **Repeated Multiple Times:** $\text{nums} = [3, 1, 3, 4, 2] \implies 3$
+- **Minimal Pair Base Case:** $\text{nums} = [1, 1] \implies 1$
+- **Duplicate at Boundary:** $\text{nums} = [1, 2, 3, 4, 4] \implies 4$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary search on the answer domain $[1, n]$ constrained by the Pigeonhole Principle, explains why no array mutation or auxiliary hash set is needed, contrasts the $O(N \log N)$ counting predicate with Floyd's $O(N)$ Tortoise-and-Hare cycle detection, and operates in strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `nums` containing $n + 1$ integers where each integer is in the range `[1, n]` inclusive.
+Given an array of $n + 1$ integers $\text{nums} = [1, 3, 4, 2, 2]$ where every value lies in $[1, n]$ ($n = 4$):
+Find the **duplicate number** under the strict constraints:
+1. You **must not modify** the array (read-only).
+2. You must use only **$O(1)$ auxiliary memory**.
+3. Runtime must be better than $O(N^2)$.
 
-The objective is to compute `2` from `{"nums": [1, 3, 4, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array: [1, 3, 4, 2, 2] (length 5, values in [1, 4])
+Pigeonhole Principle: 5 items placed into 4 boxes -> at least one box has >= 2 items.
+Duplicate value: 2
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Why Hash Sets and In-Place Swapping are Disallowed
+- Storing seen numbers in a Hash Set takes $O(N)$ extra space (violates constraint 2).
+- Sorting or sign-marking (`nums[abs(x)] = -nums[abs(x)]`) modifies the array (violates constraint 1).
+- We can search the **value range** $[1, n]$ using **binary search** with a counting predicate:
+  For a candidate value $x$, count how many elements in `nums` are $\le x$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Pigeonhole Counting Predicate
+Let $C(x)$ be the number of elements in `nums` that are $\le x$:
+$$
+C(x) = \sum_{v \in \text{nums}} \mathbb{I}(v \le x)
+$$
+Consider the monotonic predicate $f(x) \equiv (C(x) > x)$:
+- If the duplicate value $d > x$:
+  All numbers in the range $[1, x]$ can appear at most once. Therefore, at most $x$ elements in `nums` can be $\le x$.
+  $$
+  C(x) \le x \implies f(x) = \mathbf{\text{False}}
+  $$
+- If the duplicate value $d \le x$:
+  The duplicate value $d$ (which appears $\ge 2$ times) lies inside the prefix $[1, x]$. By the Pigeonhole Principle, the count of elements $\le x$ must strictly exceed $x$:
+  $$
+  C(x) > x \implies f(x) = \mathbf{\text{True}}
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The predicate sequence over $x \in [1, n]$ is monotonically non-decreasing:
+$$
+[\underbrace{\text{False}, \dots, \text{False}}_{x < d}, \; \underbrace{\mathbf{\text{True}}, \dots, \text{True}}_{x \ge d}]
+$$
+The duplicate number $d$ is the **first candidate $x$ where $f(x) == \text{True}$**!
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The duplicate number $d$ always lies in the active search range $[L, R]$. For any $x < L$, $C(x) \le x$; for any $x \ge R$, $C(x) > x$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Search the value range without rearranging the array
-
-The array has length $n+1$, but every value lies from 1 through $n$. The extra array position guarantees a duplicate by the pigeonhole principle: placing $n+1$ entries into only $n$ possible value categories forces at least one category to contain multiple entries.
-
-The exact protected solution does not use the cycle-detection method described by the manifest. It binary-searches the possible duplicate value using a counting predicate. This respects the requirements because it only reads `nums` and keeps no set, copied array, or other size-dependent structure.
-
-For a candidate value $x$, define
-
-$$
-C(x)=\#\{v\in\texttt{nums}:v\le x\}.
-$$
-
-The helper `f(x)` returns whether `C(x) > x`. The solution finds the smallest $x$ for which this predicate is true.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 3, 4, 2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the binary search on $\text{nums} = [1, 3, 4, 2, 2]$:
+Array length $5 \implies n = 4$.
+Search range for value $x$: $L = 1, \quad R = 4$.
 
 ---
 
-### Step 2: Why compare the count with `x`
-
-There are exactly $x$ possible values in the range `[1, x]`. If more than $x$ array entries fall into that range, at least one of those values must repeat. This is another direct pigeonhole argument: more than $x$ entries are occupying only $x$ value categories.
-
-The special contract that only one distinct number repeats makes the first overloaded prefix identify that repeated value exactly. Before the duplicate value enters the prefix, no value in the prefix can occur more than once. Once the duplicate enters, the prefix contains too many entries for its number of possible values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Midpoint $M = 2$ ($L = 1, R = 4$)
+- Midpoint value:
+  $$
+  M = 1 + \lfloor (4 - 1) / 2 \rfloor = \mathbf{2}
+  $$
+- Scan array to compute $C(2)$:
+  - $1 \le 2$ (Count $= 1$)
+  - $3 \not\le 2$
+  - $4 \not\le 2$
+  - $2 \le 2$ (Count $= 2$)
+  - $2 \le 2$ (Count $= 3$)
+  $$
+  C(2) = 3
+  $$
+- Evaluate predicate:
+  $$
+  C(2) > 2 \iff 3 > 2 \quad (\mathbf{\text{True}})
+  $$
+- Deduction: There are 3 numbers $\le 2$ in an interval of capacity 2. By pigeonhole, the duplicate must be $\le 2$!
+- Update search range:
+  $$
+  R \leftarrow M = \mathbf{2}
+  $$
+- New range: $[1, 2]$.
 
 ---
 
-### Step 3: Prove the predicate is false before the duplicate
+### Step 2: Evaluate Midpoint $M = 1$ ($L = 1, R = 2$)
+- Midpoint value:
+  $$
+  M = 1 + \lfloor (2 - 1) / 2 \rfloor = \mathbf{1}
+  $$
+- Scan array to compute $C(1)$:
+  - $1 \le 1$ (Count $= 1$)
+  - $3 \not\le 1, \; 4 \not\le 1, \; 2 \not\le 1, \; 2 \not\le 1$
+  $$
+  C(1) = 1
+  $$
+- Evaluate predicate:
+  $$
+  C(1) > 1 \iff 1 > 1 \quad (\mathbf{\text{False}})
+  $$
+- Deduction: There is only 1 number $\le 1$. The value $1$ cannot be the duplicate. The duplicate must be $> 1$.
+- Update search range:
+  $$
+  L \leftarrow M + 1 = 1 + 1 = \mathbf{2}
+  $$
+- New range: $[2, 2]$.
 
-Let the one repeated value be $d$. For any $x<d$, the prefix `[1, x]` excludes every occurrence of $d$. Every value it does include occurs at most once, because no other distinct value repeats.
+---
 
-There are only $x$ possible values in that prefix, so at most $x$ array entries can be at most $x$:
-
-$$
-C(x)\le x.
-$$
-
-Therefore, `f(x)` is false for every $x<d$.
-
-Some values in `[1, x]` may be missing from the array, making the count strictly smaller than $x$; that only strengthens the false result.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 3: Termination ($L = R = 2$)
+- Range contracted to a single integer: $L == R == 2$.
+- The duplicate number is $\mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 3, 4, 2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```text
+nums = [1, 3, 4, 2, 2], n = 4
+L = 1, R = 4
+
+Iteration 1:
+  M = 2
+  Count elements <= 2: [1, 2, 2] -> C(2) = 3
+  3 > 2 is True -> R = 2, Range: [1, 2]
+
+Iteration 2:
+  M = 1
+  Count elements <= 1: [1] -> C(1) = 1
+  1 > 1 is False -> L = 2, Range: [2, 2]
+
+L == R == 2 -> Terminate
+Result: 2
+```
+
+| Iteration | Value Range $[L, R]$ | Probe $M$ | Array Elements $\le M$ | $C(M)$ | Predicate $C(M) > M$ | Next Range $[L, R]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1** | $[1, 4]$ | 2 | $\{1, 2, 2\}$ | 3 | **True ($3 > 2$)** | $[1, 2]$ |
+| **2** | $[1, 2]$ | 1 | $\{1\}$ | 1 | **False ($1 \not> 1$)** | **$[2, 2]$** |
+| **End** | $[2, 2]$ | - | - | - | - | **$\mathbf{2}$ (Duplicate)** |
+
+---
+
+### Dual Perspective: Floyd's Cycle Detection ($O(N)$ Alternative)
+Treat the array as a functional graph where node $i$ has directed edge to $\text{nums}[i]$:
+- $0 \to \text{nums}[0] = 1$
+- $1 \to \text{nums}[1] = 3$
+- $3 \to \text{nums}[3] = 2$
+- $2 \to \text{nums}[2] = 4$
+- $4 \to \text{nums}[4] = 2$
+- Directed edges: $0 \to 1 \to 3 \to 2 \to 4 \to 2$.
+Node $2$ has in-degree 2 (both node 3 and node 4 point to 2).
+The cycle entrance is the duplicate value $2$, detectable using slow/fast pointers in $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If $C(x) > x$, by the Pigeonhole Principle, at least one number in the range $[1, x]$ appears multiple times. Because the problem statement guarantees there is only one distinct repeated number, that repeated number must be in $[1, x]$. Conversely, if $C(x) \le x$, the duplicate cannot be in $[1, x]$ and must be strictly greater than $x$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** In each bisection step, the active search range $[L, R]$ is strictly halved. Because the monotonic predicate transition from False to True exists and corresponds to the duplicate number $d$, binary search convergence on $L == R$ provably isolates $d$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Floyd cycle detection:** Interpret each value as the next array index, find a cycle intersection, then find its entrance. It achieves the manifest's $O(n)$ time and $O(1)$ space without mutation, but it is not the exact source.
-- **Hash set:** Return the first value seen twice. Expected time is $O(n)$, but the set needs $O(n)$ additional space.
-- **Sort then scan:** Adjacent equal values reveal the duplicate in $O(n\log n)$ time, but in-place sorting violates the non-modification requirement and sorting a copy uses $O(n)$ space.
-- **Negative marking or cyclic placement:** These can use constant auxiliary space but mutate `nums`, which is explicitly forbidden.
-- **Duplicate appears twice:** No allowed value needs to be missing. At $d$, the prefix gains exactly one extra occurrence and becomes overloaded.
-- **Duplicate appears many times:** Exactly $r-2$ allowed values are absent when the duplicate occurs $r$ times. The extra occurrences still exceed all possible missing-prefix deficits by one.
-- **Duplicate is 1:** `f(0)` is false and `f(1)` is true, so the boundary search returns 1.
-- **Duplicate is `n`:** Every smaller candidate is false and the guaranteed true endpoint `n` is returned.
-- **Absent candidate values:** Binary search searches the numeric domain, not just values occurring in `nums`. The prefix-count predicate remains meaningful at absent candidates.
-- **Only one distinct repeated value:** The proof relies on this guarantee. With several different duplicate values, the first overloaded prefix could identify the smallest repeated region but would not satisfy the stated single-answer contract.
-- **Array values outside `[1, n]`:** Zero or larger values would invalidate the sentinel and pigeonhole arguments. The implementation intentionally trusts the range constraint.
-- **Read-only behavior:** Repeated full scans may be slower than Floyd's method, but they preserve every input byte and need no auxiliary collection.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Array Modification Prohibition:** Setting negative signs `nums[abs(x)] = -nums[abs(x)]` or swapping values violates the explicit "do not modify the array" constraint. Value-range binary search reads the array without writing a single bit.
+- **Counting Values vs Indices:** Binary search bisects candidate **values** from $1$ to $n$, NOT indices of the array. The length of the array is $n + 1$, but candidate answers are values in $[1, n]$.
+- **Multiple Duplicate Occurrences:** If the duplicate appears 3 or 4 times (e.g. $[2, 2, 2, 2, 2]$), $C(x)$ is still $> x$ for all $x \ge 2$ and $\le x$ for $x < 2$. The monotonicity of the predicate is completely invariant to the repetition frequency.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Binary search evaluates `f` $O(\log n)$ times. Each evaluation scans all $n+1$ entries to compute `C(x)`, taking $O(n)$ time. The exact total is therefore
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log N)$, where $N = n$. The binary search range $[1, n]$ has $\log_2 n$ bisection steps. Each step performs a full linear scan of all $N + 1$ elements to evaluate $C(M)$. Total time is $(N + 1) \log_2 N = O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory. No hash set or allocated collections are used; only scalar search pointers ($L, R, M, \text{count}$) are maintained.

@@ -1,125 +1,166 @@
 # Guided Example: Destination City
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of departure-set difference and zero-outdegree identification on a representative problem instance:
 
-- **Input:** `{"paths": [["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]}`
-- **Required output:** `"Sao Paulo"`
+- **Input:** $paths = [[\text{"London"}, \text{"New York"}], [\text{"New York"}, \text{"Lima"}], [\text{"Lima"}, \text{"Sao Paulo"}]]$
+- **Required Output:** `"Sao Paulo"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features a linear journey with multiple intermediate transit stops (New York, Lima), an origin city (London), and a unique terminating terminal city (Sao Paulo) having zero outgoing flights.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given the array `paths`, where $\text{paths}[i] = [\text{cityA}_{i}, \text{cityB}_{i}]$ means there exists a direct path going from $\text{cityA}_{i}$ to $\text{cityB}_{i}$. *Return the destination city, that is, the city without any path outgoing to another city.*
+We are given an array $paths$ where each entry $paths[i] = [cityA_i, cityB_i]$ denotes a direct one-way route from $cityA_i$ to $cityB_i$. We must return the **destination city**—defined as the unique city that has no outgoing path to any other city.
 
-The objective is to compute `"Sao Paulo"` from `{"paths": [["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]}` while avoiding redundant calculations and unnecessary overhead.
+In the provided instance:
+- London connects to New York: London has out-degree $1$.
+- New York connects to Lima: New York has in-degree $1$, out-degree $1$.
+- Lima connects to Sao Paulo: Lima has in-degree $1$, out-degree $1$.
+- Sao Paulo has an incoming route from Lima, but has zero outgoing routes: out-degree is $0$.
+- The destination city is `"Sao Paulo"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to model destination identification using graph degree properties: every non-destination city appears at least once as a source ($cityA$). By gathering all departure cities into a hash set $D$, the destination city is immediately identified as the unique arrival city ($cityB$) that does not belong to $D$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $G = (V, E)$ be the directed acyclic graph formed by the edges in $paths$. The problem guarantees that $G$ forms a simple directed line path with no cycles:
+$$
+v_0 \xrightarrow{} v_1 \xrightarrow{} v_2 \xrightarrow{} \dots \xrightarrow{} v_k
+$$
+In such a topology:
+- Origin $v_0$ has in-degree $0$, out-degree $1$.
+- Every intermediate node $v_j$ ($1 \le j < k$) has in-degree $1$, out-degree $1$.
+- The unique destination $v_k$ has in-degree $1$, out-degree $0$.
 
-| State Parameter | Role & Purpose | Initial State |
+Let $D$ be the set of all departure cities:
+$$
+D = \{ cityA \mid [cityA, cityB] \in paths \}
+$$
+Because the destination city $v_k$ has out-degree $0$, it never appears as a departure city ($v_k \notin D$). Conversely, every other city in the graph has an outgoing edge and therefore belongs to $D$.
+Thus, the destination city is the unique element satisfying:
+$$
+\text{Destination} = \{ cityB \mid [cityA, cityB] \in paths \text{ and } cityB \notin D \}
+$$
+
+```
+Flight Route Topology:
+London --------> New York --------> Lima --------> Sao Paulo
+(Out-degree 1)   (Out-degree 1)    (Out-degree 1)  (Out-degree 0!)
+
+Departure Set D (Cities with outgoing routes):
+D = {"London", "New York", "Lima"}
+
+Candidate Arrival Probes:
+"New York"  ---> in D? YES (Proceeds to Lima)
+"Lima"      ---> in D? YES (Proceeds to Sao Paulo)
+"Sao Paulo" ---> in D? NO  (Terminus reached! Out-degree = 0)
+```
+
+We establish tracking parameters across the algorithm:
+
+| Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Departure Set ($D$) | Hash set of city names | Contains all cities with out-degree $\ge 1$ |
+| Candidate Arrival ($cityB$) | String | Destination candidate probed against $D$ |
+| Out-degree Status | Boolean | True if $cityB \notin D$ (identifies terminus) |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** A city is the destination if and only if it appears as an arrival city in at least one path and does not appear anywhere in the departure set $D$.
+
+```mermaid
+flowchart TD
+    accTitle: Destination City Outdegree Filter
+    accDescr: Builds set of departure cities, then inspects each arrival city; the one not in the departure set is returned as destination.
+    A["Input paths array"] --> B["Collect all departure cities into set D:<br/>D = {cityA for [cityA, cityB] in paths}"]
+    B --> C["Iterate through each path [cityA, cityB]"]
+    C --> D{"Is cityB in set D?"}
+    D -- Yes --> E["cityB has outgoing edge; continue"] --> C
+    D -- No --> F["cityB has out-degree 0!<br/>Return cityB"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The destination is characterized by having no outgoing edge
+### Step 1: Collect Departure Cities
 
-Each path `[a,b]` says that travel leaves city `a` and arrives at city `b`. The destination city is not merely a city that appears on the right; intermediate cities also appear there. It is the right-side city that never appears as a left-side departure.
+We scan the first element ($cityA$) of each path in $paths$:
+1. `["London", "New York"]` $\implies$ Add `"London"` to $D$.
+2. `["New York", "Lima"]` $\implies$ Add `"New York"` to $D$.
+3. `["Lima", "Sao Paulo"]` $\implies$ Add `"Lima"` to $D$.
 
-Because the paths form one loop-free line, exactly one such city exists.
+Resulting departure set:
+$$
+D = \{\text{"London"}, \, \text{"New York"}, \, \text{"Lima"}\}
+$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Edge Index | Route $[cityA, cityB]$ | Source City ($cityA$) | Departure Set ($D$) State |
 |---|---|---|---|
-| Input Slice | `{"paths": [["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $0$ | `["London", "New York"]` | `"London"` | `{"London"}` |
+| $1$ | `["New York", "Lima"]` | `"New York"` | `{"London", "New York"}` |
+| $2$ | `["Lima", "Sao Paulo"]` | `"Lima"` | `{"London", "New York", "Lima"}` |
 
 ---
 
-### Step 2: Collect every city with an outgoing path
+### Step 2: Probe Arrival Cities Against Set $D$
 
-The set comprehension:
+We check the second element ($cityB$) of each path:
 
+1. **Path $0$ (`["London", "New York"]`):**
+   - Arrival city: `"New York"`.
+   - Probe: $\text{"New York"} \in D$ is **True**.
+   - Out-degree is at least $1$; not the destination.
+2. **Path $1$ (`["New York", "Lima"]`):**
+   - Arrival city: `"Lima"`.
+   - Probe: $\text{"Lima"} \in D$ is **True**.
+   - Out-degree is at least $1$; not the destination.
+3. **Path $2$ (`["Lima", "Sao Paulo"]`):**
+   - Arrival city: `"Sao Paulo"`.
+   - Probe: $\text{"Sao Paulo"} \in D$ is **False**.
+   - Out-degree is $0$. Destination confirmed!
 
+| Edge Index | Arrival City ($cityB$) | Present in $D$? | Out-degree Interpretation | Decision |
+|---|---|---|---|---|
+| $0$ | `"New York"` | Yes | Has outgoing route | Continue |
+| $1$ | `"Lima"` | Yes | Has outgoing route | Continue |
+| $2$ | `"Sao Paulo"` | No | No outgoing route (Out-degree 0) | **Destination Found!** |
 
-unpacks every pair, keeps the departure `a`, and ignores the arrival with underscore. The resulting set contains exactly the cities that have an outgoing path.
-
-A set is appropriate because only presence matters. If a more general input repeated a departure city, storing it once would still answer whether it has any outgoing edge.
-
-Expected set membership is constant time, replacing a repeated scan through all paths.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Search among arrival cities
-
-The return expression is:
-
-
-
-Every destination candidate must appear as `b` in some path because it is reached from the previous city on the line. The generator visits arrivals in input order and yields only those absent from the outgoing-city set.
-
-`next` returns the first yielded city. The problem guarantee ensures exactly one destination exists, so the generator cannot be exhausted without a result.
-
-The city does not have to appear in the final input row. Paths may be listed in arbitrary order. Membership in `s`, not row position, determines whether an arrival is terminal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"Sao Paulo"` |
+Final emitted destination: `"Sao Paulo"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"paths": [["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"Sao Paulo"` | Verified |
+| Pass Phase | Edge Evaluated | City Under Test | Action Taken | State Snapshot |
+|---|---|---|---|---|
+| Set Building | `["London", "New York"]` | `"London"` | Insert into $D$ | $D = \{\text{"London"}\}$ |
+| Set Building | `["New York", "Lima"]` | `"New York"` | Insert into $D$ | $D = \{\text{"London"}, \text{"New York"}\}$ |
+| Set Building | `["Lima", "Sao Paulo"]` | `"Lima"` | Insert into $D$ | $D = \{\text{"London"}, \text{"New York"}, \text{"Lima"}\}$ |
+| Destination Probe | `["London", "New York"]` | `"New York"` | Probe $D$ | Match found $\implies$ transit city |
+| Destination Probe | `["New York", "Lima"]` | `"Lima"` | Probe $D$ | Match found $\implies$ transit city |
+| Destination Probe | `["Lima", "Sao Paulo"]` | `"Sao Paulo"` | Probe $D$ | Not found $\implies$ Terminus emitted |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any city in $D$ has at least one outgoing path by construction. Because the destination city is defined as having zero outgoing paths, it cannot be an element of $D$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the paths form a finite, acyclic line graph, there is exactly one sink node (out-degree $0$). The sink node must appear as an arrival city at the end of the final edge. Because every other arrival city has an outgoing route and belongs to $D$, probing all arrival cities is guaranteed to identify the unique sink.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Nested scan:** For each arrival, scan all departures to see whether it leaves again. It uses constant space but takes $O(n^2)$ time.
-- **Set difference:** Build both arrival and departure sets, then return the sole member of `arrivals - departures`. It is concise but stores a second set that the generator avoids.
-- **Degree counting:** Record incoming and outgoing degrees for every city, then select outdegree zero. This generalizes to richer graphs but stores more information than needed.
-- **Follow the chain:** Build a map from departure to arrival, find the start, and walk until no next city exists. It works but requires identifying and traversing the entire line.
-- **One path:** Its right city is absent from the one-element departure set and is returned.
-- **Input edges out of order:** Set membership makes order irrelevant.
-- **City names with spaces:** Strings are used as opaque hash keys; their contents require no parsing.
-- **Intermediate arrival:** It is rejected because it also occurs as a departure.
-- **Uniqueness guarantee:** `next` safely returns the first match because exactly one destination exists.
-- **No fallback return:** Malformed input without a destination would raise generator exhaustion, but the contract rules that case out.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Order-Dependent Simulation:** Attempting to follow the journey from origin to destination by chaining pointers requires building a full adjacency map and finding the start node. When routes are given out of order (e.g. `[["B", "C"], ["D", "B"], ["C", "A"]]`), pointer chasing is more complex; set difference works in any order.
+- **Inverting the Test:** Checking whether $cityA$ is in the arrival set finds the **origin** city instead of the destination city.
+- **Quadratic Search:** Searching through all $paths$ with nested loops takes $\mathcal{O}(n^2)$ time; using a hash set provides $\mathcal{O}(1)$ lookups.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of paths. Building the outgoing set scans $n$ pairs in expected $O(n)$ time. Searching arrivals scans at most $n$ pairs with expected $O(1)$ membership tests, so total expected time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \cdot L)$, where $N$ is the number of routes ($N \le 100$) and $L$ is the maximum length of a city name ($L \le 10$). Building the set of departures takes $\mathcal{O}(N \cdot L)$ time. Probing each arrival city in the hash set takes $\mathcal{O}(L)$ string hashing time, totaling $\mathcal{O}(N \cdot L)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N \cdot L)$ to store at most $N$ departure city strings in the hash set.

@@ -1,120 +1,141 @@
 # Guided Example: Spiral Matrix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 4-boundary contraction simulation on a representative 2D matrix:
 
-- **Input:** `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
-- **Required output:** `[1, 2, 3, 6, 9, 8, 7, 4, 5]`
+- **Input:** $\text{matrix} = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$
+- **Required output:** $[1, 2, 3, 6, 9, 8, 7, 4, 5]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates four-directional boundary maintenance ($\text{top}$, $\text{bottom}$, $\text{left}$, $\text{right}$), progressive inward contraction, boundary crossing checks to prevent redundant passes in non-square matrices, and linear-time collection.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` `matrix`, return *all elements of the* `matrix` *in spiral order*.
+Given an $M \times N$ matrix with $M = 3$ rows and $N = 3$ columns:
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{pmatrix}
+$$
+return all elements in clockwise spiral order starting from top-left $(0, 0)$.
 
-The objective is to compute `[1, 2, 3, 6, 9, 8, 7, 4, 5]` from `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+Instead of allocating an auxiliary 2D boolean array to track visited cells, the four-boundary method maintains four bounding markers:
+- $\text{top}$ and $\text{bottom}$ (row boundaries)
+- $\text{left}$ and $\text{right}$ (column boundaries)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Each phase traverses one full outer edge and then contracts the corresponding boundary inward by 1 unit. When opposite boundaries cross ($\text{top} > \text{bottom}$ or $\text{left} > \text{right}$), the spiral traversal is guaranteed complete.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The 4-Phase Cyclic Boundary Traversal
+We initialize:
+$$
+\text{top} = 0, \quad \text{bottom} = M - 1, \quad \text{left} = 0, \quad \text{right} = N - 1
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+While $\text{top} \le \text{bottom}$ and $\text{left} \le \text{right}$:
+1. **Move Right across `top`:**
+   Traverse $(r = \text{top}, c)$ for $c \in [\text{left}, \text{right}]$.
+   Contract top boundary: $\text{top} \leftarrow \text{top} + 1$.
+2. **Move Down along `right`:**
+   Traverse $(r, c = \text{right})$ for $r \in [\text{top}, \text{bottom}]$.
+   Contract right boundary: $\text{right} \leftarrow \text{right} - 1$.
+3. **Move Left across `bottom` (if $\text{top} \le \text{bottom}$):**
+   Traverse $(r = \text{bottom}, c)$ for $c \in [\text{right}, \text{left}]$ in descending order.
+   Contract bottom boundary: $\text{bottom} \leftarrow \text{bottom} - 1$.
+4. **Move Up along `left` (if $\text{left} \le \text{right}$):**
+   Traverse $(r, c = \text{left})$ for $r \in [\text{bottom}, \text{top}]$ in descending order.
+   Contract left boundary: $\text{left} \leftarrow \text{left} + 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At each step, all visited cells lie strictly outside the active boundary rectangle $[\text{top}, \text{bottom}] \times [\text{left}, \text{right}]$, and all unvisited cells lie strictly within it.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Simulate the path a person would draw
+We trace the $3 \times 3$ matrix:
 
-The spiral begins at the top-left cell, moves right, turns down when blocked, then turns left, then up, and repeats. A cell is blocked if it lies outside the matrix or has already been visited. The selected solution models exactly that movement rather than explicitly maintaining shrinking rectangle boundaries.
+### Layer 1: Outer Ring ($\text{top}=0, \text{bottom}=2, \text{left}=0, \text{right}=2$)
 
-It performs exactly $mn$ iterations, where $m$ and $n$ are the matrix dimensions. Each iteration appends one current cell and marks it visited. Because the loop count equals the number of cells, the main correctness obligation is to show that the movement never revisits a cell before all cells have been emitted.
+- **Phase 1: Move Right along Row 0 ($c = 0 \to 2$):**
+  - Read $\text{matrix}[0][0] = 1$
+  - Read $\text{matrix}[0][1] = 2$
+  - Read $\text{matrix}[0][2] = 3$
+  - Collected: $[1, 2, 3]$.
+  - Contract top: $\text{top} \leftarrow 0 + 1 = 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Phase 2: Move Down along Column 2 ($r = 1 \to 2$):**
+  - Read $\text{matrix}[1][2] = 6$
+  - Read $\text{matrix}[2][2] = 9$
+  - Collected: $[1, 2, 3, 6, 9]$.
+  - Contract right: $\text{right} \leftarrow 2 - 1 = 1$.
+
+- **Phase 3: Move Left along Row 2 ($c = 1 \to 0$):**
+  - Guard check: $\text{top} \le \text{bottom}$ ($1 \le 2$). Valid!
+  - Read $\text{matrix}[2][1] = 8$
+  - Read $\text{matrix}[2][0] = 7$
+  - Collected: $[1, 2, 3, 6, 9, 8, 7]$.
+  - Contract bottom: $\text{bottom} \leftarrow 2 - 1 = 1$.
+
+- **Phase 4: Move Up along Column 0 ($r = 1 \to 1$):**
+  - Guard check: $\text{left} \le \text{right}$ ($0 \le 1$). Valid!
+  - Read $\text{matrix}[1][0] = 4$
+  - Collected: $[1, 2, 3, 6, 9, 8, 7, 4]$.
+  - Contract left: $\text{left} \leftarrow 0 + 1 = 1$.
 
 ---
 
-### Step 2: Encode four directions in one compact tuple
+### Layer 2: Center Element ($\text{top}=1, \text{bottom}=1, \text{left}=1, \text{right}=1$)
 
-`dirs = (0, 1, 0, -1, 0)` stores overlapping row/column deltas. For direction index `k`, the pair `(dirs[k], dirs[k + 1])` means:
+- **Phase 1: Move Right along Row 1 ($c = 1 \to 1$):**
+  - Read $\text{matrix}[1][1] = 5$
+  - Collected: $[1, 2, 3, 6, 9, 8, 7, 4, 5]$.
+  - Contract top: $\text{top} \leftarrow 1 + 1 = 2$.
 
-- `k = 0`: `(0, 1)`, move right;
-- `k = 1`: `(1, 0)`, move down;
-- `k = 2`: `(0, -1)`, move left;
-- `k = 3`: `(-1, 0)`, move up.
+- **Phase 2: Move Down along Column 1 ($r = 2 \to 1$):**
+  - $\text{top} > \text{bottom}$ ($2 > 1$). Loop does not execute.
+  - Contract right: $\text{right} \leftarrow 1 - 1 = 0$.
 
-The repeated zero at the end allows the up pair to use indices 3 and 4 without a special case. Updating `k = (k + 1) % 4` rotates clockwise and wraps from up back to right.
+- **Termination:**
+  - $\text{top} = 2 > \text{bottom} = 1$ and $\text{left} = 1 > \text{right} = 0$.
+  - Outer while-loop halts.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Mark before choosing the next position
-
-At the current coordinate `(i, j)`, the algorithm first appends `matrix[i][j]` and sets `vis[i][j] = true`. It then computes tentative next coordinates `(x, y)` using the current direction.
-
-Marking before this check is essential. When the path eventually returns beside an earlier portion of the spiral, `vis[x][y]` detects that entering it would duplicate output and trigger the inward turn. If marking happened afterward, an immediately adjacent earlier cell might incorrectly appear unvisited during the decision.
-
-The boundary conditions reject negative row or column coordinates and coordinates at or beyond `m` or `n`. These checks occur before `vis[x][y]` is evaluated because Python's `or` short-circuits left to right. An out-of-range proposal therefore never indexes the visited grid.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 3, 6, 9, 8, 7, 4, 5]` |
+Final result: $[1, 2, 3, 6, 9, 8, 7, 4, 5]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 3, 6, 9, 8, 7, 4, 5]` | Verified |
+| Step | Motion Direction | Traversed Cells $(r, c)$ | Values Harvested | Boundary State After Step $(\text{top}, \text{bottom}, \text{left}, \text{right})$ |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | Right | $(0, 0), (0, 1), (0, 2)$ | $1, 2, 3$ | $\text{top} = 1, \text{bottom} = 2, \text{left} = 0, \text{right} = 2$ |
+| 2 | Down | $(1, 2), (2, 2)$ | $6, 9$ | $\text{top} = 1, \text{bottom} = 2, \text{left} = 0, \text{right} = 1$ |
+| 3 | Left | $(2, 1), (2, 0)$ | $8, 7$ | $\text{top} = 1, \text{bottom} = 1, \text{left} = 0, \text{right} = 1$ |
+| 4 | Up | $(1, 0)$ | $4$ | $\text{top} = 1, \text{bottom} = 1, \text{left} = 1, \text{right} = 1$ |
+| 5 | Right | $(1, 1)$ | **5** | $\text{top} = 2, \text{bottom} = 1, \text{left} = 1, \text{right} = 1$ (Exit) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because each edge traversal moves along the boundary of the unvisited interior and immediately increments or decrements that boundary, no cell can ever be visited twice.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The boundary rectangle strictly shrinks with every completed edge. The while condition $\text{top} \le \text{bottom} \land \text{left} \le \text{right}$ ensures all $M \times N$ cells are included before termination.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Four shrinking boundaries:** Track top, bottom, left, and right bounds and traverse one perimeter at a time. It achieves the same $O(mn)$ time with genuine $O(1)$ auxiliary space.
-- **Destructively mark the matrix:** Replace visited elements with a sentinel. This removes `vis` but mutates input and is unsafe if the sentinel may be a legitimate value.
-- **Layer index formulas:** Compute each ring's coordinates directly. It avoids a visited grid but is more vulnerable to duplicate center-row or center-column handling.
-- **Single row:** The walker moves right through all cells; only the irrelevant post-final update points outside.
-- **Single column:** The first blocked right move turns downward, and all cells are visited once.
-- **One cell:** It is appended and marked; any invalid next coordinate is never read because the loop ends.
-- **Rectangular rather than square:** Boundary tests use independent `m` and `n`, so either dimension may be larger.
-- **Repeated values:** Visitation is coordinate-based, not value-based. Equal integers in different cells are all returned.
-- **Input preservation:** The matrix is only read. The separate Boolean grid holds traversal state.
-- **Post-final coordinate:** It may be invalid or visited, but no subsequent iteration dereferences it, so it cannot affect the returned answer.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Guards on Left and Up:** In non-square matrices (e.g., $1 \times 4$ or $3 \times 1$), the top boundary increment can cause $\text{top} > \text{bottom}$ before Phase 3 executes. Without the condition `if top <= bottom:` before moving left, the bottom row would be traversed backwards again, causing duplicate element readings.
+- **Empty Matrix:** If $\text{matrix} = []$ or $\text{matrix}[0] = []$, returning `[]` upfront prevents index errors when initializing boundaries.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mn)$. The `for` loop runs exactly $mn$ times. Every iteration performs constant-time append, mark, boundary checks, at most one turn, and one coordinate update. Time is $O(mn)$.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Every element is visited exactly once.
+- **Auxiliary Space Complexity:** $O(1)$. Boundary pointers (`top`, `bottom`, `left`, `right`) require constant extra storage beyond the returned output list.

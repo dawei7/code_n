@@ -1,145 +1,204 @@
 # Guided Example: Diagonal Traverse II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of diagonal index grouping and bottom-up bucket aggregation on a representative problem instance:
 
-- **Input:** `{"nums": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
-- **Required output:** `[1, 4, 2, 7, 5, 3, 8, 6, 9]`
+- **Input:** $nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]$
+- **Required Output:** $[1, 4, 2, 7, 5, 3, 8, 6, 9]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features complete coordinate coverage across all anti-diagonals, demonstrates the bottom-left to top-right diagonal traversal order, and illustrates how reverse-row scanning naturally yields correct intra-diagonal ordering without sorting.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a 2D integer array `nums`, return *all elements of *`nums`* in diagonal order as shown in the below images*.
+We are given a 2D integer array $nums$ whose rows can be jagged (having varying lengths). We must traverse all elements along anti-diagonals, where:
+- The first diagonal contains elements with index sum $i + j = 0$.
+- The second diagonal contains elements with $i + j = 1$.
+- In general, the $d$-th diagonal contains all elements whose coordinates satisfy $i + j = d$.
+- Within each diagonal, elements are visited from **bottom to top** (i.e. from larger row index $i$ to smaller row index $i$).
 
-The objective is to compute `[1, 4, 2, 7, 5, 3, 8, 6, 9]` from `{"nums": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+For $nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]$:
+- Diagonal $0$ ($i + j = 0$): $(0, 0) \implies [1]$
+- Diagonal $1$ ($i + j = 1$): $(1, 0), (0, 1) \implies [4, 2]$
+- Diagonal $2$ ($i + j = 2$): $(2, 0), (1, 1), (0, 2) \implies [7, 5, 3]$
+- Diagonal $3$ ($i + j = 3$): $(2, 1), (1, 2) \implies [8, 6]$
+- Diagonal $4$ ($i + j = 4$): $(2, 2) \implies [9]$
+- Concatenated result: $[1, 4, 2, 7, 5, 3, 8, 6, 9]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to recognize the coordinate sum invariant $d = i + j$, avoid rectangular bounding-box exploration on jagged rows, and use reverse-row iteration to populate diagonal buckets in exact output order in $\mathcal{O}(N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+In any 2D grid, cells sharing the same anti-diagonal have an identical coordinate sum:
+$$
+d = i + j
+$$
+Because elements within each diagonal must be ordered from bottom to top, within diagonal $d$, a cell $(i_1, j_1)$ must precede $(i_2, j_2)$ whenever $i_1 > i_2$.
 
-| State Parameter | Role & Purpose | Initial State |
+If we iterate through the rows in **reverse order** from $i = R - 1$ down to $0$, and within each row iterate columns from $j = 0$ to $|nums[i]| - 1$:
+- For any two cells $(i_1, j_1)$ and $(i_2, j_2)$ with $i_1 + j_1 = i_2 + j_2 = d$ and $i_1 > i_2$, the reverse row scan visits row $i_1$ before row $i_2$.
+- Appending $nums[i][j]$ to bucket $B[i + j]$ automatically places $nums[i_1][j_1]$ before $nums[i_2][j_2]$.
+- No secondary sorting or list reversal is required!
+
+```
+Matrix Coordinates & Values:
+Row 0:  (0,0)=1   (0,1)=2   (0,2)=3
+Row 1:  (1,0)=4   (1,1)=5   (1,2)=6
+Row 2:  (2,0)=7   (2,1)=8   (2,2)=9
+
+Coordinate Sums (i + j):
+Row 0:     0         1         2
+Row 1:     1         2         3
+Row 2:     2         3         4
+
+Reverse Row Ingestion (Row 2 -> Row 1 -> Row 0):
+Scan Row 2:  Bucket 2 <- 7, Bucket 3 <- 8, Bucket 4 <- 9
+Scan Row 1:  Bucket 1 <- 4, Bucket 2 <- 5, Bucket 3 <- 6
+Scan Row 0:  Bucket 0 <- 1, Bucket 1 <- 2, Bucket 2 <- 3
+
+Final Buckets:
+B[0]: [1]
+B[1]: [4, 2]
+B[2]: [7, 5, 3]
+B[3]: [8, 6]
+B[4]: [9]
+```
+
+We establish tracking parameters across the traversal:
+
+| Parameter | Type & Domain | Role in Pipeline |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Row Index ($i$) | $R - 1 \dots 0$ | Decreasing outer loop index |
+| Column Index ($j$) | $0 \dots |nums[i]| - 1$ | Increasing inner loop index |
+| Diagonal Index ($d$) | $i + j \in [0, R + C - 2]$ | Target bucket key |
+| Bucket Table ($B$) | Array of lists | Dynamic arrays accumulating elements per diagonal |
+| Output List | Flattened array of size $N$ | Final sequence of all elements |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After scanning rows from $R - 1$ down to $i$, for every completed diagonal $d$, bucket $B[d]$ contains elements with $r + c = d$ arranged in strictly decreasing row order (increasing column order).
+
+```mermaid
+flowchart TD
+    accTitle: Diagonal Traverse Bucket Aggregation
+    accDescr: Scans matrix rows in reverse from bottom to top, places elements into buckets by i + j, and concatenates buckets in increasing order of d.
+    A["Input matrix nums"] --> B["Outer Loop: Row i from R - 1 down to 0"]
+    B --> C["Inner Loop: Col j from 0 to len(nums[i]) - 1"]
+    C --> D["Append nums[i][j] to bucket B[i + j]"]
+    D --> E{"More columns in row i?"}
+    E -- Yes --> C
+    E -- No --> F{"More rows (i >= 0)?"}
+    F -- Yes --> B
+    F -- No --> G["Concatenate all buckets B[0], B[1], ..., B[max_d]"]
+    G --> H["Return flattened array"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A diagonal is identified by row plus column
+### Step 1: Initialize Bucket Collection
 
-Use zero-based coordinates `(i, j)`. Moving one step upward and one step right changes them to `(i - 1, j + 1)`. Their sum stays constant:
-
-$$
-(i-1)+(j+1)=i+j.
-$$
-
-Therefore, every cell on one requested diagonal has the same value of $i+j$, and different requested diagonals have different sums. The top-left cell has sum zero, and traversal proceeds through increasing sums.
-
-This property works for a ragged list just as it does for a rectangle. Rows may have different lengths, but every existing cell still has well-defined row and column indices.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- Rows in matrix: $R = 3$.
+- Columns per row: $C = 3$.
+- Maximum possible diagonal index: $(R - 1) + (C - 1) = 2 + 2 = 4$.
+- Initialize buckets $B[0 \dots 4]$ as empty lists.
 
 ---
 
-### Step 2: Encode both ordering rules in a tuple
+### Step 2: Ingest Row $i = 2$ ($nums[2] = [7, 8, 9]$)
 
-The nested loops visit every real cell:
+- $j = 0$: value $7$, diagonal $d = 2 + 0 = 2 \implies B[2]$ appends $7$.
+- $j = 1$: value $8$, diagonal $d = 2 + 1 = 3 \implies B[3]$ appends $8$.
+- $j = 2$: value $9$, diagonal $d = 2 + 2 = 4 \implies B[4]$ appends $9$.
 
-
-
-Each tuple stores:
-
-1. `i + j`, the diagonal identifier.
-2. `j`, the position-order key within that diagonal.
-3. `v`, the value to return.
-
-Python sorts tuples lexicographically. It compares the first component, then the second only when the first ties, then the third only if both earlier components tie.
-
-The first component places all cells from diagonal zero before all cells from diagonal one, and so on. It also groups cells on the same diagonal next to each other.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Row ($i$) | Col ($j$) | Value | Coordinate Sum ($i + j$) | Targeted Bucket | Bucket Content Snapshot |
+|---|---|---|---|---|---|
+| $2$ | $0$ | $7$ | $2$ | $B[2]$ | $B[2] = [7]$ |
+| $2$ | $1$ | $8$ | $3$ | $B[3]$ | $B[3] = [8]$ |
+| $2$ | $2$ | $9$ | $4$ | $B[4]$ | $B[4] = [9]$ |
 
 ---
 
-### Step 3: Why increasing column gives the required within-diagonal direction
+### Step 3: Ingest Row $i = 1$ ($nums[1] = [4, 5, 6]$)
 
-For a fixed diagonal identifier $d$, row and column satisfy:
+- $j = 0$: value $4$, diagonal $d = 1 + 0 = 1 \implies B[1]$ appends $4$.
+- $j = 1$: value $5$, diagonal $d = 1 + 1 = 2 \implies B[2]$ appends $5$.
+- $j = 2$: value $6$, diagonal $d = 1 + 2 = 3 \implies B[3]$ appends $6$.
 
+| Row ($i$) | Col ($j$) | Value | Coordinate Sum ($i + j$) | Targeted Bucket | Bucket Content Snapshot |
+|---|---|---|---|---|---|
+| $1$ | $0$ | $4$ | $1$ | $B[1]$ | $B[1] = [4]$ |
+| $1$ | $1$ | $5$ | $2$ | $B[2]$ | $B[2] = [7, 5]$ |
+| $1$ | $2$ | $6$ | $3$ | $B[3]$ | $B[3] = [8, 6]$ |
+
+---
+
+### Step 4: Ingest Row $i = 0$ ($nums[0] = [1, 2, 3]$)
+
+- $j = 0$: value $1$, diagonal $d = 0 + 0 = 0 \implies B[0]$ appends $1$.
+- $j = 1$: value $2$, diagonal $d = 0 + 1 = 1 \implies B[1]$ appends $2$.
+- $j = 2$: value $3$, diagonal $d = 0 + 2 = 2 \implies B[2]$ appends $3$.
+
+| Row ($i$) | Col ($j$) | Value | Coordinate Sum ($i + j$) | Targeted Bucket | Bucket Content Snapshot |
+|---|---|---|---|---|---|
+| $0$ | $0$ | $1$ | $0$ | $B[0]$ | $B[0] = [1]$ |
+| $0$ | $1$ | $2$ | $1$ | $B[1]$ | $B[1] = [4, 2]$ |
+| $0$ | $2$ | $3$ | $2$ | $B[2]$ | $B[2] = [7, 5, 3]$ |
+
+---
+
+### Step 5: Flatten Buckets into Output Sequence
+
+Concatenating buckets $B[0]$ through $B[4]$ in ascending order of $d$:
+- $B[0] = [1]$
+- $B[1] = [4, 2]$
+- $B[2] = [7, 5, 3]$
+- $B[3] = [8, 6]$
+- $B[4] = [9]$
+
+Final assembled sequence:
 $$
-i=d-j.
+[1, 4, 2, 7, 5, 3, 8, 6, 9]
 $$
-
-As `j` increases, `i` decreases. Thus sorting a diagonal by increasing column visits cells from larger row indices to smaller row indices: bottom-left toward top-right. That is exactly the required direction.
-
-For the main three-by-three example, diagonal $d=2$ contains:
-
-| Coordinate | Tuple key | Value |
-|---|---|---:|
-| `(2, 0)` | `(2, 0)` | 7 |
-| `(1, 1)` | `(2, 1)` | 5 |
-| `(0, 2)` | `(2, 2)` | 3 |
-
-Sorting by the second tuple component produces 7, 5, 3.
-
-No two distinct cells can share both `i+j` and `j` because those two numbers uniquely determine `i`. Therefore, the value component never has to break a meaningful coordinate tie. Including `v` as the third tuple element is convenient storage, not an additional intended ordering rule.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 4, 2, 7, 5, 3, 8, 6, 9]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 4, 2, 7, 5, 3, 8, 6, 9]` | Verified |
+| Processing Phase | Inspected Cell $(i, j)$ | Cell Value | Target Diagonal Key | Bucket State After Insertion |
+|---|---|---|---|---|
+| Row 2 Scan | $(2, 0)$ | $7$ | $2$ | $B[2]: [7]$ |
+| Row 2 Scan | $(2, 1)$ | $8$ | $3$ | $B[3]: [8]$ |
+| Row 2 Scan | $(2, 2)$ | $9$ | $4$ | $B[4]: [9]$ |
+| Row 1 Scan | $(1, 0)$ | $4$ | $1$ | $B[1]: [4]$ |
+| Row 1 Scan | $(1, 1)$ | $5$ | $2$ | $B[2]: [7, 5]$ |
+| Row 1 Scan | $(1, 2)$ | $6$ | $3$ | $B[3]: [8, 6]$ |
+| Row 0 Scan | $(0, 0)$ | $1$ | $0$ | $B[0]: [1]$ |
+| Row 0 Scan | $(0, 1)$ | $2$ | $1$ | $B[1]: [4, 2]$ |
+| Row 0 Scan | $(0, 2)$ | $3$ | $2$ | $B[2]: [7, 5, 3]$ |
+| Assembly | Buckets $0 \dots 4$ | — | — | $[1, 4, 2, 7, 5, 3, 8, 6, 9]$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every cell $(i, j)$ present in $nums$ is routed to bucket $d = i + j$. Because rows are visited in descending order ($R - 1, R - 2, \dots, 0$), any cell $(i_1, j_1)$ with higher row index is appended before $(i_2, j_2)$ with lower row index, preserving the bottom-to-top traversal requirement.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every entry in every row of $nums$ is visited exactly once. Concatenating all buckets in ascending order of key $d$ ensures that all anti-diagonals are processed without omission or duplication, regardless of row raggedness.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Hash-map diagonal groups:** Iterate rows from bottom to top, append each value to group `i+j`, then concatenate groups by identifier. This achieves $O(N)$ expected time and $O(N)$ space.
-- **Breadth-first traversal:** Start at coordinate `(0,0)` and enqueue the next row start before the next column cell. Careful enqueue rules visit each ragged-grid cell once in output order.
-- **Sort by diagonal and negative row:** Tuple `(i+j, -i, v)` expresses the same order directly because rows should decrease within a diagonal.
-- **Sort by diagonal only:** This would rely on sort stability and the original collection order, which is top-to-bottom and therefore wrong within each diagonal.
-- **One cell:** Its only tuple sorts trivially and its value is returned.
-- **One row:** Diagonal identifiers increase with the column, so output matches left-to-right row order.
-- **Rows of length one:** Each cell has column zero, so diagonals follow increasing row order.
-- **Highly ragged shape:** Missing rectangular positions are never materialized and have no effect.
-- **Duplicate values:** Coordinate keys, not values, determine order, so equal cell values cause no ambiguity.
-- **Manifest distinction:** The sorting source is correct but not linear; achieving the advertised time requires changing the implementation technique.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Dense Matrix Bounding Box:** Looping $i \in [0, R)$ and $j \in [0, \max |nums[i]|)$ and checking `if j < len(nums[i])` wastes $\mathcal{O}(R \cdot \max C)$ time. If one row has $10^5$ items and $10^5$ rows have $1$ item, this causes Time Limit Exceeded ($10^{10}$ operations).
+- **Sorting Overhead:** Storing all tuples $(i + j, -i, val)$ and sorting them takes $\mathcal{O}(N \log N)$ time; bucket insertion achieves linear $\mathcal{O}(N)$ time.
+- **Alternating Direction Confusion:** Unlike LeetCode 498 ("Diagonal Traverse"), which flips direction back and forth, this problem traverses **every** diagonal in the same bottom-to-top direction.
+- **Top-Down Insertion Without Reversal:** Scanning top-to-bottom ($i = 0, 1, 2$) and appending directly yields top-to-bottom order within each diagonal ($[1, 2, 4, 3, 5, 7, 6, 8, 9]$), which is inverted.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the total number of integers across all rows. Building `arr` takes $O(N)$ time and space. Sorting $N$ tuples takes $O(N\log N)$ comparison time, and the final projection takes $O(N)$ time and creates an $O(N)$ output list. The exact stored source therefore runs in $O(N\log N)$ time and uses $O(N)$ additional storage.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \sum |nums[i]|$ is the total count of numbers across all rows ($N \le 10^5$). Iterating each row takes $\mathcal{O}(|nums[i]|)$ time, appending to dynamic arrays is $\mathcal{O}(1)$ amortized, and concatenating all buckets takes $\mathcal{O}(N)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store elements across the diagonal buckets and form the final output list.

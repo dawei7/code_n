@@ -1,140 +1,208 @@
 # Guided Example: Constrained Subsequence Sum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of Monotonic Deque accelerated Dynamic Programming on a representative problem instance:
 
-- **Input:** `{"nums": [10, 2, -10, 5, 20], "k": 2}`
-- **Required output:** `37`
+- **Input:** $nums = [10, 2, -10, 5, 20], k = 2$
+- **Required Output:** $37$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features positive numbers, a negative value requiring selective jumping, multiple valid predecessors within sliding window constraint $k = 2$, and demonstrates how a monotonic deque maintains the sliding maximum in amortized $\mathcal{O}(1)$ time per step.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` and an integer `k`, return the maximum sum of a **non-empty** subsequence of that array such that for every two **consecutive** integers in the subsequence, $\text{nums}[i]$ and $\text{nums}[j]$, where `i < j`, the condition $j - i \le k$ is satisfied.
+We are given an integer array $nums$ and an integer $k$. We must select a **non-empty** subsequence of $nums$ such that for any two adjacent selected elements with original array indices $i < j$, the jump distance satisfies:
+$$
+j - i \le k
+$$
+We seek to maximize the total sum of the chosen subsequence.
 
-The objective is to compute `37` from `{"nums": [10, 2, -10, 5, 20], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+In $nums = [10, 2, -10, 5, 20]$ with $k = 2$:
+- Choosing $10$ (index $0$), $2$ (index $1$), $5$ (index $3$), and $20$ (index $4$) satisfies:
+  - Jump $1 - 0 = 1 \le 2$
+  - Jump $3 - 1 = 2 \le 2$
+  - Jump $4 - 3 = 1 \le 2$
+- The negative number $-10$ at index $2$ is skipped by jumping directly from index $1$ to index $3$.
+- Total subsequence sum: $10 + 2 + 5 + 20 = 37$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to formulate $DP[i]$ as the maximum sum ending at index $i$, and accelerate the transition $\max_{i - k \le j < i} DP[j]$ from quadratic $\mathcal{O}(n \cdot k)$ to linear $\mathcal{O}(n)$ using a double-ended queue that maintains indices in strictly decreasing order of their DP values.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $DP[i]$ be the maximum possible sum of a valid constrained subsequence whose final element is $nums[i]$.
+To form such a subsequence:
+1. It can either consist solely of $nums[i]$ (starting a new subsequence).
+2. Or it can extend a valid subsequence ending at some prior index $j \in [\max(0, i - k), i - 1]$.
 
-| State Parameter | Role & Purpose | Initial State |
+Thus:
+$$
+DP[i] = nums[i] + \max\left(0, \, \max_{\max(0, i - k) \le j < i} DP[j]\right)
+$$
+The global answer is the maximum over all non-empty endings:
+$$
+\text{Answer} = \max_{0 \le i < n} DP[i]
+$$
+
+### Monotonic Deque Acceleration
+To query $\max_{i - k \le j < i} DP[j]$ in $\mathcal{O}(1)$ time, we maintain a deque storing indices $j$ such that:
+1. **Window Validity:** All indices satisfy $i - k \le j < i$. Any index $< i - k$ is popped from the front.
+2. **Decreasing Monotonicity:** $DP[deque[0]] \ge DP[deque[1]] \ge \dots \ge DP[deque[-1]]$.
+   Before inserting index $i$, any index $j$ at the back with $DP[j] \le DP[i]$ is permanently dominated and popped.
+3. **Optimal Query:** The front of the deque, $deque[0]$, always stores the index of the maximum DP value in the current window.
+
+```
+Sliding Window DP Evaluation at Step i:
+nums:   [ 10,   2,  -10,   5,  20 ]
+DP:     [ 10,  12,    2,  17,  37 ]
+                  ^
+Window [i-k .. i-1] for i = 4 (k = 2): indices [2, 3]
+DP values in window: DP[2] = 2, DP[3] = 17
+Best prior choice = max(2, 17) = 17 (stored at deque front)
+DP[4] = nums[4] + 17 = 20 + 17 = 37
+```
+
+We establish tracking parameters across the array:
+
+| Parameter | Domain | Role in Recurrence |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Index ($i$) | $0 \dots n - 1$ | Current terminal element evaluated |
+| Monotonic Deque | Array of indices | Window indices sorted in decreasing order of $DP$ |
+| Optimal Prior ($best$) | Integer $\ge 0$ | $\max(0, DP[deque[0]])$ |
+| Current State $DP[i]$ | Integer | Best sum ending at index $i$ |
+| Global Maximum ($ans$) | Integer | Running maximum of all computed $DP[i]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the start of step $i$, $deque[0]$ contains the index $j \in [\max(0, i - k), i - 1]$ that maximizes $DP[j]$. After updating $DP[i]$, the deque maintains decreasing DP values, guaranteeing $\mathcal{O}(1)$ amortized operations per element.
+
+```mermaid
+flowchart TD
+    accTitle: Monotonic Deque DP Pipeline
+    accDescr: Evicts expired indices outside window i-k, queries optimal prior DP from front, updates DP[i], prunes dominated back elements, and updates global max.
+    A["Read element nums[i]"] --> B["Evict while deque[0] < i - k"]
+    B --> C["Query best = max(0, DP[deque[0]])"]
+    C --> D["Compute DP[i] = nums[i] + best"]
+    D --> E["Update global ans = max(ans, DP[i])"]
+    E --> F["Prune while deque not empty and DP[deque.back] <= DP[i]"]
+    F --> G["Push index i to back of deque"]
+    G --> H{"i == n - 1?"}
+    H -- No --> A
+    H -- Yes --> I["Return global ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Define a best sum that must end at each index
+We process $nums = [10, 2, -10, 5, 20]$ with $k = 2$:
 
-Let `f[i]` be the maximum sum of a valid nonempty constrained subsequence whose final selected element is `nums[i]`.
+### Step 1: Element $i = 0$ ($nums[0] = 10$)
+- Window $[0 - 2, -1]$ is empty; deque is empty.
+- Prior contribution: $best = 0$.
+- $DP[0] = 10 + 0 = 10$.
+- Deque push $0$. Deque: $[0]$ (with DP value $10$).
+- Global maximum: $ans = 10$.
 
-If the previous selected index is `j`, the gap rule requires:
-
-$$
-i-k \le j < i.
-$$
-
-Among those possible predecessors, only the largest `f[j]` matters. If that largest value is positive, extending it improves the sum. If it is zero or negative, starting a new subsequence at `i` is at least as good. Thus:
-
-$$
-f[i]
-=
-\texttt{nums}[i]
-+
-\max\left(0,\max_{i-k\le j<i}f[j]\right).
-$$
-
-The final answer is the maximum `f[i]` over all ending indices because the best subsequence may end anywhere.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [10, 2, -10, 5, 20], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step ($i$) | $nums[i]$ | Active Window | Deque Front ($j$) | $DP[j]$ | $DP[i] = nums[i] + \max(0, DP[j])$ | Deque State | Running Max |
+|---|---|---|---|---|---|---|---|
+| $0$ | $10$ | $\emptyset$ | None | $0$ | $10 + 0 = 10$ | $[0]$ | $10$ |
 
 ---
 
-### Step 2: Why a monotonic deque is useful
+### Step 2: Element $i = 1$ ($nums[1] = 2$)
+- Window $[1 - 2, 0] = [0]$. Deque front $0 \ge -1$ is valid.
+- Prior contribution: $best = \max(0, DP[0]) = 10$.
+- $DP[1] = 2 + 10 = 12$.
+- Maintain monotonicity: compare $DP[1] = 12$ against back element $DP[0] = 10$.
+  - Since $10 \le 12$, index $0$ is dominated and popped!
+- Push index $1$. Deque: $[1]$ (DP value $12$).
+- Global maximum: $ans = \max(10, 12) = 12$.
 
-Naively scanning up to `k` predecessor states for every `i` costs $O(nk)$. The deque `q` stores indices whose `f` values are useful candidates for the current sliding window.
-
-It maintains two properties:
-
-1. Indices increase from front to back.
-2. Their `f` values strictly decrease from front to back.
-
-Because of the second property, `q[0]` always identifies the largest DP value among retained valid candidates.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step ($i$) | $nums[i]$ | Active Window | Deque Front ($j$) | $DP[j]$ | $DP[i] = nums[i] + \max(0, DP[j])$ | Deque State | Running Max |
+|---|---|---|---|---|---|---|---|
+| $1$ | $2$ | $[0]$ | $0$ | $10$ | $2 + 10 = 12$ | $[1]$ | $12$ |
 
 ---
 
-### Step 3: Understand the initial placeholder
+### Step 3: Element $i = 2$ ($nums[2] = -10$)
+- Window $[2 - 2, 1] = [0, 1]$. Deque front $1 \ge 0$ is valid.
+- Prior contribution: $best = \max(0, DP[1]) = 12$.
+- $DP[2] = -10 + 12 = 2$.
+- Maintain monotonicity: compare $DP[2] = 2$ against back element $DP[1] = 12$.
+  - $12 > 2$, so index $1$ is retained.
+- Push index $2$. Deque: $[1, 2]$ (DP values $12, 2$).
+- Global maximum: $ans = \max(12, 2) = 12$.
 
-The exact code starts with:
+| Step ($i$) | $nums[i]$ | Active Window | Deque Front ($j$) | $DP[j]$ | $DP[i] = nums[i] + \max(0, DP[j])$ | Deque State | Running Max |
+|---|---|---|---|---|---|---|---|
+| $2$ | $-10$ | $[0, 1]$ | $1$ | $12$ | $-10 + 12 = 2$ | $[1, 2]$ | $12$ |
 
+---
 
+### Step 4: Element $i = 3$ ($nums[3] = 5$)
+- Window $[3 - 2, 2] = [1, 2]$. Deque front $1 \ge 1$ is valid.
+- Prior contribution: $best = \max(0, DP[1]) = 12$.
+- $DP[3] = 5 + 12 = 17$.
+- Maintain monotonicity:
+  - Back is index $2$ with $DP[2] = 2 \le 17 \implies$ pop $2$.
+  - Next back is index $1$ with $DP[1] = 12 \le 17 \implies$ pop $1$.
+- Push index $3$. Deque: $[3]$ (DP value $17$).
+- Global maximum: $ans = \max(12, 17) = 17$.
 
-Before index zero has been computed, `f[0]` is the initialized zero. At `i = 0`, the recurrence reads that zero through `q[0]`, so:
+| Step ($i$) | $nums[i]$ | Active Window | Deque Front ($j$) | $DP[j]$ | $DP[i] = nums[i] + \max(0, DP[j])$ | Deque State | Running Max |
+|---|---|---|---|---|---|---|---|
+| $3$ | $5$ | $[1, 2]$ | $1$ | $12$ | $5 + 12 = 17$ | $[3]$ | $17$ |
 
+---
 
+### Step 5: Element $i = 4$ ($nums[4] = 20$)
+- Window $[4 - 2, 3] = [2, 3]$. Deque front $3 \ge 2$ is valid.
+- Prior contribution: $best = \max(0, DP[3]) = 17$.
+- $DP[4] = 20 + 17 = 37$.
+- Maintain monotonicity:
+  - Back is index $3$ with $DP[3] = 17 \le 37 \implies$ pop $3$.
+- Push index $4$. Deque: $[4]$ (DP value $37$).
+- Global maximum: $ans = \max(17, 37) = 37$.
 
-correctly becomes `nums[0]`. The later back-cleaning removes the placeholder copy of index zero and appends index zero again with its now-final value. This is an unusual but valid way to avoid a separate first-index branch.
+| Step ($i$) | $nums[i]$ | Active Window | Deque Front ($j$) | $DP[j]$ | $DP[i] = nums[i] + \max(0, DP[j])$ | Deque State | Running Max |
+|---|---|---|---|---|---|---|---|
+| $4$ | $20$ | $[2, 3]$ | $3$ | $17$ | $20 + 17 = 37$ | $[4]$ | $37$ |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `37` |
+Final optimal answer is $37$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [10, 2, -10, 5, 20], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `37` | Verified |
+| Phase | Token ($nums[i]$) | Deque Expulsion | Best Prior DP | Computed $DP[i]$ | Deque Insertion | Active Deque Content |
+|---|---|---|---|---|---|---|
+| Init | $10$ (pos 0) | None | $0$ | $10$ | Push $0$ | $[0 \ (10)]$ |
+| Pass 1 | $2$ (pos 1) | None | $10$ | $12$ | Pop $0$, push $1$ | $[1 \ (12)]$ |
+| Pass 2 | $-10$ (pos 2) | None | $12$ | $2$ | Push $2$ | $[1 \ (12), 2 \ (2)]$ |
+| Pass 3 | $5$ (pos 3) | None | $12$ | $17$ | Pop $2, 1$, push $3$ | $[3 \ (17)]$ |
+| Pass 4 | $20$ (pos 4) | None | $17$ | $37$ | Pop $3$, push $4$ | $[4 \ (37)]$ |
+| Summary | — | Max overall: $37$ | — | Subsequence: $[10, 2, 5, 20]$ | — | Output: $37$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Any valid subsequence must end at some index $i$. By definition, the penultimate element must reside at an index $j \ge i - k$. Taking the maximum of $DP[j]$ over this exact window ensures that all step gaps satisfy $i - j \le k$. Clamping negative sums with $\max(0, \dots)$ ensures that starting a new subsequence is chosen whenever all predecessors would decrease the sum.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since every element enters the deque once and leaves the deque at most once, and the front strictly provides the maximum DP value in the window $[i - k, i - 1]$, no potentially superior predecessor is ever discarded prematurely. Pruned elements are strictly smaller than newer elements, so they could never become the maximum in any future window.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Max heap:** Store DP values with indices and lazily remove an expired maximum. This gives $O(n\log n)$ time and can retain stale nonmaximum entries.
-- **Balanced ordered multiset:** Maintain all DP values in the last `k` indices with frequencies. Maximum lookup and updates cost $O(\log k)$.
-- **Direct window scan:** Evaluate the last `k` states for every index in $O(nk)$ time.
-- **Deque of value-index pairs:** Store `(f[i], i)` directly and omit the full `f` array, realizing $O(k)$ auxiliary space.
-- **All negative numbers:** Every predecessor contribution is reset to zero, and `ans` selects the least negative single element.
-- **`k = 1`:** A selected element may follow only the immediately preceding selected index; restarting remains allowed.
-- **`k = n`:** Every earlier index can be connected within the constraint, and the recurrence resembles a positive-sum subsequence DP.
-- **Equal DP values:** The older index is removed because the newer one stays valid longer.
-- **Negative bridge:** A negative state can be worth extending if it still leaves a positive accumulated sum that connects profitable elements within the gap bound.
-- **Nonempty requirement:** Initializing `ans` to negative infinity and always adding `x` prevents an empty zero-sum answer.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **All-Negative Arrays:** If all elements are negative (e.g. $[-1, -2, -3]$), initializing the global answer to $0$ would return $0$, which is invalid because the subsequence must be non-empty. The global answer must be initialized to $\max(nums)$ or $DP[0]$.
+- **Window Eviction Neglect:** Forgetting to pop indices with $j < i - k$ from the deque allows illegal jumps larger than $k$.
+- **Adding Negative DP Values:** If all prior DP values are negative, extending them reduces the sum; the recurrence must use $\max(0, DP[j])$ so that an element can start a fresh subsequence.
+- **Quadratic Window Scan:** Finding the window maximum via a linear loop takes $\mathcal{O}(n \cdot k)$ time, which times out when $n = k = 10^5$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Each index is appended once. It can be removed from the back once through domination or from the front once through expiration. Across the full scan, deque operations are therefore $O(n)$ amortized, and all other per-index work is constant. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n+k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `nums`. Each index is pushed onto the deque exactly once and popped from the front or back at most once. Hence, total deque operations across the entire algorithm are bounded by $2n$, yielding strict $\mathcal{O}(n)$ runtime independent of $k$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the DP array and the monotonic deque of size at most $k + 1$.

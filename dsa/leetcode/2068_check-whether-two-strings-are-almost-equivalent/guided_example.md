@@ -1,123 +1,130 @@
 # Guided Example: Check Whether Two Strings are Almost Equivalent
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character frequency tallying, difference vector calculation, and threshold boundary verification on representative string instances:
 
-- **Input:** `{"word1": "aaaa", "word2": "bccb"}`
-- **Required output:** `false`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Two strings `word1` and `word2` are considered **almost equivalent** if the differences between the frequencies of each letter from `'a'` to `'z'` between `word1` and `word2` is **at most** `3`.
-
-The objective is to compute `false` from `{"word1": "aaaa", "word2": "bccb"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Input:** $\text{word1} = \text{"abcdeef"}$, $\text{word2} = \text{"abaaacc"}$
+- **Expected Output:** $\text{true}$
+- **Violation Counter-Instance:** $\text{word1} = \text{"aaaa"}$, $\text{word2} = \text{"bccb"}$ (Yields $\text{false}$ due to an excess frequency gap of $4$)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+Two equal-length lowercase English strings $\text{word1}$ and $\text{word2}$ are defined as **almost equivalent** if and only if, for every lowercase letter from `'a'` to `'z'`, the absolute difference between its frequency in $\text{word1}$ and its frequency in $\text{word2}$ is **at most $3$**:
+$$\forall c \in \{'\text{a}', '\text{b}', \dots, '\text{z}'\}, \quad |\text{freq}_1(c) - \text{freq}_2(c)| \le 3$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We must return $\text{true}$ if every letter satisfies this inequality, or $\text{false}$ if even a single character's frequency discrepancy reaches $4$ or more.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Alphabet Frequency Delta Verification
+    accDescr: Visual ledger comparing frequencies of letters a through f between word1 and word2, verifying max difference is 3.
+    subgraph Letters["Inspected Alphabet Characters"]
+        direction LR
+        A["'a': |1 - 4| = 3 <= 3 (Pass)"]
+        B["'b': |1 - 1| = 0 <= 3 (Pass)"]
+        C["'c': |1 - 2| = 1 <= 3 (Pass)"]
+        D["'d': |1 - 0| = 1 <= 3 (Pass)"]
+        E["'e': |2 - 0| = 2 <= 3 (Pass)"]
+        F["'f': |1 - 0| = 1 <= 3 (Pass)"]
+    end
+    Letters --> Result(["All Differences <= 3: Return true"])
 
----
+    classDef pass fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    classDef all fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class A,B,C,D,E,F pass;
+    class Result all;
+```
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Store frequency differences rather than two full tables
-
-For each letter, the required quantity is
-
-$$
-\text{frequency in word1}-\text{frequency in word2}.
-$$
-
-The source creates `Counter(word1)`, giving positive frequencies from the first string. It then scans `word2` and decrements the matching counter entry.
-
-Afterward, every stored value is exactly the signed frequency difference for that letter.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"word1": "aaaa", "word2": "bccb"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why letters appearing only in the second word are included
-
-`Counter` behaves like a dictionary with default count zero. If a character from `word2` did not appear in `word1`, `cnt[c] -= 1` creates a negative entry.
-
-Thus the final values cover the union of letters appearing in either string, not merely keys originally present in the first counter.
-
-Letters appearing in neither string have difference zero and need no stored entry.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+In the primary instance:
+- $\text{word1} = \text{"abcdeef"}$ (Length 7)
+- $\text{word2} = \text{"abaaacc"}$ (Length 7)
+- Frequencies:
+  - Letter `'a'`: $1$ in $\text{word1}$, $4$ in $\text{word2}$. Difference $= |1 - 4| = 3 \le 3$.
+  - Letter `'e'`: $2$ in $\text{word1}$, $0$ in $\text{word2}$. Difference $= |2 - 0| = 2 \le 3$.
+  - All other letters have differences of $0$ or $1$.
+- Because the maximum difference across all $26$ letters is $3 \le 3$, the output is $\text{true}$.
 
 ---
 
-### Step 3: Use absolute value because direction does not matter
+## 2. Theoretical Invariants & Frequency Difference Vector
 
-The definition limits the magnitude of the difference. It does not matter which word contains more copies.
+Let $\Sigma = \{'\text{a}', \dots, '\text{z}'\}$ be the lowercase English alphabet with $|\Sigma| = 26$.
+Instead of maintaining two independent 26-element tables, we track a single signed difference vector:
+$$\delta[c] = \text{freq}_1(c) - \text{freq}_2(c)$$
 
-For example, signed differences four and negative four both violate the allowed threshold. `abs(x) <= 3` handles both directions with one comparison.
+### Signed Difference Invariant
+1. Increment $\delta[c]$ by $+1$ for each occurrence of character $c$ in $\text{word1}$.
+2. Decrement $\delta[c]$ by $-1$ for each occurrence of character $c$ in $\text{word2}$.
+3. After processing both strings, each entry $\delta[c]$ holds the exact signed disparity:
+   - $\delta[c] > 0 \implies c$ appears more frequently in $\text{word1}$.
+   - $\delta[c] < 0 \implies c$ appears more frequently in $\text{word2}$.
+   - $\delta[c] = 0 \implies c$ appears an equal number of times (or zero times) in both strings.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word1": "aaaa", "word2": "bccb"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Global Conformance Invariant
+The strings are almost equivalent if and only if:
+$$\max_{c \in \Sigma} |\delta[c]| \le 3$$
+If any $|\delta[c]| \ge 4$, the evaluation can terminate early and report $\text{false}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 3. Step-by-Step State Execution Trace
 
-- **Length-26 difference array:** Increment for `word1` and decrement for `word2` using character indices.
-- **Two Counters:** Subtract their values during a 26-letter scan, but one difference counter is sufficient.
-- **Sort both strings:** Frequencies could be derived after sorting, but $O(N\log N)$ work is unnecessary.
-- **Difference exactly three:** Allowed by the inclusive threshold.
-- **Difference four:** Immediately invalid.
-- **Letter only in `word1`:** Stored as a positive difference.
-- **Letter only in `word2`:** Counter subtraction creates a negative key.
-- **Letter in neither:** Difference is zero and omission is harmless.
-- **Identical strings:** Every stored difference becomes zero.
-- **Several violating letters:** One is enough for `all` to return false.
-- **Equal lengths:** Ensures total signed difference sums to zero but does not replace per-letter checks.
-- **Input preservation:** Neither immutable string is modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+We trace the construction of the difference vector $\delta$ for $\text{word1} = \text{"abcdeef"}$ and $\text{word2} = \text{"abaaacc"}$:
+
+| Letter $c$ | Frequency in $\text{word1}$ | Frequency in $\text{word2}$ | Signed Disparity $\delta[c] = f_1 - f_2$ | Absolute Gap $|\delta[c]|$ | Threshold Limit ($\le 3$) | Status |
+|---|---|---|---|---|---|---|
+| `'a'` | $1$ | $4$ | $1 - 4 = -3$ | $3$ | $3 \le 3$ | Valid |
+| `'b'` | $1$ | $1$ | $1 - 1 = 0$ | $0$ | $0 \le 3$ | Valid |
+| `'c'` | $1$ | $2$ | $1 - 2 = -1$ | $1$ | $1 \le 3$ | Valid |
+| `'d'` | $1$ | $0$ | $1 - 0 = +1$ | $1$ | $1 \le 3$ | Valid |
+| `'e'` | $2$ | $0$ | $2 - 0 = +2$ | $2$ | $2 \le 3$ | Valid |
+| `'f'` | $1$ | $0$ | $1 - 0 = +1$ | $1$ | $1 \le 3$ | Valid |
+| `'g'`–`'z'` | $0$ | $0$ | $0 - 0 = 0$ | $0$ | $0 \le 3$ | Valid |
+
+All $26$ entries satisfy $|\delta[c]| \le 3$. Return $\text{true}$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Violation Analysis Trace
 
-- **Time Complexity:** $O(N)$. Let $N$ be the common string length. Constructing the first counter takes $O(N)$ time, scanning the second word takes $O(N)$, and checking at most 26 values takes $O(1)$. Total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(26)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We contrast this with $\text{word1} = \text{"aaaa"}$ and $\text{word2} = \text{"bccb"}$:
+
+| Letter $c$ | Count in $\text{word1}$ | Count in $\text{word2}$ | Absolute Gap $|\delta[c]|$ | Threshold Test ($\le 3$) | Decision |
+|---|---|---|---|---|---|
+| `'a'` | $4$ | $0$ | $|4 - 0| = 4$ | $4 \le 3$ (**False**) | **Violation detected! Halt and return $\text{false}$** |
+| `'b'` | $0$ | $2$ | $|0 - 2| = 2$ | $2 \le 3$ | Skipped by early exit |
+| `'c'` | $0$ | $2$ | $|0 - 2| = 2$ | $2 \le 3$ | Skipped by early exit |
+
+The very first character checked (`'a'`) produces an absolute difference of $4 > 3$, proving non-equivalence instantly.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+1. **Exact Cardinality Accounting:**
+   Counting occurrences across the entire length of both strings guarantees that $\text{freq}_1(c)$ and $\text{freq}_2(c)$ are exact for every character $c \in \Sigma$.
+2. **Sufficiency of Checking Disjoint Characters:**
+   Letters appearing in $\text{word2}$ but absent in $\text{word1}$ have $\text{freq}_1(c) = 0$, producing $\delta[c] = -\text{freq}_2(c)$. Taking the absolute value $|\delta[c]|$ accounts for characters unique to either string symmetrically.
+3. **Exactness of the Bound:**
+   The problem specifies that differences of $0, 1, 2,$ and $3$ are legal. The strict condition $|\delta[c]| \le 3$ accurately permits boundary cases where difference is exactly $3$ while rejecting differences $\ge 4$.
+
+---
+
+## 6. Edge Cases, Pitfalls & Structural Traps
+
+- **Characters Present Only in `word2`:**
+  A common bug is iterating only over the characters present in `word1`. If `word2` contains $4$ copies of `'z'` and `word1` contains none, omitting `'z'` from verification produces an incorrect $\text{true}$. Checking all $26$ alphabet entries or iterating over the union of keys in a dictionary prevents this trap.
+- **Off-by-One Threshold Trap:**
+  A difference of exactly $3$ is allowed. Using strict inequality ($< 3$) would reject valid pairs.
+- **Identical Strings:**
+  If $\text{word1} = \text{word2}$, $|\delta[c]| = 0$ for all characters, trivially returning $\text{true}$.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:** $\mathcal{O}(n + |\Sigma|)$ where $n$ is the length of $\text{word1}$ and $\text{word2}$, and $|\Sigma| = 26$ is the alphabet size.
+  Scanning both strings of length $n$ updates frequency tallies in $\mathcal{O}(n)$ time. Inspecting the $26$ differences takes $\mathcal{O}(26) = \mathcal{O}(1)$ time. Overall runtime is strictly linear in string length.
+- **Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$.
+  The frequency array stores exactly $26$ integer counts, requiring constant auxiliary memory.

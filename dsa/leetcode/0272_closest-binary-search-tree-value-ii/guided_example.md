@@ -1,123 +1,203 @@
 # Guided Example: Closest Binary Search Tree Value II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step in-order sorted traversal streaming, sliding window deque maintenance of capacity $k$, and early termination cutoff on representative BST instances:
 
-- **Input:** `{"root": [4, 2, 5, 1, 3], "target": 3.714286, "k": 2}`
-- **Required output:** `[4, 3]`
+- **Input:** $\text{root} = [4, 2, 5, 1, 3], \quad \text{target} = 3.714286, \quad k = 2$
+- **Required output:** $[3, 4]$ (or $[4, 3]$; the 2 closest values to target $3.714286$)
+- **Single Node Base Case:** $\text{root} = [1], \quad \text{target} = 0.0, \quad k = 1 \implies [1]$
+- **Complete Tree Selection:** $k = N \implies \text{returns all tree elements in sorted order}$
+- **Early Termination:** Once an incoming node is farther from `target` than the oldest element in the deque ($q[0]$), strictly increasing monotonicity guarantees all future nodes will be farther still, enabling immediate pruning
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates combining binary search tree in-order monotonic ordering with sliding window optimization, explains why the $k$ closest values form a contiguous subsegment in the sorted array, details the $O(1)$ deque replacement step (`popleft` and `append`), and contrasts $O(N)$ traversal with $O(H + k)$ predecessor/successor iterator expansion.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given the `root` of a binary search tree, a `target` value, and an integer `k`, return *the *`k`* values in the BST that are closest to the* `target`. You may return the answer in **any order**.
+Given the root of a binary search tree, a target value $\text{target} = 3.714286$, and $k = 2$:
+```text
+Tree structure:
+        4
+       / \
+      2   5
+     / \
+    1   3
+```
+Find the $k = 2$ node values whose numerical distance $|\text{val} - \text{target}|$ is minimal.
+Sorted in-order traversal: $[1, 2, 3, 4, 5]$.
+Evaluating distances to $3.714286$:
+- $|1 - 3.714286| = 2.714286$
+- $|2 - 3.714286| = 1.714286$
+- $|3 - 3.714286| = \mathbf{0.714286}$ (Selected)
+- $|4 - 3.714286| = \mathbf{0.285714}$ (Selected)
+- $|5 - 3.714286| = 1.285714$
+The two closest values are $\mathbf{[3, 4]}$ (or $\mathbf{[4, 3]}$).
 
-The objective is to compute `[4, 3]` from `{"root": [4, 2, 5, 1, 3], "target": 3.714286, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Contiguous Window Theorem
+In any sorted list of numbers, the $k$ elements closest to a real target $T$ must form a **single contiguous subarray**.
+Proof: If we select two elements $A < B$, any element $C$ strictly between them ($A < C < B$) cannot be farther from $T$ than both $A$ and $B$.
+Therefore, as we stream elements in sorted in-order sequence from the BST, the optimal subset slides continuously across the stream.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### In-Order Deque Sliding Protocol
+Maintain a double-ended queue `q` with maximum capacity $k$:
+Perform an in-order traversal (Left $\to$ Node $\to$ Right):
+1. **Initial Fill ($\text{len}(q) < k$):**
+   Append visited node:
+   $$
+   q.\text{append}(\text{node.val})
+   $$
+2. **Window Sliding ($\text{len}(q) == k$):**
+   Compare incoming node with the oldest element currently retained ($q[0]$):
+   - **Case A: Incoming element is closer:**
+     $$
+     |\text{node.val} - \text{target}| < |q[0] - \text{target}|
+     $$
+     The new element is superior to the oldest element in the window!
+     Evict the left endpoint and append the new element:
+     $$
+     q.\text{popleft}(), \quad q.\text{append}(\text{node.val})
+     $$
+   - **Case B: Incoming element is equal or farther:**
+     $$
+     |\text{node.val} - \text{target}| \ge |q[0] - \text{target}|
+     $$
+     Since the in-order traversal produces strictly increasing values ($x > \text{node.val} > \text{target}$), every future node in the tree will have an even larger distance:
+     $$
+     |x - \text{target}| > |\text{node.val} - \text{target}| \ge |q[0] - \text{target}|
+     $$
+     No future node can ever replace $q[0]$! We **terminate the traversal early**.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Deque `q` always stores a sorted contiguous subsegment of the in-order traversal of length at most $k$. When traversal concludes, `q` holds the exact $k$ globally closest values.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn the BST into a sorted stream
-
-An inorder traversal visits a binary search tree in ascending value order: first the left subtree, then the node, then the right subtree. The exact protected solution exploits this order and keeps only a deque `q` containing at most `k` consecutive visited values.
-
-The manifest describes a different optimal technique based on merging predecessor and successor iterators. The source actually uses recursive inorder traversal plus a sliding window. The two methods should not be conflated: this explanation follows the exact deque-based implementation and documents its true bounds.
-
-Why does sorted order help? In a sorted sequence, the $k$ values closest to a fixed target form one contiguous block. Suppose two chosen values surround an unchosen value. The middle value lies numerically between them, so it cannot be farther from the target than both endpoints. Replacing a farther chosen endpoint with that middle value would produce an equally good or better selection. Under the guarantee that the closest set is unique, the answer is therefore one definite length-$k$ window in sorted order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"root": [4, 2, 5, 1, 3], "target": 3.714286, "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the in-order traversal on $\text{root} = [4, 2, 5, 1, 3]$ with $\text{target} = 3.714286$ and $k = 2$:
+In-order sequence of nodes visited: $1 \to 2 \to 3 \to 4 \to 5$.
+Initialize `q = deque()`.
 
 ---
 
-### Step 2: Fill the initial window
-
-During inorder traversal, the first `k` encountered values are appended to `q`. Before `q` reaches size `k`, no choice is necessary because the final answer must contain `k` values and fewer than `k` candidates have been seen.
-
-The deque remains sorted because values arrive in ascending order and are appended on the right. Its left endpoint `q[0]` is the smallest value currently retained, and the next inorder value `root.val` is greater than every value already in the deque.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Visit Node 1
+- `len(q) == 0 < 2`.
+- Append value: $q = [1]$.
 
 ---
 
-### Step 3: Decide whether a new value should slide the window
+### Step 2: Visit Node 2
+- `len(q) == 1 < 2`.
+- Append value: $q = [1, 2]$.
+- Deque has reached target capacity $k = 2$.
 
-Once `q` already has `k` elements, a newly visited value creates `k+1` candidates across the current window and its immediate right neighbor. A length-$k$ contiguous window cannot keep both extremes. The decision is therefore between:
+---
 
-- keeping the old left endpoint `q[0]` and rejecting the new right value; or
-- removing `q[0]` and appending the new value, shifting the window one position right.
+### Step 3: Visit Node 3
+- `len(q) == 2`. Window is full.
+- Compare incoming $\text{val} = 3$ against oldest element $q[0] = 1$:
+  $$
+  d_{\text{new}} = |3 - 3.714286| = \mathbf{0.714286}
+  $$
+  $$
+  d_{\text{old}} = |1 - 3.714286| = \mathbf{2.714286}
+  $$
+- Since $0.714286 < 2.714286$, the new element is closer!
+- Slide window:
+  $$
+  q.\text{popleft}() \implies [2]
+  $$
+  $$
+  q.\text{append}(3) \implies q = [2, 3]
+  $$
 
-The source compares their absolute distances from `target`. If the new value is strictly closer, it removes the left endpoint with `popleft()` and appends the new value. The deque again has exactly `k` sorted, consecutive values.
+---
 
-If the new value is at least as far as `q[0]`, the source returns from that DFS call without changing the deque. The `>=` comparison retains the smaller, earlier value in a tie. The problem guarantees a unique set of `k` closest values, so a boundary tie that could create two different valid sets does not occur on legal inputs; either tie choice would otherwise require an explicit problem rule.
+### Step 4: Visit Node 4
+- `len(q) == 2`. Window is full.
+- Compare incoming $\text{val} = 4$ against oldest element $q[0] = 2$:
+  $$
+  d_{\text{new}} = |4 - 3.714286| = \mathbf{0.285714}
+  $$
+  $$
+  d_{\text{old}} = |2 - 3.714286| = \mathbf{1.714286}
+  $$
+- Since $0.285714 < 1.714286$, the new element is closer!
+- Slide window:
+  $$
+  q.\text{popleft}() \implies [3]
+  $$
+  $$
+  q.\text{append}(4) \implies q = [3, 4]
+  $$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 3]` |
+---
+
+### Step 5: Visit Node 5 (Early Cutoff Triggered!)
+- `len(q) == 2`. Window is full.
+- Compare incoming $\text{val} = 5$ against oldest element $q[0] = 3$:
+  $$
+  d_{\text{new}} = |5 - 3.714286| = \mathbf{1.285714}
+  $$
+  $$
+  d_{\text{old}} = |3 - 3.714286| = \mathbf{0.714286}
+  $$
+- $1.285714 \ge 0.714286$ (**True!**).
+- Incoming value is farther than $q[0]$.
+- Since all subsequent values would be $> 5 > 3.714286$, distances will only continue to increase.
+- **Terminate traversal immediately!**
+
+Final window:
+$$
+\mathbf{[3, 4]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"root": [4, 2, 5, 1, 3], "target": 3.714286, "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 3]` | Verified |
+```text
+In-order Sequence: 1, 2, 3, 4, 5 | Target: 3.714286, k = 2
+
+Node 1: q = [1]
+Node 2: q = [1, 2] (Full)
+Node 3: |3 - 3.714| = 0.714 < |1 - 3.714| = 2.714 -> pop 1, push 3 -> q = [2, 3]
+Node 4: |4 - 3.714| = 0.286 < |2 - 3.714| = 1.714 -> pop 2, push 4 -> q = [3, 4]
+Node 5: |5 - 3.714| = 1.286 >= |3 - 3.714| = 0.714 -> Prune & Stop!
+
+Result: [3, 4]
+```
+
+| In-Order Node | $q$ State Before Step | Distance Comparison ($d_{\text{new}}$ vs $d_{q[0]}$) | Closer? | Window Action | $q$ State After Step |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | `[]` | - | - | Append | `[1]` |
+| 2 | `[1]` | - | - | Append (Capacity 2 reached) | `[1, 2]` |
+| **3** | `[1, 2]` | $\|3 - 3.714\| = 0.714 < \|1 - 3.714\| = 2.714$ | **Yes** | Evict 1, append 3 | `[2, 3]` |
+| **4** | `[2, 3]` | $\|4 - 3.714\| = 0.286 < \|2 - 3.714\| = 1.714$ | **Yes** | Evict 2, append 4 | `[3, 4]` |
+| **5** | `[3, 4]` | $\|5 - 3.714\| = 1.286 \ge \|3 - 3.714\| = 0.714$ | **No** | **Early Termination** | **`[3, 4]` (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** At any point where $d_{\text{new}} \ge d_{q[0]}$ for $node.val > target$, any subsequent value $x > node.val$ has $x - target > node.val - target \ge |q[0] - target|$. Hence, no future value can be closer to $target$ than $q[0]$. Stopping early cannot discard any better element.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Before the cutoff triggers, every newly visited node is compared against the farthest element currently in $q$. If it is closer, $q$ is updated; if not, monotonicity guarantees that all subsequent elements are worse. Thus, the final contents of $q$ are guaranteed to be the $k$ closest elements.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Predecessor and successor iterators:** Build two stacks around the target, then repeatedly take the closer next predecessor or successor. This achieves $O(h+k)$ time and $O(h)$ iterator space, satisfies the balanced-tree follow-up, and is the algorithm described by the manifest rather than the exact source.
-- **Inorder array plus two pointers:** Materialize all $n$ sorted values, locate the target insertion point, and expand toward the closer side until `k` values are chosen. It is easy to understand but requires $O(n)$ array space and $O(n+k)$ time.
-- **Size-`k` max heap:** Traverse every node and retain the closest `k` values by distance. It works for any binary tree in $O(n\log k)$ time and $O(k+h)$ space, but it does not exploit sorted inorder order.
-- **Sort all values by distance:** Collecting and sorting costs $O(n\log n)$ time and $O(n)$ storage, more than needed.
-- **`k = 1`:** The deque holds the best single value seen. It slides while later values become closer and stops as soon as they cease improving.
-- **`k = n`:** No comparison branch runs because the deque is not full until the final node. Every tree value is returned, as required.
-- **Target below the minimum:** The first `k` inorder values are the closest. Once the next value is examined, it is farther than the smallest retained endpoint, so traversal stops.
-- **Target above the maximum:** Distances decrease throughout inorder traversal. The window keeps sliding and finishes with the largest `k` values after visiting all nodes.
-- **Boundary-distance tie:** The source keeps the existing smaller endpoint because it uses `>=` to reject the new value. The unique-answer guarantee excludes a tie that would make two different closest sets equally valid.
-- **Answer order:** The deque is returned in ascending BST order. This is acceptable because the contract permits any order.
-- **Skewed tree:** Recursion depth can reach $n$ and may exceed Python's interpreter recursion limit at the largest constraint. An iterative inorder traversal preserves the window logic while replacing call-stack risk with an explicit $O(h)$ stack.
-- **Nonempty-tree guarantee:** The algorithm assumes `root` contains at least one node and `k >= 1`. An empty tree would return too few values and is outside the contract.
-- **No global stop flag:** A local early return is sufficient because every ancestor and later inorder value lies still farther to the right and will also be rejected. Adding a propagated Boolean could avoid the small number of ancestor comparisons but would not change the worst-case bound.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Full In-Order Array Allocation:** Collecting all $N$ elements into an array and using binary search requires $O(N)$ memory. Streaming into a size-$k$ deque requires only $O(k)$ memory plus recursion stack.
+- **Missing the Early Termination:** Continuing in-order traversal after finding that the distance has increased wastes time exploring the rest of the tree. Checking `d_new >= d_old` allows immediate pruning.
+- **Heap Overhead:** Maintaining a max-heap of size $k$ during traversal takes $O(N \log k)$ time and ignores the sorted nature of in-order traversal. The deque approach operates in $O(1)$ amortized time per node.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(k)$. Let $n$ be the number of tree nodes and $h$ its height. Every node is visited at most once, and deque operations are $O(1)$. Early stopping may avoid a suffix of the inorder traversal, but in the worst case it does not. For example, if the target is larger than every node, each new value is closer than the old left endpoint, so traversal reaches all $n$ nodes. The exact source therefore has $O(n)$ worst-case time.
-- **Auxiliary Space Complexity:** $O(h+k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ in the worst case (e.g. when `target` is greater than all nodes in the tree), but often substantially faster $O(H + k)$ in practice due to early termination after passing the target. Each visited node requires $O(1)$ deque operations.
+- **Auxiliary Space Complexity:** $O(H + k)$, where $H$ is the tree height (recursion call stack) and $k$ is the deque size storing the closest values.

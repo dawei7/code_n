@@ -42,7 +42,7 @@
     {
       "id": "trial-many",
       "name": "multiple segment layouts",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "s": "101023"
@@ -58,6 +58,7 @@
         "kind": "unordered_list"
       },
       "tags": [
+        "sample",
         "branching"
       ]
     },

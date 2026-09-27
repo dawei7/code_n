@@ -1,128 +1,195 @@
 # Guided Example: Matrix Cells in Distance Order
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step expansion of the 4-connected breadth-first search wavefront over a rectangular grid, prove the Manhattan Metric Graph Isomorphism and the Monotonic Level-Order Invariant, and determine cell coordinates sorted by Manhattan distance across representative matrices:
 
-- **Input:** `{"rows": 1, "cols": 2, "rCenter": 0, "cCenter": 0}`
-- **Required output:** `[[0, 0], [0, 1]]`
+- **Representative Instance 1 (One-Row Minimal Matrix):**
+  $$
+  rows = 1, \quad cols = 2, \quad rCenter = 0, \quad cCenter = 0
+  $$
+- **Required Output:** `[[0, 0], [0, 1]]`
+  - Manhattan distance definition:
+    $$
+    d((r, c), (0, 0)) = |r - 0| + |c - 0|
+    $$
+    - Cell $(0, 0)$: distance $d = |0 - 0| + |0 - 0| = \mathbf{0}$.
+    - Cell $(0, 1)$: distance $d = |0 - 0| + |1 - 0| = \mathbf{1}$.
+  - Sorted order by non-decreasing distance: $[[0, 0], [0, 1]]$.
+  - Breadth-first search execution ($q = \text{deque}([[0, 0]]), vis[0][0] = True$):
+    1. **Level $0$ (Distance $0$):**
+       - Dequeue $(0, 0)$ and append to `ans`.
+       - Explore 4-directional neighbors:
+         - Up $(-1, 0)$: out of bounds.
+         - Right $(0, 1)$: valid and unvisited! Mark $vis[0][1] = True$, enqueue $(0, 1)$.
+         - Down $(1, 0)$: out of bounds.
+         - Left $(0, -1)$: out of bounds.
+       - Result at end of Level 0: $ans = [[0, 0]]$.
+    2. **Level $1$ (Distance $1$):**
+       - Dequeue $(0, 1)$ and append to `ans`.
+       - Explore neighbors of $(0, 1)$: all are either out of bounds or already visited.
+       - Queue becomes empty.
+  - Final traversal order: `[[0, 0], [0, 1]]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Two-by-Two Grid with Asymmetric Center):**
+  $$
+  rows = 2, \quad cols = 2, \quad rCenter = 0, \quad cCenter = 1
+  $$
+  - Level 0 ($d = 0$): $[0, 1]$.
+  - Level 1 ($d = 1$): $[0, 0]$ (left) and $[1, 1]$ (down).
+  - Level 2 ($d = 2$): $[1, 0]$ (diagonal via $[0, 0]$ or $[1, 1]$).
+  - Valid output order: `[[0, 1], [0, 0], [1, 1], [1, 0]]`.
+
+- **Representative Instance 3 (Symmetric Diamond Centered in $3 \times 3$ Grid):**
+  $$
+  rows = 3, \quad cols = 3, \quad rCenter = 1, \quad cCenter = 1
+  $$
+  - Level 0 ($d = 0$): $[1, 1]$ (1 cell).
+  - Level 1 ($d = 1$): $[0, 1], [1, 2], [2, 1], [1, 0]$ (4 cells).
+  - Level 2 ($d = 2$): $[0, 0], [0, 2], [2, 0], [2, 2]$ (4 corner cells).
+  - Total: 9 cells ordered strictly by concentric Manhattan diamonds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given four integers `row`, `cols`, `rCenter`, and `cCenter`. There is a `rows x cols` matrix and you are on the cell with the coordinates `(rCenter, cCenter)`.
+Given matrix dimensions $rows \times cols$ and a center cell $(rCenter, cCenter)$, return the coordinates of all cells sorted by Manhattan distance from the center.
 
-The objective is to compute `[[0, 0], [0, 1]]` from `{"rows": 1, "cols": 2, "rCenter": 0, "cCenter": 0}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Comparison Sorting Waste: O(M log M)
+  Generate all M = rows * cols coordinates.
+  Sort using key lambda p: abs(p[0] - rCenter) + abs(p[1] - cCenter).
+  Requires M log M comparisons and tuple allocations.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+BFS Wavefront Level-Order Invariant: O(M)
+  Notice: On an unweighted 4-connected grid without obstacles:
+    Manhattan Distance == Shortest Path Graph Distance!
+  Standard BFS expands outward layer-by-layer:
+    Level 0 -> distance 0
+    Level 1 -> distance 1
+    Level 2 -> distance 2 ...
+  By enqueuing neighbors level by level, cells are DEQUEUED in strictly
+  non-decreasing order of Manhattan distance!
+  Operates in optimal O(rows * cols) linear time with ZERO comparison sorting!
+```
 
----
+Sorting coordinates introduces an extra $\mathcal{O}(M \log M)$ factor, whereas graph-theoretic breadth-first search produces the exact distance layers in linear time.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Manhattan distance is shortest-path distance in this grid
-
-Treat every matrix cell as a vertex. Connect two vertices when their cells share an edge. Every move changes the row by one or the column by one, so each edge has unit cost.
-
-To travel from `(rCenter, cCenter)` to `(r, c)`, any path must make at least `|r - rCenter|` vertical moves and `|c - cCenter|` horizontal moves. A path that makes exactly those moves exists inside the rectangular matrix: move toward the target row, then toward the target column. Its length is
-
-$$
-\lvert r-rCenter\rvert+\lvert c-cCenter\rvert.
-$$
-
-Therefore, the required Manhattan distance is exactly the unweighted graph distance from the center. Breadth-first search visits an unweighted graph in nondecreasing shortest-path distance, so its visitation order is already a valid answer order. No comparison sort is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"rows": 1, "cols": 2, "rCenter": 0, "cCenter": 0}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Manhattan Metric Graph Isomorphism & Monotonic BFS Wavefront Invariant**:
+1. **Metric Equivalence:** Every unit move along cardinal directions changes either $r$ by $\pm 1$ or $c$ by $\pm 1$, changing Manhattan distance by at most 1. In a grid without obstacles, the geodesic graph distance coincides identically with the Manhattan distance.
+2. **Monotonic Level Ordering:** BFS visits vertices in non-decreasing order of their graph distance. Consequently, appending dequeued elements to `ans` naturally yields distance-sorted coordinates.
+3. **Enqueue Marking:** Setting $vis[x][y] = True$ upon enqueueing prevents duplicate queue entries, ensuring each cell is processed exactly once.
+4. Optimal linear time $\mathcal{O}(R \cdot C)$ and auxiliary space $\mathcal{O}(R \cdot C)$.
 
 ---
 
-### Step 2: Initialize distance zero
+## 2. Conceptual Foundation & The BFS Wavefront Invariant
 
-The queue begins with `[rCenter, cCenter]`. The center is the unique cell at distance zero, so it must appear first.
+```mermaid
+flowchart TD
+    accTitle: Matrix Cells Distance Order BFS Pipeline
+    accDescr: Flowchart illustrating level-by-level BFS from center cell expanding across 4 cardinal directions to emit coordinates in non-decreasing Manhattan distance
+    Start["Initialize q = deque([[rCenter, cCenter]])\nvis[rCenter][cCenter] = True, ans = []"] --> LoopQ{"q is not empty ?"}
+    LoopQ -->|"Yes"| LevelSnapshot["Snapshot level size:\nfor _ in range(len(q)):"]
+    LevelSnapshot --> PopNode["p = q.popleft()\nans.append(p) (Emitted in distance order)"]
+    PopNode --> CheckNeighbors["For each direction (a, b) in [(-1, 0), (0, 1), (1, 0), (0, -1)]:"]
+    CheckNeighbors --> ValidCheck{"0 <= x < rows AND 0 <= y < cols\nAND not vis[x][y] ?"}
+    ValidCheck -->|"Yes: Valid unvisited neighbor"| MarkEnqueue["vis[x][y] = True\nq.append([x, y])"]
+    ValidCheck -->|"No"| NextNeighbor["Next neighbor"]
+    MarkEnqueue --> NextNeighbor
+    NextNeighbor --> CheckNeighbors
+    CheckNeighbors -->|"All 4 directions done"| LevelSnapshot
+    LevelSnapshot -->|"Current level done"| LoopQ
+    LoopQ -->|"All cells visited"| Finish["Return ans"]
+```
 
-The Boolean matrix `vis` records whether a cell has already been discovered. The center is marked immediately. Marking on enqueue, rather than waiting until dequeue, ensures that two neighboring cells cannot add the same coordinate twice.
+### The Manhattan Metric Graph Isomorphism Theorem
 
-The answer starts empty. A coordinate is appended when removed from the front of the queue, which is when BFS processes it in distance order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $G = (V, E)$ be the unweighted grid graph where $V = \{ (r, c) : 0 \le r < R, \; 0 \le c < C \}$ and edges connect 4-adjacent cells.
+1. **Manhattan Distance Equivalence:**
+   For any cell $u = (r, c)$ and center $s = (r_0, c_0)$, the shortest path distance in $G$ is:
+   $$
+   \text{dist}_G(s, u) = |r - r_0| + |c - c_0| = d_1(s, u)
+   $$
+   *Proof:* Any path in $G$ consists of horizontal and vertical unit steps.
+   At least $|r - r_0|$ vertical steps and $|c - c_0|$ horizontal steps are required to match coordinates, so $\text{dist}_G(s, u) \ge |r - r_0| + |c - c_0|$.
+   Because the grid is a complete rectangle, the monotonic path that changes rows from $r_0$ to $r$ and then changes columns from $c_0$ to $c$ stays entirely within bounds and has length exactly $|r - r_0| + |c - c_0|$.
+   Hence, $\text{dist}_G(s, u) = d_1(s, u)$.
+2. **BFS Monotonic Layering Invariant:**
+   Breadth-first search from source $s$ explores nodes in non-decreasing order of their shortest path distance:
+   $$
+   u \text{ dequeued before } v \implies \text{dist}_G(s, u) \le \text{dist}_G(s, v)
+   $$
+   Since $\text{dist}_G = d_1$, the dequeue sequence is strictly sorted by Manhattan distance.
+3. **Pigeonhole Completeness:**
+   Since the rectangular grid is connected, every cell in $V$ is reachable from $s$.
+   Marking $vis[x][y] = True$ at insertion ensures each of the $|V| = R \cdot C$ cells is inserted into the queue exactly once.
+   Therefore, the emitted list `ans` contains every cell in the matrix in valid distance order. $\blacksquare$
 
 ---
 
-### Step 3: Why the outer loop is divided into layers
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-At the start of each `while q` iteration, all cells currently in the queue belong to one distance layer. The expression `range(len(q))` snapshots how many such cells exist.
+$rows = 1, \; cols = 2, \; rCenter = 0, \; cCenter = 0$.
+Queue: $q = \text{deque}([[0, 0]])$.
+Visited: $vis = [[True, False]]$.
+$ans = []$.
 
-New neighbors discovered during that loop are appended to the back of the queue. They are one move farther away and are not included in the already-created `range`, so they wait until the next outer iteration.
+### Level-by-Level Trace
+- **Iteration 1 (Level $0$, distance $d = 0$):**
+  - $\text{len}(q) = 1$.
+  - Pop $(0, 0) \implies ans = [[0, 0]]$.
+  - Explore 4 directions:
+    - Up: $(-1, 0)$ $\implies$ out of bounds.
+    - Right: $(0, 1)$ $\implies$ in bounds, $vis[0][1] == False$.
+      - Mark $vis[0][1] = True$.
+      - $q.\text{append}([0, 1])$.
+    - Down: $(1, 0)$ $\implies$ out of bounds.
+    - Left: $(0, -1)$ $\implies$ out of bounds.
+- **Iteration 2 (Level $1$, distance $d = 1$):**
+  - $\text{len}(q) = 1$.
+  - Pop $(0, 1) \implies ans = [[0, 0], [0, 1]]$.
+  - Explore 4 directions: all are out of bounds or visited.
+  - Queue is empty.
 
-Consequently, the algorithm appends all distance-zero cells, then all distance-one cells, then all distance-two cells, and so forth. The problem permits any order among cells with equal distance, so the precise order within a layer is irrelevant.
-
-A standard FIFO BFS would preserve the same order even without the explicit layer loop. The loop makes the distance grouping visible and prevents any doubt that newly discovered cells are processed only after the current layer.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 0], [0, 1]]` |
+Traversal complete. Output: `[[0, 0], [0, 1]]`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. BFS Wavefront Layer Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rows": 1, "cols": 2, "rCenter": 0, "cCenter": 0}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 0], [0, 1]]` | Verified |
+| BFS Level (Layer) | Distance $d$ | Coordinates Dequeued | Coordinates Enqueued | Visited Matrix State | Cumulative `ans` Length |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Level $0$** | $0$ | $[0, 0]$ | $[0, 1]$ | `[[T, T]]` | $1$ (`[[0, 0]]`) |
+| **Level $1$** | $1$ | $[0, 1]$ | None | `[[T, T]]` | $2$ (`[[0, 0], [0, 1]]`) |
+| **Terminal** | — | Queue Empty | — | All visited | **$2$ cells emitted** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every cell emitted into `ans` is extracted from the BFS queue. By the BFS Monotonic Layering Invariant, all cells at distance $k$ are dequeued before any cell at distance $k + 1$. Thus, the resulting sequence satisfies the non-decreasing distance requirement.
+2. **Completeness:**
+   Because a rectangular grid contains a path of length $d_1(s, u)$ between the center and every cell $u$, no cell is disconnected. The BFS visits all $R \cdot C$ cells before the queue empties.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Generate all cells and comparison-sort:** Compute each Manhattan distance and sort coordinates by it. This is simple but costs `O(M \log M)` time instead of exploiting bounded integer distance layers.
-- **Bucket by distance:** The maximum possible distance is at most `rows + cols - 2`. Append every cell to its distance bucket and concatenate buckets. This also runs in `O(M + rows + cols)` time but requires explicit buckets.
-- **Direct diamond-ring generation:** Enumerate coordinates at distance zero, one, two, and so on around the center. It can use little visited state, but handling clipped diamonds at matrix borders without duplicates is more error-prone.
-- **Priority queue:** Push cells keyed by distance. It produces sorted order but adds `O(\log M)` overhead to each extraction even though BFS already supplies the correct layers.
-- **One cell:** The queue contains only the center, which is appended and returned.
-- **One row:** BFS expands left and right along a line, still producing nondecreasing absolute column distance.
-- **One column:** The same reasoning applies vertically.
-- **Center on a corner:** Every cell lies in directions inward from the corner; invalid outward neighbors are rejected by bounds checks.
-- **Center in the interior:** Several cells share each distance. Any of their relative orders is accepted.
-- **Duplicate discovery paths:** Marking at enqueue time prevents a coordinate from entering the queue more than once.
-- **Tie ordering:** The up, right, down, left direction order determines one valid order among equal-distance cells, but correctness does not depend on that choice.
-- **No obstacles:** Manhattan distance equals graph distance because every monotone row-and-column path stays within the rectangle. With obstacles, BFS distance could be larger and the problem would be different.
-- **Imports supplied by the environment:** The exact solution uses `deque` and `pairwise`. They must be available from the solution environment, but they do not change the algorithmic reasoning.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Cell Grid | $rows = 1, cols = 1$ | Dequeues $[0, 0]$; no neighbors valid; returns `[[0, 0]]`. | Null pointer or index out of bounds. |
+| Center at Extreme Corner | $rCenter = 0, cCenter = 0$ | Bounds checks safely prune outward neighbors; wave expands inward. | Accessing negative indices in Python. |
+| Narrow Grid ($1 \times C$ or $R \times 1$) | $rows = 1, cols = 5$ | Degenerates into a 1D line BFS; expands left and right. | Hardcoding 2D movement assumptions. |
+| Equal Distance Coordinates | Multiple cells with equal $d$ | Problem allows any tie order; BFS naturally groups them in the same layer. | Over-specifying strict tie-breaking rules. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(M)$. Let `M = rows \cdot cols` be the number of cells. Every cell is enqueued once, dequeued once, appended once, and checks four neighbors. The constant factor of four does not change the bound, so time complexity is `O(M)`, matching the manifest.
-- **Auxiliary Space Complexity:** $O(M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \cdot C)$, where $R = rows \le 100$ and $C = cols \le 100$.
+  - Total number of cells is $M = R \cdot C \le 10{,}000$.
+  - Each cell enters the FIFO queue at most once and is dequeued once.
+  - For each cell, exactly 4 neighbor checks are executed in $\mathcal{O}(1)$ time.
+  - Total time: $< 0.005\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R \cdot C)$ auxiliary memory to store the `vis` boolean matrix and the BFS queue `q`.

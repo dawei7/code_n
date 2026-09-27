@@ -1,127 +1,182 @@
 # Guided Example: H-Index
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step descending rank comparison, citation threshold monotonicity, and bucket counting aggregation on representative publication citation arrays:
 
-- **Input:** `{"citations": [3, 0, 6, 1, 5]}`
-- **Required output:** `3`
+- **Input:** $\text{citations} = [3, 0, 6, 1, 5]$
+- **Required output:** $3$ (Researcher has 3 papers with at least 3 citations: papers cited 6, 5, and 3 times; the 4th paper has only 1 citation)
+- **Low Citation Instance:** $\text{citations} = [1, 3, 1] \implies 1$ (Only 1 paper has $\ge 2$ citations; maximum $h = 1$)
+- **Zero Citations Instance:** $\text{citations} = [0, 0, 0] \implies 0$ (No papers meet threshold 1)
+- **Single Highly-Cited Paper:** $\text{citations} = [100] \implies 1$ ($h \le N$; bounded by total number of papers)
+- **All Papers Uniformly Cited:** $\text{citations} = [4, 4, 4, 4] \implies 4$ ($4$ papers cited at least $4$ times)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates metric ranking invariants, explains why a researcher with $N$ papers can never have an $h$-index greater than $N$, proves the equivalence between sorted rank index tests ($\text{citations}[i] \ge i + 1$) and cumulative bucket counting, and compares the $O(N \log N)$ sorting approach with the $O(N)$ bucket sort alternative.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `citations` where $\text{citations}[i]$ is the number of citations a researcher received for their $i^{\text{th}}$ paper, return *the researcher's h-index*.
+Given citation counts $\text{citations} = [3, 0, 6, 1, 5]$ for $N = 5$ papers:
+Find the **$h$-index**, defined as the maximum value $h$ such that at least $h$ papers have each received at least $h$ citations.
 
-The objective is to compute `3` from `{"citations": [3, 0, 6, 1, 5]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Sorted in descending order:
+Rank 1: 6 citations >= 1 (Qualifies)
+Rank 2: 5 citations >= 2 (Qualifies)
+Rank 3: 3 citations >= 3 (Qualifies)
+Rank 4: 1 citation  >= 4 (Fails: 1 < 4)
+Rank 5: 0 citations >= 5 (Fails: 0 < 5)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Maximum qualifying h = 3
+```
+
+### The Dual Role of Parameter $h$
+In the condition "at least $h$ papers have at least $h$ citations":
+- The first $h$ is a **paper count** (cardinality).
+- The second $h$ is a **citation threshold** (intensity).
+Since the total number of authored papers is $N$, the researcher has at most $N$ papers, so:
+$$
+0 \le h \le N
+$$
+Even if a author has 1 paper with 1,000,000 citations, their $h$-index is strictly $1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method 1: Descending Sort Rank Comparison
+Sort $\text{citations}$ in non-increasing order:
+$$
+c_0 \ge c_1 \ge c_2 \ge \dots \ge c_{N-1}
+$$
+At zero-based index $i$, the paper at rank $i + 1$ has citation count $c_i$.
+Because earlier papers have even more citations ($c_0 \ge \dots \ge c_i$):
+- If $c_i \ge i + 1$:
+  At least $i + 1$ papers have at least $i + 1$ citations. The rank $i + 1$ is achievable!
+- If $c_i < i + 1$:
+  Paper $i$ (and all subsequent papers) have fewer than $i + 1$ citations. Rank $i + 1$ is impossible!
+The maximum valid $h$ is the number of indices where $c_i \ge i + 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Method 2: $O(N)$ Bucket Counting Sort
+Since $h \le N$, citations $> N$ are equivalent to $N$ for the purpose of reaching threshold $N$:
+1. Create bucket array `count` of size $N + 1$.
+2. For each citation $c \in \text{citations}$:
+   $$
+   \text{bucket}[\min(c, N)] \leftarrow \text{bucket}[\min(c, N)] + 1
+   $$
+3. Accumulate qualifying papers backwards from $h = N$ down to $0$:
+   $$
+   \text{total\_papers} \leftarrow \text{total\_papers} + \text{bucket}[h]
+   $$
+   If $\text{total\_papers} \ge h$:
+   $$
+   \text{return } h
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** If rank $h$ satisfies the condition (at least $h$ papers cited $\ge h$ times), all smaller thresholds $h' < h$ are also satisfied. The transition from feasible to infeasible is strictly monotonic.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the definition into a rank test
+We trace the algorithm on $\text{citations} = [3, 0, 6, 1, 5]$ ($N = 5$):
 
-The h-index is the largest integer $h$ for which at least $h$ papers have at least $h$ citations each. The two occurrences of $h$ play different roles: one is a number of qualifying papers, and the other is the citation threshold each of those papers must meet.
-
-If citations are sorted in descending order, the first value is the most-cited paper, the second is the next most cited, and so on. For a candidate $h$, the value at zero-based index `h - 1` is the $h$-th largest citation count. Therefore,
-
+### Execution via Descending Sort
+Sort descending:
 $$
-\text{at least }h\text{ papers have at least }h\text{ citations}
-\quad\Longleftrightarrow\quad
-\texttt{citations}[h-1]\ge h.
+\text{citations} = [6, 5, 3, 1, 0]
 $$
 
-This single comparison works because sorting supplies an order guarantee. If the $h$-th largest value is at least $h$, every earlier value is at least as large, so the first $h$ papers all qualify. If the $h$-th largest value is below $h$, only the first $h-1$ positions could possibly meet the threshold, so there cannot be $h$ qualifying papers.
+- **Rank 1 ($i = 0$, Threshold $h = 1$):**
+  - Paper citation: $c_0 = 6$.
+  - Comparison: $6 \ge 1$ (**True**).
+  - Feasible $h \ge 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"citations": [3, 0, 6, 1, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Rank 2 ($i = 1$, Threshold $h = 2$):**
+  - Paper citation: $c_1 = 5$.
+  - Comparison: $5 \ge 2$ (**True**).
+  - Feasible $h \ge 2$.
+
+- **Rank 3 ($i = 2$, Threshold $h = 3$):**
+  - Paper citation: $c_2 = 3$.
+  - Comparison: $3 \ge 3$ (**True**).
+  - Feasible $h \ge 3$.
+
+- **Rank 4 ($i = 3$, Threshold $h = 4$):**
+  - Paper citation: $c_3 = 1$.
+  - Comparison: $1 \ge 4$ (**False**; $1 < 4$).
+  - Infeasible! Monotonicity guarantees no higher rank can succeed.
+
+Maximum valid $h = \mathbf{3}$.
 
 ---
 
-### Step 2: Sort from most cited to least cited
+### Execution via $O(N)$ Bucket Sort
+Array length $N = 5$. Buckets $[0, 1, 2, 3, 4, 5]$:
+- $3 \implies \text{bucket}[3] \mathrel{+}= 1$
+- $0 \implies \text{bucket}[0] \mathrel{+}= 1$
+- $6 \implies \min(6, 5) = 5 \implies \text{bucket}[5] \mathrel{+}= 1$
+- $1 \implies \text{bucket}[1] \mathrel{+}= 1$
+- $5 \implies \min(5, 5) = 5 \implies \text{bucket}[5] \mathrel{+}= 1$
 
-The exact protected solution calls `citations.sort(reverse=true)`. This modifies the input list in place and arranges citation counts from largest to smallest.
+Bucket array:
+$$
+\text{bucket} = [1, 1, 0, 1, 0, 2]
+$$
 
-The manifest summary describes a linear-time bucket-counting method, but that is not the algorithm in this source. The protected implementation is the comparison-sort rank method, so its reasoning and true complexity are based on sorting.
+Scan from $h = 5$ down to $0$:
+- $h = 5$: $\text{total} = 0 + \text{bucket}[5] = 2$. Check $2 \ge 5$ (False).
+- $h = 4$: $\text{total} = 2 + \text{bucket}[4] = 2 + 0 = 2$. Check $2 \ge 4$ (False).
+- $h = 3$: $\text{total} = 2 + \text{bucket}[3] = 2 + 1 = 3$. Check $3 \ge 3$ (**True!**).
 
-Sorting is useful here because it converts the global question “how many entries are at least $h$?” into one indexed comparison. There is no need to count qualifying papers separately for every candidate.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Test candidates from the largest possible value downward
-
-A researcher with $n$ papers cannot have h-index greater than $n$, regardless of how large any individual citation count is. The source therefore tests `h = n, n - 1, ..., 1`.
-
-For each candidate, it checks `citations[h - 1] >= h`. The first successful candidate is returned immediately. Because candidates are examined in strictly descending order, every larger candidate has already failed. The returned value is therefore not just feasible; it is the maximum feasible value required by the definition.
-
-If no positive candidate succeeds, the method returns zero. This occurs, for example, when every paper has zero citations.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+Found maximum $h = \mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"citations": [3, 0, 6, 1, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+citations = [3, 0, 6, 1, 5] -> sorted: [6, 5, 3, 1, 0]
+
+i = 0: c[0] = 6 >= 1 -> Valid
+i = 1: c[1] = 5 >= 2 -> Valid
+i = 2: c[2] = 3 >= 3 -> Valid
+i = 3: c[3] = 1 < 4  -> Violated! Stop
+
+Result: 3
+```
+
+| Rank ($i + 1$) | Sorted Citations ($c_i$) | Required Threshold ($h$) | Comparison ($c_i \ge h$) | Feasible? | Current Candidate $h$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 6 | 1 | $6 \ge 1$ | Yes | 1 |
+| 2 | 5 | 2 | $5 \ge 2$ | Yes | 2 |
+| **3** | **3** | **3** | **$3 \ge 3$** | **Yes** | **3** |
+| 4 | 1 | 4 | $1 \ge 4$ | **No ($1 < 4$)** | Fails |
+| 5 | 0 | 5 | $0 \ge 5$ | No | Fails |
+| **End** | - | - | - | - | **$\mathbf{3}$ (Final H-Index)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If $c_{h-1} \ge h$, then because the array is sorted descending, all previous entries $c_0, c_1, \dots, c_{h-1}$ are $\ge c_{h-1} \ge h$. Thus, there are at least $h$ papers with at least $h$ citations.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If $c_h < h + 1$, then paper $h$ and all subsequent papers have $< h + 1$ citations. The total number of papers with $\ge h + 1$ citations is at most $h$, which is strictly less than $h + 1$. Thus, no threshold larger than $h$ can be satisfied, guaranteeing that $h$ is maximal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Citation buckets capped at `n`:** Count each value in bucket `min(citation, n)`, accumulate qualifying-paper counts from `n` downward, and return the first threshold with enough papers. This achieves the manifest's $O(n)$ time and $O(n)$ space and avoids comparison sorting, but it is not the exact source.
-- **Ascending sort:** Sort normally and test the corresponding ranked positions from the end. It has the same $O(n\log n)$ time; descending order makes the `h - 1` index direct.
-- **Binary search after sorting:** Feasibility across ranks is monotone, so binary search can reduce the post-sort scan to $O(\log n)$. The initial $O(n\log n)$ sort still dominates, making the simpler linear scan reasonable.
-- **Recount for every candidate:** For each $h$, scanning all citations to count values at least $h$ costs $O(n^2)$ in the worst case. Sorting once avoids repeated counting.
-- **All zeros:** Every positive candidate fails and the final `0` is the only valid h-index.
-- **Every paper highly cited:** If all $n$ values are at least $n$, the very first test succeeds and the answer is $n$.
-- **One paper:** A positive citation count gives h-index 1; a zero count gives h-index 0.
-- **Repeated citation counts:** Sorting and the rank test handle duplicates naturally. Papers are counted by position, not by distinct citation value.
-- **Citations greater than `n`:** They remain large after sorting, but the candidate loop never exceeds $n$, so they cannot incorrectly produce an impossible index.
-- **More than `h` qualifying papers:** This is allowed. The definition requires at least `h`, so no condition on exactly how many remaining papers fall above or below the threshold is needed.
-- **Input mutation:** `sort(reverse=true)` changes the caller's list. If preserving input order were required, use `sorted(citations, reverse=true)` and account for the copied list.
-- **Non-negative guarantee:** Negative citation counts are outside the contract. The proof assumes ordinary non-negative counts, though the rank comparisons would simply treat negative values as unable to qualify.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Exceeding $N$ Citations:** Having paper citations of $1,000$ does not mean $h$ can be $1,000$. The $h$-index is bounded by the total number of papers ($h \le N$).
+- **All Zeros:** When `citations = [0, 0, 0]`, paper 0 has $0 < 1$. The loop terminates immediately, returning $0$.
+- **Off-by-One in 0-Indexed Arrays:** At index $i$, the number of papers evaluated is $i + 1$. The comparison must test `citations[i] >= i + 1`, not `citations[i] >= i`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of papers. Python's comparison sort takes $O(n\log n)$ time in the worst case. The descending candidate loop performs at most $n$ constant-time comparisons, adding $O(n)$. Sorting dominates, so the exact source runs in $O(n\log n)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Sorting Approach:** $O(N \log N)$ to sort the array, followed by an $O(N)$ linear scan. Total time is $O(N \log N)$.
+  - **Bucket Counting Approach:** $O(N)$ to populate buckets of size $N + 1$, followed by an $O(N)$ reverse linear scan. Total time is strictly $O(N)$.
+- **Auxiliary Space Complexity:**
+  - $O(1)$ auxiliary space for in-place sorting.
+  - $O(N)$ auxiliary space for the bucket count array.

@@ -1,99 +1,147 @@
 # Guided Example: Number of People Aware of a Secret
 
-We derive and execute the Dynamic Programming, Queue, Simulation recurrence on a representative problem instance.
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"n": 6, "delay": 2, "forget": 4}`
-- **Required output:** `5`
+On day 1, exactly one person discovers a secret. The spread of the secret is governed by two parameters: `delay` and `forget`:
+- A person who learns the secret on day $d$ enters a dormant incubation period of length `delay`.
+- Starting on day $d + \text{delay}$ and on every day through day $d + \text{forget} - 1$, they share the secret with exactly $1$ new person each day.
+- At the beginning of day $d + \text{forget}$, they forget the secret completely, ceasing both to remember it and to share it.
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+Given the time horizon $n$, `delay`, and `forget`, the goal is to determine the total number of people who know the secret at the end of day $n$, modulo $10^9 + 7$.
 
----
+Consider the representative instance:
+- Horizon: $n = 6$
+- Incubation delay: $delay = 2$
+- Forgetting lifetime: $forget = 4$
 
-## 1. Instance & Teaching Goal
+Timeline for person A who discovered the secret on Day 1:
+- Day 1: Knows secret, incubating.
+- Day 2: Knows secret, incubating.
+- Day 3: Starts sharing ($1 + 2 = 3$). Shares with person B.
+- Day 4: Continues sharing ($1 + 3 = 4$). Shares with person C.
+- Day 5: Forgets secret ($1 + 4 = 5$).
 
-The objective for **Number of People Aware of a Secret** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+At the end of day 6, exactly $5$ people know the secret.
 
----
+```mermaid
+flowchart TD
+    accTitle: Secret Propagation Cohort Lifecycle
+    accDescr: Progression of a person from receiving a secret through incubation and active daily sharing until forgetting.
+    Learn["Day d: Learns Secret<br/>(Dormant Incubation)"] -->|"delay days pass"| Active["Days d + delay to d + forget - 1:<br/>Active Sharer (Shares with 1 new person/day)"]
+    Active -->|"forget days reached"| Forget["Day d + forget:<br/>Forgets Secret (Ceases awareness)"]
+```
 
-## 2. Conceptual Foundation & Invariants
+## 2. Mathematical & Algorithmic Principles
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+Let $new[d]$ denote the number of new people who learn the secret on day $d$.
+Base condition:
+$$new[1] = 1, \quad new[d] = 0 \text{ for } d \le 0$$
 
-| State Definition | Dependency Formula | Role in Solution |
+### Cohort Sharing Dynamics
+A person who learned the secret on day $j$ is actively sharing on day $d$ if and only if day $d$ falls within their active window:
+
+$$j + \text{delay} \le d \le j + \text{forget} - 1 \iff d - \text{forget} + 1 \le j \le d - \text{delay}$$
+
+Since each active sharer introduces exactly one new person on day $d$:
+
+$$new[d] = \sum_{j = d - \text{forget} + 1}^{d - \text{delay}} new[j] \pmod{10^9 + 7}$$
+
+Let $S(d) = \sum_{j = d - \text{forget} + 1}^{d - \text{delay}} new[j]$ be the count of currently active sharers on day $d$.
+When transitioning from day $d - 1$ to day $d$, the sharing pool updates via sliding window:
+
+$$S(d) = S(d - 1) + new[d - \text{delay}] - new[d - \text{forget}] \pmod{10^9 + 7}$$
+
+### Final Headcount at Day $n$
+At the end of day $n$, a person still remembers the secret if and only if they have not yet forgotten it—that is, their learning day $j$ satisfies $j + \text{forget} > n$:
+
+$$\text{Total Aware} = \sum_{j = \max(1, n - \text{forget} + 1)}^n new[j] \pmod{10^9 + 7}$$
+
+| Lifecycle Phase | Condition on Learning Day $j$ Relative to Current Day $d$ | Status on Day $d$ |
 |---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+| Incubating | $d - \text{delay} < j \le d$ | Knows secret, cannot share |
+| Actively Sharing | $d - \text{forget} + 1 \le j \le d - \text{delay}$ | Knows secret, shares with 1 person |
+| Forgotten | $j \le d - \text{forget}$ | Completely unaware of secret |
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We trace days $1$ through $6$ with $delay = 2$ and $forget = 4$.
+Modulus: $M = 10^9 + 7$.
+Array $new$ tracks new recipients by day.
 
-## 3. Step-by-Step Worked Execution
+- **Day 1:**
+  - Initial discoverer: $new[1] = 1$.
+  - Active sharers: $S = 0$.
+  - People aware at end of day 1: $\{1\} \implies 1$.
 
-### Step 1: Base Case Initialization
+- **Day 2:**
+  - $j$ eligible to share must satisfy $j \le 2 - 2 = 0$. None exist.
+  - Active sharers: $S = 0$.
+  - New recipients: $new[2] = 0$.
+  - People aware: $\{1\} \implies 1$.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+- **Day 3:**
+  - Person from Day 1 reaches $1 + 2 = 3$ and enters the sharing window.
+  - Active sharers: $S = S + new[3 - 2] - new[3 - 4] = 0 + 1 - 0 = 1$.
+  - New recipients: $new[3] = S = 1$ (Person B).
+  - People aware: $\{1, 3\} \implies 2$.
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+- **Day 4:**
+  - Active sharers: $S = S + new[4 - 2] - new[4 - 4] = 1 + 0 - 0 = 1$.
+  - New recipients: $new[4] = S = 1$ (Person C).
+  - People aware: $\{1, 3, 4\} \implies 3$.
 
----
+- **Day 5:**
+  - Person A (from Day 1) reaches $1 + 4 = 5$ and forgets the secret.
+  - Person B (from Day 3) reaches $3 + 2 = 5$ and begins sharing.
+  - Active sharers: $S = S + new[5 - 2] - new[5 - 4] = 1 + 1 - 1 = 1$.
+  - New recipients: $new[5] = S = 1$ (Person D).
+  - People who still remember (cohorts $\ge 5 - 4 + 1 = 2$): $new[2] + new[3] + new[4] + new[5] = 0 + 1 + 1 + 1 = 3$.
 
-### Step 2: Recurrence Evaluation & State Transitions
+- **Day 6:**
+  - Person C (from Day 4) reaches $4 + 2 = 6$ and begins sharing.
+  - Person B is still sharing.
+  - Active sharers: $S = S + new[6 - 2] - new[6 - 4] = 1 + 1 - 0 = 2$.
+  - New recipients: $new[6] = S = 2$ (Persons E and F).
+  - Cohorts still remembering (cohorts $\ge 6 - 4 + 1 = 3$):
+    $$new[3] + new[4] + new[5] + new[6] = 1 + 1 + 1 + 2 = 5$$
 
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
+Final answer for day 6 is $5$.
 
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+## 4. Comprehensive State Trace
 
----
+The daily cohort additions and sliding active sharer counts are tabulated below.
 
-### Step 3: Terminal State Resolution
+| Day $d$ | New Sharer Incoming ($new[d - delay]$) | Expired Sharer ($new[d - forget]$) | Active Sharers ($S$) | New Recipient Count ($new[d]$) | Active Remembering Cohorts | Total Aware at End of Day |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 0 | 0 | 1 (Seed) | $[1]$ | 1 |
+| 2 | 0 | 0 | 0 | 0 | $[1]$ | 1 |
+| 3 | 1 (Day 1) | 0 | 1 | 1 | $[1, 3]$ | 2 |
+| 4 | 0 (Day 2) | 0 | 1 | 1 | $[1, 3, 4]$ | 3 |
+| 5 | 1 (Day 3) | 1 (Day 1) | 1 | 1 | $[3, 4, 5]$ | 3 |
+| 6 | 1 (Day 4) | 0 (Day 2) | 2 | 2 | $[3, 4, 5, 6]$ | 5 |
 
-- Extract the final value from the designated terminal state $DP[N]$.
+## 5. Algorithmic Correctness & Soundness
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+1. **Exact Cohort Accounting:**
+   Every person belongs to a distinct cohort identified by their unique receipt date $j$. Because forgetting occurs strictly at $j + forget$, each cohort's contribution to both sharing and retention is a contiguous interval of days $[j + delay, j + forget - 1]$ for sharing, and $[j, j + forget - 1]$ for awareness.
 
----
+2. **Sliding Window Invariant:**
+   The variable $S$ maintains $\sum_{j = d - forget + 1}^{d - delay} new[j]$ by adding incoming cohorts and subtracting expired cohorts. Because additions and subtractions are preserved modulo $10^9 + 7$, $S$ equals the exact active sharer population at day $d$.
 
-## 4. Complete Execution Trace
+## 6. Edge Cases & Anti-Patterns
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+- **Minimal Horizon ($n \le delay$):**
+  - No person ever reaches the sharing threshold. Only the initial person knows the secret, returning 1.
+- **Narrow Active Window ($forget = delay + 1$):**
+  - Each cohort shares for exactly one day before forgetting, yielding a constant-rate shift register.
+- **No Forgetting Before Horizon ($forget \ge n$):**
+  - No subtraction ever occurs. The recurrence simplifies to delayed Fibonacci-type exponential growth.
+- **Negative Values in Modular Arithmetic:**
+  - Subtracting expired counts can produce negative results if not guarded: $(S - expired + M) \pmod M$ ensures non-negative residues throughout.
+- **Anti-Pattern (Simulating Individual Persons):**
+  - Simulating individual agents creates an exponential number of objects ($\sim 2^n$). Aggregating people into daily cohort totals reduces the problem to linear scalar arithmetic.
 
----
+## 7. Complexity Analysis
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
-
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $\mathcal{O}(n)$. We iterate from day $1$ to day $n$, performing constant-time additions and sliding window updates per day. The final sum of the last $forget$ days takes at most $\mathcal{O}(forget) = \mathcal{O}(n)$ steps.
+- **Space Complexity:** $\mathcal{O}(n)$ auxiliary space to store the daily cohort counts in an array of length $n + 1$.

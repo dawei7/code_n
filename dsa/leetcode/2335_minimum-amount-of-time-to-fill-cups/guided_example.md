@@ -1,131 +1,130 @@
 # Guided Example: Minimum Amount of Time to Fill Cups
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"amount": [1, 4, 2]}`
-- **Required output:** `4`
+A water dispenser provides three types of water: cold, warm, and hot. We are given an integer array `amount` of length 3, where `amount[0]`, `amount[1]`, and `amount[2]` denote the number of cups of cold, warm, and hot water required respectively.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+In each second, the dispenser can perform exactly one of the following actions:
+- Fill $2$ cups of different water types (e.g., one cold cup and one warm cup).
+- Fill $1$ cup of any water type.
 
----
+We must determine the minimum number of seconds needed to fill all requested cups.
 
-## 1. Instance & Teaching Goal
+Consider the representative instance:
+- `amount = [1, 4, 2]`
+- Cold: 1, Warm: 4, Hot: 2
 
-You have a water dispenser that can dispense cold, warm, and hot water. Every second, you can either fill up `2` cups with **different** types of water, or `1` cup of any type of water.
+Total cups required: $1 + 4 + 2 = 7$.
+The most demanded water type is Warm with 4 cups.
+Because each second fills at most 2 cups, at least $\lceil 7 / 2 \rceil = 4$ seconds are required. Furthermore, because warm cups can only be filled at a rate of 1 per second, at least 4 seconds are required. Pairing the 4 warm cups with cold and hot cups completes the task in exactly 4 seconds.
 
-The objective is to compute `4` from `{"amount": [1, 4, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Dual Bottleneck Bounds for Cup Filling
+    accDescr: Formulation illustrating that completion time is bounded by the dominant cup count and half the total cup sum.
+    Amount["Input Amounts: [1, 4, 2]"] --> Bound1["Bound 1: Dominant Cup Count<br/>max(amount) = 4"]
+    Amount --> Bound2["Bound 2: Total Capacity Ceiling<br/>ceil(sum(amount) / 2) = ceil(7 / 2) = 4"]
+    Bound1 & Bound2 --> MaxBound["Min Time = max(4, 4) = 4 seconds"]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let the sorted cup counts be $a \le b \le c$, with total sum $S = a + b + c$ and maximum count $M = c$.
 
-## 2. Conceptual Foundation & Invariants
+### Fundamental Theoretical Lower Bounds
+1. **Total Capacity Bound:** Since at most 2 cups are filled in each second, the number of seconds $T$ satisfies:
+   $$T \ge \left\lceil \frac{a + b + c}{2} \right\rceil = \left\lfloor \frac{S + 1}{2} \right\rfloor$$
+2. **Single-Type Rate Limit:** Because at most one cup of the dominant type $c$ can be filled per second (as the two cups filled must be of *different* types), $T$ satisfies:
+   $$T \ge c = \max(a, b, c)$$
 
-We maintain the core conceptual parameters and state variables:
+Combining both necessary conditions yields the global lower bound:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+$$T \ge \max\left( \max(a, b, c), \, \left\lceil \frac{a + b + c}{2} \right\rceil \right)$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Exact Constructive Reachability
+This lower bound is universally achievable:
+- **Case 1 (Dominant Bottleneck, $c \ge a + b$):**
+  The dominant category exceeds the other two combined. We pair each of the $a + b$ non-dominant cups with one cup of type $c$ across $a + b$ seconds. The remaining $c - (a + b)$ cups of type $c$ are filled singly. Total seconds:
+  $$(a + b) + \big(c - (a + b)\big) = c = \max(a, b, c)$$
+- **Case 2 (Balanced Triangle, $c < a + b$):**
+  No single category dominates. By greedily pairing the two currently largest amounts at each second, all cups are paired off into pairs of 2, leaving at most 1 unpaired singleton if $S$ is odd. Total seconds:
+  $$\left\lceil \frac{a + b + c}{2} \right\rceil$$
 
----
+Thus, the exact minimum time is:
 
-## 3. Step-by-Step Worked Execution
+$$T^* = \max\left( \max(a, b, c), \, \left\lfloor \frac{a + b + c + 1}{2} \right\rfloor \right)$$
 
-### Step 1: Each second should reduce the two largest remaining needs
-
-At most two cups can be filled per second, and they must have different water types. The method repeatedly sorts the three remaining amounts. It always reduces the largest entry and, when positive, also reduces the second-largest entry.
-
-Sorting makes `amount[2]` the largest and `amount[1]` the second largest. Filling one cup of the largest type is always necessary while work remains. Pairing it with the largest other positive type uses the second available dispenser slot without consuming the same type twice.
-
-If only one type remains positive, `amount[1]` is zero. The assignment `max(0, amount[1] - 1)` leaves it at zero, so that second fills only one cup.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Configuration Regime | Algebraic Condition | Bottleneck Limiting Factor | Optimal Time $T^*$ |
 |---|---|---|---|
-| Input Slice | `{"amount": [1, 4, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Dominant Type | $c \ge a + b$ | The largest single category cannot be paired completely | $c$ |
+| Balanced | $c < a + b$ | Total cup capacity filled two at a time | $\lceil (a + b + c) / 2 \rceil$ |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Why pairing the two largest is safe
+We trace the step-by-step greedy simulation on `amount = [1, 4, 2]`.
+Categories: Cold ($C = 1$), Warm ($W = 4$), Hot ($H = 2$).
 
-Suppose a schedule fills the largest type together with a smaller positive type while a larger alternative type is also waiting. Exchanging the smaller partner for the larger partner cannot increase the number of remaining dominant cups and makes the remaining demands no more imbalanced.
+- **Second 1:**
+  - Sorted amounts: $C = 1, H = 2, W = 4$.
+  - Pick 1 Warm and 1 Hot cup.
+  - New state: $C = 1, H = 1, W = 3$.
+  - Remaining total cups: 5.
 
-The difficult case is always a type that could be left with many cups after the other two run out. Reducing the largest two prevents avoidable imbalance. Repeating the exchange argument transforms an optimal schedule so its first second matches the greedy choice, then applies the same reasoning to the remaining amounts.
+- **Second 2:**
+  - Sorted amounts: $C = 1, H = 1, W = 3$.
+  - Pick 1 Warm and 1 Hot cup.
+  - New state: $C = 1, H = 0, W = 2$.
+  - Remaining total cups: 3.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Second 3:**
+  - Sorted amounts: $H = 0, C = 1, W = 2$.
+  - Pick 1 Warm and 1 Cold cup.
+  - New state: $H = 0, C = 0, W = 1$.
+  - Remaining total cups: 1.
 
----
+- **Second 4:**
+  - Sorted amounts: $H = 0, C = 0, W = 1$.
+  - Only Warm remains. Fill 1 Warm cup singly.
+  - New state: $H = 0, C = 0, W = 0$.
+  - Remaining total cups: 0.
 
-### Step 3: Two lower bounds explain the optimum
+All cups filled in 4 seconds.
 
-Let `S` be the total number of cups and `M` the largest type count.
+## 4. Comprehensive State Trace
 
-Since one second fills at most two cups, at least `ceil(S/2)` seconds are necessary.
+The state transitions of the greedy pairing process are recorded below.
 
-Since a second can fill at most one cup of any particular type, the dominant type alone requires at least `M` seconds.
+| Elapsed Second | Amounts Before Second $[C, W, H]$ | Two Largest Categories Chosen | Cups Decremented | Amounts After Second $[C, W, H]$ | Unfilled Total |
+|---|---|---|---|---|---|
+| Start | $[1, 4, 2]$ | - | - | $[1, 4, 2]$ | 7 |
+| 1 | $[1, 4, 2]$ | Warm & Hot | $W - 1, H - 1$ | $[1, 3, 1]$ | 5 |
+| 2 | $[1, 3, 1]$ | Warm & Hot | $W - 1, H - 1$ | $[1, 2, 0]$ | 3 |
+| 3 | $[1, 2, 0]$ | Warm & Cold | $W - 1, C - 1$ | $[0, 1, 0]$ | 1 |
+| 4 | $[0, 1, 0]$ | Warm alone | $W - 1$ | $[0, 0, 0]$ | 0 |
 
-Thus every schedule needs at least
+Evaluating the closed-form equation confirms:
+$$T^* = \max\left(4, \, \left\lceil \frac{1 + 4 + 2}{2} \right\rceil\right) = \max(4, 4) = 4$$
 
-`max(M, ceil(S/2))`
+## 5. Algorithmic Correctness & Soundness
 
-seconds.
+1. **Greedy Invariant Preservation:**
+   Selecting the two largest available amounts at each step keeps the remaining values as balanced as possible, maintaining the invariant that the gap between the largest count and the sum of the other two decreases monotonically until parity is achieved.
 
-The greedy simulation attains this bound. If `M` exceeds the total of the other two types, pair the dominant type with another type until those are exhausted, then finish the remaining dominant cups alone; total time is `M`. Otherwise, no type dominates the combined remainder, so two positive different types can keep being paired until at most one cup remains; total time is `ceil(S/2)`.
+2. **Sufficiency of the Closed-Form Formula:**
+   Because both bounds $\max(amount)$ and $\lceil \sum amount / 2 \rceil$ are proven theoretical necessities, no valid schedule can beat their maximum. The greedy simulation constructively matches this maximum in every case.
 
-Selecting the two largest types maintains exactly the conditions needed for this construction.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+- **All Cups Zero (`amount = [0, 0, 0]`):**
+  - Maximum is 0, sum is 0, formula evaluates to 0 seconds.
+- **Only One Category Non-Zero (`amount = [5, 0, 0]`):**
+  - No two distinct types exist. Cups must be filled one at a time, requiring exactly 5 seconds.
+- **Equal Counts (`amount = [100, 100, 100]`):**
+  - Perfectly balanced. Requires $\lceil 300 / 2 \rceil = 150$ seconds.
+- **Anti-Pattern (Simulating One Second at a Time):**
+  - While a while-loop decrementation runs quickly for small numbers ($\le 100$), applying the closed-form arithmetic $\max(\max, \lceil \text{sum}/2 \rceil)$ computes the exact answer in $\mathcal{O}(1)$ time.
 
----
+## 7. Complexity Analysis
 
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"amount": [1, 4, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Closed-form bound:** Return `max(max(amount), (sum(amount) + 1) // 2)`. This is the simplest true `O(1)` implementation and follows directly from the two lower bounds.
-- **Max heap:** Repeatedly pop the two largest positive counts, decrement, and reinsert. This generalizes to more types but adds unnecessary machinery for exactly three.
-- **Pair arbitrary positive types:** It can waste pairing capacity and leave a dominant type to be filled alone longer. Choosing the two largest prevents that imbalance.
-- **Fill one cup even when two types remain:** This can never improve the schedule because filling a second different cup in the same second is free.
-- **All zeros:** The loop is skipped and the answer is zero.
-- **Only one positive type:** Every iteration fills one cup of it, so time equals that amount.
-- **Two positive types with equal counts:** Every second pairs them, and time equals either count.
-- **One dominant type:** The answer equals its count because at most one cup of that type can be filled each second.
-- **Balanced totals:** The answer is total cups rounded up by two.
-- **Odd total:** At least one second fills only one cup, accounted for by the ceiling.
-- **Second-largest zero:** The `max(0, ...)` guard prevents a negative count.
-- **Repeated sorting:** It restores the meaning of indices one and two after decrements; fixed water-type identities are irrelevant to the count.
-- **Input mutation:** The source consumes and reorders `amount` until it becomes three zeros.
-- **Fixed constraints:** Calling the simulation `O(1)` relies on the numeric cap. In terms of total cups `S`, its literal complexity is linear.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(S)$. Let `S = sum(amount)` initially. Each iteration fills at least one cup, so there are at most `S` iterations. Sorting exactly three elements is constant time, as are the sum and updates. Parameterized running time is `O(S)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$. The closed-form evaluation computes the maximum and sum of 3 integers in constant time.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space. Only scalar registers are used.

@@ -1,125 +1,215 @@
 # Guided Example: Users With Two Purchases Within Seven Days
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the relational window evaluation algorithm for detecting users who completed multiple transactions within a 7-day temporal window in $O(n \log n)$ time and $O(n)$ space.
 
-- **Input:** `{"tables": {"Purchases": [{"purchase_id": 4, "user_id": 2, "purchase_date": "2022-03-13"}, {"purchase_id": 1, "user_id": 5, "purchase_date": "2022-02-11"}, {"purchase_id": 3, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 6, "user_id": 2, "purchase_date": "2022-03-20"}, {"purchase_id": 5, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 2, "user_id": 2, "purchase_date": "2022-06-08"}]}}`
-- **Required output:** `{"columns": ["user_id"], "rows": [[2], [7]]}`
+- **Input:** `Purchases` table containing records for users 2, 5, and 7.
+- **Output:** `user_id` values `[2, 7]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Purchases`
-
-The objective is to compute `{"columns": ["user_id"], "rows": [[2], [7]]}` from `{"tables": {"Purchases": [{"purchase_id": 4, "user_id": 2, "purchase_date": "2022-03-13"}, {"purchase_id": 1, "user_id": 5, "purchase_date": "2022-02-11"}, {"purchase_id": 3, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 6, "user_id": 2, "purchase_date": "2022-03-20"}, {"purchase_id": 5, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 2, "user_id": 2, "purchase_date": "2022-06-08"}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates multi-row event sequencing, window function partitioning by customer entity, date arithmetic subtraction, adjacent delta sufficiency, and distinct key projection.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a relational database table `Purchases`:
+- `purchase_id` (integer, primary key): Unique identifier for each purchase transaction.
+- `user_id` (integer): Identifier for the customer making the purchase.
+- `purchase_date` (date): The calendar date on which the purchase occurred.
 
-| State Parameter | Role & Purpose | Initial State |
+Our objective is to identify all `user_id` values corresponding to users who made **at least two purchases at most 7 days apart** (meaning the absolute difference between the two purchase dates is $\le 7$ days).
+
+The final table must contain unique `user_id` values and be sorted in ascending order.
+
+### Representative Instance Breakdown
+
+Consider the `Purchases` table:
+
+| purchase_id | user_id | purchase_date |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| 4 | 2 | 2022-03-13 |
+| 1 | 5 | 2022-02-11 |
+| 3 | 7 | 2022-06-19 |
+| 6 | 2 | 2022-03-20 |
+| 5 | 7 | 2022-06-19 |
+| 2 | 2 | 2022-06-08 |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Evaluating by user:
+1. **User 2:**
+   - Chronological purchases: `2022-03-13`, `2022-03-20`, `2022-06-08`.
+   - Gap between `2022-03-13` and `2022-03-20`: $20 - 13 = 7$ days.
+   - Since $7 \le 7$, User 2 qualifies.
+2. **User 5:**
+   - Chronological purchases: `2022-02-11`.
+   - Single purchase only; cannot form a pair. User 5 is excluded.
+3. **User 7:**
+   - Chronological purchases: `2022-06-19`, `2022-06-19`.
+   - Two purchases on the identical date: $19 - 19 = 0$ days.
+   - Since $0 \le 7$, User 7 qualifies.
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reduce all possible pairs to neighboring dates
-
-For one user, imagine sorting all purchase rows by `purchase_date`. The requirement asks whether any two dates differ by at most seven days. It may seem necessary to compare every pair, but sorted order makes only neighboring dates necessary.
-
-Suppose two non-neighboring dates `a` and `b` are at most seven days apart. Every date between them lies inside the same seven-day interval. In particular, an adjacent pair somewhere from `a` through `b` has a gap no larger than `b - a`, and therefore no larger than seven days. Thus, the existence of any qualifying pair guarantees a qualifying adjacent pair.
-
-The reverse is immediate: an adjacent pair is still a pair of purchases. If its gap is at most seven, the user qualifies. Checking consecutive sorted dates is therefore both sufficient and necessary.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Purchases": [{"purchase_id": 4, "user_id": 2, "purchase_date": "2022-03-13"}, {"purchase_id": 1, "user_id": 5, "purchase_date": "2022-02-11"}, {"purchase_id": 3, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 6, "user_id": 2, "purchase_date": "2022-03-20"}, {"purchase_id": 5, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 2, "user_id": 2, "purchase_date": "2022-06-08"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Use a window function to find each previous purchase
-
-The common table expression `t` selects every `user_id` and computes
-
-`LAG(purchase_date, 1) OVER (PARTITION BY user_id ORDER BY purchase_date)`.
-
-`PARTITION BY user_id` creates a separate ordered sequence for each user. Purchases from different users never become neighbors. `ORDER BY purchase_date` puts that user's rows in chronological order, and `LAG(..., 1)` returns the date from the immediately preceding row.
-
-For a user's earliest purchase, no preceding row exists, so `LAG` returns `NULL`. That row cannot establish a pair and should not qualify anyone by itself.
-
-When several purchases occur on the same date, their tie order is immaterial. At least one tied row follows another tied row, producing a zero-day gap. The unique `purchase_id` is not needed as a secondary order key because every order among equal dates yields the same date difference.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Resulting `user_id` list: `[2, 7]`.
 
 ---
 
-### Step 3: Turn neighboring dates into day gaps
+## 2. Mathematical & Algorithmic Principles
 
-The expression `DATEDIFF(purchase_date, previous_date)` subtracts the previous date from the current date and returns the number of calendar days. Because the rows are sorted ascending, this value is nonnegative.
+### Adjacent Gap Sufficiency Theorem
 
-The CTE names the result `d`. A same-day pair has `d = 0`, purchases exactly one week apart have `d = 7`, and both satisfy the “at most seven days” wording.
+Suppose a user has $m$ purchases sorted chronologically:
+$$t_1 \le t_2 \le \dots \le t_m$$
 
-For the first row in each partition, the previous date is `NULL`, so `DATEDIFF` also yields `NULL`. In SQL's three-valued logic, `NULL <= 7` is not true, and the later `WHERE` clause discards it automatically.
+**Theorem:** There exists a pair of indices $(j, k)$ with $j < k$ such that $t_k - t_j \le 7$ if and only if there exists some adjacent index $i$ such that $t_{i+1} - t_i \le 7$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id"], "rows": [[2], [7]]}` |
+**Proof:**
+- If an adjacent pair satisfies $t_{i+1} - t_i \le 7$, setting $(j, k) = (i, i+1)$ immediately satisfies the condition.
+- Conversely, suppose there exists a qualifying pair $(j, k)$ with $k > j$ such that $t_k - t_j \le 7$. We can express the total time span as a telescoping sum of adjacent differences:
+  $$t_k - t_j = \sum_{i=j}^{k-1} (t_{i+1} - t_i)$$
+  If every adjacent difference were strictly greater than 7 ($t_{i+1} - t_i > 7$ for all $i$), then:
+  $$t_k - t_j > 7 \times (k - j) \ge 7$$
+  which contradicts $t_k - t_j \le 7$.
+  Hence, at least one adjacent difference must be $\le 7$.
 
----
+This theorem proves that we never need to compare all $\binom{m}{2}$ pairs for a user. Comparing each purchase against its immediate chronological predecessor is both necessary and sufficient.
 
-## 4. Complete Execution Trace
+### Relational Window Partitioning
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Purchases": [{"purchase_id": 4, "user_id": 2, "purchase_date": "2022-03-13"}, {"purchase_id": 1, "user_id": 5, "purchase_date": "2022-02-11"}, {"purchase_id": 3, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 6, "user_id": 2, "purchase_date": "2022-03-20"}, {"purchase_id": 5, "user_id": 7, "purchase_date": "2022-06-19"}, {"purchase_id": 2, "user_id": 2, "purchase_date": "2022-06-08"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id"], "rows": [[2], [7]]}` | Verified |
+In SQL execution:
+1. Partition the rows by `user_id` so that transactions of different customers are processed in isolation.
+2. Order each partition by `purchase_date ASC`.
+3. Use `LAG(purchase_date, 1)` over the partition to fetch the preceding transaction date.
+4. Filter rows where `purchase_date - LAG(purchase_date, 1) <= 7`.
+5. Apply `DISTINCT` on `user_id` to eliminate duplicates when a user has multiple qualifying purchase pairs.
 
----
+```mermaid
+flowchart TD
+    accTitle: Relational Window Interval Filter Workflow
+    accDescr: Pipeline showing grouping purchases by user_id, sorting chronologically, computing lag difference, and filtering users with delta <= 7 days.
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Self-join every user's purchases:** Join two rows on equal `user_id` and a date gap at most seven. It is straightforward but can generate quadratically many row pairs for a user with many purchases.
-- **Correlated existence subquery:** Test each row for another qualifying row. An optimizer and suitable index may execute it well, but the window formulation directly exploits sorted adjacency.
-- **Compare only minimum and maximum dates:** A user can have a close pair amid a much wider overall span, so the extremes alone are insufficient.
-- **Same-day purchases:** `DATEDIFF` is zero, and zero is correctly within seven days.
-- **Exactly seven days:** The inclusive comparison `<= 7` admits the boundary.
-- **Eight days:** It fails the condition.
-- **Only one purchase:** `LAG` is null and the user is absent.
-- **Many qualifying pairs:** `DISTINCT` ensures one output row per user.
-- **Equal-date tie ordering:** Any order among tied rows creates a zero gap between neighboring tied purchases, so no secondary key is required for correctness.
-- **Partition boundary:** `PARTITION BY user_id` prevents one user's last purchase from becoming another user's previous date.
-- **First row null:** SQL does not treat null as zero; `WHERE d <= 7` discards it.
-- **Required ordering:** `DISTINCT` alone does not guarantee order. The final `ORDER BY user_id` is necessary.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+    Source["Table: Purchases"] --> Window["Partition by user_id<br/>Order by purchase_date<br/>Compute prev_date = LAG(purchase_date)"]
+    Window --> CalcDelta["Calculate day_gap = purchase_date - prev_date"]
+    CalcDelta --> Filter["Filter where day_gap <= 7"]
+    Filter --> Deduplicate["SELECT DISTINCT user_id<br/>ORDER BY user_id ASC"]
+    Deduplicate --> ResultTable(["Output Result Table"])
+```
 
 ---
 
-## 7. Complexity Derivation
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-- **Time Complexity:** $O(r log r)$. Let `r` be the number of rows in `Purchases`. Computing `LAG` requires rows to be ordered by `user_id` partitions and `purchase_date`. Without a supporting index or already useful physical order, sorting dominates at `O(r \log r)` time. Window evaluation, filtering, and scanning are linear after ordering.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We trace the relational pipeline on the 6-row dataset.
+
+### Phase 1: Window Partitioning and LAG Computation
+We partition by `user_id` and sort each partition by `purchase_date`:
+
+#### Partition `user_id = 2`
+1. Row 1: `purchase_id = 4`, `purchase_date = 2022-03-13`.
+   Preceding purchase date: `NULL`.
+   Difference: `NULL`.
+2. Row 2: `purchase_id = 6`, `purchase_date = 2022-03-20`.
+   Preceding purchase date: `2022-03-13`.
+   Difference: `2022-03-20 - 2022-03-13 = 7` days.
+3. Row 3: `purchase_id = 2`, `purchase_date = 2022-06-08`.
+   Preceding purchase date: `2022-03-20`.
+   Difference: `2022-06-08 - 2022-03-20 = 80` days.
+
+#### Partition `user_id = 5`
+1. Row 1: `purchase_id = 1`, `purchase_date = 2022-02-11`.
+   Preceding purchase date: `NULL`.
+   Difference: `NULL`.
+
+#### Partition `user_id = 7`
+1. Row 1: `purchase_id = 3`, `purchase_date = 2022-06-19`.
+   Preceding purchase date: `NULL`.
+   Difference: `NULL`.
+2. Row 2: `purchase_id = 5`, `purchase_date = 2022-06-19`.
+   Preceding purchase date: `2022-06-19`.
+   Difference: `2022-06-19 - 2022-06-19 = 0` days.
+
+---
+
+### Phase 2: Filtering and Distinct Projection
+
+Rows evaluated against predicate `day_gap <= 7`:
+- User 2, Row 2: `7 <= 7` $\implies$ **True**. User 2 qualifies.
+- User 7, Row 2: `0 <= 7` $\implies$ **True**. User 7 qualifies.
+- All other rows evaluate to False or NULL.
+
+Projecting distinct `user_id` values and sorting ascending:
+- Selected IDs: $\{2, 7\}$.
+- Sorted result: `[2, 7]`.
+
+---
+
+## 4. Comprehensive State Trace
+
+### Intermediate Window Function Evaluation
+
+| `purchase_id` | `user_id` | `purchase_date` | `LAG(purchase_date)` | Computed `day_gap` | Predicate `day_gap <= 7` |
+|---|---|---|---|---|---|
+| 4 | 2 | 2022-03-13 | `NULL` | `NULL` | False |
+| 6 | 2 | 2022-03-20 | 2022-03-13 | 7 | **True** (Qualifies) |
+| 2 | 2 | 2022-06-08 | 2022-03-20 | 80 | False |
+| 1 | 5 | 2022-02-11 | `NULL` | `NULL` | False |
+| 3 | 7 | 2022-06-19 | `NULL` | `NULL` | False |
+| 5 | 7 | 2022-06-19 | 2022-06-19 | 0 | **True** (Qualifies) |
+
+### Customer Qualification and Output Summary
+
+| `user_id` | Total Purchases | Evaluated Gaps | Minimum Gap | Status | Final Included in Output? |
+|---|---|---|---|---|---|
+| 2 | 3 | [7, 80] | 7 days | $\le 7$ days | **Yes** |
+| 5 | 1 | [] | None | No pairs | No |
+| 7 | 2 | [0] | 0 days | $\le 7$ days | **Yes** |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Relational Proof of Invariants
+
+1. **Partition Isolation:**
+   The `PARTITION BY user_id` clause guarantees that purchases belonging to different users are placed in separate evaluation windows. A purchase by User 2 is never compared against a purchase by User 5 or User 7.
+2. **Deterministic Sequence:**
+   Ordering within the partition by `purchase_date` arranges all events chronologically. If multiple purchases occur on the same date, their relative order is arbitrary, but the difference between them evaluates to $0$ days, which preserves correctness.
+3. **Handling of Boundary Nulls:**
+   The first row of each partition has no predecessor; `LAG` produces `NULL`. SQL comparison operators with `NULL` evaluate to `UNKNOWN` (falsy in `WHERE` clauses), guaranteeing that single-purchase users are never falsely matched.
+4. **Deduplication:**
+   If a user has multiple qualifying transaction pairs (e.g. 5 purchases each 2 days apart), the `DISTINCT` keyword ensures their `user_id` appears exactly once in the final result table.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Same-Day Purchases ($gap = 0$):**
+   - Multiple purchases on the exact same date have a delta of 0 days. Since $0 \le 7$, this is fully valid and included.
+2. **Boundary Day Difference ($gap = 7$):**
+   - E.g., March 13 to March 20 is exactly 7 days. The problem specification states "at most 7 days", which is inclusive ($\le 7$).
+3. **Multiple Qualifying Gaps for the Same User:**
+   - A user with purchases on Day 1, Day 3, and Day 5 satisfies the condition on multiple rows. Without `DISTINCT`, that user would appear multiple times in the query result.
+4. **Empty Table or No Qualifying Users:**
+   - If no user has two purchases within 7 days, the filter returns an empty relation with header `user_id`.
+
+### Common Anti-Patterns
+
+- **Self-Join Cartesian Product ($O(n^2)$):**
+  Joining `Purchases p1 JOIN Purchases p2 ON p1.user_id = p2.user_id AND p1.purchase_id != p2.purchase_id` generates $O(m^2)$ intermediate pairs per user. For users with thousands of purchases, this creates quadratic data explosion and excessive memory pressure. Window functions operate linearly per partition after sorting.
+- **Strict Inequality Trap ($< 7$ vs $\le 7$):**
+  Using `< 7` incorrectly excludes purchases made exactly 7 days apart (such as March 13 to March 20).
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Partitioning & Sorting:** The primary execution cost in the database engine is sorting the $n$ rows of `Purchases` by `user_id` and `purchase_date`. This requires $O(n \log n)$ time.
+- **Window Scan:** Computing `LAG` requires a single sequential scan over the sorted partitions: $O(n)$ time.
+- **Filtering & Deduplication:** Filtering qualifying rows and hashing/sorting distinct `user_id` values takes $O(n)$ time.
+- **Total Time Complexity:** $O(n \log n)$ time.
+
+### Auxiliary Space Complexity
+
+- **Sort & Window Buffer:** The database engine allocates an internal buffer to perform sorting and window frame evaluation: $O(n)$ space.
+- **Result Set:** Stores at most $u \le n$ distinct qualifying user identifiers: $O(u)$ space.
+- **Total Auxiliary Space Complexity:** $O(n)$ space.

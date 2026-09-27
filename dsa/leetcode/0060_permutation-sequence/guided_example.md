@@ -1,120 +1,164 @@
 # Guided Example: Permutation Sequence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step factorial number system (factoradic base) decomposition on representative sequence instances:
 
-- **Input:** `{"n": 3, "k": 3}`
-- **Required output:** `"213"`
+- **Instance 1:** $n = 3, k = 3 \implies \text{"213"}$
+- **Instance 2 (Multi-digit):** $n = 4, k = 9 \implies \text{"2314"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates mathematical permutation ranking, converting 1-based rank $k$ to 0-based block indices, quotient/remainder extraction with factorials $(n-1)!$, shrinking the available digit list, and direct $O(n^2)$ direct construction without generating previous permutations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The set `[1, 2, 3, ..., n]` contains a total of `n!` unique permutations.
+The set $[1, 2, \dots, n]$ contains a total of $n!$ unique permutations. Listed in lexicographical order for $n = 3$:
+1. `"123"`
+2. `"132"`
+3. `"213"`
+4. `"231"`
+5. `"312"`
+6. `"321"`
 
-The objective is to compute `"213"` from `{"n": 3, "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+Given $n = 3$ and $k = 3$, we must return the $3^{\text{rd}}$ permutation sequence (`"213"`).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Generating all $k$ permutations using `next_permutation` takes $O(k \cdot n)$ time.
+By recognizing that permutations partition naturally into equal-sized blocks of $(n-1)!$, we determine each digit directly via integer division:
+$$
+\text{digit\_index} = \lfloor (k - 1) / (n - 1)! \rfloor
+$$
+This allows us to construct the $k$-th permutation in $O(n^2)$ time with zero backtracking.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Factoradic Block Partitioning
+When picking the first digit from $n$ candidates:
+- There are $n$ possible leading digits.
+- For each choice, the remaining $n - 1$ positions have $(n - 1)!$ permutations.
+- Group 0 starts with the $1^{\text{st}}$ available digit, spanning ranks $0 \dots (n-1)! - 1$.
+- Group 1 starts with the $2^{\text{nd}}$ available digit, spanning ranks $(n-1)! \dots 2(n-1)! - 1$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Iterative Construction Procedure
+1. Convert $k$ from 1-based to 0-based: $k \leftarrow k - 1$.
+2. Maintain a list of available digits: $\text{numbers} = [1, 2, \dots, n]$.
+3. Precompute factorial table: $\text{fact}[m] = m!$.
+4. For each position from $i = n - 1$ down to $0$:
+   - Group size is $\text{fact}[i] = i!$.
+   - Selected index is:
+     $$
+     \text{idx} = \lfloor k / \text{fact}[i] \rfloor
+     $$
+   - Append $\text{str}(\text{numbers}[\text{idx}])$ to result string.
+   - Remove $\text{numbers}[\text{idx}]$ from the candidate pool.
+   - Update remainder:
+     $$
+     k \leftarrow k \pmod{\text{fact}[i]}
+     $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At each step $i$, $k$ represents the exact 0-based offset within the sub-block of permutations formed by the remaining available digits.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Lexicographic permutations come in equal factorial-sized blocks
+We trace $n = 4, k = 9$:
 
-With $n$ distinct ordered digits, fixing the first digit leaves $n-1$ digits that can be arranged in $(n-1)!$ ways. Therefore, the sorted permutation list begins with a block of $(n-1)!$ permutations starting with 1, then an equally sized block starting with 2, and so on.
-
-After the first digit is chosen, the same structure repeats among the remaining digits. Fixing the second position leaves $n-2$ digits and creates blocks of $(n-2)!$. The algorithm uses these nested blocks to jump directly to rank `k` rather than generate `k-1` earlier permutations.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3, "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Keep `k` one-based and subtract skipped blocks
-
-This source does not change `k` to a zero-based index. At position `i`, `k` is the one-based rank within the permutations sharing the already selected prefix.
-
-For each unused candidate digit in increasing order, `fact` is the number of complete permutations under that choice. If `k > fact`, the requested permutation is not in this candidate's block, so the code subtracts `fact` and considers the next unused digit. If `k <= fact`, the target lies inside the current block; that digit is appended and marked visited.
-
-The strict comparison matters. When `k == fact`, the requested permutation is the final member of the current block, not the first member of the next block. Using `>=` would shift boundary ranks incorrectly.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Setup
+- Convert $k$: $k \leftarrow 9 - 1 = 8$.
+- Available digits: $\text{numbers} = [1, 2, 3, 4]$.
+- Precompute factorials:
+  - $3! = 6$
+  - $2! = 2$
+  - $1! = 1$
+  - $0! = 1$
 
 ---
 
-### Step 3: How the factorial is computed for each position
+### Step 1: Determine Position 0 (Out of 4)
+- Remaining unfixed digits: 4. Block size for each choice is $(4 - 1)! = 3! = 6$.
+- Compute index:
+  $$
+  \text{idx} = \lfloor 8 / 6 \rfloor = 1
+  $$
+- Selected digit: $\text{numbers}[1] = 2$.
+- Append `'2'` to result.
+- Remove $2$ from list: $\text{numbers} = [1, 3, 4]$.
+- Update remainder:
+  $$
+  k \leftarrow 8 \pmod{6} = 2
+  $$
 
-At output position `i`, there will be `n - i - 1` digits after the chosen one. Their number of arrangements is
+---
 
-$$
-(n-i-1)!.
-$$
+### Step 2: Determine Position 1 (Out of 4)
+- Remaining unfixed digits: 3. Block size is $(3 - 1)! = 2! = 2$.
+- Compute index:
+  $$
+  \text{idx} = \lfloor 2 / 2 \rfloor = 1
+  $$
+- Selected digit: $\text{numbers}[1] = 3$.
+- Append `'3'` to result.
+- Remove $3$ from list: $\text{numbers} = [1, 4]$.
+- Update remainder:
+  $$
+  k \leftarrow 2 \pmod{2} = 0
+  $$
 
-The inner multiplication loop starts `fact = 1` and multiplies integers from 1 through `n - i - 1`, producing exactly that factorial. On the final position, the range is empty and `fact` stays 1, correctly representing $0! = 1$.
+---
 
-The source recomputes this factorial at every position rather than carrying it forward. This is simple and remains fast for $n \le 9$, though it contributes to the quadratic running time.
+### Step 3: Determine Position 2 (Out of 4)
+- Remaining unfixed digits: 2. Block size is $(2 - 1)! = 1! = 1$.
+- Compute index:
+  $$
+  \text{idx} = \lfloor 0 / 1 \rfloor = 0
+  $$
+- Selected digit: $\text{numbers}[0] = 1$.
+- Append `'1'` to result.
+- Remove $1$ from list: $\text{numbers} = [4]$.
+- Update remainder:
+  $$
+  k \leftarrow 0 \pmod{1} = 0
+  $$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"213"` |
+---
+
+### Step 4: Determine Position 3 (Out of 4)
+- Only $[4]$ remains. Append `'4'`.
+- Result assembled: `"2314"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"213"` | Verified |
+| Position | Unfixed Count | Block Factorial $i!$ | Current $k$ | Calculated Index $\lfloor k / i! \rfloor$ | Selected Digit | Remaining Pool | Updated Remainder $k \pmod{i!}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 4 | $3! = 6$ | 8 | $\lfloor 8/6 \rfloor = \mathbf{1}$ | **2** | `[1, 3, 4]` | $8 \pmod{6} = 2$ |
+| 1 | 3 | $2! = 2$ | 2 | $\lfloor 2/2 \rfloor = \mathbf{1}$ | **3** | `[1, 4]` | $2 \pmod{2} = 0$ |
+| 2 | 2 | $1! = 1$ | 0 | $\lfloor 0/1 \rfloor = \mathbf{0}$ | **1** | `[4]` | $0 \pmod{1} = 0$ |
+| 3 | 1 | $0! = 1$ | 0 | $\lfloor 0/1 \rfloor = \mathbf{0}$ | **4** | `[]` | 0 |
+
+Final emitted string: `"2314"`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Lexicographical ordering strictly sorts permutations by their first digit, then second, and so on. Since there are exactly $(n-1)!$ permutations starting with each of the available digits in sorted order, the $k$-th permutation must begin with the $\lfloor k / (n-1)! \rfloor$-th available digit. By mathematical induction, this holds at every subsequent position.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** At each step, one digit is removed from the candidate pool and appended to the output. After $n$ iterations, the pool is empty and all $n$ positions have been deterministically assigned.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Zero-based factorial digits:** Subtract one from `k`, divide by the current factorial to select a remaining-list index, then use the remainder. This avoids repeated block subtraction but removing a list element still costs linear time.
-- **Carry the factorial forward:** Compute `(n-1)!` once and divide by the number of remaining positions after each choice. It removes the repeated factorial loop while keeping overall $O(n^2)$ list selection unless a stronger data structure is used.
-- **Generate permutations in order:** Stop at the $k$th leaf. This may take $\Theta(k n)$ work and is infeasible near $n!$.
-- **Order-statistics tree:** Select and delete the required unused digit in logarithmic time, reducing selection overhead at the cost of a complex data structure.
-- **`k = 1`:** No block is skipped, so digits are selected in increasing order.
-- **`k = n!`:** Every position skips as many earlier blocks as possible, producing descending digits.
-- **`n = 1`:** `fact` remains $0! = 1$, digit 1 is selected, and `"1"` is returned.
-- **Factorial boundary:** The use of `k > fact` keeps `k == fact` in the current block.
-- **Input values:** `n` and `k` are integers passed by value; caller state is not mutated.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **0-Based vs 1-Based Offset:** Forgetting $k \leftarrow k - 1$ causes off-by-one errors across block boundaries (e.g. if $k = 6$, $6 / 6 = 1$, which would pick the second block instead of the last element of the first block). 0-based modulo arithmetic guarantees correct block indexing.
+- **List Element Removal Overhead:** Removing an element from a Python list takes $O(n)$ time. For $n \le 9$, this is instantaneous ($9 \times 9 = 81$ operations).
+- **Factorial Precomputation:** Computing factorials up to $n$ avoids repeated factorial calculations inside the loop.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. There are $n$ output positions. Recomputing factorials across all positions uses a triangular number of multiplications, $O(n^2)$. Scanning digits 1 through $n$ at every position is also $O(n^2)$. Joining $n$ one-character pieces is $O(n)$, so total time is $O(n^2)$, matching the manifest.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(n^2)$. The loop runs $n$ times. In each iteration, removing an element from the dynamic list takes $O(n)$ time. For $n \le 9$, $n^2 \le 81$ basic operations, executing in under $0.1$ milliseconds.
+- **Auxiliary Space Complexity:** $O(n)$ to store the array of available digits and the result string.

@@ -1,111 +1,210 @@
 # Guided Example: Add Bold Tag in String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step dictionary prefix tree (Trie) compilation, sliding multi-pattern substring matching ($[start, end]$ intervals), adjacent and overlapping interval consolidation ($ed + 1 \ge a \implies ed = \max(ed, b)$), boundary string segmentation, and unified HTML tag wrapping (`<b>...</b>`) on representative text strings:
 
-- **Input:** `{"s": "abcxyz123", "words": ["abc", "123"]}`
-- **Required output:** `"<b>abc</b>xyz<b>123</b>"`
+- **Input:** $s = \text{"aaabbb"}, \quad words = [\text{"aa"}, \text{"b"}]$
+- **Required output:** `"<b>aaabbb</b>"`
+  - Formatting requirements:
+    1. Wrap any substring in $s$ that matches any word in $words$ with `<b>` and `</b>`.
+    2. **Overlap rule:** If two matching substrings overlap (e.g. indices $0 \dots 1$ and $1 \dots 2$), they must be merged into one single pair of tags.
+    3. **Adjacency rule:** If two matching substrings are directly consecutive without gaps (e.g. index $2$ and index $3$), they must also be merged into one single pair of tags.
+    4. Unmatched characters remain outside the tags.
+- **Trie Multi-Pattern Probing & Interval Merging Architecture:**
+  - **Phase 1: Build Prefix Tree (Trie):**
+    - Insert all dictionary words into a Trie.
+    - Each node represents a prefix; terminal nodes are marked with `is_end = True`.
+  - **Phase 2: Extract Matching Intervals:**
+    - For each starting position $i \in [0, n - 1]$, traverse the Trie with characters $s[j]$ ($j \ge i$).
+    - Whenever a node with `is_end == True` is encountered, record a matching interval:
+      $$
+      [i, \; j]
+      $$
+  - **Phase 3: Merge Overlapping and Consecutive Intervals:**
+    - Two intervals $[s_1, e_1]$ and $[s_2, e_2]$ (with $s_1 \le s_2$) merge if:
+      $$
+      e_1 + 1 \ge s_2
+      $$
+    - If this condition holds, replace both with:
+      $$
+      [s_1, \; \max(e_1, e_2)]
+      $$
+  - **Phase 4: String Synthesis:**
+    - Stream through $s$, emitting literal characters for gaps and wrapping merged intervals inside `<b>` and `</b>`.
+- **Step-by-Step Worked Trace on $s = \text{"aaabbb"}, words = [\text{"aa"}, \text{"b"}]$:**
+  - String length $n = 6$, indices $0 \dots 5$.
+  - **Step 1: Discover All Matching Substring Intervals:**
+    - Index $0$: substring $s[0 \dots 1] = \text{"aa"}$ matches `"aa"` $\implies \mathbf{[0, 1]}$.
+    - Index $1$: substring $s[1 \dots 2] = \text{"aa"}$ matches `"aa"` $\implies \mathbf{[1, 2]}$.
+    - Index $2$: no match for `"aa"` or `"b"`.
+    - Index $3$: substring $s[3 \dots 3] = \text{"b"}$ matches `"b"` $\implies \mathbf{[3, 3]}$.
+    - Index $4$: substring $s[4 \dots 4] = \text{"b"}$ matches `"b"` $\implies \mathbf{[4, 4]}$.
+    - Index $5$: substring $s[5 \dots 5] = \text{"b"}$ matches `"b"` $\implies \mathbf{[5, 5]}$.
+    - Raw interval list:
+      $$
+      pairs = [[0, 1], \; [1, 2], \; [3, 3], \; [4, 4], \; [5, 5]]
+      $$
+  - **Step 2: Merge Intervals:**
+    - Start active interval: $[st, ed] = [0, 1]$.
+    - **Inspect $[1, 2]$:**
+      - Condition: $ed + 1 = 1 + 1 = 2 \ge 1 \implies \mathbf{Merge!}$
+      - Update end: $ed \leftarrow \max(1, 2) = \mathbf{2}$.
+      - Active interval is now $[0, 2]$.
+    - **Inspect $[3, 3]$:**
+      - Condition: $ed + 1 = 2 + 1 = 3 \ge 3 \implies \mathbf{Merge!}$ (Adjacent touch!).
+      - Update end: $ed \leftarrow \max(2, 3) = \mathbf{3}$.
+      - Active interval is now $[0, 3]$.
+    - **Inspect $[4, 4]$:**
+      - Condition: $3 + 1 = 4 \ge 4 \implies \mathbf{Merge!}$
+      - Update end: $ed \leftarrow \max(3, 4) = \mathbf{4}$.
+      - Active interval is now $[0, 4]$.
+    - **Inspect $[5, 5]$:**
+      - Condition: $4 + 1 = 5 \ge 5 \implies \mathbf{Merge!}$
+      - Update end: $ed \leftarrow \max(4, 5) = \mathbf{5}$.
+      - Active interval is now $[0, 5]$.
+    - Consolidated intervals:
+      $$
+      t = [[0, 5]]
+      $$
+  - **Step 3: Wrap String in HTML Tags:**
+    - The consolidated interval covers indices $0 \dots 5$, which is the entire string!
+    - Assemble output:
+      $$
+      \text{"<b>"} + s[0 \dots 5] + \text{"</b>"} = \mathbf{\text{"<b>aaabbb</b>"}}
+      $$
+- **Separated Intervals Instance ($s = \text{"abcxyz123"}, words = [\text{"abc"}, \text{"123"}]$):**
+  - Matches: $[0, 2]$ and $[6, 8]$.
+  - Check adjacency: $2 + 1 = 3 < 6 \implies$ Gap of 3 characters (`"xyz"`).
+  - Merged intervals: $[0, 2]$ and $[6, 8]$.
+  - Output:
+    $$
+    \mathbf{\text{"<b>abc</b>xyz<b>123</b>"}}
+    $$
+- **No Matching Words in String:**
+  - $pairs = [] \implies$ Returns original string $s$ unchanged.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates multi-string dictionary matching and adjacent interval unification, mathematically proves why $ed + 1 \ge a$ guarantees minimal non-fragmented HTML tag markup, and derives $O(N \cdot L)$ runtime and $O(N + W)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` and an array of strings `words`.
+Given a string $s$ and a dictionary of words:
+Wrap every substring in $s$ matching any word with `<b>` and `</b>`.
+Merge overlapping and consecutive matches so tags are not redundant.
 
-The objective is to compute `"<b>abc</b>xyz<b>123</b>"` from `{"s": "abcxyz123", "words": ["abc", "123"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+s = "aaabbb", words = ["aa", "b"]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Matches:
+  [0, 1] "aa"
+  [1, 2] "aa" (overlaps with [0, 1])
+  [3, 3] "b"  (adjacent to [1, 2])
+  [4, 4] "b"  (adjacent to [3, 3])
+  [5, 5] "b"  (adjacent to [4, 4])
+
+Merged Interval: [0, 5] (entire string)
+Result: "<b>aaabbb</b>"
+```
+
+### The Adjacent Merge Invariant
+- Standard interval merging only merges overlapping intervals ($ed \ge a$).
+- In HTML bold tagging, **consecutive intervals** must also merge:
+  - If interval 1 ends at 2 (`"<b>abc</b>"`) and interval 2 begins at 3 (`"<b>def</b>"`), writing `"<b>abc</b><b>def</b>"` is forbidden.
+  - The correct output is `"<b>abcdef</b>"`.
+  - Testing $ed + 1 \ge a$ unifies both overlapping ($ed \ge a$) and adjacent ($ed + 1 = a$) intervals into one condition.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Multi-Pattern Matching via Trie:
+- Insert all dictionary words into a Trie.
+- For each starting index $i$ in $s$:
+  - Walk the Trie character by character.
+  - If a word terminal is reached at index $j$, emit interval $[i, j]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Consolidated Interval Merging:
+For each sorted candidate interval $[a, b]$:
+- If $ed + 1 \ge a$:
+  $$
+  ed \leftarrow \max(ed, b)
+  $$
+- Else:
+  - Save current $[st, ed]$ and start new interval at $[a, b]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Interval Union Invariant.** Replacing adjacent and overlapping closed intervals with their topological closure minimizes the number of tag pairs while preserving the exact subset of bolded characters.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Separate matching from formatting.** The output rule sounds like a string-editing task, but inserting tags while searching is awkward. A newly found word may overlap a region already tagged, or it may touch that region exactly at the next character. The exact solution therefore performs three clean phases:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "abcxyz123", "words": ["abc", "123"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"aaabbb"}, words = [\text{"aa"}, \text{"b"}]$:
 
 ---
 
-### Step 2: Core Step 2
-
-1. build a trie from all dictionary words;
-2. discover every matched interval in `s`;
-3. merge the intervals and construct the tagged string.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Find Substring Matches
+- Substring $s[0 \dots 1] = \text{"aa"} \implies [0, 1]$.
+- Substring $s[1 \dots 2] = \text{"aa"} \implies [1, 2]$.
+- Substring $s[3 \dots 3] = \text{"b"} \implies [3, 3]$.
+- Substring $s[4 \dots 4] = \text{"b"} \implies [4, 4]$.
+- Substring $s[5 \dots 5] = \text{"b"} \implies [5, 5]$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Merge Consecutive/Overlapping Matches
+- Init with $[0, 1]$.
+- $[1, 2]$ overlaps ($1 + 1 \ge 1$) $\implies$ span $[0, 2]$.
+- $[3, 3]$ touches ($2 + 1 \ge 3$) $\implies$ span $[0, 3]$.
+- $[4, 4]$ touches ($3 + 1 \ge 4$) $\implies$ span $[0, 4]$.
+- $[5, 5]$ touches ($4 + 1 \ge 5$) $\implies$ span $[0, 5]$.
+- Merged set: $\{[0, 5]\}$.
 
-This separation ensures that overlap decisions are based on positions in the unchanged source string.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"<b>abc</b>xyz<b>123</b>"` |
+### Step 3: Emit HTML
+$$
+\mathbf{\text{"<b>aaabbb</b>"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "abcxyz123", "words": ["abc", "123"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"<b>abc</b>xyz<b>123</b>"` | Verified |
+| Index Range $[a, b]$ | Matched Word | Active Merged $[st, ed]$ | Merge Trigger Condition | Merged Window After |
+|:---:|:---:|:---:|:---:|:---:|
+| $[0, 1]$ | `"aa"` | $[0, 1]$ | Initial | $[0, 1]$ |
+| $[1, 2]$ | `"aa"` | $[0, 1]$ | $1 + 1 \ge 1$ (Overlap) | $[0, 2]$ |
+| $[3, 3]$ | `"b"` | $[0, 2]$ | $2 + 1 \ge 3$ (Adjacent) | $[0, 3]$ |
+| $[4, 4]$ | `"b"` | $[0, 3]$ | $3 + 1 \ge 4$ (Adjacent) | $[0, 4]$ |
+| $[5, 5]$ | `"b"` | $[0, 4]$ | $4 + 1 \ge 5$ (Adjacent) | **$[0, 5]$** |
+| **Output** | — | — | Wrap $[0, 5]$ | **`<b>aaabbb</b>`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No Matches:** Returns original string $s$.
+- **Entire String Matched:** Wraps entire string in a single `<b>...</b>` pair.
+- **Multiple Disjoint Matches:** Each group gets its own pair with plain text between them.
+- **Repeated Identical Words:** Deduplicated by Trie traversal.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Boolean coverage array:** Find each word occurrence and mark every covered source index. A final boundary scan inserts tags. This is conceptually simple, but repeated substring searches and repeated marking can be expensive.
-- **Aho-Corasick automaton:** Add failure links to the trie so all patterns are matched in one left-to-right scan. This is the standard way to approach $O(N+D+M)$ matching without restarting from every index.
-- **Track only the farthest covered end:** While scanning starts, retain the furthest endpoint reached by any match and emit maximal regions directly. This can avoid storing every `[start, end]` pair, but the ordering and emission logic must remain careful.
-- **Empty `words`:** The trie has no outgoing path, `pairs` stays empty, and the original string is returned unchanged.
-- **No matches:** The same early return avoids adding any tags.
-- **Overlapping matches:** Intervals such as `[0, 1]` and `[1, 2]` merge because there is no gap.
-- **Consecutive matches:** Intervals such as `[0, 1]` and `[2, 3]` also merge because `ed + 1 < a` is false.
-- **Contained matches:** If `[0, 5]` is followed by `[1, 2]`, `max(ed, b)` preserves endpoint 5 rather than shrinking the bold region.
-- **Match at the first or last character:** Python slices naturally handle empty prefix or suffix slices, so no special tag branch is needed.
-- **Several words sharing a prefix:** Terminal flags at multiple trie depths ensure every complete word is recorded while traversal continues toward longer words.
-- **Characters outside ASCII:** The 128-child array would be indexed out of range for sufficiently large code points. The input restriction to English letters and digits is therefore part of the implementation's safety argument.
-- **Large numbers of matches:** `pairs` can consume significant memory even though the final bold union may contain only one interval. A streaming farthest-end design is preferable when constraints are much larger.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using Standard Interval Merge ($ed \ge a$):** Misses adjacent intervals like $[0, 1]$ and $[2, 3]$, producing ugly fragmented tags `<b>aa</b><b>b</b>`. Use $ed + 1 \ge a$.
+- **Nested Tags (`<b>a<b>a</b></b>`):** Occurs if strings are replaced in place without interval consolidation.
+- **Repeated String Slicing (`s.find` on every word):** Calling `s.find()` for every word repeatedly takes $O(W \cdot N^2)$. A Trie scans all prefixes in a single forward pass.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(D)$. Let $N=\lvert\texttt{s}\rvert$, let $D$ be the sum of dictionary-word lengths, let $L$ be the maximum dictionary-word length, and let $M$ be the number of matched word occurrences recorded in `pairs`.
-- **Auxiliary Space Complexity:** $O(N + D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Building the Trie: $\mathcal{O}(\sum |w_i|)$.
+  - Scanning $s$ with Trie: $\mathcal{O}(N \cdot L_{max})$ where $L_{max}$ is the maximum word length.
+  - Merging intervals: $\mathcal{O}(K)$ where $K$ is number of matches.
+  - Total Time: $\mathcal{O}(N \cdot L_{max} + \sum |w_i|)$. Completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(\sum |w_i| \cdot |\Sigma|)$ space for the Trie data structure.
+  - $\mathcal{O}(N)$ space for the output string builder.

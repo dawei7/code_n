@@ -1,122 +1,122 @@
 # Guided Example: Widest Vertical Area Between Two Points Containing No Points
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates 1D geometric projection: reducing an infinite 2D vertical strip problem to finding the maximum gap between adjacent sorted horizontal coordinates.
 
-- **Input:** `{"points": [[8, 7], [9, 9], [7, 4], [9, 7]]}`
-- **Required output:** `1`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input:** `points = [[8, 7], [9, 9], [7, 4], [9, 7]]`
+- **Required Output:** `1`
+- **Domain Constraints:** $2 \le n \le 10^5$, $0 \le x_i, y_i \le 10^9$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given `n` `points` on a 2D plane where $\text{points}[i] = [x_{i}, y_{i}]$, Return* the **widest vertical area** between two points such that no points are inside the area.*
+We are given $n$ points on a 2D plane where each point is $[x_i, y_i]$. A vertical area is defined as an infinite strip between two vertical lines $x = x_1$ and $x = x_2$ (with $x_1 < x_2$). The area contains no points if there are no input points whose $x$-coordinate satisfies $x_1 < x < x_2$. Points lying directly on the boundaries $x = x_1$ or $x = x_2$ are explicitly allowed.
 
-The objective is to compute `1` from `{"points": [[8, 7], [9, 9], [7, 4], [9, 7]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In `points = [[8, 7], [9, 9], [7, 4], [9, 7]]`:
+- The horizontal coordinates are $x \in \{8, 9, 7, 9\}$.
+- The $y$-coordinates ($7, 9, 4, 7$) have zero effect on vertical strip emptiness because the strip extends infinitely along the $y$-axis from $-\infty$ to $+\infty$.
+- The distinct sorted $x$-coordinates are $7, 8, 9$.
+- The adjacent gaps between consecutive $x$-values are $8 - 7 = 1$ and $9 - 8 = 1$.
+- The maximum empty strip width is $1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-----------------------------------------------------------------------------+
+|                  1D ORTHOGONAL PROJECTION & ADJACENT GAPS                   |
+|                                                                             |
+|  2D Points:  [7, 4], [8, 7], [9, 9], [9, 7]                                 |
+|                                                                             |
+|  Projection to X-axis:                                                      |
+|           x = 7         x = 8         x = 9                                 |
+|             *             *             *  (9,9)                            |
+|                           *             *  (9,7)                            |
+|             |             |             |                                   |
+|             +----gap=1----+----gap=1----+                                   |
+|                                                                             |
+|  Candidate strips: [7, 8] with width 1, and [8, 9] with width 1             |
+|  Max valid empty width = max(8 - 7, 9 - 8) = 1                              |
++-----------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| State Parameter | Data Structure | Purpose in Algorithm | Instance Initial Value |
+|---|---|---|---|
+| Projected $X$ coordinates | Array / Generator of $x_i$ | Ignores orthogonal $y$-dimension | $[8, 9, 7, 9]$ |
+| Sorted $X$ sequence | Sorted array of length $N$ | Places contiguous geometric neighbors adjacent | $[7, 8, 9, 9]$ |
+| Adjacent difference | Pairwise delta $x_{i+1} - x_i$ | Represents empty vertical strip width | Evaluated over adjacent pairs |
+| Maximum gap | Non-negative integer | Accumulator of maximum strip width | Initialized to $0$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Adjacency Emptiness Invariant.** In a sorted sequence of abscissas $x_0 \le x_1 \le \dots \le x_{n-1}$, the open interval $(x_i, x_{i+1})$ contains strictly zero points from the input set. Furthermore, any interval $(x_a, x_b)$ with $b > a + 1$ and $x_b > x_a$ either contains at least one intermediate point $x_{a+1}$ (if $x_a < x_{a+1} < x_b$) or can be partitioned into consecutive gaps whose widths cannot exceed the maximum adjacent gap.
+
+```mermaid
+flowchart TD
+    accTitle: Widest Vertical Area Calculation Flow
+    accDescr: Pipeline showing extraction of x-coordinates, sorting, computing adjacent differences, and selecting the maximum.
+    A["Input Points: [[8, 7], [9, 9], [7, 4], [9, 7]]"] --> B["Extract X-coordinates: [8, 9, 7, 9]"]
+    B --> C["Sort X-coordinates ascending: [7, 8, 9, 9]"]
+    C --> D["Compute Adjacent Gaps: 8-7=1, 9-8=1, 9-9=0"]
+    D --> E["Select Maximum: max(1, 1, 0)"]
+    E --> F["Result = 1"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Only horizontal position affects a vertical strip
-
-A vertical area extends infinitely along the $y$-axis. Its width is determined solely by two vertical boundary lines, so point $y$-coordinates cannot change whether a point lies horizontally inside the strip.
-
-Project every point onto its $x$-coordinate. The problem becomes finding the largest open interval between occupied $x$ positions that contains no occupied position. Points may lie on either boundary because boundary points are explicitly allowed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"points": [[8, 7], [9, 9], [7, 4], [9, 7]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Orthogonal Projection onto $X$-Axis
+- Discard all $y$-coordinates because the definition of vertical area requires an open vertical interval $(x_1, x_2)$ across all $y \in (-\infty, \infty)$.
+- The multiset of $x$-coordinates is $\{8, 9, 7, 9\}$.
 
 ---
 
-### Step 2: Sort points by x-coordinate
-
-`points.sort()` applies Python's lexicographic list ordering. It compares each point's first entry, $x$, first and uses $y$ only to order points whose $x$ values tie. Thus, after sorting, the sequence of $x$-coordinates is non-decreasing.
-
-The call sorts the input list in place. The method does not create a separate coordinate list.
-
-`pairwise(points)` then yields every adjacent pair `(a,b)` in that sorted order. For each pair, the generator computes `b[0] - a[0]`, the horizontal gap between their $x$ positions. `max` returns the largest such gap.
-
-The constraint of at least two points guarantees that `pairwise` yields at least one pair, so `max` never receives an empty generator.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Monotonic Sorting of Coordinates
+- Sort the points by $x$-coordinate in non-decreasing order:
+  - Sorted array: $[7, 8, 9, 9]$.
+- Sorting organizes points such that all points lying strictly between any $x_i$ and $x_j$ must appear between indices $i$ and $j$ in this array.
 
 ---
 
-### Step 3: Why only adjacent sorted positions matter
-
-Suppose two boundary points have $x$-coordinates $x_L<x_R$. If some point has $x$ strictly between them, that point lies inside the infinite vertical strip regardless of its $y$-coordinate, so the area is invalid.
-
-After sorting by $x$, an interval contains no occupied $x$ strictly inside it exactly when its endpoints are consecutive in the sorted sequence of occupied positions. Therefore every valid candidate width appears among adjacent differences.
-
-Conversely, between two adjacent sorted points there is no point whose $x$ lies strictly between their $x$ values. The open vertical strip between those boundary lines contains no point, while any points on the boundary lines are allowed. Every adjacent gap is therefore a valid candidate.
-
-Taking their maximum produces the widest valid vertical area.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+### Step 3: Adjacent Difference Evaluation
+- Iterate through all consecutive adjacent pairs $(x_i, x_{i+1})$:
+  - Pair $(7, 8)$: Gap is $8 - 7 = 1$. Since no element exists between indices $0$ and $1$, the vertical strip $(7, 8)$ contains no points. Current maximum: $1$.
+  - Pair $(8, 9)$: Gap is $9 - 8 = 1$. No points exist strictly inside $(8, 9)$. Current maximum: $\max(1, 1) = 1$.
+  - Pair $(9, 9)$: Gap is $9 - 9 = 0$. Points share the same $x$-coordinate, so no positive width exists. Current maximum: $\max(1, 0) = 1$.
+- Total maximum width obtained is $1$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"points": [[8, 7], [9, 9], [7, 4], [9, 7]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Step | Pair $(x_i, x_{i+1})$ | Gap Computation | Open Interval $(x_i, x_{i+1})$ Contains Points? | Running Max Gap |
+|---|---|---|---|---|
+| Initial | - | - | - | $0$ |
+| 1 | $(7, 8)$ | $8 - 7 = 1$ | No (Empty interior) | $\max(0, 1) = 1$ |
+| 2 | $(8, 9)$ | $9 - 8 = 1$ | No (Empty interior) | $\max(1, 1) = 1$ |
+| 3 | $(9, 9)$ | $9 - 9 = 0$ | No (Degenerate strip) | $\max(1, 0) = 1$ |
+| Done | All pairs evaluated | - | - | **Final Answer: 1** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any adjacent pair $x_i$ and $x_{i+1}$ in the sorted array of $x$-coordinates, by definition of sorting, there is no index $k$ such that $x_i < x_k < x_{i+1}$. Therefore, the open vertical slab $(x_i, x_{i+1}) \times (-\infty, \infty)$ contains zero points. Thus, every difference $x_{i+1} - x_i$ represents a valid empty vertical area.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose an optimal empty vertical strip is bounded by $x_a$ and $x_b$ with $x_a < x_b$. If there were any point $x_c$ such that $x_a < x_c < x_b$, the strip would not be empty, contradicting validity. Thus, no input point has an $x$-coordinate strictly between $x_a$ and $x_b$. When points are sorted, $x_a$ and $x_b$ must be consecutive distinct coordinates, meaning $x_b - x_a$ is an adjacent gap. Hence, the maximum empty vertical area must coincide with some adjacent gap in the sorted sequence.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Extract and sort only x-coordinates:** `xs = sorted(x for x, _ in points)` makes the relevant dimension explicit but allocates another $O(n)$ list rather than sorting the supplied points.
-- **Deduplicate x-coordinates first:** Sorting a set can reduce repeated zeros, but building the set uses extra storage and is not necessary for correctness.
-- **Bucket or counting sort:** Coordinates range up to $10^9$, so a direct coordinate-sized bucket array is impractical.
-- **Maximum-gap linear algorithms:** With numeric bucketing, the maximum adjacent sorted gap can be found in linear expected time, but the implementation is much more complex and ordinary sorting fits $n\le10^5$.
-- **Two points:** Their horizontal difference is the only adjacent gap and therefore the answer.
-- **All points share one x-coordinate:** Every gap is zero, so the widest valid area has width zero.
-- **Duplicate points:** They contribute zero gaps and do not alter gaps between distinct x positions.
-- **Boundary points:** Points at the chosen left or right x-coordinate are allowed, so only strict interior positions invalidate a strip.
-- **Arbitrary y-coordinates:** They never influence an infinitely tall vertical area's width or emptiness.
-- **Input mutation:** `points.sort()` changes the original ordering. Use `sorted(points)` if caller-visible preservation were required.
-- **At least two points guarantee:** Without it, `max` over `pairwise` would be empty and raise an error; the stated constraints rule that out.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Distraction by $y$-Coordinates:** Implementing 2D distance formulas, 2D range trees, or bounding boxes adds unnecessary complexity. The problem is purely 1-dimensional along the $x$-axis.
+- **Duplicate $x$-Coordinates:** Multiple points can have the same $x$-coordinate (e.g. $[9, 9]$ and $[9, 7]$). Their difference is $9 - 9 = 0$. This does not invalidate the search as long as $\max$ correctly compares non-negative gaps.
+- **Strict Interior vs Boundary:** The problem states points on the boundary lines $x = x_1$ and $x = x_2$ do NOT count as inside the area. If boundary points were forbidden, no area could use existing points as borders.
+- **Large Coordinate Values:** With coordinates up to $10^9$, using a boolean bucket array or counting sort requires gigabytes of memory; comparison-based sorting using $\mathcal{O}(N \log N)$ time is the optimal general-purpose approach.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of points. In-place sorting costs $O(n\log n)$ time. `pairwise` and the maximum generator then traverse $n-1$ adjacent pairs in $O(n)$ time. Total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N$ is the number of points. Extracting $x$-coordinates takes $\mathcal{O}(N)$ time. Sorting the $N$ coordinates requires $\mathcal{O}(N \log N)$ operations. The single linear scan computing adjacent differences requires $\mathcal{O}(N)$ comparisons. The sorting phase dominates.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond the input array if sorting in place, or $\mathcal{O}(N)$ auxiliary space if extracting $x$-coordinates into a separate array.

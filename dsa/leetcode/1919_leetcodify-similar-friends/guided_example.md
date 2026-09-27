@@ -1,108 +1,142 @@
 # Guided Example: Leetcodify Similar Friends
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## Problem Understanding
 
-- **Input:** `{"tables": {"Listens": [{"user_id": 1, "song_id": 10, "day": "2021-03-15"}, {"user_id": 1, "song_id": 11, "day": "2021-03-15"}, {"user_id": 1, "song_id": 12, "day": "2021-03-15"}, {"user_id": 2, "song_id": 10, "day": "2021-03-15"}, {"user_id": 2, "song_id": 11, "day": "2021-03-15"}, {"user_id": 2, "song_id": 12, "day": "2021-03-15"}, {"user_id": 3, "song_id": 10, "day": "2021-03-15"}, {"user_id": 3, "song_id": 11, "day": "2021-03-15"}, {"user_id": 3, "song_id": 12, "day": "2021-03-15"}, {"user_id": 4, "song_id": 10, "day": "2021-03-15"}, {"user_id": 4, "song_id": 11, "day": "2021-03-15"}, {"user_id": 4, "song_id": 13, "day": "2021-03-15"}, {"user_id": 5, "song_id": 10, "day": "2021-03-16"}, {"user_id": 5, "song_id": 11, "day": "2021-03-16"}, {"user_id": 5, "song_id": 12, "day": "2021-03-16"}], "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}]}}`
-- **Required output:** `{"columns": ["user1_id", "user2_id"], "rows": [[1, 2]]}`
+The task is to identify all unique pairs of users $(u_1, u_2)$ who are registered friends and share a strong mutual musical taste by listening to at least three identical, distinct songs on the very same calendar day.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+### Relational Schema & Conditions
+1. **Listens Table**: Records listening events `(user_id, song_id, day)`.
+   - A single user may listen to the same song multiple times on the same day; therefore, duplicate rows must be handled by deduplicating songs per user-day pair (`COUNT(DISTINCT song_id)`).
+2. **Friendship Table**: Records confirmed friendships `(user1_id, user2_id)`.
+   - Friendship pairs are canonicalized such that $u_1 < u_2$.
+3. **Similarity Criteria**:
+   - **Friendship Requirement**: $(u_1, u_2) \in \text{Friendship}$.
+   - **Temporal Concurrency**: The songs must be listened to on the **exact same day** $d$.
+   - **Diversity Threshold**: The number of distinct songs listened to by both $u_1$ and $u_2$ on date $d$ must satisfy:
+     $$|\{s : (u_1, s, d) \in \text{Listens}\} \cap \{s : (u_2, s, d) \in \text{Listens}\}| \ge 3$$
+4. **Output Format**:
+   - The result table reports `(user1_id, user2_id)` with $u_1 < u_2$, deduplicated across all days.
 
----
+```mermaid
+flowchart TD
+    accTitle: Relational Filtering and Intersection Pipeline
+    accDescr: Pipeline joining friendships with daily song listen records to identify pairs sharing at least three distinct songs on a single day.
 
-## 1. Instance & Teaching Goal
-
-Table: `Listens`
-
-The objective is to compute `{"columns": ["user1_id", "user2_id"], "rows": [[1, 2]]}` from `{"tables": {"Listens": [{"user_id": 1, "song_id": 10, "day": "2021-03-15"}, {"user_id": 1, "song_id": 11, "day": "2021-03-15"}, {"user_id": 1, "song_id": 12, "day": "2021-03-15"}, {"user_id": 2, "song_id": 10, "day": "2021-03-15"}, {"user_id": 2, "song_id": 11, "day": "2021-03-15"}, {"user_id": 2, "song_id": 12, "day": "2021-03-15"}, {"user_id": 3, "song_id": 10, "day": "2021-03-15"}, {"user_id": 3, "song_id": 11, "day": "2021-03-15"}, {"user_id": 3, "song_id": 12, "day": "2021-03-15"}, {"user_id": 4, "song_id": 10, "day": "2021-03-15"}, {"user_id": 4, "song_id": 11, "day": "2021-03-15"}, {"user_id": 4, "song_id": 13, "day": "2021-03-15"}, {"user_id": 5, "song_id": 10, "day": "2021-03-16"}, {"user_id": 5, "song_id": 11, "day": "2021-03-16"}, {"user_id": 5, "song_id": 12, "day": "2021-03-16"}], "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Core Step 1
-
-**Begin with actual friendship pairs.** The output must preserve `user1_id < user2_id` exactly as stored. The query starts from `Friendship AS f`, so every candidate is already a real friend pair in canonical order. Unlike recommendation queries, no reversed copy is needed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Listens": [{"user_id": 1, "song_id": 10, "day": "2021-03-15"}, {"user_id": 1, "song_id": 11, "day": "2021-03-15"}, {"user_id": 1, "song_id": 12, "day": "2021-03-15"}, {"user_id": 2, "song_id": 10, "day": "2021-03-15"}, {"user_id": 2, "song_id": 11, "day": "2021-03-15"}, {"user_id": 2, "song_id": 12, "day": "2021-03-15"}, {"user_id": 3, "song_id": 10, "day": "2021-03-15"}, {"user_id": 3, "song_id": 11, "day": "2021-03-15"}, {"user_id": 3, "song_id": 12, "day": "2021-03-15"}, {"user_id": 4, "song_id": 10, "day": "2021-03-15"}, {"user_id": 4, "song_id": 11, "day": "2021-03-15"}, {"user_id": 4, "song_id": 13, "day": "2021-03-15"}, {"user_id": 5, "song_id": 10, "day": "2021-03-16"}, {"user_id": 5, "song_id": 11, "day": "2021-03-16"}, {"user_id": 5, "song_id": 12, "day": "2021-03-16"}], "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+    F[Friendship Table: u1 < u2] --> J[Join on Listens u1 and u2]
+    L1[Listens: User u1, Day d, Song s] --> J
+    L2[Listens: User u2, Day d, Song s] --> J
+    J --> MATCH[Equi-Join: Same Day d AND Same Song s]
+    MATCH --> GRP[Group By u1, u2, Day d]
+    GRP --> CNT[Count Distinct Shared Songs]
+    CNT --> COND{Count >= 3?}
+    COND -- Yes --> QUAL[Qualifying Similar Friend Pair]
+    COND -- No --> REJ[Discard Pair for Day d]
+    QUAL --> DEDUP[Distinct u1, u2 Output Table]
+```
 
 ---
 
-### Step 2: Core Step 2
+## Key Invariant & Theoretical Guarantee
 
-**Attach listen histories for both endpoints.** The first join connects `user1_id` to `l1.user_id`; the second connects `user2_id` to `l2.user_id`. Conceptually this forms combinations of listen rows for the two friends. The `WHERE` clause retains combinations with the same `song_id` and the same `day`, which represent one song both users heard on one date.
+### Relational Equi-Join & Daily Song Intersect Cardinality Invariant Theorem
+*Let $L(u, d) = \{s \in \mathbb{N} : (u, s, d) \in \text{Listens}\}$ denote the finite set of distinct songs user $u$ listened to on date $d$. A pair of users $(u_1, u_2)$ belongs to the final output if and only if:*
+$$u_1 < u_2 \quad \land \quad (u_1, u_2) \in \text{Friendship} \quad \land \quad \exists d \text{ such that } |L(u_1, d) \cap L(u_2, d)| \ge 3$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Core Step 3
-
-Although both joins are written `LEFT JOIN`, the equality predicates in `WHERE` reject rows where either listen side is null. They therefore behave like inner joins for result membership. Writing explicit inner joins would communicate this more directly.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user1_id", "user2_id"], "rows": [[1, 2]]}` |
+*Proof*:
+1. **Necessity**: Any valid output row requires friendship by definition. Since similarity requires at least three shared songs on one day, there must exist at least one calendar date $d$ where the mutual set intersection $L(u_1, d) \cap L(u_2, d)$ contains $\ge 3$ distinct song identifiers.
+2. **Sufficiency**: If an active friendship $(u_1, u_2)$ shares $\ge 3$ distinct songs on date $d$, joining `Listens` instances on $(d, s)$ for $u_1$ and $u_2$ produces $\ge 3$ distinct song keys for that $(u_1, u_2, d)$ bucket. Projecting to distinct $(u_1, u_2)$ emits the pair exactly once into the result set, satisfying all constraints.
 
 ---
 
-## 4. Complete Execution Trace
+## Step-by-Step Walkthrough (Sample Instance)
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Listens": [{"user_id": 1, "song_id": 10, "day": "2021-03-15"}, {"user_id": 1, "song_id": 11, "day": "2021-03-15"}, {"user_id": 1, "song_id": 12, "day": "2021-03-15"}, {"user_id": 2, "song_id": 10, "day": "2021-03-15"}, {"user_id": 2, "song_id": 11, "day": "2021-03-15"}, {"user_id": 2, "song_id": 12, "day": "2021-03-15"}, {"user_id": 3, "song_id": 10, "day": "2021-03-15"}, {"user_id": 3, "song_id": 11, "day": "2021-03-15"}, {"user_id": 3, "song_id": 12, "day": "2021-03-15"}, {"user_id": 4, "song_id": 10, "day": "2021-03-15"}, {"user_id": 4, "song_id": 11, "day": "2021-03-15"}, {"user_id": 4, "song_id": 13, "day": "2021-03-15"}, {"user_id": 5, "song_id": 10, "day": "2021-03-16"}, {"user_id": 5, "song_id": 11, "day": "2021-03-16"}, {"user_id": 5, "song_id": 12, "day": "2021-03-16"}], "Friendship": [{"user1_id": 1, "user2_id": 2}, {"user1_id": 2, "user2_id": 4}, {"user1_id": 2, "user2_id": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user1_id", "user2_id"], "rows": [[1, 2]]}` | Verified |
+### Input Data
 
----
+#### `Friendship` Table
+| `user1_id` | `user2_id` |
+| :---: | :---: |
+| 1 | 2 |
+| 2 | 4 |
+| 2 | 5 |
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Pre-deduplicate `Listens`:** A distinct user/song/day CTE prevents duplicate join multiplication and preserves semantics.
-- **Use explicit inner joins:** Produces the same qualifying rows and makes the effective null-rejecting behavior clearer.
-- **Start from all listener pairs:** Then friendship must be joined afterward; beginning with `Friendship` naturally preserves canonical pair order.
-- **Duplicate listen records:** `COUNT(DISTINCT song_id)` ensures one song counts once.
-- **Three songs on different days:** Grouping by day keeps them separate and rejects the pair.
-- **Qualifies on multiple days:** Final `DISTINCT` returns one friendship row.
-- **Nonfriends with matching songs:** They never enter because `Friendship` is the driving table.
-- **Already canonical ordering:** The query returns stored columns and never reverses them.
-- **Any output order:** Absence of `ORDER BY` is valid.
-- **Exactly three distinct matches:** The inclusive `>= 3` threshold accepts the pair.
-- **Friend with no listen rows:** Null-extended join rows fail equality predicates, so the pair produces no qualifying group.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+#### `Listens` Table
+| `user_id` | `song_id` | `day` |
+| :---: | :---: | :---: |
+| 1 | 10 | 2021-03-15 |
+| 1 | 11 | 2021-03-15 |
+| 1 | 12 | 2021-03-15 |
+| 2 | 10 | 2021-03-15 |
+| 2 | 11 | 2021-03-15 |
+| 2 | 12 | 2021-03-15 |
+| 3 | 10 | 2021-03-15 |
+| 3 | 11 | 2021-03-15 |
+| 3 | 12 | 2021-03-15 |
+| 4 | 10 | 2021-03-15 |
+| 4 | 11 | 2021-03-15 |
+| 4 | 13 | 2021-03-15 |
+| 5 | 10 | 2021-03-16 |
+| 5 | 11 | 2021-03-16 |
+| 5 | 12 | 2021-03-16 |
 
 ---
 
-## 7. Complexity Derivation
+### Candidate Friendship Evaluation
 
-- **Time Complexity:** $O(L^2 + F)$. Let $L$ be listen-row count and $F$ friendship count. A broad plan may create up to quadratic combinations of listen rows while matching friend endpoints, giving the manifest's $O(L^2+F)$ time summary. Suitable indexes on user, day, and song can reduce actual matching substantially.
-- **Auxiliary Space Complexity:** $O(L^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+We evaluate every friendship entry $(u_1, u_2) \in \text{Friendship}$:
+
+#### Candidate 1: Pair $(1, 2)$
+- **Friendship status**: Present in `Friendship` table ($1 < 2$).
+- **Daily listening comparison**:
+  - On `2021-03-15`:
+    - $L(1, \text{2021-03-15}) = \{10, 11, 12\}$
+    - $L(2, \text{2021-03-15}) = \{10, 11, 12\}$
+    - Intersection: $\{10, 11, 12\} \cap \{10, 11, 12\} = \{10, 11, 12\}$
+    - Cardinality: $|L(1, \text{2021-03-15}) \cap L(2, \text{2021-03-15})| = 3$.
+- **Evaluation**: Condition $3 \ge 3$ is met on `2021-03-15`.
+- **Verdict**: **Qualifies**.
+
+#### Candidate 2: Pair $(2, 4)$
+- **Friendship status**: Present in `Friendship` table ($2 < 4$).
+- **Daily listening comparison**:
+  - On `2021-03-15`:
+    - $L(2, \text{2021-03-15}) = \{10, 11, 12\}$
+    - $L(4, \text{2021-03-15}) = \{10, 11, 13\}$
+    - Intersection: $\{10, 11, 12\} \cap \{10, 11, 13\} = \{10, 11\}$
+    - Cardinality: $|L(2, \text{2021-03-15}) \cap L(4, \text{2021-03-15})| = 2$.
+- **Evaluation**: Condition $2 \ge 3$ is false. No other dates exist for user 4.
+- **Verdict**: **Disqualified**.
+
+#### Candidate 3: Pair $(2, 5)$
+- **Friendship status**: Present in `Friendship` table ($2 < 5$).
+- **Daily listening comparison**:
+  - User 2 listened to $\{10, 11, 12\}$ on `2021-03-15`. User 5 has zero listens on `2021-03-15`.
+  - User 5 listened to $\{10, 11, 12\}$ on `2021-03-16`. User 2 has zero listens on `2021-03-16`.
+  - On any single day $d$, $|L(2, d) \cap L(5, d)| = 0$.
+- **Evaluation**: Mutual songs were consumed on disjoint days; same-day intersection is empty.
+- **Verdict**: **Disqualified**.
+
+---
+
+### Non-Friend Counterexample: Pair $(1, 3)$
+- Both user 1 and user 3 listened to $\{10, 11, 12\}$ on `2021-03-15`.
+- However, $(1, 3) \notin \text{Friendship}$.
+- **Verdict**: **Excluded** before or during join evaluation.
+
+---
+
+### Summary Table of Pair Analysis
+
+| User Pair $(u_1, u_2)$ | Friends? | Date $d$ | Shared Distinct Songs | Count $\ge 3$? | Status |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| $(1, 2)$ | Yes | 2021-03-15 | $\{10, 11, 12\}$ | $3 \ge 3$ (True) | **Selected** |
+| $(2, 4)$ | Yes | 2021-03-15 | $\{10, 11\}$ | $2 \ge 3$ (False) | Discarded |
+| $(2, 5)$ | Yes | Disjoint | $\emptyset$ | $0 \ge 3$ (False) | Discarded |
+| $(1, 3)$ | No | 2021-03-15 | $\{10, 11, 12\}$ | Disqualified by friendship | Discarded |
+
+---
+
+## Final Result
+
+| `user1_id` | `user2_id` |
+| :---: | :---: |
+| 1 | 2 |

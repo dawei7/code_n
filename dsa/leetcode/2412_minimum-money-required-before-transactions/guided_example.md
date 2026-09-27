@@ -1,146 +1,142 @@
 # Guided Example: Minimum Money Required Before Transactions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"transactions": [[2, 1], [5, 0], [4, 2]]}`
-- **Required output:** `10`
+In financial planning under adversarial ordering, an agent must execute a collection of transactions in an arbitrary, unknown sequence. Each transaction is represented by an ordered pair $[cost, cashback]$, where executing the transaction requires having at least $cost$ units of currency available immediately beforehand. Upon spending $cost$, the agent instantaneously receives $cashback$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Because the agent cannot choose or predict the order in which transactions are scheduled, the initial capital must be sufficient to guarantee that no matter which permutation of transactions is presented, the agent never runs out of funds. We seek the minimum starting money that guarantees successful completion of all transactions under the worst possible ordering.
 
----
+Consider the representative transaction portfolio:
+$$\text{transactions} = [[2, 1], [5, 0], [4, 2]]$$
 
-## 1. Instance & Teaching Goal
+Our objective is to determine the absolute minimum initial capital that guarantees that all three transactions can be executed in any sequence.
 
-You are given a **0-indexed** 2D integer array `transactions`, where $\text{transactions}[i] = [\text{cost}_{i}, \text{cashback}_{i}]$.
+```mermaid
+flowchart TD
+    accTitle: Worst-Case Adversarial Depletion Flow
+    accDescr: Diagram illustrating how losing transactions drain capital before hitting the final bottleneck transaction.
+    Start["Initial Capital: M"] --> Drain["Worst-Case Schedular executes losing transactions first"]
+    Drain --> Depleted["Cumulative Loss accumulates: sum of max(0, cost - cashback)"]
+    Depleted --> Bottleneck["Peak Required Capital occurs at the critical transaction i"]
+    Bottleneck --> Guarantee["Total Minimum Initial Capital: Total Loss + min(cost, cashback)"]
+```
 
-The objective is to compute `10` from `{"transactions": [[2, 1], [5, 0], [4, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Every transaction $[c_i, b_i]$ alters net balance by:
+$$\Delta_i = b_i - c_i$$
 
----
+Transactions naturally partition into two mutually exclusive regimes:
+1. **Losing Transactions ($\mathcal{L}$):** Where $c_i > b_i$. Here $\Delta_i < 0$, meaning each execution permanently drains $c_i - b_i$ units of capital.
+2. **Non-Losing Transactions ($\mathcal{G}$):** Where $c_i \le b_i$. Here $\Delta_i \ge 0$, meaning execution does not diminish the net capital reserve.
 
-## 2. Conceptual Foundation & Invariants
+To force the highest possible starting balance, an adversary will greedily deplete our funds. Thus, the adversary schedules transactions such that the critical bottleneck transaction $k$ is executed only after our reserves have been dragged down by other losing transactions.
 
-We maintain the core conceptual parameters and state variables:
+Let the total loss across all losing transactions be:
+$$L_{\text{total}} = \sum_{i \in \mathcal{L}} (c_i - b_i) = \sum_{i=1}^n \max(0, c_i - b_i)$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Now consider the condition for transaction $k$ to be successfully executed when placed at its worst possible position:
+- **Case 1: $k$ is a losing transaction ($k \in \mathcal{L}$):**
+  The adversary schedules all other losing transactions $j \in \mathcal{L} \setminus \{k\}$ before $k$.
+  The accumulated loss prior to executing $k$ is:
+  $$L_{\text{prior}} = L_{\text{total}} - (c_k - b_k)$$
+  To satisfy the pre-condition for $k$, the remaining balance before $k$ must be at least $c_k$:
+  $$M - L_{\text{prior}} \ge c_k \implies M \ge L_{\text{prior}} + c_k = L_{\text{total}} - (c_k - b_k) + c_k = L_{\text{total}} + b_k$$
+  Notice that since $c_k > b_k$, $b_k = \min(c_k, b_k)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Case 2: $k$ is a non-losing transaction ($k \in \mathcal{G}$):**
+  The adversary schedules all losing transactions $\mathcal{L}$ before $k$, incurring the full loss $L_{\text{total}}$.
+  To satisfy the pre-condition for $k$:
+  $$M - L_{\text{total}} \ge c_k \implies M \ge L_{\text{total}} + c_k$$
+  Notice that since $c_k \le b_k$, $c_k = \min(c_k, b_k)$.
 
----
+Unifying both cases, the minimum initial capital required to withstand transaction $k$ placed in its worst-case schedule is precisely:
+$$M_k = L_{\text{total}} + \min(c_k, b_k)$$
 
-## 3. Step-by-Step Worked Execution
+Because the adversary could pick any transaction $k \in \{1, \dots, n\}$ to serve as the critical bottleneck, the overall minimum initial money is:
+$$M = L_{\text{total}} + \max_{1 \le k \le n} \min(c_k, b_k)$$
 
-### Step 1: Separate unavoidable losses from one affordability reserve
+This reduces the problem to an $\mathcal{O}(n)$ single-pass aggregation.
 
-A transaction `[a,b]` changes money by `b-a`. If `a>b`, it permanently loses `a-b` money. If `a<=b`, it does not reduce money overall, though the user must still temporarily afford its cost `a`.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-Let:
+Let us apply this closed-form reduction to $\text{transactions} = [[2, 1], [5, 0], [4, 2]]$.
 
-$$
-S=\sum \max(0,a-b)
-$$
+### Phase 1: Categorization and Total Loss Computation
 
-over all transactions. This is the total net loss that can occur. The first source line computes exactly `S`.
+We evaluate the net loss $\max(0, c_i - b_i)$ for each transaction:
+- Transaction $0 = [2, 1]$: $c_0 = 2, b_0 = 1$. Since $2 > 1$, net loss is $2 - 1 = 1$.
+- Transaction $1 = [5, 0]$: $c_1 = 5, b_1 = 0$. Since $5 > 0$, net loss is $5 - 0 = 5$.
+- Transaction $2 = [4, 2]$: $c_2 = 4, b_2 = 2$. Since $4 > 2$, net loss is $4 - 2 = 2$.
 
-Starting money must cover these losses plus enough remaining reserve to afford whichever transaction becomes hardest at the worst point of an arbitrary order.
+All three transactions are losing transactions. The total net loss across the portfolio is:
+$$L_{\text{total}} = 1 + 5 + 2 = 8$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"transactions": [[2, 1], [5, 0], [4, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 2: Evaluating Worst-Case Bottleneck For Each Transaction
 
----
+Next, we calculate the required capital if transaction $k$ is executed at the worst possible moment:
+- For $k = 0\ ([2, 1])$:
+  $$\text{Required} = L_{\text{total}} + \min(2, 1) = 8 + 1 = 9$$
+- For $k = 1\ ([5, 0])$:
+  $$\text{Required} = L_{\text{total}} + \min(5, 0) = 8 + 0 = 8$$
+- For $k = 2\ ([4, 2])$:
+  $$\text{Required} = L_{\text{total}} + \min(4, 2) = 8 + 2 = 10$$
 
-### Step 2: The bottleneck contribution is `min(cost, cashback)`
+### Phase 3: Global Maximum Extraction
 
-For a losing transaction `a>b`, the loop considers `S+b`. Here `b = min(a,b)`.
+Taking the maximum across all evaluated candidates:
+$$M = \max(9, 8, 10) = 10$$
 
-For a non-losing transaction `a<=b`, it considers `S+a`. Here `a = min(a,b)`.
+Starting with 10 guarantees survival under all orderings.
 
-Thus, the returned expression is conceptually:
+## 4. Comprehensive State Trace
 
-$$
-S+\max_i\min(\texttt{cost}_i,\texttt{cashback}_i).
-$$
+The evaluation across all transactions is summarized below:
 
-The code writes the two cases explicitly to make their different affordability arguments visible.
+| Index $k$ | Transaction $[c_k, b_k]$ | Type | Net Loss $\max(0, c_k - b_k)$ | Bottleneck Term $\min(c_k, b_k)$ | Capital Bound $L_{\text{total}} + \min(c_k, b_k)$ | Running Max $M$ |
+|---|---|---|---|---|---|---|
+| $0$ | $[2, 1]$ | Losing | $1$ | $1$ | $8 + 1 = 9$ | $9$ |
+| $1$ | $[5, 0]$ | Losing | $5$ | $0$ | $8 + 0 = 8$ | $9$ |
+| $2$ | $[4, 2]$ | Losing | $2$ | $2$ | $8 + 2 = 10$ | $10$ |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+To verify why $M = 10$ is necessary, consider the adversarial ordering $\sigma = (0, 1, 2)$:
+1. Begin with balance $10$.
+2. Transaction $0\ [2, 1]$: Pre-balance $10 \ge 2$. Spend $2$, receive $1$. New balance: $9$.
+3. Transaction $1\ [5, 0]$: Pre-balance $9 \ge 5$. Spend $5$, receive $0$. New balance: $4$.
+4. Transaction $2\ [4, 2]$: Pre-balance $4 \ge 4$. Spend $4$, receive $2$. New balance: $2$.
 
----
+Notice that prior to transaction $2$, the balance was exactly $4$, perfectly matching the required cost. Had initial capital been $9$, the balance prior to transaction $2$ would have been $3 < 4$, causing bankruptcy.
 
-### Step 3: Why a losing transaction creates lower bound `S+b`
+| Step | Transaction Executed | Balance Before | Cost Deducted | Cashback Added | Balance After | Deficit if Started at $9$ |
+|---|---|---|---|---|---|---|
+| $1$ | $[2, 1]$ | $10$ | $2$ | $1$ | $9$ | Balance $8 \ge 2$ |
+| $2$ | $[5, 0]$ | $9$ | $5$ | $0$ | $4$ | Balance $3 < 5$ (Fails here!) |
+| $3$ | $[4, 2]$ | $4$ | $4$ | $2$ | $2$ | N/A |
 
-Choose one losing transaction `[a,b]` and imagine an adversarial order that performs every *other* losing transaction before it, while postponing non-losing transactions that might add money.
+## 5. Algorithmic Correctness & Soundness
 
-The loss before this chosen transaction is:
+The correctness of the mathematical derivation rests on two complementary claims:
+1. **Sufficiency:** For any arbitrary permutation $\pi$ of the $n$ transactions, starting with $M = L_{\text{total}} + \max_k \min(c_k, b_k)$ guarantees that the balance before every transaction $j$ is at least $c_j$.
+   - Proof: Before transaction $j$ is processed, only some subset of losing transactions $S \subseteq \mathcal{L} \setminus \{j\}$ has been executed. The accumulated loss prior to $j$ cannot exceed the sum of losses of all losing transactions except possibly $j$ itself:
+     $$\text{Loss before } j \le L_{\text{total}} - \max(0, c_j - b_j)$$
+     The balance before $j$ is therefore at least:
+     $$M - (L_{\text{total}} - \max(0, c_j - b_j)) \ge \min(c_j, b_j) + \max(0, c_j - b_j) = c_j$$
+     Hence, the balance never drops below $c_j$.
+2. **Necessity:** There always exists an adversarial permutation that drives the required pre-balance to exactly $L_{\text{total}} + \min(c_k, b_k)$ for the maximizing transaction $k$.
+   - By scheduling all losing transactions other than $k$ first, the adversary forces the balance immediately before $k$ to be $M - (L_{\text{total}} - \max(0, c_k - b_k))$. Equating this to $c_k$ yields the exact threshold.
 
-$$
-S-(a-b).
-$$
+## 6. Edge Cases & Anti-Patterns
 
-If starting money is `M`, affordability requires:
+- **All Non-Losing Transactions:**
+  If every transaction satisfies $c_i \le b_i$, then $L_{\text{total}} = 0$. Each transaction requires $c_i$ initially, but upon execution it never decreases available capital. The answer is simply $\max_i c_i$. The formula yields $0 + \max_i \min(c_i, b_i) = \max_i c_i$, which is completely accurate.
+- **Zero Cost and Cashback:**
+  When $c_i = 0$ and $b_i = 0$, both net loss and bottleneck terms are zero, adding zero to the requirement.
+- **Large Integer Range:**
+  $cost_i$ and $cashback_i$ can be as large as $10^9$, and $n$ up to $10^5$. Total accumulated loss can reach $10^{14}$, requiring 64-bit integer arithmetic to avoid integer overflow.
+- **Anti-Pattern (Sorting Simulation):**
+  Attempting to simulate all $n!$ permutations or sorting greedily by custom comparator functions is unnecessary and computationally intractable. The exact mathematical reduction provides the global worst-case bound directly.
 
-$$
-M-\bigl(S-(a-b)\bigr)\ge a.
-$$
+## 7. Complexity Analysis
 
-Rearranging gives:
-
-$$
-M\ge S+b.
-$$
-
-Therefore, every losing transaction's cashback can define a necessary reserve after all other losses.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `10` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"transactions": [[2, 1], [5, 0], [4, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `10` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **One-pass accumulation:** Total loss and maximum `min(a,b)` can be accumulated together, then added. It has the same bounds.
-- **Sort transactions:** Ordering is irrelevant to computing the worst-order guarantee; sorting adds unnecessary $O(n\log n)$ work.
-- **All transactions non-losing:** `S=0`, and answer is the largest cost because an adversary may place that transaction first.
-- **All transactions losing:** Answer is total loss plus the largest cashback.
-- **Zero cost:** It is immediately affordable and may contribute zero as its minimum.
-- **Zero cashback:** A losing transaction contributes no reserve beyond total loss.
-- **Cost equals cashback:** It is non-losing and may require its full cost as reserve.
-- **Profitable cashback:** Its future gain cannot be assumed before the transaction under arbitrary order.
-- **Large total:** Use a wide integer type outside Python.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the number of transactions. Computing `S` scans the array once. The second loop scans it again and performs constant arithmetic and comparisons. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$. In the first pass, we sum $\max(0, c_i - b_i)$ across all $n$ transactions to compute $L_{\text{total}}$. In the second pass (or integrated into the same pass), we evaluate $L_{\text{total}} + \min(c_i, b_i)$ and find the maximum over all $n$ elements.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond input storage, requiring only scalar accumulators for the total loss and running maximum.

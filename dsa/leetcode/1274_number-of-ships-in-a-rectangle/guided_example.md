@@ -1,124 +1,176 @@
 # Guided Example: Number of Ships in a Rectangle
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step spatial quadtree decomposition locating hidden coordinates via an oracle function on a representative problem instance:
 
-- **Input:** `{"sea": {"ships": [], "max_queries": 400}, "topRight": [7, 9], "bottomLeft": [2, 4]}`
-- **Required output:** `0`
+- **Input:**
+  - `bottomLeft = [0, 0]`
+  - `topRight = [4, 4]`
+  - Hidden Ships in the Sea: `[[1, 1], [2, 2], [3, 3], [5, 5]]`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates 2D geometric bisection, hierarchical space partitioning (quadtree decomposition), and aggressive pruning of empty regions under a strict query budget ($\le 400$ API calls).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-*(This problem is an **interactive problem**.)*
+We must count the number of ships inside the target rectangle $[0, 4] \times [0, 4]$. An interactive oracle `hasShips(topRight, bottomLeft)` answers whether at least one ship exists in a specified axis-aligned rectangular region. The exact locations of ships are unknown.
 
-The objective is to compute `0` from `{"sea": {"ships": [], "max_queries": 400}, "topRight": [7, 9], "bottomLeft": [2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+The sea contains four ships:
+- $(1, 1)$, $(2, 2)$, and $(3, 3)$ lie inside the target rectangle $[0, 4] \times [0, 4]$.
+- $(5, 5)$ lies strictly outside the target rectangle and must not be counted.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+y
+4 │  .   .   .  (3,3) .
+3 │  .   .   .   .    .
+2 │  .   .  (2,2).    .
+1 │  .  (1,1).   .    .
+0 │  .   .   .   .    .
+  └─────────────────────── x
+     0   1   2   3    4
+```
+
+A brute-force query of every integer point in $[0, 4] \times [0, 4]$ requires $(4 - 0 + 1) \times (4 - 0 + 1) = 25$ queries (or $(1000 + 1)^2 \approx 10^6$ in the general problem, which drastically exceeds the 400 query limit).
+Because at most $10$ ships exist across the entire sea, the distribution of ships is extremely sparse.
+
+The optimal strategy employs a 2D quadtree divide-and-conquer bisection:
+1. Query the candidate rectangle. If the oracle returns `false`, no ships exist anywhere in this region, pruning the entire sub-tree in a single query.
+2. If `true` and the rectangle has shrunk to a single point ($x_1 = x_2$ and $y_1 = y_2$), a ship is confirmed at this point.
+3. Otherwise, bisect both axes into four disjoint quadrants and recurse.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $R = [x_1, x_2] \times [y_1, y_2]$ be a closed discrete rectangular region with $x_1 \le x_2$ and $y_1 \le y_2$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Quadtree Bisection
+We calculate the integer midpoints:
+$$
+\text{mid}_x = \lfloor (x_1 + x_2) / 2 \rfloor, \quad \text{mid}_y = \lfloor (y_1 + y_2) / 2 \rfloor
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The rectangle $R$ is partitioned into four pairwise disjoint sub-rectangles:
+1. **Top-Right ($Q_1$):** $[\text{mid}_x + 1, x_2] \times [\text{mid}_y + 1, y_2]$
+2. **Top-Left ($Q_2$):** $[x_1, \text{mid}_x] \times [\text{mid}_y + 1, y_2]$
+3. **Bottom-Left ($Q_3$):** $[x_1, \text{mid}_x] \times [y_1, \text{mid}_y]$
+4. **Bottom-Right ($Q_4$):** $[\text{mid}_x + 1, x_2] \times [y_1, \text{mid}_y]$
+
+Every integer coordinate $(x, y) \in R$ belongs to exactly one quadrant.
+
+| Quadrant | Coordinate Range | Contains Target Ships? | Oracle Query Result |
+|---|---|---|---|
+| Entire Region $R$ | $[0, 4] \times [0, 4]$ | $(1, 1), (2, 2), (3, 3)$ | `true` (Branch) |
+| $Q_1$ (Top-Right) | $[3, 4] \times [3, 4]$ | $(3, 3)$ | `true` (Branch) |
+| $Q_2$ (Top-Left) | $[0, 2] \times [3, 4]$ | None | `false` (Prune immediately) |
+| $Q_3$ (Bottom-Left) | $[0, 2] \times [0, 2]$ | $(1, 1), (2, 2)$ | `true` (Branch) |
+| $Q_4$ (Bottom-Right) | $[3, 4] \times [0, 2]$ | None | `false` (Prune immediately) |
+
+> **Sparse Partition Invariant.** An oracle query returning `false` on rectangle $[x_1, x_2] \times [y_1, y_2]$ proves that the intersection of the hidden ship set with this region is empty, guaranteeing that zero ships are missed when the entire branch is discarded without further inspection.
+
+```mermaid
+graph TD
+    accTitle: Quadtree Spatial Bisection
+    accDescr: Diagram showing recursive partitioning of the root rectangle into four quadrants with empty quadrants pruned.
+    ROOT["Root: [0, 4] x [0, 4] (true)"] --> Q1["Q1 (TR): [3, 4] x [3, 4] (true)"]
+    ROOT --> Q2["Q2 (TL): [0, 2] x [3, 4] (false) --> Pruned"]
+    ROOT --> Q3["Q3 (BL): [0, 2] x [0, 2] (true)"]
+    ROOT --> Q4["Q4 (BR): [3, 4] x [0, 2] (false) --> Pruned"]
+    Q1 --> S3["Isolates (3, 3): Count = 1"]
+    Q3 --> S12["Isolates (1, 1) and (2, 2): Count = 2"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the API to discard large empty regions
+We trace the recursive exploration starting at $[0, 4] \times [0, 4]$.
 
-Checking every integer coordinate would exceed the four-hundred-call limit. The API is powerful because one call answers whether an entire inclusive rectangle contains at least one ship. The solution recursively divides only rectangles known to contain ships, while empty rectangles stop immediately.
+### Level 0: Root Query
+- Call `hasShips([4, 4], [0, 0])`.
+- Since $(1, 1), (2, 2), (3, 3)$ are inside, oracle returns `true`.
+- Not a single cell ($0 < 4$ and $0 < 4$), so calculate midpoints:
+  $$
+  \text{mid}_x = \lfloor (0 + 4) / 2 \rfloor = 2, \quad \text{mid}_y = \lfloor (0 + 4) / 2 \rfloor = 2
+  $$
 
-Function `dfs(topRight, bottomLeft)` first extracts inclusive bounds `x1, y1, x2, y2`. Some quadrants of a thin rectangle can be invalid, so `x1 > x2 or y1 > y2` returns zero before calling the API. This ordering avoids unauthorized or meaningless queries with reversed corners.
+### Level 1: Evaluating the Four Quadrants
+1. **Quadrant $Q_1$ (Top-Right): $[3, 4] \times [3, 4]$**
+   - Call `hasShips([4, 4], [3, 3])`. Returns `true` (ship at $(3, 3)$ is present).
+   - Bisect $Q_1$: $\text{mid}_x = 3, \text{mid}_y = 3$.
+   - Sub-quadrants of $Q_1$:
+     - $[3, 3] \times [3, 3]$: single point! Oracle returns `true` $\implies$ Ship confirmed at $(3, 3)$! (Count $= 1$).
+     - $[4, 4] \times [4, 4]$: oracle returns `false` $\implies$ pruned.
+     - $[3, 3] \times [4, 4]$: oracle returns `false` $\implies$ pruned.
+     - $[4, 4] \times [3, 3]$: oracle returns `false` $\implies$ pruned.
+   - Total from $Q_1$: $1$ ship.
 
-For a valid rectangle, `sea.hasShips` is called. A false result proves the count is zero and prunes every coordinate inside. If the rectangle is one point and the API has returned true, that point contains exactly one ship because the contract allows at most one per integer point.
+2. **Quadrant $Q_2$ (Top-Left): $[0, 2] \times [3, 4]$**
+   - Call `hasShips([2, 4], [0, 3])`.
+   - Returns `false`. Entire quadrant pruned immediately with $1$ query.
+   - Total from $Q_2$: $0$ ships.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sea": {"ships": [], "max_queries": 400}, "topRight": [7, 9], "bottomLeft": [2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+3. **Quadrant $Q_3$ (Bottom-Left): $[0, 2] \times [0, 2]$**
+   - Call `hasShips([2, 2], [0, 0])`. Returns `true` (ships $(1, 1)$ and $(2, 2)$ inside).
+   - Bisect $Q_3$: $\text{mid}_x = 1, \text{mid}_y = 1$.
+   - Sub-quadrants of $Q_3$:
+     - $[0, 1] \times [0, 1]$: contains $(1, 1) \implies$ recurses to single cell $(1, 1)$, returns $1$.
+     - $[2, 2] \times [2, 2]$: single cell $(2, 2)$, oracle returns `true` $\implies$ returns $1$.
+     - Remaining two sub-rectangles: oracle returns `false` $\implies$ pruned.
+   - Total from $Q_3$: $1 + 1 = 2$ ships.
 
----
+4. **Quadrant $Q_4$ (Bottom-Right): $[3, 4] \times [0, 2]$**
+   - Call `hasShips([4, 2], [3, 0])`.
+   - Returns `false`. Pruned immediately with $1$ query.
+   - Total from $Q_4$: $0$ ships.
 
-### Step 2: Partition an inclusive rectangle without gaps or overlaps
-
-For a nonempty rectangle containing more than one point, midpoint coordinates are floor averages. The four recursive rectangles are:
-
-- northeast: from `(midx + 1, midy + 1)` to the original top right;
-- northwest: from `(x1, midy + 1)` to `(midx, y2)`;
-- southwest: from the original bottom left to `(midx, midy)`;
-- southeast: from `(midx + 1, y1)` to `(x2, midy)`.
-
-The `+1` boundaries are essential for inclusive coordinates. Every x-coordinate belongs either to the left half through `midx` or the right half starting at `midx + 1`, and the same holds for y. Combining those choices creates four disjoint quadrants whose union is the original rectangle.
-
-When one dimension has length one, two quadrant descriptions become invalid. The initial bound check returns zero for them without consuming API calls, while the valid halves still cover the rectangle.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why summing recursive answers is correct
-
-An empty rectangle returns zero by authoritative API evidence. A nonempty single point returns one. Otherwise, every ship belongs to exactly one of the four disjoint quadrants. By recursively counting each quadrant and summing `a + b + c + d`, the algorithm counts every ship once and none twice.
-
-The recursion eventually terminates because every valid child is strictly smaller in at least one non-single dimension. Repeated halving reaches individual points.
-
-The method never tries to inspect hidden ship coordinates directly. `Point` objects only describe query corners, and `hasShips` is the sole observation of the sea, respecting the interactive contract.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0` |
+### Total Ship Count
+$$
+\text{Total} = Q_1 + Q_2 + Q_3 + Q_4 = 1 + 0 + 2 + 0 = 3
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sea": {"ships": [], "max_queries": 400}, "topRight": [7, 9], "bottomLeft": [2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0` | Verified |
+| Search Node | Region $[x_1, x_2] \times [y_1, y_2]$ | Oracle Result | Classification | Sub-Tree Ship Count |
+|---|---|---|---|---|
+| Root | $[0, 4] \times [0, 4]$ | `true` | Internal Node | $1 + 0 + 2 + 0 = 3$ |
+| $Q_1$ | $[3, 4] \times [3, 4]$ | `true` | Internal Node | $1$ |
+| $Q_1 \to (3, 3)$ | $[3, 3] \times [3, 3]$ | `true` | Leaf Point | $1$ (Found) |
+| $Q_1 \to \text{others}$ | Various | `false` | Empty Leaf | $0$ |
+| $Q_2$ | $[0, 2] \times [3, 4]$ | `false` | Empty Node | $0$ (Pruned) |
+| $Q_3$ | $[0, 2] \times [0, 2]$ | `true` | Internal Node | $2$ |
+| $Q_3 \to [0, 1]^2$ | $[0, 1] \times [0, 1]$ | `true` | Internal Node | $1$ |
+| $Q_3 \to (1, 1)$ | $[1, 1] \times [1, 1]$ | `true` | Leaf Point | $1$ (Found) |
+| $Q_3 \to (2, 2)$ | $[2, 2] \times [2, 2]$ | `true` | Leaf Point | $1$ (Found) |
+| $Q_4$ | $[3, 4] \times [0, 2]$ | `false` | Empty Node | $0$ (Pruned) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A ship is only counted when the candidate region shrinks to a point of area $1 \times 1$ ($x_1 = x_2$ and $y_1 = y_2$) and the oracle explicitly confirms `hasShips = true`. Since ships occupy distinct integer coordinates, each confirmed point represents a unique, valid ship.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The four quadrants partition the parent rectangle into four non-overlapping subsets whose union equals the parent rectangle. A quadrant is only discarded when the oracle guarantees it contains zero ships. Therefore, no quadrant containing a ship is ever pruned, ensuring all ships in the target rectangle are found.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check every coordinate:** It is exact but may require about a million API calls and violates the limit.
-- **Split into two rectangles:** Binary partitioning is also possible; four-way splitting halves both dimensions together and matches the sparse two-dimensional geometry well.
-- **Call API before validating bounds:** This can send reversed rectangles created by thin quadrants and must be avoided.
-- **Empty target rectangle:** Public corners are ordered, but recursive empty quadrants correctly return zero without an API call.
-- **No ships:** The initial `hasShips` call is false, so the answer is zero immediately.
-- **Single-point recursive region:** A true API result means exactly one ship; further subdivision is unnecessary.
-- **Ship on a midpoint boundary:** Inclusive half definitions assign it to exactly one side because the other begins at midpoint plus one.
-- **One-row or one-column region:** Invalid quadrants vanish, and valid halves continue reducing the remaining dimension.
-- **Ships on outer boundaries:** `hasShips` includes rectangle boundaries, and the partition covers them.
-- **API call limit:** Pruning empty regions is essential; recursion without the initial existence query would still explore every point.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Degenerate sub-rectangles:** If $x_1 > x_2$ or $y_1 > y_2$ occurs during midpoint integer division, returning $0$ immediately prevents invalid coordinate queries.
+- **Query budget exhaustion:** Querying sub-regions before verifying whether the parent contains any ships causes exponential query proliferation. Querying the parent first prunes entire branches with a single call.
+- **Inclusive boundaries:** The rectangle boundaries are inclusive. Point $(x, y)$ on the boundary line belongs to exactly one quadrant due to $[\text{mid}_x + 1, x_2]$ and $[x_1, \text{mid}_x]$ indexing, preventing double counting.
+- **Ships outside target rectangle:** The ship at $(5, 5)$ lies beyond the root rectangle $[0, 4] \times [0, 4]$. Because the root query is bounded by the target coordinates, points outside the bounding box are never evaluated.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1+s\log C)$. Let $s$ be the number of ships and let $C$ be the larger inclusive side length. Empty input still causes one API query. In general, only branches containing ships continue for $O(\log C)$ levels, with a constant number of empty siblings per continuing branch. Time and API calls are $O(1+s\log C)$, commonly written $O(s\log C)$ when $s>0$.
-- **Auxiliary Space Complexity:** $O(\log C)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Query Complexity:** $\mathcal{O}(K \log(\max(X, Y)))$, where $K \le 10$ is the number of ships and $X, Y \le 1000$ are the grid dimensions.
+  - The maximum depth of the quadtree is $\lceil \log_2(1000) \rceil = 10$.
+  - Each ship lies at the bottom of a root-to-leaf path of depth at most $10$.
+  - At each level along this path, at most $4$ sibling quadrants are queried.
+  - The total number of oracle calls across all $K \le 10$ ships is bounded by $4 \cdot K \cdot \log_2(1000) \le 4 \times 10 \times 10 = 400$, perfectly obeying the problem's query limit.
+- **Auxiliary Space Complexity:** $\mathcal{O}(\log(\max(X, Y)))$. The recursion call stack depth is bounded by the tree height, which is at most $10$.

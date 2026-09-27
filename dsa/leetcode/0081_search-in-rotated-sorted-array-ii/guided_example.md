@@ -1,96 +1,135 @@
 # Guided Example: Search in Rotated Sorted Array II
 
-We trace the logarithmic Array, Binary Search search on a representative problem instance.
+We trace the step-by-step rotated binary search with duplicate boundary trimming on representative instances:
 
-- **Input:** `{"nums": [2, 5, 6, 0, 0, 1, 2], "target": 0}`
-- **Required output:** `true`
+- **Input:** $\text{nums} = [2, 5, 6, 0, 0, 1, 2]$, $\text{target} = 0$
+- **Required output:** $\text{True}$
+- **Degenerate Duplicate Ambiguity:** $\text{nums} = [1, 0, 1, 1, 1]$, $\text{target} = 0 \implies \text{True}$
 
-This instance demonstrates search space bound maintenance, integer midpoint calculation, and monotonic predicate halving.
+This instance demonstrates identifying sorted halves in rotated arrays containing duplicate elements, detecting the ambiguous case ($\text{nums}[L] == \text{nums}[M] == \text{nums}[R]$), shrinking boundary pointers ($L{++}, R{--}$), and analyzing worst-case $O(N)$ vs average-case $O(\log N)$ complexity.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Search in Rotated Sorted Array II** is to pinpoint the target value or optimal threshold in logarithmic $O(\log N)$ time.
-Linear scanning through all candidates takes $O(N)$ time. By exploiting monotonicity in the search domain, each comparison halves the remaining candidate space.
+An integer array $\text{nums}$ sorted in non-decreasing order is rotated at an unknown pivot index. Given $\text{nums} = [2, 5, 6, 0, 0, 1, 2]$ and a target $0$, return `True` if target exists in $\text{nums}$, or `False` otherwise.
+
+In contrast to LeetCode 33 (where all elements are distinct), the presence of duplicates introduces ambiguity:
+For $[1, 0, 1, 1, 1]$, $L = 0, M = 2, R = 4$, so $\text{nums}[L] = \text{nums}[M] = \text{nums}[R] = 1$.
+Here, the target $0$ lies in the left half.
+However, for $[1, 1, 1, 0, 1]$, the target $0$ lies in the right half despite identical values at $L$, $M$, and $R$.
+
+Because a single comparison cannot determine which half is sorted when $\text{nums}[L] == \text{nums}[M] == \text{nums}[R]$, the algorithm safely contracts both boundaries ($L \leftarrow L + 1, R \leftarrow R - 1$), preserving binary search speed wherever possible.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define an active search interval $[L, R]$. At each iteration, we evaluate the midpoint $M = L + \lfloor (R - L) / 2 \rfloor$.
+### 3-Way Half-Sorted Bisection with Duplicate Trimming
+At each step, calculate $M = L + \lfloor (R - L) / 2 \rfloor$:
+- If $\text{nums}[M] == \text{target}$: return $\text{True}$.
 
-| Interval Variable | Role in Bisection |
-|---|---|
-| Lower Bound $L$ | Lowest possible index/value in active range |
-| Upper Bound $R$ | Highest possible index/value in active range |
-| Midpoint $M$ | Probe point dividing interval into equal halves |
+1. **Duplicate Ambiguity ($\text{nums}[L] == \text{nums}[M] == \text{nums}[R]$):**
+   Neither the left nor right half is guaranteed monotonic.
+   Contract boundaries:
+   $$
+   L \leftarrow L + 1, \quad R \leftarrow R - 1
+   $$
+2. **Left Half is Sorted ($\text{nums}[L] \le \text{nums}[M]$):**
+   - If $\text{nums}[L] \le \text{target} < \text{nums}[M]$:
+     Target must lie within the sorted left half:
+     $$
+     R \leftarrow M - 1
+     $$
+   - Else: Target must lie in the right half:
+     $$
+     L \leftarrow M + 1
+     $$
+3. **Right Half is Sorted ($\text{nums}[M] \le \text{nums}[R]$):**
+   - If $\text{nums}[M] < \text{target} \le \text{nums}[R]$:
+     Target must lie within the sorted right half:
+     $$
+     L \leftarrow M + 1
+     $$
+   - Else: Target must lie in the left half:
+     $$
+     R \leftarrow M - 1
+     $$
 
-> **Invariant.** If a valid solution exists, it is guaranteed to lie within the inclusive search range $[L, R]$.
+> **Invariant.** If `target` is present in $\text{nums}$, it is guaranteed to lie within $[\text{nums}[L], \dots, \text{nums}[R]]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Initial Bounds Setup
-
-- Set $L = 0$ and $R = N - 1$ (or corresponding domain bounds).
-- Compute initial midpoint $M$.
-
-| Parameter | State |
-|---|---|
-| Search Interval | $[L, R]$ |
-| Midpoint Probe $M$ | $L + \lfloor (R - L) / 2 \rfloor$ |
-| Evaluated Value | Probe result compared against target |
+### Instance 1: Standard Rotated Search ($[2, 5, 6, 0, 0, 1, 2]$, $\text{target} = 0$)
+- **Step 1 ($L = 0, R = 6$):**
+  - Midpoint: $M = 0 + \lfloor (6 - 0) / 2 \rfloor = 3$.
+  - Probe: $\text{nums}[3] = 0$.
+  - Compare: $\text{nums}[3] == \text{target}$ ($0 == 0$).
+  - **Immediate Match!** Return $\text{True}$.
 
 ---
 
-### Step 2: Interval Halving via Monotonicity
-
-- If the probe value satisfies the predicate or is smaller than the target, eliminate the left half ($L = M + 1$).
-- Otherwise, eliminate the right half ($R = M - 1$ or $R = M$).
-
-| Parameter | State |
-|---|---|
-| Discarded Region | Non-viable half eliminated |
-| New Interval | Narrowed $[L, R]$ |
-
----
-
-### Step 3: Convergence & Target Extraction
-
-- Iteration halts when $L > R$ (or $L == R$).
-- Return confirmed target index or boundary answer.
+### Instance 2: Duplicate Ambiguity Resolution ($[1, 0, 1, 1, 1]$, $\text{target} = 0$)
+- **Step 1 ($L = 0, R = 4$):**
+  - Midpoint: $M = 2$.
+  - Values: $\text{nums}[0] = 1$, $\text{nums}[2] = 1$, $\text{nums}[4] = 1$.
+  - Ambiguity detected: $\text{nums}[L] == \text{nums}[M] == \text{nums}[R] == 1$.
+  - Action: Contract both ends:
+    $$
+    L \leftarrow 0 + 1 = 1, \quad R \leftarrow 4 - 1 = 3
+    $$
+  - Active subarray: indices $[1 \dots 3]$, elements $[0, 1, 1]$.
+- **Step 2 ($L = 1, R = 3$):**
+  - Midpoint: $M = 1 + \lfloor (3 - 1) / 2 \rfloor = 2$.
+  - Probe: $\text{nums}[2] = 1 \ne 0$.
+  - Boundaries: $\text{nums}[1] = 0$, $\text{nums}[3] = 1$.
+  - Left half $[1, 2]$ has values $[0, 1]$. Since $\text{nums}[1] \le \text{nums}[2]$ ($0 \le 1$), left half is sorted.
+  - Target containment: $\text{nums}[1] \le 0 < \text{nums}[2]$ ($0 \le 0 < 1$). True!
+  - Search left: $R \leftarrow M - 1 = 1$.
+- **Step 3 ($L = 1, R = 1$):**
+  - Midpoint: $M = 1$.
+  - Probe: $\text{nums}[1] = 0$.
+  - $\text{nums}[1] == \text{target}$ ($0 == 0$).
+  - **Match Found!** Return $\text{True}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Iteration | Lower $L$ | Upper $R$ | Midpoint $M$ | Evaluated Value | Decision / Predicate | Halved Interval |
-|---|---|---|---|---|---|---|
-| 1 (Start) | $0$ | $N-1$ | Midpoint | Probe result | Branch selection | Remaining half |
-| 2 (Narrow) | Updated $L$ | Updated $R$ | New Midpoint | Probe result | Further contraction | Narrowed half |
-| Final | Converged | Converged | Target | Match / Boundary | Target confirmed | Result emitted |
+### Ambiguous Duplicate Trace ($[1, 0, 1, 1, 1]$, $\text{target} = 0$)
+
+| Step | Left $L$ | Right $R$ | Mid $M$ | Values $(\text{nums}[L], \text{nums}[M], \text{nums}[R])$ | Classification | Action Taken | Next Range |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|:---:|
+| 1 | 0 | 4 | 2 | $(1, 1, 1)$ | Ambiguous Triplet | Trim: $L{++}, R{--}$ | $[1, 3]$ |
+| 2 | 1 | 3 | 2 | $(0, 1, 1)$ | Left sorted ($0 \le 1$) | Target in left ($0 \le 0 < 1$) | $[1, 1]$ |
+| 3 | 1 | 1 | 1 | $(0, 0, 0)$ | Single cell match | **Target == nums[1]** | **Return True** |
+
+### Absent Target Trace ($[2, 5, 6, 0, 0, 1, 2]$, $\text{target} = 3$)
+- Step 1: $M = 3 \implies \text{nums}[3] = 0$. Right sorted ($0 \le 2$). Target $3$ not in $[0, 2] \implies R \leftarrow 2$.
+- Step 2: $L = 0, R = 2 \implies M = 1, \text{nums}[1] = 5$. Left sorted ($2 \le 5$). Target $3 \in [2, 5) \implies R \leftarrow 0$.
+- Step 3: $L = 0, R = 0 \implies M = 0, \text{nums}[0] = 2 \ne 3 \implies L \leftarrow 1$.
+- Step 4: $L = 1 > R = 0 \implies$ Halt. Return $\text{False}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because the underlying search space is monotonic, any region discarded by the comparison is mathematically proven not to contain the target.
+**Soundness.** When $\text{nums}[L] == \text{nums}[M] == \text{nums}[R]$, neither $\text{nums}[L]$ nor $\text{nums}[R]$ can be the target (since $\text{target} \ne \text{nums}[M]$). Discarding $L$ and $R$ preserves all other candidate elements. When one half is proven monotonic, checking interval boundaries guarantees the target is pursued in the correct segment.
 
-**Completeness.** The interval size strictly decreases by $\lfloor (R - L + 1) / 2 \rfloor$ on every step, guaranteeing termination and discovery of the target.
+**Completeness.** Every iteration either halves the search space via binary search or shrinks it by 2 via duplicate trimming. When $L > R$, the entire array has been examined, and an absent target safely returns $\text{False}$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Integer Overflow in Midpoint:** Using $(L + R) / 2$ in fixed-width languages can overflow. The form $L + \lfloor(R - L) / 2\rfloor$ is safe.
-- **Infinite Loops on $L == R - 1$:** Misaligned boundary updates ($L = M$ without upper-rounding midpoint) causes infinite loops when two elements remain.
-- **Left vs. Right Insertion Index:** Distinguishing exact match from lower-bound insertion points prevents off-by-one errors.
+- **Worst-Case Linear Degradation:** For arrays where all elements are identical (e.g. $[1, 1, 1, 1, 1]$ with $\text{target} = 0$), $L$ and $R$ increment/decrement one step at a time, degrading runtime to $O(N)$.
+- **Strict Inequality on Half-Sorted Check:** Using strictly $<$ vs $\le$ in $\text{nums}[L] \le \text{nums}[M]$ must be coupled with the three-way equality check first, otherwise duplicate prefixes will be misidentified as monotonically increasing.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log N)$ because the candidate interval is bisected in each step.
-- **Auxiliary Space Complexity:** $O(1)$ constant extra space using iterative pointers.
+- **Time Complexity:** Average case $O(\log N)$ when duplicates are sparse. Worst case $O(N)$ when all elements are identical.
+- **Auxiliary Space Complexity:** $O(1)$ constant memory using two pointer registers ($L$ and $R$).

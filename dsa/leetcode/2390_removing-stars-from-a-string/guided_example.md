@@ -1,120 +1,161 @@
 # Guided Example: Removing Stars From a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"s": "leet**cod*e"}`
-- **Required output:** `"lecoe"`
+We are given a string $s$ of length $n$ ($1 \le n \le 10^5$) consisting of lowercase English letters and asterisk characters `'*'`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Each asterisk represents a backspace-style operation:
+- Choose an asterisk `'*'`.
+- Remove the asterisk itself.
+- Remove the closest surviving non-asterisk letter to its left.
 
----
+This process continues until no asterisks remain. The problem contract guarantees that the input is always valid—meaning whenever an asterisk is encountered, at least one surviving letter exists to its left to be deleted. The goal is to return the resulting string after all asterisks have executed their removals.
 
-## 1. Instance & Teaching Goal
+Consider the representative string:
+$$s = \text{"leet**cod*e"}$$
 
-You are given a string `s`, which contains stars `*`.
+The string contains letters interspersed with asterisks. Each asterisk acts as an annihilation operator on the most recently appended character.
 
-The objective is to compute `"lecoe"` from `{"s": "leet**cod*e"}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: LIFO Character Stack Stream Architecture
+    accDescr: Sequential processing of characters where letters are pushed and asterisks pop the most recent element.
+    Char["Stream Character c in s"] --> Check{"Is c == '*' ?"}
+    Check -->|Yes: Annihilation| Pop["Pop Top Element from Stack"]
+    Check -->|No: Accumulation| Push["Push Character c onto Stack"]
+    Pop --> Next["Advance to Next Stream Index"]
+    Push --> Next
+    Next --> Done{"End of String?"}
+    Done -->|No| Char
+    Done -->|Yes| Out["Join Remaining Stack: 'lecoe'"]
+    classDef step fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class Char,Pop,Push,Out step;
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+This problem directly mirrors the classic text-editor backspace model governed by **Last-In, First-Out (LIFO)** semantics:
+1. **LIFO Stack Mechanics:**
+   - As we scan $s$ from left to right, every standard letter is pushed onto the top of a stack.
+   - When a `'*'` arrives, it immediately consumes the element residing at the top of the stack (the nearest surviving letter to its left).
+   - Once popped, that letter is permanently eliminated and cannot be accessed by subsequent asterisks.
+2. **Confluence and Invariant Output:**
+   Although asterisks could theoretically be processed in different orders, the operation possesses the Church-Rosser property (confluence): any sequence of valid reductions yields the exact same final string. Processing sequentially from left to right guarantees that each asterisk meets the exact closest active predecessor.
+3. **In-Place Two-Pointer Equivalence:**
+   Instead of allocating an explicit dynamic stack, one can maintain a write pointer $w = 0$ on a mutable character array:
+   - For a letter $c$: write $\text{buf}[w] \leftarrow c$, then increment $w \leftarrow w + 1$.
+   - For an asterisk `'*'`: decrement $w \leftarrow w - 1$ (rewinding the cursor).
+   The surviving prefix $\text{buf}[0 \dots w - 1]$ forms the final output.
 
-## 2. Conceptual Foundation & Invariants
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-We maintain the core conceptual parameters and state variables:
+We trace the sequential stack evaluation on $s = \text{"leet**cod*e"}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- **Index 0 ($s[0] = \text{'l'}$):**
+  - Letter encountered. Push `'l'`.
+  - Stack: `['l']`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Index 1 ($s[1] = \text{'e'}$):**
+  - Letter encountered. Push `'e'`.
+  - Stack: `['l', 'e']`.
 
----
+- **Index 2 ($s[2] = \text{'e'}$):**
+  - Letter encountered. Push `'e'`.
+  - Stack: `['l', 'e', 'e']`.
 
-## 3. Step-by-Step Worked Execution
+- **Index 3 ($s[3] = \text{'t'}$):**
+  - Letter encountered. Push `'t'`.
+  - Stack: `['l', 'e', 'e', 't']`.
 
-### Step 1: The closest surviving character is a stack top
+- **Index 4 ($s[4] = \text{'*'}$):**
+  - Asterisk encountered. Pop top element `'t'`.
+  - Stack: `['l', 'e', 'e']`.
 
-When a star is processed, it removes the closest non-star character to its left that has not already been removed. If we scan the string from left to right, the surviving letters seen so far are naturally ordered by position. The closest one is the most recently retained letter.
+- **Index 5 ($s[5] = \text{'*'}$):**
+  - Asterisk encountered. Pop top element `'e'`.
+  - Stack: `['l', 'e']`.
 
-That is exactly last-in, first-out behavior. The list `ans` acts as a stack:
+- **Index 6 ($s[6] = \text{'c'}$):**
+  - Letter encountered. Push `'c'`.
+  - Stack: `['l', 'e', 'c']`.
 
-- a lowercase letter is appended;
-- a star pops the final retained letter.
+- **Index 7 ($s[7] = \text{'o'}$):**
+  - Letter encountered. Push `'o'`.
+  - Stack: `['l', 'e', 'c', 'o']`.
 
-After all input characters are processed, the stack contains the result in its original relative order.
+- **Index 8 ($s[8] = \text{'d'}$):**
+  - Letter encountered. Push `'d'`.
+  - Stack: `['l', 'e', 'c', 'o', 'd']`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+- **Index 9 ($s[9] = \text{'*'}$):**
+  - Asterisk encountered. Pop top element `'d'`.
+  - Stack: `['l', 'e', 'c', 'o']`.
+
+- **Index 10 ($s[10] = \text{'e'}$):**
+  - Letter encountered. Push `'e'`.
+  - Stack: `['l', 'e', 'c', 'o', 'e']`.
+
+- **Termination:**
+  - String stream exhausted.
+  - Concatenate stack contents:
+    $$\text{"lecoe"}$$
+
+## 4. Comprehensive State Trace
+
+The character-by-character stack transformations are documented in the execution table below:
+
+| Stream Index $i$ | Input Token $s[i]$ | Token Classification | Executed Action | Popped / Pushed Character | Resulting Stack State | Current String Prefix |
+|---|---|---|---|---|---|---|
+| 0 | `'l'` | Letter | Push | `'l'` | `['l']` | `"l"` |
+| 1 | `'e'` | Letter | Push | `'e'` | `['l', 'e']` | `"le"` |
+| 2 | `'e'` | Letter | Push | `'e'` | `['l', 'e', 'e']` | `"lee"` |
+| 3 | `'t'` | Letter | Push | `'t'` | `['l', 'e', 'e', 't']` | `"leet"` |
+| 4 | `'*'` | Asterisk | Pop | `'t'` removed | `['l', 'e', 'e']` | `"lee"` |
+| 5 | `'*'` | Asterisk | Pop | `'e'` removed | `['l', 'e']` | `"le"` |
+| 6 | `'c'` | Letter | Push | `'c'` | `['l', 'e', 'c']` | `"lec"` |
+| 7 | `'o'` | Letter | Push | `'o'` | `['l', 'e', 'c', 'o']` | `"leco"` |
+| 8 | `'d'` | Letter | Push | `'d'` | `['l', 'e', 'c', 'o', 'd']` | `"lecod"` |
+| 9 | `'*'` | Asterisk | Pop | `'d'` removed | `['l', 'e', 'c', 'o']` | `"leco"` |
+| 10 | `'e'` | Letter | Push | `'e'` | `['l', 'e', 'c', 'o', 'e']` | `"lecoe"` |
+
+The final output is verified as `"lecoe"`.
+
+A second verification on total deletion (Example 2: $s = \text{"erase*****"}$) is summarized below:
+
+| Stream Segment | Actions Performed | Active Stack Contents | Explanation |
 |---|---|---|---|
-| Input Slice | `{"s": "leet**cod*e"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Prefix `"erase"` | 5 consecutive pushes | `['e', 'r', 'a', 's', 'e']` | Buffer loaded with 5 characters |
+| Suffix `"*****"` | 5 consecutive pops | `[]` | Every star annihilates one preceding letter in reverse order |
 
----
+Final output for $s = \text{"erase*****"}$ is the empty string `""`.
 
-### Step 2: Why removed stars need not be stored
+## 5. Algorithmic Correctness & Soundness
 
-A star removes itself as part of the operation. The algorithm therefore never appends stars to `ans`. It performs their effect immediately and discards them.
+The correctness of this single-pass stack simulation is established by:
+1. **Strict Locality of Deletion:**
+   The phrase "closest non-star character to its left" means that in any prefix $s[0 \dots i]$, an asterisk at $i$ must eliminate the latest unremoved letter in $s[0 \dots i - 1]$. Under sequential left-to-right scanning, that exact letter resides at the top of the stack.
+2. **Stack Non-Emptiness Invariant:**
+   The problem guarantees that every removal is valid. Therefore, the stack depth $d_i$ after reading prefix $i$ satisfies:
+   $$d_i = \sum_{j=0}^{i} \left( \mathbf{1}_{[s[j] \neq \text{'*'}]} - \mathbf{1}_{[s[j] = \text{'*'}]} \right) \ge 0$$
+   A pop operation is never attempted on an empty stack.
+3. **Preservation of Relative Order:**
+   Elements entering the stack are ordered by their original indices. Popping elements removes both the star and the target letter without disturbing the relative ordering of any surviving earlier characters.
 
-Only letters that are still eligible to survive or be removed by a future star remain in the stack.
+## 6. Edge Cases & Anti-Patterns
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Complete Annihilation ($s = \text{"a*b*c*"}$):** Every character is deleted immediately by its following star. Returns `""`.
+- **No Stars Present ($s = \text{"leetcode"}$):** All characters are pushed and none are popped. Returns `"leetcode"`.
+- **Multiple Consecutive Stars ($s = \text{"abc***"}$):** Pops characters in strict reverse chronological order: `'c'`, then `'b'`, then `'a'`.
+- **Anti-Pattern: In-Place String Slicing / Substring Splice:** Finding the first `'*'` and using string slicing (`s[:idx-1] + s[idx+1:]`) constructs a new string in $\mathcal{O}(n)$ time per star. For a string of length $10^5$ with $5 \cdot 10^4$ stars, this requires $\mathcal{O}(n^2) \approx 2.5 \cdot 10^9$ operations, causing Time Limit Exceeded. The stack achieves strictly linear execution.
 
----
+## 7. Complexity Analysis
 
-### Step 3: Maintain a precise prefix invariant
-
-After processing the first $i$ input characters, `ans` equals the unique string that remains after applying every star operation within that prefix.
-
-The invariant is true for the empty prefix. If the next character is a letter, no operation removes it yet, so appending it produces the correct remaining prefix. If the next character is a star, the operation removes the closest surviving letter to its left. In the current remaining-prefix list, that letter is exactly the final element, so `pop` performs the required change. The star itself is not retained.
-
-By induction, after the entire input, `ans` is exactly the final string.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"lecoe"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "leet**cod*e"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"lecoe"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Mutable two-pointer buffer:** Convert characters to a list and overwrite positions while tracking the current survivor length. It can use the input-sized buffer in place and has the same linear time.
-- **Repeated string slicing:** Removing a letter and star from immutable strings can cause $O(n^2)$ total copying.
-- **Search left for each star:** Walking backward over already removed positions also risks quadratic time unless extra links are maintained.
-- **No stars:** Every letter is appended, and the original string is returned.
-- **All letters eventually removed:** The stack empties and `join` returns `""`.
-- **Consecutive stars:** Each pop reveals the next-closest surviving letter, exactly matching repeated operations.
-- **Star after one available letter:** The stack becomes empty but never underflows.
-- **Validity guarantee:** It ensures every `pop` has a corresponding retained letter.
-- **Uniqueness:** Stack matching produces the same survivor string implied by all valid operation orders.
-- **Large input:** Each character causes only one constant-time stack operation, so length `10^5` is handled efficiently.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the input length. The loop processes every character once. Each letter is appended at most once and each star performs one pop. Python list append and pop at the end take amortized $O(1)$ time, so the scan is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - We scan the input string of length $n$ exactly once from left to right.
+  - For each character, we either perform an $\mathcal{O}(1)$ stack append or an $\mathcal{O}(1)$ stack pop.
+  - Constructing the final string by joining the surviving characters takes $\mathcal{O}(n)$ time.
+  - Total time complexity is strictly linear: $\mathcal{O}(n)$.
+  - For $n = 10^5$, execution completes in under $10$ milliseconds.
+- **Space Complexity:**
+  - The stack or write buffer stores at most $n$ characters: $\mathcal{O}(n)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(n)$.

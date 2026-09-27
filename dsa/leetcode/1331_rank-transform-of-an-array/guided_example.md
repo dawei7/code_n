@@ -1,136 +1,155 @@
 # Guided Example: Rank Transform of an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the coordinate compression and dense rank assignment algorithm on a representative integer array containing both distinct and duplicate values:
 
-- **Input:** `{"arr": [40, 10, 20, 30]}`
-- **Required output:** `[4, 1, 2, 3]`
+- **Input:** `arr = [40, 10, 20, 30]`
+- **Required Output:** `[4, 1, 2, 3]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates coordinate compression, deduplicating unique values, sorting the unique set to establish dense rank order, and mapping original array elements to their 1-indexed ranks in linearithmic time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `arr`, replace each element with its rank.
+Given an integer array `arr`, we must replace each element with its dense rank. The rank rules state:
+1. Rank is a positive integer starting at $1$.
+2. The smaller the element, the smaller its rank.
+3. If two elements are equal, they must share the identical rank.
+4. Ranks must be compact (dense), meaning no integer rank values are skipped.
 
-The objective is to compute `[4, 1, 2, 3]` from `{"arr": [40, 10, 20, 30]}` while avoiding redundant calculations and unnecessary overhead.
+For `arr = [40, 10, 20, 30]` of length $N = 4$:
+- Distinct values present: $\{10, 20, 30, 40\}$.
+- Ascending sorted unique order:
+  - $10 \implies \text{Rank } 1$
+  - $20 \implies \text{Rank } 2$
+  - $30 \implies \text{Rank } 3$
+  - $40 \implies \text{Rank } 4$
+- Substituting ranks back into the original positions:
+  - $\text{arr}[0] = 40 \implies 4$
+  - $\text{arr}[1] = 10 \implies 1$
+  - $\text{arr}[2] = 20 \implies 2$
+  - $\text{arr}[3] = 30 \implies 3$
+- Output: `[4, 1, 2, 3]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Original Array:
+Index:         0      1      2      3
+Value:       [40]   [10]   [20]   [30]
+
+Unique Sorted Values:
+Position:      1      2      3      4
+Value:        10     20     30     40
+
+Rank Replacement:
+arr[0] = 40  --> Rank 4
+arr[1] = 10  --> Rank 1
+arr[2] = 20  --> Rank 2
+arr[3] = 30  --> Rank 3
+
+Transformed Array: [4, 1, 2, 3]
+```
+
+Comparing every element against all others takes $\mathcal{O}(N^2)$ time. Deduplicating and sorting unique keys establishes an $\mathcal{O}(N \log N)$ coordinate compression mapping, followed by an $\mathcal{O}(1)$ hash map lookup or $\mathcal{O}(\log U)$ binary search per element.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $U = \text{sorted}(\text{unique}(\text{arr}))$ be the strictly increasing sequence of unique values in `arr`:
+$$
+U = [u_1, u_2, \dots, u_K] \quad \text{where } u_1 < u_2 < \dots < u_K \text{ and } K \le N
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Rank Mapping Function
+The rank of any value $x \in \text{arr}$ is defined as its 1-based index in $U$:
+$$
+\text{rank}(x) = 1 + |\{u \in U \mid u < x\}|
+$$
+Because $U$ contains no duplicates and is strictly sorted:
+- The minimum element $u_1$ always maps to rank $1$.
+- Any element $u_k$ is assigned rank $k$.
+- Duplicates in `arr` naturally receive the identical rank because they map to the same unique element in $U$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Array Element $x$ | Position in Sorted Unique Array $U$ | Assigned Dense Rank | Justification |
+|---|---|---|---|
+| $10$ | Index $0$ | $1$ | Smallest element |
+| $20$ | Index $1$ | $2$ | Second smallest |
+| $30$ | Index $2$ | $3$ | Third smallest |
+| $40$ | Index $3$ | $4$ | Largest element |
+
+> **Dense Order Invariant.** The assigned ranks span the contiguous integer range $[1, K]$ without gaps. For any pair of elements $x_a, x_b \in \text{arr}$, $\text{rank}(x_a) < \text{rank}(x_b) \iff x_a < x_b$, and $\text{rank}(x_a) == \text{rank}(x_b) \iff x_a == x_b$.
+
+```mermaid
+flowchart TD
+    accTitle: Dense Rank Transform Pipeline
+    accDescr: Pipeline extracting unique elements, sorting them to create a rank mapping table, and replacing original array values.
+    INPUT["Input arr: [40, 10, 20, 30]"] --> SET["Extract unique set: {10, 20, 30, 40}"]
+    SET --> SORT["Sort unique values: U = [10, 20, 30, 40]"]
+    SORT --> MAP["Create rank map: 10->1, 20->2, 30->3, 40->4"]
+    MAP --> TRANSFORM["Map each arr[i] through rank map"]
+    TRANSFORM --> OUT["Output: [4, 1, 2, 3]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Removing duplicates first
+We trace `arr = [40, 10, 20, 30]` with $N = 4$:
 
-`set(arr)` retains one copy of every distinct value. This ensures that duplicates do not occupy multiple rank positions.
+### Step 1: Extract and Sort Unique Values
+- Unique elements in `arr`: $\{10, 20, 30, 40\}$.
+- Sort into ascending sequence:
+  $$
+  U = [10, 20, 30, 40]
+  $$
+- Cardinality of unique set: $K = 4$.
 
-For `[100,100,100]`, the set contains only `100`. Sorting gives `[100]`, so every original occurrence receives rank one.
+### Step 2: Construct the Rank Lookup Table
+Assign 1-based ranks based on sorted position:
+- $U[0] = 10 \implies \text{rank}(10) = 1$.
+- $U[1] = 20 \implies \text{rank}(20) = 2$.
+- $U[2] = 30 \implies \text{rank}(30) = 3$.
+- $U[3] = 40 \implies \text{rank}(40) = 4$.
 
-If duplicates remained in the sorted list, the next larger value could receive a rank with an unnecessary gap, violating the “as small as possible” rule.
+### Step 3: Transform Original Array Elements
+Traverse the original array from left to right:
+- Index $0$: $\text{arr}[0] = 40 \implies \text{rank}(40) = 4$.
+- Index $1$: $\text{arr}[1] = 10 \implies \text{rank}(10) = 1$.
+- Index $2$: $\text{arr}[2] = 20 \implies \text{rank}(20) = 2$.
+- Index $3$: $\text{arr}[3] = 30 \implies \text{rank}(30) = 3$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [40, 10, 20, 30]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Sorting establishes rank order
-
-After sorting, `t` has strictly increasing values:
-
-$$
-t[0] < t[1] < \cdots < t[u-1],
-$$
-
-where $u$ is the number of distinct values.
-
-The value at index zero must have rank one, the value at index one rank two, and generally `t[k]` rank `k + 1`.
-
-Negative numbers and large magnitudes cause no special problem because only comparisons determine order.
-
-This also explains why numerical gaps do not create rank gaps. If the only distinct values are `-100` and `5000`, their positions in `t` are zero and one, so their ranks are one and two. Rank measures how many distinct input values are no larger, not the arithmetic distance between values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why `bisect_right` returns the rank
-
-`bisect_right(t, x)` returns the insertion position after all entries less than or equal to `x`.
-
-Every `x` being queried came from `arr` and therefore appears exactly once in `t`. If it is at zero-based index `k`, there are `k + 1` distinct values at most `x`. The right insertion position is consequently `k + 1`, exactly its required one-based rank.
-
-For `t = [10,20,30,40]`:
-
-- `bisect_right(t, 10)` is one;
-- `bisect_right(t, 20)` is two;
-- `bisect_right(t, 40)` is four.
-
-`bisect_left(t, x) + 1` would be an equivalent expression. The exact source uses the right boundary so no explicit addition is needed.
-
-Using `bisect_right` on a list that still contained duplicates would not work this way: it would return the position after every equal copy and inflate the rank. Deduplicating before binary search is therefore part of the correctness argument, not merely a memory optimization.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 1, 2, 3]` |
+Result array: `[4, 1, 2, 3]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [40, 10, 20, 30]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 1, 2, 3]` | Verified |
+| Element Index $i$ | Original Value $\text{arr}[i]$ | Sorted Index in $U$ | Evaluated Rank $\text{rank}(x)$ | Transformed Result Prefix |
+|---|---|---|---|---|
+| $0$ | $40$ | $3$ | $4$ | `[4]` |
+| $1$ | $10$ | $0$ | $1$ | `[4, 1]` |
+| $2$ | $20$ | $1$ | $2$ | `[4, 1, 2]` |
+| $3$ | $30$ | $2$ | $3$ | `[4, 1, 2, 3]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Sorting unique elements guarantees that if $u_a < u_b$, then index($u_a$) < index($u_b$). Assigning $1 + \text{index}$ produces strictly increasing positive integers starting at $1$. Because elements with identical values map to the same key in the rank lookup, duplicates share identical ranks, satisfying all problem constraints.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every element in `arr` is guaranteed to exist in the set of unique values. The transformation is evaluated for every index $i \in [0, N-1]$, producing an output array of identical length $N$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Rank dictionary:** Enumerate the sorted unique values and map each to index plus one, then perform expected constant-time lookups.
-- **Sort the full array:** It can still derive ranks by skipping duplicates, but stores and processes repeated values unnecessarily.
-- **`bisect_left + 1`:** It is equivalent because every queried value exists exactly once in `t`.
-- **All values equal:** The unique list has length one, and every rank is one.
-- **Strictly increasing input:** Output is `[1,2,\ldots,n]`.
-- **Strictly decreasing input:** Ranks appear in decreasing order while preserving input positions.
-- **Negative values:** Sorting and binary search handle them normally.
-- **Empty array:** Both the lookup and result lists are empty.
-- **Duplicate values:** Deduplication ensures equal ranks and no gaps.
-- **Original array unchanged:** The method returns a new rank list rather than overwriting `arr`.
-- **Binary-search cost:** Although sorting dominates broadly, exact lookup is $O(\log u)$ per element rather than hash-map constant expected time.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate rank inflation:** Sorting the array without deduplication would assign ranks based on total element count. For example, in `[100, 100, 100]`, non-deduplicated ranks would yield `[1, 2, 3]`, which violates the rule that equal numbers must have equal ranks (`[1, 1, 1]`).
+- **Dense rank vs competition rank:** Competition ranking skips ranks after ties (e.g. 1st, 2nd, 2nd, 4th). The problem specifies *dense* ranking where ranks must be as small as possible without skipping integers (1st, 2nd, 2nd, 3rd).
+- **Zero-indexed vs one-indexed:** The problem specifies ranks begin at $1$, not $0$. Forgetting to add $+1$ to 0-based array indices produces an off-by-one rank error.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(u)$. Let $n$ be the array length and $u$ the number of distinct values.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log K)$, where $N$ is the length of `arr` and $K \le N$ is the count of distinct values. Deduplicating and sorting $K$ values takes $\mathcal{O}(K \log K)$ time. Querying the rank for each of the $N$ elements via a hash table takes $\mathcal{O}(1)$ time (or $\mathcal{O}(\log K)$ via binary search), yielding total $\mathcal{O}(N \log K)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ to store the sorted unique elements and the rank mapping table.

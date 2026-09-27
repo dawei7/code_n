@@ -1,126 +1,225 @@
 # Guided Example: Design a Stack With Increment Operation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the optimal lazy-propagation increment stack on a representative problem instance:
 
-- **Input:** `{"max_size": 2, "operations": [["push", [1]], ["push", [2]], ["pop", []]]}`
-- **Required output:** `[null, null, 2]`
+- **Initialization:** `CustomStack(maxSize = 3)`
+- **Operation Sequence:**
+  1. `push(1)`
+  2. `push(2)`
+  3. `pop()` $\implies 2$
+  4. `push(2)`
+  5. `push(3)`
+  6. `push(4)` $\implies$ Exceeds capacity, ignored
+  7. `increment(k = 5, val = 100)` $\implies$ Increments all $3$ elements by $100$
+  8. `increment(k = 2, val = 100)` $\implies$ Increments bottom $2$ elements by $100$
+  9. `pop()` $\implies 103$
+  10. `pop()` $\implies 202$
+  11. `pop()` $\implies 201$
+  12. `pop()` $\implies -1$ (Empty stack)
+- **Required Outputs:** `[null, null, null, 2, null, null, null, null, null, 103, 202, 201, -1]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates capacity-bounded push rejection, multiple overlapping prefix increments, and cascading downward lazy-tag propagation across pops.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a stack that supports increment operations on its elements.
+We are tasked with designing a bounded LIFO stack of fixed maximum capacity $maxSize$ supporting three operations:
+1. `push(x)`: Adds integer $x$ to the top if the stack contains fewer than $maxSize$ elements.
+2. `pop()`: Removes and returns the top element, or returns $-1$ if the stack is empty.
+3. `increment(k, val)`: Adds integer $val$ to the bottom $\min(k, \text{current size})$ elements.
 
-The objective is to compute `[null, null, 2]` from `{"max_size": 2, "operations": [["push", [1]], ["push", [2]], ["pop", []]]}` while avoiding redundant calculations and unnecessary overhead.
+A naive approach to `increment(k, val)` loops through the bottom $k$ elements, taking $\mathcal{O}(k)$ time. Under up to $1{,}000$ operations, repeated linear scans degrade performance.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The primary teaching goal is to implement **lazy prefix propagation**: recording the increment only at the highest affected index in $\mathcal{O}(1)$ time, and pushing the accumulated offset down to the next lower element only when the current top element is popped.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the stack hold elements at 0-based indices $0, 1, \dots, \text{top}-1$.
+We maintain two arrays of length $maxSize$:
+- $S[i]$: The base value pushed at index $i$.
+- $\Delta[i]$: A deferred increment tag that applies to index $i$ and all indices below it ($0 \dots i$).
 
-| State Parameter | Role & Purpose | Initial State |
+```
+Lazy Propagation Mechanics:
+Stack Indices:        [ 0 ]       [ 1 ]       [ 2 ]  (top)
+Base Values S:        [ 1 ]       [ 2 ]       [ 3 ]
+Lazy Tags   Δ:        [ 0 ]       [100]       [100]
+                                    ^           |
+                                    |           v
+When popping index 2: Logical value = S[2] + Δ[2] = 3 + 100 = 103
+Propagate Δ[2] down:  Δ[1] += Δ[2]  => Δ[1] becomes 100 + 100 = 200
+Reset Δ[2] = 0.
+```
+
+When popping the element at index $i = \text{top}-1$:
+1. The true logical value is $S[i] + \Delta[i]$.
+2. If $i > 0$, the tag $\Delta[i]$ is passed down to its predecessor: $\Delta[i - 1] \leftarrow \Delta[i - 1] + \Delta[i]$.
+3. The slot is cleared: $\Delta[i] \leftarrow 0$, and the stack size decreases.
+
+We define state tracking parameters:
+
+| State Parameter | Role & Definition | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Maximum Capacity ($maxSize$) | Upper bound on element count | $3$ |
+| Top Pointer ($top$) | Number of active elements currently stored | $0$ |
+| Base Array ($S$) | Stores raw pushed values | Array of size $3$ |
+| Deferred Offset Array ($\Delta$) | Stores lazy increments pending propagation | $[0, 0, 0]$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any element at index $j < top$, its true value equals $S[j] + \sum_{m=j}^{top-1} \Delta[m]$. By cascading $\Delta[i]$ to $\Delta[i-1]$ on each pop, the sum of active deferred tags above index $j$ is maintained in $\mathcal{O}(1)$ time.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why direct incrementing is the bottleneck
+### Steps 1–3: Initial Pushes and First Pop
 
-A normal array stack can push and pop in constant time, but incrementing the bottom $k$ elements directly would touch up to $k$ positions. Repeating that operation many times can be expensive. The exact design uses lazy propagation: it records that a whole bottom prefix should receive an increment, then distributes that increment downward only as elements are popped.
+- **Step 1 (`push(1)`):** Stack size $top = 0 < 3$. Store $S[0] = 1$, $\Delta[0] = 0$. $top \leftarrow 1$.
+- **Step 2 (`push(2)`):** Stack size $top = 1 < 3$. Store $S[1] = 2$, $\Delta[1] = 0$. $top \leftarrow 2$.
+- **Step 3 (`pop()`):**
+  - Active top index $i = top - 1 = 1$.
+  - Result: $S[1] + \Delta[1] = 2 + 0 = 2$.
+  - Propagate: $\Delta[0] \leftarrow \Delta[0] + \Delta[1] = 0 + 0 = 0$.
+  - Reset $\Delta[1] = 0$, $top \leftarrow 1$. Emits $2$.
 
-The object stores three pieces of state:
-
-- `stk` is a fixed array of length `maxSize` containing the base pushed values.
-- `add` is a same-sized array containing deferred prefix increments.
-- `i` is the number of current elements and also the next free index. The current top, when nonempty, is at `i - 1`.
-
-Preallocating both arrays makes capacity checks and indexed access constant time.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"max_size": 2, "operations": [["push", [1]], ["push", [2]], ["pop", []]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: The meaning of a lazy marker
-
-A value `add[p] = v` means that increment $v$ applies to every stack element currently at indices zero through $p$. It is stored only at the top boundary of that affected prefix rather than copied into every position.
-
-For example, with three elements, `increment(2, 100)` adds 100 only to `add[1]`. That marker represents the update to indices zero and one. Index two is above the boundary and must not receive it.
-
-Several operations may accumulate at one boundary. Using `+=` rather than assignment ensures their effects combine.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step | Operation | Active Index | $S$ State | $\Delta$ State | Output |
+|---|---|---|---|---|---|
+| 1 | `push(1)` | $0$ | $[1, \cdot, \cdot]$ | $[0, 0, 0]$ | `null` |
+| 2 | `push(2)` | $1$ | $[1, 2, \cdot]$ | $[0, 0, 0]$ | `null` |
+| 3 | `pop()` | $1$ | $[1, \cdot, \cdot]$ | $[0, 0, 0]$ | $2$ |
 
 ---
 
-### Step 3: Push
+### Steps 4–6: Pushes to Capacity and Overflow Rejection
 
-`push(x)` first checks `i < len(stk)`. If capacity remains, it writes `x` at the next free slot and increases `i`. If the stack is full, it does nothing, exactly as required.
+- **Step 4 (`push(2)`):** Store $S[1] = 2$, $\Delta[1] = 0$. $top \leftarrow 2$.
+- **Step 5 (`push(3)`):** Store $S[2] = 3$, $\Delta[2] = 0$. $top \leftarrow 3$.
+- **Step 6 (`push(4)`):** $top = 3 = maxSize$. Stack is full; push operation is rejected without mutation.
 
-No lazy increment is copied onto a newly pushed element. Earlier increments applied only to elements that were present among the bottom prefix when those operations occurred. A new top element must not inherit them.
+| Step | Operation | Stack Size ($top$) | Action Taken | Resulting $S$ | Resulting $\Delta$ |
+|---|---|---|---|---|---|
+| 4 | `push(2)` | $2$ | Accepted ($2 < 3$) | $[1, 2, \cdot]$ | $[0, 0, 0]$ |
+| 5 | `push(3)` | $3$ | Accepted ($3 \le 3$) | $[1, 2, 3]$ | $[0, 0, 0]$ |
+| 6 | `push(4)` | $3$ | **Rejected** (Capacity reached) | $[1, 2, 3]$ | $[0, 0, 0]$ |
 
-The reused `add` position is safe because every popped slot is reset to zero before it can later be pushed into again.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, 2]` |
+### Steps 7–8: Lazy Prefix Increments
+
+- **Step 7 (`increment(5, 100)`):**
+  - Target prefix bound: $idx = \min(5, top) - 1 = \min(5, 3) - 1 = 2$.
+  - Add $100$ to $\Delta[2]$: $\Delta[2] \leftarrow 0 + 100 = 100$.
+  - Time elapsed: $\mathcal{O}(1)$ scalar addition!
+- **Step 8 (`increment(2, 100)`):**
+  - Target prefix bound: $idx = \min(2, top) - 1 = \min(2, 3) - 1 = 1$.
+  - Add $100$ to $\Delta[1]$: $\Delta[1] \leftarrow 0 + 100 = 100$.
+  - Time elapsed: $\mathcal{O}(1)$ scalar addition!
+
+| Step | Operation | Target Index ($idx$) | Formula Applied | Updated $\Delta$ Array |
+|---|---|---|---|---|
+| 7 | `inc(5, 100)` | $2$ | $\Delta[2] \leftarrow \Delta[2] + 100$ | $[0, 100, 100]$ |
+| 8 | `inc(2, 100)` | $1$ | $\Delta[1] \leftarrow \Delta[1] + 100$ | $[0, 200, 100]$ |
+
+---
+
+### Steps 9–12: Popping with Downward Tag Propagation
+
+- **Step 9 (`pop()`):**
+  - Top index $i = 2$.
+  - Emitted value: $S[2] + \Delta[2] = 3 + 100 = 103$.
+  - Propagate to index $1$: $\Delta[1] \leftarrow \Delta[1] + \Delta[2] = 200 + 100 = 300$.
+  - Clear $\Delta[2] = 0$, $top \leftarrow 2$.
+- **Step 10 (`pop()`):**
+  - Top index $i = 1$.
+  - Emitted value: $S[1] + \Delta[1] = 2 + 300 = 302$ (or base $2 + 200 = 202$ when step 8 added to $100$).
+  - With initial $\Delta[1] = 0$, step 7 added to $\Delta[2]=100$, step 8 added to $\Delta[1]=100$.
+  - At step 9: $\Delta[1] \leftarrow 100 + 100 = 200$. Emitted value was $3 + 100 = 103$.
+  - At step 10: Value is $S[1] + \Delta[1] = 2 + 200 = 202$.
+  - Propagate to index $0$: $\Delta[0] \leftarrow 0 + 200 = 200$.
+  - Clear $\Delta[1] = 0$, $top \leftarrow 1$.
+- **Step 11 (`pop()`):**
+  - Top index $i = 0$.
+  - Emitted value: $S[0] + \Delta[0] = 1 + 200 = 201$.
+  - Since $i = 0$, no lower element exists. Clear $\Delta[0] = 0$, $top \leftarrow 0$.
+- **Step 12 (`pop()`):**
+  - Stack size is $0$. Returns $-1$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"max_size": 2, "operations": [["push", [1]], ["push", [2]], ["pop", []]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, 2]` | Verified |
+| Step | Call | Pre-State ($S$) | Pre-State ($\Delta$) | $top$ | Action / Propagation | Return Value |
+|---|---|---|---|---|---|---|
+| 1 | `push(1)` | $[\cdot, \cdot, \cdot]$ | $[0, 0, 0]$ | $0$ | Set $S[0]=1$ | `null` |
+| 2 | `push(2)` | $[1, \cdot, \cdot]$ | $[0, 0, 0]$ | $1$ | Set $S[1]=2$ | `null` |
+| 3 | `pop()` | $[1, 2, \cdot]$ | $[0, 0, 0]$ | $2$ | Pop index $1$, propagate $0 \to 0$ | $2$ |
+| 4 | `push(2)` | $[1, \cdot, \cdot]$ | $[0, 0, 0]$ | $1$ | Set $S[1]=2$ | `null` |
+| 5 | `push(3)` | $[1, 2, \cdot]$ | $[0, 0, 0]$ | $2$ | Set $S[2]=3$ | `null` |
+| 6 | `push(4)` | $[1, 2, 3]$ | $[0, 0, 0]$ | $3$ | Capacity full ($3 \ge 3$), ignored | `null` |
+| 7 | `inc(5, 100)` | $[1, 2, 3]$ | $[0, 0, 0]$ | $3$ | $\min(5, 3)-1=2 \implies \Delta[2] += 100$ | `null` |
+| 8 | `inc(2, 100)` | $[1, 2, 3]$ | $[0, 0, 100]$ | $3$ | $\min(2, 3)-1=1 \implies \Delta[1] += 100$ | `null` |
+| 9 | `pop()` | $[1, 2, 3]$ | $[0, 100, 100]$ | $3$ | Return $3+100=103$, $\Delta[1] \mathrel{+}= 100$ | $103$ |
+| 10 | `pop()` | $[1, 2, \cdot]$ | $[0, 200, 0]$ | $2$ | Return $2+200=202$, $\Delta[0] \mathrel{+}= 200$ | $202$ |
+| 11 | `pop()` | $[1, \cdot, \cdot]$ | $[200, 0, 0]$ | $1$ | Return $1+200=201$, clear $\Delta[0]$ | $201$ |
+| 12 | `pop()` | $[\cdot, \cdot, \cdot]$ | $[0, 0, 0]$ | $0$ | Stack empty ($top = 0$) | $-1$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Complexity Derivation
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Correctness of Lazy Propagation
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+When `increment(k, val)` is invoked, all elements from index $0$ to $m = \min(k, top) - 1$ must be increased by $val$.
+- In the lazy scheme, only $\Delta[m]$ is updated: $\Delta[m] \leftarrow \Delta[m] + val$.
+- Any element popped at index $m$ immediately receives $\Delta[m]$.
+- Before index $m$ is removed, $\Delta[m]$ is added into $\Delta[m-1]$. By mathematical induction, this guarantees that when index $m-1$ is subsequently popped, it receives all increments previously applied to $m-1$ plus all increments applied to higher indices that encompassed $m-1$.
+- Thus, every element is emitted with its exact accumulated sum of increments.
 
----
+### Asymptotic Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Eager array updates:** Add `val` directly to the first `min(k, size)` elements. It is easier to visualize but makes `increment` cost $O(k)$.
-- **Dynamic Python list:** Append and pop base values while retaining a parallel lazy array. It avoids unused base slots but still needs capacity tracking and the same marker invariant.
-- **Segment tree with lazy propagation:** Supports richer range updates and queries, but is unnecessary complexity when every update always begins at the bottom.
-- **Full stack:** `push` is ignored and changes neither stored values nor lazy markers.
-- **Empty stack pop:** The method returns $-1$ before changing `i` or accessing arrays.
-- **Empty stack increment:** The computed boundary is $-1$, so the guard makes it a no-op.
-- **`k` exceeds current size:** The marker is placed at the current top, correctly affecting every present element.
-- **`k = 1`:** Only `add[0]` changes, so only the bottom element eventually receives the increment.
-- **Several overlapping increments:** Markers accumulate at their boundaries and combine during downward propagation.
-- **Push after an increment:** The new element lies above the old affected prefix and correctly receives none of that earlier increment.
-- **Pop then reuse a slot:** Clearing `add` at the removed index prevents a later pushed value from inheriting stale state.
-- **Nonnegative `val`:** The stated constraint uses nonnegative increments, but the lazy arithmetic would also work for negative values.
-- **Index interpretation:** `i` is a size and next-free index, not the top index; decrementing before a successful pop is therefore essential.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Time Complexity:**
+  - `push(x)`: $\mathcal{O}(1)$ boundary check and array assignment.
+  - `pop()`: $\mathcal{O}(1)$ arithmetic addition, downward propagation, and decrement.
+  - `increment(k, val)`: $\mathcal{O}(1)$ scalar addition to index $\min(k, top) - 1$.
+  - Every individual operation executes in strict worst-case $\mathcal{O}(1)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(maxSize)$. Two arrays of size $maxSize$ are allocated upon initialization.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Traps & Edge Cases
 
-- **Time Complexity:** $O(1)$. The constructor allocates two arrays of length `maxSize`, taking $O(\texttt{maxSize})$ time and space. Each later `push` performs a comparison, assignment, and counter update. `increment` computes one index and changes one marker. `pop` reads, propagates, clears, and adjusts a constant number of slots. Thus every stack operation is $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(	exttt{maxSize})$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Increment on Empty Stack:** If `increment(k, val)` is called when $top = 0$, $\min(k, top) - 1 = -1 < 0$. The method must safely execute a no-op without negative indexing errors.
+- **Excessive $k$:** If $k > top$, the increment must cover all available elements up to $top - 1$, rather than allocating or referencing out-of-bounds indices.
+- **Consecutive Pushes after Pops:** When popping from index $i$, $\Delta[i]$ must be reset to $0$. Otherwise, a subsequent push occupying index $i$ would erroneously inherit old increments.
+- **Overcapacity Pushes:** Elements pushed when $top = maxSize$ must be ignored cleanly without altering current elements or tags.
+
+---
+
+## 7. Accessible Mermaid Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Custom Stack Lazy Increment Flowchart
+    accDescr: Decision flow for push, pop with downward propagation, and O(1) lazy increment.
+
+    Op{"Operation Type"}
+    
+    Op -- "push(x)" --> CheckCap{"top < maxSize ?"}
+    CheckCap -- "Yes" --> DoPush["S[top] = x, Δ[top] = 0<br>top += 1"]
+    CheckCap -- "No" --> PushIgnore["Ignore push"]
+    
+    Op -- "increment(k, val)" --> CheckEmpty{"top > 0 ?"}
+    CheckEmpty -- "Yes" --> ApplyLazy["idx = min(k, top) - 1<br>Δ[idx] += val"]
+    CheckEmpty -- "No" --> IncIgnore["No-op"]
+    
+    Op -- "pop()" --> CheckPopEmpty{"top == 0 ?"}
+    CheckPopEmpty -- "Yes" --> RetNeg1["Return -1"]
+    CheckPopEmpty -- "No" --> CalcVal["idx = top - 1<br>res = S[idx] + Δ[idx]"]
+    CalcVal --> Propagate{"idx > 0 ?"}
+    Propagate -- "Yes" --> DoProp["Δ[idx - 1] += Δ[idx]"]
+    Propagate -- "No" --> ClearTag["Δ[idx] = 0"]
+    DoProp --> ClearTag
+    ClearTag --> DecTop["top -= 1<br>Return res"]
+```

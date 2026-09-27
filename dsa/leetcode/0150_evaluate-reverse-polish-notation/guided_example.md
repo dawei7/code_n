@@ -1,139 +1,157 @@
 # Guided Example: Evaluate Reverse Polish Notation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step operand stack evaluation and toward-zero truncated integer division on representative Reverse Polish Notation (RPN) expressions:
 
-- **Input:** `{"tokens": ["2", "1", "+", "3", "*"]}`
-- **Required output:** `9`
+- **Input:** $\text{tokens} = [\text{"2"}, \text{"1"}, \text{"+"}, \text{"3"}, \text{"*"}] \implies ((2 + 1) \times 3) = 9$
+- **Compound Division & Negative Truncation Instance:** $\text{tokens} = [\text{"4"}, \text{"13"}, \text{"5"}, \text{"/"}, \text{"+"}] \implies 4 + \lfloor 13 / 5 \rfloor = 4 + 2 = 6$
+- **Negative Floor Trap Instance:** $\text{tokens} = [\text{"6"}, \text{"-132"}, \text{"/"}] \implies 0$ ($\text{trunc}(6 / -132) = 0$, distinct from Python floor `//` which yields $-1$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates LIFO stack evaluation for postfix arithmetic, enforces strict left-versus-right operand ordering ($a - b$ and $a / b$ where right operand is popped first), explains truncation toward zero for negative quotients, and executes in linear $O(N)$ time and $O(N)$ stack space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of strings `tokens` that represents an arithmetic expression in a <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation" target="_blank">Reverse Polish Notation</a>.
+Given an array of strings `tokens` representing an arithmetic expression in **Reverse Polish Notation** (postfix notation):
+$$
+\text{tokens} = [\text{"2"}, \text{"1"}, \text{"+"}, \text{"3"}, \text{"*"}]
+$$
+Evaluate the expression and return the resulting integer.
 
-The objective is to compute `9` from `{"tokens": ["2", "1", "+", "3", "*"]}` while avoiding redundant calculations and unnecessary overhead.
+In Reverse Polish Notation:
+- Operands precede their operators: no parentheses or operator precedence rules are needed.
+- Subexpression `["2", "1", "+"]` evaluates immediately to $2 + 1 = 3$.
+- Next subexpression `[3, "3", "*"]` evaluates to $3 \times 3 = 9$.
+Output: $9$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A recursive syntax-tree parser introduces extra overhead.
+A single LIFO operand stack provides the optimal execution model:
+1. When encountering a number token, convert it to an integer and push it onto the stack.
+2. When encountering an operator, pop the **right operand** $b$, pop the **left operand** $a$, apply the operation $a \star b$, and push the result back onto the stack.
+3. Division between two integers must strictly **truncate toward zero** (e.g. $6 / (-132) = 0$, not $-1$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The LIFO Postfix Evaluation Protocol
+Initialize an empty stack `stack = []`.
+Define valid operators: $\{ \text{'+'}, \text{'-'}, \text{'*'}, \text{'/'} \}$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each `token` in `tokens`:
+1. **If `token` is an operator:**
+   Pop the right operand first:
+   $$
+   b = \text{stack.pop()}
+   $$
+   Pop the left operand second:
+   $$
+   a = \text{stack.pop()}
+   $$
+   Apply operation $a \star b$:
+   - Addition: $a + b$
+   - Subtraction: $a - b$ *(order-sensitive!)*
+   - Multiplication: $a \times b$
+   - Division: $\text{int}(a / b)$ *(truncation toward zero)*
+   Push result back:
+   $$
+   \text{stack.append}(\text{result})
+   $$
+2. **If `token` is an operand:**
+   Parse signed integer and push:
+   $$
+   \text{stack.append}(\text{int}(\text{token}))
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+At expression end, `stack` contains exactly one value: $\text{stack}[0]$.
+
+> **Invariant.** After processing any token, `stack` stores the exact evaluated scalar values of all completed, unconsumed subexpressions in left-to-right order.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use a stack for unfinished expression values
+We trace $\text{tokens} = [\text{"4"}, \text{"13"}, \text{"5"}, \text{"/"}, \text{"+"}]$:
 
-In Reverse Polish Notation, an operator appears after its two operands. Scanning left to right therefore gives a simple rule:
-
-- a number becomes a value available to a later operator;
-- an operator consumes the two most recent available values;
-- the computed result becomes one new available value.
-
-The list `s` is used as that stack. Parentheses and precedence rules are unnecessary because token order already says exactly when each operation is ready.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tokens": ["2", "1", "+", "3", "*"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Token `"4"`
+- Operand detected.
+- Push: `stack = [4]`.
 
 ---
 
-### Step 2: The stack’s meaning after every token
-
-After processing any prefix of `tokens`, `s` contains the values of all complete subexpressions in that prefix that have not yet been consumed by a later operator. Their order matches their left-to-right order in the expression.
-
-For a number token, `int(token)` converts the complete signed string, such as `"-11"`, and appends it. A minus sign inside a numeric token is not confused with the operator token `"-"` because dictionary membership checks the entire string.
-
-For an operator token, validity of the RPN input guarantees at least two available values. The operation consumes those two values and pushes their combined result, preserving the invariant.
-
-At the end, a valid complete expression leaves exactly one value. The source returns `s[0]`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Token `"13"`
+- Operand detected.
+- Push: `stack = [4, 13]`.
 
 ---
 
-### Step 3: Understand the unusual two-pop expression
+### Step 3: Token `"5"`
+- Operand detected.
+- Push: `stack = [4, 13, 5]`.
 
-Suppose the top of the stack ends with left operand `x` followed by right operand `y`:
+---
 
-`[..., x, y]`
+### Step 4: Operator `"/"`
+- Pop right operand: $b = 5$.
+- Pop left operand: $a = 13$.
+- Compute division truncated toward zero:
+  $$
+  \text{int}\left(\frac{13}{5}\right) = \text{int}(2.6) = \mathbf{2}
+  $$
+- Push result: `stack = [4, 2]`.
 
-Python evaluates function arguments from left to right. First, `s.pop(-2)` removes `x`, the second-last item. The stack becomes `[..., y]`. Then `s.pop(-1)` removes `y`.
+---
 
-The operator is therefore called as `operator(x, y)`, which is the required order.
+### Step 5: Operator `"+"`
+- Pop right operand: $b = 2$.
+- Pop left operand: $a = 4$.
+- Compute addition:
+  $$
+  a + b = 4 + 2 = \mathbf{6}
+  $$
+- Push result: `stack = [6]`.
 
-This is especially important for subtraction and division:
-
-$$
-x-y\ne y-x
-$$
-
-and generally:
-
-$$
-x/y\ne y/x.
-$$
-
-A more conventional implementation would pop `y` first and then `x`. This source achieves the same operand ordering through indexed pops.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `9` |
+All tokens consumed.
+Return top of stack: $\mathbf{6}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tokens": ["2", "1", "+", "3", "*"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `9` | Verified |
+```text
+Tokens:      "4"     "13"      "5"         "/"          "+"
+Stack:       [4]   [4, 13]  [4, 13, 5]   [4, 2]         [6]
+                                      (13 / 5 = 2)   (4 + 2 = 6)
+Final Result: 6
+```
+
+| Token Index | Token | Token Type | Operands Popped ($a, b$) | Operation Evaluated | Stack After Operation |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `"4"` | Operand | - | Parse integer $4$ | `[4]` |
+| 1 | `"13"` | Operand | - | Parse integer $13$ | `[4, 13]` |
+| 2 | `"5"` | Operand | - | Parse integer $5$ | `[4, 13, 5]` |
+| **3** | **`"/"`** | **Operator** | **$a=13, \, b=5$** | **$\text{int}(13 / 5) = 2$** | **`[4, 2]`** |
+| **4** | **`"+"`** | **Operator** | **$a=4, \, b=2$** | **$4 + 2 = 6$** | **`[6]` (Result)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** In postfix notation, every operator immediately follows its two operands. The LIFO property of the stack ensures that the two operands available on top of the stack correspond precisely to the left and right inputs of that operator. By replacing them with their evaluated scalar value, the remaining postfix expression is structurally reduced without changing the value of the overall arithmetic expression.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the input expression is guaranteed to be valid, every operator encounters at least two operands on the stack, and exactly one single scalar remains upon exhausting all tokens.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit conditionals:** Pop right then left and use `if` branches for each operator. It is longer but makes operand order highly visible.
-- **Integer-only truncating division:** Compute `abs(x) // abs(y)` and apply the sign. It avoids floating-point conversion and generalizes beyond 32-bit values.
-- **Reduce tokens in place:** Replace each operator and its preceding operands inside the input list. Repeated middle deletions make it $O(n^2)$ time.
-- **Recursive parser from the end:** Read tokens backward, recursively evaluate the left and right operands in the correct reversed order. It uses $O(n)$ call-stack space.
-- **One numeral:** It is pushed and returned with no operation.
-- **Negative numeral token:** The full token is not an operator key and `int` parses its sign.
-- **Subtraction/division order:** Swapping the operands yields wrong answers; the indexed pops intentionally preserve `x op y`.
-- **Division by zero:** The Reference guarantees it never occurs, so no check is needed.
-- **Malformed RPN:** Too few operands would raise on `pop`, and surplus operands would violate the final-one-value assumption; the source trusts validity.
-- **Runtime dependency:** The source uses `List` without importing it. Standalone Python needs `from typing import List`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Operand Order Asymmetry ($a - b$ vs $b - a$):** Because the stack pops in reverse order, the first popped value is the **right operand** ($b$) and the second popped value is the **left operand** ($a$). Calculating $b - a$ or $b / a$ produces completely incorrect signs and fractions!
+- **Python Floor Division Trap (`//` vs `int(a / b)`):** In Python, `-3 // 2 = -2` (floor toward negative infinity). But the problem requires **truncation toward zero**: $\text{trunc}(-1.5) = -1$! Using `int(a / b)` correctly truncates toward zero for both positive and negative results.
+- **Negative Integer Tokens:** A token like `"-11"` is a negative number, not the subtraction operator `"-"`! Checking `if token in {"+", "-", "*", "/"}:` prevents misinterpreting negative numerals as operators.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of tokens.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of tokens. Each token is scanned once, performing an $O(1)$ push, pop, or basic arithmetic operation.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the operand stack, which holds at most $\lceil N/2 \rceil$ integers simultaneously.

@@ -1,128 +1,172 @@
 # Guided Example: Largest 3-Same-Digit Number in String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"num": "6777133339"}`
-- **Required output:** `"777"`
+A substring of an integer string $num$ is designated as a good integer if it satisfies two strict criteria:
+1. It has length exactly equal to $3$.
+2. It consists of only one unique digit repeated three consecutive times.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Given the string $num$, the task is to identify the maximum good integer present as a contiguous substring. If multiple valid triples exist, the one representing the largest numerical value must be returned. If no such substring exists within $num$, the empty string `""` is returned.
 
----
+Consider the representative instance:
+$$num = \text{"6777133339"}$$
 
-## 1. Instance & Teaching Goal
+We analyze the string of length $n = 10$. Contiguous windows of length $3$ span from index $0$ to index $7$:
+- Window $0 \dots 2$: $\text{"677"}$ (heterogeneous, invalid)
+- Window $1 \dots 3$: $\text{"777"}$ (homogeneous digit $7$, valid candidate)
+- Window $2 \dots 4$: $\text{"771"}$ (heterogeneous, invalid)
+- Window $3 \dots 5$: $\text{"713"}$ (heterogeneous, invalid)
+- Window $4 \dots 6$: $\text{"133"}$ (heterogeneous, invalid)
+- Window $5 \dots 7$: $\text{"333"}$ (homogeneous digit $3$, valid candidate)
+- Window $6 \dots 8$: $\text{"333"}$ (homogeneous digit $3$, valid candidate)
+- Window $7 \dots 9$: $\text{"339"}$ (heterogeneous, invalid)
 
-You are given a string `num` representing a large integer. An integer is **good** if it meets the following conditions:
+The valid candidates discovered are $\text{"777"}$ and $\text{"333"}$. Comparing their values, $\text{"777"} > \text{"333"}$. Hence, the optimal return string is $\text{"777"}$.
 
-The objective is to compute `"777"` from `{"num": "6777133339"}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart TD
+    accTitle: Homogeneous Triple Search
+    accDescr: Flowchart illustrating dual search paradigms for identifying the maximum 3-digit uniform sequence.
+    A["Input String num"] --> B{"Choose Strategy"}
+    B -->|"Approach 1: Sliding Window"| C["Scan all triples num[i..i+2]"]
+    C --> D["Filter where num[i]==num[i+1]==num[i+2]"]
+    D --> E["Track maximum digit seen"]
+    B -->|"Approach 2: Descending Probe"| F["Probe '999', '888', ..., '000'"]
+    F --> G["First substring found is globally maximal"]
+    E --> H["Return 3-digit string or empty"]
+    G --> H
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Because the alphabet of decimal digits is strictly bounded to $\Sigma = \{'0', '1', \dots, '9'\}$, there are only ten possible valid uniform triples:
+$$\mathcal{T} = \{\text{"999"}, \text{"888"}, \text{"777"}, \text{"666"}, \text{"555"}, \text{"444"}, \text{"333"}, \text{"222"}, \text{"111"}, \text{"000"}\}$$
 
-## 2. Conceptual Foundation & Invariants
+### Equivalence of Numeric and Lexicographical Order
 
-We maintain the core conceptual parameters and state variables:
+For any two equal-length uniform strings $u = d_1 d_1 d_1$ and $v = d_2 d_2 d_2$, where $d_1, d_2 \in [0, 9]$:
+$$\text{val}(u) > \text{val}(v) \iff d_1 > d_2 \iff u \succ_{\text{lex}} v$$
 
-| State Parameter | Role & Purpose | Initial State |
+This equivalence enables two distinct algorithmic formulations:
+
+1. **Greedy Descending Probe:**
+   We iterate through candidate digits $d$ in descending order from $9$ down to $0$. The first candidate pattern $d d d$ that appears as a contiguous substring inside $num$ is mathematically guaranteed to be the largest possible good integer. If the loop completes without any match, no good integer exists.
+   - Cost: At most $10$ substring checks over a string of length $n$.
+
+2. **Single-Pass Linear Window Scan:**
+   We inspect each index $i \in [0, n-3]$. Whenever $num[i] = num[i+1] = num[i+2]$, we update a maximum tracked character:
+   $$d_{\max} = \max(d_{\max}, num[i])$$
+   After examining all $n-2$ windows, we format $d_{\max}$ as a three-character string if at least one candidate was recorded.
+
+Both strategies achieve optimal linear time complexity $O(n)$ with $O(1)$ auxiliary memory.
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+Let us trace the single-pass linear sliding window on $num = \text{"6777133339"}$.
+
+| Variable | Architectural Purpose |
+|---|---|
+| $i$ | Starting offset of the active length-$3$ evaluation window |
+| $num[i \dots i+2]$ | Current substring of length $3$ |
+| $\text{IsGood}$ | Boolean flag verifying whether all three characters match |
+| $d_{\max}$ | Highest character encountered in a verified good triple, initially null |
+
+- **Window 0 ($i = 0$): $\text{"677"}$**
+  - Characters: $num[0] = \text{'6'}, num[1] = \text{'7'}, num[2] = \text{'7'}$.
+  - Equality check: $\text{'6'} \ne \text{'7'}$. Invalid triple.
+  - State remains: $d_{\max} = \text{null}$.
+
+- **Window 1 ($i = 1$): $\text{"777"}$**
+  - Characters: $num[1] = \text{'7'}, num[2] = \text{'7'}, num[3] = \text{'7'}$.
+  - Equality check: $\text{'7'} = \text{'7'} = \text{'7'}$. Valid triple!
+  - Update: $d_{\max} = \max(\text{null}, \text{'7'}) = \text{'7'}$.
+
+- **Window 2 ($i = 2$): $\text{"771"}$**
+  - Characters: $num[2] = \text{'7'}, num[3] = \text{'7'}, num[4] = \text{'1'}$.
+  - Equality check: $\text{'7'} \ne \text{'1'}$. Invalid triple.
+
+- **Window 3 ($i = 3$): $\text{"713"}$**
+  - Equality check fails ($\text{'7'} \ne \text{'1'}$).
+
+- **Window 4 ($i = 4$): $\text{"133"}$**
+  - Equality check fails ($\text{'1'} \ne \text{'3'}$).
+
+- **Window 5 ($i = 5$): $\text{"333"}$**
+  - Characters: $num[5] = \text{'3'}, num[6] = \text{'3'}, num[7] = \text{'3'}$.
+  - Equality check holds. Candidate digit is $\text{'3'}$.
+  - Comparison: $\text{'3'} < d_{\max} (\text{'7'})$, so $d_{\max}$ remains $\text{'7'}$.
+
+- **Window 6 ($i = 6$): $\text{"333"}$**
+  - Characters: $num[6] = \text{'3'}, num[7] = \text{'3'}, num[8] = \text{'3'}$.
+  - Equality check holds. Digit $\text{'3'}$ does not exceed $d_{\max} = \text{'7'}$.
+
+- **Window 7 ($i = 7$): $\text{"339"}$**
+  - Equality check fails ($\text{'3'} \ne \text{'9'}$).
+
+Scanning finishes at $i = 7 = n - 3$. The highest recorded digit is $\text{'7'}$. Repeating it three times produces the solution string $\text{"777"}$.
+
+## 4. Comprehensive State Trace
+
+The state of both detection strategies across all candidate windows is summarized below.
+
+| Window Index $i$ | Substring Content | Uniformity Status | Candidate Digit | Active $d_{\max}$ | Descending Probe Priority |
+|---|---|---|---|---|---|
+| $0$ | $\text{"677"}$ | Disqualified | None | $\text{null}$ | - |
+| $1$ | $\text{"777"}$ | Qualified | $\text{'7'}$ | $\text{'7'}$ | Matched on probe $d = 7$ |
+| $2$ | $\text{"771"}$ | Disqualified | None | $\text{'7'}$ | - |
+| $3$ | $\text{"713"}$ | Disqualified | None | $\text{'7'}$ | - |
+| $4$ | $\text{"133"}$ | Disqualified | None | $\text{'7'}$ | - |
+| $5$ | $\text{"333"}$ | Qualified | $\text{'3'}$ | $\text{'7'}$ | Suboptimal ($3 < 7$) |
+| $6$ | $\text{"333"}$ | Qualified | $\text{'3'}$ | $\text{'7'}$ | Suboptimal ($3 < 7$) |
+| $7$ | $\text{"339"}$ | Disqualified | None | $\text{'7'}$ | - |
+
+Under the descending probe approach:
+- Probe $\text{"999"}$: Not in $num$.
+- Probe $\text{"888"}$: Not in $num$.
+- Probe $\text{"777"}$: Found at index $1$! Immediate return $\text{"777"}$.
+
+Both methods arrive at the identical canonical outcome.
+
+## 5. Algorithmic Correctness & Soundness
+
+The correctness of the algorithm is substantiated by complete space enumeration:
+
+1. **Finite Canonical Domain:**
+   Because a good integer must have length $3$ and contain a single repeated digit, the candidate universe is strictly $|\mathcal{T}| = 10$.
+2. **Total Ordering:**
+   The set $\mathcal{T}$ has a strict total order:
+   $$\text{"000"} < \text{"111"} < \text{"222"} < \dots < \text{"888"} < \text{"999"}$$
+   In the descending probe approach, candidates are tested in monotonically decreasing order of value. Therefore, the first candidate $t \in \mathcal{T}$ that occurs as a substring of $num$ is guaranteed to satisfy:
+   $$t \ge t' \quad \forall t' \in \mathcal{T} \text{ such that } t' \text{ is a substring of } num$$
+3. **Exhaustive Window Coverage:**
+   In the window scan approach, every contiguous substring of length $3$ begins at some index $i \in [0, n-3]$. By evaluating all indices without skipping, no valid candidate is omitted.
+4. **Leading Zero Preservation:**
+   If the only valid triple is $\text{"000"}$ (for example in $num = \text{"2300019"}$), treating the output as a literal three-character string preserves all three zeros, satisfying the problem specification rather than collapsing to numerical $0$.
+
+## 6. Edge Cases & Anti-Patterns
+
+1. **All Zero Triple ($\text{"000"}$):**
+   - Inputs like $\text{"2300019"}$ contain $\text{"000"}$.
+   - Converting strings to numbers prematurely could accidentally treat $\text{"000"}$ as an empty or falsy value. Storing characters directly avoids stripping leading zeros.
+2. **Short String Length ($n < 3$):**
+   - If $num$ has length $1$ or $2$, no window of length $3$ can be formed.
+   - The loop range $[0, n-3]$ is empty, and the algorithm immediately returns `""`.
+3. **Long Consecutive Runs ($\text{"4444"}$):**
+   - A sequence of four identical digits contains two overlapping valid triples: $num[0 \dots 2] = \text{"444"}$ and $num[1 \dots 3] = \text{"444"}$.
+   - Both evaluate to the same digit $\text{'4'}$, correctly resolving to $\text{"444"}$ without dual-counting side effects.
+4. **No Matching Triples ($num = \text{"42352338"}$):**
+   - Even though $\text{'3'}$ appears twice consecutively ($\text{"33"}$), it fails the strict length-$3$ requirement.
+   - The output remains `""`.
+5. **Anti-Pattern: Regular Expression Backtracking:**
+   - Writing complex backtracking regexes over long inputs incurs substantial parsing overhead. Direct substring searching or adjacent character comparison is vastly faster and allocation-free.
+
+## 7. Complexity Analysis
+
+The operational demands are parameterized by the length $n$ of the string $num$.
+
+| Metric | Bound | Analysis |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: There are only ten possible good strings
-
-A good integer must contain exactly three copies of one decimal digit. Therefore, regardless of how long `num` is, every possible answer belongs to this fixed list:
-
-`"999"`, `"888"`, `"777"`, ..., `"111"`, `"000"`.
-
-The solution exploits that tiny answer space directly. It does not need to parse the entire input as an integer, construct every length-three window, or retain every match. It tests these ten candidates from largest to smallest and returns the first one present as a substring.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "6777133339"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Generate candidates in descending order
-
-The range `range(9, -1, -1)` begins at nine, stops before minus one, and moves by minus one. Its values are exactly nine through zero in descending order.
-
-For a current digit `i`, `str(i)` converts it to its one-character decimal representation. Multiplying that string by three forms the corresponding good candidate. The assignment expression
-
-`s := str(i) * 3`
-
-both constructs the candidate and stores it in `s` for the immediate return.
-
-The containment test `s in num` asks whether that exact three-character string occurs contiguously anywhere in `num`. Contiguity matters because the definition requires a substring, not merely three appearances at unrelated indices.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the first match is the maximum
-
-Every candidate contains the same number of characters. Among equal-length decimal strings, the one with the greater repeated digit is the greater integer. For example, every occurrence of `"777"` is greater than `"666"`, and `"000"` is smaller than every other good string.
-
-The loop examines candidates strictly in this numeric order. If it returns `s` at digit `i`, every larger repeated-digit candidate has already been tested and found absent. The returned string is present and hence valid, while no larger valid answer exists. That makes it the maximum good integer.
-
-This descending-search argument means the method may stop immediately. Once `"777"` is found, the presence of `"333"` or any smaller candidate cannot change the answer.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"777"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "6777133339"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"777"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Single pass over length-three windows:** Check `num[i] == num[i + 1] == num[i + 2]` and retain the largest matching character. This also takes `O(n)` time and `O(1)` space, but it is not the exact descending-candidate implementation.
-- **Run-length counting:** Track the current digit and consecutive-run length; whenever a run reaches three, update the best digit. This is useful if the required repetition length varies.
-- **Convert windows to integers:** Numeric conversion is unnecessary and mishandles the required representation of `"000"` unless special care is added.
-- **Sort all matching windows:** Collecting and sorting matches uses extra space and time even though only ten different answers are possible.
-- **Exactly three input digits:** The sole length-three window is found if all characters match; otherwise, the result is empty.
-- **Run longer than three:** A run such as `"7777"` contains overlapping `"777"` substrings, and the containment test correctly recognizes the candidate once.
-- **Several occurrences of one candidate:** Presence is all that matters; repeated matches do not change the maximum.
-- **Several different good candidates:** Descending iteration returns the largest digit's candidate regardless of where it occurs.
-- **Only zeros form a match:** `"000"` is returned as a three-character string, preserving its leading zeros.
-- **No good substring:** All ten containment checks fail and the method returns `""`.
-- **Digits are characters:** Character preservation avoids arithmetic overflow even though `num` may represent a large integer.
-- **Substring rather than subsequence:** `s in num` requires adjacent characters, so separated copies of a digit are never accepted.
-- **Loop bounds:** Stopping before minus one is what includes zero while excluding invalid negative candidates.
-- **Early return:** It is valid only because candidates are checked from nine downward; ascending order would return the minimum instead.
-- **Input preservation:** String searches are read-only and create only constant-size candidate strings.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let `n` be the length of `num`. Each containment operation searches for a pattern of fixed length three and takes `O(n)` time in the worst case. There are exactly ten candidates, so the total is `O(10n) = O(n)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Time Complexity (Linear Scan) | $O(n)$ | Inspects $n - 2$ windows of length $3$, performing $2$ character equality checks per window. Total operations: $2n - 4 \in O(n)$. |
+| Time Complexity (Descending Probe) | $O(|\Sigma| \cdot n)$ | At most $10$ substring searches across a string of length $n$. Since $|\Sigma| = 10$ is a fixed constant, runtime is strictly $O(n)$. |
+| Space Complexity | $O(1)$ | Only a few scalar variables or fixed three-character constant probe strings are used. No dynamic allocations scale with $n$. |
+| Character Comparisons | $\le 2n$ | In the sliding window pass, at most two equality checks are made per index offset. |

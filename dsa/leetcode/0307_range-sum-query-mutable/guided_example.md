@@ -1,154 +1,224 @@
 # Guided Example: Range Sum Query - Mutable
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Binary Indexed Tree (Fenwick tree) construction, least-significant bit isolation (`lowbit(x) = x & -x`), point update delta propagation, and $O(\log N)$ prefix sum queries on representative mutable array instances:
 
-- **Input:** `{"arr": [4], "n": 1, "queries": [["sum", 0, 0], ["update", 0, 7], ["sum", 0, 0]], "q": 3}`
-- **Required output:** `[4, 7]`
+- **Input:**
+  $$
+  \text{nums} = [1, 3, 5]
+  $$
+  $$
+  \text{operations} = [\text{sumRange}(0, 2), \; \text{update}(1, 2), \; \text{sumRange}(0, 2)]
+  $$
+- **Required outputs:**
+  - Initial $\text{sumRange}(0, 2) = 1 + 3 + 5 = 9$
+  - After $\text{update}(1, 2)$, array becomes $[1, 2, 5]$
+  - Subsequent $\text{sumRange}(0, 2) = 1 + 2 + 5 = 8$
+- **Single Element Point Query:** $\text{sumRange}(i, i) = \text{query}(i + 1) - \text{query}(i) = \text{nums}[i]$
+- **Arbitrary Point Update:** $\text{update}(i, v)$ computes $\Delta = v - \text{current}$ and applies $\Delta$ to all ancestor tree nodes
+- **All-Zero Initial Array:** Tree initializes with all zeros; updates accumulate point values identically
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Fenwick tree binary interval decomposition, mathematically proves why `x & -x` identifies node range coverage, explains why point updates and range queries each execute in strictly $O(\log N)$ time, and achieves $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, handle multiple queries of the following types:
+Given a mutable integer array $\text{nums} = [1, 3, 5]$ ($N = 3$):
+We need to support two operations dynamically:
+1. `update(index, val)`: Set $\text{nums}[index] = val$.
+2. `sumRange(left, right)`: Compute $\sum_{i=left}^{right} \text{nums}[i]$.
 
-The objective is to compute `[4, 7]` from `{"arr": [4], "n": 1, "queries": [["sum", 0, 0], ["update", 0, 7], ["sum", 0, 0]], "q": 3}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Initial Array: [1, 3, 5]
+Query (0, 2):  1 + 3 + 5 = 9
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Update(1, 2):  nums[1] modified from 3 to 2 -> nums = [1, 2, 5]
+Query (0, 2):  1 + 2 + 5 = 8
+```
+
+### The Mutable Range Sum Dilemma
+- An unaugmented array gives $O(1)$ updates, but queries take $O(N)$ linear time.
+- A static prefix sum array gives $O(1)$ queries, but updating a single element takes $O(N)$ time to rebuild the prefix table.
+- A **Binary Indexed Tree (Fenwick Tree)** balances both operations:
+  - Both `update` and `sumRange` execute in **$O(\log N)$ time** using bitwise power-of-two interval decomposition!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Lowbit and Interval Coverage
+For any 1-based index $x \ge 1$:
+$$
+\operatorname{lowbit}(x) = x \ \& \ (-x)
+$$
+`lowbit(x)` extracts the value of the lowest set bit in $x$ (e.g. $\operatorname{lowbit}(6) = 6 \ \& \ (-6) = 0\text{b}110 \ \& \ 0\text{b}010 = 2$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+In a Fenwick tree array $c$ of size $N + 1$:
+$c[x]$ stores the sum of elements in the 1-based half-open interval:
+$$
+(x - \operatorname{lowbit}(x), \; x] = [x - \operatorname{lowbit}(x) + 1, \; x]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```text
+x = 1 (001): lowbit = 1 -> covers [1, 1] (nums[0])
+x = 2 (010): lowbit = 2 -> covers [1, 2] (nums[0] + nums[1])
+x = 3 (011): lowbit = 1 -> covers [3, 3] (nums[2])
+x = 4 (100): lowbit = 4 -> covers [1, 4] (nums[0] + nums[1] + nums[2] + nums[3])
+```
+
+### Operations Protocol:
+
+#### 1. Prefix Sum `query(x)`: $\sum_{i=1}^x \text{nums}[i-1]$
+Accumulate $c[x]$ and peel off trailing bits:
+- While $x > 0$:
+  $$
+  s \leftarrow s + c[x]
+  $$
+  $$
+  x \leftarrow x - (x \ \& \ -x)
+  $$
+- Returns the prefix sum of the first $x$ elements.
+
+#### 2. Point Delta `update(x, delta)`:
+Propagate $\Delta$ upward to all containing ancestor blocks:
+- While $x \le N$:
+  $$
+  c[x] \leftarrow c[x] + \Delta
+  $$
+  $$
+  x \leftarrow x + (x \ \& \ -x)
+  $$
+
+#### 3. Range Sum `sumRange(left, right)`:
+$$
+\text{sumRange}(left, right) = \text{query}(right + 1) - \text{query}(left)
+$$
+
+#### 4. Value Replacement `update(index, val)`:
+Find current value at index: $\text{prev} = \text{sumRange}(index, index)$.
+Compute difference: $\Delta = val - \text{prev}$.
+Apply: $\text{tree.update}(index + 1, \Delta)$.
+
+> **Invariant.** For every $x$, $c[x]$ stores the exact sum of a power-of-two slice. Any prefix $[1, x]$ is partitioned into at most $\lfloor \log_2 x \rfloor + 1$ disjoint power-of-two intervals.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: What a Fenwick entry stores
-
-For a positive position $x$, define
-
-$$
-\operatorname{lowbit}(x)=x\mathbin{\&}(-x).
-$$
-
-The expression isolates the least significant 1 bit of $x$. In a Fenwick tree, `c[x]` stores the sum of a block ending at $x$ whose length is `lowbit(x)`. Its inclusive one-based interval is
-
-$$
-[x-\operatorname{lowbit}(x)+1,\ x].
-$$
-
-Examples make the pattern concrete:
-
-| `x` | Binary form | `lowbit(x)` | Block summarized by `c[x]` |
-| --- | --- | --- | --- |
-| 1 | `001` | 1 | `[1, 1]` |
-| 2 | `010` | 2 | `[1, 2]` |
-| 3 | `011` | 1 | `[3, 3]` |
-| 4 | `100` | 4 | `[1, 4]` |
-| 6 | `110` | 2 | `[5, 6]` |
-
-Larger powers of two summarize larger aligned ranges. These carefully overlapping blocks let the structure move between a position and the next relevant containing block with simple bit arithmetic.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [4], "n": 1, "queries": [["sum", 0, 0], ["update", 0, 7], ["sum", 0, 0]], "q": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the operations on $\text{nums} = [1, 3, 5]$ ($N = 3$):
+Fenwick tree size: $N + 1 = 4$, initialized to $c = [0, 0, 0, 0]$.
 
 ---
 
-### Step 2: Adding a delta at one position
+### Step 1: Fenwick Tree Construction
+Insert each value $v \in [1, 3, 5]$ at 1-based index $i \in [1, 2, 3]$:
+1. **Insert $v = 1$ at $x = 1$:**
+   - $x = 1$: $c[1] \mathrel{+}= 1 \implies c[1] = 1$. Next $x = 1 + 1 = 2$.
+   - $x = 2$: $c[2] \mathrel{+}= 1 \implies c[2] = 1$. Next $x = 2 + 2 = 4 > 3$. Stop.
+2. **Insert $v = 3$ at $x = 2$:**
+   - $x = 2$: $c[2] \mathrel{+}= 3 \implies c[2] = 1 + 3 = 4$. Next $x = 2 + 2 = 4 > 3$. Stop.
+3. **Insert $v = 5$ at $x = 3$:**
+   - $x = 3$: $c[3] \mathrel{+}= 5 \implies c[3] = 5$. Next $x = 3 + 1 = 4 > 3$. Stop.
 
-`BinaryIndexedTree.update(x, delta)` means “increase the logical value at one-based position `x` by `delta`.” It is an additive operation, not an assignment.
-
-The value belongs to `c[x]` and also to every larger Fenwick block whose interval contains position `x`. After updating one tree entry, the source moves to
-
-`x += x & -x`.
-
-This jumps to the next ancestor block that contains the original position. Repeating until `x > n` updates every stored partial sum affected by the point change and no unrelated block.
-
-For example, in a tree of sufficient size, changing position 3 visits positions 3, 4, 8, and so on. Entry 3 covers `[3, 3]`, entry 4 covers `[1, 4]`, and entry 8 covers `[1, 8]`; all contain logical position 3.
-
-Because `lowbit(x)` is at least one for positive `x`, each update step strictly increases `x`. The loop always terminates after moving through at most one relevant node per binary scale.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Tree state:
+$$
+c = [0, \; 1, \; 4, \; 5]
+$$
 
 ---
 
-### Step 3: Reading a prefix sum
+### Step 2: Evaluate $\text{sumRange}(0, 2)$
+- Query formula: $\text{query}(2 + 1) - \text{query}(0) = \text{query}(3) - \text{query}(0)$.
+- **Evaluate $\text{query}(3)$:**
+  - $x = 3$: $s \mathrel{+}= c[3] = 5$. Next $x = 3 - (3 \ \& \ -3) = 3 - 1 = 2$.
+  - $x = 2$: $s \mathrel{+}= c[2] = 5 + 4 = 9$. Next $x = 2 - (2 \ \& \ -2) = 2 - 2 = 0$. Stop.
+  - $\text{query}(3) = \mathbf{9}$.
+- **Evaluate $\text{query}(0)$:**
+  - $x = 0 \implies \text{query}(0) = 0$.
+- Result: $9 - 0 = \mathbf{9}$.
 
-`query(x)` returns the sum of one-based positions 1 through `x`, which equals the first `x` original elements.
+---
 
-It begins with `s = 0`, adds `c[x]`, and then moves to
+### Step 3: Execute $\text{update}(1, 2)$
+- Replace element at index 1 with value $2$.
+- Find current value:
+  $$
+  \text{prev} = \text{sumRange}(1, 1) = \text{query}(2) - \text{query}(1)
+  $$
+  - $\text{query}(2) = c[2] = 4$.
+  - $\text{query}(1) = c[1] = 1$.
+  - $\text{prev} = 4 - 1 = 3$.
+- Compute delta:
+  $$
+  \Delta = val - \text{prev} = 2 - 3 = \mathbf{-1}
+  $$
+- Call $\text{update}(1 + 1 = 2, \; \Delta = -1)$:
+  - $x = 2$: $c[2] \mathrel{+}= (-1) \implies c[2] = 4 - 1 = \mathbf{3}$. Next $x = 2 + 2 = 4 > 3$. Stop.
+- Updated tree state:
+  $$
+  c = [0, \; 1, \; 3, \; 5]
+  $$
 
-`x -= x & -x`.
+---
 
-The block stored at `c[x]` covers the trailing portion of the still-unaccounted prefix. Subtracting its length moves immediately before that block. The next entry covers the next trailing block, and the process repeats until `x` reaches zero.
-
-These blocks are disjoint and together cover the full prefix. For example, `query(7)` uses a block ending at 7 of length 1, then a block ending at 6 of length 2, then a block ending at 4 of length 4. They cover `[7,7]`, `[5,6]`, and `[1,4]`, exactly positions 1 through 7 without overlap.
-
-Each subtraction clears the least significant set bit, so the number of iterations is at most the number of bits needed to represent $n$.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[4, 7]` |
+### Step 4: Evaluate $\text{sumRange}(0, 2)$ After Update
+- Query: $\text{query}(3) - \text{query}(0)$.
+- **Evaluate $\text{query}(3)$:**
+  - $x = 3$: $s \mathrel{+}= c[3] = 5$. Next $x = 2$.
+  - $x = 2$: $s \mathrel{+}= c[2] = 5 + 3 = \mathbf{8}$. Next $x = 0$.
+- Result: $8 - 0 = \mathbf{8}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [4], "n": 1, "queries": [["sum", 0, 0], ["update", 0, 7], ["sum", 0, 0]], "q": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[4, 7]` | Verified |
+```text
+nums = [1, 3, 5], N = 3
+c    = [0, 1, 4, 5]
+
+Query 1: sumRange(0, 2) = query(3) - query(0) = (c[3] + c[2]) - 0 = 5 + 4 = 9
+
+Update: update(index=1, val=2):
+  prev = sumRange(1, 1) = query(2) - query(1) = 4 - 1 = 3
+  delta = 2 - 3 = -1
+  c[2] += -1 -> c[2] becomes 3
+  c is now [0, 1, 3, 5]
+
+Query 2: sumRange(0, 2) = query(3) - query(0) = (c[3] + c[2]) - 0 = 5 + 3 = 8
+
+Results: [9, 8]
+```
+
+| Step | Operation Called | Parameter State | Active Tree Traversal | Tree Array $c$ After Step | Output |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| Build | `init([1, 3, 5])` | $N = 3$ | Points $1, 2, 3$ initialized | `[0, 1, 4, 5]` | - |
+| **1** | **`sumRange(0, 2)`** | $L=0, R=2$ | $\text{query}(3) - \text{query}(0) = 9 - 0$ | `[0, 1, 4, 5]` | **9** |
+| 2 | `update(1, 2)` | $\text{idx}=1, v=2$ | $\Delta = 2 - 3 = -1$; update node 2 | **`[0, 1, 3, 5]`** | - |
+| **3** | **`sumRange(0, 2)`** | $L=0, R=2$ | $\text{query}(3) - \text{query}(0) = 8 - 0$ | `[0, 1, 3, 5]` | **8** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A Fenwick tree organizes partial sums such that every index $x$ is covered by a telescoping sequence of power-of-two intervals. Because $x - (x \ \& \ -x)$ removes the lowest set bit, the intervals are strictly disjoint and sum to the prefix $[1, x]$. Propagating $\Delta$ via $x + (x \ \& \ -x)$ visits all ancestor nodes whose range includes $x$, ensuring every subsequent prefix query reflects the updated value.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any query interval $[left, right]$ is expressed as $\text{query}(right + 1) - \text{query}(left)$. The 1-based indexing maps $0$-based index $0$ to empty prefix $\text{query}(0) = 0$, guaranteeing uniform prefix cancellation for all $0 \le left \le right < N$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Iterative segment tree:** Store values in leaves and range sums in parent nodes. It also supports $O(\log n)$ assignments and queries with $O(n)$ space, but usually requires about twice as many array slots and more boundary logic.
-- **Linear-time Fenwick construction:** Copy values into the tree and propagate each node once to its parent, building in $O(n)$. The exact source uses the simpler repeated-update build, so its constructor is $O(n\log n)$.
-- **Keep a separate current-value array:** Then assignment can read `prev` in $O(1)$ rather than issuing a point query. This uses another $O(n)$ array and keeps update asymptotically $O(\log n)$.
-- **Static prefix sums:** They answer queries in $O(1)$ but require $O(n)$ repair after an assignment, making them unsuitable for mixed mutable operations.
-- **Direct array storage:** Assignment is $O(1)$ and a range sum is $O(n)$ in the worst case. It favors updates too strongly when both operation types can be frequent.
-- **Square-root decomposition:** Block sums give approximately $O(\sqrt n)$ range queries and $O(1)$ updates, a valid middle ground but asymptotically slower for queries than Fenwick.
-- **Passing an assignment value directly as the delta:** This would add `val` to the old value rather than replace it. The source must subtract `prev` first.
-- **Zero-based Fenwick calls:** Position zero has `lowbit(0) = 0`, so an update loop would never advance. Original indices must be shifted by one.
-- **Inclusive right boundary:** `query(right + 1)` is required to include `nums[right]`; using `query(right)` would exclude it.
-- **Range starts at zero:** `query(left)` becomes `query(0)`, whose loop performs no iterations and returns zero naturally.
-- **Single-element query:** The difference of neighboring prefixes recovers exactly the current value, which is also how public updates find `prev`.
-- **Assigning the existing value:** `delta` is zero. The Fenwick traversal adds zero to its ancestors, preserving all sums.
-- **Negative values and deltas:** Fenwick sums use ordinary addition, so negative entries and downward assignments work without any ordering assumption.
-- **One-element array:** The tree has entries 0 and 1. Every update and query touches at most position 1 and remains valid.
-- **Maximum operation count:** Each operation visits only logarithmically many tree nodes, avoiding a full-array scan under the stated $3\cdot10^4$ calls.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Replacing vs Adding Delta:** The Fenwick tree `update` adds `delta` to existing node values. Passing `val` directly would compute $\text{old} + \text{val}$ instead of setting the cell to `val`. The difference $\Delta = val - \text{prev}$ must be computed.
+- **Zero-Based Indexing Trap:** Calling `update(0, val)` or `lowbit(0)` fails because $0 \ \& \ (-0) = 0$, creating an infinite loop. Fenwick trees must use 1-based indexing ($1$ to $N$).
+- **Single Element Query ($left == right$):** Evaluating $\text{sumRange}(i, i)$ returns $\text{query}(i + 1) - \text{query}(i) = \text{nums}[i]$, isolating the exact current value without a separate tracking array.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(q\log n)$. Let $n$ be the array length and $q$ the total number of update and range-sum operations.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization: $O(N \log N)$ using repeated insertions.
+  - `update(index, val)`: $O(\log N)$ logarithmic time, visiting at most $\lceil \log_2 N \rceil$ ancestor nodes.
+  - `sumRange(left, right)`: $O(\log N)$ logarithmic time, visiting at most $\lceil \log_2 N \rceil$ bit-cleared nodes.
+  - Total time for $Q$ operations: $O(N \log N + Q \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the Fenwick tree array $c$ of size $N + 1$.

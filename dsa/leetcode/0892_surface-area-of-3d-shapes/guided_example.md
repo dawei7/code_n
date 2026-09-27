@@ -1,110 +1,216 @@
 # Guided Example: Surface Area of 3D Shapes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step standalone tower surface calculation ($2 + 4v$), adjacent tower interface occlusion, pairwise shared face subtraction ($2 \times \min(v_1, v_2)$), and total exposed surface area derivation on representative 3D voxel grids:
 
-- **Input:** `{"grid": [[1, 2], [3, 4]]}`
+- **Input:**
+  $$
+  grid = \begin{bmatrix}
+  1 & 2 \\
+  3 & 4
+  \end{bmatrix}
+  $$
 - **Required output:** `34`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+  - 3D voxel surface area rules:
+    - On an $n \times n$ grid, cell $(i, j)$ contains a tower of $v = grid[i][j]$ unit cubes ($1 \times 1 \times 1$) stacked vertically.
+    - All cubes placed on adjacent cells or vertically stacked within the same cell are glued together.
+    - Objective: Find the **total exposed surface area** of the resulting 3D solid.
+    - For $grid = [[1, 2], [3, 4]]$:
+      - Standalone tower areas:
+        - Tower $(0, 0)$ of height 1: $2 + 4(1) = 6$.
+        - Tower $(0, 1)$ of height 2: $2 + 4(2) = 10$.
+        - Tower $(1, 0)$ of height 3: $2 + 4(3) = 14$.
+        - Tower $(1, 1)$ of height 4: $2 + 4(4) = 18$.
+        - Sum of unglued standalone areas: $6 + 10 + 14 + 18 = 48$.
+      - Hidden shared faces between adjacent towers:
+        - Between $(0, 0)$ and $(0, 1)$: height $\min(1, 2) = 1 \implies 2 \times 1 = 2$ faces covered.
+        - Between $(0, 0)$ and $(1, 0)$: height $\min(1, 3) = 1 \implies 2 \times 1 = 2$ faces covered.
+        - Between $(0, 1)$ and $(1, 1)$: height $\min(2, 4) = 2 \implies 2 \times 2 = 4$ faces covered.
+        - Between $(1, 0)$ and $(1, 1)$: height $\min(3, 4) = 3 \implies 2 \times 3 = 6$ faces covered.
+        - Total occluded faces: $2 + 2 + 4 + 6 = 14$.
+      - Total exposed surface area:
+        $$
+        48 - 14 = \mathbf{34}
+        $$
+- **The Standalone & Overlap Occlusion Invariant:**
+  - **Standalone Tower Geometry:**
+    - A solitary tower of height $v > 0$ unit cubes has:
+      - $1$ top exposed face.
+      - $1$ bottom exposed face.
+      - $4$ lateral sides, each of area $v \times 1 = v$.
+      - Standalone Area:
+        $$
+        A_{\text{standalone}}(v) = 2 + 4v \quad (\text{if } v > 0)
+        $$
+  - **Interface Subtraction Rule:**
+    - When two towers of heights $v_1$ and $v_2$ stand adjacent to each other (sharing an edge of the grid), they press against each other along a vertical rectangle of height:
+      $$
+      h_{\text{shared}} = \min(v_1, v_2)
+      $$
+    - Because this shared interface covers faces on **both** towers, the gluing operation hides exactly:
+      $$
+      2 \times \min(v_1, v_2) \text{ exposed faces}
+      $$
+  - **Directional Accounting (Avoiding Double Subtraction):**
+    - Scanning cells in standard raster order (left-to-right, top-to-bottom), each cell $(i, j)$ only needs to subtract shared faces with its **immediate top neighbor** $(i - 1, j)$ and **immediate left neighbor** $(i, j - 1)$.
+    - This visits every boundary between adjacent towers exactly once!
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an `n x n` `grid` where you have placed some `1 x 1 x 1` cubes. Each value $v = \text{grid}[i][j]$ represents a tower of `v` cubes placed on top of cell `(i, j)`.
+Given $grid = [[1, 2], [3, 4]]$, track the exposed surface area additions and neighbor deductions cell by cell.
 
-The objective is to compute `34` from `{"grid": [[1, 2], [3, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Grid Heights:
+  [1]  [2]
+  [3]  [4]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Cell (0, 0) [v=1]:
+  Standalone: 2 + 4(1) = 6
+  Neighbors: None above or left. Running total = 6.
+
+Cell (0, 1) [v=2]:
+  Standalone: 2 + 4(2) = 10
+  Left neighbor has v=1 -> overlap = 2 * min(2, 1) = 2
+  Running total = 6 + 10 - 2 = 14.
+
+Cell (1, 0) [v=3]:
+  Standalone: 2 + 4(3) = 14
+  Top neighbor has v=1 -> overlap = 2 * min(3, 1) = 2
+  Running total = 14 + 14 - 2 = 26.
+
+Cell (1, 1) [v=4]:
+  Standalone: 2 + 4(4) = 18
+  Top neighbor has v=2  -> overlap = 2 * min(4, 2) = 4
+  Left neighbor has v=3 -> overlap = 2 * min(4, 3) = 6
+  Running total = 26 + 18 - 4 - 6 = 34.
+```
+
+The teaching goal is to demonstrate how local pairwise adjacency subtractions prevent double-counting shared faces.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Standalone Area Contribution:
+For cell $(i, j)$ with height $v = grid[i][j]$:
+$$
+\text{Initial Area}(v) = \begin{cases}
+2 + 4v & \text{if } v > 0 \\
+0 & \text{if } v = 0
+\end{cases}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 2. Interface Deduction:
+$$
+\text{Deduction}_{\text{top}} = 2 \times \min(v, \; grid[i - 1][j]) \quad (\text{if } i > 0)
+$$
+$$
+\text{Deduction}_{\text{left}} = 2 \times \min(v, \; grid[i][j - 1]) \quad (\text{if } j > 0)
+$$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-Each positive grid cell represents a vertical tower. The solution first counts the exposed surface of every tower as if it were isolated, then subtracts faces hidden where neighboring towers touch.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 2], [3, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $grid = [[1, 2], [3, 4]]$:
+Initialize $ans = 0$.
 
 ---
 
-### Step 2: Core Step 2
-
-**Surface of one isolated tower.** A tower of height $v>0$ is a $1\times1\times v$ rectangular column. It has one exposed top face, one exposed bottom face, and four vertical sides of area $v$ each. Its isolated surface area is therefore
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Cell $(0, 0)$ ($v = 1$)
+- Height $v = 1 > 0$:
+  $$
+  ans \leftarrow ans + 2 + 4(1) = 0 + 6 = 6
+  $$
+- Top neighbor: $i = 0$ (no top neighbor).
+- Left neighbor: $j = 0$ (no left neighbor).
+- Running total: $ans = \mathbf{6}$.
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Cell $(0, 1)$ ($v = 2$)
+- Height $v = 2 > 0$:
+  $$
+  ans \leftarrow ans + 2 + 4(2) = 6 + 10 = 16
+  $$
+- Top neighbor: $i = 0$ (no top neighbor).
+- Left neighbor $(0, 0)$ has height $grid[0][0] = 1$:
+  $$
+  ans \leftarrow ans - 2 \times \min(2, 1) = 16 - 2(1) = \mathbf{14}
+  $$
+- Running total: $ans = \mathbf{14}$.
 
-This formula already excludes faces between cubes stacked inside the same tower. Thinking of the tower as one column is simpler than beginning with $6v$ cube faces and subtracting its $v-1$ internal horizontal contacts.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `34` |
+### Step 3: Cell $(1, 0)$ ($v = 3$)
+- Height $v = 3 > 0$:
+  $$
+  ans \leftarrow ans + 2 + 4(3) = 14 + 14 = 28
+  $$
+- Top neighbor $(0, 0)$ has height $grid[0][0] = 1$:
+  $$
+  ans \leftarrow ans - 2 \times \min(3, 1) = 28 - 2(1) = \mathbf{26}
+  $$
+- Left neighbor: $j = 0$ (no left neighbor).
+- Running total: $ans = \mathbf{26}$.
+
+---
+
+### Step 4: Cell $(1, 1)$ ($v = 4$)
+- Height $v = 4 > 0$:
+  $$
+  ans \leftarrow ans + 2 + 4(4) = 26 + 18 = 44
+  $$
+- Top neighbor $(0, 1)$ has height $grid[0][1] = 2$:
+  $$
+  ans \leftarrow ans - 2 \times \min(4, 2) = 44 - 4 = 40
+  $$
+- Left neighbor $(1, 0)$ has height $grid[1][0] = 3$:
+  $$
+  ans \leftarrow ans - 2 \times \min(4, 3) = 40 - 6 = \mathbf{34}
+  $$
+- Running total: $ans = \mathbf{34}$.
+
+---
+
+### Termination:
+All grid cells processed.
+- **Total Surface Area:** **`34`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 2], [3, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `34` | Verified |
+| Cell $(i, j)$ | Height $v$ | Base Standalone Area | Top Neighbor Height | Top Deductions | Left Neighbor Height | Left Deductions | Net Running Area |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(0, 0)$ | $1$ | $+6$ | — | $0$ | — | $0$ | $6$ |
+| $(0, 1)$ | $2$ | $+10$ | — | $0$ | $1$ | $-2$ | $14$ |
+| $(1, 0)$ | $3$ | $+14$ | $1$ | $-2$ | — | $0$ | $26$ |
+| **$(1, 1)$** | **$4$** | **$+18$** | **$2$** | **$-4$** | **$3$** | **$-6$** | **`34`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Zero Heights (Empty Cells):** If $v = 0$, the tower contributes $0$ base area, and deductions are skipped or evaluate to $2 \times \min(0, \cdot) = 0$.
+- **Ring of Cubes with Empty Center (Sample 2):** Interior faces facing the hole remain exposed because $grid[center] = 0 \implies \min(1, 0) = 0$, so no faces are subtracted.
+- **Single Cube Grid ($[[1]]$):** Standalone area is $2 + 4(1) = 6$. No neighbors $\implies$ returns $6$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Count six faces per cube:** Subtract two faces for every adjacent cube pair, including vertical pairs. This is correct but can take time proportional to the total number of cubes rather than $n^2$.
-- **Check all four neighboring cells:** It can work only if each shared contact is divided or carefully deduplicated. The top-and-left rule is simpler.
-- **Use `abs(v - w)` for internal boundaries:** Height difference describes exposed side above the shorter tower, but a complete formula must also handle outer boundaries and other sides. Isolated area minus shared contacts is less error-prone.
-- **Projection area:** Projection counts shadows, not exposed faces. It is a different problem and cannot replace surface-contact accounting.
-- **All zeros:** No tower enters the positive branch, so area is zero.
-- **One cube:** The formula gives $2+4=6$, including its bottom.
-- **One tall tower:** Area is $2+4v$.
-- **Equal adjacent towers:** Their entire common side of height $v$ is hidden, so $2v$ is subtracted.
-- **Unequal adjacent towers:** Only the lower shared height is hidden; the taller excess remains exposed.
-- **Hole surrounded by towers:** Each side facing the zero cell remains exposed because `min(v,0)=0` causes no subtraction.
-- **Grid boundary:** Missing neighbors cause no subtraction, retaining outward faces.
-- **Bottom surfaces:** They are always part of each positive tower's initial two horizontal faces, as required.
-- **No double-counting:** Each horizontal adjacency is handled by its lower or right endpoint exactly once.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Checking All 4 Neighbors in Each Step:** Subtracting shared faces with top, bottom, left, and right neighbors during each cell's visit subtracts every shared interface twice, undercounting the surface area. Only checking top and left neighbors ensures exact single subtraction.
+- **Forgetting Top and Bottom Faces:** Cubes have top and bottom faces ($+2$) in addition to the $4v$ vertical walls.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the square grid dimension. The nested loops visit all $n^2$ cells. Each positive cell performs a constant number of arithmetic operations and at most two neighbor comparisons.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Standard raster scan over an $n \times n$ grid: $\mathcal{O}(n^2)$.
+  - Each cell performs at most two neighbor comparisons: $\mathcal{O}(1)$.
+  - Total Time: strictly $\mathcal{O}(n^2)$, completing in $< 1$ ms for $n \le 50$.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space using an accumulator register.

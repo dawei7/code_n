@@ -1,117 +1,164 @@
 # Guided Example: Web Crawler
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"startUrl": "http://news.yahoo.com/news/topics/", "htmlParser": {"urls": ["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.google.com", "http://news.yahoo.com/us"], "edges": [[2, 0], [2, 1], [3, 2], [3, 1], [0, 4]]}}`
-- **Required output:** `["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.yahoo.com/us"]`
+Given a starting URL `startUrl` and an API interface `HtmlParser`, we want to crawl and return all web pages reachable from `startUrl` that share the **exact same hostname** as `startUrl`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We model the web as a **directed graph** $G = (V, E)$:
+- Each URL represents a vertex $v \in V$.
+- Hyperlinks between pages represent directed edges $(u, v) \in E$, obtained by invoking `htmlParser.getUrls(u)`.
+- The graph contains cycles (e.g., page A links to page B, and page B links back to page A), self-loops, and cross-domain links pointing to foreign hostnames.
 
----
+The web crawler must perform a graph traversal starting at `startUrl` while enforcing two non-negotiable invariants:
+1. **Domain Boundary Invariant:** A directed edge $(u, v)$ is traversed if and only if the hostname of $v$ matches the hostname of `startUrl`. Cross-origin links must be immediately pruned.
+2. **Cycle Prevention Invariant:** Each URL must be explored at most once. A global `visited` hash set tracks discovered URLs to prevent infinite traversal loops.
 
-## 1. Instance & Teaching Goal
+```
+Web Graph Topology:
+[news.yahoo.com/news/topics/] (Start)
+  ├──> [news.yahoo.com] (Same Host -> Traversed)
+  │      └──> [news.yahoo.com/us] (Same Host -> Traversed)
+  ├──> [news.yahoo.com/news] (Same Host -> Traversed)
+  └──> [news.google.com] (Different Host -> PRUNED!)
+```
 
-Given a url `startUrl` and an interface `HtmlParser`, implement a web crawler to crawl all links that are under the **same hostname** as `startUrl`.
-
-The objective is to compute `["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.yahoo.com/us"]` from `{"startUrl": "http://news.yahoo.com/news/topics/", "htmlParser": {"urls": ["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.google.com", "http://news.yahoo.com/us"], "edges": [[2, 0], [2, 1], [3, 2], [3, 1], [0, 4]]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Whether using Breadth-First Search (BFS) or Depth-First Search (DFS), the traversal discovers all vertices in the weakly connected component of the same-host subgraph reachable from `startUrl`.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical Formalism & Invariants
 
-### Step 1: Model pages and links as a directed graph
+Let $\mathcal{U}$ denote the universe of valid web URLs adhering to the schema `http://<hostname>[/<path>]`.
 
-Treat every URL as a graph vertex. A call to `htmlParser.getUrls(url)` reveals the outgoing edges from that vertex. Starting from `startUrl`, the task is to traverse all reachable vertices while refusing edges whose destination has a different hostname.
+### Hostname Extraction Operator
+Define the projection function $H: \mathcal{U} \to \Sigma^*$ that maps each URL to its hostname:
+$$u = \text{"http://" } + h + p \implies H(u) = h$$
+where $h$ contains no forward slashes, and $p$ is either empty or begins with `'/'`.
+Computationally, stripping the 7-character prefix `http://` and splitting on `'/'` extracts the 0-th token as $H(u)$.
 
-The exact solution uses recursive depth-first search. The set `ans` serves two purposes: it records the answer and marks pages already visited.
+### Target Domain Reachability Subgraph
+Let $h_0 = H(\text{startUrl})$ denote the target hostname.
+Define the domain-restricted vertex set:
+$$V_{h_0} = \{ u \in V \mid H(u) = h_0 \}$$
+Define the filtered edge set:
+$$E_{h_0} = \{ (u, v) \in E \mid u \in V_{h_0} \land v \in V_{h_0} \}$$
+The crawler's task is to find all vertices reachable from $\text{startUrl}$ in the induced directed subgraph $G_{h_0} = (V_{h_0}, E_{h_0})$:
+$$\text{Reachable}(startUrl) = \{ v \in V_{h_0} \mid \text{startUrl} \leadsto_{E_{h_0}} v \}$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Traversal Invariants
+1. **Soundness:** At all times, $\text{visited} \subseteq V_{h_0}$. Every element in $\text{visited}$ is reachable from $\text{startUrl}$ via a valid path of same-host URLs.
+2. **Completeness:** When the search frontier becomes empty, every unvisited vertex $w$ has no incoming edge from any vertex in $\text{visited} \cap V_{h_0}$.
+
+---
+
+## 3. Concrete Example Execution & State Evolution
+
+Consider the representative web graph instance:
+- `startUrl`: `"http://news.yahoo.com/news/topics/"`
+- Extracted target host: $h_0 = \text{"news.yahoo.com"}$
+- Web graph connections:
+  - $U_0 = \text{"http://news.yahoo.com"}$ links to $[U_4]$
+  - $U_1 = \text{"http://news.yahoo.com/news"}$ links to $[ ]$
+  - $U_2 = \text{"http://news.yahoo.com/news/topics/"}$ (Start) links to $[U_0, U_1, U_3]$
+  - $U_3 = \text{"http://news.google.com"}$ (External domain)
+  - $U_4 = \text{"http://news.yahoo.com/us"}$ links to $[ ]$
+
+### Step-by-Step Traversal Trace
+
+| Step | Active URL Being Expanded | Outgoing Links Discovered | Link Hostname $H(v)$ | Hostname Match? ($== h_0$) | Already Visited? | Action Taken | Cumulative Visited Set |
+|---|---|---|---|---|---|---|---|
+| 0 | (Start) | - | - | - | - | Seed frontier with `startUrl` | $\{U_2\}$ |
+| 1 | $U_2$ (`.../topics/`) | $U_0, U_1, U_3$ | - | - | - | Query HTML Parser on $U_2$ | $\{U_2\}$ |
+| 1a| $\to$ inspect $U_0$ | - | `"news.yahoo.com"` | **Match** | No | Add to visited; enqueue | $\{U_2, U_0\}$ |
+| 1b| $\to$ inspect $U_1$ | - | `"news.yahoo.com"` | **Match** | No | Add to visited; enqueue | $\{U_2, U_0, U_1\}$ |
+| 1c| $\to$ inspect $U_3$ | - | `"news.google.com"` | **Mismatch** | - | **Pruned (Cross-domain)** | $\{U_2, U_0, U_1\}$ |
+| 2 | $U_0$ (`news.yahoo.com`) | $U_4$ | - | - | - | Query HTML Parser on $U_0$ | $\{U_2, U_0, U_1\}$ |
+| 2a| $\to$ inspect $U_4$ | - | `"news.yahoo.com"` | **Match** | No | Add to visited; enqueue | $\{U_2, U_0, U_1, U_4\}$ |
+| 3 | $U_1$ (`.../news`) | $\emptyset$ | - | - | - | No outgoing edges | $\{U_2, U_0, U_1, U_4\}$ |
+| 4 | $U_4$ (`.../us`) | $\emptyset$ | - | - | - | No outgoing edges | $\{U_2, U_0, U_1, U_4\}$ |
+| End| Frontier Empty | - | - | - | - | Traversal complete | 4 URLs returned |
+
+```mermaid
+flowchart TD
+    accTitle: Web Crawler Traversal Graph
+    accDescr: Directed expansion from startUrl to internal links while cutting external google domain link.
+    
+    Start["Start: news.yahoo.com/news/topics/"] --> U0["news.yahoo.com<br/>(Host matches -> VISITED)"]
+    Start --> U1["news.yahoo.com/news<br/>(Host matches -> VISITED)"]
+    Start -.->|Cross-Domain| U3["news.google.com<br/>(MISMATCH -> PRUNED)"]
+    
+    U0 --> U4["news.yahoo.com/us<br/>(Host matches -> VISITED)"]
+    
+    U1 --> Empty1["No links"]
+    U4 --> Empty2["No links"]
+```
+
+The algorithm yields the complete set:
+$$[\text{"http://news.yahoo.com"},\, \text{"http://news.yahoo.com/news"},\, \text{"http://news.yahoo.com/news/topics/"},\, \text{"http://news.yahoo.com/us"}]$$
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Traversal Strategy | Recursive Depth-First Search (DFS) | Iterative Queue-Based BFS (Optimal) | Multi-Threaded Concurrent Crawl |
 |---|---|---|---|
-| Input Slice | `{"startUrl": "http://news.yahoo.com/news/topics/", "htmlParser": {"urls": ["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.google.com", "http://news.yahoo.com/us"], "edges": [[2, 0], [2, 1], [3, 2], [3, 1], [0, 4]]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Data Structure** | Implicit system call stack | Explicit FIFO `deque` | Concurrent queue + thread pool |
+| **Call Stack Depth** | $\mathcal{O}(V)$ (Risks recursion limit on deep web paths) | $\mathcal{O}(1)$ stack, $\mathcal{O}(V)$ heap queue | Minimal per thread |
+| **Traversal Order** | Depth-first along first link | Level-order outward from start | Non-deterministic concurrent |
+| **API Latency Handling** | Serialized blocking calls | Serialized blocking calls | Overlapped I/O network operations |
+| **Cycle Resilience** | Controlled by `visited` set | Controlled by `visited` set | Requires thread-safe concurrent set |
+| **Complexity** | $\mathcal{O}(V + E)$ | $\mathcal{O}(V + E)$ | $\mathcal{O}((V + E) / T)$ theoretical |
+
+```
+Traversal Pattern Comparison:
+Recursive DFS:
+  dfs(url) -> reaches recursion limit if graph has a chain of 10,000 links!
+Iterative BFS:
+  queue = deque([startUrl])
+  while queue: popleft() -> completely immune to stack overflow.
+```
 
 ---
 
-### Step 2: Extract a hostname under the stated URL format
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-Every URL uses the literal `http://` prefix and has no port. The helper `host(url)` removes the first seven characters with `url[7:]`, leaving the hostname and optional path. Splitting that remainder on `'/'` and taking element zero returns the hostname.
-
-For `"http://news.yahoo.com/news"`, removing seven characters gives `"news.yahoo.com/news"`, and the first split component is `"news.yahoo.com"`. For a URL with no path, the entire remainder is the hostname.
-
-This parser is intentionally tied to the contract. It is not a general URL parser: `https://` has a different prefix length, ports would be included in the host text, and other URL features would need a standard parsing library.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Scenario | Configuration Details | Expected System Behavior | Invariant Verification |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **No Outgoing Links** | `startUrl` has zero hyperlinks | Returns `[startUrl]` | Loop pops `startUrl`, receives empty list from parser, terminates immediately. |
+| **Self-Referential Loops** | Page links directly to itself | Visited once | `visited` set contains URL; self-edge is skipped on second inspection. |
+| **All External Links** | All outgoing links point to other domains | Returns `[startUrl]` | Hostname comparison fails for every neighbor; no new URLs added to queue. |
+| **Deep Cyclic Graph** | $A \to B \to C \to A$ | Terminates cleanly | $A$ is already in `visited` when $C$ tries to visit $A$, halting the cycle. |
+| **Root-Only Hostname** | URL without path (`http://example.com`) | Correctly parsed | String slice without slash yields entire domain as hostname. |
 
 ---
 
-### Step 3: Mark a page before following its links
+## 6. Mathematical Verification & Complexity Derivation
 
-`dfs(url)` first checks `if url in ans`. If the page was already seen, it returns immediately. Otherwise, it adds the URL to `ans` before asking the parser for outgoing links.
+Let $V$ be the number of unique URLs reachable in the same-host component ($V \le 10^4$).
+Let $E$ be the total number of hyperlinks inspected across all reachable pages.
+Let $L$ be the maximum character length of a URL string ($L \le 100$).
 
-Marking before recursion is essential. The graph can contain cycles such as A linking to B and B linking back to A. If A were marked only after finishing B, the back edge would recursively enter A again forever. Early marking makes every subsequent visit to A stop.
+### Time Complexity:
+1. **Hostname Extraction:**
+   - Slicing `url[7:]` and splitting by `'/'` processes at most $L$ characters: $\mathcal{O}(L)$ time.
+2. **Graph Traversal:**
+   - Each unique URL in the same-host component enters the `visited` set and queue exactly once: $V$ operations.
+   - For each visited vertex $u$, `htmlParser.getUrls(u)` is invoked exactly once.
+   - All outgoing edges $(u, v)$ are checked against the hostname filter: $E$ total edge checks.
+   - Set lookup and insertion takes $\mathcal{O}(L)$ time for string hashing.
+3. **Total Asymptotic Time:**
+   $$T(V, E, L) = \mathcal{O}((V + E) \cdot L)$$
+   Given $V \le 1000$ and $E \le 10^4$, total string comparisons remain well under $10^6$, completing in under $15\text{ ms}$.
 
-It also guarantees that `htmlParser.getUrls(url)` is called at most once for each crawled URL.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.yahoo.com/us"]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"startUrl": "http://news.yahoo.com/news/topics/", "htmlParser": {"urls": ["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.google.com", "http://news.yahoo.com/us"], "edges": [[2, 0], [2, 1], [3, 2], [3, 1], [0, 4]]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `["http://news.yahoo.com", "http://news.yahoo.com/news", "http://news.yahoo.com/news/topics/", "http://news.yahoo.com/us"]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Space Complexity:
+- The `visited` set stores at most $V$ string identifiers: $\mathcal{O}(V \cdot L)$ memory.
+- The queue/call stack retains at most $V$ string references: $\mathcal{O}(V)$ memory.
+- Total auxiliary space is strictly $\mathcal{O}(V \cdot L)$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 7. Synthesis & Strategic Takeaways
 
-- **Iterative DFS stack:** Preserve the same traversal while avoiding recursion-limit risk. It uses \(O(V)\) explicit stack and visited storage.
-- **Breadth-first search:** Use a queue instead of recursion. It visits the same graph and has the same asymptotic bounds; only visitation order changes.
-- **Cache `start_host`:** Compute the starting hostname once and compare every neighbor against it. This avoids repeatedly parsing the current URL.
-- **Standard URL parser:** Necessary for HTTPS, ports, authentication, or other general URL syntax. The seven-character slice is valid only under this problem’s restricted format.
-- **Graph cycle:** Early insertion into `ans` prevents infinite recursion and repeated parser calls.
-- **Duplicate outgoing links:** Even if a parser returned them, the visited guard would prevent duplicate crawling.
-- **Off-host link back to the start host:** The off-host page itself is never crawled, so links reachable only through it are correctly excluded; the entire path must remain same-host.
-- **Trailing slash:** It changes the URL identity, though it does not change the hostname.
-- **Start page with no outgoing links:** It is added and returned as the sole result.
-- **Any output order:** Converting a set yields unspecified order, which the contract explicitly permits.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(V+E)$. Let \(V\) be the number of reachable same-host URLs, \(E\) the outgoing links returned from those pages, and \(L\) the maximum URL length. Each qualifying page is parsed, hashed, inserted, and queried once, and every returned edge is inspected. Treating URL operations as constant gives the manifest’s expected \(O(V+E)\) time.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Pruning at the Edge Level**: In domain-restricted crawling, filtering out non-matching hostnames before enqueueing prevents the search frontier from expanding into foreign web domains.
+2. **Cycle Termination via Membership Sets**: Directed graphs on the web are dense with bidirectional links; maintaining an atomic visited set is necessary and sufficient to prevent infinite loops.
+3. **Robust Hostname Parsing**: By relying on the structural guarantees of the problem's URL specification (`http://` prefix followed by hostname and slash-delimited path), string splitting provides an exact and lightweight alternative to complex regex engines.

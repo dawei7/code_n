@@ -1,148 +1,176 @@
 # Guided Example: Max Points on a Line
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step slope frequency hashing and coprime fraction reduction on representative 2D coordinate plane instances:
 
-- **Input:** `{"points": [[1, 1], [2, 2], [3, 3]]}`
-- **Required output:** `3`
+- **Input:** $\text{points} = [[1, 1], [3, 2], [5, 3], [4, 1], [2, 3], [1, 4]]$
+- **Required output:** $4$ (Collinear line $y = -x + 5$ connects $4$ points: $[1, 4], [2, 3], [3, 2], [4, 1]$)
+- **Base Collinear Instance:** $\text{points} = [[1, 1], [2, 2], [3, 3]] \implies 3$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates anchor-based slope grouping, eliminating floating-point precision hazards via reduced coprime integer pairs $(\Delta y / \gcd, \Delta x / \gcd)$, handling vertical and horizontal lines uniformly, and achieving optimal $O(N^2)$ time and $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on the **X-Y** plane, return *the maximum number of points that lie on the same straight line*.
+Given $n = 6$ points on a 2D Cartesian plane:
+$$
+\text{points} = [P_0(1, 1), \, P_1(3, 2), \, P_2(5, 3), \, P_3(4, 1), \, P_4(2, 3), \, P_5(1, 4)]
+$$
+Find the maximum number of points that lie on the same straight line.
 
-The objective is to compute `3` from `{"points": [[1, 1], [2, 2], [3, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+In this instance:
+- Points $P_5(1, 4), P_4(2, 3), P_1(3, 2),$ and $P_3(4, 1)$ all lie on the straight line $x + y = 5$ (slope $m = -1$).
+- No line contains $5$ or more points.
+The maximum points collinear on any straight line is $4$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive brute-force checks all $\binom{N}{3}$ triplets, resulting in $O(N^3)$ runtime.
+By selecting each point $P_i$ as an **anchor** in turn, all lines passing through $P_i$ are partitioned into equivalence classes based on their slope $m$.
+Using a hash map to tally slope occurrences from $P_i$ identifies the maximum collinear cluster through $P_i$ in $O(N)$ operations, lowering total runtime to $O(N^2)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Exact Slope Representation via Coprime Reduction
+Computing slope as a float $m = \frac{\Delta y}{\Delta x}$ introduces IEEE-754 precision issues (e.g. $1/3 \ne 0.3333333333333333$) and division-by-zero on vertical lines ($\Delta x = 0$).
+To achieve exact, collision-free hashing, represent each slope as a canonical reduced pair of coprime integers:
+$$
+g = \gcd(|\Delta x|, \, |\Delta y|)
+$$
+$$
+dx = \frac{\Delta x}{g}, \quad dy = \frac{\Delta y}{g}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Canonical Sign Normalization Rules
+1. **Vertical Lines ($\Delta x = 0$):** Canonical key is $(0, 1)$.
+2. **Horizontal Lines ($\Delta y = 0$):** Canonical key is $(1, 0)$.
+3. **General Slopes:** Ensure the denominator $dx > 0$. If $dx < 0$, invert both signs:
+   $$
+   dx \leftarrow -dx, \quad dy \leftarrow -dy
+   $$
+Canonical slope key: $(dx, dy)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Algorithm Protocol
+If $N \le 2$, return $N$.
+Initialize $\text{max\_pts} = 2$.
+For $i$ from $0$ to $N - 1$:
+- Initialize `slopes = defaultdict(int)`.
+- For $j$ from $i + 1$ to $N - 1$:
+  - Compute canonical slope $(dx, dy)$ between $P_i$ and $P_j$.
+  - $\text{slopes}[(dx, dy)] \leftarrow \text{slopes}[(dx, dy)] + 1$.
+- Local max through anchor $P_i$ is $1 + \max(\text{slopes.values}())$ (the $+1$ accounts for anchor $P_i$ itself).
+- $\text{max\_pts} \leftarrow \max(\text{max\_pts}, \, \text{local\_max})$.
+
+> **Invariant.** For an anchor point $P_i$, two points $P_j$ and $P_k$ have identical canonical slope keys if and only if $P_i, P_j,$ and $P_k$ are collinear.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Define a line by two distinct points
+We trace the slope counts when anchor is selected as $P_4(2, 3)$:
+Candidate points to compare with $P_4(2, 3)$:
 
-All input coordinates are distinct, so any pair `points[i]` and `points[j]` determines exactly one straight line.
-
-The selected source tries every pair with `i < j`. It starts `cnt = 2` for the two defining points, then checks later points `k > j` and adds one whenever the third point is collinear with the pair.
-
-This is a direct enumeration approach. It avoids hash maps and avoids representing slopes as floating-point numbers.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"points": [[1, 1], [2, 2], [3, 3]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Derive the cross-product equality
-
-Let:
-
-- the first point be $(x_1,y_1)$;
-- the second be $(x_2,y_2)$;
-- the candidate third point be $(x_3,y_3)$.
-
-The slopes from the first point would be:
-
-$$
-\frac{y_2-y_1}{x_2-x_1}
-\quad\text{and}\quad
-\frac{y_3-y_1}{x_3-x_1}.
-$$
-
-Equal slopes indicate collinearity, but either denominator may be zero for a vertical line. Cross multiplication removes division:
-
-$$
-(y_2-y_1)(x_3-x_1)
-=
-(y_3-y_1)(x_2-x_1).
-$$
-
-The source stores the two products as `a` and `b` and tests `a == b`.
-
-This formula naturally handles every orientation:
-
-- vertical lines make both products zero in the corresponding way;
-- horizontal lines make both vertical differences zero;
-- negative slopes retain their signs;
-- no special representation is needed for infinity.
-
-Python integer multiplication is exact, so the comparison has no floating-point rounding risk.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### 1. Vector to $P_5(1, 4)$:
+- $\Delta x = 1 - 2 = -1, \quad \Delta y = 4 - 3 = +1$.
+- $g = \gcd(1, 1) = 1$.
+- Normalize sign ($dx < 0 \implies$ negate both):
+  $$
+  dx = -(-1) = 1, \quad dy = -(1) = -1
+  $$
+- Key: $(1, -1)$.
+- Increment: $\text{slopes}[(1, -1)] = 1$.
 
 ---
 
-### Step 3: Why a Boolean can be added to the count
+### 2. Vector to $P_1(3, 2)$:
+- $\Delta x = 3 - 2 = +1, \quad \Delta y = 2 - 3 = -1$.
+- $g = \gcd(1, 1) = 1$.
+- Denominator $dx = 1 > 0$ already.
+- Key: $(1, -1)$.
+- Increment: $\text{slopes}[(1, -1)] = 1 + 1 = 2$.
 
-In Python, `bool` is an integer subtype: `true` behaves like one and `false` like zero. Therefore:
+---
 
-`cnt += a == b`
+### 3. Vector to $P_3(4, 1)$:
+- $\Delta x = 4 - 2 = +2, \quad \Delta y = 1 - 3 = -2$.
+- $g = \gcd(2, 2) = 2$.
+- Reduce by $g$:
+  $$
+  dx = \frac{2}{2} = 1, \quad dy = \frac{-2}{2} = -1
+  $$
+- Key: $(1, -1)$.
+- Increment: $\text{slopes}[(1, -1)] = 2 + 1 = 3$.
 
-increments exactly for a collinear third point.
+---
 
-Writing an explicit `if a == b: cnt += 1` would be equivalent and perhaps more obvious, but the compact expression is valid.
+### 4. Vector to $P_0(1, 1)$:
+- $\Delta x = 1 - 2 = -1, \quad \Delta y = 1 - 3 = -2$.
+- Normalize: $dx = 1, dy = 2$. Key: $(1, 2)$.
+- Increment: $\text{slopes}[(1, 2)] = 1$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+---
+
+### 5. Vector to $P_2(5, 3)$:
+- $\Delta x = 5 - 2 = +3, \quad \Delta y = 3 - 3 = 0$ (Horizontal).
+- Canonical key: $(1, 0)$.
+- Increment: $\text{slopes}[(1, 0)] = 1$.
+
+---
+
+### Anchor Summary for $P_4(2, 3)$:
+- Hash Map: `{(1, -1): 3, (1, 2): 1, (1, 0): 1}`.
+- Max collinear points sharing slope $(1, -1)$:
+  $$
+  \text{Count} = 1 (\text{anchor } P_4) + 3 (\text{neighbors } P_5, P_1, P_3) = \mathbf{4}
+  $$
+- Update: $\text{max\_pts} = \max(2, 4) = \mathbf{4}$.
+
+Global maximum collinear points: $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"points": [[1, 1], [2, 2], [3, 3]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+Points: P0(1,1), P1(3,2), P2(5,3), P3(4,1), P4(2,3), P5(1,4)
+
+Anchor P4(2,3):
+  -> P5(1,4): dx=-1, dy= 1 -> reduced: (1, -1)   count: 1
+  -> P1(3,2): dx= 1, dy=-1 -> reduced: (1, -1)   count: 2
+  -> P3(4,1): dx= 2, dy=-2 -> reduced: (1, -1)   count: 3
+  -> P0(1,1): dx=-1, dy=-2 -> reduced: (1,  2)   count: 1
+  -> P2(5,3): dx= 3, dy= 0 -> reduced: (1,  0)   count: 1
+
+Max for P4: 1 (anchor) + 3 = 4 points collinear on line y = -x + 5
+```
+
+| Anchor Point $P_i$ | Target Point $P_j$ | $\Delta x, \Delta y$ | $\gcd$ | Reduced Key $(dx, dy)$ | Slope Count in Map | Total Collinear ($1 + \text{count}$) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $P_4(2, 3)$ | $P_5(1, 4)$ | $(-1, 1)$ | 1 | $(1, -1)$ | 1 | 2 |
+| $P_4(2, 3)$ | $P_1(3, 2)$ | $(1, -1)$ | 1 | $(1, -1)$ | 2 | 3 |
+| **$P_4(2, 3)$** | **$P_3(4, 1)$** | **$(2, -2)$** | **2** | **$(1, -1)$** | **3** | **4 (Global Max)** |
+| $P_4(2, 3)$ | $P_0(1, 1)$ | $(-1, -2)$ | 1 | $(1, 2)$ | 1 | 2 |
+| $P_4(2, 3)$ | $P_2(5, 3)$ | $(3, 0)$ | 3 | $(1, 0)$ | 1 | 2 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Three points $A, B, C$ are collinear if and only if the slope between $A$ and $B$ equals the slope between $A$ and $C$. By reducing fraction $(dx, dy)$ by $\gcd(|dx|, |dy|)$ and enforcing $dx > 0$, every geometric line through anchor $A$ maps to a unique hash key. No distinct lines can produce identical keys.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every pair of points $(i, j)$ with $i < j$ is evaluated. For any maximal set of collinear points $S$, choosing the point in $S$ with the smallest index as anchor will group all other $|S|-1$ points under the exact same slope key.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Normalized rational slopes per anchor:** Divide `dy` and `dx` by their greatest common divisor and normalize signs, then count pairs in a map. It gives $O(n^2)$ time and $O(n)$ space with exact arithmetic.
-- **Floating slopes per anchor:** Count `dy / dx` and use a special vertical key. It is concise but can be vulnerable to rounding outside tightly bounded domains.
-- **Line equation keys:** Normalize coefficients in $Ax+By+C=0$. This can count global lines but requires careful common-factor and sign normalization.
-- **One or two points:** Initialization and pair counting return one or two directly.
-- **Vertical line:** Cross multiplication works without division by zero.
-- **Negative coordinates:** Differences and exact products preserve the equation.
-- **Duplicate points outside the contract:** A duplicate defining pair would make every third point appear collinear; this source relies on uniqueness.
-- **Index-order undercount:** Individual later pairs may omit earlier collinear points, but the two smallest indices on a maximum line provide a complete witness pair.
-- **Runtime dependency:** The source uses nested `List` annotations without importing the type. Standalone Python needs `from typing import List`.
-- **Manifest mismatch:** Its actual tradeoff is cubic time with constant auxiliary storage.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Floating-Point Imprecision:** Using `float(dy) / dx` causes distinct lines with slightly different slopes to collide, or identical slopes to map to different hash buckets due to rounding (e.g. `1/3` vs `2/6`). Using coprime tuples `(dx, dy)` guarantees exact integer equality.
+- **Negative Denominator Alignment:** Slope $-1/2$ and $1/(-2)$ represent the same line. Without normalizing $dx > 0$, they would generate keys $(2, -1)$ and $(-2, 1)$, failing to group together!
+- **Small Inputs ($N \le 2$):** Any 1 or 2 points trivially lie on a straight line. Returning $N$ directly avoids empty hash map exceptions.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of points.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$, where $N$ is the number of points. There are $N$ choices for anchor point $P_i$. For each anchor, we examine $N - 1 - i$ other points. Computing $\gcd(dx, dy)$ takes logarithmic time in coordinate magnitude ($O(\log(\max |X|, |Y|))$), which is $O(1)$ for 32-bit integers. Total runtime is $O(N^2)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store at most $N$ slope keys in the hash map per anchor.

@@ -1,129 +1,138 @@
 # Guided Example: Node With Highest Edge Score
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"edges": [1, 0, 0, 0, 0, 7, 7, 5]}`
-- **Required output:** `7`
+In a directed graph consisting of $n$ vertices labeled $0$ through $n - 1$, every node has out-degree exactly $1$. The directed topology is defined by an array $\text{edges}$, where a directed arc extends from node $i$ to node $\text{edges}[i]$. The "edge score" of any target vertex $v$ is defined as the sum of the numerical identifiers of all source vertices that point directly to $v$:
+$$\text{score}(v) = \sum_{u \mid \text{edges}[u] = v} u$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+If no incoming edges terminate at vertex $v$, its score is defined as $0$. The objective is to identify the vertex that achieves the maximum edge score. If multiple vertices tie with the identical maximum score, the smallest vertex index among them must be returned.
 
----
+Consider the representative graph:
+$$\text{edges} = [1, 0, 0, 0, 0, 7, 7, 5], \quad n = 8$$
 
-## 1. Instance & Teaching Goal
+Each index represents a source node. Nodes $1, 2, 3, 4$ all target node $0$, while nodes $5, 6$ target node $7$. We evaluate which target node accumulates the greatest collective source weight.
 
-You are given a directed graph with `n` nodes labeled from `0` to $n - 1$, where each node has **exactly one** outgoing edge.
+```mermaid
+graph LR
+    accTitle: Directed Graph Edge Score Contribution
+    accDescr: Directed arcs from source nodes to target nodes showing accumulated edge weight scores.
+    0((0)) --> 1((1))
+    1((1)) --> 0((0))
+    2((2)) --> 0
+    3((3)) --> 0
+    4((4)) --> 0
+    5((5)) --> 7((7))
+    6((6)) --> 7
+    7((7)) --> 5((5))
+    classDef highlight fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class 0,7 highlight;
+```
 
-The objective is to compute `7` from `{"edges": [1, 0, 0, 0, 0, 7, 7, 5]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Mathematical & Algorithmic Principles
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Every node $u \in \{0, 1, \dots, n - 1\}$ participates in exactly one outgoing edge $u \to \text{edges}[u]$. Therefore, each source identifier $u$ contributes its full numerical label to exactly one target accumulator.
 
----
+Key algorithmic invariants:
+1. **Single-Pass Accumulation:**
+   Allocate an accumulator array $\text{score}$ of size $n$, initialized to all zeros. For each index $u$ from $0$ to $n - 1$:
+   $$\text{score}[\text{edges}[u]] \leftarrow \text{score}[\text{edges}[u]] + u$$
+2. **64-bit Integer Precision:**
+   Because $n \le 10^5$, if all nodes point to a single hub vertex $v$, the maximum accumulated score reaches:
+   $$\sum_{u=0}^{n-1} u = \frac{(n - 1)n}{2} \approx \frac{10^5 \times 10^5}{2} \approx 5 \times 10^9$$
+   This value strictly exceeds the maximum limit of a 32-bit signed integer ($2^{31} - 1 \approx 2.14 \times 10^9$). Accumulator entries must use 64-bit integer types to prevent arithmetic overflow.
+3. **Deterministic Argmax Scanning:**
+   Iterating $v$ from $0$ to $n - 1$, we maintain the optimal vertex $\text{best\_node}$ and its score $\text{max\_score}$. A candidate $v$ replaces $\text{best\_node}$ strictly when $\text{score}[v] > \text{max\_score}$. Because ties are not allowed to overwrite previous records, the strictly smaller index is automatically preserved.
 
-## 2. Conceptual Foundation & Invariants
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-We maintain the core conceptual parameters and state variables:
+We trace the representative array $\text{edges} = [1, 0, 0, 0, 0, 7, 7, 5]$ with $n = 8$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+- **Initialization:**
+  Allocate $\text{score} = [0, 0, 0, 0, 0, 0, 0, 0]$ with 64-bit integers.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+- **Edge Evaluation:**
+  - **Index 0 ($0 \to 1$):**
+    Contribution: $0$. $\text{score}[1] \leftarrow 0 + 0 = 0$.
+  - **Index 1 ($1 \to 0$):**
+    Contribution: $1$. $\text{score}[0] \leftarrow 0 + 1 = 1$.
+  - **Index 2 ($2 \to 0$):**
+    Contribution: $2$. $\text{score}[0] \leftarrow 1 + 2 = 3$.
+  - **Index 3 ($3 \to 0$):**
+    Contribution: $3$. $\text{score}[0] \leftarrow 3 + 3 = 6$.
+  - **Index 4 ($4 \to 0$):**
+    Contribution: $4$. $\text{score}[0] \leftarrow 6 + 4 = 10$.
+  - **Index 5 ($5 \to 7$):**
+    Contribution: $5$. $\text{score}[7] \leftarrow 0 + 5 = 5$.
+  - **Index 6 ($6 \to 7$):**
+    Contribution: $6$. $\text{score}[7] \leftarrow 5 + 6 = 11$.
+  - **Index 7 ($7 \to 5$):**
+    Contribution: $7$. $\text{score}[5] \leftarrow 0 + 7 = 7$.
 
----
+- **Final Score Table:**
+  $\text{score} = [10, 0, 0, 0, 0, 7, 0, 11]$.
 
-## 3. Step-by-Step Worked Execution
+- **Argmax Selection:**
+  - Node 0: score $10 > 0 \implies \text{best\_node} = 0, \text{max\_score} = 10$.
+  - Node 1 to 4: score $0 \le 10 \implies$ no change.
+  - Node 5: score $7 \le 10 \implies$ no change.
+  - Node 6: score $0 \le 10 \implies$ no change.
+  - Node 7: score $11 > 10 \implies \text{best\_node} = 7, \text{max\_score} = 11$.
 
-### Step 1: Reverse the viewpoint of each directed edge
+- **Output:**
+  The optimal target node is $7$.
 
-The array entry `edges[i] = j` means source node `i` points to target node `j`. The edge score belongs to the target and receives the *source label* `i` as a contribution.
+## 4. Comprehensive State Trace
 
-Therefore, while scanning source indices, the update is:
+The contribution of each directed edge to the running score ledger is tabulated below:
 
+| Source Node $u$ | Target Node $\text{edges}[u]$ | Added Label Weight | Destination Score Before | Destination Score After |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | 0 |
+| 1 | 0 | 1 | 0 | 1 |
+| 2 | 0 | 2 | 1 | 3 |
+| 3 | 0 | 3 | 3 | 6 |
+| 4 | 0 | 4 | 6 | 10 |
+| 5 | 7 | 5 | 0 | 5 |
+| 6 | 7 | 6 | 5 | 11 |
+| 7 | 5 | 7 | 0 | 7 |
 
+The final score profile across all 8 vertices and the resulting selection priority are detailed below:
 
-It is not `cnt[i] += j`. The latter would add outgoing destinations to sources and calculate a different quantity.
+| Vertex Label $v$ | In-Degree Count | Source Predecessors Set | Sum of Predecessors ($\text{score}[v]$) | Comparison with Current Max |
+|---|---|---|---|---|
+| 0 | 4 | $\{1, 2, 3, 4\}$ | $1 + 2 + 3 + 4 = 10$ | New Leader: 10 |
+| 1 | 1 | $\{0\}$ | $0$ | $0 < 10$ |
+| 2 | 0 | $\emptyset$ | $0$ | $0 < 10$ |
+| 3 | 0 | $\emptyset$ | $0$ | $0 < 10$ |
+| 4 | 0 | $\emptyset$ | $0$ | $0 < 10$ |
+| 5 | 1 | $\{7\}$ | $7$ | $7 < 10$ |
+| 6 | 0 | $\emptyset$ | $0$ | $0 < 10$ |
+| 7 | 2 | $\{5, 6\}$ | $5 + 6 = 11$ | New Leader: 11 |
 
-Every node has exactly one outgoing edge, so every source index contributes exactly once to exactly one score. A target may have zero, one, or many incoming sources. Nodes with no incoming edges retain score zero.
+Node 7 achieves the highest edge score of 11.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"edges": [1, 0, 0, 0, 0, 7, 7, 5]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 5. Algorithmic Correctness & Soundness
 
----
+The correctness of this algorithm rests on structural properties of directed functional mappings:
+1. **Partition of Mass:** Because each node $u$ has exactly one outgoing edge, the mapping $u \mapsto \text{edges}[u]$ defines a partition of the total sum of indices $\sum_{u=0}^{n-1} u$ across the target nodes. No source label is omitted, and no source label is counted more than once.
+2. **Exhaustive Score Calculation:** After processing all $n$ indices, $\text{score}[v]$ is guaranteed to equal the exact sum $\sum_{u \mid \text{edges}[u] = v} u$.
+3. **Tie-Breaking Soundness:** By scanning candidate indices $v$ in strictly ascending order ($0, 1, \dots, n - 1$) and updating the optimal choice only when $\text{score}[v] > \text{max\_score}$ (strict inequality), ties preserve the earlier, smaller index.
 
-### Step 2: Maintain scores and the best node together
+## 6. Edge Cases & Anti-Patterns
 
-`cnt` is a length-$n$ list initialized to zero. After processing sources `0` through `i`, `cnt[v]` equals the sum of labels among those processed sources whose edge points to `v`.
+- **Tie Between Equal Maximal Scores:** If $\text{edges} = [2, 0, 0, 2]$, Node 0 receives $\{1, 2\} \implies 3$, and Node 2 receives $\{0, 3\} \implies 3$. Node 0 is examined first and sets the record $3$. When Node 2 is examined, its score is equal to $3$, but not strictly greater. The algorithm correctly retains index $0$.
+- **Nodes with Zero In-Degree:** Vertices with no incoming edges have score $0$. If all nodes have score $0$, index $0$ is returned.
+- **Star Graph (All-to-One):** All $n - 1$ nodes point to node $0$. Node $0$ score equals $\sum_{i=1}^{n-1} i \approx 5 \times 10^9$. 64-bit integer variables prevent arithmetic overflow.
+- **Anti-Pattern: Counting In-Degree:** Confusing in-degree (count of incoming edges) with edge score (sum of source identifiers). In our example, node 0 has in-degree 4 and score 10, whereas node 7 has in-degree 2 and score 11. Edge score is determined by source node values, not sheer edge count.
 
-`ans` is initialized to node `0`. Before any edge is processed, all scores are zero, and node zero is the smallest index among the tied maximum scores. Thus, `ans = 0` is the correct initial tie-aware winner.
+## 7. Complexity Analysis
 
-After adding source `i` to target `j`, only one score changes: `cnt[j]`. Every other score remains exactly as it was. If the previous `ans` was the correct winner before the update, the new winner can only remain `ans` or become `j`.
-
-The solution performs exactly that comparison:
-
-
-
-Target `j` replaces the current answer when it has a strictly larger score. If scores tie, it replaces only when its index is smaller.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why an online winner remains valid
-
-It might initially seem safer to finish all scores and then scan for the maximum. The online update is equally correct because each iteration modifies only `j`.
-
-Maintain the invariant that `ans` is the smallest-index node having the maximum score among the current partial scores. Before an update, all unchanged nodes are already no better than `ans` under score-first, index-second ordering. After increasing `cnt[j]`, only `j` might overtake or tie `ans`. The condition compares those exact possibilities and picks the correct one. Thus, the invariant remains true after every source.
-
-At the end, partial scores are full edge scores, so `ans` is the required final node.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `7` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"edges": [1, 0, 0, 0, 0, 7, 7, 5]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `7` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Two-pass method:** First accumulate every score, then scan from index zero and keep the first maximum. It has the same $O(n)$ bounds and may be conceptually simpler, while the exact method combines the passes.
-- **Dictionary of scores:** A hash map works, but every target lies in the dense range `0` through `n - 1`, so a list is faster and simpler.
-- **Count indegrees:** This is incorrect because the score sums source labels rather than the number of sources.
-- **Target with no incoming edges:** Its score remains zero and it can win only if no node has a positive score, with smallest-index tie-breaking.
-- **Incoming edge from node zero:** It contributes zero even though the edge exists.
-- **Several nodes tie:** The comparison's second clause retains or selects the smallest index.
-- **Current target equals `ans`:** Its score is updated in place; comparing it with itself makes no unnecessary change.
-- **Repeated target values in `edges`:** Each source label is added independently to that target's running total.
-- **Exactly one outgoing edge per source:** The enumeration accounts for every source once and needs no missing-edge branch.
-- **Large accumulated sums:** Use sufficiently wide arithmetic outside Python.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the number of nodes. The loop processes all $n$ array entries exactly once and performs constant-time indexing, addition, and comparison. Time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Allocating the score array of size $n$ takes $\mathcal{O}(n)$ time.
+  - Iterating through $\text{edges}$ of length $n$ performs constant-time addition per element: $\mathcal{O}(n)$ time.
+  - The linear argmax scan examines each of the $n$ score entries once: $\mathcal{O}(n)$ time.
+  - Overall time complexity is strictly $\mathcal{O}(n)$.
+- **Space Complexity:**
+  - The auxiliary accumulator array $\text{score}$ stores $n$ 64-bit integers: $\mathcal{O}(n)$ space.
+  - Scalar variables for tracking maximum scores take $\mathcal{O}(1)$ space.
+  - Total auxiliary space complexity is $\mathcal{O}(n)$.

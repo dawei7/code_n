@@ -1,106 +1,131 @@
 # Guided Example: Largest Odd Number in String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace base-10 integer parity properties, prefix numeric dominance, and backward suffix truncation on representative decimal digit strings:
 
-- **Input:** `{"num": "52"}`
-- **Required output:** `"5"`
+- **Input:** `num = "52"` (alongside `num = "4206"` and `num = "35427"`)
+- **Required Output:** `"5"` (and `""` for the all-even instance)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates finding the largest-valued odd substring in linear time by showing that the optimal odd substring must start at index 0 and terminate at the rightmost odd digit.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `num`, representing a large integer. Return *the **largest-valued odd** integer (as a string) that is a **non-empty substring** of *`num`*, or an empty string *`""`* if no odd integer exists*.
+We are given a string `num` representing a large non-negative integer. We seek the largest-valued odd integer (as a string) that is a contiguous substring of `num`. If no odd integer exists, return `""`.
 
-The objective is to compute `"5"` from `{"num": "52"}` while avoiding redundant calculations and unnecessary overhead.
+For `num = "52"`:
+- Substrings of `"52"`:
+  - Length 1: `"5"` (odd, value 5), `"2"` (even, value 2)
+  - Length 2: `"52"` (even, value 52)
+- Among all odd substrings, `"5"` is the only one, with value 5.
+- Output: `"5"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For `num = "4206"`:
+- Digits: 4 (even), 2 (even), 0 (even), 6 (even).
+- Every non-empty substring ends in an even digit, hence every substring is even.
+- Output: `""`.
+
+For `num = "35427"`:
+- The last digit is `'7'`, which is odd.
+- The entire string `"35427"` is odd, representing the largest possible substring.
+
+The teaching goal is to understand **parity-preserving prefix maximality**:
+1. Why an integer's parity depends exclusively on its rightmost digit.
+2. Why any candidate substring starting at index 0 strictly dominates any substring starting at index $i > 0$.
+3. How scanning backward from right to left finds the optimal prefix in $\mathcal{O}(n)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Base-10 Parity Invariance & Rightmost Odd Suffix Truncation Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Base-10 Parity Invariance & Rightmost Odd Suffix Truncation Theorem.**
+> 1. *Base-10 Parity Invariant:* For any integer represented by digit string $S = d_0 d_1 \dots d_{k-1}$:
+>    $$\text{val}(S) = \sum_{j=0}^{k-1} d_j \cdot 10^{k-1-j} \equiv d_{k-1} \pmod 2$$
+>    Thus, $\text{val}(S)$ is odd if and only if its terminal digit $d_{k-1} \in \{1, 3, 5, 7, 9\}$.
+> 2. *Prefix Dominance:* For any two substrings ending at the same odd digit index $j$, let $S_1 = num[0 \dots j]$ and $S_2 = num[i \dots j]$ with $i > 0$:
+>    $$\text{val}(S_1) \ge 10^i \cdot \text{val}(S_2) > \text{val}(S_2)$$
+>    Hence, to maximize value, the optimal substring must have its left bound anchored at index 0.
+> 3. *Rightmost Odd Terminal Selection:* For any two prefixes $num[0 \dots j_1]$ and $num[0 \dots j_2]$ with $j_1 < j_2$:
+>    $$\text{val}(num[0 \dots j_2]) > \text{val}(num[0 \dots j_1])$$
+>    Therefore, the maximum odd substring is uniquely determined by selecting the largest index $j^*$ such that $num[j^*]$ is an odd digit.
+> 4. *Complexity:* Scanning backward from index $|num| - 1$ down to 0 takes $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart LR
+    accTitle: Largest Odd Number Backward Scan Pipeline
+    accDescr: Pipeline showing backward traversal over digits to locate the first odd character and return the prefix.
+    A["num = '52' (length 2)"] --> B["Inspect index 1: digit '2'"]
+    B -->|"2 is even"| C["Decrement pointer to index 0"]
+    C --> D["Inspect index 0: digit '5'"]
+    D -->|"5 is odd"| E["Found rightmost odd index: j = 0"]
+    E --> F["Return prefix num[0..0] = '5'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Oddness depends only on the last digit.** A decimal integer is odd exactly when its units digit is one of `1, 3, 5, 7, 9`. For any substring of `num`, only that substring's final character determines parity. The algorithm therefore searches for a suitable ending position rather than evaluating large numeric substrings.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "52"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `num = "52"`:
+- Length: $n = 2$.
+- Indices: $0 \dots 1$.
 
 ---
 
-### Step 2: Core Step 2
-
-**For a fixed ending, start at index zero.** Suppose an odd digit occurs at index `i`. Any substring ending there is odd. Among those substrings, `num[:i + 1]` has the greatest length because it starts at the beginning. The original number has no leading zeros, so this prefix represents an $(i+1)$-digit positive integer. Every later-starting substring has fewer digits and is therefore numerically smaller, regardless of its first digit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Inspect Rightmost Character ($i = 1$)
+- Character at index 1: `'2'`.
+- Convert character to integer digit: $2$.
+- Test parity:
+  $$2 \pmod 2 = 0 \quad (\textbf{Even})$$
+- A substring ending at index 1 cannot be odd.
+- Decrement index: $i \leftarrow 0$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Inspect Character ($i = 0$)
+- Character at index 0: `'5'`.
+- Convert character to integer digit: $5$.
+- Test parity:
+  $$5 \pmod 2 = 1 \quad (\textbf{Odd})$$
+- Found the rightmost odd digit at index $j^* = 0$.
 
-Even if leading zeros were present, adding them would not increase numeric value, but the stated no-leading-zero guarantee makes the length comparison direct and eliminates representational ambiguity for the chosen prefix.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"5"` |
+### Step 3: Construct Optimal Prefix
+- The largest odd integer substring is the prefix ending at $j^* = 0$:
+  $$num[0 \dots 0] = \text{"5"}$$
+- Output: `"5"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "52"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"5"` | Verified |
+| Index $i$ | Character | Numeric Digit | Digit Parity | Action | Prefix Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | `'2'` | 2 | Even | Skip and continue backward | - |
+| 0 | `'5'` | 5 | **Odd** | **Found rightmost odd digit** | `"5"` |
+| **Output** | - | - | - | - | **"5"** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A string prefix is returned if and only if its last digit is an odd integer, which proves that the numeric value represented is odd.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since prefix value increases strictly with length and any substring not starting at index 0 has strictly fewer digits than the full prefix, the longest prefix ending in an odd digit is mathematically guaranteed to be the largest possible odd substring.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Forward scan remembering the last odd index:** This also takes $O(n)$ time and returns the same prefix, but the reverse scan can return immediately.
-- **Enumerate all substrings:** There are $O(n^2)$ candidates and parsing them is unnecessary because parity and length determine the answer structure.
-- **Convert the full string to an integer:** The input may have $10^5$ digits and exceed practical numeric limits. Full conversion provides no useful information beyond the final digit.
-- **Entire number odd:** The last digit succeeds and the whole string is returned.
-- **All digits even:** No odd substring exists because every possible ending is even, so the empty string is correct.
-- **Odd digit only at index zero:** The result is the first character, as in `"52"`.
-- **Several odd digits:** Only the rightmost matters; its prefix strictly contains more digits than every earlier odd prefix.
-- **No leading zeros:** This guarantees a longer chosen prefix is numerically larger in the usual decimal representation.
-- **Output allocation:** The algorithmic working state is constant, but Python materializes `num[:i + 1]` as a new string.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Integer Overflow:** The string `num` can be up to $10^5$ digits long. Converting the string (or any large substring) to a standard machine integer causes numeric overflow. All reasoning must operate on string slices and character digit parity.
+- **Exhaustive Substring Generation:** Generating all $\mathcal{O}(n^2)$ substrings leads to Time Limit Exceeded on strings of length $10^5$. Linear backward scanning is required.
+- **No Odd Digits:** When all digits are even (e.g. `"4206"`), the backward loop terminates at $i < 0$, correctly returning the empty string `""`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of digits. In the worst case, the backward loop examines all $n$ positions, so search time is $O(n)$. Constructing the returned prefix copies up to $n$ characters in Python, also $O(n)$ time. Total time remains $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `num`. The algorithm performs at most $n$ character inspections from right to left, and slicing the prefix takes $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space beyond the returned prefix slice.

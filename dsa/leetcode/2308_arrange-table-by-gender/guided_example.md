@@ -1,143 +1,193 @@
 # Guided Example: Arrange Table by Gender
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Genders": [{"user_id": 4, "gender": "male"}, {"user_id": 7, "gender": "female"}, {"user_id": 2, "gender": "other"}, {"user_id": 5, "gender": "male"}, {"user_id": 3, "gender": "female"}, {"user_id": 8, "gender": "male"}, {"user_id": 6, "gender": "other"}, {"user_id": 1, "gender": "other"}, {"user_id": 9, "gender": "female"}]}}`
-- **Required output:** `{"columns": ["user_id", "gender"], "rows": [[3, "female"], [1, "other"], [4, "male"], [7, "female"], [2, "other"], [5, "male"], [9, "female"], [6, "other"], [8, "male"]]}`
+We are given a relational table `Genders` containing user demographic records:
+- `user_id`: unique primary key integer identifying each user.
+- `gender`: string category taking values in $\{\text{'female'}, \text{'other'}, \text{'male'}\}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The problem guarantees that each of the three gender categories appears an equal number of times in the table. We are required to rearrange the rows of `Genders` to satisfy two simultaneous formatting invariants:
+1. **Alternating Gender Sequence:** Rows must strictly cycle in the fixed order:
+   $$\text{'female'} \to \text{'other'} \to \text{'male'}$$
+2. **Intra-Gender Monotonicity:** Within each gender group, users must appear in strictly ascending order of their numerical `user_id`.
+
+Consider the representative database instance:
+
+| `user_id` | `gender` |
+|---|---|
+| 4 | male |
+| 7 | female |
+| 2 | other |
+| 5 | male |
+| 3 | female |
+| 8 | male |
+| 6 | other |
+| 1 | other |
+| 9 | female |
+
+Partitioning and sorting each gender category independently by `user_id`:
+- **Female Group:** $[3, 7, 9]$
+- **Other Group:** $[1, 2, 6]$
+- **Male Group:** $[4, 5, 8]$
+
+Interleaving by cycle index $k \in \{1, 2, 3\}$:
+- **Cycle 1 (Rank 1):**
+  - Female: `user_id = 3`
+  - Other: `user_id = 1`
+  - Male: `user_id = 4`
+- **Cycle 2 (Rank 2):**
+  - Female: `user_id = 7`
+  - Other: `user_id = 2`
+  - Male: `user_id = 5`
+- **Cycle 3 (Rank 3):**
+  - Female: `user_id = 9`
+  - Other: `user_id = 6`
+  - Male: `user_id = 8`
+
+The final arranged table is:
+
+| `user_id` | `gender` |
+|---|---|
+| 3 | female |
+| 1 | other |
+| 4 | male |
+| 7 | female |
+| 2 | other |
+| 5 | male |
+| 9 | female |
+| 6 | other |
+| 8 | male |
+
+```mermaid
+flowchart TD
+    accTitle: Dual-Key Relational Interleaving Architecture
+    accDescr: Pipeline computing intra-group rank and inter-group cycle index to interleave three equal-sized gender partitions.
+    A["Raw Genders Table"] --> B["Compute intra-group rank: RANK() OVER (PARTITION BY gender ORDER BY user_id) as rk1"]
+    A --> C["Map gender to cycle phase: female -> 0, other -> 1, male -> 2 as rk2"]
+    B & C --> D["Composite Ordering: ORDER BY rk1 ASC, rk2 ASC"]
+    D --> E["Interleaved Output: female(1) -> other(1) -> male(1) -> female(2) ..."]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-Table: `Genders`
+### Dual-Key Coordinate Transformation
 
-The objective is to compute `{"columns": ["user_id", "gender"], "rows": [[3, "female"], [1, "other"], [4, "male"], [7, "female"], [2, "other"], [5, "male"], [9, "female"], [6, "other"], [8, "male"]]}` from `{"tables": {"Genders": [{"user_id": 4, "gender": "male"}, {"user_id": 7, "gender": "female"}, {"user_id": 2, "gender": "other"}, {"user_id": 5, "gender": "male"}, {"user_id": 3, "gender": "female"}, {"user_id": 8, "gender": "male"}, {"user_id": 6, "gender": "other"}, {"user_id": 1, "gender": "other"}, {"user_id": 9, "gender": "female"}]}}` while avoiding redundant calculations and unnecessary overhead.
+Relational tables are intrinsically unordered multisets. To produce a cyclic, interleaved sequence, we project each record $(u, g)$ into a discrete 2D coordinate space $(rk_1, rk_2)$:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+1. **Cycle Rank ($rk_1$):**
+   Within each partition defined by $g \in \{\text{'female'}, \text{'other'}, \text{'male'}\}$, we assign each record an ordinal rank based on its `user_id`:
+   $$rk_1 = \text{RANK}() \text{ OVER} (\text{PARTITION BY } gender \text{ ORDER BY } user\_id)$$
+   Since all three groups have identical cardinality $K$, $rk_1$ spans $\{1, 2, \dots, K\}$ for every category.
+2. **Phase Offset ($rk_2$):**
+   To enforce the required cyclic ordering inside each cycle, we define a static injection $\phi: \text{Gender} \to \{0, 1, 2\}$:
+   $$\phi(\text{'female'}) = 0, \quad \phi(\text{'other'}) = 1, \quad \phi(\text{'male'}) = 2$$
+3. **Lexicographical Ordering:**
+   Sorting all tuples by the composite key $(rk_1, rk_2)$ lexicographically:
+   $$(rk_1, rk_2) < (rk_1', rk_2') \iff (rk_1 < rk_1') \lor (rk_1 = rk_1' \land rk_2 < rk_2')$$
+   This guarantees that:
+   - All records with cycle rank $1$ appear before any record with cycle rank $2$.
+   - Within cycle rank $k$, rows are ordered strictly by phase $0 \to 1 \to 2$ (`female` $\to$ `other` $\to$ `male`).
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate the requested display order into two sortable keys
-
-The output is not obtained by sorting directly by `user_id` or directly by `gender`. It has two simultaneous requirements:
-
-1. Within each gender, users must appear in ascending `user_id` order.
-2. The rows must be interleaved in repeating groups of `female`, `other`, and `male`.
-
-A useful way to combine these requirements is to give every row two ranks. The first rank says which occurrence this row is within its own gender after sorting by ID. The second rank says where that gender belongs inside one three-row cycle. Sorting first by occurrence rank and then by gender rank produces exactly the requested pattern.
-
-For example, suppose the sorted IDs are female `[3, 7, 9]`, other `[1, 2, 6]`, and male `[4, 5, 8]`. Their occurrence ranks are:
-
-| occurrence rank | female | other | male |
-| --- | ---: | ---: | ---: |
-| 1 | 3 | 1 | 4 |
-| 2 | 7 | 2 | 5 |
-| 3 | 9 | 6 | 8 |
-
-Reading this conceptual table row by row, with the columns ordered female, other, male, gives `3, 1, 4, 7, 2, 5, 9, 6, 8`. Those are exactly the user IDs in the required output order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Sorting Attribute | Definition | Cardinality | Primary Invariant Enforced |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Genders": [{"user_id": 4, "gender": "male"}, {"user_id": 7, "gender": "female"}, {"user_id": 2, "gender": "other"}, {"user_id": 5, "gender": "male"}, {"user_id": 3, "gender": "female"}, {"user_id": 8, "gender": "male"}, {"user_id": 6, "gender": "other"}, {"user_id": 1, "gender": "other"}, {"user_id": 9, "gender": "female"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Primary Key $rk_1$ | `RANK() OVER (PARTITION BY gender ORDER BY user_id)` | $K = N/3$ | Clusters corresponding ordinal ranks into identical cycle bands |
+| Secondary Key $rk_2$ | `CASE gender WHEN 'female' THEN 0 WHEN 'other' THEN 1 ELSE 2 END` | $3$ | Enforces strict cyclical rotation inside each cycle band |
 
 ---
 
-### Step 2: Compute the occurrence rank independently inside each gender
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-The common table expression named `t` starts from every row in `Genders` and adds the window value `rk1`:
+Let us trace the row-by-row rank assignments on the $9$-row input table.
 
-`RANK() OVER (PARTITION BY gender ORDER BY user_id)`.
+### Step 1: Assign Intra-Group Rank $rk_1$
+Partitioning by `gender` and ordering ascending by `user_id`:
+- **Female Group:**
+  - `user_id = 3` is the $1^{\text{st}}$ female $\implies rk_1 = 1$.
+  - `user_id = 7` is the $2^{\text{nd}}$ female $\implies rk_1 = 2$.
+  - `user_id = 9` is the $3^{\text{rd}}$ female $\implies rk_1 = 3$.
+- **Other Group:**
+  - `user_id = 1` is the $1^{\text{st}}$ other $\implies rk_1 = 1$.
+  - `user_id = 2` is the $2^{\text{nd}}$ other $\implies rk_1 = 2$.
+  - `user_id = 6` is the $3^{\text{rd}}$ other $\implies rk_1 = 3$.
+- **Male Group:**
+  - `user_id = 4` is the $1^{\text{st}}$ male $\implies rk_1 = 1$.
+  - `user_id = 5` is the $2^{\text{nd}}$ male $\implies rk_1 = 2$.
+  - `user_id = 8` is the $3^{\text{rd}}$ male $\implies rk_1 = 3$.
 
-`PARTITION BY gender` creates three independent logical groups. A female row is ranked only relative to other female rows, an other row only relative to other other rows, and a male row only relative to other male rows. Within each partition, `ORDER BY user_id` places IDs in ascending order before assigning ranks.
+### Step 2: Assign Phase Rank $rk_2$
+- Every `'female'` row receives $rk_2 = 0$.
+- Every `'other'` row receives $rk_2 = 1$.
+- Every `'male'` row receives $rk_2 = 2$.
 
-The first user of each gender receives `rk1 = 1`, the second receives `rk1 = 2`, and so on. Although the query uses `RANK` rather than `ROW_NUMBER`, the two functions behave identically here because `user_id` is the primary key for the whole table. Two rows cannot have the same `user_id`, so ties cannot occur within a gender partition and `RANK` cannot create gaps.
+### Step 3: Composite Sorting by `(rk1, rk2)`
+Sorting the rows by `(rk1, rk2)` ascending:
+1. $(rk_1 = 1, rk_2 = 0) \implies (3, \text{'female'})$
+2. $(rk_1 = 1, rk_2 = 1) \implies (1, \text{'other'})$
+3. $(rk_1 = 1, rk_2 = 2) \implies (4, \text{'male'})$
+4. $(rk_1 = 2, rk_2 = 0) \implies (7, \text{'female'})$
+5. $(rk_1 = 2, rk_2 = 1) \implies (2, \text{'other'})$
+6. $(rk_1 = 2, rk_2 = 2) \implies (5, \text{'male'})$
+7. $(rk_1 = 3, rk_2 = 0) \implies (9, \text{'female'})$
+8. $(rk_1 = 3, rk_2 = 1) \implies (6, \text{'other'})$
+9. $(rk_1 = 3, rk_2 = 2) \implies (8, \text{'male'})$
 
-The equality of the three gender counts is what lets every occurrence rank form a complete cycle. For each value of `rk1`, there is exactly one female row, one other row, and one male row.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Give each gender its position inside a cycle
-
-The `CASE` expression produces the second key `rk2`:
-
-- female receives `0`;
-- other receives `1`;
-- the remaining category receives `2`.
-
-The schema guarantees that `gender` is one of `female`, `male`, or `other`. Therefore the `ELSE 2` branch represents male and cannot accidentally absorb an unknown category under valid input.
-
-The actual numeric values `0`, `1`, and `2` are not important by themselves. What matters is their ascending relationship. They encode the required within-cycle ordering
-
-`female < other < male`.
-
-It would also be correct to use `1`, `2`, and `3`, but starting at zero is concise and conventional.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["user_id", "gender"], "rows": [[3, "female"], [1, "other"], [4, "male"], [7, "female"], [2, "other"], [5, "male"], [9, "female"], [6, "other"], [8, "male"]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Genders": [{"user_id": 4, "gender": "male"}, {"user_id": 7, "gender": "female"}, {"user_id": 2, "gender": "other"}, {"user_id": 5, "gender": "male"}, {"user_id": 3, "gender": "female"}, {"user_id": 8, "gender": "male"}, {"user_id": 6, "gender": "other"}, {"user_id": 1, "gender": "other"}, {"user_id": 9, "gender": "female"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["user_id", "gender"], "rows": [[3, "female"], [1, "other"], [4, "male"], [7, "female"], [2, "other"], [5, "male"], [9, "female"], [6, "other"], [8, "male"]]}` | Verified |
+The final interleaved stream is emitted directly.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Comprehensive State Trace
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Three filtered queries with explicit row numbers:** Rank female, other, and male rows separately and join them by row number, then unpivot or combine the columns. This can express the pattern but is much longer and risks dropping rows through an incorrect join; one partitioned window handles all categories uniformly.
-- **`ROW_NUMBER` instead of `RANK`:** It produces the same result under the primary-key guarantee because `user_id` values cannot tie. `RANK` is safe here, but `ROW_NUMBER` would communicate the idea of a sequential position somewhat more directly.
-- **Sorting by gender before occurrence rank:** `ORDER BY rk2, rk1` would output all female rows, then all other rows, then all male rows. The order of the two keys is essential: cycle number must be the primary key.
-- **Sorting by `user_id` globally:** A globally small male ID could appear before the first female row, violating the mandated gender cycle. IDs are ordered only within their own gender groups.
-- **Lexicographic gender ordering:** Alphabetical order is female, male, other, not female, other, male. The explicit `CASE` avoids relying on enum storage order or textual collation.
-- **Using the enum's internal numeric representation:** That would couple correctness to a database-specific declaration order that is not expressed by the query. The explicit mapping states the product requirement directly.
-- **Unequal category counts:** The contract guarantees equal counts. Without that guarantee, sorting by the same keys would still order available rows by occurrence and category, but later cycles could be incomplete, so strict three-row alternation through the entire result would be impossible.
-- **Duplicate IDs:** The primary key excludes them. If ties were possible, `RANK` could assign the same rank to multiple rows and skip a later rank, disturbing the one-row-per-category cycle.
-- **Unknown or null gender:** The enum contract excludes both. Under invalid input, the `ELSE` branch would treat an unknown non-female, non-other value like male, which is another reason correctness relies on the declared schema.
-- **Helper columns in the result:** `rk1` and `rk2` exist only to control order. The outer `SELECT user_id, gender` correctly prevents them from leaking into the required output.
-- **SQL result order without `ORDER BY`:** Table storage and CTE evaluation do not guarantee presentation order. The final `ORDER BY` is mandatory even though the window function itself contains an ordering clause.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| `user_id` | `gender` | Gender Partition | Partition Order by `user_id` | $rk_1$ Value | $rk_2$ Value | Composite Key $(rk_1, rk_2)$ | Final Emission Order |
+|---|---|---|---|---|---|---|---|
+| $4$ | male | male | $1^{\text{st}}$ male | $1$ | $2$ | $(1, 2)$ | $3^{\text{rd}}$ |
+| $7$ | female | female | $2^{\text{nd}}$ female | $2$ | $0$ | $(2, 0)$ | $4^{\text{th}}$ |
+| $2$ | other | other | $2^{\text{nd}}$ other | $2$ | $1$ | $(2, 1)$ | $5^{\text{th}}$ |
+| $5$ | male | male | $2^{\text{nd}}$ male | $2$ | $2$ | $(2, 2)$ | $6^{\text{th}}$ |
+| $3$ | female | female | $1^{\text{st}}$ female | $1$ | $0$ | $(1, 0)$ | $1^{\text{st}}$ |
+| $8$ | male | male | $3^{\text{rd}}$ male | $3$ | $2$ | $(3, 2)$ | $9^{\text{th}}$ |
+| $6$ | other | other | $3^{\text{rd}}$ other | $3$ | $1$ | $(3, 1)$ | $8^{\text{th}}$ |
+| $1$ | other | other | $1^{\text{st}}$ other | $1$ | $1$ | $(1, 1)$ | $2^{\text{nd}}$ |
+| $9$ | female | female | $3^{\text{rd}}$ female | $3$ | $0$ | $(3, 0)$ | $7^{\text{th}}$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(r log r)$. Let `r` be the number of rows in `Genders`. The database must arrange rows within gender partitions by `user_id` to evaluate the window function and must order the derived rows by `rk1` and `rk2` for the final result. A comparison-sort-based execution has `O(r \log r)` time in the general case. An optimizer may exploit an appropriate index or combine parts of the work, but the logical query does not depend on a particular physical plan.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Determinism and Stability
+Because `user_id` is a unique primary key, within any partition of `gender`, no two rows can have identical `user_id`. Therefore:
+- The window function `RANK() OVER (PARTITION BY gender ORDER BY user_id)` produces strictly distinct, contiguous integers $\{1, 2, \dots, K\}$ without ties.
+- The pair $(rk_1, rk_2)$ is strictly unique across all rows in the table.
+- Composite sorting `ORDER BY rk1, rk2` is totally ordered and deterministic.
+
+### Strict Rotation Invariant
+By construction, the sequence of $(rk_1, rk_2)$ tuples progresses:
+$$(1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2), \dots, (K, 0), (K, 1), (K, 2)$$
+Projecting onto `gender`, the values strictly cycle $\text{female} \to \text{other} \to \text{male}$. Projecting onto any individual gender, $rk_1$ strictly increases, ensuring $user\_id$ strictly increases.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Correlated Subquery Joins
+Attempting to interleave by writing three separate subqueries and joining them on artificial row counters creates unnecessary table scans and memory buffers. Window functions partition and rank in a single pass over the clustered index.
+
+### Edge Case: Minimal Table ($3$ Rows, $1$ Per Gender)
+When $N = 3$, $K = 1$. Exactly one cycle executes: $(1, 0), (1, 1), (1, 2)$, emitting the single trio in exact order.
+
+### Edge Case: Non-Contiguous User IDs
+User IDs do not need to be consecutive integers (e.g. $100, 500, 9999$). `RANK()` assigns ordinal indices $1, 2, 3$ based on numerical sorting regardless of gaps.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Partitioning and Ranking:** Evaluating `RANK() OVER (PARTITION BY gender ORDER BY user_id)` partitions the $N$ rows into $3$ groups and sorts each group. Sorting $3$ groups of size $N/3$ takes $3 \times O(\frac{N}{3} \log \frac{N}{3}) = O(N \log N)$ time.
+- **Global Sort:** Sorting $N$ rows by composite key $(rk_1, rk_2)$ takes $O(N \log N)$ time.
+- **Overall Time Complexity:** $O(N \log N)$, which is optimal for comparison-based relational ordering.
+
+### Space Complexity
+- Intermediate CTE stores the auxiliary columns $rk_1$ and $rk_2$ for each of the $N$ rows.
+- **Auxiliary Space Complexity:** $O(N)$ space.

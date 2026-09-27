@@ -1,141 +1,134 @@
 # Guided Example: Longest Common Prefix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step vertical column scan on a representative string array instance:
 
-- **Input:** `{"strs": ["flower", "flow", "flight"]}`
-- **Required output:** `"fl"`
+- **Input:** $\text{strs} = [\text{"flower"}, \text{"flow"}, \text{"flight"}]$
+- **Required output:** $\text{"fl"}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates column-wise character alignment, early-exit detection upon encountering the first discordant character, and safe termination before shorter strings are indexed out of bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Write a function to find the longest common prefix string amongst an array of strings.
+Given an array of strings $\text{strs}$, we seek the longest prefix shared by every string in the array.
 
-The objective is to compute `"fl"` from `{"strs": ["flower", "flow", "flight"]}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{strs} = [\text{"flower"}, \text{"flow"}, \text{"flight"}]$, the characters align column by column as follows:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Column Index:  0   1   2   3   4   5
+------------------------------------
+strs[0]:       f   l   o   w   e   r
+strs[1]:       f   l   o   w
+strs[2]:       f   l   i   g   h   t
+------------------------------------
+Agreement:     ✓   ✓   ✗
+```
+
+At index $0$ and index $1$, all three strings have `'f'` and `'l'`. At index $2$, $\text{strs}[0]$ has `'o'` while $\text{strs}[2]$ has `'i'`. Because a common prefix must be contiguous from index $0$, this first mismatch permanently halts the search, yielding $\text{"fl"}$.
+
+A naive approach sorts the entire array of strings ($O(N \cdot M \log N)$), or performs pairwise longest common prefix reductions across all $N$ strings. The optimal vertical scanning algorithm examines only the necessary prefix columns in lockstep, terminating at the earliest possible character mismatch with $O(M \cdot N)$ worst-case and sublinear average-case runtime.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Vertical Scanning Logic
+We select the first string $\text{strs}[0]$ as the reference template of length $M = |\text{strs}[0]|$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each column index $i = 0, 1, \dots, M-1$:
+1. Let $c = \text{strs}[0][i]$ be the target character.
+2. For every remaining string $s \in \text{strs}[1 \dots N-1]$:
+   - **Length boundary:** If $i = |s|$, string $s$ is exhausted; the common prefix cannot exceed length $i$.
+   - **Character mismatch:** If $s[i] \ne c$, the character differs; the common prefix ends at index $i$.
+3. If all strings agree on character $c$ at column $i$, column $i$ is appended to the common prefix.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+If the loop finishes all $M$ columns of $\text{strs}[0]$ without mismatch, $\text{strs}[0]$ itself is the common prefix.
+
+> **Invariant.** Before inspecting column $i$, all characters at indices $0 \le k < i$ have been verified to match across every string in $\text{strs}$. The longest common prefix is guaranteed to start with $\text{strs}[0][0 \dots i-1]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A common prefix must agree one complete column at a time
+We scan the array $\text{strs} = [\text{"flower"}, \text{"flow"}, \text{"flight"}]$ vertically:
 
-Choose `strs[0]` as the reference string. If all strings share a prefix of length `k`, then for every index `i < k`, every string must contain index `i` and must have the same character there as `strs[0][i]`.
-
-This leads to **vertical scanning**: validate character index `0` across all strings, then index `1`, and so on. The first failed column determines the answer immediately. No later character can belong to a common prefix once an earlier position is missing or different, because prefixes must start at index zero and remain contiguous.
-
-The outer loop
-
-
-
-tries every possible prefix position supplied by the reference. A common prefix cannot be longer than `strs[0]`, so there is no need to inspect a larger index.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"strs": ["flower", "flow", "flight"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Column 0 ($i = 0$)
+- Reference character: $c = \text{strs}[0][0] = \text{'f'}$.
+- Check $\text{strs}[1] = \text{"flow"}$:
+  - Length check: $0 < |\text{strs}[1]| = 4$ (safe).
+  - Character comparison: $\text{strs}[1][0] = \text{'f'} = c$ (match).
+- Check $\text{strs}[2] = \text{"flight"}$:
+  - Length check: $0 < |\text{strs}[2]| = 6$ (safe).
+  - Character comparison: $\text{strs}[2][0] = \text{'f'} = c$ (match).
+- **Result for Column 0:** All strings agree on `'f'`. Valid prefix: $\text{"f"}$.
 
 ---
 
-### Step 2: Every other string must pass two checks
-
-For the current position `i`, the inner loop examines each remaining string `s`. The condition is
-
-
-
-The two parts represent different ways the common prefix can end:
-
-- `len(s) <= i`: `s` is too short to contain a character at index `i`;
-- `s[i] != strs[0][i]`: the character exists but differs from the reference.
-
-The length check comes first. Python evaluates `or` from left to right and stops when the first part is true, so `s[i]` is never read out of bounds for a shorter string.
-
-If neither condition is true for any string, the complete column matches and the algorithm advances to `i + 1`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Column 1 ($i = 1$)
+- Reference character: $c = \text{strs}[0][1] = \text{'l'}$.
+- Check $\text{strs}[1] = \text{"flow"}$:
+  - Length check: $1 < |\text{strs}[1]| = 4$ (safe).
+  - Character comparison: $\text{strs}[1][1] = \text{'l'} = c$ (match).
+- Check $\text{strs}[2] = \text{"flight"}$:
+  - Length check: $1 < |\text{strs}[2]| = 6$ (safe).
+  - Character comparison: $\text{strs}[2][1] = \text{'l'} = c$ (match).
+- **Result for Column 1:** All strings agree on `'l'`. Valid prefix: $\text{"fl"}$.
 
 ---
 
-### Step 3: Why returning `s[:i]` is correct even when `s` caused the failure
-
-On failure, the method returns
-
-
-
-rather than `strs[0][:i]`. These slices are equal. Reaching column `i` means every earlier column `0` through `i - 1` passed for every string already checked, including the current `s`. Therefore
-
-$$
-s[:i] = \texttt{strs[0][:i]}.
-$$
-
-If the failure occurs at `i = 0`, `s[:0]` is the empty string, correctly indicating that no non-empty prefix is shared.
-
-If `s` is shorter and has length exactly `i`, then `s[:i]` is the whole string. That is also correct: all of its characters matched, but a common prefix cannot extend beyond the shortest participant.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"fl"` |
+### Column 2 ($i = 2$)
+- Reference character: $c = \text{strs}[0][2] = \text{'o'}$.
+- Check $\text{strs}[1] = \text{"flow"}$:
+  - Length check: $2 < |\text{strs}[1]| = 4$ (safe).
+  - Character comparison: $\text{strs}[1][2] = \text{'o'} = c$ (match).
+- Check $\text{strs}[2] = \text{"flight"}$:
+  - Length check: $2 < |\text{strs}[2]| = 6$ (safe).
+  - Character comparison: $\text{strs}[2][2] = \text{'i'} \ne c$ (**Mismatch!**).
+- **Termination Triggered:** A mismatch is discovered at column $i = 2$.
+- The prefix search aborts immediately, emitting $\text{strs}[0][0 \dots 2] = \text{"fl"}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"strs": ["flower", "flow", "flight"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"fl"` | Verified |
+| Column $i$ | Reference $\text{strs}[0][i]$ | Checked String $\text{strs}[j]$ | Character $\text{strs}[j][i]$ | In-Bounds? | Match Status | Action Taken |
+|:---:|:---:|:---|:---:|:---:|:---:|:---|
+| 0 | `'f'` | $\text{strs}[1] = \text{"flow"}$ | `'f'` | Yes ($0 < 4$) | Match | Continue scan |
+| 0 | `'f'` | $\text{strs}[2] = \text{"flight"}$ | `'f'` | Yes ($0 < 6$) | Match | Column 0 verified; prefix $\leftarrow \text{"f"}$ |
+| 1 | `'l'` | $\text{strs}[1] = \text{"flow"}$ | `'l'` | Yes ($1 < 4$) | Match | Continue scan |
+| 1 | `'l'` | $\text{strs}[2] = \text{"flight"}$ | `'l'` | Yes ($1 < 6$) | Match | Column 1 verified; prefix $\leftarrow \text{"fl"}$ |
+| 2 | `'o'` | $\text{strs}[1] = \text{"flow"}$ | `'o'` | Yes ($2 < 4$) | Match | Continue scan |
+| 2 | `'o'` | $\text{strs}[2] = \text{"flight"}$ | `'i'` | Yes ($2 < 6$) | **Mismatch (`'o'` vs `'i'`)** | **Halt immediately; emit $\text{"fl"}$** |
+
+### Edge Case Comparison Table
+
+| Edge Scenario | Input Sample | Failure Mechanism | Output |
+|:---|:---|:---|:---:|
+| Disjoint first character | `["dog", "racecar", "car"]` | Mismatch at column $i = 0$ (`'d'` vs `'r'`) | `""` |
+| Empty string present | `["", "b", "c"]` | Length boundary at $i = 0$ ($0 = |\text{strs}[0]|$) | `""` |
+| One string is a prefix of another | `["ab", "a"]` | Length boundary at $i = 1$ ($1 = |\text{strs}[1]|$) | `"a"` |
+| Single string input | `["alone"]` | Outer loop exhausts all columns without checks | `"alone"` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A string $P$ is a prefix of string $S$ if $S$ begins with $P$. By verifying every column $k < i$ matches across all array elements, the emitted slice $\text{strs}[0][0 \dots i-1]$ is provably a prefix of every string in $\text{strs}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since a common prefix cannot extend beyond the shortest string in the array or beyond the first index where any two strings differ, checking columns from left to right and halting at the first mismatch or length exhaustion identifies the exact maximal length prefix.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Index the original list instead of `strs[1:]`:** `for j in range(1, len(strs))` preserves the same comparisons and removes the $O(q)$ temporary list, achieving constant auxiliary space excluding output.
-- **Horizontal scanning:** Start with the first string as a candidate and repeatedly shorten it against each later string. It is also $O(S)$ but may revisit prefix characters through slicing or prefix searches.
-- **Sort and compare extremes:** After lexicographic sorting, only the first and last strings determine the common prefix. Sorting costs $O(q\log q)$ comparisons and mutates or copies ordering, which is unnecessary for one query.
-- **Trie:** Useful when the same string set serves many prefix queries, but building it costs $O(S)$ extra space and is excessive for one result.
-- **First string empty:** The outer loop is skipped and `""` is returned.
-- **Later string empty:** The first length check returns `""` without indexing the empty string.
-- **One input string:** It is returned unchanged.
-- **Mismatch at index zero:** `s[:0]` returns the required empty prefix.
-- **Shortest string is a full prefix:** Failure occurs when the next reference column is beyond that string, returning the complete shorter string.
-- **All strings identical:** Every column passes and the shared complete string is returned.
-- **Duplicates mixed with longer strings:** Duplicate entries do not change the proof; every column still must pass for every entry.
-- **Lowercase contract:** Comparisons are exact and case normalization is neither needed nor performed.
-- **Input preservation:** Strings are immutable and the list is not reordered; only a temporary reference slice is created.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Index Out-of-Bounds on Shorter Strings:** If string $A$ has length 3 and string $B$ has length 10, inspecting index 3 on string $A$ without a boundary check causes an out-of-bounds error. Checking $i = |s|$ *before* accessing $s[i]$ avoids crashes.
+- **Empty Array or Empty String:** An empty input array $\text{strs} = []$ or an array containing an empty string $\text{strs} = [\text{""}, \text{"b"}]$ must safely return `""` without attempting invalid indexing.
+- **Whole-String Common Prefix:** If one string is a complete prefix of all others (e.g. `["th", "the", "their"]`), the algorithm correctly terminates when the shortest string is exhausted.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(qk)$. Let $q$ be the number of strings, let $k$ be the length of the returned common prefix, and let
-- **Auxiliary Space Complexity:** $O(q)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(S)$, where $S$ is the sum of characters across all strings. In the worst case where all strings are identical of length $M$, the algorithm checks $M \times N$ characters. In typical cases where mismatches occur early, the algorithm inspects only $i \times N$ characters, executing in $O(k \cdot N)$ where $k$ is the length of the common prefix.
+- **Auxiliary Space Complexity:** $O(1)$. No dynamic structures or string copies are created during the comparison loop. The output slice references the existing characters.

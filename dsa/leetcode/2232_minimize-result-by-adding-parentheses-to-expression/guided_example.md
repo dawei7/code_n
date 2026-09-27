@@ -1,145 +1,234 @@
 # Guided Example: Minimize Result by Adding Parentheses to Expression
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the 2D Cartesian cut enumeration algorithm for determining the optimal single pair of parentheses that minimizes the algebraic value of an addition expression in $O(m \cdot n \cdot (m + n))$ time and $O(m + n)$ auxiliary space.
 
-- **Input:** `{"expression": "247+38"}`
-- **Required output:** `"2(47+38)"`
+- **Input:** `expression = "247+38"`
+- **Output:** `"2(47+38)"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** string `expression` of the form `"<num1>+<num2>"` where `<num1>` and `<num2>` represent positive integers.
-
-The objective is to compute `"2(47+38)"` from `{"expression": "247+38"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance demonstrates string slicing around arithmetic delimiters, implicit multiplicative coefficient extraction, finite configuration space enumeration, and argmin tracking.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+You are given a 0-indexed string `expression` of the format `"<num1>+<num2>"`, where `<num1>` and `<num2>` represent positive integers.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+You must add exactly one pair of parentheses to the expression such that:
+- The opening parenthesis `(` is inserted strictly to the left of the `+` sign.
+- The closing parenthesis `)` is inserted strictly to the right of the `+` sign.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+After placing the parentheses, the expression represents an arithmetic value where any digits outside the parentheses act as implicit multipliers:
+$$\text{Value} = \text{prefix} \times (\text{left\_addend} + \text{right\_addend}) \times \text{suffix}$$
+- If there are no digits to the left of `(`, the left multiplier defaults to $1$.
+- If there are no digits to the right of `)`, the right multiplier defaults to $1$.
+
+Our objective is to return the parenthesized expression string that yields the **minimum numerical value**.
+
+### Representative Instance Breakdown
+
+Consider `expression = "247+38"`:
+- Left operand string: $L = \text{"247"}$ of length $m = 3$.
+- Right operand string: $R = \text{"38"}$ of length $n = 2$.
+
+The opening parenthesis can be placed at cut index $i \in \{0, 1, 2\}$, splitting $L$ into prefix $L[:i]$ and addend $L[i:]$.
+The closing parenthesis can be placed at cut index $j \in \{0, 1\}$, splitting $R$ into addend $R[:j+1]$ and suffix $R[j+1:]$.
+
+Let us examine candidate cut $i = 1, j = 1$:
+- Prefix $L[:1] = \text{"2"}$, multiplier $a = 2$.
+- Addend $L[1:] = \text{"47"}$, value $c_1 = 47$.
+- Addend $R[:2] = \text{"38"}$, value $c_2 = 38$.
+- Suffix $R[2:] = \text{""}$, multiplier $b = 1$.
+- Parenthesized expression: `"2(47+38)"`.
+- Arithmetic evaluation:
+  $$2 \times (47 + 38) \times 1 = 2 \times 85 = 170$$
+
+As demonstrated below, $170$ is the strictly minimum value among all $6$ valid parenthesizations.
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: A legal answer is determined by two cut positions
+### Bounded Configuration Search Space
 
-The input has one plus sign, so splitting on `"+"` gives a left digit string `l` and a right digit string `r`. The left parenthesis must appear somewhere before the plus, and the right parenthesis somewhere after it.
+Let $m = |L|$ and $n = |R|$.
+- There are exactly $m$ possible insertion points for `(` within $L$.
+- There are exactly $n$ possible insertion points for `)` within $R$.
+The total number of valid parenthesizations is precisely the product:
+$$|\Omega| = m \times n$$
 
-Choose index `i` as the first digit inside the parentheses on the left. Then:
+Given problem constraints ($1 \le m, n \le 5$, with total length $|expression| \le 10$), the maximum cardinality of $\Omega$ is:
+$$\max |\Omega| = 5 \times 5 = 25$$
 
-- `l[:i]` remains outside the parentheses as a possible left multiplier;
-- `l[i:]` is the nonempty left addend inside.
+Because the candidate space is strictly bounded by $25$ configurations, exhaustive evaluation of all $(i, j) \in [0, m-1] \times [0, n-1]$ is both guaranteed optimal and computationally negligible.
 
-Choose index `j` as the last digit inside on the right. Then:
+### Evaluation Formulation
 
-- `r[:j + 1]` is the nonempty right addend inside;
-- `r[j + 1:]` remains outside as a possible right multiplier.
+For any cut pair $(i, j)$ with $0 \le i < m$ and $0 \le j < n$:
+$$V(i, j) = a(i) \times \left( c_1(i) + c_2(j) \right) \times b(j)$$
+where:
+$$a(i) = \begin{cases} 1 & \text{if } i = 0 \\ \text{int}(L[:i]) & \text{if } i > 0 \end{cases}$$
+$$c_1(i) = \text{int}(L[i:])$$
+$$c_2(j) = \text{int}(R[:j+1])$$
+$$b(j) = \begin{cases} 1 & \text{if } j = n - 1 \\ \text{int}(R[j+1:]) & \text{if } j < n - 1 \end{cases}$$
 
-The resulting syntax is
+The algorithm computes $V(i, j)$ for all pairs and tracks the minimum:
+$$(i^*, j^*) = \arg\min_{(i, j)} V(i, j)$$
 
-`leftOutside(leftInside + rightInside)rightOutside`,
+```mermaid
+flowchart TD
+    accTitle: Expression Parenthesization Search Workflow
+    accDescr: Diagram illustrating splitting the expression at plus, testing all (i, j) cut positions, evaluating arithmetic products, and keeping the minimal expression string.
 
-where adjacency means multiplication. Every legal placement corresponds to exactly one pair `(i, j)` with `0 <= i < len(l)` and `0 <= j < len(r)`.
+    Start(["Input: expression"]) --> Split["Split by '+': L, R<br/>m = len(L), n = len(R)"]
+    Split --> Init["min_val = infinity<br/>best_expr = empty"]
+    Init --> OuterLoop{"For i = 0 to m - 1"}
+    OuterLoop -- Next i --> InnerLoop{"For j = 0 to n - 1"}
+    InnerLoop -- Next j --> CalcTerms["Compute a = int(L[:i]) or 1<br/>c = int(L[i:]) + int(R[:j+1])<br/>b = int(R[j+1:]) or 1"]
+    CalcTerms --> Evaluate["val = a * c * b"]
+    Evaluate --> CheckMin{"val < min_val ?"}
+    CheckMin -- Yes --> UpdateMin["min_val = val<br/>best_expr = L[:i] + '(' + L[i:] + '+' + R[:j+1] + ')' + R[j+1:]"]
+    CheckMin -- No --> InnerLoop
+    UpdateMin --> InnerLoop
+    InnerLoop -- Row Done --> OuterLoop
+    OuterLoop -- All Done --> ReturnBest(["Return best_expr"])
+```
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+---
+
+## 3. Step-by-Step Walkthrough with Intermediate State
+
+We trace `expression = "247+38"` ($L = \text{"247"}, R = \text{"38"}$, $m = 3, n = 2$).
+Initialize $\text{min\_val} = \infty$.
+
+### Cut 1: $i = 0, j = 0$
+- Prefix $L[:0] = \text{""} \implies a = 1$.
+- Left addend $L[0:] = \text{"247"} \implies c_1 = 247$.
+- Right addend $R[:1] = \text{"3"} \implies c_2 = 3$.
+- Suffix $R[1:] = \text{"8"} \implies b = 8$.
+- Value: $1 \times (247 + 3) \times 8 = 250 \times 8 = 2000$.
+- Candidate: `"(247+3)8"`.
+- Update: $\text{min\_val} \leftarrow 2000$.
+
+### Cut 2: $i = 0, j = 1$
+- Prefix $L[:0] = \text{""} \implies a = 1$.
+- Left addend $L[0:] = \text{"247"} \implies c_1 = 247$.
+- Right addend $R[:2] = \text{"38"} \implies c_2 = 38$.
+- Suffix $R[2:] = \text{""} \implies b = 1$.
+- Value: $1 \times (247 + 38) \times 1 = 285 \times 1 = 285$.
+- Candidate: `"(247+38)"`.
+- Update: $\text{min\_val} \leftarrow 285$.
+
+### Cut 3: $i = 1, j = 0$
+- Prefix $L[:1] = \text{"2"} \implies a = 2$.
+- Left addend $L[1:] = \text{"47"} \implies c_1 = 47$.
+- Right addend $R[:1] = \text{"3"} \implies c_2 = 3$.
+- Suffix $R[1:] = \text{"8"} \implies b = 8$.
+- Value: $2 \times (47 + 3) \times 8 = 2 \times 50 \times 8 = 800$.
+- Candidate: `"2(47+3)8"`.
+- Comparison: $800 \ge 285$. No update.
+
+### Cut 4: $i = 1, j = 1$
+- Prefix $L[:1] = \text{"2"} \implies a = 2$.
+- Left addend $L[1:] = \text{"47"} \implies c_1 = 47$.
+- Right addend $R[:2] = \text{"38"} \implies c_2 = 38$.
+- Suffix $R[2:] = \text{""} \implies b = 1$.
+- Value: $2 \times (47 + 38) \times 1 = 2 \times 85 \times 1 = 170$.
+- Candidate: `"2(47+38)"`.
+- Comparison: $170 < 285$.
+- Update: $\text{min\_val} \leftarrow 170$, $\text{ans} \leftarrow \text{"2(47+38)"}$.
+
+### Cut 5: $i = 2, j = 0$
+- Prefix $L[:2] = \text{"24"} \implies a = 24$.
+- Left addend $L[2:] = \text{"7"} \implies c_1 = 7$.
+- Right addend $R[:1] = \text{"3"} \implies c_2 = 3$.
+- Suffix $R[1:] = \text{"8"} \implies b = 8$.
+- Value: $24 \times (7 + 3) \times 8 = 24 \times 10 \times 8 = 1920$.
+- Candidate: `"24(7+3)8"`.
+- Comparison: $1920 \ge 170$. No update.
+
+### Cut 6: $i = 2, j = 1$
+- Prefix $L[:2] = \text{"24"} \implies a = 24$.
+- Left addend $L[2:] = \text{"7"} \implies c_1 = 7$.
+- Right addend $R[:2] = \text{"38"} \implies c_2 = 38$.
+- Suffix $R[2:] = \text{""} \implies b = 1$.
+- Value: $24 \times (7 + 38) \times 1 = 24 \times 45 \times 1 = 1080$.
+- Candidate: `"24(7+38)"`.
+- Comparison: $1080 \ge 170$. No update.
+
+### Result Extraction
+All 6 cuts evaluated. Minimum value: $170$.
+Optimal string: `"2(47+38)"`.
+
+---
+
+## 4. Comprehensive State Trace
+
+### Complete Candidate Evaluation Matrix
+
+| Cut $(i, j)$ | Prefix String $L[:i]$ | Multiplier $a$ | Addend Sum $(c_1 + c_2)$ | Suffix String $R[j+1:]$ | Multiplier $b$ | Expression Value $V$ | Running Minimum $\text{mi}$ |
+|---|---|---|---|---|---|---|---|
+| $(0, 0)$ | `""` | 1 | $247 + 3 = 250$ | `"8"` | 8 | $1 \times 250 \times 8 = 2000$ | 2000 |
+| $(0, 1)$ | `""` | 1 | $247 + 38 = 285$ | `""` | 1 | $1 \times 285 \times 1 = 285$ | 285 |
+| $(1, 0)$ | `"2"` | 2 | $47 + 3 = 50$ | `"8"` | 8 | $2 \times 50 \times 8 = 800$ | 285 |
+| $(1, 1)$ | `"2"` | 2 | $47 + 38 = 85$ | `""` | 1 | $2 \times 85 \times 1 = \mathbf{170}$ | **170** |
+| $(2, 0)$ | `"24"` | 24 | $7 + 3 = 10$ | `"8"` | 8 | $24 \times 10 \times 8 = 1920$ | 170 |
+| $(2, 1)$ | `"24"` | 24 | $7 + 38 = 45$ | `""` | 1 | $24 \times 45 \times 1 = 1080$ | 170 |
+
+### Substring Partition Schema
+
+| Slice Component | Formal Definition | Role in Target Formula | Handling When Empty |
 |---|---|---|---|
-| Input Slice | `{"expression": "247+38"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Left Prefix | $L[:i]$ | Multiplier $a$ before `(` | Defaults to $1$ |
+| Left Addend | $L[i:]$ | First term $c_1$ inside parentheses | Never empty ($0 \le i < m$) |
+| Right Addend | $R[:j+1]$ | Second term $c_2$ inside parentheses | Never empty ($0 \le j < n$) |
+| Right Suffix | $R[j+1:]$ | Multiplier $b$ after `)` | Defaults to $1$ |
 
 ---
 
-### Step 2: Evaluate empty outside pieces as multiplicative identity
+## 5. Algorithmic Correctness & Soundness
 
-The inside value is
+### Completeness of the Finite Search Space
 
-`c = int(l[i:]) + int(r[:j + 1])`.
-
-If the opening parenthesis is at the very beginning, `l[:i]` is empty and there is no left multiplication. The code represents that missing factor by one:
-
-`a = 1 if i == 0 else int(l[:i])`.
-
-Similarly, if the closing parenthesis is at the end, the missing right factor is one:
-
-`b = 1 if j == n - 1 else int(r[j + 1:])`.
-
-The complete numeric value is `a * c * b`. The code writes `a * b * c`, which is equal because integer multiplication is associative and commutative.
-
-Using one is essential. Treating an absent outside piece as zero would make every boundary placement evaluate to zero, even though no multiplication by zero exists in the expression.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Syntactic Feasibility:** The problem statement specifies that exactly one opening parenthesis must be placed in $L$ and one closing parenthesis in $R$. An opening parenthesis cannot be placed after the `+`, nor can a closing parenthesis be placed before it.
+2. **Exhaustiveness:** The loop parameters $i \in \{0, \dots, m-1\}$ and $j \in \{0, \dots, n-1\}$ cover every valid character index before and after the plus sign. No syntactically valid parenthesization is omitted.
+3. **Soundness:** Since all candidate evaluations compute the exact integer value defined by the problem semantics, taking the minimum over the entire finite domain $\Omega$ provably yields the global arithmetic minimum.
 
 ---
 
-### Step 3: Enumerate every legal expression
+## 6. Edge Cases & Anti-Patterns
 
-The outer loop tries all `m` opening positions and the inner loop all `n` closing positions. For each pair, it calculates the exact value `t`. If `t` is strictly below the best value `mi`, it records both the new minimum and the formatted expression:
+### Boundary Scenarios
 
-`f"{l[:i]}({l[i:]}+{r[:j + 1]}){r[j + 1:]}"`.
+1. **Minimal Length Expression (`"1+1"`):**
+   - $m = 1, n = 1$. Only one valid cut: $i = 0, j = 0$.
+   - $a = 1, b = 1, c = 1 + 1 = 2$.
+   - Returns `"(1+1)"`.
+2. **Asymmetric Lengths (e.g. `"999+1"`):**
+   - $m = 3, n = 1$. Cuts: $(0, 0), (1, 0), (2, 0)$.
+   - Evaluates $(999+1)=1000$, $9(99+1)=900$, $99(9+1)=990$.
+   - Minimum is $900$ for `"9(99+1)"`.
+3. **Single Multiplier with Long Addend:**
+   - Evaluates whether peeling off single leading/trailing digits to act as small multipliers beats including them in the addend sum.
 
-The slices naturally omit empty outside pieces. For example, opening at zero begins the string with `"("`, while closing at the last right digit ends it with `")"`.
+### Common Anti-Patterns
 
-`mi` begins at positive infinity, so the first candidate always becomes the current best. At least one candidate exists because both operands are positive nonempty digit strings.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"2(47+38)"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"expression": "247+38"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"2(47+38)"` | Verified |
+- **Dynamic Programming or Greedy Heuristics:**
+  Trying to guess whether to peel off digits based on local digit magnitudes (e.g., greedily keeping smaller digits outside) can fail because of non-linear multiplicative interactions between $a$, $(c_1 + c_2)$, and $b$. Exhaustive search is strictly superior because $|\Omega| \le 25$.
+- **Zero-Multiplier Trap:**
+  Using `0` instead of `1` when prefix or suffix is empty wipes out the entire expression result to zero. The problem explicitly dictates identity multiplication ($1$) for empty outer regions.
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Complexity Analysis
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Time Complexity
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Enumeration Loops:** The nested loops run $m \times n$ iterations.
+- **Per-Iteration Work:** Slicing substrings of lengths bounded by $m + n \le 10$, parsing them to integers, performing two additions and two multiplications: $O(m + n)$ time.
+- **Total Time Complexity:** $O(m \cdot n \cdot (m + n))$.
+  With $\max(m), \max(n) \le 5$, the number of operations is at most $5 \times 5 \times 10 = 250$ elementary CPU instructions, running in under $10$ microseconds.
 
----
+### Auxiliary Space Complexity
 
-## 6. Traps This Instance Exposes
-
-- **Greedily make the inside numbers small:** A smaller inside sum may create much larger outside multipliers, so local digit choices do not guarantee the minimum product.
-- **Parse expression trees:** The grammar after adding one pair of parentheses is fully determined by two boundaries, making general expression parsing unnecessary.
-- **Generate strings before evaluation:** This is possible, but separately identifying the four numeric parts makes missing-factor handling and value calculation clearer.
-- **Parentheses around the entire expression:** `i = 0` and `j = n - 1` represent this case with both outside factors equal to one.
-- **No left outside digits:** The opening parenthesis appears at the beginning; it does not create a zero factor.
-- **No right outside digits:** The closing parenthesis appears at the end and likewise uses factor one.
-- **One-digit left operand:** The only opening position is zero.
-- **One-digit right operand:** The only closing position is its last digit.
-- **Several minimum expressions:** The first encountered is retained, which is allowed.
-- **Implicit multiplication:** Outside digits adjacent to parentheses multiply the parenthesized sum; they are not concatenated with the inside result.
-- **Nonempty inside operands:** Loop ranges ensure at least one digit remains on both sides of the plus inside the parentheses.
-- **Input preservation:** The original string is only sliced and never modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(mn(m+n)$. Let `m` and `n` be the left and right operand lengths. The algorithm examines `m n` boundary pairs. If string slicing and integer conversion over up to `m + n` characters are counted, the detailed time bound is `O(mn(m+n))`, and each stored/formatted candidate uses `O(m+n)` temporary space.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **String Buffers:** Storing slices and formatting the result string takes $O(m + n)$ characters.
+- **Total Auxiliary Space Complexity:** Strictly $O(m + n)$ space.

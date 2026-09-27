@@ -1,140 +1,169 @@
 # Guided Example: Two Sum II - Input Array Is Sorted
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step inward two-pointer convergence and monotonic sum pruning on representative sorted integer arrays:
 
-- **Input:** `{"numbers": [2, 7, 11, 15], "target": 9}`
-- **Required output:** `[1, 2]`
+- **Input:** $\text{numbers} = [2, 7, 11, 15], \quad \text{target} = 9$
+- **Required output:** `[1, 2]` (1-indexed positions of $2$ and $7$, since $2 + 7 = 9$)
+- **Span Pruning Instance:** $\text{numbers} = [2, 3, 4], \quad \text{target} = 6 \implies [1, 3]$ ($2 + 4 = 6$)
+- **Negative Integer Instance:** $\text{numbers} = [-1, 0], \quad \text{target} = -1 \implies [1, 2]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates two-pointer boundary pruning on non-decreasing arrays, proves why $\text{sum} < \text{target}$ strictly disqualifies the left element and $\text{sum} > \text{target}$ strictly disqualifies the right element, converts 0-indexed pointers to 1-indexed answers, and achieves optimal $O(N)$ time with strictly $O(1)$ auxiliary memory.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a **1-indexed** array of integers `numbers` that is already ***sorted in non-decreasing order***, find two numbers such that they add up to a specific `target` number. Let these two numbers be $numbers[\text{index}_{1}]$ and $numbers[\text{index}_{2}]$ where $1 \le \text{index}_{1} < \text{index}_{2} \le \text{numbers.length}$.
+Given a 1-indexed array of integers $\text{numbers} = [2, 7, 11, 15]$ sorted in non-decreasing order and a target sum $9$:
+Find two distinct indices $1 \le \text{index}_1 < \text{index}_2 \le |\text{numbers}|$ such that $\text{numbers}[\text{index}_1] + \text{numbers}[\text{index}_2] == \text{target}$.
 
-The objective is to compute `[1, 2]` from `{"numbers": [2, 7, 11, 15], "target": 9}` while avoiding redundant calculations and unnecessary overhead.
+In this instance:
+- At 0-indexed positions 0 and 1: $\text{numbers}[0] + \text{numbers}[1] = 2 + 7 = 9$.
+- Converting to 1-indexed format: $[0 + 1, 1 + 1] = [1, 2]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In LeetCode 1 (unsorted array), a hash table finds complements in $O(N)$ time but requires $O(N)$ auxiliary heap memory.
+Here, because the array is **already sorted**:
+- Placing pointers at the extreme ends ($L = 0, R = N - 1$) allows us to evaluate the current sum.
+- If the sum is too small, no element can pair with $\text{numbers}[L]$ to reach the target, so $L$ advances.
+- If the sum is too large, no element can pair with $\text{numbers}[R]$ to reach the target, so $R$ decrements.
+This eliminates candidate pairs in $O(1)$ operations per step, yielding strictly $O(N)$ time and $O(1)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Monotonic Inward Pruning Theorem
+Initialize $L = 0$ and $R = N - 1$.
+At each iteration, compute $\text{curr\_sum} = \text{numbers}[L] + \text{numbers}[R]$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Exact Match ($\text{curr\_sum} == \text{target}$):**
+   The unique solution is found. Return $[L + 1, R + 1]$.
+2. **Sum Too Small ($\text{curr\_sum} < \text{target}$):**
+   Because the array is sorted, $\text{numbers}[R]$ is the maximum available element in the active range $[L, R]$.
+   For any $k \le R$:
+   $$
+   \text{numbers}[L] + \text{numbers}[k] \le \text{numbers}[L] + \text{numbers}[R] = \text{curr\_sum} < \text{target}
+   $$
+   Therefore, $\text{numbers}[L]$ cannot pair with **any** remaining element to reach $\text{target}$. Discarding index $L$ is mathematically sound:
+   $$
+   L \leftarrow L + 1
+   $$
+3. **Sum Too Large ($\text{curr\_sum} > \text{target}$):**
+   Because the array is sorted, $\text{numbers}[L]$ is the minimum available element in the active range $[L, R]$.
+   For any $k \ge L$:
+   $$
+   \text{numbers}[k] + \text{numbers}[R] \ge \text{numbers}[L] + \text{numbers}[R] = \text{curr\_sum} > \text{target}
+   $$
+   Therefore, $\text{numbers}[R]$ cannot pair with **any** remaining element to reach $\text{target}$. Discarding index $R$ is mathematically sound:
+   $$
+   R \leftarrow R - 1
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The unique solution pair $(\text{index}_1, \text{index}_2)$ is always contained within the remaining index range $[L, R]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn each left value into a complement search
+We trace the two pointers on $\text{numbers} = [2, 7, 11, 15]$ with $\text{target} = 9$:
 
-For an index `i`, the only value that can pair with `numbers[i]` is:
-
-`x = target - numbers[i]`.
-
-Because `numbers` is sorted in non-decreasing order, the source can search for
-`x` with binary search rather than scanning every later element. It loops over
-all possible first indices from zero through `n - 2`.
-
-The search begins at `lo = i + 1`. This boundary is essential: it prevents
-using the same array element twice and guarantees the returned first index is
-smaller than the second. A matching value at index `i` itself is irrelevant
-unless another equal copy exists later.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numbers": [2, 7, 11, 15], "target": 9}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initialization
+- $L = 0, \quad R = 3$.
+- $\text{numbers}[L] = 2, \quad \text{numbers}[R] = 15$.
 
 ---
 
-### Step 2: Use lower bound and verify the candidate
-
-`bisect_left(numbers, x, lo=i + 1)` returns the first index at or after
-`i + 1` where `x` could be inserted without breaking sorted order.
-
-There are two possible outcomes:
-
-- if `j < n` and `numbers[j] == x`, the complement actually exists and the
-  source returns the pair;
-- if `j == n` or `numbers[j] != x`, there is no occurrence of `x` in the
-  searched suffix, so this `i` cannot begin the solution.
-
-The equality check cannot be omitted. A lower-bound function always returns an
-insertion position, even when the requested value is absent.
-
-Duplicates are handled correctly. Lower bound chooses the first suitable copy
-after `i`, and the contract's unique-solution guarantee ensures whichever
-matching pair is found is the required one.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Active Interval $[0, 3]$
+- Evaluate sum:
+  $$
+  \text{curr\_sum} = 2 + 15 = 17
+  $$
+- Compare against target:
+  $$
+  17 > 9 \quad (\text{Sum Too Large})
+  $$
+- Since $17 > 9$, 15 cannot pair with any valid element (even the smallest element 2 produces a sum $> 9$).
+- Discard right boundary:
+  $$
+  R \leftarrow R - 1 = 3 - 1 = \mathbf{2}
+  $$
+- New interval: $[0, 2]$.
 
 ---
 
-### Step 3: Why the sorted property makes each rejection conclusive
+### Step 2: Active Interval $[0, 2]$
+- Evaluate sum:
+  $$
+  \text{numbers}[0] + \text{numbers}[2] = 2 + 11 = 13
+  $$
+- Compare against target:
+  $$
+  13 > 9 \quad (\text{Sum Too Large})
+  $$
+- 11 is too large to pair with any remaining candidate.
+- Discard right boundary:
+  $$
+  R \leftarrow R - 1 = 2 - 1 = \mathbf{1}
+  $$
+- New interval: $[0, 1]$.
 
-Binary search compares `x` with middle values of the suffix. If a middle value
-is smaller, every earlier value in that current search portion is also too
-small; if larger, every later value is too large. This halves the suffix until
-the first possible location remains.
+---
 
-If that location is not equal to `x`, no later element can be equal after a
-larger value, and no earlier allowed element was skipped by the lower-bound
-definition. Moving the outer loop to `i + 1` is therefore safe.
+### Step 3: Active Interval $[0, 1]$
+- Evaluate sum:
+  $$
+  \text{numbers}[0] + \text{numbers}[1] = 2 + 7 = \mathbf{9}
+  $$
+- Compare against target:
+  $$
+  9 == 9 \quad (\text{Target Match Found!})
+  $$
+- Convert to 1-indexed:
+  $$
+  [L + 1, \, R + 1] = [0 + 1, \, 1 + 1] = \mathbf{[1, 2]}
+  $$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2]` |
+Return `[1, 2]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numbers": [2, 7, 11, 15], "target": 9}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2]` | Verified |
+```text
+Array:        [ 2,    7,   11,   15 ], target = 9
+Indices:        0     1     2     3
+
+Step 1:        [L                 R]   2 + 15 = 17 > 9 -> R moves left (R=2)
+Step 2:        [L           R]         2 + 11 = 13 > 9 -> R moves left (R=1)
+Step 3:        [L     R]               2 +  7 =  9 == 9 -> MATCH!
+
+1-Indexed Result: [0+1, 1+1] = [1, 2]
+```
+
+| Step | Left Index $L$ | Right Index $R$ | Value $\text{numbers}[L]$ | Value $\text{numbers}[R]$ | $\text{curr\_sum}$ | Comparison with Target (9) | Decision Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 0 | 3 | 2 | 15 | 17 | $17 > 9$ | $R \leftarrow R - 1$ |
+| 2 | 0 | 2 | 2 | 11 | 13 | $13 > 9$ | $R \leftarrow R - 1$ |
+| **3** | **0** | **1** | **2** | **7** | **9** | **$9 == 9$** | **Return $[L+1, R+1] = [1, 2]$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because the array is sorted, any element paired with $\text{numbers}[L]$ when $\text{sum} < \text{target}$ produces a sum $\le \text{sum} < \text{target}$. Similarly, any element paired with $\text{numbers}[R]$ when $\text{sum} > \text{target}$ produces a sum $\ge \text{sum} > \text{target}$. No valid solution element can ever be eliminated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** In each step, the distance $R - L$ strictly decreases by 1. Since the problem guarantees that exactly one solution exists, the two pointers are guaranteed to intersect at the unique solution pair before $L \ge R$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two pointers:** Start at both ends; move the left pointer for a sum below target and the right pointer for a sum above target. It achieves the required $O(n)$ time and $O(1)$ space.
-- **Hash map:** Finds complements in expected $O(n)$ time but uses $O(n)$ storage, violating the constant-space requirement.
-- **Brute force:** Tests every index pair in $O(n^2)$ time.
-- **Duplicate values:** Searching from `i + 1` permits two equal values at distinct indices.
-- **Negative target and values:** Subtraction and sorted comparisons remain valid.
-- **One-based output:** Both internal indices must be incremented exactly once.
-- **Unique solution:** It justifies returning the first match and omitting a no-solution result.
-- **Same-element prohibition:** The lower search boundary enforces it.
-- **Manifest mismatch:** Repeated binary searches are $O(n\log n)$, not linear.
-- **Missing imports:** Both `bisect_left` and `List` must be provided for standalone execution.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Zero-Indexed vs One-Indexed:** Returning `[0, 1]` results in a wrong answer. The problem explicitly specifies a 1-indexed output: `[L + 1, R + 1]`.
+- **Using Hash Map (Space Violation):** While a hash table solves this in $O(N)$ time, it requires $O(N)$ auxiliary memory. The problem explicitly mandates constant $O(1)$ extra space.
+- **Using Binary Search ($O(N \log N)$):** Searching for `target - nums[i]` with binary search for each element takes $O(N \log N)$ time, which is strictly inferior to two-pointer $O(N)$ time.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the array length. There can be $O(n)$ outer iterations, and each
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `numbers`. Each step advances either $L$ forward or $R$ backward, running at most $N$ iterations.
+- **Auxiliary Space Complexity:** $O(1)$ strictly constant memory, requiring only two pointer indices $L$ and $R$.

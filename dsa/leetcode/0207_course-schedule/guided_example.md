@@ -1,131 +1,209 @@
 # Guided Example: Course Schedule
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step directed dependency graph modeling, Kahn's in-degree reduction algorithm, and cycle detection on representative curriculum prerequisite networks:
 
-- **Input:** `{"numCourses": 2, "prerequisites": [[1, 0]]}`
-- **Required output:** `true`
+- **Input:** $\text{numCourses} = 4, \quad \text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]$
+- **Required output:** `true` (Valid topological orderings exist, e.g. $[0, 1, 2, 3]$)
+- **Direct Cycle Instance:** $\text{numCourses} = 2, \quad \text{prerequisites} = [[1, 0], [0, 1]] \implies \text{false}$ (Deadlock cycle $0 \leftrightarrow 1$)
+- **Self-Loop Instance:** $\text{numCourses} = 1, \quad \text{prerequisites} = [[0, 0]] \implies \text{false}$ (Course requires itself)
+- **Zero Prerequisite Instance:** $\text{numCourses} = 3, \quad \text{prerequisites} = [] \implies \text{true}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling course dependency constraints as a Directed Acyclic Graph (DAG), proves why directed cycles produce deadlock states with non-zero in-degrees, executes Kahn's BFS algorithm ($O(V + E)$), and verifies curriculum feasibility.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $b_{i}$ first if you want to take course $a_{i}$.
+Given $V = 4$ courses labeled $0, 1, 2, 3$ and prerequisite rules $[a_i, b_i]$ signifying that **course $b_i$ must be taken before course $a_i$**:
+$$
+\text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]
+$$
+Determine whether it is possible to finish all 4 courses without deadlocks.
 
-The objective is to compute `true` from `{"numCourses": 2, "prerequisites": [[1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+Translating prerequisites into directed edges ($b_i \to a_i$):
+- $[1, 0] \implies 0 \to 1$ (Taking 0 unlocks 1)
+- $[2, 0] \implies 0 \to 2$ (Taking 0 unlocks 2)
+- $[3, 1] \implies 1 \to 3$ (Taking 1 helps unlock 3)
+- $[3, 2] \implies 2 \to 3$ (Taking 2 helps unlock 3)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Visualizing the dependency graph:
+```text
+      0
+     / \
+    v   v
+    1   2
+     \ /
+      v
+      3
+```
+- Course 0 has **no prerequisites** (in-degree 0) $\implies$ Can be taken immediately.
+- Taking 0 unlocks courses 1 and 2.
+- Completing both 1 and 2 satisfies all prerequisites for course 3.
+- All 4 courses can be completed! Return `true`.
+
+Now contrast this with a cycle $[[1, 0], [0, 1]]$ ($0 \to 1$ and $1 \to 0$):
+Course 0 requires course 1, while course 1 requires course 0. Neither course can be started, creating a permanent circular deadlock (`false`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Graph Formulation & Topological Sort
+A sequence of all courses that respects all prerequisites exists if and only if the directed graph $G = (V, E)$ contains **no directed cycles** (i.e. $G$ is a DAG).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Kahn's Algorithm Protocol (BFS In-Degree Reduction)
+1. **Adjacency List and In-Degree Computation:**
+   For each course $u \in [0, V - 1]$, maintain:
+   - $\text{adj}[u]$: list of courses unlocked by completing $u$.
+   - $\text{in\_degree}[u]$: number of outstanding prerequisites required before taking $u$.
+   For each pair $[a, b]$, add $a$ to $\text{adj}[b]$ and increment $\text{in\_degree}[a] += 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Initialize Queue with Free Courses:**
+   Enqueue all courses with $\text{in\_degree}[u] == 0$:
+   $$
+   Q = [ u \mid \text{in\_degree}[u] == 0 ]
+   $$
+
+3. **Process and Decrement Dependencies:**
+   Maintain $\text{processed\_count} = 0$.
+   While $Q$ is not empty:
+   - Dequeue course $u = Q.\text{popleft}()$.
+   - Increment $\text{processed\_count} += 1$.
+   - For each neighbor $v \in \text{adj}[u]$:
+     $$
+     \text{in\_degree}[v] \leftarrow \text{in\_degree}[v] - 1
+     $$
+     If $\text{in\_degree}[v] == 0$, enqueue $v$:
+     $$
+     Q.\text{append}(v)
+     $$
+
+4. **Feasibility Check:**
+   $$
+   \text{return } (\text{processed\_count} == V)
+   $$
+
+> **Invariant.** A course enters queue $Q$ if and only if all of its incoming prerequisite edges have been removed by previously completed courses. Any node participating in a directed cycle never reaches in-degree 0.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Model prerequisite order as directed edges
+We trace Kahn's algorithm on $V = 4$, $\text{prerequisites} = [[1, 0], [2, 0], [3, 1], [3, 2]]$:
 
-For prerequisite pair `[a, b]`, course `b` must occur before course `a`.
-Represent that requirement with directed edge `b -> a`. If the graph has no
-directed cycle, its courses admit a topological order and all can be finished.
-If it has a cycle, every course in that cycle waits for another cycle member,
-so no valid completion order exists.
-
-The method uses Kahn's topological-sorting algorithm to remove courses whose
-prerequisites have all been satisfied.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"numCourses": 2, "prerequisites": [[1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Build outgoing neighbors and indegrees together
-
-`g` is an adjacency list with one list per course. For pair `(a, b)`, appending
-`a` to `g[b]` records that completing `b` helps unlock `a`.
-
-`indeg[a]` counts how many incoming prerequisite edges still point to course
-`a`. It begins at zero and increases once for every prerequisite of `a`.
-Course `b` does not receive the increment because the pair says `b` is required,
-not that `b` depends on `a`.
-
-The pairs are guaranteed unique, so no dependency edge is accidentally counted
-twice. The algorithm would still work with matching duplicate adjacency entries
-and indegree increments, but the graph would then contain redundant constraints.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 0: Graph Construction & In-Degree Initialization
+- Adjacency List:
+  - $\text{adj}[0] = [1, 2]$
+  - $\text{adj}[1] = [3]$
+  - $\text{adj}[2] = [3]$
+  - $\text{adj}[3] = []$
+- In-Degrees:
+  - $\text{in\_degree}[0] = 0$ (No prerequisites)
+  - $\text{in\_degree}[1] = 1$ (Needs 0)
+  - $\text{in\_degree}[2] = 1$ (Needs 0)
+  - $\text{in\_degree}[3] = 2$ (Needs 1 and 2)
+- Initial Queue: $Q = [0]$.
+- $\text{processed\_count} = 0$.
 
 ---
 
-### Step 3: Seed the process with immediately available courses
+### Step 1: Process Course 0
+- Pop $u = 0$.
+- Increment $\text{processed\_count} = 0 + 1 = \mathbf{1}$.
+- Decrement neighbors:
+  - Neighbor 1: $\text{in\_degree}[1] = 1 - 1 = \mathbf{0} \implies$ Enqueue 1!
+  - Neighbor 2: $\text{in\_degree}[2] = 1 - 1 = \mathbf{0} \implies$ Enqueue 2!
+- Queue state: $Q = [1, 2]$.
 
-The list comprehension collects every course whose initial indegree is zero.
-Such a course has no unfinished prerequisites and can legally be taken first.
+---
 
-There may be several zero-indegree courses. Their relative order does not
-matter because none depends on another still-unprocessed prerequisite. The task
-asks only whether some valid order exists, not to return a unique schedule.
+### Step 2: Process Course 1
+- Pop $u = 1$.
+- Increment $\text{processed\_count} = 1 + 1 = \mathbf{2}$.
+- Decrement neighbors:
+  - Neighbor 3: $\text{in\_degree}[3] = 2 - 1 = \mathbf{1} \ne 0$ *(Course 3 still awaits course 2)*.
+- Queue state: $Q = [2]$.
 
-An empty prerequisite list places every course into `q` immediately.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Process Course 2
+- Pop $u = 2$.
+- Increment $\text{processed\_count} = 2 + 1 = \mathbf{3}$.
+- Decrement neighbors:
+  - Neighbor 3: $\text{in\_degree}[3] = 1 - 1 = \mathbf{0} \implies$ Enqueue 3!
+- Queue state: $Q = [3]$.
+
+---
+
+### Step 4: Process Course 3
+- Pop $u = 3$.
+- Increment $\text{processed\_count} = 3 + 1 = \mathbf{4}$.
+- Neighbor list $\text{adj}[3] = []$.
+- Queue state: $Q = []$ (Empty).
+
+---
+
+### Step 5: Termination & Evaluation
+- Loop ends because queue is empty.
+- Compare counts:
+  $$
+  \text{processed\_count} = 4 == \text{numCourses} \implies \mathbf{True!}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"numCourses": 2, "prerequisites": [[1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+Graph:
+  0 -> 1, 2
+  1 -> 3
+  2 -> 3
+
+In-degrees: {0: 0, 1: 1, 2: 1, 3: 2}
+Initial Q:  [ 0 ]
+
+Step 1: Pop 0 -> Decr 1 (indeg=0, push 1), Decr 2 (indeg=0, push 2) -> Q = [1, 2]
+Step 2: Pop 1 -> Decr 3 (indeg=1)                                   -> Q = [2]
+Step 3: Pop 2 -> Decr 3 (indeg=0, push 3)                           -> Q = [3]
+Step 4: Pop 3 -> No outgoing edges                                  -> Q = []
+
+Total Processed: 4 / 4 -> Return True
+```
+
+| Step | Active Course $u$ | In-Degree State $[\text{deg}_0, \text{deg}_1, \text{deg}_2, \text{deg}_3]$ | Unlocked Neighbors | Queue State $Q$ | Processed Count |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Init | - | $[0, 1, 1, 2]$ | - | `[0]` | 0 |
+| **1** | **0** | $[0, 0, 0, 2]$ | Courses 1, 2 | `[1, 2]` | 1 |
+| **2** | **1** | $[0, 0, 0, 1]$ | Course 3 (deg 1) | `[2]` | 2 |
+| **3** | **2** | $[0, 0, 0, 0]$ | Course 3 (deg 0) | `[3]` | 3 |
+| **4** | **3** | $[0, 0, 0, 0]$ | - | `[]` | **4 (All cleared)** |
+
+### Contrast: Deadlock in Cycle $[[1, 0], [0, 1]]$
+- $0 \to 1, 1 \to 0$.
+- In-degrees: $\text{in\_degree}[0] = 1, \text{in\_degree}[1] = 1$.
+- No node has in-degree $0 \implies Q = []$.
+- $\text{processed\_count} = 0 \ne 2 \implies \mathbf{False}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A node is enqueued if and only if all of its incoming directed edges have been traversed and resolved. If all $V$ nodes are popped from the queue, a valid topological ordering has been constructed, proving the graph contains no cycles.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If the graph contains a directed cycle $C = v_1 \to v_2 \dots \to v_k \to v_1$, each node in $C$ requires another node in $C$ to be processed first. Consequently, no node in $C$ can ever reach in-degree 0. They remain trapped outside the queue, causing $\text{processed\_count} < V$ and returning `false`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Deque-based Kahn algorithm:** Use `popleft()` for explicit queue semantics; equally linear and less reliant on list-iterator growth knowledge.
-- **Indexed list queue:** Maintain an integer cursor into `q`; makes appended-element processing explicit without front removal.
-- **DFS coloring:** Mark nodes unvisited, active, or complete; encountering an active node proves a cycle but recursion can reach depth $V$.
-- **No prerequisites:** Every course starts at indegree zero and the answer is true.
-- **Self-dependency:** Pair `[a,a]` gives positive indegree with no way to unlock the course, returning false.
-- **Disconnected graph:** All components are processed independently; a cycle in any one leaves courses remaining.
-- **Several prerequisites:** A course is appended only after the last incoming edge is removed.
-- **Several initial courses:** Any processing order among them is valid.
-- **Unique pair guarantee:** Avoids redundant edges but is not required for the count-based mechanics if duplicates are represented consistently.
-- **Missing typing import:** Supply `List` in standalone Python execution.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Edge Direction Inversion:** Writing directed edge $a \to b$ instead of $b \to a$ reverses dependencies, causing courses to require their advanced successors instead of prerequisites.
+- **Disconnected Graphs:** A graph may contain several disconnected components (e.g. some courses with no prerequisites at all). Kahn's algorithm naturally initializes the queue with all in-degree 0 nodes across all components.
+- **DFS Recursion Depth on Linear Chains:** Recursive cycle detection using 3-color DFS (`WHITE`, `GRAY`, `BLACK`) on a long chain of $V = 100,000$ courses causes stack overflow. Kahn's BFS queue avoids call-stack limits.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(V+E)$. Let $V$ be `numCourses` before it is decremented and $E$ the number of
-- **Auxiliary Space Complexity:** $O(V+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(V + E)$, where $V = \text{numCourses}$ and $E = |\text{prerequisites}|$. Initializing in-degrees takes $O(V + E)$. Each course is enqueued and dequeued at most once ($O(V)$), and each directed edge is decremented exactly once ($O(E)$).
+- **Auxiliary Space Complexity:** $O(V + E)$ auxiliary memory for the adjacency list representation and the BFS queue.

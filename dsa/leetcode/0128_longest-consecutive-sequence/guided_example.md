@@ -1,126 +1,162 @@
 # Guided Example: Longest Consecutive Sequence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step sequence-head identification and hash set streak expansion on a representative unsorted integer array:
 
-- **Input:** `{"nums": [100, 4, 200, 1, 3, 2]}`
-- **Required output:** `4`
+- **Input:** $\text{nums} = [100, 4, 200, 1, 3, 2]$
+- **Required output:** $4$ (Consecutive sequence: $[1, 2, 3, 4]$)
+- **Base Instances:** $\text{nums} = [] \implies 0, \quad \text{nums} = [0, 0] \implies 1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates why sorting ($O(N \log N)$) is suboptimal, establishes the sequence-head filtering condition ($x - 1 \notin \text{set}$), proves why each number is visited at most twice across the entire execution to guarantee strictly $O(N)$ linear time, and analyzes hash collisions and duplicate handling.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
+Given an unsorted array of integers:
+$$
+\text{nums} = [100, 4, 200, 1, 3, 2]
+$$
+return the length of the longest consecutive elements sequence. The algorithm must run in $O(N)$ time.
 
-The objective is to compute `4` from `{"nums": [100, 4, 200, 1, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
+In this instance, the elements form three disjoint contiguous chains:
+1. $[100]$ (length $1$)
+2. $[200]$ (length $1$)
+3. $[1, 2, 3, 4]$ (length $4$)
+The longest sequence has length $4$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorting the array achieves $O(N \log N)$ time, violating the linear time constraint.
+A naive search that counts upwards from *every* element takes $O(N^2)$ time (e.g. counting $1 \to 2 \to 3 \to 4$, then $2 \to 3 \to 4$, then $3 \to 4$).
+The optimal method converts `nums` into a hash set `num_set` and **only** initiates counting if $x$ is the true **head** of a streak (i.e. $x - 1 \notin \text{num\_set}$). Interior elements are skipped in $O(1)$ time, guaranteeing each element is traversed at most once.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Sequence Head Identification Protocol
+1. **Deduplication & Lookup Set:**
+   $$
+   \text{num\_set} = \text{set}(\text{nums})
+   $$
+2. **Streak Initiation Condition:**
+   An integer $x$ is the start of a consecutive streak if and only if its predecessor does not exist in the set:
+   $$
+   x - 1 \notin \text{num\_set}
+   $$
+   - If $x - 1 \in \text{num\_set}$, $x$ is an interior or terminal element of an already existing streak. **Skip $x$ immediately in $O(1)$ time.**
+   - If $x - 1 \notin \text{num\_set}$, $x$ is the unique starting anchor.
+3. **Streak Expansion:**
+   From anchor $x$, count upward:
+   - Let $\text{curr} = x, \, \text{streak} = 1$.
+   - While $\text{curr} + 1 \in \text{num\_set}$:
+     $$
+     \text{curr} \leftarrow \text{curr} + 1, \quad \text{streak} \leftarrow \text{streak} + 1
+     $$
+   - $\text{max\_streak} \leftarrow \max(\text{max\_streak}, \, \text{streak})$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** The inner expansion loop executes if and only if $x$ is the minimum element of a maximal connected component in the integer line. Every integer is expanded at most once across all iterations.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why duplicates disappear from the set
-
-`s = set(nums)` keeps one copy of each integer. Consecutive-sequence length counts distinct consecutive values, so duplicate input occurrences must not increase a sequence.
-
-The outer loop still visits the original `nums`, including duplicates, but a value can be removed from `s` only once. Later occurrences find it absent and perform no removal loop.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [100, 4, 200, 1, 3, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{nums} = [100, 4, 200, 1, 3, 2]$:
+Initialize `num_set = {100, 4, 200, 1, 3, 2}`.
+`max_streak = 0`.
 
 ---
 
-### Step 2: What the removal loop discovers
-
-For current `x`, `y` starts at `x`. While `y in s`, the source removes it and increments `y`.
-
-When the loop stops, all still-unprocessed values in the half-open integer interval `[x, y)` have been consumed. Their count is `y - x`.
-
-The stopping value `y` has one of two meanings:
-
-- `y` is not present in the input, so it is a genuine gap and contributes no suffix; or
-- `y` was removed earlier as the start of an already summarized consecutive suffix.
-
-`defaultdict(int)` returns zero for the first case. In the second case, `d[y]` supplies the known suffix length.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Inspect $x = 100$
+- Predecessor check: $100 - 1 = 99 \notin \text{num\_set}$.
+- **$100$ is a streak head!**
+- Count upward:
+  - $100 + 1 = 101 \notin \text{num\_set}$.
+  - Streak length $= 1$.
+- Update: $\text{max\_streak} = \max(0, 1) = 1$.
 
 ---
 
-### Step 3: Why the stopping point can safely use `d[y]`
+### Step 2: Inspect $x = 4$
+- Predecessor check: $4 - 1 = 3 \in \text{num\_set}$.
+- $4$ is an interior element!
+- **Prune immediately** in $O(1)$ time without counting.
 
-Suppose `y` was removed earlier and is consecutive with the new block. The earlier processing that removed `y` scanned continuously to the right and stored its combined length under the starting value of that scan.
+---
 
-A future block approaching from smaller values meets that earlier scan at its left boundary. It cannot first meet an unrecorded interior value while the earlier boundary lies farther left, because those lower overlapping values would already have been removed and could not form the new block.
+### Step 3: Inspect $x = 200$
+- Predecessor check: $200 - 1 = 199 \notin \text{num\_set}$.
+- **$200$ is a streak head!**
+- Count upward:
+  - $200 + 1 = 201 \notin \text{num\_set}$.
+  - Streak length $= 1$.
+- Update: $\text{max\_streak} = \max(1, 1) = 1$.
 
-Therefore, when a newly removed block reaches a previously processed consecutive component, the meeting value has the suffix summary needed in `d[y]`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+### Step 4: Inspect $x = 1$
+- Predecessor check: $1 - 1 = 0 \notin \text{num\_set}$.
+- **$1$ is a streak head!**
+- Count upward:
+  - $1 + 1 = 2 \in \text{num\_set} \implies \text{streak} = 2$.
+  - $2 + 1 = 3 \in \text{num\_set} \implies \text{streak} = 3$.
+  - $3 + 1 = 4 \in \text{num\_set} \implies \text{streak} = 4$.
+  - $4 + 1 = 5 \notin \text{num\_set} \implies$ halt expansion.
+- Component discovered: $[1, 2, 3, 4]$ of length $4$.
+- Update: $\text{max\_streak} = \max(1, 4) = \mathbf{4}$.
+
+---
+
+### Step 5: Inspect $x = 3$
+- Predecessor check: $3 - 1 = 2 \in \text{num\_set}$.
+- Interior element $\implies$ **Prune in $O(1)$**.
+
+---
+
+### Step 6: Inspect $x = 2$
+- Predecessor check: $2 - 1 = 1 \in \text{num\_set}$.
+- Interior element $\implies$ **Prune in $O(1)$**.
+
+Traversal complete. Maximum streak length: $\mathbf{4}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [100, 4, 200, 1, 3, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+```text
+Numbers:      [ 100,   4,   200,   1,   3,   2 ]
+num - 1?       99:No  3:Yes 199:No 0:No 2:Yes 1:Yes
+Role:          HEAD   SKIP   HEAD  HEAD SKIP SKIP
+Chain Built:   [100]    -    [200] [1,2,3,4] -  -
+Length:          1      -      1      4      -  -  => MAX = 4
+```
+
+| Evaluated Number $x$ | Predecessor $x - 1$ | In `num_set`? | Role Identified | Expansion Sequence | Discovered Length | Updated $\text{max\_streak}$ |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 100 | 99 | No | **Sequence Head** | $100$ | 1 | 1 |
+| 4 | 3 | **Yes** | Interior Node | Skipped ($O(1)$) | - | 1 |
+| 200 | 199 | No | **Sequence Head** | $200$ | 1 | 1 |
+| **1** | **0** | **No** | **Sequence Head** | **$1 \to 2 \to 3 \to 4$** | **4** | **4 (Global Max)** |
+| 3 | 2 | **Yes** | Interior Node | Skipped ($O(1)$) | - | 4 |
+| 2 | 1 | **Yes** | Interior Node | Skipped ($O(1)$) | - | 4 |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Consecutive integer sequences are equivalence classes (connected components) on the integer line. Each component has a unique minimum element $x_{\min}$ characterized by $x_{\min} - 1 \notin \text{num\_set}$. By starting upward counting strictly at $x_{\min}$, every element of the component is counted exactly once, and no spurious sub-chains are generated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every consecutive sequence that exists in the input has an initial element. Because all elements are tested against the predecessor condition, every sequence head will be identified and fully expanded to its true terminal boundary.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Start-only hash-set scan:** Begin a run only when `x - 1` is absent, then count upward. It is the standard and easier-to-prove expected $O(n)$ solution.
-- **Boundary-length interval merging:** Store interval lengths at their endpoints and merge neighboring components as values arrive.
-- **Sorting:** Sort distinct or original values and scan, handling duplicates. It takes $O(n\log n)$ time and may mutate the input.
-- **Union-find:** Connect present neighboring integers. It works but adds more structure than the interval nature requires.
-- **Empty input:** Returns zero.
-- **Only duplicates:** The set contains one value, so longest length is one.
-- **Negative through positive sequence:** Arithmetic adjacency works across zero.
-- **Unsorted order:** The set makes array position irrelevant.
-- **Previously processed suffix:** `d[y]` joins it to a newly removed lower block.
-- **true gap:** Default zero terminates the sequence.
-- **Duplicate outer iteration:** Performs no removals and cannot lower `ans`.
-- **Hash complexity:** Linear time is expected, based on expected constant-time set and dictionary access.
-- **Missing imports:** `List` and `defaultdict` must be supplied.
-- **Input preservation:** Only the copied set is destructively reduced.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Expanding Non-Head Elements ($O(N^2)$ Trap):** Omitting the `if x - 1 not in num_set:` guard causes the inner loop to run for every element (e.g. $[1, 2, \dots, N]$ takes $N + (N-1) + \dots + 1 = O(N^2)$ operations). The guard is what guarantees $O(N)$ runtime.
+- **Duplicate Elements:** If the input contains repeated numbers (e.g. `[1, 2, 0, 1]`), constructing `set(nums)` handles duplicates naturally so they do not artificially increment lengths.
+- **Empty Array:** If `nums = []`, `num_set` is empty and the loop never executes, correctly returning `0`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be input length and $u$ the number of distinct values. Set construction is expected $O(n)$ time. The outer loop has $n$ iterations, but every successful `while` iteration removes one distinct value permanently, so all removal loops together run only $u$ times.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$ average time. Building `num_set` takes $O(N)$. The outer loop iterates $N$ times. Each interior element is rejected in $O(1)$ time. The inner while loop visits each element in a consecutive chain exactly once across the entire run. Total set lookups are bounded by $2N = O(N)$.
+- **Auxiliary Space Complexity:** $O(N)$ to store the hash set `num_set` containing up to $N$ unique integers.

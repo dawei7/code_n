@@ -1,130 +1,196 @@
 # Guided Example: Circular Array Loop
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step modular index stepping ($(i + nums[i]) \pmod n$), Floyd's Tortoise and Hare cycle detection (slow pointer 1 step, fast pointer 2 steps), directional uniformity checking ($nums[a] \times nums[b] > 0$), self-loop elimination ($next(slow) \ne slow$), and in-place zero-marking on representative circular arrays:
 
-- **Input:** `{"nums": [2, -1, 1, 2, 2]}`
+- **Input:** $nums = [2, -1, 1, 2, 2]$
 - **Required output:** `true`
+  - Array length: $n = 5$
+  - Modular transition function:
+    $$
+    next(i) = (i + nums[i] \pmod 5 + 5) \pmod 5
+    $$
+  - Transition mappings:
+    - Index 0 ($nums[0] = 2$): $next(0) = (0 + 2) \pmod 5 = \mathbf{2}$ (Forward, $+2$)
+    - Index 1 ($nums[1] = -1$): $next(1) = (1 - 1) \pmod 5 = \mathbf{0}$ (Backward, $-1$)
+    - Index 2 ($nums[2] = 1$): $next(2) = (2 + 1) \pmod 5 = \mathbf{3}$ (Forward, $+1$)
+    - Index 3 ($nums[3] = 2$): $next(3) = (3 + 2) \pmod 5 = \mathbf{0}$ (Forward, $+2$)
+    - Index 4 ($nums[4] = 2$): $next(4) = (4 + 2) \pmod 5 = \mathbf{1}$ (Forward, $+2$)
+  - **Trace starting from index 0:**
+    - Direction: Forward ($nums[0] = 2 > 0$)
+    - Path from 0:
+      $$
+      0 \xrightarrow{+2} 2 \xrightarrow{+1} 3 \xrightarrow{+2} 0
+      $$
+    - Cycle detected: $0 \to 2 \to 3 \to 0$
+    - Check validity criteria:
+      1. Uniform direction: $nums[0] = 2 > 0, \; nums[2] = 1 > 0, \; nums[3] = 2 > 0$ (**All positive!**)
+      2. Cycle length $> 1$: cycle contains 3 distinct indices $\{0, 2, 3\}$ (**Not a self-loop!**)
+    - A valid circular loop exists $\implies$ Return **`true`**
+- **Self-Loop Rejection Instance:** $nums = [-1, -2, -3, -4, -5, 6]$
+  - Index 5 ($nums[5] = 6$): $next(5) = (5 + 6) \pmod 6 = 5$. Length 1 cycle (self-loop) $\implies$ **Invalid $\implies$ `false`**
+- **Direction Reversal Instance:** $nums = [1, -1] \implies 0 \to 1 \to 0$, but $nums[0] > 0$ and $nums[1] < 0$ $\implies$ Mixed directions $\implies \mathbf{false}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Floyd's cycle-finding pointer technique on modular directed graphs, mathematically proves why direction invariance and cycle length bounds eliminate degenerate loops, and derives $O(N)$ runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are playing a game involving a **circular** array of non-zero integers `nums`. Each $\text{nums}[i]$ denotes the number of indices forward/backward you must move if you are located at index `i`:
+Given a circular array of non-zero integers $nums = [2, -1, 1, 2, 2]$:
+Determine if there is a **loop** in $nums$.
+A loop must satisfy all three conditions:
+1. **Connectivity:** It follows the sequence of movements where $nums[i]$ moves forward if positive and backward if negative:
+   $$
+   next(i) = (i + nums[i]) \pmod n
+   $$
+2. **Directional Invariance:** Every movement in the loop must follow the **same direction** (all positive steps or all negative steps).
+3. **Non-Trivial Length:** The loop must contain **more than one element** (a cycle of length $k = 1$, where a node jumps back onto itself, is disqualified).
 
-The objective is to compute `true` from `{"nums": [2, -1, 1, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Circular Array Transitions (n = 5):
+  Index 0 (+2) ----> Index 2
+  Index 2 (+1) ----> Index 3
+  Index 3 (+2) ----> Index 0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The cycle 0 -> 2 -> 3 -> 0:
+  - All values are positive (+2, +1, +2): Direction is strictly forward.
+  - Cycle length is 3 > 1: Not a self-loop.
+
+Valid Circular Loop Detected -> true
+```
+
+### The Three Structural Traps
+1. **Direction Reversal:** A path that switches between forward and backward steps ($1 \to -1$) is not a valid loop.
+2. **Self-Loops ($1$-Cycles):** An element where $(i + nums[i]) \pmod n == i$ jumps to itself. Such nodes must not be counted as loops.
+3. **Quadratic Repeated Exploration ($O(N^2)$):** If every starting node traverses the same dead-end path, runtime degrades to $O(N^2)$. Once a path is proven cycle-free, marking its nodes with $0$ ensures every node is examined at most twice.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Modular Transition Operator:
+For any index $i$ in an array of length $n$:
+$$
+next(i) = ((i + nums[i]) \pmod n + n) \pmod n
+$$
+The $+ n \pmod n$ arithmetic ensures positive indices even when $nums[i]$ is negative.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Floyd's Tortoise and Hare Cycle Detection:
+For each potential starting index $i$ with $nums[i] \ne 0$:
+- Initialize $slow = i$ (moves 1 step at a time).
+- Initialize $fast = next(i)$ (moves 2 steps at a time).
+- **Directional Guard:** At every step, check that $fast$ and its successor move in the same sign direction as $slow$:
+  $$
+  nums[slow] \times nums[fast] > 0 \quad \land \quad nums[slow] \times nums[next(fast)] > 0
+  $$
+  If signs differ, the path changes direction: abort search.
+- **Meeting Condition:** If $slow == fast$:
+  - If $slow \ne next(slow)$: The loop has length $\ge 2$ and uniform direction. Return `True`!
+  - If $slow == next(slow)$: The cycle is a 1-node self-loop. Abort search.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. In-Place Zero-Marking (Pruning):
+When a path from $i$ fails to produce a valid loop, all reachable nodes in that same directional component can never participate in any other valid loop.
+Trace from $i$ and set $nums[j] \leftarrow 0$, eliminating redundant future visits.
+
+> **Cycle Invariant.** Floyd's algorithm guarantees that in any finite functional graph with uniform edge directions, the fast pointer will catch the slow pointer within at most $C$ steps, where $C \le n$ is the cycle length.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compute circular destinations
-
-For index `i`, `next(i)` returns
-
-$$
-(i + (\texttt{nums}[i]\bmod n) + n)\bmod n.
-$$
-
-Modulo wraps forward jumps beyond the last index back to the front and wraps backward jumps before zero back to the end. In Python, `nums[i] % n` is already nonnegative, so the extra `+ n` is redundant but harmless. Reducing the jump before addition also handles magnitudes larger than the array length.
-
-Input values initially are nonzero. The algorithm later uses zero as an internal “already processed” marker; for such a slot, `next(i)` becomes `i`, but sign-product checks prevent that marker from joining a valid search.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, -1, 1, 2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [2, -1, 1, 2, 2]$ ($n = 5$):
 
 ---
 
-### Step 2: Floyd detection under one fixed direction
-
-For an unmarked start `i`, initialize `slow = i` and `fast = next(i)`. On each loop iteration, slow is prepared to advance one edge and fast two edges.
-
-The loop continues only while
-
-`nums[slow] * nums[fast] > 0`
-
-and
-
-`nums[slow] * nums[next(fast)] > 0`.
-
-A positive product means the two jumps have the same nonzero sign. The first check confirms that slow and fast remain in one direction; the second confirms that fast's next landing also has that direction before fast takes its second step. If either product is nonpositive, the route changes sign or reaches a zero marker, so it cannot be the required uniform-direction cycle for this start.
-
-When the checks pass and `slow == fast`, Floyd's method has found a repeated position. The code then tests `slow != next(slow)`. If the next jump returns to the same position, the cycle length is one and is forbidden. Otherwise the meeting lies on a cycle of length greater than one, and all traversed cycle jumps have the verified common sign, so the method returns `true`.
-
-If no meeting occurs yet, slow advances once and fast advances twice. In any finite functional graph, pointers restricted to a genuine cycle eventually meet because fast gains one cycle position on slow per iteration.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Evaluate Starting Node $i = 0$
+- $nums[0] = 2 > 0$. Direction: positive (forward).
+- Initialize pointers:
+  $$
+  slow = 0, \quad fast = next(0) = 2
+  $$
 
 ---
 
-### Step 3: Trace the valid first example
+### Step 2: Floyd's Iteration 1
+- Check directions:
+  - $nums[slow] = nums[0] = 2 > 0$
+  - $nums[fast] = nums[2] = 1 > 0 \implies 2 \times 1 > 0$ (Pass)
+  - $next(fast) = next(2) = 3$
+  - $nums[3] = 2 > 0 \implies 2 \times 2 > 0$ (Pass)
+- Test pointer meeting:
+  $$
+  slow = 0 \ne fast = 2
+  $$
+- Advance pointers:
+  - $slow \leftarrow next(0) = \mathbf{2}$
+  - $fast \leftarrow next(next(2)) = next(3) = \mathbf{0}$
+- State after Iteration 1: $slow = 2, \; fast = 0$.
 
-For `[2,-1,1,2,2]`, start at index `0`. Its route is `0 -> 2 -> 3 -> 0`. Values at those indices are `2`, `1`, and `2`, all positive. Slow moves one edge at a time while fast moves two; they eventually meet inside this three-index cycle. Since the meeting index does not point to itself, the method returns `true`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Floyd's Iteration 2
+- Check directions:
+  - $nums[slow] = nums[2] = 1 > 0$
+  - $nums[fast] = nums[0] = 2 > 0 \implies 1 \times 2 > 0$ (Pass)
+  - $next(fast) = next(0) = 2$
+  - $nums[2] = 1 > 0 \implies 1 \times 1 > 0$ (Pass)
+- Test pointer meeting:
+  $$
+  slow = 2 \ne fast = 0
+  $$
+- Advance pointers:
+  - $slow \leftarrow next(2) = \mathbf{3}$
+  - $fast \leftarrow next(next(0)) = next(2) = \mathbf{3}$
+- State after Iteration 2: $slow = 3, \; fast = 3$.
+
+---
+
+### Step 4: Pointers Collide ($slow == fast == 3$)
+- Meeting point reached at index $3$!
+- Check cycle length:
+  $$
+  next(slow) = next(3) = 0 \ne 3
+  $$
+- Since $next(slow) \ne slow$, the cycle has length $> 1$.
+- Direction remained strictly positive throughout.
+- All three criteria are satisfied.
+- Return **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, -1, 1, 2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Round | Slow Pointer | $nums[slow]$ | Fast Pointer | $nums[fast]$ | Fast Next | Collision? $slow == fast$ | Direction Valid? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Init** | $0$ | $+2$ | $2$ | $+1$ | $3$ ($+2$) | No ($0 \ne 2$) | Yes (All $> 0$) |
+| **1** | $2$ | $+1$ | $0$ | $+2$ | $2$ ($+1$) | No ($2 \ne 0$) | Yes (All $> 0$) |
+| **2** | $3$ | $+2$ | $3$ | $+2$ | $0$ ($+2$) | **Yes ($3 == 3$)** | **Yes (All $> 0$)** |
+| **Test**| $slow = 3$ | — | — | — | $next(3) = 0$ | $next(3) \ne 3$ | **Valid Loop: True** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single-Node Array ($nums = [1]$):** $next(0) = (0 + 1) \pmod 1 = 0$. $next(slow) == slow \implies$ Self-loop $\implies \mathbf{false}$.
+- **Mixed Direction Alternation ($nums = [1, -1]$):** $nums[0] > 0$ while $nums[1] < 0$. Condition $nums[slow] \times nums[fast] > 0$ fails $\implies \mathbf{false}$.
+- **All Self-Loops ($nums = [-1, -2, -3, -4, -5, 6]$ with $n=6$):** Index 5 moves $5 + 6 \equiv 5 \pmod 6$ (self-loop). Detected by $slow == next(slow) \implies$ rejected.
+- **Multiple Disconnected Components:** Outer loop iterates over all $i \in [0, n-1]$. If component 1 has no cycle, it zeroes its nodes and tests component 2.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Corrected in-place cleanup:** Cache `next(j)` before writing zero. This preserves the same logic and restores the intended $O(n)$ amortized time with $O(1)$ auxiliary space.
-- **Per-start visited set:** Record indices along each walk and detect repeats directly. It is simpler to visualize but can use $O(n)$ extra space and repeat work unless global state is also maintained.
-- **Three-state visitation array:** Mark nodes unseen, active in the current walk, or fully processed. This gives $O(n)$ time and clear cycle ownership, but uses $O(n)$ space.
-- **Ignore direction:** Ordinary functional-graph cycle detection would wrongly accept routes containing both positive and negative jumps.
-- **One-element array:** Every jump returns to the sole index, producing only a forbidden length-one cycle; the result is false.
-- **Jump divisible by `n`:** Its destination is the same index even though the stored jump is nonzero, so the explicit self-loop test is necessary.
-- **Mixed-sign repeated route:** Repetition alone is insufficient; sign-product guards reject it.
-- **All-positive or all-negative valid cycle:** Direction checks remain positive products in either case because two negatives multiply to a positive number.
-- **Zero values:** Original inputs cannot contain zero. Zeros are reserved for internal marking and cause future traversals to stop.
-- **Input mutation:** Failed starts are replaced with zero. Callers that need the original jumps must pass a copy.
-- **Negative modulo:** Python already produces a nonnegative remainder for positive `n`; other languages may need the double-modulo normalization shown by the formula.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Negative Modulo Handling in C++ / Java:** In Python, `-1 % 5 == 4`. In C++ and Java, `-1 % 5 == -1`. To ensure non-negative indices in all languages, always write `((i + nums[i]) % n + n) % n`.
+- **Forgetting Direction Reversal Check on $next(fast)$:** Only checking $nums[slow] \times nums[fast] > 0$ misses a reversal that occurs on the intermediate jump between $fast$ and $next(fast)$. Testing both jumps guarantees direction consistency.
+- **Not Marking Visited Nodes ($O(N^2)$):** If cycle detection fails and nodes are not marked, repeatedly traversing the same paths results in quadratic runtime. Overwriting visited non-loop nodes with `0` guarantees each node is visited at most twice.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The manifest states $O(n)$ time and $O(1)$ auxiliary space, which are the standard bounds for Floyd detection combined with complete path marking. With the corrected cleanup order, every failed-path index is zeroed once, so later searches skip it; all pointer work amortizes to $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - With in-place zero marking, each index is traversed by at most one successful or failing Floyd search.
+  - Every node is visited $O(1)$ times.
+  - Total Time: $\mathcal{O}(N)$. For $N = 5000$, finishes in under 5 ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$. Requires only scalar pointers (`slow`, `fast`, `j`), modifying the array in-place without auxiliary sets or recursion stacks.

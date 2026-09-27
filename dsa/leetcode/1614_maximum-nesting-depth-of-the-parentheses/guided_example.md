@@ -1,129 +1,158 @@
 # Guided Example: Maximum Nesting Depth of the Parentheses
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide demonstrates prefix counter accumulation to compute the maximum nesting depth of a valid parentheses expression in a single linear pass.
 
-- **Input:** `{"s": "(1+(2*3)+((8)/4))+1"}`
-- **Required output:** `3`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Expression:** `s = "(1+(2*3)+((8)/4))+1"`
+- **Length:** $N = 21$ characters
+- **Target Nesting Depth:** `3` (Attained inside the subexpression `((8)/4)`)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a **valid parentheses string** `s`, return the **nesting depth** of* *`s`. The nesting depth is the **maximum** number of nested parentheses.
+The nesting depth of a valid parentheses string measures the maximum number of open, unclosed parentheses enclosing any character at any position in the string. Non-parenthesis characters (such as digits `'0'-'9'` and arithmetic operators `'+'`, `'-'`, `'*'`, `'/'`) do not alter the nesting layer.
 
-The objective is to compute `3` from `{"s": "(1+(2*3)+((8)/4))+1"}` while avoiding redundant calculations and unnecessary overhead.
+```
+Nesting Contour Visualization:
+  d=3 |                  ___(8)___
+  d=2 |         _(2*3)_ /         \
+  d=1 |  ______(       +           /4)______
+  d=0 |_/                                   \___+1___
+      s: (  1  +  ( 2 * 3 ) + ( ( 8 ) / 4 ) ) + 1
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because the input is guaranteed to be a syntactically valid parentheses string (VPS), we do not need to validate syntax or manage an explicit stack. An integer counter tracking currently open levels is necessary and sufficient.
+
+Our teaching goal is to model linear prefix state tracking in $\mathcal{O}(N)$ time and $\mathcal{O}(1)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                    PREFIX DEPTH COUNTER MECHANISM                       |
+|                                                                         |
+|  State Variables:                                                       |
+|    d   = Current open parentheses depth (initially 0)                   |
+|    ans = Peak depth recorded across the scan (initially 0)              |
+|                                                                         |
+|  Character Transitions:                                                 |
+|    When c == '(':                                                       |
+|        d += 1                                                           |
+|        ans = max(ans, d)                                                |
+|                                                                         |
+|    When c == ')':                                                       |
+|        d -= 1                                                           |
+|                                                                         |
+|    When c in {'0'-'9', '+', '-', '*', '/'}:                             |
+|        No-op (d remains unchanged)                                      |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Token Encountered | Depth Effect $\Delta d$ | Maximum Candidate Check | Rationale |
+|---|---|---|---|
+| `'('` | $+1$ | $\text{ans} \leftarrow \max(\text{ans}, d)$ | Enters a strictly deeper nested sub-scope |
+| `')'` | $-1$ | Ignored | Exits current scope; cannot establish a new peak |
+| Other character | $0$ | Ignored | Non-structural arithmetic literal or operator |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Prefix Balance Invariant.** For any valid parentheses string, the running counter $d_i = \text{count}('(', s[0..i]) - \text{count}(')', s[0..i])$ satisfies $d_i \ge 0$ for all prefixes $0 \le i < N$, and concludes at $d_{N-1} = 0$. The nesting depth of the string is precisely $\max_{0 \le i < N} d_i$.
+
+```mermaid
+flowchart TD
+    accTitle: Parentheses Depth Scanner
+    accDescr: Sequential character evaluation updating active depth counter and peak tracker.
+    Char["Read Character c"] --> Type{"Character Type?"}
+    Type -->|'('| Inc["d += 1; ans = max(ans, d)"]
+    Type -->|')'| Dec["d -= 1"]
+    Type -->|Other| Skip["Ignore character"]
+    Inc --> Next{"More characters?"}
+    Dec --> Next
+    Skip --> Next
+    Next -->|Yes| Char
+    Next -->|No| Ret["Return ans"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Depth is the number of currently open parentheses
+### Scan Progression on `s = "(1+(2*3)+((8)/4))+1"`
 
-While scanning a valid parentheses string from left to right, each opening parenthesis begins one additional nested region, and each closing parenthesis ends the most recently opened region.
+- Initial state: $d = 0$, $\text{ans} = 0$.
 
-The current nesting depth is therefore:
+1. Index $0$ (`'('`): Opening bracket.
+   - $d \leftarrow 0 + 1 = 1$.
+   - $\text{ans} \leftarrow \max(0, 1) = 1$.
+2. Indices $1..3$ (`"1+"`): Arithmetic characters. Depth unchanged: $d = 1$.
+3. Index $4$ (`'('`): Opening bracket.
+   - $d \leftarrow 1 + 1 = 2$.
+   - $\text{ans} \leftarrow \max(1, 2) = 2$.
+4. Indices $5..7$ (`"2*3"`): Literals. Depth unchanged: $d = 2$.
+5. Index $8$ (`')'`): Closing bracket.
+   - $d \leftarrow 2 - 1 = 1$.
+6. Index $9$ (`'+'`): Operator. Depth unchanged: $d = 1$.
+7. Index $10$ (`'('`): Opening bracket.
+   - $d \leftarrow 1 + 1 = 2$.
+   - $\text{ans} \leftarrow \max(2, 2) = 2$.
+8. Index $11$ (`'('`): Opening bracket.
+   - $d \leftarrow 2 + 1 = 3$.
+   - $\text{ans} \leftarrow \max(2, 3) = 3$ (New peak recorded).
+9. Index $12$ (`'8'`): Literal. Depth unchanged: $d = 3$.
+10. Index $13$ (`')'`): Closing bracket.
+    - $d \leftarrow 3 - 1 = 2$.
+11. Indices $14..15$ (`"/4"`): Operators. Depth unchanged: $d = 2$.
+12. Index $16$ (`')'`): Closing bracket.
+    - $d \leftarrow 2 - 1 = 1$.
+13. Index $17$ (`')'`): Closing bracket.
+    - $d \leftarrow 1 - 1 = 0$.
+14. Indices $18..20$ (`"+1"`): Unenclosed trailing literals. Depth unchanged: $d = 0$.
 
-$$
-\text{open parentheses seen}
--\text{closing parentheses seen}.
-$$
-
-The source stores this current value in `d` and the largest value ever reached in `ans`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "(1+(2*3)+((8)/4))+1"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Processing an opening parenthesis
-
-When `c == '('`, the source increments `d` because the scan has entered one deeper level.
-
-It immediately updates:
-
-`ans = max(ans, d)`.
-
-The update must occur after incrementing. At the instant an opening parenthesis is read, the new region is active and may establish a new maximum.
-
-For a prefix `"((("`, the depth values after the openings are one, two, and three, so `ans` becomes three.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Processing a closing parenthesis
-
-When `c == ')'`, the source decrements `d`. Leaving a region cannot increase maximum nesting depth, so no `ans` update is needed in this branch.
-
-The input is guaranteed to be a valid parentheses string. Consequently, `d` never becomes negative and returns to zero after the complete scan.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+End of scan reached. Peak depth is $\text{ans} = 3$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "(1+(2*3)+((8)/4))+1"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Index $i$ | Character $s[i]$ | Action Taken | Active Depth $d$ | Recorded Peak $\text{ans}$ |
+|---|---|---|---|---|
+| Init | — | Initialize | $0$ | $0$ |
+| $0$ | `'('` | Increment depth | $1$ | $1$ |
+| $1..3$ | `'1'`, `'+'` | Ignored | $1$ | $1$ |
+| $4$ | `'('` | Increment depth | $2$ | $2$ |
+| $5..7$ | `'2'`, `'*'`, `'3'` | Ignored | $2$ | $2$ |
+| $8$ | `')'` | Decrement depth | $1$ | $2$ |
+| $9$ | `'+'` | Ignored | $1$ | $2$ |
+| $10$ | `'('` | Increment depth | $2$ | $2$ |
+| $11$ | `'('` | Increment depth | $3$ | **$3$** |
+| $12$ | `'8'` | Ignored | $3$ | $3$ |
+| $13$ | `')'` | Decrement depth | $2$ | $3$ |
+| $14..15$ | `'/'`, `'4'` | Ignored | $2$ | $3$ |
+| $16$ | `')'` | Decrement depth | $1$ | $3$ |
+| $17$ | `')'` | Decrement depth | $0$ | $3$ |
+| $18..20$ | `'+'`, `'1'` | Ignored | $0$ | $3$ |
+
+Final result: $3$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** At any character index $i$, the quantity $d$ equals the number of preceding unmatched open parentheses. Because each unmatched open parenthesis denotes an enclosing pair containing the current index, $d$ exactly equals the physical nesting depth at character $i$. The running maximum $\text{ans} = \max_i d_i$ faithfully reflects the deepest level reached.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Nesting depth can increase if and only if an opening parenthesis `'('` is encountered. Because every `'('` immediately increments $d$ and invokes $\text{ans} \leftarrow \max(\text{ans}, d)$, no peak candidate is omitted. Since all characters are processed in a single sequential sweep, the global maximum is certified.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Explicit stack:** Push each opening and pop each closing, tracking maximum stack size. It is correct but uses $O(N)$ space when one counter suffices.
-- **Recursive expression parser:** It could derive nesting through call depth but solves much more than the problem asks and may use linear stack space.
-- **Count total parentheses only:** Total pairs do not reveal nesting; `()()()` has three pairs but depth one.
-- **Update before incrementing:** This would lag one level and undercount. The source increments `d` before comparing with `ans`.
-- **Update after closing:** It is harmless but unnecessary because closing can only decrease depth.
-- **No parentheses:** The answer remains zero.
-- **One pair:** Depth rises to one and returns to zero.
-- **Sequential pairs:** Each reaches depth one; the count resets between them.
-- **Fully nested pairs:** Each consecutive opening raises the maximum by one.
-- **Digits and operators:** They are ignored because they do not affect active parentheses.
-- **Valid-string guarantee:** It ensures depth never becomes negative and ends at zero.
-- **Malformed input:** The source does not validate it; that behavior lies outside the contract.
-- **Maximum length:** A linear scan and constant state easily handle the bound.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Updating Peak Before Incrementing:** Evaluating $\text{ans} = \max(\text{ans}, d)$ before executing $d \mathrel{+}= 1$ causes the peak tracker to lag by 1 level, resulting in an off-by-one undercount.
+- **Unnecessary Stack Allocation:** Allocating an explicit stack data structure to push and pop bracket indices consumes $\mathcal{O}(N)$ memory without providing any benefit over an integer counter.
+- **Premature Reset on Operators:** Resetting the depth counter when encountering numbers or arithmetic operators (`+`, `*`) incorrectly breaks active nested scopes. Depth changes must be triggered strictly by parentheses.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the string length.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the length of string $s$. The string is traversed once from left to right, spending $\mathcal{O}(1)$ operations per character.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space, as only two scalar integer counters ($d$ and $\text{ans}$) are maintained throughout execution.

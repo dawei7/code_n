@@ -1,109 +1,199 @@
 # Guided Example: Check if the Sentence Is Pangram
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step verification of alphabet completeness via character set deduplication and bitmask presence on a representative problem instance:
 
-- **Input:** `{"sentence": "thequickbrownfoxjumpsoverthelazydog"}`
-- **Required output:** `true`
+- **Input:** `sentence = "thequickbrownfoxjumpsoverthelazydog"`
+- **Required Output:** `true`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how checking if a string contains every letter of the 26-character English alphabet reduces to evaluating whether the cardinality of its unique character set equals 26.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A **pangram** is a sentence where every letter of the English alphabet appears at least once.
+A **pangram** is a sentence containing every letter of the lowercase English alphabet at least once.
+We are given a string `sentence` composed exclusively of lowercase English letters.
+We must return `true` if `sentence` is a pangram, and `false` otherwise.
 
-The objective is to compute `true` from `{"sentence": "thequickbrownfoxjumpsoverthelazydog"}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `sentence = "thequickbrownfoxjumpsoverthelazydog"`
+- Character count: $35$ letters.
+- The 26 letters of the English alphabet:
+  $$\Sigma = \{\text{'a'}, \text{'b'}, \text{'c'}, \dots, \text{'z'}\}, \quad |\Sigma| = 26$$
+- Tracing letters present in `"thequickbrownfoxjumpsoverthelazydog"`:
+  - `a`: lazydog
+  - `b`: brown
+  - `c`: quick
+  - `d`: dog
+  - `e`: the, over
+  - `f`: fox
+  - `g`: dog
+  - `h`: the
+  - `i`: quick
+  - `j`: jumps
+  - `k`: quick
+  - `l`: lazy
+  - `m`: jumps
+  - `n`: brown
+  - `o`: brown, fox, over, dog
+  - `p`: jumps
+  - `q`: quick
+  - `r`: brown, over
+  - `s`: jumps
+  - `t`: the
+  - `u`: quick, jumps
+  - `v`: over
+  - `w`: brown
+  - `x`: fox
+  - `y`: lazy
+  - `z`: lazy
+- All $26$ letters appear at least once. The unique character set size is $26$.
+- Output: `true`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to recognize that frequency details are irrelevant: only set membership matters. Because `sentence` contains only lowercase English characters, verifying that the unique character set cardinality is $26$ decides pangram status in linear time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Set Cardinality Equivalence
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $S$ denote the set of distinct characters in `sentence`:
+$$S = \{ c \in \Sigma : c \text{ appears in } \text{sentence} \}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because `sentence` is restricted to lowercase English letters, $S \subseteq \Sigma$.
+Since $|\Sigma| = 26$, the subset $S$ is equal to $\Sigma$ if and only if its cardinality reaches $26$:
+$$S = \Sigma \iff |S| = 26$$
+
+### Alphabet Completeness & Set Cardinality Invariant Theorem
+
+> **Alphabet Completeness & Set Cardinality Invariant Theorem.**
+> Let $A$ be a string of length $n$ over an alphabet $\Sigma$ of size $K$.
+> 1. *Length Necessary Condition:* If $n < K$, by the Pigeonhole Principle the string can contain at most $n < K$ distinct characters, immediately implying it cannot be a pangram.
+> 2. *Unique Character Cardinality:* If $n \ge K$, let $S = \text{set}(A)$. The string contains every character in $\Sigma$ if and only if $|S| = K$.
+> 3. *Bitmask Representation:* Alternatively, each character $c$ maps to bit offset $b = \text{ord}(c) - \text{ord}(\text{'a'}) \in [0, 25]$.
+>    The cumulative bitwise OR:
+>    $$\mu = \bigvee_{c \in A} (1 \ll (\text{ord}(c) - \text{ord}(\text{'a'})))$$
+>    equals $(1 \ll 26) - 1$ if and only if $A$ is a pangram.
+> The bitmask approach uses $\mathcal{O}(1)$ auxiliary space and allows early exit the instant $\mu$ reaches $(1 \ll 26) - 1$.
+
+```mermaid
+flowchart TD
+    accTitle: Pangram Alphabet Verification Pipeline
+    accDescr: Pipeline streaming characters into a unique set or bitmask and comparing cardinality to 26.
+    A["Input sentence: 'thequickbrownfoxjumpsoverthelazydog'"] --> B{"Length < 26?"}
+    B -- "Yes" --> C["Return false (Pigeonhole Violation)"]
+    B -- "No (Length = 35)" --> D["Stream characters into unique set S"]
+    D --> E["Count unique characters in S"]
+    E --> F{"|S| == 26?"}
+    F -- "Yes" --> G["All 26 letters present -> Return true"]
+    F -- "No" --> H["Missing letters -> Return false"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**The question is about distinct letters, not total characters.** A pangram must contain every one of the 26 lowercase English letters at least once. Repeated appearances do not add any new requirement: ten copies of `a` still satisfy only the requirement for `a`. This makes a set a natural representation because a set retains one copy of each distinct value and automatically discards duplicates.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"sentence": "thequickbrownfoxjumpsoverthelazydog"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `sentence = "thequickbrownfoxjumpsoverthelazydog"`.
+Length $n = 35 \ge 26$, so alphabet completeness is possible.
+Initialize empty set of observed characters:
+$$S = \emptyset$$
 
 ---
 
-### Step 2: Core Step 2
-
-The entire implementation is one expression:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Stream First Token `"the"`
+- `'t'`: $S \to \{\text{'t'}\}$ (Size 1)
+- `'h'`: $S \to \{\text{'t'}, \text{'h'}\}$ (Size 2)
+- `'e'`: $S \to \{\text{'t'}, \text{'h'}, \text{'e'}\}$ (Size 3)
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Stream Token `"quick"`
+- `'q'`: add $\implies$ Size 4
+- `'u'`: add $\implies$ Size 5
+- `'i'`: add $\implies$ Size 6
+- `'c'`: add $\implies$ Size 7
+- `'k'`: add $\implies$ Size 8
 
-Despite its compactness, it performs three clear logical steps. Python first traverses `sentence` and builds `set(sentence)`. The length of that set is the number of different characters observed. Finally, the length is compared with 26.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 3: Stream Token `"brown"`
+- `'b'`, `'r'`, `'o'`, `'w'`, `'n'`: all new $\implies$ Size reaches 13
+
+---
+
+### Step 4: Stream Token `"fox"`
+- `'f'`, `'o'` (duplicate, skipped), `'x'`: adds 2 new letters $\implies$ Size reaches 15
+
+---
+
+### Step 5: Stream Token `"jumps"`
+- `'j'`, `'u'` (duplicate), `'m'`, `'p'`, `'s'`: adds 4 new letters $\implies$ Size reaches 19
+
+---
+
+### Step 6: Stream Token `"over"`
+- `'o'` (duplicate), `'v'` (new), `'e'` (duplicate), `'r'` (duplicate): adds 1 new letter $\implies$ Size reaches 20
+
+---
+
+### Step 7: Stream Token `"the"`
+- `'t'`, `'h'`, `'e'`: all already present in $S$, no size change $\implies$ Size remains 20
+
+---
+
+### Step 8: Stream Token `"lazy"`
+- `'l'` (new), `'a'` (new), `'z'` (new), `'y'` (new): adds 4 new letters $\implies$ Size reaches 24
+
+---
+
+### Step 9: Stream Token `"dog"`
+- `'d'` (new), `'o'` (duplicate), `'g'` (new): adds 2 new letters $\implies$ Size reaches 26
+
+---
+
+### Step 10: Evaluate Cardinality
+- Total unique characters collected: $|S| = 26$.
+- Compare with alphabet size: $26 == 26$.
+- Result: **`true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"sentence": "thequickbrownfoxjumpsoverthelazydog"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Word Segment | Characters Ingested | New Letters Added to Set | Duplicate Letters Skipped | Running Unique Letters Count |
+|:---|:---|:---|:---|:---:|
+| `"the"` | `'t'`, `'h'`, `'e'` | `'t'`, `'h'`, `'e'` | None | $3$ |
+| `"quick"` | `'q'`, `'u'`, `'i'`, `'c'`, `'k'` | `'q'`, `'u'`, `'i'`, `'c'`, `'k'` | None | $8$ |
+| `"brown"` | `'b'`, `'r'`, `'o'`, `'w'`, `'n'` | `'b'`, `'r'`, `'o'`, `'w'`, `'n'` | None | $13$ |
+| `"fox"` | `'f'`, `'o'`, `'x'` | `'f'`, `'x'` | `'o'` | $15$ |
+| `"jumps"` | `'j'`, `'u'`, `'m'`, `'p'`, `'s'` | `'j'`, `'m'`, `'p'`, `'s'` | `'u'` | $19$ |
+| `"over"` | `'o'`, `'v'`, `'e'`, `'r'` | `'v'` | `'o'`, `'e'`, `'r'` | $20$ |
+| `"the"` | `'t'`, `'h'`, `'e'` | None | `'t'`, `'h'`, `'e'` | $20$ |
+| `"lazy"` | `'l'`, `'a'`, `'z'`, `'y'` | `'l'`, `'a'`, `'z'`, `'y'` | None | $24$ |
+| `"dog"` | `'d'`, `'o'`, `'g'` | `'d'`, `'g'` | `'o'` | **$26$** |
+
+Set cardinality reaches $26$. Emitted result: **`true`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A mathematical set rejects duplicate elements. When all elements of `sentence` are added to a set, every distinct letter appears exactly once. Because the problem statement guarantees that `sentence` contains only lowercase English letters, the set size cannot exceed $26$. A size of $26$ proves that every letter from `'a'` through `'z'` was present.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If any letter were missing from `sentence`, that letter would be absent from the set, forcing $|S| \le 25 < 26$, correctly triggering a `false` return value.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **26-bit mask:** Map `a` through `z` to bits zero through 25, OR each bit into an integer, and compare with `(1 << 26) - 1`. This also uses `O(n)` time and `O(1)` space but requires more bit-level explanation.
-- **Boolean array:** A fixed array of 26 flags records whether each letter appeared. It avoids hashing and has the same asymptotic costs, with a little more code.
-- **Search for every alphabet letter:** Checking whether each of 26 letters occurs in the sentence scans the string up to 26 times. Since 26 is constant, it is still `O(n)`, but it repeats work.
-- **Frequency counter:** A counter gives occurrence counts, but the counts are unnecessary when only presence matters. A set expresses the requirement more directly.
-- **Sentence shorter than 26:** It cannot have 26 distinct letters, and the set-length comparison returns false without a special branch.
-- **Exactly 26 characters:** The result is true only if all are distinct; any duplicate necessarily means another lowercase letter is absent.
-- **Many repeated characters:** Repetitions do not enlarge the set, which correctly prevents frequency from being mistaken for coverage.
-- **All 26 letters plus repeats:** The set remains size 26 and the result stays true.
-- **Single-character input:** The set has size one and returns false.
-- **Empty string outside the constraints:** The same code would return false because its set is empty.
-- **Lowercase-only dependency:** The size test is correct because no characters outside `a` through `z` are permitted. With a broader character domain, the code should compare against the actual alphabet set instead.
-- **Hashing assumptions:** Python character hashing supplies expected constant-time set operations; the fixed maximum of 26 distinct keys keeps the container tiny in any case.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Pigeonhole Principle Violation:** If `len(sentence) < 26`, the sentence cannot possibly contain all 26 letters. Guarding with `if len(sentence) < 26: return False` allows an immediate $\mathcal{O}(1)$ rejection.
+- **Counting Raw Length Instead of Set Size:** A sentence of length 35 is not necessarily a pangram (e.g. 35 copies of `'a'`). Deduplication via set or bitmask is strictly necessary.
+- **Bitmask Integer Size:** A 32-bit integer comfortably holds 26 flags (bits 0 to 25), allowing constant-space bitwise operations without allocating hash sets.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n = sentence.length`. Constructing the set examines all `n` characters. Hash lookup and insertion are expected `O(1)` per character, so the expected running time is `O(n)`. Reading the set’s length and comparing it with 26 are constant-time operations.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `sentence`. We scan each character once. Set insertion takes $\mathcal{O}(1)$ average time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$, as the set or bitmask stores at most $26$ distinct elements.

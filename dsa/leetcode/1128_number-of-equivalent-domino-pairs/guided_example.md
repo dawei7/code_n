@@ -1,125 +1,196 @@
 # Guided Example: Number of Equivalent Domino Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the linear-time canonical frequency hashing method for counting rotationally symmetric pairs, establishing the Canonical Min-Max Invariant and Combinatorial Pair Accumulation:
 
-- **Input:** `{"dominoes": [[1, 2], [2, 1], [3, 4], [5, 6]]}`
-- **Required output:** `1`
+- **Representative Instance 1 (Mixed Equivalent and Unique Tiles):**
+  $$
+  \text{dominoes} = [[1, 2], [2, 1], [3, 4], [5, 6]], \quad N = 4
+  $$
+- **Required Output:** `1`
+  - Canonical Ordering Mapping:
+    - $[1, 2] \to (\min(1, 2), \max(1, 2)) = (1, 2)$
+    - $[2, 1] \to (\min(2, 1), \max(2, 1)) = (1, 2)$
+    - $[3, 4] \to (\min(3, 4), \max(3, 4)) = (3, 4)$
+    - $[5, 6] \to (\min(5, 6), \max(5, 6)) = (5, 6)$
+  - Matching Equivalence:
+    - Tile $0$ and Tile $1$ both map to canonical form $(1, 2)$.
+    - Number of equivalent pairs: $\binom{2}{2} = 1$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Repeated Duplicates with Self-Symmetric Pairs):**
+  $$
+  \text{dominoes} = [[1, 2], [1, 2], [1, 1], [1, 2], [2, 2]], \quad N = 5
+  $$
+- **Required Output:** `3`
+  - Step-by-step prefix accumulation:
+    1. Tile $0 = [1, 2] \to (1, 2)$: seen $0$ times before $\implies +0$ pairs, count is now $1$.
+    2. Tile $1 = [1, 2] \to (1, 2)$: seen $1$ time before $\implies +1$ pair (with tile 0), count is now $2$. Running total $= 1$.
+    3. Tile $2 = [1, 1] \to (1, 1)$: seen $0$ times before $\implies +0$ pairs, count is now $1$. Running total $= 1$.
+    4. Tile $3 = [1, 2] \to (1, 2)$: seen $2$ times before $\implies +2$ pairs (with tiles 0 and 1), count is now $3$. Running total $= 1 + 2 = 3$.
+    5. Tile $4 = [2, 2] \to (2, 2)$: seen $0$ times before $\implies +0$ pairs, count is now $1$. Running total $= 3$.
+  - Total equivalent pairs: $3$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a list of `dominoes`, $\text{dominoes}[i] = [a, b]$ is **equivalent to** $\text{dominoes}[j] = [c, d]$ if and only if either ($a = c$ and $b = d$), or ($a = d$ and $b = c$) - that is, one domino can be rotated to be equal to another domino.
+Given a collection of dominoes where each domino contains two numbers, count the number of unordered pairs of distinct domino indices $(i, j)$ such that domino $i$ can be rotated into domino $j$.
 
-The objective is to compute `1` from `{"dominoes": [[1, 2], [2, 1], [3, 4], [5, 6]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Quadratic Pairwise Comparison Trap:
+  Comparing every pair (i, j) with 0 <= i < j < N:
+    For N = 40,000, pair comparisons = N * (N - 1) / 2 ≈ 8 * 10^8 operations!
+    Direct double-loop pair checking exceeds runtime limits (TLE).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Canonical Hash & Combinatorial Accumulation Invariant (O(N) Time, O(1) Space):
+  1. Equivalence Normalization:
+     Since rotation swaps elements, [a, b] and [b, a] are identical.
+     Map every domino [a, b] to unique canonical tuple:
+       key = (min(a, b), max(a, b))  or  key = 10 * min(a, b) + max(a, b)
+  2. Bounded Key Space:
+     Values satisfy 1 <= a, b <= 9.
+     There are at most 9 * 10 / 2 = 45 possible canonical domino types!
+  3. Online Pair Counting:
+     When processing a domino with key K:
+       If K was previously seen c times, it forms c new valid pairs with all c predecessors.
+       total_pairs += c
+       count[K] += 1
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Rotation means endpoint order should not matter
-
-Domino `[a,b]` is equivalent to both `[a,b]` and `[b,a]`. To count efficiently, every equivalent orientation needs one canonical identity.
-
-The solution places the smaller endpoint first and the larger endpoint second. It encodes that ordered canonical pair as a two-digit integer.
-
-If `a < b`, key `a * 10 + b` already has the smaller value first. Otherwise, key `b * 10 + a` reverses the endpoints. Equal endpoints follow the second branch but produce the same value either way.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"dominoes": [[1, 2], [2, 1], [3, 4], [5, 6]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The key pedagogical takeaways are:
+1. **Canonical Representative Function:** Factoring out symmetry by sorting components into $(\min, \max)$ maps equivalent orbits to a single hashable key.
+2. **Online Triangular Summation:** Adding the previous frequency count $c$ on-the-fly avoids an extra summation pass and cleanly realizes $\sum_{k=1}^{C-1} k = \frac{C(C - 1)}{2}$.
 
 ---
 
-### Step 2: Why decimal encoding is collision-free
+## 2. Conceptual Foundation & The Canonical Min-Max Invariant
 
-Every endpoint lies from one through nine. In key `10 * small + large`, integer division by ten recovers the smaller digit and remainder modulo ten recovers the larger digit.
+```mermaid
+flowchart TD
+    accTitle: Number of Equivalent Domino Pairs Processing Pipeline
+    accDescr: Pipeline showing domino canonical key normalization, frequency table lookup, online pair addition, and frequency update
+    Start["Given dominoes array (N <= 40,000)\nInit total_pairs = 0, freq_table = {}"] --> Loop["For each domino [a, b] in dominoes:"]
+    Loop --> Canonical["Compute Canonical Key\nu = min(a, b), v = max(a, b)\nkey = (u, v)"]
+    Canonical --> Lookup["seen_count = freq_table.get(key, 0)"]
+    Lookup --> AddPairs["total_pairs = total_pairs + seen_count"]
+    AddPairs --> UpdateFreq["freq_table[key] = seen_count + 1"]
+    UpdateFreq --> CheckDone{"All dominoes processed ?"}
+    CheckDone -->|"No"| Loop
+    CheckDone -->|"Yes"| Return["Return total_pairs"]
+```
 
-Therefore, different canonical endpoint pairs cannot share a key. The bound of one decimal digit per endpoint is essential; for arbitrary larger values, a tuple would be safer.
+### The Equivalence Partitioning & Pair Count Theorem
 
-Examples `[1,2]` and `[2,1]` both map to twelve. Domino `[1,3]` maps to thirteen and cannot collide. Double `[2,2]` maps to twenty-two.
+Let $\mathcal{D} = \{d_0, d_1, \dots, d_{N-1}\}$ be the sequence of dominoes, where $d_i = [a_i, b_i]$ with $a_i, b_i \in \{1, \dots, 9\}$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Equivalence Relation:**
+   Define binary relation $\sim$ on dominoes by:
+   $$
+   [a, b] \sim [c, d] \iff (a = c \land b = d) \lor (a = d \land b = c)
+   $$
+   Relation $\sim$ is reflexive, symmetric, and transitive, partitioning $\mathcal{D}$ into disjoint equivalence classes.
+2. **Canonical Injective Map:**
+   Define the projection $f: \{1, \dots, 9\}^2 \to \mathbb{Z}$:
+   $$
+   f([a, b]) = 10 \cdot \min(a, b) + \max(a, b)
+   $$
+   Because $\min(a, b) \le \max(a, b)$, $f(d_i) = f(d_j)$ if and only if $d_i \sim d_j$.
+3. **Combinatorial Pair Count:**
+   If an equivalence class with key $k$ contains $C_k$ dominoes, the number of distinct unordered index pairs $(i, j)$ within this class is:
+   $$
+   \binom{C_k}{2} = \frac{C_k(C_k - 1)}{2} = \sum_{t=0}^{C_k - 1} t
+   $$
+   Summing across all disjoint equivalence classes:
+   $$
+   \text{Total Pairs} = \sum_{k} \binom{C_k}{2}
+   $$
+   Accumulating the prefix count $t$ dynamically as each element arrives computes this sum in a single pass. $\blacksquare$
 
 ---
 
-### Step 3: Count earlier equivalent dominoes online
+## 3. Step-by-Step Worked Execution: Representative Instance 2
 
-`cnt[key]` is the number of previously processed dominoes with this canonical identity.
+We trace execution on:
+$$
+\text{dominoes} = [[1, 2], [1, 2], [1, 1], [1, 2], [2, 2]]
+$$
+Initial state: $\text{total\_pairs} = 0$, $\text{freq} = \{\}$.
 
-When the current domino arrives, every earlier domino in that count forms exactly one valid pair with it. Adding `cnt[key]` to `ans` counts all pairs whose later index is the current position.
+### Sequential Domino Processing
+1. **Index 0: Tile $[1, 2]$**
+   - Canonical key: $10 \times \min(1, 2) + \max(1, 2) = 12$.
+   - Current count for $12$: $0$.
+   - Pairs added: $+0$. Total pairs $= 0$.
+   - Update: $\text{freq}[12] = 1$.
+2. **Index 1: Tile $[1, 2]$**
+   - Canonical key: $12$.
+   - Current count for $12$: $1$ (from tile 0).
+   - Pairs added: $+1$. Pair formed: $(0, 1)$. Total pairs $= 1$.
+   - Update: $\text{freq}[12] = 2$.
+3. **Index 2: Tile $[1, 1]$**
+   - Canonical key: $10 \times 1 + 1 = 11$.
+   - Current count for $11$: $0$.
+   - Pairs added: $+0$. Total pairs $= 1$.
+   - Update: $\text{freq}[11] = 1$.
+4. **Index 3: Tile $[1, 2]$**
+   - Canonical key: $12$.
+   - Current count for $12$: $2$ (from tiles 0 and 1).
+   - Pairs added: $+2$. Pairs formed: $(0, 3)$ and $(1, 3)$. Total pairs $= 1 + 2 = 3$.
+   - Update: $\text{freq}[12] = 3$.
+5. **Index 4: Tile $[2, 2]$**
+   - Canonical key: $10 \times 2 + 2 = 22$.
+   - Current count for $22$: $0$.
+   - Pairs added: $+0$. Total pairs $= 3$.
+   - Update: $\text{freq}[22] = 1$.
 
-Only after counting does the code increment `cnt[key]`. This prevents pairing the domino with itself and prepares it as an earlier partner for future positions.
-
-For three copies of `[1,2]` in mixed orientations, the first sees count zero, the second sees one, and the third sees two. Their total contribution is three pairs: first with second, first with third, and second with third. The counter never needs to remember the actual indices because only how many earlier partners exist affects the new contribution.
-
-At the beginning of each loop iteration, `ans` equals the number of equivalent pairs entirely inside the processed prefix, and `cnt` stores exact canonical frequencies for that prefix. The add-then-increment steps extend both facts to include the current index, which is a direct loop invariant.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+Final total pairs $= \mathbf{3}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. State Transition Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"dominoes": [[1, 2], [2, 1], [3, 4], [5, 6]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+| Step $i$ | Tile Input $[a, b]$ | $(\min, \max)$ | Encoded Key | Prior Frequency $c$ | Pairs Contributed | Cumulative Total Pairs | Updated Frequency Map |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| $0$ | $[1, 2]$ | $(1, 2)$ | $12$ | $0$ | $+0$ | $0$ | $\{12: 1\}$ |
+| $1$ | $[1, 2]$ | $(1, 2)$ | $12$ | $1$ | $+1$ | $1$ | $\{12: 2\}$ |
+| $2$ | $[1, 1]$ | $(1, 1)$ | $11$ | $0$ | $+0$ | $1$ | $\{12: 2, 11: 1\}$ |
+| **$3$** | **$[1, 2]$** | **$(1, 2)$** | **$12$** | **$2$** | **$+2$** | **$3$** | **$\{12: 3, 11: 1\}$** |
+| $4$ | $[2, 2]$ | $(2, 2)$ | $22$ | $0$ | $+0$ | $3$ | $\{12: 3, 11: 1, 22: 1\}$ |
+
+Verification via direct binomial coefficients:
+$$
+\binom{3}{2}_{\text{key 12}} + \binom{1}{2}_{\text{key 11}} + \binom{1}{2}_{\text{key 22}} = 3 + 0 + 0 = 3
+$$
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Symmetry Invariance:** Any tile $[a, b]$ satisfies $[a, b] \sim [b, a]$. The canonical key function mapping both $[a, b]$ and $[b, a]$ to $(\min(a, b), \max(a, b))$ is invariant under rotation.
+2. **Distinguishability:** If $[a, b] \not\sim [c, d]$, then their sorted pairs are distinct, yielding different keys.
+3. **No Double Counting:** Processing each tile from left to right and adding only the count of previously seen tiles ensures that each index pair $(i, j)$ with $i < j$ is counted exactly once when $j$ is processed.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Tuple key:** Use `(min(a,b), max(a,b))`. It generalizes beyond one-digit endpoints and makes canonicalization visually explicit.
-- **Sort each domino:** Sorting a two-element list creates the same identity but adds avoidable allocation or mutation.
-- **Compare every pair:** Directly test equivalence in $O(n^2)$ time.
-- **Count frequencies then combine:** Build all canonical counts, then sum `q * (q - 1) // 2`. It is equally correct but needs a second pass over keys.
-- **One domino:** No earlier partner exists, so the answer is zero.
-- **All equivalent:** Contributions grow from zero through $n-1$, yielding every index pair.
-- **No equivalent keys:** Every lookup is zero and the answer remains zero.
-- **Repeated double:** Dominoes such as `[3,3]` canonicalize normally and pair with each other.
-- **Rotation:** `[1,9]` and `[9,1]` share key nineteen.
-- **Different unordered pairs:** The decimal encoding cannot collide under digits one through nine.
-- **Self-pair prevention:** Incrementing after adding ensures an index never pairs with itself.
-- **Index order:** Each unordered pair is counted once at its later index, satisfying `i < j`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Example | Expected Behavior | Trap / Bug Avoided |
+|---|---|---|---|
+| Pure Self-Symmetric Tile | $[[1, 1], [1, 1]]$ | Encodes to key $11$; pairs counted $= 1$. | Overlooking double identical values. |
+| Inverted Rotation Pair | $[[1, 2], [2, 1]]$ | Both map to $12$; pairs counted $= 1$. | Treating $(1, 2)$ and $(2, 1)$ as distinct hash keys. |
+| All Tiles Identical | $N$ copies of $[3, 4]$ | Output $= \frac{N(N - 1)}{2}$. | Integer overflow if not using 64-bit integer (max $\approx 8 \times 10^8$, fits in standard 64-bit). |
+| All Unique Tiles | $[[1, 2], [3, 4], [5, 6]]$ | Output $= 0$. | Adding false positives. |
+| Single Domino | $[[1, 2]]$ | Loop executes once, output $= 0$. | Off-by-one boundary crashes. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of dominoes. The loop performs constant arithmetic and expected constant-time Counter operations per domino, so time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$ where $N \le 40,000$ is the number of dominoes.
+  - For each domino, computing $\min$ and $\max$ takes $\mathcal{O}(1)$ arithmetic operations.
+  - Key encoding and hash table/array lookup takes $\mathcal{O}(1)$ time.
+  - Total time across all $N$ dominoes is strictly linear: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary space.
+  - The values $a, b$ are bounded by $1 \le a, b \le 9$.
+  - The total number of distinct canonical pairs is $\binom{9+1}{2} = 45$.
+  - An array of size $100$ or a hash table containing at most $45$ entries occupies strictly bounded $\mathcal{O}(1)$ memory.

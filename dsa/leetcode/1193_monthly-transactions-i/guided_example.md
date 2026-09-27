@@ -1,111 +1,188 @@
 # Guided Example: Monthly Transactions I
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"tables": {"Transactions": [{"id": 121, "country": "US", "state": "approved", "amount": 1000, "trans_date": "2018-12-18"}, {"id": 122, "country": "US", "state": "declined", "amount": 2000, "trans_date": "2018-12-19"}, {"id": 123, "country": "US", "state": "approved", "amount": 2000, "trans_date": "2019-01-01"}, {"id": 124, "country": "DE", "state": "approved", "amount": 2000, "trans_date": "2019-01-07"}]}}`
-- **Required output:** `{"columns": ["month", "country", "trans_count", "approved_count", "trans_total_amount", "approved_total_amount"], "rows": [["2018-12", "US", 2, 1, 3000, 1000], ["2019-01", "DE", 1, 1, 2000, 2000], ["2019-01", "US", 1, 1, 2000, 2000]]}`
+In financial transaction systems and merchant analytics, payment processors must continuously aggregate volume, velocity, and approval ratios across chronological and geographic dimensions. We are provided with a relational table of credit card transactions, where each entry contains a transaction identifier, an optional country code, a transaction state (`approved` or `declined`), a monetary amount, and a timestamp.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our objective is to produce a monthly summary table that, for each distinct combination of calendar month (`YYYY-MM`) and geographic territory (`country`), computes four essential metrics:
+1. **Total Transaction Volume**: The total number of transactions processed.
+2. **Approved Transaction Volume**: The number of transactions that were successfully approved.
+3. **Total Transaction Value**: The gross monetary sum across all transactions.
+4. **Approved Transaction Value**: The gross monetary sum restricted strictly to approved transactions.
+
+A naive conceptual process might filter the table twice—once for all transactions and once for approved transactions—and execute an outer join on `(month, country)`. However, in relational algebra, this requires two independent full-table scans and an intermediate join hash table.
+
+The optimal relational paradigm utilizes **Composite Group-By with Filtered Indicator Accumulators**:
+1. **Temporal Truncation**: Timestamps are truncated from precise dates (`YYYY-MM-DD`) to their monthly period (`YYYY-MM`).
+2. **Composite Partitioning**: The relation is partitioned by the composite key $(\text{month}, \text{country})$. Standard relational grouping semantics correctly treat `null` as a distinct matching grouping value.
+3. **Single-Pass Conditional Aggregation**: Within each partition bucket, global sums are computed directly, while approved-only metrics use conditional indicators that evaluate to the row's value if `state == 'approved'` and zero otherwise.
+
+```
+Input Row: Date: 2019-05-18 | Country: US | State: approved | Amount: 1000
+Trunk Key: (2019-05, US)
+Contributes to:
+- trans_count: +1
+- approved_count: +1 (state is approved)
+- trans_total_amount: +1000
+- approved_total_amount: +1000 (state is approved)
+
+Input Row: Date: 2019-05-19 | Country: US | State: declined | Amount: 2000
+Trunk Key: (2019-05, US)
+Contributes to:
+- trans_count: +1
+- approved_count: +0 (declined)
+- trans_total_amount: +2000
+- approved_total_amount: +0 (declined)
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-Table: `Transactions`
+Let $\mathcal{T} = \{\rho_1, \rho_2, \dots, \rho_N\}$ be the relation of $N$ transaction tuples:
+$$\rho = (id, \text{country}, \text{state}, \text{amount}, \text{date})$$
+where $\text{state} \in \{\text{'approved'}, \text{'declined'}\}$, $\text{amount} \in \mathbb{Z}$, and $\text{country} \in \Sigma^* \cup \{\text{null}\}$.
 
-The objective is to compute `{"columns": ["month", "country", "trans_count", "approved_count", "trans_total_amount", "approved_total_amount"], "rows": [["2018-12", "US", 2, 1, 3000, 1000], ["2019-01", "DE", 1, 1, 2000, 2000], ["2019-01", "US", 1, 1, 2000, 2000]]}` from `{"tables": {"Transactions": [{"id": 121, "country": "US", "state": "approved", "amount": 1000, "trans_date": "2018-12-18"}, {"id": 122, "country": "US", "state": "declined", "amount": 2000, "trans_date": "2018-12-19"}, {"id": 123, "country": "US", "state": "approved", "amount": 2000, "trans_date": "2019-01-01"}, {"id": 124, "country": "DE", "state": "approved", "amount": 2000, "trans_date": "2019-01-07"}]}}` while avoiding redundant calculations and unnecessary overhead.
+### Coordinate Projection
+Define the monthly truncation mapping $\tau: \text{Date} \to \mathcal{M}$:
+$$\tau(\text{date}) = \text{year}(\text{date}) \circ \text{"-"} \circ \text{pad}_2(\text{month}(\text{date}))$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Define the composite partition key:
+$$\kappa(\rho) = (\tau(\rho.\text{date}), \rho.\text{country})$$
+
+### Partition Equivalence Relation
+The table is partitioned into equivalence classes $\mathcal{P}_k$:
+$$\mathcal{P}_k = \{\rho \in \mathcal{T} \mid \kappa(\rho) = k\}$$
+where two null countries within the same month belong to the identical equivalence class:
+$$(\mu, \text{null}) = (\mu, \text{null})$$
+
+### Indicator Reduction Functions
+For each equivalence class $\mathcal{P}_k$, the four metrics are defined by:
+1. **Total Count**:
+   $$C_{\text{total}}(k) = |\mathcal{P}_k| = \sum_{\rho \in \mathcal{P}_k} 1$$
+2. **Approved Count**:
+   $$C_{\text{approved}}(k) = \sum_{\rho \in \mathcal{P}_k} [\rho.\text{state} = \text{'approved'}]$$
+3. **Total Amount**:
+   $$A_{\text{total}}(k) = \sum_{\rho \in \mathcal{P}_k} \rho.\text{amount}$$
+4. **Approved Amount**:
+   $$A_{\text{approved}}(k) = \sum_{\rho \in \mathcal{P}_k} \rho.\text{amount} \cdot [\rho.\text{state} = \text{'approved'}]$$
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider an input dataset containing four transactions:
 
-| State Parameter | Role & Purpose | Initial State |
+### Input Dataset
+| $id$ | $\text{country}$ | $\text{state}$ | $\text{amount}$ | $\text{trans\_date}$ | Truncated Month |
+|---|---|---|---|---|---|
+| 121 | `"US"` | `"approved"` | 1000 | `2018-12-18` | `2018-12` |
+| 122 | `"US"` | `"declined"` | 2000 | `2018-12-19` | `2018-12` |
+| 123 | `"US"` | `"approved"` | 2000 | `2019-01-01` | `2019-01` |
+| 124 | `"DE"` | `"approved"` | 2000 | `2019-01-07` | `2019-01` |
+
+```mermaid
+flowchart TD
+    accTitle: Relational Partition and Conditional Reduction
+    accDescr: Transactions partitioned by month and country, accumulating four metrics simultaneously.
+    
+    A["Raw Transaction Stream (4 rows)"] --> B["Compute Key: (Month, Country)"]
+    B --> C["Bucket 1: ('2018-12', 'US')<br/>Rows: 121, 122"]
+    B --> D["Bucket 2: ('2019-01', 'US')<br/>Row: 123"]
+    B --> E["Bucket 3: ('2019-01', 'DE')<br/>Row: 124"]
+    
+    C --> F["Accumulate Bucket 1:<br/>Total Count: 1 + 1 = 2<br/>Approved Count: 1 + 0 = 1<br/>Total Amount: 1000 + 2000 = 3000<br/>Approved Amount: 1000 + 0 = 1000"]
+    D --> G["Accumulate Bucket 2:<br/>Total Count: 1<br/>Approved Count: 1<br/>Total Amount: 2000<br/>Approved Amount: 2000"]
+    E --> H["Accumulate Bucket 3:<br/>Total Count: 1<br/>Approved Count: 1<br/>Total Amount: 2000<br/>Approved Amount: 2000"]
+    
+    F & G & H --> I["Emit Consolidated Result Table (3 rows)"]
+```
+
+### Partition Accumulation Trace
+
+We trace the step-by-step state evolution inside Bucket `('2018-12', 'US')`:
+
+| Processing Step | Row Added | $\text{trans\_count}$ | $\text{approved\_count}$ | $\text{trans\_total\_amount}$ | $\text{approved\_total\_amount}$ |
+|---|---|---|---|---|---|
+| Initialization | - | 0 | 0 | 0 | 0 |
+| Row 121 | $(121, \text{US}, \text{approved}, 1000)$ | $0 + 1 = 1$ | $0 + 1 = 1$ | $0 + 1000 = 1000$ | $0 + 1000 = 1000$ |
+| Row 122 | $(122, \text{US}, \text{declined}, 2000)$ | $1 + 1 = \mathbf{2}$ | $1 + 0 = \mathbf{1}$ | $1000 + 2000 = \mathbf{3000}$ | $1000 + 0 = \mathbf{1000}$ |
+| Bucket Result | `('2018-12', 'US')` | **2** | **1** | **3000** | **1000** |
+
+Consolidated Output Relation:
+| $\text{month}$ | $\text{country}$ | $\text{trans\_count}$ | $\text{approved\_count}$ | $\text{trans\_total\_amount}$ | $\text{approved\_total\_amount}$ |
+|---|---|---|---|---|---|
+| `"2018-12"` | `"US"` | 2 | 1 | 3000 | 1000 |
+| `"2019-01"` | `"US"` | 1 | 1 | 2000 | 2000 |
+| `"2019-01"` | `"DE"` | 1 | 1 | 2000 | 2000 |
+
+---
+
+## 4. Multi-Approach Comparison & Trade-Offs
+
+| Dimension / Metric | Two Independent Scans + Outer Join | Subquery Correlated Projections | Hash Group-By with Indicator Folding (Optimal) |
+|---|---|---|---|
+| **Table Scans** | 2 full table scans | $1 + 2K$ correlated subquery scans | Exactly 1 table scan ($\mathcal{O}(N)$) |
+| **Join Overhead** | Full outer hash/merge join node | Nested loop probes per group | Zero joins; direct grouping hash table |
+| **Time Complexity** | $\mathcal{O}(N \log N + M \log M)$ | $\mathcal{O}(N \cdot K)$ quadratic | $\mathcal{O}(N)$ linear time |
+| **Memory Footprint** | Large intermediate join buffers | Cache eviction from repeated scans | Compact hash map of $K$ accumulator cells |
+| **Null-Key Safety** | Join condition fails on `country = country` if null! | Complicated null-safe comparisons | Engine natively groups nulls together |
+
+```
+Query Execution Plan Comparison:
+
+Dual-Scan Join:
+[Scan All] -------> [Group All] ----\
+                                      ====> [Full Outer Join on (Month, Country)] -> [Result]
+[Scan Approved] --> [Group Approved]-/
+
+Indicator Folding (Optimal):
+[Single Scan] ---> [Hash Group on (Month, Country)] ---> [4 Accumulators per Entry] ---> [Result]
+```
+
+---
+
+## 5. Algorithmic Edge Cases & Boundary Analysis
+
+| Boundary Scenario | Condition State | Engine Handling & Correctness |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Normalize each date to a month key
-
-`DATE_FORMAT(trans_date, '%Y-%m')` converts a full date such as `2018-12-18` into the year-month string `2018-12`. Including the four-digit year is essential. Grouping only by a month number would incorrectly combine January transactions from different years.
-
-The expression is aliased as `month`, which gives the first required output column and is also the first grouping expression.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Transactions": [{"id": 121, "country": "US", "state": "approved", "amount": 1000, "trans_date": "2018-12-18"}, {"id": 122, "country": "US", "state": "declined", "amount": 2000, "trans_date": "2018-12-19"}, {"id": 123, "country": "US", "state": "approved", "amount": 2000, "trans_date": "2019-01-01"}, {"id": 124, "country": "DE", "state": "approved", "amount": 2000, "trans_date": "2019-01-07"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Null Country Code** | Tuple contains `country = null` | Group-By specification treats `null` as a distinct valid group; all transactions with null country in month $M$ are aggregated together. |
+| **All Transactions Declined** | No `approved` entries in group | `trans_count` $> 0$, `approved_count` $= 0$, `approved_total_amount` $= 0$. Zero is returned (not null). |
+| **All Transactions Approved** | Zero `declined` entries | `trans_count = approved_count` and `trans_total_amount = approved_total_amount`. |
+| **Multi-Year Identical Month** | Same month across years (e.g. `2018-05` and `2019-05`) | Truncation incorporates full four-digit year `YYYY-MM`; disparate years remain in completely separate buckets. |
+| **Single-Day Volume Spike** | Millions of transactions on one day | Grouped into the single bucket for that month without integer overflow in standard 64-bit integer accumulators. |
 
 ---
 
-### Step 2: Create one group per month and country
+## 6. Mathematical Verification & Complexity Derivation
 
-The query ends with `GROUP BY 1, 2`. MySQL ordinal grouping means “group by the first and second expressions in the `SELECT` list.” Those expressions are the formatted month and `country`. Every transaction with the same formatted year-month and country is therefore aggregated into one row.
+Let $N$ be the total number of rows in the `Transactions` table, and let $K$ be the number of distinct $(\text{month}, \text{country})$ combinations ($K \le N$).
 
-Using ordinals is concise but depends on select-list order. Writing the expressions explicitly would be more verbose and less sensitive to reordering.
+### Query Engine Execution Phases:
+1. **Sequential Table Scan**:
+   - The query processor reads $N$ records from storage in $\mathcal{O}(N)$ linear time.
+2. **Key Extraction & Hashing**:
+   - For each tuple, the date string is formatted/truncated to 7 characters: $\mathcal{O}(1)$.
+   - The composite key $(\text{month}, \text{country})$ is hashed into the grouping table: $\mathcal{O}(1)$ average time.
+3. **Accumulator Updates**:
+   - For each row, four arithmetic operations are executed:
+     - Total count: $+1$.
+     - Approved count: $+1$ if approved, else $+0$.
+     - Total amount: $+ \text{amount}$.
+     - Approved amount: $+ \text{amount}$ if approved, else $+0$.
+   - Each tuple requires $\mathcal{O}(1)$ constant operations.
+   - Total accumulation across all $N$ tuples: $\mathcal{O}(N)$.
+4. **Result Emission**:
+   - Emitting the $K$ aggregated tuples from the hash table takes $\mathcal{O}(K) \le \mathcal{O}(N)$ time.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Count every transaction
-
-`COUNT(1) AS trans_count` contributes one for every row in the group. Unlike counting a nullable column, counting the constant one cannot skip a row because the expression is never `NULL`. The result is the group’s total transaction count.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["month", "country", "trans_count", "approved_count", "trans_total_amount", "approved_total_amount"], "rows": [["2018-12", "US", 2, 1, 3000, 1000], ["2019-01", "DE", 1, 1, 2000, 2000], ["2019-01", "US", 1, 1, 2000, 2000]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Transactions": [{"id": 121, "country": "US", "state": "approved", "amount": 1000, "trans_date": "2018-12-18"}, {"id": 122, "country": "US", "state": "declined", "amount": 2000, "trans_date": "2018-12-19"}, {"id": 123, "country": "US", "state": "approved", "amount": 2000, "trans_date": "2019-01-01"}, {"id": 124, "country": "DE", "state": "approved", "amount": 2000, "trans_date": "2019-01-07"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["month", "country", "trans_count", "approved_count", "trans_total_amount", "approved_total_amount"], "rows": [["2018-12", "US", 2, 1, 3000, 1000], ["2019-01", "DE", 1, 1, 2000, 2000], ["2019-01", "US", 1, 1, 2000, 2000]]}` | Verified |
+### Asymptotic Summary:
+- **Total Time Complexity:** $\mathcal{O}(N)$ strictly linear in the number of transaction rows.
+- **Total Space Complexity:** $\mathcal{O}(K)$ auxiliary memory to maintain the grouping hash table and metric accumulators for each distinct cohort.
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Portable `CASE` expressions:** Replace MySQL Boolean sums and `IF` with standard conditional `CASE` expressions. The logic and grouping remain the same.
-- **Filter to approved rows in `WHERE`:** This would destroy the all-transaction count and total, so it cannot produce every requested aggregate in the same grouped query.
-- **Separate approved and total subqueries:** Aggregate twice and join the results by month and country. It works but repeats grouping work and complicates groups with no approved rows.
-- **No approved transactions in a group:** Every Boolean contribution and conditional amount contribution is zero, so both approved aggregates return zero.
-- **All transactions approved:** Approved count equals total count, and approved amount equals total amount.
-- **Same month number in different years:** `%Y-%m` keeps the years separate.
-- **Same month in different countries:** Including `country` in the grouping key prevents cross-country combination.
-- **Any output order:** Omitting `ORDER BY` is valid and avoids imposing unnecessary sorting for presentation.
-- **Ordinal grouping:** `GROUP BY 1, 2` refers to formatted month and country. Changing the select-list order without updating these ordinals could silently alter grouping semantics.
-- **MySQL-specific truth values:** `SUM(state = 'approved')` depends on MySQL converting true and false to one and zero. Other SQL dialects may require explicit conversion.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(g)$. Let $n$ be the number of rows in `Transactions` and $g$ be the number of distinct month-country groups.
-- **Auxiliary Space Complexity:** $O(g)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Indicator Functions Eliminate Join Overhead**: Instead of creating separate filtered datasets and joining them back together, multiplying values by conditional boolean indicators ($[\text{state} = \text{'approved'}] \in \{0, 1\}$) folds multiple conditional metrics into a single aggregation scan.
+2. **Relational Grouping Semantics on Nulls**: In relational database theory, while $\text{null} = \text{null}$ evaluates to unknown/false in row-level predicates, the `GROUP BY` operator establishes an equivalence relation where null values are placed into a single shared grouping partition.
+3. **Temporal Normalization**: Truncating timestamps to standardized categorical buckets (`YYYY-MM`) transforms continuous time-series data into discrete grouping keys, enabling standard hash-aggregation indexing.

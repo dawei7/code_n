@@ -1,136 +1,171 @@
 # Guided Example: Restaurant Growth
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational grouping, window aggregation, and 7-day moving average calculation on a representative restaurant customer payment history:
 
-- **Input:** `{"tables": {"Customer": [{"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-01", "amount": 100}, {"customer_id": 2, "name": "Daniel", "visited_on": "2019-01-02", "amount": 110}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-03", "amount": 120}, {"customer_id": 4, "name": "Khaled", "visited_on": "2019-01-04", "amount": 130}, {"customer_id": 5, "name": "Winston", "visited_on": "2019-01-05", "amount": 110}, {"customer_id": 6, "name": "Elvis", "visited_on": "2019-01-06", "amount": 140}, {"customer_id": 7, "name": "Anna", "visited_on": "2019-01-07", "amount": 150}, {"customer_id": 8, "name": "Maria", "visited_on": "2019-01-08", "amount": 80}, {"customer_id": 9, "name": "Jaze", "visited_on": "2019-01-09", "amount": 110}, {"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-10", "amount": 130}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-10", "amount": 150}]}}`
-- **Required output:** `{"columns": ["visited_on", "amount", "average_amount"], "rows": [["2019-01-07", 860, 122.86], ["2019-01-08", 840, 120], ["2019-01-09", 840, 120], ["2019-01-10", 1000, 142.86]]}`
+- **Input:** `Customer` relation with daily payment logs:
+  $$\begin{aligned}
+  \text{Customer} = \{
+  &(1, \text{"J"}, \text{"2019-01-01"}, 100), \; (2, \text{"D"}, \text{"2019-01-02"}, 110), \\
+  &(3, \text{"M"}, \text{"2019-01-03"}, 120), \; (4, \text{"K"}, \text{"2019-01-04"}, 130), \\
+  &(5, \text{"W"}, \text{"2019-01-05"}, 110), \; (6, \text{"M"}, \text{"2019-01-06"}, 140), \\
+  &(7, \text{"S"}, \text{"2019-01-07"}, 150), \; (8, \text{"J"}, \text{"2019-01-08"}, 80) \}
+  \end{aligned}$$
+- **Required Output:** Moving 7-day totals and averages starting from the 7th day:
+  $$\begin{aligned}
+  \text{Result} = \{
+  &(\text{"2019-01-07"}, 860, 122.86), \\
+  &(\text{"2019-01-08"}, 840, 120.00) \}
+  \end{aligned}$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates aggregating multi-transaction days into daily subtotals, applying a sliding window frame over 6 preceding rows, filtering out incomplete warm-up periods, and rounding moving averages to two decimal places.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customer`
+We must calculate the moving 7-day total spending and moving 7-day average spending for each valid date. Multiple customers can visit on the same day; therefore:
+1. All transactions occurring on the same `visited_on` date must first be summed into a single daily revenue total.
+2. For each day, compute the sum of daily revenues across the 7-day window spanning $[\text{visited\_on} - 6 \text{ days}, \; \text{visited\_on}]$.
+3. The first 6 calendar days lack a complete 7-day lookback window and must be excluded. Only days with at least 6 preceding chronological records appear in the output.
 
-The objective is to compute `{"columns": ["visited_on", "amount", "average_amount"], "rows": [["2019-01-07", 860, 122.86], ["2019-01-08", 840, 120], ["2019-01-09", 840, 120], ["2019-01-10", 1000, 142.86]]}` from `{"tables": {"Customer": [{"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-01", "amount": 100}, {"customer_id": 2, "name": "Daniel", "visited_on": "2019-01-02", "amount": 110}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-03", "amount": 120}, {"customer_id": 4, "name": "Khaled", "visited_on": "2019-01-04", "amount": 130}, {"customer_id": 5, "name": "Winston", "visited_on": "2019-01-05", "amount": 110}, {"customer_id": 6, "name": "Elvis", "visited_on": "2019-01-06", "amount": 140}, {"customer_id": 7, "name": "Anna", "visited_on": "2019-01-07", "amount": 150}, {"customer_id": 8, "name": "Maria", "visited_on": "2019-01-08", "amount": 80}, {"customer_id": 9, "name": "Jaze", "visited_on": "2019-01-09", "amount": 110}, {"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-10", "amount": 130}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-10", "amount": 150}]}}` while avoiding redundant calculations and unnecessary overhead.
+```
+Daily Revenue Aggregation:
+  2019-01-01: 100
+  2019-01-02: 110
+  2019-01-03: 120
+  2019-01-04: 130
+  2019-01-05: 110
+  2019-01-06: 140
+  2019-01-07: 150  --> Window [Day 1..7]: Sum = 860, Avg = 860 / 7 = 122.86
+  2019-01-08:  80  --> Window [Day 2..8]: Sum = 840, Avg = 840 / 7 = 120.00
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Applying a window function directly across raw customer transactions would mistakenly treat individual customer visits as days, counting 7 customers rather than 7 calendar dates. The two-stage aggregation (daily consolidation followed by sliding window) guarantees temporal accuracy.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $C$ denote the customer transaction relation.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Two-Stage Relational Pipeline
+1. **Daily Consolidation ($\gamma$):** Group $C$ by `visited_on` and sum daily amounts:
+   $$
+   D = \gamma_{\text{visited\_on}, \; \text{SUM}(\text{amount}) \to \text{daily\_amount}}(C)
+   $$
+2. **Window Framing:** Order relation $D$ chronologically by `visited_on`: $(d_1, d_2, \dots, d_m)$.
+   For row index $i$:
+   - Window range: from row $i - 6$ to row $i$ (a span of $7$ consecutive daily records).
+   - Moving 7-day sum:
+     $$
+     W_i = \sum_{k = i - 6}^i \text{daily\_amount}(d_k)
+     $$
+   - Moving average:
+     $$
+     \overline{W}_i = \text{ROUND}(W_i / 7.0, \; 2)
+     $$
+3. **Selection ($\sigma$):** Filter out the prefix warm-up period where $i < 7$.
+4. **Projection ($\Pi$):** Emit tuples $[\text{visited\_on}, W_i, \overline{W}_i]$ ordered by `visited_on` ascending.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Pipeline Stage | Operator | Input | Output Attributes |
+|---|---|---|---|
+| Stage 1 | Grouping Aggregation | Raw transactions | `[visited_on, daily_amount]` |
+| Stage 2 | Analytic Window | Ordered daily records | `[visited_on, window_sum, rank]` |
+| Stage 3 | Selection Filter | Rank $\ge 7$ | Filtered 7-day complete windows |
+| Stage 4 | Projection & Rounding | Filtered tuples | `[visited_on, amount, average_amount]` |
+
+> **Window Sufficiency Invariant.** A row is emitted if and only if there are at least $6$ chronological daily entries preceding it, guaranteeing every reported average represents an exact full $7$-day period.
+
+```mermaid
+flowchart TD
+    accTitle: Moving Average Relational Pipeline
+    accDescr: Pipeline grouping customer transactions by date, computing a 7-day rolling window, and filtering warm-up days.
+    RAW["Customer Table: Transactions"] --> GRP["Group by visited_on: SUM(amount) -> Daily Totals"]
+    GRP --> SORT["Order daily totals by visited_on ASC"]
+    SORT --> WIN["Window Sum: ROWS 6 PRECEDING"]
+    WIN --> FLT{"Is chronological row index >= 7?"}
+    FLT -- No --> DROP["Warm-up period (< 7 days): Discard"]
+    FLT -- Yes --> CALC["Compute average_amount = ROUND(amount / 7, 2)"]
+    CALC --> OUT["Emit Final Moving Average Tuple"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Creating one row per day
+We trace the pipeline across the $8$ distinct days in our dataset:
 
-The innermost derived table performs:
+### Stage 1: Daily Consolidation
+The transactions are grouped by date:
+- `2019-01-01`: $100$
+- `2019-01-02`: $110$
+- `2019-01-03`: $120$
+- `2019-01-04`: $130$
+- `2019-01-05`: $110$
+- `2019-01-06`: $140$
+- `2019-01-07`: $150$
+- `2019-01-08`: $80$
 
-`SELECT visited_on, SUM(amount) AS amount FROM Customer GROUP BY visited_on`.
-
-Every customer payment on one date contributes to the same daily total. This is essential for dates such as 2019-01-10 in the example, where two customers paid $130$ and $150$. The daily row must contain $280$ before the moving window is calculated.
-
-If the window operated directly on customer rows, “six preceding rows” would mean six transactions rather than six days and would give incorrect results whenever a day had multiple customers.
-
-The statement guarantees at least one customer every day. After daily grouping, adjacent rows in date order therefore represent adjacent calendar dates. This guarantee is what makes a seven-row frame equivalent to a seven-day frame.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Customer": [{"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-01", "amount": 100}, {"customer_id": 2, "name": "Daniel", "visited_on": "2019-01-02", "amount": 110}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-03", "amount": 120}, {"customer_id": 4, "name": "Khaled", "visited_on": "2019-01-04", "amount": 130}, {"customer_id": 5, "name": "Winston", "visited_on": "2019-01-05", "amount": 110}, {"customer_id": 6, "name": "Elvis", "visited_on": "2019-01-06", "amount": 140}, {"customer_id": 7, "name": "Anna", "visited_on": "2019-01-07", "amount": 150}, {"customer_id": 8, "name": "Maria", "visited_on": "2019-01-08", "amount": 80}, {"customer_id": 9, "name": "Jaze", "visited_on": "2019-01-09", "amount": 110}, {"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-10", "amount": 130}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-10", "amount": 150}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Computing the seven-row sum
-
-The CTE `t` applies:
-
-`SUM(amount) OVER (ORDER BY visited_on ROWS 6 PRECEDING)`.
-
-`ROWS 6 PRECEDING` is shorthand for a frame beginning six rows before the current row and ending at the current row. Once enough dates exist, it contains seven daily rows:
-
-$$
-\text{current day}+\text{six preceding days}.
-$$
-
-For the first date, the frame contains only one row. For the second, it contains two. The seventh date is the first whose frame contains all seven required daily totals.
-
-The resulting rolling total is also aliased `amount`. Inside `t`, that name now refers to the window sum rather than the one-day sum from the derived table.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Numbering dates to remove incomplete windows
-
-The query also computes:
-
-`RANK() OVER (ORDER BY visited_on ROWS 6 PRECEDING) AS rk`.
-
-Ranking functions are based on the window order and do not meaningfully use the frame bounds. After grouping, `visited_on` is unique, so `RANK` produces $1,2,3,\ldots$ without gaps.
-
-The outer `WHERE rk > 6` removes ranks one through six. Every surviving row has at least six earlier daily rows and therefore a complete seven-day window.
-
-`ROW_NUMBER() OVER (ORDER BY visited_on)` would state the intended numbering more directly. With unique dates, it gives the same values as `RANK`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["visited_on", "amount", "average_amount"], "rows": [["2019-01-07", 860, 122.86], ["2019-01-08", 840, 120], ["2019-01-09", 840, 120], ["2019-01-10", 1000, 142.86]]}` |
+### Stage 2: Moving Window Calculation
+- **Row 1 to 6 (`2019-01-01` to `2019-01-06`):**
+  Each of these rows has fewer than $7$ days in its preceding history. They are classified as warm-up days and discarded.
+- **Row 7 (`2019-01-07`):**
+  - First date with a complete $7$-day history (Rows $1$ through $7$).
+  - 7-day sum:
+    $$
+    100 + 110 + 120 + 130 + 110 + 140 + 150 = 860
+    $$
+  - 7-day average:
+    $$
+    860 / 7.0 \approx 122.8571 \implies 122.86
+    $$
+  - Emitted tuple: `("2019-01-07", 860, 122.86)`.
+- **Row 8 (`2019-01-08`):**
+  - Window slides forward by one day, dropping `2019-01-01` ($100$) and adding `2019-01-08` ($80$):
+  - 7-day sum:
+    $$
+    860 - 100 + 80 = 840
+    $$
+  - 7-day average:
+    $$
+    840 / 7.0 = 120.00
+    $$
+  - Emitted tuple: `("2019-01-08", 840, 120.00)`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customer": [{"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-01", "amount": 100}, {"customer_id": 2, "name": "Daniel", "visited_on": "2019-01-02", "amount": 110}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-03", "amount": 120}, {"customer_id": 4, "name": "Khaled", "visited_on": "2019-01-04", "amount": 130}, {"customer_id": 5, "name": "Winston", "visited_on": "2019-01-05", "amount": 110}, {"customer_id": 6, "name": "Elvis", "visited_on": "2019-01-06", "amount": 140}, {"customer_id": 7, "name": "Anna", "visited_on": "2019-01-07", "amount": 150}, {"customer_id": 8, "name": "Maria", "visited_on": "2019-01-08", "amount": 80}, {"customer_id": 9, "name": "Jaze", "visited_on": "2019-01-09", "amount": 110}, {"customer_id": 1, "name": "Jhon", "visited_on": "2019-01-10", "amount": 130}, {"customer_id": 3, "name": "Jade", "visited_on": "2019-01-10", "amount": 150}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["visited_on", "amount", "average_amount"], "rows": [["2019-01-07", 860, 122.86], ["2019-01-08", 840, 120], ["2019-01-09", 840, 120], ["2019-01-10", 1000, 142.86]]}` | Verified |
+| Row $i$ | Date (`visited_on`) | Daily Total | Window Range Evaluated | 7-Day Sum | Average (Round 2) | Emitted? |
+|---|---|---|---|---|---|---|
+| 1 | `2019-01-01` | $100$ | $1$ day | $100$ | - | No (Warm-up) |
+| 2 | `2019-01-02` | $110$ | $2$ days | $210$ | - | No (Warm-up) |
+| 3 | `2019-01-03` | $120$ | $3$ days | $330$ | - | No (Warm-up) |
+| 4 | `2019-01-04` | $130$ | $4$ days | $460$ | - | No (Warm-up) |
+| 5 | `2019-01-05` | $110$ | $5$ days | $570$ | - | No (Warm-up) |
+| 6 | `2019-01-06` | $140$ | $6$ days | $710$ | - | No (Warm-up) |
+| 7 | `2019-01-07` | $150$ | $7$ days (Rows 1..7) | $860$ | $122.86$ | **Yes** |
+| 8 | `2019-01-08` | $80$ | $7$ days (Rows 2..8) | $840$ | $120.00$ | **Yes** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Pre-aggregating by `visited_on` ensures that every day maps to exactly one total expenditure. The window frame spanning $6$ preceding rows captures exactly $7$ daily entries. Dividing by $7.0$ and rounding to two decimal places produces the precise mathematical moving average.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Chronological ordering guarantees that dates are processed sequentially. Filtering with index $\ge 7$ removes all partial windows while preserving all eligible 7-day windows in strict ascending order.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Self-join date ranges:** Join each date to transactions in the previous six days and group. It is direct but can create a much larger intermediate relation.
-- **Correlated subquery:** Sum a seven-day range separately for each date. Indexes may help, but repeated range work is less elegant than one window pass.
-- **`RANGE INTERVAL 6 DAY` frame:** A date-based frame can handle missing calendar days more explicitly, though MySQL syntax and exact requirements must be considered.
-- **`ROW_NUMBER` instead of `RANK`:** Dates are unique after grouping, so both number rows identically; `ROW_NUMBER` communicates the filtering purpose better.
-- **Several customers on one day:** The inner aggregation must combine them before the seven-row frame.
-- **Continuous-day guarantee:** It is what makes seven rows equal seven calendar days. Without it, the exact query could span more than seven days.
-- **First six dates:** Their frames are incomplete and are correctly removed.
-- **Exactly seven dates:** The result contains one row for the seventh date.
-- **Rounding:** The total is divided by seven before rounding, preserving the requested two-decimal average.
-- **Required output order:** The exact source needs an outer `ORDER BY visited_on`; window-local order is insufficient.
-- **Window frame on `RANK`:** The frame clause does not change ranking and is unnecessary.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Windowing over individual customer rows:** If multiple customers visit on the same day, calculating `ROWS 6 PRECEDING` without first consolidating transactions by date pools 7 visits instead of 7 calendar days.
+- **Warm-up window leakage:** Emitting averages for days 1 through 6 where fewer than 7 days exist produces inaccurate partial averages.
+- **Rounding precision:** Division in SQL must use floating-point arithmetic ($7.0$) to avoid integer division truncation, and must round to two decimal places (`ROUND(..., 2)`).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(d)$. Let $r$ be the number of customer transaction rows and $d$ the number of distinct dates.
-- **Auxiliary Space Complexity:** $O(d)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log D)$, where $N$ is the number of transaction rows and $D$ is the number of distinct dates. Grouping by date takes $\mathcal{O}(N)$, sorting the $D$ unique dates takes $\mathcal{O}(D \log D)$, and the sliding window pass takes $\mathcal{O}(D)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(D)$ to store the daily consolidated table and sliding window buffer.

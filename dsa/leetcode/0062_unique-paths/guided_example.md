@@ -1,99 +1,134 @@
 # Guided Example: Unique Paths
 
-We derive and execute the Math, Dynamic Programming, Combinatorics recurrence on a representative problem instance.
+We trace the step-by-step 2D dynamic programming grid addition and combinatorial derivation on a representative grid instance:
 
-- **Input:** `{"m": 3, "n": 7}`
-- **Required output:** `28`
+- **Input:** $m = 3, n = 7$
+- **Required output:** $28$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates grid path counting with restricted moves (Right and Down), the addition rule from neighboring predecessor cells ($DP[r][c] = DP[r-1][c] + DP[r][c-1]$), connection to Pascal's Triangle, and closed-form binomial coefficient evaluation $\binom{m+n-2}{m-1}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Unique Paths** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+A robot is located at the top-left corner of an $m \times n$ grid ($m = 3$ rows, $n = 7$ columns). The robot can only move either **down** or **right** at any point in time. The robot is trying to reach the bottom-right corner at $(m - 1, n - 1) = (2, 6)$.
+
+A naive recursive exploration branches into two choices at every step, causing exponential $O(2^{m+n})$ time.
+Because any path entering $(r, c)$ must arrive either from directly above $(r - 1, c)$ or from directly to the left $(r, c - 1)$, the total paths to $(r, c)$ is simply the sum of paths to those two neighbors. This dynamic programming recurrence runs in $O(m \cdot n)$ time (or $O(n)$ space), and can also be solved in $O(m)$ time using combinations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Method 1: Dynamic Programming Recurrence
+Let $DP[r][c]$ be the number of unique paths from $(0, 0)$ to $(r, c)$.
+1. **Base Cases:**
+   - The top row $r = 0$ can only be reached by moving continuously right:
+     $$
+     DP[0][c] = 1 \quad \forall c \in [0, n - 1]
+     $$
+   - The leftmost column $c = 0$ can only be reached by moving continuously down:
+     $$
+     DP[r][0] = 1 \quad \forall r \in [0, m - 1]
+     $$
+2. **Transition:**
+   For any interior cell $(r, c)$ where $r \ge 1$ and $c \ge 1$:
+   $$
+   DP[r][c] = DP[r - 1][c] + DP[r][c - 1]
+   $$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Method 2: Combinatorial Closed Form
+To reach $(m - 1, n - 1)$ from $(0, 0)$:
+- The robot must make exactly $m - 1$ down moves ($D$).
+- The robot must make exactly $n - 1$ right moves ($R$).
+- The total number of steps is fixed at:
+  $$
+  S = (m - 1) + (n - 1) = m + n - 2
+  $$
+- The problem is equivalent to choosing which $m - 1$ steps out of $S$ total steps are down moves:
+  $$
+  \text{Paths} = \binom{m + n - 2}{m - 1} = \frac{(m + n - 2)!}{(m - 1)! \, (n - 1)!}
+  $$
+For $m = 3, n = 7$:
+$$
+\binom{3 + 7 - 2}{3 - 1} = \binom{8}{2} = \frac{8 \times 7}{2 \times 1} = 28
+$$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** Cell $DP[r][c]$ contains the exact number of monotonic lattice paths from $(0, 0)$ to $(r, c)$, matching entry $\binom{r+c}{r}$ in Pascal's Triangle.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We construct the DP grid for $m = 3, n = 7$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Row 0 Initialization
+- $DP[0][c] = 1$ for all $c \in [0, 6]$:
+  $$
+  [1, 1, 1, 1, 1, 1, 1]
+  $$
 
 ---
 
-### Step 3: Terminal State Resolution
+### Row 1 Computation
+- $DP[1][0] = 1$ (base case).
+- $c = 1: DP[1][1] = DP[0][1] + DP[1][0] = 1 + 1 = 2$.
+- $c = 2: DP[1][2] = DP[0][2] + DP[1][1] = 1 + 2 = 3$.
+- $c = 3: DP[1][3] = DP[0][3] + DP[1][2] = 1 + 3 = 4$.
+- $c = 4: DP[1][4] = DP[0][4] + DP[1][3] = 1 + 4 = 5$.
+- $c = 5: DP[1][5] = DP[0][5] + DP[1][4] = 1 + 5 = 6$.
+- $c = 6: DP[1][6] = DP[0][6] + DP[1][5] = 1 + 6 = 7$.
+Row 1 values: $[1, 2, 3, 4, 5, 6, 7]$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Row 2 Computation
+- $DP[2][0] = 1$ (base case).
+- $c = 1: DP[2][1] = DP[1][1] + DP[2][0] = 2 + 1 = 3$.
+- $c = 2: DP[2][2] = DP[1][2] + DP[2][1] = 3 + 3 = 6$.
+- $c = 3: DP[2][3] = DP[1][3] + DP[2][2] = 4 + 6 = 10$.
+- $c = 4: DP[2][4] = DP[1][4] + DP[2][3] = 5 + 10 = 15$.
+- $c = 5: DP[2][5] = DP[1][5] + DP[2][4] = 6 + 15 = 21$.
+- $c = 6: DP[2][6] = DP[1][6] + DP[2][5] = 7 + 21 = \mathbf{28}$.
+Row 2 values: $[1, 3, 6, 10, 15, 21, 28]$.
+
+Destination reached at $(2, 6)$ with value $28$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### 2D DP Table Matrix ($3 \times 7$)
+
+| Row $\downarrow$ / Col $\to$ | Col 0 | Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Row 0** | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| **Row 1** | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| **Row 2** | 1 | 3 | 6 | 10 | 15 | 21 | **28 (Target)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Since the robot can only arrive at $(r, c)$ from either $(r - 1, c)$ or $(r, c - 1)$, and those two sets of paths are mutually exclusive (one ends in a down move, the other in a right move), by the sum rule of combinatorics the number of paths is strictly $DP[r-1][c] + DP[r][c-1]$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Computing cells in row-major order guarantees that both dependencies $(r-1, c)$ and $(r, c-1)$ are fully solved before evaluating $(r, c)$. The final cell $(m-1, n-1)$ is reachable and accounts for all paths.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Space Optimization to 1D Array:** Storing the full $M \times N$ matrix is unnecessary. Maintaining a single row of size $n$, updating `dp[c] += dp[c-1]`, achieves identical results in $O(n)$ memory.
+- **Factorial Overflow in Combinatorics:** Computing $\frac{N!}{K!(N-K)!}$ via direct factorials can exceed integer limits in fixed-width languages. Computing iteratively $\prod_{i=1}^K \frac{N - K + i}{i}$ prevents intermediate numerical overflow.
+- **Single Row or Column Grid:** If $m = 1$ or $n = 1$, the robot has only 1 path (moving purely right or purely down). The formula yields $\binom{0}{0} = 1$, correctly handling this edge case.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Dynamic Programming Complexity:**
+  - Time: $O(m \cdot n)$ to compute all cells in the grid.
+  - Space: $O(n)$ auxiliary memory using a 1D running row.
+- **Combinatorial Method Complexity:**
+  - Time: $O(\min(m, n))$ multiplications.
+  - Space: $O(1)$ auxiliary memory.

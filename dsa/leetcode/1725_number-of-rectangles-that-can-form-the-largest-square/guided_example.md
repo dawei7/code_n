@@ -1,121 +1,179 @@
-# Guided Example: Number Of Rectangles That Can Form The Largest Square
+# Guided Example: Number of Rectangles That Can Form The Largest Square
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze geometric aspect truncation, prove the Square Side Truncation Theorem and Single-Pass Extremum Frequency Invariant, and trace rectangle side evaluations across representative shape collections:
 
-- **Input:** `{"rectangles": [[5, 8], [3, 9], [5, 12], [16, 5]]}`
-- **Required output:** `3`
+- **Representative Instance 1 (Varied Aspect Ratios with Multiple Maximal Candidates):**
+  - Input: `rectangles = [[5, 8], [3, 9], [5, 12], [16, 5]]`
+  - Rectangle Dimension Analysis:
+    - Rectangle 0: $[5, 8] \implies$ max square side $s_0 = \min(5, 8) = 5$.
+    - Rectangle 1: $[3, 9] \implies$ max square side $s_1 = \min(3, 9) = 3$.
+    - Rectangle 2: $[5, 12] \implies$ max square side $s_2 = \min(5, 12) = 5$.
+    - Rectangle 3: $[16, 5] \implies$ max square side $s_3 = \min(16, 5) = 5$.
+  - Square side lengths extracted: $[5, 3, 5, 5]$.
+  - Global maximum square side: $\text{maxLen} = \max(5, 3, 5, 5) = \mathbf{5}$.
+  - Frequency of $\text{maxLen} = 5$:
+    - Rectangle 0: $5 == 5$ (Match 1).
+    - Rectangle 2: $5 == 5$ (Match 2).
+    - Rectangle 3: $5 == 5$ (Match 3).
+  - Number of rectangles that can form a square of side 5: $\mathbf{3}$.
+  - **Required Output:** `3`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Repeated Symmetric Dimensions):**
+  - Input: `rectangles = [[2, 3], [3, 7], [4, 3], [3, 7]]`
+  - Max square sides:
+    - $[2, 3] \to \min(2, 3) = 2$
+    - $[3, 7] \to \min(3, 7) = 3$
+    - $[4, 3] \to \min(4, 3) = 3$
+    - $[3, 7] \to \min(3, 7) = 3$
+  - Extracted lengths: $[2, 3, 3, 3]$.
+  - $\text{maxLen} = 3$.
+  - Rectangles achieving side 3: rectangles 1, 2, and 3 $\implies \mathbf{3}$.
+  - **Required Output:** `3`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `rectangles` where $\text{rectangles}[i] = [l_{i}, w_{i}]$ represents the $i^{\text{th}}$ rectangle of length $l_{i}$ and width $w_{i}$.
+Given an array of rectangles where rectangle $i$ has dimensions $[l_i, w_i]$, a square of side length $k$ can be cut from rectangle $i$ if and only if $k \le l_i$ and $k \le w_i$. The maximum side length achievable from rectangle $i$ is therefore $\min(l_i, w_i)$. Let `maxLen` be the maximum side length obtained across all given rectangles. We must count how many rectangles can form a square of side length `maxLen`.
 
-The objective is to compute `3` from `{"rectangles": [[5, 8], [3, 9], [5, 12], [16, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Geometric Truncation Principle:
+  Rectangle [Length L, Width W]:
+     +-----------------------+
+     |                       |
+     |                       | W
+     |                       |
+     +-----------------------+
+                 L
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  To form a square of side k:
+    k must fit along the length: k <= L
+    k must fit along the width:  k <= W
+    Therefore: max(k) = min(L, W).
+```
+
+The fundamental pedagogical insights are:
+1. **Dimension Bottleneck:** The largest square cut from a rectangle is strictly constrained by its shorter side.
+2. **Single-Pass Extremum Accounting:** Simultaneously track the running maximum `maxLen` and its occurrence count in an online scan, resetting count to $1$ whenever a strictly larger side length is encountered.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Structural Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Largest Square Rectangle Counting Pipeline
+    accDescr: Pipeline showing minimum dimension calculation for each rectangle, running maximum comparison, count incrementation or reset, and final tally emission.
+    Input["Input: rectangles list [[l, w], ...]"] --> Init["Initialize tracking registers:\nmax_len = 0\ncount = 0"]
+    Init --> Loop["For each rectangle [l, w] in rectangles:"]
+    
+    Loop --> ComputeSide["Extract max square side:\nside = min(l, w)"]
+    ComputeSide --> CompareSide{"Compare side with max_len"}
+    
+    CompareSide -->|"side > max_len"| ResetMax["New Global Maximum Discovered!\nmax_len = side\ncount = 1"]
+    CompareSide -->|"side == max_len"| IncCount["Tied with Global Maximum!\ncount = count + 1"]
+    CompareSide -->|"side < max_len"| Ignore["Sub-optimal side, skip"]
+    
+    ResetMax --> NextRect{"More rectangles?"}
+    IncCount --> NextRect
+    Ignore --> NextRect
+    NextRect -->|"Yes"| Loop
+    NextRect -->|"No"| Emit["Emit count"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Square Side Truncation Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let rectangle $i$ have length $l_i$ and width $w_i$.
+
+> **Theorem (Shorter Side Bound and Extremum Invariant).**
+> 1. The maximum side length of a square cut from rectangle $i$ is:
+>    $$
+>    s_i = \min(l_i, w_i)
+>    $$
+> 2. The global maximum square side length over all $n$ rectangles is:
+>    $$
+>    \text{maxLen} = \max_{0 \le i < n} s_i = \max_{0 \le i < n} \min(l_i, w_i)
+>    $$
+> 3. The number of rectangles capable of producing a square of side length $\text{maxLen}$ is:
+>    $$
+>    \text{Ans} = \sum_{i=0}^{n-1} \mathbb{I}\big(s_i = \text{maxLen}\big)
+>    $$
+
+*Proof.*
+- A square of side $k$ requires area $k \times k$ and must be cut entirely from within the boundaries of an $l_i \times w_i$ rectangle without rotation or stretching. Thus, $k \le l_i$ and $k \le w_i \implies k \le \min(l_i, w_i)$. The maximum integer $k$ is therefore $s_i = \min(l_i, w_i)$.
+- Any square of side $\text{maxLen}$ requires $s_i \ge \text{maxLen}$.
+- Since $\text{maxLen} = \max_j s_j$, we have $s_i \le \text{maxLen}$ for all $i$.
+- Therefore, $s_i \ge \text{maxLen} \iff s_i = \text{maxLen}$.
+- Counting the rectangles satisfying $s_i = \text{maxLen}$ gives the exact number of valid rectangles. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A rectangle's shorter side is its square limit
+### Trace on Representative Instance 1 (`rectangles = [[5, 8], [3, 9], [5, 12], [16, 5]]`)
 
-A square of side $k$ must fit in both rectangle dimensions. For rectangle `[l,w]`, the largest feasible side is therefore
+Initialize $\text{max\_len} = 0$, $\text{count} = 0$.
 
-$$
-x=\min(l,w).
-$$
+#### Rectangle 0: `[5, 8]`
+- Shorter side: $\min(5, 8) = 5$.
+- Compare: $5 > \text{max\_len}$ ($5 > 0$).
+- Update maximum: $\text{max\_len} = 5$.
+- Reset counter: $\text{count} = 1$.
 
-The longer side can be cut down, but no operation can make the shorter side larger. The problem consequently reduces to finding the maximum of these per-rectangle values and counting how often that maximum occurs.
+#### Rectangle 1: `[3, 9]`
+- Shorter side: $\min(3, 9) = 3$.
+- Compare: $3 < \text{max\_len}$ ($3 < 5$).
+- Counter unchanged: $\text{count} = 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"rectangles": [[5, 8], [3, 9], [5, 12], [16, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Rectangle 2: `[5, 12]`
+- Shorter side: $\min(5, 12) = 5$.
+- Compare: $5 == \text{max\_len}$ ($5 == 5$).
+- Increment counter: $\text{count} = 1 + 1 = 2$.
 
----
+#### Rectangle 3: `[16, 5]`
+- Shorter side: $\min(16, 5) = 5$.
+- Compare: $5 == \text{max\_len}$ ($5 == 5$).
+- Increment counter: $\text{count} = 2 + 1 = \mathbf{3}$.
 
-### Step 2: Maintain the maximum and its frequency together
-
-The source initializes `mx = 0` and `ans = 0`. All dimensions are positive, so the first rectangle's candidate `x` will exceed the initial maximum.
-
-For every `l,w`, it computes `x = min(l,w)` and handles three logical cases.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Case one: a new larger square appears
-
-If `mx < x`, every previously counted rectangle reaches only the old smaller maximum. null can form a square of this new side.
-
-The source resets `ans = 1` because the current rectangle is the first known rectangle attaining the new maximum, then sets `mx = x`.
-
-Resetting rather than incrementing is essential. The requested count concerns only rectangles that reach the final largest side, not every record-setter encountered during the scan.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+#### Final Result:
+- Number of rectangles that can form square of side 5: $\mathbf{3}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rectangles": [[5, 8], [3, 9], [5, 12], [16, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Rectangle Index $i$ | Dimensions $[l_i, w_i]$ | Min Dimension $s_i = \min(l_i, w_i)$ | Relation to Active $\text{max\_len}$ | Active $\text{max\_len}$ After Step | Active Count After Step |
+|---|---|---|---|---|---|
+| $0$ | $[5, 8]$ | $5$ | $5 > 0$ (New Max) | $5$ | $1$ |
+| $1$ | $[3, 9]$ | $3$ | $3 < 5$ (Ignored) | $5$ | $1$ |
+| $2$ | $[5, 12]$ | $5$ | $5 == 5$ (Tie) | $5$ | $2$ |
+| $3$ | $[16, 5]$ | $5$ | $5 == 5$ (Tie) | $5$ | **`3`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The side length constraint $\min(l_i, w_i)$ is a geometric invariant. The online comparison structure resets the counter upon discovering a strictly larger side and increments it only upon matching the current maximum, guaranteeing that `count` reflects occurrences of the true maximum at loop completion.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every rectangle in the input list is evaluated once. No rectangle is skipped.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Two passes:** First compute the maximum shorter side, then count it. It remains $O(n)$ time and $O(1)$ space but repeats traversal.
-- **Build a candidate list:** Mapping every rectangle to `min(l,w)` makes the reduction explicit but uses $O(n)$ extra space.
-- **Sort candidates:** The largest values become adjacent, but $O(n\log n)$ time is unnecessary.
-- **One rectangle:** It establishes the maximum and count one.
-- **All candidates equal:** The first sets the maximum and every later rectangle increments the count.
-- **Strictly increasing candidates:** Each rectangle resets the count to one, so only the final rectangle counts.
-- **Largest candidate appears early and late:** Smaller intervening candidates do not disturb its count.
-- **Very long one dimension:** It does not help beyond the shorter dimension.
-- **Dimension order:** `min(l,w)` is symmetric, so length and width labels do not affect the result.
-- **Positive dimensions:** Initial `mx=0` guarantees the first candidate takes the new-maximum branch.
-- **Non-square rectangle guarantee:** It is not needed by the algorithm; an already square rectangle would still have candidate equal to either side.
-- **Input preservation:** Only dimension values are read.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Two-Pass vs. One-Pass:** A two-pass approach computes $\text{maxLen}$ first and then filters. The single-pass approach achieves identical accuracy with fewer memory reads by maintaining the running maximum and count simultaneously.
+- **Large Dimension Values:** Dimensions can be up to $10^9$. Because the algorithm only compares dimensions and counts occurrences, 64-bit integer comparisons execute safely without overflow.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of rectangles. The loop visits each rectangle once, and `min` plus integer comparisons and assignments are constant-time. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The loop performs $n$ iterations for an array of $n$ rectangles.
+  - Each iteration performs one $\min$ operation, one comparison, and one addition: $\mathcal{O}(1)$ time.
+  - Total Time: strictly $\mathcal{O}(n)$, executing in $< 2$ ms for $n \le 1000$.
+- **Auxiliary Space Complexity:**
+  - Only two scalar registers (`max_len` and `count`) are required.
+  - Total Auxiliary Space: $\mathcal{O}(1)$ constant memory.

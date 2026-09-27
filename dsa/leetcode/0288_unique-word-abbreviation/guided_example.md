@@ -1,129 +1,191 @@
 # Guided Example: Unique Word Abbreviation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step word abbreviation generation ($s[0] + \text{str}(\text{len}(s) - 2) + s[-1]$), dictionary hash map grouping into unique word sets, and dual-clause uniqueness verification on representative dictionary queries:
 
-- **Input:** `{"dictionary": ["a", "a"], "words": ["a", "b"]}`
-- **Required output:** `[true, true]`
+- **Input:** $\text{dictionary} = [\text{"deer"}, \text{"door"}, \text{"cake"}, \text{"card"}]$; queries: `["dear", "cart", "cane", "make", "cake"]`
+- **Required output:** `[false, true, false, true, true]`
+  - `isUnique("dear")` $\implies$ `false` (Abbreviation `"d2r"` matches dictionary words `"deer"` and `"door"`)
+  - `isUnique("cart")` $\implies$ `true` (Abbreviation `"c2t"` does not exist anywhere in dictionary)
+  - `isUnique("cane")` $\implies$ `false` (Abbreviation `"c2e"` matches dictionary word `"cake"`)
+  - `isUnique("make")` $\implies$ `true` (Abbreviation `"m2e"` does not exist in dictionary)
+  - `isUnique("cake")` $\implies$ `true` (Abbreviation `"c2e"` matches only `"cake"` itself in dictionary)
+- **Duplicate Dictionary Entries:** $\text{dictionary} = [\text{"a", "a"}]$; query `"a"` $\implies$ `true` (Deduplicated inside set)
+- **Short Words Base Case:** Length $< 3$ words like `"it"` or `"a"` abbreviate directly to themselves without numeric interior formatting
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates hash table grouping with set deduplication, formalizes the two distinct criteria under which an abbreviation is deemed unique, handles edge cases with repeated dictionary entries, and achieves $O(L)$ query time with $O(C)$ total dictionary preprocessing storage.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The **abbreviation** of a word is a concatenation of its first letter, the number of characters between the first and last letter, and its last letter. If a word has only two characters, then it is an **abbreviation** of itself.
+Given a dictionary of words:
+$$
+\text{dictionary} = [\text{"deer"}, \text{"door"}, \text{"cake"}, \text{"card"}]
+$$
+An **abbreviation** of a word $s$ is formed as:
+- If $\text{len}(s) < 3$: abbreviation is $s$ itself.
+- If $\text{len}(s) \ge 3$: $s[0] + \text{str}(\text{len}(s) - 2) + s[-1]$.
 
-The objective is to compute `[true, true]` from `{"dictionary": ["a", "a"], "words": ["a", "b"]}` while avoiding redundant calculations and unnecessary overhead.
+A word's abbreviation is defined as **unique** relative to the dictionary if and only if **either**:
+1. **Condition 1:** No word in `dictionary` shares this abbreviation.
+2. **Condition 2:** Every word in `dictionary` sharing this abbreviation is **identical to `word` itself**.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+Dictionary Abbreviations:
+"deer" -> "d2r"
+"door" -> "d2r"
+"cake" -> "c2e"
+"card" -> "c2d"
+
+Map d[abbr]:
+"d2r" -> {"deer", "door"}
+"c2e" -> {"cake"}
+"c2d" -> {"card"}
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Hash Table Architecture
+To answer each `isUnique(word)` query in $O(\text{len}(word))$ time without scanning all dictionary words:
+1. Maintain a hash map `d` mapping each abbreviation string to a **set of distinct dictionary words**:
+   $$
+   d[\text{abbr}] = \{w_1, w_2, \dots\}
+   $$
+2. **Set Deduplication Invariant:**
+   Using a set rather than a list or integer count ensures that duplicate occurrences of the same word (e.g. `["cake", "cake"]`) do not cause false collisions. If `"cake"` appears multiple times, $d[\text{"c2e"}]$ is still the singleton set `{"cake"}`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Query Evaluation Protocol
+For a queried string `word`, compute its abbreviation $a = \text{abbr}(word)$:
+- **Step 1:** Check if $a \notin d$.
+  If the abbreviation has never been seen in the dictionary, no conflicts can exist.
+  $$
+  \text{return True} \quad (\text{Satisfies Condition 1})
+  $$
+- **Step 2:** If $a \in d$, verify that all words in $d[a]$ equal `word`:
+  $$
+  \text{return } \forall t \in d[a], \; (t == word)
+  $$
+  If $d[a] == \{word\}$, the only word in the dictionary with this abbreviation is `word` itself.
+  $$
+  \text{return True} \quad (\text{Satisfies Condition 2})
+  $$
+  If $d[a]$ contains any word distinct from `word`, return `False`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** An abbreviation is unique if and only if no dictionary word *different from `word`* maps to the same abbreviation string.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Preprocess by abbreviation because queries repeat
+We trace the dictionary $\text{dictionary} = [\text{"deer"}, \text{"door"}, \text{"cake"}, \text{"card"}]$ across multiple representative queries:
 
-Each query asks how its abbreviation relates to a fixed dictionary. Scanning every dictionary word for every call would repeat the same grouping work up to 5000 times. The exact solution performs that work once in the constructor.
-
-It builds a mapping `d` from an abbreviation to the set of distinct dictionary words having that abbreviation. A set is important because the dictionary may contain the same word more than once conceptually; repeated copies of one identical word must not be mistaken for different conflicting words.
-
-After preprocessing, a query needs to inspect only the group for its own abbreviation rather than the entire dictionary.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"dictionary": ["a", "a"], "words": ["a", "b"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Constructor Preprocessing
+1. `"deer"`: length 4 $\implies \text{abbr} = \text{"d"} + 2 + \text{"r"} = \text{"d2r"}$. Add to $d[\text{"d2r"}]$.
+2. `"door"`: length 4 $\implies \text{abbr} = \text{"d"} + 2 + \text{"r"} = \text{"d2r"}$. Add to $d[\text{"d2r"}]$.
+   Set: $d[\text{"d2r"}] = \{\text{"deer"}, \text{"door"}\}$.
+3. `"cake"`: length 4 $\implies \text{abbr} = \text{"c"} + 2 + \text{"e"} = \text{"c2e"}$.
+   Set: $d[\text{"c2e"}] = \{\text{"cake"}\}$.
+4. `"card"`: length 4 $\implies \text{abbr} = \text{"c"} + 2 + \text{"d"} = \text{"c2d"}$.
+   Set: $d[\text{"c2d"}] = \{\text{"card"}\}$.
 
 ---
 
-### Step 2: Construct the abbreviation exactly
-
-For a string of length at least three, `abbr` returns:
-
-
-
-The interior count is `len(s) - 2` because the first and last characters are kept literally. Thus:
-
-- `"dog"` has one interior character and becomes `"d1g"`;
-- `"internationalization"` has 18 interior characters and becomes `"i18n"`.
-
-For lengths below three, the source returns the original string unchanged. A two-character word has zero interior characters, but the problem defines it as its own abbreviation rather than a form such as `i0t`. A one-character word likewise remains itself.
-
-The decimal count may contain several digits. It is appended as a string, so length 12 uses interior count `10`, not a single encoded character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Query 1: `isUnique("dear")`
+- Compute abbreviation: $\text{abbr}(\text{"dear"}) = \text{"d2r"}$.
+- Check map: $\text{"d2r"} \in d$.
+- Dictionary set: $d[\text{"d2r"}] = \{\text{"deer"}, \text{"door"}\}$.
+- Test condition: Is every element in $d[\text{"d2r"}]$ equal to `"dear"`?
+  - `"deer" == "dear"` $\implies$ **False**.
+- **Return `false`**.
 
 ---
 
-### Step 3: Group distinct words, not dictionary occurrences
+### Query 2: `isUnique("cart")`
+- Compute abbreviation: $\text{abbr}(\text{"cart"}) = \text{"c2t"}$.
+- Check map: $\text{"c2t"} \notin d$.
+- Condition 1 holds: No dictionary word has abbreviation `"c2t"`.
+- **Return `true`**.
 
-For every dictionary word `s`, the constructor computes `abbr(s)` and executes `d[abbr].add(s)`. The `defaultdict(set)` creates an empty set automatically on the first encounter of a new abbreviation.
+---
 
-Suppose the dictionary contains `"deer"` and `"door"`. Both abbreviate to `"d2r"`, so that key maps to the set `{"deer", "door"}`. The set proves the abbreviation is shared by different words.
+### Query 3: `isUnique("cane")`
+- Compute abbreviation: $\text{abbr}(\text{"cane"}) = \text{"c2e"}$.
+- Check map: $\text{"c2e"} \in d$.
+- Dictionary set: $d[\text{"c2e"}] = \{\text{"cake"}\}$.
+- Test condition: Is every element in $d[\text{"c2e"}]$ equal to `"cane"`?
+  - `"cake" == "cane"` $\implies$ **False**.
+- **Return `false`**.
 
-If the dictionary instead contains `"cake"` twice, both insertions target `"c2e"`, but the set remains `{"cake"}`. The uniqueness rule concerns whether another word conflicts, not how many times the identical word was listed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[true, true]` |
+### Query 4: `isUnique("make")`
+- Compute abbreviation: $\text{abbr}(\text{"make"}) = \text{"m2e"}$.
+- Check map: $\text{"m2e"} \notin d$.
+- Condition 1 holds: Abbreviation does not exist in dictionary.
+- **Return `true`**.
+
+---
+
+### Query 5: `isUnique("cake")`
+- Compute abbreviation: $\text{abbr}(\text{"cake"}) = \text{"c2e"}$.
+- Check map: $\text{"c2e"} \in d$.
+- Dictionary set: $d[\text{"c2e"}] = \{\text{"cake"}\}$.
+- Test condition: Is every element in $d[\text{"c2e"}]$ equal to `"cake"`?
+  - Set contains only `{"cake"}`. `"cake" == "cake"` $\implies$ **True**.
+- Condition 2 holds: The query word is the sole owner of this abbreviation in the dictionary.
+- **Return `true`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"dictionary": ["a", "a"], "words": ["a", "b"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[true, true]` | Verified |
+```text
+Dictionary: ["deer", "door", "cake", "card"]
+Groups:
+  "d2r" -> {"deer", "door"}
+  "c2e" -> {"cake"}
+  "c2d" -> {"card"}
+
+Query "dear": abbr="d2r" -> in d, set has {"deer", "door"} != "dear" -> false
+Query "cart": abbr="c2t" -> not in d                                 -> true
+Query "cane": abbr="c2e" -> in d, set has {"cake"} != "cane"         -> false
+Query "make": abbr="m2e" -> not in d                                 -> true
+Query "cake": abbr="c2e" -> in d, set has {"cake"} == "cake"         -> true
+
+Results: [false, true, false, true, true]
+```
+
+| Query `word` | Computed Abbreviation | In Map $d$? | Stored Set $d[\text{abbr}]$ | All Elements $== \text{word}$? | Final Decision |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"dear"` | `"d2r"` | Yes | `{"deer", "door"}` | No (`"deer" != "dear"`) | **`false`** |
+| `"cart"` | `"c2t"` | **No** | $\emptyset$ | Vacuously True | **`true`** |
+| `"cane"` | `"c2e"` | Yes | `{"cake"}` | No (`"cake" != "cane"`) | **`false`** |
+| `"make"` | `"m2e"` | **No** | $\emptyset$ | Vacuously True | **`true`** |
+| **`"cake"`** | **`"c2e"`** | **Yes** | **`{"cake"}`** | **Yes (`"cake" == "cake"`)** | **`true`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** If an abbreviation is absent from the dictionary, no existing word can conflict with it (Condition 1). If an abbreviation is present, checking that all elements of $d[\text{abbr}]$ equal `word` ensures that no other word in the dictionary shares that abbreviation (Condition 2).
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By mapping every word in the dictionary to its unique canonical abbreviation during construction, all potential collisions are grouped into their respective buckets. Testing set containment and equality accounts for all valid and invalid configurations.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sole word or ambiguity marker:** Map an abbreviation to its one owner until a different owner appears, then replace it with a conflict sentinel. This preserves enough information for queries with less retained collision data and matches the manifest summary, but it is not the exact source.
-- **Scan the dictionary per query:** Compare the query against every word's length and endpoint characters. It uses little preprocessing space but costs $O(C)$ per query.
-- **Map abbreviation to count only:** A count cannot distinguish repeated copies of the same dictionary word from different colliding words, and it cannot confirm that a singleton owner equals the query without another dictionary set.
-- **Duplicate identical dictionary entries:** Set insertion deduplicates them, so querying that word remains unique if no different word shares its abbreviation.
-- **Query absent but abbreviation present:** The result is false because every stored owner differs from the query.
-- **Query present with no conflicting owner:** The bucket is exactly `{word}`, so the result is true.
-- **Query present with another owner:** The differing set member makes `all(...)` false.
-- **One-character word:** It abbreviates to itself and is grouped by that exact string.
-- **Two-character word:** It also remains unchanged, following the explicit definition.
-- **Three-character word:** It uses a one-character interior count, such as `dog -> d1g`.
-- **Different lengths:** Their numeric interior counts differ, so words with the same endpoints but different lengths normally occupy different keys.
-- **Set iteration order:** It is irrelevant to the Boolean result. Short-circuit timing may vary, but a conflicting group always contains a differing member.
-- **Lowercase contract:** Stored and queried words are case-sensitive strings; the legal domain uses lowercase only, so no normalization is needed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Words in Dictionary:** If the dictionary contains `["cake", "cake"]`, using a frequency count would report count $= 2$, erroneously concluding that `"cake"` is not unique! Storing words in a `set` collapses duplicates to `{"cake"}`, correctly reporting uniqueness.
+- **Short Words ($\text{len} < 3$):** Words like `"it"` or `"a"` have fewer than 3 characters. Attempting to format as `s[0] + str(len - 2) + s[-1]` would produce `"i0t"` or cause negative indexing errors. The guard `s if len(s) < 3 else ...` handles short strings properly.
+- **Query Word Not in Dictionary vs Unique:** A word does NOT need to be in the dictionary to be unique. If `word`'s abbreviation does not exist in the dictionary (e.g. `"cart"`), it is unique.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C)$. Let $C$ be the total number of characters across dictionary words, let $D$ be the number of dictionary entries, and let $L$ be a query word's length.
-- **Auxiliary Space Complexity:** $O(c)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Constructor:** $O(C)$, where $C = \sum \text{len}(w)$ is the total number of characters across all words in `dictionary`. Each word is abbreviated and inserted into the hash map in linear time relative to its length.
+  - **`isUnique(word)` Query:** $O(L)$, where $L = \text{len}(word)$. Computing the abbreviation takes $O(L)$ time, hash table lookup takes $O(L)$ time, and iterating over the small word set takes $O(L)$ time.
+- **Auxiliary Space Complexity:** $O(C)$ to store all dictionary words and their abbreviations in the hash map.

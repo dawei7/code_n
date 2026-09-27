@@ -1,99 +1,194 @@
 # Guided Example: Palindrome Partitioning III
 
-We derive and execute the String, Dynamic Programming recurrence on a representative problem instance.
+We trace the step-by-step two-stage dynamic programming optimization for minimum character changes in $k$-palindrome string partitioning on a representative problem instance:
 
-- **Input:** `{"s": "abc", "k": 2}`
-- **Required output:** `1`
+- **Input:**
+  - `s = "abc"`
+  - `k = 2`
+- **Required Output:** `1`
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance illustrates the decoupling of subsegment palindrome conversion costs from global sequence partitioning, dynamic table construction, and optimal substructure.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Palindrome Partitioning III** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+We are given a string $s$ of length $N = 3$ and an integer $k = 2$. We must divide $s$ into exactly $k$ non-empty contiguous substrings such that the total number of character changes required to make every substring a palindrome is minimized.
+
+For $s = \text{"abc"}$ and $k = 2$, there are two possible partitions into $2$ non-empty pieces:
+1. Cut after index $0$: Substrings `"a"` and `"bc"`
+   - Substring `"a"` is already a palindrome ($0$ modifications).
+   - Substring `"bc"` requires changing either `'b'` to `'c'` or `'c'` to `'b'` ($1$ modification).
+   - Total cost = $0 + 1 = 1$.
+2. Cut after index $1$: Substrings `"ab"` and `"c"`
+   - Substring `"ab"` requires changing `'a'` or `'b'` ($1$ modification).
+   - Substring `"c"` is already a palindrome ($0$ modifications).
+   - Total cost = $1 + 0 = 1$.
+
+Both partitions require a minimum of $1$ character change.
+
+```
+String s = "abc", k = 2 parts
+
+Partition Option A:
+  ["a"]  +  ["bc"]
+   cost 0    cost 1 (change 'b'->'c' or 'c'->'b')
+   Sum = 0 + 1 = 1
+
+Partition Option B:
+  ["ab"] +  ["c"]
+   cost 1    cost 0
+   Sum = 1 + 0 = 1
+
+Optimal Minimum Cost: 1
+```
+
+A brute-force search evaluates $\binom{N - 1}{k - 1}$ partition combinations, recalculating palindrome mismatch counts repeatedly.
+The optimal strategy proceeds in two clean stages:
+- **Stage 1:** Precompute the cost to convert any substring $s[i \dots j]$ into a palindrome via interval DP.
+- **Stage 2:** Partition prefix lengths into $j$ parts using standard sequence DP.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Stage 1: Interval Substring Palindrome Cost
+Let $C(i, j)$ denote the minimum character modifications to turn $s[i \dots j]$ into a palindrome.
+- A substring of length $0$ or $1$ is vacuously a palindrome:
+  $$
+  C(i, i) = 0, \quad C(i, i - 1) = 0
+  $$
+- For length $\ge 2$:
+  Compare the outer characters $s[i]$ and $s[j]$. If they match, zero changes are needed at the boundaries; if they differ, exactly $1$ change harmonizes them. The inner substring $s[i+1 \dots j-1]$ is solved recursively:
+  $$
+  C(i, j) = C(i + 1, j - 1) + [s[i] \ne s[j]]
+  $$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+### Stage 2: Partitioning DP
+Let $dp(i, j)$ denote the minimum modifications to partition the prefix $s[0 \dots i-1]$ (length $i$) into $j$ palindrome substrings, where $1 \le j \le \min(i, k)$.
+- **Base Case ($j = 1$ part):**
+  The entire prefix $s[0 \dots i-1]$ forms a single palindrome:
+  $$
+  dp(i, 1) = C(0, i - 1)
+  $$
+- **Transition ($j \ge 2$ parts):**
+  Choose the starting index $h$ of the $j\text{th}$ substring. The previous $j - 1$ parts cover $s[0 \dots h-1]$ (length $h$), and the final part is $s[h \dots i-1]$:
+  $$
+  dp(i, j) = \min_{j - 1 \le h < i} \left\{ dp(h, j - 1) + C(h, i - 1) \right\}
+  $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+| Stage | Data Structure | Range | Purpose |
+|---|---|---|---|
+| Stage 1 | Cost Matrix $C(i, j)$ | $0 \le i \le j < N$ | Fast $\mathcal{O}(1)$ lookup of palindrome conversion cost for any slice |
+| Stage 2 | DP Table $dp(i, j)$ | $1 \le i \le N, \; 1 \le j \le k$ | Minimum edits to divide prefix of length $i$ into $j$ parts |
+
+> **Optimal Substructure Invariant.** The minimum cost to partition a prefix of length $i$ into $j$ parts is obtained by considering all valid split points $h$ where the sub-problem of partitioning length $h$ into $j - 1$ parts has already been solved optimally.
+
+```mermaid
+flowchart TD
+    accTitle: Two-Stage Palindrome Partitioning DP
+    accDescr: Diagram showing Stage 1 interval cost precomputation feeding into Stage 2 sequence partitioning.
+    subgraph Stage1["Stage 1: Precompute Interval Palindrome Cost C(i, j)"]
+        DIFF["Compare s[i] == s[j]?"] --> INT["C(i, j) = C(i+1, j-1) + (1 if s[i]!=s[j] else 0)"]
+    end
+    subgraph Stage2["Stage 2: Sequence Partitioning DP dp(i, j)"]
+        BASE["dp(i, 1) = C(0, i - 1)"]
+        TRANS["dp(i, j) = min over h: dp(h, j-1) + C(h, i-1)"]
+    end
+    INT --> TRANS
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We execute both stages on $s = \text{"abc"}$ with $N = 3, k = 2$.
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
+### Stage 1: Computing Palindrome Cost Matrix $C(i, j)$
+- Length 1 substrings ($i = j$):
+  - $C(0, 0) = C(1, 1) = C(2, 2) = 0$.
+- Length 2 substrings:
+  - Slice `"ab"` (indices $0 \dots 1$): $s[0] = \text{'a'}, s[1] = \text{'b'}$. $s[0] \ne s[1] \implies C(0, 1) = 0 + 1 = 1$.
+  - Slice `"bc"` (indices $1 \dots 2$): $s[1] = \text{'b'}, s[2] = \text{'c'}$. $s[1] \ne s[2] \implies C(1, 2) = 0 + 1 = 1$.
+- Length 3 substring:
+  - Slice `"abc"` (indices $0 \dots 2$): $s[0] = \text{'a'}, s[2] = \text{'c'} \implies 1 + C(1, 1) = 1 + 0 = 1$.
 
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+Cost Table $C$:
+```text
+      j=0   j=1   j=2
+i=0 [  0     1     1  ]
+i=1 [  -     0     1  ]
+i=2 [  -     -     0  ]
+```
 
----
+### Stage 2: Partitioning Dynamic Programming $dp(i, j)$
+Table dimensions: $(N + 1) \times (k + 1) = 4 \times 3$.
 
-### Step 2: Recurrence Evaluation & State Transitions
+#### Base Cases: $j = 1$ (Single Part)
+- Length $i = 1$: $dp(1, 1) = C(0, 0) = 0$ (`"a"`).
+- Length $i = 2$: $dp(2, 1) = C(0, 1) = 1$ (`"ab"`).
+- Length $i = 3$: $dp(3, 1) = C(0, 2) = 1$ (`"abc"`).
 
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
+#### Step 2: Evaluating $j = 2$ Parts
+- Length $i = 2$ into $2$ parts:
+  - Split point $h = 1$:
+    $$
+    dp(2, 2) = dp(1, 1) + C(1, 1) = 0 + 0 = 0
+    $$
+    (Splits `"ab"` into `"a"` and `"b"`, $0$ modifications).
 
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+- Length $i = 3$ into $2$ parts:
+  - Valid split points $h \in \{1, 2\}$:
+    - Split $h = 1$: Prefix of length $1$ (`"a"`) and tail slice $s[1 \dots 2]$ (`"bc"`):
+      $$
+      \text{Cost}_1 = dp(1, 1) + C(1, 2) = 0 + 1 = 1
+      $$
+    - Split $h = 2$: Prefix of length $2$ (`"ab"`) and tail slice $s[2 \dots 2]$ (`"c"`):
+      $$
+      \text{Cost}_2 = dp(2, 1) + C(2, 2) = 1 + 0 = 1
+      $$
+  - Taking the minimum:
+    $$
+    dp(3, 2) = \min(1, 1) = 1
+    $$
 
----
-
-### Step 3: Terminal State Resolution
-
-- Extract the final value from the designated terminal state $DP[N]$.
-
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+Final result: $dp(3, 2) = 1$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
+| Prefix Length $i$ | Substring Examined | Parts $j = 1$ | Parts $j = 2$ Split Options | Minimum $dp(i, j)$ |
 |---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+| $1$ | `"a"` | $C(0, 0) = 0$ | Not applicable ($j > i$) | $dp(1, 1) = 0$ |
+| $2$ | `"ab"` | $C(0, 1) = 1$ | $h = 1: dp(1, 1) + C(1, 1) = 0 + 0 = 0$ | $dp(2, 2) = 0$ |
+| $3$ | `"abc"` | $C(0, 2) = 1$ | $h=1: 0 + 1 = 1, \; h=2: 1 + 0 = 1$ | $dp(3, 2) = 1$ |
+
+Final result: $dp(3, 2) = 1$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** In Stage 1, two characters at symmetric offsets must be equal for a substring to be a palindrome. For each mismatched pair, changing either character to match the other costs exactly $1$ operation. Stage 1 counts exactly these mismatch pairs. In Stage 2, any partition into $j$ non-empty parts consists of an initial partition of length $h$ into $j - 1$ parts followed by a final substring $s[h \dots i-1]$. Summing the optimal cost of the prefix with the exact cost of the tail guarantees that the total changes correspond to a legally formed palindrome set.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** All possible lengths $h \in [j-1, i-1]$ for the prefix are explored. Because the minimum over all valid cut points $h$ is selected, no valid partition configuration can achieve a lower total modification count.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Zero-change singletons:** When $k = N$, every character becomes its own substring of length $1$, which is trivially a palindrome with $0$ cost.
+- **Split boundary constraints:** The cut index $h$ must satisfy $h \ge j - 1$ so that the preceding prefix has enough characters to form $j - 1$ non-empty substrings.
+- **Recomputing palindrome mismatches:** Calculating palindrome changes during the partitioning DP loop adds an extra factor of $N$, raising the time complexity to $\mathcal{O}(N^3 \cdot k)$. Precomputing $C(i, j)$ keeps the partitioning step at $\mathcal{O}(N^2 \cdot k)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $\mathcal{O}(N^2 \cdot k)$.
+  - **Stage 1:** There are $\mathcal{O}(N^2)$ substring pairs $(i, j)$. Each entry in $C(i, j)$ is computed in $\mathcal{O}(1)$ time by expanding outwards or bottom-up, taking $\mathcal{O}(N^2)$ time total.
+  - **Stage 2:** The DP table has size $N \times k$. For each state $(i, j)$, testing all split points $h \in [j-1, i-1]$ takes at most $i \le N$ transitions. This stage takes $\mathcal{O}(N^2 \cdot k)$ time.
+  - **Total Runtime:** $\mathcal{O}(N^2 + N^2 \cdot k) = \mathcal{O}(N^2 \cdot k)$.
+  With $N \le 100$ and $k \le N$, $N^2 \cdot k \le 10^6$ operations, executing in under $10$ milliseconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N^2 + N \cdot k)$ to store the cost matrix $C$ and the dynamic programming table $dp$.

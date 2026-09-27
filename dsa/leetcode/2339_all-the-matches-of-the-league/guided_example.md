@@ -1,134 +1,135 @@
 # Guided Example: All the Matches of the League
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Teams": [{"team_name": "Leetcode FC"}, {"team_name": "Ahly SC"}, {"team_name": "Real Madrid"}]}}`
-- **Required output:** `{"columns": ["home_team", "away_team"], "rows": [["Real Madrid", "Leetcode FC"], ["Real Madrid", "Ahly SC"], ["Leetcode FC", "Real Madrid"], ["Leetcode FC", "Ahly SC"], ["Ahly SC", "Real Madrid"], ["Ahly SC", "Leetcode FC"]]}`
+We are given a database table named `Teams` containing a list of soccer teams, with a single column:
+- `team_name` (varchar): The unique name of each team, serving as the primary key.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+In a double round-robin league tournament, every team must play against every other team twice:
+1. Once as the **home team** (`home_team`).
+2. Once as the **away team** (`away_team`).
 
----
+No team can play a match against itself. The objective is to report all possible matches in the league as pairs `(home_team, away_team)`. The output table may be returned in any order.
 
-## 1. Instance & Teaching Goal
+Consider the representative instance:
+- `Teams`:
+  - `"Leetcode FC"`
+  - `"Ahly SC"`
+  - `"Real Madrid"`
 
-Table: `Teams`
+There are $N = 3$ teams. Each team must play the other $N - 1 = 2$ teams at home, producing exactly $3 \times 2 = 6$ scheduled fixtures.
 
-The objective is to compute `{"columns": ["home_team", "away_team"], "rows": [["Real Madrid", "Leetcode FC"], ["Real Madrid", "Ahly SC"], ["Leetcode FC", "Real Madrid"], ["Leetcode FC", "Ahly SC"], ["Ahly SC", "Real Madrid"], ["Ahly SC", "Leetcode FC"]]}` from `{"tables": {"Teams": [{"team_name": "Leetcode FC"}, {"team_name": "Ahly SC"}, {"team_name": "Real Madrid"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```mermaid
+flowchart LR
+    accTitle: Double Round-Robin Directed Pairing
+    accDescr: Directed bipartite self-join between team instances generating all off-diagonal home and away match pairs.
+    subgraph Home["Home Team (t1)"]
+        H1["Leetcode FC"]
+        H2["Ahly SC"]
+        H3["Real Madrid"]
+    end
+    subgraph Away["Away Team (t2)"]
+        A1["Leetcode FC"]
+        A2["Ahly SC"]
+        A3["Real Madrid"]
+    end
+    H1 -->|"vs"| A2
+    H1 -->|"vs"| A3
+    H2 -->|"vs"| A1
+    H2 -->|"vs"| A3
+    H3 -->|"vs"| A1
+    H3 -->|"vs"| A2
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Mathematical & Algorithmic Principles
 
----
+Let $\mathcal{T}$ be the set of teams with cardinality $|\mathcal{T}| = N$.
+The set of all possible ordered pairs of teams is the Cartesian product:
 
-## 2. Conceptual Foundation & Invariants
+$$\mathcal{T} \times \mathcal{T} = \{(t_1, t_2) \mid t_1, t_2 \in \mathcal{T}\}$$
 
-We maintain the core conceptual parameters and state variables:
+Since self-matches are physically impossible, we remove the diagonal elements $\Delta = \{(t, t) \mid t \in \mathcal{T}\}$:
 
-| State Parameter | Role & Purpose | Initial State |
+$$\mathcal{M} = (\mathcal{T} \times \mathcal{T}) \setminus \Delta = \{(t_1, t_2) \in \mathcal{T} \times \mathcal{T} \mid t_1 \ne t_2\}$$
+
+The total number of scheduled fixtures is given by the permutation formula:
+
+$$|\mathcal{M}| = P(N, 2) = N(N - 1)$$
+
+### Relational Strategy: Non-Equi Self-Join
+In relational algebra, this operation is expressed as a theta-join of the `Teams` table with itself using the inequality predicate:
+
+$$t_1 \bowtie_{t_1.\text{team\_name} \ne t_2.\text{team\_name}} t_2$$
+
+Aliasing the table into two copies (`t1` and `t2`) permits referencing the first copy as `home_team` and the second copy as `away_team`. The condition `t1.team_name != t2.team_name` eliminates the $N$ diagonal self-pairings while preserving both orientations $(t_a, t_b)$ and $(t_b, t_a)$ for distinct teams.
+
+| Relational Term | SQL Implementation | Functional Purpose |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Cartesian Domain | `Teams AS t1 CROSS JOIN Teams AS t2` | Generates all $N^2$ candidate pairs |
+| Anti-Reflexive Filter | `ON t1.team_name != t2.team_name` | Prunes the $N$ self-pairing fixtures |
+| Projection | `SELECT t1.team_name AS home_team, t2.team_name AS away_team` | Formats output attributes with designated venues |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
----
+We execute the non-equi self-join on `Teams = {"Leetcode FC", "Ahly SC", "Real Madrid"}`.
+Total teams $N = 3$.
 
-## 3. Step-by-Step Worked Execution
+### Step 1: Fix `home_team` = "Leetcode FC"
+Test all candidates for `away_team`:
+- `away_team` = "Leetcode FC": Identity check fails ("Leetcode FC" $==$ "Leetcode FC"). Discarded.
+- `away_team` = "Ahly SC": "Leetcode FC" $\ne$ "Ahly SC" $\implies$ Output: `("Leetcode FC", "Ahly SC")`.
+- `away_team` = "Real Madrid": "Leetcode FC" $\ne$ "Real Madrid" $\implies$ Output: `("Leetcode FC", "Real Madrid")`.
 
-### Step 1: A match is an ordered pair of different teams
+### Step 2: Fix `home_team` = "Ahly SC"
+Test all candidates for `away_team`:
+- `away_team` = "Leetcode FC": "Ahly SC" $\ne$ "Leetcode FC" $\implies$ Output: `("Ahly SC", "Leetcode FC")`.
+- `away_team` = "Ahly SC": Identity check fails ("Ahly SC" $==$ "Ahly SC"). Discarded.
+- `away_team` = "Real Madrid": "Ahly SC" $\ne$ "Real Madrid" $\implies$ Output: `("Ahly SC", "Real Madrid")`.
 
-The home and away roles matter. A match with team `A` at home and team `B` away is different from the match with `B` at home and `A` away.
+### Step 3: Fix `home_team` = "Real Madrid"
+Test all candidates for `away_team`:
+- `away_team` = "Leetcode FC": "Real Madrid" $\ne$ "Leetcode FC" $\implies$ Output: `("Real Madrid", "Leetcode FC")`.
+- `away_team` = "Ahly SC": "Real Madrid" $\ne$ "Ahly SC" $\implies$ Output: `("Real Madrid", "Ahly SC")`.
+- `away_team` = "Real Madrid": Identity check fails ("Real Madrid" $==$ "Real Madrid"). Discarded.
 
-Therefore the desired result is not a collection of unordered two-team combinations. It is every ordered pair
+All 6 fixtures are enumerated.
 
-`(home_team, away_team)`
+## 4. Comprehensive State Trace
 
-whose two names differ.
+The full Cartesian product matrix and diagonal filtering decisions are recorded below.
 
-With `t` teams, each team has `t - 1` possible opponents while it is home, so the output contains `t(t - 1)` rows.
+| Row Number | Home Candidate (`t1`) | Away Candidate (`t2`) | Condition `t1 != t2` | Fixture Status | Generated Result Record |
+|---|---|---|---|---|---|
+| 1 | Leetcode FC | Leetcode FC | False (Self-match) | Pruned | - |
+| 2 | Leetcode FC | Ahly SC | True | Accepted | `("Leetcode FC", "Ahly SC")` |
+| 3 | Leetcode FC | Real Madrid | True | Accepted | `("Leetcode FC", "Real Madrid")` |
+| 4 | Ahly SC | Leetcode FC | True | Accepted | `("Ahly SC", "Leetcode FC")` |
+| 5 | Ahly SC | Ahly SC | False (Self-match) | Pruned | - |
+| 6 | Ahly SC | Real Madrid | True | Accepted | `("Ahly SC", "Real Madrid")` |
+| 7 | Real Madrid | Leetcode FC | True | Accepted | `("Real Madrid", "Leetcode FC")` |
+| 8 | Real Madrid | Ahly SC | True | Accepted | `("Real Madrid", "Ahly SC")` |
+| 9 | Real Madrid | Real Madrid | False (Self-match) | Pruned | - |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Teams": [{"team_name": "Leetcode FC"}, {"team_name": "Ahly SC"}, {"team_name": "Real Madrid"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Total rows emitted: $9 - 3 = 6$.
 
----
+## 5. Algorithmic Correctness & Soundness
 
-### Step 2: Use two independent aliases of the same table
+1. **Exhaustive Ordered Permutations:**
+   Every match requires a designated home team and an away team. Because $(A, B) \ne (B, A)$, order matters. The Cartesian product over distinct elements generates all ordered arrangements of size 2 without omitting any valid venue pairing.
 
-The query reads `Teams` twice:
+2. **Reflexive Invariant:**
+   The join predicate `t1.team_name != t2.team_name` strictly eliminates pairs where $t_1 = t_2$, ensuring that no team is scheduled to play against itself.
 
-- `t1` supplies the home-team candidate;
-- `t2` supplies the away-team candidate.
+## 6. Edge Cases & Anti-Patterns
 
-Joining a table to itself forms every possible pairing between a row from the first role and a row from the second role. Before filtering, this includes `t^2` ordered pairs.
+- **Minimal League ($N = 2$):**
+  - For two teams $\{A, B\}$, $2(1) = 2$ rows are produced: $(A, B)$ and $(B, A)$.
+- **Strict Inequality vs Non-Equi Join:**
+  - Using `t1.team_name < t2.team_name` instead of `!=` generates only single round-robin fixtures ($\binom{N}{2}$ rows), omitting the return away leg $(B, A)$. Double round-robin requires `!=` to capture both legs.
+- **Anti-Pattern (Union of Strict Inequalities):**
+  - Writing `WHERE t1 < t2 UNION ALL WHERE t1 > t2` is functionally valid but unnecessarily verbose compared to a single join on `t1 != t2`.
 
-Aliases are required because both sources have a column named `team_name`. `t1.team_name` and `t2.team_name` make the role of each reference unambiguous.
+## 7. Complexity Analysis
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Remove self-matches
-
-The condition
-
-`t1.team_name != t2.team_name`
-
-eliminates pairs in which the same team occupies both roles. The uniqueness guarantee means equal names identify the same team, so this test removes exactly the `t` diagonal self-pairs.
-
-Every remaining row contains two distinct teams and is a legal match.
-
-The query uses `JOIN Teams AS t2` without an `ON` relation and places the relationship in `WHERE`. In MySQL this acts as a Cartesian self-join followed by the inequality filter. Writing `CROSS JOIN` would make the Cartesian intent more explicit, while `JOIN ... ON t1.team_name != t2.team_name` would express the same result.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["home_team", "away_team"], "rows": [["Real Madrid", "Leetcode FC"], ["Real Madrid", "Ahly SC"], ["Leetcode FC", "Real Madrid"], ["Leetcode FC", "Ahly SC"], ["Ahly SC", "Real Madrid"], ["Ahly SC", "Leetcode FC"]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Teams": [{"team_name": "Leetcode FC"}, {"team_name": "Ahly SC"}, {"team_name": "Real Madrid"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["home_team", "away_team"], "rows": [["Real Madrid", "Leetcode FC"], ["Real Madrid", "Ahly SC"], ["Leetcode FC", "Real Madrid"], ["Leetcode FC", "Ahly SC"], ["Ahly SC", "Real Madrid"], ["Ahly SC", "Leetcode FC"]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **`CROSS JOIN` with a WHERE filter:** This is the clearest spelling of the same Cartesian pairing and inequality logic.
-- **Inequality in the `ON` clause:** `JOIN Teams t2 ON t1.team_name != t2.team_name` returns the same directed pairs.
-- **Use `t1.team_name < t2.team_name`:** This emits only one unordered orientation per team pair and would miss the reverse home-away match.
-- **Union two orientations of unordered pairs:** Select each pair once, then union its reversal. This is correct but longer than allowing the Cartesian product to generate both naturally.
-- **Include equality:** That creates invalid matches in which a team plays itself.
-- **One team:** The Cartesian product has one self-pair, the filter removes it, and the correct result is empty.
-- **Two teams:** Exactly two rows remain, one for each home-away direction.
-- **Unique names:** They ensure equality identifies the same team and prevent duplicate ordered outputs.
-- **Duplicate-name invalid input:** Without uniqueness, source-row duplicates could multiply identical match names.
-- **Null names:** The stated team-name model is used as an identifier. Under SQL three-valued logic, null inequality would be unknown; valid source data is expected to provide actual unique names.
-- **Any output order:** No sort is required, avoiding unnecessary work.
-- **Column aliases:** Without them, both output expressions would share the source name `team_name` and fail to present the requested role labels clearly.
-- **Output-size lower bound:** Any correct solution must produce quadratic rows for many teams, so quadratic time is inherent.
-- **No aggregation:** Each pair is already one desired match and should not be grouped.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(t^2)$. Let `t` be the number of teams. The Cartesian self-join considers `t^2` candidate row pairs and filters `t` self-pairs, so time is `O(t^2)`. This is also asymptotically unavoidable because the required output itself contains `t(t-1) = O(t^2)` rows.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N^2)$, where $N$ is the number of teams in `Teams`. A non-equi self-join evaluates the cartesian cross product of size $N \times N = N^2$, filtering out $N$ diagonal entries to emit $N(N - 1)$ result rows.
+- **Space Complexity:** $\mathcal{O}(N^2)$ output buffer memory to transmit the $N(N - 1)$ generated match rows.

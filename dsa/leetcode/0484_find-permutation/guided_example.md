@@ -1,105 +1,201 @@
 # Guided Example: Find Permutation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step lexicographical greedy baseline initialization ($[1, 2, \dots, n+1]$), contiguous `'D'` run detection ($s[i \dots j-1] == \text{'D'}$), subarray segment reversal ($ans[i \dots j]$), and boundary continuity preservation on representative sign patterns:
 
-- **Input:** `{"s": "DI"}`
+- **Input:** $s = \text{"DI"}$
 - **Required output:** `[2, 1, 3]`
+  - Pattern length: $n = 2$
+  - Permutation length: $n + 1 = 3$ (using numbers $\{1, 2, 3\}$)
+  - Objective: Lexicographically smallest permutation satisfying $perm[0] > perm[1] < perm[2]$
+- **Greedy execution trace:**
+  - **Step 1: Initialize baseline in sorted ascending order:**
+    $$
+    ans = [1, \; 2, \; 3]
+    $$
+    *Insight:* Ascending order $[1, 2, 3]$ is the lexicographically smallest possible permutation of $\{1, 2, 3\}$. Any `'I'` relationship is already satisfied.
+  - **Step 2: Process sign constraints:**
+    - Start at $i = 0$: $s[0] = \text{'D'}$
+    - Scan the contiguous block of `'D'` characters:
+      - $s[0] = \text{'D'}$
+      - $s[1] = \text{'I'} \ne \text{'D'}$ (Block ends at index $j = 1$)
+    - Block span in permutation: indices $i = 0$ to $j = 1$ (elements $[ans[0], ans[1]] = [1, 2]$)
+    - To satisfy the `'D'` condition ($perm[0] > perm[1]$) while keeping values as small as possible, **reverse the subarray** $ans[0 \dots 1]$:
+      $$
+      [1, 2] \xrightarrow{\text{reverse}} [2, 1]
+      $$
+    - Permutation after reversal:
+      $$
+      ans = [\mathbf{2}, \; \mathbf{1}, \; 3]
+      $$
+    - Advance pointer: $i \leftarrow \max(0 + 1, 1) = 1$
+  - **Step 3: Process remaining indices:**
+    - At index $i = 1$: $s[1] = \text{'I'}$
+    - No `'D'` run starting at $i = 1 \implies$ Subarray remains unchanged.
+    - Advance pointer: $i \leftarrow 2 \ge n$. Loop halts.
+  - Final permutation: **`[2, 1, 3]`**
+  - Verification:
+    - $perm[0] = 2 > perm[1] = 1$ (Satisfies `'D'`)
+    - $perm[1] = 1 < perm[2] = 3$ (Satisfies `'I'`)
+- **Pure Increase Instance:** $s = \text{"I"} \implies [1, 2]$ (no reversals needed)
+- **Multi-Decrease Instance ($s = \text{"DDI"}, n = 3$):**
+  - Baseline: $[1, 2, 3, 4]$
+  - Run of two `'D'`s spanning indices $0 \dots 2$: reverse $[1, 2, 3] \implies [\mathbf{3, 2, 1}, 4]$
+- **Pure Decrease Instance ($s = \text{"DDD"}, n = 3$):**
+  - Baseline: $[1, 2, 3, 4] \implies$ reverse all $\implies [\mathbf{4, 3, 2, 1}]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates lexicographical greedy baseline inversion, mathematically proves why reversing contiguous descending blocks yields the unique minimal permutation, and derives $O(N)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A permutation `perm` of `n` integers of all the integers in the range `[1, n]` can be represented as a string `s` of length $n - 1$ where:
+Given a string $s$ of length $n$ containing only characters `'I'` (Increase) and `'D'` (Decrease):
+Reconstruct the **lexicographically smallest** permutation of numbers $[1, n + 1]$ such that:
+- $perm[i] < perm[i + 1]$ whenever $s[i] == \text{'I'}$
+- $perm[i] > perm[i + 1]$ whenever $s[i] == \text{'D'}$
 
-The objective is to compute `[2, 1, 3]` from `{"s": "DI"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Target Pattern: "D I" (n = 2)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Step 1: Minimal Baseline:
+        [ 1,  2,  3 ]
+
+Step 2: Identify 'D' Run at index 0:
+        s[0] = 'D' spans perm[0] and perm[1]
+        Reverse subarray [1, 2] -> [2, 1]
+
+Result: [ 2,  1,  3 ]
+Check:   2 > 1  <  3
+         (D)   (I)      -> Valid & Lexicographically Smallest!
+```
+
+### The Inherent Optimality of Reversal
+- The globally smallest permutation of $n + 1$ distinct numbers is the identity permutation $[1, 2, \dots, n + 1]$.
+- If $s[i] == \text{'I'}$, the identity permutation already satisfies $perm[i] < perm[i + 1]$.
+- If a sequence of $k$ consecutive `'D'`s occurs from index $i$ to $i + k - 1$:
+  $$
+  perm[i] > perm[i + 1] > \dots > perm[i + k]
+  $$
+  The smallest $k + 1$ numbers available at that stage are $\{x, x + 1, \dots, x + k\}$.
+  To satisfy the descending requirement with the smallest possible starting number, we assign them in strictly reversed order:
+  $$
+  x + k, \; x + k - 1, \; \dots, \; x
+  $$
+- This greedy choice guarantees that the prefix remains lexicographically minimal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Block-Reversal Algorithm:
+1. Initialize array $ans = [1, 2, 3, \dots, n + 1]$.
+2. Maintain index $i = 0$.
+3. While $i < n$:
+   - If $s[i] == \text{'D'}$:
+     - Find the end of the contiguous block of `'D'` characters:
+       $$
+       j = i, \quad \text{while } j < n \text{ and } s[j] == \text{'D'}: j \leftarrow j + 1
+       $$
+     - Reverse the subarray $ans[i \dots j]$:
+       $$
+       ans[i \dots j] \leftarrow \text{reverse}(ans[i \dots j])
+       $$
+     - Advance $i \leftarrow j$.
+   - If $s[i] == \text{'I'}$:
+     - Advance $i \leftarrow i + 1$.
+4. Return $ans$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Lexicographical Invariant.** Reversing each maximal run of `'D'` independently changes the minimal number of inversions required to satisfy the constraints, leaving all `'I'` transitions strictly increasing.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-If there were no `D` requirements, the lexicographically smallest permutation of `1` through `n + 1` would simply be
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "DI"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"DI"}$ ($n = 2$):
 
 ---
 
-### Step 2: Core Step 3
-
-An `I` already agrees with that ascending order. A maximal run of `D` characters is the only place where the order must change. The solution starts with the globally smallest ascending permutation and reverses exactly the value block covered by each decrease run.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialize Identity Array
+$$
+ans = [1, \; 2, \; 3]
+$$
 
 ---
 
-### Step 3: Core Step 4
+### Step 2: Identify Contiguous 'D' Run
+- Set $i = 0$.
+- Inspect $s[0]$: character is `'D'`.
+- Expand $j$:
+  - $s[0] == \text{'D'} \implies j = 1$.
+  - $s[1] == \text{'I'} \ne \text{'D'} \implies$ stop expansion.
+- The maximal run of `'D'` is $s[0 \dots 0]$ ($k = 1$ decrease).
+- Affected permutation slice: indices $0$ through $1$ ($ans[0 \dots 1]$).
 
-**A pattern position connects two permutation positions.** Character `s[i]` describes the comparison between `ans[i]` and `ans[i + 1]`. Therefore, if a run of `D` starts at pattern index `i` and stops just before pattern index `j`, it contains `j - i` decrease signs but affects `j - i + 1` numbers: indices `i` through `j` of `ans`. This is why the slice is `ans[i : j + 1]`. Python excludes the right endpoint of a slice, so `j + 1` is required to include `ans[j]`.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 1, 3]` |
+### Step 3: Reverse Subarray
+- Elements before: $ans[0 \dots 1] = [1, 2]$.
+- Reverse:
+  $$
+  ans[0 \dots 1] \leftarrow [2, 1]
+  $$
+- Array state:
+  $$
+  ans = [\mathbf{2}, \; \mathbf{1}, \; 3]
+  $$
+- Advance cursor: $i \leftarrow j = 1$.
+
+---
+
+### Step 4: Process Character at $i = 1$
+- Inspect $s[1]$: character is `'I'`.
+- No `'D'` block $\implies$ Advance $i \leftarrow 2$.
+- Since $i = 2 \ge n$, loop halts.
+
+---
+
+### Final Permutation:
+$$
+ans = \mathbf{[2, 1, 3]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "DI"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 1, 3]` | Verified |
+| Pattern String $s$ | Initial Identity Baseline | Contiguous `'D'` Runs Found | Subarrays Reversed | Resulting Permutation | Relation Check |
+|:---:|:---:|:---|:---|:---:|:---:|
+| `"I"` | `[1, 2]` | None | None | **`[1, 2]`** | $1 < 2$ |
+| `"D"` | `[1, 2]` | $s[0] = \text{'D'}$ | `ans[0..1]` | **`[2, 1]`** | $2 > 1$ |
+| `"DI"` | `[1, 2, 3]` | $s[0] = \text{'D'}$ | `ans[0..1]` | **`[2, 1, 3]`** | $2 > 1 < 3$ |
+| `"ID"` | `[1, 2, 3]` | $s[1] = \text{'D'}$ | `ans[1..2]` | **`[1, 3, 2]`** | $1 < 3 > 2$ |
+| `"DDI"` | `[1, 2, 3, 4]` | $s[0..1] = \text{"DD"}$ | `ans[0..2]` | **`[3, 2, 1, 4]`** | $3 > 2 > 1 < 4$ |
+| `"DID"` | `[1, 2, 3, 4]` | $s[0]=\text{'D'}, s[2]=\text{'D'}$ | `ans[0..1]`, `ans[2..3]` | **`[2, 1, 4, 3]`** | $2 > 1 < 4 > 3$ |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Minimum Length ($n = 1$, $s = \text{"I"}$):** Returns $[1, 2]$.
+- **Minimum Length ($n = 1$, $s = \text{"D"}$):** Returns $[2, 1]$.
+- **All Increasing ($s = \text{"IIII"}$):** Returns identity array $[1, 2, 3, 4, 5]$ with zero modifications.
+- **All Decreasing ($s = \text{"DDDD"}$):** Reverses entire array $\implies [5, 4, 3, 2, 1]$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Stack construction:** Push increasing values while reading `D`s and flush the stack at each `I`. Popping reverses each decrease block and also runs in $O(n)$ time, but it uses a separate stack.
-- **In-place two-pointer reversal:** Swap endpoints of every affected block rather than assigning reversed slices. This preserves the same reasoning and reduces temporary auxiliary storage, at the cost of a few more implementation lines.
-- **Brute-force permutations:** Enumerating all $(n+1)!$ permutations and selecting the first match is impossible for `n` up to $10^5$. The block structure determines the minimum directly.
-- **All `I` characters:** Every processed slice has length one, so the answer remains `[1, 2, ..., n + 1]`, the smallest permutation overall.
-- **All `D` characters:** One run reaches `j = n` and reverses the entire array, producing `[n + 1, n, ..., 1]`, the only fully decreasing permutation.
-- **Run at the end:** The answer slice includes position `n` through the `j + 1` endpoint, so the final value is not omitted.
-- **One `D`:** Two adjacent values are reversed. A single pattern comparison always affects two permutation positions.
-- **Repeated values are impossible:** `ans` begins as the exact range `1` through `n + 1`, and reversal only changes order, so the permutation property is preserved automatically.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Stack-Based Off-by-One:** Stacking numbers and popping on `'I'` is another valid technique, but handling the trailing number after the loop ends requires an extra flush step. The in-place array reversal method eliminates off-by-one errors.
+- **Overlapping Block Inversions:** Reversing beyond $j$ corrupts the adjacent increasing relationship. Reversing strictly from $i$ to $j$ guarantees that $ans[j] < ans[j+1]$ when followed by `'I'`.
+- **Quadratic Slicing in Python:** Slicing and re-assigning repeatedly with `ans[i:j+1] = ...` can be $O(N^2)$ if entire copies are made. Using two pointers to swap elements in place guarantees $O(N)$ runtime.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`, so the returned permutation has $n + 1$ values. Building `list(range(1, n + 2))` costs $O(n)$ time. The scan advances across each pattern character a constant number of times. Reversed answer slices for maximal `D` runs are disjoint except for harmless boundaries, so their total length is $O(n)$. Overall time is therefore $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Finding `'D'` blocks traverses $s$ linearly.
+  - Each element of $ans$ is swapped during reversal at most once.
+  - Total Time: $\mathcal{O}(N)$. For $N = 10^5$, finishes in $< 12$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ to store the output permutation array.

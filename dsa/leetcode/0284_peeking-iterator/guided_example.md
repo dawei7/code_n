@@ -1,123 +1,206 @@
 # Guided Example: Peeking Iterator
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step single-element lookahead buffer management, idempotent `peek()` caching, cache-consuming `next()` dispatch, and virtualized `hasNext()` queries on representative iterator sequences:
 
-- **Input:** `{"iterator_data": [1, 2, 3], "operations": ["next", "peek", "next", "next", "hasNext"]}`
+- **Input:** Underlying iterator over $[1, 2, 3]$; operations: `["next", "peek", "next", "next", "hasNext"]`
 - **Required output:** `[1, 2, 2, 3, false]`
+- **Consecutive Peeks:** Calling `peek()` multiple times in succession returns the same cached element without advancing the underlying iterator
+- **Peek at Final Element:** After peeking the last element ($3$), the underlying iterator becomes exhausted, but `hasNext()` continues to return `true` because the cached element remains pending
+- **Generic Support:** Uses an explicit boolean flag `has_peeked` rather than sentinel checking (`None`), supporting arbitrary generic types including `null` and boolean values
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates wrapper adapter design patterns, explains the separation between the physical position of the wrapped iterator and the logical position presented to the caller, details lookahead cache transitions, and ensures all operations (`peek`, `next`, `hasNext`) run in strictly $O(1)$ constant time and $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design an iterator that supports the `peek` operation on an existing iterator in addition to the `hasNext` and the `next` operations.
+Given an underlying sequential iterator over array $[1, 2, 3]$ supporting only:
+- `next() -> int`: advances to and returns the next element.
+- `hasNext() -> bool`: checks if more elements exist.
 
-The objective is to compute `[1, 2, 2, 3, false]` from `{"iterator_data": [1, 2, 3], "operations": ["next", "peek", "next", "next", "hasNext"]}` while avoiding redundant calculations and unnecessary overhead.
+Design `PeekingIterator` to support a non-advancing `peek()` operation:
+```text
+Step 1: next()    -> returns 1 (underlying iterator advances to 2)
+Step 2: peek()    -> inspects 2 without logical advance (caches 2)
+Step 3: next()    -> returns 2 (consumes cached 2)
+Step 4: next()    -> returns 3 (underlying iterator advances to end)
+Step 5: hasNext() -> returns False (stream is exhausted)
+Output: [1, 2, 2, 3, false]
+```
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The Inherent Destructiveness of `next()`
+The underlying iterator has no backward seek or rewind functionality.
+To inspect the next element without advancing the client's logical cursor:
+1. We must physically call `iterator.next()` to fetch the upcoming value.
+2. We store that value in a 1-element cache (`peeked_element`).
+3. When the user later calls `next()`, we return the cached value rather than advancing the underlying iterator again.
+4. When the user calls `hasNext()`, we report `true` if either the cache is occupied OR the underlying iterator has more elements.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Internal State Representation
+- `self.iterator`: The wrapped underlying iterator.
+- `self.has_peeked: bool = False`: A boolean flag indicating whether the 1-element lookahead buffer is currently holding an unconsumed value.
+- `self.peeked_element`: The cached value (valid only when `has_peeked` is True).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+*(Crucial Architecture: We do not check `peeked_element is not None` because in generic collections, `None` or `0` can be a valid data element. An explicit boolean flag guarantees generic correctness)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Operation Protocols
+
+#### 1. `peek()`
+- If `not self.has_peeked`:
+  Fetch from underlying iterator:
+  $$
+  \text{self.peeked\_element} \leftarrow \text{self.iterator.next()}
+  $$
+  $$
+  \text{self.has\_peeked} \leftarrow \text{True}
+  $$
+- Return `self.peeked_element`.
+
+#### 2. `next()`
+- If `not self.has_peeked`:
+  Delegate directly to the underlying iterator:
+  $$
+  \text{return self.iterator.next()}
+  $$
+- If `self.has_peeked`:
+  Consume the cached element and clear the buffer:
+  $$
+  \text{res} = \text{self.peeked\_element}
+  $$
+  $$
+  \text{self.has\_peeked} \leftarrow \text{False}, \quad \text{self.peeked\_element} \leftarrow \text{None}
+  $$
+  $$
+  \text{return res}
+  $$
+
+#### 3. `hasNext()`
+A next element exists if either a peeked element is waiting in the buffer OR the underlying iterator has unread elements:
+$$
+\text{return self.has\_peeked or self.iterator.hasNext()}
+$$
+
+> **Invariant.** The logical next element visible to the caller is `self.peeked_element` if `has_peeked` is True, or `self.iterator.next()` otherwise. The underlying iterator is never ahead of the caller's logical view by more than 1 position.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why peeking requires one saved value
-
-The underlying iterator exposes only `next()` and `hasNext()`. Calling its `next()` is destructive from the caller's perspective: it returns the current element and advances the underlying position. There is no method for moving that iterator backward.
-
-To implement `peek()`, the wrapper must learn the next value without advancing its own logical position. The only available way to learn that value is to call the underlying `next()`, so the wrapper must save the returned element and give it back later when its own `next()` is called.
-
-Only one value of lookahead is required. `peek()` asks about the immediate next element, not an arbitrary future offset. The exact source stores that one possible value in `peeked_element` and records whether the cache is occupied in `has_peeked`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"iterator_data": [1, 2, 3], "operations": ["next", "peek", "next", "next", "hasNext"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the operational sequence on array $[1, 2, 3]$:
+Initial state: `has_peeked = False, peeked_element = None`.
+Underlying iterator points to index 0 (element $1$).
 
 ---
 
-### Step 2: Use a flag instead of treating `None` as the state
-
-The constructor initializes
-
-
-
-The Boolean is the authoritative state. `peeked_element` is meaningful only when `has_peeked` is true. This separation is stronger than checking whether the cached value is `null`: in a generic iterator, `null` might itself be a legitimate element. A separate occupancy flag distinguishes “a cached value whose value happens to be `null`” from “there is no cached value.”
-
-Although the current problem uses positive integers, the exact design already contains the key mechanism needed by the generic follow-up.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Operation `next()`
+- Cache check: `has_peeked == False`.
+- Action: Fetch directly from underlying iterator.
+  $$
+  \text{res} = \text{iterator.next()} = \mathbf{1}
+  $$
+- Underlying iterator moves to index 1 (element $2$).
+- State: `has_peeked = False, peeked_element = None`.
+- Emitted: $1$.
 
 ---
 
-### Step 3: Two logical states describe the wrapper
+### Step 2: Operation `peek()`
+- Cache check: `has_peeked == False`.
+- Action: Prefetch upcoming element from underlying iterator.
+  $$
+  \text{peeked\_element} \leftarrow \text{iterator.next()} = \mathbf{2}
+  $$
+  $$
+  \text{has\_peeked} \leftarrow \text{True}
+  $$
+- Underlying iterator physically moves to index 2 (element $3$).
+- State: `has_peeked = True, peeked_element = 2`.
+- Emitted: $2$.
+*(Logical cursor remains at element 2!)*.
 
-When `has_peeked` is false, no element is buffered. The wrapper's next logical value is still the underlying iterator's next value.
+---
 
-When `has_peeked` is true, `peeked_element` is the wrapper's next logical value. The underlying iterator has already advanced one position beyond it, but that advancement is hidden from users until the wrapper's `next()` consumes the cache.
+### Step 3: Operation `next()`
+- Cache check: `has_peeked == True`.
+- Action: Consume cached value without touching underlying iterator.
+  $$
+  \text{res} = \text{peeked\_element} = \mathbf{2}
+  $$
+  $$
+  \text{has\_peeked} \leftarrow \text{False}, \quad \text{peeked\_element} \leftarrow \text{None}
+  $$
+- Underlying iterator remains at index 2 (element $3$).
+- State: `has_peeked = False, peeked_element = None`.
+- Emitted: $2$.
 
-This distinction between physical underlying position and logical wrapper position is the heart of the design. A peek may advance the wrapped object internally, yet the public sequence does not advance because the fetched value remains pending in the cache.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 2, 3, false]` |
+### Step 4: Operation `next()`
+- Cache check: `has_peeked == False`.
+- Action: Fetch directly from underlying iterator.
+  $$
+  \text{res} = \text{iterator.next()} = \mathbf{3}
+  $$
+- Underlying iterator advances past the end of the array.
+- State: `has_peeked = False, peeked_element = None`.
+- Emitted: $3$.
+
+---
+
+### Step 5: Operation `hasNext()`
+- Evaluation:
+  $$
+  \text{self.has\_peeked} \lor \text{self.iterator.hasNext()} = \text{False} \lor \text{False} = \mathbf{\text{False}}
+  $$
+- Emitted: `false`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"iterator_data": [1, 2, 3], "operations": ["next", "peek", "next", "next", "hasNext"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 2, 3, false]` | Verified |
+```text
+Underlying: [1, 2, 3]
+
+1. next():    has_peeked=F -> iterator.next() -> 1
+2. peek():    has_peeked=F -> peeked_element=iterator.next()=2, has_peeked=T -> return 2
+3. next():    has_peeked=T -> return 2, has_peeked=F, peeked=None
+4. next():    has_peeked=F -> iterator.next() -> 3
+5. hasNext(): has_peeked=F and iterator.hasNext()=F -> return False
+
+Results: [1, 2, 2, 3, false]
+```
+
+| Step | Method Called | Cache Status Before Call | Action Taken | Returned Value | Cache Status After Call | Underlying Iterator State |
+|:---:|:---:|:---:|:---|:---:|:---:|:---|
+| 1 | `next()` | Empty (`False`) | Read directly from iterator | **1** | Empty (`False`) | Points to 2 |
+| **2** | `peek()` | Empty (`False`) | **Prefetch into cache** | **2** | **Full (`True`, val $= 2$)** | Points to 3 |
+| **3** | `next()` | **Full (`True`, val $= 2$)** | **Consume from cache** | **2** | **Empty (`False`)** | Points to 3 |
+| 4 | `next()` | Empty (`False`) | Read directly from iterator | **3** | Empty (`False`) | Exhausted |
+| **5** | `hasNext()` | Empty (`False`) | Evaluate `has_peeked or hasNext()` | **`false`** | Empty (`False`) | Exhausted |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `peek()` returns the immediate upcoming element without advancing the user's visible sequence. When `next()` follows `peek()`, it yields the identical value that was displayed by `peek()`, fulfilling the contract of lookahead idempotency.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** `hasNext()` returns `True` whenever either `has_peeked` is True (a value is buffered in memory ready to be served) or `iterator.hasNext()` is True (more values remain in the source). No element is skipped or duplicated.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Prefetch in the constructor:** Always store the next element immediately and refill after every `next()`. This can simplify method branches, but construction must handle an empty iterator and performs work even if no method is called. The exact source fetches lazily.
-- **Copy all remaining values:** Materializing the iterator into a list makes peeking easy but uses $O(n)$ space, fails for infinite streams, and defeats the iterator abstraction.
-- **Use `null` as the only sentinel:** This works only if `null` can never be a real element. The explicit `has_peeked` flag is safer and supports generic value types.
-- **Repeated peeks:** Only the first fills the cache. Every later peek returns the same pending value without advancing anything further.
-- **Peek at the final element:** The underlying iterator becomes physically exhausted, but `hasNext()` remains true because the cached final element is still logically available.
-- **Next after peek:** It must return the cache and must not call the underlying iterator again, or the peeked value would be skipped.
-- **Next without peek:** Direct delegation is correct because no buffered value stands between the wrapper and the underlying sequence.
-- **Valid-call guarantee:** The source assumes `peek()` and `next()` are never requested when no logical element remains. It does not define a custom exception path for invalid calls.
-- **Empty iterator outside current constraints:** Construction remains safe because it does not prefetch. `hasNext()` delegates and returns false; invalid `peek()` or `next()` would rely on the underlying iterator's behavior.
-- **Generic values:** Replacing integer-specific annotations with a type parameter is sufficient for storage and returns. The existing Boolean occupancy flag already permits falsey values such as `0`, `false`, empty strings, and even `null`.
-- **External use of the wrapped iterator:** The wrapper assumes exclusive control of the supplied iterator after construction. Advancing it separately would desynchronize the cached logical view and is outside the intended design.
-- **Thread safety:** Concurrent method calls could race on the cache fields. The interview design is single-threaded; a shared concurrent wrapper would need synchronization.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Calling Underlying `next()` on Every `peek()`:** If `peek()` is called three times in a row, naively calling `iterator.next()` on each invocation would advance the underlying iterator 3 times, skipping elements! Guarding with `if not self.has_peeked` ensures prefetching happens at most once until consumed.
+- **Using `None` as an Empty-Cache Sentinel:** In generic languages (e.g. Java, Python), a list can contain `None` or `null` as valid elements. Checking `if self.peeked_element is not None` fails when `None` is the stored value. An independent boolean flag `has_peeked` prevents this bug.
+- **Underlying Iterator Exhaustion After `peek()`:** When peeking at the final element, the underlying iterator's `hasNext()` becomes False. If `hasNext()` only checked the underlying iterator, it would incorrectly report that no elements remain! Checking `self.has_peeked or self.iterator.hasNext()` properly preserves the availability of the cached element.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Each wrapper method performs a constant number of flag checks, assignments, and at most one underlying iterator call. Assuming the supplied iterator's `next()` and `hasNext()` are $O(1)$, constructor, `peek()`, `next()`, and `hasNext()` each take $O(1)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$ constant time for all operations (`peek`, `next`, `hasNext`). Each operation executes at most a constant number of attribute checks, assignments, and at most one underlying iterator call.
+- **Auxiliary Space Complexity:** $O(1)$ constant auxiliary space. Only a single lookahead variable (`peeked_element`) and a boolean flag (`has_peeked`) are stored.

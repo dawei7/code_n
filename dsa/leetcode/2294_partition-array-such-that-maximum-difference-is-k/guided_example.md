@@ -1,117 +1,168 @@
 # Guided Example: Partition Array Such That Maximum Difference Is K
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [3, 6, 1, 2, 5], "k": 2}`
-- **Required output:** `2`
+We are given an integer array $nums$ and an integer $k$. We must partition $nums$ into one or more non-empty subsequences such that each element of $nums$ appears in exactly one subsequence, and for each individual subsequence, the difference between its maximum and minimum elements does not exceed $k$:
+$$\max(S) - \min(S) \le k \quad \text{for all partition blocks } S$$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our goal is to determine the minimum number of subsequences required to satisfy this condition across the entire array.
+
+Consider the representative problem instance:
+$$nums = [3, 6, 1, 2, 5], \quad k = 2$$
+
+Let us sort the elements in ascending numerical order:
+$$nums_{\text{sorted}} = [1, 2, 3, 5, 6]$$
+
+Tracing the partition boundaries:
+- **First Subsequence Group:**
+  - The smallest available element is $1$.
+  - Any group containing $1$ can only include values up to $1 + k = 1 + 2 = 3$.
+  - Examining candidates: $1 \le 3$, $2 \le 3$, $3 \le 3$.
+  - All three values fall within the span $[1, 3]$.
+  - Thus, group $S_1 = \{1, 2, 3\}$ has $\max - \min = 3 - 1 = 2 \le 2$.
+- **Second Subsequence Group:**
+  - The next uncovered element is $5 > 3$. It cannot join $S_1$.
+  - It becomes the anchor for a new group with upper ceiling $5 + k = 5 + 2 = 7$.
+  - Examining remaining candidates: $5 \le 7$ and $6 \le 7$.
+  - Group $S_2 = \{5, 6\}$ has $\max - \min = 6 - 5 = 1 \le 2$.
+
+All elements are covered using $2$ subsequences. No single subsequence can cover both $1$ and $6$ because $6 - 1 = 5 > 2$. Thus, the minimum number of subsequences is $2$.
+
+```mermaid
+flowchart TD
+    accTitle: Greedy Interval Stabbing on Sorted Sequence
+    accDescr: Diagram illustrating sorting and greedy interval coverage where each interval of length k is anchored at the smallest remaining uncovered value.
+    A["Raw Array: [3, 6, 1, 2, 5], k = 2"] --> B["Sort ascending: [1, 2, 3, 5, 6]"]
+    B --> C["Anchor 1: a = 1. Valid span [1, 1 + 2] = [1, 3]"]
+    C --> D["Include {1, 2, 3} in Group 1"]
+    D --> E{"Next element 5 > 3?"}
+    E -- Yes --> F["Start Group 2: Anchor a = 5. Valid span [5, 5 + 2] = [5, 7]"]
+    F --> G["Include {5, 6} in Group 2"]
+    G --> H["End of array reached: Total groups = 2"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-You are given an integer array `nums` and an integer `k`. You may partition `nums` into one or more **subsequences** such that each element in `nums` appears in **exactly** one of the subsequences.
+### Order Independence of Subsequence Partitioning
 
-The objective is to compute `2` from `{"nums": [3, 6, 1, 2, 5], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+A subsequence is formed by choosing an arbitrary subset of indices and reading them in their original left-to-right order. Crucially, the definition of a subsequence does **not** restrict which subset of elements may be chosen—any subset of array elements forms a valid subsequence when sorted by their original indices.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Consequently, partitioning an array into valid subsequences is mathematically equivalent to partitioning the multiset of values into clusters $S_1, S_2, \dots, S_m$ satisfying:
+$$\max_{x \in S_j} x - \min_{x \in S_j} x \le k \quad \text{for all } j \in \{1, \dots, m\}$$
 
----
+Sorting the elements does not change multiset membership or alter the minimum number of clusters required.
 
-## 2. Conceptual Foundation & Invariants
+### Optimality of Greedy Left-Anchor Interval Stabbing
 
-We maintain the core conceptual parameters and state variables:
+Let the sorted elements be $x_1 \le x_2 \le \dots \le x_n$.
+1. **Left-Anchor Lemma:** The global minimum $x_1$ must belong to some cluster $S$. Because $\max(S) - \min(S) \le k$ and $\min(S) \ge x_1$, every element $y \in S$ must satisfy $y \le x_1 + k$.
+2. **Greedy Dominance:** Suppose an optimal solution assigns a subset $S^* \subset [x_1, x_1 + k]$ to the first cluster. If we greedily expand $S^*$ to include **all** elements in the interval $[x_1, x_1 + k]$, the remaining uncovered elements form a subset of the remaining elements in the optimal solution. Removing elements from future clusters can never increase the number of clusters needed to cover the remainder.
+3. Therefore, greedily covering all elements in $[x_1, x_1 + k]$ before anchoring the next interval at the smallest uncovered element is strictly optimal.
 
-| State Parameter | Role & Purpose | Initial State |
+| Algorithmic State Variable | Definition | Invariant Maintained |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why sorting values does not violate subsequence rules
-
-A subsequence must preserve the original relative order of the elements assigned to it, but the problem does not prescribe which elements belong together. Once a group of array positions has been chosen, reading those positions in original order automatically forms a valid subsequence.
-
-Therefore, group feasibility depends only on the values assigned to each group, specifically its minimum and maximum. Sorting the values is safe for deciding membership even though the final subsequences could be reconstructed in original order.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [3, 6, 1, 2, 5], "k": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Anchor $a$ | Smallest uncovered value in the current cluster | Sets the interval boundary $[a, a + k]$ |
+| Probe Element $b$ | Next sorted element under inspection | Tests condition $b - a \le k$ |
+| Group Counter $ans$ | Running count of allocated intervals | Tracks minimum necessary intervals |
 
 ---
 
-### Step 2: Start a group at the smallest uncovered value
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-After `nums.sort()`, the first value not assigned to a previous group is the smallest remaining value. Call it `a`. Any valid group containing `a` may include only values at most `a+k`, because `a` is that group's minimum.
+Let us trace the algorithm on $nums = [3, 6, 1, 2, 5]$ with $k = 2$.
 
-The greedy method includes every following sorted value `b` satisfying `b-a \le k`. Once a value has been placed within this interval, adding it cannot invalidate the group: its maximum remains no more than `a+k`.
+### Step 1: Ascending Sort
+We sort $nums$ in non-decreasing order:
+$$nums = [1, 2, 3, 5, 6]$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Initialize Greedy Pointers
+- Start with the first group: $ans = 1$.
+- Set first anchor: $a = nums[0] = 1$.
+- Valid range for this group: $[1, 1 + 2] = [1, 3]$.
 
----
+### Step 3: Sequential Scan Across Elements
 
-### Step 3: Start a new group at the first value outside the range
+- **Element $b = nums[0] = 1$:**
+  - Difference $b - a = 1 - 1 = 0 \le 2$.
+  - Element is covered by the current group.
 
-When `b-a>k`, `b` cannot join the current group. Since later sorted values are at least `b`, none of them can join it either.
+- **Element $b = nums[1] = 2$:**
+  - Difference $b - a = 2 - 1 = 1 \le 2$.
+  - Element is covered by the current group.
 
-The code increments `ans` and sets `a=b`. This makes `b` the minimum of the next group and gives that group the widest possible valid reach, through `b+k`.
+- **Element $b = nums[2] = 3$:**
+  - Difference $b - a = 3 - 1 = 2 \le 2$.
+  - Element is covered by the current group.
 
-The nonempty input initializes `ans=1` and `a=nums[0]`. The loop includes the first value, but its difference from itself is zero, so it does not create an extra group.
+- **Element $b = nums[3] = 5$:**
+  - Difference $b - a = 5 - 1 = 4 > 2$.
+  - $5$ cannot fit in the group anchored at $1$.
+  - A new group must be started:
+    - Increment group count: $ans \leftarrow ans + 1 = 2$.
+    - Reset anchor to current element: $a \leftarrow 5$.
+  - Valid range for new group: $[5, 5 + 2] = [5, 7]$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+- **Element $b = nums[4] = 6$:**
+  - Difference $b - a = 6 - 5 = 1 \le 2$.
+  - Element is covered by the new group.
 
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [3, 6, 1, 2, 5], "k": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Build groups in original order:** Greedy placement by arrival order can waste range capacity because a later small value may change a group's minimum.
-- **Explicit interval covering:** The sorted problem is equivalent to covering all values with the fewest intervals of width `k`; starting each interval at the smallest uncovered value yields the same greedy method.
-- **Dynamic programming:** It can model sorted prefixes but adds unnecessary state because the greedy boundary is forced.
-- **Counting sort:** The bounded value range permits it, but comparison sorting is simpler and already meets the bound.
-- **One element:** The initialized single group is the answer.
-- **All values equal:** Every value fits in one group for any nonnegative `k`.
-- **Zero** `k`: The answer is the number of distinct values.
-- **Difference exactly** `k`: The condition uses `>k` to start a new group, so equality remains valid.
-- **Large gaps:** Each first value beyond the active interval starts a necessary new group.
-- **Duplicates across a boundary:** Equal values cannot straddle a greedy boundary because sorted equals are adjacent and have zero difference.
-- **Subsequence ordering:** Membership is chosen by value, then original order within each membership set supplies a legal subsequence.
-- **Input mutation:** The original ordering of `nums` is destroyed by sorting.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Step 4: Termination
+All elements have been processed. The final value of $ans$ is $2$.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comprehensive State Trace
 
-- **Time Complexity:** $O(n)$. Let `n` be the number of values. Sorting takes `O(n\log n)` time and the greedy scan takes `O(n)`, for total `O(n\log n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Iteration Index | Current Value $b$ | Active Anchor $a$ | Span Check $b - a$ | Threshold $\le k$ ($k=2$) | Decision | Updated $ans$ | Updated Anchor $a$ |
+|---|---|---|---|---|---|---|---|
+| Init | - | - | - | - | Initialize | $1$ | $1$ |
+| $0$ | $1$ | $1$ | $0$ | True | Included in Group 1 | $1$ | $1$ |
+| $1$ | $2$ | $1$ | $1$ | True | Included in Group 1 | $1$ | $1$ |
+| $2$ | $3$ | $1$ | $2$ | True | Included in Group 1 | $1$ | $1$ |
+| $3$ | $5$ | $1$ | $4$ | False | Start Group 2 | $2$ | $5$ |
+| $4$ | $6$ | $5$ | $1$ | True | Included in Group 2 | $2$ | $5$ |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Soundness of Group Feasibility
+By construction, every group contains a contiguous slice $[i, j]$ of the sorted array such that:
+$$nums[j] - nums[i] \le k$$
+Because the array is sorted, $nums[i] \le nums[t] \le nums[j]$ for all $i \le t \le j$. Thus, for any pair $u, v \in [i, j]$, $|nums[u] - nums[v]| \le nums[j] - nums[i] \le k$. Each group is guaranteed to be valid.
+
+### Minimality Proof via Stabbing Disjoint Sub-intervals
+Let the sequence of chosen anchors be $a_1, a_2, \dots, a_m$. By definition:
+$$a_2 > a_1 + k, \quad a_3 > a_2 + k, \quad \dots, \quad a_m > a_{m-1} + k$$
+This implies that for any $p < q$:
+$$a_q - a_p > k$$
+Thus, no two anchor elements $a_p$ and $a_q$ can ever belong to the same valid subsequence. Any valid partition must place each of the $m$ distinct anchors into separate subsequences. Therefore, at least $m$ subsequences are mathematically necessary. Since the algorithm achieves exactly $m$, the solution is minimal.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Anti-Pattern: Backtracking or Dynamic Programming
+Because the problem mentions partitioning into subsequences, one might suspect an NP-hard set partition problem or complex DP. However, the geometric 1D metric structure combined with the unrestricted nature of subsequences makes greedy interval stabbing strictly optimal.
+
+### Edge Case: $k = 0$
+When $k = 0$, only identical values can be grouped together. The condition $b - a > 0$ triggers whenever a new distinct value appears. The answer equals the count of unique elements in $nums$.
+
+### Edge Case: Large $k \ge \max(nums) - \min(nums)$
+When $k$ spans the entire array range, $nums[n-1] - nums[0] \le k$. The anchor never changes, and the algorithm returns $1$.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Sorting:** Sorting an array of length $n$ takes $O(n \log n)$ time.
+- **Linear Scan:** The single pass over the sorted array evaluates each element in $O(1)$ time, taking $O(n)$ operations.
+- **Overall Time Complexity:** $O(n \log n)$, dominated by sorting.
+
+### Space Complexity
+- In-place sorting algorithms (such as Heapsort or introsort) require $O(1)$ to $O(\log n)$ call stack space.
+- Only scalar variables ($ans, a, b$) are allocated.
+- **Auxiliary Space Complexity:** $O(1)$ or $O(\log n)$ depending on the sort implementation.

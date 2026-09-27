@@ -1,115 +1,201 @@
 # Guided Example: Odd Even Jump
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step determinization of odd and even jump destinations via ordered map lookups, prove the Directed Acyclic State Transition Theorem and the Alternating Parity Reachability Invariant, and determine all good starting indices across representative arrays:
 
-- **Input:** `{"arr": [10, 13, 12, 14, 15]}`
-- **Required output:** `2`
+- **Representative Instance 1 (Five Elements with Diverging Trajectories):**
+  $$
+  arr = [10, \; 13, \; 12, \; 14, \; 15], \quad n = 5
+  $$
+- **Required Output:** `2`
+  - Jump rules from index $i$:
+    - **Odd jump (Jump 1, 3, 5, ...):** Jump to smallest $arr[j] \ge arr[i]$ with $j > i$. Ties broken by smallest index $j$.
+    - **Even jump (Jump 2, 4, 6, ...):** Jump to largest $arr[j] \le arr[i]$ with $j > i$. Ties broken by smallest index $j$.
+  - Compute jump destinations $g[i][\text{parity}]$ ($1 = \text{odd}, 0 = \text{even}$) via reverse scan:
+    - Index $4$ ($15$): Destination is the target $n - 1 = 4$. (Always good!)
+    - Index $3$ ($14$):
+      - Odd jump: smallest $\ge 14$ is $15$ at index $4 \implies g[3][1] = 4$.
+      - Even jump: largest $\le 14$ is none $\implies g[3][0] = -1$.
+    - Index $2$ ($12$):
+      - Odd jump: smallest $\ge 12$ is $14$ at index $3 \implies g[2][1] = 3$.
+      - Even jump: largest $\le 12$ is none $\implies g[2][0] = -1$.
+    - Index $1$ ($13$):
+      - Odd jump: smallest $\ge 13$ is $14$ at index $3 \implies g[1][1] = 3$.
+      - Even jump: largest $\le 13$ is $12$ at index $2 \implies g[1][0] = 2$.
+    - Index $0$ ($10$):
+      - Odd jump: smallest $\ge 10$ is $12$ at index $2 \implies g[0][1] = 2$.
+      - Even jump: none $\implies g[0][0] = -1$.
+  - Simulate paths starting with an **odd jump** ($k = 1$):
+    - **Start at index 4:** Already at index $4 \implies$ **Good!** (Count: 1)
+    - **Start at index 3:** Odd jump $\to 4$ (Target reached) $\implies$ **Good!** (Count: 2)
+    - **Start at index 2:** Odd jump $\to 3$, next is even jump from $3$. But $g[3][0] = -1$ (Blocked!) $\implies$ Bad.
+    - **Start at index 1:** Odd jump $\to 3$, next is even jump from $3 \to -1$ (Blocked!) $\implies$ Bad.
+    - **Start at index 0:** Odd jump $\to 2$, next is even jump from $2 \to -1$ (Blocked!) $\implies$ Bad.
+  - Good starting indices: $\{3, 4\} \implies \mathbf{2}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Duplicate Value Ties):**
+  $$
+  arr = [2, \; 3, \; 1, \; 1, \; 4] \implies \text{good starts at indices } \{1, 3, 4\} \implies \mathbf{3}
+  $$
+
+- **Representative Instance 3 (Single Element Array):**
+  $$
+  arr = [7] \implies \text{index } 0 \text{ is already at end } \implies \mathbf{1}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `arr`. From some starting index, you can make a series of jumps. The (1^st, 3^rd, 5^th, ...) jumps in the series are called **odd-numbered jumps**, and the (2^nd, 4^th, 6^th, ...) jumps in the series are called **even-numbered jumps**. Note that the **jumps** are numbered, not the indices.
+Given an integer array `arr`, determine the number of **good starting indices**.
+From a start index $i$, we perform alternating jumps starting with Jump 1 (an odd jump):
+- **Odd Jump:** Jump to index $j > i$ minimizing $arr[j]$ subject to $arr[j] \ge arr[i]$. If tied, pick minimal $j$.
+- **Even Jump:** Jump to index $j > i$ maximizing $arr[j]$ subject to $arr[j] \le arr[i]$. If tied, pick minimal $j$.
+A starting index $i$ is good if, following this deterministic alternating path, we eventually reach index $n - 1$.
 
-The objective is to compute `2` from `{"arr": [10, 13, 12, 14, 15]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Jump Graph from arr = [10, 13, 12, 14, 15]:
+  Index 0 (10) --[odd]--> Index 2 (12) --[even]--> BLOCKED (-1)
+  Index 1 (13) --[odd]--> Index 3 (14) --[even]--> BLOCKED (-1)
+  Index 2 (12) --[odd]--> Index 3 (14) --[even]--> BLOCKED (-1)
+  Index 3 (14) --[odd]--> Index 4 (15) [TARGET REACHED!]
+  Index 4 (15) [TARGET REACHED AT START!]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Good starting indices: {3, 4} -> Total: 2
+```
 
----
+A brute-force forward simulation for each of the $N$ start indices takes $\mathcal{O}(N^2)$ time, failing on $N = 50{,}000$.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Separate jump destination computation from reachability
-
-For each index, an odd jump has one deterministic destination and an even jump has another, or no legal destination.
-
-The solution first computes these destinations using an ordered map, then uses memoized DFS to determine which starts reach the final index.
-
-Table `g[i][1]` stores odd-jump destination. `g[i][0]` stores even-jump destination.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [10, 13, 12, 14, 15]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Monotone Next-Jump Determinism & DAG Reachability Invariant**:
+1. **Jump Determinism:** From any index $i$, the odd-jump destination and even-jump destination are uniquely determined by future elements $j > i$.
+2. **Reverse Ordered Map Lookups:** Scanning from right to left ($n - 1 \to 0$) while maintaining a `SortedDict` allows binary-searching the ceiling (`bisect_left`) and floor (`bisect_right - 1`) in $\mathcal{O}(\log N)$ time per index.
+3. **Cycle-Free DAG Property:** Since every jump strictly advances forward ($j > i$), the state graph of pairs $(i, \text{parity})$ is a Directed Acyclic Graph (DAG), enabling linear $\mathcal{O}(N)$ dynamic programming or memoized depth-first search.
 
 ---
 
-### Step 2: Process indices from right to left
+## 2. Conceptual Foundation & The Alternating Reachability Invariant
 
-A jump must go to a larger index. When processing `i` from right to left, `SortedDict sd` contains exactly values at future indices.
+```mermaid
+flowchart TD
+    accTitle: Odd Even Jump Preprocessing and Reachability Pipeline
+    accDescr: Flowchart illustrating reverse scan with SortedDict to find next odd and even jumps, followed by memoized reachability DFS
+    Start["Initialize g[n][2] with -1, SortedDict sd"] --> ReverseLoop["For i from n - 1 down to 0:"]
+    ReverseLoop --> FindOdd["Ceiling: j = sd.bisect_left(arr[i])\ng[i][1] = sd.values()[j]"]
+    ReverseLoop --> FindEven["Floor: j = sd.bisect_right(arr[i]) - 1\ng[i][0] = sd.values()[j]"]
+    ReverseLoop --> Insert["sd[arr[i]] = i"]
+    Insert --> ReverseLoop
+    ReverseLoop -->|"Preprocessing complete"| ReachDFS["For each start i: dfs(i, parity=1)"]
+    ReachDFS --> CheckTarget{"i == n - 1 ?"}
+    CheckTarget -->|"Yes"| RetTrue["Return True"]
+    CheckTarget -->|"No"| CheckNext{"g[i][parity] == -1 ?"}
+    CheckNext -->|"Yes"| RetFalse["Return False"]
+    CheckNext -->|"No"| Advance["Return dfs(g[i][parity], parity ^ 1)"]
+    Advance --> Accumulate["Sum reachability for all i in [0, n - 1]"]
+```
 
-Its keys are array values in sorted order, and each key maps to the smallest future index having that value.
+### The Alternating DAG Reachability Theorem
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $V = \{0, 1, \dots, n-1\} \times \{0, 1\}$ be the set of state pairs $(i, k)$, where $i$ is the current index and $k \in \{0, 1\}$ indicates the parity of the upcoming jump ($1 = \text{odd}, 0 = \text{even}$).
+1. **Uniqueness of Jumps:**
+   For any state $(i, k)$:
+   - If $k = 1$: $j = \arg\min \{j > i : arr[j] \ge arr[i], \text{ minimizing } arr[j], \text{ then } j\}$.
+   - If $k = 0$: $j = \arg\min \{j > i : arr[j] \le arr[i], \text{ maximizing } arr[j], \text{ then } j\}$.
+   Both selection criteria yield a uniquely defined successor index $j$ or indicate no valid jump exists.
+2. **Acyclic Structure:**
+   Because every valid jump requires $j > i$, every directed edge $((i, k), (j, k \oplus 1))$ satisfies $j > i$.
+   Topological ordering is strictly guaranteed by index value $i$, preventing cycles.
+3. **Reachability Recurrence:**
+   Let $R(i, k) \in \{\text{True}, \text{False}\}$ denote whether the target $n - 1$ is reachable from $(i, k)$:
+   $$
+   R(i, k) = \begin{cases}
+   \text{True} & \text{if } i = n - 1 \\
+   \text{False} & \text{if } g[i][k] = -1 \\
+   R(g[i][k], k \oplus 1) & \text{otherwise}
+   \end{cases}
+   $$
+4. **Good Index Counting:**
+   A starting index $i$ is good if and only if $R(i, 1) = \text{True}$.
+   Total good indices equals $\sum_{i=0}^{n-1} R(i, 1)$. $\blacksquare$
 
 ---
 
-### Step 3: Odd-jump destination
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-Odd jumps need the smallest future value greater than or equal to `arr[i]`.
+$arr = [10, 13, 12, 14, 15], \; n = 5$.
 
-`sd.bisect_left(arr[i])` finds the first key meeting that lower bound. If it exists, the corresponding mapped index becomes `g[i][1]`; otherwise destination is minus one.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Phase 1: Reverse Preprocessing of Jump Destinations
+1. **$i = 4$ ($arr[4] = 15$):**
+   - $sd = \{\}$. Destinations: $g[4][1] = -1, g[4][0] = -1$.
+   - Insert: $sd[15] = 4$.
+2. **$i = 3$ ($arr[3] = 14$):**
+   - $sd = \{15: 4\}$.
+   - Ceiling $\ge 14$: key $15 \implies g[3][1] = 4$.
+   - Floor $\le 14$: None $\implies g[3][0] = -1$.
+   - Insert: $sd[14] = 3 \implies sd = \{14: 3, 15: 4\}$.
+3. **$i = 2$ ($arr[2] = 12$):**
+   - $sd = \{14: 3, 15: 4\}$.
+   - Ceiling $\ge 12$: smallest is $14 \implies g[2][1] = 3$.
+   - Floor $\le 12$: None $\implies g[2][0] = -1$.
+   - Insert: $sd[12] = 2$.
+4. **$i = 1$ ($arr[1] = 13$):**
+   - $sd = \{12: 2, 14: 3, 15: 4\}$.
+   - Ceiling $\ge 13$: smallest is $14 \implies g[1][1] = 3$.
+   - Floor $\le 13$: largest is $12 \implies g[1][0] = 2$.
+   - Insert: $sd[13] = 1$.
+5. **$i = 0$ ($arr[0] = 10$):**
+   - $sd = \{12: 2, 13: 1, 14: 3, 15: 4\}$.
+   - Ceiling $\ge 10$: smallest is $12 \implies g[0][1] = 2$.
+   - Floor $\le 10$: None $\implies g[0][0] = -1$.
 
 ---
 
-## 4. Complete Execution Trace
+### Phase 2: Evaluating Reachability $dfs(i, 1)$
+- **$i = 4$:** $i == n - 1 \implies \mathbf{True}$.
+- **$i = 3$:** $dfs(3, 1) \to dfs(g[3][1], 0) = dfs(4, 0) \implies \mathbf{True}$.
+- **$i = 2$:** $dfs(2, 1) \to dfs(g[2][1], 0) = dfs(3, 0)$. But $g[3][0] = -1 \implies \mathbf{False}$.
+- **$i = 1$:** $dfs(1, 1) \to dfs(3, 0) \implies \mathbf{False}$.
+- **$i = 0$:** $dfs(0, 1) \to dfs(2, 0)$. But $g[2][0] = -1 \implies \mathbf{False}$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [10, 13, 12, 14, 15]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+Total good start indices: $\mathbf{True} + \mathbf{True} = \mathbf{2}$.
+
+---
+
+## 4. State & Reachability Trace Table
+
+| Index $i$ | Value $arr[i]$ | Next Odd Jump $g[i][1]$ | Next Even Jump $g[i][0]$ | $R(i, 1)$ (Odd Start) | $R(i, 0)$ (Even Start) | Good Start? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$4$** | $15$ | — | — | **True** (Base) | **True** (Base) | **Yes** |
+| **$3$** | $14$ | $4$ | $-1$ (Blocked) | **True** (via 4) | **False** | **Yes** |
+| **$2$** | $12$ | $3$ | $-1$ (Blocked) | **False** (via $R(3, 0)$) | **False** | No |
+| **$1$** | $13$ | $3$ | $2$ | **False** (via $R(3, 0)$) | **False** (via $R(2, 1)$) | No |
+| **$0$** | $10$ | $2$ | $-1$ (Blocked) | **False** (via $R(2, 0)$) | **False** | No |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every transition follows the exact rules for odd and even jumps, respecting value bounds and index tie-breaking via `SortedDict`. A start index is marked good only if a complete, alternating path reaches the target index $n - 1$.
+2. **Completeness:**
+   Because the state graph is a DAG, memoized DFS or backward DP visits every reachable $(i, k)$ state exactly once. No valid path can be missed, and no infinite loops can occur.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Monotonic-stack preprocessing:** Sort indices by values in two orders to compute next destinations in `O(N log N)` without a tree map.
-- **Scan all future indices:** Direct but `O(N^2)`.
-- **Iterative DP right to left:** Once destinations are known, compute odd/even reachability without recursion.
-- **Final index:** Always good with zero jumps.
-- **No legal odd jump:** A nonfinal start is immediately bad.
-- **Equal target values:** Smallest future index must win.
-- **Alternating parity:** Toggle with `k ^ 1` after every jump.
-- **Repeated values:** Map overwrite during reverse scan enforces tie-breaking.
-- **Strictly increasing indices:** Prevent cycles.
-- **Deep path:** Recursive implementation may approach Python's recursion limit.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Element | `arr = [7]` | Base condition $i == n - 1$ returns `True`; returns $1$. | Accessing out-of-bounds destinations. |
+| Strictly Decreasing | `[4, 3, 2, 1]` | No valid odd jump exists except at end; returns $1$. | Infinite loop on blocked jumps. |
+| Strictly Increasing | `[1, 2, 3, 4]` | Odd jump always steps right, but even jump steps back or blocks; returns $2$. | Confusing parity states. |
+| Duplicate Values | `[2, 2, 2, 2]` | Ties resolve to smallest future index; returns $n = 4$. | Violating minimal index tie-breaking. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N\log N)$. Let `N` be array length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N = \text{len}(arr) \le 50{,}000$.
+  - Reverse scan performs $2N$ binary searches in `SortedDict`, taking $\mathcal{O}(N \log N)$.
+  - Reachability DFS visits at most $2N$ states with $\mathcal{O}(1)$ work per state $\implies \mathcal{O}(N)$.
+  - Total time: $< 0.1\text{ s}$ for $N = 50{,}000$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ to store graph table $g$, `SortedDict`, and memoization cache.

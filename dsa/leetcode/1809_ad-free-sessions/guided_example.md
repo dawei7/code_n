@@ -1,125 +1,174 @@
 # Guided Example: Ad-Free Sessions
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step relational interval evaluation and antijoin filtering on a representative database instance:
 
-- **Input:** `{"tables": {"Playback": [{"session_id": 1, "customer_id": 1, "start_time": 1, "end_time": 5}, {"session_id": 2, "customer_id": 1, "start_time": 15, "end_time": 23}, {"session_id": 3, "customer_id": 2, "start_time": 10, "end_time": 12}, {"session_id": 4, "customer_id": 2, "start_time": 17, "end_time": 28}, {"session_id": 5, "customer_id": 2, "start_time": 2, "end_time": 8}], "Ads": [{"ad_id": 1, "customer_id": 1, "timestamp": 5}, {"ad_id": 2, "customer_id": 2, "timestamp": 15}, {"ad_id": 3, "customer_id": 2, "timestamp": 20}]}}`
-- **Required output:** `{"columns": ["session_id"], "rows": [[2], [3], [5]]}`
+- **Input:**
+  Table `Playback`:
+  ```text
+  +------------+-------------+------------+----------+
+  | session_id | customer_id | start_time | end_time |
+  +------------+-------------+------------+----------+
+  | 1          | 1           | 1          | 5        |
+  | 2          | 1           | 15         | 23       |
+  | 3          | 2           | 10         | 12       |
+  | 4          | 2           | 17         | 28       |
+  | 5          | 2           | 2          | 8        |
+  +------------+-------------+------------+----------+
+  ```
+  Table `Ads`:
+  ```text
+  +-------+-------------+-----------+
+  | ad_id | customer_id | timestamp |
+  +-------+-------------+-----------+
+  | 1     | 1           | 5         |
+  | 2     | 2           | 15        |
+  | 3     | 2           | 20        |
+  +-------+-------------+-----------+
+  ```
+- **Required Output:**
+  ```text
+  +------------+
+  | session_id |
+  +------------+
+  | 2          |
+  | 3          |
+  | 5          |
+  +------------+
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features boundary ad occurrences (ad $1$ at timestamp $5$ exactly coinciding with session $1$'s `end_time`), intervening gaps (ad $2$ occurring between sessions), and ad containment (ad $3$ inside session $4$).
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Playback`
+We track customer streaming playback sessions and advertising events across two tables:
+- `Playback`: Stores `session_id`, `customer_id`, `start_time`, and `end_time`.
+- `Ads`: Stores `ad_id`, `customer_id`, and `timestamp`.
 
-The objective is to compute `{"columns": ["session_id"], "rows": [[2], [3], [5]]}` from `{"tables": {"Playback": [{"session_id": 1, "customer_id": 1, "start_time": 1, "end_time": 5}, {"session_id": 2, "customer_id": 1, "start_time": 15, "end_time": 23}, {"session_id": 3, "customer_id": 2, "start_time": 10, "end_time": 12}, {"session_id": 4, "customer_id": 2, "start_time": 17, "end_time": 28}, {"session_id": 5, "customer_id": 2, "start_time": 2, "end_time": 8}], "Ads": [{"ad_id": 1, "customer_id": 1, "timestamp": 5}, {"ad_id": 2, "customer_id": 2, "timestamp": 15}, {"ad_id": 3, "customer_id": 2, "timestamp": 20}]}}` while avoiding redundant calculations and unnecessary overhead.
+An ad is shown during a session if and only if:
+1. It belongs to the same customer: $\text{Ads.customer\_id} = \text{Playback.customer\_id}$.
+2. Its timestamp occurs within the inclusive playback window:
+   $$\text{start\_time} \le \text{timestamp} \le \text{end\_time}$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We must report the `session_id` of all sessions that did not experience any ads during playback.
+
+Finding what did *not* happen in relational algebra is modeled as an **antijoin** (complementary filtering). We identify all disqualified sessions through a theta-join and subtract them from the full session universe.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Temporal Antijoin Model
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $\mathcal{P}$ denote the relation `Playback` and $\mathcal{A}$ denote `Ads`.
+1. **Disqualified Sessions ($\mathcal{D}$):**
+   A session $p \in \mathcal{P}$ is disqualified if there exists an ad $a \in \mathcal{A}$ such that:
+   $$\text{Match}(p, a) \equiv (p.\text{customer\_id} = a.\text{customer\_id}) \land (p.\text{start\_time} \le a.\text{timestamp} \le p.\text{end\_time})$$
+   The set of disqualified session IDs is:
+   $$\mathcal{D} = \pi_{\text{session\_id}} (\mathcal{P} \bowtie_{\text{Match}(p, a)} \mathcal{A})$$
+2. **Ad-Free Sessions ($\mathcal{P}_{\text{free}}$):**
+   The target set of clean sessions is the antijoin of $\mathcal{P}$ with respect to $\mathcal{D}$:
+   $$\mathcal{P}_{\text{free}} = \pi_{\text{session\_id}}(\mathcal{P}) \setminus \mathcal{D}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Temporal Interval Antijoin & Complementary Filtering Theorem.**
+> 1. Because the condition $\text{start\_time} \le \text{timestamp} \le \text{end\_time}$ is inclusive, an ad occurring exactly at $\text{start\_time}$ or $\text{end\_time}$ is counted as inside the session.
+> 2. The subquery $\mathcal{D}$ isolates all sessions that experienced at least one advertisement.
+> 3. The outer predicate `session_id NOT IN (D)` discards all matched sessions while preserving all sessions that generated zero ad matches.
+
+```mermaid
+flowchart TD
+    accTitle: Temporal Antijoin Architecture
+    accDescr: Pipeline joining Playback and Ads on customer_id and inclusive timestamp interval, followed by NOT IN antijoin filter.
+    A["Table: Playback (5 sessions)"] --> B["Inner Join with Ads on customer_id AND timestamp BETWEEN start and end"]
+    C["Table: Ads (3 ads)"] --> B
+    B --> D["Disqualified Session IDs: {1, 4}"]
+    A --> E["Outer Filter: WHERE session_id NOT IN {1, 4}"]
+    D --> E
+    E --> F["Clean Sessions Output: {2, 3, 5}"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: First identify sessions that did show an ad
-
-The desired rows are sessions with no matching ad. The protected query solves the complementary problem in its subquery: find every `session_id` for which at least one ad belongs to the same customer and occurred during the session.
-
-It joins `Playback AS p` to `Ads AS a` with two conditions:
-
-1. `p.customer_id = a.customer_id` ensures an ad is attributed only to the customer who saw it;
-2. `a.timestamp BETWEEN p.start_time AND p.end_time` ensures the ad occurred during that session.
-
-SQL `BETWEEN` is inclusive at both ends. This exactly matches the stated inclusive session interval, so an ad at `start_time` or `end_time` disqualifies the session.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Playback": [{"session_id": 1, "customer_id": 1, "start_time": 1, "end_time": 5}, {"session_id": 2, "customer_id": 1, "start_time": 15, "end_time": 23}, {"session_id": 3, "customer_id": 2, "start_time": 10, "end_time": 12}, {"session_id": 4, "customer_id": 2, "start_time": 17, "end_time": 28}, {"session_id": 5, "customer_id": 2, "start_time": 2, "end_time": 8}], "Ads": [{"ad_id": 1, "customer_id": 1, "timestamp": 5}, {"ad_id": 2, "customer_id": 2, "timestamp": 15}, {"ad_id": 3, "customer_id": 2, "timestamp": 20}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the evaluation across the database tables.
 
 ---
 
-### Step 2: Exclude every matched session from Playback
+### Step 1: Evaluate Ad-Session Matches (Subquery Join)
 
-The outer query scans `Playback` and retains rows whose `session_id` is `NOT IN` the subquery result.
+We examine each ad in `Ads` and check if it falls within any session for the same customer:
 
-If a session has one or more matching ads, its ID appears in the subquery and the outer predicate rejects it. If no matching ad exists, its ID is absent and the outer predicate accepts it.
+1. **Ad $1$ (`customer_id = 1, timestamp = 5`):**
+   - Compare with Customer 1's sessions:
+     - Session $1$: $[1, 5]$. Condition $1 \le 5 \le 5 \implies$ **Match!** Session $1$ is disqualified.
+     - Session $2$: $[15, 23]$. Condition $15 \le 5 \le 23 \implies$ No match.
+2. **Ad $2$ (`customer_id = 2, timestamp = 15`):**
+   - Compare with Customer 2's sessions:
+     - Session $3$: $[10, 12]$. Condition $10 \le 15 \le 12 \implies$ No match.
+     - Session $4$: $[17, 28]$. Condition $17 \le 15 \le 28 \implies$ No match.
+     - Session $5$: $[2, 8]$. Condition $2 \le 15 \le 8 \implies$ No match.
+   - Ad $2$ falls between sessions $3$ and $4$; it does not intersect any playback window.
+3. **Ad $3$ (`customer_id = 2, timestamp = 20`):**
+   - Compare with Customer 2's sessions:
+     - Session $3$: $[10, 12]$. No match.
+     - Session $4$: $[17, 28]$. Condition $17 \le 20 \le 28 \implies$ **Match!** Session $4$ is disqualified.
+     - Session $5$: $[2, 8]$. No match.
 
-The subquery may return the same session ID several times when multiple ads were shown during one session. `NOT IN` membership is unaffected by duplicates, so no `DISTINCT` is required for correctness.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Disqualified session set:
+$$\mathcal{D} = \{ 1, 4 \}$$
 
 ---
 
-### Step 3: Why customer equality cannot be omitted
+### Step 2: Apply Antijoin Predicate (`NOT IN`)
 
-Timestamps alone are not enough. Two customers may have sessions covering the same time. An ad shown to one customer must not disqualify another customer's session. The join's customer condition prevents this cross-customer contamination.
+Test each session in `Playback` against $\mathcal{D} = \{1, 4\}$:
 
-The guarantee that one customer's sessions do not intersect also means one ad timestamp can belong to at most one session for that customer. That helps bound the number of actual matches, although the database execution plan still determines how efficiently they are found.
+| `session_id` | `customer_id` | Window $[\text{start}, \text{end}]$ | Present in $\mathcal{D}$? | Action / Output |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $[1, 5]$ | Yes ($1 \in \mathcal{D}$) | Discarded |
+| $2$ | $1$ | $[15, 23]$ | No ($2 \notin \mathcal{D}$) | **Retained $\to 2$** |
+| $3$ | $2$ | $[10, 12]$ | No ($3 \notin \mathcal{D}$) | **Retained $\to 3$** |
+| $4$ | $2$ | $[17, 28]$ | Yes ($4 \in \mathcal{D}$) | Discarded |
+| $5$ | $2$ | $[2, 8]$ | No ($5 \notin \mathcal{D}$) | **Retained $\to 5$** |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["session_id"], "rows": [[2], [3], [5]]}` |
+Resulting set of ad-free sessions:
+$$\mathcal{P}_{\text{free}} = \{ 2, 3, 5 \}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Playback": [{"session_id": 1, "customer_id": 1, "start_time": 1, "end_time": 5}, {"session_id": 2, "customer_id": 1, "start_time": 15, "end_time": 23}, {"session_id": 3, "customer_id": 2, "start_time": 10, "end_time": 12}, {"session_id": 4, "customer_id": 2, "start_time": 17, "end_time": 28}, {"session_id": 5, "customer_id": 2, "start_time": 2, "end_time": 8}], "Ads": [{"ad_id": 1, "customer_id": 1, "timestamp": 5}, {"ad_id": 2, "customer_id": 2, "timestamp": 15}, {"ad_id": 3, "customer_id": 2, "timestamp": 20}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["session_id"], "rows": [[2], [3], [5]]}` | Verified |
+| Session ID | Customer | Interval | Intersecting Ads | Disqualification Status | Included in Final Output? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $[1, 5]$ | Ad $1$ ($t = 5$) | Disqualified | No |
+| $2$ | $1$ | $[15, 23]$ | None | Ad-Free | **Yes** |
+| $3$ | $2$ | $[10, 12]$ | None | Ad-Free | **Yes** |
+| $4$ | $2$ | $[17, 28]$ | Ad $3$ ($t = 20$) | Disqualified | No |
+| $5$ | $2$ | $[2, 8]$ | None | Ad-Free | **Yes** |
+
+Emitted session IDs: **`2, 3, 5`**.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A session is retained only if no row exists in `Ads` sharing the same `customer_id` whose `timestamp` lies between the session's start and end times. Since SQL's `BETWEEN` is inclusive, any ad occurring on the boundaries is correctly treated as intersecting the session.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every session from `Playback` is tested. The subquery identifies all ad-playback overlaps without customer cross-contamination. Any session with zero overlaps evaluates to true under `session_id NOT IN (...)`, ensuring no ad-free session is omitted.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`NOT EXISTS` correlated anti-join:** It expresses “no matching ad” directly and avoids `NOT IN` null semantics.
-- **Left join with `IS NULL`:** Join sessions to qualifying ads and keep groups or rows with no ad match; duplicates must be handled carefully.
-- **Count matches per session:** Group and retain count zero, but an outer join is required so sessions without ads are not lost.
-- **Timestamp-only join:** It is incorrect because ads belong to specific customers.
-- **Exclusive inequalities:** They would wrongly treat ads exactly at session boundaries as absent.
-- **Multiple ads in one session:** The subquery may repeat the ID, but membership exclusion remains correct.
-- **No ads table rows:** The subquery is empty and every session is returned.
-- **Customer with several sessions:** Non-overlap ensures one timestamp cannot belong to two of that customer's sessions.
-- **Ad outside every session:** It creates no join row and affects no result.
-- **Ad at `start_time`:** Inclusive `BETWEEN` disqualifies the session.
-- **Ad at `end_time`:** It also disqualifies the session.
-- **Null-sensitive anti-membership:** The exact query relies on non-null session IDs in the subquery.
-- **Any output order:** No sorting is required.
-- **Index design:** A composite customer/timestamp index aligns with both join predicates.
-- **Plan dependence:** Logical correctness is fixed even though runtime can differ substantially by database configuration.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inclusive Boundary Conditions:** An ad with `timestamp = 5` matches a session ending at `end_time = 5`. Using strict inequalities ($<$) would erroneously declare Session 1 ad-free. `BETWEEN` correctly enforces inclusive bounds.
+- **Ignoring Customer ID:** An ad displayed to Customer 2 at timestamp $15$ must not disqualify Customer 1's session $[15, 23]$. Equating `p.customer_id = a.customer_id` is mandatory.
+- **Ads Outside All Sessions:** Ads may be served when no session is active (e.g. Ad 2 at $t = 15$). Such ads produce zero join rows and must not trigger spurious disqualifications.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((P + A)\log(A + 1))$. Let $P$ be the number of playback sessions, $A$ the number of ads, and $M$ the number of qualifying session-ad matches. SQL is declarative, so physical complexity depends on indexes and the optimizer.
-- **Auxiliary Space Complexity:** $O(P + A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(P + A)$ on average when indexed on `(customer_id, timestamp)`, or $\mathcal{O}(P \cdot A)$ for unindexed nested-loop scans, where $P$ is the number of playback sessions and $A$ is the number of ads. The subquery evaluates temporal intersections, and the antijoin filters remaining IDs in linear time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(P)$ to buffer the set of disqualified session IDs and accumulate output records.

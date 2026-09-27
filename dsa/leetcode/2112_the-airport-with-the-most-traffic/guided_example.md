@@ -1,130 +1,170 @@
 # Guided Example: The Airport With the Most Traffic
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the relational endpoint unpivoting, incident edge traffic summation, and equi-maximal ranking filter on a representative flight schedule:
 
-- **Input:** `{"tables": {"Flights": [{"departure_airport": 1, "arrival_airport": 2, "flights_count": 4}, {"departure_airport": 2, "arrival_airport": 1, "flights_count": 5}, {"departure_airport": 2, "arrival_airport": 4, "flights_count": 5}]}}`
-- **Required output:** `{"columns": ["airport_id"], "rows": [[2]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Table: `Flights`
-
-The objective is to compute `{"columns": ["airport_id"], "rows": [[2]]}` from `{"tables": {"Flights": [{"departure_airport": 1, "arrival_airport": 2, "flights_count": 4}, {"departure_airport": 2, "arrival_airport": 1, "flights_count": 5}, {"departure_airport": 2, "arrival_airport": 4, "flights_count": 5}]}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Input Flights Table:**
+  - Route $1 \to 2$: $4$ flights
+  - Route $2 \to 1$: $5$ flights
+  - Route $2 \to 4$: $5$ flights
+- **Expected Result Table:** `airport_id = [2]` (Total Traffic: $14$)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given a database table `Flights` where each row $(\text{departure\_airport}, \text{arrival\_airport}, \text{flights\_count})$ records the number of flights taking off from a departure airport and landing at an arrival airport.
+The **traffic** of an airport is defined as the total number of flights that either departed from or arrived at that airport.
+The objective is to find the `airport_id` with the **most traffic**. If multiple airports tie for the highest traffic, all tied airports must be returned in any order.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Relational Unpivoting Challenge
+In standard tabular databases, departures and arrivals are recorded in separate columns of the same row.
+- Grouping only by `departure_airport` captures solely outbound flights, ignoring all inbound flights.
+- Grouping only by `arrival_airport` captures solely inbound flights, ignoring outbound traffic.
+- To compute total incident traffic per airport, we must **unpivot** each row into two independent contribution tuples: $(u, \text{flights\_count})$ for the departure airport and $(v, \text{flights\_count})$ for the arrival airport.
+- Merging these two streams using `UNION ALL` (preserving multiset duplicates) and grouping by `airport_id` allows computing the exact aggregate traffic $T(u) = \text{Out}(u) + \text{In}(u)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Relational Unpivoting and Traffic Aggregation
+    accDescr: Diagram showing Flights table unpivoted via UNION ALL into departure and arrival streams, grouped by airport_id, and filtered by maximal traffic.
+    Flights["Flights Table: (dep, arr, count)"] --> DepStream["Outbound Stream: SELECT departure_airport, flights_count"]
+    Flights --> ArrStream["Inbound Stream: SELECT arrival_airport, flights_count"]
+    DepStream & ArrStream --> UnionAll["UNION ALL (Preserves duplicates)"]
+    UnionAll --> Group["GROUP BY airport_id -> SUM(flights_count)"]
+    Group --> Totals["Airport 1: 9, Airport 2: 14, Airport 4: 5"]
+    Totals --> MaxFilter["Filter total == MAX(total) = 14"]
+    MaxFilter --> Result["airport_id: 2"]
+
+    classDef stage fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    classDef opt fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    class Flights,DepStream,ArrStream,UnionAll,Group,Totals stage;
+    class MaxFilter,Result opt;
+```
+
+---
+
+## 2. Invariants & Relational Unpivoting Mathematics
+
+Let $E$ be the multiset of flight records. Each row is a directed, weighted edge $e = (u, v, w)$.
+
+### Invariant 1: Total Incident Traffic Conservation
+The total traffic $T(x)$ of airport $x$ is the sum of weights of all edges incident to $x$, regardless of orientation:
+$$T(x) = \sum_{(x, v, w) \in E} w + \sum_{(u, x, w) \in E} w$$
+
+### Invariant 2: `UNION ALL` Multiset Preservation
+Using `UNION` instead of `UNION ALL` would collapse identical tuples $(x, w)$ produced by different routes or between departures and arrivals.
+Using `UNION ALL` guarantees that every flight count contributes with its exact multiplicity:
+$$\text{TotalTuples} = 2 \times |E|$$
+
+### Invariant 3: Equi-Maximal Rank Filtering
+To handle ties seamlessly, we compute:
+$$M = \max_{x} T(x)$$
+The result relation is:
+$$\{x \mid T(x) = M\}$$
+This ensures that if multiple airports achieve the exact same highest traffic count, every one of them is included in the output.
+
+| Airport ID | Outbound Flights ($\text{Out}$) | Inbound Flights ($\text{In}$) | Combined Traffic $T(x)$ | Max-Traffic Status |
+|---|---|---|---|---|
+| $1$ | $4$ (Route $1 \to 2$) | $5$ (Route $2 \to 1$) | $4 + 5 = 9$ | Below Maximum ($9 < 14$) |
+| $2$ | $5 + 5 = 10$ (Routes $2 \to 1, 2 \to 4$) | $4$ (Route $1 \to 2$) | $10 + 4 = 14$ | **Global Maximum ($14$)** |
+| $4$ | $0$ (No departures) | $5$ (Route $2 \to 4$) | $0 + 5 = 5$ | Below Maximum ($5 < 14$) |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Normalize departures and arrivals into one airport column
+We trace the sample data:
+- Row 1: $(1, 2, 4)$
+- Row 2: $(2, 1, 5)$
+- Row 3: $(2, 4, 5)$
 
-Every flight row contributes `flights_count` traffic to two endpoint roles: its departure airport and its arrival airport. Aggregating only one original column would miss half of the traffic.
+### Step 1: Unpivot Departures and Arrivals via `UNION ALL`
+Generate the two streams:
+- **Outbound Stream (`departure_airport`):**
+  - $(1, 4)$
+  - $(2, 5)$
+  - $(2, 5)$
+- **Inbound Stream (`arrival_airport`):**
+  - $(2, 4)$
+  - $(1, 5)$
+  - $(4, 5)$
+- **Unified Stream (`AllTraffic`):**
+  $[(1, 4), (2, 5), (2, 5), (2, 4), (1, 5), (4, 5)]$.
+  Total rows: $2 \times 3 = 6$.
 
-The CTE `T` creates rows in both orientations:
+### Step 2: Group By Airport and Aggregate Sums
+Accumulate `flights_count` for each distinct `airport_id`:
+- **Airport $1$:**
+  $$T(1) = 4 + 5 = 9$$
+- **Airport $2$:**
+  $$T(2) = 5 + 5 + 4 = 14$$
+- **Airport $4$:**
+  $$T(4) = 5$$
 
-- `SELECT * FROM Flights` keeps `departure_airport` as the first column;
-- `SELECT arrival_airport, departure_airport, flights_count FROM Flights` swaps the endpoints, making the original arrival airport the first column.
+### Step 3: Compute Global Maximum & Filter Winners
+- Evaluate maximum:
+  $$M = \max(9, 14, 5) = 14$$
+- Filter airports where $T(x) == 14$:
+  Only Airport $2$ has $T(2) = 14$.
+- Output record:
+  $$\text{airport\_id} = 2$$
 
-Although the column retains the name `departure_airport` from the first query, after normalization it means “the airport receiving this traffic contribution.” The second column is no longer used by the later aggregation.
+---
 
-For route 1 to 2 with count 4, the normalized data includes a row whose first airport is 1 and another whose first airport is 2. Both airports consequently receive a contribution of 4.
+## 4. Complete Execution Trace & State Progression
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Row # | Route $(u \to v)$ | Count $w$ | Outbound Contribution | Inbound Contribution | Grouped Total for Airport | Rank Position |
+|---|---|---|---|---|---|---|
+| $1$ | $1 \to 2$ | $4$ | Airport $1 \mathrel{+}= 4$ | Airport $2 \mathrel{+}= 4$ | — | — |
+| $2$ | $2 \to 1$ | $5$ | Airport $2 \mathrel{+}= 5$ | Airport $1 \mathrel{+}= 5$ | — | — |
+| $3$ | $2 \to 4$ | $5$ | Airport $2 \mathrel{+}= 5$ | Airport $4 \mathrel{+}= 5$ | — | — |
+| **Sum** | Airport $1$ | — | $4$ | $5$ | $9$ | Rank 2 |
+| **Sum** | Airport $2$ | — | $10$ | $4$ | **14** | **Rank 1 (Winner)** |
+| **Sum** | Airport $4$ | — | $0$ | $5$ | $5$ | Rank 3 |
+
+### Multi-Way Tie Contrast Instance
+Consider a four-way tie where routes have equal weights:
+- $1 \to 2$ (count 5), $2 \to 1$ (count 4) $\implies$ Airport 1: 9, Airport 2: 9.
+- $3 \to 4$ (count 5), $4 \to 3$ (count 4) $\implies$ Airport 3: 9, Airport 4: 9.
+- $M = \max(9, 9, 9, 9) = 9$.
+- Filter $T(x) == 9$ returns all four rows: `[1, 2, 3, 4]`.
+- Using `RANK()` or `WHERE cnt = (SELECT MAX(cnt) FROM ...)` correctly retains all tied airports, whereas `LIMIT 1` would erroneously omit three valid winners.
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Relational Proof of Soundness & Tie Completeness
+1. **Double-Counting Prevention & Completeness:**
+   Every physical flight departs once and arrives once.
+   Unpivoting each row $(u, v, w)$ into $(u, w)$ and $(v, w)$ credits $w$ units of traffic to $u$ and $w$ units of traffic to $v$.
+   Because $u \neq v$ in valid flight routes, no single flight adds more than once to any individual airport's traffic.
+2. **`UNION ALL` vs `UNION`:**
+   `UNION` applies an implicit `DISTINCT`, which would deduplicate identical tuples (e.g. $(2, 5)$ appearing twice from routes $2 \to 1$ and $2 \to 4$).
+   `UNION ALL` preserves all instances, maintaining exact arithmetic equivalence with the underlying flight volumes.
+3. **Equi-Join / Subquery Equality:**
+   Comparing each airport's total with `(SELECT MAX(cnt) FROM TrafficSummary)` guarantees that the result set contains all airports matching the maximal traffic, perfectly satisfying the tie specification.
+
+---
+
+## 6. Structural Edge Cases & Boundary Behaviors
+
+| Scenario | Database State | Relational Processing | Expected Output |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Flights": [{"departure_airport": 1, "arrival_airport": 2, "flights_count": 4}, {"departure_airport": 2, "arrival_airport": 1, "flights_count": 5}, {"departure_airport": 2, "arrival_airport": 4, "flights_count": 5}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Single Route | $10 \to 20$ (count 3) | Both endpoints have total traffic $3$ | Both `[10, 20]` (Tie) |
+| Arrival-Only Airport | Airport receives flights, none depart | Inbound stream captures all its traffic | Evaluated correctly |
+| Departure-Only Airport | Airport sends flights, none land | Outbound stream captures all its traffic | Evaluated correctly |
+| Disconnected Routes | Two separate routes with same count | All 4 distinct endpoints tie at same count | All 4 airports returned |
 
 ---
 
-### Step 2: Aggregate all contributions by airport
+## 7. Complexity Analysis
 
-The second CTE `P` groups `T` by its first column and calculates
-
-`SUM(flights_count) AS cnt`.
-
-This combines outbound and inbound traffic contributions into one total for each airport.
-
-In the first example, airport 1 receives 4 from departing on route 1 to 2 and 5 from arriving on route 2 to 1, totaling 9. Airport 2 receives contributions 4, 5, and 5 from its incident routes, totaling 14.
-
-`GROUP BY 1` means group by the first selected expression, which is `departure_airport`. Writing the name explicitly would be equivalent and somewhat more verbose.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Select every airport tied for the maximum
-
-The scalar subquery `SELECT MAX(cnt) FROM P` finds the greatest aggregated traffic total.
-
-The outer query keeps every row of `P` whose `cnt` equals that maximum. This equality, rather than a one-row `ORDER BY ... LIMIT 1`, preserves ties.
-
-The airport column is renamed `airport_id` to match the required result schema. No `ORDER BY` is needed because any row order is allowed.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["airport_id"], "rows": [[2]]}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Flights": [{"departure_airport": 1, "arrival_airport": 2, "flights_count": 4}, {"departure_airport": 2, "arrival_airport": 1, "flights_count": 5}, {"departure_airport": 2, "arrival_airport": 4, "flights_count": 5}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["airport_id"], "rows": [[2]]}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Use `UNION ALL`:** This is the correct weighted-event normalization because every route must contribute independently to both endpoints.
-- **Separate departure and arrival aggregates:** Aggregate each role, combine airport totals, and aggregate again. It is correct but more verbose than a safe `UNION ALL` normalization.
-- **Window rank:** `DENSE_RANK` over descending traffic can select rank one and preserve ties, but the scalar maximum is simpler.
-- **`ORDER BY cnt DESC LIMIT 1`:** Incorrect when multiple airports tie for maximum.
-- **Reciprocal equal-count routes:** The exact `UNION` may collapse contributions and undercount traffic.
-- **Primary key interpretation:** It prevents duplicate directed pairs but does not make all normalized endpoint triples unique.
-- **Airport appearing only as arrival:** The swapped branch brings it into the aggregate.
-- **Airport appearing only as departure:** The original branch includes it.
-- **Tied totals:** Equality with the global maximum returns every tied airport.
-- **Any result order:** No sort is required.
-- **Exact output alias:** The selected column must be named `airport_id`.
-- **Empty input:** `P` is empty and the query returns no airport rows.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N log N)$. Let $N$ be the number of `Flights` rows.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$ (or $\mathcal{O}(N)$ with hash aggregation).
+  - The `UNION ALL` scans the $N$ rows of `Flights` twice, generating $2N$ rows in $\mathcal{O}(N)$ time.
+  - Grouping and aggregating $2N$ rows takes $\mathcal{O}(N)$ time with hash grouping (or $\mathcal{O}(N \log N)$ with sort-based grouping).
+  - Computing the scalar maximum and filtering the winning rows takes $\mathcal{O}(N)$ time.
+  - Overall time complexity is linear in the database table size: $\mathcal{O}(N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$.
+  - The intermediate unpivoted relation contains $2N$ tuples.
+  - The aggregated summary relation contains at most $2N$ distinct airport keys.

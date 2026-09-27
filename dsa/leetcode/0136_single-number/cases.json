@@ -41,7 +41,7 @@
     {
       "id": "trial-single-value",
       "name": "single value",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -50,6 +50,7 @@
       },
       "expected": 1,
       "tags": [
+        "sample",
         "edge"
       ]
     },

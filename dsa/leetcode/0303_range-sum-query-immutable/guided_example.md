@@ -1,155 +1,189 @@
 # Guided Example: Range Sum Query - Immutable
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 1D prefix sum array construction, boundary zero sentinel indexing, algebraic cancellation of prefix segments, and $O(1)$ query evaluation on representative integer sequence instances:
 
-- **Input:** `{"nums": [-2, 0, 3, -5, 2, -1], "queries": [[0, 2], [2, 5], [0, 5]]}`
-- **Required output:** `[1, -1, -3]`
+- **Input:**
+  $$
+  \text{nums} = [-2, 0, 3, -5, 2, -1]
+  $$
+  $$
+  \text{queries} = [\text{sumRange}(0, 2), \; \text{sumRange}(2, 5), \; \text{sumRange}(0, 5)]
+  $$
+- **Required output:** $[1, -1, -3]$
+  - $\text{sumRange}(0, 2) = (-2) + 0 + 3 = 1$
+  - $\text{sumRange}(2, 5) = 3 + (-5) + 2 + (-1) = -1$
+  - $\text{sumRange}(0, 5) = (-2) + 0 + 3 + (-5) + 2 + (-1) = -3$
+- **Single Element Query:** $\text{sumRange}(i, i) = s[i+1] - s[i] = \text{nums}[i]$
+- **Full Array Query:** $\text{sumRange}(0, N-1) = s[N] - s[0] = s[N]$ (Entire array sum)
+- **Negative and Zero Elements:** Prefix sum properties hold universally across positive, negative, and zero values
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates constant-time range sum querying via prefix difference decomposition, explains why a 1-based prefix array with a leading zero ($s[0] = 0$) eliminates edge-case branching for left index zero, contrasts $O(1)$ querying with $O(N)$ repetitive naive loops, and achieves $O(N)$ construction time and space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums`, handle multiple queries of the following type:
+Given an integer array:
+$$
+\text{nums} = [-2, 0, 3, -5, 2, -1] \quad (N = 6)
+$$
+We need to process multiple range sum queries $\text{sumRange}(left, right) = \sum_{i=left}^{right} \text{nums}[i]$ efficiently.
 
-The objective is to compute `[1, -1, -3]` from `{"nums": [-2, 0, 3, -5, 2, -1], "queries": [[0, 2], [2, 5], [0, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array:        [-2,  0,  3, -5,  2, -1]
+Indices:        0   1   2   3   4   5
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Query (0, 2): [-2,  0,  3]                -> Sum = 1
+Query (2, 5):          [3, -5,  2, -1]    -> Sum = -1
+Query (0, 5): [-2,  0,  3, -5,  2, -1]    -> Sum = -3
+```
+
+### Naive Loop vs Prefix Sums
+- Naively summing from `left` to `right` costs $O(R - L + 1) = O(N)$ per query. For $Q = 10^4$ queries, total runtime degrades to $O(Q \cdot N) \approx 10^8$ operations.
+- By spending $O(N)$ preprocessing time to build cumulative prefix sums, every query can be answered via a single subtraction in **$O(1)$ time**!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1-Based Prefix Sum Definition
+Define array $s$ of length $N + 1$ such that $s[k]$ stores the sum of the first $k$ elements:
+$$
+s[0] = 0
+$$
+$$
+s[k] = \sum_{j=0}^{k-1} \text{nums}[j] = s[k-1] + \text{nums}[k-1] \quad \text{for } k \in [1, N]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Telescoping Range Sum Formula:
+For any query $[left, right]$:
+$$
+\sum_{i=left}^{right} \text{nums}[i] = \left(\sum_{j=0}^{right} \text{nums}[j]\right) - \left(\sum_{j=0}^{left-1} \text{nums}[j]\right) = s[right + 1] - s[left]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```text
+Elements:   nums[0] ... nums[left-1] | nums[left] ... nums[right] | nums[right+1] ...
+s[left]:    [----------------------]
+s[right+1]: [---------------------------------------------------]
+Difference:                          [--------------------------] = Sum(left..right)
+```
+
+> **Invariant.** For all $0 \le left \le right < N$, $s[right + 1] - s[left]$ algebraically cancels all elements before index $left$, leaving precisely the sum of the closed interval $[left, right]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why subtracting two prefixes isolates a range
-
-For an inclusive query `[left, right]`, `s[right + 1]` contains all values from index 0 through `right`:
-
-$$
-\texttt{s}[right+1]
-=
-\texttt{nums}[0]+\cdots+\texttt{nums}[left-1]
-+
-\texttt{nums}[left]+\cdots+\texttt{nums}[right].
-$$
-
-Meanwhile, `s[left]` contains exactly the portion before the requested range:
-
-$$
-\texttt{s}[left]
-=
-\texttt{nums}[0]+\cdots+\texttt{nums}[left-1].
-$$
-
-Subtracting cancels every element before `left`, leaving only the inclusive query range:
-
-$$
-\texttt{s}[right+1]-\texttt{s}[left]
-=
-\sum_{i=left}^{right}\texttt{nums}[i].
-$$
-
-This cancellation is the whole reason a query no longer needs a loop. Two already-computed cumulative totals encode the desired sum.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [-2, 0, 3, -5, 2, -1], "queries": [[0, 2], [2, 5], [0, 5]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the preprocessing and queries on $\text{nums} = [-2, 0, 3, -5, 2, -1]$:
 
 ---
 
-### Step 2: Why `right + 1` is necessary
+### Step 1: Precompute Prefix Array $s$
+Initialize $s$ of size $N + 1 = 7$ with $s[0] = 0$:
+- $k = 1$: $s[1] = s[0] + \text{nums}[0] = 0 + (-2) = \mathbf{-2}$
+- $k = 2$: $s[2] = s[1] + \text{nums}[1] = -2 + 0 = \mathbf{-2}$
+- $k = 3$: $s[3] = s[2] + \text{nums}[2] = -2 + 3 = \mathbf{1}$
+- $k = 4$: $s[4] = s[3] + \text{nums}[3] = 1 + (-5) = \mathbf{-4}$
+- $k = 5$: $s[5] = s[4] + \text{nums}[4] = -4 + 2 = \mathbf{-2}$
+- $k = 6$: $s[6] = s[5] + \text{nums}[5] = -2 + (-1) = \mathbf{-3}$
 
-Prefix index `k` is a boundary, not the index of the last included element. It represents the half-open original range `[0, k)`. To include original element `nums[right]`, the ending boundary must be one position after it, namely `right + 1`.
-
-Using `s[right]` would sum only through original index `right - 1`, incorrectly excluding the query's last element. This is the most common off-by-one error in this pattern.
-
-The left side does not need `left - 1`. Because `s[left]` already represents all elements strictly before `left`, it is exactly the amount that should be removed.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Final prefix array:
+$$
+s = [0, \; -2, \; -2, \; 1, \; -4, \; -2, \; -3]
+$$
 
 ---
 
-### Step 3: Why the leading zero matters
+### Step 2: Evaluate Query 1 — $\text{sumRange}(0, 2)$
+- $left = 0, \; right = 2$.
+- Formula:
+  $$
+  \text{Sum} = s[right + 1] - s[left] = s[3] - s[0]
+  $$
+- Substitute values:
+  $$
+  s[3] = 1, \quad s[0] = 0 \implies 1 - 0 = \mathbf{1}
+  $$
 
-Suppose a query starts at index 0. There are no elements before the range, so the amount to subtract should be zero. With the leading prefix, `s[0]` supplies that zero naturally:
+---
 
-`s[right + 1] - s[0]`.
+### Step 3: Evaluate Query 2 — $\text{sumRange}(2, 5)$
+- $left = 2, \; right = 5$.
+- Formula:
+  $$
+  \text{Sum} = s[right + 1] - s[left] = s[6] - s[2]
+  $$
+- Substitute values:
+  $$
+  s[6] = -3, \quad s[2] = -2 \implies -3 - (-2) = -3 + 2 = \mathbf{-1}
+  $$
 
-Without the leading zero, one common definition stores the sum through each index. Queries beginning at zero then require a separate conditional branch because there is no prefix at index `-1` that conceptually means zero. The extra element makes every valid query use the same formula.
+---
 
-It also makes a one-element query uniform. For `[i, i]`, the result is
-
-$$
-\texttt{s}[i+1]-\texttt{s}[i]=\texttt{nums}[i].
-$$
-
-Adjacent prefix boundaries differ by exactly the original element between them.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, -1, -3]` |
+### Step 4: Evaluate Query 3 — $\text{sumRange}(0, 5)$
+- $left = 0, \; right = 5$.
+- Formula:
+  $$
+  \text{Sum} = s[right + 1] - s[left] = s[6] - s[0]
+  $$
+- Substitute values:
+  $$
+  s[6] = -3, \quad s[0] = 0 \implies -3 - 0 = \mathbf{-3}
+  $$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [-2, 0, 3, -5, 2, -1], "queries": [[0, 2], [2, 5], [0, 5]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, -1, -3]` | Verified |
+```text
+nums = [-2, 0, 3, -5, 2, -1]
+s    = [ 0, -2, -2,  1, -4, -2, -3]
+
+Query (0, 2): s[3] - s[0] =  1 - (0)  =  1
+Query (2, 5): s[6] - s[2] = -3 - (-2) = -1
+Query (0, 5): s[6] - s[0] = -3 - (0)  = -3
+
+Results: [1, -1, -3]
+```
+
+| Index $k$ | $\text{nums}[k-1]$ | Cumulative Sum $s[k]$ | Prefix Covered in $\text{nums}$ |
+|:---:|:---:|:---:|:---|
+| 0 | - | **0** | Empty prefix $(\emptyset)$ |
+| 1 | -2 | **-2** | $\text{nums}[0..0]$ |
+| 2 | 0 | **-2** | $\text{nums}[0..1]$ |
+| 3 | 3 | **1** | $\text{nums}[0..2]$ |
+| 4 | -5 | **-4** | $\text{nums}[0..3]$ |
+| 5 | 2 | **-2** | $\text{nums}[0..4]$ |
+| 6 | -1 | **-3** | $\text{nums}[0..5]$ |
+
+| Query $[left, right]$ | Suffix Boundary $s[right + 1]$ | Prefix Boundary $s[left]$ | Subtraction Formula | Computed Result |
+|:---:|:---:|:---:|:---:|:---:|
+| $[0, 2]$ | $s[3] = 1$ | $s[0] = 0$ | $1 - 0$ | **1** |
+| $[2, 5]$ | $s[6] = -3$ | $s[2] = -2$ | $-3 - (-2)$ | **-1** |
+| $[0, 5]$ | $s[6] = -3$ | $s[0] = 0$ | $-3 - 0$ | **-3** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** By mathematical definition, $s[right + 1] = \sum_{j=0}^{right} \text{nums}[j]$ and $s[left] = \sum_{j=0}^{left-1} \text{nums}[j]$. Subtracting the latter from the former cancels all terms from $j = 0$ up to $left - 1$, leaving the exact summation from $j = left$ to $j = right$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The array $s$ has length $N + 1$, where index 0 represents the empty prefix sum. For any valid query $0 \le left \le right < N$, both $s[right + 1]$ and $s[left]$ are within valid bounds $[0, N]$. Thus, all possible range queries are supported without edge-case out-of-bounds access.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sum every query directly:** Loop from `left` through `right`. It uses $O(1)$ extra space but costs $O(right-left+1)$ per query and can repeat the same additions up to $10^4$ times.
-- **Precompute every possible range:** Store a sum for all pairs `(left, right)`. Queries become constant-time, but construction and storage both grow to $O(n^2)$, far more than the one-dimensional prefix array requires.
-- **Fenwick tree:** It supports prefix sums and point updates in $O(\log n)$ time. Updates are absent here, so its logarithmic queries and more complex indexing are unnecessary compared with $O(1)$ prefix subtraction.
-- **Segment tree:** It supports mutable range queries but needs more code and $O(\log n)$ query time. Immutability lets prefix sums do better.
-- **Prefix sums without a leading zero:** This works with a special case for `left == 0`, but the exact source's leading zero gives one formula for every query.
-- **Using `s[right] - s[left]`:** This excludes `nums[right]` because prefix indices represent half-open boundaries. The correct ending index is `right + 1`.
-- **Using `s[right + 1] - s[left + 1]`:** This also removes `nums[left]`, turning an inclusive range into one that begins after `left`.
-- **Single-element range:** `[i, i]` returns the difference of adjacent prefixes, exactly `nums[i]`.
-- **Full-array range:** `[0, n - 1]` returns `s[n] - s[0]`, the complete sum.
-- **One-element input:** The prefix list is `[0, nums[0]]`, and the only valid query returns their difference.
-- **All zeros:** Every prefix is zero, and every range sum is zero.
-- **Negative numbers:** Prefix values may fall as elements are added, but algebraic cancellation remains exact.
-- **Mixed signs with a zero total:** Equal prefix totals at different boundaries correctly indicate that the intervening range sums to zero.
-- **Repeated queries:** No cache lookup keyed by the query is needed; every query is already constant-time, whether repeated or new.
-- **Mutation after construction:** If the original data could change, stored prefixes would become stale from the changed index onward. The immutable contract is what makes one-time preprocessing correct.
-- **Bounds guarantee:** The method performs no explicit index validation because every query is guaranteed to satisfy `0 <= left <= right < n`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Leading Zero:** If $s$ is built with length $N$ where $s[i]$ is the sum up to index $i$, queries starting at $left = 0$ require special conditional handling (`return s[right] if left == 0 else s[right] - s[left-1]`). A leading zero ($s[0] = 0$) makes the formula $s[right + 1] - s[left]$ uniform for all queries.
+- **Off-by-One in Ending Index:** Writing $s[right] - s[left]$ mistakenly excludes $\text{nums}[right]$. Because $s$ is shifted by 1, the prefix containing elements up to $right$ is stored at index $right + 1$.
+- **Mutable vs Immutable Contract:** This data structure assumes `nums` is static. If elements were updated dynamically, modifying a single value would invalidate up to $N$ entries in $s$, requiring a Segment Tree or Fenwick Tree ($O(\log N)$ update and query).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+q)$. Let $n$ be the array length and $q$ the number of `sumRange` calls.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Initialization: $O(N)$ linear time to compute the $N + 1$ prefix sums.
+  - `sumRange(left, right)`: $O(1)$ constant time, performing a single array lookup and subtraction.
+  - Total time for $Q$ queries: $O(N + Q)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the prefix sum array $s$ of size $N + 1$.

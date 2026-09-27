@@ -30,14 +30,41 @@
     {
       "id": "trial-parent",
       "name": "parent component removes one directory",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "path": "/home/user/Documents/../Pictures"
       },
       "expected": "/home/user/Pictures",
       "tags": [
+        "sample",
         "parent"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: example 4",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "path": "/../"
+      },
+      "expected": "/",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-5",
+      "name": "sample: example 5",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "path": "/.../a/../b/c/../d/./"
+      },
+      "expected": "/.../b/d",
+      "tags": [
+        "sample"
       ]
     },
     {

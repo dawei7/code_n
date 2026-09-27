@@ -1,137 +1,184 @@
 # Guided Example: Battleships in a Board
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step top-left anchor identification, local neighbor inspection (top and left), duplicate segment suppression, and single-pass $O(1)$ memory counting on representative naval grid matrices:
 
-- **Input:** `{"board": [["X", ".", ".", "X"], [".", ".", ".", "X"], [".", ".", ".", "X"]]}`
+- **Input:**
+  $$
+  board = \begin{bmatrix}
+  \text{'X'} & \text{'.'} & \text{'.'} & \text{'X'} \\
+  \text{'.'} & \text{'.'} & \text{'.'} & \text{'X'} \\
+  \text{'.'} & \text{'.'} & \text{'.'} & \text{'X'}
+  \end{bmatrix}
+  $$
 - **Required output:** `2`
+  - Dimensions: $m = 3, n = 4$
+  - Cell evaluations:
+    - $(0, 0) = \text{'X'}$:
+      - Above: out of bounds ($i = 0$)
+      - Left: out of bounds ($j = 0$)
+      - Both predecessor cells are absent $\implies$ **Anchor of Battleship 1!** $ans \leftarrow 1$
+    - $(0, 3) = \text{'X'}$:
+      - Above: out of bounds ($i = 0$)
+      - Left: $(0, 2) = \text{'.'}$ (not `'X'`)
+      - Both predecessor cells are not `'X'` $\implies$ **Anchor of Battleship 2!** $ans \leftarrow 2$
+    - $(1, 3) = \text{'X'}$:
+      - Above: $(0, 3) = \text{'X'}$ $\implies$ Part of existing vertical ship $\implies$ **Skip**
+    - $(2, 3) = \text{'X'}$:
+      - Above: $(1, 3) = \text{'X'}$ $\implies$ Part of existing vertical ship $\implies$ **Skip**
+    - All other cells are `'.'` $\implies$ **Skip**
+  - Total battleships detected: $\mathbf{2}$
+- **Horizontal Ship Instance:** $board = [[\text{'X'}, \text{'X'}, \text{'X'}]] \implies (0, 0)$ is anchor ($ans=1$), $(0, 1)$ and $(0, 2)$ skipped $\implies \mathbf{1}$
+- **Empty Water Instance:** $board = [[\text{'.'}]] \implies \mathbf{0}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates canonical representative anchor counting on grid components, mathematically proves why inspecting only top and left neighbors uniquely enumerates each $1 \times k$ and $k \times 1$ ship, and achieves $O(MN)$ runtime and $O(1)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `m x n` matrix `board` where each cell is a battleship `'X'` or empty `'.'`, return *the number of the **battleships** on* `board`.
+Given an $m \times n$ matrix $board$ where cells are either `'X'` (battleship) or `'.'` (water):
+Battleships can only be placed horizontally ($1 \times k$) or vertically ($k \times 1$).
+No two battleships are adjacent horizontally or vertically (there is always at least one water cell separating distinct ships).
+Count the number of battleships on the board **in a single pass, without modifying the board, and using only $O(1)$ extra memory**.
 
-The objective is to compute `2` from `{"board": [["X", ".", ".", "X"], [".", ".", ".", "X"], [".", ".", ".", "X"]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Board (3 rows x 4 columns):
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+      0    1    2    3
+   +----+----+----+----+
+ 0 | X* | .  | .  | X* |   -> (0,0) is a 1x1 ship; (0,3) is the head of a 3x1 ship
+   +----+----+----+----+
+ 1 | .  | .  | .  | X  |   -> (1,3) continues ship from (0,3)
+   +----+----+----+----+
+ 2 | .  | .  | .  | X  |   -> (2,3) continues ship from (1,3)
+   +----+----+----+----+
+
+(* denotes the top-left anchor of each battleship)
+Total Battleships: 2
+```
+
+### Why Traditional Graph Traversals Fail the Contract
+- **DFS / BFS Flood Fill:** Visiting a component and sinking it (modifying `'X' \to '.'`) alters the board, violating the read-only constraint.
+- **Visited Matrix:** Allocating a `vis[m][n]` boolean matrix uses $O(MN)$ auxiliary memory, violating the $O(1)$ space requirement.
+- **Top-Left Anchor Insight:** Every battleship (whether horizontal or vertical) has exactly **one** cell that is topmost and leftmost. Counting only this unique anchor cell counts every battleship exactly once.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Anchor Characterization:
+Let cell $(i, j)$ contain an `'X'`:
+- If $(i, j)$ belongs to a **vertical** battleship ($k \times 1$):
+  - The uppermost cell has no `'X'` above it: $i == 0$ or $board[i-1][j] \ne \text{'X'}$.
+  - All subsequent cells below it ($i+1, i+2, \dots$) have an `'X'` directly above.
+- If $(i, j)$ belongs to a **horizontal** battleship ($1 \times k$):
+  - The leftmost cell has no `'X'` to its left: $j == 0$ or $board[i][j-1] \ne \text{'X'}$.
+  - All subsequent cells to its right ($j+1, j+2, \dots$) have an `'X'` directly to the left.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Anchor Predicate:
+A cell $(i, j)$ is the unique top-left anchor of a battleship if and only if:
+$$
+board[i][j] == \text{'X'}
+$$
+$$
+\land \quad (i == 0 \lor board[i-1][j] \ne \text{'X'})
+$$
+$$
+\land \quad (j == 0 \lor board[i][j-1] \ne \text{'X'})
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Bijection Invariant.** There is a strict one-to-one correspondence (bijection) between the set of battleships on the board and the set of cells satisfying the Anchor Predicate.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count one canonical cell per ship
-
-A battleship may occupy many `'X'` cells, so counting every `'X'` would count its length rather than the number of ships. Flood-filling each ship would work, but the placement rules provide a simpler one-pass signature.
-
-Every valid horizontal or vertical ship has exactly one beginning cell when the board is read from top to bottom and left to right:
-
-- a horizontal ship's beginning is its leftmost `'X'`; and
-- a vertical ship's beginning is its topmost `'X'`.
-
-A one-cell ship is both its leftmost and topmost cell. The algorithm counts an `'X'` only when there is no `'X'` immediately above it and no `'X'` immediately to its left. That condition identifies exactly these beginning cells.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"board": [["X", ".", ".", "X"], [".", ".", ".", "X"], [".", ".", ".", "X"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the $3 \times 4$ board across all row indices $i \in [0, 2]$ and column indices $j \in [0, 3]$:
 
 ---
 
-### Step 2: Scan every board coordinate once
-
-The nested loops visit rows `0` through `m-1` and columns `0` through `n-1`. If `board[i][j] == '.'`, the cell is empty and cannot represent a ship, so the code immediately continues.
-
-For an `'X'`, the test
-
-`i > 0 and board[i - 1][j] == 'X'`
-
-asks whether the ship continues from the cell above. If so, the current cell is not the top of a vertical ship and has already been represented by an earlier cell in that ship.
-
-The next test
-
-`j > 0 and board[i][j - 1] == 'X'`
-
-asks whether the ship continues from the left. If so, the current cell is not the left end of a horizontal ship.
-
-Only an occupied cell with neither predecessor increments `ans`.
-
-The boundary checks `i > 0` and `j > 0` must precede neighbor access. A cell in the top row has no above neighbor, and a cell in the leftmost column has no left neighbor. In Python, using index `-1` without these guards would wrap around to the opposite edge and could falsely connect unrelated ships.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Row 0:
+- **$(0, 0) = \text{'X'}$:**
+  - Above: $i = 0$ (no cell above) $\implies$ Pass.
+  - Left: $j = 0$ (no cell to left) $\implies$ Pass.
+  - Both tests pass $\implies$ **Anchor #1 found!**
+  - $ans \leftarrow 0 + 1 = \mathbf{1}$.
+- **Water cells $(0, 1)$ and $(0, 2)$:**
+  - Cells contain `'.'` $\implies$ Ignored.
+- **$(0, 3) = \text{'X'}$:**
+  - Above: $i = 0$ (no cell above) $\implies$ Pass.
+  - Left: $(0, 2) = \text{'.'}$ (not `'X'`) $\implies$ Pass.
+  - Both tests pass $\implies$ **Anchor #2 found!**
+  - $ans \leftarrow 1 + 1 = \mathbf{2}$.
 
 ---
 
-### Step 3: Why every ship contributes at least once
+### Row 1:
+- **Water cells $(1, 0)$, $(1, 1)$, and $(1, 2)$:** Ignored.
+- **$(1, 3) = \text{'X'}$:**
+  - Above check: $board[1-1][3] = board[0][3] = \text{'X'}$.
+  - Preceding cell in same column is `'X'`.
+  - Condition fails: $(1, 3)$ is a continuation of a vertical ship, not an anchor.
+  - Skip without incrementing $ans$.
 
-Take a horizontal ship. Its leftmost cell has no `'X'` to its left by definition. The separation guarantee also prevents an unrelated vertical ship from placing an `'X'` immediately above it; adjacent ships are not allowed. Because the ship itself extends only horizontally, this beginning cell has no same-ship cell above. It passes both predecessor tests and is counted.
+---
 
-Take a vertical ship. Its topmost cell similarly has no `'X'` above. It has no same-ship cell to the left, and the separation rule prevents another ship there. It is counted.
+### Row 2:
+- **Water cells $(2, 0)$, $(2, 1)$, and $(2, 2)$:** Ignored.
+- **$(2, 3) = \text{'X'}$:**
+  - Above check: $board[2-1][3] = board[1][3] = \text{'X'}$.
+  - Preceding cell in same column is `'X'`.
+  - Condition fails: continuation cell.
+  - Skip without incrementing $ans$.
 
-A single-cell ship has no occupied predecessor in either direction and is counted as well. Thus no valid battleship is missed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Termination:
+All $3 \times 4 = 12$ cells processed. Total anchors counted: $ans = \mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"board": [["X", ".", ".", "X"], [".", ".", ".", "X"], [".", ".", ".", "X"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Coordinate $(i, j)$ | Cell Value | Cell Above $(i-1, j)$ | Cell to Left $(i, j-1)$ | Top-Left Anchor Test | Anchor Decision | Total Ships $ans$ |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| $(0, 0)$ | `'X'` | Out of bounds | Out of bounds | Top edge $\land$ Left edge | **Anchor #1** | **$1$** |
+| $(0, 1)$ | `'.'` | — | — | Water cell | Skip | $1$ |
+| $(0, 2)$ | `'.'` | — | — | Water cell | Skip | $1$ |
+| $(0, 3)$ | `'X'` | Out of bounds | `'.'` | Top edge $\land$ Left is water | **Anchor #2** | **$2$** |
+| $(1, 0)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(1, 1)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(1, 2)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(1, 3)$ | `'X'` | **`'X'`** | `'.'` | **Above is `'X'` (Vertical body)** | **Skip** | $2$ |
+| $(2, 0)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(2, 1)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(2, 2)$ | `'.'` | — | — | Water cell | Skip | $2$ |
+| $(2, 3)$ | `'X'` | **`'X'`** | `'.'` | **Above is `'X'` (Vertical body)** | **Skip** | **$2$** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Cell Board ($board = [[\text{'X'}]]$):** Both above and left are out of bounds. Correctly identified as anchor $\implies \mathbf{1}$.
+- **All Water Board ($board = [[\text{'.'}, \text{'.'}]]$):** No `'X'` exists $\implies \mathbf{0}$.
+- **Adjacent Battleships Invariant:** The problem guarantees no two battleships touch each other (not even diagonally or adjacently). If diagonal touches were allowed, connected component algorithms would be required; under the problem contract, checking only immediate orthogonal predecessors is provably sufficient.
+- **Ship Touching Right/Bottom Borders:** Handled naturally because the anchor is strictly on the top-left; right and bottom boundaries never interfere with anchor detection.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Flood fill each unvisited ship:** Start DFS or BFS at an unvisited `'X'`, mark its connected cells, and increment once. This is $O(rc)$ time but needs $O(rc)$ visited space in the worst case or modifies the board, both unnecessary under the placement guarantees.
-- **Erase ships in place:** On finding an `'X'`, walk through and replace its cells with `'.'`. It uses little auxiliary space but violates the follow-up's requirement not to modify `board`.
-- **Count transitions along rows and columns separately:** This can work but risks double-counting single-cell ships and needs careful orientation logic. The no-above-and-no-left signature treats all lengths uniformly.
-- **Count all occupied cells:** This is incorrect whenever a ship has length greater than one because it counts cells rather than connected straight segments.
-- **Top-row ship:** The guarded above check treats the missing neighbor as empty; only a left continuation can suppress counting.
-- **Left-column ship:** The guarded left check similarly leaves the above neighbor to determine whether it is a continuation.
-- **Single-cell board containing `'.'`:** The cell is skipped and the result is zero.
-- **Single-cell board containing `'X'`:** It has no predecessor and contributes exactly one.
-- **One long horizontal ship:** Only its first column is counted; every later cell sees the previous `'X'`.
-- **One long vertical ship:** Only its first row is counted; every later cell sees the above `'X'`.
-- **Several separated ships:** The required empty separation ensures each beginning cell is not rejected because of an unrelated adjacent ship.
-- **Invalid touching or L-shaped arrangements:** The proof relies on the contract's straight, separated placement. If arbitrary connected `'X'` shapes were permitted, a graph traversal and an explicit definition of a ship would be necessary.
-- **Python negative indexing:** Omitting `i > 0` or `j > 0` would read the last row or column from a first-edge cell. The explicit guards are correctness conditions, not merely optimizations.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Mutating the Input Grid:** Overwriting visited `'X'` with `'.'` destroys the input data, which violates common API contracts and testing harnesses.
+- **Checking All 4 Neighbors:** Looking right and down is unnecessary and leads to double-counting or needing a visited set. Checking only the past (top and left) ensures decisions are made strictly on already-scanned predecessor state.
+- **Index Out-of-Bounds:** Forgetting to guard $i > 0$ and $j > 0$ before accessing $board[i-1][j]$ or $board[i][j-1]$ causes index errors on boundary rows/columns.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(rc)$. Let $r=m$ be the number of rows and $c=n$ the number of columns. The nested loops inspect all $rc$ cells. Each occupied cell triggers at most two constant-time neighbor checks. Total time is $O(rc)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - The algorithm iterates over each of the $M \times N$ cells exactly once.
+  - For each cell, at most two neighbor lookups are performed in $O(1)$ time.
+  - Total Time: $\mathcal{O}(M \cdot N)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(1)$. The algorithm maintains only a single integer accumulator $ans$ and loop index counters. Zero heap allocations or recursion stacks.

@@ -1,126 +1,202 @@
 # Guided Example: Count Apples and Oranges
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze hierarchical relational left-outer joins, prove the Left Outer Join Preservation Theorem and Coalesced Null Inventory Invariant, and trace dual-item inventory aggregation across representative container storage records:
 
-- **Input:** `{"tables": {"Boxes": [{"box_id": 2, "chest_id": null, "apple_count": 6, "orange_count": 15}, {"box_id": 18, "chest_id": 14, "apple_count": 4, "orange_count": 15}, {"box_id": 19, "chest_id": 3, "apple_count": 8, "orange_count": 4}, {"box_id": 12, "chest_id": 2, "apple_count": 19, "orange_count": 20}, {"box_id": 20, "chest_id": 6, "apple_count": 12, "orange_count": 9}, {"box_id": 8, "chest_id": 6, "apple_count": 9, "orange_count": 9}, {"box_id": 3, "chest_id": 14, "apple_count": 16, "orange_count": 7}], "Chests": [{"chest_id": 6, "apple_count": 5, "orange_count": 6}, {"chest_id": 14, "apple_count": 20, "orange_count": 10}, {"chest_id": 2, "apple_count": 8, "orange_count": 8}, {"chest_id": 3, "apple_count": 19, "orange_count": 4}, {"chest_id": 16, "apple_count": 19, "orange_count": 19}]}}`
-- **Required output:** `{"columns": ["apple_count", "orange_count"], "rows": [[151, 123]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance (Boxes with Nested Chests and Null Links):**
+  - Input Tables:
+    - Table `Boxes`:
+      | `box_id` | `chest_id` | `apple_count` | `orange_count` |
+      |---|---|---|---|
+      | `2` | `null` | `6` | `15` |
+      | `18` | `14` | `4` | `15` |
+      | `19` | `3` | `8` | `4` |
+      | `12` | `2` | `19` | `20` |
+      | `20` | `6` | `12` | `9` |
+      | `8` | `6` | `9` | `9` |
+      | `3` | `14` | `16` | `7` |
+    - Table `Chests`:
+      | `chest_id` | `apple_count` | `orange_count` |
+      |---|---|---|
+      | `6` | `5` | `6` |
+      | `14` | `20` | `10` |
+      | `2` | `8` | `8` |
+      | `3` | `19` | `4` |
+      | `16` | `19` | `19` |
+  - Detailed Unit Calculations by Box:
+    - Box 2: `chest_id = null` $\implies 6 + 0 = 6$ apples, $15 + 0 = 15$ oranges.
+    - Box 18: Chest 14 ($20$ apples, $10$ oranges) $\implies 4 + 20 = 24$ apples, $15 + 10 = 25$ oranges.
+    - Box 19: Chest 3 ($19$ apples, $4$ oranges) $\implies 8 + 19 = 27$ apples, $4 + 4 = 8$ oranges.
+    - Box 12: Chest 2 ($8$ apples, $8$ oranges) $\implies 19 + 8 = 27$ apples, $20 + 8 = 28$ oranges.
+    - Box 20: Chest 6 ($5$ apples, $6$ oranges) $\implies 12 + 5 = 17$ apples, $9 + 6 = 15$ oranges.
+    - Box 8: Chest 6 ($5$ apples, $6$ oranges) $\implies 9 + 5 = 14$ apples, $9 + 6 = 15$ oranges.
+    - Box 3: Chest 14 ($20$ apples, $10$ oranges) $\implies 16 + 20 = 36$ apples, $7 + 10 = 17$ oranges.
+  - Aggregation Totals:
+    - Total Apples: $6 + 24 + 27 + 27 + 17 + 14 + 36 = \mathbf{151}$.
+    - Total Oranges: $15 + 25 + 8 + 28 + 15 + 15 + 17 = \mathbf{123}$.
+  - **Required Output Table:**
+    | `apple_count` | `orange_count` |
+    |---|---|
+    | `151` | `123` |
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Boxes`
+We are tasked with counting the total quantity of apples and oranges across all storage containers. Containers consist of `Boxes`, each containing a base number of apples and oranges. Additionally, some boxes contain a nested `Chest` (referenced by foreign key `chest_id`). When a chest is present, its fruit counts must be added to the box's inventory; when no chest is present (`chest_id` is null), only the box's fruits are counted. Unreferenced chests are not counted.
 
-The objective is to compute `{"columns": ["apple_count", "orange_count"], "rows": [[151, 123]]}` from `{"tables": {"Boxes": [{"box_id": 2, "chest_id": null, "apple_count": 6, "orange_count": 15}, {"box_id": 18, "chest_id": 14, "apple_count": 4, "orange_count": 15}, {"box_id": 19, "chest_id": 3, "apple_count": 8, "orange_count": 4}, {"box_id": 12, "chest_id": 2, "apple_count": 19, "orange_count": 20}, {"box_id": 20, "chest_id": 6, "apple_count": 12, "orange_count": 9}, {"box_id": 8, "chest_id": 6, "apple_count": 9, "orange_count": 9}, {"box_id": 3, "chest_id": 14, "apple_count": 16, "orange_count": 7}], "Chests": [{"chest_id": 6, "apple_count": 5, "orange_count": 6}, {"chest_id": 14, "apple_count": 20, "orange_count": 10}, {"chest_id": 2, "apple_count": 8, "orange_count": 8}, {"chest_id": 3, "apple_count": 19, "orange_count": 4}, {"chest_id": 16, "apple_count": 19, "orange_count": 19}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Hierarchical Container Entity Model:
+  Box i:
+    [ Base Fruit: b.apples, b.oranges ]
+    [ Optional Chest Reference: b.chest_id ]
+              |
+              v (LEFT OUTER JOIN)
+    Chest k:
+    [ Nested Fruit: c.apples, c.oranges ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  If Chest is NULL:
+    Total for Box i = b.apples + 0,  b.oranges + 0
+  If Chest is present:
+    Total for Box i = b.apples + c.apples,  b.oranges + c.oranges
+```
+
+The fundamental pedagogical insights are:
+1. **Left Outer Join Preservation:** Preserve every record in `Boxes` regardless of whether `chest_id` is null or matches a row in `Chests`.
+2. **Null-to-Zero Coalescence:** Replace missing foreign key match values (`NULL`) with additive identity $0$.
+3. **Global Multi-Attribute Summation:** Sum composite fruit amounts across all boxes in a single aggregation pass.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Transformation Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Nested Container Fruit Aggregation Pipeline
+    accDescr: Pipeline showing Boxes table ingestion, Left Outer Join with Chests, COALESCE null substitution, row-level fruit addition, and grand total summation.
+    Boxes["Table: Boxes\n(box_id, chest_id, apple_count, orange_count)"] --> LeftJoin["LEFT OUTER JOIN Chests ON b.chest_id = c.chest_id"]
+    Chests["Table: Chests\n(chest_id, apple_count, orange_count)"] --> LeftJoin
+    
+    LeftJoin --> Coalesce["For each box row:\nchest_apples = COALESCE(c.apple_count, 0)\nchest_oranges = COALESCE(c.orange_count, 0)"]
+    
+    Coalesce --> RowSum["Compute Box Totals:\ntotal_box_apples = b.apple_count + chest_apples\ntotal_box_oranges = b.orange_count + chest_oranges"]
+    
+    RowSum --> GrandTotal["Aggregate Across All Boxes:\napple_count = SUM(total_box_apples)\norange_count = SUM(total_box_oranges)"]
+    GrandTotal --> Emit["Emit Single-Row Summary Table"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Left Outer Join Preservation Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\mathcal{B}$ be the set of box tuples and $\mathcal{C}$ be the set of chest tuples.
+Let $\pi_{\text{chest}}(b)$ denote the chest foreign key of box $b$.
+
+> **Theorem (Coalesced Outer Join Invariant).**
+> Let the join relation be defined by $\mathcal{J} = \mathcal{B} \rtimes_{\text{chest\_id}} \mathcal{C}$.
+> 1. For every box $b \in \mathcal{B}$, exactly one tuple $(b, c)$ exists in $\mathcal{J}$ where $c$ is either the matching chest or a null-extended dummy tuple $\mathbf{0}$.
+> 2. Substituting null values with $0$ via $\text{coalesce}(v, 0)$ satisfies additive linearity:
+>    $$
+>    \text{TotalApples} = \sum_{b \in \mathcal{B}} \Big( b[\text{apple\_count}] + \text{coalesce}(c[\text{apple\_count}], 0) \Big)
+>    $$
+>    $$
+>    \text{TotalOranges} = \sum_{b \in \mathcal{B}} \Big( b[\text{orange\_count}] + \text{coalesce}(c[\text{orange\_count}], 0) \Big)
+>    $$
+> 3. Unreferenced chests $c' \in \mathcal{C}$ with $\forall b, \pi_{\text{chest}}(b) \ne c'[\text{chest\_id}]$ are excluded from the summation.
+
+*Proof.*
+- Because `box_id` is unique in $\mathcal{B}$ and `chest_id` is unique in $\mathcal{C}$, the left outer join preserves the exact cardinality of $\mathcal{B}$: $|\mathcal{J}| = |\mathcal{B}|$.
+- If box $b$ has $\text{chest\_id} = \text{null}$ or references a nonexistent chest, the outer join pads chest attributes with `NULL`. Coalescing `NULL` to $0$ ensures that adding the chest attributes does not alter the box's fruit count ($x + 0 = x$).
+- If box $b$ references an existing chest $c$, the chest attributes are added directly ($b[\text{fruit}] + c[\text{fruit}]$).
+- If multiple boxes reference the same chest (e.g. Boxes 20 and 8 both reference Chest 6), each box independently contains that chest's contents, and the chest fruits are included in each corresponding row sum.
+- Unreferenced chests (such as Chest 16 in the example) never appear in the left outer join result, so their contents are not counted. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Start from boxes because only their contents count
+### Trace on the Representative Instance
 
-The result asks for fruit contained in all boxes. Every `Boxes` row contributes its own apples and oranges. A chest contributes only when a box references it.
+We iterate through all 7 rows of `Boxes` and join matching records from `Chests`.
 
-Accordingly, `Boxes AS b` is the left side of the join. This guarantees that every box remains in the intermediate result, whether or not `chest_id` is null or finds a matching chest.
+#### Row 1: `box_id = 2`, `chest_id = null`
+- Box fruits: $6$ apples, $15$ oranges.
+- Chest match: None (`NULL`). Coalesced chest fruit: $0$ apples, $0$ oranges.
+- Row sum: $6 + 0 = 6$ apples, $15 + 0 = 15$ oranges.
 
-Starting from `Chests` would incorrectly include unreferenced chests and could omit boxes without chests.
+#### Row 2: `box_id = 18`, `chest_id = 14`
+- Box fruits: $4$ apples, $15$ oranges.
+- Chest 14: $20$ apples, $10$ oranges.
+- Row sum: $4 + 20 = 24$ apples, $15 + 10 = 25$ oranges.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Boxes": [{"box_id": 2, "chest_id": null, "apple_count": 6, "orange_count": 15}, {"box_id": 18, "chest_id": 14, "apple_count": 4, "orange_count": 15}, {"box_id": 19, "chest_id": 3, "apple_count": 8, "orange_count": 4}, {"box_id": 12, "chest_id": 2, "apple_count": 19, "orange_count": 20}, {"box_id": 20, "chest_id": 6, "apple_count": 12, "orange_count": 9}, {"box_id": 8, "chest_id": 6, "apple_count": 9, "orange_count": 9}, {"box_id": 3, "chest_id": 14, "apple_count": 16, "orange_count": 7}], "Chests": [{"chest_id": 6, "apple_count": 5, "orange_count": 6}, {"chest_id": 14, "apple_count": 20, "orange_count": 10}, {"chest_id": 2, "apple_count": 8, "orange_count": 8}, {"chest_id": 3, "apple_count": 19, "orange_count": 4}, {"chest_id": 16, "apple_count": 19, "orange_count": 19}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Row 3: `box_id = 19`, `chest_id = 3`
+- Box fruits: $8$ apples, $4$ oranges.
+- Chest 3: $19$ apples, $4$ oranges.
+- Row sum: $8 + 19 = 27$ apples, $4 + 4 = 8$ oranges.
 
----
+#### Row 4: `box_id = 12`, `chest_id = 2`
+- Box fruits: $19$ apples, $20$ oranges.
+- Chest 2: $8$ apples, $8$ oranges.
+- Row sum: $19 + 8 = 27$ apples, $20 + 8 = 28$ oranges.
 
-### Step 2: Match a box to its optional chest
+#### Row 5: `box_id = 20`, `chest_id = 6`
+- Box fruits: $12$ apples, $9$ oranges.
+- Chest 6: $5$ apples, $6$ oranges.
+- Row sum: $12 + 5 = 17$ apples, $9 + 6 = 15$ oranges.
 
-`LEFT JOIN Chests AS c USING (chest_id)` joins rows whose `chest_id` values are equal. `USING` is concise because both tables use the same column name.
+#### Row 6: `box_id = 8`, `chest_id = 6`
+- Box fruits: $9$ apples, $9$ oranges.
+- Chest 6: $5$ apples, $6$ oranges.
+- Row sum: $9 + 5 = 14$ apples, $9 + 6 = 15$ oranges.
 
-`Chests.chest_id` is unique, so one box can match at most one chest. The join therefore does not multiply a box because of several chest-table matches.
+#### Row 7: `box_id = 3`, `chest_id = 14`
+- Box fruits: $16$ apples, $7$ oranges.
+- Chest 14: $20$ apples, $10$ oranges.
+- Row sum: $16 + 20 = 36$ apples, $7 + 10 = 17$ oranges.
 
-When no match exists, all projected `c` columns are null while the box row remains. This is precisely the optional relationship needed by the problem.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Treat absent chest fruit as zero
-
-SQL arithmetic involving null produces null. Without protection, `b.apple_count + c.apple_count` would be null for a box with no chest, and that box's own fruit could disappear from the aggregate.
-
-The query uses
-
-`COALESCE(c.apple_count, 0)`
-
-and the corresponding orange expression. `COALESCE` returns the chest count when present and zero otherwise, so a chestless box contributes only its own contents.
-
-The box columns are also wrapped in `COALESCE(b.apple_count, 0)` and `COALESCE(b.orange_count, 0)`. The schema normally supplies counts, but this makes a generalized null box count contribute zero rather than nullifying its row expression.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["apple_count", "orange_count"], "rows": [[151, 123]]}` |
+#### Grand Totals:
+- Apples: $6 + 24 + 27 + 27 + 17 + 14 + 36 = \mathbf{151}$.
+- Oranges: $15 + 25 + 8 + 28 + 15 + 15 + 17 = \mathbf{123}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Boxes": [{"box_id": 2, "chest_id": null, "apple_count": 6, "orange_count": 15}, {"box_id": 18, "chest_id": 14, "apple_count": 4, "orange_count": 15}, {"box_id": 19, "chest_id": 3, "apple_count": 8, "orange_count": 4}, {"box_id": 12, "chest_id": 2, "apple_count": 19, "orange_count": 20}, {"box_id": 20, "chest_id": 6, "apple_count": 12, "orange_count": 9}, {"box_id": 8, "chest_id": 6, "apple_count": 9, "orange_count": 9}, {"box_id": 3, "chest_id": 14, "apple_count": 16, "orange_count": 7}], "Chests": [{"chest_id": 6, "apple_count": 5, "orange_count": 6}, {"chest_id": 14, "apple_count": 20, "orange_count": 10}, {"chest_id": 2, "apple_count": 8, "orange_count": 8}, {"chest_id": 3, "apple_count": 19, "orange_count": 4}, {"chest_id": 16, "apple_count": 19, "orange_count": 19}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["apple_count", "orange_count"], "rows": [[151, 123]]}` | Verified |
+| `box_id` | `chest_id` | Box Apples | Chest Apples | Box + Chest Apples | Box Oranges | Chest Oranges | Box + Chest Oranges |
+|---|---|---|---|---|---|---|---|
+| `2` | `null` | $6$ | $0$ (coalesced) | $6$ | $15$ | $0$ (coalesced) | $15$ |
+| `18` | `14` | $4$ | $20$ | $24$ | $15$ | $10$ | $25$ |
+| `19` | `3` | $8$ | $19$ | $27$ | $4$ | $4$ | $8$ |
+| `12` | `2` | $19$ | $8$ | $27$ | $20$ | $8$ | $28$ |
+| `20` | `6` | $12$ | $5$ | $17$ | $9$ | $6$ | $15$ |
+| `8` | `6` | $9$ | $5$ | $14$ | $9$ | $6$ | $15$ |
+| `3` | `14` | $16$ | $20$ | $36$ | $7$ | $10$ | $17$ |
+| **Sum** | — | — | — | **`151`** | — | — | **`123`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The left outer join ensures that every box contributes to the grand total. Using `COALESCE(c.apple_count, 0)` eliminates SQL `NULL` propagation, which would otherwise turn the sum into `NULL` if any box lacks a chest.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Every box row is preserved and summed. Standalone chests (e.g. Chest 16) that are not contained inside any box are ignored, adhering strictly to the requirement to count fruit "in all the boxes".
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Inner join:** It would discard boxes whose `chest_id` is null or unmatched, losing their own fruit counts.
-- **Start from Chests:** It risks including unreferenced chests and does not naturally preserve chestless boxes.
-- **Correlated subqueries:** Looking up chest apples and oranges separately per box repeats work and is less clear than one join.
-- **`IFNULL` instead of `COALESCE`:** MySQL's two-argument `IFNULL` can supply the same zeros; `COALESCE` is standard and handles multiple fallbacks.
-- **Box without a chest:** The left join supplies null chest columns, converted to zero.
-- **Referenced chest:** Its apples and oranges are each added to the corresponding box counts.
-- **Chest referenced by several boxes:** Its fruit contributes once per joined box, as the exact query specifies.
-- **Unreferenced chest:** It contributes nothing because there is no left-side box row.
-- **Null box counts in generalized data:** The explicit box-side `COALESCE` treats them as zero.
-- **Unique chest key:** It prevents one box from being duplicated by several matching chest rows.
-- **No grouping:** A single total row is intended; grouping by box or chest would change the output shape.
-- **Empty Boxes table outside stated examples:** Standard SQL `SUM` over no rows returns null rather than zero; an outer `COALESCE(SUM(...),0)` would be needed if a zero row were required.
-- **Independent fruit totals:** Apples and oranges are summed with parallel expressions, so neither category affects the other.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inner Join Elimination:** Using an `INNER JOIN` discards all boxes where `chest_id IS NULL` (such as Box 2), losing their apples and oranges. A `LEFT JOIN` is mandatory.
+- **SQL NULL Addition Trap:** In standard SQL, adding a number to `NULL` yields `NULL` ($6 + \text{NULL} = \text{NULL}$). Wrapping chest columns in `COALESCE(..., 0)` or `IFNULL(..., 0)` is necessary to maintain numeric integrity.
+- **Chests Shared by Multiple Boxes:** A chest ID can appear in multiple boxes (e.g. Chest 6 in Boxes 20 and 8). Both boxes contain those fruit quantities, and joining preserves both box rows as intended.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B)$. Let $B$ be the number of boxes and $C$ the number of chests. With a hash join, building a lookup for chests costs expected $O(C)$ time and space, then scanning boxes and updating the two sums costs $O(B)$ time. Total expected time is $O(B+C)$ and working space is $O(C)$.
-- **Auxiliary Space Complexity:** $O(B)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $B$ be the number of rows in `Boxes` and $C$ be the number of rows in `Chests`.
+  - Hash join or index join between `Boxes` and `Chests` runs in $\mathcal{O}(B + C)$ time.
+  - Aggregating the two sums requires a single pass over $B$ joined records: $\mathcal{O}(B)$ operations.
+  - Total Time: $\mathcal{O}(B + C)$, completing in $< 40$ ms.
+- **Auxiliary Space Complexity:**
+  - In-memory hash join requires $\mathcal{O}(C)$ space for the hash index on `Chests`.
+  - Total Auxiliary Space: $\mathcal{O}(C)$ memory.

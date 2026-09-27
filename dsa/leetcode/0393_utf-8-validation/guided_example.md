@@ -1,117 +1,209 @@
 # Guided Example: UTF-8 Validation
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step bitwise UTF-8 finite-state machine (FSM), leading-byte header decoding via bit-shift prefix masking ($v \gg 7, v \gg 5, v \gg 4, v \gg 3$), continuation byte verification ($v \gg 6 == 0b10$), and trailing completeness verification ($cnt == 0$) on representative byte sequences:
 
-- **Input:** `{"data": [197, 130, 1]}`
+- **Input:** $data = [197, 130, 1]$
 - **Required output:** `true`
+  - Binary representations (8-bit):
+    - $197 = 11000101_2$
+    - $130 = 10000010_2$
+    - $1 = 00000001_2$
+  - Step 1 ($v = 197$):
+    - $cnt == 0$, test header prefixes:
+      - $197 \gg 5 = 110_2 == 0b110 \implies$ Valid 2-byte sequence header!
+      - Sets remaining continuation bytes required: $cnt = 1$
+  - Step 2 ($v = 130$):
+    - $cnt = 1 > 0$, continuation expected:
+      - $130 \gg 6 = 10_2 == 0b10 \implies$ Valid continuation byte!
+      - Decrement: $cnt = 1 - 1 = 0$
+  - Step 3 ($v = 1$):
+    - $cnt == 0$, test header prefixes:
+      - $1 \gg 7 = 0_2 == 0b0 \implies$ Valid 1-byte ASCII character!
+      - $cnt$ remains $0$
+  - Stream completes with $cnt == 0 \implies$ Return `true`
+- **Invalid Continuation Byte:** $data = [235, 140, 4] \implies \text{false}$
+  - $235 = 11101011_2$ (3-byte header, needs 2 continuations, $cnt = 2$)
+  - $140 = 10001100_2$ ($10xxxxxx_2$, valid continuation, $cnt = 1$)
+  - $4 = 00000100_2$ ($00xxxxxx_2 \ne 10xxxxxx_2$, invalid continuation) $\implies$ Immediate return `false`
+- **Truncated Sequence:** $data = [197] \implies$ ends with $cnt = 1 \ne 0 \implies \text{false}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary protocol decoding using bit-manipulation state machines, mathematically proves why prefix shifting cleanly isolates the RFC 3629 UTF-8 grammar rules without allocating string buffers, and derives $O(N)$ linear time and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `data` representing the data, return whether it is a valid **UTF-8** encoding (i.e. it translates to a sequence of valid UTF-8 encoded characters).
+Given an array of integers $data = [197, 130, 1]$ where each integer represents 1 byte (least significant 8 bits):
+Determine whether it represents a valid UTF-8 encoded sequence:
 
-The objective is to compute `true` from `{"data": [197, 130, 1]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+UTF-8 Grammar Rules (RFC 3629):
+Number of Bytes | UTF-8 Octet Sequence (Binary)
+----------------+------------------------------------------------
+1 byte          | 0xxxxxxx
+2 bytes         | 110xxxxx 10xxxxxx
+3 bytes         | 1110xxxx 10xxxxxx 10xxxxxx
+4 bytes         | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Input Data: [197, 130, 1]
+197 = 11000101  (Starts with 110 -> 2-byte header, expects 1 continuation)
+130 = 10000010  (Starts with 10  -> Valid continuation byte!)
+1   = 00000001  (Starts with 0   -> Valid 1-byte ASCII character)
+
+Result: All bytes legally formatted -> Output: true
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The FSM State Variable:
+Maintain integer counter `cnt = 0`:
+- When `cnt == 0`: The current byte is the **header** of a new UTF-8 character.
+- When `cnt > 0`: The current byte must be a **continuation byte** (`10xxxxxx`).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Prefix Inspection via Bit Shifts:
+For an 8-bit integer $v$:
+1. **Continuation Byte Check (`cnt > 0`):**
+   - Shift right by 6 bits ($v \gg 6$): isolates the top 2 bits.
+   - If $v \gg 6 \ne 0b10$ ($10_2 = 2$): **Invalid continuation**. Return `False`.
+   - Else: consume continuation byte: $cnt \leftarrow cnt - 1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Header Byte Check (`cnt == 0`):**
+   - **1-byte char:** $v \gg 7 == 0b0 \implies cnt \leftarrow 0$.
+   - **2-byte char:** $v \gg 5 == 0b110 \implies cnt \leftarrow 1$.
+   - **3-byte char:** $v \gg 4 == 0b1110 \implies cnt \leftarrow 2$.
+   - **4-byte char:** $v \gg 3 == 0b11110 \implies cnt \leftarrow 3$.
+   - **Any other pattern:** (e.g. orphan continuation `10xxxxxx` or $> 4$ bytes `11111xxx`): Return `False`.
+
+3. **Terminal Validity:**
+   After the loop, return `cnt == 0` (ensuring no multi-byte character was left truncated).
+
+> **Invariant.** After processing each byte, `cnt` represents the exact number of continuation bytes remaining before the current character is completely decoded.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Read the array as a stream of characters, not one character
-
-The input may encode several UTF-8 characters back to back. A one-byte character can be followed by a three-byte character, which can be followed by another one-byte character. The validator must partition the complete sequence into legal character patterns and must finish exactly at a character boundary.
-
-The exact solution is a small state machine. Its variable `cnt` is the number of continuation bytes still required for the current multi-byte character.
-
-- `cnt == 0` means the next byte must begin a new character;
-- `cnt > 0` means the next byte must have prefix `10`, after which the requirement decreases by one.
-
-No decoded Unicode value needs to be constructed. The task, as defined here, asks only whether byte prefixes fit the specified one-through-four-byte structure.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"data": [197, 130, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $data = [197, 130, 1]$:
+Initial: $cnt = 0$.
 
 ---
 
-### Step 2: Recognizing a continuation byte
-
-When `cnt > 0`, the byte must have form `10xxxxxx`. Shifting an eight-bit value right by six removes the lower six payload bits and leaves only the two most significant bits. Therefore
-
-
-
-is exactly the continuation-byte test.
-
-If it fails, the current character is incomplete or malformed, and the method returns `false` immediately. If it passes, `cnt -= 1` records that one required continuation byte has been consumed.
-
-While continuation bytes are expected, the code does not reinterpret a byte beginning with `0`, `110`, `1110`, or `11110` as a new character. A multi-byte character must receive all of its continuation bytes first; character boundaries cannot overlap.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Byte 0 ($v = 197$)
+- Value: $197 = 11000101_2$.
+- State: $cnt == 0$ (Expects header).
+- Evaluate prefix shifts:
+  - $197 \gg 7 = 00000001_2 \ne 0$.
+  - $197 \gg 5$:
+    $$
+    11000101_2 \gg 5 = 110_2 = \mathbf{0b110}
+    $$
+- Match: **2-byte character header**!
+- Set required continuations:
+  $$
+  cnt \leftarrow \mathbf{1}
+  $$
 
 ---
 
-### Step 3: Recognizing a one-byte character
+### Step 2: Byte 1 ($v = 130$)
+- Value: $130 = 10000010_2$.
+- State: $cnt = 1 > 0$ (Expects continuation).
+- Evaluate continuation prefix:
+  $$
+  130 \gg 6 = 10000010_2 \gg 6 = 10_2 = \mathbf{0b10}
+  $$
+- Check: matches $0b10$ (**True**).
+- Consume continuation byte:
+  $$
+  cnt \leftarrow 1 - 1 = \mathbf{0}
+  $$
+- 2-byte character successfully completed!
 
-When `cnt == 0`, the code checks possible leading-byte patterns from shortest to longest.
+---
 
-The condition `v >> 7 == 0` examines the most significant bit. It is true exactly for `0xxxxxxx`, the required shape of a one-byte character. No continuation bytes follow, so `cnt` remains zero and the next array element starts another character.
+### Step 3: Byte 2 ($v = 1$)
+- Value: $1 = 00000001_2$.
+- State: $cnt == 0$ (Expects header).
+- Evaluate prefix shift:
+  $$
+  1 \gg 7 = 00000001_2 \gg 7 = 0_2 = \mathbf{0b0}
+  $$
+- Match: **1-byte ASCII character**!
+- Set required continuations:
+  $$
+  cnt \leftarrow \mathbf{0}
+  $$
+- 1-byte character successfully completed!
 
-For example, decimal `1` is binary `00000001`. Shifting it right seven positions yields zero, so it is accepted as a complete one-byte character.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Stream Termination
+All bytes processed. Check final state:
+$$
+cnt == 0 \iff 0 == 0 \quad (\mathbf{True})
+$$
+Return:
+$$
+\mathbf{\text{True}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"data": [197, 130, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+data = [197, 130, 1]
+
+Byte 0: v = 197 (11000101)
+  cnt == 0 -> v >> 5 == 0b110 -> 2-byte header -> cnt = 1
+
+Byte 1: v = 130 (10000010)
+  cnt > 0  -> v >> 6 == 0b10  -> valid continuation -> cnt = 0
+
+Byte 2: v = 1   (00000001)
+  cnt == 0 -> v >> 7 == 0b0   -> 1-byte header -> cnt = 0
+
+Stream end: cnt == 0 -> Return True
+```
+
+| Step | Byte Decimal | Byte Binary (8-bit) | State $cnt$ Before | Bitwise Operation | Resulting Prefix | Character Role | State $cnt$ After |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | 197 | $11000101_2$ | 0 | $197 \gg 5$ | $110_2$ | 2-byte Header | **1** |
+| 2 | 130 | $10000010_2$ | 1 | $130 \gg 6$ | $10_2$ | Continuation Byte | **0** |
+| **3** | **1** | **$00000001_2$** | **0** | **$1 \gg 7$** | **$0_2$** | **1-byte ASCII** | **0** |
+| **Exit**| - | - | 0 | - | - | Complete ($cnt == 0$) | **`true`** |
+
+---
+
+### Malformed Counterexample ($data = [235, 140, 4]$)
+
+```text
+Byte 0: 235 (11101011) -> 235 >> 4 == 0b1110 -> 3-byte header -> cnt = 2
+Byte 1: 140 (10001100) -> 140 >> 6 == 0b10   -> valid continuation -> cnt = 1
+Byte 2: 4   (00000100) -> 4 >> 6 == 0b00 != 0b10 -> MALFORMED! -> Return False
+```
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every valid UTF-8 character must start with a header containing $k$ leading ones ($k \in \{0, 2, 3, 4\}$) followed by a zero, and must be followed by exactly $\max(0, k - 1)$ continuation bytes with prefix `10`. Any departure—such as an invalid header bit pattern, an unexpected continuation byte when $cnt == 0$, an invalid prefix when $cnt > 0$, or an unclosed character at end of stream ($cnt > 0$)—violates the standard and is immediately rejected.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** All legal character lengths (1, 2, 3, 4 bytes) are checked in strictly exhaustive order. By scanning the stream byte-by-byte, any valid sequence of UTF-8 characters leaves $cnt = 0$ at each character boundary, ensuring that all valid inputs return `True`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Binary-string conversion:** Format each byte as eight bits and inspect textual prefixes. This can be easier to visualize but allocates temporary strings and performs unnecessary conversion. Bit shifts express the same fixed-prefix tests directly.
-- **Leading-one count:** Starting from mask `10000000`, count consecutive leading one bits, reject one or more than four, then validate the required continuations. This is equivalent; the exact solution enumerates the only four legal leaders explicitly.
-- **Regular expression over a bit string:** A regex can describe the patterns after conversion, but constructing the full bit string costs extra memory and obscures the simple streaming state.
+- **Orphan Continuation Bytes:** If a byte begins with `10xxxxxx` while $cnt == 0$, it is an illegal orphan continuation byte without a preceding header. The `else: return False` branch correctly catches this.
+- **5-byte and 6-byte Sequences:** The original 1993 UTF-8 standard allowed up to 6 bytes, but RFC 3629 permanently restricted UTF-8 to at most 4 bytes. Any byte starting with `11111xxx` is invalid.
+- **Truncated Input Streams:** An input like `[197]` has a valid 2-byte header, but ends without its continuation byte. Checking `return cnt == 0` at the end prevents truncated inputs from falsely returning `True`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of integers in `data`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of integers in `data`. Each integer is processed once with $O(1)$ constant-time bit shifts and comparisons.
+- **Auxiliary Space Complexity:** $O(1)$ strict constant memory, using only the single scalar counter `cnt`.

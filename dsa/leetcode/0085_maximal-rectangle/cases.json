@@ -64,7 +64,7 @@
     {
       "id": "trial-single-one",
       "name": "single one cell",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "matrix": [
@@ -75,6 +75,7 @@
       },
       "expected": 1,
       "tags": [
+        "sample",
         "boundary"
       ]
     },

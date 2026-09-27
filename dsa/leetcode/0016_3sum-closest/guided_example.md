@@ -1,122 +1,125 @@
 # Guided Example: 3Sum Closest
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of the sorted two-pointer search on a representative array instance:
 
-- **Input:** `{"nums": [-1, 2, 1, -4], "target": 1}`
-- **Required output:** `2`
+- **Input:** $\text{nums} = [-1, 2, 1, -4]$, $\text{target} = 1$
+- **Required output:** $2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates sorting-induced monotonicity, two-pointer distance minimization, directional pointer adjustment based on the target error sign, and early-exit elimination of suboptimal search branches.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` of length `n` and an integer `target`, find three integers at **distinct indices** in `nums` such that the sum is closest to `target`.
+Given an integer array $\text{nums}$ of length $N = 4$ and a target value $\text{target} = 1$, we must choose three distinct indices $(i, j, k)$ such that their sum $S = \text{nums}[i] + \text{nums}[j] + \text{nums}[k]$ minimizes the absolute difference $|S - \text{target}|$.
 
-The objective is to compute `2` from `{"nums": [-1, 2, 1, -4], "target": 1}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{nums} = [-1, 2, 1, -4]$:
+- Triplet $(-4, -1, 2)$ gives sum $-3$, distance $|-3 - 1| = 4$.
+- Triplet $(-4, 1, 2)$ gives sum $-1$, distance $|-1 - 1| = 2$.
+- Triplet $(-1, 1, 2)$ gives sum $2$, distance $|2 - 1| = 1$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The optimal sum is $2$, achieving the minimal distance $1$ to target $1$.
+
+A naive brute-force search enumerates all $\binom{N}{3} = O(N^3)$ triplets. By sorting the array first, we fix one element and reduce the remaining two-element search to an $O(N)$ monotonic two-pointer scan, bringing the total time down to $O(N^2)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Sorting and Monotonicity
+We first sort $\text{nums}$ in non-decreasing order:
+$$
+\text{nums} = [-4, -1, 1, 2]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For each fixed anchor index $i$ ($0 \le i \le N - 3$), we position two pointers over the remaining right subsegment:
+- Left pointer $j = i + 1$ (starts at smallest available element).
+- Right pointer $k = N - 1$ (starts at largest available element).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+At each step, we evaluate the triplet sum:
+$$
+S = \text{nums}[i] + \text{nums}[j] + \text{nums}[k]
+$$
+
+### Pointer Adjustment Rules
+1. If $|S - \text{target}| < |\text{closest} - \text{target}|$, update $\text{closest} \leftarrow S$.
+2. **Error Sign Direction:**
+   - If $S < \text{target}$: To bring the sum closer to $\text{target}$, we need a larger value. Because the array is sorted, any pair $(j, k')$ with $k' < k$ would produce a sum $\le S < \text{target}$, which is strictly further from $\text{target}$. Hence, index $j$ cannot form any better triplet with remaining candidates; we advance $j \leftarrow j + 1$.
+   - If $S > \text{target}$: To reduce the sum toward $\text{target}$, we need a smaller value. By symmetry, pair $(j', k)$ with $j' > j$ produces a sum $\ge S > \text{target}$; we decrement $k \leftarrow k - 1$.
+   - If $S = \text{target}$: The distance is $0$, the theoretical minimum. We return $S$ immediately.
+
+> **Invariant.** At every stage, $\text{closest}$ stores the best triplet sum among all evaluated configurations. Monotonicity ensures no discarded $(j, k)$ pair could have produced a strictly smaller distance $|S - \text{target}|$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sort so changing one pointer changes the sum predictably
+We initialize $\text{closest} = \infty$. Sorted array: $\text{nums} = [-4, -1, 1, 2]$.
 
-Fix one value `v = nums[i]`. The remaining task is to choose two distinct later indices whose pair sum comes as close as possible to `target - v`. After sorting, pointer `j` starts at `i + 1` and `k` at the final index.
+### Outer Iteration $i = 0$ (Anchor $\text{nums}[0] = -4$)
+Pointers initialize at $j = 1$ ($\text{nums}[1] = -1$) and $k = 3$ ($\text{nums}[3] = 2$).
 
-The current triplet sum is
+- **Step 1 ($j=1, k=3$):**
+  - Triplet: $(-4, -1, 2)$.
+  - Sum: $S = -4 + (-1) + 2 = -3$.
+  - Distance: $|-3 - 1| = 4$.
+  - Comparison: $4 < \infty \implies \text{closest} \leftarrow -3$.
+  - Direction check: $S = -3 < \text{target} = 1$. Advance left pointer: $j \leftarrow 2$.
 
-$$
-t = v + \texttt{nums[j]} + \texttt{nums[k]}.
-$$
-
-Increasing `j` keeps or raises `t`; decreasing `k` keeps or lowers it. This monotonic behavior lets the search discard many pairs without measuring each one.
-
-Sorting mutates `nums`, but only values and the returned sum matter. Original indices are not part of the output, and `i < j < k` still guarantees three distinct positions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [-1, 2, 1, -4], "target": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Initialize the best sum with infinity
-
-`ans = inf` means no real triplet has been considered. The comparison
-
-
-
-must succeed for the first candidate because its finite distance is less than infinity. From then on, `ans` is always the closest evaluated triplet sum.
-
-The contract guarantees at least three elements, so at least one inner-loop iteration occurs and infinity cannot be returned.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Step 2 ($j=2, k=3$):**
+  - Triplet: $(-4, 1, 2)$.
+  - Sum: $S = -4 + 1 + 2 = -1$.
+  - Distance: $|-1 - 1| = 2$.
+  - Comparison: $2 < 4 \implies \text{closest} \leftarrow -1$.
+  - Direction check: $S = -1 < \text{target} = 1$. Advance left pointer: $j \leftarrow 3$.
+  - Pointers meet ($j = k = 3$). Inner loop for $i = 0$ terminates.
 
 ---
 
-### Step 3: An exact match is immediately optimal
+### Outer Iteration $i = 1$ (Anchor $\text{nums}[1] = -1$)
+Pointers initialize at $j = 2$ ($\text{nums}[2] = 1$) and $k = 3$ ($\text{nums}[3] = 2$).
 
-If `t == target`, the absolute difference is zero. No other sum can be closer than zero, so the method returns `t` without continuing. The unique-solution guarantee is not even needed for this early return; exact equality is an absolute lower bound on distance.
+- **Step 3 ($j=2, k=3$):**
+  - Triplet: $(-1, 1, 2)$.
+  - Sum: $S = -1 + 1 + 2 = 2$.
+  - Distance: $|2 - 1| = 1$.
+  - Comparison: $1 < 2 \implies \text{closest} \leftarrow 2$.
+  - Direction check: $S = 2 > \text{target} = 1$. Decrement right pointer: $k \leftarrow 2$.
+  - Pointers meet ($j = k = 2$). Inner loop for $i = 1$ terminates.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Outer Loop Termination
+The anchor index reaches $N - 2$. All candidate triplets have been explored or pruned.
+Final answer: $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [-1, 2, 1, -4], "target": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Iteration | Anchor $i$ ($\text{nums}[i]$) | Left $j$ ($\text{nums}[j]$) | Right $k$ ($\text{nums}[k]$) | Triplet Sum $S$ | Absolute Error $\|S - \text{target}\|$ | Best Sum So Far | Direction Shift | Elimination Rationale |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 ($-4$) | 1 ($-1$) | 3 ($2$) | $-3$ | $|-3 - 1| = 4$ | $-3$ | $j \leftarrow 2$ | $S < 1$; pairing $-1$ with smaller right elements yields even smaller sums |
+| 2 | 0 ($-4$) | 2 ($1$) | 3 ($2$) | $-1$ | $|-1 - 1| = 2$ | $-1$ | $j \leftarrow 3$ | $S < 1$; advance left pointer |
+| 3 | 1 ($-1$) | 2 ($1$) | 3 ($2$) | $2$ | $|2 - 1| = 1$ | **$2$** | $k \leftarrow 2$ | $S > 1$; pairing $2$ with larger left elements yields even larger sums |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every evaluated sum $S$ is formed by three distinct indices $i < j < k$. The output is always a real, reachable triplet sum from the input array.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By fixing every possible anchor $i$ from $0$ to $N - 3$ and systematically shrinking $[j, k]$, the two-pointer invariant guarantees that no pair $(j, k)$ capable of achieving a smaller distance to $\text{target}$ than the current best is ever pruned. If an exact sum $S = \text{target}$ exists, the distance reaches $0$ and triggers an immediate return.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Binary search for the third value:** Fix two indices and binary-search the remaining suffix near the desired complement. It costs $O(n^2\log n)$, slower than two pointers.
-- **Brute-force triples:** Examines $O(n^3)$ combinations and ignores sorted monotonic elimination.
-- **Skip duplicate pivots:** This can reduce repeated work, but is not required for correctness or the $O(n^2)$ bound; the exact source processes them.
-- **Exact target exists:** Return immediately with distance zero.
-- **All values equal:** Repeated searches compute the same sum; the first candidate initializes `ans` correctly.
-- **Target outside all attainable sums:** Pointer movement reaches the extreme attainable triplet closest to that target.
-- **Negative target and values:** Only numerical order and differences matter; sign requires no special branch.
-- **Distinct indices:** `j = i + 1` and `j < k` maintain `i < j < k`.
-- **Input mutation:** In-place sorting changes the caller's list order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Skipping Optimization:** If consecutive elements are identical (e.g. $\text{nums}[i] = \text{nums}[i-1]$), skipping the duplicate anchor avoids redundant searches without compromising completeness.
+- **Initial Accumulator Value:** Initializing $\text{closest}$ with $0$ is an error because $0$ might falsely masquerade as a candidate sum. Initializing with $\text{nums}[0] + \text{nums}[1] + \text{nums}[2]$ or $\infty$ guarantees correctness.
+- **Integer Overflow with Sentinel:** When using $\infty$, one must take care in languages with fixed integer widths not to trigger overflow when computing $|S - \text{target}|$. In Python, arbitrary-precision integers handle this natively.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the array length.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$. Sorting the array of length $N$ takes $O(N \log N)$ time. The outer loop runs $N - 2$ times, and each inner two-pointer traversal takes at most $N$ steps, contributing $O(N^2)$ time. The overall runtime is dominated by $O(N^2)$.
+- **Auxiliary Space Complexity:** $O(1)$ beyond sorting. In-place sorting algorithms require $O(1)$ or $O(\log N)$ stack space, and the two-pointer search uses only scalar pointer variables.

@@ -1,110 +1,208 @@
 # Guided Example: League Statistics
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step unpivoting, symmetrical score aggregation, and multi-key ranking for football league standings on a representative database instance:
 
-- **Input:** `{"tables": {"Teams": [{"team_id": 1, "team_name": "Ajax"}, {"team_id": 4, "team_name": "Dortmund"}, {"team_id": 6, "team_name": "Arsenal"}], "Matches": [{"home_team_id": 1, "away_team_id": 4, "home_team_goals": 0, "away_team_goals": 1}, {"home_team_id": 1, "away_team_id": 6, "home_team_goals": 3, "away_team_goals": 3}, {"home_team_id": 4, "away_team_id": 1, "home_team_goals": 5, "away_team_goals": 2}, {"home_team_id": 6, "away_team_id": 1, "home_team_goals": 0, "away_team_goals": 0}]}}`
-- **Required output:** `{"columns": ["team_name", "matches_played", "points", "goal_for", "goal_against", "goal_diff"], "rows": [["Dortmund", 2, 6, 6, 2, 4], ["Arsenal", 2, 2, 3, 3, 0], ["Ajax", 4, 2, 5, 9, -4]]}`
+- **Input:** `Teams` table and `Matches` table recording match results between home and away clubs.
+- **Required Output:** Full league table sorted by total points (descending), goal difference (descending), and team name (ascending).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bilateral match projection (`UNION ALL`), conditional win/loss/draw scoring, and composite aggregate grouping.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Teams`
+We are given two database tables:
+1. `Teams`: containing `team_id` (unique integer) and `team_name` (varchar).
+2. `Matches`: containing `home_team_id`, `away_team_id`, `home_team_goals`, and `away_team_goals`.
+Scoring rules:
+- Win (more goals than opponent): **3 points**.
+- Draw (equal goals): **1 point**.
+- Loss (fewer goals than opponent): **0 points**.
 
-The objective is to compute `{"columns": ["team_name", "matches_played", "points", "goal_for", "goal_against", "goal_diff"], "rows": [["Dortmund", 2, 6, 6, 2, 4], ["Arsenal", 2, 2, 3, 3, 0], ["Ajax", 4, 2, 5, 9, -4]]}` from `{"tables": {"Teams": [{"team_id": 1, "team_name": "Ajax"}, {"team_id": 4, "team_name": "Dortmund"}, {"team_id": 6, "team_name": "Arsenal"}], "Matches": [{"home_team_id": 1, "away_team_id": 4, "home_team_goals": 0, "away_team_goals": 1}, {"home_team_id": 1, "away_team_id": 6, "home_team_goals": 3, "away_team_goals": 3}, {"home_team_id": 4, "away_team_id": 1, "home_team_goals": 5, "away_team_goals": 2}, {"home_team_id": 6, "away_team_id": 1, "home_team_goals": 0, "away_team_goals": 0}]}}` while avoiding redundant calculations and unnecessary overhead.
+We must compute the following for each team that played at least one match:
+- `team_name`
+- `matches_played`
+- `points`
+- `goal_for` (total goals scored)
+- `goal_against` (total goals conceded)
+- `goal_diff` (`goal_for - goal_against`)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Order by `points` DESC, then `goal_diff` DESC, then `team_name` ASC.
+
+Consider the representative dataset:
+
+**`Teams` Table:**
+| `team_id` | `team_name` |
+|:---:|:---|
+| $1$ | Ajax |
+| $4$ | Dortmund |
+| $6$ | Arsenal |
+
+**`Matches` Table:**
+| `home_team_id` | `away_team_id` | `home_team_goals` | `away_team_goals` |
+|:---:|:---:|:---:|:---:|
+| $1$ | $4$ | $0$ | $1$ |
+| $1$ | $6$ | $3$ | $3$ |
+| $4$ | $1$ | $5$ | $2$ |
+| $6$ | $1$ | $0$ | $0$ |
+
+Analysis:
+- **Dortmund (ID 4):**
+  - Away at Ajax (1): won $1 - 0 \implies 3$ points, $1$ goal for, $0$ conceded.
+  - Home vs Ajax (1): won $5 - 2 \implies 3$ points, $5$ goals for, $2$ conceded.
+  - Total: $2$ matches, $6$ points, $6$ goals for, $2$ against, diff $+4$.
+- **Arsenal (ID 6):**
+  - Away at Ajax (1): drew $3 - 3 \implies 1$ point, $3$ goals for, $3$ conceded.
+  - Home vs Ajax (1): drew $0 - 0 \implies 1$ point, $0$ goals for, $0$ conceded.
+  - Total: $2$ matches, $2$ points, $3$ goals for, $3$ against, diff $0$.
+- **Ajax (ID 1):**
+  - Played 4 matches: $0$ wins, $2$ draws, $2$ losses $\implies 2$ points, $5$ goals for, $9$ against, diff $-4$.
+- Ranking: Dortmund ($6$ pts) $\to$ Arsenal ($2$ pts, diff $0$) $\to$ Ajax ($2$ pts, diff $-4$).
+
+The teaching goal is to unpivot each row of `Matches` into two distinct perspective rows (one for home, one for away) via `UNION ALL`. Grouping the unified perspective table by `team_id` allows standard SQL aggregation functions (`COUNT`, `SUM`) to accumulate points and goals cleanly.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Bilateral Unpivoting
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Each match involves two teams simultaneously.
+To treat every team uniformly regardless of home/away venue, each record in `Matches` is projected into two symmetric tuples:
+1. **Home perspective:**
+   $$(\text{team\_id} = \text{home\_team\_id}, \, g_{\text{for}} = \text{home\_team\_goals}, \, g_{\text{against}} = \text{away\_team\_goals})$$
+   $$\text{points} = \begin{cases} 3 & \text{if } g_{\text{for}} > g_{\text{against}} \\ 1 & \text{if } g_{\text{for}} = g_{\text{against}} \\ 0 & \text{if } g_{\text{for}} < g_{\text{against}} \end{cases}$$
+2. **Away perspective:**
+   $$(\text{team\_id} = \text{away\_team\_id}, \, g_{\text{for}} = \text{away\_team\_goals}, \, g_{\text{against}} = \text{home\_team\_goals})$$
+   $$\text{points} = \begin{cases} 3 & \text{if } g_{\text{for}} > g_{\text{against}} \\ 1 & \text{if } g_{\text{for}} = g_{\text{against}} \\ 0 & \text{if } g_{\text{for}} < g_{\text{against}} \end{cases}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Relational Match Unpivoting Invariant Theorem
+
+> **Relational Match Unpivoting Invariant Theorem.**
+> Let $M$ be the set of match records.
+> 1. *Partition Conservation:* The disjoint union $S = \pi_{\text{home}}(M) \cup_{\text{ALL}} \pi_{\text{away}}(M)$ contains exactly $2 |M|$ tuples, with each team's appearance recorded as an independent performance tuple.
+> 2. *Aggregate Additivity:* For each team $u$, the aggregate statistics satisfy:
+>    $$\text{matches\_played}(u) = \sum_{t \in S, t.\text{team\_id} = u} 1$$
+>    $$\text{points}(u) = \sum_{t \in S, t.\text{team\_id} = u} t.\text{score}$$
+>    $$\text{goal\_diff}(u) = \sum_{t \in S, t.\text{team\_id} = u} t.g_{\text{for}} - \sum_{t \in S, t.\text{team\_id} = u} t.g_{\text{against}}$$
+> 3. Joining $S$ with `Teams` on `team_id` and sorting the aggregated groups by $(\text{points} \downarrow, \text{goal\_diff} \downarrow, \text{team\_name} \uparrow)$ produces the canonical standings table in $\mathcal{O}(|M| + |T| \log |T|)$ time.
+
+```mermaid
+flowchart TD
+    accTitle: League Statistics Unpivoting and Aggregation
+    accDescr: Diagram illustrating unpivoting Matches into home and away perspectives, combining with UNION ALL, grouping by team_id, and sorting.
+    A["Matches Table (4 rows)"] --> B["Project Home Perspective (4 rows)"]
+    A --> C["Project Away Perspective (4 rows)"]
+    B & C --> D["UNION ALL -> Unified Scores Table (8 rows)"]
+    D --> E["JOIN Teams ON team_id"]
+    E --> F["GROUP BY team_id -> Aggregate SUM and COUNT"]
+    F --> G["ORDER BY points DESC, goal_diff DESC, team_name ASC"]
+    G --> H["Output Standings Table"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Turn every match into one row per team perspective.** A row in `Matches` contains both teams, but league statistics are grouped by a single team. The common table expression `Scores` normalizes each match into two rows:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Teams": [{"team_id": 1, "team_name": "Ajax"}, {"team_id": 4, "team_name": "Dortmund"}, {"team_id": 6, "team_name": "Arsenal"}], "Matches": [{"home_team_id": 1, "away_team_id": 4, "home_team_goals": 0, "away_team_goals": 1}, {"home_team_id": 1, "away_team_id": 6, "home_team_goals": 3, "away_team_goals": 3}, {"home_team_id": 4, "away_team_id": 1, "home_team_goals": 5, "away_team_goals": 2}, {"home_team_id": 6, "away_team_id": 1, "home_team_goals": 0, "away_team_goals": 0}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the relational transformations across the sample dataset:
 
 ---
 
-### Step 2: Core Step 2
-
-- The first `SELECT` describes the home team.
-- The second `SELECT` describes the away team.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Generate Home Perspective Tuples
+From `Matches`:
+- Match 1 ($1$ vs $4$, $0-1$): Team $1$, $g_f = 0, g_a = 1 \implies \text{score} = 0$.
+- Match 2 ($1$ vs $6$, $3-3$): Team $1$, $g_f = 3, g_a = 3 \implies \text{score} = 1$.
+- Match 3 ($4$ vs $1$, $5-2$): Team $4$, $g_f = 5, g_a = 2 \implies \text{score} = 3$.
+- Match 4 ($6$ vs $1$, $0-0$): Team $6$, $g_f = 0, g_a = 0 \implies \text{score} = 1$.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Generate Away Perspective Tuples
+From `Matches`:
+- Match 1 ($1$ vs $4$, $0-1$): Team $4$, $g_f = 1, g_a = 0 \implies \text{score} = 3$.
+- Match 2 ($1$ vs $6$, $3-3$): Team $6$, $g_f = 3, g_a = 3 \implies \text{score} = 1$.
+- Match 3 ($4$ vs $1$, $5-2$): Team $1$, $g_f = 2, g_a = 5 \implies \text{score} = 0$.
+- Match 4 ($6$ vs $1$, $0-0$): Team $1$, $g_f = 0, g_a = 0 \implies \text{score} = 1$.
 
-`UNION ALL` combines them without deduplication. This matters because two rows with equal numeric statistics can still represent two real match appearances and must both be counted.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["team_name", "matches_played", "points", "goal_for", "goal_against", "goal_diff"], "rows": [["Dortmund", 2, 6, 6, 2, 4], ["Arsenal", 2, 2, 3, 3, 0], ["Ajax", 4, 2, 5, 9, -4]]}` |
+### Step 3: Combine with `UNION ALL`
+Unified 8-row table of performances:
+
+| `team_id` | `goals_for` | `goals_against` | `score` |
+|:---:|:---:|:---:|:---:|
+| $1$ | $0$ | $1$ | $0$ |
+| $1$ | $3$ | $3$ | $1$ |
+| $4$ | $5$ | $2$ | $3$ |
+| $6$ | $0$ | $0$ | $1$ |
+| $4$ | $1$ | $0$ | $3$ |
+| $6$ | $3$ | $3$ | $1$ |
+| $1$ | $2$ | $5$ | $0$ |
+| $1$ | $0$ | $0$ | $1$ |
+
+---
+
+### Step 4: Group by `team_id` and Compute Aggregates
+
+1. **Team $4$ (Dortmund):**
+   - Matches played: $2$
+   - Points: $3 + 3 = 6$
+   - Goal for: $5 + 1 = 6$
+   - Goal against: $2 + 0 = 2$
+   - Goal diff: $6 - 2 = 4$
+
+2. **Team $6$ (Arsenal):**
+   - Matches played: $2$
+   - Points: $1 + 1 = 2$
+   - Goal for: $0 + 3 = 3$
+   - Goal against: $0 + 3 = 3$
+   - Goal diff: $3 - 3 = 0$
+
+3. **Team $1$ (Ajax):**
+   - Matches played: $4$
+   - Points: $0 + 1 + 0 + 1 = 2$
+   - Goal for: $0 + 3 + 2 + 0 = 5$
+   - Goal against: $1 + 3 + 5 + 0 = 9$
+   - Goal diff: $5 - 9 = -4$
+
+---
+
+### Step 5: Sort According to League Rules
+
+- Compare `points`: Dortmund ($6$) > Arsenal ($2$) == Ajax ($2$).
+- Tie-break for Arsenal and Ajax:
+  - Compare `goal_diff`: Arsenal ($0$) > Ajax ($-4$).
+- Standings order: Dortmund $\to$ Arsenal $\to$ Ajax.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Teams": [{"team_id": 1, "team_name": "Ajax"}, {"team_id": 4, "team_name": "Dortmund"}, {"team_id": 6, "team_name": "Arsenal"}], "Matches": [{"home_team_id": 1, "away_team_id": 4, "home_team_goals": 0, "away_team_goals": 1}, {"home_team_id": 1, "away_team_id": 6, "home_team_goals": 3, "away_team_goals": 3}, {"home_team_id": 4, "away_team_id": 1, "home_team_goals": 5, "away_team_goals": 2}, {"home_team_id": 6, "away_team_id": 1, "home_team_goals": 0, "away_team_goals": 0}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["team_name", "matches_played", "points", "goal_for", "goal_against", "goal_diff"], "rows": [["Dortmund", 2, 6, 6, 2, 4], ["Arsenal", 2, 2, 3, 3, 0], ["Ajax", 4, 2, 5, 9, -4]]}` | Verified |
+| Standings Rank | `team_name` | `matches_played` | `points` | `goal_for` | `goal_against` | `goal_diff` |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| **1** | **Dortmund** | $2$ | **$6$** | $6$ | $2$ | **$4$** |
+| **2** | **Arsenal** | $2$ | **$2$** | $3$ | $3$ | **$0$** |
+| **3** | **Ajax** | $4$ | **$2$** | $5$ | $9$ | **$-4$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Unpivoting home and away perspectives preserves every match fact symmetrically. Win, draw, and loss points match FIFA regulations ($3, 1, 0$). Goal difference is computed exactly as $\sum g_{\text{for}} - \sum g_{\text{against}}$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every match in `Matches` generates exactly two rows in the unpivoted table, one for each participating team. Teams that played zero matches do not appear in `Matches` and are correctly omitted from league standings.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Conditional aggregation without a union:** Join each team to matches where it is home or away and use `CASE` for perspective. It avoids doubling through a CTE but makes every aggregate expression more complex.
-- **Start from `Teams` with a left join:** This is necessary if teams with zero matches must appear with zero statistics.
-- **Plain `UNION`:** It can erase distinct match appearances that happen to produce identical projected values and must not replace `UNION ALL`.
-- **Draw:** Both perspective rows receive score one, and each side’s goals for equal the other side’s goals against.
-- **Home win:** Home receives three and away zero; the second branch deliberately reverses the comparison outcome.
-- **Away win:** Away receives three and home zero.
-- **Repeated scorelines:** `UNION ALL` retains all appearances, so identical match statistics still count separately.
-- **Negative goal difference:** Subtracting aggregate goals against naturally produces a negative value and descending sorting ranks it below a larger difference.
-- **Complete standings tie:** Team name ascending supplies the final deterministic order.
-- **Team with no matches:** The exact inner-join query omits it rather than returning zeros.
-- **Unique team name dependency:** Grouping by `team_id` relies on its unique Teams row to determine `team_name`; stricter SQL modes or other engines may prefer grouping by both.
-- **Indexes:** Indexes on team identifiers help joins, but they do not change the query’s logical result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `UNION` Instead of `UNION ALL`:** `UNION` strips duplicate rows. If a team has two identical match results (e.g. two $0-0$ draws yielding identical tuples), `UNION` would discard one match, undercounting `matches_played`. `UNION ALL` is strictly required.
+- **Tie-Breaking Precedence:** Sorting must prioritize `points DESC`, then `goal_diff DESC`, then `team_name ASC`. Alphabetical order only breaks ties when both points and goal differences are identical.
+- **Separate Home and Away Columns:** Attempting to join without unpivoting leads to awkward double-joins and outer joins; `UNION ALL` unifies the data model into a single dimension.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(m + t\log t)$. Let `m` be the number of matches and `t` the number of teams. The CTE produces `2m` rows. Scanning matches and calculating perspective fields is `O(m)` logical work. Joining teams can be near linear with an index or hash plan, grouping processes the perspective rows, and final ordering of up to `t` participating teams costs `O(t log t)`. A representative overall bound is `O(m + t log t)`, subject to the database optimizer and available indexes.
-- **Auxiliary Space Complexity:** $O(m + t)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(M + T \log T)$, where $M$ is the number of rows in `Matches` and $T$ is the number of distinct teams. Unpivoting scans $M$ rows twice. Hash aggregation runs in $\mathcal{O}(M)$ time, and the final sorting of the $T$ teams takes $\mathcal{O}(T \log T)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(M + T)$ to hold the unpivoted intermediate view and aggregate result set.

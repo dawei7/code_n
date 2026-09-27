@@ -32,13 +32,14 @@
     {
       "id": "trial-million",
       "name": "multiple nonzero chunks",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "num": 1234567
       },
       "expected": "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven",
       "tags": [
+        "sample",
         "millions"
       ]
     },

@@ -1,129 +1,161 @@
 # Guided Example: Split a String Into the Max Number of Unique Substrings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide walks through depth-first search with backtracking and upper-bound branch pruning to partition a string into the maximum possible number of non-overlapping, unique non-empty substrings.
 
-- **Input:** `{"s": "ababccc"}`
-- **Required output:** `5`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input String:** `s = "ababccc"`
+- **Target Maximum Count:** `5` (Partition: `["a", "b", "ab", "c", "cc"]`)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`<var>,</var> return *the maximum number of unique substrings that the given string can be split into*.
+A valid partition of string $s$ of length $N$ divides $s$ into contiguous non-empty substrings $w_1, w_2, \dots, w_k$ such that:
+1. Concatenation condition: $w_1 + w_2 + \dots + w_k = s$
+2. Global uniqueness condition: $w_i \ne w_j$ for all $1 \le i < j \le k$
 
-The objective is to compute `5` from `{"s": "ababccc"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "ababccc"` ($N = 7$), partitioning into single characters `["a", "b", "a", "b", "c", "c", "c"]` yields 7 pieces but violates uniqueness because `"a"`, `"b"`, and `"c"` repeat. Grouping repeat occurrences creates distinct multi-character tokens:
+$$[\text{"a"}, \text{"b"}, \text{"ab"}, \text{"c"}, \text{"cc"}]$$
+Each piece is unique, achieving $k = 5$ parts.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our teaching goal is to trace how recursive backtracking explores cut positions while using the optimistic upper bound $|st| + (N - i)$ to prune fruitless search subtrees.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  BACKTRACKING STATE & PRUNING BOUND                     |
+|                                                                         |
+|  State: (index i, unique_set st)                                        |
+|                                                                         |
+|  Optimistic Upper Bound:                                                |
+|    Max achievable pieces from this state: Bound = |st| + (N - i)        |
+|    If Bound <= current_best_answer:                                     |
+|        PRUNE SUBTREE IMMEDIATELY (cannot beat or improve current best)  |
+|                                                                         |
+|  Transitions:                                                           |
+|    For each cut j from i + 1 to N:                                      |
+|      candidate = s[i : j]                                               |
+|      If candidate not in st:                                            |
+|          Add candidate to st                                            |
+|          Recurse to dfs(j)                                              |
+|          Remove candidate from st (backtrack state restoration)         |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Parameter | Mathematical Expression | Function in Search |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Active Prefix Boundary ($i$) | $0 \le i \le N$ | Starting index of remaining suffix $s[i..N-1]$ |
+| Substring Pool ($st$) | $\{w_1, \dots, w_m\}$ | Multiset of distinct tokens committed so far |
+| Remaining Length | $N - i$ | Maximum additional singletons theoretically possible |
+| Upper Bound | $|st| + (N - i)$ | Theoretical ceiling on total unique parts for current path |
+| Global Maximum ($ans$) | $\max |st|$ at $i = N$ | Best verified partition size discovered |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Pruning Invariant.** At any search node $(i, st)$, the maximum number of additional non-empty substrings that can be formed from suffix $s[i..N-1]$ is strictly bounded by the number of remaining characters $N - i$. If $|st| + (N - i) \le ans$, no continuation can exceed the established best $ans$, so terminating the branch preserves global optimality.
+
+```mermaid
+flowchart TD
+    accTitle: Backtracking Decision Tree with Bound Pruning
+    accDescr: Search tree demonstrating exploration of unique substring cuts and pruning of unpromising branches.
+    R["Root: i = 0, st = {}"] --> A["Cut 'a': i = 1, st = {'a'}"]
+    A --> B["Cut 'b': i = 2, st = {'a', 'b'}"]
+    B --> AB["Cut 'ab': i = 4, st = {'a', 'b', 'ab'}"]
+    B -->|"Cut 'a': Duplicate! Rejected"| D["Rejected"]
+    AB --> C["Cut 'c': i = 5, st = {'a', 'b', 'ab', 'c'}"]
+    C --> CC["Cut 'cc': i = 7, st = {'a', 'b', 'ab', 'c', 'cc'}"]
+    CC --> Found["Base Case Reached: Size 5 Found!"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the problem needs backtracking
+### Branch 1: Tracing the Optimal 5-Split
 
-A split is determined by choosing cut positions between characters. For a string of length $N$, there are $N-1$ possible cut locations, so there can be $2^{N-1}$ partitions before the uniqueness rule is applied.
+1. **Start ($i = 0$):**
+   - Explore cut $j = 1 \implies \text{token} = \text{"a"}$.
+   - Add `"a"` to $st$. New state: $i = 1, st = \{\text{"a"}\}$.
 
-The validity of a next substring depends on the exact substrings already chosen, not merely on the current index. Two different partitions of the same prefix can leave different sets of forbidden substrings. The solution therefore performs depth-first search with a set `st` representing the current partition’s chosen pieces.
+2. **State ($i = 1$):**
+   - Remaining characters: $7 - 1 = 6$. Upper bound: $1 + 6 = 7 > 0$.
+   - Explore cut $j = 2 \implies \text{token} = \text{"b"}$.
+   - Add `"b"` to $st$. New state: $i = 2, st = \{\text{"a"}, \text{"b"}\}$.
 
-The small constraint $N\le16$ makes this exponential exploration feasible, especially with pruning.
+3. **State ($i = 2$):**
+   - Remaining characters: $7 - 2 = 5$. Upper bound: $2 + 5 = 7$.
+   - Suffix: `"abccc"`.
+   - Candidate $j = 3 \implies \text{"a"}$. Already in $st$! Discarded.
+   - Candidate $j = 4 \implies \text{"ab"}$. Not in $st$!
+   - Add `"ab"` to $st$. New state: $i = 4, st = \{\text{"a"}, \text{"b"}, \text{"ab"}\}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "ababccc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+4. **State ($i = 4$):**
+   - Remaining characters: $7 - 4 = 3$. Upper bound: $3 + 3 = 6$.
+   - Suffix: `"ccc"`.
+   - Candidate $j = 5 \implies \text{"c"}$. Not in $st$!
+   - Add `"c"` to $st$. New state: $i = 5, st = \{\text{"a"}, \text{"b"}, \text{"ab"}, \text{"c"}\}$.
+
+5. **State ($i = 5$):**
+   - Remaining characters: $7 - 5 = 2$. Upper bound: $4 + 2 = 6$.
+   - Suffix: `"cc"`.
+   - Candidate $j = 6 \implies \text{"c"}$. Already in $st$! Discarded.
+   - Candidate $j = 7 \implies \text{"cc"}$. Not in $st$!
+   - Add `"cc"` to $st$. New state: $i = 7, st = \{\text{"a"}, \text{"b"}, \text{"ab"}, \text{"c"}, \text{"cc"}\}$.
+
+6. **Base Case ($i = 7 = N$):**
+   - Reached end of string. All characters consumed.
+   - Partition: `["a", "b", "ab", "c", "cc"]`.
+   - Size: $|st| = 5$.
+   - Update global maximum: $ans = \max(0, 5) = 5$.
 
 ---
 
-### Step 2: The recursive state
+### Branch 2: Illustrating Bound Pruning
 
-`dfs(i)` means that `s[:i]` has already been split into the distinct substrings currently stored in `st`, and the search must partition the remaining suffix `s[i:]`.
-
-At a given start `i`, every legal next piece must be a non-empty prefix of that remaining suffix. The loop tries all endpoints:
-
-`for j in range(i + 1, len(s) + 1)`.
-
-The candidate is `s[i:j]`. Starting at `i + 1` guarantees at least one character, and allowing `j == len(s)` includes the complete remaining suffix.
-
-If the candidate is already in `st`, choosing it would violate global uniqueness within the current split, so that branch is skipped.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Choose, explore, and undo
-
-For a new candidate, the source performs the standard backtracking sequence:
-
-1. add `s[i:j]` to `st`;
-2. call `dfs(j)` to split the suffix after the candidate;
-3. remove `s[i:j]` from `st`.
-
-The removal is essential. The set describes only the choices along the current recursion path. When control returns to try a different endpoint, the previous candidate is no longer part of that alternative partition and must not remain forbidden.
-
-Python slicing creates the substring each time the expression appears. The exact source evaluates `s[i:j]` for membership and again for addition and removal on an accepted branch. The values compare by content, so each removal deletes the same textual substring that was added.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
+Suppose the search backtracks to explore alternative initial cut $s[0..2] = \text{"aba"}$:
+- State: $i = 3, st = \{\text{"aba"}\}$.
+- Remaining characters: $N - i = 7 - 3 = 4$ (suffix `"bccc"`).
+- Theoretical upper bound:
+  $$\text{Bound} = |st| + (N - i) = 1 + 4 = 5$$
+- Since current best $ans = 5$, condition $|st| + (N - i) \le ans$ ($5 \le 5$) triggers immediately.
+- The entire subtree rooted at `"aba"` is pruned without scanning its children, saving exponential recursive calls.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "ababccc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
+| Step | Prefix Index $i$ | Candidate Slice $s[i:j]$ | Membership in $st$ | Action Taken | Active $st$ Size | Upper Bound $|st| + N - i$ | Global Best $ans$ |
+|---|---|---|---|---|---|---|---|
+| 1 | $0$ | `"a"` ($j=1$) | Absent | Push `"a"`, recurse $i=1$ | $1$ | $1 + 6 = 7$ | $0$ |
+| 2 | $1$ | `"b"` ($j=2$) | Absent | Push `"b"`, recurse $i=2$ | $2$ | $2 + 5 = 7$ | $0$ |
+| 3 | $2$ | `"a"` ($j=3$) | Present | Duplicate skipped | $2$ | $2 + 4 = 6$ | $0$ |
+| 4 | $2$ | `"ab"` ($j=4$) | Absent | Push `"ab"`, recurse $i=4$ | $3$ | $3 + 3 = 6$ | $0$ |
+| 5 | $4$ | `"c"` ($j=5$) | Absent | Push `"c"`, recurse $i=5$ | $4$ | $4 + 2 = 6$ | $0$ |
+| 6 | $5$ | `"c"` ($j=6$) | Present | Duplicate skipped | $4$ | $4 + 1 = 5$ | $0$ |
+| 7 | $5$ | `"cc"` ($j=7$) | Absent | Push `"cc"`, recurse $i=7$ | $5$ | $5 + 0 = 5$ | $0$ |
+| 8 | $7$ | End of String | Base case | Update best answer | $5$ | — | $5$ |
+| 9 | $0$ | `"ab"` ($j=2$) | Absent | Explore alternative | $1$ | $1 + 5 = 6$ | $5$ |
+| 10 | $0$ | `"aba"` ($j=3$) | Absent | $1 + 4 = 5 \le 5$ | — | $5 \le 5$ (Pruned) | $5$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A candidate partition is recorded only when the recursion index $i$ reaches the end of the string ($i = N$). Because each recursive step advances the pointer from $i$ to $j > i$ using non-empty slices, the concatenated substrings reconstruct $s$ without gaps or overlaps. Before advancing to $j$, the algorithm tests $s[i:j] \notin st$. Thus, all committed tokens are strictly distinct. Every recorded count is the size of a verified valid partition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Depth-first search exhaustively considers all possible cut positions $j \in [i+1, N]$ for the next substring. A branch is pruned only if $|st| + (N - i) \le ans$. Because any partition of the remaining $N - i$ characters can produce at most $N - i$ distinct non-empty pieces (even assuming each character is unique and unused), no completion of the current prefix can yield more than $|st| + (N - i)$ total parts. Therefore, pruning discards only branches incapable of strictly improving upon $ans$, ensuring the true maximum is preserved.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Backtracking without pruning:** It is correct and simpler, but explores branches even when every remaining character as a singleton cannot beat the known best.
-- **Dynamic programming by index alone:** It is insufficient because validity depends on the entire set of previously used substring values. A richer state would need to encode that configuration and becomes impractical.
-- **Enumerate cut masks:** Each bit mask defines a partition, after which a set can test uniqueness. This is conceptually direct but repeats substring construction and cannot prune partial partitions as early.
-- **Greedy shortest unused substring:** Choosing the shortest available piece may create conflicts later and miss a better global partition. Backtracking must reconsider endpoints.
-- **All characters distinct:** Splitting into single characters gives $N$ unique pieces, the maximum possible.
-- **All characters equal:** Single-character pieces repeat, so longer groupings are required. The search tests all such combinations.
-- **One-character string:** The only candidate is the whole string; it reaches the base case with set size one.
-- **Candidate equal to an earlier piece:** Membership rejects it even if it occurs at a different source position, because uniqueness is by substring content.
-- **Backtracking removal:** Omitting `st.remove(...)` would leak choices between sibling branches and incorrectly reject valid partitions.
-- **Empty substrings:** The endpoint starts at `i + 1`, so they are never generated.
-- **Pruning equality:** A branch whose upper bound equals `ans` may be skipped because tied solutions do not change the requested maximum value.
-- **Small constraint:** The exponential method is appropriate because $N$ is at most 16; it would not scale to strings of length $10^5$.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Greedy Selection Hazard:** Always picking the shortest available unused substring can create severe conflicts later in the string, forcing suboptimal long groupings. A backtracking search that can reconsider cut lengths is essential.
+- **State Leakage Across Branches:** Forgetting to remove $s[i:j]$ from the hash set after the recursive return will permanently taint the set, incorrectly treating valid substrings as duplicates in subsequent alternative search paths.
+- **Strict vs. Non-Strict Pruning Bound:** Pruning when $|st| + (N - i) \le ans$ is valid because we only seek the *maximum* count. If the problem required enumerating all tied maximal splits, the condition would need to be strictly $< ans$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N2^N)$. Let $N$ be the string length.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \cdot 2^{N-1})$ in the theoretical unpruned worst-case, where $N \le 16$. There are $N - 1$ potential cut points, generating $2^{N-1}$ binary split choices. Slicing and set hashing take $\mathcal{O}(N)$ per decision. In practice, bound pruning terminates unpromising branches early, executing in milliseconds.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ call stack frames, alongside $\mathcal{O}(N)$ auxiliary space for the hash set containing at most $N$ unique substrings of combined length $N$.

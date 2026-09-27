@@ -1,134 +1,146 @@
 # Guided Example: Find First Palindromic String in the Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the sequential array scan, inward two-pointer character symmetry verification, and short-circuit early termination on a representative string array:
 
-- **Input:** `{"words": ["abc", "car", "ada", "racecar", "cool"]}`
-- **Required output:** `"ada"`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given an array of strings `words`, return *the first **palindromic** string in the array*. If there is no such string, return *an **empty string** *`""`.
-
-The objective is to compute `"ada"` from `{"words": ["abc", "car", "ada", "racecar", "cool"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Input Array:** `words = ["abc", "car", "ada", "racecar", "cool"]`
+- **Total Words $m$:** `5`
+- **Expected Return Value:** `"ada"` (First palindrome; `"racecar"` is skipped)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+We are given an array of strings `words`.
+A string is defined as **palindromic** if it reads the exact same forward as backward (i.e., it equals its reversed form).
+The objective is to return the **first palindromic string** in `words`. If no palindromic string exists anywhere in the array, we must return the empty string `""`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The First-Match Priority & Inward Short-Circuiting
+- The requirement to return the *first* palindromic string establishes a strict left-to-right priority: the very first string $w_i$ that satisfies the palindromic condition must be returned immediately.
+- Later palindromic words (such as `"racecar"` at index $3$) must not overwrite or delay the return of the earlier match (`"ada"` at index $2$).
+- For each candidate word $w$, testing whether $w$ is a palindrome using two inward pointers ($l$ and $r$) enables immediate rejection on the first character mismatch, avoiding the $\mathcal{O}(|w|)$ auxiliary allocation required by allocating reversed string copies.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: First Palindromic String Scan and Verification
+    accDescr: Sequential scan through words array testing each candidate with two-pointer symmetry, returning immediately upon finding the first valid palindrome.
+    Start["Scan words from index 0"] --> W0["Word 0: 'abc' -> 'a' != 'c' (Reject)"]
+    W0 --> W1["Word 1: 'car' -> 'c' != 'r' (Reject)"]
+    W1 --> W2["Word 2: 'ada' -> 'a' == 'a', 'd' == 'd' (PALINDROME!)"]
+    W2 --> Found["Return 'ada' immediately (Halt search)"]
+    W2 -. "Skipped (Not evaluated)" .-> W3["Word 3: 'racecar'"]
+
+    classDef reject fill:#fee2e2,stroke:#b91c1c,stroke-width:1px;
+    classDef match fill:#dcfce7,stroke:#15803d,stroke-width:2px;
+    classDef skip fill:#f3f4f6,stroke:#9ca3af,stroke-width:1px;
+    class W0,W1 reject;
+    class W2,Found match;
+    class W3 skip;
+```
+
+---
+
+## 2. Invariants & Palindromic Symmetry Mathematics
+
+Let $A = [w_0, w_1, \dots, w_{m-1}]$ denote the input list of words.
+
+### Invariant 1: Left-to-Right Precedence
+The return value is uniquely specified by:
+$$\text{ans} = \begin{cases} w_{i^*} & \text{if } \exists i \text{ such that } \text{IsPalindrome}(w_i), \text{ where } i^* = \min \{i \mid \text{IsPalindrome}(w_i)\} \\ \text{""} & \text{if } \forall i \in \{0, \dots, m-1\}, \neg \text{IsPalindrome}(w_i) \end{cases}$$
+
+### Invariant 2: Two-Pointer Reflexive Symmetry
+A string $w$ of length $L$ is a palindrome if and only if:
+$$w[k] = w[L - 1 - k] \quad \forall k \in \left\{0, 1, \dots, \left\lfloor \frac{L}{2} \right\rfloor \right\}$$
+Using inward pointers $l = 0$ and $r = L - 1$:
+- If $w[l] \neq w[r]$, the string violates reflection symmetry; reject $w$ immediately.
+- If $w[l] == w[r]$, advance $l \leftarrow l + 1$ and $r \leftarrow r - 1$.
+- If $l \ge r$, every mirrored pair has been verified; $w$ is a certified palindrome.
+
+| Word $w$ | Candidate Index | Length $L$ | Pointer Invariant Checked | Mismatch Detected? | Verdict |
+|---|---|---|---|---|---|
+| `"abc"` | $0$ | $3$ | $w[0] == w[2] \iff \text{'a'} == \text{'c'}$ | Yes at step $0$ | Non-palindromic |
+| `"car"` | $1$ | $3$ | $w[0] == w[2] \iff \text{'c'} == \text{'r'}$ | Yes at step $0$ | Non-palindromic |
+| `"ada"` | $2$ | $3$ | $w[0] == w[2] \iff \text{'a'} == \text{'a'}$ | No ($l=1, r=1 \implies l \ge r$) | **Certified Palindrome** |
+| `"racecar"` | $3$ | $7$ | Unprocessed | N/A | Skipped by early exit |
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Preserve array order and stop at the first match
+We trace `words = ["abc", "car", "ada", "racecar", "cool"]`.
 
-The word “first” makes the input order essential. The source creates a generator that examines `words` from left to right:
+### Candidate 0: $w = \text{"abc"}$
+- String length $L = 3$. Pointers: $l = 0, r = 2$.
+- Compare $w[0]$ and $w[2]$:
+  $$\text{'a'} \neq \text{'c'}$$
+- Mismatch identified on first check!
+- Reject `"abc"`. Move to next word.
 
-`(w for w in words if w == w[::-1])`.
+### Candidate 1: $w = \text{"car"}$
+- String length $L = 3$. Pointers: $l = 0, r = 2$.
+- Compare $w[0]$ and $w[2]$:
+  $$\text{'c'} \neq \text{'r'}$$
+- Mismatch identified on first check!
+- Reject `"car"`. Move to next word.
 
-It yields only words that equal their reversed form. `next(..., "")` requests the first yielded word and uses the empty string as a default if the generator yields nothing.
+### Candidate 2: $w = \text{"ada"}$
+- String length $L = 3$. Pointers: $l = 0, r = 2$.
+- **Step 1:** Compare $w[0]$ and $w[2]$:
+  $$\text{'a'} == \text{'a'} \quad (\text{Match})$$
+  Advance pointers: $l \leftarrow 0 + 1 = 1, \quad r \leftarrow 2 - 1 = 1$.
+- **Step 2:** Check loop guard:
+  $$l = 1 \ge r = 1$$
+  Pointers meet at the center character `'d'`.
+- All symmetric pairs verified. `"ada"` is a palindrome!
+- **Early Exit Triggered:** Immediately return `"ada"` as the answer.
+- Subsequent strings (`"racecar"`, `"cool"`) are intentionally left unread.
 
-Because `next` is lazy, later words are not checked after the first palindrome is found. This is important in an example containing both `"ada"` and the later `"racecar"`: the method returns `"ada"` immediately.
+---
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+## 4. Complete Execution Trace & State Progression
+
+| Word Index $i$ | Word $w_i$ | Pointers $(l, r)$ | Compared Chars | Comparison Result | Symmetry Status | Action Taken |
+|---|---|---|---|---|---|---|
+| $0$ | `"abc"` | $(0, 2)$ | $w[0]=\text{'a'}, w[2]=\text{'c'}$ | $\text{'a'} \neq \text{'c'}$ | Broken | Reject; proceed to index $1$ |
+| $1$ | `"car"` | $(0, 2)$ | $w[0]=\text{'c'}, w[2]=\text{'r'}$ | $\text{'c'} \neq \text{'r'}$ | Broken | Reject; proceed to index $2$ |
+| $2$ | `"ada"` | $(0, 2)$ | $w[0]=\text{'a'}, w[2]=\text{'a'}$ | $\text{'a'} == \text{'a'}$ | Maintained | Advance to $(1, 1)$ |
+| $2$ | `"ada"` | $(1, 1)$ | Center meet | $l \ge r$ | Verified | **Halt & Return `"ada"`** |
+| $3$ | `"racecar"` | — | — | — | — | Skipped |
+| $4$ | `"cool"` | — | — | — | — | Skipped |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Mathematical Proof of Correctness
+1. **Preservation of Array Index Ordering:**
+   The search processes words in increasing order of index: $i = 0, 1, \dots, m - 1$.
+   The moment any word $w_{i^*}$ is verified as a palindrome, the algorithm terminates and returns $w_{i^*}$.
+   By definition, no index $j < i^*$ satisfies $\text{IsPalindrome}(w_j)$, so $i^*$ is the minimal valid index.
+2. **Soundness of Two-Pointer Palindrome Verification:**
+   By mathematical induction on string length, checking $w[l] == w[r]$ for all $l \le r$ verifies that the sequence of characters is identical to its reversal $w^R$.
+   Any deviation $w[l] \neq w[r]$ constitutes a counterexample to symmetry, immediately disproving palindromicity.
+3. **Exhaustion to Empty String:**
+   If the loop finishes all $m$ words without returning, then no word in the array is a palindrome. Returning `""` correctly satisfies the problem contract.
+
+---
+
+## 6. Structural Edge Cases & Boundary Behaviors
+
+| Edge Scenario | Concrete Input | Operational Behavior | Expected Output |
 |---|---|---|---|
-| Input Slice | `{"words": ["abc", "car", "ada", "racecar", "cool"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Single-Character Word | `["z", "abc"]` | $L = 1 \implies l = 0 \ge r = 0$; loops $0$ times | `"z"` |
+| Even-Length Palindrome | `["noon", "racecar"]` | Pairs $(0, 3)$ and $(1, 2)$ match; $l$ crosses $r$ | `"noon"` |
+| No Palindromes Present | `["def", "ghi", "jkl"]` | Scans all $3$ words; generator exhausts | `""` (empty string) |
+| First Word is Palindrome | `["racecar", "ada"]` | Index $0$ matches; executes in $\mathcal{O}(|w_0|)$ | `"racecar"` |
 
 ---
 
-### Step 2: Why reversal tests palindromicity
+## 7. Complexity Analysis
 
-`w[::-1]` is Python slicing with a step of -1, producing the characters of `w` in reverse order.
-
-A string is palindromic exactly when its forward sequence equals its backward sequence. Therefore,
-
-`w == w[::-1]`
-
-is true if and only if `w` is a palindrome.
-
-Odd-length strings naturally compare the center character with itself. Even-length strings have no unique center, but complete reversal still compares every mirrored pair. One-character strings always pass.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Understand the generator and default
-
-The parenthesized expression is a generator, not a precomputed list. It requests one word, constructs and compares that word's reverse, then proceeds only if necessary.
-
-`next(generator, "")` has two outcomes:
-
-- if a palindromic word is yielded, return that original word;
-- if the generator is exhausted, return `""`.
-
-The returned value is `w` from the input, not the reversed copy. For a palindrome they have equal text, but returning the original makes the intent explicit.
-
-The constraints say input words are nonempty, so the default empty string cannot be confused with a valid palindromic input word.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"ada"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["abc", "car", "ada", "racecar", "cool"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"ada"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Two mirrored pointers:** Compare characters at the two ends while moving inward. This realizes the manifest's constant-space claim and can stop a word check at its first mismatch.
-- **Build a list of all palindromes:** It does unnecessary work and storage after the first match. The lazy generator stops immediately.
-- **Sort the words:** This destroys the input-order meaning of “first” and is incorrect.
-- **First word is palindromic:** Only one word is examined.
-- **No palindrome:** Generator exhaustion returns the explicit empty-string default.
-- **One-character word:** It equals its reverse and is always palindromic.
-- **Even-length palindrome:** Complete reversal handles it without a special center case.
-- **Repeated words:** The earliest palindromic occurrence is returned.
-- **Nonempty word guarantee:** It keeps `""` reserved for the no-result case.
-- **Reversed-copy allocation:** `w[::-1]` is concise but not constant-space.
-- **Input preservation:** Strings and the array are only read.
-- **Lazy evaluation:** Words after the first palindrome incur no time or reverse allocation.
-- **Long non-palindromic word:** Its full reverse is still allocated before equality can reject it, which is why peak space depends on word length.
-- **Return identity versus text:** The generator yields the original `w` value from `words`, not the temporary reverse.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(S)$. Let
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(S_{\text{evaluated}})$, where $S_{\text{evaluated}}$ is the sum of lengths of words examined up to and including the first palindrome.
+  - In the worst case (no palindrome exists), every word is examined, requiring $\mathcal{O}(\sum_{i=0}^{m-1} |w_i|) = \mathcal{O}(S)$ time where $S$ is the total number of characters across all words.
+  - In the best or typical case, the algorithm short-circuits early upon finding the first palindrome, avoiding scanning subsequent strings.
+  - Comparing character pairs takes $\mathcal{O}(1)$ time per pair.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$.
+  - Using two pointers requires only two scalar integer indices ($l, r$).
+  - No new strings, reversed substrings, or dynamic arrays are allocated.

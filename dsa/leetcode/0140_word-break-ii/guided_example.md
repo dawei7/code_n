@@ -1,99 +1,192 @@
 # Guided Example: Word Break II
 
-We derive and execute the Array, Hash Table, String, Dynamic Programming, Backtracking, Trie, Memoization recurrence on a representative problem instance.
+We trace the step-by-step memoized depth-first suffix decomposition and sentence assembly on representative dictionary segmentation instances:
 
-- **Input:** `{"s": "catsanddog", "wordDict": ["cat", "cats", "and", "sand", "dog"]}`
+- **Input:** $s = \text{"catsanddog"}$, $\text{wordDict} = [\text{"cat"}, \text{"cats"}, \text{"and"}, \text{"sand"}, \text{"dog"}]$
 - **Required output:** `["cats and dog", "cat sand dog"]`
+- **Dead-End Suffix Instance:** $s = \text{"catsandog"}$, $\text{wordDict} = [\text{"cats"}, \text{"dog"}, \text{"sand"}, \text{"and"}, \text{"cat"}] \implies []$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates top-down recursive suffix partitioning ($\text{dfs}(\text{start})$), memoizing intermediate sentence lists to prevent exponential recalculation of overlapping suffixes, composing sub-sentences via `word + " " + sub_sentence`, and pruning unreachable suffix branches in $O(N \cdot 2^N)$ worst-case output time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Word Break II** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+Given a string $s = \text{"catsanddog"}$ of length $N = 10$ and a dictionary of words $\text{wordDict} = [\text{"cat"}, \text{"cats"}, \text{"and"}, \text{"sand"}, \text{"dog"}]$:
+Construct all possible valid sentences formed by inserting spaces between dictionary words.
+Words may be reused arbitrarily.
+
+In this instance, two distinct sentence structures decompose $s$:
+1. $\text{"cat"} + \text{" "} + \text{"sand"} + \text{" "} + \text{"dog"}$
+2. $\text{"cats"} + \text{" "} + \text{"and"} + \text{" "} + \text{"dog"}$
+Both paths share the identical terminal suffix $\text{"dog"}$ at index $7$.
+
+A naive recursive search without memoization re-evaluates identical suffixes multiple times, leading to Time Limit Exceeded (TLE) on overlapping dictionaries (e.g. `s = "aaaaaaa"`, `words = ["a", "aa", "aaa"]`).
+Memoized DFS decomposes the problem into independent suffix queries: function $\text{dfs}(\text{start})$ computes and caches all valid sentences that can be formed from suffix $s[\text{start}:]$. When multiple prefixes converge onto the same suffix, the results are retrieved from cache in $O(1)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### Memoized Suffix DFS Protocol
+Let `word_set = set(wordDict)`.
+Maintain a memoization table `memo: Dict[int, List[str]]`.
+Define recursive function $\text{dfs}(\text{start})$:
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
+1. **Terminal Success Base Case:**
+   If $\text{start} == |s|$:
+   Return a list containing a single empty string anchor:
+   $$
+   \text{return } [\text{""}]
+   $$
+2. **Memoization Cache Lookup:**
+   If $\text{start} \in \text{memo}$:
+   Return cached sentence list:
+   $$
+   \text{return } \text{memo}[\text{start}]
+   $$
+3. **Prefix Matching and Suffix Recursion:**
+   Initialize `sentences = []`.
+   For $\text{end}$ from $\text{start} + 1$ to $|s|$:
+   - Extract candidate word $\text{word} = s[\text{start} : \text{end}]$.
+   - If $\text{word} \in \text{word\_set}$:
+     - Recursively solve the remaining suffix: $\text{sub\_sentences} = \text{dfs}(\text{end})$.
+     - For each $\text{sub} \in \text{sub\_sentences}$:
+       - If $\text{sub} == \text{""}$: append $\text{word}$.
+       - Else: append $\text{word} + \text{" "} + \text{sub}$.
+4. **Commit to Cache:**
+   $$
+   \text{memo}[\text{start}] \leftarrow \text{sentences}
+   $$
+   $$
+   \text{return } \text{sentences}
+   $$
 
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** For any index $\text{start}$, $\text{memo}[\text{start}]$ stores the complete, exhaustive list of all valid space-delimited sentences that form the suffix $s[\text{start}:]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace $\text{dfs}(\text{start} = 0)$ on $s = \text{"catsanddog"}$:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
+### Level 1: Root Call $\text{dfs}(0)$
+- Explore prefix cuts from index 0:
+  - $\text{end} = 3$: $s[0:3] = \text{"cat"} \in \text{word\_set} \implies$ recurse $\text{dfs}(3)$.
+  - $\text{end} = 4$: $s[0:4] = \text{"cats"} \in \text{word\_set} \implies$ recurse $\text{dfs}(4)$.
 
 ---
 
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Level 2: Sub-Problem $\text{dfs}(3)$ on Suffix `"sanddog"`
+- Explore cuts from index 3:
+  - $\text{end} = 7$: $s[3:7] = \text{"sand"} \in \text{word\_set} \implies$ recurse $\text{dfs}(7)$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Level 3: Sub-Problem $\text{dfs}(7)$ on Suffix `"dog"`
+- Explore cuts from index 7:
+  - $\text{end} = 10$: $s[7:10] = \text{"dog"} \in \text{word\_set} \implies$ recurse $\text{dfs}(10)$.
+  - $\text{dfs}(10)$ hits base case ($\text{start} == 10$), returning `[""]`.
+  - Assemble: $\text{"dog"} + \text{""} \implies \text{["dog"]}$.
+- Commit to cache:
+  $$
+  \text{memo}[7] \leftarrow [\text{"dog"}]
+  $$
+- $\text{dfs}(7)$ returns `["dog"]`.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Level 2 (Unwinding): Complete $\text{dfs}(3)$
+- Combine $\text{"sand"}$ with results from $\text{dfs}(7)$:
+  $$
+  \text{"sand"} + \text{" "} + \text{"dog"} = \text{"sand dog"}
+  $$
+- Commit to cache:
+  $$
+  \text{memo}[3] \leftarrow [\text{"sand dog"}]
+  $$
+- $\text{dfs}(3)$ returns `["sand dog"]`.
+
+---
+
+### Level 1 (First Branch Assembled):
+- Prefix $\text{"cat"}$ receives `["sand dog"]`:
+  $$
+  \text{"cat"} + \text{" "} + \text{"sand dog"} = \mathbf{\text{"cat sand dog"}}
+  $$
+
+---
+
+### Level 2: Sub-Problem $\text{dfs}(4)$ on Suffix `"anddog"`
+- Explore cuts from index 4:
+  - $\text{end} = 7$: $s[4:7] = \text{"and"} \in \text{word\_set} \implies$ recurse $\text{dfs}(7)$.
+  - **Memoization Hit!**
+    $\text{start} = 7$ is already cached in `memo[7]` as `["dog"]`.
+    Returns `["dog"]` immediately in $O(1)$ without recursion!
+- Combine $\text{"and"}$ with `["dog"]`:
+  $$
+  \text{"and"} + \text{" "} + \text{"dog"} = \text{"and dog"}
+  $$
+- Commit to cache:
+  $$
+  \text{memo}[4] \leftarrow [\text{"and dog"}]
+  $$
+- $\text{dfs}(4)$ returns `["and dog"]`.
+
+---
+
+### Level 1 (Second Branch Assembled):
+- Prefix $\text{"cats"}$ receives `["and dog"]`:
+  $$
+  \text{"cats"} + \text{" "} + \text{"and dog"} = \mathbf{\text{"cats and dog"}}
+  $$
+
+Total sentences assembled at root $\text{dfs}(0)$:
+`["cat sand dog", "cats and dog"]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### Suffix DAG and Sentence Synthesis
+
+```text
+dfs(0)
+  |-- "cat"  -> dfs(3) -> "sand" -> dfs(7) -> "dog" -> dfs(10) [""]
+  |                                   |                 ^
+  |                                   |              Base Case
+  |                                memo[7] = ["dog"]
+  |-- "cats" -> dfs(4) -> "and"  ----/ (Cache Hit!)
+```
+
+| Call State | Suffix Inspected | Matched Word $s[\text{start}:\text{end}]$ | Next Call | Suffix Result Returned | Assembled Sentence Committed |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $\text{dfs}(10)$ | $\emptyset$ | Base case | - | - | `[""]` |
+| $\text{dfs}(7)$ | `"dog"` | `"dog"` | $\text{dfs}(10)$ | `[""]` | `["dog"]` |
+| $\text{dfs}(3)$ | `"sanddog"` | `"sand"` | $\text{dfs}(7)$ | `["dog"]` | `["sand dog"]` |
+| $\text{dfs}(4)$ | `"anddog"` | `"and"` | $\text{dfs}(7)$ | **`["dog"]` (Cache Hit)** | `["and dog"]` |
+| **$\text{dfs}(0)$** | **`"catsanddog"`** | **`"cat"`** | $\text{dfs}(3)$ | `["sand dog"]` | **`"cat sand dog"`** |
+| **$\text{dfs}(0)$** | **`"catsanddog"`** | **`"cats"`** | $\text{dfs}(4)$ | `["and dog"]` | **`"cats and dog"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** A sentence is constructed only by concatenating valid dictionary words separated by single spaces. The recursion strictly terminates at the end of the string ($|s|$), ensuring the concatenation of words in every returned sentence equals $s$.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** At each step, all prefix slices $s[\text{start}:\text{end}]$ are tested against `word_set`. All possible branch points are evaluated, ensuring that every valid combination of dictionary words that reconstructs $s$ is captured.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Exponential Re-evaluation Without Memoization:** If multiple paths converge on the same suffix (as $\text{dfs}(3)$ and $\text{dfs}(4)$ both reach index 7), recomputing suffixes causes an exponential $O(2^N)$ explosion. Memoizing by integer index `start` ensures each suffix is solved once.
+- **Unmatchable Dead Ends:** On inputs like `s = "catsandog"`, the suffix `"og"` has no dictionary match. The recursive call returns `[]`, which naturally propagates up the call stack and produces an empty list `[]` without throwing exceptions.
+- **Trailing Spaces:** Appending `" "` naively after every word creates trailing whitespace on the last word. Checking `if sub == "": append(word)` prevents trailing spaces.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(N^2 + 2^N)$, where $N = |s|$. In the worst case (where every prefix and suffix is valid), there can be $O(2^{N-1})$ distinct sentences, each taking $O(N)$ time to construct. Memoization ensures that non-branching subproblems are solved in $O(N^2)$ time.
+- **Auxiliary Space Complexity:** $O(N \cdot 2^N)$ to store all valid sentences in the memoization table, with $O(N)$ recursion call stack depth.

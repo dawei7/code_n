@@ -1,119 +1,179 @@
 # Guided Example: Remove Covered Intervals
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step sorting and greedy linear scan eliminating covered intervals on a representative problem instance:
 
-- **Input:** `{"intervals": [[1, 4], [3, 6], [2, 8]]}`
-- **Required output:** `2`
+- **Input:** `intervals = [[1, 4], [3, 6], [2, 8]]`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates custom lexicographical sorting by ascending start and descending end coordinates, running boundary tracking, and interval containment elimination.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `intervals` where $\text{intervals}[i] = [l_{i}, r_{i}]$ represent the interval $[l_{i}, r_{i})$, remove all intervals that are covered by another interval in the list.
+An interval $[a, b]$ is defined as covered by $[c, d]$ if and only if:
+$$
+c \le a \quad \land \quad b \le d
+$$
 
-The objective is to compute `2` from `{"intervals": [[1, 4], [3, 6], [2, 8]]}` while avoiding redundant calculations and unnecessary overhead.
+In `intervals = [[1, 4], [3, 6], [2, 8]]`:
+- Interval $[3, 6]$ satisfies $2 \le 3$ and $6 \le 8$, so it is completely covered by $[2, 8]$.
+- Interval $[1, 4]$ is not covered by any other interval ($1 < 2$).
+- Interval $[2, 8]$ is not covered by any other interval ($8 > 4$).
+After removing the covered interval $[3, 6]$, exactly $2$ intervals remain: $[1, 4]$ and $[2, 8]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Original Intervals:
+  [1 ─────── 4]
+       [2 ─────────────────── 8]
+             [3 ─────── 6]  <-- Completely inside [2, 8]!
+
+Custom Sorted Order (Start ASC, End DESC):
+  1. [1, 4]  --> Sets running right horizon = 4
+  2. [2, 8]  --> End 8 > 4 (Uncovered! Horizon becomes 8)
+  3. [3, 6]  --> End 6 <= 8 (Covered by [2, 8]! Discarded)
+
+Remaining Count: 2
+```
+
+An all-pairs quadratic comparison requires $\mathcal{O}(N^2)$ checks.
+The optimal strategy sorts intervals using a specialized tie-breaking rule, reducing containment checks to a single running maximum sweep in $\mathcal{O}(N \log N)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+We sort intervals by two criteria:
+1. **Primary Key:** Start point $l_i$ in ascending order.
+2. **Secondary Key (Tie-breaker):** End point $r_i$ in **descending** order.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Why Secondary Descending Order is Crucial
+If two intervals share the exact same start point (e.g. $[1, 4]$ and $[1, 2]$), sorting the larger end first places $[1, 4]$ ahead of $[1, 2]$. When $[1, 2]$ is evaluated, its end $2$ is already $\le 4$, correctly identifying $[1, 2]$ as covered by $[1, 4]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Single-Pass Horizon Tracking
+After sorting, consider interval $i$ with boundaries $[l_i, r_i]$ and let $R_{\max}$ be the maximum end point among all previously accepted intervals:
+- Since start points are sorted ($l_{\text{prev}} \le l_i$), any previously accepted interval already satisfies the left containment condition $l_{\text{prev}} \le l_i$.
+- Therefore, interval $i$ is covered by an earlier interval if and only if:
+  $$
+  r_i \le R_{\max}
+  $$
+- If $r_i > R_{\max}$, interval $i$ extends strictly further to the right than all preceding intervals. It cannot be covered by any preceding interval (or any subsequent interval, since future intervals start at $l \ge l_i$). Thus, interval $i$ must survive, and we update $R_{\max} \leftarrow r_i$.
+
+| Sorting Rank | Interval $[l_i, r_i]$ | Previous Horizon $R_{\max}$ | Condition $r_i > R_{\max}$ | Decision | Updated $R_{\max}$ | Surviving Count |
+|---|---|---|---|---|---|---|
+| $1$ | $[1, 4]$ | $-\infty$ | $4 > -\infty$ (True) | Retain (Uncovered) | $4$ | $1$ |
+| $2$ | $[2, 8]$ | $4$ | $8 > 4$ (True) | Retain (Uncovered) | $8$ | $2$ |
+| $3$ | $[3, 6]$ | $8$ | $6 > 8$ (False) | Discard (Covered) | $8$ | $2$ |
+
+> **Monotone Horizon Invariant.** In the sorted sequence, an interval is covered if and only if its end coordinate is less than or equal to the maximum right endpoint seen so far ($r_i \le R_{\max}$).
+
+```mermaid
+flowchart TD
+    accTitle: Interval Coverage Filtering Flow
+    accDescr: Diagram showing sorting by start ascending and end descending, followed by greedy horizon updates.
+    IN["Input Intervals: [[1, 4], [3, 6], [2, 8]]"] --> SORT["Sort: key = (start ASC, end DESC)"]
+    SORT --> ORDERED["Ordered: [[1, 4], [2, 8], [3, 6]]"]
+    ORDERED --> INIT["Init: R_max = -inf, count = 0"]
+    INIT --> LOOP["For each interval [l, r]"]
+    LOOP --> CHK{"Is r > R_max?"}
+    CHK -- Yes --> KEEP["Survives: count += 1, R_max = r"]
+    CHK -- No --> DROP["Covered: Discard"]
+    KEEP --> NEXT["Next interval"]
+    DROP --> NEXT
+    NEXT --> LOOP
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sort so a possible covering interval always comes first
+We process `intervals = [[1, 4], [3, 6], [2, 8]]`.
 
-An interval `[a,b)` is covered when an earlier candidate has a start no greater than $a$ and an end no smaller than $b$. Sorting by ascending start establishes the first condition automatically: while scanning, every earlier interval begins at or before the current one.
+### Phase 1: Custom Lexicographical Sorting
+We sort elements by $(l_i, -r_i)$:
+- Interval $[1, 4] \implies \text{key } (1, -4)$
+- Interval $[3, 6] \implies \text{key } (3, -6)$
+- Interval $[2, 8] \implies \text{key } (2, -8)$
 
-Intervals with the same start need special handling. The longer interval must appear first, because it covers every shorter interval sharing that start. The key `(x[0], -x[1])` sorts starts upward and ends downward for ties.
+Sorting keys in ascending order:
+$$
+(1, -4) < (2, -8) < (3, -6)
+$$
+Resulting ordered list:
+$$
+\text{intervals} = [[1, 4], [2, 8], [3, 6]]
+$$
 
-Without the negative end tie-breaker, `[1,4)` could be seen before `[1,8)`. The shorter interval might be counted as uncovered even though the later longer interval covers it. Putting `[1,8)` first prevents that mistake.
+### Phase 2: Greedy Sweep
 
-The source calls `intervals.sort`, so it mutates the caller's list order.
+#### Step 1: Interval $[1, 4]$
+- Current interval: $[l, r] = [1, 4]$
+- Compare $r = 4$ against $R_{\max} = -\infty$:
+  - $4 > -\infty \implies$ Condition satisfied.
+- Action: Retain interval.
+- Update state:
+  $$
+  \text{count} \leftarrow 0 + 1 = 1, \quad R_{\max} \leftarrow 4
+  $$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"intervals": [[1, 4], [3, 6], [2, 8]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Step 2: Interval $[2, 8]$
+- Current interval: $[l, r] = [2, 8]$
+- Compare $r = 8$ against $R_{\max} = 4$:
+  - $8 > 4 \implies$ Condition satisfied.
+- Action: Retain interval.
+- Update state:
+  $$
+  \text{count} \leftarrow 1 + 1 = 2, \quad R_{\max} \leftarrow 8
+  $$
 
----
+#### Step 3: Interval $[3, 6]$
+- Current interval: $[l, r] = [3, 6]$
+- Compare $r = 6$ against $R_{\max} = 8$:
+  - $6 \le 8 \implies$ Interval $[3, 6]$ is completely covered by the earlier interval that established $R_{\max} = 8$ (namely $[2, 8]$, since $2 \le 3$ and $6 \le 8$).
+- Action: Discard interval.
+- State remains:
+  $$
+  \text{count} = 2, \quad R_{\max} = 8
+  $$
 
-### Step 2: Track the farthest end reached so far
-
-Variable `pre` stores the largest right endpoint among intervals already counted as not covered. It begins at negative infinity, ensuring the first sorted interval has `cur > pre` and is counted.
-
-For each interval, the start is ignored in the loop because sorting has already incorporated it. If current end `cur <= pre`, some earlier interval starts no later and ends at least as late. That earlier interval covers the current one, so the count and `pre` remain unchanged.
-
-If `cur > pre`, no earlier interval reaches the current end. Therefore none can cover it, the interval remains, `ans` increases, and `pre` becomes `cur`.
-
-It is sufficient to remember only the maximum end rather than a particular full interval. Any earlier interval responsible for that maximum also has a start no greater than the current start due to sorting. Those two facts are exactly the coverage conditions.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why `pre` never decreases
-
-When an interval is covered, replacing `pre` with its smaller or equal end would forget a stronger covering interval and could make a later covered interval appear new. The code deliberately updates `pre` only on a strict increase. It is therefore a monotone summary of the farthest right boundary reached by any earlier surviving interval. This is the central scan invariant: before processing each interval, `pre` is the maximum end among all earlier intervals. The skip and update branches both preserve it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+All intervals have been evaluated. Final answer: $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"intervals": [[1, 4], [3, 6], [2, 8]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Processing Index | Interval Evaluated | Start $l_i$ | End $r_i$ | Horizon $R_{\max}$ | Comparison Test | Decision | Surviving Total |
+|---|---|---|---|---|---|---|---|
+| Init | - | - | - | $-\infty$ | - | - | $0$ |
+| 1 | $[1, 4]$ | $1$ | $4$ | $-\infty$ | $4 > -\infty$ | Retained | $1$ |
+| 2 | $[2, 8]$ | $2$ | $8$ | $4$ | $8 > 4$ | Retained | $2$ |
+| 3 | $[3, 6]$ | $3$ | $6$ | $8$ | $6 \le 8$ | Discarded | $2$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Suppose an interval $[l_i, r_i]$ satisfies $r_i \le R_{\max}$. By definition of $R_{\max}$, there exists an earlier processed interval $[l_j, r_j]$ with $j < i$ such that $r_j = R_{\max} \ge r_i$. By sorted order, $l_j \le l_i$. Thus, $[l_j, r_j]$ covers $[l_i, r_i]$ on both ends, proving the discarded interval is indeed covered.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose an interval satisfies $r_i > R_{\max}$.
+1. No earlier interval can cover it, because all earlier intervals have endpoints $\le R_{\max} < r_i$.
+2. No later interval can cover it, because all later intervals have start points $l_k \ge l_i$ (and if $l_k = l_i$, descending end order guarantees $r_k \le r_i$).
+Therefore, an interval with $r_i > R_{\max}$ cannot be covered by any interval in the entire collection, proving that all surviving intervals are retained.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Quadratic pair checks:** Compare every interval with every other interval. It is straightforward but costs $O(n^2)$ time.
-- **Sort only by start:** This fails when equal-start intervals appear shortest first; the descending-end tie-break is essential.
-- **Track the immediately previous end only:** The maximum end is needed because a much earlier interval may cover the current one even when the immediately previous interval does not.
-- **No covered intervals:** Ends strictly increase through the sorted scan, so every interval is counted.
-- **All covered by one interval:** The first longest interval sets `pre`, and all remaining ends are no greater.
-- **Equal right endpoints:** The later-start interval is covered because `cur == pre` does not pass the strict increase test.
-- **Nested intervals:** Descending reachable ends cause all inner intervals to be skipped.
-- **Disjoint intervals:** Their ends increase with starts, so they all remain.
-- **Unique interval guarantee:** Exact duplicate pairs do not occur, though the same logic would count only one duplicate.
-- **Input mutation:** Copy the list before sorting if caller-visible order must remain unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to sort descending on equal starts:** If $[1, 2]$ and $[1, 4]$ were sorted as $[[1, 2], [1, 4]]$, evaluating $[1, 2]$ first would set $R_{\max} = 2$. Then $[1, 4]$ arrives and sets $R_{\max} = 4$. Both would be retained, even though $[1, 4]$ covers $[1, 2]$. Sorting the larger interval first ($[1, 4]$ before $[1, 2]$) ensures that $[1, 2]$ is immediately recognized as covered.
+- **Identical intervals:** If duplicate intervals exist (e.g. two copies of $[2, 3]$), the secondary sort order keeps both adjacent. The first copy sets $R_{\max} = 3$, and the second copy has $r = 3 \le 3$, so the duplicate is correctly discarded as covered.
+- **Transitive covers:** An interval can be covered by an interval that appeared several steps earlier. Tracking the global maximum $R_{\max}$ ensures that coverage is remembered across any number of intermediate steps.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of intervals. Python sorting takes $O(n\log n)$ comparisons, and the scan takes $O(n)$ time. Total time is $O(n\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log N)$, where $N$ is the number of intervals.
+  - Sorting $N$ intervals using a 2-tuple comparison takes $\mathcal{O}(N \log N)$ time.
+  - The subsequent linear scan performs a single comparison and assignment for each interval in $\mathcal{O}(N)$ time.
+  - Overall time is dominated by the sort: $\mathcal{O}(N \log N)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ or $\mathcal{O}(\log N)$ depending on the sort implementation (e.g. in-place quicksort vs merge sort), requiring only scalar integer tracking variables.

@@ -2,134 +2,168 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"s": "ca"}`
-- **Required output:** `2`
+- **Input:** `s = "aabccabba"`
+- **Required Output:** `3`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features multiple rounds of deletions with differing prefix and suffix run-lengths, followed by a non-matching boundary termination, illustrating how greedy two-pointer convergence trims identical extremities in linear time and constant auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` consisting only of characters `'a'`, `'b'`, and `'c'`. You are asked to apply the following algorithm on the string any number of times:
+Given a string `s` composed exclusively of characters `'a'`, `'b'`, and `'c'`, we can repeatedly perform the following operation:
+1. Select a non-empty prefix of identical characters.
+2. Select a non-empty suffix of identical characters matching the prefix character.
+3. The prefix and suffix must be disjoint (they cannot overlap or share indices).
+4. Delete both the prefix and suffix from the string.
 
-The objective is to compute `2` from `{"s": "ca"}` while avoiding redundant calculations and unnecessary overhead.
+We seek the **minimum possible length** of the string after performing this reduction zero or more times.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because any prefix begins at index $0$ and any suffix ends at index $n - 1$, the operation is possible if and only if the outermost boundary characters match: $s[\text{start}] = s[\text{end}]$. Furthermore, greedily consuming the entire maximal run of matching characters at each end exposes new interior characters as quickly as possible without sacrificing any opportunities for future deletions.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Pointer / Register | Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Left Boundary $i$ | Start of active remaining substring | $0$ |
+| Right Boundary $j$ | End of active remaining substring | $n - 1$ |
+| Active Target Character $c$ | Identity of current matching boundary run | $s[i]$ when $s[i] = s[j]$ |
+| Remaining Length | Distance between boundaries: $\max(0, j - i + 1)$ | $n$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Greedy Homogeneous Extremity Shrinkage Theorem.**
+> Let $s[i \dots j]$ be the active substring with $i < j$ and $s[i] = s[j] = c$.
+> Suppose the maximal contiguous run of $c$ at the prefix spans $[i, i']$ and at the suffix spans $[j', j]$.
+> Consuming the entire runs $[i, i']$ and $[j', j]$ is strictly dominant over leaving partial runs of $c$:
+> - Retaining any copy of $c$ at either end leaves $c$ as the boundary character of the resulting substring.
+> - No new character can be exposed until all copies of $c$ at that extremity are eliminated.
+> - Therefore, greedily expanding $i$ across all contiguous occurrences of $c$ and retreating $j$ across all contiguous occurrences of $c$ never reduces the set of viable future reductions.
+
+> **Boundary Collision Invariant.**
+> The reduction loop runs as long as $i < j$ and $s[i] = s[j]$:
+> - If $i > j$, the entire string was consumed by the final reduction $\implies \text{length} = 0$.
+> - If $i = j$, exactly one character remains. Since the rule requires non-intersecting prefix and suffix, a single character cannot be deleted $\implies \text{length} = 1$.
+> - If $s[i] \neq s[j]$, no further deletions are legal $\implies \text{length} = j - i + 1$.
+
+```mermaid
+flowchart TD
+    accTitle: Two-Pointer Extremity Deletion Pipeline
+    accDescr: Pipeline showing pointer initialization, boundary character matching, expanding past identical runs, and termination checks.
+    A["Initialize Pointers: i = 0, j = n - 1"] --> B{"Is i < j AND s[i] == s[j]?"}
+    B -- No --> C["Halt Reduction: Return max(0, j - i + 1)"]
+    B -- Yes --> D["Current Character: c = s[i]"]
+    D --> E["Advance i while i + 1 < j and s[i + 1] == c"]
+    E --> F["Retreat j while j - 1 > i and s[j - 1] == c"]
+    F --> G["Step past runs: i = i + 1, j = j - 1"]
+    G --> B
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Represent deletions with two boundaries
+For `s = "aabccabba"` with length $n = 9$:
+Indices:
+```text
+Index:  0 1 2 3 4 5 6 7 8
+Char:   a a b c c a b b a
+```
 
-Only a prefix and suffix of the current string can be deleted. After any number of operations, the characters that remain therefore form one contiguous interval of the original string.
-
-The exact solution stores that interval with `i` as its leftmost index and `j` as its rightmost index. Initially they are zero and `len(s) - 1`, so the whole string remains. Moving `i` right simulates deleting prefix characters; moving `j` left simulates deleting suffix characters. The source never constructs new strings, which avoids repeated copying.
-
-An operation is possible only when at least two characters remain and the boundary characters agree. That rule becomes the outer condition:
-
-`while i < j and s[i] == s[j]`.
-
-If the characters differ, no legal prefix and suffix can share a character, because every non-empty prefix begins with `s[i]` and every non-empty suffix ends with `s[j]`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "ca"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Initial State
+- $i = 0$, $j = 8$
+- Active substring: `"aabccabba"`
+- Boundary characters: $s[0] = \text{'a'}$, $s[8] = \text{'a'}$.
+- Since $i < j$ and $s[i] = s[j] = \text{'a'}$, reduction begins.
 
 ---
 
-### Step 2: Delete maximal equal runs at both ends
-
-Suppose the current boundary character is `c`. A legal operation can remove any non-empty prefix made only of `c` and any non-empty suffix made only of `c`. For minimizing length, there is no benefit in deliberately retaining a boundary `c` from either maximal run. Removing more characters of the already-matched boundary symbol cannot prevent a future operation that would otherwise be possible; any retained `c` would still sit at the same end and would need removal before a different boundary character could be exposed.
-
-The first inner loop advances `i` while the next character is the same:
-
-`while i + 1 < j and s[i] == s[i + 1]`.
-
-The condition `i + 1 < j` leaves the right boundary separate while the maximal left run is identified. It prevents the prefix scan from crossing the suffix position.
-
-The second inner loop moves `j` left while the preceding character matches:
-
-`while i < j - 1 and s[j - 1] == s[j]`.
-
-It similarly collects the maximal right run without crossing the current left boundary.
-
-After those loops, `i` points at the last character of the deletable left run and `j` points at the first character of the deletable right run. The parallel update `i, j = i + 1, j - 1` removes those final boundary characters as well. Thus the whole matching run on each side disappears in one outer iteration.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Round 1: Target Character $c = \text{'a'}$
+1. **Expand Prefix $i$:**
+   - $s[0] = \text{'a'}$
+   - $s[1] = \text{'a'}$
+   - $s[2] = \text{'b'} \neq \text{'a'}$
+   - Prefix run of `'a'` spans indices $[0, 1]$. Advanced to $i = 1$.
+2. **Retreat Suffix $j$:**
+   - $s[8] = \text{'a'}$
+   - $s[7] = \text{'b'} \neq \text{'a'}$
+   - Suffix run of `'a'` spans index $[8]$.
+3. **Trim Boundaries:**
+   - Delete prefix $s[0 \dots 1] = \text{"aa"}$ and suffix $s[8 \dots 8] = \text{"a"}$.
+   - Pointers update: $i \leftarrow 1 + 1 = 2$, $j \leftarrow 8 - 1 = 7$.
+- Remaining substring: $s[2 \dots 7] = \text{"bccabb"}$. Length $= 7 - 2 + 1 = 6$.
 
 ---
 
-### Step 3: Why the loops compare adjacent characters instead of storing c
+### Round 2: Target Character $c = \text{'b'}$
+- Boundary characters: $s[2] = \text{'b'}$, $s[7] = \text{'b'}$.
+- $i = 2 < j = 7$ and $s[i] = s[j] = \text{'b'}$.
+1. **Expand Prefix $i$:**
+   - $s[2] = \text{'b'}$
+   - $s[3] = \text{'c'} \neq \text{'b'}$
+   - Prefix run spans index $[2]$.
+2. **Retreat Suffix $j$:**
+   - $s[7] = \text{'b'}$
+   - $s[6] = \text{'b'}$
+   - $s[5] = \text{'a'} \neq \text{'b'}$
+   - Suffix run spans indices $[6, 7]$ ($\text{"bb"}$). Retreats to $j = 6$.
+3. **Trim Boundaries:**
+   - Delete prefix $s[2 \dots 2] = \text{"b"}$ and suffix $s[6 \dots 7] = \text{"bb"}$.
+   - Pointers update: $i \leftarrow 2 + 1 = 3$, $j \leftarrow 6 - 1 = 5$.
+- Remaining substring: $s[3 \dots 5] = \text{"cca"}$. Length $= 5 - 3 + 1 = 3$.
 
-The source does not assign a separate variable for the matched symbol. During the left scan, `s[i] == s[i + 1]` keeps advancing through a chain of equal adjacent characters. Equality is transitive, so every traversed character equals the original boundary symbol.
+---
 
-The same reasoning applies on the right. The outer condition already established that the original left and right symbols match, so the two removed runs use the same character as required by the operation.
+### Round 3: Check Boundaries on $s[3 \dots 5]$
+- Boundary characters:
+  - $s[3] = \text{'c'}$
+  - $s[5] = \text{'a'}$
+- Comparison: $s[3] \neq s[5]$ (`'c'` $\neq$ `'a'`).
+- The condition $s[i] == s[j]$ fails. No legal prefix and suffix of matching characters can be formed.
+- The loop terminates.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+---
+
+### Final Length Extraction
+The remaining window is $[i, j] = [3, 5]$, corresponding to substring `"cca"`.
+$$\text{Final Length} = j - i + 1 = 5 - 3 + 1 = \mathbf{3}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Round | Left Pointer $i$ | Right Pointer $j$ | Boundary Characters | Runs Removed | Updated Substring Window | Remaining Length |
+|---|---|---|---|---|---|---|
+| Start | $0$ | $8$ | $s[0]=\text{'a'}, s[8]=\text{'a'}$ | — | $[0, 8]$ (`"aabccabba"`) | $9$ |
+| $1$ | $0 \to 1$ | $8 \to 8$ | $c = \text{'a'}$ | Prefix: $[0, 1]$, Suffix: $[8]$ | $[2, 7]$ (`"bccabb"`) | $6$ |
+| $2$ | $2 \to 2$ | $7 \to 6$ | $c = \text{'b'}$ | Prefix: $[2]$, Suffix: $[6, 7]$ | $[3, 5]$ (`"cca"`) | $3$ |
+| Stop | $3$ | $5$ | $s[3]=\text{'c'} \neq s[5]=\text{'a'}$ | Mismatch: loop halts | $[3, 5]$ (`"cca"`) | **$3$** |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Example | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"s": "ca"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Immediate Boundary Mismatch | `s = "ca"` | `2` | $s[0] \neq s[1]$; loop never enters, returns $2$. |
+| Complete Annihilation | `s = "cabaabac"` | `0` | Pointers cross ($i > j$) after final run removal; returns $\max(0, j - i + 1) = 0$. |
+| Single Center Survivor | `s = "aabaa"` | `1` | Suffix and prefix consume all `'a'`s; single `'b'` remains at $i = j = 2 \implies 1$. |
+| Monotonous String | `s = "aaaa"` | `0` | All identical characters; prefix and suffix consume entire string without intersection. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Non-Overlapping Prefix and Suffix:**
+   Inner pointer advances strictly respect $i < j$. The prefix and suffix runs never step past each other during the same round, guaranteeing that removed segments are strictly disjoint.
+2. **In-Place Index Manipulation:**
+   By adjusting pointer indices $i$ and $j$ directly, string slicing or copying is completely avoided, maintaining an $\mathcal{O}(1)$ auxiliary memory footprint throughout.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Repeated string slicing:** Delete prefixes and suffixes by constructing a new string each time. It is intuitive but can copy $O(n)$ characters repeatedly and degrade toward $O(n^2)$ time.
-- **Recursive two-pointer helper:** It follows the same greedy logic but may use $O(n)$ call-stack space and can exceed Python's recursion limit.
-- **Run-length encoding:** Compress consecutive characters, then remove matching end runs. It works but allocates $O(n)$ storage that direct pointers avoid.
-- **Different initial endpoints:** No operation is possible, so the original length is returned.
-- **One-character string:** `i < j` is false, and length one remains because prefix and suffix may not intersect.
-- **Two equal characters:** Both are removed by one iteration, producing zero.
-- **Two different characters:** Neither can be removed, producing two.
-- **All one character:** Unequal prefix and suffix lengths may cover the entire interval, so the answer is zero.
-- **Matching runs of different lengths:** The rules require equal characters, not equal lengths; both maximal runs can be deleted.
-- **Nested matching layers:** Each outer iteration exposes the next pair of boundary runs and handles it independently.
-- **Pointer crossing:** `max(0, ...)` prevents a negative reported length.
-- **Non-intersection:** Inner-loop guards keep identified prefix and suffix regions separate until the final legal removal.
-- **No input mutation:** Index movement represents deletion without changing `s`.
-- **Alphabet size three:** The logic relies only on equality and would work for any character alphabet.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. Pointer `i` only moves right and pointer `j` only moves left. Every inner-loop iteration permanently removes a character from future consideration, and the outer update removes boundary characters. Although loops are nested syntactically, no character is processed more than a constant number of times. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$ where $n$ is the length of string `s`. In each step, pointer $i$ moves strictly right or pointer $j$ moves strictly left. Every character index is visited at most twice across the entire execution.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space, maintaining only pointer indices $i$ and $j$.

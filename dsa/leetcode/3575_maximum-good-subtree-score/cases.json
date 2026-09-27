@@ -75,7 +75,7 @@
     {
       "id": "trial-repeated-digit-node",
       "name": "trial: a value with a repeated digit cannot be selected",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "vals": [
@@ -91,6 +91,7 @@
       },
       "expected": 18,
       "tags": [
+        "sample",
         "trial",
         "repeated-digit",
         "invalid-node"

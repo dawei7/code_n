@@ -1,125 +1,150 @@
 # Guided Example: Sort Colors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step three-way partitioning of Dijkstra's Dutch National Flag algorithm on a representative array:
 
-- **Input:** `{"nums": [2, 0, 2, 1, 1, 0]}`
-- **Required output:** `[0, 0, 1, 1, 2, 2]`
+- **Input:** $\text{nums} = [2, 0, 2, 1, 1, 0]$
+- **Required output:** $[0, 0, 1, 1, 2, 2]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates in-place three-pointer invariant maintenance ($L$, $cur$, $R$), asymmetric pointer advancement (advancing $cur$ on $0$ vs withholding $cur$ on $2$), single-pass classification in $O(N)$ time, and strictly $O(1)$ auxiliary memory.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `nums` with `n` objects colored red, white, or blue, sort them **<a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> **so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+Given an array $\text{nums}$ with $N = 6$ objects colored red ($0$), white ($1$), or blue ($2$), sort them **in-place** so that objects of the same color are adjacent, with the colors in the order $0$, then $1$, then $2$.
 
-The objective is to compute `[0, 0, 1, 1, 2, 2]` from `{"nums": [2, 0, 2, 1, 1, 0]}` while avoiding redundant calculations and unnecessary overhead.
+For $[2, 0, 2, 1, 1, 0]$:
+- There are two $0$s, two $1$s, and two $2$s.
+- The sorted result must be $[0, 0, 1, 1, 2, 2]$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A two-pass counting sort (counting occurrences of 0, 1, 2 and overwriting) takes $O(N)$ time, but Dijkstra's Dutch National Flag algorithm performs the sort in a single linear pass using three pointers.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The 4-Region Invariant
+We partition the array into four contiguous logical intervals using three pointers:
+- $L = 0$ (Next slot for a $0$)
+- $R = N - 1$ (Next slot for a $2$)
+- $cur = 0$ (Current element being inspected)
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
+[ 0 0 ... 0 | 1 1 ... 1 | ? ? ... ? | 2 2 ... 2 ]
+ 0         L-1  L      cur-1  cur   R  R+1       N-1
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+1. Region $[0, L - 1]$: All confirmed $0$s.
+2. Region $[L, cur - 1]$: All confirmed $1$s.
+3. Region $[cur, R]$: Unclassified elements.
+4. Region $[R + 1, N - 1]$: All confirmed $2$s.
+
+### Transition Rules (While $cur \le R$)
+- **Case 1 ($\text{nums}[cur] == 0$):**
+  Swap $\text{nums}[cur]$ with $\text{nums}[L]$.
+  Increment $L \leftarrow L + 1$.
+  Increment $cur \leftarrow cur + 1$.
+  *(We can safely advance $cur$ because the element swapped into $cur$ from $L$ was already examined and is known to be $1$, or $cur == L$)*.
+- **Case 2 ($\text{nums}[cur] == 1$):**
+  The element belongs in the middle region.
+  Increment $cur \leftarrow cur + 1$.
+- **Case 3 ($\text{nums}[cur] == 2$):**
+  Swap $\text{nums}[cur]$ with $\text{nums}[R]$.
+  Decrement $R \leftarrow R - 1$.
+  *(Crucial: do **not** advance $cur$; the incoming element from $R$ is unexamined and must be inspected on the next iteration)*.
+
+> **Invariant.** The unclassified region $[cur, R]$ shrinks by at least one element in every iteration.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Maintain four consecutive regions
+We trace $\text{nums} = [2, 0, 2, 1, 1, 0]$ with initial pointers $L = 0, cur = 0, R = 5$:
 
-The array contains only `0`, `1`, and `2`, and their required sorted order is exactly their numeric order. The implementation uses three indices to maintain these regions:
-
-- Positions `0` through `i` contain confirmed zeroes.
-- Positions `i + 1` through `k - 1` contain confirmed ones.
-- Positions `k` through `j - 1` have not yet been classified.
-- Positions `j` through the end contain confirmed twos.
-
-Here `i` is the last index of the zero region, `j` is the first index of the two region, and `k` is the first unclassified index. The initialization `i = -1`, `j = len(nums)`, and `k = 0` makes all three classified regions empty and makes the entire array the unknown region. Using `-1` and `len(nums)` as outside sentinels avoids special cases for the first zero and first two.
-
-The loop continues while `k < j`. This condition says that at least one unclassified position remains. Each branch classifies at least one position, so the unknown interval steadily disappears.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [2, 0, 2, 1, 1, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Iteration 1 ($cur = 0, R = 5$)
+- Current element: $\text{nums}[0] = 2$.
+- Action: Swap $\text{nums}[cur]$ with $\text{nums}[R]$ ($\text{nums}[0] \leftrightarrow \text{nums}[5]$).
+- Array state: $[\mathbf{0}, 0, 2, 1, 1, \mathbf{2}]$.
+- Pointers: $R \leftarrow 5 - 1 = 4$. $cur$ remains $0$.
 
 ---
 
-### Step 2: Place a zero at the next left position
-
-When `nums[k] == 0`, the zero belongs immediately after the existing zero region. The source first increments `i`, making it the destination for the next zero, and swaps `nums[i]` with `nums[k]`.
-
-If `i == k`, the swap is with itself and simply confirms that position as zero. If `i < k`, the old value at the new `i` came from the confirmed-one region, because positions between the old zero boundary and `k` are all ones. The swap moves the zero left and moves that one to position `k`. Incrementing `k` then includes the moved one in the confirmed-one region. Both swapped values are therefore fully classified, which is why advancing `k` is safe in this branch.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Iteration 2 ($cur = 0, R = 4$)
+- Current element: $\text{nums}[0] = 0$.
+- Action: Swap $\text{nums}[cur]$ with $\text{nums}[L]$ ($\text{nums}[0] \leftrightarrow \text{nums}[0]$).
+- Array state: $[0, 0, 2, 1, 1, 2]$.
+- Pointers: $L \leftarrow 0 + 1 = 1$, $cur \leftarrow 0 + 1 = 1$.
 
 ---
 
-### Step 3: Place a two at the next right position
+### Iteration 3 ($cur = 1, R = 4$)
+- Current element: $\text{nums}[1] = 0$.
+- Action: Swap $\text{nums}[cur]$ with $\text{nums}[L]$ ($\text{nums}[1] \leftrightarrow \text{nums}[1]$).
+- Array state: $[0, 0, 2, 1, 1, 2]$.
+- Pointers: $L \leftarrow 1 + 1 = 2$, $cur \leftarrow 1 + 1 = 2$.
 
-When `nums[k] == 2`, the source decrements `j` and swaps the current two with `nums[j]`. The two is now at the first position of the confirmed-two suffix, so that suffix grows leftward by one.
+---
 
-Crucially, `k` does not advance. The value moved from `j` came from the unknown region unless `j` has just met `k`. It might be zero, one, or two and must be inspected. Advancing immediately would skip that value and could leave the array unsorted. Rechecking the same `k` is the defining asymmetry of the algorithm.
+### Iteration 4 ($cur = 2, R = 4$)
+- Current element: $\text{nums}[2] = 2$.
+- Action: Swap $\text{nums}[cur]$ with $\text{nums}[R]$ ($\text{nums}[2] \leftrightarrow \text{nums}[4]$).
+- Array state: $[0, 0, \mathbf{1}, 1, \mathbf{2}, 2]$.
+- Pointers: $R \leftarrow 4 - 1 = 3$. $cur$ remains $2$.
 
-If decrementing `j` makes `j == k`, the swap is effectively at the boundary and the loop ends. No unknown position remains.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[0, 0, 1, 1, 2, 2]` |
+### Iteration 5 ($cur = 2, R = 3$)
+- Current element: $\text{nums}[2] = 1$.
+- Action: In place. Increment $cur \leftarrow 2 + 1 = 3$.
+- Array state: $[0, 0, 1, 1, 2, 2]$.
+
+---
+
+### Iteration 6 ($cur = 3, R = 3$)
+- Current element: $\text{nums}[3] = 1$.
+- Action: In place. Increment $cur \leftarrow 3 + 1 = 4$.
+- Array state: $[0, 0, 1, 1, 2, 2]$.
+
+---
+
+### Termination
+- Condition check: $cur = 4 > R = 3$.
+- The unclassified region is empty.
+- Final sorted array: $[0, 0, 1, 1, 2, 2]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 0, 2, 1, 1, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[0, 0, 1, 1, 2, 2]` | Verified |
+| Iteration | Active $cur$ | Value $\text{nums}[cur]$ | $L$ | $R$ | Swap Performed | Array State After Step | Next Pointer Adjustment |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 2 | 0 | 5 | $\text{nums}[0] \leftrightarrow \text{nums}[5]$ | `[0, 0, 2, 1, 1, 2]` | $R \leftarrow 4$, $cur$ unchanged |
+| 2 | 0 | 0 | 0 | 4 | $\text{nums}[0] \leftrightarrow \text{nums}[0]$ | `[0, 0, 2, 1, 1, 2]` | $L \leftarrow 1, cur \leftarrow 1$ |
+| 3 | 1 | 0 | 1 | 4 | $\text{nums}[1] \leftrightarrow \text{nums}[1]$ | `[0, 0, 2, 1, 1, 2]` | $L \leftarrow 2, cur \leftarrow 2$ |
+| 4 | 2 | 2 | 2 | 4 | $\text{nums}[2] \leftrightarrow \text{nums}[4]$ | `[0, 0, 1, 1, 2, 2]` | $R \leftarrow 3$, $cur$ unchanged |
+| 5 | 2 | 1 | 2 | 3 | None ($1$ in middle) | `[0, 0, 1, 1, 2, 2]` | $cur \leftarrow 3$ |
+| 6 | 3 | 1 | 2 | 3 | None ($1$ in middle) | `[0, 0, 1, 1, 2, 2]` | $cur \leftarrow 4$ |
+| Exit | 4 | - | 2 | 3 | - | `[0, 0, 1, 1, 2, 2]` | **Halt ($cur > R$)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Swapping a $0$ to $L$ moves it into the prefix region $[0, L - 1]$, and swapping a $2$ to $R$ moves it into the suffix region $[R + 1, N - 1]$. Elements skipped by $cur$ when value is $1$ remain in $[L, cur - 1]$. The four partitions preserve relative ordering without corrupting classified elements.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** In every step, either $cur$ increments or $R$ decrements. Therefore, the distance $(R - cur)$ strictly decreases by at least 1 per iteration. When $cur > R$, all elements have been assigned to their sorted segment.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Counting two passes:** Count how many zeroes, ones, and twos occur, then overwrite the array in blocks. It is $O(n)$ time and $O(1)$ space but does not satisfy the one-pass follow-up.
-- **Library sort:** It would obscure the three-value structure, typically costs $O(n\log n)$, and is explicitly forbidden.
-- **Stable partition:** Preserving relative identity within each color is unnecessary because equal integer color codes are indistinguishable; stable in-place partitioning would add complexity.
-- **All zeroes:** Every iteration grows the zero prefix, often through self-swaps.
-- **All ones:** `k` simply scans to `j` without any swaps.
-- **All twos:** `j` repeatedly moves left while `k` stays until the unknown interval vanishes.
-- **Single element:** One branch classifies it and the loop ends.
-- **Zero swapped from the right:** The unchanged `k` after a two swap ensures it is processed next.
-- **Two swapped from the right:** It is processed again and moved into the still-growing suffix.
-- **Already sorted input:** The pointers scan once; zero self-swaps are harmless and the result remains sorted.
-- **Reverse-grouped input:** Swaps progressively exchange left twos with right zeroes without extra storage.
-- **Input-domain reliance:** The `else` branch means “one” only because no other integer is allowed.
-- **Mutation contract:** Callers must inspect the changed list, not a return value.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Advancing $cur$ After Swapping with $R$:** When swapping with $R$, the incoming element from index $R$ has never been inspected. If you increment $cur$, that element will be skipped unclassified (e.g. if a $0$ was at $R$, it would be left stuck in the $1$s region).
+- **Using Built-In Sort:** The problem specifically forbids using library sorting routines (`nums.sort()`), requiring an in-place partition.
+- **Handling Arrays with Zero $1$s:** If the array consists only of $0$s and $2$s (e.g. $[2, 0, 2, 0]$), the algorithm correctly collapses the middle region without empty-boundary exceptions.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. In every iteration either `k` increases or `j` decreases. Neither moves in the opposite direction, so there are at most about $2n$ pointer movements and $O(n)$ total time. This matches the manifest and fulfills the one-pass follow-up even though a value swapped from the right may be inspected on the next iteration.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements. The loop runs at most $N$ times since each iteration either increments $cur$ or decrements $R$.
+- **Auxiliary Space Complexity:** $O(1)$. Swaps are executed strictly in place using three pointer registers.

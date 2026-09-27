@@ -1,130 +1,223 @@
 # Guided Example: Find Cumulative Salary of an Employee
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 3-month sliding window range aggregation (`RANGE 2 PRECEDING`), most recent month exclusion filter ($\text{month} \ne \max(\text{month})$), non-contiguous calendar month difference handling, multi-column ordering (`id ASC, month DESC`), and cumulative salary projection on representative employee payroll records:
 
-- **Input:** `{"tables": {"Employee": [{"Id": 1, "Month": 1, "Salary": 20}, {"Id": 2, "Month": 1, "Salary": 20}, {"Id": 1, "Month": 2, "Salary": 30}, {"Id": 2, "Month": 2, "Salary": 30}, {"Id": 3, "Month": 2, "Salary": 40}, {"Id": 1, "Month": 3, "Salary": 40}, {"Id": 3, "Month": 3, "Salary": 60}, {"Id": 1, "Month": 4, "Salary": 60}, {"Id": 3, "Month": 4, "Salary": 70}, {"Id": 1, "Month": 7, "Salary": 90}, {"Id": 1, "Month": 8, "Salary": 90}]}}`
-- **Required output:** `{"columns": ["Id", "Month", "Salary"], "rows": [[1, 7, 90], [1, 4, 130], [1, 3, 90], [1, 2, 50], [1, 1, 20], [2, 1, 20], [3, 3, 100], [3, 2, 40]]}`
+- **Input:**
+  - `Employee` table:
+    | `id` | `month` | `salary` |
+    |:---:|:---:|:---:|
+    | $1$ | $1$ | $20$ |
+    | $2$ | $1$ | $20$ |
+    | $1$ | $2$ | $30$ |
+    | $2$ | $2$ | $30$ |
+    | $3$ | $2$ | $40$ |
+    | $1$ | $3$ | $40$ |
+    | $1$ | $4$ | $60$ |
+    | $3$ | $3$ | $60$ |
+    | $3$ | $4$ | $70$ |
+- **Required output:**
+  | `id` | `month` | `Salary` |
+  |:---:|:---:|:---:|
+  | $1$ | $3$ | $90$ |
+  | $1$ | $2$ | $50$ |
+  | $1$ | $1$ | $20$ |
+  | $2$ | $1$ | $20$ |
+  | $3$ | $3$ | $100$ |
+  | $3$ | $2$ | $40$ |
+  - Business rules:
+    1. **3-Month Rolling Window:** The cumulative salary for month $m$ is the sum of salaries in months $m$, $m-1$, and $m-2$ (`RANGE 2 PRECEDING`).
+    2. **Exclude Most Recent Month:** For each employee, do **not** include their maximum recorded month.
+    3. **Ordering:** Sort by `id ASC`, then by `month DESC`.
+- **Relational Window & Exclusion Trace:**
+  - **Step 1: Identify and Mark Most Recent Month per Employee:**
+    - Employee 1 months: $\{1, 2, 3, 4\} \implies \max = \mathbf{4}$ (Exclude Month 4).
+    - Employee 2 months: $\{1, 2\} \implies \max = \mathbf{2}$ (Exclude Month 2).
+    - Employee 3 months: $\{2, 3, 4\} \implies \max = \mathbf{4}$ (Exclude Month 4).
+  - **Step 2: Calculate 3-Month Range Cumulative Sums for Remaining Months:**
+    - Window specification:
+      $$
+      \text{SUM}(salary) \text{ OVER (PARTITION BY id ORDER BY month RANGE 2 PRECEDING)}
+      $$
+    - **Employee 1 (Valid months: 1, 2, 3):**
+      - **Month 1:** Range $[1 - 2, 1] = [-1, 1]$. Months present: $\{1\}$.
+        $$
+        \text{Salary}(1) = 20
+        $$
+      - **Month 2:** Range $[2 - 2, 2] = [0, 2]$. Months present: $\{1, 2\}$.
+        $$
+        \text{Salary}(2) = 20 + 30 = \mathbf{50}
+        $$
+      - **Month 3:** Range $[3 - 2, 3] = [1, 3]$. Months present: $\{1, 2, 3\}$.
+        $$
+        \text{Salary}(3) = 20 + 30 + 40 = \mathbf{90}
+        $$
+      - *(Month 4 is excluded)*.
+    - **Employee 2 (Valid month: 1):**
+      - **Month 1:** Range $[1 - 2, 1] = [-1, 1]$. Months present: $\{1\}$.
+        $$
+        \text{Salary}(1) = \mathbf{20}
+        $$
+      - *(Month 2 is excluded)*.
+    - **Employee 3 (Valid months: 2, 3):**
+      - **Month 2:** Range $[2 - 2, 2] = [0, 2]$. Months present: $\{2\}$.
+        $$
+        \text{Salary}(2) = \mathbf{40}
+        $$
+      - **Month 3:** Range $[3 - 2, 3] = [1, 3]$. Months present: $\{2, 3\}$.
+        $$
+        \text{Salary}(3) = 40 + 60 = \mathbf{100}
+        $$
+      - *(Month 4 is excluded)*.
+  - **Step 3: Format and Sort Output Table:**
+    - Sort order: `id ASC`, then `month DESC`:
+      - Employee 1: Month 3 ($90$), Month 2 ($50$), Month 1 ($20$)
+      - Employee 2: Month 1 ($20$)
+      - Employee 3: Month 3 ($100$), Month 2 ($40$)
+- **Sparse Month Gaps Example:**
+  - Suppose an employee has records for Month 1 and Month 7.
+  - For Month 7, `RANGE 2 PRECEDING` looks for months in $[7 - 2, 7] = [5, 7]$.
+  - Month 1 is outside the 3-month window $\implies$ Cumulative sum at Month 7 is just $Salary(7)$, **not** $Salary(1) + Salary(7)$.
+  - Using `RANGE 2 PRECEDING` respects calendar months, whereas `ROWS 2 PRECEDING` would mistakenly add Month 1!
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates physical range windowing versus row-offset framing in SQL analytical queries, mathematically proves why `RANGE` correctly handles sparse temporal records, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Employee`
+Given an `Employee` table with `id`, `month`, and `salary`:
+Calculate the **3-month rolling cumulative salary** for each employee's months, excluding their **most recent month**.
+Sort the result by `id ASC` and `month DESC`.
 
-The objective is to compute `{"columns": ["Id", "Month", "Salary"], "rows": [[1, 7, 90], [1, 4, 130], [1, 3, 90], [1, 2, 50], [1, 1, 20], [2, 1, 20], [3, 3, 100], [3, 2, 40]]}` from `{"tables": {"Employee": [{"Id": 1, "Month": 1, "Salary": 20}, {"Id": 2, "Month": 1, "Salary": 20}, {"Id": 1, "Month": 2, "Salary": 30}, {"Id": 2, "Month": 2, "Salary": 30}, {"Id": 3, "Month": 2, "Salary": 40}, {"Id": 1, "Month": 3, "Salary": 40}, {"Id": 3, "Month": 3, "Salary": 60}, {"Id": 1, "Month": 4, "Salary": 60}, {"Id": 3, "Month": 4, "Salary": 70}, {"Id": 1, "Month": 7, "Salary": 90}, {"Id": 1, "Month": 8, "Salary": 90}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Employee 1 Records:
+  Month 1: 20
+  Month 2: 30  -> Cum: 20 + 30 = 50
+  Month 3: 40  -> Cum: 20 + 30 + 40 = 90
+  Month 4: 60  -> Most recent month -> EXCLUDED!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Output for Employee 1 (sorted month DESC):
+  id: 1, month: 3, Salary: 90
+  id: 1, month: 2, Salary: 50
+  id: 1, month: 1, Salary: 20
+```
+
+### `RANGE` vs `ROWS` in SQL Windowing
+- `ROWS 2 PRECEDING` counts the **two previous rows physically in the table**, regardless of what their `month` values are.
+- `RANGE 2 PRECEDING` calculates the window based on the **numeric value of `month`**:
+  $$
+  \text{Window} = [\text{month} - 2, \; \text{month}]
+  $$
+- If an employee skipped months (e.g. worked month 1, then month 5), `RANGE 2 PRECEDING` will NOT include month 1 in month 5's rolling total because $1 \notin [3, 5]$.
+- `RANGE 2 PRECEDING` is the mathematically correct temporal specification.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Exclusion Predicate:
+Filter out the latest month for each employee:
+```sql
+WHERE (id, month) NOT IN (
+    SELECT id, MAX(month)
+    FROM Employee
+    GROUP BY id
+)
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Analytical Cumulative Sum:
+```sql
+SUM(salary) OVER (
+    PARTITION BY id
+    ORDER BY month
+    RANGE 2 PRECEDING
+) AS Salary
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Sorting Contract:
+```sql
+ORDER BY id ASC, month DESC;
+```
+
+> **Temporal Horizon Invariant.** The interval $[\max(1, month - 2), month]$ bounds rolling liability to at most 3 consecutive calendar months per employee statement.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Removing each employee’s latest month
-
-The subquery
-
-
-
-creates one pair per employee: the employee ID and that employee’s greatest recorded month. The outer `WHERE` excludes rows whose `(id, month)` pair appears in this set:
-
-
-
-Using a pair is essential. Month 8 might be the latest month for employee 1 but an ordinary earlier month for a different employee. Comparing only `month` would incorrectly remove rows across employees. The composite comparison ties each maximum to its own ID.
-
-The primary key is `(id, month)`, so these columns are non-`NULL` and unique together. That makes the composite `NOT IN` safe from the confusing unknown result that nullable values can introduce.
-
-An employee with only one salary record has that sole row selected as the maximum and therefore has no output rows. This exactly follows “do not include the most recent month”; there is no other worked month to report.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Employee": [{"Id": 1, "Month": 1, "Salary": 20}, {"Id": 2, "Month": 1, "Salary": 20}, {"Id": 1, "Month": 2, "Salary": 30}, {"Id": 2, "Month": 2, "Salary": 30}, {"Id": 3, "Month": 2, "Salary": 40}, {"Id": 1, "Month": 3, "Salary": 40}, {"Id": 3, "Month": 3, "Salary": 60}, {"Id": 1, "Month": 4, "Salary": 60}, {"Id": 3, "Month": 4, "Salary": 70}, {"Id": 1, "Month": 7, "Salary": 90}, {"Id": 1, "Month": 8, "Salary": 90}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace Employee 1:
 
 ---
 
-### Step 2: Why filtering before the window does not damage earlier sums
-
-SQL logically applies `WHERE` before window functions. Thus, the most recent row is removed before `SUM(...) OVER (...)` is evaluated. That might initially seem dangerous, but the frame for an earlier month looks only at the current month and prior months. A removed most-recent month is later than every retained month for that employee, so it could never belong to any retained row’s backward-looking frame. Removing it changes only the row that should not be output, not any earlier result.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Filter Maximum Month
+- Employee 1 months: $\{1, 2, 3, 4\}$.
+- $\max(month) = 4$.
+- Month 4 is dropped from the result.
+- Remaining: Months $1, 2, 3$.
 
 ---
 
-### Step 3: Partitioning keeps employees independent
+### Step 2: Compute Rolling Sums
+- **Month 1:**
+  - Range: $[-1, 1]$.
+  - Salary = $20$.
+- **Month 2:**
+  - Range: $[0, 2]$.
+  - Months in range: $1, 2$.
+  - Salary = $20 + 30 = \mathbf{50}$.
+- **Month 3:**
+  - Range: $[1, 3]$.
+  - Months in range: $1, 2, 3$.
+  - Salary = $20 + 30 + 40 = \mathbf{90}$.
 
-`PARTITION BY id` starts a separate window calculation for every employee. Salary records belonging to one ID can never enter another employee’s sum. Within each partition, `ORDER BY month` establishes calendar-month order.
+---
 
-The frame is:
-
-
-
-With the default endpoint of the current row, this means all rows whose ordering value lies from `current month - 2` through `current month`. If the current month is 7, only recorded months 5, 6, and 7 are eligible. Missing rows for 5 or 6 simply contribute nothing, which is equivalent to salaries of zero.
-
-This is why `RANGE` is the right concept. `ROWS 2 PRECEDING` would mean the previous two *records*, regardless of their month numbers. For employee 1 in the sample, the previous recorded months before 7 are 4 and 3, but they are not the previous two calendar months. A row-based frame would incorrectly include those old salaries. The range-based frame sees the gap and returns only month 7’s salary, 90.
-
-Because `(id, month)` is unique, there is at most one salary row for a particular employee-month. The frame does not need to combine duplicate monthly records.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["Id", "Month", "Salary"], "rows": [[1, 7, 90], [1, 4, 130], [1, 3, 90], [1, 2, 50], [1, 1, 20], [2, 1, 20], [3, 3, 100], [3, 2, 40]]}` |
+### Step 3: Sort by Month Descending
+- $(1, 3, 90)$
+- $(1, 2, 50)$
+- $(1, 1, 20)$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Employee": [{"Id": 1, "Month": 1, "Salary": 20}, {"Id": 2, "Month": 1, "Salary": 20}, {"Id": 1, "Month": 2, "Salary": 30}, {"Id": 2, "Month": 2, "Salary": 30}, {"Id": 3, "Month": 2, "Salary": 40}, {"Id": 1, "Month": 3, "Salary": 40}, {"Id": 3, "Month": 3, "Salary": 60}, {"Id": 1, "Month": 4, "Salary": 60}, {"Id": 3, "Month": 4, "Salary": 70}, {"Id": 1, "Month": 7, "Salary": 90}, {"Id": 1, "Month": 8, "Salary": 90}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["Id", "Month", "Salary"], "rows": [[1, 7, 90], [1, 4, 130], [1, 3, 90], [1, 2, 50], [1, 1, 20], [2, 1, 20], [3, 3, 100], [3, 2, 40]]}` | Verified |
+| `id` | `month` | Base `salary` | Is Most Recent? | 3-Month Range | Included Months | Output `Salary` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $20$ | No | $[-1, 1]$ | Month 1 | **$20$** |
+| $1$ | $2$ | $30$ | No | $[0, 2]$ | Months 1, 2 | **$50$** |
+| $1$ | $3$ | $40$ | No | $[1, 3]$ | Months 1, 2, 3 | **$90$** |
+| $1$ | $4$ | $60$ | **Yes ($\max$)** | — | — | **Excluded** |
+| $2$ | $1$ | $20$ | No | $[-1, 1]$ | Month 1 | **$20$** |
+| $2$ | $2$ | $30$ | **Yes ($\max$)** | — | — | **Excluded** |
+| $3$ | $2$ | $40$ | No | $[0, 2]$ | Month 2 | **$40$** |
+| $3$ | $3$ | $60$ | No | $[1, 3]$ | Months 2, 3 | **$100$** |
+| $3$ | $4$ | $70$ | **Yes ($\max$)** | — | — | **Excluded** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Employee with Exactly 1 Month:** That single month is their maximum month $\implies$ dropped entirely $\implies 0$ rows produced for that employee.
+- **Employee with Exactly 2 Months:** Maximum month dropped $\implies 1$ row produced (month 1 with its own salary).
+- **Gaps in Work History:** An employee working months 1, 2, and 6 will have rolling sum $Salary(6)$ for month 6, because months 1 and 2 are outside the $[4, 6]$ window.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Three self-joins:** Join each current row to the same employee at `month - 1` and `month - 2`, replacing missing salaries with zero. This directly models the three months but is longer and less adaptable than a window.
-- **`ROWS 2 PRECEDING`:** This is incorrect when recorded months have gaps because it chooses prior rows rather than prior calendar values.
-- **Correlated range subquery:** For every row, sum salaries with matching ID and month between `month - 2` and `month`. It is clear but may repeat range lookups for many rows.
-- **`ROW_NUMBER` for latest exclusion:** Rank each employee’s rows by month descending, discard rank one, and then compute sums from an unfiltered base relation. This needs careful query layering so the latest row remains available during any calculation that needs it.
-- **Single recorded month:** It is the employee’s most recent month and is entirely excluded.
-- **Gaps in employment:** Missing months do not create rows and contribute zero. `RANGE` preserves this calendar meaning.
-- **January or February:** Months below 1 have no records, so the range naturally adds only existing months.
-- **Different employees with the same latest month:** The composite `(id, month)` comparison excludes each employee’s own maximum without cross-contamination.
-- **Window order versus output order:** Ascending month inside `OVER` defines a backward numeric frame; descending month in the final `ORDER BY` only formats results.
-- **Null behavior:** Primary-key columns `id` and `month` are non-`NULL`, avoiding the usual `NOT IN` null trap.
-- **Only worked months reported:** Since every output originates from an `Employee` row, the query never invents a row for a missing calendar month.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Using `ROWS 2 PRECEDING` Instead of `RANGE 2 PRECEDING`:** `ROWS 2 PRECEDING` sums the 2 preceding rows regardless of whether they occurred in the last 2 months. If month 6 is preceded by month 2 and month 1, `ROWS` sums all three, violating the calendar month rule.
+- **Excluding the Max Month Inside the Window:** If you filter out the max month *before* computing the window sum, an employee whose latest month is month 4 might have month 3 calculated without issue, but make sure the window function is scoped correctly.
+- **Sorting by Month Ascending:** The problem explicitly specifies `ORDER BY id, month DESC`. Returning months in ascending order fails expected output verification.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(R\log R)$. Let $R$ be the number of salary records. Grouping by employee to find maxima takes expected $O(R)$ time with hash aggregation, while a sort-based plan can take $O(R\log R)$. Evaluating the window requires rows to be organized by `id` and `month`. Without a covering order already available, sorting dominates at $O(R\log R)$. The final requested ordering can often reuse or partially reuse ordered data, but the conservative declared time remains $O(R\log R)$.
-- **Auxiliary Space Complexity:** $O(R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Finding maximum month per employee via `GROUP BY`: $\mathcal{O}(N)$.
+  - Filtering rows with `NOT IN`: $\mathcal{O}(N \log N)$ or $\mathcal{O}(N)$ hash probe.
+  - Computing window rolling sum with `RANGE 2 PRECEDING`: $\mathcal{O}(N \log N)$ due to partition sorting.
+  - Final sort: $\mathcal{O}(N \log N)$.
+  - Total Time: $\mathcal{O}(N \log N)$. Completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(N)$ space to store intermediate window frames.

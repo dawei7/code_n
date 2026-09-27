@@ -1,125 +1,154 @@
 # Guided Example: Sort Characters By Frequency
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character frequency histogramming, frequency-descending pair ordering, multi-occurrence character expansion ($c \times count$), and string reconstruction on representative string inputs:
 
-- **Input:** `{"s": "tree"}`
-- **Required output:** `"eetr"`
+- **Input:** $s = \text{"tree"}$
+- **Required output:** `"eert"` (or `"eetr"`)
+- **Execution trace:**
+  - Step 1: Compute character frequency histogram:
+    - Char `'t'`: count $1$
+    - Char `'r'`: count $1$
+    - Char `'e'`: count $2$
+    - Frequency map: $\{\text{'e'}: 2, \; \text{'t'}: 1, \; \text{'r'}: 1\}$
+  - Step 2: Sort unique characters by frequency descending:
+    - Pair 1: $(\text{'e'}, 2)$
+    - Pair 2: $(\text{'t'}, 1)$ (or $(\text{'r'}, 1)$)
+    - Pair 3: $(\text{'r'}, 1)$
+  - Step 3: Emit characters multiplied by their counts:
+    - For $(\text{'e'}, 2) \implies \text{'e'} \times 2 = \text{"ee"}$
+    - For $(\text{'t'}, 1) \implies \text{'t'} \times 1 = \text{"t"}$
+    - For $(\text{'r'}, 1) \implies \text{'r'} \times 1 = \text{"r"}$
+    - Concatenation: $\text{"ee"} + \text{"t"} + \text{"r"} = \mathbf{\text{"eetr"}}$ (or $\text{"eert"}$)
+- **Tied Frequencies Instance:** $s = \text{"cccaaa"} \implies \text{count('c')} = 3, \text{count('a')} = 3 \implies \mathbf{\text{"cccaaa"}}$ (or `"aaaccc"`)
+- **Case-Sensitivity Instance:** $s = \text{"Aabb"} \implies \text{count('b')} = 2, \text{count('a')} = 1, \text{count('A')} = 1 \implies \mathbf{\text{"bbAa"}}$ (`'A'` and `'a'` are treated as distinct characters)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates counting-based sorting and bucket sorting, mathematically proves why characters with identical frequencies can be output in arbitrary relative order, and derives $O(N + K \log K)$ runtime and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The **frequency** of a character is the number of times it appears in the string.
+Given a string $s = \text{"tree"}$:
+Sort it in **decreasing order** based on the frequency of the characters.
+The frequency of a character is the number of times it appears in the string.
+Return the sorted string. If there are multiple valid answers, return any of them.
 
-The objective is to compute `"eetr"` from `{"s": "tree"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Original String: "tree"
+Character Frequencies:
+  'e' -> 2
+  't' -> 1
+  'r' -> 1
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorted by Frequency (Descending):
+  'e' (2) -> "ee"
+  'r' (1) -> "r"
+  't' (1) -> "t"
+
+Output: "eert" (or "eetr")
+```
+
+### The Grouping Invariant
+All identical characters must appear together in a contiguous block of length equal to their frequency.
+A character with frequency $f_1$ must appear before any character with frequency $f_2$ whenever $f_1 > f_2$.
+Characters with equal frequencies ($f_1 == f_2$) may be ordered arbitrarily.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Histogram Frequency Mapping:
+Map each unique character $c \in s$ to its occurrence count:
+$$
+cnt[c] = \sum_{i=0}^{|s|-1} \mathbf{1}[s[i] == c]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Frequency Sorting:
+Extract all unique key-value pairs $(c, cnt[c])$:
+Sort pairs in non-increasing order of their count $cnt[c]$:
+$$
+cnt[c_1] \ge cnt[c_2] \ge \dots \ge cnt[c_K]
+$$
+Where $K \le |\Sigma|$ is the number of distinct characters in $s$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. String Assembly:
+Concatenate repeated character sequences:
+$$
+\text{Output} = \prod_{i=1}^K c_i^{cnt[c_i]}
+$$
+
+> **Frequency Invariant.** In the emitted string, for any two distinct characters $a$ and $b$, if $cnt[a] > cnt[b]$, then every occurrence of $a$ precedes every occurrence of $b$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count frequencies with `Counter`
-
-`Counter(s)` scans the string and builds a mapping from each character to its number of occurrences. For `s = "tree"`, the mapping contains `t: 1`, `r: 1`, and `e: 2`. Uppercase and lowercase characters are different keys, so `A` and `a` are counted independently without any special logic.
-
-A frequency map is the right summary because the desired order depends only on counts. Once it has been built, the original positions of equal characters no longer matter. The final construction will deliberately gather all copies of a character into one contiguous group.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "tree"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"tree"}$ ($N = 4$):
 
 ---
 
-### Step 2: Why a negative sort key produces decreasing order
-
-`cnt.items()` supplies `(character, frequency)` pairs. Python's `sorted` orders keys in increasing order by default. The key function `lambda x: -x[1]` negates each frequency, so a larger original frequency becomes a smaller key:
-
-$$
-5 > 2 \quad\Longrightarrow\quad -5 < -2.
-$$
-
-Ascending order of the negative values is therefore descending order of the actual frequencies. The code does not need a secondary key. When two characters have equal frequency, either relative order is accepted by the contract.
-
-Python's sort is stable, and `Counter` preserves the first-insertion order of keys in current Python versions, so tied groups commonly follow the order in which their characters first appeared. That behavior is not part of the algorithm's correctness and should not be relied upon by tests: the problem explicitly allows any tie order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Frequency Histogram
+Count occurrences:
+- `'t'`: 1
+- `'r'`: 1
+- `'e'`: 2
+Map: $\{\text{'e'}: 2, \; \text{'t'}: 1, \; \text{'r'}: 1\}$.
 
 ---
 
-### Step 3: Build one contiguous block per character
+### Step 2: Sort by Frequency Descending
+Sort unique character pairs by count:
+1. $(\text{'e'}, 2)$
+2. $(\text{'t'}, 1)$
+3. $(\text{'r'}, 1)$
 
-For every sorted pair `(c, v)`, the expression `c * v` creates a string containing `v` copies of `c`. If the pair is `('e', 2)`, the group is `"ee"`. The generator supplies those groups to `''.join(...)`, which combines them into one output string.
+---
 
-Using `join` is important. Python strings are immutable, so repeatedly doing `answer += group` can repeatedly copy the growing prefix and lead to unnecessary quadratic work. `join` knows all pieces and constructs the final string efficiently.
-
-For `s = "tree"`, the `e` group has frequency two and must come before the one-character `t` and `r` groups. Depending on tie order, the result may be `"eetr"` or `"eert"`; both are valid.
-
-For `s = "cccaaa"`, the two groups both have frequency three. Either `"cccaaa"` or `"aaaccc"` is correct. An interleaving such as `"cacaca"` is not produced, because the reconstruction creates exactly one complete block for each distinct character.
-
-For `s = "Aabb"`, `b` has frequency two, while `A` and `a` each have frequency one. The `bb` group comes first, and the case-distinct singletons may follow in either order.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"eetr"` |
+### Step 3: Reconstruct Compressed String
+- From $(\text{'e'}, 2)$: emit `'e'` twice $\implies \text{"ee"}$.
+- From $(\text{'t'}, 1)$: emit `'t'` once $\implies \text{"t"}$.
+- From $(\text{'r'}, 1)$: emit `'r'` once $\implies \text{"r"}$.
+Join all segments:
+$$
+\text{"ee"} + \text{"t"} + \text{"r"} = \mathbf{\text{"eetr"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "tree"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"eetr"` | Verified |
+| Character $c$ | Total Count in $s$ | Frequency Rank | Segment Generated | Output Prefix |
+|:---:|:---:|:---:|:---:|:---|
+| `'e'` | $2$ | **1st** | `"ee"` | `"ee"` |
+| `'t'` | $1$ | 2nd | `"t"` | `"eet"` |
+| `'r'` | $1$ | 3rd | `"r"` | `"eetr"` |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Case Sensitivity ($s = \text{"Aabb"}):$** `'A'` (count 1) and `'a'` (count 1) are distinct ASCII characters. Group `'b'` (count 2) appears first $\implies \text{"bbAa"}$ or $\text{"bbaA"}$.
+- **All Unique Characters ($s = \text{"abc"}):$** All frequencies are 1 $\implies$ any permutation is valid.
+- **All Identical Characters ($s = \text{"aaaa"}):$** Only 1 unique character $\implies \text{"aaaa"}$.
+- **Single Character ($s = \text{"z"}):$** Output is $\text{"z"}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Bucket sort by frequency:** Place each distinct character in a bucket indexed by its count, then scan frequencies from `n` down to `1`. This gives $O(n)$ time even for a growing alphabet, at the cost of an $O(n)$ bucket structure.
-- **Heap of distinct characters:** A max-heap can repeatedly extract the largest frequency in $O(k\log k)$ time. It is useful for streaming variants but adds complexity here.
-- **Sort all input characters:** A comparator based on frequency can sort all `n` occurrences, but that costs $O(n\log n)$ and must still ensure identical characters remain grouped.
-- **Repeated string concatenation:** Logically correct, but immutable-string copying can make construction quadratic. Building pieces and calling `join` avoids that trap.
-- **Single character:** The counter has one entry, sorting changes nothing, and the original one-character string is returned.
-- **All characters identical:** One group of length `n` is emitted, so the answer equals the input.
-- **All frequencies equal:** Any ordering of the character groups is valid; the algorithm's stable tie order is merely one allowed choice.
-- **Uppercase versus lowercase:** `A` and `a` are separate counter keys and may have different frequencies.
-- **Digits:** Digits are ordinary one-character keys; numeric value plays no role.
-- **Empty string outside this contract:** The exact code would return an empty string naturally, although the stated input is nonempty.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Case Flattening:** Converting to lowercase with `s.lower()` corrupts the output when the problem requires case-sensitive distinction between `'A'` and `'a'`.
+- **String Concatenation in Loops:** Repeatedly writing `res += char * count` inside a loop in quadratic memory environments creates garbage string allocations. Using `''.join(...)` on a list of string chunks is linear in total characters.
+- **Sorting the Entire String of Length $N$:** Sorting the entire string takes $O(N \log N)$ time. Sorting only the $K \le 62$ distinct alphanumeric characters takes $O(K \log K)$ time, which is constant $O(1)$ relative to $N$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(k)$. Let $n$ be the length of `s`, and let $k$ be the number of distinct characters.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Counting character frequencies takes $O(N)$ time.
+  - The number of distinct characters $K$ is bounded by the alphabet size $|\Sigma| \le 128$.
+  - Sorting $K$ unique pairs takes $O(K \log K)$ time.
+  - Reconstructing the string of length $N$ takes $O(N)$ time.
+  - Total Time: $\mathcal{O}(N + K \log K) = \mathcal{O}(N)$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(K) = \mathcal{O}(1)$ for the frequency map, and $O(N)$ for the returned string.

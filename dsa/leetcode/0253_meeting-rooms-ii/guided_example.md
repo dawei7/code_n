@@ -1,129 +1,170 @@
 # Guided Example: Meeting Rooms II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step chronological event sweeping, min-heap room reallocation, and peak concurrency tracking on representative meeting schedules:
 
-- **Input:** `{"intervals": [[0, 30], [5, 10], [15, 20]]}`
-- **Required output:** `2`
+- **Input:** $\text{intervals} = [[0, 30], [5, 10], [15, 20]]$
+- **Required output:** $2$ (At time $t = 5$, two meetings overlap simultaneously; meeting $[15, 20]$ reuses the room vacated at $t = 10$)
+- **Disjoint Schedule Instance:** $\text{intervals} = [[7, 10], [2, 4]] \implies 1$ (Sequential meetings; single room suffices)
+- **Touching Boundary Instance:** $\text{intervals} = [[1, 3], [3, 5]] \implies 1$ (Vacating at $t = 3$ allows immediate room reuse at $t = 3$)
+- **Complete Concurrency Instance:** $\text{intervals} = [[1, 10], [2, 9], [3, 8]] \implies 3$ (Three nested overlapping meetings)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates interval concurrency maximization, explains why the minimum rooms required is mathematically equivalent to the maximum number of simultaneous overlapping meetings, details the two-pointer sweep line over separated start and end times, and operates in $O(N \log N)$ time with $O(N)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of meeting time intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$, return *the minimum number of conference rooms required*.
+Given an array of meeting time intervals:
+$$
+\text{intervals} = [[0, 30], [5, 10], [15, 20]]
+$$
+Find the **minimum number of conference rooms** needed to host all meetings without conflict.
 
-The objective is to compute `2` from `{"intervals": [[0, 30], [5, 10], [15, 20]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Timeline:
+t = 0:  Meeting [0, 30] begins               -> Room 1 occupied (1 active)
+t = 5:  Meeting [5, 10] begins               -> Room 2 occupied (2 active)  <- PEAK!
+t = 10: Meeting [5, 10] ends                 -> Room 2 freed    (1 active)
+t = 15: Meeting [15, 20] begins (Reuses Room 2) -> Room 2 occupied (2 active)
+t = 20: Meeting [15, 20] ends                -> Room 2 freed    (1 active)
+t = 30: Meeting [0, 30] ends                 -> Room 1 freed    (0 active)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Peak Simultaneous Meetings = 2
+```
+
+### The Min-Rooms Equivalence Theorem
+By Dilworth's Theorem for interval orders, the minimum number of rooms needed to partition an interval set without conflict is **strictly equal to the maximum number of mutually overlapping intervals at any instant in time** (the maximum clique size).
+We do not need to simulate concrete physical room IDs; we only need to track the peak count of concurrently active meetings.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Separated Start/End Two-Pointer Sweep
+Separate start times and end times into two independent sorted arrays:
+$$
+\text{starts} = \text{sorted}([I[0] \text{ for } I \in \text{intervals}]) = [0, 5, 15]
+$$
+$$
+\text{ends} = \text{sorted}([I[1] \text{ for } I \in \text{intervals}]) = [10, 20, 30]
+$$
+Pointers $s = 0$ (next start) and $e = 0$ (next end).
+While $s < N$:
+1. If $\text{starts}[s] < \text{ends}[e]$:
+   A new meeting begins before the earliest ongoing meeting finishes.
+   Allocate a room: $\text{active\_rooms} \mathrel{+}= 1$.
+   Advance start pointer: $s \leftarrow s + 1$.
+2. Else ($\text{starts}[s] \ge \text{ends}[e]$):
+   An ongoing meeting has ended! Its room becomes free for reuse.
+   Release room: $\text{active\_rooms} \mathrel{-}= 1$.
+   Advance end pointer: $e \leftarrow e + 1$.
+3. Update peak: $\text{max\_rooms} = \max(\text{max\_rooms}, \text{active\_rooms})$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+*(Boundary Rule: If $\text{starts}[s] == \text{ends}[e]$, the meeting ends at the exact same instant the next begins. The room is freed immediately, so $\text{starts}[s] \ge \text{ends}[e]$ executes first, correctly avoiding phantom room allocations)*.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Min-Heap of Active End Times
+Sort intervals by start time. A min-heap stores the end times of rooms currently in use.
+For interval $[s, e]$:
+- If $\text{heap}[0] \le s$: a room has become available; pop $\text{heap}[0]$.
+- Push $e$ onto the heap.
+- Peak size of the heap is the answer.
+
+> **Invariant.** At any moment in the two-pointer sweep, $\text{active\_rooms}$ is strictly equal to the number of ongoing meetings whose start has occurred ($\text{start} \le t$) but whose end has not yet arrived ($\text{end} > t$).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Choose the timeline size
-
-The source first computes
-
-
-
-so `m` is the latest end time. No event occurs after `m`, and all starts are smaller than their corresponding ends, so every relevant coordinate lies from `0` through `m`. The array `d = [0] * (m + 1)` provides one cell for each of those integer times.
-
-The problem guarantees at least one interval, which is why `max` is safe without an empty-input branch. It also bounds every endpoint by $10^6$, making this direct timeline allocation feasible.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"intervals": [[0, 30], [5, 10], [15, 20]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the two-pointer sweep on $\text{intervals} = [[0, 30], [5, 10], [15, 20]]$ ($N = 3$):
+Sorted starts: $\text{starts} = [0, 5, 15]$.
+Sorted ends: $\text{ends} = [10, 20, 30]$.
+Initial state: $s = 0, \quad e = 0, \quad \text{active\_rooms} = 0, \quad \text{max\_rooms} = 0$.
 
 ---
 
-### Step 2: Encode intervals as boundary events
-
-For each `[l, r]`, the code performs
-
-
-
-This represents a half-open meeting interval $[l,r)$: the room is occupied starting at `l` and becomes free at `r`. That convention matches scheduling semantics. A meeting ending at time `10` can share a room with one starting at time `10`.
-
-If several events occur at one coordinate, the difference array combines them before the prefix is examined. For example, two meetings ending and three starting at time `t` contribute a net change of `+1`. The two released rooms are immediately reusable, so the active count grows by only one. There is no incorrect moment where all five boundary events are treated as simultaneous occupancy.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compare $\text{starts}[0]$ vs $\text{ends}[0]$
+- $\text{starts}[0] = 0, \quad \text{ends}[0] = 10$.
+- $0 < 10 \implies$ Meeting starts!
+- $\text{active\_rooms} \leftarrow 0 + 1 = \mathbf{1}$.
+- $\text{max\_rooms} \leftarrow \max(0, 1) = \mathbf{1}$.
+- Advance: $s \leftarrow 0 + 1 = 1$.
 
 ---
 
-### Step 3: Recover active counts with a prefix sum
+### Step 2: Compare $\text{starts}[1]$ vs $\text{ends}[0]$
+- $\text{starts}[1] = 5, \quad \text{ends}[0] = 10$.
+- $5 < 10 \implies$ Second meeting starts before the first ends!
+- $\text{active\_rooms} \leftarrow 1 + 1 = \mathbf{2}$.
+- $\text{max\_rooms} \leftarrow \max(1, 2) = \mathbf{2}$.
+- Advance: $s \leftarrow 1 + 1 = 2$.
 
-The variables `ans` and `s` begin at zero. Scanning `d` from time `0` to time `m`, the solution adds the current delta into `s`. After processing coordinate `t`,
+---
 
-$$
-s=\sum_{x=0}^{t}d[x].
-$$
+### Step 3: Compare $\text{starts}[2]$ vs $\text{ends}[0]$
+- $\text{starts}[2] = 15, \quad \text{ends}[0] = 10$.
+- $15 \ge 10 \implies$ Meeting ends at time $10$! Room freed.
+- $\text{active\_rooms} \leftarrow 2 - 1 = \mathbf{1}$.
+- Advance: $e \leftarrow 0 + 1 = 1$.
+- (Notice: $s$ remains at index $2$).
 
-Every meeting with start at most `t` has contributed `+1`. Every meeting with end at most `t` has contributed `-1`. Their difference is exactly the number of meetings whose start has occurred but whose end has not left them active—in other words, meetings satisfying $l\le t<r$.
+---
 
-After each update, `ans = max(ans, s)` remembers the greatest simultaneous count seen so far. The method returns that peak after all event times are processed.
+### Step 4: Compare $\text{starts}[2]$ vs $\text{ends}[1]$
+- $\text{starts}[2] = 15, \quad \text{ends}[1] = 20$.
+- $15 < 20 \implies$ Third meeting starts at $15$ (occupies the vacated room).
+- $\text{active\_rooms} \leftarrow 1 + 1 = \mathbf{2}$.
+- $\text{max\_rooms} \leftarrow \max(2, 2) = \mathbf{2}$.
+- Advance: $s \leftarrow 2 + 1 = 3$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+---
+
+### Step 5: Termination
+- $s = 3 == N$. All meeting starts have been scheduled!
+- Final maximum simultaneous rooms: $\mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"intervals": [[0, 30], [5, 10], [15, 20]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```text
+intervals = [[0, 30], [5, 10], [15, 20]]
+starts = [0, 5, 15]
+ends   = [10, 20, 30]
+
+Step 1: starts[0]=0  < ends[0]=10 -> Room allocated -> active=1, max=1, s=1
+Step 2: starts[1]=5  < ends[0]=10 -> Room allocated -> active=2, max=2, s=2
+Step 3: starts[2]=15 >= ends[0]=10 -> Room released   -> active=1, e=1
+Step 4: starts[2]=15 < ends[1]=20 -> Room allocated -> active=2, max=2, s=3
+s reaches end -> Finished. Max Rooms: 2
+```
+
+| Step | Chronological Action | Event Time | Active Comparison | $\text{active\_rooms}$ | Peak $\text{max\_rooms}$ | Next Pointers $(s, e)$ |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| **1** | Meeting Starts | $t = 0$ | $\text{starts}[0] < \text{ends}[0]$ ($0 < 10$) | 1 | 1 | $(1, 0)$ |
+| **2** | Meeting Starts | $t = 5$ | $\text{starts}[1] < \text{ends}[0]$ ($5 < 10$) | **2** | **2 (Peak)** | $(2, 0)$ |
+| **3** | Meeting Ends | $t = 10$ | $\text{starts}[2] \ge \text{ends}[0]$ ($15 \ge 10$) | 1 | 2 | $(2, 1)$ |
+| **4** | Meeting Starts | $t = 15$ | $\text{starts}[2] < \text{ends}[1]$ ($15 < 20$) | **2** | **2** | $(3, 1)$ |
+| **Finish** | All Starts Handled | - | $s = N = 3$ | - | **2** | Terminal |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every time $\text{starts}[s] < \text{ends}[e]$, there are strictly $s - e + 1$ meetings currently in progress that have not yet reached their respective ending times. Since they all share the time instant $\text{starts}[s]$, they must occupy distinct conference rooms.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Whenever a meeting ends ($\text{ends}[e] \le \text{starts}[s]$), that room is freed and made available for future meetings. The peak value $\text{max\_rooms}$ captures the exact maximum number of overlapping intervals across the continuous timeline $[0, \infty)$, guaranteeing that sufficient rooms are available at all times.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sorted start and end arrays:** Sort the two event lists and sweep them with pointers, reusing a room when an end is no later than the next start. This gives $O(n\log n)$ time and $O(n)$ space independent of coordinate magnitude and is the algorithm summarized by the manifest.
-- **Min-heap of room end times:** Sort meetings by start, reuse the room with the earliest end when possible, and push each current end. It takes $O(n\log n)$ time and up to $O(n)$ space and can also support explicit room assignments.
-- **Sparse event map:** Store deltas only at observed times, sort those keys, and prefix-sum them. It avoids $O(M)$ dense storage while retaining the event-count idea, at the cost of $O(n\log n)$ sorting.
-- **Meetings touching at an endpoint:** `d[r] -= 1` and `d[r] += 1` from another start combine at the same coordinate, so the ending room is immediately reused and no extra room is counted.
-- **Several identical intervals:** Their start deltas and end deltas accumulate, causing the peak to equal the number of identical meetings, as required.
-- **Nested intervals:** Every contained meeting increases the prefix while the outer meeting remains active, so nested concurrency is counted naturally.
-- **Unsorted input:** No sorting is needed; additions to `d` commute, and the later timeline scan supplies chronological order.
-- **Start time zero:** Index zero exists, its positive delta is included in the first prefix step, and the meeting is counted immediately.
-- **Latest end time:** The array includes index `m`, so all final negative events are applied and the active count returns to zero after the last meetings end.
-- **One meeting:** Its prefix count peaks at one and returns to zero, so exactly one room is returned.
-- **Empty input:** The formal constraints require at least one meeting. Outside the contract, `max` would raise an exception, so supporting emptiness would require an early `return 0`.
-- **Very sparse huge coordinates:** Dense allocation becomes undesirable if endpoint bounds are relaxed. A sorted-event or heap approach would then be more memory-efficient.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Sorting Starts and Ends Independently:** It may seem counterintuitive that start times and end times can be sorted separately, losing their original interval pairings. This is valid because conference rooms are fungible: any room that becomes free can be reused by any waiting meeting, regardless of which meeting vacated it!
+- **Simultaneous Boundary Tie-Breaking:** If meeting A ends at time 10 and meeting B starts at time 10, does room count increase? No. The room is freed at 10 and reused at 10. The condition $\text{starts}[s] < \text{ends}[e]$ ensures that when $\text{starts}[s] == \text{ends}[e]$, the end event is processed first ($\ge$), preventing a false spike in active rooms.
+- **Difference Array vs Two-Pointer Sweep:** An alternative approach uses a difference array over timeline coordinates. However, if meeting end times reach $10^6$ or $10^9$, allocating a dense array consumes excessive memory. Sorting the $N$ endpoints takes $O(N \log N)$ time and $O(N)$ space regardless of how large coordinates are.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of meetings and $M$ be the maximum end time. Finding `m` scans all intervals in $O(n)$ time. Allocating the difference array takes $O(M)$ time and space, recording all boundaries takes $O(n)$ time, and scanning the timeline takes $O(M)$ time. The total time is
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log N)$, where $N$ is the number of intervals. Extracting and sorting `starts` and `ends` takes $2 \times O(N \log N)$ time. The two-pointer sweep advances $s$ and $e$ at most $N$ times each, taking $O(N)$ time. Total runtime is strictly bounded by $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the sorted `starts` and `ends` arrays.

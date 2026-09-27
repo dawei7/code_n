@@ -1,139 +1,169 @@
 # Guided Example: Valid Phone Numbers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step regular expression matching, boundary anchoring, and prefix branching on representative phone number candidate files:
 
-- **Input:** `{"stdin": "", "files": {"file.txt": "987-123-4567\n123 456 7890\n(123) 456-7890\n"}}`
-- **Required output:** `"987-123-4567\n(123) 456-7890"`
+- **Input File `file.txt`:**
+  ```text
+  987-123-4567
+  123 456 7890
+  (123) 456-7890
+  ```
+- **Required output:**
+  ```text
+  987-123-4567
+  (123) 456-7890
+  ```
+- **Invalid Prefix Instance:** `123 456 7890` (Space separator instead of hyphen $\implies$ Disqualified)
+- **Sub-String Embedded Instance:** `abc987-123-4567xyz` (Anchors `^` and `$` reject extra surrounding characters)
+- **Missing Area Code Space Instance:** `(123)456-7890` (Requires space after closing parenthesis $\implies$ Disqualified)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates POSIX Extended Regular Expression (ERE) pattern design, proves why start (`^`) and end (`$`) line anchors are essential to prevent partial substring matches, analyzes the two valid prefix grammars, and executes in linear $O(C)$ time across the character stream.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a text file `file.txt` that contains a list of phone numbers (one per line), write a one-liner bash script to print all valid phone numbers.
+Given a text file `file.txt` containing phone number candidates (one per line):
+```text
+987-123-4567
+123 456 7890
+(123) 456-7890
+```
+Print all lines that conform strictly to either of the two standard North American telephone formats:
+1. **Format 1 (Hyphen-delimited):** `xxx-xxx-xxxx`
+2. **Format 2 (Parenthesized area code with space):** `(xxx) xxx-xxxx`
 
-The objective is to compute `"987-123-4567\n(123) 456-7890"` from `{"stdin": "", "files": {"file.txt": "987-123-4567\n123 456 7890\n(123) 456-7890\n"}}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Evaluating each candidate:
+- `987-123-4567`: Matches Format 1 ($3$ digits, hyphen, $3$ digits, hyphen, $4$ digits). **Valid.**
+- `123 456 7890`: Uses spaces instead of hyphens between exchange and subscriber numbers. **Invalid.**
+- `(123) 456-7890`: Matches Format 2 (parenthesized area code, single space, $3$ digits, hyphen, $4$ digits). **Valid.**
+Output must stream the valid lines in their original order.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Unified Extended Regular Expression (ERE)
+Both valid formats share an identical suffix:
+$$
+\text{suffix} = \texttt{[0-9]\{3\}-[0-9]\{4\}}
+$$
+The formats differ only in their 3-digit area code prefix:
+- Option A: `[0-9]{3}-`
+- Option B: `\([0-9]{3}\) ` *(note the trailing literal space!)*
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Combining with alternation group `(A|B)` and anchoring to line boundaries:
+$$
+\text{Pattern} = \texttt{\textasciicircum([0-9]\{3\}-|\textbackslash([0-9]\{3\}\textbackslash) )[0-9]\{3\}-[0-9]\{4\}\$}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Command Implementations:
+1. **`grep -E` (Standard Unix Regex Filter):**
+   ```bash
+   grep -E '^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$' file.txt
+   ```
+2. **`awk` Pattern Matcher:**
+   ```bash
+   awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file.txt
+   ```
+3. **`sed -n` Stream Editor:**
+   ```bash
+   sed -n -E '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/p' file.txt
+   ```
+
+### Why Anchors `^` and `$` Are Mandatory
+- `^` asserts the match starts at the very beginning of the line.
+- `$` asserts the match terminates at the very end of the line.
+Without `^` and `$`, a line containing extra characters (e.g. `ext 987-123-4567` or `123-456-78901`) would match as a substring!
+
+> **Invariant.** A line is printed if and only if its entire character sequence from index $0$ to $\text{length}-1$ exactly satisfies the language $\mathcal{L}(\text{Pattern})$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use the whole line as the candidate value
+We trace the regex engine across the lines of `file.txt`:
 
-The file contains one phone number candidate per line, and valid output must
-preserve each accepted line exactly. `awk` is well suited to this streaming
-filter: it reads lines in input order, tests each complete record against a
-regular expression, and prints the record when the pattern matches.
-
-The script names `file.txt` directly, matching the contract that input comes
-from that relative file rather than from command-line arguments or standard
-input.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"stdin": "", "files": {"file.txt": "987-123-4567\n123 456 7890\n(123) 456-7890\n"}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Line 1: `"987-123-4567"`
+1. `^` matches beginning of line.
+2. Prefix evaluation:
+   - Option A: `[0-9]{3}-` tests `"987-"`. Three digits followed by hyphen $\implies$ **Match!**
+3. Suffix evaluation:
+   - `[0-9]{3}-` tests `"123-"`. Three digits followed by hyphen $\implies$ Match.
+   - `[0-9]{4}` tests `"4567"`. Four digits $\implies$ Match.
+4. `$` matches end of line.
+- Full line matches pattern!
+- Emitted: `987-123-4567`.
 
 ---
 
-### Step 2: Anchor the pattern at both boundaries
-
-The regular expression begins with `^` and ends with `$`. These anchors mean
-the match must cover the entire line from its first character to its last.
-
-Without them, a line such as `abc987-123-4567xyz` would contain a valid-looking
-substring and could be accepted even though the whole line is not a valid phone
-number. Anchoring converts a substring search into full-format validation.
-
-The Reference guarantees no leading or trailing whitespace. The anchors still
-matter: they reject any extra digit, punctuation, or text, and they make the
-format contract explicit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Line 2: `"123 456 7890"`
+1. `^` matches beginning of line.
+2. Prefix evaluation:
+   - Option A: `[0-9]{3}-` expects hyphen after 123. Found space `' '` $\implies$ Fail.
+   - Option B: `\([0-9]{3}\) ` expects opening parenthesis `'('`. Found `'1'` $\implies$ Fail.
+- Neither branch of the prefix group matches.
+- Line rejected! Discarded.
 
 ---
 
-### Step 3: Express the two allowed prefixes as alternatives
-
-The parenthesized group contains:
-
-`[0-9]{3}-|\([0-9]{3}\) `
-
-The left alternative matches exactly three digits followed by a hyphen. It is
-the beginning of the `xxx-xxx-xxxx` form.
-
-The right alternative matches a literal opening parenthesis, exactly three
-digits, a literal closing parenthesis, and exactly one ordinary space. The
-parentheses are escaped because unescaped parentheses group regular-expression
-syntax rather than matching punctuation. The literal space after `\)` is
-essential to the `(xxx) xxx-xxxx` form.
-
-Because the two alternatives are enclosed in one group, the surrounding
-anchors and the remaining suffix apply to both of them. Without this grouping,
-regular-expression alternation could bind too broadly and allow one branch to
-escape an anchor.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"987-123-4567\n(123) 456-7890"` |
+### Line 3: `"(123) 456-7890"`
+1. `^` matches beginning of line.
+2. Prefix evaluation:
+   - Option A: `[0-9]{3}-` expects digit. Found `'('` $\implies$ Fail.
+   - Option B: `\([0-9]{3}\) ` tests `"(123) "`:
+     - Literal `'('` $\implies$ Match.
+     - Three digits `"123"` $\implies$ Match.
+     - Literal `')'` $\implies$ Match.
+     - Single space `' '` $\implies$ Match.
+     - Option B **Matches!**
+3. Suffix evaluation:
+   - `[0-9]{3}-` tests `"456-"` $\implies$ Match.
+   - `[0-9]{4}` tests `"7890"` $\implies$ Match.
+4. `$` matches end of line.
+- Full line matches pattern!
+- Emitted: `(123) 456-7890`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"stdin": "", "files": {"file.txt": "987-123-4567\n123 456 7890\n(123) 456-7890\n"}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"987-123-4567\n(123) 456-7890"` | Verified |
+```text
+File file.txt:
+Line 1: 987-123-4567   -> Matches Option A prefix + suffix -> PRINT
+Line 2: 123 456 7890   -> Prefix fails (space instead of -) -> DROP
+Line 3: (123) 456-7890 -> Matches Option B prefix + suffix -> PRINT
+
+Output Stream:
+987-123-4567
+(123) 456-7890
+```
+
+| Line Number | Line Content | Prefix Evaluated | Suffix Evaluated | Full Match Status | Action Taken |
+|:---:|:---|:---|:---|:---:|:---|
+| **1** | **`987-123-4567`** | Option A (`"987-"`) | `"123-4567"` | **Valid** | **Printed** |
+| 2 | `123 456 7890` | Neither branch | - | Invalid | Dropped |
+| **3** | **`(123) 456-7890`** | Option B (`"(123) "`) | `"456-7890"` | **Valid** | **Printed** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every accepted line strictly complies with the ERE specification. The alternation `(A|B)` precisely covers the two allowed representations. Escaping parentheses `\(` and `\)` ensures they are treated as literal characters rather than capture groups.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Lines are evaluated in a single sequential streaming pass. Any valid phone number line present in `file.txt` is matched and printed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`grep -E`:** The same POSIX extended expression can directly filter matching full lines.
-- **`sed -n -E`:** Print only records satisfying the anchored expression; also a valid one-command solution.
-- **PCRE `grep -P`:** Allows `\d`, but `-P` is not available in every grep implementation.
-- **Missing anchors:** Would wrongly accept a valid phone substring embedded in a longer line.
-- **Parentheses:** Must be escaped to match literal characters rather than create only a regex group.
-- **Single required space:** `(123)456-7890` and `(123)  456-7890` are invalid.
-- **Extra digits:** Exact interval counts and `$` reject them.
-- **Blank line:** Matches neither branch and is omitted.
-- **Input order:** Streaming default print preserves it automatically.
-- **CRLF files:** A retained carriage return may require normalization in a generalized Unix environment.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Missing Parenthesis Space:** A candidate like `(123)456-7890` lacks the mandatory space after the closing parenthesis. The pattern requires a literal space after `\)`.
+- **Missing Boundary Anchors:** Omitting `^` or `$` causes grep to perform substring matching, erroneously accepting strings like `call 987-123-4567 now` or `987-123-45678`.
+- **Unescaped Parentheses in ERE:** In Extended Regular Expressions, unescaped `(` and `)` denote capture groups. Failing to escape them as `\(` and `\)` prevents matching literal parenthesis characters.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $c$ be the total number of characters and $n$ the number of lines. The
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(C)$, where $C$ is the total number of characters in `file.txt`. A deterministic finite automaton (DFA) constructed from the regular expression processes each character in $O(1)$ state transitions.
+- **Auxiliary Space Complexity:** $O(L)$ where $L$ is the maximum line length (constant buffer space for line streaming).

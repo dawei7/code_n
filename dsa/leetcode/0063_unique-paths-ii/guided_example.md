@@ -1,99 +1,130 @@
 # Guided Example: Unique Paths II
 
-We derive and execute the Array, Dynamic Programming, Matrix recurrence on a representative problem instance.
+We trace the step-by-step 2D dynamic programming grid evaluation with obstacle zeroing on a representative obstacle grid:
 
-- **Input:** `{"obstacleGrid": [[0, 0, 0], [0, 1, 0], [0, 0, 0]]}`
-- **Required output:** `2`
+- **Input:** $\text{obstacleGrid} = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
+- **Required output:** $2$
 
-This instance demonstrates state formulation, base case initialization, and optimal substructure transitions without redundant subproblem recomputations.
+This instance demonstrates handling impassable obstacle cells ($\text{grid}[r][c] == 1 \implies DP[r][c] = 0$), obstacle blockage propagating across boundary rows/columns, path accumulation around obstacles, and terminal cell evaluation.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Unique Paths II** is to compute the global optimal value by decomposing the problem into overlapping subproblems.
-A naive recursive solution exhibits exponential $O(2^N)$ complexity due to repeated evaluations.
-Dynamic programming computes and memoizes subproblem solutions in topological order, reducing complexity to polynomial time.
+A robot is located at the top-left corner of an $M \times N$ grid ($M = 3, N = 3$). The robot can only move **right** or **down**. An obstacle is represented as `1`, and an open space as `0`. A path cannot pass through any obstacle cell. We must find the number of unique paths to the bottom-right corner $(2, 2)$.
+
+In the grid:
+$$
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & \mathbf{1} & 0 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+The center cell $(1, 1)$ is blocked.
+- Path 1: $(0, 0) \to (0, 1) \to (0, 2) \to (1, 2) \to (2, 2)$ (Moving along the top and right edges).
+- Path 2: $(0, 0) \to (1, 0) \to (2, 0) \to (2, 1) \to (2, 2)$ (Moving along the left and bottom edges).
+Total unique paths: $2$.
+
+A naive DFS risks visiting exponential paths. Dynamic programming calculates paths in topological order in $O(M \cdot N)$ time and $O(N)$ space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-Let $DP[i]$ represent the optimal answer for the prefix or state $i$.
+### DP Recurrence with Obstacle Zeroing
+Let $DP[r][c]$ be the number of valid paths reaching cell $(r, c)$.
+1. **Obstacle Rule:**
+   If $\text{obstacleGrid}[r][c] == 1$:
+   $$
+   DP[r][c] = 0
+   $$
+   *(An obstacle can neither be visited nor contribute to downstream paths).*
+2. **Start Cell:**
+   If $\text{obstacleGrid}[0][0] == 0$:
+   $$
+   DP[0][0] = 1
+   $$
+   *(If the start cell is an obstacle, $DP[0][0] = 0$, immediately returning 0).*
+3. **General Cell Transition ($r > 0 \lor c > 0$):**
+   If $\text{obstacleGrid}[r][c] == 0$:
+   $$
+   DP[r][c] = (\text{from top: } DP[r-1][c] \text{ if } r > 0 \text{ else } 0) + (\text{from left: } DP[r][c-1] \text{ if } c > 0 \text{ else } 0)
+   $$
 
-| State Definition | Dependency Formula | Role in Solution |
-|---|---|---|
-| Base State $DP[0]$ | Defined by initial boundary | Anchors recurrence |
-| Intermediate $DP[i]$ | $\min / \max / \sum (DP[j] + \text{cost})$ for $j < i$ | Combines previously solved subproblems |
-| Final Target $DP[N]$ | Terminal state | Yields global result |
-
-> **Invariant.** For every computed index $i$, $DP[i]$ contains the strictly optimal solution for the subproblem defined on prefix $i$.
+> **Invariant.** For every cell $(r, c)$, $DP[r][c]$ equals the exact number of obstacle-free paths from $(0, 0)$ to $(r, c)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Initialization
+We trace the $3 \times 3$ grid:
 
-- Establish baseline values $DP[0]$ where the answer is known trivially.
-- Verify that base cases do not violate problem constraints.
-
-| State Index | Value | Justification |
-|---|---|---|
-| $DP[0]$ | Base Value | Zero-element / initial configuration |
-
----
-
-### Step 2: Recurrence Evaluation & State Transitions
-
-- For each successive index $i \ge 1$, evaluate the transition recurrence.
-- Compare feasible transitions and select the optimal value.
-
-| Current State | Transition Options Evaluated | Optimal Selection $DP[i]$ |
-|---|---|---|
-| $DP[1]$ | Evaluated from $DP[0]$ | Optimal choice recorded |
-| $DP[i]$ | Transitions from prior valid states | Stored in table |
+### Row 0
+- **Cell $(0, 0)$:** Free cell $\implies DP[0][0] = 1$.
+- **Cell $(0, 1)$:** Free cell $\implies DP[0][1] = DP[0][0] = 1$.
+- **Cell $(0, 2)$:** Free cell $\implies DP[0][2] = DP[0][1] = 1$.
+- Row 0 state: $[1, 1, 1]$.
 
 ---
 
-### Step 3: Terminal State Resolution
+### Row 1
+- **Cell $(1, 0)$:** Free cell $\implies DP[1][0] = DP[0][0] = 1$.
+- **Cell $(1, 1)$ (Obstacle!):**
+  - $\text{obstacleGrid}[1][1] == 1 \implies DP[1][1] = 0$.
+- **Cell $(1, 2)$:**
+  - Arrive from top: $DP[0][2] = 1$.
+  - Arrive from left: $DP[1][1] = 0$ (blocked).
+  - Sum: $DP[1][2] = 1 + 0 = 1$.
+- Row 1 state: $[1, 0, 1]$.
 
-- Extract the final value from the designated terminal state $DP[N]$.
+---
 
-| Parameter | Value |
-|---|---|
-| Target State | $DP[N]$ |
-| Final Answer | Emitted as output |
+### Row 2
+- **Cell $(2, 0)$:** Free cell $\implies DP[2][0] = DP[1][0] = 1$.
+- **Cell $(2, 1)$:**
+  - Arrive from top: $DP[1][1] = 0$ (blocked).
+  - Arrive from left: $DP[2][0] = 1$.
+  - Sum: $DP[2][1] = 0 + 1 = 1$.
+- **Cell $(2, 2)$ (Destination):**
+  - Arrive from top: $DP[1][2] = 1$.
+  - Arrive from left: $DP[2][1] = 1$.
+  - Sum: $DP[2][2] = 1 + 1 = \mathbf{2}$.
+- Row 2 state: $[1, 1, 2]$.
+
+Terminal answer is $DP[2][2] = 2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Subproblem $i$ | Prior States Referenced | Recurrence Equation Evaluated | Computed Optimal $DP[i]$ | Cumulative Status |
-|---|---|---|---|---|
-| 0 (Base) | None | Base definition | Initialized | Base condition set |
-| 1..k (Iterate) | $DP[i-1], DP[i-2], \dots$ | Optimal combination | Stored | Monotonic progress |
-| $N$ (Terminal) | Preceding optimal states | Final transition | Target Answer | Completed |
+### 2D DP State Matrix ($3 \times 3$)
+
+| Row $\downarrow$ / Col $\to$ | Col 0 | Col 1 | Col 2 | Notes |
+|:---:|:---:|:---:|:---:|:---|
+| **Row 0** | 1 | 1 | 1 | Open corridor along top edge |
+| **Row 1** | 1 | **0 (Obstacle)** | 1 | Center blocked; paths route around |
+| **Row 2** | 1 | 1 | **2 (Target)** | Two paths converge at bottom-right |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state $DP[i]$ is derived purely from mathematically valid combinations of earlier optimal states. Because subproblems satisfy optimal substructure, local optimality guarantees global optimality.
+**Soundness.** Because paths can only move Right or Down, any valid path reaching $(r, c)$ must immediately precede from either $(r - 1, c)$ or $(r, c - 1)$. Setting $DP[r][c] = 0$ whenever an obstacle is present completely disconnects that cell from contributing to any downstream cell, strictly obeying obstacle semantics.
 
-**Completeness.** The iterative loop systematically covers all subproblems up to $N$, guaranteeing that no necessary transition path is skipped.
+**Completeness.** Computing cells in topological order (row by row, left to right) ensures all potential incoming paths are aggregated before finalizing each cell. If the destination cell itself is an obstacle, it receives $DP = 0$, correctly identifying that zero paths reach the goal.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Incorrect Base Cases:** Initializing $DP[0]$ with $0$ instead of $\pm \infty$ (or vice versa) can invalidate all subsequent $\min / \max$ comparisons.
-- **State Transition Ordering:** Computing states before their prerequisite subproblems are finalized reads uninitialized data.
-- **Space Optimization Pitfalls:** Overwriting 1D DP arrays in the wrong direction can cause values from the current step to be reused prematurely.
+- **Obstacle at Start or Goal:** If $\text{obstacleGrid}[0][0] == 1$ or $\text{obstacleGrid}[M-1][N-1] == 1$, no valid path is possible. Returning $0$ immediately handles this correctly.
+- **Obstacle Blocking Boundary Rows:** If $\text{obstacleGrid}[0][1] == 1$, all subsequent cells in Row 0 ($(0, 2), (0, 3), \dots$) have zero paths reaching them because the robot cannot jump over obstacles. The loop automatically handles this because $DP[0][c] = DP[0][c-1] = 0$.
+- **Space Optimization:** An array of size $N$ updated in-place: `dp[c] = 0 if obstacle else dp[c] + dp[c-1]` solves the problem in $O(N)$ space.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ (or $O(N \cdot M)$ for 2D grids), where each state transition takes $O(1)$ amortized operations.
-- **Auxiliary Space Complexity:** $O(N)$ for full memoization, which can often be optimized to $O(1)$ by maintaining only the most recent dependency variables.
+- **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Each cell performs $O(1)$ operations.
+- **Auxiliary Space Complexity:** $O(N)$ using a 1D running row array (or $O(M \cdot N)$ for the full 2D table).

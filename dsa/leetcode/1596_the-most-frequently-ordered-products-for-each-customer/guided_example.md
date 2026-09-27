@@ -1,134 +1,160 @@
 # Guided Example: The Most Frequently Ordered Products for Each Customer
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide details the relational algebra grouping, window-based rank partitioning, and equi-join operations used to identify all maximal-frequency products ordered by each customer, including multi-way ties.
 
-- **Input:** `{"tables": {"Customers": [{"customer_id": 1, "name": "Alice"}, {"customer_id": 2, "name": "Bob"}, {"customer_id": 3, "name": "Tom"}, {"customer_id": 4, "name": "Jerry"}, {"customer_id": 5, "name": "John"}], "Orders": [{"order_id": 1, "order_date": "2020-07-31", "customer_id": 1, "product_id": 1}, {"order_id": 2, "order_date": "2020-07-30", "customer_id": 2, "product_id": 2}, {"order_id": 3, "order_date": "2020-08-29", "customer_id": 3, "product_id": 3}, {"order_id": 4, "order_date": "2020-07-29", "customer_id": 4, "product_id": 1}, {"order_id": 5, "order_date": "2020-06-10", "customer_id": 1, "product_id": 2}, {"order_id": 6, "order_date": "2020-08-01", "customer_id": 2, "product_id": 1}, {"order_id": 7, "order_date": "2020-08-01", "customer_id": 3, "product_id": 3}, {"order_id": 8, "order_date": "2020-08-03", "customer_id": 1, "product_id": 2}, {"order_id": 9, "order_date": "2020-08-07", "customer_id": 2, "product_id": 3}, {"order_id": 10, "order_date": "2020-07-15", "customer_id": 1, "product_id": 2}], "Products": [{"product_id": 1, "product_name": "keyboard", "price": 120}, {"product_id": 2, "product_name": "mouse", "price": 80}, {"product_id": 3, "product_name": "screen", "price": 600}, {"product_id": 4, "product_name": "hard disk", "price": 450}]}}`
-- **Required output:** `{"columns": ["customer_id", "product_id", "product_name"], "rows": [[1, 2, "mouse"], [2, 1, "keyboard"], [2, 2, "mouse"], [2, 3, "screen"], [3, 3, "screen"], [4, 1, "keyboard"]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Relations:**
+  - `Customers`: `(customer_id, name)`
+  - `Orders`: `(order_id, order_date, customer_id, product_id)`
+  - `Products`: `(product_id, product_name, price)`
+- **Output Relation:** `(customer_id, product_id, product_name)`
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Customers`
+E-commerce analytics often requires identifying user purchase preferences by calculating product order frequencies per customer. If a customer orders multiple products with equal maximal frequency (a tie), all tied products must be retained in the report. Customers who have never placed an order are excluded.
 
-The objective is to compute `{"columns": ["customer_id", "product_id", "product_name"], "rows": [[1, 2, "mouse"], [2, 1, "keyboard"], [2, 2, "mouse"], [2, 3, "screen"], [3, 3, "screen"], [4, 1, "keyboard"]]}` from `{"tables": {"Customers": [{"customer_id": 1, "name": "Alice"}, {"customer_id": 2, "name": "Bob"}, {"customer_id": 3, "name": "Tom"}, {"customer_id": 4, "name": "Jerry"}, {"customer_id": 5, "name": "John"}], "Orders": [{"order_id": 1, "order_date": "2020-07-31", "customer_id": 1, "product_id": 1}, {"order_id": 2, "order_date": "2020-07-30", "customer_id": 2, "product_id": 2}, {"order_id": 3, "order_date": "2020-08-29", "customer_id": 3, "product_id": 3}, {"order_id": 4, "order_date": "2020-07-29", "customer_id": 4, "product_id": 1}, {"order_id": 5, "order_date": "2020-06-10", "customer_id": 1, "product_id": 2}, {"order_id": 6, "order_date": "2020-08-01", "customer_id": 2, "product_id": 1}, {"order_id": 7, "order_date": "2020-08-01", "customer_id": 3, "product_id": 3}, {"order_id": 8, "order_date": "2020-08-03", "customer_id": 1, "product_id": 2}, {"order_id": 9, "order_date": "2020-08-07", "customer_id": 2, "product_id": 3}, {"order_id": 10, "order_date": "2020-07-15", "customer_id": 1, "product_id": 2}], "Products": [{"product_id": 1, "product_name": "keyboard", "price": 120}, {"product_id": 2, "product_name": "mouse", "price": 80}, {"product_id": 3, "product_name": "screen", "price": 600}, {"product_id": 4, "product_name": "hard disk", "price": 450}]}}` while avoiding redundant calculations and unnecessary overhead.
+In our sample dataset:
+- Customer $1$ ordered product $1$ once, and product $2$ three times $\implies$ Product $2$ (`"mouse"`).
+- Customer $2$ ordered product $1$ once, product $2$ once, and product $3$ once $\implies$ Three-way tie; all three products emitted.
+- Customer $3$ ordered product $3$ twice $\implies$ Product $3$ (`"screen"`).
+- Customer $4$ ordered product $1$ once $\implies$ Product $1$ (`"keyboard"`).
+- Customer $5$ placed zero orders $\implies$ Excluded.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Our teaching goal is to model this sequence using formal relational algebra, window ranking $\text{RANK}()$, and dimension table equi-joins without code leaks.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  RELATIONAL ALGEBRA ORDER FREQUENCY FLOW                |
+|                                                                         |
+|  Step 1: Group & Tally Frequencies                                      |
+|    R1 = γ_{customer_id, product_id; cnt = COUNT(*)}(Orders)             |
+|                                                                         |
+|  Step 2: Partitioned Window Ranking                                     |
+|    R2 = ω_{rnk = RANK() OVER (PARTITION BY customer_id                  |
+|                               ORDER BY cnt DESC)}(R1)                   |
+|                                                                         |
+|  Step 3: Filter Maximal Ranks                                           |
+|    R3 = σ_{rnk = 1}(R2)                                                 |
+|                                                                         |
+|  Step 4: Dimension Lookup & Final Projection                            |
+|    R4 = R3 ⋈_{product_id} Products                                      |
+|    R_final = Π_{customer_id, product_id, product_name}(R4)              |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Relational Operator | Input Schema | Result Attributes | Semantic Function |
+|---|---|---|---|
+| Aggregation ($\gamma$) | `Orders` | `customer_id`, `product_id`, `cnt` | Counts purchase events per customer-product pair |
+| Window Function ($\omega$) | $R_1$ | `customer_id`, `product_id`, `cnt`, `rnk` | Computes descending frequency rank within each customer |
+| Selection ($\sigma$) | $R_2$ | Filtered tuples with `rnk = 1` | Retains all products achieving the customer's peak frequency |
+| Equijoin ($\bowtie$) | $R_3, \text{Products}$ | Joined attributes on `product_id` | Attaches human-readable product names |
+| Projection ($\Pi$) | $R_4$ | `customer_id`, `product_id`, `product_name` | Formats final schema |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Rank Equivalence Invariant.** The window function $\text{RANK}()$ assigns identical rank $1$ to all items sharing the maximum order count within a customer's partition. Applying $\sigma_{\text{rnk} = 1}$ preserves every member of a tie while strictly eliminating products with order frequency below the partition maximum.
+
+```mermaid
+flowchart TD
+    accTitle: Relational Frequency Aggregation and Window Ranking
+    accDescr: Transformation pipeline grouping orders, applying rank partitioned by customer, filtering rank 1, and joining product names.
+    O["Orders Relation"] --> G["Group by customer_id, product_id: cnt = COUNT(*)"]
+    G --> W["Window Function: rnk = RANK() OVER (PARTITION BY customer_id ORDER BY cnt DESC)"]
+    W --> F["Selection Filter: rnk = 1"]
+    F --> J["Equijoin with Products on product_id"]
+    P["Products Relation"] --> J
+    J --> Out["Projection: (customer_id, product_id, product_name)"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Count orders at the customer-product level
+### Step 1: Count Order Frequency ($R_1 = \gamma_{\text{customer\_id}, \text{product\_id}; \text{cnt} = \text{COUNT}(*)}(\text{Orders})$)
 
-The requested frequency is the number of order rows for one product made by one customer. The first stage must therefore reduce `Orders` to one grouped row for every distinct pair:
+Scanning the $10$ rows of `Orders` partitions transactions by $(\text{customer\_id}, \text{product\_id})$:
 
-`GROUP BY customer_id, product_id`.
-
-The checked-in query writes this positionally as `GROUP BY 1, 2`. Within the common table expression’s select list, expression one is `customer_id` and expression two is `product_id`.
-
-After grouping, `COUNT(1)` for a row is that customer’s order frequency for that product. An order on a different date remains a separate row and contributes again. The statement guarantees the same customer does not order the same product more than once on one day, but the query does not need the date because frequency is over all order records, not distinct days.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Customer ID | Product ID | Order IDs Observed | Total Count $\text{cnt}$ |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Customers": [{"customer_id": 1, "name": "Alice"}, {"customer_id": 2, "name": "Bob"}, {"customer_id": 3, "name": "Tom"}, {"customer_id": 4, "name": "Jerry"}, {"customer_id": 5, "name": "John"}], "Orders": [{"order_id": 1, "order_date": "2020-07-31", "customer_id": 1, "product_id": 1}, {"order_id": 2, "order_date": "2020-07-30", "customer_id": 2, "product_id": 2}, {"order_id": 3, "order_date": "2020-08-29", "customer_id": 3, "product_id": 3}, {"order_id": 4, "order_date": "2020-07-29", "customer_id": 4, "product_id": 1}, {"order_id": 5, "order_date": "2020-06-10", "customer_id": 1, "product_id": 2}, {"order_id": 6, "order_date": "2020-08-01", "customer_id": 2, "product_id": 1}, {"order_id": 7, "order_date": "2020-08-01", "customer_id": 3, "product_id": 3}, {"order_id": 8, "order_date": "2020-08-03", "customer_id": 1, "product_id": 2}, {"order_id": 9, "order_date": "2020-08-07", "customer_id": 2, "product_id": 3}, {"order_id": 10, "order_date": "2020-07-15", "customer_id": 1, "product_id": 2}], "Products": [{"product_id": 1, "product_name": "keyboard", "price": 120}, {"product_id": 2, "product_name": "mouse", "price": 80}, {"product_id": 3, "product_name": "screen", "price": 600}, {"product_id": 4, "product_name": "hard disk", "price": 450}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $1$ | $1$ | $\{1\}$ | $1$ |
+| $1$ | $2$ | $\{5, 8, 10\}$ | $3$ |
+| $2$ | $1$ | $\{6\}$ | $1$ |
+| $2$ | $2$ | $\{2\}$ | $1$ |
+| $2$ | $3$ | $\{9\}$ | $1$ |
+| $3$ | $3$ | $\{3, 7\}$ | $2$ |
+| $4$ | $1$ | $\{4\}$ | $1$ |
 
 ---
 
-### Step 2: Rank frequencies separately for each customer
+### Step 2: Evaluate Window Ranking ($R_2$)
 
-The window expression is:
-
-`RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(1) DESC) AS rk`.
-
-`PARTITION BY customer_id` restarts the ranking for each customer. Without this partition, products would be ranked globally and customers with fewer total orders could disappear even when one product is their personal most frequent.
-
-Within one customer partition, `ORDER BY COUNT(1) DESC` places larger product frequencies first. The most frequently ordered product or products receive rank one.
-
-`RANK` is deliberately tie-preserving. If three products were each ordered twice and no product was ordered more often, all three grouped rows have the same ordering value and all receive `rk = 1`. This matches the plural “product(s)” requirement.
-
-The gaps that `RANK` may leave after ties do not matter because the outer query keeps only rank one. `DENSE_RANK` would produce the same selected rows for this particular filter, while `ROW_NUMBER` would be wrong because it would arbitrarily choose only one tied product.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+We evaluate $\text{rnk} = \text{RANK}()$ within each customer partition, sorting counts in descending order:
+- **Customer 1:**
+  - Product $2$ ($\text{cnt} = 3$): Rank $1$
+  - Product $1$ ($\text{cnt} = 1$): Rank $2$
+- **Customer 2:**
+  - Product $1$ ($\text{cnt} = 1$): Rank $1$ (Tie)
+  - Product $2$ ($\text{cnt} = 1$): Rank $1$ (Tie)
+  - Product $3$ ($\text{cnt} = 1$): Rank $1$ (Tie)
+- **Customer 3:**
+  - Product $3$ ($\text{cnt} = 2$): Rank $1$
+- **Customer 4:**
+  - Product $1$ ($\text{cnt} = 1$): Rank $1$
 
 ---
 
-### Step 3: What the common table expression contains
+### Step 3: Filter Top Ranks ($R_3 = \sigma_{\text{rnk} = 1}(R_2)$)
 
-The CTE `T` contains:
+Selecting tuples with $\text{rnk} = 1$ filters out Customer 1's Product 1 ($\text{rnk} = 2$). All other items survive.
 
-- the customer identifier;
-- the product identifier;
-- that product’s frequency rank within the customer.
+---
 
-It does not expose `COUNT(1)` as a separate column because the final result does not request the count. The aggregate is still valid inside the window ordering after the `GROUP BY` establishes one row per customer-product pair.
+### Step 4: Equijoin with Products & Final Projection ($R_{\text{final}}$)
 
-Customers with no orders never appear in `T`. This is correct: the output should include only each `customer_id` who ordered at least once. The `Customers` table is not referenced because no customer name is requested and `Orders.customer_id` already identifies every qualifying customer.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["customer_id", "product_id", "product_name"], "rows": [[1, 2, "mouse"], [2, 1, "keyboard"], [2, 2, "mouse"], [2, 3, "screen"], [3, 3, "screen"], [4, 1, "keyboard"]]}` |
+Match surviving tuples with `Products` on `product_id`:
+- $(1, 2) \bowtie (2, \text{"mouse"}) \implies (1, 2, \text{"mouse"})$
+- $(2, 1) \bowtie (1, \text{"keyboard"}) \implies (2, 1, \text{"keyboard"})$
+- $(2, 2) \bowtie (2, \text{"mouse"}) \implies (2, 2, \text{"mouse"})$
+- $(2, 3) \bowtie (3, \text{"screen"}) \implies (2, 3, \text{"screen"})$
+- $(3, 3) \bowtie (3, \text{"screen"}) \implies (3, 3, \text{"screen"})$
+- $(4, 1) \bowtie (1, \text{"keyboard"}) \implies (4, 1, \text{"keyboard"})$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Customers": [{"customer_id": 1, "name": "Alice"}, {"customer_id": 2, "name": "Bob"}, {"customer_id": 3, "name": "Tom"}, {"customer_id": 4, "name": "Jerry"}, {"customer_id": 5, "name": "John"}], "Orders": [{"order_id": 1, "order_date": "2020-07-31", "customer_id": 1, "product_id": 1}, {"order_id": 2, "order_date": "2020-07-30", "customer_id": 2, "product_id": 2}, {"order_id": 3, "order_date": "2020-08-29", "customer_id": 3, "product_id": 3}, {"order_id": 4, "order_date": "2020-07-29", "customer_id": 4, "product_id": 1}, {"order_id": 5, "order_date": "2020-06-10", "customer_id": 1, "product_id": 2}, {"order_id": 6, "order_date": "2020-08-01", "customer_id": 2, "product_id": 1}, {"order_id": 7, "order_date": "2020-08-01", "customer_id": 3, "product_id": 3}, {"order_id": 8, "order_date": "2020-08-03", "customer_id": 1, "product_id": 2}, {"order_id": 9, "order_date": "2020-08-07", "customer_id": 2, "product_id": 3}, {"order_id": 10, "order_date": "2020-07-15", "customer_id": 1, "product_id": 2}], "Products": [{"product_id": 1, "product_name": "keyboard", "price": 120}, {"product_id": 2, "product_name": "mouse", "price": 80}, {"product_id": 3, "product_name": "screen", "price": 600}, {"product_id": 4, "product_name": "hard disk", "price": 450}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["customer_id", "product_id", "product_name"], "rows": [[1, 2, "mouse"], [2, 1, "keyboard"], [2, 2, "mouse"], [2, 3, "screen"], [3, 3, "screen"], [4, 1, "keyboard"]]}` | Verified |
+| Customer ID | Product ID | Order Count $\text{cnt}$ | Window Rank $\text{rnk}$ | $\text{rnk} = 1$ Filter | Product Name Looked Up | Emitted Output Tuple |
+|---|---|---|---|---|---|---|
+| $1$ | $2$ | $3$ | $1$ | Pass | `"mouse"` | `(1, 2, "mouse")` |
+| $1$ | $1$ | $1$ | $2$ | Discarded | — | *Suppressed* |
+| $2$ | $1$ | $1$ | $1$ | Pass (Tie) | `"keyboard"` | `(2, 1, "keyboard")` |
+| $2$ | $2$ | $1$ | $1$ | Pass (Tie) | `"mouse"` | `(2, 2, "mouse")` |
+| $2$ | $3$ | $1$ | $1$ | Pass (Tie) | `"screen"` | `(2, 3, "screen")` |
+| $3$ | $3$ | $2$ | $1$ | Pass | `"screen"` | `(3, 3, "screen")` |
+| $4$ | $1$ | $1$ | $1$ | Pass | `"keyboard"` | `(4, 1, "keyboard")` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For every customer $c$, let $M(c) = \max_{p} \text{cnt}(c, p)$ be their highest observed product order count. The ranking function $\text{RANK}()$ orders tuples by $\text{cnt}$ descending; thus, $\text{rnk} = 1$ if and only if $\text{cnt}(c, p) = M(c)$. The predicate $\sigma_{\text{rnk} = 1}$ strictly selects tuples matching this maximal frequency. The inner equi-join with `Products` retrieves the exact canonical product name corresponding to each foreign key `product_id`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Grouping over the entire `Orders` relation evaluates every recorded purchase event. By using $\text{RANK}()$ rather than $\text{ROW\_NUMBER}()$, all products tied for peak frequency within a customer partition receive rank $1$ simultaneously. No tied items are dropped, and all customers with at least one order are represented.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **`DENSE_RANK` instead of `RANK`:** It selects the same rank-one ties here because only the first rank is filtered. Later rank numbering would differ but is not returned.
-- **`ROW_NUMBER`:** This is incorrect for ties because it assigns a unique sequence number and would retain only one equally frequent product.
-- **Correlated maximum-count subquery:** One can compare each grouped count with the maximum for that customer, but it is usually more verbose and may repeat aggregation work.
-- **Join `Customers` first:** This is unnecessary because customer names are not returned and customers without orders must be excluded. Starting from `Orders` naturally limits the population.
-- **One ordered product:** Its grouped row is automatically rank one and is returned.
-- **Several tied maxima:** Every tied row receives `rk = 1` and survives.
-- **Customer with no orders:** No row enters the CTE, so the customer is correctly absent.
-- **Repeated orders on different days:** Every order row contributes to `COUNT(1)`, as required.
-- **Same-day guarantee:** It prevents duplicate customer-product orders within one day, but no distinct-date expression is needed because the task counts orders themselves.
-- **Unique product key:** It ensures the name join attaches one product row without duplicating output.
-- **Missing product reference:** The source assumes order product identifiers correspond to `Products` rows. An unmatched identifier would be removed by the inner join.
-- **`GROUP BY 1, 2` readability:** It is valid positional shorthand, but naming `customer_id, product_id` explicitly is safer if the select list is later reordered.
-- **Any output order:** Omitting a final `ORDER BY` is correct and avoids promising an order the statement does not require.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Arbitrary Tie Discard with `ROW_NUMBER()`:** Using `ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY cnt DESC)` arbitrarily assigns consecutive ranks $1, 2, 3$ to tied products, illegally discarding valid top products for Customer 2. `RANK()` or `DENSE_RANK()` is mathematically required.
+- **Empty Order Customer Inclusion:** Joining `Customers` before aggregation with a left join could create null product records for customers with zero orders (such as Customer 5). Grouping directly on `Orders` naturally omits inactive accounts.
+- **Premature Dimension Join:** Joining `Products` with `Orders` before aggregation increases the row size processed during grouping. Aggregating on compact integer keys first and joining `Products` only on surviving rank-1 tuples is optimal.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(r\log r)$. Let $R$ be the number of order rows and $G$ the number of distinct customer-product groups.
-- **Auxiliary Space Complexity:** $O(g)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(O \log O + P)$, where $O = |\text{Orders}|$ and $P = |\text{Products}|$. Counting pairs with hash aggregation takes $\mathcal{O}(O)$ time. Partition sorting for window ranking takes $\mathcal{O}(O \log O)$. Equi-joining surviving rows with the indexed `Products` dimension table takes $\mathcal{O}(P + K)$ where $K \le O$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(O)$ auxiliary memory to store intermediate aggregation buckets and window ranking buffers.

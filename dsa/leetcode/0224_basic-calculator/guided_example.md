@@ -1,159 +1,191 @@
 # Guided Example: Basic Calculator
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step operand accumulation, signed term reduction, and stack-driven nested parenthesis unwinding on representative arithmetic expressions:
 
-- **Input:** `{"s": "1 + 1"}`
-- **Required output:** `2`
+- **Input:** $s = \text{"(1+(4+5+2)-3)+(6+8)"}$
+- **Required output:** $23$
+- **Unary Minus Instance:** $s = \text{"- (3 + (4 - 5))"} \implies -2$
+- **Whitespace Separation Instance:** $s = \text{" 2-1 + 2 "} \implies 3$
+- **Multi-Digit Number Instance:** $s = \text{"2147483647"} \implies 2147483647$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates linear-time arithmetic expression evaluation without full operator precedence trees, models addition and subtraction as signed scalar accumulations ($\text{ans} \mathrel{+}= \text{sign} \cdot \text{num}$), handles nested parenthetical scope via an $( \text{ans}, \text{sign} )$ call stack, and runs in strictly $O(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` representing a valid expression, implement a basic calculator to evaluate it, and return *the result of the evaluation*.
+Given an arithmetic string with nested parentheses, addition, and subtraction:
+$$
+s = \text{"(1+(4+5+2)-3)+(6+8)"}
+$$
+Evaluate the mathematical result without using built-in expression parsers (such as `eval`).
 
-The objective is to compute `2` from `{"s": "1 + 1"}` while avoiding redundant calculations and unnecessary overhead.
+Evaluating the mathematical groupings:
+1. Innermost parenthesis: $(4 + 5 + 2) = 11$.
+2. Outer first group: $(1 + 11 - 3) = 9$.
+3. Second group: $(6 + 8) = 14$.
+4. Combine groups: $9 + 14 = \mathbf{23}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Because the expression contains only `+` and `-` (operations with equal precedence):
+- No operator priority stack (like Dijkstra's Shunting-Yard) is necessary.
+- Every term simply carries an effective sign ($+1$ or $-1$).
+- When entering an opening parenthesis `(`, the surrounding running sum and sign are pushed onto a stack, resetting the local context.
+- When closing a parenthesis `)`, the completed sub-expression is multiplied by the saved sign and added to the saved outer total.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Variables
+- `ans`: the evaluated result of the current parenthetical scope.
+- `sign`: $+1$ for addition, $-1$ for subtraction (applied to the next operand).
+- `num`: the integer currently being parsed across consecutive digits.
+- `stack`: stores previous $( \text{outer\_ans}, \text{outer\_sign} )$ pairs upon encountering `(`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Transition Protocol:
+1. **Digit ($'0' \dots '9'$):**
+   $$
+   \text{num} \leftarrow \text{num} \cdot 10 + \text{int}(c)
+   $$
+2. **Operator `+`:**
+   $$
+   \text{ans} \leftarrow \text{ans} + \text{sign} \cdot \text{num}, \quad \text{num} \leftarrow 0, \quad \text{sign} \leftarrow +1
+   $$
+3. **Operator `-`:**
+   $$
+   \text{ans} \leftarrow \text{ans} + \text{sign} \cdot \text{num}, \quad \text{num} \leftarrow 0, \quad \text{sign} \leftarrow -1
+   $$
+4. **Opening Parenthesis `(`:**
+   Push outer state, then reset local frame:
+   $$
+   \text{stack}.\text{append}(\text{ans}), \quad \text{stack}.\text{append}(\text{sign})
+   $$
+   $$
+   \text{ans} \leftarrow 0, \quad \text{sign} \leftarrow +1
+   $$
+5. **Closing Parenthesis `)`:**
+   Complete local sum: $\text{ans} \leftarrow \text{ans} + \text{sign} \cdot \text{num}, \quad \text{num} \leftarrow 0$.
+   Pop outer sign and outer answer:
+   $$
+   \text{prev\_sign} = \text{stack}.\text{pop}()
+   $$
+   $$
+   \text{prev\_ans} = \text{stack}.\text{pop}()
+   $$
+   Combine:
+   $$
+   \text{ans} \leftarrow \text{prev\_ans} + \text{prev\_sign} \cdot \text{ans}
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At any point inside a parenthetical level, `ans` represents the exact sum of all fully evaluated terms at that level, and `sign` holds the algebraic sign for the pending operand.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Addition and subtraction can be accumulated as signed terms
+We trace $s = \text{"(1+(4+5+2)-3)+(6+8)"}$:
+Initial state: $\text{ans} = 0, \, \text{sign} = 1, \, \text{num} = 0, \, \text{stack} = []$.
 
-There is no multiplication or division, so outside parentheses every number or
-parenthesized result contributes either positively or negatively to the current
-sum. The algorithm does not need an operator-precedence stack. It keeps:
-
-- `ans`, the running value of the expression at the current parenthesis depth;
-- `sign`, either 1 or -1, which says how the next number or parenthesized group
-  contributes to that running value;
-- `stk`, which saves the surrounding result and sign when a new parenthesized
-  expression begins.
-
-Rewriting subtraction as addition of a negative term explains the model. For
-example, `8 - 3 + 2` is `8 + (-3) + 2`. Once a complete number is read, the
-source immediately performs `ans += sign * x`. A following `+` sets `sign = 1`,
-and a following `-` sets `sign = -1` for the next term.
-
-The reference permits unary minus. At the beginning of the expression or just
-inside an opening parenthesis, `ans` is zero. Encountering `-` sets the sign to
--1, so the next number or group is subtracted from zero. No separate unary
-operator implementation is required. Unary plus is excluded by the contract.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "1 + 1"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Parse a whole multi-digit number before adding it
-
-The outer pointer `i` scans the string. When `s[i]` is a digit, a second pointer
-`j` advances across the complete contiguous digit run. The number begins at
-zero, and each digit updates it with
-`x = x * 10 + int(s[j])`. Multiplying by ten shifts the previous decimal digits
-left by one place, and adding the new digit fills the units place. Thus the
-characters `"123"` become 1, then 12, then 123.
-
-After the run, the source adds `sign * x` to `ans`. It assigns `i = j - 1`
-because the common `i += 1` at the bottom of the outer loop will advance to
-exactly `j`, the first non-digit character. Without the `-1`, that common
-increment would skip the operator or parenthesis immediately after the number.
-
-Although there is a nested digit loop, characters are not repeatedly scanned:
-the outer pointer jumps over the digits consumed by `j`. Across the whole
-expression, each character participates in constant work.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Group 1 Evaluation:
+- Char `(`: Push $\text{ans} = 0$, push $\text{sign} = 1 \implies \text{stack} = [0, 1]$. Reset $\text{ans} = 0, \text{sign} = 1$.
+- Char `'1'`: $\text{num} = 1$.
+- Char `+`: $\text{ans} = 0 + 1 \times 1 = 1$. $\text{num} = 0, \text{sign} = 1$.
+- Char `(` (Nested):
+  - Push $\text{ans} = 1$, push $\text{sign} = 1 \implies \text{stack} = [0, 1, 1, 1]$.
+  - Reset $\text{ans} = 0, \text{sign} = 1$.
+- Inner Group: `4 + 5 + 2`:
+  - `'4'`: $\text{num} = 4$.
+  - `+`: $\text{ans} = 4, \text{num} = 0, \text{sign} = 1$.
+  - `'5'`: $\text{num} = 5$.
+  - `+`: $\text{ans} = 4 + 5 = 9, \text{num} = 0, \text{sign} = 1$.
+  - `'2'`: $\text{num} = 2$.
+- Char `)` (End of Inner Group):
+  - Finish inner sum: $\text{ans} = 9 + 1 \times 2 = \mathbf{11}$. $\text{num} = 0$.
+  - Pop $\text{prev\_sign} = 1$, pop $\text{prev\_ans} = 1$.
+  - $\text{ans} = 1 + 1 \times 11 = \mathbf{12}$.
+  - Stack restored to $[0, 1]$.
+- Char `-`: $\text{sign} = -1$.
+- Char `'3'`: $\text{num} = 3$.
+- Char `)` (End of Group 1):
+  - Finish group sum: $\text{ans} = 12 + (-1) \times 3 = \mathbf{9}$. $\text{num} = 0$.
+  - Pop $\text{prev\_sign} = 1$, pop $\text{prev\_ans} = 0$.
+  - $\text{ans} = 0 + 1 \times 9 = \mathbf{9}$.
+  - Stack is now empty: `[]`.
 
 ---
 
-### Step 3: An opening parenthesis saves exactly two pieces of outer context
+### Intermediate Operator:
+- Char `+`: $\text{ans} = 9$, $\text{sign} = 1$.
 
-Suppose parsing has reached `outerAns + outerSign * (...)`. The contents inside
-the parentheses must be evaluated independently before they can be combined
-with the outer expression. On `(`, the exact source pushes `ans` first and
-`sign` second:
+---
 
-1. `stk.append(ans)` saves everything already evaluated at the surrounding
-   depth.
-2. `stk.append(sign)` saves whether the group should be added or subtracted.
-3. `ans, sign = 0, 1` starts a fresh inner expression with a neutral sum and a
-   positive default sign.
+### Group 2 Evaluation: `+(6+8)`
+- Char `(`: Push $\text{ans} = 9$, push $\text{sign} = 1 \implies \text{stack} = [9, 1]$. Reset $\text{ans} = 0, \text{sign} = 1$.
+- Char `'6'`: $\text{num} = 6$.
+- Char `+`: $\text{ans} = 6, \text{num} = 0, \text{sign} = 1$.
+- Char `'8'`: $\text{num} = 8$.
+- Char `)`:
+  - Finish sum: $\text{ans} = 6 + 1 \times 8 = \mathbf{14}$. $\text{num} = 0$.
+  - Pop $\text{prev\_sign} = 1$, pop $\text{prev\_ans} = 9$.
+  - $\text{ans} = 9 + 1 \times 14 = \mathbf{23}$.
+  - Stack is empty: `[]`.
 
-No explicit opening-parenthesis marker is stored. The expression is guaranteed
-valid, and each nesting level contributes exactly two stack entries, so the
-matching close can recover the latest pair in last-in-first-out order.
-
-Resetting both variables is essential. Carrying the outer running total into
-the group would count it again, while carrying an outer negative sign into each
-inner term would distribute that sign incorrectly when nested subtraction is
-involved. The group must first obtain its own complete value.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+Expression ends. Final result: $\mathbf{23}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "1 + 1"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```text
+Expression: (1 + (4 + 5 + 2) - 3) + (6 + 8)
+
+Scope Level 1: (1 + ...)
+  Scope Level 2: (4 + 5 + 2) = 11
+  Fold Level 2 into Level 1: 1 + 11 = 12
+  Level 1 continues: 12 - 3 = 9
+Fold Level 1 into Global: 0 + 9 = 9
+
+Scope Level 1: +(6 + 8) = 14
+Fold Level 1 into Global: 9 + 14 = 23
+
+Final Answer: 23
+```
+
+| Token / Char | Action Taken | Local `ans` | Pending `sign` | Active `num` | Stack Content |
+|:---:|:---|:---:|:---:|:---:|:---|
+| `(` | Push 0, 1 | 0 | 1 | 0 | `[0, 1]` |
+| `1` | Parse digit | 0 | 1 | 1 | `[0, 1]` |
+| `+` | Add term: $0 + 1 \times 1$ | 1 | 1 | 0 | `[0, 1]` |
+| `(` | Push 1, 1 | 0 | 1 | 0 | `[0, 1, 1, 1]` |
+| `4 + 5 + 2` | Evaluate inner terms | 9 | 1 | 2 | `[0, 1, 1, 1]` |
+| `)` | Complete inner ($11$), fold: $1 + 1 \times 11$ | 12 | 1 | 0 | `[0, 1]` |
+| `-` | Set negative sign | 12 | -1 | 0 | `[0, 1]` |
+| `3` | Parse digit | 12 | -1 | 3 | `[0, 1]` |
+| `)` | Complete group ($9$), fold: $0 + 1 \times 9$ | 9 | 1 | 0 | `[]` |
+| `+` | Set positive sign | 9 | 1 | 0 | `[]` |
+| `(` | Push 9, 1 | 0 | 1 | 0 | `[9, 1]` |
+| `6 + 8` | Evaluate terms | 6 | 1 | 8 | `[9, 1]` |
+| **`)`** | **Complete group ($14$), fold: $9 + 1 \times 14$** | **23** | **1** | **0** | **`[]` (Finished: 23)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since arithmetic addition and subtraction are associative and distributive over parentheses, $A - (B + C) \equiv A + (-1) \cdot B + (-1) \cdot C$. Storing the surrounding sign on the stack and multiplying the entire parenthetical result upon closing correctly distributes negation across all nested subterms.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the string is processed exactly once. Balanced parentheses guarantee that every pushed context is popped at the corresponding `)`, leaving the stack empty at termination with the full scalar answer in `ans`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Recursive-descent parser:** Define a function that parses until a matching `)` and returns both the value and new position. It mirrors the grammar naturally but can use $O(d)$ call-stack space and risks Python recursion limits for very deep input.
-- **Reverse scan with an operand/operator stack:** Reverse the expression so stack popping preserves subtraction order, then evaluate each closed group. It is correct but processes more stack items and makes multi-digit parsing less intuitive.
-- **Global accumulated sign:** Maintain the effective sign contributed by every enclosing parenthesis, using a sign-context stack. This can be compact but requires careful handling of unary minus and context restoration.
-- **Leading unary minus:** Initial `ans = 0`; `-` sets `sign = -1`; the following number or parenthesized result is therefore subtracted from zero.
-- **Unary minus before parentheses:** In `-(2+3)`, the saved outer context is result 0 and sign -1, so the close produces -5.
-- **Multiple digits:** The inner digit loop forms the entire integer before applying its sign, preventing `123` from being treated as three separate terms.
-- **Spaces anywhere between tokens:** They trigger no state change and are skipped by the common pointer increment.
-- **Deeply nested groups:** Every opening contributes exactly two stack entries and every closing consumes exactly two. Valid balancing prevents underflow, though memory grows with nesting depth.
-- **Subtraction after a closed group:** The close leaves the combined value in `ans`; the following `-` overwrites `sign` for the next term, exactly like subtraction after a number.
-- **Zero values:** Parsing `0` still completes a number and adds zero with the current sign. It does not interfere with later operators.
-- **Integer range:** The reference guarantees every running calculation fits signed 32-bit range. Python integers would remain safe even beyond it.
-- **Invalid syntax:** The implementation relies on the validity guarantee. It does not diagnose unmatched parentheses, unsupported characters, unary plus, or malformed operator sequences.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Leading Unary Minus:** For expressions like `"- (3 + 4)"`, `ans` starts at $0$. Encountering `-` sets `sign = -1`. The parenthesized group evaluates to $7$, and the final fold computes $0 + (-1) \times 7 = -7$, naturally supporting unary signs without extra parser rules.
+- **Multi-Digit Numbers:** Scanning characters individually requires shifting previous digits (`num * 10 + int(c)`). Forgetting to reset `num = 0` after applying an operator causes digits to bleed into subsequent numbers.
+- **Trailing Unapplied Number:** Expressions like `"1 + 2"` have no closing parenthesis at the end. An explicit final accumulation `ans += sign * num` after the loop is required.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `s`. The outer loop and the number parser
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the length of string $s$. The string is scanned in a single forward pass, with each character triggering $O(1)$ stack operations or arithmetic updates.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the stack, proportional to the maximum nesting depth of parentheses (at most $N/2$).

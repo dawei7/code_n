@@ -1,138 +1,141 @@
 # Guided Example: String to Integer (atoi)
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step deterministic finite state machine execution on a representative input string:
 
-- **Input:** `{"s": "42"}`
-- **Required output:** `42`
+- **Input:** $s = \text{"   -042 with words"}$
+- **Required output:** $-42$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is selected because it exercises all five sequential phases of the conversion specification: skipping leading whitespace, resolving an optional sign, consuming leading zeroes and consecutive digits, stopping immediately at the first non-digit delimiter, and clamping the signed value within 32-bit limits.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Implement the `myAtoi(string s)` function, which converts a string to a 32-bit signed integer.
+The `atoi` specification converts a string $s$ into a 32-bit signed integer through a strictly ordered sequence of parsing phases:
+1. **Whitespace:** Discard any leading whitespace characters (`' '`).
+2. **Sign:** Read an optional sign (`'+'` or `'-'`), defaulting to positive if absent.
+3. **Digits:** Read contiguous decimal digits until the next non-digit or end-of-string.
+4. **Delimitation:** Stop immediately upon encountering any non-digit character. Subsequent digits or characters are disregarded.
+5. **Rounding (Clamping):** Clamp the resulting integer to the 32-bit signed range $[-2^{31}, 2^{31}-1] = [-2147483648, 2147483647]$.
 
-The objective is to compute `42` from `{"s": "42"}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+For $s = \text{"   -042 with words"}$:
+- The three leading spaces are skipped.
+- The negative sign `'-'` sets $\text{sign} = -1$.
+- The digit `'0'` is processed ($\text{num} = 0$).
+- The digits `'4'` and `'2'` form $42$.
+- The subsequent space `' '` before $\text{"with"}$ is a non-digit, immediately terminating parsing.
+- The final signed value is $-42$, which falls comfortably within $[-2^{31}, 2^{31}-1]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Deterministic State Machine (DFA)
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The parser operates as a 5-phase deterministic transition system:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```text
+[START: Spaces] ---> [SIGN: '+' / '-'] ---> [DIGITS: '0'-'9'] ---> [STOP]
+       |                      |                     ^
+       |                      v                     |
+       +--------------------------------------------+
+```
+
+1. **State `LEAD_SPACE`:** Cursor $i$ advances while $s[i] = \text{' '}$.
+2. **State `SIGN`:** If $s[i] = \text{'-'}$, set $\text{sign} = -1, i \leftarrow i + 1$; else if $s[i] = \text{'+'}$, set $\text{sign} = +1, i \leftarrow i + 1$.
+3. **State `DIGITS`:** While $i < |s|$ and $s[i] \in [\text{'0'}, \text{'9'}]$:
+   - Extract numerical value $d = s[i] - \text{'0'}$.
+   - Guard against 32-bit overflow before multiplying.
+   - Update $\text{magnitude} \leftarrow \text{magnitude} \cdot 10 + d$.
+4. **State `TERMINAL`:** Return $\text{sign} \cdot \text{magnitude}$ clamped to $[-2^{31}, 2^{31}-1]$.
+
+### Overflow Clamping Invariant
+At each digit $d$, before computing $\text{magnitude} \cdot 10 + d$, we evaluate the 32-bit limits:
+- If $\text{sign} = +1$ and $\text{magnitude} > \lfloor (2^{31}-1)/10 \rfloor = 214748364$ (or equals $214748364$ and $d \ge 7$), return $2^{31}-1 = 2147483647$.
+- If $\text{sign} = -1$ and $\text{magnitude} > \lfloor 2^{31}/10 \rfloor = 214748364$ (or equals $214748364$ and $d \ge 8$), return $-2^{31} = -2147483648$.
+
+> **Invariant.** The transition order is irreversible. Once the parser enters `DIGITS`, spaces or signs are treated as terminal delimiters rather than phase triggers.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Parsing rules are ordered phases, not independent character filters
+We parse $s = \text{"   -042 with words"}$ index by index:
 
-`myAtoi` does not search the whole string for characters that look useful. It reads a prefix from left to right under a strict order:
+### Phase 1: Leading Whitespace
+- **Index 0 ($s[0] = \text{' '}$):** Whitespace detected. Advance cursor to $i = 1$.
+- **Index 1 ($s[1] = \text{' '}$):** Whitespace detected. Advance cursor to $i = 2$.
+- **Index 2 ($s[2] = \text{' '}$):** Whitespace detected. Advance cursor to $i = 3$.
 
-1. skip only leading space characters;
-2. consume at most one optional sign;
-3. consume one consecutive run of decimal digits;
-4. stop permanently at the first non-digit after that point;
-5. clamp the numerical result to the signed 32-bit range.
+### Phase 2: Sign Determination
+- **Index 3 ($s[3] = \text{'-'}$):** Negative sign encountered. Set $\text{sign} = -1$. Transition permanently to digit-reading phase. Advance to $i = 4$.
 
-Once a phase ends, it never restarts. A space after digits is not skipped, a sign after a digit is not reconsidered, and digits after a letter are ignored. This is why `"1337c0d3"` becomes `1337` rather than `133703`, and `"0-1"` becomes `0` rather than `-1`.
+### Phase 3: Digit Accumulation
+- **Index 4 ($s[4] = \text{'0'}$):** Valid digit $d = 0$.
+  - Magnitude update: $0 \cdot 10 + 0 = 0$.
+  - Advance to $i = 5$.
+- **Index 5 ($s[5] = \text{'4'}$):** Valid digit $d = 4$.
+  - Magnitude update: $0 \cdot 10 + 4 = 4$.
+  - Advance to $i = 6$.
+- **Index 6 ($s[6] = \text{'2'}$):** Valid digit $d = 2$.
+  - Magnitude update: $4 \cdot 10 + 2 = 42$.
+  - Advance to $i = 7$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "42"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Phase 4: Non-Digit Termination
+- **Index 7 ($s[7] = \text{' '}$):** Space character encountered. Because the parser is already in the `DIGITS` state, this space is an invalid character, not a skippable leading space. Parsing halts immediately.
 
----
-
-### Step 2: Handle empty input before indexing
-
-The method begins with
-
-
-
-An empty string has no digits, so zero is correct. More importantly, this guard makes the later access to `s[i]` safe.
-
-The following check
-
-
-
-is redundant because `not s` already covered exactly that case. It does not alter behavior; it simply repeats the same protection.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Skip leading spaces without running past the end
-
-The loop
-
-
-
-advances over ordinary space characters at the beginning. The bounds check occurs immediately after incrementing. If the string consists entirely of spaces, the method returns before the next loop condition can evaluate `s[n]`, which would be out of range.
-
-The Reference names the exact leading whitespace character as `" "`, and the input alphabet contains no tabs or newlines, so comparing with `' '` matches the contract. A parser intended for broader text would need to decide deliberately whether other Unicode or ASCII whitespace should count.
-
-Once the first non-space character is reached, later spaces are no longer skippable. They are non-digits that terminate conversion.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `42` |
+### Phase 5: Range Clamping
+- Resulting value: $\text{sign} \cdot \text{magnitude} = -1 \cdot 42 = -42$.
+- Bounds verification: $-2147483648 \le -42 \le 2147483647$.
+- Output: $-42$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "42"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `42` | Verified |
+| Cursor $i$ | Character $s[i]$ | Parser State | Action Taken | Current Sign | Magnitude So Far | Effective Value |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|
+| 0 | `' '` | `LEAD_SPACE` | Skip whitespace; advance | $+1$ | 0 | 0 |
+| 1 | `' '` | `LEAD_SPACE` | Skip whitespace; advance | $+1$ | 0 | 0 |
+| 2 | `' '` | `LEAD_SPACE` | Skip whitespace; advance | $+1$ | 0 | 0 |
+| 3 | `'-'` | `SIGN` | Record negative sign; advance | $-1$ | 0 | 0 |
+| 4 | `'0'` | `DIGITS` | Append digit: $0 \cdot 10 + 0$ | $-1$ | 0 | 0 |
+| 5 | `'4'` | `DIGITS` | Append digit: $0 \cdot 10 + 4$ | $-1$ | 4 | -4 |
+| 6 | `'2'` | `DIGITS` | Append digit: $4 \cdot 10 + 2$ | $-1$ | 42 | -42 |
+| 7 | `' '` | `TERMINAL` | Non-digit encountered; halt | $-1$ | 42 | **-42** |
+
+### Boundary Behavior Demonstration
+
+| Input Variant | Delimiting Reason | Final Parsed Result |
+|:---|:---|:---:|
+| `"-91283472332"` | Exceeds $-2^{31} = -2147483648$ | Clamped to **$-2147483648$** |
+| `"4193 with words"` | Non-digit `' '` after `'3'` | **$4193$** |
+| `"words and 987"` | Non-digit `'w'` before any digits | **$0$** |
+| `"+-12"` | Second sign `'-'` after `'+'` | **$0$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The linear parser models a formal DFA with irreversible transitions. By construction:
+- No character preceding the first non-whitespace can affect the sign.
+- At most one sign character is consumed.
+- The numeric value is built using exact positional decimal arithmetic ($v \leftarrow 10v + d$).
+- Checking against 32-bit limits before multiplication guarantees arithmetic safety and prevents integer overflow.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the input string is inspected at most once. The algorithm either terminates upon examining all characters or upon meeting the first invalid character, ensuring deterministic termination in at most $N$ steps.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Deterministic finite automaton:** Model “start,” “sign seen,” “reading digits,” and “dead” as explicit states. This makes transition rules reusable and formal, but the small fixed sequence here is clearer with direct control flow.
-- **Regular expression plus integer conversion:** A pattern can extract the allowed prefix, but it adds a parsing engine, still requires careful clamping, and may build a large intermediate integer unless overflow is checked separately.
-- **Use a wider integer then clamp:** Easy in Python, but it does not honor a no-wider-integer environment. The pre-push threshold handles the limit portably.
-- **Empty string:** The first guard returns zero before any indexing.
-- **Only spaces:** The whitespace loop reaches `n` and returns zero without reading `s[n]`.
-- **Only a sign:** The sign is consumed, no digit is read, and zero is returned.
-- **Two signs:** The first is consumed as the optional sign; the second terminates the digit scan, so the result is zero.
-- **Leading zeros:** They are processed normally and do not change `res`; `"-00042"` becomes `-42`.
-- **Non-digit first character:** No whitespace or sign phase consumes it, the digit loop stops immediately, and zero is returned.
-- **Non-digit after digits:** Conversion returns the completed prefix and ignores everything from that character onward.
-- **Space after digits:** It is a terminator, not skippable whitespace, because only the initial phase ignores spaces.
-- **Positive overflow:** The function returns `2147483647` before performing the unsafe push.
-- **Negative boundary or underflow:** Both `"-2147483648"` and any smaller mathematical value return `-2147483648`; the former is an exact boundary, while the latter is clamped.
-- **Plus sign:** It is consumed but leaves `sign = 1`.
-- **Decimal point:** `'.'` is not a digit, so `"3.14"` parses as `3`; the function does not parse floating-point syntax.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Irreversible Whitespace Skipping:** Spaces after digits or signs are delimiters, not skippable leading spaces. For example, `" 1 2"` yields $1$, not $12$.
+- **Multiple Signs:** An input like `"+-12"` must not evaluate to $-12$. Consuming `'+'` advances the phase; the immediately following `'-'` is a non-digit that terminates conversion with magnitude $0$.
+- **Pre-Overflow Clamping:** Relying on language-level 64-bit integers or unbounded Python integers obscures the algorithmic requirement of 32-bit clamping. Checking whether $v > 214748364$ before multiplication preserves platform-independent correctness.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be `len(s)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = |s|$. The cursor $i$ advances monotonically from $0$ to at most $N$. Each character evaluation involves $O(1)$ comparisons and arithmetic updates.
+- **Auxiliary Space Complexity:** $O(1)$. Parsing is performed in place using a fixed set of scalar variables (index, sign, magnitude).

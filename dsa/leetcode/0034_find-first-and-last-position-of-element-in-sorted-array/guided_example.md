@@ -1,96 +1,140 @@
 # Guided Example: Find First and Last Position of Element in Sorted Array
 
-We trace the logarithmic Array, Binary Search search on a representative problem instance.
+We trace the step-by-step execution of dual-pass binary search (left and right boundary bisection) on a representative sorted array instance:
 
-- **Input:** `{"nums": [5, 7, 7, 8, 8, 10], "target": 8}`
-- **Required output:** `[3, 4]`
+- **Input:** $\text{nums} = [5, 7, 7, 8, 8, 10]$, $\text{target} = 8$
+- **Required output:** $[3, 4]$
 
-This instance demonstrates search space bound maintenance, integer midpoint calculation, and monotonic predicate halving.
+This instance demonstrates bisecting to find the leftmost (first) index of an element, bisecting to find the rightmost (last) index of an element, directional contraction upon encountering duplicate target values, and handling missing elements in $O(\log N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Find First and Last Position of Element in Sorted Array** is to pinpoint the target value or optimal threshold in logarithmic $O(\log N)$ time.
-Linear scanning through all candidates takes $O(N)$ time. By exploiting monotonicity in the search domain, each comparison halves the remaining candidate space.
+Given an integer array $\text{nums}$ of length $N = 6$ sorted in non-decreasing order:
+$$
+[5, 7, 7, 8, 8, 10]
+$$
+
+We must find the starting and ending indices of a given $\text{target} = 8$. If the target is not present, return $[-1, -1]$. The algorithm must run in $O(\log N)$ time.
+
+A standard binary search stops as soon as it encounters any occurrence of $\text{target}$. For $[5, 7, 7, 8, 8, 10]$, stopping at index 4 would not tell us whether earlier copies exist at index 3 or later copies exist beyond. To find both endpoints, we execute two specialized binary searches:
+1. **Left Boundary Search:** When $\text{nums}[M] == \text{target}$, record $M$ as a candidate and continue searching left ($R = M - 1$).
+2. **Right Boundary Search:** When $\text{nums}[M] == \text{target}$, record $M$ as a candidate and continue searching right ($L = M + 1$).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define an active search interval $[L, R]$. At each iteration, we evaluate the midpoint $M = L + \lfloor (R - L) / 2 \rfloor$.
+### Bisection Boundary Principles
+Let $f_{\text{left}}(\text{target})$ and $f_{\text{right}}(\text{target})$ be two binary searches over interval $[L, R]$:
 
-| Interval Variable | Role in Bisection |
-|---|---|
-| Lower Bound $L$ | Lowest possible index/value in active range |
-| Upper Bound $R$ | Highest possible index/value in active range |
-| Midpoint $M$ | Probe point dividing interval into equal halves |
+1. **Finding Leftmost Index (`find_first`):**
+   - If $\text{nums}[M] == \text{target}$: Record $\text{first} \leftarrow M$. Shift right pointer $R \leftarrow M - 1$ to check if an earlier copy exists to the left.
+   - If $\text{nums}[M] < \text{target}$: Shift left pointer $L \leftarrow M + 1$.
+   - If $\text{nums}[M] > \text{target}$: Shift right pointer $R \leftarrow M - 1$.
+2. **Finding Rightmost Index (`find_last`):**
+   - If $\text{nums}[M] == \text{target}$: Record $\text{last} \leftarrow M$. Shift left pointer $L \leftarrow M + 1$ to check if a later copy exists to the right.
+   - If $\text{nums}[M] < \text{target}$: Shift left pointer $L \leftarrow M + 1$.
+   - If $\text{nums}[M] > \text{target}$: Shift right pointer $R \leftarrow M - 1$.
 
-> **Invariant.** If a valid solution exists, it is guaranteed to lie within the inclusive search range $[L, R]$.
+> **Invariant.** The left search interval always maintains all potential occurrences at or to the left of the best recorded candidate. The right search interval maintains all potential occurrences at or to the right of the best recorded candidate.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Initial Bounds Setup
+We trace $\text{nums} = [5, 7, 7, 8, 8, 10]$ with $\text{target} = 8$:
 
-- Set $L = 0$ and $R = N - 1$ (or corresponding domain bounds).
-- Compute initial midpoint $M$.
+### Pass 1: Find Leftmost Boundary ($\text{first}$)
+Initialize $L = 0, R = 5, \text{first} = -1$.
 
-| Parameter | State |
-|---|---|
-| Search Interval | $[L, R]$ |
-| Midpoint Probe $M$ | $L + \lfloor (R - L) / 2 \rfloor$ |
-| Evaluated Value | Probe result compared against target |
+- **Step 1 ($L = 0, R = 5$):**
+  - Midpoint: $M = \lfloor (0 + 5) / 2 \rfloor = 2$.
+  - Value: $\text{nums}[2] = 7$.
+  - Compare: $7 < \text{target} = 8$.
+  - Decision: Target must be in right half $\implies L \leftarrow M + 1 = 3$.
+
+- **Step 2 ($L = 3, R = 5$):**
+  - Midpoint: $M = \lfloor (3 + 5) / 2 \rfloor = 4$.
+  - Value: $\text{nums}[4] = 8$.
+  - Compare: $\text{nums}[4] == \text{target} = 8$. Match found!
+  - Record candidate: $\text{first} \leftarrow 4$.
+  - Decision: Check for earlier occurrences to the left $\implies R \leftarrow M - 1 = 3$.
+
+- **Step 3 ($L = 3, R = 3$):**
+  - Midpoint: $M = \lfloor (3 + 3) / 2 \rfloor = 3$.
+  - Value: $\text{nums}[3] = 8$.
+  - Compare: $\text{nums}[3] == \text{target} = 8$. Match found!
+  - Record candidate: $\text{first} \leftarrow 3$.
+  - Decision: Check further left $\implies R \leftarrow M - 1 = 2$.
+
+- **Termination:** $L = 3 > R = 2$. Loop ends. First position is confirmed as $3$.
 
 ---
 
-### Step 2: Interval Halving via Monotonicity
+### Pass 2: Find Rightmost Boundary ($\text{last}$)
+Initialize $L = 0, R = 5, \text{last} = -1$.
 
-- If the probe value satisfies the predicate or is smaller than the target, eliminate the left half ($L = M + 1$).
-- Otherwise, eliminate the right half ($R = M - 1$ or $R = M$).
+- **Step 1 ($L = 0, R = 5$):**
+  - Midpoint: $M = \lfloor (0 + 5) / 2 \rfloor = 2$.
+  - Value: $\text{nums}[2] = 7 < 8 \implies L \leftarrow M + 1 = 3$.
 
-| Parameter | State |
-|---|---|
-| Discarded Region | Non-viable half eliminated |
-| New Interval | Narrowed $[L, R]$ |
+- **Step 2 ($L = 3, R = 5$):**
+  - Midpoint: $M = \lfloor (3 + 5) / 2 \rfloor = 4$.
+  - Value: $\text{nums}[4] = 8 == \text{target}$. Match found!
+  - Record candidate: $\text{last} \leftarrow 4$.
+  - Decision: Check for later occurrences to the right $\implies L \leftarrow M + 1 = 5$.
 
----
+- **Step 3 ($L = 5, R = 5$):**
+  - Midpoint: $M = \lfloor (5 + 5) / 2 \rfloor = 5$.
+  - Value: $\text{nums}[5] = 10 > 8 \implies R \leftarrow M - 1 = 4$.
 
-### Step 3: Convergence & Target Extraction
+- **Termination:** $L = 5 > R = 4$. Loop ends. Last position is confirmed as $4$.
 
-- Iteration halts when $L > R$ (or $L == R$).
-- Return confirmed target index or boundary answer.
+Combined final output: $[3, 4]$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Iteration | Lower $L$ | Upper $R$ | Midpoint $M$ | Evaluated Value | Decision / Predicate | Halved Interval |
-|---|---|---|---|---|---|---|
-| 1 (Start) | $0$ | $N-1$ | Midpoint | Probe result | Branch selection | Remaining half |
-| 2 (Narrow) | Updated $L$ | Updated $R$ | New Midpoint | Probe result | Further contraction | Narrowed half |
-| Final | Converged | Converged | Target | Match / Boundary | Target confirmed | Result emitted |
+### Pass 1: Left Boundary Search Trace Table
+
+| Step | Left $L$ | Right $R$ | Midpoint $M$ | Value $\text{nums}[M]$ | Comparison to Target (8) | Candidate $\text{first}$ | Pointer Adjustment |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 5 | 2 | 7 | $7 < 8$ | -1 | Shift right: $L \leftarrow 3$ |
+| 2 | 3 | 5 | 4 | 8 | $8 == 8$ (Match) | 4 | Search left: $R \leftarrow 3$ |
+| 3 | 3 | 3 | 3 | 8 | $8 == 8$ (Match) | **3** | Search left: $R \leftarrow 2$ |
+| Done | 3 | 2 | - | - | $L > R$ | **3** | First occurrence locked at index $3$ |
+
+### Pass 2: Right Boundary Search Trace Table
+
+| Step | Left $L$ | Right $R$ | Midpoint $M$ | Value $\text{nums}[M]$ | Comparison to Target (8) | Candidate $\text{last}$ | Pointer Adjustment |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 0 | 5 | 2 | 7 | $7 < 8$ | -1 | Shift right: $L \leftarrow 3$ |
+| 2 | 3 | 5 | 4 | 8 | $8 == 8$ (Match) | 4 | Search right: $L \leftarrow 5$ |
+| 3 | 5 | 5 | 5 | 10 | $10 > 8$ | 4 | Shift left: $R \leftarrow 4$ |
+| Done | 5 | 4 | - | - | $L > R$ | **4** | Last occurrence locked at index $4$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because the underlying search space is monotonic, any region discarded by the comparison is mathematically proven not to contain the target.
+**Soundness.** Every recorded boundary index satisfies $\text{nums}[\text{idx}] == \text{target}$. In Pass 1, continuing to search $R = M - 1$ when a match is found ensures no earlier index can be missed. Symmetrically, in Pass 2, continuing $L = M + 1$ ensures no later index can be missed.
 
-**Completeness.** The interval size strictly decreases by $\lfloor (R - L + 1) / 2 \rfloor$ on every step, guaranteeing termination and discovery of the target.
+**Completeness.** Since the array is sorted, all target occurrences form a single contiguous block $[\text{first}, \text{last}]$. If the target does not exist, Pass 1 never encounters $\text{nums}[M] == \text{target}$, keeping $\text{first} = -1$ and immediately returning $[-1, -1]$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Integer Overflow in Midpoint:** Using $(L + R) / 2$ in fixed-width languages can overflow. The form $L + \lfloor(R - L) / 2\rfloor$ is safe.
-- **Infinite Loops on $L == R - 1$:** Misaligned boundary updates ($L = M$ without upper-rounding midpoint) causes infinite loops when two elements remain.
-- **Left vs. Right Insertion Index:** Distinguishing exact match from lower-bound insertion points prevents off-by-one errors.
+- **Linear Expansion Fallacy:** Finding any occurrence with binary search and then expanding linearly with `while` loops takes $O(N)$ time in the worst case (e.g. $[8, 8, 8, \dots, 8]$). Two pure logarithmic binary searches guarantee $O(\log N)$ worst-case performance.
+- **Empty Array:** When $\text{nums} = []$, $L = 0, R = -1$. The loops do not execute, correctly returning $[-1, -1]$.
+- **Target Missing But Within Value Range:** If $\text{target} = 6$, Pass 1 narrows interval to $L = 1, R = 0$ without matching, correctly yielding $-1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(\log N)$ because the candidate interval is bisected in each step.
-- **Auxiliary Space Complexity:** $O(1)$ constant extra space using iterative pointers.
+- **Time Complexity:** $O(\log N)$. Pass 1 bisects the array in $\lceil \log_2 N \rceil + 1$ iterations. Pass 2 bisects the array in $\lceil \log_2 N \rceil + 1$ iterations. Total time is $2 \cdot O(\log N) = O(\log N)$.
+- **Auxiliary Space Complexity:** $O(1)$. Both bisections execute iteratively using a few scalar pointers without extra allocations.

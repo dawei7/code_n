@@ -1,144 +1,190 @@
 # Guided Example: Number of Islands II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step dynamic land addition, 2D grid flattening ($i \times n + j$), disjoint set union (DSU) with path compression and union-by-size, duplicate query guards, and online connected component tracking on representative island evolution instances:
 
-- **Input:** `{"m": 3, "n": 3, "positions": [[0, 0], [0, 1], [1, 2], [2, 1]]}`
-- **Required output:** `[1, 1, 2, 3]`
+- **Input:** $m = 3, \; n = 3, \quad \text{positions} = [[0, 0], [0, 1], [1, 2], [2, 1]]$
+- **Required output:** $[1, 1, 2, 3]$
+  - After $[0, 0]$: Isolated single cell $\implies 1$ island
+  - After $[0, 1]$: Adjacent to $[0, 0]$, unions into same component $\implies 1$ island
+  - After $[1, 2]$: Disjoint from existing land $\implies 2$ islands
+  - After $[2, 1]$: Disjoint from existing land $\implies 3$ islands
+- **Multi-Island Bridge Merge:** If an added land cell touches multiple distinct islands simultaneously, each successful merge decrements the component count by $1$
+- **Duplicate Position Invariance:** Re-adding an existing land cell leaves the island count unchanged without redundant union operations
+- **Diagonal Independence:** Diagonally adjacent land cells do NOT share edges and remain separate components unless bridged horizontally or vertically
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates dynamic graph connectivity via Disjoint Set Union (DSU), proves why a full $O(K \cdot M N)$ recalculation is avoided in favor of $O(K \cdot \alpha(M N))$ near-linear online updates, details the component counter invariant ($\text{cnt} \leftarrow \text{cnt} + 1 - \sum \text{merges}$), and operates in $O(M N)$ space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an empty 2D binary grid `grid` of size `m x n`. The grid represents a map where `0`'s represent water and `1`'s represent land. Initially, all the cells of `grid` are water cells (i.e., all the cells are `0`'s).
+Given a $3 \times 3$ grid initially filled entirely with water (`0`):
+Add land cells one by one at given coordinates:
+$$
+\text{positions} = [[0, 0], [0, 1], [1, 2], [2, 1]]
+$$
+After each addition, return the total count of connected islands.
+- An island is a 4-directionally connected (horizontal/vertical) maximal component of land cells (`1`).
 
-The objective is to compute `[1, 1, 2, 3]` from `{"m": 3, "n": 3, "positions": [[0, 0], [0, 1], [1, 2], [2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Step 1: Add [0, 0]    Step 2: Add [0, 1]    Step 3: Add [1, 2]    Step 4: Add [2, 1]
+   [1] 0  0              [1][1] 0              [1][1] 0              [1][1] 0
+    0  0  0               0  0  0               0  0 [1]              0  0 [1]
+    0  0  0               0  0  0               0  0  0               0 [1] 0
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Islands: 1            Merged with (0,0)     Isolated island       Isolated island
+                      Islands: 1            Islands: 2            Islands: 3
+```
+
+### Naive BFS/DFS vs Online Disjoint Set Union
+- Running BFS/DFS after every position takes $O(M N)$ per addition, totaling $O(K \cdot M N)$ for $K$ additions (up to $10^8$ operations).
+- **Disjoint Set Union (DSU):**
+  - When turning water into land at $(i, j)$, temporarily increment island count by $1$.
+  - Check all 4 adjacent cardinal neighbors $(x, y)$.
+  - For each neighbor that is already land, attempt `union((i, j), (x, y))`.
+  - If the roots differ, two previously disjoint islands have merged: decrement the island count by $1$!
+Each step runs in nearly $O(1)$ amortized time $O(\alpha(M N))$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1D Cell Index Flattening
+For a grid of width $n$, 2D coordinate $(i, j)$ maps to unique 1D index:
+$$
+\text{id}(i, j) = i \cdot n + j \quad \in [0, \; mn - 1]
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Disjoint Set Union (DSU) Structure
+- `p[x]`: Parent pointer for node $x$ (with path compression in `find`).
+- `size[x]`: Size of component rooted at $x$ (for union-by-size).
+- `grid[i][j]`: Tracks whether cell $(i, j)$ is already active land.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Dynamic Processing Protocol for Position $(i, j)$:
+1. **Duplicate Guard:**
+   If $\text{grid}[i][j] == 1$, the cell is already land:
+   Append current count and `continue`.
+2. **Activate Land:**
+   Set $\text{grid}[i][j] = 1$.
+   Increment component count:
+   $$
+   \text{cnt} \leftarrow \text{cnt} + 1
+   $$
+3. **Inspect 4 Cardinal Neighbors $(x, y) \in \{(i-1, j), (i+1, j), (i, j-1), (i, j+1)\}$:**
+   - If $0 \le x < m$ and $0 \le y < n$ and $\text{grid}[x][y] == 1$:
+     If $\text{uf.union}(\text{id}(i, j), \; \text{id}(x, y))$ returns `True` (different roots merged):
+     $$
+     \text{cnt} \leftarrow \text{cnt} - 1
+     $$
+4. Append `cnt` to result list `ans`.
+
+> **Invariant.** After processing position $k$, `cnt` reflects the exact number of connected components formed by the active land cells. Two cells share a DSU root if and only if they belong to the same 4-connected island.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Flattening grid positions
-
-The usual row-major identifier for cell $(i,j)$ is
-
-$$
-id(i,j)=i\cdot n+j.
-$$
-
-For an $m\times n$ grid, this maps every cell to one unique integer from 0 through $mn-1$. Horizontal or vertical adjacency is still checked with row and column coordinates; flattening is used only as the union-find key.
-
-The exact `UnionFind.union` method calls `find(a - 1)` and `find(b - 1)` rather than `find(a)` and `find(b)`. This looks like an off-by-one error, but under Python indexing it acts as a consistent cyclic relabeling of the valid identifiers:
-
-$$
-0\mapsto -1\equiv mn-1,
-$$
-
-$$
-1\mapsto0,\quad2\mapsto1,\quad\ldots,\quad mn-1\mapsto mn-2.
-$$
-
-Python list index `-1` refers to the final entry. Thus, every valid cell identifier still maps to a distinct union-find slot, and the same mapping is applied to both endpoints of every union. Connectivity is unchanged by a one-to-one relabeling. The convention is unusual and would be unsafe in languages where negative indexing is invalid, but it is internally consistent in this exact Python source.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"m": 3, "n": 3, "positions": [[0, 0], [0, 1], [1, 2], [2, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $m = 3, n = 3$ with positions $[[0, 0], [0, 1], [1, 2], [2, 1]]$:
+Initialize `grid` ($3 \times 3$ of 0s), `cnt = 0`, `ans = []`.
 
 ---
 
-### Step 2: Disjoint-set state
-
-`p[x]` stores the parent of union-find slot `x`. Initially, every slot is its own root. `size[x]` is meaningful for a root and stores the number of represented slots in that tree.
-
-`find(x)` follows parent links until reaching a root whose parent is itself. On the recursive return path, it assigns every visited node directly to that root. This is path compression: later searches from those nodes become much shorter.
-
-`union(a, b)` first finds the two roots after applying the source's shifted indexing. If the roots are equal, both land cells are already in the same connected component, so it returns `false` and changes nothing.
-
-If the roots differ, union by size attaches the smaller tree below the larger tree's root. On a tie, the first root is attached below the second. The new root's size is increased by the absorbed tree's size, and the method returns `true` to report that two components became one.
-
-Path compression and union by size together make repeated connectivity operations extremely close to constant time amortized.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Add Position $[0, 0]$ ($\text{id} = 0 \times 3 + 0 = 0$)
+- `grid[0][0]` was 0 $\implies$ set `grid[0][0] = 1`.
+- Increment count: $\text{cnt} = 0 + 1 = \mathbf{1}$.
+- Neighbors of $(0, 0)$:
+  - $(0, 1)$: Water (`0`)
+  - $(1, 0)$: Water (`0`)
+- No merges occur.
+- Total islands: $\text{cnt} = \mathbf{1}$. `ans = [1]`.
 
 ---
 
-### Step 3: Why a separate grid is necessary
+### Step 2: Add Position $[0, 1]$ ($\text{id} = 0 \times 3 + 1 = 1$)
+- `grid[0][1]` was 0 $\implies$ set `grid[0][1] = 1`.
+- Increment count: $\text{cnt} = 1 + 1 = 2$.
+- Neighbors of $(0, 1)$:
+  - **Left neighbor $(0, 0)$** ($\text{id} = 0$): Active land!
+    - Call $\text{union}(1, 0)$:
+      $\text{find}(1) \ne \text{find}(0) \implies$ Merge components!
+      Decrement count: $\text{cnt} = 2 - 1 = \mathbf{1}$.
+  - Right neighbor $(0, 2)$: Water.
+  - Down neighbor $(1, 1)$: Water.
+- Total islands: $\text{cnt} = \mathbf{1}$. `ans = [1, 1]`.
 
-The union-find arrays are initialized for all $mn$ slots, including cells that are still water. Therefore, parent membership alone cannot say whether a cell is active land. The matrix `grid` supplies that missing state:
+---
 
-- `grid[i][j] == 0` means the cell has not been added;
-- `grid[i][j] == 1` means it is active land.
+### Step 3: Add Position $[1, 2]$ ($\text{id} = 1 \times 3 + 2 = 5$)
+- `grid[1][2]` was 0 $\implies$ set `grid[1][2] = 1`.
+- Increment count: $\text{cnt} = 1 + 1 = \mathbf{2}$.
+- Neighbors of $(1, 2)$:
+  - Up $(0, 2)$: Water.
+  - Down $(2, 2)$: Water.
+  - Left $(1, 1)$: Water.
+- No merges occur.
+- Total islands: $\text{cnt} = \mathbf{2}$. `ans = [1, 1, 2]`.
 
-The algorithm attempts a union only when the neighboring coordinate is in bounds and its grid entry is already land. Inactive union-find roots are never connected into the island graph.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 1, 2, 3]` |
+### Step 4: Add Position $[2, 1]$ ($\text{id} = 2 \times 3 + 1 = 7$)
+- `grid[2][1]` was 0 $\implies$ set `grid[2][1] = 1`.
+- Increment count: $\text{cnt} = 2 + 1 = \mathbf{3}$.
+- Neighbors of $(2, 1)$:
+  - Up $(1, 1)$: Water.
+  - Left $(2, 0)$: Water.
+  - Right $(2, 2)$: Water.
+- No merges occur.
+- Total islands: $\text{cnt} = \mathbf{3}$. `ans = [1, 1, 2, 3]`.
+
+---
+
+### Execution Complete
+Final collected sequence:
+$$
+\mathbf{[1, 1, 2, 3]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"m": 3, "n": 3, "positions": [[0, 0], [0, 1], [1, 2], [2, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 1, 2, 3]` | Verified |
+```text
+m = 3, n = 3
+
+1. pos = [0, 0]: cnt = 1, neighbors all water -> cnt = 1 -> ans = [1]
+2. pos = [0, 1]: cnt = 2, neighbor (0, 0) is land -> union(1, 0) -> cnt = 1 -> ans = [1, 1]
+3. pos = [1, 2]: cnt = 2, neighbors all water -> cnt = 2 -> ans = [1, 1, 2]
+4. pos = [2, 1]: cnt = 3, neighbors all water -> cnt = 3 -> ans = [1, 1, 2, 3]
+
+Results: [1, 1, 2, 3]
+```
+
+| Operation Step | Added Cell $(i, j)$ | Flattened ID | Land Neighbors Found | Successful Merges | Active Islands $\text{cnt}$ | Output Sequence `ans` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(0, 0)$ | 0 | None | 0 | **1** | `[1]` |
+| **2** | **$(0, 1)$** | **1** | **$(0, 0)$** | **1 (Merged with ID 0)** | **1** | **`[1, 1]`** |
+| 3 | $(1, 2)$ | 5 | None | 0 | **2** | `[1, 1, 2]` |
+| 4 | $(2, 1)$ | 7 | None | 0 | **3** | `[1, 1, 2, 3]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Adding a new land cell initially increases the number of connected components by at most 1. Every adjacent cell that is already land belongs to some existing component. Merging the new cell with an adjacent component's root reduces the total count by 1 if and only if their roots were previously distinct. If multiple neighbors already belong to the same component, subsequent calls to `union` return `False`, preventing over-decrementing.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every added position is processed in arrival order. Because the 4 cardinal directions cover all topological adjacencies in the grid, all new connections are detected immediately upon activation. Duplicate queries are guarded by checking `grid[i][j]`, guaranteeing idempotent behavior.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Sparse dictionary union-find:** Create parent and size entries only when a position first becomes land. This avoids $O(mn)$ initialization and uses $O(u)$ state for $u\le k$ unique added cells, matching the manifest's sparse summary.
-- **Recount islands after every operation:** Run DFS or BFS over the entire grid each time. This can cost $O(kmn)$ and repeats almost all connectivity work.
-- **Flood-fill only from the new cell:** It can discover connected land, but maintaining and relabeling components across many additions is less efficient than union-find.
-- **Decrement for every land neighbor:** This is wrong when two neighboring cells already belong to the same island. Only a union of different roots reduces the component count.
-- **Union diagonal neighbors:** Islands use horizontal and vertical adjacency only. Adding diagonals would incorrectly merge separate islands.
-- **Duplicate position:** The current count must be repeated unchanged. The early `grid[i][j]` check prevents a false new component and repeated unions.
-- **First operation:** A new cell has no previously active neighbor, so the answer is always one.
-- **One-cell grid:** The first add returns one; any duplicate additions continue returning one.
-- **Boundary cell:** Neighbor coordinates are checked before indexing the grid, preventing negative wrapping or out-of-range access.
-- **A new isolated cell:** No union succeeds, so the initial count increment remains and the island count rises by one.
-- **A new cell touching one island:** Exactly one root merge succeeds, canceling the singleton increment; the island count stays unchanged.
-- **A bridge between several islands:** One successful union occurs for each distinct neighboring component, so the count can decrease by more than one during a single operation.
-- **Several neighbors in one component:** Path compression makes their roots equal, and only the first merge succeeds.
-- **Shifted union-find indices:** Subtracting one works here only because every valid flattened ID receives the same bijective Python-index transformation. Reusing this class with arbitrary IDs, zero-length arrays, or a language without negative indexing would be unsafe.
-- **Recursive `find`:** Union by size limits tree height before compression, and compression flattens paths further. An iterative implementation could avoid recursion entirely but would preserve the same component logic.
-- **Maximum grid product:** Dense storage is feasible under the stated $mn\le10^4$ constraint, even though it does not achieve the sparse follow-up bound.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Additions:** If the same coordinate appears multiple times in `positions`, turning an already active land cell into land again without a guard would erroneously increment `cnt` by 1. Checking `grid[i][j]` prevents duplicate counts.
+- **Multiple Neighbors in the Same Island:** If a new cell touches two cells that are already part of the same island, only the first `union` returns `True`. The second `union` sees identical roots and returns `False`. Blindly decrementing `cnt` for every adjacent land neighbor causes severe undercounting.
+- **Diagonal Neighbors:** Two cells that touch diagonally (e.g. $(0, 0)$ and $(1, 1)$) do not share an edge. Attempting 8-way connectivity violates problem rules.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $k$ be the number of operations and let $N=mn$ be the number of grid cells.
-- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(K \cdot \alpha(M N))$, where $K$ is the number of operations in `positions` and $M N$ is the total grid cells. For each addition, at most 4 union-find operations are executed. Each operation takes nearly constant $O(\alpha(M N))$ time using path compression and union by size (where $\alpha$ is the inverse Ackermann function, $\alpha(n) \le 4$). Total runtime is strictly linear with respect to operations.
+- **Auxiliary Space Complexity:** $O(M N)$ auxiliary memory for the 2D grid matrix and the DSU parent and size arrays of length $M N$.

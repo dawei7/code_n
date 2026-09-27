@@ -1,126 +1,152 @@
 # Guided Example: Subsets II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step backtracking search with horizontal duplicate sibling pruning on a representative multiset:
 
-- **Input:** `{"nums": [1, 2, 2]}`
-- **Required output:** `[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]`
+- **Input:** $\text{nums} = [1, 2, 2]$
+- **Required output:** $[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates sorting to group duplicate elements together, differentiating vertical depth multiplicity ($j = \text{start}$) from duplicate horizontal sibling branching ($j > \text{start} \land \text{nums}[j] == \text{nums}[j - 1]$), state rollback, and contrasting cascading vs backtracking deduplication.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` that may contain duplicates, return *all possible* *subsets** (the power set)*.
+Given an integer array $\text{nums} = [1, 2, 2]$ that contains duplicate elements, return all possible subsets (the power set). The solution set must **not** contain duplicate subsets.
 
-The objective is to compute `[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]` from `{"nums": [1, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+If treated as distinct elements, a 3-element set generates $2^3 = 8$ subsets.
+However, because $2$ appears twice:
+- $\{2_A\}$ and $\{2_B\}$ are identical subsets ($[2]$).
+- $\{1, 2_A\}$ and $\{1, 2_B\}$ are identical subsets ($[1, 2]$).
+The unique power set contains strictly $6$ distinct subsets:
+$$
+[[], \, [1], \, [1, 2], \, [1, 2, 2], \, [2], \, [2, 2]]
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Sorting the array upfront ($[1, 2, 2]$) ensures that identical values sit next to each other.
+The backtracking condition:
+$$
+\text{if } j > \text{start} \text{ and } \text{nums}[j] == \text{nums}[j - 1]: \text{continue}
+$$
+prunes redundant sibling branches while still allowing vertical depth recursion to form multisets like $[2, 2]$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Horizontal Sibling Pruning Rule
+We define $\text{backtrack}(\text{start}, \text{path})$:
+1. **Emit Current Subset:**
+   At every recursive node, the current prefix $\text{path}$ is a valid unique subset:
+   $$
+   \text{results.append}(\text{list}(\text{path}))
+   $$
+2. **Loop Over Candidates ($j \in [\text{start}, N - 1]$):**
+   - **Vertical Progression ($j == \text{start}$):**
+     This is the first candidate considered at this recursion level, or the immediate continuation of an identical number from above (e.g. adding the second $2$ to $[1, 2]$ to form $[1, 2, 2]$). This branch is **permitted**.
+   - **Horizontal Sibling Duplication ($j > \text{start} \land \text{nums}[j] == \text{nums}[j-1]$):**
+     At this same tree level, another branch starting with an identical value was already fully explored by sibling $j - 1$. Exploring $j$ would generate exact duplicate subsets. This branch is **pruned** (`continue`).
+3. **Explore and Backtrack:**
+   - $\text{path.append}(\text{nums}[j])$
+   - $\text{backtrack}(j + 1, \text{path})$
+   - $\text{path.pop()}$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any unique integer $v$, only the first available occurrence at index $\text{start}$ may head a new subtree branch at the current recursion depth.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Meaning of one recursive state
+We trace sorted $\text{nums} = [1, 2, 2]$:
 
-At the start of `dfs(i)`, the list `t` contains the values selected from positions before `i`, and the recursion must generate every distinct continuation using positions from `i` onward. The state makes two conceptual choices concerning `nums[i]`:
-
-- include this occurrence, or
-- include no additional occurrence of this value from the run beginning at `i`.
-
-The first branch executes `t.append(nums[i])` and calls `dfs(i + 1)`. Moving by only one position is intentional. If the next position contains the same value, the recursive call may include that next copy too. Repeated include decisions are how the algorithm produces multiplicities one, two, three, and so on.
-
-After that whole branch finishes, `x = t.pop()` both restores the path and remembers which value was just considered. Restoration matters because the second branch must begin with exactly the selections that existed before the current decision. Without the `pop`, the supposed exclusion branch would still contain the value.
-
-The `while` loop then advances `i` across every immediately following occurrence equal to `x`. Finally, `dfs(i + 1)` starts after the entire equal-value run. This is the zero-additional-copies branch.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Root Level ($\text{path} = []$)
+- Record empty set: `[]`.
+- Loop candidates $j \in [0, 2]$:
 
 ---
 
-### Step 2: A complete trace for `[1, 2, 2]`
-
-After sorting, the array is unchanged.
-
-1. At index `0`, include `1`. The path is `[1]`.
-2. At the first `2`, include it. The path is `[1, 2]`.
-3. At the second `2`, include it and reach the end, recording `[1, 2, 2]`.
-4. Back at the second `2`, exclude it and record `[1, 2]`.
-5. Back at the first `2`, its exclusion branch skips the second equal `2`, recording `[1]`. It does not create another path that selects only the second copy, because that would duplicate `[1, 2]`.
-6. Back at `1`, exclude it and repeat the same multiplicity choices for the `2` run, recording `[2, 2]`, `[2]`, and `[]`.
-
-The output order may differ from the Reference example, which is allowed. The significant fact is that every distinct subset appears once.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Branch $j = 0$ ($\text{val} = 1$):
+- $j = 0 == \text{start} \implies$ Accepted.
+- $\text{path} = [1]$. Record **$[1]$**.
+- Recurse with $\text{start} = 1$:
+  - **Child $j = 1$ ($\text{val} = 2$):**
+    - $j = 1 == \text{start} \implies$ Accepted.
+    - $\text{path} = [1, 2]$. Record **$[1, 2]$**.
+    - Recurse with $\text{start} = 2$:
+      - **Grandchild $j = 2$ ($\text{val} = 2$):**
+        - $j = 2 == \text{start} \implies$ Accepted (Vertical reuse!).
+        - $\text{path} = [1, 2, 2]$. Record **$[1, 2, 2]$**.
+        - Recurse $\text{start} = 3 > 2 \implies$ returns.
+        - Backtrack $\to [1, 2]$.
+    - Backtrack $\to [1]$.
+  - **Child $j = 2$ ($\text{val} = 2$):**
+    - Check condition: $j = 2 > \text{start} = 1$, and $\text{nums}[2] == \text{nums}[1]$ ($2 == 2$).
+    - **Duplicate Sibling Detected!** Pruned (`continue`).
+- Backtrack from $[1] \to []$.
 
 ---
 
-### Step 3: Why no valid subset is missed
+### Branch $j = 1$ ($\text{val} = 2$):
+- $j = 1 > \text{start} = 0$, but $\text{nums}[1] = 2 \ne \text{nums}[0] = 1 \implies$ Accepted.
+- $\text{path} = [2]$. Record **$[2]$**.
+- Recurse with $\text{start} = 2$:
+  - **Child $j = 2$ ($\text{val} = 2$):**
+    - $j = 2 == \text{start} \implies$ Accepted (Vertical reuse!).
+    - $\text{path} = [2, 2]$. Record **$[2, 2]$**.
+    - Recurse $\text{start} = 3 \implies$ returns.
+    - Backtrack $\to [2]$.
+- Backtrack from $[2] \to []$.
 
-Think of the sorted input as groups of equal values. If a value occurs $c$ times, a subset may contain it exactly $0,1,\ldots,c$ times. The recursion represents those choices without naming them explicitly. Taking the include branch $k$ consecutive times and then taking the exclusion branch selects exactly $k$ copies. Taking exclusion immediately selects zero copies. Therefore every possible multiplicity for the current group is represented.
+---
 
-Once that multiplicity is fixed, recursion continues with the next distinct value group. Combining one valid multiplicity choice from every group describes every possible subset of the input multiset. Thus the traversal is complete.
+### Branch $j = 2$ ($\text{val} = 2$):
+- Check condition: $j = 2 > \text{start} = 0$, and $\text{nums}[2] == \text{nums}[1]$ ($2 == 2$).
+- **Duplicate Sibling Detected!** Pruned (`continue`).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]` |
+Search terminates. Exactly 6 subsets generated.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]` | Verified |
+```text
+                        []
+             /          |          \
+           [1]         [2]         [2] (PRUNED: j=2 > start=0, 2==2)
+          /   \         |
+      [1,2]   [1,2]   [2,2]
+       /     (PRUNED)
+    [1,2,2]
+```
+
+| Step | Current Path | Candidate Index $j$ | Candidate Value | $j > \text{start}$? | $\text{nums}[j] == \text{nums}[j-1]$? | Action | Subset Recorded |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | `[]` | - | - | - | - | Base root | **`[]`** |
+| 2 | `[1]` | 0 | 1 | No ($0 = 0$) | - | Recurse | **`[1]`** |
+| 3 | `[1, 2]` | 1 | 2 | No ($1 = 1$) | - | Recurse | **`[1, 2]`** |
+| 4 | `[1, 2, 2]` | 2 | 2 | No ($2 = 2$) | - | Recurse | **`[1, 2, 2]`** |
+| 5 | `[1]` | 2 | 2 | **Yes ($2 > 1$)** | **Yes ($2 == 2$)** | **Prune duplicate** | - |
+| 6 | `[2]` | 1 | 2 | Yes ($1 > 0$) | No ($2 \ne 1$) | Recurse | **`[2]`** |
+| 7 | `[2, 2]` | 2 | 2 | No ($2 = 2$) | - | Recurse | **`[2, 2]`** |
+| 8 | `[]` | 2 | 2 | **Yes ($2 > 0$)** | **Yes ($2 == 2$)** | **Prune duplicate** | - |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Sorting guarantees that all identical values are contiguous. The condition $j > \text{start} \land \text{nums}[j] == \text{nums}[j-1]$ ensures that among identical elements at any recursion depth, only the first occurrence is expanded horizontally. Hence, no duplicate subset combinations can ever be generated.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Whenever multiple copies of an element exist, vertical recursion ($j = \text{start}$) allows picking the first, then the second, up to all available copies (e.g. $[2, 2]$). Every unique multiset frequency combination is faithfully explored.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Iterative cascading:** Start with `[[]]` and extend all existing subsets for a new value, but extend only the subsets created in the immediately preceding step when seeing another copy of that value. This avoids recursion and has the same output-sensitive time bound.
-- **Frequency-map recursion:** Compress the sorted input into `(value, count)` groups, then explicitly loop over choosing zero through `count` copies. This can make the multiplicity model especially clear, at the cost of building the compressed representation.
-- **Bitmask plus a set:** Enumerate all $2^n$ position masks, canonicalize each produced subset, and deduplicate with a hash set. It is easier to adapt from the distinct-elements problem but deliberately creates duplicates and uses output-scale auxiliary storage.
-- **Do not skip duplicates in the include branch:** Later equal copies must remain available so subsets containing two or more copies can be formed. Skipping belongs only to the branch that chooses no further copy of the current value.
-- **Sorting mutates the input:** `nums.sort()` changes the caller-provided list order. The contract does not forbid this, but copy and sort into a new list if input preservation is required by a surrounding application.
-- **All values equal:** For $n$ copies of one value, the valid answers are exactly the $n+1$ possible multiplicities. The recursion generates those without exploring $2^n$ duplicate position combinations.
-- **All values distinct:** The `while` loop never advances extra positions, reducing the method to ordinary include/exclude subset generation with $2^n$ outputs.
-- **Negative values and zero:** Sorting and equality are the only value-sensitive operations. Their signs have no effect on the argument.
-- **Single element:** The two leaves return the one-element subset and the empty subset, each exactly once.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Forgetting to Sort First:** The condition $\text{nums}[j] == \text{nums}[j-1]$ relies entirely on identical elements being adjacent. If $\text{nums} = [2, 1, 2]$ is not sorted, the two $2$s will be separated, generating duplicate $[2]$ subsets. Sorting is strictly mandatory.
+- **Checking $j > 0$ Instead of $j > \text{start}$:** Writing $j > 0$ mistakenly prunes vertical depth recursion, preventing valid multisets like $[2, 2]$ from ever being generated. It must strictly be $j > \text{start}$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(nU)$. Let $n$ be `len(nums)`, and let $U$ be the number of distinct subsets returned. If the distinct values have frequencies $c_1,c_2,\ldots,c_k$, then
-- **Auxiliary Space Complexity:** $O(nU)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot 2^N)$. In the worst case (all elements distinct), $2^N$ subsets are generated, each requiring $O(N)$ copy operations. Pruning reduces the work proportionally when duplicates exist. Sorting takes $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$ recursion depth and path buffer.

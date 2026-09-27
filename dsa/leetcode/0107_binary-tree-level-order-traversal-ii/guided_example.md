@@ -1,89 +1,140 @@
 # Guided Example: Binary Tree Level Order Traversal II
 
-We trace the hierarchical Tree, Breadth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step bottom-up breadth-first level order traversal and deque prepending on a representative binary tree:
 
-- **Input:** `{"root": [3, 9, 20, null, null, 15, 7]}`
+- **Input:** $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$
 - **Required output:** `[[15, 7], [9, 20], [3]]`
+- **Single-Node Base:** $\text{root} = [1] \implies [[1]]$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates level-by-level BFS queue snapshots, maintaining left-to-right internal ordering within tiers while ordering tiers bottom-up (leaves to root) using prepending (`appendleft`), and comparing top-down vs bottom-up level traversal in $O(N)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Binary Tree Level Order Traversal II** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given the root of a binary tree:
+$$
+\begin{gathered}
+3 \\
+\swarrow \quad \searrow \\
+9 \qquad\quad 20 \\
+\qquad\quad \swarrow \quad \searrow \\
+\qquad\quad 15 \qquad\quad 7
+\end{gathered}
+$$
+return the bottom-up level order traversal of its nodes' values (i.e. from left to right, level by level from leaf to root).
+
+Top-down level ordering (LeetCode 102) produces:
+- Level 0: $[3]$
+- Level 1: $[9, 20]$
+- Level 2: $[15, 7]$
+
+Bottom-up ordering inverts the tier sequence while strictly preserving left-to-right ordering within each tier:
+- Deepest Level 2: $[15, 7]$
+- Intermediate Level 1: $[9, 20]$
+- Top Level 0: $[3]$
+Final output: `[[15, 7], [9, 20], [3]]`.
+
+By using standard BFS queue level-batching and prepending each completed tier to an accumulator deque via `appendleft`, the bottom-up ordering is synthesized directly without extra memory passes.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Prepending Level BFS Protocol
+Maintain a FIFO traversal queue `queue = deque([root])` and an accumulator deque `result = deque()`.
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+While `queue` is not empty:
+1. **Level Snapshot:**
+   Capture active tier count: $k = |\text{queue}|$.
+2. **Horizontal Tier Collection:**
+   Initialize empty list $\text{current\_level} = []$.
+   Repeat $k$ times:
+   - Pop node: $\text{node} = \text{queue.popleft()}$.
+   - Collect value: $\text{current\_level.append}(\text{node.val})$.
+   - Enqueue left child if present: $\text{queue.append}(\text{node.left})$.
+   - Enqueue right child if present: $\text{queue.append}(\text{node.right})$.
+3. **Bottom-Up Prepend:**
+   Insert the finished tier at the front of the output container:
+   $$
+   \text{result.appendleft}(\text{current\_level})
+   $$
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** After processing depth $d$, `result` stores tiers $d, d-1, \dots, 0$ in inverted vertical order, where every tier internally retains strict left-to-right horizontal ordering.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Initialization
+- Traversal queue: $\text{queue} = [\text{Node}(3)]$.
+- Accumulator deque: $\text{result} = []$.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Level $d = 0$ (Root Tier)
+- Snapshot: $k = 1$.
+- Pop $\text{Node}(3)$:
+  - $\text{current\_level} = [3]$.
+  - Enqueue children: $\text{Node}(9)$, $\text{Node}(20)$.
+- Prepend tier: $\text{result.appendleft}([3])$.
+- Accumulator state: `[[3]]`.
+- Queue state: $[\text{Node}(9), \text{Node}(20)]$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Level $d = 1$ (Middle Tier)
+- Snapshot: $k = 2$.
+- Pop $\text{Node}(9)$: $\text{current\_level} = [9]$.
+- Pop $\text{Node}(20)$: $\text{current\_level} = [9, 20]$. Enqueue $\text{Node}(15)$, $\text{Node}(7)$.
+- Prepend tier: $\text{result.appendleft}([9, 20])$.
+- Accumulator state: `[[9, 20], [3]]`.
+- Queue state: $[\text{Node}(15), \text{Node}(7)]$.
+
+---
+
+### Level $d = 2$ (Leaf Tier)
+- Snapshot: $k = 2$.
+- Pop $\text{Node}(15)$: $\text{current\_level} = [15]$.
+- Pop $\text{Node}(7)$: $\text{current\_level} = [15, 7]$.
+- Prepend tier: $\text{result.appendleft}([15, 7])$.
+- Accumulator state: `[[15, 7], [9, 20], [3]]`.
+- Queue state: empty `[]`.
+
+Queue is empty. Traversal terminates.
+Result: `[[15, 7], [9, 20], [3]]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+| Level Depth $d$ | Snapshot $k$ | Nodes Popped & Values Extracted | Child Nodes Enqueued | Output Action | Accumulator Deque State |
+|:---:|:---:|:---|:---|:---:|:---|
+| 0 | 1 | $\text{Node}(3) \to [3]$ | $\text{Node}(9), \text{Node}(20)$ | $\text{appendleft}([3])$ | `[[3]]` |
+| 1 | 2 | $\text{Node}(9), \text{Node}(20) \to [9, 20]$ | $\text{Node}(15), \text{Node}(7)$ | $\text{appendleft}([9, 20])$ | `[[9, 20], [3]]` |
+| 2 | 2 | $\text{Node}(15), \text{Node}(7) \to [15, 7]$ | None | $\text{appendleft}([15, 7])$ | `[[15, 7], [9, 20], [3]]` |
+| Exit | 0 | Queue empty | - | - | **`[[15, 7], [9, 20], [3]]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** BFS level snapshotting guarantees that all nodes at level $d$ are aggregated into $\text{current\_level}$ in strict left-to-right order. Because $\text{appendleft}$ prepends each successive tier to the front of `result`, earlier levels (closer to the root) are pushed towards the back, naturally producing a bottom-up ordering of tiers.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Every node in the tree is reached by the BFS queue and assigned to its correct horizontal tier. No nodes are omitted or assigned to incorrect vertical levels.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Inverting Internal Tier Ordering:** Bottom-up refers only to the order of the *levels* (vertical inversion). The nodes within each level must remain strictly left-to-right ($[15, 7]$, **not** $[7, 15]$).
+- **List `insert(0, ...)` Performance:** Using `list.insert(0, item)` in Python takes $O(K)$ time per insertion to shift existing elements, resulting in $O(H^2)$ time where $H$ is the tree height. Using a `collections.deque` or collecting into a list and reversing once at the end with `levels[::-1]` preserves optimal $O(N)$ runtime.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is enqueued once, dequeued once, and appended to its tier list. Reversing or prepending the tier sublists takes $O(H)$ time, bounded by $O(N)$.
+- **Auxiliary Space Complexity:** $O(W)$, where $W$ is the maximum width of the binary tree ($O(N)$ for full binary trees), to store the BFS traversal queue.

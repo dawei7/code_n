@@ -49,6 +49,24 @@
       ]
     },
     {
+      "id": "sample-3",
+      "name": "sample: empty digits string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": ""
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "empty",
+        "boundary"
+      ]
+    },
+    {
       "id": "trial-four-letter-key",
       "name": "one four-letter key",
       "kind": "trial",

@@ -1,153 +1,202 @@
 # Guided Example: Valid Boomerang
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step geometric verification of three planar points using the 2D Cross Product Determinant, prove the Signed Area Non-Degeneracy Theorem and the Simultaneous Distinctness Lemma, and determine boomerang validity across representative planar configurations:
 
-- **Input:** `{"points": [[1, 1], [2, 3], [3, 2]]}`
-- **Required output:** `true`
+- **Representative Instance 1 (Non-Collinear Planar Triangle):**
+  $$
+  points = [[1, 1], \; [2, 3], \; [3, 2]]
+  $$
+- **Required Output:** `true`
+  - Problem definition:
+    - A set of three points $P_1 = (x_1, y_1), P_2 = (x_2, y_2), P_3 = (x_3, y_3)$ is a **boomerang** if and only if:
+      1. All three points are pairwise distinct: $P_1 \ne P_2 \land P_2 \ne P_3 \land P_1 \ne P_3$.
+      2. The three points do not lie on a single straight line (non-collinear).
+  - The 2D Cross Product Transformation:
+    - Instead of computing slopes $\frac{\Delta y}{\Delta x}$ (which risks division-by-zero on vertical lines and floating-point roundoff errors), construct consecutive edge vectors:
+      $$
+      \vec{u} = P_2 - P_1 = (x_2 - x_1, \; y_2 - y_1) = (2 - 1, \; 3 - 1) = (1, \; 2)
+      $$
+      $$
+      \vec{v} = P_3 - P_2 = (x_3 - x_2, \; y_3 - y_2) = (3 - 2, \; 2 - 3) = (1, \; -1)
+      $$
+    - The 2D cross product (determinant of the $2 \times 2$ coordinate matrix) is:
+      $$
+      \vec{u} \times \vec{v} = (x_2 - x_1)(y_3 - y_2) - (y_2 - y_1)(x_3 - x_2)
+      $$
+    - Substituting values:
+      $$
+      \vec{u} \times \vec{v} = (1)(-1) - (2)(1) = -1 - 2 = -3
+      $$
+    - Rearranged product equality test:
+      $$
+      (y_2 - y_1)(x_3 - x_2) \overset{?}{\ne} (y_3 - y_2)(x_2 - x_1)
+      $$
+      $$
+      (2)(1) = 2 \quad \text{vs} \quad (-1)(1) = -1 \implies 2 \ne -1
+      $$
+    - The products are unequal ($\vec{u} \times \vec{v} = -3 \ne 0$).
+    - The signed area is non-zero, proving the points are distinct and non-collinear!
+  - Output: `true`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Collinear Diagonal Line):**
+  $$
+  points = [[1, 1], \; [2, 2], \; [3, 3]]
+  $$
+  - $\vec{u} = (1, 1), \; \vec{v} = (1, 1)$.
+  - $(y_2 - y_1)(x_3 - x_2) = (1)(1) = 1$.
+  - $(y_3 - y_2)(x_2 - x_1) = (1)(1) = 1$.
+  - Equality holds ($1 == 1 \implies \vec{u} \times \vec{v} = 0$). Output: `false`.
+
+- **Representative Instance 3 (Duplicate Points):**
+  $$
+  points = [[0, 0], \; [1, 1], \; [1, 1]] \implies \vec{v} = (0, 0) \implies \vec{u} \times \vec{v} = 0 \implies \text{false}
+  $$
+
+- **Representative Instance 4 (Vertical Collinear Line with $\Delta x = 0$):**
+  $$
+  points = [[7, 0], \; [7, 50], \; [7, 100]] \implies (50)(0) == (50)(0) == 0 \implies \text{false}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on the **X-Y** plane, return `true` *if these points are a **boomerang***.
+Given three coordinates $P_1, P_2, P_3$, determine if they form a boomerang (three distinct, non-collinear points).
 
-The objective is to compute `true` from `{"points": [[1, 1], [2, 3], [3, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Slope Division Trap:
+  Checking if slope(P1, P2) == slope(P2, P3):
+    slope = (y2 - y1) / (x2 - x1)
+  If x2 == x1 (vertical line), division by ZERO crashes the program!
+  Using floats (slope == slope) causes precision issues on large coordinates.
+  Also requires separate pairwise distinct checks (P1 != P2, P2 != P3, P1 != P3).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The 2D Cross Product Determinant Invariant (O(1)):
+  Cross multiplication converts slope equality into an integer identity:
+    (y2 - y1) * (x3 - x2) != (y3 - y2) * (x2 - x1)
+  Theorem:
+    This SINGLE integer inequality simultaneously guarantees:
+    1. Points are pairwise distinct (any duplicate forces cross product to 0).
+    2. Points are non-collinear (parallel vectors force cross product to 0).
+    3. Handles vertical and horizontal lines with ZERO divisions!
+  Evaluates in O(1) time and space!
+```
 
----
+Avoiding division eliminates floating-point error and singularity handling in one unified integer expression.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Three points form a boomerang exactly when their area is nonzero
-
-Three distinct points fail the definition only when they lie on one straight line. Geometrically, three points form a triangle, and a triangle has positive area precisely when its points are noncollinear.
-
-The method tests this using a two-dimensional cross product. It avoids computing slopes, so vertical lines and fractional values need no special cases.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"points": [[1, 1], [2, 3], [3, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **2D Cross Product & Simultaneous Non-Degeneracy Invariant**:
+1. **Geometric Signed Area:** The quantity $(x_2 - x_1)(y_3 - y_2) - (y_2 - y_1)(x_3 - x_2)$ equals twice the signed area of $\triangle P_1 P_2 P_3$.
+2. **Simultaneous Distinctness & Collinearity Detection:** If any two points are identical, the displacement vector between them is $\vec{0}$, forcing the cross product to $0$. If all three are distinct, the cross product is $0$ if and only if the vectors are collinear.
+3. **Cross-Product Rearrangement:** Testing `(y2 - y1) * (x3 - x2) != (y3 - y2) * (x2 - x1)` evaluates non-zero area in exact integer arithmetic.
+4. Total time $\mathcal{O}(1)$ and auxiliary space $\mathcal{O}(1)$.
 
 ---
 
-### Step 2: Build two direction vectors
+## 2. Conceptual Foundation & The Determinant Invariant
 
-After unpacking the three points, consider the vector from point one to point two:
+```mermaid
+flowchart TD
+    accTitle: Valid Boomerang Cross Product Invariant
+    accDescr: Flowchart illustrating vector construction and cross-product product comparison for 3 points
+    Start["Unpack points:\n(x1, y1), (x2, y2), (x3, y3)"] --> ComputeTerms["Compute cross terms:\nLeft = (y2 - y1) * (x3 - x2)\nRight = (y3 - y2) * (x2 - x1)"]
+    ComputeTerms --> CompareTerms{"Left != Right ?\n(Area of triangle != 0)"}
+    CompareTerms -->|"Yes: Non-zero area"| RetTrue["Return True\n(Distinct and non-collinear: Boomerang!)"]
+    CompareTerms -->|"No: Zero area"| RetFalse["Return False\n(Collinear or contains duplicates)"]
+```
 
-$$
-u=(x_2-x_1,\ y_2-y_1).
-$$
+### The Signed Area Non-Degeneracy Theorem
 
-Consider the vector from point two to point three:
-
-$$
-v=(x_3-x_2,\ y_3-y_2).
-$$
-
-The points are collinear exactly when these vectors are parallel or antiparallel. In two dimensions, that happens exactly when their cross product is zero:
-
-$$
-u_xv_y-u_yv_x=0.
-$$
-
-Substituting coordinates gives
-
-$$
-(x_2-x_1)(y_3-y_2)
--
-(y_2-y_1)(x_3-x_2)=0.
-$$
-
-The code rearranges this equality. It returns true when
-
-`(y2 - y1) * (x3 - x2) != (y3 - y2) * (x2 - x1)`.
-
-The two products being unequal is exactly the statement that the cross product is nonzero, with the terms moved to opposite sides.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $P_1 = (x_1, y_1), P_2 = (x_2, y_2), P_3 = (x_3, y_3) \in \mathbb{R}^2$.
+1. **Area Determinant Identity:**
+   The signed area $A$ of the triangle formed by $P_1, P_2, P_3$ is given by:
+   $$
+   2A = \det \begin{pmatrix} x_2 - x_1 & y_2 - y_1 \\ x_3 - x_2 & y_3 - y_2 \end{pmatrix} = (x_2 - x_1)(y_3 - y_2) - (y_2 - y_1)(x_3 - x_2)
+   $$
+2. **The Simultaneous Distinctness & Collinearity Lemma:**
+   $2A \ne 0 \iff (P_1, P_2, P_3)$ form a boomerang.
+   *Proof:*
+   - **Case A (Points Not Pairwise Distinct):**
+     - If $P_1 = P_2$: then $x_2 - x_1 = 0$ and $y_2 - y_1 = 0 \implies 2A = 0(y_3 - y_2) - 0(x_3 - x_2) = 0$.
+     - If $P_2 = P_3$: then $x_3 - x_2 = 0$ and $y_3 - y_2 = 0 \implies 2A = (x_2 - x_1)0 - (y_2 - y_1)0 = 0$.
+     - If $P_1 = P_3$: then $\vec{P_2 P_3} = -\vec{P_1 P_2}$, so $\vec{v} = -\vec{u} \implies \vec{u} \times (-\vec{u}) = 0$.
+     In all cases of duplicate points, $2A = 0$.
+   - **Case B (Points Distinct and Collinear):**
+     If all three points are distinct and lie on a common line $L$, then $\vec{u}$ and $\vec{v}$ are non-zero vectors parallel to $L$.
+     Hence $\vec{v} = c \vec{u}$ for some scalar $c \ne 0$.
+     Then $\vec{u} \times \vec{v} = c (\vec{u} \times \vec{u}) = 0$.
+   - **Case C (Points Distinct and Non-Collinear):**
+     If the points are distinct and non-collinear, they form a non-degenerate triangle with positive Euclidean area $A > 0$.
+     Hence $2A \ne 0$.
+   Therefore, $2A \ne 0$ if and only if the three points are distinct and non-collinear. $\blacksquare$
 
 ---
 
-### Step 3: Why consecutive vectors work
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-A common area formula uses vectors from the same starting point, such as point one to point two and point one to point three. The exact code instead uses point one to point two and point two to point three.
+$points = [[1, 1], [2, 3], [3, 2]]$.
+Unpack:
+- $(x_1, y_1) = (1, 1)$
+- $(x_2, y_2) = (2, 3)$
+- $(x_3, y_3) = (3, 2)$
 
-These are equivalent because
+### Arithmetic Evaluation
+- Difference terms:
+  - $y_2 - y_1 = 3 - 1 = 2$
+  - $x_3 - x_2 = 3 - 2 = 1$
+  - $y_3 - y_2 = 2 - 3 = -1$
+  - $x_2 - x_1 = 2 - 1 = 1$
+- Cross-multiplied products:
+  $$
+  \text{Term 1} = (y_2 - y_1) \times (x_3 - x_2) = 2 \times 1 = \mathbf{2}
+  $$
+  $$
+  \text{Term 2} = (y_3 - y_2) \times (x_2 - x_1) = (-1) \times 1 = \mathbf{-1}
+  $$
+- Inequality check:
+  $$
+  \text{Term 1} \ne \text{Term 2} \iff 2 \ne -1 \implies \mathbf{True}
+  $$
 
-$$
-\overrightarrow{P_2P_3}
-=
-\overrightarrow{P_1P_3}
--
-\overrightarrow{P_1P_2}.
-$$
-
-Taking the cross product with `\overrightarrow{P_1P_2}`, the self-cross-product term is zero. The remaining value is the same signed double area. Thus consecutive edge vectors detect collinearity just as reliably.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+Final result: `true`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Geometric Cross Product Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"points": [[1, 1], [2, 3], [3, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Point Triple $[P_1, P_2, P_3]$ | Vector $\vec{u} = P_2 - P_1$ | Vector $\vec{v} = P_3 - P_2$ | $(y_2 - y_1)(x_3 - x_2)$ | $(y_3 - y_2)(x_2 - x_1)$ | Products Unequal? | Boomerang Valid? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $[(1, 1), (2, 3), (3, 2)]$ | $(1, 2)$ | $(1, -1)$ | **$2$** | **$-1$** | $2 \ne -1$ (**Yes**) | **`true`** |
+| $[(1, 1), (2, 2), (3, 3)]$ | $(1, 1)$ | $(1, 1)$ | **$1$** | **$1$** | $1 \ne 1$ (No) | **`false`** |
+| $[(0, 0), (0, 2), (2, 0)]$ | $(0, 2)$ | $(2, -2)$ | **$4$** | **$0$** | $4 \ne 0$ (**Yes**) | **`true`** |
+| $[(0, 0), (1, 1), (1, 1)]$ | $(1, 1)$ | $(0, 0)$ | **$0$** | **$0$** | $0 \ne 0$ (No) | **`false`** |
+| $[(7, 0), (7, 50), (7, 100)]$| $(0, 50)$ | $(0, 50)$ | **$0$** | **$0$** | $0 \ne 0$ (No) | **`false`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   If the formula returns `true`, the cross product is non-zero, mathematically guaranteeing both pairwise distinctness and non-collinearity.
+2. **Completeness:**
+   Any valid boomerang has non-zero signed triangle area. The cross product captures all orientations and all lines (including vertical lines) without failure modes.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Slope comparison:** It expresses the same geometry but needs vertical-line handling and may suffer floating-point precision problems. Cross multiplication is exact and uniform.
-- **Shoelace area formula:** Compute twice the triangle area from all three coordinates and test whether it is nonzero. This is algebraically equivalent to the cross product.
-- **Pairwise distance checks:** Distances can prove points are distinct, but they do not by themselves detect collinearity. An area or orientation test is still needed.
-- **Explicit duplicate set:** Checking `len(set(map(tuple, points))) == 3` can enforce distinctness, followed by a collinearity test. The determinant already rejects duplicates, making the set unnecessary.
-- **Vertical line:** Both relevant horizontal differences are zero, so both cross-multiplied products are zero and the points are correctly rejected without division.
-- **Horizontal line:** Both vertical differences are zero, producing the same correct rejection.
-- **Negative slope:** Signs are preserved in integer products, so diagonal direction does not need a separate case.
-- **Clockwise versus counterclockwise:** The determinant sign changes, but any nonzero sign returns true because orientation is irrelevant.
-- **Two identical points:** One direction vector is zero, making both sides equal and returning false.
-- **First and third points identical:** The vectors are opposites, still giving zero cross product and returning false.
-- **Very small nonzero area:** Integer arithmetic distinguishes it exactly; there is no epsilon threshold.
-- **Point order:** Permuting three distinct noncollinear points may change determinant sign but never whether it is zero, so boomerang validity is order-independent.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Vertical Line | `[[7, 0], [7, 50], [7, 100]]` | Both $x$-differences are $0$; products both equal $0$; returns `false`. | Division by zero in $\Delta y / \Delta x$. |
+| Duplicate Points | `[[0, 0], [1, 1], [1, 1]]` | Zero vector produces product $0$; returns `false`. | Forgetting distinctness constraint. |
+| Coincident First/Last | `[[1, 1], [2, 2], [1, 1]]` | Vectors are opposite $(1, 1)$ and $(-1, -1)$; product diff is $0$; returns `false`. | Only checking adjacent pairs. |
+| Negative Coordinates | Coordinates $< 0$ | Standard integer arithmetic preserves signs; correctly computes area. | Modulo or unsigned overflow. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. The input always contains exactly three points. Unpacking coordinates and evaluating two products, four differences, and one comparison takes a fixed amount of work. Time complexity is `O(1)`.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(1)$.
+  - Fixed operations: 4 subtractions, 2 multiplications, 1 inequality comparison.
+  - Runtime: $< 0.0001\text{ ms}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ auxiliary memory; operates purely in register variables.

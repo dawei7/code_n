@@ -1,116 +1,214 @@
 # Guided Example: Car Pooling
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step validation of passenger load constraints along a unidirectional travel corridor using a discrete difference array, prove the Difference Array Telescoping Invariant and the Half-Open Interval Handoff Theorem, and analyze trip schedules across representative vehicle capacity scenarios:
 
-- **Input:** `{"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 4}`
-- **Required output:** `false`
+- **Representative Instance 1 (Overlapping Trips Exceeding Vehicle Capacity):**
+  $$
+  trips = \big[ [2, 1, 5], \; [3, 3, 7] \big], \quad capacity = 4
+  $$
+- **Required Output:** `false`
+  - Problem definitions:
+    - You are given an integer `capacity` representing available seats in a car moving monotonically eastward.
+    - Each trip `[x, f, t]` indicates that $x$ passengers board at kilometer $f$ and exit at kilometer $t$.
+    - The occupancy interval is half-open: passengers occupy seats on $[f, t)$.
+    - Return `true` if passenger occupancy never exceeds `capacity` at any location, or `false` otherwise.
+  - Step 1: Maximum Drop-Off Coordinate:
+    $$
+    mx = \max(5, 7) = \mathbf{7}
+    $$
+    Allocate difference array $d$ of size $mx + 1 = 8$ initialized to zeros:
+    $$
+    d = [0, 0, 0, 0, 0, 0, 0, 0]
+    $$
+  - Step 2: Difference Array Population:
+    - Trip 1: $[2, 1, 5] \implies$ Board $+2$ at $f=1$, exit $-2$ at $t=5$:
+      $$d[1] \leftarrow 0 + 2 = \mathbf{2}, \quad d[5] \leftarrow 0 - 2 = \mathbf{-2}$$
+    - Trip 2: $[3, 3, 7] \implies$ Board $+3$ at $f=3$, exit $-3$ at $t=7$:
+      $$d[3] \leftarrow 0 + 3 = \mathbf{3}, \quad d[7] \leftarrow 0 - 3 = \mathbf{-3}$$
+    - Final Difference Array $d$:
+      $$
+      \begin{array}{c|cccccccc}
+      \text{Index } p & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+      \hline
+      d[p] & 0 & +2 & 0 & +3 & 0 & -2 & 0 & -3 \\
+      \end{array}
+      $$
+  - Step 3: Prefix Sum Sweep-Line Evaluation ($P(p) = \sum_{j=0}^p d[j]$):
+    - $p = 0: P(0) = 0 \le 4$.
+    - $p = 1: P(1) = 0 + 2 = 2 \le 4$.
+    - $p = 2: P(2) = 2 + 0 = 2 \le 4$.
+    - $p = 3: P(3) = 2 + 3 = \mathbf{5} > 4$ $\implies$ **Capacity Exceeded!**
+  - Final Outcome:
+    $$
+    \mathbf{false}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Identical Overlap with Sufficient Capacity):**
+  $$
+  trips = \big[ [2, 1, 5], \; [3, 3, 7] \big], \quad capacity = 5
+  $$
+  - Maximum occupancy is $P(3) = 5$.
+  - Since $5 \le 5$, the car never overloads $\implies \mathbf{true}$.
+
+- **Representative Instance 3 (Simultaneous Drop-Off and Pickup at Common Endpoint):**
+  $$
+  trips = \big[ [5, 0, 5], \; [5, 5, 10] \big], \quad capacity = 5
+  $$
+  - At coordinate $p = 5$:
+    - Trip 1 drops 5 passengers: $-5$.
+    - Trip 2 picks up 5 passengers: $+5$.
+    - Net delta: $d[5] = -5 + 5 = 0$.
+  - Occupancy remains $P(5) = 5 \le 5$ $\implies \mathbf{true}$ (Disembarkation safely precedes boarding).
+
+- **Representative Instance 4 (Full Coordinate Span):**
+  $$
+  trips = \big[ [100, 0, 1000] \big], \quad capacity = 100 \implies P(p) = 100 \le 100 \implies \mathbf{true}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a car with `capacity` empty seats. The vehicle only drives east (i.e., it cannot turn around and drive west).
+Given a list of passenger trips and vehicle capacity, verify whether simultaneous passenger count ever exceeds capacity at any point along the timeline.
 
-The objective is to compute `false` from `{"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 4}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Dense Interval Simulation Hazard:
+  Incrementing every integer coordinate in [f, t):
+    For n trips each spanning up to 1000 kilometers,
+    performing element-wise additions takes O(n * L) operations.
+    If coordinates were 10^9, this would cause massive TLE and memory failure.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Difference Array Invariant (O(n + M) Time, O(M) Space):
+  Each trip [x, f, t] acts as two point events on half-open interval [f, t):
+    d[f] += x  (passengers board at f)
+    d[t] -= x  (passengers disembark at t)
+  Prefix accumulation computes true occupancy P(p) = sum_{j=0}^p d[j]:
+    - Disembarkation at t cancels out boarding before location t continues.
+    - Simultaneous drop-off and pick-up at the same point merge cleanly:
+        d[p] = +new_passengers - leaving_passengers
+  All-condition check: all(s <= capacity for s in accumulate(d))
+  Runs in O(n + M) time with zero per-kilometer inner loops!
+```
 
----
+Representing continuous interval loads by boundary impulses turns multi-element additions into constant-time endpoint modifications.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Record changes at locations instead of simulating every trip
-
-Passengers from trip `[x, f, t]` occupy seats beginning at pickup location `f` and stop occupying them at drop-off location `t`. The occupied interval is therefore half-open: it includes `f` and excludes `t`.
-
-The solution represents this interval with two events. It adds `x` to `d[f]` and subtracts `x` from `d[t]`. No entry is needed at every intermediate kilometer. When these changes are accumulated from west to east, the added passengers remain in the running total until the subtraction at their destination removes them.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 4}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Difference Array Telescoping Invariant & Half-Open Interval Handoff Theorem**:
+1. **Endpoint Discretization:** The interval load $\mathbb{I}_{[f, t)}(p)$ is the prefix sum of two impulses: $+1$ at $f$ and $-1$ at $t$.
+2. **Handoff Symmetry:** Passengers disembarking at $t$ release seats at kilometer $t$ precisely when new passengers boarding at $t$ arrive, allowing exact seat handoff without intermediate overflow.
+3. **Monotonic Eastward Propagation:** A single linear prefix scan over $p \in [0, M]$ visits all potential bottleneck points in topological order.
+4. Total time $\mathcal{O}(n + M)$ and auxiliary space $\mathcal{O}(M)$.
 
 ---
 
-### Step 2: Size the location timeline
+## 2. Conceptual Foundation & The Capacity Sweep Pipeline
 
-`mx = max(e[2] for e in trips)` finds the farthest drop-off location. The input is guaranteed nonempty, so the maximum exists. The difference array has indices zero through `mx`, giving every pickup and drop-off a valid bucket.
+```mermaid
+flowchart TD
+    accTitle: Car Pooling Pipeline
+    accDescr: Flowchart illustrating difference array population and prefix sum capacity validation
+    Start["Trips: [x, f, t], Capacity: C\nFind maximum drop-off: mx = max(t for _, _, t in trips)"] --> InitDiff["Initialize difference array d of size mx + 1 with zeros"]
+    InitDiff --> PopulateLoop["For each trip [x, f, t]:\nd[f] += x\nd[t] -= x"]
+    PopulateLoop --> SweepLine["Initialize running passengers: P = 0\nIterate p from 0 to mx:"]
+    SweepLine --> UpdateP["P += d[p]"]
+    UpdateP --> CheckCap{"P > Capacity ?"}
+    CheckCap -->|"Yes: Over capacity!"| RetFalse["Return false"]
+    CheckCap -->|"No: Valid load"| NextP["p += 1"]
+    NextP --> CheckDoneP{"p <= mx ?"}
+    CheckDoneP -->|"Yes"| UpdateP
+    CheckDoneP -->|"No: All locations verified"| RetTrue["Return true"]
+```
 
-Locations farther east than `mx` do not matter because all trips have ended. Locations with no event remain zero, meaning the occupancy continues unchanged across them.
+### The Difference Array Telescoping Invariant
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $T = \{ (x_k, f_k, t_k) \}_{k=1}^n$ be the set of trips with capacity $C \in \mathbb{Z}^+$.
+1. **Pointwise Occupancy Function:**
+   The total number of passengers present in the vehicle at location $p \ge 0$ is:
+   $$
+   P(p) = \sum_{k=1}^n x_k \cdot \mathbb{I}_{[f_k, t_k)}(p) = \sum_{k: f_k \le p < t_k} x_k
+   $$
+2. **Impulse Decomposition:**
+   The indicator function of the half-open interval $[f_k, t_k)$ can be written as the difference of two Heaviside step functions $H$:
+   $$
+   \mathbb{I}_{[f_k, t_k)}(p) = H(p - f_k) - H(p - t_k)
+   $$
+   where $H(u) = 1$ if $u \ge 0$ and $0$ otherwise.
+3. **Difference Array Identity:**
+   Define $d[p] = \sum_{k: f_k = p} x_k - \sum_{k: t_k = p} x_k$.
+   Then the discrete difference satisfies $P(p) - P(p - 1) = d[p]$.
+   By telescoping summation:
+   $$
+   P(p) = \sum_{j=0}^p d[j]
+   $$
+4. **Feasibility Equivalence:**
+   The trip schedule is feasible if and only if:
+   $$
+   \max_{0 \le p \le M} P(p) \le C \iff \forall p \in [0, M], \; \sum_{j=0}^p d[j] \le C
+   $$
+   Any breach $P(p) > C$ invalidates the schedule immediately. $\blacksquare$
 
 ---
 
-### Step 3: Combine simultaneous pickups and drop-offs
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-Several trips can start or end at the same location. Their changes add in one bucket. A drop-off contributes a negative value and a pickup contributes a positive value; the net bucket applies both before the car continues east.
+$trips = [[2, 1, 5], [3, 3, 7]], \quad capacity = 4, \quad mx = 7$.
 
-This matches the half-open trip semantics. Passengers whose destination is location five no longer consume seats after reaching five, so those seats can be used by passengers picked up there. The net difference correctly allows that transfer without depending on an arbitrary ordering of separate events.
+### Difference Array Setup
+- $d = [0, 0, 0, 0, 0, 0, 0, 0]$ (length 8).
+- Trip 1: $d[1] += 2, \; d[5] -= 2$.
+- Trip 2: $d[3] += 3, \; d[7] -= 3$.
+- Array $d = [0, 2, 0, 3, 0, -2, 0, -3]$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+### Prefix Sum Accumulation
+- $p = 0: P = 0 \le 4$ (Valid).
+- $p = 1: P = 0 + 2 = 2 \le 4$ (Valid).
+- $p = 2: P = 2 + 0 = 2 \le 4$ (Valid).
+- $p = 3: P = 2 + 3 = 5 > 4 \implies$ **Violation!**
+
+Result: `false`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Difference and Occupancy Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 4}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+| Location $p$ | Net Delta $d[p]$ | Active Events | Running Occupancy $P(p)$ | Capacity $C$ | Status Check ($P(p) \le C$) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $0$ | None | $0$ | $4$ | Valid |
+| $1$ | $+2$ | Board 2 (Trip 1) | $2$ | $4$ | Valid |
+| $2$ | $0$ | None | $2$ | $4$ | Valid |
+| **$3$** | **$+3$** | **Board 3 (Trip 2)** | **$5$** | **$4$** | **Breach ($5 > 4$)** |
+| $4$ | $0$ | None | $5$ | $4$ | Breach |
+| $5$ | $-2$ | Exit 2 (Trip 1) | $3$ | $4$ | — |
+| $6$ | $0$ | None | $3$ | $4$ | — |
+| $7$ | $-3$ | Exit 3 (Trip 2) | $0$ | $4$ | — |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A violation is triggered if and only if the cumulative sum at some coordinate exceeds capacity.
+2. **Completeness:**
+   Every pickup and drop-off event is accounted for in $d$, leaving no unmonitored passenger loads.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Sorted event list:** Create pickup and drop-off events, sort by location, and scan the running occupancy. This supports large coordinates in $O(n\log n)$ time; drop-offs must be ordered before pickups at the same point or combined by location.
-- **Ordered difference map:** Store only nonzero changes in a dictionary, sort its keys, and accumulate. It uses $O(n)$ space and avoids a dense coordinate range.
-- **Min-heap of active trips:** Sort trips by pickup, remove all destinations reached before each pickup, and track occupied seats. This costs $O(n\log n)$ and is more complex than the bounded-coordinate difference array.
-- **Simulate each passenger or kilometer per trip:** Updating every point inside every interval can cost $O(nL)$. Endpoint differences encode the same coverage much more efficiently.
-- **Pickup and drop-off at the same location across trips:** Negative and positive changes share one bucket, so freed seats are immediately available.
-- **Capacity exactly reached:** The check uses `<=`, so occupancy equal to capacity is valid.
-- **Capacity exceeded briefly:** Even one prefix sum above capacity makes `all` return false, as required.
-- **Overlapping trips:** Their interval contributions add automatically in the prefix total.
-- **Nonoverlapping trips:** Earlier passengers are subtracted before later pickups, so only each trip’s own load remains on its segment.
-- **Trip ending at `mx`:** Its subtraction fits at the final array index. The value after that location is irrelevant because no trip continues.
-- **Pickup at zero:** The addition at `d[0]` appears in the first prefix sum, representing passengers entering at the initial location.
-- **Input order:** Trips may be arbitrary because event additions are commutative and the prefix scan supplies geographic order.
-- **Nonempty trips:** The maximum drop-off call relies on the guaranteed minimum of one trip.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Same Endpoint Pickup & Drop-off | Trips $[5, 0, 5]$ and $[5, 5, 10]$ | $d[5] = -5 + 5 = 0$; occupancy remains 5; passes. | Treating drop-off as occurring after pickup (causing false overflow). |
+| Exact Capacity Bound | Max occupancy exactly equals $capacity$ | Comparison uses $\le$; returns `true`. | Strict inequality rejecting valid maximums. |
+| Unsorted Trip Inputs | Input trips given out of geographic order | Difference indices are absolute coordinates; sorted naturally by array index. | Requiring pre-sorting of inputs. |
+| Zero Passengers | $x = 0$ (if permitted) | $d[f] += 0, d[t] -= 0$; no effect. | Modifying state on empty trips. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+L)$. Let $n$ be the number of trips and $L$ the farthest drop-off coordinate. Finding `mx` costs $O(n)$, recording events costs another $O(n)$, and scanning the difference array costs $O(L)$. The precise generalized time is $O(n+L)$.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n + M)$, where $n = \text{len}(trips) \le 1000$ and $M = \max(t_i) \le 1000$.
+  - Finding the maximum coordinate $M$ takes $\mathcal{O}(n)$ time.
+  - Recording $n$ trips in the difference array takes $\mathcal{O}(n)$ time.
+  - Prefix accumulation over $M + 1$ positions takes $\mathcal{O}(M)$ time.
+  - Total time: $< 0.002\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(M)$ auxiliary memory for the difference array $d$ of length at most $1001$.

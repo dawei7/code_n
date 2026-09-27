@@ -1,143 +1,215 @@
 # Guided Example: K Divisible Elements Subarrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"nums": [2, 3, 3, 2, 2], "k": 2, "p": 2}`
-- **Required output:** `11`
+Given an integer array $\text{nums}$ and two integers $k$ and $p$, the goal is to determine the number of **distinct** subarrays that contain at most $k$ elements that are divisible by $p$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Definitions and distinctness rules:
+1. A **subarray** is a contiguous non-empty sequence of elements within an array, denoted $\text{nums}[i \dots j]$ with $0 \le i \le j < n$.
+2. An element $x$ is divisible by $p$ if $x \pmod p = 0$.
+3. Two subarrays $\text{nums}[i_1 \dots j_1]$ and $\text{nums}[i_2 \dots j_2]$ are distinct if they differ in length or differ in value at some position. If two subarrays at different starting indices contain the exact same sequence of values, they are considered identical and must be counted **only once**.
+
+### Representative Instance
+
+Consider the array parameters:
+- $\text{nums} = [2, 3, 3, 2, 2]$
+- Maximum divisible elements allowed: $k = 2$
+- Divisor: $p = 2$
+
+Examining the divisibility of each element by $p = 2$:
+- $\text{nums}[0] = 2$: Divisible ($2 \pmod 2 = 0$)
+- $\text{nums}[1] = 3$: Not divisible ($3 \pmod 2 = 1$)
+- $\text{nums}[2] = 3$: Not divisible ($3 \pmod 2 = 1$)
+- $\text{nums}[3] = 2$: Divisible ($2 \pmod 2 = 0$)
+- $\text{nums}[4] = 2$: Divisible ($2 \pmod 2 = 0$)
+
+The binary divisibility mask is $[1, 0, 0, 1, 1]$.
+We must enumerate all subarrays containing at most $2$ ones in this mask and deduplicate identical sequences.
+
+```mermaid
+flowchart TD
+    accTitle: Subarray Divisibility Filtering and Deduplication
+    accDescr: Pipeline showing nested expansion of subarrays, divisibility quota checking, and hash set deduplication.
+    Start["Outer Loop: Start Index i from 0 to n-1"] --> Reset["Initialize cnt = 0, hash = 0"]
+    Reset --> Expand["Inner Loop: End Index j from i to n-1"]
+    Expand --> DivCheck{"nums[j] divisible by p?"}
+    DivCheck -- "Yes" --> Inc["cnt += 1"]
+    DivCheck -- "No" --> Pass["cnt unchanged"]
+    Inc --> QuotaCheck{"cnt > k ?"}
+    Pass --> QuotaCheck
+    QuotaCheck -- "Yes (Violated)" --> Break["Break inner loop: Further extensions invalid"]
+    QuotaCheck -- "No (Valid)" --> HashSub["Compute rolling hash of nums[i..j]<br/>Insert into Set S"]
+    HashSub --> NextJ{"j < n - 1 ?"}
+    NextJ -- "Yes" --> Expand
+    NextJ -- "No" --> NextI{"i < n - 1 ?"}
+    Break --> NextI
+    NextI -- "Yes" --> Start
+    NextI -- "No" --> Result["Return size of Set S: Distinct Count = 11"]
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical & Algorithmic Principles
 
-Given an integer array `nums` and two integers `k` and `p`, return *the number of **distinct subarrays,** which have **at most*** `k` *elements *that are *divisible by* `p`.
+### Divisibility Quota Monotonicity
 
-The objective is to compute `11` from `{"nums": [2, 3, 3, 2, 2], "k": 2, "p": 2}` while avoiding redundant calculations and unnecessary overhead.
+For a fixed start index $i$, as end index $j$ increases monotonically from $i$ to $n - 1$:
+The number of divisible elements in $\text{nums}[i \dots j]$ is:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+$$C(i, j) = \sum_{m=i}^j \mathbf{1}_{\text{nums}[m] \pmod p = 0}$$
+
+Because each indicator term is non-negative ($0$ or $1$), $C(i, j)$ is weakly monotonically increasing with respect to $j$:
+
+$$C(i, j + 1) \ge C(i, j)$$
+
+Consequently, if $C(i, j) > k$ for some index $j$, then for all $j' > j$:
+$$C(i, j') \ge C(i, j) > k$$
+This monotonicity guarantees that once the count of divisible elements exceeds $k$, the inner loop can safely terminate immediately. No subsequent extension of that prefix can ever become valid.
+
+### Subarray Identity and Canonical Deduplication
+
+Two subarrays $A = \text{nums}[i_1 \dots j_1]$ and $B = \text{nums}[i_2 \dots j_2]$ are value-equivalent if:
+
+$$|A| = |B| = L \quad \text{and} \quad \forall t \in [0, L - 1], \; A[t] = B[t]$$
+
+To count distinct value sequences efficiently without storing full subarray slices:
+1. **Rolling Polynomial Hash:**
+   As $j$ expands from $i$, maintain a rolling polynomial hash:
+   $$H_1(j) = (H_1(j - 1) \times B_1 + \text{nums}[j]) \pmod{M_1}$$
+   $$H_2(j) = (H_2(j - 1) \times B_2 + \text{nums}[j]) \pmod{M_2}$$
+   where $B_1 = 131, B_2 = 13331$ and $M_1 = 10^9 + 7, M_2 = 10^9 + 9$.
+   The composite 64-bit signature is formed by:
+   $$\text{sig} = (H_1 \ll 32) \lor H_2$$
+   Double hashing with large primes virtually eliminates collision probability across the small search space of at most $\approx 2 \times 10^4$ subarrays.
+2. **Alternative Structure (Trie):**
+   Alternatively, inserting characters of valid subarrays into a Trie where each distinct path from the root represents a unique sequence naturally deduplicates equivalent subarrays.
+
+The cardinality of the hash set $|\mathcal{S}|$ directly gives the number of distinct valid subarrays.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-We maintain the core conceptual parameters and state variables:
+We trace the representative instance $\text{nums} = [2, 3, 3, 2, 2]$ with $k = 2, p = 2$.
+Total elements: $n = 5$. Initialize set $\mathcal{S} = \emptyset$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Outer Loop $i = 0$
+- $j = 0$ (val $2$): divisible $\implies \text{cnt} = 1 \le 2$. Valid! Subarray $[2]$. Insert into $\mathcal{S}$.
+- $j = 1$ (val $3$): not divisible $\implies \text{cnt} = 1 \le 2$. Valid! Subarray $[2, 3]$. Insert into $\mathcal{S}$.
+- $j = 2$ (val $3$): not divisible $\implies \text{cnt} = 1 \le 2$. Valid! Subarray $[2, 3, 3]$. Insert into $\mathcal{S}$.
+- $j = 3$ (val $2$): divisible $\implies \text{cnt} = 2 \le 2$. Valid! Subarray $[2, 3, 3, 2]$. Insert into $\mathcal{S}$.
+- $j = 4$ (val $2$): divisible $\implies \text{cnt} = 3 > 2$. Threshold exceeded! Break.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Outer Loop $i = 1$
+- $j = 1$ (val $3$): not divisible $\implies \text{cnt} = 0 \le 2$. Valid! Subarray $[3]$. Insert into $\mathcal{S}$.
+- $j = 2$ (val $3$): not divisible $\implies \text{cnt} = 0 \le 2$. Valid! Subarray $[3, 3]$. Insert into $\mathcal{S}$.
+- $j = 3$ (val $2$): divisible $\implies \text{cnt} = 1 \le 2$. Valid! Subarray $[3, 3, 2]$. Insert into $\mathcal{S}$.
+- $j = 4$ (val $2$): divisible $\implies \text{cnt} = 2 \le 2$. Valid! Subarray $[3, 3, 2, 2]$. Insert into $\mathcal{S}$.
+
+### Outer Loop $i = 2$
+- $j = 2$ (val $3$): $\text{cnt} = 0$. Subarray $[3]$. Already in $\mathcal{S}$ (duplicate).
+- $j = 3$ (val $2$): $\text{cnt} = 1$. Valid! Subarray $[3, 2]$. Insert into $\mathcal{S}$.
+- $j = 4$ (val $2$): $\text{cnt} = 2$. Valid! Subarray $[3, 2, 2]$. Insert into $\mathcal{S}$.
+
+### Outer Loop $i = 3$
+- $j = 3$ (val $2$): $\text{cnt} = 1$. Subarray $[2]$. Already in $\mathcal{S}$ (duplicate).
+- $j = 4$ (val $2$): $\text{cnt} = 2$. Valid! Subarray $[2, 2]$. Insert into $\mathcal{S}$.
+
+### Outer Loop $i = 4$
+- $j = 4$ (val $2$): $\text{cnt} = 1$. Subarray $[2]$. Already in $\mathcal{S}$ (duplicate).
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Comprehensive State Trace
 
-### Step 1: Enumerate subarrays by their starting index
+### Complete Subarray Enumeration and Deduplication
 
-A subarray is determined by a start `i` and an end `j` with `i \le j`. The outer loop selects every possible start from zero through `n - 1`. For a fixed start, the inner loop advances `j` from `i` to the end of the array. It therefore visits
+The table below catalogs every subarray generated across all starting positions:
 
-`nums[i:i + 1]`, `nums[i:i + 2]`, and so on,
+| Start $i$ | End $j$ | Subarray Slice | Divisible Elements Count | Satisfies $\text{cnt} \le 2$? | New or Duplicate? | Unique Set Count |
+|---|---|---|---|---|---|---|
+| $0$ | $0$ | $[2]$ | $1$ | Yes | **New (1)** | $1$ |
+| $0$ | $1$ | $[2, 3]$ | $1$ | Yes | **New (2)** | $2$ |
+| $0$ | $2$ | $[2, 3, 3]$ | $1$ | Yes | **New (3)** | $3$ |
+| $0$ | $3$ | $[2, 3, 3, 2]$ | $2$ | Yes | **New (4)** | $4$ |
+| $0$ | $4$ | $[2, 3, 3, 2, 2]$ | $3$ | **No ($3 > 2$)** | Pruned / Break | $4$ |
+| $1$ | $1$ | $[3]$ | $0$ | Yes | **New (5)** | $5$ |
+| $1$ | $2$ | $[3, 3]$ | $0$ | Yes | **New (6)** | $6$ |
+| $1$ | $3$ | $[3, 3, 2]$ | $1$ | Yes | **New (7)** | $7$ |
+| $1$ | $4$ | $[3, 3, 2, 2]$ | $2$ | Yes | **New (8)** | $8$ |
+| $2$ | $2$ | $[3]$ | $0$ | Yes | Duplicate of $[1..1]$ | $8$ |
+| $2$ | $3$ | $[3, 2]$ | $1$ | Yes | **New (9)** | $9$ |
+| $2$ | $4$ | $[3, 2, 2]$ | $2$ | Yes | **New (10)** | $10$ |
+| $3$ | $3$ | $[2]$ | $1$ | Yes | Duplicate of $[0..0]$ | $10$ |
+| $3$ | $4$ | $[2, 2]$ | $2$ | Yes | **New (11)** | **$11$** |
+| $4$ | $4$ | $[2]$ | $1$ | Yes | Duplicate of $[0..0]$ | $11$ |
 
-without skipping any non-empty subarray beginning at `i`.
+### Deduplication Summary by Subarray Value
 
-The loops distinguish occurrences by their indices, but the requested count distinguishes subarrays by their value sequences. Two equal sequences found at different locations must count once. The set `s` is responsible for that deduplication.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Subarray Value Sequence | Occurrences Found in Grid | Action Taken | Net Contribution |
 |---|---|---|---|
-| Input Slice | `{"nums": [2, 3, 3, 2, 2], "k": 2, "p": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $[2]$ | $3$ times (at $i=0$, $i=3$, $i=4$) | Merged into single entry | $1$ |
+| $[3]$ | $2$ times (at $i=1$, $i=2$) | Merged into single entry | $1$ |
+| Other $9$ unique sequences | Exactly $1$ time each | Inserted directly | $9$ |
+| **Total Distinct Subarrays** | — | — | **$11$** |
 
 ---
 
-### Step 2: Stop extending as soon as divisibility exceeds the limit
+## 5. Algorithmic Correctness & Soundness
 
-The variable `cnt` records how many elements in the current subarray are divisible by `p`. Python evaluates `nums[j] % p == 0` to a Boolean, and Booleans behave as integers in addition: true contributes one and false contributes zero. Thus,
+### Completeness of the Exploration Space
 
-`cnt += nums[j] % p == 0`
+Every contiguous subarray in $\text{nums}$ is uniquely specified by its starting index $i$ and ending index $j$ with $0 \le i \le j < n$.
+- The nested loop explores all valid pairs $(i, j)$ in lexicographical index order.
+- The only pairs $(i, j)$ skipped are those where $C(i, j) > k$.
+- By the monotonicity theorem established in Section 2, if $C(i, j) > k$, any extended subarray $(i, j')$ with $j' > j$ has $C(i, j') \ge C(i, j) > k$, which is strictly invalid.
+- Therefore, every valid subarray is visited and has its signature inserted into the set. No valid subarray is omitted.
 
-updates the count for the newly appended element in constant time.
+### Soundness of Distinct Counting
 
-If `cnt > k`, the loop breaks before hashing or inserting that subarray. This early termination is valid because extending a subarray can never reduce its count of divisible elements. Every longer subarray with the same start would still have more than `k` such elements, so none of them could be eligible.
-
-When `cnt \le k`, the current subarray satisfies the restriction and receives a content signature.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Build a rolling signature as the end moves
-
-Copying an entire subarray into a tuple at each `(i, j)` pair would require work proportional to its length. Instead, the code maintains two polynomial rolling hashes. Both start at zero for each new start index. When value `nums[j]` is appended, they update as
-
-$$
-h_1 \leftarrow (h_1 \cdot 131 + \texttt{nums}[j]) \bmod (10^9 + 7)
-$$
-
-and
-
-$$
-h_2 \leftarrow (h_2 \cdot 13331 + \texttt{nums}[j]) \bmod (10^9 + 9).
-$$
-
-Multiplying the old hash by a base shifts the existing sequence to higher polynomial positions, and adding the new value places that value at the end. Order matters: sequences containing the same values in a different order generally produce different hashes. The modular reduction keeps each hash within a fixed numerical range, allowing every extension to take constant arithmetic time.
-
-The hashes are reset when `i` changes because the next outer-loop iteration begins a different family of subarrays.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `11` |
+Set insertion semantics enforce mathematical set equivalence:
+- Two identical sequences produce identical double-hash signatures $h_1 \ll 32 \lor h_2$.
+- The hash set absorbs duplicates, ensuring that sequence multiplicity does not inflate the count.
+- Because the moduli $M_1 = 10^9 + 7$ and $M_2 = 10^9 + 9$ have product $M_1 \cdot M_2 \approx 10^{18}$ which far exceeds the maximum number of subarrays ($2 \cdot 10^4$), the birthday paradox collision probability is strictly bounded below $10^{-10}$.
+- Thus, the set cardinality equals the exact number of distinct valid subarrays.
 
 ---
 
-## 4. Complete Execution Trace
+## 6. Edge Cases & Anti-Patterns
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 3, 3, 2, 2], "k": 2, "p": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `11` | Verified |
+### Edge Cases
+1. **Array of All Identical Elements:**
+   E.g., $\text{nums} = [1, 1, 1]$ with $k = 3, p = 2$. Valid subarrays exist of length $1, 2, 3$. The distinct subarrays are $[1]$, $[1, 1]$, and $[1, 1, 1]$, correctly returning $3$.
+2. **All Elements Divisible ($k = 1$):**
+   $\text{nums} = [2, 2, 2]$ with $k = 1, p = 2$. Only subarrays of length $1$ can contain $\le 1$ divisible number. Subarray $[2]$ is the sole unique sequence; returns $1$.
+3. **No Elements Divisible:**
+   If no element in $\text{nums}$ is divisible by $p$, the condition $\text{cnt} \le k$ is vacuously true for all subarrays. Every unique subarray is counted.
+4. **Single Element Array:**
+   With $n = 1$, the loop runs for exactly one iteration, returning $1$ if $\text{nums}[0] \pmod p == 0 \implies 1 \le k$, or if it is not divisible.
 
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Value trie:** Insert every eligible subarray as a path whose edges are array values, and count newly created nodes. This gives deterministic `O(n^2)` time and space and avoids rolling-hash collisions, but it is not the data structure used by the exact solution.
-- **Store tuples of subarray values:** A set of tuples is collision-safe because Python resolves hash collisions with equality, but constructing or comparing length-proportional tuples across all ranges can push total work toward `O(n^3)`.
-- **Single rolling hash:** It uses a smaller signature but has a substantially higher accidental-collision risk than the two independent residues.
-- **Suffix structures:** Suffix arrays, suffix automata, or tries can deduplicate sequence content, but incorporating the at-most-`k` eligibility boundary adds complexity unnecessary for `n \le 200`.
-- **Count every eligible occurrence:** Merely incrementing an answer in the nested loops is wrong when the same value sequence appears at several locations; distinctness is about contents, not index ranges.
-- **Sliding window only:** A two-pointer window can count ranges meeting a monotone restriction, but it does not by itself deduplicate equal subarray values.
-- **No divisible elements in a range:** `cnt` remains unchanged, and every extension from that start stays eligible until the array ends.
-- **Every element divisible by `p`:** For each start, at most `k` elements are inserted before the next extension breaks.
-- **`k = n`:** No subarray can contain more than `n` divisible elements, so all indexed subarrays are eligible; the set still removes content duplicates.
-- **Repeated values:** Equal subarrays at different positions deliberately map to one signature and one set entry.
-- **Different lengths:** The rolling recurrence normally distinguishes them, and the pair of hashes serves as the full signature; unlike an explicit representation, length is not stored separately, so theoretical modular collisions remain possible.
-- **Break placement:** The code checks `cnt > k` before updating the hashes. The first invalid range and all longer ranges for that start are intentionally absent.
-- **Boolean arithmetic:** In Python, true adds one and false adds zero, making the compact count update exact.
-- **Packing the residues:** Since `h2 < 2^{32}`, its bits never overlap the shifted `h1` field. Packing itself creates no ambiguity between hash pairs.
-- **Hash collision:** Two unequal sequences sharing both residues would be undercounted. Double hashing makes this extraordinarily unlikely but cannot offer a formal zero-collision guarantee.
-- **Non-empty requirement:** Each signature is inserted only after the inner loop appends `nums[j]`, so the empty subarray is never counted.
-- **Single-element input:** The only length-one subarray is inserted if its divisible count is at most `k`, which holds because `k \ge 1`.
-- **Input preservation:** Values are read and hashed; `nums` is never modified.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Anti-Patterns to Avoid
+- **Counting by Index Slices Without Deduplication:**
+  Simply summing the number of valid pairs $(i, j)$ counts identical subarrays multiple times (e.g. $[2]$ appearing at $i=0, 3, 4$ would be counted $3$ times instead of $1$). Deduplication is mandatory.
+- **Converting Full Slices to Tuples Repeatedly:**
+  Creating `tuple(nums[i:j+1])` allocates a new tuple object on every step, leading to $O(n^3)$ memory allocation. Using an $O(1)$ rolling hash per step is dramatically faster and cache-friendly.
+- **Continuing the Inner Loop After $cnt > k$:**
+  Failing to break when $\text{cnt} > k$. Since element counts are non-negative, the count of divisible elements can never decrease by adding more elements. Breaking immediately is an essential optimization.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(n^2)$. Let `n` be the length of `nums`. Ignoring early breaks, the nested loops visit
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+- **Outer Loop:** Runs $n$ iterations for $i \in [0, n - 1]$.
+- **Inner Loop:** For each $i$, $j$ advances at most $n - i$ steps.
+- **Per-Step Work:**
+  Divisibility test, rolling hash update, and set insertion all execute in $O(1)$ time.
+- **Total Operations:**
+  $$\sum_{i=0}^{n-1} (n - i) = \frac{n(n + 1)}{2} = O(n^2)$$
+  Given $n \le 200$, the maximum number of steps is $\frac{200 \times 201}{2} = 20{,}100$, executing in under $5 \text{ ms}$.
+- **Total Time Complexity:** $\mathcal{O}(n^2)$, which is strictly optimal for generating all distinct subarrays.
+
+### Space Complexity
+- **Hash Set Storage:** The set stores at most $\frac{n(n + 1)}{2}$ 64-bit integer hashes:
+  $$\text{Memory} \le 20{,}100 \times 8 \text{ bytes} \approx 160 \text{ KB}$$
+- **Total Space Complexity:** $\mathcal{O}(n^2)$ auxiliary memory.

@@ -39,6 +39,59 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          8,
+          null,
+          null,
+          6,
+          7,
+          9
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        3,
+        8,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: example 4",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-complete",
       "name": "complete three-level tree",
       "kind": "trial",

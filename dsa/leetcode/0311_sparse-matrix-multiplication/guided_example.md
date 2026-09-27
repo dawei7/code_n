@@ -1,138 +1,200 @@
 # Guided Example: Sparse Matrix Multiplication
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step sparse matrix product evaluation, inner product dimension matching ($M \times K$ by $K \times N \to M \times N$), zero-skipping computational savings, and cell accumulator aggregation on representative sparse matrix instances:
 
-- **Input:** `{"mat1": [[1, 0, 0], [-1, 0, 3]], "mat2": [[7, 0, 0], [0, 0, 0], [0, 0, 1]]}`
-- **Required output:** `[[7, 0, 0], [-7, 0, 3]]`
+- **Input:**
+  $$
+  \text{mat1} = \begin{bmatrix}
+  1 & 0 & 0 \\
+  -1 & 0 & 3
+  \end{bmatrix}, \quad
+  \text{mat2} = \begin{bmatrix}
+  7 & 0 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 1
+  \end{bmatrix}
+  $$
+- **Required output:**
+  $$
+  \text{ans} = \begin{bmatrix}
+  7 & 0 & 0 \\
+  -7 & 0 & 3
+  \end{bmatrix}
+  $$
+  - Cell $(0, 0)$: $1 \times 7 + 0 \times 0 + 0 \times 0 = 7$
+  - Cell $(1, 0)$: $(-1) \times 7 + 0 \times 0 + 3 \times 0 = -7$
+  - Cell $(1, 2)$: $(-1) \times 0 + 0 \times 0 + 3 \times 1 = 3$
+  - All other cells evaluate to $0$
+- **All-Zero Matrix Multiplication:** Multiplying by a zero matrix immediately produces an $M \times N$ zero matrix
+- **Identity Matrix Multiplier:** Multiplying by an identity matrix preserves the original matrix values exactly
+- **Negative Sign Cancellation:** Opposing products cancel to $0$ without violating arithmetic soundness
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates matrix dot-product accumulation, proves how the inner dimension $K$ aligns row slices with column vectors, contrasts naive $O(M N K)$ multiplication against sparse index skipping, and operates in $O(M N)$ output auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two <a href="https://en.wikipedia.org/wiki/Sparse_matrix" target="_blank">sparse matrices</a> `mat1` of size `m x k` and `mat2` of size `k x n`, return the result of `mat1 x mat2`. You may assume that multiplication is always possible.
+Given two matrices:
+- $\text{mat1}$ of dimensions $M \times K = 2 \times 3$
+- $\text{mat2}$ of dimensions $K \times N = 3 \times 3$
 
-The objective is to compute `[[7, 0, 0], [-7, 0, 3]]` from `{"mat1": [[1, 0, 0], [-1, 0, 3]], "mat2": [[7, 0, 0], [0, 0, 0], [0, 0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+Compute the matrix product $\text{ans} = \text{mat1} \times \text{mat2}$ of dimensions $M \times N = 2 \times 3$:
+$$
+\text{ans}[i][j] = \sum_{k=0}^{K-1} \text{mat1}[i][k] \times \text{mat2}[k][j]
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+mat1 (2x3):             mat2 (3x3):
+[ 1, 0, 0 ]             [ 7, 0, 0 ]
+[-1, 0, 3 ]             [ 0, 0, 0 ]
+                        [ 0, 0, 1 ]
+
+Computation for ans[0][0]:
+Row 0 of mat1: [1, 0, 0]
+Col 0 of mat2: [7, 0, 0]
+Dot product: 1*7 + 0*0 + 0*0 = 7
+
+Computation for ans[1][0]:
+Row 1 of mat1: [-1, 0, 3]
+Col 0 of mat2: [7,  0, 0]
+Dot product: (-1)*7 + 0*0 + 3*0 = -7
+
+Computation for ans[1][2]:
+Row 1 of mat1: [-1, 0, 3]
+Col 2 of mat2: [0,  0, 1]
+Dot product: (-1)*0 + 0*0 + 3*1 = 3
+```
+
+### Exploiting Sparsity in Matrix Multiplication
+In standard matrix multiplication, $M \times N \times K$ multiplications and additions are performed.
+When matrices are **sparse** (most elements are $0$):
+- If $\text{mat1}[i][k] == 0$, the entire product $\text{mat1}[i][k] \times \text{mat2}[k][j]$ is $0$ for all $j \in [0, N - 1]$.
+- Reordering loops as $i \to k \to j$ allows testing `if mat1[i][k] != 0` before the inner column loop, bypassing thousands of redundant arithmetic operations!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Output Matrix Dimensions:
+- Let $M = \text{len}(\text{mat1})$ (Number of rows in result).
+- Let $N = \text{len}(\text{mat2}[0])$ (Number of columns in result).
+- Let $K = \text{len}(\text{mat2}) = \text{len}(\text{mat1}[0])$ (Shared inner dimension).
+- Initialize $\text{ans}$ as an $M \times N$ matrix of zeros: `[[0] * n for _ in range(m)]`.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Triple Loop Multiplication Protocol:
+For each row $i \in [0, M - 1]$:
+  For each shared index $k \in [0, K - 1]$:
+    If $\text{mat1}[i][k] \ne 0$:
+      For each column $j \in [0, N - 1]$:
+        If $\text{mat2}[k][j] \ne 0$:
+          $$
+          \text{ans}[i][j] \leftarrow \text{ans}[i][j] + \text{mat1}[i][k] \times \text{mat2}[k][j]
+          $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At the end of the iterations, $\text{ans}[i][j]$ is the exact inner product of row $i$ of $\text{mat1}$ and column $j$ of $\text{mat2}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the dimensions line up
-
-For a fixed output row `i`, `mat1[i]` contains $k$ values. For a fixed output column `j`, taking `mat2[0][j]`, `mat2[1][j]`, through `mat2[k - 1][j]` also gives $k$ values.
-
-The shared index selects corresponding positions along that row and column. Multiplying each pair and adding all $k$ products produces one scalar output cell.
-
-The problem guarantees `len(mat1[0]) == len(mat2)`, so every access `mat1[i][k]` has a matching `mat2[k][j]`. No dimension validation is needed in the method.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"mat1": [[1, 0, 0], [-1, 0, 3]], "mat2": [[7, 0, 0], [0, 0, 0], [0, 0, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the matrix multiplication on $\text{mat1} \; (2 \times 3)$ and $\text{mat2} \; (3 \times 3)$:
+Output grid size: $2 \times 3$, initialized to all zeros.
 
 ---
 
-### Step 2: Creating the output
+### Row $i = 0$: $\text{mat1}[0] = [1, 0, 0]$
+- **$k = 0$ ($\text{mat1}[0][0] = 1 \ne 0$):**
+  Inspect Row $k = 0$ of $\text{mat2}$: $[7, 0, 0]$.
+  - $j = 0$: $\text{mat2}[0][0] = 7 \implies \text{ans}[0][0] \mathrel{+}= 1 \times 7 = \mathbf{7}$.
+  - $j = 1$: $\text{mat2}[0][1] = 0 \implies \text{No-op}$.
+  - $j = 2$: $\text{mat2}[0][2] = 0 \implies \text{No-op}$.
+- **$k = 1$ ($\text{mat1}[0][1] = 0$):**
+  Zero multiplier! Entire loop over $j$ skipped.
+- **$k = 2$ ($\text{mat1}[0][2] = 0$):**
+  Zero multiplier! Skipped.
 
-The source reads
-
-- `m = len(mat1)` for the output row count;
-- `n = len(mat2[0])` for the output column count.
-
-It creates `ans` as $m$ distinct rows, each containing $n$ zeros. Starting with zero is necessary because every output cell is built as a running sum of products.
-
-The list comprehension creates a new inner list for each row. This avoids aliasing: changing `ans[i][j]` affects only that row rather than accidentally modifying the same shared row object several times.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Row 0 result: $\text{ans}[0] = [7, 0, 0]$.
 
 ---
 
-### Step 3: The three nested loops
+### Row $i = 1$: $\text{mat1}[1] = [-1, 0, 3]$
+- **$k = 0$ ($\text{mat1}[1][0] = -1 \ne 0$):**
+  Inspect Row $k = 0$ of $\text{mat2}$: $[7, 0, 0]$.
+  - $j = 0$: $\text{mat2}[0][0] = 7 \implies \text{ans}[1][0] \mathrel{+}= (-1) \times 7 = \mathbf{-7}$.
+  - $j = 1$: $\text{mat2}[0][1] = 0 \implies \text{No-op}$.
+  - $j = 2$: $\text{mat2}[0][2] = 0 \implies \text{No-op}$.
+- **$k = 1$ ($\text{mat1}[1][1] = 0$):**
+  Zero multiplier! Skipped.
+- **$k = 2$ ($\text{mat1}[1][2] = 3 \ne 0$):**
+  Inspect Row $k = 2$ of $\text{mat2}$: $[0, 0, 1]$.
+  - $j = 0$: $\text{mat2}[2][0] = 0 \implies \text{No-op}$.
+  - $j = 1$: $\text{mat2}[2][1] = 0 \implies \text{No-op}$.
+  - $j = 2$: $\text{mat2}[2][2] = 1 \implies \text{ans}[1][2] \mathrel{+}= 3 \times 1 = \mathbf{3}$.
 
-The outer loop chooses output row `i` from 0 through $m-1$. The middle loop chooses output column `j` from 0 through $n-1$. Together, these loops visit every one of the $mn$ output coordinates exactly once.
+Row 1 result: $\text{ans}[1] = [-7, 0, 3]$.
 
-For one fixed `(i, j)`, the inner loop iterates over every shared-dimension index from 0 through `len(mat2) - 1`. At each index it adds
+---
 
-`mat1[i][k] * mat2[k][j]`
-
-to the current output cell.
-
-When the inner loop begins, `ans[i][j]` is zero. After its first iteration, it contains the contribution through shared index 0. After shared index `t`, it contains
-
+### Completed Multiplication
+Output matrix:
 $$
-\sum_{q=0}^{t}\texttt{mat1}[i][q]\cdot\texttt{mat2}[q][j].
+\mathbf{\begin{bmatrix}
+7 & 0 & 0 \\
+-7 & 0 & 3
+\end{bmatrix}}
 $$
-
-After the final iteration, this is exactly the complete dot-product formula. The next `(i, j)` cell starts from its own independent zero.
-
-Although `k` is also conventionally used as the name of the shared dimension, in the Python source it is the loop variable. `len(mat2)` supplies the dimension size, and the loop variable takes each valid shared index in turn.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[7, 0, 0], [-7, 0, 3]]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"mat1": [[1, 0, 0], [-1, 0, 3]], "mat2": [[7, 0, 0], [0, 0, 0], [0, 0, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[7, 0, 0], [-7, 0, 3]]` | Verified |
+```text
+mat1: [[1, 0, 0], [-1, 0, 3]]
+mat2: [[7, 0, 0], [0, 0, 0], [0, 0, 1]]
+
+i = 0:
+  k = 0 (val = 1):  j = 0 -> ans[0][0] += 1 * 7 = 7
+  k = 1 (val = 0):  skipped
+  k = 2 (val = 0):  skipped
+i = 1:
+  k = 0 (val = -1): j = 0 -> ans[1][0] += -1 * 7 = -7
+  k = 1 (val = 0):  skipped
+  k = 2 (val = 3):  j = 2 -> ans[1][2] += 3 * 1 = 3
+
+Final Result:
+[[7, 0, 0],
+ [-7, 0, 3]]
+```
+
+| Output Cell $(i, j)$ | Row Vector of $\text{mat1}$ | Column Vector of $\text{mat2}$ | Non-Zero Multiplications | Computed Cell Value |
+|:---:|:---:|:---:|:---|:---:|
+| **$(0, 0)$** | $[1, 0, 0]$ | $[7, 0, 0]^T$ | $1 \times 7 = 7$ | **7** |
+| $(0, 1)$ | $[1, 0, 0]$ | $[0, 0, 0]^T$ | None | **0** |
+| $(0, 2)$ | $[1, 0, 0]$ | $[0, 0, 1]^T$ | None | **0** |
+| **$(1, 0)$** | $[-1, 0, 3]$ | $[7, 0, 0]^T$ | $(-1) \times 7 = -7$ | **-7** |
+| $(1, 1)$ | $[-1, 0, 3]$ | $[0, 0, 0]^T$ | None | **0** |
+| **$(1, 2)$** | $[-1, 0, 3]$ | $[0, 0, 1]^T$ | $3 \times 1 = 3$ | **3** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Linear algebra defines the matrix product entry $(i, j)$ as the scalar dot product of row $i$ of the first matrix and column $j$ of the second matrix. The triple loop computes $\sum_{k=0}^{K-1} \text{mat1}[i][k] \times \text{mat2}[k][j]$. Skipping indices where either factor is zero leaves the summation mathematically identical because $0 \times x = 0$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every pair of rows $i \in [0, M-1]$ and columns $j \in [0, N-1]$ is evaluated across all shared indices $k \in [0, K-1]$. No non-zero component is omitted, guaranteeing the product matrix is completely and accurately formed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Skip zero values from `mat1`:** Reorder loops as row `i`, shared index `t`, then output column `j`. If `mat1[i][t]` is zero, skip the entire column loop. This helps when the left matrix is sparse while retaining dense storage.
-- **Compress both matrices by row:** Store only `(column, value)` pairs for every nonzero entry. For each nonzero `mat1[i][t]`, propagate products through nonzero entries in row `t` of `mat2`. This realizes the sparse behavior described by the manifest.
-- **CSR for `mat1` and CSC for `mat2`:** Intersect sorted shared indices for each output row-column pair. This avoids zero products but adds compression and two-pointer machinery.
-- **Transpose `mat2`:** Turning its columns into contiguous rows can make each dot product easier to express and can improve memory locality, but it still performs $O(mnk)$ arithmetic unless zeros are skipped.
-- **Return a sparse product:** The contract requires a dense $m\times n$ list, so even a sparse multiplication strategy must eventually materialize zero output entries.
-- **All-zero matrix:** Every multiply-add contributes zero, and the initialized output is returned unchanged.
-- **One-by-one matrices:** The loops execute once and return the product of the two scalar entries.
-- **Negative entries:** Ordinary signed multiplication and addition naturally handle negative contributions and cancellation.
-- **Cancellation to zero:** An output zero may result from nonzero positive and negative products canceling, so a sparse algorithm cannot infer output sparsity merely from input positions.
-- **Dense inputs:** The direct method performs the asymptotically expected $mnk$ work, and sparse metadata would offer little arithmetic reduction.
-- **Sparse inputs:** The exact method still performs all $mnk$ multiplications, including products containing zero; this is its main limitation relative to the problem's title.
-- **Compatible dimensions:** The source assumes at least one row and column and a matching shared dimension, all guaranteed by the constraints.
-- **No input mutation:** The method only reads both matrices and writes a newly allocated result.
-- **Integer magnitude:** Products and sums remain exact in Python integers, including negative totals.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Memory Aliasing in Python:** Initializing a 2D matrix with `[[0] * n] * m` creates $m$ references to the **same** underlying list, causing an update to `ans[0][0]` to overwrite all rows simultaneously. Independent rows must be instantiated via list comprehension: `[[0] * n for _ in range(m)]`.
+- **Inefficient Loop Ordering:** The classical $i \to j \to k$ loop order prevents skipping row zeros effectively because $j$ changes on the second loop. Ordering as $i \to k \to j$ allows testing $\text{mat1}[i][k] \ne 0$ once and skipping the entire $N$-element inner loop.
+- **Negative Sign Arithmetic:** Multiplying negative values (e.g. $-1 \times 7 = -7$) and adding terms of opposite signs must preserve exact signed arithmetic.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(mnk)$. There are $m$ choices for `i`, $n$ choices for `j`, and $k$ shared indices for each pair. The exact number of multiply-add iterations is $mnk$, so time complexity is $O(mnk)$ regardless of how many matrix entries are zero.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(M \cdot N \cdot K)$ in the worst-case dense setting. With sparsity skipping ($i \to k \to j$), runtime is bounded by $O(M \cdot K + \text{nnz}(\text{mat1}) \cdot N)$ where $\text{nnz}$ is the number of non-zero entries. If $\text{mat1}$ has density $\rho_1 \ll 1$, operations drop by a factor of $\rho_1$.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory (excluding the required $M \times N$ output matrix `ans`).

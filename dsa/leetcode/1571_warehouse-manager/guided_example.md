@@ -1,128 +1,198 @@
 # Guided Example: Warehouse Manager
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"tables": {"Warehouse": [{"name": "LCHouse1", "product_id": 1, "units": 1}, {"name": "LCHouse1", "product_id": 2, "units": 10}, {"name": "LCHouse1", "product_id": 3, "units": 5}, {"name": "LCHouse2", "product_id": 1, "units": 2}, {"name": "LCHouse2", "product_id": 2, "units": 2}, {"name": "LCHouse3", "product_id": 4, "units": 1}], "Products": [{"product_id": 1, "product_name": "LC-TV", "Width": 5, "Length": 50, "Height": 40}, {"product_id": 2, "product_name": "LC-KeyChain", "Width": 5, "Length": 5, "Height": 5}, {"product_id": 3, "product_name": "LC-Phone", "Width": 2, "Length": 10, "Height": 10}, {"product_id": 4, "product_name": "LC-T-Shirt", "Width": 4, "Length": 10, "Height": 20}]}}`
-- **Required output:** `{"columns": ["warehouse_name", "volume"], "rows": [["LCHouse1", 12250], ["LCHouse2", 20250], ["LCHouse3", 800]]}`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-Table: `Warehouse`
+We are given two relational tables:
+1. $\text{Warehouse}(\text{name}, \text{product\_id}, \text{units})$ recording the quantity of each product stored across various warehouses.
+2. $\text{Products}(\text{product\_id}, \text{product\_name}, \text{Width}, \text{Length}, \text{Height})$ detailing the physical rectangular dimensions (in cubic units) of a single unit of each product.
 
-The objective is to compute `{"columns": ["warehouse_name", "volume"], "rows": [["LCHouse1", 12250], ["LCHouse2", 20250], ["LCHouse3", 800]]}` from `{"tables": {"Warehouse": [{"name": "LCHouse1", "product_id": 1, "units": 1}, {"name": "LCHouse1", "product_id": 2, "units": 10}, {"name": "LCHouse1", "product_id": 3, "units": 5}, {"name": "LCHouse2", "product_id": 1, "units": 2}, {"name": "LCHouse2", "product_id": 2, "units": 2}, {"name": "LCHouse3", "product_id": 4, "units": 1}], "Products": [{"product_id": 1, "product_name": "LC-TV", "Width": 5, "Length": 50, "Height": 40}, {"product_id": 2, "product_name": "LC-KeyChain", "Width": 5, "Length": 5, "Height": 5}, {"product_id": 3, "product_name": "LC-Phone", "Width": 2, "Length": 10, "Height": 10}, {"product_id": 4, "product_name": "LC-T-Shirt", "Width": 4, "Length": 10, "Height": 20}]}}` while avoiding redundant calculations and unnecessary overhead.
+We must calculate the total cubic volume occupied by all stored inventory in each warehouse and return each warehouse's identifier alongside its aggregated volume.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We choose the representative instance:
+- **Relation $\text{Warehouse}$**:
+  - $(\text{"LCHouse1"}, 1, 10)$
+  - $(\text{"LCHouse1"}, 2, 5)$
+  - $(\text{"LCHouse2"}, 1, 20)$
+- **Relation $\text{Products}$**:
+  - $(1, \text{"BoxSmall"}, 2, 3, 4)$
+  - $(2, \text{"BoxLarge"}, 10, 20, 30)$
 
----
+The expected output relation is:
+- $(\text{"LCHouse1"}, 30240)$
+- $(\text{"LCHouse2"}, 480)$
+
+Our teaching goal is to walk through the relational transformation pipeline using relational algebra. We demonstrate attribute-level dimension multiplication, primary-foreign key equi-joining between inventory records and catalog dimensions, and partitioned summation grouping.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Each stored product item possesses a unit volume determined by the geometric formula for a rectangular cuboid:
+$$V_{\text{unit}}(\text{product\_id}) = \text{Width} \times \text{Length} \times \text{Height}$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The total volume occupied by an inventory record $(\text{name}, \text{product\_id}, \text{units})$ is:
+$$V_{\text{record}} = \text{units} \times V_{\text{unit}}(\text{product\_id}) = \text{units} \times \text{Width} \times \text{Length} \times \text{Height}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Aggregating across all inventory records assigned to a given warehouse $\text{name}$ yields:
+$$\text{volume}(\text{name}) = \sum_{(\text{name}, p, u) \in \text{Warehouse}} u \times (\text{Width}_p \times \text{Length}_p \times \text{Height}_p)$$
 
----
+```
++--------------------------------------------------------------------------+
+|                  RELATIONAL WAREHOUSE VOLUME PIPELINE                    |
+|                                                                          |
+| Step 1: Equi-Join on product_id                                          |
+|         J = Warehouse InnerJoin Products ON Warehouse.product_id         |
+|                                           = Products.product_id          |
+|                                                                          |
+| Step 2: Extended Projection (Volume Derivation)                          |
+|         E = Project(name,                                                |
+|                     units * Width * Length * Height -> item_volume, J)   |
+|                                                                          |
+| Step 3: Group Aggregation                                                |
+|         Result = GroupBy(name -> warehouse_name,                         |
+|                          sum(item_volume) -> volume, E)                  |
++--------------------------------------------------------------------------+
+```
+
+### Formal Relational Algebra Formulation
+
+Let the joined relation be:
+$$J = \text{Warehouse} \bowtie_{\text{Warehouse.product\_id} = \text{Products.product\_id}} \text{Products}$$
+
+Deriving unit and item volumes via extended projection:
+$$E = \Pi_{\text{name}, (\text{units} \cdot \text{Width} \cdot \text{Length} \cdot \text{Height}) \to \text{item\_volume}}(J)$$
+
+Applying partitioned group aggregation by warehouse name:
+$$\text{Result} = \gamma_{\text{name} \to \text{warehouse\_name}, \sum(\text{item\_volume}) \to \text{volume}}(E)$$
+
+### State Parameter Reference
+
+| Parameter | Type | Domain | Semantics in Relational Pipeline |
+|---|---|---|---|
+| $\text{name}$ | String | Warehouse name space | Identifying label of the storage facility |
+| $\text{product\_id}$ | Integer | Product key space | Unique identifier linking inventory to catalog dimensions |
+| $\text{units}$ | Integer | $\ge 0$ | Count of product units held at the warehouse |
+| $W, L, H$ | Integers | Positive dimensions | Width, Length, and Height of a single unit of the product |
+| $V_{\text{unit}}$ | Integer | Positive | Unit cubic footprint: $W \cdot L \cdot H$ |
+| $V_{\text{record}}$ | Integer | Non-negative | Row contribution: $\text{units} \cdot V_{\text{unit}}$ |
+| $\text{volume}$ | Integer | Non-negative | Total warehouse volume: $\sum V_{\text{record}}$ |
+
+> [!IMPORTANT]
+> **Cardinality & Key Invariant**:
+> The schema specifies that the composite key $(\text{name}, \text{product\_id})$ is unique in $\text{Warehouse}$, and $\text{product\_id}$ is the primary key in $\text{Products}$. Therefore, the equi-join $J = \text{Warehouse} \bowtie \text{Products}$ produces exactly one output tuple for every inventory row without duplication or cartesian expansion.
+
+```mermaid
+flowchart TD
+    accTitle: Warehouse Volume Aggregation Flow
+    accDescr: Pipeline joining warehouse inventory with product dimensions to compute and sum volumetric footprint per warehouse.
+    W[Warehouse Table] --> JoinOp["Equi-Join on product_id"]
+    P[Products Table] --> JoinOp
+    JoinOp --> ExtProj["Derive record volume = units * Width * Length * Height"]
+    ExtProj --> GroupByWh["Group By warehouse_name"]
+    GroupByWh --> SumVol["Aggregate sum(record_volume) -> volume"]
+    SumVol --> Output[Project Final Table]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compute volume at inventory-row granularity
+We trace our dataset through the three relational stages.
 
-One unit of a product occupies:
+### Step 1: Catalog Volume Computation in $\text{Products}$
+- Product $1$ (`BoxSmall`):
+  $$\text{Width} = 2, \quad \text{Length} = 3, \quad \text{Height} = 4$$
+  $$V_{\text{unit}}(1) = 2 \times 3 \times 4 = 24 \text{ cubic units}$$
+- Product $2$ (`BoxLarge`):
+  $$\text{Width} = 10, \quad \text{Length} = 20, \quad \text{Height} = 30$$
+  $$V_{\text{unit}}(2) = 10 \times 20 \times 30 = 6000 \text{ cubic units}$$
 
-`width * length * height`
+### Step 2: Equi-Join and Record Volume Evaluation ($J \to E$)
+We join each inventory record with its corresponding catalog dimensions:
+1. Inventory row $(\text{"LCHouse1"}, 1, 10)$:
+   - Joins with Product $1$ ($V_{\text{unit}} = 24$).
+   - Record volume: $10 \times 24 = 240$.
+2. Inventory row $(\text{"LCHouse1"}, 2, 5)$:
+   - Joins with Product $2$ ($V_{\text{unit}} = 6000$).
+   - Record volume: $5 \times 6000 = 30000$.
+3. Inventory row $(\text{"LCHouse2"}, 1, 20)$:
+   - Joins with Product $1$ ($V_{\text{unit}} = 24$).
+   - Record volume: $20 \times 24 = 480$.
 
-cubic feet. A warehouse inventory row stores `units` copies, so that row's complete occupied volume is:
+### Step 3: Group Aggregation by Warehouse Name
+We partition the extended relation $E$ by the grouping key $\text{name}$:
 
-`width * length * height * units`.
+- **Partition $\text{"LCHouse1"}$**:
+  - Contributing item volumes: $\{240, 30000\}$.
+  - Aggregated sum:
+    $$\text{volume} = 240 + 30000 = 30240$$
+  - Projected output tuple: $(\text{"LCHouse1"}, 30240)$.
 
-The query computes this expression after joining each inventory row to the dimensions of its product.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Warehouse": [{"name": "LCHouse1", "product_id": 1, "units": 1}, {"name": "LCHouse1", "product_id": 2, "units": 10}, {"name": "LCHouse1", "product_id": 3, "units": 5}, {"name": "LCHouse2", "product_id": 1, "units": 2}, {"name": "LCHouse2", "product_id": 2, "units": 2}, {"name": "LCHouse3", "product_id": 4, "units": 1}], "Products": [{"product_id": 1, "product_name": "LC-TV", "Width": 5, "Length": 50, "Height": 40}, {"product_id": 2, "product_name": "LC-KeyChain", "Width": 5, "Length": 5, "Height": 5}, {"product_id": 3, "product_name": "LC-Phone", "Width": 2, "Length": 10, "Height": 10}, {"product_id": 4, "product_name": "LC-T-Shirt", "Width": 4, "Length": 10, "Height": 20}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Join inventory to product dimensions
-
-`Warehouse` knows warehouse name, product identifier, and unit count. `Products` knows the three dimensions.
-
-`JOIN Products USING (product_id)` matches rows with the same product identifier and exposes both the unit count and dimensions in one joined row.
-
-Because `product_id` is unique in `Products`, one warehouse inventory row matches at most one dimensions row. The join therefore does not multiply inventory facts.
-
-`USING` also represents the shared product identifier as one join-key column, though the final result does not need to project it.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why multiplication occurs inside SUM
-
-A warehouse can store several products with different dimensions and quantities. Total volume is additive across inventory rows.
-
-`SUM(width * length * height * units)` first computes each row's occupied volume, then adds those values within the warehouse group.
-
-Multiplying a sum of units by one arbitrary product volume would be wrong because products do not share dimensions. Row-level multiplication must precede cross-product aggregation.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["warehouse_name", "volume"], "rows": [["LCHouse1", 12250], ["LCHouse2", 20250], ["LCHouse3", 800]]}` |
-
----
+- **Partition $\text{"LCHouse2"}$**:
+  - Contributing item volumes: $\{480\}$.
+  - Aggregated sum:
+    $$\text{volume} = 480$$
+  - Projected output tuple: $(\text{"LCHouse2"}, 480)$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Warehouse": [{"name": "LCHouse1", "product_id": 1, "units": 1}, {"name": "LCHouse1", "product_id": 2, "units": 10}, {"name": "LCHouse1", "product_id": 3, "units": 5}, {"name": "LCHouse2", "product_id": 1, "units": 2}, {"name": "LCHouse2", "product_id": 2, "units": 2}, {"name": "LCHouse3", "product_id": 4, "units": 1}], "Products": [{"product_id": 1, "product_name": "LC-TV", "Width": 5, "Length": 50, "Height": 40}, {"product_id": 2, "product_name": "LC-KeyChain", "Width": 5, "Length": 5, "Height": 5}, {"product_id": 3, "product_name": "LC-Phone", "Width": 2, "Length": 10, "Height": 10}, {"product_id": 4, "product_name": "LC-T-Shirt", "Width": 4, "Length": 10, "Height": 20}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["warehouse_name", "volume"], "rows": [["LCHouse1", 12250], ["LCHouse2", 20250], ["LCHouse3", 800]]}` | Verified |
+The table below catalogs every inventory record, its joined product dimensions, intermediate volume derivations, and final grouped results.
 
----
+| Warehouse Name | Product ID | Units | Width | Length | Height | Unit Volume $W \cdot L \cdot H$ | Record Volume $\text{units} \cdot V_{\text{unit}}$ | Partition Group | Warehouse Total Volume |
+|---|---|---|---|---|---|---|---|---|---|
+| LCHouse1 | 1 | 10 | 2 | 3 | 4 | 24 | 240 | LCHouse1 | - |
+| LCHouse1 | 2 | 5 | 10 | 20 | 30 | 6000 | 30000 | LCHouse1 | **30240** |
+| LCHouse2 | 1 | 20 | 2 | 3 | 4 | 24 | 480 | LCHouse2 | **480** |
+
+### Output Relation
+
+| Warehouse Name | Total Volume |
+|---|---|
+| LCHouse1 | 30240 |
+| LCHouse2 | 480 |
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The requirement asks for the sum of volumes of all products stored in each warehouse.
+1. The mathematical volume occupied by a single box with rectangular dimensions $W, L, H$ is $W \cdot L \cdot H$.
+2. Because each unit of $\text{product\_id}$ has identical dimensions, $u$ units occupy $u \cdot W \cdot L \cdot H$ cubic units.
+3. Because $\text{product\_id}$ is the primary key of $\text{Products}$, joining $\text{Warehouse}$ and $\text{Products}$ on $\text{product\_id}$ matches each inventory row with its exact dimensions without producing multiple join matches.
+4. Partitioning by warehouse name and summing the computed record volumes correctly evaluates the linear sum of volumes for each warehouse without dropping terms.
 
----
+### Completeness
+
+Every warehouse present in the `Warehouse` table appears in the output relation because every stored product has a corresponding entry in the `Products` table (referential integrity). If multiple inventory rows exist for the same warehouse, the grouping operator $\gamma_{\text{name}}$ gathers all of them into a single aggregate row. No warehouse with inventory is omitted.
 
 ## 6. Traps This Instance Exposes
 
-- **Precompute unit volume in a subquery:** Join `Warehouse` to `product_id, width*length*height` and then multiply by units. It is relationally equivalent.
-- **Left join:** It preserves unmatched inventory rows but would require deciding how null dimensions should affect volume.
-- **Aggregate units before joining:** Group by warehouse and product first, then join dimensions; it is useful only if multiple rows per pair are possible.
-- **Sum units alone:** It is wrong because products occupy different volume per unit.
-- **Multiply after SUM:** It is wrong unless every grouped row has identical dimensions.
-- **One product in a warehouse:** Its row contribution is the warehouse total.
-- **Several products:** Each row's independently computed contribution is added.
-- **Several warehouses carrying one product:** The same dimensions join to each inventory row, while grouping keeps names separate.
-- **No ORDER BY:** It is valid because result ordering is unrestricted.
-- **Composite primary key:** It prevents duplicate warehouse-product inventory rows.
-- **Unique product key:** It prevents a join from duplicating one inventory row.
-- **Product name:** It is irrelevant to physical volume and intentionally not selected.
-- **Positional GROUP BY:** `GROUP BY 1` depends on warehouse name remaining the first selected expression.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Summing Dimensions Before Multiplying**:
+   A frequent arithmetic blunder is attempting to write $\sum(\text{units}) \times \sum(W) \times \dots$, which violates the distributive law across distinct products. Volume must be computed per inventory row ($u \cdot W \cdot L \cdot H$) before summing across the partition.
 
----
+2. **Cartesian Product from Non-Unique Join Keys**:
+   If `Products` contained duplicate `product_id` entries, an inner join would duplicate `units`, inflating warehouse volumes. The primary key property of `Products(product_id)` guarantees a strict $N:1$ match.
+
+3. **Treating Missing Dimensions as Zero vs. Null**:
+   If an outer join is used and a product is missing from `Products`, arithmetic with $\text{NULL}$ dimensions produces $\text{NULL}$ unless guarded. An inner join correctly pairs matching catalog items.
+
+4. **Integer Overflow on Large Inventories**:
+   When dimensions reach $100$ and units reach thousands, total volume easily reaches millions. Using 64-bit integer accumulators avoids overflow.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(W \log W)$. Let $W$ be the number of warehouse inventory rows and $P$ the number of product rows.
-- **Auxiliary Space Complexity:** $O(W)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+Let $W$ be the number of rows in `Warehouse` and $P$ be the number of rows in `Products`.
+- **Join Execution**: Building a hash table on `Products` takes $\mathcal{O}(P)$ time. Probing with each of the $W$ rows in `Warehouse` takes $\mathcal{O}(W)$ time. Total join time is $\mathcal{O}(W + P)$.
+- **Projection and Multiplication**: For each of the $W$ joined tuples, 4 integer multiplications take $\mathcal{O}(1)$ time: $\mathcal{O}(W)$.
+- **Group Aggregation**: Grouping by warehouse name using a hash map processes each tuple in $\mathcal{O}(1)$ time: $\mathcal{O}(W)$.
+
+Total time complexity is:
+$$\mathcal{O}(W + P)$$
+Linear in the combined size of the input relations.
+
+### Auxiliary Space Complexity
+
+- The hash table for `Products` stores $P$ dimension tuples: $\mathcal{O}(P)$.
+- The aggregation hash map stores one accumulator entry per distinct warehouse name: $\mathcal{O}(U) \le \mathcal{O}(W)$.
+
+Total auxiliary space complexity is:
+$$\mathcal{O}(W + P)$$
+Proportional to the input database relations.

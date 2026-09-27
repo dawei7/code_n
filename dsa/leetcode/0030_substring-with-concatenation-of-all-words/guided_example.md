@@ -1,89 +1,147 @@
 # Guided Example: Substring with Concatenation of All Words
 
-We trace the dynamic Hash Table, String, Sliding Window sliding window on a representative input instance.
+We trace the step-by-step multi-offset sliding window on a representative concatenated string instance:
 
-- **Input:** `{"s": "barfoothefoobarman", "words": ["foo", "bar"]}`
-- **Required output:** `[0, 9]`
+- **Input:** $s = \text{"barfoothefoobarman"}$, $\text{words} = [\text{"foo"}, \text{"bar"}]$
+- **Required output:** $[0, 9]$
 
-This instance highlights expanding the right boundary $R$, maintaining the internal frequency/validity state, and contracting the left boundary $L$ to restore feasibility.
+This instance demonstrates word chunking, parallel sliding window passes over $W$ distinct remainder offsets, hash-map frequency counting, window contraction upon over-allocation, and clearing window state upon encountering invalid non-dictionary words.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Substring with Concatenation of All Words** is to find the optimal contiguous window without evaluating all $O(N^2)$ candidate subarrays.
-By recognizing that the window constraint exhibits monotonic expansion and contraction, we adjust two pointers $L$ and $R$ in a single forward pass.
+Given a string $s$ of length $N = 18$ and an array $\text{words}$ of $M = 2$ words, where each word has uniform length $W = 3$:
+- Total concatenation length is $L_{\text{total}} = M \cdot W = 2 \cdot 3 = 6$.
+- Target word multiset:
+  $$
+  \text{target\_counts} = \{ \text{"bar"}: 1, \, \text{"foo"}: 1 \}
+  $$
+
+A naive sliding window re-evaluates all $M$ words at every single character index $i \in [0, N - L_{\text{total}}]$, requiring $O(N \cdot M \cdot W)$ time.
+
+The optimal algorithm recognizes that each word has length $W$. We partition the search into $W$ independent sliding window tracks (starting at offsets $0, 1, \dots, W-1$). Within each track, the window steps forward by chunks of $W$ characters, achieving an amortized $O(N)$ runtime.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain two boundary indices $L$ and $R$, alongside a state tracker $M$ (frequency map or accumulator).
+### Multi-Offset Chunking
+Because words have fixed length $W = 3$, any contiguous valid concatenation aligned with words must fall into one of $W$ residue classes modulo $W$:
+- **Offset 0:** Tokens at indices $[0, 3, 6, 9, 12, 15] \implies \text{"bar"}, \text{"foo"}, \text{"the"}, \text{"foo"}, \text{"bar"}, \text{"man"}$
+- **Offset 1:** Tokens at indices $[1, 4, 7, 10, 13] \implies \text{"arf"}, \text{"oot"}, \text{"hef"}, \text{"oob"}, \text{"arm"}$
+- **Offset 2:** Tokens at indices $[2, 5, 8, 11, 14] \implies \text{"rfo"}, \text{"oth"}, \text{"efo"}, \text{"oba"}, \text{"rma"}$
 
-| State Tracker | Role in Algorithm |
-|---|---|
-| Left Boundary $L$ | Tracks start of active contiguous window |
-| Right Boundary $R$ | Expands exploration frontier |
-| Window State $M$ | Tracks validity metrics (character counts / sum) |
+### Window State within an Offset Track
+Within each offset track, we maintain two pointer indices $L$ and $R$ advancing in steps of $W$:
+1. Read word $w = s[R \dots R+W-1]$:
+   - **Case 1 (Invalid Word):** If $w \notin \text{target\_counts}$, all windows spanning across $R$ are invalid. Reset frequency table, and shift $L \leftarrow R + W$.
+   - **Case 2 (Valid Word):** Increment $\text{current\_counts}[w]$.
+     - If $\text{current\_counts}[w] > \text{target\_counts}[w]$ (excess duplicate), advance $L$ by $W$, decrementing counts until the frequency of $w$ is restored to valid limits.
+2. **Match Detection:** When the active window $[L, R + W - 1]$ contains exactly $M$ valid words, record $L$ as a valid start index, then shift $L$ forward by $W$ to search for subsequent matches.
 
-> **Invariant.** At each step $R$, the window $[L, R]$ is adjusted so that it satisfies the problem constraints, and the global optimum is updated from all valid windows ending at $R$.
+> **Invariant.** For any active window $[L, R]$, every token inside the window is present in $\text{words}$ with count $\le \text{target\_counts}$. A match occurs if and only if the window length equals $M \cdot W$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Expand Window by Advancing $R$
+We trace Offset Track $0$ ($L = 0, R = 0$) on $s = \text{"barfoothefoobarman"}$:
 
-- Incorporate element at index $R$ into the window accumulator $M$.
-- Check whether the expanded window satisfies the target constraint.
-
-| Parameter | State |
-|---|---|
-| Active Window | $[L, R]$ |
-| Window Condition | Evaluated against constraint |
-| Optimum Candidate | Staged for update |
+### Chunk 1 ($R = 0$): Token $\text{"bar"}$
+- Slice: $s[0 \dots 3] = \text{"bar"}$.
+- Check: $\text{"bar"} \in \text{target\_counts}$ (allowed count: 1).
+- Add to window: $\text{current\_counts}[\text{"bar"}] = 1$.
+- Window words: $1 < M=2$.
+- Advance: $R \leftarrow 3$.
 
 ---
 
-### Step 2: Contract Window from Left $L$ When Constraint Violated
-
-- If adding element at $R$ causes an invalid state, increment $L$ and decrement $M$ until feasibility is restored.
-
-| Parameter | State |
-|---|---|
-| Adjusted Boundary | $L$ advanced to restore validity |
-| Restored Window | Valid subsegment $[L, R]$ |
-| Global Optimum | Updated with valid window metric |
+### Chunk 2 ($R = 3$): Token $\text{"foo"}$
+- Slice: $s[3 \dots 6] = \text{"foo"}$.
+- Check: $\text{"foo"} \in \text{target\_counts}$ (allowed count: 1).
+- Add to window: $\text{current\_counts}[\text{"foo"}] = 1$.
+- Window words: $2 == M=2$.
+- Window span: $[0 \dots 5] = \text{"barfoo"}$.
+- **Match Confirmed!** Record index $L = 0$.
+- Slide window: Decrement $\text{"bar"}$, advance $L \leftarrow 3$.
+- Advance: $R \leftarrow 6$.
 
 ---
 
-## 4. Complete Execution Trace
+### Chunk 3 ($R = 6$): Token $\text{"the"}$
+- Slice: $s[6 \dots 9] = \text{"the"}$.
+- Check: $\text{"the"} \notin \text{target\_counts}$ (invalid word!).
+- Action: Clear $\text{current\_counts} = \{\}$.
+- Reset: $L \leftarrow 9$.
+- Advance: $R \leftarrow 9$.
 
-| Step | $R$ | Processed Item | Condition Met? | Action on $L$ | Active Window $[L, R]$ | Current Metric | Global Best |
-|---|---|---|---|---|---|---|---|
-| 1 (Start) | 0 | First item | Yes | $L = 0$ | `[0, 0]` | Initial window metric | Baseline |
-| 2 (Expand) | Intermediate | Next item | Evaluated | Advance $L$ if invalid | Dynamic $[L, R]$ | Valid window metric | Updated |
-| 3 (Finish) | End | Final item | Maintained | Final adjustment | Terminal $[L, R]$ | Final window metric | Confirmed Best |
+---
+
+### Chunk 4 ($R = 9$): Token $\text{"foo"}$
+- Slice: $s[9 \dots 12] = \text{"foo"}$.
+- Check: $\text{"foo"} \in \text{target\_counts}$.
+- Add to window: $\text{current\_counts}[\text{"foo"}] = 1$.
+- Window words: $1 < M=2$.
+- Advance: $R \leftarrow 12$.
+
+---
+
+### Chunk 5 ($R = 12$): Token $\text{"bar"}$
+- Slice: $s[12 \dots 15] = \text{"bar"}$.
+- Check: $\text{"bar"} \in \text{target\_counts}$.
+- Add to window: $\text{current\_counts}[\text{"bar"}] = 1$.
+- Window words: $2 == M=2$.
+- Window span: $[9 \dots 14] = \text{"foobar"}$.
+- **Match Confirmed!** Record index $L = 9$.
+- Slide window: Decrement $\text{"foo"}$, advance $L \leftarrow 12$.
+- Advance: $R \leftarrow 15$.
+
+---
+
+### Chunk 6 ($R = 15$): Token $\text{"man"}$
+- Slice: $s[15 \dots 18] = \text{"man"}$.
+- Check: $\text{"man"} \notin \text{target\_counts}$ (invalid word!).
+- Reset: Clear window. $R$ reaches string end.
+
+### Summary of Offsets 1 & 2
+- Offset 1: Scans $\text{"arf"}, \text{"oot"}, \dots$ — none match the dictionary; yields no valid matches.
+- Offset 2: Scans $\text{"rfo"}, \text{"oth"}, \dots$ — none match the dictionary; yields no valid matches.
+
+Final emitted matches: $[0, 9]$.
+
+---
+
+## 4. Complete Execution Trace (Offset 0)
+
+| Step | Window $[L, R]$ | Extracted Word $w$ | Target Limit | Current Count | Window Words Count | Action Taken | Confirmed Match? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | $[0, 0]$ | `"bar"` | 1 | 1 | 1 | Expand window; $R \leftarrow 3$ | - |
+| 2 | $[0, 3]$ | `"foo"` | 1 | 1 | 2 | Full match; contract $L \leftarrow 3$ | **Index 0** |
+| 3 | $[3, 6]$ | `"the"` | 0 | 0 | 0 | Invalid token; reset $L \leftarrow 9$ | - |
+| 4 | $[9, 9]$ | `"foo"` | 1 | 1 | 1 | Expand window; $R \leftarrow 12$ | - |
+| 5 | $[9, 12]$ | `"bar"` | 1 | 1 | 2 | Full match; contract $L \leftarrow 12$ | **Index 9** |
+| 6 | $[12, 15]$ | `"man"` | 0 | 0 | 0 | Invalid token; reset $L \leftarrow 18$ | - |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every window evaluated for the global optimum satisfies the exact validity condition by virtue of the while-contraction loop.
+**Soundness.** A substring starting at index $i$ is a valid concatenation if and only if it decomposes into $M$ consecutive words of length $W$ whose multiset matches $\text{target\_counts}$. The sliding window verifies exact token matches and frequencies, guaranteeing zero false positives.
 
-**Completeness.** Since $R$ visits every possible ending position and $L$ identifies the widest valid prefix for that $R$, no maximal valid window is overlooked.
+**Completeness.** Any valid starting position $i$ must satisfy $i \equiv k \pmod W$ for some offset $k \in [0, W - 1]$. Since all $W$ offset tracks are independently searched, and the two-pointer window explores every contiguous sequence of valid tokens within each track, all valid start indices are discovered.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Backward Pointer Movement:** Setting $L$ from stale lookup tables without taking $\max(L, \dots)$ can cause $L$ to jump backwards, admitting invalid elements.
-- **Off-by-One Window Size:** The length of window $[L, R]$ is $R - L + 1$, not $R - L$.
-- **Premature Exit:** Stopping expansion when an invalid element is encountered instead of contracting $L$ misses valid downstream windows.
+- **Overlapping Offset Classes:** Evaluating only offset 0 misses valid concatenations starting at non-multiples of $W$ (e.g. at index 1 or 2). Iterating across all $W$ distinct offsets guarantees complete coverage.
+- **Handling Duplicate Words in Dictionary:** If $\text{words} = [\text{"word"}, \text{"good"}, \text{"best"}, \text{"word"}]$, the word $\text{"word"}$ has count 2. Using boolean sets fails; a full frequency counter mapping is required.
+- **Excess Word Contraction:** When an existing word appears too many times ($\text{current\_counts}[w] > \text{target\_counts}[w]$), the left pointer $L$ must advance until the redundant copy is expelled from the window, rather than resetting $L$ entirely.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ amortized. The right pointer $R$ increments $N$ times, and the left pointer $L$ increments at most $N$ times.
-- **Auxiliary Space Complexity:** $O(K)$ where $K$ is the size of the distinct character alphabet or state map.
+- **Time Complexity:** $O(N \cdot W)$, or $O(N)$ when treating $W$ as a constant. There are $W$ passes. In each pass, the right pointer $R$ moves across at most $N/W$ words, and the left pointer $L$ moves at most $N/W$ words. Dictionary lookups and frequency operations take $O(W)$ string hashing time. Total runtime is $W \cdot (N/W) \cdot O(W) = O(N \cdot W)$.
+- **Auxiliary Space Complexity:** $O(M \cdot W)$. The hash map stores at most $M$ unique words from the dictionary.

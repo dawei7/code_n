@@ -1,126 +1,136 @@
 # Guided Example: Simple Bank System
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"operations": ["Bank", "deposit", "withdraw"], "arguments": [[[5]], [1, 4], [1, 10]]}`
-- **Required output:** `[null, true, false]`
+We are tasked with implementing an in-memory transactional banking system, `Bank`, managing $N$ customer accounts labeled with 1-based indices from $1$ to $N$. The system is initialized with an array $\text{balance}$ of length $N$, where account $i \in [1, N]$ starts with initial funds $\text{balance}[i - 1]$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The banking interface supports three atomic transactional methods:
+1. `transfer(account1, account2, money)`: Deducts `money` from `account1` and credits `money` to `account2`.
+2. `deposit(account, money)`: Credits `money` to `account`.
+3. `withdraw(account, money)`: Deducts `money` from `account`.
 
----
+Every transaction must satisfy strict transactional consistency guards:
+- **Existence Guard**: Every referenced account index must be valid ($1 \le \text{account} \le N$).
+- **Solvency Guard**: For any debit operation (`withdraw` or the debit half of `transfer`), the source account must hold at least `money` ($\text{balance} \ge \text{money}$).
 
-## 1. Instance & Teaching Goal
+If all guards are satisfied, the transaction executes atomically, modifying the account balances, and returns `true`. If any guard fails, the transaction is immediately rejected without modifying any account balance, and returns `false`.
 
-You have been tasked with writing a program for a popular bank that will automate all its incoming transactions (transfer, deposit, and withdraw). The bank has `n` accounts numbered from `1` to `n`. The initial balance of each account is stored in a **0-indexed** integer array `balance`, with the $(i + 1)^th$ account having an initial balance of $\text{balance}[i]$.
+### Sample Input Dataset
 
-The objective is to compute `[null, true, false]` from `{"operations": ["Bank", "deposit", "withdraw"], "arguments": [[[5]], [1, 4], [1, 10]]}` while avoiding redundant calculations and unnecessary overhead.
+Consider the five-account initial configuration:
+$$\text{balance} = [10, 100, 20, 50, 30], \quad N = 5$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+followed by the sequence of operations:
+$$\text{Operations} = [\text{withdraw}(3, 10), \text{transfer}(5, 1, 20), \text{deposit}(5, 20), \text{transfer}(3, 4, 15), \text{withdraw}(10, 50)]$$
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We also examine a single-account boundary sequence:
+$$\text{balance}_{\text{single}} = [5], \quad [\text{deposit}(1, 4), \text{withdraw}(1, 10)]$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Map one-based account numbers to list indices
+The system maintains a direct-addressable memory buffer representing account balances. Because accounts are $1$-indexed, referencing account $a$ accesses array index $a - 1$.
 
-Accounts are numbered from one through `n`, while Python lists are indexed from zero. Account `a` therefore has balance at `balance[a - 1]`.
+### Atomic Guard Verification
+Every transaction must validate its precondition checks before committing any mutations:
 
-The constructor stores `n = len(balance)` so every operation can validate the upper account boundary in constant time. It also stores the supplied list itself as `balance`.
+```mermaid
+flowchart TD
+    accTitle: Transactional Precondition and Mutation Architecture
+    accDescr: Pipeline showing existence validation, solvency checks, balance updates, and rollback/abort pathways.
+    A["Incoming Transaction Request"] --> B{"Existence Guard: Is 1 <= account <= N?"}
+    B -- "False (Invalid Account)" --> C["Reject Transaction: Return False (No Balance Mutated)"]
+    B -- "True" --> D{"Is Operation a Debit (withdraw or transfer)?"}
+    D -- "No (deposit)" --> E["Commit Credit: balance[account - 1] += money"]
+    D -- "Yes" --> F{"Solvency Guard: Is balance[source - 1] >= money?"}
+    F -- "False (Insufficient Funds)" --> C
+    F -- "True (Sufficient Funds)" --> G["Commit Debit / Transfer atomically"]
+    E --> H["Return True (Success)"]
+    G --> H
+```
 
-This is a reference, not a copy. Successful transactions update the same list object that the caller passed to the constructor.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["Bank", "deposit", "withdraw"], "arguments": [[[5]], [1, 4], [1, 10]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Validate before changing state
-
-A failed transaction must return false and leave every balance unchanged. Each method performs all of its rejection checks before its first mutation.
-
-The input contract guarantees account arguments are at least one, so the exact source checks only whether an account is greater than `n`. Under the contract, this completely validates the range. If zero or a negative account were supplied outside the contract, Python negative indexing could access an unintended account; the implementation relies on the stated lower-bound guarantee.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Invariant Preservation
+1. **Conservation of Money**: For any successful transfer, the net change across the bank is $(-\text{money}) + (+\text{money}) = 0$. The total sum of deposits across all accounts remains strictly invariant during transfers.
+2. **Non-Negativity Invariant**: Because withdrawals and transfers only execute when $\text{balance} \ge \text{money}$, an account balance can never drop below zero.
 
 ---
 
-### Step 3: Transfer between two accounts
+## 3. Step-by-Step State Progression Table
 
-`transfer(account1, account2, money)` has three failure conditions:
+Let us trace the operations on initial balances $[10, 100, 20, 50, 30]$ ($N = 5$):
 
-- `account1` does not exist;
-- `account2` does not exist;
-- the source account balance is smaller than `money`.
+Initial Account State:
+- Account 1: $10$
+- Account 2: $100$
+- Account 3: $20$
+- Account 4: $50$
+- Account 5: $30$
 
-The compound `or` condition short-circuits from left to right. If an account is too large, Python does not proceed to an unsafe balance lookup for that account.
+| Step | Operation Called | Arguments | Target Accounts Validation | Balance Solvency Check | Transaction Status | Account Balances After Step | Return Value | Rationale |
+|---|---|---|---|---|---|---|---|---|
+| $1$ | `withdraw` | Account $3$, Money $10$ | $1 \le 3 \le 5$ (Valid) | $20 \ge 10$ (Sufficient) | **Committed** | $[10, 100, \mathbf{10}, 50, 30]$ | `true` | Account 3 debited: $20 - 10 = 10$ |
+| $2$ | `transfer` | Acct $5 \to 1$, Money $20$ | $1 \le 5, 1 \le 5$ (Valid) | Acct 5 has $30 \ge 20$ (Sufficient) | **Committed** | $[\mathbf{30}, 100, 10, 50, \mathbf{10}]$ | `true` | Acct 5: $30 - 20 = 10$; Acct 1: $10 + 20 = 30$ |
+| $3$ | `deposit` | Account $5$, Money $20$ | $1 \le 5 \le 5$ (Valid) | N/A (Credit only) | **Committed** | $[30, 100, 10, 50, \mathbf{30}]$ | `true` | Account 5 credited: $10 + 20 = 30$ |
+| $4$ | `transfer` | Acct $3 \to 4$, Money $15$ | $1 \le 3, 4 \le 5$ (Valid) | Acct 3 has $10 < 15$ (Deficit!) | **Rejected** | $[30, 100, 10, 50, 30]$ | `false` | Insufficient funds in Acct 3 ($10 < 15$); balances untouched |
+| $5$ | `withdraw` | Account $10$, Money $50$ | $10 > 5$ (Nonexistent!) | N/A | **Rejected** | $[30, 100, 10, 50, 30]$ | `false` | Account 10 does not exist; rejected |
 
-When all conditions pass, the method subtracts `money` from `account1 - 1` and adds the same amount to `account2 - 1`, then returns true.
-
-The total money across all accounts is unchanged by a transfer because the debit and credit are equal.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, true, false]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["Bank", "deposit", "withdraw"], "arguments": [[[5]], [1, 4], [1, 10]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, true, false]` | Verified |
+Final query results: `[true, true, true, false, false]`.
 
 ---
 
-## 5. Algorithmic Correctness
+## 4. Key Transition Dynamics & Boundary Handling
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+The transition behavior clarifies edge cases:
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. **Existence Failures**:
+   - In Step 5, `withdraw(10, 50)` targets account $10$. Because $10 > N = 5$, accessing index $9$ would cause an out-of-bounds error. The existence guard intercepts the call and aborts before memory access.
+2. **Self-Transfer ($account1 = account2$)**:
+   - If an account transfers money to itself (e.g. `transfer(2, 2, 50)`), the checks $1 \le 2 \le 5$ and $\text{balance}[1] \ge 50$ succeed. Deducting $50$ and adding $50$ leaves the balance unchanged, correctly returning `true`.
+3. **Exact Balance Withdrawal ($\text{balance} == \text{money}$)**:
+   - A withdrawal of the entire balance leaves exactly $0$. Because $0 \ge 0$, this is fully legal and returns `true`.
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Copy the input list:** `balance = balance.copy()` would isolate bank state from caller mutations but differs from the exact source.
-- **Dictionary by account number:** Supports sparse identifiers, but consecutive one-through-$n$ accounts make a list simpler and faster.
-- **Helper validation method:** Can centralize `1 <= account <= n` checks; the source relies on the contractual lower bound.
-- **Nonexistent source account:** Transfer returns false before indexing its balance.
-- **Nonexistent destination account:** Transfer returns false before any debit.
-- **Insufficient funds:** Transfer and withdrawal return false without partial changes.
-- **Exact available balance:** The operation succeeds and may leave zero.
-- **Same source and destination:** A sufficiently funded transfer succeeds with no net balance change.
-- **Zero money:** Valid existing-account operations succeed and leave state unchanged.
-- **Large accumulated balance:** Python integer arithmetic avoids overflow.
-- **External mutation:** Because the original list is retained by reference, caller changes to that list also affect bank state.
-- **Account zero outside the contract:** The source would use negative indexing; correctness depends on the guaranteed positive account numbers.
-- **No concurrency model:** The implementation provides sequential in-memory transaction semantics only.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Test Scenario | Initial Balance | Operation | Account Validation | Solvency Validation | Result | Final State |
+|---|---|---|---|---|---|---|
+| Complete Drain | Acct 1: $50$ | `withdraw(1, 50)` | Valid ($1 \le 1 \le N$) | $50 \ge 50$ (True) | `true` | Acct 1: $0$ |
+| Single Penny Short | Acct 1: $49$ | `withdraw(1, 50)` | Valid ($1 \le 1 \le N$) | $49 \ge 50$ (False) | `false` | Acct 1: $49$ |
+| Target Invalid in Transfer | Acct 1: $100$ | `transfer(1, 99, 10)` | Acct 99 invalid ($99 > N$) | Skipped | `false` | Acct 1: $100$ |
+| Source Invalid in Transfer | Acct 0: N/A | `transfer(0, 1, 10)` | Acct 0 invalid ($0 < 1$) | Skipped | `false` | Acct 1: $100$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(1)$. Each method performs a fixed number of comparisons, list accesses, and arithmetic assignments. `transfer`, `deposit`, and `withdraw` each run in $O(1)$ time per call.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Atomicity and Precondition Invariance
+A transaction $T$ transitions the system state $\mathcal{S} \to \mathcal{S}'$.
+- If any guard fails, the transition function is the identity $\mathcal{S}' = \mathcal{S}$.
+- If all guards pass:
+  - For `deposit`: $\text{balance}[a - 1] \leftarrow \text{balance}[a - 1] + m$.
+  - For `withdraw`: $\text{balance}[a - 1] \leftarrow \text{balance}[a - 1] - m$.
+  - For `transfer`: $\text{balance}[a_1 - 1] \leftarrow \text{balance}[a_1 - 1] - m$, $\text{balance}[a_2 - 1] \leftarrow \text{balance}[a_2 - 1] + m$.
+
+Because all guards are evaluated before mutating any array cell, partial writes are impossible. If a transfer fails solvency on the source, the destination is never credited. This satisfies the strict ACID requirements of software transactions.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **1-Based vs 0-Based Indexing**: Account identifiers are $1$-indexed ($1$ to $N$). Failing to subtract $1$ when indexing into the internal array will trigger off-by-one errors or miss account $N$.
+2. **Transfer Precondition Ordering**: If account 1 has sufficient funds but account 2 does not exist, the transfer must fail completely. Deducting from account 1 before verifying account 2 would corrupt account 1's balance. All accounts must be validated simultaneously before modifying balances.
+3. **64-Bit Integer Magnitudes**: Account balances and transaction amounts can reach $10^{12}$, which exceeds the standard 32-bit signed integer limit ($2 \times 10^9$). Storing balances in 64-bit integers (`int64` / `long long`) prevents arithmetic overflow.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Constructor `Bank(balance)`**: Storing or referencing the initial list of $N$ balances takes $\mathcal{O}(N)$ time (or $\mathcal{O}(1)$ if aliasing the reference).
+- **`transfer`**: Performing at most three integer comparisons and two arithmetic updates takes $\mathcal{O}(1)$ time.
+- **`deposit`**: One bounds check and one addition takes $\mathcal{O}(1)$ time.
+- **`withdraw`**: One bounds check, one solvency check, and one subtraction takes $\mathcal{O}(1)$ time.
+- **Total Time Complexity**: $\mathcal{O}(1)$ per operational method call, which is strictly optimal.
+
+### Space Complexity
+- **Balance Array**: The internal array stores $N$ integers of 64-bit width, requiring $\mathcal{O}(N)$ space.
+- **Auxiliary Overhead**: No dynamic tables or auxiliary structures are created.
+- **Total Auxiliary Space**: $\mathcal{O}(N)$ memory to maintain account balances.

@@ -25,20 +25,21 @@
     {
       "id": "trial-empty",
       "name": "empty tree",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "root": []
       },
       "expected": 0,
       "tags": [
+        "sample",
         "boundary"
       ]
     },
     {
       "id": "trial-single",
       "name": "single node",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "root": [
@@ -47,6 +48,7 @@
       },
       "expected": 1,
       "tags": [
+        "sample",
         "single"
       ]
     },

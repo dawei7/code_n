@@ -1,124 +1,194 @@
 # Guided Example: Three Consecutive Odds
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of linear parity streak tracking on a representative integer array to detect whether three consecutive elements are all odd integers.
 
-- **Input:** `{"arr": [2, 6, 4, 1]}`
-- **Required output:** `false`
+- **Input:** Array $\text{arr} = [1, 2, 34, 3, 4, 5, 7, 23, 12]$ of length $N = 9$.
+- **Output:** `true` (elements at indices 5, 6, and 7 are $[5, 7, 23]$, forming three consecutive odd numbers).
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates bitwise parity extraction ($x \ \& \ 1$), streak accumulation, streak resets upon encountering even elements, and early exit upon reaching the target streak threshold of 3.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `arr`, return `true` if there are three consecutive odd numbers in the array. Otherwise, return `false`.
+We are given an integer array of length $N = 9$:
 
-The objective is to compute `false` from `{"arr": [2, 6, 4, 1]}` while avoiding redundant calculations and unnecessary overhead.
+$$\text{arr} = [1, 2, 34, 3, 4, 5, 7, 23, 12]$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Goal: Determine if there exist three consecutive indices $(i, i+1, i+2)$ such that $\text{arr}[i], \text{arr}[i+1], \text{arr}[i+2]$ are all odd.
+
+Parities along the array:
+- Index 0: 1 (odd)
+- Index 1: 2 (even)
+- Index 2: 34 (even)
+- Index 3: 3 (odd)
+- Index 4: 4 (even)
+- Index 5: 5 (odd)
+- Index 6: 7 (odd)
+- Index 7: 23 (odd) $\rightarrow$ Three consecutive odds!
+- Index 8: 12 (even)
+
+**Teaching Goal:**
+Understand how a single integer counter tracking the current run of consecutive odd numbers eliminates redundant window comparisons and avoids allocations. If an even number is encountered, the run resets immediately to 0; if the run reaches 3, the algorithm halts early and returns `true`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                  PARITY STREAK ACCUMULATOR MODEL                        |
++-------------------------------------------------------------------------+
+|  Initialize: streak = 0                                                 |
+|                                                                         |
+|  Stream elements x from arr[0 .. N-1]:                                  |
+|                                                                         |
+|  +--------------------+                                                 |
+|  | Element x          |                                                 |
+|  +--------------------+                                                 |
+|            |                                                            |
+|     (Check x & 1)                                                       |
+|            |                                                            |
+|     +------+------+                                                     |
+|     |             |                                                     |
+|  [x & 1 == 1]  [x & 1 == 0]                                             |
+|  (Odd Number)  (Even Number)                                            |
+|     |             |                                                     |
+|     v             v                                                     |
+|  streak += 1   streak = 0  (Reset, even separates runs)                 |
+|     |                                                                   |
+|     +------+                                                            |
+|            |                                                            |
+|     (Check streak == 3?)                                                |
+|            |                                                            |
+|     +------+------+                                                     |
+|     |             |                                                     |
+|   [YES]          [NO]                                                   |
+|  Return true   Continue to next element                                 |
+|                                                                         |
+|  If loop finishes without streak == 3: Return false                     |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+We establish the running state parameters:
+
+| State Variable | Definition & Role | Initial Value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $i$ | Current array scan index | $0$ |
+| $x$ | Current array value: $\text{arr}[i]$ | $1$ |
+| $\text{streak}$ | Count of consecutive odd numbers ending at index $i$ | $0$ |
+| $\text{parity}$ | Parity bit: $x \ \& \ 1$ ($1$ for odd, $0$ for even) | Evaluated per element |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Contiguous Parity Invariant.** At any index $i$, $\text{streak}$ equals the length of the maximal suffix of odd numbers in $\text{arr}[0..i]$. If $\text{arr}[i]$ is even, the suffix of odd numbers has length 0. If $\text{streak} = 3$, three consecutive odd numbers have been confirmed.
+
+```mermaid
+graph TD
+    accTitle: Consecutive Odds State Machine
+    accDescr: State machine showing transitions between streak 0, 1, 2, and 3 upon reading odd or even integers.
+    S0["Streak = 0"] -- "Odd" --> S1["Streak = 1"]
+    S0 -- "Even" --> S0
+    S1 -- "Odd" --> S2["Streak = 2"]
+    S1 -- "Even" --> S0
+    S2 -- "Odd" --> S3["Streak = 3 (Halt: True)"]
+    S2 -- "Even" --> S0
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Track the current suffix of odd values
+### Steps 0–2: Prefix Elements
+- **$i = 0, x = 1$:** $1 \ \& \ 1 = 1$ (odd). $\text{streak} \leftarrow 0 + 1 = 1$. $\text{streak} < 3$.
+- **$i = 1, x = 2$:** $2 \ \& \ 1 = 0$ (even). An even number breaks the run. $\text{streak} \leftarrow 0$.
+- **$i = 2, x = 34$:** $34 \ \& \ 1 = 0$ (even). $\text{streak} \leftarrow 0$.
 
-The property is local and sequential: three odd numbers must occupy adjacent array positions. The solution scans left to right and stores `cnt`, the number of consecutive odd values ending at the most recently processed position.
-
-When the current value `x` is odd, it extends that suffix, so `cnt` increases by one. When `x` is even, no odd run can cross it, so `cnt` resets to zero.
-
-As soon as `cnt == 3`, the last three processed positions are all odd and consecutive. The method returns `true` immediately.
-
-If the scan ends without reaching three, no position served as the end of a three-odd block, so it returns `false`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [2, 6, 4, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step | Index $i$ | Value $\text{arr}[i]$ | Parity ($x \ \& \ 1$) | State Transition | New $\text{streak}$ | Goal Reached ($\text{streak} == 3$)? |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 1 | 1 (Odd) | $\text{streak} \leftarrow \text{streak} + 1$ | 1 | No |
+| 2 | 1 | 2 | 0 (Even) | $\text{streak} \leftarrow 0$ (Reset) | 0 | No |
+| 3 | 2 | 34 | 0 (Even) | $\text{streak} \leftarrow 0$ (Reset) | 0 | No |
 
 ---
 
-### Step 2: Recognize oddness with the low bit
+### Steps 3–4: Isolated Odd and Intervening Even
+- **$i = 3, x = 3$:** $3 \ \& \ 1 = 1$ (odd). $\text{streak} \leftarrow 0 + 1 = 1$.
+- **$i = 4, x = 4$:** $4 \ \& \ 1 = 0$ (even). Run broken again! $\text{streak} \leftarrow 0$.
 
-The expression `x & 1` inspects the least significant binary bit. Every even integer is divisible by two and ends in bit zero. Every odd integer has remainder one modulo two and ends in bit one.
-
-In a Python conditional, zero is false and one is true. Thus `if x & 1` enters the odd branch without an explicit comparison.
-
-The input values are positive, although Python's bitwise representation also makes this test work for negative odd integers. Only the stated positive range is needed here.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Step | Index $i$ | Value $\text{arr}[i]$ | Parity ($x \ \& \ 1$) | State Transition | New $\text{streak}$ | Goal Reached ($\text{streak} == 3$)? |
+|---|---|---|---|---|---|---|
+| 4 | 3 | 3 | 1 (Odd) | $\text{streak} \leftarrow \text{streak} + 1$ | 1 | No |
+| 5 | 4 | 4 | 0 (Even) | $\text{streak} \leftarrow 0$ (Reset) | 0 | No |
 
 ---
 
-### Step 3: Why a reset is required
+### Steps 5–7: Consecutive Odd Triplet Discovery
+- **$i = 5, x = 5$:** $5 \ \& \ 1 = 1$ (odd). $\text{streak} \leftarrow 0 + 1 = 1$.
+- **$i = 6, x = 7$:** $7 \ \& \ 1 = 1$ (odd). $\text{streak} \leftarrow 1 + 1 = 2$.
+- **$i = 7, x = 23$:** $23 \ \& \ 1 = 1$ (odd). $\text{streak} \leftarrow 2 + 1 = 3$.
+  - Target condition met: $\text{streak} == 3$!
+  - Early exit triggered: return **`true`** immediately.
 
-Suppose the current element is even. Odd values before it and odd values after it are not consecutive because the even position lies between them.
+| Step | Index $i$ | Value $\text{arr}[i]$ | Parity ($x \ \& \ 1$) | State Transition | New $\text{streak}$ | Goal Reached ($\text{streak} == 3$)? |
+|---|---|---|---|---|---|---|
+| 6 | 5 | 5 | 1 (Odd) | $\text{streak} \leftarrow 0 + 1 = 1$ | 1 | No |
+| 7 | 6 | 7 | 1 (Odd) | $\text{streak} \leftarrow 1 + 1 = 2$ | 2 | No |
+| 8 | 7 | 23 | 1 (Odd) | $\text{streak} \leftarrow 2 + 1 = 3$ | 3 | **Yes (Return true)** |
 
-Keeping a partial count across that boundary would invent a nonexistent block. Resetting to zero precisely states that the longest odd suffix ending at an even value has length zero.
-
-The next odd value then begins a new run at one rather than extending the earlier separated run.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
+Note that element $\text{arr}[8] = 12$ is never examined because the algorithm terminated as soon as three consecutive odds were confirmed.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [2, 6, 4, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
+The full state transition sequence across all evaluated indices is summarized below:
+
+| Index $i$ | Value $\text{arr}[i]$ | Binary Representation | Low Bit ($x \ \& \ 1$) | Classification | Action Taken | Streak Output | Status |
+|---|---|---|---|---|---|---|---|
+| 0 | 1 | `...0001` | 1 | Odd | Increment streak | 1 | Active Run |
+| 1 | 2 | `...0010` | 0 | Even | Reset streak to 0 | 0 | Run Broken |
+| 2 | 34 | `...0010` | 0 | Even | Retain streak 0 | 0 | Inactive |
+| 3 | 3 | `...0011` | 1 | Odd | Increment streak | 1 | Active Run |
+| 4 | 4 | `...0100` | 0 | Even | Reset streak to 0 | 0 | Run Broken |
+| 5 | 5 | `...0101` | 1 | Odd | Increment streak | 1 | 1st of Triplet |
+| 6 | 7 | `...0111` | 1 | Odd | Increment streak | 2 | 2nd of Triplet |
+| 7 | 23 | `...0111` | 1 | Odd | Increment streak | **3** | **Triplet Complete!** |
+| 8 | 12 | - | - | - | Unreached (Early Exit) | - | - |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+- Whenever $\text{streak} == 3$ is reached, the current element $\text{arr}[i]$ and its two immediate predecessors $\text{arr}[i-1]$ and $\text{arr}[i-2]$ were each tested and confirmed odd ($x \ \& \ 1 = 1$) without any intervening reset.
+- Thus, the block $[\text{arr}[i-2], \text{arr}[i-1], \text{arr}[i]]$ consists of three strictly adjacent odd integers.
+- Returning `true` is mathematically sound.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+- Suppose there exists some triplet of consecutive odd numbers $[\text{arr}[j], \text{arr}[j+1], \text{arr}[j+2]]$.
+- During the scan, at index $j$, $\text{streak} \ge 1$.
+- At index $j+1$, $\text{streak} \ge 2$.
+- At index $j+2$, $\text{streak} \ge 3$.
+- The condition $\text{streak} == 3$ will be triggered at or before index $j+2$.
+- If no three consecutive odd numbers exist, $\text{streak}$ never reaches 3, and the loop exhausts all elements, returning `false`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check every length-three window:** Test the parity of positions `i`, `i+1`, and `i+2`. It is also $O(N)$ time and $O(1)$ space but repeats parity checks.
-- **Multiply each triple:** An odd product implies three odd factors, but multiplication is less direct and may overflow in fixed-width settings with larger constraints.
-- **Store a queue of three parities:** It works but adds unnecessary state when a streak counter is enough.
-- **Array shorter than three:** The counter cannot reach three, so the answer is false.
-- **Exactly three odds:** The function returns true on the last element.
-- **Run longer than three:** It returns as soon as the first three have been seen.
-- **Even separator:** It resets the streak completely.
-- **Odd values of different magnitudes:** Only parity matters; their actual values are irrelevant.
-- **All even values:** The count remains zero.
-- **All odd values:** Any legal array length at least three returns true at index two.
-- **Early qualifying block:** Later values are irrelevant once existence has been proven.
-- **Bitwise test:** `x & 1` is equivalent to checking `x % 2 == 1` for the stated positive integers.
-- **No mutation:** The scan is read-only and leaves `arr` unchanged.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Numerical Order Confusion:** The problem requires three *consecutive positions* in the array that are odd, not numbers that are consecutive integers (like $1, 3, 5$). Values $[5, 7, 23]$ are consecutive in the array and all odd, which satisfies the condition.
+- **Neglecting the Even Reset:** Failing to reset $\text{streak} = 0$ upon encountering an even element would count total odd numbers across the entire array, erroneously returning `true` for arrays where odds are separated by evens (such as $[1, 2, 3, 4, 5]$).
+- **Arrays with Fewer Than Three Elements:** When $N < 3$, the loop finishes with $\text{streak} \le N < 3$, naturally returning `false` without out-of-bounds errors.
+- **Triple Window Redundant Parity Checks:** Checking every 3-element window separately ($(\text{arr}[i] \ \& \ 1) \ \land \ (\text{arr}[i+1] \ \& \ 1) \ \land \ (\text{arr}[i+2] \ \& \ 1)$) tests each element up to 3 times. The running streak counter checks each element exactly once.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be array length. In the worst case, the loop examines all $N$ elements and performs constant bitwise, arithmetic, and comparison work for each. Time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  The algorithm inspects each element at most once.
+  Each iteration performs one bitwise AND operation, one counter increment or assignment, and one equality comparison, all taking $\mathcal{O}(1)$ time.
+  With early termination, it inspects at most $N$ elements.
+  Total time complexity is $\mathcal{O}(N)$. For $N \le 1000$, execution takes under 5 microseconds.
+- **Auxiliary Space Complexity:**
+  Only a single integer accumulator $\text{streak}$ is maintained.
+  Auxiliary space complexity is strictly $\mathcal{O}(1)$.

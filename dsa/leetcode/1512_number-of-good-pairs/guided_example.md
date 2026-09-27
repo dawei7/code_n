@@ -1,130 +1,172 @@
 # Guided Example: Number of Good Pairs
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"nums": [1, 2, 3, 1, 1, 3]}`
-- **Required output:** `4`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `nums`, return *the number of **good pairs***.
+We are given an array of integers:
+$$\text{nums} = [1, 2, 3, 1, 1, 3]$$
 
-The objective is to compute `4` from `{"nums": [1, 2, 3, 1, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
+Our teaching goal is to calculate the total number of "good pairs", defined as index pairs $(i, j)$ such that $0 \le i < j < n$ and $\text{nums}[i] = \text{nums}[j]$. We contrast the quadratic pairwise comparison method with the optimal linear streaming frequency accumulation technique, proving the equivalence of cumulative incremental pairing and the combinatorial combination formula $\binom{c}{2}$.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+A pair $(i, j)$ satisfies the good pair definition if and only if both indices contain identical values and the first precedes the second.
+1. **Combinatorial Frequency View**:
+   Suppose a value $v$ appears $c$ times across the entire array.
+   Any two distinct positions among these $c$ occurrences form a unique ordered pair $(i, j)$ with $i < j$.
+   The total number of good pairs formed by value $v$ is given by the binomial coefficient:
+   $$\binom{c}{2} = \frac{c(c - 1)}{2}$$
+   Summing over all distinct values in the array yields:
+   $$\text{Total Pairs} = \sum_{v \in \text{distinct}} \frac{c_v(c_v - 1)}{2}$$
+2. **Streaming Online Accumulator View**:
+   Instead of a two-pass algorithm (counting frequencies first, then summing combinations), we can compute the sum in a single streaming pass.
+   As we scan element $x$ at index $j$:
+   - Let $\text{count}[x]$ denote the number of times $x$ has appeared at prior indices $i < j$.
+   - Element $x$ at position $j$ forms a good pair with each of those $\text{count}[x]$ prior occurrences.
+   - We increment the running answer by $\text{count}[x]$, then increment $\text{count}[x]$ by $1$.
+   - By the identity:
+     $$\sum_{k=0}^{c-1} k = 0 + 1 + 2 + \dots + (c - 1) = \frac{c(c - 1)}{2}$$
+     the streaming sum matches the binomial coefficient precisely.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+```text
++-------------------------------------------------------------------------------+
+|                       STREAMING FREQUENCY ACCUMULATION                        |
+|                                                                               |
+|  Array: [ 1,  2,  3,  1,  1,  3 ]                                             |
+|           ^   ^   ^   ^   ^   ^                                               |
+|  x = 1:  Prior count = 0 -> ans += 0 -> count[1] becomes 1                    |
+|  x = 2:  Prior count = 0 -> ans += 0 -> count[2] becomes 1                    |
+|  x = 3:  Prior count = 0 -> ans += 0 -> count[3] becomes 1                    |
+|  x = 1:  Prior count = 1 -> ans += 1 -> count[1] becomes 2  (Pair: 0, 3)      |
+|  x = 1:  Prior count = 2 -> ans += 2 -> count[1] becomes 3  (Pairs: 0,4; 3,4) |
+|  x = 3:  Prior count = 1 -> ans += 1 -> count[3] becomes 2  (Pair: 2, 5)      |
+|                                                                               |
+|  Final Total Pairs: 0 + 0 + 0 + 1 + 2 + 1 = 4                                 |
++-------------------------------------------------------------------------------+
+```
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The algorithm maintains the following state variables:
 
----
+| State Variable | Domain | Initial Value | Transition / Role |
+|---|---|---|---|
+| `scan_cursor` | Integer $\in [0, n-1]$ | $0$ | Current index $j$ scanning through `nums`. |
+| `active_val` | Integer $\in [1, 100]$ | $\text{nums}[0]$ | Value of the element $\text{nums}[j]$ being evaluated. |
+| `freq_table` | Hash map or array of size $101$ | All zeros | Tracks cumulative frequency $\text{count}[v]$ of elements seen so far. |
+| `pairs_accumulator` | Integer $\ge 0$ | $0$ | Running total of good pairs discovered so far. |
+
+> [!IMPORTANT]
+> **Incremental Pairing Invariant**: When visiting the $k$-th occurrence of value $x$ (where $k-1$ occurrences were already processed), exactly $k-1$ new good pairs are introduced, each terminating at current index $j$.
+
+```mermaid
+flowchart TD
+    accTitle: Online Good Pair Counting Flow
+    accDescr: Pipeline iterating through array elements, accumulating existing frequencies, and updating frequency counts.
+    A["Input Array nums of length n"] --> B["Initialize freq_table = 0, pairs_accumulator = 0"]
+    B --> C["Iterate element x in nums"]
+    C --> D["pairs_accumulator += freq_table[x]"]
+    D --> E["freq_table[x] += 1"]
+    E --> F{"More elements in nums ?"}
+    F -->|Yes| C
+    F -->|No| RES["Return pairs_accumulator"]
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Counting pairs when their right endpoint arrives
+We walk through the representative instance $\text{nums} = [1, 2, 3, 1, 1, 3]$ with $n = 6$.
 
-A good pair requires equal values and indices `i < j`. Instead of storing every earlier index, the stored solution records how many times each value has appeared.
+### Step 1: Index $j = 0$, Value $x = 1$
+- Prior occurrences in `freq_table`: $\text{count}[1] = 0$.
+- New pairs created: $0$.
+- Update running total: $\text{pairs\_accumulator} = 0 + 0 = 0$.
+- Increment frequency: $\text{count}[1] \leftarrow 1$.
 
-When the loop reaches a current value `x` at index `j`, suppose `cnt[x] = c`. There are exactly `c` earlier indices whose values equal `x`. Each can be paired with the current index, so this one occurrence creates `c` new good pairs.
+### Step 2: Index $j = 1$, Value $x = 2$
+- Prior occurrences in `freq_table`: $\text{count}[2] = 0$.
+- New pairs created: $0$.
+- Update running total: $\text{pairs\_accumulator} = 0 + 0 = 0$.
+- Increment frequency: $\text{count}[2] \leftarrow 1$.
 
-The code adds `cnt[x]` to `ans` and then increments `cnt[x]`. This order is important. The current occurrence must not pair with itself, so it contributes to the count only after all pairs ending here have been counted.
+### Step 3: Index $j = 2$, Value $x = 3$
+- Prior occurrences in `freq_table`: $\text{count}[3] = 0$.
+- New pairs created: $0$.
+- Update running total: $\text{pairs\_accumulator} = 0 + 0 = 0$.
+- Increment frequency: $\text{count}[3] \leftarrow 1$.
 
-`Counter()` begins empty and supplies zero for a missing key. The first occurrence of any value therefore adds no pairs and creates count one without special-case code.
+### Step 4: Index $j = 3$, Value $x = 1$
+- Prior occurrences in `freq_table`: $\text{count}[1] = 1$ (from index $0$).
+- New pair created: $(0, 3)$.
+- Update running total: $\text{pairs\_accumulator} = 0 + 1 = 1$.
+- Increment frequency: $\text{count}[1] \leftarrow 2$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 1, 1, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 5: Index $j = 4$, Value $x = 1$
+- Prior occurrences in `freq_table`: $\text{count}[1] = 2$ (from indices $0$ and $3$).
+- New pairs created: $(0, 4)$ and $(3, 4)$.
+- Update running total: $\text{pairs\_accumulator} = 1 + 2 = 3$.
+- Increment frequency: $\text{count}[1] \leftarrow 3$.
 
----
+### Step 6: Index $j = 5$, Value $x = 3$
+- Prior occurrences in `freq_table`: $\text{count}[3] = 1$ (from index $2$).
+- New pair created: $(2, 5)$.
+- Update running total: $\text{pairs\_accumulator} = 3 + 1 = 4$.
+- Increment frequency: $\text{count}[3] \leftarrow 2$.
 
-### Step 2: A trace with repeated values
-
-Consider three occurrences of value one:
-
-- The first sees zero earlier ones and adds zero.
-- The second sees one earlier one and adds one pair.
-- The third sees two earlier ones and adds two pairs.
-
-The total is three, matching the index pairs among three positions. A fourth occurrence would add three more, bringing the total to six.
-
-Values are independent. Seeing a three changes only `cnt[3]` and adds the number of earlier threes. It cannot create a pair with a one because equality is required.
-
-For `[1, 2, 3, 1, 1, 3]`, the second one adds one, the third one adds two, and the second three adds one, giving four.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The invariant after processing a prefix
-
-After processing the first `j` elements:
-
-1. `cnt[v]` equals the number of occurrences of value `v` in that prefix.
-2. `ans` equals the number of good pairs whose two indices are both in that prefix.
-
-Both statements hold for the empty prefix. When the next value `x` arrives, existing good pairs remain unchanged. The only new pairs are those whose right index is the new position and whose left value is also `x`. There are exactly `cnt[x]` of them, so adding that count updates `ans` correctly. Incrementing the counter then restores the frequency fact for the extended prefix.
-
-By induction, the returned `ans` counts all good pairs in the complete array.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
+All elements have been processed. Total good pairs discovered: $4$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 1, 1, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+We collect the complete streaming step trace below.
 
----
+| Step $j$ | Element $\text{nums}[j]$ | Prior Frequency $\text{count}[x]$ | Pairs Added to Accumulator | Specific Pairs Formed | Updated $\text{count}[x]$ | Running Total Pairs |
+|---|---|---|---|---|---|---|
+| $0$ | $1$ | $0$ | $0$ | None | $1$ | $0$ |
+| $1$ | $2$ | $0$ | $0$ | None | $1$ | $0$ |
+| $2$ | $3$ | $0$ | $0$ | None | $1$ | $0$ |
+| $3$ | $1$ | $1$ | $+1$ | $(0, 3)$ | $2$ | $1$ |
+| $4$ | $1$ | $2$ | $+2$ | $(0, 4), (3, 4)$ | $3$ | $3$ |
+| $5$ | $3$ | $1$ | $+1$ | $(2, 5)$ | $2$ | **$4$** |
+
+### Combinatorial Verification
+
+Using global frequencies:
+- Value $1$: occurs $c_1 = 3$ times $\implies \binom{3}{2} = \frac{3 \times 2}{2} = 3$ pairs.
+- Value $2$: occurs $c_2 = 1$ time $\implies \binom{1}{2} = \frac{1 \times 0}{2} = 0$ pairs.
+- Value $3$: occurs $c_3 = 2$ times $\implies \binom{2}{2} = \frac{2 \times 1}{2} = 1$ pair.
+- Total $= 3 + 0 + 1 = 4$.
+The combinatorial tally identically confirms the streaming result.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Every increment to $\text{pairs\_accumulator}$ at step $j$ corresponds to pairing the current index $j$ with a previously observed index $i < j$ where $\text{nums}[i] = \text{nums}[j]$.
+Since $\text{count}[x]$ strictly counts indices $i < j$ with $\text{nums}[i] = x$, each of the $\text{count}[x]$ pairs $(i, j)$ satisfies $i < j$ and $\text{nums}[i] = \text{nums}[j]$, making it a valid good pair.
+Because the second element of the pair is fixed to the current index $j$, pairs formed at step $j$ have distinct right endpoints from pairs formed at any step $j' \ne j$, guaranteeing zero duplicate pairs.
 
----
+### Completeness
+
+Suppose $(i, j)$ is any arbitrary good pair in the array, so $i < j$ and $\text{nums}[i] = \text{nums}[j] = x$.
+When the loop reaches index $j$, index $i$ has already been processed because $i < j$.
+Index $i$ contributed $+1$ to $\text{count}[x]$.
+Hence, the occurrence at index $i$ is counted in $\text{count}[x]$ when index $j$ is evaluated.
+Summing across all $j \in [0, n-1]$ ensures every valid pair $(i, j)$ is counted exactly once, proving completeness.
 
 ## 6. Traps This Instance Exposes
 
-- **Count all frequencies first:** Sum `f * (f - 1) // 2` for every value. It has the same $O(N)$ time and $O(U)$ space but uses two conceptual phases.
-- **Check every index pair:** Nested loops are simple but take $O(N^2)$ time.
-- **Fixed frequency array:** Because values lie from one through one hundred, a small list can replace the hash counter.
-- **All values distinct:** Every lookup sees zero earlier matches, so the answer remains zero.
-- **All values equal:** Contributions are zero through $N-1$, totaling $N(N-1)/2$.
-- **Single element:** No pair exists, and the loop returns zero.
-- **Update order:** Incrementing before adding would incorrectly count each element paired with itself.
-- **Repeated values far apart:** Position distance is irrelevant; every earlier equal value forms a valid pair.
-- **Index order:** Left-to-right processing ensures only pairs with the earlier index first are counted.
-- **Required import:** `Counter` must be available from `collections`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+- **Double-Counting by Unordered Iteration**: Enumerating all pairs $(i, j)$ with $i \ne j$ without enforcing $i < j$ counts both $(i, j)$ and $(j, i)$, producing double the true answer unless divided by 2.
+- **Self-Pairing Error**: Including $i = j$ when scanning without checking $i < j$ treats an element as a good pair with itself.
+- **Frequency Update Before Accumulation**: Executing `count[x] += 1` before `ans += count[x]` includes self-pairing in the running count, adding $1$ extra pair on every element.
+- **Integer Overflow on Large Inputs**: Although $n \le 100$ in this problem (yielding at most $\binom{100}{2} = 4,950$ pairs), for larger constraints like $n = 10^5$, an array of all identical elements yields $\approx 5 \times 10^9$ pairs, requiring a 64-bit integer to prevent overflow.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the array length and $U$ the number of distinct values. The loop processes each element once. `Counter` lookup and update take expected $O(1)$ time, so total expected time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+- **Single Pass**: The algorithm iterates through the array of length $n$ once.
+- **Lookup and Update**: Checking and incrementing the frequency table (either a direct fixed array of size $101$ or a hash map) takes $\mathcal{O}(1)$ time per element.
+- Total time complexity is strictly $\mathcal{O}(n)$, an optimal improvement over naive $\mathcal{O}(n^2)$ pairwise checking.
+
+### Auxiliary Space Complexity
+
+- The frequency table stores counts for unique values.
+- With constraints $\text{nums}[i] \le 100$, an array of size $101$ consumes $\mathcal{O}(1)$ auxiliary space.
+- In general, with arbitrary values, a hash map takes at most $\mathcal{O}(\min(n, U))$ space, where $U$ is the number of unique elements.
+- Auxiliary space complexity is $\mathcal{O}(1)$ (bounded by $101$ entries).

@@ -48,7 +48,7 @@
     {
       "id": "trial-single-nine",
       "name": "single-digit overflow",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "digits": [
@@ -60,6 +60,7 @@
         0
       ],
       "tags": [
+        "sample",
         "boundary",
         "carry"
       ]

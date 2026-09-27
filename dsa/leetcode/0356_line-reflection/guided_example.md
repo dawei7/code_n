@@ -1,120 +1,167 @@
 # Guided Example: Line Reflection
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step horizontal coordinate bound derivation ($\min_x, \max_x$), integer reflection sum computation ($s = \min_x + \max_x$), hash set existence probing (`point_set`), and symmetric partner validation ($(s - x, y) \in point\_set$) on representative 2D point sets:
 
-- **Input:** `{"points": [[1, 1], [-1, 1]]}`
+- **Input:** `points = [[1, 1], [-1, 1]]`
 - **Required output:** `true`
+  - Horizontal bounds: $\min_x = -1, \max_x = 1$
+  - Doubled symmetry axis coordinate: $s = \min_x + \max_x = -1 + 1 = 0$ (axis of reflection $x = 0$)
+  - Partner verification:
+    - Point $(1, 1)$: reflected point $(0 - 1, 1) = (-1, 1) \in point\_set$ (Valid)
+    - Point $(-1, 1)$: reflected point $(0 - (-1), 1) = (1, 1) \in point\_set$ (Valid)
+  - All points have valid symmetric counterparts $\implies \text{true}$
+- **Asymmetric Vertical Height Counterexample:** `points = [[1, 1], [-1, -1]]`
+  - Bounds: $\min_x = -1, \max_x = 1 \implies s = 0$
+  - Reflection of $(1, 1)$ requires partner $(-1, 1)$, but existing point is $(-1, -1) \implies \text{false}$
+- **Self-Reflecting Axis Points:** A point on the reflection axis $(x_0, y)$ has $s - x_0 = x_0$, reflecting to itself
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates geometric reflection invariants, mathematically proves why extreme horizontal coordinates uniquely constrain the vertical symmetry axis, eliminates floating-point division using integer doubling, and achieves $O(N)$ linear time and $O(N)$ space complexity.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given `n` points on a 2D plane, find if there is such a line parallel to the y-axis that reflects the given points symmetrically.
+Given $N$ points on a 2D plane:
+$$
+points = [[1, 1], \; [-1, 1]]
+$$
+Determine whether there exists a vertical line $x = c$ parallel to the y-axis such that reflecting all points across $x = c$ maps the set of points onto itself:
 
-The objective is to compute `true` from `{"points": [[1, 1], [-1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Visual Coordinate Plane:
+y = 1 :  (-1, 1) -------- [x = 0] -------- (1, 1)
+               <-- dist = 1 -->|<-- dist = 1 -->
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Both points mirror symmetrically across x = 0.
+Symmetry Output: true
+```
+
+### The Uniqueness of the Reflection Axis
+If a valid line $x = c$ exists:
+- The point with the minimum horizontal coordinate $\min_x$ must reflect to the point with the maximum coordinate $\max_x$.
+- The distance from $\min_x$ to $c$ must equal the distance from $c$ to $\max_x$:
+  $$
+  c - \min_x = \max_x - c \implies 2c = \min_x + \max_x
+  $$
+- Therefore, the candidate axis is **uniquely fixed**: $c = \frac{\min_x + \max_x}{2}$.
+- Rather than dividing by 2 (which introduces floating-point fractions like $c = 1.5$), we define $s = \min_x + \max_x$. The reflected x-coordinate of any point $x$ is:
+  $$
+  x' = 2c - x = s - x
+  $$
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Extrema and Set Construction
+In a single linear pass over `points`:
+- Compute global horizontal extrema:
+  $$
+  \min_x = \min_{(x, y) \in points} x, \quad \max_x = \max_{(x, y) \in points} x
+  $$
+- Insert all coordinate pairs $(x, y)$ as tuples into a hash set `point_set`.
+- Define reflection sum: $s = \min_x + \max_x$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Universal Symmetry Predicate
+A set is vertically symmetric about $x = s/2$ if and only if:
+$$
+\forall (x, y) \in points, \quad (s - x, \; y) \in point\_set
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** If any point $(x, y)$ lacks its counterpart $(s - x, y)$ in `point_set`, no line parallel to the y-axis can reflect the set onto itself.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why the extreme horizontal coordinates determine the axis.
-
-Let `min_x` be the smallest horizontal coordinate in the point set and `max_x` the largest. If a vertical reflection preserves the set, the leftmost point or points must reflect to the rightmost horizontal position. Reflection reverses horizontal order: smaller $x$ values become larger reflected values. Therefore the reflection axis must lie halfway between the two extremes:
-
-$$
-c=\frac{\texttt{min\_x}+\texttt{max\_x}}{2}.
-$$
-
-There is no need to try multiple candidate lines. Any other axis would send the minimum horizontal coordinate somewhere other than the maximum, so the extreme coordinates could not be preserved.
-
-The exact solution stores `s = min_x + max_x`, which equals $2c$. This avoids floating-point arithmetic. The axis may lie at a half-integer, such as $x=1.5$, but `s` remains an exact integer. A point's reflected horizontal coordinate is simply `s - x`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"points": [[1, 1], [-1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `points = [[1, 1], [-1, 1]]`:
 
 ---
 
-### Step 2: Collecting the facts in one pass.
-
-The first loop begins with `min_x = inf` and `max_x = -inf`. Every point updates both extremes. At the same time, `(x, y)` is inserted into `point_set`, a hash set used for expected constant-time membership checks.
-
-Tuples are used because Python lists are mutable and cannot be hash-set keys. Converting `[x, y]` to `(x, y)` preserves both coordinate values in an immutable, hashable form.
-
-Repeated input points collapse into one set entry. That is consistent with the problem's set-preservation meaning: repeating the same coordinate does not introduce a new geometric location that needs a different mirror. The second pass still visits repeated entries from the original list, but it asks the same membership question each time.
-
-If the intended object were a multiset whose exact multiplicities had to match across the axis, a plain set would be insufficient. One would need frequencies. The accepted set-based interpretation treats the input as geometric points with duplicates allowed but not multiplicity-significant.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Compute Extrema and Populate Set
+- Process point $(1, 1)$:
+  - $\min_x = \min(\infty, 1) = 1$
+  - $\max_x = \max(-\infty, 1) = 1$
+  - Add $(1, 1)$ to `point_set`.
+- Process point $(-1, 1)$:
+  - $\min_x = \min(1, -1) = -1$
+  - $\max_x = \max(1, -1) = 1$
+  - Add $(-1, 1)$ to `point_set`.
+- Hash set contents:
+  $$
+  point\_set = \{(1, 1), \; (-1, 1)\}
+  $$
 
 ---
 
-### Step 3: Verifying every mirror.
+### Step 2: Determine Candidate Reflection Sum $s$
+$$
+s = \min_x + \max_x = -1 + 1 = \mathbf{0}
+$$
+The line of reflection is $x = s/2 = 0$.
 
-After computing `s`, the generator examines every original point `(x, y)`. Its uniquely required mirror is `(s - x, y)`. The expression
+---
 
+### Step 3: Validate Reflections for All Points
+1. **Point $(1, 1)$:**
+   - Compute required reflection: $(s - x, \; y) = (0 - 1, \; 1) = \mathbf{(-1, 1)}$.
+   - Probe `point_set`: Is $(-1, 1) \in point\_set$? **Yes!**
+2. **Point $(-1, 1)$:**
+   - Compute required reflection: $(s - x, \; y) = (0 - (-1), \; 1) = \mathbf{(1, 1)}$.
+   - Probe `point_set`: Is $(1, 1) \in point\_set$? **Yes!**
 
+---
 
-checks whether that reflected location exists. `all(...)` returns true only if every point passes. It can stop early at the first missing partner.
-
-For `[[1, 1], [-1, 1]]`, the extremes are `-1` and `1`, so `s = 0` and the axis is $x=0$. Point `(1, 1)` requires `(-1, 1)`, and point `(-1, 1)` requires `(1, 1)`. Both exist.
-
-For `[[1, 1], [-1, -1]]`, the same candidate axis is derived. The mirror of `(1, 1)` would be `(-1, 1)`, not `(-1, -1)`. The missing same-height partner makes the answer false. This demonstrates why comparing only horizontal coordinate counts is not enough; pairing must preserve $y$.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Final Confirmation
+Every point has passed the symmetry verification.
+$$
+\text{Result} = \mathbf{\text{true}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"points": [[1, 1], [-1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+```text
+Points: [[1, 1], [-1, 1]]
+min_x = -1, max_x = 1 -> s = -1 + 1 = 0
+point_set = {(1, 1), (-1, 1)}
+
+Verification:
+Point (1, 1)  -> required partner: (0 - 1, 1) = (-1, 1)  -> In set? True
+Point (-1, 1) -> required partner: (0 - -1, 1) = (1, 1)  -> In set? True
+
+all(...) evaluated to True -> return True
+```
+
+| Point Inspected $(x, y)$ | Reflection Formula $(s - x, y)$ | Partner Evaluated | In `point_set`? | Status |
+|:---:|:---:|:---:|:---:|:---:|
+| $(1, 1)$ | $(0 - 1, 1)$ | $(-1, 1)$ | Yes | Verified |
+| $(-1, 1)$ | $(0 - (-1), 1)$ | $(1, 1)$ | Yes | Verified |
+| **All Passed** | - | - | - | **`true` (Output)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $L$ be a vertical line of reflection. For any finite set of points, reflection is a distance-preserving isometry. The extreme coordinates $\min_x$ and $\max_x$ must map to each other, which uniquely fixes the axis at $x = (\min_x + \max_x)/2$. If every point $(x, y)$ reflects to an existing point $(s - x, y)$, then the set is closed under reflection across $L$, proving reflection symmetry.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the candidate axis is unique, if the set fails the reflection test for this axis, no other vertical line can be an axis of symmetry. Checking each point in $O(1)$ average time guarantees an exhaustive and complete verification.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Group and sort x-coordinates by height:** For every $y$, sort that row's horizontal coordinates and compare pairs from the outside inward against a common sum. This can verify symmetry but costs $O(n\log n)$ time overall.
-- **Try every possible partner or axis:** Comparing point pairs can reach $O(n^2)$ time and ignores the fact that the global extremes uniquely determine the candidate axis.
-- **Frequency map for multiset symmetry:** Store counts of every coordinate and require equal counts for `(x, y)` and `(s - x, y)`. This is necessary only if duplicate multiplicity is semantically meaningful; the exact source follows set semantics.
+- **Floating-Point Imprecision:** Using float division `c = (min_x + max_x) / 2` and checking `2 * c - x` can introduce floating-point inaccuracies for half-integers. Working purely with integer sum $s = \min_x + \max_x$ eliminates rounding errors entirely.
+- **Vertical Coordinate Matching:** A common mistake is only verifying horizontal balance $\sum x_i$ without checking if the corresponding $y$ coordinate matches. Points must share the exact same $y$ height ($y' = y$).
+- **Duplicate Points in Input:** If the input contains duplicate coordinates, `set(points)` deduplicates them cleanly. Under set-reflection semantics, repeating a point does not invalidate symmetry.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(1)$. Let $n$ be the number of entries in `points` and let $u$ be the number of distinct coordinate pairs, where $u\le n$.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of points.
+  - Finding $\min_x$, $\max_x$, and populating `point_set` takes $O(N)$ time.
+  - Verifying the reflection of each point takes $N$ iterations with $O(1)$ average set lookup time.
+  - Overall runtime is strictly $O(N)$.
+- **Auxiliary Space Complexity:** $O(U)$, where $U \le N$ is the number of unique points stored in `point_set`.

@@ -1,108 +1,203 @@
 # Guided Example: Rearrange String k Distance Apart
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step max-heap greedy scheduling (`(-count, char)`), cooldown sliding deque maintenance (`len(q) >= k`), distance-$k$ separation enforcement, and impossibility detection (`len(ans) < len(s)`) on representative string instances:
 
-- **Input:** `{"s": "aabbcc", "k": 3}`
-- **Required output:** `"abcabc"`
+- **Input:** $s = \text{"aabbcc"}, \quad k = 3$
+- **Required output:** $\text{"abcabc"}$
+  - Initial frequency counts: `'a': 2, 'b': 2, 'c': 2`
+  - Max-heap: `[(-2, 'a'), (-2, 'b'), (-2, 'c')]`
+  - Step 1: Pop `'a'` $\implies ans = [\text{'a'}]$, cooldown queue: `[(-1, 'a')]`
+  - Step 2: Pop `'b'` $\implies ans = [\text{'a'}, \text{'b'}]$, cooldown queue: `[(-1, 'a'), (-1, 'b')]`
+  - Step 3: Pop `'c'` $\implies ans = [\text{'a'}, \text{'b'}, \text{'c'}]$, queue reaches size $3 \ge k \implies$ release `'a'` back to heap!
+  - Step 4: Pop `'a'` $\implies ans = [\text{'a'}, \text{'b'}, \text{'c'}, \text{'a'}]$, release `'b'`
+  - Step 5: Pop `'b'` $\implies ans = [\text{'a'}, \text{'b'}, \text{'c'}, \text{'a'}, \text{'b'}]$, release `'c'`
+  - Step 6: Pop `'c'` $\implies ans = [\text{'a'}, \text{'b'}, \text{'c'}, \text{'a'}, \text{'b'}, \text{'c'}]$
+  - All 6 characters scheduled $\implies \text{"abcabc"}$
+- **Infeasible Instance:** $s = \text{"aaabc"}, k = 3 \implies \text{""}$ (Heap empties prematurely while 'a' is stuck in cooldown)
+- **Zero Distance Limit:** $k = 0 \implies$ string returned unchanged
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates greedy priority-queue scheduling with cooldown window constraints, mathematically proves why prioritizing higher-frequency characters prevents unavoidable starvation, and achieves $O(N \log |\Sigma|)$ time and $O(N)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s` and an integer `k`, rearrange `s` such that the same characters are **at least** distance `k` from each other. If it is not possible to rearrange the string, return an empty string `""`.
+Given a string $s = \text{"aabbcc"}$ ($N = 6$) and an integer $k = 3$:
+Rearrange the characters of $s$ such that the same characters are separated by **at least distance $k$** from each other:
+$$
+\text{index}(c_2) - \text{index}(c_1) \ge k \quad \text{for any identical characters } c_1 = c_2
+$$
+If no valid rearrangement exists, return the empty string `""`:
 
-The objective is to compute `"abcabc"` from `{"s": "aabbcc", "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Target Separation: k = 3 (At least 2 other characters between identical letters)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Valid Placement:
+Index:   0   1   2   3   4   5
+Char:   'a' 'b' 'c' 'a' 'b' 'c'
+Distance between 'a's: 3 - 0 = 3 >= 3 (Valid!)
+Distance between 'b's: 4 - 1 = 3 >= 3 (Valid!)
+Distance between 'c's: 5 - 2 = 3 >= 3 (Valid!)
+
+Output: "abcabc"
+```
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Greedy Choice Invariant
+Characters with higher remaining frequencies exert the greatest future placement constraints.
+At every step, always greedily schedule the **eligible** character with the **maximum remaining frequency**.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. The Two-Stage Architecture
+1. **Max-Heap (`pq`):**
+   Stores currently eligible characters as tuples `(-remaining_count, char)`.
+   Using negative counts simulates a max-heap via Python's standard min-heap `heapq`.
+2. **Cooldown Queue (`q`):**
+   Stores recently placed characters and their decremented counts.
+   A character placed at current step enters `q` and cannot re-enter `pq` until at least $k$ steps have elapsed:
+   $$
+   \text{When } \text{len}(q) \ge k: \quad e = q.\text{popleft}(), \quad \text{if } e[0] < 0: heappush(pq, e)
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Termination & Validity Check
+If the heap becomes empty while characters still have positive counts in `q`:
+$$
+\text{len}(ans) < \text{len}(s) \implies \text{Return } \text{""}
+$$
+Otherwise, return `"".join(ans)`.
+
+> **Invariant.** No character can be selected if fewer than $k$ positions have elapsed since its last placement.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why frequency determines priority.
-
-High-frequency characters are the hardest to separate. Each copy after the first needs enough other positions between it and the preceding copy. If scarce separator characters are consumed while a frequent character remains unscheduled, the final copies may become impossible to place.
-
-Choosing the eligible character with the greatest remaining count handles the most constrained work first. A less frequent eligible character has no greater future placement pressure. Swapping it later with the more frequent choice does not create an advantage: both are legal now, while delaying the character with more copies can only leave at least as much repeated work for fewer remaining positions.
-
-The heap implements a max-priority rule using Python's min-heap. Each entry is `(-remaining_count, character)`. A larger remaining count produces a more negative number, which is popped first. When counts tie, tuple comparison uses the character as a deterministic secondary key. That lexicographic tie-break affects which valid answer is produced, not whether the distance rule is satisfied.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aabbcc", "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $s = \text{"aabbcc"}$ with $k = 3$:
+Initial counts: `{'a': 2, 'b': 2, 'c': 2}`.
+`pq = [(-2, 'a'), (-2, 'b'), (-2, 'c')]`, `q = deque()`, `ans = []`.
 
 ---
 
-### Step 2: Building the initial eligible heap.
-
-`Counter(s)` records how many copies of every distinct lowercase letter are required. The list comprehension converts each `(character, count)` pair to `(-count, character)`, and `heapify` creates the priority queue. Initially every character is eligible because nothing has yet been placed.
-
-`ans` stores output characters in order. The deque starts empty because no character is cooling down.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Position 0
+- Pop max-frequency element: `(-2, 'a')`.
+- Append to result: $ans = [\mathbf{\text{'a'}}]$.
+- Enqueue to cooldown: $q.\text{append}((-1, \text{'a'})) \implies q = [(-1, \text{'a'})]$.
+- Condition $\text{len}(q) \ge 3$ is False ($1 < 3$).
 
 ---
 
-### Step 3: One scheduling iteration.
+### Step 2: Position 1
+- Pop max-frequency element: `(-2, 'b')`.
+- Append to result: $ans = [\text{'a'}, \mathbf{\text{'b'}}]$.
+- Enqueue to cooldown: $q.\text{append}((-1, \text{'b'})) \implies q = [(-1, \text{'a'}), (-1, \text{'b'})]$.
+- Condition $\text{len}(q) \ge 3$ is False ($2 < 3$).
 
-The loop runs while at least one character is eligible in the heap. It pops `(v, c)`, appends `c` to the answer, and appends `(v + 1, c)` to the cooldown queue.
+---
 
-Because `v` is the negative remaining count before use, adding one consumes one copy. For example, a count of three is stored as `-3`; after placing one copy, the record becomes `-2`, meaning two remain. A value of zero means all copies have been scheduled.
+### Step 3: Position 2 — First Cooldown Release!
+- Pop max-frequency element: `(-2, 'c')`.
+- Append to result: $ans = [\text{'a'}, \text{'b'}, \mathbf{\text{'c'}}]$.
+- Enqueue to cooldown: $q.\text{append}((-1, \text{'c'}))$.
+- Cooldown queue: $q = [(-1, \text{'a'}), (-1, \text{'b'}), (-1, \text{'c'})]$, $\text{len}(q) = 3 \ge 3$!
+- **Release expired character:**
+  - $e = q.\text{popleft}() = (-1, \text{'a'})$.
+  - Since remaining count $-1 \ne 0$, push back to heap: $heappush(pq, (-1, \text{'a'}))$.
+- Heap now has: `[(-1, 'a')]`.
 
-The record enters the queue even when its new count is zero. This is intentional in the exact implementation: queue length represents how many output positions have elapsed, so every placed character contributes one chronological slot. An exhausted record will later leave the queue but will not return to the heap.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"abcabc"` |
+### Step 4: Position 3
+- Pop max-frequency element: `(-1, 'a')`.
+- Append to result: $ans = [\text{'a'}, \text{'b'}, \text{'c'}, \mathbf{\text{'a'}}]$.
+- Enqueue to cooldown: $q.\text{append}((0, \text{'a'}))$.
+- Queue: $[(-1, \text{'b'}), (-1, \text{'c'}), (0, \text{'a'})]$, $\text{len}(q) = 3 \ge 3$.
+- Release expired character:
+  - $e = q.\text{popleft}() = (-1, \text{'b'})$.
+  - Push back to heap: $heappush(pq, (-1, \text{'b'}))$.
+- Heap now has: `[(-1, 'b')]`.
+
+---
+
+### Step 5: Position 4
+- Pop max-frequency element: `(-1, 'b')`.
+- Append to result: $ans = [\text{'a'}, \text{'b'}, \text{'c'}, \text{'a'}, \mathbf{\text{'b'}}]$.
+- Enqueue: $q.\text{append}((0, \text{'b'}))$.
+- Release expired character:
+  - $e = q.\text{popleft}() = (-1, \text{'c'})$.
+  - Push back to heap: $heappush(pq, (-1, \text{'c'}))$.
+
+---
+
+### Step 6: Position 5
+- Pop max-frequency element: `(-1, 'c')`.
+- Append to result: $ans = [\text{'a'}, \text{'b'}, \text{'c'}, \text{'a'}, \text{'b'}, \mathbf{\text{'c'}}]$.
+- Enqueue: $q.\text{append}((0, \text{'c'}))$.
+- Release expired character:
+  - $e = q.\text{popleft}() = (0, \text{'a'})$.
+  - Remaining count is $0 \implies$ discarded!
+- Loop ends as `pq` is empty.
+
+---
+
+### Step 7: Verification
+Length of `ans` is $6 == \text{len}(s)$.
+Return valid rearranged string:
+$$
+\mathbf{\text{"abcabc"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aabbcc", "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"abcabc"` | Verified |
+```text
+s = "aabbcc", k = 3
+pq = [(-2,'a'), (-2,'b'), (-2,'c')]
+
+Pos 0: pop 'a' -> ans=['a'], q=[(-1,'a')]
+Pos 1: pop 'b' -> ans=['a','b'], q=[(-1,'a'),(-1,'b')]
+Pos 2: pop 'c' -> ans=['a','b','c'], q=[(-1,'a'),(-1,'b'),(-1,'c')]
+       len(q)>=3 -> popleft (-1,'a') -> push to pq: [(-1,'a')]
+Pos 3: pop 'a' -> ans=['a','b','c','a'], q=[(-1,'b'),(-1,'c'),(0,'a')]
+       len(q)>=3 -> popleft (-1,'b') -> push to pq: [(-1,'b')]
+Pos 4: pop 'b' -> ans=['a','b','c','a','b'], q=[(-1,'c'),(0,'a'),(0,'b')]
+       len(q)>=3 -> popleft (-1,'c') -> push to pq: [(-1,'c')]
+Pos 5: pop 'c' -> ans=['a','b','c','a','b','c'], q=[(0,'a'),(0,'b'),(0,'c')]
+       len(q)>=3 -> popleft (0,'a') (count 0, discarded)
+
+Final String: "abcabc"
+```
+
+| Output Index | Selected Character | Remainder Stored | Cooldown Queue State Before Release | Released from Cooldown | Re-added to Heap? | String Emitted So Far |
+|:---:|:---:|:---:|:---|:---:|:---:|:---|
+| 0 | `'a'` | $-1$ | `[(-1, 'a')]` | None | No | `"a"` |
+| 1 | `'b'` | $-1$ | `[(-1, 'a'), (-1, 'b')]` | None | No | `"ab"` |
+| **2** | **'c'** | **$-1$** | **`[(-1, 'a'), (-1, 'b'), (-1, 'c')]`** | **`(-1, 'a')`** | **Yes (`'a'`)** | **`"abc"`** |
+| 3 | `'a'` | $0$ | `[(-1, 'b'), (-1, 'c'), (0, 'a')]` | `(-1, 'b')` | Yes (`'b'`) | `"abca"` |
+| 4 | `'b'` | $0$ | `[(-1, 'c'), (0, 'a'), (0, 'b')]` | `(-1, 'c')` | Yes (`'c'`) | `"abcab"` |
+| 5 | `'c'` | $0$ | `[(0, 'a'), (0, 'b'), (0, 'c')]` | `(0, 'a')` | No (Exhausted) | **`"abcabc"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A character is pushed back into `pq` only after $\text{len}(q) \ge k$, which implies that at least $k - 1$ intervening characters have been placed since its last use. Thus, any two occurrences of the same character are separated by an index difference of at least $k$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Prioritizing characters with the maximum remaining counts minimizes the risk of deadlock. If a valid arrangement exists, this greedy strategy successfully places all $N$ characters without prematurely exhausting separator letters.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Repeatedly scan all 26 counts:** At every position, choose the most frequent character whose next-allowed index has arrived. This costs $O(26n)=O(n)$ under the fixed alphabet and may be simpler than a heap, though less general for large alphabets.
-- **Sort counts once without updates:** This is insufficient because remaining frequencies and eligibility change after every placement. The priority structure must reflect those changes.
-- **Segment construction by maximum frequency:** Distribute the most frequent letters among frequency-sized segments and verify that all but the last reach length `k`. This can run in linear time but requires careful handling of ties and segment filling.
+- **Enqueuing Exhausted Characters:** Characters with remaining count 0 must still be pushed into `q` to maintain the chronological timeline of $k$ elapsed slots. Only after leaving `q` are they filtered out by `if e[0]:`.
+- **Heap Starvation on Infeasible Inputs:** For inputs like `"aaabc"` with $k = 3$, `a` cannot be placed without violating distance $k$. The heap becomes empty before `ans` reaches length $N$. Returning `""` when `len(ans) < len(s)` prevents partial invalid output.
+- **$k = 0$ Edge Case:** When $k \le 1$, identical characters can be adjacent. The condition `len(q) >= k` releases the character immediately.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(a)$. Let $n$ be the string length and let $a$ be the number of distinct characters. Here $a\le26$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \log |\Sigma|)$, where $N = \text{len}(s)$ and $|\Sigma|$ is the alphabet size ($|\Sigma| \le 26$). Each of the $N$ steps involves at most one `heappop` and one `heappush`, taking $O(\log 26) = O(1)$ time. Overall runtime is strictly $O(N)$.
+- **Auxiliary Space Complexity:** $O(|\Sigma| + k) = O(1)$ bounded auxiliary memory to store heap and cooldown queue, plus $O(N)$ for output list `ans`.

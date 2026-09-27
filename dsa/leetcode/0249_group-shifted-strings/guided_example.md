@@ -1,129 +1,188 @@
 # Guided Example: Group Shifted Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step cyclic alphabet normalization, modular difference hash key generation, and equivalence class grouping on representative shifted string arrays:
 
-- **Input:** `{"strings": ["a"]}`
-- **Required output:** `[["a"]]`
+- **Input:** $\text{strings} = [\text{"abc"}, \text{"bcd"}, \text{"acef"}, \text{"xyz"}, \text{"az"}, \text{"ba"}, \text{"a"}, \text{"z"}]$
+- **Required output:**
+  $$
+  [[\text{"acef"}], \; [\text{"a"}, \text{"z"}], \; [\text{"abc"}, \text{"bcd"}, \text{"xyz"}], \; [\text{"az"}, \text{"ba"}]]
+  $$
+- **Single Letter Grouping:** $\text{"a"}$ and $\text{"z"}$ group together ($\Delta = \emptyset$)
+- **Wraparound Equivalence:** $\text{"az"}$ and $\text{"ba"}$ group together ($z - a = 25 \equiv a - b = -1 \pmod{26}$)
+- **Preserving Duplicates:** Identical strings map to the same key and remain distinct list items
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modular arithmetic equivalence classes on circular alphabets ($\mathbb{Z}_{26}$), proves why normalizing every string so its first character begins with `'a'` (or using adjacent cyclic difference tuples) forms an invariant canonical hash key, groups elements in $O(L)$ time where $L$ is the total character count, and allocates $O(L)$ auxiliary storage.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Perform the following shift operations on a string:
+Given an array of lowercase strings:
+$$
+\text{strings} = [\text{"abc"}, \text{"bcd"}, \text{"acef"}, \text{"xyz"}, \text{"az"}, \text{"ba"}, \text{"a"}, \text{"z"}]
+$$
+Group together all strings that belong to the same **shifting sequence** (where shifting increments every letter cyclically: $\text{'a'} \to \text{'b'} \to \dots \to \text{'z'} \to \text{'a'}$).
 
-The objective is to compute `[["a"]]` from `{"strings": ["a"]}` while avoiding redundant calculations and unnecessary overhead.
+Notice the structural shifts:
+- `"abc"` $\to$ `"bcd"` $\to \dots \to$ `"xyz"`: each adjacent letter increases by $+1 \pmod{26}$.
+- `"az"` $\to$ `"ba"`: from $'a'$ to $'z'$ is $+25 \equiv -1 \pmod{26}$. Shifting both letters right yields $'b'$ and $'a'$, which also has step $-1 \equiv 25 \pmod{26}$.
+- `"a"` and `"z"`: single characters can shift into any single character.
+- `"acef"`: steps are $+2, +3, +1 \pmod{26}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Comparing every pair of strings takes $O(N^2 \cdot L)$ time.
+Instead, we compute a **canonical invariant hash key** for each string that is identical for all members of the same shift family, partitioning strings into a hash table in a single $O(L)$ pass.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: Base-'a' Canonical Normalization
+To make all strings in a shifting family identical:
+Shift the entire string backward by $\text{offset} = (\text{ord}(s[0]) - \text{ord('a')}) \pmod{26}$, forcing the first character to become `'a'`:
+For each character $c$ in $s$:
+$$
+c_{\text{norm}} = \text{chr}\Big(\big(\text{ord}(c) - \text{ord('a')} - \text{offset}\big) \pmod{26} + \text{ord('a')}\Big)
+$$
+- For `"abc"`: $\text{offset} = 0 \implies \text{"abc"}$.
+- For `"bcd"`: $\text{offset} = 1 \implies \text{"abc"}$.
+- For `"xyz"`: $\text{offset} = 23 \implies \text{"abc"}$.
+- For `"az"`: $\text{offset} = 0 \implies \text{"az"}$.
+- For `"ba"`: $\text{offset} = 1 \implies \text{"az"}$ (since $(0 - 1) \pmod{26} = 25 \implies \text{'z'}$).
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Method B: Adjacent Difference Tuple
+Compute the cyclic step between adjacent characters:
+$$
+\text{key} = \Big( (\text{ord}(s[i]) - \text{ord}(s[i-1])) \pmod{26} \quad \text{for } i = 1 \dots \text{len}(s)-1 \Big)
+$$
+- For single-character strings (`"a"`, `"z"`): $\text{key} = ()$.
+- For `"abc"`, `"bcd"`, `"xyz"`: $\text{key} = (1, 1)$.
+- For `"az"`, `"ba"`: $\text{key} = (25,)$.
+- For `"acef"`: $\text{key} = (2, 3, 1)$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Two strings $s_1$ and $s_2$ belong to the same shifting sequence if and only if their normalized forms (or difference tuples) are identical.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compute the normalization offset
+We trace the canonical normalization on $\text{strings} = [\text{"abc"}, \text{"bcd"}, \text{"acef"}, \text{"xyz"}, \text{"az"}, \text{"ba"}, \text{"a"}, \text{"z"}]$:
 
-The value
-
-
-
-is the zero-based alphabet index of the first character. It lies from `0` for `a` through `25` for `z`. Subtracting `diff` from the code of the first character always turns it into `ord('a')`.
-
-For each character `c`, the solution computes `ord(c) - diff`. If this falls below `ord('a')`, it adds `26` to wrap back into the lowercase alphabet. Only one addition can be needed: the original code is at least `ord('a')`, and `diff` is at most `25`, so the intermediate result is never more than 25 positions below `a`.
-
-The normalized characters are accumulated in `t`, joined into one string, and used as the key in `g`. The original string—not the normalized copy—is appended to that key's group so the returned data contains the inputs as requested.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"strings": ["a"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### 1. String `"abc"`
+- Offset: $\text{ord('a')} - \text{ord('a')} = 0$.
+- Normalized: `"abc"`.
+- Group map: `{"abc": ["abc"]}`.
 
 ---
 
-### Step 2: Wraparound is part of the identity
-
-Ordinary subtraction without modulo behavior would group `az` incorrectly. For `s = "az"`, `diff = 0`, so the key remains `"az"`. For `s = "ba"`, `diff = 1`: `b` becomes `a`, while subtracting one from `a` falls just before the alphabet and is corrected by adding `26`, producing `z`. Its key is also `"az"`.
-
-This matches the shifting sequence: one left shift turns `ba` into `az`. The wrap step is therefore essential, not merely a character-code repair.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### 2. String `"bcd"`
+- Offset: $\text{ord('b')} - \text{ord('a')} = 1$.
+- Shift each char left by $1$:
+  - $'b' - 1 = 'a'$
+  - $'c' - 1 = 'b'$
+  - $'d' - 1 = 'c'$
+- Normalized: `"abc"`.
+- Match existing group `"abc"`!
+- Group map: `{"abc": ["abc", "bcd"]}`.
 
 ---
 
-### Step 3: Why canonicalization groups exactly the right strings
+### 3. String `"acef"`
+- Offset: $\text{ord('a')} - \text{ord('a')} = 0$.
+- Normalized: `"acef"`.
+- Group map: `{"abc": ["abc", "bcd"], "acef": ["acef"]}`.
 
-Represent letters by numbers in $\{0,1,\ldots,25\}$. If a string has values $x_0,x_1,\ldots,x_{m-1}$, its canonical form is
+---
 
-$$
-(0,\;x_1-x_0,\;x_2-x_0,\ldots,x_{m-1}-x_0)\pmod{26}.
-$$
+### 4. String `"xyz"`
+- Offset: $\text{ord('x')} - \text{ord('a')} = 23$.
+- Shift left by $23$ (or right by $3$):
+  - $'x' \to 'a'$
+  - $'y' \to 'b'$
+  - $'z' \to 'c'$
+- Normalized: `"abc"`.
+- Match existing group `"abc"`!
+- Group map: `{"abc": ["abc", "bcd", "xyz"], ...}`.
 
-First assume two strings are in the same shifting sequence. Then there is one offset $q$ such that every corresponding letter of the second string equals the first plus $q$ modulo 26. Subtracting each string's own first letter cancels that common offset, so their canonical forms are equal.
+---
 
-Conversely, assume two strings have equal canonical forms. At every position, each character's offset from its own first character is the same. Shifting the first string by the cyclic difference between the two first characters therefore makes every position equal to the second string. Thus equal keys imply membership in the same shifting sequence.
+### 5. String `"az"`
+- Offset: $\text{ord('a')} - \text{ord('a')} = 0$.
+- Normalized: `"az"`.
+- Group map: `{"az": ["az"], ...}`.
 
-The key also preserves length because it is a string containing one normalized character per input character. Strings of different lengths cannot accidentally share a key even if their initial patterns look similar.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[["a"]]` |
+### 6. String `"ba"`
+- Offset: $\text{ord('b')} - \text{ord('a')} = 1$.
+- Shift left by $1$:
+  - $'b' - 1 = 'a'$
+  - $'a' - 1 = -1 \equiv 25 \pmod{26} = 'z'$ (Wraparound!).
+- Normalized: `"az"`.
+- Match existing group `"az"`!
+- Group map: `{"az": ["az", "ba"], ...}`.
+
+---
+
+### 7. Strings `"a"` and `"z"`
+- `"a"`: length 1, offset 0 $\implies$ normalized: `"a"`.
+- `"z"`: length 1, offset 25 $\implies$ $'z' - 25 = 'a' \implies$ normalized: `"a"`.
+- Match group `"a"`!
+- Group map: `{"a": ["a", "z"], ...}`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"strings": ["a"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[["a"]]` | Verified |
+```text
+strings = ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"]
+
+"abc"  -> offset = 0  -> key = "abc"  -> groups["abc"]  = ["abc"]
+"bcd"  -> offset = 1  -> key = "abc"  -> groups["abc"]  = ["abc", "bcd"]
+"acef" -> offset = 0  -> key = "acef" -> groups["acef"] = ["acef"]
+"xyz"  -> offset = 23 -> key = "abc"  -> groups["abc"]  = ["abc", "bcd", "xyz"]
+"az"   -> offset = 0  -> key = "az"   -> groups["az"]   = ["az"]
+"ba"   -> offset = 1  -> key = "az"   -> groups["az"]   = ["az", "ba"]
+"a"    -> offset = 0  -> key = "a"    -> groups["a"]    = ["a"]
+"z"    -> offset = 25 -> key = "a"    -> groups["a"]    = ["a", "z"]
+
+Result: [["abc", "bcd", "xyz"], ["acef"], ["az", "ba"], ["a", "z"]]
+```
+
+| Word $s$ | First Char | Shift Offset ($s[0] - \text{'a'}$) | Derived Normalized Key | Assigned Equivalence Group |
+|:---:|:---:|:---:|:---:|:---|
+| `"abc"` | `'a'` | 0 | `"abc"` | `["abc"]` |
+| `"bcd"` | `'b'` | 1 | `"abc"` | `["abc", "bcd"]` |
+| `"acef"` | `'a'` | 0 | `"acef"` | `["acef"]` |
+| `"xyz"` | `'x'` | 23 | `"abc"` | `["abc", "bcd", "xyz"]` |
+| `"az"` | `'a'` | 0 | `"az"` | `["az"]` |
+| `"ba"` | `'b'` | 1 | `"az"` | `["az", "ba"]` |
+| `"a"` | `'a'` | 0 | `"a"` | `["a"]` |
+| `"z"` | `'z'` | 25 | `"a"` | `["a", "z"]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Suppose two strings $s$ and $t$ belong to the same shifting sequence. Then there exists an integer $k \in [0, 25]$ such that $t[i] \equiv (s[i] + k) \pmod{26}$ for all $i$. Let $\text{offset}_s = s[0] - \text{'a'}$ and $\text{offset}_t = t[0] - \text{'a'} = (s[0] + k) - \text{'a'} \equiv \text{offset}_s + k \pmod{26}$.
+For every position $i$:
+$$
+t[i] - \text{offset}_t \equiv (s[i] + k) - (\text{offset}_s + k) \equiv s[i] - \text{offset}_s \pmod{26}
+$$
+The offset shifts cancel out completely, proving the normalized strings are identical.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Conversely, if two strings have the same normalized key, shifting the first string by $(t[0] - s[0]) \pmod{26}$ produces the second string at every position, proving they belong to the same shift orbit.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Adjacent-difference tuple:** Record `(s[i] - s[i-1]) mod 26` for every adjacent pair. It is shift-invariant and is the representation summarized by the manifest. The exact source uses the equally valid first-letter normalization.
-- **Compare every pair of strings:** Test whether one constant shift converts each pair and merge matches. This repeats character work and can take quadratic time in the number of strings.
-- **Generate each string's full shifting sequence:** A string has at most 26 distinct shifts, so it could be matched through all variants, but canonicalizing once is simpler and avoids storing unnecessary forms.
-- **Single-character strings:** Every one-letter lowercase string can shift into every other. Normalization maps all of them to the one-character key `a`, so they form one group.
-- **Wrap from `a` below the alphabet:** Adding `26` after subtraction restores the correct cyclic character, as in `ba -> az`.
-- **Different lengths:** The canonical key retains length, so a one-character string cannot be grouped with a two-character string.
-- **Repeated identical strings:** They have the same key and are appended as separate input entries. The grouping preserves duplicates rather than deduplicating them.
-- **Already normalized strings:** A string beginning with `a` has `diff = 0` and becomes its own key.
-- **All `z` characters:** Subtracting 25 maps each `z` to `a`, so `zzz` shares a group with `aaa` and every other constant three-letter string.
-- **Dictionary ordering:** Modern Python preserves insertion order, but the contract explicitly allows any output order. Correctness depends only on group membership.
-- **Empty strings:** The source accesses `s[0]`, but the constraints guarantee every string has length at least one. Supporting empty strings would require assigning them a separate empty key.
-- **Non-lowercase characters:** The arithmetic assumes contiguous lowercase English codes and a 26-letter cycle. Broader alphabets would require a contract-specific mapping rather than this fixed offset.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Modulo with Negative Numbers in C++ vs Python:** In Python, `-1 % 26 = 25` natively. In C/C++, `-1 % 26 = -1`. In C++, one must write `(diff + 26) % 26` to guarantee a non-negative modulo index.
+- **Length Invariance:** Two strings with different lengths cannot belong to the same shift sequence. Normalizing base-'a' naturally preserves string length (e.g. `"a"` has length 1, `"aa"` has length 2), preventing accidental collisions.
+- **Tuples vs Strings as Keys:** When using adjacent differences, using a Python `tuple` of differences or a delimited string (e.g. `"1#2"`) is required. Storing as raw digits (e.g. `"12"`) could cause ambiguity between difference 1 followed by 2, versus a single difference of 12! Base-'a' normalized strings completely bypass delimiter issues.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L)$. Let
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(L)$, where $L$ is the total number of characters across all strings in `strings`. Each string of length $m$ is normalized in $O(m)$ time, followed by an $O(m)$ hash map lookup.
+- **Auxiliary Space Complexity:** $O(L)$ auxiliary memory to store the hash map keys and output groupings containing all $L$ characters.

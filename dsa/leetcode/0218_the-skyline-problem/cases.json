@@ -73,7 +73,7 @@
     {
       "id": "trial-touching",
       "name": "touching equal buildings merge",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "buildings": [
@@ -100,6 +100,7 @@
         ]
       ],
       "tags": [
+        "sample",
         "boundary"
       ]
     },

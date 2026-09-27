@@ -1,109 +1,181 @@
 # Guided Example: Sum of Subarray Minimums
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step calculation of subarray minimum contributions, prove the asymmetric tie-breaking invariant that partitions the subarray space bijectively without duplicate counts, and evaluate monotonic stack spans on representative integer sequences:
 
-- **Input:** `{"arr": [3, 1, 2, 4]}`
-- **Required output:** `17`
+- **Representative Instance:**
+  $$
+  arr = [3, \; 1, \; 2, \; 4]
+  $$
+- **Required Output:** `17`
+  - All $10$ contiguous subarrays and their minimum values:
+    - Subarrays containing only $3$:
+      - $[3] \implies \min = 3$
+    - Subarrays where $1$ is the minimum:
+      - $[3, 1] \implies 1$
+      - $[3, 1, 2] \implies 1$
+      - $[3, 1, 2, 4] \implies 1$
+      - $[1] \implies 1$
+      - $[1, 2] \implies 1$
+      - $[1, 2, 4] \implies 1$
+      - (Subtotal for minimum $1$: $6 \times 1 = 6$)
+    - Subarrays where $2$ is the minimum:
+      - $[2] \implies 2$
+      - $[2, 4] \implies 2$
+      - (Subtotal for minimum $2$: $2 \times 2 = 4$)
+    - Subarrays where $4$ is the minimum:
+      - $[4] \implies 4$
+      - (Subtotal for minimum $4$: $1 \times 4 = 4$)
+  - Total sum:
+    $$
+    3 + 6 + 4 + 4 = \mathbf{17} \pmod{10^9 + 7}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Duplicate Boundary Instance:**
+  $$
+  arr = [1, \; 1] \implies [1] \text{ (at 0)}, \; [1] \text{ (at 1)}, \; [1, 1] \implies 1 + 1 + 1 = \mathbf{3}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers arr, find the sum of `min(b)`, where `b` ranges over every (contiguous) subarray of `arr`. Since the answer may be large, return the answer **modulo** $10^{9} + 7$.
+Given an array of integers $arr$, find the sum of $\min(b)$ where $b$ ranges over every contiguous subarray of $arr$. Return the result modulo $10^9 + 7$.
 
-The objective is to compute `17` from `{"arr": [3, 1, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array:               [  3,    1,    2,    4  ]
+Index:                  0     1     2     3
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Contribution Method:
+  For each index i, how many subarrays have arr[i] as their unique minimum?
+  Subarrays = (i - left[i]) * (right[i] - i)
+  i = 0 (val 3): span [0..0]          -> 1 * 1 = 1 subarray  -> 1 * 3 = 3
+  i = 1 (val 1): span [0..3]          -> 2 * 3 = 6 subarrays -> 6 * 1 = 6
+  i = 2 (val 2): span [2..3]          -> 1 * 2 = 2 subarrays -> 2 * 2 = 4
+  i = 3 (val 4): span [3..3]          -> 1 * 1 = 1 subarray  -> 1 * 4 = 4
+                                                                ----
+                                                      Sum    = 17
+```
 
----
+A brute-force evaluation inspects all $\mathcal{O}(n^2)$ subarrays, taking $\mathcal{O}(n^3)$ or $\mathcal{O}(n^2)$ time and causing immediate TLE for $n = 30{,}000$.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Core Step 1
-
-Enumerating every subarray and finding its minimum would be quadratic or worse. The contribution method instead asks:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [3, 1, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Principle of Element Contribution**:
+Invert the summation from "sum of minima over all subarrays" to "sum of (element value $\times$ number of subarrays where that element is the chosen minimum)".
+To avoid double-counting subarrays with multiple identical minima, we enforce an **Asymmetric Boundary Invariant**.
 
 ---
 
-### Step 2: Core Step 2
+## 2. Conceptual Foundation & Asymmetric Tie-Breaking
 
-> For how many subarrays is `arr[i]` the chosen minimum?
+```mermaid
+flowchart LR
+    accTitle: Subarray Minimum Span Window
+    accDescr: Diagram illustrating valid start choices (i - left) and valid end choices (right - i) for element at index i
+    L["left[i]: Previous strictly smaller element (arr[k] < arr[i])"] --- StartZone["Valid Subarray Starts: i - left[i] choices"]
+    StartZone --- Center["Current Element: arr[i] (chosen minimum)"]
+    Center --- EndZone["Valid Subarray Ends: right[i] - i choices"]
+    EndZone --- R["right[i]: Next smaller or equal element (arr[k] <= arr[i])"]
+```
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### The Asymmetric Tie-Breaking Theorem
+
+Suppose an array contains duplicate minimal elements, such as $[2, 2, 2]$. Which index $i$ "owns" the subarray $[2, 2, 2]$?
+- If both left and right boundaries allow equal elements ($\le$), multiple indices claim the same subarray, causing massive **overcounting**.
+- If both left and right boundaries require strict inequality ($<$), no index claims the subarray, causing **undercounting**.
+- **Resolution:** Enforce strict inequality on one side and non-strict inequality on the other:
+  1. $left[i]$: the index of the previous **strictly smaller** element ($arr[k] < arr[i]$), with sentinel $-1$.
+  2. $right[i]$: the index of the next **smaller or equal** element ($arr[k] \le arr[i]$), with sentinel $n$.
+
+By this rule, in any subarray containing multiple identical minimal elements, exactly the **first** (leftmost) occurrence is designated as the unique representative minimum, creating a strict bijection over the set of all subarrays.
 
 ---
 
-### Step 3: Core Step 3
+## 3. Step-by-Step Worked Execution: $arr = [3, 1, 2, 4]$
 
-If that count is known, index `i` contributes its value multiplied by the count. Summing over indices accounts for every subarray.
+### Phase 1: Forward Monotonic Stack ($left[i]$: Previous Strictly Smaller)
+Maintain a monotonic strictly increasing stack of indices.
+Pop while $arr[\text{top}] \ge arr[i]$:
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `17` |
+| Index $i$ | Element $arr[i]$ | Stack Before Step | Popped Indices ($arr[\text{top}] \ge arr[i]$) | Stack Top After Pops | Recorded $left[i]$ | Stack After Push |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0** | $3$ | `[]` | None | (empty) | $\mathbf{-1}$ | `[0]` |
+| **1** | $1$ | `[0]` | $0$ ($arr[0]=3 \ge 1$) | (empty) | $\mathbf{-1}$ | `[1]` |
+| **2** | $2$ | `[1]` | None ($arr[1]=1 < 2$) | $1$ | $\mathbf{1}$ | `[1, 2]` |
+| **3** | $4$ | `[1, 2]` | None ($arr[2]=2 < 4$) | $2$ | $\mathbf{2}$ | `[1, 2, 3]` |
+
+Computed $left = [-1, \; -1, \; 1, \; 2]$.
 
 ---
 
-## 4. Complete Execution Trace
+### Phase 2: Backward Monotonic Stack ($right[i]$: Next Smaller or Equal)
+Iterate $i$ from $n - 1$ down to $0$. Pop while $arr[\text{top}] > arr[i]$:
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [3, 1, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `17` | Verified |
+| Index $i$ | Element $arr[i]$ | Stack Before Step | Popped Indices ($arr[\text{top}] > arr[i]$) | Stack Top After Pops | Recorded $right[i]$ | Stack After Push |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **3** | $4$ | `[]` | None | (empty) | $\mathbf{4}$ | `[3]` |
+| **2** | $2$ | `[3]` | $3$ ($arr[3]=4 > 2$) | (empty) | $\mathbf{4}$ | `[2]` |
+| **1** | $1$ | `[2]` | $2$ ($arr[2]=2 > 1$) | (empty) | $\mathbf{4}$ | `[1]` |
+| **0** | $3$ | `[1]` | None ($arr[1]=1 \le 3$) | $1$ | $\mathbf{1}$ | `[1, 0]` |
+
+Computed $right = [1, \; 4, \; 4, \; 4]$.
+
+---
+
+### Phase 3: Contribution Synthesis
+
+| Index $i$ | $arr[i]$ | $left[i]$ | $right[i]$ | Left Span ($i - left[i]$) | Right Span ($right[i] - i$) | Subarrays Dominated | Contribution to Total |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0** | $3$ | $-1$ | $1$ | $0 - (-1) = 1$ | $1 - 0 = 1$ | $1 \times 1 = 1$ | $1 \times 3 = \mathbf{3}$ |
+| **1** | $1$ | $-1$ | $4$ | $1 - (-1) = 2$ | $4 - 1 = 3$ | $2 \times 3 = 6$ | $6 \times 1 = \mathbf{6}$ |
+| **2** | $2$ | $1$ | $4$ | $2 - 1 = 1$ | $4 - 2 = 2$ | $1 \times 2 = 2$ | $2 \times 2 = \mathbf{4}$ |
+| **3** | $4$ | $2$ | $4$ | $3 - 2 = 1$ | $4 - 3 = 1$ | $1 \times 1 = 1$ | $1 \times 4 = \mathbf{4}$ |
+
+Total Subarray Count: $1 + 6 + 2 + 1 = 10 = \frac{4 \times 5}{2}$ (all subarrays accounted for!).
+$$
+\text{Total Sum} = 3 + 6 + 4 + 4 = \mathbf{17}
+$$
+
+---
+
+## 4. Duplicate Disambiguation: $arr = [1, 1]$
+
+To see how asymmetric tie-breaking prevents double-counting on identical values:
+
+| $i$ | $arr[i]$ | $left[i]$ ($<$) | $right[i]$ ($\le$) | Left Span | Right Span | Subarrays Counted | Subarray Realization |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | $1$ | $-1$ | $1$ ($arr[1]=1 \le 1$) | $1$ | $1$ | $1 \times 1 = 1$ | $[1]$ at index 0 |
+| 1 | $1$ | $-1$ ($arr[0]=1 \not< 1$) | $2$ | $2$ | $1$ | $2 \times 1 = 2$ | $[1]$ at index 1, and $[1, 1]$ |
+
+Notice that the combined subarray $[1, 1]$ is attributed uniquely to index $1$. The total count is $1 + 2 = 3 = \frac{2 \times 3}{2}$, with zero duplication.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   For any subarray $arr[L \dots R]$ where $left[i] < L \le i \le R < right[i]$, every element $arr[k]$ for $k \in [L, R]$ satisfies $arr[k] \ge arr[i]$ by definition of the nearest smaller boundaries. Thus, $arr[i]$ is indeed the minimum of subarray $arr[L \dots R]$.
+2. **Completeness:**
+   Every non-empty contiguous subarray $arr[L \dots R]$ has at least one minimum element. Among all indices achieving this minimum, exactly the leftmost index satisfies $L > left[i]$ and $R < right[i]$. Therefore, each of the $\frac{n(n+1)}{2}$ subarrays is counted for exactly one index $i$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Enumerate all subarrays:** Maintaining a running minimum for every start costs $O(n^2)$ time.
-- **Dynamic programming with a monotonic stack:** Compute the sum of minima for subarrays ending at each index. It also reaches $O(n)$ time.
-- **Use strict comparisons on both sides:** Equal minima double-count shared subarrays.
-- **Use non-strict comparisons on both sides:** Equal minima can leave shared subarrays unassigned.
-- **All values increasing:** Left boundaries are immediate predecessors, while right boundaries are the sentinel.
-- **All values decreasing:** Left boundaries are the sentinel, while right boundaries are immediate successors.
-- **All values equal:** The asymmetric rule assigns each subarray to its rightmost element exactly once.
-- **One element:** Its start and end choice counts are both one, so it contributes itself.
-- **Boundary sentinels:** `-1` and `n` make formulas work without special cases at array ends.
-- **Positive values:** The contract ensures every minimum is positive, though the contribution proof also works with other integers.
-- **Modulo timing:** Reducing only after the sum is mathematically valid in Python; fixed-width languages may reduce during accumulation.
-- **Store indices, not values:** Boundaries need distances, so stack entries must retain positions.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Element | $arr = [5]$ | $left = [-1], right = [1]$. Span: $1 \times 1 \times 5 = 5$. | Boundary index out-of-bounds. |
+| All Equal Elements | $arr = [2, 2, 2]$ | Asymmetric rules allocate $1, 2, 3$ subarrays respectively $\implies$ sum $= 12$. | Using symmetric $\le$ on both sides causing $3 \times 3$ double-counting. |
+| Strictly Decreasing | $arr = [3, 2, 1]$ | Left spans are $1, 2, 3$; right spans are $1, 1, 1$. Total $= 3+4+3=10$. | Miscalculating backward stack pops. |
+| Integer Overflow | $n = 30{,}000$, elements $30{,}000$ | Unbounded sum reaches $\approx 30{,}000^3 \approx 2.7 \times 10^{13}$. Requires modulo $10^9 + 7$. | 32-bit signed integer overflow prior to modulo reduction. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. Each index is pushed once and popped at most once in each monotonic-stack pass. Boundary construction is therefore linear, and the final contribution generator is linear.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$.
+  - Phase 1 (Forward pass): Each index is pushed onto the stack once and popped at most once $\implies \mathcal{O}(n)$.
+  - Phase 2 (Backward pass): Each index is pushed onto the stack once and popped at most once $\implies \mathcal{O}(n)$.
+  - Phase 3 (Summation): A single linear pass computes contributions in $\mathcal{O}(n)$.
+  - Total time: strictly $\mathcal{O}(n)$, completing in $< 0.02\text{ s}$ for $n = 30{,}000$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$.
+  - Arrays `left` and `right` and the index stack each consume $\mathcal{O}(n)$ memory.

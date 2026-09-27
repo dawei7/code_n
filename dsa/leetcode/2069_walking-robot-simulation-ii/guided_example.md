@@ -1,123 +1,139 @@
 # Guided Example: Walking Robot Simulation II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 1D perimeter modular mapping, coordinate unwrapping, and directional boundary determination on a representative robot simulation:
 
-- **Input:** `{"operations": ["Robot", "getPos", "getDir"], "arguments": [[4, 3], [], []]}`
-- **Required output:** `[null, [0, 0], "East"]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-A `width x height` grid is on an XY-plane with the **bottom-left** cell at `(0, 0)` and the **top-right** cell at $(width - 1, height - 1)$. The grid is aligned with the four cardinal directions (`"North"`, `"East"`, `"South"`, and `"West"`). A robot is **initially** at cell `(0, 0)` facing direction `"East"`.
-
-The objective is to compute `[null, [0, 0], "East"]` from `{"operations": ["Robot", "getPos", "getDir"], "arguments": [[4, 3], [], []]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Grid Dimensions:** $\text{width} = 6$, $\text{height} = 3$
+- **Operation Sequence:** `["Robot(6, 3)", "step(2)", "step(2)", "getPos", "getDir", "step(2)", "step(1)", "step(4)", "getPos", "getDir"]`
+- **Expected Output:** `[null, null, null, [4, 0], "East", null, null, null, [1, 2], "West"]`
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+A robot begins at position $(0, 0)$ on a $W \times H$ grid, initially facing **East**. The grid spans coordinates $[0, W - 1] \times [0, H - 1]$.
+When commanded to take $k$ steps:
+- The robot moves forward one cell per step.
+- If stepping forward would move outside the grid, the robot turns $90^\circ$ counterclockwise in place before taking that step.
+- The robot never turns inward; it circumnavigates the **outer perimeter** of the rectangle indefinitely.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+We must support three stateful operations:
+1. `step(num)`: Advance by `num` steps along the perimeter.
+2. `getPos()`: Return the current $[x, y]$ coordinates.
+3. `getDir()`: Return the current heading (`"East"`, `"North"`, `"West"`, or `"South"`).
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Counterclockwise Perimeter Circuit
+    accDescr: 6 by 3 rectangle perimeter showing bottom edge East, right edge North, top edge West, and left edge South.
+    subgraph Grid["Perimeter Loop (Width = 6, Height = 3, P = 14)"]
+        direction TB
+        Top["Top Edge (y=2): d in [8, 12], Moving West"]
+        Right["Right Edge (x=5): d in [6, 7], Moving North"]
+        Bottom["Bottom Edge (y=0): d in [0, 5], Moving East"]
+        Left["Left Edge (x=0): d in [13, 0], Moving South"]
+    end
+    Bottom -->|"Turn North at (5, 0)"| Right -->|"Turn West at (5, 2)"| Top -->|"Turn South at (0, 2)"| Left -->|"Turn East at (0, 0)"| Bottom
+
+    classDef edge fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
+    class Bottom,Right,Top,Left edge;
+```
+
+For $W = 6, H = 3$:
+- Maximum horizontal steps: $m_x = 6 - 1 = 5$.
+- Maximum vertical steps: $m_y = 3 - 1 = 2$.
+- Total circuit perimeter: $P = 2 \cdot m_x + 2 \cdot m_y = 2(5) + 2(2) = 14$ steps.
+- Because the robot moves in a closed loop of length $14$, every move of size $\text{num}$ is equivalent to advancing $\text{num} \pmod{14}$ positions along the 1D perimeter!
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Theoretical Invariants & 1D Perimeter Projection
 
-### Step 1: The robot always follows the perimeter
+Simulating steps one by one would take $\mathcal{O}(\text{num})$ time, which times out when $\text{num} = 10^5$ across $10^4$ calls. Instead, we project the 2D perimeter onto a 1D scalar coordinate $d \in [0, P - 1]$:
+$$d = (\text{current\_distance} + \text{num}) \pmod P$$
 
-Starting at the bottom-left corner facing east, the robot moves along the bottom edge, then the right edge, then the top edge, then the left edge, and repeats.
+### Perimeter Coordinate Mapping Invariant
+Let $m_x = W - 1$ and $m_y = H - 1$. The 1D distance $d$ maps to 2D coordinates $[x, y]$ via four piecewise linear segments:
 
-It never enters an interior cell because a turn occurs only when forward movement would leave the rectangle. The complete state can therefore be represented by one distance around this perimeter cycle.
+| Segment | Distance Interval $d$ | Heading Direction | $x$-Coordinate Formula | $y$-Coordinate Formula | Coordinate Range |
+|---|---|---|---|---|---|
+| Bottom Edge | $0 \le d \le m_x$ | East (if $d > 0$ or moved) | $x = d$ | $y = 0$ | $(0, 0)$ to $(m_x, 0)$ |
+| Right Edge | $m_x < d \le m_x + m_y$ | North | $x = m_x$ | $y = d - m_x$ | $(m_x, 1)$ to $(m_x, m_y)$ |
+| Top Edge | $m_x + m_y < d \le 2m_x + m_y$ | West | $x = m_x - (d - (m_x + m_y))$ | $y = m_y$ | $(m_x - 1, m_y)$ to $(0, m_y)$ |
+| Left Edge | $2m_x + m_y < d < P$ | South | $x = 0$ | $y = m_y - (d - (2m_x + m_y))$ | $(0, m_y - 1)$ to $(0, 1)$ |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### The Origin Direction Invariant (Subtle Edge Case)
+When the robot is at $(0, 0)$ ($d = 0$):
+- **Before any movement:** It was placed at $(0, 0)$ initialized to face **East**.
+- **After moving at least once:** The robot reaches $(0, 0)$ by walking South down the left edge ($x = 0$). When it lands on $(0, 0)$, it faces **South**. (It only turns East when an upcoming command forces it to step forward).
+Therefore:
+$$\text{Direction at } (0, 0) = \begin{cases} \text{"East"} & \text{if } \neg\text{moved} \\ \text{"South"} & \text{if } \text{moved} \end{cases}$$
+
+---
+
+## 3. Step-by-Step State Execution Trace
+
+We trace the sequence of method calls for $W = 6, H = 3$ ($m_x = 5, m_y = 2, P = 14$):
+
+| Operation | Arguments | Internal 1D Distance $d$ Calculation | `moved` Flag | Computed Position $[x, y]$ | Computed Direction | Method Return Value |
+|---|---|---|---|---|---|---|
+| `Robot(6, 3)` | $[6, 3]$ | Initialize: $d = 0, P = 14$ | `False` | $[0, 0]$ | `"East"` | `null` |
+| `step(2)` | $[2]$ | $(0 + 2) \pmod{14} = 2$ | `True` | $[2, 0]$ | `"East"` | `null` |
+| `step(2)` | $[2]$ | $(2 + 2) \pmod{14} = 4$ | `True` | $[4, 0]$ | `"East"` | `null` |
+| `getPos()` | $[\,]$ | $d = 4 \in [0, 5] \implies [4, 0]$ | `True` | $[4, 0]$ | — | **`[4, 0]`** |
+| `getDir()` | $[\,]$ | $d = 4 \in [1, 5] \implies \text{"East"}$ | `True` | — | `"East"` | **`"East"`** |
+| `step(2)` | $[2]$ | $(4 + 2) \pmod{14} = 6$ | `True` | $[5, 1]$ | `"North"` | `null` |
+| `step(1)` | $[1]$ | $(6 + 1) \pmod{14} = 7$ | `True` | $[5, 2]$ | `"North"` | `null` |
+| `step(4)` | $[4]$ | $(7 + 4) \pmod{14} = 11$ | `True` | Top edge: $x = 5 - (11 - 7) = 1$ | `"West"` | `null` |
+| `getPos()` | $[\,]$ | $d = 11 \in [8, 12] \implies [1, 2]$ | `True` | $[1, 2]$ | — | **`[1, 2]`** |
+| `getDir()` | $[\,]$ | $d = 11 \in [8, 12] \implies \text{"West"}$ | `True` | — | `"West"` | **`"West"`** |
+
+---
+
+## 4. Perimeter Segment Intervals for $6 \times 3$ Grid
+
+Below is the complete coordinate unrolling table for all $14$ discrete positions along the perimeter:
+
+| Distance $d$ | Coordinates $[x, y]$ | Facing Direction | Segment Description |
 |---|---|---|---|
-| Input Slice | `{"operations": ["Robot", "getPos", "getDir"], "arguments": [[4, 3], [], []]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $0$ | $[0, 0]$ | East (initial) / South (after move) | Bottom-Left Corner |
+| $1 \dots 4$ | $[1, 0] \dots [4, 0]$ | East | Bottom Edge Interior |
+| $5$ | $[5, 0]$ | East | Bottom-Right Corner |
+| $6$ | $[5, 1]$ | North | Right Edge Interior |
+| $7$ | $[5, 2]$ | North | Top-Right Corner |
+| $8 \dots 11$ | $[4, 2] \dots [1, 2]$ | West | Top Edge Interior (Step 8 reaches $d=11 \implies [1, 2]$) |
+| $12$ | $[0, 2]$ | West | Top-Left Corner |
+| $13$ | $[0, 1]$ | South | Left Edge Interior |
 
 ---
 
-### Step 2: Measure the side lengths in steps
+## 5. Algorithmic Correctness & Soundness
 
-`mx = width - 1` is the number of horizontal steps between the left and right edges. `my = height - 1` is the vertical step count.
-
-One full circuit uses
-
-`p = 2 * mx + 2 * my`
-
-steps. With width and height at least two, this perimeter length is positive.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Cycle Equivalence:**
+   Because turning occurs precisely when forward movement would exit the boundary, the robot's motion is strictly constrained to the 1D perimeter of length $P$. Since the grid boundary is invariant under translations of $P$, any displacement of $\text{num}$ steps is isomorphic to $\text{num} \pmod P$.
+2. **Deterministic Unwrapping:**
+   The four piecewise intervals $[0, m_x]$, $(m_x, m_x + m_y]$, $(m_x + m_y, 2m_x + m_y]$, and $(2m_x + m_y, P)$ form a disjoint, exhaustive partition of $[0, P - 1]$. Each distance $d$ maps to a unique $(x, y)$ coordinate.
+3. **$\mathcal{O}(1)$ Efficiency:**
+   Modular arithmetic replaces iterative single-step loops, making every operation execute in constant time regardless of how large $\text{num}$ is.
 
 ---
 
-### Step 3: Accumulate steps modulo the perimeter
+## 6. Edge Cases, Pitfalls & Structural Traps
 
-`cur` is the robot's distance along the cycle from the origin. `step(num)` performs
-
-`cur = (cur + num) % p`.
-
-Moving a full multiple of the perimeter returns to the same cell and post-movement direction, so discarding whole cycles is valid. Each call takes constant time even when `num` is large.
-
-Successive calls compose naturally because each begins from the current cycle distance.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, [0, 0], "East"]` |
+- **Full Loop Multiples at Origin:**
+  If the robot starts at $(0, 0)$ and takes `step(14)` (one full circuit), $d = (0 + 14) \pmod{14} = 0$. Its position is $[0, 0]$, but its direction is now **"South"**, because it walked South into $(0, 0)$. Without the `moved` flag, an implementation would erroneously report `"East"`.
+- **Corner Heading Ambiguity:**
+  At a corner (e.g. $d = 5 \implies (5, 0)$), the robot arrived traveling East. It faces East until a subsequent step forces it to turn North. The piecewise intervals correctly preserve this arrival heading.
+- **Large Step Counts:**
+  A query with $\text{num} = 10^9$ is reduced in $\mathcal{O}(1)$ via modulo arithmetic without any loops.
 
 ---
 
-## 4. Complete Execution Trace
+## 7. Complexity Analysis
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["Robot", "getPos", "getDir"], "arguments": [[4, 3], [], []]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, [0, 0], "East"]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Precompute every perimeter state:** Makes queries constant time but uses $O(width+height)$ space.
-- **Simulate one step at a time:** Can cost $O(num)$ per call and is unnecessary.
-- **No movement yet:** Origin direction is east.
-- **Complete positive cycle:** Origin direction is south.
-- **Bottom-right corner:** Faces east until another step triggers the turn.
-- **Top-right corner:** Faces north.
-- **Top-left corner:** Faces west.
-- **Large `num`:** Modulo removes complete circuits safely.
-- **Several step calls:** Modular distances accumulate exactly.
-- **Minimum two-by-two grid:** All four perimeter cells and corner directions remain covered.
-- **Position return:** A new two-element list is produced each time.
-- **No interior cells:** Boundary-turn rules keep the robot on the perimeter forever.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(Q)$. Construction stores five scalar fields and runs in $O(1)$ time. Each `step`, `getPos`, and `getDir` call performs a fixed number of arithmetic operations and comparisons, so each is $O(1)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `__init__`: $\mathcal{O}(1)$ to calculate perimeter $P = 2(W + H - 2)$.
+  - `step`: $\mathcal{O}(1)$ to perform addition and modulo $P$.
+  - `getPos`: $\mathcal{O}(1)$ with four interval conditional checks.
+  - `getDir`: $\mathcal{O}(1)$ with four interval conditional checks.
+  All operations execute in $\mathcal{O}(1)$ time.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space to store scalars $m_x, m_y, P, d,$ and `moved`.

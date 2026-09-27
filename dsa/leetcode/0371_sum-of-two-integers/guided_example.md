@@ -1,120 +1,212 @@
 # Guided Example: Sum of Two Integers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step half-adder bitwise simulation, carry-free addition via XOR (`a ^ b`), carry generation and left-shift propagation (`(a & b) << 1`), 32-bit two's complement masking (`& 0xFFFFFFFF`), and signed integer sign-restoration on representative integer instances:
 
-- **Input:** `{"a": 1, "b": 2}`
-- **Required output:** `3`
+- **Input:** $a = 1, \quad b = 2$
+- **Required output:** $3$
+  - Binary representations (4-bit slice):
+    - $a = 1 = 0001_2$
+    - $b = 2 = 0010_2$
+  - Iteration 1:
+    - Sum without carry: $a \oplus b = 0001_2 \oplus 0010_2 = 0011_2 = \mathbf{3}$
+    - Carry generated: $(a \ \& \ b) \ll 1 = (0001_2 \ \& \ 0010_2) \ll 1 = 0 \ll 1 = \mathbf{0}$
+    - New state: $a = 3, \; b = 0$
+  - Carry $b = 0 \implies$ loop terminates
+  - Positive sign verification: $3 < 2^{31} \implies \mathbf{3}$
+- **Negative Arithmetic Instance:** $a = -2, \quad b = 3 \implies 1$
+  - In two's complement: $-2 \equiv \texttt{0xFFFFFFFE}_{16}$
+  - Sum ripples carries through bit 31, terminating at $a = 1$
+- **Two Negative Integers:** $a = -1, \quad b = -1 \implies -2$
+  - Bit 31 sign bit is set $\implies \sim(a \oplus \texttt{0xFFFFFFFF}) = -2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates digital logic full-adder circuit emulation in software, mathematically proves how XOR captures sum bits while AND left-shifted captures carry propagation, explains Python arbitrary-precision two's complement masking, and establishes $O(W) = O(1)$ time and $O(1)$ space complexity.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two integers `a` and `b`, return *the sum of the two integers without using the operators* `+` *and* `-`.
+Given two signed integers $a = 1$ and $b = 2$:
+Compute their sum $a + b$ **without using the arithmetic operators `+` or `-`**:
 
-The objective is to compute `3` from `{"a": 1, "b": 2}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Binary Bitwise Half-Adder Principles:
+Bit A | Bit B | Sum (A ^ B) | Carry ((A & B) << 1)
+  0   |   0   |      0      |          0
+  0   |   1   |      1      |          0
+  1   |   0   |      1      |          0
+  1   |   1   |      0      |          1 (shifted left to next bit)
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Example Trace (a = 1, b = 2):
+a     = 0001
+b     = 0010
+a ^ b = 0011 (3)
+(a & b) << 1 = 0000 (0, Carry is zero!)
+
+Final Output: 3
+```
+
+### Emulating Hardware Adders
+In digital hardware (ALUs), addition is implemented with logic gates:
+1. **Sum Bit (without carry):** The exclusive-OR gate ($\text{XOR}$, $\oplus$) outputs $1$ if exactly one bit is $1$:
+   $$
+   \text{sum\_bits} = a \oplus b
+   $$
+2. **Carry Bit:** The logical-AND gate ($\text{AND}$, $\&$) outputs $1$ if both bits are $1$. Because a carry from bit $p$ must be added to bit $p+1$, it is shifted left by $1$:
+   $$
+   \text{carry} = (a \ \& \ b) \ll 1
+   $$
+3. By repeatedly replacing $a \leftarrow a \oplus b$ and $b \leftarrow carry$, the carry bits shift leftward until $carry = 0$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Python Two's Complement Simulation
+Because Python integers have arbitrary precision (unlimited bits), negative numbers have an infinite sequence of leading $1$s. To emulate fixed 32-bit hardware integers and prevent infinite carry loops:
+- Mask both operands to 32 bits:
+  $$
+  \text{MASK} = \texttt{0xFFFFFFFF} \quad (2^{32} - 1)
+  $$
+  $$
+  a \leftarrow a \ \& \ \text{MASK}, \quad b \leftarrow b \ \& \ \text{MASK}
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Adder Loop Protocol:
+While $b \ne 0$:
+1. Compute 32-bit carry:
+   $$
+   carry = \big((a \ \& \ b) \ll 1\big) \ \& \ \text{MASK}
+   $$
+2. Compute sum bits:
+   $$
+   a = a \oplus b
+   $$
+3. Advance:
+   $$
+   b = carry
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. Two's Complement Sign Restoration:
+- The 32-bit sign bit is at $2^{31} = \texttt{0x80000000}$.
+- If $a < \texttt{0x80000000}$: the number is positive $\implies$ return $a$.
+- If $a \ge \texttt{0x80000000}$: the number is negative in two's complement.
+  In Python, decode 32-bit negative integer:
+  $$
+  \text{result} = \sim(a \oplus \text{MASK})
+  $$
+
+> **Invariant.** At each step, $(a + b) \pmod{2^{32}}$ is strictly preserved. In each iteration, the lowest set bit in $b$ moves strictly to the left, guaranteeing termination within 32 steps.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why XOR is addition without carry.
-
-For one bit position, the four possibilities are:
-
-
-
-The sum-bit column is exactly XOR. The carry-generation column is exactly AND. A carry produced at bit position $p$ contributes to position $p+1$, explaining the left shift.
-
-For example, adding binary `0101` and `0011` gives XOR `0110` and shifted AND `0010`. The original problem has become the same problem again: combine `0110` and `0010`. Their XOR is `0100` and their carry is `0100`; one more iteration yields `1000` with zero carry, which is decimal eight.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"a": 1, "b": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $a = 1, b = 2$:
 
 ---
 
-### Step 2: The invariant across iterations.
-
-Within a fixed word width,
-
-$$
-a+b=(a\mathbin{\operatorname{XOR}}b)+((a\mathbin{\operatorname{AND}}b)\ll1).
-$$
-
-The two right-side terms separate bit contributions that do not carry from those that do. Therefore replacing `a` by the XOR and `b` by the shifted AND preserves the represented total modulo $2^{32}$.
-
-Each iteration resolves the current carry positions and may create carries farther left. Because the word has only 32 bits and the carry is masked, carries eventually leave the top of the word and `b` becomes zero. At that moment `a ^ 0` would equal `a` and there is nothing left to propagate, so `a` is the 32-bit sum.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: 32-bit Mask Clamping
+- $a = 1 \ \& \ \texttt{0xFFFFFFFF} = \mathbf{1}$.
+- $b = 2 \ \& \ \texttt{0xFFFFFFFF} = \mathbf{2}$.
 
 ---
 
-### Step 3: Why Python needs an explicit mask.
+### Step 2: Iteration 1
+- **Evaluate Carry:**
+  $$
+  a \ \& \ b = 1 \ \& \ 2 = 0b0001 \ \& \ 0b0010 = \mathbf{0}
+  $$
+  $$
+  carry = ((0 \ll 1) \ \& \ \texttt{0xFFFFFFFF}) = \mathbf{0}
+  $$
+- **Evaluate Sum Bits:**
+  $$
+  a \leftarrow a \oplus b = 1 \oplus 2 = 0b0001 \oplus 0b0010 = 0b0011 = \mathbf{3}
+  $$
+- **Update $b$:**
+  $$
+  b \leftarrow carry = \mathbf{0}
+  $$
 
-Languages with fixed-width signed integers naturally discard bits beyond their word size. Python integers have arbitrary precision, and negative values behave as though they have an unbounded sequence of leading one bits in bitwise operations. Without a width limit, carry propagation involving negative operands might never disappear.
+---
 
-The source first applies
+### Step 3: Loop Termination
+- Condition `while b:` evaluates to False ($b = 0$).
+- No further carries remain to propagate.
 
+---
 
+### Step 4: Sign Check and Return
+- Check sign bit:
+  $$
+  a = 3 < \texttt{0x80000000} \implies \text{Positive integer}
+  $$
+- Return:
+  $$
+  \mathbf{3}
+  $$
 
-conceptually, through tuple assignment. `0xFFFFFFFF` has 32 one bits, so masking keeps only the low 32 bits. A negative input is thereby converted to its unsigned 32-bit two's-complement pattern. For example, `-1` becomes `0xFFFFFFFF`.
+---
 
-Every carry is also masked after shifting. Any carry out of bit 31 is discarded, exactly as it would be in 32-bit arithmetic. The partial XOR does not need another explicit mask because XOR of two already masked 32-bit nonnegative values cannot create a bit outside those 32 positions.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Walkthrough: Signed Negative Example ($a = -2, b = 3$)
+1. **Masking:**
+   - $a = -2 \ \& \ \texttt{0xFFFFFFFF} = \texttt{0xFFFFFFFE}$
+   - $b = 3 \ \& \ \texttt{0xFFFFFFFF} = \texttt{0x00000003}$
+2. **Iteration 1:**
+   - $a \ \& \ b = \texttt{0xFFFFFFFE} \ \& \ \texttt{3} = \texttt{2}$
+   - $carry = (2 \ll 1) = \mathbf{4}$
+   - $a = \texttt{0xFFFFFFFE} \oplus 3 = \mathbf{\texttt{0xFFFFFFFD}}$
+   - $b = 4$
+3. **Subsequent Iterations:**
+   - Carries propagate leftward until $b$ becomes $0$ and $a = \mathbf{1}$.
+4. **Sign Check:**
+   - $1 < \texttt{0x80000000} \implies$ returns $\mathbf{1}$!
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"a": 1, "b": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+```text
+a = 1, b = 2
+
+Initial Masking:
+a = 1 & 0xFFFFFFFF = 0b...0001
+b = 2 & 0xFFFFFFFF = 0b...0010
+
+Iteration 1:
+  carry = ((a & b) << 1) & 0xFFFFFFFF = (0 << 1) = 0
+  a = a ^ b = 1 ^ 2 = 3
+  b = carry = 0
+
+Loop Exit (b == 0)
+Sign check: 3 < 0x80000000 -> Return 3
+```
+
+| Iteration | Variable $a$ (Hex / Binary) | Variable $b$ (Hex / Binary) | Bitwise AND $a \ \& \ b$ | Carry $((a \ \& \ b) \ll 1)$ | New Sum $a \oplus b$ | Loop Status |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Init | `0x00000001` ($0001_2$) | `0x00000002` ($0010_2$) | - | - | - | Active |
+| **1** | **`0x00000001`** | **`0x00000002`** | **`0`** | **`0`** | **`0x00000003` ($0011_2$)** | **$b \to 0$ (Exit)** |
+| **Final** | **`3`** | **`0`** | - | - | - | **Terminated** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any bit position $p$, adding bits $a_p$ and $b_p$ produces a value in $\{0, 1, 2\}$. The low bit is $a_p \oplus b_p$ (sum bit at position $p$), and the high bit is $a_p \land b_p$ (carry bit into position $p+1$). Thus, the arithmetic value $(a \oplus b) + ((a \land b) \ll 1)$ is identically equal to $a + b$. Replacing $(a, b)$ with this pair preserves the mathematical sum at every iteration.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each time a carry is shifted left, the lowest position containing a carry increases strictly by at least $1$. In a 32-bit register, carries can shift at most 32 times before spilling out of the 32nd bit. Hence, $b$ is guaranteed to reach $0$ in at most 32 iterations, at which point $a$ holds the exact sum.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Separate magnitude addition and subtraction:** Compare absolute values, use XOR/AND for same-sign addition, and XOR/borrow logic for mixed signs. This avoids a simulated signed word but creates more cases and may rely on forbidden arithmetic for sign handling.
-- **Recursive carry propagation:** Return the XOR/carry transformation recursively until carry is zero. It expresses the identity neatly but uses call-stack space and is less robust than the loop.
-- **Use a wider mask:** A 64-bit mask applies the same method to a 64-bit signed domain. The mask, sign threshold, and final conversion width must remain consistent.
+- **Infinite Loop in Python on Negative Numbers:** In Python, `-1 << 1` shifts negative numbers infinitely without dropping high bits. Applying `& 0xFFFFFFFF` to clamp calculations to 32 bits is strictly required.
+- **Signed Representation Decoding:** A 32-bit value like `0xFFFFFFFF` represents $-1$ in signed two's complement. If returned directly, Python treats it as the positive number $4,294,967,295$. The conditional `~(a ^ 0xFFFFFFFF)` correctly restores negative signs.
+- **Precedence of Operators:** Bitwise shift `<<` has lower precedence than bitwise AND `&` in some languages, and bitwise XOR `^` has lower precedence than addition. Using explicit parentheses around `((a & b) << 1)` prevents precedence bugs.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(w)$. Let $w=32$ be the simulated word width. Carry can move only toward higher bit positions and is discarded beyond the word, so the loop performs at most $O(w)$ iterations. Each iteration uses a constant number of fixed-width bit operations. Time is $O(w)$, which is $O(1)$ for fixed 32-bit words.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(W)$, where $W = 32$ is the bit width of the integer data type. Carries shift left by at least one bit per iteration, guaranteeing at most 32 loop iterations. Overall time is strictly $O(1)$.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space, using only three local 32-bit scalar integer variables (`a`, `b`, `carry`).

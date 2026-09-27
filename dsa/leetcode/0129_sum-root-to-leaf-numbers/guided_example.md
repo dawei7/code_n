@@ -1,89 +1,166 @@
 # Guided Example: Sum Root to Leaf Numbers
 
-We trace the hierarchical Tree, Depth-First Search, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step base-10 positional digit accumulation and leaf path summation on a representative binary tree:
 
-- **Input:** `{"root": [1, 2, 3]}`
-- **Required output:** `25`
+- **Input:** $\text{root} = [4, 9, 0, 5, 1]$
+- **Required output:** $1026$ (Numbers: $495 + 491 + 40 = 1026$)
+- **Base Instance:** $\text{root} = [1, 2, 3] \implies 25$ ($12 + 13 = 25$)
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates decimal place-value shifting ($\text{curr} \times 10 + \text{digit}$), distinguishing leaf node terminal returns from internal branch summations, avoiding string conversions via direct integer arithmetic, and achieving linear $O(N)$ runtime.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Sum Root to Leaf Numbers** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+You are given the root of a binary tree containing digits from $0$ to $9$ only:
+$$
+\begin{gathered}
+4 \\
+\swarrow \quad \searrow \\
+9 \qquad\quad 0 \\
+\swarrow \;\; \searrow \qquad\qquad \\
+5 \quad\;\; 1 \qquad\qquad
+\end{gathered}
+$$
+Each root-to-leaf path represents a multi-digit number where the root is the most significant digit.
+Calculate the total sum of all root-to-leaf numbers.
+
+The tree contains three distinct root-to-leaf paths:
+1. Path $4 \to 9 \to 5$: evaluates to number $495$.
+2. Path $4 \to 9 \to 1$: evaluates to number $491$.
+3. Path $4 \to 0$: evaluates to number $40$ (notice the trailing zero is preserved).
+The required total sum is:
+$$
+495 + 491 + 40 = 1026
+$$
+
+Converting paths to strings and parsing them with `int()` allocates unnecessary objects.
+By passing a running integer $\text{curr}$ down the recursion stack and updating it as $\text{curr} \times 10 + \text{node.val}$, each number is constructed directly via positional arithmetic in $O(1)$ operations per step.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Positional Decimal DFS Protocol
+Define recursive function $\text{dfs}(\text{node}, \text{curr})$:
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
+1. **Null Guard:**
+   If $\text{node} == \emptyset$: return $0$.
+2. **Shift and Add Current Digit:**
+   Multiply the accumulated prefix by $10$ to shift existing digits left by one decimal place, then add the current node's value:
+   $$
+   \text{curr}' = \text{curr} \times 10 + \text{node.val}
+   $$
+3. **Leaf Node Base Case:**
+   If $\text{node.left} == \emptyset$ and $\text{node.right} == \emptyset$:
+   - The path has reached a true leaf.
+   - Return the completed number directly:
+     $$
+     \text{return } \text{curr}'
+     $$
+4. **Internal Node Branching:**
+   Recursively evaluate both subtrees and return their sum:
+   $$
+   \text{return } \text{dfs}(\text{node.left}, \, \text{curr}') + \text{dfs}(\text{node.right}, \, \text{curr}')
+   $$
 
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** When visiting `node`, `curr` stores the exact decimal integer represented by the path from `root` down through `node`'s parent.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace the recursive calls on $\text{root} = [4, 9, 0, 5, 1]$ starting with $\text{curr} = 0$:
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: Root Node 4
+- Incoming $\text{curr} = 0$.
+- Update: $\text{curr}' = 0 \times 10 + 4 = 4$.
+- Not a leaf (children $9$ and $0$).
+- Recurse left: $\text{dfs}(\text{Node}(9), 4)$.
+- Recurse right: $\text{dfs}(\text{Node}(0), 4)$.
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: Left Subtree at Node 9
+- Incoming $\text{curr} = 4$.
+- Update: $\text{curr}' = 4 \times 10 + 9 = 49$.
+- Not a leaf (children $5$ and $1$).
+  - **Left Child Node 5:**
+    - Incoming $\text{curr} = 49$.
+    - Update: $\text{curr}' = 49 \times 10 + 5 = \mathbf{495}$.
+    - Node 5 is a leaf ($\text{left} = \text{right} = \emptyset$).
+    - Returns number $\mathbf{495}$.
+  - **Right Child Node 1:**
+    - Incoming $\text{curr} = 49$.
+    - Update: $\text{curr}' = 49 \times 10 + 1 = \mathbf{491}$.
+    - Node 1 is a leaf ($\text{left} = \text{right} = \emptyset$).
+    - Returns number $\mathbf{491}$.
+- Node 9 aggregates both leaf returns:
+  $$
+  495 + 491 = 986
+  $$
+- Node 9 returns $986$ to Root.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 3: Right Subtree at Node 0
+- Incoming $\text{curr} = 4$.
+- Update: $\text{curr}' = 4 \times 10 + 0 = \mathbf{40}$.
+- Node 0 has no children ($\text{left} = \text{right} = \emptyset$).
+- **Leaf Detected!**
+- Returns number $\mathbf{40}$.
+
+---
+
+### Step 4: Root Node Aggregation
+- Root combines left and right subtree results:
+  $$
+  \text{Total Sum} = 986 + 40 = \mathbf{1026}
+  $$
+
+Final answer: $\mathbf{1026}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+```text
+                     Node 4 (curr=4)
+                     /             \
+             Node 9 (curr=49)     Node 0 (curr=40) [LEAF -> 40]
+             /              \
+     Node 5 (curr=495)     Node 1 (curr=491)
+       [LEAF -> 495]         [LEAF -> 491]
+```
+
+| Recursion Step | Node Visited | Node Digit | Incoming $\text{curr}$ | Computed $\text{curr}' = \text{curr} \times 10 + V$ | Node Type | Value Returned to Caller |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $\text{Node}(4)$ | 4 | 0 | 4 | Internal | Sum of children: $986 + 40 = 1026$ |
+| 1.1 | $\text{Node}(9)$ | 9 | 4 | 49 | Internal | Sum of children: $495 + 491 = 986$ |
+| 1.1.1 | $\text{Node}(5)$ | 5 | 49 | 495 | **Leaf** | **495** |
+| 1.1.2 | $\text{Node}(1)$ | 1 | 49 | 491 | **Leaf** | **491** |
+| 1.2 | $\text{Node}(0)$ | 0 | 4 | 40 | **Leaf** | **40** |
+| **Result** | - | - | - | - | - | **1026** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** In positional base-10 representation, appending digit $d$ to a number $N$ yields $10 \times N + d$. By multiplying by 10 at every level of descent, the root digit is multiplied by $10^{H-1}$, exactly matching its place value in the root-to-leaf integer.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Traversal visits every root-to-leaf path. Because leaf values are returned directly and summed at all internal branches, every valid path number is included in the final sum without omission or double counting.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Premature Summing on Single Null Children:** If a node has only one child (e.g. left child exists but right is null), treating the null child as a leaf returning `curr` would count the incomplete prefix number! The leaf condition must strictly require `not node.left and not node.right`.
+- **Handling Zero Digits:** Trailing zeroes (like node $0$ in path $4 \to 0 = 40$) are fully preserved by the multiplication $\text{curr} \times 10 + 0 = 40$. String conversions can sometimes drop leading or trailing zeroes if parsed carelessly.
+- **Empty Tree:** An empty tree $\text{root} == \emptyset$ returns $0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is visited once and performs $O(1)$ arithmetic.
+- **Auxiliary Space Complexity:** $O(H)$, where $H$ is the tree height ($O(\log N)$ balanced, $O(N)$ skewed), to maintain the call stack.

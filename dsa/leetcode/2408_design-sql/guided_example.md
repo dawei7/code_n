@@ -1,129 +1,165 @@
 # Guided Example: Design SQL
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"operations": ["SQL", "ins", "sel", "ins", "exp", "rmv", "sel", "exp"], "arguments": [[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two"], ["two", 1], ["two", 2, 2], ["two"]]}`
-- **Required output:** `[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]`
+We are designing an in-memory relational database management system supporting multiple tables with the following operations:
+1. **`SQL(names, columns)`**: Initializes tables with specified names and expected column counts.
+2. **`ins(name, row)`**: Validates that table `name` exists and that $len(row)$ matches the table's declared column count. If valid, assigns a monotonically increasing 1-based row ID, stores the row, advances the counter, and returns `true`. Otherwise returns `false`.
+3. **`rmv(name, rowId)`**: Deletes the row with ID `rowId` from table `name`. If either the table or row does not exist, does nothing.
+4. **`sel(name, rowId, columnId)`**: Returns the string value at 1-based `columnId` of row `rowId` in table `name`. If the table, row, or column index is invalid, returns `"<null>"`.
+5. **`exp(name)`**: Exports all surviving rows of table `name` sorted by ascending `rowId`, formatted as CSV strings prefixing each row with its `rowId`. Returns an empty list if table `name` is unknown.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+### Representative Instance
+Consider the sequence of operations:
+```text
+SQL([["one", "two", "three"], [2, 3, 1]])
+ins("two", ["first", "second", "third"])
+sel("two", 1, 3)
+ins("two", ["fourth", "fifth", "sixth"])
+exp("two")
+rmv("two", 1)
+sel("two", 2, 2)
+exp("two")
+```
 
----
-
-## 1. Instance & Teaching Goal
-
-You are given two string arrays, `names` and `columns`, both of size `n`. The $i^{\text{th}}$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
-
-The objective is to compute `[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]` from `{"operations": ["SQL", "ins", "sel", "ins", "exp", "rmv", "sel", "exp"], "arguments": [[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two"], ["two", 1], ["two", 2, 2], ["two"]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Expected outputs:
+`[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]`
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Mathematical & Algorithmic Principles
 
-### Step 1: What the exact source actually stores
+### Relational State Representation
+For each registered table $T$, the database engine maintains:
+1. **Schema Constraint**: An expected column width $C_T \in \mathbb{N}$.
+2. **Auto-Increment Generator**: A strictly monotonic counter $id_T \in \mathbb{N}$, initialized to $1$. Crucially, deleting a row never recycles or decrements $id_T$.
+3. **Primary-Key Storage**: A sparse associative mapping $Storage_T: \text{RowID} \to \text{Tuple}[str]$. A hash map allows $\mathcal{O}(1)$ point lookup and deletion.
 
-The implementation creates:
+```mermaid
+flowchart TD
+    accTitle: Relational Table State Architecture
+    accDescr: Database state structure mapping table names to column schemas, auto-increment row IDs, and sparse row hash maps.
+    subgraph Database State
+        T["Table 'two'"]
+        C["Declared Columns: 3"]
+        R["Auto-Increment Counter: 3"]
+        M["Row Storage Map: {1: [...], 2: [...]}"]
+        T --> C
+        T --> R
+        T --> M
+    end
+    subgraph Operations
+        OP1["ins(two, row): Verify len == 3, Map[Counter] = row, Counter++"]
+        OP2["sel(two, id, col): Map.get(id)[col-1] or '<null>'"]
+        OP3["rmv(two, id): Map.pop(id) (Counter intact)"]
+        OP4["exp(two): Sort live keys, format CSV 'id,col1,col2,...'"]
+    end
+```
 
+### Invariant Properties
+- **Non-Recycling Monotonicity**: If a table has generated $k$ rows, every future row will receive an ID strictly greater than $k$, even if all previous $k$ rows were deleted.
+- **Fail-Fast Schema Guard**: A row is rejected immediately before consuming a row ID if the column count mismatches.
 
+---
 
-Each dictionary key is a table name, and its value is a Python list of rows. A row is stored exactly as the provided list of strings. The constructor receives `names` and `columns` but does not use either one, so it does not pre-create declared tables or remember their expected column counts.
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-A `defaultdict(list)` creates an empty list whenever an unknown name is accessed. This makes insertion convenient, but it also means unknown names are silently accepted rather than rejected under the expanded local contract.
+### Step 1: `SQL(["one", "two", "three"], [2, 3, 1])`
+- Initialize table registries:
+  - Table `"one"`: columns = 2, counter = 1, rows = `{}`
+  - Table `"two"`: columns = 3, counter = 1, rows = `{}`
+  - Table `"three"`: columns = 1, counter = 1, rows = `{}`
+- Result: `null`
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Step 2: `ins("two", ["first", "second", "third"])`
+- Table `"two"` exists and requires 3 columns. Input row has length 3 (valid).
+- Allocate row ID = 1. Advance counter for `"two"` to 2.
+- Store row: `two.rows[1] = ["first", "second", "third"]`.
+- Result: `true`
+
+### Step 3: `sel("two", 1, 3)`
+- Query row 1 of table `"two"`. Row exists: `["first", "second", "third"]`.
+- Column ID is 3 (1-based), corresponding to 0-based index 2: `"third"`.
+- Result: `"third"`
+
+### Step 4: `ins("two", ["fourth", "fifth", "sixth"])`
+- Table `"two"` requires 3 columns. Input row has length 3 (valid).
+- Allocate row ID = 2. Advance counter for `"two"` to 3.
+- Store row: `two.rows[2] = ["fourth", "fifth", "sixth"]`.
+- Result: `true`
+
+### Step 5: `exp("two")`
+- Surviving row IDs in `"two"`: $[1, 2]$.
+- Formatted CSV records:
+  - ID 1: `"1,first,second,third"`
+  - ID 2: `"2,fourth,fifth,sixth"`
+- Result: `["1,first,second,third", "2,fourth,fifth,sixth"]`
+
+### Step 6: `rmv("two", 1)`
+- Remove row ID 1 from `two.rows`.
+- Remaining live rows: `{2: ["fourth", "fifth", "sixth"]}`.
+- Counter for `"two"` remains 3 (never decremented).
+- Result: `null`
+
+### Step 7: `sel("two", 2, 2)`
+- Query row 2 of table `"two"`. Row exists: `["fourth", "fifth", "sixth"]`.
+- Column ID is 2 (1-based), corresponding to index 1: `"fifth"`.
+- Result: `"fifth"`
+
+### Step 8: `exp("two")`
+- Surviving row IDs in `"two"`: $[2]$.
+- Formatted CSV records:
+  - ID 2: `"2,fourth,fifth,sixth"`
+- Result: `["2,fourth,fifth,sixth"]`
+
+---
+
+## 4. Comprehensive State Trace
+
+| Step | Operation | Arguments | Pre-Condition / Validation | Mutated State (`two`) | Return Value |
+|---|---|---|---|---|---|
+| 1 | `SQL` | `[["one", "two", "three"], [2, 3, 1]]` | Register schemas | `cols=3, next_id=1, rows={}` | `null` |
+| 2 | `ins` | `"two", ["first", "second", "third"]` | $len=3 == cols=3$ (Valid) | `next_id=2, rows={1: ["first", "second", "third"]}` | `true` |
+| 3 | `sel` | `"two", 1, 3` | Row 1 exists, col 3 valid | Unchanged | `"third"` |
+| 4 | `ins` | `"two", ["fourth", "fifth", "sixth"]` | $len=3 == cols=3$ (Valid) | `next_id=3, rows={1: [...], 2: ["fourth", "fifth", "sixth"]}` | `true` |
+| 5 | `exp` | `"two"` | Collect active rows $[1, 2]$ | Unchanged | `["1,first,...", "2,fourth,..."]` |
+| 6 | `rmv` | `"two", 1` | Key 1 exists in `two.rows` | `next_id=3, rows={2: ["fourth", "fifth", "sixth"]}` | `null` |
+| 7 | `sel` | `"two", 2, 2` | Row 2 exists, col 2 valid | Unchanged | `"fifth"` |
+| 8 | `exp` | `"two"` | Collect active rows $[2]$ | Unchanged | `["2,fourth,fifth,sixth"]` |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### ID Monotonicity Invariant
+Because the auto-increment counter is only incremented when an insert succeeds and is never decremented during `rmv` operations:
+$$\forall i < j, \quad id(row_i) < id(row_j)$$
+This guarantees that primary keys remain globally unique across time for each table, preventing phantom updates or primary key collisions.
+
+### Robust Boundary Handling
+- If `sel` queries a deleted row (such as row 1 after step 6), the lookup in the hash map misses, cleanly returning `"<null>"`.
+- If `ins` receives a row whose length does not match `cols[name]`, the method aborts before touching `next_id`, preserving transaction atomicity and counter consistency.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+| Category | Concrete Scenario | Anti-Pattern | Correct Handling |
 |---|---|---|---|
-| Input Slice | `{"operations": ["SQL", "ins", "sel", "ins", "exp", "rmv", "sel", "exp"], "arguments": [[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two"], ["two", 1], ["two", 2, 2], ["two"]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| ID Recycling | Insert row 1, delete row 1, insert new row | Reassigning ID 1 to new row | New row receives ID 2; deleted IDs are never recycled. |
+| Mismatched Width | `ins("two", ["a", "b"])` on 3-col table | Appending incomplete row or consuming ID | Returns `false`; counter does not advance. |
+| Non-Existent Table | `sel("unknown", 1, 1)` or `exp("unknown")` | Crash via unhandled exception | `sel` returns `"<null>"`; `exp` returns `[]`. |
+| Deleted Row Selection | `sel("two", 1, 1)` after `rmv("two", 1)` | Stale index read from dense list | Sparse hash map lookup detects missing key and returns `"<null>"`. |
+| Zero or Negative Col | `sel("two", 1, 0)` | Python negative list indexing wraps to end | Explicit boundary check $1 \le col \le len(row)$ returns `"<null>"`. |
 
 ---
 
-### Step 2: Insertion in the exact implementation
+## 7. Complexity Analysis
 
-`insertRow(name, row)` appends the row to the list:
-
-
-
-List position implicitly serves as row ID: the first appended row is at index zero and is selected with row ID one; the second is at index one and has row ID two.
-
-Append preserves insertion order and takes amortized constant time. The method returns Python `null` because it has no explicit return statement.
-
-It performs no validation of table name or row length. It also stores the caller's row list by reference rather than copying it, so external mutation of that same list could change the stored values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Selection by converting one-based IDs
-
-`selectCell(name, rowId, columnId)` returns:
-
-
-
-Both public identifiers are one-based, while Python list indices are zero-based. Subtracting one performs the conversion.
-
-For a valid existing row and valid column, this is direct constant-time indexing. For an unknown table, defaultdict first creates an empty table and indexing raises `IndexError`. Missing rows or columns can also raise `IndexError`. The source does not return `"<null>"` for invalid access.
-
-Python negative indexing introduces another discrepancy: `rowId = 0` or `columnId = 0` would address the last list element rather than be rejected, though valid platform calls may avoid such inputs.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["SQL", "ins", "sel", "ins", "exp", "rmv", "sel", "exp"], "arguments": [[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two"], ["two", 1], ["two", 2, 2], ["two"]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Sparse ID-to-row dictionaries:** Store only surviving rows plus a monotone next-ID counter. This is the appropriate full-contract design when many deletions create holes.
-- **List with tombstones:** Keep row IDs as stable indices and replace deleted rows with `null`. Lookup is simple, but memory remains proportional to the largest assigned ID.
-- **Unknown table insertion:** The exact defaultdict silently creates it, contrary to required validation.
-- **Wrong row width:** The exact method appends it because constructor column counts are ignored.
-- **Deletion:** The exact method is a no-op, so removed rows remain selectable.
-- **Invalid selection:** The exact source may raise or use negative indexing instead of returning `"<null>"`.
-- **Auto-increment after deletion:** A proper independent counter must never reuse removed IDs.
-- **Export:** It is absent from the source and would require CSV formatting plus stable surviving-row order.
-- **Caller mutates a row list:** The exact implementation stores the same object; copying on insert would isolate database state.
-- **Artifact status:** The exact code supports only a narrow valid append/select subset and does not satisfy the complete local reference contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n + q + E)$. For the exact source, construction initializes one dictionary in $O(1)$ time and space; it does not process the $n$ schema declarations.
-- **Auxiliary Space Complexity:** $O(n + S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `SQL(names, columns)`: $\mathcal{O}(T)$ where $T$ is the number of initialized tables.
+  - `ins(name, row)`: $\mathcal{O}(C)$ where $C$ is the column count, to copy the row into storage.
+  - `rmv(name, rowId)`: $\mathcal{O}(1)$ average time for hash map key deletion.
+  - `sel(name, rowId, columnId)`: $\mathcal{O}(1)$ point lookup in table map and array index.
+  - `exp(name)`: $\mathcal{O}(R \log R + R \cdot C)$ where $R$ is the number of surviving rows, to sort the surviving keys and format strings.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N_{\text{rows}} \cdot C)$ where $N_{\text{rows}}$ is the total number of currently stored rows across all tables.

@@ -1,130 +1,213 @@
 # Guided Example: Minimum Jumps to Reach Home
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D state-space breadth-first search (BFS) on unweighted jump lattices, prove the Direction-Augmented State Space Theorem and the Finite Upper Bounding Invariant, and calculate shortest jump paths across representative problem instances:
 
-- **Input:** `{"forbidden": [14, 4, 18, 1, 15], "a": 3, "b": 15, "x": 9}`
-- **Required output:** `3`
+- **Representative Instance 1 (Direct Forward Stride with Forbidden Gaps):**
+  - Forbidden coordinates: `forbidden = [14, 4, 18, 1, 15]`
+  - Forward jump stride: $a = 3$
+  - Backward jump stride: $b = 15$
+  - Target home coordinate: $x = 9$
+  - **Required Output:** `3`
+  - Jump Sequence:
+    - Step 0: Start at coordinate $0$.
+    - Step 1: Jump forward $+3 \to$ position $3$ (valid, not forbidden).
+    - Step 2: Jump forward $+3 \to$ position $6$ (valid, not forbidden).
+    - Step 3: Jump forward $+3 \to$ position $9 = x$ (target reached).
+    - Total Jumps: $\mathbf{3}$.
+    - Note that obstacles at $\{1, 4, 14, 15, 18\}$ are cleanly avoided.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Forward Overshoot and Backward Recovery):**
+  - Forbidden: `[8, 3, 16, 6, 12, 20]`, $a = 15, \; b = 13, \; x = 11$
+  - Direct forward steps from $0$ produce coordinates $0, 15, 30 \dots$, none of which equal $11$.
+  - Overshoot and backtrack:
+    - $0 \to +15 = 15$
+    - $15 \to -13 = 2$
+    - $2 \to +15 = 17$
+    - Backward move from $17$ lands at $17 - 13 = 4 \dots$
+  - Reaches $x = 11$ through alternating forward leaps and backward corrections.
+
+- **Representative Instance 3 (Immediate Zero Origin):**
+  - Input: $x = 0$
+  - Bug is already at home $\implies$ **Required Output:** `0`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A certain bug's home is on the x-axis at position `x`. Help them get there from position `0`.
+A bug begins at coordinate $0$ on the non-negative integer line and seeks to reach home at coordinate $x$.
+At any step:
+- The bug can jump **forward** $a$ units: $pos \leftarrow pos + a$.
+- The bug can jump **backward** $b$ units: $pos \leftarrow pos - b$, provided it did **not** jump backward in the immediately preceding move.
+- The bug cannot land on any coordinate in `forbidden`.
+- The bug cannot land on any negative coordinate ($pos \ge 0$).
+Find the minimum number of jumps required to reach $x$, or return $-1$ if home is unreachable.
 
-The objective is to compute `3` from `{"forbidden": [14, 4, 18, 1, 15], "a": 3, "b": 15, "x": 9}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Fatal State Representation Fallacy (Coordinate-Only Visited Set):
+  Suppose two search paths reach coordinate 15:
+    Path 1 reached 15 via a FORWARD jump:
+      Can jump backward next (15 - b).
+    Path 2 reached 15 via a BACKWARD jump:
+      CANNOT jump backward next (consecutive backward jumps forbidden!).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+  These two situations have DIFFERENT FUTURE TRANSITIONS!
+  If we only track visited coordinates {15}, Path 2 arriving first would
+  prevent Path 1 from ever exploring the backward jump from 15,
+  falsely declaring reachable targets unreachable!
+
+The Necessary 2D State Augmentation:
+  State = (position, can_jump_backward)
+    - (pos, 1): Reached via forward jump (or start). Backward move is PERMITTED.
+    - (pos, 0): Reached via backward jump. Backward move is FORBIDDEN.
+
+  Because every jump has uniform cost 1, Breadth-First Search (BFS) on this
+  2D state space guarantees the first time we visit (x, *) achieves
+  the global minimum jump distance!
+```
+
+The decisive pedagogical goal is the **Direction-Augmented State Space Theorem & Finite Upper Bounding Invariant**:
+1. **2D State Tuple:** Every vertex in the search graph is a pair $(i, k)$ where $i \ge 0$ and $k \in \{0, 1\}$.
+2. **Transition Rules:**
+   - From $(i, k)$, forward jump is always legal: $(i + a, 1)$.
+   - From $(i, 1)$, backward jump is conditionally legal: $(i - b, 0)$ provided $i - b \ge 0$.
+   - From $(i, 0)$, backward jump is strictly forbidden.
+3. **Finite Search Region Bound:** Exploration is bounded by $L = \max(x, \max(forbidden)) + a + b \le 6000$. Any forward excursion beyond $L$ requires subsequent backward jumps that cannot reach $x$ without redundant cycles.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & The 2D BFS Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: 2D State Space BFS Jump Pipeline
+    accDescr: Pipeline showing queue layer processing, state expansion with direction flag, bounds checking, and target detection
+    Start["Given forbidden set S, parameters a, b, target x\nInit queue Q = [(0, 1)], vis = {(0, 1)}\nans = 0"] --> CheckEmpty{"Is Q empty?"}
+    CheckEmpty -->|"Yes"| Unreachable["Return -1\n(Target Unreachable)"]
+    CheckEmpty -->|"No"| LevelLoop["For each state in current BFS level:"]
+    LevelLoop --> PopState["Pop (i, k) from Q"]
+    PopState --> CheckTarget{"Is i == x ?"}
+    CheckTarget -->|"Yes"| Found["Return ans\n(Shortest Jumps Found)"]
+    CheckTarget -->|"No"| GenFwd["Generate Forward Candidate:\n(i + a, 1)"]
+    GenFwd --> CheckBack{"Is k == 1 and i - b >= 0 ?"}
+    CheckBack -->|"Yes"| GenBack["Generate Backward Candidate:\n(i - b, 0)"]
+    CheckBack -->|"No"| Filter["For each candidate (j, dir):"]
+    GenBack --> Filter
+    Filter --> Valid{"0 <= j < 6000 and\nj not in S and\n(j, dir) not in vis ?"}
+    Valid -->|"Yes"| Enqueue["Add (j, dir) to Q and vis"]
+    Valid -->|"No"| Skip["Prune candidate"]
+    Enqueue --> CheckLevelDone{"Level exhausted?"}
+    Skip --> CheckLevelDone
+    CheckLevelDone -->|"No"| LevelLoop
+    CheckLevelDone -->|"Yes"| IncAns["ans = ans + 1"]
+    IncAns --> CheckEmpty
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Direction-Augmented State Space Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $G = (V, E)$ be the directed transition graph with vertex set $V = \{ (i, k) : 0 \le i < L, \; k \in \{0, 1\} \}$.
+1. **Edge Construction:**
+   - For all $(i, k) \in V$: If $i + a < L$ and $i + a \notin forbidden$, there is a directed edge:
+     $$
+     (i, k) \xrightarrow{\text{forward}} (i + a, 1)
+     $$
+   - For all $(i, 1) \in V$: If $i - b \ge 0$ and $i - b \notin forbidden$, there is a directed edge:
+     $$
+     (i, 1) \xrightarrow{\text{backward}} (i - b, 0)
+     $$
+   - For all $(i, 0) \in V$: No backward edges emanate from $(i, 0)$.
+2. **Consecutive Backward Jump Invariant:**
+   Any path $P = (v_0, v_1, \dots, v_m)$ in $G$ satisfies the property that no two consecutive edges are backward moves.
+   *Proof:* If edge $v_t \to v_{t+1}$ is a backward move, the definition forces $v_{t+1} = (j, 0)$. Since $v_{t+1}$ has direction flag $0$, no backward edge exists out of $v_{t+1}$. The subsequent move, if any, must be forward.
+3. **Optimality via Level-Order BFS:**
+   Since every edge has uniform weight $1$, the distance layer in which $(x, \cdot)$ is first popped from the queue is the exact shortest-path distance $\text{dist}_G((0, 1), \{ (x, 0), (x, 1) \})$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why this is a shortest-path problem
+### Trace on Representative Instance 1 (`forbidden = [14, 4, 18, 1, 15]`, `a = 3`, `b = 15`, `x = 9`)
 
-Every legal jump has the same cost: one jump. Positions and legal jump histories can therefore be viewed as vertices in an unweighted graph, with each allowed forward or backward jump forming an edge. The requested minimum number of jumps is the shortest path from the initial state to any state whose position is `x`. Breadth-first search is the natural algorithm because it explores every state reachable in zero jumps, then every state reachable in one jump, then two jumps, and so forth. The first time it removes a state at the target position, no shorter route can still be undiscovered.
+Initialization:
+- Forbidden set: $S = \{1, 4, 14, 15, 18\}$.
+- Queue: $Q = [(0, 1)]$. Visited set: $vis = \{(0, 1)\}$.
+- Layer distance: $ans = 0$. Target: $x = 9$.
 
-A graph state cannot be represented by position alone. Suppose two routes both reach position `i`, but one route arrived by moving forward while the other arrived by moving backward. A backward move is permitted next in the first case and forbidden next in the second. Those states have different possible futures even though their coordinates are identical.
+#### BFS Layer 0 ($ans = 0$)
+- Pop $(0, 1)$.
+- Is $0 == 9$? No.
+- Generate forward candidate: $0 + 3 = 3 \implies (3, 1)$.
+  - $3 \ge 0$, $3 < 6000$, $3 \notin S$, $(3, 1) \notin vis \implies$ Valid.
+  - Add $(3, 1)$ to $Q$ and $vis$.
+- Backward candidate: $0 - 15 = -15 < 0$ (Disallowed, negative).
+- Layer 0 complete. Increment $ans \leftarrow 1$.
 
-The source represents a state as a pair `(i, k)`:
+#### BFS Layer 1 ($ans = 1$)
+- Pop $(3, 1)$.
+- Is $3 == 9$? No.
+- Generate forward candidate: $3 + 3 = 6 \implies (6, 1)$.
+  - $6 \notin S$, $(6, 1) \notin vis \implies$ Valid.
+  - Add $(6, 1)$ to $Q$ and $vis$.
+- Backward candidate: $3 - 15 = -12 < 0$ (Disallowed).
+- Layer 1 complete. Increment $ans \leftarrow 2$.
 
-- `i` is the current nonnegative position;
-- `k == 1` means a backward jump is currently allowed;
-- `k == 0` means the preceding jump was backward, so another backward jump is not allowed.
+#### BFS Layer 2 ($ans = 2$)
+- Pop $(6, 1)$.
+- Is $6 == 9$? No.
+- Generate forward candidate: $6 + 3 = 9 \implies (9, 1)$.
+  - $9 \notin S$, $(9, 1) \notin vis \implies$ Valid.
+  - Add $(9, 1)$ to $Q$ and $vis$.
+- Backward candidate: $6 - 15 = -9 < 0$ (Disallowed).
+- Layer 2 complete. Increment $ans \leftarrow 3$.
 
-The initial queue contains `(0, 1)`. There was no previous backward jump before the journey began, so both a forward jump and, subject to the nonnegative-position rule, a backward jump are conceptually available. A forward transition always produces `(i + a, 1)` because moving forward resets permission to jump backward. A backward transition, when allowed, produces `(i - b, 0)` because it consumes that permission.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"forbidden": [14, 4, 18, 1, 15], "a": 3, "b": 15, "x": 9}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Representing blocked and already explored states
-
-The expression `s = set(forbidden)` converts the forbidden list into a hash set. A membership test such as `j not in s` is then expected $O(1)$ time. This check rejects a landing position; a jump may pass over forbidden coordinates because the rules prohibit landing there, not crossing over them.
-
-The visited set begins with `(0, 1)` and stores complete state pairs rather than positions. This prevents the search from repeatedly following cycles such as moving forward and later backward. At the same time, it correctly permits `(i, 0)` and `(i, 1)` to be explored separately. Marking a state when it is appended, rather than later when it is removed, ensures that two parents in the same breadth-first layer cannot enqueue duplicate copies.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Generating exactly the legal transitions
-
-For every removed state, the code first creates the forward candidate `(i + a, 1)`. Forward movement is always allowed by the consecutive-backward rule. If `k & 1` is true, it also creates `(i - b, 0)`. Because `k` is always zero or one, this bit test is equivalent to checking `k == 1`.
-
-Each candidate `(j, k)` passes three filters:
-
-1. `0 <= j < 6000` keeps the bug on a nonnegative coordinate and inside the finite search region.
-2. `j not in s` ensures the landing coordinate is not forbidden.
-3. `(j, k) not in vis` ensures that this exact position-and-permission state has not already been discovered.
-
-Only a candidate satisfying all three conditions enters the queue and visited set.
-
-The finite upper boundary matters because forward jumps could otherwise generate positions forever even when the target is unreachable. The numeric constraints place the target, every forbidden coordinate, and both jump lengths at no more than `2000`. The hard boundary `6000` is a conservative three-times-constraint search ceiling used by this exact implementation. Beyond the region containing the target and all obstacles, an excursion is useful only insofar as a later backward jump can bring the bug into a smaller relevant coordinate; continuing still farther merely repeats the same unrestricted arithmetic movement above every distinguished coordinate. A shortest successful route can be chosen without requiring position `6000` or a larger coordinate. Thus the cap makes the graph finite without removing a necessary shortest route under the stated limits. This justification depends on those published bounds; `6000` must not be treated as a universal constant for enlarged inputs.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+#### BFS Layer 3 ($ans = 3$)
+- Pop $(9, 1)$.
+- Target check: $i = 9 == x = 9$.
+- Target home reached!
+- Return current layer distance: **`3`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"forbidden": [14, 4, 18, 1, 15], "a": 3, "b": 15, "x": 9}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+### State Progression Table for Representative Instance 1
+
+| Layer $ans$ | Dequeued State $(i, k)$ | Target Check ($i == 9$) | Forward Candidate | Backward Candidate | Enqueued Successors | Visited States Count |
+|---|---|---|---|---|---|---|
+| $0$ | $(0, 1)$ | $0 \ne 9$ | $(3, 1)$ (Valid) | $(-15, 0)$ (Rejected $< 0$) | $[(3, 1)]$ | $2$ |
+| $1$ | $(3, 1)$ | $3 \ne 9$ | $(6, 1)$ (Valid) | $(-12, 0)$ (Rejected $< 0$) | $[(6, 1)]$ | $3$ |
+| $2$ | $(6, 1)$ | $6 \ne 9$ | $(9, 1)$ (Valid) | $(-9, 0)$ (Rejected $< 0$) | $[(9, 1)]$ | $4$ |
+| $3$ | $(9, 1)$ | $9 == 9$ (Match!) | — | — | Target Reached | Finalize $\implies \mathbf{3}$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+Every explored edge strictly respects the motion laws: forward jumps increment by $a$ and reset backward permission ($k \leftarrow 1$); backward jumps decrement by $b$ and consume permission ($k \leftarrow 0$). Forbidden landing positions and negative coordinates are filtered out immediately. Because all jumps cost 1, the first discovery of coordinate $x$ via BFS is guaranteed to have minimal jumps.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The search bounds coordinate exploration to $L \le 6000$. By arithmetic properties of gcd and modulo lattices, any path reaching $x$ with minimum jumps never needs to exceed $\max(x, \max(forbidden)) + a + b$. The visited set prevents infinite cycles, guaranteeing termination even when $x$ is completely unreachable.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Position-only visited set:** This is incorrect because arriving after a backward jump and arriving after a forward jump allow different next moves. The permission bit must be part of the visited identity.
-- **Depth-first search:** DFS can determine reachability in a bounded graph, but the first target it finds need not use the fewest jumps. It would need extra distance handling, whereas BFS obtains the minimum directly from its layers.
-- **Distance stored in each queue entry:** A triple such as position, permission, and distance is equivalent to the level loop. It may be easier to read locally, but stores a repeated distance value in every queued state.
-- **A tighter calculated boundary:** One can derive an input-specific ceiling from the largest forbidden position, `x`, `a`, and `b`. That may explore fewer states, but the proof and off-by-one choice must be handled carefully; this source deliberately uses the fixed bound supported by the constraints.
-- **Target at zero:** The start state is checked before any jump, so the method returns `0` immediately.
-- **Forward overshoot:** Passing `x` is legal, and BFS does not stop at the target coordinate’s right side. A later backward move may be essential, as in a route that jumps past home and then returns.
-- **Negative backward landing:** A candidate below zero fails `0 <= j` and is discarded; the bug may never occupy a negative position.
-- **Forbidden landing:** Only the destination of a jump is tested. Jumping across a forbidden coordinate remains legal.
-- **Backward then backward:** After a backward move the flag is zero, so no second backward candidate is generated. Any forward move changes the flag back to one.
-- **Same coordinate with different history:** Both states are intentionally allowed into `vis` because one may have a legal backward successor that the other lacks.
-- **Unreachable target:** Cycles cannot keep the algorithm alive forever because each bounded state is inserted only once. Exhausting the queue leads to `-1`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Coordinate-Only Visited Set:** Collapsing states to positions alone prevents re-visiting a coordinate with backward jump permission enabled, which falsely blocks valid solutions.
+- **Crossing vs Landing on Forbidden Coordinates:** The problem states the bug cannot *land* on forbidden coordinates. Jumping *over* an obstacle (e.g., from $0$ to $3$ over forbidden position $1$) is completely legal.
+- **Negative Coordinate Floor:** Moving backward can yield negative numbers; candidate states with $j < 0$ must be pruned.
+- **Consecutive Backward Jumps:** A backward move must never immediately follow another backward move.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(L)$. Let `f` be the number of forbidden positions and let `L = 6000` be the implementation’s position limit. There are fewer than `L` possible coordinates and two permission states per coordinate, for fewer than `2L` search states. Each state is enqueued at most once and generates at most two candidates. Constructing the forbidden set costs $O(f)$ expected time, and breadth-first search costs $O(L)$ expected time, giving $O(f + L)$ expected total time.
-- **Auxiliary Space Complexity:** $O(f + L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $L = 6000$ be the maximum coordinate boundary.
+  - The number of vertices in graph $G$ is at most $2 \times L = 12,000$.
+  - Each vertex has out-degree at most $2$ (one forward, at most one backward).
+  - Checking forbidden membership takes $\mathcal{O}(1)$ using a hash set.
+  - Overall Time Complexity: $\mathcal{O}(|forbidden| + L)$, running in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - The hash set for forbidden values uses $\mathcal{O}(|forbidden|)$ space.
+  - The BFS queue and visited set store at most $2L$ states.
+  - Overall Auxiliary Space: $\mathcal{O}(|forbidden| + L)$ memory.

@@ -1,126 +1,194 @@
 # Guided Example: Count the Number of Consistent Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the set-inclusion filtering and bitwise mask containment verification for alphabet consistency, prove the Alphabet Subset Inclusion Theorem and the Bitwise Mask Orthogonality Invariant, and analyze consistent string counts across representative problem instances:
 
-- **Input:** `{"allowed": "ab", "words": ["ad", "bd", "aaab", "baa", "badab"]}`
-- **Required output:** `2`
+- **Representative Instance 1 (Selective Subset Exclusion):**
+  - Input: `allowed = "ab", words = ["ad", "bd", "aaab", "baa", "badab"]`
+  - Allowed character support: $\mathcal{A} = \{\text{'a'}, \text{'b'}\}$.
+  - Evaluating each word:
+    - `"ad"`: Contains `'d'` $\notin \mathcal{A} \implies$ Inconsistent.
+    - `"bd"`: Contains `'d'` $\notin \mathcal{A} \implies$ Inconsistent.
+    - `"aaab"`: Characters $\{\text{'a'}, \text{'b'}\} \subseteq \mathcal{A} \implies$ **Consistent!**
+    - `"baa"`: Characters $\{\text{'b'}, \text{'a'}\} \subseteq \mathcal{A} \implies$ **Consistent!**
+    - `"badab"`: Contains `'d'` $\notin \mathcal{A} \implies$ Inconsistent.
+  - Consistent strings count: **`2`** (`"aaab"`, `"baa"`).
+  - **Required Output:** `2`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Universal Consistency Full Coverage):**
+  - Input: `allowed = "abc", words = ["a", "b", "c", "ab", "ac", "bc", "abc"]`
+  - Allowed support: $\mathcal{A} = \{\text{'a'}, \text{'b'}, \text{'c'}\}$.
+  - Every word uses strictly characters from $\{\text{'a'}, \text{'b'}, \text{'c'}\}$.
+  - Consistent count: **`7`** out of $7$.
+  - **Required Output:** `7`.
+
+- **Representative Instance 3 (Heterogeneous Partial Matches):**
+  - Input: `allowed = "cad", words = ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"]`
+  - Allowed set: $\{\text{'a'}, \text{'c'}, \text{'d'}\}$.
+  - Valid words: `"cc"`, `"acd"`, `"ac"`, `"d"`. Total $= \mathbf{4}$.
+  - Words containing forbidden `'b'`: `"b"`, `"ba"`, `"bac"`, `"bad"`.
+  - **Required Output:** `4`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `allowed` consisting of **distinct** characters and an array of strings `words`. A string is **consistent **if all characters in the string appear in the string `allowed`.
+Given a string `allowed` consisting of distinct lowercase English letters and an array of strings `words`, a string is defined as **consistent** if every single character appearing in the string belongs to `allowed`. The objective is to return the total number of consistent strings in `words`.
 
-The objective is to compute `2` from `{"allowed": "ab", "words": ["ad", "bd", "aaab", "baa", "badab"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Inclusion Test:
+  Let A be the set of characters in allowed.
+  A word w is consistent IF AND ONLY IF:
+    set(w) is a SUBSET of A   <===>   forall c in w: c in A
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Two Algorithmic Formulations:
+  1. Hash Set Membership:
+     Insert characters of allowed into a hash set S (size <= 26).
+     For each word, check every character against S.
+     Halt early on the first character not in S.
+
+  2. 26-Bit Integer Bitmask:
+     Map allowed to an integer bitmask M_allowed where bit k is 1 if letter k is allowed.
+     For each word, map its characters to bitmask M_w.
+     Word w is consistent if and only if:
+       (M_w | M_allowed) == M_allowed   <===>   (M_w & ~M_allowed) == 0
+     Bitwise operations execute in 1 CPU cycle!
+```
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Filtering Pipeline
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Consistent String Filtering Pipeline
+    accDescr: Pipeline showing allowed set initialization, word-by-word character verification, and count accumulation.
+    Start["Given allowed string, words list"] --> BuildAllowed["Build allowed lookup set S\n(or bitmask M_allowed)"]
+    BuildAllowed --> InitCount["Initialize consistent_count = 0"]
+    InitCount --> LoopWords["For each word w in words:"]
+    
+    LoopWords --> ScanChars["Check all characters in w against S"]
+    ScanChars --> AllInS{"Are all characters of w present in S?"}
+    AllInS -->|"Yes (Consistent)"| IncCount["consistent_count = consistent_count + 1"]
+    AllInS -->|"No (Forbidden Char Found)"| NextWord["Skip word"]
+    
+    IncCount --> NextWord
+    NextWord --> CheckDone{"All words processed?"}
+    CheckDone -->|"No"| LoopWords
+    CheckDone -->|"Yes"| Emit["Emit consistent_count"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Alphabet Subset Inclusion Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $\Sigma = \{\text{'a'}, \dots, \text{'z'}\}$ be the lowercase alphabet with $|\Sigma| = 26$.
+Let $\mathcal{A} \subseteq \Sigma$ be the subset of allowed characters.
+For any word $w = c_1 c_2 \dots c_m \in \Sigma^*$, let $\text{supp}(w) = \{ c_1, \dots, c_m \}$ denote its character support.
+
+1. **Subset Characterization:**
+   A word $w$ is consistent with respect to $\mathcal{A}$ if and only if:
+   $$
+   \text{supp}(w) \subseteq \mathcal{A} \iff \text{supp}(w) \cap (\Sigma \setminus \mathcal{A}) = \emptyset
+   $$
+
+2. **Bitwise Mask Equivalence:**
+   Define the characteristic bitmask injection $\beta: \mathcal{P}(\Sigma) \to \mathbb{Z}$:
+   $$
+   \beta(X) = \sum_{c \in X} 2^{\text{ord}(c) - \text{ord}('a')}
+   $$
+   Then $\text{supp}(w) \subseteq \mathcal{A}$ holds if and only if:
+   $$
+   \beta(\text{supp}(w)) \ \& \ \sim \beta(\mathcal{A}) = 0
+   $$
+   This reduces the set containment test of an entire string to a single bitwise AND with mask inversion.
+
+3. **Additive Cardinality:**
+   The total consistent string count over collection $\mathcal{W} = \{w_1, \dots, w_k\}$ is:
+   $$
+   N_{\text{consistent}} = \sum_{w \in \mathcal{W}} \mathbf{1}_{\text{supp}(w) \subseteq \mathcal{A}}
+   $$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn the allowed alphabet into a lookup structure
+### Trace on Representative Instance 1 (`allowed = "ab"`, `words = ["ad", "bd", "aaab", "baa", "badab"]`)
 
-A word is consistent when every one of its characters belongs to `allowed`. Repeatedly searching the original string for each character would work, but a set expresses membership directly.
+Allowed character set: $\mathcal{A} = \{\text{'a'}, \text{'b'}\}$.
+Initialize: $\text{count} = 0$.
 
-`s = set(allowed)` stores each allowed character once. The input already guarantees that characters in `allowed` are distinct, but set conversion still provides expected constant-time `c in s` tests.
+#### Word 0 (`"ad"`):
+- Inspect character $1$: `'a' \in \mathcal{A}$.
+- Inspect character $2$: `'d' \notin \mathcal{A}$!
+- Early exit: Inconsistent.
 
-Because all characters are lowercase English letters, the set contains at most 26 entries.
+#### Word 1 (`"bd"`):
+- Inspect character $1$: `'b' \in \mathcal{A}$.
+- Inspect character $2$: `'d' \notin \mathcal{A}$!
+- Early exit: Inconsistent.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"allowed": "ab", "words": ["ad", "bd", "aaab", "baa", "badab"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Word 2 (`"aaab"`):
+- Inspect character $1$: `'a' \in \mathcal{A}$.
+- Inspect character $2$: `'a' \in \mathcal{A}$.
+- Inspect character $3$: `'a' \in \mathcal{A}$.
+- Inspect character $4$: `'b' \in \mathcal{A}$.
+- All characters present $\implies$ **Consistent!**
+- Update count: $\text{count} \leftarrow 0 + 1 = \mathbf{1}$.
 
----
+#### Word 3 (`"baa"`):
+- Inspect character $1$: `'b' \in \mathcal{A}$.
+- Inspect character $2$: `'a' \in \mathcal{A}$.
+- Inspect character $3$: `'a' \in \mathcal{A}$.
+- All characters present $\implies$ **Consistent!**
+- Update count: $\text{count} \leftarrow 1 + 1 = \mathbf{2}$.
 
-### Step 2: Check one complete word
+#### Word 4 (`"badab"`):
+- Inspect character $1$: `'b' \in \mathcal{A}$.
+- Inspect character $2$: `'a' \in \mathcal{A}$.
+- Inspect character $3$: `'d' \notin \mathcal{A}$!
+- Early exit: Inconsistent.
 
-For a word `w`, the expression
-
-`all(c in s for c in w)`
-
-tests its characters lazily from left to right. The inner generator produces one Boolean membership result at a time. `all` returns true only if every produced value is true.
-
-If an unallowed character is found, `all` short-circuits immediately. Later characters in that word do not matter because one violation is enough to make the entire word inconsistent.
-
-If the generator reaches the end without a false membership test, every character belongs to `s` and `all` returns true.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Count Boolean results
-
-The outer generator applies that word check to every string in `words`. Python Booleans act as integers during addition: `true` contributes one and `false` contributes zero. Therefore
-
-`sum(all(...) for w in words)`
-
-counts exactly the words for which the condition succeeds.
-
-No list of per-word results is created. `sum` consumes one Boolean at a time and maintains a numeric accumulator.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+#### Finalization:
+- Total consistent words: $\text{count} = \mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"allowed": "ab", "words": ["ad", "bd", "aaab", "baa", "badab"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+### Evaluation State Table for Representative Instance 1
+
+| Word Index $i$ | Word $w_i$ | Characters Scanned | Forbidden Character Detected? | Status | Cumulative Count |
+|---|---|---|---|---|---|
+| $0$ | `"ad"` | `'a'`, `'d'` | Yes (`'d'`) | Discarded | $0$ |
+| $1$ | `"bd"` | `'b'`, `'d'` | Yes (`'d'`) | Discarded | $0$ |
+| $2$ | `"aaab"` | `'a'`, `'a'`, `'a'`, `'b'` | None | **Consistent** | **`1`** |
+| $3$ | `"baa"` | `'b'`, `'a'`, `'a'` | None | **Consistent** | **`2`** |
+| $4$ | `"badab"` | `'b'`, `'a'`, `'d'` | Yes (`'d'`) | Discarded | $2$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+A word is only counted if every character it contains exists in the `allowed` lookup set. If any character fails membership, the loop aborts and the counter is not incremented.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+The algorithm iterates through all words in the input array. Because set lookup is exact and operates in $\mathcal{O}(1)$ time, no consistent word can be missed.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **26-element Boolean array:** Map each character to `ord(c)-ord('a')` and test a fixed slot. This gives deterministic constant-time lookup and constant space.
-- **26-bit mask:** Store allowed letters in one integer and test character bits. It is compact and matches the fixed alphabet but less immediately readable to beginners.
-- **Search `allowed` directly:** `c in allowed` can scan up to 26 characters for every word character. It remains bounded here but repeats work that preprocessing avoids.
-- **Explicit nested loops:** They can maintain a counter and break on the first forbidden character. This is semantically identical to the generator and `all`.
-- **Every word consistent:** Every inner `all` returns true, so the result equals `len(words)`.
-- **No word consistent:** Every word encounters a forbidden character and the sum remains zero.
-- **One-character allowed set:** Only words composed entirely of repetitions of that character pass.
-- **Repeated characters in a word:** Each occurrence is checked, but repetition is allowed and does not make a word inconsistent.
-- **Distinctness of `allowed`:** Set construction would remove duplicates even without the guarantee, so behavior remains natural.
-- **Nonempty words:** The constraints avoid the vacuous-empty-word case; mathematically `all` of an empty generator would be true.
-- **Lowercase-only guarantee:** It keeps the lookup universe at 26 and makes the constant-space claim valid.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Linear Scanning of `allowed` Inside Inner Loop:** Checking `c in allowed` where `allowed` is a string performs an $\mathcal{O}(|\text{allowed}|)$ linear search for every character. Pre-converting `allowed` into a hash set or bitmask reduces each character check to $\mathcal{O}(1)$.
+- **Failing to Early-Exit on Mismatch:** Once an invalid character is found in a word, continuing to examine subsequent characters in that word wastes execution cycles.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(A+S)$. Let `A = len(allowed)` and define
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Building the lookup set/mask from `allowed`: $\mathcal{O}(|\text{allowed}|) \le 26$ operations.
+  - Scanning $W$ words with average length $L$: $\sum_{i=1}^W |w_i| \le 10^4 \times 10 = 10^5$ character checks.
+  - Each check takes $\mathcal{O}(1)$ time.
+  - Total Time Complexity: strictly $\mathcal{O}(|\text{allowed}| + \sum |w_i|)$ linear time, executing in $< 10$ ms.
+- **Auxiliary Space Complexity:**
+  - The lookup hash set or bitmask stores at most $26$ entries.
+  - Total Auxiliary Space Complexity: strictly $\mathcal{O}(1)$ constant memory.

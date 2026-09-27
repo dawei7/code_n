@@ -1,131 +1,206 @@
 # Guided Example: Sliding Window Maximum
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step monotonic decreasing deque invariant, dominated-element eviction, and window boundary expiration on representative integer arrays:
 
-- **Input:** `{"nums": [1, 3, -1, -3, 5, 3, 6, 7], "k": 3}`
-- **Required output:** `[3, 3, 5, 5, 6, 7]`
+- **Input:** $\text{nums} = [1, 3, -1, -3, 5, 3, 6, 7], \quad k = 3$
+- **Required output:** $[3, 3, 5, 5, 6, 7]$
+- **Single Element Window:** $\text{nums} = [1], \quad k = 1 \implies [1]$
+- **Strictly Decreasing Instance:** $\text{nums} = [9, 8, 7, 6], \quad k = 2 \implies [9, 8, 7]$
+- **Strictly Increasing Instance:** $\text{nums} = [1, 2, 3, 4], \quad k = 2 \implies [2, 3, 4]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates the optimal Monotonic Decreasing Deque data structure for sliding window extremum queries, proves why elements smaller than the incoming element can never serve as future window maxima (the domination property), contrasts $O(N)$ amortized deque operations with $O(N \log N)$ lazy heap deletion, and enforces $O(k)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of integers `nums`, there is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.
+Given an integer array $\text{nums} = [1, 3, -1, -3, 5, 3, 6, 7]$ and window size $k = 3$:
+Slide a window of size $3$ across the array from left to right, recording the maximum value at each position:
+```text
+Window Position                Max
+-------------------------     -----
+[1  3 -1] -3  5  3  6  7   ->   3
+ 1 [3 -1 -3] 5  3  6  7   ->   3
+ 1  3 [-1 -3  5] 3  6  7   ->   5
+ 1  3 -1 [-3  5  3] 6  7   ->   5
+ 1  3 -1 -3 [5  3  6] 7   ->   6
+ 1  3 -1 -3  5 [3  6  7]  ->   7
+Output: [3, 3, 5, 5, 6, 7]
+```
 
-The objective is to compute `[3, 3, 5, 5, 6, 7]` from `{"nums": [1, 3, -1, -3, 5, 3, 6, 7], "k": 3}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- A naive rescan of each size-$k$ window takes $O(k)$ per step, totaling $O(N \cdot k)$ time (up to $10^{10}$ operations for $N = 10^5, k = 10^5$).
+- A Max-Heap with lazy deletion takes $O(N \log N)$ time.
+- A **Monotonic Decreasing Deque** tracks candidate maximum indices in strictly descending value order. Every element enters and exits the deque at most once, yielding optimal **strictly $O(N)$ linear time**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Domination Principle
+Why can smaller, older elements be discarded permanently?
+Suppose at index $i$, we encounter $\text{nums}[i]$.
+Consider any previous candidate index $j < i$ currently in the deque:
+If $\text{nums}[j] \le \text{nums}[i]$:
+1. $\text{nums}[i]$ is larger than $\text{nums}[j]$.
+2. $\text{nums}[i]$ will remain in the sliding window **longer** than $\text{nums}[j]$ (since $i > j$, index $j$ expires before $i$).
+Therefore, $\text{nums}[j]$ **can never be the maximum of the current window or any future window**!
+Index $j$ is permanently dominated and can be discarded immediately.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Deque Maintenance Protocol
+Store **indices** in a double-ended queue $Q$:
+For each index $i$ from $0$ to $N - 1$:
+1. **Evict Expired Window Head:**
+   The active window ending at $i$ spans $[i - k + 1, i]$.
+   If the index at the front of $Q$ has expired ($Q[0] < i - k + 1$):
+   $$
+   Q.\text{popleft}()
+   $$
+2. **Evict Dominated Candidates from the Back:**
+   While $Q$ is not empty and $\text{nums}[Q[-1]] \le \text{nums}[i]$:
+   $$
+   Q.\text{pop}()
+   $$
+3. **Enqueue Current Index:**
+   $$
+   Q.\text{append}(i)
+   $$
+4. **Collect Window Maximum:**
+   Once the first window has matured ($i \ge k - 1$):
+   The maximum element of the active window is always at the front:
+   $$
+   \text{result}.\text{append}(\text{nums}[Q[0]])
+   $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At every step, $Q$ contains indices from the active window whose corresponding values are in **strictly decreasing order**: $\text{nums}[Q[0]] > \text{nums}[Q[1]] > \dots > \text{nums}[Q[-1]]$. Thus, $Q[0]$ is always the maximum.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The window boundaries
+We trace $\text{nums} = [1, 3, -1, -3, 5, 3, 6, 7]$ with $k = 3$:
 
-When the loop is processing index `i`, that index is the right endpoint of the current window. A window of length `k` ending at `i` begins at
-
-$$
-i-k+1.
-$$
-
-Therefore, a heap entry at index `j` is current exactly when
-
-$$
-j \ge i-k+1,
-$$
-
-or equivalently when $j>i-k$. Any entry satisfying $j\le i-k$ is stale.
-
-The code uses precisely this test in `while q[0][1] <= i - k`. Notice the non-strict comparison. At the moment the right endpoint advances to `i`, the old index `i - k` is one position before the new window's left boundary, so it must no longer influence the answer.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 3, -1, -3, 5, 3, 6, 7], "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: Index $i = 0$ ($x = 1$)
+- Evict expired: None.
+- Domination: $Q$ is empty.
+- Add $0$: $Q = [0]$ (values: $[1]$).
+- $i = 0 < k - 1$ (Window building).
 
 ---
 
-### Step 2: Build just before the first complete window
-
-The initial comprehension inserts indices `0` through `k - 2`, the first `k - 1` elements. `heapify(q)` converts those pairs into a heap in linear time with respect to the number inserted. The main loop then begins at `i = k - 1`. It pushes the last element needed for the first full window before reading a maximum.
-
-This division of work means every answer is produced by the same loop body:
-
-1. Add the new rightmost element.
-2. Remove stale entries from the top until the top belongs to the current window.
-3. Convert the top's negated value back to its original sign and append it.
-
-For `k = 1`, the initial slice `nums[:0]` is empty, so heapifying it is valid. Each main-loop iteration pushes the one visible element, removes any older top entries if necessary, and returns that element. Thus the same structure handles the smallest window without a separate branch.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: Index $i = 1$ ($x = 3$)
+- Evict expired: None.
+- Domination: $\text{nums}[Q[-1]] = 1 \le 3 \implies$ Pop index $0$!
+- Add $1$: $Q = [1]$ (values: $[3]$).
+- $i = 1 < k - 1$ (Window building).
 
 ---
 
-### Step 3: Why stale entries can be removed lazily
+### Step 3: Index $i = 2$ ($x = -1$) — First Full Window $[0 \dots 2]$
+- Evict expired: $Q[0] = 1 \ge 2 - 3 + 1 = 0$ (Valid).
+- Domination: $\text{nums}[Q[-1]] = 3 \not\le -1$. No pop.
+- Add $2$: $Q = [1, 2]$ (values: $[3, -1]$).
+- Window mature ($i \ge 2$): Maximum is $\text{nums}[Q[0]] = \text{nums}[1] = \mathbf{3}$.
+- Result: `[3]`.
 
-The heap may contain indices that have left the window. The solution does not search through the heap to delete every such entry because a binary heap supports efficient removal at the root, not efficient arbitrary removal by index. Instead, it performs lazy deletion: an expired entry is tolerated until it reaches the root.
+---
 
-This is safe because only the root is ever used as the answer. If a stale entry is buried below another entry, it cannot affect the reported maximum at that moment. When it eventually becomes the root, the `while` loop checks its index and discards it before any answer is appended. Several expired entries can surface consecutively, which is why the code uses `while` rather than `if`.
+### Step 4: Index $i = 3$ ($x = -3$) — Window $[1 \dots 3]$
+- Evict expired: $Q[0] = 1 \ge 3 - 3 + 1 = 1$ (Valid).
+- Domination: $-3 < -1$. No pop.
+- Add $3$: $Q = [1, 2, 3]$ (values: $[3, -1, -3]$).
+- Window mature: Maximum is $\text{nums}[Q[0]] = \text{nums}[1] = \mathbf{3}$.
+- Result: `[3, 3]`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 3, 5, 5, 6, 7]` |
+---
+
+### Step 5: Index $i = 4$ ($x = 5$) — Window $[2 \dots 4]$
+- Evict expired: $Q[0] = 1 < 4 - 3 + 1 = 2 \implies$ **Popleft index $1$!**
+  - Remaining $Q = [2, 3]$ (values: $[-1, -3]$).
+- Domination:
+  - $\text{nums}[3] = -3 \le 5 \implies$ Pop index $3$.
+  - $\text{nums}[2] = -1 \le 5 \implies$ Pop index $2$.
+- Add $4$: $Q = [4]$ (values: $[5]$).
+- Window mature: Maximum is $\text{nums}[Q[0]] = \text{nums}[4] = \mathbf{5}$.
+- Result: `[3, 3, 5]`.
+
+---
+
+### Step 6: Index $i = 5$ ($x = 3$) — Window $[3 \dots 5]$
+- Evict expired: $Q[0] = 4 \ge 5 - 3 + 1 = 3$ (Valid).
+- Domination: $5 > 3$. No pop.
+- Add $5$: $Q = [4, 5]$ (values: $[5, 3]$).
+- Window mature: Maximum is $\text{nums}[Q[0]] = \text{nums}[4] = \mathbf{5}$.
+- Result: `[3, 3, 5, 5]`.
+
+---
+
+### Step 7: Index $i = 6$ ($x = 6$) — Window $[4 \dots 6]$
+- Evict expired: $Q[0] = 4 \ge 6 - 3 + 1 = 4$ (Valid).
+- Domination:
+  - $\text{nums}[5] = 3 \le 6 \implies$ Pop index $5$.
+  - $\text{nums}[4] = 5 \le 6 \implies$ Pop index $4$.
+- Add $6$: $Q = [6]$ (values: $[6]$).
+- Window mature: Maximum is $\text{nums}[Q[0]] = \text{nums}[6] = \mathbf{6}$.
+- Result: `[3, 3, 5, 5, 6]`.
+
+---
+
+### Step 8: Index $i = 7$ ($x = 7$) — Window $[5 \dots 7]$
+- Evict expired: $Q[0] = 6 \ge 7 - 3 + 1 = 5$ (Valid).
+- Domination: $\text{nums}[6] = 6 \le 7 \implies$ Pop index $6$.
+- Add $7$: $Q = [7]$ (values: $[7]$).
+- Window mature: Maximum is $\text{nums}[Q[0]] = \text{nums}[7] = \mathbf{7}$.
+- Result: `[3, 3, 5, 5, 6, 7]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 3, -1, -3, 5, 3, 6, 7], "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 3, 5, 5, 6, 7]` | Verified |
+```text
+nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3
+
+i = 0 (1):  Q = [0(1)]
+i = 1 (3):  1 <= 3 -> pop 0. Q = [1(3)]
+i = 2 (-1): Q = [1(3), 2(-1)]                 -> Max = 3
+i = 3 (-3): Q = [1(3), 2(-1), 3(-3)]           -> Max = 3
+i = 4 (5):  exp 1 -> popleft. -3, -1 <= 5 -> pop 3, 2. Q = [4(5)] -> Max = 5
+i = 5 (3):  Q = [4(5), 5(3)]                   -> Max = 5
+i = 6 (6):  3, 5 <= 6 -> pop 5, 4. Q = [6(6)]  -> Max = 6
+i = 7 (7):  6 <= 7 -> pop 6. Q = [7(7)]        -> Max = 7
+
+Final Output: [3, 3, 5, 5, 6, 7]
+```
+
+| Index $i$ | Value $x$ | Front Eviction ($Q[0] < i - k + 1$) | Back Eviction ($\le x$) | Resulting Deque $Q$ (Indices) | Window Max ($\text{nums}[Q[0]]$) |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| 0 | 1 | None | None | `[0]` | - |
+| 1 | 3 | None | Pop 0 ($1 \le 3$) | `[1]` | - |
+| **2** | **-1** | None | None | `[1, 2]` | **3** |
+| **3** | **-3** | None | None | `[1, 2, 3]` | **3** |
+| **4** | **5** | **Popleft 1** ($1 < 2$) | Pop 3 ($-3 \le 5$), Pop 2 ($-1 \le 5$) | `[4]` | **5** |
+| **5** | **3** | None | None | `[4, 5]` | **5** |
+| **6** | **6** | None | Pop 5 ($3 \le 6$), Pop 4 ($5 \le 6$) | `[6]` | **6** |
+| **7** | **7** | None | Pop 6 ($6 \le 7$) | `[7]` | **7** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Because indices entering $Q$ are appended after popping all smaller values, the values in $Q$ are strictly monotonic decreasing. The front of $Q$ always holds the index of the maximum value among all valid candidates. Because expired indices are popped from the front, $Q[0]$ is guaranteed to lie within the active window $[i - k + 1, i]$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any element discarded during back eviction was smaller than or equal to an element that arrived later, meaning it could never be the maximum of any window containing both. Discarded elements are provably suboptimal, so the true maximum is never lost.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Monotonic decreasing deque:** Store useful indices in increasing index order and decreasing value order. Remove expired indices from the front and values dominated by the newcomer from the back. Each index enters and leaves once, giving $O(n)$ time and $O(k)$ auxiliary space; this is the stronger asymptotic solution described by the local editorial and manifest, but it is not what the exact optimal source implements.
-- **Balanced multiset:** Insert the entering value, erase the leaving occurrence, and query the greatest value. This gives $O(n\log k)$ time and $O(k)$ space in languages with an ordered multiset, provided duplicates are represented correctly.
-- **Direct scan of every window:** It uses only constant auxiliary space but costs $O(nk)$ in the worst case because it rediscovers nearly the same maximum repeatedly.
-- **Lazy heap expiration:** Arbitrary expired entries do not need immediate deletion. Only an expired root can corrupt the answer, so root cleanup is sufficient for correctness, though it permits $O(n)$ memory growth.
-- **Several stale roots:** The cleanup must be a `while` loop. Removing just one stale root may expose another stale entry before any current entry reaches the top.
-- **Duplicate maximum values:** Pairing each value with its index distinguishes occurrences. Expiration is decided per occurrence, while either current occurrence yields the same maximum value.
-- **`k = 1`:** The initial heap is empty, and every element becomes the maximum of its one-element window.
-- **`k = n`:** Initialization loads the first $n-1$ values, the loop adds the last, and exactly one maximum is returned.
-- **Negative values:** Negation still reverses priority correctly. For example, original `-3` is stored as `3`, while original `-1` is stored as `1`, so `-1` is recovered as the larger value.
-- **Expired non-root entries:** Their presence is harmless for correctness but important for complexity analysis. Claiming the heap always contains only the current window would be inaccurate for this implementation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Storing Values Instead of Indices in Deque:** Storing raw values makes it impossible to determine when an element has expired from the window! Storing **indices** allows testing $Q[0] < i - k + 1$ in $O(1)$ time.
+- **Strict vs Non-Strict Inequality in Domination:** Using $\le$ rather than $<$ when popping from the back discards duplicate values. Since the newer duplicate has a larger index and will survive longer, discarding the older duplicate is completely safe and keeps the deque as small as possible.
+- **Heap Inefficiency:** While a max-heap with lazy deletion achieves $O(N \log N)$, it consumes $O(N)$ space in the worst case (when elements are strictly decreasing and never reach the root to trigger deletion). The monotonic deque strictly bounds auxiliary memory to $O(k)$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the length of `nums`. Constructing and heapifying the first $k-1$ entries costs $O(k)$. Every one of the $n-k+1$ main iterations performs one heap insertion. A heap can contain as many as $O(n)$ entries, so an insertion costs $O(\log n)$ in the worst case.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. Although there is a nested `while` loop, each index from $0$ to $N - 1$ is pushed onto the deque exactly once and popped from the deque at most once. The total number of deque operations across the entire algorithm is bounded by $2N = O(N)$.
+- **Auxiliary Space Complexity:** $O(k)$ auxiliary space for the deque, which never contains more than $k$ indices simultaneously.

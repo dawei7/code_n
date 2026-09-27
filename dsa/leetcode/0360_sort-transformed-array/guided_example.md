@@ -1,112 +1,197 @@
 # Guided Example: Sort Transformed Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step quadratic parabola convexity analysis ($a > 0$ vs $a \le 0$), two-pointer endpoint comparison ($f(\text{nums}[i])$ vs $f(\text{nums}[j])$), bidirectional array placement (back-filling from $n - 1$ vs front-filling from $0$), and $O(N)$ linear time sorted array construction on representative quadratic instances:
 
-- **Input:** `{"nums": [-4, -2, 2, 4], "a": 1, "b": 3, "c": 5}`
-- **Required output:** `[3, 9, 15, 33]`
+- **Input:** $\text{nums} = [-4, -2, 2, 4], \quad a = 1, \; b = 3, \; c = 5$
+- **Required output:** $[3, 9, 15, 33]$
+  - Quadratic equation: $f(x) = 1 \cdot x^2 + 3x + 5$
+  - Since $a = 1 > 0$, the parabola opens upward (convex):
+    - Maximum values reside at the outer extremities
+    - We compare outer endpoints and fill `ans` backwards from index $n - 1$ down to $0$
+  - Evaluation steps:
+    - Compare $f(-4) = 9$ and $f(4) = 33 \implies$ place $33$ at index 3, retreat right pointer
+    - Compare $f(-4) = 9$ and $f(2) = 15 \implies$ place $15$ at index 2, retreat right pointer
+    - Compare $f(-4) = 9$ and $f(-2) = 3 \implies$ place $9$ at index 1, advance left pointer
+    - Place remaining $f(-2) = 3$ at index 0
+  - Final sorted array: $[3, 9, 15, 33]$
+- **Concave Parabola ($a < 0$):** $f(x) = -x^2$. Parabola opens downward $\implies$ minimum values reside at endpoints $\implies$ fill `ans` forwards from index $0$ up to $n - 1$
+- **Linear Function ($a = 0$):** $f(x) = bx + c$. Monotonic line $\implies$ grouped under $a \le 0$ front-fill logic
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates exploiting mathematical curvature in sorted arrays, proves why two-pointer endpoint convergence guarantees non-decreasing order in strictly $O(N)$ linear time without general sorting algorithms, and analyzes memory bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a **sorted** integer array `nums` and three integers `a`, `b` and `c`, apply a quadratic function of the form $f(x) = ax^2 + bx + c$ to each element $\text{nums}[i]$ in the array, and return *the array in a sorted order*.
+Given a sorted integer array $\text{nums} = [-4, -2, 2, 4]$ and quadratic coefficients $a = 1, b = 3, c = 5$:
+Transform each element via $f(x) = ax^2 + bx + c$ and return the transformed values in sorted order in **$O(N)$ time**:
 
-The objective is to compute `[3, 9, 15, 33]` from `{"nums": [-4, -2, 2, 4], "a": 1, "b": 3, "c": 5}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Transformation: f(x) = x^2 + 3x + 5
+Input: [-4, -2, 2, 4]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Transformed Values:
+f(-4) = 16 - 12 + 5 = 9
+f(-2) =  4 -  6 + 5 = 3
+f(2)  =  4 +  6 + 5 = 15
+f(4)  = 16 + 12 + 5 = 33
+
+Raw output: [9, 3, 15, 33] (Unsorted!)
+Sorted target: [3, 9, 15, 33]
+```
+
+### The Curvature Principle of Parabolas
+For any parabola $f(x) = ax^2 + bx + c$ on a closed interval $[x_L, x_R]$:
+1. **Case $a > 0$ (Convex / Opens Upward):**
+   The vertex is a minimum. The **maximum** of $f(x)$ over $[x_L, x_R]$ must occur at one of the two boundaries: $x_L$ or $x_R$.
+   We can repeatedly extract the global maximum from the endpoints and place it at the **back** of the output array (`ans[n - k - 1]`).
+2. **Case $a \le 0$ (Concave / Opens Downward or Line):**
+   The vertex is a maximum (or monotone if $a = 0$). The **minimum** of $f(x)$ over $[x_L, x_R]$ must occur at $x_L$ or $x_R$.
+   We can repeatedly extract the global minimum from the endpoints and place it at the **front** of the output array (`ans[k]`).
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Pointer Setup:
+Initialize:
+$$
+i = 0, \quad j = n - 1, \quad ans = [0] \times n
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Decision Logic per Iteration $k \in [0 \dots n - 1]$:
+Evaluate endpoint values:
+$$
+y_1 = f(\text{nums}[i]), \quad y_2 = f(\text{nums}[j])
+$$
+- **If $a > 0$ (Fill from Back at Index $n - k - 1$):**
+  - If $y_1 > y_2$: $ans[n - k - 1] \leftarrow y_1, \; i \leftarrow i + 1$
+  - Else: $ans[n - k - 1] \leftarrow y_2, \; j \leftarrow j - 1$
+- **If $a \le 0$ (Fill from Front at Index $k$):**
+  - If $y_1 > y_2$: $ans[k] \leftarrow y_2, \; j \leftarrow j - 1$
+  - Else: $ans[k] \leftarrow y_1, \; i \leftarrow i + 1$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At iteration $k$, the unprocessed elements $\text{nums}[i \dots j]$ contain all remaining values, and their extreme value (max if $a > 0$, min if $a \le 0$) is always $\max(y_1, y_2)$ or $\min(y_1, y_2)$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: The helper evaluates the exact polynomial.
-
-The local function `f(x)` returns `a * x * x + b * x + c`. It avoids storing a separate transformed array. Each loop iteration evaluates only the currently exposed left and right endpoints.
-
-The input contains integers and all coefficients are integers, so every transformed result is an integer. Duplicate input values or different inputs that produce equal outputs remain separate occurrences because the algorithm performs exactly one placement per input position.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [-4, -2, 2, 4], "a": 1, "b": 3, "c": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $\text{nums} = [-4, -2, 2, 4]$ with $a = 1, b = 3, c = 5$:
+Parabola opens upward ($a = 1 > 0$); target slots fill from index $3$ down to $0$.
 
 ---
 
-### Step 2: Why endpoints contain an extreme.
-
-Consider only the currently unprocessed values `nums[i]` through `nums[j]`. They occupy a closed interval of $x$ values, possibly with gaps and duplicates.
-
-If $a>0$, the quadratic is convex: its graph opens upward. A convex function's maximum over a closed interval occurs at an endpoint. The minimum may be near the vertex in the interior, but the largest remaining transformed value must be either `f(nums[i])` or `f(nums[j])`.
-
-If $a<0$, the quadratic is concave and opens downward. Its minimum over a closed interval occurs at an endpoint. The maximum may be internal, but the smallest remaining transformed value must be one of the two endpoint results.
-
-If $a=0$, the function is linear, $f(x)=bx+c$. A linear function is monotone increasing, monotone decreasing, or constant, so both its minimum and maximum over the remaining interval occur at endpoints. The source groups this case with `a <= 0` and repeatedly selects the smaller endpoint value, which is valid for every sign of $b$.
-
-These endpoint properties continue to hold after one pointer moves inward, because the remaining inputs still form an ordered subarray and therefore lie within a smaller closed interval.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Iteration $k = 0$ (Target Slot: $n - 1 - 0 = 3$)
+- Pointers: $i = 0, j = 3$.
+- Evaluate endpoints:
+  $$
+  y_1 = f(\text{nums}[0]) = f(-4) = (-4)^2 + 3(-4) + 5 = 16 - 12 + 5 = \mathbf{9}
+  $$
+  $$
+  y_2 = f(\text{nums}[3]) = f(4) = 4^2 + 3(4) + 5 = 16 + 12 + 5 = \mathbf{33}
+  $$
+- Compare: $y_1 > y_2 \iff 9 > 33$ (**False**).
+- Selection: $y_2 = 33$ is larger!
+  - Write to back: $ans[3] \leftarrow 33$.
+  - Retreat right pointer: $j \leftarrow 3 - 1 = 2$.
+- Array state: $[0, 0, 0, \mathbf{33}]$.
 
 ---
 
-### Step 3: Upward parabola: fill the answer from the end.
+### Step 2: Iteration $k = 1$ (Target Slot: $n - 1 - 1 = 2$)
+- Pointers: $i = 0, j = 2$.
+- Evaluate endpoints:
+  $$
+  y_1 = f(\text{nums}[0]) = f(-4) = \mathbf{9}
+  $$
+  $$
+  y_2 = f(\text{nums}[2]) = f(2) = 2^2 + 3(2) + 5 = 4 + 6 + 5 = \mathbf{15}
+  $$
+- Compare: $9 > 15$ (**False**).
+- Selection: $y_2 = 15$ is larger!
+  - Write: $ans[2] \leftarrow 15$.
+  - Retreat right pointer: $j \leftarrow 2 - 1 = 1$.
+- Array state: $[0, 0, \mathbf{15}, 33]$.
 
-When `a > 0`, the method compares `y1 = f(nums[i])` and `y2 = f(nums[j])`. The larger one is the largest value still unplaced. It belongs at index `n - k - 1`, moving from the last output position toward the first as `k` increases.
+---
 
-If `y1 > y2`, the left endpoint supplies that maximum and `i` advances. Otherwise the right endpoint is used and `j` retreats. Equality may choose the right copy; either choice is safe because equal values are interchangeable in sorted order and both occurrences will eventually be placed.
+### Step 3: Iteration $k = 2$ (Target Slot: $n - 1 - 2 = 1$)
+- Pointers: $i = 0, j = 1$.
+- Evaluate endpoints:
+  $$
+  y_1 = f(\text{nums}[0]) = f(-4) = \mathbf{9}
+  $$
+  $$
+  y_2 = f(\text{nums}[1]) = f(-2) = (-2)^2 + 3(-2) + 5 = 4 - 6 + 5 = \mathbf{3}
+  $$
+- Compare: $9 > 3$ (**True**).
+- Selection: $y_1 = 9$ is larger!
+  - Write: $ans[1] \leftarrow 9$.
+  - Advance left pointer: $i \leftarrow 0 + 1 = 1$.
+- Array state: $[0, \mathbf{9}, 15, 33]$.
 
-Filling from the back is essential. The first extremes found for an upward parabola are large, not small. Writing them from left to right would produce descending order.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3, 9, 15, 33]` |
+### Step 4: Iteration $k = 3$ (Target Slot: $n - 1 - 3 = 0$)
+- Pointers: $i = 1, j = 1$.
+- Only one element remains: $\text{nums}[1] = -2$.
+  $$
+  y_1 = y_2 = f(-2) = \mathbf{3}
+  $$
+- Write to remaining slot: $ans[0] \leftarrow 3$.
+- Array state: $[\mathbf{3}, 9, 15, 33]$.
+
+---
+
+### Step 5: Termination
+All $n = 4$ positions filled. Return:
+$$
+\mathbf{[3, 9, 15, 33]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [-4, -2, 2, 4], "a": 1, "b": 3, "c": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3, 9, 15, 33]` | Verified |
+```text
+nums = [-4, -2, 2, 4], a = 1, b = 3, c = 5 (a > 0: fill from back)
+f(x) = x^2 + 3x + 5
+
+k = 0 (slot 3): i=0 (x=-4, y1=9),  j=3 (x=4,  y2=33) -> y2>y1 -> ans[3]=33, j=2
+k = 1 (slot 2): i=0 (x=-4, y1=9),  j=2 (x=2,  y2=15) -> y2>y1 -> ans[2]=15, j=1
+k = 2 (slot 1): i=0 (x=-4, y1=9),  j=1 (x=-2, y2=3)  -> y1>y2 -> ans[1]=9,  i=1
+k = 3 (slot 0): i=1 (x=-2, y1=3),  j=1 (x=-2, y2=3)  -> y2>=y1-> ans[0]=3,  j=0
+
+Final Sorted Array: [3, 9, 15, 33]
+```
+
+| Iteration $k$ | Left Index $i$ | Right Index $j$ | $y_1 = f(\text{nums}[i])$ | $y_2 = f(\text{nums}[j])$ | Dominant Value | Target Slot | Updated `ans` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | 3 | 9 | 33 | $y_2 = 33$ | 3 | `[0, 0, 0, 33]` |
+| 1 | 0 | 2 | 9 | 15 | $y_2 = 15$ | 2 | `[0, 0, 15, 33]` |
+| 2 | 0 | 1 | 9 | 3 | $y_1 = 9$ | 1 | `[0, 9, 15, 33]` |
+| **3** | **1** | **1** | **3** | **3** | **$y_2 = 3$** | **0** | **`[3, 9, 15, 33]`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For $a > 0$, the second derivative $f''(x) = 2a > 0$ is strictly positive, making $f(x)$ strictly convex. By the maximum principle for convex functions on compact intervals, the supremum of $f$ on $[\text{nums}[i], \text{nums}[j]]$ is achieved at either $\text{nums}[i]$ or $\text{nums}[j]$. Selecting $\max(y_1, y_2)$ guarantees that the placed value is greater than or equal to all remaining unprocessed values, producing a strictly non-decreasing array when filled from right to left. By symmetry, for $a \le 0$, concave minimization guarantees non-decreasing order when filled from left to right.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each iteration places exactly one element into `ans` and reduces the window size $j - i + 1$ by 1. Exactly $n$ iterations run, placing every transformed value into `ans` without omitting any elements.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Transform then sort:** Map every input through `f` and sort the results. This is simple and correct but costs $O(n\log n)$ time, missing the linear follow-up.
-- **Find the vertex and merge outward:** Locate $-b/(2a)$, split inputs around it, and merge transformed monotone runs. This can also run in $O(n)$ but requires more careful boundary and sign handling than endpoint extremes.
-- **`a = 0`, positive `b`:** The transformation is increasing, so the left endpoint is repeatedly selected and the output follows input order.
+- **Filling Direction Inversion:** Placing the maximum at the front when $a > 0$ yields a reverse-sorted (descending) array. Convex parabolas must fill backwards ($n - 1 \to 0$); concave parabolas must fill forwards ($0 \to n - 1$).
+- **Quadratic Sorting Overhead:** Transforming the array and calling `.sort()` takes $O(N \log N)$ time, failing the problem's explicit $O(N)$ linear time follow-up.
+- **Handling $a = 0$:** When $a = 0$, $f(x) = bx + c$ is linear. Grouping $a = 0$ with $a \le 0$ works cleanly regardless of whether $b$ is positive, negative, or zero.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums`. The loop has exactly $n$ iterations. Each iteration performs two constant-time polynomial evaluations, one comparison, one output assignment, and one pointer update. Total running time is $O(n)$, satisfying the follow-up.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N = \text{len}(nums)$. Exactly $N$ loop iterations are performed. Each iteration computes two quadratic evaluations and updates one array slot in $O(1)$ constant time.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the returned array `ans`.

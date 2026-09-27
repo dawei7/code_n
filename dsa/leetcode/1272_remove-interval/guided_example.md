@@ -1,125 +1,162 @@
 # Guided Example: Remove Interval
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step subtraction of an interval from a sorted list of disjoint intervals on a representative problem instance:
 
-- **Input:** `{"intervals": [[0, 2], [3, 4], [5, 7]], "toBeRemoved": [1, 6]}`
-- **Required output:** `[[0, 1], [6, 7]]`
+- **Input:**
+  - `intervals = [[0, 2], [3, 4], [5, 7]]`
+  - `toBeRemoved = [1, 6]`
+- **Required Output:** `[[0, 1], [6, 7]]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance illustrates interval difference logic, the four geometric overlap configurations (disjoint, left-truncated, completely covered, and right-truncated), and order-preserving single-pass linear filtering.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A set of real numbers can be represented as the union of several disjoint intervals, where each interval is in the form `[a, b)`. A real number `x` is in the set if one of its intervals `[a, b)` contains `x` (i.e. $a \le x < b$).
+We are given a collection of pairwise disjoint intervals sorted in ascending order by their start points. We must remove all points lying in the half-open interval $[x, y) = [1, 6)$ from the union of these intervals.
 
-The objective is to compute `[[0, 1], [6, 7]]` from `{"intervals": [[0, 2], [3, 4], [5, 7]], "toBeRemoved": [1, 6]}` while avoiding redundant calculations and unnecessary overhead.
+```
+Original Intervals:
+  [0 ─── 2]       [3 ─ 4]       [5 ─────── 7]
+   0   1   2   3   4   5   6   7
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Removal Range [1, 6]:
+       [=======================)
+       1   2   3   4   5   6
+
+Remaining Intervals:
+  [0 ─ 1]                         [6 ───── 7]
+   0   1                           6       7
+```
+
+A naive approach might convert intervals into discrete point sets, but intervals can have real-valued endpoints up to $10^9$.
+The optimal strategy processes each interval $[a, b]$ independently:
+1. If $[a, b]$ does not intersect $[x, y]$, keep $[a, b]$ unchanged.
+2. If $[a, b]$ intersects $[x, y]$, at most two surviving sub-intervals can remain:
+   - A left segment $[a, x]$ if $a < x$.
+   - A right segment $[y, b]$ if $b > y$.
+
+The teaching goal is to demonstrate how piecewise endpoint comparison trims, splits, or deletes intervals in a single forward pass without requiring secondary sorting.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $[a, b]$ be an active interval and $[x, y]$ be `toBeRemoved`. There are four mutually exclusive geometric relationships:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Strictly Disjoint:**
+   - Either $b \le x$ (the interval lies completely to the left of the removal zone).
+   - Or $a \ge y$ (the interval lies completely to the right of the removal zone).
+   - In both cases, $[a, b] \cap [x, y) = \emptyset$. Retain $[a, b]$ in its entirety.
+2. **Left-End Overlap (Truncated on the Right):**
+   - $a < x < b \le y$.
+   - The portion $[x, b]$ is removed. The sub-interval $[a, x]$ survives.
+3. **Completely Contained (Swallowed):**
+   - $x \le a < b \le y$.
+   - The entire interval $[a, b]$ is swallowed by the removal zone. Zero sub-intervals survive.
+4. **Right-End Overlap (Truncated on the Left):**
+   - $x \le a < y < b$.
+   - The portion $[a, y]$ is removed. The sub-interval $[y, b]$ survives.
+5. **Internal Split (Pierced):**
+   - $a < x < y < b$.
+   - The interior $[x, y]$ is excised, splitting $[a, b]$ into two surviving pieces: $[a, x]$ and $[y, b]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Interval $[a, b]$ | Condition Check | Left Piece Survives ($a < x$) | Right Piece Survives ($b > y$) | Emitted Segments |
+|---|---|---|---|---|
+| $[0, 2]$ | Overlaps $[1, 6]$ | Yes ($0 < 1 \implies [0, 1]$) | No ($2 \le 6$) | $[0, 1]$ |
+| $[3, 4]$ | Fully inside $[1, 6]$ | No ($3 \ge 1$) | No ($4 \le 6$) | None (Swallowed) |
+| $[5, 7]$ | Overlaps $[1, 6]$ | No ($5 \ge 1$) | Yes ($7 > 6 \implies [6, 7]$) | $[6, 7]$ |
+
+> **Monotone Ordering Invariant.** Because the input intervals are sorted by start points and pairwise disjoint ($b_i < a_{i+1}$), any surviving sub-intervals $[a_i, x]$ and $[y_i, b_i]$ strictly satisfy $x \le y_i < a_{i+1}$. Appending them in iteration order guarantees that the output remains strictly sorted and pairwise disjoint.
+
+```mermaid
+flowchart TD
+    accTitle: Interval Subtraction Decision Flow
+    accDescr: Decision tree evaluating whether an interval is disjoint, trimmed on the left, trimmed on the right, or swallowed.
+    INT["Active Interval [a, b] and Removal [x, y]"] --> DISJ{"Is b <= x or a >= y?"}
+    DISJ -- Yes --> KEEP["Append [a, b] unchanged"]
+    DISJ -- No --> SPLIT["Evaluate surviving boundaries"]
+    SPLIT --> L{"Is a < x?"}
+    L -- Yes --> ADD_L["Append [a, x]"]
+    L -- No --> R
+    ADD_L --> R{"Is b > y?"}
+    R -- Yes --> ADD_R["Append [y, b]"]
+    R -- No --> NEXT["Continue to next interval"]
+    ADD_R --> NEXT
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Subtract the removal interval from each disjoint input interval
+We process `intervals = [[0, 2], [3, 4], [5, 7]]` with `toBeRemoved = [1, 6]`, where $x = 1$ and $y = 6$.
 
-The input intervals are already sorted and mutually disjoint, so there is no need to merge or reorder them. The algorithm processes each interval `[a, b)` independently against the removal interval `[x, y)` and appends whatever portion remains.
+### Step 1: Processing Interval $[0, 2]$
+- Disjoint test: Is $b \le x$ ($2 \le 1$ False) or $a \ge y$ ($0 \ge 6$ False)? Overlap exists.
+- Left surviving segment:
+  - Check $a < x$: $0 < 1$ is True.
+  - Retain $[a, x] = [0, 1]$.
+- Right surviving segment:
+  - Check $b > y$: $2 > 6$ is False.
+- Emitted for this interval: $[0, 1]$.
+- Output buffer: `[[0, 1]]`.
 
-Half-open boundaries matter. Two half-open intervals overlap only when `a < y` and `b > x`. Equivalently, they do not overlap when `a >= y` or `b <= x`. The exact source uses that non-overlap test.
+### Step 2: Processing Interval $[3, 4]$
+- Disjoint test: Is $b \le x$ ($4 \le 1$ False) or $a \ge y$ ($3 \ge 6$ False)? Overlap exists.
+- Left surviving segment:
+  - Check $a < x$: $3 < 1$ is False.
+- Right surviving segment:
+  - Check $b > y$: $4 > 6$ is False.
+- Emitted for this interval: None (interval is completely engulfed).
+- Output buffer: `[[0, 1]]`.
 
-If `a >= y`, the input begins at or after the removal interval's excluded right endpoint. If `b <= x`, it ends at or before the removal interval's included left endpoint. In either case the sets share no real number, so `[a, b)` is appended unchanged.
+### Step 3: Processing Interval $[5, 7]$
+- Disjoint test: Is $b \le x$ ($7 \le 1$ False) or $a \ge y$ ($5 \ge 6$ False)? Overlap exists.
+- Left surviving segment:
+  - Check $a < x$: $5 < 1$ is False.
+- Right surviving segment:
+  - Check $b > y$: $7 > 6$ is True.
+  - Retain $[y, b] = [6, 7]$.
+- Emitted for this interval: $[6, 7]$.
+- Output buffer: `[[0, 1], [6, 7]]`.
 
-Equality belongs in the non-overlap condition. For example, `[0, 2)` and `[2, 5)` merely touch at two. The first excludes two while the second includes it, so their intersection is empty.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"intervals": [[0, 2], [3, 4], [5, 7]], "toBeRemoved": [1, 6]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: An overlapping interval leaves at most two pieces
-
-When overlap exists, removing one contiguous interval can leave a portion to its left, a portion to its right, both portions, or nothing.
-
-If `a < x`, values from `a` up to but excluding `x` remain, so the code appends `[a, x)`. The strict inequality guarantees this piece is nonempty.
-
-If `b > y`, values from `y` up to but excluding `b` remain, so the code appends `[y, b)`. Again, strict inequality prevents an empty interval.
-
-Both tests can succeed when the removal interval lies strictly inside the input interval. For `[0, 5)` minus `[2, 3)`, the output is `[0, 2)` followed by `[3, 5)`. If removal covers the entire input interval, neither condition succeeds and that interval contributes nothing.
-
-For the first example, `[0, 2)` overlaps `[1, 6)` and leaves `[0, 1)`. Interval `[3, 4)` lies completely inside the removal range and disappears. Interval `[5, 7)` leaves `[6, 7)`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why output order and disjointness are preserved
-
-Input intervals are visited from left to right. Any surviving left piece begins at the original `a`, and any right piece begins at `y` within that same original interval. The left piece is appended before the right piece. Therefore pieces from one interval are ordered, and all pieces from an earlier input interval remain before pieces from a later one.
-
-Subtraction can only remove points; it cannot create an overlap between originally disjoint intervals. The two pieces from one split are separated by the removed interval. Consequently the output remains sorted and disjoint without a final sort or merge.
-
-For correctness, consider any real value in an appended piece. It was inside the original interval, and the endpoint tests place it outside `[x, y)`, so it belongs in the required set difference. Conversely, any original value not in the removal interval lies either in a completely non-overlapping input interval, to the left of `x` in an overlapping interval, or at or to the right of `y` in that interval. One of the append rules retains it. Thus the result contains every and only required value.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[0, 1], [6, 7]]` |
+All intervals in the input list have been evaluated.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"intervals": [[0, 2], [3, 4], [5, 7]], "toBeRemoved": [1, 6]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[0, 1], [6, 7]]` | Verified |
+| Interval $[a, b]$ | Removal Range $[x, y]$ | Disjoint? | Left Piece ($a < x$) | Right Piece ($b > y$) | Action Taken |
+|---|---|---|---|---|---|
+| $[0, 2]$ | $[1, 6]$ | False | $[0, 1]$ | None | Append $[0, 1]$ |
+| $[3, 4]$ | $[1, 6]$ | False | None | None | Discarded entirely |
+| $[5, 7]$ | $[1, 6]$ | False | None | $[6, 7]$ | Append $[6, 7]$ |
+
+Final synthesized output: `[[0, 1], [6, 7]]`.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any interval $[a, b]$, the set subtraction $[a, b] \setminus [x, y)$ equals:
+$$
+([a, b] \cap (-\infty, x)) \cup ([a, b] \cap [y, \infty))
+$$
+If $a < x$, the intersection with $(-\infty, x)$ is $[a, \min(b, x)] = [a, x]$. If $b > y$, the intersection with $[y, \infty)$ is $[\max(a, y), b] = [y, b]$. Because all subtracted points lie strictly in $[x, y)$, every point retained in the output belongs to the original set and not to `toBeRemoved`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every interval in the input is visited. Because intervals are initially disjoint, the removal interval $[x, y)$ can only interact with intervals that overlap it. Any interval strictly outside $[x, y)$ is preserved intact. Thus, no valid points are lost and no removed points are kept.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Four explicit overlap cases:** Fully covered, left overlap, right overlap, and internal removal can be handled separately. The two surviving-piece tests express all cases more compactly.
-- **General sweep-line events:** Sorting all endpoints works but is unnecessary because input intervals are already sorted and only one interval is removed.
-- **Removal completely outside:** Every interval passes the non-overlap test and is copied unchanged.
-- **Removal covers an interval:** Neither residual condition succeeds, so the interval disappears.
-- **Removal strictly inside one interval:** Both residual pieces are emitted in left-to-right order.
-- **Touching endpoints:** `b == x` or `a == y` means no intersection for half-open intervals, so the original interval remains intact.
-- **Removal shares a left endpoint:** There is no empty left piece because `a < x` is false.
-- **Removal shares a right endpoint:** There is no empty right piece because `b > y` is false.
-- **Negative coordinates:** Only ordering matters, so signs have no effect.
-- **Do not use closed-interval logic:** Treating touching endpoints as overlap can create unnecessary or empty fragments.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Boundary condition collisions:** If an interval meets the removal range at a single boundary point (e.g. $[0, 1]$ with removal $[1, 6]$), $b = x = 1$. The interval is open on the right in $[x, y)$, meaning point $1$ is excluded from the removal zone. The condition $b \le x$ correctly treats $[0, 1]$ as disjoint and preserves it intact.
+- **Interval splitting in the interior:** When an interval $[0, 10]$ has removal $[3, 7]$, both conditions $a < x$ ($0 < 3$) and $b > y$ ($10 > 7$) evaluate to true, correctly producing two separate intervals $[0, 3]$ and $[7, 10]$.
+- **Empty result:** If the removal range completely subsumes all intervals, every interval produces zero surviving segments, correctly returning an empty list `[]`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of input intervals and $r$ the number of returned intervals. The loop examines each input once and performs constant work, so time is $O(n)$. This is optimal because the output may contain information from every input interval.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N$ is the number of intervals in `intervals`. The algorithm performs a single pass over the array, evaluating constant-time comparison operations for each interval.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond the memory required to hold the output interval list (which contains at most $N + 1$ intervals).

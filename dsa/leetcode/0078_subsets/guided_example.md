@@ -1,122 +1,122 @@
 # Guided Example: Subsets
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step generation of the power set on a representative distinct-integer instance using both iterative cascading and binary bitmask generation:
 
-- **Input:** `{"nums": [0]}`
-- **Required output:** `[[], [0]]`
+- **Input:** $\text{nums} = [1, 2, 3]$
+- **Required output:** $[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates generating all $2^N$ subsets (the power set), iterative doubling / cascading accumulation, mapping subset generation to binary bitmasks ($0 \dots 2^N - 1$), and recursive include/exclude decision trees.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` of **unique** elements, return *all possible* *subsets* *(the power set)*.
+Given an integer array $\text{nums} = [1, 2, 3]$ of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets.
 
-The objective is to compute `[[], [0]]` from `{"nums": [0]}` while avoiding redundant calculations and unnecessary overhead.
+For an array of $N = 3$ elements, every element can independently be either included or excluded.
+The cardinality of the power set is strictly:
+$$
+|\mathcal{P}(\text{nums})| = 2^N = 2^3 = 8
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive recursive approach risks complex bookkeeping.
+We explore two elegant, deterministic paradigms:
+1. **Iterative Cascading:** Start with the empty subset `[[]]`. For each number $x$, duplicate all existing subsets and append $x$ to each duplicate.
+2. **Binary Bitmask Enumeration:** Map each integer $m \in [0, 2^N - 1]$ to a subset by inspecting its binary representation.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method 1: Iterative Cascading
+Start with `subsets = [[]]`.
+For each element $x \in \text{nums}$:
+$$
+\text{new\_subsets} = [s + [x] \text{ for } s \text{ in subsets}]
+$$
+$$
+\text{subsets} \leftarrow \text{subsets} + \text{new\_subsets}
+$$
+The size of `subsets` doubles with each element: $1 \to 2 \to 4 \to 8$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Method 2: Binary Bitmask Enumeration
+Since there are $N$ elements, there are $2^N$ possible combinations of presence/absence.
+Each integer $m \in [0, 2^N - 1]$ written in binary has $N$ bits:
+- If bit $j$ of $m$ is $1$ (`(m >> j) & 1 == 1`), include $\text{nums}[j]$.
+- If bit $j$ is $0$, exclude $\text{nums}[j]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Every integer mask $m \in [0, 2^N - 1]$ corresponds to a unique, non-overlapping subset of $\text{nums}$, guaranteeing zero duplicates and complete coverage.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Every element creates one binary decision
+### Method 1: Iterative Cascading Trace on $[1, 2, 3]$
 
-A subset either contains `nums[i]` or it does not. There is no third possibility, and because the input elements are unique, choosing the same membership decisions always identifies the same subset. The recursion explores these two choices for indices from zero through `len(nums) - 1`.
+- **Base State:**
+  - $\text{subsets} = [[]]$ (Size 1).
+- **Process Element $x = 1$:**
+  - Existing subsets: `[[]]`.
+  - Append $1$ to each: `[[1]]`.
+  - Combined: $[[], [1]]$ (Size 2).
+- **Process Element $x = 2$:**
+  - Existing subsets: `[[], [1]]`.
+  - Append $2$ to each: `[[2], [1, 2]]`.
+  - Combined: $[[], [1], [2], [1, 2]]$ (Size 4).
+- **Process Element $x = 3$:**
+  - Existing subsets: `[[], [1], [2], [1, 2]]`.
+  - Append $3$ to each: `[[3], [1, 3], [2, 3], [1, 2, 3]]`.
+  - Combined: $[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]$ (Size 8).
 
-`dfs(i)` means that decisions for indices before `i` have already been made, and the mutable list `t` contains exactly the elements included by those decisions. The source first explores exclusion by calling `dfs(i + 1)` without changing `t`. It then appends `nums[i]`, explores inclusion with another `dfs(i + 1)`, and pops the element to restore the parent state.
-
-Exploring exclusion first affects only output order. The contract accepts any order, so the algorithm could reverse these branches without changing the set of answers.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: The recursion tree is the power set
-
-At depth zero there is one undecided path. After the first element there are two paths: absent or present. After two elements there are four membership patterns, and after `n` elements there are $2^n$ leaves. Each root-to-leaf path is a length-`n` binary pattern whose zero/one choices specify a subset.
-
-For `nums = [1, 2, 3]`, the all-exclude path reaches `[]`. A path excluding 1, including 2, and including 3 reaches `[2, 3]`. The all-include path reaches `[1, 2, 3]`. Every possible membership pattern occurs exactly once.
-
-This tree explains why exponential work cannot be avoided: the required output itself contains $2^n$ different lists.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+All 8 subsets generated.
 
 ---
 
-### Step 3: Record only at a complete decision path
+### Method 2: Bitmask Enumeration Trace ($0 \dots 7$)
 
-When `i == len(nums)`, every input position has a decided membership state. The current `t` is therefore one complete subset, including possibly the empty subset. The source appends `t[:]`, a copy, and returns.
-
-The copy is essential. All calls share and mutate the same working list. If the algorithm appended `t` directly, stored entries would refer to that one object and later appends or pops would change earlier answers. Slicing creates an independent list whose contents remain fixed.
-
-Unlike combinations of a fixed size, there is no success condition based on `len(t)`. Every length from zero to `n` is valid, so the only leaf condition is that all elements have been considered.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[], [0]]` |
+| Integer Mask $m$ | 3-Bit Binary $(b_2 b_1 b_0)_2$ | Bit 0 ($1$) | Bit 1 ($2$) | Bit 2 ($3$) | Synthesized Subset |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `000` | 0 | 0 | 0 | `[]` |
+| 1 | `001` | 1 | 0 | 0 | `[1]` |
+| 2 | `010` | 0 | 1 | 0 | `[2]` |
+| 3 | `011` | 1 | 1 | 0 | `[1, 2]` |
+| 4 | `100` | 0 | 0 | 1 | `[3]` |
+| 5 | `101` | 1 | 0 | 1 | `[1, 3]` |
+| 6 | `110` | 0 | 1 | 1 | `[2, 3]` |
+| 7 | `111` | 1 | 1 | 1 | `[1, 2, 3]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[], [0]]` | Verified |
+### Cascading Evolution Table
+
+| Iteration Step | Number Incorporated | Pre-existing Subsets Count | Newly Created Subsets | Total Subsets Accumulated |
+|:---:|:---:|:---:|:---|:---:|
+| 0 | Base | 0 | `[[]]` | 1 |
+| 1 | $1$ | 1 | `[[1]]` | 2 |
+| 2 | $2$ | 2 | `[[2], [1, 2]]` | 4 |
+| 3 | $3$ | 4 | `[[3], [1, 3], [2, 3], [1, 2, 3]]` | **8 (Full Power Set)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Let $\text{nums}$ have distinct elements. By induction on $k$, the subsets of $\text{nums}[0 \dots k-1]$ are formed by the subsets of $\text{nums}[0 \dots k-2]$ without $\text{nums}[k-1]$, plus the subsets of $\text{nums}[0 \dots k-2]$ with $\text{nums}[k-1]$ appended. Since the two groups are disjoint, no subset can appear twice.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** There are $2^N$ distinct subsets of an $N$-element set. The iterative process doubles the list size at each of the $N$ steps, terminating with exactly $2^N$ unique subsets.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Cascading iteration:** Start with `[[]]`; for each value, copy every existing subset and append that value. It produces the same doubling pattern without recursion.
-- **Bitmask enumeration:** Treat integers from zero through $2^n-1$ as membership patterns. It is compact and directly exposes the one-bit-per-element correspondence.
-- **Backtrack and append at every node:** Record `t` immediately, then loop over possible next indices. This visits one node per subset and avoids explicit exclude calls.
-- **Input of length one:** The two leaves are the empty subset and the singleton.
-- **Empty subset:** The all-exclude path records it automatically.
-- **Full subset:** The all-include path records every input element.
-- **Negative values:** Membership decisions depend on positions, not numeric magnitude or sign.
-- **Original order:** Selected elements retain input order because indices only increase.
-- **Unique-element guarantee:** It ensures distinct decision patterns yield distinct value subsets.
-- **Copying:** `t[:]` is mandatory because `t` is later mutated by backtracking.
-- **Any output order:** Exclusion-first DFS order is acceptable and needs no sorting.
-- **Maximum length ten:** At most 1024 subsets are generated, but the general complexity remains exponential.
-- **Input preservation:** The source never sorts or modifies `nums`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Modifying the List While Iterating Over It:** In Python, doing `for s in subsets: subsets.append(...)` causes an infinite loop because `subsets` grows during iteration. Iterating over a snapshot `for s in subsets[:]` or using list comprehension `[s + [x] for s in subsets]` avoids this.
+- **Empty Array Handling:** If $\text{nums} = []$, $2^0 = 1$, and the algorithm correctly returns $[[]]$ (the power set of the empty set contains the empty set).
+- **Subsets with Duplicates (Subsets II):** If $\text{nums}$ contains duplicate numbers (e.g. $[1, 2, 2]$), ordinary cascading generates duplicate subsets. Sorting and only branching duplicate elements on subsets created in the immediately preceding iteration resolves duplicates (LeetCode 90).
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\cdot2^n)$. There are $2^n$ output subsets. Copying a leaf list can cost up to $O(n)$, and across the complete power set each input value appears in exactly half the subsets, for $n2^{n-1}$ stored elements. Total time is $\Theta(n2^n)$, matching the manifest's $O(n\cdot2^n)$ bound.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N \cdot 2^N)$. There are $2^N$ total subsets, and each subset has an average length of $N / 2$. Copying them into memory takes $O(N \cdot 2^N)$ operations.
+- **Auxiliary Space Complexity:** $O(N \cdot 2^N)$ to store the output subsets list.

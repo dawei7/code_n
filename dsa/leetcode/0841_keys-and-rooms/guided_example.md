@@ -1,112 +1,207 @@
 # Guided Example: Keys and Rooms
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step directed graph reachability search from source room 0, visited set membership tracking ($vis \subset \{0, \dots, n-1\}$), depth-first search recursive key exploration, locked component discovery, and full vertex set coverage verification ($|vis| == n$) on representative room key distributions:
 
-- **Input:** `{"rooms": [[1], [2], [3], []]}`
-- **Required output:** `true`
+- **Input:**
+  $$
+  rooms = [[1, 3], [3, 0, 1], [2], [0]]
+  $$
+- **Required output:** `false`
+  - Room unlocking rules:
+    - There are $n$ rooms numbered $0 \dots n - 1$.
+    - Initially, **only Room 0 is unlocked**. All other rooms $1 \dots n - 1$ are locked.
+    - Inside room $i$, there is a collection of keys $rooms[i]$. A key with value $j$ unlocks Room $j$.
+    - Once unlocked, a room can be visited at any subsequent time.
+    - Objective: Return `true` if and only if every single room $0 \dots n - 1$ can eventually be visited.
+    - For $rooms = [[1, 3], [3, 0, 1], [2], [0]]$ ($n = 4$):
+      - Start in Room 0 (unlocked). Keys collected: $\{1, 3\}$.
+      - Visit Room 1 (using key 1). Keys collected: $\{3, 0, 1\}$.
+      - Visit Room 3 (using key 3). Keys collected: $\{0\}$.
+      - All accessible keys lead only to rooms in $\{0, 1, 3\}$.
+      - Room 2 remains locked with key 2 trapped inside itself!
+      - Visited rooms count is $3 < 4$.
+      - Result: **`false`**.
+- **Directed Graph Reachability & Component Coverage Invariant:**
+  - **The Directed Key Digraph $G = (V, E)$:**
+    - Vertices: $V = \{0, 1, \dots, n - 1\}$.
+    - Directed edge $u \to v$ exists if $v \in rooms[u]$ (room $u$ contains the key to room $v$).
+    - Root: Source vertex $s = 0$.
+  - **The Reachable Subgraph:**
+    - A room $v$ can be visited if and only if there exists a directed path from $0$ to $v$:
+      $$
+      0 \rightsquigarrow v
+      $$
+    - The set of all visited rooms is the transitive out-component of 0:
+      $$
+      vis = \text{Reach}(0) = \{ v \in V \mid 0 \rightsquigarrow v \}
+      $$
+  - **Global Solvability Criterion:**
+    $$
+    \text{CanVisitAll} \iff |vis| = n
+    $$
+    - If $|vis| = n$, every room is reachable.
+    - If $|vis| < n$, at least one room belongs to an unreachable component.
+- **Step-by-Step Worked Execution Trace on $rooms = [[1, 3], [3, 0, 1], [2], [0]]$ ($n = 4$):**
+  - Initialize visited set: $vis = \emptyset$.
+  - **Call `dfs(0)`:**
+    - Mark Room 0: $vis \leftarrow \{0\}$.
+    - Keys in Room 0: $[1, 3]$.
+    - Explore Key 1:
+      - $1 \notin vis \implies$ call `dfs(1)`.
+  - **Call `dfs(1)`:**
+    - Mark Room 1: $vis \leftarrow \{0, 1\}$.
+    - Keys in Room 1: $[3, 0, 1]$.
+    - Explore Key 3:
+      - $3 \notin vis \implies$ call `dfs(3)`.
+  - **Call `dfs(3)`:**
+    - Mark Room 3: $vis \leftarrow \{0, 1, 3\}$.
+    - Keys in Room 3: $[0]$.
+    - Explore Key 0:
+      - $0 \in vis \implies \mathbf{Already\ Visited\ (Cycle\ Detected).}$
+    - Room 3 traversal finishes.
+  - **Resume `dfs(1)`:**
+    - Next keys in Room 1:
+      - Key 0: $0 \in vis \implies$ skip.
+      - Key 1: $1 \in vis \implies$ skip.
+    - Room 1 traversal finishes.
+  - **Resume `dfs(0)`:**
+    - Next key in Room 0:
+      - Key 3: $3 \in vis \implies$ skip.
+    - Room 0 traversal finishes.
+  - **Termination & Size Check:**
+    - Total visited rooms:
+      $$
+      vis = \{0, 1, 3\} \implies |vis| = 3
+      $$
+    - Compare with total rooms:
+      $$
+      |vis| = 3 \ne 4 = n \implies \mathbf{Unreachable\ Room\ 2\ Discovered!}
+      $$
+    - Final Output:
+      $$
+      \mathbf{\text{false}}
+      $$
+- **Linear Chain Trace ($rooms = [[1], [2], [3], []]$):**
+  - $0 \to 1 \to 2 \to 3$.
+  - Visited set: $\{0, 1, 2, 3\}$.
+  - $|vis| = 4 == 4 \implies \mathbf{\text{true}}.$
+- **Disconnected Island Trace ($rooms = [[], [0]]$):**
+  - Room 0 has no keys. Traversal terminates immediately.
+  - $vis = \{0\} \implies |vis| = 1 \ne 2 \implies \mathbf{\text{false}}.$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates directed connectivity in finite graph models and out-component reachability from designated source vertices, mathematically proves why a standard DFS or BFS traversal from root 0 decides universal reachability in optimal linear time, and derives $O(V + E)$ execution time and $O(V)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There are `n` rooms labeled from `0` to $n - 1$ and all the rooms are locked except for room `0`. Your goal is to visit all the rooms. However, you cannot enter a locked room without having its key.
+Given $n$ rooms where room 0 is unlocked and each room contains keys to other rooms:
+Return `true` if we can visit **all rooms**, and `false` otherwise.
 
-The objective is to compute `true` from `{"rooms": [[1], [2], [3], []]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+rooms = [ [1, 3], [3, 0, 1], [2], [0] ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Start at Room 0:
+  Collect keys: 1, 3
+Visit Room 1:
+  Collect keys: 3, 0, 1
+Visit Room 3:
+  Collect keys: 0
+
+Visited so far: { 0, 1, 3 }
+Room 2 is NEVER reached (its key is locked inside itself!).
+Result: false
+```
+
+### The Invariant of Directed Reachability
+- The problem is standard graph reachability from source node 0.
+- A DFS or BFS collects all reachable nodes into a set $vis$.
+- If $|vis| == n$, all rooms were unlocked.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Reachability Set:
+$$
+\text{Reach}(0) = \{ v \in V \mid \exists \text{ directed path } 0 \to \dots \to v \}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Universal Coverage Decision:
+$$
+\text{canVisitAllRooms}(rooms) \iff |\text{Reach}(0)| = n
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Reachability Closure Invariant.** Let $G = (V, E)$ be the key digraph with $E = \{(u, v) \mid v \in rooms[u]\}$. The set of accessible rooms is the smallest subset $S \subseteq V$ containing $0$ that is closed under the forward neighbor operator $\Gamma^+(S) \subseteq S$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Interpret keys as directed edges
-
-Treat every room as a graph vertex. A key `j` found in room `i` creates a directed edge from `i` to `j`: once room `i` has been visited, that key makes room `j` reachable.
-
-Room 0 is the only initially unlocked room, so the question becomes:
-
-> Are all graph vertices reachable from vertex 0?
-
-Depth-first search answers exactly that.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"rooms": [[1], [2], [3], []]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $rooms = [[1, 3], [3, 0, 1], [2], [0]]$:
 
 ---
 
-### Step 2: The visited set represents rooms already unlocked and entered
-
-Set `vis` starts empty. Calling `dfs(0)` models entering the initially open room.
-
-When `dfs(i)` is called, it first checks `if i in vis`. If so, that room and all keys reachable through it have already been processed, so the call returns.
-
-Otherwise, it adds `i` to `vis` before following any key. Marking before recursion is essential. If room 0 contains a key to room 1 and room 1 contains a key back to room 0, the second call to room 0 sees it already marked and stops rather than recursing forever.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Start at Room 0
+- $vis = \{0\}$. Keys: $1, 3$.
 
 ---
 
-### Step 3: Follow every key
+### Step 2: Visit Room 1
+- $vis = \{0, 1\}$. Keys: $3, 0, 1$.
 
-For each key `j` in `rooms[i]`, the function calls `dfs(j)`.
+---
 
-If `j` is new, the key unlocks a new reachable room, which is entered and explored. If it was already visited through another route, the early check makes the call constant work.
+### Step 3: Visit Room 3
+- $vis = \{0, 1, 3\}$. Key: $0$ (already visited).
 
-Taking keys is never harmful and has no capacity cost, so exploring every listed edge is the right action. A key can point to the current room, a previously visited room, or a future room; the same logic handles all cases.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Check Unvisited Rooms
+- Room 2 is not in $vis$.
+
+---
+
+### Step 5: Output
+$$
+|vis| = 3 \ne 4 \implies \mathbf{\text{false}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"rooms": [[1], [2], [3], []]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| DFS Step | Current Room $i$ | Keys Found in Room | Unvisited Keys Enqueued | Cumulative Visited Set $vis$ | $|vis|$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Initial | $0$ | $[1, 3]$ | $1, 3$ | $\{0\}$ | $1$ |
+| Step 1 | $1$ | $[3, 0, 1]$ | $3$ | $\{0, 1\}$ | $2$ |
+| Step 2 | $3$ | $[0]$ | None | $\{0, 1, 3\}$ | $3$ |
+| **Complete** | **Trapped** | **Room $2$ Unreachable** | **None** | **$\{0, 1, 3\}$** | **`3 < 4`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **Single Room ($rooms = [[]]$):** Room 0 is already unlocked $\implies |vis| = 1 == 1 \implies \text{true}$.
+- **Isolated Self-Loop ($rooms = [[], [1]]$):** Room 1 holds its own key, but cannot be reached from 0 $\implies \text{false}$.
+- **Complete Graph (Every room has all keys):** Every room visited on first layer $\implies \text{true}$.
+- **Cycles in Keys:** Visited set prevents infinite loops.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Breadth-first search:** A queue-based traversal discovers the same reachable set and avoids recursion depth concerns.
-- **Repeatedly scan for newly unlocked rooms:** It can require many passes. Graph traversal processes each room and key once.
-- **No visited set:** Cycles such as room 0 keying room 1 and room 1 keying room 0 would recurse forever or repeat work.
+- **Searching for Missing Keys Backwards:** Trying to find which room holds key 2 is unnecessary; simply run a forward traversal from 0 and test $|vis| == n$.
+- **Not Handling Graph Cycles:** Rooms can contain keys to previously visited rooms (e.g. room 1 has key 0); always check `if i in vis: return`.
+- **Counting Key Frequencies Instead of Unique Rooms:** Multiple copies of the same key can appear across rooms; track visited rooms via a set or boolean array.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+K)$. Let `n` be the number of rooms and
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Standard DFS / BFS visits each room at most once: $\mathcal{O}(V)$.
+  - Each key (edge) is examined at most once: $\mathcal{O}(E)$.
+  - Total Time: strictly linear in graph size $\mathcal{O}(V + E)$ where $V \le 1000, E \le 3000$. Completes in $< 1$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(V)$ memory for the visited set and recursion call stack.

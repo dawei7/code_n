@@ -1,116 +1,224 @@
 # Guided Example: Image Overlap
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step 2D lattice translation geometry, relative displacement vector calculation ($\vec{\Delta} = (i - h, j - k)$), sparse 1-pixel coordinate extraction, translation histogram aggregation ($cnt[\vec{\Delta}] \mathrel{+}= 1$), and maximum overlapping pixel count determination on representative binary image pairs:
 
-- **Input:** `{"img1": [[1, 1, 0], [0, 1, 0], [0, 1, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 0, 1]]}`
+- **Input:**
+  $$
+  img1 = \begin{bmatrix}
+  1 & 1 & 0 \\
+  0 & 1 & 0 \\
+  0 & 1 & 0
+  \end{bmatrix}, \quad
+  img2 = \begin{bmatrix}
+  0 & 0 & 0 \\
+  0 & 1 & 1 \\
+  0 & 0 & 1
+  \end{bmatrix}
+  $$
 - **Required output:** `3`
+  - Image translation rules:
+    - We are given two $n \times n$ binary matrices $img1$ and $img2$.
+    - We may translate (slide) one image horizontally and vertically by any integer offset $(\Delta r, \Delta c)$.
+    - When an image slides, pixels that fall outside the $n \times n$ boundary are discarded, and uncovered regions are padded with zeros.
+    - Two 1-pixels **overlap** if after translation, a 1 from $img1$ aligns at the exact same grid coordinate $(h, k)$ as a 1 in $img2$.
+    - Objective: Find the maximum possible number of overlapping 1-pixels across all valid 2D translations.
+    - For the input images:
+      - 1-pixels in $img1$: $(0, 0), (0, 1), (1, 1), (2, 1)$ (4 pixels).
+      - 1-pixels in $img2$: $(1, 1), (1, 2), (2, 2)$ (3 pixels).
+      - If we slide $img1$ down by 1 row ($\Delta r = +1$) and right by 1 column ($\Delta c = +1$):
+        - Coordinate $(0, 0) \to (1, 1)$ (matches $img2$)
+        - Coordinate $(0, 1) \to (1, 2)$ (matches $img2$)
+        - Coordinate $(1, 1) \to (2, 2)$ (matches $img2$)
+        - Coordinate $(2, 1) \to (3, 2)$ (falls off grid)
+      - Exactly **3 pixels** overlap simultaneously!
+      - Maximum overlap possible: **`3`**.
+- **Vector Cross-Correlation Invariant:**
+  - **The Translation Alignment Condition:**
+    - Suppose a 1-pixel at $(i, j) \in img1$ maps to a 1-pixel at $(h, k) \in img2$.
+    - The required translation vector must satisfy:
+      $$
+      (i, j) + (\Delta r, \Delta c) = (h, k) \iff (\Delta r, \Delta c) = (h - i, k - j)
+      $$
+      *(Equivalently, the displacement difference $(i - h, j - k)$ is constant)*.
+  - **Shared Displacement Equivalence:**
+    - Two pairs of 1-pixels $(p_1, q_1)$ and $(p_2, q_2)$ will **overlap under the exact same translation** if and only if their displacement vectors are identical:
+      $$
+      p_1 - q_1 = p_2 - q_2
+      $$
+  - **Displacement Histogram Mapping:**
+    - Rather than testing all $(2n - 1)^2$ possible translations and scanning the entire grid for each:
+    - Directly compute the vector difference for every pair of 1-pixels:
+      $$
+      \vec{d} = (i - h, \; j - k)
+      $$
+    - Increment the count for vector $\vec{d}$ in a frequency hash map $cnt$:
+      $$
+      cnt[\vec{d}] \leftarrow cnt[\vec{d}] + 1
+      $$
+    - The value $cnt[\vec{d}]$ is precisely the number of 1-pixels that overlap when the images are shifted by that vector!
+    - The maximum overlap is simply $\max(cnt.\text{values}() \cup \{0\})$.
+- **Step-by-Step Worked Execution Trace on the $3 \times 3$ Image Pair:**
+  - **Coordinates of 1-pixels in $img1$ ($P$):**
+    $$
+    P = [(0, 0), \; (0, 1), \; (1, 1), \; (2, 1)]
+    $$
+  - **Coordinates of 1-pixels in $img2$ ($Q$):**
+    $$
+    Q = [(1, 1), \; (1, 2), \; (2, 2)]
+    $$
+  - Initialize frequency map: $cnt = \{\}$.
+  - **Pairwise Displacement Computation:**
+    - **From $p = (0, 0)$:**
+      - Against $(1, 1)$: $\vec{d} = (0 - 1, 0 - 1) = \mathbf{(-1, -1)} \implies cnt[(-1, -1)] \leftarrow 1$.
+      - Against $(1, 2)$: $\vec{d} = (0 - 1, 0 - 2) = (-1, -2) \implies cnt[(-1, -2)] \leftarrow 1$.
+      - Against $(2, 2)$: $\vec{d} = (0 - 2, 0 - 2) = (-2, -2) \implies cnt[(-2, -2)] \leftarrow 1$.
+    - **From $p = (0, 1)$:**
+      - Against $(1, 1)$: $\vec{d} = (0 - 1, 1 - 1) = (-1, 0) \implies cnt[(-1, 0)] \leftarrow 1$.
+      - Against $(1, 2)$: $\vec{d} = (0 - 1, 1 - 2) = \mathbf{(-1, -1)} \implies cnt[(-1, -1)] \leftarrow \mathbf{2}$.
+      - Against $(2, 2)$: $\vec{d} = (0 - 2, 1 - 2) = (-2, -1) \implies cnt[(-2, -1)] \leftarrow 1$.
+    - **From $p = (1, 1)$:**
+      - Against $(1, 1)$: $\vec{d} = (1 - 1, 1 - 1) = (0, 0) \implies cnt[(0, 0)] \leftarrow 1$.
+      - Against $(1, 2)$: $\vec{d} = (1 - 1, 1 - 2) = (0, -1) \implies cnt[(0, -1)] \leftarrow 1$.
+      - Against $(2, 2)$: $\vec{d} = (1 - 2, 1 - 2) = \mathbf{(-1, -1)} \implies cnt[(-1, -1)] \leftarrow \mathbf{3}$.
+    - **From $p = (2, 1)$:**
+      - Against $(1, 1)$: $\vec{d} = (2 - 1, 1 - 1) = (1, 0) \implies cnt[(1, 0)] \leftarrow 1$.
+      - Against $(1, 2)$: $\vec{d} = (2 - 1, 1 - 2) = (1, -1) \implies cnt[(1, -1)] \leftarrow 1$.
+      - Against $(2, 2)$: $\vec{d} = (2 - 2, 1 - 2) = (0, -1) \implies cnt[(0, -1)] \leftarrow 2$.
+  - **Frequency Histogram Summary:**
+    - Vector $\mathbf{(-1, -1)}$: frequency **$3$**.
+    - Vector $(0, -1)$: frequency $2$.
+    - All other vectors: frequency $1$.
+  - **Maximum Count Extraction:**
+    $$
+    ans = \max(cnt.\text{values}()) = \mathbf{3}
+    $$
+- **Zero 1-Pixels in Image ($img1 = [[0]], img2 = [[0]]$):**
+  - $cnt$ is empty $\implies$ returns $0$.
+- **Identical Images Trace ($img1 = img2$):**
+  - Zero translation $(0, 0)$ matches every 1-pixel with itself $\implies ans = \text{total 1s in } img1$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates 2D discrete cross-correlation on sparse point sets and Minkowski difference representation, mathematically proves why counting vector differences isolates the optimal translation orbit in sub-grid complexity, and derives $O(M_1 \cdot M_2)$ runtime where $M \le N^2$, bounded by $O(N^4)$, and $O(M_1 \cdot M_2)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given two images, `img1` and `img2`, represented as binary, square matrices of size `n x n`. A binary matrix has only `0`s and `1`s as values.
+Given two $n \times n$ binary matrices $img1$ and $img2$:
+Slide $img1$ in any direction by integer offsets.
+Find the **maximum number of overlapping 1-pixels**.
 
-The objective is to compute `3` from `{"img1": [[1, 1, 0], [0, 1, 0], [0, 1, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+img1:                img2:
+  1 1 0                0 0 0
+  0 1 0                0 1 1
+  0 1 0                0 0 1
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Slide img1 down 1 and right 1:
+  (0, 0) -> (1, 1) [matches img2!]
+  (0, 1) -> (1, 2) [matches img2!]
+  (1, 1) -> (2, 2) [matches img2!]
+
+3 pixels overlap!
+Result: 3
+```
+
+### The Invariant of Displacement Hashing
+- Any 1-pixel at $(i, j)$ in $img1$ aligns with $(h, k)$ in $img2$ under displacement:
+  $$
+  \vec{\Delta} = (i - h, \; j - k)
+  $$
+- Pixels that share the same displacement vector overlap under that exact translation.
+- Hash map counts occurrences of each displacement vector; the answer is the maximum count.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Minkowski Difference Representation:
+$$
+\text{Overlap}(\vec{v}) = \big| \{ (i, j) \in \text{supp}(img1) \mid (i, j) - \vec{v} \in \text{supp}(img2) \} \big|
+$$
+$$
+\text{supp}(img) = \{ (r, c) \mid img[r][c] = 1 \}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Hash Aggregation:
+$$
+cnt[\vec{\Delta}] = \sum_{p \in \text{supp}(img1)} \sum_{q \in \text{supp}(img2)} \mathbb{I}[p - q = \vec{\Delta}]
+$$
+$$
+ans = \max_{\vec{\Delta}} cnt[\vec{\Delta}]
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Cross-Correlation Support Invariant.** The 2D cross-correlation $(img1 \star img2)[\Delta]$ has support bounded by $[-n+1, n-1]^2$. The value at $\Delta$ equals the cardinality of the fiber $\pi^{-1}(\Delta)$ under the difference projection $\pi(p, q) = p - q$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: A translation is completely determined by one matched pair of one-cells
-
-Suppose `img1[i][j] == 1` and `img2[h][k] == 1`. To place these two one-cells on the same final position, `img1` must be translated by the row and column displacement that takes `(i,j)` to `(h,k)`.
-
-The exact source records this displacement as
-
-`(i - h, j - k)`.
-
-Using the opposite sign would describe moving the other image instead, but consistency is all that matters: every pair aligned by one physical translation must produce the same key.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"img1": [[1, 1, 0], [0, 1, 0], [0, 1, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 0, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Turn the problem into voting for a displacement
-
-The solution examines every one-cell in `img1` and every one-cell in `img2`. Their coordinate difference votes for the translation that would align them:
-
-`cnt[(i - h, j - k)] += 1`.
-
-Fix one displacement `d`. Every counted pair with key `d` represents one cell of `img1` and one cell of `img2` that coincide under that translation. Conversely, every overlapping pair of one-cells under `d` produces exactly that key.
-
-Therefore, `cnt[d]` is exactly the overlap achieved by displacement `d`.
-
-The maximum counter value is consequently the largest possible overlap.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: 1-Pixel Coordinates
+- $img1$: $(0, 0), (0, 1), (1, 1), (2, 1)$.
+- $img2$: $(1, 1), (1, 2), (2, 2)$.
 
 ---
 
-### Step 3: Why it is enough to consider differences between one-cells
+### Step 2: Compute Vectors
+- $(0, 0) - (1, 1) = \mathbf{(-1, -1)}$.
+- $(0, 1) - (1, 2) = \mathbf{(-1, -1)}$.
+- $(1, 1) - (2, 2) = \mathbf{(-1, -1)}$.
 
-Any translation with positive overlap aligns at least one one-cell from `img1` with one one-cell from `img2`. Its displacement therefore appears as the coordinate difference of that pair and receives votes in the counter.
+---
 
-A translation with zero overlap cannot improve on any positive one. If every possible translation has zero overlap—because at least one image has no one-cells—the counter stays empty and the correct answer is zero.
+### Step 3: Find Maximum Frequency
+- Vector $(-1, -1)$ appears **3 times**.
 
-There is no need to enumerate an arbitrary unbounded range of shifts. Only shifts capable of aligning at least one relevant pair can matter, and the pair differences enumerate all of them.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+### Step 4: Output
+$$
+\mathbf{3}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"img1": [[1, 1, 0], [0, 1, 0], [0, 1, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 0, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Point in $img1$ | Point in $img2$ | Displacement Vector $\vec{d} = p - q$ | Count of $\vec{d}$ |
+|:---:|:---:|:---:|:---:|
+| $(0, 0)$ | $(1, 1)$ | $(-1, -1)$ | $1$ |
+| $(0, 1)$ | $(1, 2)$ | $(-1, -1)$ | $2$ |
+| **$(1, 1)$** | **$(2, 2)$** | **$(-1, -1)$** | **`3`** |
+| Other pairs | Various | Miscellaneous vectors | $1$ or $2$ |
+| **Max Count** | — | — | **`3`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No 1s in Either Image:** Counter is empty $\implies$ returns 0.
+- **Single 1 in Both Images:** Counter has 1 entry with count 1 $\implies$ returns 1.
+- **Dense All-1s Images ($30 \times 30$):** Max overlap is $30 \times 30 = 900$ at shift $(0, 0)$.
+- **Disjoint 1s That Never Align:** Max count is 1.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Shift and compare every matrix cell:** There are `O(n^2)` shifts and `O(n^2)` cells per shift, also giving `O(n^4)` time in a direct implementation.
-- **Extract one-cell coordinate lists first:** This makes the work visibly `O(ab)` and avoids repeatedly testing zero-cells, while retaining the same voting proof.
-- **Bitset rows:** Encode rows as integers, shift bits, and use bit counts. This can reduce practical and asymptotic factors and more closely support the manifest's tighter target.
+- **Brute Force Sliding and Matrix Comparison ($O(N^6)$):** Sliding $img1$ through all $(2N)^2$ offsets and comparing $N^2$ cells for each requires $O(N^4)$ matrix operations. Sparse vector hashing scales with the number of 1-pixels ($M_1 \cdot M_2 \le N^4$).
+- **Sign Inversion Confusion:** Whether using $(i - h, j - k)$ or $(h - i, k - j)$, remain consistent across all pairs.
+- **Handling Empty Counter:** Always guard `max(cnt.values()) if cnt else 0` to prevent `ValueError` on empty inputs.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `a` be the number of one-cells in `img1` and `b` the number in `img2`. The loops inspect every matrix cell to find one-cells and, for each one in the first image, scan the second matrix for its ones. The exact number of successful pair votes is `a b`, while the loop structure performs up to `O(n^2 + a n^2)` cell checks.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Let $M_1, M_2$ be the number of 1s in $img1$ and $img2$ ($M_1, M_2 \le N^2 \le 900$).
+  - Nested loops visit only pairs of 1-pixels: $\mathcal{O}(M_1 \cdot M_2)$.
+  - Worst case (all 1s): $N^4 = 30^4 = 8.1 \times 10^5$ operations. Completes in $< 15$ ms.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(M_1 \cdot M_2)$ memory for the frequency map, bounded by $(2N - 1)^2 \approx 3600$ distinct offset keys.

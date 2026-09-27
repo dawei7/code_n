@@ -1,132 +1,157 @@
 # Guided Example: Reduce Array Size to The Half
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the greedy frequency maximization algorithm for removing at least half of an array's elements on a representative instance:
 
-- **Input:** `{"arr": [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]}`
-- **Required output:** `2`
+- **Input:** `arr = [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates frequency histogram construction, descending greedy selection of highest-multiplicity elements, and identifying the minimal unique integer set size required to eliminate at least half the array.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `arr`. You can choose a set of integers and remove all the occurrences of these integers in the array.
+Given an integer array `arr` of size $N = 10$, we want to choose a set of distinct integers and delete all their occurrences from `arr` such that at least half the elements are removed ($N / 2 = 5$ elements). We must find the minimum possible size of this set.
 
-The objective is to compute `2` from `{"arr": [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]}` while avoiding redundant calculations and unnecessary overhead.
+For `arr = [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]`:
+- Total length: $N = 10$. Target elements to remove: $\lceil 10 / 2 \rceil = 5$.
+- Frequency count of each distinct value:
+  - $3$: appears $4$ times
+  - $5$: appears $3$ times
+  - $2$: appears $2$ times
+  - $7$: appears $1$ time
+- Sorting frequencies in descending order: $[4, 3, 2, 1]$.
+- Greedy choice:
+  - Select value $3$: removes $4$ elements. Cumulative removed: $4 < 5$.
+  - Select value $5$: removes $3$ elements. Cumulative removed: $4 + 3 = 7 \ge 5$.
+- Choosing the set $\{3, 5\}$ eliminates $7$ elements, leaving $3$ elements ($3 \le 10 / 2$).
+- Set size: $2$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Value Occurrences in arr:
+  [3, 3, 3, 3]  --> Count: 4
+  [5, 5, 5]     --> Count: 3
+  [2, 2]        --> Count: 2
+  [7]           --> Count: 1
+
+Target Removal Threshold: >= 5 elements (half of 10)
+
+Greedy Elimination Order (Highest Frequency First):
+  Pick 1: Value 3 (removes 4) --> Total removed = 4  (Goal: >= 5)
+  Pick 2: Value 5 (removes 3) --> Total removed = 7  (Threshold reached!)
+
+Selected Set: {3, 5}
+Minimum Set Size: 2
+```
+
+Testing all $2^K$ subsets of unique elements takes exponential time. Sorting the frequencies descending and greedily accumulating counts takes $\mathcal{O}(N + K \log K)$ time (or $\mathcal{O}(N)$ using bucket sort) and is provably optimal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $U = \{u_1, u_2, \dots, u_K\}$ be the set of $K$ distinct values in `arr`.
+Let $f(u)$ be the count of occurrences of $u$ in `arr`, satisfying $\sum_{u \in U} f(u) = N$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Greedy Choice Property
+To minimize the cardinality of chosen elements $S \subseteq U$ while satisfying $\sum_{u \in S} f(u) \ge \lceil N / 2 \rceil$:
+Each selection step must choose the unpicked element with the maximum remaining frequency.
+Sorting the frequencies in descending order:
+$$
+f_{(1)} \ge f_{(2)} \ge \dots \ge f_{(K)}
+$$
+The minimum set size $m^*$ is the smallest integer $m$ satisfying:
+$$
+\sum_{j=1}^m f_{(j)} \ge \left\lceil \frac{N}{2} \right\rceil
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Distinct Integer $u$ | Occurrence Count $f(u)$ | Cumulative Removed Elements | Percentage of Array Eliminated |
+|---|---|---|---|
+| $3$ | $4$ | $4$ | $40\%$ |
+| $5$ | $3$ | $4 + 3 = 7$ | $70\%$ ($\ge 50\%$) |
+| $2$ | $2$ | $7 + 2 = 9$ | $90\%$ |
+| $7$ | $1$ | $9 + 1 = 10$ | $100\%$ |
+
+> **Exchange Property Invariant.** If an optimal set $S^*$ contains an element with frequency $f_a$ and omits an element with frequency $f_b > f_a$, replacing $a$ with $b$ strictly increases the total removed elements without increasing $|S^*|$. Thus, the greedy strategy of choosing the largest frequencies first always achieves an optimal solution.
+
+```mermaid
+flowchart TD
+    accTitle: Greedy Array Reduction Flow
+    accDescr: Pipeline counting element frequencies, sorting frequencies descending, and accumulating counts until half the array is removed.
+    START["Input arr of size N = 10"] --> COUNT["Compute frequency map: {3:4, 5:3, 2:2, 7:1}"]
+    COUNT --> SORT["Sort frequencies descending: [4, 3, 2, 1]"]
+    SORT --> INIT["Set removed = 0, set_size = 0, target = ceil(N / 2)"]
+    INIT --> LOOP["For each frequency f in sorted list"]
+    LOOP --> ACC["removed = removed + f, set_size = set_size + 1"]
+    ACC --> CHK{"Is removed >= target?"}
+    CHK -- Yes --> DONE["Return set_size"]
+    CHK -- No --> LOOP
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Compress the array into frequencies
+We trace `arr = [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]` with $N = 10$:
+- Target removal count: $\lceil 10 / 2 \rceil = 5$.
 
-`Counter(arr)` maps each distinct value to its number of occurrences. If the input is `[3, 3, 3, 5, 5, 2]`, the frequency multiset is three, two, and one. The specific keys still identify which values would be selected, but the required return value is only the number of selected values, so the loop needs only the counts.
+### Step 1: Frequency Histogram Construction
+- Value $3$: appears at $4$ positions.
+- Value $5$: appears at $3$ positions.
+- Value $2$: appears at $2$ positions.
+- Value $7$: appears at $1$ position.
+- Frequency list: $[4, 3, 2, 1]$.
 
-`cnt.most_common()` returns `(value, frequency)` pairs ordered from greatest frequency to least frequency. The loop unpacks each pair as `_, v`. The underscore discards the actual value, while `v` is the number of array positions removed by selecting it.
-
-Two accumulators have distinct meanings:
-
-- `m` is the total number of array elements covered by all frequencies selected so far.
-- `ans` is the number of distinct values selected, which is the size of the removal set.
-
-For each descending frequency, the code adds `v` to `m` and increments `ans` once. It stops as soon as `m * 2 >= len(arr)`. Multiplying by two avoids floating-point division and states “removed at least half” exactly.
-
-For example, frequencies `[4, 3, 2, 1]` for an array of length ten have a target of five removed elements. Taking four is insufficient. Taking the next frequency three raises the removed total to seven, so two distinct values are enough. The code returns two without needing to build the shortened array.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Why taking the largest remaining frequency is safe
-
-Suppose the frequencies in descending order are
-
-$$
-f_1 \ge f_2 \ge \cdots \ge f_u,
-$$
-
-where $u$ is the number of distinct values. Among every possible set of $r$ distinct values, the greatest number of removable elements is $f_1 + f_2 + \cdots + f_r$. Any set that omits one of those top frequencies and includes a smaller frequency instead can remove no more elements; swapping the smaller choice for the omitted larger one never hurts.
-
-Let the loop stop after $r$ frequencies. Their sum reaches at least half of the array. The first $r - 1$ frequencies did not reach half, because otherwise the loop would already have stopped. Since those largest $r - 1$ frequencies are the maximum removal achievable with any $r - 1$ chosen values, no set of size $r - 1$ can meet the target. A set of size $r$ does meet it, so $r$ is the minimum.
-
-This argument also explains why ties do not need a special rule. If several values have the same frequency, choosing any of them removes the same number of elements. `most_common` may order tied keys according to encounter order, but `ans` is unchanged.
-
-The algorithm never mutates `arr` and never simulates deletion. It reasons only about coverage counts, which are enough because removing one value cannot change the number of occurrences belonging to another distinct value.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Optimality Decision
-
-Synthesize the final answer directly from validated sub-states.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Step 2: Greedy Accumulation
+- Initialize accumulator: $\text{removed} = 0$, $\text{size} = 0$.
+- **Pick 1 (Frequency $4$, corresponding to value $3$):**
+  $$
+  \text{removed} \leftarrow 0 + 4 = 4
+  $$
+  $$
+  \text{size} \leftarrow 0 + 1 = 1
+  $$
+  Check threshold: $4 < 5$. Threshold not yet satisfied; continue.
+- **Pick 2 (Frequency $3$, corresponding to value $5$):**
+  $$
+  \text{removed} \leftarrow 4 + 3 = 7
+  $$
+  $$
+  \text{size} \leftarrow 1 + 1 = 2
+  $$
+  Check threshold: $7 \ge 5$. Threshold satisfied!
+- Terminate greedy loop immediately.
+- Return set size: $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [3, 3, 3, 3, 5, 5, 5, 2, 2, 7]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Step | Element Value Picked | Multiplicity Added | Running Total Removed | Target Needed | Condition $2 \times \text{removed} \ge N$ | Action |
+|---|---|---|---|---|---|---|
+| Init | - | - | $0$ | $5$ | $0 \ge 10$ (False) | Start |
+| 1 | $3$ | $4$ | $4$ | $5$ | $8 \ge 10$ (False) | Continue |
+| 2 | $5$ | $3$ | $7$ | $5$ | $14 \ge 10$ (True) | **Halt and Return 2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Removing all copies of chosen elements $\{u_1, \dots, u_m\}$ eliminates $\sum_{j=1}^m f(u_j)$ elements. When the loop halts, $\text{removed} \ge N / 2$, which directly satisfies the requirement that at least half the array is removed.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By sorting frequencies in strictly non-increasing order, any prefix of length $m$ achieves the absolute maximum possible removal sum among all subsets of size $m$. Therefore, the first prefix to cross $\lceil N / 2 \rceil$ must be the minimum cardinality subset possible.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Bucket frequencies:** A frequency cannot exceed $n$, so count how many values occur with each possible frequency and scan buckets downward. This yields $O(n)$ time and $O(n)$ space, avoiding comparison sorting.
-- **Sort the original array:** Equal values become adjacent, allowing run lengths to be counted and then sorted. It still takes $O(n\log n)$ time and mutates the input unless a copy is made.
-- **Max-heap of frequencies:** Repeatedly pop the largest count until the target is reached. Heap construction can be linear, and each selected value costs $O(\log u)$, which can help when very few values are needed.
-- **Choosing values in input order:** This is not optimal because a rare value can consume one set entry while removing very few elements. Frequency order is the property supported by the exchange argument.
-- **Exactly half removed:** The condition is inclusive. When `m * 2 == len(arr)`, the requirement has been met and the loop must stop.
-- **More than half removed:** Removing all occurrences can overshoot the target, and overshooting is permitted. There is no need to remove only part of the final value’s occurrences.
-- **All values equal:** The first frequency is $n$, so one selected integer empties the array and the answer is one.
-- **All values distinct:** Every frequency is one. Because the input length is even, exactly $n / 2$ distinct values must be selected.
-- **Tied frequencies:** Their internal order cannot affect how many selections are required because equal counts contribute equal coverage.
-- **Large integer values:** The counter keys need not form a small numeric range. Complexity depends on the number of elements and distinct keys, not the magnitude of the values.
-- **Odd length outside the contract:** The multiplication test would require removal of at least the ceiling of half and still works correctly, even though the stated array length is even.
-- **Empty input outside the contract:** The code would return zero because the loop has no entries. The official constraints begin at length two, so the normal proof assumes a positive target.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Over-removing elements:** Removing $7$ elements exceeds $N / 2 = 5$, but choosing only value $3$ removes $4 < 5$. Since we must delete *all* occurrences of each chosen integer, partial removal of a number's occurrences is disallowed.
+- **Picking by integer value instead of frequency:** Sorting elements by their numeric value ($7 > 5 > 3 > 2$) rather than by their frequency causes suboptimal set selections.
+- **Odd array length rounding:** For $N = 7$, at least $\lceil 7 / 2 \rceil = 4$ elements must be removed. The condition $2 \times \text{removed} \ge N$ accurately handles both even and odd parities without integer truncation errors.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. Let $n$ be the array length and $u$ the number of distinct values.
-- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log K)$, where $N$ is the length of `arr` and $K \le N$ is the number of distinct values. Counting frequencies takes $\mathcal{O}(N)$ time. Sorting $K$ frequencies takes $\mathcal{O}(K \log K)$ time. (Alternatively, using bucket sort on frequencies takes $\mathcal{O}(N)$ time).
+- **Auxiliary Space Complexity:** $\mathcal{O}(K)$ to store the frequency map and sorted frequency list.

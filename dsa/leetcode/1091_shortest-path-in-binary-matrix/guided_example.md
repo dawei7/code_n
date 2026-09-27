@@ -1,120 +1,214 @@
 # Guided Example: Shortest Path in Binary Matrix
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step unweighted breadth-first exploration across an 8-connected grid, prove the Level-Synchronous BFS Optimality Invariant and the Enqueue-Time Visited Marker Theorem, and analyze shortest-path discovery across representative grid layouts:
 
-- **Input:** `{"grid": [[0, 1], [1, 0]]}`
-- **Required output:** `2`
+- **Representative Instance 1 (Immediate Diagonal Traversal):**
+  $$
+  grid = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad n = 2
+  $$
+- **Required Output:** `2`
+  - Problem definitions:
+    - Given an $n \times n$ binary matrix `grid`.
+    - A **clear path** is a sequence of cells from $(0, 0)$ to $(n - 1, n - 1)$ such that all visited cells have value $0$, and consecutive cells are **8-directionally connected** (horizontal, vertical, or diagonal).
+    - Return the minimum number of visited cells along a clear path, or $-1$ if unreachable.
+  - Step 1: Initial Boundary Check:
+    - Start cell $grid[0][0] = 0$ (open).
+    - Target cell $grid[1][1] = 0$ (open).
+    - Mark start visited: $grid[0][0] \leftarrow 1$.
+    - Initialize queue: $Q = [ (0, 0) ]$.
+    - Initial path length: $ans = 1$.
+  - Step 2: Level 1 Expansion ($ans = 1$):
+    - Dequeue $(0, 0)$. Target is $(1, 1)$, so $(0, 0)$ is not the destination.
+    - Inspect all 8 neighbors $(x, y) \in [0, 1] \times [0, 1] \setminus \{(0, 0)\}$:
+      - $(0, 1)$: $grid[0][1] = 1$ (blocked, skip).
+      - $(1, 0)$: $grid[1][0] = 1$ (blocked, skip).
+      - $(1, 1)$: $grid[1][1] = 0$ (open!).
+        - Mark visited: $grid[1][1] \leftarrow 1$.
+        - Enqueue: $Q.append((1, 1))$.
+    - Level 1 finished. Advance path length: $ans \leftarrow 1 + 1 = \mathbf{2}$.
+  - Step 3: Level 2 Expansion ($ans = 2$):
+    - Dequeue $(1, 1)$.
+    - Target check: $i = 1 = n - 1$ and $j = 1 = n - 1$ $\implies$ **Target reached!**
+    - Return $ans = \mathbf{2}$.
+  - Final Shortest Path Length:
+    $$
+    \mathbf{2}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Routing Around Obstacle Walls):**
+  $$
+  grid = \begin{bmatrix} 0 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \end{bmatrix}, \quad n = 3
+  $$
+  - Obstacles block column 0 and column 1 for rows 1 and 2.
+  - Level 1: $(0, 0)$ enqueues $(0, 1)$ [$ans=1$].
+  - Level 2: $(0, 1)$ enqueues $(0, 2)$ [$ans=2$].
+  - Level 3: $(0, 2)$ enqueues $(1, 2)$ [$ans=3$].
+  - Level 4: $(1, 2)$ enqueues $(2, 2)$ (target) $\implies ans = \mathbf{4}$.
+
+- **Representative Instance 3 (Blocked Starting Cell):**
+  $$
+  grid = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} \implies grid[0][0] == 1 \implies \mathbf{-1}
+  $$
+
+- **Representative Instance 4 (Single Open Cell $1 \times 1$):**
+  $$
+  grid = [[0]], \quad n = 1 \implies i = j = 0 = n - 1 \implies ans = \mathbf{1}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `n x n` binary matrix `grid`, return *the length of the shortest **clear path** in the matrix*. If there is no clear path, return `-1`.
+Given an $n \times n$ binary grid, compute the minimum cell count of a clear 8-connected path from top-left to bottom-right, or return $-1$.
 
-The objective is to compute `2` from `{"grid": [[0, 1], [1, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Enqueue vs Dequeue Marking Hazard:
+  Marking cells visited upon DEQUEUE:
+    If two frontier cells both have (x, y) as an open neighbor,
+    both will enqueue (x, y) before either dequeues it!
+    This leads to exponential duplicate state explosion in dense grids.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Level-Synchronous BFS Invariant (O(n^2) Time, O(n^2) Space):
+  1. If grid[0][0] == 1, immediately return -1.
+  2. Queue holds active frontier nodes. Mark visited AT ENQUEUE TIME:
+       grid[x][y] = 1
+       q.append((x, y))
+  3. Expand level by level:
+       for _ in range(len(q)):
+         i, j = q.popleft()
+         if i == j == n - 1: return ans
+         for x, y in 8-neighbors:
+           if valid and open: mark and enqueue
+       ans += 1
+  - Level structure guarantees that the first arrival at (n-1, n-1) is minimal.
+  - Enqueue-time marking ensures every cell is visited at most once.
+  Runs in linear O(n^2) time with zero duplicate re-expansions.
+```
 
----
+Modeling the grid as an unweighted graph under the Chebyshev metric ($L_\infty$) allows level-by-level BFS to discover the shortest path in linear time.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Interpret the open cells as an unweighted graph
-
-Every cell containing zero is a graph vertex that may be visited. Two open cells share an edge when their row and column differ by at most one and they are not the same cell. This gives horizontal, vertical, and diagonal movement, for at most eight neighbors per cell.
-
-Every move has equal cost: entering one adjacent cell extends the path length by one visited cell. In an unweighted graph, breadth-first search is the natural shortest-path algorithm because it explores vertices in nondecreasing distance from the start.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[0, 1], [1, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Reject a blocked starting point
-
-Any clear path must include the top-left cell. If `grid[0][0]` is one, the start is blocked and no valid path exists, so the method immediately returns `-1`.
-
-There is no separate initial test for a blocked destination. That is still correct. A blocked bottom-right cell is never enqueued because only cells equal to zero are discovered, so the queue eventually empties and the function returns `-1`. For a one-cell grid, the start and destination are the same cell, and the start test handles the blocked case.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The decisive pedagogical goal is the **Level-Synchronous BFS Optimality Invariant & Enqueue-Time Visited Marker Theorem**:
+1. **Unweighted Graph Distance:** In an unweighted graph where every transition has cost 1, BFS explores vertices in non-decreasing order of path length.
+2. **8-Directional Connectivity:** The neighborhood includes all 8 surrounding cells with Chebyshev distance $\|u - v\|_\infty = 1$.
+3. **Enqueue-Time Marking:** Setting $grid[x][y] = 1$ when adding to the queue prevents duplicate queuing from multiple frontier cells.
+4. Total time $\mathcal{O}(n^2)$ and auxiliary space $\mathcal{O}(n^2)$.
 
 ---
 
-### Step 3: Mark a cell when it enters the queue
+## 2. Conceptual Foundation & The 8-Directional BFS Pipeline
 
-The open start is changed from zero to one, then coordinate `(0, 0)` is placed in the deque. In this implementation, writing one does not store the numeric distance; it is simply a visited mark. Original blocked cells and visited open cells both contain one afterward, and that is sufficient because the search only needs to distinguish undiscovered open cells from cells that must not be enqueued.
+```mermaid
+flowchart TD
+    accTitle: Shortest Path in Binary Matrix Pipeline
+    accDescr: Flowchart illustrating level-synchronous BFS on 8-connected binary grid with enqueue-time marking
+    Start["Given n x n grid\nCheck grid[0][0] == 1 ?"] -->|"Yes: Start blocked"| RetNeg["Return -1"]
+    Start -->|"No: Start open"| InitBFS["grid[0][0] = 1 (mark visited)\nQ = deque([(0, 0)])\nans = 1"]
+    InitBFS --> CheckQueue{"Is Q empty ?"}
+    CheckQueue -->|"Yes: No path exists"| RetNeg
+    CheckQueue -->|"No: Process current level"| LevelLoop["Level loop: for _ in range(len(Q)):"]
+    LevelLoop --> PopNode["Pop (i, j) = Q.popleft()"]
+    PopNode --> CheckTarget{"i == j == n - 1 ?"}
+    CheckTarget -->|"Yes: Destination reached"| RetAns["Return ans"]
+    CheckTarget -->|"No: Explore 8 neighbors"| NeighborLoop["For (x, y) in 8-connected neighbors:"]
+    NeighborLoop --> CheckCell{"0 <= x, y < n AND grid[x][y] == 0 ?"}
+    CheckCell -->|"Yes: Open and unvisited"| EnqueueNeighbor["grid[x][y] = 1 (mark)\nQ.append((x, y))"]
+    CheckCell -->|"No: Blocked or visited"| NextNeighbor["Next neighbor"]
+    EnqueueNeighbor --> NextNeighbor
+    NextNeighbor --> CheckDoneNeighbors{"More neighbors for (i, j) ?"}
+    CheckDoneNeighbors -->|"Yes"| NeighborLoop
+    CheckDoneNeighbors -->|"No"| CheckDoneLevel{"More nodes in current level ?"}
+    CheckDoneLevel -->|"Yes"| LevelLoop
+    CheckDoneLevel -->|"No: Level complete"| IncAns["ans += 1"]
+    IncAns --> CheckQueue
+```
 
-Marking happens at enqueue time, not dequeue time. This prevents two frontier cells from adding the same neighbor before either copy is processed. Consequently, every open cell enters the queue at most once, which avoids duplicate work and preserves a simple space bound.
+### The Level-Synchronous BFS Optimality Invariant
 
-The method intentionally mutates `grid`. Reusing the input later as the original obstacle matrix would require making a copy or maintaining a separate visited set.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+Let $G = (V, E)$ be the unweighted directed graph where:
+$$
+V = \{ (i, j) \in [0, n - 1]^2 : grid[i][j] = 0 \}
+$$
+and an edge $((i_1, j_1), (i_2, j_2)) \in E$ exists if and only if:
+$$
+\max(|i_1 - i_2|, |j_1 - j_2|) = 1
+$$
+1. **Level-Synchronous Invariant:**
+   Let $Q_k$ denote the set of vertices enqueued at BFS level $k$.
+   By mathematical induction:
+   - For $k = 1$, $Q_1 = \{ (0, 0) \}$, and the shortest path length to $(0, 0)$ is $1$.
+   - Suppose that for all $m < k$, every vertex in $Q_m$ is at shortest path distance $m$.
+   - Any unvisited neighbor $v$ discovered from a vertex $u \in Q_{k-1}$ cannot have a path of length $< k$ (otherwise it would have been enqueued in an earlier level).
+   - The path $(0, 0) \leadsto u \to v$ has length $(k - 1) + 1 = k$.
+   - Hence, every vertex in $Q_k$ has shortest path length exactly $k$.
+2. **First Arrival Optimality:**
+   Because all edge weights are $+1$, the first time the target vertex $(n - 1, n - 1)$ is dequeued at level $ans$, no shorter path can exist.
+3. **Enqueue-Time Marking Invariant:**
+   Setting $grid[x][y] = 1$ at the moment $(x, y)$ is enqueued guarantees that $(x, y)$ can never be added to $Q$ a second time.
+   Thus, total enqueued elements $\le n^2$, guaranteeing $\mathcal{O}(n^2)$ time. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[0, 1], [1, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+$grid = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad n = 2$.
+
+### Initialization
+- $grid[0][0] = 0 \implies$ Start open.
+- $grid[0][0] \leftarrow 1, \; Q = [(0, 0)], \; ans = 1$.
+
+### Level 1 ($ans = 1$)
+- Dequeue $(0, 0)$. Target is $(1, 1)$.
+- Examine 8 neighbors:
+  - $(0, 1)$: $grid[0][1] = 1$ (blocked).
+  - $(1, 0)$: $grid[1][0] = 1$ (blocked).
+  - $(1, 1)$: $grid[1][1] = 0$ (open!).
+    - $grid[1][1] \leftarrow 1, \; Q.append((1, 1))$.
+- Level 1 finished. $ans \leftarrow 2$.
+
+### Level 2 ($ans = 2$)
+- Dequeue $(1, 1)$.
+- Check: $i == 1 == n - 1$ and $j == 1 == n - 1 \implies$ **Target reached!**
+- Return $ans = \mathbf{2}$.
+
+---
+
+## 4. BFS Level Expansion Trace Table
+
+| BFS Level $ans$ | Dequeued Node $(i, j)$ | Inspected Neighbors $(x, y)$ | Cell Value $grid[x][y]$ | Enqueue Action | Updated Queue $Q$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $(0, 0)$ | $(0, 1)$ | $1$ (Blocked) | Skip | `[]` |
+| $1$ | $(0, 0)$ | $(1, 0)$ | $1$ (Blocked) | Skip | `[]` |
+| $1$ | $(0, 0)$ | **$(1, 1)$** | **$0$ (Open)** | **Mark $1$ & Enqueue** | `[(1, 1)]` |
+| **$2$** | **$(1, 1)$** | — | — | **Destination Reached!** | — |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every reported path consists strictly of 8-adjacent open cells from $(0, 0)$ to $(n - 1, n - 1)$.
+2. **Completeness:**
+   Level-synchronous BFS exhaustively explores the connected component of $(0, 0)$ in ascending distance order; if a path exists, the shortest one is found.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Separate visited matrix:** Preserve `grid` and store discovery state in another Boolean matrix. The time remains $O(n^2)$ and the space remains $O(n^2)$, but the caller’s input is not modified.
-- **Store distance in each queue entry:** Enqueue `(row, column, distance)` and return that distance at the target. This avoids the layer-size loop but adds one integer to every queued record.
-- **Write distances into the grid:** Replace each discovered zero with its distance rather than a generic one. This can make debugging clearer, though original blocked ones then overlap with the start distance unless the interpretation is handled carefully.
-- **Depth-first search:** DFS can determine reachability but does not discover paths in increasing length. Finding the shortest path would require exploring many alternatives and maintaining a best value.
-- **Dijkstra’s algorithm:** It is correct because all edges have nonnegative weight, but a priority queue is unnecessary when every move costs exactly one. BFS is simpler and faster.
-- **A-star search:** A suitable heuristic such as Chebyshev distance can guide exploration toward the target and often visit fewer cells. Worst-case complexity remains comparable, and the implementation is more delicate.
-- **Blocked start:** The immediate `-1` return is necessary because no clear path may include a cell containing one.
-- **Blocked destination:** It is never enqueued, so the search exhausts reachable open cells and returns `-1`.
-- **One open cell:** Start equals destination, and the returned path length is one rather than zero because length counts visited cells.
-- **Diagonal-only path:** Diagonal neighbors are included, so `[[0,1],[1,0]]` correctly returns two.
-- **Current cell in the nested ranges:** It is skipped by the visited mark. Removing it explicitly would be an optional micro-clarification, not a correctness requirement.
-- **Negative indices:** Bounds must be checked before grid access to prevent Python from treating `-1` as the last row or column.
-- **Multiple shortest paths:** A cell is kept only on its first discovery, but BFS first discovery already has minimum distance. Other equally short routes need not enqueue it again.
-- **No path:** Emptying the queue means the entire reachable component of the start was explored without finding the target.
-- **Input reuse:** Because open visited cells are overwritten with one, callers that need the original matrix must copy it before calling this method.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Blocked Start Cell | $grid[0][0] == 1$ | Returns -1 immediately. | Searching invalid paths. |
+| Blocked Destination | $grid[n-1][n-1] == 1$ | Target is never enqueued; queue empties; returns -1. | Infinite loop or wrong length. |
+| Single Open Cell Grid | $grid = [[0]], n = 1$ | Dequeues $(0, 0)$ at $ans = 1$; returns 1. | Off-by-one errors returning 0. |
+| No Valid Path | Wall of 1s separating corners | Queue exhausts; returns -1. | Queue underflow or crash. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the side length, so the matrix contains $n^2$ cells. A cell is enqueued at most once because it changes from zero to one before entering the queue. Processing it examines exactly nine coordinate pairs, a constant amount of work. Total time is therefore $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$, where $n$ is the grid side length ($n \le 100$).
+  - Total cells in the grid: $n^2 \le 10000$.
+  - Each cell is marked visited and enqueued at most once.
+  - From each dequeued cell, exactly 8 neighbor coordinates are checked in $\mathcal{O}(1)$ time.
+  - Total operations $\le 8 \cdot n^2 \le 80000 \implies < 0.005\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n^2)$ auxiliary memory for the BFS queue in the worst case (e.g. diagonal wave across open grid). The grid itself is marked in-place.

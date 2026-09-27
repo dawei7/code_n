@@ -1,89 +1,145 @@
 # Guided Example: Convert Sorted Array to Binary Search Tree
 
-We trace the hierarchical Array, Divide and Conquer, Tree, Binary Search Tree, Binary Tree traversal and subtree aggregation on a representative binary tree.
+We trace the step-by-step recursive midpoint divide-and-conquer BST construction on a representative sorted array:
 
-- **Input:** `{"nums": [-10, -3, 0, 5, 9]}`
-- **Required output:** `[0, -10, 5, null, -3, null, 9]`
+- **Input:** $\text{nums} = [-10, -3, 0, 5, 9]$
+- **Required output:** $[0, -10, 5, \text{null}, -3, \text{null}, 9]$ (or $[0, -3, 9, -10, \text{null}, 5]$)
+- **Base Instance:** $\text{nums} = [1, 3] \implies [3, 1]$ or $[1, \text{null}, 3]$
 
-This instance illustrates recursive decomposition, subtree invariant aggregation, and base-case handling on null child nodes.
+This instance demonstrates selecting the median element $M = L + \lfloor (R - L) / 2 \rfloor$ as the root to guarantee height balance ($|H_L - H_R| \le 1$), recursive interval bisection without array slicing, and building a strictly valid BST in $O(N)$ linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Convert Sorted Array to Binary Search Tree** is to evaluate tree properties by visiting nodes in topological hierarchy (post-order, pre-order, or level-order).
-Because each tree node defines an independent root for its left and right subtrees, recursive divide-and-conquer resolves subtrees independently.
+Given an integer array $\text{nums} = [-10, -3, 0, 5, 9]$ sorted in ascending order, convert it to a **height-balanced** Binary Search Tree (BST).
+A height-balanced tree is defined as a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+
+Any choice of root from a sorted array creates a valid BST, but choosing unbalanced roots (e.g. taking the first element repeatedly: $-10 \to -3 \to 0 \to 5 \to 9$) creates a degenerate linked-list tree of depth $5$.
+To guarantee height balance:
+- Always select the **median** element of the current interval as the root node.
+- The median partitions the remaining elements into two sub-arrays whose counts differ by at most $1$.
+- By structural induction, the heights of the resulting left and right subtrees differ by at most $1$ at every node.
+
+Passing interval indices $(L, R)$ rather than copying array slices achieves $O(N)$ time and $O(\log N)$ auxiliary space.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We define the recursive contract $f(\text{node})$ that computes the required property for the subtree rooted at $\text{node}$.
+### Midpoint Divide-and-Conquer Protocol
+We define $\text{buildTree}(L, R)$:
+1. **Base Case:**
+   If $L > R$:
+   The interval contains zero elements. Return $\emptyset$.
+2. **Median Selection:**
+   Compute the midpoint (rounding down):
+   $$
+   M = L + \left\lfloor \frac{R - L}{2} \right\rfloor
+   $$
+3. **Subtree Partitioning:**
+   - The root takes the value $V = \text{nums}[M]$.
+   - Elements strictly before $M$ form the left subtree:
+     $$
+     \text{left} = \text{buildTree}(L, M - 1)
+     $$
+   - Elements strictly after $M$ form the right subtree:
+     $$
+     \text{right} = \text{buildTree}(M + 1, R)
+     $$
+4. **Construct Node:**
+   $$
+   \text{return TreeNode}(V, \, \text{left}, \, \text{right})
+   $$
 
-| Traversal Component | Responsibility |
-|---|---|
-| Base Case ($	ext{node} = \text{None}$) | Returns neutral identity element (e.g. $0$, $\text{True}$, $\text{None}$) |
-| Left Subtree $f(\text{node.left})$ | Recursively resolves left branch |
-| Right Subtree $f(\text{node.right})$ | Recursively resolves right branch |
-| Current Node Aggregation | Combines left and right subtree results |
-
-> **Invariant.** When processing $\text{node}$, the return values from both subtrees are complete, correct, and independent.
+> **Invariant.** For every interval $[L, R]$, the median choice partitions the range into sub-intervals whose sizes differ by at most 1, guaranteeing that every constructed subtree is both a valid BST and strictly height-balanced ($|H_L - H_R| \le 1$).
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Base Case Null Evaluation
+We trace $\text{nums} = [-10, -3, 0, 5, 9]$ ($N = 5$, indices $0 \dots 4$):
 
-- Leaf children reach $\text{None}$ and return base values without recursive branching.
-
-| State Parameter | Result |
-|---|---|
-| Input Node | $\text{None}$ |
-| Base Return Value | Neutral identity |
+### Step 1: Global Root (Interval $[0, 4]$)
+- Midpoint: $M = 0 + \lfloor (4 - 0) / 2 \rfloor = 2$.
+- Root value: $\text{nums}[2] = 0$.
+- Create root: $\text{Node}(0)$.
+- Spawn left interval: $[0, 1]$ (values $[-10, -3]$).
+- Spawn right interval: $[3, 4]$ (values $[5, 9]$).
 
 ---
 
-### Step 2: Subtree Recursion & Aggregation
+### Step 2: Left Child of 0 (Interval $[0, 1]$)
+- Midpoint: $M = 0 + \lfloor (1 - 0) / 2 \rfloor = 0$.
+- Node value: $\text{nums}[0] = -10$.
+- Create node: $\text{Node}(-10)$.
+  - Left interval $[0, -1]$: empty $\implies \emptyset$.
+  - Right interval $[1, 1]$:
+    - $M = 1 \implies \text{nums}[1] = -3$.
+    - Child bounds empty $\implies \text{Node}(-3)$ is a leaf.
+- Subtree rooted at $-10$ has right child $-3$. Height $= 2$.
 
-- Execute post-order combination at internal nodes.
-- Evaluate current node's contribution to global state.
+---
 
-| State Parameter | Result |
-|---|---|
-| Left Subtree Value | Computed |
-| Right Subtree Value | Computed |
-| Aggregated Node Result | Combined optimally |
+### Step 3: Right Child of 0 (Interval $[3, 4]$)
+- Midpoint: $M = 3 + \lfloor (4 - 3) / 2 \rfloor = 3$.
+- Node value: $\text{nums}[3] = 5$.
+- Create node: $\text{Node}(5)$.
+  - Left interval $[3, 2]$: empty $\implies \emptyset$.
+  - Right interval $[4, 4]$:
+    - $M = 4 \implies \text{nums}[4] = 9$.
+    - Child bounds empty $\implies \text{Node}(9)$ is a leaf.
+- Subtree rooted at $5$ has right child $9$. Height $= 2$.
+
+---
+
+### Tree Assembly
+- Root $0$ connects:
+  - Left child: $\text{Node}(-10)$ with right child $\text{Node}(-3)$.
+  - Right child: $\text{Node}(5)$ with right child $\text{Node}(9)$.
+- Subtree heights: $H_L = 2$, $H_R = 2 \implies |2 - 2| = 0 \le 1$.
+- Total height is $3$, perfectly balanced.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Node Traversal Order | Subtree Processed | Left Value | Right Value | Current Node Action | Emitted / Updated State |
-|---|---|---|---|---|---|
-| 1 (Leaf Nodes) | Base leaves | Neutral | Neutral | Evaluate leaf metric | Base value returned |
-| 2 (Internal Nodes) | Intermediate | Left result | Right result | Aggregate metrics | Combined subtree value |
-| 3 (Root) | Full Tree | Left subtree | Right subtree | Final aggregation | Global answer produced |
+```text
+               Root 0 (index 2)
+              /                \
+     Node -10 (index 0)       Node 5 (index 3)
+           \                        \
+        Node -3 (index 1)         Node 9 (index 4)
+```
+
+| Recursion Step | Active Range $[L, R]$ | Midpoint $M$ | Selected Value $\text{nums}[M]$ | Left Child Range | Right Child Range | Resulting Subtree |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $[0, 4]$ | 2 | 0 | $[0, 1]$ | $[3, 4]$ | $\text{Node}(0)$ |
+| 1.1 | $[0, 1]$ | 0 | -10 | $[0, -1]$ ($\emptyset$) | $[1, 1]$ | $\text{Node}(-10)$ |
+| 1.1.1 | $[0, -1]$ | - | - | - | - | $\emptyset$ |
+| 1.1.2 | $[1, 1]$ | 1 | -3 | $[1, 0]$ ($\emptyset$) | $[2, 1]$ ($\emptyset$) | $\text{Node}(-3)$ (Leaf) |
+| 1.2 | $[3, 4]$ | 3 | 5 | $[3, 2]$ ($\emptyset$) | $[4, 4]$ | $\text{Node}(5)$ |
+| 1.2.1 | $[3, 2]$ | - | - | - | - | $\emptyset$ |
+| 1.2.2 | $[4, 4]$ | 4 | 9 | $[4, 3]$ ($\emptyset$) | $[5, 4]$ ($\emptyset$) | $\text{Node}(9)$ (Leaf) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Tree structures are acyclic directed graphs. By induction on tree height, if base cases are correct and the aggregation formula preserves the invariant, the root computation is guaranteed to be correct.
+**Soundness.** Because the input array is strictly sorted in ascending order, all elements to the left of the midpoint $M$ are $< \text{nums}[M]$, and all elements to the right are $> \text{nums}[M]$. Therefore, every constructed node strictly satisfies the Binary Search Tree property.
 
-**Completeness.** Every node in the tree is traversed exactly once, ensuring no branch or leaf is omitted.
+**Completeness.** Bisection divides an interval of length $K$ into sub-intervals of sizes $\lfloor (K-1)/2 \rfloor$ and $\lceil (K-1)/2 \rceil$. The difference between sub-interval lengths is at most 1, guaranteeing by mathematical induction that the maximum path length across left and right subtrees differs by at most 1 at every node.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single-Child Skewed Trees:** Assuming both left and right children always exist causes `AttributeError: 'NoneType' object has no attribute`. Always handle null children.
-- **Global vs. Local Aggregation:** Confusing the path passing *through* a node with the path *extendable* to its parent leads to invalid non-branching calculations.
-- **Stack Overflow on Degenerate Trees:** Heavily unbalanced linked-list-shaped trees can exceed recursion depth; iterative or tail-recursion considerations apply.
+- **Integer Overflow in Midpoint Calculation:** In languages with fixed-width integers, writing `(L + R) // 2` can overflow when $L + R > 2^{31} - 1$. The form $L + (R - L) // 2$ prevents overflow.
+- **Multiple Valid BST Topologies:** For an even number of elements (such as $[0, 1]$), choosing the lower median ($\lfloor (L+R)/2 \rfloor$) or the upper median ($\lceil (L+R)/2 \rceil$) both produce valid height-balanced BSTs. Both choices are accepted by the judge.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ where $N$ is the total number of tree nodes visited.
-- **Auxiliary Space Complexity:** $O(H)$ where $H$ is the tree height ($O(\log N)$ for balanced trees, $O(N)$ worst-case) matching the call stack depth.
+- **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. Exactly $N$ tree nodes are created, each taking $O(1)$ operations to determine midpoint and link pointers.
+- **Auxiliary Space Complexity:** $O(\log N)$ stack frames. Because the tree is strictly balanced, the maximum depth of the recursion tree is $\lceil \log_2(N + 1) \rceil$.

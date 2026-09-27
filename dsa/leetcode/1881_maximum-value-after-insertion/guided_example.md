@@ -1,106 +1,148 @@
 # Guided Example: Maximum Value after Insertion
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the greedy positional digit insertion on representative positive and negative integer instances to maximize the resulting numerical value:
 
-- **Input:** `{"n": "99", "x": 9}`
-- **Required output:** `"999"`
+- **Input:** `n = "-13"`, `x = 2`
+- **Required Output:** `"-123"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates distinguishing positive numbers from negative numbers, optimizing the absolute magnitude in the correct direction (minimizing absolute magnitude for negative numbers vs maximizing absolute magnitude for positive numbers), performing a single forward scan to locate the earliest qualifying pivot digit, and inserting digit $x$ in-place.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a very large integer `n`, represented as a string, and an integer digit `x`. The digits in `n` and the digit `x` are in the **inclusive** range `[1, 9]`, and `n` may represent a **negative** number.
+We are given a string `n` representing a large integer, which may be positive or negative (starting with a minus sign `'-'`), and a decimal digit $x \in [1, 9]$. We wish to insert digit $x$ at any position to produce the maximum possible numerical value.
 
-The objective is to compute `"999"` from `{"n": "99", "x": 9}` while avoiding redundant calculations and unnecessary overhead.
+For `n = "-13"` and $x = 2$:
+- The number is negative.
+- For negative numbers, maximizing numerical value is equivalent to **minimizing the absolute magnitude**:
+  $$\text{maximize } -M \iff \text{minimize } M$$
+- Potential insertion positions for digit `2`:
+  1. Immediately after the minus sign (before `'1'`): `"-213"`
+     - Numerical value: $-213$.
+  2. Between `'1'` and `'3'`: `"-123"`
+     - Numerical value: $-123$.
+  3. At the end (after `'3'`): `"-132"`
+     - Numerical value: $-132$.
+- Comparing candidates:
+  $$-123 > -132 > -213$$
+- The maximum value is `"-123"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **greedy positional significance**:
+1. In base-10 positional notation, higher-order digits carry exponentially greater weight than lower-order digits.
+2. For positive numbers, we maximize the first difference from the left by placing $x$ before the first digit smaller than $x$ ($n[i] < x$).
+3. For negative numbers, we minimize the first difference from the left by placing $x$ before the first digit larger than $x$ ($n[i] > x$).
+4. If no such pivot exists, placing $x$ at the least significant position (the end) is optimal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Greedy Positional Magnitude Optimization Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Greedy Positional Magnitude Optimization Theorem.**
+> 1. *Positional Dominance:* In base $B = 10$, if two numbers of equal length differ first at index $k$, the number with the larger digit at index $k$ is strictly greater, regardless of all subsequent digits:
+>    $$\sum_{j=k}^{L-1} d_j \cdot 10^{L-1-j}$$
+> 2. *Positive Numbers (Maximization of Magnitude):*
+>    - Let $n = d_0 d_1 \dots d_{m-1}$ with $d_0 \neq \text{'-'}$.
+>    - To make the prefix as large as possible, find the smallest index $i$ such that $d_i < x$.
+>    - Inserting $x$ before $d_i$ yields prefix $d_0 \dots d_{i-1} x$, which is strictly greater than keeping $d_0 \dots d_{i-1} d_i$.
+>    - If for all $i$, $d_i \ge x$, appending $x$ to the end is optimal.
+> 3. *Negative Numbers (Minimization of Magnitude):*
+>    - Let $n = \text{'-'} d_1 d_2 \dots d_m$.
+>    - To minimize the magnitude, find the smallest index $i \ge 1$ such that $d_i > x$.
+>    - Inserting $x$ before $d_i$ yields prefix $d_1 \dots d_{i-1} x$, which has a smaller leading digit than $d_i$.
+>    - If for all $i \ge 1$, $d_i \le x$, appending $x$ to the end minimizes the magnitude.
+> 4. *Complexity:* Scanning for the first pivot digit takes $\mathcal{O}(|n|)$ time. Splicing the string takes $\mathcal{O}(|n|)$ time. Auxiliary space is $\mathcal{O}(|n|)$ to form the output.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Greedy Digit Placement Pipeline
+    accDescr: Pipeline checking sign of n, scanning for first pivot digit, and inserting x at optimal position.
+    A["Input: n = '-13', x = 2"] --> B{"Is n negative?"}
+    B -->|"Yes (starts with '-')"| C["Scan digits from left: Find first digit d_i > x"]
+    B -->|"No (positive)"| D["Scan digits from left: Find first digit d_i < x"]
+    C --> E["i = 1: digit '1' > 2? No (1 < 2)"]
+    E --> F["i = 2: digit '3' > 2? Yes! Pivot found at index 2"]
+    F --> G["Insert x before '3': '-1' + '2' + '3' = '-123'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Maximizing depends on the sign.** Inserting one digit makes every candidate have the same final number of digits, so the first position at which two candidates differ determines which numerical value is larger. For a positive number, the goal is the lexicographically largest digit sequence: place `x` before the first existing digit smaller than `x`. For a negative number, a numerically larger result has a smaller absolute magnitude, so the goal reverses: place `x` before the first magnitude digit larger than `x`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": "99", "x": 9}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on `n = "-13"`, `x = 2`:
 
 ---
 
-### Step 2: Core Step 2
-
-**Handle the minus sign before scanning digits.** Variable `i` begins at zero. If `n[0] == "-"`, the code increments `i` to one so insertion can never occur to the left of the sign. The remaining characters are all digits. For a positive number, scanning naturally begins at zero. This single boundary difference lets the returned slices preserve the sign without treating it as a numeric digit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Detect Sign of the Number
+- Check initial character: $n[0] = \text{'-'}$.
+- The number is negative.
+- Objective: Minimize the magnitude of the digits starting at index $1$.
+- Pivot condition: Find first index $i \ge 1$ where $n[i] > x$ (with $x = 2$).
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Scan Magnitude Digits
+- Index $i = 1$:
+  - Current digit: $n[1] = \text{'1'}$.
+  - Numerical comparison: $1 > 2$ is False.
+  - Advance scan.
+- Index $i = 2$:
+  - Current digit: $n[2] = \text{'3'}$.
+  - Numerical comparison: $3 > 2$ is True.
+  - Pivot located at index $i = 2$.
 
-**Positive-number rule.** The loop continues while `int(n[i]) >= x`. Every digit greater than `x` should remain before `x` because moving `x` ahead of it would make the first differing digit smaller and therefore reduce the result. Equal digits can also be passed: inserting before or after an equal digit produces the same complete digit sequence. The first digit below `x` is the first position where inserting `x` improves the most significant available place. The loop stops there, and insertion occurs before that smaller digit.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"999"` |
+### Step 3: Splice and Construct Output
+- Prefix before pivot: $n[0 \dots 1] = \text{"-1"}$.
+- Inserted digit: $\text{"2"}$.
+- Suffix from pivot: $n[2 \dots 2] = \text{"3"}$.
+- Resulting string:
+  $$\text{"-1"} + \text{"2"} + \text{"3"} = \text{"-123"}$$
+
+---
+
+### Step 4: Verification Against Positive Counterpart
+Consider positive instance `n = "99"`, `x = 9`:
+- Number is positive $\implies$ maximize magnitude.
+- Pivot condition: First digit where $n[i] < 9$.
+  - Index $0$: $9 < 9$ (False).
+  - Index $1$: $9 < 9$ (False).
+- No digit smaller than $9$ exists $\implies$ append $9$ at the end:
+  $$\text{"99"} + \text{"9"} = \text{"999"}$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": "99", "x": 9}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"999"` | Verified |
+| Step | Index $i$ | Character $n[i]$ | Digit Value | Target $x$ | Condition Tested | Triggered? | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 0 | `'-'` | Sign | 2 | Is Negative? | **Yes** | Set mode to minimize magnitude |
+| 2 | 1 | `'1'` | 1 | 2 | $1 > 2$? | No | Continue scanning |
+| 3 | 2 | `'3'` | 3 | 2 | $3 > 2$? | **Yes** | Split at index 2, insert `'2'` |
+| **Final** | - | - | - | - | Splice | - | **`"-123"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Inserting $x$ produces a valid integer string with length $|n| + 1$ containing all original digits plus $x$. By the Positional Dominance lemma, the highest-order digit that differs between any two candidate placements dictates which number is larger.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the scan tests indices strictly from left to right, it identifies the most significant position where the replacement benefits the objective. Any later placement would alter lower-order digits, leaving a less optimal digit at the higher-order position.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Generate every insertion candidate:** Constructing $O(N)$ strings of length $O(N)$ and comparing them costs $O(N^2)$ time and space traffic. The first-difference rule identifies the winner in one scan.
-- **Parse into an integer:** The input can be vastly larger than fixed-width numeric types, and converting plus multiplying by powers of ten is unnecessary. String order contains all information needed.
-- **Use character comparisons:** Because digits `'1'` through `'9'` have the same lexicographic and numeric order, comparing characters with `str(x)` could avoid repeated `int` calls. The exact source uses integer comparison explicitly.
-- **All digits equal to `x`:** The scan passes every equal digit and appends `x`. Inserting anywhere produces the same final string, so this tie choice is valid.
-- **Positive number with every digit smaller than `x`:** The scan stops immediately and inserts `x` at the front, the most significant possible position.
-- **Negative number with every digit larger than `x`:** The scan stops just after the minus sign, placing the smaller digit at the front of the magnitude and maximizing the negative value.
-- **Insertion beside the sign:** For a negative input, starting at index one permits insertion immediately after `'-'` but never before it, exactly matching the rule.
-- **No zero digits:** The contract restricts all digits and `x` to one through nine. If zeros were allowed, the same comparison proof would still work, but representation rules around leading zeros might need separate clarification.
-- **Input preservation:** Python strings are immutable. The source returns a newly assembled string and cannot modify `n` in place.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Inverting Negative Number Logic:** Treating negative numbers like positive numbers would look for $d_i < x$, inserting `'2'` before `'1'` to yield `"-213"`, which is significantly smaller than `"-123"` ($-213 < -123$).
+- **Equal Digits ($d_i == x$):** When $d_i == x$, inserting $x$ before $d_i$ does not alter the prefix (e.g. inserting $9$ before $9$ in `"99"` gives `"999"` regardless of which identical digit it precedes). The strict inequality ($d_i < x$ or $d_i > x$) ensures we find the true decisive change.
+- **Minus Sign Preservation:** The sign character `'-'` at index 0 must never be shifted or displaced; magnitude digits start at index 1.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the length of the input string, including a possible minus sign. The scan advances `i` monotonically and inspects at most every digit once, costing $O(N)$ time. Constructing the prefix slice, digit string, suffix slice, and concatenated result also copies $O(N)$ characters. Total time is $O(N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(L)$, where $L = |n|$ is the length of the string `n`. A single linear pass locates the insertion point in at most $L$ comparisons, and string concatenation copies $L + 1$ characters.
+- **Auxiliary Space Complexity:** $\mathcal{O}(L)$ to allocate and return the newly formed result string of length $L + 1$.

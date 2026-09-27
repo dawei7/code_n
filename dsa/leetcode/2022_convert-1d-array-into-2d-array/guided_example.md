@@ -1,127 +1,146 @@
 # Guided Example: Convert 1D Array Into 2D Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Concrete Problem Restatement & Input Data
 
-- **Input:** `{"original": [1, 2, 3, 4], "m": 2, "n": 2}`
-- **Required output:** `[[1, 2], [3, 4]]`
+We are given a zero-indexed one-dimensional integer array $\text{original}$ of total length $L$, along with two positive integers $m$ and $n$ representing the target row count and column count, respectively.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Our task is to reconstruct an $m \times n$ two-dimensional matrix using every element from $\text{original}$ while preserving standard **row-major order**:
+- Elements at linear indices $0$ through $n - 1$ populate row $0$.
+- Elements at linear indices $n$ through $2n - 1$ populate row $1$.
+- In general, elements at linear indices $r \cdot n$ through $(r + 1) \cdot n - 1$ populate row $r$, for all $r \in [0, m - 1]$.
 
----
+If the total number of cells in the target matrix ($m \cdot n$) does not match the total number of provided elements ($L$), it is impossible to construct a complete, well-formed grid. In that event, the procedure must immediately return an empty matrix `[]`.
 
-## 1. Instance & Teaching Goal
+### Sample Input Dataset
 
-You are given a **0-indexed** 1-dimensional (1D) integer array `original`, and two integers, `m` and `n`. You are tasked with creating a 2-dimensional (2D) array with ` m` rows and `n` columns using **all** the elements from `original`.
+Consider the representative configuration:
+$$\text{original} = [1, 2, 3, 4], \quad m = 2, \quad n = 2$$
 
-The objective is to compute `[[1, 2], [3, 4]]` from `{"original": [1, 2, 3, 4], "m": 2, "n": 2}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+We contrast this with an asymmetric dimension request:
+$$\text{original}_{\text{flat}} = [1, 2, 3], \quad m = 1, \quad n = 3$$
+and an impossible configuration where elements cannot fit:
+$$\text{original}_{\text{incompat}} = [1, 2], \quad m = 1, \quad n = 1$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 2. Conceptual Walkthrough & Visual Intuition
 
-### Step 1: Check capacity before constructing rows
+The transformation from a 1D sequence to a 2D matrix in row-major format is a canonical coordinate bijection between the discrete space of 1D linear indices and 2D grid coordinates.
 
-An $m$-by-$n$ array contains exactly $mn$ cells. The task requires using every original element exactly once, so construction is possible if and only if
+### Dimension Compatibility Guard
+A valid $m \times n$ matrix contains exactly $m \cdot n$ cells. Because every cell must receive exactly one element from $\text{original}$ with none left over:
+$$L \equiv \text{length}(\text{original}) = m \cdot n$$
+- If $L \neq m \cdot n$, we abort immediately and return an empty array `[]`.
 
-`m * n == len(original)`.
+### Bijective Index Mapping
+When $L = m \cdot n$, every 1D linear index $k \in [0, L - 1]$ uniquely determines its 2D coordinates $(r, c)$:
+$$r = \lfloor k / n \rfloor, \quad c = k \pmod n$$
+Conversely, given matrix row $r \in [0, m - 1]$ and column $c \in [0, n - 1]$, the corresponding linear index in the source array is:
+$$k = r \cdot n + c$$
 
-If the values differ, the source returns an empty list immediately. Too many and too few elements are both impossible.
+Instead of computing coordinates individually for each element, we can partition the source array into $m$ consecutive non-overlapping chunks, each of uniform length $n$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"original": [1, 2, 3, 4], "m": 2, "n": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Partition the input into consecutive row slices
-
-When the length matches, row zero must contain indices zero through $n-1$, row one indices $n$ through $2n-1$, and so forth.
-
-The comprehension iterates start index `i` over
-
-`range(0, m * n, n)`.
-
-These starts are zero, $n$, $2n$, and so on through $(m-1)n$, exactly one per row.
-
-For each start, slice `original[i : i + n]` copies the next $n$ elements into one row.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+```mermaid
+flowchart TD
+    accTitle: 1D to 2D Row-Major Transformation Pipeline
+    accDescr: Flowchart illustrating dimension feasibility validation and consecutive stride partitioning.
+    A["Input: original array of length L, target m rows, target n columns"] --> B{"Feasibility Check: Is L == m * n?"}
+    B -- "No (L != m * n)" --> C["Return Empty Matrix []"]
+    B -- "Yes (L == m * n)" --> D["Initialize empty matrix result"]
+    D --> E["Iterate row index r from 0 to m - 1"]
+    E --> F["Extract slice original[r * n .. (r + 1) * n - 1]"]
+    F --> G["Append slice as row r of matrix"]
+    G --> H{"r == m - 1 reached?"}
+    H -- "No" --> E
+    H -- "Yes" --> I["Return completed 2D matrix"]
+```
 
 ---
 
-### Step 3: Why there are exactly `m` rows
+## 3. Step-by-Step State Progression Table
 
-The range spans total length $mn$ in steps of $n$. Since $n$ is positive, it produces
+Let us trace $\text{original} = [1, 2, 3, 4]$ with $m = 2$ and $n = 2$.
 
-$$
-\frac{mn}{n}=m
-$$
+### Stage 1: Feasibility Validation
+- Source array length: $L = 4$.
+- Target grid capacity: $m \cdot n = 2 \cdot 2 = 4$.
+- Validation condition: $L == m \cdot n \implies 4 == 4$ (Condition satisfied).
 
-start indices. Every produced slice has length $n$ because the feasibility check guarantees its upper boundary does not run past a partial final row.
+### Stage 2: Row-by-Row Stride Extraction
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[[1, 2], [3, 4]]` |
+| Row Index $r$ | Slice Formula $[r \cdot n, (r+1) \cdot n)$ | Source Index Span | Extracted Subarray | Target Matrix State |
+|---|---|---|---|---|
+| $0$ | $[0 \cdot 2, 1 \cdot 2) = [0, 2)$ | Indices $0, 1$ | `[1, 2]` | `[[1, 2]]` |
+| $1$ | $[1 \cdot 2, 2 \cdot 2) = [2, 4)$ | Indices $2, 3$ | `[3, 4]` | `[[1, 2], [3, 4]]` |
 
----
+Final constructed matrix:
+$$\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$$
 
-## 4. Complete Execution Trace
+Now, let us examine the element-level coordinate correspondence:
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"original": [1, 2, 3, 4], "m": 2, "n": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[[1, 2], [3, 4]]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| 1D Index $k$ | Source Value $\text{original}[k]$ | Row Calculation $\lfloor k / n \rfloor$ | Column Calculation $k \pmod n$ | 2D Position $(r, c)$ |
+|---|---|---|---|---|
+| $0$ | $1$ | $\lfloor 0 / 2 \rfloor = 0$ | $0 \pmod 2 = 0$ | $(0, 0)$ |
+| $1$ | $2$ | $\lfloor 1 / 2 \rfloor = 0$ | $1 \pmod 2 = 1$ | $(0, 1)$ |
+| $2$ | $3$ | $\lfloor 2 / 2 \rfloor = 1$ | $2 \pmod 2 = 0$ | $(1, 0)$ |
+| $3$ | $4$ | $\lfloor 3 / 2 \rfloor = 1$ | $3 \pmod 2 = 1$ | $(1, 1)$ |
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Key Transition Dynamics & Boundary Handling
 
-- **Nested row/column loops:** Explicitly fill a preallocated matrix; same $O(L)$ time and output space.
-- **`divmod` mapping:** Map each flat index to row and column, useful when slicing is unavailable.
-- **Iterator chunking:** Consume $n$ elements per row; must still validate the exact total.
-- **Too many original elements:** Return empty rather than discard extras.
-- **Too few original elements:** Return empty rather than create a short final row.
-- **One row:** One slice contains all elements when $n=L$.
-- **One column:** Each length-one slice becomes a separate row.
-- **$m=n=1$:** Valid only for a one-element original.
-- **Positive dimensions:** Guarantee the range step `n` is nonzero.
-- **Independent rows:** Slicing prevents shared-row aliasing.
-- **Input preservation:** Slices copy row lists and do not modify `original`.
-- **Order:** The output follows original row-major order exactly.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The transition behavior across different dimension combinations illustrates the strict conservation of elements:
+
+1. **Dimensional Mismatch Guard**:
+   - In $\text{original}_{\text{incompat}} = [1, 2]$ with $m = 1, n = 1$, the capacity is $1 \cdot 1 = 1$, but $L = 2$. One element would be discarded, which violates completeness. The guard triggers immediately and returns `[]`.
+   - Similarly, if $L = 5$ with $m = 2, n = 3$, $2 \cdot 3 = 6 > 5$, leaving one cell unpopulated. This also returns `[]`.
+2. **Single Row Matrix ($m = 1$)**:
+   - If $m = 1$ and $n = L$, the entire source array forms a single row: `[original]`.
+3. **Single Column Matrix ($n = 1$)**:
+   - If $n = 1$ and $m = L$, each element forms its own one-element row: `[[original[0]], [original[1]], ...]`.
+
+| Array Example | $m$ | $n$ | Required Capacity $m \cdot n$ | Actual Length $L$ | Compatibility Check | Output Result |
+|---|---|---|---|---|---|---|
+| `[1, 2, 3, 4]` | $2$ | $2$ | $4$ | $4$ | $4 == 4$ (Valid) | `[[1, 2], [3, 4]]` |
+| `[1, 2, 3]` | $1$ | $3$ | $3$ | $3$ | $3 == 3$ (Valid) | `[[1, 2, 3]]` |
+| `[1, 2, 3, 4]` | $4$ | $1$ | $4$ | $4$ | $4 == 4$ (Valid) | `[[1], [2], [3], [4]]` |
+| `[1, 2]` | $1$ | $1$ | $1$ | $2$ | $1 \neq 2$ (Invalid) | `[]` |
+| `[1, 2, 3]` | $2$ | $2$ | $4$ | $3$ | $4 \neq 3$ (Invalid) | `[]` |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(L)$. Let $L=\texttt{len(original)}$. On valid input, the slices collectively copy exactly $L=mn$ elements, so time is $O(L)$. The comprehension creates $m$ row objects.
-- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Mathematical Bijectivity of Row-Major Indexing
+The division algorithm guarantees that for any integer $k \ge 0$ and positive divisor $n$, there exist unique integers $q$ and $r$ such that:
+$$k = q \cdot n + r \quad \text{with } 0 \le r < n$$
+Identifying $q = \lfloor k / n \rfloor$ as the row index and $r = k \pmod n$ as the column index, the mapping $f: \{0, 1, \dots, L - 1\} \to \{0, \dots, m - 1\} \times \{0, \dots, n - 1\}$ is a bijection if and only if $L = m \cdot n$.
+
+### Completeness and Ordering
+Because the rows are formed by successive contiguous slices $[r \cdot n, (r + 1) \cdot n)$ for $r = 0, 1, \dots, m - 1$:
+1. The union of all slices is precisely the entire interval $[0, L - 1]$.
+2. The slices are pairwise disjoint.
+3. The order of elements across rows and within each row precisely mirrors their original positions in $\text{original}$.
+This rigorously guarantees that every element is placed in its exact canonical row-major position without distortion, duplication, or omission.
+
+---
+
+## 6. Edge Cases & Common Pitfalls
+
+1. **Failure to Check Dimension Parity First**: Attempting to slice or index without checking $L == m \cdot n$ will lead to index out-of-range exceptions or partially filled matrices that fail contract requirements.
+2. **Column-Major vs Row-Major Confusion**: In column-major ordering (used in Fortran or MATLAB), elements fill columns first. LeetCode and standard C/Python conventions use row-major ordering, filling rows first.
+3. **Large Coordinate Products**: Values $m, n \le 4 \times 10^4$ can yield products $m \cdot n \le 1.6 \times 10^9$. If $L \le 5 \times 10^4$, evaluating $m \cdot n == L$ requires standard integer multiplication without 32-bit overflow concerns.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- **Feasibility Verification**: Checking $m \cdot n == L$ takes $\mathcal{O}(1)$ time.
+- **Matrix Assembly**: If feasible, slicing or copying $L$ elements into $m$ rows of length $n$ copies each element exactly once.
+- **Total Time Complexity**: $\mathcal{O}(L)$ when $L = m \cdot n$, and $\mathcal{O}(1)$ when dimensions do not match. This is asymptotically optimal as every element must be written to the output.
+
+### Space Complexity
+- **Output Storage**: The resulting 2D list of lists contains $m \cdot n = L$ integers, occupying $\mathcal{O}(L)$ space.
+- **Auxiliary Memory**: Storing row slice pointers requires $\mathcal{O}(1)$ extra space beyond the output container.
+- **Total Auxiliary Space**: $\mathcal{O}(1)$ auxiliary space excluding the returned matrix.

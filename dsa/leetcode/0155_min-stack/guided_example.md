@@ -1,152 +1,184 @@
 # Guided Example: Min Stack
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step parallel stack synchronization tracking prefix minimums in constant $O(1)$ time across push, pop, and query operations:
 
-- **Input:** `{"operations": ["MinStack", "push", "getMin", "top"], "arguments": [[], [1], [], []]}`
-- **Required output:** `[null, null, 1, 1]`
+- **Input Operations:** `["MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin"]`
+- **Arguments:** `[[], [-2], [0], [-3], [], [], [], []]`
+- **Required output:** `[null, null, null, null, -3, null, 0, -2]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates auxiliary prefix minimum synchronization (recording $\min(\text{val}, \text{min\_stack}[-1])$ on every push), proving why stack pop naturally unwinds minimum history without scanning, comparing twin stacks against single-stack pair encoding, and achieving strictly $O(1)$ time across all operations.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+Design a stack that supports `push`, `pop`, `top`, and `getMin` in strictly constant $O(1)$ time:
+1. `push(-2)`
+2. `push(0)`
+3. `push(-3)`
+4. `getMin()` $\implies$ returns $-3$
+5. `pop()` $\implies$ removes $-3$
+6. `top()` $\implies$ returns $0$
+7. `getMin()` $\implies$ returns $-2$ (the previous minimum is restored instantly)
 
-The objective is to compute `[null, null, 1, 1]` from `{"operations": ["MinStack", "push", "getMin", "top"], "arguments": [[], [1], [], []]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In a standard stack, finding the minimum requires an $O(N)$ linear scan.
+Using a heap allows $O(1)$ min lookups, but deletion (`pop`) takes $O(N)$ or $O(\log N)$ time because an arbitrary value must be excised.
+Because a stack operates strictly in LIFO order, state history is strictly nested: while elements remain below depth $d$, the minimum of that sub-stack never changes.
+By maintaining an auxiliary stack `min_stack` where `min_stack[d]` holds the minimum of all values from depth $0$ through $d$, `getMin()` is a simple $O(1)$ stack peek (`min_stack[-1]`), and `pop()` automatically restores the prior minimum in $O(1)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Twin-Stack Synchronization Architecture
+Maintain two dynamic arrays:
+- `val_stack`: stores the actual values in arrival order.
+- `min_stack`: stores the running prefix minimum at each depth.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Operational Contracts ($O(1)$ Time)
+1. **`push(val)`:**
+   - Append to value stack:
+     $$
+     \text{val\_stack.append}(\text{val})
+     $$
+   - Compute and append new prefix minimum:
+     $$
+     \text{new\_min} = \min(\text{val}, \, \text{min\_stack}[-1]) \quad (\text{or } \text{val} \text{ if } \text{min\_stack is empty})
+     $$
+     $$
+     \text{min\_stack.append}(\text{new\_min})
+     $$
+2. **`pop()`:**
+   - Pop simultaneously from both stacks:
+     $$
+     \text{val\_stack.pop()}, \quad \text{min\_stack.pop()}
+     $$
+     *(Popping `min_stack` exposes the exact minimum of the remaining elements)*.
+3. **`top()`:**
+   - Return top of value stack: $\text{val\_stack}[-1]$.
+4. **`getMin()`:**
+   - Return top of minimum stack: $\text{min\_stack}[-1]$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For any depth $d \in [0, |\text{val\_stack}| - 1]$, $\text{min\_stack}[d] = \min_{0 \le i \le d} \text{val\_stack}[i]$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why an ordinary stack is not enough
+We trace the operations on `MinStack()`:
 
-A normal stack can return or remove its top in constant time because the top is
-stored at a known end of the underlying list. Its minimum is different: without
-extra information, `getMin()` would have to inspect every active value. That
-would take linear time and violate the requirement that every operation be
-$O(1)$.
-
-The key observation is that stack history is nested. While a value remains in
-the stack, nothing below it changes. Therefore, for every depth, the minimum of
-the prefix ending at that depth can be computed once during `push` and kept
-until the matching `pop`.
-
-The selected class represents this history with two synchronized lists:
-
-- `stk1[i]` is the actual value pushed at depth `i`;
-- `stk2[i + 1]` is the minimum of all actual values from depth zero through
-  depth `i`.
-
-`stk2` has one extra entry at its bottom: positive infinity. That sentinel is
-the minimum of an empty conceptual prefix and lets the first `push` use exactly
-the same formula as every later push.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["MinStack", "push", "getMin", "top"], "arguments": [[], [1], [], []]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+### Step 1: `MinStack()`
+- `val_stack = []`
+- `min_stack = []`
+- Output: `null`
 
 ---
 
-### Step 2: Push a value and its prefix minimum together
-
-For `push(val)`, the source first appends `val` to `stk1`. It then computes
-`min(val, stk2[-1])` and appends that result to `stk2`.
-
-Suppose the old stack minimum was $m$. After pushing $v$, every earlier value
-is unchanged, so the new minimum can only be one of two values: the old minimum
-$m$, or the newly introduced value $v$. Hence the new minimum is
-$\min(v,m)$. No scan is necessary.
-
-For the first push, the old tracker top is infinity. Every allowed integer is
-smaller than infinity, so the appended tracker value is the first actual value.
-The sentinel removes the need for a special empty-stack branch.
-
-Equal minima are deliberately repeated. If the current minimum is `-2` and
-another `-2` is pushed, the tracker receives another `-2`. This is useful:
-each actual stack entry has exactly one matching tracker entry, so a pop can
-remove one item from each list without counting duplicates or comparing values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 2: `push(-2)`
+- `val = -2`.
+- `val_stack.append(-2)`.
+- `min_stack` is empty $\implies$ new minimum is $-2$.
+- `min_stack.append(-2)`.
+- State: `val_stack = [-2]`, `min_stack = [-2]`.
+- Output: `null`
 
 ---
 
-### Step 3: Keep both lists synchronized on removal
+### Step 3: `push(0)`
+- `val = 0`.
+- `val_stack.append(0)`.
+- Prior min: $\text{min\_stack}[-1] = -2$.
+- New min: $\min(0, -2) = -2$.
+- `min_stack.append(-2)`.
+- State: `val_stack = [-2, 0]`, `min_stack = [-2, -2]`.
+- Output: `null`
 
-`pop()` calls `pop()` once on `stk1` and once on `stk2`. Before the operation,
-an actual stack of size $k$ has a tracker of size $k+1$, including the
-sentinel. After removing one entry from each, their size difference remains
-one.
+---
 
-The tracker value exposed afterward was created when the new top was pushed.
-It is therefore exactly the minimum of all entries that still remain. This
-holds whether the removed value was larger than the minimum, was the only
-occurrence of the minimum, or was one of several equal minima.
+### Step 4: `push(-3)`
+- `val = -3`.
+- `val_stack.append(-3)`.
+- Prior min: $-2$.
+- New min: $\min(-3, -2) = -3$.
+- `min_stack.append(-3)`.
+- State: `val_stack = [-2, 0, -3]`, `min_stack = [-2, -2, -3]`.
+- Output: `null`
 
-The problem guarantees that `pop()` is called only on a nonempty stack. As a
-result, the actual list never underflows, and the sentinel is never removed.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, null, 1, 1]` |
+### Step 5: `getMin()`
+- Inspect top of `min_stack`: $\text{min\_stack}[-1] = \mathbf{-3}$.
+- Output: $\mathbf{-3}$
+
+---
+
+### Step 6: `pop()`
+- Pop top element from both stacks:
+  - `val_stack.pop()` $\implies$ removes $-3$.
+  - `min_stack.pop()` $\implies$ removes $-3$.
+- State:
+  - `val_stack = [-2, 0]`
+  - `min_stack = [-2, -2]`
+- Output: `null`
+
+---
+
+### Step 7: `top()`
+- Inspect top of `val_stack`: $\text{val\_stack}[-1] = \mathbf{0}$.
+- Output: $\mathbf{0}$
+
+---
+
+### Step 8: `getMin()`
+- Inspect top of `min_stack`: $\text{min\_stack}[-1] = \mathbf{-2}$.
+- Prior minimum $-2$ is restored in $O(1)$ time!
+- Output: $\mathbf{-2}$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["MinStack", "push", "getMin", "top"], "arguments": [[], [1], [], []]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, null, 1, 1]` | Verified |
+```text
+Operation    val_stack              min_stack             Return Value
+push(-2):    [-2]                   [-2]                  null
+push(0):     [-2, 0]                [-2, -2]              null
+push(-3):    [-2, 0, -3]            [-2, -2, -3]          null
+getMin():    [-2, 0, -3]            [-2, -2, -3]          -3
+pop():       [-2, 0]                [-2, -2]              null
+top():       [-2, 0]                [-2, -2]              0
+getMin():    [-2, 0]                [-2, -2]              -2
+```
+
+| Step | Operation | Input Value | `val_stack` State | `min_stack` State | Current Minimum | Emitted Result |
+|:---:|:---:|:---:|:---|:---|:---:|:---:|
+| 1 | `MinStack` | - | `[]` | `[]` | - | `null` |
+| 2 | `push` | -2 | `[-2]` | `[-2]` | -2 | `null` |
+| 3 | `push` | 0 | `[-2, 0]` | `[-2, -2]` | -2 | `null` |
+| 4 | `push` | -3 | `[-2, 0, -3]` | `[-2, -2, -3]` | -3 | `null` |
+| **5** | **`getMin`** | - | `[-2, 0, -3]` | `[-2, -2, -3]` | **-3** | **-3** |
+| 6 | `pop` | - | `[-2, 0]` | `[-2, -2]` | -2 | `null` |
+| **7** | **`top`** | - | `[-2, 0]` | `[-2, -2]` | -2 | **0** |
+| **8** | **`getMin`** | - | `[-2, 0]` | `[-2, -2]` | **-2** | **-2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any sequence of elements $[v_0, v_1, \dots, v_k]$, the minimum is defined recursively as $\min(v_k, \min_{0 \le i < k} v_i)$. Because `min_stack` stores this exact recursive recurrence at every depth, the top of `min_stack` is mathematically guaranteed to equal the minimum of the active elements.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Popping a value also pops its corresponding prefix minimum entry. Since earlier entries in `min_stack` were computed when those earlier elements were added, popping exposes the historical minimum without recalculation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One stack of pairs:** Store `(value, minimum_so_far)` at every depth. It expresses the same invariant with one container and the same $O(n)$ storage.
-- **Two stacks with change points:** Keep all values in one stack and push onto a minimum stack only when a value is at most the current minimum. Equal minima must also be tracked, or counted, so popping one duplicate does not lose the remaining minimum.
-- **Difference encoding:** Store differences relative to the current minimum and restore the previous minimum algebraically when a negative marker is popped. It uses one list but requires more careful arithmetic.
-- **Scan during `getMin`:** Uses no minimum history, but a query becomes $O(n)$ and violates the contract.
-- **Heap or balanced tree:** Maintaining deletions consistently costs at least logarithmic time and is unnecessary for stack-ordered removal.
-- **Repeated minimum:** The tracker intentionally stores repeated prefix minima, so removing one occurrence leaves the next correct tracker entry.
-- **First push:** The infinity sentinel makes the ordinary minimum formula valid, provided `inf` is defined.
-- **Pop to empty:** The actual list becomes empty while the tracker returns to `[inf]`; the contract prevents `top()` or `getMin()` at that moment.
-- **Full integer range:** Comparing an allowed integer with mathematical infinity is safe in Python.
-- **Undefined sentinel name:** Standalone use must define `inf`; otherwise even construction fails before any stack operation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to Store Duplicate Minima:** In optimization attempts that only push onto `min_stack` when `val < current_min`, duplicate minima (e.g. pushing $-2$ twice) will only record one $-2$. Popping the first $-2$ would erroneously delete the minimum marker, corrupting future `getMin()` calls! Either duplicate the minimum entry or use `val <= current_min`.
+- **Calling Operations on Empty Stack:** The problem specification guarantees that `pop`, `top`, and `getMin` are called only on non-empty stacks, avoiding underflow handling.
+- **Space Optimization with Pairs:** Storing tuples `(val, min_val)` in a single stack accomplishes identical functionality with a single array allocation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of values currently in the logical stack, and let $q$ be
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(1)$ time for every operation (`push`, `pop`, `top`, `getMin`). Each operation performs scalar comparisons and $O(1)$ array append/pop operations.
+- **Auxiliary Space Complexity:** $O(N)$, where $N$ is the number of elements currently in the stack, storing one value and one minimum entry per level.

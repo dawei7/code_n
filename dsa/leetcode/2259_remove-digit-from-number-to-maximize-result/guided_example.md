@@ -1,127 +1,185 @@
 # Guided Example: Remove Digit From Number to Maximize Result
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"number": "123", "digit": "3"}`
-- **Required output:** `"12"`
+Given a numerical string $\text{number}$ representing a positive integer and a character $\text{digit}$, the objective is to remove **exactly one** occurrence of $\text{digit}$ from $\text{number}$ such that the numerical value of the resulting decimal string is maximized.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Constraints and guarantees:
+- The target character $\text{digit}$ appears at least once in $\text{number}$.
+- Every candidate string produced by removing a single character has the exact same length: $n - 1$, where $n = |\text{number}|$.
+- The output must be returned as a string representation of the maximum possible integer.
 
----
+### Representative Instance
 
-## 1. Instance & Teaching Goal
+Consider the input parameters:
+- String: $\text{number} = \text{"1231"}$
+- Target digit: $\text{digit} = \text{'1'}$
 
-You are given a string `number` representing a **positive integer** and a character `digit`.
+The target character $\text{'1'}$ occurs at two distinct positions:
+1. Index $0$: Removing index $0$ yields $\text{"231"}$.
+2. Index $3$: Removing index $3$ yields $\text{"123"}$.
 
-The objective is to compute `"12"` from `{"number": "123", "digit": "3"}` while avoiding redundant calculations and unnecessary overhead.
+Comparing the candidate integers:
+$$231 > 123$$
+The optimal result is $\text{"231"}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Enumerate exactly the legal choices
-
-The operation must remove exactly one occurrence of the character `digit` from `number`. The solution scans `number` with `enumerate`, so each loop item provides both the position `i` and the character `d` stored there. The condition `if d == digit` filters the scan to precisely the positions that are legal to delete.
-
-For every legal position, the expression
-
-`number[:i] + number[i + 1:]`
-
-constructs the result of deleting that one character. The first slice contains every character before position `i`. The second starts immediately after `i` and contains all later characters. Joining them omits exactly `number[i]` and preserves the relative order of every other digit. It cannot accidentally remove two occurrences, reorder digits, or substitute a different character.
-
-The problem guarantees that `digit` appears in `number` at least once. Therefore, the generator passed to `max` always produces at least one candidate, and `max` is never applied to an empty sequence.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"number": "123", "digit": "3"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+```mermaid
+flowchart TD
+    accTitle: Single Digit Removal Optimization Pipeline
+    accDescr: Evaluation of all valid single-deletion candidates from a decimal string and selection of the lexicographical maximum.
+    Input["Input: number = '1231', digit = '1'"] --> Detect["Identify Occurrence Indices:<br/>i = 0 and i = 3"]
+    Detect --> Cand0["Remove index 0: '231'<br/>Numerical Value: 231"]
+    Detect --> Cand3["Remove index 3: '123'<br/>Numerical Value: 123"]
+    Cand0 --> Compare{"Compare Candidates:<br/>231 vs 123"}
+    Cand3 --> Compare
+    Compare --> PickMax["Select Maximum: '231'"]
+```
 
 ---
 
-### Step 2: Why comparing the candidates as strings is valid
+## 2. Mathematical & Algorithmic Principles
 
-Python's `max` compares strings lexicographically. At first glance, that might seem different from choosing the greatest integer, but all candidates have exactly the same length: each begins with the same length-`n` input and removes exactly one character. For two equal-length decimal strings, lexicographic order and numeric order agree.
+### Equivalence of Fixed-Length Numerical and Lexicographical Orders
 
-To see why, consider the first position where two candidates differ. Every earlier digit is equal, so those shared positions contribute the same amount to both numbers. At the first differing position, the candidate with the larger digit is numerically larger because that digit has a higher place value than all later positions combined can overturn. Lexicographic comparison makes exactly the same decision at that first difference.
+Let $A = a_1 a_2 \dots a_{n-1}$ and $B = b_1 b_2 \dots b_{n-1}$ be two decimal strings of equal length $n - 1$.
+In base $10$, the integer values satisfy:
 
-The input consists of decimal digits from `'1'` through `'9'`, so removing a character cannot create an ambiguous leading-zero representation. Even if zero were present, equal length would still be the central comparison fact, but the stated digit range makes the representation especially direct.
+$$\text{val}(A) > \text{val}(B) \iff A >_{\text{lex}} B$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+where $>_{\text{lex}}$ denotes standard lexicographical comparison from left to right.
+Because deleting any single character from $\text{number}$ always produces a string of length exactly $n - 1$, finding the maximum numerical value is strictly equivalent to finding the **lexicographically largest string** among all deletion candidates:
 
----
+$$S^* = \max_{i \,:\, \text{number}[i] = \text{digit}} \Big( \text{number}[0 \dots i - 1] \circ \text{number}[i + 1 \dots n - 1] \Big)$$
 
-### Step 3: How deleting one copy changes the remaining alignment
+### The Greedy Ascent Principle
 
-When occurrence `i` is removed, every digit before `i` remains in the same position and every digit after it shifts one place to the left. Thus, different deletion choices often share a long prefix. The first point at which their retained sequences differ determines which candidate is larger.
+When deleting the digit at index $i$, the adjacent successor digit $\text{number}[i + 1]$ shifts leftward into position $i$.
+How does this shift affect the value of the number?
+1. **Ascent ($\text{number}[i + 1] > \text{digit}$):**
+   Replacing $\text{digit}$ with a strictly larger digit at place value $10^{n - 1 - i}$ strictly increases the prefix.
+   Because higher place values dominate lower place values in base $10$, the **very first occurrence** from left to right where $\text{number}[i + 1] > \text{digit}$ yields the globally maximal result.
+2. **Descent or Tie ($\text{number}[i + 1] \le \text{digit}$):**
+   Replacing $\text{digit}$ with a smaller or equal digit reduces or maintains that place value.
+3. **Fallback to Last Occurrence:**
+   If no occurrence is followed by a larger digit, every deletion causes a local descent. To minimize the damage to the most significant digits, we must delete the **last occurrence** of $\text{digit}$, deferring the reduction to the smallest possible place value.
 
-For example, suppose two copies of the target occur at positions `i < j`. Deleting the earlier occurrence causes `number[i + 1]` to move into position `i`. Deleting the later occurrence leaves `digit` at position `i`. If the character immediately after the earlier occurrence is greater than `digit`, deleting the earlier copy produces a larger digit at the first differing position and must be better. If it is smaller, preserving the earlier `digit` is better. This observation leads to a greedy alternative, but the exact implementation does not need to encode or prove all such cases: it materializes every legal result and asks `max` to compare them.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"12"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"number": "123", "digit": "3"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"12"` | Verified |
+Both the exhaustive candidate evaluation and the single-pass greedy ascent principle produce identical, provably optimal outcomes.
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We analyze the representative instance $\text{number} = \text{"1231"}$ with $\text{digit} = \text{'1'}$.
+Length: $n = 4$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Candidate Generation
+
+1. **Scan Index $i = 0$:**
+   - Character $\text{number}[0] = \text{'1'}$, matching target $\text{digit}$.
+   - Splice left prefix $\text{number}[0 : 0] = \text{""}$ with right suffix $\text{number}[1 : 4] = \text{"231"}$.
+   - Candidate $0$: $\text{"231"}$.
+   - Greedy observation: successor character is $\text{number}[1] = \text{'2'} > \text{'1'}$. This represents an immediate ascent at the highest place value!
+
+2. **Scan Index $i = 1$:**
+   - Character is $\text{'2'} \ne \text{'1'}$. Skip.
+
+3. **Scan Index $i = 2$:**
+   - Character is $\text{'3'} \ne \text{'1'}$. Skip.
+
+4. **Scan Index $i = 3$:**
+   - Character $\text{number}[3] = \text{'1'}$, matching target $\text{digit}$.
+   - Splice left prefix $\text{number}[0 : 3] = \text{"123"}$ with right suffix $\text{number}[4 : 4] = \text{""}$.
+   - Candidate $3$: $\text{"123"}$.
+
+### Lexicographical Comparison
+Compare the candidate set:
+$$\mathcal{C} = \{\text{"231"}, \; \text{"123"}\}$$
+Comparing first characters:
+- At index $0$: $\text{'2'} > \text{'1'}$.
+- Therefore: $\text{"231"} > \text{"123"}$.
+
+Optimal choice: $\text{"231"}$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 4. Comprehensive State Trace
 
-- **Greedy first improving deletion:** Scan target occurrences from left to right and remove the first one whose following digit is larger than `digit`; if none exists, remove the last occurrence. This can run in `O(n)` time, but it is an alternative to the submitted enumeration, not what the exact solution executes.
-- **Build a list of every candidate:** A list comprehension would make the same choice but retain all generated strings, increasing peak space to `O(kn)`.
-- **Convert every candidate to an integer:** Numeric conversion is unnecessary because all candidates have equal length. It adds work and obscures the useful ordering argument.
-- **Delete a globally smallest digit:** The removable character is fixed by `digit`, and position affects the remaining place values. Choosing by digit magnitude alone does not solve the problem.
-- **Only one target occurrence:** The generator yields one candidate, so `max` returns the uniquely legal result.
-- **Target at the first position:** `number[:0]` is the empty string, and concatenating the remaining suffix correctly removes the first character.
-- **Target at the final position:** `number[i + 1:]` is empty, and the prefix is the complete result.
-- **Adjacent target occurrences:** Two deletion positions may produce identical strings. Duplicate candidates are harmless.
-- **Every character equals the target:** Every deletion produces the same length-`n - 1` string, which is necessarily the answer.
-- **Long common prefixes:** String comparison may inspect nearly the entire candidate, which is included in the `O(kn)` time bound.
-- **Guaranteed occurrence:** The source guarantee is essential to this concise use of `max`; without it, the generator would be empty and Python would raise `ValueError`.
-- **Exactly one deletion:** Returning the original number is never considered, even when it would be numerically larger due to having an extra digit, because it is not a legal result.
-- **String immutability:** The input is not modified. Every slice and concatenation creates a new string.
-- **Lexicographic ordering:** It is safe specifically because all candidates contain exactly `n - 1` decimal digits. Comparing arbitrary unequal-length numeric strings lexicographically would not generally be valid.
-- **No leading-zero complication:** The stated characters range from `'1'` to `'9'`, so every candidate remains an ordinary length-`n - 1` decimal representation.
-- **Small input bound:** With `n \le 100`, the enumeration's quadratic worst case is modest, which supports the solution's preference for transparency.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Candidate Deletion Trace Table
+
+The table below catalogs every occurrence of the target digit and the resulting candidate string for the representative instance:
+
+| Occurrence Index $i$ | Target Character | Successor Digit | Local Trend | Candidate String Constructed | Numerical Value | Status vs Global Maximum |
+|---|---|---|---|---|---|---|
+| **$0$** | $\text{'1'}$ | $\text{'2'}$ | Ascent ($\text{'2'} > \text{'1'}$) | $\text{"231"}$ | $231$ | **Global Maximum** |
+| **$3$** | $\text{'1'}$ | None (End) | Boundary | $\text{"123"}$ | $123$ | Suboptimal |
+
+### Comparison Across Canonical Digit Patterns
+
+The table below contrasts the greedy transition behavior across different number topologies:
+
+| Input Number | Target Digit | All Generated Candidates | Optimal Decision Reason | Maximum Output |
+|---|---|---|---|---|
+| $\text{"1231"}$ | $\text{'1'}$ | $[\text{"231"}, \text{"123"}]$ | First $\text{'1'}$ precedes larger digit $\text{'2'}$ | $\text{"231"}$ |
+| $\text{"551"}$ | $\text{'5'}$ | $[\text{"51"}, \text{"51"}]$ | Both deletions produce identical strings | $\text{"51"}$ |
+| $\text{"97765"}$ | $\text{'7'}$ | $[\text{"9765"}, \text{"9765"}]$ | No ascent; removes last occurrence | $\text{"9765"}$ |
+| $\text{"7657876"}$ | $\text{'7'}$ | $[\text{"657876"}, \text{"765876"}, \text{"765786"}]$ | Second $\text{'7'}$ precedes $\text{'8'} > \text{'7'}$ | $\text{"765876"}$ |
+| $\text{"123"}$ | $\text{'3'}$ | $[\text{"12"}]$ | Unique occurrence | $\text{"12"}$ |
 
 ---
 
-## 7. Complexity Derivation
+## 5. Algorithmic Correctness & Soundness
 
-- **Time Complexity:** $O(n + kn)$. Let `n` be the length of `number` and let `k` be the number of occurrences of `digit`. The scan itself visits `n` characters. For each of the `k` matching positions, two slices and one concatenation construct a length-`n - 1` candidate, taking `O(n)` time. Comparing that candidate with the current maximum can also examine up to `O(n)` characters when the strings share a long prefix.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Completeness of Candidate Space
+
+The problem restricts choices to deleting exactly one occurrence of $\text{digit}$.
+- If $\text{digit}$ appears $k$ times in $\text{number}$, there are precisely $k$ legal candidate strings.
+- Because candidate generation enumerates all indices $i$ where $\text{number}[i] = \text{digit}$, the candidate set evaluated is complete and exhaustive.
+- Evaluating the maximum over this finite set guarantees that no valid configuration can be missed.
+
+### Decoupling Place Values
+
+In decimal positional notation:
+$$\text{val}(S) = \sum_{j=0}^{n-2} c_j \cdot 10^{n - 2 - j}$$
+For any two strings $A$ and $B$, let $k$ be the first index from the left where $A[k] \neq B[k]$.
+If $A[k] > B[k]$, then:
+$$\text{val}(A) - \text{val}(B) \ge 10^{n - 2 - k} - \sum_{j=k+1}^{n-2} 9 \cdot 10^{n - 2 - j} = 10^{n - 2 - k} - (10^{n - 2 - k} - 1) = 1 > 0$$
+Hence, the character comparison at the earliest differing index strictly governs the numerical magnitude regardless of subsequent characters. This establishes that lexicographical comparison is exact.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Edge Cases
+1. **Single Occurrence:**
+   If $\text{digit}$ appears exactly once (e.g. $\text{"123"}$ with $\text{'3'}$), there is only one candidate string ($\text{"12"}$), which is returned trivially.
+2. **All Identical Digits:**
+   E.g., $\text{"99999"}$ with $\text{'9'}$. Deleting any occurrence produces $\text{"9999"}$.
+3. **Target at Final Position:**
+   If the target digit is at the last index $n - 1$, its successor is empty. Slicing handles this naturally by taking prefix $\text{number}[:n-1]$.
+4. **Adjacent Duplicates:**
+   In $\text{"551"}$ with $\text{'5'}$, deleting index $0$ gives $\text{"51"}$, and deleting index $1$ gives $\text{"51"}$. Equal maxima are resolved identically.
+
+### Anti-Patterns to Avoid
+- **Converting to Arbitrary-Precision Integers:**
+  Parsing large strings into big integers (`int(s)`) and using numeric `max()`. String comparison on equal-length strings achieves the exact same result in $O(n)$ time without numerical conversion overhead.
+- **Deleting the Highest-Index Digit Unconditionally:**
+  Assuming that deleting the latest occurrence is always optimal. In $\text{"1231"}$, deleting index $3$ gives $\text{"123"}$, but deleting index $0$ gives $\text{"231"}$. The earlier occurrence must be removed when followed by a larger digit.
+- **Modifying the Original String In-Place:**
+  Strings are immutable in Python; attempting in-place character deletion can cause unnecessary intermediate string reallocations.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+- Let $n = |\text{number}|$ be the length of the string.
+- Scanning $\text{number}$ to locate occurrences of $\text{digit}$: $O(n)$ operations.
+- The target digit occurs at most $n$ times.
+- For each occurrence, slicing and concatenating two substrings creates a string of length $n - 1$: $O(n)$ time.
+- Finding the lexicographical maximum among at most $n$ candidate strings of length $n - 1$:
+  $$\text{Total Time} \le n \times O(n) = O(n^2)$$
+  Given $n \le 100$, the total number of operations is at most $100 \times 100 = 10{,}000$, executing in under $0.1 \text{ ms}$.
+
+### Space Complexity
+- **Candidate Storage:** Storing candidate strings of length $n - 1$ during generator evaluation: $O(n)$ memory.
+- **Total Space Complexity:** $\mathcal{O}(n)$ auxiliary space.

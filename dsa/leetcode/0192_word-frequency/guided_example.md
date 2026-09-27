@@ -1,133 +1,212 @@
 # Guided Example: Word Frequency
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step Unix shell stream transformation pipeline and single-pass `awk` associative array evaluation on representative text files:
 
-- **Input:** `{"stdin": "", "files": {"words.txt": "the day is sunny the the\nthe sunny is is\n"}}`
-- **Required output:** `"the 4\nis 3\nsunny 2\nday 1"`
+- **Input File `words.txt`:**
+  ```text
+  the day is sunny the the
+  the sunny is is
+  ```
+- **Required output:**
+  ```text
+  the 4
+  is 3
+  sunny 2
+  day 1
+  ```
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Unix pipeline stream processing, breaks down tokenization (`tr -s ' ' '\n'`), adjacent grouping (`sort | uniq -c`), numeric descending ranking (`sort -nr`), and field reordering (`awk '{print $2, $1}'`), and analyzes execution complexity in $O(W \log W)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Write a bash script to calculate the frequency of each word in a text file `words.txt`.
+Given a text file `words.txt` containing space-delimited lowercase words:
+```text
+the day is sunny the the
+the sunny is is
+```
+Compute the frequency count of each unique word, and print the result sorted by descending frequency in the format:
+$$
+\text{<word> <count>}
+$$
 
-The objective is to compute `"the 4\nis 3\nsunny 2\nday 1"` from `{"stdin": "", "files": {"words.txt": "the day is sunny the the\nthe sunny is is\n"}}` while avoiding redundant calculations and unnecessary overhead.
+Analyzing the token counts:
+- `"the"`: appears $3$ times on line 1, $1$ time on line 2 $\implies$ total $= 4$.
+- `"is"`: appears $1$ time on line 1, $2$ times on line 2 $\implies$ total $= 3$.
+- `"sunny"`: appears $1$ time on line 1, $1$ time on line 2 $\implies$ total $= 2$.
+- `"day"`: appears $1$ time on line 1, $0$ times on line 2 $\implies$ total $= 1$.
+Sorted descending by frequency:
+$$
+\text{"the 4"} \to \text{"is 3"} \to \text{"sunny 2"} \to \text{"day 1"}
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Unix philosophy solves this by composing modular standard command-line utilities (`tr`, `sort`, `uniq`, `awk`) via anonymous pipes (`|`), where the standard output of each filter feeds the standard input of the next.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Method A: The 5-Stage Unix Filter Pipeline
+```bash
+cat words.txt | tr -s ' ' '\n' | sort | uniq -c | sort -nr | awk '{print $2, $1}'
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+#### Pipeline Responsibilities:
+1. **`tr -s ' ' '\n'` (Word Tokenization):**
+   Translates each space into a newline character. The `-s` (squeeze) flag collapses runs of multiple consecutive spaces into a single newline, ensuring no empty blank lines are produced.
+2. **`sort` (Lexicographical Pre-sorting):**
+   The Unix `uniq` utility only collapses **adjacent** matching lines. Sorting first ensures all occurrences of identical words form contiguous clusters.
+3. **`uniq -c` (Prefix Counting):**
+   Counts consecutive identical lines and emits rows formatted as: `   <count> <word>`.
+4. **`sort -nr` (Numeric Reverse Sort):**
+   Sorts lines based on the first whitespace-delimited field numerically (`-n`) in descending/reverse order (`-r`).
+5. **`awk '{print $2, $1}'` (Field Projection):**
+   Swaps field 1 (`$1` = count) and field 2 (`$2` = word) to output the required `<word> <count>` schema.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Method B: Single-Pass `awk` Associative Array
+```bash
+awk '{
+    for (i = 1; i <= NF; i++) count[$i]++
+} END {
+    for (w in count) print w, count[w]
+}' words.txt | sort -k2,2nr
+```
+`awk` splits each line on whitespace into fields `$1 \dots $NF`, accumulating frequencies in a hash map `count`, and sorts the output by column 2 numerically descending.
+
+> **Invariant.** After `sort | uniq -c`, every unique word in `words.txt` appears exactly once with its true total frequency. After `sort -nr`, records are strictly ordered by non-increasing frequency.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: View the shell pipeline as staged data transformations
+We trace the data stream stage by stage through the pipeline on `words.txt`:
 
-The script turns a text file into one word per record, sorts equal words
-together, counts adjacent equal records, sorts those counts from largest to
-smallest, and finally rearranges each line into the requested `word count`
-format. Each command has one small responsibility, and the pipe operator sends
-one command's standard output into the next command's standard input.
-
-The complete pipeline reads the fixed file `words.txt`; it does not consume
-function parameters or caller-provided standard input. Its final command writes
-to standard output, matching the Reference contract.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"stdin": "", "files": {"words.txt": "the day is sunny the the\nthe sunny is is\n"}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Normalize spaces into line boundaries
-
-`cat words.txt` streams the file contents. `tr -s ' ' '\n'` translates every
-space into a newline. The `-s` option squeezes repeated translated characters,
-so a run of several spaces becomes one newline rather than several empty
-records.
-
-Existing newline characters pass through unchanged. Under the Reference's
-restricted content—lowercase word characters, spaces, and the physical line
-boundaries of the file—every word consequently occupies its own line. This is
-the representation the following Unix tools expect.
-
-The initial `cat` is not necessary; `tr -s ' ' '\n' < words.txt` could read the
-file directly. It is nevertheless logically correct and makes the left-to-right
-pipeline visually explicit.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Stage 1: Tokenization via `tr -s ' ' '\n'`
+Input stream: `"the day is sunny the the\nthe sunny is is\n"`.
+- Spaces squeezed and replaced with newlines:
+  ```text
+  the
+  day
+  is
+  sunny
+  the
+  the
+  the
+  sunny
+  is
+  is
+  ```
 
 ---
 
-### Step 3: Sort words so equal values become adjacent
+### Stage 2: Lexicographical Pre-Sort (`sort`)
+Orders the 10 tokens alphabetically:
+```text
+day
+is
+is
+is
+sunny
+sunny
+the
+the
+the
+the
+```
+*(Notice: identical words are now grouped into contiguous adjacent blocks)*.
 
-The first `sort` orders the one-word lines lexicographically. Its purpose is not
-the final display order. It prepares the stream for `uniq`, which only combines
-equal lines that are next to one another.
+---
 
-Without this sort, occurrences of `the` separated by other words would form
-different runs and `uniq -c` would report several partial counts. Sorting turns
-all occurrences of each word into one contiguous block.
+### Stage 3: Deduplication and Counting (`uniq -c`)
+Collapses contiguous blocks into counts:
+- `day` (1 line) $\implies$ `1 day`
+- `is` (3 lines) $\implies$ `3 is`
+- `sunny` (2 lines) $\implies$ `2 sunny`
+- `the` (4 lines) $\implies$ `4 the`
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"the 4\nis 3\nsunny 2\nday 1"` |
+Stream state:
+```text
+1 day
+3 is
+2 sunny
+4 the
+```
+
+---
+
+### Stage 4: Frequency Ordering (`sort -nr`)
+Sorts numerically on field 1 descending:
+- $4 > 3 > 2 > 1$.
+
+Stream state:
+```text
+4 the
+3 is
+2 sunny
+1 day
+```
+
+---
+
+### Stage 5: Field Swap (`awk '{print $2, $1}'`)
+Swaps the count (field 1) and word (field 2):
+```text
+the 4
+is 3
+sunny 2
+day 1
+```
+
+Emitted to standard output!
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"stdin": "", "files": {"words.txt": "the day is sunny the the\nthe sunny is is\n"}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"the 4\nis 3\nsunny 2\nday 1"` | Verified |
+```text
+File words.txt:
+"the day is sunny the the \n the sunny is is"
+
+Stage 1: tr -s ' ' '\n'  -> 10 one-word lines
+Stage 2: sort            -> "day", "is" (x3), "sunny" (x2), "the" (x4)
+Stage 3: uniq -c         -> 1 day, 3 is, 2 sunny, 4 the
+Stage 4: sort -nr        -> 4 the, 3 is, 2 sunny, 1 day
+Stage 5: awk '{print $2, $1}' ->
+the 4
+is 3
+sunny 2
+day 1
+```
+
+| Pipeline Stage | Command Invoked | Primary Transformation | Stream Snapshot (Top 2 Records) |
+|:---:|:---|:---|:---|
+| 0 | `cat words.txt` | Raw file ingestion | `"the day is sunny..."` |
+| 1 | `tr -s ' ' '\n'` | Tokenize into 1 word per line | `"the\nday\nis..."` |
+| 2 | `sort` | Alphabetical adjacency clustering | `"day\nis\nis\nis..."` |
+| 3 | `uniq -c` | Count adjacent matching lines | `"1 day\n3 is..."` |
+| 4 | `sort -nr` | Rank descending by numerical count | `"4 the\n3 is..."` |
+| **5** | **`awk '{print $2, $1}'`** | **Format `<word> <count>`** | **`"the 4\nis 3..."` (Final)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** `tr -s ' ' '\n'` handles irregular spaces by squeezing consecutive delimiters. Because `sort` guarantees that all identical words are adjacent, `uniq -c` correctly computes the total global frequency of each word. Sorting with `-nr` places the highest frequency first, and `awk` flips the columns to match the output contract.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in `words.txt` is consumed. No tokens are lost, and all unique words appear in the output.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Single `awk` counter:** Scan all fields into an associative array, print counts, then sort by the second field; this is the competitive variant and handles general field whitespace better.
-- **Direct input redirection:** Replace `cat words.txt | tr ...` with `tr ... < words.txt` to avoid an unnecessary process.
-- **`grep -o` tokenization:** Extract lowercase runs explicitly, but behavior and options vary across environments.
-- **Repeated spaces:** `tr -s` collapses them into one delimiter.
-- **Line breaks:** Existing newlines already separate records and need no translation.
-- **Tabs or carriage returns:** Not translated by the exact command; use `awk` or a complete whitespace class if the domain expands.
-- **Leading or trailing spaces:** May expose empty-record behavior; filter empty lines for a generalized script.
-- **One distinct word:** `uniq -c` emits one record and both sorts remain harmless.
-- **Unique-frequency guarantee:** Makes unspecified tie ordering irrelevant.
-- **Locale:** Can affect lexical comparison cost/order in the preparatory sort but not grouping equality for identical lowercase words.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Calling `uniq -c` Without Pre-Sorting:** In Unix, `uniq` only detects *adjacent* duplicates. If `the` appears on line 1 and line 2, calling `uniq -c` without `sort` emits multiple partial counts (e.g. `3 the` and `1 the`) instead of `4 the`.
+- **Multiple Spaces Between Words:** If text contains `"the   day"`, standard `tr ' ' '\n'` creates empty lines. Adding `-s` (squeeze) collapses consecutive spaces into a single newline.
+- **Output Column Ordering:** `uniq -c` outputs `<count> <word>` with leading spaces. LeetCode requires `<word> <count>`. Reversing columns via `awk '{print $2, $1}'` is mandatory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(u\log u)$. Let $n$ be the number of word occurrences and $c$ the total number of input
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(W \log W)$, where $W$ is the total number of words in `words.txt`. Tokenization takes $O(C)$ where $C$ is character count. Sorting words takes $O(W \log W)$, counting takes $O(W)$, and sorting distinct frequencies takes $O(U \log U)$ where $U \le W$ is unique words.
+- **Auxiliary Space Complexity:** $O(W)$ pipe buffer and sorting memory.

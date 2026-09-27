@@ -2,125 +2,140 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"lowLimit": 1, "highLimit": 10}`
-- **Required output:** `2`
+- **Input:** `lowLimit = 1`, `highLimit = 10`
+- **Required Output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance spans single-digit and multi-digit decimal representations across a decade boundary, demonstrating how base-10 digit sum hashing distributes elements across bounded bins and determines the peak occupancy in linear time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are working in a ball factory where you have `n` balls numbered from `lowLimit` up to `highLimit` **inclusive** (i.e., $n = highLimit - lowLimit + 1$), and an infinite number of boxes numbered from `1` to `infinity`.
+We are given two positive integers `lowLimit` and `highLimit`. There are $N = \text{highLimit} - \text{lowLimit} + 1$ numbered balls, with indices running from `lowLimit` to `highLimit` inclusive. Each ball $x$ is placed into a box whose index equals the sum of its decimal digits:
+$$\text{box}(x) = \sum_{k=0}^{\lfloor \log_{10} x \rfloor} d_k \quad \text{where } x = \sum d_k 10^k$$
 
-The objective is to compute `2` from `{"lowLimit": 1, "highLimit": 10}` while avoiding redundant calculations and unnecessary overhead.
+We seek the maximum number of balls contained within any single box.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Since numbers are bounded by $10^5$, the maximum possible digit sum occurs at $99999$:
+$$9 + 9 + 9 + 9 + 9 = 45 < 50$$
+Rather than dynamically maintaining unbounded hash structures, a compact direct-mapped array of size $50$ handles all possible box allocations in $\mathcal{O}(1)$ space, transforming the problem into a fast single-pass histogram tally.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+| Component | Definition | Range |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Ball Index $x$ | Current ball being processed | $\text{lowLimit} \le x \le \text{highLimit}$ |
+| Digit Sum $S(x)$ | Sum of base-10 digits of $x$ | $1 \le S(x) \le 45$ |
+| Box Occupancy Table $C[s]$ | Count of balls assigned to box number $s$ | Size $50$, initialized to all zeros |
+| Peak Count | $\max_s C[s]$ across all active boxes | Running maximum |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Bounded Digital Sum Partitioning Theorem.**
+> For any positive integer $x \le 10^5$, its base-10 representation has at most $5$ digits (excluding $100000$ which has digit sum $1$). The maximum possible digit sum is:
+> $$S_{\max} = \max_{1 \le x \le 10^5} S(x) = S(99999) = 45$$
+> Thus, the image of the digit-sum mapping $\text{box} : [\text{lowLimit}, \text{highLimit}] \to \mathbb{Z}^+$ is strictly contained within $\{1, 2, \dots, 45\}$.
+> A fixed table of $50$ entries is guaranteed never to suffer from out-of-bounds indexing.
+
+> **Single-Pass Histogram Invariant.**
+> Processing each ball $x$ independently by computing $s = S(x)$ and incrementing $C[s]$ preserves the exact count of balls in every box. After visiting all balls in $[\text{lowLimit}, \text{highLimit}]$, the global maximum occupancy is simply $\max_{1 \le s \le 45} C[s]$.
+
+```mermaid
+flowchart TD
+    accTitle: Ball Digit Sum Histogram Pipeline
+    accDescr: Pipeline showing iteration through ball numbers, extracting digit sums, incrementing box counters, and finding the maximum frequency.
+    A["Input Range: lowLimit = 1, highLimit = 10"] --> B["Initialize Box Counts: C[0..49] = 0"]
+    B --> C["Loop x from lowLimit to highLimit"]
+    C --> D["Compute Digit Sum: S(x)"]
+    D --> E["Increment Box Counter: C[S(x)]++"]
+    E --> F{"Are there more balls?"}
+    F -- Yes --> C
+    F -- No --> G["Find Peak Box: max(C)"]
+    G --> H["Return Maximum Ball Count: 2"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate the placement rule directly into counting
+For `lowLimit = 1` and `highLimit = 10`, there are $10 - 1 + 1 = 10$ balls:
 
-Every integer ball number from `lowLimit` through `highLimit` appears exactly once. Its destination box is determined only by the sum of its decimal digits. Therefore the problem can be solved by visiting every ball, computing that sum, and increasing the counter for the corresponding box.
+### Digit Sum Evaluation and Box Assignment
 
-The exact solution stores the counters in `cnt = [0] * 50`. Index `s` represents box number `s`, and `cnt[s]` records how many processed balls have digit sum `s`. Index zero is allocated even though positive ball numbers never have digit sum zero; keeping it makes the digit sum itself usable as an array index without an offset.
-
-After all balls are processed, `max(cnt)` returns the largest occupancy. The identity of the winning box is irrelevant, and ties need no special treatment because the requested answer is only the number of balls in a most-populated box.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"lowLimit": 1, "highLimit": 10}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Compute one digit sum with repeated division
-
-For each loop value `x`, the solution initializes `y = 0`. The expression `x % 10` extracts the current last decimal digit. Adding that digit to `y` accumulates the digit sum. Integer division `x //= 10` discards the digit just processed.
-
-For example, beginning with `x = 321`:
-
-- The remainder is one, so `y` becomes one and `x` becomes 32.
-- The remainder is two, so `y` becomes three and `x` becomes 3.
-- The remainder is three, so `y` becomes six and `x` becomes zero.
-
-The `while x` loop then stops, and `cnt[6]` is incremented. This exactly implements the placement rule for ball 321.
-
-At every iteration of the inner loop, `y` equals the sum of digits already removed, while the current `x` contains exactly the not-yet-processed leading digits. When `x` reaches zero, no digits remain, so `y` is the complete digit sum. This invariant explains why no decimal digit is omitted or counted twice.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Ball $x$ | Digit Decomposition | Digit Sum $S(x)$ | Target Box | Box Count After Insertion $C[S(x)]$ |
+|---|---|---|---|---|
+| $1$ | $1$ | $1$ | Box $1$ | $C[1] = 1$ |
+| $2$ | $2$ | $2$ | Box $2$ | $C[2] = 1$ |
+| $3$ | $3$ | $3$ | Box $3$ | $C[3] = 1$ |
+| $4$ | $4$ | $4$ | Box $4$ | $C[4] = 1$ |
+| $5$ | $5$ | $5$ | Box $5$ | $C[5] = 1$ |
+| $6$ | $6$ | $6$ | Box $6$ | $C[6] = 1$ |
+| $7$ | $7$ | $7$ | Box $7$ | $C[7] = 1$ |
+| $8$ | $8$ | $8$ | Box $8$ | $C[8] = 1$ |
+| $9$ | $9$ | $9$ | Box $9$ | $C[9] = 1$ |
+| $10$ | $1 + 0 = 1$ | $1$ | Box $1$ | $C[1] = 1 + 1 = \mathbf{2}$ |
 
 ---
 
-### Step 3: Why changing x does not skip ball numbers
+### Step 2: Final Histogram Analysis
 
-The code deliberately reduces `x` to zero while finding its digits. In some loop styles, mutating the loop variable could make the next number incorrect. Python's `for x in range(lowLimit, highLimit + 1)` obtains each next value from the independent `range` iterator, however. At the beginning of the next outer iteration, Python assigns the next integer to `x` regardless of how the preceding iteration changed it.
+Examining the occupancy of all non-empty boxes:
+- Box $1$: Contains balls $\{1, 10\} \implies \text{count} = 2$
+- Box $2$: Contains ball $\{2\} \implies \text{count} = 1$
+- Box $3$: Contains ball $\{3\} \implies \text{count} = 1$
+- Box $4$: Contains ball $\{4\} \implies \text{count} = 1$
+- Box $5$: Contains ball $\{5\} \implies \text{count} = 1$
+- Box $6$: Contains ball $\{6\} \implies \text{count} = 1$
+- Box $7$: Contains ball $\{7\} \implies \text{count} = 1$
+- Box $8$: Contains ball $\{8\} \implies \text{count} = 1$
+- Box $9$: Contains ball $\{9\} \implies \text{count} = 1$
 
-Thus the digit extraction destroys only the temporary integer bound to `x`. It does not modify `lowLimit`, `highLimit`, the `range` object, or any future ball number.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+The maximum count across all boxes is $\mathbf{2}$ (achieved in Box $1$).
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Ball Number | Extracted Digits | Derived Box | Active Counts Summary | Current Max Occupancy |
+|---|---|---|---|---|
+| $1$ | $[1]$ | $1$ | $\{1: 1\}$ | $1$ |
+| $2$ | $[2]$ | $2$ | $\{1: 1, 2: 1\}$ | $1$ |
+| $3$ | $[3]$ | $3$ | $\{1: 1, 2: 1, 3: 1\}$ | $1$ |
+| $4$ | $[4]$ | $4$ | $\{1: 1, 2: 1, 3: 1, 4: 1\}$ | $1$ |
+| $5$ | $[5]$ | $5$ | $\{1 \dots 5: 1\}$ | $1$ |
+| $6$ | $[6]$ | $6$ | $\{1 \dots 6: 1\}$ | $1$ |
+| $7$ | $[7]$ | $7$ | $\{1 \dots 7: 1\}$ | $1$ |
+| $8$ | $[8]$ | $8$ | $\{1 \dots 8: 1\}$ | $1$ |
+| $9$ | $[9]$ | $9$ | $\{1 \dots 9: 1\}$ | $1$ |
+| $10$ | $[1, 0]$ | $1$ | $\{1: 2, 2 \dots 9: 1\}$ | **$2$ (New Record)** |
+
+Final Result: $2$.
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Input Feature | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"lowLimit": 1, "highLimit": 10}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+| Single Ball Range | $\text{lowLimit} = \text{highLimit} = 99$ | `1` | One ball processed; digit sum is $18$; max occupancy is $1$. |
+| Consecutive Multi-Digit Boundary | `lowLimit = 19, highLimit = 28` | Multi-ball collision | $19 \to 10$, $28 \to 10$; both map to Box $10$. |
+| Powers of Ten | $x = 1, 10, 100, 1000$ | All collide in Box $1$ | Digit sum is strictly $1$ for all powers of 10. |
+| Maximum Constraint ($10^5$) | $x = 100000$ | Box $1$ | $1 + 0 + 0 + 0 + 0 + 0 = 1$; falls within standard bounds. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Why Box 0 Remains Empty:**
+   Because ball numbers are strictly positive integers ($\ge 1$), every ball has at least one non-zero digit, ensuring $S(x) \ge 1$. Box $0$ is safely initialized and ignored.
+2. **Fixed-Size Direct Mapping:**
+   Using a fixed array of size $50$ eliminates dynamic hashing overhead and hash table reallocations, providing cache-local, deterministic $\mathcal{O}(1)$ counter increments.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Hash map of box counts:** A dictionary avoids choosing an array bound and generalizes easily, but has hashing overhead and is unnecessary when the digit-sum range is tiny.
-- **Convert each number to a string:** Summing converted digit characters is readable, yet allocates or processes string representations and retains the same $O(RD)$ time.
-- **Incremental digit-sum updates:** One can update the sum from one number to the next using carry behavior, potentially reducing repeated division, but the carry logic is substantially easier to get wrong.
-- **Digit dynamic programming:** Counting box occupancies without enumerating every label is possible for much larger numeric ranges, but is excessive for `highLimit <= 100000`.
-- **Inclusive upper endpoint:** `range(lowLimit, highLimit + 1)` includes `highLimit`; omitting the plus one would lose the final ball.
-- **Single-ball range:** Exactly one counter becomes one, so the maximum is one.
-- **Tied boxes:** `max(cnt)` returns the shared occupancy, which is all the problem asks for.
-- **Ball number ten:** The zero digit contributes nothing, leaving digit sum one.
-- **Ball number 100000:** Despite having six digits, its sum is only one and fits comfortably in the counter array.
-- **Largest five-digit sum:** `99999` maps to box 45, still below index 50.
-- **Unused counter zero:** It remains zero because all labels are positive, but causes no issue in the maximum.
-- **Mutated loop variable:** Python's range iterator supplies the next label independently, so reducing `x` inside the body is safe.
-- **No explicit winning-box variable:** Tracking only counters and taking their maximum is sufficient because box identity is not returned.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(RD)$. Let $R = \texttt{highLimit}-\texttt{lowLimit}+1$ be the number of balls, and let $D$ be the maximum number of decimal digits in a ball label. The outer loop runs $R$ times. Repeated division processes at most $D$ digits per label, so the total time is $O(RD)$, matching the manifest. The final scan of 50 counters is constant time under the fixed constraints and does not change that bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N \log_{10} M)$ where $N = \text{highLimit} - \text{lowLimit} + 1$ and $M \le 10^5$. For each ball, extracting digits requires at most $5$ division and modulo steps. Total operations are bounded by $5 \times 10^5 \approx 5 \times 10^5$, executing in a few milliseconds.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space, requiring only a constant 50-element integer array.

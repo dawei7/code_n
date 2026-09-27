@@ -1,109 +1,162 @@
 # Guided Example: Next Palindrome Using Same Digits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step determination of the next larger palindrome via half-string lexicographical permutation and symmetric mirroring on a representative problem instance:
 
-- **Input:** `{"num": "1221"}`
-- **Required output:** `"2112"`
+- **Input:** `num = "45544554"`
+- **Required Output:** `"54455445"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates how palindrome symmetry constrains digit rearrangements to the first half of the string, reducing the problem to finding the immediate next lexicographical permutation of the prefix and mirroring it across the center.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a numeric string `num`, representing a very large **palindrome**.
+We are given a numeric string `num` representing a palindrome.
+We must return the smallest palindrome strictly larger than `num` that can be created by rearranging its digits. If no such palindrome exists, return the empty string `""`.
 
-The objective is to compute `"2112"` from `{"num": "1221"}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- `num = "45544554"` of length $n = 8$.
+- It is an even-length palindrome.
+- The first half of the digits is $H = \text{"4554"}$ (length $m = 4$).
+- The second half is the mirror reflection $\text{rev}(H) = \text{"4554"}$.
+- To make the entire palindrome as small as possible while still being strictly larger than `num`, the first half must be increased by the smallest possible amount.
+- The smallest string strictly larger than `"4554"` using the same digits is its immediate lexicographical successor: `"5445"`.
+- Mirroring `"5445"` produces `"54455445"`.
+- Output: `"54455445"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to recognize the order-preserving bijection between a palindrome and its first half: $S_1 <_{\text{lex}} S_2 \iff H_1 <_{\text{lex}} H_2$. The next larger palindrome is found by running the classic `next_permutation` algorithm on the first half $H$ and reflecting the result.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Half-String Palindrome Isomorphism
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Let $S$ be a palindrome of length $n$.
+Let $m = \lfloor n / 2 \rfloor$.
+The palindrome is uniquely partitioned as:
+$$S = H \mathbin{\Vert} M \mathbin{\Vert} \text{rev}(H)$$
+where:
+- $H = S[0 \dots m - 1]$ is the first half.
+- $M = S[m]$ if $n$ is odd, and empty if $n$ is even.
+- $\text{rev}(H)$ is the reversed reflection of $H$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because any rearranged string must remain a palindrome, the multiset of characters in the first half must remain identical.
+Furthermore, the lexicographical comparison between two palindromes of equal length is decided entirely by the first character where their first halves differ:
+$$S_1 <_{\text{lex}} S_2 \iff H_1 <_{\text{lex}} H_2$$
+
+### Half-String Palindrome Isomorphism Invariant Theorem
+
+> **Half-String Palindrome Isomorphism & Lexicographical Permutation Theorem.**
+> 1. *Order Isomorphism:* The map $H \mapsto H \mathbin{\Vert} M \mathbin{\Vert} \text{rev}(H)$ is a strictly order-preserving bijection from the permutations of $H$ to the palindromic permutations of $S$.
+> 2. *Minimal Successor:* The minimal palindrome strictly larger than $S$ corresponds uniquely to $\text{next\_permutation}(H)$, the immediate lexicographical successor of $H$.
+> 3. *Non-Existence Condition:* If $H$ is sorted in non-increasing order (e.g. `"54321"`), no strictly larger permutation exists. In this case, no larger palindrome can be formed, and the algorithm returns `""`.
+> 4. Finding the pivot, swapping with the successor, reversing the suffix of $H$, and reflecting across the midpoint computes the next palindrome in $\mathcal{O}(n)$ time and $\mathcal{O}(n)$ space.
+
+```mermaid
+flowchart TD
+    accTitle: Next Palindrome via Half-String Permutation
+    accDescr: Diagram illustrating extracting the first half, computing its next lexicographical permutation, and mirroring it to form the next palindrome.
+    A["Input Palindrome: num = '45544554'"] --> B["Extract First Half: H = [4, 5, 5, 4]"]
+    B --> C["Find rightmost descent pivot: i = 0 (val 4 < 5)"]
+    C --> D["Find successor to swap: j = 2 (val 5 > 4)"]
+    D --> E["Swap H[0] and H[2] -> [5, 5, 4, 4]"]
+    E --> F["Reverse suffix H[1..3] -> [5, 4, 4, 5]"]
+    F --> G["Mirror to second half: H + rev(H)"]
+    G --> H["Output Palindrome: '54455445'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**A palindrome is determined by its first half.** In an even-length palindrome, the second half is the mirror of the first. In an odd-length palindrome, the center digit stays between those mirrored halves. Because the input is already a palindrome, its digit counts have the required pairing structure. Rearranging the first-half digits and mirroring them generates every palindrome possible from those pairs; for odd length, the unique unpaired center digit remains fixed.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": "1221"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `num = "45544554"`.
+Total length $n = 8$. Half length $m = \lfloor 8 / 2 \rfloor = 4$.
+Extract the first half:
+$$H = [\text{'4'}, \text{'5'}, \text{'5'}, \text{'4'}]$$
 
 ---
 
-### Step 2: Core Step 2
+### Step 1: Find the Rightmost Pivot Index $i$
+Scan $H$ from right to left ($m - 2$ down to $0$) to find the first index $i$ where $H[i] < H[i + 1]$:
+- $i = 2$: $H[2] = \text{'5'}, H[3] = \text{'4'} \implies 5 \ge 4$. Continue.
+- $i = 1$: $H[1] = \text{'5'}, H[2] = \text{'5'} \implies 5 \ge 5$. Continue.
+- $i = 0$: $H[0] = \text{'4'}, H[1] = \text{'5'} \implies 4 < 5$. **Descent found!**
 
-For equal-length digit strings, numeric order is determined by the first position where they differ. That position lies in the first half before its mirrored partner. Therefore, ordering the possible palindromes is exactly the same as lexicographically ordering their first halves. The smallest larger palindrome is obtained by finding the next lexicographic permutation of the first half.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Pivot index: $i = 0$ (value `'4'`).
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Find the Smallest Successor Greater Than $H[i]$
+Scan $H$ from right to left ($m - 1$ down to $0$) to find the first index $j$ where $H[j] > H[i] = \text{'4'}$:
+- $j = 3$: $H[3] = \text{'4'} \ngtr \text{'4'}$.
+- $j = 2$: $H[2] = \text{'5'} > \text{'4'}$. **Successor found!**
 
-**Operate on a mutable character list.** `nums = list(num)` copies the string into individual characters because Python strings cannot be modified in place. The nested helper receives the full list but sets its local `n = len(nums) // 2`. Inside that helper, `n` means the number of characters in the first half, not the full string length.
+Successor index: $j = 2$ (value `'5'`).
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"2112"` |
+---
+
+### Step 3: Swap Pivot and Successor
+Swap $H[0]$ and $H[2]$:
+$$H[0] = \text{'5'}, \quad H[2] = \text{'4'}$$
+Array state after swap:
+$$H = [\text{'5'}, \text{'5'}, \text{'4'}, \text{'4'}]$$
+
+---
+
+### Step 4: Reverse the Suffix $H[i + 1 \dots m - 1]$
+The suffix after index $0$ is $H[1 \dots 3] = [\text{'5'}, \text{'4'}, \text{'4'}]$.
+Reverse this suffix:
+$$[\text{'5'}, \text{'4'}, \text{'4'}] \to [\text{'4'}, \text{'4'}, \text{'5'}]$$
+Updated first half:
+$$H = [\text{'5'}, \text{'4'}, \text{'4'}, \text{'5'}]$$
+
+---
+
+### Step 5: Mirror First Half to Form Full Palindrome
+Reflect $H$ to fill indices $n - 1 - k$ for $k \in [0, 3]$:
+- $k = 0$: $\text{digits}[7] = H[0] = \text{'5'}$
+- $k = 1$: $\text{digits}[6] = H[1] = \text{'4'}$
+- $k = 2$: $\text{digits}[5] = H[2] = \text{'4'}$
+- $k = 3$: $\text{digits}[4] = H[3] = \text{'5'}$
+
+Full string:
+$$\text{"54455445"}$$
+
+Result: **`"54455445"`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": "1221"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"2112"` | Verified |
+| Phase | Target Slice | Array Contents | Action Performed | Resulting State |
+|:---:|:---:|:---:|:---|:---:|
+| Init | Full String | `"45544554"` | Extract first half of length 4 | $H = [4, 5, 5, 4]$ |
+| Step 1 | Scan from right | $H[2]=5, H[1]=5, H[0]=4$ | Identify rightmost descent at $i = 0$ | Pivot $H[0] = 4$ |
+| Step 2 | Scan from right | $H[3]=4, H[2]=5$ | Find rightmost element $> 4$ | Successor $H[2] = 5$ |
+| Step 3 | Slices at $0, 2$ | $H[0] \leftrightarrow H[2]$ | Swap pivot and successor | $H = [5, 5, 4, 4]$ |
+| Step 4 | Suffix $H[1 \dots 3]$ | $[5, 4, 4]$ | Reverse suffix to minimize magnitude | $H = [5, 4, 4, 5]$ |
+| Step 5 | Full String | Mirror $H$ | $S[7-k] = H[k]$ | **`"54455445"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Swapping the pivot with the smallest strictly larger element to its right and reversing the remaining suffix is the proven `next_permutation` algorithm. Mirroring this minimal successor generates a valid palindrome that uses the identical digit multiset and is strictly larger than the input.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Since the second half of any palindrome is strictly determined by its first half, any valid larger palindrome must have a first half that is a larger permutation of $H$. Because `next_permutation` produces the immediate successor in lexicographical order, no smaller valid palindrome can exist between `num` and the output.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Generate every half permutation:** Sorting all possible palindromes is factorial and infeasible for 100,000 digits.
-- **Frequency-based successor construction:** One can locate a pivot and rebuild the minimal suffix from digit counts, but the standard next-permutation reversal is simpler because the suffix is already ordered.
-- **Even length:** Every digit belongs to a mirrored pair, and the entire palindrome is determined by the first half.
-- **Odd length:** The middle digit is the only unpaired digit and remains unchanged.
-- **Length one:** The half has no pivot, so no different palindrome exists and the method returns empty.
-- **Length two palindrome:** Its first half has one character, so there is no alternative ordering.
-- **Repeated digits:** The strict pivot and successor comparisons skip equal values and produce the next distinct permutation.
-- **First half already nonincreasing:** It is the maximum arrangement, so no larger valid palindrome exists.
-- **First half nondecreasing:** A next permutation exists unless every half digit is equal.
-- **Leading zeros:** All candidates have equal length, so lexicographic comparison still matches their fixed-width digit-string order, though the local description does not separately define leading-zero inputs.
-- **Input preservation:** Converting to a list creates a copy; the original string is immutable and unchanged.
-- **Suffix slices:** The exact reversal syntax allocates temporary storage even though an in-place two-pointer reversal could avoid that extra slice.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Odd-Length Palindromes:** When $n$ is odd (e.g. $n = 5$ with center at index $2$), the center element remains fixed at index $\lfloor n / 2 \rfloor$. Only the first $\lfloor n / 2 \rfloor$ elements participate in `next_permutation`.
+- **Operating on the Entire String:** Running `next_permutation` on the full palindrome corrupts symmetry, yielding a non-palindromic string.
+- **Descending First Half:** If the first half is in non-increasing order (e.g. `"32123"` where $H = \text{"32"}$), $i < 0$ and no next permutation exists. The algorithm must return `""`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n` be the full string length. Finding the pivot scans at most half the string, finding the successor scans at most half, suffix reversal is linear in the half length, and mirroring plus joining are linear. Total running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of `num`. Finding the pivot, swapping, reversing the suffix of length $n / 2$, and mirroring back to the second half each take $\mathcal{O}(n)$ time.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the character array during in-place permutation and reconstruction.

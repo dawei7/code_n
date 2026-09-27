@@ -1,123 +1,188 @@
 # Guided Example: Largest Number After Digit Swaps by Parity
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the parity-partitioned sorting algorithm for constructing the lexicographically maximal integer reachable under same-parity digit swaps in $O(d \log d)$ time and $O(d)$ auxiliary space.
 
-- **Input:** `{"num": 1234}`
-- **Required output:** `3412`
+- **Input:** `num = 1234`
+- **Output:** `3412`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a positive integer `num`. You may swap any two digits of `num` that have the same **parity** (i.e. both odd digits or both even digits).
-
-The objective is to compute `3412` from `{"num": 1234}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This representative instance illustrates decimal digit decomposition, parity partition invariance under the symmetric group, decoupled descending greedy selection, and positional integer reconstruction.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Problem Overview & Representative Instance
 
-We maintain the core conceptual parameters and state variables:
+You are given a positive integer `num`. You may swap any two digits of `num` that share the same **parity** (meaning both digits are even, or both digits are odd). You can apply this swap operation any number of times.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Our goal is to find the **largest possible value of `num`** achievable through valid swaps.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Representative Instance Breakdown
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Parity fixes which digits may occupy each position
-
-An odd digit may swap only with another odd digit, and an even digit only with another even digit. Therefore, a position that originally contains an odd digit can ultimately contain any of the number's odd digits, but never an even digit. The same holds for even positions of the parity pattern.
-
-Because arbitrary pairs of equal-parity digits may be swapped any number of times, every permutation within the odd group and every permutation within the even group is reachable. The task is to assign those digits to their allowed positions to make the decimal number largest.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"num": 1234}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Consider `num = 1234`:
+- Decimal digit sequence: $[1, 2, 3, 4]$ across indices $0, 1, 2, 3$.
+- Position parities:
+  - Index 0: Digit $1$ is odd.
+  - Index 1: Digit $2$ is even.
+  - Index 2: Digit $3$ is odd.
+  - Index 3: Digit $4$ is even.
+- Grouping digits by parity:
+  - Odd digits: $\{1, 3\}$ located at positions $\{0, 2\}$.
+  - Even digits: $\{2, 4\}$ located at positions $\{1, 3\}$.
+- Swapping permitted:
+  - We can swap odd digits with odd digits: swap $1$ and $3$ $\implies [3, 2, 1, 4]$.
+  - We can swap even digits with even digits: swap $2$ and $4$ $\implies [3, 4, 1, 2]$.
+- Reconstructed number: $3412$.
 
 ---
 
-### Step 2: Maximize from the most significant position
+## 2. Mathematical & Algorithmic Principles
 
-Two positive integers with the same number of digits are compared at their first differing digit. The larger digit at the earliest position always wins, regardless of later digits.
+### Parity-Partitioned Symmetric Group Reachability
 
-Thus, at each original position, the optimal choice is the largest unused digit having the required parity. Choosing a smaller available digit there cannot be compensated by placing a larger same-parity digit later. Swapping those two assignments would increase the earlier digit and produce a larger number.
+Let the digits of `num` occupy positional indices $I = \{0, 1, \dots, d-1\}$.
+We partition the index set into two disjoint subsets based on the parity of the digit originally occupying each position:
+$$I_{\text{odd}} = \{ i \in I \mid \text{digits}[i] \equiv 1 \pmod 2 \}$$
+$$I_{\text{even}} = \{ i \in I \mid \text{digits}[i] \equiv 0 \pmod 2 \}$$
 
-Applying this argument from left to right proves the greedy placement.
+A valid operation allows swapping any pair $(i, j)$ with $i, j \in I_{\text{odd}}$ or $i, j \in I_{\text{even}}$.
+In group theory, the set of all transpositions on a finite set generates the entire symmetric group $S_n$.
+Therefore, the reachable configuration space is the direct product:
+$$\mathcal{G} = S_{|I_{\text{odd}}|} \times S_{|I_{\text{even}}|}$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+This establishes two fundamental properties:
+1. **Positional Parity Invariance:** An odd index position will always hold an odd digit; an even index position will always hold an even digit.
+2. **Unrestricted Permutation:** Any arbitrary permutation of the odd digits among $I_{\text{odd}}$ is reachable, and any arbitrary permutation of the even digits among $I_{\text{even}}$ is reachable.
 
----
+### Greedy Lexicographical Maximization
 
-### Step 3: Count available digits instead of sorting
+In base-10 radix notation, an integer value $\sum_{i=0}^{d-1} d_i \cdot 10^{d-1-i}$ is strictly maximized by maximizing digits at higher place values (from left to right):
+- At each index $i$ from $0$ to $d-1$:
+  - If the original digit at position $i$ was odd, assign the largest unused odd digit to position $i$.
+  - If the original digit at position $i$ was even, assign the largest unused even digit to position $i$.
 
-The solution converts `num` to its decimal digits:
+```mermaid
+flowchart TD
+    accTitle: Parity Swap Maximization Workflow
+    accDescr: Pipeline showing digit extraction, splitting into odd and even heaps/sorts, and reassembling by original parity template.
 
-`nums = [int(c) for c in str(num)]`.
-
-`Counter(nums)` stores how many copies of each digit remain. Since digits belong to the fixed range zero through nine, counts are a compact alternative to sorting separate odd and even lists.
-
-The array `idx = [8, 9]` stores the current largest candidate for each parity. Index zero begins at largest even digit eight; index one begins at largest odd digit nine.
-
-For an original digit `x`, `x & 1` is zero when `x` is even and one when it is odd. The solution uses that parity as an index into `idx`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3412` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"num": 1234}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3412` | Verified |
+    Start(["Input: num"]) --> Extract["Extract digits<br/>Record parity template"]
+    Extract --> Partition["Split into odd_digits and even_digits<br/>Sort both descending"]
+    Partition --> Rebuild["For each position in template:<br/>If odd, take max available odd digit<br/>If even, take max available even digit"]
+    Rebuild --> Aggregate["Assemble digits into integer"]
+    Aggregate --> Done(["Return largest integer"])
+```
 
 ---
 
-## 5. Algorithmic Correctness
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+We trace `num = 1234`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Sort odd and even lists descending:** Then consume the next digit from the appropriate list at each position. This is simpler conceptually but costs `O(d \log d)` sorting time; with at most ten digits the practical difference is tiny.
-- **Try all same-parity swaps:** Exploring reachable permutations is factorial in the number of digits and repeats equivalent arrangements when digits duplicate.
-- **Globally sort every digit:** This may place an odd digit into an originally even position or vice versa, violating the swap invariant.
-- **One digit:** Its parity pool contains only itself, so the number is unchanged.
-- **All digits one parity:** The method arranges all digits in descending order because every position draws from the same pool.
-- **Already maximal arrangement:** Each position receives the same value and the result is unchanged.
-- **Repeated digits:** `Counter` preserves multiplicity, and each placement decrements exactly one copy.
-- **Zeros:** Zero participates in the even pool and is used only after larger remaining evens.
-- **First digit parity:** The parity pattern of positions is fixed by the original digits; only values within each parity group move.
-- **Duplicate maximum digit:** The pointer remains at that value until its count reaches zero.
-- **Pointer exhaustion:** It cannot fall below zero or one while a position of that parity remains, because the remaining counts and remaining parity positions are equal.
-- **Input preservation:** `num` is immutable; the method builds a new numeric result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+### Phase 1: Digit Extraction & Pool Segregation
+- String representation: `"1234"`.
+- Digits: $[1, 2, 3, 4]$.
+- Length: $d = 4$.
+- Collect parity pools:
+  - Odd pool: $[1, 3]$ $\to$ sorted descending: $[3, 1]$.
+  - Even pool: $[2, 4]$ $\to$ sorted descending: $[4, 2]$.
+- Parity template: $[\text{odd}, \text{even}, \text{odd}, \text{even}]$.
 
 ---
 
-## 7. Complexity Derivation
+### Phase 2: Sequential Positional Assignment
 
-- **Time Complexity:** $O(1)$. Let `d` be the number of decimal digits. Converting to digits, building the counter, and constructing the answer each take `O(d)` time. The parity pointers descend across only five possible digits per parity in total, so all while-loop decrements together are `O(1)` for decimal digits.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **Position 0 (Most Significant Digit, Weight $10^3$):**
+   - Original digit was $1$ ($\text{odd}$).
+   - Take largest available odd digit: $3$.
+   - Remaining odd pool: $[1]$.
+   - Running integer: $\text{ans} = 3$.
+
+2. **Position 1 (Weight $10^2$):**
+   - Original digit was $2$ ($\text{even}$).
+   - Take largest available even digit: $4$.
+   - Remaining even pool: $[2]$.
+   - Running integer: $\text{ans} = 3 \times 10 + 4 = 34$.
+
+3. **Position 2 (Weight $10^1$):**
+   - Original digit was $3$ ($\text{odd}$).
+   - Take largest available odd digit: $1$.
+   - Remaining odd pool: $[]$.
+   - Running integer: $\text{ans} = 34 \times 10 + 1 = 341$.
+
+4. **Position 3 (Least Significant Digit, Weight $10^0$):**
+   - Original digit was $4$ ($\text{even}$).
+   - Take largest available even digit: $2$.
+   - Remaining even pool: $[]$.
+   - Running integer: $\text{ans} = 341 \times 10 + 2 = 3412$.
+
+Final integer: $3412$.
+
+---
+
+## 4. Comprehensive State Trace
+
+### Digit Decomposition and Classification
+
+| Index $i$ | Original Digit | Parity Classification | Parity Group | Group Elements Prior to Sort |
+|---|---|---|---|---|
+| 0 | 1 | $1 \equiv 1 \pmod 2$ | Odd | $\{1, 3\}$ |
+| 1 | 2 | $2 \equiv 0 \pmod 2$ | Even | $\{2, 4\}$ |
+| 2 | 3 | $3 \equiv 1 \pmod 2$ | Odd | $\{1, 3\}$ |
+| 3 | 4 | $4 \equiv 0 \pmod 2$ | Even | $\{2, 4\}$ |
+
+### Positional Reconstruction Trace
+
+| Step $i$ | Position Parity | Remaining Odd Pool | Remaining Even Pool | Digit Selected | Reconstructed Prefix |
+|---|---|---|---|---|---|
+| Initial | - | $[3, 1]$ | $[4, 2]$ | - | 0 |
+| 0 | Odd | $[1]$ | $[4, 2]$ | 3 | 3 |
+| 1 | Even | $[1]$ | $[2]$ | 4 | 34 |
+| 2 | Odd | $[]$ | $[2]$ | 1 | 341 |
+| 3 | Even | $[]$ | $[]$ | 2 | 3412 |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+### Optimality of Greedy Placement
+
+1. **Radix Dominance:** In positional decimal representation, an integer $X$ with digits $(x_0, \dots, x_{d-1})$ is strictly greater than $Y$ with digits $(y_0, \dots, y_{d-1})$ if at the earliest index $k$ where $x_k \ne y_k$, we have $x_k > y_k$, regardless of the choices made for all subsequent positions $j > k$.
+2. **Choice Independence:** Selecting the maximum available element for position $k$ from the pool of eligible parity-matching digits leaves the remaining elements available for lower place values. Since every permutation of that parity pool is reachable, no earlier choice can restrict later positions from forming their own optimal permutation.
+3. **Soundness:** By mathematical induction on digit positions from left to right, making the locally maximal choice at each step produces the globally maximal integer.
+
+---
+
+## 6. Edge Cases & Anti-Patterns
+
+### Boundary Scenarios
+
+1. **Monochromatic Parity (All Even or All Odd):**
+   - E.g., `num = 8642` or `num = 13579`.
+   - All digits belong to a single parity partition; the result is simply the number sorted in descending order (`8642` and `97531`).
+2. **Single-Digit Numbers ($d = 1$):**
+   - E.g., `num = 7`. The pool contains only $[7]$. No swaps are needed, returns $7$.
+3. **Duplicate Digits:**
+   - E.g., `num = 65875`. Odd pool is $[7, 5, 5]$, even pool is $[8, 6]$. Parity template: `[even, odd, even, odd, odd]`.
+   - Result: $87655$. Duplicate values are consumed cleanly in descending order.
+
+### Common Anti-Patterns
+
+- **Brute-Force Graph Search (BFS on Swaps):**
+  Constructing an explicit graph of reachable states and searching for the maximum integer via BFS or DFS incurs massive overhead and risks factorial state explosion ($O(d!)$).
+- **Adjacent Swap Simulation:**
+  Attempting to execute adjacent bubble-sort swaps step by step. Since arbitrary pairs can be swapped directly, simulating individual swaps is completely unnecessary; sorting the extracted pools directly achieves the result in one step.
+
+---
+
+## 7. Complexity Analysis
+
+### Time Complexity
+
+- **Digit Extraction:** Parsing an integer `num` with $d$ decimal digits takes $O(d)$ time. For standard 32-bit integers, $d \le 10$; for 64-bit integers, $d \le 19$.
+- **Sorting Parity Buckets:** Sorting the odd pool of size $d_1$ and even pool of size $d_2$ ($d_1 + d_2 = d$) takes $O(d_1 \log d_1 + d_2 \log d_2) \le O(d \log d)$ time. Since digits are bounded in $[0, 9]$, counting sort / bucket sort can reduce this to $O(d)$ time.
+- **Reconstruction:** A single pass of $d$ steps to assemble the final integer: $O(d)$ time.
+- **Total Time Complexity:** $O(d \log d)$ general comparison-based, or $O(d)$ with bucket counting. In practice, $d \le 10$, executing in under $1$ microsecond.
+
+### Auxiliary Space Complexity
+
+- Arrays for extracted digits and parity pools require $O(d)$ space.
+- **Total Auxiliary Space Complexity:** Strictly $O(d)$ auxiliary memory.

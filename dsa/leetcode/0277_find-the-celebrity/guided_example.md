@@ -1,130 +1,182 @@
 # Guided Example: Find the Celebrity
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step tournament elimination pass ($N - 1$ queries), transitive candidate survivor isolation, and dual bidirectional verification on representative party relationship matrices:
 
-- **Input:** `{"n": 3, "knows_matrix": [[true, true, false], [false, true, false], [true, true, true]]}`
-- **Required output:** `1`
+- **Input:** $n = 3, \quad \text{graph} = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 1 & 1 & 1 \end{bmatrix}$ (where $\text{graph}[i][j] == 1$ represents $\text{knows}(i, j) == \text{True}$)
+- **Required output:** $1$ (Person 1 is known by 0 and 2, but knows nobody else)
+- **No Celebrity Cycle:** $n = 3, \quad \text{graph} = \begin{bmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix} \implies -1$ (Cyclic dependencies: 0 knows 2, 2 knows 1, 1 knows 0; survivor fails verification)
+- **Minimal Pair:** $n = 2, \quad \text{graph} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \implies 1$ (Query $\text{knows}(0, 1) == \text{True}$ eliminates 0)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary reduction via deductive elimination, proves why every call to `knows(a, b)` unconditionally eliminates at least one person from celebrity contention, details the necessity of the second verification pass to catch instances where no celebrity exists, and bounds total API calls strictly to $3N - 3$ in $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Suppose you are at a party with `n` people labeled from `0` to $n - 1$ and among them, there may exist one celebrity. The definition of a celebrity is that all the other $n - 1$ people know the celebrity, but the celebrity does not know any of them.
+Given $n = 3$ people labeled $0, 1, 2$ and an API `knows(a, b)`:
+A **celebrity** is defined by two simultaneous conditions:
+1. **Outgoing degree is 0:** The celebrity knows **nobody else** at the party.
+2. **Incoming degree is $n - 1$:** **Everyone else** knows the celebrity.
 
-The objective is to compute `1` from `{"n": 3, "knows_matrix": [[true, true, false], [false, true, false], [true, true, true]]}` while avoiding redundant calculations and unnecessary overhead.
+Adjacency truth matrix:
+$$
+\text{knows}(i, j) = \begin{pmatrix}
+(0,0)=1 & (0,1)=1 & (0,2)=0 \\
+(1,0)=0 & (1,1)=1 & (1,2)=0 \\
+(2,0)=1 & (2,1)=1 & (2,2)=1
+\end{pmatrix}
+$$
+- Person 0 knows 1 (cannot be celebrity).
+- Person 2 knows 0 and 1 (cannot be celebrity).
+- Person 1 knows nobody other than self, and is known by both 0 and 2.
+Output: $\mathbf{1}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### The $O(N^2)$ vs $O(N)$ API Call Bottleneck
+A brute-force matrix check makes $N(N - 1) = O(N^2)$ queries.
+However, **a single query `knows(a, b)` always eliminates one person:**
+- If $\text{knows}(a, b) == \text{True}$: $a$ knows someone, so **$a$ is definitely not a celebrity**.
+- If $\text{knows}(a, b) == \text{False}$: $b$ is unknown to $a$, so **$b$ is definitely not a celebrity**.
+In exactly $N - 1$ queries, we can eliminate $N - 1$ candidates, leaving a single potential survivor.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Phase 1: Candidate Elimination Tournament ($N - 1$ queries)
+Initialize `cand = 0`:
+For each person $i$ from $1$ to $n - 1$:
+- Query $\text{knows}(\text{cand}, i)$:
+  - If $\text{True}$: $\text{cand}$ knows $i$, so $\text{cand}$ is disqualified. Person $i$ becomes the new candidate:
+    $$
+    \text{cand} \leftarrow i
+    $$
+  - If $\text{False}$: person $i$ is not known by $\text{cand}$, so person $i$ is disqualified. $\text{cand}$ remains unchanged.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Phase 2: Candidate Verification ($\le 2(N - 1)$ queries)
+Elimination only proves that *if* a celebrity exists, it must be `cand`. It does **not** prove that `cand` actually is a celebrity!
+We must verify `cand` against all other $i \ne \text{cand}$:
+1. **Outgoing check:** If $\text{knows}(\text{cand}, i) == \text{True} \implies \text{return } -1$.
+2. **Incoming check:** If $\text{knows}(i, \text{cand}) == \text{False} \implies \text{return } -1$.
+If `cand` passes all checks for all $i \ne \text{cand}$, return `cand`.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** After the elimination loop, all persons other than `cand` are provably non-celebrities. If a real celebrity exists, it cannot have been eliminated and must be `cand`.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Use each API answer to eliminate one person
-
-A celebrity must satisfy two conditions relative to every other person:
-
-- the celebrity knows nobody else; and
-- everybody else knows the celebrity.
-
-Testing both conditions for every possible person would make $O(n^2)$ calls to `knows`. The key observation is that one call `knows(a, b)` always proves that at least one of `a` and `b` is not the celebrity.
-
-If `knows(a, b)` is true, `a` cannot be the celebrity because `a` knows another person. If it is false, `b` cannot be the celebrity because at least one other person, namely `a`, does not know `b`. Regardless of the answer, one participant in the comparison is conclusively eliminated.
-
-This lets the source reduce $n$ possibilities to one survivor using only $n-1$ questions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 3, "knows_matrix": [[true, true, false], [false, true, false], [true, true, true]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $n = 3$ with relationship matrix:
+- $\text{knows}(0, 1) = \text{True}$
+- $\text{knows}(0, 2) = \text{False}$
+- $\text{knows}(1, 0) = \text{False}, \quad \text{knows}(1, 2) = \text{False}$
+- $\text{knows}(2, 0) = \text{True}, \quad \text{knows}(2, 1) = \text{True}$
 
 ---
 
-### Step 2: Maintain one surviving candidate
+### Phase 1: Elimination Pass
 
-The solution begins with `ans = 0`. It then compares the current candidate with each person `i` from 1 through `n - 1`.
+#### Step 1: Initialize Candidate
+$$
+\text{cand} = 0
+$$
 
-If `knows(ans, i)` returns true, the current candidate has been caught knowing someone and is disqualified. Person `i` has not been disqualified by this particular fact, so the source replaces `ans` with `i`.
+#### Step 2: Compare $\text{cand} = 0$ with $i = 1$
+- Query: $\text{knows}(0, 1)$.
+- Result: $\text{True}$.
+- Deduction: Person 0 knows person 1. Therefore, Person 0 cannot be the celebrity!
+- Update candidate:
+  $$
+  \text{cand} \leftarrow 1
+  $$
+  *(Person 0 eliminated)*.
 
-If `knows(ans, i)` returns false, person `i` is disqualified because `ans` does not know them. The current candidate has not been disproved by this fact, so `ans` remains unchanged.
+#### Step 3: Compare $\text{cand} = 1$ with $i = 2$
+- Query: $\text{knows}(1, 2)$.
+- Result: $\text{False}$.
+- Deduction: Person 1 does not know person 2. If person 2 were the celebrity, person 1 would have known them. Therefore, Person 2 cannot be the celebrity!
+- Update candidate:
+  $$
+  \text{cand} \text{ remains } 1
+  $$
+  *(Person 2 eliminated)*.
 
-It is important not to read too much into the survivor. In the true branch, knowing that the old candidate knows `i` does not prove that `i` is a celebrity; it merely leaves `i` as the only member of this pair still possible. Likewise, a false result does not prove `ans` is a celebrity. This phase eliminates candidates but does not verify all required relationships.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Tournament finished. Sole remaining survivor: $\text{cand} = \mathbf{1}$.
 
 ---
 
-### Step 3: Why no real celebrity is ever discarded
+### Phase 2: Verification Pass on $\text{cand} = 1$
 
-After processing person `i`, `ans` is the only person among labels `0` through `i` who has not been ruled out by the questions asked so far.
+We check both relationship directions for all $i \ne 1$:
 
-The statement is true initially for person 0 alone. At the next comparison, exactly one of the old survivor and the new person is eliminated according to the API result, so one survivor remains for the enlarged prefix.
+#### Check against Person $i = 0$:
+1. Outgoing: $\text{knows}(1, 0) == \text{False}$ (**Pass**: Candidate knows nobody).
+2. Incoming: $\text{knows}(0, 1) == \text{True}$ (**Pass**: Person 0 knows candidate).
 
-More strongly, if a real celebrity belongs to the processed prefix, that celebrity must be the survivor. Suppose the current candidate is the celebrity. They know nobody, so `knows(ans, i)` must be false and the algorithm keeps them. Suppose instead the newly considered person `i` is the celebrity. Everyone else knows them, so `knows(ans, i)` must be true and the algorithm changes the candidate to `i`. The update can never discard an actual celebrity.
+#### Check against Person $i = 2$:
+1. Outgoing: $\text{knows}(1, 2) == \text{False}$ (**Pass**: Candidate knows nobody).
+2. Incoming: $\text{knows}(2, 1) == \text{True}$ (**Pass**: Person 2 knows candidate).
 
-After the loop, every person except `ans` has been disproved. Therefore, if a celebrity exists, it must be `ans`. This reduces verification to one person.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+Candidate $1$ satisfies all $2(N - 1) = 4$ verification criteria.
+**Return $1$!**
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 3, "knows_matrix": [[true, true, false], [false, true, false], [true, true, true]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+```text
+n = 3
+Phase 1: Elimination
+  cand = 0
+  i = 1: knows(0, 1) is True  -> 0 eliminated -> cand = 1
+  i = 2: knows(1, 2) is False -> 2 eliminated -> cand = 1
+  Survivor: 1
+
+Phase 2: Verification
+  i = 0: knows(1, 0) is False (OK), knows(0, 1) is True (OK)
+  i = 2: knows(1, 2) is False (OK), knows(2, 1) is True (OK)
+  All checks pass!
+
+Result: 1
+```
+
+| Phase | Query Target $(a, b)$ | API Result | Deduction / Elimination | Current Candidate $\text{cand}$ |
+|:---|:---:|:---:|:---|:---:|
+| Elimination | $\text{knows}(0, 1)$ | $\text{True}$ | 0 knows 1 $\implies$ 0 disqualified | 1 |
+| Elimination | $\text{knows}(1, 2)$ | $\text{False}$ | 1 doesn't know 2 $\implies$ 2 disqualified | **1 (Survivor)** |
+| Verification | $\text{knows}(1, 0)$ | $\text{False}$ | Candidate 1 does not know 0 | 1 |
+| Verification | $\text{knows}(0, 1)$ | $\text{True}$ | Person 0 knows candidate 1 | 1 |
+| Verification | $\text{knows}(1, 2)$ | $\text{False}$ | Candidate 1 does not know 2 | 1 |
+| Verification | $\text{knows}(2, 1)$ | $\text{True}$ | Person 2 knows candidate 1 | 1 |
+| **Conclusion** | - | - | All conditions satisfied | **$\mathbf{1}$ (Celebrity)** |
+
+### Contrast: When No Celebrity Exists (Cycle $[0 \to 2 \to 1 \to 0]$)
+1. Elimination pass leaves a survivor (e.g. person 1).
+2. Verification pass tests $\text{knows}(1, 0) \implies \text{True}$.
+3. Candidate 1 knows person 0!
+4. Fails immediately and returns $\mathbf{-1}$.
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A returned index `cand` has been explicitly verified in Phase 2: $\text{knows}(\text{cand}, i) == \text{False}$ and $\text{knows}(i, \text{cand}) == \text{True}$ for all $i \ne \text{cand}$. This satisfies the exact mathematical definition of a celebrity.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Suppose person $C$ is the celebrity. In Phase 1, whenever $C$ is compared against another person $X$:
+- If $\text{cand} == C$ and $i == X$: $\text{knows}(C, X)$ is $\text{False}$, so $X$ is eliminated and $\text{cand}$ remains $C$.
+- If $\text{cand} == X$ and $i == C$: $\text{knows}(X, C)$ is $\text{True}$, so $X$ is eliminated and $\text{cand}$ becomes $C$.
+Thus, a true celebrity can **never be eliminated**. The survivor must be $C$.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Verify every person independently:** Check both directions for each possible candidate. It is simple but makes $O(n^2)$ API calls in the worst case because the same relationships are queried repeatedly.
-- **Stack elimination:** Put all people on a stack, pop two at a time, query one relationship, and push the only remaining possible candidate. This implements the same elimination proof with $O(n)$ calls but uses $O(n)$ stack space unnecessarily.
-- **Cache API results:** Memoizing elimination calls can avoid repeating some questions during verification, at the cost of $O(n)$ stored results. The exact source already stays below `3n` calls with constant space.
-- **Return the survivor without verification:** Incorrect when no celebrity exists. Elimination guarantees only that every other person was ruled out, not that the survivor satisfies all unqueried conditions.
-- **Candidate knows someone:** One true outgoing query is enough to return `-1`; no incoming facts can repair that violation.
-- **Someone does not know the candidate:** One false incoming query is likewise enough to return `-1`, even if the candidate knows nobody.
-- **Self relationship:** The diagonal is skipped because knowing oneself neither qualifies nor disqualifies a celebrity under the definition.
-- **Exactly one real celebrity:** The elimination pass is guaranteed to preserve that person, and complete verification returns their label.
-- **No celebrity:** A survivor still emerges, but verification rejects it and returns `-1`.
-- **Two people:** One elimination question leaves a candidate, and verification checks both required directions against the one other person.
-- **API opacity:** The algorithm uses only `knows(a, b)` and never assumes direct access to `graph`. Reading or scanning the entire matrix would violate the interface contract.
-- **Short-circuit order:** Querying the candidate's outgoing edge first allows immediate rejection without the incoming call. Reversing the checks remains correct but changes which failed cases save an API call.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Skipping Verification (Phase 2):** Returning the elimination survivor directly fails whenever no celebrity exists. The tournament guarantees only that everyone else is disqualified, not that the survivor is valid.
+- **Self-Query Trap:** Querying $\text{knows}(i, i)$ provides no information because people know themselves. The loops must strictly test $i \ne \text{cand}$.
+- **API Call Budget:** Total calls in Phase 1 is $N - 1$. Total calls in Phase 2 is at most $2(N - 1)$. Total queries $\le 3N - 3$, satisfying the minimum call constraint.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The elimination pass performs exactly $n-1$ calls to `knows`. Verification considers $n-1$ other people and makes at most two calls for each. The worst-case total is
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of people. Phase 1 performs $N - 1$ API calls. Phase 2 performs at most $2(N - 1)$ API calls. The maximum number of API calls is $3N - 3$, which is strictly linear.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Only a single candidate tracker `cand` is stored.

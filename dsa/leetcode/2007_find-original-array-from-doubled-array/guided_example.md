@@ -1,122 +1,203 @@
 # Guided Example: Find Original Array From Doubled Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze and trace the sorted minimum-element greedy matching and frequency-table reduction algorithm on representative integer arrays to reconstruct the original multiset from a shuffled doubled array.
 
-- **Input:** `{"changed": [1, 3, 4, 2, 6, 8]}`
-- **Required output:** `[1, 3, 4]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-An integer array `original` is transformed into a **doubled** array `changed` by appending **twice the value** of every element in `original`, and then randomly **shuffling** the resulting array.
-
-The objective is to compute `[1, 3, 4]` from `{"changed": [1, 3, 4, 2, 6, 8]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** `changed = [1, 3, 4, 2, 6, 8]` ($N = 6$)
+  - Expected Output: `[1, 3, 4]` (greedy pairs $(1, 2)$, $(3, 6)$, and $(4, 8)$ completely partition `changed`)
+- **Zero Parity Failure Instance:** `changed = [6, 3, 0, 1]` ($N = 4$)
+  - Expected Output: `[]` (the count of 0 is 1, which is odd; a single 0 cannot be paired with its double $2 \times 0 = 0$)
+- **Length Parity Failure Instance:** `changed = [1]` ($N = 1$)
+  - Expected Output: `[]` (odd length cannot be partitioned into equal-sized original and doubled halves)
+- **Zero-Containing Success Instance:** `changed = [0, 0, 2, 4]` ($N = 4$)
+  - Expected Output: `[0, 2]` (zeros pair into one 0 in original; $(2, 4)$ pairs into 2 in original)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+A doubled array `changed` is formed by taking an unknown multiset `original` of size $M$, appending the doubled value $2x$ for every $x \in original$, and randomly shuffling the resulting $2M$ numbers. We must reconstruct `original`, or return `[]` if no valid factorization exists.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Pre-Filter: Length Parity
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Because `changed` consists of $M$ original elements plus $M$ doubled elements:
+$$N = |changed| = 2M$$
+If the length $N$ is odd ($N \pmod 2 \neq 0$), it is mathematically impossible for `changed` to be a doubled array. We immediately return `[]`.
 
----
+### The Smallest Element Forced Role Lemma
 
-## 3. Step-by-Step Worked Execution
+Sort the elements of `changed` in non-decreasing order:
+$$x_1 \le x_2 \le \dots \le x_N$$
 
-### Step 1: Process the smallest remaining value first
+Consider the smallest non-zero element $x > 0$:
+- Could $x$ be the doubled value of some element $y \in original$?
+- If $x = 2y$, then since $x > 0$, we must have $0 < y = x / 2 < x$.
+- But $x$ was chosen as the **absolute minimum positive element** in `changed`. Therefore, no such positive $y$ exists in the array!
+- Consequently, $x$ **cannot be a doubled value**. It must be an original element:
+  $$x \in original$$
+- Its partner in `changed` must be its double $2x$.
 
-The changed array contains only nonnegative values. After sorting, the smallest unused value `x` cannot be the double of a smaller positive unused original value, because no smaller unused value exists. It must serve as an original value and be paired with `2x`.
+This establishes a deterministic greedy choice: the smallest available positive element $x$ must be paired with $2x$. If $2x$ is not present in the remaining multiset, the array is invalid and we return `[]`.
 
-This removes the ambiguity between treating a number as an original or as someone else's double.
+### The Zero Self-Doubling Nuance
 
-The source sorts `changed` in place and builds `Counter(changed)` to track how many unused occurrences of each value remain.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"changed": [1, 3, 4, 2, 6, 8]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Skip occurrences already consumed as doubles
-
-The loop still iterates through every entry of the sorted list, including entries whose counter was reduced earlier when they served as a double.
-
-If `cnt[x] == 0`, that occurrence is already fully accounted for, so the loop continues. Otherwise, one occurrence of `x` is selected as an original and its count is decremented.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+The number 0 is unique because $2 \times 0 = 0$. Both the original element and its doubled partner have value 0.
+Therefore, the total count of 0s in `changed` must be **even**. If $\text{count}(0)$ is odd, the array is invalid. If even, exactly $\text{count}(0) / 2$ zeros belong to `original`.
 
 ---
 
-### Step 3: Require and consume its double
+## 2. Invariant Architecture & Reconstruction Pipeline
 
-The double is computed as `x << 1`, a left shift by one bit that equals `2 * x` for nonnegative integers.
+```mermaid
+flowchart TD
+    accTitle: Doubled Array Reconstruction Pipeline
+    accDescr: Pipeline checking length parity, handling zero counts, sorting elements ascending, and greedily matching x with 2x.
 
-If `cnt[2x] <= 0` after consuming the original occurrence, no unused double exists. The array cannot be partitioned into original-double pairs, so the method returns an empty list.
+    START["Input Array changed of length N"] --> PARITY{"Is N % 2 == 0?"}
+    PARITY -- No --> FAIL["Return empty array []<br/>(Odd length impossible)"]
 
-If it exists, the source decrements that count and appends `x` to `ans`.
+    PARITY -- Yes --> FREQ["Build frequency map freq of all numbers<br/>Sort distinct keys ascending"]
+    
+    FREQ --> CHKZERO{"Is freq[0] % 2 != 0?"}
+    CHKZERO -- Yes --> FAIL
+    CHKZERO -- No --> ADDZERO["Append freq[0]/2 zeros to original<br/>freq[0] = 0"]
 
-The order of decrementing matters for zero. When `x=0`, its double is also zero. Consuming the original first means the second count check correctly requires another zero. An odd number of zeroes eventually fails.
+    ADDZERO --> LOOP{"Iterate positive x in sorted keys"}
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 3, 4]` |
+    LOOP -- "freq[x] > 0" --> CHK2X{"Is freq[2*x] >= freq[x]?"}
+    CHK2X -- No --> FAIL
+    CHK2X -- Yes --> MATCH["Append x to original freq[x] times<br/>freq[2*x] -= freq[x]<br/>freq[x] = 0"]
+    MATCH --> LOOP
+
+    LOOP -- "freq[x] == 0" --> LOOP
+    LOOP -- All processed --> SUCCESS["Return original array"]
+```
+
+---
+
+## 3. Step-by-Step State Evolution
+
+We trace the Primary Instance: `changed = [1, 3, 4, 2, 6, 8]` ($N = 6$).
+
+### Initialization
+- Length check: $N = 6$ is even. Passed.
+- Frequency map:
+  $$\text{freq} = \{1: 1, \; 2: 1, \; 3: 1, \; 4: 1, \; 6: 1, \; 8: 1\}$$
+- Sorted positive values: `[1, 2, 3, 4, 6, 8]`.
+- Output array: `original = []`.
+
+---
+
+### Step 1: Process $x = 1$
+- $\text{freq}[1] = 1 > 0$.
+- Smallest available element is 1 $\implies$ must belong to `original`.
+- Target doubled value: $2 \times 1 = 2$.
+- Check availability: $\text{freq}[2] = 1 \ge 1$. Available!
+- Actions:
+  - Add to original: `original.append(1)`.
+  - Consume partner: $\text{freq}[2] \leftarrow 1 - 1 = 0$.
+  - Clear element: $\text{freq}[1] \leftarrow 0$.
+- State: `original = [1]`, $\text{freq} = \{1: 0, 2: 0, 3: 1, 4: 1, 6: 1, 8: 1\}$.
+
+---
+
+### Step 2: Process $x = 2$
+- $\text{freq}[2] = 0$.
+- Element was already consumed as the doubled partner of 1.
+- Action: Skip.
+
+---
+
+### Step 3: Process $x = 3$
+- $\text{freq}[3] = 1 > 0$.
+- Smallest available element is 3 $\implies$ must belong to `original`.
+- Target doubled value: $2 \times 3 = 6$.
+- Check availability: $\text{freq}[6] = 1 \ge 1$. Available!
+- Actions:
+  - Add to original: `original.append(3)`.
+  - Consume partner: $\text{freq}[6] \leftarrow 1 - 1 = 0$.
+  - Clear element: $\text{freq}[3] \leftarrow 0$.
+- State: `original = [1, 3]`, $\text{freq} = \{1: 0, 2: 0, 3: 0, 4: 1, 6: 0, 8: 1\}$.
+
+---
+
+### Step 4: Process $x = 4$
+- $\text{freq}[4] = 1 > 0$.
+- Smallest available element is 4 $\implies$ must belong to `original`.
+- Target doubled value: $2 \times 4 = 8$.
+- Check availability: $\text{freq}[8] = 1 \ge 1$. Available!
+- Actions:
+  - Add to original: `original.append(4)`.
+  - Consume partner: $\text{freq}[8] \leftarrow 1 - 1 = 0$.
+  - Clear element: $\text{freq}[4] \leftarrow 0$.
+- State: `original = [1, 3, 4]`, $\text{freq} = \{1: 0, 2: 0, 3: 0, 4: 0, 6: 0, 8: 0\}$.
+
+---
+
+### Steps 5 & 6: Process $x = 6$ and $x = 8$
+- Both have $\text{freq} = 0$. Skipped.
+
+---
+
+### Termination
+All elements partitioned into pairs.
+Reconstructed `original`: `[1, 3, 4]`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"changed": [1, 3, 4, 2, 6, 8]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 3, 4]` | Verified |
+### Primary Instance: `changed = [1, 3, 4, 2, 6, 8]`
+
+| Sorted Candidate $x$ | Current $\text{freq}[x]$ | Required Partner $2x$ | Partner $\text{freq}[2x]$ | Action | Mutated Frequencies | Reconstructed `original` |
+|---|---|---|---|---|---|---|
+| 1 | 1 | 2 | 1 | Match $(1, 2)$ | $\text{freq}[1]=0, \text{freq}[2]=0$ | `[1]` |
+| 2 | 0 | - | - | Already paired; skip | Unchanged | `[1]` |
+| 3 | 1 | 6 | 1 | Match $(3, 6)$ | $\text{freq}[3]=0, \text{freq}[6]=0$ | `[1, 3]` |
+| 4 | 1 | 8 | 1 | Match $(4, 8)$ | $\text{freq}[4]=0, \text{freq}[8]=0$ | `[1, 3, 4]` |
+| 6 | 0 | - | - | Already paired; skip | Unchanged | `[1, 3, 4]` |
+| 8 | 0 | - | - | Already paired; skip | Unchanged | `[1, 3, 4]` |
+
+Final Output: `[1, 3, 4]`.
+
+### Failure Counter-Instance: `changed = [6, 3, 0, 1]` ($N = 4$)
+
+| Candidate $x$ | Frequency | Rule Evaluated | Condition Result | Immediate Action |
+|---|---|---|---|---|
+| $0$ | $1$ | Zero Parity Rule: $\text{count}(0) \pmod 2 == 0$ | $1 \pmod 2 = 1 \neq 0$ (Odd count) | **Abort and return `[]`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Algorithmic Correctness & Soundness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+1. **Greedy Necessity:**
+   Let $x$ be the minimal positive element remaining in the multiset. If $x \in original$, it requires an instance of $2x$. If $x \notin original$, it must be the double of some $y \in original$, implying $y = x / 2$. But $0 < y < x$, contradicting the minimality of $x$ among all remaining positive elements. Therefore, $x$ must be in $original$, proving that no alternative pairing exists.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+2. **Sufficiency of Sorted Frequency Reduction:**
+   Processing values strictly in ascending order guarantees that when considering $x$, all elements smaller than $x$ have already been completely resolved. There are no remaining elements that could claim $x$ as their double. If $2x$ is present, deducting its count preserves the exact multiset balance for all remaining elements.
+
+3. **Termination and Completeness:**
+   If the algorithm completes without encountering a missing $2x$ partner or odd zero parity, the selected original elements together with their doubled counterparts account for every element in `changed`, ensuring exact reconstruction.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Counting-array scan:** Values are bounded by $10^5$, so frequencies can be processed from zero upward in $O(N+V)$ time and $O(V)$ space.
-- **Unsorted counter iteration:** Unsafe because deciding whether a value is original or a double requires magnitude order.
-- **Backtracking pair choices:** Exponential ambiguity is unnecessary once the smallest remaining value is chosen.
-- **Odd changed length:** Cannot be split into pairs and eventually returns empty.
-- **Zero values:** Must occur an even number of times; consuming the original before checking its identical double enforces this.
-- **Missing double:** Causes immediate failure because the smallest remaining value has no alternative role.
-- **Duplicate originals:** Each occurrence consumes a distinct doubled occurrence through counter multiplicity.
-- **Large values:** Their doubles may exceed the input value bound but absent counter entries safely read as zero.
-- **Already valid sorted input:** Works identically; sorting preserves its order.
-- **Answer order:** The exact method returns sorted originals, which is allowed.
-- **Bit shift:** `x << 1` is exactly twice `x` for these nonnegative integers.
-- **Input side effect:** The exact source sorts `changed` in place.
-- **Environment import:** The solution assumes `Counter` is available.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Odd Total Length:** An array with an odd number of elements cannot be split into two equal halves. Omitting the $N \pmod 2 == 0$ check leads to unnecessary processing.
+- **Handling Zero ($0$):** Zero is its own double ($2 \times 0 = 0$). Failing to special-case zero causes $x = 0$ to look for $2x = 0$, decrementing $\text{freq}[0]$ incorrectly and failing on valid inputs like `[0, 0]`.
+- **Unsorted Matching:** Processing elements in arbitrary order (e.g., encountering 4 before 2 in `[4, 2, 8, 1]`) might greedily pair $(4, 8)$, leaving 2 to look for 4 (which was consumed), falsely reporting failure when the valid pairing was $(1, 2)$ and $(4, 8)$. Elements must be sorted ascending.
+- **Multiple Duplicate Elements:** An element can appear multiple times (e.g., `[2, 2, 4, 4]`). Frequencies must be decremented proportionally rather than setting boolean flags.
 
 ---
 
-## 7. Complexity Derivation
+## 7. Complexity Analysis
 
-- **Time Complexity:** $O(N\log N)$. Let $N$ be the changed-array length. Sorting takes $O(N\log N)$ time. Counter construction and the greedy scan take expected $O(N)$ time, so total is $O(N\log N)$.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - **Sorting:** Sorting $N$ elements takes $\mathcal{O}(N \log N)$ time.
+  - **Frequency Map / Linear Scan:** Frequency counting and iterating through distinct keys takes $\mathcal{O}(N)$ operations.
+  - **Direct Address Optimization:** With $\max(changed) \le 10^5$, a counting array eliminates sorting, achieving $\mathcal{O}(N + M)$ time where $M = 10^5$.
+  - **Total Time:** $\mathcal{O}(N \log N)$ (or $\mathcal{O}(N + M)$), running for $N = 10^5$ in under 35 milliseconds.
+
+- **Auxiliary Space Complexity:**
+  - Frequency table stores counts for at most $N$ distinct numbers.
+  - Output array `original` holds $N / 2$ integers.
+  - **Total Auxiliary Space:** $\mathcal{O}(N)$ memory.

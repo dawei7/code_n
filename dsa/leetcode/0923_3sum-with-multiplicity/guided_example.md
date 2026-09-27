@@ -1,112 +1,157 @@
 # Guided Example: 3Sum With Multiplicity
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step middle-pivot traversal with dynamic suffix counting, prove the strict $i < j < k$ index-order partition invariant, and demonstrate multiplicity aggregation on representative multisets:
 
-- **Input:** `{"arr": [1, 1, 2, 2, 3, 3, 4, 4, 5, 5], "target": 8}`
-- **Required output:** `20`
+- **Representative Instance 1 (Mixed Value Multiplicities):**
+  $$
+  arr = [1, \; 1, \; 2, \; 2, \; 3, \; 3, \; 4, \; 4, \; 5, \; 5], \quad target = 8
+  $$
+- **Required Output:** `20`
+  - Valid value triples summing to $8$:
+    1. $\{1, 2, 5\}$: count is $2 \times 2 \times 2 = \mathbf{8}$ index triples.
+    2. $\{1, 3, 4\}$: count is $2 \times 2 \times 2 = \mathbf{8}$ index triples.
+    3. $\{2, 2, 4\}$: choose two $2$s and one $4$: $\binom{2}{2} \times 2 = 1 \times 2 = \mathbf{2}$ index triples.
+    4. $\{2, 3, 3\}$: choose one $2$ and two $3$s: $2 \times \binom{2}{2} = 2 \times 1 = \mathbf{2}$ index triples.
+  - Sum of index triples:
+    $$
+    8 + 8 + 2 + 2 = \mathbf{20}
+    $$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Identical Pair Multiplicity):**
+  $$
+  arr = [1, \; 1, \; 2, \; 2, \; 2, \; 2], \quad target = 5
+  $$
+  - Target equation: $x + y + z = 5$.
+  - The only valid value triple is $\{1, 2, 2\}$ ($1 + 2 + 2 = 5$).
+  - Two choices for $1$, and choose $2$ out of four $2$s:
+    $$
+    \binom{2}{1} \times \binom{4}{2} = 2 \times \frac{4 \times 3}{2} = 2 \times 6 = \mathbf{12}
+    $$
+  - Required Output: `12`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `arr`, and an integer `target`, return the number of tuples `i, j, k` such that `i < j < k` and $\text{arr}[i] + \text{arr}[j] + \text{arr}[k] = target$.
+Given an integer array `arr` and an integer `target`, return the number of tuples $(i, j, k)$ such that $0 \le i < j < k < n$ and:
+$$
+arr[i] + arr[j] + arr[k] == target
+$$
+Because answer can be very large, return it modulo $10^9 + 7$.
 
-The objective is to compute `20` from `{"arr": [1, 1, 2, 2, 3, 3, 4, 4, 5, 5], "target": 8}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Target: 8, Array: [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Fix Middle Element j:
+  arr[:j]              arr[j]              arr[j+1:]
+  Prefix Elements i    Middle b            Suffix Counter cnt[c]
+  (all i < j)                              (counts occurrences with k > j)
 
----
+For each a in arr[:j]:
+  Required third value: c = target - a - b
+  Number of valid indices k > j is exactly cnt[c]!
+  Add cnt[c] to total combinations.
+```
 
-## 2. Conceptual Foundation & Invariants
+A brute-force three-nested loop checks all $\binom{n}{3} = \frac{n(n-1)(n-2)}{6}$ index triples, taking $\mathcal{O}(n^3)$ operations. For $n = 3{,}000$, this requires $4.5 \times 10^9$ operations, causing severe TLE.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Core Step 1
-
-The task counts index triples, not merely distinct value triples. Two occurrences with the same value are different choices when their indices differ. The exact solution enforces the required order $i<j<k$ directly:
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arr": [1, 1, 2, 2, 3, 3, 4, 4, 5, 5], "target": 8}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Middle-Pivot with Dynamic Suffix Frequency Counter**:
+- As middle index $j$ advances from $0$ to $n - 1$, the hash map `cnt` dynamically maintains the frequency of elements occurring strictly to the right ($k > j$).
+- By decrementing `cnt[arr[j]]` before scanning the prefix $arr[0 \dots j-1]$, every pair $(i, j)$ with $i < j$ queries the suffix for the exact count of matching third elements in $\mathcal{O}(1)$ time.
+- Total runtime is reduced to $\mathcal{O}(n^2)$ while naturally preserving strict index order.
 
 ---
 
-### Step 2: Core Step 2
+## 2. Conceptual Foundation & The Strict Index Order Invariant
 
-- choose middle index $j$ in the outer loop;
-- enumerate every earlier index $i$ through `arr[:j]`;
-- use a frequency Counter to count later indices $k$ having the needed third value.
+```mermaid
+flowchart TD
+    accTitle: Middle-Pivot 3Sum Multiplicity Pipeline
+    accDescr: Flowchart showing outer middle pivot j decrementing suffix count and inner prefix loop querying matching suffix counts
+    Array["Input array arr of length n"] --> Suffix["Initialize cnt = Counter(arr)"]
+    Suffix --> LoopJ["For each middle index j: b = arr[j]"]
+    LoopJ --> Dec["cnt[b] -= 1 (Remove middle element from suffix)"]
+    Dec --> LoopI["For each prefix index i < j: a = arr[i]"]
+    LoopI --> Need["Compute needed c = target - a - b"]
+    Need --> Add["ans = (ans + cnt[c]) % mod"]
+    Add --> LoopI
+    LoopI --> LoopJ
+    LoopJ --> Return["Return final ans"]
+```
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### The Suffix Counter Invariant
+
+For every outer loop iteration $j$:
+1. Prior to entering the inner loop, `cnt[arr[j]]` is decremented by $1$.
+2. **Invariant:** At this moment, for any value $v$, `cnt[v]` equals the exact number of indices $k > j$ such that $arr[k] == v$.
+3. The inner loop iterates over all $i \in [0, j - 1]$. For each $arr[i]$, the required third value is:
+   $$
+   c = target - arr[i] - arr[j]
+   $$
+4. Because every occurrence tallied in `cnt[c]` resides strictly at an index $k > j$, the tuple $(i, j, k)$ strictly satisfies $i < j < k$.
+5. No tuple can be counted twice because each tuple $(i, j, k)$ has a uniquely defined middle index $j$ and left index $i$.
 
 ---
 
-### Step 3: Core Step 3
+## 3. Step-by-Step Worked Execution: $[1, 1, 2, 2, 2, 2]$, $target = 5$
 
-**Maintain counts only to the right of `j`.** Initially `cnt` contains every array occurrence. At the start of the iteration for middle value `b = arr[j]`, the solution performs `cnt[b] -= 1`. Values from earlier outer iterations were already removed, so after this decrement `cnt[x]` equals the number of occurrences of value $x$ at indices strictly greater than $j$.
+Let $arr = [1, 1, 2, 2, 2, 2]$, $n = 6, \; target = 5$.
+Initial suffix counter: `cnt = {1: 2, 2: 4}`.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `20` |
+| Middle Index $j$ | $b = arr[j]$ | Decrement Action | Suffix `cnt` Remaining ($k > j$) | Prefix $i < j$ | $a = arr[i]$ | Needed $c = 5 - a - b$ | Suffix Count `cnt[c]` | Cumulative `ans` |
+|:---:|:---:|:---|:---|:---:|:---:|:---:|:---:|:---:|
+| **0** | $1$ | `cnt[1] -= 1` | `{1: 1, 2: 4}` | Empty | — | — | — | $0$ |
+| **1** | $1$ | `cnt[1] -= 1` | `{1: 0, 2: 4}` | $i = 0$ | $1$ | $5 - 1 - 1 = 3$ | `cnt[3] = 0` | $0$ |
+| **2** | $2$ | `cnt[2] -= 1` | `{1: 0, 2: 3}` | $i = 0$<br>$i = 1$ | $1$<br>$1$ | $5 - 1 - 2 = 2$<br>$5 - 1 - 2 = 2$ | `cnt[2] = 3`<br>`cnt[2] = 3` | $0 + 3 = 3$<br>$3 + 3 = \mathbf{6}$ |
+| **3** | $2$ | `cnt[2] -= 1` | `{1: 0, 2: 2}` | $i = 0$<br>$i = 1$<br>$i = 2$ | $1$<br>$1$<br>$2$ | $2$<br>$2$<br>$5 - 2 - 2 = 1$ | `cnt[2] = 2`<br>`cnt[2] = 2`<br>`cnt[1] = 0` | $6 + 2 = 8$<br>$8 + 2 = 10$<br>$10 + 0 = \mathbf{10}$ |
+| **4** | $2$ | `cnt[2] -= 1` | `{1: 0, 2: 1}` | $i = 0$<br>$i = 1$<br>$i = 2, 3$ | $1$<br>$1$<br>$2, 2$ | $2$<br>$2$<br>$1, 1$ | `cnt[2] = 1`<br>`cnt[2] = 1`<br>`cnt[1] = 0` | $10 + 1 = 11$<br>$11 + 1 = 12$<br>$12 + 0 = \mathbf{12}$ |
+| **5** | $2$ | `cnt[2] -= 1` | `{1: 0, 2: 0}` | $i < 5$ | — | — | All `cnt = 0` | $\mathbf{12}$ |
+
+Total combinations accumulated: $\mathbf{12}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Combinatorial Equivalence Breakdown
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [1, 1, 2, 2, 3, 3, 4, 4, 5, 5], "target": 8}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `20` | Verified |
+For $arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]$ with $target = 8$:
+
+| Value Tuple $(x, y, z)$ | Formula Applied | Value Counts Available | Calculation | Tuples Generated |
+|:---:|:---:|:---:|:---:|:---:|
+| $\{1, 2, 5\}$ | All distinct: $C_1 \times C_2 \times C_5$ | $C_1=2, C_2=2, C_5=2$ | $2 \times 2 \times 2$ | $8$ |
+| $\{1, 3, 4\}$ | All distinct: $C_1 \times C_3 \times C_4$ | $C_1=2, C_3=2, C_4=2$ | $2 \times 2 \times 2$ | $8$ |
+| $\{2, 2, 4\}$ | Two equal: $\binom{C_2}{2} \times C_4$ | $C_2=2, C_4=2$ | $\binom{2}{2} \times 2 = 1 \times 2$ | $2$ |
+| $\{2, 3, 3\}$ | Two equal: $C_2 \times \binom{C_3}{2}$ | $C_2=2, C_3=2$ | $2 \times \binom{2}{2} = 2 \times 1$ | $2$ |
+| **Total** | Sum of all configurations | — | $8 + 8 + 2 + 2$ | $\mathbf{20}$ |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every match added to `ans` represents an index triple $(i, j, k)$. By construction, $i \in [0, j - 1] \implies i < j$, and $k$ is drawn from the suffix $k > j$. The sum satisfies $arr[i] + arr[j] + arr[k] == a + b + c = a + b + (target - a - b) = target$. Hence, every counted tuple is valid.
+2. **Completeness:**
+   Any valid index triple $(i, j, k)$ with $i < j < k$ and $arr[i] + arr[j] + arr[k] == target$ has a unique middle index $j$. When the outer loop reaches this $j$ and the inner loop reaches this $i$, $arr[k]$ is present in the suffix and counted in `cnt[arr[k]]`. Thus, all valid triples are counted exactly once.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Frequency-domain case analysis:** Loop over ordered values $a\le b\le c$ and use combinations for all-distinct, two-equal, and three-equal cases. With values 0 through 100, it reaches $O(n+V^2)$.
-- **Sorted two pointers:** Sort the array and count multiplicities around matching pairs in $O(n^2)$ time, but sorting changes index order and requires careful combination counts.
-- **Triple enumeration:** Directly checking all $i<j<k$ costs $O(n^3)$.
-- **Index loops without slicing:** Replace `arr[:j]` with indexed access to preserve $O(n^2)$ time while reducing temporary space.
-- **No matching third value:** Counter lookup contributes zero.
-- **Third value outside 0 through 100:** Counter also returns zero without a range check.
-- **All three values distinct:** Each concrete ordered index triple is counted once.
-- **Exactly two values equal:** Concrete-index enumeration handles the multiplicity automatically.
-- **All three values equal:** Earlier/middle/later roles produce the correct combination count.
-- **Duplicate Counter keys with zero count:** They are harmless.
-- **Index order:** Removing through the middle and reading only the prefix is what enforces $i<j<k$.
-- **Large answer:** Incremental modulo returns the required residue.
-- **Manifest mismatch:** Complexity must reflect the exact nested index enumeration rather than the alternative bounded-value method.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| All Three Values Equal | $arr = [2, 2, 2, 2], target = 6$ | Generates $\binom{4}{3} = 4$ tuples. | Overcounting identical elements as distinct. |
+| Zero Elements | $[0, 0, 0, 1, 2], target = 0$ | Triple $(0, 0, 0)$ counted once: $\binom{3}{3} = 1$. | Zero identity confusion in hash map lookup. |
+| No Matching Triple | Any array, target = 100 | Returns $0$. | Negative index access or key errors. |
+| Modulo Overflow | Large duplicate arrays (e.g. 300 sevens) | Computes $ans \bmod (10^9 + 7)$ on each addition. | 32-bit integer overflow before modulo. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the array length and $V$ the value-domain size.
-- **Auxiliary Space Complexity:** $O(V+n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n^2)$, where $n = \text{len}(arr)$.
+  - Outer loop runs $n$ times for middle index $j$.
+  - Inner loop runs $j$ times for prefix index $i$, performing $\mathcal{O}(1)$ dictionary lookups and arithmetic additions.
+  - Total operations: $\sum_{j=0}^{n-1} j = \frac{n(n - 1)}{2} \approx \frac{n^2}{2}$.
+  - For $n = 3{,}000$, $\approx 4.5 \times 10^6$ operations, executing in $< 0.1\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(V)$, where $V$ is the number of distinct values in $arr$.
+  - The frequency map stores at most $V \le \min(n, 101)$ unique keys.

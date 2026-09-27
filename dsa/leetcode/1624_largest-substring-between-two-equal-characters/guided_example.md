@@ -1,133 +1,182 @@
 # Guided Example: Largest Substring Between Two Equal Characters
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step first-occurrence tracking of repeating string characters, prove the First Occurrence Anchor Invariant and the Interval Span Maximization Theorem, and determine maximum interior substring lengths across representative string instances:
 
-- **Input:** `{"s": "aa"}`
-- **Required output:** `0`
+- **Representative Instance 1 (Equal Outer Boundary Characters):**
+  - Input String:
+    $$
+    s = \text{"abca"}, \quad n = |s| = 4
+    $$
+  - Objective: Determine the maximum length of an internal substring strictly bounded by identical left and right characters $s[i] == s[j]$ ($i < j$).
+  - **Required Output:** `2`
+  - Step-by-step sequential resolution:
+    1. **Index 0 ($s[0] = \text{'a'}$):**
+       - Character `'a'` has not been seen.
+       - Record earliest anchor index: $first[\text{'a'}] = 0$.
+    2. **Index 1 ($s[1] = \text{'b'}$):**
+       - Character `'b'` has not been seen.
+       - Record earliest anchor index: $first[\text{'b'}] = 1$.
+    3. **Index 2 ($s[2] = \text{'c'}$):**
+       - Character `'c'` has not been seen.
+       - Record earliest anchor index: $first[\text{'c'}] = 2$.
+    4. **Index 3 ($s[3] = \text{'a'}$):**
+       - Character `'a'` is already anchored at $first[\text{'a'}] = 0$.
+       - Compute interior distance:
+         $$
+         \Delta = 3 - first[\text{'a'}] - 1 = 3 - 0 - 1 = \mathbf{2}
+         $$
+       - The enclosed substring is $s[1 \dots 2] = \text{"bc"}$, with length $2$.
+       - Update peak: $ans = \max(-1, 2) = \mathbf{2}$.
+    5. **Final Result:** $2$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Adjacent Duplicate Characters):**
+  - Input: $s = \text{"aa"}$.
+  - $first[\text{'a'}] = 0$.
+  - At index $1$: $\Delta = 1 - 0 - 1 = \mathbf{0}$ (The empty substring `""`).
+  - Output: `0`.
+
+- **Representative Instance 3 (All Distinct Characters):**
+  - Input: $s = \text{"cbzxy"}$.
+  - Every character appears exactly once; no second occurrence is ever encountered.
+  - Output: `-1`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a string `s`, return *the length of the longest substring between two equal characters, excluding the two characters.* If there is no such substring return `-1`.
+Given a string $s$, find the length of the longest substring between two equal characters (excluding the characters themselves). If no two characters are equal, return $-1$.
 
-The objective is to compute `0` from `{"s": "aa"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The All-Pairs Quadratic Comparison Trap:
+  Checking every pair of indices (i, j) with 0 <= i < j < n:
+    for i in range(n):
+        for j in range(i + 1, n):
+            if s[i] == s[j]:
+                ans = max(ans, j - i - 1)
+  For string length n = 100,000, n^2 / 2 = 5 * 10^9 operations!
+  Causes immediate Time Limit Exceeded.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The First Occurrence Anchor Invariant (Strict Linear O(n)):
+  1. For any character c, the interior span (j - i - 1) is strictly maximized
+     when the starting index i is as small as possible!
+  2. Therefore, we ONLY need to record the VERY FIRST time each character appears:
+       first[c] = min { k : s[k] == c }
+  3. Traverse the string once from left to right:
+     - If c is new: first[c] = current_index.
+     - If c was previously seen: candidate span = current_index - first[c] - 1.
+       ans = max(ans, candidate_span).
+  Single pass over n characters with at most 26 dictionary entries!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Describe a candidate by its two equal boundary characters
-
-If equal characters occur at indices $L$ and $R$, with $L<R$, the substring strictly between them begins at $L+1$ and ends at $R-1$. Its length is
-
-$$
-R-L-1.
-$$
-
-The subtraction by one is easy to get wrong. The inclusive span from $L$ through $R$ has length $R-L+1$, but both boundary characters must be excluded, so two positions are removed: $(R-L+1)-2=R-L-1$.
-
-The task is therefore to find two equal characters whose indices are as far apart as possible. It is not necessary to construct or slice the substring itself; only its length is requested.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "aa"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **First Occurrence Anchor Invariant & Interval Span Maximization Theorem**:
+1. **Anchor Minimality:** The interior distance between any two matching characters $(j - i - 1)$ is a strictly monotonically decreasing function of the start index $i$; greedily fixing $i = \text{first\_seen}(c)$ guarantees optimal span evaluation for any subsequent occurrence $j$.
+2. **Bounded Alphabet Space:** English lowercase letters comprise exactly $|\Sigma| = 26$ symbols; anchor lookup executes in $\mathcal{O}(1)$ time and space.
+3. **Inclusive Separation Formula:** Two identical adjacent characters at $i$ and $i+1$ enclose exactly $(i + 1) - i - 1 = 0$ characters (the empty string).
+4. Total time $\mathcal{O}(n)$ and auxiliary space $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$.
 
 ---
 
-### Step 2: Scan once while remembering the earliest occurrence
+## 2. Conceptual Foundation & The Single-Pass Pipeline
 
-The dictionary `d` maps each character already seen to its first index. The answer `ans` starts at `-1`, which is the required result when no character appears twice.
+```mermaid
+flowchart TD
+    accTitle: First Occurrence Substring Maximizer
+    accDescr: Pipeline showing single-pass character scanning, first-seen anchor hash map lookup, and peak span tracking
+    Start["Given string s of length n\nInit ans = -1, first = {}"] --> LoopChars["For index i from 0 to n - 1:"]
+    LoopChars --> CheckSeen{"s[i] in first ?"}
+    CheckSeen -->|"No: First occurrence"| RecordFirst["first[s[i]] = i"]
+    CheckSeen -->|"Yes: Matching pair found"| CalcSpan["span = i - first[s[i]] - 1\nans = max(ans, span)"]
+    RecordFirst --> NextChar{"i < n - 1 ?"}
+    CalcSpan --> NextChar
+    NextChar -->|"Yes"| LoopChars
+    NextChar -->|"No: Traversal complete"| ReturnAns["Return ans"]
+```
 
-The loop `for i, c in enumerate(s)` reads the string from left to right. At every index there are two cases.
+### The Interval Span Maximization Theorem
 
-If `c` is absent from `d`, this is the first occurrence of that character, so the source records `d[c] = i`.
-
-If `c` is already present, then `d[c]` is the earliest possible left boundary for a substring ending at `i`. The candidate interior length is `i - d[c] - 1`. The source compares it with the best length found so far and retains the larger one.
-
-Crucially, the dictionary entry is not updated after a repeated occurrence. Suppose a character occurs at indices 2, 5, and 9. When index 9 is the right boundary, pairing it with index 2 produces length $9-2-1=6$, while pairing it with index 5 produces only $9-5-1=3$. For a fixed right boundary, the smallest left index always creates the greatest distance. Replacing 2 with 5 would discard the only occurrence that can produce the best future answer for that character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $s \in \Sigma^n$ be a string of length $n$ over an alphabet $\Sigma$.
+1. **Interior Span Definition:**
+   For any pair of indices $i < j$ such that $s[i] = s[j] = c$, the interior span is:
+   $$
+   \Delta(i, j) = j - i - 1
+   $$
+2. **Partial Derivative on Start Anchor:**
+   $$
+   \frac{\partial \Delta}{\partial i} = -1 < 0
+   $$
+   Hence, for any fixed terminal index $j$, $\Delta(i, j)$ is strictly minimized when $i$ is maximized, and maximized when $i$ is minimized.
+3. **Anchor Invariant:**
+   Let $i^*(c) = \min \{ k : s[k] = c \}$ denote the first occurrence of character $c$ in $s$.
+   For any subsequent occurrence $j$ of $c$ ($j > i^*(c)$):
+   $$
+   \forall i < j \text{ with } s[i] = c, \quad \Delta(i, j) \le \Delta(i^*(c), j)
+   $$
+   Therefore, keeping only the minimum index $i^*(c)$ for each unique character $c \in \Sigma$ is necessary and sufficient to evaluate the global maximum interior span:
+   $$
+   ans = \max_{c \in \Sigma, \; j > i^*(c) \land s[j] = c} \Big( j - i^*(c) - 1 \Big)
+   $$
+   This evaluates in a single forward pass without secondary backtracking. $\blacksquare$
 
 ---
 
-### Step 3: Why skipped pairs cannot improve the answer
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-There can be many pairs of equal occurrences, but the source examines only pairs made from each occurrence and the character's first occurrence. This pruning is safe.
+$s = \text{"abca"}$. Initial state: $ans = -1, \; first = \{\}$.
 
-Fix any right endpoint $R$ containing character $c$. Let $F$ be the first index at which $c$ appears. Any other eligible left endpoint $L$ satisfies $F\le L<R$. Therefore,
-
-$$
-R-F-1 \ge R-L-1.
-$$
-
-The pair $(F,R)$ is at least as long as every pair $(L,R)$ ending at the same position. Thus, none of the omitted later-left-boundary pairs can be the unique optimum. As the scan eventually treats every occurrence as a possible right endpoint, it considers a candidate at least as good as every valid pair in the string.
-
-Another equivalent perspective is to focus on one character. Its longest possible interior is always between its first and last occurrences. The dictionary permanently retains the first, while the scan eventually reaches the last, so that maximum is considered. Taking `max` across all repeated characters then yields the global maximum.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0` |
+### Character Scan Trace
+- **Index 0 ($c = \text{'a'}$):**
+  - $\text{'a'} \notin first \implies first[\text{'a'}] = 0$.
+  - State: $first = \{\text{'a'}: 0\}, \; ans = -1$.
+- **Index 1 ($c = \text{'b'}$):**
+  - $\text{'b'} \notin first \implies first[\text{'b'}] = 1$.
+  - State: $first = \{\text{'a'}: 0, \text{'b'}: 1\}, \; ans = -1$.
+- **Index 2 ($c = \text{'c'}$):**
+  - $\text{'c'} \notin first \implies first[\text{'c'}] = 2$.
+  - State: $first = \{\text{'a'}: 0, \text{'b'}: 1, \text{'c'}: 2\}, \; ans = -1$.
+- **Index 3 ($c = \text{'a'}$):**
+  - $\text{'a'} \in first \implies$ Anchor is $first[\text{'a'}] = 0$.
+  - Span: $3 - 0 - 1 = \mathbf{2}$.
+  - Update: $ans = \max(-1, 2) = \mathbf{2}$.
+- End of string reached. Return $ans = \mathbf{2}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. First-Occurrence State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "aa"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0` | Verified |
+| Index $i$ | Character $s[i]$ | Prior Occurrence $first[s[i]]$ | Action Taken | Candidate Span $i - first - 1$ | Running Peak $ans$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | `'a'` | None | Anchor $first[\text{'a'}] = 0$ | — | $-1$ |
+| $1$ | `'b'` | None | Anchor $first[\text{'b'}] = 1$ | — | $-1$ |
+| $2$ | `'c'` | None | Anchor $first[\text{'c'}] = 2$ | — | $-1$ |
+| **$3$** | **`'a'`** | **$0$** | **Evaluate span** | **$3 - 0 - 1 = 2$** | **$2$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+Every evaluated candidate pair $(i^*(c), j)$ shares identical character values $s[i^*] = s[j] = c$. The quantity $j - i^* - 1$ counts the exact number of characters strictly between indices $i^*$ and $j$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+Any candidate substring between equal characters must have some first endpoint $i$ and second endpoint $j$. Because $i^*(c) \le i$, the span $\Delta(i^*(c), j) \ge \Delta(i, j)$. Thus, no candidate configuration can achieve a strictly larger distance than one anchored at $i^*(c)$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Brute-force all index pairs:** Test every $L<R$ and update the answer when `s[L] == s[R]`. This is direct and correct, but it performs $O(n^2)$ comparisons instead of using the earliest-occurrence observation.
-- **First and last occurrence arrays:** With 26 lowercase letters, two fixed arrays can record each letter's first and last indices. A second pass computes every distance. This is also $O(n)$ time and $O(1)$ space, but the one-pass dictionary updates the answer immediately.
-- **Use `str.find` and `str.rfind` for each letter:** Calling both for every one of 26 fixed letters is still $O(n)$ under the fixed alphabet. It is concise but scans the same string repeatedly and is less adaptable to a larger alphabet.
-- **Store every occurrence index:** This uses unnecessary $O(n)$ space. Only the first occurrence is needed because it dominates all later left boundaries for every future right endpoint.
-- **Adjacent equal characters:** Their interior length is zero. The formula produces zero, which is a valid answer rather than `-1`.
-- **No repeated character:** No candidate is evaluated and the sentinel `-1` is returned.
-- **A character appears many times:** The first dictionary index must remain unchanged. Updating it would make later candidates shorter and could lose the optimum.
-- **A one-character string:** It contains no pair, so the initialized `-1` is correct.
-- **Do not include the boundary characters:** Using `i - d[c] + 1` would measure the whole bounded substring; using `i - d[c]` would still be one too large. The required interior is `i - d[c] - 1`.
-- **Lexicographic concerns are irrelevant here:** The result asks only for maximum length. If several pairs have the same length, there is no need to retain their positions or choose among their contents.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Adjacent Duplicates | $s = \text{"aa"}$ | Span evaluates to $1 - 0 - 1 = 0$; returns $0$. | Returning $-1$ on empty valid substring. |
+| Triple Identical Characters | $s = \text{"aaa"}$ | Compares third 'a' against first 'a': $2 - 0 - 1 = 1$. | Overwriting anchor on second occurrence. |
+| No Duplicate Characters | $s = \text{"abcdef"}$ | Condition never met; $ans$ remains $-1$. | Returning $0$ or null reference. |
+| Long Substring with Multiple Candidates | $s = \text{"abca...a"}$ | Anchors to first 'a'; later 'a' occurrences give increasing spans. | Prematurely stopping after first match. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. The loop visits every character once. Dictionary membership, lookup, and insertion take expected $O(1)$ time, so the total expected time complexity is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n = |s| \le 300$.
+  - The string is traversed once from left to right.
+  - Hash map or array lookup and insertion take $\mathcal{O}(1)$ time.
+  - Total time: $< 0.0001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(|\Sigma|) = \mathcal{O}(1)$ auxiliary memory to store at most $26$ integer anchor indices.

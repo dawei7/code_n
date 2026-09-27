@@ -1,141 +1,174 @@
 # Guided Example: Strange Printer II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+This guide examines how to determine whether a multicolored target grid can be printed using solid rectangular coats of paint, each color used at most once, by modeling color precedence as a directed graph and executing topological cycle detection.
 
-- **Input:** `{"targetGrid": [[1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 2, 1], [1, 1, 1, 1]]}`
-- **Required output:** `true`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Input Grid:**
+  ```text
+  [[1, 1, 1, 1],
+   [1, 2, 2, 1],
+   [1, 2, 2, 1],
+   [1, 1, 1, 1]]
+  ```
+- **Output:** `true` (valid sequence: print color $1$ first, then print color $2$)
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-There is a strange printer with the following two special requirements:
+The strange printer operates under strict constraints:
+1. Each printed area must be a solid axis-aligned rectangle $[r_1, r_2] \times [c_1, c_2]$.
+2. Each distinct color may be printed at most once.
+3. Later rectangular prints completely overwrite earlier painted cells.
 
-The objective is to compute `true` from `{"targetGrid": [[1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 2, 1], [1, 1, 1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+For color $c$, let its minimal bounding box be the smallest rectangle enclosing all final cells of color $c$:
+$$[\min r, \max r] \times [\min c, \max c]$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+If any cell $(r, c)$ inside color $a$'s bounding box has final target color $b \ne a$, then color $a$ must have been printed **before** color $b$, so that $b$'s subsequent print covers that cell with its final color. This introduces a directed precedence edge $a \to b$.
+
+```
+Color 1 Box: [0, 3] x [0, 3]    Color 2 Box: [1, 2] x [1, 2]
++ - - - - - - - - +             + - - - - - - - - +
+| 1   1   1   1   |             | .   .   .   .   |
+| 1  [2] [2]  1   |             | .   2   2   .   |
+| 1  [2] [2]  1   |             | .   2   2   .   |
+| 1   1   1   1   |             | .   .   .   .   |
++ - - - - - - - - +             + - - - - - - - - +
+(Contains color 2: 1 -> 2)      (Pure color 2: no edges)
+```
+
+Our teaching goal is to trace:
+1. Identifying bounding boxes across all distinct colors.
+2. Formulating color dependencies as directed edges.
+3. Evaluating graph acyclicity via Kahn's topological sort algorithm.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+```
++-------------------------------------------------------------------------+
+|                 COLOR DEPENDENCY GRAPH CONSTRUCTION                     |
+|                                                                         |
+|  1. Bounding Box: For each color c:                                     |
+|     top = min(r), bottom = max(r), left = min(c), right = max(c)        |
+|                                                                         |
+|  2. Directed Precedence Edge:                                           |
+|     For each cell (r, c) in bounding box of color a:                   |
+|     If targetGrid[r][c] = b (b != a):                                   |
+|         Add directed edge: a -> b                                       |
+|         (Color a must be painted BEFORE color b overwrites it)          |
+|                                                                         |
+|  3. Solvability Condition:                                              |
+|     A print schedule exists <=> Directed graph G is a DAG (no cycles)   |
++-------------------------------------------------------------------------+
+```
 
-| State Parameter | Role & Purpose | Initial State |
+| Element | Mathematical Definition | Role in Feasibility Test |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Color Set $\mathcal{C}$ | $\{ \text{grid}[r][c] : (r, c) \in R \times C \}$ | Set of active printer operations |
+| Bounding Box $B(c)$ | $[r_{\min}(c), r_{\max}(c)] \times [c_{\min}(c), c_{\max}(c)]$ | Minimal unavoidable region painted when applying color $c$ |
+| Directed Edge $u \to v$ | $\exists (r, c) \in B(u) \text{ s.t. } \text{grid}[r][c] = v$ | Enforces temporal order: print $u$ strictly before $v$ |
+| In-degree $d_{\text{in}}(v)$ | $|\{ u \in \mathcal{C} : u \to v \}|$ | Count of prerequisite colors that must precede $v$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Acyclicity Equivalence Invariant.** A target grid is printable if and only if the color precedence graph contains zero directed cycles. An edge $u \to v$ mandates that $u$ precedes $v$. A directed cycle $c_1 \to c_2 \to \dots \to c_k \to c_1$ demands that $c_1$ precede itself, which is impossible under single-use printing.
+
+```mermaid
+flowchart LR
+    accTitle: Strange Printer Color Precedence Graph
+    accDescr: Directed dependency graph showing color 1 must be printed before color 2.
+    C1["Color 1: Outer Border"] -->|"Box contains Color 2"| C2["Color 2: Inner Square"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Each color has one unavoidable rectangle
+### Step 1: Compute Bounding Boxes
 
-A color may be printed only once, and that one operation paints a solid rectangle. To produce every final cell of color `c`, the rectangle printed for `c` must span at least:
-
-- its topmost occurrence;
-- its leftmost occurrence;
-- its bottommost occurrence;
-- its rightmost occurrence.
-
-The smallest rectangle containing all final occurrences is the color’s bounding box. The solution computes one box `[top, left, bottom, right]` for every color appearing in the grid.
-
-Printing a larger rectangle cannot remove ordering requirements found inside the minimal box; it can only cover more cells and create more requirements. Therefore, testing the mandatory minimal bounding boxes is sufficient for deciding whether a valid order exists.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"targetGrid": [[1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 2, 1], [1, 1, 1, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Scanning the $4 \times 4$ grid reveals two distinct colors: $\mathcal{C} = \{1, 2\}$.
+- **Color 1:**
+  - Row occurrences: rows $0, 1, 2, 3 \implies [r_{\min}, r_{\max}] = [0, 3]$.
+  - Col occurrences: cols $0, 1, 2, 3 \implies [c_{\min}, c_{\max}] = [0, 3]$.
+  - Bounding box $B(1) = [0, 3] \times [0, 3]$ (entire grid).
+- **Color 2:**
+  - Row occurrences: rows $1, 2 \implies [r_{\min}, r_{\max}] = [1, 2]$.
+  - Col occurrences: cols $1, 2 \implies [c_{\min}, c_{\max}] = [1, 2]$.
+  - Bounding box $B(2) = [1, 2] \times [1, 2]$ (central $2 \times 2$ square).
 
 ---
 
-### Step 2: Collecting colors and bounds
+### Step 2: Establish Directed Precedence Edges
 
-`colors` is the set of all values appearing in `targetGrid`. For each color, `bounds` begins as `[rows, columns, -1, -1]`. The first two values are larger than any valid row or column index, while the last two are smaller than any valid index.
+- **Inspect Bounding Box $B(1)$:**
+  - Cells $(1, 1), (1, 2), (2, 1), (2, 2)$ contain color $2$.
+  - Because color $1$'s print covers these cells, color $2$ must be printed after color $1$ to overwrite them.
+  - Add edge: $1 \to 2$.
+- **Inspect Bounding Box $B(2)$:**
+  - Cells $(1, 1), (1, 2), (2, 1), (2, 2)$ contain only color $2$.
+  - No foreign colors reside in $B(2)$.
+  - Outgoing edges from $2$: $\emptyset$.
 
-A complete grid scan updates the box for the current cell’s color:
-
-- top becomes the minimum row;
-- left becomes the minimum column;
-- bottom becomes the maximum row;
-- right becomes the maximum column.
-
-Because every dictionary key came from the grid, each color is encountered at least once and every sentinel is replaced by valid bounds.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Resulting Dependency Graph:
+- Vertices: $\{1, 2\}$
+- Directed Edges: $\{1 \to 2\}$
+- In-degrees: $d_{\text{in}}(1) = 0$, $d_{\text{in}}(2) = 1$.
 
 ---
 
-### Step 3: Why other colors inside a box create dependencies
+### Step 3: Kahn's Topological Sorting Algorithm
 
-Suppose color `a` has a final occurrence in the top-left of its bounding box and another in the bottom-right. Its single rectangular print must cover every cell between those extremes, even cells whose final target color is `b`.
+- **Queue Initialization:** Find vertices with in-degree $0$:
+  $$\text{Ready Queue} = [1]$$
+  $\text{Processed Count} = 0$.
 
-When `a` is printed, those interior cells temporarily become `a`. To finish with `b` there, color `b` must be printed after `a` and cover them back. The solution records this precedence as a directed edge:
+- **Iteration 1:**
+  - Pop color $1$. Increment $\text{Processed Count} \leftarrow 1$.
+  - Remove outgoing edge $1 \to 2$:
+    $$d_{\text{in}}(2) \leftarrow d_{\text{in}}(2) - 1 = 0$$
+  - Since $d_{\text{in}}(2) = 0$, push color $2$ into the ready queue.
+  - $\text{Ready Queue} = [2]$.
 
-`a -> b`.
+- **Iteration 2:**
+  - Pop color $2$. Increment $\text{Processed Count} \leftarrow 2$.
+  - Color $2$ has no outgoing edges.
+  - Ready queue is now empty.
 
-For every color and every grid cell in its bounding box, the code reads `covering = targetGrid[row][column]`. If `covering != color`, that target color must come later.
-
-The graph uses a set of neighbors for each color. A bounding box may contain many cells of the same other color, but they all express the same ordering rule. The condition `covering not in graph[color]` prevents duplicate edges and prevents `indegree[covering]` from being incremented more than once for that pair.
-
-Cells already equal to the box’s own color create no self-edge. That color’s print directly produces their final value unless a later print temporarily covers them; the graph rules for that later color will enforce the necessary restoration order.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+- **Termination:**
+  - $\text{Processed Count} = 2 = |\mathcal{C}|$.
+  - All colors successfully ordered without cycle conflict. Return `true`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"targetGrid": [[1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 2, 1], [1, 1, 1, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Step | Active Color / Event | Bounding Box Inspected | Foreign Colors Detected | Dependency Graph Mutation | Ready Queue |
+|---|---|---|---|---|---|
+| 1 | Box Analysis $c = 1$ | Rows $[0, 3]$, Cols $[0, 3]$ | $2$ at $(1, 1), (1, 2), (2, 1), (2, 2)$ | Add $1 \to 2$; $d_{\text{in}}(2) \mathrel{+}= 1$ | — |
+| 2 | Box Analysis $c = 2$ | Rows $[1, 2]$, Cols $[1, 2]$ | None | No new edges | — |
+| 3 | Initialize Kahn's | Initial degree scan | $d_{\text{in}}(1) = 0, d_{\text{in}}(2) = 1$ | Vertices with $d_{\text{in}} = 0$ queued | `[1]` |
+| 4 | Pop Color $1$ | Print step 1 (Background) | Outgoing edge to $2$ relaxed | $d_{\text{in}}(2) \leftarrow 0$ | `[2]` |
+| 5 | Pop Color $2$ | Print step 2 (Foreground) | None | No further edges | `[]` |
+| 6 | Evaluate Termination | Verify processed count | $2$ colors processed out of $2$ | Acyclic DAG confirmed | Emits `true` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Suppose the graph contains no directed cycles. Then there exists a valid topological sort order $c_{\pi_1}, c_{\pi_2}, \dots, c_{\pi_K}$. Printing the bounding rectangles in this exact chronological order guarantees correctness: when printing color $c_{\pi_i}$, it correctly sets all its final cells. Any cell belonging to a different final color $c_{\pi_j}$ within $B(c_{\pi_i})$ generated an edge $c_{\pi_i} \to c_{\pi_j}$, ensuring $c_{\pi_j}$ appears strictly later in the order ($\pi_i < \pi_j$). Thus, $c_{\pi_j}$ will overwrite the intermediate paint, leaving the desired target color intact.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any rectangular print of color $u$ unavoidably covers the entire bounding box $B(u)$ because a rectangle is convex and axis-aligned. If a cell inside $B(u)$ has target color $v$, $v$ must be applied after $u$. A circular chain of dependencies $u_1 \to u_2 \to \dots \to u_m \to u_1$ imposes the impossible condition that each color must be printed strictly before the next, while $u_m$ must precede $u_1$. Therefore, cyclic dependency graphs are unprintable.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Repeatedly erase currently removable colors:** One can search for a color whose bounding box contains no other active color, erase it, and repeat. It reflects reverse printing order but may rescan the grid many times; the dependency graph states all precedence rules once.
-- **Backtracking over color orders:** Trying permutations can take factorial time. Cycle detection determines whether any valid order exists without enumerating them.
-- **Use one rectangle per connected component of a color:** This violates the printer rule because the same color may be used only once. All occurrences must share one bounding rectangle.
-- **Print a rectangle larger than the bounding box:** It is never necessary for feasibility and may introduce additional cells that need later repair. Minimal boxes capture all unavoidable dependencies.
-- **One color:** Its box contains only that target color, the graph has no edges, and it is immediately processed. The result is true.
-- **One cell:** The sole color has a one-cell rectangle and is printable.
-- **Disjoint color rectangles:** No dependencies are created, so all colors begin ready and may be printed in any order.
-- **Nested rectangles:** The outer color points to the inner final color, forcing the outer rectangle to be printed first and the inner one later.
-- **Repeated dependency cells:** Neighbor sets ensure one graph edge and one indegree increment per ordered color pair, regardless of how many cells express it.
-- **Mutual overlap requirement:** Edges in both directions form a two-color cycle and make printing impossible.
-- **Non-contiguous final occurrences:** They are allowed only if one bounding rectangle can be printed and all intervening other colors can be restored later according to an acyclic order.
-- **Topological tie choices:** Several zero-indegree colors can be popped in any order. They have no unmet dependency between them that constrains the next choice.
-- **Colors absent from the grid:** They are not included because they never need to be printed. Every dictionary key comes from `colors`.
-- **Color labels up to 60:** The algorithm uses dictionaries and sets rather than assuming labels form a dense zero-based range.
-- **No grid mutation:** The source analyzes the target and builds metadata; it does not simulate painting or alter `targetGrid`.
-- **Cycle completion check:** Returning whether `printed` equals the number of colors is the decisive test. A partially produced topological order is not enough.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Duplicate Edge Accumulation:** A single foreign color $v$ may appear dozens of times inside $B(u)$. Adding duplicate directed edges will artificially inflate the in-degree $d_{\text{in}}(v)$ above $1$ for that predecessor, preventing $v$ from ever reaching $0$ during topological relaxation. Graph edges must be stored in a set.
+- **Unbounded Search Space:** Attempting to brute-force all color permutations leads to $\mathcal{O}(C!)$ complexity, which fails for $C \le 60$. Formulating the problem as graph acyclicity reduces runtime to polynomial time.
+- **Disconnected Components:** The dependency graph may consist of multiple disjoint trees or isolated vertices (e.g. non-overlapping color blocks). Kahn's algorithm correctly handles arbitrary DAG topologies by initializing the queue with all zero-degree nodes simultaneously.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(CMN)$. Let $M$ be the number of rows, $N$ the number of columns, and $C$ the number of distinct colors.
-- **Auxiliary Space Complexity:** $O(C^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(C \cdot R \cdot K + C^2)$, where $R$ and $K$ are grid rows and columns, and $C \le 60$ is the number of distinct colors. Scanning the grid to compute bounding boxes takes $\mathcal{O}(R \cdot K)$. Checking each color's bounding box to build directed edges takes at most $\mathcal{O}(C \cdot R \cdot K)$. Topological sorting across $C$ vertices and at most $C(C-1)$ edges takes $\mathcal{O}(C + C^2)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(C^2)$ to store the adjacency matrix or adjacency sets and in-degree table for up to $C = 60$ colors.

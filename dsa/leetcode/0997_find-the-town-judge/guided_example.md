@@ -1,132 +1,179 @@
 # Guided Example: Find the Town Judge
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step directed graph degree computation, prove the Universal Sink Uniqueness Lemma and the In-Degree / Out-Degree Dual Condition Invariant, and identify the town judge across representative trust graphs:
 
-- **Input:** `{"n": 2, "trust": [[1, 2]]}`
-- **Required output:** `2`
+- **Representative Instance 1 (Two-Person Town with Clear Hierarchy):**
+  $$
+  n = 2, \quad trust = [[1, \; 2]]
+  $$
+- **Required Output:** `2`
+  - Person labeling: $1 \dots n$.
+  - Dual degree arrays (size $n + 1 = 3$):
+    - $cnt_1$ (Out-degree / People trusted): $[0, 0, 0]$.
+    - $cnt_2$ (In-degree / People trusting this person): $[0, 0, 0]$.
+  - Process trust edge $[1, 2]$:
+    - Person $1$ trusts person $2$:
+      $$
+      cnt_1[1] \leftarrow cnt_1[1] + 1 = 1, \quad cnt_2[2] \leftarrow cnt_2[2] + 1 = 1
+      $$
+  - Evaluate judge criteria for $i \in \{1, 2\}$ ($n - 1 = 2 - 1 = 1$):
+    - Person $1$: $cnt_1[1] = 1 \ne 0$ (Trusts someone, disqualified!).
+    - Person $2$:
+      - Out-degree: $cnt_1[2] = 0$ (Trusts nobody, satisfied!).
+      - In-degree: $cnt_2[2] = 1 == n - 1$ (Trusted by all other $n - 1$ citizens, satisfied!).
+  - Result: Person $2$ satisfies both conditions $\implies \mathbf{2}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Candidate Disqualified by Outgoing Edge):**
+  $$
+  n = 3, \quad trust = [[1, 3], \; [2, 3], \; [3, 1]]
+  $$
+  - In-degrees: $cnt_2 = [0, 1, 0, 2]$. Person $3$ has $cnt_2[3] = 2 == n - 1$.
+  - Out-degrees: Person $3$ trusts person $1 \implies cnt_1[3] = 1 \ne 0$.
+  - Disqualified! No other person has in-degree $2 \implies \mathbf{-1}$.
+
+- **Representative Instance 3 (Single-Person Town):**
+  $$
+  n = 1, \quad trust = []
+  $$
+  - Target in-degree: $n - 1 = 1 - 1 = 0$.
+  - Person $1$: $cnt_1[1] = 0$ and $cnt_2[1] = 0 == 0 \implies \mathbf{1}$.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-In a town, there are `n` people labeled from `1` to `n`. There is a rumor that one of these people is secretly the town judge.
+In a town of `n` people labeled `1` to `n`, the **town judge** satisfies three properties:
+1. The town judge trusts nobody ($\text{deg}_{\text{out}} = 0$).
+2. Everybody else trusts the town judge ($\text{deg}_{\text{in}} = n - 1$).
+3. There is at most one person satisfying both properties.
+Given the list `trust` of directed edges $[a, b]$ where $a$ trusts $b$, return the label of the town judge or `-1` if no judge exists.
 
-The objective is to compute `2` from `{"n": 2, "trust": [[1, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Graph Model:
+  Vertices: {1, 2, ..., n}
+  Directed edge a -> b means "a trusts b"
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Judge Definition:
+  The town judge is a UNIVERSAL SINK:
+    - Out-degree = 0 (Trusts nobody)
+    - In-degree = n - 1 (Trusted by all other citizens)
+```
 
----
+Constructing full adjacency lists or performing reachability traversals stores unnecessary neighbor collections.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Translate the judge rules into directed degrees
-
-Each trust pair `[a, b]` is a directed relationship from person `a` to person `b`.
-
-- The number of people someone trusts is their outgoing degree.
-- The number of people who trust someone is their incoming degree.
-
-The judge trusts nobody, so the judge's outgoing degree must be zero. Every other person trusts the judge, so the judge's incoming degree must be exactly `n - 1`.
-
-These two numbers completely characterize the judge. The algorithm does not need to build neighbor lists or traverse a graph; it only needs to count incoming and outgoing relationships for each label.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 2, "trust": [[1, 2]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Directed Degree Dual Predicate & Universal Sink Invariant**:
+- Maintain two frequency arrays of length $n + 1$:
+  - $cnt_1[p]$: outgoing trust relationships for person $p$.
+  - $cnt_2[p]$: incoming trust relationships for person $p$.
+- For each edge $[a, b]$, increment $cnt_1[a]$ and $cnt_2[b]$ in $\mathcal{O}(1)$ time.
+- Scan $i \in [1, n]$:
+  - If $cnt_1[i] == 0 \land cnt_2[i] == n - 1$, return $i$.
+- Evaluates in linear $\mathcal{O}(n + |trust|)$ time and $\mathcal{O}(n)$ auxiliary space.
 
 ---
 
-### Step 2: Use arrays indexed by person label
+## 2. Conceptual Foundation & The Universal Sink Invariant
 
-People are labeled from one through `n`. The solution allocates arrays `cnt1` and `cnt2` with length `n + 1` so that a person's label can be used directly as an index. Position zero is intentionally unused.
+```mermaid
+flowchart TD
+    accTitle: Find the Town Judge Degree Analysis Pipeline
+    accDescr: Flowchart illustrating accumulating in-degrees and out-degrees from trust list and identifying candidate matching dual criteria
+    Start["Initialize cnt1 = [0]*(n+1), cnt2 = [0]*(n+1)"] --> LoopEdges["For [a, b] in trust:"]
+    LoopEdges --> AccumulateDegrees["cnt1[a] += 1 (Out-degree)\ncnt2[b] += 1 (In-degree)"]
+    AccumulateDegrees --> LoopEdges
+    LoopEdges -->|"All edges processed"| ScanCitizens["For i from 1 to n:"]
+    ScanCitizens --> CheckJudge{"cnt1[i] == 0 AND cnt2[i] == n - 1 ?"}
+    CheckJudge -->|"Yes: Both satisfied"| ReturnJudge["Return i (Judge found!)"]
+    CheckJudge -->|"No: Disqualified"| NextCitizen["Next i"]
+    NextCitizen --> ScanCitizens
+    ScanCitizens -->|"No citizen qualifies"| ReturnFail["Return -1"]
+```
 
-Their meanings are:
+### The Universal Sink Uniqueness Theorem
 
-- `cnt1[p]` is how many listed people person `p` trusts;
-- `cnt2[p]` is how many listed people trust person `p`.
-
-For each pair `[a, b]`:
-
-`cnt1[a] += 1` records one outgoing relationship, and `cnt2[b] += 1` records one incoming relationship.
-
-The trust pairs are unique, so repeated copies cannot artificially inflate these degrees. Self-trust is forbidden, so an incoming count of `n - 1` really can represent all other people.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $G = (V, E)$ be a directed graph on $n = |V|$ vertices without self-loops.
+1. **Universal Sink Definition:**
+   A vertex $u \in V$ is a universal sink if and only if:
+   $$
+   \text{deg}_{\text{out}}(u) = 0 \quad \text{and} \quad \text{deg}_{\text{in}}(u) = n - 1
+   $$
+2. **Uniqueness Lemma:**
+   A directed graph can contain at most one universal sink.
+   *Proof:*
+   Suppose for contradiction that $u$ and $v$ are distinct universal sinks ($u \ne v$).
+   Because $\text{deg}_{\text{in}}(u) = n - 1$, every vertex in $V \setminus \{u\}$ must have a directed edge to $u$.
+   In particular, $(v, u) \in E$.
+   This implies $\text{deg}_{\text{out}}(v) \ge 1$.
+   However, $v$ being a universal sink requires $\text{deg}_{\text{out}}(v) = 0$, a direct contradiction!
+   Therefore, at most one universal sink can exist.
+3. **Equivalence of the Dual Predicate:**
+   Testing $\text{deg}_{\text{out}}(i) == 0 \land \text{deg}_{\text{in}}(i) == n - 1$ across all $i \in [1, n]$ is both necessary and sufficient to identify the unique judge or certify non-existence. $\blacksquare$
 
 ---
 
-### Step 3: Check both conditions together
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-After counting, the loop examines labels one through `n`. It returns `i` only if
+$n = 2, \; trust = [[1, 2]]$.
+Initialize: $cnt_1 = [0, 0, 0], \; cnt_2 = [0, 0, 0]$.
 
-`cnt1[i] == 0 and cnt2[i] == n - 1`.
+### Step 1: Accumulate Edge Degrees
+- Edge $[1, 2]$:
+  - $a = 1, b = 2$.
+  - $cnt_1[1] \leftarrow 0 + 1 = 1$.
+  - $cnt_2[2] \leftarrow 0 + 1 = 1$.
 
-The outgoing condition prevents accepting a popular person who still trusts somebody. The incoming condition prevents accepting an isolated person who trusts nobody but is not trusted by everyone else.
-
-If no label satisfies both, the method returns `-1`.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+State of degree counters:
+- $cnt_1 = [0, 1, 0]$ (Out-degrees)
+- $cnt_2 = [0, 0, 1]$ (In-degrees)
 
 ---
 
-## 4. Complete Execution Trace
+### Step 2: Evaluate Citizens $i \in \{1, 2\}$ against $n - 1 = 1$
+1. **Person $i = 1$:**
+   - Out-degree $cnt_1[1] = 1 \ne 0 \implies$ Disqualified.
+2. **Person $i = 2$:**
+   - Out-degree $cnt_1[2] = 0 == 0$ (Pass).
+   - In-degree $cnt_2[2] = 1 == n - 1$ (Pass).
+   - Both satisfied! Immediately return $2$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 2, "trust": [[1, 2]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+Final result: $\mathbf{2}$.
+
+---
+
+## 4. Citizens Degree Verification Trace Table
+
+| Citizen $i$ | Out-Degree $cnt_1[i]$ | In-Degree $cnt_2[i]$ | $cnt_1[i] == 0$ Check | $cnt_2[i] == n - 1$ Check | Qualification Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| **$1$** | $1$ | $0$ | False ($1 \ne 0$) | False ($0 \ne 1$) | Disqualified (Trusts person 2) |
+| **$2$** | $0$ | $1$ | **True ($0 == 0$)** | **True ($1 == 1$)** | **Qualified (Town Judge!)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   A citizen is accepted only when they trust exactly 0 people and are trusted by exactly $n - 1$ people. Because self-loops are forbidden and edges are unique, $cnt_2[i] == n - 1$ ensures every other citizen in the town has an edge pointing to $i$.
+2. **Completeness:**
+   All edges in `trust` are incorporated, and all vertices $1 \dots n$ are inspected. By the Universal Sink Uniqueness Theorem, no competing judge can exist, guaranteeing that returning the first matching candidate is globally correct.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **One score array:** Subtract one for every outgoing edge and add one for every incoming edge. A judge has score `n - 1`. This is more compact, though separate arrays make both requirements explicit.
-- **Adjacency lists:** They can compute degrees but retain neighbor information the answer never uses.
-- **Candidate elimination:** Trusting someone disqualifies the source as judge, after which a candidate can be verified. It is useful in query-based variants but unnecessary with the full edge list available.
-- **Too few trust pairs:** Fewer than `n - 1` edges cannot supply the judge's required incoming degree; the normal count still returns `-1`.
-- **Popular person who trusts someone:** Correctly rejected by nonzero `cnt1`.
-- **Person who trusts nobody but lacks support:** Correctly rejected by incoming degree below `n - 1`.
-- **Empty trust list with `n > 1`:** Every outgoing count is zero, but no incoming count reaches `n - 1`, so return `-1`.
-- **Empty trust list with `n = 1`:** The sole label meets both zero-valued conditions and is returned.
-- **Unique pairs:** They ensure degree counts represent distinct people rather than repeated records.
-- **No self-trust:** It ensures the judge's incoming target is exactly all other `n - 1` people.
-- **Maximum label:** Arrays have length `n + 1`, so label `n` is a valid direct index.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Person Town | $n = 1, trust = []$ | $cnt_1[1] = 0, cnt_2[1] = 0 == 1 - 1$; returns $1$. | Requiring at least one incoming trust edge. |
+| Empty Trust List with $n > 1$ | $n = 2, trust = []$ | $cnt_2$ is $0 \ne 1$; returns $-1$. | Assuming person 1 is judge when no trust exists. |
+| Circular Trust Loop | $[[1, 2], [2, 3], [3, 1]]$ | All citizens have $cnt_1 = 1$; returns $-1$. | Accepting candidates in cyclic graphs. |
+| Universal Trust with Rogue Outgoing Edge | In-degree is $n - 1$ but out-degree is $1$ | Disqualified by $cnt_1[i] == 0$; returns $-1$. | Checking only in-degree without out-degree. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N + E)$. Let `N` be the number of people and `E` the number of trust pairs.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n + |trust|)$, where $n \le 1{,}000$ and $|trust| \le 10^4$.
+  - Iterating over `trust` takes $\mathcal{O}(|trust|)$ operations.
+  - Linear scan of $1 \dots n$ takes $\mathcal{O}(n)$ operations.
+  - Total time: $< 0.001\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ auxiliary memory for degree arrays $cnt_1$ and $cnt_2$ of size $n + 1$.

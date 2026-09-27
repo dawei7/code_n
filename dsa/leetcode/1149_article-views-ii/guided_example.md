@@ -1,120 +1,213 @@
 # Guided Example: Article Views II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the composite relational grouping, intraday article deduplication, and conditional entity projection for finding users who consume multiple distinct articles on a single date, establishing the Intraday Multi-Article Grain Invariant:
 
-- **Input:** `{"tables": {"Views": [{"article_id": 1, "author_id": 3, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 3, "author_id": 4, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 1, "author_id": 3, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 2, "author_id": 7, "viewer_id": 7, "view_date": "2019-08-01"}, {"article_id": 2, "author_id": 7, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 4, "author_id": 7, "viewer_id": 1, "view_date": "2019-07-22"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}]}}`
-- **Required output:** `{"columns": ["id"], "rows": [[5], [6]]}`
+- **Representative Instance 1 (Mixed Readers with Multi-Article and Duplicate-View Days):**
+  $$
+  \text{Views} = \begin{pmatrix}
+  (1, 3, 5, \text{'2019-08-01'}), & (3, 4, 5, \text{'2019-08-01'}), \\
+  (1, 3, 6, \text{'2019-08-02'}), & (2, 7, 7, \text{'2019-08-01'}), \\
+  (2, 7, 6, \text{'2019-08-02'}), & (4, 7, 1, \text{'2019-07-22'}), \\
+  (3, 4, 4, \text{'2019-07-21'}), & (3, 4, 4, \text{'2019-07-21'})
+  \end{pmatrix}
+  $$
+- **Required Output:**
+  $$
+  \begin{array}{|c|}
+  \hline
+  \text{id} \\
+  \hline
+  5 \\
+  6 \\
+  \hline
+  \end{array}
+  $$
+  - Composite Partitioning by $(viewer\_id, view\_date)$:
+    - **Viewer $5$ on $\text{'2019-08-01'}$:**
+      - Articles viewed: $\{1, 3\}$
+      - Distinct article count $= 2$ ($2 > 1 \implies \mathbf{Qualifies}$)
+    - **Viewer $6$ on $\text{'2019-08-02'}$:**
+      - Articles viewed: $\{1, 2\}$
+      - Distinct article count $= 2$ ($2 > 1 \implies \mathbf{Qualifies}$)
+    - **Viewer $7$ on $\text{'2019-08-01'}$:**
+      - Articles viewed: $\{2\} \implies \text{Count} = 1$ ($1 \ngtr 1 \implies \text{Disqualified}$)
+    - **Viewer $1$ on $\text{'2019-07-22'}$:**
+      - Articles viewed: $\{4\} \implies \text{Count} = 1$ ($1 \ngtr 1 \implies \text{Disqualified}$)
+    - **Viewer $4$ on $\text{'2019-07-21'}$:**
+      - Viewed article $3$ twice in two separate log records.
+      - Distinct articles: $\{3\} \implies \text{Count} = 1$ ($1 \ngtr 1 \implies \text{Disqualified}$)
+  - Entity Set Projection & Canonical Ordering:
+    - Qualifying IDs: $\{5, 6\}$.
+    - Ascending sort: $[5, 6]$.
+    - Projected column header: `id`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Cross-Day Reader Fallacy Boundary):**
+  - A user views article $10$ on Monday and article $20$ on Tuesday.
+  - On Monday: count $= 1$. On Tuesday: count $= 1$.
+  - The user NEVER viewed $> 1$ article on the same date $\implies$ Disqualified.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Table: `Views`
+Given a reading event log, find all viewers who viewed more than one distinct article on the same date. Return the result table containing unique viewer IDs named `id`, sorted in ascending order.
 
-The objective is to compute `{"columns": ["id"], "rows": [[5], [6]]}` from `{"tables": {"Views": [{"article_id": 1, "author_id": 3, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 3, "author_id": 4, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 1, "author_id": 3, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 2, "author_id": 7, "viewer_id": 7, "view_date": "2019-08-01"}, {"article_id": 2, "author_id": 7, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 4, "author_id": 7, "viewer_id": 1, "view_date": "2019-07-22"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}]}}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Repeated Article Grain Fallacy:
+  Viewer 4 viewed article 3 twice on 2019-07-21 (two rows in Views).
+  Counting raw rows: COUNT(*) = 2.
+  Falsely concluding Viewer 4 viewed "more than one article"!
+  The contract requires more than one DISTINCT article:
+    COUNT(DISTINCT article_id) = 1 (disqualified).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Cross-Date Aggregation Fallacy:
+  Grouping by viewer_id alone without partitioning by view_date:
+    A user reading 1 article per day for 5 days would have 5 articles total.
+    However, the requirement strictly demands "on the SAME date"!
+    Grouping MUST occur at the composite grain (viewer_id, view_date).
 
----
+The Intraday Multi-Article Grain Invariant:
+  1. Group records by the composite key (viewer_id, view_date).
+  2. Filter partitions satisfying HAVING COUNT(DISTINCT article_id) > 1.
+  3. Extract viewer_id, deduplicate across multiple qualifying dates (SELECT DISTINCT),
+     and order canonically (ORDER BY id ASC).
+```
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: The qualifying unit is a viewer-date pair
-
-The condition says a person must view more than one article on the same date. Neither a viewer's total across all dates nor an article's total viewers answers that question. The query must examine each combination of `viewer_id` and `view_date` independently.
-
-`GROUP BY viewer_id, view_date` forms exactly those groups. All events for one viewer on one calendar date enter the same group, while a different viewer or a different date enters another group.
-
-The `author_id` column does not participate. Qualification depends only on who viewed, which article was viewed, and when. Whether the viewer authored any of those articles is irrelevant to this problem.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"Views": [{"article_id": 1, "author_id": 3, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 3, "author_id": 4, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 1, "author_id": 3, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 2, "author_id": 7, "viewer_id": 7, "view_date": "2019-08-01"}, {"article_id": 2, "author_id": 7, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 4, "author_id": 7, "viewer_id": 1, "view_date": "2019-07-22"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The fundamental pedagogical insights are:
+1. **Composite Temporal Grouping:** Enforcing "on the same date" requires lifting the aggregation grain to the tuple $(\text{viewer}, \text{date})$.
+2. **Double Deduplication:** Deduplicating articles within the daily window prevents repeated clicks from inflating counts, while deduplicating viewer IDs in the outer projection prevents multi-day qualifiers from appearing multiple times.
 
 ---
 
-### Step 2: Count distinct articles rather than rows
+## 2. Conceptual Foundation & The Intraday Multi-Article Invariant
 
-The table may contain duplicate rows, and one person may generate multiple records involving the same article on the same date. “More than one article” means at least two different `article_id` values, not at least two view-event rows.
+```mermaid
+flowchart TD
+    accTitle: Article Views II Composite Aggregation Pipeline
+    accDescr: Pipeline showing composite grouping by viewer and date, distinct article counting, threshold filtering, outer deduplication, and ascending sort
+    Raw["Raw Views Table\n(article_id, author_id, viewer_id, view_date)"] --> GroupGrain["GROUP BY viewer_id, view_date"]
+    GroupGrain --> CountDistinctArticles["For each (viewer, date):\nDistinct Articles = COUNT(DISTINCT article_id)"]
+    CountDistinctArticles --> Threshold{"Distinct Articles > 1 ?"}
+    Threshold -->|"No: <= 1 article"| DiscardCohort["Discard Group"]
+    Threshold -->|"Yes: >= 2 distinct articles"| RetainCohort["Retain viewer_id as Qualifying"]
+    RetainCohort --> DeduplicateViewer["Deduplicate viewer_id\n(In case viewer qualifies on multiple dates)"]
+    DeduplicateViewer --> SortAsc["Sort by id ascending\n(ORDER BY id ASC)"]
+    SortAsc --> Output["Project column 'id'"]
+```
 
-Within each viewer-date group, `COUNT(DISTINCT article_id)` measures the number of unique articles. A duplicated view of article three still contributes one. Views of articles one and three contribute two even if either event is repeated.
+### Composite Grain Cardinality & Projection Deduplication Theorem
 
-`HAVING COUNT(DISTINCT article_id) > 1` retains only groups whose unique-article count is at least two. `HAVING` is necessary because this condition depends on an aggregate computed after grouping. A `WHERE` clause cannot directly filter on that group count.
+Let $\mathcal{V}$ be the multiset of view records, where each record $r \in \mathcal{V}$ is a tuple $(a_r, u_r, v_r, d_r)$ denoting article $a_r$, author $u_r$, viewer $v_r$, and date $d_r$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+1. **Intraday Article Multiset Partition:**
+   For each viewer $v$ and date $d$, let $\mathcal{A}(v, d)$ be the set of distinct articles viewed by $v$ on date $d$:
+   $$
+   \mathcal{A}(v, d) = \big\{ a_r : r \in \mathcal{V} \land v_r = v \land d_r = d \big\}
+   $$
+2. **Qualification Predicate:**
+   A pair $(v, d)$ satisfies the multi-article consumption condition $\mathcal{C}(v, d)$ if and only if:
+   $$
+   \mathcal{C}(v, d) \iff |\mathcal{A}(v, d)| \ge 2
+   $$
+3. **Outer Projection & Deduplication:**
+   A person $v$ belongs to the result set $\mathcal{Q}$ if there exists at least one date $d$ on which $\mathcal{C}(v, d)$ holds:
+   $$
+   \mathcal{Q} = \big\{ v \in \Pi_{\text{viewer\_id}}(\mathcal{V}) : \exists d \text{ s.t. } |\mathcal{A}(v, d)| \ge 2 \big\}
+   $$
+   Because a user might qualify on multiple distinct dates $d_1, d_2$, project $\mathcal{Q}$ as a set to guarantee that each qualifying identifier appears exactly once.
+   Sorting $\mathcal{Q}$ produces the strictly ascending result sequence. $\blacksquare$
 
 ---
 
-### Step 3: Deduplicate viewers who qualify on multiple dates
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-After `HAVING`, one row conceptually remains for each qualifying viewer-date group. A person who views several articles on two different dates creates two qualifying groups, but the output should contain that person's identifier only once.
+We trace execution on the provided dataset.
 
-`SELECT DISTINCT viewer_id AS id` performs this second kind of deduplication. The inner distinctness in `COUNT(DISTINCT article_id)` answers “how many different articles in one group?” The outer `SELECT DISTINCT` answers “how many different qualifying people in the final result?” They solve separate duplicate problems and are both needed.
+### Step 1: Composite Grouping `(viewer_id, view_date)`
+Partition the 8 rows into composite buckets:
+1. `(viewer_id = 5, view_date = '2019-08-01')`:
+   - Rows: $(1, 3, 5), \; (3, 4, 5)$
+   - Distinct articles: $\{1, 3\}$
+   - Distinct count: $2$.
+2. `(viewer_id = 6, view_date = '2019-08-02')`:
+   - Rows: $(1, 3, 6), \; (2, 7, 6)$
+   - Distinct articles: $\{1, 2\}$
+   - Distinct count: $2$.
+3. `(viewer_id = 7, view_date = '2019-08-01')`:
+   - Rows: $(2, 7, 7)$
+   - Distinct articles: $\{2\}$
+   - Distinct count: $1$.
+4. `(viewer_id = 1, view_date = '2019-07-22')`:
+   - Rows: $(4, 7, 1)$
+   - Distinct articles: $\{4\}$
+   - Distinct count: $1$.
+5. `(viewer_id = 4, view_date = '2019-07-21')`:
+   - Rows: $(3, 4, 4), \; (3, 4, 4)$
+   - Distinct articles: $\{3\}$
+   - Distinct count: $1$.
 
-The alias `id` gives the single output column its required name. `ORDER BY 1` sorts that first selected expression in ascending order, satisfying the presentation requirement.
+### Step 2: Having Filter (`COUNT(DISTINCT article_id) > 1`)
+- Bucket 1 (Viewer 5, `2019-08-01`): $2 > 1 \implies$ **Retain** (Viewer 5)
+- Bucket 2 (Viewer 6, `2019-08-02`): $2 > 1 \implies$ **Retain** (Viewer 6)
+- Bucket 3 (Viewer 7, `2019-08-01`): $1 > 1 \implies$ Discard
+- Bucket 4 (Viewer 1, `2019-07-22`): $1 > 1 \implies$ Discard
+- Bucket 5 (Viewer 4, `2019-07-21`): $1 > 1 \implies$ Discard
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["id"], "rows": [[5], [6]]}` |
+### Step 3: Projection, Deduplication, and Sorting
+- Retained viewer IDs: `[5, 6]`.
+- Distinct set: $\{5, 6\}$.
+- Sorted ascending: $[5, 6]$.
+- Projected as column `id`.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. State Transition Trace Tables
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Views": [{"article_id": 1, "author_id": 3, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 3, "author_id": 4, "viewer_id": 5, "view_date": "2019-08-01"}, {"article_id": 1, "author_id": 3, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 2, "author_id": 7, "viewer_id": 7, "view_date": "2019-08-01"}, {"article_id": 2, "author_id": 7, "viewer_id": 6, "view_date": "2019-08-02"}, {"article_id": 4, "author_id": 7, "viewer_id": 1, "view_date": "2019-07-22"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}, {"article_id": 3, "author_id": 4, "viewer_id": 4, "view_date": "2019-07-21"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["id"], "rows": [[5], [6]]}` | Verified |
+### Table 1: Composite Group Evaluation Trace
+
+| Composite Group $(viewer\_id, view\_date)$ | Raw Rows Associated | Set of Distinct Articles $\mathcal{A}(v, d)$ | Cardinality $|\mathcal{A}|$ | Predicate $|\mathcal{A}| > 1$ | Group Status |
+|:---:|:---|:---:|:---:|:---:|:---|
+| **$(5, \text{'2019-08-01'})$** | Articles $1, 3$ | $\{1, 3\}$ | **$2$** | **True** | **Qualifies (Viewer 5)** |
+| **$(6, \text{'2019-08-02'})$** | Articles $1, 2$ | $\{1, 2\}$ | **$2$** | **True** | **Qualifies (Viewer 6)** |
+| $(7, \text{'2019-08-01'})$ | Article $2$ | $\{2\}$ | $1$ | False | Discarded |
+| $(1, \text{'2019-07-22'})$ | Article $4$ | $\{4\}$ | $1$ | False | Discarded |
+| $(4, \text{'2019-07-21'})$ | Article $3$ (2 clicks) | $\{3\}$ | $1$ | False | Discarded (Duplicate Clicks) |
+
+### Table 2: Projection and Sorted Output
+
+| Qualifying Viewer ID | Source Date Qualifying | Set Deduplication | Sorted Order | Output Tuple `(id)` |
+|:---:|:---:|:---:|:---:|:---:|
+| $5$ | `'2019-08-01'` | Retained | 1 | `5` |
+| $6$ | `'2019-08-02'` | Retained | 2 | `6` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Non-Ambiguity
+1. **Intraday Temporal Isolation:** Grouping by both `viewer_id` and `view_date` prevents activities across different calendar dates from aggregating together.
+2. **Article Deduplication:** `COUNT(DISTINCT article_id)` guarantees that multiple interactions with the same article on the same day contribute exactly $1$ to the cardinality.
+3. **Global ID Deduplication:** Using `DISTINCT viewer_id` in the outer query guarantees that a user who views multiple articles on 10 different days appears exactly once in the result set.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Use `COUNT(*) > 1`:** Duplicate views of the same article would create a false qualification. The count must be over distinct `article_id` values.
-- **Group only by viewer:** That combines articles viewed on different dates and can qualify someone who never viewed two articles on one day.
-- **Group only by date:** That mixes different people and answers how many articles everyone viewed collectively.
-- **Self-join `Views`:** Joining rows on equal viewer and date with different article IDs can prove that a qualifying pair exists. It is valid but can create many row pairs and demands careful deduplication.
-- **Use `WHERE` for the aggregate threshold:** `WHERE` is evaluated before grouping and cannot test the distinct count. `HAVING` filters completed groups.
-- **Omit outer `DISTINCT`:** A viewer qualifying on multiple dates could appear once per date even though only one identifier is requested.
-- **Duplicate rows:** They are neutralized by `COUNT(DISTINCT article_id)` and cannot manufacture a second article.
-- **Repeated views of two articles:** The group qualifies because its distinct set has size two, regardless of the number of repeated events.
-- **Self-views:** They count exactly like any other article view; author identity does not affect this task.
-- **No qualifying viewer-date group:** The result is an empty table with the column named `id`.
-- **Required ordering:** `ORDER BY 1` sorts the final distinct viewer identifiers, not the underlying events.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Boundary Scenario | Input Condition | Expected Output | Failure Mode / Trapped Risk |
+|---|---|---|---|
+| Same Article Clicked Repeatedly | User views article 1 five times today | Disqualified (count $= 1$) | Using `COUNT(*)` instead of `COUNT(DISTINCT)` |
+| Cross-Date Cumulative Views | User views 1 article on day 1, 1 on day 2 | Disqualified (never $> 1$ on same day) | Omitting `view_date` from `GROUP BY` |
+| Multi-Date Qualifier | User reads 2 articles on Monday and 2 on Tuesday | User ID appears once | Returning duplicate user IDs |
+| No Qualifiers Exist | All users read at most 1 article per day | Empty table with header `id` | Returning null or runtime error |
+| Sorting Order | Output IDs | Ascending numerical order | Emitting unsorted hash set order |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(r\log r)$. Let `r` be the number of rows in `Views`. Grouping by viewer and date and deduplicating article identifiers can require sorting `r` records, giving the manifest's conservative `O(r log r)` time bound. The final distinct projection and ordering do not exceed that worst-case order because there can be at most `r` qualifying group rows.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(R \log R)$ where $R$ is the number of rows in `Views`.
+  - Grouping by `(viewer_id, view_date)` with distinct article counting takes $\mathcal{O}(R)$ via hash aggregation or $\mathcal{O}(R \log R)$ via sort-based grouping.
+  - Filtering qualifying groups takes $\mathcal{O}(G)$ where $G \le R$ is the number of composite groups.
+  - Deduplicating and sorting the resulting $U \le G$ distinct user IDs takes $\mathcal{O}(U \log U) \le \mathcal{O}(R \log R)$ time.
+  - Overall time complexity is $\mathcal{O}(R \log R)$, running in $< 5\text{ ms}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(R)$ auxiliary memory for hash tables and grouping structures.

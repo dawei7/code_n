@@ -1,129 +1,227 @@
 # Guided Example: Binary Number with Alternating Bits
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step binary bitwise extraction ($curr = n \& 1$), adjacent bit equality comparison ($curr == prev$), bitwise right-shift progression ($n \leftarrow n \gg 1$), algebraic shift-XOR all-ones property ($n \oplus (n \gg 1) = 2^m - 1$), and boolean alternation validation on representative positive integers:
 
-- **Input:** `{"n": 1431655765}`
+- **Input:** $n = 5$
 - **Required output:** `true`
+  - Alternating bits definition:
+    - In the binary representation of $n$, no two adjacent bits may have the same value.
+    - Every 0 must be flanked by 1s, and every 1 must be flanked by 0s.
+    - Binary expansion of $n = 5$:
+      $$
+      5 = 101_2
+      $$
+    - Adjacent pairs:
+      - Pair $(b_0, b_1) = (1, 0) \implies \text{different}$
+      - Pair $(b_1, b_2) = (0, 1) \implies \text{different}$
+    - Every adjacent bit pair alternates. Return **`true`**.
+- **Bitwise Stream Extraction & Shift-XOR Invariant:**
+  - **Sequential Least-Significant-Bit (LSB) Extraction:**
+    - At each step, inspect the least significant bit:
+      $$
+      curr = n \ \& \ 1
+      $$
+    - If $curr$ matches the previous bit ($curr == prev$), an adjacent identical pair has been discovered $\implies$ return **`false`**.
+    - Otherwise, update $prev \leftarrow curr$ and shift the integer right by one bit:
+      $$
+      n \leftarrow n \gg 1
+      $$
+    - If the number reduces to 0 without encountering equal adjacent bits, the bits alternate completely $\implies$ return **`true`**.
+  - **The Shift-XOR All-Ones Property ($O(1)$ Formulation):**
+    - If $n$ has alternating bits ($10101\dots_2$ or $1010\dots_2$):
+      - Shifting $n$ right by 1 bit swaps the parity of every position.
+      - Bitwise XOR between $n$ and $n \gg 1$ produces a solid sequence of $1$s:
+        $$
+        x = n \oplus (n \gg 1) = \underbrace{111\dots 1_2}_{m \text{ ones}} = 2^m - 1
+        $$
+      - Adding 1 flips all bits to zero with a single high carry: $x + 1 = 1000\dots 0_2$.
+      - Bitwise AND evaluates to zero:
+        $$
+        x \ \& \ (x + 1) == 0
+        $$
+- **Step-by-Step Worked Execution Trace on $n = 5$ ($101_2$):**
+  - Initial state:
+    $$
+    n = 5, \quad prev = -1
+    $$
+  - **Iteration 1 ($n = 5$):**
+    - Binary value: $n = 101_2$.
+    - Extract LSB:
+      $$
+      curr = 5 \ \& \ 1 = \mathbf{1}
+      $$
+    - Compare with previous bit:
+      $$
+      prev = -1 \ne curr = 1 \quad \mathbf{(Initial\ Bit\ Accepted)}
+      $$
+    - Update previous: $prev \leftarrow 1$.
+    - Right shift:
+      $$
+      n \leftarrow 5 \gg 1 = \lfloor 5 / 2 \rfloor = \mathbf{2} \quad (10_2)
+      $$
+  - **Iteration 2 ($n = 2$):**
+    - Binary value: $n = 10_2$.
+    - Extract LSB:
+      $$
+      curr = 2 \ \& \ 1 = \mathbf{0}
+      $$
+    - Compare with previous bit:
+      $$
+      prev = 1 \ne curr = 0 \quad \mathbf{(Alternation\ Maintained!)}
+      $$
+    - Update previous: $prev \leftarrow 0$.
+    - Right shift:
+      $$
+      n \leftarrow 2 \gg 1 = \lfloor 2 / 2 \rfloor = \mathbf{1} \quad (1_2)
+      $$
+  - **Iteration 3 ($n = 1$):**
+    - Binary value: $n = 1_2$.
+    - Extract LSB:
+      $$
+      curr = 1 \ \& \ 1 = \mathbf{1}
+      $$
+    - Compare with previous bit:
+      $$
+      prev = 0 \ne curr = 1 \quad \mathbf{(Alternation\ Maintained!)}
+      $$
+    - Update previous: $prev \leftarrow 1$.
+    - Right shift:
+      $$
+      n \leftarrow 1 \gg 1 = \mathbf{0}
+      $$
+  - **Termination ($n = 0$):**
+    - Integer completely processed with zero violations.
+    - Return **`true`**.
+- **Failure Trace on Consecutive Bits ($n = 7$, $111_2$):**
+    - Iteration 1: $curr = 1, prev \leftarrow 1, n \leftarrow 3$.
+    - Iteration 2: $curr = 3 \& 1 = \mathbf{1}$.
+      - Compare: $curr = 1 == prev = 1 \implies \mathbf{Identical\ Adjacent\ Bits!}$
+      - Immediate early termination $\implies$ Returns **`false`**.
+- **Low-Bit Violation Trace ($n = 11$, $1011_2$):**
+    - Iteration 1: $11 \& 1 = 1, prev \leftarrow 1, n \leftarrow 5$.
+    - Iteration 2: $5 \& 1 = 1$.
+      - Compare: $curr = 1 == prev = 1 \implies \mathbf{Identical\ Adjacent\ Bits!}$
+      - Returns **`false`**.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates binary radix digit extraction and bit-level regular language recognition, mathematically proves why shift-XOR transforms alternating binary words into Mersenne numbers, and derives $O(\log N)$ (or $O(1)$ algebraic) runtime and $O(1)$ space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
+Given a positive integer $n$:
+Determine if its binary representation has **strictly alternating bits** (no two adjacent bits are equal).
 
-The objective is to compute `true` from `{"n": 1431655765}` while avoiding redundant calculations and unnecessary overhead.
+```text
+n = 5 in binary: 1 0 1
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Adjacent pairs:
+  Bit 0 and Bit 1: 1 and 0 (different)
+  Bit 1 and Bit 2: 0 and 1 (different)
+
+Result: true
+```
+
+### The Invariant of Bit Alternation
+- In an alternating binary string, each bit must strictly differ from its predecessor:
+  $$
+  b_i \ne b_{i+1} \quad \forall i
+  $$
+- This can be verified either by extracting bits one-by-one or checking if $x = n \oplus (n \gg 1)$ satisfies $x \& (x + 1) == 0$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. The Iterative Extraction Rule:
+Initialize $prev = -1$.
+While $n > 0$:
+$$
+curr = n \ \& \ 1
+$$
+$$
+\text{If } curr == prev \implies \text{return } \mathbf{False}
+$$
+$$
+prev \leftarrow curr, \quad n \leftarrow n \gg 1
+$$
+$$
+\text{return } \mathbf{True}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Algebraic Identity:
+A number has alternating bits if and only if:
+$$
+(n \oplus (n \gg 1)) + 1 = 2^{\lfloor \log_2 n \rfloor + 1}
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Mersenne Projection Invariant.** The difference operator $\Delta b_i = b_i \oplus b_{i-1}$ maps the language of alternating binary words $(10)^*1$ or $(10)^*$ bijectively to the set of solid Mersenne blocks $\{2^k - 1 \mid k \in \mathbb{N}\}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Reading one bit
-
-The expression
-
-`curr = n & 1`
-
-uses bitwise AND with `1`. Since `1` has only its least significant bit set, every higher bit is cleared. The result is:
-
-- `0` when the current least significant bit of `n` is zero;
-- `1` when it is one.
-
-No conversion to a binary string is necessary.
-
-After the comparison, `n >>= 1` shifts all bits one place to the right. The bit just inspected is discarded, and its left neighbor in the original representation becomes the new least significant bit.
-
-For example, starting from decimal `10`:
-
-- binary `1010` yields current bit `0`;
-- right shift produces binary `101`, whose current bit is `1`;
-- later shifts expose `0` and then `1`.
-
-The inspection order is right to left, but adjacency is symmetric. If every pair differs when read from the least significant side, every pair also differs in the usual left-to-right representation.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1431655765}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $n = 5$ ($101_2$):
 
 ---
 
-### Step 2: The role of `prev`
-
-`prev` stores the bit from the preceding loop iteration—that is, the original bit immediately to the right of `curr`.
-
-The invariant at the beginning of each iteration is:
-
-> Every adjacent pair among the bits already removed from `n` alternates, and `prev` is the most recently removed bit.
-
-When `prev == curr`, two adjacent original bits are equal. The alternating requirement is violated, so the method returns `false` immediately. No later bits can repair an already invalid pair.
-
-When they differ, the newly examined pair is valid. Assigning `prev = curr` extends the verified suffix by one bit, and the right shift prepares the next adjacent comparison.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Bit 0
+- $curr = 5 \& 1 = 1$.
+- $prev = -1 \ne 1 \implies prev \leftarrow 1, n \leftarrow 2$.
 
 ---
 
-### Step 3: Why `prev` starts at `-1`
+### Step 2: Bit 1
+- $curr = 2 \& 1 = 0$.
+- $prev = 1 \ne 0 \implies prev \leftarrow 0, n \leftarrow 1$.
 
-Before the first bit is read, there is no previous bit to compare with. The code uses `-1` as a sentinel because a real binary digit can only be zero or one.
+---
 
-Therefore, the first comparison can never report equality. The first real bit is accepted and stored in `prev`. From the second iteration onward, both `prev` and `curr` are genuine adjacent bits.
+### Step 3: Bit 2
+- $curr = 1 \& 1 = 1$.
+- $prev = 0 \ne 1 \implies prev \leftarrow 1, n \leftarrow 0$.
 
-An explicit “first iteration” branch would also work, but the sentinel keeps the loop uniform.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+### Step 4: Output
+- Loop finishes $\implies \mathbf{true}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1431655765}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+| Iteration | Remaining $n$ | Binary String | Extracted Bit $curr$ | Previous Bit $prev$ | Condition $curr == prev$? | Action Taken |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $5$ | `101` | $1$ | $-1$ | No | $prev \leftarrow 1, n \leftarrow 2$ |
+| $2$ | $2$ | `10` | $0$ | $1$ | No | $prev \leftarrow 0, n \leftarrow 1$ |
+| $3$ | $1$ | `1` | $1$ | $0$ | No | $prev \leftarrow 1, n \leftarrow 0$ |
+| **End** | **$0$** | — | — | — | — | **Result: `true`** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **$n = 1$ ($1_2$):** Single bit, trivially alternating $\implies$ returns `true`.
+- **$n = 2$ ($10_2$):** $1$ and $0 \implies$ returns `true`.
+- **$n = 3$ ($11_2$):** $1$ and $1 \implies$ returns `false`.
+- **Powers of Two ($n = 4$, $100_2$):** Contains consecutive zeros `00` $\implies$ returns `false`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Convert to a binary string:** `bin(n)` followed by adjacent-character comparisons is straightforward, but it uses `O(\log n)` extra string space.
-- **XOR pattern observation:** If `n` alternates, then `x = n ^ (n >> 1)` consists entirely of ones. Such a number satisfies `x & (x + 1) == 0`. This gives a compact constant-number-of-operations test for fixed-width integers but is less immediately intuitive.
-- **Single-bit numbers:** `1` has no adjacent pair, so the property is vacuously true. The loop processes its only bit and returns `true`.
+- **Converting to String (`bin(n)`):** String conversion allocates character memory; bitwise operations run directly in CPU registers without allocation.
+- **Off-By-One Initialization:** Initializing $prev$ to 0 causes false rejections when the first bit is 0. Use $-1$ as the empty sentinel.
+- **Forgetting Right Shift:** Forgetting $n \gg= 1$ leads to an infinite loop.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(w)$. Let `w` be the number of significant bits in `n`:
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Loop runs at most $\lfloor \log_2 n \rfloor + 1$ times.
+  - Since $n \le 2^{31} - 1$, loop runs at most 31 iterations.
+  - Each iteration performs $\mathcal{O}(1)$ bitwise operations.
+  - Total Time: strictly $\mathcal{O}(\log n) \le 31$ operations, completing in $< 0.01$ ms.
+- **Auxiliary Space Complexity:**
+  - Strictly $\mathcal{O}(1)$ auxiliary space (two integer variables $curr$ and $prev$).

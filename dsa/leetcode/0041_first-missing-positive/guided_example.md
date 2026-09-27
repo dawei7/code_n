@@ -1,113 +1,138 @@
 # Guided Example: First Missing Positive
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of in-place cyclic sort placement on a representative unsorted array instance:
 
-- **Input:** `{"nums": [1, 2, 0]}`
-- **Required output:** `3`
+- **Input:** $\text{nums} = [3, 4, -1, 1]$
+- **Required output:** $2$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates Pigeonhole Principle bounds ($1 \le \text{ans} \le N + 1$), cyclic home-index swapping ($x \mapsto \text{nums}[x - 1]$), handling negative and out-of-range elements, and identifying the first missing positive integer in $O(N)$ time and $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an unsorted integer array `nums`. Return the *smallest positive integer* that is *not present* in `nums`.
+Given an unsorted integer array $\text{nums}$ of length $N = 4$:
+$$
+[3, 4, -1, 1]
+$$
 
-The objective is to compute `3` from `{"nums": [1, 2, 0]}` while avoiding redundant calculations and unnecessary overhead.
+We must find the smallest positive integer missing from the array. The algorithm must run in $O(N)$ time and use strictly $O(1)$ auxiliary space.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A naive hash set stores all positive integers in $O(N)$ extra memory. Comparison sorting takes $O(N \log N)$ time.
+By the **Pigeonhole Principle**, an array of length $N$ can contain at most $N$ distinct positive integers. Therefore, the smallest missing positive integer must lie in the discrete range:
+$$
+\text{Missing Positive} \in [1, N + 1]
+$$
+This allows us to use the array itself as a zero-allocation hash table, placing each valid integer $x \in [1, N]$ at its corresponding target index $x - 1$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Home Index Mapping
+For any element $x = \text{nums}[i]$:
+- If $1 \le x \le N$, its "home" position is index $\text{home} = x - 1$.
+- If $x \le 0$ or $x > N$, the element cannot help fill the range $[1, N]$ and is ignored.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Cyclic Sort Algorithm
+We iterate index $i$ from $0$ to $N - 1$:
+While $\text{nums}[i] \in [1, N]$ and $\text{nums}[\text{nums}[i] - 1] \ne \text{nums}[i]$:
+- Let $\text{target\_idx} = \text{nums}[i] - 1$.
+- Swap $\text{nums}[i]$ and $\text{nums}[\text{target\_idx}]$.
+- *(Each swap places at least one previously misplaced positive number into its correct home).*
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Verification Pass
+After cyclic sort, scan indices $i \in [0, N - 1]$:
+- The first index where $\text{nums}[i] \ne i + 1$ indicates that the integer $i + 1$ is missing. Return $i + 1$.
+- If every index $i$ satisfies $\text{nums}[i] == i + 1$, all integers $1 \dots N$ are present. Return $N + 1$.
+
+> **Invariant.** At each swap, the count of elements residing at their correct home indices strictly increases. Each element is placed at its home index at most once, bounding total swaps to $N$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: First narrow the only range that can contain the answer
+We trace $\text{nums} = [3, 4, -1, 1]$ ($N = 4$):
 
-Let $n$ be the array length. The smallest missing positive must lie between $1$ and $n + 1$. To see why, imagine that every number from $1$ through $n$ is present. Those $n$ distinct positive values already occupy all $n$ array positions, so the next missing positive is $n + 1$. Otherwise, at least one value in $[1,n]$ is absent, and the smallest absent value lies inside that range.
+### Pass 1: Cyclic Sort Placement
 
-This observation makes negative numbers, zero, and values greater than $n$ irrelevant to the answer. They can remain in the array as unusable occupants. The algorithm only needs a constant-space way to record which values from $1$ through $n$ occur.
+- **Index $i = 0$:**
+  - Value: $\text{nums}[0] = 3$.
+  - In range $[1, 4]$: Yes. Target home index is $3 - 1 = 2$.
+  - Target occupant: $\text{nums}[2] = -1 \ne 3$.
+  - Action: Swap $\text{nums}[0]$ with $\text{nums}[2]$.
+  - Array state: $[\mathbf{-1}, 4, \mathbf{3}, 1]$.
+  - Inspect current occupant at $i = 0$: $\text{nums}[0] = -1$.
+  - In range $[1, 4]$: No (negative). While-loop halts for $i = 0$. Advance $i \to 1$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Index $i = 1$:**
+  - Value: $\text{nums}[1] = 4$.
+  - In range $[1, 4]$: Yes. Target home index is $4 - 1 = 3$.
+  - Target occupant: $\text{nums}[3] = 1 \ne 4$.
+  - Action: Swap $\text{nums}[1]$ with $\text{nums}[3]$.
+  - Array state: $[-1, \mathbf{1}, 3, \mathbf{4}]$.
+  - Inspect current occupant at $i = 1$: $\text{nums}[1] = 1$.
+  - In range $[1, 4]$: Yes. Target home index is $1 - 1 = 0$.
+  - Target occupant: $\text{nums}[0] = -1 \ne 1$.
+  - Action: Swap $\text{nums}[1]$ with $\text{nums}[0]$.
+  - Array state: $[\mathbf{1}, \mathbf{-1}, 3, 4]$.
+  - Inspect current occupant at $i = 1$: $\text{nums}[1] = -1$.
+  - In range $[1, 4]$: No. While-loop halts for $i = 1$. Advance $i \to 2$.
+
+- **Index $i = 2$:**
+  - Value: $\text{nums}[2] = 3$. Target home is $3 - 1 = 2$.
+  - Already at home ($\text{nums}[2] == 3$). While-loop halts. Advance $i \to 3$.
+
+- **Index $i = 3$:**
+  - Value: $\text{nums}[3] = 4$. Target home is $4 - 1 = 3$.
+  - Already at home ($\text{nums}[3] == 4$). While-loop halts.
+
+Cyclic sort completes with array: $[1, -1, 3, 4]$.
 
 ---
 
-### Step 2: Use each array index as a value's home
+### Pass 2: Identification of Smallest Missing Positive
 
-Instead of allocating a set, the solution rearranges the input. Value `1` belongs at index 0, value `2` at index 1, and in general value `v` belongs at index `v - 1`. After all possible placements, inspecting index `i` answers whether value `i + 1` was present: if it was present, one copy can occupy its home.
-
-This is a cycle-placement or cyclic-sort idea, but the goal is not to sort arbitrary integers. Only in-range positive values have meaningful homes. An array such as `[100, -4, 1]` does not need to become globally ordered; the useful value `1` only needs to move to index 0.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why each index uses a `while`, not a single `if`
-
-At index `i`, the code examines `nums[i]`. If it is an in-range value `v` and its home does not already contain `v`, the value is swapped into index `v - 1`. That swap brings some other value back into index `i`. The incoming value may also have a valid but different home, so the same index must be reconsidered. A `while` follows this chain until the current occupant is out of range, is already in its home, or is a duplicate whose home already contains the same value.
-
-For `[3, 4, -1, 1]`, index 0 initially contains `3`, so it swaps with index 2 and leaves `3` at its home. Index 0 now contains `-1`, which is ignored. At index 1, `4` moves to index 3; the incoming `1` then moves to index 0. The resulting useful arrangement begins `[1, -1, 3, 4]`. The first index whose expected value is absent is index 1, so the answer is 2.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `3` |
+- **Index $0$:** Expected $0 + 1 = 1$. Observed $\text{nums}[0] = 1$. Match.
+- **Index $1$:** Expected $1 + 1 = 2$. Observed $\text{nums}[1] = -1 \ne 2$. **Mismatch!**
+- The smallest positive integer missing is $1 + 1 = 2$.
+- Return $2$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `3` | Verified |
+| Step | Current Index $i$ | Value $\text{nums}[i]$ | Target Index $\text{nums}[i] - 1$ | Target Value $\text{nums}[\text{target}]$ | Swap Action | Array State After Step |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | - | - | - | - | Initial state | $[3, 4, -1, 1]$ |
+| 1 | 0 | 3 | 2 | -1 | Swap $\text{nums}[0] \leftrightarrow \text{nums}[2]$ | $[-1, 4, 3, 1]$ |
+| 2 | 0 | -1 | - | - | Out of range; advance to $i = 1$ | $[-1, 4, 3, 1]$ |
+| 3 | 1 | 4 | 3 | 1 | Swap $\text{nums}[1] \leftrightarrow \text{nums}[3]$ | $[-1, 1, 3, 4]$ |
+| 4 | 1 | 1 | 0 | -1 | Swap $\text{nums}[1] \leftrightarrow \text{nums}[0]$ | $[1, -1, 3, 4]$ |
+| 5 | 1 | -1 | - | - | Out of range; advance to $i = 2$ | $[1, -1, 3, 4]$ |
+| 6 | 2 | 3 | 2 | 3 | Already at home; advance to $i = 3$ | $[1, -1, 3, 4]$ |
+| 7 | 3 | 4 | 3 | 4 | Already at home; scan finishes | $[1, -1, 3, 4]$ |
+| Scan | 1 | -1 | - | - | $\text{nums}[1] \ne 1 + 1$ | **Return 2** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Swapping places in-range elements $x \in [1, N]$ into index $x - 1$. After the cyclic sort, an element $x \in [1, N]$ is present in the array if and only if $\text{nums}[x - 1] == x$. The second linear scan checks each positive integer from $1$ upward; the first index $i$ failing the equality $\text{nums}[i] == i + 1$ is provably the smallest absent positive integer.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Each swap places at least one element into its permanent home index. Once an element is at its home, it is never swapped again. Since there are $N$ positions, at most $N$ swaps occur across the entire algorithm. The while loop is guaranteed to terminate in $O(N)$ total steps.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Hash set:** Insert every positive value, then test `1, 2, 3, ...`. This is simple and linear-time on average, but it uses $O(n)$ extra space and misses the constant-space requirement.
-- **Boolean presence array:** Mark indices for values in $[1,n]$ and scan for the first unmarked entry. It makes the home-index idea explicit but still allocates $O(n)$ auxiliary memory.
-- **Sign marking:** After normalizing unusable values, use the sign at index `v - 1` to mark value `v` present. This also achieves $O(n)$ time and $O(1)$ space, but requires care with repeated values and absolute values.
-- **Sorting normally:** Sorting followed by a scan is straightforward and can be in place, but comparison sorting costs $O(n \log n)$ time.
-- **Value `1` missing:** Index 0 will not contain `1` after placement, so the second pass immediately returns 1, regardless of large or negative values elsewhere.
-- **All values `1` through `n` present:** Every home is correct and the algorithm returns `n + 1`.
-- **Duplicates:** Once one copy occupies its home, the guard leaves additional copies alone. They neither cause an infinite loop nor generate false presence information.
-- **Negative, zero, and oversized values:** The range condition ignores them safely. They do not need to be deleted or replaced.
-- **A value already in place:** If `nums[i] == i + 1`, its computed destination is the same index and the equality guard prevents a pointless self-swap.
-- **Input mutation:** The final order generally differs from the original. This is the tradeoff that supplies constant auxiliary space; callers needing the original order must pass a copy, which would itself use $O(n)$ space.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Infinite Loop on Duplicate Values:** If $\text{nums} = [1, 1]$, index 1 has value $1$ with target home $0$. If we check only $\text{nums}[i] \ne i + 1$, swapping $\text{nums}[1]$ with $\text{nums}[0]$ creates an infinite loop because both are $1$. The condition must check $\text{nums}[i] \ne \text{nums}[\text{nums}[i] - 1]$ to halt when the target position already contains the correct value.
+- **Negative and Out-of-Bounds Numbers:** Values $\le 0$ or $> N$ must not be swapped. Attempting to index $\text{nums}[x - 1]$ when $x \le 0$ or $x > N$ causes invalid memory access or negative index aliasing.
+- **Array Fully Populated:** For $\text{nums} = [1, 2, 3]$, all indices match ($1, 2, 3$). The scan finishes without finding a mismatch; the algorithm correctly returns $N + 1 = 4$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. The two explicit `for` loops each visit $n$ indices. Although a `while` is nested inside the first loop, it does not create quadratic work. Every successful swap permanently places an in-range value into its correct home without dislodging another correctly homed value. There are only $n$ homes, so at most $n$ such progress-making swaps occur across the entire pass. The total time is therefore $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in $\text{nums}$. Although there is a nested while-loop, each swap permanently fixes at least one element into its correct position. No element is swapped into its home more than once, bounding total swaps to at most $N$. The subsequent verification pass takes $O(N)$ time. Total runtime is strictly $O(N)$.
+- **Auxiliary Space Complexity:** $O(1)$. Swapping modifies the input array in place without extra memory allocations.

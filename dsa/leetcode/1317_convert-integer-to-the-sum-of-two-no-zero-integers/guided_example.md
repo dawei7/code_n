@@ -1,136 +1,131 @@
 # Guided Example: Convert Integer to the Sum of Two No-Zero Integers
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the linear search and digit-validation algorithm for partitioning an integer into two non-zero-digit summands on a representative instance:
 
-- **Input:** `{"n": 10000}`
-- **Required output:** `[1, 9999]`
+- **Input:** $n = 11$
+- **Required Output:** `[2, 9]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates decimal radix digit testing, identifying and discarding candidate partitions containing the digit zero, and terminating at the first valid non-zero pair.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-**No-Zero integer** is a positive integer that **does not contain any `0`** in its decimal representation.
+A positive integer is defined as a *No-Zero integer* if its base-10 decimal representation contains no occurrences of the digit `'0'`. Given integer $n = 11$, we must find two positive integers $a$ and $b$ such that:
+$$
+a + b = 11, \quad a \text{ is No-Zero}, \quad b \text{ is No-Zero}
+$$
 
-The objective is to compute `[1, 9999]` from `{"n": 10000}` while avoiding redundant calculations and unnecessary overhead.
+For $n = 11$:
+- Trial $1$: $a = 1 \implies b = 11 - 1 = 10$.
+  The decimal digits of $10$ are $\{1, 0\}$, containing `'0'`. Hence $b$ is invalid.
+- Trial $2$: $a = 2 \implies b = 11 - 2 = 9$.
+  The decimal digits of $2$ are $\{2\}$, and the digits of $9$ are $\{9\}$. Neither contains `'0'`.
+  The pair $[2, 9]$ satisfies all constraints.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```
+Testing Candidates a + b = 11:
+  Trial 1: a = 1, b = 10  -->  10 contains digit '0' (Rejected)
+  Trial 2: a = 2, b = 9   -->  2 and 9 contain no '0' (Accepted!)
+
+Solution: [2, 9]
+Sum: 2 + 9 = 11
+```
+
+Testing all possible pairs up to $n$ requires at most $n$ iterations. Since No-Zero numbers are dense across the positive integers, a valid partition is found almost immediately (typically within the first few increments of $a$), leading to $\mathcal{O}(1)$ average runtime.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let $a \in \{1, 2, \dots, n-1\}$ and let $b = n - a$.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### No-Zero Predicate Definition
+An integer $x$ satisfies the No-Zero property $\text{NoZero}(x)$ if and only if every digit in its base-$10$ expansion is non-zero:
+$$
+\text{NoZero}(x) \iff \forall k \ge 0: \left(\left\lfloor \frac{x}{10^k} \right\rfloor \bmod 10 \ne 0 \text{ while } 10^k \le x\right)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Joint Validity Condition
+A candidate integer $a$ is accepted if:
+$$
+\text{NoZero}(a) \land \text{NoZero}(n - a)
+$$
+
+| Trial Index $a$ | Complement $b = n - a$ | Digit Decomposition of $a$ | Digit Decomposition of $b$ | Contains '0'? | Accept? |
+|---|---|---|---|---|---|
+| $1$ | $10$ | $\{1\}$ | $\{1, 0\}$ | Yes ($b$ has '0') | Reject |
+| $2$ | $9$ | $\{2\}$ | $\{9\}$ | No | **Accept** |
+
+> **Conservation Invariant.** For every evaluated candidate $a$, the sum $a + b$ is algebraically guaranteed to equal $n$ by setting $b = n - a$. The algorithm only needs to verify the No-Zero digit property on $a$ and $b$.
+
+```mermaid
+flowchart TD
+    accTitle: No-Zero Integer Pair Search
+    accDescr: Incremental search from a = 1 checking if both a and n - a contain no zero digits.
+    START["Input: n = 11"] --> INIT["Set a = 1"]
+    INIT --> CALC["Compute b = n - a"]
+    CALC --> CHK{"Does either a or b contain '0'?"}
+    CHK -- Yes --> INC["Increment a = a + 1"]
+    INC --> CALC
+    CHK -- No --> FOUND["Found valid pair: [a, b]"]
+    FOUND --> DONE["Return [a, b]"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Generating candidates
+We trace the evaluation for $n = 11$:
 
-`count(1)` yields $1,2,3,\ldots$ without a built-in stopping point. For each positive `a`, the code computes `b`.
+### Step 1: Candidate $a = 1$
+- Set $a = 1$.
+- Compute complement: $b = 11 - 1 = 10$.
+- Test digits of $a = 1$:
+  - Digits: $\{1\}$. Contains no zero.
+- Test digits of $b = 10$:
+  - Divmod extraction: $10 \bmod 10 = 0$.
+  - Digit zero encountered! $\text{NoZero}(10) = \text{false}$.
+- Result: Reject candidate pair $[1, 10]$.
 
-The problem guarantees at least one valid answer. A valid pair has both numbers positive, so it must be found for some `a` from one through `n - 1`. Under that guarantee, the infinite iterator always returns before reaching candidates with nonpositive `b`.
-
-Without the guarantee, using `count` would be unsafe. Once `a > n`, `b` becomes negative, and a negative decimal string without zero could accidentally pass even though positivity is required. A defensive implementation would use `range(1, n)` and handle failure after the loop.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 10000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Checking both decimal representations at once
-
-`f"{a}{b}"` converts both integers to decimal text and concatenates them. The condition
-
-`"0" not in f"{a}{b}"`
-
-is true exactly when neither representation contains a zero. If either number has a zero digit, that character appears somewhere in the combined string.
-
-No separator is needed. The property being tested is simply whether zero occurs anywhere; joining the texts cannot remove or create a zero digit.
-
-This equivalence can be stated in both directions. If `a` contains a zero, its characters appear unchanged at the beginning of the formatted result, so the combined membership test fails. If `b` contains a zero, its characters appear unchanged at the end and the same test fails. Conversely, if the combined text contains zero, that character must have come from one of the two decimal representations because formatting inserts no other characters between positive integers. Therefore, passing the one combined test proves that both numbers are No-Zero integers; it is not a shortcut that weakens either individual requirement.
-
-For `n = 11`:
-
-- `a = 1` gives `b = 10`, and `"110"` contains zero, so it is rejected;
-- `a = 2` gives `b = 9`, and `"29"` contains no zero, so `[2, 9]` is returned.
-
-The first valid pair is returned immediately. It does not need to minimize either number because any valid answer is accepted.
-
-Increasing enumeration also makes termination easy to reason about under the promise. A valid pair `[a, b]` has some positive first component. The counter visits every positive integer in order without skipping that component. Earlier rejected candidates do not affect later ones because each `b` is recomputed directly from `n - a`. As soon as the promised component is reached, the exact sum relation and zero test both hold, so control leaves the otherwise unbounded iterator.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the returned pair is valid
-
-`a` begins at one, and the solution guarantee ensures return before `a` reaches `n`, so both `a` and `b = n - a` are positive. Their sum is algebraically
-
-$$
-a+(n-a)=n.
-$$
-
-The string condition verifies that neither decimal representation includes digit zero. Therefore, every returned list satisfies all three requirements.
-
-Conversely, because enumeration tries every positive `a < n` in order and derives its matching `b`, it eventually reaches the first component of at least one guaranteed valid pair. That iteration passes the digit test and terminates.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 9999]` |
+### Step 2: Candidate $a = 2$
+- Increment $a \leftarrow 2$.
+- Compute complement: $b = 11 - 2 = 9$.
+- Test digits of $a = 2$:
+  - Digits: $\{2\}$. Contains no zero.
+- Test digits of $b = 9$:
+  - Digits: $\{9\}$. Contains no zero.
+- Joint condition: Both $\text{NoZero}(2)$ and $\text{NoZero}(9)$ are true.
+- Result: Accept pair $[2, 9]$ and terminate.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 9999]` | Verified |
+| Iteration | Candidate $a$ | Complement $b$ | Digits of $a$ | Digits of $b$ | Validation Status | Action |
+|---|---|---|---|---|---|---|
+| 1 | $1$ | $10$ | `['1']` | `['1', '0']` | Invalid ($10$ has zero) | Increment $a$ |
+| 2 | $2$ | $9$ | `['2']` | `['9']` | **Valid (both non-zero)** | Terminate and return `[2, 9]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The returned pair $[a, b]$ satisfies $a + b = a + (n - a) = n$ by construction. Both $a$ and $b$ are verified to contain exclusively non-zero digits and are strictly positive ($a \ge 1$, $b \ge 1$). Thus, any accepted pair is guaranteed to be a sound No-Zero partition.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** The problem constraints guarantee that at least one valid No-Zero pair exists for any integer $n \in [2, 10^4]$. Incrementing $a$ from $1$ upward systematically visits all possible positive summands, guaranteeing that a valid solution is encountered and returned.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Bounded enumeration:** `for a in range(1, n)` enforces positivity of `b` even without the solution guarantee and is safer than an infinite counter.
-- **Arithmetic digit test:** Repeatedly inspect `x % 10` and divide by ten. It avoids string allocation but still takes $O(\log n)$ time per candidate.
-- **Construct digits without zero:** A direct carry-aware construction can avoid testing many candidates, but it is more complex than needed for `n <= 10000`.
-- **`n = 2`:** The first candidate gives `[1,1]`, which is valid.
-- **A candidate containing zero:** It is rejected even if only one of the two numbers has zero.
-- **Concatenation boundary:** No separator is needed because the test asks only whether any zero exists.
-- **Multiple answers:** Increasing enumeration returns the one with the smallest `a`; this is incidental, not a requirement.
-- **Guaranteed existence:** The lack of loop bounds and fallback return relies on it. Removing that promise requires a bounded loop.
-- **Negative string outside intended range:** A minus sign is not zero, so unbounded enumeration could accept a negative `b` if no valid positive pair existed.
-- **Leading zeros:** Ordinary integer formatting never creates leading zeroes, so only actual digits of the number are examined.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Failing to check both numbers:** Checking only whether $a$ contains no zeros while ignoring $b$ accepts $[1, 10]$, which violates the problem requirements.
+- **Negative or zero values:** Candidate $a$ must start at $1$ and remain strictly less than $n$ to prevent $a = 0$ or $b = 0$, as $0$ is not a positive integer.
+- **Modulo 10 edge cases:** When extracting digits mathematically via $x \bmod 10$, a trailing zero (as in $10 \bmod 10 = 0$) must immediately trigger failure.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n\log n)$. In the worst case, the method tests $O(n)$ candidate values before finding a pair. Each candidate has $O(\log n)$ decimal digits across `a` and `b`. Formatting, concatenating, and scanning the combined string therefore take $O(\log n)$ time.
-- **Auxiliary Space Complexity:** $O(\log n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \log_{10} n)$ in the worst case, but $\mathcal{O}(\log_{10} n)$ on average. Digits are tested in $\mathcal{O}(\log_{10} n)$ operations. Because non-zero numbers comprise a large majority of integers, the loop terminates within a few iterations.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ beyond minimal scalar loop variables.

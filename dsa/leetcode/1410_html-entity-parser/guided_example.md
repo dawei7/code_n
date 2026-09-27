@@ -1,136 +1,175 @@
 # Guided Example: HTML Entity Parser
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step execution of linear single-pass entity substitution on a representative problem instance:
 
-- **Input:** `{"text": "&amp; is an HTML entity but &ambassador; is not."}`
-- **Required output:** `"& is an HTML entity but &ambassador; is not."`
+- **Input:** `text = "&amp; is an HTML entity but &ambassador; is not."`
+- **Required Output:** `"& is an HTML entity but &ambassador; is not."`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features a valid recognized HTML entity (`&amp;`) alongside an unrecognized construct beginning with an ampersand and ending with a semicolon (`&ambassador;`), illustrating prefix pattern matching, failure recovery, and non-recursive replacement.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-**HTML entity parser** is the parser that takes HTML code as input and replace all the entities of the special characters by the characters itself.
+An HTML entity parser receives a string and replaces all predefined entity substrings with their corresponding single-character symbols:
+- `&quot;` $\implies$ `"` (Quotation mark)
+- `&apos;` $\implies$ `'` (Single quote mark)
+- `&amp;` $\implies$ `&` (Ampersand)
+- `&gt;` $\implies$ `>` (Greater-than sign)
+- `&lt;` $\implies$ `<` (Less-than sign)
+- `&frasl;` $\implies$ `/` (Slash)
 
-The objective is to compute `"& is an HTML entity but &ambassador; is not."` from `{"text": "&amp; is an HTML entity but &ambassador; is not."}` while avoiding redundant calculations and unnecessary overhead.
+Any substring that does not match one of these six exact patterns—even if it begins with an ampersand or ends with a semicolon—must remain untouched. Furthermore, replacements must occur strictly in a single left-to-right pass: newly created characters must never be re-evaluated as potential entities (avoiding cascading or recursive substitution).
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+In the selected input:
+- The prefix `&amp;` matches the predefined entity for an ampersand, replacing $5$ characters with the single character `&`.
+- The subsequent sequence `&ambassador;` begins with `&` and ends with `;`, but does not match any of the six recognized entity names; all $12$ characters must be preserved verbatim.
+
+The primary teaching goal is to formulate entity replacement as a deterministic prefix-matching cursor scan, guaranteeing linear execution time and immune to unintended recursive evaluations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+Let the input string have length $n$. We maintain a reading pointer $i$ progressing monotonically from $0$ to $n - 1$, writing emitted characters into an output buffer.
 
-| State Parameter | Role & Purpose | Initial State |
+At any position $i$:
+1. If the character at $i$ is not `&`, it cannot initiate an entity. Append `text[i]` to the output buffer and advance $i \leftarrow i + 1$.
+2. If `text[i] == '&'`, inspect the candidate prefixes against the six known entities:
+   - For each entity of length $L \in \{4, 5, 6, 7\}$:
+     - Check if $i + L \le n$ and `text[i .. i + L - 1]` matches the entity pattern.
+   - If a match is found: append the corresponding replacement character to the output buffer, and advance the pointer across the entire entity: $i \leftarrow i + L$.
+   - If none of the six entities match: append `text[i]` (the literal `&`) and advance $i \leftarrow i + 1$.
+
+```
+Index:    0    1    2    3    4    5    6 ... 30   31 ... 42   43 ...
+Chars:    &    a    m    p    ;         i ...  &    a ...  ;         i ...
+          |-------------------|                |-----------|
+Match:    Recognized '&amp;'                   Not recognized entity!
+Emit:     '&'                                  Emit '&', resume at 'a'
+Advance:  i advances by 5                      i advances by 1
+```
+
+We define tracking variables for the parser state:
+
+| State Variable | Domain | Pedagogical Role |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Scan Pointer ($i$) | $[0, n]$ | Monotonically advancing read head |
+| Prefix Window | Substring $text[i \dots \min(n, i + 7)]$ | Local slice checked against dictionary |
+| Output Buffer | Dynamic string | Preserves parsed text in single pass |
+| Match Outcome | Entity symbol or $\emptyset$ | Directs jump distance ($L$ vs $1$) |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** At all times, the output buffer represents the fully parsed and finalized transformation of the input prefix $text[0 \dots i - 1]$. No character already placed in the output buffer will ever be inspected or transformed again.
+
+```mermaid
+flowchart TD
+    accTitle: HTML Entity Parser Single Pass
+    accDescr: Sequential character evaluation checking for ampersand, testing against the six entity patterns, emitting replacement or literal character.
+    A["Read character text[i]"] --> B{"Is character '&'?"}
+    B -- No --> C["Emit text[i]<br/>Advance i = i + 1"]
+    B -- Yes --> D["Check slice text[i..i+L-1]<br/>against 6 entity patterns"]
+    D --> E{"Pattern matches?"}
+    E -- Yes --> F["Emit replacement symbol<br/>Advance i = i + L"]
+    E -- No --> G["Emit '&'<br/>Advance i = i + 1"]
+    C --> H{"i < n?"}
+    F --> H
+    G --> H
+    H -- Yes --> A
+    H -- No --> I["Return output string"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Parse the original input from left to right
+### Step 1: Matching the Leading Entity `&amp;` at $i = 0$
 
-The parser recognizes exactly six encoded strings and replaces each recognized source token with one character. The dictionary `d` is the complete translation table used by the implementation:
+- Read `text[0] == '&'`.
+- Evaluate candidate lengths $L \in \{4, 5, 6, 7\}$:
+  - $L = 4$: `text[0..3]` is `&amp` $\implies$ does not match `&gt;` or `&lt;`.
+  - $L = 5$: `text[0..4]` is `&amp;` $\implies$ matches `&amp;`!
+- Emit replacement character `&`.
+- Increment cursor: $i \leftarrow 0 + 5 = 5$.
 
-| Source token | Appended character |
-|---|---|
-| `&quot;` | `"` |
-| `&apos;` | `'` |
-| `&amp;` | `&` |
-| `&gt;` | `>` |
-| `&lt;` | `<` |
-| `&frasl;` | `/` |
-
-The algorithm maintains index `i` as the first unconsumed position in the original `text`. Everything before `i` has already been translated exactly once and represented in `ans`. Everything from `i` onward is still untouched source input.
-
-This one-pass viewpoint is important for nested-looking text. If the source contains `&amp;gt;`, the parser recognizes `&amp;`, appends a literal ampersand, and later copies the remaining characters `gt;`. It returns `&gt;`; it does not recursively parse the ampersand it just produced. Appended output is never fed back into the input scan.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"text": "&amp; is an HTML entity but &ambassador; is not."}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Cursor $i$ | Substring Under Test | Entity Match | Emitted Token | New Cursor $i$ | Current Buffer |
+|---|---|---|---|---|---|
+| $0$ | `&amp;` (length 5) | `&amp;` $\to$ `&` | `&` | $5$ | `"&"` |
 
 ---
 
-### Step 2: Why only lengths one through seven are tested
+### Step 2: Processing Intervening Plain Text ($i = 5$ to $29$)
 
-At each position, the inner loop tries:
+- From $i = 5$ to $i = 29$, `text[5..29]` contains: `" is an HTML entity but "`
+- None of these characters are `&`.
+- Each character is appended directly to the buffer, advancing $i$ by $1$ on each cycle.
+- At $i = 30$, buffer contains: `"& is an HTML entity but "`
 
-
-
-Python's upper range boundary is excluded, so `l` takes values from 1 through 7. Seven is the length of the longest supported token, `&frasl;`. No valid entity can require a longer slice.
-
-The shorter tokens also fall within that range: `&gt;` and `&lt;` have length four, `&amp;` has length five, `&quot;` and `&apos;` have length six, and `&frasl;` has length seven.
-
-Trying slices that extend beyond the end is safe in Python. `text[i:j]` simply stops at the string boundary rather than raising an error. Those shorter suffixes will not equal a complete dictionary key unless a complete token is actually present.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Cursor Range | Segment Text | Has Entity Trigger `&` | Action | Buffer State |
+|---|---|---|---|---|
+| $5 \dots 29$ | `" is an HTML entity but "` | No | Copy characters verbatim | `"& is an HTML entity but "` |
 
 ---
 
-### Step 3: Recognizing and consuming an entity
+### Step 3: Inspecting Unrecognized Construct `&ambassador;` at $i = 30$
 
-For every candidate ending position `j`, the code asks whether `text[i:j]` is a key in `d`. If it is, the same slice retrieves the replacement:
+- Read `text[30] == '&'`.
+- Evaluate candidate lengths:
+  - $L = 4$: `text[30..33]` is `&amb` (no match)
+  - $L = 5$: `text[30..34]` is `&amba` (no match)
+  - $L = 6$: `text[30..35]` is `&ambas` (no match)
+  - $L = 7$: `text[30..36]` is `&ambass` (no match)
+- No entity dictionary entry matches.
+- Emit literal `&`.
+- Advance cursor by $1$: $i \leftarrow 30 + 1 = 31$.
 
+| Cursor $i$ | Substring Under Test | Entity Match | Action | New Cursor $i$ | Buffer State |
+|---|---|---|---|---|---|
+| $30$ | `&amba...` | None | Emit literal `&` | $31$ | `"& is an HTML entity but &"` |
 
+---
 
-Appending the dictionary value emits exactly one decoded character. Setting `i = j` consumes the entire source entity, including its leading ampersand and trailing semicolon. The `break` exits the length loop so the entity cannot also be copied character by character.
+### Step 4: Finishing Remainder of the String ($i = 31$ to $47$)
 
-The code checks lengths from shortest to longest. This is safe for this fixed dictionary because no supported entity token is a complete prefix of another supported token. There is therefore no situation where an early shorter match steals the beginning of a different valid longer match.
+- `text[31..47]` is `"ambassador; is not."`
+- None of these characters trigger an entity replacement.
+- All characters are appended verbatim until string end at $i = 48$.
+- Final output: `"& is an HTML entity but &ambassador; is not."`
 
-| Parameter | State Before Finalization | Action | Final Value |
+| Cursor Range | Segment Text | Action | Final Buffer Content |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"& is an HTML entity but &ambassador; is not."` |
+| $31 \dots 47$ | `"ambassador; is not."` | Copy characters verbatim | `"& is an HTML entity but &ambassador; is not."` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"text": "&amp; is an HTML entity but &ambassador; is not."}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"& is an HTML entity but &ambassador; is not."` | Verified |
+| Phase | Read Pointer ($i$) | Observed Character / Token | Entity Test Result | Advance Step | Output Buffer Snapshot |
+|---|---|---|---|---|---|
+| Prefix Entity | $0$ | `&amp;` | Matches `&amp;` | $+5 \implies 5$ | `"&"` |
+| Plain Text | $5 \dots 29$ | `" is an HTML entity but "` | No trigger character | $+25 \implies 30$ | `"& is an HTML entity but "` |
+| Unknown Entity | $30$ | `&` in `&ambassador;` | No match across $L \in \{4,5,6,7\}$ | $+1 \implies 31$ | `"& is an HTML entity but &"` |
+| Tail Plain Text | $31 \dots 47$ | `"ambassador; is not."` | No trigger character | $+17 \implies 48$ | `"& is an HTML entity but &ambassador; is not."` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The substitution rules correspond strictly to the six standardized HTML entities. Any sequence that fails to match one of the six exact target words in both prefix and terminating semicolon is preserved without alteration. Because advancing $i$ jumps past the matched token, newly emitted characters cannot be rescanned.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Every character in the input string is inspected at least once. The pointer $i$ advances by at least $1$ in every step, ensuring termination in at most $n$ iterations. No valid entity starting at index $i$ is overlooked because all possible entity lengths ($4$ through $7$) are bounded and checked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Check for ampersand first:** Copy ordinary characters immediately and test entities only when `text[i] == '&'`. This reduces constant work while keeping the same $O(n)$ complexity and semantics.
-- **Trie of entity tokens:** A trie can consume characters until a token matches or fails. It becomes attractive with a large or extensible entity vocabulary, but six tokens of maximum length seven do not require that machinery.
-- **Repeated global replacement:** Calling `replace` once per entity is concise but scans the full string several times and can accidentally introduce ordering questions when one replacement produces text resembling another entity.
-- **Regular expression:** A pattern can find supported tokens and use a callback dictionary. It is valid but hides the straightforward consumption invariant behind regex behavior.
-- **Recursive decoding:** Parsing newly produced output again is incorrect for this task. `&amp;gt;` should undergo the source scan once rather than automatically becoming `>` through two rounds.
-- **Unknown entity-like text:** A string such as `&ambassador;` is not a dictionary key, so every character is preserved.
-- **Incomplete entity:** A trailing fragment such as `&quo` never matches a complete key and remains unchanged.
-- **Adjacent entities:** After one match sets `i` to its end, the next outer iteration begins exactly at the following entity and decodes it independently.
-- **Ordinary ampersand:** A lone `&` fails all token tests and is copied literally.
-- **Longest entity:** `&frasl;` is found when `l == 7`; using `range(1, 7)` would miss it because the upper bound is exclusive.
-- **Quotes and apostrophes:** The dictionary values use appropriate Python quoting but each represents a single literal output character.
-- **All ASCII input:** Characters outside the six supported source sequences pass through unchanged, regardless of whether they have special meaning in broader HTML standards.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Recursive Replacement Hazard:** If naive global replacements are applied sequentially, replacing `&amp;` before `&gt;` transforms `&amp;gt;` into `&gt;` and then into `>`, which is incorrect. Single-pass linear scanning guarantees each token is processed only once.
+- **Order-Dependent String Replacement:** Replacing in an arbitrary order using built-in replacement functions can corrupt tokens if an entity contains the result of another substitution.
+- **Prefix False Match:** A word like `&ambassador;` shares the prefix `&am` with `&amp;`. Matching must verify the exact full token including the trailing semicolon `;`.
+- **Buffer Index Out of Bounds:** When checking candidate substrings of length $L \in \{4..7\}$ near the end of the string, bounds checking must ensure $i + L \le n$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the number of characters in `text`. The outer loop consumes at least one source character per iteration, so it runs at most $n$ times. Each iteration checks at most seven candidate lengths. Every tested slice has length at most seven, and dictionary lookup involves one of these constant-size strings. The work per outer iteration is therefore bounded by a constant, giving $O(n)$ time.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of the string. At each index $i$, we compare at most $6$ constant-length patterns (lengths $4$ to $7$), taking $\mathcal{O}(1)$ time per index. The index $i$ advances by at least $1$ each step, bounding total work by $\mathcal{O}(n)$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ to store the parsed output string.

@@ -1,104 +1,165 @@
 # Guided Example: Intersection of Two Arrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step hash set construction (`set(nums1)`, `set(nums2)`), duplicate element deduplication, mathematical set intersection ($S_1 \cap S_2$), and unique common element collection on representative integer array instances:
 
-- **Input:** `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}`
-- **Required output:** `[2]`
+- **Input:** $\text{nums1} = [1, 2, 2, 1], \quad \text{nums2} = [2, 2]$
+- **Required output:** $[2]$
+  - Unique elements in $\text{nums1}$: $\{1, 2\}$
+  - Unique elements in $\text{nums2}$: $\{2\}$
+  - Set intersection: $\{1, 2\} \cap \{2\} = \{2\}$
+  - Converted output list: $[2]$
+- **Multi-Element Disjoint Instance:** $\text{nums1} = [4, 9, 5], \text{nums2} = [9, 4, 9, 8, 4]$
+  - Set 1: $\{4, 5, 9\}$, Set 2: $\{4, 8, 9\}$
+  - Intersection: $\{4, 9\}$ (Any order: `[4, 9]` or `[9, 4]`)
+- **Completely Disjoint Arrays:** $\text{nums1} = [1, 2, 3], \text{nums2} = [4, 5, 6] \implies []$
+- **Subset Relationship:** $\text{nums1} = [1, 2], \text{nums2} = [1, 2, 3] \implies [1, 2]$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates set-theoretic intersections on finite multisets, proves why hash set deduplication eliminates duplicate checking overhead, contrasts $O(N + M)$ linear hashing with $O(N \cdot M)$ pairwise nested comparisons, and analyzes $O(N + M)$ memory bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must be **unique** and you may return the result in **any order**.
+Given two integer arrays:
+$$
+\text{nums1} = [1, 2, 2, 1], \quad \text{nums2} = [2, 2]
+$$
+Return an array of their intersection such that:
+1. Each element in the result is **unique** (no duplicates).
+2. Elements may be returned in **any order**.
 
-The objective is to compute `[2]` from `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+nums1: [1, 2, 2, 1] -> Distinct Elements: {1, 2}
+nums2: [2, 2]       -> Distinct Elements: {2}
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Mathematical Intersection:
+{1, 2} ∩ {2} = {2}
+
+Output: [2]
+```
+
+### Why Naive Pairwise Comparison ($O(N \times M)$) Fails
+- Comparing each element of `nums1` against all elements of `nums2` takes $O(N \times M)$ time.
+- Collecting matches directly creates duplicate entries (e.g. four pairings of `2` with `2`), requiring an extra deduplication step.
+- Hashing both inputs into hash sets reduces conversion and intersection to strictly **$O(N + M)$ linear time**.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Hash Set Conversion
+Convert both arrays to hash sets to deduplicate and enable $O(1)$ average-time membership testing:
+$$
+S_1 = \text{set}(\text{nums1}) = \{1, 2\}
+$$
+$$
+S_2 = \text{set}(\text{nums2}) = \{2\}
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Set Bitwise Intersection (`&`)
+In Python, `S_1 & S_2` evaluates the mathematical intersection:
+$$
+S_{\cap} = S_1 \cap S_2 = \{x \mid x \in S_1 \land x \in S_2\}
+$$
+Iterates over the smaller set and queries membership in the larger set in $O(\min(|S_1|, |S_2|))$ operations.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### 3. List Conversion
+Transform the resulting set into a list:
+$$
+\text{list}(S_{\cap})
+$$
+
+> **Invariant.** An integer $x$ belongs to the result list if and only if $x \in \text{nums1}$ and $x \in \text{nums2}$. By definition of a set, every element appears at most once.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why duplicates disappear without special cases.
-
-Suppose `nums1` contains `[1, 2, 2, 1]`. Inserting the first `1` creates membership for `1`; inserting the later `1` does not create a second copy. The same is true for `2`. Thus `set(nums1)` represents `{1, 2}`. If `nums2` is `[2, 2]`, its set is `{2}`. Their intersection is `{2}`, and converting it to a list produces `[2]`.
-
-No frequency table is needed because the result does not care whether a common value occurs once or a thousand times. It asks only the yes-or-no question “does this value occur in each input?” A set stores exactly that information and no irrelevant multiplicity.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the evaluation on $\text{nums1} = [1, 2, 2, 1]$ and $\text{nums2} = [2, 2]$:
 
 ---
 
-### Step 2: Why the intersection is correct.
-
-Consider any value `x` that appears in the returned list. It came from the temporary intersection set. By the definition of `&`, `x` can be in that set only if it is a member of both `set(nums1)` and `set(nums2)`. Set construction includes a value exactly when that value appeared in the corresponding array. Therefore every returned value truly appears in both input arrays.
-
-Now consider any distinct value `y` that appears in both arrays. The first set construction includes `y`, and the second set construction also includes `y`. The intersection operator consequently includes `y`, and converting the set to a list retains it. Therefore no required common value is omitted.
-
-Finally, the intermediate result is a set, so it cannot contain duplicate entries. The conversion to a list copies each set member once; it does not reintroduce duplicates. These three facts establish that the returned list contains exactly the distinct common values.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Deduplicate `nums1` into $S_1$
+Scan `nums1 = [1, 2, 2, 1]`:
+- Element $1 \implies \text{add } 1$ to $S_1$.
+- Element $2 \implies \text{add } 2$ to $S_1$.
+- Element $2 \implies$ duplicate, already present.
+- Element $1 \implies$ duplicate, already present.
+$$
+S_1 = \{1, 2\}
+$$
 
 ---
 
-### Step 3: Why arbitrary output order is acceptable.
+### Step 2: Deduplicate `nums2` into $S_2$
+Scan `nums2 = [2, 2]`:
+- Element $2 \implies \text{add } 2$ to $S_2$.
+- Element $2 \implies$ duplicate, already present.
+$$
+S_2 = \{2\}
+$$
 
-Sets are not used here to preserve the arrays' encounter order. Their iteration order is an implementation detail and should not be treated as sorted order or as a stable part of this algorithm's contract. For the second example, either `[9, 4]` or `[4, 9]` is valid because both describe the same mathematical set. If the judge required a particular order, an extra ordering step or an order-preserving scan would be necessary. This problem explicitly removes that requirement.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2]` |
+### Step 3: Compute Set Intersection $S_1 \ \& \ S_2$
+Evaluate membership across sets:
+- Test element $2 \in S_2$: Is $2 \in S_1$? **Yes!** Include $2$.
+Intersection set:
+$$
+S_1 \cap S_2 = \{\mathbf{2}\}
+$$
+
+---
+
+### Step 4: Convert to Output List
+$$
+\text{list}(\{2\}) = \mathbf{[2]}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2]` | Verified |
+```text
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2]
+
+1. set(nums1) = {1, 2}
+2. set(nums2) = {2}
+3. set(nums1) & set(nums2) = {2}
+4. list({2}) = [2]
+
+Result: [2]
+```
+
+| Distinct Candidate | Present in `nums1` ($S_1$)? | Present in `nums2` ($S_2$)? | In Intersection ($S_1 \cap S_2$)? | Emitted to Output? |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | Yes | No | No | No |
+| **2** | **Yes** | **Yes** | **Yes** | **Yes (`2`)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every element in $S_1 \ \& \ S_2$ is confirmed to be present in both $S_1$ and $S_2$. Because $S_1$ and $S_2$ were constructed directly from the inputs, any emitted number exists in both `nums1` and `nums2`. Since sets cannot store duplicate elements, every value in the returned list is unique.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** If an integer $x$ exists in both `nums1` and `nums2`, it is inserted into both $S_1$ and $S_2$. The set intersection operator `&` evaluates all shared members without omitting any common values. Thus, all intersecting numbers are included.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **One set from the smaller input:** Store the distinct values of the shorter array, scan the other array, and add matches to a result set or remove each match after output. This can use $O(\min(n,m))$ membership storage plus output, matching the manifest summary, but it is not the checked-in source.
-- **Sort and use two pointers:** Sort both arrays, advance the pointer at the smaller value, and emit equal values while skipping duplicates. This avoids hash assumptions but costs $O(n\log n+m\log m)$ time and may mutate the inputs if sorting is done in place.
-- **Boolean presence table:** Because values lie from `0` to `1000`, a fixed table can record membership from one array and a second state can prevent duplicate output. It provides deterministic linear scanning time and bounded storage, but it relies on the small value range and generalizes poorly to arbitrary integers.
+- **Preserving Duplicates (LeetCode 350 Contrast):** Problem 349 requires strictly unique values in the output (`[2]`). Problem 350 (Intersection of Two Arrays II) requires preserving element multiplicities (`[2, 2]`). Using sets naturally enforces uniqueness for Problem 349.
+- **Unordered Output Freedom:** The problem allows returning the answer in any order. Relying on array insertion order or sorting is unnecessary and adds overhead.
+- **Empty Output Case:** When the two arrays share no common elements, $S_1 \cap S_2 = \emptyset$, correctly yielding `[]`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n+m)$. Let $n$ be `len(nums1)`, let $m$ be `len(nums2)`, let $u_1$ and $u_2$ be their respective numbers of distinct values, and let $r$ be the number of distinct values present in both. Then $u_1\le n$, $u_2\le m$, and $r\le\min(u_1,u_2)$.
-- **Auxiliary Space Complexity:** $O(u_1+u_2+r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N + M)$, where $N = \text{len}(nums1)$ and $M = \text{len}(nums2)$.
+  - Constructing $S_1$ takes $O(N)$ time.
+  - Constructing $S_2$ takes $O(M)$ time.
+  - Computing $S_1 \ \& \ S_2$ takes $O(\min(|S_1|, |S_2|))$ average time.
+  - Total runtime is strictly linear $O(N + M)$.
+- **Auxiliary Space Complexity:** $O(N + M)$ auxiliary memory to store hash sets $S_1$ and $S_2$.

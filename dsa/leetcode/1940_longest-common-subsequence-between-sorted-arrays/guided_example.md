@@ -1,124 +1,180 @@
 # Guided Example: Longest Common Subsequence Between Sorted Arrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace common element identification, multi-array set intersection, and strict monotonicity preservation on representative sorted array collections:
 
-- **Input:** `{"arrays": [[1, 3, 4], [1, 4, 7, 9]]}`
-- **Required output:** `[1, 4]`
+- **Primary Input:** `arrays = [[2, 3, 6, 8], [1, 2, 3, 5, 6, 7, 10], [2, 3, 4, 6, 9]]`
+- **Required Output:** `[2, 3, 6]`
+- **Two-Array Input:** `arrays = [[1, 3, 4], [1, 4, 7, 9]]`
+- **Required Output:** `[1, 4]`
+- **Disjoint Input (Empty Result):** `arrays = [[1, 2, 3, 4, 5], [6, 7, 8]]`
+- **Required Output:** `[]`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates why strictly increasing order across all arrays guarantees that any common subset preserves relative order automatically, converting the general exponential/NP-hard Longest Common Subsequence problem into a linear multiset intersection.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integer arrays `arrays` where each $\text{arrays}[i]$ is sorted in **strictly increasing** order, return *an integer array representing the **longest common subsequence** among **all** the arrays*.
+Given an array of integer arrays `arrays` where each individual array `arrays[i]` is sorted in **strictly increasing order**, return an integer array representing the **longest common subsequence** between all arrays.
 
-The objective is to compute `[1, 4]` from `{"arrays": [[1, 3, 4], [1, 4, 7, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+For `arrays = [[2, 3, 6, 8], [1, 2, 3, 5, 6, 7, 10], [2, 3, 4, 6, 9]]`:
+- Number of arrays: $M = 3$.
+- Array 0: `[2, 3, 6, 8]`
+- Array 1: `[1, 2, 3, 5, 6, 7, 10]`
+- Array 2: `[2, 3, 4, 6, 9]`
+- Evaluate presence across all 3 arrays:
+  - Element 1: only in Array 1 (Count 1)
+  - Element 2: in Array 0, 1, 2 (Count 3) $\implies$ Common!
+  - Element 3: in Array 0, 1, 2 (Count 3) $\implies$ Common!
+  - Element 4: only in Array 2 (Count 1)
+  - Element 5: only in Array 1 (Count 1)
+  - Element 6: in Array 0, 1, 2 (Count 3) $\implies$ Common!
+  - Element 7: only in Array 1 (Count 1)
+  - Element 8: only in Array 0 (Count 1)
+  - Element 9: only in Array 2 (Count 1)
+  - Element 10: only in Array 1 (Count 1)
+- Common elements present in all 3 arrays: `[2, 3, 6]`.
+- Relative order: In every array, $2 < 3 < 6$. Because each array is strictly increasing, 2 appears before 3, and 3 appears before 6 in every single array.
+- The subsequence `[2, 3, 6]` is valid and maximal in length.
+- Output: `[2, 3, 6]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **order preservation in monotonic sequences**:
+1. Why the general Longest Common Subsequence problem on $M$ arbitrary strings is NP-hard, but trivializes to linear set intersection when all inputs are strictly sorted.
+2. Formulating the common subsequence as the exact intersection $\bigcap_{i=0}^{M-1} A_i$.
+3. Evaluating frequency counting across bounded value domains ($1 \le x \le 100$) in $\mathcal{O}(\sum |A_i|)$ time.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Monotonic Intersection Equivalence Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Monotonic Intersection Equivalence Theorem.**
+> 1. *Strict Order Invariance:* Let $A_1, A_2, \dots, A_M$ be sequences strictly increasing in value:
+>    $$\forall k, \quad A_k[0] < A_k[1] < \dots < A_k[|A_k|-1]$$
+>    For any two values $x, y$ belonging to the intersection $\mathcal{S} = \bigcap_{k=1}^M A_k$, if $x < y$, then $x$ must appear strictly before $y$ in **every** sequence $A_k$.
+> 2. *Subsequence Equivalence:* Because the relative order of any subset of $\mathcal{S}$ is universally identical across all $M$ arrays, the entire intersection set $\mathcal{S}$ sorted in ascending order forms a valid common subsequence for all arrays.
+> 3. *Maximality:* A subsequence cannot contain elements absent from any input array. Thus the maximum possible length of any common subsequence is strictly bounded by $|\mathcal{S}|$. The sorted array of $\mathcal{S}$ is therefore the unique longest common subsequence.
+> 4. *Frequency Counting:* Since elements within each array are distinct, an integer $x$ appears in all $M$ arrays if and only if its total occurrence count across all arrays equals $M$:
+>    $$\text{count}(x) = M \iff x \in \bigcap_{k=1}^M A_k$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Sorted Array Intersection Pipeline
+    accDescr: Counting frequencies of elements across strictly increasing arrays to identify those appearing in all M arrays.
+    A["Initialize Frequency Table: count[x] = 0 for x in [1 .. 100]"] --> B["For each array row in arrays:"]
+    B --> C["For each integer x in row:"]
+    C --> D["Increment count[x] by 1"]
+    D --> C
+    C -- Row Processed --> B
+    B -- All Arrays Processed --> E["Collect all x where count[x] == len(arrays)"]
+    E --> F["Return ascending array of common elements"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sorted, strictly increasing arrays turn LCS into intersection
-
-In a general longest-common-subsequence problem, two shared values may appear in conflicting orders, so dynamic programming must decide which matches can coexist. Here every input array is strictly increasing. Any value that appears in several arrays has the same relative order in all of them: smaller common values always precede larger common values.
-
-Each array also contains a value at most once. Therefore the longest common subsequence consists of exactly the values present in every array, listed in increasing order. No further ordering decision is needed.
-
-The exact solution counts occurrences across all arrays. The constraints restrict values to $1$ through $100$, so `cnt = [0] * 101` supplies one counter for every possible value. For each `x` in each row, `cnt[x] += 1` records that this array contains `x`.
-
-Because a row is strictly increasing, it cannot contribute twice to the same counter. Thus `cnt[x]` is not merely the total number of occurrences; it is exactly the number of different input arrays containing $x$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"arrays": [[1, 3, 4], [1, 4, 7, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `arrays = [[2, 3, 6, 8], [1, 2, 3, 5, 6, 7, 10], [2, 3, 4, 6, 9]]`:
+- Number of arrays: $M = 3$.
+- Value range: $[1 \dots 100]$.
 
 ---
 
-### Step 2: Select values found in every array
-
-There are `len(arrays)` input arrays. A value is common to all of them exactly when its counter equals that number. The result comprehension enumerates counters in numeric index order:
-
-`[x for x, v in enumerate(cnt) if v == len(arrays)]`.
-
-Enumeration automatically returns qualifying values from zero through 100 in increasing order. Index zero never qualifies because input values start at one and there are at least two arrays, but including its unused counter simplifies direct indexing.
-
-For arrays `[2, 3, 6, 8]`, `[1, 2, 3, 5, 6, 7, 10]`, and `[2, 3, 4, 6, 9]`, the counters for two, three, and six become three. All other encountered values have smaller counts. The comprehension returns `[2, 3, 6]`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Array 0 (`[2, 3, 6, 8]`)
+Increment frequency for each element:
+- $\text{count}[2] \leftarrow 1$
+- $\text{count}[3] \leftarrow 1$
+- $\text{count}[6] \leftarrow 1$
+- $\text{count}[8] \leftarrow 1$
 
 ---
 
-### Step 3: Why all common values can be included together
+### Step 2: Process Array 1 (`[1, 2, 3, 5, 6, 7, 10]`)
+Increment frequency for each element:
+- $\text{count}[1] \leftarrow 1$
+- $\text{count}[2] \leftarrow 1 + 1 = 2$
+- $\text{count}[3] \leftarrow 1 + 1 = 2$
+- $\text{count}[5] \leftarrow 1$
+- $\text{count}[6] \leftarrow 1 + 1 = 2$
+- $\text{count}[7] \leftarrow 1$
+- $\text{count}[10] \leftarrow 1$
 
-Suppose $a<b$ are both present in every array. Strict increasing order forces $a$ to occur before $b$ in each array. Thus including $a$ never prevents including $b$. Applying this to every pair of common values shows that the complete sorted intersection is a subsequence of every array.
+---
 
-Any common subsequence can contain only values present in every array, so it cannot be longer than that intersection. Since the algorithm returns the entire intersection as a valid common subsequence, it is longest.
+### Step 3: Process Array 2 (`[2, 3, 4, 6, 9]`)
+Increment frequency for each element:
+- $\text{count}[2] \leftarrow 2 + 1 = 3$  ($== M$)
+- $\text{count}[3] \leftarrow 2 + 1 = 3$  ($== M$)
+- $\text{count}[4] \leftarrow 1$
+- $\text{count}[6] \leftarrow 2 + 1 = 3$  ($== M$)
+- $\text{count}[9] \leftarrow 1$
 
-This also explains why no duplicate should appear in the result. Strictly increasing rows contain no duplicates, and the returned subsequence is itself strictly increasing.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 4]` |
+### Step 4: Extract Elements Matching $M = 3$
+Scan frequencies $x = 1 \dots 10$:
+- $x = 1: \text{count}[1] = 1 \neq 3$
+- $x = 2: \text{count}[2] = 3 == 3 \implies$ **Include 2**
+- $x = 3: \text{count}[3] = 3 == 3 \implies$ **Include 3**
+- $x = 4: \text{count}[4] = 1 \neq 3$
+- $x = 5: \text{count}[5] = 1 \neq 3$
+- $x = 6: \text{count}[6] = 3 == 3 \implies$ **Include 6**
+- $x = 7 \dots 10$: counts are all $1 \neq 3$.
+
+---
+
+### Final Result
+The resulting common subsequence is:
+
+$$\text{ans} = [2, 3, 6]$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arrays": [[1, 3, 4], [1, 4, 7, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 4]` | Verified |
+We record the cumulative frequency table across all arrays:
+
+| Candidate Value $x$ | In Array 0? | In Array 1? | In Array 2? | Total Count $\text{count}[x]$ | Equals $M = 3$? | Appended to Result |
+|---|---|---|---|---|---|---|
+| 1 | No | Yes | No | 1 | No | — |
+| 2 | **Yes** | **Yes** | **Yes** | **3** | **Yes** | `2` |
+| 3 | **Yes** | **Yes** | **Yes** | **3** | **Yes** | `3` |
+| 4 | No | No | Yes | 1 | No | — |
+| 5 | No | Yes | No | 1 | No | — |
+| 6 | **Yes** | **Yes** | **Yes** | **3** | **Yes** | `6` |
+| 7 | No | Yes | No | 1 | No | — |
+| 8 | Yes | No | No | 1 | No | — |
+| 9 | No | No | Yes | 1 | No | — |
+| 10 | No | Yes | No | 1 | No | — |
+
+We compare results across different array sets:
+
+| Input `arrays` | Number of Arrays $M$ | Intersection Set $\mathcal{S}$ | Strictly Ordered? | Output LCS |
+|---|---|---|---|---|
+| `[[1, 3, 4], [1, 4, 7, 9]]` | 2 | $\{1, 4\}$ | $1 < 4$ | `[1, 4]` |
+| `[[2, 3, 6, 8], [1, 2, 3, 5, 6, 7, 10], [2, 3, 4, 6, 9]]` | 3 | $\{2, 3, 6\}$ | $2 < 3 < 6$ | `[2, 3, 6]` |
+| `[[1, 2, 3, 4, 5], [6, 7, 8]]` | 2 | $\emptyset$ | — | `[]` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Since each input array contains strictly increasing values, duplicate elements cannot exist within a single array. Thus, $\text{count}[x] = M$ proves that $x$ appears in every single array. Because all arrays are strictly sorted, for any two elements $a < b$ with $\text{count}[a] = \text{count}[b] = M$, $a$ appears before $b$ in every array. The constructed sequence is guaranteed to be a valid common subsequence.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any element in a common subsequence must exist in all $M$ arrays, requiring its count to be at least $M$. Because values are unique within each array, its count cannot exceed $M$. Hence, testing $\text{count}[x] == M$ captures all possible common elements without omission.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Set intersection:** Convert the first row to a set and repeatedly intersect it with later rows, then sort the result. This is correct but uses hashing and a final sort despite the small bounded value domain.
-- **Repeated two-pointer intersection:** Merge the current common list with each sorted row. It takes linear time in the scanned data and does not rely on the value upper bound.
-- **General LCS dynamic programming:** It would solve a much broader problem but waste time and memory because strict sorting eliminates order conflicts.
-- **No common value:** No counter reaches the number of arrays, so the comprehension returns an empty list.
-- **One shared value:** It is returned as a length-one subsequence.
-- **Different row lengths:** Counts depend on membership, not row length, so no special handling is needed.
-- **Value 100:** The counter has index 100 because its length is 101, so the upper bound is safely included.
-- **Unused index zero:** It remains zero and cannot qualify because at least two arrays exist.
-- **Strict-increase dependency:** Duplicate values in one row could falsely inflate a count; the exact method relies on the stated contract.
-- **Sorted-order dependency:** In unsorted arrays, all common values need not form a common subsequence in sorted numeric order.
-- **Result ordering:** Enumerating the counter array returns the required increasing sequence without a separate sort.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Overcomplicating with Dynamic Programming:** Standard LCS uses $\mathcal{O}(N_1 \cdot N_2 \dots N_M)$ dynamic programming. Recognizing that sorted arrays permit simple set intersection reduces exponential complexity to strictly linear time.
+- **Duplicate Elements Within Rows:** If rows could have duplicates (e.g. `[1, 1, 2]`), a frequency count might reach $M$ from multiple occurrences in one row. Here, the specification explicitly guarantees *strictly increasing* rows, ensuring at most one occurrence per row.
+- **Empty Intersection Handling:** If arrays share no elements (e.g. disjoint sets), the filter produces an empty list `[]` cleanly without special-case branching.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(T+V)$. Let $T$ be the total number of elements across all arrays and let $V=101$ be the counter-array length.
-- **Auxiliary Space Complexity:** $O(V)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(\sum |arrays[i]| + K)$, where $\sum |arrays[i]|$ is the total number of elements across all arrays and $K = 100$ is the fixed maximum value range. Each element is visited once during frequency counting, and the table of size 100 is scanned once.
+- **Auxiliary Space Complexity:** $\mathcal{O}(K) = \mathcal{O}(1)$ auxiliary space for the fixed-size frequency array of length 101.

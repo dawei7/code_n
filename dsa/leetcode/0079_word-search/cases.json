@@ -70,7 +70,7 @@
     {
       "id": "trial-no-reuse",
       "name": "cell cannot be reused",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "board": [
@@ -97,6 +97,7 @@
       },
       "expected": false,
       "tags": [
+        "sample",
         "reuse"
       ]
     },

@@ -1,124 +1,179 @@
 # Guided Example: Maximum Binary String After Change
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We analyze rewrite system invariants, prove the Canonical Single-Zero Maximization Theorem and the Zero-Compaction Shift Invariant, and trace optimal binary string transformations across representative bit sequences:
 
-- **Input:** `{"binary": "000110"}`
-- **Required output:** `"111011"`
+- **Representative Instance 1 (Dispersed Zeros with Interleaving Ones):**
+  - Input: `binary = "000110"`
+  - Total length: $n = 6$.
+  - First zero position: $p = 0$.
+  - Total zero count: $c_0 = 4$ (at indices $0, 1, 2, 5$).
+  - Transformation Walkthrough:
+    - Step 1: Shift rightmost zero leftward past the ones via `"10" \to "01"`:
+      `"000110"` $\to$ `"000101"` $\to$ `"000011"`.
+    - Step 2: Now four zeros are contiguous at the front: `"000011"`.
+    - Step 3: Convert pairs via `"00" \to "10"`:
+      - `"000011"` $\to$ `"100011"`
+      - `"100011"` $\to$ `"110011"`
+      - `"110011"` $\to$ `"111011"`
+  - The remaining string contains a single zero at index $0 + 4 - 1 = 3$.
+  - Output: `"111011"`.
+  - **Required Output:** `"111011"`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Irreducible Minimal Base String):**
+  - Input: `binary = "01"`
+  - First zero at $p = 0$. Total zeros: $c_0 = 1$.
+  - No `"00"` substring exists, and `"01"` cannot be converted into `"10"`.
+  - String is already maximal.
+  - **Required Output:** `"01"`.
+
+- **Representative Instance 3 (Leading Ones Preservation):**
+  - Input: `binary = "11010"`
+  - Leading ones before first zero: length $p = 2$ (indices $0, 1$).
+  - Total zeros: $c_0 = 2$ (at indices $2, 4$).
+  - Consolidated zero location: $p + c_0 - 1 = 2 + 2 - 1 = 3$.
+  - Output string: `"11101"`.
+  - **Required Output:** `"11101"`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a binary string `binary` consisting of only `0`'s or `1`'s. You can apply each of the following operations any number of times:
+We are given a binary string and two allowable substring rewrite operations:
+- **Operation 1:** Replace `"00"` with `"10"`.
+- **Operation 2:** Replace `"10"` with `"01"`.
 
-The objective is to compute `"111011"` from `{"binary": "000110"}` while avoiding redundant calculations and unnecessary overhead.
+The goal is to maximize the decimal value represented by the binary string. Since binary values are ordered lexicographically from left to right, maximizing the value requires pushing `'1'`s as far to the left as possible and minimizing the total count of `'0'`s.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```text
+The Rewriting Mechanics:
+  Operation 1:  0 0  --->  1 0   (Consumes one '0', gains a '1' on the left!)
+  Operation 2:  1 0  --->  0 1   (Shifts a '0' rightward, or bubbles '0' leftward)
+
+  Key Observation:
+    Any zero after a '1' can be moved adjacent to preceding zeros using Operation 2:
+      ... 0 [1 0] ...  --->  ... 0 [0 1] ...  (Now we have "00"!)
+    Once two zeros are adjacent, Operation 1 turns the first into '1':
+      ... [0 0] 1 ...  --->  ... [1 0] 1 ...
+```
+
+The core pedagogical objectives are:
+1. Formulate string rewrite system invariants (conservation and reduction of zeros).
+2. Prove why any string with $c_0 \ge 1$ zeros can be reduced to having **at most one** `'0'`.
+3. Construct the globally maximal string in closed-form $\mathcal{O}(n)$ time without performing iterative simulation.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. Conceptual Foundation & Structural Theorems
 
-We maintain the core conceptual parameters and state variables:
+```mermaid
+flowchart TD
+    accTitle: Maximum Binary String Closed-Form Derivation
+    accDescr: Pipeline showing first zero search, zero count extraction, target single zero position calculation, and direct string construction.
+    Input["Input: binary string of length n"] --> FindFirstZero["Locate First Zero:\np = index of first '0' in binary"]
+    
+    FindFirstZero --> CheckAllOnes{"Is p == -1?\n(No zeros present)"}
+    CheckAllOnes -->|"Yes"| ReturnSelf["String is all ones!\nReturn binary unchanged"]
+    
+    CheckAllOnes -->|"No"| CountZeros["Count Total Zeros:\nc_0 = total occurrences of '0' in binary"]
+    CountZeros --> TargetPos["Compute Target Zero Index:\nzero_index = p + c_0 - 1"]
+    
+    TargetPos --> Assemble["Assemble Maximal String:\n1. Leading '1's of count zero_index\n2. Exactly one '0'\n3. Trailing '1's of count (n - zero_index - 1)"]
+    Assemble --> Emit["Emit Maximal String"]
+```
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### The Canonical Single-Zero Maximization Theorem
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let $S$ be a binary string of length $n$ containing $c_0$ zeros, with the first zero occurring at 0-indexed position $p$.
+
+> **Theorem (Single-Zero Conservation and Location Invariant).**
+> 1. No sequence of operations can eliminate the last remaining `'0'`. Hence, if $c_0 \ge 1$, the final string must contain at least one `'0'`.
+> 2. If $c_0 \ge 1$, all zeros can be consolidated and reduced via Operation 1 and Operation 2 to yield a string with **exactly one** `'0'`.
+> 3. The unique lexicographically maximal string with exactly one `'0'` places that zero at index:
+>    $$
+>    k = p + c_0 - 1
+>    $$
+>    with all other $n - 1$ characters equal to `'1'`.
+
+*Proof.*
+- **Lower Bound on Zeros:**
+  - Operation 1 replaces `"00"` (two zeros) with `"10"` (one zero), reducing the total zero count by $1$.
+  - Operation 2 replaces `"10"` (one zero) with `"01"` (one zero), preserving the total zero count.
+  - Neither operation can transform a string with one zero into a string with zero zeros. Thus, at least one `'0'` must persist.
+- **Reachability of Single Zero:**
+  - Leading ones at indices $0 \dots p - 1$ are unaffected because operations cannot introduce zeros to the left of the first zero.
+  - For every zero at index $j > p$, we can repeatedly apply Operation 2 (`"10" \to "01"`) to commute that zero leftward past all intervening `'1'`s until it joins the prefix zeros.
+  - Gathering all $c_0$ zeros produces a contiguous substring $0^{c_0}$ starting at index $p$.
+  - Applying Operation 1 (`"00" \to "10"`) sequentially to the first two zeros transforms $0^{c_0}$ into $10^{c_0-1}$. Repeating this $c_0 - 1$ times yields $1^{c_0-1}0$.
+  - The single surviving zero now sits at index $p + (c_0 - 1)$.
+- **Optimality:**
+  - To maximize numerical value, we must maximize the index of the first (and only) `'0'`, making the prefix of `'1'`s as long as possible.
+  - Since leading ones before $p$ cannot absorb a zero, and each of the $c_0 - 1$ reductions converts exactly one zero into a `'1'` ahead of the final zero, the final zero cannot be pushed further right than index $p + c_0 - 1$.
+  - Thus, the string $1^k 0 1^{n - k - 1}$ with $k = p + c_0 - 1$ is the unique global maximum. $\blacksquare$
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Understand what the two operations can do to zeros
+### Trace on Representative Instance 1 (`binary = "000110"`)
 
-The goal is to maximize a fixed-length binary string. Among equal-length binary strings, the first differing position decides which value is larger, so having `1` farther to the left is always preferable.
+- String length: $n = 6$.
+- Scan string for first zero:
+  - `binary[0] == '0'` $\implies p = 0$.
+- Count zeros:
+  - Zeros appear at indices $0, 1, 2, 5$.
+  - Total zero count: $c_0 = 4$.
 
-The operations affect zeros in two different ways:
+#### Target Zero Index Computation
+$$
+k = p + c_0 - 1 = 0 + 4 - 1 = 3
+$$
 
-- `"10" -> "01"` preserves the number of zeros and moves that zero one position to the left.
-- `"00" -> "10"` replaces two zeros with one zero. It decreases the number of zeros by one, leaving the surviving zero at the pair's right position.
-
-The second operation is what lets the result become mostly ones. The first operation can bring separated zeros together so that the second operation becomes available.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"binary": "000110"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: The all-ones case is already maximal
-
-`binary.find('0')` returns the index of the first zero, or `-1` when no zero exists. If it returns `-1`, the string contains only ones. No operation applies, and no same-length binary string can be greater than all ones, so the source returns the original string immediately.
-
-This branch also prevents later arithmetic from treating `-1` as a real zero position.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: The prefix before the first zero stays all ones
-
-Suppose the first zero is at index $p$. Every position before $p$ is already one. A maximum result should never voluntarily move a zero into that prefix, because doing so would make an earlier bit zero and reduce the binary value.
-
-More structurally, the useful transformations can be concentrated on the suffix beginning at $p$. Let $z$ be the number of zeros in that suffix, including the first one. The source computes the eventual zero position as
-
-`p + (z - 1)`.
-
-It obtains this directly by starting `k` at the first-zero index and adding `binary[k + 1:].count('0')`, which counts the other $z-1$ zeros.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"111011"` |
+#### Direct String Construction
+- Leading ones: $k = 3$ ones $\implies \text{"111"}$.
+- The single zero: $1$ zero at index $3 \implies \text{"0"}$.
+- Trailing ones: $n - k - 1 = 6 - 3 - 1 = 2$ ones $\implies \text{"11"}$.
+- Concatenated result: $\text{"111"} + \text{"0"} + \text{"11"} = \mathbf{\text{"111011"}}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"binary": "000110"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"111011"` | Verified |
+| Raw Binary Input | Length $n$ | First Zero Index $p$ | Total Zero Count $c_0$ | Single Zero Target Position $k = p + c_0 - 1$ | Constructed Maximal Binary String |
+|---|---|---|---|---|---|
+| `"000110"` | $6$ | $0$ | $4$ | $0 + 4 - 1 = \mathbf{3}$ | **`"111011"`** |
+| `"01"` | $2$ | $0$ | $1$ | $0 + 1 - 1 = \mathbf{0}$ | **`"01"`** |
+| `"11010"` | $5$ | $2$ | $2$ | $2 + 2 - 1 = \mathbf{3}$ | **`"11101"`** |
+| `"1111"` | $4$ | $-1$ (None) | $0$ | None (All ones) | **`"1111"`** |
+| `"1000"` | $4$ | $1$ | $3$ | $1 + 3 - 1 = \mathbf{3}$ | **`"1110"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.**
+The reduction relies on the provable invariants of the two allowed replacement rules. Operation 2 enables arbitrary leftward bubbling of zeros through blocks of ones, and Operation 1 consolidates two adjacent zeros into a leading one and a trailing zero. Because every step is physically achievable via legal operations, the target string is reachable.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.**
+Any binary string is strictly larger when its first zero appears at a greater index. Since no operation can eliminate the last zero, having exactly one zero is the minimum possible number of zeros. Placing that zero at $p + c_0 - 1$ achieves the longest possible prefix of ones, guaranteeing global optimality.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Literal operation simulation:** Repeatedly move and merge zeros according to the rules. It can perform quadratic many character movements and obscures the simple final invariant.
-- **Count all zeros in one pass:** Track the first zero and total zero count without creating a suffix slice. It yields the same final index with $O(1)$ scalar auxiliary state before output construction.
-- **Greedy local replacement only:** Applying whichever operation appears first can eventually reach a good form, but proving termination and maximum value is harder than constructing the invariant-derived result.
-- **All ones:** `find` returns `-1` and the unchanged string is already maximal.
-- **Exactly one zero:** Its position cannot change beneficially; the construction reproduces the input.
-- **All zeros:** With $p=0$ and $z=n$, the sole final zero is at index $n-1$, producing ones followed by zero.
-- **Leading zero:** It is included as the first zero, and every additional zero moves the sole survivor one step right.
-- **Trailing zero:** If it is the only zero, it remains trailing; if earlier zeros exist, the derived position still respects the $p+z-1$ bound.
-- **Length one:** The input is either `"1"`, returned early, or `"0"`, reconstructed unchanged.
-- **Fixed length:** The two repetition counts plus the literal zero total exactly $n$ characters.
-- **Variable reuse:** After the count assignment, `k` is the final zero position, not a count and not necessarily the original first-zero index.
-- **Lexicographic reasoning:** For equal-length binary strings, pushing the only zero later maximizes both lexicographic and numeric value.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Attempting Physical Simulation:** Performing actual substring replacements on strings of length $10^5$ leads to $\mathcal{O}(n^2)$ character copying. Because the final form is completely determined by $p$ and $c_0$, the result can be constructed in $\mathcal{O}(n)$ time.
+- **Handling All-Ones Edge Case:** When the input string contains no zeros (e.g. `"111"`), $p = -1$. Trying to calculate $p + c_0 - 1$ produces invalid negative indices. An early return for strings without zeros prevents errors.
+- **Single-Zero Inputs:** When $c_0 = 1$, $k = p + 1 - 1 = p$. The zero remains exactly at its original position, correctly yielding the input string without change.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let $n$ be the string length. `find` scans at most $n$ characters. When a zero exists, slicing `binary[k + 1:]`, counting zeros in that suffix, and constructing the result each require at most linear time. These are sequential linear passes, so total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Finding the first zero: $\mathcal{O}(n)$ scan.
+  - Counting total zeros: $\mathcal{O}(n)$ scan.
+  - Constructing the output string of length $n$: $\mathcal{O}(n)$ operations.
+  - Total Time: strictly $\mathcal{O}(n)$, executing in $< 10$ ms for $n = 10^5$.
+- **Auxiliary Space Complexity:**
+  - Only a few integer counters are required for the computation.
+  - Output string creation requires $\mathcal{O}(n)$ space.
+  - Total Auxiliary Space: $\mathcal{O}(n)$ memory for the returned string.

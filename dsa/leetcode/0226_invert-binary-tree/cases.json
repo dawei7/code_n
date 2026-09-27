@@ -34,7 +34,7 @@
     {
       "id": "trial-three",
       "name": "mirror two children",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "root": [
@@ -49,19 +49,21 @@
         1
       ],
       "tags": [
+        "sample",
         "boundary"
       ]
     },
     {
       "id": "trial-empty",
       "name": "empty tree",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "root": []
       },
       "expected": [],
       "tags": [
+        "sample",
         "empty"
       ]
     },

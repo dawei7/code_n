@@ -39,7 +39,7 @@
     {
       "id": "trial-row-one",
       "name": "row one",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "rowIndex": 1
@@ -49,6 +49,7 @@
         1
       ],
       "tags": [
+        "sample",
         "small"
       ]
     },

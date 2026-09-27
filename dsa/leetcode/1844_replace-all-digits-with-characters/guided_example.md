@@ -1,111 +1,145 @@
 # Guided Example: Replace All Digits with Characters
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step character-by-character transformation of alternating digit positions into shifted alphabetical characters:
 
-- **Input:** `{"s": "a1c1e1"}`
-- **Required output:** `"abcdef"`
+- **Input:** `s = "a1b2c3d4e"`
+- **Required Output:** `"abbdcfdhe"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This representative instance highlights alternating parity indexing, dynamic ASCII code point shifting, handling diverse shift offsets, and correctly preserving trailing unshifted characters in odd-length strings.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** string `s` that has lowercase English letters in its **even** indices and digits in its **odd** indices.
+We are given a string `s` where every even index ($0, 2, 4, \dots$) contains a lowercase English letter, and every odd index ($1, 3, 5, \dots$) contains a decimal digit character in $[0, 9]$.
+We must replace each digit character at odd index $i$ with the character that is $s[i]$ positions forward in the alphabet from the letter at index $i - 1$:
+$$\text{shift}(c, d) = \text{chr}(\text{ord}(c) + d)$$
+Even-indexed letters remain unchanged.
 
-The objective is to compute `"abcdef"` from `{"s": "a1c1e1"}` while avoiding redundant calculations and unnecessary overhead.
+In our instance:
+- Length $n = 9$ (an odd length).
+- Even indices: $s[0] = \text{'a'}, s[2] = \text{'b'}, s[4] = \text{'c'}, s[6] = \text{'d'}, s[8] = \text{'e'}$.
+- Odd indices with shift values:
+  - $i = 1$: digit `'1'` shifts $s[0] = \text{'a'}$ by $1 \to \text{'b'}$.
+  - $i = 3$: digit `'2'` shifts $s[2] = \text{'b'}$ by $2 \to \text{'d'}$.
+  - $i = 5$: digit `'3'` shifts $s[4] = \text{'c'}$ by $3 \to \text{'f'}$.
+  - $i = 7$: digit `'4'` shifts $s[6] = \text{'d'}$ by $4 \to \text{'h'}$.
+  - $i = 8$: letter `'e'` has no following digit and remains `'e'`.
+- Concatenation: `"a" + "b" + "b" + "d" + "c" + "f" + "d" + "h" + "e" = "abbdcfdhe"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to demonstrate point-wise stream transformations, parity-based index traversal, and character arithmetic without mutating previous base references.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Local Alphabet Shift & Parity Invariant Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Local Alphabet Shift & Inplace Parity Invariant Theorem.**
+> 1. *Independent Pairwise Decoupling:* Each odd position $i$ depends strictly on its immediate predecessor $s[i - 1]$ and the numerical value of $s[i]$. Distinct odd positions are mutually independent.
+> 2. *Codepoint Bijectivity:* For any base character $c \in [\text{'a'}, \text{'z'}]$ and decimal offset $d \in [0, 9]$ such that $\text{ord}(c) + d \le \text{ord}(\text{'z'})$, the target character is deterministically evaluated as:
+>    $$c' = \text{chr}(\text{ord}(c) + d)$$
+> 3. *Parity Invariance:* For all even $j$, $s'[j] = s[j]$. For all odd $i$, $s'[i] = \text{shift}(s[i - 1], s[i] - \text{'0'})$.
+> 4. *In-Place Mutation Soundness:* Because the shift for index $i$ reads only index $i - 1$ (an even index that is never mutated), the operation can be performed directly in-place across a mutable array in $\mathcal{O}(n)$ time and $\mathcal{O}(1)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Replace All Digits with Characters Flow
+    accDescr: Diagram illustrating scanning odd indices, computing shifted character codes, and updating the string.
+    A["Input String: 'a1b2c3d4e'"] --> B["Iterate odd indices i = 1, 3, 5, 7"]
+    B --> C1["i = 1: base 'a', offset 1 -> 'b'"]
+    B --> C2["i = 3: base 'b', offset 2 -> 'd'"]
+    B --> C3["i = 5: base 'c', offset 3 -> 'f'"]
+    B --> C4["i = 7: base 'd', offset 4 -> 'h'"]
+    C1 & C2 & C3 & C4 --> D["Assemble result array"]
+    D --> E["Output String: 'abbdcfdhe'"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Translate the shift operation into character codes.** The input alternates between letters at even indices and single decimal digits at odd indices. For every odd position `i`, the required replacement is the letter located `int(s[i])` positions after `s[i - 1]` in the alphabet.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "a1c1e1"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We walk through the mutable character array representation of $s$:
+$$\text{chars} = [\text{'a'}, \text{'1'}, \text{'b'}, \text{'2'}, \text{'c'}, \text{'3'}, \text{'d'}, \text{'4'}, \text{'e'}]$$
 
 ---
 
-### Step 2: Core Step 2
-
-Characters cannot be added directly to integers in Python, so the solution uses three conversions:
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Process Index $i = 1$
+- Preceding base character: $\text{chars}[0] = \text{'a'}$ (ASCII 97).
+- Digit character: $\text{chars}[1] = \text{'1'}$ (numerical offset $1$).
+- Target ASCII calculation: $97 + 1 = 98$ (corresponds to `'b'`).
+- Replacement: $\text{chars}[1] \gets \text{'b'}$.
+- Current buffer: `['a', 'b', 'b', '2', 'c', '3', 'd', '4', 'e']`.
 
 ---
 
-### Step 3: Core Step 3
+### Step 2: Process Index $i = 3$
+- Preceding base character: $\text{chars}[2] = \text{'b'}$ (ASCII 98).
+- Digit character: $\text{chars}[3] = \text{'2'}$ (numerical offset $2$).
+- Target ASCII calculation: $98 + 2 = 100$ (corresponds to `'d'`).
+- Replacement: $\text{chars}[3] \gets \text{'d'}$.
+- Current buffer: `['a', 'b', 'b', 'd', 'c', '3', 'd', '4', 'e']`.
 
-- `ord(s[i - 1])` converts the preceding letter to its numeric Unicode code point.
-- `int(s[i])` converts the one-character digit string to its numeric value from zero through nine.
-- `chr(...)` converts the shifted code point back into a one-character string.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"abcdef"` |
+### Step 3: Process Index $i = 5$
+- Preceding base character: $\text{chars}[4] = \text{'c'}$ (ASCII 99).
+- Digit character: $\text{chars}[5] = \text{'3'}$ (numerical offset $3$).
+- Target ASCII calculation: $99 + 3 = 102$ (corresponds to `'f'`).
+- Replacement: $\text{chars}[5] \gets \text{'f'}$.
+- Current buffer: `['a', 'b', 'b', 'd', 'c', 'f', 'd', '4', 'e']`.
+
+---
+
+### Step 4: Process Index $i = 7$
+- Preceding base character: $\text{chars}[6] = \text{'d'}$ (ASCII 100).
+- Digit character: $\text{chars}[7] = \text{'4'}$ (numerical offset $4$).
+- Target ASCII calculation: $100 + 4 = 104$ (corresponds to `'h'`).
+- Replacement: $\text{chars}[7] \gets \text{'h'}$.
+- Current buffer: `['a', 'b', 'b', 'd', 'c', 'f', 'd', 'h', 'e']`.
+
+---
+
+### Step 5: Finalization
+- Index $8$ is even and requires no shift.
+- Traversal terminates at $i = 9 \ge n$.
+- Join buffer to string: `"abbdcfdhe"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "a1c1e1"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"abcdef"` | Verified |
+| Index $i$ | Parity | Read Value | Action / Rule | Effective Replacement | Buffer Snapshot |
+|:---:|:---:|:---:|:---|:---:|:---|
+| 0 | Even | `'a'` | Base anchor | Preserved | `a........` |
+| 1 | Odd | `'1'` | $\text{'a'} + 1 \to \text{'b'}$ | `'b'` | `ab.......` |
+| 2 | Even | `'b'` | Base anchor | Preserved | `abb......` |
+| 3 | Odd | `'2'` | $\text{'b'} + 2 \to \text{'d'}$ | `'d'` | `abbd.....` |
+| 4 | Even | `'c'` | Base anchor | Preserved | `abbdc....` |
+| 5 | Odd | `'3'` | $\text{'c'} + 3 \to \text{'f'}$ | `'f'` | `abbdcf...` |
+| 6 | Even | `'d'` | Base anchor | Preserved | `abbdcfd..` |
+| 7 | Odd | `'4'` | $\text{'d'} + 4 \to \text{'h'}$ | `'h'` | `abbdcfdh.` |
+| 8 | Even | `'e'` | Base anchor | Preserved | `abbdcfdhe` |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** The transformation replaces exclusively the odd-indexed digit positions with the guaranteed valid shifted character within alphabet bounds. Each shift uses the original letter at index $i - 1$, preserving the exact specification.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Stepping through odd indices $1, 3, \dots, 2k + 1 < n$ visits every digit position exactly once. Because each replacement depends only on index $i - 1$ (which is never modified), the entire sequence of digits is updated without race conditions or cascade errors.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Output builder without mutation:** Append each even letter and its computed shifted character to a new list. It has the same `O(n)` time and space and can make the alternating structure explicit.
-- **Named `shift` helper:** A helper returning `chr(ord(c) + x)` mirrors the problem wording but does not change the algorithm.
-- **Alphabet lookup string:** Find the source index in `"abcdefghijklmnopqrstuvwxyz"` and index forward. It is more verbose than using consecutive character codes.
-- **Digit zero:** The replacement equals the preceding letter because the code-point offset is zero.
-- **Maximum safe shift:** The guarantee ensures the computed code point is at most `ord("z")`, so wrapping is neither needed nor allowed.
-- **Length one:** There are no odd indices; list conversion and join return the original letter.
-- **Odd string length:** The last character is an even-index letter and remains unchanged.
-- **Even string length:** The last position is odd and is processed normally.
-- **Independent replacements:** Every source position is even and never modified, so an earlier result cannot affect a later shift.
-- **Single-digit assumption:** `int(s[i])` is correct because each odd position contains one digit character, not a multi-character number.
-- **Input preservation:** The original Python string is immutable; only the newly created list is changed.
-- **Broader character sets:** The arithmetic relies on lowercase English letters occupying consecutive code points and on the stated no-overflow guarantee.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Chained Shift Mistake:** Using the newly computed character at $i - 1$ instead of the base letter. (Here base letters are at even positions, so they are not replaced; but writing a generic state tracker could mistakenly treat a previously replaced letter as a base).
+- **String Immutability Overhead:** Repeatedly slicing or concatenating immutable strings in a loop incurs quadratic $\mathcal{O}(n^2)$ time; working with a mutable list or array guarantees linear $\mathcal{O}(n)$ execution.
+- **Odd vs Even String Length:** An odd-length string terminates on an even index letter (e.g. `'e'` at index 8), meaning loop bounds must avoid index-out-of-range checks when querying $i + 1$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n)$. Let `n = len(s)`. Building the character list takes `O(n)` time. The loop processes about half the positions with constant work each, and joining the result takes `O(n)`. Total running time is `O(n)`.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n)$, where $n$ is the length of the string `s`. Each odd index requires one constant-time ASCII addition and character conversion, yielding $\lfloor n / 2 \rfloor$ operations.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ in environments with immutable strings to hold the resulting character sequence, or $\mathcal{O}(1)$ auxiliary space if modified in-place within a mutable character array.

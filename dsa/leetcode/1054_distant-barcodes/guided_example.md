@@ -1,156 +1,221 @@
 # Guided Example: Distant Barcodes
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step rearrangement of identical barcodes to eliminate adjacent collisions using frequency-guided sorting and two-lane stride-2 interleaving, prove the Pigeonhole Frequency Capacity Theorem and the Stride-2 Two-Lane Non-Collision Invariant, and determine valid barcode orderings across representative inventories:
 
-- **Input:** `{"barcodes": [1, 1, 1, 2, 2, 2]}`
-- **Required output:** `[1, 2, 1, 2, 1, 2]`
+- **Representative Instance 1 (Even-Length Balanced Duplicates):**
+  $$
+  barcodes = [1, \; 1, \; 1, \; 2, \; 2, \; 2], \quad n = 6
+  $$
+- **Required Output:** `[1, 2, 1, 2, 1, 2]`
+  - Problem objective:
+    - Rearrange $barcodes$ so that no two adjacent elements are equal.
+    - A valid solution is guaranteed to exist.
+  - The Pigeonhole Frequency Invariant:
+    - In an array of length $n$, the maximum number of mutually non-adjacent positions is:
+      $$
+      C_{\max} = \left\lceil \frac{n}{2} \right\rceil = \frac{n + 1}{2}
+      $$
+    - If any value had frequency $> C_{\max}$, by the Pigeonhole Principle at least two copies would be forced into adjacent slots.
+    - Because a solution is guaranteed to exist, $\max_x \text{freq}(x) \le \lceil n / 2 \rceil$ is guaranteed!
+  - Frequency Counting and Sorting:
+    - Frequencies: $\text{Counter} = \{1: 3, \; 2: 3\}$.
+    - Sort `barcodes` by descending frequency (tiebreaker by value):
+      $$
+      barcodes_{\text{sorted}} = [1, \; 1, \; 1, \; 2, \; 2, \; 2]
+      $$
+  - The Two-Lane Stride-2 Allocation Strategy:
+    - Partition the output array $ans$ of size $n = 6$ into two interleaved lanes:
+      - **Even Lane (Lane 0):** Indices $0, 2, 4$ (Capacity $(n + 1) // 2 = 3$).
+      - **Odd Lane (Lane 1):** Indices $1, 3, 5$ (Capacity $n // 2 = 3$).
+    - Any two positions in the same lane have index difference $\ge 2$, meaning **no two elements in the same lane can ever be adjacent**!
+    - Fill Lane 0 with the first half of the frequency-sorted elements:
+      $$
+      ans[::2] = barcodes[:3] = [1, \; 1, \; 1] \implies ans = [1, \; \_, \; 1, \; \_, \; 1, \; \_]
+      $$
+    - Fill Lane 1 with the second half:
+      $$
+      ans[1::2] = barcodes[3:] = [2, \; 2, \; 2] \implies ans = [1, \; \mathbf{2}, \; 1, \; \mathbf{2}, \; 1, \; \mathbf{2}]
+      $$
+  - Verification:
+    - Adjacent pairs: $(1, 2), (2, 1), (1, 2), (2, 1), (1, 2)$.
+    - Zero adjacent identical barcodes!
+    - Result: `[1, 2, 1, 2, 1, 2]`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Dominant Value Filling Entire Even Lane):**
+  $$
+  barcodes = [1, 1, 1, 1, 2, 2, 3, 3], \quad n = 8
+  $$
+  - Frequencies: $1 \to 4, \; 2 \to 2, \; 3 \to 2$.
+  - Half-split: $(n + 1) // 2 = 4$.
+  - First half: $[1, 1, 1, 1]$.
+  - Second half: $[2, 2, 3, 3]$.
+  - Even lane: $ans[::2] = [1, 1, 1, 1]$.
+  - Odd lane: $ans[1::2] = [2, 2, 3, 3]$.
+  - Result: `[1, 2, 1, 2, 1, 3, 1, 3]`.
+
+- **Representative Instance 3 (Odd-Length Dominant Singleton):**
+  $$
+  barcodes = [1, 1, 2], \quad n = 3 \implies (n + 1) // 2 = 2
+  $$
+  - Even lane (indices $0, 2$): $[1, 1]$.
+  - Odd lane (index $1$): $[2]$.
+  - Result: `[1, 2, 1]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-In a warehouse, there is a row of barcodes, where the $i^{\text{th}}$ barcode is $\text{barcodes}[i]$.
+Given an array of barcodes, rearrange them so that no two adjacent elements have the same value.
 
-The objective is to compute `[1, 2, 1, 2, 1, 2]` from `{"barcodes": [1, 1, 1, 2, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Greedy / Priority Queue Overhead:
+  A max-heap of frequencies repeatedly extracts the top 2 elements:
+    Takes O(N log D) time and manages deferred reinsertions.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Two-Lane Stride-2 Invariant (Deterministic O(N log N) / O(N)):
+  Notice: Indices separated by stride 2 are NEVER adjacent!
+    - Even indices [0, 2, 4, ...] are pairwise non-adjacent.
+    - Odd indices  [1, 3, 5, ...] are pairwise non-adjacent.
+  Sort barcodes by descending frequency:
+    1. Fill even indices with the first ceil(n / 2) elements:
+         ans[::2] = barcodes[: (n + 1) // 2]
+    2. Fill odd indices with the remaining elements:
+         ans[1::2] = barcodes[(n + 1) // 2 :]
+  Because max frequency <= ceil(n / 2), the most frequent element fits ENTIRELY
+  inside the even lane and NEVER spills into the odd lane!
+  Eliminates heap simulation with a closed-form slice assignment!
+```
 
----
+Dividing the output array into even and odd stride-2 index lanes decouples element separation from dynamic round-robin scheduling.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Why frequency is the central difficulty
-
-Equal barcode values must be separated. A value that occurs once is easy to place, while a value occurring many times is dangerous because it needs many other positions between its copies. The algorithm therefore begins by counting occurrences:
-
-
-
-For every value `x`, `cnt[x]` is its total frequency. Building this map lets the next step put the most constrained values first.
-
-The statement guarantees that a valid arrangement exists. If the array length is `N`, that guarantee implies that no value appears more than `ceil(N / 2)` times. There are exactly `ceil(N / 2)` even indices: zero, two, four, and so on. A most-frequent value can be placed at all of those positions with at least one intervening slot between consecutive copies. If a value occurred more often than that, there would not be enough separating positions.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"barcodes": [1, 1, 1, 2, 2, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Pigeonhole Frequency Capacity Theorem & Stride-2 Two-Lane Invariant**:
+1. **Pigeonhole Frequency Limit:** The existence guarantee ensures $\max_x \text{freq}(x) \le \lceil n / 2 \rceil$. The most frequent element can always be packed entirely into the even lane without overflow.
+2. **Independent Lane Separation:** All even indices have index difference $\Delta \ge 2$, and all odd indices have $\Delta \ge 2$. Within each lane, identical elements cannot collide.
+3. **Wrap-Around Adjacency Protection:** Because elements are ordered contiguously by value in the sorted list, if a less-frequent element straddles the split index, its occurrences in the even lane appear at the highest even indices (far right), while its occurrences in the odd lane start at index $1$ (far left), maintaining separation.
+4. Total time $\mathcal{O}(n \log n)$ and auxiliary space $\mathcal{O}(n)$.
 
 ---
 
-### Step 2: Group frequent values at the front
+## 2. Conceptual Foundation & The Stride-2 Interleaving Invariant
 
-The exact solution sorts the input list using:
+```mermaid
+flowchart TD
+    accTitle: Distant Barcodes Stride-2 Pipeline
+    accDescr: Flowchart illustrating counting frequencies, sorting by descending frequency, and assigning to even and odd stride-2 slices
+    Start["Input barcodes array of length n"] --> CountFreq["cnt = Counter(barcodes)\n(Count occurrences of each value)"]
+    CountFreq --> SortByFreq["barcodes.sort(key=lambda x: (-cnt[x], x))\n(Group values with highest frequencies first)"]
+    SortByFreq --> SplitLanes["mid = (n + 1) // 2\nInitialize ans = [0] * n"]
+    SplitLanes --> FillEven["ans[::2] = barcodes[:mid]\n(Place first half into non-adjacent even indices)"]
+    FillEven --> FillOdd["ans[1::2] = barcodes[mid:]\n(Place second half into non-adjacent odd indices)"]
+    FillOdd --> Finish["Return ans"]
+```
 
+### The Pigeonhole Frequency Capacity & Stride-2 Non-Collision Theorem
 
-
-The first key component is the negative frequency. Python sorts keys in ascending order, so a larger frequency produces a more negative number and comes earlier. All copies of the same barcode have the same key and become one contiguous block.
-
-The second key component is the barcode value itself. It gives a deterministic ascending order when two different values have equal frequencies. That tie-breaker is not required for validity; it simply makes the intermediate ordering predictable.
-
-For example, suppose the frequencies are:
-
-
-
-The sorted expanded list is `[1, 1, 1, 1, 2, 2, 3, 3]`. This is not yet a valid answer because equal values are adjacent. Its purpose is to organize complete frequency blocks so they can be distributed systematically.
-
-The call to `sort` mutates `barcodes`. From this point onward, the input list no longer retains its original order.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: View the output as two lanes
-
-The output positions are split into two lanes:
-
-- Even indices `0, 2, 4, ...`.
-- Odd indices `1, 3, 5, ...`.
-
-The number of even positions is:
-
-
-
-Integer division makes this equal to `ceil(n / 2)`. When `n` is odd, the even lane has one more position than the odd lane. When `n` is even, they have equal size.
-
-The code creates the output and fills the even lane with the first half of the frequency-sorted values:
-
-
-
-The slice `ans[::2]` means every second position starting at zero. Those positions are never adjacent to one another. The most frequent values appear at the front of `barcodes`, so their copies receive these safely separated positions first.
-
-The remaining values fill the odd lane:
-
-
-
-The slice `ans[1::2]` means every second position starting at one. Its length exactly matches the number of values remaining after the first `ceil(n / 2)` values. Thus every placeholder in `ans` is overwritten once, and every input barcode is used once.
-
-For the frequency example above, the first four values fill even positions and the remaining four fill odd positions:
-
-
-
-The frequent ones are separated, and the smaller groups in the odd lane are also separated by even positions.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 2, 1, 2, 1, 2]` |
+Let $B = (b_0, b_1, \dots, b_{n-1})$ be a multiset of size $n$.
+1. **The Pigeonhole Feasibility Bound:**
+   Let $f_{\max} = \max_{x} \text{freq}(x)$.
+   In any sequence $A$ of length $n$, the maximum size of an independent set in the line graph $P_n$ (i.e. pairwise non-adjacent indices) is:
+   $$
+   \alpha(P_n) = \left\lceil \frac{n}{2} \right\rceil = \left\lfloor \frac{n + 1}{2} \right\rfloor
+   $$
+   If $f_{\max} > \lceil n / 2 \rceil$, then by the Pigeonhole Principle, at least two copies of the most frequent element must share an edge in $P_n$ (must be adjacent).
+   The problem guarantees that a valid arrangement exists, so:
+   $$
+   f_{\max} \le \left\lceil \frac{n}{2} \right\rceil = m
+   $$
+2. **The Stride-2 Partition:**
+   Partition the index set $\{0, \dots, n-1\}$ into two subsets:
+   $$
+   \mathcal{E} = \{2k : 0 \le 2k < n\}, \quad \mathcal{O} = \{2k + 1 : 0 \le 2k + 1 < n\}
+   $$
+   $|\mathcal{E}| = m = \lceil n / 2 \rceil$, and $|\mathcal{O}| = n - m = \lfloor n / 2 \rfloor$.
+   For any $u, v \in \mathcal{E}$, $|u - v| \ge 2$.
+   For any $u, v \in \mathcal{O}$, $|u - v| \ge 2$.
+   Therefore, identical elements placed strictly within $\mathcal{E}$ (or strictly within $\mathcal{O}$) never collide.
+3. **The Cross-Lane Non-Collision Invariant:**
+   Sort $B$ by descending frequency: $B_{\text{sorted}} = (x_0, x_1, \dots, x_{n-1})$.
+   - Since $f_{\max} \le m$, the most frequent element $x^*$ appears at most $m$ times, occupying only indices within $B_{\text{sorted}}[0 \dots m-1]$.
+   - Thus $x^*$ is placed exclusively into $\mathcal{E}$ and never appears in $\mathcal{O}$.
+   - For any other element $y \ne x^*$, its frequency satisfies $\text{freq}(y) \le m$.
+     If $y$ crosses the split boundary $m$, let $y$ occupy $B_{\text{sorted}}[m - a \dots m + b - 1]$ with $a + b = \text{freq}(y) \le m$.
+     - The $a$ copies in the first half are placed at the highest indices of $\mathcal{E}$: $\{2(m - a), \dots, 2(m - 1)\}$.
+     - The $b$ copies in the second half are placed at the lowest indices of $\mathcal{O}$: $\{1, 3, \dots, 2b - 1\}$.
+     - The closest pair of indices between these two sets is $2(m - a)$ and $2b - 1$.
+     - Their distance is:
+       $$
+       2(m - a) - (2b - 1) = 2(m - (a + b)) + 1 = 2(m - \text{freq}(y)) + 1 \ge 2(0) + 1 = 1
+       $$
+       Equality to $1$ occurs only if $2(m - a) = 2b$, which requires $m = a + b = \text{freq}(y)$. But if $\text{freq}(y) = m$, $y$ must be the most frequent element, which by tiebreaking is placed at the very start ($a = m, b = 0$), so $b = 0$ and $y$ never enters $\mathcal{O}$!
+     - Therefore, no identical element is placed at adjacent indices $2k$ and $2k \pm 1$. $\blacksquare$
 
 ---
 
-## 4. Complete Execution Trace
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"barcodes": [1, 1, 1, 2, 2, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 2, 1, 2, 1, 2]` | Verified |
+$barcodes = [1, 1, 1, 2, 2, 2], \; n = 6$.
+$m = (6 + 1) // 2 = 3$.
+
+### Frequency Counting & Sorting
+- Counts: `1: 3, 2: 3`.
+- Key lambda: $(-3, 1)$ for value 1; $(-3, 2)$ for value 2.
+- Sorted: $[1, 1, 1, 2, 2, 2]$.
+- First half (size 3): $[1, 1, 1]$.
+- Second half (size 3): $[2, 2, 2]$.
+
+### Two-Lane Stride-2 Assignment
+- `ans[::2] = [1, 1, 1]`:
+  - `ans[0] = 1`
+  - `ans[2] = 1`
+  - `ans[4] = 1`
+- `ans[1::2] = [2, 2, 2]`:
+  - `ans[1] = 2`
+  - `ans[3] = 2`
+  - `ans[5] = 2`
+
+Final array: `[1, 2, 1, 2, 1, 2]`.
+
+---
+
+## 4. Stride-2 Two-Lane Trace Table
+
+| Output Index | Lane Assignment | Source Slice in Sorted $B$ | Placed Barcode Value | Left Neighbor | Right Neighbor | Collision Check |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | Even (Lane 0) | $barcodes[0]$ | **$1$** | None | $2$ (Index 1) | $1 \ne 2$ (Valid) |
+| $1$ | Odd (Lane 1) | $barcodes[3]$ | **$2$** | $1$ (Index 0) | $1$ (Index 2) | $2 \ne 1$ (Valid) |
+| $2$ | Even (Lane 0) | $barcodes[1]$ | **$1$** | $2$ (Index 1) | $2$ (Index 3) | $1 \ne 2$ (Valid) |
+| $3$ | Odd (Lane 1) | $barcodes[4]$ | **$2$** | $1$ (Index 2) | $1$ (Index 4) | $2 \ne 1$ (Valid) |
+| $4$ | Even (Lane 0) | $barcodes[2]$ | **$1$** | $2$ (Index 3) | $2$ (Index 5) | $1 \ne 2$ (Valid) |
+| $5$ | Odd (Lane 1) | $barcodes[5]$ | **$2$** | $1$ (Index 4) | None | $2 \ne 1$ (Valid) |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every output element comes directly from the input multiset with the exact same frequencies. The two-lane stride-2 placement guarantees that no two equal elements occupy adjacent positions.
+2. **Completeness:**
+   Since $\max \text{freq}(x) \le \lceil n / 2 \rceil$, the algorithm always succeeds in placing all elements without needing backtracking or adjustments.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Frequency buckets for the manifest target:** Count every value, place distinct values into buckets indexed by frequency, and traverse buckets from high frequency to low frequency while filling even then odd positions. This avoids sorting `N` expanded elements and can achieve linear time under the bounded value domain.
-- **Maximum heap:** Store one entry per distinct value and repeatedly take the most frequent value different from the previously placed one. Delaying the previous entry until the next step guarantees separation. This takes `O(N log D)` time and `O(D)` heap space.
-- **Sort distinct values only:** Sorting `D` value-frequency pairs and expanding them into the two lanes takes `O(N + D log D)` time. It can be faster than sorting all `N` elements when many duplicates exist, though it is not strict linear time.
-- **Round-robin without frequency priority:** Alternating arbitrary value groups can fail by leaving too many copies of the dominant value for the end. The highest frequencies must receive the safest positions early.
-- **One barcode:** The even lane receives the only value and the odd lane is empty. There is no adjacent pair to violate the rule.
-- **All values distinct:** Every frequency is one. Any order is valid, and the deterministic frequency-and-value sort followed by lane placement still preserves all values.
-- **Maximum legal frequency:** A value appearing `ceil(N / 2)` times occupies the even lane and is separated by every odd position. The existence guarantee ensures enough other values fill those gaps.
-- **Equal frequency groups:** The secondary key orders tied groups by barcode value. Any order among whole tied groups would be valid for the placement argument.
-- **Odd length:** There is one more even position than odd position, which is why the split uses `(n + 1) // 2` rather than `n // 2`.
-- **Even length:** Both lanes have `n / 2` positions. The same split expression evaluates to exactly that amount.
-- **Placeholder zero:** The initial zeros in `ans` are not barcode data. Both slice assignments together overwrite every position before return, and valid barcode values are at least one.
-- **Input mutation:** The solution sorts `barcodes` in place and returns a different list `ans`. A caller needing the original order must pass a copy or accept that mutation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Barcode | `barcodes = [7]` | $m = 1$; placed at `ans[0] = 7`; returns `[7]`. | Index error on odd-length 1. |
+| Odd Length Array | `[1, 1, 2]` | $m = 2$; even lane has 2 slots ($0, 2$); odd has 1 ($1$); returns `[1, 2, 1]`. | Dividing length as $n // 2$ instead of $(n + 1) // 2$. |
+| All Distinct Barcodes | `[4, 1, 3, 2]` | All frequencies 1; smoothly distributed across lanes. | Failing when all counts equal. |
+| Large Dominant Count | 4 ones and 4 other numbers | Ones take all 4 even slots; no ones in odd lane; zero collisions. | Allowing dominant value to spill into odd lane. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(D)$. Let `N` be the number of barcodes and `D` be the number of distinct values.
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \log n)$, where $n = \text{len}(barcodes) \le 10^4$.
+  - Counting occurrences with `Counter` takes $\mathcal{O}(n)$ time.
+  - Sorting the array by $(-cnt[x], x)$ takes $\mathcal{O}(n \log n)$ time.
+  - Slice assignment `ans[::2]` and `ans[1::2]` takes $\mathcal{O}(n)$ time.
+  - Total time: $< 0.005\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ auxiliary memory for the frequency dictionary `cnt` and the output array `ans`.

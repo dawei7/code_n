@@ -1,104 +1,177 @@
 # Guided Example: Intersection of Two Linked Lists
 
-We execute the single-pass Hash Table, Linked List, Two Pointers pointer manipulation on a representative linked list instance.
+We trace the step-by-step two-pointer path equalization ($a + c + b = b + c + a$) on representative intersecting and non-intersecting linked list instances:
 
-- **Input:** `{"headA": {"prefix": [4, 1], "shared": [8, 4, 5]}, "headB": {"prefix": [5, 6, 1], "shared": [8, 4, 5]}}`
-- **Required output:** `[8, 4, 5]`
+- **Input:** List $A = [4, 1, 8, 4, 5]$, List $B = [5, 6, 1, 8, 4, 5]$, intersecting at node with value $8$
+- **Required output:** Reference to shared node $\text{Node}(8)$
+- **Disjoint Lists Instance:** List $A = [2, 6, 4]$, List $B = [1, 5] \implies \text{null}$ (Both pointers reach `null` simultaneously)
 
-This instance demonstrates boundary positioning, sentinel pointer preservation, and in-place reference mutations without extra allocations.
+This instance demonstrates the path-length equalization technique, eliminating the need for node hashing ($O(N)$ space) or length pre-computation passes, proving algebraic convergence at the intersection node or `null`, and operating in $O(N + M)$ time with strictly $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective for **Intersection of Two Linked Lists** is to transform the linked structure by strictly updating `next` references in place.
-A naive approach allocating new list nodes incurs unnecessary $O(N)$ auxiliary memory.
-Using sentinel anchors and precise pointer reassignments guarantees $O(1)$ extra space while avoiding null reference dereferences.
+Given two singly linked lists $A$ and $B$:
+$$
+\begin{aligned}
+A: \quad & 4 \longrightarrow 1 \searrow \\
+& \quad\quad\quad\quad 8 \longrightarrow 4 \longrightarrow 5 \\
+B: \quad & 5 \longrightarrow 6 \longrightarrow 1 \nearrow
+\end{aligned}
+$$
+Find the node at which the two lists intersect by reference identity.
+
+Because list $A$ has 2 prefix nodes before the intersection while list $B$ has 3 prefix nodes:
+- Running two pointers in lockstep will reach the intersection at different times ($p_A$ reaches node 8 when $p_B$ is still at node 1).
+- Storing visited nodes in a hash set requires $O(N)$ auxiliary heap allocations.
+
+By redirecting each pointer to the head of the *other* list upon reaching `null`, both pointers traverse identical total distances:
+$$
+\text{Dist}(p_A) = |A| + |B_{\text{prefix}}| = (a + c) + b = a + b + c
+$$
+$$
+\text{Dist}(p_B) = |B| + |A_{\text{prefix}}| = (b + c) + a = a + b + c
+$$
+Because both paths sum to $a + b + c$, $p_A$ and $p_B$ align perfectly and collide at the intersection node in at most two passes!
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We introduce a dummy sentinel node pointing to the head to normalize edge conditions at the first node.
+### The Path-Equalization Theorem
+Let $a$ be the length of list $A$'s unique prefix.
+Let $b$ be the length of list $B$'s unique prefix.
+Let $c$ be the length of the common suffix (with $c \ge 1$ if they intersect, or $c = 0$ if disjoint).
 
-| Pointer Identifier | Targeted Node Role | Invariant State |
-|---|---|---|
-| $\text{dummy}$ | Sentinel node before head | Preserves immutable list entry point |
-| $\text{prev}$ | Preceding subsegment anchor | Points to confirmed sorted/processed boundary |
-| $\text{curr}$ | Active processing node | Advances linearly through input sequence |
+Maintain pointers $p_A$ (initially `headA`) and $p_B$ (initially `headB`):
+- Advance both pointers by one step:
+  $$
+  p_A \leftarrow p_A.\text{next} \quad (\text{or } \text{headB if } p_A == \text{null})
+  $$
+  $$
+  p_B \leftarrow p_B.\text{next} \quad (\text{or } \text{headA if } p_B == \text{null})
+  $$
+- Terminate when:
+  $$
+  p_A == p_B
+  $$
 
-> **Invariant.** At each step, all nodes before $\text{curr}$ maintain valid list structural integrity, and no reference to remaining unprocessed nodes is lost.
+#### Two Exhaustive Outcomes
+1. **Intersection Exists ($c \ge 1$):**
+   After exactly $a + b + c$ steps, $p_A$ and $p_B$ point to the same memory reference: the first shared node $\text{Node}(8)$.
+2. **Disjoint Lists ($c = 0$):**
+   After exactly $a + b$ steps, both pointers exhaust their respective second passes and become `null` simultaneously ($p_A == p_B == \text{null}$).
+
+> **Invariant.** At any step $t$, the remaining distance from $p_A$ and $p_B$ to the intersection (or the terminal `null`) modulo $(a + b + c)$ decreases by 1 per step.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sentinel Initialization & Anchor Positioning
-
-- Attach $\text{dummy} \to \text{head}$.
-- Position $\text{prev}$ at the target boundary and identify the initial active node $\text{curr}$.
-
-| State Parameter | Configuration |
-|---|---|
-| Sentinel State | $\text{dummy.next} = \text{head}$ |
-| Active Pointer | $\text{curr} = \text{prev.next}$ |
-| Frontier Link | Reference to subsequent elements preserved |
+We trace the algorithm on:
+- List $A$: $4 \to 1 \to 8 \to 4 \to 5 \to \emptyset$ ($a = 2, c = 3$, length $= 5$).
+- List $B$: $5 \to 6 \to 1 \to 8 \to 4 \to 5 \to \emptyset$ ($b = 3, c = 3$, length $= 6$).
 
 ---
 
-### Step 2: In-Place Pointer Reconnection
-
-- Cache the next candidate node $\text{next} = \text{curr.next}$.
-- Splice and rewire links to incorporate $\text{next}$ into the desired target position.
-
-| State Parameter | Configuration |
-|---|---|
-| Rewired Segment | References updated without node duplication |
-| Active Cursor | Cursor advanced to next valid link |
-| Suffix Link | Unprocessed remainder remains reachable |
+### Step 0 (Start)
+- $p_A = \text{Node}(4)$
+- $p_B = \text{Node}(5)$
 
 ---
 
-### Step 3: Traversal Completion & Output Extraction
+### Step 1
+- $p_A \to \text{Node}(1)$
+- $p_B \to \text{Node}(6)$
 
-- Once all target nodes have been visited, the pointer chain is fully re-established.
-- Return $\text{dummy.next}$ as the new head.
+---
 
-| State Parameter | Final State |
-|---|---|
-| Termination Condition | All target nodes processed |
-| Head Extraction | $\text{dummy.next}$ |
-| Integrity Check | Complete chain connected |
+### Step 2
+- $p_A \to \text{Node}(8)$ *(Intersection node reached by $p_A$ first!)*
+- $p_B \to \text{Node}(1)$
+
+---
+
+### Step 3
+- $p_A \to \text{Node}(4)$
+- $p_B \to \text{Node}(8)$ *(Intersection node reached by $p_B$)*
+
+---
+
+### Step 4
+- $p_A \to \text{Node}(5)$
+- $p_B \to \text{Node}(4)$
+
+---
+
+### Step 5
+- $p_A \to \emptyset \implies$ **Switch to `headB`:** $p_A \leftarrow \text{Node}(5)$
+- $p_B \to \text{Node}(5)$
+
+---
+
+### Step 6
+- $p_A \to \text{Node}(6)$
+- $p_B \to \emptyset \implies$ **Switch to `headA`:** $p_B \leftarrow \text{Node}(4)$
+
+---
+
+### Step 7
+- $p_A \to \text{Node}(1)$
+- $p_B \to \text{Node}(1)$
+
+---
+
+### Step 8: Collision!
+- $p_A \to \mathbf{\text{Node}(8)}$
+- $p_B \to \mathbf{\text{Node}(8)}$
+- $p_A == p_B == \text{Node}(8)$.
+
+Both pointers point to the exact same node object!
+Return $\text{Node}(8)$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Step | Active Node | Reference Action | Invariant State Maintained | Sublist Structure |
-|---|---|---|---|---|
-| 0 (Init) | Sentinel | Attach $\text{dummy} \to \text{head}$ | Anchor established | `dummy -> [initial list]` |
-| 1 (Rewire) | Intermediate nodes | Splice `next` pointers | Monotonic sublist validity | In-place reordered subsegment |
-| 2 (Finish) | Tail node | Connect final suffix | Complete chain preserved | Emitted result $\text{dummy.next}$ |
+```text
+Path of pA: 4 -> 1 -> 8 -> 4 -> 5 -> [switch to B] -> 5 -> 6 -> 1 -> (8)
+Path of pB: 5 -> 6 -> 1 -> 8 -> 4 -> 5 -> [switch to A] -> 4 -> 1 -> (8)
+Collision at Step 8: Node(8) == Node(8)
+```
+
+| Step $t$ | Pointer $p_A$ Location | Pointer $p_B$ Location | List Switch Event | Equal? ($p_A == p_B$) |
+|:---:|:---:|:---:|:---:|:---:|
+| 0 | $\text{Node}(4)_A$ | $\text{Node}(5)_B$ | - | No |
+| 1 | $\text{Node}(1)_A$ | $\text{Node}(6)_B$ | - | No |
+| 2 | $\text{Node}(8)$ | $\text{Node}(1)_B$ | - | No |
+| 3 | $\text{Node}(4)$ | $\text{Node}(8)$ | - | No |
+| 4 | $\text{Node}(5)$ | $\text{Node}(4)$ | - | No |
+| 5 | $\text{Node}(5)_B$ | $\text{Node}(5)$ | $p_A$ reaches null $\to$ `headB` | No |
+| 6 | $\text{Node}(6)_B$ | $\text{Node}(4)_A$ | $p_B$ reaches null $\to$ `headA` | No |
+| 7 | $\text{Node}(1)_B$ | $\text{Node}(1)_A$ | - | No |
+| **8** | **$\text{Node}(8)$** | **$\text{Node}(8)$** | **Both land on shared node** | **Yes (Return Node(8))** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Because `next` references are cached prior to disconnection, no node becomes orphaned. Every pointer mutation preserves a valid path from $\text{dummy}$ to the terminal `None`.
+**Soundness.** Equality $p_A == p_B$ checks pointer identity (memory address), not integer value equality. Two nodes are identical if and only if they are the exact same list node in memory.
 
-**Completeness.** Traversal visits every targeted node exactly once, guaranteeing that all required operations are executed in full.
+**Completeness.** Since $a + c + b = b + c + a$, both pointers take exactly $a + b + c$ steps to reach the intersection. If no intersection exists ($c = 0$), both take $a + b$ steps to reach `null` simultaneously, terminating the loop and returning `null`.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Head Boundary Mutation:** Operating directly on `head` without a sentinel causes null exceptions or lost references when the first node is modified.
-- **Orphaned Sublists:** Overwriting `curr.next` before preserving `curr.next.next` disconnects and permanently loses the remaining list suffix.
-- **Accidental Cycles:** Reconnecting backwards without clearing forward references creates infinite circular chains.
+- **Switching on `p.next` vs `p`:** If you switch when `p.next is None` instead of `p is None`, non-intersecting lists will enter an infinite loop because neither pointer will ever land on `null` simultaneously! Pointers must be allowed to step onto `null` before redirecting.
+- **Comparing Node Values Instead of References:** Two distinct nodes can happen to store the same integer value (e.g. both lists having a node with value `1` before the intersection). Testing `pA.val == pB.val` produces false intersections! Always test `pA is pB`.
+- **Modifying the List:** Algorithms that attempt to introduce cycles or modify `next` pointers violate the immutability constraint of the input lists.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$ single pass where $N$ is the number of nodes visited.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant extra memory; only a fixed set of pointer handles is maintained.
+- **Time Complexity:** $O(N + M)$, where $N = |A|$ and $M = |B|$. Each pointer traverses at most $N + M$ nodes before either colliding at the intersection node or both reaching `null`.
+- **Auxiliary Space Complexity:** $O(1)$ constant space, requiring only two local pointer variables ($p_A$ and $p_B$).

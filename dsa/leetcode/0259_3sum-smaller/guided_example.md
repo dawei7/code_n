@@ -1,127 +1,180 @@
 # Guided Example: 3Sum Smaller
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step array sorting, dual-pointer inward convergence, and block cardinality addition ($R - L$) on representative integer triplet instances:
 
-- **Input:** `{"nums": [-2, 0, 1, 3], "target": 2}`
-- **Required output:** `2`
+- **Input:** $\text{nums} = [-2, 0, 1, 3], \quad \text{target} = 2$
+- **Required output:** $2$ (The qualifying triplets are $(-2, 0, 1)$ with sum $-1$, and $(-2, 0, 3)$ with sum $1$)
+- **Empty / Small Array:** $\text{nums} = [], \quad \text{target} = 0 \implies 0$ (Requires at least 3 elements)
+- **Target Equality Boundary:** $\text{nums} = [-2, 0, 1, 3]$ has triplet $(-2, 1, 3)$ with sum $2$; rejected because $2 \not< 2$
+- **Duplicate Elements Instance:** $\text{nums} = [-1, -1, -1, 1], \quad \text{target} = -1 \implies 1$ (Index triplet $(0, 1, 2)$ with sum $-3 < -1$)
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates two-pointer search space optimization on sorted arrays, proves why finding one valid pair $(L, R)$ guarantees that all $R - L$ interior candidates are valid without individual inspection, reduces a cubic $O(N^3)$ search to $O(N^2)$ quadratic time, and uses $O(1)$ auxiliary space.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of `n` integers `nums` and an integer `target`, find the number of index triplets `i`, `j`, `k` with $0 \le i < j < k < n$ that satisfy the condition $\text{nums}[i] + \text{nums}[j] + \text{nums}[k] < target$.
+Given an integer array $\text{nums} = [-2, 0, 1, 3]$ and $\text{target} = 2$:
+Count the number of index triplets $(i, j, k)$ with $i < j < k$ satisfying:
+$$
+\text{nums}[i] + \text{nums}[j] + \text{nums}[k] < \text{target}
+$$
 
-The objective is to compute `2` from `{"nums": [-2, 0, 1, 3], "target": 2}` while avoiding redundant calculations and unnecessary overhead.
+Examining all possible index triplets:
+1. $(-2, 0, 1) \implies \text{sum} = -1 < 2$ (**Valid!**)
+2. $(-2, 0, 3) \implies \text{sum} = 1 < 2$ (**Valid!**)
+3. $(-2, 1, 3) \implies \text{sum} = 2 < 2$ (False: $2 == 2$, not strictly smaller)
+4. $(0, 1, 3) \implies \text{sum} = 4 < 2$ (False)
+Total qualifying triplets: $\mathbf{2}$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- A naive triple loop evaluates $\binom{N}{3} = O(N^3)$ combinations, which causes Time Limit Exceeded for $N = 3,500$ ($N^3 \approx 4.2 \times 10^{10}$ operations).
+- Sorting the array in $O(N \log N)$ time allows a **two-pointer sweep** for each fixed index $i$.
+- Whenever $\text{nums}[i] + \text{nums}[L] + \text{nums}[R] < \text{target}$, sorted monotonicity proves that all intermediate elements between $L$ and $R$ also form valid triplets, adding **$R - L$ triplets in $O(1)$ time**. Total runtime becomes $O(N^2)$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### The Sorted Two-Pointer Block Invariant
+Let $\text{nums}$ be sorted in non-decreasing order:
+$$
+\text{nums}[0] \le \text{nums}[1] \le \dots \le \text{nums}[N-1]
+$$
+Fix the first index $i$. Set left pointer $L = i + 1$ and right pointer $R = N - 1$.
+Calculate the sum $S = \text{nums}[i] + \text{nums}[L] + \text{nums}[R]$:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+1. **Case $S < \text{target}$:**
+   Because the array is sorted, every position $k$ between $L + 1$ and $R$ satisfies:
+   $$
+   \text{nums}[k] \le \text{nums}[R]
+   $$
+   Therefore:
+   $$
+   \text{nums}[i] + \text{nums}[L] + \text{nums}[k] \le \text{nums}[i] + \text{nums}[L] + \text{nums}[R] = S < \text{target}
+   $$
+   Every index $k \in \{L+1, L+2, \dots, R\}$ is guaranteed to form a valid triplet with $(i, L)$!
+   There are exactly **$R - L$** such valid third indices.
+   We add $R - L$ to the cumulative total and advance $L \leftarrow L + 1$ to explore larger middle elements.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+2. **Case $S \ge \text{target}$:**
+   The sum is too large (or equal). Since $L$ cannot move left, we must decrease the sum by moving the right boundary inward:
+   $$
+   R \leftarrow R - 1
+   $$
+
+> **Invariant.** At every step, any discarded candidate triplet either has already been counted in a block addition ($R - L$) or is provably $\ge \text{target}$.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sorting does not lose index multiplicity
-
-Sorting rearranges occurrences, but it is a bijection between original array positions and sorted positions. Every occurrence remains present exactly once. If equal values appear several times, their sorted positions are still separate choices, and pointer-distance counting includes each index combination. This is why the method can sort even though the problem phrases the answer using original indices.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [-2, 0, 1, 3], "target": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the algorithm on $\text{nums} = [-2, 0, 1, 3]$ with $\text{target} = 2$:
+Sorted array: $\text{nums} = [-2, 0, 1, 3]$ ($N = 4$).
+Initialize $\text{count} = 0$.
 
 ---
 
-### Step 2: When the largest current sum is small enough
+### Outer Iteration: $i = 0$ ($\text{nums}[0] = -2$)
+Initialize pointers: $L = 1$ ($\text{nums}[1] = 0$), $\quad R = 3$ ($\text{nums}[3] = 3$).
 
-For fixed `i` and `j`, first test
+- **Step 1 ($L = 1, R = 3$):**
+  - Compute sum:
+    $$
+    S = \text{nums}[0] + \text{nums}[1] + \text{nums}[3] = -2 + 0 + 3 = \mathbf{1}
+    $$
+  - Compare with target: $1 < 2$ (**True**).
+  - All $k \in [L+1 \dots R] = [2 \dots 3]$ are valid!
+    Number of valid third elements: $R - L = 3 - 1 = \mathbf{2}$.
+    (Corresponding to triplets $(-2, 0, 1)$ and $(-2, 0, 3)$).
+  - Update: $\text{count} \leftarrow 0 + 2 = \mathbf{2}$.
+  - Advance left pointer: $L \leftarrow 1 + 1 = 2$.
 
-$$
-x=\text{nums}[i]+\text{nums}[j]+\text{nums}[k].
-$$
+- **Step 2 ($L = 2, R = 3$):**
+  - Compute sum:
+    $$
+    S = \text{nums}[0] + \text{nums}[2] + \text{nums}[3] = -2 + 1 + 3 = \mathbf{2}
+    $$
+  - Compare with target: $2 < 2$ (**False**; strict inequality required).
+  - Sum is too large. Decrement right pointer:
+    $$
+    R \leftarrow 3 - 1 = 2
+    $$
 
-If $x<target$, then replacing `k` by any position `p` with $j<p\le k$ cannot increase the sum, because the array is sorted and `nums[p] <= nums[k]`. Therefore, every triplet
-
-$$
-(i,j,j+1),(i,j,j+2),\ldots,(i,j,k)
-$$
-
-is valid. There are exactly `k - j` such third positions, so the algorithm adds that number to `ans` in one operation.
-
-All triples using this fixed `i` and `j` within the remaining range have now been counted. The solution advances `j` to discover triples with the next second position. It does not decrease `k`, because the larger second value may or may not still work with the same far-right endpoint; testing will decide.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **Step 3 Check:**
+  - $L = 2, R = 2 \implies L < R$ is False. Inner loop terminates.
 
 ---
 
-### Step 3: When the sum is too large
+### Outer Iteration: $i = 1$ ($\text{nums}[1] = 0$)
+Initialize pointers: $L = 2$ ($\text{nums}[2] = 1$), $\quad R = 3$ ($\text{nums}[3] = 3$).
 
-If $x\ge target$, the triplet at the current boundaries is invalid. More importantly, keeping the same `k` and moving `j` right cannot help: every later second value is at least `nums[j]`, so the sum would stay the same or grow. Thus no valid remaining pair for this fixed `i` can use the current third position `k`.
+- **Step 4 ($L = 2, R = 3$):**
+  - Compute sum:
+    $$
+    S = \text{nums}[1] + \text{nums}[2] + \text{nums}[3] = 0 + 1 + 3 = \mathbf{4}
+    $$
+  - Compare with target: $4 < 2$ (**False**).
+  - Sum too large. Decrement:
+    $$
+    R \leftarrow 3 - 1 = 2
+    $$
+  - $L = 2, R = 2 \implies L < R$ is False. Inner loop terminates.
 
-The only useful move is `k -= 1`, replacing the largest candidate by a smaller value. This discards no valid triplet.
+---
 
-The strict comparison matters. A sum equal to `target` does not qualify, so it follows the same branch as a larger sum and moves `k` left.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+### Outer Loop Termination
+Outer loop terminates because $i$ reaches $N - 2$.
+Total valid triplets: $\mathbf{2}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [-2, 0, 1, 3], "target": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+```text
+nums = [-2, 0, 1, 3], target = 2
+
+i = 0 (-2):
+  L=1 (0), R=3 (3) -> sum = -2 + 0 + 3 = 1 < 2
+    -> Add R - L = 3 - 1 = 2 -> count = 2
+    -> L advances to 2
+  L=2 (1), R=3 (3) -> sum = -2 + 1 + 3 = 2 >= 2
+    -> R decrements to 2
+  L == R -> Stop
+
+i = 1 (0):
+  L=2 (1), R=3 (3) -> sum = 0 + 1 + 3 = 4 >= 2
+    -> R decrements to 2
+  L == R -> Stop
+
+Final Count: 2
+```
+
+| Fixed $i$ | $\text{nums}[i]$ | Left $L$ | Right $R$ | Triplet Evaluated | Triplet Sum $S$ | Condition $S < 2$? | Triplets Added ($R - L$) | Running Total |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **0** | -2 | 1 (0) | 3 (3) | $(-2, 0, 3)$ | 1 | **Yes ($1 < 2$)** | **$3 - 1 = 2$** | **2** |
+| 0 | -2 | 2 (1) | 3 (3) | $(-2, 1, 3)$ | 2 | No ($2 \ge 2$) | 0 ($R \leftarrow 2$) | 2 |
+| 1 | 0 | 2 (1) | 3 (3) | $(0, 1, 3)$ | 4 | No ($4 \ge 2$) | 0 ($R \leftarrow 2$) | 2 |
+| **End** | - | - | - | - | - | - | - | **$\mathbf{2}$ (Final Answer)** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** For any fixed $i$ and $L$, if $\text{nums}[i] + \text{nums}[L] + \text{nums}[R] < \text{target}$, then for every $k \in [L+1, R]$, $\text{nums}[k] \le \text{nums}[R]$, which implies $\text{nums}[i] + \text{nums}[L] + \text{nums}[k] < \text{target}$. Every counted triplet is mathematically guaranteed to have sum strictly less than `target`.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Sorting does not destroy triplet combinations because choice of indices is unordered. At each step where $S \ge \text{target}$, any triplet $(i, j, R)$ with $j \ge L$ would have sum $\ge S \ge \text{target}$. Thus, decrementing $R$ safely eliminates no valid triplet. Every valid triplet is accounted for.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Three nested loops:** Test every triplet directly in $O(n^3)$ time and $O(1)$ extra space. It is simple but too slow near `n = 3500`.
-- **Binary search for each `(i, j)`:** Find the last valid `k` in the sorted suffix, giving $O(n^2\log n)$ time. Two pointers reuse monotonic progress and remove the logarithmic factor.
-- **Frequency counting over the bounded value range:** Since values lie from `-100` to `100`, a combinatorial frequency method is possible, but it requires careful multiplicity cases. The sorted two-pointer method is more general.
-- **Sum exactly equals target:** It is invalid because the condition is strictly smaller; the code correctly moves `k` left.
-- **Duplicate values:** They remain distinct sorted positions. Adding `k - j` counts index triplets with equal values according to their multiplicity.
-- **All negative values:** Sorting and monotonic sum arguments remain valid; signs do not change pointer logic.
-- **Empty, one-element, or two-element input:** No first position leaves two later indices, so the function returns zero.
-- **Exactly three elements:** The inner loop performs one comparison and returns either one or zero.
-- **All triples valid:** For each `i` and `j`, the algorithm counts the entire remaining right block, efficiently accumulating $\binom{n}{3}$.
-- **No triples valid:** The right pointer repeatedly moves left for each `i`; runtime remains quadratic in the worst case.
-- **Input mutation:** `nums.sort()` destroys original ordering. Use `sorted(nums)` when the caller must retain it.
-- **Answer size:** The constraints guarantee the count fits within $10^9$; Python would handle larger integers anyway.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Strict Inequality Trap ($<$ vs $\le$):** If the sum equals `target` (e.g. $-2 + 1 + 3 = 2 == 2$), it does **not** count. The comparison must strictly be $S < \text{target}$. An equality condition ($S \le \text{target}$) would falsely add invalid triplets.
+- **Enumerating Elements Individually:** Looping through $k$ from $L+1$ to $R$ one-by-one degrades the algorithm back to $O(N^3)$. The formula `count += R - L` counts all valid third indices in $O(1)$ time.
+- **Handling Multiplicities / Duplicates:** Unlike LeetCode 15 (3Sum), which requires unique value triplets, this problem counts **index triplets**. Duplicate values are distinct choices and must be included; skipping duplicate elements is a bug here.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(n^2)$. Let $n$ be the number of elements. Sorting takes $O(n\log n)$ time. For one fixed `i`, each inner-loop iteration moves either `j` right or `k` left. Neither pointer reverses direction, so that scan takes $O(n)$ time. Repeating it for $O(n)$ first positions costs $O(n^2)$, which dominates sorting. Total time is $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O(N^2)$, where $N$ is the number of elements in `nums`. Sorting takes $O(N \log N)$ time. The outer loop runs $N - 2$ times. In each outer iteration, the two pointers $L$ and $R$ advance toward each other at most $N$ times, executing in $O(N)$ time. Total time is $O(N \log N) + O(N^2) = O(N^2)$.
+- **Auxiliary Space Complexity:** $O(1)$ auxiliary memory (sorting in-place), using only three integer loop pointers.

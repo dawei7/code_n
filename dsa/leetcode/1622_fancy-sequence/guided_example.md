@@ -1,137 +1,255 @@
 # Guided Example: Fancy Sequence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step algebraic maintenance of sequence elements under global affine transformations, prove the Affine Transformation Invertibility Invariant and the Global Modular Lazy Scale Theorem, and evaluate dynamic sequence queries across representative operation streams:
 
-- **Input:** `{"operations": ["Fancy", "getIndex"], "arguments": [[], [0]]}`
-- **Required output:** `[null, -1]`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 1 (Official Mixed Operation Sequence):**
+  - Operations Sequence:
+    1. `Fancy()`
+    2. `append(2)`
+    3. `addAll(3)`
+    4. `append(7)`
+    5. `multAll(2)`
+    6. `getIndex(0)`
+    7. `addAll(3)`
+    8. `append(10)`
+    9. `multAll(2)`
+    10. `getIndex(0)`
+    11. `getIndex(1)`
+    12. `getIndex(2)`
+  - Modulo Arithmetic: $M = 10^9 + 7$.
+  - Global Affine Parameters:
+    Any element stored as base value $v$ evaluates at the current state to:
+    $$
+    E(v) = (A \cdot v + B) \pmod M
+    $$
+    Initial parameters: $A = 1, \; B = 0$.
+  - Step-by-step resolution:
+    - **Step 1 (`Fancy()`):** Sequence is empty. $A = 1, B = 0$.
+    - **Step 2 (`append(2)`):**
+      - Desired evaluated value is $2$.
+      - Compute base value: $v_0 = (2 - B) \cdot A^{-1} = (2 - 0) \cdot 1^{-1} = \mathbf{2}$.
+      - Sequence base store: $[2]$.
+    - **Step 3 (`addAll(3)`):**
+      - Shift offset: $B \leftarrow (B + 3) \pmod M = \mathbf{3}$.
+      - Current affine mapping: $E(x) = 1 \cdot x + 3$.
+      - Check element 0: $1 \cdot 2 + 3 = 5$.
+    - **Step 4 (`append(7)`):**
+      - Desired evaluated value is $7$.
+      - Compute base value: $v_1 = (7 - B) \cdot A^{-1} = (7 - 3) \cdot 1^{-1} = \mathbf{4}$.
+      - Sequence base store: $[2, 4]$.
+    - **Step 5 (`multAll(2)`):**
+      - Scale factor: $A \leftarrow (A \cdot 2) \pmod M = \mathbf{2}$.
+      - Scale offset: $B \leftarrow (B \cdot 2) \pmod M = 3 \cdot 2 = \mathbf{6}$.
+      - Current affine mapping: $E(x) = 2x + 6$.
+    - **Step 6 (`getIndex(0)`):**
+      - Evaluate index 0: $(A \cdot v_0 + B) \pmod M = (2 \cdot 2 + 6) \pmod M = \mathbf{10}$.
+    - **Step 7 (`addAll(3)`):**
+      - Shift offset: $B \leftarrow (B + 3) \pmod M = 6 + 3 = \mathbf{9}$.
+      - Current affine mapping: $E(x) = 2x + 9$.
+    - **Step 8 (`append(10)`):**
+      - Desired evaluated value is $10$.
+      - Compute base value:
+        $$
+        v_2 = (10 - B) \cdot A^{-1} = (10 - 9) \cdot 2^{-1} = 1 \cdot 2^{-1} \pmod M
+        $$
+        Since $2^{-1} \equiv \frac{M + 1}{2} = 500000004 \pmod M$:
+        $$
+        v_2 = \mathbf{500000004}
+        $$
+      - Sequence base store: $[2, 4, 500000004]$.
+    - **Step 9 (`multAll(2)`):**
+      - Scale factor: $A \leftarrow (2 \cdot 2) \pmod M = \mathbf{4}$.
+      - Scale offset: $B \leftarrow (9 \cdot 2) \pmod M = \mathbf{18}$.
+      - Current affine mapping: $E(x) = 4x + 18$.
+    - **Step 10 (`getIndex(0)`):**
+      - $E(v_0) = (4 \cdot 2 + 18) \pmod M = 8 + 18 = \mathbf{26}$.
+    - **Step 11 (`getIndex(1)`):**
+      - $E(v_1) = (4 \cdot 4 + 18) \pmod M = 16 + 18 = \mathbf{34}$.
+    - **Step 12 (`getIndex(2)`):**
+      - $E(v_2) = (4 \cdot 500000004 + 18) \pmod M = (2000000016 + 18) \pmod M = 2000000034 \pmod M = \mathbf{20}$.
+  - **Required Outputs:** `[10, 26, 34, 20]`.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Write an API that generates fancy sequences using the `append`, `addAll`, and `multAll` operations.
+Implement an append-only dynamic sequence data structure that supports adding a constant to all elements, multiplying all elements by a constant, and retrieving elements by index modulo $10^9 + 7$.
 
-The objective is to compute `[null, -1]` from `{"operations": ["Fancy", "getIndex"], "arguments": [[], [0]]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Linear Batch Update Trap:
+  Updating every element in the array during addAll or multAll:
+    for i in range(len(arr)):
+        arr[i] = (arr[i] * m + inc) % MOD
+  With up to 100,000 operations, an array of length N = 100,000 takes:
+    O(N * Q) = 100,000 * 100,000 = 10^10 operations!
+  Causes catastrophic Time Limit Exceeded.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The Global Affine Modular Inverse Invariant (O(1) per Query):
+  1. Any sequence of addAll and multAll operations collapses into a single
+     global affine transform over the field Z_M:
+       f(x) = (A * x + B) % M
+  2. Transition rules:
+     - addAll(inc):  B = (B + inc) % M
+     - multAll(m):   A = (A * m) % M,   B = (B * m) % M
+  3. Reverse Normalization on append(val):
+     We must store a normalized base value v such that (A * v + B) == val (mod M):
+       v = (val - B) * inv(A) % M
+     where inv(A) = A^(M-2) % M by Fermat's Little Theorem!
+  4. Retrieval on getIndex(idx):
+       return (A * v[idx] + B) % M
+  Takes O(log M) time to append and strict O(1) time for all other operations!
+```
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: The challenge is updating every existing element without visiting every element
-
-A literal implementation would store the sequence in a list and loop over the whole list for every `addAll` or `multAll` call. With as many as $10^5$ total operations, repeated full-list updates could require quadratic work. The checked-in solution instead stores the values in a dynamic lazy-propagation segment tree. A segment tree groups consecutive positions into intervals, and lazy propagation lets one update an entire covered interval by changing a single node.
-
-The tree's coordinate domain is 1 through 100001. The public API uses zero-based indices, but the implementation stores the first appended value at tree position 1, the second at position 2, and so on. Since there can be at most $10^5$ calls total, there can never be more than $10^5$ appended elements, so this domain is large enough.
-
-`Fancy.n` is the current sequence length. The tree begins conceptually filled with zeros. Nodes are created only when an operation descends into their interval, which avoids eagerly allocating the complete tree.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"operations": ["Fancy", "getIndex"], "arguments": [[], [0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Affine Transformation Invertibility Invariant & Global Modular Lazy Scale Theorem**:
+1. **Composition of Affine Maps:** The composition of affine transformations $(x \mapsto m_2(m_1 x + b_1) + b_2)$ is strictly affine $(x \mapsto (m_1 m_2)x + (m_2 b_1 + b_2))$.
+2. **Modular Multiplicative Inverse:** In the prime Galois field $\mathbb{F}_{10^9 + 7}$, every non-zero scaling factor $A$ has a unique modular inverse $A^{-1} \equiv A^{M-2} \pmod M$.
+3. **Decoupling Element Count from Operation Time:** Normalizing new insertions to the coordinate frame of the initial sequence eliminates array traversal entirely.
+4. Total time $\mathcal{O}(1)$ per `addAll`, `multAll`, and `getIndex`, and $\mathcal{O}(\log M)$ per `append`.
 
 ---
 
-### Step 2: What every tree node means
+## 2. Conceptual Foundation & The Affine Algebraic Pipeline
 
-A `Node` represents the inclusive interval from `node.l` through `node.r`. Its midpoint divides that interval into the left half `[l, mid]` and the right half `[mid + 1, r]`.
+```mermaid
+flowchart TD
+    accTitle: Fancy Sequence Affine State Machine
+    accDescr: Pipeline showing global affine parameter maintenance and modular inverse normalization on insertion
+    InitState["Init global parameters:\nA = 1, B = 0, elements = []"] --> Action{"Operation ?"}
+    
+    Action -->|"append(val)"| Norm["v = (val - B) * inv(A) mod M\nelements.append(v)"]
+    Action -->|"addAll(inc)"| AddTrans["B = (B + inc) mod M"]
+    Action -->|"multAll(m)"| MulTrans["A = (A * m) mod M\nB = (B * m) mod M"]
+    Action -->|"getIndex(idx)"| CheckIdx{"idx < len(elements) ?"}
+    
+    CheckIdx -->|"No"| RetNeg["Return -1"]
+    CheckIdx -->|"Yes"| Eval["val = (A * elements[idx] + B) mod M\nReturn val"]
+    
+    Norm --> NextOp["Wait for next operation"]
+    AddTrans --> NextOp
+    MulTrans --> NextOp
+    Eval --> NextOp
+    RetNeg --> NextOp
+    NextOp --> Action
+```
 
-The fields have these meanings:
+### The Global Modular Lazy Scale Theorem
 
-- `v` is the sum of all current sequence values in the node's interval, modulo $M=10^9+7$.
-- `mul` and `add` describe a pending affine transformation for the node's children.
-- `left` and `right` point to child nodes, which initially do not exist.
-
-An affine transformation has the form
-
-$$
-x \longmapsto x\cdot \textit{mul}+\textit{add}.
-$$
-
-Initially, `mul = 1` and `add = 0`, the identity transformation. Storing both tags is necessary because multiplication changes a previously pending addition. If an element should first become $x\cdot m_1+a_1$ and a later multiplication by $m_2$ arrives, the combined result is
-
-$$
-x\cdot(m_1m_2)+(a_1m_2).
-$$
-
-That is why a multiplication update multiplies both the node's `mul` and its `add`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $M = 10^9 + 7$ be prime, and let $\mathbb{Z}_M = \mathbb{Z} / M\mathbb{Z}$ be the finite field.
+1. **Global Affine State Representation:**
+   At any time $t$, let the cumulative sequence of global operations be represented by the mapping:
+   $$
+   T_t(x) = (A_t \cdot x + B_t) \pmod M
+   $$
+   with initial condition $(A_0, B_0) = (1, 0)$.
+2. **State Transition Rules:**
+   - On $\text{addAll}(c)$:
+     $$
+     T_{t+1}(x) = T_t(x) + c = A_t \cdot x + (B_t + c) \implies A_{t+1} = A_t, \quad B_{t+1} = (B_t + c) \pmod M
+     $$
+   - On $\text{multAll}(m)$:
+     $$
+     T_{t+1}(x) = m \cdot T_t(x) = (m \cdot A_t) x + (m \cdot B_t) \implies A_{t+1} = (m \cdot A_t) \pmod M, \quad B_{t+1} = (m \cdot B_t) \pmod M
+     $$
+3. **Inverse Normalization of New Elements:**
+   When an element with intended initial value $v_{\text{init}}$ is appended at time $t$, it must evaluate to $v_{\text{init}}$ under the current transformation $T_t$, and must subsequently transform identically to all prior elements.
+   We solve for the stored token $v^*$:
+   $$
+   T_t(v^*) \equiv v_{\text{init}} \pmod M \iff A_t \cdot v^* + B_t \equiv v_{\text{init}} \pmod M
+   $$
+   Because $A_t$ is a product of positive multipliers $m \ge 1$ coprime to $M$, $A_t \not\equiv 0 \pmod M$. By Fermat's Little Theorem:
+   $$
+   v^* \equiv (v_{\text{init}} - B_t) \cdot A_t^{M - 2} \pmod M
+   $$
+4. **Point Evaluation:**
+   For any appended index $k$, its current value at time $t$ is strictly:
+   $$
+   \text{value}_t(k) = (A_t \cdot v^*_k + B_t) \pmod M
+   $$
+   This evaluates in $\mathcal{O}(1)$ arithmetic operations. $\blacksquare$
 
 ---
 
-### Step 3: Range addition
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-`modifyAdd(l, r, inc, node)` adds `inc` to every position in the requested inclusive range. An empty range returns immediately; this makes `addAll` on an empty Fancy sequence safe because it asks to update `[1, 0]`.
+Operations: `append(2)`, `addAll(3)`, `append(7)`, `multAll(2)`, `getIndex(0)`, `addAll(3)`, `append(10)`, `multAll(2)`, `getIndex(0, 1, 2)`.
 
-When the node is completely inside the requested range, there is no reason to visit its children. If the interval length is `node.r - node.l + 1`, adding `inc` to every element increases the interval sum by that length times `inc`. The source updates `node.v` accordingly modulo $M$ and adds `inc` to the lazy `add` tag.
+### State Evolution Table
 
-For partial overlap, `pushdown` first makes the children current, and recursion visits only the halves that can intersect the requested range. `pushup` then restores the parent's sum as the modular sum of its two child sums.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[null, -1]` |
+1. **Start:** $A = 1, B = 0, elements = []$.
+2. **`append(2)`:**
+   - $v_0 = (2 - 0) \cdot 1^{-1} = 2$.
+   - $elements = [2]$.
+3. **`addAll(3)`:**
+   - $B \leftarrow 0 + 3 = 3$. Affine: $1 \cdot x + 3$.
+4. **`append(7)`:**
+   - $v_1 = (7 - 3) \cdot 1^{-1} = 4$.
+   - $elements = [2, 4]$.
+5. **`multAll(2)`:**
+   - $A \leftarrow 1 \cdot 2 = 2$.
+   - $B \leftarrow 3 \cdot 2 = 6$. Affine: $2 \cdot x + 6$.
+6. **`getIndex(0)`:**
+   - $E(v_0) = 2 \cdot 2 + 6 = \mathbf{10}$.
+7. **`addAll(3)`:**
+   - $B \leftarrow 6 + 3 = 9$. Affine: $2 \cdot x + 9$.
+8. **`append(10)`:**
+   - $v_2 = (10 - 9) \cdot 2^{-1} = 1 \cdot 500000004 = 500000004$.
+   - $elements = [2, 4, 500000004]$.
+9. **`multAll(2)`:**
+   - $A \leftarrow 2 \cdot 2 = 4$.
+   - $B \leftarrow 9 \cdot 2 = 18$. Affine: $4 \cdot x + 18$.
+10. **Queries:**
+    - `getIndex(0)`: $4 \cdot 2 + 18 = 8 + 18 = \mathbf{26}$.
+    - `getIndex(1)`: $4 \cdot 4 + 18 = 16 + 18 = \mathbf{34}$.
+    - `getIndex(2)`: $4 \cdot 500000004 + 18 = 2000000016 + 18 = 2000000034 \equiv \mathbf{20} \pmod{10^9 + 7}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Affine Parameter Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"operations": ["Fancy", "getIndex"], "arguments": [[], [0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[null, -1]` | Verified |
+| Step | Operation | Operand | Multiplier $A$ | Offset $B$ | Normalized Value Stored | Array Contents | Query Output |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `Fancy()` | — | $1$ | $0$ | — | `[]` | — |
+| $2$ | `append` | $2$ | $1$ | $0$ | $v_0 = 2$ | `[2]` | — |
+| $3$ | `addAll` | $3$ | $1$ | $3$ | — | `[2]` | — |
+| $4$ | `append` | $7$ | $1$ | $3$ | $v_1 = 4$ | `[2, 4]` | — |
+| $5$ | `multAll` | $2$ | $2$ | $6$ | — | `[2, 4]` | — |
+| $6$ | `getIndex`| $0$ | $2$ | $6$ | — | `[2, 4]` | **$10$** |
+| $7$ | `addAll` | $3$ | $2$ | $9$ | — | `[2, 4]` | — |
+| $8$ | `append` | $10$| $2$ | $9$ | $v_2 = 500000004$ | `[2, 4, 500000004]` | — |
+| $9$ | `multAll` | $2$ | $4$ | $18$ | — | `[2, 4, 500000004]` | — |
+| $10$| `getIndex`| $0$ | $4$ | $18$ | — | `[2, 4, 500000004]` | **$26$** |
+| $11$| `getIndex`| $1$ | $4$ | $18$ | — | `[2, 4, 500000004]` | **$34$** |
+| $12$| `getIndex`| $2$ | $4$ | $18$ | — | `[2, 4, 500000004]` | **$20$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
+Because multiplication and addition distribute over $\mathbb{Z}_M$, collapsing operations into $A \cdot x + B$ exactly reproduces the chronological result of every individual arithmetic update. Normalizing newly appended elements by $(val - B) \cdot A^{-1}$ places them in the exact initial coordinate frame of the sequence.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Completeness
+Every index in $[0, |elements| - 1]$ corresponds to a valid stored token $v$. Out-of-bounds indices ($\ge |elements|$) are guarded and return $-1$.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Single global affine transform with modular inverses:** Store each appended value normalized against a global multiplier and addition, then answer with one affine evaluation. This gives constant-time global updates and queries, while append needs a modular inverse. It is elegant under the given multipliers, but the checked-in source deliberately uses a segment tree and does not rely on invertibility.
-- **Store an operation snapshot per append:** One can record the global transform when each value is inserted and reconcile that snapshot at query time. This also uses modular inverses and requires careful algebra about operation order.
-- **Update a plain list eagerly:** This is easy to understand, but every `addAll` and `multAll` costs $O(A)$. Alternating appends with global updates can make total work $O(Q^2)$.
-- **Use a static full segment-tree array:** Preallocating about four times the maximum coordinate count simplifies child handling but reserves $O(U)$ memory immediately. Dynamic nodes allocate only paths reached by actual operations.
-- **Empty sequence global update:** `addAll` and `multAll` call the tree with `l > r` and return without changing future positions. A later append therefore receives no operation that happened before it existed.
-- **Index conversion:** The API is zero-based, while the tree is one-based. Querying `idx` instead of `idx + 1` would shift every result and make index 0 miss the first element.
-- **Out-of-range index:** The code tests `idx >= n` before entering the tree and returns `-1` exactly as required.
-- **Append after earlier global updates:** Only `[1, old_n]` was updated, so the new position is still zero before its point addition. This prevents historical operations from affecting a new value.
-- **Multiplication after pending addition:** The lazy `add` tag must also be multiplied. For example, “add 3, then multiply by 2” means $2x+6$, not $2x+3$.
-- **Addition after pending multiplication:** Adding `inc` changes only the additive tag, giving $mx+(a+\textit{inc})$. It must not change the multiplier.
-- **Modulo arithmetic:** Node sums and composed multiplication tags are reduced modulo $10^9+7$. The public API asks only for modular values, and addition and multiplication are compatible with reducing intermediate results.
-- **The extra coordinate 100001:** At most 100000 appends can occur, so that final spare leaf is never required for an element. It does not affect correctness because all public operations stop at `n`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Out of Bounds Index | `getIndex(idx)` with $idx \ge N$ | Returns `-1` immediately. | Array index error or returning garbage value. |
+| Multiplying by Zero | `multAll(0)` | Disallowed by problem constraints ($m \ge 1$); $A$ is never zero. | Loss of multiplicative invertibility. |
+| Negative Modular Value | $(val - B) < 0$ | Add $M$ before modular multiplication. | Negative result from modulo operator in C++/Java. |
+| Large Multiplications | $A \cdot m$ or $B \cdot m$ | $64$-bit integer arithmetic before `% MOD`. | 32-bit overflow before modulo reduction. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(Q\log M)$. Let $U=100001$ be the fixed tree coordinate range, $Q$ the total number of API calls, and $A$ the number of appended elements.
-- **Auxiliary Space Complexity:** $O(A)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `addAll(inc)`: $\mathcal{O}(1)$ single addition.
+  - `multAll(m)`: $\mathcal{O}(1)$ two multiplications.
+  - `getIndex(idx)`: $\mathcal{O}(1)$ one multiplication and one addition.
+  - `append(val)`: $\mathcal{O}(\log M)$ modular exponentiation for $A^{M-2}$.
+  - Total time for $100,000$ operations: $\le 10^5 \times 30$ operations $\approx 3 \times 10^6$ ops ($< 0.02\text{ s}$).
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary memory to store the list of base tokens $v$, where $N \le 100,000$.

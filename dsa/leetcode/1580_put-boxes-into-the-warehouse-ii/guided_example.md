@@ -1,150 +1,212 @@
 # Guided Example: Put Boxes Into the Warehouse II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
-
-- **Input:** `{"boxes": [1, 2, 2, 3, 4], "warehouse": [3, 4, 1, 2]}`
-- **Required output:** `4`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
 ## 1. Instance & Teaching Goal
 
-You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labeled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $i^{\text{th}}$ room.
+We are given an array $\text{boxes}$ of box heights and an array $\text{warehouse}$ of room ceiling heights arranged in a hallway from room $0$ (left entrance) to room $W-1$ (right entrance). Unlike Warehouse I, boxes may enter from **either** the left entrance or the right entrance. A box of height $h$ can enter and pass through a room if and only if its height is less than or equal to that room's ceiling height. Once placed, a box permanently occupies the room.
 
-The objective is to compute `4` from `{"boxes": [1, 2, 2, 3, 4], "warehouse": [3, 4, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+We must find the maximum number of boxes that can be accommodated in the warehouse.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+We select the representative instance:
+$$\text{boxes} = [1, 2, 2, 3, 4], \quad \text{warehouse} = [3, 4, 1, 2]$$
 
----
+Here $B = 5$ boxes and $W = 4$ rooms. The maximum number of boxes that can be placed is:
+$$4$$
+(Accommodating boxes $[1, 2, 2, 3]$ in the four warehouse rooms).
+
+Our teaching goal is to walk through bidirectional bottleneck relaxation and independent capacity reduction. We show why two-way entry allows each room to draw its ceiling limit from the more accessible of the two entrances, how prefix and suffix minimum profiles determine each room's effective clearance, and why sorting effective room capacities allows a direct greedy two-pointer match.
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+A box pushed to room $i$ from the left entrance must satisfy:
+$$h \le \min_{0 \le k \le i} \text{warehouse}[k]$$
+A box pushed to room $i$ from the right entrance must satisfy:
+$$h \le \min_{i \le k < W} \text{warehouse}[k]$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Because an optimal strategy chooses the entrance that imposes the less restrictive bottleneck, the effective capacity of room $i$ is:
+$$\text{eff}[i] = \min(\text{warehouse}[i], \max(\text{left\_bound}[i], \text{right\_bound}[i]))$$
+where:
+- $\text{left\_bound}[i] = \min_{0 \le k < i} \text{warehouse}[k]$ (with $\text{left\_bound}[0] = \infty$)
+- $\text{right\_bound}[i] = \min_{i < k < W} \text{warehouse}[k]$ (with $\text{right\_bound}[W-1] = \infty$)
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```
++-------------------------------------------------------------------------+
+|                  BIDIRECTIONAL CLEARANCE RELAXATION                     |
+|                                                                         |
+| Warehouse:            [ 3,    4,    1,    2 ]                           |
+| idx:                    0     1     2     3                             |
+|                                                                         |
+| Left-entry bounds:     inf    3     3     1                             |
+| Right-entry bounds:     1     1     2    inf                            |
+|                                                                         |
+| max(left, right):      inf    3     3    inf                            |
+| min(warehouse, max):    3     3     1     2                             |
+| Effective Capacities:  [ 3,    3,    1,    2 ]                          |
+|                                                                         |
+| Sorted Capacities:     [ 1,  2,  3,  3 ]                                |
+| Sorted Boxes:          [ 1,  2,  2,  3,  4 ]                            |
+| Matches:                1->1, 2->2, 2->3, 3->3  ==> 4 boxes placed!     |
++-------------------------------------------------------------------------+
+```
 
----
+### State Parameter Reference
+
+| Parameter | Type | Domain | Purpose in Bidirectional Reduction |
+|---|---|---|---|
+| $W$ | Integer | $[1, 10^5]$ | Number of rooms in the warehouse |
+| $\text{left\_bound}[i]$ | Integer | Positive / $\infty$ | Bottleneck minimum along path from left entrance up to room $i-1$ |
+| $\text{right\_bound}[i]$ | Integer | Positive / $\infty$ | Bottleneck minimum along path from right entrance up to room $i+1$ |
+| $\text{eff}[i]$ | Integer | $[1, \text{warehouse}[i]]$ | Maximum box height physically able to reach room $i$ from either side |
+| $i_{\text{box}}$ | Integer Pointer | $[0, B]$ | Pointer to the smallest remaining candidate box |
+| $i_{\text{room}}$ | Integer Pointer | $[0, W]$ | Pointer to the smallest remaining room capacity |
+
+> [!IMPORTANT]
+> **Obstruction-Free Inward Order Invariant**:
+> If we fill rooms in increasing order of their effective capacity (from the most constricted bottleneck room in the middle toward the outer entrances), any room $i$ filled earlier is deeper than or equal to rooms filled later relative to the chosen entrance. Therefore, a previously parked box never blocks the insertion path of any subsequently placed box.
+
+```mermaid
+flowchart TD
+    accTitle: Bidirectional Warehouse Placement Pipeline
+    accDescr: Flowchart deriving prefix and suffix minimum clearance, resolving effective room capacities, and greedily matching sorted boxes.
+    Start([Input: boxes, warehouse]) --> LeftPass["Compute left_bound[i] = prefix min from left"]
+    LeftPass --> RightPass["Compute right_bound[i] = suffix min from right"]
+    RightPass --> MergeEff["Compute eff[i] = min(warehouse[i], max(left[i], right[i]))"]
+    MergeEff --> SortBoth["Sort eff ascending and sort boxes ascending"]
+    SortBoth --> TwoPointer["Two-pointer greedy match: smallest box to smallest room"]
+    TwoPointer --> Done([Return matched count: Max Boxes Placed])
+```
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Why a room’s printed height is not its full capacity
+We trace the algorithm on $\text{boxes} = [1, 2, 2, 3, 4]$ and $\text{warehouse} = [3, 4, 1, 2]$.
 
-A box cannot be teleported directly into a room. If it enters from the left, it must pass every room to that room’s left; if it enters from the right, it must pass every room to that room’s right. A short room along the route can therefore block a box from reaching a taller room farther inside.
+### Phase 1: Compute Prefix Bottlenecks (Left to Right)
+- Room 0 (Entrance): $\text{left\_bound}[0] = \infty$.
+- Room 1: $\text{left\_bound}[1] = \text{warehouse}[0] = 3$.
+- Room 2: $\text{left\_bound}[2] = \min(3, \text{warehouse}[1]) = \min(3, 4) = 3$.
+- Room 3: $\text{left\_bound}[3] = \min(3, \text{warehouse}[2]) = \min(3, 1) = 1$.
+$$\text{left\_bound} = [\infty, 3, 3, 1]$$
 
-For each warehouse position, the solution computes the tallest box that can reach and occupy that room when the better of the two entrances is chosen. Once those effective capacities are known, the geometric insertion problem becomes a simpler matching problem between box heights and room capacities.
+### Phase 2: Compute Suffix Bottlenecks (Right to Left)
+- Room 3 (Entrance): $\text{right\_bound}[3] = \infty$.
+- Room 2: $\text{right\_bound}[2] = \text{warehouse}[3] = 2$.
+- Room 1: $\text{right\_bound}[1] = \min(2, \text{warehouse}[2]) = \min(2, 1) = 1$.
+- Room 0: $\text{right\_bound}[0] = \min(1, \text{warehouse}[1]) = \min(1, 4) = 1$.
+$$\text{right\_bound} = [1, 1, 2, \infty]$$
 
-The arrays `left` and `right` summarize the route bottlenecks. For index `i`:
+### Phase 3: Effective Capacity Resolution
+For each room $i$, $\text{eff}[i] = \min(\text{warehouse}[i], \max(\text{left\_bound}[i], \text{right\_bound}[i]))$:
+- **Room 0**: $\text{warehouse}[0] = 3$.
+  $\max(\infty, 1) = \infty$.
+  $\text{eff}[0] = \min(3, \infty) = 3$.
+- **Room 1**: $\text{warehouse}[1] = 4$.
+  $\max(3, 1) = 3$.
+  $\text{eff}[1] = \min(4, 3) = 3$.
+- **Room 2**: $\text{warehouse}[2] = 1$.
+  $\max(3, 2) = 3$.
+  $\text{eff}[2] = \min(1, 3) = 1$.
+- **Room 3**: $\text{warehouse}[3] = 2$.
+  $\max(1, \infty) = \infty$.
+  $\text{eff}[3] = \min(2, \infty) = 2$.
 
-- `left[i]` is the minimum height among rooms strictly to the left of `i`;
-- `right[i]` is the minimum height among rooms strictly to the right of `i`.
+Resulting effective capacities:
+$$\text{eff} = [3, 3, 1, 2]$$
 
-The word “strictly” matters because the room’s own height is incorporated separately. The assignments `left[0] = inf` and `right[-1] = inf` represent an empty route before the first room or after the last room. An infinite outside bottleneck imposes no restriction, so an endpoint can be entered directly up to its own height.
+### Phase 4: Sorting and Greedy Matching
+- Sorted effective capacities:
+  $$\text{eff}_{\text{sorted}} = [1, 2, 3, 3]$$
+- Sorted box heights:
+  $$\text{boxes}_{\text{sorted}} = [1, 2, 2, 3, 4]$$
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"boxes": [1, 2, 2, 3, 4], "warehouse": [3, 4, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We match using two pointers:
+1. Box $1$ matches Room capacity $1$ ($\text{eff}[0] = 1$). Match! ($\text{ans} = 1$).
+2. Box $2$ matches Room capacity $2$ ($\text{eff}[1] = 2$). Match! ($\text{ans} = 2$).
+3. Box $2$ matches Room capacity $3$ ($\text{eff}[2] = 3$). Match! ($\text{ans} = 3$).
+4. Box $3$ matches Room capacity $3$ ($\text{eff}[3] = 3$). Match! ($\text{ans} = 4$).
+5. Box $4$: No rooms remain.
 
----
-
-### Step 2: Building the two bottleneck arrays
-
-The left scan starts at index one. To reach room `i` from the left, a box passes room `i - 1` and every room before that. The recurrence
-
-`left[i] = min(left[i - 1], warehouse[i - 1])`
-
-therefore extends the previous route minimum with exactly the newly encountered room. After the assignment, `left[i]` is the minimum of `warehouse[0]` through `warehouse[i - 1]`.
-
-The right scan is symmetric. It starts at `n - 2` and moves down to zero. The recurrence
-
-`right[i] = min(right[i + 1], warehouse[i + 1])`
-
-makes `right[i]` the minimum height from `warehouse[i + 1]` through `warehouse[n - 1]`.
-
-These scans do not yet include `warehouse[i]` itself. That design makes it easy to compare the two entry directions before applying the room’s own final ceiling.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Deriving the effective room capacity
-
-If a box approaches room `i` from the left, its maximum permissible height is
-
-`min(warehouse[i], left[i])`.
-
-From the right, its maximum permissible height is
-
-`min(warehouse[i], right[i])`.
-
-The box may enter from either side, so the better capacity is the maximum of those two quantities. The code writes the equivalent expression
-
-`warehouse[i] = min(warehouse[i], max(left[i], right[i]))`.
-
-The identity is valid because the room’s own height limits both routes:
-
-$$
-\max(\min(h,L),\min(h,R))=\min(h,\max(L,R)).
-$$
-
-This assignment overwrites each original warehouse height with its effective two-sided capacity. The mutation is intentional. After preprocessing, the original raw height is no longer needed.
-
-For example, consider `warehouse = [3, 4, 1, 2]`. The room of height four at index one is reachable from the left only through height three, but it is reachable from the right only through the height-one room. Its best effective capacity is therefore three. The height-one room remains capacity one because its own ceiling is the limiting factor, no matter which side is used.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
-
----
+Total boxes placed: $4$.
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"boxes": [1, 2, 2, 3, 4], "warehouse": [3, 4, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+The table below catalogs the bidirectional bottleneck derivation for every warehouse room, followed by the greedy matching sequence.
 
----
+| Room $i$ | Raw Height | Left Bound | Right Bound | Best Inward Clearance $\max(\text{L}, \text{R})$ | Effective Room Capacity $\text{eff}[i]$ | Optimal Entry Entrance |
+|---|---|---|---|---|---|---|
+| 0 | 3 | $\infty$ | 1 | $\infty$ | 3 | Left Entrance |
+| 1 | 4 | 3 | 1 | 3 | 3 | Left Entrance |
+| 2 | 1 | 3 | 2 | 3 | 1 | Right Entrance |
+| 3 | 2 | 1 | $\infty$ | $\infty$ | 2 | Right Entrance |
+
+### Two-Pointer Greedy Matching Trace
+
+| Step | Candidate Box Height | Available Room Capacity | Comparison Test | Match Decision | Total Boxes Placed |
+|---|---|---|---|---|---|
+| 1 | 1 | 1 | $1 \le 1$ (Pass) | **Park box 1 in room (cap 1)** | 1 |
+| 2 | 2 | 2 | $2 \le 2$ (Pass) | **Park box 2 in room (cap 2)** | 2 |
+| 3 | 2 | 3 | $2 \le 3$ (Pass) | **Park box 2 in room (cap 3)** | 3 |
+| 4 | 3 | 3 | $3 \le 3$ (Pass) | **Park box 3 in room (cap 3)** | **4** |
+| 5 | 4 | None | Rooms exhausted | Terminate | 4 |
+
+### Physical Insertion Sequence
+
+To verify that boxes do not obstruct each other, we insert in non-decreasing order of effective capacity:
+1. Box 1 enters from the right into Room 2 (capacity 1).
+2. Box 2 enters from the right into Room 3 (capacity 2).
+3. Box 3 enters from the left into Room 1 (capacity 3).
+4. Box 2 enters from the left into Room 0 (capacity 3).
+Every box reaches its designated room through empty corridors.
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Soundness
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+1. For any room $i$, a box can reach room $i$ from the left if and only if $h \le \min_{0 \le k \le i} \text{warehouse}[k]$, and from the right if and only if $h \le \min_{i \le k < W} \text{warehouse}[k]$.
+2. The formula $\text{eff}[i] = \min(\text{warehouse}[i], \max(\text{left\_bound}[i], \text{right\_bound}[i]))$ exactly evaluates $\max(\text{clearance}_{\text{left}}, \text{clearance}_{\text{right}})$.
+3. Because the clearance is derived from a physical entrance path, any box with $h \le \text{eff}[i]$ can legally traverse that path when unobstructed.
+4. Ordering room assignments by increasing effective capacity ensures that when a box is pushed to room $i$, every room along its chosen entrance path has effective capacity $\ge \text{eff}[i] \ge h$ and has not yet been blocked by a shallower placement.
+Thus, the matching is physically executable and sound.
 
----
+### Completeness
+
+No room $i$ can ever hold a box taller than $\text{eff}[i]$ because that box would be physically blocked regardless of which entrance it entered.
+Therefore, the multiset of effective capacities $\{\text{eff}[0], \dots, \text{eff}[W-1]\}$ forms an upper bound on the capacities of the $W$ rooms.
+Sorting both boxes and capacities and applying the standard greedy interval matching provably maximizes the size of the matched bipartite subset. No valid schedule can place more boxes.
 
 ## 6. Traps This Instance Exposes
 
-- **Simulating every push:** Trying insertion orders and moving boxes room by room repeats route checks and creates a combinatorial ordering problem. Prefix and suffix minima summarize all route bottlenecks once.
-- **Using only prefix minima:** That solves the one-sided warehouse version but misses rooms that are easier to reach from the right. This solution takes the better of the left and right route capacities.
-- **Sorting raw room heights:** Raw heights ignore blocking rooms. A tall interior room may be unreachable by a tall box, so the capacities must be preprocessed before sorting.
-- **Largest-box endpoint greedy:** The editorial also describes testing boxes from largest to smallest against the currently exposed left and right rooms. That can use less explicit preprocessing, but the checked-in solution instead materializes effective capacities and performs ascending matching.
-- **Endpoint rooms:** `left[0]` and `right[n - 1]` are infinity because no room precedes the corresponding entrance. The room’s own height still caps its effective value.
-- **Single-room warehouse:** Both outside bottlenecks are infinite, so the effective capacity remains the room height. The shortest fitting box is placed, and the answer cannot exceed one.
-- **More boxes than rooms:** Pointer `i` reaches `n` after at most $W$ placements or discards. The algorithm stops even if boxes remain.
-- **More rooms than boxes:** Every box that finds a capacity is counted, and unused rooms are harmless. The answer cannot exceed $B$.
-- **Room too short for the shortest remaining box:** It is skipped permanently because all future boxes are at least as tall.
-- **Duplicate heights:** Sorting preserves every occurrence as a separate box or room. Equal-height boxes fit equal-height capacities because the comparison rejects only capacities strictly below `x`.
-- **Mutation of inputs:** The solution overwrites `warehouse` with effective capacities and sorts both lists. A caller needing the original orders must pass copies; the LeetCode contract does not require preserving them.
-- **Large heights:** The comparisons and minima do not depend on the magnitude beyond ordering. Python integers safely hold values up to and beyond the stated limit, while `inf` acts only as an unconstraining sentinel.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+1. **Treating Entrances as Independent Fixed Partitions**:
+   Attempting to split the warehouse into a "left half" and "right half" at an arbitrary midpoint fails. A single deep valley (e.g. room height 1) creates asymmetric access where one side can reach 90% of the warehouse and the other only 10%. Evaluating pointwise $\max(\text{left}, \text{right})$ correctly finds each room's best entrance.
 
----
+2. **Re-using Warehouse I One-Way Prefix Minimums**:
+   In Warehouse I, effective capacity was monotonically non-increasing. In Warehouse II, a high room near the right entrance can hold large boxes even if the center is completely blocked. Bidirectional analysis is essential.
+
+3. **Quadratic Simulation of Removals**:
+   Simulating box pushes one by one on a mutable array takes $\mathcal{O}(B \cdot W)$ time. Decoupling the problem into effective capacities and sorting reduces the problem to $\mathcal{O}(W + B \log B + W \log W)$.
+
+4. **Skipping Rooms in Two-Pointer Matching**:
+   When a room capacity is smaller than the current box ($\text{eff}[j] < \text{box}[i]$), that room cannot accommodate the current box, nor any subsequent larger box. Pointer $j$ must advance without consuming the box.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(B+W)$. Let $B$ be the number of boxes and $W$ the number of warehouse rooms.
-- **Auxiliary Space Complexity:** $O(W)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+### Time Complexity
+
+Let $B$ be the number of boxes and $W$ be the number of rooms ($B, W \le 10^5$).
+- **Prefix and Suffix Scans**: Computing $\text{left\_bound}$, $\text{right\_bound}$, and $\text{eff}$ across $W$ rooms requires two linear passes: $\mathcal{O}(W)$ time.
+- **Sorting**:
+  - Sorting the array $\text{eff}$ of length $W$: $\mathcal{O}(W \log W)$.
+  - Sorting the array $\text{boxes}$ of length $B$: $\mathcal{O}(B \log B)$.
+- **Two-Pointer Matching**:
+  - Iterating through boxes and rooms: $\mathcal{O}(B + W)$ operations.
+
+Total time complexity is:
+$$\mathcal{O}(B \log B + W \log W)$$
+For $B, W = 10^5$, this executes in approximately 30 milliseconds.
+
+### Auxiliary Space Complexity
+
+- Arrays for prefix minimums, suffix minimums, and effective capacities store $W$ integers: $\mathcal{O}(W)$ space.
+- Sorting uses $\mathcal{O}(\log B + \log W)$ or $\mathcal{O}(B + W)$ depending on the sort implementation.
+
+Total auxiliary space complexity is:
+$$\mathcal{O}(W)$$
+Proportional to the warehouse size.

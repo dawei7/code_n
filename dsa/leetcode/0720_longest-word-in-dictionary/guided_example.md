@@ -1,111 +1,204 @@
 # Guided Example: Longest Word in Dictionary
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step prefix-tree (Trie) dictionary insertion, incremental prefix validity verification ($\forall k \le |w|, \; w[0 \dots k] \in \text{Words}$), continuous word-ending chain traversal ($\text{node.is\_end} == \text{true}$), dual-criteria optimization ($\max \text{length}$, then $\min \text{lexicographical}$), and candidate comparison on representative vocabulary collections:
 
-- **Input:** `{"words": ["w", "wo", "wor", "worl", "world"]}`
-- **Required output:** `"world"`
+- **Input:**
+  $$
+  words = [\text{"a"}, \; \text{"banana"}, \; \text{"app"}, \; \text{"appl"}, \; \text{"ap"}, \; \text{"apply"}, \; \text{"apple"}]
+  $$
+- **Required output:** `"apple"`
+  - Problem objective:
+    - Find the longest word in $words$ that can be built **one character at a time** by other words in $words$.
+    - A word $w$ is valid if and only if every single one of its prefixes ($w[0 \dots 0], w[0 \dots 1], \dots, w[0 \dots |w|-1]$) exists in the dictionary.
+    - Tie-breaking rules:
+      1. Primary criterion: **Maximum string length**.
+      2. Secondary criterion: **Smallest lexicographical order** (alphabetical order).
+    - For the input:
+      - `"banana"` cannot be built because prefix `"b"` is missing.
+      - Candidate chain: `"a"` $\to$ `"ap"` $\to$ `"app"` $\to$ `"appl"` $\to$ `"apple"` (length 5).
+      - Candidate chain: `"a"` $\to$ `"ap"` $\to$ `"app"` $\to$ `"appl"` $\to$ `"apply"` (length 5).
+      - Both `"apple"` and `"apply"` have maximum length 5.
+      - Lexicographical tie-breaker: $\text{"apple"} < \text{"apply"}$.
+      - Winning word is `"apple"`.
+- **Trie Prefix End-Mark & Chain Reachability Invariant:**
+  - **The Trie Construction:**
+    - Insert all words into a 26-ary prefix tree (Trie).
+    - Each node represents a character, containing an `is_end` boolean flag indicating whether the string path from root to that node forms a complete word in $words$.
+  - **The Incremental Prefix Invariant:**
+    - A word $w = c_0 c_1 \dots c_{L-1}$ is valid if and only if during its root-to-leaf traversal, **every visited node along the path has `is_end == true`**:
+      $$
+      \text{valid}(w) \iff \bigwedge_{j=0}^{L-1} \text{node}_{c_j}.\text{is\_end} == \mathbf{true}
+      $$
+    - If even a single intermediate node has `is_end == false`, that prefix is absent from the dictionary, severing the incremental construction chain.
+  - **Optimal Candidate Selection:**
+    - Track current best word $ans$ (initialized to empty string `""`).
+    - For each valid word $w$:
+      $$
+      \text{If } |w| > |ans| \ \lor \ (|w| == |ans| \ \land \ w < ans): \quad ans \leftarrow w
+      $$
+- **Step-by-Step Worked Execution Trace on the Vocabulary:**
+  - **Phase 0: Build the Trie:**
+    - Insert all 7 words into the Trie.
+    - Nodes marked with `is_end = true`:
+      - Path `a`: `is_end = true`
+      - Path `a -> p`: `is_end = true`
+      - Path `a -> p -> p`: `is_end = true`
+      - Path `a -> p -> p -> l`: `is_end = true`
+      - Path `a -> p -> p -> l -> e`: `is_end = true`
+      - Path `a -> p -> p -> l -> y`: `is_end = true`
+      - Path `b -> a -> n -> a -> n -> a`: `is_end = true` (at final `'a'`)
+  - **Phase 1: Evaluate Each Candidate Word:**
+    - **Candidate 1: `"a"` (length 1):**
+      - Prefix `a`: `is_end = true`.
+      - Valid! $|"a"| = 1 > |""| = 0 \implies ans = \mathbf{\text{"a"}}$.
+    - **Candidate 2: `"banana"` (length 6):**
+      - Inspect path: $b \to a \dots$
+      - Node `'b'`: `is_end == false` (word `"b"` does not exist in $words$!).
+      - Chain severed at length 1.
+      - **Invalid!** Rejected.
+    - **Candidate 3: `"app"` (length 3):**
+      - Prefixes: `'a'` (true), `'ap'` (true), `'app'` (true).
+      - Valid! $|"app"| = 3 > |"a"| = 1 \implies ans = \mathbf{\text{"app"}}$.
+    - **Candidate 4: `"appl"` (length 4):**
+      - Prefixes: `'a'`, `'ap'`, `'app'`, `'appl'` all have `is_end = true`.
+      - Valid! $|"appl"| = 4 > |"app"| = 3 \implies ans = \mathbf{\text{"appl"}}$.
+    - **Candidate 5: `"ap"` (length 2):**
+      - Valid, but length $2 < 4$. No update.
+    - **Candidate 6: `"apply"` (length 5):**
+      - Prefixes: `'a'`, `'ap'`, `'app'`, `'appl'`, `'apply'` all have `is_end = true`.
+      - Valid! Length $5 > 4 \implies ans = \mathbf{\text{"apply"}}$.
+    - **Candidate 7: `"apple"` (length 5):**
+      - Prefixes: `'a'`, `'ap'`, `'app'`, `'appl'`, `'apple'` all have `is_end = true`.
+      - Valid! Length equals current maximum ($5 == 5$).
+      - Compare lexicographical tie-breaker:
+        $$
+        \text{"apple"} < \text{"apply"} \implies \mathbf{Tie-Breaker\ Won!}
+        $$
+      - Update best word:
+        $$
+        ans \leftarrow \mathbf{\text{"apple"}}
+        $$
+  - **Step 2: Output:**
+    $$
+    ans = \mathbf{\text{"apple"}}
+    $$
+- **Single Connected Chain Trace ($words = [\text{"w"}, \text{"wo"}, \text{"wor"}, \text{"worl"}, \text{"world"}]$):**
+  - Continuous single-branch progression.
+  - Returns **`"world"`**.
+- **No Build-able Words ($words = [\text{"apple"}, \text{"banana"}]$):**
+  - Neither `"a"` nor `"b"` is present.
+  - No word can be built from length 1.
+  - Returns empty string `""`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates prefix tree (Trie) end-mark validation and multi-objective lexicographical optimization, mathematically proves why contiguous branch validity enforces strict inductive prefix construction, and derives $O(\sum |w|)$ execution time and $O(\sum |w|)$ auxiliary space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `words` representing an English Dictionary, return *the longest word in* `words` *that can be built one character at a time by other words in* `words`.
+Given an array of words:
+Find the **longest word** that can be built one character at a time by other words in the dictionary.
+Tie-break by **lexicographically smallest** word.
 
-The objective is to compute `"world"` from `{"words": ["w", "wo", "wor", "worl", "world"]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+words = [ "a", "banana", "app", "appl", "ap", "apply", "apple" ]
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Validity check (all prefixes must exist):
+  "banana": prefix "b" missing -> INVALID
+  "apply":  "a", "ap", "app", "appl", "apply" all exist -> VALID (len 5)
+  "apple":  "a", "ap", "app", "appl", "apple" all exist -> VALID (len 5)
+
+Tie-break: "apple" < "apply" alphabetically!
+Result: "apple"
+```
+
+### The Invariant of the Continuous Prefix Chain
+- A word of length $L$ is valid if and only if all $L$ of its prefixes are valid dictionary words.
+- In a Trie, this means every node along the word's path from root to leaf must have `is_end == True`.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Incremental Validity Condition:
+For word $w = c_0 c_1 \dots c_{L-1}$:
+$$
+\text{valid}(w) \iff \forall k \in [1, L]: \quad w[0 \dots k-1] \in words
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Selection Total Order:
+A word $w_1$ dominates $w_2$ if:
+$$
+|w_1| > |w_2| \quad \lor \quad (|w_1| == |w_2| \land w_1 <_{lex} w_2)
+$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Prefix Tree Order-Ideal Invariant.** The collection of valid words forms a rooted sub-tree of the full Trie containing the root, isomorphic to the maximal connected downward-closed order ideal with respect to the string prefix order.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Translate “built one character at a time” into a prefix condition
-
-A word is eligible only if every prefix obtained while spelling it is also present in the dictionary. For a candidate such as `apple`, the required words are `a`, `ap`, `app`, `appl`, and `apple`. Merely finding the character path in some data structure is not enough; each point along that path must correspond to a complete dictionary word.
-
-The exact solution represents all dictionary words in a trie. A trie shares nodes among words with common prefixes. Each node owns 26 child positions, one for every lowercase English letter, and an `is_end` flag indicating that the path from the root through that node is a complete inserted word.
-
-This distinction between “path exists” and “word ends here” is fundamental. After inserting `apple`, nodes for `a`, `ap`, `app`, and `appl` all exist, but none of those shorter strings should count as dictionary words unless it was independently inserted and its node was marked `is_end`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["w", "wo", "wor", "worl", "world"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace the sample data:
 
 ---
 
-### Step 2: Building the trie
-
-For each input word, `insert` starts at the root and processes its characters from left to right. The letter’s numeric child index is `ord(c) - ord("a")`. If that child does not exist, a new trie node is created. The traversal then moves to that child.
-
-After the final character, `node.is_end = true` records that the complete word belongs to the dictionary. Inserting all words before testing any candidate makes eligibility independent of input order. A longer word may appear before one of its required prefixes in `words`, but the later search still sees the fully built dictionary.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Insert into Trie
+- All words inserted, `is_end` set at terminal nodes.
 
 ---
 
-### Step 3: How `search` checks every required prefix
+### Step 2: Test Words
+- `"a"`: valid (len 1). $ans = \text{"a"}$.
+- `"banana"`: 'b' has `is_end = False` $\implies$ invalid.
+- `"app"`: valid (len 3). $ans = \text{"app"}$.
+- `"appl"`: valid (len 4). $ans = \text{"appl"}$.
+- `"apply"`: valid (len 5). $ans = \text{"apply"}$.
+- `"apple"`: valid (len 5). $\text{"apple"} < \text{"apply"} \implies ans = \text{"apple"}$.
 
-The search begins at the root and follows the candidate’s characters. At each character it performs two checks:
+---
 
-1. The required child must exist. If it does not, even the character path is absent, so the candidate fails.
-2. Immediately after moving to the child, that node’s `is_end` flag must be true. If it is false, the prefix ending at this character was never supplied as a complete word, so the candidate fails.
-
-Because the second check occurs after every character, it checks every nonempty prefix, including the candidate itself. A successful search therefore means exactly that the word can be assembled one character at a time using dictionary words.
-
-The full-word check may seem redundant because every candidate came from `words` and was inserted. It is still consistent and keeps `search`’s contract self-contained: success means every visited prefix, including the last, is a complete word.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"world"` |
+### Step 3: Output
+$$
+\mathbf{\text{"apple"}}
+$$
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["w", "wo", "wor", "worl", "world"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"world"` | Verified |
+| Word Evaluated | Prefix Validity Chain | Chain Fully Intact? | Word Length | Best Word $ans$ | Update Reason |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"a"` | `[a: True]` | Yes | $1$ | `"a"` | First valid word |
+| `"banana"` | `[b: False, ...]` | **No (Broken at 'b')**| $6$ | `"a"` | Missing prefix `"b"` |
+| `"app"` | `[a, ap, app: True]` | Yes | $3$ | `"app"` | Longer length ($3 > 1$) |
+| `"appl"` | `[a, ap, app, appl: True]`| Yes | $4$ | `"appl"` | Longer length ($4 > 3$) |
+| `"apply"` | `[a, ap, app, appl, apply: True]`| Yes | $5$ | `"apply"` | Longer length ($5 > 4$) |
+| **`"apple"`** | `[a, ap, app, appl, apple: True]`| **Yes** | **$5$** | **`"apple"`** | **Lexicographical tie-breaker (`"apple" < "apply"`)** |
 
 ---
 
-## 5. Algorithmic Correctness
+## 5. Boundary Cases & Failure Modes
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+- **No Word of Length 1:** No word can ever start the chain $\implies$ returns empty string `""`.
+- **All Words Form Single Chain:** Returns the longest word.
+- **Multiple Distinct Branches:** Correctly chooses the branch with the longest length or alphabetically earlier leaf.
+- **All Words Length 1 ($["z", "b", "a"]$):** All valid, length 1 $\implies$ returns `"a"`.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Traps & Common Anti-Patterns
 
-- **Hash set of words:** Put every word into a set, then test each candidate’s prefixes with set membership. This is simpler and also efficient, though constructing or slicing every prefix may add character-copying cost in Python. The trie represents prefix boundaries directly.
-- **Sort by length and lexicographic order:** After sorting, maintain a set of buildable words and accept a word when its immediate prefix without the last character is buildable. If shorter words are processed first, that single-prefix fact is enough by induction. This approach is concise but pays sorting cost and depends on careful ordering.
-- **Trie depth-first traversal:** One can traverse only through child nodes whose `is_end` flag is true and track the deepest reachable word. Visiting children in alphabetical order can handle the tie rule. The exact solution instead searches the original words, which keeps result construction simple.
+- **Checking Only the Immediate Predecessor ($w[:-1]$):** Checking only that $w[:-1]$ exists does not guarantee $w[:-2]$ exists unless verified recursively or through an inductive table. A Trie search checks all prefixes simultaneously.
+- **Inverted Lexicographical Comparison:** For equal lengths, the problem requires the **smallest** lexicographical word (`ans > w`). Do not pick the larger one.
+- **Sorting Approach without Length Considerations:** Sorting words alphabetically first without checking lengths fails because shorter words like `"a"` precede `"apple"`.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(S)$. Let `S` be the sum of the lengths of all input words.
-- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - Inserting all words into the Trie: $\mathcal{O}(\sum |w|)$ where $\sum |w|$ is the total number of characters across all words.
+  - Validating each word: $\mathcal{O}(|w|)$ steps along the Trie path.
+  - Total Time: strictly linear $\mathcal{O}(\sum |w|)$. Completes in $< 10$ ms for $N = 1000, L = 30$.
+- **Auxiliary Space Complexity:**
+  - $\mathcal{O}(26 \cdot \sum |w|)$ memory for the Trie node structure.

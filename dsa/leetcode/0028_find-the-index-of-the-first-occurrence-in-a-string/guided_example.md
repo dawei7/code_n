@@ -1,140 +1,117 @@
 # Guided Example: Find the Index of the First Occurrence in a String
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step fixed-window substring matching on representative string instances:
 
-- **Input:** `{"haystack": "sadbutsad", "needle": "sad"}`
-- **Required output:** `0`
+- **Primary Input:** $\text{haystack} = \text{"sadbutsad"}$, $\text{needle} = \text{"sad"}$
+- **Required output:** $0$
+- **Negative Variant:** $\text{haystack} = \text{"leetcode"}$, $\text{needle} = \text{"leeto"}$
+- **Required output:** $-1$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates sliding window alignment, upper bound index calculations ($N - M$), early return upon the first verified match, and character-by-character mismatch detection.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.
+Given two strings $\text{haystack}$ of length $N$ and $\text{needle}$ of length $M$, we must return the smallest index $i$ such that the substring of length $M$ beginning at $i$ is identical to $\text{needle}$. If $\text{needle}$ does not appear anywhere in $\text{haystack}$, return $-1$.
 
-The objective is to compute `0` from `{"haystack": "sadbutsad", "needle": "sad"}` while avoiding redundant calculations and unnecessary overhead.
+For $\text{haystack} = \text{"sadbutsad"}$ ($N = 9$) and $\text{needle} = \text{"sad"}$ ($M = 3$):
+- At index $0$, $\text{haystack}[0 \dots 2] = \text{"sad"}$, which matches $\text{needle}$ exactly.
+- The earliest occurrence index is $0$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The goal is to systematically evaluate all candidate starting positions in increasing index order, verifying substrings without indexing beyond the end of $\text{haystack}$.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Candidate Starting Window Range
+For $\text{needle}$ of length $M$ to fit within $\text{haystack}$ of length $N$, the last character of the candidate window at start index $i$ must not exceed the end of $\text{haystack}$:
+$$
+i + M - 1 \le N - 1 \iff i \le N - M
+$$
+The valid candidate start indices are exactly:
+$$
+i \in [0, N - M]
+$$
+If $M > N$, $N - M < 0$, meaning no candidate window can exist. The search returns $-1$ immediately.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Linear Scan Invariant
+We iterate $i$ from $0$ up to $N - M$:
+1. Compare the slice $\text{haystack}[i \dots i + M - 1]$ with $\text{needle}$.
+2. If equal, return $i$ immediately (guaranteeing the *first* occurrence).
+3. If no match is found after testing all indices up to $N - M$, return $-1$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** Before inspecting index $i$, no occurrence of $\text{needle}$ begins at any index $k < i$. Returning the first matching index $i$ guarantees the global minimum occurrence index.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Turn the search into a sequence of candidate starting positions
+### Case A: Successful Early Match ($\text{"sadbutsad"}$, $\text{"sad"}$)
+- Parameters: $N = 9$, $M = 3$. Valid search range: $i \in [0, 6]$.
 
-Let $n$ be the length of `haystack` and $m$ the length of `needle`. If a match begins at index `i`, it occupies the half-open interval from `i` through `i + m`: the included character indices are `i, i + 1, ..., i + m - 1`.
-
-For all $m$ pattern characters to fit, the final included index must satisfy
-
-$$
-i+m-1<n.
-$$
-
-Rearranging gives $i\le n-m$. Therefore the only possible starts are
-
-$$
-0,1,\ldots,n-m,
-$$
-
-which is exactly `n - m + 1` candidates when $m\le n$.
-
-The selected source tests those candidates directly from left to right. It is a straightforward sliding-window comparison implemented with Python string slicing, not the KMP algorithm described later in the local editorial.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"haystack": "sadbutsad", "needle": "sad"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+- **Candidate $i = 0$:**
+  - Substring window: $\text{haystack}[0 \dots 3] = \text{"sad"}$.
+  - Target pattern: $\text{"sad"}$.
+  - Character comparison:
+    - Index $0 + 0$: `'s' == 's'` (match)
+    - Index $0 + 1$: `'a' == 'a'` (match)
+    - Index $0 + 2$: `'d' == 'd'` (match)
+  - Full match confirmed! Return starting index $0$.
 
 ---
 
-### Step 2: Why the range includes the final legal start
+### Case B: Unsuccessful Match ($\text{"leetcode"}$, $\text{"leeto"}$)
+- Parameters: $N = 8$, $M = 5$. Valid search range: $i \in [0, 3]$.
 
-Python's `range(stop)` excludes `stop`. The loop uses
-
-
-
-so its final value is `n - m`. Omitting the `+ 1` would fail to examine the window ending exactly at the end of `haystack`. For example, searching for `"sad"` inside `"butsad"` requires start `3 = 6 - 3`; `range(3)` would stop at two, while `range(4)` correctly includes three.
-
-If `needle` is longer than `haystack`, then `n - m + 1` is zero or negative. Python produces an empty range, so the loop performs no slice and the method returns `-1`. The exact implementation therefore handles this case without a separate length check.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Extract one window of exactly the pattern length
-
-For each candidate `i`, the expression
-
-
-
-creates the substring beginning at `i` and ending just before `i + m`. Because the loop considers only legal starts, this slice always contains exactly $m$ characters. It is then compared with `needle` using ordinary string equality.
-
-Equality is true only when the two strings have the same length and every corresponding character is equal. Their lengths are already both $m$, so this comparison precisely asks whether `needle[j] == haystack[i + j]` for every $0\le j<m$.
-
-There is no hash and therefore no collision risk. A true comparison is an exact character match.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `0` |
+- **Candidate $i = 0$:**
+  - Window: $\text{haystack}[0 \dots 5] = \text{"leetc"}$.
+  - Compare with $\text{"leeto"}$: Mismatch at position 4 (`'c'` vs `'o'`).
+- **Candidate $i = 1$:**
+  - Window: $\text{haystack}[1 \dots 6] = \text{"eetco"}$.
+  - Compare with $\text{"leeto"}$: Mismatch at position 0 (`'e'` vs `'l'`).
+- **Candidate $i = 2$:**
+  - Window: $\text{haystack}[2 \dots 7] = \text{"etcod"}$.
+  - Compare with $\text{"leeto"}$: Mismatch at position 0 (`'e'` vs `'l'`).
+- **Candidate $i = 3$:**
+  - Window: $\text{haystack}[3 \dots 8] = \text{"tcode"}$.
+  - Compare with $\text{"leeto"}$: Mismatch at position 0 (`'t'` vs `'l'`).
+- **Search Exhausted:** All legal start positions tested. Return $-1$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"haystack": "sadbutsad", "needle": "sad"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `0` | Verified |
+### Window Evaluation Table for $\text{"leetcode"}$ vs $\text{"leeto"}$
+
+| Candidate $i$ | Window Slice $\text{haystack}[i \dots i+M]$ | Target $\text{needle}$ | First Mismatch Offset | Match Status | Action |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `"leetc"` | `"leeto"` | Offset 4 (`'c'` $\ne$ `'o'`) | Mismatch | Advance to $i = 1$ |
+| 1 | `"eetco"` | `"leeto"` | Offset 0 (`'e'` $\ne$ `'l'`) | Mismatch | Advance to $i = 2$ |
+| 2 | `"etcod"` | `"leeto"` | Offset 0 (`'e'` $\ne$ `'l'`) | Mismatch | Advance to $i = 3$ |
+| 3 | `"tcode"` | `"leeto"` | Offset 0 (`'t'` $\ne$ `'l'`) | Mismatch | End of valid range reached |
+| Terminal | - | - | - | Exhausted | **Return $-1$** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** A returned index $i$ satisfies $\text{haystack}[i \dots i+M-1] == \text{needle}$ by explicit string comparison. Because the search evaluates candidate indices in strictly increasing order ($0, 1, 2, \dots$), the first match found is mathematically guaranteed to be the earliest occurrence.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** Any occurrence of $\text{needle}$ must start at some index between $0$ and $N - M$. Because the loop tests every integer $i \in [0, N - M]$, no valid starting window is skipped. If no match is found, returning $-1$ is correct.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **KMP prefix table:** Preprocess `needle` so a mismatch reuses the longest matching border instead of restarting. It guarantees $O(n+m)$ time and uses $O(m)$ extra space.
-- **Character-by-character naive windows:** Compare without creating slices. It still has $O(nm)$ worst-case time but uses $O(1)$ auxiliary space and can stop a candidate at its first mismatch.
-- **Rabin–Karp rolling hash:** Update a window hash in constant time and verify hash matches. It can be linear on average, but modular hashes require collision handling for deterministic correctness.
-- **Built-in `haystack.find(needle)`:** In production Python it is concise and highly optimized, but it hides the algorithm and is not the selected source being explained.
-- **Needle longer than haystack:** The computed range is empty, so `-1` is returned safely.
-- **Equal strings:** There is one candidate at index zero, and it matches.
-- **One-character needle:** Every slice has length one; the first equal character index is returned.
-- **Match at the last legal start:** The `+ 1` in the range includes index `n - m`.
-- **Overlapping matches:** Increasing start order and immediate return still select the earliest one.
-- **Repeated prefixes:** They can trigger the quadratic-style worst case because this method does not reuse earlier comparison work.
-- **Lowercase restriction:** The algorithm itself works for any Python string characters; the contract's lowercase alphabet needs no special handling.
-- **Strings are not mutated:** Slicing creates temporary strings, while both `haystack` and `needle` remain unchanged.
-- **Non-empty needle:** Guaranteed locally. For an out-of-contract empty pattern, the exact implementation returns zero.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-One on Search Bound:** In languages with half-open ranges like Python's `range(stop)`, using `range(N - M)` misses the final valid window at index $N - M$. The loop bound must be `range(N - M + 1)`.
+- **Needle Longer Than Haystack ($M > N$):** If $M > N$, $\text{needle}$ cannot appear in $\text{haystack}$. The upper bound $N - M + 1 \le 0$, yielding an empty range that safely returns $-1$ without error.
+- **Empty Needle:** If $\text{needle} = \text{""}$, standard conventions dictate returning $0$ because the empty string is trivially a prefix of any string at index $0$.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((n-m+1)$. Let $n=\lvert\texttt{haystack}\rvert$ and $m=\lvert\texttt{needle}\rvert$.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $O((N - M + 1) \cdot M)$. In the worst case (e.g. $\text{haystack} = \text{"aaaaa"}$, $\text{needle} = \text{"aab"}$), checking each of the $N - M + 1$ windows takes $O(M)$ character comparisons, resulting in $O(N \cdot M)$ worst-case time. In typical strings, mismatches occur within the first 1–2 characters, yielding $O(N)$ average runtime.
+- **Auxiliary Space Complexity:** $O(1)$. Slicing or index-based comparisons require no additional heap memory.

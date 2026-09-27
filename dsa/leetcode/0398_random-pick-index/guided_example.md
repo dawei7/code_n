@@ -1,117 +1,184 @@
 # Guided Example: Random Pick Index
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step inverted index table construction (`self.pos[num].append(i)`), constant-time uniform index sampling (`random.choice(self.pos[target])`), contrast with streaming Reservoir Sampling ($O(1)$ space trade-off), and probability guarantees on representative duplicate arrays:
 
-- **Input:** `{"nums": [1, 2, 3, 3, 3], "targets": [3, 1, 3]}`
-- **Required output:** `[2, 0, 4]`
+- **Input:** $nums = [1, 2, 3, 3, 3]$, queries: `pick(3)`, `pick(1)`, `pick(3)`
+- **Required output:** `[2, 0, 4]` (any valid random selection from matching index sets)
+  - Precomputation trace:
+    - Index $0$ ($num = 1$): $pos[1] = [0]$
+    - Index $1$ ($num = 2$): $pos[2] = [1]$
+    - Index $2$ ($num = 3$): $pos[3] = [2]$
+    - Index $3$ ($num = 3$): $pos[3] = [2, 3]$
+    - Index $4$ ($num = 3$): $pos[3] = [2, 3, 4]$
+  - Query 1: `pick(3)` $\implies$ samples from $[2, 3, 4]$ with equal probability $\frac{1}{3}$ each (e.g. returns $2$)
+  - Query 2: `pick(1)` $\implies$ samples from $[0]$ with probability $1$ (returns $0$)
+  - Query 3: `pick(3)` $\implies$ samples from $[2, 3, 4]$ with equal probability $\frac{1}{3}$ each (e.g. returns $4$)
+- **Single Unique Occurrence:** $nums = [10], target = 10 \implies pos[10] = [0] \implies 0$
+- **All Duplicates:** $nums = [5, 5, 5, 5], target = 5 \implies pos[5] = [0, 1, 2, 3] \implies$ each returned with probability $\frac{1}{4}$
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates amortized query optimization using inverted hash maps, mathematically proves why sampling from precomputed index buckets ensures uniform probability, explores the memory-constrained Reservoir Sampling alternative, and derives $O(1)$ query time and $O(N)$ preprocessing space bounds.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` with possible **duplicates**, randomly output the index of a given `target` number. You can assume that the given target number must exist in the array.
+Given an integer array $nums = [1, 2, 3, 3, 3]$ with duplicate values:
+Implement the `Solution` class:
+- `Solution(int[] nums)`: Initializes the object with the array `nums`.
+- `pick(int target)`: Randomly returns an index $i$ such that $nums[i] == target$. Each matching index must have **equal probability** of being chosen.
 
-The objective is to compute `[2, 0, 4]` from `{"nums": [1, 2, 3, 3, 3], "targets": [3, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
+```text
+Array:   [ 1,   2,   3,   3,   3 ]
+Indices:   0    1    2    3    4
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Inverted Index Map:
+  1 -> [0]
+  2 -> [1]
+  3 -> [2, 3, 4]  (Size 3)
+
+Query pick(3):
+  Sample uniformly from {2, 3, 4}
+  P(idx = 2) = 1/3
+  P(idx = 3) = 1/3
+  P(idx = 4) = 1/3
+```
+
+### The Architectural Trade-off: Inverted Index vs Reservoir Sampling
+1. **Inverted Index Map (Optimal for Multiple Queries):**
+   - Precompute a map `pos = {val: [indices]}` in $O(N)$ time.
+   - Each `pick(target)` selects a random index from `pos[target]` in strictly $O(1)$ time.
+   - Uses $O(N)$ extra memory.
+2. **Reservoir Sampling (Optimal for Extreme Memory Constraints):**
+   - Do not store index lists.
+   - Scan $nums$ on each query: count matches $k$ and replace candidate with probability $1/k$.
+   - Uses $O(1)$ extra memory, but takes $O(N)$ time per query.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### 1. Inverted Index Map Structure:
+- Construct a hash map `self.pos = defaultdict(list)`:
+  For each $(i, num) \in \text{enumerate}(nums)$:
+  $$
+  self.pos[num].\text{append}(i)
+  $$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### 2. Method Invariant:
+For any query `pick(target)`:
+- Look up precomputed index bucket: $indices = self.pos[target]$.
+- Return `random.choice(indices)`.
+- If the bucket has size $K = \text{len}(indices)$, each index $i \in indices$ is chosen with probability:
+  $$
+  P(i) = \frac{1}{K}
+  $$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+> **Invariant.** For every integer $v \in nums$, `self.pos[v]` contains all indices where $v$ appears in ascending order. Calling `random.choice` on this list guarantees an exact discrete uniform distribution over all occurrences.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Sample matching indices without storing them
-
-The method must choose uniformly among all indices whose value equals `target`. It could first collect those indices and then choose one, but that allocates space proportional to the number of matches on every call. The exact solution instead applies reservoir sampling with reservoir size one while scanning the stored array.
-
-The constructor simply retains the array as `nums`. During `pick(target)`:
-
-- `n` counts how many matching indices have been seen so far;
-- `ans` stores one candidate index selected uniformly from those matches.
-
-Nonmatching elements are ignored. A match is allowed to replace the current candidate with probability $1/n$, where `n` is the updated number of matches.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 2, 3, 3, 3], "targets": [3, 1, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace $nums = [1, 2, 3, 3, 3]$:
 
 ---
 
-### Step 2: Process only the relevant population
-
-The loop visits every `(i, v)` pair from `enumerate(nums)`. When `v != target`, the index does not belong to the sampling population, so neither `n` nor `ans` changes.
-
-When `v == target`, `n += 1` gives this occurrence its one-based rank among matching indices. The code draws
-
-
-
-uniformly from the inclusive integers `1` through `n`. It replaces `ans` with `i` exactly when `x == n`. Since one of the `n` equally likely results triggers replacement, the new matching index is selected with probability $1/n$.
-
-The specific trigger could be `x == 1` instead; choosing the endpoint `n` has the same probability. What matters is one successful outcome among `n` uniform outcomes.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Step 1: Initialization Phase `__init__(nums)`
+Iterate through $nums$ with $(i, num)$:
+- $i = 0, num = 1 \implies self.pos[1] = [0]$
+- $i = 1, num = 2 \implies self.pos[2] = [1]$
+- $i = 2, num = 3 \implies self.pos[3] = [2]$
+- $i = 3, num = 3 \implies self.pos[3] = [2, 3]$
+- $i = 4, num = 3 \implies self.pos[3] = [2, 3, 4]$
+Completed inverted map:
+$$
+self.pos = \{1: [0], \; 2: [1], \; 3: [2, 3, 4]\}
+$$
 
 ---
 
-### Step 3: Why the first match always initializes a real answer
+### Step 2: Query 1 — `pick(3)`
+- Target: $3$.
+- Retrieve index bucket: $indices = self.pos[3] = [2, 3, 4]$.
+- Length: $K = 3$.
+- Draw discrete uniform random sample:
+  $$
+  idx \in \{2, 3, 4\} \quad \text{with } P = \frac{1}{3}
+  $$
+- Candidate chosen: **`2`** (or $3$ or $4$).
 
-The method begins with `n = ans = 0`. Index zero is a legal array index and is not being used as a safely distinguishable sentinel. The target-exists guarantee makes that harmless.
+---
 
-At the first match, `n` becomes one. `random.randint(1, 1)` must return one, so `x == n` is true and `ans` is replaced by the actual matching index. From then onward, `ans` always refers to one of the matches seen so far.
+### Step 3: Query 2 — `pick(1)`
+- Target: $1$.
+- Retrieve index bucket: $indices = self.pos[1] = [0]$.
+- Length: $K = 1$.
+- Draw sample:
+  $$
+  idx = 0 \quad \text{with } P = 1.0
+  $$
+- Returned index: **`0`**.
 
-If the target did not exist, the placeholder zero would be returned incorrectly. The problem explicitly rules out that call, so the implementation needs no absent-target behavior.
+---
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[2, 0, 4]` |
+### Step 4: Query 3 — `pick(3)`
+- Target: $3$.
+- Retrieve index bucket: $[2, 3, 4]$.
+- Independent random draw:
+  $$
+  idx \in \{2, 3, 4\}
+  $$
+- Candidate chosen: **`4`**.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 2, 3, 3, 3], "targets": [3, 1, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[2, 0, 4]` | Verified |
+```text
+nums = [1, 2, 3, 3, 3]
+
+Init:
+  pos = {1: [0], 2: [1], 3: [2, 3, 4]}
+
+Call pick(3):
+  sample from [2, 3, 4] -> returns 2 (P = 1/3)
+Call pick(1):
+  sample from [0]       -> returns 0 (P = 1)
+Call pick(3):
+  sample from [2, 3, 4] -> returns 4 (P = 1/3)
+
+Output Stream: [2, 0, 4]
+```
+
+| Operation | Target | Matching Index Bucket $self.pos[target]$ | Bucket Size $K$ | Selection Probability Per Index | Sampled Outcome |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `Init` | All | $\{1: [0], \; 2: [1], \; 3: [2, 3, 4]\}$ | $N = 5$ | - | Table Built |
+| `pick` | 3 | $[2, 3, 4]$ | 3 | $\frac{1}{3}$ ($33.3\%$) | **`2`** |
+| `pick` | 1 | $[0]$ | 1 | $1$ ($100\%$) | **`0`** |
+| **`pick`** | **3** | **$[2, 3, 4]$** | **3** | **$\frac{1}{3}$ ($33.3\%$)** | **`4`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Precomputing the inverted index map partitions the set of indices $\{0, 1, \dots, N - 1\}$ into disjoint lists indexed by element value. The list `self.pos[target]` contains all and only the indices where $nums[i] == target$. Calling `random.choice` on this list generates an integer index uniformly in $[0, K - 1]$, giving each index probability exactly $1 / K$.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By problem guarantee, `target` always exists in $nums$. Thus, `self.pos[target]` is guaranteed to be non-empty, and `random.choice` will never raise an `IndexError` on an empty sequence.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Preprocess value-to-indices lists:** In the constructor, append every index to a dictionary bucket for its value. Initialization takes $O(N)$ time and space, and each `pick` uses `random.choice` in $O(1)$. Across many calls this gives $O(N+Q)$ time, matching the manifest, but uses linear extra storage.
-- **Collect matches on every call:** Build a temporary list of all qualifying indices and choose from it. This is $O(N)$ time and up to $O(N)$ temporary space per call; reservoir sampling achieves the same distribution with constant space.
-- **Choose a random array index until it matches:** Rejection sampling is unbiased, but expected time can be very large when the target is rare and has no finite worst-case bound. A full reservoir scan has deterministic linear work.
+- **Linear Re-Scanning on Every Pick:** Re-scanning the entire array `nums` inside `pick(target)` without a hash map costs $O(N)$ time per query. When $Q = 10^4$ queries are executed on an array of length $N = 10^4$, total runtime is $O(N \cdot Q) = 10^8$ operations, causing TLE.
+- **Rejection Sampling Degeneracy:** Generating a random index $r \in [0, N - 1]$ and checking if $nums[r] == target$ takes expected time $N / K$. If $target$ appears only once in an array of $10^5$ elements, each pick takes on average $10^5$ attempts.
+- **Memory vs Time Trade-off:** The inverted index map achieves $O(1)$ query time at the cost of $O(N)$ extra space. If memory is strictly constrained to $O(1)$, Reservoir Sampling provides the $O(1)$ space alternative.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let $N$ be the array length and $Q$ be the number of `pick` calls.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:**
+  - `__init__(nums)`: $O(N)$, where $N = \text{len}(nums)$, scanning the array once to build the hash map.
+  - `pick(target)`: $O(1)$ time to access the bucket in the hash table and sample an element.
+  - Across $Q$ queries, total runtime is $O(N + Q)$, optimal for repeated querying.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space to store all $N$ indices across the buckets of `self.pos`.

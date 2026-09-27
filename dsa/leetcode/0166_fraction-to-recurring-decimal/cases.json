@@ -32,9 +32,23 @@
       ]
     },
     {
+      "id": "sample-2",
+      "name": "sample: example 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "numerator": 2,
+        "denominator": 1
+      },
+      "expected": "2",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
       "id": "trial-leading-cycle-zero",
       "name": "cycle begins with zero",
-      "kind": "trial",
+      "kind": "sample",
       "visible": true,
       "input": {
         "numerator": 4,
@@ -42,6 +56,7 @@
       },
       "expected": "0.(012)",
       "tags": [
+        "sample",
         "cycle"
       ]
     },

@@ -1,121 +1,160 @@
 # Guided Example: Three Divisors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We formulate and execute the number-theoretic prime-square classification algorithm on representative integers to determine whether a number has exactly three distinct positive divisors.
 
-- **Input:** `{"n": 10000}`
-- **Required output:** `false`
-
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-Given an integer `n`, return `true`* if *`n`* has **exactly three positive divisors**. Otherwise, return *`false`.
-
-The objective is to compute `false` from `{"n": 10000}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- **Primary Instance:** $n = 9$ (Expected Output: `true`)
+- **Counter-Instance A (Composite Square):** $n = 16$ (Expected Output: `false`)
+- **Counter-Instance B (Prime):** $n = 7$ (Expected Output: `false`)
+- **Counter-Instance C (Non-Square Composite):** $n = 12$ (Expected Output: `false`)
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 1. Instance & Intuition
 
-We maintain the core conceptual parameters and state variables:
+The positive divisors of an integer $n \ge 1$ are all positive integers $d$ that divide $n$ without remainder ($n \bmod d = 0$). Divisors always appear in complementary pairs $(d, n/d)$:
+- If $d < \sqrt{n}$, then $n/d > \sqrt{n}$.
+- If $n$ is not a perfect square, all divisors pair up into distinct 2-element sets $\{d, n/d\}$, which means the total number of divisors $d(n)$ is strictly even.
+- If $n$ is a perfect square, exactly one divisor satisfies $d = n/d = \sqrt{n}$, producing an odd divisor count.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+For $n$ to possess **exactly three** divisors, two conditions are immediate:
+1. The divisor count $3$ is odd, so $n$ **must** be a perfect square: $n = m^2$ for some integer $m > 1$.
+2. The divisors must be $\{1, m, n\}$. If the base $m$ were composite, $m$ would have its own non-trivial factor $k \notin \{1, m\}$, and $k$ would divide $n$, introducing at least a fourth divisor $k$ and a fifth divisor $n/k$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count divisors strictly between one and $n$
-
-For every integer $n>1$, both one and $n$ are positive divisors. Therefore $n$ has exactly three positive divisors precisely when there is exactly one additional divisor in the range from two through $n-1$.
-
-The exact solution tests every integer in that range:
-
-`n % i == 0 for i in range(2, n)`.
-
-The remainder is zero exactly when `i` divides `n`. Each comparison produces a Boolean, and Python sums `true` as one and `false` as zero. The resulting sum is the number of proper positive divisors other than one. Comparing it with one directly implements the criterion above.
-
-For $n=4$, the only candidate that divides it is two. The sum is one, so the method returns true. For $n=8$, both two and four divide it. The sum is two, so it returns false. For prime $n=7$, no candidate divides it and the sum is zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 10000}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Thus, $n$ has exactly three positive divisors if and only if $n = p^2$ where $p$ is a prime number.
 
 ---
 
-### Step 2: Why excluding the endpoints is correct
+## 2. Number-Theoretic Characterization & Invariants
 
-Starting at two deliberately excludes divisor one, and the half-open `range(2, n)` deliberately excludes $n$. Those two divisors are automatic for every $n>1$ and would contribute the same baseline to almost every input. Counting only the possible middle divisors makes the final comparison simple.
+Let $n \ge 2$ have prime factorization:
+$$n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$$
 
-$n=1$ is a special mathematical boundary because one and $n$ are the same divisor rather than two distinct divisors. The candidate range is empty, its sum is zero, and the method correctly returns false because one has only one positive divisor.
+The arithmetic divisor function $\tau(n)$ (or $d(n)$) counts the total number of positive divisors:
+$$\tau(n) = \prod_{i=1}^k (a_i + 1) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+### Classification Theorem
 
----
+We equate $\tau(n) = 3$:
+$$\prod_{i=1}^k (a_i + 1) = 3$$
 
-### Step 3: Connection to squares of primes
+Because $3$ is a prime number, the integer 3 cannot be factored into two or more integers strictly greater than 1. Consequently:
+1. $k = 1$ (the factorization consists of exactly one distinct prime factor).
+2. $a_1 + 1 = 3 \implies a_1 = 2$.
 
-An integer has exactly three divisors if and only if it is the square of a prime. Divisors normally pair as $d$ and $n/d$. To have an odd number of divisors, one pair must collapse at $\sqrt n$, so $n$ must be a perfect square. If $n=p^2$ and $p$ is prime, the divisors are exactly $1,p,p^2$. If the square root were composite, additional factor divisors would exist.
+Therefore:
+$$\tau(n) = 3 \iff n = p^2 \quad \text{where } p \text{ is prime.}$$
 
-The concrete source does not use this theorem. It reaches the same answer by explicit divisor counting, which is simpler but slower. The approach document must distinguish the implemented enumeration from a more optimized prime-square test.
+```mermaid
+flowchart TD
+    accTitle: Three Divisor Decision Tree
+    accDescr: Decision tree evaluating whether an integer is greater than 3, a perfect square, and whether its root is prime.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10000}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+    START["Input integer n"] --> C1{"n >= 4?"}
+    C1 -- No --> F1["Return false (divisors <= 2)"]
+    C1 -- Yes --> C2{"Is n a perfect square?<br/>m = floor(sqrt(n)), m*m == n"}
+    
+    C2 -- No --> F2["Return false (even number of divisors)"]
+    C2 -- Yes --> C3{"Is root m prime?<br/>Check trial division up to sqrt(m)"}
+    
+    C3 -- No --> F3["Return false (m has factors, tau(n) >= 5)"]
+    C3 -- Yes --> T["Return true (divisors are 1, p, p^2)"]
+```
 
 ---
 
-## 6. Traps This Instance Exposes
+## 3. Step-by-Step Factorization and Primality Verification
 
-- **Prime-square theorem:** Compute the integer square root, require its square to equal $n$, and test that root for primality up to its square root. This takes $O(\sqrt[4]{n})$ trial divisions and matches the manifest's intended bound.
-- **Count divisors only to $\sqrt n$:** Add divisor pairs, treating a square-root divisor once. This improves time to $O(\sqrt n)$ while remaining straightforward.
-- **Early exit enumeration:** Stop as soon as two internal divisors are found. It improves many inputs in practice but remains $O(n)$ in the worst case.
-- **$n=1$:** The empty candidate range sums to zero, so the answer is false.
-- **Prime number:** It has only one and itself, giving no internal divisor and false.
-- **Square of a prime:** Its prime root is the only internal divisor, giving true.
-- **Square of a composite:** It has additional factor divisors and returns false.
-- **Non-square composite:** Proper divisors occur in distinct complementary pairs, so there cannot be exactly one.
-- **Boolean summation:** Python's numeric Boolean behavior makes the generator a divisor counter, not merely an existence test.
-- **Upper constraint:** At $n=10^4$, the loop performs just under ten thousand modulo tests, which is practical even though it is asymptotically linear.
-- **Exactly three, not at most three:** Both zero and two internal divisors return false; equality with one enforces the precise requirement.
-- **No short-circuit:** `sum` examines the entire range even when the final answer is already known to be false.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+We evaluate our four representative test candidates through the two-phase validation pipeline:
+- **Phase 1:** Exact Integer Square Root Verification.
+- **Phase 2:** Primality Test on the Integer Square Root.
+
+### Evaluation of $n = 9$
+
+1. **Phase 1 (Square Root):**
+   - Compute $m = \lfloor\sqrt{9}\rfloor = 3$.
+   - Check $m^2 = 3^2 = 9 == 9$. Condition passes.
+2. **Phase 2 (Primality of Root $m = 3$):**
+   - $m > 1$ holds.
+   - Trial divisors up to $\lfloor\sqrt{3}\rfloor = 1$: no divisors in range $[2, 1]$.
+   - $3$ is prime.
+3. **Conclusion:** Divisors of 9 are $\{1, 3, 9\}$, count $= 3$. Emits `true`.
+
+### Evaluation of $n = 16$
+
+1. **Phase 1 (Square Root):**
+   - Compute $m = \lfloor\sqrt{16}\rfloor = 4$.
+   - Check $m^2 = 4^2 = 16 == 16$. Condition passes.
+2. **Phase 2 (Primality of Root $m = 4$):**
+   - $m = 4$ is divisible by $2 \implies 4$ is composite.
+3. **Conclusion:** Divisors of 16 are $\{1, 2, 4, 8, 16\}$, count $= 5 \ne 3$. Emits `false`.
+
+### Evaluation of $n = 12$
+
+1. **Phase 1 (Square Root):**
+   - Compute $m = \lfloor\sqrt{12}\rfloor = 3$.
+   - Check $m^2 = 3^2 = 9 \neq 12$. Condition fails.
+2. **Conclusion:** Not a perfect square. Divisor count must be even ($\tau(12) = 6$). Emits `false`.
+
+### Evaluation of $n = 7$
+
+1. **Phase 1 (Square Root):**
+   - Compute $m = \lfloor\sqrt{7}\rfloor = 2$.
+   - Check $m^2 = 2^2 = 4 \neq 7$. Condition fails.
+2. **Conclusion:** Prime number. Divisors are $\{1, 7\}$, count $= 2 \ne 3$. Emits `false`.
 
 ---
 
-## 7. Complexity Derivation
+## 4. Comparative Execution Trace Table
 
-- **Time Complexity:** $O(n)$. The generator tests $n-2$ candidate integers when $n\ge2$. Each modulo and comparison is constant time in the standard bounded-integer model, so the exact running time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The table below contrasts integers across distinct arithmetic structures:
+
+| Candidate $n$ | Perfect Square Check $\lfloor\sqrt{n}\rfloor^2 == n$ | Base $m = \sqrt{n}$ | Prime Factorization of $n$ | Full Set of Divisors | Divisor Count $\tau(n)$ | Result |
+|---|---|---|---|---|---|---|
+| 1 | $1^2 = 1$ (Pass) | 1 | $1$ (Unit) | $\{1\}$ | 1 | `false` |
+| 2 | $1^2 \ne 2$ (Fail) | 1 | $2^1$ | $\{1, 2\}$ | 2 | `false` |
+| 4 | $2^2 = 4$ (Pass) | 2 (Prime) | $2^2$ | $\{1, 2, 4\}$ | 3 | `true` |
+| 7 | $2^2 \ne 7$ (Fail) | 2 | $7^1$ | $\{1, 7\}$ | 2 | `false` |
+| 9 | $3^2 = 9$ (Pass) | 3 (Prime) | $3^2$ | $\{1, 3, 9\}$ | 3 | `true` |
+| 12 | $3^2 \ne 12$ (Fail) | 3 | $2^2 \cdot 3^1$ | $\{1, 2, 3, 4, 6, 12\}$ | 6 | `false` |
+| 16 | $4^2 = 16$ (Pass) | 4 (Composite) | $2^4$ | $\{1, 2, 4, 8, 16\}$ | 5 | `false` |
+| 25 | $5^2 = 25$ (Pass) | 5 (Prime) | $5^2$ | $\{1, 5, 25\}$ | 3 | `true` |
+| 49 | $7^2 = 49$ (Pass) | 7 (Prime) | $7^2$ | $\{1, 7, 49\}$ | 3 | `true` |
+
+### Primality Sweep for Base $m$
+
+| Base $m$ | Trial Divisor Range $[2, \lfloor\sqrt{m}\rfloor]$ | Factors Detected | Primality Status | Square $n = m^2$ Status |
+|---|---|---|---|---|
+| 2 | Empty range | None | Prime | $n = 4$ has 3 divisors |
+| 3 | Empty range | None | Prime | $n = 9$ has 3 divisors |
+| 4 | $[2, 2]$ | 2 divides 4 | Composite | $n = 16$ has 5 divisors |
+| 5 | $[2, 2]$ | None | Prime | $n = 25$ has 3 divisors |
+| 6 | $[2, 2]$ | 2 divides 6 | Composite | $n = 36$ has 9 divisors |
+| 7 | $[2, 2]$ | None | Prime | $n = 49$ has 3 divisors |
+
+---
+
+## 5. Algorithmic Correctness & Soundness
+
+**Soundness.** Suppose the algorithm returns `true` for integer $n$. This occurs if and only if $n = m^2$ and $m$ is prime. Let $p = m$. The divisors of $p^2$ are generated by $p^j$ for $j \in \{0, 1, 2\}$, which are precisely $1, p,$ and $p^2$. Because $p$ is prime, $p > 1$, and $1 < p < p^2$, so these three integers are pairwise distinct. No other integer $d$ can divide $p^2$ because by unique prime factorization, any divisor must be of the form $p^j$. Hence $\tau(n) = 3$ holds strictly.
+
+**Completeness.** Suppose $\tau(n) = 3$. Let $n = \prod_{i=1}^k p_i^{a_i}$ be its prime factorization. Then $\prod_{i=1}^k (a_i + 1) = 3$. Because 3 is prime and $a_i \ge 1$ for all prime factors, there cannot be multiple factors ($k = 1$), and the single exponent must satisfy $a_1 + 1 = 3 \implies a_1 = 2$. Thus $n = p_1^2$ for some prime $p_1$. The algorithm tests whether $n$ is a square and whether its root is prime, so it will unfailingly return `true`.
+
+---
+
+## 6. Edge Cases & Traps
+
+- **The Boundary Case $n = 1$:** $1$ is a perfect square ($1^2 = 1$), but its root $m = 1$ is neither prime nor composite. The divisors of 1 are solely $\{1\}$ (count $= 1 \ne 3$). The condition $m > 1$ correctly rejects $n = 1$.
+- **Floating-Point Precision:** Computing $\sqrt{n}$ via floating-point functions can suffer from precision rounding (e.g. producing $2.9999999999$ instead of $3$). Truncating and explicitly verifying $m \times m == n$ in exact integer arithmetic prevents false positives and negatives.
+- **Direct Enumeration vs. Number Theory:** Directly running a loop from $1$ to $n$ and counting divisors takes $\mathcal{O}(n)$ time, while trial division up to $\sqrt{n}$ takes $\mathcal{O}(\sqrt{n})$. The prime-square property reduces verification to $\mathcal{O}(n^{1/4})$, which is instantaneous even for large integers.
+
+---
+
+## 7. Complexity Analysis
+
+- **Time Complexity:**
+  - Integer square root: $\mathcal{O}(1)$ or $\mathcal{O}(\log(\log n))$ via Newton's method.
+  - Primality testing on $m = \sqrt{n}$: trial division checks integers $d \in [2, \sqrt{m}]$.
+  - Since $m = \sqrt{n}$, $\sqrt{m} = n^{1/4}$.
+  - The maximum number of trial divisions for $n \le 10^4$ is $\lfloor(10^4)^{1/4}\rfloor = 10$, requiring at most 4 prime checks ($2, 3, 5, 7$).
+  - Overall time complexity is $\mathcal{O}(n^{1/4})$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(1)$ since all computations operate in place with a constant number of register variables.

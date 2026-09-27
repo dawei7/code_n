@@ -1,122 +1,169 @@
 # Guided Example: Generate the Invoice
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Overview & Representative Instance
 
-- **Input:** `{"tables": {"Products": [{"product_id": 1, "price": 100}, {"product_id": 2, "price": 200}], "Purchases": [{"invoice_id": 1, "product_id": 1, "quantity": 2}, {"invoice_id": 3, "product_id": 2, "quantity": 1}, {"invoice_id": 2, "product_id": 2, "quantity": 3}, {"invoice_id": 2, "product_id": 1, "quantity": 4}, {"invoice_id": 4, "product_id": 1, "quantity": 10}]}}`
-- **Required output:** `{"columns": ["product_id", "quantity", "price"], "rows": [[1, 4, 400], [2, 3, 600]]}`
+We are given two relational database tables, `Products` and `Purchases`:
+- `Products` defines catalog pricing with columns `product_id` and unit `price`.
+- `Purchases` records customer transactions with columns `invoice_id`, `product_id`, and purchased `quantity`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Each invoice consists of one or more purchased line items. The total spending for an invoice is the sum of `quantity * price` across all products purchased in that invoice. We must identify the invoice with the **highest total spending**. If there is a tie between multiple invoices with the same maximum total spending, we select the invoice with the strictly **smallest** `invoice_id`.
 
----
+Once this winning invoice is determined, we must return its itemized line items: `product_id`, `quantity`, and `price` (where `price` represents the total line item cost: $\text{quantity} \times \text{unit\_price}$).
 
-## 1. Instance & Teaching Goal
+Consider the representative instance:
+- `Products`:
+  - Product 1: unit price $100$
+  - Product 2: unit price $200$
+- `Purchases`:
+  - Invoice 1: Product 1, quantity $2 \implies$ line cost $2 \times 100 = 200$
+  - Invoice 3: Product 2, quantity $1 \implies$ line cost $1 \times 200 = 200$
+  - Invoice 2:
+    - Product 2, quantity $3 \implies 3 \times 200 = 600$
+    - Product 1, quantity $4 \implies 4 \times 100 = 400$
+    - Invoice 2 total: $600 + 400 = 1000$
+  - Invoice 4: Product 1, quantity $10 \implies 10 \times 100 = 1000$
 
-Table: `Products`
+Comparing invoice totals:
+- Invoices 2 and 4 tie for the maximum spending of $1000$.
+- Breaking the tie: Invoice $2$ has a smaller identifier than Invoice $4$ ($2 < 4$).
+- The selected invoice is Invoice $2$.
 
-The objective is to compute `{"columns": ["product_id", "quantity", "price"], "rows": [[1, 4, 400], [2, 3, 600]]}` from `{"tables": {"Products": [{"product_id": 1, "price": 100}, {"product_id": 2, "price": 200}], "Purchases": [{"invoice_id": 1, "product_id": 1, "quantity": 2}, {"invoice_id": 3, "product_id": 2, "quantity": 1}, {"invoice_id": 2, "product_id": 2, "quantity": 3}, {"invoice_id": 2, "product_id": 1, "quantity": 4}, {"invoice_id": 4, "product_id": 1, "quantity": 10}]}}` while avoiding redundant calculations and unnecessary overhead.
+The itemized line items for Invoice 2 are:
+- Product 1: quantity $4$, line price $400$
+- Product 2: quantity $3$, line price $600$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+```mermaid
+flowchart TD
+    accTitle: Two-Tier Invoice Spending Aggregation and Line Filtering
+    accDescr: Joining purchases with catalog prices, aggregating total spending per invoice, selecting the argmax with tie-breaking, and projecting line items.
+    Purchases["Purchases Table<br/>(invoice, product, qty)"] --> Join["INNER JOIN on product_id"]
+    Products["Products Table<br/>(product, unit price)"] --> Join
+    Join --> Extended["Compute Extended Cost:<br/>qty * unit price"]
+    Extended --> GroupInv["GROUP BY invoice_id<br/>Sum spending per invoice"]
+    GroupInv --> InvTotals["Invoice Totals:<br/>Inv 1: 200<br/>Inv 3: 200<br/>Inv 2: 1000<br/>Inv 4: 1000"]
+    InvTotals --> Best["ORDER BY amount DESC, invoice_id ASC<br/>LIMIT 1 -> Chosen: Inv 2"]
+    Best --> Filter["Filter Line Items for Invoice 2"]
+    Extended --> Filter
+    Filter --> Out["Result Output:<br/>(Prod 1, Qty 4, Price 400)<br/>(Prod 2, Qty 3, Price 600)"]
+```
 
----
+## 2. Mathematical & Algorithmic Principles
 
-## 2. Conceptual Foundation & Invariants
+Let relation $\mathcal{R}_{\text{prod}}$ represent `Products` and $\mathcal{R}_{\text{purch}}$ represent `Purchases`.
 
-We maintain the core conceptual parameters and state variables:
+### Relational Extension and Aggregation
+First, join purchase records with catalog prices along the foreign key `product_id`:
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+$$\mathcal{L} = \mathcal{R}_{\text{purch}} \bowtie_{\text{product\_id}} \mathcal{R}_{\text{prod}}$$
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Each resulting line item tuple $\tau = (\text{inv}, \text{prod}, q, p) \in \mathcal{L}$ possesses an extended monetary cost:
 
----
+$$\text{line\_cost}(\tau) = q \times p$$
 
-## 3. Step-by-Step Worked Execution
+The total expenditure for an invoice $k$ is obtained by summing across its constituent lines:
 
-### Step 1: Separate invoice selection from line-item output
+$$E(k) = \sum_{\tau \in \mathcal{L}, \tau.\text{inv} = k} \text{line\_cost}(\tau)$$
 
-The requested result is not one summary row. It is every purchased product line belonging to the winning invoice, with each line's extended price. Before those lines can be returned, the query must determine which invoice has the largest *total* value. The solution uses two common table expressions to separate these stages:
+### Deterministic Argmax with Lexicographical Tie-Breaking
+The winning invoice identifier $k^*$ is selected by maximizing total expenditure $E(k)$ and minimizing the identifier $k$ in case of ties:
 
-- `P` enriches every purchase line with its product's unit price.
-- `T` aggregates those enriched lines, orders invoice totals according to the rules, and keeps the single winning invoice.
+$$k^* = \arg\max_{k} \left( E(k), \; -k \right)$$
 
-The final query joins the winner back to `P` to recover all of its detail rows.
+This represents ordering the distinct invoice summaries by:
+1. Primary key: $E(k)$ descending.
+2. Secondary key: $k$ ascending.
+3. Extracting the top single element ($\text{LIMIT } 1$).
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+### Itemized Projection
+Once $k^*$ is isolated, the final query performs a relational equi-join filter matching all original line items belonging to $k^*$:
+
+$$\text{Result} = \pi_{\text{prod}, \; q, \; q \times p} \left( \sigma_{\text{inv} = k^*}(\mathcal{L}) \right)$$
+
+| Pipeline Stage | Relational Operator | Input Relations | Output Dimension |
 |---|---|---|---|
-| Input Slice | `{"tables": {"Products": [{"product_id": 1, "price": 100}, {"product_id": 2, "price": 200}], "Purchases": [{"invoice_id": 1, "product_id": 1, "quantity": 2}, {"invoice_id": 3, "product_id": 2, "quantity": 1}, {"invoice_id": 2, "product_id": 2, "quantity": 3}, {"invoice_id": 2, "product_id": 1, "quantity": 4}, {"invoice_id": 4, "product_id": 1, "quantity": 10}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Price Resolution | Natural Inner Equi-Join | `Purchases` $\bowtie$ `Products` | Line items with unit price |
+| Invoice Spending | Grouped Sum Aggregation | Extended line items $\mathcal{L}$ | $(k, E(k))$ per invoice |
+| Target Selection | Ordered Projection with Limit | Summaries $(k, E(k))$ | Scalar winner $k^*$ |
+| Final Invoice Render | Equi-Join Filter & Projection | $\mathcal{L} \bowtie \{k^*\}$ | Line item report for $k^*$ |
 
----
+## 3. Step-by-Step Walkthrough with Intermediate State
 
-### Step 2: Enrich each purchase with its unit price
+Let us trace the representative instance across both tables.
 
-`Purchases` contains `invoice_id`, `product_id`, and `quantity`, but the unit `price` lives in `Products`. The first CTE performs:
+### Phase 1: Equi-Join Line Items
+Compute extended line cost $q \times p$ for each transaction record:
+- Row 1: Invoice 1, Product 1, Qty 2, Unit Price 100 $\implies 2 \times 100 = 200$.
+- Row 2: Invoice 3, Product 2, Qty 1, Unit Price 200 $\implies 1 \times 200 = 200$.
+- Row 3: Invoice 2, Product 2, Qty 3, Unit Price 200 $\implies 3 \times 200 = 600$.
+- Row 4: Invoice 2, Product 1, Qty 4, Unit Price 100 $\implies 4 \times 100 = 400$.
+- Row 5: Invoice 4, Product 1, Qty 10, Unit Price 100 $\implies 10 \times 100 = 1000$.
 
+### Phase 2: Grouped Aggregation by Invoice ID
+Sum line costs per `invoice_id`:
+- **Invoice 1:** Total $= 200$.
+- **Invoice 3:** Total $= 200$.
+- **Invoice 2:** Total $= 600 + 400 = 1000$.
+- **Invoice 4:** Total $= 1000$.
 
+### Phase 3: Rank and Tie-Break
+Sort invoices by total spending descending, then by `invoice_id` ascending:
+1. Invoice 2: Amount $1000$, ID $2$ (Precedes Invoice 4 because $2 < 4$)
+2. Invoice 4: Amount $1000$, ID $4$
+3. Invoice 1: Amount $200$, ID $1$
+4. Invoice 3: Amount $200$, ID $3$
 
-An inner join is appropriate because each purchase line refers to a product whose price is required. `USING (product_id)` matches equal identifiers and exposes one shared `product_id` column rather than two separately qualified copies.
+The top-ranked invoice is Invoice $2$.
 
-After this join, every logical row in `P` has the invoice, product, quantity, and unit price needed for both total calculation and final output. The name `P` is local to the SQL query; it should not be confused with a complexity variable.
+### Phase 4: Output Line Items for Chosen Invoice
+Filter the joined line items from Phase 1 where `invoice_id = 2`:
+- Product 1: Quantity $4$, Extended Price $400$.
+- Product 2: Quantity $3$, Extended Price $600$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Both items are output.
 
----
+## 4. Comprehensive State Trace
 
-### Step 3: Compute one total per invoice
+The evaluation of each purchase record and the resulting invoice aggregate ranking are captured below.
 
-For one purchase row, `price * quantity` is the total price of that product line. Summing this product over all rows sharing an invoice gives that invoice's full amount:
+| Invoice ID | Product ID | Quantity | Unit Price | Extended Line Cost | Invoice Total | Tie-Break Rank |
+|---|---|---|---|---|---|---|
+| $1$ | $1$ | $2$ | $100$ | $200$ | $200$ | $3$ |
+| $3$ | $2$ | $1$ | $200$ | $200$ | $200$ | $4$ |
+| $2$ | $2$ | $3$ | $200$ | $600$ | $1000$ | **1 (Winner)** |
+| $2$ | $1$ | $4$ | $100$ | $400$ | $1000$ | **1 (Winner)** |
+| $4$ | $1$ | $10$ | $100$ | $1000$ | $1000$ | $2$ |
 
+Chosen invoice is $2$.
+Final projected rows:
+- `(1, 4, 400)`
+- `(2, 3, 600)`
 
+## 5. Algorithmic Correctness & Soundness
 
-Grouping only by `invoice_id` is correct because the goal at this stage is one total per invoice, not one total per product. The source table's primary key `(invoice_id, product_id)` guarantees at most one line for a particular product within an invoice, though the sum would remain correct even if lines were repeated.
+1. **Multi-Item Line Aggregation:**
+   Invoices can contain multiple distinct products. The grouped summation correctly computes total invoice value by summing across all products on that invoice, preventing single-line dominance biases.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["product_id", "quantity", "price"], "rows": [[1, 4, 400], [2, 3, 600]]}` |
+2. **Deterministic Tie-Breaking:**
+   Sorting primarily by `amount DESC` and secondarily by `invoice_id ASC` guarantees that when two or more invoices achieve the exact same highest total, the one with the smallest numeric identifier is uniquely and deterministically selected.
 
----
+3. **Output Schema Compliance:**
+   The output `price` column is required to represent the extended line item price ($\text{quantity} \times \text{unit\_price}$), rather than the catalog unit price. Computing $q \times p$ fulfills this schema definition.
 
-## 4. Complete Execution Trace
+## 6. Edge Cases & Anti-Patterns
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"Products": [{"product_id": 1, "price": 100}, {"product_id": 2, "price": 200}], "Purchases": [{"invoice_id": 1, "product_id": 1, "quantity": 2}, {"invoice_id": 3, "product_id": 2, "quantity": 1}, {"invoice_id": 2, "product_id": 2, "quantity": 3}, {"invoice_id": 2, "product_id": 1, "quantity": 4}, {"invoice_id": 4, "product_id": 1, "quantity": 10}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["product_id", "quantity", "price"], "rows": [[1, 4, 400], [2, 3, 600]]}` | Verified |
+- **Single Invoice in Database:**
+  - That invoice is unconditionally the winner, regardless of its spending amount.
+- **Multiple Products with Zero Quantities:**
+  - Quantities are positive in standard business domains, but if a product has zero cost or zero quantity, the math holds without division issues.
+- **Anti-Pattern (Joining Back Without Invoice Scoping):**
+  - Projecting products with the highest overall unit price rather than identifying the invoice with highest total expenditure confuses product-level value with invoice-level value. Aggregation must happen at the `invoice_id` level first.
 
----
+## 7. Complexity Analysis
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Window functions:** Compute invoice totals with a window sum and rank invoices, then filter the winning rank. This can be correct but may repeat totals on every detail row and requires careful tie ordering.
-- **Correlated subqueries:** Recomputing totals while filtering individual lines is usually harder to read and may repeat aggregation work.
-- **`MAX(amount)` alone:** It identifies the highest total but does not select the smallest `invoice_id` among ties without additional logic.
-- **Tie between invoices:** `ORDER BY amount DESC, invoice_id` guarantees that the smallest identifier wins.
-- **One invoice only:** Its aggregate row is first automatically, and all its detail lines are returned.
-- **One product line in the winner:** The invoice total and returned line price are the same `quantity * price` value.
-- **Products absent from purchases:** The inner join contributes no rows for them, which is correct because they belong to no invoice.
-- **Output ordering:** The final rows are intentionally unordered because any order is accepted.
-- **Unit versus extended price:** The source `Products.price` is per unit; the returned `price` is multiplied by `quantity` for that invoice line.
-- **Positional ordering references:** `2` means `amount` and `1` means `invoice_id` within CTE `T`; they are not numeric constants used to rank every row equally.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N_P+N_R)$. Let $N_P$ be the number of rows in `Products` and $N_R$ the number of rows in `Purchases`. The variant manifest states $O((N_P+N_R)\log(N_P+N_R))$ time and $O(N_P+N_R)$ space.
-- **Auxiliary Space Complexity:** $O(P+R)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(P \log P + K \log K)$, where $P$ is the number of rows in `Purchases` and $K$ is the number of distinct invoices ($K \le P$).
+  - Joining $P$ purchase rows with the catalog takes $\mathcal{O}(P)$ average time using hash join.
+  - Grouping and summing takes $\mathcal{O}(P)$ time.
+  - Sorting the $K$ invoice totals to find the top invoice takes $\mathcal{O}(K \log K)$ time (or $\mathcal{O}(K)$ via single-pass linear argmax).
+  - Filtering and formatting the winner's line items takes $\mathcal{O}(L)$ time, where $L$ is the number of lines on that invoice.
+  - Overall time complexity is linearithmic $\mathcal{O}(P \log P)$.
+- **Space Complexity:** $\mathcal{O}(P)$ auxiliary memory to maintain the intermediate joined relations and grouped hash tables.

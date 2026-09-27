@@ -1,107 +1,174 @@
 # Guided Example: Remove All Occurrences of a Substring
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace character stream accumulation, stack suffix contraction, and boundary coalescence on representative string elimination instances:
 
-- **Input:** `{"s": "daabcbaabcbc", "part": "abc"}`
-- **Required output:** `"dab"`
+- **Input:** `s = "daabcbaabcbc"`, `part = "abc"`
+- **Required Output:** `"dab"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance demonstrates modeling repeated leftmost substring deletion via a character stack, checking the suffix of length $m = |part|$ upon every character push, instantly collapsing newly formed occurrences at spliced boundaries, and obtaining the irreducible string in $\mathcal{O}(n \cdot m)$ time.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `s` and `part`, perform the following operation on `s` until **all** occurrences of the substring `part` are removed:
+Given two strings `s` and `part`, we must repeatedly remove the **leftmost** occurrence of the substring `part` until no occurrence of `part` exists in `s`.
 
-The objective is to compute `"dab"` from `{"s": "daabcbaabcbc", "part": "abc"}` while avoiding redundant calculations and unnecessary overhead.
+For `s = "daabcbaabcbc"` and `part = "abc"` ($m = 3$):
+- Naively searching and re-splicing the string from scratch after every deletion incurs $\mathcal{O}(n^2)$ copying overhead.
+- Instead, maintain a stack of characters. As characters from `s` are pushed one by one:
+  - Whenever the stack size is at least $m$, inspect the top $m$ characters.
+  - If the top $m$ characters match `part`, pop all $m$ characters.
+  - Popping brings the characters preceding the removed instance directly adjacent to the characters following it, allowing newly spliced occurrences to be detected immediately.
+- Pushing characters sequentially through `s` collapses three successive instances of `"abc"`:
+  1. Characters up to index 4 form `"daabc"`; suffix `"abc"` collapses, leaving `"da"`.
+  2. Subsequent pushes form `"dabaabc"`; suffix `"abc"` collapses, leaving `"daba"`.
+  3. Pushing the remaining characters `"bc"` forms `"dababc"`; suffix `"abc"` collapses, leaving `"dab"`.
+- The final reduced string is `"dab"`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The teaching goal is to understand **stack-based confluent reduction**:
+1. Why processing characters left-to-right in a stack faithfully implements the leftmost deletion rule.
+2. How adjacent boundaries re-stitch automatically without re-scanning the entire prefix.
+3. Establishing invariant termination without nested string allocations.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### Stack Suffix Contraction & Boundary Stitching Theorem
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+> **Stack Suffix Contraction & Boundary Stitching Theorem.**
+> 1. *Prefix Irreducibility Invariant:* Let $S_t$ denote the sequence of characters in the stack after processing $s[0 \dots t]$. At every step $t$, the stack $S_t$ contains **no** occurrence of $part$ as a contiguous substring.
+> 2. *Suffix Matching Criterion:* When pushing character $s[t+1]$:
+>    - If $|S_t| + 1 < m$, no occurrence of length $m = |part|$ can exist.
+>    - If $|S_t| + 1 \ge m$, compare the suffix of length $m$ with $part$:
+>      $$\text{Suffix}(S_{t+1}, m) \stackrel{?}{=} part$$
+> 3. *Contraction Step:*
+>    - If the suffix matches $part$, pop $m$ characters from the stack.
+>    - The newly exposed top of the stack was part of an irreducible prefix. Any new occurrence of $part$ must involve the newly exposed suffix combined with subsequent characters.
+> 4. *Equivalence to Leftmost Deletion:* Because characters are processed in ascending order of their original indices, the earliest completed instance of $part$ is detected and eliminated at the exact moment its final character is pushed. This strictly matches the leftmost deletion rule.
+> 5. *Complexity:* Each character is pushed onto the stack once and popped at most once. Suffix comparison takes $\mathcal{O}(m)$ operations. Total time is $\mathcal{O}(n \cdot m)$ where $n = |s|$, requiring $\mathcal{O}(n)$ auxiliary space.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Stack-Based Substring Deletion Flow
+    accDescr: Flowchart illustrating character push into a stack followed by suffix comparison of length m and immediate contraction upon match.
+    A["Read next character s[i]"] --> B["Push s[i] onto stack"]
+    B --> C{"Stack size >= m?"}
+    C -->|"No"| F{"More characters in s?"}
+    C -->|"Yes"| D{"Does stack suffix of length m equal part?"}
+    D -->|"Yes"| E["Pop m characters from stack (boundary stitched)"]
+    D -->|"No"| F
+    E --> F
+    F -->|"Yes"| A
+    F -->|"No"| G["Join remaining stack characters into output string"]
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Core Step 1
-
-**Follow the operation exactly.** The statement repeatedly removes the leftmost occurrence of `part` from the current string. The loop condition `while part in s` asks whether at least one occurrence remains. `s.replace(part, '', 1)` then replaces only the first occurrence with the empty string, which is precisely deletion of the current leftmost match.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "daabcbaabcbc", "part": "abc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+We trace `s = "daabcbaabcbc"` with `part = "abc"` ($m = 3$):
 
 ---
 
-### Step 2: Core Step 2
+### Step-by-Step Pushes and Contractions
 
-The third argument `1` is essential. Without it, `replace` would remove every nonoverlapping occurrence simultaneously, which can differ from the required sequence when one deletion creates a new occurrence across the joined boundary.
+- **$i = 0$ ($s[0] = \text{'d'}$):**
+  - Push `'d'`. Stack: `['d']`. Length $1 < 3$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+- **$i = 1$ ($s[1] = \text{'a'}$):**
+  - Push `'a'`. Stack: `['d', 'a']`. Length $2 < 3$.
+
+- **$i = 2$ ($s[2] = \text{'a'}$):**
+  - Push `'a'`. Stack: `['d', 'a', 'a']`. Length 3.
+  - Suffix: `"daa"` $\ne$ `"abc"`. Keep.
+
+- **$i = 3$ ($s[3] = \text{'b'}$):**
+  - Push `'b'`. Stack: `['d', 'a', 'a', 'b']`.
+  - Suffix (last 3): `"aab"` $\ne$ `"abc"`. Keep.
+
+- **$i = 4$ ($s[4] = \text{'c'}$):**
+  - Push `'c'`. Stack: `['d', 'a', 'a', 'b', 'c']`.
+  - Suffix (last 3): `"abc"` $==$ `"abc"`. **Match detected!**
+  - **Pop 3 characters:** remove `'a', 'b', 'c'`.
+  - Stack after contraction: `['d', 'a']`.
+
+- **$i = 5$ ($s[5] = \text{'b'}$):**
+  - Push `'b'`. Stack: `['d', 'a', 'b']`.
+  - Suffix (last 3): `"dab"` $\ne$ `"abc"`. Keep.
+
+- **$i = 6$ ($s[6] = \text{'a'}$):**
+  - Push `'a'`. Stack: `['d', 'a', 'b', 'a']`.
+  - Suffix: `"aba"` $\ne$ `"abc"`. Keep.
+
+- **$i = 7$ ($s[7] = \text{'a'}$):**
+  - Push `'a'`. Stack: `['d', 'a', 'b', 'a', 'a']`.
+  - Suffix: `"baa"` $\ne$ `"abc"`. Keep.
+
+- **$i = 8$ ($s[8] = \text{'b'}$):**
+  - Push `'b'`. Stack: `['d', 'a', 'b', 'a', 'a', 'b']`.
+  - Suffix: `"aab"` $\ne$ `"abc"`. Keep.
+
+- **$i = 9$ ($s[9] = \text{'c'}$):**
+  - Push `'c'`. Stack: `['d', 'a', 'b', 'a', 'a', 'b', 'c']`.
+  - Suffix (last 3): `"abc"` $==$ `"abc"`. **Match detected!**
+  - **Pop 3 characters:** remove `'a', 'b', 'c'`.
+  - Stack after contraction: `['d', 'a', 'b', 'a']`.
+
+- **$i = 10$ ($s[10] = \text{'b'}$):**
+  - Push `'b'`. Stack: `['d', 'a', 'b', 'a', 'b']`.
+  - Suffix: `"bab"` $\ne$ `"abc"`. Keep.
+
+- **$i = 11$ ($s[11] = \text{'c'}$):**
+  - Push `'c'`. Stack: `['d', 'a', 'b', 'a', 'b', 'c']`.
+  - Suffix (last 3): `"abc"` $==$ `"abc"`. **Match detected!**
+  - **Pop 3 characters:** remove `'a', 'b', 'c'`.
+  - Stack after contraction: `['d', 'a', 'b']`.
 
 ---
 
-### Step 3: Core Step 3
-
-**Recheck the entire new string after every deletion.** Removing a middle block brings the prefix before that block next to the suffix after it. Characters from opposite sides can now combine into a fresh `part` occurrence that did not exist previously. Assigning the rebuilt string back to `s` and repeating the membership test ensures these newly formed matches are discovered.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"dab"` |
+### Step 2: Assemble Remaining Characters
+- The stack contains `['d', 'a', 'b']`.
+- Concatenating yields `"dab"`.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "daabcbaabcbc", "part": "abc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"dab"` | Verified |
+| Index $i$ | Character $s[i]$ | Stack After Push | Suffix of Length 3 | Match? | Action Taken | Stack After Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `d` | `d` | - | No | None | `d` |
+| 1 | `a` | `da` | - | No | None | `da` |
+| 2 | `a` | `daa` | `daa` | No | None | `daa` |
+| 3 | `b` | `daab` | `aab` | No | None | `daab` |
+| 4 | `c` | `daabc` | `abc` | **Yes** | Pop 3 | `da` |
+| 5 | `b` | `dab` | `dab` | No | None | `dab` |
+| 6 | `a` | `daba` | `aba` | No | None | `daba` |
+| 7 | `a` | `dabaa` | `baa` | No | None | `dabaa` |
+| 8 | `b` | `dabaab` | `aab` | No | None | `dabaab` |
+| 9 | `c` | `dabaabc` | `abc` | **Yes** | Pop 3 | `daba` |
+| 10 | `b` | `dabab` | `bab` | No | None | `dabab` |
+| 11 | `c` | `dababc` | `abc` | **Yes** | Pop 3 | `dab` |
+| **End** | - | - | - | - | - | **`"dab"`** |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+**Soundness.** Every time $m$ characters are popped, they form an exact match with $part$. Characters before and after are reconnected without altering their relative sequential order.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Completeness.** By mathematical induction, no instance of $part$ can exist entirely within the stack prior to a push. Any new instance of $part$ must terminate with the character currently pushed. Detecting and popping this suffix immediately guarantees that no occurrence is overlooked.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Stack with suffix comparison:** Append characters and remove the last $M$ when the stack suffix equals `part`. It handles newly formed boundaries naturally but can still spend $O(M)$ per character without optimized matching.
-- **KMP state plus stack:** Track prefix-function match lengths alongside output characters. This achieves the manifest's $O(N+M)$ time and $O(N+M)$ space.
-- **Remove all matches at once:** `replace(part, '')` without count one does not necessarily follow the mandated leftmost step sequence when deletions create new matches.
-- **`part` equals `s`:** One iteration removes the whole string and returns empty.
-- **No occurrence:** The loop never runs and the original string value is returned.
-- **Overlapping appearances:** Only the current leftmost full occurrence is removed; the next membership test evaluates overlap effects in the shortened string.
-- **Pattern longer than source:** Membership is false immediately.
-- **Single-character pattern:** Every matching character is removed one iteration at a time, exposing the quadratic rebuilding behavior.
-- **Nonempty pattern guarantee:** Termination relies on every iteration shortening the string. An empty pattern would invalidate that reasoning but is excluded.
-- **Exact leftmost semantics:** Python's `replace(part, '', 1)` removes only the first occurrence in reading order, matching one mandated deletion before the loop searches the newly shortened string again.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+- **Cascading Boundary Collapses:** In `s = "axxxxyyyyb"` with `part = "xy"`, removing an interior `"xy"` causes outer `'x'` and `'y'` characters to touch, forming another `"xy"`. The stack handles this naturally because the popped boundary immediately exposes the preceding characters.
+- **Repeated Substring Slicing:** Repeatedly calling string replace or find functions can take $\mathcal{O}(n^2)$ time in cases with many small deletions. The stack approach ensures each character is examined with bounded suffix comparisons.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N + M)$. Let $N$ be the initial length of `s` and $M$ the length of `part`. There can be $O(N/M)$ successful iterations. Each membership test and one-occurrence replacement may scan a string of length $O(N)$, and replacement copies the surviving characters. A safe high-level bound for this exact repeated-string implementation is $O(N^2)$ time in the worst case, such as removing a one-character pattern many times.
-- **Auxiliary Space Complexity:** $O(N + M)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(n \cdot m)$, where $n = |s|$ and $m = |part|$. Each character is pushed once and popped at most once. Suffix verification takes at most $m$ character comparisons per push.
+- **Auxiliary Space Complexity:** $\mathcal{O}(n)$ auxiliary space to maintain the character stack.

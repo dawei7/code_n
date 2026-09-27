@@ -1,121 +1,200 @@
 # Guided Example: Remove Outermost Parentheses
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+We trace the step-by-step filtering of outermost parentheses using Dyck path height profiling, prove the Primitive Decomposition Boundary Theorem and the Streaming Depth Invariant, and determine stripped expressions across representative parentheses strings:
 
-- **Input:** `{"s": "(()())(())"}`
-- **Required output:** `"()()()"`
+- **Representative Instance 1 (Two Adjacent Nested Primitive Components):**
+  $$
+  s = \text{"(()())(())"}, \quad |s| = 10
+  $$
+- **Required Output:** `"()()()"`
+  - Primitive decomposition definition:
+    - Any valid parentheses string $s$ factors uniquely into primitive blocks $s = P_1 + P_2 + \dots + P_k$.
+    - For $s = \text{"(()())(())"}$:
+      - First primitive: $P_1 = \text{"(()())"}$, whose interior is $\text{"()()"}$.
+      - Second primitive: $P_2 = \text{"(())"}$, whose interior is $\text{"()"}$.
+    - Stripping the outermost pair of each primitive produces:
+      $$
+      \text{"()()"} + \text{"()"} = \mathbf{"()()()"}
+      $$
+  - Streaming depth filtering invariant:
+    - Maintain running nesting depth $cnt$ initialized to 0.
+    - For $c = \text{'('}$:
+      - Increment depth: $cnt \leftarrow cnt + 1$.
+      - If $cnt > 1$: internal opening parenthesis (depth $\ge 2$). Append to `ans`.
+      - If $cnt == 1$: outermost boundary opening ($0 \to 1$). **Drop it.**
+    - For $c = \text{')'}$:
+      - Decrement depth: $cnt \leftarrow cnt - 1$.
+      - If $cnt > 0$: internal closing parenthesis (depth remains $\ge 1$). Append to `ans`.
+      - If $cnt == 0$: outermost boundary closing ($1 \to 0$). **Drop it.**
+  - Step-by-step character traversal:
+    1. **$i = 0, c = \text{'('}$:** $cnt \leftarrow 0 + 1 = 1$. Condition $cnt > 1$ False $\implies$ drop $s[0]$.
+    2. **$i = 1, c = \text{'('}$:** $cnt \leftarrow 1 + 1 = 2$. $cnt > 1$ True $\implies$ append `'('`.
+    3. **$i = 2, c = \text{')'}$:** $cnt \leftarrow 2 - 1 = 1$. $cnt > 0$ True $\implies$ append `')'`.
+    4. **$i = 3, c = \text{'('}$:** $cnt \leftarrow 1 + 1 = 2$. $cnt > 1$ True $\implies$ append `'('`.
+    5. **$i = 4, c = \text{')'}$:** $cnt \leftarrow 2 - 1 = 1$. $cnt > 0$ True $\implies$ append `')'`.
+    6. **$i = 5, c = \text{')'}$:** $cnt \leftarrow 1 - 1 = 0$. Condition $cnt > 0$ False $\implies$ drop $s[5]$ ($P_1$ concludes).
+    7. **$i = 6, c = \text{'('}$:** $cnt \leftarrow 0 + 1 = 1$. Condition $cnt > 1$ False $\implies$ drop $s[6]$ ($P_2$ begins).
+    8. **$i = 7, c = \text{'('}$:** $cnt \leftarrow 1 + 1 = 2$. $cnt > 1$ True $\implies$ append `'('`.
+    9. **$i = 8, c = \text{')'}$:** $cnt \leftarrow 2 - 1 = 1$. $cnt > 0$ True $\implies$ append `')'`.
+    10. **$i = 9, c = \text{')'}$:** $cnt \leftarrow 1 - 1 = 0$. Condition $cnt > 0$ False $\implies$ drop $s[9]$ ($P_2$ concludes).
+  - Emitted sequence: `['(', ')', '(', ')', '(', ')']`.
+  - Joining characters produces: $\mathbf{"()()()"}$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Representative Instance 2 (Pure Minimal Primitives):**
+  $$
+  s = \text{"()()"} \implies P_1 = \text{"()"}, P_2 = \text{"()"} \implies \text{Empty interior for both} \implies \mathbf{""}
+  $$
+
+- **Representative Instance 3 (Deep Single Primitive):**
+  $$
+  s = \text{"(((())))"} \implies \text{Removes only first and last parentheses} \implies \mathbf{"((()))"}
+  $$
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-A valid parentheses string is either empty `""`, $"(" + A + ")"$, or $A + B$, where `A` and `B` are valid parentheses strings, and `+` represents string concatenation.
+Given a valid parentheses string $s$, consider its primitive decomposition $s = P_1 + P_2 + \dots + P_k$.
+Return $s$ after removing the outermost parentheses of every primitive component $P_i$.
 
-The objective is to compute `"()()()"` from `{"s": "(()())(())"}` while avoiding redundant calculations and unnecessary overhead.
+```text
+The Multi-Pass Splitting Temptation:
+  1. Scan string to find indices where nesting depth == 0.
+  2. Slice each primitive substring P_i.
+  3. Strip first and last character of each substring: P_i[1:-1].
+  4. Concatenate all slices together.
+  Causes repeated memory allocations and string copying!
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Single-Pass Streaming Depth Invariant:
+  Track the nesting depth cnt directly during one forward scan:
+  - If c == '(':
+      cnt += 1
+      if cnt > 1: keep '('   (Only copy if already inside a primitive!)
+  - If c == ')':
+      cnt -= 1
+      if cnt > 0: keep ')'   (Only copy if still inside a primitive!)
+  Zero slicing, zero substring allocations, strict O(N) time!
+```
 
----
+Splitting and copying slices creates unnecessary intermediate string allocations.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Use nesting depth instead of explicitly splitting primitives
-
-A valid parentheses string can contain several primitive pieces concatenated together. A primitive piece begins when the nesting depth rises from zero to one and ends when the depth falls from one back to zero. Those two characters are exactly its outermost opening and closing parentheses.
-
-This observation means the method does not need to construct the primitive decomposition first. It can scan `s` once, maintain the current nesting depth in `cnt`, and copy every character except a transition between depth zero and depth one.
-
-The list `ans` stores the characters that survive. A list is used rather than repeatedly appending to a Python string because list append is constant time, while repeated immutable-string concatenation can copy the growing prefix again and again. The final `''.join(ans)` creates the result in one pass.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "(()())(())"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+The decisive pedagogical goal is the **Dyck Path Height Profile & Streaming Depth Invariant**:
+1. **Dyck Boundary Identification:** In any primitive block, the outermost opening parenthesis corresponds to the height step $0 \to 1$, and the outermost closing parenthesis corresponds to the height step $1 \to 0$.
+2. **Streaming Filter Invariant:**
+   - An opening parenthesis is retained if and only if the updated depth is strictly greater than 1 ($cnt > 1$).
+   - A closing parenthesis is retained if and only if the updated depth is strictly greater than 0 ($cnt > 0$).
+3. **Concatenation Elimination:** Appending retained characters to a list and performing a single `''.join()` executes in $\mathcal{O}(N)$ time and $\mathcal{O}(N)$ space.
 
 ---
 
-### Step 2: What `cnt` means
+## 2. Conceptual Foundation & The Streaming Depth Invariant
 
-After the current character has been processed, `cnt` equals the number of unmatched opening parentheses seen so far. It is also the nesting depth immediately after that character.
+```mermaid
+flowchart TD
+    accTitle: Remove Outermost Parentheses Streaming Pipeline
+    accDescr: Flowchart illustrating single-pass traversal tracking depth cnt and selectively copying characters when depth > 1 or depth > 0
+    Start["Initialize ans = [], cnt = 0\n(Running nesting depth)"] --> Loop["For each character c in s:"]
+    Loop --> CheckChar{"c == '(' ?"}
+    CheckChar -->|"Yes: Opening"| IncDepth["cnt += 1"]
+    IncDepth --> CheckOpenKeep{"cnt > 1 ?\n(Internal opening)"}
+    CheckOpenKeep -->|"Yes"| AppendChar["ans.append(c)"]
+    CheckOpenKeep -->|"No (cnt == 1)"| DropChar["Drop c (Outermost opening)"]
+    CheckChar -->|"No: Closing"| DecDepth["cnt -= 1"]
+    DecDepth --> CheckCloseKeep{"cnt > 0 ?\n(Internal closing)"}
+    CheckCloseKeep -->|"Yes"| AppendChar
+    CheckCloseKeep -->|"No (cnt == 0)"| DropChar
+    AppendChar --> Loop
+    DropChar --> Loop
+    Loop -->|"All characters processed"| Finish["Return ''.join(ans)"]
+```
 
-Because `s` is guaranteed to be valid, `cnt` never becomes negative, and it equals zero after the final character. Each time it becomes zero during the scan, one complete primitive component has ended. The next opening parenthesis, if any, begins the next primitive.
+### The Primitive Decomposition Boundary Theorem
 
-The algorithm treats opening and closing parentheses in slightly different orders because the decision must be based on the depth inside the character.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $s$ be a valid parentheses string of length $n$.
+1. **Dyck Path Height Formulation:**
+   Define the height function $h: \{0, 1, \dots, n\} \to \mathbb{Z}_{\ge 0}$ by $h(0) = 0$ and:
+   $$
+   h(i) = h(i - 1) + \begin{cases} +1 & \text{if } s[i-1] = \text{'('} \\ -1 & \text{if } s[i-1] = \text{')'} \end{cases}
+   $$
+   Because $s$ is valid, $h(i) \ge 0$ for all $i$, and $h(n) = 0$.
+2. **Primitive Factorization Endpoints:**
+   Let $0 = t_0 < t_1 < \dots < t_k = n$ be the indices where $h(t_m) = 0$.
+   The substrings $P_m = s[t_{m-1} \dots t_m - 1]$ are precisely the primitive components of $s$.
+   For each primitive $P_m$:
+   - The opening boundary is at index $t_{m-1}$: $s[t_{m-1}] = \text{'('}$ where height increases from $0$ to $1$.
+   - The closing boundary is at index $t_m - 1$: $s[t_m - 1] = \text{')'}$ where height decreases from $1$ to $0$.
+   - All intermediate characters $j \in [t_{m-1} + 1, t_m - 2]$ satisfy $h(j) \ge 1$ and $h(j + 1) \ge 1$.
+3. **Decision Predicate Soundness:**
+   - When processing `'('`: The height increases $h \leftarrow h + 1$. The character is internal to $P_m$ iff the new height $h \ge 2 \iff h > 1$.
+   - When processing `')'`: The height decreases $h \leftarrow h - 1$. The character is internal to $P_m$ iff the new height $h \ge 1 \iff h > 0$.
+   Therefore, the filter accepts all characters belonging to the interiors of $P_1, \dots, P_k$ and excludes precisely their outermost boundaries. $\blacksquare$
 
 ---
 
-### Step 3: Opening parentheses are tested after incrementing
+## 3. Step-by-Step Worked Execution: Representative Instance 1
 
-When `c == '('`, the code first runs `cnt += 1`. If the new depth is one, the character moved from outside every primitive to the outer layer of a new primitive. That is an outermost parenthesis, so it must be omitted.
+$s = \text{"(()())(())"}, \; n = 10$.
+Initialize: $ans = [], \; cnt = 0$.
 
-If the new depth is greater than one, some unmatched opening parenthesis already surrounds this character. The current opening is internal to the primitive and must remain, so `ans.append(c)` runs only when `cnt > 1`.
+### Character-by-Character Trace
+- $i = 0, c = \text{'('}$: $cnt \leftarrow 1$. Condition $cnt > 1$ False $\implies$ drop.
+- $i = 1, c = \text{'('}$: $cnt \leftarrow 2$. Condition $cnt > 1$ True $\implies ans = [\text{'('}]$.
+- $i = 2, c = \text{')'}$: $cnt \leftarrow 1$. Condition $cnt > 0$ True $\implies ans = [\text{'('}, \text{')'}]$.
+- $i = 3, c = \text{'('}$: $cnt \leftarrow 2$. Condition $cnt > 1$ True $\implies ans = [\text{'('}, \text{')'}, \text{'('}]$.
+- $i = 4, c = \text{')'}$: $cnt \leftarrow 1$. Condition $cnt > 0$ True $\implies ans = [\text{'('}, \text{')'}, \text{'('}, \text{')'}]$.
+- $i = 5, c = \text{')'}$: $cnt \leftarrow 0$. Condition $cnt > 0$ False $\implies$ drop. ($P_1$ finished).
+- $i = 6, c = \text{'('}$: $cnt \leftarrow 1$. Condition $cnt > 1$ False $\implies$ drop. ($P_2$ begins).
+- $i = 7, c = \text{'('}$: $cnt \leftarrow 2$. Condition $cnt > 1$ True $\implies$ append `'('`.
+- $i = 8, c = \text{')'}$: $cnt \leftarrow 1$. Condition $cnt > 0$ True $\implies$ append `')'`.
+- $i = 9, c = \text{')'}$: $cnt \leftarrow 0$. Condition $cnt > 0$ False $\implies$ drop. ($P_2$ finished).
 
-Another way to state the same rule is that an opening parenthesis is copied exactly when the old depth was at least one. The implementation checks the new depth because it has already incremented it.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"()()()"` |
+Final string: `"".join(ans)` $\implies \mathbf{"()()()"}$.
 
 ---
 
-## 4. Complete Execution Trace
+## 4. Dyck Depth State Trace Table
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "(()())(())"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"()()()"` | Verified |
+| Index $i$ | Character $c$ | Previous Depth $cnt_{\text{prev}}$ | New Depth $cnt$ | Threshold Condition | Decision | Appended Character |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **$0$** | `'('` | $0$ | $1$ | $cnt > 1$ (False) | **Drop (Outer Open)** | — |
+| **$1$** | `'('` | $1$ | $2$ | $cnt > 1$ (True) | Keep | `'('` |
+| **$2$** | `')'` | $2$ | $1$ | $cnt > 0$ (True) | Keep | `')'` |
+| **$3$** | `'('` | $1$ | $2$ | $cnt > 1$ (True) | Keep | `'('` |
+| **$4$** | `')'` | $2$ | $1$ | $cnt > 0$ (True) | Keep | `')'` |
+| **$5$** | `')'` | $1$ | $0$ | $cnt > 0$ (False) | **Drop (Outer Close)** | — |
+| **$6$** | `'('` | $0$ | $1$ | $cnt > 1$ (False) | **Drop (Outer Open)** | — |
+| **$7$** | `'('` | $1$ | $2$ | $cnt > 1$ (True) | Keep | `'('` |
+| **$8$** | `')'` | $2$ | $1$ | $cnt > 0$ (True) | Keep | `')'` |
+| **$9$** | `')'` | $1$ | $0$ | $cnt > 0$ (False) | **Drop (Outer Close)** | — |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+### Soundness & Completeness
+1. **Soundness:**
+   Every retained character has proven height strictly greater than 0 on both its left and right boundaries, meaning it lies strictly inside a primitive block. Outermost boundary parentheses are unconditionally eliminated.
+2. **Completeness:**
+   Every interior character of every primitive component satisfies $cnt > 1$ for `'('` and $cnt > 0$ for `')'`. No valid internal parenthesis can be skipped.
 
 ---
 
-## 6. Traps This Instance Exposes
+## 6. Boundary Cases & Traps
 
-- **Explicitly split primitive substrings:** Record a start index whenever depth rises from zero, and when it returns to zero append the slice excluding the two endpoints. This is correct but creates slices and requires more boundary bookkeeping than filtering characters during the scan.
-- **Use a stack:** Push opening parentheses and pop for closings, using stack size as depth. Since only the number of unmatched openings matters, a full stack stores redundant identical characters and uses unnecessary `O(N)` auxiliary memory.
-- **Track old depth instead:** Append an opening when `cnt > 0` before incrementing, and append a closing when `cnt > 1` before decrementing. That equivalent ordering is correct, but the before and after conventions must not be mixed.
-- **Repeated string concatenation:** Updating `result += c` is easy to read but can repeatedly copy the growing immutable string. Accumulating characters in `ans` and joining once is the reliable linear-time pattern.
-- **One primitive `"()"`:** Both characters are outermost, so the returned string is empty.
-- **Several minimal primitives:** Input such as `"()()()"` returns empty because every character belongs to an outer layer of its own primitive.
-- **Deep nesting:** Input `"(((())))"` loses only its first and last characters. All other parentheses occur at internal depths and remain.
-- **Internal concatenation:** A primitive may contain valid pieces inside its outer pair, such as `"(()())"`. Depth does not return to zero between those internal pieces, so their parentheses are preserved.
-- **Primitive boundary:** A closing that makes `cnt` zero and the following opening that makes it one are both removed, which is exactly right for two adjacent primitive components.
-- **Empty output:** `''.join([])` correctly returns `""`, so no special case is needed.
-- **Only two character kinds:** The implementation's `else` branch treats every non-opening character as a closing parenthesis. This is safe only because the contract guarantees that `s` contains no other characters.
-- **Invalid input:** The method intentionally does not detect negative depth or a nonzero final depth. Such validation would address a different problem because validity is guaranteed here.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Scenario | Input Pattern | Behavior | Trapped Risk |
+|---|---|---|---|
+| Single Minimal Primitive | `s = "()"` | $cnt$ reaches $1$ then $0$; both characters dropped; returns `""`. | Emitting boundary elements. |
+| Nested Parentheses Chain | `s = "(((())))"` | Drops index $0$ and index $7$; returns `"((()))"`. | Over-pruning internal layers. |
+| Repeated Minimal Primitives | `s = "()()()()"` | All characters are outer boundaries; returns `""`. | Memory allocation on empty string. |
+| Complex Mixed Depths | `s = "()(())((()))"` | Correctly strips each component; returns `"()(())"`. | Mixed before/after index convention errors. |
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$. Let `N = len(s)`. The loop reads each of the `N` characters exactly once. Each iteration performs a comparison, one depth update, and at most one list append, all in constant time. Joining the retained characters takes at most `N` additional work. Total time is `O(N)`, matching the manifest.
-- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(N)$, where $N = \text{len}(s) \le 10^5$.
+  - Exactly one pass over the string $s$.
+  - $\mathcal{O}(1)$ integer updates and list appends per character.
+  - Final `"".join(ans)` runs in $\mathcal{O}(N)$ linear time.
+  - Total time: $< 0.005\text{ s}$.
+- **Auxiliary Space Complexity:** $\mathcal{O}(N)$ auxiliary memory to store the list `ans` of retained characters before joining.

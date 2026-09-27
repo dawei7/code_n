@@ -2,144 +2,157 @@
 
 We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"a": 2, "b": 4, "c": 6}`
-- **Required output:** `6`
+- **Input:** `a = 2`, `b = 4`, `c = 6`
+- **Required Output:** `6`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance features non-uniform pile sizes where the largest pile equals the sum of the two smaller piles ($2 + 4 = 6$), demonstrating how balancing the two largest piles guarantees complete pairing without leaving stranded stones.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-You are playing a solitaire game with **three piles** of stones of sizes `a`, `b`, and `c` respectively. Each turn you choose two **different non-empty **piles, take one stone from each, and add `1` point to your score. The game stops when there are **fewer than two non-empty** piles (meaning there are no more available moves).
+We are given three piles of stones of sizes $a$, $b$, and $c$. In each turn:
+1. We choose two different non-empty piles.
+2. We remove one stone from each chosen pile.
+3. We add $1$ point to our score.
 
-The objective is to compute `6` from `{"a": 2, "b": 4, "c": 6}` while avoiding redundant calculations and unnecessary overhead.
+The game terminates when fewer than two non-empty piles remain (at most one pile contains stones). We seek the maximum possible total score.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+A greedy choice must avoid stranding a dominant pile with no opposing stones to match against. By always drawing stones from the two currently largest piles, the two larger piles are brought closer to each other in size, preserving maximum parity and pairing capability until exhaustion.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core conceptual parameters and state variables:
+### State Representation
 
-| State Parameter | Role & Purpose | Initial State |
+Let the three pile sizes sorted in ascending order be:
+$$s_0 \le s_1 \le s_2$$
+
+| State Component | Role | Game Status |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Pile Trio $[s_0, s_1, s_2]$ | Sorted pile sizes | Active if $s_1 > 0$ |
+| Accumulated Score | Points scored so far | Increments by $1$ per turn |
+| Termination Criterion | $s_1 = 0$ | At most one non-empty pile remains |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+### Mathematical Invariants
+
+> **Triangle Inequality Pile Partitioning Theorem.**
+> Let $a \le b \le c$. There are two fundamental regimes:
+> 1. **Dominant Heavy Pile ($a + b \le c$):**
+>    The largest pile $c$ contains at least as many stones as the other two combined. Every stone in $a$ and $b$ can be paired exclusively against a stone from $c$. When $a$ and $b$ reach $0$, exactly $c - (a + b)$ stones remain in $c$, but no moves remain. The maximum score is:
+>    $$\text{Score} = a + b$$
+> 2. **Balanced Interlocking Piles ($a + b > c$):**
+>    The two smaller piles collectively exceed the largest pile. By pairing stones between $a$ and $b$ to reduce their excess over $c$, all three piles can be diminished in equilibrium until at most $1$ stone remains in the entire game. The maximum score is:
+>    $$\text{Score} = \left\lfloor \frac{a + b + c}{2} \right\rfloor$$
+> Combining both cases yields the universal closed-form formula:
+> $$\text{Score}_{\max} = \min \left( a + b, \; \left\lfloor \frac{a + b + c}{2} \right\rfloor \right)$$
+
+```mermaid
+flowchart TD
+    accTitle: Greedy Stone Removal Pipeline
+    accDescr: Flowchart illustrating the greedy selection of the two largest piles at each turn until at most one pile remains.
+    A["Input Piles: [a, b, c]"] --> B["Sort piles ascending: s = [s0, s1, s2]"]
+    B --> C{"Is s1 > 0 (at least two non-empty piles)?"}
+    C -- No --> D["Game Over: Return Score"]
+    C -- Yes --> E["Pick two largest: s1 and s2"]
+    E --> F["Remove 1 from each: s1 = s1 - 1, s2 = s2 - 1"]
+    F --> G["Increment Score: Score = Score + 1"]
+    G --> H["Re-sort piles to maintain s0 <= s1 <= s2"]
+    H --> C
+```
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Step 1: Choose stones from the two largest piles
+For `a = 2`, `b = 4`, `c = 6`:
+Initial configuration: $s = [2, 4, 6]$, score $= 0$.
 
-Every move consumes one stone from each of two different non-empty piles. The exact solution repeatedly sorts the three current sizes and removes one stone from the two largest piles.
+### Turn-by-Turn Trace
 
-After `s = sorted([a, b, c])`, the invariant is:
+#### Turn 1
+- Current sorted piles: $[2, 4, 6]$.
+- Two largest piles: $s_1 = 4$ and $s_2 = 6$.
+- Operation: Decrement $4 \to 3$ and $6 \to 5$.
+- Post-turn state: $[2, 3, 5]$.
+- Running score: $\mathbf{1}$.
 
-$$
-\texttt{s[0]}\le\texttt{s[1]}\le\texttt{s[2]}.
-$$
+#### Turn 2
+- Current sorted piles: $[2, 3, 5]$.
+- Two largest piles: $s_1 = 3$ and $s_2 = 5$.
+- Operation: Decrement $3 \to 2$ and $5 \to 4$.
+- Post-turn state: $[2, 2, 4]$.
+- Running score: $\mathbf{2}$.
 
-The second element `s[1]` tells whether at least two piles are non-empty. If it is zero, then `s[0]` is also zero, so fewer than two non-empty piles remain and no legal move exists. While `s[1]` is positive, both `s[1]` and `s[2]` are non-empty and can supply the next move.
+#### Turn 3
+- Current sorted piles: $[2, 2, 4]$.
+- Two largest piles: $s_1 = 2$ and $s_2 = 4$.
+- Operation: Decrement $2 \to 1$ and $4 \to 3$.
+- Post-turn state: $[2, 1, 3] \to \text{re-sorted to } [1, 2, 3]$.
+- Running score: $\mathbf{3}$.
 
-The loop increments `ans`, subtracts one from each of those two piles, and sorts the three sizes again to restore their order.
+#### Turn 4
+- Current sorted piles: $[1, 2, 3]$.
+- Two largest piles: $s_1 = 2$ and $s_2 = 3$.
+- Operation: Decrement $2 \to 1$ and $3 \to 2$.
+- Post-turn state: $[1, 1, 2]$.
+- Running score: $\mathbf{4}$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"a": 2, "b": 4, "c": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+#### Turn 5
+- Current sorted piles: $[1, 1, 2]$.
+- Two largest piles: $s_1 = 1$ and $s_2 = 2$.
+- Operation: Decrement $1 \to 0$ and $2 \to 1$.
+- Post-turn state: $[1, 0, 1] \to \text{re-sorted to } [0, 1, 1]$.
+- Running score: $\mathbf{5}$.
 
----
+#### Turn 6
+- Current sorted piles: $[0, 1, 1]$.
+- Two largest piles: $s_1 = 1$ and $s_2 = 1$.
+- Operation: Decrement $1 \to 0$ and $1 \to 0$.
+- Post-turn state: $[0, 0, 0]$.
+- Running score: $\mathbf{6}$.
 
-### Step 2: Why balancing the large piles is safe
-
-The only way to lose future scoring opportunities is to leave stones stranded in one pile after the other two become empty. Taking from two largest piles avoids exhausting a scarce small pile while two much larger piles can be paired with each other.
-
-For example, with sizes `[1,8,8]`, repeatedly using the two large piles earns eight moves. Spending the one-stone pile immediately is not necessarily fatal, but it provides no advantage; the large piles already balance each other perfectly.
-
-With `[2,4,6]`, taking from piles four and six reduces the imbalance. Re-sorting after every move adapts when their relative order changes. Eventually the stones can be paired for six moves with none stranded.
-
-An exchange argument supports the greedy choice. Consider any state sorted as $x\le y\le z$ with $y>0$. If an optimal plan's next move uses $x$ and one larger pile instead of $y$ and $z$, swap that move to use $y$ and $z$. The total number of stones falls by the same two, and the smallest pile is preserved as an additional future partner. This cannot reduce the number of later legal pairings. Repeating the exchange yields an optimal plan that makes the greedy move first.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Two upper bounds reveal the achievable score
-
-Let $T=a+b+c$ be the total number of stones and $M=\max(a,b,c)$ the largest pile.
-
-Every move removes two stones, so no strategy can score more than:
-
-$$
-\left\lfloor\frac{T}{2}\right\rfloor.
-$$
-
-Also, every move must use at least one stone outside the initially largest pile. There are $T-M$ such stones, so no strategy can score more than $T-M$ if the largest pile dominates all others.
-
-The maximum possible score is consequently bounded by:
-
-$$
-\min\left(\left\lfloor\frac{T}{2}\right\rfloor,\ T-M\right).
-$$
-
-The two-largest greedy process achieves this bound. When no pile dominates, it keeps the piles balanced until at most one total stone remains, reaching $\lfloor T/2\rfloor$. When the largest pile is larger than the other two combined, every smaller-pile stone can be paired with it, reaching $T-M$, after which only the largest pile remains.
-
-The exact source does not calculate this formula; it realizes the same optimum one move at a time.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+#### Termination
+- Current sorted piles: $[0, 0, 0]$.
+- $s_1 = 0$; fewer than two non-empty piles remain.
+- The game concludes. Final score: $\mathbf{6}$.
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+| Turn | Starting State $[s_0, s_1, s_2]$ | Chosen Pair | Stones Removed | Resulting State | Re-sorted State | Accumulated Score |
+|---|---|---|---|---|---|---|
+| $1$ | $[2, 4, 6]$ | $(4, 6)$ | $(s_1, s_2)$ | $[2, 3, 5]$ | $[2, 3, 5]$ | $1$ |
+| $2$ | $[2, 3, 5]$ | $(3, 5)$ | $(s_1, s_2)$ | $[2, 2, 4]$ | $[2, 2, 4]$ | $2$ |
+| $3$ | $[2, 2, 4]$ | $(2, 4)$ | $(s_1, s_2)$ | $[2, 1, 3]$ | $[1, 2, 3]$ | $3$ |
+| $4$ | $[1, 2, 3]$ | $(2, 3)$ | $(s_1, s_2)$ | $[1, 1, 2]$ | $[1, 1, 2]$ | $4$ |
+| $5$ | $[1, 1, 2]$ | $(1, 2)$ | $(s_1, s_2)$ | $[1, 0, 1]$ | $[0, 1, 1]$ | $5$ |
+| $6$ | $[0, 1, 1]$ | $(1, 1)$ | $(s_1, s_2)$ | $[0, 0, 0]$ | $[0, 0, 0]$ | **$6$** |
+| Halts | $[0, 0, 0]$ | None | $s_1 = 0$ | — | — | **$6$** |
+
+---
+
+## 5. Algorithmic Mastery & Edge Surfacing
+
+### Boundary and Edge Cases
+
+| Scenario | Pile Sizes | Expected Score | Strategic Handling |
 |---|---|---|---|
-| Initialization | Initial input `{"a": 2, "b": 4, "c": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+| Massive Dominant Pile | `a = 1, b = 1, c = 10` | $1 + 1 = 2$ | $a + b = 2 \le 10$; returns $a + b = 2$, leaving $8$ stranded stones in $c$. |
+| Symmetric Balanced Piles | `a = 4, b = 4, c = 4` | $\lfloor 12 / 2 \rfloor = 6$ | Full exhaustion down to $0$ stones across all piles. |
+| Two Piles Empty Initially | `a = 0, b = 0, c = 5` | $0$ | $s_1 = 0$ immediately; 0 moves possible. |
+| Odd Total Sum | `a = 4, b = 4, c = 5` | $\lfloor 13 / 2 \rfloor = 6$ | Leaves exactly $1$ stone at termination. |
 
----
+### Invariant Maintenance & Why It Works
 
-## 5. Algorithmic Correctness
+1. **Greedy Balance Optimality:**
+   By always depleting the two largest piles, the difference $s_2 - s_1$ decreases or remains bounded. This prevents one pile from growing disproportionately large relative to the sum of the other two, ensuring maximum possible pairing.
+2. **Equivalence of Closed-Form and Simulation:**
+   Because each move decreases total stone count by $2$, the theoretical upper bound is $\lfloor (a+b+c)/2 \rfloor$. The capacity to achieve this bound is constrained solely by the bottleneck condition that no single pile can contribute more than the sum of the other two, proving that $\min(a+b, \lfloor (a+b+c)/2 \rfloor)$ is exact.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+### Complexity Analysis
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Closed-form bound:** Return $\min(\lfloor T/2\rfloor,T-M)$ in $O(1)$ time and space. It is asymptotically faster than the exact simulation.
-- **Max heap:** Repeatedly pop the two largest piles and push decremented sizes. It generalizes to more piles but adds machinery for exactly three.
-- **Choose arbitrary non-empty piles:** It can exhaust small partners too soon and strand avoidable stones in a large pile.
-- **Two equal largest piles:** Pairing them is immediately safe and keeps their sizes balanced.
-- **One dominant pile:** Every stone from the other two can score once; leftover dominant stones cannot be paired.
-- **No dominant pile:** Stones can be paired until at most one total stone remains.
-- **All piles equal:** Re-sorting rotates which physical piles are largest, but labels do not matter.
-- **Positive inputs:** The initial loop always has a legal move because all three piles begin non-empty.
-- **Stopping condition:** In sorted order, `s[1] == 0` exactly means fewer than two non-empty piles.
-- **Sort of three values:** It is constant per move, but the number of moves grows with input magnitudes.
-- **Score counter:** One increment corresponds to one legal removal from two distinct indices.
-- **Large pile sizes:** The simulation can perform up to roughly 150000 iterations under the constraints, unlike the constant-time formula.
-- **Input values:** They are copied into `s`, so the integer arguments themselves are not mutated.
-- **Pile identity:** Sorting is valid because the objective and legal move depend only on current sizes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(1)$. Let $P$ be the returned score. The while loop executes exactly $P$ times. Sorting exactly three integers is $O(1)$ per iteration, as are the subtraction and counter update. The exact implementation therefore takes $O(P)$ time. Since $P \le \lfloor(a+b+c)/2\rfloor$, this is also $O(a+b+c)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time Complexity:** $\mathcal{O}(a + b + c)$ for direct greedy simulation (at most $1.5 \times 10^5$ turns for standard constraints), or $\mathcal{O}(1)$ closed-form time via formula calculation.
+- **Space Complexity:** $\mathcal{O}(1)$ auxiliary space, maintaining only three sorted integer variables.

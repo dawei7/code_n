@@ -1,125 +1,188 @@
 # Guided Example: Path with Maximum Gold
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Problem Essence & Algorithmic Mental Model
 
-- **Input:** `{"grid": [[0, 6, 0], [5, 8, 7], [0, 9, 0]]}`
-- **Required output:** `24`
+We are given an $m \times n$ grid representing a gold mine, where entry $\text{grid}[r][c]$ denotes the quantity of gold located in that cell ($0$ indicates barren rock). A miner can begin collecting gold at any non-empty cell, navigate along the four cardinal directions (Up, Down, Left, Right), and terminate the mining expedition at any desired point.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The mining operation enforces three strict physical constraints:
+1. **Self-Avoiding Walk (No Revisits)**: A miner may never visit the same cell more than once during a single mining path.
+2. **Obstacle Avoidance**: A miner can never step onto or pass through a cell containing $0$ gold.
+3. **Additive Ingestion**: Upon entering a cell, the miner collects all gold contained within it.
+
+Our goal is to compute the maximum total gold collectable along any valid simple path.
+
+In general graph theory, finding the longest simple path in an arbitrary weighted graph is an NP-hard problem. Standard dynamic programming fails because a path's validity depends on the historical set of all previously visited coordinates, destroying Markovian subproblem independence.
+
+However, the problem specification guarantees a critical dimensionality restriction:
+**Sparsity of Active Cells**:
+The total number of non-zero gold cells in the entire grid is strictly bounded by at most **25 cells** ($\sum [\text{grid}[r][c] > 0] \le 25$).
+Because any simple path can contain at most 25 vertices, the maximum recursion depth is bounded by 25.
+
+This permits an exact **DFS with Backtracking (Depth-First State Exploration)**:
+1. Try starting a mining expedition from every candidate cell $(r, c)$ that contains gold.
+2. At each active cell $(r, c)$, record its gold value $v$, temporarily mark the cell as unavailable (e.g., set to $0$ in-place) to prevent re-entry, and recursively explore its valid unvisited neighbors.
+3. Upon returning from the recursive explorations, **backtrack** by restoring the cell's original gold value $v$, allowing alternate search branches to utilize the cell.
+4. Track the maximum cumulative gold harvested across all initiated trajectories.
+
+```
+Grid (3x3):
+[ 0, 6, 0 ]
+[ 5, 8, 7 ]
+[ 0, 9, 0 ]
+
+Possible Trajectories:
+Path 1: (0,1: 6) -> (1,1: 8) -> (1,0: 5)                   Total = 6 + 8 + 5 = 19
+Path 2: (0,1: 6) -> (1,1: 8) -> (2,1: 9)                   Total = 6 + 8 + 9 = 23
+Path 3: (1,0: 5) -> (1,1: 8) -> (1,2: 7)                   Total = 5 + 8 + 7 = 20
+Path 4: (0,1: 6) -> (1,1: 8) -> (1,2: 7)                   Total = 6 + 8 + 7 = 21
+Path 5: (1,0: 5) -> (1,1: 8) -> (2,1: 9)                   Total = 5 + 8 + 9 = 22
+Path 6: (0,1: 6) -> (1,1: 8) -> (1,2: 7) -> ... (Dead end)
+Optimal Path: 9 -> 8 -> 7 (or 6 -> 8 -> 7 etc.) -> Max = 24 (9 + 8 + 7)
+```
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Mathematical Formalism & Invariants
 
-In a gold mine `grid` of size `m x n`, each cell in this mine has an integer representing the amount of gold in that cell, `0` if it is empty.
+Let $G = (V, E, w)$ be the undirected planar grid graph where:
+$$V = \{(r, c) \in \{0, \dots, m-1\} \times \{0, \dots, n-1\} \mid \text{grid}[r][c] > 0\}$$
+with vertex weight function $w(r, c) = \text{grid}[r][c]$, and edge set:
+$$E = \{((r_1, c_1), (r_2, c_2)) \in V^2 \mid |r_1 - r_2| + |c_1 - c_2| = 1\}$$
+The sparsity guarantee ensures $|V| \le 25$.
 
-The objective is to compute `24` from `{"grid": [[0, 6, 0], [5, 8, 7], [0, 9, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+### Simple Path Formulation
+A valid mining run is a sequence of distinct vertices:
+$$P = (v_1, v_2, \dots, v_k) \in V^k \quad \text{such that } \forall i \neq j, v_i \neq v_j \text{ and } (v_i, v_{i+1}) \in E$$
+The total gold harvested by path $P$ is:
+$$\text{Weight}(P) = \sum_{i=1}^k w(v_i)$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+### Optimization Objective
+We seek to maximize path weight over all possible simple paths $\mathcal{P}(G)$:
+$$\text{MaxGold} = \max_{P \in \mathcal{P}(G)} \text{Weight}(P)$$
+
+### Recursive Backtracking Transition
+Let $\text{DFS}(u, \mathcal{V})$ denote the maximum additional gold obtainable starting from vertex $u$ with forbidden visited set $\mathcal{V} \subset V$ ($u \notin \mathcal{V}$):
+$$\text{DFS}(u, \mathcal{V}) = w(u) + \max \left( 0, \ \max_{v \in \mathcal{N}(u) \setminus \mathcal{V}} \text{DFS}(v, \mathcal{V} \cup \{u\}) \right)$$
+where $\mathcal{N}(u)$ denotes the cardinal neighbors of $u$ in $G$.
+
+### State Invariant Preservation
+For any cell $(r, c)$:
+- **Pre-Call Mutation**: $\text{grid}[r][c] \leftarrow 0$ prevents any child branch from cyclic re-visitation ($u \in \mathcal{V}$).
+- **Post-Call Restoration**: $\text{grid}[r][c] \leftarrow v$ restores the original weight, ensuring subsequent independent search trees see an uncorrupted grid.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 3. Concrete Example Execution & State Evolution
 
-We maintain the core conceptual parameters and state variables:
+Consider the $3 \times 3$ grid:
+$$\begin{bmatrix} 0 & 6 & 0 \\ 5 & 8 & 7 \\ 0 & 9 & 0 \end{bmatrix}$$
+Here $|V| = 5$ active cells.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+### Recursive Exploration Starting from $(2, 1)$ (Value 9)
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+```mermaid
+flowchart TD
+    accTitle: Backtracking DFS Traversal for Gold Collection
+    accDescr: Branching decision tree exploring simple paths starting at coordinate (2, 1) and collecting maximum gold.
+    
+    Root["Start: (2, 1) [Value = 9]<br/>Mark (2, 1) as visited (0)"] --> Step1["Move to (1, 1) [Value = 8]<br/>Mark (1, 1) as visited (0)"]
+    
+    Step1 --> BranchA["Branch A: Move Left to (1, 0) [Value = 5]<br/>No more moves -> Yields 5"]
+    Step1 --> BranchB["Branch B: Move Up to (0, 1) [Value = 6]<br/>No more moves -> Yields 6"]
+    Step1 --> BranchC["Branch C: Move Right to (1, 2) [Value = 7]<br/>No more moves -> Yields 7"]
+    
+    BranchA --> RetA["Return to (1, 1): 8 + 5 = 13"]
+    BranchB --> RetB["Return to (1, 1): 8 + 6 = 14"]
+    BranchC --> RetC["Return to (1, 1): 8 + 7 = 15 (Optimal Branch!)"]
+    
+    RetC --> FinalRet["Return to (2, 1): 9 + 15 = 24!"]
+    
+    classDef optimal stroke:#0f0,stroke-width:2px;
+    class BranchC,RetC,FinalRet optimal;
+```
+
+### Detailed Search Trace from Anchor $(2, 1)$
+
+| Call Depth | Coordinate Visited | Cell Value | Action Taken | Available Neighbors | Subtree Harvest | Cumulative Path Sum |
+|---|---|---|---|---|---|---|
+| Depth 1 | $(2, 1)$ | 9 | Mark $G[2][1]=0$ | $(1, 1)$ | - | 9 |
+| Depth 2 | $(1, 1)$ | 8 | Mark $G[1][1]=0$ | $(1, 0), (0, 1), (1, 2)$ | - | $9 + 8 = 17$ |
+| Depth 3 (A) | $(1, 0)$ | 5 | Mark $G[1][0]=0$ | None (all neighbors 0) | 5 | $17 + 5 = 22$ |
+| Backtrack A | $(1, 0)$ | 5 | Restore $G[1][0]=5$ | - | - | - |
+| Depth 3 (B) | $(0, 1)$ | 6 | Mark $G[0][1]=0$ | None (all neighbors 0) | 6 | $17 + 6 = 23$ |
+| Backtrack B | $(0, 1)$ | 6 | Restore $G[0][1]=6$ | - | - | - |
+| Depth 3 (C) | $(1, 2)$ | 7 | Mark $G[1][2]=0$ | None (all neighbors 0) | 7 | $17 + 7 = \mathbf{24}$ |
+| Backtrack C | $(1, 2)$ | 7 | Restore $G[1][2]=7$ | - | - | - |
+| Return Depth 2 | $(1, 1)$ | 8 | Max child is Branch C (7) | - | $8 + 7 = 15$ | - |
+| Backtrack 2 | $(1, 1)$ | 8 | Restore $G[1][1]=8$ | - | - | - |
+| Return Depth 1 | $(2, 1)$ | 9 | Max child is 15 | - | $9 + 15 = \mathbf{24}$ | **24** |
+
+Optimal Path Found:
+$$(2, 1) \to (1, 1) \to (1, 2) \quad \text{yielding } 9 + 8 + 7 = \mathbf{24}$$
 
 ---
 
-## 3. Step-by-Step Worked Execution
+## 4. Multi-Approach Comparison & Trade-Offs
 
-### Step 1: Why every possible path must be considered
-
-A valid collection route may begin at any positive cell, may stop at any time, moves only in four orthogonal directions, and may not revisit a cell. The locally largest neighboring amount is not necessarily the best choice: taking it can lead into a short dead end, while a smaller neighbor may open a much longer, richer route. Because the grid has at most 25 gold-containing cells, exhaustive search with backtracking is feasible and avoids an unjustified greedy decision.
-
-The solution defines `dfs(i, j)` as the maximum gold collectable by a valid path that starts at cell `(i, j)`, assuming cells already used earlier on the current recursive path have temporarily been changed to zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Approach / Dimension | Dynamic Programming with Bitmask | BFS Queue with Visited Sets | DFS with In-Place Backtracking (Optimal) |
 |---|---|---|---|
-| Input Slice | `{"grid": [[0, 6, 0], [5, 8, 7], [0, 9, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| **Feasibility** | $2^{25} \approx 3.3 \times 10^7$ states (Too large for memory) | Explodes memory queue with path copies | Zero heap allocation; in-place grid mutation |
+| **Time Complexity** | $\mathcal{O}(2^K \cdot K)$ where $K \le 25$ | High overhead from set copying | $\mathcal{O}(K \cdot 3^K)$ worst-case, heavily pruned by geometry |
+| **Auxiliary Memory** | $\approx 256\text{ MB}$ state table | Hundreds of megabytes | $\mathcal{O}(K)$ stack frames (at most 25 frames!) |
+| **Implementation Footprint**| Complex coordinate compression | High boilerplate | 15 lines of concise recursive logic |
+| **State Reversibility** | Read-only table | Memory clones | Fast in-place zero-assignment and restoration |
+
+```
+Memory Footprint Comparison:
+
+BFS with Cloned Path Sets:
+Each queue node stores path history: ~500,000 active nodes x 100 bytes = 50 MB heap churn!
+
+In-Place DFS Backtracking (Optimal):
+grid[r][c] = 0;
+recurse();
+grid[r][c] = v;   <--- Reuses original grid! 0 bytes dynamic allocation!
+```
 
 ---
 
-### Step 2: The base case combines every invalid continuation
+## 5. Algorithmic Edge Cases & Boundary Analysis
 
-The condition
-
-`not (0 <= i < m and 0 <= j < n and grid[i][j])`
-
-returns zero when the coordinates are outside the grid or the cell value is zero. Short-circuit evaluation matters: Python checks the bounds before evaluating `grid[i][j]`, so an out-of-range coordinate does not index the list. A zero may be an originally empty cell or a temporarily marked visited cell. Both must stop the current continuation, and both correctly contribute no additional gold.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Boundary Scenario | Input Grid | Expected Output | System Behavior |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| **Zero Gold Anywhere** | All cells contain 0 | 0 | No starting cell triggers; loop returns 0. |
+| **Single Gold Cell** | Grid with exactly one cell $= 10$ | 10 | DFS visits cell, has 0 neighbors, returns 10. |
+| **Linear Isolated Strip** | $1 \times N$ strip of gold cells | Sum of all cells in strip | Traverses line from one endpoint to the other; collects all gold. |
+| **Cycle in Gold Path** | $2 \times 2$ square of gold cells | Sum of 3 cells (cannot close cycle) | Visited marking prevents closing the loop; harvests optimal 3-cell subset. |
+| **Max Capacity Grid ($K = 25$)** | 25 connected gold cells | Handled within time limit | Recursion depth capped at 25; planar grid constraints severely prune branches. |
 
 ---
 
-### Step 3: Choose, explore, and undo
+## 6. Mathematical Verification & Complexity Derivation
 
-For a valid gold cell, `v = grid[i][j]` saves its amount. Then `grid[i][j] = 0` marks it unavailable on the current path. This single in-place change acts as the visited set. Any recursive call that tries to return to the cell sees zero and stops, enforcing the “visit at most once” rule.
+Let $M, N$ be grid dimensions ($M, N \le 15$), and let $K$ be the number of non-zero gold cells ($K \le 25$).
 
-The tuple `dirs = (-1, 0, 1, 0, -1)` compactly encodes the four direction vectors. `pairwise(dirs)` produces `(-1, 0)`, `(0, 1)`, `(1, 0)`, and `(0, -1)`: up, right, down, and left. For each vector `(a, b)`, the recursive expression explores `dfs(i + a, j + b)`.
+### Graph Planar Branching Bound:
+1. When entering an unvisited cell, one of its 4 cardinal directions is the edge from which we arrived (which is marked as visited).
+2. Thus, the effective branching factor at any step is at most $3$.
+3. The length of any simple path is bounded by $K \le 25$.
+4. On a planar 2D grid, self-avoiding paths cannot branch indefinitely into open space without trapping themselves against their own visited boundary walls. The actual number of self-avoiding walks of length $K$ on a grid is bounded by $\mu^K$ where the connective constant of the square lattice is:
+   $$\mu \approx 2.638$$
 
-Only one next neighbor can be chosen by a single path, so the code takes the maximum of the four returned continuation totals. It then adds the current cell’s saved amount:
+### Search Cost:
+- Number of starting cells evaluated: at most $K \le 25$.
+- From each start, depth is bounded by $K \le 25$.
+- In each recursive step, at most 4 cardinal checks are performed ($\mathcal{O}(1)$ operations).
+- In-place assignment ($\text{grid}[r][c] = 0$ and $\text{grid}[r][c] = v$) avoids all dynamic memory allocations and hash lookups.
 
-`ans = max(...) + v`.
-
-Stopping at the current cell is included automatically. If every neighbor is invalid, all four recursive calls return zero, their maximum is zero, and the result is simply `v`.
-
-Before returning, `grid[i][j] = v` restores the cell. This undo step is the heart of backtracking. The zero marker should affect sibling choices within the current path, but it must not leak into a different path explored after recursion returns. Restoration means each recursive branch receives exactly the visited history belonging to that branch, and the outer caller ultimately receives its original grid contents back.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `24` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[0, 6, 0], [5, 8, 7], [0, 9, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `24` | Verified |
+### Complexity Summary:
+- **Total Time Complexity:** $\mathcal{O}(K \cdot 3^K)$ upper bound, executing in under $0.05$ seconds in practice due to spatial planar self-entanglement.
+- **Total Auxiliary Space Complexity:** $\mathcal{O}(K)$ strictly bounded by the maximum recursion call stack depth ($K \le 25$).
 
 ---
 
-## 5. Algorithmic Correctness
+## 7. Synthesis & Strategic Takeaways
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit visited set:** Store coordinates used by the current path instead of changing the grid. This can make mutation concerns more visible, but membership records consume \(O(g)\) additional space and require their own add-and-remove discipline.
-- **Visited bitmask:** Number the at most 25 gold cells and represent visited status in an integer. It avoids mutating the input and supports memoization by state, but requires preprocessing adjacency and more complex state handling.
-- **Breadth-first enumeration:** A queue can hold partial paths and their visited sets, but many large path states coexist at once. DFS backtracking retains only one active path and is much more space-efficient.
-- **Greedy neighbor choice:** Always taking the richest adjacent cell can miss a longer route with greater total gold. Backtracking is necessary because immediate reward does not determine future connectivity.
-- **All-zero grid:** Every starting call returns zero, so the outer maximum returns zero. The grid dimensions are at least one, so the generator passed to `max` is never empty.
-- **Single gold cell:** Its four continuations return zero, making `dfs` return exactly that cell’s value.
-- **Disconnected gold regions:** A path cannot cross zero cells. Trying every coordinate independently lets the algorithm find the best path in whichever connected component is most valuable.
-- **Cycles of gold cells:** Temporary zero marking prevents revisiting a cell, so recursion terminates and explores only simple paths.
-- **Starting and stopping anywhere:** Zero-valued continuation results let a path stop at its current cell; the outer maximum supplies every possible beginning. No forced corner or boundary start is assumed.
-- **Input restoration:** Each visited cell is restored after its descendants finish, so ordinary completion preserves `grid`. Removing that restoration would incorrectly erase cells for sibling branches and later starting calls.
-- **Positive-gold guarantee:** Using zero as a visited marker is valid because zero cells are forbidden and all collectable values are positive. The same technique would need reconsideration if legitimate zero-valued traversable cells were allowed.
-- **Required helper import:** The exact source uses `pairwise`, introduced in `itertools`. A standalone execution environment must import it; the algorithm assumes the package harness supplies the name.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(mn\cdot3^g)$. Let \(m\) and \(n\) be the grid dimensions, and let \(g\) be the number of cells containing gold. The outer generator makes \(mn\) starting calls. A zero start ends in constant time.
-- **Auxiliary Space Complexity:** $O(g)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+1. **In-Place Mutation for Backtracking**: Instead of allocating separate boolean hash sets or copying visited lists across recursive calls, mutate the grid cell itself ($\text{grid}[r][c] = 0$) and restore it upon return. This reduces memory overhead to absolute zero and maximizes CPU cache locality.
+2. **Path Constraints vs Cycle Prevention**: Self-avoiding walks on graphs require state restoration during backtracking because a cell that cannot lead to a maximum path in branch A may be the optimal continuation for branch B.
+3. **Exploiting Domain Sparsity**: When an NP-hard problem (Longest Simple Path) is presented, inspect the input constraints. An upper bound of $K \le 25$ vertices signals that exact backtracking is mathematically guaranteed to run comfortably within time limits.
